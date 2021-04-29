@@ -10,6 +10,5 @@
   "pci_projects_project_failoverip_mitigation": "Schutz aktivieren / deaktivieren",
   "pci_projects_project_failoverip_firewall": "Firewall konfigurieren",
   "pci_projects_project_failoverip_actions": "Aktionen",
-  "pci_projects_project_failoverip_order": "Failover-IPs kaufen",
-  "pci_projects_project_failoverip_slowness_information": "Derzeit werden außergewöhnlich viele Anfragen gestellt. Die jeweilige Antwort kann sich entsprechend stark verzögern. Dennoch werden alle Anfragen innerhalb weniger Stunden bearbeitet. Wir entschuldigen uns für die Unannehmlichkeiten."
+  "pci_projects_project_failoverip_order": "Failover-IPs kaufen"
 }

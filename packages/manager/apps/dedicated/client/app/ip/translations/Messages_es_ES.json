@@ -78,6 +78,7 @@
   "ip_filter_services__ALL": "Todos los servicios",
   "ip_filter_services__ALERTS": "Servicios en alerta",
   "ip_filter_services__PARK": "Aparcamiento de IP",
+  "ip_filter_services__FAILOVER": "IP Failover",
   "ip_filter_services_title_OTHER": "Otros",
   "ip_filter_services_title_CDN": "CDN",
   "ip_filter_services_title_DEDICATED": "Servidores dedicados",
@@ -190,6 +191,7 @@
   "ip_description_field": "Descripción",
   "ip_description_new_title": "Añadir una descripción",
   "ip_description_edit_title": "Editar la descripción",
+  "ip_description_edit_move": "Asociar este bloque de IP a otro servicio",
   "ip_description_edit_field": "Descripción:",
   "ip_description_edit_success": "Se ha cambiado la descripción de la IP {{t0}}.",
   "ip_description_edit_failure": "Se ha producido un error al editar la descripción de la IP {{t0}}.",
@@ -471,6 +473,7 @@
   "ip_order_free": "GRATIS",
   "ip_order_bloc": "Bloque",
   "ip_order_renew_EPCC": "Sus direcciones IP se renovarán automáticamente con su infraestructura Dedicated Cloud.",
+  "ip_order_renew_MBM": "Sus direcciones IP se renovarán automáticamente con su infraestructura Managed Bare Metal.",
   "ip_order_resume": "Resumen del pedido",
   "ip_order_resume_short": "Bloque /{{ blockSize }}: {{ price }} + IVA",
   "ip_order_price_HT": "Precio total (sin IVA):",
@@ -670,9 +673,5 @@
   "ip_table_manage_delegation_ipv6block_delete_err": "Se ha producido un error al eliminar la delegación del registro DNS inverso:",
   "ip_table_manage_delegation_ipv6block_resume": "Resumen de la operación",
   "ip_table_manage_delegation_ipv6block_to_add": "Registro(s) inverso(s) que desea añadir",
-  "ip_table_manage_delegation_ipv6block_to_delete": "Registro(s) inverso(s) que desea eliminar",
-  "ip_filter_services__FAILOVER": "IP Failover",
-  "ip_description_edit_move": "Asociar este bloque de IP a otro servicio",
-  "ip_order_renew_MBM": "Sus direcciones IP se renovarán automáticamente con su infraestructura Managed Bare Metal.",
-  "ip_ipfo_slowness_information": "Debido a un aumento excepcional en el número de solicitudes, podríamos tardar más tiempo del normal en responderle. No obstante, estamos tratando todas las solicitudes en cuestión de horas. Rogamos disculpen las molestias."
+  "ip_table_manage_delegation_ipv6block_to_delete": "Registro(s) inverso(s) que desea eliminar"
 }

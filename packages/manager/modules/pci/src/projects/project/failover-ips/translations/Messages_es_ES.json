@@ -10,6 +10,5 @@
   "pci_projects_project_failoverip_mitigation": "Activar/Desactivar la mitigación",
   "pci_projects_project_failoverip_firewall": "Configurar el firewall ",
   "pci_projects_project_failoverip_actions": "Acciones",
-  "pci_projects_project_failoverip_order": "Comprar direcciones IP Failover",
-  "pci_projects_project_failoverip_slowness_information": "Debido a un aumento excepcional en el número de solicitudes, podríamos tardar más tiempo del normal en responderle. No obstante, estamos tratando todas las solicitudes en cuestión de horas. Rogamos disculpen las molestias."
+  "pci_projects_project_failoverip_order": "Comprar direcciones IP Failover"
 }

@@ -78,6 +78,7 @@
   "ip_filter_services__ALL": "Tutti i servizi",
   "ip_filter_services__ALERTS": "Servizi in alert",
   "ip_filter_services__PARK": "Parking degli IP",
+  "ip_filter_services__FAILOVER": "IP Failover",
   "ip_filter_services_title_OTHER": "Altri",
   "ip_filter_services_title_CDN": "CDN",
   "ip_filter_services_title_DEDICATED": "Server dedicati",
@@ -190,6 +191,7 @@
   "ip_description_field": "Descrizione",
   "ip_description_new_title": "Aggiungi una descrizione",
   "ip_description_edit_title": "Modifica la descrizione",
+  "ip_description_edit_move": "Associa questo blocco IP a un altro servizio",
   "ip_description_edit_field": "Descrizione:",
   "ip_description_edit_success": "La descrizione dell'IP {{t0}} è stata modificata.",
   "ip_description_edit_failure": "Si è verificato un errore durante la modifica della descrizione dell'IP {{t0}}",
@@ -471,6 +473,7 @@
   "ip_order_free": "GRATIS",
   "ip_order_bloc": "Blocco",
   "ip_order_renew_EPCC": "Gli IP verranno rinnovati automaticamente con la tua infrastruttura Dedicated Cloud.",
+  "ip_order_renew_MBM": "Gli IP verranno rinnovati automaticamente insieme all’infrastruttura Managed Bare Metal.",
   "ip_order_resume": "Riepilogo del tuo ordine",
   "ip_order_resume_short": "Blocco/{{ blockSize }}: {{ price }} +IVA",
   "ip_order_price_HT": "Prezzo totale IVA esclusa:",
@@ -670,9 +673,5 @@
   "ip_table_manage_delegation_ipv6block_delete_err": "Si è verificato un errore durante l'eliminazione della delega del reverse DNS:",
   "ip_table_manage_delegation_ipv6block_resume": "Riepilogo dell'operazione",
   "ip_table_manage_delegation_ipv6block_to_add": "Reverse da aggiungere",
-  "ip_table_manage_delegation_ipv6block_to_delete": "Reverse da eliminare",
-  "ip_filter_services__FAILOVER": "IP Failover",
-  "ip_description_edit_move": "Associa questo blocco IP a un altro servizio",
-  "ip_order_renew_MBM": "Gli IP verranno rinnovati automaticamente insieme all’infrastruttura Managed Bare Metal.",
-  "ip_ipfo_slowness_information": "A causa di un picco eccezionale nella quantità di richieste, ogni risposta potrebbe richiedere molto più tempo del solito. Tuttavia, tutte le richieste saranno elaborate entro poche ore. Ci scusiamo per il disagio."
+  "ip_table_manage_delegation_ipv6block_to_delete": "Reverse da eliminare"
 }

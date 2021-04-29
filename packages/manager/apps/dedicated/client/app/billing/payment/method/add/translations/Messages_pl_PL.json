@@ -6,7 +6,6 @@
   "billing_payment_method_add_selected_paypal_redirect": "Klikając na przycisk \"Paypal\", otworzy się wyskakujące okno, aby dokończyć dodawanie metody płatności.",
   "billing_payment_method_add_selected_original_credit_card_redirect": "Klikając na przycisk \"Dodaj\", dokument zostanie pobrany. Proszę postępować zgodnie z procedurą opisaną w dokumencie, aby zatwierdzić metodę płatności.",
   "billing_payment_method_add_credit_card_selected": "Twoja karta bankowa zostanie natychmiast włączona.",
-  "billing_payment_method_add_credit_card_selected_explain": "W celu potwierdzenia rejestracji i ważności Twojej nowej karty bankowej zablokujemy na Twoim koncie kwotę {{amount}}.  Kwota {{amount}} nie zostanie jednak przez nas pobrana.",
   "billing_payment_method_add_credit_card_selected_explain_generic": "W celu potwierdzenia rejestracji i ważności Twojej nowej karty bankowej zablokujemy na Twoim koncie określoną kwotę. Kwota ta nie zostanie jednak przez nas pobrana. Karta nie zostanie obciążona.",
   "billing_payment_method_add_bank_account_selected": "Twoje konto bankowe zostanie zatwierdzone w ciągu 24-48 godzin od momentu, w którym podpiszesz procedurę (dokument do pobrania na koniec procesu dodawania konta bankowego). ",
   "billing_payment_method_add_default_payment": "Ten sposób płatności będzie używany do automatycznych płatności za Twoją usługę. Możesz to zmienić w każdej chwili w swoich metodach płatności. Dostaniesz powiadomienie e-mailem przed każdym nowym terminem płatności,",

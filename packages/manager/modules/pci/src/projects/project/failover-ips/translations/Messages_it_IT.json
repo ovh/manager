@@ -10,6 +10,5 @@
   "pci_projects_project_failoverip_mitigation": "Attiva/Disattiva la mitigazione",
   "pci_projects_project_failoverip_firewall": "Configura il firewall",
   "pci_projects_project_failoverip_actions": "Azioni",
-  "pci_projects_project_failoverip_order": "Acquista IP Failover",
-  "pci_projects_project_failoverip_slowness_information": "A causa di un picco eccezionale nella quantità di richieste, ogni risposta potrebbe richiedere molto più tempo del solito. Tuttavia, tutte le richieste saranno elaborate entro poche ore. Ci scusiamo per il disagio."
+  "pci_projects_project_failoverip_order": "Acquista IP Failover"
 }

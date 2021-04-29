@@ -78,6 +78,7 @@
   "ip_filter_services__ALL": "Wszystkie usługi",
   "ip_filter_services__ALERTS": "Usługi z alertem",
   "ip_filter_services__PARK": "Parking adresów IP",
+  "ip_filter_services__FAILOVER": "IP Failover",
   "ip_filter_services_title_OTHER": "Inne",
   "ip_filter_services_title_CDN": "CDN",
   "ip_filter_services_title_DEDICATED": "Serwery Dedykowane",
@@ -190,6 +191,7 @@
   "ip_description_field": "Opis",
   "ip_description_new_title": "Dodaj opis",
   "ip_description_edit_title": "Zmień opis",
+  "ip_description_edit_move": "Przypisz ten blok IP do innej usługi",
   "ip_description_edit_field": "Opis:",
   "ip_description_edit_success": "Opis adresu IP {{t0}} został zmieniony.",
   "ip_description_edit_failure": "Wystąpił błąd podczas edycji opisu adresu IP {{t0}}",
@@ -471,6 +473,7 @@
   "ip_order_free": "ZA DARMO",
   "ip_order_bloc": "Blok",
   "ip_order_renew_EPCC": "Adresy IP będą odnawiane automatycznie z Twoją infrastrukturą Dedicated Cloud.",
+  "ip_order_renew_MBM": "Adresy IP będą odnawiane automatycznie wraz z Twoją infrastrukturą Managed Bare Metal.",
   "ip_order_resume": "Podsumowanie zamówienia",
   "ip_order_resume_short": "Blok /{{ blockSize }} : {{ price }} netto",
   "ip_order_price_HT": "Cena netto:",
@@ -670,9 +673,5 @@
   "ip_table_manage_delegation_ipv6block_delete_err": "Wystąpił błąd podczas usuwania delegacji rewersu DNS:",
   "ip_table_manage_delegation_ipv6block_resume": "Podsumowanie operacji",
   "ip_table_manage_delegation_ipv6block_to_add": "Rewers(y) do dodania",
-  "ip_table_manage_delegation_ipv6block_to_delete": "Rewers(y) do usunięcia",
-  "ip_filter_services__FAILOVER": "IP Failover",
-  "ip_description_edit_move": "Przypisz ten blok IP do innej usługi",
-  "ip_order_renew_MBM": "Adresy IP będą odnawiane automatycznie wraz z Twoją infrastrukturą Managed Bare Metal.",
-  "ip_ipfo_slowness_information": "Ze względu na wyjątkowy wzrost liczby zgłoszeń czas odpowiedzi może się znacznie wydłużyć.  Niemniej jednak każde zgłoszenie zostanie przetworzone w ciągu kilku godzin. Przepraszamy za niedogodności."
+  "ip_table_manage_delegation_ipv6block_to_delete": "Rewers(y) do usunięcia"
 }
