@@ -82,11 +82,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.hosting.dashboard.indy', $transition$.params()),
       freedomLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('app.hosting.dashboard.freedom', $transition$.params()),
-      websiteCoachLink: /* @ngInject */ ($state, $transition$) =>
-        $state.href(
-          'app.hosting.dashboard.website-coach',
-          $transition$.params(),
-        ),
       emailLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('app.email.domain', {
           ...$transition$.params(),

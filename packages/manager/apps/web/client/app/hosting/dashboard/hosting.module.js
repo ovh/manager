@@ -14,7 +14,6 @@ import indy from '../indy/indy.module';
 import localSEO from '../local-seo/local-seo.module';
 import multiSite from '../multisite/multisite.module';
 import multisiteDomainConfiguration from '../multisite/domain-configuration/configuration.module';
-import websiteCoach from '../website-coach/website-coach.module';
 import privateSqlActivation from '../database/private-sql-activation';
 import runtimes from '../runtimes/runtimes.module';
 import task from '../task/task.module';
@@ -44,7 +43,6 @@ angular
     runtimes,
     task,
     userLogs,
-    websiteCoach,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
