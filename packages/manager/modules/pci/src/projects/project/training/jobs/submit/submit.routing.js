@@ -16,9 +16,9 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => PciProjectStorageContainersService.getAll(projectId),
       presetImages: /* @ngInject */ (PciProjectTrainingService, projectId) =>
         PciProjectTrainingService.getPresetImages(projectId),
-      gpus: /* @ngInject */ (PciProjectTrainingService, projectId) => (
+      resource: /* @ngInject */ (PciProjectTrainingService, projectId) => (
         region,
-      ) => PciProjectTrainingService.getGpus(projectId, region),
+      ) => PciProjectTrainingService.getResources(projectId, region),
       goToData: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.storages.objects.add', {
           projectId,

@@ -279,8 +279,9 @@
                                 ng-repeat="data in $ctrl.job.spec.volumes track by $index"
                                 class="api-list-item"
                             >
-                                {{ data.container }}@{{
-                                data.region}}:{{data.mountPath}}:{{data.permission}}
+                                <span
+                                    data-ng-bind="$ctrl.constructor.getVolumeRepr(data)"
+                                ></span>
                             </li>
                         </ul>
                     </oui-tile-description>
