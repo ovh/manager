@@ -55,9 +55,7 @@ export default class OverTheBoxDetailsCtrl {
     this.allDevices = [];
     this.device = null;
 
-    // Retrieve user language to get guides link by language
-    this.language = this.coreConfig.getUserLanguage();
-    this.guidesLink = this.OVERTHEBOX_DETAILS.guidesUrl[this.language];
+    this.guidesLink = this.OVERTHEBOX_DETAILS.guidesUrl.fr;
 
     this.$q
       .all([
