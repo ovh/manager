@@ -8,6 +8,7 @@ export default class TelephonyNumberCtrl {
   /* @ngInject */
   constructor(
     $q,
+    $scope,
     $translate,
     $translatePartialLoader,
     atInternet,
@@ -16,6 +17,7 @@ export default class TelephonyNumberCtrl {
     TucToast,
   ) {
     this.$q = $q;
+    this.$scope = $scope;
     this.$translate = $translate;
     this.$translatePartialLoader = $translatePartialLoader;
     this.atInternet = atInternet;
@@ -39,6 +41,11 @@ export default class TelephonyNumberCtrl {
     this.jsPlumbInstance = null;
 
     this.verticalLayout = true;
+    this.reorderingMode = false;
+
+    this.$scope.$on('dialplan.extensions.loaded', () => {
+      this.dialplanLoaded = true;
+    });
 
     return this.$q
       .all([this.getTranslations(), this.tucJsPlumbService.initJsPlumb()])
@@ -97,5 +104,9 @@ export default class TelephonyNumberCtrl {
       }`,
       type: 'action',
     });
+  }
+
+  validateReorderSteps() {
+    this.reorderingMode = false;
   }
 }

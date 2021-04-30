@@ -158,14 +158,17 @@
             >
                 <li
                     class="group-number__step-container"
-                    data-ng-repeat="extension in $ctrl.dialplan.extensions track by extension.extensionId"
+                    data-ng-repeat="extension in $ctrl.dialplan.extensions | orderBy: 'position' track by extension.extensionId"
                     data-ng-if="$ctrl.displayHelpers.expanded"
                 >
                     <telephony-number-ovh-pabx-dialplan-extension
                         data-extension="extension"
                     ></telephony-number-ovh-pabx-dialplan-extension>
                 </li>
-                <li class="group-number__step-container">
+                <li
+                    class="group-number__step-container"
+                    data-ng-if="!$ctrl.numberCtrl.reorderingMode"
+                >
                     <div class="group-number__step">
                         <div class="group-number__step-btn--add-container">
                             <button

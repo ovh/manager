@@ -10,7 +10,6 @@
                     }"
                 data-translate="telephony_number_action_layout_vertical"
                 data-ng-click="$ctrl.toggleCcsLayout()"
-                data-ng-disabled="$ctrl.verticalLayout"
             ></button>
             <button
                 class="oui-button"
@@ -20,8 +19,39 @@
                     }"
                 data-translate="telephony_number_action_layout_horizontal"
                 data-ng-click="$ctrl.toggleCcsLayout()"
-                data-ng-disabled="!$ctrl.verticalLayout"
             ></button>
+        </div>
+        <div class="oui-button-group d-block mt-1">
+            <div data-ng-if="$ctrl.reorderingMode">
+                <button
+                    class="oui-button oui-button_secondary"
+                    data-ng-disabled="!$ctrl.dialplanLoaded"
+                    data-ng-click="$ctrl.validateReorderSteps()"
+                >
+                    <span
+                        class="oui-icon oui-icon-arrow-transfer"
+                        aria-hidden="true"
+                    ></span>
+                    <span
+                        data-translate="telephony_number_action_reorder_confirm"
+                    ></span>
+                </button>
+            </div>
+            <div data-ng-if="!$ctrl.reorderingMode">
+                <button
+                    class="oui-button oui-button_secondary"
+                    data-ng-disabled="!$ctrl.dialplanLoaded"
+                    data-ng-click="$ctrl.reorderingMode = true"
+                >
+                    <span
+                        class="oui-icon oui-icon-arrow-transfer"
+                        aria-hidden="true"
+                    ></span>
+                    <span
+                        data-translate="telephony_number_action_reorder"
+                    ></span>
+                </button>
+            </div>
         </div>
     </div>
     <form

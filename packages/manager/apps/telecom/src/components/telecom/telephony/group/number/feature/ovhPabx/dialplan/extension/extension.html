@@ -134,14 +134,26 @@
                 </div>
                 <!-- END OF CONDITIONS RESUME -->
             </div>
+            <button
+                type="button"
+                class="oui-button oui-button_secondary reorder-step-button no-transition"
+                data-ng-if="$ctrl.numberCtrl.reorderingMode && !$ctrl.dialplanCtrl.isLastExtension($ctrl.extension)"
+                data-ng-click="$ctrl.reorderExtension()"
+            >
+                <span class="oui-icon oui-icon-arrow-transfer"></span>
+            </button>
             <div
                 class="group-number__step-btn-container dropdown"
                 data-uib-dropdown
                 data-on-toggle="$ctrl.autoScrollOnToggle(open)"
+                data-ng-class="{
+                    'opacity-0': $ctrl.numberCtrl.reorderingMode,
+                }"
             >
                 <button
                     type="button"
                     class="oui-action-button"
+                    data-ng-disabled="$ctrl.numberCtrl.reorderingMode"
                     data-attr-id="extension-{{ $ctrl.extension.extensionId }}-actions"
                     data-uib-dropdown-toggle
                 >
@@ -271,19 +283,16 @@
                 data-collapsed="$ctrl.onExtensionCollapsed()"
                 data-expanded="$ctrl.onExtensionExpanded()"
             >
-                <ul
-                    class="group-number__action-wrapper"
-                    data-ui-sortable="$ctrl.rulesSortableOptions"
-                    data-ng-model="$ctrl.extension.rules"
-                >
+                <ul class="group-number__action-wrapper">
                     <li
-                        class="group-number__action-container"
-                        data-ng-repeat="rule in $ctrl.extension.rules track by rule.ruleId"
+                        class="group-number__action-container action-reorder-{{rule.position}}"
+                        data-ng-repeat="rule in $ctrl.extension.rules | orderBy: 'position' track by rule.ruleId"
                         data-ng-if="$ctrl.displayHelpers.expanded"
                     >
                         <telephony-number-ovh-pabx-dialplan-extension-rule
                             data-ng-if="$ctrl.getRuleAttr('action', rule) !== 'ivr'"
                             data-rule="rule"
+                            data-hide-actions="$ctrl.numberCtrl.reorderingMode"
                         >
                         </telephony-number-ovh-pabx-dialplan-extension-rule>
                         <telephony-number-ovh-pabx-menu
@@ -292,9 +301,24 @@
                             data-dialplan-rule="rule"
                         >
                         </telephony-number-ovh-pabx-menu>
+                        <button
+                            type="button"
+                            class="oui-button oui-button_secondary reorder-action-button no-transition"
+                            data-ng-if="!$last && $ctrl.numberCtrl.reorderingMode"
+                            data-ng-click="$ctrl.constructor.reorderRule(rule, $ctrl.extension.rules)"
+                        >
+                            <span
+                                class="oui-icon oui-icon-arrow-transfer"
+                                aria-hidden="true"
+                            >
+                            </span>
+                        </button>
                     </li>
                     <!-- ADDED RULES -->
-                    <li class="group-number__action-container">
+                    <li
+                        class="group-number__action-container"
+                        data-ng-if="!$ctrl.numberCtrl.reorderingMode"
+                    >
                         <div>
                             <!-- ADD BTN -->
                             <button
@@ -355,17 +379,17 @@
                             <!-- RULE LIST -->
                             <ul
                                 class="group-number__action-negative-wrapper"
-                                data-ui-sortable="$ctrl.negativeRulesSortableOptions"
                                 data-ng-model="$ctrl.extension.negativeRules"
                             >
                                 <!-- ADDED EXTENSIONS -->
                                 <li
                                     class="group-number__action-negative-container"
-                                    data-ng-repeat="rule in $ctrl.extension.negativeRules track by rule.ruleId"
+                                    data-ng-repeat="rule in $ctrl.extension.negativeRules | orderBy: 'position' track by rule.ruleId"
                                 >
                                     <telephony-number-ovh-pabx-dialplan-extension-rule
                                         data-ng-if="$ctrl.getRuleAttr('action', rule) !== 'ivr'"
                                         data-rule="rule"
+                                        data-hide-actions="$ctrl.numberCtrl.reorderingMode"
                                     >
                                     </telephony-number-ovh-pabx-dialplan-extension-rule>
                                     <telephony-number-ovh-pabx-menu
@@ -374,10 +398,23 @@
                                         data-dialplan-rule="rule"
                                     >
                                     </telephony-number-ovh-pabx-menu>
+                                    <button
+                                        type="button"
+                                        class="oui-button oui-button_secondary reorder-action-button no-transition"
+                                        data-ng-if="!$last && $ctrl.numberCtrl.reorderingMode"
+                                        data-ng-click="$ctrl.constructor.reorderRule(rule, $ctrl.extension.negativeRules)"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-arrow-transfer"
+                                            aria-hidden="true"
+                                        >
+                                        </span>
+                                    </button>
                                 </li>
                                 <!-- ADDED EXTENSIONS -->
                                 <li
                                     class="group-number__action-negative-container"
+                                    data-ng-if="!$ctrl.numberCtrl.reorderingMode"
                                 >
                                     <!-- ADD NEGATIVE ACTION BTN -->
                                     <div class="mt-4">
