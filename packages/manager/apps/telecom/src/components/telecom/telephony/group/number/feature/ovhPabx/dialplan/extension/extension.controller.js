@@ -1,3 +1,4 @@
+import find from 'lodash/find';
 import get from 'lodash/get';
 import isNumber from 'lodash/isNumber';
 import last from 'lodash/last';
@@ -126,6 +127,17 @@ export default class DialplanExtensionCtrl {
       ]);
     }
 
+    this.$scope.$watch(
+      () => this.numberCtrl.reorderingMode,
+      (reorder) => {
+        if (reorder && this.extension.rules?.length) {
+          this.displayHelpers.collapsed = false;
+        } else {
+          this.displayHelpers.collapsed = true;
+        }
+      },
+    );
+
     return initPromise.finally(() => {
       this.loading.init = false;
     });
@@ -188,6 +200,23 @@ export default class DialplanExtensionCtrl {
     if (!this.extension.rules.length) {
       this.displayHelpers.collapsed = true;
       this.displayHelpers.expanded = false;
+    }
+  }
+
+  reorderExtension() {
+    this.dialplanCtrl.reorderExtension(this.extension);
+  }
+
+  static reorderRule(rule, ruleList) {
+    const other = find(ruleList, {
+      position: rule.position + 1,
+    });
+    if (other) {
+      const tmp = rule.position;
+      set(rule, 'position', other.position);
+      other.position = tmp;
+      rule.move(rule.position);
+      other.move(other.position);
     }
   }
 

@@ -7,6 +7,8 @@
   "telephony_number_action_layout": "Changer la disposition de l'affichage",
   "telephony_number_action_layout_vertical": "Affichage vertical",
   "telephony_number_action_layout_horizontal": "Affichage horizontal",
+  "telephony_number_action_reorder": "Réordonner les étapes et actions",
+  "telephony_number_action_reorder_confirm": "Valider les modifications",
   "telephony_number_feature_redirect_to": "Rediriger vers",
   "telephony_number_feature_redirect_add_conditions": "Ajouter des conditions",
   "telephony_number_feature_redirect_not_set": "Aucune destination sélectionnée.",

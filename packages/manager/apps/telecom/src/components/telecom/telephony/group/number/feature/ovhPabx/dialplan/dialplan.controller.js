@@ -1,4 +1,6 @@
+import find from 'lodash/find';
 import get from 'lodash/get';
+import maxBy from 'lodash/maxBy';
 import set from 'lodash/set';
 import some from 'lodash/some';
 
@@ -6,6 +8,7 @@ export default class DialplanCtrl {
   /* @ngInject */
   constructor(
     $q,
+    $scope,
     $timeout,
     $translate,
     atInternet,
@@ -14,6 +17,7 @@ export default class DialplanCtrl {
     TUC_UI_SORTABLE_HELPERS,
   ) {
     this.$q = $q;
+    this.$scope = $scope;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.atInternet = atInternet;
@@ -89,6 +93,7 @@ export default class DialplanCtrl {
       })
       .finally(() => {
         this.loading.init = false;
+        this.$scope.$emit('dialplan.extensions.loaded');
       })
       .catch((error) => {
         this.TucToast.error(
@@ -246,5 +251,28 @@ export default class DialplanCtrl {
       .finally(() => {
         this.ovhPabxDialplanCtrl.loading.remove = false;
       });
+  }
+
+  isLastExtension(extension) {
+    return (
+      extension.position ===
+      maxBy(this.dialplan.extensions, 'position')?.position
+    );
+  }
+
+  /**
+   * Increase extension position by one
+   */
+  reorderExtension(extension) {
+    const other = find(this.dialplan.extensions, {
+      position: extension.position + 1,
+    });
+    if (other) {
+      const { position } = extension;
+      set(extension, 'position', other.position);
+      set(other, 'position', position);
+      extension.move(extension.position);
+      other.move(other.position);
+    }
   }
 }

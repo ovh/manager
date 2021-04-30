@@ -6,6 +6,7 @@ export default {
   controller,
   bindings: {
     rule: '=',
+    hideActions: '<',
   },
   require: {
     numberCtrl: '^^telephonyNumber',
