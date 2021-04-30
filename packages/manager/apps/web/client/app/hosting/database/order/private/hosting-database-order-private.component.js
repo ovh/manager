@@ -5,19 +5,10 @@ export default {
   controller,
   template,
   bindings: {
-    checkoutOrderCart: '<',
-    getDatacenter: '<',
     goBack: '<',
-    prepareOrderCart: '<',
-    resetOrderCart: '<',
-
     autoPayWithPreferredPaymentMethod: '<',
-
-    catalogProducts: '<',
-    datacenter: '<',
-    products: '<',
+    datacenter: '<?',
     user: '<',
-    serviceName: '<',
-    services: '<',
+    serviceName: '<?',
   },
 };

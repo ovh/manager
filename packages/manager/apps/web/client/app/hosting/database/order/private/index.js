@@ -1,14 +1,13 @@
 import component from './hosting-database-order-private.component';
 import routing from './hosting-database-order-private.routing';
-import service from './hosting-database-order-private.service';
+import orderPrivateDatabase from '../components/private-database/index';
 
 const moduleName = 'ovhManagerHostingDatabaseOrderPrivate';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, [orderPrivateDatabase])
   .config(routing)
   .component('hostingDatabaseOrderPrivate', component)
-  .service('HostingDatabaseOrderPrivateService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
