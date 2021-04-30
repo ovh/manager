@@ -233,8 +233,6 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       vrackInfos: /* @ngInject */ ($stateParams, Server) =>
         Server.getVrackInfos($stateParams.productId),
-      incidentStatus: /* @ngInject */ ($stateParams, Server) =>
-        Server.getIncidentStatus($stateParams.productId),
       breadcrumb: () => null,
       goToManualUpgrade: /* @ngInject */ ($state) => (selectedUpgrade) =>
         $state.go('app.dedicated-server.server.dashboard.upgrade', {
