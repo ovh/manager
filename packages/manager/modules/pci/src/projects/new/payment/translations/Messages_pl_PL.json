@@ -9,5 +9,8 @@
   "pci_project_new_payment_checkout_error": "Wystąpił błąd podczas tworzenia projektu Public Cloud.  Spróbuj ponownie później.",
   "pci_project_new_payment_challenge_error_payment_method_deactivated": "Weryfikacja Twojego sposobu płatności nie powiodła się.  Został on dezaktywowany. Wybierz inny sposób płatności, aby utworzyć nowy projekt.",
   "pci_project_new_payment_set_default_payment_method_error": "Wystąpił błąd podczas ustawienia Twojego sposobu płatności jako domyślnego sposobu płatności.",
-  "pci_project_new_payment_information": "Informacje bankowe"
+  "pci_project_new_payment_information": "Informacje bankowe",
+  "pci_project_new_payment_pending_check": "Oczekiwanie na zatwierdzenie Twojego sposobu płatności",
+  "pci_project_new_payment_check_error": "Weryfikacja sposobu płatności w Twoim banku trwa wyjątkowo długo.",
+  "pci_project_new_payment_check_payment_method_status": "Prosimy o sprawdzenie statusu sposobu płatności na liście sposobów płatności. Po zatwierdzeniu sposobu płatności możesz wrócić do tworzenia projektu Public Cloud."
 }
