@@ -53,7 +53,7 @@
   "telephony_number_feature_ovh_pabx_step_conditions_none": "Aucune condition définie",
   "telephony_number_feature_ovh_pabx_step_no_conditions": "Aucune condition",
   "telephony_number_feature_ovh_pabx_step_conditions_scheduler": "Jours exceptionnels",
-  "telephony_number_feature_ovh_pabx_step_conditions_scheduler_infos": "Vous pouvez paramétrer vos jours de fermetures exceptionnelles <a data-ui-sref=\"{{ sref }}\">sur cette page</a>.",
+  "telephony_number_feature_ovh_pabx_step_conditions_scheduler_infos": "Vous pouvez paramétrer vos jours de fermetures exceptionnelles <a data-ui-sref=\"{{ state }}\">sur cette page</a>.",
   "telephony_number_feature_ovh_pabx_step_conditions_scheduler_scheduler1": "Créneau 1",
   "telephony_number_feature_ovh_pabx_step_conditions_scheduler_scheduler2": "Créneau 2",
   "telephony_number_feature_ovh_pabx_step_conditions_scheduler_scheduler3": "Créneau 3",
