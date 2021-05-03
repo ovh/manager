@@ -66,7 +66,6 @@ export default class {
     taskLink,
     user,
     userLogsLink,
-    websiteCoachLink,
     HOSTING_STATUS,
     OVH_ORDER_URLS,
   ) {
@@ -126,7 +125,6 @@ export default class {
     this.taskLink = taskLink;
     this.user = user;
     this.userLogsLink = userLogsLink;
-    this.websiteCoachLink = websiteCoachLink;
     this.OVH_ORDER_URLS = OVH_ORDER_URLS;
   }
 
@@ -418,14 +416,10 @@ export default class {
 
     this.$scope.displayTabs = { cron: true, databases: true, modules: true };
 
-    return this.$q
-      .all({
-        hosting: this.Hosting.getSelected(this.$stateParams.productId),
-        user: this.WucUser.getUser(),
-      })
-      .then(({ hosting, user }) =>
+    return this.Hosting.getSelected(this.$stateParams.productId)
+      .then((hosting) =>
         isEmpty(hosting.offer)
-          ? this.$q.when({ hosting, user })
+          ? this.$q.when({ hosting })
           : this.$q.all({
               indys: this.HostingIndy.getIndys(this.$stateParams.productId),
               freedoms: this.HostingFreedom.getFreedoms(
@@ -433,15 +427,12 @@ export default class {
                 { forceRefresh: false },
               ),
               hosting,
-              user,
             }),
       )
-      .then(({ indys, freedoms, hosting, user }) => {
+      .then(({ indys, freedoms, hosting }) => {
         this.hosting = hosting;
         this.indys = indys;
         this.freedoms = freedoms;
-        // TODO: Replace by feature flipping
-        this.isWebCoachAvailable = user.ovhSubsidiary === 'FR';
       });
   }
 
