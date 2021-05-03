@@ -46,9 +46,12 @@ export default /* @ngInject */ ($stateProvider) => {
       ) =>
         Server.getServiceInfos($stateParams.productId).then((serviceInfo) => ({
           ...serviceInfo,
-          status: resiliationCapability.billingInformation
-            ? 'FORCED_MANUAL'
-            : serviceInfo.status,
+          status:
+            resiliationCapability.billingInformation &&
+            serviceInfo.status === 'ok' &&
+            !serviceInfo.renew?.deleteAtExpiration
+              ? 'FORCED_MANUAL'
+              : serviceInfo.status,
           statusHelp: resiliationCapability.billingInformation || null,
         })),
       specifications: /* @ngInject */ (serverName, Server) =>
