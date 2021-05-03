@@ -1,3 +1,12 @@
+## [16.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.22.0...@ovh-ux/manager-dedicated@16.22.1) (2021-05-03)
+
+
+### Bug Fixes
+
+* **billing.payment.credit:** update content ([fe91347](https://github.com/ovh/manager/commit/fe913474f1ff21408029526a2669a2722aa2bcb5))
+
+
+
 # [16.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.21.0...@ovh-ux/manager-dedicated@16.22.0) (2021-05-03)
 
 
