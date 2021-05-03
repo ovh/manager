@@ -1,10 +1,18 @@
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import get from 'lodash/get';
 import set from 'lodash/set';
 
 angular.module('Billing.controllers').controller(
   'Billing.controllers.CreditsMovements',
   class BillingCreditsCtrl {
-    constructor($q, $stateParams, $translate, Alerter, BillingCredits) {
+    constructor(
+      $filter,
+      $q,
+      $stateParams,
+      $translate,
+      Alerter,
+      BillingCredits,
+    ) {
       this.$q = $q;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -24,6 +32,10 @@ angular.module('Billing.controllers').controller(
         init: false,
         getMovement: false,
       };
+
+      this.incidentServicesStatus = buildURL('hub', '#/incident/SBG/status');
+
+      this.currentDate = $filter('date')(new Date(), 'longDate');
     }
 
     /* =======================================
@@ -36,12 +48,27 @@ angular.module('Billing.controllers').controller(
       return this.billingCredits
         .getBalanceMovement(this.$stateParams.balanceName, movementId)
         .then((data) => {
-          return data.orderId
-            ? this.billingCredits.getOrder(data.orderId).then((order) => ({
+          if (data.orderId) {
+            return this.billingCredits
+              .getOrder(data.orderId)
+              .then((order) => ({
                 ...data,
                 orderUrl: order.url,
               }))
-            : this.$q.resolve(data);
+              .catch(() => data);
+          }
+
+          if (get(data, 'destinationObject.name') === 'CREDIT_NOTE') {
+            return this.billingCredits
+              .getRefund(get(data, 'destinationObject.id'))
+              .then((refund) => ({
+                ...data,
+                refundUrl: refund.url,
+              }))
+              .catch(() => data);
+          }
+
+          return this.$q.resolve(data);
         })
         .catch((error) => {
           this.Alerter.set(

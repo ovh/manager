@@ -9,11 +9,57 @@
         </span>
     </oui-back-button>
 
-    <div class="table-responsive">
+    <div
+        data-ng-if="$ctrl.balance.balanceName === 'VOUCHER-COMMERCIAL_GESTURE_SBG' && !$ctrl.loading.init && $ctrl.paginatedMovements.length > 0"
+        class="mt-4"
+    >
+        <h2
+            class="oui-heading_4"
+            data-translate="billing_credit_sbg_title"
+        ></h2>
+
+        <p
+            data-translate="billing_credit_sbg_total_amount"
+            data-translate-values="{ amount: $ctrl.paginatedMovements[0].amount.text }"
+        ></p>
+
+        <p class="m-4">
+            <strong
+                data-translate="billing_credit_sbg_total_balance"
+                data-translate-values="{ amount: $ctrl.balance.amount.text, date: $ctrl.currentDate }"
+            ></strong>
+        </p>
+
+        <p data-translate="billing_credit_sbg_services_intro"></p>
+
+        <p class="m-4">
+            <a
+                data-ng-href="{{:: $ctrl.incidentServicesStatus }}"
+                class="oui-link_icon"
+            >
+                <span data-translate="billing_credit_sbg_services"></span>
+                <span
+                    class="oui-icon oui-icon-arrow-right"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </p>
+
+        <p data-translate="billing_credit_sbg_info"></p>
+        <p data-translate="billing_credit_sbg_movements_intro"></p>
+        <p data-translate="billing_credit_sbg_tips"></p>
+    </div>
+
+    <div class="table-responsive mt-4">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col" class="text-center">
+                    <th scope="col">
+                        <span
+                            data-translate="billing_credit_balance_movements_header_id"
+                        ></span>
+                    </th>
+                    <th scope="col">
                         <span
                             data-translate="billing_credit_balance_movements_header_date"
                         ></span>
@@ -23,12 +69,12 @@
                             data-translate="billing_credit_balance_movements_header_operation"
                         ></span>
                     </th>
-                    <th class="text-right" scope="col">
+                    <th scope="col">
                         <span
                             data-translate="billing_credit_balance_header_amount"
                         ></span>
                     </th>
-                    <th class="text-center" scope="col">
+                    <th scope="col">
                         <span
                             data-translate="billing_credit_balance_header_expiration_date"
                         ></span>
@@ -48,14 +94,13 @@
                 <tr
                     data-ng-repeat="movement in $ctrl.paginatedMovements track by $index"
                 >
-                    <td class="text-center">
-                        <span
-                            data-ng-bind="movement.creationDate | date:'mediumDate'"
-                        ></span>
-                    </td>
+                    <td data-ng-bind="::movement.movementId"></td>
+                    <td
+                        data-ng-bind="movement.creationDate | date:'mediumDate'"
+                    ></td>
                     <td>
                         <span
-                            data-ng-if="movement.amount.value >= 0"
+                            data-ng-if="movement.amount.value >= 0 && !movement.refundUrl"
                             data-translate="billing_credit_balance_movements_operation_credit"
                         >
                         </span>
@@ -68,15 +113,20 @@
                         </span>
 
                         <span
-                            data-ng-if="movement.amount.value < 0 && !movement.orderId"
+                            data-ng-if="movement.amount.value < 0 && !movement.orderId &&  !movement.refundUrl"
                             data-translate="billing_credit_balance_movements_operation_debit"
                         >
                         </span>
+
+                        <span
+                            data-ng-if="movement.refundUrl"
+                            data-translate="billing_credit_balance_movements_operation_debit_refund"
+                            data-translate-values="{ refundId: movement.destinationObject.id, refundUrl: movement.refundUrl }"
+                        >
+                        </span>
                     </td>
-                    <td class="text-right">
-                        <span data-ng-bind="movement.amount.text"></span>
-                    </td>
-                    <td class="text-center">
+                    <td data-ng-bind="movement.amount.text"></td>
+                    <td>
                         <span
                             data-ng-bind="movement.expirationDate ? (movement.expirationDate | date:'mediumDate') : '-'"
                             data-ng-class="{ 'text-danger': movement.expireSoon }"
@@ -101,5 +151,23 @@
             data-page-placeholder="{{ 'pagination_page' | translate:{ t0: $ctrl.currentPage, t1: $ctrl.nbPages } }}"
             data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
         ></div>
+    </div>
+
+    <div
+        data-ng-if="$ctrl.balance.balanceName === 'VOUCHER-COMMERCIAL_GESTURE_SBG'"
+        class="mt-4 small"
+    >
+        <p
+            data-translate="billing_credit_sbg_legal_info1"
+            class="font-italic"
+        ></p>
+        <p
+            data-translate="billing_credit_sbg_legal_info2"
+            class="font-italic"
+        ></p>
+        <p
+            data-translate="billing_credit_sbg_legal_info3"
+            class="font-italic"
+        ></p>
     </div>
 </div>
