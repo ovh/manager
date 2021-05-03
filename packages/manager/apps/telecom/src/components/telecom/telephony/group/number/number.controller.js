@@ -13,6 +13,7 @@ export default class TelephonyNumberCtrl {
     $translatePartialLoader,
     atInternet,
     autoScrollOnToggle,
+    ovhUserPref,
     tucJsPlumbService,
     TucToast,
   ) {
@@ -22,6 +23,7 @@ export default class TelephonyNumberCtrl {
     this.$translatePartialLoader = $translatePartialLoader;
     this.atInternet = atInternet;
     this.autoScrollOnToggle = autoScrollOnToggle;
+    this.ovhUserPref = ovhUserPref;
     this.tucJsPlumbService = tucJsPlumbService;
     this.TucToast = TucToast;
     this.jsPlumbInstanceOptions = JSPLUMB_INSTANCE_OPTIONS;
@@ -48,7 +50,11 @@ export default class TelephonyNumberCtrl {
     });
 
     return this.$q
-      .all([this.getTranslations(), this.tucJsPlumbService.initJsPlumb()])
+      .all([
+        this.getTranslations(),
+        this.fetchLayoutPreferences(),
+        this.tucJsPlumbService.initJsPlumb(),
+      ])
       .finally(() => {
         this.loading.init = false;
       });
@@ -56,6 +62,22 @@ export default class TelephonyNumberCtrl {
 
   $onDestroy() {
     this.number.stopEdition(true, true);
+  }
+
+  fetchLayoutPreferences() {
+    return this.ovhUserPref
+      .getValue('TELECOM_CCS_LAYOUT')
+      .then(({ vertical }) => {
+        this.verticalLayout = vertical;
+      })
+      .catch((error) => {
+        if (error.status === 404) {
+          return this.ovhUserPref.create('TELECOM_CCS_LAYOUT', {
+            vertical: this.verticalLayout,
+          });
+        }
+        return null;
+      });
   }
 
   saveNumber() {
@@ -103,6 +125,9 @@ export default class TelephonyNumberCtrl {
         this.verticalLayout ? 'vertical' : 'horizontal'
       }`,
       type: 'action',
+    });
+    this.ovhUserPref.assign('TELECOM_CCS_LAYOUT', {
+      vertical: this.verticalLayout,
     });
   }
 
