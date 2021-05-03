@@ -1,3 +1,12 @@
+## [16.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.22.1...@ovh-ux/manager-dedicated@16.22.2) (2021-05-03)
+
+
+### Bug Fixes
+
+* update translations ([#4875](https://github.com/ovh/manager/issues/4875)) ([cce6731](https://github.com/ovh/manager/commit/cce673169abcccc7743484085264396a8e297d85))
+
+
+
 ## [16.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.22.0...@ovh-ux/manager-dedicated@16.22.1) (2021-05-03)
 
 
