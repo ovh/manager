@@ -139,7 +139,7 @@
   "telephony_number_feature_ovh_pabx_step_rule_tts_add_explain": "Ajoutez un texte afin qu'il soit lu en texte parlé.",
   "telephony_number_feature_ovh_pabx_step_rule_tts_list": "Liste des TTS",
   "telephony_number_feature_ovh_pabx_step_rule_no_tts_added": "Aucun TTS ajouté",
-  "telephony_number_feature_ovh_pabx_step_rule_tts_info": "Vous pouvez gérer vos Text To Speach <a data-ui-sref=\"telecom.telephony.alias.configuration.ovhPabx.tts\">sur la page de gestion des TTS</a>.",
+  "telephony_number_feature_ovh_pabx_step_rule_tts_info": "Vous pouvez gérer vos Text To Speach <a data-ui-sref=\"{{ state }}\">sur la page de gestion des TTS</a>.",
   "telephony_number_feature_ovh_pabx_step_rule_hunting": "Faire sonner les membres de la file",
   "telephony_number_feature_ovh_pabx_step_rule_hunting_explain": "Permet de faire sonner simultanément tous les membres de la file d'appel sélectionnée.",
   "telephony_number_feature_ovh_pabx_step_rule_hunting_info": "Vous pouvez paramétrer vos files d'appels <a data-ui-sref=\"telecom.telephony.alias.configuration.queues.ovhPabx\">sur la page de gestion des files d'appels</a>.",
