@@ -46,6 +46,12 @@ angular.module('Billing.services').service(
       });
     }
 
+    getRefund(refundId) {
+      return this.OvhHttp.get(`/me/refund/${refundId}`, {
+        rootPath: 'apiv6',
+      });
+    }
+
     /* -----  End of API CALLS  ------ */
   },
 );

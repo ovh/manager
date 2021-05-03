@@ -31,7 +31,6 @@ export default {
     user: '<',
     vrackInfos: '<',
     worldPart: '<',
-    incidentStatus: '<',
     goToManualUpgrade: '<',
     isRamUpgradable: '<',
     isDataDiskUpgradable: '<',
