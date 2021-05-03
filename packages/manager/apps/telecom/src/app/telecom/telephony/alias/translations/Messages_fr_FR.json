@@ -57,6 +57,7 @@
   "telephony_alias_configuration_configuration_type_contactCenterSolution": "File d'appels",
   "telephony_alias_configuration_configuration_type_contactCenterSolutionExpert": "Contact Center Solution",
   "telephony_alias_configuration_configuration_type_empty": "Aucune",
+  "telephony_alias_configuration_queues_breadcrumb": "Gérer les files d'appels",
   "telephony_alias_configuration_redirect_to": "Vers la ligne",
   "telephony_alias_configuration_choose": "Choisir une configuration",
   "telephony_alias_configuration_configure": "Paramétrer la configuration",
