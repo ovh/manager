@@ -1,3 +1,18 @@
+# [16.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.21.0...@ovh-ux/manager-dedicated@16.22.0) (2021-05-03)
+
+
+### Bug Fixes
+
+* **server.dashboard:** remove rack status badge ([#4862](https://github.com/ovh/manager/issues/4862)) ([6204e25](https://github.com/ovh/manager/commit/6204e2500d4939805a0796e6289ad28cf82dbf81))
+* **server.details:** update conditions for manual forced renew ([#4867](https://github.com/ovh/manager/issues/4867)) ([f3db7ca](https://github.com/ovh/manager/commit/f3db7ca05562ec190f515045773cf37bd68f0f56))
+
+
+### Features
+
+* **billing.payments.credits:** sbg commercial measure ([#4863](https://github.com/ovh/manager/issues/4863)) ([5d41001](https://github.com/ovh/manager/commit/5d4100105777cba6f90cefb42391fc6f57196093))
+
+
+
 # [16.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.20.0...@ovh-ux/manager-dedicated@16.21.0) (2021-04-28)
 
 
