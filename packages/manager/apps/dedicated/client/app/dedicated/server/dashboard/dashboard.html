@@ -249,12 +249,6 @@
                                 <span
                                     data-ng-bind="$ctrl.infoServer.rack || '-'"
                                 ></span>
-                                <span
-                                    class="oui-badge"
-                                    data-ng-if="$ctrl.incidentStatus.rack.status !== 'UNKNOWN'"
-                                    data-ng-class="{ 'oui-badge_success' : $ctrl.incidentStatus.rack.status === 'UP',  'oui-badge_sold-out' : $ctrl.incidentStatus.rack.status === 'DOWN' }"
-                                    data-ng-bind=":: $ctrl.incidentStatus.rack.status"
-                                ></span>
                             </dd>
                         </dl>
                     </div>

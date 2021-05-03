@@ -2408,15 +2408,4 @@ export default class ServerF {
       .get(`/dedicated/server/${serviceName}/bringYourOwnImage`)
       .then(({ data }) => data);
   }
-
-  getIncidentStatus(serviceName) {
-    return this.$http
-      .get(`/incident-status`, {
-        serviceType: 'aapi',
-      })
-      .then(({ data }) =>
-        data.find((service) => service.serviceName === serviceName),
-      )
-      .catch(() => ({ rack: { status: 'UNKNOWN' } }));
-  }
 }
