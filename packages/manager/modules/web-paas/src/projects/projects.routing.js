@@ -12,6 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projects.length === 0 ? { state: 'web-paas.onboarding' } : null,
         ),
     resolve: {
+      webPaasProjectsTablePrefix: () => 'web-paas::projects-table::',
       catalog: /* @ngInject */ (WebPaas, user) =>
         WebPaas.getCatalog(user.ovhSubsidiary),
       projects: /* @ngInject */ (WebPaas, catalog) => {
@@ -24,20 +25,50 @@ export default /* @ngInject */ ($stateProvider) => {
           return projects;
         });
       },
-      goToChangeOffer: /* @ngInject */ ($state) => (project) =>
-        $state.go('web-paas.dashboard.service.change-offer', {
+      goToChangeOffer: /* @ngInject */ (
+        $state,
+        atInternet,
+        webPaasProjectsTablePrefix,
+      ) => (project) => {
+        atInternet.trackClick({
+          name: `${webPaasProjectsTablePrefix}options::change-range`,
+          type: 'action',
+        });
+        return $state.go('web-paas.dashboard.service.change-offer', {
           projectId: project.serviceId,
-        }),
-      goToUserLicences: /* @ngInject */ ($state) => (project) =>
+        });
+      },
+      goToUserLicences: /* @ngInject */ (
+        $state,
+        atInternet,
+        webPaasProjectsTablePrefix,
+      ) => (project) => {
+        atInternet.trackClick({
+          name: `${webPaasProjectsTablePrefix}options::manage-user-licenses`,
+          type: 'action',
+        });
         $state.go('web-paas.dashboard.user-licences', {
           projectId: project.serviceId,
-        }),
-      terminateProject: /* @ngInject */ ($state) => (project) =>
-        $state.go('web-paas.projects.cancel', {
+        });
+      },
+      terminateProject: /* @ngInject */ (
+        $state,
+        atInternet,
+        webPaasProjectsTablePrefix,
+      ) => (project) => {
+        atInternet.trackClick({
+          name: `${webPaasProjectsTablePrefix}options::cancel-project`,
+          type: 'action',
+        });
+        return $state.go('web-paas.projects.cancel', {
           projectId: project.serviceId,
           projectName: project.projectName,
-        }),
+        });
+      },
       breadcrumb: () => null, // Hide breadcrumb
+    },
+    atInternet: {
+      rename: 'web::web-paas::all-projects',
     },
   });
 };

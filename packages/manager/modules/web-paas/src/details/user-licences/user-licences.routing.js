@@ -5,17 +5,47 @@ export default /* @ngInject */ ($stateProvider) => {
       projectView: 'webPaasDetailsUserLicences',
     },
     resolve: {
-      goToInviteUser: /* @ngInject */ ($state) => () =>
-        $state.go('web-paas.dashboard.user-licences.invite-user'),
-      goToDeleteUser: /* @ngInject */ ($state) => (customer) =>
-        $state.go('web-paas.dashboard.user-licences.delete-user', {
+      webPaasUserLicencesTrackingPrefix: () =>
+        'web-paas::project-user-licenses::',
+      goToInviteUser: /* @ngInject */ (
+        $state,
+        atInternet,
+        webPaasUserLicencesTrackingPrefix,
+      ) => () => {
+        atInternet.trackClick({
+          name: `${webPaasUserLicencesTrackingPrefix}invite-user`,
+          type: 'action',
+        });
+        return $state.go('web-paas.dashboard.user-licences.invite-user');
+      },
+      goToDeleteUser: /* @ngInject */ (
+        $state,
+        atInternet,
+        webPaasUserLicencesTrackingPrefix,
+      ) => (customer) => {
+        atInternet.trackClick({
+          name: `${webPaasUserLicencesTrackingPrefix}user-table-options::delete-user`,
+          type: 'action',
+        });
+        return $state.go('web-paas.dashboard.user-licences.delete-user', {
           customer,
-        }),
-      goToAddAddon: /* @ngInject */ ($state, projectId) => (addonType) =>
-        $state.go('web-paas.dashboard.user-licences.add-addon', {
+        });
+      },
+      goToAddAddon: /* @ngInject */ (
+        $state,
+        projectId,
+        atInternet,
+        webPaasUserLicencesTrackingPrefix,
+      ) => (addonType) => {
+        atInternet.trackClick({
+          name: `${webPaasUserLicencesTrackingPrefix}add-user-license`,
+          type: 'action',
+        });
+        return $state.go('web-paas.dashboard.user-licences.add-addon', {
           projectId,
           addonType,
-        }),
+        });
+      },
       goToUserLicences: /* @ngInject */ ($state, Alerter, projectId) => (
         message = false,
         type = 'success',
@@ -37,6 +67,9 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('web_paas_manage_users'),
+    },
+    atInternet: {
+      rename: 'web::web-paas-platform-sh::project-user-licenses',
     },
   });
 };

@@ -12,5 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('web_paas_add_project_title'),
     },
+    atInternet: {
+      rename: 'web::web-paas-platform-sh::new-project-configuration',
+    },
   });
 };

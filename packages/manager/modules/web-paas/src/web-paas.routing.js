@@ -9,14 +9,39 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
       guideUrl: /* @ngInject */ (user) => get(GUIDELINK, user.ovhSubsidiary),
-      createProject: /* @ngInject */ ($state) => () =>
-        $state.go('web-paas.add'),
-      viewDetails: /* @ngInject */ ($state) => (projectId) =>
-        $state.href('web-paas.dashboard', {
+      createProject: /* @ngInject */ ($state, atInternet) => (trackText) => {
+        atInternet.trackClick({
+          name: trackText,
+          type: 'action',
+        });
+        return $state.go('web-paas.add');
+      },
+      goToDetails: /* @ngInject */ ($state, atInternet) => (
+        projectId,
+        trackText,
+      ) => {
+        atInternet.trackClick({
+          name: trackText,
+          type: 'action',
+        });
+        return $state.go('web-paas.dashboard', {
           projectId,
-        }),
-      openPartnerConsole: /* @ngInject */ ($window) => (project) =>
-        $window.open(project.metadata.partnerConsole, '_blank', 'noopener'),
+        });
+      },
+      openPartnerConsole: /* @ngInject */ ($window, atInternet) => (
+        project,
+        trackText,
+      ) => {
+        atInternet.trackClick({
+          name: trackText,
+          type: 'action',
+        });
+        return $window.open(
+          project.metadata.partnerConsole,
+          '_blank',
+          'noopener',
+        );
+      },
       goToWebPaas: ($state, Alerter) => (message = false, type = 'success') => {
         const reload = message && type === 'success';
 

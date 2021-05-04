@@ -72,5 +72,8 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
     },
+    atInternet: {
+      rename: 'web::web-paas-platform-sh::change-plan',
+    },
   });
 };

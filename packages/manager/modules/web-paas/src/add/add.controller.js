@@ -14,6 +14,7 @@ export default class WebPassAddCtrl {
     $timeout,
     $translate,
     $window,
+    atInternet,
     Alerter,
     WebPaas,
     WucOrderCartService,
@@ -22,6 +23,7 @@ export default class WebPassAddCtrl {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.Alerter = Alerter;
     this.WebPaas = WebPaas;
     this.WucOrderCartService = WucOrderCartService;
@@ -230,8 +232,25 @@ export default class WebPassAddCtrl {
   }
 
   orderProject() {
+    this.trackClick(
+      `web-paas-platform-sh::config-create-project::${this.selectedPlan.planCode}`,
+    );
     this.loader.orderInProgress = true;
     return this.expressOrder();
+  }
+
+  cancel() {
+    this.trackClick(
+      `web-paas-platform-sh::config-cancel-project::${this.selectedPlan.planCode}`,
+    );
+    this.goBack();
+  }
+
+  trackClick(name) {
+    this.atInternet.trackClick({
+      name,
+      type: 'action',
+    });
   }
 
   expressOrder() {

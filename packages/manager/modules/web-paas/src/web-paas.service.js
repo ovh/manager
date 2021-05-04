@@ -26,6 +26,7 @@ export default class WebPaasService {
     $q,
     $translate,
     $window,
+    atInternet,
     coreConfig,
     WucOrderCartService,
     iceberg,
@@ -36,6 +37,7 @@ export default class WebPaasService {
     this.$http = $http;
     this.$q = $q;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.coreConfig = coreConfig;
     this.iceberg = iceberg;
     this.$translate = $translate;

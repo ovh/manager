@@ -10,7 +10,7 @@
                 class="h-100"
             >
                 <oui-tile-button
-                    data-on-click="$ctrl.openPartnerConsole($ctrl.project)"
+                    data-on-click="$ctrl.openPartnerConsole($ctrl.project, $ctrl.WEB_PAAS_TRACK_OPEN_PSH)"
                     data-disabled="!$ctrl.project.isActive()"
                     data-external
                 >
@@ -49,8 +49,8 @@
                 >
                 </oui-tile-definition>
                 <oui-tile-button
-                    data-on-click="$ctrl.goToChangeOffer()"
                     data-disabled="!$ctrl.isAdmin()"
+                    data-on-click="$ctrl.goToChangeOffer($ctrl.WEB_PAAS_TRACK_CHANGE_OFFER)"
                 >
                     <span
                         data-translate="web_paas_service_project_upgrade"
@@ -80,8 +80,8 @@
                     data-description="{{:: $ctrl.project.selectedPlan.vcpuConfig }}"
                 ></oui-tile-definition>
                 <oui-tile-button
-                    data-on-click="$ctrl.goToChangeOffer(true)"
                     data-disabled="!$ctrl.isAdmin()"
+                    data-on-click="$ctrl.goToChangeOffer($ctrl.WEB_PAAS_TRACK_CHANGE_VCPU, true)"
                 >
                     <span
                         data-translate="web_paas_service_project_cpu_upgrade"
@@ -112,7 +112,7 @@
                 </oui-tile-definition>
                 <oui-tile-button
                     data-disabled="!$ctrl.isAdmin()"
-                    data-on-click="$ctrl.goToAddAddon($ctrl.ADDON_TYPE.STORAGE)"
+                    data-on-click="$ctrl.goToAddAddon($ctrl.ADDON_TYPE.STORAGE, $ctrl.WEB_PAAS_TRACK_ADDON_STORAGE)"
                 >
                     <span
                         data-translate="web_paas_service_project_storage_upgrade"
@@ -131,8 +131,8 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-button
-                    data-disabled="$ctrl.project.isStartOffer() || !$ctrl.isAdmin()"
-                    data-on-click="$ctrl.goToAddAddon($ctrl.ADDON_TYPE.LICENCES)"
+                    data-disabled="!$ctrl.isAdmin() || $ctrl.project.isStartOffer()"
+                    data-on-click="$ctrl.goToAddAddon($ctrl.ADDON_TYPE.LICENCES, $ctrl.WEB_PAAS_TRACK_ADDON_LICENSE)"
                 >
                     <span
                         data-translate="web_paas_service_project_licences_upgrade"
@@ -158,7 +158,7 @@
                 </oui-tile-definition>
                 <oui-tile-button
                     data-disabled
-                    data-on-click="$ctrl.goToAddAddon($ctrl.ADDON_TYPE.ENVIRONMENT)"
+                    data-on-click="$ctrl.goToAddAddon($ctrl.ADDON_TYPE.ENVIRONMENT, $ctrl.WEB_PAAS_TRACK_ADDON_ENVIRONMENT)"
                 >
                     <span
                         data-translate="web_paas_service_project_environment_upgrade"
@@ -176,6 +176,7 @@
                 user="$ctrl.user"
                 with-contact-management="false"
                 disable-service-actions="!$ctrl.isAdmin()"
+                tracking-prefix="web-paas::project-dashboard"
             >
             </billing-subscription-tile>
         </div>
