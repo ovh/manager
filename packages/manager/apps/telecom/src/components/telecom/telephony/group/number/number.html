@@ -1,5 +1,8 @@
 <div id="groupNumber">
-    <div class="group-number-switch">
+    <div
+        class="group-number-switch"
+        data-ng-if="$ctrl.number.getFeatureFamily() === 'ovhPabx'"
+    >
         <div data-translate="telephony_number_action_layout"></div>
         <div class="oui-button-group">
             <button
