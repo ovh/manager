@@ -48,9 +48,9 @@ angular.module('Billing.controllers').controller(
       return this.billingCredits
         .getBalanceMovement(this.$stateParams.balanceName, movementId)
         .then((data) => {
-          if (data.orderId) {
+          if (data.orderId || get(data, 'destinationObject.name') === 'ORDER') {
             return this.billingCredits
-              .getOrder(data.orderId)
+              .getOrder(data.orderId || get(data, 'destinationObject.id'))
               .then((order) => ({
                 ...data,
                 orderUrl: order.url,
