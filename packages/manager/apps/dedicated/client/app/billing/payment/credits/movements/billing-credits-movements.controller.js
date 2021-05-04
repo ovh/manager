@@ -53,6 +53,7 @@ angular.module('Billing.controllers').controller(
               .getOrder(data.orderId || get(data, 'destinationObject.id'))
               .then((order) => ({
                 ...data,
+                orderId: order.orderId,
                 orderUrl: order.url,
               }))
               .catch(() => data);
