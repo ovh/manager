@@ -21,7 +21,7 @@
 
     <oui-field data-size="xl">
         <oui-switch
-            data-model="$ctrl.model.configdrive.enabled"
+            data-model="$ctrl.model.configdrive.enable"
             data-id="activateConfigDrive"
             data-name="activateConfigDrive"
             data-disabled="$ctrl.loaders.launchInstall"
@@ -30,12 +30,12 @@
         <label
             for="activateConfigDrive"
             class="d-inline-block"
-            data-translate="{{ !$ctrl.model.configdrive.enabled ? 'dedicated_server_install_image_config_drive_deactivated' : 'dedicated_server_install_image_config_drive_activated' }}"
+            data-translate="{{ !$ctrl.model.configdrive.enable ? 'dedicated_server_install_image_config_drive_deactivated' : 'dedicated_server_install_image_config_drive_activated' }}"
         >
         </label>
     </oui-field>
 
-    <div data-ng-if="$ctrl.model.configdrive.enabled">
+    <div data-ng-if="$ctrl.model.configdrive.enable">
         <oui-field
             data-label="{{ :: 'dedicated_server_install_image_config_drive_hostname' | translate }}"
             data-size="xl"
