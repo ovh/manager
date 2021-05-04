@@ -1,3 +1,12 @@
+## [16.22.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.22.3...@ovh-ux/manager-dedicated@16.22.4) (2021-05-04)
+
+
+### Bug Fixes
+
+* **billing.payment.credit:** display order link in movement ([903bd31](https://github.com/ovh/manager/commit/903bd3174e5202e18e09e4058bd0a864915247eb))
+
+
+
 ## [16.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.22.2...@ovh-ux/manager-dedicated@16.22.3) (2021-05-04)
 
 
