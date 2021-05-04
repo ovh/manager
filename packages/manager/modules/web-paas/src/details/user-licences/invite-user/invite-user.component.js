@@ -3,9 +3,9 @@ import template from './invite-user.html';
 
 const component = {
   bindings: {
+    goBack: '<',
     project: '<',
     projectId: '<',
-    goBack: '<',
   },
   controller,
   template,

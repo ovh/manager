@@ -3,9 +3,9 @@ import template from './delete-user.html';
 
 const component = {
   bindings: {
-    projectId: '<',
     customer: '<',
     goBack: '<',
+    projectId: '<',
   },
   controller,
   template,

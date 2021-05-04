@@ -4,10 +4,10 @@ import template from './template.html';
 export default {
   bindings: {
     disabled: '<',
-    previewMode: '<',
     offers: '<',
-    selectedPlan: '<',
     onSelect: '&',
+    previewMode: '<',
+    selectedPlan: '<',
     user: '<',
   },
   controller,

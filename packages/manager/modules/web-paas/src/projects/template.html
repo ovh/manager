@@ -11,10 +11,7 @@
     <div class="container-fluid w-100 h-100 pt-4 px-3 px-md-5">
         <!-- error messages -->
         <div data-ovh-alert="{{$ctrl.alerts.list}}"></div>
-        <oui-datagrid
-            data-rows="$ctrl.projects"
-            data-row-loader="$ctrl.getProjectDetails($row.serviceId)"
-        >
+        <oui-datagrid data-rows="$ctrl.projects">
             <oui-datagrid-column
                 data-title=":: 'web_paas_project' | translate"
                 data-property="projectName"
@@ -34,6 +31,10 @@
                 data-property="metadata.project.region"
             ></oui-datagrid-column>
             <oui-datagrid-column
+                data-title=":: 'web_paas_vcpu' | translate"
+                data-property="selectedPlan.vcpuConfig"
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'web_paas_status' | translate"
                 data-property="status"
             >
@@ -50,14 +51,25 @@
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title=":: 'web_paas_plan_type' | translate"
-                data-property="offer"
+                data-property="offerName"
             ></oui-datagrid-column>
             <oui-datagrid-column
-                data-title=":: 'web_paas_plan_rennewal_date' | translate"
-                data-property="metadata.project.renewDate"
-                data-type="date"
+                data-title=":: 'web_paas_user_licences' | translate"
             >
-                {{ $row.metadata.project.renewDate | date:medium }}
+                <span
+                    data-ng-bind="($row.availableUserLicenses()) + '/' + ($row.totalLicences())"
+                >
+                </span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'web_paas_environment' | translate"
+                ><span data-ng-bind="$row.totalEnvironment()"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column data-title=":: 'web_paas_storage' | translate">
+                <span
+                    data-translate="web_paas_storage_description"
+                    data-translate-values="{ storage: $row.totalStorage()}"
+                ></span>
             </oui-datagrid-column>
             <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
@@ -74,6 +86,18 @@
                     <span data-translate="web_paas_goto_dashbboard"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
+                    data-on-click="$ctrl.goToUserLicences($row)"
+                    data-data-disabled="!$row.isActive()"
+                >
+                    <span data-translate="web_paas_manage_user_licences"></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-on-click="$ctrl.goToChangeRange($row)"
+                    data-data-disabled="!$row.isActive()"
+                >
+                    <span data-translate="web_paas_change_range"></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
                     data-on-click="$ctrl.terminateProject($row)"
                     data-data-disabled="!$row.isActive()"
                 >
@@ -81,7 +105,6 @@
                 </oui-action-menu-item>
             </oui-action-menu>
             <oui-datagrid-topbar>
-                <!-- data-ng-disabled="$ctrl.projects.length > 0" -->
                 <button
                     data-ng-click="$ctrl.createProject()"
                     class="oui-button oui-button_secondary oui-button_icon-left mb-2"

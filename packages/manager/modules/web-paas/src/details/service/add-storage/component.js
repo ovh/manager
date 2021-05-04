@@ -4,11 +4,11 @@ import template from './template.html';
 export default {
   bindings: {
     catalog: '<',
+    goBack: '<',
+    project: '<',
     projectId: '<',
     storageAddon: '<',
     selectedPlan: '<',
-    project: '<',
-    goBack: '<',
   },
   controller,
   template,

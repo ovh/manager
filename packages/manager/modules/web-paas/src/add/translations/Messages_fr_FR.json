@@ -25,13 +25,13 @@
   "web_paas_add_project_region_na": "Régions non disponibles. Réessayer.",
   "web_paas_add_project_environment": "{{count}} environnement",
   "web_paas_add_project_license": "{{count}} licence utilisateur",
+  "web_paas_add_project_license_summary_title": "Summary",
   "web_paas_add_project_license_summary_offer": "Offre",
   "web_paas_add_project_license_summary_total": "Total",
   "web_paas_add_project_license_total_price_without_tax": "Prix HT :",
   "web_paas_add_project_license_total_price_with_tax": "Prix TTC :",
-  "web_paas_add_project_license_summary_addon_storage": "+{{quantity}} 5GB Ajouter du stockage",
-  "web_paas_add_project_license_summary_addon_user_licence": "+{{ quantity}} Ajouter des licences utilisateur",
-  "web_paas_add_project_license_summary_addon_environment": "+{{quantity}} Ajouter des environnements de test",
-  "web_paas_add_project_license_summary_title": "Récapitulatif de commande",
-  "web_paas_add_project_title_edit": "Changez d’offre"
+  "web_paas_add_project_license_summary_addon_storage": "+{{quantity}} 5GB Stockage supplémentaire",
+  "web_paas_add_project_license_summary_addon_user_licence": "+{{ quantity}} Licences utilisateur supplémentaires",
+  "web_paas_add_project_license_summary_addon_environment": "+{{ quantity}} Environnement de test supplémentaire",
+  "web_paas_add_project_title_edit": "Modifier l'offre"
 }

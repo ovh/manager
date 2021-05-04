@@ -3,13 +3,14 @@ import template from './template.html';
 
 export default {
   bindings: {
-    catalog: '<',
-    projectId: '<',
     addon: '<',
-    selectedPlan: '<',
-    project: '<',
-    goBack: '<',
     addonType: '<',
+    catalog: '<',
+    getOrdersURL: '<',
+    goBack: '<',
+    project: '<',
+    projectId: '<',
+    selectedPlan: '<',
   },
   controller,
   template,

@@ -1,5 +1,4 @@
-import get from 'lodash/get';
-import find from 'lodash/find';
+import { find, get } from 'lodash';
 
 export default class Plan {
   /* @ngInject */

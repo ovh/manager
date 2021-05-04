@@ -144,9 +144,16 @@ export default class {
     });
   }
 
-  onPlatformOrderSuccess() {
+  onPlatformOrderSuccess(checkout) {
+    if (checkout && checkout.prices && checkout.prices.withTax.value > 0) {
+      this.$window.open(checkout.url, '_blank', 'noopener');
+    }
     this.Alerter.success(
-      this.$translate.instant('web_paas_add_project_success'),
+      this.$translate.instant('web_paas_add_project_success', {
+        orderURL: checkout
+          ? this.getOrdersURL(checkout.orderId)
+          : this.getOrdersURL(),
+      }),
       this.alerts.add,
     );
     this.scrollToTop();
@@ -217,7 +224,23 @@ export default class {
   }
 
   createWebPaas() {
-    this.WebPaas.gotToExpressOrder(this.selectedPlan, this.getConfiguration())
+    if (this.isChangingPlan()) {
+      return this.WebPaas.checkoutUpgrade(
+        this.selectedProject.serviceId,
+        this.selectedPlan,
+        this.selectedProject.quantity,
+      )
+        .then(({ order }) => {
+          this.onPlatformOrderSuccess(order);
+        })
+        .catch((error) => {
+          this.onPlatformOrderError(error);
+        });
+    }
+    return this.WebPaas.gotToExpressOrder(
+      this.selectedPlan,
+      this.getConfiguration(),
+    )
       .then(() => {
         this.onPlatformOrderSuccess();
       })

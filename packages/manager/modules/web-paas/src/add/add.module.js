@@ -1,6 +1,5 @@
 import angular from 'angular';
 
-// import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ui-kit';
 import ngOvhWebUniverseComponents from '@ovh-ux/ng-ovh-web-universe-components';
 
@@ -14,7 +13,6 @@ const moduleName = 'ovhManagerWebPaasAdd';
 
 angular
   .module(moduleName, [
-    'ngOvhCloudUniverseComponents',
     'oui',
     ngOvhWebUniverseComponents,
     additionalComponent,

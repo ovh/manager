@@ -3,12 +3,15 @@ import template from './template.html';
 
 export default {
   bindings: {
+    catalog: '<',
     createProject: '<',
-    projects: '<',
-    viewDetails: '<',
-    openPartnerConsole: '<',
-    terminateProject: '<',
     guideUrl: '<',
+    goToChangeRange: '<',
+    goToUserLicences: '<',
+    openPartnerConsole: '<',
+    projects: '<',
+    terminateProject: '<',
+    viewDetails: '<',
   },
   controller,
   template,

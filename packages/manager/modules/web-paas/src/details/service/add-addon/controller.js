@@ -4,9 +4,11 @@ import moment from 'moment';
 
 export default class {
   /* @ngInject */
-  constructor($q, $scope, WebPaas, $translate) {
+  constructor($q, $scope, $window, Alerter, WebPaas, $translate) {
     this.$q = $q;
     this.$scope = $scope;
+    this.$window = $window;
+    this.Alerter = Alerter;
     this.WebPaas = WebPaas;
     this.$translate = $translate;
     this.disabled = false;
@@ -17,7 +19,10 @@ export default class {
     this.setParameters();
     this.$scope.$watch(
       '$ctrl.addon.quantity',
-      debounce(() => this.addon.quantity > 0 ? this.addStorage(): null, 1000),
+      debounce(
+        () => (this.addon.quantity > 0 ? this.addStorage() : null),
+        1000,
+      ),
     );
   }
 
@@ -53,22 +58,13 @@ export default class {
 
   checkout() {
     this.disabled = true;
-    this.WebPaas.checkoutCart(
+    this.WebPaas.checkoutAddon(
       this.cart,
       this.project.serviceId,
       this.addon,
       this.quantity,
     )
-      .then(() =>
-        this.goBack(
-          this.$translate.instant(
-            `web_paas_service_add_addon_success_${this.addonType
-              .split('-')
-              .pop()}`,
-          ),
-          'success',
-        ),
-      )
+      .then(({ order }) => this.onAddonOrderSuccess(order))
       .catch((error) =>
         this.goBack(
           this.$translate.instant('web_paas_service_add_addon_error', {
@@ -82,10 +78,31 @@ export default class {
       });
   }
 
+  onAddonOrderSuccess(checkout) {
+    if (checkout && checkout.prices && checkout.prices.withTax.value > 0) {
+      this.$window.open(checkout.url, '_blank', 'noopener');
+    }
+    this.Alerter.success(
+      this.$translate.instant(
+        `web_paas_service_add_addon_success_${this.addonType.split('-').pop()}`,
+        {
+          orderURL: checkout
+            ? this.getOrdersURL(checkout.orderId)
+            : this.getOrdersURL(),
+        },
+      ),
+      this.alerts.add,
+    );
+    this.scrollToTop();
+  }
+
   setParameters() {
     switch (this.addonType) {
       case 'additional-storage':
-        this.presentCount = (this.project.totalStorage() - this.project.selectedPlan.getStorage()) / 5;
+        this.presentCount =
+          (this.project.totalStorage() -
+            this.project.selectedPlan.getStorage()) /
+          5;
         this.description = this.$translate.instant(
           'web_paas_service_add_storage_description',
           { storage: this.presentCount },
@@ -99,7 +116,9 @@ export default class {
         );
         break;
       case 'additional-user-license':
-        this.presentCount = this.project.totalLicences() - this.project.selectedPlan.getLicences();
+        this.presentCount =
+          this.project.totalLicences() -
+          this.project.selectedPlan.getLicences();
         this.description = this.$translate.instant(
           'web_paas_service_add_license_description',
           { license: this.presentCount },

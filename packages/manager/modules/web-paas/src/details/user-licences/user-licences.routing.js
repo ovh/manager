@@ -14,6 +14,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('web-paas.dashboard.user-licences.delete-user', {
           customer,
         }),
+      addUserLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('web-paas.dashboard.service.add-addon', {
+          projectId,
+          addonType: 'additional-user-license',
+        }),
       goToUserLicences: /* @ngInject */ ($state, Alerter) => (
         message = false,
         type = 'success',

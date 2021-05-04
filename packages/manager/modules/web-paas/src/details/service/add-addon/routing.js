@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('web-paas.dashboard.service.add-addon', {
@@ -28,6 +29,11 @@ export default /* @ngInject */ ($stateProvider) => {
           return addon;
         });
       },
+      getOrdersURL: /* @ngInject */ () => (orderId) =>
+        buildURL('dedicated', '#/billing/orders', {
+          status: 'all',
+          orderId,
+        }),
       goBack: /* @ngInject */ (goToProjectDetails) => goToProjectDetails,
       breadcrumb: () => null,
     },

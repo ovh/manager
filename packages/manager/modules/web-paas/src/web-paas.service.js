@@ -7,6 +7,7 @@ import { find, compact } from 'lodash';
 import Project from './project.class';
 import Plan from './plan.class';
 import PlanFamily from './family.class';
+import UserLicence from './user-licence.class';
 
 export default class WebPaasService {
   /* @ngInject */
@@ -58,6 +59,7 @@ export default class WebPaasService {
               if (d.split('-')[0] === 'webpaas') {
                 return d;
               }
+              return null;
             }),
           );
 
@@ -104,8 +106,8 @@ export default class WebPaasService {
       if (availablePlans) {
         catalog.plans.forEach((plan) =>
           find(availablePlans, { planCode: plan.planCode })
-            ? (plan.available = true)
-            : null
+            ? set(plan, 'available', true)
+            : null,
         );
         catalog.plans.push(project.selectedPlan);
       }
@@ -128,14 +130,14 @@ export default class WebPaasService {
    * @returns Grouped plans according to the products i.e., 'expand', 'develop', 'start'
    */
   groupPlans(plans) {
-    var groupedPlans = map(
+    this.groupedPlans = map(
       groupBy(
         map(plans, (plan) => new Plan(plan)),
         'product',
       ),
       (value, key) => ({ name: key, plans: value, selectedPlan: value[0] }),
     );
-    return map(groupedPlans, (family) => new PlanFamily(family));
+    return map(this.groupedPlans, (family) => new PlanFamily(family));
   }
 
   /**
@@ -157,7 +159,7 @@ export default class WebPaasService {
   getUsers(projectId) {
     return this.$http
       .get(`/webPaaS/subscription/${projectId}/customer`)
-      .then(({ data }) => data);
+      .then(({ data }) => map(data, (user) => new UserLicence(user)));
   }
 
   inviteUser(projectId, accountName) {
@@ -316,7 +318,7 @@ export default class WebPaasService {
     return this.OvhApiOrderCart.getCheckout({ cartId: cart.cartId }).$promise;
   }
 
-  checkoutCart(cart, serviceName, selectedPlan, quantity) {
+  checkoutAddon(cart, serviceName, selectedPlan, quantity) {
     if (cart) {
       return this.goToExpressOrderOption(serviceName, selectedPlan);
     }
@@ -359,6 +361,7 @@ export default class WebPaasService {
           plan.serviceName ? plan.serviceName : serviceName
         }/${plan.planCode}`,
         {
+          autoPayWithPreferredPaymentMethod: true,
           quantity: quantity || plan.quantity,
         },
       )

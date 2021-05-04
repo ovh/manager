@@ -4,11 +4,11 @@ import template from './template.html';
 const component = {
   bindings: {
     catalog: '<',
+    currentActiveLink: '<',
+    guideUrl: '<',
+    plans: '<',
     project: '<',
     projectId: '<',
-    plans: '<',
-    guideUrl: '<',
-    currentActiveLink: '<',
     serviceLink: '<',
     user: '<',
     userLink: '<',

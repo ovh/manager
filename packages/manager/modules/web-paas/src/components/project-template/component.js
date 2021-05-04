@@ -3,9 +3,9 @@ import template from './template.html';
 
 export default {
   bindings: {
-    templates: '<',
-    previewMode: '<',
     onSelect: '&',
+    previewMode: '<',
+    templates: '<',
   },
   controller,
   template,
