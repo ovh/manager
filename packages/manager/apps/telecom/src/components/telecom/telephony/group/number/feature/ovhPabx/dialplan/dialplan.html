@@ -204,16 +204,12 @@
         <div
             class="group-number__step"
             style="margin-bottom: 64px;"
-            data-ng-if="!$ctrl.displayHelpers.expanded"
+            data-ng-if="!$ctrl.displayHelpers.expanded && $ctrl.dialplan.extensions.length"
         >
             <div
                 class="group-number__step-content group-number__step-content--after-grip group-number__step-content--node"
-                data-ng-if="!$ctrl.displayHelpers.expanded"
             >
-                <div
-                    class="group-number__step-description"
-                    data-ng-if="$ctrl.dialplan.extensions.length"
-                >
+                <div class="group-number__step-description">
                     <span
                         class="group-number__step-info"
                         data-translate="{{ $ctrl.dialplan.extensions.length === 1 ? 'telephony_number_feature_ovh_pabx_dialplan_step_count_single' : 'telephony_number_feature_ovh_pabx_dialplan_step_count' }}"
@@ -227,16 +223,18 @@
                         data-translate="telephony_number_feature_ovh_pabx_dialplan_action_show_steps"
                     ></button>
                 </div>
-                <div
-                    class="group-number__step-description"
-                    data-ng-if="!$ctrl.dialplan.extensions.length"
+            </div>
+        </div>
+        <div
+            class="group-number__step-content group-number__step-content--node group-number__step-empty"
+            data-ng-if="!$ctrl.dialplan.extensions.length"
+        >
+            <div class="group-number__step-description">
+                <span
+                    class="group-number__step-info"
+                    data-translate="telephony_number_feature_ovh_pabx_dialplan_step_none"
                 >
-                    <span
-                        class="group-number__step-info"
-                        data-translate="telephony_number_feature_ovh_pabx_dialplan_step_none"
-                    >
-                    </span>
-                </div>
+                </span>
             </div>
         </div>
         <!-- Extension count and collapse -->
