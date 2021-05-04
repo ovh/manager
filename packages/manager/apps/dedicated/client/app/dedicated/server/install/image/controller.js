@@ -33,7 +33,7 @@ export default class DedicatedServerInstallImageCtrl {
   onImageFormSubmit() {
     this.atInternet.trackClick({
       name: `dedicated::dedicated::server::system-install::public-catalog::configdrive::${
-        this.model.configdrive.enabled ? 'activate' : 'deactivate'
+        this.model.configdrive.enable ? 'activate' : 'deactivate'
       }`,
       type: 'action',
     });
@@ -51,9 +51,9 @@ export default class DedicatedServerInstallImageCtrl {
     ).map(({ model }) => model);
 
     let configdrive = {
-      enabled: this.model.configdrive.enabled || false,
+      enable: this.model.configdrive.enable || false,
     };
-    if (configdrive.enabled) {
+    if (configdrive.enable) {
       configdrive = {
         ...configdrive,
         hostname: this.model.configdrive.hostname,
