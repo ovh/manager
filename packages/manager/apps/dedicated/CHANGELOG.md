@@ -1,3 +1,13 @@
+## [16.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.22.2...@ovh-ux/manager-dedicated@16.22.3) (2021-05-04)
+
+
+### Bug Fixes
+
+* **billing.payment.voucher:** unescape bill url parameters ([#4878](https://github.com/ovh/manager/issues/4878)) ([f0cdb5d](https://github.com/ovh/manager/commit/f0cdb5d4c04c556efeaa117818277969dcd71878))
+* **server.install.image:** fix bad param name ([#4869](https://github.com/ovh/manager/issues/4869)) ([f3695f3](https://github.com/ovh/manager/commit/f3695f30322dbc5cea4b297ba938e61c4e40c080))
+
+
+
 ## [16.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.22.1...@ovh-ux/manager-dedicated@16.22.2) (2021-05-03)
 
 
