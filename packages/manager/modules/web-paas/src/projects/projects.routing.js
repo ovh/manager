@@ -1,5 +1,3 @@
-import { find } from "lodash";
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('web-paas.projects', {
     url: '/projects',
@@ -12,24 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projects.length === 0 ? { state: 'web-paas.onboarding' } : null,
         ),
     resolve: {
-      catalog: /* @ngInject */ (WebPaas, user) =>
-        WebPaas.getCatalog(user.ovhSubsidiary),
-      projects: /* @ngInject */ (WebPaas, catalog) => {
-        return WebPaas.getProjects().then((projects) => {
-          projects.forEach(project => {
-            project.setSelectedPlan(find(catalog.plans, {planCode: project.offer}))
-          })
-          return projects;
-        })
-      },
-      goToChangeRange: /* @ngInject */ ($state) => (project) =>
-        $state.go('web-paas.add', {
-          selectedProject: project,
-        }),
-      goToUserLicences: /* @ngInject */ ($state) => (project) =>
-        $state.go('web-paas.dashboard.user-licences', {
-          projectId: project.serviceId,
-        }),
+      projects: /* @ngInject */ (WebPaas) => WebPaas.getProjects(),
       terminateProject: /* @ngInject */ ($state) => (project) =>
         $state.go('web-paas.projects.cancel', {
           projectId: project.serviceId,

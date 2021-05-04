@@ -8,7 +8,7 @@ const component = {
     projectId: '<',
     openPartnerConsole: '<',
     serviceInfo: '<',
-    goToAddAddon: '<',
+    goToAddStorage: '<',
   },
   template,
 };

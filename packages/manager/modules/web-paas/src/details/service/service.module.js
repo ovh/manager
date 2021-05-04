@@ -4,12 +4,12 @@ import 'angular-translate';
 import component from './service.component';
 import routing from './service.routing';
 import terminate from './terminate';
-import addAddon from './add-addon';
+import addStorage from './add-storage';
 
 const moduleName = 'ovhManagerWebPaasDetailsService';
 
 angular
-  .module(moduleName, ['pascalprecht.translate', addAddon, terminate])
+  .module(moduleName, ['pascalprecht.translate', addStorage, terminate])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
   .component('webPaasDetailsService', component);

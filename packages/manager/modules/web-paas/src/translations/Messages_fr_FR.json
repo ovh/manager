@@ -4,6 +4,7 @@
   "web_paas_region": "Région",
   "web_paas_status": "Statut du projet",
   "web_paas_plan_type": "Gamme",
+  "web_paas_plan_rennewal_date": "Date de renouvellement",
   "web_paas_plan_vcpu": "vCPU",
   "web_paas_plan_env": "Environnement",
   "web_paas_plan_storage": "Stockage",
@@ -21,15 +22,5 @@
   "web_paas_project_status_SUSPENDED": "Suspendu",
   "web_paas_guides": "Guides",
   "web_paas_guides_main": "Web PaaS",
-  "web_paas_plan_vcpu_config_text": "{{ prodCpu }} vCPU prod({{ stagingCpu }} vCPU Staging)",
-  "web_paas_common_confirm": "Confirmer",
-  "web_paas_common_cancel": "Annuler",
-  "web_paas_common_terminate": "Résilier",
-  "web_paas_vcpu": "Vcpu",
-  "web_paas_user_licences": "Licences utilisateur",
-  "web_paas_environment": "Environnement",
-  "web_paas_storage": "Stockage",
-  "web_paas_storage_description": "{{ storage }} Go",
-  "web_paas_manage_user_licences": "Gérer mes licences utilisateur",
-  "web_paas_change_range": "Changer d’offre"
+  "web_paas_plan_vcpu_config_text": "{{ prodCpu }} vCPU prod({{ stagingCpu }} vCPU Staging)"
 }
