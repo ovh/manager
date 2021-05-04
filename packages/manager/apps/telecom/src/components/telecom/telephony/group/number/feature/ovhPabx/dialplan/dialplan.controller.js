@@ -247,9 +247,6 @@ export default class DialplanCtrl {
           ].join(' '),
         );
         return this.$q.reject(error);
-      })
-      .finally(() => {
-        this.ovhPabxDialplanCtrl.loading.remove = false;
       });
   }
 
