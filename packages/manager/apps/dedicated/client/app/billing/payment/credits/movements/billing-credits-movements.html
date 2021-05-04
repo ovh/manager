@@ -118,12 +118,17 @@
                         >
                         </span>
 
-                        <span
-                            data-ng-if="movement.refundUrl"
-                            data-translate="billing_credit_balance_movements_operation_debit_refund"
-                            data-translate-values="{ refundId: movement.destinationObject.id, refundUrl: movement.refundUrl }"
-                        >
-                        </span>
+                        <div data-ng-if="movement.refundUrl">
+                            <span
+                                data-translate="billing_credit_balance_movements_operation_debit_refund"
+                            >
+                            </span>
+                            <a
+                                data-ng-href="{{ movement.refundUrl}}"
+                                target="_blank"
+                                data-ng-bind="movement.destinationObject.id"
+                            ></a>
+                        </div>
                     </td>
                     <td data-ng-bind="movement.amount.text"></td>
                     <td>
