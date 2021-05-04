@@ -1,3 +1,12 @@
+## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.0.5...@ovh-ux/manager-web-paas@1.0.6) (2021-05-04)
+
+
+### Bug Fixes
+
+* scope css utilities to prevent some overrides ([#4885](https://github.com/ovh/manager/issues/4885)) ([8fdbcab](https://github.com/ovh/manager/commit/8fdbcabb313dec7cca6d75e7c4aca326d85d700a))
+
+
+
 ## [1.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.0.4...@ovh-ux/manager-web-paas@1.0.5) (2021-04-21)
 
 
