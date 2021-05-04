@@ -3,6 +3,7 @@ import set from 'lodash/set';
 import get from 'lodash/get';
 import groupBy from 'lodash/groupBy';
 import sortBy from 'lodash/sortBy';
+import { find, compact } from 'lodash';
 import Project from './project.class';
 import Plan from './plan.class';
 import PlanFamily from './family.class';
@@ -13,13 +14,18 @@ export default class WebPaasService {
     $http,
     $q,
     $translate,
+    $window,
+    coreConfig,
     WucOrderCartService,
     iceberg,
     OvhApiOrder,
     OvhApiMe,
+    WucUser,
   ) {
     this.$http = $http;
     this.$q = $q;
+    this.$window = $window;
+    this.coreConfig = coreConfig;
     this.iceberg = iceberg;
     this.$translate = $translate;
     this.WucOrderCartService = WucOrderCartService;
@@ -33,14 +39,35 @@ export default class WebPaasService {
       .v6();
     this.OvhApiMeOrder = OvhApiMe.Order().v6();
     this.OvhApiMe = OvhApiMe;
+    this.WucUser = WucUser;
   }
 
   getProjects() {
-    return this.iceberg('/webPaaS/subscription')
-      .query()
-      .expand('CachedObjectList-Pages')
-      .execute({}, true)
-      .$promise.then(({ data }) => data);
+    return (
+      this.$http
+        .get('/webPaaS/subscription')
+        // this.iceberg('/webPaaS/subscription')
+        // .query()
+        // .expand('CachedObjectList-Pages')
+        // .execute({}, true)
+        .then(({ data }) => {
+          // temporary code to overcome issue with agora api
+          // tobe removed
+          const list = compact(
+            map(data, (d) => {
+              if (d.split('-')[0] === 'webpaas') {
+                return d;
+              }
+            }),
+          );
+
+          return this.$q.all(
+            map(list, (d) => {
+              return this.getProjectDetails(d);
+            }),
+          );
+        })
+    );
   }
 
   getProjectDetails(projectId) {
@@ -69,12 +96,20 @@ export default class WebPaasService {
       .then(({ data }) => data);
   }
 
-  getCatalog(ovhSubsidiary) {
+  getCatalog(ovhSubsidiary, availablePlans, project) {
     return this.WucOrderCartService.getProductPublicCatalog(
       ovhSubsidiary,
       'webPaaS',
     ).then((catalog) => {
-      const sorted = this.sortSetVcpuConfig(catalog);
+      if (availablePlans) {
+        catalog.plans.forEach((plan) =>
+          find(availablePlans, { planCode: plan.planCode })
+            ? (plan.available = true)
+            : null
+        );
+        catalog.plans.push(project.selectedPlan);
+      }
+      const sorted = this.sortSetVcpuConfig(catalog.plans);
       const groupedPlans = this.groupPlans(sorted);
       set(catalog, 'plans', sorted);
       set(catalog, 'productList', groupedPlans);
@@ -82,12 +117,18 @@ export default class WebPaasService {
     });
   }
 
+  getServiceInfos(projectId) {
+    return this.$http
+      .get(`/webPaaS/subscription/${projectId}/serviceInfos`)
+      .then(({ data }) => data);
+  }
+
   /**
    * @param {*} plans
    * @returns Grouped plans according to the products i.e., 'expand', 'develop', 'start'
    */
   groupPlans(plans) {
-    const groupedPlans = map(
+    var groupedPlans = map(
       groupBy(
         map(plans, (plan) => new Plan(plan)),
         'product',
@@ -102,21 +143,33 @@ export default class WebPaasService {
    * @param {*} catalog
    * @returns plans which have vcpuConfig text and sorted by number of cores in a plan
    */
-  sortSetVcpuConfig(catalog) {
-    const plans = map(catalog.plans, (plan) => ({
+  sortSetVcpuConfig(plans) {
+    const data = map(plans, (plan) => ({
       ...plan,
       vcpuConfig: this.$translate.instant('web_paas_plan_vcpu_config_text', {
         prodCpu: get(plan, 'blobs.technical.cpu.cores'),
         stagingCpu: get(plan, 'blobs.technical.cpu.cores') / 2,
       }),
     }));
-    return sortBy(plans, ['blobs.technical.cpu.cores']);
+    return sortBy(data, ['blobs.technical.cpu.cores']);
   }
 
   getUsers(projectId) {
     return this.$http
       .get(`/webPaaS/subscription/${projectId}/customer`)
       .then(({ data }) => data);
+  }
+
+  inviteUser(projectId, accountName) {
+    return this.$http.post(`/webPaaS/subscription/${projectId}/customer`, {
+      accountName,
+    });
+  }
+
+  deleteUser(projectId, customerId) {
+    return this.$http.delete(
+      `/webPaaS/subscription/${projectId}/customer/${customerId}`,
+    );
   }
 
   getMe() {
@@ -177,15 +230,18 @@ export default class WebPaasService {
           const capacity = get(addon, 'prices').find(({ capacities }) =>
             capacities.includes('renew'),
           );
-          this.OvhApiOrderCartProduct.postOptions({
-            cartId: cart.cartId,
-            productName: 'webPaaS',
-            duration: capacity.duration,
-            planCode: addon.planCode,
-            pricingMode: 'default',
-            quantity: addon.quantity,
-            itemId: cart.itemId,
-          }).$promise;
+          if (addon.quantity > 0) {
+            return this.OvhApiOrderCartProduct.postOptions({
+              cartId: cart.cartId,
+              productName: 'webPaaS',
+              duration: capacity.duration,
+              planCode: addon.planCode,
+              pricingMode: 'default',
+              quantity: addon.quantity,
+              itemId: cart.itemId,
+            }).$promise;
+          }
+          return null;
         }),
       )
       .then(() => cart);
@@ -213,23 +269,64 @@ export default class WebPaasService {
       .then((cart) => this.addConfig(cart, config))
       .then((cart) => this.addAddons(cart, selectedPlan.addons))
       .then((cart) => this.assignCart(cart))
-      .then((cart) =>
-        this.getCheckoutInfo(cart).then((order) => ({
+      .then((cart) => {
+        this.cart = cart;
+        return this.getCheckoutInfo(cart).then((order) => ({
           ...order,
           cart,
-        })),
-      );
+        }));
+      })
+      .finally(() => this.deleteCart());
+  }
+
+  getAddonSummary(project, addon, quantity) {
+    if (addon.serviceName) {
+      return this.getUpgradeCheckoutInfo(addon.serviceName, addon, quantity);
+    }
+    return this.createCart()
+      .then((cart) => this.assignCart(cart))
+      .then((cart) => this.addItems(cart, project, addon, quantity))
+      .then((cart) => {
+        this.cart = cart;
+        return this.getCheckoutInfo(cart).then((order) => ({
+          ...order,
+          cart,
+        }));
+      })
+      .finally(() => this.deleteCart());
+  }
+
+  addItems(cart, project, addon, quantity) {
+    const capacity = get(addon, 'prices').find(({ capacities }) =>
+      capacities.includes('renew'),
+    );
+    return this.$http
+      .post(`/order/cartServiceOption/webPaaS/${project.serviceId}`, {
+        cartId: cart.cartId,
+        serviceName: project.serviceId,
+        duration: capacity.duration,
+        planCode: addon.planCode,
+        pricingMode: 'default',
+        quantity: quantity || addon.quantity,
+      })
+      .then(() => cart);
   }
 
   getCheckoutInfo(cart) {
     return this.OvhApiOrderCart.getCheckout({ cartId: cart.cartId }).$promise;
   }
 
-  checkoutCart(cart) {
-    return this.OvhApiOrderCart.checkout({
-      cartId: cart.cartId,
-      autoPayWithPreferredPaymentMethod: true,
-    }).$promise;
+  checkoutCart(cart, serviceName, selectedPlan, quantity) {
+    if (cart) {
+      return this.goToExpressOrderOption(serviceName, selectedPlan);
+    }
+    return this.checkoutUpgrade(serviceName, selectedPlan, quantity);
+  }
+
+  getAdditionalOption(serviceName) {
+    return this.$http
+      .get(`/order/cartServiceOption/webPaaS/${serviceName}`)
+      .then(({ data }) => data);
   }
 
   getSummary(cart) {
@@ -239,7 +336,91 @@ export default class WebPaasService {
     }).$promise;
   }
 
+  getUpgradeOffers(projectId) {
+    return this.$http
+      .get(`/order/upgrade/webPaaS/${projectId}`)
+      .then(({ data }) => data);
+  }
+
+  getUpgradeCheckoutInfo(serviceName, plan, quantity) {
+    return this.$http
+      .get(`/order/upgrade/webPaaS/${serviceName}/${plan.planCode}`, {
+        params: {
+          quantity: quantity || plan.quantity,
+        },
+      })
+      .then(({ data }) => data.order);
+  }
+
+  checkoutUpgrade(serviceName, plan, quantity) {
+    return this.$http
+      .post(
+        `/order/upgrade/webPaaS/${
+          plan.serviceName ? plan.serviceName : serviceName
+        }/${plan.planCode}`,
+        {
+          quantity: quantity || plan.quantity,
+        },
+      )
+      .then(({ data }) => data.order);
+  }
+
   deleteCart() {
-    this.$http.delete(`/order/cart/${this.cart.cartId}`);
+    return this.$http.delete(`/order/cart/${this.cart.cartId}`);
+  }
+
+  goToExpressOrderOption(serviceName, addon) {
+    const params = [
+      {
+        productId: 'webPaaS',
+        planCode: addon.planCode,
+        serviceName,
+        quantity: addon.quantity,
+      },
+    ];
+
+    return this.goToExpressOrderUrl(params);
+  }
+
+  /**
+   * Redirect to the express order page
+   * @param {Object} plan [detials of the plan]
+   * @param {config} array [configuration of the plan like name, region and others]
+   */
+  gotToExpressOrder(plan, config) {
+    const params = [
+      {
+        productId: 'webPaaS',
+        planCode: plan.planCode,
+        configuration: config,
+        quantity: 1,
+      },
+    ];
+
+    params[0].option = compact(
+      map(plan.addons, (addon) => {
+        if (addon.quantity > 0) {
+          return {
+            planCode: addon.planCode,
+            quantity: addon.quantity,
+          };
+        }
+        return null;
+      }),
+    );
+    return this.goToExpressOrderUrl(params);
+  }
+
+  goToExpressOrderUrl(payload) {
+    return this.WucUser.getUrlOfEndsWithSubsidiary('express_order').then(
+      (expressOrderUrl) => {
+        this.$window.open(
+          `${expressOrderUrl}#/new/express/resume?products=${JSURL.stringify(
+            payload,
+          )}`,
+          '_blank',
+        );
+      },
+    );
   }
 }

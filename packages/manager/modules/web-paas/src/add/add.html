@@ -2,7 +2,7 @@
     <oui-header
         id="web-pass-add-header"
         class="mb-3 add-page-header"
-        data-heading="{{:: 'web_paas_add_project_title' | translate }}"
+        data-heading="{{ $ctrl.selectedProject ? 'web_paas_add_project_title_edit' : 'web_paas_add_project_title' | translate }}"
         data-description="{{:: 'web_paas_add_project_description' | translate }}"
     >
     </oui-header>
@@ -11,14 +11,17 @@
             id="web-pass-add-alert"
             data-ovh-alert="{{$ctrl.alerts.add}}"
         ></div>
-        <oui-stepper data-on-finish="$ctrl.createWebPaas()">
+        <oui-stepper
+            data-on-finish="$ctrl.createWebPaas()"
+            current-index="$ctrl.stepperIndex"
+        >
             <oui-step-form
                 data-header="{{:: 'web_paas_add_project_name' | translate }}"
                 data-submit-text="{{:: 'web_paas_add_project_next' | translate }}"
                 data-prevent-next="true"
                 data-valid="$ctrl.project.name"
                 data-navigation="$ctrl.project.name"
-                data-editable="!isAdding"
+                data-editable="$ctrl.isEditable()"
                 data-loading="$ctrl.loadingCapabilities"
             >
                 <oui-field data-size="xl">
@@ -50,11 +53,13 @@
                     data-on-focus="$ctrl.onOfferFocus()"
                     data-on-submit="$ctrl.onOfferSubmit(form)"
                     data-preview-mode="!$ctrl.isEditingOffers"
+                    data-selected-plan="$ctrl.selectedProject.selectedPlan"
                 >
                 </web-paas-offers>
             </oui-step-form>
 
             <oui-step-form
+                data-ng-if="!$ctrl.isChangingPlan()"
                 data-header="{{:: 'web_paas_add_project_region' | translate }}"
                 data-submit-text="{{:: 'web_paas_add_project_next' | translate }}"
                 data-valid="$ctrl.project.region"
@@ -80,6 +85,7 @@
             </oui-step-form>
 
             <oui-step-form
+                data-ng-if="!$ctrl.isChangingPlan()"
                 data-header="{{:: 'web_paas_add_project_template' | translate}}"
                 data-submit-text="{{:: 'web_paas_add_project_next' | translate }}"
                 data-prevent-next="true"
@@ -136,21 +142,23 @@
             </oui-step-form>
 
             <oui-step-form
+                data-ng-if="!$ctrl.isChangingPlan()"
                 data-header="{{:: 'web_paas_add_project_options' | translate }}"
                 data-submit-text="{{:: 'web_paas_add_project_next' | translate }}"
-                data-editable="!isAdding"
                 data-loading="$ctrl.isGettingAddons"
                 data-on-submit="$ctrl.onOptionsSubmit()"
             >
-                <web-paas-additional-option
-                    data-ng-repeat="addon in $ctrl.selectedPlan.addons track by $index"
-                    option="addon"
-                    plan="$ctrl.selectedPlan"
-                >
-                </web-paas-additional-option>
+                <div class="w-75">
+                    <web-paas-additional-option
+                        data-ng-repeat="addon in $ctrl.selectedPlan.addons track by $index"
+                        option="addon"
+                        plan="$ctrl.selectedPlan"
+                    >
+                    </web-paas-additional-option>
+                </div>
             </oui-step-form>
             <oui-step-form
-                data-header="{{:: 'Summary' | translate }}"
+                data-header="{{:: 'web_paas_add_project_license_summary_title' | translate }}"
                 data-submit-text="{{:: 'web_paas_add_project_next' | translate }}"
                 data-loading="$ctrl.isGettingCheckoutInfo"
                 data-on-submit="$ctrl.platformOrder()"
@@ -164,19 +172,18 @@
                         data-ng-repeat="addon in $ctrl.selectedPlan.addons track by $index"
                     >
                         <span
-                            data-ng-if="addon.family === 'staging_environment'"
-                            >+<span data-ng-bind="addon.quantity"></span>
-                            <span
-                                data-ng-bind="$ctrl.selectedPlan.vcpuConfig"
-                            ></span>
+                            data-ng-if="addon.family === 'staging_environment' && addon.quantity > 0"
+                            data-translate="web_paas_add_project_license_summary_addon_environment"
+                            data-translate-values="{quantity: addon.quantity}"
+                        >
                         </span>
                         <span
-                            data-ng-if="addon.family === 'storage'"
+                            data-ng-if="addon.family === 'storage' && addon.quantity > 0"
                             data-translate="web_paas_add_project_license_summary_addon_storage"
                             data-translate-values="{quantity: addon.quantity}"
                         ></span>
                         <span
-                            data-ng-if="addon.family === 'user_license'"
+                            data-ng-if="addon.family === 'user_license' && addon.quantity > 0"
                             data-translate="web_paas_add_project_license_summary_addon_user_licence"
                             data-translate-values="{quantity: addon.quantity}"
                         ></span>

@@ -29,6 +29,9 @@
   "web_paas_add_project_license_summary_total": "Total",
   "web_paas_add_project_license_total_price_without_tax": "Prix HT :",
   "web_paas_add_project_license_total_price_with_tax": "Prix TTC :",
-  "web_paas_add_project_license_summary_addon_storage": "+{{quantity}} 5GB Additional Storage",
-  "web_paas_add_project_license_summary_addon_user_licence": "+{{ quantity}} Additional User licence"
+  "web_paas_add_project_license_summary_addon_storage": "+{{quantity}} 5GB Ajouter du stockage",
+  "web_paas_add_project_license_summary_addon_user_licence": "+{{ quantity}} Ajouter des licences utilisateur",
+  "web_paas_add_project_license_summary_addon_environment": "+{{quantity}} Ajouter des environnements de test",
+  "web_paas_add_project_license_summary_title": "Récapitulatif de commande",
+  "web_paas_add_project_title_edit": "Changez d’offre"
 }

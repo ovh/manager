@@ -16,8 +16,15 @@ export const GUIDELINK = {
   FR: 'https://docs.ovh.com/gb/en/web-paas/',
 };
 
+export const OFFER_NAME = {
+  start: 'STARTER',
+  develop: 'DEVELOP',
+  expand: 'EXPAND',
+};
+
 export default {
   BETA_PLAN_CODE,
   GUIDELINK,
+  OFFER_NAME,
   STATUS,
 };

@@ -1,0 +1,17 @@
+{
+  "web_paas_service_add_addon_title_storage": "Augmentez votre stockage",
+  "web_paas_service_add_addon_title_environment": "Modifiez vos environnements de test",
+  "web_paas_service_add_addon_title_license": "Augmentez votre licences utilisateur",
+
+  "web_paas_service_add_storage_description": "Vous possédez actuellement {{ storage }} Go de stockage additionnel.  Le prix de votre stockage est lié au nombre de vos environnements.",
+  "web_paas_service_add_license_description": "Vous disposez actuellement {{ license }} licences utilisateur supplémentaires.",
+  "web_paas_service_add_staging_description": "Vous avez actuellement {{ environment }} environnements de test. Le nombre de vos environnements.",
+  "web_paas_service_add_addon_prorata_price_environment": "Le prorata à payer sera de {{ prorataPrice }}€ pour le mois XX pour les environnements et le stockage. Vous paierez {{ nextMonthPrice }}€ le mois XX et les prochains mois de votre abonnement.",
+  "web_paas_service_add_addon_prorata_price_storage": "Le prorata à payer sera de {{ prorataPrice }}€ pour ce mois. Il est calculé en fonction du nombre de vos environnements. Vous paierez {{ nextMonthPrice }}€ à partir du mois prochain.",
+  "web_paas_service_add_addon_prorata_price_license": "Le prorata à payer sera de {{ prorataPrice }}€ pour le mois de {{ currentMonth }} et de  {{ nextMonthPrice }}€/mois pour les prochains mois sur l’ensemble de vos licences utilisateur additionnelles.",
+  "web_paas_service_add_addon_error": "Erreur lors de l'ajout du module complémentaire: {{ message }}",
+
+  "web_paas_service_add_addon_success_storage": "La modification de votre stockage a bien été prise en compte",
+  "web_paas_service_add_addon_success_environment": "La modification de votre environnements de test a bien été prise en compte",
+  "web_paas_service_add_addon_success_license": "La modification de votre licences utilisateur a bien été prise en compte"
+}

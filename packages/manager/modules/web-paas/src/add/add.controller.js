@@ -1,9 +1,4 @@
-import set from 'lodash/set';
-import {
-  pricingConstants,
-  workflowConstants,
-} from '@ovh-ux/manager-product-offers';
-
+import { get, set } from 'lodash';
 import { WORKFLOW_OPTIONS } from './add.constants';
 
 export default class {
@@ -32,10 +27,12 @@ export default class {
 
   $onInit() {
     this.isAdding = false;
+    this.stepperIndex = 0;
     this.isEditingTemplate = false;
     this.isEditingOffers = false;
     this.isGettingAddons = false;
     this.isGettingCheckoutInfo = false;
+    this.prices = null;
 
     this.project = {
       region: null,
@@ -46,20 +43,15 @@ export default class {
         templateUrl: null,
       },
     };
+    if (this.selectedProject) {
+      this.setStepperIndex();
+      this.project.name = this.selectedProject.projectName;
+      this.onPlanSelect(this.selectedProject);
+    }
+  }
 
-    this.productOffers = {
-      pricingType: pricingConstants.PRICING_CAPACITIES.RENEW,
-      user: this.user,
-      workflowOptions: {
-        serviceNameToAddProduct: null,
-        catalog: this.catalog,
-        catalogItemTypeName: WORKFLOW_OPTIONS.catalogItemTypeName,
-        productName: WORKFLOW_OPTIONS.productName,
-        getPlanCode: this.getPlanCode.bind(this),
-        onGetConfiguration: () => this.getConfiguration(),
-      },
-      workflowType: workflowConstants.WORKFLOW_TYPES.ORDER,
-    };
+  setStepperIndex() {
+    this.stepperIndex = 1;
   }
 
   refreshMessages() {
@@ -68,6 +60,9 @@ export default class {
 
   onPlanSubmit() {
     this.loadCapabilities(this.project.offer);
+    if (this.isChangingPlan()) {
+      this.upgradePlan();
+    }
   }
 
   onPlanSelect(product) {
@@ -149,14 +144,9 @@ export default class {
     });
   }
 
-  onPlatformOrderSuccess(checkout) {
-    if (checkout.prices && checkout.prices.withTax.value > 0) {
-      this.$window.open(checkout.url, '_blank', 'noopener');
-    }
+  onPlatformOrderSuccess() {
     this.Alerter.success(
-      this.$translate.instant('web_paas_add_project_success', {
-        orderURL: this.getOrdersURL(checkout.orderId),
-      }),
+      this.$translate.instant('web_paas_add_project_success'),
       this.alerts.add,
     );
     this.scrollToTop();
@@ -164,7 +154,10 @@ export default class {
 
   onPlatformOrderError(error) {
     this.Alerter.alertFromSWS(
-      this.$translate.instant('web_paas_add_project_error'),
+      `${this.$translate.instant('web_paas_add_project_error')} ${get(
+        error,
+        'data.message',
+      )}`,
       error,
       this.alerts.add,
     );
@@ -205,13 +198,39 @@ export default class {
       });
   }
 
+  upgradePlan() {
+    this.isGettingCheckoutInfo = true;
+    set(this.selectedProject, 'quantity', 1);
+    this.WebPaas.getUpgradeCheckoutInfo(
+      this.selectedProject.serviceId,
+      this.selectedPlan,
+    )
+      .then(({ contracts, prices, cart }) => {
+        this.cart = cart;
+        this.contracts = contracts;
+        this.prices = prices;
+      })
+      .catch((error) => this.onPlatformOrderError(error))
+      .finally(() => {
+        this.isGettingCheckoutInfo = false;
+      });
+  }
+
   createWebPaas() {
-    this.WebPaas.checkoutCart(this.cart)
-      .then((checkout) => {
-        this.onPlatformOrderSuccess(checkout);
+    this.WebPaas.gotToExpressOrder(this.selectedPlan, this.getConfiguration())
+      .then(() => {
+        this.onPlatformOrderSuccess();
       })
       .catch((error) => {
         this.onPlatformOrderError(error);
       });
+  }
+
+  isEditable() {
+    return !this.isChangingPlan();
+  }
+
+  isChangingPlan() {
+    return this.selectedProject;
   }
 }

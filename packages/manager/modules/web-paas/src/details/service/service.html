@@ -46,7 +46,7 @@
                 data-description="{{:: $ctrl.project.offer }}"
             >
             </oui-tile-definition>
-            <oui-tile-button>
+            <oui-tile-button data-on-click="$ctrl.goToEditPlan()">
                 <span data-translate="web_paas_service_project_upgrade"></span>
             </oui-tile-button>
             <oui-tile-definition
@@ -73,7 +73,7 @@
                 data-description="{{:: 'web_paas_service_project_storage' | translate: { storageSize: $ctrl.project.totalStorage() } }}"
             >
             </oui-tile-definition>
-            <oui-tile-button data-on-click="$ctrl.goToAddStorage()">
+            <oui-tile-button data-on-click="$ctrl.goToAddAddon('additional-storage')">
                 <span
                     data-translate="web_paas_service_project_storage_upgrade"
                 ></span>
@@ -95,7 +95,7 @@
                     </oui-tile-description>
                 </oui-tile-description>
             </oui-tile-definition>
-            <oui-tile-button disabled="true">
+            <oui-tile-button data-on-click="$ctrl.goToAddAddon('additional-user-license')">
                 <span
                     data-translate="web_paas_service_project_licences_upgrade"
                 ></span>
@@ -114,7 +114,7 @@
                     ></span>
                 </oui-tile-description>
             </oui-tile-definition>
-            <oui-tile-button disabled="true">
+            <oui-tile-button data-on-click="$ctrl.goToAddAddon('additional-staging-environment')">
                 <span
                     data-translate="web_paas_service_project_environment_upgrade"
                 ></span>
@@ -124,21 +124,9 @@
     <div class="col-md-4 h-100">
         <oui-tile
             data-heading="{{ ::'web_paas_tile_subscription' | translate }}"
-            data-loading="$ctrl.loading.plan"
             class="oui-tile-h-100 h-100 mt-3"
         >
-            <oui-tile-definition data-ng-if="$ctrl.loading.plan">
-                <oui-tile-description>
-                    <oui-skeleton data-randomized></oui-skeleton>
-                    <oui-skeleton data-randomized></oui-skeleton>
-                    <oui-skeleton data-randomized></oui-skeleton>
-                    <oui-skeleton data-randomized></oui-skeleton>
-                    <oui-skeleton data-randomized></oui-skeleton>
-                    <oui-skeleton data-randomized></oui-skeleton>
-                    <oui-skeleton data-randomized></oui-skeleton>
-                </oui-tile-description>
-            </oui-tile-definition>
-            <div data-ng-if="!$ctrl.loading.serviceInfo">
+            <!-- <div data-ng-if="!$ctrl.loading.serviceInfo"> -->
                 <oui-tile-definition
                     data-ng-if="$ctrl.serviceInfo.offer"
                     data-term="{{ ::'web_paas_tile_subscription_offer' | translate }}"
@@ -209,7 +197,7 @@
                     data-description="{{ ::$ctrl.serviceInfo.creation | cucMomentFormat:'LL' }}"
                 >
                 </oui-tile-definition>
-            </div>
+            <!-- </div> -->
         </oui-tile>
     </div>
 </div>
