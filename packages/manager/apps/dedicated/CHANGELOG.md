@@ -1,3 +1,12 @@
+## [16.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.23.0...@ovh-ux/manager-dedicated@16.23.1) (2021-05-05)
+
+
+### Bug Fixes
+
+* display total amount for SBG ([#4890](https://github.com/ovh/manager/issues/4890)) ([96c92a6](https://github.com/ovh/manager/commit/96c92a6e38efb553987e71b08d953a1e7146b0d1))
+
+
+
 # [16.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.22.4...@ovh-ux/manager-dedicated@16.23.0) (2021-05-05)
 
 
