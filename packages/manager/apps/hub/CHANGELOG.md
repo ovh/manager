@@ -1,3 +1,19 @@
+# [3.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.12.1...@ovh-ux/manager-hub-app@3.13.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.1.1 ([#4831](https://github.com/ovh/manager/issues/4831)) ([33d056a](https://github.com/ovh/manager/commit/33d056a2a8e09392e1f8795a8716c52a15b66b73))
+* **env:** replace singleton environment usage by coreConfig ([#4814](https://github.com/ovh/manager/issues/4814)) ([7c47ea0](https://github.com/ovh/manager/commit/7c47ea00693e86bb7e0ff2614bebbaedcd74ce40))
+* **i18n:** add missing translations [CDS 928] ([be2ab67](https://github.com/ovh/manager/commit/be2ab67bf0d2f2be9403ebb1f4d314a3c4eebf17))
+
+
+### Features
+
+* **environment:** use ufrontend to bootstrap application ([fba286f](https://github.com/ovh/manager/commit/fba286f89e58e73f8899da0dbac615f65fc6a7f8))
+
+
+
 ## [3.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.12.0...@ovh-ux/manager-hub-app@3.12.1) (2021-04-29)
 
 

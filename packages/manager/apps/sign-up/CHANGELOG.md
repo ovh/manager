@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.2.0...@ovh-ux/sign-up-app@2.3.0) (2021-05-05)
+
+
+### Features
+
+* **environment:** update application bootstrap ([bebfc7b](https://github.com/ovh/manager/commit/bebfc7bbaa9dcc325f69764c84ad0ecc03191823))
+
+
+
 # [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.1.7...@ovh-ux/sign-up-app@2.2.0) (2021-04-27)
 
 

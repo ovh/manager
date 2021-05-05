@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.1.0...@ovh-ux/manager-cda@1.1.1) (2021-05-05)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([#4515](https://github.com/ovh/manager/issues/4515)) ([680db40](https://github.com/ovh/manager/commit/680db40c06ba1095fb16bf70800baf68f62fbe12))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.0.4...@ovh-ux/manager-cda@1.1.0) (2021-03-25)
 
 

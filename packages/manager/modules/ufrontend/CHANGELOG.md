@@ -1,3 +1,28 @@
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ufrontend@1.1.3...@ovh-ux/ufrontend@2.0.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* **url-builder:** remove environment dependency ([9bbc977](https://github.com/ovh/manager/commit/9bbc9771b4ef04cdb10eda8d34a2406ba27f53f1))
+
+
+### Features
+
+* **application:** define application name when init an application ([a74d427](https://github.com/ovh/manager/commit/a74d42761be3f8892b9af3842451fe850434cece))
+* **environment:** support environment instead of config ([2efcd93](https://github.com/ovh/manager/commit/2efcd9302973fffb9273950efe70650edab9ee14))
+
+
+### BREAKING CHANGES
+
+* **environment:** microfrontend exposes now the environment instead of config
+* **url-builder:** `buildURL` and `buildURLs` signatures changed
+  `buildURL` and `buildURLs` accepts `baseURL` as first parameter
+  and are no longer able to find baseUrl from application `id`
+
+Signed-off-by: Cyrille Bourgois <cyrille.bourgois@corp.ovh.com>
+
+
+
 ## [1.1.3](https://github.com/ovh/manager/compare/@ovh-ux/ufrontend@1.1.2...@ovh-ux/ufrontend@1.1.3) (2021-03-02)
 
 

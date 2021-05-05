@@ -1,3 +1,14 @@
+# [12.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.1.0...@ovh-ux/manager-core@12.2.0) (2021-05-05)
+
+
+### Features
+
+* **environment:** provide support to define environment ([a6aec30](https://github.com/ovh/manager/commit/a6aec30b21433c225ce5f6d7adcb48e33ea05ca0))
+* **environment:** update coreConfig ([52d14ed](https://github.com/ovh/manager/commit/52d14eda6f92d6cbf61ab275a92e9cf00de27a1b))
+* **url-builder:** add coreURLBuilder in manager-core ([7498842](https://github.com/ovh/manager/commit/74988421433176923a2ad50e7a3a4fd16355b27e))
+
+
+
 # [12.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.0.3...@ovh-ux/manager-core@12.1.0) (2021-04-26)
 
 

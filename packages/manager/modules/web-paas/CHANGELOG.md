@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.0.6...@ovh-ux/manager-web-paas@1.1.0) (2021-05-05)
+
+
+### Features
+
+* **environment:** use ufrontend to bootstrap application ([fba286f](https://github.com/ovh/manager/commit/fba286f89e58e73f8899da0dbac615f65fc6a7f8))
+
+
+
 ## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.0.5...@ovh-ux/manager-web-paas@1.0.6) (2021-05-04)
 
 

@@ -1,3 +1,18 @@
+# [2.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.8.0...@ovh-ux/manager-vps@2.9.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 923] ([4514c99](https://github.com/ovh/manager/commit/4514c999b9d0def0cfe5993c95968939a08027ee))
+* **i18n:** add missing translations [CDS 926] ([354326c](https://github.com/ovh/manager/commit/354326c8df20a7539c237230113692c8a4e355f2))
+
+
+### Features
+
+* **environment:** use ufrontend to bootstrap application ([fba286f](https://github.com/ovh/manager/commit/fba286f89e58e73f8899da0dbac615f65fc6a7f8))
+
+
+
 # [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.7.1...@ovh-ux/manager-vps@2.8.0) (2021-04-21)
 
 

@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-fragment-navbar@1.1.3...@ovh-ux/manager-fragment-navbar@1.2.0) (2021-05-05)
+
+
+### Features
+
+* **environment:** add environment context ([8873abd](https://github.com/ovh/manager/commit/8873abd283bf7ccc71afc02959454386450beeef))
+
+
+
 ## [1.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-fragment-navbar@1.1.2...@ovh-ux/manager-fragment-navbar@1.1.3) (2021-03-02)
 
 

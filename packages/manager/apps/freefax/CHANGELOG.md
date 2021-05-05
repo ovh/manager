@@ -1,3 +1,27 @@
+# [7.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@6.2.4...@ovh-ux/manager-freefax-app@7.0.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.1.1 ([#4831](https://github.com/ovh/manager/issues/4831)) ([33d056a](https://github.com/ovh/manager/commit/33d056a2a8e09392e1f8795a8716c52a15b66b73))
+
+
+### Features
+
+* **environment:** update application bootstrap ([f1a23f5](https://github.com/ovh/manager/commit/f1a23f58927f99718e234d5a0e585ee7b3d067c3))
+* **environment:** use ufrontend to bootstrap application ([fba286f](https://github.com/ovh/manager/commit/fba286f89e58e73f8899da0dbac615f65fc6a7f8))
+
+
+### BREAKING CHANGES
+
+* **environment:** use ufrontend to bootstrap application
+  the environment is no more a singleton
+  the environment is provided by ufrontend
+
+Signed-off-by: Cyrille Bourgois <cyrille.bourgois@corp.ovh.com>
+
+
+
 ## [6.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@6.2.3...@ovh-ux/manager-freefax-app@6.2.4) (2021-04-09)
 
 

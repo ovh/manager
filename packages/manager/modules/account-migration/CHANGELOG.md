@@ -1,3 +1,12 @@
+## [1.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-migration@1.1.6...@ovh-ux/manager-account-migration@1.1.7) (2021-05-05)
+
+
+### Bug Fixes
+
+* **environment:** use isRegion instead of getRegion ([beab2a9](https://github.com/ovh/manager/commit/beab2a998a1ceb9f7e30e635415520435d8a45e9))
+
+
+
 ## [1.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-migration@1.1.5...@ovh-ux/manager-account-migration@1.1.6) (2021-04-21)
 
 
