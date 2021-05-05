@@ -37,7 +37,7 @@ const ServicePackOptionService = class ServicePackOptionService {
     return find(OPTIONS, { name: optionName }).type;
   }
 
-  static getPresentationUrl(optionName, subsidiary) {
+  getPresentationUrl(optionName, subsidiary) {
     const urls = getConstants(this.coreConfig.getRegion()).URLS;
     return get(urls, subsidiary, urls.FR).presentations[optionName];
   }
@@ -47,10 +47,7 @@ const ServicePackOptionService = class ServicePackOptionService {
       this.$q.all(
         names.map((optionName) => ({
           name: optionName,
-          presentationUrl: ServicePackOptionService.getPresentationUrl(
-            optionName,
-            subsidiary,
-          ),
+          presentationUrl: this.getPresentationUrl(optionName, subsidiary),
         })),
       ),
     );
