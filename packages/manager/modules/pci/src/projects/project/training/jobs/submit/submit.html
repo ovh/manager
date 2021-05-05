@@ -131,16 +131,6 @@
             valid="$ctrl.validateVolume() || !$ctrl.job.addVolume"
             data-on-submit="$ctrl.submitVolume()"
         >
-            <oui-message type="info" dismissable="true">
-                <span
-                    class="d-block"
-                    data-translate="pci_projects_project_training_jobs_submit_select_data_tips_1"
-                ></span>
-                <span
-                    class="d-block"
-                    data-translate="pci_projects_project_training_jobs_submit_select_data_tips_2"
-                ></span>
-            </oui-message>
             <div data-ng-if="!$ctrl.containers.length">
                 <div
                     class="text-danger"
@@ -195,25 +185,6 @@
                                 </div>
                                 <div class="oui-inline-adder__field">
                                     <oui-field
-                                        data-label="{{:: 'pci_projects_project_training_jobs_submit_data_prefix' | translate  }}"
-                                        data-label-popover="{{:: 'pci_projects_project_training_jobs_submit_data_prefix_help' | translate }}"
-                                    >
-                                        <input
-                                            type="text"
-                                            class="oui-input"
-                                            placeholder=""
-                                            data-ng-init="$ctrl.httpHeader[$index].model.prefix = ''"
-                                            name="prefix"
-                                            data-ng-model="$ctrl.httpHeader[$index].model.prefix"
-                                            data-ng-pattern="/\S*/"
-                                            data-ng-model-options="{ debounce: 500 }"
-                                            data-ng-required="$ctrl.httpHeader[$index].model.prefix"
-                                            data-ng-disabled="$ctrl.httpHeader[$index].added"
-                                        />
-                                    </oui-field>
-                                </div>
-                                <div class="oui-inline-adder__field">
-                                    <oui-field
                                         data-label="{{:: 'pci_projects_project_training_jobs_submit_data_mount_path' | translate  }}"
                                     >
                                         <input
@@ -234,7 +205,6 @@
                                 <div class="oui-inline-adder__field">
                                     <oui-field
                                         data-label="{{:: 'pci_projects_project_training_jobs_submit_data_permission' | translate  }}"
-                                        data-label-popover="{{:: 'pci_projects_project_training_jobs_submit_data_permission_help' | translate }}"
                                         size="m"
                                     >
                                         <label class="oui-select">
@@ -257,21 +227,6 @@
                                                 aria-hidden="true"
                                             ></span>
                                         </label>
-                                    </oui-field>
-                                </div>
-                                <div class="oui-inline-adder__field">
-                                    <oui-field
-                                        data-label="{{:: 'pci_projects_project_training_jobs_submit_data_cache' | translate  }}"
-                                        data-label-popover="{{:: 'pci_projects_project_training_jobs_submit_data_cache_help' | translate }}"
-                                        size="auto"
-                                    >
-                                        <oui-checkbox
-                                            class="oui-checkbox"
-                                            name="cache"
-                                            data-ng-init="$ctrl.httpHeader[$index].model.cache=false"
-                                            data-model="$ctrl.httpHeader[$index].model.cache"
-                                            data-ng-disabled="$ctrl.httpHeader[$index].added"
-                                        ></oui-checkbox>
                                     </oui-field>
                                 </div>
                             </div>
@@ -394,68 +349,34 @@
                             maxlength="64"
                         />
                     </oui-field>
-                    <oui-field data-label="Resource Type" data-size="auto">
-                        <oui-radio-toggle-group
-                            model="$ctrl.resourceId"
-                            on-change="$ctrl.onResourceTypeChange()"
+                    <oui-field data-label="GPU" data-size="auto">
+                        <oui-select
+                            data-model="$ctrl.selectedGpu"
+                            data-items="$ctrl.gpus"
+                            data-required
+                            match="type"
+                            name="gpu"
+                            inline
                         >
-                            <oui-radio value="$ctrl.gpuId">
-                                {{::
-                                'pci_projects_project_training_jobs_submit_select_config_resources_tips_gpu_identifier'
-                                | translate }}
-                            </oui-radio>
-                            <oui-radio value="$ctrl.cpuId">
-                                {{::
-                                'pci_projects_project_training_jobs_submit_select_config_resources_tips_cpu_identifier'
-                                | translate }}
-                            </oui-radio>
-                        </oui-radio-toggle-group>
+                            <span
+                                ng-bind="$item.type"
+                                class="d-inline-block text-truncate"
+                            ></span>
+                        </oui-select>
                     </oui-field>
-                    <div data-ng-if="$ctrl.resourceId == $ctrl.gpuId">
-                        <oui-field data-label="GPU" data-size="auto">
-                            <oui-select
-                                data-model="$ctrl.selectedGpu"
-                                data-items="$ctrl.resource.gpus"
-                                data-required
-                                match="model"
-                                name="gpu"
-                                inline
-                            >
-                                <span
-                                    ng-bind="$item.model"
-                                    class="d-inline-block text-truncate"
-                                ></span>
-                            </oui-select>
-                        </oui-field>
-                        <oui-field
-                            data-label="{{:: 'pci_projects_project_training_jobs_submit_select_config_resources_tips_gpu' | translate  }}"
-                            data-size="auto"
+                    <oui-field
+                        data-label="{{:: 'pci_projects_project_training_jobs_submit_select_config_resources_tips_gpu' | translate  }}"
+                        data-size="auto"
+                    >
+                        <oui-numeric
+                            data-min="1"
+                            data-max="$ctrl.selectedGpu.maxGpus"
+                            data-model="$ctrl.job.resources.gpu"
+                            data-on-change="$ctrl.computePricePerMinute(modelValue)"
+                            name="gpuCount"
                         >
-                            <oui-numeric
-                                data-min="1"
-                                data-max="$ctrl.selectedGpu.maxGpus"
-                                data-model="$ctrl.job.resources.gpu"
-                                data-on-change="$ctrl.resourceN = modelValue"
-                                name="gpuCount"
-                            >
-                            </oui-numeric>
-                        </oui-field>
-                    </div>
-                    <div data-ng-if="$ctrl.resourceId == $ctrl.cpuId">
-                        <oui-field
-                            data-label="{{:: 'pci_projects_project_training_jobs_submit_select_config_resources_tips_cpu' | translate  }}"
-                            data-size="auto"
-                        >
-                            <oui-numeric
-                                data-min="1"
-                                data-max="$ctrl.maxCpus"
-                                data-model="$ctrl.job.resources.cpu"
-                                data-on-change="$ctrl.resourceN = modelValue"
-                                name="cpuCount"
-                            >
-                            </oui-numeric>
-                        </oui-field>
-                    </div>
+                        </oui-numeric>
+                    </oui-field>
                 </div>
                 <div class="col-md-4">
                     <oui-tile
@@ -467,8 +388,8 @@
                         >
                             <oui-tile-description>
                                 <ovh-manager-catalog-price
-                                    data-price="$ctrl.getPrice($ctrl.resourceN, $ctrl.resourceId)"
-                                    data-tax="$ctrl.getTax($ctrl.resourceN, $ctrl.resourceId)"
+                                    data-price="$ctrl.getPrice($ctrl.job.resources.gpu)"
+                                    data-tax="$ctrl.getTax($ctrl.job.resources.gpu)"
                                     data-user="$ctrl.user"
                                     data-perform-rounding="false"
                                     data-maximum-fraction-digits="3"
@@ -517,7 +438,6 @@
                         >
                             <oui-tile-definition
                                 data-term="{{:: 'pci_projects_project_training_jobs_submit_select_config_resources_tips_gpu' | translate  }}"
-                                ng-if="$ctrl.resourceId === $ctrl.gpuId"
                             >
                                 <oui-tile-description>
                                     <span
@@ -526,17 +446,7 @@
                                     <span>x</span>
                                     <span
                                         class="oui-status oui-status_info"
-                                        data-ng-bind="$ctrl.selectedGpu.model"
-                                    ></span>
-                                </oui-tile-description>
-                            </oui-tile-definition>
-                            <oui-tile-definition
-                                data-term="{{:: 'pci_projects_project_training_jobs_submit_select_config_resources_tips_cpu' | translate  }}"
-                                ng-if="$ctrl.resourceId === $ctrl.cpuId"
-                            >
-                                <oui-tile-description>
-                                    <span
-                                        data-ng-bind="$ctrl.job.resources.cpu"
+                                        data-ng-bind="$ctrl.selectedGpu.type"
                                     ></span>
                                 </oui-tile-description>
                             </oui-tile-definition>
@@ -545,8 +455,8 @@
                             >
                                 <oui-tile-description>
                                     <ovh-manager-catalog-price
-                                        data-price="$ctrl.getPrice($ctrl.resourceN, $ctrl.resourceId)"
-                                        data-tax="$ctrl.getTax($ctrl.resourceN, $ctrl.resourceId)"
+                                        data-price="$ctrl.getPrice($ctrl.job.resources.gpu)"
+                                        data-tax="$ctrl.getTax($ctrl.job.resources.gpu)"
                                         data-user="$ctrl.user"
                                         data-perform-rounding="false"
                                         data-maximum-fraction-digits="3"

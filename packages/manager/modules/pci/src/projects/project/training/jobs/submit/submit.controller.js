@@ -33,8 +33,6 @@ export default class PciTrainingJobsSubmitController {
       container: this.httpHeader[index].model.container.name,
       mountPath: this.httpHeader[index].model.mountPath,
       permission: this.httpHeader[index].model.permission,
-      prefix: this.httpHeader[index].model.prefix,
-      cache: this.httpHeader[index].model.cache,
     });
     this.addHttpHeader();
     this.job.validNextStep = this.validateVolume();
@@ -49,15 +47,13 @@ export default class PciTrainingJobsSubmitController {
   $onInit() {
     this.httpHeader = [];
     this.volumesPermissions = ['RO', 'RW'];
-    this.gpuId = 'gpu';
-    this.cpuId = 'cpu';
     this.communityUrl = COMMUNITY_URL;
     // Form payload
     this.job = {
       addVolume: false,
       validNextStep: true,
       validVolume: true,
-      region: this.regions[0],
+      region: null,
       name: null,
       image: {
         id: null,
@@ -67,13 +63,10 @@ export default class PciTrainingJobsSubmitController {
       volumes: [],
       resources: {
         gpu: 1,
-        cpu: 0,
       },
     };
 
-    this.resourceN = 1; // default number of resource
-    this.resourceId = 'gpu'; // default resource
-    this.resource = {};
+    this.gpus = [];
     this.selectedGpu = null;
     this.showAdvancedImage = false;
     this.emptyData = this.containers.length === 0;
@@ -157,11 +150,11 @@ export default class PciTrainingJobsSubmitController {
   }
 
   onChangeRegion(region) {
-    // Update Resource
-    this.PciProjectTrainingService.getResources(this.projectId, region.id).then(
-      (resource) => {
-        this.resource = resource;
-        [this.selectedGpu] = this.resource.gpus;
+    // Update GPU
+    this.PciProjectTrainingService.getGpus(this.projectId, region.id).then(
+      (gpus) => {
+        this.gpus = gpus;
+        [this.selectedGpu] = this.gpus;
       },
     );
   }
@@ -180,17 +173,6 @@ export default class PciTrainingJobsSubmitController {
 
   onClickAdvancedImage() {
     this.showAdvancedImage = !this.showAdvancedImage;
-  }
-
-  onResourceTypeChange() {
-    this.resourceN = 1;
-    if (this.resourceId === this.cpuId) {
-      this.job.resources.gpu = 0;
-      this.job.resources.cpu = 1;
-    } else {
-      this.job.resources.gpu = 1;
-      this.job.resources.cpu = 0;
-    }
   }
 
   submitJob() {
