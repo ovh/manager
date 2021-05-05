@@ -272,7 +272,7 @@ export default class {
 
   shouldRemoveExtraLicences() {
     return (
-      this.selectedProject.totalLicences() > this.selectedPlan.getMaxLicenses()
+      this.selectedProject?.totalLicences() > this.selectedPlan.getMaxLicenses()
     );
   }
 }

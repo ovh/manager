@@ -80,4 +80,8 @@ export default class Plan {
       10,
     );
   }
+
+  getRange() {
+    return get(this, 'blobs.commercial.range');
+  }
 }

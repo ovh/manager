@@ -42,6 +42,9 @@ export default class {
         this.cart = cart;
         this.contracts = contracts;
         this.prices = prices;
+        if (this.addonType !== 'additional-user-license') {
+          this.totalPrice = this.nextMonthPrice * this.quantity;
+        }
       })
       .catch((error) =>
         this.goBack(
@@ -119,7 +122,11 @@ export default class {
           this.project.selectedPlan.getLicences();
         this.description = this.$translate.instant(
           'web_paas_service_add_license_description',
-          { license: this.presentCount },
+          {
+            license: this.presentCount,
+            offerName: this.project.selectedPlan.getRange(),
+            maxLicences: this.project.selectedPlan.getMaxLicenses(),
+          },
         );
         break;
 

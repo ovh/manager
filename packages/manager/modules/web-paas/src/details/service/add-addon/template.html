@@ -30,9 +30,10 @@
                 data-ng-if="!$ctrl.disabled"
                 data-translate="{{:: 'web_paas_service_add_addon_prorata_price_' + $ctrl.addonType.split('-').pop() }}"
                 data-translate-values="{
-                    prorataPrice: $ctrl.prices.withTax.value,
-                    nextMonthPrice: $ctrl.nextMonthPrice,
-                    currentMonth: $ctrl.currentMonth
+                    prorataPrice: $ctrl.prices.withTax.value || 0,
+                    nextMonthPrice: $ctrl.nextMonthPrice || 0,
+                    currentMonth: $ctrl.currentMonth,
+                    totalPrice: $ctrl.totalPrice || 0
                 }"
             ></span>
         </p>
