@@ -5,11 +5,17 @@ import component from './user-licences.component';
 import routing from './user-licences.routing';
 import inviteUser from './invite-user';
 import deleteUser from './delete-user';
+import userList from '../../components/user-list';
 
 const moduleName = 'ovhManagerWebPaasDetailsUserLicences';
 
 angular
-  .module(moduleName, ['pascalprecht.translate', deleteUser, inviteUser])
+  .module(moduleName, [
+    'pascalprecht.translate',
+    deleteUser,
+    inviteUser,
+    userList,
+  ])
   .config(routing)
   .component('webPaasDetailsUserLicences', component)
   .run(/* @ngTranslationsInject:json ./translations */);

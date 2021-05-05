@@ -2,7 +2,7 @@ import angular from 'angular';
 import 'angular-translate';
 
 import routing from './delete-user.routing';
-import component from '../../../components/delete-user';
+import component from '../../components/delete-user';
 
 const moduleName = 'ovhManagerWebPaasDetailsUserLicencesDeleteUser';
 

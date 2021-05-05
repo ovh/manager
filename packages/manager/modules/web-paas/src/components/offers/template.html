@@ -29,6 +29,7 @@
                     data-match="vcpuConfig"
                     data-items="product.plans"
                     data-model="product.selectedPlan"
+                    data-disable-items="!$item.available"
                     data-on-change="$ctrl.onSelected($ctrl.selectedOffer)"
                     name="product.planCode"
                     required

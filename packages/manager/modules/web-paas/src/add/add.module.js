@@ -8,6 +8,8 @@ import routing from './add.routing';
 import offersComponent from '../components/offers';
 import templateComponent from '../components/project-template';
 import additionalComponent from '../components/additional-option';
+import deleteUser from './delete-user';
+import userList from '../components/user-list';
 
 const moduleName = 'ovhManagerWebPaasAdd';
 
@@ -18,6 +20,8 @@ angular
     additionalComponent,
     offersComponent,
     templateComponent,
+    deleteUser,
+    userList,
   ])
   .config(routing)
   .component('webPaasAdd', component)

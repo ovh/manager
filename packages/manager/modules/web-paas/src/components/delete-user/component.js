@@ -1,5 +1,5 @@
-import controller from './delete-user.controller';
-import template from './delete-user.html';
+import controller from './controller';
+import template from './template.html';
 
 const component = {
   bindings: {

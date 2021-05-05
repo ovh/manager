@@ -98,20 +98,19 @@ export default class WebPaasService {
       .then(({ data }) => data);
   }
 
-  getCatalog(ovhSubsidiary, availablePlans, project) {
+  getCatalog(ovhSubsidiary, availablePlans) {
     return this.WucOrderCartService.getProductPublicCatalog(
       ovhSubsidiary,
       'webPaaS',
     ).then((catalog) => {
+      const sorted = this.sortSetVcpuConfig(catalog.plans);
       if (availablePlans) {
-        catalog.plans.forEach((plan) =>
+        sorted.forEach((plan) =>
           find(availablePlans, { planCode: plan.planCode })
             ? set(plan, 'available', true)
-            : null,
+            : set(plan, 'available', false),
         );
-        catalog.plans.push(project.selectedPlan);
       }
-      const sorted = this.sortSetVcpuConfig(catalog.plans);
       const groupedPlans = this.groupPlans(sorted);
       set(catalog, 'plans', sorted);
       set(catalog, 'productList', groupedPlans);
@@ -133,9 +132,13 @@ export default class WebPaasService {
     this.groupedPlans = map(
       groupBy(
         map(plans, (plan) => new Plan(plan)),
-        'product',
+        'blobs.commercial.range',
       ),
-      (value, key) => ({ name: key, plans: value, selectedPlan: value[0] }),
+      (value, key) => ({
+        name: key.toLowerCase(),
+        plans: value,
+        selectedPlan: value[0],
+      }),
     );
     return map(this.groupedPlans, (family) => new PlanFamily(family));
   }
@@ -148,6 +151,7 @@ export default class WebPaasService {
   sortSetVcpuConfig(plans) {
     const data = map(plans, (plan) => ({
       ...plan,
+      available: true,
       vcpuConfig: this.$translate.instant('web_paas_plan_vcpu_config_text', {
         prodCpu: get(plan, 'blobs.technical.cpu.cores'),
         stagingCpu: get(plan, 'blobs.technical.cpu.cores') / 2,
@@ -365,7 +369,7 @@ export default class WebPaasService {
           quantity: quantity || plan.quantity,
         },
       )
-      .then(({ data }) => data.order);
+      .then(({ data }) => data);
   }
 
   deleteCart() {
@@ -417,7 +421,7 @@ export default class WebPaasService {
   goToExpressOrderUrl(payload) {
     return this.WucUser.getUrlOfEndsWithSubsidiary('express_order').then(
       (expressOrderUrl) => {
-        this.$window.open(
+        return this.$window.open(
           `${expressOrderUrl}#/new/express/resume?products=${JSURL.stringify(
             payload,
           )}`,

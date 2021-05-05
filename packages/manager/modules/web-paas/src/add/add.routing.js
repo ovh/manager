@@ -11,16 +11,15 @@ export default /* @ngInject */ ($stateProvider) => {
           ? WebPaas.getUpgradeOffers(selectedProject.serviceId)
           : null;
       },
-      catalog: /* @ngInject */ (
-        WebPaas,
-        user,
-        availablePlans,
-        selectedProject,
-      ) =>
-        WebPaas.getCatalog(user.ovhSubsidiary, availablePlans, selectedProject),
+      catalog: /* @ngInject */ (WebPaas, user, availablePlans) =>
+        WebPaas.getCatalog(user.ovhSubsidiary, availablePlans),
       selectedProject: /* @ngInject */ ($transition$) =>
         $transition$.params().selectedProject,
       plans: /* @ngInject */ (catalog) => catalog.plans,
+      deleteUser: /* @ngInject */ ($state) => (customer) =>
+        $state.go('web-paas.add.delete-user', {
+          customer,
+        }),
       goBack: /* @ngInject */ (goToWebPaas) => goToWebPaas,
       getOrdersURL: /* @ngInject */ (coreURLBuilder) => (orderId) =>
         coreURLBuilder.buildURL('dedicated', '#/billing/orders', {

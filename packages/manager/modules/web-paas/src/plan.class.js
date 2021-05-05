@@ -71,10 +71,13 @@ export default class Plan {
   }
 
   getMaxLicenses() {
-    return this.product === 'expand'
-      ? 100
-      : find(get(this, 'blobs.commercial.features'), {
-          name: 'max_user_licences',
-        })?.value;
+    return parseInt(
+      this.product === 'expand'
+        ? 100
+        : find(get(this, 'blobs.commercial.features'), {
+            name: 'max_user_licences',
+          })?.value,
+      10,
+    );
   }
 }

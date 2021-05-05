@@ -142,7 +142,6 @@
             </oui-step-form>
 
             <oui-step-form
-                data-ng-if="!$ctrl.isChangingPlan()"
                 data-header="{{:: 'web_paas_add_project_options' | translate }}"
                 data-submit-text="{{:: 'web_paas_add_project_next' | translate }}"
                 data-loading="$ctrl.isGettingAddons"
@@ -153,8 +152,15 @@
                         data-ng-repeat="addon in $ctrl.selectedPlan.addons track by $index"
                         option="addon"
                         plan="$ctrl.selectedPlan"
+                        disabled="$ctrl.isChangingPlan()"
                     >
                     </web-paas-additional-option>
+                </div>
+                <div data-ng-if="$ctrl.additionalLicenceEdit">
+                    <web-paas-user-list
+                        user-list="$ctrl.userList"
+                        delete-user="$ctrl.deleteUser"
+                    ></web-paas-user-list>
                 </div>
             </oui-step-form>
             <oui-step-form

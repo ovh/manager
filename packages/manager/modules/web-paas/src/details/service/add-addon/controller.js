@@ -82,18 +82,16 @@ export default class {
     if (checkout && checkout.prices && checkout.prices.withTax.value > 0) {
       this.$window.open(checkout.url, '_blank', 'noopener');
     }
-    this.Alerter.success(
+
+    this.goBack(
       this.$translate.instant(
         `web_paas_service_add_addon_success_${this.addonType.split('-').pop()}`,
         {
-          orderURL: checkout
-            ? this.getOrdersURL(checkout.orderId)
-            : this.getOrdersURL(),
+          orderURL: checkout ? this.getOrderUrl(checkout.orderId) : null,
         },
       ),
-      this.alerts.add,
+      'success',
     );
-    this.scrollToTop();
   }
 
   setParameters() {

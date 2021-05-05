@@ -33,6 +33,7 @@ export default class {
     this.isGettingAddons = false;
     this.isGettingCheckoutInfo = false;
     this.prices = null;
+    this.additionalLicenceEdit = false;
 
     this.project = {
       region: null,
@@ -59,10 +60,10 @@ export default class {
   }
 
   onPlanSubmit() {
-    this.loadCapabilities(this.project.offer);
     if (this.isChangingPlan()) {
-      this.upgradePlan();
+      this.loadOptions();
     }
+    this.loadCapabilities(this.project.offer);
   }
 
   onPlanSelect(product) {
@@ -181,25 +182,37 @@ export default class {
 
   loadOptions() {
     this.isGettingAddons = true;
-    this.WebPaas.getAddons(this.selectedPlan).then((addons) => {
+    this.additionalLicenceEdit = this.shouldRemoveExtraLicences();
+    if (this.additionalLicenceEdit) {
+      return this.WebPaas.getUsers(this.selectedProject.serviceId).then(
+        (list) => {
+          this.userList = list;
+          this.isGettingAddons = false;
+        },
+      );
+    }
+
+    return this.WebPaas.getAddons(this.selectedPlan).then((addons) => {
       this.isGettingAddons = false;
       set(this.selectedPlan, 'addons', addons);
     });
   }
 
   onOptionsSubmit() {
+    if (this.isChangingPlan()) {
+      return this.upgradePlan();
+    }
     this.isGettingCheckoutInfo = true;
-    this.WebPaas.getOrderSummary(this.selectedPlan, this.getConfiguration())
+    return this.WebPaas.getOrderSummary(
+      this.selectedPlan,
+      this.getConfiguration(),
+    )
       .then(({ contracts, prices, cart }) => {
         this.cart = cart;
         this.contracts = contracts;
         this.prices = prices;
       })
-      .catch((error) =>
-        !this.onError || this.onError({ error }) === false
-          ? this.$q.reject(error)
-          : null,
-      )
+      .catch((error) => this.onPlatformOrderError(error))
       .finally(() => {
         this.isGettingCheckoutInfo = false;
       });
@@ -208,7 +221,7 @@ export default class {
   upgradePlan() {
     this.isGettingCheckoutInfo = true;
     set(this.selectedProject, 'quantity', 1);
-    this.WebPaas.getUpgradeCheckoutInfo(
+    return this.WebPaas.getUpgradeCheckoutInfo(
       this.selectedProject.serviceId,
       this.selectedPlan,
     )
@@ -255,5 +268,11 @@ export default class {
 
   isChangingPlan() {
     return this.selectedProject;
+  }
+
+  shouldRemoveExtraLicences() {
+    return (
+      this.selectedProject.totalLicences() > this.selectedPlan.getMaxLicenses()
+    );
   }
 }

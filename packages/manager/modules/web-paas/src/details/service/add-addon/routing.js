@@ -29,12 +29,12 @@ export default /* @ngInject */ ($stateProvider) => {
           return addon;
         });
       },
-      getOrdersURL: /* @ngInject */ () => (orderId) =>
+      goBack: /* @ngInject */ (goToProjectDetails) => goToProjectDetails,
+      getOrderUrl: /* @ngInject */ () => (orderId) =>
         buildURL('dedicated', '#/billing/orders', {
           status: 'all',
           orderId,
         }),
-      goBack: /* @ngInject */ (goToProjectDetails) => goToProjectDetails,
       breadcrumb: () => null,
     },
   });
