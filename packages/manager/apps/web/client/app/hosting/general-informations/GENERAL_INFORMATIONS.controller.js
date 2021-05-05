@@ -310,9 +310,9 @@ export default class HostingGeneralInformationsCtrl {
     this.$scope.setAction(action);
   }
 
-  flushCdn(action) {
+  flushCdn() {
     this.sendTrackClick('web::hosting::empty-cdn-cache');
-    this.$scope.setAction(action);
+    this.$state.go('app.hosting.dashboard.cdn.flush');
   }
 
   onMoreInfoLinkClicked() {
