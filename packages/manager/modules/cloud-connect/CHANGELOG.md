@@ -1,3 +1,17 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.1.0...@ovh-ux/manager-cloud-connect@1.2.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* **environment:** use isRegion instead of getRegion ([beab2a9](https://github.com/ovh/manager/commit/beab2a998a1ceb9f7e30e635415520435d8a45e9))
+
+
+### Features
+
+* **environment:** use ufrontend to bootstrap application ([fba286f](https://github.com/ovh/manager/commit/fba286f89e58e73f8899da0dbac615f65fc6a7f8))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.0.10...@ovh-ux/manager-cloud-connect@1.1.0) (2021-03-25)
 
 

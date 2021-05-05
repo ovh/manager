@@ -1,3 +1,12 @@
+## [3.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.11.1...@ovh-ux/manager-server-sidebar@3.11.2) (2021-05-05)
+
+
+### Bug Fixes
+
+* **environment:** use isRegion instead of getRegion ([beab2a9](https://github.com/ovh/manager/commit/beab2a998a1ceb9f7e30e635415520435d8a45e9))
+
+
+
 ## [3.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.11.0...@ovh-ux/manager-server-sidebar@3.11.1) (2021-04-08)
 
 

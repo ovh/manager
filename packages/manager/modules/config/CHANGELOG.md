@@ -1,3 +1,23 @@
+# [6.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@5.0.1...@ovh-ux/manager-config@6.0.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* **environment:** update environment creation ([3b73b21](https://github.com/ovh/manager/commit/3b73b21ab4e09170e49e22bd87555070be119646))
+
+
+### Features
+
+* **config:** export findAvailableLocale method ([29f23d7](https://github.com/ovh/manager/commit/29f23d772c6ac18080c0f0e5c5c30b3149413a36))
+
+
+### BREAKING CHANGES
+
+* **environment:** Environment is no more a singleton
+  `fetchConfiguration` returns a new Environment
+
+
+
 ## [5.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@5.0.0...@ovh-ux/manager-config@5.0.1) (2021-03-10)
 
 

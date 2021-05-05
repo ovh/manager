@@ -1,3 +1,13 @@
+## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cookie-policy@1.0.1...@ovh-ux/manager-cookie-policy@1.0.2) (2021-05-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 927] ([9485773](https://github.com/ovh/manager/commit/94857730b2424c10201ec4e690e5464f7c1aeafd))
+* **i18n:** add missing translations [CDS 928] ([be2ab67](https://github.com/ovh/manager/commit/be2ab67bf0d2f2be9403ebb1f4d314a3c4eebf17))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cookie-policy@1.0.0...@ovh-ux/manager-cookie-policy@1.0.1) (2021-04-28)
 
 

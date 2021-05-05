@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics@1.1.0...@ovh-ux/manager-metrics@1.1.1) (2021-05-05)
+
+
+### Bug Fixes
+
+* **environment:** use isRegion instead of getRegion ([beab2a9](https://github.com/ovh/manager/commit/beab2a998a1ceb9f7e30e635415520435d8a45e9))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics@1.0.3...@ovh-ux/manager-metrics@1.1.0) (2021-03-25)
 
 

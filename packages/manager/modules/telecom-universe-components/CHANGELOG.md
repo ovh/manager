@@ -1,3 +1,13 @@
+## [7.2.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.2.3...@ovh-ux/ng-ovh-telecom-universe-components@7.2.4) (2021-05-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 926] ([354326c](https://github.com/ovh/manager/commit/354326c8df20a7539c237230113692c8a4e355f2))
+* **telecom:** update OVHcloud brand wording ([#4788](https://github.com/ovh/manager/issues/4788)) ([fad6944](https://github.com/ovh/manager/commit/fad69449417754a16af5c1a319118ef1c7f03fc9))
+
+
+
 ## [7.2.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.2.2...@ovh-ux/ng-ovh-telecom-universe-components@7.2.3) (2021-04-08)
 
 

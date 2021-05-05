@@ -1,3 +1,12 @@
+## [2.4.2](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.4.1...@ovh-ux/sao-ovh-manager-app@2.4.2) (2021-05-05)
+
+
+### Bug Fixes
+
+* **template:** update app templates ([be202ea](https://github.com/ovh/manager/commit/be202ea773c79e9d12ba03cbef98c6cbc491df2e))
+
+
+
 ## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.4.0...@ovh-ux/sao-ovh-manager-app@2.4.1) (2021-03-02)
 
 

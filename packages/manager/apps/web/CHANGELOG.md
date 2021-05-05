@@ -1,3 +1,22 @@
+# [15.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.22.0...@ovh-ux/manager-web@15.23.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* **hosting:** remove availability of Website Coach ([#4864](https://github.com/ovh/manager/issues/4864)) ([dcca070](https://github.com/ovh/manager/commit/dcca0709472bb03ecfe42036c379e65aa91490eb))
+* **i18n:** add missing translations [CDS 929] ([52c3ce1](https://github.com/ovh/manager/commit/52c3ce1b75b0dde6b04feba517161c36b226a4c1))
+* remove unused translations [CDS] ([272e810](https://github.com/ovh/manager/commit/272e810525bc6fe43d2ac2c1af0ba81099897bf1))
+* **deps:** upgrade ovh-api-services to v11.1.1 ([#4831](https://github.com/ovh/manager/issues/4831)) ([33d056a](https://github.com/ovh/manager/commit/33d056a2a8e09392e1f8795a8716c52a15b66b73))
+* **env:** replace singleton environment usage by coreConfig ([#4814](https://github.com/ovh/manager/issues/4814)) ([7c47ea0](https://github.com/ovh/manager/commit/7c47ea00693e86bb7e0ff2614bebbaedcd74ce40))
+* **environment:** use isRegion instead of getRegion ([beab2a9](https://github.com/ovh/manager/commit/beab2a998a1ceb9f7e30e635415520435d8a45e9))
+
+
+### Features
+
+* **environment:** use ufrontend to bootstrap application ([fba286f](https://github.com/ovh/manager/commit/fba286f89e58e73f8899da0dbac615f65fc6a7f8))
+
+
+
 # [15.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.21.1...@ovh-ux/manager-web@15.22.0) (2021-04-27)
 
 

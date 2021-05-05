@@ -1,3 +1,17 @@
+# [7.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.4.3...@ovh-ux/manager-sms-app@7.5.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.1.1 ([#4831](https://github.com/ovh/manager/issues/4831)) ([33d056a](https://github.com/ovh/manager/commit/33d056a2a8e09392e1f8795a8716c52a15b66b73))
+
+
+### Features
+
+* **environment:** use ufrontend to bootstrap application ([fba286f](https://github.com/ovh/manager/commit/fba286f89e58e73f8899da0dbac615f65fc6a7f8))
+
+
+
 ## [7.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.4.2...@ovh-ux/manager-sms-app@7.4.3) (2021-04-09)
 
 

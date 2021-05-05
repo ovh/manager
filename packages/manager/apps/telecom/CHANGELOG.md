@@ -1,3 +1,24 @@
+# [13.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.17.0...@ovh-ux/manager-telecom@13.18.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([272e810](https://github.com/ovh/manager/commit/272e810525bc6fe43d2ac2c1af0ba81099897bf1))
+* remove unused translations [CDS] ([#4515](https://github.com/ovh/manager/issues/4515)) ([680db40](https://github.com/ovh/manager/commit/680db40c06ba1095fb16bf70800baf68f62fbe12))
+* **deps:** upgrade ovh-api-services to v11.1.1 ([#4831](https://github.com/ovh/manager/issues/4831)) ([33d056a](https://github.com/ovh/manager/commit/33d056a2a8e09392e1f8795a8716c52a15b66b73))
+* **i18n:** add missing translations [CDS 926] ([354326c](https://github.com/ovh/manager/commit/354326c8df20a7539c237230113692c8a4e355f2))
+* **pack.move.unbundling:** add index for unbundling offers list ([#4746](https://github.com/ovh/manager/issues/4746)) ([4a0badf](https://github.com/ovh/manager/commit/4a0badf0769d0a47bfced398d1f3c65adacfa074))
+* **telecom:** update OVHcloud brand wording ([#4788](https://github.com/ovh/manager/issues/4788)) ([fad6944](https://github.com/ovh/manager/commit/fad69449417754a16af5c1a319118ef1c7f03fc9))
+* **telecom.phone:** set a height for tiles item ([#4702](https://github.com/ovh/manager/issues/4702)) ([922b42f](https://github.com/ovh/manager/commit/922b42fa3df84f31bb4b9332f197b56c9bfb4263))
+* **telephony:** update description max length ([#4804](https://github.com/ovh/manager/issues/4804)) ([dc14eaa](https://github.com/ovh/manager/commit/dc14eaaa0b7e89100311d109e0cd098168060fe8))
+
+
+### Features
+
+* **environment:** use ufrontend to bootstrap application ([fba286f](https://github.com/ovh/manager/commit/fba286f89e58e73f8899da0dbac615f65fc6a7f8))
+
+
+
 # [13.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.16.2...@ovh-ux/manager-telecom@13.17.0) (2021-04-27)
 
 

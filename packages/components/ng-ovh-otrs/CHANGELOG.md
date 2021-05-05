@@ -1,3 +1,12 @@
+## [9.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.2.0...@ovh-ux/ng-ovh-otrs@9.2.1) (2021-05-05)
+
+
+### Bug Fixes
+
+* **environment:** use isRegion instead of getRegion ([beab2a9](https://github.com/ovh/manager/commit/beab2a998a1ceb9f7e30e635415520435d8a45e9))
+
+
+
 # [9.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.1.3...@ovh-ux/ng-ovh-otrs@9.2.0) (2021-02-10)
 
 

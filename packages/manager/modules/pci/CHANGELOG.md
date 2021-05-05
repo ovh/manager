@@ -1,3 +1,30 @@
+# [5.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.22.0...@ovh-ux/manager-pci@5.23.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* **environment:** use isRegion instead of getRegion ([beab2a9](https://github.com/ovh/manager/commit/beab2a998a1ceb9f7e30e635415520435d8a45e9))
+* **i18n:** add missing translations [CDS 914] ([619526f](https://github.com/ovh/manager/commit/619526f3373a6c0fe1f2855a55dc3ab060300e34))
+* **i18n:** add missing translations [CDS 919] ([bb49398](https://github.com/ovh/manager/commit/bb493983511c7db91d203c274aa69ac687a707da))
+* **i18n:** add missing translations [CDS 923] ([4514c99](https://github.com/ovh/manager/commit/4514c999b9d0def0cfe5993c95968939a08027ee))
+* **i18n:** add missing translations [CDS 926] ([354326c](https://github.com/ovh/manager/commit/354326c8df20a7539c237230113692c8a4e355f2))
+* **i18n:** add missing translations [CDS 927] ([9485773](https://github.com/ovh/manager/commit/94857730b2424c10201ec4e690e5464f7c1aeafd))
+* **i18n:** add missing translations [CDS 928] ([be2ab67](https://github.com/ovh/manager/commit/be2ab67bf0d2f2be9403ebb1f4d314a3c4eebf17))
+* **i18n:** add missing translations [CDS 929] ([52c3ce1](https://github.com/ovh/manager/commit/52c3ce1b75b0dde6b04feba517161c36b226a4c1))
+* **i18n:** add missing translations [CDS 930] ([ccfd950](https://github.com/ovh/manager/commit/ccfd9505de3174cae4b0f5524bdfce0c2b2bc32a))
+* **training.jobs.resubmit:** update confirm message ([#4858](https://github.com/ovh/manager/issues/4858)) ([0aa179e](https://github.com/ovh/manager/commit/0aa179e1810479f60be844f6e8c33451723da77b))
+* remove unused translations [CDS] ([272e810](https://github.com/ovh/manager/commit/272e810525bc6fe43d2ac2c1af0ba81099897bf1))
+* **training.jobs:** add checkbox to show volumes field ([#4561](https://github.com/ovh/manager/issues/4561)) ([8942002](https://github.com/ovh/manager/commit/89420028683ae475f05aa0ce51706c29659305f6))
+
+
+### Features
+
+* **ai.training:** handle cpu jobs ([#4604](https://github.com/ovh/manager/issues/4604)) ([f517a08](https://github.com/ovh/manager/commit/f517a0838743e5eceaa4ab8975028c7a8e22ee72))
+* **private-registry:** correct updating status ([#4810](https://github.com/ovh/manager/issues/4810)) ([e8f8f88](https://github.com/ovh/manager/commit/e8f8f88b56cc0ee199453147b9c84c43602d9e8d))
+* **project:** add pci project advices ([#4798](https://github.com/ovh/manager/issues/4798)) ([3002fb6](https://github.com/ovh/manager/commit/3002fb6a5e43058ad4a3c6d990907fafeedf6810))
+
+
+
 # [5.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.21.0...@ovh-ux/manager-pci@5.22.0) (2021-04-28)
 
 

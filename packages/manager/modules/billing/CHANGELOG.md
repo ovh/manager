@@ -1,3 +1,14 @@
+## [2.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.6.0...@ovh-ux/manager-billing@2.6.1) (2021-05-05)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([#4515](https://github.com/ovh/manager/issues/4515)) ([680db40](https://github.com/ovh/manager/commit/680db40c06ba1095fb16bf70800baf68f62fbe12))
+* **environment:** use isRegion instead of getRegion ([beab2a9](https://github.com/ovh/manager/commit/beab2a998a1ceb9f7e30e635415520435d8a45e9))
+* **i18n:** add missing translations [CDS 919] ([bb49398](https://github.com/ovh/manager/commit/bb493983511c7db91d203c274aa69ac687a707da))
+
+
+
 # [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.5.3...@ovh-ux/manager-billing@2.6.0) (2021-04-21)
 
 

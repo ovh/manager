@@ -1,3 +1,31 @@
+# [16.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.22.4...@ovh-ux/manager-dedicated@16.23.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.1.1 ([#4831](https://github.com/ovh/manager/issues/4831)) ([33d056a](https://github.com/ovh/manager/commit/33d056a2a8e09392e1f8795a8716c52a15b66b73))
+* **environment:** use isRegion instead of getRegion ([beab2a9](https://github.com/ovh/manager/commit/beab2a998a1ceb9f7e30e635415520435d8a45e9))
+* **i18n:** add missing translations [CDS 919] ([bb49398](https://github.com/ovh/manager/commit/bb493983511c7db91d203c274aa69ac687a707da))
+* **i18n:** add missing translations [CDS 928] ([be2ab67](https://github.com/ovh/manager/commit/be2ab67bf0d2f2be9403ebb1f4d314a3c4eebf17))
+* **i18n:** add missing translations [CDS 929] ([52c3ce1](https://github.com/ovh/manager/commit/52c3ce1b75b0dde6b04feba517161c36b226a4c1))
+* **i18n:** add missing translations [CDS 930] ([ccfd950](https://github.com/ovh/manager/commit/ccfd9505de3174cae4b0f5524bdfce0c2b2bc32a))
+* **i18n:** add missing translations [CDS 933] ([6daf61c](https://github.com/ovh/manager/commit/6daf61c1dec7527ab1f9d92f2ce86dab13cb0aa7))
+* **server.dashboard:** prevent duplicate install menu item ([#4861](https://github.com/ovh/manager/issues/4861)) ([88ad622](https://github.com/ovh/manager/commit/88ad6225ec2289a3d3f26b557eb5f86b879ceaf1))
+* remove unused translations [CDS] ([272e810](https://github.com/ovh/manager/commit/272e810525bc6fe43d2ac2c1af0ba81099897bf1))
+* **server.details:** update non-fr translations ([#4815](https://github.com/ovh/manager/issues/4815)) ([efd86b8](https://github.com/ovh/manager/commit/efd86b8c5bfeccf65e645c52591f42b8ea650ad4))
+
+
+### Features
+
+* **environment:** use ufrontend to bootstrap application ([fba286f](https://github.com/ovh/manager/commit/fba286f89e58e73f8899da0dbac615f65fc6a7f8))
+
+
+### Reverts
+
+* Revert "fix(i18n): add missing translations [CDS 933]" (#4873) ([46da259](https://github.com/ovh/manager/commit/46da259ee7db6b30bb230c405da5dbc79a76a896)), closes [#4873](https://github.com/ovh/manager/issues/4873)
+
+
+
 ## [16.22.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.22.3...@ovh-ux/manager-dedicated@16.22.4) (2021-05-04)
 
 
