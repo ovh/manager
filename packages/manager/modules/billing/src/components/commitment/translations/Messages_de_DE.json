@@ -10,7 +10,7 @@
   "billing_commitment_duration_save": "Sparen Sie {{ price }}",
   "billing_commitment_price_month": "{{ price }} / Monat",
   "billing_commitment_payment": "Wählen Sie eine Zahlungsart aus",
-  "billing_commitment_payment_description": "&lt;strong>Sparen Sie {{ discount }} %&lt;/strong> bei Ihrer Hardware-Konfiguration, indem Sie direkt den Gesamtbetrag zahlen.",
+  "billing_commitment_payment_description": "Sparen Sie {{ discount }} % bei Ihrer Hardware-Konfiguration, indem Sie direkt den Gesamtbetrag zahlen.",
   "billing_commitment_payment_periodic": "Monatliche Zahlung",
   "billing_commitment_payment_upfront": "Gesamtzahlung",
   "billing_commitment_payment_upfront_savings": "Sparen Sie {{ price }} zusätzlich",
