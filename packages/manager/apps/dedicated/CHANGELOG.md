@@ -1,3 +1,12 @@
+## [16.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.23.1...@ovh-ux/manager-dedicated@16.23.2) (2021-05-05)
+
+
+### Bug Fixes
+
+* prevent method from being static ([#4900](https://github.com/ovh/manager/issues/4900)) ([89c57b4](https://github.com/ovh/manager/commit/89c57b45ac35c44dc8d9ca7362aa55a6457b7746))
+
+
+
 ## [16.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.23.0...@ovh-ux/manager-dedicated@16.23.1) (2021-05-05)
 
 
