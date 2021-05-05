@@ -203,7 +203,7 @@ class ModelBindings {
         ...option,
         presentationUrl:
           status === ACTIVATION_STATUS.disabled &&
-          this.ovhManagerPccServicePackOptionService.constructor.getPresentationUrl(
+          this.ovhManagerPccServicePackOptionService.getPresentationUrl(
             option.name,
             this.model.currentUser.ovhSubsidiary,
           ),
@@ -300,7 +300,7 @@ class ModelBindings {
         this.model.servicePacks.current.certification.name,
       presentation: {
         exists: !currentlyHasCertification,
-        url: this.ovhManagerPccServicePackOptionService.constructor.getPresentationUrl(
+        url: this.ovhManagerPccServicePackOptionService.getPresentationUrl(
           'home',
           this.model.currentUser.ovhSubsidiary,
         ),
