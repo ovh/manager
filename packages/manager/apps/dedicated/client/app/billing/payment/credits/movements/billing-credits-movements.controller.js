@@ -12,12 +12,14 @@ angular.module('Billing.controllers').controller(
       $translate,
       Alerter,
       BillingCredits,
+      totalAmount,
     ) {
       this.$q = $q;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.Alerter = Alerter;
       this.billingCredits = BillingCredits;
+      this.totalAmount = totalAmount;
 
       this.balance = null;
       this.movements = null;
