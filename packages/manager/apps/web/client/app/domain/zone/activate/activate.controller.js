@@ -33,6 +33,8 @@ export default class DomainDnsZoneActivateController {
           [
             pricingConstants.PRICING_MODE.DEFAULTS.CREATE,
             pricingConstants.PRICING_MODE.DEFAULTS.DEFAULT,
+            pricingConstants.PRICING_MODE.DEFAULTS.TRANSFER,
+            pricingConstants.PRICING_MODE.DEFAULTS.PREMIUM,
           ].includes(price.pricingMode) && price.interval !== 0,
       ),
       'interval',
