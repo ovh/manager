@@ -1,5 +1,3 @@
-import { buildURLs } from '@ovh-ux/ufrontend/url-builder';
-
 import {
   RESTRICTED_CORES,
   RESTRICTED_RAM,
@@ -11,12 +9,14 @@ export default class {
   constructor(
     $state,
     $translate,
+    coreURLBuilder,
     CucCloudMessage,
     CucRegionService,
     OvhApiCloudProject,
   ) {
     this.$state = $state;
     this.$translate = $translate;
+    this.coreURLBuilder = coreURLBuilder;
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
     this.OvhApiCloudProject = OvhApiCloudProject;
@@ -27,7 +27,7 @@ export default class {
 
     this.loadMessages();
 
-    [this.paymentmeanUrl, this.supportUrl] = buildURLs([
+    [this.paymentmeanUrl, this.supportUrl] = this.coreURLBuilder.buildURLs([
       { application: 'dedicated', path: '#/billing/mean' },
       { application: 'dedicated', path: '#/support' },
     ]);

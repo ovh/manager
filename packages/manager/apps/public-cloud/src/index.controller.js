@@ -1,5 +1,4 @@
-import { Environment } from '@ovh-ux/manager-config';
-import options from './navbar.config';
+import getNavbarConfig from './navbar.config';
 
 export default class PublicCloudController {
   /* @ngInject */
@@ -10,6 +9,7 @@ export default class PublicCloudController {
     $timeout,
     $window,
     atInternet,
+    coreConfig,
     ovhUserPref,
     publicCloud,
     ovhFeatureFlipping,
@@ -20,10 +20,11 @@ export default class PublicCloudController {
     this.$timeout = $timeout;
     this.$window = $window;
     this.atInternet = atInternet;
+    this.coreConfig = coreConfig;
     this.ovhUserPref = ovhUserPref;
     this.publicCloud = publicCloud;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
-    this.navbarOptions = options;
+    this.navbarOptions = getNavbarConfig(coreConfig.getUniverse());
 
     this.chatbotEnabled = false;
 
@@ -36,8 +37,8 @@ export default class PublicCloudController {
   }
 
   $onInit() {
-    this.currentLanguage = Environment.getUserLanguage();
-    this.user = Environment.getUser();
+    this.currentLanguage = this.coreConfig.getUserLanguage();
+    this.user = this.coreConfig.getUser();
 
     const unregisterListener = this.$scope.$on('app:started', () => {
       const CHATBOT_FEATURE = 'chatbot';

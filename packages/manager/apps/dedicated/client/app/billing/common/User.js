@@ -1,9 +1,6 @@
-import { Environment } from '@ovh-ux/manager-config';
-
-angular.module('Billing.services').service('BillingUser', [
-  '$q',
-  'OvhHttp',
-  function BillingUserService($q, OvhHttp) {
+angular.module('Billing.services').service(
+  'BillingUser',
+  /* @ngInject */ function BillingUserService($q, coreConfig, OvhHttp) {
     /*
      * get user by SWS
      */
@@ -18,7 +15,7 @@ angular.module('Billing.services').service('BillingUser', [
         spareEmail: result.spareEmail,
       }));
 
-    this.getMe = () => $q.when(Environment.getUser());
+    this.getMe = () => $q.when(coreConfig.getUser());
 
     this.isVATNeeded = () =>
       this.getUser().then(
@@ -54,4 +51,4 @@ angular.module('Billing.services').service('BillingUser', [
         },
       });
   },
-]);
+);

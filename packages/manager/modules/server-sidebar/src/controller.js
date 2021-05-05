@@ -16,7 +16,6 @@ import reduce from 'lodash/reduce';
 import sumBy from 'lodash/sumBy';
 import zipObject from 'lodash/zipObject';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { SIDEBAR_CONFIG } from './sidebar.constants';
 import { ORDER_URLS, SIDEBAR_ORDER_CONFIG } from './order.constants';
 import { WEB_SIDEBAR_CONFIG, WEB_ORDER_SIDEBAR_CONFIG } from './web.constants';
@@ -32,6 +31,7 @@ export default class OvhManagerServerSidebarController {
     $translate,
     atInternet,
     coreConfig,
+    coreURLBuilder,
     CucFeatureAvailabilityService,
     OvhApiService,
     SessionService,
@@ -43,6 +43,7 @@ export default class OvhManagerServerSidebarController {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
     this.OvhApiService = OvhApiService;
     this.SessionService = SessionService;
@@ -121,7 +122,7 @@ export default class OvhManagerServerSidebarController {
       return this.featuresAvailabilities.isFeatureAvailable(service.feature);
     }
     if (has(service, 'regions')) {
-      return includes(service.regions, this.coreConfig.getRegion());
+      return this.coreConfig.isRegion(service.regions);
     }
     return true;
   }
@@ -129,7 +130,7 @@ export default class OvhManagerServerSidebarController {
   filterRegions(items) {
     return filter(items, (item) => {
       if (has(item, 'regions')) {
-        return includes(item.regions, this.coreConfig.getRegion());
+        return this.coreConfig.isRegion(item.regions);
       }
       return true;
     });
@@ -241,7 +242,10 @@ export default class OvhManagerServerSidebarController {
         if (hasSubItems || has(service, 'link')) {
           link = get(service, 'link');
         } else if (has(service, 'stateUrl') && isExternal) {
-          link = buildURL(kebabCase(service.app[0]), service.stateUrl);
+          link = this.coreURLBuilder.buildURL(
+            kebabCase(service.app[0]),
+            service.stateUrl,
+          );
         }
 
         const menuItem = this.SidebarMenu.addMenuItem(

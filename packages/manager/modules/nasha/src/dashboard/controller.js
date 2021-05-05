@@ -1,8 +1,6 @@
 import forEach from 'lodash/forEach';
 import set from 'lodash/set';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default class NashaCtrl {
   /* @ngInject */
   constructor(
@@ -10,6 +8,7 @@ export default class NashaCtrl {
     $state,
     $stateParams,
     $translate,
+    coreURLBuilder,
     CucCloudMessage,
     OvhApiDedicatedNasha,
     ovhDocUrl,
@@ -18,6 +17,7 @@ export default class NashaCtrl {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.coreURLBuilder = coreURLBuilder;
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiDedicatedNasha = OvhApiDedicatedNasha;
     this.ovhDocUrl = ovhDocUrl;
@@ -73,10 +73,14 @@ export default class NashaCtrl {
 
         this.monitoring.enabled = data.nasha.monitored;
         this.data.information = data.nashaInfo;
-        this.urlRenew = buildURL('dedicated', '#/billing/autoRenew', {
-          selectedType: 'DEDICATED_NASHA',
-          searchText: this.data.nasha.serviceName,
-        });
+        this.urlRenew = this.coreURLBuilder.buildURL(
+          'dedicated',
+          '#/billing/autoRenew',
+          {
+            selectedType: 'DEDICATED_NASHA',
+            searchText: this.data.nasha.serviceName,
+          },
+        );
 
         if (this.data.information.status === 'expired') {
           this.CucCloudMessage.error(this.$translate.instant('nasha_expired'));

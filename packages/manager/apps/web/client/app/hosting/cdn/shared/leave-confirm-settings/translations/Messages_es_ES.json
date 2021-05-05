@@ -7,6 +7,6 @@
   "hosting_cdn_shared_modal_leave_info": "Si cambia de página, los cambios en la configuración de su CDN Basic se perderán.",
   "hosting_cdn_shared_modal_leave_btn_validate": "Salir",
   "hosting_cdn_shared_modal_leave_btn_cancel": "Cancelar",
-  "hosting_cdn_shared_modal_confirm_btn_validate_success": "La modificación de los parámetros de la CDN se ha registrado correctamente.",
-  "hosting_cdn_shared_modal_confirm_btn_validate_error": "¡Vaya! Se ha producido un error al modificar los parámetros de su servidor vocal."
+  "hosting_cdn_shared_modal_confirm_btn_validate_success": "La modificación de los parámetros de su CDN se ha registrado correctamente.",
+  "hosting_cdn_shared_modal_confirm_btn_validate_error": "Se ha producido un error al modificar los parámetros de su CDN."
 }

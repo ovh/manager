@@ -1,6 +1,3 @@
-// set environment
-import { Environment } from '@ovh-ux/manager-config';
-
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -20,7 +17,7 @@ import has from 'lodash/has';
 
 import navbar from '@ovh-ux/manager-navbar';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
-import ovhManagerCore from '@ovh-ux/manager-core';
+import { registerCoreModule } from '@ovh-ux/manager-core';
 import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
 import ovhManagerPci from '@ovh-ux/manager-pci';
@@ -49,114 +46,118 @@ import controller from './index.controller';
 import service from './index.service';
 import routing from './index.routes';
 
-Environment.setVersion(__VERSION__);
+export default (containerEl, environment) => {
+  const moduleName = 'ovhPublicCloudApp';
+  angular
+    .module(
+      moduleName,
+      [
+        ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
+        atInternet,
+        darkMode,
+        ngAnimate,
+        ngUiRouterBreadcrumb,
+        ngUiRouterLineProgress,
+        ngOvhApiWrappers,
+        ngOvhFeatureFlipping,
+        ngOvhPaymentMethod,
+        ngOvhSsoAuthModalPlugin,
+        ngOvhUserPref,
+        navbar,
+        'oui',
+        ovhManagerAccountSidebar,
+        registerCoreModule(environment),
+        ovhManagerCookiePolicy,
+        ovhManagerIncidentBanner,
+        ovhManagerMfaEnrollment,
+        ovhManagerPci,
+        ovhNotificationsSidebar,
+        uiRouter,
+      ].filter((value) => value !== null),
+    ) // Remove null because __NG_APP_INJECTIONS__ can be null
+    .controller('PublicCloudController', controller)
+    .service('publicCloud', service)
+    .config(
+      /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
+    )
+    .config(
+      /* @ngInject */ (ovhFeatureFlippingProvider) => {
+        ovhFeatureFlippingProvider.setApplicationName(
+          environment.getApplicationName(),
+        );
+      },
+    )
+    .config(routing)
+    .config(
+      /* @ngInject */ (ovhPaymentMethodProvider) => {
+        ovhPaymentMethodProvider.setUserLocale(environment.getUserLocale());
+      },
+    )
+    .run(
+      /* @ngInject */ ($translate) => {
+        let lang = $translate.use();
 
-const moduleName = 'ovhPublicCloudApp';
-angular
-  .module(
-    moduleName,
-    [
-      ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
-      atInternet,
-      darkMode,
-      ngAnimate,
-      ngUiRouterBreadcrumb,
-      ngUiRouterLineProgress,
-      ngOvhApiWrappers,
-      ngOvhFeatureFlipping,
-      ngOvhPaymentMethod,
-      ngOvhSsoAuthModalPlugin,
-      ngOvhUserPref,
-      navbar,
-      'oui',
-      ovhManagerAccountSidebar,
-      ovhManagerCore,
-      ovhManagerCookiePolicy,
-      ovhManagerIncidentBanner,
-      ovhManagerMfaEnrollment,
-      ovhManagerPci,
-      ovhNotificationsSidebar,
-      uiRouter,
-    ].filter((value) => value !== null),
-  ) // Remove null because __NG_APP_INJECTIONS__ can be null
-  .controller('PublicCloudController', controller)
-  .service('publicCloud', service)
-  .config(
-    /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
-  )
-  .config(
-    /* @ngInject */ (ovhFeatureFlippingProvider) => {
-      ovhFeatureFlippingProvider.setApplicationName(
-        Environment.getApplicationName(),
-      );
-    },
-  )
-  .config(routing)
-  .config(
-    /* @ngInject */ (ovhPaymentMethodProvider) => {
-      ovhPaymentMethodProvider.setUserLocale(Environment.getUserLocale());
-    },
-  )
-  .run(
-    /* @ngInject */ ($translate) => {
-      let lang = $translate.use();
-
-      if (['en_GB', 'es_US', 'fr_CA'].includes(lang)) {
-        lang = lang.toLowerCase().replace('_', '-');
-      } else {
-        [lang] = lang.split('_');
-      }
-
-      return import(`script-loader!moment/locale/${lang}.js`).then(() =>
-        moment.locale(lang),
-      );
-    },
-  )
-  .config(
-    /* @ngInject */ (ouiCalendarConfigurationProvider) => {
-      const lang = Environment.getUserLanguage();
-      return import(`flatpickr/dist/l10n/${lang}.js`)
-        .then((module) => {
-          ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
-        })
-        .catch(() => {});
-    },
-  )
-  .run(
-    /* @ngInject */ ($rootScope, $state) => {
-      $state.defaultErrorHandler((error) => {
-        if (error.type === RejectType.ERROR) {
-          $rootScope.$emit('ovh::sidebar::hide');
-          $state.go(
-            'pci.error',
-            {
-              detail: {
-                message: get(error.detail, 'data.message'),
-                code: has(error.detail, 'headers')
-                  ? error.detail.headers('x-ovh-queryId')
-                  : null,
-              },
-            },
-            { location: false },
-          );
+        if (['en_GB', 'es_US', 'fr_CA'].includes(lang)) {
+          lang = lang.toLowerCase().replace('_', '-');
+        } else {
+          [lang] = lang.split('_');
         }
-      });
-    },
-  )
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(
-    /* @ngInject */ ($rootScope, $transitions) => {
-      const unregisterHook = $transitions.onSuccess({}, () => {
-        detachPreloader();
-        $rootScope.$broadcast('app:started');
-        unregisterHook();
-      });
-    },
-  )
-  .config(
-    /* @ngInject */ (ovhFeatureFlippingProvider) => {
-      ovhFeatureFlippingProvider.setApplicationName('public-cloud');
-    },
-  );
 
-export default moduleName;
+        return import(`script-loader!moment/locale/${lang}.js`).then(() =>
+          moment.locale(lang),
+        );
+      },
+    )
+    .config(
+      /* @ngInject */ (ouiCalendarConfigurationProvider) => {
+        const lang = environment.getUserLanguage();
+        return import(`flatpickr/dist/l10n/${lang}.js`)
+          .then((module) => {
+            ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
+          })
+          .catch(() => {});
+      },
+    )
+    .run(
+      /* @ngInject */ ($rootScope, $state) => {
+        $state.defaultErrorHandler((error) => {
+          if (error.type === RejectType.ERROR) {
+            $rootScope.$emit('ovh::sidebar::hide');
+            $state.go(
+              'pci.error',
+              {
+                detail: {
+                  message: get(error.detail, 'data.message'),
+                  code: has(error.detail, 'headers')
+                    ? error.detail.headers('x-ovh-queryId')
+                    : null,
+                },
+              },
+              { location: false },
+            );
+          }
+        });
+      },
+    )
+    .run(/* @ngTranslationsInject:json ./translations */)
+    .run(
+      /* @ngInject */ ($rootScope, $transitions) => {
+        const unregisterHook = $transitions.onSuccess({}, () => {
+          detachPreloader();
+          $rootScope.$broadcast('app:started');
+          unregisterHook();
+        });
+      },
+    )
+    .config(
+      /* @ngInject */ (ovhFeatureFlippingProvider) => {
+        ovhFeatureFlippingProvider.setApplicationName('public-cloud');
+      },
+    );
+
+  angular.bootstrap(containerEl, [moduleName], {
+    strictDi: true,
+  });
+
+  return moduleName;
+};

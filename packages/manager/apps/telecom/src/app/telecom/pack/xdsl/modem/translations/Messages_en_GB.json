@@ -1,5 +1,5 @@
 {
-  "xdsl_modem_cant_be_managed": "Ce modem ne peut pas être configuré par OVH.",
+  "xdsl_modem_cant_be_managed": "This modem cannot be configured by OVHcloud.",
   "xdsl_modem_general_config": "General configuration",
   "xdsl_modem_network_config": "Configuration réseau",
   "xdsl_modem_advanced_config": "Configurations avancées",

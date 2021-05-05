@@ -5,14 +5,13 @@ import get from 'lodash/get';
 import forEach from 'lodash/forEach';
 import isEmpty from 'lodash/isEmpty';
 
-import { Environment } from '@ovh-ux/manager-config';
-
 export default class FlavorsListController {
   /* @ngInject */
-  constructor($filter, $q, $state, PciProjectFlavors) {
+  constructor($filter, $q, $state, coreConfig, PciProjectFlavors) {
     this.$filter = $filter;
     this.$q = $q;
     this.$state = $state;
+    this.coreConfig = coreConfig;
     this.PciProjectFlavors = PciProjectFlavors;
   }
 
@@ -23,11 +22,11 @@ export default class FlavorsListController {
     return this.$q
       .all({
         flavors: this.getFlavors(),
-        me: Environment.getUser(),
+        me: this.coreConfig.getUser(),
       })
       .then(({ me }) => {
         this.PriceFormatter = new Intl.NumberFormat(
-          Environment.getUserLocale().replace('_', '-'),
+          this.coreConfig.getUserLocale().replace('_', '-'),
           {
             style: 'currency',
             currency: me.currency.code,

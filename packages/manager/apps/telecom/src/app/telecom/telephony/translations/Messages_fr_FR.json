@@ -8,7 +8,7 @@
   "telephony_infrastructure_redirect_to_label": "Rediriger vers",
   "telephony_infrastructure_conditons_add": "Ajouter des conditions",
   "telephony_infrastructure_label_otherLine": "Tel. fixe ou mobile",
-  "telephony_infrastructure_other_line_additional_label": "(hors n° OVH)",
+  "telephony_infrastructure_other_line_additional_label": "(hors n° OVHcloud)",
   "telephony_infrastructure_my_number_configure": "Configurer vos appels entrants / sortants",
   "telephony_infrastructure_my_number_redirect_modify": "Modifier la redirection",
   "telephony_infrastructure_service_other": "Autre",

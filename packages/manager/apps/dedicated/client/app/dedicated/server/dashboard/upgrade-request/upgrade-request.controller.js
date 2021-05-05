@@ -1,14 +1,14 @@
 import get from 'lodash/get';
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { ISSUE_TYPE_ID, UPGRADE_TRACKING_PREFIX } from './upgrade.constants';
 
 export default class DedicatedUpgradeController {
   /* @ngInject */
-  constructor($translate, OvhApiSupport, atInternet, Alerter) {
+  constructor($translate, OvhApiSupport, atInternet, Alerter, coreURLBuilder) {
     this.$translate = $translate;
     this.OvhApiSupport = OvhApiSupport;
     this.atInternet = atInternet;
     this.Alerter = Alerter;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
@@ -45,9 +45,13 @@ export default class DedicatedUpgradeController {
           this.$translate.instant(
             `dedicated_server_dashboard_upgrade_success_message_${this.selectedUpgrade}`,
             {
-              ticketUrl: buildURL('dedicated', '#/support/tickets/:ticketId', {
-                ticketId,
-              }),
+              ticketUrl: this.coreURLBuilder.buildURL(
+                'dedicated',
+                '#/support/tickets/:ticketId',
+                {
+                  ticketId,
+                },
+              ),
             },
           ),
           'server_dashboard_alert',

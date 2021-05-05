@@ -33,6 +33,7 @@ angular
     link(scope, elm, attrs, ngModel) {
       set(ngModel, '$validators.validMount', (value) => {
         const volumes = scope.$eval(attrs.validMount);
+        // checks that the mount path is unique
         return !volumes.map(({ mountPath }) => mountPath).includes(value);
       });
     },

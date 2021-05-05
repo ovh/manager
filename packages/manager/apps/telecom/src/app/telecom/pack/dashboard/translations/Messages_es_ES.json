@@ -78,7 +78,7 @@
   "create_a_new_hubic_with_the_adding_button": "Active un nuevo servicio haciendo clic en «Disfrutar de mi hubiC».",
   "pack_xdsl_loading": "Cargando el pack...",
   "pack_xdsl_this_pack_seems_to_be_unavailable": "Parece que este pack no existe.",
-  "pack_promotion_code_proposal": "OVH le ofrece un vale de compra por un valor de <strong>{{text}}</strong> + IVA, válido en todos nuestros productos (exceptuando abonos ADSL-VDSL/SDSL, planes hubiC, compra de material y fianza de teléfono, recarga de cuenta de cliente OVH y compra de puntos de prepago.",
+  "pack_promotion_code_proposal": "OVHcloud le ofrece un vale de compra por un valor de <strong>{{text}}</strong> + IVA, válido en todos nuestros productos (exceptuando abonos ADSL-VDSL/SDSL, planes hubiC, compra de material y fianza de teléfono, recarga de cuenta de cliente OVHcloud y compra de puntos de prepago).",
   "pack_promotion_code_question": "Aprovechar",
   "pack_promotion_code_modal_title": "Utilizar el vale de descuento",
   "pack_promotion_code_condition": "Entiendo que cuando genere mi vale de compra de <strong>{{text}}</strong> + IVA, adquiero un nuevo compromiso de <b>{{engagement}} meses</b> para el <b>pack completo</b>. Esta operación es <b>irreversible</b>.",

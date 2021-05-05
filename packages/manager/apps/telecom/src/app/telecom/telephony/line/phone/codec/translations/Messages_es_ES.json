@@ -3,7 +3,7 @@
   "telephony_line_phone_codec_info1": "Optimice la calidad de sus comunicaciones influyendo en el códec usado prioritariamente por su línea.",
   "telephony_line_phone_codec_info2": "Los códecs configurados influyen en el ancho de banda utilizado. No olvide comprobar que su ancho de banda es suficiente para los códecs que elija.",
   "telephony_line_phone_codec_info3": "Para conocer el ancho de banda de su acceso a internet, vaya a <a href=\"http://voip.ovh.fr:51080\" target=\"_blank\">http://voip.ovh.fr:51080</a>.",
-  "telephony_line_phone_codec_info4": "Tenga en cuenta que el códec g722 solo se utilizará durante las llamadas entre líneas OVH.",
+  "telephony_line_phone_codec_info4": "Tenga en cuenta que el códec g722 solo se utilizará durante las llamadas entre líneas OVHcloud.",
   "telephony_line_phone_codec_load_error": "¡Vaya! Se ha producido un error al cargar la línea.",
   "telephony_line_phone_codec_current": "Códecs establecidos actualmente:",
   "telephony_line_phone_codec_no_selected": "No se han establecido códecs.",

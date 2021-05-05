@@ -4,7 +4,7 @@
   "vps_terminate_cancel": "Abbrechen",
   "vps_terminate_confirm": "Bestätigen",
   "vps_terminate_success": "Die Anfrage zur Löschung wurde registriert. Ihnen wird eine Bestätigungs-E-Mail zugesandt, um den Löschvorgang zu bestätigen.",
-  "vps_terminate_success_engagement": "Your request has been submitted and will be processed shortly.",
+  "vps_terminate_success_engagement": "Ihre Anfrage wurde registriert und wird so schnell wie möglich bearbeitet.",
   "vps_terminate_error": "Beim Löschen des Dienstes ist ein Fehler aufgetreten.",
   "vps_terminate_unavailable": "Sie haben dieses Abonnement mit einer Laufzeit von {{ monthCount }} Monaten abgeschlossen. Falls Sie eine Frage haben, können Sie sich gerne an unseren Support wenden - per Chat oder erstellen Sie ein <a class=\"oui-link\" href=\"{{supportTicketLink}}\" target=\"_blank\" rel=\"noopener\">Support-Ticket. Vielen Dank für Ihr Verständnis.",
   "vps_terminate_option_terminate_at_expiration": "Dienstleistung am Ablaufdatum löschen",

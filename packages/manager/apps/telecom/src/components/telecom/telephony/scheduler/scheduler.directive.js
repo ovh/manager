@@ -1,12 +1,10 @@
 import defaultsDeep from 'lodash/defaultsDeep';
 import set from 'lodash/set';
 
-import { Environment } from '@ovh-ux/manager-config';
-
 import template from './scheduler.html';
 import controller from './scheduler.controller';
 
-export default /* @ngInject */ ($compile, $locale) => ({
+export default /* @ngInject */ ($compile, $locale, coreConfig) => ({
   restrict: 'E',
   transclude: true,
   template,
@@ -129,7 +127,7 @@ export default /* @ngInject */ ($compile, $locale) => ({
 
     const defaultOptions = {
       header: false,
-      locale: Environment.getUserLanguage(),
+      locale: coreConfig.getUserLanguage(),
       firstDay: 1,
       editable: false, // todo manage drag and drop
       selectable: true,

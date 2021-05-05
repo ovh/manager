@@ -56,84 +56,398 @@ import './app.less';
 import './css/source.scss';
 /* eslint-enable import/no-webpack-loader-syntax, import/no-unresolved, import/extensions */
 
-import moduleName from './app';
-import './app.routes';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import set from 'lodash/set';
+import values from 'lodash/values';
+import isString from 'lodash/isString';
+import ngAtInternet from '@ovh-ux/ng-at-internet';
+import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
+import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
+import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
+import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
+import ngOvhHttp from '@ovh-ux/ng-ovh-http';
+import ngOvhProxyRequest from '@ovh-ux/ng-ovh-proxy-request';
+import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
+import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
+import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
+import ngOvhUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
+import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
+import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
+import ngOvhWebUniverseComponents from '@ovh-ux/ng-ovh-web-universe-components';
+import ngPaginationFront from '@ovh-ux/ng-pagination-front';
+import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
+import ngTailLogs from '@ovh-ux/ng-tail-logs';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import ngUirouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
+import ovhContacts from '@ovh-ux/ng-ovh-contacts';
+import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
+import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
+import { registerCoreModule } from '@ovh-ux/manager-core';
+import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
+import ovhManagerBanner from '@ovh-ux/manager-banner';
+import ovhManagerEnterpriseCloudDatabase from '@ovh-ux/manager-enterprise-cloud-database';
+import ovhManagerDbaasLogs from '@ovh-ux/manager-dbaas-logs';
+import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
+import ovhManagerNasha from '@ovh-ux/manager-nasha';
+import ovhManagerNavbar from '@ovh-ux/manager-navbar';
+import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
+import ovhManagerSupport from '@ovh-ux/manager-support';
+import ovhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
+import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
+import uiRouter, { RejectType } from '@uirouter/angularjs';
+import chartjs from 'angular-chart.js';
 
-import './account/user/advanced/advanced.module';
-import './account/user/dashboard/user-dahboard.module';
-import './account/user/newAccountForm/new-account-form.module';
-import './account/user/support-level/support-level.module';
-import './account/user/user.module';
-import './billing/autoRenew/actions/activation/activation.module';
-import './billing/autoRenew/actions/debtBeforePaying/debtBeforePaying.module';
-import './billing/autoRenew/actions/delete/delete.module';
-import './billing/autoRenew/actions/exchange/exchange-renew.module';
-import './billing/autoRenew/actions/terminate-enterprise-cloud-database/terminate-enterprise-cloud-database.module';
-import './billing/autoRenew/actions/terminate-webcoach/terminate-webcoach.module';
-import './billing/autoRenew/actions/terminate/terminate.module';
-import './billing/autoRenew/actions/terminateEmail/email.module';
-import './billing/autoRenew/actions/terminateHostingWeb/hosting-web.module';
-import './billing/autoRenew/actions/terminatePrivateDatabase/private-database.module';
-import './billing/autoRenew/actions/update/automatic/automatic.module';
-import './billing/autoRenew/actions/update/form/form.module';
-import './billing/autoRenew/actions/update/manualPayment/manualPayment.module';
-import './billing/autoRenew/actions/update/noPaymentMean/noPaymentMean.module';
-import './billing/autoRenew/actions/update/update.module';
-import './billing/autoRenew/actions/warnNicBilling/warnNicBilling.module';
-import './billing/autoRenew/actions/warnPendingDebt/pending-debt.module';
-import './billing/autoRenew/agreements/details/details.module';
-import './billing/autoRenew/agreements/user-agreements.module';
-import './billing/autoRenew/autorenew.module';
-import './billing/autoRenew/bulk/bulk.module';
-import './billing/autoRenew/cancel-resiliation/cancel-resiliation.module';
-import './billing/autoRenew/disable-domains-bulk/disable-domains-bulk.module';
-import './billing/autoRenew/disable/disable.module';
-import './billing/autoRenew/enable/enable.module';
-import './billing/autoRenew/ssh/ssh.module';
-import './billing/billing.module';
-import './billing/components/directives/directives.module';
-import './billing/components/filters/filters.module';
-import './billing/confirmTerminate/termination.module';
-import './billing/constants/constants.module';
-import './billing/controllers.module';
-import './billing/order/billing-order-tracking.module';
-import './billing/orders/orders.module';
-import './billing/orders/retraction/retraction.module';
-import './billing/services.module';
-import './billing/sla/sla.module';
-import './components/angular-extensions.module';
-import './components/directives.module';
-import './components/filters.module';
-import './components/ng-ovh-contacts/ng-ovh-contacts.module';
-import './components/ovh-angular-actions-menu/ovh-angular-actions-menu.module';
-import './components/ovh-angular-http/ovh-angular-http.module';
-import './components/ovh-ui-angular/ovh-ui-angular.module';
-import './components/services.module';
-import './controllers.module';
-import './dedicated/dedicated.module';
-import './dedicated/server/bandwidth/dashboard/dashboard.module';
-import './dedicated/server/bandwidth/private-order/private-order.module';
-import './dedicated/server/bandwidth/public-order/public-order.module';
-import './dedicated/server/interfaces/attach/interfaces-attach.module';
-import './dedicated/server/interfaces/detach/interfaces-detach.module';
-import './dedicated/server/interfaces/ola-activation/ola-activation.module';
-import './dedicated/server/interfaces/ola-configuration/ola-configuration.module';
-import './dedicated/server/interfaces/rename/interfaces-rename.module';
-import './ip/ip-controllers.module';
-import './ip/ip-services.module';
-import './ip/ip.filters.module';
-import './license/license.module';
+import moduleExchange from '@ovh-ux/manager-exchange';
+import ovhManagerFilters from '@ovh-ux/manager-filters';
+import ovhManagerMetrics from '@ovh-ux/manager-metrics';
+import ovhManagerCda from '@ovh-ux/manager-cda';
+import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
+import ovhManagerVeeamCloudConnect from '@ovh-ux/manager-veeam-cloud-connect';
+import ovhManagerVps from '@ovh-ux/manager-vps';
+import ovhManagerVrack from '@ovh-ux/manager-vrack';
+import ovhManagerIplb from '@ovh-ux/manager-iplb';
+import ovhManagerCloudConnect from '@ovh-ux/manager-cloud-connect';
+import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
+import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
+import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
+import account from './account';
+import cdn from './cdn';
+import config, { getConstants } from './config/config';
+import dedicatedCloud from './dedicatedCloud';
+import dedicatedUniverseComponents from './dedicatedUniverseComponents';
+import managedBaremetal from './managedBaremetal';
+import errorPage from './error';
+import expiredPage from './expired';
 
-import './components/components.bundle';
-import './account/account.bundle';
-import './billing/billing.bundle';
-import './cdn/cdn.bundle';
-import './config/config.bundle';
-import './configuration/configuration.bundle';
-import './dedicated/dedicated.bundle';
-import './double-authentication/double-authentication.bundle';
-import './download/download.bundle';
-import './ip/ip.bundle';
-import './license/license.bundle';
+import dedicatedServer from './dedicated/server';
+import dedicatedNas from './dedicated/nas';
+import dedicatedHousing from './dedicated/housing';
+import userContracts from './user-contracts';
+import otrs from './otrs';
 
-export default moduleName;
+import { TRACKING } from './at-internet.constants';
+
+export default (containerEl, environment) => {
+  const configConstants = getConstants(environment.getRegion());
+
+  const moduleName = 'App';
+
+  angular
+    .module(
+      moduleName,
+      [
+        ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
+        account,
+        ovhManagerAccountSidebar,
+        registerCoreModule(environment),
+        ovhManagerCookiePolicy,
+        'Billing',
+        chartjs,
+        'controllers',
+        cdn,
+        dedicatedCloud,
+        dedicatedHousing,
+        dedicatedNas,
+        dedicatedServer,
+        dedicatedUniverseComponents,
+        'directives',
+        errorPage,
+        expiredPage,
+        'filters',
+        'internationalPhoneNumber',
+        'Module.download',
+        environment.getRegion() === 'CA' ? moduleExchange : undefined,
+        managedBaremetal,
+        'Module.ip',
+        'Module.license',
+        otrs,
+        ovhManagerMfaEnrollment,
+        'ng.ckeditor',
+        'ngMessages',
+        ngAtInternet,
+        ngAtInternetUiRouterPlugin,
+        ngOvhApiWrappers,
+        ngOvhBrowserAlert,
+        ngOvhFeatureFlipping,
+        ngOvhHttp,
+        ngOvhProxyRequest,
+        ngOvhSsoAuth,
+        ngOvhSsoAuthModalPlugin,
+        ngOvhSwimmingPoll,
+        ngOvhUiRouterLayout,
+        ngOvhUserPref,
+        ngOvhUtils,
+        ngOvhWebUniverseComponents,
+        'ngRoute',
+        'ngSanitize',
+        ngTranslateAsyncLoader,
+        ngUirouterLineProgress,
+        'oui',
+        ngOvhExportCsv,
+        ngPaginationFront,
+        ngQAllSettled,
+        'ovh-api-services',
+        ovhManagerAtInternetConfiguration,
+        ovhManagerAccountMigration,
+        ovhManagerDbaasLogs,
+        ovhManagerIncidentBanner,
+        ovhManagerIplb,
+        ovhManagerServerSidebar,
+        ovhManagerSupport,
+        ovhManagerVeeamEnterprise,
+        ovhManagerVeeamCloudConnect,
+        ovhNotificationsSidebar,
+        ovhManagerFilters,
+        ngTailLogs,
+        ovhContacts,
+        ovhManagerBanner,
+        ovhManagerEnterpriseCloudDatabase,
+        ovhManagerMetrics,
+        ovhManagerNasha,
+        ovhManagerNavbar,
+        ovhManagerVps,
+        ovhManagerVrack,
+        ovhManagerCloudConnect,
+        ovhPaymentMethod,
+        'pascalprecht.translate',
+        'services',
+        'ui.bootstrap',
+        'ui.router',
+        'ui.select',
+        'ui.utils',
+        'ui.validate',
+        uiRouter,
+        'UserAccount',
+        userContracts,
+        'xeditable',
+        ovhManagerCda,
+      ].filter(isString),
+    )
+    .constant('constants', {
+      prodMode: config.prodMode,
+      swsProxyRootPath: config.swsProxyRootPath,
+      aapiRootPath: config.aapiRootPath,
+      target: config.target,
+      renew: configConstants.RENEW_URL,
+      urls: configConstants.URLS,
+      UNIVERS: configConstants.UNIVERS,
+      TOP_GUIDES: configConstants.TOP_GUIDES,
+      vmsUrl: configConstants.vmsUrl,
+      travauxUrl: configConstants.travauxUrl,
+      aapiHeaderName: 'X-Ovh-Session',
+      vrackUrl: configConstants.vrackUrl,
+      REDIRECT_URLS: configConstants.REDIRECT_URLS,
+      DEFAULT_LANGUAGE: configConstants.DEFAULT_LANGUAGE,
+      FALLBACK_LANGUAGE: configConstants.FALLBACK_LANGUAGE,
+      SUPPORT: configConstants.SUPPORT,
+    })
+    .constant('website_url', configConstants.website_url)
+    .config(
+      /* @ngInject */ ($compileProvider, $logProvider) => {
+        $compileProvider.debugInfoEnabled(!config.prodMode);
+        $logProvider.debugEnabled(!config.prodMode);
+      },
+    )
+    .config(
+      /* @ngInject */ (ovhProxyRequestProvider) => {
+        ovhProxyRequestProvider.proxy('$http');
+        ovhProxyRequestProvider.pathPrefix('apiv6');
+      },
+    )
+    .config(($locationProvider) => {
+      $locationProvider.hashPrefix('');
+    })
+    .config((tmhDynamicLocaleProvider) => {
+      tmhDynamicLocaleProvider.localeLocationPattern(
+        'resources/angular/i18n/angular-locale_{{locale}}.js',
+      );
+    })
+    .config((OvhHttpProvider, constants) => {
+      set(OvhHttpProvider, 'rootPath', constants.swsProxyPath);
+      set(OvhHttpProvider, 'clearCacheVerb', ['POST', 'PUT', 'DELETE']);
+      set(OvhHttpProvider, 'returnSuccessKey', 'data'); // By default, request return response.data
+      set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
+    })
+    .config(($urlServiceProvider) => {
+      $urlServiceProvider.rules.otherwise('/configuration');
+    })
+    .config(
+      /* @ngInject */ (atInternetConfigurationProvider) => {
+        atInternetConfigurationProvider.setConfig(TRACKING);
+        atInternetConfigurationProvider.setReplacementRules([
+          {
+            pattern: /^app/,
+            replacement: 'dedicated',
+          },
+        ]);
+      },
+    )
+    .config(
+      /* @ngInject */ (ovhPaymentMethodProvider) => {
+        ovhPaymentMethodProvider.setUserLocale(environment.getUserLocale());
+      },
+    )
+    .constant('REGEX', {
+      ROUTABLE_BLOCK: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(\d|[1-2]\d|3[0-2]))$/,
+      ROUTABLE_IP: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,
+      ROUTABLE_BLOCK_OR_IP: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(\d|[1-2]\d|3[0-2]))?$/,
+    })
+    .run(
+      /* @ngInject */ (
+        $location,
+        $rootScope,
+        $state,
+        $transitions,
+        coreConfig,
+      ) => {
+        $rootScope.$on('$locationChangeStart', () => {
+          // eslint-disable-next-line no-param-reassign
+          delete $rootScope.isLeftMenuVisible;
+        });
+
+        // if query params contains unescaped '<' value then
+        // clear query params to avoid html injection
+        $transitions.onBefore({}, (transition) => {
+          let invalidParams = false;
+          values($location.search()).forEach((param) => {
+            invalidParams = invalidParams || /</.test(param);
+          });
+          if (invalidParams) {
+            $location.search('');
+          }
+
+          const HPC_STATES = [
+            'app.hpc',
+            'app.dedicatedCloud',
+            'veeam-enterprise',
+          ];
+          const IGNORE_STATES = [
+            'app.configuration',
+            'app.expired',
+            'app.ip',
+            'vrack',
+            'cloud-connect',
+          ];
+
+          const stateIncludes = Object.keys(transition.$to().includes);
+
+          if (HPC_STATES.some((state) => stateIncludes.includes(state))) {
+            $rootScope.$broadcast('switchUniverse', 'hpc');
+          } else if (
+            !IGNORE_STATES.some((state) => stateIncludes.includes(state))
+          ) {
+            $rootScope.$broadcast('switchUniverse', 'server');
+          }
+        });
+
+        // manage restriction on billing section for enterprise account
+        // see src/billing/billingApp.js for resolve restriction on billing states
+        $transitions.onError({}, (transition) => {
+          const error = transition.error();
+          if (
+            get(error, 'status') === 403 &&
+            get(error, 'code') === 'FORBIDDEN_BILLING_ACCESS'
+          ) {
+            error.handled = true;
+            $rootScope.$emit('ovh::sidebar::hide');
+            $state.go('app.error', { error });
+          }
+        });
+
+        $state.defaultErrorHandler((error) => {
+          if (error.type === RejectType.ERROR && !error.handled) {
+            $rootScope.$emit('ovh::sidebar::hide');
+            $state.go(
+              'error',
+              {
+                detail: {
+                  message: get(error.detail, 'data.message'),
+                  code: has(error.detail, 'headers')
+                    ? error.detail.headers('x-ovh-queryId')
+                    : null,
+                },
+              },
+              { location: false },
+            );
+          }
+        });
+
+        set($rootScope, 'worldPart', coreConfig.getRegion());
+      },
+    )
+    .run(($location) => {
+      const queryParams = $location.search();
+
+      if (queryParams && queryParams.redirectTo) {
+        $location.path(queryParams.redirectTo);
+        delete queryParams.redirectTo;
+        $location.search(queryParams);
+      }
+    })
+    .run((storage) => {
+      storage.setKeyPrefix('com.ovh.univers.dedicated.');
+    })
+    .run((zendesk) => {
+      zendesk.init();
+    })
+    .config(($qProvider) => {
+      $qProvider.errorOnUnhandledRejections(false);
+    })
+    .run(
+      /* @ngInject */ ($translate) => {
+        let lang = $translate.use();
+
+        if (['en_GB', 'es_US', 'fr_CA'].includes(lang)) {
+          lang = lang.toLowerCase().replace('_', '-');
+        } else {
+          [lang] = lang.split('_');
+        }
+
+        return import(`script-loader!moment/locale/${lang}.js`).then(() =>
+          moment.locale(lang),
+        );
+      },
+    )
+    .config(
+      /* @ngInject */ (ouiCalendarConfigurationProvider) => {
+        const lang = environment.getUserLanguage();
+        return import(`flatpickr/dist/l10n/${lang}.js`)
+          .then((module) => {
+            ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
+          })
+          .catch(() => {});
+      },
+    )
+    .constant('UNIVERSE', 'DEDICATED')
+    .run(
+      /* @ngInject */ ($rootScope, $transitions) => {
+        const unregisterHook = $transitions.onSuccess({}, () => {
+          detachPreloader();
+          $rootScope.$broadcast('app:started');
+          unregisterHook();
+        });
+      },
+    )
+    .run(
+      /* @ngInject */ ($translate, $transitions) => {
+        $transitions.onBefore({ to: 'app.**' }, () => $translate.refresh());
+      },
+    )
+    .config(
+      /* @ngInject */ (ovhFeatureFlippingProvider) => {
+        ovhFeatureFlippingProvider.setApplicationName(
+          environment.getApplicationName(),
+        );
+      },
+    );
+
+  import('./app.bundle').then(() => {
+    angular.bootstrap(containerEl, [moduleName], {
+      strictDi: false,
+    });
+  });
+
+  return moduleName;
+};

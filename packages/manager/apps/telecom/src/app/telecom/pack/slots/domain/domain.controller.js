@@ -1,7 +1,6 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default /* @ngInject */ function PackDomainCtrl(
   $scope,
+  coreURLBuilder,
   OvhApiPackXdslDomainActivation,
   $stateParams,
   $window,
@@ -9,7 +8,7 @@ export default /* @ngInject */ function PackDomainCtrl(
   const self = this;
 
   this.getWebDomain = function getWebDomain(domainName) {
-    return buildURL('web', '#/configuration/domain/:productId', {
+    return coreURLBuilder.buildURL('web', '#/configuration/domain/:productId', {
       productId: domainName,
     });
   };

@@ -18,8 +18,8 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-web-paas-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^4.0.0 || ^5.0.0",
-    "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
+    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.1",
     "@ovh-ux/manager-preloader": "^1.1.0",
     "@ovh-ux/manager-product-offers": "^4.0.0 || ^5.0.0",
@@ -40,6 +40,7 @@
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.3",
     "@ovh-ux/ng-ui-router-layout": "^4.0.2",
     "@ovh-ux/ng-ui-router-line-progress": "^1.2.4",
+    "@ovh-ux/ufrontend": "^1.1.1 || ^2.0.0",
     "@ovh-ux/ui-kit": "^4.4.3",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
@@ -57,11 +58,12 @@
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "flatpickr": "~4.5.2",
     "jquery": "^2.1.3",
-    "ovh-api-services": "^11.1.0",
+    "ovh-api-services": "^11.1.1",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^4.0.0",
+    "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"
   }

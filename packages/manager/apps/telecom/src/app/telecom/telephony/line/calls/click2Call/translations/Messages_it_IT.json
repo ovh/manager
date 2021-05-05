@@ -3,7 +3,7 @@
   "telephony_group_line_calls_click2call_ids_title": "Identificativi",
   "telephony_group_line_calls_click2call_informations_title": "Informazioni",
   "telephony_group_line_calls_click2call_informations_text_1": "Il servizio Click2Call è stato progettato per semplificare la comunicazione con i tuoi clienti.",
-  "telephony_group_line_calls_click2call_informations_text_2": "Richiama i tuoi clienti tramite un semplice link sulla tua pagina Web: grazie alle API OVH, puoi effettuare chiamate senza toccare il telefono!",
+  "telephony_group_line_calls_click2call_informations_text_2": "Richiama i tuoi clienti tramite un semplice link sulla tua pagina Web. OVHcloud fornisce un'API per consentire di effettuare chiamate senza toccare il telefono!",
   "telephony_group_line_calls_click2call_informations_text_3": "Crea degli identificativi per autorizzare un'applicazione o una persona a effettuare chiamate sul tuo account.",
   "telephony_group_line_calls_click2call_user_title_id": "Identificativo",
   "telephony_group_line_calls_click2call_user_title_login": "Login",

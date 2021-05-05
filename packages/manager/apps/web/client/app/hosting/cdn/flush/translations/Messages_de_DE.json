@@ -1,6 +1,6 @@
 {
   "hosting_dashboard_cdn_flush": "Cache leeren",
-  "hosting_dashboard_cdn_flush_question": "Sind Sie sicher, dass Sie Ihren CDN Cache bereinigen möchten?",
+  "hosting_dashboard_cdn_flush_question": "Sind Sie sicher, dass Sie den Cache Ihres CDN leeren möchten?",
   "hosting_dashboard_cdn_v2_flush_question": "Sind Sie sicher, dass Sie den Cache Ihres CDN für diesen Domainnamen leeren möchten?",
   "hosting_dashboard_cdn_flush_success": "Ihr CDN Cache wird in einigen Augenblicken bereinigt.",
   "hosting_dashboard_cdn_flush_done_success": "Ihr CDN Cache wurde erfolgreich geleert.",

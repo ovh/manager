@@ -12,14 +12,13 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/ufrontend": "^1.0.0",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
     "bootstrap4": "twbs/bootstrap#v4.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
+    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ui-router-layout": "^4.0.2",

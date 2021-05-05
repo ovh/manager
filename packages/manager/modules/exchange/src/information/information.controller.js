@@ -4,13 +4,12 @@ import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
 import 'moment';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default class ExchangeTabInformationCtrl {
   /* @ngInject */
   constructor(
     $rootScope,
     $scope,
+    coreURLBuilder,
     exchangeServiceInfrastructure,
     wucExchange,
     EXCHANGE_CONFIG,
@@ -22,6 +21,7 @@ export default class ExchangeTabInformationCtrl {
   ) {
     this.$rootScope = $rootScope;
     this.$scope = $scope;
+    this.coreURLBuilder = coreURLBuilder;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
     this.exchangeService = wucExchange;
     this.EXCHANGE_CONFIG = EXCHANGE_CONFIG;
@@ -79,7 +79,7 @@ export default class ExchangeTabInformationCtrl {
       .then((sharePoint) => {
         this.sharepoint = sharePoint;
 
-        this.SHAREPOINT_URL = buildURL(
+        this.SHAREPOINT_URL = this.coreURLBuilder.buildURL(
           'web',
           '#/sharepoint/:exchangeId/:productId',
           {

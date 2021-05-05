@@ -1,28 +1,28 @@
-/* eslint-disable import/no-webpack-loader-syntax */
-import 'script-loader!jquery';
-import 'script-loader!moment/min/moment-with-locales.min';
-/* eslint-enable import/no-webpack-loader-syntax */
-
+import 'script-loader!jquery'; // eslint-disable-line
+import 'whatwg-fetch';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import {
+  attach as attachPreloader,
+  displayMessage,
+} from '@ovh-ux/manager-preloader';
 
-import angular from 'angular';
+import registerApplication from '@ovh-ux/ufrontend/application';
+import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
 
-import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
-import ovhManagerCore from '@ovh-ux/manager-core';
-import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
+attachPreloader(findAvailableLocale(detectUserLocale()));
 
-import { momentConfiguration } from './config';
+registerApplication('veeam-enterprise').then(({ environment }) => {
+  environment.setVersion(__VERSION__);
 
-angular
-  .module('veeamEnterpriseApp', [
-    ngUiRouterBreadcrumb,
-    ovhManagerCore,
-    ovhManagerVeeamEnterprise,
-  ])
-  .config(momentConfiguration)
-  .config(
-    /* @ngInject */ ($urlRouterProvider) => {
-      $urlRouterProvider.otherwise('/veeam-enterprise');
-    },
-  );
+  if (environment.getMessage()) {
+    displayMessage(environment.getMessage(), environment.getUserLanguage());
+  }
+
+  import(`./config-${environment.getRegion()}`)
+    .catch(() => {})
+    .then(() => import('./app.module'))
+    .then(({ default: startApplication }) => {
+      startApplication(document.body, environment);
+    });
+});

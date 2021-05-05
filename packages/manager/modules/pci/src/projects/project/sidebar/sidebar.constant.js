@@ -1,14 +1,10 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export const HORIZON = {
   CA: 'https://horizon.cloud.ovh.net/auth/login/',
   EU: 'https://horizon.cloud.ovh.net/auth/login/',
   US: 'https://horizon.cloud.ovh.us/auth/login/',
 };
 
-export const DBAAS_LOGS = buildURL('dedicated', '#/dbaas/logs');
-
-export const MENU = [
+export const getMenu = ({ DBAAS_LOGS_URL }) => [
   {
     subitems: [
       {
@@ -174,7 +170,7 @@ export const MENU = [
       {
         id: 'logs-data-platform',
         options: {
-          url: DBAAS_LOGS,
+          url: DBAAS_LOGS_URL,
           external: false,
         },
         title: 'Logs Data Platform',
@@ -272,7 +268,7 @@ export const USER_TYPES_MAP = {
 
 export default {
   HORIZON,
-  MENU,
+  getMenu,
   UNIVERSE,
   USER_TYPES_MAP,
 };

@@ -1,23 +1,26 @@
-import { Environment } from '@ovh-ux/manager-config';
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import isEmpty from 'lodash/isEmpty';
 
 export default class ManagerHubShortcutsCtrl {
   /* @ngInject */
-  constructor($http, $translate, $q) {
+  constructor($http, $translate, $q, coreConfig, coreURLBuilder) {
     this.$http = $http;
     this.$translate = $translate;
     this.$q = $q;
+    this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
     const shortcuts = [
-      ...(['EU', 'CA'].includes(Environment.getRegion())
+      ...(this.coreConfig.isRegion(['EU', 'CA'])
         ? [
             {
               id: 'services',
               icon: 'oui-icon-multi-device_concept',
-              url: buildURL('dedicated', '#/billing/autoRenew'),
+              url: this.coreURLBuilder.buildURL(
+                'dedicated',
+                '#/billing/autoRenew',
+              ),
               tracking: 'hub::sidebar::shortcuts::go-to-services',
             },
           ]
@@ -27,15 +30,18 @@ export default class ManagerHubShortcutsCtrl {
         icon: 'oui-icon-receipt_concept',
         url: this.me.isEnterprise
           ? 'https://billing.us.ovhcloud.com/login'
-          : buildURL('dedicated', '#/billing/history'),
+          : this.coreURLBuilder.buildURL('dedicated', '#/billing/history'),
         tracking: 'hub::sidebar::shortcuts::go-to-bills',
       },
-      ...(['EU', 'CA'].includes(Environment.getRegion())
+      ...(this.coreConfig.isRegion(['EU', 'CA'])
         ? [
             {
               id: 'supportLevel',
               icon: 'oui-icon-lifebuoy_concept',
-              url: buildURL('dedicated', '#/useraccount/support/level'),
+              url: this.coreURLBuilder.buildURL(
+                'dedicated',
+                '#/useraccount/support/level',
+              ),
               tracking: 'hub::sidebar::shortcuts::go-to-support-level',
             },
           ]
@@ -44,24 +50,30 @@ export default class ManagerHubShortcutsCtrl {
         id: 'products',
         icon: 'oui-icon-book-open_concept',
         tracking: 'hub::sidebar::shortcuts::go-to-catalog',
-        url: buildURL('hub', '#/catalog'),
+        url: this.coreURLBuilder.buildURL('hub', '#/catalog'),
       },
-      ...(['EU', 'CA'].includes(Environment.getRegion())
+      ...(this.coreConfig.isRegion(['EU', 'CA'])
         ? [
             {
               id: 'emails',
               icon: 'oui-icon-envelop-letter_concept',
-              url: buildURL('dedicated', '#/useraccount/emails'),
+              url: this.coreURLBuilder.buildURL(
+                'dedicated',
+                '#/useraccount/emails',
+              ),
               tracking: 'hub::sidebar::shortcuts::go-to-emails',
             },
           ]
         : []),
-      ...(Environment.getRegion() === 'EU'
+      ...(this.coreConfig.isRegion('EU')
         ? [
             {
               id: 'contacts',
               icon: 'oui-icon-book-contact_concept',
-              url: buildURL('dedicated', '#/contacts/services'),
+              url: this.coreURLBuilder.buildURL(
+                'dedicated',
+                '#/contacts/services',
+              ),
               tracking: 'hub::sidebar::shortcuts::go-to-contacts',
             },
           ]

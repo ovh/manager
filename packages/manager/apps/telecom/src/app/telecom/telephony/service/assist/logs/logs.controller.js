@@ -1,13 +1,13 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import pick from 'lodash/pick';
-import { Environment } from '@ovh-ux/manager-config';
 
 export default /* @ngInject */ function TelecomTelephonyServiceAssistLogsCtrl(
   $q,
   $translate,
   $state,
   $stateParams,
+  coreConfig,
   tucVoipService,
   tucVoipLineFeature,
   TucToast,
@@ -95,7 +95,7 @@ export default /* @ngInject */ function TelecomTelephonyServiceAssistLogsCtrl(
     // fetch user if not already done
     if (!self.user && !self.edition.notifications.logs.email) {
       self.loading.user = true;
-      self.user = Environment.getUser();
+      self.user = coreConfig.getUser();
       self.edition.notifications.logs.email = self.user.email;
       self.loading.user = false;
     } else if (!self.edition.notifications.logs.email) {

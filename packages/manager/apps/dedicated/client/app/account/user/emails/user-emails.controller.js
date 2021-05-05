@@ -1,5 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 angular.module('UserAccount').controller('UserAccount.controllers.emails', [
   '$q',
   '$location',
@@ -7,6 +5,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.emails', [
   '$translate',
   'UserAccount.services.emails',
   'Alerter',
+  'coreURLBuilder',
 
   function UserAccountEmailsController(
     $q,
@@ -15,10 +14,11 @@ angular.module('UserAccount').controller('UserAccount.controllers.emails', [
     $translate,
     Emails,
     Alerter,
+    coreURLBuilder,
   ) {
     const self = this;
 
-    $scope.SUPPORT_URL = buildURL('dedicated', '#/support');
+    $scope.SUPPORT_URL = coreURLBuilder.buildURL('dedicated', '#/support');
 
     $scope.itemsPerPage = 10;
     $scope.currentPage =

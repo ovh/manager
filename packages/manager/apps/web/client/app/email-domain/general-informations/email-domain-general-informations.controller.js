@@ -1,5 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-import { Environment } from '@ovh-ux/manager-config';
 import get from 'lodash/get';
 import set from 'lodash/set';
 
@@ -16,6 +14,8 @@ angular.module('App').controller(
       $translate,
       Alerter,
       constants,
+      coreConfig,
+      coreURLBuilder,
       OvhApiEmailDomain,
       WucUser,
       WucEmails,
@@ -28,6 +28,8 @@ angular.module('App').controller(
       this.$translate = $translate;
       this.Alerter = Alerter;
       this.constants = constants;
+      this.coreConfig = coreConfig;
+      this.coreURLBuilder = coreURLBuilder;
       this.OvhApiEmailDomain = OvhApiEmailDomain;
       this.WucUser = WucUser;
       this.WucEmails = WucEmails;
@@ -156,19 +158,22 @@ angular.module('App').controller(
           this.$stateParams.productId,
         )}/terminateEmail?tab=GENERAL_INFORMATIONS`;
       } else {
-        this.urls.delete = buildURL('dedicated', '#/billing/autoRenew', {
-          selectedType: 'EMAIL_DOMAIN',
-          searchText: this.$stateParams.productId,
-        });
+        this.urls.delete = this.coreURLBuilder.buildURL(
+          'dedicated',
+          '#/billing/autoRenew',
+          {
+            selectedType: 'EMAIL_DOMAIN',
+            searchText: this.$stateParams.productId,
+          },
+        );
       }
 
-      this.urls.manageContacts =
-        Environment.getRegion() === 'EU'
-          ? buildURL('dedicated', '#/contacts/services', {
-              serviceName: this.$stateParams.productId,
-              category: 'EMAIL_DOMAIN',
-            })
-          : '';
+      this.urls.manageContacts = this.coreConfig.isRegion('EU')
+        ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
+            serviceName: this.$stateParams.productId,
+            category: 'EMAIL_DOMAIN',
+          })
+        : '';
 
       return this.WucUser.getUrlOf('changeOwner')
         .then((link) => {

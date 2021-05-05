@@ -1,6 +1,4 @@
-import { Environment } from '@ovh-ux/manager-config';
 import { SupportLevel } from '@ovh-ux/manager-models';
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 import Offer from '../components/project/offer/offer.class';
 
@@ -67,8 +65,8 @@ export default /* @ngInject */ ($stateProvider) => {
           .then((hdsFeature) => hdsFeature.isFeatureAvailable(hdsId));
       },
 
-      isValidHdsSupportLevel: () => {
-        const { supportLevel } = Environment.getUser();
+      isValidHdsSupportLevel: /* @ngInject */ (coreConfig) => {
+        const { supportLevel } = coreConfig.getUser();
         const sl = new SupportLevel(supportLevel);
         return sl.isEnterprise() || sl.isBusiness();
       },
@@ -87,7 +85,8 @@ export default /* @ngInject */ ($stateProvider) => {
           }),
         ),
 
-      billingUrl: () => buildURL('dedicated', '#/billing/history'),
+      billingUrl: (coreURLBuilder) =>
+        coreURLBuilder.buildURL('dedicated', '#/billing/history'),
 
       terminateProject: /* @ngInject */ (OvhApiCloudProject) => (project) =>
         OvhApiCloudProject.v6().delete({ serviceName: project.serviceName })

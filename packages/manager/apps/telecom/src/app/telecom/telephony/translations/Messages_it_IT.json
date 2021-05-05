@@ -1,3 +1,4 @@
 {
-  "telephony_breadcrumb": "Telefonia"
+  "telephony_breadcrumb": "Telefonia",
+  "telephony_infrastructure_other_line_additional_label": "(escluso il numero OVHcloud)"
 }

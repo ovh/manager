@@ -18,7 +18,6 @@
     workflow-type=":: $ctrl.workflowType"
     workflow-options=":: $ctrl.workflowOptions"
     pricing-type=":: $ctrl.pricingType"
-    user=":: $ctrl.user"
     on-error=":: $ctrl.onError(error)"
     on-success=":: $ctrl.onSuccess($ctrl.workflowOptions.serviceId ? result : checkout)"
     send-current-state="$ctrl.getOrderState(state)"

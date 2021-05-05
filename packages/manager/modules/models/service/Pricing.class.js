@@ -1,15 +1,14 @@
-import {
-  Environment,
-  convertLanguageFromOVHToBCP47,
-} from '@ovh-ux/manager-config';
+import { convertLanguageFromOVHToBCP47 } from '@ovh-ux/manager-config';
 
 export default class Pricing {
-  constructor({ duration, price, pricingMode }) {
+  constructor({ duration, price, pricingMode }, locale) {
     Object.assign(this, {
       duration,
       price,
       pricingMode,
     });
+
+    this.locale = locale;
 
     this.price.text = price.text || this.getPriceAsText();
 
@@ -18,10 +17,10 @@ export default class Pricing {
   }
 
   getPriceAsText(price = this.price.value) {
-    return Intl.NumberFormat(
-      convertLanguageFromOVHToBCP47(Environment.getUserLocale()),
-      { style: 'currency', currency: this.price.currencyCode },
-    ).format(price);
+    return Intl.NumberFormat(convertLanguageFromOVHToBCP47(this.locale), {
+      style: 'currency',
+      currency: this.price.currencyCode,
+    }).format(price);
   }
 
   format(price = this.price.value) {

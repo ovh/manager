@@ -3,7 +3,7 @@
   "telephony_line_phone_codec_info1": "Ottimizza la qualità delle tue comunicazioni agendo sul codec utilizzato prioritariamente dalla tua linea.",
   "telephony_line_phone_codec_info2": "Verifica che la tua velocità sia sufficiente per i codec che scegli: i codec configurati influiscono sulla banda passante utilizzata.",
   "telephony_line_phone_codec_info3": "Per conoscere la velocità della tua connessione Internet, accedi alla pagina <a href=\"http://voip.ovh.fr\" target=\"_blank\">http://voip.ovh.fr</a>.",
-  "telephony_line_phone_codec_info4": "Il codec g722 verrà utilizzato esclusivemente durante le chiamate tra linee OVH.",
+  "telephony_line_phone_codec_info4": "Il codec g722 verrà utilizzato esclusivamente durante le chiamate tra linee OVHcloud.",
   "telephony_line_phone_codec_load_error": "Ops! Si è verificato un errore durante il caricamento della linea.",
   "telephony_line_phone_codec_current": "Codec definiti attualmente:",
   "telephony_line_phone_codec_no_selected": "Nessun codec definito",

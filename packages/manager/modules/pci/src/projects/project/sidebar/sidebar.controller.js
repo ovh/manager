@@ -5,7 +5,7 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-import { MENU, UNIVERSE, USER_TYPES_MAP } from './sidebar.constant';
+import { getMenu, UNIVERSE, USER_TYPES_MAP } from './sidebar.constant';
 
 export default class SidebarController {
   /* @ngInject */
@@ -19,6 +19,7 @@ export default class SidebarController {
     $transitions,
     atInternet,
     coreConfig,
+    coreURLBuilder,
     OvhApiCloudProject,
     OvhApiMe,
     OvhApiServices,
@@ -45,6 +46,10 @@ export default class SidebarController {
 
     this.REGION = coreConfig.getRegion();
     this.UNIVERSE = UNIVERSE;
+
+    this.CONFIG_MENU = getMenu({
+      DBAAS_LOGS_URL: coreURLBuilder.buildURL('dedicated', '#/dbaas/logs'),
+    });
   }
 
   isAvailableToUser(subItem) {
@@ -77,8 +82,8 @@ export default class SidebarController {
       });
   }
 
-  static findFeatureToCheck() {
-    return MENU.reduce((features, item) => {
+  findFeatureToCheck() {
+    return this.CONFIG_MENU.reduce((features, item) => {
       return [
         ...features,
         item.feature,
@@ -88,7 +93,7 @@ export default class SidebarController {
   }
 
   $onInit() {
-    const featuresName = SidebarController.findFeatureToCheck();
+    const featuresName = this.findFeatureToCheck();
     this.ovhFeatureFlipping
       .checkFeatureAvailability(featuresName)
       .then((features) => {
@@ -96,7 +101,7 @@ export default class SidebarController {
           (isNil(regions) || this.coreConfig.isRegion(regions)) &&
           (!feature || features.isFeatureAvailable(feature));
 
-        this.MENU = MENU.filter(({ regions, feature }) =>
+        this.MENU = this.CONFIG_MENU.filter(({ regions, feature }) =>
           isItemAvailable(regions, feature),
         ).map((menu) => {
           set(

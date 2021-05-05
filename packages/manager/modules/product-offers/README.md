@@ -31,7 +31,6 @@ The view
   workflow-type=":: $ctrl.workflowConstants.WORKFLOW_TYPES.ORDER"
   workflow-options=":: $ctrl.workflowOptions"
   pricing-type=":: $ctrl.pricingType.PRICING_CAPACITIES.RENEW"
-  user=":: $ctrl.user"
   on-error=":: $ctrl.displayError(error)"
   on-success=":: $ctrl.displaySuccess(checkout)"
   send-current-state=":: $ctrl.getOrderState(state)"
@@ -73,7 +72,6 @@ export default class {
       serviceNameToAddProduct: 'nameOfMyProduct',
       onPricingSubmit: () => console.log('onPricingSubmit'),
       onValidateSubmit: () => console.log('onValidateSubmit'),
-      user: this.user,
     };
   }
 
@@ -102,7 +100,6 @@ export default {
   resolve: {
     catalog: /* @ngInject */ (HostingDatabaseOrderPublicService) =>
       HostingDatabaseOrderPublicService.getCatalog(),
-    user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
   },
 };
 ```

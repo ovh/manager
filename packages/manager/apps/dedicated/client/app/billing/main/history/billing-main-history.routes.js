@@ -23,7 +23,7 @@ const mapDateFilter = (comparator, value) => {
 };
 
 export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
-  if (coreConfigProvider.isRegion(['US'])) {
+  if (coreConfigProvider.isRegion('US')) {
     $stateProvider.state('app.account.billing.main.history', {
       url: `/history?filter`,
       params: {

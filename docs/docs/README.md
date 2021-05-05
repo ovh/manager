@@ -42,5 +42,5 @@ footer: BSD 3-Clause Licensed | Copyright © 2020-present OVH SAS
 </div>
 
 ::: warning COMPATIBILITY NOTE
-Manager requires [Node.js](https://nodejs.org) >=12.13 and [Yarn](https://yarnpkg.com/) >=1.21.1.
+Manager requires [Node.js](https://nodejs.org) ^12 || ^14 and [Yarn](https://yarnpkg.com/) >=1.21.1.
 :::

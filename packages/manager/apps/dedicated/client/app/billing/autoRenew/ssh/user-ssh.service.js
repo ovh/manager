@@ -1,5 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 import filter from 'lodash/filter';
 import flatten from 'lodash/flatten';
 import get from 'lodash/get';
@@ -11,7 +9,7 @@ import values from 'lodash/values';
 
 angular.module('UserAccount').service(
   'UseraccountSshService',
-  /* @ngInject */ function UserAccountSshService(OvhHttp, $q) {
+  /* @ngInject */ function UserAccountSshService(OvhHttp, $q, coreURLBuilder) {
     const CLOUD_CACHE_KEY = 'UNIVERS_DEDICATED_USER_ACCOUNT_SSH_CLOUD';
     const self = this;
 
@@ -176,9 +174,13 @@ angular.module('UserAccount').service(
     };
 
     self.getSshCloudUrl = function getSshCloudUrl(serviceName) {
-      return buildURL('public-cloud', '#/pci/projects/:serviceName/ssh/add', {
-        serviceName,
-      });
+      return coreURLBuilder.buildURL(
+        'public-cloud',
+        '#/pci/projects/:serviceName/ssh/add',
+        {
+          serviceName,
+        },
+      );
     };
   },
 );

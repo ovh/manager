@@ -1,4 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { PREPAID_ACCOUNT } from './refunds.constants';
 
 export default /* @ngInject */ function BillingRefundsController(
@@ -8,6 +7,7 @@ export default /* @ngInject */ function BillingRefundsController(
   BillingUser,
   BillingmessageParser,
   BillingdateRangeSelection,
+  coreURLBuilder,
 ) {
   const FUSE_CAPACITY = 300;
 
@@ -29,7 +29,7 @@ export default /* @ngInject */ function BillingRefundsController(
     return $scope.refundCount > FUSE_CAPACITY;
   };
 
-  this.prepaidAccountLink = buildURL(
+  this.prepaidAccountLink = coreURLBuilder.buildURL(
     'dedicated',
     '#/billing/payment/ovhaccount',
   );

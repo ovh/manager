@@ -8,5 +8,5 @@
   "manager_billing_service_status_delete_at_expiration": "Disattivazione richiesta",
   "manager_billing_service_status_expired": "Disattivato",
   "manager_billing_service_status_billing_suspended": "Fatturazione rinviata",
-  "manager_billing_service_status_forced_manual": "Forced manual renew"
+  "manager_billing_service_status_forced_manual": "Rinnovo manuale"
 }

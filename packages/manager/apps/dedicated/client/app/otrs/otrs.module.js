@@ -1,6 +1,5 @@
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 import routing from './otrs.routes';
 import service from './otrs.service';
@@ -20,8 +19,10 @@ angular
     'ui.router',
   ])
   .config(
-    /* @ngInject */ (OtrsPopupProvider) => {
-      OtrsPopupProvider.setBaseUrlTickets(buildURL('dedicated', '#/ticket'));
+    /* @ngInject */ (OtrsPopupProvider, coreURLBuilderProvider) => {
+      OtrsPopupProvider.setBaseUrlTickets(
+        coreURLBuilderProvider.buildURL('dedicated', '#/ticket'),
+      );
     },
   )
   .filter('htmlStringLinky', htmlStringLinkyFilter)

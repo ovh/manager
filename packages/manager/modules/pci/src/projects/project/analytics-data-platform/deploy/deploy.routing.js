@@ -1,5 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.analytics-data-platform.deploy', {
     url: '/deploy',
@@ -28,7 +26,8 @@ export default /* @ngInject */ ($stateProvider) => {
       hasDefaultPaymentMethod: (ovhPaymentMethod) =>
         ovhPaymentMethod.hasDefaultPaymentMethod(),
 
-      paymentMethodUrl: () => buildURL('dedicated', '#/billing/payment/method'),
+      paymentMethodUrl: /* @ngInject */ (coreURLBuilder) =>
+        coreURLBuilder.buildURL('dedicated', '#/billing/payment/method'),
 
       goToDeploy: ($state, CucCloudMessage, projectId) => (
         message = false,

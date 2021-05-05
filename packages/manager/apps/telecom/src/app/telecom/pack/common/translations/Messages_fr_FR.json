@@ -1,7 +1,7 @@
 {
   "telecom_common_pack_xdsl_order_step_name_accessIsOperational": "Votre accès est opérationnel",
   "telecom_common_pack_xdsl_order_step_name_checkInfrastructure": "Validation de la construction de votre accès",
-  "telecom_common_pack_xdsl_order_step_name_configureAccessOnOVH": "Configuration de l'accès sur les équipements OVH",
+  "telecom_common_pack_xdsl_order_step_name_configureAccessOnOVH": "Configuration de l'accès sur les équipements OVHcloud",
   "telecom_common_pack_xdsl_order_step_name_orderPayed": "Paiement de la commande",
   "telecom_common_pack_xdsl_order_step_name_orderReceived": "Création de la commande",
   "telecom_common_pack_xdsl_order_step_name_orderTreatment": "Traitement de la commande",

@@ -1,14 +1,12 @@
 angular
   .module('Billing')
-  .config([
-    '$stateProvider',
-    '$urlRouterProvider',
-    'coreConfigProvider',
-    ($stateProvider, $urlRouterProvider, coreConfigProvider) => {
-      if (
-        coreConfigProvider.getRegion() === 'EU' ||
-        coreConfigProvider.getRegion() === 'CA'
-      ) {
+  .config(
+    /* @ngInject */ (
+      $stateProvider,
+      $urlRouterProvider,
+      coreConfigProvider,
+    ) => {
+      if (coreConfigProvider.isRegion(['EU', 'CA'])) {
         const name = 'app.account.billing.payment.ovhaccount';
 
         $stateProvider.state(name, {
@@ -48,5 +46,5 @@ angular
         );
       }
     },
-  ])
+  )
   .run(/* @ngTranslationsInject:json ./translations */);

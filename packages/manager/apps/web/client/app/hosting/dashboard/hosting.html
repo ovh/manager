@@ -241,13 +241,6 @@
                 href="{{ $ctrl.freedomLink }}"
                 active="$ctrl.currentActiveLink() === $ctrl.freedomLink"
             ></oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-ng-if="$ctrl.isWebCoachAvailable"
-                href="{{ $ctrl.websiteCoachLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.websiteCoachLink"
-            >
-                <span data-translate="hosting_tab_WEBSITE_COACH"></span>
-            </oui-header-tabs-item>
             <oui-header-tabs-divider
                 data-ng-if="!$ctrl.hosting.isCloudWeb && $ctrl.isEmailDomainAvailable"
             ></oui-header-tabs-divider>

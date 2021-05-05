@@ -11,11 +11,19 @@ import {
   DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS,
 } from '../../../datacenter/drp/dedicatedCloud-datacenter-drp.constants';
 
-import config from '../../../../../config/config';
+import { getConstants } from '../../../../../config/config';
 
 export default class {
   /* @ngInject */
-  constructor($q, $translate, DedicatedCloud, dedicatedCloudDrp, User, Poller) {
+  constructor(
+    $q,
+    $translate,
+    coreConfig,
+    DedicatedCloud,
+    dedicatedCloudDrp,
+    User,
+    Poller,
+  ) {
     this.$q = $q;
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
@@ -25,6 +33,7 @@ export default class {
     this.DRP_OPTIONS = DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS;
     this.DRP_STATUS = DEDICATEDCLOUD_DATACENTER_DRP_STATUS;
     this.DRP_VPN_STATUS = DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS;
+    this.configConstants = getConstants(coreConfig.getRegion());
   }
 
   $onInit() {
@@ -181,11 +190,11 @@ export default class {
   getGuides() {
     return this.User.getUser().then((user) => {
       this.options.nsx.guide =
-        config.constants.URLS[user.ovhSubsidiary].presentations.nsx ||
-        config.constants.URLS.FR.presentations.nsx;
+        this.configConstants.URLS[user.ovhSubsidiary].presentations.nsx ||
+        this.configConstants.URLS.FR.presentations.nsx;
       this.options.vrops.guide =
-        config.constants.URLS[user.ovhSubsidiary].presentations.vrops ||
-        config.constants.URLS.FR.presentations.vrops;
+        this.configConstants.URLS[user.ovhSubsidiary].presentations.vrops ||
+        this.configConstants.URLS.FR.presentations.vrops;
     });
   }
 

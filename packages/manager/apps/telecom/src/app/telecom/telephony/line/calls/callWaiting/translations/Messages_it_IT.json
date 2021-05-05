@@ -13,5 +13,5 @@
   "telephony_line_actions_line_calls_call_waiting_cw_explain": "Questa opzione permette di attivare o disattivare la funzione \"Avviso di chiamata\" presente sulla tua linea.",
   "telephony_line_actions_line_calls_call_waiting_cw_explain1": "Se l'opzione è disattivata non sarà possibile trasferire la tua chiamata o rispondere a una seconda chiamata.",
   "telephony_line_actions_line_calls_call_waiting_intercom_explain": "Modalità Intercom: risposta automatica con attivazione dell'altoparlante.",
-  "telephony_line_actions_line_calls_call_waiting_intercom_detail": "I telefoni offerti da OVH compatibili con il servizio Intercom sono: Thomson ST2030, la serie Cisco SPA5 e la gamma LG IP 88XX."
+  "telephony_line_actions_line_calls_call_waiting_intercom_detail": "I telefoni offerti da OVHcloud compatibili con il servizio Intercom sono: Thomson ST2030, la serie Cisco SPA5 e la gamma LG IP 88XX."
 }

@@ -2,8 +2,6 @@ import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 
-import { Environment } from '@ovh-ux/manager-config';
-
 import {
   REPORT_STATUS,
   LANGUAGES,
@@ -19,6 +17,7 @@ export default class TelecomTelephonyAliasConfigurationContactCenterSolutionCtrl
     $stateParams,
     $timeout,
     $translate,
+    coreConfig,
     TucToast,
     tucVoipServiceAlias,
   ) {
@@ -27,12 +26,13 @@ export default class TelecomTelephonyAliasConfigurationContactCenterSolutionCtrl
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.TucToast = TucToast;
     this.tucVoipServiceAlias = tucVoipServiceAlias;
   }
 
   $onInit() {
-    this.currentLanguage = Environment.getUserLanguage();
+    this.currentLanguage = this.coreConfig.getUserLanguage();
     this.conferenceCopy = null;
     this.generatingUrls = false;
     this.hasWebAccessUrls = false;

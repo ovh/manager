@@ -8,15 +8,16 @@ import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
 import trim from 'lodash/trim';
 import set from 'lodash/set';
-import { Environment } from '@ovh-ux/manager-config';
 
 angular.module('App').controller(
   'DomainZoneRecordCtrl',
   class DomainZoneRecordAddCtrl {
+    /* @ngInject */
     constructor(
       $scope,
       $rootScope,
       $translate,
+      coreConfig,
       Alerter,
       Domain,
       DomainValidator,
@@ -25,6 +26,7 @@ angular.module('App').controller(
       this.$scope = $scope;
       this.$rootScope = $rootScope;
       this.$translate = $translate;
+      this.coreConfig = coreConfig;
       this.Alerter = Alerter;
       this.Domain = Domain;
       this.DomainValidator = DomainValidator;
@@ -701,7 +703,7 @@ angular.module('App').controller(
 
     useSpfOvh() {
       this.model.target = {};
-      this.model.target.include = DomainZoneRecordAddCtrl.getSPFIncludeName();
+      this.model.target.include = this.getSPFIncludeName();
       this.model.target.all = '~all';
       this.setTargetValue('spf');
       this.checkIfRecordCanBeAdd();
@@ -770,8 +772,8 @@ angular.module('App').controller(
         });
     }
 
-    static getSPFIncludeName() {
-      return `mx.ovh.${Environment.getRegion() === 'CA' ? 'ca' : 'com'}`;
+    getSPFIncludeName() {
+      return `mx.ovh.${this.coreConfig.isRegion('CA') ? 'ca' : 'com'}`;
     }
   },
 );

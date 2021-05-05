@@ -4,7 +4,7 @@
   "telephony_calls_filtering_table_nature": "Tipo de número",
   "telephony_calls_filtering_table_nature_fax": "Fax",
   "telephony_calls_filtering_table_nature_international": "Internacional",
-  "telephony_calls_filtering_table_nature_services": "Servicios de OVH",
+  "telephony_calls_filtering_table_nature_services": "Servicios OVHcloud",
   "telephony_calls_filtering_table_nature_special": "Número corto",
   "telephony_calls_filtering_table_nature_voicemail": "Contestador",
   "telephony_calls_filtering_table_status": "Estado",

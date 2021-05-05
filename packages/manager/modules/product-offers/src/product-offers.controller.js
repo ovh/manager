@@ -9,12 +9,14 @@ export default class ProductOffersController {
     $q,
     $timeout,
     $translate,
+    coreConfig,
     ovhManagerProductOffersActionService,
     WucOrderCartService,
   ) {
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.actionService = ovhManagerProductOffersActionService;
     this.WucOrderCartService = WucOrderCartService;
   }
@@ -56,7 +58,7 @@ export default class ProductOffersController {
     Object.assign(this.workflow, {
       pricingType: this.pricingType,
       sendCurrentState: this.sendCurrentState,
-      user: this.user,
+      user: this.coreConfig.getUser(),
       onError: this.onError,
       onSuccess: this.onSuccess,
     });

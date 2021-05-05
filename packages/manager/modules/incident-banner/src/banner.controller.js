@@ -1,9 +1,8 @@
-import { Environment } from '@ovh-ux/manager-config';
-
 export default class BannerController {
   /* @ngInject */
-  constructor($http) {
+  constructor($http, coreConfig) {
     this.$http = $http;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -21,7 +20,7 @@ export default class BannerController {
       .then(({ data }) => ({
         incident: data.incident,
         message:
-          data.messages[Environment.getUserLocale()] || data.messages.en_GB,
+          data.messages[this.coreConfig.getUserLocale()] || data.messages.en_GB,
       }))
       .catch(() => ({
         incident: false,

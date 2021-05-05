@@ -1,5 +1,3 @@
-import { Environment } from '@ovh-ux/manager-config';
-
 import controller from './credit.controller';
 import template from './credit.html';
 
@@ -12,10 +10,11 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     views: {
       modal: {
-        controller:
-          Environment.getRegion() === 'US' ? controllerAgora : controller,
+        controllerProvider: /* @ngInject */ (coreConfig) =>
+          coreConfig.isRegion('US') ? controllerAgora : controller,
         controllerAs: '$ctrl',
-        template: Environment.getRegion() === 'US' ? templateAgora : template,
+        templateProvider: /* @ngInject */ (coreConfig) =>
+          coreConfig.isRegion('US') ? templateAgora : template,
       },
     },
     resolve: {

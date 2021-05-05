@@ -21,8 +21,9 @@
   },
   "dependencies": {
     "@ovh-ux/manager-carrier-sip": "^1.0.0 || ^2.0.0",
-    "@ovh-ux/manager-config": "^4.0.0 || ^5.0.0",
-    "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
+    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/manager-preloader": "^1.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.8",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.0.1",
@@ -33,6 +34,7 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.2",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^6.0.0 || ^7.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.1",
+    "@ovh-ux/ufrontend": "^1.1.1 || ^2.0.0",
     "@ovh-ux/ui-kit": "^4.5.0",
     "@uirouter/angularjs": "^1.0.22",
     "CSV-JS": "^1.2.0",
@@ -56,10 +58,11 @@
     "ip-address": "^5.9.2",
     "jquery": "^3.4.1",
     "jsplumb": "^2.11.2",
+    "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^11.1.0",
+    "ovh-api-services": "^11.1.1",
     "ovh-ngstrap": "^4.0.2",
     "ovh-ui-kit-bs": "^4.2.0",
     "popper.js": "^1.16.1",
@@ -67,10 +70,12 @@
     "regenerator-runtime": "^0.13.7",
     "ui-select": "^0.19.8",
     "validator": "^11.1.0",
-    "validator-js": "^0.2.1"
+    "validator-js": "^0.2.1",
+    "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.2.0 || ^4.0.0",
+    "glob": "^7.1.6",
     "webpack-merge": "^4.2.2"
   }
 }

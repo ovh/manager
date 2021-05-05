@@ -112,9 +112,9 @@ angular
           )
         : $translate.instant('payments_table_type_not_available');
 
-    this.shouldDisplayDepositsLinks = () => coreConfig.getRegion() !== 'US';
+    this.shouldDisplayDepositsLinks = () => !coreConfig.isRegion('US');
 
-    this.displayActionsCol = () => coreConfig.getRegion() !== 'US';
+    this.displayActionsCol = () => !coreConfig.isRegion('US');
 
     this.depositDetailsHref = ({ depositId }) =>
       $state.href('app.account.billing.main.payments.payment.details', {
@@ -132,7 +132,7 @@ angular
 
     this.$onInit = () => {
       this.payments = [];
-      if (coreConfig.getRegion() === 'US') {
+      if (coreConfig.isRegion('US')) {
         return OvhApiMe.DepositRequest()
           .v6()
           .query()

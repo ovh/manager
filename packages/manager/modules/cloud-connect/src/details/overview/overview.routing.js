@@ -1,6 +1,3 @@
-import { Environment } from '@ovh-ux/manager-config';
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cloud-connect.details.overview', {
     url: '/overview',
@@ -65,9 +62,11 @@ export default /* @ngInject */ ($stateProvider) => {
           datacenterId,
           extraId,
         }),
-      getCancelTerminationUrl: /* @ngInject */ () => (serviceName) =>
-        ['EU', 'CA'].includes(Environment.getRegion())
-          ? buildURL('dedicated', '#/billing/autorenew', {
+      getCancelTerminationUrl: /* @ngInject */ (coreConfig, coreURLBuilder) => (
+        serviceName,
+      ) =>
+        coreConfig.isRegion(['EU', 'CA'])
+          ? coreURLBuilder.buildURL('dedicated', '#/billing/autorenew', {
               searchText: serviceName,
             })
           : '',

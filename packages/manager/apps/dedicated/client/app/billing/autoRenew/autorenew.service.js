@@ -302,7 +302,7 @@ export default class {
       .hasDefaultPaymentMethod()
       .then(
         (hasDefaultPaymentMethod) =>
-          hasDefaultPaymentMethod && this.coreConfig.getRegion() === 'EU',
+          hasDefaultPaymentMethod && this.coreConfig.isRegion('EU'),
       );
   }
 

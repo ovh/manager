@@ -1,8 +1,8 @@
 import find from 'lodash/find';
-import { Environment } from '@ovh-ux/manager-config';
 
 export default /* @ngInject */ function(
   $q,
+  coreConfig,
   OvhApiCloud,
   OvhApiCloudProjectServiceInfos,
 ) {
@@ -17,7 +17,7 @@ export default /* @ngInject */ function(
   }
 
   function getCurrentUserNic() {
-    return $q.when(Environment.getUser().nichandle);
+    return $q.when(coreConfig.getUser().nichandle);
   }
 
   function getProjectAdminNic(projectId) {

@@ -9,5 +9,8 @@
   "pci_project_new_payment_checkout_error": "An error has occurred creating your Public Cloud project. Please try again.",
   "pci_project_new_payment_challenge_error_payment_method_deactivated": "Payment method verification unsuccessful. It has been disabled. Please choose another payment method to create a new project.",
   "pci_project_new_payment_set_default_payment_method_error": "An error has occurred updating your payment method as a default payment method.",
-  "pci_project_new_payment_information": "Bank details"
+  "pci_project_new_payment_information": "Bank details",
+  "pci_project_new_payment_pending_check": "Pending validation of your payment method",
+  "pci_project_new_payment_check_error": "The payment method verification process with your bank is taking an unusually long time.",
+  "pci_project_new_payment_check_payment_method_status": "Please check the status in your payment method list, and return to create your Public Cloud project once your payment method has been validated."
 }

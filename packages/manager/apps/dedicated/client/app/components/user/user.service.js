@@ -1,5 +1,4 @@
 import flatten from 'lodash/flatten';
-import { Environment } from '@ovh-ux/manager-config';
 
 import { User } from '@ovh-ux/manager-models';
 
@@ -7,9 +6,10 @@ angular.module('services').service('User', [
   '$http',
   '$q',
   'constants',
+  'coreConfig',
   'Billing.constants',
   'OvhHttp',
-  function userF($http, $q, constants, billingConstants, OvhHttp) {
+  function userF($http, $q, constants, coreConfig, billingConstants, OvhHttp) {
     const self = this;
     let user = null;
     let userPromise;
@@ -22,7 +22,7 @@ angular.module('services').service('User', [
         userPromise = $q.when('start').then(() =>
           $q
             .all({
-              me: Environment.getUser(),
+              me: coreConfig.getUser(),
               certificates: this.getUserCertificates(),
             })
             .then((result) => {

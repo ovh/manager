@@ -1293,7 +1293,6 @@
   "hosting_common_no_filter": "Nenhum filtro",
   "hosting_tab_DOMAINS_ovhcontrol_token": "token ovhcontrol",
   "hosting_tab_DOMAINS_ovhcontrol_token_help": "Valor a introduzir num registo do tipo TXT no fornecedor que gere o serviço DNS do seu domínio.",
-  "hosting_tab_WEBSITE_COACH": "Website Coach",
   "hosting_change_main_domain_mx_005": "MX 5",
   "hosting_change_main_domain_mx_025": "MX 25",
   "hosting_change_main_domain_mx_100": "MX 100",

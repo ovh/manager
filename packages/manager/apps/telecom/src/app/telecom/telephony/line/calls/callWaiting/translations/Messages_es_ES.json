@@ -13,5 +13,5 @@
   "telephony_line_actions_line_calls_call_waiting_cw_explain": "Esta opción permite activar o desactivar la función de llamada en espera de la que dispone su línea.",
   "telephony_line_actions_line_calls_call_waiting_cw_explain1": "Si la opción está desactivada, no podrá transferir su llamada o descolgar una segunda llamada.",
   "telephony_line_actions_line_calls_call_waiting_intercom_explain": "Modo interfono: descolgado automático con activación del altavoz.",
-  "telephony_line_actions_line_calls_call_waiting_intercom_detail": "Los teléfonos ofrecidos por OVH compatibles con el servicio interfono son: el Thomson ST2030, la serie Cisco SPA5 y la gama LG IP 88XX."
+  "telephony_line_actions_line_calls_call_waiting_intercom_detail": "Los teléfonos ofrecidos por OVHcloud compatibles con el servicio Intercom son: el Thomson ST2030, la serie Cisco SPA5 y la gama LG IP 88XX."
 }

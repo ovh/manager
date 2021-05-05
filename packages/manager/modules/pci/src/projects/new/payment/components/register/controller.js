@@ -4,7 +4,6 @@ import head from 'lodash/head';
 import map from 'lodash/map';
 import snakeCase from 'lodash/snakeCase';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import {
   PAYMENT_METHOD_AUTHORIZED_ENUM,
   PREFERRED_PAYMENT_METHOD_ORDER,
@@ -12,7 +11,7 @@ import {
 
 export default class PciProjectNewPaymentRegisterCtrl {
   /* @ngInject */
-  constructor($translate, coreConfig, ovhPaymentMethodHelper) {
+  constructor($translate, coreConfig, coreURLBuilder, ovhPaymentMethodHelper) {
     this.$translate = $translate;
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
 
@@ -22,7 +21,7 @@ export default class PciProjectNewPaymentRegisterCtrl {
       list: null,
     };
 
-    this.paymentSectionHref = buildURL(
+    this.paymentSectionHref = coreURLBuilder.buildURL(
       'dedicated',
       '#/billing/payment/method/add',
     );

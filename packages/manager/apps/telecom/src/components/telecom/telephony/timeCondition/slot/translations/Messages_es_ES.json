@@ -1,0 +1,5 @@
+{
+  "voip_time_condition_slots_redirect_popover_redirect_type_number_explain": "Permite reenviar la llamada hacia un número externo (fuera de OVHcloud).",
+  "voip_time_condition_slots_redirect_popover_redirect_type_number_ovh": "Una línea o un número OVHcloud",
+  "voip_time_condition_slots_redirect_popover_redirect_type_number_ovh_explain": "Permite reenviar la llamada hacia una de sus líneas OVHcloud o hacia uno de sus números OVHcloud."
+}

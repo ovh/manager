@@ -6,7 +6,6 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import some from 'lodash/some';
 
-import { Environment } from '@ovh-ux/manager-config';
 import { VOIP_TIMECONDITION_ORDERED_DAYS } from '../time-condition.constant';
 
 import template from './calendar.html';
@@ -15,6 +14,7 @@ import calendarController from './calendar.controller';
 export default /* @ngInject */ (
   $compile,
   $timeout,
+  coreConfig,
   TucToast,
   VoipTimeConditionCondition,
   uiCalendarConfig,
@@ -120,7 +120,7 @@ export default /* @ngInject */ (
       'options',
       defaultsDeep(controller.options || {}, {
         height: 'auto',
-        locale: Environment.getUserLanguage(),
+        locale: coreConfig.getUserLanguage(),
         editable: true,
         allDaySlot: false,
         allDayDefault: false,

@@ -1,12 +1,12 @@
 import get from 'lodash/get';
 import includes from 'lodash/includes';
-import { Environment } from '@ovh-ux/manager-config';
 
 export default class OutgoingTraficComponentCtrl {
   /* @ngInject */
   constructor(
     $q,
     $translate,
+    coreConfig,
     CucControllerHelper,
     CucRegionService,
     CucServiceHelper,
@@ -15,6 +15,7 @@ export default class OutgoingTraficComponentCtrl {
   ) {
     this.$q = $q;
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.CucControllerHelper = CucControllerHelper;
     this.CucRegionService = CucRegionService;
     this.CucServiceHelper = CucServiceHelper;
@@ -36,7 +37,7 @@ export default class OutgoingTraficComponentCtrl {
     this.currency = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
         this.$q
-          .when(Environment.getUser())
+          .when(this.coreConfig.getUser())
           .then((me) => me.currency)
           .catch((error) =>
             this.CucServiceHelper.errorHandler('cpb_error_message')(error),

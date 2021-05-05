@@ -236,7 +236,7 @@ export default class DedicatedServerInterfacesService {
       .$promise.then((options) => {
         let planCode = OLA_PLAN_CODE;
 
-        if (this.coreConfig.getRegion() === 'US') {
+        if (this.coreConfig.isRegion('US')) {
           planCode = `${OLA_PLAN_CODE}-${suffix}`;
         }
 

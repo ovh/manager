@@ -20,5 +20,6 @@
   "pci_projects_project_training_dashboard_users_list_name": "Name",
   "pci_projects_project_training_dashboard_users_list_description": "Description",
   "pci_projects_project_training_dashboard_users_list_none": "You have not created any users with the role \"AI Training Operator\" and \"ObjectStore Operator\"",
-  "pci_projects_project_training_dashboard_jobs_list_see_jobs": "View all jobs"
+  "pci_projects_project_training_dashboard_jobs_list_see_jobs": "View all jobs",
+  "pci_projects_project_training_jobs_resubmit": "Relaunch"
 }

@@ -7,6 +7,8 @@ import service from './cloud-connect.service';
 
 import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-ui-router-breadcrumb';
+import 'ovh-api-services';
+import '@ovh-ux/ui-kit';
 
 const moduleName = 'ovhCloudConnect';
 
@@ -15,6 +17,8 @@ angular
     ListLayoutHelper.moduleName,
     'ngAtInternet',
     'ngUiRouterBreadcrumb',
+    'ovh-api-services',
+    'oui',
     details,
   ])
   .config(routing)

@@ -1,14 +1,15 @@
 import get from 'lodash/get';
 import isString from 'lodash/isString';
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 (() => {
   class ServiceExpirationDateComponentCtrl {
-    constructor($scope, $rootScope, constants, coreConfig) {
+    /* @ngInject */
+    constructor($scope, $rootScope, constants, coreConfig, coreURLBuilder) {
       $scope.tr = $rootScope.tr;
       $scope.i18n = $rootScope.i18n;
       this.constants = constants;
       this.coreConfig = coreConfig;
+      this.coreURLBuilder = coreURLBuilder;
       this.inline = false;
     }
 
@@ -21,7 +22,7 @@ import { buildURL } from '@ovh-ux/ufrontend/url-builder';
     }
 
     getRenewUrl() {
-      return this.coreConfig.getRegion() === 'CA'
+      return this.coreConfig.isRegion('CA')
         ? this.getOrderUrl()
         : this.getAutoRenewUrl();
     }
@@ -40,7 +41,11 @@ import { buildURL } from '@ovh-ux/ufrontend/url-builder';
         params.selectedType = this.serviceType;
       }
 
-      return buildURL('dedicated', '#/billing/autoRenew', params);
+      return this.coreURLBuilder.buildURL(
+        'dedicated',
+        '#/billing/autoRenew',
+        params,
+      );
     }
 
     getDate() {

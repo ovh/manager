@@ -1,4 +1,3 @@
-import { Environment } from '@ovh-ux/manager-config';
 import {
   applyTax,
   formatPrice,
@@ -55,9 +54,10 @@ export default /* @ngInject */ ($stateProvider) => {
           ...$transition$.params(),
           servicesIds,
         }),
-      shouldDisplayPriceTTC: () =>
-        ['DE', 'SN'].includes(Environment.getUser().ovhSubsidiary),
+      shouldDisplayPriceTTC: /* @ngInject */ (coreConfig) =>
+        ['DE', 'SN'].includes(coreConfig.getUser().ovhSubsidiary),
       impactedServices: /* @ngInject */ (
+        coreConfig,
         servicesToMigrate,
         services,
         servicesStatus,
@@ -103,7 +103,7 @@ export default /* @ngInject */ ($stateProvider) => {
                 price: shouldDisplayPriceTTC
                   ? formatPrice(
                       service,
-                      applyTax(price, Environment.getUser().ovhSubsidiary),
+                      applyTax(price, coreConfig.getUser().ovhSubsidiary),
                     )
                   : formatPrice(service, price),
               },

@@ -4,9 +4,10 @@ import { CATALOG_MAPPING } from './commitment.constants';
 
 export default class CommitmentService {
   /* @ngInject */
-  constructor($http, $q, BillingService) {
+  constructor($http, $q, coreConfig, BillingService) {
     this.$http = $http;
     this.$q = $q;
+    this.coreConfig = coreConfig;
     this.BillingService = BillingService;
   }
 
@@ -97,13 +98,16 @@ export default class CommitmentService {
             price: totalPrice,
           });
 
-          return new Pricing({
-            duration: 'P1M',
-            price: {
-              currencyCode: user.currency.code,
-              value: catalogPrice.monthlyPrice,
+          return new Pricing(
+            {
+              duration: 'P1M',
+              price: {
+                currencyCode: user.currency.code,
+                value: catalogPrice.monthlyPrice,
+              },
             },
-          });
+            this.coreConfig.getUserLocale(),
+          );
         }
 
         return null;

@@ -1,14 +1,14 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 import isNil from 'lodash/isNil';
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 import { ISSUE_TYPE_ID } from './increase.constants';
 
 export default class PciProjectQuotaIncreaseController {
   /* @ngInject */
-  constructor($translate, OvhApiSupport) {
+  constructor($translate, coreURLBuilder, OvhApiSupport) {
     this.$translate = $translate;
+    this.coreURLBuilder = coreURLBuilder;
     this.OvhApiSupport = OvhApiSupport;
   }
 
@@ -21,7 +21,7 @@ export default class PciProjectQuotaIncreaseController {
     this.issueTypeFieldsStr = get(this.issueType, 'fields', [])
       .map((issueType) => get(issueType, 'label'))
       .join('\n\n');
-    this.supportUrl = buildURL('dedicated', '#/support');
+    this.supportUrl = this.coreURLBuilder.buildURL('dedicated', '#/support');
   }
 
   increaseQuota() {

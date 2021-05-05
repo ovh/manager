@@ -1,5 +1,5 @@
 {
-  "dedicated_server_terminate_success_engaged": "Your request has been submitted and will be processed shortly.",
+  "dedicated_server_terminate_success_engaged": "Your request has been received, and will be processed as soon as possible.",
   "dedicated_server_terminate_confirm": "Confirm",
   "dedicated_server_terminate_cancel": "Cancel"
 }

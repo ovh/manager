@@ -8,5 +8,5 @@
   "hosting_multisite_statistics_period_week": "Semana",
   "hosting_multisite_statistics_period_month": "Mes",
   "hosting_multisite_statistics_period_year": "Año",
-  "hosting_multisite_statistics_loading_error": "Se ha producido un error al cargar los snapshots."
+  "hosting_multisite_statistics_loading_error": "Se ha producido un error al cargar las estadísticas."
 }

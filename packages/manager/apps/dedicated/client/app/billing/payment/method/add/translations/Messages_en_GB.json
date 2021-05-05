@@ -6,7 +6,6 @@
   "billing_payment_method_add_selected_paypal_redirect": "When you click on the PayPal button, a pop-up window will open in order for you to finish adding your payment method.",
   "billing_payment_method_add_selected_original_credit_card_redirect": "By clicking \"Add\", a document will be downloaded. Please follow the procedure outlined in the document to confirm the payment method.",
   "billing_payment_method_add_credit_card_selected": "Your credit card will be activated automatically.",
-  "billing_payment_method_add_credit_card_selected_explain": "To register a new bank card, a total of {{ amount }} is temporarily deducted from your bank account, to check your card details and their validity. The total of {{ amount }} will not be charged.",
   "billing_payment_method_add_credit_card_selected_explain_generic": "To register a new bank card, a small amount of money is temporarily deducted from your bank account in order to check your card's details and validity. Nothing will be charged to your account.",
   "billing_payment_method_add_bank_account_selected": "Your bank account will be validated between 24 and 48 hours from the point at which you sign the procedure (the document that will be downloadable once the bank account has been added).",
   "billing_payment_method_add_default_payment": "This payment method will be used for your product's automatic payments. You can change it at any time via your payment methods. You will receive an email notification before each renewal date.",

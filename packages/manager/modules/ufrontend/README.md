@@ -15,13 +15,13 @@ yarn add @ovh-ux/ufrontend
 For a standalone application, you need to register it using the *registerApplication*
 method exported by the *@ovh-ux/ufrontend/application* package. This call acts as a bootstrap
 for the application, initializing the micro frontend framework and returning a promise
-that will resolve to an initial configuration. See *@ovh-ux/manager-config* for configuration
+that will resolve to an initial environment. See *@ovh-ux/manager-config* for environment
 attributes.
 
 ```js
 import registerApplication from '@ovh-ux/ufrontend/application';
 
-registerApplication().then(({ config }) => {
+registerApplication('myApplicationName').then(({ environment }) => {
   // initialization your application here
 });
 ```
@@ -31,7 +31,7 @@ registerApplication().then(({ config }) => {
 Fragments have a dedicated *registerFragment* method that is exported by the *@ovh-ux/ufrontend/fragment*
 package. This method needs to be called in order to initialize, load asynchronously and inject the
 fragment at runtime. It returns a promise that resolve with the *parent* element of the fragment and with
-the initial configuration object.
+the initial environment object.
 
 Each fragment is identified with a unique identifier, passed when registering the fragment. Please ensure
 the uniqueness of the fragment name when registering a new one.
@@ -40,7 +40,7 @@ the uniqueness of the fragment name when registering a new one.
 ```js
 import registerFragment from '@ovh-ux/ufrontend/fragment';
 
-registerFragment('myFragmentId').then(({ parent, config }) => {
+registerFragment('myFragmentId').then(({ parent, environment }) => {
   // render the fragment on 'parent' element
 });
 ```
@@ -122,37 +122,47 @@ When you want to build an URL for an outside application, you will use `url-buil
 
 #### Examples
 
-Build the URL that redirect to `#/catalog` state from the `hub` application with query parameter (`expand`)
+Build the URL that redirect to `#/catalog` state from the `https://www.ovh.com/manager/` base URL with query parameter (`expand`)
 
 ```js
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
-const url = buildURL('hub', '#/catalog', { expand: true });
+const url = buildURL('https://www.ovh.com/manager/', '#/catalog', {
+  expand: true,
+});
 // use `url`;
 ```
 
-Build multiples routes using an array of `{application, path, params}`
+Build multiples routes using an array of `{baseURL, path, params}`
 
 ```js
 import { buildURLs } from '@ovh-ux/ufrontend/url-builder';
 
 const [dashboard, catalog] = buildURLs([
-  { application: 'hub', path: '#/', params: { expand: true } },
-  { application: 'hub', path: '#/catalog' },
+  {
+    baseURL: 'https://www.ovh.com/manager/',
+    path: '#/',
+    params: { expand: true },
+  },
+  { baseURL: 'https://www.ovh.com/manager/', path: '#/catalog' },
 ]);
 // use `dashboard` and `catalog` URLs
 ```
 
-Build multiples routes using an object of `{application, path, params}`
+Build multiples routes using an object of `{baseURL, path, params}`
 
 ```js
 import { buildURLs } from '@ovh-ux/ufrontend/url-builder';
 
 const { dashboard, catalog } = buildURLs({
-  dashboard: { application: 'hub', path: '#/', params: { expand: true } },
-  catalog: { application: 'hub', path: '#/catalog' },
+  dashboard: {
+    baseURL: 'https://www.ovh.com/manager/',
+    path: '#/',
+    params: { expand: true },
+  },
+  catalog: { baseURL: 'https://www.ovh.com/manager/', path: '#/catalog' },
   emailDomainProducts: {
-    application: 'hub',
+    baseURL: 'https://www.ovh.com/manager/',
     path: '#/:product',
     params: { product: 'email_domain' },
   },

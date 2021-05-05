@@ -1,5 +1,5 @@
 {
-  "dedicated_server_terminate_success_engaged": "Your request has been submitted and will be processed shortly.",
-  "dedicated_server_terminate_confirm": "Confirm",
-  "dedicated_server_terminate_cancel": "Cancel"
+  "dedicated_server_terminate_success_engaged": "La tua richiesta è stata presa in carico e verrà gestita nel minor tempo possibile.",
+  "dedicated_server_terminate_confirm": "Conferma",
+  "dedicated_server_terminate_cancel": "Annulla"
 }

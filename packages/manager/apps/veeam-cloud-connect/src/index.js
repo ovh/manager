@@ -1,31 +1,28 @@
 import 'script-loader!jquery'; // eslint-disable-line
-import 'script-loader!moment/min/moment-with-locales.min'; // eslint-disable-line
-
+import 'whatwg-fetch';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import {
+  attach as attachPreloader,
+  displayMessage,
+} from '@ovh-ux/manager-preloader';
 
-import angular from 'angular';
-import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
-import ovhManagerCore from '@ovh-ux/manager-core';
-import ovhManagerVeeamCloudConnect from '@ovh-ux/manager-veeam-cloud-connect';
-import { Environment } from '@ovh-ux/manager-config';
+import registerApplication from '@ovh-ux/ufrontend/application';
+import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
 
-Environment.setRegion(__WEBPACK_REGION__);
+attachPreloader(findAvailableLocale(detectUserLocale()));
 
-angular
-  .module('veeamCloudConnectApp', [
-    ngUiRouterBreadcrumb,
-    ovhManagerCore,
-    ovhManagerVeeamCloudConnect,
-  ])
-  .config(
-    /* @ngInject */ () => {
-      const defaultLanguage = Environment.getUserLanguage();
-      moment.locale(defaultLanguage);
-    },
-  )
-  .config(
-    /* @ngInject */ ($urlRouterProvider) => {
-      $urlRouterProvider.otherwise('/veeam');
-    },
-  );
+registerApplication('veeam-cloud-connect').then(({ environment }) => {
+  environment.setVersion(__VERSION__);
+
+  if (environment.getMessage()) {
+    displayMessage(environment.getMessage(), environment.getUserLanguage());
+  }
+
+  import(`./config-${environment.getRegion()}`)
+    .catch(() => {})
+    .then(() => import('./app.module'))
+    .then(({ default: startApplication }) => {
+      startApplication(document.body, environment);
+    });
+});

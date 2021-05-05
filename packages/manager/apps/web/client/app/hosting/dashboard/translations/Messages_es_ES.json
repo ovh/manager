@@ -1294,7 +1294,6 @@
   "hosting_common_no_filter": "Sin filtro",
   "hosting_tab_DOMAINS_ovhcontrol_token": "token ovhcontrol",
   "hosting_tab_DOMAINS_ovhcontrol_token_help": "Valor a introducir en un campo TXT en el proveedor que posea el nombre de dominio para poder añadirlo a su alojamiento. ",
-  "hosting_tab_WEBSITE_COACH": "Website Coach",
   "hosting_change_main_domain_mx_005": "5 MX ",
   "hosting_change_main_domain_mx_025": "25 MX ",
   "hosting_change_main_domain_mx_100": "100 MX ",

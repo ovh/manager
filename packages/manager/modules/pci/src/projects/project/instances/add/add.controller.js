@@ -78,7 +78,7 @@ export default class PciInstancesAddController {
     this.selectedPrivateNetwork = this.defaultPrivateNetwork;
     this.availablePrivateNetworks = [this.defaultPrivateNetwork];
     this.automatedBackup = {
-      available: this.coreConfig.getRegion() !== 'US',
+      available: !this.coreConfig.isRegion('US'),
       selected: false,
       schedule: null,
       price: null,

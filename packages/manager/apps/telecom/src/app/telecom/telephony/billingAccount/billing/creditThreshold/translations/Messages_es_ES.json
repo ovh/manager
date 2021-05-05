@@ -8,7 +8,7 @@
   "telephony_group_billing_credit_threshold_new_credit": "Cuando acepte, su límite será de:",
   "telephony_group_billing_credit_threshold_without_tax": "+ IVA",
   "telephony_group_billing_credit_threshold_contracts_subtitle": "Aceptación de los contratos",
-  "telephony_group_billing_credit_threshold_contracts": "Es necesario aceptar los contratos con OVH antes de enviar la solicitud de depósito de fianza.",
+  "telephony_group_billing_credit_threshold_contracts": "Es necesario aceptar los contratos con OVHcloud antes de enviar la solicitud de depósito de fianza.",
   "telephony_group_billing_credit_threshold_submit": "Editar",
   "telephony_group_billing_credit_threshold_success": "La solicitud de modificación del límite se ha enviado."
 }

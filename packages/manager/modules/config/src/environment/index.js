@@ -1,3 +1,3 @@
-import EnvironmentService from './environment.service';
+import Environment from './environment.service';
 
-export default new EnvironmentService();
+export default Environment;

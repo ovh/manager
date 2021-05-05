@@ -1,4 +1,3 @@
-import { Environment } from '@ovh-ux/manager-config';
 import get from 'lodash/get';
 import { MESSAGES_CONTAINER_NAME } from './edit.constant';
 import { PCI_HDS_ADDON } from '../project.constants';
@@ -119,8 +118,13 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
           ),
 
-      prepareCart: /* @ngInject */ (project, orderCart, hds) => () => {
-        const { ovhSubsidiary } = Environment.getUser();
+      prepareCart: /* @ngInject */ (
+        coreConfig,
+        project,
+        orderCart,
+        hds,
+      ) => () => {
+        const { ovhSubsidiary } = coreConfig.getUser();
         return orderCart
           .createNewCart(ovhSubsidiary, hds.option.planCode)
           .then((cart) => orderCart.assignCart(cart.cartId).then(() => cart))

@@ -27,7 +27,7 @@
   "private_registry_common_status_DELETED": "Gelöscht",
   "private_registry_common_status_SUSPENDED": "Ausgesetzt",
   "private_registry_common_status_INSTALLING": "Wird installiert",
-  "private_registry_common_status_UPDATING": "Aktualisierung",
+  "private_registry_common_status_UPDATING": "Wird aktualisiert",
   "private_registry_common_status_RESTORING": "Wiederherstellung",
   "private_registry_common_status_TO_SUSPENDING": "Aussetzen",
   "private_registry_common_status_DELETING": "Wird gelöscht",

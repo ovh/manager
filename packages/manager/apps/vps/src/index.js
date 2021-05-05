@@ -1,53 +1,28 @@
-/* eslint-disable import/extensions, import/no-webpack-loader-syntax */
+import 'script-loader!jquery'; // eslint-disable-line
+import 'whatwg-fetch';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import 'script-loader!jquery';
-import 'script-loader!moment/min/moment-with-locales.min';
-import 'script-loader!jsurl/lib/jsurl';
-import 'script-loader!bootstrap/dist/js/bootstrap';
-/* eslint-enable import/extensions, import/no-webpack-loader-syntax */
+import {
+  attach as attachPreloader,
+  displayMessage,
+} from '@ovh-ux/manager-preloader';
 
-import { Environment } from '@ovh-ux/manager-config';
+import registerApplication from '@ovh-ux/ufrontend/application';
+import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
 
-import angular from 'angular';
-import cloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
-import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
-import ovhManagerVps from '@ovh-ux/manager-vps';
-import ovhManagerCore from '@ovh-ux/manager-core';
-import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
+attachPreloader(findAvailableLocale(detectUserLocale()));
 
-import { momentConfiguration } from './config';
+registerApplication('vps').then(({ environment }) => {
+  environment.setVersion(__VERSION__);
 
-import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
+  if (environment.getMessage()) {
+    displayMessage(environment.getMessage(), environment.getUserLanguage());
+  }
 
-Environment.setRegion(__WEBPACK_REGION__);
-
-angular
-  .module('vpsApp', [
-    cloudUniverseComponents,
-    ngUiRouterBreadcrumb,
-    ovhManagerCore,
-    ovhManagerVps,
-    ngOvhPaymentMethod,
-  ])
-  .config(
-    /* @ngInject */ (CucConfigProvider, coreConfigProvider) => {
-      CucConfigProvider.setRegion(coreConfigProvider.getRegion());
-    },
-  )
-  .config(
-    /* @ngInject */ (ovhPaymentMethodProvider) => {
-      ovhPaymentMethodProvider.setUserLocale(Environment.getUserLocale());
-    },
-  )
-  .config(momentConfiguration)
-  .config(
-    /* @ngInject */ ($qProvider) => {
-      $qProvider.errorOnUnhandledRejections(false);
-    },
-  )
-  .config(
-    /* @ngInject */ ($urlRouterProvider) => {
-      $urlRouterProvider.otherwise('/vps');
-    },
-  );
+  import(`./config-${environment.getRegion()}`)
+    .catch(() => {})
+    .then(() => import('./app.module'))
+    .then(({ default: startApplication }) => {
+      startApplication(document.body, environment);
+    });
+});

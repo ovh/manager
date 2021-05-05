@@ -87,22 +87,35 @@
                                         </a>
                                     </div>
                                 </div>
-                                <h2
-                                    data-translate="pci_projects_project_documentation"
-                                ></h2>
-                                <ul>
-                                    <li
-                                        data-ng-repeat="link in $ctrl.links track by $index"
-                                    >
-                                        <a
-                                            data-ng-href="{{ ::link.href }}"
-                                            target="_blank"
-                                            rel="noopener"
-                                            >{{ ::link.translation | translate
-                                            }}</a
+                                <div class="row">
+                                    <div class="col-sm-6 mb-4">
+                                        <h2
+                                            data-translate="pci_projects_project_documentation"
+                                        ></h2>
+                                        <ul>
+                                            <li
+                                                data-ng-repeat="link in $ctrl.links track by $index"
+                                            >
+                                                <a
+                                                    data-ng-href="{{ ::link.href }}"
+                                                    target="_blank"
+                                                    rel="noopener"
+                                                    data-translate="{{ ::link.translation }}"
+                                                ></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6 mb-4">
+                                        <!-- Advices -->
+                                        <ovh-advices
+                                            url="/cloud/:serviceName"
+                                            url-params="{
+                                                serviceName: $ctrl.projectId,
+                                            }"
                                         >
-                                    </li>
-                                </ul>
+                                        </ovh-advices>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

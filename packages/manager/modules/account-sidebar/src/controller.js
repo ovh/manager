@@ -1,13 +1,20 @@
-import { Environment } from '@ovh-ux/manager-config';
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default class OvhManagerAccountSidebarCtrl {
   /* @ngInject */
-  constructor($q, $rootScope, $translate, atInternet, RedirectionService) {
+  constructor(
+    $q,
+    $rootScope,
+    $translate,
+    atInternet,
+    coreConfig,
+    coreURLBuilder,
+    RedirectionService,
+  ) {
     this.$q = $q;
     this.$rootScope = $rootScope;
     this.$translate = $translate;
     this.atInternet = atInternet;
+    this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
     this.RedirectionService = RedirectionService;
 
     this.$rootScope.$on('ovh::sidebar::toggle', () => {
@@ -28,7 +35,7 @@ export default class OvhManagerAccountSidebarCtrl {
 
   $onInit() {
     if (!this.me) {
-      this.me = Environment.getUser();
+      this.me = this.coreConfig.getUser();
     }
 
     this.hasChatbot = false;
@@ -77,15 +84,18 @@ export default class OvhManagerAccountSidebarCtrl {
         label: this.$translate.instant('hub_links_tasks'),
       },
       {
-        href: buildURL('dedicated', '#/ticket'),
+        href: this.coreURLBuilder.buildURL('dedicated', '#/ticket'),
         tracking: `${trackingPrefix}::go-to-tickets`,
         icon: 'oui-icon oui-icon-envelop_concept',
         label: this.$translate.instant('hub_links_tickets'),
       },
-      ...(['EU', 'CA'].includes(Environment.getRegion())
+      ...(this.coreConfig.isRegion(['EU', 'CA'])
         ? [
             {
-              href: buildURL('dedicated', '#/support/tickets/new'),
+              href: this.coreURLBuilder.buildURL(
+                'dedicated',
+                '#/support/tickets/new',
+              ),
               tracking: `${trackingPrefix}::go-to-create-ticket`,
               icon: 'oui-icon oui-icon-user-support_concept',
               label: this.$translate.instant('hub_links_create_ticket'),

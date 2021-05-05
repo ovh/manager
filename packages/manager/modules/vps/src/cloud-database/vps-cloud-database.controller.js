@@ -7,9 +7,6 @@ import isString from 'lodash/isString';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-import { Environment } from '@ovh-ux/manager-config';
-
 export default class {
   /* @ngInject */
   constructor(
@@ -19,6 +16,7 @@ export default class {
     $translate,
     $window,
     coreConfig,
+    coreURLBuilder,
     CucCloudMessage,
     CucControllerHelper,
     OvhApiHostingPrivateDatabase,
@@ -30,6 +28,7 @@ export default class {
     this.$translate = $translate;
     this.$window = $window;
     this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
     this.ApiPrivateDb = OvhApiHostingPrivateDatabase.v6();
@@ -196,10 +195,14 @@ export default class {
   goToCloudDatabase(database) {
     const { serviceName } = database;
     this.$window.open(
-      Environment.getRegion() === 'EU'
-        ? buildURL('web', '#/configuration/private_database/:serviceName', {
-            serviceName,
-          })
+      this.coreConfig.isRegion('EU')
+        ? this.coreURLBuilder.buildURL(
+            'web',
+            '#/configuration/private_database/:serviceName',
+            {
+              serviceName,
+            },
+          )
         : null,
     );
   }

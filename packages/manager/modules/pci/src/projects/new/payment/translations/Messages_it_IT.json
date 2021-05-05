@@ -9,5 +9,8 @@
   "pci_project_new_payment_checkout_error": "Si è verificato un errore durante la creazione del tuo progetto Public Cloud. Ti preghiamo di riprovare.",
   "pci_project_new_payment_challenge_error_payment_method_deactivated": "La verifica del metodo di pagamento non è andata a buon fine e verrà quindi disattivato. Per poter creare un nuovo progetto, scegli un altro metodo di pagamento.",
   "pci_project_new_payment_set_default_payment_method_error": "Si è verificato un errore durante l’aggiornamento del metodo di pagamento in modalità predefinita.",
-  "pci_project_new_payment_information": "Informazioni bancarie"
+  "pci_project_new_payment_information": "Informazioni bancarie",
+  "pci_project_new_payment_pending_check": "In attesa di conferma del tuo metodo di pagamento",
+  "pci_project_new_payment_check_error": "La verifica del tuo metodo di pagamento presso il tuo istituto bancario sta richiedendo tempi anomali.",
+  "pci_project_new_payment_check_payment_method_status": "Ti consigliamo di consultare lo stato di quest'ultimo nella lista dei metodi di pagamento e ripristinare il tuo progetto Public Cloud una volta convalidato il metodo di pagamento."
 }

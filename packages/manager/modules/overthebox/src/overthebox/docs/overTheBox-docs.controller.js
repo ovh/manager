@@ -1,12 +1,11 @@
 import forEach from 'lodash/forEach';
 import snakeCase from 'lodash/snakeCase';
 
-import { Environment } from '@ovh-ux/manager-config';
-
 export default class OverTheBoxDocsCtrl {
   /* @ngInject */
-  constructor($translate, OVER_THE_BOX) {
+  constructor($translate, coreConfig, OVER_THE_BOX) {
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.OVER_THE_BOX = OVER_THE_BOX;
   }
 
@@ -26,7 +25,7 @@ export default class OverTheBoxDocsCtrl {
   }
 
   $onInit() {
-    this.language = Environment.getUserLanguage();
+    this.language = this.coreConfig.getUserLanguage();
     this.docs = this.OVER_THE_BOX;
     this.injectTitleInUrl(this.docs, this.language);
   }

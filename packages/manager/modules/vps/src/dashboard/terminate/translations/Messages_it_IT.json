@@ -4,7 +4,7 @@
   "vps_terminate_cancel": "Annulla",
   "vps_terminate_confirm": "Conferma",
   "vps_terminate_success": "La richiesta di eliminazione del servizio è stata presa in carico. Riceverai un’email di conferma per convalidare l’operazione.",
-  "vps_terminate_success_engagement": "Your request has been submitted and will be processed shortly.",
+  "vps_terminate_success_engagement": "La tua richiesta è stata presa in carico e verrà gestita nel minor tempo possibile.",
   "vps_terminate_error": "Si è verificato un errore durante l'eliminazione del servizio.",
   "vps_terminate_unavailable": "Hai attivato il servizio con un impegno contrattuale di {{ monthCount }} mesi. Per eventuali domande o ricevere maggiori informazioni, contatta il nostro servizio clienti tramite chat o <a class=\"oui-link\" href=\"{{supportTicketLink}}\" target=\"_blank\" rel=\"noopener\">ticket di assistenza</a>. Grazie per la comprensione",
   "vps_terminate_option_terminate_at_expiration": "Elimina il servizio alla data di scadenza",

@@ -3,8 +3,6 @@ import get from 'lodash/get';
 import isString from 'lodash/isString';
 import set from 'lodash/set';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default /* @ngInject */ function EmailProCtrl(
   $q,
   $rootScope,
@@ -27,6 +25,7 @@ export default /* @ngInject */ function EmailProCtrl(
   taskLink,
   EMAILPRO_CONFIG,
   coreConfig,
+  coreURLBuilder,
 ) {
   $scope.currentRegionCA = coreConfig.isRegion('CA');
   $scope.accountTypeDedicated = EmailPro.accountTypeDedicated;
@@ -160,7 +159,7 @@ export default /* @ngInject */ function EmailProCtrl(
         if ($scope.exchange.isMXPlan) {
           $scope.displayGuides = null;
 
-          $scope.MXPLAN_AUTORENEW_URL = buildURL(
+          $scope.MXPLAN_AUTORENEW_URL = coreURLBuilder.buildURL(
             'dedicated',
             '#/billing/autoRenew',
             {
@@ -509,7 +508,7 @@ export default /* @ngInject */ function EmailProCtrl(
   };
 
   $scope.getAutoRenewURL = () =>
-    buildURL('dedicated', '#/billing/autoRenew', {
+    coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
       searchText: $scope.exchange.domain,
     });
 

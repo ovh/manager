@@ -1,5 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 const MESSAGES_CONTAINER_NAME = 'pci.projects.project.failover-ips';
 
 export default class FailoverIpController {
@@ -7,6 +5,7 @@ export default class FailoverIpController {
   constructor(
     $state,
     $translate,
+    coreURLBuilder,
     CucCloudMessage,
     OvhApiCloudProjectIpFailover,
   ) {
@@ -15,7 +14,10 @@ export default class FailoverIpController {
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiCloudProjectIpFailover = OvhApiCloudProjectIpFailover;
 
-    this.DEDICATED_IPS_URL = buildURL('dedicated', '#/configuration/ip');
+    this.DEDICATED_IPS_URL = coreURLBuilder.buildURL(
+      'dedicated',
+      '#/configuration/ip',
+    );
   }
 
   $onInit() {

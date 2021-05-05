@@ -1,6 +1,5 @@
 import isString from 'lodash/isString';
 import set from 'lodash/set';
-import { Environment } from '@ovh-ux/manager-config';
 
 angular.module('App').controller(
   'SessionCtrl',
@@ -13,6 +12,7 @@ angular.module('App').controller(
       $state,
       $transitions,
       $translate,
+      coreConfig,
       ovhFeatureFlipping,
     ) {
       this.$document = $document;
@@ -21,6 +21,7 @@ angular.module('App').controller(
       this.$state = $state;
       this.$transitions = $transitions;
       this.$translate = $translate;
+      this.coreConfig = coreConfig;
       this.ovhFeatureFlipping = ovhFeatureFlipping;
       this.chatbotEnabled = false;
     }
@@ -29,11 +30,11 @@ angular.module('App').controller(
       this.$scope.$on('switchUniverse', (event, universe) => {
         this.sidebarNamespace = universe === 'server' ? undefined : 'hpc';
         this.navbarOptions.universe = universe;
-        Environment.setUniverse(universe);
+        this.coreConfig.setUniverse(universe);
       });
 
-      this.currentLanguage = Environment.getUserLanguage();
-      this.user = Environment.getUser();
+      this.currentLanguage = this.coreConfig.getUserLanguage();
+      this.user = this.coreConfig.getUser();
       const unregisterListener = this.$scope.$on('app:started', () => {
         const CHATBOT_FEATURE = 'chatbot';
         this.ovhFeatureFlipping

@@ -8,5 +8,5 @@
   "hosting_multisite_statistics_period_week": "Woche",
   "hosting_multisite_statistics_period_month": "Monate",
   "hosting_multisite_statistics_period_year": "Jahr",
-  "hosting_multisite_statistics_loading_error": "Beim Abrufen der Snapshots ist ein Fehler aufgetreten."
+  "hosting_multisite_statistics_loading_error": "Beim Abrufen der Statistiken ist ein Fehler aufgetreten."
 }
