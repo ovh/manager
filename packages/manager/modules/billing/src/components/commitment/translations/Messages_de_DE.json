@@ -20,11 +20,12 @@
   "billing_commitment_payment_method_add": "Neues Zahlungsmittel hinzufügen",
   "billing_commitment_summary": "Abschluss",
   "billing_commitment_summary_description_periodic": "Ab dem {{ renewDate }} wird Ihr Dienst {{ serviceName }} bis zum {{ engagementEndDate }} jeden Monat automatisch verlängert.",
-  "billing_commitment_summary_description_upfront": "Ab dem {{ renewDate }} wird Ihr Dienst {{ serviceName }} bis zum {{ engagementEndDate }} abonniert.",
+  "billing_commitment_summary_description_upfront": "Das Abonnement Ihres Dienstes {{ serviceName }} ist vom {{ renewDate }} bis zum {{ engagementEndDate }} aktiv.",
   "billing_commitment_summary_description_payment": "Der Betrag wird von Ihrem Standardzahlungsmittel abgebucht: {{ paymentMethodType }} {{ paymentMethodName }}.",
   "billing_commitment_success": "Die Abonnementbestellung des Dienstes wurde erfolgreich durchgeführt. ",
   "billing_commitment_success_purchase": "Bitte beenden Sie die Zahlung Ihres <a href=\"{{url}}\" target=\"_blank\">Bestellscheins</a>.",
   "billing_commitment_error": "Es ist ein Fehler aufgetreten.",
   "billing_commitment_summary_description_end": "Nach dem {{ endDate }} wird Ihre Dienstleistung stillschweigend für einen Zeitraum wie den Ihrer letzten Vertragslaufzeit erneut aktiviert.",
-  "billing_commitment_summit": "Bestätigen"
+  "billing_commitment_summit": "Bestätigen",
+  "billing_commitment_service_vps": "Virtual Private Server"
 }
