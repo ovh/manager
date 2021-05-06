@@ -2,8 +2,6 @@ import { SupportLevel } from '@ovh-ux/manager-models';
 
 import Offer from '../components/project/offer/offer.class';
 
-import { GUIDES_URL } from '../components/project/guides-header/guides-header.constants';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects', {
     url: '/projects',
@@ -55,8 +53,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-
-      guideUrl: () => GUIDES_URL,
 
       isHdsAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
         const hdsId = 'public-cloud:hds';

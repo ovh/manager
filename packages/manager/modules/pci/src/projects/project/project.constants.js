@@ -18,7 +18,7 @@ export const ACTIONS = [
   {
     translation: 'pci_projects_project_create_cluster_kubernetes',
     state: 'pci.projects.project.kubernetes',
-    regions: ['CA', 'EU'],
+    feature: 'kubernetes',
   },
 ];
 

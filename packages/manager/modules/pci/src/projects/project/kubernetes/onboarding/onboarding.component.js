@@ -8,5 +8,6 @@ export default {
     addCluster: '<',
     regions: '<',
     sendKubeTrack: '<',
+    user: '<',
   },
 };

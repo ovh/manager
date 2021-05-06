@@ -101,7 +101,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.kubernetes',
         },
         title: 'Managed Kubernetes Service',
-        regions: ['CA', 'EU'],
+        feature: 'kubernetes',
       },
       {
         id: 'private-registry',
@@ -120,7 +120,6 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         regions: ['CA', 'EU'],
       },
     ],
-    regions: ['CA', 'EU'],
     title: 'Containers & Orchestration',
   },
   {
