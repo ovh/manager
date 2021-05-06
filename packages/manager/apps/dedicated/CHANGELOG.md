@@ -1,3 +1,12 @@
+# [16.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.23.4...@ovh-ux/manager-dedicated@16.24.0) (2021-05-06)
+
+
+### Features
+
+* **vps:** commitment ([#4399](https://github.com/ovh/manager/issues/4399)) ([2afdbb2](https://github.com/ovh/manager/commit/2afdbb272a0f5fa4ca09ad933353a48d471d8ab9))
+
+
+
 ## [16.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.23.3...@ovh-ux/manager-dedicated@16.23.4) (2021-05-06)
 
 
