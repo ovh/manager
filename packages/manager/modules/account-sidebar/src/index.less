@@ -17,6 +17,10 @@
 
   .manager-hub-user-panel {
     width: 0;
+    a,
+    button {
+      pointer-events: none;
+    }
   }
 
   .sidebar-show() {
@@ -27,6 +31,10 @@
 
     .manager-hub-user-panel {
       width: @ovh-sidebar-width;
+      a,
+      button {
+        pointer-events: auto;
+      }
     }
   }
 
