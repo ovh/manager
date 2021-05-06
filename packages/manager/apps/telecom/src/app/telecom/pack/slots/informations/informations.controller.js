@@ -1,6 +1,6 @@
 import head from 'lodash/head';
 
-import { IG_MAP_URL, TRAVAUX_URL } from './informations.constants';
+import { IG_MAP_URL, TRAVAUX_URL, GUIDES_URL } from './informations.constants';
 
 export default /* @ngInject */ function PackInformationCtrl(
   $scope,
@@ -58,6 +58,7 @@ export default /* @ngInject */ function PackInformationCtrl(
     self.servicesStateLink = {
       igmap: IG_MAP_URL.FR,
       travaux: TRAVAUX_URL,
+      guides: GUIDES_URL.FR,
     };
 
     return $q
