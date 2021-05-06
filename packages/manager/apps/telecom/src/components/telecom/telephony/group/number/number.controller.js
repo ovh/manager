@@ -44,6 +44,7 @@ export default class TelephonyNumberCtrl {
 
     this.verticalLayout = true;
     this.reorderingMode = false;
+    this.actionsShowAll = false;
 
     this.$scope.$on('dialplan.extensions.loaded', () => {
       this.dialplanLoaded = true;
