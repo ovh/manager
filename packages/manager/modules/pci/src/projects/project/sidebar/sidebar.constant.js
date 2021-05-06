@@ -43,6 +43,15 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         title: 'Object Storage',
       },
       {
+        id: 'databases',
+        beta: true,
+        options: {
+          state: 'pci.projects.project.storages.databases',
+        },
+        title: 'Databases',
+        feature: 'databases',
+      },
+      {
         id: 'archive',
         options: {
           state: 'pci.projects.project.storages.archives',

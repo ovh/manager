@@ -1,0 +1,57 @@
+<h5 data-translate="pci_database_order_review_title"></h5>
+
+<dl>
+    <div class="row mb-2">
+        <dt
+            class="col-sm-3 font-weight-normal"
+            data-translate="pci_database_order_review_selected_database"
+        ></dt>
+        <dd class="col-sm-9 my-auto">
+            <span data-ng-bind="$ctrl.capitalize($ctrl.engine)"></span>
+            <span data-ng-bind="$ctrl.version"></span>
+        </dd>
+    </div>
+    <div class="row mb-2">
+        <dt
+            class="col-sm-3 font-weight-normal"
+            data-translate="pci_database_order_review_selected_plan"
+        ></dt>
+        <dd
+            class="col-sm-9 my-auto"
+            data-ng-bind="$ctrl.capitalize($ctrl.plan)"
+        ></dd>
+    </div>
+    <div class="row mb-2">
+        <dt
+            class="col-sm-3 font-weight-normal"
+            data-translate="pci_database_order_review_selected_flavor"
+        ></dt>
+        <dd class="col-sm-9 my-auto">
+            <p class="mb-0">
+                <span data-ng-bind="$ctrl.flavor.nodesCount"></span>
+                <span
+                    data-translate="{{ ($ctrl.flavor.nodesCount === 1 ? 'pci_database_order_review_nodes_single' : 'pci_database_order_review_nodes_multi') | translate }}"
+                ></span>
+            </p>
+            <p
+                class="mb-0"
+                data-ng-bind="$ctrl.capitalize($ctrl.flavor.name)"
+            ></p>
+        </dd>
+    </div>
+    <div class="row mb-2" data-ng-if="$ctrl.flavor">
+        <dt
+            class="col-sm-3 font-weight-normal"
+            data-translate="pci_database_common_price"
+        ></dt>
+        <dd class="col-sm-9 my-auto">
+            <ovh-manager-catalog-price
+                data-price="$ctrl.flavor.monthlyPrice.priceInUcents"
+                data-tax="$ctrl.flavor.monthlyPrice.tax"
+                data-user="$ctrl.user"
+                data-show-zero-price="true"
+            >
+            </ovh-manager-catalog-price>
+        </dd>
+    </div>
+</dl>

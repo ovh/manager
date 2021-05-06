@@ -1,0 +1,14 @@
+<oui-modal
+    data-heading="{{:: 'pci_databases_backups_restore_title' | translate }}"
+    data-primary-label="{{:: 'pci_databases_backups_restore_confirm' | translate }}"
+    data-primary-action="$ctrl.restoreInstance()"
+    data-secondary-label="{{:: 'pci_databases_backups_restore_cancel' | translate }}"
+    data-secondary-action="$ctrl.cancel()"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading"
+>
+    <p
+        data-translate="pci_databases_backups_restore_description"
+        data-translate-values="{ name: $ctrl.backupInstance.description }"
+    ></p>
+</oui-modal>

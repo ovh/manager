@@ -1,0 +1,13 @@
+export const STATUS = {
+  CREATING: 'CREATING',
+  DELETING: 'DELETING',
+  ERROR: 'ERROR',
+  ERROR_SPEC: 'ERROR_INCONSISTENT_SPEC',
+  PENDING: 'PENDING',
+  READY: 'READY',
+  UPDATING: 'UPDATING',
+};
+
+export default {
+  STATUS,
+};

@@ -9,7 +9,7 @@
   "pci_projects_project_users_status_deleting": "Suppression en cours",
   "pci_projects_project_users_status_deleted": "Supprimé",
   "pci_projects_project_users_status_updating": "Mise à jour en cours",
-  "pci_projects_project_users_status_ready": "Déployé",
+  "pci_projects_project_users_status_ready": "Activé",
   "pci_projects_project_users_status_error": "En erreur",
   "pci_projects_project_users_status_error_inconsistent_spec": "En erreur",
   "pci_projects_project_users_status_pending": "En attente",

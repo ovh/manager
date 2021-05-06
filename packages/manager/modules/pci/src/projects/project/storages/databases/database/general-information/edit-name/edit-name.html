@@ -1,0 +1,29 @@
+<form name="editName">
+    <oui-modal
+        data-on-dismiss="$ctrl.goBack()"
+        data-primary-label="{{:: 'pci_databases_general_information_edit_name_edit' | translate}}"
+        data-primary-disabled="!editName.$valid"
+        data-primary-action="$ctrl.edit()"
+        data-secondary-action="$ctrl.cancel()"
+        data-secondary-label="{{:: 'pci_databases_general_information_edit_name_cancel' | translate}}"
+        data-loading="$ctrl.isEditing"
+        data-heading="{{:: 'pci_databases_general_information_edit_name' | translate}}"
+    >
+        <p
+            data-translate="pci_databases_general_information_edit_name_description"
+        ></p>
+        <oui-field
+            data-label="{{::'pci_databases_general_information_edit_name_label' | translate}}"
+        >
+            <input
+                type="text"
+                id="databaseName"
+                name="databaseName"
+                class="oui-input"
+                data-ng-model="$ctrl.name"
+                required
+                autofocus
+            />
+        </oui-field>
+    </oui-modal>
+</form>
