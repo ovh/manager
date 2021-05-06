@@ -1,4 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import get from 'lodash/get';
 import set from 'lodash/set';
 
@@ -12,6 +11,7 @@ angular.module('Billing.controllers').controller(
       $translate,
       Alerter,
       BillingCredits,
+      coreURLBuilder,
       totalAmount,
     ) {
       this.$q = $q;
@@ -35,7 +35,10 @@ angular.module('Billing.controllers').controller(
         getMovement: false,
       };
 
-      this.incidentServicesStatus = buildURL('hub', '#/incident/SBG/status');
+      this.incidentServicesStatus = coreURLBuilder.buildURL(
+        'hub',
+        '#/incident/SBG/status',
+      );
 
       this.currentDate = $filter('date')(new Date(), 'longDate');
     }
