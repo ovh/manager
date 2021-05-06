@@ -3,7 +3,8 @@ import { SMS_COMPOSE } from '../../sms/compose/telecom-sms-sms-compose.constant'
 
 export default class SmsCompositionController {
   /* @ngInject */
-  constructor(TucSmsMediator) {
+  constructor($timeout, TucSmsMediator) {
+    this.$timeout = $timeout;
     this.TucSmsMediator = TucSmsMediator;
   }
 
@@ -12,16 +13,20 @@ export default class SmsCompositionController {
   }
 
   getMessageDetails(noStopValue) {
-    const isShort =
-      this.model.sender &&
-      SmsCompositionController.isShortNumber(this.model.sender)
-        ? true
-        : this.model.noStopClause;
-    const suffix = noStopValue !== undefined ? noStopValue : isShort;
-    this.model.messageDetails = this.TucSmsMediator.getSmsInfoText(
-      this.model.message,
-      !suffix,
-    );
+    // timeout is here because the onChange event of the oui-textarea
+    // is triggered before the model is updated
+    this.$timeout(() => {
+      const isShort =
+        this.model.sender &&
+        SmsCompositionController.isShortNumber(this.model.sender)
+          ? true
+          : this.model.noStopClause;
+      const suffix = noStopValue !== undefined ? noStopValue : isShort;
+      this.model.messageDetails = this.TucSmsMediator.getSmsInfoText(
+        this.model.message,
+        !suffix,
+      );
+    });
   }
 
   canHaveSTOPAnswer() {
