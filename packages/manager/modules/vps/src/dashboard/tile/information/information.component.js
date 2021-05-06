@@ -5,7 +5,7 @@ export default {
     actions: '<',
     regionsGroup: '<',
     vps: '<',
-
+    vpsState: '<',
     goToKvm: '<',
     goToReboot: '<',
     goToRebootRescue: '<',
