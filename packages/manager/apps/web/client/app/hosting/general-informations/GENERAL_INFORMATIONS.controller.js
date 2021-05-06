@@ -20,6 +20,7 @@ export default class HostingGeneralInformationsCtrl {
     coreURLBuilder,
     Alerter,
     boostLink,
+    flushCDNLink,
     localSEOLink,
     multisiteLink,
     runtimesLink,
@@ -41,6 +42,7 @@ export default class HostingGeneralInformationsCtrl {
     this.coreURLBuilder = coreURLBuilder;
     this.Alerter = Alerter;
     this.boostLink = boostLink;
+    this.flushCDNLink = flushCDNLink;
     this.localSEOLink = localSEOLink;
     this.multisiteLink = multisiteLink;
     this.runtimesLink = runtimesLink;
