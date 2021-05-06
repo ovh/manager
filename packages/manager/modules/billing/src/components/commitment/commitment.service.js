@@ -36,10 +36,27 @@ export default class CommitmentService {
       });
   }
 
-  commit(service, engagement) {
+  commit(service, engagement, paymentMethod) {
     return this.$http
       .post(`/services/${service.serviceId}/billing/engagement/request`, {
         pricingMode: engagement.pricingMode,
+      })
+      .then(({ data }) => data)
+      .then(({ order }) => {
+        if (paymentMethod && order && order.url) {
+          return this.payOrder(paymentMethod, order).catch(() => order);
+        }
+
+        return this.$q.when(order);
+      });
+  }
+
+  payOrder(paymentMethod, order) {
+    return this.$http
+      .post(`/me/order/${order.orderId}/pay`, {
+        data: {
+          id: paymentMethod.paymentMethodId,
+        },
       })
       .then(({ data }) => data);
   }

@@ -5,7 +5,6 @@ import Certificate from './certificate/Certificate.class';
 import Commitment from './service/Commitment.class';
 import DebtAccount from './billing/DebtAccount.class';
 import DedicatedCloud from './dedicatedCloud/dedicatedCloud.class';
-import EngagementConfiguration from './service/EngagementConfiguration.class';
 import PartnerLevel from './support/level/PartnerLevel.class';
 import Price from './Price/Price.class';
 import Pricing from './service/Pricing.class';
@@ -22,7 +21,6 @@ export {
   Commitment,
   DebtAccount,
   DedicatedCloud,
-  EngagementConfiguration,
   PartnerLevel,
   Price,
   Pricing,
@@ -42,7 +40,6 @@ export default {
   Commitment,
   DebtAccount,
   DedicatedCloud,
-  EngagementConfiguration,
   PartnerLevel,
   Price,
   Service,
