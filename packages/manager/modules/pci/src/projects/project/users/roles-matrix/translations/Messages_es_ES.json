@@ -1,8 +1,0 @@
-{
- "pci_projects_project_users_roles_matrix_customize": "Filtrar las columnas",
- "pci_projects_project_users_roles_matrix_role": "Rol",
- "pci_projects_project_users_roles_matrix_authorization": "Autorización",
- "pci_projects_project_users_roles_matrix_permission_active": "Autorizado",
- "pci_projects_project_users_roles_matrix_permission_inactive": "No autorizado",
- "pci_projects_project_users_roles_matrix_permission_select": "Seleccione un rol"
-}
