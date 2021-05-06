@@ -187,10 +187,6 @@ export default class {
       });
   }
 
-  onBillingInformationError(error) {
-    return this.CucCloudMessage.error(error);
-  }
-
   initBackupStorageActions() {
     this.backupStorageActions = {
       manage: {
@@ -214,7 +210,7 @@ export default class {
   }
 
   initSnapshotActions() {
-    this.snapshotDescription = this.tabSummary.snapshot?.creationDate
+    this.snapshotDescription = this.tabSummary.snapshot.creationDate
       ? `${this.$translate.instant(
           'vps_tab_SUMMARY_snapshot_creationdate',
         )} ${moment(this.tabSummary.snapshot.creationDate).format('LLL')}`
@@ -457,9 +453,6 @@ export default class {
           },
           terminate: {
             callback: () => this.$state.go('vps.detail.dashboard.terminate'),
-            isAvailable: () =>
-              this.resiliationCapability?.message ||
-              !this.engagement?.isPeriodic(),
           },
           terminateAdditionalDiskOption: {
             text: this.$translate.instant(

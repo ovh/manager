@@ -23,19 +23,17 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       cancelResiliation: /* @ngInject */ (
-        $q,
         BillingAutoRenew,
         engagement,
         hasEndRuleStrategies,
         setReactivateEngagementStrategy,
       ) => (service) => {
-        return (engagement && hasEndRuleStrategies
-          ? setReactivateEngagementStrategy()
-          : $q.when(0)
-        ).then(() => {
-          service.cancelResiliation();
-          return BillingAutoRenew.updateService(service);
-        });
+        if (engagement && hasEndRuleStrategies) {
+          return setReactivateEngagementStrategy();
+        }
+
+        service.cancelResiliation();
+        return BillingAutoRenew.updateService(service);
       },
       engagement: /* @ngInject */ ($http, service) =>
         (service.canHaveEngagement()
