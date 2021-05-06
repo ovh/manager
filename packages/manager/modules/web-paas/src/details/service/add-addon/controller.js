@@ -27,10 +27,21 @@ export default class {
   }
 
   getNextMonthPrice() {
-    this.nextMonthPrice =
-      get(this.addon, 'prices').find(({ capacities }) =>
-        capacities.includes('renew'),
-      ).price.value * this.addon.quantity;
+    const price = get(this.addon, 'prices').find(({ capacities }) =>
+      capacities.includes('renew'),
+    ).price.value;
+    if (this.addonType === 'additional-storage') {
+      const stagingQuantity = this.project.totalEnvironment();
+      this.nextMonthPrice = (2 + stagingQuantity) * price * this.addon.quantity;
+    } else {
+      this.nextMonthPrice = price * this.addon.quantity;
+    }
+  }
+
+  getTotalPrice() {
+    if (this.addonType !== 'additional-user-license') {
+      this.totalPrice = this.nextMonthPrice * this.quantity;
+    }
   }
 
   addStorage() {
@@ -38,13 +49,11 @@ export default class {
     this.quantity = this.presentCount + this.addon.quantity;
     this.WebPaas.getAddonSummary(this.project, this.addon, this.quantity)
       .then(({ contracts, prices, cart }) => {
-        this.getNextMonthPrice();
         this.cart = cart;
         this.contracts = contracts;
         this.prices = prices;
-        if (this.addonType !== 'additional-user-license') {
-          this.totalPrice = this.nextMonthPrice * this.quantity;
-        }
+        this.getNextMonthPrice();
+        this.getTotalPrice();
       })
       .catch((error) =>
         this.goBack(

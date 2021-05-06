@@ -27,6 +27,10 @@
                 data-ng-if="$ctrl.disabled"
             ></oui-spinner>
             <span
+                data-ng-if="$ctrl.disabled"
+                data-translate="web_paas_service_add_addon_fetching_price"
+            ></span>
+            <span
                 data-ng-if="!$ctrl.disabled"
                 data-translate="{{:: 'web_paas_service_add_addon_prorata_price_' + $ctrl.addonType.split('-').pop() }}"
                 data-translate-values="{

@@ -1,20 +1,20 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import 'angular-translate';
 import 'oclazyload';
-import '@ovh-ux/manager-core';
 
-const moduleName = 'ovhManagerWebPaasAddLazyLoad';
+const moduleName = 'ovhManagerWebPaasDetailsServiceEditRangeLazyloading';
 
 angular
-  .module(moduleName, ['ui.router', 'ovhManagerCore', 'oc.lazyLoad'])
+  .module(moduleName, ['pascalprecht.translate', 'ui.router', 'oc.lazyLoad'])
   .config(
     /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('web-paas.add.**', {
-        url: '/new',
+      $stateProvider.state('web-paas.dashboard.service.edit-range.**', {
+        url: '/edit-range',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./add.module').then((mod) =>
+          return import('./edit-range.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },

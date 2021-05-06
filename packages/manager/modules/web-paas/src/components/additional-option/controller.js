@@ -1,6 +1,10 @@
 import get from 'lodash/get';
 
 export default class WebPaasProjectAdditionalOptionCtrl {
+  $onInit() {
+    this.disabled = false;
+  }
+
   getPrice() {
     const { price } = get(this.option, 'prices').find(({ capacities }) =>
       capacities.includes('renew'),

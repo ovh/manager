@@ -4,19 +4,23 @@
     <p
         data-translate="web_paas_user_licences_range_text"
         data-translate-values="{
-           plan: $ctrl.project.offer,
-           maxUsers: $ctrl.project.availableUserLicenses(),
+           plan: $ctrl.project.selectedPlan.product,
+           addon: ($ctrl.project.totalLicences() - $ctrl.project.selectedPlan.getLicences()) || 0,
+           included: $ctrl.project.selectedPlan.getLicences()
         }"
     ></p>
     <p
         class="oui-badge"
         data-ng-class="{
-                    'oui-badge_success' : $ctrl.project.availableUserLicenses() < $ctrl.project.totalLicences(),
-                    'oui-badge_error' : $ctrl.project.availableUserLicenses() === $ctrl.project.totalLicences(),
+                    'oui-badge_success' : $ctrl.userList.length < $ctrl.project.totalLicences(),
+                    'oui-badge_error' : $ctrl.userList.length === $ctrl.project.totalLicences(),
                     }"
-        data-translate="{{:: 'web_paas_user_licences_used' | translate: { totalLicence: $ctrl.project.totalLicences(), numLicenceAvailable: $ctrl.project.availableUserLicenses() } }}"
+        data-translate="{{:: 'web_paas_user_licences_used' | translate: { totalLicence: $ctrl.project.totalLicences(), numLicenceAvailable: $ctrl.userList.length } }}"
     ></p>
-    <oui-message type="info">
+    <oui-message
+        type="info"
+        data-ng-if="$ctrl.userList.length === $ctrl.project.totalLicences()"
+    >
         <span data-translate="web_paas_user_licences_more_users"></span>
         <a href="{{$ctrl.addUserLink}}">
             <span

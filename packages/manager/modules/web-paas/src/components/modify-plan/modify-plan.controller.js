@@ -1,5 +1,5 @@
 import { get, set } from 'lodash';
-import { WORKFLOW_OPTIONS } from './add.constants';
+import { WORKFLOW_OPTIONS } from './modify-plan.constants';
 
 export default class {
   /* @ngInject */
@@ -32,6 +32,7 @@ export default class {
     this.isEditingOffers = false;
     this.isGettingAddons = false;
     this.isGettingCheckoutInfo = false;
+    this.orderInProgress = false;
     this.prices = null;
     this.additionalLicenceEdit = false;
 
@@ -61,9 +62,12 @@ export default class {
 
   onPlanSubmit() {
     if (this.isChangingPlan()) {
-      this.loadOptions();
+      if (this.shouldRemoveExtraLicences()) {
+        this.loadOptions();
+      }
+      return this.getUpgradePlan();
     }
-    this.loadCapabilities(this.project.offer);
+    return this.loadCapabilities(this.project.offer);
   }
 
   onPlanSelect(product) {
@@ -199,9 +203,6 @@ export default class {
   }
 
   onOptionsSubmit() {
-    if (this.isChangingPlan()) {
-      return this.upgradePlan();
-    }
     this.isGettingCheckoutInfo = true;
     return this.WebPaas.getOrderSummary(
       this.selectedPlan,
@@ -218,7 +219,7 @@ export default class {
       });
   }
 
-  upgradePlan() {
+  getUpgradePlan() {
     this.isGettingCheckoutInfo = true;
     set(this.selectedProject, 'quantity', 1);
     return this.WebPaas.getUpgradeCheckoutInfo(
@@ -237,19 +238,14 @@ export default class {
   }
 
   createWebPaas() {
+    this.orderInProgress = true;
     if (this.isChangingPlan()) {
-      return this.WebPaas.checkoutUpgrade(
-        this.selectedProject.serviceId,
-        this.selectedPlan,
-        this.selectedProject.quantity,
-      )
-        .then(({ order }) => {
-          this.onPlatformOrderSuccess(order);
-        })
-        .catch((error) => {
-          this.onPlatformOrderError(error);
-        });
+      return this.upgradePlan();
     }
+    return this.expressOrder();
+  }
+
+  expressOrder() {
     return this.WebPaas.gotToExpressOrder(
       this.selectedPlan,
       this.getConfiguration(),
@@ -259,6 +255,26 @@ export default class {
       })
       .catch((error) => {
         this.onPlatformOrderError(error);
+      })
+      .finally(() => {
+        this.orderInProgress = false;
+      });
+  }
+
+  upgradePlan() {
+    return this.WebPaas.checkoutUpgrade(
+      this.selectedProject.serviceId,
+      this.selectedPlan,
+      this.selectedProject.quantity,
+    )
+      .then(({ order }) => {
+        this.onPlatformOrderSuccess(order);
+      })
+      .catch((error) => {
+        this.onPlatformOrderError(error);
+      })
+      .finally(() => {
+        this.orderInProgress = false;
       });
   }
 

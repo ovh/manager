@@ -1,35 +1,16 @@
+import { addProjectResolves } from '../components/modify-plan/modify-plan.utils';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('web-paas.add', {
     url: '/new',
-    component: 'webPaasAdd',
-    params: {
-      selectedProject: null,
-    },
+    component: 'webPaasModifyPlan',
     resolve: {
-      availablePlans: /* @ngInject */ (selectedProject, WebPaas) => {
-        return selectedProject
-          ? WebPaas.getUpgradeOffers(selectedProject.serviceId)
-          : null;
-      },
-      catalog: /* @ngInject */ (WebPaas, user, availablePlans) =>
-        WebPaas.getCatalog(user.ovhSubsidiary, availablePlans),
-      selectedProject: /* @ngInject */ ($transition$) =>
-        $transition$.params().selectedProject,
-      plans: /* @ngInject */ (catalog) => catalog.plans,
-      deleteUser: /* @ngInject */ ($state) => (customer) =>
-        $state.go('web-paas.add.delete-user', {
-          customer,
-        }),
+      ...addProjectResolves,
       goBack: /* @ngInject */ (goToWebPaas) => goToWebPaas,
-      getOrdersURL: /* @ngInject */ (coreURLBuilder) => (orderId) =>
-        coreURLBuilder.buildURL('dedicated', '#/billing/orders', {
-          status: 'all',
-          orderId,
-        }),
-      breadcrumb: /* @ngInject */ ($translate, selectedProject) =>
-        selectedProject
-          ? $translate.instant('web_paas_add_project_title_edit')
-          : $translate.instant('web_paas_add_project_title'),
+      catalog: /* @ngInject */ (WebPaas, user) =>
+        WebPaas.getCatalog(user.ovhSubsidiary),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('web_paas_add_project_title'),
     },
   });
 };

@@ -15,5 +15,6 @@
   "web_paas_service_add_addon_error": "Erreur lors de l'ajout du module complémentaire: {{ message }}",
   "web_paas_service_add_addon_success_storage": "La modification de votre stockage a bien été prise en compte. Vous pouvez suivre l’évolution de sa livraison dans votre compte, rubrique <a href='{{orderURL}}'>Mes commandes</a>",
   "web_paas_service_add_addon_success_environment": "La modification de votre environnements de test a bien été prise en compte. Vous pouvez suivre l’évolution de sa livraison dans votre compte, rubrique <a href='{{orderURL}}'>Mes commandes</a>",
-  "web_paas_service_add_addon_success_license": "La modification de votre licences utilisateur a bien été prise en compte. Vous pouvez suivre l’évolution de sa livraison dans votre compte, rubrique <a href='{{orderURL}}'>Mes commandes</a>"
+  "web_paas_service_add_addon_success_license": "La modification de votre licences utilisateur a bien été prise en compte. Vous pouvez suivre l’évolution de sa livraison dans votre compte, rubrique <a href='{{orderURL}}'>Mes commandes</a>",
+  "web_paas_service_add_addon_fetching_price": "Chercher le prix"
 }

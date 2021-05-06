@@ -142,17 +142,17 @@
             </oui-step-form>
 
             <oui-step-form
+                data-ng-if="!$ctrl.isChangingPlan() || $ctrl.additionalLicenceEdit"
                 data-header="{{:: 'web_paas_add_project_options' | translate }}"
                 data-submit-text="{{:: 'web_paas_add_project_next' | translate }}"
                 data-loading="$ctrl.isGettingAddons"
                 data-on-submit="$ctrl.onOptionsSubmit()"
             >
-                <div class="w-75">
+                <div class="w-75" data-ng-if="!$ctrl.additionalLicenceEdit">
                     <web-paas-additional-option
                         data-ng-repeat="addon in $ctrl.selectedPlan.addons track by $index"
                         option="addon"
                         plan="$ctrl.selectedPlan"
-                        disabled="$ctrl.isChangingPlan()"
                     >
                     </web-paas-additional-option>
                 </div>
@@ -165,9 +165,10 @@
             </oui-step-form>
             <oui-step-form
                 data-header="{{:: 'web_paas_add_project_license_summary_title' | translate }}"
-                data-submit-text="{{:: 'web_paas_add_project_next' | translate }}"
-                data-loading="$ctrl.isGettingCheckoutInfo"
-                data-on-submit="$ctrl.platformOrder()"
+                data-loading="$ctrl.isGettingCheckoutInfo || $ctrl.orderInProgress"
+                data-submit-text="{{:: ($ctrl.isChangingPlan() ? 'web_paas_add_project_title_edit' : 'web_paas_add_project_next') | translate }}"
+                data-cancel-text="{{ ::'web_paas_common_cancel' | translate }}"
+                data-on-cancel="$ctrl.goBack()"
             >
                 <div>
                     <h5
@@ -186,7 +187,7 @@
                         <span
                             data-ng-if="addon.family === 'storage' && addon.quantity > 0"
                             data-translate="web_paas_add_project_license_summary_addon_storage"
-                            data-translate-values="{quantity: addon.quantity}"
+                            data-translate-values="{quantity: (addon.quantity * 5)}"
                         ></span>
                         <span
                             data-ng-if="addon.family === 'user_license' && addon.quantity > 0"
@@ -214,17 +215,6 @@
                         </dl>
                     </div>
                 </div>
-
-                <ovh-payment-method-choice
-                    data-model="$ctrl.defaultPaymentMethod"
-                >
-                </ovh-payment-method-choice>
-
-                <ovh-contracts-summary
-                    data-items="$ctrl.contracts"
-                    data-model="$ctrl.agreeContracts"
-                >
-                </ovh-contracts-summary>
             </oui-step-form>
         </oui-stepper>
     </div>

@@ -9,6 +9,7 @@ const component = {
     projectId: '<',
     serviceInfo: '<',
     terminateProject: '<',
+    userList: '<',
   },
   template,
 };

@@ -63,11 +63,11 @@ export default class Plan {
   }
 
   getMaxEnvironment() {
-    return this.product === 'expand' ? 50 : 10;
+    return this.product === 'expand' ? 50 : 50;
   }
 
   getMaxStorage() {
-    return this.product === 'expand' ? 100 : 10;
+    return this.product === 'expand' ? 100 : 20;
   }
 
   getMaxLicenses() {

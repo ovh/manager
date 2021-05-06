@@ -17,9 +17,9 @@ export const GUIDELINK = {
 };
 
 export const OFFER_NAME = {
-  start: 'STARTER',
-  develop: 'DEVELOP',
-  expand: 'EXPAND',
+  start: 'Starter',
+  develop: 'Develop',
+  expand: 'Expand',
 };
 
 export default {

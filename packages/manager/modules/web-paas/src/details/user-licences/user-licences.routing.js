@@ -5,9 +5,6 @@ export default /* @ngInject */ ($stateProvider) => {
       projectView: 'webPaasDetailsUserLicences',
     },
     resolve: {
-      breadcrumb: () => false,
-      userList: /* @ngInject */ (WebPaas, projectId) =>
-        WebPaas.getUsers(projectId),
       inviteUser: /* @ngInject */ ($state) => () =>
         $state.go('web-paas.dashboard.user-licences.invite-user'),
       deleteUser: /* @ngInject */ ($state) => (customer) =>
@@ -34,6 +31,8 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return promise;
       },
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('web_paas_manage_users'),
     },
   });
 };

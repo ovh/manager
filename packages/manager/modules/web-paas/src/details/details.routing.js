@@ -26,6 +26,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('web-paas.dashboard.user-licences', {
           projectId,
         }),
+      userList: /* @ngInject */ (WebPaas, projectId) =>
+        WebPaas.getUsers(projectId),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       goToProjectDetails: /* @ngInject */ ($state, Alerter) => (
@@ -38,7 +40,7 @@ export default /* @ngInject */ ($stateProvider) => {
         });
         if (message) {
           promise.then(() => {
-            Alerter.alertFromSWS(message, type, 'web_paas_dashboard_alert');
+            Alerter[type](message, 'web_paas_dashboard_alert');
           });
         }
 

@@ -14,11 +14,13 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           addonType,
         }),
-      goToEditPlan: /* @ngInject */ ($state, project) => () =>
-        $state.go('web-paas.add', {
-          selectedProject: project,
+      goToEditPlan: /* @ngInject */ ($state, projectId) => (cpu) =>
+        $state.go('web-paas.dashboard.service.edit-range', {
+          projectId,
+          cpu,
         }),
-      breadcrumb: () => false,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('web_paas_general_info'),
     },
   });
 };
