@@ -21,7 +21,7 @@
             >
                 <a
                     class="oui-link"
-                    data-ng-click="$ctrl.viewDetails($row.serviceId)"
+                    data-ui-sref="{{ $ctrl.constructor.getDetailsState($row.serviceId) }}"
                     data-ng-bind="$row.projectName"
                 >
                 </a>

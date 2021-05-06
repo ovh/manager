@@ -10,7 +10,7 @@ export default class WebPaasProjectsCtrl {
     };
   }
 
-  // getProjectDetails(projectId) {
-  //   return this.WebPaas.getProjectDetails(projectId);
-  // }
+  static getDetailsState(projectId) {
+    return `web-paas.dashboard({ projectId: '${projectId}'})`;
+  }
 }

@@ -2,7 +2,7 @@ import find from 'lodash/find';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('web-paas.dashboard', {
-    url: '/:projectId',
+    url: '/projects/:projectId',
     component: 'webPaasDetailComponent',
     resolve: {
       projectId: /* @ngInject */ ($transition$) =>
@@ -46,7 +46,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      breadcrumb: /* @ngInject */ (project) => project.projectName,
+      breadcrumb: /* @ngInject */ () => null, // empty breadcrumb
     },
     redirectTo: 'web-paas.dashboard.service',
   });
