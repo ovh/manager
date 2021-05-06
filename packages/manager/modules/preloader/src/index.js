@@ -38,9 +38,12 @@ export const attach = (language = 'en') => {
   ) {
     messageSource = LOADING_MESSAGES;
   }
-  const message = Object.keys(messageSource).includes(language)
-    ? messageSource[language]
-    : messageSource.en;
+
+  const lang = Object.keys(messageSource).find((source) =>
+    language.includes(source),
+  );
+
+  const message = messageSource[lang] || messageSource.en;
 
   template.innerHTML = buildTemplate(false, message);
 
