@@ -58,12 +58,12 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                    'oui-badge_success': ($row.status === 'ok'),
-                    'oui-badge_warning': ($row.status !== 'ok'),
+                    'oui-badge_success': $ctrl.constructor.isActive($row),
+                    'oui-badge_warning': !$ctrl.constructor.isActive($row),
                 }"
             >
                 <span
-                    data-ng-bind=":: (('pci_projects_project_users_status_' + $row.status).toLowerCase() | translate)"
+                    data-ng-bind=":: 'pci_projects_project_users_status_' + $row.status.toLowerCase() | translate"
                 ></span>
             </span>
         </oui-datagrid-column>
@@ -121,12 +121,16 @@
             <oui-action-menu-item
                 data-ng-if="$ctrl.goToModifyPassword"
                 data-on-click="$ctrl.goToModifyPassword($row)"
+                data-disabled="$ctrl.constructor.isPending($row)"
             >
                 <span
                     data-translate="pci_projects_project_users_modify_password_label"
                 ></span>
             </oui-action-menu-item>
-            <oui-action-menu-item data-on-click="$ctrl.deleteUser($row)">
+            <oui-action-menu-item
+                data-on-click="$ctrl.deleteUser($row)"
+                data-disabled="$ctrl.constructor.isPending($row)"
+            >
                 <span
                     data-translate="pci_projects_project_users_delete_label"
                 ></span>

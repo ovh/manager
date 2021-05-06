@@ -1,5 +1,5 @@
 <span data-ng-if="!$ctrl.fromToPrice">
-    <span data-ng-if="::$ctrl.price">
+    <span data-ng-if="::$ctrl.price || $ctrl.showZeroPrice">
         <span data-ng-if="::$ctrl.isAsiaFormat()">
             <strong data-ng-class="{ 'd-block': $ctrl.block }">
                 <span
@@ -78,7 +78,7 @@
         </strong>
     </span>
     <strong
-        data-ng-if="::!$ctrl.price"
+        data-ng-if="::!($ctrl.price || $ctrl.showZeroPrice)"
         data-translate="order_catalog_price_free"
     >
     </strong>

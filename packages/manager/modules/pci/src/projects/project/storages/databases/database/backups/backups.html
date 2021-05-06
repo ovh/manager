@@ -1,0 +1,79 @@
+<div class="container-fluid px-0 mt-3">
+    <!-- error messages -->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <h2 data-translate="pci_databases_backup"></h2>
+
+    <p data-translate="pci_databases_backup_description1"></p>
+    <p data-translate="pci_databases_backup_description2"></p>
+
+    <oui-datagrid class="mt-5" data-page-size="10" data-rows="$ctrl.backupList">
+        <oui-datagrid-column
+            data-title=":: 'pci_database_common_name' | translate"
+            data-property="description"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_database_common_creation_date' | translate"
+            data-property="createdAt"
+            data-sortable
+        >
+            <span data-ng-bind="$row.createdAt | date: 'medium'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_backup_expiration_date' | translate"
+            data-property="expirationDate"
+            data-sortable
+        >
+            <span data-ng-bind="$row.expirationDate | date: 'medium'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_database_common_status' | translate"
+            data-property="status"
+            data-type="string"
+            data-searchable
+            data-sortable
+            data-filterable
+        >
+            <span
+                class="oui-badge"
+                data-ng-class="{
+                    'oui-badge_success': ($row.statusGroup === 'READY'),
+                    'oui-badge_warning': ($row.statusGroup === 'PENDING'),
+                    'oui-badge_error': ($row.statusGroup === 'ERROR'),
+                }"
+            >
+                <span
+                    data-ng-bind=":: ('pci_database_common_status_' + $row.status) | translate"
+                ></span>
+            </span>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item
+                data-on-click="$ctrl.restoreBackup($row)"
+                data-disabled="!$row.isActive()"
+            >
+                <span data-translate="pci_databases_backup_restore"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+        <oui-datagrid-topbar data-ng-if="$ctrl.backupList > 0">
+            <button
+                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
+                type="button"
+                data-title="{{:: 'pci_databases_common_refresh' | translate }}"
+                data-ng-click="$ctrl.refreshing=true; $ctrl.refreshBackups()"
+                data-ng-disabled="$ctrl.refreshing"
+            >
+                <span
+                    class="oui-icon oui-icon-refresh"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+</div>

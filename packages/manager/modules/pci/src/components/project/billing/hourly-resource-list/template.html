@@ -92,3 +92,12 @@
         data-resource-usage="$ctrl.resources.dataProcessing"
     ></pci-billing-resource-usage>
 </oui-collapsible>
+<oui-collapsible
+    class="mx-0"
+    heading="{{ ::'cpbc_hourly_databases_title' | translate }} ({{ $ctrl.resources.totals.hourly.databases.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+>
+    <pci-billing-resource-usage
+        data-currency-symbol="$ctrl.resources.totals.currencySymbol"
+        data-resource-usage="$ctrl.resources.databases"
+    ></pci-billing-resource-usage>
+</oui-collapsible>

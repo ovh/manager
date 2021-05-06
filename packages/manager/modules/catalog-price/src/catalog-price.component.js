@@ -13,6 +13,7 @@ const component = {
     performRounding: '<?',
     minimumFractionDigits: '<?',
     maximumFractionDigits: '<?',
+    showZeroPrice: '<?',
   },
   controller,
   template,

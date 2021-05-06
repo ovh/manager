@@ -1,0 +1,62 @@
+<div class="row">
+    <oui-select-picker
+        class="d-inline-block col-md-6 col-xl-4 my-3"
+        data-ng-repeat="plan in $ctrl.plans track by plan.name"
+        data-disabled="$ctrl.currentPlan && $ctrl.currentPlan.compare(plan) <= 0"
+        data-name="{{:: plan.name }}"
+        data-model="$ctrl.selectedPlan"
+        data-label="{{:: $ctrl.capitalize(plan.name) }}"
+        data-values="[plan]"
+        data-variant="light"
+        data-on-change="$ctrl.onChange({ selectedPlan: modelValue })"
+        data-required
+    >
+        <oui-select-picker-section>
+            <p
+                class="mb-0"
+                data-translate="pci_database_plans_list_spec_ram"
+                data-translate-values="{ 
+                    min: (plan.minMemory | cucBytes:0:false:'GB'),
+                    max: (plan.maxMemory | cucBytes:0:false:'GB')
+                }"
+            ></p>
+            <p
+                class="mb-0"
+                data-translate="pci_database_plans_list_spec_core"
+                data-translate-values="{
+                    min: plan.minCores,
+                    max: plan.maxCores
+                }"
+            ></p>
+            <p
+                class="mb-0"
+                data-translate="pci_database_plans_list_spec_storage"
+                data-translate-values="{ 
+                min: (plan.minStorage | cucBytes:2:false:'GB'),
+                max: (plan.maxStorage | cucBytes:2:false:'GB')
+            }"
+            ></p>
+            <p
+                class="mb-0"
+                data-ng-bind=":: $ctrl.getNodesSpecTranslation(plan)"
+            ></p>
+            <p
+                class="mb-0"
+                data-translate="pci_database_plans_list_spec_backup"
+            ></p>
+        </oui-select-picker-section>
+        <oui-select-picker-section>
+            <span
+                data-ng-if="plan.minMonthlyPrice.priceInUcents > 0"
+                data-translate="pci_database_common_price_starts_from"
+            ></span>
+            <ovh-manager-catalog-price
+                data-price="plan.minMonthlyPrice.priceInUcents"
+                data-tax="plan.minMonthlyPrice.tax"
+                data-user="$ctrl.user"
+                data-show-zero-price="true"
+            >
+            </ovh-manager-catalog-price>
+        </oui-select-picker-section>
+    </oui-select-picker>
+</div>

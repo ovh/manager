@@ -1,6 +1,7 @@
-import find from 'lodash/find';
 import get from 'lodash/get';
-import isUndefined from 'lodash/isUndefined';
+import some from 'lodash/some';
+
+import { ACTIVE_STATUS, PENDING_STATUS } from './users.constants';
 
 export default class CloudProjectUsersCtrl {
   /* @ngInject */
@@ -13,9 +14,10 @@ export default class CloudProjectUsersCtrl {
   $onInit() {
     this.messageChannel = 'pci.projects.project.users';
     this.showRolesMatrix = false;
-    this.isDescriptionAvailable = !!find(this.users, (user) => {
-      return !isUndefined(user.description);
-    });
+    this.isDescriptionAvailable = some(
+      this.users,
+      (user) => !!user.description,
+    );
     this.loadMessages();
   }
 
@@ -27,6 +29,14 @@ export default class CloudProjectUsersCtrl {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  static isPending(user) {
+    return PENDING_STATUS.includes(user.status);
+  }
+
+  static isActive(user) {
+    return ACTIVE_STATUS.includes(user.status);
   }
 
   generatePassword(user) {

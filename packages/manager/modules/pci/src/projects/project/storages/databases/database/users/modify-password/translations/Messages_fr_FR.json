@@ -1,0 +1,9 @@
+{
+  "pci_databases_users_modify_password_title": "Modifier le mot de passe",
+  "pci_databases_users_modify_password_confirm": "Confirmer",
+  "pci_databases_users_modify_password_cancel": "Annuler",
+  "pci_databases_users_modify_password_label": "Le mot de passe",
+  "pci_databases_users_modify_password_help_text": "Doit contenir au moins un chiffre, au moins une majuscule, au moins une minuscule. Et être constitué de 8 caractères ou plus.",
+  "pci_databases_users_modify_password_success": "Le mot de passe de l'utilisateur {{ user }} a été modifié.",
+  "pci_databases_users_modify_password_error": "Une erreur est survenue lors de la modification du mot de passe de l'utilisateur {{ user }} : {{ message }}."
+}
