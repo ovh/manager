@@ -145,7 +145,7 @@ export default class BillingService {
   }
 
   canHaveEngagement() {
-    return this.canBeEngaged;
+    return ['DEDICATED_SERVER'].includes(this.serviceType);
   }
 
   setForResiliation() {

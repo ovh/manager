@@ -20,10 +20,7 @@
             >
                 <span data-ng-bind="::$ctrl.actions.kvm.text"></span>
             </oui-action-menu-item>
-            <oui-action-menu-item
-                on-click="$ctrl.actions.terminate.callback()"
-                ng-if="$ctrl.actions.terminate.isAvailable()"
-            >
+            <oui-action-menu-item on-click="$ctrl.actions.terminate.callback()">
                 <span data-translate="vps_configuration_terminate"></span>
             </oui-action-menu-item>
         </oui-action-menu>

@@ -3,8 +3,6 @@ import template from './vps-dashboard.html';
 
 export default {
   bindings: {
-    connectedUser: '<',
-    engagement: '<',
     features: '<',
     resiliationCapability: '<',
 
@@ -21,22 +19,14 @@ export default {
     goToTerminateOption: '<',
     goToVpsMigration: '<',
     goBack: '<',
-    goToCommit: '<',
-    goToCancelCommit: '<',
-    goToCancelResiliation: '<',
-    goToResiliation: '<',
-    isCommitmentAvailable: '<',
 
     hasBackupStorage: '<',
     canScheduleMigration: '<',
     isVpsNewRange: '<',
     plan: '<',
-    serviceInfo: '<',
     serviceName: '<',
-    shouldReengage: '<',
     stateVps: '<',
     tabSummary: '<',
-    trackingPrefix: '<',
     vps: '<',
     vpsMigrationTask: '<',
     vpsMigrationTaskInError: '<',

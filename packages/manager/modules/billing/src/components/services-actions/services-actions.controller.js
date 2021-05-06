@@ -67,7 +67,7 @@ export default class ServicesActionsCtrl {
         );
         break;
       default:
-        this.resiliateLink = this.service.canResiliateByEndRule()
+        this.resiliateLink = this.service.hasEngagementDetails()
           ? resiliationByEndRuleLink
           : `${this.autorenewLink}/delete?serviceId=${this.service.serviceId}${serviceTypeParam}`;
         break;
