@@ -5,9 +5,8 @@ export default {
   controller,
   template,
   bindings: {
-    projectId: '<',
-    userId: '<',
     user: '<',
     goBack: '<',
+    removeUser: '<',
   },
 };

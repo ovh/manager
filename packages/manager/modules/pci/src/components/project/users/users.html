@@ -4,6 +4,7 @@
         class="mb-3"
     >
         <oui-guide-menu
+            data-ng-if="$ctrl.guideUrl"
             data-text="{{:: 'pci_project_guides_header' | translate }}"
         >
             <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
@@ -18,7 +19,13 @@
         data-messages="$ctrl.messages"
     ></cui-message-container>
 
-    <oui-datagrid data-rows="$ctrl.users">
+    <oui-datagrid
+        data-rows="$ctrl.users"
+        data-columns-parameters="[{
+            name: 'description',
+            hidden: !$ctrl.isDescriptionAvailable
+        }]"
+    >
         <oui-datagrid-column
             title=":: 'pci_projects_project_users_username_label' | translate"
             data-property="username"
@@ -31,6 +38,7 @@
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_users_description_label' | translate"
             data-property="description"
+            data-name="description"
         >
         </oui-datagrid-column>
         <oui-datagrid-column
@@ -40,7 +48,7 @@
             <span
                 class="d-block"
                 data-ng-repeat="role in $row.roles track by role.id"
-                data-ng-bind="::role.description"
+                data-ng-bind="::role.description || role.name"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
@@ -55,13 +63,14 @@
                 }"
             >
                 <span
-                    data-ng-bind=":: 'pci_projects_project_users_status_' + $row.status | translate"
+                    data-ng-bind=":: (('pci_projects_project_users_status_' + $row.status).toLowerCase() | translate)"
                 ></span>
             </span>
         </oui-datagrid-column>
 
         <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
+                data-ng-if="$ctrl.openStackHorizonLink"
                 data-href="{{ $ctrl.openStackHorizonLink($row) }}"
                 data-external
             >
@@ -70,6 +79,7 @@
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
+                data-ng-if="$ctrl.downloadOpenStackOpenRc"
                 data-on-click="$ctrl.downloadOpenStackOpenRc($row)"
             >
                 <span
@@ -77,6 +87,7 @@
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
+                data-ng-if="$ctrl.downloadOpenStackRclone"
                 data-on-click="$ctrl.downloadOpenStackRclone($row)"
             >
                 <span
@@ -84,20 +95,35 @@
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
+                data-ng-if="$ctrl.generateOpenStackToken"
                 data-on-click="$ctrl.generateOpenStackToken($row)"
             >
                 <span
                     data-translate="pci_projects_project_users_token_label"
                 ></span>
             </oui-action-menu-item>
-            <oui-action-menu-item data-on-click="$ctrl.editRoles($row)">
+            <oui-action-menu-item
+                data-ng-if="$ctrl.editRoles"
+                data-on-click="$ctrl.editRoles($row)"
+            >
                 <span
                     data-translate="pci_projects_project_users_roles_label"
                 ></span>
             </oui-action-menu-item>
-            <oui-action-menu-item data-on-click="$ctrl.generatePassword($row)">
+            <oui-action-menu-item
+                data-ng-if="!$ctrl.goToModifyPassword"
+                data-on-click="$ctrl.generatePassword($row)"
+            >
                 <span
                     data-translate="pci_projects_project_users_password_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$ctrl.goToModifyPassword"
+                data-on-click="$ctrl.goToModifyPassword($row)"
+            >
+                <span
+                    data-translate="pci_projects_project_users_modify_password_label"
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item data-on-click="$ctrl.deleteUser($row)">
@@ -118,6 +144,7 @@
     </oui-datagrid>
 
     <oui-button
+        data-ng-if="!$ctrl.hideRolesMatrix"
         data-on-click="$ctrl.showRolesMatrix = !$ctrl.showRolesMatrix"
         class="mb-2"
     >

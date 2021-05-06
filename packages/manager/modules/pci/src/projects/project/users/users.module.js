@@ -11,9 +11,8 @@ import downloadRclone from './download-rclone';
 import edit from './edit';
 import onboarding from './onboarding';
 import openstackToken from './openstack-token';
-import rolesMatrix from './roles-matrix/roles-matrix.module';
+import usersComponent from '../../../components/project/users';
 
-import component from './users.component';
 import routing from './users.routing';
 import service from './users.service';
 
@@ -31,12 +30,10 @@ angular
     onboarding,
     openstackToken,
     'ovh-api-services',
-    rolesMatrix,
     'ui.router',
+    usersComponent,
   ])
   .config(routing)
-  .component('pciProjectsProjectUsers', component)
-  .service('PciProjectsProjectUsersService', service)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .service('PciProjectsProjectUsersService', service);
 
 export default moduleName;

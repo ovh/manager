@@ -9,11 +9,17 @@
   "pci_projects_project_users_status_deleting": "Suppression en cours",
   "pci_projects_project_users_status_deleted": "Supprimé",
   "pci_projects_project_users_status_updating": "Mise à jour en cours",
+  "pci_projects_project_users_status_ready": "Déployé",
+  "pci_projects_project_users_status_error": "En erreur",
+  "pci_projects_project_users_status_error_inconsistent_spec": "En erreur",
+  "pci_projects_project_users_status_pending": "En attente",
+
   "pci_projects_project_users_horizon_label": "Ouvrir OpenStack Horizon",
   "pci_projects_project_users_openrc_label": "Télécharger le fichier RC d'OpenStack",
   "pci_projects_project_users_rclone_label": "Télécharger un fichier de configuration rClone",
   "pci_projects_project_users_token_label": "Générer un token OpenStack",
   "pci_projects_project_users_password_label": "Regénérer un mot de passe",
+  "pci_projects_project_users_modify_password_label": "Modifier le mot de passe",
 
   "pci_projects_project_users_password_message_infos": "Le nouveau mot de passe de l'utilisateur {{ user }} est <code>{{ password }}</code>.",
   "pci_projects_project_users_password_message_success": "Le mot de passe de l'utilisateur {{ user }} a été regénéré.",

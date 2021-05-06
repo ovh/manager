@@ -2,9 +2,8 @@ import get from 'lodash/get';
 
 export default class PciUsersDeleteController {
   /* @ngInject */
-  constructor($translate, PciProjectsProjectUsersService) {
+  constructor($translate) {
     this.$translate = $translate;
-    this.PciProjectsProjectUsersService = PciProjectsProjectUsersService;
   }
 
   $onInit() {
@@ -13,7 +12,7 @@ export default class PciUsersDeleteController {
 
   deleteUser() {
     this.isLoading = true;
-    return this.PciProjectsProjectUsersService.delete(this.projectId, this.user)
+    return this.removeUser(this.user)
       .then(() =>
         this.goBack(
           this.$translate.instant(

@@ -1,6 +1,6 @@
 {
- "pci_projects_project_users_add_title": "Añadir un usuario",
- "pci_projects_project_users_add_submit_label": "Siguiente",
- "pci_projects_project_users_add_cancel_label": "Cancelar",
- "pci_projects_project_users_add_description_label": "Descripción del usuario"
+  "pci_projects_project_users_add_title": "Añadir un usuario",
+  "pci_projects_project_users_add_submit_label": "Siguiente",
+  "pci_projects_project_users_add_cancel_label": "Cancelar",
+  "pci_projects_project_users_add_description_label": "Descripción del usuario"
 }

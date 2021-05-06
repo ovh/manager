@@ -56,12 +56,10 @@ export default /* @ngInject */ ($stateProvider) => {
       roles: /* @ngInject */ (PciProjectsProjectUsersService, projectId) =>
         PciProjectsProjectUsersService.getProjectRoles(projectId),
 
-      goToUsers: /* @ngInject */ (
-        $rootScope,
-        CucCloudMessage,
-        $state,
-        projectId,
-      ) => (message = false, type = 'success') => {
+      goToUsers: /* @ngInject */ (CucCloudMessage, $state, projectId) => (
+        message = false,
+        type = 'success',
+      ) => {
         const reload = message && type === 'success';
 
         const promise = $state.go(
@@ -82,6 +80,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+
+      regeneratePassword: /* @ngInject */ (
+        PciProjectsProjectUsersService,
+        projectId,
+      ) => (user) =>
+        PciProjectsProjectUsersService.regeneratePassword(projectId, user),
     },
   });
 };

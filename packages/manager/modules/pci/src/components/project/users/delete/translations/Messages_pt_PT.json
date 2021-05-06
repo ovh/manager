@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_users_delete_title": "Eliminar utilizador ",
+  "pci_projects_project_users_delete_submit_label": "Confirmar",
+  "pci_projects_project_users_delete_cancel_label": "Anular",
+  "pci_projects_project_users_delete_content": "Eliminar o utilizador {{ user }} de forma definitiva",
+  "pci_projects_project_users_delete_success_message": "O utilizador {{ user }} foi eliminado.",
+  "pci_projects_project_users_delete_error_delete": "Ocorreu um erro ao eliminar o utilizador {{ user }}: {{ message }}."
+}
