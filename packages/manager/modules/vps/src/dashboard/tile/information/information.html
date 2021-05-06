@@ -2,6 +2,11 @@
     class=" h-100"
     heading="{{ ::'vps_dashboard_tile_information_title' | translate }}"
 >
+    <oui-tile-definition term="{{ ::'vps_dashboard_state' | translate }}">
+        <oui-tile-description>
+            <vps-state-info vps-state="$ctrl.vpsState"></vps-state-info>
+        </oui-tile-description>
+    </oui-tile-definition>
     <oui-tile-definition
         term="{{ ::'vps_dashboard_name' | translate }}"
         description="{{:: $ctrl.vps.displayName || $ctrl.vps.name }}"
