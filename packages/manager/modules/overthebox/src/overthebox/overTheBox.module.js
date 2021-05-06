@@ -14,7 +14,6 @@ import constant from './overTheBox.constant';
 import actions from './actions';
 import configure from './configure';
 import details from './details';
-import docs from './docs';
 import logs from './logs';
 import order from './order';
 import remote from './remote';
@@ -36,7 +35,6 @@ angular
     actions,
     configure,
     details,
-    docs,
     logs,
     order,
     remote,

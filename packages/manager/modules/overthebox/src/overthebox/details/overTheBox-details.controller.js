@@ -53,6 +53,8 @@ export default class OverTheBoxDetailsCtrl {
     this.allDevices = [];
     this.device = null;
 
+    this.guidesLink = this.OVERTHEBOX_DETAILS.guidesUrl.fr;
+
     this.$q
       .all([
         this.getServiceInfos(),
