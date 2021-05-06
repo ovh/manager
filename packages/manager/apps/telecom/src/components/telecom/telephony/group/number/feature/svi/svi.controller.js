@@ -32,7 +32,6 @@ export default /* @ngInject */ function TelephonyNumberSviCtrl(
     return self.numberCtrl.number.feature
       .save()
       .then(() => {
-        self.numberCtrl.jsplumbInstance.customRepaint();
         self.numberCtrl.number.feature.stopEdition();
       })
       .catch((error) => {
