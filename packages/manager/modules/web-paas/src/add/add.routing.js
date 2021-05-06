@@ -1,11 +1,11 @@
-import { addProjectResolves } from '../components/modify-plan/modify-plan.utils';
+import { commonResolves } from './add.utils';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('web-paas.add', {
     url: '/new',
-    component: 'webPaasModifyPlan',
+    component: 'webPaasAddComponent',
     resolve: {
-      ...addProjectResolves,
+      ...commonResolves,
       goBack: /* @ngInject */ (goToWebPaas) => goToWebPaas,
       catalog: /* @ngInject */ (WebPaas, user) =>
         WebPaas.getCatalog(user.ovhSubsidiary),
