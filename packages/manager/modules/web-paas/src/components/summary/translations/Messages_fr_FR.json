@@ -1,9 +1,9 @@
 {
   "web_paas_summary_offer": "Offre",
   "web_paas_summary_total": "Total",
-  "web_paas_summary_total_price_without_tax": "Prix HT :",
-  "web_paas_summary_total_price_with_tax": "Prix TTC :",
-  "web_paas_summary_addon_storage": "+{{quantity}} GB Stockage supplémentaire",
-  "web_paas_summary_addon_user_licence": "+{{ quantity}} Licences utilisateur supplémentaires",
-  "web_paas_summary_addon_environment": "+{{ quantity}} Environnement de test supplémentaire"
+  "web_paas_summary_total_price_without_tax": "Prix HT",
+  "web_paas_summary_total_price_with_tax": "Prix TTC",
+  "web_paas_summary_addon_storage": "{{quantity}} GB Stockage supplémentaire",
+  "web_paas_summary_addon_user_licence": "{{ quantity}} Licences utilisateur supplémentaires",
+  "web_paas_summary_addon_environment": "{{ quantity}} Environnement de test supplémentaire"
 }

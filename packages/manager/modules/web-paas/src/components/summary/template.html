@@ -2,31 +2,48 @@
     <h5 data-translate="web_paas_summary_offer"></h5>
     <span data-ng-bind="$ctrl.selectedPlan.invoiceName"></span>
     <div data-ng-repeat="addon in $ctrl.selectedPlan.addons track by $index">
-        <span
+        <div
             data-ng-if="addon.family === 'staging_environment' && addon.quantity > 0"
-            data-translate="web_paas_summary_addon_environment"
-            data-translate-values="{quantity: addon.quantity}"
         >
-        </span>
-        <span
-            data-ng-if="addon.family === 'storage' && addon.quantity > 0"
-            data-translate="web_paas_summary_addon_storage"
-            data-translate-values="{quantity: (addon.quantity * 5)}"
-        ></span>
-        <span
-            data-ng-if="addon.family === 'user_license' && addon.quantity > 0"
-            data-translate="web_paas_summary_addon_user_licence"
-            data-translate-values="{quantity: addon.quantity}"
-        ></span>
+            +<span
+                data-translate="web_paas_summary_addon_environment"
+                data-translate-values="{quantity: addon.quantity}"
+            >
+            </span>
+        </div>
+        <div data-ng-if="addon.family === 'storage' && addon.quantity > 0">
+            +<span
+                data-translate="web_paas_summary_addon_storage"
+                data-translate-values="{quantity: (addon.quantity * 5)}"
+            >
+            </span>
+        </div>
+        <div data-ng-if="addon.family === 'user_license' && addon.quantity > 0">
+            +<span
+                data-translate="web_paas_summary_addon_user_licence"
+                data-translate-values="{quantity: addon.quantity}"
+            >
+            </span>
+        </div>
     </div>
 </div>
 <div class="mt-3">
     <h5 data-translate="web_paas_summary_total"></h5>
     <div>
         <dl data-class="col-md-2">
-            <dt data-translate="web_paas_summary_total_price_without_tax"></dt>
+            <dt>
+                <span
+                    data-translate="web_paas_summary_total_price_without_tax"
+                ></span>
+                <span class="ml-1">:</span>
+            </dt>
             <dd data-ng-bind="$ctrl.prices.withoutTax.text"></dd>
-            <dt data-translate="web_paas_summary_total_price_with_tax"></dt>
+            <dt>
+                <span
+                    data-translate="web_paas_summary_total_price_with_tax"
+                ></span>
+                <span class="ml-1">:</span>
+            </dt>
             <dd data-ng-bind="$ctrl.prices.withTax.text"></dd>
         </dl>
     </div>
