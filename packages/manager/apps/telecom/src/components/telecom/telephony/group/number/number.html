@@ -4,27 +4,37 @@
         data-ng-if="$ctrl.number.getFeatureFamily() === 'ovhPabx'"
     >
         <div data-translate="telephony_number_action_layout"></div>
+        <oui-dropdown>
+            <oui-dropdown-trigger
+                text="{{:: 'telephony_number_display_options' | translate }}"
+            >
+            </oui-dropdown-trigger>
+            <oui-dropdown-content>
+                <oui-dropdown-item data-on-click="$ctrl.toggleCcsLayout()">
+                    <span
+                        data-ng-if="$ctrl.verticalLayout"
+                        data-translate="telephony_number_action_layout_horizontal"
+                    >
+                    </span>
+                    <span
+                        data-ng-if="!$ctrl.verticalLayout"
+                        data-translate="telephony_number_action_layout_vertical"
+                    >
+                    </span>
+                </oui-dropdown-item>
+                <oui-dropdown-item data-on-click="$ctrl.actionsShowAll = true">
+                    <span
+                        data-translate="telephony_number_action_show_all_actions"
+                    ></span>
+                </oui-dropdown-item>
+                <oui-dropdown-item data-on-click="$ctrl.actionsShowAll = false">
+                    <span
+                        data-translate="telephony_number_action_hide_all_actions"
+                    ></span>
+                </oui-dropdown-item>
+            </oui-dropdown-content>
+        </oui-dropdown>
         <div class="oui-button-group">
-            <button
-                class="oui-button"
-                data-ng-class="{
-                        'oui-button_primary': $ctrl.verticalLayout,
-                        'oui-button_secondary': !$ctrl.verticalLayout,
-                    }"
-                data-translate="telephony_number_action_layout_vertical"
-                data-ng-click="$ctrl.toggleCcsLayout()"
-            ></button>
-            <button
-                class="oui-button"
-                data-ng-class="{
-                        'oui-button_primary': !$ctrl.verticalLayout,
-                        'oui-button_secondary': $ctrl.verticalLayout,
-                    }"
-                data-translate="telephony_number_action_layout_horizontal"
-                data-ng-click="$ctrl.toggleCcsLayout()"
-            ></button>
-        </div>
-        <div class="oui-button-group d-block mt-1">
             <div data-ng-if="$ctrl.reorderingMode">
                 <button
                     class="oui-button oui-button_secondary"

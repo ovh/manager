@@ -129,12 +129,21 @@ export default class DialplanExtensionCtrl {
 
     this.$scope.$watch(
       () => this.numberCtrl.reorderingMode,
-      (reorder) => {
+      (reorder, previousValue) => {
+        if (reorder === previousValue) return;
         if (reorder && this.extension.rules?.length) {
           this.displayHelpers.collapsed = false;
         } else {
           this.displayHelpers.collapsed = true;
         }
+      },
+    );
+
+    this.$scope.$watch(
+      () => this.numberCtrl.actionsShowAll,
+      (showAll, previousValue) => {
+        if (showAll === previousValue) return;
+        this.displayHelpers.collapsed = !showAll;
       },
     );
 
