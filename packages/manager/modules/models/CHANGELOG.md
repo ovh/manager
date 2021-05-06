@@ -1,3 +1,12 @@
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.9.0...@ovh-ux/manager-models@1.10.0) (2021-05-06)
+
+
+### Features
+
+* **vps:** commitment ([#4399](https://github.com/ovh/manager/issues/4399)) ([2afdbb2](https://github.com/ovh/manager/commit/2afdbb272a0f5fa4ca09ad933353a48d471d8ab9))
+
+
+
 # [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.8.0...@ovh-ux/manager-models@1.9.0) (2021-04-21)
 
 

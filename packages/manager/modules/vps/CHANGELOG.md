@@ -1,3 +1,12 @@
+# [2.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.9.1...@ovh-ux/manager-vps@2.10.0) (2021-05-06)
+
+
+### Features
+
+* **vps:** commitment ([#4399](https://github.com/ovh/manager/issues/4399)) ([2afdbb2](https://github.com/ovh/manager/commit/2afdbb272a0f5fa4ca09ad933353a48d471d8ab9))
+
+
+
 ## [2.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.9.0...@ovh-ux/manager-vps@2.9.1) (2021-05-06)
 
 
