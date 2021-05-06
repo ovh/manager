@@ -3,20 +3,17 @@ import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('web-paas.dashboard.service.add-addon', {
-    url: '/:projectId/:addonType',
+    url: '/:addonType',
     views: {
       modal: {
         component: 'webPaasProjectAddStorage',
       },
     },
     params: {
-      projectId: null,
       addonType: null,
     },
     layout: 'modal',
     resolve: {
-      projectId: /* @ngInject */ ($transition$) =>
-        $transition$.params().projectId,
       addonType: /* @ngInject */ ($transition$) =>
         $transition$.params().addonType,
       addon: /* @ngInject */ (WebPaas, project, addonType) => {

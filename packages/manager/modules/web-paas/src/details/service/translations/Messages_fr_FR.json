@@ -5,7 +5,7 @@
   "web_paas_service_project_id": "Identifiant du projet",
   "web_paas_service_project_plan_type": "Gamme",
   "web_paas_service_project_region": "Région",
-  "web_paas_service_project_upgrade": "Passer à l’offre supérieure",
+  "web_paas_service_project_upgrade": "Changer d’offre",
   "web_paas_service_project_user_licence": "{{ numLicenceAvailable }}/{{ totalLicence }} licence utilisateur",
   "web_paas_service_project_user_licence_available": "{{ numLicenceAvailable }} licence utilisateur disponible",
   "web_paas_service_project_new": "Nouveau projet",

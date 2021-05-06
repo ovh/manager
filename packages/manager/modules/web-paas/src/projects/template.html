@@ -21,7 +21,11 @@
             >
                 <a
                     class="oui-link"
+<<<<<<< HEAD
                     data-ui-sref="{{ $ctrl.constructor.getDetailsState($row.serviceId) }}"
+=======
+                    data-ng-href="{{:: $ctrl.viewDetails($row.serviceId) }}"
+>>>>>>> feat(webpaas): refactor edit plan
                     data-ng-bind="$row.projectName"
                 >
                 </a>
@@ -81,7 +85,7 @@
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-on-click="$ctrl.viewDetails($row.serviceId)"
+                    data-ng-href="{{:: $ctrl.viewDetails($row.serviceId)}}"
                 >
                     <span data-translate="web_paas_goto_dashbboard"></span>
                 </oui-action-menu-item>

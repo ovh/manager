@@ -21,7 +21,6 @@
   "web_paas_project_status_SUSPENDED": "Suspendu",
   "web_paas_guides": "Guides",
   "web_paas_guides_main": "Web PaaS",
-  "web_paas_plan_vcpu_config_text": "{{ prodCpu }} vCPU prod({{ stagingCpu }} vCPU Staging)",
   "web_paas_common_confirm": "Confirmer",
   "web_paas_common_cancel": "Annuler",
   "web_paas_common_terminate": "Résilier",

@@ -69,17 +69,21 @@
             >
                 <div class="row mb-3">
                     <oui-select-picker
-                        class="col-md-4 mb-3"
-                        name="projectRegion"
                         disabled="$ctrl.project.region && $ctrl.capabilities.regions.length === 1"
-                        data-ng-if="$ctrl.capabilities.regions"
                         data-ng-repeat="region in $ctrl.capabilities.regions track by $index"
+                        data-picture="flag-icon flag-icon-{{ $ctrl.CucRegionService.getMacroRegionLowercase(region) }}"
+                        class="col-md-4 mb-3"
                         data-model="$ctrl.project.region"
-                        data-variant="light"
+                        model="$ctrl.selectedDatacenter"
+                        values="[region]"
                         data-label="{{ region }}"
-                        data-values="[true]"
-                        required
+                        data-variant="light"
                     >
+                        <oui-select-picker-section class="text-uppercase"
+                            ><span
+                                data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion(region)"
+                            ></span
+                        ></oui-select-picker-section>
                     </oui-select-picker>
                 </div>
             </oui-step-form>

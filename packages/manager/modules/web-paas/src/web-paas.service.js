@@ -148,14 +148,15 @@ export default class WebPaasService {
    * @param {*} catalog
    * @returns plans which have vcpuConfig text and sorted by number of cores in a plan
    */
+  /* eslint-disable-next-line class-methods-use-this */
   sortSetVcpuConfig(plans) {
     const data = map(plans, (plan) => ({
       ...plan,
       available: true,
-      vcpuConfig: this.$translate.instant('web_paas_plan_vcpu_config_text', {
-        prodCpu: get(plan, 'blobs.technical.cpu.cores'),
-        stagingCpu: get(plan, 'blobs.technical.cpu.cores') / 2,
-      }),
+      vcpuConfig: `${get(plan, 'blobs.technical.cpu.cores')} vCPU prod(${get(
+        plan,
+        'blobs.technical.cpu.cores',
+      ) / 2} vCPU Staging)`,
     }));
     return sortBy(data, ['blobs.technical.cpu.cores']);
   }

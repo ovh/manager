@@ -11,6 +11,7 @@ export default class {
     Alerter,
     WebPaas,
     WucOrderCartService,
+    CucRegionService,
   ) {
     this.$q = $q;
     this.$timeout = $timeout;
@@ -20,6 +21,7 @@ export default class {
     this.WebPaas = WebPaas;
     this.WucOrderCartService = WucOrderCartService;
     this.WORKFLOW_OPTIONS = WORKFLOW_OPTIONS;
+    this.CucRegionService = CucRegionService;
     this.alerts = {
       add: 'web_paas_add',
     };
