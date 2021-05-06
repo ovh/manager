@@ -1,6 +1,8 @@
+import { map, filter } from 'lodash-es';
+
 export default class {
   /* @ngInject */
-  constructor(atInternet, $http, $q, $translate) {
+  constructor($q, $http, $translate, atInternet) {
     this.atInternet = atInternet;
     this.index = 0;
     this.$http = $http;

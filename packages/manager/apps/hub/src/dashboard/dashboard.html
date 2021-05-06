@@ -1,8 +1,6 @@
 <div data-ui-view>
     <div class="hub-dashboard-content">
-        <hub-dashboard-welcome
-            data-name="$ctrl.me.firstname"
-        ></hub-dashboard-welcome>
+        <hub-dashboard-welcome></hub-dashboard-welcome>
         <div
             class="d-flex flex-wrap w-100 minw-0 align-items-center justify-content-between"
         >
@@ -12,7 +10,6 @@
             ></ovh-manager-banner>
             <ovh-manager-hub-carousel
                 class="w-100"
-                items="$ctrl.notifications"
                 tracking-prefix="{{ $ctrl.trackingPrefix }}"
             ></ovh-manager-hub-carousel>
         </div>
@@ -46,7 +43,6 @@
             <ovh-manager-hub-support
                 class="col-md-8 mb-3 mb-md-4 order-2 order-md-3"
                 me="$ctrl.me"
-                tickets="$ctrl.tickets"
                 tracking-prefix="{{ $ctrl.trackingPrefix }}"
             >
             </ovh-manager-hub-support>
@@ -59,14 +55,11 @@
             >
             </hub-order-tracking>
         </div>
-        <div data-ng-if="$ctrl.products.length" class="hub-dashboard-product">
+        <div class="hub-dashboard-product">
             <h2 data-translate="manager_hub_dashboard_services"></h2>
             <hub-products
-                products="$ctrl.products"
-                on-product-select="$ctrl.goToProductPage(productType)"
+                products-promise="$ctrl.products"
                 tracking-prefix="{{ $ctrl.trackingPrefix }}"
-                on-expand="$ctrl.expandProducts(expand)"
-                expand="$ctrl.expand"
             ></hub-products>
         </div>
     </div>

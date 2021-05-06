@@ -5,8 +5,6 @@ export default {
   controller,
   template,
   bindings: {
-    bills: '<?',
-    debt: '<?',
     me: '<',
     trackingPrefix: '@',
     refresh: '&',
