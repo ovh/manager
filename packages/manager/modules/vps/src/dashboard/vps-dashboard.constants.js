@@ -12,6 +12,12 @@ export const NEW_RANGE_VERSION = '2019v1';
 export const VPS_2014_AUTO_MIGRATION_DATE = '18/07/2020';
 export const VPS_2014_EXPIRY_DATE = '27/07/2020';
 
+export const VPS_STATES = {
+  ERROR: ['maintenance', 'stopped', 'stopping'],
+  WARNING: ['backuping', 'installing', 'rebooting', 'upgrading'],
+  SUCCESS: ['running'],
+};
+
 const COMMIT_RECOMMIT_IMPRESSION_TRACKING_DATA = {
   campaignId: '[commit-recommit]',
   creation: '[batch1]',
@@ -36,4 +42,5 @@ export default {
   SERVICE_TYPE,
   VPS_2014_AUTO_MIGRATION_DATE,
   VPS_2014_EXPIRY_DATE,
+  VPS_STATES,
 };

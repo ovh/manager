@@ -32,6 +32,7 @@ import ovhManagerVpsDashboardSnapshotTake from './modal/snapshot-take';
 import ovhManagerVpsDashboardTerminate from './terminate';
 import ovhManagerVpsDashboardTerminateOption from './modal/terminate-option';
 import ovhManagerVpsDashboardTile from './tile';
+import vpsStateInfo from './components/vps-state-info';
 
 const moduleName = 'ovhManagerVpsDashboard';
 
@@ -60,6 +61,7 @@ angular
     ovhManagerVpsDashboardSnapshotTake,
     ovhManagerVpsDashboardTerminateOption,
     ovhManagerVpsDashboardTile,
+    vpsStateInfo,
     'ui.router',
   ])
   .service('vpsUpgradeTile', vpsUpgradeTileService)
