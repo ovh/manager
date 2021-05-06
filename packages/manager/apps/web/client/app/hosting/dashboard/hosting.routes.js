@@ -87,6 +87,8 @@ export default /* @ngInject */ ($stateProvider) => {
           ...$transition$.params(),
           tab: 'MAILING_LIST',
         }),
+      flushCDNLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('app.hosting.dashboard.cdn.flush', $transition$.params()),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
 

@@ -43,7 +43,7 @@ export default class HostingFlushCdnCtrl {
       .catch((err) => {
         return this.goBack(
           `${this.$translate.instant('hosting_dashboard_cdn_flush_error')} ${
-            err.data
+            err.data?.message
           }`,
           'error',
         );

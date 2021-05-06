@@ -47,12 +47,12 @@ export default /* @ngInject */ ($stateProvider) => {
         Server.getServiceInfos($stateParams.productId).then((serviceInfo) => ({
           ...serviceInfo,
           status:
-            resiliationCapability.billingInformation &&
+            resiliationCapability?.billingInformation &&
             serviceInfo.status === 'ok' &&
             !serviceInfo.renew?.deleteAtExpiration
               ? 'FORCED_MANUAL'
               : serviceInfo.status,
-          statusHelp: resiliationCapability.billingInformation || null,
+          statusHelp: resiliationCapability?.billingInformation || null,
         })),
       specifications: /* @ngInject */ (serverName, Server) =>
         Server.getBandwidth(serverName),
