@@ -1,6 +1,4 @@
-import { filter, get, head, map, mapValues } from 'lodash-es';
-
-import { BillingService, User } from '@ovh-ux/manager-models';
+import { mapValues, head } from 'lodash-es';
 
 const parseErrors = (data) =>
   mapValues(data.data, (value) =>
@@ -11,15 +9,6 @@ const parseErrors = (data) =>
         }
       : value,
   );
-
-const transformBillingServices = (services) => {
-  return services.status === 'ERROR'
-    ? services
-    : {
-        count: get(services, 'data.count'),
-        data: map(services.data.data, (service) => new BillingService(service)),
-      };
-};
 
 const transformOrder = ($q, lastOrder, OrderTracking) => {
   const latestOrder = lastOrder.data;
@@ -52,51 +41,23 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       sidebar: /* @ngInject */ ($rootScope) => {
         $rootScope.$broadcast('sidebar:loaded');
       },
-      billingServices: /* @ngInject */ (hub) =>
-        transformBillingServices(hub.billingServices),
-      refreshBillingServices: /* @ngInject */ (refresh) => () =>
-        refresh('billingServices').then((hub) =>
-          transformBillingServices(hub.billingServices),
-        ),
-      bills: /* @ngInject */ (hub) => hub.bills,
-      debt: /* @ngInject */ (hub) => hub.debt,
-      catalog: /* @ngInject */ (hub) => hub.catalog,
-      certificates: /* @ngInject */ (hub) => hub.certificates.data,
-      me: /* @ngInject */ (certificates, hub) =>
-        new User(hub.me.data, certificates),
-      notifications: /* @ngInject */ ($translate, hub) =>
-        map(
-          filter(hub.notifications.data, (notification) =>
-            ['warning', 'error'].includes(notification.level),
-          ),
-          (notification) => ({
-            ...notification,
-            // force sanitization to null as this causes issues with UTF-8 characters
-            description: $translate.instant(
-              'manager_hub_notification_warning',
-              { content: notification.description },
-              undefined,
-              false,
-              null,
-            ),
-          }),
-        ),
-      order: /* @ngInject */ ($q, hub, OrderTracking) =>
-        transformOrder($q, hub.lastOrder, OrderTracking),
-      refreshOrder: /* @ngInject */ (refresh) => () =>
-        refresh('lastOrder').then((lastOrder) => transformOrder(lastOrder)),
-      services: /* @ngInject */ (hub) => hub.services,
-
-      hub: /* @ngInject */ ($http) =>
+      order: /* @ngInject */ ($q, $http, OrderTracking) =>
         $http
-          .get('/hub', {
-            serviceType: 'aapi',
+          .get('/hub/lastOrder', { serviceType: 'aapi' })
+          .then((data) =>
+            transformOrder($q, data.data.data.lastOrder, OrderTracking),
+          ),
+      numberOfServices: /* @ngInject */ ($http) => {
+        $http
+          .get('/services', {
+            headers: {
+              'X-Pagination-Mode': 'CachedObjectList-Pages',
+              'X-Pagination-Size': 5,
+            },
           })
-          .then(({ data }) => parseErrors(data)),
-
-      tickets: /* @ngInject */ (hub) => hub.support.data,
+          .then((data) => data.data.length);
+      },
       trackingPrefix: () => 'hub::dashboard::activity::payment-status',
-
       refresh: /* @ngInject */ ($http) => (type) =>
         $http
           .get(`/hub/${type}`, {

@@ -4,11 +4,19 @@ import { MAX_TICKETS_TO_DISPLAY } from './constants';
 
 export default class ManagerHubSupportCtrl {
   /* @ngInject */
-  constructor($http, $q, atInternet, coreURLBuilder, RedirectionService) {
+  constructor(
+    $http,
+    $q,
+    atInternet,
+    coreURLBuilder,
+    RedirectionService,
+    coreConfig,
+  ) {
     this.$http = $http;
     this.$q = $q;
     this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
+    this.coreConfig = coreConfig;
     this.RedirectionService = RedirectionService;
     this.SUPPORT_URL = this.coreURLBuilder.buildURL('dedicated', '#/ticket');
   }
@@ -16,11 +24,11 @@ export default class ManagerHubSupportCtrl {
   $onInit() {
     this.error = false;
     this.isLoading = true;
+    this.me = this.coreConfig.getUser();
     this.guideURL = this.RedirectionService.getURL('guides.home', {
       ovhSubsidiary: this.me.ovhSubsidiary,
     });
-    return this.$q
-      .when(this.tickets ? this.tickets : this.fetchTickets())
+    this.fetchTickets()
       .then(({ data, count }) => {
         if (Array.isArray(data)) {
           this.tickets = data.slice(0, MAX_TICKETS_TO_DISPLAY).map(

@@ -36,14 +36,10 @@ export const resolves = {
   header: /* @ngInject */ ($translate, productType) =>
     $translate.instant(`manager_hub_products_${productType}`),
 
-  description: /* @ngInject */ (notifications, productType) => {
-    const filteredNotifications = notifications.filter(
-      ({ type }) => type === productType,
-    );
+  description: /* @ngInject */ (productType) => {
     return `<ovh-manager-hub-carousel
         class="w-100"
-        data-ng-if="${filteredNotifications.length}"
-        data-items="${filteredNotifications}"
+        data-product-type="${productType}"
     ></ovh-manager-hub-carousel>`;
   },
   customizableColumns: () => true,

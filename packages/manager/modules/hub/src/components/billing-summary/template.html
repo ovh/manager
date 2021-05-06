@@ -1,7 +1,7 @@
 <div class="manager-hub-billing-summary" data-navi-id="totalBills-block">
     <h3 class="oui-heading_4" data-translate="hub_billing_summary_title"></h3>
     <hub-tile-error
-        data-ng-if="!$ctrl.bills && !$ctrl.loading"
+        data-ng-if="$ctrl.billsError"
         data-message="{{:: 'hub_billing_summary_display_bills_error' | translate }}"
         data-refresh="$ctrl.refreshTile()"
     ></hub-tile-error>
@@ -10,7 +10,7 @@
         class="manager-hub-billing-summary__bill-total"
         >…</span
     >
-    <div data-ng-if="$ctrl.bills && !$ctrl.loading">
+    <div data-ng-if="$ctrl.bills && !$ctrl.billsError && !$ctrl.loading">
         <oui-select
             data-model="$ctrl.billingPeriod"
             data-items="$ctrl.periods"

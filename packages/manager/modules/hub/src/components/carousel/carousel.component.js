@@ -3,7 +3,6 @@ import template from './carousel.html';
 
 export default {
   bindings: {
-    items: '<',
     trackingPrefix: '@',
     productType: '<',
     items: '<',

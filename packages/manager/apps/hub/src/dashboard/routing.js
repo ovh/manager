@@ -1,5 +1,22 @@
 import { filter, get, groupBy, map, reverse, sortBy } from 'lodash-es';
 
+const getProducts = (services, order, catalog) => {
+  return get(services, 'data.count') === 0 && !order
+    ? groupBy(
+        filter(catalog.data, ({ highlight }) => highlight),
+        'universe',
+      )
+    : reverse(
+        sortBy(
+          map(services.data?.data, (service, productType) => ({
+            ...service,
+            productType,
+          })),
+          'count',
+        ),
+      );
+};
+
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.dashboard', {
     url: '/?expand',
@@ -11,42 +28,20 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       },
     },
     resolve: {
-      products: /* @ngInject */ (catalog, order, services) =>
-        get(services, 'data.count') === 0 && !order
-          ? groupBy(
-              filter(catalog.data, ({ highlight }) => highlight),
-              'universe',
-            )
-          : reverse(
-              sortBy(
-                map(services.data?.data, (service, productType) => ({
-                  ...service,
-                  productType,
-                })),
-                'count',
-              ),
-            ),
-
-      goToProductPage: /* @ngInject */ ($state, atInternet, trackingPrefix) => (
-        product,
-      ) => {
-        atInternet.trackClick({
-          name: `${trackingPrefix}::product::${product
-            .toLowerCase()
-            .replace(/_/g, '-')}::show-all`,
-          type: 'action',
-        });
-        return (
-          $state
-            .go(`app.dashboard.${product.toLowerCase()}`)
-            // If the transition error, it means the state doesn't exist
-            .catch(() =>
-              $state.go('app.dashboard.products', {
-                product: product.toLowerCase(),
-              }),
-            )
-        );
-      },
+      services: /* @ngInject */ ($http) =>
+        $http
+          .get('/hub/services', {
+            serviceType: 'aapi',
+          })
+          .then((data) => data.data.data.services),
+      catalog: /* @ngInject */ ($http) =>
+        $http
+          .get('/hub/catalog', {
+            serviceType: 'aapi',
+          })
+          .then((data) => data.data.data.catalog),
+      products: /* @ngInject */ ($http, order, services, catalog) =>
+        getProducts(services, order, catalog),
       trackingPrefix: () => 'hub::dashboard',
       expandProducts: /* @ngInject */ ($state) => (expand) =>
         $state.go('.', {
@@ -57,10 +52,12 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('manager_hub_dashboard'),
     },
-    componentProvider: /* @ngInject */ (order, services) =>
-      get(services, 'data.count') === 0 && !order
-        ? 'hubOrderDashboard'
-        : 'hubDashboard',
+    resolvePolicy: {
+      async: 'NOWAIT',
+    },
+    componentProvider: /* @ngInject */ (order, numberOfServices) => {
+      return !numberOfServices && !order ? 'hubOrderDashboard' : 'hubDashboard';
+    },
   });
 
   $urlRouterProvider.otherwise('/');

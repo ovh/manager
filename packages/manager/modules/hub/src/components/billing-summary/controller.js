@@ -8,6 +8,8 @@ export default class ManagerHubBillingSummaryCtrl {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
+    this.loading = true;
+    this.billsError = false;
   }
 
   $onInit() {
@@ -15,29 +17,6 @@ export default class ManagerHubBillingSummaryCtrl {
       'dedicated',
       '#/billing/history/debt/all/pay',
     );
-    this.loading = true;
-    const loadBills = this.$q
-      .when(this.bills ? this.bills : this.fetchBills())
-      .then(({ data }) => {
-        this.bills = data;
-        this.formattedBillingPrice = this.getFormattedPrice(
-          data.total,
-          get(data, 'currency.code'),
-        );
-        this.buildPeriodFilter(data.period);
-        return this.bills;
-      });
-    const loadDebt = this.$q
-      .when(this.debt ? this.debt : this.fetchDebt())
-      .then(({ data }) => {
-        this.debt = data;
-        this.formattedDebtPrice = this.getFormattedPrice(
-          get(data, 'dueAmount.value'),
-          get(data, 'dueAmount.currencyCode'),
-        );
-        return this.debt;
-      });
-
     this.$translate.refresh().then(() => {
       this.periods = [1, 3, 6].map((months) => ({
         value: months,
@@ -45,9 +24,41 @@ export default class ManagerHubBillingSummaryCtrl {
       }));
       [this.billingPeriod] = this.periods;
     });
+    this.loadAll();
+  }
 
-    return this.$q.all([loadBills, loadDebt]).finally(() => {
-      this.loading = false;
+  loadAll() {
+    this.loading = true;
+    this.$q
+      .all([this.loadBills(), this.loadDebt()])
+      .catch(() => {
+        this.billsError = true;
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+  }
+
+  loadBills() {
+    return this.fetchBills().then(({ data }) => {
+      this.bills = data;
+      this.formattedBillingPrice = this.getFormattedPrice(
+        data.total,
+        get(data, 'currency.code'),
+      );
+      this.buildPeriodFilter(data.period);
+      return this.bills;
+    });
+  }
+
+  loadDebt() {
+    return this.fetchDebt().then(({ data }) => {
+      this.debt = data;
+      this.formattedDebtPrice = this.getFormattedPrice(
+        get(data, 'dueAmount.value'),
+        get(data, 'dueAmount.currencyCode'),
+      );
+      return this.debt;
     });
   }
 
@@ -58,6 +69,8 @@ export default class ManagerHubBillingSummaryCtrl {
     this.loading = true;
     return this.fetchBills(this.billingPeriod.value)
       .then(({ data }) => {
+        if (data.status === 'ERROR') return;
+
         this.bills = data;
         this.formattedBillingPrice = this.getFormattedPrice(
           data.total,
@@ -71,11 +84,13 @@ export default class ManagerHubBillingSummaryCtrl {
   }
 
   getFormattedPrice(price, currency) {
-    return Intl.NumberFormat(this.$translate.use().replace('_', '-'), {
-      style: 'currency',
-      currency: currency || get(this.me, 'currency.code'),
-      maximumSignificantdigits: 1,
-    }).format(price);
+    return currency && price
+      ? Intl.NumberFormat(this.$translate.use().replace('_', '-'), {
+          style: 'currency',
+          currency: currency || get(this.me, 'currency.code'),
+          maximumSignificantdigits: 1,
+        }).format(price)
+      : '';
   }
 
   buildPeriodFilter({ from, to }) {
@@ -144,9 +159,13 @@ export default class ManagerHubBillingSummaryCtrl {
 
   refreshTile() {
     this.loading = true;
+    this.billsError = false;
     return this.refresh()
       .then(({ bills }) => {
         this.bills = bills.data;
+      })
+      .catch(() => {
+        this.billsError = true;
       })
       .finally(() => {
         this.loading = false;
