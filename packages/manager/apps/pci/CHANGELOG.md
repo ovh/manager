@@ -1,3 +1,12 @@
+## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.2.0...@ovh-ux/manager-pci-app@3.2.1) (2021-05-06)
+
+
+### Bug Fixes
+
+* **deps:** add missing deps ([#4907](https://github.com/ovh/manager/issues/4907)) ([02be9b1](https://github.com/ovh/manager/commit/02be9b15a2392b7149d18f190b91e20b97e65ce8))
+
+
+
 # [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.1.9...@ovh-ux/manager-pci-app@3.2.0) (2021-05-05)
 
 

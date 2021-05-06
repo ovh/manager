@@ -1,3 +1,12 @@
+## [8.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.4.2...@ovh-ux/manager-sms@8.4.3) (2021-05-06)
+
+
+### Bug Fixes
+
+* **sms:** remaining chars estimate ([#4896](https://github.com/ovh/manager/issues/4896)) ([341b898](https://github.com/ovh/manager/commit/341b898667510e47b9ed0c22a54b39e5161caba6))
+
+
+
 ## [8.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.4.1...@ovh-ux/manager-sms@8.4.2) (2021-04-09)
 
 

@@ -1,3 +1,12 @@
+## [3.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.4.0...@ovh-ux/manager-account-sidebar@3.4.1) (2021-05-06)
+
+
+### Bug Fixes
+
+* prevent to reach clickable items when element is hidden ([#4866](https://github.com/ovh/manager/issues/4866)) ([73fb430](https://github.com/ovh/manager/commit/73fb430c09e398018900b7acbdd9d8b2e430cf64))
+
+
+
 # [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.3.3...@ovh-ux/manager-account-sidebar@3.4.0) (2021-03-17)
 
 
