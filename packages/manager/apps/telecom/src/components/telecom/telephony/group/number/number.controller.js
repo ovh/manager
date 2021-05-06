@@ -15,7 +15,7 @@ export default class TelephonyNumberCtrl {
     autoScrollOnToggle,
     ovhUserPref,
     tucJsPlumbService,
-    TucToast,
+    TucToastError,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -25,7 +25,7 @@ export default class TelephonyNumberCtrl {
     this.autoScrollOnToggle = autoScrollOnToggle;
     this.ovhUserPref = ovhUserPref;
     this.tucJsPlumbService = tucJsPlumbService;
-    this.TucToast = TucToast;
+    this.TucToastError = TucToastError;
     this.jsPlumbInstanceOptions = JSPLUMB_INSTANCE_OPTIONS;
     this.jsPlumbEndpointsOptions = JSPLUMB_ENDPOINTS_OPTIONS;
     this.jsPlumbConnectionsOptions = JSPLUMB_CONNECTIONS_OPTIONS;
