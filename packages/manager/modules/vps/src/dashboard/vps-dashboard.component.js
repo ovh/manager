@@ -38,6 +38,7 @@ export default {
     tabSummary: '<',
     trackingPrefix: '<',
     vps: '<',
+    vpsState: '<',
     vpsMigrationTask: '<',
     vpsMigrationTaskInError: '<',
     vpsUpgradeTask: '<',

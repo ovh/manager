@@ -36,6 +36,7 @@
                 actions="$ctrl.actions"
                 regions-group="$ctrl.regionsGroup"
                 vps="$ctrl.vps"
+                vps-state="$ctrl.stateVps"
                 go-to-kvm="$ctrl.goToKvm"
                 go-to-reboot="$ctrl.goToReboot"
                 go-to-reboot-rescue="$ctrl.goToRebootRescue"
@@ -51,6 +52,11 @@
                 data-heading="{{ ::'vps_tile_shortcut' | translate }}"
                 class="h-100"
             >
+                <oui-tile-button
+                    data-on-click="$ctrl.actions.terminate.callback()"
+                >
+                    <span data-translate="vps_configuration_terminate"></span>
+                </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.goToRebootRescue()"
                     data-ng-if="$ctrl.actions.rebootRescue.isAvailable()"
@@ -132,6 +138,11 @@
                 data-heading="{{ ::'vps_tile_configuration' | translate }}"
                 class=" h-100"
             >
+                <oui-tile-definition term="{{ ::'vps_dashboard_state' | translate }}">
+                    <oui-tile-description>
+                        <vps-state-info vps-state="$ctrl.stateVps"></vps-state-info>
+                    </oui-tile-description>
+                </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{ ::'vps_dashboard_name' | translate }}"
                 >
