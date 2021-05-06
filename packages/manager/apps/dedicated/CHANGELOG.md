@@ -1,3 +1,12 @@
+## [16.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.23.3...@ovh-ux/manager-dedicated@16.23.4) (2021-05-06)
+
+
+### Bug Fixes
+
+* **billing.credits.movement:** fix url ([#4910](https://github.com/ovh/manager/issues/4910)) ([fa69e6e](https://github.com/ovh/manager/commit/fa69e6ec07dea4d79f84001d8db603a2cd982ce0))
+
+
+
 ## [16.23.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.23.2...@ovh-ux/manager-dedicated@16.23.3) (2021-05-06)
 
 
