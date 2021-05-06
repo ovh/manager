@@ -1,3 +1,12 @@
+## [15.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.23.0...@ovh-ux/manager-web@15.23.1) (2021-05-06)
+
+
+### Bug Fixes
+
+* **hosting.cdn:** fix link to flush CDN ([#4893](https://github.com/ovh/manager/issues/4893)) ([eb54727](https://github.com/ovh/manager/commit/eb54727c1fc75da17cfe1717a970092981d7572d))
+
+
+
 # [15.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.22.0...@ovh-ux/manager-web@15.23.0) (2021-05-05)
 
 

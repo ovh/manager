@@ -1,3 +1,12 @@
+## [16.23.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.23.2...@ovh-ux/manager-dedicated@16.23.3) (2021-05-06)
+
+
+### Bug Fixes
+
+* prevent crashing if value is null ([#4903](https://github.com/ovh/manager/issues/4903)) ([f890a49](https://github.com/ovh/manager/commit/f890a49bebcc8c5fe68e5cddcdcfe60107837a16))
+
+
+
 ## [16.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.23.1...@ovh-ux/manager-dedicated@16.23.2) (2021-05-05)
 
 

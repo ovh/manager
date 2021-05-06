@@ -1,3 +1,12 @@
+## [2.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.9.0...@ovh-ux/manager-vps@2.9.1) (2021-05-06)
+
+
+### Bug Fixes
+
+* prevent crashing if value is null ([#4903](https://github.com/ovh/manager/issues/4903)) ([f890a49](https://github.com/ovh/manager/commit/f890a49bebcc8c5fe68e5cddcdcfe60107837a16))
+
+
+
 # [2.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.8.0...@ovh-ux/manager-vps@2.9.0) (2021-05-05)
 
 
