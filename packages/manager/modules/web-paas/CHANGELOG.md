@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.1.0...@ovh-ux/manager-web-paas@1.1.1) (2021-05-07)
+
+
+### Bug Fixes
+
+* **add:** use coreURLBuilder to get orders URL ([#4920](https://github.com/ovh/manager/issues/4920)) ([a757e6f](https://github.com/ovh/manager/commit/a757e6f2cf42164dc82b86056ada90175ba2547e))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.0.6...@ovh-ux/manager-web-paas@1.1.0) (2021-05-05)
 
 
