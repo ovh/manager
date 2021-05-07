@@ -2,7 +2,7 @@
   "hosting_cdn_order_title": "You are about to subscribe to the Shared CDN option",
   "hosting_cdn_upgrade_title": "Change Shared CDN solution",
   "hosting_cdn_v1_upgrade_title": "Migrate to the Shared CDN option",
-  "hosting_cdn_order_choose_plan": "Select the plan you wish to upgrade to.",
+  "hosting_cdn_order_choose_plan": "Select the option you want.",
   "hosting_cdn_order_choose_plan_cdn-advanced": "CDN Advanced",
   "hosting_cdn_order_choose_plan_cdn-advanced_details": "(Including CDN Basic and CDN Security) Optimise your CDN configuration to your needs, to ensure the very best user experience.",
   "hosting_cdn_order_choose_plan_cdn-basic": "CDN Basic",
@@ -37,5 +37,7 @@
   "hosting_cdn_order_step_description_payment": "To confirm your request, please choose a payment method, and accept the Terms & Conditions of Use.",
   "hosting_cdn_order_submit_activate": "Enable",
   "hosting_cdn_order_submit_pay": "Pay",
-  "hosting_cdn_order_cancel": "Cancel"
+  "hosting_cdn_order_cancel": "Cancel",
+  "hosting_cdn_order_breadcrumb": "Order CDN",
+  "hosting_cdn_upgrade_breadcrumb": "Change CDN solution"
 }
