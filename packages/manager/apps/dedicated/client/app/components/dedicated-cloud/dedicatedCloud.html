@@ -68,15 +68,6 @@
     </header>
 
     <div>
-        <oui-message
-            type="warning"
-            class="mb-4"
-            data-ng-if="!$ctrl.dedicatedCloud.canOrder"
-        >
-            <span
-                data-translate="dedicatedCloud_premier_sbg_order_warning"
-            ></span>
-        </oui-message>
         <ovh-manager-incident-banner service-name="$ctrl.productId">
         </ovh-manager-incident-banner>
         <div data-ovh-alert="dedicatedCloud"></div>

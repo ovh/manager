@@ -17,7 +17,6 @@ import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import ovhManagerHub from '@ovh-ux/manager-hub';
-import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
 import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
@@ -55,7 +54,6 @@ export default (containerEl, environment) => {
         ovhManagerAccountSidebar,
         registerCoreModule(environment),
         ovhManagerHub,
-        ovhManagerIncidentBanner,
         ovhManagerNavbar,
         ovhManagerOrderTracking,
         ovhNotificationsSidebar,
