@@ -1,3 +1,12 @@
+## [16.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.25.0...@ovh-ux/manager-dedicated@16.25.1) (2021-05-07)
+
+
+### Bug Fixes
+
+* **dedicatedcloud.datacenter:** fix banner scope ([da74bcb](https://github.com/ovh/manager/commit/da74bcb93979284bd7ca71dae5bb0e56bf9c78a3))
+
+
+
 # [16.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.24.0...@ovh-ux/manager-dedicated@16.25.0) (2021-05-07)
 
 
