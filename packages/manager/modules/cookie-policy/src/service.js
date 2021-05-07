@@ -64,6 +64,7 @@ export default class CookiePolicyService {
     const expirationDate = new Date();
     expirationDate.setMonth(expirationDate.getMonth() + 13);
     this.$cookies.put(MANAGER_TRACKING, consent ? '1' : '0', {
+      path: '/',
       expires: expirationDate,
     });
   }
