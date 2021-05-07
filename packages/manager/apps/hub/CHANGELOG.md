@@ -1,3 +1,12 @@
+## [3.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.14.0...@ovh-ux/manager-hub-app@3.14.1) (2021-05-07)
+
+
+### Bug Fixes
+
+* remove unused import ([#4933](https://github.com/ovh/manager/issues/4933)) ([2683caa](https://github.com/ovh/manager/commit/2683caa2cac71098ddb2ec2560c073542ad67fd3))
+
+
+
 # [3.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.13.0...@ovh-ux/manager-hub-app@3.14.0) (2021-05-07)
 
 
