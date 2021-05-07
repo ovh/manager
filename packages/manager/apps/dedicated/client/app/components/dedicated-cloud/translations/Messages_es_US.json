@@ -240,5 +240,6 @@
   "ip_order_finish_error": "Se ha producido un error al contratar IP adicionales",
   "ip_order_free_activation_fee": "Para los servidores con IP adicionales incluidas, el costo de activación no sera facturado nuevamente al renovar el servidor.",
   "ip_order_resume_short": "Bloc /{{ blockSize }} : {{ price }}",
-  "ip_order_renew_EPCC": "Las direcciones IP se renovarán automáticamente con la infraestructura del cloud dedicado."
+  "ip_order_renew_EPCC": "Las direcciones IP se renovarán automáticamente con la infraestructura del cloud dedicado.",
+  "dedicatedCloud_premier_sbg_order_warning": "Le informamos de que no es posible realizar nuevos pedidos de este servicio en nuestra localización de Estrasburgo (SBG). Estamos haciendo todo lo posible para volver a ofrecer esta opción de pedido lo antes posible."
 }

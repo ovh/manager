@@ -245,5 +245,6 @@
   "dedicatedCloud_survey": "Para melhorar a qualidade do serviço Hosted Private Cloud, pedimos-lhe que",
   "dedicatedCloud_survey_link": "partilhe a sua opinião sobre esta interface",
   "ip_order_renew_EPCC": "Os seus endereços IP serão automaticamente renovados com a sua infraestrutura Dedicated Cloud.",
-  "ip_order_renew_MBM": "Os seus endereços IP serão automaticamente renovados com a sua infraestrutura Managed Bare Metal."
+  "ip_order_renew_MBM": "Os seus endereços IP serão automaticamente renovados com a sua infraestrutura Managed Bare Metal.",
+  "dedicatedCloud_premier_sbg_order_warning": "Não é possível realizar novas encomendas na nossa localização de Estrasburgo (SBG). As nossas equipas estão a fazer todos os possíveis para voltar a oferecer esta opção de encomenda assim que possível."
 }
