@@ -245,5 +245,6 @@
   "dedicatedCloud_survey": "Para mejorar la calidad del servicio Hosted Private Cloud le invitamos a",
   "dedicatedCloud_survey_link": "enviarnos su opinión en esta interfaz.",
   "ip_order_renew_EPCC": "Sus direcciones IP se renovarán automáticamente con su infraestructura Dedicated Cloud.",
-  "ip_order_renew_MBM": "Sus direcciones IP se renovarán automáticamente con su infraestructura Managed Bare Metal."
+  "ip_order_renew_MBM": "Sus direcciones IP se renovarán automáticamente con su infraestructura Managed Bare Metal.",
+  "dedicatedCloud_premier_sbg_order_warning": "Le informamos de que no es posible realizar nuevos pedidos de este servicio en nuestra localización de Estrasburgo (SBG). Estamos haciendo todo lo posible para volver a ofrecer esta opción de pedido lo antes posible."
 }
