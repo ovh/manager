@@ -65,6 +65,7 @@
     "angular-ui-validate": "^1.2.3",
     "angularjs-scroll-glue": "^2.2.0",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "flatpickr": "~4.6.3",
     "font-awesome": "^4.0.0",
     "jquery-ui": "components/jqueryui#~1.11.2",
     "moment": "^2.24.0",
