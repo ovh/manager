@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cookie-policy@1.0.2...@ovh-ux/manager-cookie-policy@1.0.3) (2021-05-07)
+
+
+### Bug Fixes
+
+* add path option ([33f64fc](https://github.com/ovh/manager/commit/33f64fc3c71b8c0bbff27cb40d56cfbdd19e695a))
+
+
+
 ## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cookie-policy@1.0.1...@ovh-ux/manager-cookie-policy@1.0.2) (2021-05-05)
 
 
