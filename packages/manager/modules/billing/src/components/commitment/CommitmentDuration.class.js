@@ -21,6 +21,10 @@ export default class CommitmentDuration {
     }
   }
 
+  get monthlyDuration() {
+    return moment.duration(this.duration).asMonths();
+  }
+
   get monthlyPrice() {
     return this.commitment.pricing.monthlyPrice.text;
   }
