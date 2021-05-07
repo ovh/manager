@@ -4,7 +4,7 @@ import 'angular-translate';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
 
-import component from './component';
+import component from './details.component';
 import routing from './details.routing';
 import service from './service';
 import userLicences from './user-licences';

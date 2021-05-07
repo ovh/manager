@@ -1,17 +1,17 @@
 import { compact, find, map, set } from 'lodash';
-import { addProjectResolves } from '../../../components/modify-plan/modify-plan.utils';
+import { commonResolves } from '../../../add/add.utils';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('web-paas.dashboard.service.edit-range', {
-    url: '/edit-range',
+  $stateProvider.state('web-paas.dashboard.service.change-offer', {
+    url: '/change-offer',
     views: {
-      projectDetailsView: 'webPaasModifyPlan',
+      projectDetailsView: 'webPaasChangeOfferComponent',
     },
     params: {
       cpu: null,
     },
     resolve: {
-      ...addProjectResolves,
+      ...commonResolves,
       cpu: /* @ngInject */ ($transition$) => $transition$.params().cpu,
       selectedProject: /* @ngInject */ (WebPaas, projectId) =>
         WebPaas.getProjectDetails(projectId),
@@ -46,8 +46,29 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return null;
       },
+      deleteUser: /* @ngInject */ ($state) => (customer) =>
+        $state.go('web-paas.dashboard.service.change-offer.delete-user', {
+          customer,
+        }),
+
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('web_paas_add_project_title_edit'),
+      goToChangeOffer: /* @ngInject */ ($state, Alerter) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const reload = message && type === 'success';
+        const promise = $state.go('web-paas.dashboard.service.change-offer', {
+          reload,
+        });
+        if (message) {
+          promise.then(() => {
+            Alerter[type](message, 'web_paas_dashboard_alert');
+          });
+        }
+
+        return promise;
+      },
     },
   });
 };

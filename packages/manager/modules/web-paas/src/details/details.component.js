@@ -1,4 +1,4 @@
-import controller from './controller';
+import controller from './details.controller';
 import template from './template.html';
 
 const component = {

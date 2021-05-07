@@ -5,7 +5,7 @@ import component from './service.component';
 import routing from './service.routing';
 import terminate from './terminate';
 import addAddon from './add-addon';
-import editRange from './edit-range';
+import changeOffer from './change-offer';
 
 const moduleName = 'ovhManagerWebPaasDetailsService';
 
@@ -13,7 +13,7 @@ angular
   .module(moduleName, [
     'pascalprecht.translate',
     addAddon,
-    editRange,
+    changeOffer,
     terminate,
   ])
   .config(routing)

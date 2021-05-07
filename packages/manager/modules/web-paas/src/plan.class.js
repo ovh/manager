@@ -51,9 +51,12 @@ export default class Plan {
   }
 
   getLicences() {
-    return find(get(this, 'blobs.commercial.features'), {
-      name: 'user_licences_included',
-    }).value;
+    return parseInt(
+      find(get(this, 'blobs.commercial.features'), {
+        name: 'user_licences_included',
+      }).value,
+      10,
+    );
   }
 
   getPrice() {

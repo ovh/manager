@@ -423,7 +423,7 @@ export default class WebPaasService {
     return this.WucUser.getUrlOfEndsWithSubsidiary('express_order').then(
       (expressOrderUrl) => {
         return this.$window.open(
-          `${expressOrderUrl}#/new/express/resume?products=${JSURL.stringify(
+          `${expressOrderUrl}#/express/review?products=${JSURL.stringify(
             payload,
           )}`,
           '_blank',

@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('web-paas.add.delete-user', {
+  $stateProvider.state('web-paas.dashboard.service.change-offer.delete-user', {
     url: '/delete-user',
     params: {
       customer: null,
