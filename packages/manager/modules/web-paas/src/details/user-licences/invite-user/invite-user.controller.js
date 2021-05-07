@@ -34,8 +34,4 @@ export default class {
         this.isLoading = false;
       });
   }
-
-  cancel() {
-    this.$state.go('^');
-  }
 }

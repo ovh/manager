@@ -5,4 +5,8 @@ export default class {
       licences: 'web_paas_licences_alert',
     };
   }
+
+  canInviteUser() {
+    return this.userList.length < this.project.totalLicences();
+  }
 }

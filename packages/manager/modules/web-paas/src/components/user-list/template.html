@@ -22,8 +22,9 @@
             <span data-translate="web_paas_common_terminate"></span>
         </oui-action-menu-item>
     </oui-action-menu>
-    <oui-datagrid-topbar data-ng-if="$ctrl.inviteUser">
+    <oui-datagrid-topbar>
         <button
+            data-disabled="!$ctrl.inviteUser || ($ctrl.userList.length === $ctrl.project.totalLicences())"
             data-ng-click="$ctrl.inviteUser()"
             class="oui-button oui-button_secondary oui-button_icon-left mb-2"
         >

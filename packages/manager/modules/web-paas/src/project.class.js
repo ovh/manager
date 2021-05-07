@@ -72,4 +72,8 @@ export default class Project {
   setOfferName() {
     set(this, 'offerName', OFFER_NAME[this.offer.split('-')[0]]);
   }
+
+  getRegion() {
+    return get(this, 'metadata.project.region');
+  }
 }

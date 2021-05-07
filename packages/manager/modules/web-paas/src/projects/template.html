@@ -30,10 +30,11 @@
                 >
                 </a>
             </oui-datagrid-column>
-            <oui-datagrid-column
-                data-title=":: 'web_paas_region' | translate"
-                data-property="metadata.project.region"
-            ></oui-datagrid-column>
+            <oui-datagrid-column data-title=":: 'web_paas_region' | translate"
+                ><span
+                    data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($row.getRegion())"
+                ></span>
+            </oui-datagrid-column>
             <oui-datagrid-column
                 data-title=":: 'web_paas_vcpu' | translate"
                 data-property="selectedPlan.vcpuConfig"

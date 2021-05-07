@@ -103,16 +103,16 @@ export default class WebPaasService {
       ovhSubsidiary,
       'webPaaS',
     ).then((catalog) => {
-      const sorted = this.sortSetVcpuConfig(catalog.plans);
+      const sortedConfig = this.sortSetVcpuConfig(catalog.plans);
       if (availablePlans) {
-        sorted.forEach((plan) =>
+        sortedConfig.forEach((plan) =>
           find(availablePlans, { planCode: plan.planCode })
             ? set(plan, 'available', true)
             : set(plan, 'available', false),
         );
       }
-      const groupedPlans = this.groupPlans(sorted);
-      set(catalog, 'plans', sorted);
+      const groupedPlans = this.groupPlans(sortedConfig);
+      set(catalog, 'plans', sortedConfig);
       set(catalog, 'productList', groupedPlans);
       return catalog;
     });

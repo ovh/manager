@@ -17,10 +17,7 @@
                     }"
         data-translate="{{:: 'web_paas_user_licences_used' | translate: { totalLicence: $ctrl.project.totalLicences(), numLicenceAvailable: $ctrl.userList.length } }}"
     ></p>
-    <oui-message
-        type="info"
-        data-ng-if="$ctrl.userList.length === $ctrl.project.totalLicences()"
-    >
+    <oui-message type="info" data-ng-if="!$ctrl.canInviteUser()">
         <span data-translate="web_paas_user_licences_more_users"></span>
         <a href="{{$ctrl.addUserLink}}">
             <span

@@ -1,17 +1,18 @@
 import debounce from 'lodash/debounce';
 import get from 'lodash/get';
 import moment from 'moment';
+import { ADDON_TYPE } from './constants';
 
 export default class {
   /* @ngInject */
-  constructor($q, $scope, $window, Alerter, WebPaas, $translate) {
+  constructor($q, $scope, $window, WebPaas, $translate) {
     this.$q = $q;
     this.$scope = $scope;
     this.$window = $window;
-    this.Alerter = Alerter;
     this.WebPaas = WebPaas;
     this.$translate = $translate;
-    this.disabled = false;
+    this.disableNumeric = false;
+    this.disableSubmit = false;
   }
 
   $onInit() {
@@ -30,7 +31,7 @@ export default class {
     const price = get(this.addon, 'prices').find(({ capacities }) =>
       capacities.includes('renew'),
     ).price.value;
-    if (this.addonType === 'additional-storage') {
+    if (this.addonType === ADDON_TYPE.STORAGE) {
       const stagingQuantity = this.project.totalEnvironment();
       this.nextMonthPrice = (2 + stagingQuantity) * price * this.addon.quantity;
     } else {
@@ -39,13 +40,13 @@ export default class {
   }
 
   getTotalPrice() {
-    if (this.addonType !== 'additional-user-license') {
+    if (this.addonType !== ADDON_TYPE.LICENCES) {
       this.totalPrice = this.nextMonthPrice * this.quantity;
     }
   }
 
   addStorage() {
-    this.disabled = true;
+    this.disableNumeric = true;
     this.quantity = this.presentCount + this.addon.quantity;
     this.WebPaas.getAddonSummary(this.project, this.addon, this.quantity)
       .then(({ contracts, prices, cart }) => {
@@ -64,12 +65,14 @@ export default class {
         ),
       )
       .finally(() => {
-        this.disabled = false;
+        this.disableSubmit = false;
+        this.disableNumeric = false;
       });
   }
 
   checkout() {
-    this.disabled = true;
+    this.disableNumeric = true;
+    this.disableSubmit = true;
     this.WebPaas.checkoutAddon(
       this.cart,
       this.project.serviceId,
@@ -86,7 +89,8 @@ export default class {
         ),
       )
       .finally(() => {
-        this.disabled = false;
+        this.disableSubmit = false;
+        this.disableNumeric = false;
       });
   }
 
@@ -106,9 +110,13 @@ export default class {
     );
   }
 
+  onChange() {
+    this.disableSubmit = true;
+  }
+
   setParameters() {
     switch (this.addonType) {
-      case 'additional-storage':
+      case ADDON_TYPE.STORAGE:
         this.presentCount =
           (this.project.totalStorage() -
             this.project.selectedPlan.getStorage()) /
@@ -118,14 +126,14 @@ export default class {
           { storage: this.presentCount },
         );
         break;
-      case 'additional-staging-environment':
+      case ADDON_TYPE.ENVIRONMENNT:
         this.presentCount = this.project.totalEnvironment() - 2;
         this.description = this.$translate.instant(
           'web_paas_service_add_staging_description',
           { environment: this.presentCount },
         );
         break;
-      case 'additional-user-license':
+      case ADDON_TYPE.LICENCES:
         this.presentCount =
           this.project.totalLicences() -
           this.project.selectedPlan.getLicences();

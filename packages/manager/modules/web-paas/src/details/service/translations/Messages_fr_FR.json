@@ -33,5 +33,7 @@
   "web_paas_tile_subscription_offer": "Offre",
   "web_paas_tile_subscription_creation_date": "Date de création",
   "web_paas_tile_subscription_autorenew": "Renouvellement automatique",
-  "web_paas_expiry_date": "Date d'expiration"
+  "web_paas_expiry_date": "Date d'expiration",
+  "web_paas_tile_subscription_manage_service": "Gérer le service",
+  "web_paas_tile_subscription_pay_billing": "Payer la facturation"
 }

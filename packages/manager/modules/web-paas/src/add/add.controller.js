@@ -1,5 +1,4 @@
 import { get, set } from 'lodash';
-import { WORKFLOW_OPTIONS } from './add.constants';
 
 export default class WebPassAddCtrl {
   /* @ngInject */
@@ -20,7 +19,6 @@ export default class WebPassAddCtrl {
     this.Alerter = Alerter;
     this.WebPaas = WebPaas;
     this.WucOrderCartService = WucOrderCartService;
-    this.WORKFLOW_OPTIONS = WORKFLOW_OPTIONS;
     this.CucRegionService = CucRegionService;
     this.alerts = {
       add: 'web_paas_add',

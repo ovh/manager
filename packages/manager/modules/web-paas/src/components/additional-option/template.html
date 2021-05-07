@@ -11,29 +11,34 @@
         ></span>
     </div>
     <div class="oui-tile__body">
-        <oui-numeric
-            name="numeric"
-            model="$ctrl.option.quantity"
-            min="0"
-            disabled="$ctrl.disabled"
-            max="$ctrl.plan.getMaxLicenses()"
-            data-ng-if="$ctrl.option.family === 'user_license'"
-        ></oui-numeric>
-        <oui-numeric
-            name="numeric"
-            disabled="$ctrl.disabled"
-            model="$ctrl.option.quantity"
-            min="0"
-            max="$ctrl.plan.getMaxStorage()"
-            data-ng-if="$ctrl.option.family === 'storage'"
-        ></oui-numeric>
-        <oui-numeric
-            name="numeric"
-            disabled="$ctrl.disabled"
-            model="$ctrl.option.quantity"
-            min="0"
-            max="$ctrl.plan.getMaxEnvironment()"
-            data-ng-if="$ctrl.option.family === 'staging_environment'"
-        ></oui-numeric>
+        <oui-field>
+            <oui-numeric
+                name="numeric"
+                model="$ctrl.option.quantity"
+                min="0"
+                disabled="$ctrl.disabled"
+                max="$ctrl.plan.getMaxLicenses()"
+                on-change="$ctrl.onSelected(modelValue)"
+                data-ng-if="$ctrl.option.family === 'user_license'"
+            ></oui-numeric>
+            <oui-numeric
+                name="numeric"
+                disabled="$ctrl.disabled"
+                model="$ctrl.option.quantity"
+                min="0"
+                max="$ctrl.plan.getMaxStorage()"
+                data-ng-if="$ctrl.option.family === 'storage'"
+                on-change="$ctrl.onSelected(modelValue)"
+            ></oui-numeric>
+            <oui-numeric
+                name="numeric"
+                disabled="$ctrl.disabled"
+                model="$ctrl.option.quantity"
+                min="0"
+                max="$ctrl.plan.getMaxEnvironment()"
+                data-ng-if="$ctrl.option.family === 'staging_environment'"
+                on-change="$ctrl.onSelected(modelValue)"
+            ></oui-numeric>
+        </oui-field>
     </div>
 </div>

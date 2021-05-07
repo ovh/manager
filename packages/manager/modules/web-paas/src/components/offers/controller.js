@@ -1,10 +1,12 @@
 import find from 'lodash/find';
 import set from 'lodash/set';
 import isFunction from 'lodash/isFunction';
+import { PLAN_FAMILY_INCLUDED, PLAN_FAMILY_EXCLUDED } from './constants';
 
 export default class WebPaasOffersCtrl {
   $onInit() {
-    this.planFamily = ['develop', 'expand'];
+    this.PLAN_FAMILY_INCLUDED = PLAN_FAMILY_INCLUDED;
+    this.PLAN_FAMILY_EXCLUDED = PLAN_FAMILY_EXCLUDED;
     this.previewMode = true;
     if (this.offers && this.offers.length > 0) {
       if (this.selectedPlan) {
@@ -33,8 +35,8 @@ export default class WebPaasOffersCtrl {
 
   isValid(product) {
     return (
-      (product.name === 'start' || product.name === 'start-1') &&
-      this.planFamily.includes(this.selectedPlan?.product)
+      this.PLAN_FAMILY_EXCLUDED.includes(product.name) &&
+      this.PLAN_FAMILY_INCLUDED.includes(this.selectedPlan?.product)
     );
   }
 }

@@ -1,7 +1,8 @@
 export default class WebPaasProjectsCtrl {
   /* @ngInject */
-  constructor(WebPaas) {
+  constructor(WebPaas, CucRegionService) {
     this.WebPaas = WebPaas;
+    this.CucRegionService = CucRegionService;
   }
 
   $onInit() {

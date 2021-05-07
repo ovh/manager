@@ -23,4 +23,10 @@ export default class WebPaasProjectAdditionalOptionCtrl {
       .split('')
       .pop()}`;
   }
+
+  onSelected(model) {
+    if (this.onChange) {
+      this.onChange({ modelValue: model });
+    }
+  }
 }

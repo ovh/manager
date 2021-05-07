@@ -10,28 +10,29 @@
         data-secondary-label="{{ ::'web_paas_common_cancel' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
         data-loading="$ctrl.isUpgrading"
-        data-primary-disabled="$ctrl.disabled"
+        data-primary-disabled="$ctrl.disableSubmit"
         data-heading="{{ ::'web_paas_service_add_addon_title_' + $ctrl.addonType.split('-').pop() | translate }}"
     >
         <p data-ng-bind="$ctrl.description"></p>
         <web-paas-additional-option
-            disabled="$ctrl.disabled"
+            disabled="$ctrl.disableNumeric"
             option="$ctrl.addon"
-            plan="$ctrl.selectedPlan"
+            plan="$ctrl.project.selectedPlan"
             project="$ctrl.project"
+            on-change="$ctrl.onChange(modelValue)"
         >
         </web-paas-additional-option>
         <p>
             <oui-spinner
                 data-size="s"
-                data-ng-if="$ctrl.disabled"
+                data-ng-if="$ctrl.disableNumeric"
             ></oui-spinner>
             <span
-                data-ng-if="$ctrl.disabled"
+                data-ng-if="$ctrl.disableNumeric"
                 data-translate="web_paas_service_add_addon_fetching_price"
             ></span>
             <span
-                data-ng-if="!$ctrl.disabled"
+                data-ng-if="!$ctrl.disableNumeric"
                 data-translate="{{:: 'web_paas_service_add_addon_prorata_price_' + $ctrl.addonType.split('-').pop() }}"
                 data-translate-values="{
                     prorataPrice: $ctrl.prices.withTax.value || 0,
