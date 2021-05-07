@@ -1,3 +1,14 @@
+# [16.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.24.0...@ovh-ux/manager-dedicated@16.25.0) (2021-05-07)
+
+
+### Features
+
+* add warning for order ([b8b5697](https://github.com/ovh/manager/commit/b8b5697bed9d1ee17cc87ae7124d058179003cbc))
+* **hosted-private-cloud:** add warning out of stock veeam backup ([5193d05](https://github.com/ovh/manager/commit/5193d0561f52b7603ad470e5f1653f17273beb08))
+* remove migration funnel ([bd0cf75](https://github.com/ovh/manager/commit/bd0cf756fd3d2c751343a6316337b6c64b3b7ebb))
+
+
+
 # [16.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.23.4...@ovh-ux/manager-dedicated@16.24.0) (2021-05-06)
 
 

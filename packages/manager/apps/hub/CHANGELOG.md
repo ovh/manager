@@ -1,3 +1,12 @@
+# [3.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.13.0...@ovh-ux/manager-hub-app@3.14.0) (2021-05-07)
+
+
+### Features
+
+* remove migration funnel ([bd0cf75](https://github.com/ovh/manager/commit/bd0cf756fd3d2c751343a6316337b6c64b3b7ebb))
+
+
+
 # [3.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.12.1...@ovh-ux/manager-hub-app@3.13.0) (2021-05-05)
 
 

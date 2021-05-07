@@ -1,3 +1,12 @@
+# [5.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.23.0...@ovh-ux/manager-pci@5.24.0) (2021-05-07)
+
+
+### Features
+
+* remove migration funnel ([bd0cf75](https://github.com/ovh/manager/commit/bd0cf756fd3d2c751343a6316337b6c64b3b7ebb))
+
+
+
 # [5.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.22.0...@ovh-ux/manager-pci@5.23.0) (2021-05-05)
 
 
