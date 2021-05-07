@@ -70,6 +70,14 @@
         data-ovh-alert="{{ :: $ctrl.DEDICATED_CLOUD_DATACENTER.alertId }}"
     ></div>
 
+    <oui-message
+        type="warning"
+        class="mb-4"
+        data-ng-if="!$ctrl.datacenter.model.canOrder"
+    >
+        <span data-translate="dedicatedCloud_premier_sbg_order_warning"></span>
+    </oui-message>
+
     <oui-message class="mb-1" type="info" ng-if="$ctrl.surveyUrl">
         <span data-translate="dedicatedCloud_survey"></span>
         <a
