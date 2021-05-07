@@ -1,4 +1,4 @@
-export default /* @ngInject */ ($stateProvider, coreURLBuilder) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('web-paas.add', {
     url: '/new',
     component: 'webPaasAdd',
@@ -7,7 +7,7 @@ export default /* @ngInject */ ($stateProvider, coreURLBuilder) => {
         WebPaas.getCatalog(user.ovhSubsidiary),
       plans: /* @ngInject */ (catalog) => catalog.plans,
       goBack: /* @ngInject */ (goToWebPaas) => goToWebPaas,
-      getOrdersURL: /* @ngInject */ () => (orderId) =>
+      getOrdersURL: /* @ngInject */ (coreURLBuilder) => (orderId) =>
         coreURLBuilder.buildURL('dedicated', '#/billing/orders', {
           status: 'all',
           orderId,
