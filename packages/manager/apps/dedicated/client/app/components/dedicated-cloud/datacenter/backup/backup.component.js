@@ -16,6 +16,7 @@ export default {
     goToDeleteBackup: '<',
     guideUrl: '<',
     trackingPrefix: '<',
+    canOrderBackup: '<',
   },
   controller,
   template,

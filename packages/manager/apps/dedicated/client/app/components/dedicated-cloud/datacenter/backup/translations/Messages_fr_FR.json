@@ -23,5 +23,6 @@
   "dedicatedCloud_datacenter_backup_capability_update": "Valider les options du rapport",
   "dedicatedCloud_datacenter_backup_capability_update_error": "Une erreur est survenue lors de la mise à jour de vos paramètres de sauvegarde : {{ message }}",
   "dedicatedCloud_datacenter_backup_capability_update_success": "Les modifications apportées à votre rapport journalier de sauvegarde ont bien été prises en compte.",
-  "dedicatedCloud_datacenter_backup_capability_update_email_success": "Celui-ci sera envoyé à l’adresse e-mail suivante : {{emailAddress}}"
+  "dedicatedCloud_datacenter_backup_capability_update_email_success": "Celui-ci sera envoyé à l’adresse e-mail suivante : {{emailAddress}}",
+  "dedicatedCloud_datacenter_backup_order_warning": "Nous ne sommes pas en mesure de prendre de nouvelles commandes. Nos équipes sont pleinement mobilisées et nous mettons tout en œuvre pour rétablir cette possibilité de commande dans un avenir proche."
 }
