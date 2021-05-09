@@ -6,7 +6,7 @@ export default {
     catalog: '<',
     createProject: '<',
     guideUrl: '<',
-    goToChangeRange: '<',
+    goToChangeOffer: '<',
     goToUserLicences: '<',
     openPartnerConsole: '<',
     projects: '<',

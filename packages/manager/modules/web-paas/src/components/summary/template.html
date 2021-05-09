@@ -3,7 +3,7 @@
     <span data-ng-bind="$ctrl.selectedPlan.invoiceName"></span>
     <div data-ng-repeat="addon in $ctrl.selectedPlan.addons track by $index">
         <div
-            data-ng-if="addon.family === 'staging_environment' && addon.quantity > 0"
+            data-ng-if="addon.isStagingEnvironmentAddon() && addon.quantity > 0"
         >
             +<span
                 data-translate="web_paas_summary_addon_environment"
@@ -11,14 +11,14 @@
             >
             </span>
         </div>
-        <div data-ng-if="addon.family === 'storage' && addon.quantity > 0">
+        <div data-ng-if="addon.isStorageAddon() && addon.quantity > 0">
             +<span
                 data-translate="web_paas_summary_addon_storage"
-                data-translate-values="{quantity: (addon.quantity * 5)}"
+                data-translate-values="{quantity: $ctrl.getQuantity(addon.quantity)}"
             >
             </span>
         </div>
-        <div data-ng-if="addon.family === 'user_license' && addon.quantity > 0">
+        <div data-ng-if="addon.isUserLicenseAddon() && addon.quantity > 0">
             +<span
                 data-translate="web_paas_summary_addon_user_licence"
                 data-translate-values="{quantity: addon.quantity}"

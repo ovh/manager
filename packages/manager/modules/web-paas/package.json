@@ -13,6 +13,7 @@
   "main": "./src/index.js",
   "dependencies": {
     "@ovh-ux/ufrontend": "^1.0.0 || ^2.0.0",
+    "flag-icon-css": "^3.4.2",
     "lodash": "^4.17.14"
   },
   "peerDependencies": {

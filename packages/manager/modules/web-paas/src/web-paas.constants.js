@@ -22,9 +22,25 @@ export const OFFER_NAME = {
   expand: 'Expand',
 };
 
+export const STORAGE_VALUES = {
+  MAX_FOR_EXPAND_PLAN: 100,
+  MAX_FOR_OTHER_PLANS: 20,
+};
+
+export const ENVIRONMENT_VALUES = {
+  MAX: 50,
+};
+
+export const LICENCES_VALUES = {
+  MAX: 100,
+};
+
 export default {
   BETA_PLAN_CODE,
+  ENVIRONMENT_VALUES,
   GUIDELINK,
   OFFER_NAME,
+  LICENCES_VALUES,
   STATUS,
+  STORAGE_VALUES,
 };

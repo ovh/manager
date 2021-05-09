@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           addonType,
         }),
-      goToEditPlan: /* @ngInject */ ($state, projectId) => (cpu) =>
+      goToChangeOffer: /* @ngInject */ ($state, projectId) => (cpu) =>
         $state.go('web-paas.dashboard.service.change-offer', {
           projectId,
           cpu,

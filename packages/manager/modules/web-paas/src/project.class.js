@@ -41,19 +41,19 @@ export default class Project {
     return [STATUS.PENDING, STATUS.CANCELLING].includes(this.status);
   }
 
-  availableUserLicenses() {
+  getAvailableUserLicenses() {
     return get(this, 'metadata.project.availableUserLicenses');
   }
 
-  availableEnvironments() {
+  getAvailableEnvironments() {
     return get(this, 'metadata.project.availableEnvironments');
   }
 
-  totalLicences() {
+  getTotalLicences() {
     return get(this, 'metadata.project.userLicenses');
   }
 
-  totalStorage() {
+  getTotalStorage() {
     return get(this, 'metadata.project.storage');
   }
 
@@ -61,7 +61,7 @@ export default class Project {
     return get(this, 'metadata.project.vcpu');
   }
 
-  totalEnvironment() {
+  getTotalEnvironment() {
     return get(this, 'metadata.project.environment');
   }
 

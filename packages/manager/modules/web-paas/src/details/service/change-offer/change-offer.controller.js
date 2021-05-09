@@ -16,7 +16,6 @@ export default class {
 
   $onInit() {
     this.isAdding = false;
-    this.stepperIndex = 0;
     this.isEditingOffers = false;
     this.isGettingAddons = false;
     this.isGettingCheckoutInfo = false;
@@ -67,12 +66,12 @@ export default class {
     });
   }
 
-  onPlatformOrderSuccess(checkout) {
-    if (checkout && checkout.prices && checkout.prices.withTax.value > 0) {
+  OrderSuccess(checkout) {
+    if (checkout?.prices?.withTaxValue > 0) {
       this.$window.open(checkout.url, '_blank', 'noopener');
     }
     this.Alerter.success(
-      this.$translate.instant('web_paas_add_project_success', {
+      this.$translate.instant('web_paas_change_offer_success', {
         orderURL: checkout
           ? this.getOrdersURL(checkout.orderId)
           : this.getOrdersURL(),
@@ -82,9 +81,9 @@ export default class {
     this.scrollToTop();
   }
 
-  onPlatformOrderError(error) {
+  onOrderError(error) {
     this.Alerter.alertFromSWS(
-      `${this.$translate.instant('web_paas_add_project_error')} ${get(
+      `${this.$translate.instant('web_paas_change_offer_error')} ${get(
         error,
         'data.message',
       )}`,
@@ -96,10 +95,6 @@ export default class {
 
   getPlanCode() {
     return this.project.offer;
-  }
-
-  getOrderState(state) {
-    this.characteristics.isEditable = !state.isLoading;
   }
 
   loadOptions() {
@@ -132,7 +127,7 @@ export default class {
         this.contracts = contracts;
         this.prices = prices;
       })
-      .catch((error) => this.onPlatformOrderError(error))
+      .catch((error) => this.onOrderError(error))
       .finally(() => {
         this.isGettingCheckoutInfo = false;
       });
@@ -145,10 +140,10 @@ export default class {
       this.selectedProject.quantity,
     )
       .then(({ order }) => {
-        this.onPlatformOrderSuccess(order);
+        this.OrderSuccess(order);
       })
       .catch((error) => {
-        this.onPlatformOrderError(error);
+        this.onOrderError(error);
       })
       .finally(() => {
         this.orderInProgress = false;
@@ -161,7 +156,8 @@ export default class {
 
   shouldRemoveExtraLicences() {
     return (
-      this.selectedProject?.totalLicences() > this.selectedPlan.getMaxLicenses()
+      this.selectedProject?.getTotalLicences() >
+        this.selectedPlan.getMaxLicenses() && !this.cpu
     );
   }
 
@@ -171,9 +167,9 @@ export default class {
   }
 
   /** Gets users to be removed to downgrade to selected plan */
-  getUsersToRemoveCount() {
+  getNumberOfUsersToRemove() {
     return (
-      this.selectedProject.totalLicences() -
+      this.selectedProject.getTotalLicences() -
       (this.selectedPlan.getLicences() + this.getAdditionalLicencesCount())
     );
   }

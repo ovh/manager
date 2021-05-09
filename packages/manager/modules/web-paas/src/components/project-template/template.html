@@ -21,7 +21,7 @@
         data-model="$ctrl.selectedType"
         data-label="{{ template.name }}"
         data-variant="light"
-        data-on-change="$ctrl.onSelected(modelValue)"
+        data-on-change="$ctrl.onTemplateSelect(modelValue)"
         data-values="[template]"
         data-disabled="$ctrl.disabled"
         data-ng-if="!$ctrl.previewMode || template.name === $ctrl.selectedType.name"

@@ -4,8 +4,8 @@ import template from './user-licences.html';
 const component = {
   bindings: {
     addUserLink: '<',
-    deleteUser: '<',
-    inviteUser: '<',
+    goToDeleteUser: '<',
+    goToInviteUser: '<',
     project: '<',
     projectId: '<',
     userList: '<',

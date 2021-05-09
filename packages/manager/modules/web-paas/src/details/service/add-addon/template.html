@@ -1,7 +1,7 @@
 <form
     id="addStorage"
     name="addStorage"
-    data-ng-submit="$ctrl.addon.quantity > 0 && $ctrl.checkout()"
+    data-ng-submit="$ctrl.addon.quantity > 0 && $ctrl.orderAddon()"
     novalidate
 >
     <oui-modal
@@ -9,7 +9,6 @@
         data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{ ::'web_paas_common_cancel' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
-        data-loading="$ctrl.isUpgrading"
         data-primary-disabled="$ctrl.disableSubmit"
         data-heading="{{ ::'web_paas_service_add_addon_title_' + $ctrl.addonType.split('-').pop() | translate }}"
     >
@@ -20,6 +19,7 @@
             plan="$ctrl.project.selectedPlan"
             project="$ctrl.project"
             on-change="$ctrl.onChange(modelValue)"
+            user="$ctrl.user"
         >
         </web-paas-additional-option>
         <p>

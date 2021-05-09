@@ -17,7 +17,7 @@ angular
     summaryComponent,
   ])
   .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .component('webPaasAddComponent', component);
+  .component('webPaasAddComponent', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -19,7 +19,7 @@ export default class WebPaasProjectTemplateCtrl {
     this.templates = this.originalList.slice(offset - 1, offset + pageSize - 1);
   }
 
-  onSelected(template) {
+  onTemplateSelect(template) {
     if (isFunction(this.onSelect)) {
       this.onSelect(template);
     }

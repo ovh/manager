@@ -2,7 +2,7 @@
     <oui-header
         id="web-pass-add-header"
         class="mb-3 add-page-header"
-        data-heading="{{ 'web_paas_change_offer_title_edit' | translate }}"
+        data-heading="{{:: 'web_paas_change_offer_title_edit' | translate }}"
         data-description="{{:: 'web_paas_change_offer_description' | translate }}"
     >
     </oui-header>
@@ -57,7 +57,7 @@
                     <span
                         data-translate="web_paas_change_offer_downgrade_licence_warning_to_plan"
                         data-translate-values="{
-                        usersToRemove: $ctrl.getUsersToRemoveCount(),
+                        usersToRemove: $ctrl.getNumberOfUsersToRemove(),
                     }"
                     ></span>
                 </p>

@@ -1,11 +1,11 @@
 <div class="oui-tile d-flex m-2">
-    <h4 class="oui-tile__title ng-binding">
+    <h4 class="oui-tile__title ng-binding w-50">
         <span
             data-translate="{{ 'web_paas_offer_additional_option_title_' + $ctrl.option.family}}"
         ></span>
     </h4>
     <div class="text-right ml-auto mr-3">
-        <h4 class="m-0"><span data-ng-bind="$ctrl.getPrice()"></span></h4>
+        <h4 class="m-0" data-ng-bind="$ctrl.getPrice()"></h4>
         <span
             data-translate="{{ 'web_paas_offer_additional_option_price_desc_' + $ctrl.option.family}}"
         ></span>
@@ -19,7 +19,7 @@
                 disabled="$ctrl.disabled"
                 max="$ctrl.plan.getMaxLicenses()"
                 on-change="$ctrl.onSelected(modelValue)"
-                data-ng-if="$ctrl.option.family === 'user_license'"
+                data-ng-if="$ctrl.option.isUserLicenseAddon()"
             ></oui-numeric>
             <oui-numeric
                 name="numeric"
@@ -27,7 +27,7 @@
                 model="$ctrl.option.quantity"
                 min="0"
                 max="$ctrl.plan.getMaxStorage()"
-                data-ng-if="$ctrl.option.family === 'storage'"
+                data-ng-if="$ctrl.option.isStorageAddon()"
                 on-change="$ctrl.onSelected(modelValue)"
             ></oui-numeric>
             <oui-numeric
@@ -36,7 +36,7 @@
                 model="$ctrl.option.quantity"
                 min="0"
                 max="$ctrl.plan.getMaxEnvironment()"
-                data-ng-if="$ctrl.option.family === 'staging_environment'"
+                data-ng-if="$ctrl.option.isStagingEnvironmentAddon()"
                 on-change="$ctrl.onSelected(modelValue)"
             ></oui-numeric>
         </oui-field>

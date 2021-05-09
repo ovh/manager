@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import set from 'lodash/set';
+import capitalize from 'lodash/capitalize';
 import isFunction from 'lodash/isFunction';
 import { PLAN_FAMILY_INCLUDED, PLAN_FAMILY_EXCLUDED } from './constants';
 
@@ -23,14 +24,19 @@ export default class WebPaasOffersCtrl {
       } else {
         [this.selectedOffer] = this.offers;
       }
-      this.onSelected(this.selectedOffer);
+      this.onOfferSelect(this.selectedOffer);
     }
   }
 
-  onSelected(offer) {
+  onOfferSelect(offer) {
     if (isFunction(this.onSelect)) {
       this.onSelect({ product: offer });
     }
+  }
+
+  /* eslint-disable-next-line class-methods-use-this */
+  getPlanName(name) {
+    return capitalize(name);
   }
 
   isValid(product) {

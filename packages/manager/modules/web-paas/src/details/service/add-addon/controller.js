@@ -17,7 +17,7 @@ export default class {
 
   $onInit() {
     this.currentMonth = moment().format('MMMM');
-    this.setParameters();
+    this.updateParameters();
     this.$scope.$watch(
       '$ctrl.addon.quantity',
       debounce(
@@ -32,17 +32,17 @@ export default class {
       capacities.includes('renew'),
     ).price.value;
     if (this.addonType === ADDON_TYPE.STORAGE) {
-      const stagingQuantity = this.project.totalEnvironment();
-      this.nextMonthPrice = (2 + stagingQuantity) * price * this.addon.quantity;
-    } else {
-      this.nextMonthPrice = price * this.addon.quantity;
+      const stagingQuantity = this.project.getTotalEnvironment();
+      return (2 + stagingQuantity) * price * this.addon.quantity;
     }
+    return price * this.addon.quantity;
   }
 
   getTotalPrice() {
     if (this.addonType !== ADDON_TYPE.LICENCES) {
-      this.totalPrice = this.nextMonthPrice * this.quantity;
+      return this.nextMonthPrice * this.quantity;
     }
+    return null;
   }
 
   addStorage() {
@@ -53,8 +53,8 @@ export default class {
         this.cart = cart;
         this.contracts = contracts;
         this.prices = prices;
-        this.getNextMonthPrice();
-        this.getTotalPrice();
+        this.nextMonthPrice = this.getNextMonthPrice();
+        this.totalPrice = this.getTotalPrice();
       })
       .catch((error) =>
         this.goBack(
@@ -70,7 +70,7 @@ export default class {
       });
   }
 
-  checkout() {
+  orderAddon() {
     this.disableNumeric = true;
     this.disableSubmit = true;
     this.WebPaas.checkoutAddon(
@@ -95,7 +95,7 @@ export default class {
   }
 
   onAddonOrderSuccess(checkout) {
-    if (checkout && checkout.prices && checkout.prices.withTax.value > 0) {
+    if (checkout?.prices?.withTaxValue > 0) {
       this.$window.open(checkout.url, '_blank', 'noopener');
     }
 
@@ -114,11 +114,11 @@ export default class {
     this.disableSubmit = true;
   }
 
-  setParameters() {
+  updateParameters() {
     switch (this.addonType) {
       case ADDON_TYPE.STORAGE:
         this.presentCount =
-          (this.project.totalStorage() -
+          (this.project.getTotalStorage() -
             this.project.selectedPlan.getStorage()) /
           5;
         this.description = this.$translate.instant(
@@ -127,7 +127,7 @@ export default class {
         );
         break;
       case ADDON_TYPE.ENVIRONMENNT:
-        this.presentCount = this.project.totalEnvironment() - 2;
+        this.presentCount = this.project.getTotalEnvironment() - 2;
         this.description = this.$translate.instant(
           'web_paas_service_add_staging_description',
           { environment: this.presentCount },
@@ -135,7 +135,7 @@ export default class {
         break;
       case ADDON_TYPE.LICENCES:
         this.presentCount =
-          this.project.totalLicences() -
+          this.project.getTotalLicences() -
           this.project.selectedPlan.getLicences();
         this.description = this.$translate.instant(
           'web_paas_service_add_license_description',

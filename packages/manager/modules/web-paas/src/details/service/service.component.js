@@ -1,8 +1,9 @@
+import controller from './service.controller';
 import template from './service.html';
 
 const component = {
   bindings: {
-    goToEditPlan: '<',
+    goToChangeOffer: '<',
     goToAddAddon: '<',
     openPartnerConsole: '<',
     project: '<',
@@ -11,6 +12,7 @@ const component = {
     terminateProject: '<',
     userList: '<',
   },
+  controller,
   template,
 };
 

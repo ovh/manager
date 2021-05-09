@@ -2,8 +2,7 @@ import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
-  constructor($state, $translate, WebPaas) {
-    this.$state = $state;
+  constructor($translate, WebPaas) {
     this.$translate = $translate;
     this.webPaasService = WebPaas;
   }

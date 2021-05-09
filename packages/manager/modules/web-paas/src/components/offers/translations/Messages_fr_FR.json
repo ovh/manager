@@ -1,7 +1,4 @@
 {
-  "web_paas_offer_start": "START",
   "web_paas_offer_current_offer": "Offre actuelle",
-  "web_paas_offer_price_text": "Offre gratuite en version bêta",
-  "web_paas_offer_develop": "Develop",
-  "web_paas_offer_expand": "Expand"
+  "web_paas_offer_price_text": "Offre gratuite en version bêta"
 }

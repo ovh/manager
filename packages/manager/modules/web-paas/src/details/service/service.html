@@ -3,22 +3,16 @@
         data-messages="$ctrl.messages"
     ></cui-message-container>
     <div class="row d-lg-flex">
-<<<<<<< HEAD
         <div class="col-md-4">
             <!-- general info tile -->
             <oui-tile
                 data-heading="{{:: 'web_paas_service_project_information' | translate }}"
                 class="h-100"
-=======
-        <div class="col-md-4 h-100">
-            <oui-tile
-                data-heading="{{:: 'web_paas_service_project_information' | translate }}"
->>>>>>> feat(webpaas): refactor edit plan
             >
                 <oui-tile-button
                     data-on-click="$ctrl.openPartnerConsole($ctrl.project)"
                     data-disabled="!$ctrl.project.isActive()"
-                    data-external="true"
+                    data-external
                 >
                     <span
                         data-translate="web_paas_service_project_access"
@@ -61,41 +55,35 @@
                     data-description="{{:: $ctrl.project.offer }}"
                 >
                 </oui-tile-definition>
-                <oui-tile-button data-on-click="$ctrl.goToEditPlan()">
+                <oui-tile-button data-on-click="$ctrl.goToChangeOffer()">
                     <span
                         data-translate="web_paas_service_project_upgrade"
                     ></span>
                 </oui-tile-button>
                 <oui-tile-definition
                     data-term="{{:: 'web_paas_service_project_region' | translate }}"
-                    data-description="{{:: $ctrl.project.getRegion() }}"
+                    data-description="{{:: $ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.project.getRegion()) }}"
                 ></oui-tile-definition>
             </oui-tile>
         </div>
-<<<<<<< HEAD
         <!-- configuration tile -->
         <div class="col-md-4">
             <oui-tile
                 data-heading="{{:: 'web_paas_service_project_configuration' | translate }}"
                 class="h-100"
-=======
-        <div class="col-md-4 h-100">
-            <oui-tile
-                data-heading="{{:: 'web_paas_service_project_configuration' | translate }}"
->>>>>>> feat(webpaas): refactor edit plan
             >
                 <oui-tile-definition
                     data-term="{{:: 'web_paas_service_project_environment' | translate }}"
                     data-description="{{:: $ctrl.project.selectedPlan.vcpuConfig }}"
                 ></oui-tile-definition>
-                <oui-tile-button data-on-click="$ctrl.goToEditPlan(true)">
+                <oui-tile-button data-on-click="$ctrl.goToChangeOffer(true)">
                     <span
                         data-translate="web_paas_service_project_cpu_upgrade"
                     ></span>
                 </oui-tile-button>
                 <oui-tile-definition
                     data-term="{{:: 'web_paas_service_project_storage_title' | translate }}"
-                    data-description="{{:: 'web_paas_service_project_storage' | translate: { storageSize: $ctrl.project.totalStorage() } }}"
+                    data-description="{{:: 'web_paas_service_project_storage' | translate: { storageSize: $ctrl.project.getTotalStorage() } }}"
                 >
                 </oui-tile-definition>
                 <oui-tile-button
@@ -113,10 +101,10 @@
                             <p
                                 class="oui-badge"
                                 data-ng-class="{
-                                        'oui-badge_success' : $ctrl.userList.length < $ctrl.project.totalLicences(),
-                                        'oui-badge_error' : $ctrl.userList.length === $ctrl.project.totalLicences(),
+                                        'oui-badge_success' : $ctrl.userList.length < $ctrl.project.getTotalLicences(),
+                                        'oui-badge_error' : $ctrl.userList.length === $ctrl.project.getTotalLicences(),
                                         }"
-                                data-translate="{{:: 'web_paas_service_project_user_licence' | translate: { totalLicence: $ctrl.project.totalLicences(), numLicenceAvailable: $ctrl.userList.length } }}"
+                                data-translate="{{:: 'web_paas_service_project_user_licence' | translate: { totalLicence: $ctrl.project.getTotalLicences(), numLicenceAvailable: $ctrl.userList.length } }}"
                             ></p>
                         </oui-tile-description>
                     </oui-tile-description>
@@ -133,12 +121,12 @@
                 >
                     <oui-tile-description>
                         <span
-                            data-ng-if="$ctrl.project.availableEnvironments() === 0"
+                            data-ng-if="$ctrl.project.getAvailableEnvironments() === 0"
                             data-translate="web_paas_service_project_additional_environment_none"
                         ></span>
                         <span
-                            data-ng-if="$ctrl.project.availableEnvironments() > 0"
-                            data-ng-bind="$ctrl.project.availableEnvironments()"
+                            data-ng-if="$ctrl.project.getAvailableEnvironments() > 0"
+                            data-ng-bind="$ctrl.project.getAvailableEnvironments()"
                         ></span>
                     </oui-tile-description>
                 </oui-tile-definition>

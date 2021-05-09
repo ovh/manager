@@ -1,4 +1,9 @@
 import { find, get } from 'lodash';
+import {
+  ENVIRONMENT_VALUES,
+  LICENCES_VALUES,
+  STORAGE_VALUES,
+} from './web-paas.constants';
 
 export default class Plan {
   /* @ngInject */
@@ -28,6 +33,9 @@ export default class Plan {
       vcpuConfig,
       available,
     });
+    this.ENVIRONMENT_VALUES = ENVIRONMENT_VALUES;
+    this.LICENCES_VALUES = LICENCES_VALUES;
+    this.STORAGE_VALUES = STORAGE_VALUES;
   }
 
   getCpu() {
@@ -66,17 +74,19 @@ export default class Plan {
   }
 
   getMaxEnvironment() {
-    return this.product === 'expand' ? 50 : 50;
+    return this.ENVIRONMENT_VALUES.MAX;
   }
 
   getMaxStorage() {
-    return this.product === 'expand' ? 100 : 20;
+    return this.product === 'expand'
+      ? this.STORAGE_VALUES.MAX_FOR_EXPAND_PLAN
+      : this.STORAGE_VALUES.MAX_FOR_OTHER_PLANS;
   }
 
   getMaxLicenses() {
     return parseInt(
       this.product === 'expand'
-        ? 100
+        ? this.LICENCES_VALUES.MAX
         : find(get(this, 'blobs.commercial.features'), {
             name: 'max_user_licences',
           })?.value,

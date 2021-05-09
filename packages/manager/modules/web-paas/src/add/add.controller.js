@@ -26,13 +26,14 @@ export default class WebPassAddCtrl {
   }
 
   $onInit() {
-    this.isAdding = false;
-    this.stepperIndex = 0;
-    this.isEditingTemplate = false;
-    this.isEditingOffers = false;
-    this.isGettingAddons = false;
-    this.isGettingCheckoutInfo = false;
-    this.orderInProgress = false;
+    this.loader = {
+      isEditingTemplate: false,
+      isEditingOffers: false,
+      isGettingAddons: false,
+      isGettingCheckoutInfo: false,
+      orderInProgress: false,
+    };
+
     this.prices = null;
 
     this.project = {
@@ -44,10 +45,6 @@ export default class WebPassAddCtrl {
         templateUrl: null,
       },
     };
-  }
-
-  setStepperIndex() {
-    this.stepperIndex = 1;
   }
 
   refreshMessages() {
@@ -68,20 +65,20 @@ export default class WebPassAddCtrl {
   }
 
   onTemplateFocus() {
-    this.isEditingTemplate = true;
+    this.loader.isEditingTemplate = true;
   }
 
   onTemplateSubmit() {
-    this.loadOptions();
-    this.isEditingTemplate = false;
+    this.loadAddons();
+    this.loader.isEditingTemplate = false;
   }
 
   onOfferFocus() {
-    this.isEditingOffers = true;
+    this.loader.isEditingOffers = true;
   }
 
   onOfferSubmit() {
-    this.isEditingOffers = false;
+    this.loader.isEditingOffers = false;
   }
 
   getConfiguration() {
@@ -137,8 +134,8 @@ export default class WebPassAddCtrl {
     });
   }
 
-  onPlatformOrderSuccess(checkout) {
-    if (checkout && checkout.prices && checkout.prices.withTax.value > 0) {
+  onOrderSuccess(checkout) {
+    if (checkout?.prices?.withTaxValue > 0) {
       this.$window.open(checkout.url, '_blank', 'noopener');
     }
     this.Alerter.success(
@@ -152,7 +149,7 @@ export default class WebPassAddCtrl {
     this.scrollToTop();
   }
 
-  onPlatformOrderError(error) {
+  onOrderError(error) {
     this.Alerter.alertFromSWS(
       `${this.$translate.instant('web_paas_add_project_error')} ${get(
         error,
@@ -164,16 +161,16 @@ export default class WebPassAddCtrl {
     this.scrollToTop();
   }
 
-  loadOptions() {
-    this.isGettingAddons = true;
+  loadAddons() {
+    this.loader.isGettingAddons = true;
     return this.WebPaas.getAddons(this.selectedPlan).then((addons) => {
-      this.isGettingAddons = false;
+      this.loader.isGettingAddons = false;
       set(this.selectedPlan, 'addons', addons);
     });
   }
 
-  onOptionsSubmit() {
-    this.isGettingCheckoutInfo = true;
+  onAddonsSubmit() {
+    this.loader.isGettingCheckoutInfo = true;
     return this.WebPaas.getOrderSummary(
       this.selectedPlan,
       this.getConfiguration(),
@@ -183,14 +180,14 @@ export default class WebPassAddCtrl {
         this.contracts = contracts;
         this.prices = prices;
       })
-      .catch((error) => this.onPlatformOrderError(error))
+      .catch((error) => this.onOrderError(error))
       .finally(() => {
-        this.isGettingCheckoutInfo = false;
+        this.loader.isGettingCheckoutInfo = false;
       });
   }
 
-  createWebPaas() {
-    this.orderInProgress = true;
+  orderProject() {
+    this.loader.orderInProgress = true;
     return this.expressOrder();
   }
 
@@ -200,13 +197,13 @@ export default class WebPassAddCtrl {
       this.getConfiguration(),
     )
       .then(() => {
-        this.onPlatformOrderSuccess();
+        this.onOrderSuccess();
       })
       .catch((error) => {
-        this.onPlatformOrderError(error);
+        this.onOrderError(error);
       })
       .finally(() => {
-        this.orderInProgress = false;
+        this.loader.orderInProgress = false;
       });
   }
 }

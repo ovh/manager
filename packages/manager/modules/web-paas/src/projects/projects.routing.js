@@ -24,9 +24,9 @@ export default /* @ngInject */ ($stateProvider) => {
           return projects;
         });
       },
-      goToChangeRange: /* @ngInject */ ($state) => (project) =>
-        $state.go('web-paas.add', {
-          selectedProject: project,
+      goToChangeOffer: /* @ngInject */ ($state) => (project) =>
+        $state.go('web-paas.dashboard.service.change-offer', {
+          projectId: project.serviceId,
         }),
       goToUserLicences: /* @ngInject */ ($state) => (project) =>
         $state.go('web-paas.dashboard.user-licences', {

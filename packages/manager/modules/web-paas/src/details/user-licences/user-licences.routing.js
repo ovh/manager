@@ -5,9 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
       projectView: 'webPaasDetailsUserLicences',
     },
     resolve: {
-      inviteUser: /* @ngInject */ ($state) => () =>
+      goToInviteUser: /* @ngInject */ ($state) => () =>
         $state.go('web-paas.dashboard.user-licences.invite-user'),
-      deleteUser: /* @ngInject */ ($state) => (customer) =>
+      goToDeleteUser: /* @ngInject */ ($state) => (customer) =>
         $state.go('web-paas.dashboard.user-licences.delete-user', {
           customer,
         }),

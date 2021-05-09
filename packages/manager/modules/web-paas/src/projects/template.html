@@ -21,11 +21,7 @@
             >
                 <a
                     class="oui-link"
-<<<<<<< HEAD
-                    data-ui-sref="{{ $ctrl.constructor.getDetailsState($row.serviceId) }}"
-=======
                     data-ng-href="{{:: $ctrl.viewDetails($row.serviceId) }}"
->>>>>>> feat(webpaas): refactor edit plan
                     data-ng-bind="$row.projectName"
                 >
                 </a>
@@ -62,18 +58,18 @@
                 data-title=":: 'web_paas_user_licences' | translate"
             >
                 <span
-                    data-ng-bind="($row.availableUserLicenses()) + '/' + ($row.totalLicences())"
+                    data-ng-bind="($row.getAvailableUserLicenses()) + '/' + ($row.getTotalLicences())"
                 >
                 </span>
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title=":: 'web_paas_environment' | translate"
-                ><span data-ng-bind="$row.totalEnvironment()"></span>
+                ><span data-ng-bind="$row.getTotalEnvironment()"></span>
             </oui-datagrid-column>
             <oui-datagrid-column data-title=":: 'web_paas_storage' | translate">
                 <span
                     data-translate="web_paas_storage_description"
-                    data-translate-values="{ storage: $row.totalStorage()}"
+                    data-translate-values="{ storage: $row.getTotalStorage()}"
                 ></span>
             </oui-datagrid-column>
             <oui-action-menu data-compact data-placement="end">
@@ -97,7 +93,7 @@
                     <span data-translate="web_paas_manage_user_licences"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-on-click="$ctrl.goToChangeRange($row)"
+                    data-on-click="$ctrl.goToChangeOffer($row)"
                     data-data-disabled="!$row.isActive()"
                 >
                     <span data-translate="web_paas_change_range"></span>

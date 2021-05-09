@@ -4,6 +4,8 @@ import get from 'lodash/get';
 import groupBy from 'lodash/groupBy';
 import sortBy from 'lodash/sortBy';
 import { find, compact } from 'lodash';
+
+import Addon from './addon.class';
 import Project from './project.class';
 import Plan from './plan.class';
 import PlanFamily from './family.class';
@@ -197,7 +199,7 @@ export default class WebPaasService {
     }).$promise.then(() => cart);
   }
 
-  getOptions(cart, plan) {
+  getAddonOptions(cart, plan) {
     return this.$http
       .get(`/order/cart/${cart.cartId}/webPaaS/options`, {
         params: {
@@ -205,7 +207,7 @@ export default class WebPaasService {
           planCode: plan.planCode,
         },
       })
-      .then((res) => res.data);
+      .then(({ data }) => map(data, (option) => new Addon(option)));
   }
 
   addToCart(cartId, plan) {
@@ -225,7 +227,7 @@ export default class WebPaasService {
       .then((cart) => this.addToCart(cart.cartId, plan))
       .then((cart) => {
         this.cart = cart;
-        return this.getOptions(cart, plan).then((res) => res);
+        return this.getAddonOptions(cart, plan).then((res) => res);
       })
       .finally(() => this.deleteCart());
   }
@@ -333,7 +335,7 @@ export default class WebPaasService {
   getAdditionalOption(serviceName) {
     return this.$http
       .get(`/order/cartServiceOption/webPaaS/${serviceName}`)
-      .then(({ data }) => data);
+      .then(({ data }) => map(data, (option) => new Addon(option)));
   }
 
   getSummary(cart) {

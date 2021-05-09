@@ -7,6 +7,6 @@ export default class {
   }
 
   canInviteUser() {
-    return this.userList.length < this.project.totalLicences();
+    return this.userList.length < this.project.getTotalLicences();
   }
 }

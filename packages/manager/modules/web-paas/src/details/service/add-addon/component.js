@@ -11,6 +11,7 @@ export default {
     project: '<',
     projectId: '<',
     selectedPlan: '<',
+    user: '<',
   },
   controller,
   template,
