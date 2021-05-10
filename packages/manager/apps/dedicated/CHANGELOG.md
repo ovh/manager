@@ -1,3 +1,12 @@
+## [16.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.25.1...@ovh-ux/manager-dedicated@16.25.2) (2021-05-10)
+
+
+### Bug Fixes
+
+* update injection order ([#4942](https://github.com/ovh/manager/issues/4942)) ([9b55635](https://github.com/ovh/manager/commit/9b55635b55d98677e04d09601eeecb739130f74b))
+
+
+
 ## [16.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.25.0...@ovh-ux/manager-dedicated@16.25.1) (2021-05-07)
 
 
