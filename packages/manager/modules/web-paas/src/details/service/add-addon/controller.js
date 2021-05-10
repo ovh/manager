@@ -1,7 +1,8 @@
 import debounce from 'lodash/debounce';
 import get from 'lodash/get';
 import moment from 'moment';
-import { ADDON_TYPE } from './constants';
+import { ADDON_TYPE } from '../service.constants';
+import { STORAGE_MULTIPLE } from './constants';
 
 export default class {
   /* @ngInject */
@@ -20,34 +21,35 @@ export default class {
     this.updateParameters();
     this.$scope.$watch(
       '$ctrl.addon.quantity',
-      debounce(
-        () => (this.addon.quantity > 0 ? this.addStorage() : null),
-        1000,
-      ),
+      debounce(() => (this.addon.quantity > 0 ? this.addAddon() : null), 1000),
     );
+  }
+
+  getTotalPrice() {
+    const price = get(this.addon, 'prices').find(({ capacities }) =>
+      capacities.includes('renew'),
+    ).price.value;
+    if (this.addonType === ADDON_TYPE.STORAGE) {
+      const stagingQuantity = this.project.getTotalEnvironment();
+      return (2 + stagingQuantity) * price * this.quantity;
+    }
+    return price * this.quantity;
   }
 
   getNextMonthPrice() {
     const price = get(this.addon, 'prices').find(({ capacities }) =>
       capacities.includes('renew'),
     ).price.value;
-    if (this.addonType === ADDON_TYPE.STORAGE) {
-      const stagingQuantity = this.project.getTotalEnvironment();
-      return (2 + stagingQuantity) * price * this.addon.quantity;
-    }
     return price * this.addon.quantity;
   }
 
-  getTotalPrice() {
-    if (this.addonType !== ADDON_TYPE.LICENCES) {
-      return this.nextMonthPrice * this.quantity;
-    }
-    return null;
-  }
-
-  addStorage() {
+  addAddon() {
     this.disableNumeric = true;
-    this.quantity = this.presentCount + this.addon.quantity;
+    this.quantity =
+      this.presentCount +
+      (this.addonType === ADDON_TYPE.STORAGE
+        ? this.addon.quantity / STORAGE_MULTIPLE
+        : this.addon.quantity);
     this.WebPaas.getAddonSummary(this.project, this.addon, this.quantity)
       .then(({ contracts, prices, cart }) => {
         this.cart = cart;
@@ -101,7 +103,7 @@ export default class {
 
     this.goBack(
       this.$translate.instant(
-        `web_paas_service_add_addon_success_${this.addonType.split('-').pop()}`,
+        `web_paas_service_add_addon_success_${this.addonType.family}`,
         {
           orderURL: checkout ? this.getOrderUrl(checkout.orderId) : null,
         },
@@ -137,14 +139,20 @@ export default class {
         this.presentCount =
           this.project.getTotalLicences() -
           this.project.selectedPlan.getLicences();
-        this.description = this.$translate.instant(
-          'web_paas_service_add_license_description',
+        this.description = `${this.$translate.instant(
+          'web_paas_service_add_license_description1',
           {
             license: this.presentCount,
             offerName: this.project.selectedPlan.getRange(),
             maxLicences: this.project.selectedPlan.getMaxLicenses(),
           },
-        );
+        )} ${this.$translate.instant(
+          this.presentCount > 1
+            ? 'web_paas_service_add_license_description_licence_plural'
+            : 'web_paas_service_add_license_description_licence_singular',
+        )} ${this.$translate.instant(
+          'web_paas_service_add_license_description2',
+        )}`;
         break;
 
       default:

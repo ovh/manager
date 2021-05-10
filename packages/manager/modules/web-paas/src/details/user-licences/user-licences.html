@@ -9,14 +9,10 @@
            included: $ctrl.project.selectedPlan.getLicences()
         }"
     ></p>
-    <p
-        class="oui-badge"
-        data-ng-class="{
-                    'oui-badge_success' : $ctrl.userList.length < $ctrl.project.getTotalLicences(),
-                    'oui-badge_error' : $ctrl.userList.length === $ctrl.project.getTotalLicences(),
-                    }"
-        data-translate="{{:: 'web_paas_user_licences_used' | translate: { totalLicence: $ctrl.project.getTotalLicences(), numLicenceAvailable: $ctrl.userList.length } }}"
-    ></p>
+    <web-paas-status
+        data-project="$ctrl.project"
+        data-user-list="$ctrl.userList"
+    ></web-paas-status>
     <oui-message type="info" data-ng-if="!$ctrl.canInviteUser()">
         <span data-translate="web_paas_user_licences_more_users"></span>
         <a href="{{$ctrl.addUserLink}}">

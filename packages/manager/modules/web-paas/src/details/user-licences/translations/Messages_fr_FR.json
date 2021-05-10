@@ -1,12 +1,11 @@
 {
-  "web_paas_user_licences_account_name": "Account Name",
-  "web_paas_user_licences_customer_id": "Customer Id",
-  "web_paas_user_licences_customer_type": "Customer Type",
-  "web_paas_user_licences_created_at": "Created At",
-  "web_paas_user_licences_invite_user": "Invit user",
+  "web_paas_user_licences_account_name": "Nom du compte",
+  "web_paas_user_licences_customer_type": "Type de client",
+  "web_paas_user_licences_created_at": "Créé à",
+  "web_paas_user_licences_invite_user": "Inviter un utilisateur",
   "web_paas_user_licences_heading": "Gérer les utilisateurs",
-  "web_paas_user_licences_range_text": "Range {{plan}} allows you to have {{included}} users and you have {{addon}} additional licences included",
-  "web_paas_user_licences_users_listed": "Users listed",
+  "web_paas_user_licences_range_text": "Selon l’offre {{plan}}, vous pouvez ajouter {{included}} des licences utilisateur et {{addon}} licences supplémentaires incluses. Ceux-ci auront ainsi accès à vos projets sur Web PaaS",
+  "web_paas_user_licences_users_listed": "Licences utilisateur",
   "web_paas_user_licences_more_users": "Si vous souhaitez plus d'utilisateurs, decouvrez l'",
   "web_paas_user_licences_more_users_link": "offre Large Team",
   "web_paas_user_licences_used": "{{ numLicenceAvailable }}/{{ totalLicence }} Licences utilisées"

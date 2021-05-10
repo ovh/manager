@@ -1,0 +1,20 @@
+<span
+    data-ng-if="!$ctrl.isLicenseStatus()"
+    class="oui-badge"
+    data-ng-class="{
+            'oui-badge_success' : $ctrl.project.isActive(),
+            'oui-badge_warning' : $ctrl.project.isProcessing(),
+            'oui-badge_error' : $ctrl.project.isError(),
+            }"
+    data-translate="{{ 'web_paas_project_status_' + $ctrl.project.status }}"
+>
+</span>
+<p
+    data-ng-if="$ctrl.isLicenseStatus()"
+    class="oui-badge"
+    data-ng-class="{
+                'oui-badge_success' : $ctrl.userList.length < $ctrl.project.getTotalLicences(),
+                'oui-badge_error' : $ctrl.userList.length === $ctrl.project.getTotalLicences(),
+                }"
+    data-translate="{{:: 'web_paas_service_project_user_licence_status' | translate: { totalLicence: $ctrl.project.getTotalLicences(), numLicenceAvailable: $ctrl.userList.length } }}"
+></p>

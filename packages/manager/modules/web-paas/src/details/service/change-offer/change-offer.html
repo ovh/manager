@@ -63,7 +63,7 @@
                 </p>
                 <web-paas-user-list
                     user-list="$ctrl.userList"
-                    delete-user="$ctrl.deleteUser"
+                    delete-user="$ctrl.goToDeleteUser"
                     hide-invite="true"
                 ></web-paas-user-list>
             </oui-step-form>
@@ -76,11 +76,16 @@
                 data-on-cancel="$ctrl.goBack()"
                 data-on-submit="$ctrl.upgradeOffer()"
             >
-                <web-pass-summary
-                    prices="$ctrl.prices"
-                    selected-plan="$ctrl.selectedPlan"
-                >
-                </web-pass-summary>
+                <div class="mb-3">
+                    <web-paas-summary
+                        data-ng-if="$ctrl.prices"
+                        prices="$ctrl.prices"
+                        selected-plan="$ctrl.selectedPlan"
+                        user="$ctrl.user"
+                        change-offer="true"
+                    >
+                    </web-paas-summary>
+                </div>
             </oui-step-form>
         </oui-stepper>
     </div>

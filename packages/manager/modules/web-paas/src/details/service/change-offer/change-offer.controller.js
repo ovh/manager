@@ -66,7 +66,7 @@ export default class {
     });
   }
 
-  OrderSuccess(checkout) {
+  onOrderSuccess(checkout) {
     if (checkout?.prices?.withTaxValue > 0) {
       this.$window.open(checkout.url, '_blank', 'noopener');
     }
@@ -76,7 +76,7 @@ export default class {
           ? this.getOrdersURL(checkout.orderId)
           : this.getOrdersURL(),
       }),
-      this.alerts.add,
+      this.alerts.changeOffer,
     );
     this.scrollToTop();
   }
@@ -88,7 +88,7 @@ export default class {
         'data.message',
       )}`,
       error,
-      this.alerts.add,
+      this.alerts.changeOffer,
     );
     this.scrollToTop();
   }
@@ -117,6 +117,7 @@ export default class {
 
   getUpgradePlan() {
     this.isGettingCheckoutInfo = true;
+    this.prices = null;
     set(this.selectedProject, 'quantity', 1);
     return this.WebPaas.getUpgradeCheckoutInfo(
       this.selectedProject.serviceId,
@@ -134,13 +135,14 @@ export default class {
   }
 
   upgradeOffer() {
+    this.orderInProgress = true;
     return this.WebPaas.checkoutUpgrade(
       this.selectedProject.serviceId,
       this.selectedPlan,
       this.selectedProject.quantity,
     )
       .then(({ order }) => {
-        this.OrderSuccess(order);
+        this.onOrderSuccess(order);
       })
       .catch((error) => {
         this.onOrderError(error);

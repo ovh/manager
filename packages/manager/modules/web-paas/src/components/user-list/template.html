@@ -12,6 +12,7 @@
         data-property="customerType"
         data-searchable
         data-filterable
+        data-type="string"
     ></oui-datagrid-column>
     <oui-action-menu
         data-compact
@@ -24,7 +25,7 @@
     </oui-action-menu>
     <oui-datagrid-topbar>
         <button
-            data-ng-disabled="$ctrl.disableInvite()"
+            data-ng-disabled="$ctrl.isInviteDisabled()"
             data-ng-click="$ctrl.inviteUser()"
             class="oui-button oui-button_secondary oui-button_icon-left mb-2"
         >

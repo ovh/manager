@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-
 export default class PlanFamily {
   constructor({ name, plans, selectedPlan }) {
     Object.assign(this, {
@@ -7,11 +5,5 @@ export default class PlanFamily {
       plans,
       selectedPlan,
     });
-  }
-
-  getLowestPrice() {
-    return get(this.plans[0], 'pricings').find(({ capacities }) =>
-      capacities.includes('renew'),
-    ).price;
   }
 }

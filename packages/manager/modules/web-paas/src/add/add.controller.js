@@ -10,7 +10,6 @@ export default class WebPassAddCtrl {
     Alerter,
     WebPaas,
     WucOrderCartService,
-    CucRegionService,
   ) {
     this.$q = $q;
     this.$timeout = $timeout;
@@ -19,7 +18,6 @@ export default class WebPassAddCtrl {
     this.Alerter = Alerter;
     this.WebPaas = WebPaas;
     this.WucOrderCartService = WucOrderCartService;
-    this.CucRegionService = CucRegionService;
     this.alerts = {
       add: 'web_paas_add',
     };
@@ -32,6 +30,7 @@ export default class WebPassAddCtrl {
       isGettingAddons: false,
       isGettingCheckoutInfo: false,
       orderInProgress: false,
+      loadingCapabilities: false,
     };
 
     this.prices = null;
@@ -102,7 +101,7 @@ export default class WebPassAddCtrl {
   }
 
   loadCapabilities(planCode) {
-    this.loadingCapabilities = true;
+    this.loader.loadingCapabilities = true;
     return this.WebPaas.getCapabilities(planCode)
       .then((capabilities) => {
         this.capabilities = capabilities;
@@ -121,7 +120,7 @@ export default class WebPassAddCtrl {
         ),
       )
       .finally(() => {
-        this.loadingCapabilities = false;
+        this.loader.loadingCapabilities = false;
       });
   }
 
@@ -170,6 +169,7 @@ export default class WebPassAddCtrl {
   }
 
   onAddonsSubmit() {
+    this.prices = null;
     this.loader.isGettingCheckoutInfo = true;
     return this.WebPaas.getOrderSummary(
       this.selectedPlan,

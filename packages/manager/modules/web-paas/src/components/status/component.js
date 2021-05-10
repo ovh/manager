@@ -3,10 +3,8 @@ import template from './template.html';
 
 export default {
   bindings: {
-    prices: '<',
-    selectedPlan: '<',
-    changeOffer: '<',
-    user: '<',
+    project: '<',
+    userList: '<',
   },
   controller,
   template,

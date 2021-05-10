@@ -10,6 +10,12 @@ import Project from './project.class';
 import Plan from './plan.class';
 import PlanFamily from './family.class';
 import UserLicence from './user-licence.class';
+import {
+  ADDON_FAMILY,
+  STORAGE_MULTIPLE,
+  PLAN_CODE,
+  SORT_ORDER_PLANS,
+} from './web-paas.constants';
 
 export default class WebPaasService {
   /* @ngInject */
@@ -139,10 +145,18 @@ export default class WebPaasService {
       (value, key) => ({
         name: key.toLowerCase(),
         plans: value,
-        selectedPlan: value[0],
+        selectedPlan:
+          key.toLowerCase() === PLAN_CODE.START ? value[1] : value[0],
       }),
     );
-    return map(this.groupedPlans, (family) => new PlanFamily(family));
+    this.groupedPlans = map(
+      this.groupedPlans,
+      (family) => new PlanFamily(family),
+    );
+    this.groupedPlans = sortBy(this.groupedPlans, (family) =>
+      SORT_ORDER_PLANS.indexOf(family.name),
+    );
+    return this.groupedPlans;
   }
 
   /**
@@ -246,7 +260,10 @@ export default class WebPaasService {
               duration: capacity.duration,
               planCode: addon.planCode,
               pricingMode: 'default',
-              quantity: addon.quantity,
+              quantity:
+                addon.family === ADDON_FAMILY.STORAGE
+                  ? addon.quantity / STORAGE_MULTIPLE
+                  : addon.quantity,
               itemId: cart.itemId,
             }).$promise;
           }
@@ -425,7 +442,7 @@ export default class WebPaasService {
     return this.WucUser.getUrlOfEndsWithSubsidiary('express_order').then(
       (expressOrderUrl) => {
         return this.$window.open(
-          `${expressOrderUrl}#/express/review?products=${JSURL.stringify(
+          `${expressOrderUrl}#/new/express/resume?products=${JSURL.stringify(
             payload,
           )}`,
           '_blank',

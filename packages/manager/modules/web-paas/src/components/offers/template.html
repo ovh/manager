@@ -13,6 +13,14 @@
             data-disabled="$ctrl.isValid(product)"
             data-ng-if="$ctrl.previewMode"
         >
+            <oui-select-picker-picture
+                data-ng-if="$ctrl.selectedPlan.planCode === product.selectedPlan.planCode"
+            >
+                <span
+                    class="oui-badge oui-badge_info"
+                    data-translate="web_paas_offer_current_offer"
+                ></span>
+            </oui-select-picker-picture>
             <oui-select-picker-section>
                 <web-paas-offer-details
                     data-offer="product.selectedPlan"
@@ -30,7 +38,7 @@
             </oui-select-picker-section>
             <oui-select-picker-footer>
                 <ovh-manager-catalog-price
-                    data-price="product.selectedPlan.getPrice()"
+                    data-price="product.selectedPlan.getRenewablePrice()"
                     data-user="$ctrl.user"
                     data-perform-rounding="false"
                     data-maximum-fraction-digits="5"

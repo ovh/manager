@@ -26,7 +26,7 @@ export default class Project {
       startDate,
       status,
     });
-    this.setOfferName();
+    this.updateOfferName();
   }
 
   isActive() {
@@ -69,8 +69,14 @@ export default class Project {
     set(this, 'selectedPlan', new Plan(plan));
   }
 
-  setOfferName() {
+  updateOfferName() {
     set(this, 'offerName', OFFER_NAME[this.offer.split('-')[0]]);
+  }
+
+  isStartOffer() {
+    return get(this, 'offer')
+      .split('-')
+      .includes('start');
   }
 
   getRegion() {

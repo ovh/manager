@@ -46,7 +46,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return null;
       },
-      deleteUser: /* @ngInject */ ($state) => (customer) =>
+      goToDeleteUser: /* @ngInject */ ($state) => (customer) =>
         $state.go('web-paas.dashboard.service.change-offer.delete-user', {
           customer,
         }),

@@ -1,5 +1,5 @@
 export default class WebPaasUserListCtrl {
-  disableInvite() {
+  isInviteDisabled() {
     return (
       this.hideInvite ||
       this.userList?.length === this.project?.getTotalLicences()

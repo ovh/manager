@@ -29,16 +29,9 @@
                     data-term="{{:: 'web_paas_service_project_status' | translate }}"
                 >
                     <oui-tile-description>
-                        <span
-                            class="oui-badge"
-                            data-ng-class="{
-                                    'oui-badge_success' : $ctrl.project.isActive(),
-                                    'oui-badge_warning' : $ctrl.project.isProcessing(),
-                                    'oui-badge_error' : $ctrl.project.isError(),
-                                    }"
-                            data-translate="{{ 'web_paas_project_status_' + $ctrl.project.status }}"
-                        >
-                        </span>
+                        <web-paas-status
+                            data-project="$ctrl.project"
+                        ></web-paas-status>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
@@ -52,7 +45,7 @@
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{ ::'web_paas_service_project_plan_type' | translate }}"
-                    data-description="{{:: $ctrl.project.offer }}"
+                    data-description="{{:: $ctrl.project.offerName }}"
                 >
                 </oui-tile-definition>
                 <oui-tile-button data-on-click="$ctrl.goToChangeOffer()">
@@ -62,8 +55,9 @@
                 </oui-tile-button>
                 <oui-tile-definition
                     data-term="{{:: 'web_paas_service_project_region' | translate }}"
-                    data-description="{{:: $ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.project.getRegion()) }}"
-                ></oui-tile-definition>
+                    data-description="{{:: 'web_paas_region_' + $ctrl.project.getRegion() | translate }}"
+                >
+                </oui-tile-definition>
             </oui-tile>
         </div>
         <!-- configuration tile -->
@@ -87,7 +81,7 @@
                 >
                 </oui-tile-definition>
                 <oui-tile-button
-                    data-on-click="$ctrl.goToAddAddon('additional-storage')"
+                    data-on-click="$ctrl.goToAddAddon($ctrl.ADDON_TYPE.STORAGE)"
                 >
                     <span
                         data-translate="web_paas_service_project_storage_upgrade"
@@ -98,19 +92,16 @@
                 >
                     <oui-tile-description>
                         <oui-tile-description>
-                            <p
-                                class="oui-badge"
-                                data-ng-class="{
-                                        'oui-badge_success' : $ctrl.userList.length < $ctrl.project.getTotalLicences(),
-                                        'oui-badge_error' : $ctrl.userList.length === $ctrl.project.getTotalLicences(),
-                                        }"
-                                data-translate="{{:: 'web_paas_service_project_user_licence' | translate: { totalLicence: $ctrl.project.getTotalLicences(), numLicenceAvailable: $ctrl.userList.length } }}"
-                            ></p>
+                            <web-paas-status
+                                data-project="$ctrl.project"
+                                data-user-list="$ctrl.userList"
+                            ></web-paas-status>
                         </oui-tile-description>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-button
-                    data-on-click="$ctrl.goToAddAddon('additional-user-license')"
+                    data-disabled="$ctrl.project.isStartOffer()"
+                    data-on-click="$ctrl.goToAddAddon($ctrl.ADDON_TYPE.LICENCES)"
                 >
                     <span
                         data-translate="web_paas_service_project_licences_upgrade"
@@ -131,7 +122,7 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-button
-                    data-on-click="$ctrl.goToAddAddon('additional-staging-environment')"
+                    data-on-click="$ctrl.goToAddAddon($ctrl.ADDON_TYPE.ENVIRONMENNT)"
                 >
                     <span
                         data-translate="web_paas_service_project_environment_upgrade"
@@ -141,85 +132,14 @@
         </div>
         <!-- billing tile -->
         <div class="col-md-4">
-            <oui-tile
-                data-heading="{{ ::'web_paas_tile_subscription' | translate }}"
-                class="h-100"
+            <billing-subscription-tile
+                with-engagement="false"
+                on-error="$ctrl.onBillingInformationError(error)"
+                go-to-commit="$ctrl.goToCommit()"
+                service-infos="$ctrl.serviceInfo"
+                user="$ctrl.user"
             >
-                <oui-tile-definition
-                    data-ng-if="$ctrl.serviceInfo.offer"
-                    data-term="{{ ::'web_paas_tile_subscription_offer' | translate }}"
-                    data-description="{{ ::$ctrl.serviceInfo.offer }}"
-                >
-                </oui-tile-definition>
-                <oui-tile-definition
-                    data-term="{{($ctrl.serviceInfo.renew.forced || $ctrl.serviceInfo.renew.automatic) ? 'web_paas_tile_subscription_autorenew' : 'web_paas_expiry_date' | translate}}"
-                    data-description="{{ ::$ctrl.serviceInfo.expiration | cucMomentFormat:'LL' }}"
-                >
-                    <oui-action-menu
-                        data-compact
-                        data-disabled="!$ctrl.project.isActive()"
-                        data-placement="end"
-                    >
-                        <oui-action-menu-item
-                            data-href="{{ ::$ctrl.actions.autorenew.href }}"
-                            data-external
-                            ><span
-                                data-translate="web_paas_tile_subscription_manage_service"
-                            ></span>
-                        </oui-action-menu-item>
-                        <oui-action-menu-item
-                            data-href="{{ ::$ctrl.actions.autorenew.href }}"
-                            data-external
-                            ><span
-                                data-translate="web_paas_tile_subscription_pay_billing"
-                            ></span>
-                        </oui-action-menu-item>
-                        <oui-action-menu-item
-                            data-on-click="$ctrl.terminateProject()"
-                            ><span
-                                data-translate="web_paas_service_project_cancel"
-                            ></span>
-                        </oui-action-menu-item>
-                    </oui-action-menu>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    data-term="{{::'web_paas_tile_subscription_contact' | translate}}"
-                >
-                    <oui-tile-description>
-                        <ul class="list-unstyled">
-                            <li>
-                                <span
-                                    data-ng-bind="::$ctrl.serviceInfo.contactAdmin"
-                                ></span>
-                                <small
-                                    data-translate="web_paas_tile_subscription_contact_admin"
-                                ></small>
-                            </li>
-                            <li>
-                                <span
-                                    data-ng-bind="::$ctrl.serviceInfo.contactBilling"
-                                ></span>
-                                <small
-                                    data-translate="web_paas_tile_subscription_contact_billing"
-                                ></small>
-                            </li>
-                            <li>
-                                <span
-                                    data-ng-bind="::$ctrl.serviceInfo.contactTech"
-                                ></span>
-                                <small
-                                    data-translate="web_paas_tile_subscription_contact_technical"
-                                ></small>
-                            </li>
-                        </ul>
-                    </oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    data-term="{{ ::'web_paas_tile_subscription_creation_date' | translate }}"
-                    data-description="{{ ::$ctrl.serviceInfo.creation | cucMomentFormat:'LL' }}"
-                >
-                </oui-tile-definition>
-            </oui-tile>
+            </billing-subscription-tile>
         </div>
     </div>
 </div>

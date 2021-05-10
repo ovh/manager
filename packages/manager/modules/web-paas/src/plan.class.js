@@ -3,6 +3,7 @@ import {
   ENVIRONMENT_VALUES,
   LICENCES_VALUES,
   STORAGE_VALUES,
+  PLAN_CODE,
 } from './web-paas.constants';
 
 export default class Plan {
@@ -36,6 +37,7 @@ export default class Plan {
     this.ENVIRONMENT_VALUES = ENVIRONMENT_VALUES;
     this.LICENCES_VALUES = LICENCES_VALUES;
     this.STORAGE_VALUES = STORAGE_VALUES;
+    this.PLAN_CODE = PLAN_CODE;
   }
 
   getCpu() {
@@ -67,7 +69,7 @@ export default class Plan {
     );
   }
 
-  getPrice() {
+  getRenewablePrice() {
     return get(this, 'pricings').find(({ capacities }) =>
       capacities.includes('renew'),
     ).price;
@@ -78,14 +80,14 @@ export default class Plan {
   }
 
   getMaxStorage() {
-    return this.product === 'expand'
+    return this.product === this.PLAN_CODE.EXPAND
       ? this.STORAGE_VALUES.MAX_FOR_EXPAND_PLAN
       : this.STORAGE_VALUES.MAX_FOR_OTHER_PLANS;
   }
 
   getMaxLicenses() {
     return parseInt(
-      this.product === 'expand'
+      this.product === this.PLAN_CODE.EXPAND
         ? this.LICENCES_VALUES.MAX
         : find(get(this, 'blobs.commercial.features'), {
             name: 'max_user_licences',

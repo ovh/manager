@@ -26,6 +26,7 @@
                 disabled="$ctrl.disabled"
                 model="$ctrl.option.quantity"
                 min="0"
+                step="5"
                 max="$ctrl.plan.getMaxStorage()"
                 data-ng-if="$ctrl.option.isStorageAddon()"
                 on-change="$ctrl.onSelected(modelValue)"

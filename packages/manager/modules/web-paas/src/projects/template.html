@@ -21,38 +21,40 @@
             >
                 <a
                     class="oui-link"
-                    data-ng-href="{{:: $ctrl.viewDetails($row.serviceId) }}"
+                    data-ui-sref="{{:: $ctrl.constructor.getDetailsState($row.serviceId) }}"
                     data-ng-bind="$row.projectName"
                 >
                 </a>
             </oui-datagrid-column>
-            <oui-datagrid-column data-title=":: 'web_paas_region' | translate"
+            <oui-datagrid-column
+                data-title=":: 'web_paas_region' | translate"
+                data-searchable
+                data-filterable
                 ><span
-                    data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($row.getRegion())"
+                    data-translate="{{:: 'web_paas_region_' + $row.getRegion() }}"
                 ></span>
             </oui-datagrid-column>
             <oui-datagrid-column
+                data-searchable
+                data-filterable
                 data-title=":: 'web_paas_vcpu' | translate"
                 data-property="selectedPlan.vcpuConfig"
+                data-type="string"
             ></oui-datagrid-column>
             <oui-datagrid-column
+                data-searchable
+                data-filterable
                 data-title=":: 'web_paas_status' | translate"
                 data-property="status"
             >
-                <span
-                    class="oui-badge"
-                    data-ng-class="{
-                                'oui-badge_success' : $row.isActive(),
-                                'oui-badge_warning' : $row.isProcessing(),
-                                'oui-badge_error' : $row.isError(),
-                                }"
-                    data-translate="{{ 'web_paas_project_status_' + $row.status }}"
-                >
-                </span>
+                <web-paas-status data-project="$row"></web-paas-status>
             </oui-datagrid-column>
             <oui-datagrid-column
+                data-searchable
+                data-filterable
                 data-title=":: 'web_paas_plan_type' | translate"
                 data-property="offerName"
+                data-type="string"
             ></oui-datagrid-column>
             <oui-datagrid-column
                 data-title=":: 'web_paas_user_licences' | translate"
@@ -75,7 +77,7 @@
             <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
                     data-on-click="$ctrl.openPartnerConsole($row)"
-                    data-data-disabled="!$row.isActive()"
+                    data-disabled="!$row.isActive()"
                 >
                     <span
                         data-translate="web_paas_open_in_web_paas_console"
@@ -88,19 +90,19 @@
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-on-click="$ctrl.goToUserLicences($row)"
-                    data-data-disabled="!$row.isActive()"
+                    data-disabled="!$row.isActive()"
                 >
                     <span data-translate="web_paas_manage_user_licences"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-on-click="$ctrl.goToChangeOffer($row)"
-                    data-data-disabled="!$row.isActive()"
+                    data-disabled="!$row.isActive()"
                 >
                     <span data-translate="web_paas_change_range"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-on-click="$ctrl.terminateProject($row)"
-                    data-data-disabled="!$row.isActive()"
+                    data-disabled="!$row.isActive()"
                 >
                     <span data-translate="web_paas_cancel_project"></span>
                 </oui-action-menu-item>

@@ -22,9 +22,23 @@ export const OFFER_NAME = {
   expand: 'Expand',
 };
 
+export const PLAN_CODE = {
+  START: 'start',
+  DEVELOP: 'develop',
+  EXPAND: 'expand',
+};
+
+export const SORT_ORDER_PLANS = ['start', 'develop', 'expand'];
+
+export const ADDON_FAMILY = {
+  STORAGE: 'storage',
+  ENVIRONMENT: 'staging_environment',
+  LICENSE: 'user_license',
+};
+
 export const STORAGE_VALUES = {
   MAX_FOR_EXPAND_PLAN: 100,
-  MAX_FOR_OTHER_PLANS: 20,
+  MAX_FOR_OTHER_PLANS: 100,
 };
 
 export const ENVIRONMENT_VALUES = {
@@ -34,13 +48,18 @@ export const ENVIRONMENT_VALUES = {
 export const LICENCES_VALUES = {
   MAX: 100,
 };
+export const STORAGE_MULTIPLE = 5;
 
 export default {
+  ADDON_FAMILY,
   BETA_PLAN_CODE,
   ENVIRONMENT_VALUES,
   GUIDELINK,
   OFFER_NAME,
   LICENCES_VALUES,
+  PLAN_CODE,
   STATUS,
   STORAGE_VALUES,
+  STORAGE_MULTIPLE,
+  SORT_ORDER_PLANS,
 };

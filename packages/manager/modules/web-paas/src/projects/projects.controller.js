@@ -1,8 +1,7 @@
 export default class WebPaasProjectsCtrl {
   /* @ngInject */
-  constructor(WebPaas, CucRegionService) {
+  constructor(WebPaas) {
     this.WebPaas = WebPaas;
-    this.CucRegionService = CucRegionService;
   }
 
   $onInit() {
@@ -12,6 +11,6 @@ export default class WebPaasProjectsCtrl {
   }
 
   static getDetailsState(projectId) {
-    return `web-paas.dashboard({ projectId: '${projectId}'})`;
+    return `web-paas.dashboard.service({ projectId: '${projectId}'})`;
   }
 }

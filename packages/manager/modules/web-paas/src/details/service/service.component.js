@@ -9,7 +9,7 @@ const component = {
     project: '<',
     projectId: '<',
     serviceInfo: '<',
-    terminateProject: '<',
+    user: '<',
     userList: '<',
   },
   controller,

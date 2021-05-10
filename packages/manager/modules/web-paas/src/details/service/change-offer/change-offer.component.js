@@ -5,7 +5,7 @@ export default {
   bindings: {
     catalog: '<',
     cpu: '<',
-    deleteUser: '<',
+    goToDeleteUser: '<',
     getOrdersURL: '<',
     goBack: '<',
     plans: '<',

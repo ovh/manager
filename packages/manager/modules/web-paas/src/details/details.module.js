@@ -9,6 +9,7 @@ import routing from './details.routing';
 import service from './service';
 import userLicences from './user-licences';
 import additionalComponent from '../components/additional-option';
+import status from '../components/status';
 
 const moduleName = 'ovhManagerWebPaasDetailComponent';
 
@@ -22,9 +23,10 @@ angular
     additionalComponent,
     service,
     userLicences,
+    status,
   ])
   .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .component('webPaasDetailComponent', component);
+  .component('webPaasDetailComponent', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

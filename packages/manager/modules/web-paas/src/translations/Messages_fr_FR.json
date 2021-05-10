@@ -30,5 +30,7 @@
   "web_paas_storage": "Stockage",
   "web_paas_storage_description": "{{ storage }} Go",
   "web_paas_manage_user_licences": "Gérer mes licences utilisateur",
-  "web_paas_change_range": "Changer d’offre"
+  "web_paas_change_range": "Changer d’offre",
+  "web_paas_region_GRA7": "Gravelines",
+  "web_paas_service_project_user_licence_status": "{{ numLicenceAvailable }}/{{ totalLicence }} licence utilisateur"
 }

@@ -5,10 +5,6 @@ export default /* @ngInject */ ($stateProvider) => {
       projectView: 'webPaasDetailsService',
     },
     resolve: {
-      terminateProject: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('web-paas.dashboard.service.cancel', {
-          projectId,
-        }),
       goToAddAddon: /* @ngInject */ ($state, projectId) => (addonType) =>
         $state.go('web-paas.dashboard.service.add-addon', {
           projectId,

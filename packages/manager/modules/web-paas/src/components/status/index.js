@@ -5,7 +5,7 @@ import 'angular-translate';
 
 import component from './component';
 
-const moduleName = 'ovhManagerWebPaasSummary';
+const moduleName = 'ovhManagerWebPaasStatus';
 
 angular
   .module(moduleName, [
@@ -13,7 +13,7 @@ angular
     'oui',
     'pascalprecht.translate',
   ])
-  .component('webPaasSummary', component)
+  .component('webPaasStatus', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

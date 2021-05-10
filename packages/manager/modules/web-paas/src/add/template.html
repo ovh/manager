@@ -68,18 +68,16 @@
                     <oui-select-picker
                         disabled="$ctrl.project.region && $ctrl.capabilities.regions.length === 1"
                         data-ng-repeat="region in $ctrl.capabilities.regions track by $index"
-                        data-picture="flag-icon {{ $ctrl.CucRegionService.getRegionIconFlag(region) }}"
+                        data-picture="flag-icon flag-icon-{{region.toLowerCase()}}"
                         class="col-md-4 mb-3"
                         data-model="$ctrl.project.region"
                         model="$ctrl.selectedDatacenter"
                         values="[region]"
-                        data-label="{{ region }}"
+                        data-label="{{:: 'web_paas_region_' + region | translate }}"
                         data-variant="light"
                     >
                         <oui-select-picker-section class="text-uppercase"
-                            ><span
-                                data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion(region)"
-                            ></span
+                            ><span data-ng-bind="region"></span
                         ></oui-select-picker-section>
                     </oui-select-picker>
                 </div>
@@ -166,11 +164,15 @@
                 data-cancel-text="{{ ::'web_paas_common_cancel' | translate }}"
                 data-on-cancel="$ctrl.goBack()"
             >
-                <web-pass-summary
-                    prices="$ctrl.prices"
-                    selected-plan="$ctrl.selectedPlan"
-                >
-                </web-pass-summary>
+                <div class="mb-3">
+                    <web-paas-summary
+                        data-ng-if="$ctrl.prices"
+                        prices="$ctrl.prices"
+                        selected-plan="$ctrl.selectedPlan"
+                        user="$ctrl.user"
+                    >
+                    </web-paas-summary>
+                </div>
             </oui-step-form>
         </oui-stepper>
     </div>

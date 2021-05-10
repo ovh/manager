@@ -388,7 +388,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
   {
     id: 'orderWebPaas',
     title: 'web_paas',
-    feature: 'web:web-paas',
+    feature: 'web-paas',
     icon: 'oui-icon oui-icon-partner-platformsh_concept',
     state: 'web-paas.add',
     regions: ['EU'],

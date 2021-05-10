@@ -1,6 +1,6 @@
 <form
-    id="addStorage"
-    name="addStorage"
+    id="addAddon"
+    name="addAddon"
     data-ng-submit="$ctrl.addon.quantity > 0 && $ctrl.orderAddon()"
     novalidate
 >
@@ -10,7 +10,7 @@
         data-secondary-label="{{ ::'web_paas_common_cancel' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
         data-primary-disabled="$ctrl.disableSubmit"
-        data-heading="{{ ::'web_paas_service_add_addon_title_' + $ctrl.addonType.split('-').pop() | translate }}"
+        data-heading="{{ ::'web_paas_service_add_addon_title_' + $ctrl.addon.family | translate }}"
     >
         <p data-ng-bind="$ctrl.description"></p>
         <web-paas-additional-option
@@ -33,12 +33,13 @@
             ></span>
             <span
                 data-ng-if="!$ctrl.disableNumeric"
-                data-translate="{{:: 'web_paas_service_add_addon_prorata_price_' + $ctrl.addonType.split('-').pop() }}"
+                data-translate="{{:: 'web_paas_service_add_addon_prorata_price_' + $ctrl.addon.family }}"
                 data-translate-values="{
-                    prorataPrice: $ctrl.prices.withTax.value || 0,
+                    prorataPrice: $ctrl.prices.withoutTax.value || 0,
                     nextMonthPrice: $ctrl.nextMonthPrice || 0,
                     currentMonth: $ctrl.currentMonth,
-                    totalPrice: $ctrl.totalPrice || 0
+                    totalPrice: $ctrl.totalPrice || 0,
+                    currencySymbol: $ctrl.user.currency.symbol
                 }"
             ></span>
         </p>

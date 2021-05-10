@@ -46,7 +46,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      breadcrumb: /* @ngInject */ () => null, // empty breadcrumb
+      breadcrumb: /* @ngInject */ (project) => project.projectName,
     },
     redirectTo: 'web-paas.dashboard.service',
   });
