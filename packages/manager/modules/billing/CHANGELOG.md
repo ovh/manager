@@ -1,3 +1,12 @@
+# [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.7.0...@ovh-ux/manager-billing@2.8.0) (2021-05-10)
+
+
+### Features
+
+* **vps:** commitment ([#4927](https://github.com/ovh/manager/issues/4927)) ([cd420a8](https://github.com/ovh/manager/commit/cd420a8350add11f6a1673fa5ab74719066df744))
+
+
+
 # [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.6.1...@ovh-ux/manager-billing@2.7.0) (2021-05-06)
 
 
