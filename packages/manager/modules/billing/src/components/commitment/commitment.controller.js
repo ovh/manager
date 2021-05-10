@@ -1,4 +1,5 @@
-import { groupBy, map } from 'lodash-es';
+import { groupBy, map, sortBy } from 'lodash-es';
+import { EngagementConfiguration } from '@ovh-ux/manager-models';
 import CommitmentDuration from './CommitmentDuration.class';
 
 export default class {
@@ -32,7 +33,6 @@ export default class {
     this.model = {
       duration: null,
       engagement: null,
-      paymentMethod: null,
     };
     return this.$q
       .all({
@@ -59,26 +59,22 @@ export default class {
       });
   }
 
-  generatePaymentMethodUrl() {
-    const callbackUrl = `${window.location.href}?duration=${this.model.duration.duration}`;
-    this.addPaymentMethodUrl = `${this.RedirectionService.getURL(
-      'addPaymentMethod',
-    )}?callbackUrl=${encodeURIComponent(callbackUrl)}`;
-  }
-
   getAvailableEngagements() {
     return this.BillingCommitmentService.getServiceAvailableEngagements(
       this.service,
     )
       .then((availableEngagements) => {
         this.availableEngagements = groupBy(
-          availableEngagements.filter((engagement) => engagement.isPeriodic()),
-          'durationInMonths',
+          availableEngagements,
+          'configuration.duration',
         );
-        this.availableDurations = map(
-          this.availableEngagements,
-          (commitment, duration) =>
-            new CommitmentDuration(duration, commitment, this.defaultPrice),
+        this.availableDurations = sortBy(
+          map(
+            this.availableEngagements,
+            (commitment, duration) =>
+              new CommitmentDuration(duration, commitment, this.defaultPrice),
+          ),
+          'monthlyDuration',
         );
         this.model.duration =
           this.availableDurations.find(
@@ -96,7 +92,10 @@ export default class {
   onDurationChange(duration) {
     const commitments = this.availableEngagements[duration.duration];
     [this.model.engagement] = commitments;
+  }
 
+  getDiscount() {
+    const commitments = this.availableEngagements[this.model.duration.duration];
     const upfront = commitments.find((commitment) => commitment.isUpfront());
     const periodic = commitments.find((commitment) => commitment.isPeriodic());
 
@@ -108,12 +107,32 @@ export default class {
     }
   }
 
+  getStartingDate() {
+    const engagementConfiguration = new EngagementConfiguration(
+      this.service?.billing?.pricing?.engagementConfiguration || {},
+    );
+    if (
+      this.service.isEngaged() &&
+      engagementConfiguration.isUpfront() &&
+      this.model.engagement.isUpfront()
+    ) {
+      this.displayPaymentMean = false;
+      this.startingDate = moment().toISOString();
+      this.formattedStartingDate = moment(this.startingDate).format('LL');
+      return;
+    }
+
+    this.startingDate = this.service.billing.nextBillingDate;
+    this.displayPaymentMean = true;
+    this.formattedStartingDate = this.service.nextBillingDate;
+  }
+
   onPaymentStepFocus() {
     this.isPaymentStepLoading = true;
+    this.getDiscount();
     return this.ovhPaymentMethod
       .getDefaultPaymentMethod()
       .then((paymentMethod) => {
-        this.generatePaymentMethodUrl();
         this.paymentMethod = paymentMethod;
       })
       .catch((error) => {
@@ -126,15 +145,18 @@ export default class {
 
   commit() {
     this.atInternet.trackClick({
-      name: `${this.trackingPrefix}::commit::confirm_${this.model.duration.duration}m_${this.model.engagement.commitmentType}`,
+      name: `${
+        this.trackingPrefix
+      }::commit::confirm_${this.model.duration.duration.toLowerCase()}_${
+        this.model.engagement.commitmentType
+      }`,
       type: 'action',
     });
     return this.BillingCommitmentService.commit(
       this.service,
       this.model.engagement,
-      this.model.paymentMethod,
     )
-      .then((order) => {
+      .then(({ order }) => {
         if (order) {
           this.$window.open(order.url, '_blank');
         }

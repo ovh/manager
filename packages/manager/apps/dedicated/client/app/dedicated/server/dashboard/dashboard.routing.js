@@ -216,6 +216,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.dedicated-server.server.dashboard.terminate', {
           productId: serverName,
         }),
+      trackingPrefix: () => 'dedicated::server::dashboard',
       trafficInformations: /* @ngInject */ (
         $q,
         $stateParams,

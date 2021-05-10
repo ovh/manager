@@ -2,6 +2,7 @@ import assign from 'lodash/assign';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import head from 'lodash/head';
+import 'moment';
 
 import {
   DASHBOARD_FEATURES,
@@ -60,7 +61,10 @@ export default /* @ngInject */ ($stateProvider) => {
         options = {},
       ) => {
         const state = 'vps.detail.dashboard';
-        const promise = $state.go(state, data, options);
+        const promise = $state.go(state, data, {
+          reload: message && type === 'success',
+          ...options,
+        });
         if (message) {
           promise.then(() => {
             CucCloudMessage[type]({ textHtml: message }, state);
@@ -75,6 +79,23 @@ export default /* @ngInject */ ($stateProvider) => {
         vpsUpgradeTile,
       ) =>
         isVpsNewRange ? vpsUpgradeTile.getAvailableUpgrades(serviceName) : [],
+
+      isCommitmentAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(['billing:commitment'])
+          .then((commitmentAvailability) =>
+            commitmentAvailability.isFeatureAvailable('billing:commitment'),
+          )
+          .catch(() => false),
+      goToCommit: /* @ngInject */ ($state) => () =>
+        $state.href('vps.detail.dashboard.commitment'),
+      goToCancelCommit: /* @ngInject */ ($state) => () =>
+        $state.href('vps.detail.dashboard.cancel-commitment'),
+      goToCancelResiliation: /* @ngInject */ ($state) => () =>
+        $state.href('vps.detail.dashboard.cancel-resiliation'),
+      goToResiliation: /* @ngInject */ ($state) => () =>
+        $state.href('vps.detail.dashboard.resiliation'),
+      shouldReengage: /* @ngInject */ (vps) => vps.shouldReengage,
 
       vpsUpgradeTask: /* @ngInject */ (serviceName, vpsUpgradeTile) =>
         vpsUpgradeTile.getUpgradeTask(serviceName),
@@ -167,6 +188,7 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
       breadcrumb: () => null,
+      trackingPrefix: () => 'vps::detail::dashboard',
     },
   });
 };
