@@ -1,3 +1,12 @@
+## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.3.0...@ovh-ux/sign-up-app@2.3.1) (2021-05-10)
+
+
+### Bug Fixes
+
+* update injection order ([#4942](https://github.com/ovh/manager/issues/4942)) ([9b55635](https://github.com/ovh/manager/commit/9b55635b55d98677e04d09601eeecb739130f74b))
+
+
+
 # [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.2.0...@ovh-ux/sign-up-app@2.3.0) (2021-05-05)
 
 
