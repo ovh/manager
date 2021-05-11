@@ -274,7 +274,7 @@ export default class LogsHomeService {
     set(
       accountDetails,
       'graylogApiUrl',
-      `${accountDetails.graylogApiUrl}/api-browser`,
+      `${accountDetails.graylogApiUrl}/api-browser/global/index.html`,
     );
     set(
       accountDetails,
