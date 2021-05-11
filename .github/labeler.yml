@@ -5,6 +5,7 @@ continuous-integration:
   - .github/**
 dependencies:
   - ./**/package.json
+  - yarn.lock
 documentation:
   - docs/**
   - AUTHORS
