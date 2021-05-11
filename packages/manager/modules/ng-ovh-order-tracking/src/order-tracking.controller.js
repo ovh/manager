@@ -7,17 +7,37 @@ const ORDER_FOLLOW_UP_POLLING_INTERVAL = 60 * SECONDS;
 
 export default class OvhOrderTrackingController {
   /* @ngInject */
-  constructor($log, $q, $timeout, atInternet, OrderTracking, OvhApiMeOrder) {
+  constructor(
+    $log,
+    $q,
+    $timeout,
+    atInternet,
+    coreConfig,
+    coreURLBuilder,
+    OrderTracking,
+    OvhApiMeOrder,
+    RedirectionService,
+  ) {
     this.$log = $log;
     this.$q = $q;
     this.$timeout = $timeout;
     this.atInternet = atInternet;
+    this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
     this.OrderTracking = OrderTracking;
     this.OvhApiMeOrder = OvhApiMeOrder;
+    this.RedirectionService = RedirectionService;
     this.maxHistoryLength = ORDER_DEFAULT_HISTORY_LENGTH;
   }
 
   $onInit() {
+    this.HELP_URL = this.RedirectionService.getURL('help', {
+      ovhSubsidiary: this.coreConfig.getUser().ovhSubsidiary,
+    });
+    this.PAYMENT_METHOD_URL = this.coreURLBuilder.buildURL(
+      'dedicated',
+      '#/billing/payment/method',
+    );
     return this.refresh();
   }
 
