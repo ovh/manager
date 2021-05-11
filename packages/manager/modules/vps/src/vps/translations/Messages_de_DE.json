@@ -521,5 +521,14 @@
   "vps_new_range_available_call_to_upgrade_1": "Möchten Sie die neuen Möglichkeiten nutzen? , <a href=\"{{href}}\">Bestellen Sie ein neues Modell</a> in Ihrem Kundencenter, übertragen Sie Ihre Daten und kündigen Sie dann Ihren vorherigen Server.",
   "vps_new_range_available_call_to_upgrade_2": "Nutzen Sie die Vorteile und bringen Sie Ihre Maschine <a href=\"{{href}}\">mit nur wenigen Klicks</a> auf die nächste Stufe.",
   "vps_dashboard_task_migrate": "Ihr VPS Cloud wird gerade auf die neue Reihe umgestellt.",
-  "vps_dashboard_task_internalTask": "Interner Auftrag wird bearbeitet"
+  "vps_dashboard_task_internalTask": "Interner Auftrag wird bearbeitet",
+  "vps_tile_subscription": "Abo",
+  "vps_tile_subscription_autorenew": "Automatische Verlängerung",
+  "vps_tile_subscription_contact": "Kontakte",
+  "vps_tile_subscription_contact_admin": "Administrator",
+  "vps_tile_subscription_contact_billing": "Abrechnung",
+  "vps_tile_subscription_contact_technical": "Technisch",
+  "vps_tile_subscription_creation_date": "Erstellungsdatum",
+  "vps_tile_subscription_offer": "Angebot",
+  "vps_tile_subscription_expiration_date": "Ablaufdatum"
 }

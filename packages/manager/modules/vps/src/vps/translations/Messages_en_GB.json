@@ -521,5 +521,14 @@
   "vps_new_range_available_call_to_upgrade_1": "To get the very latest updates, <a href=\"{{href}}\">order a new model</a> via the OVHcloud Control Panel, transfer your data, then cancel your old server.",
   "vps_new_range_available_call_to_upgrade_2": "To get the most out of our technology, upgrade your machine <a href=\"{{href}}\">in just a few clicks.</a>",
   "vps_dashboard_task_migrate": "Your VPS is currently migrating to the new range",
-  "vps_dashboard_task_internalTask": "Internal task in progress"
+  "vps_dashboard_task_internalTask": "Internal task in progress",
+  "vps_tile_subscription": "Subscription",
+  "vps_tile_subscription_autorenew": "Automatic renewal",
+  "vps_tile_subscription_contact": "Contacts",
+  "vps_tile_subscription_contact_admin": "Administrator",
+  "vps_tile_subscription_contact_billing": "Billing",
+  "vps_tile_subscription_contact_technical": "Technical",
+  "vps_tile_subscription_creation_date": "Creation date",
+  "vps_tile_subscription_offer": "Solution ",
+  "vps_tile_subscription_expiration_date": "Expiry date"
 }

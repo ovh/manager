@@ -521,5 +521,14 @@
   "vps_new_range_available_call_to_upgrade_1": "Aby skorzystać z nowych funkcji, <a href=\"{{href}}\">zamów nowy model VPS&lt;/a></a> w Panelu klienta, przenieś dane, a następnie zrezygnuj ze starego serwera.",
   "vps_new_range_available_call_to_upgrade_2": "W tym celu wymień Twoją maszynę <a href=\"{{href}}\">za pomocą kilku kliknięć.</a>",
   "vps_dashboard_task_migrate": "Aktualnie trwa migracja VPS do nowej gamy.",
-  "vps_dashboard_task_internalTask": "Zadanie wewnętrzne w trakcie"
+  "vps_dashboard_task_internalTask": "Zadanie wewnętrzne w trakcie",
+  "vps_tile_subscription": "Abonament",
+  "vps_tile_subscription_autorenew": "Automatyczne odnowienie",
+  "vps_tile_subscription_contact": "Kontakty",
+  "vps_tile_subscription_contact_admin": "Administrator",
+  "vps_tile_subscription_contact_billing": "Płatności",
+  "vps_tile_subscription_contact_technical": "Kontakt techniczny",
+  "vps_tile_subscription_creation_date": "Data utworzenia",
+  "vps_tile_subscription_offer": "Usługa",
+  "vps_tile_subscription_expiration_date": "Data wygasania"
 }

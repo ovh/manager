@@ -1,7 +1,7 @@
 {
   "hosting_dashboard_cdn_flush": "Wyczyść cache",
-  "hosting_dashboard_cdn_flush_question": "Czy chcesz wyczyścić cache usługi CDN?",
-  "hosting_dashboard_cdn_v2_flush_question": "Czy na pewno chcesz wyczyścić pamięć podręczną CDN dla tej domeny ?",
+  "hosting_dashboard_cdn_flush_question": "Czy na pewno chcesz wyczyścić pamięć cache CDN?",
+  "hosting_dashboard_cdn_v2_flush_question": "Czy na pewno chcesz wyczyścić pamięć cache CDN dla tej domeny ?",
   "hosting_dashboard_cdn_flush_success": "Pamięć cache CDN zostanie wyczyszczona w ciągu kilku minut.",
   "hosting_dashboard_cdn_flush_done_success": "Pamięć cache CDN została wyczyszczona.",
   "hosting_dashboard_cdn_flush_error": "Wystąpił błąd podczas czyszczenia pamięci cache CDN.",

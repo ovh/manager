@@ -68,5 +68,7 @@
   "overTheBox_resiliation_cancel_error": "Oups ! Nous n'avons pas pu annuler la résiliation en cours du service {{service}}.",
   "overTheBox_cancel_resiliation_success": "La résiliation de votre service {{service}} vient d'être annulée.",
   "overTheBox_statistics_bits_per_sec_legend": "bits/s",
-  "overTheBox_expiration_warning_help": "Sie können die Kündigung vor dem Ablaufdatum stornieren."
+  "overTheBox_expiration_warning_help": "Sie können die Kündigung vor dem Ablaufdatum stornieren.",
+  "overTheBox_detail_link_guide": "Anleitungen",
+  "overthebox_detail_links": "Links"
 }

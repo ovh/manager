@@ -88,5 +88,6 @@
   "pack_xdsl_oops_an_error_is_occured": "Ops! Impossibile recuperare le informazioni relative al tuo pack.",
   "pack_xdsl_information_links": "Link",
   "pack_xdsl_information_links_igmap": "Mappa degli incidenti generici",
-  "pack_xdsl_information_links_travaux": "Lavori"
+  "pack_xdsl_information_links_travaux": "Lavori",
+  "pack_xdsl_information_links_guides": "Guide"
 }
