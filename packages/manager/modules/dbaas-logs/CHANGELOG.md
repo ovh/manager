@@ -1,3 +1,12 @@
+## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.5.1...@ovh-ux/manager-dbaas-logs@1.5.2) (2021-05-11)
+
+
+### Bug Fixes
+
+* **logs.detail:** update graylog api URL ([#4946](https://github.com/ovh/manager/issues/4946)) ([3ce92b7](https://github.com/ovh/manager/commit/3ce92b76b285d0c7b6340918e1c22de470fa54e4))
+
+
+
 ## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.5.0...@ovh-ux/manager-dbaas-logs@1.5.1) (2021-04-21)
 
 
