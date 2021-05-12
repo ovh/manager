@@ -105,4 +105,16 @@ export default class PciProjectTrainingService {
         region,
       }).$promise;
   }
+
+  getResources(serviceName, region) {
+    return this.OvhApiCloudProjectAi.Capabilities()
+      .Training()
+      .Region()
+      .Resource()
+      .v6()
+      .get({
+        serviceName,
+        region,
+      }).$promise;
+  }
 }
