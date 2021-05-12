@@ -1,3 +1,12 @@
+## [2.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.4.2...@ovh-ux/manager-hub@2.4.3) (2021-05-12)
+
+
+### Bug Fixes
+
+* **hub:** payment status tile tracking ([#4957](https://github.com/ovh/manager/issues/4957)) ([98bbc53](https://github.com/ovh/manager/commit/98bbc53445c364d4133e66d7218086011a0efdc8))
+
+
+
 ## [2.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.4.1...@ovh-ux/manager-hub@2.4.2) (2021-04-21)
 
 
