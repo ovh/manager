@@ -66,7 +66,7 @@ export default class TechnicalDetailsController {
       (disk) => disk.usage === diskUsage,
     );
     if (!disks.length) {
-      return ['-'];
+      return [];
     }
     return disks.map((disk) => {
       const number = get(disk, 'number', 1);
