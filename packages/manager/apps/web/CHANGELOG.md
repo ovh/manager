@@ -1,3 +1,12 @@
+## [15.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.24.0...@ovh-ux/manager-web@15.24.1) (2021-05-12)
+
+
+### Bug Fixes
+
+* **private-database:** use right translations path location ([#4959](https://github.com/ovh/manager/issues/4959)) ([1863668](https://github.com/ovh/manager/commit/1863668e6243c35a776846fb05fc1d7a79948ae8))
+
+
+
 # [15.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.23.1...@ovh-ux/manager-web@15.24.0) (2021-05-07)
 
 
