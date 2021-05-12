@@ -1,9 +1,11 @@
 function convertJobSpecToCliCommand(jobSpec) {
-  let baseCmdArray = [
-    'job run',
-    `--gpu ${jobSpec.resources.gpu}`,
-    `--name ${jobSpec.name}`,
-  ];
+  let baseCmdArray = ['job run', `--name ${jobSpec.name}`];
+
+  if (jobSpec.resources.gpu > 0) {
+    baseCmdArray.push(`--gpu ${jobSpec.resources.gpu}`);
+  } else {
+    baseCmdArray.push(`--cpu ${jobSpec.resources.cpu}`);
+  }
 
   if (jobSpec.volumes?.length > 0) {
     baseCmdArray = baseCmdArray.concat(
