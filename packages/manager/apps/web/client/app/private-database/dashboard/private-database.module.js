@@ -27,6 +27,6 @@ angular
 
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngTranslationsInject:json ../hosting/translations */);
+  .run(/* @ngTranslationsInject:json ./../../hosting/dashboard/translations */);
 
 export default moduleName;
