@@ -4,6 +4,9 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
 
+import creditLegacyComponent from './credit-legacy/credit-legacy.component';
+import creditAgoraComponent from './credit-agora/credit-agora.component';
+
 import routing from './credit.routing';
 
 const moduleName = 'ovhManagerPciProjectVouchersCredit';
@@ -16,6 +19,8 @@ angular
     'ui.router',
   ])
   .config(routing)
+  .component('pciProjectsProjectVouchersCreditAgora', creditAgoraComponent)
+  .component('pciProjectsProjectVouchersCreditLegacy', creditLegacyComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

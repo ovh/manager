@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerPciVouchersCreditLazyLoading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('pci.projects.project.vouchers.credit.**', {
-      url: '/credit/buy',
+      url: '/credit',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
