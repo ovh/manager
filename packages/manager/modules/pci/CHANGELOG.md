@@ -1,3 +1,14 @@
+# [5.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.24.0...@ovh-ux/manager-pci@5.25.0) (2021-05-14)
+
+
+### Features
+
+* **project.vouchers.credit:** setup credit module ([0922534](https://github.com/ovh/manager/commit/0922534660ea28ed0b50c3cfb377f85aea951e47))
+* **project.vouchers.credit.agora:** add agora cmp ([f5a0215](https://github.com/ovh/manager/commit/f5a0215184cc8c01e1d052b5583123c85abca3d4))
+* **project.vouchers.credit.legacy:** add legacy cmp ([a58a05e](https://github.com/ovh/manager/commit/a58a05e2aad9ad716de00e6c8b9d4351a5f66de0))
+
+
+
 # [5.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.23.0...@ovh-ux/manager-pci@5.24.0) (2021-05-07)
 
 
