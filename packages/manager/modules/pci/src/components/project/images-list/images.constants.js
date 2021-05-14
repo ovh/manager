@@ -25,6 +25,49 @@ import ASSET_OS_WINDOWS_OTHER from './assets/os/windows_other.png';
 import ASSET_OS_WINDOWS_SERVER_2012 from './assets/os/windows_server_2012.png';
 import ASSET_OS_WINDOWS_SERVER_2016 from './assets/os/windows_server_2016.png';
 
+export const IMAGES_REGEX = {
+  linux: [
+    {
+      name: 'ubuntu',
+      regex: /^Ubuntu/i,
+    },
+    {
+      name: 'freebsd',
+      regex: /^FreeBSD/i,
+    },
+    {
+      name: 'coreos',
+      regex: /^CoreOS/i,
+    },
+    {
+      name: 'debian',
+      regex: /^Debian/i,
+    },
+    {
+      name: 'centos',
+      regex: /^Cent[\s-]?OS/i,
+    },
+    {
+      name: 'fedora',
+      regex: /^Fedora/i,
+    },
+    {
+      name: 'dokku',
+      regex: /^Dokku/i,
+    },
+  ],
+  windows: [
+    {
+      name: 'windows_server_2012',
+      regex: /^Win[a-zA-Z\s-]+2012/i,
+    },
+    {
+      name: 'windows_server_2016',
+      regex: /^Win[a-zA-Z\s-]+2016/i,
+    },
+  ],
+};
+
 export const ACTIVE_STATUS = ['active'];
 
 export const APPLICATION_TAG = 'application';
@@ -135,4 +178,5 @@ export default {
   APPLICATION_TAG,
   APPLICATION_LIST,
   IMAGE_ASSETS,
+  IMAGES_REGEX,
 };
