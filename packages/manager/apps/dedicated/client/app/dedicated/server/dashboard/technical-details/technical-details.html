@@ -25,6 +25,7 @@
         ></span>
     </oui-tile-button>
     <oui-tile-definition
+        ng-if="$ctrl.formattedOsDisks.length"
         term="{{:: 'dedicated_server_dashboard_technical_details_system_disk_many' | translate }}"
     >
         <oui-tile-description>
@@ -35,6 +36,7 @@
         </oui-tile-description>
     </oui-tile-definition>
     <oui-tile-definition
+        ng-if="$ctrl.formattedDataDisks.length"
         term="{{:: 'dedicated_server_dashboard_technical_details_data_disk_many' | translate }}"
     >
         <oui-tile-description>
