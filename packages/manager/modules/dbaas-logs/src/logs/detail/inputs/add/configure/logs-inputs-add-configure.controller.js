@@ -19,6 +19,7 @@ export default class LogsInputsAddConfigureCtrl {
     this.$translate = $translate;
     this.serviceName = this.$stateParams.serviceName;
     this.inputId = this.$stateParams.inputId;
+    this.exposedPort = this.$stateParams.exposedPort;
     this.CucControllerModalHelper = CucControllerModalHelper;
     this.CucControllerHelper = CucControllerHelper;
     this.LogsInputsService = LogsInputsService;
