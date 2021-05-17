@@ -1,8 +1,8 @@
 import debounce from 'lodash/debounce';
 import get from 'lodash/get';
 import moment from 'moment';
-import { ADDON_TYPE } from '../service.constants';
 import { STORAGE_MULTIPLE } from './constants';
+import { ADDON_TYPE } from '../../web-paas.constants';
 
 export default class {
   /* @ngInject */
@@ -13,11 +13,12 @@ export default class {
     this.WebPaas = WebPaas;
     this.$translate = $translate;
     this.disableNumeric = false;
-    this.disableSubmit = false;
+    this.disableSubmit = true;
   }
 
   $onInit() {
     this.currentMonth = moment().format('MMMM');
+    this.addon.quantity = 0;
     this.updateParameters();
     this.$scope.$watch(
       '$ctrl.addon.quantity',
@@ -26,30 +27,43 @@ export default class {
   }
 
   getTotalPrice() {
-    const price = get(this.addon, 'prices').find(({ capacities }) =>
-      capacities.includes('renew'),
+    const addonPrice = get(this.addon, 'prices').find(
+      (price) => price.capacities.includes('renew') && price.priceInUcents > 0,
     ).price.value;
     if (this.addonType === ADDON_TYPE.STORAGE) {
       const stagingQuantity = this.project.getTotalEnvironment();
-      return (2 + stagingQuantity) * price * this.quantity;
+      return stagingQuantity * addonPrice * this.quantity;
     }
-    return price * this.quantity;
+    return addonPrice * this.quantity;
   }
 
   getNextMonthPrice() {
-    const price = get(this.addon, 'prices').find(({ capacities }) =>
-      capacities.includes('renew'),
+    const addonPrice = get(this.addon, 'prices').find(
+      (price) => price.capacities.includes('renew') && price.priceInUcents > 0,
     ).price.value;
-    return price * this.addon.quantity;
+    if (this.addonType === ADDON_TYPE.STORAGE) {
+      const stagingQuantity = this.project.getTotalEnvironment();
+      return (
+        (stagingQuantity * addonPrice * this.addon.quantity) / STORAGE_MULTIPLE
+      );
+    }
+    return addonPrice * this.addon.quantity;
   }
 
   addAddon() {
     this.disableNumeric = true;
-    this.quantity =
-      this.presentCount +
-      (this.addonType === ADDON_TYPE.STORAGE
-        ? this.addon.quantity / STORAGE_MULTIPLE
-        : this.addon.quantity);
+
+    if (this.addonType === ADDON_TYPE.STORAGE) {
+      this.quantity = this.addon.quantity / STORAGE_MULTIPLE;
+    }
+    if (this.addon.presentQuantity > 0) {
+      this.quantity =
+        this.addon.presentQuantity +
+        (this.addonType === ADDON_TYPE.STORAGE
+          ? this.addon.quantity / STORAGE_MULTIPLE
+          : this.addon.quantity);
+    }
+
     this.WebPaas.getAddonSummary(this.project, this.addon, this.quantity)
       .then(({ contracts, prices, cart }) => {
         this.cart = cart;
@@ -103,7 +117,7 @@ export default class {
 
     this.goBack(
       this.$translate.instant(
-        `web_paas_service_add_addon_success_${this.addonType.family}`,
+        `web_paas_service_add_addon_success_${this.addon.family}`,
         {
           orderURL: checkout ? this.getOrderUrl(checkout.orderId) : null,
         },
@@ -119,32 +133,27 @@ export default class {
   updateParameters() {
     switch (this.addonType) {
       case ADDON_TYPE.STORAGE:
-        this.presentCount =
-          (this.project.getTotalStorage() -
-            this.project.selectedPlan.getStorage()) /
-          5;
+        this.presentCount = this.project.addonStorageCount();
         this.description = this.$translate.instant(
           'web_paas_service_add_storage_description',
-          { storage: this.presentCount },
+          { storage: this.presentCount * STORAGE_MULTIPLE },
         );
         break;
       case ADDON_TYPE.ENVIRONMENNT:
-        this.presentCount = this.project.getTotalEnvironment() - 2;
+        this.presentCount = this.project.getTotalEnvironment();
         this.description = this.$translate.instant(
           'web_paas_service_add_staging_description',
           { environment: this.presentCount },
         );
         break;
       case ADDON_TYPE.LICENCES:
-        this.presentCount =
-          this.project.getTotalLicences() -
-          this.project.selectedPlan.getLicences();
+        this.presentCount = this.project.addonUserLicencesCount();
         this.description = `${this.$translate.instant(
           'web_paas_service_add_license_description1',
           {
-            license: this.presentCount,
+            addonLicenses: this.presentCount,
             offerName: this.project.selectedPlan.getRange(),
-            maxLicences: this.project.selectedPlan.getMaxLicenses(),
+            maxLicences: this.project.selectedPlan.getLicences(),
           },
         )} ${this.$translate.instant(
           this.presentCount > 1

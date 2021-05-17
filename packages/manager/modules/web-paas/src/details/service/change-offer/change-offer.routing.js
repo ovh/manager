@@ -28,6 +28,8 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return data;
         }),
+      availableAddons: /* @ngInject */ (projectId, WebPaas, selectedProject) =>
+        WebPaas.getAdditionalOption(projectId, selectedProject),
       catalog: /* @ngInject */ (WebPaas, user, availablePlans) =>
         WebPaas.getCatalog(user.ovhSubsidiary, availablePlans),
 
@@ -52,7 +54,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
 
       breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('web_paas_add_project_title_edit'),
+        $translate.instant('web_paas_change_offer_title_edit'),
       goToChangeOffer: /* @ngInject */ ($state, Alerter) => (
         message = false,
         type = 'success',

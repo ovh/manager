@@ -13,6 +13,11 @@
         data-heading="{{ ::'web_paas_service_add_addon_title_' + $ctrl.addon.family | translate }}"
     >
         <p data-ng-bind="$ctrl.description"></p>
+        <oui-message type="info" data-ng-if="$ctrl.addon.isStorageAddon()">
+            <span
+                data-translate="web_paas_service_add_addon_storage_info"
+            ></span>
+        </oui-message>
         <web-paas-additional-option
             disabled="$ctrl.disableNumeric"
             option="$ctrl.addon"
@@ -32,7 +37,7 @@
                 data-translate="web_paas_service_add_addon_fetching_price"
             ></span>
             <span
-                data-ng-if="!$ctrl.disableNumeric"
+                data-ng-if="!$ctrl.disableNumeric && !$ctrl.disableSubmit"
                 data-translate="{{:: 'web_paas_service_add_addon_prorata_price_' + $ctrl.addon.family }}"
                 data-translate-values="{
                     prorataPrice: $ctrl.prices.withoutTax.value || 0,

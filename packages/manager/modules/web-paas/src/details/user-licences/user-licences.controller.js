@@ -1,12 +1,21 @@
+import { ADDON_TYPE } from '../../web-paas.constants';
+
 export default class {
-  /* @ngInject */
   $onInit() {
+    this.ADDON_TYPE = ADDON_TYPE;
     this.alerts = {
       licences: 'web_paas_licences_alert',
     };
   }
 
-  canInviteUser() {
-    return this.userList.length < this.project.getTotalLicences();
+  canAddUserLicences() {
+    return (
+      this.project.getTotalLicences() <
+      this.project.selectedPlan.getMaxLicenses()
+    );
+  }
+
+  static getChangeOfferState(projectId) {
+    return `web-paas.dashboard.service.change-offer({ projectId: '${projectId}'})`;
   }
 }

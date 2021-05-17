@@ -1,4 +1,6 @@
-import { get, set } from 'lodash';
+import { find, get, set, max } from 'lodash';
+import { ADDON_FAMILY } from '../../../web-paas.constants';
+import Plan from '../../../plan.class';
 
 export default class {
   /* @ngInject */
@@ -59,10 +61,7 @@ export default class {
 
   scrollToTop() {
     this.$timeout(() => {
-      document.getElementById('web-pass-add-header').scrollIntoView({
-        behavior: 'smooth',
-      });
-      document.getElementById('web-pass-add-alert').focus();
+      document.getElementById('web-pass-add-header').scrollIntoView(false);
     });
   }
 
@@ -115,10 +114,50 @@ export default class {
     return this.getUpgradePlan();
   }
 
+  /**
+   * Get total price of the selected plan including all additional options (whicha are already included)
+   */
+  getTotalPrice() {
+    this.totalPrice = this.selectedPlan.getRenewablePrice();
+    const newEnvironmentPlanCode = find(this.selectedPlan.addonFamilies, {
+      name: ADDON_FAMILY.ENVIRONMENT,
+    }).addons[0];
+    const environmentAddon = new Plan(
+      find(this.catalog.addons, { planCode: newEnvironmentPlanCode }),
+    );
+    this.selectedProject.addons.forEach((addon) => {
+      let addonPrice =
+        find(this.availableAddons, {
+          productName: addon.productName,
+        }).getRenewablePrice().value * 100000000;
+
+      switch (addon.planFamilyName) {
+        case ADDON_FAMILY.STORAGE:
+          addonPrice =
+            find(this.selectedProject.addons, {
+              planFamilyName: ADDON_FAMILY.ENVIRONMENT,
+            }).quantity *
+            addonPrice *
+            addon.quantity;
+          this.totalPrice += addonPrice;
+          break;
+        case ADDON_FAMILY.ENVIRONMENT:
+          addonPrice = environmentAddon.getRenewablePrice();
+          this.totalPrice += (addon.quantity - 2) * addonPrice;
+          break;
+        default:
+          this.totalPrice += addon.quantity * addonPrice;
+          break;
+      }
+    });
+    set(this.selectedPlan, 'totalPrice', this.totalPrice);
+  }
+
   getUpgradePlan() {
     this.isGettingCheckoutInfo = true;
     this.prices = null;
     set(this.selectedProject, 'quantity', 1);
+    this.getTotalPrice();
     return this.WebPaas.getUpgradeCheckoutInfo(
       this.selectedProject.serviceId,
       this.selectedPlan,
@@ -156,23 +195,40 @@ export default class {
     return this.selectedProject;
   }
 
+  /**
+   * Gives whethere to remove users or not
+   * (current plan included user licences-new plan included user licences) + Max(0, current plan addon qty - new plan max addon qty )
+   */
   shouldRemoveExtraLicences() {
-    return (
-      this.selectedProject?.getTotalLicences() >
-        this.selectedPlan.getMaxLicenses() && !this.cpu
-    );
+    this.selectedAddonLicences =
+      this.selectedPlan.getMaxLicenses() - this.selectedPlan.getLicences();
+    this.availableUserLicencesToBe =
+      this.selectedProject.selectedPlan.getLicences() -
+      this.selectedPlan.getLicences() +
+      max([0, this.getAdditionalLicencesCount() - this.selectedAddonLicences]);
+
+    return this.getNumberOfUsersToRemove() > 0;
   }
 
-  /** Gets additional licence count for the selected plan */
+  /** Gets additional licence count for the selected project */
   getAdditionalLicencesCount() {
-    return this.selectedPlan.getMaxLicenses() - this.selectedPlan.getLicences();
+    return (
+      this.selectedProject.getTotalLicences() -
+      this.selectedProject.selectedPlan.getLicences()
+    );
   }
 
   /** Gets users to be removed to downgrade to selected plan */
   getNumberOfUsersToRemove() {
     return (
-      this.selectedProject.getTotalLicences() -
-      (this.selectedPlan.getLicences() + this.getAdditionalLicencesCount())
+      this.availableUserLicencesToBe -
+      this.selectedProject.getAvailableUserLicenses()
+    );
+  }
+
+  isCurrentOffer() {
+    return (
+      this.selectedProject.selectedPlan.planCode === this.selectedPlan.planCode
     );
   }
 }

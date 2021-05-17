@@ -25,18 +25,47 @@
             storageSize: $ctrl.offer.getStorage(),
         }"
     ></li>
-    <li
-        data-ng-if="$ctrl.offer.getMaxLicenses() <= 1"
-        data-translate="web_paas_offer_num_licence_single"
-        data-translate-values="{
-            numLicence: $ctrl.offer.getMaxLicenses(),
+    <li>
+        <span
+            data-ng-if="$ctrl.offer.getLicences() <= 1"
+            data-translate="web_paas_offer_num_licence_single"
+            data-translate-values="{
+            numLicence: $ctrl.offer.getLicences(),
         }"
+        ></span>
+        <span
+            data-ng-if="$ctrl.offer.getLicences() > 1"
+            data-translate="web_paas_offer_num_licence_multiple"
+            data-translate-values="{
+            numLicence: $ctrl.offer.getLicences(),
+        }"
+        ></span>
+        <span
+            data-translate="web_paas_offer_num_licence_max"
+            data-translate-values="{
+            max: $ctrl.offer.getMaxLicenses(),
+        }"
+        ></span>
+    </li>
+    <li
+        data-translate="web_paas_offer_no_container_restriction"
+        data-ng-if="!$ctrl.offer.isContainerRestricted()"
     ></li>
     <li
-        data-ng-if="$ctrl.offer.getMaxLicenses() > 1"
-        data-translate="web_paas_offer_num_licence_multiple"
-        data-translate-values="{
-            numLicence: $ctrl.offer.getMaxLicenses(),
-        }"
+        data-ng-if="$ctrl.offer.allowsSingleApp()"
+        data-translate="web_paas_offer_single_app"
+    ></li>
+    <li
+        data-ng-if="$ctrl.offer.allowsSingleService()"
+        data-translate="web_paas_offer_single_service"
+    ></li>
+
+    <li
+        data-ng-if="$ctrl.offer.hasAutomatedBackup()"
+        data-translate="web_paas_offer_automated_backup"
+    ></li>
+    <li
+        data-ng-if="$ctrl.offer.sslCertificatesIncluded()"
+        data-translate="web_paas_offer_ssl_certificate"
     ></li>
 </ul>

@@ -1,6 +1,12 @@
 import get from 'lodash/get';
 import set from 'lodash/set';
-import { STATUS, OFFER_NAME } from './web-paas.constants';
+import find from 'lodash/find';
+import {
+  STATUS,
+  OFFER_NAME,
+  ADDON_FAMILY,
+  PLAN_CODE,
+} from './web-paas.constants';
 import Plan from './plan.class';
 
 export default class Project {
@@ -76,10 +82,40 @@ export default class Project {
   isStartOffer() {
     return get(this, 'offer')
       .split('-')
-      .includes('start');
+      .includes(PLAN_CODE.START);
+  }
+
+  isDevelopOffer() {
+    return get(this, 'offer')
+      .split('-')
+      .includes(PLAN_CODE.DEVELOP);
   }
 
   getRegion() {
     return get(this, 'metadata.project.region');
+  }
+
+  getEnvironmentServiceName() {
+    return find(this.addons, { planFamilyName: ADDON_FAMILY.ENVIRONMENT })
+      .serviceName;
+  }
+
+  addonEnvironmentCount() {
+    return (
+      find(this.addons, { planFamilyName: ADDON_FAMILY.ENVIRONMENT })
+        ?.quantity || 0
+    );
+  }
+
+  addonStorageCount() {
+    return (
+      find(this.addons, { planFamilyName: ADDON_FAMILY.STORAGE })?.quantity || 0
+    );
+  }
+
+  addonUserLicencesCount() {
+    return (
+      find(this.addons, { planFamilyName: ADDON_FAMILY.LICENSE })?.quantity || 0
+    );
   }
 }

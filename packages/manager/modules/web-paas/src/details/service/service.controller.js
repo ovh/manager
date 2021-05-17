@@ -1,11 +1,12 @@
 import get from 'lodash/get';
-import { ADDON_TYPE } from './service.constants';
+import { ADDON_TYPE, STORAGE_MULTIPLE } from '../../web-paas.constants';
 
 export default class WebPassDetailsServiceCtrl {
   /* @ngInject */
   constructor(Alerter) {
     this.Alerter = Alerter;
     this.ADDON_TYPE = ADDON_TYPE;
+    this.STORAGE_MULTIPLE = STORAGE_MULTIPLE;
   }
 
   onBillingInformationError(error) {

@@ -20,6 +20,7 @@ export default class Plan {
     product,
     vcpuConfig,
     available,
+    totalPrice,
   }) {
     Object.assign(this, {
       addonFamilies,
@@ -33,6 +34,7 @@ export default class Plan {
       product,
       vcpuConfig,
       available,
+      totalPrice,
     });
     this.ENVIRONMENT_VALUES = ENVIRONMENT_VALUES;
     this.LICENCES_VALUES = LICENCES_VALUES;
@@ -98,5 +100,37 @@ export default class Plan {
 
   getRange() {
     return get(this, 'blobs.commercial.range');
+  }
+
+  isContainerRestricted() {
+    return (
+      find(get(this, 'blobs.commercial.features'), {
+        name: 'container_restrictions',
+      }).value === 'Yes'
+    );
+  }
+
+  allowsSingleApp() {
+    return find(get(this, 'blobs.commercial.features'), {
+      name: 'container_allowed_single_app',
+    })?.value;
+  }
+
+  allowsSingleService() {
+    return find(get(this, 'blobs.commercial.features'), {
+      name: 'container_allowed_single_service',
+    })?.value;
+  }
+
+  hasAutomatedBackup() {
+    return find(get(this, 'blobs.commercial.features'), {
+      name: 'automated_backup',
+    })?.value;
+  }
+
+  sslCertificatesIncluded() {
+    return find(get(this, 'blobs.commercial.features'), {
+      name: 'ssl_certificate_included',
+    })?.value;
   }
 }

@@ -12,10 +12,12 @@ import PlanFamily from './family.class';
 import UserLicence from './user-licence.class';
 import {
   ADDON_FAMILY,
-  STORAGE_MULTIPLE,
+  DEFAULT_ENVIRONMENT,
   PLAN_CODE,
   SORT_ORDER_PLANS,
+  STORAGE_MULTIPLE,
 } from './web-paas.constants';
+import { ADDON_FAMILY_STAGING_ENVIRONMENT } from './components/additional-option/constants';
 
 export default class WebPaasService {
   /* @ngInject */
@@ -249,11 +251,11 @@ export default class WebPaasService {
   addAddons(cart, addons) {
     return this.$q
       .all(
-        addons.forEach((addon) => {
+        map(addons, (addon) => {
           const capacity = get(addon, 'prices').find(({ capacities }) =>
             capacities.includes('renew'),
           );
-          if (addon.quantity > 0) {
+          if (addon.quantity > 0 && addon.family !== ADDON_FAMILY.STORAGE) {
             return this.OvhApiOrderCartProduct.postOptions({
               cartId: cart.cartId,
               productName: 'webPaaS',
@@ -261,13 +263,17 @@ export default class WebPaasService {
               planCode: addon.planCode,
               pricingMode: 'default',
               quantity:
-                addon.family === ADDON_FAMILY.STORAGE
-                  ? addon.quantity / STORAGE_MULTIPLE
+                addon.family === ADDON_FAMILY.ENVIRONMENT
+                  ? addon.quantity + DEFAULT_ENVIRONMENT
                   : addon.quantity,
               itemId: cart.itemId,
-            }).$promise;
+            }).$promise.then((cartResult) => {
+              if (cartResult.settings.planCode.indexOf('environment') > 0) {
+                this.environmentItemId = cartResult.itemId;
+              }
+            });
           }
-          return null;
+          return this.$q.resolve(cart);
         }),
       )
       .then(() => cart);
@@ -289,15 +295,35 @@ export default class WebPaasService {
       .then(() => cart);
   }
 
+  addAddonOptions(cart, addons) {
+    const storageAddon = find(addons, { family: ADDON_FAMILY.STORAGE });
+    const capacity = get(storageAddon, 'prices').find(({ capacities }) =>
+      capacities.includes('renew'),
+    );
+    if (storageAddon.quantity > 0) {
+      return this.OvhApiOrderCartProduct.postOptions({
+        cartId: cart.cartId,
+        itemId: this.environmentItemId,
+        pricingMode: 'default',
+        productName: 'webPaaS',
+        duration: capacity.duration,
+        planCode: storageAddon.planCode,
+        quantity: storageAddon.quantity / STORAGE_MULTIPLE,
+      }).$promise.then(() => cart);
+    }
+    return cart;
+  }
+
   getOrderSummary(selectedPlan, config) {
     return this.createCart()
       .then((cart) => this.addToCart(cart.cartId, selectedPlan))
       .then((cart) => this.addConfig(cart, config))
       .then((cart) => this.addAddons(cart, selectedPlan.addons))
+      .then((cart) => this.addAddonOptions(cart, selectedPlan.addons))
       .then((cart) => this.assignCart(cart))
       .then((cart) => {
         this.cart = cart;
-        return this.getCheckoutInfo(cart).then((order) => ({
+        return this.getSummary(cart).then((order) => ({
           ...order,
           cart,
         }));
@@ -306,9 +332,10 @@ export default class WebPaasService {
   }
 
   getAddonSummary(project, addon, quantity) {
-    if (addon.serviceName) {
+    if (addon.serviceName && addon.environmentServiceName === undefined) {
       return this.getUpgradeCheckoutInfo(addon.serviceName, addon, quantity);
     }
+
     return this.createCart()
       .then((cart) => this.assignCart(cart))
       .then((cart) => this.addItems(cart, project, addon, quantity))
@@ -327,14 +354,23 @@ export default class WebPaasService {
       capacities.includes('renew'),
     );
     return this.$http
-      .post(`/order/cartServiceOption/webPaaS/${project.serviceId}`, {
-        cartId: cart.cartId,
-        serviceName: project.serviceId,
-        duration: capacity.duration,
-        planCode: addon.planCode,
-        pricingMode: 'default',
-        quantity: quantity || addon.quantity,
-      })
+      .post(
+        `/order/cartServiceOption/webPaaS/${
+          addon.environmentServiceName
+            ? addon.environmentServiceName
+            : project.serviceId
+        }`,
+        {
+          cartId: cart.cartId,
+          serviceName: addon.environmentServiceName
+            ? addon.environmentServiceName
+            : project.serviceId,
+          duration: capacity.duration,
+          planCode: addon.planCode,
+          pricingMode: 'default',
+          quantity: quantity || addon.quantity,
+        },
+      )
       .then(() => cart);
   }
 
@@ -344,15 +380,28 @@ export default class WebPaasService {
 
   checkoutAddon(cart, serviceName, selectedPlan, quantity) {
     if (cart) {
-      return this.goToExpressOrderOption(serviceName, selectedPlan);
+      return this.goToExpressOrderOption(serviceName, selectedPlan, quantity);
     }
     return this.checkoutUpgrade(serviceName, selectedPlan, quantity);
   }
 
-  getAdditionalOption(serviceName) {
+  getAdditionalOption(serviceName, project) {
     return this.$http
       .get(`/order/cartServiceOption/webPaaS/${serviceName}`)
-      .then(({ data }) => map(data, (option) => new Addon(option)));
+      .then(({ data }) => {
+        const environmentAddon = find(data, {
+          family: ADDON_FAMILY_STAGING_ENVIRONMENT,
+        });
+        if (environmentAddon) {
+          return this.getAdditionalOption(
+            project.getEnvironmentServiceName(),
+          ).then((storageAddon) => {
+            data.push(storageAddon[0]);
+            return map(data, (option) => new Addon(option));
+          });
+        }
+        return map(data, (option) => new Addon(option));
+      });
   }
 
   getSummary(cart) {
@@ -396,13 +445,15 @@ export default class WebPaasService {
     return this.$http.delete(`/order/cart/${this.cart.cartId}`);
   }
 
-  goToExpressOrderOption(serviceName, addon) {
+  goToExpressOrderOption(serviceName, addon, quantity) {
     const params = [
       {
         productId: 'webPaaS',
         planCode: addon.planCode,
-        serviceName,
-        quantity: addon.quantity,
+        serviceName: addon.environmentServiceName
+          ? addon.environmentServiceName
+          : serviceName,
+        quantity: quantity || addon.quantity,
       },
     ];
 
@@ -426,10 +477,14 @@ export default class WebPaasService {
 
     params[0].option = compact(
       map(plan.addons, (addon) => {
-        if (addon.quantity > 0) {
+        if (addon.quantity > 0 && addon.family !== ADDON_FAMILY.STORAGE) {
           return {
             planCode: addon.planCode,
-            quantity: addon.quantity,
+            quantity:
+              addon.family === ADDON_FAMILY.ENVIRONMENT
+                ? addon.quantity + DEFAULT_ENVIRONMENT
+                : addon.quantity,
+            option: addon.option,
           };
         }
         return null;

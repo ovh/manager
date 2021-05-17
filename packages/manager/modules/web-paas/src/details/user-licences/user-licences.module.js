@@ -6,12 +6,14 @@ import routing from './user-licences.routing';
 import inviteUser from './invite-user';
 import deleteUser from './delete-user';
 import userList from '../../components/user-list';
+import addAddon from './add-addon';
 
 const moduleName = 'ovhManagerWebPaasDetailsUserLicences';
 
 angular
   .module(moduleName, [
     'pascalprecht.translate',
+    addAddon,
     deleteUser,
     inviteUser,
     userList,

@@ -17,7 +17,7 @@ export const GUIDELINK = {
 };
 
 export const OFFER_NAME = {
-  start: 'Starter',
+  start: 'Start',
   develop: 'Develop',
   expand: 'Expand',
 };
@@ -36,6 +36,12 @@ export const ADDON_FAMILY = {
   LICENSE: 'user_license',
 };
 
+export const ADDON_TYPE = {
+  STORAGE: 'additional-storage',
+  ENVIRONMENNT: 'additional-staging-environment',
+  LICENCES: 'additional-user-license',
+};
+
 export const STORAGE_VALUES = {
   MAX_FOR_EXPAND_PLAN: 100,
   MAX_FOR_OTHER_PLANS: 100,
@@ -49,9 +55,11 @@ export const LICENCES_VALUES = {
   MAX: 100,
 };
 export const STORAGE_MULTIPLE = 5;
+export const DEFAULT_ENVIRONMENT = 2;
 
 export default {
   ADDON_FAMILY,
+  ADDON_TYPE,
   BETA_PLAN_CODE,
   ENVIRONMENT_VALUES,
   GUIDELINK,

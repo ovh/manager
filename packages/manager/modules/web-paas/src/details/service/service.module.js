@@ -4,8 +4,8 @@ import 'angular-translate';
 import ovhManagerBilling from '@ovh-ux/manager-billing';
 import component from './service.component';
 import routing from './service.routing';
-import addAddon from './add-addon';
 import changeOffer from './change-offer';
+import addAddon from './add-addon';
 
 const moduleName = 'ovhManagerWebPaasDetailsService';
 

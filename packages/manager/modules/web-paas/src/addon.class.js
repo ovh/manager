@@ -3,6 +3,7 @@ import { ADDON_FAMILY } from './web-paas.constants';
 
 export default class Addon {
   constructor({
+    environmentServiceName,
     exclusive,
     family,
     mandatory,
@@ -10,8 +11,11 @@ export default class Addon {
     prices,
     productName,
     productType,
+    serviceName,
+    presentQuantity,
   }) {
     Object.assign(this, {
+      environmentServiceName,
       exclusive,
       family,
       mandatory,
@@ -19,12 +23,14 @@ export default class Addon {
       prices,
       productName,
       productType,
+      serviceName,
+      presentQuantity,
     });
   }
 
   getRenewablePrice() {
-    return get(this, 'prices').find(({ capacities }) =>
-      capacities.includes('renew'),
+    return get(this, 'prices').find(
+      (price) => price.capacities.includes('renew') && price.priceInUcents > 0,
     ).price;
   }
 

@@ -2,11 +2,11 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerWebPaasDetailsServiceAddAddonLazyloading';
+const moduleName = 'ovhManagerWebPaasDetailsUserLicencesAddAddonLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('web-paas.dashboard.service.add-addon.**', {
+    $stateProvider.state('web-paas.dashboard.user-licences.add-addon.**', {
       url: '/add-addon',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

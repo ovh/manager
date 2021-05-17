@@ -11,10 +11,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('web-paas.dashboard.user-licences.delete-user', {
           customer,
         }),
-      addUserLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('web-paas.dashboard.service.add-addon', {
+      goToAddAddon: /* @ngInject */ ($state, projectId) => (addonType) =>
+        $state.go('web-paas.dashboard.user-licences.add-addon', {
           projectId,
-          addonType: 'additional-user-license',
+          addonType,
         }),
       goToUserLicences: /* @ngInject */ ($state, Alerter) => (
         message = false,
@@ -26,7 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
         });
         if (message) {
           promise.then(() => {
-            Alerter.alertFromSWS(message, type, 'web_paas_licences_alert');
+            Alerter[type](message, 'web_paas_licences_alert');
           });
         }
         return promise;

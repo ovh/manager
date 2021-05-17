@@ -3,6 +3,7 @@ import template from './change-offer.html';
 
 export default {
   bindings: {
+    availableAddons: '<',
     catalog: '<',
     cpu: '<',
     goToDeleteUser: '<',

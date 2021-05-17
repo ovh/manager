@@ -4,9 +4,8 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
 import component from './component';
-import './index.scss';
 
-const moduleName = 'ovhManagerWebPaasAdditionalOption';
+const moduleName = 'ovhManagerWebPaasAddAddon';
 
 angular
   .module(moduleName, [
@@ -14,7 +13,7 @@ angular
     'oui',
     'pascalprecht.translate',
   ])
-  .component('webPaasAdditionalOption', component)
+  .component('webPaasProjectAddAddon', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

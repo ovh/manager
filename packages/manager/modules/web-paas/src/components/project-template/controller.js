@@ -1,9 +1,11 @@
 import isFunction from 'lodash/isFunction';
+import { TEMPLATE_GUIDE_URL } from './constants';
 
 export default class WebPaasProjectTemplateCtrl {
   constructor() {
     this.offset = 1;
     this.pageSize = 10;
+    this.TEMPLATE_GUIDE_URL = TEMPLATE_GUIDE_URL;
   }
 
   $onInit() {

@@ -23,9 +23,9 @@ export default class {
       )
       .catch((error) =>
         this.goBack(
-          this.$translate.instant('web_paas_user_licences_invite_user_error', {
-            message: get(error, 'data.message'),
-          }),
+          `${this.$translate.instant(
+            'web_paas_user_licences_invite_user_error',
+          )} ${get(error, 'data.message')}`,
           'error',
         ),
       )

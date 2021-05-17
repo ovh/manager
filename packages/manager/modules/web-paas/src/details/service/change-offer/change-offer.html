@@ -17,7 +17,7 @@
                 data-header="{{:: 'web_paas_change_offer_choose_offer' | translate }}"
                 data-submit-text="{{:: 'web_paas_change_offer_next' | translate }}"
                 data-prevent-next="true"
-                data-valid="$ctrl.project.offer"
+                data-valid="$ctrl.project.offer && !$ctrl.isCurrentOffer()"
                 data-navigation="$ctrl.project.offer"
                 data-on-submit="$ctrl.onPlanSubmit()"
             >

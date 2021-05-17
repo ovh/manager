@@ -32,7 +32,8 @@
                 data-filterable
                 ><span
                     data-translate="{{:: 'web_paas_region_' + $row.getRegion() }}"
-                ></span>
+                ></span
+                >(<span data-ng-bind="$row.getRegion()"></span>)
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-searchable
@@ -60,7 +61,7 @@
                 data-title=":: 'web_paas_user_licences' | translate"
             >
                 <span
-                    data-ng-bind="($row.getAvailableUserLicenses()) + '/' + ($row.getTotalLicences())"
+                    data-ng-bind="($row.getTotalLicences() - $row.getAvailableUserLicenses()) + '/' + ($row.getTotalLicences())"
                 >
                 </span>
             </oui-datagrid-column>

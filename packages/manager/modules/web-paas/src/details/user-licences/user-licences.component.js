@@ -3,7 +3,7 @@ import template from './user-licences.html';
 
 const component = {
   bindings: {
-    addUserLink: '<',
+    goToAddAddon: '<',
     goToDeleteUser: '<',
     goToInviteUser: '<',
     project: '<',

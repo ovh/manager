@@ -27,6 +27,8 @@
                         type="text"
                         id="projectName"
                         name="projectName"
+                        maxlength="{{:: $ctrl.NAME_VALIDATION.MAX_LENGTH }}"
+                        ng-pattern="$ctrl.NAME_VALIDATION.PATTERN"
                         data-ng-model="$ctrl.project.name"
                         autofocus
                         required
@@ -73,7 +75,7 @@
                         data-model="$ctrl.project.region"
                         model="$ctrl.selectedDatacenter"
                         values="[region]"
-                        data-label="{{:: 'web_paas_region_' + region | translate }}"
+                        data-label="{{:: ('web_paas_region_' + region | translate) + '(' + region + ')' }}"
                         data-variant="light"
                     >
                         <oui-select-picker-section class="text-uppercase"

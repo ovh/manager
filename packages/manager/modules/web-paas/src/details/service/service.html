@@ -55,8 +55,14 @@
                 </oui-tile-button>
                 <oui-tile-definition
                     data-term="{{:: 'web_paas_service_project_region' | translate }}"
-                    data-description="{{:: 'web_paas_region_' + $ctrl.project.getRegion() | translate }}"
                 >
+                    <oui-tile-description>
+                        <span
+                            data-translate="{{:: 'web_paas_region_' + $ctrl.project.getRegion()  }}"
+                        ></span
+                        >(<span data-ng-bind="$ctrl.project.getRegion()"></span
+                        >)
+                    </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>
         </div>
@@ -77,8 +83,21 @@
                 </oui-tile-button>
                 <oui-tile-definition
                     data-term="{{:: 'web_paas_service_project_storage_title' | translate }}"
-                    data-description="{{:: 'web_paas_service_project_storage' | translate: { storageSize: $ctrl.project.getTotalStorage() } }}"
                 >
+                    <oui-tile-description>
+                        <span
+                            data-ng-if="$ctrl.project.addonStorageCount() > 0"
+                            data-translate="web_paas_service_project_storage_additional"
+                            data-translate-values="{ storageSize: $ctrl.project.getTotalStorage(), additionalStorageSize: $ctrl.project.addonStorageCount() * $ctrl.STORAGE_MULTIPLE }"
+                        >
+                        </span>
+                        <span
+                            data-ng-if="$ctrl.project.addonStorageCount() === 0"
+                            data-translate="web_paas_service_project_storage"
+                            data-translate-values="{ storageSize: $ctrl.project.getTotalStorage() }"
+                        >
+                        </span>
+                    </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-button
                     data-on-click="$ctrl.goToAddAddon($ctrl.ADDON_TYPE.STORAGE)"
@@ -112,12 +131,12 @@
                 >
                     <oui-tile-description>
                         <span
-                            data-ng-if="$ctrl.project.getAvailableEnvironments() === 0"
+                            data-ng-if="$ctrl.project.getTotalEnvironment() === 0"
                             data-translate="web_paas_service_project_additional_environment_none"
                         ></span>
                         <span
-                            data-ng-if="$ctrl.project.getAvailableEnvironments() > 0"
-                            data-ng-bind="$ctrl.project.getAvailableEnvironments()"
+                            data-ng-if="$ctrl.project.getTotalEnvironment() > 0"
+                            data-ng-bind="$ctrl.project.getTotalEnvironment()"
                         ></span>
                     </oui-tile-description>
                 </oui-tile-definition>

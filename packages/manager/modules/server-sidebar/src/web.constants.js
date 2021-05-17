@@ -255,6 +255,7 @@ export const PSH_CONFIG = {
       state: 'web-paas.dashboard',
       stateParams: ['projectId'],
       app: [WEB],
+      icon: 'oui-icon oui-icon-partner-platformsh_concept',
     },
   ],
   icon: 'oui-icon oui-icon-partner-platformsh_concept',

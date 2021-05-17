@@ -1,4 +1,11 @@
-import { get, set } from 'lodash';
+import { find, get, map, set } from 'lodash';
+import { ADDON_FAMILY, STORAGE_MULTIPLE } from '../web-paas.constants';
+import {
+  DEFAULT_PROJECT_NAME,
+  NAME_VALIDATION,
+  PAGE_SECTION_HEADER,
+  TEMPLATE_GUIDE,
+} from './add.constants';
 
 export default class WebPassAddCtrl {
   /* @ngInject */
@@ -21,6 +28,10 @@ export default class WebPassAddCtrl {
     this.alerts = {
       add: 'web_paas_add',
     };
+    this.DEFAULT_PROJECT_NAME = DEFAULT_PROJECT_NAME;
+    this.NAME_VALIDATION = NAME_VALIDATION;
+    this.PAGE_SECTION_HEADER = PAGE_SECTION_HEADER;
+    this.TEMPLATE_GUIDE = TEMPLATE_GUIDE;
   }
 
   $onInit() {
@@ -38,7 +49,7 @@ export default class WebPassAddCtrl {
     this.project = {
       region: null,
       offer: null,
-      name: null,
+      name: this.DEFAULT_PROJECT_NAME,
       template: {
         createNew: true,
         templateUrl: null,
@@ -101,7 +112,9 @@ export default class WebPassAddCtrl {
   }
 
   loadCapabilities(planCode) {
+    this.project.template.createNew = true;
     this.loader.loadingCapabilities = true;
+
     return this.WebPaas.getCapabilities(planCode)
       .then((capabilities) => {
         this.capabilities = capabilities;
@@ -126,10 +139,7 @@ export default class WebPassAddCtrl {
 
   scrollToTop() {
     this.$timeout(() => {
-      document.getElementById('web-pass-add-header').scrollIntoView({
-        behavior: 'smooth',
-      });
-      document.getElementById('web-pass-add-alert').focus();
+      document.getElementById(this.PAGE_SECTION_HEADER).scrollIntoView(false);
     });
   }
 
@@ -163,18 +173,31 @@ export default class WebPassAddCtrl {
   loadAddons() {
     this.loader.isGettingAddons = true;
     return this.WebPaas.getAddons(this.selectedPlan).then((addons) => {
+      const stagingEnvironment = find(addons, {
+        family: 'staging_environment',
+      });
+      if (stagingEnvironment) {
+        return this.WebPaas.getAddons(stagingEnvironment)
+          .then((stagingOptions) => {
+            addons.push(find(stagingOptions, { family: ADDON_FAMILY.STORAGE }));
+            set(this.selectedPlan, 'addons', addons);
+            return stagingOptions;
+          })
+          .finally(() => {
+            this.loader.isGettingAddons = false;
+          });
+      }
       this.loader.isGettingAddons = false;
       set(this.selectedPlan, 'addons', addons);
+      return addons;
     });
   }
 
   onAddonsSubmit() {
     this.prices = null;
     this.loader.isGettingCheckoutInfo = true;
-    return this.WebPaas.getOrderSummary(
-      this.selectedPlan,
-      this.getConfiguration(),
-    )
+    this.generatePayload();
+    return this.WebPaas.getOrderSummary(this.payload, this.getConfiguration())
       .then(({ contracts, prices, cart }) => {
         this.cart = cart;
         this.contracts = contracts;
@@ -186,16 +209,32 @@ export default class WebPassAddCtrl {
       });
   }
 
+  generatePayload() {
+    this.payload = angular.copy(this.selectedPlan);
+    this.storageAddon = find(this.payload?.addons, {
+      family: ADDON_FAMILY.STORAGE,
+    });
+    if (this.storageAddon) {
+      map(this.payload.addons, (addon) => {
+        if (addon.family === ADDON_FAMILY.ENVIRONMENT) {
+          set(addon, 'option', [
+            {
+              planCode: this.storageAddon.planCode,
+              quantity: this.storageAddon.quantity / STORAGE_MULTIPLE,
+            },
+          ]);
+        }
+      });
+    }
+  }
+
   orderProject() {
     this.loader.orderInProgress = true;
     return this.expressOrder();
   }
 
   expressOrder() {
-    return this.WebPaas.gotToExpressOrder(
-      this.selectedPlan,
-      this.getConfiguration(),
-    )
+    return this.WebPaas.gotToExpressOrder(this.payload, this.getConfiguration())
       .then(() => {
         this.onOrderSuccess();
       })
