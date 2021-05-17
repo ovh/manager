@@ -16,6 +16,8 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('telephony_line_phone_codec_title'),
+        goBack: /* @ngInject */ ($state) => () =>
+          $state.go('telecom.telephony.billingAccount.line.dashboard.phone'),
       },
     },
   );
