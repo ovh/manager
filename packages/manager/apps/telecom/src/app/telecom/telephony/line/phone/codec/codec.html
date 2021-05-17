@@ -1,10 +1,10 @@
 <section class="telecom-telephony-line-phone-codec">
     <header>
-        <tuc-section-back-link
-            data-tuc-section-back-link-to-state="telecom.telephony.billingAccount.line.dashboard.phone"
-            data-tuc-section-back-link-title="{{ 'telephony_group_line_phone_section_back_link' | translate }}"
+        <oui-back-button
+            data-on-click="CodecCtrl.goBack()"
+            previous-page="{{::'telephony_group_line_phone_section_back_link_target' | translate}}"
         >
-        </tuc-section-back-link>
+        </oui-back-button>
         <h1 data-translate="telephony_line_phone_codec_title"></h1>
     </header>
 

@@ -1,9 +1,9 @@
 <div class="telecom-telephony-line-phone-attach">
     <header>
-        <oui-back-button data-on-click="::$ctrl.goBack()">
-            <span
-                data-translate="telephony_group_line_phone_section_back_link"
-            ></span>
+        <oui-back-button
+            data-on-click="::$ctrl.goBack()"
+            previous-page="{{::'telephony_group_line_phone_section_back_link_target' | translate}}"
+        >
         </oui-back-button>
     </header>
     <tuc-toast-message></tuc-toast-message>
