@@ -1,3 +1,12 @@
+## [16.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.26.0...@ovh-ux/manager-dedicated@16.26.1) (2021-05-18)
+
+
+### Bug Fixes
+
+* **billing.voucher:** update wording for credit note deduction ([#4975](https://github.com/ovh/manager/issues/4975)) ([7f18a21](https://github.com/ovh/manager/commit/7f18a219551bc140f08359bafa1c9f4c07f2316a))
+
+
+
 # [16.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.25.2...@ovh-ux/manager-dedicated@16.26.0) (2021-05-10)
 
 
