@@ -1146,6 +1146,7 @@
   "exchange_ACTION_renew_ssl_failure": "Une erreur est survenue lors du renouvellement de votre certificat SSL.",
   "exchange_ACTION_configure_services_label_mfa": "Double authentification",
   "exchange_ACTION_configure_services_label_account_locker": "Verouillage des comptes",
+  "exchange_ACTION_configure_services_label_security_account": "Sécurité des comptes",
   "exchange_ACTION_configure_services_label_lockoutDuration": "Durée de verrouillage",
   "exchange_ACTION_configure_services_label_lockoutObservationWindow": "Délai de réinitialisation",
   "exchange_ACTION_configure_services_label_lockoutThreshold": "Seuil de verrouillage",
