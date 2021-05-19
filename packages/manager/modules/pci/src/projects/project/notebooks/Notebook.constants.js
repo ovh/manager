@@ -1,0 +1,10 @@
+export const NOTEBOOK_STATUS = {
+  STARTING: 'STARTING',
+  RUNNING: 'RUNNING',
+  STOPPING: 'STOPPING',
+  STOPPED: 'STOPPED',
+};
+
+export default {
+  NOTEBOOK_STATUS,
+};
