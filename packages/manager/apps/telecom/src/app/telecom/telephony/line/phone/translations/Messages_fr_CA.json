@@ -12,6 +12,7 @@
   "telephony_line_phone_actions_line_order_accessories": "Commander des accessoires",
   "telephony_line_phone_actions_line_phonebook": "Carnets de contacts",
   "telephony_group_line_phone_section_back_link": "Retour à la gestion du téléphone",
+  "telephony_group_line_phone_section_back_link_target": "la gestion du téléphone",
   "telephony_line_phone_actions_line_phone_order_attach": "Rattacher la ligne à un équipement actuel",
   "telephony_line_phone_actions_line_phone_order_detach": "Détacher la ligne d'un téléphone"
 }
