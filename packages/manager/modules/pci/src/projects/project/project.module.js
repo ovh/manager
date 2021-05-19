@@ -21,6 +21,7 @@ import inactive from './inactive';
 import instances from './instances';
 import kubernetes from './kubernetes';
 import loadBalancer from './load-balancer';
+import notebooks from './notebooks';
 import sshKeys from './ssh-keys';
 import privateNetworks from './private-networks';
 import quota from './quota';
@@ -57,6 +58,7 @@ angular
     inactive,
     instances,
     loadBalancer,
+    notebooks,
     kubernetes,
     privateNetworks,
     quota,
