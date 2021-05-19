@@ -88,5 +88,6 @@
   "pack_xdsl_oops_an_error_is_occured": "¡Vaya! No hemos podido cargar los datos de su pack.",
   "pack_xdsl_information_links": "Enlaces",
   "pack_xdsl_information_links_igmap": "Mapa de incidencias genéricas",
-  "pack_xdsl_information_links_travaux": "Status"
+  "pack_xdsl_information_links_travaux": "Status",
+  "pack_xdsl_information_links_guides": "Guías"
 }

@@ -34,6 +34,7 @@
   "vps_dashboard_task_changeRootPassword": "Password reset",
   "vps_dashboard_task_createSnapshot": "Creating a snapshot",
   "vps_dashboard_task_deleteSnapshot": "Deleting a snapshot",
+  "vps_dashboard_task_migrate": "Your VPS is currently migrating to the new range",
   "vps_dashboard_task_reinstallVm": "Reinstalling the VPS",
   "vps_dashboard_task_revertSnapshot": "Restoring a snapshot",
   "vps_dashboard_task_restoreVeeamBackup": "Mounting the backup",
@@ -42,6 +43,7 @@
   "vps_dashboard_task_getConsoleUrl": "Opening the KVM",
   "vps_dashboard_task_deliverVm": "VPS delivery ",
   "vps_dashboard_task_restoreVm": "Mounting or restoring the backup ",
+  "vps_dashboard_task_internalTask": "Internal task in progress",
   "vps_dashboard_action_doing": "Operation in progress...",
   "vps_dashboard_display_name_save": "Minimum 2 characters",
   "vps_dashboard_display_name_edit": "Change the name",
@@ -519,7 +521,5 @@
   "vps_language_pt": "Portuguese",
   "vps_new_range_available_introduction": "Our VPS ranges are changing, and so is the OVHcloud Control Panel.",
   "vps_new_range_available_call_to_upgrade_1": "To get the very latest updates, <a href=\"{{href}}\">order a new model</a> via the OVHcloud Control Panel, transfer your data, then cancel your old server.",
-  "vps_new_range_available_call_to_upgrade_2": "To get the most out of our technology, upgrade your machine <a href=\"{{href}}\">in just a few clicks.</a>",
-  "vps_dashboard_task_migrate": "Your VPS is currently migrating to the new range",
-  "vps_dashboard_task_internalTask": "Internal task in progress"
+  "vps_new_range_available_call_to_upgrade_2": "To get the most out of our technology, upgrade your machine <a href=\"{{href}}\">in just a few clicks.</a>"
 }

@@ -60,4 +60,7 @@ export default {
     locked: 'locked',
     warning: 'warning',
   },
+  guidesUrl: {
+    fr: 'https://docs.ovh.com/fr/overthebox/',
+  },
 };

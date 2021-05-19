@@ -3,12 +3,26 @@ import groupBy from 'lodash/groupBy';
 import map from 'lodash/map';
 import pick from 'lodash/pick';
 import omit from 'lodash/omit';
+import snakeCase from 'lodash/snakeCase';
 
 import Image from './images.class';
+import { IMAGES_REGEX } from './images.constants';
+
+function getDistribution(name, type) {
+  const os = IMAGES_REGEX[type];
+  if (os) {
+    const distribution = os.find((distrib) => distrib.regex.test(name));
+
+    return distribution?.name || ''.concat(type, '_other');
+  }
+
+  return 'unknown';
+}
 
 export default class ImagesList {
   /* @ngInject */
-  constructor(OvhApiCloudProjectImage, OvhApiCloudProjectSnapshot) {
+  constructor($http, OvhApiCloudProjectImage, OvhApiCloudProjectSnapshot) {
+    this.$http = $http;
     this.OvhApiCloudProjectImage = OvhApiCloudProjectImage;
     this.OvhApiCloudProjectSnapshot = OvhApiCloudProjectSnapshot;
   }
@@ -38,9 +52,18 @@ export default class ImagesList {
   }
 
   getImages(serviceName) {
-    return this.OvhApiCloudProjectImage.v6()
-      .query({ serviceName })
-      .$promise.then((images) => ImagesList.groupByName(images));
+    return this.$http
+      .get(`/cloud/project/${serviceName}/image`)
+      .then(({ data: images }) =>
+        images.map((image) => {
+          return {
+            ...image,
+            nameGeneric: snakeCase(image.name),
+            distribution: getDistribution(image.name, image.type),
+          };
+        }),
+      )
+      .then((images) => ImagesList.groupByName(images));
   }
 
   getSnapshots(serviceName) {

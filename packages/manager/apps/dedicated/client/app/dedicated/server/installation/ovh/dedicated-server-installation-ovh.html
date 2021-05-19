@@ -225,7 +225,7 @@
                     class="checkbox"
                     data-ng-hide="installation.warningExistPartition || informations.gabaritName != null"
                     data-ng-class="{
-                         'disabled': informations.gabaritName != null
+                         'disabled': informations.gabaritName != null || installation.noPartitioning
                      }"
                 >
                     <label>

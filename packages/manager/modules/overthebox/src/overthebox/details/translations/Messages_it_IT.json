@@ -68,5 +68,7 @@
   "overTheBox_resiliation_cancel_error": "Ops! Impossibile annullare l'operazione di disattivazione in corso per il servizio {{service}}.",
   "overTheBox_cancel_resiliation_success": "La disattivazione del servizio {{service}} è stata annullata.",
   "overTheBox_statistics_bits_per_sec_legend": "bits/s",
-  "overTheBox_expiration_warning_help": "La disattivazione può essere annullata prima della data di scadenza del servizio."
+  "overTheBox_expiration_warning_help": "La disattivazione può essere annullata prima della data di scadenza del servizio.",
+  "overTheBox_detail_link_guide": "Guide",
+  "overthebox_detail_links": "Link"
 }

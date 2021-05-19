@@ -82,5 +82,7 @@
   "overTheBox_last_seen": "Último acceso del hardware desde los servidores de aprovisionamiento",
   "overTheBox_last_seen_few_seconds": "Hace algunos segundos",
   "overTheBox_last_seen_minutes_ago": "Hace {{lastSeenDiff}} aproximadamente",
-  "overTheBox_reverse_dns": "Registro DNS inverso"
+  "overTheBox_reverse_dns": "Registro DNS inverso",
+  "overTheBox_detail_link_guide": "Guías",
+  "overthebox_detail_links": "Enlaces"
 }

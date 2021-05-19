@@ -1,5 +1,5 @@
 {
-  "hosting_cdn_shared_cors_description": "I domini esterni che preciserai qui saranno autorizzati ad accedere alle tue risorse web",
+  "hosting_cdn_shared_cors_description": "I domini esterni che indicherai qui saranno autorizzati ad accedere alle tue risorse Web.",
   "hosting_cdn_shared_cors_add_domain": "Aggiungi un dominio",
   "hosting_cdn_shared_cors_domain_list": "Elenco dei domini",
   "hosting_cdn_shared_cors_add": "Aggiungi",

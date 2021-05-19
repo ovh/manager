@@ -388,6 +388,10 @@ angular
         distribution,
         bypass,
       ) {
+        $scope.installation.noPartitioning = distribution.noPartitioning;
+        if (distribution.noPartitioning) {
+          $scope.installation.customInstall = false;
+        }
         // if saveSelectDistribution is not null, a partition has personnalisation
         // in progress and confirmation to delete is already display
         if ($scope.installation.saveSelectDistribution && !bypass) {
