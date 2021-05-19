@@ -85,10 +85,10 @@ export default /* @ngInject */ ($stateProvider) => {
                   ({ data: options }) =>
                     options.find(
                       ({ billing, resource }) =>
-                        billing.plan.code.match(
+                        billing.plan?.code?.match(
                           `^${PCI_HDS_ADDON.planCodeScope}`,
                         ) &&
-                        resource.product.name ===
+                        resource.product?.name ===
                           PCI_HDS_ADDON.certifiedProject,
                     ) !== undefined,
                 ),
