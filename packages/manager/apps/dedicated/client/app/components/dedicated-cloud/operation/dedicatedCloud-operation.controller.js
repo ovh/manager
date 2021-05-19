@@ -170,10 +170,12 @@ export default class {
     if (operation.description === '') {
       return this.DedicatedCloud.getOperationDescription(this.productId, {
         name: operation.name,
-      }).then((robot) => {
-        set(operation, 'description', robot.description);
-        return operation;
-      });
+      })
+        .then((robot) => {
+          set(operation, 'description', robot.description);
+          return operation;
+        })
+        .catch(() => operation);
     }
     return this.$q.when(operation);
   }
