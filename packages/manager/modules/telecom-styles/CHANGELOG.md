@@ -1,3 +1,12 @@
+## [4.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@4.0.5...@ovh-ux/manager-telecom-styles@4.0.6) (2021-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.6.0 ([#4958](https://github.com/ovh/manager/issues/4958)) ([e1ad601](https://github.com/ovh/manager/commit/e1ad60151c7b5112138b23224282a64fce226def))
+
+
+
 ## [4.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@4.0.4...@ovh-ux/manager-telecom-styles@4.0.5) (2021-04-08)
 
 

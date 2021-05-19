@@ -1,3 +1,20 @@
+## [16.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.26.1...@ovh-ux/manager-dedicated@16.26.2) (2021-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.6.0 ([#4958](https://github.com/ovh/manager/issues/4958)) ([e1ad601](https://github.com/ovh/manager/commit/e1ad60151c7b5112138b23224282a64fce226def))
+* **i18n:** add missing translations [CDS 936] ([cf8587d](https://github.com/ovh/manager/commit/cf8587dc7c701a756569fc4eca2adb95048b9a87))
+* **i18n:** add missing translations [CDS 938] ([d702a7a](https://github.com/ovh/manager/commit/d702a7ac2923bf670b88aaec8acef3ffa598fad5))
+* **i18n:** add missing translations [CDS 939] ([2e6a978](https://github.com/ovh/manager/commit/2e6a978740aa57d4d8a8426d3a84152171b547b8))
+* **i18n:** add missing translations [CDS 940] ([b1f9d86](https://github.com/ovh/manager/commit/b1f9d86aa64a7a29c147876b1909cd0a844b60aa))
+* **i18n:** add missing translations [CDS 942] ([8d702c5](https://github.com/ovh/manager/commit/8d702c59705313bb479b0aecc9a349052274e860))
+* **i18n:** add missing translations [CDS 951] ([c300612](https://github.com/ovh/manager/commit/c30061210907e5daf384cd4306cd4866505ba5ac))
+* **server.dashboard.technical-details:** hide missing disk ([#4963](https://github.com/ovh/manager/issues/4963)) ([c6ea769](https://github.com/ovh/manager/commit/c6ea769a162e44a55d4a8a0c605ae73e1e3c9697))
+* **server.installation.ovh:** add check before displaying partitioning ([#4945](https://github.com/ovh/manager/issues/4945)) ([da5fa3a](https://github.com/ovh/manager/commit/da5fa3a0a69eb3c1c7b2dea99adc430a45e72d3c))
+
+
+
 ## [16.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.26.0...@ovh-ux/manager-dedicated@16.26.1) (2021-05-18)
 
 

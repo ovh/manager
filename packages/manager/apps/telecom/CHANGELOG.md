@@ -1,3 +1,19 @@
+# [13.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.19.0...@ovh-ux/manager-telecom@13.20.0) (2021-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.6.0 ([#4958](https://github.com/ovh/manager/issues/4958)) ([e1ad601](https://github.com/ovh/manager/commit/e1ad60151c7b5112138b23224282a64fce226def))
+* **i18n:** add missing translations [CDS 943] ([0515200](https://github.com/ovh/manager/commit/051520010935463dd81731e0f0c86351a011d9cb))
+* **migration:** display offers if no building found ([#4750](https://github.com/ovh/manager/issues/4750)) ([2d55ec3](https://github.com/ovh/manager/commit/2d55ec3797e4a87eca2c9bad98b7f33843ba74ab))
+
+
+### Features
+
+* **pack.slots.informations:** add guide link ([#4849](https://github.com/ovh/manager/issues/4849)) ([6270309](https://github.com/ovh/manager/commit/6270309a56a665df6bfd1d18cd05f3ddda90ba25))
+
+
+
 # [13.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.18.0...@ovh-ux/manager-telecom@13.19.0) (2021-05-07)
 
 

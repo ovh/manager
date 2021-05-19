@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@1.3.0...@ovh-ux/manager-vrack-app@1.3.1) (2021-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.6.0 ([#4958](https://github.com/ovh/manager/issues/4958)) ([e1ad601](https://github.com/ovh/manager/commit/e1ad60151c7b5112138b23224282a64fce226def))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@1.2.1...@ovh-ux/manager-vrack-app@1.3.0) (2021-05-05)
 
 

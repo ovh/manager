@@ -1,3 +1,18 @@
+# [5.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.25.0...@ovh-ux/manager-pci@5.26.0) (2021-05-19)
+
+
+### Bug Fixes
+
+* **billing:** prevent error if value is undefined ([#4926](https://github.com/ovh/manager/issues/4926)) ([539e43b](https://github.com/ovh/manager/commit/539e43ba0f9c6012299e51f926e9fb57d957187b))
+* **project:** prevent displaying duplicate quota message ([#4895](https://github.com/ovh/manager/issues/4895)) ([84c917a](https://github.com/ovh/manager/commit/84c917a8c98b46acfe025f0ce60977f4eadc949e))
+
+
+### Features
+
+* **pci.components.project.images-list:** rewrite get_images kub service ([#4747](https://github.com/ovh/manager/issues/4747)) ([ba4f7ea](https://github.com/ovh/manager/commit/ba4f7ea656bc978e07e909921515304f9068c479))
+
+
+
 # [5.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.24.0...@ovh-ux/manager-pci@5.25.0) (2021-05-14)
 
 

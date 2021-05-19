@@ -1,3 +1,16 @@
+## [15.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.24.1...@ovh-ux/manager-web@15.24.2) (2021-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.6.0 ([#4958](https://github.com/ovh/manager/issues/4958)) ([e1ad601](https://github.com/ovh/manager/commit/e1ad60151c7b5112138b23224282a64fce226def))
+* **domain:** fix pricing mode to filter for dns zone activate ([#4899](https://github.com/ovh/manager/issues/4899)) ([de58f53](https://github.com/ovh/manager/commit/de58f53cd205ec31b0654e4a6690e6786cb07f65))
+* **i18n:** add missing translations [CDS 939] ([2e6a978](https://github.com/ovh/manager/commit/2e6a978740aa57d4d8a8426d3a84152171b547b8))
+* **i18n:** add missing translations [CDS 942] ([8d702c5](https://github.com/ovh/manager/commit/8d702c59705313bb479b0aecc9a349052274e860))
+* **i18n:** add missing translations [CDS 943] ([0515200](https://github.com/ovh/manager/commit/051520010935463dd81731e0f0c86351a011d9cb))
+
+
+
 ## [15.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.24.0...@ovh-ux/manager-web@15.24.1) (2021-05-12)
 
 
