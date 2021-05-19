@@ -144,6 +144,15 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         feature: 'ai-training',
       },
       {
+        id: 'notebooks',
+        beta: true,
+        options: {
+          state: 'pci.projects.project.notebooks',
+        },
+        title: 'Notebooks',
+        regions: ['CA', 'EU'],
+      },
+      {
         id: 'serving',
         new: true,
         options: {
