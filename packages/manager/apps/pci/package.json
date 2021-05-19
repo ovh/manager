@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-app",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "private": true,
   "description": "Public Cloud Instance standalone application.",
   "repository": {

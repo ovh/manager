@@ -1,3 +1,12 @@
+## [5.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.4.6...@ovh-ux/manager-navbar@5.4.7) (2021-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.6.0 ([#4958](https://github.com/ovh/manager/issues/4958)) ([e1ad601](https://github.com/ovh/manager/commit/e1ad60151c7b5112138b23224282a64fce226def))
+
+
+
 ## [5.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.4.5...@ovh-ux/manager-navbar@5.4.6) (2021-04-08)
 
 

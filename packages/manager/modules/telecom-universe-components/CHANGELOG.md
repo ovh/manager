@@ -1,3 +1,12 @@
+## [7.2.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.2.4...@ovh-ux/ng-ovh-telecom-universe-components@7.2.5) (2021-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.6.0 ([#4958](https://github.com/ovh/manager/issues/4958)) ([e1ad601](https://github.com/ovh/manager/commit/e1ad60151c7b5112138b23224282a64fce226def))
+
+
+
 ## [7.2.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.2.3...@ovh-ux/ng-ovh-telecom-universe-components@7.2.4) (2021-05-05)
 
 

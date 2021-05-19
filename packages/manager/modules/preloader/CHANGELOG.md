@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-preloader@1.3.0...@ovh-ux/manager-preloader@1.3.1) (2021-05-19)
+
+
+### Bug Fixes
+
+* update language detection ([#4914](https://github.com/ovh/manager/issues/4914)) ([e4f85c3](https://github.com/ovh/manager/commit/e4f85c3b2f8df52470ed1b3ececf0b41188e561d))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-preloader@1.2.1...@ovh-ux/manager-preloader@1.3.0) (2021-03-10)
 
 

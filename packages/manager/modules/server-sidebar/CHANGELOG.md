@@ -1,3 +1,12 @@
+## [3.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.11.2...@ovh-ux/manager-server-sidebar@3.11.3) (2021-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.6.0 ([#4958](https://github.com/ovh/manager/issues/4958)) ([e1ad601](https://github.com/ovh/manager/commit/e1ad60151c7b5112138b23224282a64fce226def))
+
+
+
 ## [3.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.11.1...@ovh-ux/manager-server-sidebar@3.11.2) (2021-05-05)
 
 

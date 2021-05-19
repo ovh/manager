@@ -1,3 +1,12 @@
+## [5.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.4.0...@ovh-ux/manager-overthebox-app@5.4.1) (2021-05-19)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.6.0 ([#4958](https://github.com/ovh/manager/issues/4958)) ([e1ad601](https://github.com/ovh/manager/commit/e1ad60151c7b5112138b23224282a64fce226def))
+
+
+
 # [5.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.3.3...@ovh-ux/manager-overthebox-app@5.4.0) (2021-05-05)
 
 
