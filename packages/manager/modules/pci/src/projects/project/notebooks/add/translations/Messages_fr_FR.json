@@ -1,3 +1,25 @@
 {
-  "pci_notebook_add_title": "Créer une notebook"
+  "pci_notebook_add_title": "Créer mon notebook",
+  "pci_notebook_add_description": "Démarrez vos notebooks Jupyter ou VS Code dans le cloud, rapidement et simplement.",
+  "pci_notebook_add_banner_object_storage_description": "Veuillez noter que si vous souhaitez associer un conteneur à votre notebook, nous vous recommandons de le créer au préalable dans l’interface Object Storage.",
+  "pci_notebook_add_banner_object_storage_description_link": "Créer un conteneur d’objets",
+  "pci_notebook_add_configuration_title": "Configurez votre notebook",
+  "pci_notebook_add_configuration_title_selected": "Configurez votre notebook: {{ editor }}",
+  "pci_notebook_add_framework_title": "Frameworks proposés",
+  "pci_notebook_add_framework_title_selected": "Framework choisi: {{ framework }} - {{ version }}",
+  "pci_notebook_add_privacy_settings_title": "Paramètres de confidentialité",
+  "pci_notebook_add_privacy_settings_title_selected": "Confidentialité choisie: {{ privacy }}",
+  "pci_notebook_add_privacy_settings_item_selected_restricted": "Accès restreint",
+  "pci_notebook_add_privacy_settings_item_selected_public": "Accès public",
+  "pci_notebook_add_privacy_datacenter_location_title": "Datacenter localisation",
+  "pci_notebook_add_privacy_datacenter_location_title_selected": "Localisation choisie: {{ region }}",
+  "pci_notebook_add_privacy_datacenter_location_description": "Sélectionnez une localisation",
+  "pci_notebook_add_resources_title": "Ressources",
+  "pci_notebook_add_resources_title_selected": "Ressource choisie: {{ flavor }} - x{{ quantity }}",
+  "pci_notebook_add_attach_title": "Attacher un/des conteneur·s",
+  "pci_notebook_add_attach_title_selected": "Conteneur attaché·s: {{ quantity }} volume·s attaché·s",
+  "pci_notebook_add_review_title": "Récapitulatif",
+  "pci_notebook_add_notebook_create": "Créer mon notebook.",
+  "pci_notebook_add_notebook_create_success": "La création du notebook est en cours...",
+  "pci_notebook_add_notebook_create_error": "Erreur lors de la création du notebook: {{ message }}."
 }
