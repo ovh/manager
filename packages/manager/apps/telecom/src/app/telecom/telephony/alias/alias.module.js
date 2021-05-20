@@ -12,6 +12,7 @@ import configuration from './configuration';
 import consumption from './consumption';
 import contact from './contact';
 import dashboard from './dashboard';
+import guides from './guides';
 import portability from './portability';
 import records from './records';
 import special from './special';
@@ -43,6 +44,7 @@ angular
     svaGenerator,
   ])
   .config(routing)
+  .service('voipAliasGuides', guides)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

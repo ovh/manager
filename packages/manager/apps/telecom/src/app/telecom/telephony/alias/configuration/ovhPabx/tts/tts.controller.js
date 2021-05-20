@@ -7,6 +7,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationOvhPab
   $translate,
   TelephonyMediator,
   TucToast,
+  voipAliasGuides,
 ) {
   const self = this;
 
@@ -26,6 +27,8 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationOvhPab
     paginated: null,
     sorted: null,
   };
+
+  self.guides = voipAliasGuides;
 
   /*= ==============================
     =            HELPERS            =

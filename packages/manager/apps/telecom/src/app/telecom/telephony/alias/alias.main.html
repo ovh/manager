@@ -8,6 +8,69 @@
         <header class="oui-header">
             <div class="oui-header__container">
                 <div class="oui-header__content">
+                    <oui-guide-menu
+                        class="pull-right"
+                        data-ng-if="$ctrl.isContactCenterSolution() || $ctrl.isContactCenterSolutionExpert()"
+                        data-text="{{:: 'telephony_alias_configuration_guide' | translate }}"
+                        data-placement="end"
+                    >
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guides.getURL('ccs.configure') }}"
+                            data-external
+                        >
+                            <span
+                                data-translate="telephony_alias_configuration_guide_ccs"
+                            ></span>
+                        </oui-guide-menu-item>
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guides.getURL('ccs.conditionAdd') }}"
+                            data-external
+                        >
+                            <span
+                                data-translate="telephony_alias_configuration_guide_ccs_step_add"
+                            ></span>
+                        </oui-guide-menu-item>
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guides.getURL('ccs.exceptionalDays') }}"
+                            data-external
+                        >
+                            <span
+                                data-translate="telephony_alias_configuration_guide_ccs_days_condition"
+                            ></span>
+                        </oui-guide-menu-item>
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guides.getURL('ccs.timeSlot') }}"
+                            data-external
+                        >
+                            <span
+                                data-translate="telephony_alias_configuration_guide_ccs_hours_condition"
+                            ></span>
+                        </oui-guide-menu-item>
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guides.getURL('ccs.callFiltering') }}"
+                            data-external
+                        >
+                            <span
+                                data-translate="telephony_alias_configuration_guide_ccs_filtering_condition"
+                            ></span>
+                        </oui-guide-menu-item>
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guides.getURL('ccs.dashboard') }}"
+                            data-external
+                        >
+                            <span
+                                data-translate="telephony_alias_configuration_guide_ccs_dashboard"
+                            ></span>
+                        </oui-guide-menu-item>
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guides.getURL('ccs.recordings') }}"
+                            data-external
+                        >
+                            <span
+                                data-translate="telephony_alias_configuration_guide_ccs_recordings"
+                            ></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
                     <tuc-editable-service-name
                         data-tuc-editable-service-name-title="$ctrl.alias.getDisplayedName()"
                         data-tuc-editable-service-name-title-on-save="$ctrl.aliasDescriptionSave()"
