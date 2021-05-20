@@ -21,7 +21,7 @@
   "pci_notebook_add_attach_title": "Attacher un conteneur",
   "pci_notebook_add_attach_title_selected": "Conteneur attaché·s : {{ quantity }} volume·s attaché·s",
   "pci_notebook_add_review_title": "Récapitulatif",
-  "pci_notebook_add_notebook_create": "Créer un notebook.",
+  "pci_notebook_add_notebook_create": "Créer un notebook",
   "pci_notebook_add_notebook_create_pending": "Le notebook est en cours de creation…",
   "pci_notebook_add_notebook_create_success": "Votre notebook a été créé avec succès.",
   "pci_notebook_add_notebook_create_error": "Erreur lors de la création du notebook : {{ message }}."
