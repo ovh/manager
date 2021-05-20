@@ -20,6 +20,7 @@
   "telephony_number_feature_ovh_pabx_dialplan_step_count_single": "1 étape configurée",
   "telephony_number_feature_ovh_pabx_dialplan_action_show_steps": "Afficher les étapes",
   "telephony_number_feature_ovh_pabx_dialplan_action_hide_steps": "Cacher les étapes",
+  "telephony_number_feature_ovh_pabx_dialplan_terminal_action": "Action terminale",
   "telephony_number_feature_ovh_pabx_step_add": "Ajouter une étape",
   "telephony_number_feature_ovh_pabx_step_add_error": "Oups ! Une erreur est survenue lors de la création de l'étape.",
   "telephony_number_feature_ovh_pabx_step_see": "Voir l'étape {{ number }}",
