@@ -62,6 +62,13 @@ export default /* @ngInject */ function controller(
     );
   };
 
+  self.getQueueLabel = function getQueueLabel(queue) {
+    if (queue?.description) {
+      return `${queue.queueId} - ${queue.description}`;
+    }
+    return queue?.queueId;
+  };
+
   /* -----  End of HELPERS  ------*/
 
   /*= ==============================
