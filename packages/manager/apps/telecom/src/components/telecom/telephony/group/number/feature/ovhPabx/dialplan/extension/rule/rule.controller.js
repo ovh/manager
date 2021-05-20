@@ -149,4 +149,19 @@ export default class DialplanExtensionRuleCtrl {
       this.extensionCtrl.checkForDisplayHelpers();
     }
   }
+
+  isTerminalAction() {
+    const action = this.rule.inEdition
+      ? this.rule.saveForEdition.action
+      : this.rule.action;
+    switch (action) {
+      case 'hangup':
+      case 'endless_playback':
+      case 'voicemail':
+      case 'bridge':
+        return true;
+      default:
+        return false;
+    }
+  }
 }
