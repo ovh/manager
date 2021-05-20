@@ -1,3 +1,12 @@
+## [16.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.26.2...@ovh-ux/manager-dedicated@16.26.3) (2021-05-20)
+
+
+### Bug Fixes
+
+* **dedicated-cloud.operation:** ignore operations description errors ([#4983](https://github.com/ovh/manager/issues/4983)) ([86c3034](https://github.com/ovh/manager/commit/86c30343611723af082ff15834a388637d058f64))
+
+
+
 ## [16.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.26.1...@ovh-ux/manager-dedicated@16.26.2) (2021-05-19)
 
 

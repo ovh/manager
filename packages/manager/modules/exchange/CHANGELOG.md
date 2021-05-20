@@ -1,3 +1,12 @@
+## [2.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@2.3.1...@ovh-ux/manager-exchange@2.3.2) (2021-05-20)
+
+
+### Bug Fixes
+
+* **security:** display popover template for maxPasswordAge field ([#4977](https://github.com/ovh/manager/issues/4977)) ([cbfae58](https://github.com/ovh/manager/commit/cbfae5812f82d868b9d6e00603a14b90bfe31db2))
+
+
+
 ## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@2.3.0...@ovh-ux/manager-exchange@2.3.1) (2021-04-09)
 
 

@@ -1,3 +1,12 @@
+## [5.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.26.0...@ovh-ux/manager-pci@5.26.1) (2021-05-20)
+
+
+### Bug Fixes
+
+* **project.edit:** resolve isCertifiedHdsProject from routing part ([#4980](https://github.com/ovh/manager/issues/4980)) ([867e3fb](https://github.com/ovh/manager/commit/867e3fb8180dc6167c16eb11a913f33f086257a1))
+
+
+
 # [5.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.25.0...@ovh-ux/manager-pci@5.26.0) (2021-05-19)
 
 
