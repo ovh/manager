@@ -1,0 +1,123 @@
+<div>
+    <!--Notebook name-->
+    <div class="mb-4">
+
+        <!--Title-->
+        <p class="oui-heading_5 mb-2">
+            <strong
+                data-translate="pci_notebook_add_configuration_name"
+            ></strong>
+        </p>
+
+        <!--Name-->
+        <oui-field size="l">
+            <input
+                class="oui-input"
+                type="text"
+                id="configurationNotebookName"
+                name="configurationNotebookName"
+                data-ng-model="$ctrl.notebookModel.name"
+                data-ng-pattern="$ctrl.NOTEBOOK_NAME_REGEX"
+                required
+            />
+        </oui-field>
+
+    </div>
+
+    <!--Labels and editors section-->
+    <section data-ng-show="$ctrl.displayNotebookConfiguration">
+        <!--labels-->
+        <div class="mb-4">
+            <p class="oui-heading_5 mb-2">
+                <strong
+                    data-translate="pci_notebook_add_configuration_label"
+                ></strong>
+            </p>
+
+            <p
+                data-translate="pci_notebook_add_configuration_label_description"
+            ></p>
+
+            <!--Add empty label entry-->
+            <oui-button
+                icon-left="oui-icon-plus"
+                class="mb-2"
+                variant="secondary"
+                disabled="$ctrl.maxLabelsIsReached()"
+                on-click="$ctrl.displayInlineAdder = true"
+            >
+            <span
+                data-translate="pci_notebook_add_configuration_label_btn_add"
+            ></span>
+            </oui-button>
+
+            <!--Manage labels-->
+            <oui-inline-adder
+                class="mb-1"
+                on-add="$ctrl.onInlineAdderAddBtnClick(form)"
+                on-remove="$ctrl.onInlineAdderRemoveBtnClick(form)"
+                ng-if="$ctrl.displayInlineAdder"
+            >
+                <oui-inline-adder-row class="pt-2" ng-init="label = $ctrl.constructor.createLabel()">
+                    <oui-inline-adder-field>
+                        <oui-field class="mb-2"
+                                   data-label="{{:: 'pci_notebook_add_configuration_label_field_key' | translate}}"
+                        >
+                            <input
+                                type="text"
+                                class="oui-input"
+                                name="configurationNotebookLabelKey"
+                                data-ng-model="label.key"
+                                data-ng-maxlength="$ctrl.NOTEBOOK_LABELS.MAX_CHARS"
+                                ng-required="label.key || label.value"
+                            />
+                        </oui-field>
+                    </oui-inline-adder-field>
+                    <oui-inline-adder-field>
+                        <oui-field class="mb-2"
+                                   data-label="{{:: 'pci_notebook_add_configuration_label_field_value' | translate}}"
+                        >
+                            <input
+                                type="text"
+                                class="oui-input"
+                                name="configurationNotebookLabelValue"
+                                data-ng-model="label.value"
+                                data-ng-maxlength="$ctrl.NOTEBOOK_LABELS.MAX_CHARS"
+                                ng-required="label.key || label.value"
+                            />
+                        </oui-field>
+                    </oui-inline-adder-field>
+                </oui-inline-adder-row>
+            </oui-inline-adder>
+        </div>
+
+        <!--editors-->
+        <div class="mb-4">
+            <p class="oui-heading_5 mb-0">
+                <strong
+                    data-translate="pci_notebook_add_configuration_editor_title"
+                ></strong>
+            </p>
+
+            <div class="row">
+                <oui-select-picker
+                    class="d-inline-block col-md-6 col-xl-3 my-3"
+                    data-ng-repeat="editor in $ctrl.editors track by editor.id"
+                    data-name="{{:: editor.name}}"
+                    data-label="{{:: 'pci_notebook_add_configuration_editor_' + editor.id | translate}}"
+                    data-picture="{{:: editor.logoUrl}}"
+                    data-model="$ctrl.notebookModel.selected.editor"
+                    data-on-change="$ctrl.onEditorChange(modelValue)"
+                    data-values="[editor]"
+                    data-variant="light"
+                    data-required
+                >
+                    <oui-select-picker-section>
+                        <p data-ng-bind=":: editor.description"></p>
+                    </oui-select-picker-section>
+                </oui-select-picker>
+            </div>
+        </div>
+    </section>
+
+</div>
