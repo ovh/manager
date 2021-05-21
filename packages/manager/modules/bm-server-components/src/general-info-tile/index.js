@@ -11,6 +11,7 @@ const moduleName = 'ovhManagerBmServerGeneralInfoTileComponent';
 
 angular
   .module(moduleName, [
+    'oui',
     'pascalprecht.translate',
     'ngAtInternet',
     ovhManagerCore,

@@ -1,0 +1,70 @@
+<oui-tile
+    class="h-100"
+    heading="{{:: 'dedicated_server_dashboard_technical_details_heading' | translate }}"
+    loading="$ctrl.loading"
+>
+    <!-- cpu -->
+    <oui-tile-definition
+        term="{{:: 'dedicated_server_dashboard_technical_details_cpu' | translate }}"
+    >
+        <oui-tile-description class="word-break-normal">
+            <span data-ng-bind=":: $ctrl.formattedCPU"></span>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <!-- ram -->
+    <oui-tile-definition
+        term="{{:: 'dedicated_server_dashboard_technical_details_ram' | translate }}"
+    >
+        <oui-tile-description>
+            <span data-ng-bind=":: $ctrl.formattedRAM"></span>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-button
+        data-ng-if="$ctrl.isRamUpgradable()"
+        on-click="$ctrl.onUpgradeRam()"
+    >
+        <span
+            data-translate="dedicated_server_dashboard_technical_details_ram_upgrade"
+        ></span>
+    </oui-tile-button>
+    <!-- system disk -->
+    <oui-tile-definition
+        data-ng-if="$ctrl.formattedOsDisks.length"
+        term="{{:: 'dedicated_server_dashboard_technical_details_system_disk_many' | translate }}"
+    >
+        <oui-tile-description>
+            <p
+                data-ng-repeat="formattedDisk in $ctrl.formattedOsDisks track by $index"
+                data-ng-bind=":: formattedDisk"
+            ></p>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <!-- data disk -->
+    <oui-tile-definition
+        data-ng-if="$ctrl.formattedDataDisks.length"
+        term="{{:: 'dedicated_server_dashboard_technical_details_data_disk_many' | translate }}"
+    >
+        <oui-tile-description>
+            <p
+                data-ng-repeat="formattedDisk in $ctrl.formattedDataDisks track by $index"
+                data-ng-bind=":: formattedDisk"
+            ></p>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-button
+        data-ng-if="$ctrl.isDisksUpgradable()"
+        on-click="$ctrl.onUpgradeDisk()"
+    >
+        <span
+            data-translate="dedicated_server_dashboard_technical_details_data_disk_upgrade"
+        ></span>
+    </oui-tile-button>
+    <!-- expansion cards -->
+    <oui-tile-definition
+        term="{{:: 'dedicated_server_dashboard_technical_details_extension_card_many' | translate }}"
+    >
+        <oui-tile-description>
+            <span data-ng-bind=":: $ctrl.formattedExtensionCard"></span>
+        </oui-tile-description>
+    </oui-tile-definition>
+</oui-tile>
