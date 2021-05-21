@@ -1,0 +1,146 @@
+<oui-tile
+    class="h-100"
+    heading="{{:: 'server_informations_general' | translate }}"
+>
+    <!-- name -->
+    <oui-tile-definition
+        term="{{:: 'server_configuration_displayname' | translate }}"
+        description="{{ $ctrl.server.displayName }}"
+    >
+        <oui-action-menu
+            data-ng-if="::$ctrl.showNameActions()"
+            aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_displayname' | translate) } }}"
+            data-compact
+            data-placement="end"
+        >
+            <oui-action-menu-item on-click="$ctrl.editName()">
+                <span
+                    data-translate="server_configuration_displayname_edit_button"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-tile-definition>
+    <!-- commercial range -->
+    <oui-tile-definition
+        term="{{:: 'server_configuration_description' | translate }}"
+    >
+        <oui-tile-description>
+            <span
+                data-ng-bind="$ctrl.server.commercialRange !== 'housing' ? $ctrl.server.description || '-' : ('server_configuration_description_housing' | translate)"
+            >
+            </span>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <!-- upgrade -->
+    <div ng-transclude="serverUpgrade"></div>
+    <!-- system OS -->
+    <oui-tile-definition
+        term="{{:: 'server_configuration_distribution' | translate }}"
+    >
+        <oui-tile-description>
+            <span
+                data-ng-if="$ctrl.server.os"
+                data-ng-bind="$ctrl.server.os === 'byoi_32' ? ('server_configuration_distribution_byoi' | translate) : $ctrl.server.os"
+            ></span>
+            <span
+                class="oui-badge oui-badge_warning"
+                data-ng-if="!$ctrl.server.os"
+                data-translate="server_configuration_distribution_none"
+            >
+            </span>
+            <p
+                class="small"
+                data-ng-if="$ctrl.server.ola.isConfigured()"
+                data-translate="server_configuration_installation_no_public_network"
+            ></p>
+        </oui-tile-description>
+        <oui-action-menu
+            data-ng-if="!$ctrl.server.isExpired && $ctrl.server.commercialRange !== 'housing'"
+            aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_distribution' | translate) } }}"
+            data-compact
+            data-placement="end"
+            data-disabled="$ctrl.server.ola.isConfigured()"
+        >
+            <oui-action-menu-item
+                data-on-click="$ctrl.installOs('progress')"
+                data-disabled="!$ctrl.server.isOsInstallationAllowed()"
+                data-ng-if="$ctrl.server.isOsInstallationInProgress()"
+            >
+                <span
+                    data-translate="server_configuration_installation_button"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.installOs('choice')"
+                data-disabled="!$ctrl.server.isOsInstallationAllowed()"
+                data-ng-if="!$ctrl.server.isOsInstallationInProgress()"
+            >
+                <span
+                    data-translate="server_configuration_installation_button"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-tile-definition>
+    <!-- boot -->
+    <oui-tile-definition
+        data-ng-if="$ctrl.server.commercialRange !== 'housing'"
+        term="{{:: 'server_configuration_boot' | translate }}"
+    >
+        <oui-tile-description>
+            <span
+                data-ng-if="$ctrl.server.netbootLabel"
+                data-ng-bind="$ctrl.server.netbootLabel"
+            >
+            </span>
+            <span
+                class="text-muted"
+                data-ng-if="!$ctrl.server.netbootLabel"
+                data-translate="server_configuration_netboot_unavailable"
+            >
+            </span>
+        </oui-tile-description>
+        <oui-action-menu
+            data-ng-if="!$ctrl.server.isExpired"
+            aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_boot' | translate) } }}"
+            data-compact
+            data-placement="end"
+        >
+            <oui-action-menu-item
+                data-on-click="$ctrl.editNetboot('choice')"
+                data-disabled="$ctrl.server.isOsInstallationAllowed() ||
+                    $ctrl.server.state === 'HACKED' ||
+                    $ctrl.server.state === 'HACKED_BLOCKED' ||
+                    ($ctrl.server.isOsInstallationInProgress() &&
+                        !$ctrl.server.isOsInstallationFailed())"
+            >
+                <span
+                    data-translate="server_configuration_netboot_title_button"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-tile-definition>
+    <!-- datacenter -->
+    <oui-tile-definition
+        term="{{:: 'server_configuration_datacenter' | translate }}"
+    >
+        <oui-tile-description>
+            <bm-server-datacenter
+                name="{{ ::$ctrl.server.datacenter }}"
+            ></bm-server-datacenter>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <!-- rack -->
+    <oui-tile-definition term="{{:: 'server_configuration_rack' | translate }}">
+        <oui-tile-description>
+            <span data-ng-bind="$ctrl.server.rack || '-'"></span>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <!-- server ID -->
+    <oui-tile-definition
+        term="{{:: 'server_configuration_server_id' | translate }}"
+    >
+        <oui-tile-description>
+            <span data-ng-bind="$ctrl.server.serverId || '-'"></span>
+        </oui-tile-description>
+    </oui-tile-definition>
+</oui-tile>
