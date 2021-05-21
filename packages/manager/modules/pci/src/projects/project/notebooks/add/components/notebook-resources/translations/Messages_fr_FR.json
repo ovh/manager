@@ -1,0 +1,19 @@
+{
+  "pci_notebook_add_resources_usecase": "Cas d’usage",
+  "pci_notebook_add_resources_usecase_item_standard": "AI Notebooks standard  (ressources CPU)",
+  "pci_notebook_add_resources_usecase_item_standard_description": "Moins coûteux et proposant des performances standards. Adapté à l’apprentissage, aux tests ou aux workloads nécessitant du CPU uniquement.",
+  "pci_notebook_add_resources_usecase_item_advanced": "AI Notebooks avancé (ressources GPU)",
+  "pci_notebook_add_resources_usecase_item_advanced_description": "Alimenté par plus de quatre GPU et des douzaines de CPU. Propose de meilleures performances pour l’apprentissage et les workloads intensifs.",
+  "pci_notebook_add_resources_proposed_title": "Ressources proposées",
+  "pci_notebook_add_resources_proposed_ram": "{{ ram }} RAM",
+  "pci_notebook_add_resources_proposed_storage": "{{ memory }} SSD",
+  "pci_notebook_add_resources_proposed_bandwidth": "{{ bandwidth }}/s",
+  "pci_notebook_add_resources_proposed_resource_price_by_resource": "Prix/ressource. HT/heure",
+  "pci_notebook_add_resources_proposed_type_gpu": "(GPU)",
+  "pci_notebook_add_resources_proposed_type_gpu_description": "Affichage des instances GPU",
+  "pci_notebook_add_resources_proposed_type_cpu": "(CPU)",
+  "pci_notebook_add_resources_proposed_type_cpu_description": "Affichage des instances CPU",
+  "pci_notebook_add_resources_number_of_resources": "Nombre de ressources",
+  "pci_notebook_add_resources_number_of_resources_description": "Ressources CPU/GPU",
+  "pci_notebook_add_resources_number_of_resources_number_of_resource": "Nombre de CPU"
+}

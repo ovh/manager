@@ -1,0 +1,132 @@
+<div data-ng-if="$ctrl.displayNotebookResources">
+    <!--Notebook resources usage case-->
+    <div>
+        <!--Header-->
+        <p class="oui-heading_5 mb-2">
+            <strong
+                data-translate="pci_notebook_add_resources_usecase"
+            ></strong>
+        </p>
+
+        <!--Use cases-->
+        <div class="row">
+            <oui-select-picker
+                class="d-inline-block col-md-6 col-xl-3 my-3"
+                data-name="notebookResources"
+                data-label="{{:: 'pci_notebook_add_resources_usecase_item_standard' | translate}}"
+                data-description="{{:: 'pci_notebook_add_resources_usecase_item_standard_description' | translate}}"
+                data-model="$ctrl.notebookModel.selected.resource.usage"
+                data-values="[$ctrl.NOTEBOOK_RESOURCES.STANDARD]"
+                data-on-change="$ctrl.onUsecaseChange($ctrl.NOTEBOOK_RESOURCES.STANDARD_FLAVOR)"
+            >
+            </oui-select-picker>
+
+            <oui-select-picker
+                class="d-inline-block col-md-6 col-xl-3 my-3"
+                data-name="notebookResources"
+                data-label="{{:: 'pci_notebook_add_resources_usecase_item_advanced' | translate}}"
+                data-description="{{:: 'pci_notebook_add_resources_usecase_item_advanced_description' | translate}}"
+                data-model="$ctrl.notebookModel.selected.resource.usage"
+                data-values="[$ctrl.NOTEBOOK_RESOURCES.ADVANCED]"
+                data-on-change="$ctrl.onUsecaseChange($ctrl.NOTEBOOK_RESOURCES.ADVANCED_FLAVOR)"
+            >
+            </oui-select-picker>
+        </div>
+    </div>
+
+    <!--Notebook resources flavors to choose-->
+    <div class="mb-4">
+        <!--Resource title-->
+        <p class="oui-heading_5 mb-2">
+            <strong
+                data-translate="pci_notebook_add_resources_proposed_title"
+            ></strong>
+        </p>
+
+        <!--Description-->
+        <p data-ng-bind="'pci_notebook_add_resources_proposed_type_' + $ctrl.notebookModel.selected.resource.flavorType + '_description' | translate"></p>
+
+        <!--Notebook flavors-->
+        <div class="row">
+            <oui-select-picker
+                class="d-inline-block col-md-6 col-xl-3 my-3"
+                data-ng-repeat="flavor in $ctrl.flavors | filter: { type: $ctrl.notebookModel.selected.resource.flavorType } track by flavor.id"
+                data-name="{{:: flavor.name }}"
+                data-description="{{:: flavor.description}}"
+                data-model="$ctrl.notebookModel.selected.resource.flavor"
+                data-values="[flavor]"
+                data-variant="light"
+                data-on-change="$ctrl.onFlavorChange(modelValue)"
+                data-required
+            >
+                <oui-select-picker-label>
+                    <strong data-ng-bind=":: flavor.id | uppercase"></strong>
+                </oui-select-picker-label>
+
+                <oui-select-picker-section>
+                    <div class="d-flex">
+                        <span
+                            data-translate="pci_notebook_add_resources_proposed_ram"
+                            data-translate-values="{ ram: (flavor.resourcesPerUnit.memory | cucBytes:2:true:'B') }"
+                        ></span>
+                        <span data-translate="pci_notebook_add_resources_proposed_type_cpu"></span>
+                    </div>
+                    <div class="d-flex" data-ng-if="flavor.gpuInformation.gpuMemory">
+                        <span
+                            data-translate="pci_notebook_add_resources_proposed_ram"
+                            data-translate-values="{ ram: (flavor.gpuInformation.gpuMemory | cucBytes:2:true:'B') }"
+                        ></span>
+                        <span data-translate="pci_notebook_add_resources_proposed_type_gpu"></span>
+                    </div>
+                    <div class="d-flex">
+                        <span
+                            data-translate="pci_project_flavors_spec_core_details"
+                            data-translate-values="{ vcores: flavor.resourcesPerUnit.cpu }"
+                        ></span>
+                    </div>
+                    <div class="d-flex">
+                        <span data-translate="pci_notebook_add_resources_proposed_storage"
+                              data-translate-values="{ memory: (flavor.resourcesPerUnit.ephemeralStorage | cucBytes:2:true:'B') }"></span>
+                    </div>
+                    <div class="d-flex">
+                        <span
+                            data-translate="pci_notebook_add_resources_proposed_bandwidth"
+                            data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.publicNetwork | cucBytes:2:true:'B') }"
+                        ></span>
+                    </div>
+                    <div class="d-flex" data-ng-if="flavor.resourcesPerUnit.privateNetwork">
+                        <span
+                            data-translate="pci_notebook_add_resources_proposed_bandwidth"
+                            data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.privateNetwork | cucBytes:2:true:'B') }"
+                        ></span>
+                    </div>
+                </oui-select-picker-section>
+                <oui-select-picker-section>
+                    <strong data-ng-bind="$ctrl.formatPriceForHour(flavor.id)"></strong>
+                    <span data-translate="pci_notebook_add_resources_proposed_resource_price_by_resource"></span>
+                </oui-select-picker-section>
+            </oui-select-picker>
+        </div>
+
+        <!--Number of resources title-->
+        <div>
+            <p class="oui-heading_5 mb-2">
+                <strong
+                    data-translate="pci_notebook_add_resources_number_of_resources"
+                ></strong>
+            </p>
+            <p data-translate="pci_notebook_add_resources_number_of_resources_description"></p>
+
+            <manager-resource-selector title="{{:: 'pci_notebook_add_resources_number_of_resources_description' | translate}}"
+                                       price-suffix="{{:: 'pci_notebook_add_resources_proposed_resource_price_by_resource' | translate}}"
+                                       price="$ctrl.computeTotalPrice($ctrl.notebookModel.selected.resource.flavor.id)">
+                <oui-numeric class="mt-2"
+                             data-disabled="!$ctrl.notebookModel.selected.resource.flavor"
+                             data-model="$ctrl.notebookModel.nbResources"
+                             data-min="$ctrl.RESOURCES_SCALE_MIN_FLAVOR"
+                             data-max="$ctrl.notebookModel.selected.resource.flavor.max"></oui-numeric>
+            </manager-resource-selector>
+
+        </div>
+    </div>
+</div>
