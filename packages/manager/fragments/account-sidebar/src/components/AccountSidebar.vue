@@ -16,7 +16,6 @@
 
 <script lang="ts">
 import { defineAsyncComponent, defineComponent, inject, onMounted, ref, Ref } from 'vue';
-import { Environment } from '@ovh-ux/manager-config';
 import { emit, listen } from '@ovh-ux/ufrontend/communication';
 import shortcuts from '@/utils/shortcuts';
 import links from '@/utils/panelLinks';
@@ -25,6 +24,7 @@ import { User } from '@/models/user';
 
 export default defineComponent({
   setup() {
+    const environment = inject('environment');
     const user = inject('user') as Ref<User>;
     const hasChatbot = ref(false);
     const sidebarOpen = ref(true);
@@ -55,6 +55,7 @@ export default defineComponent({
       user,
       hasChatbot,
       sidebarOpen,
+      environment,
     };
   },
   components: {
@@ -71,7 +72,7 @@ export default defineComponent({
   },
   computed: {
     shortcutList(): any {
-      return shortcuts(this.user, Environment.getRegion());
+      return shortcuts(this.user, this.environment.getRegion());
     },
     usefulLinks(): any {
       return links(this.user, this.hasChatbot);
