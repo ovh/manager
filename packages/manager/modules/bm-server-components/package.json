@@ -19,29 +19,15 @@
     "directory": "packages/manager/modules/bm-server-components"
   },
   "license": "BSD-3-Clause",
-  "main": "./dist/esm/index.js",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "rollup -c --environment BUILD:production",
-    "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-bm-server-components' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-bm-server-components' --include-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-bm-server-components' --include-dependencies -- yarn run dev:watch"
-  },
+  "main": "./src/index.js",
   "dependencies": {
     "lodash": "^4.17.15"
-  },
-  "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^8.0.0 || ^9.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/ng-at-internet": "^5.5.0",
+    "@ovh-ux/ng-ovh-feature-flipping": "^1.0.2",
     "@ovh-ux/ng-translate-async-loader": "^2.1.1",
     "@ovh-ux/ui-kit": "^4.4.1",
     "angular": "^1.7.8",
