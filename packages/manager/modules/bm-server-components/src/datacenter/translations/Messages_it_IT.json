@@ -1,0 +1,17 @@
+{
+  "server_datacenter_ERI": "Londra  (ERI{{number}} - Inghilterra",
+  "server_datacenter_BHS": "Beauharnois ((BHS{{number}}) - Canada",
+  "server_datacenter_DC": "Beauharnois ((DC{{number}})  - Canada",
+  "server_datacenter_P": "Parigi (P{{number}}) - Francia",
+  "server_datacenter_GRA": "Gravelines (GRA{{number}}) - Francia",
+  "server_datacenter_HIL": "Hillsboro (HIL{{number}}) - Stati Uniti",
+  "server_datacenter_LIM": "Limburg (LIM{{number}}) - Germania",
+  "server_datacenter_RBX": "Roubaix ((RBX{{number}}) - Francia",
+  "server_datacenter_SBG": "Strasburgo (SBG{{number}}) - Francia",
+  "server_datacenter_SGP": "Singapore (SGP{{number}}) - Asia",
+  "server_datacenter_SYD": "Sydney ((SYD{{number}}) - Australia",
+  "server_datacenter_VIN": "Vint Hill  (VIN{{number}}) - Stati Uniti",
+  "server_datacenter_WAW": "Varsavia (WAW{{number}}) - Polonia",
+  "server_datacenter_RBX_HZ": "Roubaix (RBXHZ) - Francia",
+  "server_datacenter_GSW": "(GSW) - Francia"
+}
