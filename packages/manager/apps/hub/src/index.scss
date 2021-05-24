@@ -1,8 +1,8 @@
-@import '~bootstrap/scss/_functions';
-@import '~bootstrap/scss/_variables';
-@import '~bootstrap/scss/_mixins';
-@import '~bootstrap/scss/_utilities.scss';
-@import '~bootstrap/scss/_grid.scss';
+@import 'bootstrap/scss/_functions';
+@import 'bootstrap/scss/_variables';
+@import 'bootstrap/scss/_mixins';
+@import 'bootstrap/scss/_utilities.scss';
+@import 'bootstrap/scss/_grid.scss';
 
 .hub-main-view {
   @import '@ovh-ux/manager-hub/src/variables.scss';

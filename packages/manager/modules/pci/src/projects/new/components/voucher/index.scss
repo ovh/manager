@@ -1,7 +1,7 @@
 pci-project-new-voucher {
-  @import '~bootstrap4/scss/_functions';
-  @import '~bootstrap4/scss/_variables';
-  @import '~bootstrap4/scss/mixins/_breakpoints';
+  @import 'bootstrap4/scss/_functions';
+  @import 'bootstrap4/scss/_variables';
+  @import 'bootstrap4/scss/mixins/_breakpoints';
 
   .pci-project-new-voucher {
     .btn-voucher,

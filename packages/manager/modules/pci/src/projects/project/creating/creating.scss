@@ -1,7 +1,7 @@
 pci-project-creating {
-  @import '~bootstrap4/scss/_functions';
-  @import '~bootstrap4/scss/_variables';
-  @import '~bootstrap4/scss/mixins/_breakpoints';
+  @import 'bootstrap4/scss/_functions';
+  @import 'bootstrap4/scss/_variables';
+  @import 'bootstrap4/scss/mixins/_breakpoints';
 
   $spinner-size: 350px;
   $colors: #3d86c3, #3be, #2558c3;

@@ -1,7 +1,7 @@
 pci-project-new {
-  @import '~bootstrap4/scss/_functions';
-  @import '~bootstrap4/scss/_variables';
-  @import '~bootstrap4/scss/mixins/_breakpoints';
+  @import 'bootstrap4/scss/_functions';
+  @import 'bootstrap4/scss/_variables';
+  @import 'bootstrap4/scss/mixins/_breakpoints';
 
   .pci-project-new {
     background-color: rgb(241, 249, 253);
