@@ -1,0 +1,10 @@
+{
+  "pci_notebook_add_review_notebook_review": "Configuration de votre notebook",
+  "pci_notebook_add_review_notebook_review_editor": "Editeur de côde",
+  "pci_notebook_add_review_notebook_review_framework": "Framework de travail",
+  "pci_notebook_add_review_notebook_review_region": "Région",
+  "pci_notebook_add_review_notebook_review_resources": "Model choisi",
+  "pci_notebook_add_review_notebook_automation_extra": "Pour plus d’informations, lisez la documentation sur le CLI ovhai.",
+  "pci_notebook_add_review_notebook_automation_extra_link": "En savoir plus.",
+  "pci_notebook_add_review_notebook_create_success": "Votre notebook a été créé avec succès."
+}
