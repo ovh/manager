@@ -20,6 +20,12 @@ export default class BmServerTechnicalDetailsTileController {
       'storage.raid',
       '-',
     );
+    this.gbTranslated = this.$translate.instant(
+      'bm_server_technical_details_unit_gb',
+    );
+    this.tbTranslated = this.$translate.instant(
+      'bm_server_technical_details_unit_tb',
+    );
     this.upgradeWithTicketAvailable = false;
     this.loading = true;
     this.loadData();
@@ -38,9 +44,9 @@ export default class BmServerTechnicalDetailsTileController {
       return '-';
     }
     const freqUnit = this.$translate.instant(
-      'dedicated_server_dashboard_technical_details_ram_frequency_unit',
+      'bm_server_technical_details_ram_frequency_unit',
     );
-    const ramSize = ram.size ? `${ram.size} GB` : '';
+    const ramSize = ram.size ? `${ram.size} ${this.gbTranslated}` : '';
     const ramType = get(ram, 'type', '');
     const ramECC = ram.ecc ? 'ECC' : '';
     const ramFrequency = ram.frequency ? `${ram.frequency} ${freqUnit}` : '';
@@ -53,7 +59,7 @@ export default class BmServerTechnicalDetailsTileController {
       return '-';
     }
     const freqUnit = this.$translate.instant(
-      'dedicated_server_dashboard_technical_details_cpu_frequency_unit',
+      'bm_server_technical_details_cpu_frequency_unit',
     );
     const cpuBrand = get(cpu, 'brand', '');
     const cpuModel = get(cpu, 'model', '');
@@ -82,9 +88,11 @@ export default class BmServerTechnicalDetailsTileController {
       if (Number.isNaN(capacity)) {
         capacity = '-';
       } else if (capacity >= 1000) {
-        capacity = `${Math.round((100 * capacity) / 1000, 2) / 100} TB`;
+        capacity = `${Math.round((100 * capacity) / 1000, 2) / 100} ${
+          this.tbTranslated
+        }`;
       } else {
-        capacity = `${capacity} GB`;
+        capacity = `${capacity} ${this.gbTranslated}`;
       }
 
       return `${number}×${capacity} ${technology} ${diskInterface}`;
