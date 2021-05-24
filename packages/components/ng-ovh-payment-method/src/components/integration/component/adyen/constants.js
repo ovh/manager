@@ -4,6 +4,38 @@ export const ADYEN_CONFIG = {
     showPayButton: false,
     hasHolderName: true,
     holderNameRequired: true,
+    paymentMethodsResponse: {
+      paymentMethods: [
+        {
+          brands: ['cartebancaire', 'mc', 'visa'],
+          details: [
+            {
+              key: 'encryptedCardNumber',
+              type: 'cardToken',
+            },
+            {
+              key: 'encryptedSecurityCode',
+              type: 'cardToken',
+            },
+            {
+              key: 'encryptedExpiryMonth',
+              type: 'cardToken',
+            },
+            {
+              key: 'encryptedExpiryYear',
+              type: 'cardToken',
+            },
+            {
+              key: 'holderName',
+              optional: true,
+              type: 'text',
+            },
+          ],
+          name: 'Credit Card',
+          type: 'scheme',
+        },
+      ],
+    },
     styles: {
       base: {
         color: '#4d5592',
