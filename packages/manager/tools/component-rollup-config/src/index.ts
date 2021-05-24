@@ -2,6 +2,7 @@ import { get, isString, mergeWith } from 'lodash';
 import babel from '@rollup/plugin-babel';
 import camelcase from 'camelcase';
 import commonjs from '@rollup/plugin-commonjs';
+import fs from 'fs';
 import html from 'rollup-plugin-html';
 import image from '@rollup/plugin-image';
 import json from '@rollup/plugin-json';
@@ -32,6 +33,14 @@ const getLanguages = (pluginsOpts) => {
   return get(pluginsOpts, 'translations.languages');
 };
 
+const nodeResolve = (url) => {
+  try {
+    return require.resolve(url);
+  } catch (e) {
+    return null;
+  }
+};
+
 const generateConfig = (opts, pluginsOpts) =>
   mergeConfig(
     {
@@ -52,6 +61,19 @@ const generateConfig = (opts, pluginsOpts) =>
         sass({
           insert: true,
           output: false,
+          options: {
+            importer(url) {
+              let filepath = nodeResolve(url);
+              if (!filepath) filepath = nodeResolve(`${url}.scss`);
+              if (!filepath) filepath = nodeResolve(`${url}.css`);
+              if (!filepath) {
+                throw new Error(`Unable to resolve sass import '${url}'`);
+              }
+              return {
+                file: filepath,
+              };
+            }
+          },
         }),
         image({
           output: `./dist/assets/${defaultName}`,
