@@ -1,0 +1,27 @@
+<div>
+    <!--Notebook review configuration-->
+    <div class="mb-4">
+        <oui-tile data-heading="{{:: 'pci_notebook_add_review_notebook_review' | translate}}"
+                  data-ng-if="$ctrl.notebookModel.selected.resource.flavor">
+            <oui-tile-definition term="{{:: 'pci_notebook_add_review_notebook_review_editor' | translate}}">
+                <oui-tile-description data-ng-bind="$ctrl.getEditorInfo()"></oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-definition term="{{:: 'pci_notebook_add_review_notebook_review_framework' | translate}}">
+                <oui-tile-description data-ng-bind="$ctrl.getFrameworkInfo()"></oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-definition term="{{:: 'pci_notebook_add_review_notebook_review_region' | translate}}">
+                <oui-tile-description data-ng-bind="$ctrl.getRegionInfo()"></oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-definition term="{{:: 'pci_notebook_add_review_notebook_review_resources' | translate}}">
+                <oui-tile-description data-ng-bind="$ctrl.getResourceInfo()"></oui-tile-description>
+            </oui-tile-definition>
+        </oui-tile>
+    </div>
+
+    <!--Notebook review automation-->
+    <div class="mb-4">
+        <manager-notebooks-configuration-command data-notebook-specs="$ctrl.notebookObject"
+                                                 data-project-id="$ctrl.projectId"
+        ></manager-notebooks-configuration-command>
+    </div>
+</div>
