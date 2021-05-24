@@ -1,0 +1,121 @@
+<div data-ng-show="$ctrl.displayNotebookAttach">
+
+    <!--Notebook attach object storage-->
+    <div class="mb-2">
+        <!--Title-->
+        <p class="oui-heading_5 mb-2">
+            <strong data-translate="pci_notebook_add_attach_object"></strong>
+        </p>
+
+        <!--Description-->
+        <span>
+            <span
+                class="mb-0"
+                data-translate="pci_notebook_add_attach_container_description"
+            ></span>
+            <a data-ng-href="{{:: $ctrl.getStorageInfoLink() }}" target="_blank" rel="noopener">
+                <span
+                    data-translate="pci_notebook_add_attach_container_description_link"
+                ></span>
+                <span class="oui-icon oui-icon-target" aria-hidden="true"></span>
+            </a>
+        </span>
+    </div>
+
+    <!--Notebook storage labels-->
+    <div class="mb-4">
+
+        <!--Add label-->
+        <oui-button
+            class="mb-2"
+            icon-left="oui-icon-plus"
+            variant="secondary"
+            disabled="!$ctrl.canAttachVolumes()"
+            on-click="$ctrl.displayInlineAdder = true"
+        >
+            <span
+                data-translate="pci_notebook_add_attach_container_btn_attach_storage"
+            ></span>
+        </oui-button>
+
+        <!--Edit label-->
+        <oui-inline-adder
+            class="mb-1"
+            ng-if="$ctrl.displayInlineAdder"
+            on-add="$ctrl.onInlineAdderAddBtnClick(form)"
+            on-remove="$ctrl.onInlineAdderRemoveBtnClick(form)"
+        >
+            <oui-inline-adder-row class="pt-2" size="l"
+                  ng-init="storage = $ctrl.Storage.createStorageModel()">
+                <oui-inline-adder-field>
+                    <oui-field
+                        label="{{:: 'pci_notebook_add_attach_container_adder_storage_container' | translate}}"
+                    >
+                        <label class="oui-select">
+                            <select
+                                class="oui-select__input"
+                                name="storageContainer"
+                                ng-model="storage.container"
+                                data-ng-required="storage.mountPath || storage.permission"
+                            >
+                                <option data-ng-bind="'pci_notebook_add_attach_container_adder_storage_container_select_placeholder' | translate" default></option>
+                                <option
+                                    ng-repeat="volume in $ctrl.volumes track by volume.id"
+                                    value="{{volume}}"
+                                    data-ng-bind="::volume.name"
+                                >
+                                </option>
+                            </select>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
+                        </label>
+                    </oui-field>
+                </oui-inline-adder-field>
+                <oui-inline-adder-field>
+                    <oui-field
+                        label="{{:: 'pci_notebook_add_attach_container_adder_mount_path' | translate}}"
+                    >
+                        <input
+                            name="storageMountPath"
+                            type="text"
+                            class="oui-input"
+                            data-ng-model="storage.mountPath"
+                            placeholder="/workspace/demo"
+                            data-ng-pattern="$ctrl.NOTEBOOK_ATTACH_STORAGE.MOUNT_PATH_REGEX"
+                            data-ng-required="storage.container || storage.permission"
+                        />
+                    </oui-field>
+                </oui-inline-adder-field>
+                <oui-inline-adder-field>
+                    <oui-field
+                        label="{{:: 'pci_notebook_add_attach_container_adder_permission' | translate}}"
+                    >
+                        <label class="oui-select">
+                            <select
+                                class="oui-select__input"
+                                name="storagePermission"
+                                ng-model="storage.permission"
+                                data-ng-required="storage.container || storage.mountPath"
+                            >
+                                <option data-ng-bind="'pci_notebook_add_attach_container_adder_permission_select' | translate" default></option>
+                                <option
+                                    ng-repeat="permission in $ctrl.permissions"
+                                    value="{{permission}}"
+                                    data-ng-bind="::'pci_notebook_add_attach_container_adder_permission_' + permission  | translate"
+                                >
+                                </option>
+                            </select>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
+                        </label>
+                    </oui-field>
+                </oui-inline-adder-field>
+            </oui-inline-adder-row>
+        </oui-inline-adder>
+    </div>
+
+</div>

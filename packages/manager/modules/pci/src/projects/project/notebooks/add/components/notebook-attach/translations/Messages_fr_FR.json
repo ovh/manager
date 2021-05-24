@@ -1,0 +1,21 @@
+{
+  "pci_notebook_add_attach_object": "Attach object",
+  "pci_notebook_add_attach_container_description": "Si nécessaire, vous pouvez attacher des conteneurs Object Storage OVHcloud à votre notebook. Une fois attachés, ceux-ci seront temporairement chargés et mis en cache près de votre instance afin de réduire la latence et d’améliorer les performances. La bonne pratique est d’attacher un conteneur avec vos données entrantes et un autre avec vos données sortantes.",
+  "pci_notebook_add_attach_container_description_link": "En savoir plus sur le stockage de données.",
+  "pci_notebook_add_attach_container_btn_attach_storage": "Attacher un conteneur Object Storage",
+  "pci_notebook_add_attach_container_adder_storage_container": "Conteneur de stockage",
+  "pci_notebook_add_attach_container_adder_storage_container_select": "Select a container",
+  "pci_notebook_add_attach_container_adder_storage_container_select_placeholder": "Select a storage container",
+  "pci_notebook_add_attach_container_adder_mount_path": "Chemin de montage",
+  "pci_notebook_add_attach_container_adder_permission": "Autorisation",
+  "pci_notebook_add_attach_container_adder_permission_select": "Select a permission",
+  "pci_notebook_add_attach_container_adder_permission_RO": "Lecture seule",
+  "pci_notebook_add_attach_container_adder_permission_RW": "Lecture - écriture",
+  "pci_notebook_add_attach_git_repo": "Cloner un repository Git public",
+  "pci_notebook_add_attach_git_repo_description": "Clonez un repository public pour votre notebook uniquement.",
+  "pci_notebook_add_attach_git_repo_url": "Repository URL",
+  "pci_notebook_add_attach_git_repo_url_placeholder": "https://github.com/...",
+  "pci_notebook_add_attach_git_repo_url_help": "Compatible avec les repository GitHub, GitLab, Git",
+  "pci_notebook_add_attach_mount_path": "Chemin de montage",
+  "pci_notebook_add_attach_": "Mount path"
+}
