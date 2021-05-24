@@ -1,18 +1,5 @@
-import bmServerGeneralInfoTile from './general-info-tile';
-import bmServerTechnicalDetailsTile from './technical-details';
-import bmServerNetworkTile from './network';
-import bmServerEditName from './edit-name';
-
-export {
-  bmServerGeneralInfoTile,
-  bmServerTechnicalDetailsTile,
-  bmServerNetworkTile,
-  bmServerEditName,
-};
-
-export default {
-  bmServerGeneralInfoTile,
-  bmServerTechnicalDetailsTile,
-  bmServerNetworkTile,
-  bmServerEditName,
-};
+export { default as bmServerGeneralInfo } from './general-info-tile';
+export { default as bmServerTechnicalDetails } from './technical-details';
+export { default as bmServerNetwork } from './network';
+export { default as bmServerEditName } from './edit-name';
+export { default as bmServerSupport } from './support';
