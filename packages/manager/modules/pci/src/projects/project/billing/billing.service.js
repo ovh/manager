@@ -277,6 +277,10 @@ export default class CloudProjectBillingService {
     this.initResourceUsage('loadbalancer', 'loadBalancer');
   }
 
+  initNotebooks() {
+    this.initResourceUsage('ai-notebooks', 'notebooks');
+  }
+
   initServing() {
     this.initResourceUsage('ai-serving-engine', 'serving');
   }
@@ -309,6 +313,7 @@ export default class CloudProjectBillingService {
           this.initInstanceBandwidth(),
           this.initPrivateRegistry(),
           this.initLoadBalancer(),
+          this.initNotebooks(),
           this.initServing(),
           this.initTraining(),
           this.initDataprocessing(),
@@ -328,6 +333,7 @@ export default class CloudProjectBillingService {
               this.data.totals.hourly.bandwidth +
               this.data.totals.hourly.privateRegistry +
               this.data.totals.hourly.loadBalancer +
+              this.data.totals.hourly.notebooks +
               this.data.totals.hourly.serving +
               this.data.totals.hourly.training +
               this.data.totals.hourly.dataProcessing +
