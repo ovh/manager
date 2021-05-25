@@ -149,8 +149,8 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         options: {
           state: 'pci.projects.project.notebooks',
         },
-        title: 'Notebooks',
-        regions: ['CA', 'EU'],
+        title: 'AI Notebooks',
+        feature: 'notebooks',
       },
       {
         id: 'serving',
