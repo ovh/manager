@@ -10,6 +10,6 @@ const translationNormalize = (text) => {
   return text;
 };
 
-export = {
+module.exports = {
   translationNormalize,
-}
+};

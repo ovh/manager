@@ -1,11 +1,14 @@
-import get from 'lodash/get';
-import has from 'lodash/has';
-import map from 'lodash/map';
-import last from 'lodash/last';
-import { createFilter } from '@rollup/pluginutils';
-import { walk } from 'estree-walker';
-import MagicString from 'magic-string';
-import utils from './translation-utils'; // eslint-disable-line
+const get = require('lodash/get');
+const has = require('lodash/has');
+const map = require('lodash/map');
+const last = require('lodash/last');
+const pluginUtils = require('@rollup/pluginutils');
+const estreeWalker = require('estree-walker');
+const MagicString = require('magic-string');
+const utils = require('./translation-utils');
+
+const createFilter = Object.assign(pluginUtils.createFilter);
+const walk = Object.assign(estreeWalker.walk);
 
 const removeProperty = (code, magicString, start, end) => {
   magicString.remove(start, end);
@@ -20,7 +23,7 @@ const removeProperty = (code, magicString, start, end) => {
   }
 };
 
-export = (opts: any = {}) => {
+module.exports = (opts) => {
   const include = opts.include || '**/*.js';
   const { exclude } = opts;
   const filter = createFilter(include, exclude);
@@ -51,7 +54,8 @@ export = (opts: any = {}) => {
               props.filter(
                 (item) =>
                   item &&
-                  item.key?.name === 'translations' &&
+                  item.key &&
+                  item.key.name === 'translations' &&
                   item.type === 'Property',
               )[0];
 
@@ -68,7 +72,7 @@ export = (opts: any = {}) => {
                 ).map(({ value: v }) => v);
               }
 
-              const resolve: any = last(
+              const resolve = last(
                 get(
                   props.filter(
                     ({ key, type }) =>

@@ -1,12 +1,12 @@
-import {
-  sso as Sso,
-  proxy as serverProxy,
-} from '@ovh-ux/manager-dev-server-config';
-import DuplicatePackageCheckerPlugin from 'duplicate-package-checker-webpack-plugin';
-import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
-import yn from 'yn';
+const devServerConfig = require('@ovh-ux/manager-dev-server-config');
+const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const yn = require('yn');
 
-export = (env) => {
+const serverProxy = { ...devServerConfig.proxy };
+const Sso = Object.assign(devServerConfig.sso);
+
+const config = (env) => {
   const region = (
     env.region ||
     process.env.REGION ||
@@ -30,7 +30,7 @@ export = (env) => {
     proxy.unshift(serverProxy.aapi);
   }
   if (env.dev) {
-    proxy.unshift(...env.dev.map((config) => serverProxy.dev(config)));
+    proxy.unshift(...env.dev.map((c) => serverProxy.dev(c)));
   }
   return {
     mode: 'development',
@@ -56,3 +56,4 @@ export = (env) => {
     },
   };
 };
+module.exports = config;

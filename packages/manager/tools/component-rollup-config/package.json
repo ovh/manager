@@ -16,19 +16,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "main": "./dist/index.js",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "tsc",
-    "dev": "yarn run build",
-    "dev:watch": "tsc -w",
-    "lint": "run-p lint:ts lint:md",
-    "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
-    "lint:ts": "eslint --quiet --fix --format=pretty ./src/**/*.ts",
-    "prepare": "yarn run build"
-  },
+  "main": "./src/index.js",
   "dependencies": {
     "@babel/core": "^7.12.10",
     "@babel/plugin-proposal-class-properties": "^7.10.1",
@@ -62,14 +50,12 @@
     "slash": "^2.0.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.11.0",
-    "@typescript-eslint/parser": "^2.11.0",
+    "@ovh-ux/component-rollup-config": "^8.0.0 || ^9.0.0",
     "eslint": "^6.7.2",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-formatter-pretty": "^3.0.1",
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-markdown": "^1.0.0",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^4.2.4"
+    "npm-run-all": "^4.1.5"
   }
 }

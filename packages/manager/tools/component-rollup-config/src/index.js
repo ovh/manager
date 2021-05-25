@@ -1,22 +1,27 @@
-import { get, isString, mergeWith } from 'lodash';
-import babel from '@rollup/plugin-babel';
-import camelcase from 'camelcase';
-import commonjs from '@rollup/plugin-commonjs';
-import html from 'rollup-plugin-html';
-import image from '@rollup/plugin-image';
-import json from '@rollup/plugin-json';
-import lessInject from '@ovh-ux/rollup-plugin-less-inject';
-import lessPluginRemcalc from 'less-plugin-remcalc';
-import lessTildeImporter from '@ovh-ux/rollup-plugin-less-tilde-importer';
-import path from 'path';
-import peerdeps from 'rollup-plugin-peer-deps-external';
-import resolve from '@rollup/plugin-node-resolve';
-import sass from 'rollup-plugin-sass';
-import dynamicImportVars from '@rollup/plugin-dynamic-import-vars';
+const get = require('lodash/get');
+const isString = require('lodash/isString');
+const mergeWith = require('lodash/mergeWith');
+const babelPlugin = require('@rollup/plugin-babel');
+const camelcase = require('camelcase');
+const commonjs = require('@rollup/plugin-commonjs');
+const html = require('rollup-plugin-html');
+const image = require('@rollup/plugin-image');
+const json = require('@rollup/plugin-json');
+const lessInject = require('@ovh-ux/rollup-plugin-less-inject');
+const lessPluginRemcalc = require('less-plugin-remcalc');
+const lessTildeImporter = require('@ovh-ux/rollup-plugin-less-tilde-importer');
+const path = require('path');
+const peerdeps = require('rollup-plugin-peer-deps-external');
+const resolve = require('@rollup/plugin-node-resolve');
+const sass = require('rollup-plugin-sass');
+const dynamicImportVarsPlugin = require('@rollup/plugin-dynamic-import-vars');
 
-import translationInject from './plugins/translation-inject';
-import translationUiRouter from './plugins/translation-ui-router';
-import common from './plugins/common';
+const translationInject = require('./plugins/translation-inject');
+const translationUiRouter = require('./plugins/translation-ui-router');
+const common = require('./plugins/common');
+
+const dynamicImportVars = dynamicImportVarsPlugin.default;
+const babel = babelPlugin.default;
 
 const defaultName = path.basename(process.cwd());
 
@@ -167,4 +172,4 @@ config.common = {
   translationNormalize: common.translationNormalize,
 };
 
-export = config;
+module.exports = config;

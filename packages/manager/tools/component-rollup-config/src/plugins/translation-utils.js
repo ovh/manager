@@ -1,6 +1,6 @@
-import concat from 'lodash/concat';
-import fs from 'fs';
-import path from 'path';
+const concat = require('lodash/concat');
+const fs = require('fs');
+const path = require('path');
 
 const ALL_LANGUAGES = process.env.OVH_BUILD_LANGUAGES
   ? process.env.OVH_BUILD_LANGUAGES.split(',')
@@ -48,7 +48,7 @@ const injectTranslationImports = (languages, trads, id, subdirectory) => `
   return $q.all(promises).then(() => $translate.refresh());
 `;
 
-export = {
+module.exports = {
   injectTranslationImports,
   languages: concat(ALL_LANGUAGES),
 };

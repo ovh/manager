@@ -1,8 +1,10 @@
-import { createFilter } from '@rollup/pluginutils';
-import MagicString from 'magic-string';
-import utils from './translation-utils';
+const pluginUtils = require('@rollup/pluginutils');
+const MagicString = require('magic-string');
+const utils = require('./translation-utils');
 
-export default (opts: any = {}) => {
+const createFilter = Object.assign(pluginUtils.createFilter);
+
+module.exports = (opts) => {
   const include = opts.include || '**/*.js';
   const { exclude } = opts;
   const filter = createFilter(include, exclude);
