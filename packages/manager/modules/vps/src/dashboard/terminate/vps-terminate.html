@@ -4,7 +4,7 @@
     data-primary-action="$ctrl.terminate()"
     data-primary-disabled="!$ctrl.isActionAvailable || !$ctrl.terminateOption"
     data-secondary-label="{{:: 'vps_terminate_cancel' | translate }}"
-    data-secondary-action="$ctrl.cancel()"
+    data-secondary-action="$ctrl.onCancel()"
     data-type="warning"
     data-loading="$ctrl.isTerminating"
     data-heading="{{:: 'vps_terminate_title' | translate }}"

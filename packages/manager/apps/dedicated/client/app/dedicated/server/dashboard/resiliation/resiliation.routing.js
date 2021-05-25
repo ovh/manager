@@ -36,9 +36,25 @@ export default /* @ngInject */ ($stateProvider) => {
             ({ data }) =>
               data.models['services.billing.engagement.EndStrategyEnum']?.enum,
           ),
-      goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
-      onSuccess: /* @ngInject */ (goBack) => (successMessage) =>
-        goBack(successMessage),
+      goBack: /* @ngInject */ (atInternet, goToDashboard) => (
+        message,
+        type,
+      ) => {
+        atInternet.trackClick({
+          name: 'dedicated::dedicated::server::dashboard::resiliation::cancel',
+          type: 'action',
+        });
+        return goToDashboard(message, type);
+      },
+      onSuccess: /* @ngInject */ (atInternet, goToDashboard) => (
+        successMessage,
+      ) => {
+        atInternet.trackClick({
+          name: 'dedicated::dedicated::server::dashboard::resiliation::confirm',
+          type: 'action',
+        });
+        return goToDashboard(successMessage);
+      },
       serviceId: /* @ngInject */ (serviceInfos) => serviceInfos.serviceId,
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
