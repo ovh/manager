@@ -1,14 +1,18 @@
-import * as path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import RemcalcPlugin from 'less-plugin-remcalc';
-import WebpackBar from 'webpackbar';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import get from 'lodash/get';
-import set from 'lodash/set';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import TerserJSPlugin from 'terser-webpack-plugin';
-import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
-import { RetryChunkLoadPlugin } from 'webpack-retry-chunk-load-plugin';
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const RemcalcPlugin = require('less-plugin-remcalc');
+const WebpackBar = require('webpackbar');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const get = require('lodash/get');
+const set = require('lodash/set');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const webpackRetryChunckLoadPlugin = require('webpack-retry-chunk-load-plugin');
+
+const RetryChunkLoadPlugin = Object.assign(
+  webpackRetryChunckLoadPlugin.RetryChunkLoadPlugin,
+);
 
 const webpack = require('webpack');
 
@@ -21,7 +25,7 @@ const cacheLoader = {
 
 // The common webpack configuration
 
-export = (opts) => {
+module.exports = (opts) => {
   const lessLoaderOptions = {
     sourceMap: true,
     plugins: [
