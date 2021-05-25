@@ -216,7 +216,19 @@ export default class ServerCtrl {
       }
     };
 
-    this.$scope.$on('dedicated.informations.reload', () => {
+    this.$scope.$on('dedicated.informations.reload', (e, params) => {
+      if (
+        params &&
+        Object.prototype.hasOwnProperty.call(params, 'monitoring')
+      ) {
+        this.server.monitored = params.monitoring;
+      }
+      if (
+        params &&
+        Object.prototype.hasOwnProperty.call(params, 'noIntervention')
+      ) {
+        this.server.noIntervention = params.noIntervention;
+      }
       this.loadServer();
     });
 
@@ -462,7 +474,6 @@ export default class ServerCtrl {
   }
 
   startPollRestart(task) {
-    console.log('start polls');
     this.Server.addTask(this.$stateParams.productId, task, this.$scope.$id)
       .then((state) => {
         if (this.Polling.isResolve(state)) {

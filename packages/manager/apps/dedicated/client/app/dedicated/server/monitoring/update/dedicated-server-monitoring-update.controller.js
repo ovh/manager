@@ -39,6 +39,7 @@ angular.module('App').controller(
       return this.Server.updateMonitoring(
         this.$stateParams.productId,
         !monitored,
+        !monitored, // reset no-intervention to monitored value
       )
         .then(() => {
           if (monitored === true) {

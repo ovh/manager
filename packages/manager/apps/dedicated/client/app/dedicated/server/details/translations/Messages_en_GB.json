@@ -1271,5 +1271,12 @@
   "server_error_vrack_detach": "An error has occurred detaching the private network: {{error}}",
   "server_error_bandwidth_order": "An error has occurred ordering bandwidth: {{error}}",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Group network interfaces",
-  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Detach network interfaces"
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Detach network interfaces",
+  "server_configuration_no_intervention": "On-site interventions",
+  "server_configuration_on": "On",
+  "server_configuration_off": "Off",
+  "server_configuration_no_intervention_activate_success": "On-site intervention is enabled on server {{serverName}}",
+  "server_configuration_no_intervention_activate_failed": "An error has occurred enabling on-site interventions on server {{serverName}}",
+  "server_configuration_no_intervention_deactivate_success": "On-site intervention is disabled on server {{serverName}}",
+  "server_configuration_no_intervention_deactivate_failed": "An error has occurred disabling on-site interventions on the server {{serverName}}"
 }

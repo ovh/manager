@@ -1271,5 +1271,12 @@
   "server_error_vrack_detach": "Beim Trennen des privaten Netzwerks ist ein Fehler aufgetreten: {{error}}",
   "server_error_bandwidth_order": "Bei der Bandbreitenbestellung ist ein Fehler aufgetreten: {{error}}",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Interfaces des Unternehmensnetzwerks",
-  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Die Netzwerkinterfaces trennen"
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Die Netzwerkinterfaces trennen",
+  "server_configuration_no_intervention": "Eingriffe am Standort",
+  "server_configuration_on": "On",
+  "server_configuration_off": "Off",
+  "server_configuration_no_intervention_activate_success": "Der Eingriff vor Ort ist auf dem Server {{serverName}} aktiviert.",
+  "server_configuration_no_intervention_activate_failed": "Bei der Aktivierung der Eingriffe vor Ort auf dem Server {{serverName}} ist ein Fehler aufgetreten.",
+  "server_configuration_no_intervention_deactivate_success": "Der Eingriff vor Ort ist für den Server {{serverName}} deaktiviert.",
+  "server_configuration_no_intervention_deactivate_failed": "Bei der Deaktivierung des Eingriffs vor Ort auf dem Server {{serverName}} ist ein Fehler aufgetreten."
 }
