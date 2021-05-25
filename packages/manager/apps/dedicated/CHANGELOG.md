@@ -1,3 +1,17 @@
+# [16.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.26.3...@ovh-ux/manager-dedicated@16.27.0) (2021-05-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 959] ([7a1f847](https://github.com/ovh/manager/commit/7a1f8472a410c7e57e49f8355eff4943fafa287e))
+
+
+### Features
+
+* **dedicated-server:** add no intervention monitoring support ([dc3f573](https://github.com/ovh/manager/commit/dc3f57399ffacfa9c908a11fdd4101805b212a3c))
+
+
+
 ## [16.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.26.2...@ovh-ux/manager-dedicated@16.26.3) (2021-05-20)
 
 
