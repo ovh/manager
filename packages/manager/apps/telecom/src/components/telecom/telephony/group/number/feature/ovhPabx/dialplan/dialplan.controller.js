@@ -14,7 +14,6 @@ export default class DialplanCtrl {
     atInternet,
     autoScrollOnToggle,
     TucToast,
-    TUC_UI_SORTABLE_HELPERS,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -22,7 +21,6 @@ export default class DialplanCtrl {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.TucToast = TucToast;
-    this.tucUiSortableHelpers = TUC_UI_SORTABLE_HELPERS;
     this.autoScrollOnToggle = autoScrollOnToggle;
   }
 
@@ -42,43 +40,15 @@ export default class DialplanCtrl {
       expanded: true,
     };
 
-    this.sortableOptions = null;
+    this.reorderQueue = [];
+
     this.ovhPabx = null;
 
-    let sortInterval = null;
     let initPromise = this.$q.when();
     this.loading.init = true;
 
     // set ovhPabx instance
     this.ovhPabx = this.numberCtrl.number.feature;
-
-    // set sortable options
-    this.sortableOptions = {
-      axis: 'y',
-      handle: '.extension-grip',
-      cancel: '.voip-plan__step-icon--grip-disabled',
-      containment: 'parent',
-      sort: this.tucUiSortableHelpers.variableHeightTolerance,
-      start() {
-        sortInterval = setInterval(() => {}, 33);
-      },
-      stop() {
-        if (sortInterval) {
-          clearInterval(sortInterval);
-        }
-      },
-      update() {
-        this.$timeout(() => {
-          // update extensions positions
-          angular.forEach(this.dialplan.extensions, (extension, index) => {
-            set(extension, 'position', index + 1);
-          });
-
-          // call api to update all positions
-          this.dialplan.updateExtensionsPositions();
-        });
-      },
-    };
 
     if (this.dialplan) {
       // load extension if dialplan exists
@@ -261,6 +231,11 @@ export default class DialplanCtrl {
    * Increase extension position by one
    */
   reorderExtension(extension) {
+    if (this.numberCtrl.reorderingPending) {
+      this.reorderQueue.push(extension);
+      return;
+    }
+    this.numberCtrl.reorderingPending = true;
     const other = find(this.dialplan.extensions, {
       position: extension.position + 1,
     });
@@ -268,8 +243,19 @@ export default class DialplanCtrl {
       const { position } = extension;
       set(extension, 'position', other.position);
       set(other, 'position', position);
-      extension.move(extension.position);
-      other.move(other.position);
+      this.$q
+        .all([extension.move(extension.position), other.move(other.position)])
+        .catch(() => {
+          set(other, 'position', extension.position);
+          set(extension, 'position', position);
+        })
+        .finally(() => {
+          this.numberCtrl.reorderingPending = false;
+          if (this.reorderQueue.length) {
+            const ext = this.reorderQueue.shift();
+            this.reorderExtension(ext);
+          }
+        });
     }
   }
 }
