@@ -38,6 +38,6 @@
     "eslint": "^6.7.2",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.19.1",
-    "typescript": "^3.7.3"
+    "typescript": "^4.2.4"
   }
 }
