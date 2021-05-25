@@ -1271,5 +1271,12 @@
   "server_error_vrack_detach": "Si è verificato un errore durante la separazione della rete privata: {{error}}",
   "server_error_bandwidth_order": "Si è verificato un errore durante l'ordine della banda passante: {{error}}",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Interfacce di rete di gruppo",
-  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Disassocia le interfacce di rete"
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Disassocia le interfacce di rete",
+  "server_configuration_no_intervention": "Interventi in loco",
+  "server_configuration_on": "ON",
+  "server_configuration_off": "OFF",
+  "server_configuration_no_intervention_activate_success": "L'intervento in loco è attivo sul server {{serverName}}",
+  "server_configuration_no_intervention_activate_failed": "Si è verificato un errore durante l'attivazione degli interventi in loco sul server {{serverName}}",
+  "server_configuration_no_intervention_deactivate_success": "L'intervento in loco è disattivato sul server {{serverName}}",
+  "server_configuration_no_intervention_deactivate_failed": "Si è verificato un errore durante la disattivazione dell'intervento in loco sul server {{serverName}}"
 }
