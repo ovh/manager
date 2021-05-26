@@ -29,8 +29,10 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationQueues
   OvhApiTelephony,
   TucToast,
   TucToastError,
+  voipAliasGuides,
 ) {
   const self = this;
+  self.guides = voipAliasGuides;
 
   function init() {
     self.queues = null;

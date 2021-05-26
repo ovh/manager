@@ -4,6 +4,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationSchedu
   $stateParams,
   TelephonyMediator,
   TucToast,
+  voipAliasGuides,
 ) {
   const self = this;
 
@@ -13,6 +14,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationSchedu
 
   self.group = null;
   self.number = null;
+  self.guides = voipAliasGuides;
 
   /*= =====================================
     =            INITIALIZATION            =
