@@ -11,7 +11,6 @@ import 'script-loader!angular-dynamic-locale/dist/tmhDynamicLocale.min.js';
 import 'angular-flash-alert';
 import 'angular-inview';
 import 'angular-messages';
-import 'angular-password';
 import 'angular-resource';
 import 'angular-sanitize';
 import 'angular-translate';
@@ -147,7 +146,6 @@ export default (containerEl, environment) => {
         'ngFlash',
         'ngMessages',
         'ngOvhContracts',
-        'ngPassword',
         'ngResource',
         'ngSanitize',
         ngOvhCheckboxTable,
