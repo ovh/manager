@@ -18,6 +18,13 @@ export default /* @ngInject */ function TelecomTelephonyServiceFaxPasswordCtrl(
     =            ACTIONS            =
     =============================== */
 
+  self.setConfirmPasswordValid = function setConfirmPasswordValid() {
+    self.faxPasswordForm.confirmPassword.$setValidity(
+      'confirm',
+      self.passwordForm.confirm === self.passwordForm.password,
+    );
+  };
+
   self.reset = function reset() {
     self.passwordForm.password = '';
     self.passwordForm.confirm = '';
