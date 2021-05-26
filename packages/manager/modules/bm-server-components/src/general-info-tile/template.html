@@ -9,7 +9,6 @@
     >
         <oui-action-menu
             data-ng-if="::$ctrl.showNameActions()"
-            aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_displayname' | translate) } }}"
             data-compact
             data-placement="end"
         >
@@ -56,7 +55,6 @@
         </oui-tile-description>
         <oui-action-menu
             data-ng-if="!$ctrl.server.isExpired && $ctrl.server.commercialRange !== 'housing'"
-            aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_distribution' | translate) } }}"
             data-compact
             data-placement="end"
             data-disabled="$ctrl.server.ola.isConfigured()"
@@ -101,7 +99,6 @@
         </oui-tile-description>
         <oui-action-menu
             data-ng-if="!$ctrl.server.isExpired"
-            aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_boot' | translate) } }}"
             data-compact
             data-placement="end"
         >
