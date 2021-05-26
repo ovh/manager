@@ -54,7 +54,7 @@
                         <li
                             class="h3"
                             data-translate="telephony_group_billing_group_repayments_total_price"
-                            data-translate-values="{ price: (GroupRepaymentsCtrl.consumptions.deferred.price | number:2) }"
+                            data-translate-values="{ price: (GroupRepaymentsCtrl.consumptions.deferred.price | number: 3) }"
                         ></li>
                         <li>
                             <em
@@ -76,7 +76,7 @@
                         <li
                             class="h3"
                             data-translate="telephony_group_billing_group_repayments_total_price"
-                            data-translate-values="{ price: (GroupRepaymentsCtrl.consumptions.repayable.price | number:2) }"
+                            data-translate-values="{ price: (GroupRepaymentsCtrl.consumptions.repayable.price | number: 3) }"
                         ></li>
                         <li>
                             <em
@@ -98,7 +98,7 @@
                         <li
                             class="h3"
                             data-translate="telephony_group_billing_group_repayments_total_price"
-                            data-translate-values="{ price: (GroupRepaymentsCtrl.consumptions.total.price | number:2) }"
+                            data-translate-values="{ price: (GroupRepaymentsCtrl.consumptions.total.price | number: 3) }"
                         ></li>
                         <li>
                             <em
@@ -170,7 +170,8 @@
                                         data-translate="telephony_group_billing_group_repayments_detail_total_duration_price"
                                         data-translate-values="{
                                               'totalDuration': detail.totalOperatorDuration,
-                                              'totalPrice': detail.totalOperatorPrice
+                                              'totalPrice': detail.totalOperatorPrice,
+                                              'currency': GroupRepaymentsCtrl.currency,
                                           }"
                                     >
                                     </span>
@@ -194,7 +195,8 @@
                                     data-translate="telephony_group_billing_group_repayments_detail_total_duration_price"
                                     data-translate-values="{
                                           'totalDuration': group.totalDuration,
-                                          'totalPrice': group.totalPrice
+                                          'totalPrice': group.totalPrice,
+                                          'currency': GroupRepaymentsCtrl.currency,
                                       }"
                                 >
                                 </span>

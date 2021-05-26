@@ -104,7 +104,9 @@
                 data-type="number"
                 data-filterable
             >
-                <span data-ng-bind="::$row.price | currency"></span>
+                <span
+                    data-ng-bind="::$row.price | currency : $ctrl.currency : 3"
+                ></span>
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title="::'telephony_alias_special_transfer_fees' | translate"
