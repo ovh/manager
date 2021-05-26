@@ -1,3 +1,13 @@
+## [8.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.1.0...@ovh-ux/ng-ovh-payment-method@8.1.1) (2021-05-26)
+
+
+### Bug Fixes
+
+* **payment.method:** enforce specific adyen web version of package ([7e95790](https://github.com/ovh/manager/commit/7e957909b87751509c598f25c7c80e2d84ed5157))
+* **payment.method:** specify brands ([37b959b](https://github.com/ovh/manager/commit/37b959bba08d35bbff6ad35e76d09887cc7a98af))
+
+
+
 # [8.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.0.0...@ovh-ux/ng-ovh-payment-method@8.1.0) (2021-04-21)
 
 
