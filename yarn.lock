@@ -2,15 +2,15 @@
 # yarn lockfile v1
 
 
-"@adyen/adyen-web@^3.20.0":
-  version "3.21.0"
-  resolved "https://registry.npmjs.org/@adyen/adyen-web/-/adyen-web-3.21.0.tgz#9760c988f5f17b68952357602014f118d93bc616"
-  integrity sha512-LDbQ04wQAUhhNcyFTY/4ah9OtkAHubLgsezizJYq62gftUkeb5d/D22hwwLgrRi6Z/1EpOk6XGCkYNazyq6sxw==
+"@adyen/adyen-web@3.20.0":
+  version "3.20.0"
+  resolved "https://registry.npmjs.org/@adyen/adyen-web/-/adyen-web-3.20.0.tgz#b1322839d409c9181117e851c7b8d1f9f390d8d5"
+  integrity sha512-raTi7p92pnjJ0sfI+QnMemKyPMeneKgHobIJhmSEMaJ6yY0NAe5sux/jvyZJ+YdoZaV9NJb/3bj9c0kKEFAcog==
   dependencies:
     "@types/applepayjs" "^3.0.1"
     "@types/googlepay" "^0.5.1"
     classnames "^2.2.6"
-    preact "^10.5.12"
+    preact "^10.5.9"
 
 "@babel/code-frame@^7.0.0":
   version "7.5.5"
@@ -16947,10 +16947,10 @@ postcss@^7.0.32:
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-preact@^10.5.12:
-  version "10.5.12"
-  resolved "https://registry.npmjs.org/preact/-/preact-10.5.12.tgz#6a8ee8bf40a695c505df9abebacd924e4dd37704"
-  integrity sha512-r6siDkuD36oszwlCkcqDJCAKBQxGoeEGytw2DGMD5A/GGdu5Tymw+N2OBXwvOLxg6d1FeY8MgMV3cc5aVQo4Cg==
+preact@^10.5.9:
+  version "10.5.13"
+  resolved "https://registry.npmjs.org/preact/-/preact-10.5.13.tgz#85f6c9197ecd736ce8e3bec044d08fd1330fa019"
+  integrity sha512-q/vlKIGNwzTLu+jCcvywgGrt+H/1P/oIRSD6mV4ln3hmlC+Aa34C7yfPI4+5bzW8pONyVXYS7SvXosy2dKKtWQ==
 
 prelude-ls@~1.1.2:
   version "1.1.2"

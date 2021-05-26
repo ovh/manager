@@ -78,7 +78,11 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
 
   createAdyenComponent(adyenConfiguration) {
     this.checkout = new AdyenCheckout(adyenConfiguration);
-    this.checkout.create('card').mount('#adyen-component-container');
+    this.checkout
+      .create('card', {
+        brands: ['mc', 'visa', 'cartebancaire'],
+      })
+      .mount('#adyen-component-container');
   }
 
   submit() {
