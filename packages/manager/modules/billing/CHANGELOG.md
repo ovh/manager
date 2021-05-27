@@ -1,3 +1,19 @@
+# [2.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.8.1...@ovh-ux/manager-billing@2.9.0) (2021-05-27)
+
+
+### Bug Fixes
+
+* **billing:** fix italian translation ([4b8bf34](https://github.com/ovh/manager/commit/4b8bf34a30e5e1a9021a55cc7ccedda34662f6c4))
+* **i18n:** add missing translations [CDS 962] ([0dcf878](https://github.com/ovh/manager/commit/0dcf8788cd6e08d0c87c5e358a5badfb583e1830))
+
+
+### Features
+
+* **billing.payment.method:** add split payment tracking ([e1de6aa](https://github.com/ovh/manager/commit/e1de6aa208b07732c436e4d0887f44580e7387ce))
+* **modules.billing:** add split payment component ([9f60691](https://github.com/ovh/manager/commit/9f60691e4e73db47f59f37fde0b84e5fdbdaa77e))
+
+
+
 ## [2.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.8.0...@ovh-ux/manager-billing@2.8.1) (2021-05-19)
 
 
