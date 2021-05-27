@@ -75,6 +75,7 @@ export default class PciTrainingJobsSubmitController {
     this.resourceId = 'gpu'; // default resource
     this.resource = {};
     this.selectedGpu = null;
+    this.maxCpus = null;
     this.showAdvancedImage = false;
     this.emptyData = this.containers.length === 0;
     this.filterContainers();
@@ -162,6 +163,7 @@ export default class PciTrainingJobsSubmitController {
       (resource) => {
         this.resource = resource;
         [this.selectedGpu] = this.resource.gpus;
+        this.maxCpus = this.resource.maxCpus;
       },
     );
   }
