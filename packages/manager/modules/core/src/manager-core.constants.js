@@ -22,6 +22,9 @@ export const URLS = {
     SN: 'https://www.ovh.sn/cgi-bin/procedure/procedureChangeOwner.cgi',
     TN: 'https://www.ovh.com/tn/cgi-bin/procedure/procedureChangeOwner.cgi',
   },
+  splitPaymentInformation: {
+    IT: 'https://www1.finanze.gov.it/finanze3/split_payment/public/#/#testata',
+  },
   support: {
     CZ: 'http://www.ovh.cz/podpora/',
     DE: 'http://www.ovh.de/support/',

@@ -1,0 +1,12 @@
+<oui-modal
+    heading="{{:: $ctrl.actionLabelKey | translate }}"
+    primary-action="$ctrl.activateOrDeactivateSplitPayment()"
+    primary-label="{{:: $ctrl.actionLabelKey | translate }}"
+    primary-disabled="$ctrl.isActioning"
+    secondary-action="$ctrl.goBack()"
+    secondary-label="{{:: 'billing_payment_method_split_payment_cancel' | translate }}"
+    on-dismiss="$ctrl.goBack()"
+    loading="$ctrl.isActioning"
+>
+    <p data-translate="billing_payment_method_split_payment_information"></p>
+</oui-modal>

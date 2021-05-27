@@ -43,6 +43,16 @@
         </a>
     </oui-message>
 
+    <div class="mb-3">
+        <ovh-manager-billing-split-payment
+            data-ng-if="$ctrl.isSplitPaymentAvailable"
+            go-to-split-payment-action="$ctrl.goToSplitPaymentAction()"
+            split-payment-information-href="{{:: $ctrl.splitPaymentInformationHref }}"
+            tag-info="$ctrl.splitPayment"
+            tag-status-enum="$ctrl.tagStatusEnum"
+        ></ovh-manager-billing-split-payment>
+    </div>
+
     <h2 data-translate="billing_payment_method_title"></h2>
 
     <oui-datagrid data-rows="$ctrl.paymentMethods">
