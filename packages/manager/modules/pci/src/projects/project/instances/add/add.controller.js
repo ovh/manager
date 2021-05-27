@@ -311,7 +311,7 @@ export default class PciInstancesAddController {
     this.atInternet.trackClick({
       name: `instances_create_${this.selectedCategory}_${mode}_${toLower(
         this.instance.region,
-      )}`,
+      )}_${this.model.flavorGroup.name}`,
       type: 'action',
     });
   }
