@@ -1,3 +1,13 @@
+# [16.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.27.0...@ovh-ux/manager-dedicated@16.28.0) (2021-05-27)
+
+
+### Features
+
+* **billing.payment.method:** add split payment tracking ([e1de6aa](https://github.com/ovh/manager/commit/e1de6aa208b07732c436e4d0887f44580e7387ce))
+* **dedicated.billing:** add split payment feature ([a59a98b](https://github.com/ovh/manager/commit/a59a98b2eff304e198bfb2bafedd9d70ed180d3f))
+
+
+
 # [16.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.26.3...@ovh-ux/manager-dedicated@16.27.0) (2021-05-25)
 
 

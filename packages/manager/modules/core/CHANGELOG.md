@@ -1,3 +1,12 @@
+# [12.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.2.0...@ovh-ux/manager-core@12.3.0) (2021-05-27)
+
+
+### Features
+
+* **modules.core:** add split payment informtion url ([2db5bd2](https://github.com/ovh/manager/commit/2db5bd2aada2cd06f3b3139ef61a221c65ecf592))
+
+
+
 # [12.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.1.0...@ovh-ux/manager-core@12.2.0) (2021-05-05)
 
 
