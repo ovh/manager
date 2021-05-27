@@ -4,6 +4,7 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 
 export default class BillingCreditsCtrl {
+  /* @ngInject */
   constructor(
     $translate,
     addVoucherLink,
