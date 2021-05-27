@@ -511,7 +511,7 @@
   "inputs_logs_configure_later": "Plus tard",
   "inputs_logs_configure_logstash_title": "Logstash",
   "inputs_logs_configure_logstash_desc": "Éditez les sections « input » et filtrez la partie « output » de la configuration de votre Logstash écrite par notre service.",
-  "inputs_logs_configure_logstash_desc_tcp": "Nous vous rappelons que vous avez choisi d'exposer le port TCP 6514 à l'extérieur.",
+  "inputs_logs_configure_logstash_desc_tcp": "Nous vous rappelons que vous avez choisi d'exposer le port TCP {{port}} à l'extérieur.",
   "inputs_logs_configure_logstash_desc2": "Une fois ces sections éditées, vous pouvez tester directement votre configuration.",
   "inputs_logs_configure_logstash_wizard": "Formulaire de configuration",
   "inputs_logs_configure_logstash_grok": "Modèles Grok personnalisés",
