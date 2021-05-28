@@ -12,6 +12,24 @@ export const NEW_RANGE_VERSION = '2019v1';
 export const VPS_2014_AUTO_MIGRATION_DATE = '18/07/2020';
 export const VPS_2014_EXPIRY_DATE = '27/07/2020';
 
+const COMMIT_RECOMMIT_IMPRESSION_TRACKING_DATA = {
+  campaignId: '[commit-recommit]',
+  creation: '[batch1]',
+  format: '[link]',
+  generalPlacement: '[vps]',
+  detailedPlacement: '[commitment]',
+};
+
+export const COMMIT_IMPRESSION_TRACKING_DATA = {
+  ...COMMIT_RECOMMIT_IMPRESSION_TRACKING_DATA,
+  variant: '[commit]',
+};
+
+export const RECOMMIT_IMPRESSION_TRACKING_DATA = {
+  ...COMMIT_RECOMMIT_IMPRESSION_TRACKING_DATA,
+  variant: '[recommit]',
+};
+
 export default {
   DASHBOARD_FEATURES,
   NEW_RANGE_VERSION,
