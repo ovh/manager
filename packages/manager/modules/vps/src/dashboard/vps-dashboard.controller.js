@@ -10,6 +10,8 @@ import {
   DASHBOARD_FEATURES,
   SERVICE_TYPE,
   VPS_2014_AUTO_MIGRATION_DATE,
+  COMMIT_IMPRESSION_TRACKING_DATA,
+  RECOMMIT_IMPRESSION_TRACKING_DATA,
 } from './vps-dashboard.constants';
 import { CHANGE_OWNER_URL, RENEW_URL } from '../vps/constants';
 
@@ -43,6 +45,9 @@ export default class {
     this.vpsUpgradeTile = vpsUpgradeTile;
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
     this.SERVICE_TYPE = SERVICE_TYPE;
+
+    this.COMMIT_IMPRESSION_TRACKING_DATA = COMMIT_IMPRESSION_TRACKING_DATA;
+    this.RECOMMIT_IMPRESSION_TRACKING_DATA = RECOMMIT_IMPRESSION_TRACKING_DATA;
 
     this.loaders = {
       disk: false,
