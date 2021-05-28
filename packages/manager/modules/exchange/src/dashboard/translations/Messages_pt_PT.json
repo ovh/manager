@@ -1600,5 +1600,6 @@
   "exchange_reset_mfa_success": "A dupla autenticação foi reiniciada com êxito.",
   "exchange_mfa_error": "Ocorreu um erro: {{error}}",
   "exchange_delete_mfa_success": "A dupla autenticação foi eliminada com êxito.",
-  "exchange_delete_mfa_error": "Ocorreu um erro aquando da eliminação da dupla autenticação: {{error}}"
+  "exchange_delete_mfa_error": "Ocorreu um erro aquando da eliminação da dupla autenticação: {{error}}",
+  "exchange_ACTION_configure_services_label_security_account": "Segurança das contas"
 }
