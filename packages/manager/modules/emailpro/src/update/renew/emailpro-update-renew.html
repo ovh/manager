@@ -250,7 +250,7 @@
 
                 <tbody data-ng-if="!loading">
                     <tr
-                        data-ng-repeat="account in (bufferedAccounts.list.results | orderBy:'primaryEmailAddress':false) track by $index"
+                        data-ng-repeat="account in (buffer.changes | orderBy:'primaryEmailAddress':false) track by $index"
                     >
                         <th
                             scope="row"
