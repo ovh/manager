@@ -9,6 +9,7 @@ import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
 import add from './add';
 import component from './notebooks.component';
 import dashboard from './dashboard';
+import deleteNotebook from './delete-notebook';
 import onboarding from './onboarding';
 import routing from './notebooks.routing';
 import service from './notebooks.service';
@@ -21,6 +22,7 @@ angular
   .module(moduleName, [
     add,
     dashboard,
+    deleteNotebook,
     ngOvhSwimmingPoll,
     onboarding,
     'ngTranslateAsyncLoader',
