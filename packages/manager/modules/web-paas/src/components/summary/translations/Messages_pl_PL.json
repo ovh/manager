@@ -1,0 +1,10 @@
+{
+  "web_paas_summary_offer": "Usługa",
+  "web_paas_summary_total": "Razem",
+  "web_paas_summary_addon_storage": "{{quantity}} GB dodatkowej przestrzeni dyskowej",
+  "web_paas_summary_addon_user_licence": "{{quantity}} dodatkowych licencji użytkowników",
+  "web_paas_summary_addon_environment": "{{quantity}} dodatkowego środowiska testowego",
+  "web_paas_summary_prorata_price": "Cena proporcjonalna (obliczona dla bieżącego miesiąca)",
+  "web_paas_summary_next_month_price": "Cena miesięczna (obliczona dla kilku kolejnych miesięcy)",
+  "web_paas_summary_price_per_month": "Miesiąc"
+}

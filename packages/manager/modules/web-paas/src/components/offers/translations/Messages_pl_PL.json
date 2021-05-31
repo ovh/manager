@@ -1,5 +1,6 @@
 {
   "web_paas_offer_start-1": "START",
   "web_paas_offer_current_offer": "Aktualna oferta",
-  "web_paas_offer_price_text": "Darmowa oferta w wersji beta"
+  "web_paas_offer_price_text": "Darmowa oferta w wersji beta",
+  "web_paas_offer_price_per_month": "/miesiąc"
 }

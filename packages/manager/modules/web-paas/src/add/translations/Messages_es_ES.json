@@ -1,12 +1,12 @@
 {
   "web_paas_add_project_title": "Creación de su proyecto Web PaaS",
   "web_paas_add_project_description": "Cree su nuevo proyecto Web PaaS powered by Platform.sh. La plataforma de desarrollo pensada para los desarrolladores y sus equipos con la que podrán diseñar, desplegar y ejecutar aplicaciones web.",
-  "web_paas_add_project_success": "Su pedido se ha realizado correctamente. Su proyecto Web Paas performed by Platform.sh se está creando y estará disponible en unos minutos. Puede seguir el progreso de la entrega en la sección <a href='{{orderURL}}'>Mis pedidos</a> de su cuenta.",
+  "web_paas_add_project_success": "Su pedido se ha realizado correctamente. Puede seguir el progreso de su proyecto Web PaaS con Platform.sh en su cuenta, en la sección <a href='{{orderURL}}'>Mis pedidos.</a>",
   "web_paas_add_project_error": "¡Vaya! Se ha producido un error al crear el proyecto Web PaaS: {{ message }}",
   "web_paas_add_project_loading": "Creando el proyecto Web PaaS...",
   "web_paas_add_project_select_region": "Seleccione una región",
   "web_paas_add_project_storage": "{{ storageSize }} GB",
-  "web_paas_add_project_choose_offer_description": "Actualmente la solución está disponible en versión beta gratuita. Los planes se contratan por un período de un mes con renovación automática. Una vez que la versión beta termine, podrá disfrutar de la solución en versión de pago.",
+  "web_paas_add_project_choose_offer_description": "Elija la solución que mejor se ajuste a su proyecto: Start, Develop o Expand.",
   "web_paas_add_project_next": "Siguiente",
   "web_paas_add_project_choose_offer": "Elija su plan",
   "web_paas_add_project_configure": "Configure su proyecto",
@@ -24,5 +24,9 @@
   "web_paas_add_project_options_environment_popover": "No es posible seleccionar el entorno en la versión beta.",
   "web_paas_add_project_region_na": "Regiones no disponibles. Volver a intentarlo",
   "web_paas_add_project_environment": "{{count}} entorno(s)",
-  "web_paas_add_project_license": "{{count}} licencia(s) de usuario"
+  "web_paas_add_project_license": "{{count}} licencia(s) de usuario",
+  "web_paas_add_project_options_description": "Añada opciones de almacenamiento, entorno y licencias de usuario.",
+  "web_paas_add_project_region_description": "Seleccione la localización de su datacenter.",
+  "web_paas_add_project_summary_title": "Resumen del pedido",
+  "web_paas_add_project_create": "Crear un proyecto"
 }

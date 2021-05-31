@@ -1,0 +1,9 @@
+{
+  "web_paas_user_licences_invite_user_title": "Convide um utilizador para o seu projeto",
+  "web_paas_user_licences_invite_user": "Adicionar um utilizador",
+  "web_paas_user_licences_invite_user_description": "Pode convidar um colaborador a juntar-se ao seu projeto Platform.sh.",
+  "web_paas_user_licences_invite_user_success": "O utilizador foi adicionado com sucesso ao projeto",
+  "web_paas_user_licences_invite_user_error": "Ocorreu um erro aquando do convite do utilizador",
+  "web_paas_user_licences_invite_user_label": "Identificador de cliente (NIC)",
+  "web_paas_user_licences_invite_user_popover": "O utilizador que deseja convidar deve ter uma conta de utilizador OVHcloud"
+}

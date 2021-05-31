@@ -149,9 +149,10 @@ export default class WebPassAddCtrl {
     }
     this.Alerter.success(
       this.$translate.instant('web_paas_add_project_success', {
-        orderURL: checkout
-          ? this.getOrdersURL(checkout.orderId)
-          : this.getOrdersURL(),
+        orderURL:
+          checkout && checkout.orderId
+            ? this.getOrdersURL(checkout.orderId)
+            : this.getOrdersURL(),
       }),
       this.alerts.add,
     );

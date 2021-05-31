@@ -1,0 +1,20 @@
+{
+  "web_paas_service_add_addon_title_storage": "Zwiększ przestrzeń dyskową",
+  "web_paas_service_add_addon_title_staging_environment": "Zwiększ liczbę środowisk",
+  "web_paas_service_add_addon_title_user_license": "Zwiększ liczbę licencji użytkowników",
+  "web_paas_service_add_storage_description": "Posiadasz aktualnie {{storage}} GB dodatkowej przestrzeni dyskowej. Cena dodatkowej przestrzeni dyskowej jest uzależniona od liczby środowisk.",
+  "web_paas_service_add_license_description1": "Zamówiłeś ofertę {{offerName}}. Posiadasz {{maxLicences}} licencji użytkowników zawartych w ofercie i {{addonLicenses}} ",
+  "web_paas_service_add_license_description_licence_singular": "dodatkową licencję użytkownika.",
+  "web_paas_service_add_license_description_licence_plural": "dodatkowych licencji użytkownika.",
+  "web_paas_service_add_license_description2": "Możesz dodawać licencje użytkowników, aby umożliwić Twoim współpracownikom dostęp do projektów Web PaaS.",
+  "web_paas_service_add_staging_description": "Posiadasz aktualnie {{environment}} środowisk/a. Liczba środowisk wpływa również na cenę przestrzeni dyskowej.",
+  "web_paas_service_add_addon_prorata_price_staging_environment": "Proporcjonalna opłata {{prorataPrice}} {{currencySymbol}} netto za miesiąc {{currentMonth}} i {{nextMonthPrice}} {{currencySymbol}} netto miesięcznie za kolejne miesiące użytkowania nowych środowisk. Całkowita cena dodatkowej przestrzeni dyskowej w zależności od liczby środowisk wyniesie {{totalPrice}} {{ currencySymbol }} netto/m-c.",
+  "web_paas_service_add_addon_prorata_price_storage": "Proporcjonalna opłata {{prorataPrice}} {{currencySymbol}} netto za miesiąc {{currentMonth}} i {{nextMonthPrice}} {{currencySymbol}} netto miesięcznie za kolejne miesiące użytkowania nowej dodatkowej przestrzeni dyskowej. Czyli łącznie {{totalPrice}} {{currencySymbol}} netto/m-c w zależności od liczby środowisk.",
+  "web_paas_service_add_addon_prorata_price_user_license": "Proporcjonalna opłata {{prorataPrice}} {{currencySymbol}} netto za miesiąc {{currentMonth}} i {{nextMonthPrice}} {{currencySymbol}} netto miesięcznie za kolejne miesiące użytkowania dodatkowych licencji użytkowników.",
+  "web_paas_service_add_addon_error": "Wystąpił błąd podczas dodawania kolejnego modułu: {{message}}",
+  "web_paas_service_add_addon_success_storage": "Zmiana przestrzeni dyskowej została zarejestrowana. Możesz śledzić status dostawy na Twoim koncie, w sekcji <a href='{{orderURL}}'>Moje zamówienia</a>.",
+  "web_paas_service_add_addon_success_staging_environment": "Zmiana środowiska testowego została zarejestrowana. Możesz śledzić status dostawy na Twoim koncie, w sekcji <a href='{{orderURL}}'>Moje zamówienia</a>.",
+  "web_paas_service_add_addon_success_user_license": "Zmiana licencji użytkownika została zarejestrowana. Możesz śledzić status dostawy na Twoim koncie, w sekcji <a href='{{orderURL}}'>Moje zamówienia</a>.",
+  "web_paas_service_add_addon_fetching_price": "Obliczanie ceny",
+  "web_paas_service_add_addon_storage_info": "Uwaga: nie można zmniejszyć przestrzeni dyskowej projektu po zamówieniu dodatkowej przestrzeni dyskowej."
+}

@@ -43,7 +43,7 @@ export default class AutorenewCtrl {
     this.selectedServices = [];
 
     this.nicBillingFilter = this.nicBilling || this.$translate.instant(NIC_ALL);
-    console.log(this.serviceTypes);
+
     this.filtersOptions = {
       serviceType: {
         hideOperators: true,

@@ -1,0 +1,9 @@
+{
+  "web_paas_user_licences_invite_user_title": "Laden Sie einen Nutzer zu Ihrem Projekt",
+  "web_paas_user_licences_invite_user": "Nutzer hinzufügen",
+  "web_paas_user_licences_invite_user_description": "Sie können einen Mitarbeiter zu Ihrem Projekt mit Platform.sh einladen.",
+  "web_paas_user_licences_invite_user_success": "Der Nutzer wurde dem Projekt hinzugefügt.",
+  "web_paas_user_licences_invite_user_error": "Bei der Einladung des Nutzers ist ein Fehler aufgetreten",
+  "web_paas_user_licences_invite_user_label": "Kundenkennung",
+  "web_paas_user_licences_invite_user_popover": "Der Nutzer, den Sie einladen möchten, muss einen Nutzer-Account von OVHcloud haben."
+}

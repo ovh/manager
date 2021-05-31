@@ -150,10 +150,14 @@
                             data-ng-if="$ctrl.project.getTotalEnvironment() > 0"
                             data-ng-bind="$ctrl.project.getTotalEnvironment()"
                         ></span>
+                        <span
+                            class="oui-badge oui-badge_s oui-badge_sold-out"
+                            data-translate="web_paas_service_project_coming_soon"
+                        ></span>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-button
-                    data-disabled="!$ctrl.isAdmin()"
+                    data-disabled
                     data-on-click="$ctrl.goToAddAddon($ctrl.ADDON_TYPE.ENVIRONMENT)"
                 >
                     <span

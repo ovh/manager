@@ -1,0 +1,20 @@
+{
+  "web_paas_service_add_addon_title_storage": "Aumente o seu armazenamento",
+  "web_paas_service_add_addon_title_staging_environment": "Aumente os seus ambientes",
+  "web_paas_service_add_addon_title_user_license": "Aumente as suas licenças de utilizador",
+  "web_paas_service_add_storage_description": "Dispõe atualmente de {{ storage }}GB de armazenamento adicional. O preço do seu armazenamento adicional está relacionado com o número dos seus ambientes.",
+  "web_paas_service_add_license_description1": "Subscreveu a oferta {{ offerName }}. Dispõe de {{ maxLicences }} licenças de utilizador incluídas e {{ addonLicenses }} ",
+  "web_paas_service_add_license_description_licence_singular": "licença de utilizador adicional.",
+  "web_paas_service_add_license_description_licence_plural": "licenças de utilizador adicionais.",
+  "web_paas_service_add_license_description2": "Pode adicionar licenças de utilizador para permitir aos seus colaboradores aceder aos seus projetos Web PaaS.",
+  "web_paas_service_add_staging_description": "Atualmente, tem {{ environment }} ambientes. O número dos seus ambientes também afeta o preço do seu armazenamento, que é aplicado a todos os seus ambientes.",
+  "web_paas_service_add_addon_prorata_price_staging_environment": "O pro rata a pagar será de {{ prorataPrice }}{{ currencySymbol }} + IVA para o mês de {{ currentMonth }} e de {{ nextMonthPrice }}{{ currencySymbol }}/mês + IVA para os próximos meses nos seus novos ambientes. O preço total do seu armazenamento adicional em função do número de ambientes será de {{ totalPrice }}{{ currencySymbol }} /mês + IVA.",
+  "web_paas_service_add_addon_prorata_price_storage": "O pro rata a pagar será de {{ prorataPrice }}{{ currencySymbol }} + IVA para o mês de {{ currentMonth }} e de {{ nextMonthPrice }} /mês + IVA para os próximos meses para o seu novo armazenamento adicional. Ou seja, um total de {{ totalPrice }}{{ currencySymbol }} /mês + IVA calculado em função do número dos seus ambientes.",
+  "web_paas_service_add_addon_prorata_price_user_license": "O pro rata a pagar será de {{ prorataPrice }}{{ currencySymbol }} + IVA para o mês de {{ currentMonth }} e de {{ nextMonthPrice }} /mês + IVA para os próximos meses nas suas novas licenças de utilizador adicionais.",
+  "web_paas_service_add_addon_error": "Ocorreu um erro aquando da adição do módulo complementar: {{ message }}",
+  "web_paas_service_add_addon_success_storage": "A modificação do seu armazenamento foi corretamente tomada em conta. Pode seguir a evolução da entrega na sua conta, na secção <a href='{{orderURL}}'>Encomendas</a>",
+  "web_paas_service_add_addon_success_staging_environment": "A modificação do seu ambiente de teste foi corretamente tomada em conta. Pode seguir a evolução da entrega na sua conta, na secção <a href='{{orderURL}}'>Encomendas</a>",
+  "web_paas_service_add_addon_success_user_license": "A modificação das licenças de utilizador foi corretamente tomada em conta. Pode seguir a evolução da entrega na sua conta, na secção <a href='{{orderURL}}'>Encomendas</a>",
+  "web_paas_service_add_addon_fetching_price": "Cálculo do preço",
+  "web_paas_service_add_addon_storage_info": "Tenha em conta que não é possível reduzir o armazenamento de um projeto após o armazenamento adicional ter sido encomendado."
+}

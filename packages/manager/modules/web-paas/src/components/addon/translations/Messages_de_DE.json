@@ -1,0 +1,20 @@
+{
+  "web_paas_service_add_addon_title_storage": "Erweitern Sie Ihren Storage",
+  "web_paas_service_add_addon_title_staging_environment": "Fügen Sie weitere Umgebungen hinzu",
+  "web_paas_service_add_addon_title_user_license": "Fügen Sie weitere Nutzerlizenzen hinzu",
+  "web_paas_service_add_storage_description": "Sie haben derzeit {{ storage }} GB an zusätzlichem Storage. Der Preis Ihres zusätzlichen Storages hängt von der Anzahl Ihrer Umgebungen ab.",
+  "web_paas_service_add_license_description1": "Sie haben {{ offerName }} abonniert. Sie haben {{ maxLicences }} Nutzerlizenzen inklusive und {{ addonLicenses }} ",
+  "web_paas_service_add_license_description_licence_singular": "zusätzliche Nutzerlizenz.",
+  "web_paas_service_add_license_description_licence_plural": "zusätzliche Nutzerlizenzen.",
+  "web_paas_service_add_license_description2": "Sie können Nutzerlizenzen hinzufügen und so Ihren Mitarbeitern einen Zugang zu Ihren PaaS-Web-Projekten ermöglichen.",
+  "web_paas_service_add_staging_description": "Sie haben derzeit {{ environment }} Umgebungen. Die Anzahl Ihrer Umgebungen beeinflusst auch den Preis für Ihren Storage, der für alle Ihre Umgebungen angewandt wird.",
+  "web_paas_service_add_addon_prorata_price_staging_environment": "Der zu zahlende anteilige Preis beträgt {{ prorataPrice }} {{ currencySymbol }} inkl. MwSt. für den Monat {{ currentMonth }}. Für die folgenden Monate beläuft sich der Preis für Ihre neuen Umgebungen auf {{ nextMonthPrice }} {{ currencySymbol }} inkl. MwSt./Monat. Der Gesamtpreis Ihres zusätzlichen Storages je nach Anzahl der Umgebungen beträgt {{ totalPrice }} {{ currencySymbol }} inkl. MwSt./Monat.",
+  "web_paas_service_add_addon_prorata_price_storage": "Der zu zahlende anteilige Preis beträgt {{ prorataPrice }} {{ currencySymbol }} inkl. MwSt. für den Monat {{ currentMonth }}. Für die folgenden Monate beläuft sich der Preis für den neuen zusätzlichen Storage auf {{ nextMonthPrice }} {{ currencySymbol }} inkl. MwSt./Monat. Dies entspricht einem Gesamtpreis von {{ totalPrice }} {{ currencySymbol }} inkl. MwSt./ Monat basierend auf der Anzahl Ihrer Umgebungen.",
+  "web_paas_service_add_addon_prorata_price_user_license": "Der zu zahlende anteilige Preis beträgt {{ prorataPrice }} {{ currencySymbol }} inkl. MwSt. für den Monat {{ currentMonth }}. Für die folgenden Monate beläuft sich der Preis für Ihre neuen zusätzlichen Nutzerlizenzen auf {{ nextMonthPrice }} {{ currencySymbol }} inkl. MwSt./Monat.",
+  "web_paas_service_add_addon_error": "Fehler beim Hinzufügen des Zusatzmoduls: {{ message }}",
+  "web_paas_service_add_addon_success_storage": "Die Änderung Ihres Storages wurde registriert. Sie können den Verlauf der Lieferung in Ihrem Account mitverfolgen. Gehen Sie dazu in den Bereich <a href='{{orderURL}}'>Meine Bestellungen</a>",
+  "web_paas_service_add_addon_success_staging_environment": "Die Änderung Ihrer Testumgebung wurde registriert. Sie können den Verlauf der Lieferung in Ihrem Account mitverfolgen. Gehen Sie dazu in den Bereich <a href='{{orderURL}}'>Meine Bestellungen</a>",
+  "web_paas_service_add_addon_success_user_license": "Die Änderung Ihrer Nutzerlizenz wurde registriert. Sie können den Verlauf der Lieferung in Ihrem Account mitverfolgen. Gehen Sie dazu in den Bereich <a href='{{orderURL}}'>Meine Bestellungen</a>",
+  "web_paas_service_add_addon_fetching_price": "Berechnung des Preises",
+  "web_paas_service_add_addon_storage_info": "Bitte beachten Sie: Es ist nicht möglich, den Storage eines Projekts nach Bestellen von zusätzlichem Storage zu reduzieren."
+}

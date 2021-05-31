@@ -2,7 +2,7 @@
   "web_paas_service_terminate_common_confirm": "Confirmar",
   "web_paas_service_terminate_common_cancel": "Cancelar",
   "web_paas_service_terminate_title": "Eliminar el proyecto",
-  "web_paas_service_terminate_description": "¿Seguro que quiere cancelar el proyecto {{projectName}} en el área de cliente y en Platform SH?",
+  "web_paas_service_terminate_description": "¿Seguro que quiere eliminar el proyecto {{projectName}}? Se eliminará tanto en el área de cliente de OVHcloud como en Platform.sh.",
   "web_paas_service_terminate_success": "La solicitud de eliminación del proyecto Platform SH se ha enviado correctamente. Le hemos enviado un mensaje de correo electrónico confirmándole que hemos recibido su solicitud.",
   "web_paas_service_terminate_error": "¡Vaya! Se ha producido un error al eliminar el proyecto: {{ message }}."
 }

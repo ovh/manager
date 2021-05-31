@@ -191,10 +191,6 @@ export default class {
       });
   }
 
-  isChangingPlan() {
-    return this.selectedProject;
-  }
-
   /**
    * Gives whethere to remove users or not
    * (current plan included user licences-new plan included user licences) + Max(0, current plan addon qty - new plan max addon qty )

@@ -1,0 +1,14 @@
+{
+  "web_paas_change_offer_title_edit": "Cambiar de producto",
+  "web_paas_change_offer_description": "Puede cambiar de solución dependiendo de qué haya contratado.",
+  "web_paas_change_offer_choose_offer": "Elija su plan",
+  "web_paas_change_offer_next": "Siguiente",
+  "web_paas_change_offer_options": "Elija las opciones",
+  "web_paas_change_offer_summary_title": "Resumen de la solicitud",
+  "web_paas_change_offer_submit_button": "Cambiar de producto",
+  "web_paas_change_offer_downgrade_licence_warning": "La solución seleccionada le ofrece menos licencias de usuario de las que disponía antes.",
+  "web_paas_change_offer_downgrade_licence_warning_from_plan": "Ahora dispone de {{ licencesIncluded }} licencias de usuario incluidas y {{ additionalLicences }} licencias de usuario adicionales.",
+  "web_paas_change_offer_downgrade_licence_warning_to_plan": "Si desea cambiar su plan de hosting por una gama inferior, deberá eliminar {{ usersToRemove }} licencias de usuario.",
+  "web_paas_change_offer_success": "Se ha enviado la solicitud de modificación del producto.",
+  "web_paas_change_offer_error": "Se ha producido un error al editar el producto: {{ message }}"
+}

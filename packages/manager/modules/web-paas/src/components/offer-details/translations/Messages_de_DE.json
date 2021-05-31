@@ -4,6 +4,12 @@
   "web_paas_offer_num_test_env_single": "{{ numTestEnvironment }} Testumgebung",
   "web_paas_offer_num_test_env_multiple": "{{ numTestEnvironment }} Testumgebungen",
   "web_paas_offer_storage_size": "{{ storageSize }} GB Storage",
-  "web_paas_offer_num_licence_single": "{{ numLicence }} Benutzerlizenz",
-  "web_paas_offer_num_licence_multiple": "{{ numLicence }} Benutzerlizenzen"
+  "web_paas_offer_num_licence_single": "{{ numLicence }} Nutzerlizenz inklusive",
+  "web_paas_offer_num_licence_multiple": "{{ numLicence }} Nutzerlizenzen inklusive",
+  "web_paas_offer_num_licence_max": "(Maximal {{max}})",
+  "web_paas_offer_no_container_restriction": "Keine Beschränkungen der Container",
+  "web_paas_offer_automated_backup": "Automatisches Backup",
+  "web_paas_offer_ssl_certificate": "Let’s Encrypt Zertifikat",
+  "web_paas_offer_single_service": "Single Service: mariadb/memcached",
+  "web_paas_offer_single_app": "Single App: PHP/node.js/Python"
 }

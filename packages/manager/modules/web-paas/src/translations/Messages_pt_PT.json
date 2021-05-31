@@ -21,5 +21,17 @@
   "web_paas_project_status_TERMINATED": "Revogada",
   "web_paas_project_status_SUSPENDED": "Suspenso",
   "web_paas_guides": "Manuais",
-  "web_paas_guides_main": "Web PaaS"
+  "web_paas_guides_main": "Web PaaS",
+  "web_paas_common_confirm": "Confirmar",
+  "web_paas_common_cancel": "Cancelar",
+  "web_paas_common_terminate": "Rescindir",
+  "web_paas_vcpu": "vCPU",
+  "web_paas_user_licences": "Licenças de utilizador",
+  "web_paas_environment": "Ambiente",
+  "web_paas_storage": "Armazenamento",
+  "web_paas_storage_description": "{{ storage }}GB",
+  "web_paas_manage_user_licences": "Gerir as minhas licenças de utilizador",
+  "web_paas_change_range": "Mudar de oferta",
+  "web_paas_region_GRA7": "Gravelines",
+  "web_paas_service_project_user_licence_status": "{{ numLicenceAvailable }}/{{ totalLicence }} licença de utilizador"
 }

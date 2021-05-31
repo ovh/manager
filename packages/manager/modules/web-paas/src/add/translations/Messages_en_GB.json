@@ -1,12 +1,12 @@
 {
   "web_paas_add_project_title": "Create your Web PaaS project",
   "web_paas_add_project_description": "Create your new Web PaaS project powered by Platform.sh. A development platform designed for developers and their teams to design, deploy and run web applications.",
-  "web_paas_add_project_success": "Your order has been processed. Your Web PaaS project performed by Platform.sh is being created, and will be available in a few minutes. You can track the progress of the delivery in your account, in the <a href='{{orderURL}}'>My orders</a> section",
+  "web_paas_add_project_success": "Your order has been processed. You can track the progress of your Web PaaS project performed by Platform.sh in your account, in the <a href='{{orderURL}}'>My orders</a> section",
   "web_paas_add_project_error": "An error has occurred creating your Web PaaS project: {{ message }}",
   "web_paas_add_project_loading": "Creating Web PaaS project...",
   "web_paas_add_project_select_region": "Select a region",
   "web_paas_add_project_storage": "{{ storageSize }} GB",
-  "web_paas_add_project_choose_offer_description": "The solution is currently available as a free beta version. You are subscribed for a period of one month with automatic renewal. When the beta version is complete, the solution will be available for a fee.",
+  "web_paas_add_project_choose_offer_description": "Choose the best plan for your project: Start, Develop or Expand.",
   "web_paas_add_project_next": "Next",
   "web_paas_add_project_choose_offer": "Choose your solution",
   "web_paas_add_project_configure": "Configure your project",
@@ -24,5 +24,9 @@
   "web_paas_add_project_options_environment_popover": "You cannot select the environment in the beta version",
   "web_paas_add_project_region_na": "Regions not available. Try again",
   "web_paas_add_project_environment": "{{count}} environment",
-  "web_paas_add_project_license": "{{count}} user licence"
+  "web_paas_add_project_license": "{{count}} user licence",
+  "web_paas_add_project_options_description": "Add storage, environment, and user licence options.",
+  "web_paas_add_project_region_description": "Select the location of your datacentre.",
+  "web_paas_add_project_summary_title": "Order summary ",
+  "web_paas_add_project_create": "Create a project"
 }

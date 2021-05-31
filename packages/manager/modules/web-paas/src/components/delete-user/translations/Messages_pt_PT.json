@@ -1,0 +1,6 @@
+{
+  "web_paas_user_licences_delete_heading": "Eliminar utilizador",
+  "web_paas_user_licences_delete_description": "Vai eliminar definitivamente o utilizador {{accountName}}",
+  "web_paas_user_licences_delete_user_success": "O utilizador foi eliminado do projeto com sucesso",
+  "web_paas_user_licences_delete_user_error": "Ocorreu um erro aquando da eliminação do utilizador"
+}

@@ -68,6 +68,6 @@
   "server_sidebar_order_item_managed_bare_metal_title": "Managed Bare Metal",
   "server_sidebar_item_domain_bulk_title": "Masowe operacje",
   "server_sidebar_item_web_paas_title": "Web PaaS",
-  "server_sidebar_item_web_paas_all_accounts_title": "Wszystkie konta",
+  "server_sidebar_item_web_paas_all_accounts_title": "Wszystkie projekty",
   "server_sidebar_order_item_web_paas_title": "Web PaaS"
 }
