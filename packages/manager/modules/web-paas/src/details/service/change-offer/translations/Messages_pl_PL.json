@@ -1,0 +1,14 @@
+{
+  "web_paas_change_offer_title_edit": "Zmodyfikuj ofertę",
+  "web_paas_change_offer_description": "Możesz zmienić obecną ofertę na inną.",
+  "web_paas_change_offer_choose_offer": "Wybierz ofertę",
+  "web_paas_change_offer_next": "Dalej",
+  "web_paas_change_offer_options": "Wybierz opcje",
+  "web_paas_change_offer_summary_title": "Podsumowanie zamówienia",
+  "web_paas_change_offer_submit_button": "Zmodyfikuj ofertę",
+  "web_paas_change_offer_downgrade_licence_warning": "Wybrane rozwiązanie oferuje mniejszą liczbę licencji użytkowników niż dotychczasowe rozwiązanie.",
+  "web_paas_change_offer_downgrade_licence_warning_from_plan": "Posiadasz {{licencesIncluded}} licencji użytkowników zawartych w ofercie oraz {{additionalLicences}} licencji dodatkowych.",
+  "web_paas_change_offer_downgrade_licence_warning_to_plan": "Jeśli chcesz zmienić ofertę na niższą, usuń {{usersToRemove}} licencji użytkownika.",
+  "web_paas_change_offer_success": "Zmiana oferty i opcji została zarejestrowana.",
+  "web_paas_change_offer_error": "Wystąpił błąd podczas zmiany oferty: {{message}}"
+}

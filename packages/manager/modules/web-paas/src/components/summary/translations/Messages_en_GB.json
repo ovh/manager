@@ -1,0 +1,10 @@
+{
+  "web_paas_summary_offer": "Solution ",
+  "web_paas_summary_total": "Total",
+  "web_paas_summary_addon_storage": "{{quantity}}GB additional storage",
+  "web_paas_summary_addon_user_licence": "{{quantity}} additional user licences",
+  "web_paas_summary_addon_environment": "{{quantity}} additional test environments",
+  "web_paas_summary_prorata_price": "Price pro rata (calculated on the basis of the current month)",
+  "web_paas_summary_next_month_price": "Monthly price (for upcoming months)",
+  "web_paas_summary_price_per_month": "Month"
+}

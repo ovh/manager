@@ -1,0 +1,14 @@
+{
+  "web_paas_change_offer_title_edit": "Modifica l'offerta",
+  "web_paas_change_offer_description": "Puoi cambiare offerta commerciale, in base a quella già sottoscritta.",
+  "web_paas_change_offer_choose_offer": "Scegli la tua offerta",
+  "web_paas_change_offer_next": "Continua",
+  "web_paas_change_offer_options": "Scegli le opzioni",
+  "web_paas_change_offer_summary_title": "Riepilogo del tuo ordine",
+  "web_paas_change_offer_submit_button": "Modifica l'offerta",
+  "web_paas_change_offer_downgrade_licence_warning": "La soluzione selezionata ti offre meno licenze utente di quante ne avessi prima.",
+  "web_paas_change_offer_downgrade_licence_warning_from_plan": "Hai {{ licencesIncluded }} licenze utente incluse e {{ additionalLicences }} licenze utente aggiuntive.",
+  "web_paas_change_offer_downgrade_licence_warning_to_plan": "Per passare a un’offerta inferiore, è necessario eliminare {{ usersToRemove }} licenze utente.",
+  "web_paas_change_offer_success": "La modifica della tua offerta e delle tue opzioni è stata presa in carico.",
+  "web_paas_change_offer_error": "Si è verificato un errore durante la modifica dell'offerta: {{ message }}"
+}

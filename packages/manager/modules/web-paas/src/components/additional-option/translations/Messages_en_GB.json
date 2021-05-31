@@ -1,0 +1,9 @@
+{
+  "web_paas_offer_additional_option_title_staging_environment": "Add test environments",
+  "web_paas_offer_additional_option_title_storage": "Add storage (in GB)",
+  "web_paas_offer_additional_option_title_user_license": "Add user licences",
+  "web_paas_offer_additional_option_price_desc": "/month",
+  "web_paas_offer_additional_option_price_desc_storage_environment": "environment/month",
+  "web_paas_offer_additional_option_invalid_max": "Please enter a value less than or equal to {{max}}",
+  "web_paas_offer_additional_option_price_text": "{{currencySymbol}}{{price}} ex. VAT"
+}

@@ -1,0 +1,9 @@
+{
+  "web_paas_user_licences_invite_user_title": "Invitar a un usuario a su proyecto",
+  "web_paas_user_licences_invite_user": "Añadir un usuario",
+  "web_paas_user_licences_invite_user_description": "Puede invitar a un colaborador a que se una a su proyecto Platform.sh.",
+  "web_paas_user_licences_invite_user_success": "Se ha añadido el usuario correctamente al proyecto.",
+  "web_paas_user_licences_invite_user_error": "Se ha producido un error al invitar al usuario.",
+  "web_paas_user_licences_invite_user_label": "Identificador de cliente (NIC):",
+  "web_paas_user_licences_invite_user_popover": "El usuario al que desee invitar debe tener una cuenta de usuario con OVH."
+}

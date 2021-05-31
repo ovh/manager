@@ -2,7 +2,7 @@
   "web_paas_service_terminate_common_confirm": "Bestätigen",
   "web_paas_service_terminate_common_cancel": "Stornieren",
   "web_paas_service_terminate_title": "Projekt löschen",
-  "web_paas_service_terminate_description": "Sind Sie sicher, dass Sie Ihr Projekt {{projectName}} im Kundencenter und in Platform SH stornieren möchten?",
+  "web_paas_service_terminate_description": "Sind Sie sicher, dass Sie Ihr Projekt {{projectName}} löschen möchten? Ihr Projekt wird in Ihrem OVHcloud Kundencenter und bei Platform.sh gelöscht.",
   "web_paas_service_terminate_success": "Ihre Anfrage zum Löschen des Platform SH Projekts wurde registriert. Es wurde eine E-Mail zur Bestätigung Ihrer Anfrage versandt.",
   "web_paas_service_terminate_error": "Beim Löschen Ihres Projekts ist ein Fehler aufgetreten: {{ message }}"
 }

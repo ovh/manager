@@ -21,5 +21,17 @@
   "web_paas_project_status_TERMINATED": "Usunięty",
   "web_paas_project_status_SUSPENDED": "Zawieszony",
   "web_paas_guides": "Przewodniki",
-  "web_paas_guides_main": "Web PaaS"
+  "web_paas_guides_main": "Web PaaS",
+  "web_paas_common_confirm": "Zatwierdź",
+  "web_paas_common_cancel": "Anuluj",
+  "web_paas_common_terminate": "Zrezygnuj",
+  "web_paas_vcpu": "vCPU",
+  "web_paas_user_licences": "Licencje użytkownika",
+  "web_paas_environment": "Środowisko",
+  "web_paas_storage": "Przestrzeń dyskowa",
+  "web_paas_storage_description": "{{storage}} GB",
+  "web_paas_manage_user_licences": "Zarządzanie licencjami użytkownika",
+  "web_paas_change_range": "Zmień ofertę",
+  "web_paas_region_GRA7": "Gravelines",
+  "web_paas_service_project_user_licence_status": "{{numLicenceAvailable}}/{{totalLicence}} licencji użytkownika"
 }

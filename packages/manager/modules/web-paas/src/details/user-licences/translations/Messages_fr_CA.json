@@ -1,0 +1,15 @@
+{
+  "web_paas_user_licences_account_name": "Nom du compte",
+  "web_paas_user_licences_customer_type": "Type de client",
+  "web_paas_user_licences_created_at": "Créé à",
+  "web_paas_user_licences_invite_user": "Inviter un utilisateur",
+  "web_paas_user_licences_heading": "Gérer les utilisateurs",
+  "web_paas_user_licences_range_text": "Votre offre {{plan}}, possède {{included}} licences utilisateur incluses et {{addon}} licences supplémentaires. Ceux-ci auront ainsi accès à vos projets sur Web PaaS",
+  "web_paas_user_licences_users_listed": "Licences utilisateur",
+  "web_paas_user_licences_more_users": "Si vous souhaitez plus d'utilisateurs, découvrez l'offre",
+  "web_paas_user_licences_more_users_develop_link": "Expand",
+  "web_paas_user_licences_more_users_start_link": "Develop ou Expand",
+  "web_paas_user_licences_used": "{{ numLicenceAvailable }}/{{ totalLicence }} Licences utilisées",
+  "web_paas_user_licences_range_text_start_offer": "Vous avez actuellement l'offre Start avec 1 licence utilisateur admin incluse",
+  "web_paas_user_licences_add_licences": "Ajouter licences utilisateur"
+}

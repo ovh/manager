@@ -126,5 +126,6 @@
   "ovhManagerSupport_new_creation_error_dedicated_server_service_mandatory": "Interventions of this type cannot be requested if you do not have a dedicated server.",
   "ovhManagerSupport_new_serviceType_managed_bare_metal": "Managed Bare Metal",
   "ovhManagerSupport_new": "Create a request",
-  "ovhManagerSupport_new_serviceType_ai_training_job": "AI Training"
+  "ovhManagerSupport_new_serviceType_ai_training_job": "AI Training",
+  "ovhManagerSupport_new_serviceType_webpaas": "Web PaaS"
 }

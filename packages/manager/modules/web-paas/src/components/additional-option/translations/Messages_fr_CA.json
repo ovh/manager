@@ -1,0 +1,9 @@
+{
+  "web_paas_offer_additional_option_title_staging_environment": "Ajouter des environnements de test",
+  "web_paas_offer_additional_option_title_storage": "Ajouter du stockage (en Go)",
+  "web_paas_offer_additional_option_title_user_license": "Ajouter des licences utilisateur",
+  "web_paas_offer_additional_option_price_desc": "/mois",
+  "web_paas_offer_additional_option_price_desc_storage_environment": "environment/mois",
+  "web_paas_offer_additional_option_invalid_max": "Veuillez saisir une valeur plus petite ou égale à {{max}}",
+  "web_paas_offer_additional_option_price_text": "{{price}} {{currencySymbol}} HT"
+}

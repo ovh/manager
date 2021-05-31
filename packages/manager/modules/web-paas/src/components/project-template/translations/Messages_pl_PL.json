@@ -1,3 +1,5 @@
 {
-  "web_paas_project_template_choose": "Wybierz istniejący szablon"
+  "web_paas_project_template_choose": "Wybierz istniejący szablon",
+  "web_paas_project_template_count": "{{count}} dostępnych szablonów",
+  "web_paas_project_template_no_result": "Brak wyników"
 }

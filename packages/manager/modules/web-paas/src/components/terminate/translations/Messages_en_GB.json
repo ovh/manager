@@ -2,7 +2,7 @@
   "web_paas_service_terminate_common_confirm": "Confirm",
   "web_paas_service_terminate_common_cancel": "Cancel",
   "web_paas_service_terminate_title": "Delete project",
-  "web_paas_service_terminate_description": "Are you sure you want to cancel your {{projectName}} project in the OVHcloud Control Panel and Platform.sh?",
+  "web_paas_service_terminate_description": "Are you sure you want to delete your {{projectName}} project? It will be deleted in the OVHcloud Control Panel, and Platform.sh.",
   "web_paas_service_terminate_success": "Your request to delete the Platform.sh project has been processed. A confirmation email has been sent for your request.",
   "web_paas_service_terminate_error": "An error has occurred deleting your project: {{message}}"
 }
