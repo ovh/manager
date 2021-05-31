@@ -10468,7 +10468,7 @@ flat-cache@^2.0.1:
 
 flatpickr@4.6.9, flatpickr@^4.6.3, flatpickr@~4.5.2:
   version "4.6.9"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
+  resolved "https://registry.npmjs.org/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
   integrity sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==
 
 flatted@^2.0.0:
@@ -15779,10 +15779,10 @@ osenv@0, osenv@^0.1.4, osenv@^0.1.5:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-ovh-api-services@^11.1.1:
-  version "11.1.1"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-11.1.1.tgz#d032085c228388dac2944b39d380c8c58ca8487e"
-  integrity sha512-0mCuG2zih6h91lPipFiFBIZ+K8LgHQlHMBhvRPP8HQwrVJwGiDRQjloNmvGTLJPtX1uaSk/FF6EkqYOsOCZCEA==
+ovh-api-services@^11.2.0:
+  version "11.2.0"
+  resolved "https://registry.npmjs.org/ovh-api-services/-/ovh-api-services-11.2.0.tgz#42583c9fe11e216beaa56cfabe535c36e3b5ca75"
+  integrity sha512-zwUANwCyRR+bqJgBgn8CbA6tV6zjB9koSfLb8ZkRXLgO/Y2t9Ra/tKyQeQxCyHL91UcNSN2Z1Mvcym9ehrDcMQ==
   dependencies:
     lodash "^4.17.20"
 
