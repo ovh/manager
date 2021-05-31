@@ -1,4 +1,8 @@
 import has from 'lodash/has';
+import merge from 'lodash/merge';
+import set from 'lodash/set';
+import 'moment';
+
 import {
   NOTEBOOK_AUTOMATION_INFO,
   NOTEBOOK_STATES,
@@ -17,8 +21,19 @@ export default class Notebook {
    * @param coreConfig {Object|undefined}: (optional) used to get link info
    * @param CucRegionService {CucRegionService|undefined}: (optional) used to get more info about a region
    * */
-  constructor(notebook, coreConfig, CucRegionService) {
-    Object.assign(this, notebook);
+  constructor(
+    { createdAt, id, spec, status, updatedAt, user },
+    coreConfig,
+    CucRegionService,
+  ) {
+    this.updateData({
+      createdAt,
+      id,
+      spec,
+      status,
+      updatedAt,
+      user,
+    });
     this.coreConfig = coreConfig;
     this.CucRegionService = CucRegionService;
 
@@ -102,19 +117,27 @@ export default class Notebook {
   }
 
   isStarting() {
-    return this.status.state === NOTEBOOK_STATUS.STARTING;
+    return this.status?.state === NOTEBOOK_STATUS.STARTING;
   }
 
   isRunning() {
-    return this.status.state === NOTEBOOK_STATUS.RUNNING;
+    return this.status?.state === NOTEBOOK_STATUS.RUNNING;
   }
 
   isStopped() {
-    return this.status.state === NOTEBOOK_STATUS.STOPPED;
+    return this.status?.state === NOTEBOOK_STATUS.STOPPED;
   }
 
   isStopping() {
-    return this.status.state === NOTEBOOK_STATUS.STOPPING;
+    return this.status?.state === NOTEBOOK_STATUS.STOPPING;
+  }
+
+  isPending() {
+    return this.isStarting() || this.isStopping();
+  }
+
+  get state() {
+    return this.status?.state;
   }
 
   getLabelIndex(label) {
@@ -167,11 +190,66 @@ export default class Notebook {
   }
 
   get name() {
-    return this.spec.name;
+    return this.spec?.name;
   }
 
   get region() {
-    return this.spec.region;
+    return this.spec?.region;
+  }
+
+  get cpu() {
+    return this.spec?.resources?.cpu;
+  }
+
+  get gpu() {
+    return this.spec?.resources?.gpu;
+  }
+
+  get unsecureHttp() {
+    return this.spec?.unsecureHttp;
+  }
+
+  get duration() {
+    return this.status?.duration;
+  }
+
+  get durationString() {
+    const duration = moment.duration(this.duration, 'seconds');
+    let durationString = duration.years() ? `${duration.years()}y` : '';
+    durationString =
+      duration.months() || durationString
+        ? `${durationString} ${duration.months()}m`
+        : durationString;
+    durationString =
+      duration.days() || durationString
+        ? `${durationString} ${duration.days()}d`
+        : durationString;
+    durationString =
+      duration.hours() || durationString
+        ? `${durationString} ${duration.hours()}h`
+        : durationString;
+    durationString = `${durationString} ${duration.minutes()}mn`;
+    return durationString;
+  }
+
+  get accessUrl() {
+    return this.status?.url;
+  }
+
+  get editor() {
+    return this.spec?.env?.editor;
+  }
+
+  get framework() {
+    return this.spec?.env?.framework;
+  }
+
+  get frameworkVersion() {
+    return this.spec?.env?.frameworkVersion;
+  }
+
+  setState(state) {
+    set(this, 'status.state', state);
   }
 
   get environment() {
@@ -250,5 +328,9 @@ export default class Notebook {
 
   tagsLimitIsReached() {
     return this.labels.length >= NOTEBOOK_TAGS.LIMIT;
+  }
+
+  updateData(data) {
+    merge(this, data);
   }
 }
