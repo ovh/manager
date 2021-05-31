@@ -4,14 +4,16 @@ import template from './notebooks.html';
 export default {
   bindings: {
     goToAddNotebook: '<',
-    notebookLink: '<',
     goToNotebook: '<',
     goToAttachData: '<',
     goToDeleteNotebook: '<',
     reloadState: '<',
     guideUrl: '<',
+    notebookLink: '<',
     notebooks: '<',
+    pollNotebookStatus: '<',
     projectId: '<',
+    stopPollingNotebookStatus: '<',
     trackNotebooks: '<',
     trackClick: '<',
   },
