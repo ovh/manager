@@ -6,7 +6,7 @@
   "pci_project_instances_shapshots": "Backups",
   "pci_project_instances_licence": "La utilización de imágenes está sujeta a la aceptación previa del contrato de licencia para el usuario final del proveedor.",
   "pci_project_instances_distribution_linux": "Linux",
-  "pci_project_instances_distribution_linux_other": "Arch Linux",
+  "pci_project_instances_distribution_linux_other": "ArchLinux",
   "pci_project_instances_distribution_centos": "CentOS",
   "pci_project_instances_distribution_coreos": "CoreOS",
   "pci_project_instances_distribution_debian": "Debian",

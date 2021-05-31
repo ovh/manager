@@ -15,5 +15,6 @@
   "pci_project_instances_distribution_ubuntu": "Ubuntu",
   "pci_project_instances_distribution_windows_server_2012": "Windows Server 2012",
   "pci_project_instances_distribution_windows_server_2016": "Windows Server 2016",
-  "pci_project_instances_distribution_version": "Version"
+  "pci_project_instances_distribution_version": "Version",
+  "pci_project_instances_distribution_windows_other": "Other Windows operating systems"
 }
