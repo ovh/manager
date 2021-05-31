@@ -1,3 +1,5 @@
+import Notebook from './Notebook.class';
+
 export default class NotebookService {
   static buildGetNotebookUrl(serviceName, notebookId) {
     return `/cloud/project/${serviceName}/ai/notebook/${notebookId}`;
@@ -8,13 +10,31 @@ export default class NotebookService {
       headers: {
         'X-Pagination-Mode': 'CachedObjectList-Pages',
         'X-Pagination-Size': 50000,
+        Pragma: 'no-cache',
       },
     };
   }
 
   /* @ngInject */
-  constructor($http) {
+  constructor($http, Poller) {
     this.$http = $http;
+    this.Poller = Poller;
+  }
+
+  pollNotebookStatus(serviceName, notebookId) {
+    return this.Poller.poll(
+      NotebookService.buildGetNotebookUrl(serviceName, notebookId),
+      {},
+      {
+        namespace: `notebooks_${serviceName}_${notebookId}`,
+        method: 'get',
+        successRule: (notebook) => !new Notebook(notebook).isPending(),
+      },
+    );
+  }
+
+  stopPollingNotebookStatus(serviceName, notebookId) {
+    this.Poller.kill({ namespace: `notebooks_${serviceName}_${notebookId}` });
   }
 
   getNotebookConfigurationCommand(serviceName, notebookSpecs) {
@@ -55,26 +75,19 @@ export default class NotebookService {
 
   removeNotebook(serviceName, notebookId) {
     return this.$http
-      .delete(
-        `/cloud/project/${serviceName}/ai/notebook/${notebookId}/`,
-        NotebookService.getIcebergHeaders(),
-      )
+      .delete(`/cloud/project/${serviceName}/ai/notebook/${notebookId}`)
       .then(({ data }) => data);
   }
 
-  startNotebook(serviceName, notebookId, description) {
+  startNotebook(serviceName, notebookId) {
     return this.$http
-      .put(`/cloud/project/${serviceName}/ai/notebook/${notebookId}/start`, {
-        description,
-      })
+      .put(`/cloud/project/${serviceName}/ai/notebook/${notebookId}/start`)
       .then(({ data }) => data);
   }
 
-  stopNotebook(serviceName, notebookId, description) {
+  stopNotebook(serviceName, notebookId) {
     return this.$http
-      .put(`/cloud/project/${serviceName}/ai/notebook/${notebookId}/stop`, {
-        description,
-      })
+      .put(`/cloud/project/${serviceName}/ai/notebook/${notebookId}/stop`)
       .then(({ data }) => data);
   }
 
@@ -90,7 +103,7 @@ export default class NotebookService {
   getEditors(serviceName) {
     return this.$http
       .get(
-        `/cloud/project/${serviceName}/ai/notebook/capabilities/editor `,
+        `/cloud/project/${serviceName}/ai/notebook/capabilities/editor`,
         NotebookService.getIcebergHeaders(),
       )
       .then(({ data }) => data);
