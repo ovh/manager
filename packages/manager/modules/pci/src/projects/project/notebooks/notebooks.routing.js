@@ -1,3 +1,8 @@
+import find from 'lodash/find';
+import merge from 'lodash/merge';
+
+import Notebook from './Notebook.class';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.notebooks', {
     url: '/notebooks',
@@ -14,8 +19,36 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goToAddNotebook: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.notebooks.add', { projectId }),
-      notebooks: /* @ngInject */ ($q, NotebookService, projectId) =>
-        NotebookService.getNotebooks(projectId),
+
+      notebooks: /* @ngInject */ (
+        editors,
+        frameworks,
+        NotebookService,
+        projectId,
+      ) =>
+        NotebookService.getNotebooks(projectId).then((notebooks) =>
+          notebooks.map(
+            (notebook) =>
+              new Notebook(
+                merge({}, notebook, {
+                  spec: {
+                    env: {
+                      editor: find(editors, { id: notebook.spec.env.editorId }),
+                      framework: find(frameworks, {
+                        id: notebook.spec.env.frameworkId,
+                      }),
+                    },
+                  },
+                }),
+              ),
+          ),
+        ),
+
+      editors: /* @ngInject */ (NotebookService, projectId) =>
+        NotebookService.getEditors(projectId),
+
+      frameworks: /* @ngInject */ (NotebookService, projectId) =>
+        NotebookService.getFrameworks(projectId),
 
       goToNotebooks: ($state, CucCloudMessage, projectId) => (
         message = false,
@@ -83,11 +116,41 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go($state.current, {}, { reload: true });
       },
 
+      notebookLink: /* @ngInject */ ($state, projectId) => (notebook) =>
+        $state.href('pci.projects.project.notebooks.dashboard', {
+          projectId,
+          notebookId: notebook.id,
+        }),
+
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_notebook_list_title'),
 
       notebooksTrackPrefix: () =>
-        'PublicCloud::pci::projects::project::notebooks',
+        'PublicCloud::pci::projects::project::ai_machine_learning::notebooks',
+
+      pollNotebookStatus: /* @ngInject */ (
+        NotebookService,
+        notebooks,
+        projectId,
+      ) => () => {
+        notebooks.forEach((notebook) => {
+          if (notebook.isPending()) {
+            NotebookService.pollNotebookStatus(
+              projectId,
+              notebook.id,
+            ).then((notebookInfo) => notebook.updateData(notebookInfo));
+          }
+        });
+      },
+
+      stopPollingNotebookStatus: /* @ngInject */ (
+        NotebookService,
+        notebooks,
+        projectId,
+      ) => () =>
+        notebooks.forEach((notebook) =>
+          NotebookService.stopPollingNotebookStatus(projectId, notebook.id),
+        ),
 
       trackNotebooks: /* @ngInject */ (
         notebooksTrackPrefix,
