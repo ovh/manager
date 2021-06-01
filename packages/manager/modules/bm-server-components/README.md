@@ -11,14 +11,19 @@ yarn add @ovh-ux/manager-bm-server-components
 ## Usage
 
 ```js
+// import all the components required individually
 import angular from 'angular';
-import { bmServerGeneralInfoTile } from '@ovh-ux/manager-bm-server-components';
+import {
+  bmServerGeneralInfo,
+  bmServerNetwork,
+} from '@ovh-ux/manager-bm-server-components';
 
-angular.module('myApp', [bmServerGeneralInfoTile]);
+angular.module('myApp', [bmServerGeneralInfo]);
 ```
 
 ```html
-<ovh-manager-bm-server-general-info></ovh-manager-bm-server-general-info>
+<bm-server-general-info server="$ctrl.server" user="$ctrl.user"></bm-server-general-info>
+<bm-server-network server="$ctrl.server"></bm-server-network>
 ````
 
 ## Build
