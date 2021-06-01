@@ -108,32 +108,6 @@ class MyController {
 angular.module('myModule', []).controller('myController', MyController);
 ```
 
-### rollup-plugin-less-tilde-importer
-
-Provides ~ (tilde) prefix to tell less compiler that it should resolve imports using a configured array of paths.
-
-```js
-import configGenerator from '@ovh-ux/component-rollup-config';
-
-const config = configGenerator(
-  {
-    input: './src/my-library.js',
-  },
-  {
-    lessTildeImporter: {
-      paths: ['/foo/bar', '/hello/world'],
-    },
-  },
-);
-
-export default [config.cjs()];
-```
-
-```less
-// try importing bootstrap from '/foo/bar/bootstrap' then from '/hello/world/bootstrap'
-@import '~bootstrap';
-```
-
 ### Performance
 
 Regarding the translations related plugins, it's possible to only process translations files for a single language. Please refer to the example below. This can be useful if you want faster builds in your development environment for example.
@@ -167,10 +141,6 @@ $ rollup -c --environment LANGUAGES:fr_FR-en_GB-en_US
 ```sh
 $ yarn test
 ```
-
-## Related
-
-- [@ovh-ux/rollup-plugin-less-tilde-importer](https://github.com/ovh/rollup-plugin-less-tilde-importer) - Rollup plugin to facilitate less imports with a ~ (tilde) prefix
 
 ## Contributing
 
