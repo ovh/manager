@@ -43,7 +43,7 @@
     "lodash": "~4.17.11"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^8.0.0 || ^9.0.0"
+    "@ovh-ux/component-rollup-config": "^9.0.0 || ^10.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-sso-auth": "^4.4.0",

@@ -1,12 +1,14 @@
-@import '~ovh-ui-kit-bs/dist/less/bootstrap/_variables';
-@import '~bootstrap/less/mixins';
-@import '~bootstrap/less/utilities';
-@import '~bootstrap/less/glyphicons';
-@import '~@ovh-ux/ui-kit/dist/less/_tokens';
-@import '~font-awesome/less/mixins';
-@import '~font-awesome/less/variables';
-@import '~ovh-common-style/less/helpers';
-@import '~ovh-common-style/less/fonts/open-sans';
+@import 'ovh-ui-kit-bs/dist/less/bootstrap/_variables';
+@import 'bootstrap/less/mixins';
+@import 'bootstrap/less/utilities';
+@import 'bootstrap/less/glyphicons';
+@import '@ovh-ux/ui-kit/dist/less/_tokens';
+@import 'font-awesome/less/mixins';
+@import 'font-awesome/less/variables';
+@import 'ovh-common-style/less/helpers';
+
+@ovh-common-style-font-path: '~ovh-common-syle/fonts';
+@import 'ovh-common-style/less/fonts/open-sans';
 
 .cloud-legacy {
   @TopNavResponsiveLeft: 15px;

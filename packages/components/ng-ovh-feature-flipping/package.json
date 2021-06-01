@@ -35,7 +35,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-feature-flipping' --include-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^8.0.0 || ^9.0.0"
+    "@ovh-ux/component-rollup-config": "^9.0.0 || ^10.0.0"
   },
   "peerDependencies": {
     "angular": "^1.7"
