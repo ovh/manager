@@ -1,3 +1,12 @@
+# [15.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.24.2...@ovh-ux/manager-web@15.25.0) (2021-06-01)
+
+
+### Features
+
+* **hosting:** move infra statistics from dashboard to statistics tab ([#4966](https://github.com/ovh/manager/issues/4966)) ([fe5c2ba](https://github.com/ovh/manager/commit/fe5c2ba7865ff42afbc3e1db9fbbcd3d2bab7380))
+
+
+
 ## [15.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.24.1...@ovh-ux/manager-web@15.24.2) (2021-05-19)
 
 
