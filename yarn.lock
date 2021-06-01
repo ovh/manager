@@ -3008,14 +3008,6 @@
     lodash "^4.17.15"
     rollup-pluginutils "^2.8.2"
 
-"@ovh-ux/rollup-plugin-less-tilde-importer@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-tilde-importer/-/rollup-plugin-less-tilde-importer-1.0.3.tgz#fe3235522ec3ac340c01a9693fa4b0ae679f5548"
-  integrity sha512-v+Fa7vKcVmiM0iEIFjvcq8+NvFyRz0ELbGOy3IKxQR28u9HvMEvnw6qAj57BNbSVKH5d5QlYSCafgM7FYMW3nA==
-  dependencies:
-    magic-string "^0.25.7"
-    rollup-pluginutils "^2.8.2"
-
 "@ovh-ux/translate-async-loader@^1.0.8":
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
