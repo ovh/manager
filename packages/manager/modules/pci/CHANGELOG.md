@@ -1,3 +1,12 @@
+## [5.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.27.0...@ovh-ux/manager-pci@5.27.1) (2021-06-01)
+
+
+### Bug Fixes
+
+* **project.training.job:** use right log api endpoint ([#5025](https://github.com/ovh/manager/issues/5025)) ([f4e523f](https://github.com/ovh/manager/commit/f4e523f56f24725fbb94dc759b8decdfdbf305d7))
+
+
+
 # [5.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.26.1...@ovh-ux/manager-pci@5.27.0) (2021-06-01)
 
 
