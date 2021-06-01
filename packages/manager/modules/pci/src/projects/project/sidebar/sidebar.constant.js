@@ -127,7 +127,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
     subitems: [
       {
         id: 'training',
-        beta: true,
+        new: true,
         options: {
           state: 'pci.projects.project.training',
         },

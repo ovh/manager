@@ -20,8 +20,8 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.1.2",
-    "@ovh-ux/ng-at-internet": "^5.6.1",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/ng-at-internet": "^5.6.1",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.3",
     "@ovh-ux/ng-ovh-doc-url": "^2.0.1",
     "@ovh-ux/ng-ovh-sidebar-menu": "^10.1.1",
@@ -37,6 +37,6 @@
     "angular-websocket": "^2.0.1",
     "bootstrap": "~3.3.0",
     "moment": "^2.24.0",
-    "ovh-api-services": "^11.0.0"
+    "ovh-api-services": "^11.2.0"
   }
 }
