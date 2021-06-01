@@ -1600,5 +1600,6 @@
   "exchange_reset_mfa_success": "Dwuetapowa weryfikacja została zresetowana.",
   "exchange_mfa_error": "Wystąpił błąd: {{error}}",
   "exchange_delete_mfa_success": "Weryfikacja dwuetapowa za pomocą wiadomości SMS została usunięta.",
-  "exchange_delete_mfa_error": "Wystąpił błąd podczas usuwania weryfikacji dwuetapowej: {{error}}"
+  "exchange_delete_mfa_error": "Wystąpił błąd podczas usuwania weryfikacji dwuetapowej: {{error}}",
+  "exchange_ACTION_configure_services_label_security_account": "Bezpieczeństwo kont"
 }
