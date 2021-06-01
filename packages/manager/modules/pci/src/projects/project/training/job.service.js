@@ -69,7 +69,7 @@ export default class PciProjectTrainingJobService {
     return this.OvhApiCloudProjectAi.Training()
       .Job()
       .v6()
-      .logs(
+      .log(
         {
           serviceName: projectId,
           jobId,
