@@ -1,51 +1,59 @@
-import set from 'lodash/set';
+import angular from 'angular';
+import 'angular-translate';
+import 'oclazyload';
+import 'ovh-api-services';
+import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
+import '@ovh-ux/ui-kit';
+import '@uirouter/angularjs';
 
-import './newAccountForm/new-account-form.module';
 import advanced from './advanced/advanced.module';
-import config, { getConstants } from '../../config/config';
-import dashboard from './dashboard/user-dahboard.module';
+import dashboard from './dashboard/user-dashboard.module';
+import emails from './emails/user-emails.module';
+import infos from './infos/user-infos.module';
+import ipRestriction from './ip/restriction/user-ip-restriction.module';
+import newAccountForm from './components/newAccountForm/new-account-form-component.module';
+import security from './security/user-security.module';
 import supportLevel from './support-level/support-level.module';
+import users from './users/users.module';
+
+import routing from './user.routes';
+
+import userPasswordController from './password/user-password.controller';
+import userPasswordTemplate from './password/user-password.html';
+
+const moduleName = 'UserAccount';
 
 angular
-  .module('UserAccount', [
-    'ngOvhUtils',
-    'ovhSignupApp',
+  .module(moduleName, [
+    ngOvhUtils,
+    'oc.lazyLoad',
+    'oui',
+    'ovh-api-services',
+    'pascalprecht.translate',
+    'ui.router',
     advanced,
     dashboard,
+    emails,
+    infos,
+    ipRestriction,
+    newAccountForm,
+    security,
     supportLevel,
+    users,
   ])
-  .constant('UserAccount.constants', {
-    aapiRootPath: config.aapiRootPath,
-    swsProxyRootPath: config.swsProxyRootPath,
-    target: config.target,
-  })
-  .provider(
-    'AccountCreationURLS',
-    /* @ngInject */ () => ({
-      $get: /* @ngInject */ (coreConfig) =>
-        getConstants(coreConfig.getRegion()).accountCreation,
-    }),
+  .config(routing)
+  .controller(
+    'UserAccount.controllers.doubleAuth.password',
+    userPasswordController,
   )
-  .constant('sshkey-regex', [
-    {
-      name: 'RSA',
-      regex: /^(ssh-rsa)\s+(A{4}[0-9A-Za-z +/]+[=]{0,3})\s+(\S+)$/,
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        'account/user/password/user-password.html',
+        userPasswordTemplate,
+      );
     },
-    {
-      name: 'ECDSA',
-      regex: /^(ecdsa-sha2-nistp[0-9]+)\s+(A{4}[0-9A-Za-z +/]+[=]{0,3})\s+(\S+)$/,
-    },
-    {
-      name: 'ED25519',
-      regex: /^(ssh-ed25519)\s+(A{4}[0-9A-Za-z +/]+[=]{0,3})\s+(\S+)$/,
-    },
-  ])
-  .run([
-    '$rootScope',
-    'UserAccount.constants',
-    ($rootScope, userAccountConstants) => {
-      set($rootScope, 'target', userAccountConstants.target);
-      set($rootScope, 'worldPart', userAccountConstants.target);
-    },
-  ])
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
+
+export default moduleName;

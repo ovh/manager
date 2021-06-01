@@ -15,23 +15,25 @@ import values from 'lodash/values';
 
 import { LANGUAGES } from '@ovh-ux/manager-config';
 
-angular.module('ovhSignupApp').component('newAccountForm', {
+import config from '../../../../config/config';
+import formConfig from './new-account-form-component.constants';
+import template from './new-account-form-component.html';
+
+export default {
   bindings: {
     model: '<',
     readonly: '<',
     onSubmit: '&', // on create callback
     onCancel: '&', // on cancel callback
   },
-  template: '<div data-ng-include="getTemplateUrl()"></div>',
+  template,
   controller: [
     '$scope',
     '$q',
     '$http',
     '$timeout',
     'coreConfig',
-    'NewAccountFormConfig',
     'Alerter',
-    'UserAccount.constants',
     'userAccountServiceInfos',
     '$translate',
     function newAccountFormController(
@@ -40,9 +42,7 @@ angular.module('ovhSignupApp').component('newAccountForm', {
       $http,
       $timeout,
       coreConfig,
-      NewAccountFormConfig,
       Alerter,
-      UserAccountConstants,
       UserAccountServiceInfos,
       $translate,
     ) {
@@ -55,9 +55,6 @@ angular.module('ovhSignupApp').component('newAccountForm', {
       this.isSubmitting = false;
       this.originalManagerLanguage = coreConfig.getUserLocale();
       const CONSENT_MARKETING_EMAIL_NAME = 'consent-marketing-email';
-
-      $scope.getTemplateUrl = () =>
-        'account/user/components/newAccountForm/new-account-form-component.html';
 
       this.$onInit = () => {
         // backup of original model
@@ -114,10 +111,7 @@ angular.module('ovhSignupApp').component('newAccountForm', {
             consentDecision = get(fetchedConsentDecision, 'value', false);
           })
           .then(() =>
-            $http.post(
-              `${UserAccountConstants.swsProxyRootPath}newAccount/rules`,
-              params,
-            ),
+            $http.post(`${config.swsProxyRootPath}newAccount/rules`, params),
           )
           .then((result) => {
             if (result.status !== 200) {
@@ -234,7 +228,7 @@ angular.module('ovhSignupApp').component('newAccountForm', {
         model = omit(model, 'managerLanguage');
 
         let promise = $http
-          .put(`${UserAccountConstants.swsProxyRootPath}me`, model)
+          .put(`${config.swsProxyRootPath}me`, model)
           .then((result) => {
             if (result.status !== 200) {
               return $q.reject(result);
@@ -310,7 +304,7 @@ angular.module('ovhSignupApp').component('newAccountForm', {
       };
 
       // return the list of form fieldsets
-      this.getSections = () => keys(NewAccountFormConfig.sections);
+      this.getSections = () => keys(formConfig.sections);
 
       // return the list of fields for a given fieldset name
       // readonly rules are not returned because they are not editable
@@ -318,12 +312,12 @@ angular.module('ovhSignupApp').component('newAccountForm', {
         // special section to handle fields that does not belong to any section
         if (section === 'other') {
           return filter(this.rules, (rule) => {
-            const allFields = flatten(values(NewAccountFormConfig.sections));
+            const allFields = flatten(values(formConfig.sections));
             return indexOf(allFields, rule.fieldName) < 0 && !rule.readonly;
           });
         }
 
-        const fields = NewAccountFormConfig.sections[section];
+        const fields = formConfig.sections[section];
         return filter(
           this.rules,
           (rule) => indexOf(fields, rule.fieldName) >= 0 && !rule.readonly,
@@ -333,7 +327,7 @@ angular.module('ovhSignupApp').component('newAccountForm', {
       // return the section of a given rule
       this.getSectionOfRule = (rule) => {
         let found = null;
-        forEach(NewAccountFormConfig.sections, (fieldNames, section) => {
+        forEach(formConfig.sections, (fieldNames, section) => {
           if (!found && indexOf(fieldNames, rule.fieldName) >= 0) {
             found = section;
           }
@@ -365,4 +359,4 @@ angular.module('ovhSignupApp').component('newAccountForm', {
       this.hasChanges = () => !angular.equals(this.originalModel, this.model);
     },
   ],
-});
+};

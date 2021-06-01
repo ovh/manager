@@ -1,5 +1,6 @@
 import contacts from './contacts';
 import routing from './account.routing';
+import user from './user';
 
 const moduleName = 'ovhManagerDedicatedAccount';
 
@@ -10,6 +11,7 @@ angular
     'pascalprecht.translate',
     'ui.bootstrap',
     'ui.router',
+    user,
   ])
   .config(routing);
 

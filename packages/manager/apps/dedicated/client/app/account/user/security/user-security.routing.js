@@ -1,19 +1,17 @@
-angular
-  .module('UserAccount')
-  .config(
-    /* @ngInject */ ($stateProvider) => {
-      const name = 'app.account.user.security';
+import controller from './user-security.controller';
+import template from './user-security.html';
 
-      $stateProvider.state(name, {
-        url: '/security',
-        templateUrl: 'account/user/security/user-security.html',
-        controller: 'UserAccount.controllers.doubleAuth',
-        translations: ['../'],
-        resolve: {
-          breadcrumb: /* @ngInject */ ($translate) =>
-            $translate.instant('user_security'),
-        },
-      });
+export default /* @ngInject */ ($stateProvider) => {
+  const name = 'app.account.user.security';
+
+  $stateProvider.state(name, {
+    url: '/security',
+    template,
+    controller,
+    translations: ['../'],
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('user_security'),
     },
-  )
-  .run(/* @ngTranslationsInject:json ./translations */);
+  });
+};

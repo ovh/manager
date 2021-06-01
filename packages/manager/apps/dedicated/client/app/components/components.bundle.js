@@ -17,6 +17,7 @@ import './polling/polling.service';
 import './services/services.constants';
 import './services/services.service';
 import './sidebar-menu/account/sidebar-menu-account.config';
+import './sshkeySwitch/sshkeySwitch';
 import './stepper/components/button/navigation-button.component';
 import './stepper/components/button/navigation-button.constants';
 import './stepper/components/button/navigation-button.controller';
