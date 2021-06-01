@@ -37,9 +37,11 @@
         <span data-ng-bind="$ctrl.numberOfInterventions"></span>
     </oui-tile-button>
     <!-- link to Travaux -->
-    <oui-tile-definition term="{{:: 'problem_with_your_product' | translate }}">
+    <oui-tile-definition
+        term="{{:: 'bm_server_problem_with_your_product' | translate }}"
+    >
     </oui-tile-definition>
     <oui-tile-button class="ml-1" data-href="{{:: $ctrl.travauxUrl }}" external>
-        <span data-translate="consult_travaux"></span>
+        <span data-translate="bm_server_consult_travaux"></span>
     </oui-tile-button>
 </oui-tile>

@@ -4,6 +4,6 @@
   "bm_server_support_open_tickets": "Tickets ouverts",
   "bm_server_support_create_ticket": "Créer un ticket",
   "bm_server_interventions": "Intervention en cours",
-  "problem_with_your_product": "Un probléme sur vos produits?",
-  "consult_travaux": "Consulter nos tâches Travaux"
+  "bm_server_problem_with_your_product": "Un probléme sur vos produits?",
+  "bm_server_consult_travaux": "Consulter nos tâches Travaux"
 }
