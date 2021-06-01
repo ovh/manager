@@ -1,16 +1,16 @@
 {
-  "billing_payment_method_split_payment_title": "Paiement fractionné",
-  "billing_payment_method_split_payment_information": "Le mécanisme de paiement fractionné s'applique aux sociétés, associations et entités liées ou contrôlées par l'administration publique qui figurent sur les listes officielles et qui peuvent être consultées ci-dessous.",
-  "billing_payment_method_split_payment_activate": "Activer le paiement fractionné",
-  "billing_payment_method_split_payment_deactivate": "Désactiver le paiement fractionné",
+  "billing_payment_method_split_payment_title": "Split Payment",
+  "billing_payment_method_split_payment_information": "Le mécanisme de Split Payment s'applique aux sociétés, associations et entités liées ou contrôlées par l'administration publique qui figurent sur les listes officielles.",
+  "billing_payment_method_split_payment_activate": "Activer le Split Payment",
+  "billing_payment_method_split_payment_deactivate": "Désactiver le Split Payment",
   "billing_payment_method_split_payment_cancel": "Annuler",
   "billing_payment_method_split_payment_active": "Actif",
   "billing_payment_method_split_payment_inactive": "Inactif",
   "billing_payment_method_split_payment_activating": "En attente d'approbation",
   "billing_payment_method_split_payment_deactivating": "En cours de désactivation",
-  "billing_payment_method_split_payment_information_link": "Information sur le paiement fracturé",
-  "billing_payment_method_split_payment_activate_success": "Votre demande d'activation du paiement fractionné a bien été prise en compte.",
-  "billing_payment_method_split_payment_activate_error": "Une erreur est survenue lors de votre demande d'activation du paiement fractionné.",
-  "billing_payment_method_split_payment_deactivate_success": "Votre demande de désactivation du paiement fractionné a bien été prise en compte.",
-  "billing_payment_method_split_payment_deactivate_error": "Une erreur est survenue lors de votre demande de désactivation du paiement fractionné."
+  "billing_payment_method_split_payment_information_link": "Information sur le Split Payment",
+  "billing_payment_method_split_payment_activate_success": "Votre demande d'activation du Split Payment a bien été prise en compte.",
+  "billing_payment_method_split_payment_activate_error": "Une erreur est survenue lors de votre demande d'activation du Split Payment.",
+  "billing_payment_method_split_payment_deactivate_success": "Votre demande de désactivation du Split Payment a bien été prise en compte.",
+  "billing_payment_method_split_payment_deactivate_error": "Une erreur est survenue lors de votre demande de désactivation du Split Payment."
 }
