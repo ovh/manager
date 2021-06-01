@@ -10,7 +10,7 @@ const moduleName = 'ovhManagerBillingAutorenewSshDelete';
 
 angular
   .module(moduleName, [angularTranslate, ngOvhUtils, uiRouter])
-  .controller('UserAccount.controllers.ssh.delete', controller)
+  .controller('UserAccountSshDelete', controller)
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(

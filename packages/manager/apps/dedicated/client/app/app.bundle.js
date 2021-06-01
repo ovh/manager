@@ -1,10 +1,5 @@
 import './app.routes';
 
-import './account/user/advanced/advanced.module';
-import './account/user/dashboard/user-dahboard.module';
-import './account/user/newAccountForm/new-account-form.module';
-import './account/user/support-level/support-level.module';
-import './account/user/user.module';
 import './components/angular-extensions.module';
 import './components/directives.module';
 import './components/filters.module';

@@ -2,16 +2,16 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerDedicatedAccountContactsLazyLoading';
+const moduleName = 'ovhManagerDedicatedAccountUserLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.account.contacts.**', {
-      url: '/contacts',
+    $stateProvider.state('app.account.user.**', {
+      url: '/useraccount',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
         return import(
-          /* webpackChunkName: "contacts" */ './user-contacts.module'
+          /* webpackChunkName: "user" */ './user.module'
         ).then((mod) => $ocLazyLoad.inject(mod.default || mod));
       },
     });
