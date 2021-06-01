@@ -1,3 +1,14 @@
+# [5.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.26.1...@ovh-ux/manager-pci@5.27.0) (2021-06-01)
+
+
+### Features
+
+* **ai.training:** cpu max ([0e4c1a6](https://github.com/ovh/manager/commit/0e4c1a6028b1cd5767c9f047cc838d37e34d3828))
+* **ai.training:** handle cpu jobs ([d9c6361](https://github.com/ovh/manager/commit/d9c636151b5b5b952be5bb30c691735fee092b7f)), closes [#4604](https://github.com/ovh/manager/issues/4604)
+* **sidebar:** remove beta label for ai-training ([#4860](https://github.com/ovh/manager/issues/4860)) ([ba54ada](https://github.com/ovh/manager/commit/ba54ada114982075dd9c6827aa89aacac525631b))
+
+
+
 ## [5.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.26.0...@ovh-ux/manager-pci@5.26.1) (2021-05-20)
 
 
