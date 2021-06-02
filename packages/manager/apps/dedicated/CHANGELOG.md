@@ -1,3 +1,13 @@
+## [16.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.29.0...@ovh-ux/manager-dedicated@16.29.1) (2021-06-02)
+
+
+### Bug Fixes
+
+* **dedicated:** server cancel resiliation error ([#5037](https://github.com/ovh/manager/issues/5037)) ([908faeb](https://github.com/ovh/manager/commit/908faeb64a2d766715aac445996459aef5e1648a))
+* **server.installation.ovh:** set basic template as default ([#5007](https://github.com/ovh/manager/issues/5007)) ([3fd1a59](https://github.com/ovh/manager/commit/3fd1a59c1d2516a6a27988f8677930866daf8627))
+
+
+
 # [16.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.28.0...@ovh-ux/manager-dedicated@16.29.0) (2021-06-02)
 
 
