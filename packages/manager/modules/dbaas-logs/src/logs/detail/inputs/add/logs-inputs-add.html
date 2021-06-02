@@ -34,7 +34,10 @@
             >
                 <a
                     class="oui-progress-tracker__status"
-                    data-ui-sref="dbaas-logs.detail.inputs.input.editwizard.configure(ctrl.inputId)"
+                    data-ui-sref="dbaas-logs.detail.inputs.input.editwizard.configure({
+                        inputId: ctrl.inputId,
+                        exposedPort: ctrl.input.data.info.exposedPort
+                    })"
                 >
                     <span
                         class="oui-progress-tracker__label"
