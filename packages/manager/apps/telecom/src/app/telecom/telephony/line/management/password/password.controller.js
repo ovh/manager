@@ -137,7 +137,7 @@ export default /* @ngInject */ function TelecomTelephonyLinePasswordCtrl(
       caption: $translate.instant('telephony_line_password_rule_special', {
         list: '#{}()[]-|@=*+/!:;',
       }),
-      validator: /^[\w~"#'{}(\\)[\]\-|\\^@=*+/!:;.,?<>%*µ]+$/,
+      validator: /^[\w~"#'{}(\\)[\]\-|\\^@=*+/!:;.,?<>*µ]+$/,
       immediateWarning: true,
     },
     {
