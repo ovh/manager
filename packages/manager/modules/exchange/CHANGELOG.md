@@ -1,3 +1,15 @@
+## [2.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@2.3.2...@ovh-ux/manager-exchange@2.3.3) (2021-06-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 956] ([7f6e1b7](https://github.com/ovh/manager/commit/7f6e1b796554437fe53a1268b63f4e096330e4fa))
+* **i18n:** add missing translations [CDS 964] ([f4f5cec](https://github.com/ovh/manager/commit/f4f5cecd00c343d38b656e1ae56f9e0dbedeaf28))
+* **i18n:** add missing translations [CDS 965] ([f1b9748](https://github.com/ovh/manager/commit/f1b97481ff1bdd6e9164be943d53ba54648540e9))
+* **i18n:** add missing translations [CDS 972] ([f7962ca](https://github.com/ovh/manager/commit/f7962ca19e58f8057d8eda8f2844a9e1613be9be))
+
+
+
 ## [2.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@2.3.1...@ovh-ux/manager-exchange@2.3.2) (2021-05-20)
 
 

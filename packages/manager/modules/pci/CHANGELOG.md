@@ -1,3 +1,13 @@
+## [5.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.27.1...@ovh-ux/manager-pci@5.27.2) (2021-06-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 968] ([#5016](https://github.com/ovh/manager/issues/5016)) ([de7ce2e](https://github.com/ovh/manager/commit/de7ce2ec81daf69b4fe9124cf34fe39e3d988361))
+* **pci:** track new instance ([#5010](https://github.com/ovh/manager/issues/5010)) ([b165a29](https://github.com/ovh/manager/commit/b165a291c5b7ab480665dddd6c45f074f3c2c48b))
+
+
+
 ## [5.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.27.0...@ovh-ux/manager-pci@5.27.1) (2021-06-01)
 
 

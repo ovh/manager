@@ -1,3 +1,23 @@
+# [16.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.28.0...@ovh-ux/manager-dedicated@16.29.0) (2021-06-02)
+
+
+### Bug Fixes
+
+* **dedicated:** add missing ngInject ([7087e3a](https://github.com/ovh/manager/commit/7087e3a54066fe988aed1acc146a0d81053af056))
+* **dedicated:** tracking for vps and server terminate ([db7f18c](https://github.com/ovh/manager/commit/db7f18c32a39b6d064319ace2b255fe280423d76)), closes [#MANAGER-6680](https://github.com/ovh/manager/issues/MANAGER-6680)
+* **i18n:** add missing translations [CDS 954] ([0c0996c](https://github.com/ovh/manager/commit/0c0996c23feb3405cc8953ca164afd199c4e896b))
+* **i18n:** add missing translations [CDS 955] ([6197a9a](https://github.com/ovh/manager/commit/6197a9a3897c16bd4f943d0f5154129b4a7d0632))
+* **i18n:** add missing translations [CDS 956] ([7f6e1b7](https://github.com/ovh/manager/commit/7f6e1b796554437fe53a1268b63f4e096330e4fa))
+* **i18n:** add missing translations [CDS 960] ([9582d11](https://github.com/ovh/manager/commit/9582d11a4f315ec062be26680821cf1bfc9d93a7))
+* **server.terminate:** handle US enterprise customers ([#4459](https://github.com/ovh/manager/issues/4459)) ([617d14c](https://github.com/ovh/manager/commit/617d14ca4b0ef2912762d9270c2339f68a6eca58))
+
+
+### Features
+
+* **dedicated:** billing module lazy loading ([f10ea73](https://github.com/ovh/manager/commit/f10ea730dcd1086381d18bced3b2e4ee31736a99))
+
+
+
 # [16.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.27.0...@ovh-ux/manager-dedicated@16.28.0) (2021-05-27)
 
 

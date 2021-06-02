@@ -1,3 +1,12 @@
+## [5.6.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.6.1...@ovh-ux/ng-at-internet@5.6.2) (2021-06-02)
+
+
+### Bug Fixes
+
+* **at-internet:** fix infinite process queue loop ([029dcd2](https://github.com/ovh/manager/commit/029dcd2241d959314f147540fa337ae31ca1f480))
+
+
+
 ## [5.6.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.6.0...@ovh-ux/ng-at-internet@5.6.1) (2021-04-28)
 
 

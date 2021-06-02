@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@2.1.0...@ovh-ux/manager-emailpro@2.1.1) (2021-06-02)
+
+
+### Bug Fixes
+
+* **web:** email pro billing mode change ([#4973](https://github.com/ovh/manager/issues/4973)) ([8b722cb](https://github.com/ovh/manager/commit/8b722cbbe5deac1f1b3adaf902c02686609a6dbc))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@2.0.9...@ovh-ux/manager-emailpro@2.1.0) (2021-03-25)
 
 

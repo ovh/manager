@@ -1,3 +1,20 @@
+# [13.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.20.0...@ovh-ux/manager-telecom@13.21.0) (2021-06-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 953] ([9626bae](https://github.com/ovh/manager/commit/9626baed1501328527b57b98052d42e101fa16fd))
+* **repayments:** update repayments process and display ([#5008](https://github.com/ovh/manager/issues/5008)) ([b96225f](https://github.com/ovh/manager/commit/b96225fb94008fdae487a9b8952e43812a17866e))
+* **telecom:** remove angular password package ([3636475](https://github.com/ovh/manager/commit/3636475bfd159e8e24c3ab3d64d9b9e7c03f2e40))
+* **telephony:** use the expected back button ([2a0ceed](https://github.com/ovh/manager/commit/2a0ceedd33b1bc7d1a48b40de656b79325cab02b))
+
+
+### Features
+
+* **offers:** change display price for install fees ([#4859](https://github.com/ovh/manager/issues/4859)) ([cfb72e6](https://github.com/ovh/manager/commit/cfb72e6ba15e9afdfee1e9aa70ee029a82d4253f))
+
+
+
 # [13.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.19.0...@ovh-ux/manager-telecom@13.20.0) (2021-05-19)
 
 
