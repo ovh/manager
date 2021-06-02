@@ -21,15 +21,12 @@ export default /* @ngInject */ ($stateProvider) => {
         .filter(({ family }) => family === 'cdn')
         .map(({ planCode }) => ({
           planCode,
-          available: !planCode.includes(cdnProperties?.type),
+          available:
+            !planCode.includes(cdnProperties?.type) &&
+            planCode !==
+              HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_ADVANCED,
           current: planCode.includes(cdnProperties?.type),
-        }))
-        .concat([
-          {
-            planCode: HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_ADVANCED,
-            available: false,
-          },
-        ]),
+        })),
 
     catalog: /* @ngInject */ (user, WucOrderCartService) =>
       WucOrderCartService.getProductPublicCatalog(
