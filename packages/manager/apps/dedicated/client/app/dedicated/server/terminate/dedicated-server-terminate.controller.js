@@ -11,7 +11,9 @@ export default class ServerTerminateCtrl {
     $translate,
     Alerter,
     constants,
+    coreConfig,
     DedicatedServerFeatureAvailability,
+    ovhFeatureFlipping,
     Server,
   ) {
     this.$http = $http;
@@ -23,6 +25,8 @@ export default class ServerTerminateCtrl {
     this.Server = Server;
     this.DedicatedServerFeatureAvailability = DedicatedServerFeatureAvailability;
     this.Alerter = Alerter;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
+    this.region = coreConfig.getRegion();
   }
 
   $onInit() {
@@ -31,6 +35,25 @@ export default class ServerTerminateCtrl {
       cancelMethod: null,
       isSubmiting: false,
     };
+    this.getTerminationAvailability();
+  }
+
+  getTerminationAvailability() {
+    this.loading = true;
+    this.terminationUnavailable = false;
+    return this.ovhFeatureFlipping
+      .checkFeatureAvailability('dedicated-server:terminate')
+      .then((featureAvailability) => {
+        this.terminationUnavailable = !featureAvailability.isFeatureAvailable(
+          'dedicated-server:terminate',
+        );
+      })
+      .catch(() => {
+        this.terminationUnavailable = true;
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   /**

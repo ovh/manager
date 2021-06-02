@@ -1,18 +1,17 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
-import floor from 'lodash/floor';
 import get from 'lodash/get';
 import groupBy from 'lodash/groupBy';
 import keysIn from 'lodash/keysIn';
 import map from 'lodash/map';
 import size from 'lodash/size';
 import sumBy from 'lodash/sumBy';
-import round from 'lodash/round';
 
 export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingGroupRepaymentsCtrl(
   $q,
   $stateParams,
   $translate,
+  coreConfig,
   OvhApiTelephony,
   TelephonyMediator,
   TucToast,
@@ -49,7 +48,15 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingGro
       isAsking: false,
     };
 
+    self.currency = coreConfig.getUser().currency.symbol;
+
     self.consumptions.isLoading = true;
+
+    const sumPrice = (repayments) =>
+      repayments.reduce(
+        (total, repayment) => total + repayment.price * 1000,
+        0,
+      ) / 1000;
 
     return TelephonyMediator.getGroup($stateParams.billingAccount)
       .then((group) =>
@@ -68,18 +75,13 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingGro
             self.consumptions.raw,
             'duration',
           );
-          self.consumptions.total.price = floor(
-            sumBy(self.consumptions.raw, 'price'),
-            2,
-          );
+
+          self.consumptions.total.price = sumPrice(self.consumptions.raw);
           self.consumptions.total.call = size(self.consumptions.all);
 
           // repayable
           const repayable = filter(self.consumptions.all, 'repayable');
-          self.consumptions.repayable.price = floor(
-            sumBy(repayable, 'price'),
-            2,
-          );
+          self.consumptions.repayable.price = sumPrice(repayable);
           self.consumptions.repayable.call = size(repayable);
           self.consumptions.hasAmountAvailable = find(
             self.consumptions.raw,
@@ -87,23 +89,23 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingGro
           );
 
           // deferred
-          self.consumptions.deferred.price = floor(
-            self.consumptions.total.price - self.consumptions.repayable.price,
-            2,
-          );
+          self.consumptions.deferred.price =
+            self.consumptions.total.price - self.consumptions.repayable.price;
+
           self.consumptions.deferred.call =
             self.consumptions.total.call - self.consumptions.repayable.call;
 
           const dialedNumbers = keysIn(
             groupBy(self.consumptions.raw, 'dialed'),
           );
+
           self.consumptions.groupedByDialedNumber = map(
             dialedNumbers,
             (dialed) => {
               const consumptions = filter(self.consumptions.raw, {
                 dialed,
               });
-              const totalPrice = round(sumBy(consumptions, 'price'), 2);
+              const totalPrice = sumPrice(consumptions);
               const operators = keysIn(
                 groupBy(consumptions, 'operator'),
               ).sort();
@@ -111,10 +113,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingGro
                 const operatorConsumptions = filter(consumptions, {
                   operator,
                 });
-                const totalOperatorPrice = round(
-                  sumBy(operatorConsumptions, 'price'),
-                  2,
-                );
+                const totalOperatorPrice = sumPrice(operatorConsumptions);
                 return {
                   operator,
                   totalOperatorConsumption: size(operatorConsumptions),

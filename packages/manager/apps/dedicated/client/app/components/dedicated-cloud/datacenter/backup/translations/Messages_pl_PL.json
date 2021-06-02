@@ -24,5 +24,5 @@
   "dedicatedCloud_datacenter_backup_capability_update_email_success": "Raport zostanie wysłany na adres e-mail: {{emailAddress}}",
   "dedicatedCloud_datacenter_backup_upgrade_blocked_MBM": "Usługa tworzenia kopii zapasowych jest wykonywana w innym centrum danych niż to, w którym hostowane jest rozwiązanie Essentials. Dopóki realizacja nie dobiegnie końca, nie możesz zmodyfikować usługi tworzenia kopii zapasowych.",
   "dedicatedCloud_datacenter_backup_daily_report_description_1_MBM": "Wybrane dla raportu dziennego opcje mają zastosowanie do wszystkich centrów danych, w których hostowane jest Twoje rozwiązanie  Essentials.",
-  "dedicatedCloud_datacenter_backup_order_warning": "W chwili obecnej nie jesteśmy w stanie przyjmować nowych zamówień. Nasze zespoły są w pełni zmobilizowane i dokładają wszelkich starań, aby jak najszybciej przywrócić możliwość składania zamówień."
+  "dedicatedCloud_datacenter_backup_order_warning": "W chwili obecnej nie jesteśmy w stanie przyjąć nowych zamówień. Nasze zespoły są w pełni zmobilizowane i dokładamy wszelkich starań, aby jak najszybciej przywrócić możliwość składania zamówień."
 }

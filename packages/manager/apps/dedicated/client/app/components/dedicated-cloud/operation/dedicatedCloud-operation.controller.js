@@ -11,16 +11,16 @@ export default class {
     $q,
     $translate,
     $window,
-    BillingOrders,
     DedicatedCloud,
     ouiDatagridService,
+    OvhHttp,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
-    this.BillingOrders = BillingOrders;
     this.DedicatedCloud = DedicatedCloud;
     this.ouiDatagridService = ouiDatagridService;
+    this.OvhHttp = OvhHttp;
   }
 
   $onInit() {
@@ -147,7 +147,12 @@ export default class {
             t0: operation.orderId,
           }),
           action: () =>
-            this.BillingOrders.getOrder(operation.orderId)
+            this.OvhHttp.get('/me/order/{id}', {
+              rootPath: 'apiv6',
+              urlParams: {
+                id: operation.orderId,
+              },
+            })
               .then((order) => {
                 this.$window.open(order.url);
               })

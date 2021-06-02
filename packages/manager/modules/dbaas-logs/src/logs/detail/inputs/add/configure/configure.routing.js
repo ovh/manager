@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('dbaas-logs.detail.inputs.input.editwizard.configure', {
-    url: '/configure',
+    url: '/configure/:exposedPort',
     views: {
       logsInputsAdd: 'dbaasLogsDetailInputsAddConfigure',
     },

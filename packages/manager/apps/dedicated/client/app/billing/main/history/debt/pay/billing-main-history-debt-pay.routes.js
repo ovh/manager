@@ -1,11 +1,13 @@
-angular.module('App').config(($stateProvider) => {
+import controller from './billing-main-history-debt-pay.controller';
+import template from './billing-main-history-debt-pay.html';
+
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.billing.main.history.pay-debt', {
     url: '/debt/:debtId/pay',
     views: {
       modal: {
-        templateUrl:
-          'billing/main/history/debt/pay/billing-main-history-debt-pay.html',
-        controller: 'BillingHistoryDebtPayCtrl',
+        template,
+        controller,
       },
     },
     layout: {
@@ -17,4 +19,4 @@ angular.module('App').config(($stateProvider) => {
       breadcrumb: () => null,
     },
   });
-});
+};

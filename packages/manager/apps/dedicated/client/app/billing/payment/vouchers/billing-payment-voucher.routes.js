@@ -1,20 +1,20 @@
-angular
-  .module('Billing')
-  .config(($stateProvider, $urlRouterProvider) => {
-    const name = 'app.account.billing.payment.vouchers';
+import controller from './billing-vouchers.controller';
+import template from './billing-vouchers.html';
 
-    $stateProvider.state(name, {
-      url: '/vouchers',
-      templateUrl: 'billing/payment/vouchers/billing-vouchers.html',
-      controller: 'Billing.controllers.Vouchers',
-      resolve: {
-        breadcrumb: /* @ngInject */ ($translate) =>
-          $translate.instant('billing_payment_vouchers'),
-      },
-    });
+export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+  const name = 'app.account.billing.payment.vouchers';
 
-    $urlRouterProvider.when(/^\/billing\/vouchers/, ($location, $state) =>
-      $state.go(name),
-    );
-  })
-  .run(/* @ngTranslationsInject:json ./translations */);
+  $stateProvider.state(name, {
+    url: '/vouchers',
+    template,
+    controller,
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('billing_payment_vouchers'),
+    },
+  });
+
+  $urlRouterProvider.when(/^\/billing\/vouchers/, ($location, $state) =>
+    $state.go(name),
+  );
+};

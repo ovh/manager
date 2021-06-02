@@ -1278,5 +1278,6 @@
   "server_configuration_no_intervention_activate_success": "Interwencja w centrum danych jest włączona dla serwera {{serverName}}",
   "server_configuration_no_intervention_activate_failed": "Wystąpił błąd podczas włączania interwencji w centrum danych dla serwera {{serverName}}",
   "server_configuration_no_intervention_deactivate_success": "Interwencja w centrum danych została wyłączona dla serwera {{serverName}}",
-  "server_configuration_no_intervention_deactivate_failed": "Wystąpił błąd podczas wyłączania interwencji w centrum danych dla serwera {{serverName}}"
+  "server_configuration_no_intervention_deactivate_failed": "Wystąpił błąd podczas wyłączania interwencji w centrum danych dla serwera {{serverName}}",
+  "server_close_service_enterprise": "Jeśli chcesz wprowadzić zmiany w swoich usługach i umowach, skontaktuj się z opiekunem klienta OVHcloud"
 }

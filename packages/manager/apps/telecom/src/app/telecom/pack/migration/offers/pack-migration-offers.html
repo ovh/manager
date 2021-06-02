@@ -174,7 +174,8 @@
                                         </strong>
                                         <br/>
                                         <del>
-                                            <small data-ng-bind-html="offer.promotion.installFee.discount.text | tucFormatPrice"></small>
+                                            <small data-ng-bind-html="offer.promotion.installFee.discount.text | tucFormatPrice: { withoutTax: false }"></small>
+                                            <small data-translate="common_without_tax"></small>
                                         </del>
                                     </div>
                                 </td>

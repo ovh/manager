@@ -1278,5 +1278,6 @@
   "server_configuration_no_intervention_activate_success": "A intervenção no local está ativa no servidor {{serverName}}",
   "server_configuration_no_intervention_activate_failed": "Ocorreu um erro aquando da ativação das intervenções no local no servidor {{serverName}}",
   "server_configuration_no_intervention_deactivate_success": "A intervenção no local está desativada no servidor {{serverName}}",
-  "server_configuration_no_intervention_deactivate_failed": "Ocorreu um erro aquando da desativação da intervenção no local no servidor {{serverName}}"
+  "server_configuration_no_intervention_deactivate_failed": "Ocorreu um erro aquando da desativação da intervenção no local no servidor {{serverName}}",
+  "server_close_service_enterprise": "Se pretender efetuar modificações nos seus serviços e contratos, contacte o seu gestor de contas OVHcloud"
 }

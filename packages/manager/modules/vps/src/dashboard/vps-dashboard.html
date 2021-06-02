@@ -572,6 +572,9 @@
                 highlight-engagement="$ctrl.shouldReengage"
                 tracking-prefix="{{ ::$ctrl.trackingPrefix }}"
                 user="$ctrl.connectedUser"
+                commit-impression-data="$ctrl.shouldReengage ?
+                    $ctrl.RECOMMIT_IMPRESSION_TRACKING_DATA :
+                    $ctrl.COMMIT_IMPRESSION_TRACKING_DATA"
             >
             </billing-subscription-tile>
         </div>

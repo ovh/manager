@@ -46,6 +46,13 @@ export default /* @ngInject */ function XdslModemWifiConfigCtrl(
     this.wifi.key2 = '';
   };
 
+  self.setConfirmPasswordValid = function setConfirmPasswordValid() {
+    self.wifiConfigForm.wifiConfirmSecurityKey.$setValidity(
+      'confirm',
+      self.wifi.key2 === self.wifi.key,
+    );
+  };
+
   self.update = function update() {
     if (!this.wifi) {
       return;

@@ -6,11 +6,19 @@ import { LIMIT } from './repayments.constants';
 
 export default class TelecomTelephonyAliasSpecialRepaymentsCtrl {
   /* @ngInject */
-  constructor($state, $stateParams, TucToast, OvhApiTelephony) {
+  constructor($state, $stateParams, coreConfig, TucToast, OvhApiTelephony) {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.TucToast = TucToast;
     this.OvhApiTelephony = OvhApiTelephony;
+
+    this.currency = coreConfig.getUser().currency.symbol;
+
+    this.getRepayementsTotalPrice = (repayments) =>
+      repayments.reduce(
+        (total, repayment) => total + repayment.price * 1000,
+        0,
+      ) / 1000;
   }
 
   $onInit() {
@@ -22,7 +30,6 @@ export default class TelecomTelephonyAliasSpecialRepaymentsCtrl {
     };
 
     this.loading = true;
-    this.decimalPrecision = 1000;
 
     return this.OvhApiTelephony.Service()
       .RepaymentConsumption()
@@ -55,15 +62,6 @@ export default class TelecomTelephonyAliasSpecialRepaymentsCtrl {
       .finally(() => {
         this.loading = false;
       });
-  }
-
-  getRepayementsTotalPrice(repayments) {
-    return (
-      Math.round(
-        repayments.reduce((total, repayment) => total + repayment.price, 0) *
-          this.decimalPrecision,
-      ) / this.decimalPrecision
-    );
   }
 
   onSortChanged($sort) {

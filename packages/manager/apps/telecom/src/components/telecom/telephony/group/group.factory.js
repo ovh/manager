@@ -7,10 +7,7 @@ import map from 'lodash/map';
 import startsWith from 'lodash/startsWith';
 import valuesIn from 'lodash/valuesIn';
 
-import {
-  CALLED_FEES_PREFIX,
-  GROUP_REPAYMENTS_PREFIX,
-} from '../../../../app/telecom/telephony/alias/special/repayments/repayments.constants';
+import { CALLED_FEES_PREFIX } from '../../../../app/telecom/telephony/alias/special/repayments/repayments.constants';
 
 export default /* @ngInject */ (
   $q,
@@ -240,10 +237,6 @@ export default /* @ngInject */ (
       .$promise.then((consumptions) => {
         const calledFeesPrefix = flatten(valuesIn(CALLED_FEES_PREFIX));
 
-        const groupRepaymentsPrefix = flatten(
-          valuesIn(GROUP_REPAYMENTS_PREFIX),
-        );
-
         self.calledFees = flatten(
           map(calledFeesPrefix, (prefix) =>
             filter(
@@ -262,16 +255,7 @@ export default /* @ngInject */ (
 
         self.groupRepayments = {
           all: consumptions,
-          raw: flatten(
-            map(groupRepaymentsPrefix, (prefix) =>
-              filter(
-                consumptions,
-                (consumption) =>
-                  startsWith(consumption.dialed, prefix) &&
-                  consumption.price !== 0,
-              ),
-            ),
-          ),
+          raw: filter(consumptions, (consumption) => consumption.price !== 0),
         };
 
         return self;

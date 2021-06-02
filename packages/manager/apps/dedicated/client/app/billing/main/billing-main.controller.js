@@ -1,9 +1,7 @@
-angular.module('App').controller(
-  'BillingMainCtrl',
-  class BillingMainCtrl {
-    /* @ngInject */
-    constructor(isPayAsYouGoAvailable) {
-      this.isPayAsYouGoAvailable = isPayAsYouGoAvailable;
-    }
-  },
-);
+export default class BillingMainCtrl {
+  /* @ngInject */
+  constructor(coreConfig, isPayAsYouGoAvailable) {
+    this.coreConfig = coreConfig;
+    this.isPayAsYouGoAvailable = isPayAsYouGoAvailable;
+  }
+}

@@ -121,6 +121,7 @@ import managedBaremetal from './managedBaremetal';
 import errorPage from './error';
 import expiredPage from './expired';
 
+import billing from './billing';
 import dedicatedServer from './dedicated/server';
 import dedicatedNas from './dedicated/nas';
 import dedicatedHousing from './dedicated/housing';
@@ -140,11 +141,11 @@ export default (containerEl, environment) => {
       [
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
         account,
+        billing,
         ovhManagerAccountSidebar,
         registerCoreModule(environment),
         ovhManagerAtInternetConfiguration,
         ovhManagerCookiePolicy,
-        'Billing',
         chartjs,
         'controllers',
         cdn,

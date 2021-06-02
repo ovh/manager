@@ -121,7 +121,7 @@
                 </div>
                 <form
                     class="mb-3"
-                    name="wifiConfigForm"
+                    name="ConfigWifiCtrl.wifiConfigForm"
                     data-ng-submit="ConfigWifiCtrl.update()"
                     novalidate
                 >
@@ -162,7 +162,7 @@
                     <!-- SSID -->
                     <div
                         class="form-group"
-                        data-ng-class="{ 'has-error': wifiConfigForm.wifiSSID.$invalid && wifiConfigForm.wifiSSID.$dirty }"
+                        data-ng-class="{ 'has-error': ConfigWifiCtrl.wifiConfigForm.wifiSSID.$invalid && ConfigWifiCtrl.wifiConfigForm.wifiSSID.$dirty }"
                     >
                         <label
                             class="control-label service-title"
@@ -198,8 +198,8 @@
                             </div>
                         </div>
                         <div
-                            data-ng-messages="wifiConfigForm.wifiSSID.$error"
-                            data-ng-if="wifiConfigForm.wifiSSID.$invalid && wifiConfigForm.wifiSSID.$dirty"
+                            data-ng-messages="ConfigWifiCtrl.wifiConfigForm.wifiSSID.$error"
+                            data-ng-if="ConfigWifiCtrl.wifiConfigForm.wifiSSID.$invalid && ConfigWifiCtrl.wifiConfigForm.wifiSSID.$dirty"
                             role="alert"
                             class="mt-2"
                         >
@@ -310,7 +310,7 @@
                     <div
                         class="form-group"
                         data-ng-if="ConfigWifiCtrl.wifi.securityType !== 'None'"
-                        data-ng-class="{ 'has-error': wifiConfigForm.wifiSecurityKey.$invalid && wifiConfigForm.wifiSecurityKey.$dirty }"
+                        data-ng-class="{ 'has-error': ConfigWifiCtrl.wifiConfigForm.wifiSecurityKey.$invalid && ConfigWifiCtrl.wifiConfigForm.wifiSecurityKey.$dirty }"
                     >
                         <label
                             class="control-label service-title"
@@ -344,8 +344,8 @@
                             </div>
                         </div>
                         <div
-                            data-ng-messages="wifiConfigForm.wifiSecurityKey.$error"
-                            data-ng-if="wifiConfigForm.wifiSecurityKey.$invalid"
+                            data-ng-messages="ConfigWifiCtrl.wifiConfigForm.wifiSecurityKey.$error"
+                            data-ng-if="ConfigWifiCtrl.wifiConfigForm.wifiSecurityKey.$invalid"
                             role="alert"
                             class="mt-2"
                         >
@@ -353,7 +353,7 @@
                                 for="wifiSecurityKey"
                                 class="font-weight-normal small"
                                 data-ng-message="required"
-                                data-ng-if="wifiConfigForm.wifiSecurityKey.$dirty"
+                                data-ng-if="ConfigWifiCtrl.wifiConfigForm.wifiSecurityKey.$dirty"
                                 data-translate="xdsl_modem_wifi_config_key_required"
                             >
                             </label>
@@ -368,7 +368,7 @@
                                 for="wifiSecurityKey"
                                 class="font-weight-normal small"
                                 data-ng-message="minlength"
-                                data-ng-if="wifiConfigForm.wifiSecurityKey.$dirty"
+                                data-ng-if="ConfigWifiCtrl.wifiConfigForm.wifiSecurityKey.$dirty"
                                 data-translate="xdsl_modem_wifi_config_key_too_short"
                             >
                             </label>
@@ -380,7 +380,7 @@
                     <div
                         class="form-group"
                         data-ng-if="ConfigWifiCtrl.wifi.securityType !== 'None'"
-                        data-ng-class="{ 'has-error': wifiConfigForm.wifiConfirmSecurityKey.$invalid && wifiConfigForm.wifiConfirmSecurityKey.$dirty }"
+                        data-ng-class="{ 'has-error': ConfigWifiCtrl.wifiConfigForm.wifiConfirmSecurityKey.$invalid && ConfigWifiCtrl.wifiConfigForm.wifiConfirmSecurityKey.$dirty }"
                     >
                         <label
                             class="control-label service-title"
@@ -396,22 +396,20 @@
                                     name="wifiConfirmSecurityKey"
                                     data-translate-attr="{ placeholder: 'xdsl_modem_wifi_config_retype_new_key' }"
                                     data-ng-model="ConfigWifiCtrl.wifi.key2"
+                                    data-ng-change="ConfigWifiCtrl.setConfirmPasswordValid()"
                                     class="form-control"
-                                    data-match-password="wifiSecurityKey"
                                     data-ng-minlength="6"
                                 />
                             </div>
                         </div>
                         <div
-                            data-ng-messages="wifiConfigForm.wifiConfirmSecurityKey.$error"
-                            data-ng-if="wifiConfigForm.wifiConfirmSecurityKey.$invalid && wifiConfigForm.wifiConfirmSecurityKey.$dirty"
+                            data-ng-if="ConfigWifiCtrl.wifiConfigForm.wifiConfirmSecurityKey.$invalid && ConfigWifiCtrl.wifiConfigForm.wifiConfirmSecurityKey.$dirty && ConfigWifiCtrl.wifiConfigForm.wifiConfirmSecurityKey.$error"
                             role="alert"
                             class="mt-2"
                         >
                             <label
                                 for="wifiConfirmSecurityKey"
                                 class="font-weight-normal small"
-                                data-ng-message="passwordMatch"
                                 data-translate="xdsl_modem_wifi_config_key_not_matching"
                             >
                             </label>
@@ -462,7 +460,7 @@
                         <button
                             type="submit"
                             class="btn btn-primary float-right"
-                            data-ng-disabled="!ConfigWifiCtrl.hasConfigChange() || !wifiConfigForm.$valid"
+                            data-ng-disabled="!ConfigWifiCtrl.hasConfigChange() || !ConfigWifiCtrl.wifiConfigForm.$valid"
                         >
                             <oui-spinner
                                 class="mr-2"

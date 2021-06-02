@@ -1,25 +1,26 @@
-angular
-  .module('Billing')
-  .config(
-    /* @ngInject */
-    ($stateProvider, $urlRouterProvider, coreConfigProvider) => {
-      if (coreConfigProvider.isRegion('EU')) {
-        const name = 'app.account.billing.payment.fidelity';
+import controller from './billing-fidelity.controller';
+import template from './billing-fidelity.html';
 
-        $stateProvider.state(name, {
-          url: '/fidelity',
-          templateUrl: 'billing/payment/fidelity/billing-fidelity.html',
-          controller: 'Billing.controllers.Fidelity',
-          resolve: {
-            breadcrumb: /* @ngInject */ ($translate) =>
-              $translate.instant('billing_payment_fidelity'),
-          },
-        });
+export default /* @ngInject */ (
+  $stateProvider,
+  $urlRouterProvider,
+  coreConfigProvider,
+) => {
+  if (coreConfigProvider.isRegion('EU')) {
+    const name = 'app.account.billing.payment.fidelity';
 
-        $urlRouterProvider.when(/^\/billing\/fidelity/, ($location, $state) =>
-          $state.go(name),
-        );
-      }
-    },
-  )
-  .run(/* @ngTranslationsInject:json ./translations */);
+    $stateProvider.state(name, {
+      url: '/fidelity',
+      template,
+      controller,
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('billing_payment_fidelity'),
+      },
+    });
+
+    $urlRouterProvider.when(/^\/billing\/fidelity/, ($location, $state) =>
+      $state.go(name),
+    );
+  }
+};

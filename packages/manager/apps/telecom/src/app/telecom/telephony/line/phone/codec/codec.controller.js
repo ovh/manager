@@ -10,6 +10,7 @@ export default /* @ngInject */ function TelecomTelephonyLinePhoneCodecCtrl(
   $q,
   $stateParams,
   $translate,
+  goBack,
   TelephonyMediator,
   TucToast,
   OvhApiTelephony,
@@ -18,6 +19,8 @@ export default /* @ngInject */ function TelecomTelephonyLinePhoneCodecCtrl(
 ) {
   const self = this;
   let codecsAuto = null;
+
+  self.goBack = goBack;
 
   self.loading = {
     init: false,
