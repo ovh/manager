@@ -1,3 +1,13 @@
+## [15.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.25.0...@ovh-ux/manager-web@15.25.1) (2021-06-02)
+
+
+### Bug Fixes
+
+* **hosting.cdn.order:** remove hard-coded plancode and use api one ([f44e7c4](https://github.com/ovh/manager/commit/f44e7c429f6a289d1f9e465a835ad30432c59d77))
+* **hosting.cdn.order:** sort plancode by prices ([316b366](https://github.com/ovh/manager/commit/316b366058623104a096e481fe180e30d985f5f8))
+
+
+
 # [15.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.24.2...@ovh-ux/manager-web@15.25.0) (2021-06-01)
 
 
