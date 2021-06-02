@@ -2,6 +2,7 @@ import {
   pricingConstants,
   workflowConstants,
 } from '@ovh-ux/manager-product-offers';
+import get from 'lodash/get';
 
 import { WORKFLOW_OPTIONS } from './add.constants';
 
@@ -161,7 +162,10 @@ export default class {
 
   onPlatformOrderError(error) {
     this.Alerter.alertFromSWS(
-      this.$translate.instant('web_paas_add_project_error'),
+      `${this.$translate.instant('web_paas_add_project_error')} ${get(
+        error,
+        'data.message',
+      )}`,
       error,
       this.alerts.add,
     );
