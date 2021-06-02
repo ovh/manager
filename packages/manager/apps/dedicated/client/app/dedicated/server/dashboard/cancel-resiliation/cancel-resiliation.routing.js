@@ -13,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
         cancelResiliation: /* @ngInject */ (
-          BillingAutoRenew,
+          BillingAutoRenewService,
           engagement,
           setReactivateEngagementStrategy,
         ) => (service) => {
@@ -22,7 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
           }
 
           service.cancelResiliation();
-          return BillingAutoRenew.updateService(service);
+          return BillingAutoRenewService.updateService(service);
         },
         endStrategies: /* @ngInject */ (endStrategyEnum) =>
           endStrategyEnum.reduce(
@@ -45,8 +45,8 @@ export default /* @ngInject */ ($stateProvider) => {
             ? Server.getSelected(service.serviceId)
             : Promise.resolve({ engagement: null })
           ).then(({ engagement }) => engagement),
-        service: /* @ngInject */ ($transition$, BillingAutoRenew) =>
-          BillingAutoRenew.getService(
+        service: /* @ngInject */ ($transition$, BillingAutoRenewService) =>
+          BillingAutoRenewService.getService(
             $transition$.params().productId,
             'DEDICATED_SERVER',
           ),
