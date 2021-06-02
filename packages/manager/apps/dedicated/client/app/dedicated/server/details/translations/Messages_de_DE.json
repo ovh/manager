@@ -1278,5 +1278,6 @@
   "server_configuration_no_intervention_activate_success": "Der Eingriff vor Ort ist auf dem Server {{serverName}} aktiviert.",
   "server_configuration_no_intervention_activate_failed": "Bei der Aktivierung der Eingriffe vor Ort auf dem Server {{serverName}} ist ein Fehler aufgetreten.",
   "server_configuration_no_intervention_deactivate_success": "Der Eingriff vor Ort ist für den Server {{serverName}} deaktiviert.",
-  "server_configuration_no_intervention_deactivate_failed": "Bei der Deaktivierung des Eingriffs vor Ort auf dem Server {{serverName}} ist ein Fehler aufgetreten."
+  "server_configuration_no_intervention_deactivate_failed": "Bei der Deaktivierung des Eingriffs vor Ort auf dem Server {{serverName}} ist ein Fehler aufgetreten.",
+  "server_close_service_enterprise": "Wenn Sie Änderungen an Ihren Dienstleistungen und Verträgen vornehmen möchten, wenden Sie sich bitte an Ihren Account-Manager von OVHcloud."
 }

@@ -1,20 +1,30 @@
 <oui-modal
     data-on-dismiss="ctrl.goBack()"
     data-primary-action="ctrl.submitCancelSubscription()"
-    data-primary-disabled="!ctrl.cancelSubscriptionForm.cancelMethod"
+    data-primary-disabled="!ctrl.cancelSubscriptionForm.cancelMethod || ctrl.terminationUnavailable"
+    data-primary-label="{{ !(ctrl.loading || ctrl.terminationUnavailable) ? ('dedicated_server_terminate_confirm' | translate) : '' }}"
     data-secondary-action="ctrl.goBack()"
-    data-primary-label="{{:: 'dedicated_server_terminate_confirm' | translate }}"
+    data-secondary-disabled="ctrl.loading"
     data-secondary-label="{{:: 'dedicated_server_terminate_cancel' | translate }}"
-    data-loading="ctrl.cancelSubscriptionForm.isSubmiting"
+    data-loading="ctrl.cancelSubscriptionForm.isSubmiting || ctrl.loading"
     data-heading="{{:: 'server_close_service' | translate }}"
 >
+    <oui-message
+        class="mb-3"
+        data-ng-if="ctrl.terminationUnavailable"
+        data-type="error"
+    >
+        <span data-translate="server_close_service_enterprise"></span>
+        <span data-ng-if="ctrl.region !== 'US'">(Account Manager).</span>
+    </oui-message>
+
     <p
-        data-ng-if="ctrl.server.engagement && !ctrl.resiliationCapability.message"
+        data-ng-if="ctrl.server.engagement && !ctrl.resiliationCapability.message && !ctrl.terminationUnavailable"
         data-translate="common_resiliate_contact_support"
     ></p>
 
     <div
-        data-ng-if="!ctrl.cancelSubscriptionForm.isSubmiting && (!ctrl.server.engagement || ctrl.resiliationCapability.message)"
+        data-ng-if="!ctrl.cancelSubscriptionForm.isSubmiting && (!ctrl.server.engagement || ctrl.resiliationCapability.message) && !ctrl.terminationUnavailable"
     >
         <oui-message type="warning">
             <span
