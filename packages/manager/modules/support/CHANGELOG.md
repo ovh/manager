@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.2.0...@ovh-ux/manager-support@1.3.0) (2021-06-02)
+
+
+### Features
+
+* **tickets:** add AI Training product ([#5024](https://github.com/ovh/manager/issues/5024)) ([b118c2d](https://github.com/ovh/manager/commit/b118c2de9b0f3d462f9e404b1d90cfa78108d1d3))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.1.1...@ovh-ux/manager-support@1.2.0) (2021-03-25)
 
 
