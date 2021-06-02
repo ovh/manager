@@ -315,7 +315,9 @@ angular
         const getHardRaid = $scope.getHardwareRaid();
         const getOvhTemplates = Server.getOvhTemplates($stateParams.productId)
           .then((templateList) => {
-            $scope.installation.desktopType = templateList.category;
+            $scope.installation.desktopType = templateList.category.sort(
+              (a, b) => a.localeCompare(b),
+            );
             $scope.installation.familyType = templateList.family;
             $scope.installation.distributionList =
               templateList.templates.results;
@@ -388,8 +390,8 @@ angular
         distribution,
         bypass,
       ) {
-        $scope.installation.noPartitioning = distribution.noPartitioning;
-        if (distribution.noPartitioning) {
+        $scope.installation.noPartitioning = distribution?.noPartitioning;
+        if (distribution?.noPartitioning) {
           $scope.installation.customInstall = false;
         }
         // if saveSelectDistribution is not null, a partition has personnalisation
