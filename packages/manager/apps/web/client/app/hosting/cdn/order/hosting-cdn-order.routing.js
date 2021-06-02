@@ -16,20 +16,33 @@ export default /* @ngInject */ ($stateProvider) => {
     autoPayWithPreferredPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
       ovhPaymentMethod.hasDefaultPaymentMethod(),
 
-    availablePlans: /* @ngInject */ (availableOptions, cdnProperties) =>
+    availablePlans: /* @ngInject */ (
+      availableOptions,
+      cdnProperties,
+      ovhManagerProductOffersService,
+    ) =>
       availableOptions
         .filter(({ family }) => family === 'cdn')
+        .sort((planCodeA, planCodeB) => {
+          const planCodeAPrice = ovhManagerProductOffersService.constructor.getUniquePricingOfCapacity(
+            planCodeA.prices,
+            'renew',
+          );
+          const planCodeBPrice = ovhManagerProductOffersService.constructor.getUniquePricingOfCapacity(
+            planCodeB.prices,
+            'renew',
+          );
+
+          return planCodeAPrice.priceInUcents > planCodeBPrice.priceInUcents;
+        })
         .map(({ planCode }) => ({
           planCode,
-          available: !planCode.includes(cdnProperties?.type),
+          available:
+            !planCode.includes(cdnProperties?.type) &&
+            planCode !==
+              HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_ADVANCED,
           current: planCode.includes(cdnProperties?.type),
-        }))
-        .concat([
-          {
-            planCode: HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_ADVANCED,
-            available: false,
-          },
-        ]),
+        })),
 
     catalog: /* @ngInject */ (user, WucOrderCartService) =>
       WucOrderCartService.getProductPublicCatalog(
