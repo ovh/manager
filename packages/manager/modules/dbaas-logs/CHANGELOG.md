@@ -1,3 +1,13 @@
+## [1.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.5.2...@ovh-ux/manager-dbaas-logs@1.5.3) (2021-06-02)
+
+
+### Bug Fixes
+
+* **dbaas-logs:** dynamic tcp port on wording ([f88a04e](https://github.com/ovh/manager/commit/f88a04e727cc06d3793f404012991f472aee1760))
+* **i18n:** add missing translations [CDS 963] ([073d26d](https://github.com/ovh/manager/commit/073d26dcfaf97922c2ee376bee2c76d9a33dc79d))
+
+
+
 ## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.5.1...@ovh-ux/manager-dbaas-logs@1.5.2) (2021-05-11)
 
 

@@ -1,3 +1,13 @@
+## [2.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.11.1...@ovh-ux/manager-vps@2.11.2) (2021-06-02)
+
+
+### Bug Fixes
+
+* **dedicated:** tracking for vps and server terminate ([db7f18c](https://github.com/ovh/manager/commit/db7f18c32a39b6d064319ace2b255fe280423d76)), closes [#MANAGER-6680](https://github.com/ovh/manager/issues/MANAGER-6680)
+* **vps:** impression tracking ([2777bf2](https://github.com/ovh/manager/commit/2777bf2244c49503624fdfca165fe02dbb5f45fd)), closes [#MANAGER-6848](https://github.com/ovh/manager/issues/MANAGER-6848)
+
+
+
 ## [2.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.11.0...@ovh-ux/manager-vps@2.11.1) (2021-05-19)
 
 
