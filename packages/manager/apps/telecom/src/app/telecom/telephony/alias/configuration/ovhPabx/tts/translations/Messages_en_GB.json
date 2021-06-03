@@ -1,7 +1,7 @@
 {
-  "telephony_alias_ovh_pabx_tts_title": "Gestion des TTS (Text To Speech)",
-  "telephony_alias_ovh_pabx_tts_add": "Ajouter un TTS",
-  "telephony_alias_ovh_pabx_tts_list_title": "Liste des TTS",
-  "telephony_alias_ovh_pabx_tts_list_delete_error": "Oups ! Une erreur est survenue lors de la suppression du TTS.",
-  "telephony_alias_ovh_pabx_tts_breadcrumb": "TTS management"
+  "telephony_alias_ovh_pabx_tts_title": "Manage TTS (Text To Speech)",
+  "telephony_alias_ovh_pabx_tts_add": "Add TTS",
+  "telephony_alias_ovh_pabx_tts_list_title": "List of TTS",
+  "telephony_alias_ovh_pabx_tts_list_delete_error": "Oops! An error has occurred deleting the TTS.",
+  "telephony_alias_ovh_pabx_tts_breadcrumb": "Manage TTS"
 }
