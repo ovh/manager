@@ -24,11 +24,11 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-advices' --include-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^8.0.0 || ^9.0.0"
+    "@ovh-ux/component-rollup-config": "^9.0.0 || ^10.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/ng-at-internet": "^5.5.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/ng-at-internet": "^5.5.0",
     "@ovh-ux/ui-kit": "^4.4.1",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
