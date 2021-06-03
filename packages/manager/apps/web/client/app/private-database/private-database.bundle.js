@@ -24,7 +24,6 @@ import './logs/private-database-logs.service';
 import './metrics/private-database-metrics.controller';
 import './oom/private-database-oom.controller';
 import './oom/private-database-oom.service';
-import './order/private-database-order.controller';
 import './state/private-database-state.controller';
 import './task/private-database-task.controller';
 import './user/add/private-database-user-add.controller';
