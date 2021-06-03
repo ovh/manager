@@ -2,10 +2,12 @@ import template from './dashboard.html';
 
 export default {
   bindings: {
-    currentActiveLink: '<',
     notebook: '<',
-    generalInformationLink: '<',
     guideUrl: '<',
+    currentActiveLink: '<',
+    generalInformationLink: '<',
+    attachDataLink: '<',
+    userAndRolesLink: '<',
   },
   template,
 };
