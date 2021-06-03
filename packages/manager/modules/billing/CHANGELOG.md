@@ -1,3 +1,14 @@
+## [2.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.9.1...@ovh-ux/manager-billing@2.9.2) (2021-06-03)
+
+
+### Bug Fixes
+
+* **billing:** set split payment as standard key word ([7377c14](https://github.com/ovh/manager/commit/7377c1425ddc987fb2992b38d310b9b290e9e507))
+* **i18n:** add missing translations [CDS 979] ([58e9ebe](https://github.com/ovh/manager/commit/58e9ebe8436f0470d2a0d501eaacaca0f0cf5df6))
+* **i18n:** add missing translations [CDS 984] ([731a6a0](https://github.com/ovh/manager/commit/731a6a0b89e577ba6c56419b35c7f6f421d6c347))
+
+
+
 ## [2.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.9.0...@ovh-ux/manager-billing@2.9.1) (2021-06-02)
 
 
