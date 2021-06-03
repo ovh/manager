@@ -1,0 +1,15 @@
+{
+  "pci_notebooks_tab_attach_data_title": "Associer des données",
+  "pci_notebooks_tab_attach_data_page_title": "Attacher des conteneurs de données",
+  "pci_notebooks_tab_attach_data_page_description": "Si nécessaire, vous pouvez attacher des conteneurs Object Storage OVHcloud à votre notebook. Une fois attachés, ceux-ci seront temporairement chargés et mis en cache près de votre instance afin de réduire la latence et d’améliorer les performances. La bonne pratique est d’attacher un conteneur avec vos données entrantes et un autre avec vos données sortantes.",
+  "pci_notebooks_tab_attach_data_page_description_link": "En savoir plus sur le stockage de données.",
+  "pci_notebooks_tab_attach_data_page_volumes_column_name": "Nom",
+  "pci_notebooks_tab_attach_data_page_volumes_column_type": "Type",
+  "pci_notebooks_tab_attach_data_page_volumes_column_region": "Localisation",
+  "pci_notebooks_tab_attach_data_page_volumes_column_type_git": "Repository",
+  "pci_notebooks_tab_attach_data_page_volumes_column_type_swift": "Conteneur de données",
+  "pci_notebooks_tab_attach_data_page_volumes_column_mount_path": "Répertoire de montage",
+  "pci_notebooks_tab_attach_data_page_volumes_column_permission": "Autorisation",
+  "pci_notebooks_tab_attach_data_page_volumes_column_permission_RO": "Lecture seule",
+  "pci_notebooks_tab_attach_data_page_volumes_column_permission_RW": "Lecture - écriture"
+}

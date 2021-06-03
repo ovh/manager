@@ -1,0 +1,66 @@
+<div data-ui-view>
+    <!--Banner messages-->
+    <div class="mt-4">
+        <cui-message-container
+            data-messages="$ctrl.messages"
+        ></cui-message-container>
+    </div>
+
+    <!--Attach data page-->
+    <div>
+        <!--Title and description-->
+        <div class="oui-box oui-box_light mb-4 p-0 border-0">
+            <h4
+                class="oui-box__heading"
+                data-translate="pci_notebooks_tab_attach_data_page_title"
+            ></h4>
+            <span
+                data-translate="pci_notebooks_tab_attach_data_page_description"
+            ></span>
+            <a
+                data-ng-href="{{::$ctrl.notebook.attachDataInfoLink}}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="pci_notebooks_tab_attach_data_page_description_link"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external_link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </div>
+
+        <!--Table-->
+        <oui-datagrid
+            rows="$ctrl.notebook.spec.volumes"
+            page-size="::$ctrl.DATAGRID_MAX_ITEMS_PER_PAGE"
+        >
+            <oui-datagrid-column
+                title=":: 'pci_notebooks_tab_attach_data_page_volumes_column_name' | translate"
+                sortable="true"
+                property="container"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_notebooks_tab_attach_data_page_volumes_column_region' | translate"
+                sortable="true"
+                property="region"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_notebooks_tab_attach_data_page_volumes_column_mount_path' | translate"
+            >
+                <oui-clipboard model="$row.mountPath"></oui-clipboard>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_notebooks_tab_attach_data_page_volumes_column_permission' | translate"
+                sortable="true"
+                property="permission"
+            >
+                <span data-ng-bind=":: 'pci_notebooks_tab_attach_data_page_volumes_column_permission_' + $row.permission | translate"></span>
+            </oui-datagrid-column>
+        </oui-datagrid>
+    </div>
+</div>
