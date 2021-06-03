@@ -7,6 +7,7 @@ export default {
   template,
   bindings: {
     addSteps: '<',
+    callback: '<',
     currentUser: '<',
     defaultPaymentMethodIntegration: '<',
     isLastStep: '<',
