@@ -57,7 +57,6 @@ const generateConfig = (opts, pluginsOpts) =>
           output: `./dist/assets/${defaultName}`,
         }),
         resolve(),
-        commonjs(),
         translationInject({
           languages: getLanguages(pluginsOpts),
         }),
@@ -82,6 +81,7 @@ const generateConfig = (opts, pluginsOpts) =>
           presets: [['@babel/preset-env']],
           shouldPrintComment: (val) => !/@ngInject/.test(val),
         }),
+        commonjs(),
       ],
     },
     opts,
