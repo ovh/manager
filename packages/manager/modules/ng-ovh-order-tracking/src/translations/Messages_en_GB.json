@@ -25,7 +25,7 @@
   "order_tracking_history_details_FRAUD_CHECK": "",
   "order_tracking_history_details_FRAUD_DOCS_REQUESTED": "",
   "order_tracking_history_details_FRAUD_MANUAL_REVIEW": "An additional processing time is required. It is usually around 48 hours. Our customer support team may contact you.",
-  "order_tracking_history_details_FRAUD_REFUSED": "The data associated with this order does not have the necessary guarantees for the transaction. Please renew it using another payment method.",
+  "order_tracking_history_details_FRAUD_REFUSED": "<p>Based on an analysis of your order and account data, we believe that these do not provide all the necessary guarantees in terms of transaction security. To process your order, pay for it and execute the contract, OVHcloud invites you to renew your purchase using another <a href=\"{{ paymentUrl }}\">payment method</a>.</p><p>You can also contact one of our advisors via the <a href=\"{{ helpUrl }}\" target=\"_blank\" rel=\"external\">help section</a> of your account, to provide us with the information needed to complete the transaction. If not, this will not be taken into account.</p>",
   "order_tracking_history_details_INVOICE_IN_PROGRESS": "",
   "order_tracking_history_details_INVOICE_SENT": "You can view and download it in the <a data-ng-href=\"{{ billingUrl }}\">Billing</a> section.",
   "order_tracking_history_details_ORDER_ACCEPTED": "",

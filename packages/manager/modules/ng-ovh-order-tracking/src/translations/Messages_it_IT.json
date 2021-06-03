@@ -25,7 +25,7 @@
   "order_tracking_history_details_FRAUD_CHECK": "",
   "order_tracking_history_details_FRAUD_DOCS_REQUESTED": "",
   "order_tracking_history_details_FRAUD_MANUAL_REVIEW": "È necessario un tempo di elaborazione aggiuntivo. La durata media è di circa 48 ore. Il servizio clienti potrebbe contattarti.",
-  "order_tracking_history_details_FRAUD_REFUSED": "I dati relativi all'ordine non offrono le garanzie necessarie alla transazione. Per rinnovarla, utilizza un altro metodo di pagamento.",
+  "order_tracking_history_details_FRAUD_REFUSED": "<p>In seguito a un'analisi dei dati associati al tuo ordine o relativi al tuo account,  sembra che questi non presentino tutte le garanzie necessarie in termini di sicurezza della transazione. Per poter procedere all'elaborazione e al pagamento dell’ordine e all'esecuzione del contratto, ti invitiamo a ripetere l'acquisto utilizzando un altro <a href=\"{{ paymentUrl }}\">metodo di pagamento</a>.</p><p>Puoi anche contattare uno dei nostri consulenti tramite la <a href=\"{{ helpUrl }}\" target=\"_blank\" rel=\"external\">sezione \"Aiuto</a>\" del tuo account per fornirci gli elementi utili al buon esito della transazione. In caso contrario, la transazione non sarà presa in considerazione.</p>",
   "order_tracking_history_details_INVOICE_IN_PROGRESS": "",
   "order_tracking_history_details_INVOICE_SENT": "Il messaggio può essere consultato e scaricato nella sezione  “<a data-ng-href=\"{{ billingUrl }}\">Fatturazione</a>” dello Spazio Cliente.",
   "order_tracking_history_details_ORDER_ACCEPTED": "",
