@@ -47,7 +47,7 @@ angular
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./dashboard/private-database.module').then((mod) =>
+          return import('./order/private-sql/index').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
