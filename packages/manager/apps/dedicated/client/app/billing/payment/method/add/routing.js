@@ -76,6 +76,8 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         },
       }),
 
+      callback: /* @ngInject */ ($location) => $location.search(),
+
       defaultPaymentMethodIntegration: /* @ngInject */ (
         $location,
         ovhPaymentMethodHelper,
