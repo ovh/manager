@@ -4,21 +4,47 @@ import { SERVICE_STATES } from './payment-status-tile.constants';
 
 export default class PaymentStatusTileCtrl {
   /* @ngInject */
-  constructor($http, atInternet, coreConfig, coreURLBuilder) {
+  constructor(
+    $http,
+    $q,
+    atInternet,
+    coreConfig,
+    coreURLBuilder,
+    ovhFeatureFlipping,
+  ) {
+    this.$http = $http;
+    this.$q = $q;
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
-    this.$http = $http;
+    this.coreURLBuilder = coreURLBuilder;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
 
     this.SERVICE_STATES = SERVICE_STATES;
-
-    this.autorenewLink = this.coreConfig.isRegion(['EU', 'CA'])
-      ? coreURLBuilder.buildURL('dedicated', '#/billing/autorenew')
-      : '';
-    this.loading = true;
   }
 
   $onInit() {
-    this.fetchServices();
+    const featureName = 'billing:management';
+    this.loading = true;
+    return this.$q
+      .all({
+        services: this.fetchServices(),
+        billingManagementAvailability: this.ovhFeatureFlipping.checkFeatureAvailability(
+          featureName,
+        ),
+      })
+      .then(({ billingManagementAvailability }) => {
+        this.autorenewLink = billingManagementAvailability.isFeatureAvailable(
+          featureName,
+        )
+          ? this.coreURLBuilder.buildURL('dedicated', '#/billing/autorenew')
+          : null;
+      })
+      .catch(() => {
+        this.autorenewLink = null;
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   onLinkClick() {
@@ -32,13 +58,6 @@ export default class PaymentStatusTileCtrl {
     return `${this.autorenewLink}?searchText=${service.domain}`;
   }
 
-  onServiceManagementClick() {
-    this.atInternet.trackClick({
-      name: `${this.trackingPrefix}::activity::payment-status::action::go-to-manage-service`,
-      type: 'action',
-    });
-  }
-
   fetchServices() {
     const transformBillingServices = (services) => {
       return services.status === 'ERROR'
@@ -50,7 +69,7 @@ export default class PaymentStatusTileCtrl {
             }),
           };
     };
-    this.$http
+    return this.$http
       .get(`/hub/billingServices`, {
         serviceType: 'aapi',
       })
@@ -60,9 +79,6 @@ export default class PaymentStatusTileCtrl {
         );
         this.services = billingServices.data;
         this.totalCount = billingServices.count;
-      })
-      .finally(() => {
-        this.loading = false;
       });
   }
 

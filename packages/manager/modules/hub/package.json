@@ -27,6 +27,7 @@
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/ng-at-internet": "^5.6.2",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
+    "@ovh-ux/ng-ovh-feature-flipping": "^1.0.2",
     "@ovh-ux/ng-ovh-order-tracking": "^1.1.1 || ^2.0.0",
     "@ovh-ux/ng-ovh-payment-method": "^8.1.1",
     "@ovh-ux/ng-ovh-sso-auth": "^4.4.0",
