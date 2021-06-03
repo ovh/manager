@@ -9,12 +9,13 @@
   "sign_up_activity_field_vat_personalcorporation_more": "Numéro d'identification d'entreprise ({{ vatLabel }})",
   "sign_up_activity_field_organisation_association": "Nom de l'association",
   "sign_up_activity_field_organisation_corporation": "Nom de l'entreprise",
-  "sign_up_activity_field_organisation_administration": "Nom de l'administration",
+  "sign_up_activity_field_organisation_administration": "Raison sociale",
   "sign_up_activity_field_organisation_personalcorporation": "Nom de l'entreprise individuelle",
-  "sign_up_activity_field_organisation": "Organisation",
+  "sign_up_activity_field_organisation": "Raison sociale",
   "sign_up_activity_field_corporationType": "Type d'entreprise",
   "sign_up_activity_field_nationalIdentificationNumber": "Numéro d'identification national",
   "sign_up_activity_field_companyNationalIdentificationNumber": "Numéro d'identification national",
-  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Numéro d'identification national (SIREN)",
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Numéro d'identification national (SIRET)",
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "Le numéro SIRET est nécessaire afin d’améliorer le processus de facturation électronique mise en place par l’état (Chorus)",
   "sign_up_activity_field_italian_sdi": "Code du destinataire pour la facturation électronique (SDI)"
 }

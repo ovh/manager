@@ -80,6 +80,14 @@ export default class SignUpFormCtrl {
       this.model,
     );
 
+    const legalformOrder = {
+      corporation: 0,
+      individual: 1,
+      administration: 2,
+      association: 3,
+      other: 4,
+    };
+
     return this.signUp
       .getCreationRules(ruleParams, this.getRulesCancel)
       .then((rules) => {
@@ -101,6 +109,10 @@ export default class SignUpFormCtrl {
             }
           }
         });
+
+        this.rules.legalform.in.sort(
+          (a, b) => legalformOrder[a.value] - legalformOrder[b.value],
+        );
 
         if (isFunction(this.onRulesUpdated())) {
           this.onRulesUpdated()({
