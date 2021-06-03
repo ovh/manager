@@ -5,7 +5,6 @@ const path = require('path');
 const ALL_LANGUAGES = process.env.OVH_BUILD_LANGUAGES
   ? process.env.OVH_BUILD_LANGUAGES.split(',')
   : [
-      'cs_CZ',
       'de_DE',
       'en_GB',
       'es_ES',
@@ -13,7 +12,6 @@ const ALL_LANGUAGES = process.env.OVH_BUILD_LANGUAGES
       'fr_CA',
       'fr_FR',
       'it_IT',
-      'lt_LT',
       'pl_PL',
       'pt_PT',
     ];
