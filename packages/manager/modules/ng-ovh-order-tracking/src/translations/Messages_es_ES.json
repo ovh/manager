@@ -25,7 +25,7 @@
   "order_tracking_history_details_FRAUD_CHECK": "",
   "order_tracking_history_details_FRAUD_DOCS_REQUESTED": "",
   "order_tracking_history_details_FRAUD_MANUAL_REVIEW": "Es necesario un plazo de tratamiento adicional. Su duración media es de 48 horas. Nuestro equipo de soporte podría ponerse en contacto con usted.",
-  "order_tracking_history_details_FRAUD_REFUSED": "Los datos asociados al pedido no ofrecen las garantías suficientes para realizar la transacción. Le rogamos que vuelva a realizar el pedido utilizando otra forma de pago.",
+  "order_tracking_history_details_FRAUD_REFUSED": "<p>Tras un análisis de los datos asociados a su pedido o relativos a su cuenta, consideramos que estos no ofrecen todas las garantías necesarias en términos de seguridad de la transacción. Para poder tramitar su pedido, procesar el pago del mismo y ejecutar el contrato, OVHcloud le invita a realizar su compra nuevamente utilizando otra <a href=\"{{ paymentUrl }}\">forma de pago</a>.</p><p>También puede contactar con uno de nuestros asesores en el <a href=\"{{ helpUrl }}\" target=\"_blank\" rel=\"external\">Centro de ayuda</a> de su cuenta de cliente para enviarnos los elementos necesarios para completar la transacción. En caso contrario, no podremos tramitar la transacción.</p>",
   "order_tracking_history_details_INVOICE_IN_PROGRESS": "",
   "order_tracking_history_details_INVOICE_SENT": "Puede consultarlo y descargarlo desde la sección «<a data-ng-href=\"{{ billingUrl }}\">Facturación</a>» del área de cliente.",
   "order_tracking_history_details_ORDER_ACCEPTED": "",
