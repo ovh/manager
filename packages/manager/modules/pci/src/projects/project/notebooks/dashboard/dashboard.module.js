@@ -7,6 +7,7 @@ import '@ovh-ux/ui-kit';
 
 import component from './dashboard.component';
 import generalInformation from './general-information';
+import attachData from './attach-data';
 import routing from './dashboard.routing';
 
 const moduleName = 'ovhManagerPciNotebooksDashboard';
@@ -19,6 +20,7 @@ angular
     'oui',
     'ui.router',
     generalInformation,
+    attachData,
   ])
   .config(routing)
   .component('ovhManagerPciProjectNotebooksDashboard', component)
