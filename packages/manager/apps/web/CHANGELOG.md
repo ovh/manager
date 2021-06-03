@@ -1,3 +1,12 @@
+# [15.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.25.1...@ovh-ux/manager-web@15.26.0) (2021-06-03)
+
+
+### Features
+
+* replace legacy private sql order with agora ([#4865](https://github.com/ovh/manager/issues/4865)) ([608f214](https://github.com/ovh/manager/commit/608f214d4788cc8a050c98e1e461cd6ac215484d))
+
+
+
 ## [15.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.25.0...@ovh-ux/manager-web@15.25.1) (2021-06-02)
 
 

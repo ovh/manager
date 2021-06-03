@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.1.1...@ovh-ux/manager-web-paas@1.1.2) (2021-06-03)
+
+
+### Bug Fixes
+
+* **add:** fix error message ([#5039](https://github.com/ovh/manager/issues/5039)) ([8d8544a](https://github.com/ovh/manager/commit/8d8544a427891ca913b0cc940b0c0c69b35f89b7))
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.1.0...@ovh-ux/manager-web-paas@1.1.1) (2021-05-07)
 
 

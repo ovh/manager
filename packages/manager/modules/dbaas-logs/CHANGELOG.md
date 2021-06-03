@@ -1,3 +1,12 @@
+## [1.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.5.3...@ovh-ux/manager-dbaas-logs@1.5.4) (2021-06-03)
+
+
+### Bug Fixes
+
+* **logs.detail.input.add:** add missing stateParams ([#5049](https://github.com/ovh/manager/issues/5049)) ([ef686ce](https://github.com/ovh/manager/commit/ef686ce7c39f21551be0575e8bd4c70cba83bf42))
+
+
+
 ## [1.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.5.2...@ovh-ux/manager-dbaas-logs@1.5.3) (2021-06-02)
 
 

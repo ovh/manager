@@ -1,3 +1,13 @@
+## [13.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.21.0...@ovh-ux/manager-telecom@13.21.1) (2021-06-03)
+
+
+### Bug Fixes
+
+* **telephony.line.password:** disallow % char in password ([#5042](https://github.com/ovh/manager/issues/5042)) ([b822845](https://github.com/ovh/manager/commit/b822845afaf5ece7209ead15e4b3333d2eadf465))
+* **xdsl.move:** fix display without tax if not necessary ([#5044](https://github.com/ovh/manager/issues/5044)) ([3c2318d](https://github.com/ovh/manager/commit/3c2318ddd57c4f376000f36347b72a881053c542))
+
+
+
 # [13.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.20.0...@ovh-ux/manager-telecom@13.21.0) (2021-06-02)
 
 
