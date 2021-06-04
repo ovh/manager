@@ -10,7 +10,263 @@
             <oui-tile
                 data-heading="{{:: 'pci_notebooks_general_information_info_title' | translate }}"
             >
-                <oui-tile-description></oui-tile-description>
+
+                <!--Name-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_notebooks_general_information_info_notebook_name' | translate }}"
+                    data-description="{{:: $ctrl.notebook.name }}"
+                ></oui-tile-definition>
+
+                <!--Editor-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_notebooks_general_information_info_notebook_editor_code' | translate }}">
+                    <oui-tile-description>
+                        <oui-button
+                            size="m"
+                            icon-right="oui-icon-external-link"
+                            data-disabled="!$ctrl.notebook.isRunning()"
+                            data-on-click="$ctrl.onOpenLiveCodeEditorClick($ctrl.notebook.spec.env.editorId)">
+                            <span data-ng-bind=":: $ctrl.notebook.spec.env.editorId"></span>
+                        </oui-button>
+                    </oui-tile-description>
+
+                </oui-tile-definition>
+
+                <!--Container-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_notebooks_general_information_info_notebook_container' | translate }}"
+                >
+                    <!--Nb total container-->
+                    <oui-tile-description>
+                        <span
+                            data-translate="pci_notebooks_general_information_info_notebook_container_total"
+                            data-translate-values="{ xContainer: $ctrl.notebook.volumes.length }"
+                        ></span>
+                    </oui-tile-description>
+
+                    <!--Go to attach data-->
+                    <oui-tile-description>
+                        <oui-button
+                            size="m"
+                            variant="link"
+                            icon-right="oui-icon-arrow-right"
+                            data-on-click="$ctrl.goToAttachData()"
+                        >
+                            <span
+                                data-translate="pci_notebooks_general_information_info_notebook_container_attach_data"
+                            ></span>
+                        </oui-button>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <!--Tags-->
+                <oui-tile-definition data-term="Tags">
+                    <oui-tile-description>
+                        <!--Tags-->
+                        <oui-chips
+                            data-items="$ctrl.notebook.labels"
+                            data-on-remove="$ctrl.onLabelRemove(removed)"
+                            closable
+                        >
+                        </oui-chips>
+
+                        <!--Add a tag-->
+                        <oui-button
+                            data-size="m"
+                            data-variant="link"
+                            data-icon-right="oui-icon-arrow-right"
+                            data-disabled="$ctrl.notebook.tagsLimitIsReached()"
+                            data-on-click="$ctrl.onAddNewTagClick()"
+                        >
+                            <span
+                                data-translate="pci_notebooks_general_information_info_notebook_tags_tag_add"
+                            ></span>
+                        </oui-button>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <!--Environment-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_notebooks_general_information_info_notebook_env' | translate }}"
+                    data-description="{{:: $ctrl.notebook.environment }}"
+                ></oui-tile-definition>
+
+                <!--Confidentiality-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_notebooks_general_information_info_notebook_env_confidentiality' | translate }}"
+                    data-description="{{:: 'pci_notebooks_general_information_info_notebook_env_confidentiality_' + $ctrl.notebook.spec.unsecureHttp | translate }}"
+                ></oui-tile-definition>
+
+                <!--Region-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_notebooks_general_information_info_notebook_env_region' | translate }}"
+                    data-description="{{:: $ctrl.notebook.extraRegionInfo }}"
+                ></oui-tile-definition>
+            </oui-tile>
+        </div>
+
+        <div class="col-md-4">
+            <oui-tile
+                data-heading="{{:: 'pci_notebooks_general_information_life_cycle_title' | translate }}"
+            >
+                <!--Status-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_notebooks_general_information_life_cycle_status' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="{
+                                                      'oui-badge_success': $ctrl.notebook.stateInfo.stateGroup.success,
+                                                      'oui-badge_warning': $ctrl.notebook.stateInfo.stateGroup.warning,
+                                                      'oui-badge_error': $ctrl.notebook.stateInfo.stateGroup.error}"
+                        >
+                                                    <span
+                                                        data-ng-bind="'pci_notebooks_general_information_life_cycle_status_' + $ctrl.notebook.stateInfo.state | translate"
+                                                    ></span>
+                                                </span>
+                    </oui-tile-description>
+
+                    <oui-action-menu aria-label="Actions" data-compact data-placement="end">
+                        <oui-action-menu-item data-on-click="$ctrl.onNotebookStartClick($ctrl.notebook.id)"
+                                              data-disabled="!$ctrl.notebook.isStopped()">
+                            <span
+                                data-translate="pci_notebooks_general_information_life_cycle_action_start"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item data-on-click="$ctrl.onNotebookStopClick($ctrl.notebook.id)"
+                                              data-disabled="!$ctrl.notebook.isRunning()">
+                            <span
+                                data-translate="pci_notebooks_general_information_life_cycle_action_stop"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item data-on-click="$ctrl.onDeleteNotebookClick()"
+                                              data-disabled="!$ctrl.notebook.isStopped()">
+                            <span
+                                data-translate="pci_notebooks_general_information_life_cycle_action_delete"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+
+                </oui-tile-definition>
+
+                <!--Running duration-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_notebooks_general_information_life_cycle_running_duration_time' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="block"
+                            data-ng-bind=":: $ctrl.notebook.formattedRunningDuration"
+                        ></span>
+                        <a
+                            data-ng-href="{{:: $ctrl.billingUrl }}"
+                            class="oui-link_icon"
+                        >
+                            <span
+                                data-translate="pci_notebooks_general_information_life_cycle_running_billing"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <!--Creation date and delete a notebook-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_notebooks_general_information_life_cycle_create_date' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="block"
+                            data-ng-bind=":: $ctrl.notebook.formattedCreationDate"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <!--Timeline-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_notebooks_general_information_life_cycle_timeline' | translate }}"
+                    data-description="{{:: $ctrl.notebook.name }}"
+                >
+                    <oui-tile-description>
+                        <div class="oui-progress-tracker oui-progress-tracker_vertical mt-3">
+                            <ol class="oui-progress-tracker__steps">
+
+                                <!--Notebook creation date-->
+                                <li data-ng-repeat="history in ($ctrl.notebook.historyActions | orderBy: ['index', 'date']) track by $index"
+                                    data-ng-if="history.date"
+                                    class="oui-progress-tracker__step oui-progress-tracker__step_complete">
+                                    <span class="oui-progress-tracker__status">
+                                        <span
+                                            class="oui-progress-tracker__label"
+                                            data-ng-bind="'pci_notebooks_general_information_life_cycle_timeline_actions_' + history.action | translate"
+                                            data-translate=""
+                                        ></span>
+                                        <span
+                                            data-ng-bind="history.date | date:'medium'"
+                                        ></span>
+                                    </span>
+                                </li>
+                            </ol>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+
+        <div class="col-md-4">
+            <oui-tile
+                data-heading="{{:: 'pci_notebooks_general_information_resources_title' | translate }}"
+                data-loading="$ctrl.loading.instance"
+            >
+                <!--GPU-->
+                <oui-tile-definition
+                    data-term="{{:: $ctrl.NOTEBOOK_FLAVOR_TYPE.GPU }}"
+                    data-description="{{:: $ctrl.notebook.gpu }}"
+                ></oui-tile-definition>
+
+                <!--CPU/RAM-->
+                <oui-tile-definition
+                    data-term="CPU/RAM"
+                    data-description="{{:: $ctrl.notebook.cpu + 'x ' + $ctrl.notebook.getSelectedFlavor($ctrl.flavors).description }}"
+                ></oui-tile-definition>
+
+                <!--Local storage-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_notebooks_general_information_resources_local_storage' | translate}}"
+                    data-description="{{:: $ctrl.notebook.memory | cucBytes:0:false:'B'  }}"
+                ></oui-tile-definition>
+
+                <!--Life consumption-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_notebooks_general_information_resources_monitoring' | translate}}"
+                >
+                    <oui-tile-description>
+                        <a class="oui-button oui-button_secondary"
+                           data-ng-href="{{:: $ctrl.notebook.status.monitoringUrl}}"
+                           data-ng-click="$ctrl.onGraphDashboardClick()"
+                           target="_blank" rel="noopener">
+                            <span data-translate="pci_notebooks_general_information_resources_monitoring_access_to_graph"></span>
+                            <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+                        </a>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+    </div>
+
+    <div class="row py-4">
+        <div class="col-md">
+            <oui-tile>
+                <oui-tile-description>
+                    <manager-notebooks-configuration-command data-ng-if="$ctrl.notebookModel"
+                                                             data-notebook-specs="::$ctrl.notebookModel"
+                                                             data-project-id="$ctrl.projectId"
+                    ></manager-notebooks-configuration-command>
+                </oui-tile-description>
             </oui-tile>
         </div>
     </div>
