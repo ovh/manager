@@ -1,3 +1,12 @@
+## [16.29.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.29.1...@ovh-ux/manager-dedicated@16.29.2) (2021-06-04)
+
+
+### Bug Fixes
+
+* **billing.payment.method:** fix callback delete after page loaded ([751c952](https://github.com/ovh/manager/commit/751c952d0c4a8f50c5f4be34212a05df9e4dc234))
+
+
+
 ## [16.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.29.0...@ovh-ux/manager-dedicated@16.29.1) (2021-06-02)
 
 
