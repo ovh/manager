@@ -1,3 +1,6 @@
+import Notebook from '../Notebook.class';
+import { NOTEBOOK_POLLER_NAMESPACES } from '../notebook.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.notebooks.dashboard', {
     url: '/:notebookId',
@@ -29,6 +32,32 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           notebookId,
         }),
+
+      killTasks: /* @ngInject */ (Poller) => (pattern) => Poller.kill(pattern),
+
+      needRefresh: /* @ngInject */ (notebook) => () =>
+        notebook.isStarting() || notebook.isStopping(),
+
+      waitNotebookToStartOrStop: /* @ngInject */ (
+        projectId,
+        notebook,
+        NotebookService,
+        Poller,
+      ) => () => {
+        const endPointUrl = NotebookService.buildGetNotebookUrl(
+          projectId,
+          notebook.id,
+        );
+        return Poller.poll(endPointUrl, null, {
+          interval: 2500,
+          successRule(notebookResponse) {
+            const n = new Notebook(notebookResponse, null);
+            return n.isRunning() || n.isStopped();
+          },
+          namespace: NOTEBOOK_POLLER_NAMESPACES.CHANGING,
+          notifyOnError: false,
+        });
+      },
     },
     redirectTo: 'pci.projects.project.notebooks.dashboard.general-information',
   });
