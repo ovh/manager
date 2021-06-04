@@ -8,6 +8,12 @@ import '@ovh-ux/ui-kit';
 import component from './general-information.component';
 import routing from './general-information.routing';
 
+import notebooksConfigurationCommand from '../../components/configuration-command';
+import addTag from './tags/add';
+import startNotebook from './start-notebook';
+import stopNotebook from './stop-notebook';
+import deleteNotebook from './delete-notebook';
+
 const moduleName = 'ovhManagerPciNotebookGeneralInformation';
 
 angular
@@ -17,6 +23,11 @@ angular
     'pascalprecht.translate',
     'oui',
     'ui.router',
+    notebooksConfigurationCommand,
+    addTag,
+    startNotebook,
+    stopNotebook,
+    deleteNotebook,
   ])
   .config(routing)
   .component('ovhManagerPciProjectNotebookGeneralInformation', component)
