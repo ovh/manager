@@ -50,8 +50,8 @@ export default /* @ngInject */ ($stateProvider) => {
         );
         return Poller.poll(endPointUrl, null, {
           interval: 2500,
-          successRule(notebookResponse) {
-            const n = new Notebook(notebookResponse, null);
+          successRule(notebookModel) {
+            const n = new Notebook(notebookModel, null);
             return n.isRunning() || n.isStopped();
           },
           namespace: NOTEBOOK_POLLER_NAMESPACES.CHANGING,
