@@ -5,7 +5,7 @@ export default /* @ngInject */ function UserAccountContactsRequestSendController
   $translate,
   UserAccountContactsService,
   Alerter,
-  User,
+  coreConfig,
 ) {
   const self = this;
   self.contactTasksDetails = [];
@@ -14,27 +14,12 @@ export default /* @ngInject */ function UserAccountContactsRequestSendController
     tasks: false,
   };
 
-  function getUser() {
-    return User.getUser().then(
-      (user) => {
-        self.user = user;
-      },
-      (err) => {
-        Alerter.alertFromSWS(
-          $translate.instant('user_account_contacts_error'),
-          err,
-          'useraccount.alerts.dashboardContacts',
-        );
-      },
-    );
-  }
+  self.user = coreConfig.getUser();
 
   function init() {
     self.addMode = false;
     self.contactTasksDetails = [];
-    getUser().then(() => {
-      self.getContactChangeTasks();
-    });
+    self.getContactChangeTasks();
   }
 
   self.getContactChangeTasks = function getContactChangeTasks() {

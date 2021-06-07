@@ -4,11 +4,11 @@ import { SUB_TYPE_PROPERTIES } from './termination-legacy.constants';
 
 export default class TerminateServiceCtrl {
   /* @ngInject */
-  constructor($q, $stateParams, BillingTerminateLegacy, User) {
+  constructor($q, $stateParams, coreConfig, BillingTerminateLegacy) {
     this.$q = $q;
     this.$stateParams = $stateParams;
+    this.coreConfig = coreConfig;
     this.BillingTerminate = BillingTerminateLegacy;
-    this.User = User;
   }
 
   $onInit() {
@@ -38,7 +38,6 @@ export default class TerminateServiceCtrl {
     this.serviceState = null;
     this.token = this.$stateParams.token;
     this.loading = true;
-    this.userLoading = true;
     this.terminating = false;
     this.error = false;
     this.globalError = null;
@@ -48,19 +47,12 @@ export default class TerminateServiceCtrl {
       return;
     }
 
-    this.$q.all([this.loadUser(), this.loadService()]).catch(() => {
+    const { ovhSubsidiary } = this.coreConfig.getUser();
+    this.USVersion = ovhSubsidiary === 'US';
+
+    this.loadService().catch(() => {
       this.globalError = true;
     });
-  }
-
-  loadUser() {
-    return this.User.getUser()
-      .then((user) => {
-        this.USVersion = user && user.ovhSubsidiary === 'US';
-      })
-      .finally(() => {
-        this.userLoading = false;
-      });
   }
 
   loadService() {

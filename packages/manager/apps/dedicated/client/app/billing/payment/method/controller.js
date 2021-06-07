@@ -4,12 +4,14 @@ import some from 'lodash/some';
 import uniq from 'lodash/uniq';
 
 import { ALERTER_ID } from './constants';
+import { AUTORENEW_GUIDES } from './guides';
 
 export default class BillingPaymentMethodCtrl {
   /* @ngInject */
   constructor(
     OVH_PAYMENT_MEAN_STATUS,
     OVH_PAYMENT_METHOD_TYPE,
+    coreConfig,
     ovhPaymentMethodHelper,
   ) {
     this.OVH_PAYMENT_MEAN_STATUS = OVH_PAYMENT_MEAN_STATUS;
@@ -21,6 +23,9 @@ export default class BillingPaymentMethodCtrl {
     this.tableFilterOptions = null;
     this.guide = null;
     this.hasPendingValidationBankAccount = false;
+
+    const { ovhSubsidiary } = coreConfig.getUser();
+    this.guide = get(AUTORENEW_GUIDES, ovhSubsidiary, AUTORENEW_GUIDES.FR);
   }
 
   /* =====================================
@@ -57,9 +62,6 @@ export default class BillingPaymentMethodCtrl {
         ),
       );
     });
-
-    // set guide url
-    this.guide = get(this.guides, 'autoRenew', null);
 
     // set a warn message if a bankAccount is in pendingValidation state
     this.hasPendingValidationBankAccount = some(

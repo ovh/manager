@@ -8,7 +8,6 @@ export default {
   bindings: {
     getActionHref: '<',
     goToSplitPaymentAction: '<',
-    guides: '<',
     paymentMethods: '<',
     currentUser: '<',
     isSplitPaymentAvailable: '<',
