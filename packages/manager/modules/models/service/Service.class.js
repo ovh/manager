@@ -103,7 +103,7 @@ export default class Service {
   isEngaged() {
     return (
       !!this.billing.engagement ||
-      !!this.billing.pricing.engagementConfiguration
+      !!(this.billing.pricing && this.billing.pricing.engagementConfiguration)
     );
   }
 }
