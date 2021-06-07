@@ -1,3 +1,12 @@
+## [15.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.26.0...@ovh-ux/manager-web@15.26.1) (2021-06-07)
+
+
+### Bug Fixes
+
+* **domain:** allow to display dns zone when service is expired ([#5038](https://github.com/ovh/manager/issues/5038)) ([fe5a6a8](https://github.com/ovh/manager/commit/fe5a6a868037ad8d5c66df8bca31d056f29e523d))
+
+
+
 # [15.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.25.1...@ovh-ux/manager-web@15.26.0) (2021-06-03)
 
 

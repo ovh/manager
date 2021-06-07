@@ -1,3 +1,12 @@
+## [1.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.1.2...@ovh-ux/manager-web-paas@1.1.3) (2021-06-07)
+
+
+### Bug Fixes
+
+* **webpaas:** disable create ([#5063](https://github.com/ovh/manager/issues/5063)) ([c163731](https://github.com/ovh/manager/commit/c16373197f0c5475aec69d050e704c3d9cdce10b))
+
+
+
 ## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.1.1...@ovh-ux/manager-web-paas@1.1.2) (2021-06-03)
 
 
