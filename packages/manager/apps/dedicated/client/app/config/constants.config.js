@@ -53,9 +53,6 @@ const constants = {
           autoRenew:
             'https://www.ovh.de/g1271.anleitung_zur_nutzung_der_automatischen_verlangerung_bei_ovh',
           ipv6Vps: 'https://www.ovh.de/g2365.vps-ipv6',
-          sshCreate: 'https://www.ovh.de/g1769.creating_ssh_keys',
-          sshChange:
-            'https://www.ovh.de/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/de/billing/',
           vrack:
             'https://docs.ovh.com/de/dedicated/mehrere-dedizierte-server-im-vrack-konfigurieren/',
@@ -92,10 +89,6 @@ const constants = {
           privateCloudHome: 'https://docs.ovh.com/es/private-cloud/',
           autoRenew: 'https://www.ovh.es/g1271.renovacion_automatica_en_ovh',
           ipv6Vps: 'https://www.ovh.es/g2365.vps-ipv6',
-          sshCreate: 'https://www.ovh.es/g1769.creating_ssh_keys',
-          sshAdd: 'https://www.ovh.es/g1924.configuring_additionnal_ssh_key',
-          sshChange:
-            'https://www.ovh.es/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/es/billing/',
           vrack:
             'https://docs.ovh.com/es/dedicated/configurar-vrack-en-servidor-dedicado/',
@@ -176,12 +169,6 @@ const constants = {
           reinitPassword:
             'https://www.ovh.com/fr/g2366.changer_le_mot_de_passe_root_sur_un_vps',
           ipv6Vps: 'https://www.ovh.fr/g2365.vps-ipv6',
-          sshCreate:
-            'https://docs.ovh.com/fr/public-cloud/creation-des-cles-ssh/',
-          sshAdd:
-            'https://docs.ovh.com/fr/public-cloud/configurer-des-cles-ssh-supplementaires/',
-          sshChange:
-            'https://docs.ovh.com/fr/public-cloud/changer-sa-cle-ssh-en-cas-de-perte/',
           megaRaidLED:
             'https://docs.ovh.com/fr/fr/cloud/dedicated/hotswap-raid-hard/',
           noMegaRaidLED:
@@ -240,12 +227,6 @@ const constants = {
           reinitPassword:
             'https://www.ovh.co.uk/g2366.change_the_root_password_on_a_vps_linux',
           ipv6Vps: 'https://www.ovh.co.uk/g2365.vps-ipv6',
-          sshCreate:
-            'https://docs.ovh.com/gb/en/public-cloud/configuring_additional_ssh_keys/',
-          sshAdd:
-            'https://docs.ovh.com/gb/en/public-cloud/configuring_additional_ssh_keys/',
-          sshChange:
-            'https://docs.ovh.com/gb/en/public-cloud/replacing_your_lost_ssh_key_pair/',
           vmEncryption: 'https://docs.ovh.com/gb/en/private-cloud/vm-encrypt/',
           billing: 'https://docs.ovh.com/gb/en/billing/',
           vrack:
@@ -285,10 +266,6 @@ const constants = {
           reinitPassword:
             'https://www.ovh.it/g2366.modifica_la_password_di_root_su_un_vps_linux',
           ipv6Vps: 'https://www.ovh.it/g2365.vps-ipv6',
-          sshCreate: 'https://www.ovh.it/g1769.creating_ssh_keys',
-          sshAdd: 'https://www.ovh.it/g1924.configuring_additionnal_ssh_key',
-          sshChange:
-            'https://www.ovh.it/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/it/billing/',
           vrack:
             'https://docs.ovh.com/it/dedicated/configurare-server-dedicati-vrack/',
@@ -328,9 +305,6 @@ const constants = {
           reinitPassword:
             'https://www.ovh.lt/g2366.root_slaptazodzio_keitimas_vps_linux',
           ipv6Vps: 'https://www.ovh.lt/g2365.vps-ipv6',
-          sshCreate: 'https://www.ovh.lt/g1769.creating_ssh_keys',
-          sshChange:
-            'https://www.ovh.lt/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/lt/billing/',
           vrack:
             'https://docs.ovh.com/lt/dedicated/configuring-vrack-on-dedicated-servers/',
@@ -368,9 +342,6 @@ const constants = {
           autoRenew:
             'https://www.ovh.nl/g1271.ovh_handleiding_voor_het_gebruik_van_de_automatische_verlenging',
           ipv6Vps: 'https://www.ovh.nl/g2365.vps-ipv6',
-          sshCreate: 'https://www.ovh.nl/g1769.creating_ssh_keys',
-          sshChange:
-            'https://www.ovh.nl/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/nl/billing/',
           vrack:
             'https://docs.ovh.com/nl/dedicated/configuratie-meerdere-dedicated-servers-op-vrack/',
@@ -409,10 +380,6 @@ const constants = {
           reinitPassword:
             'https://www.ovh.pl/g2366.Zmiana_hasla_root_na_serwerze_vps_linux',
           ipv6Vps: 'https://www.ovh.pl/g2365.vps-ipv6',
-          sshCreate: 'https://www.ovh.pl/g1769.creating_ssh_keys',
-          sshAdd: 'https://www.ovh.pl/g1924.configuring_additionnal_ssh_key',
-          shhChange:
-            'https://www.ovh.pl/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/pl/billing/',
           vrack:
             'https://docs.ovh.com/pl/dedicated/konfiguracja-kilku-serwerow-dedykowanych-vrack/',
@@ -452,10 +419,6 @@ const constants = {
           reinitPassword:
             'https://www.ovh.pt/g2366.alterar_a_password_root_num_servidor_vps_linux',
           ipv6Vps: 'https://www.ovh.pt/g2365.vps-ipv6',
-          sshCreate: 'https://www.ovh.pt/g1769.creating_ssh_keys',
-          sshAdd: 'https://www.ovh.pt/g1924.configuring_additionnal_ssh_key',
-          sshChange:
-            'https://www.ovh.pt/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/pt/billing/',
           vrack:
             'https://docs.ovh.com/pt/dedicated/configurar-varios-servidores-dedicados-no-vrack/',
@@ -495,9 +458,6 @@ const constants = {
           all: 'https://www.ovh.ie/community/knowledge/',
           nsx: 'https://www.ovh.ie/private-cloud/options/nsx.xml',
           vrops: 'https://www.ovh.ie/private-cloud/options/vrops.xml',
-          sshAdd: 'https://www.ovh.ie/g1924.configuring_additionnal_ssh_key',
-          sshChange:
-            'https://www.ovh.ie/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/ie/en/billing/',
           vrack:
             'https://docs.ovh.com/ie/en/dedicated/configuring-vrack-on-dedicated-servers/',
@@ -798,11 +758,6 @@ const constants = {
           reinitPassword:
             'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/us/g2365.vps-ipv6',
-          sshCreate: 'https://www.ovh.com/ca/en/g1769.creating_ssh_keys',
-          sshAdd:
-            'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
-          sshChange:
-            'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
         },
         presentations: {
           home: 'https://www.ovh.com/asia/private-cloud/',
@@ -838,11 +793,6 @@ const constants = {
           reinitPassword:
             'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/us/g2365.vps-ipv6',
-          sshCreate: 'https://www.ovh.com/ca/en/g1769.creating_ssh_keys',
-          sshAdd:
-            'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
-          sshChange:
-            'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/au/en/billing/',
         },
         presentations: {
@@ -880,11 +830,6 @@ const constants = {
           reinitPassword:
             'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/ca/en/g2365.vps-ipv6',
-          sshCreate: 'https://www.ovh.com/ca/en/g1769.creating_ssh_keys',
-          sshAdd:
-            'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
-          sshChange:
-            'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
           billing: 'https://docs.ovh.com/ca/en/billing/',
         },
         presentations: {
@@ -922,11 +867,6 @@ const constants = {
           reinitPassword:
             'http://docs.ovh.ca/fr/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/ca/fr/g2365.vps-ipv6',
-          sshCreate: 'https://www.ovh.com/ca/fr/g1769.creation_des_cles_ssh',
-          sshAdd:
-            'https://www.ovh.com/ca/fr/g1924.configurer_des_cles_ssh_supplementaires',
-          sshChange:
-            'https://www.ovh.com/ca/fr/g2069.changer_sa_cle_ssh_en_cas_de_perte',
           billing: 'https://docs.ovh.com/ca/fr/billing/',
         },
         presentations: {
@@ -963,11 +903,6 @@ const constants = {
           reinitPassword:
             'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/us/g2365.vps-ipv6',
-          sshCreate: 'https://www.ovh.com/ca/en/g1769.creating_ssh_keys',
-          sshAdd:
-            'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
-          sshChange:
-            'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
         },
         presentations: {
           home: 'https://www.ovh.com/sg/private-cloud/',
@@ -1003,11 +938,6 @@ const constants = {
           reinitPassword:
             'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/us/g2365.vps-ipv6',
-          sshCreate: 'https://www.ovh.com/ca/en/g1769.creating_ssh_keys',
-          sshAdd:
-            'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
-          sshChange:
-            'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
         },
         presentations: {
           home: 'https://www.ovh.com/world/private-cloud/',
@@ -1043,11 +973,6 @@ const constants = {
           privateCloudHome: 'https://docs.ovh.com/ca/en/private-cloud/',
           reinitPassword:
             'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
-          sshCreate: 'https://www.ovh.com/ca/en/g1769.creating_ssh_keys',
-          sshAdd:
-            'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
-          sshChange:
-            'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
         },
         presentations: {
           home: 'https://www.ovh.com/world/es/private-cloud/',
@@ -1194,12 +1119,6 @@ const constants = {
           reinitPassword:
             'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/ca/en/g2365.vps-ipv6',
-          sshCreate:
-            'http://support.us.ovhcloud.com/hc/en-us/articles/115001588250-SSH-Key-Management',
-          sshAdd:
-            'http://support.us.ovhcloud.com/hc/en-us/articles/115001588250-SSH-Key-Management',
-          sshChange:
-            'http://support.us.ovhcloud.com/hc/en-us/articles/115001588250-SSH-Key-Management',
           nsx:
             'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/nsx-datacenter-vsphere/',
           vrops:

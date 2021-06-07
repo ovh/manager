@@ -5,19 +5,11 @@ import reduce from 'lodash/reduce';
 
 export default class BillingCreditsCtrl {
   /* @ngInject */
-  constructor(
-    $translate,
-    addVoucherLink,
-    Alerter,
-    balances,
-    BillingCredits,
-    BillingUser,
-  ) {
+  constructor($translate, addVoucherLink, Alerter, balances, BillingCredits) {
     this.addVoucherLink = addVoucherLink;
     this.Alerter = Alerter;
     this.$translate = $translate;
     this.billingCredits = BillingCredits;
-    this.User = BillingUser;
 
     this.balances = balances;
   }

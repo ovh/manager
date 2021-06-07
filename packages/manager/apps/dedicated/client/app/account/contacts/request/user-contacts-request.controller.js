@@ -6,10 +6,9 @@ export default /* @ngInject */ function UserAccountContactsRequestsController(
   $scope,
   UserAccountContactsService,
   Alerter,
-  User,
-  $q,
   $stateParams,
   $translate,
+  coreConfig,
 ) {
   const self = this;
   self.contactTasksDetails = [];
@@ -20,20 +19,7 @@ export default /* @ngInject */ function UserAccountContactsRequestsController(
     tasks: false,
   };
 
-  function getUser() {
-    return User.getUser().then(
-      (user) => {
-        self.user = user;
-      },
-      (err) => {
-        Alerter.alertFromSWS(
-          $translate.instant('user_account_contacts_error'),
-          err,
-          'useraccount.alerts.dashboardContacts',
-        );
-      },
-    );
-  }
+  self.user = coreConfig.getUser();
 
   function getTaskStateEnum() {
     return UserAccountContactsService.getTaskStateEnum().then(
@@ -54,7 +40,7 @@ export default /* @ngInject */ function UserAccountContactsRequestsController(
     self.loaders.init = true;
     self.addMode = false;
     self.contactTasksDetails = [];
-    $q.all([getUser(), getTaskStateEnum()])
+    getTaskStateEnum()
       .then(() => {
         if ($stateParams.taskId) {
           self.contactTasksIds = [$stateParams.taskId];

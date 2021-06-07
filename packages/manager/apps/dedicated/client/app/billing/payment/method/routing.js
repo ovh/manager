@@ -35,8 +35,6 @@ export default /* @ngInject */ (
               'app.account.billing.payment.method.activateSplitPayment',
             ),
 
-      guides: /* @ngInject */ (User) => User.getUrlOf('guides'),
-
       paymentMethods: /* @ngInject */ (
         OVH_PAYMENT_MEAN_STATUS,
         OVH_PAYMENT_METHOD_TYPE,

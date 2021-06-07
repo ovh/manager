@@ -4,9 +4,9 @@ export default /* @ngInject */ (
   $timeout,
   $translate,
   BillingFidelity,
-  BillingUser,
   BillingmessageParser,
   BillingdateRangeSelection,
+  coreConfig,
 ) => {
   $scope.fidelityLoading = false;
   $scope.fidelityAccountLoading = false;
@@ -135,10 +135,7 @@ export default /* @ngInject */ (
 
   function init() {
     getFidelityAccount();
-
-    BillingUser.getMe().then((data) => {
-      $scope.currency = data.currency;
-    });
+    $scope.currency = coreConfig.getUser().currency;
   }
 
   init();
