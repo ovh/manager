@@ -1,3 +1,12 @@
+## [1.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.11.0...@ovh-ux/manager-models@1.11.1) (2021-06-07)
+
+
+### Bug Fixes
+
+* **service:** check if billing pricing value exists ([#5062](https://github.com/ovh/manager/issues/5062)) ([6992352](https://github.com/ovh/manager/commit/69923529296b14707ecdf7853bfb2f568e727030))
+
+
+
 # [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.10.0...@ovh-ux/manager-models@1.11.0) (2021-05-10)
 
 
