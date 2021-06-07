@@ -149,5 +149,6 @@
   "telephony_number_feature_ovh_pabx_step_actions_count_hidden": "{{count}} actions hidden",
   "telephony_number_feature_ovh_pabx_step_actions_count_single_hidden": "{{count}} action hidden",
   "telephony_number_feature_ovh_pabx_step_rule_ivr_menu_already_added": "Menus already added",
-  "telephony_number_feature_ovh_pabx_step_rule_read_dtmf_infos": "A DTMF input is the frequency that is emitted by a telephone key when pressed."
+  "telephony_number_feature_ovh_pabx_step_rule_read_dtmf_infos": "A DTMF input is the frequency that is emitted by a telephone key when pressed.",
+  "telephony_number_feature_ovh_pabx_dialplan_terminal_action": "Terminal action"
 }
