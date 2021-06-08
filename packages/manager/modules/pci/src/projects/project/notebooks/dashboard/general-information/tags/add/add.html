@@ -1,0 +1,44 @@
+<oui-modal
+    data-heading="{{:: 'pci_notebooks_general_information_info_tags_add_title' | translate }}"
+    data-primary-action="$ctrl.addTag()"
+    data-primary-label="{{:: 'pci_notebooks_general_information_info_tags_add_action_add' | translate }}"
+    data-primary-disabled="!$ctrl.canAddTag()"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'pci_notebooks_general_information_info_tags_add_action_cancel' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isUpdating"
+>
+
+    <!--Description-->
+    <p
+        data-translate="pci_notebooks_general_information_info_tags_add_description"
+        data-translate-values="{ name: $ctrl.notebook.name }"
+    ></p>
+
+    <!--Key-->
+    <oui-field label="Key" size="xl">
+        <input
+            class="oui-input"
+            type="text"
+            id="tagKey"
+            name="tagKey"
+            ng-model="$ctrl.label.id"
+            autofocus
+            required
+        />
+    </oui-field>
+
+    <!--Value-->
+    <oui-field label="Value" size="xl">
+        <input
+            class="oui-input"
+            type="text"
+            id="tagValue"
+            name="tagValue"
+            ng-model="$ctrl.label.title"
+            autofocus
+            required
+        />
+    </oui-field>
+
+</oui-modal>
