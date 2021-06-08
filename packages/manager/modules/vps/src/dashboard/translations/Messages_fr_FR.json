@@ -6,5 +6,6 @@
   "vps_dashboard_auto_migration_warning": "Votre VPS Cloud 2013/2014 sera migré automatiquement vers un VPS de la nouvelle gamme dans {{days}} jours.",
   "vps_dashboard_migration_in_progress": "Votre VPS Cloud 2013/2014 est en cours de migration vers la nouvelle gamme.",
   "vps_dashboard_migration_in_error": "Une erreur s'est produite lors de la migration de votre VPS. La suite de la migration va être prise en charge par nos équipes.",
-  "vps_dashboard_migration_link": "Migrer vers la nouvelle gamme"
+  "vps_dashboard_migration_link": "Migrer vers la nouvelle gamme",
+  "vps_dashboard_auto_migration_warning_new": "Votre VPS {{vps}} est éligible à la migration en un clic vers la nouvelle gamme."
 }
