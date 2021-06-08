@@ -1,0 +1,14 @@
+{
+  "pci_database_password_label": "Hasło",
+  "pci_database_password_description": "Aby zalogować się do klastra, należy wprowadzić hasło.",
+  "pci_database_password_placeholder": "Wprowadź hasło",
+  "pci_database_password_help": "Hasło musi składać się z ciągu znaków alfanumerycznych w liczbie od 8 do 32 i musi zawierać co najmniej 2 cyfry.",
+  "pci_database_password_help_strength": "Hasło nie jest wystarczająco silne.",
+  "pci_database_password_help_alphanumeric": "Hasło musi składać się ze znaków alfanumerycznych [A-Za-z0-9].",
+  "pci_database_password_help_upper_case": "Hasło musi zawierać co najmniej jedną dużą literę.",
+  "pci_database_password_help_number": "Hasło musi zawierać co najmniej 2 cyfry.",
+  "pci_database_password_help_length": "Hasło musi zawierać od 8 do 32 znaków.",
+  "pci_database_password_confirm_label": "Potwierdź hasło",
+  "pci_database_password_confirm_placeholder": "Powtórz hasło",
+  "pci_database_password_confirm_error": "Wprowadzone hasła różnią się od siebie."
+}

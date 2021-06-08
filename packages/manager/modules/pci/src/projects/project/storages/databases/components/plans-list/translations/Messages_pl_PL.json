@@ -1,0 +1,10 @@
+{
+  "pci_database_plans_list_spec_ram": "Od {{min}} do {{max}} RAM",
+  "pci_database_plans_list_spec_core": "Od {{min}} do {{max}} vCores",
+  "pci_database_plans_list_spec_storage": "Od {{min}} do {{max}} SSD",
+  "pci_database_plans_list_spec_nodes": "{{min}} węzłów",
+  "pci_database_plans_list_spec_nodes_single": "{{min}} węzeł",
+  "pci_database_plans_list_spec_nodes_range": "{{min}} węzłów zawartych w ofercie, do {{max}} węzłów",
+  "pci_database_plans_list_spec_nodes_range_single_min": "{{min}} węzłów zawartych w ofercie, do {{max}} węzłów",
+  "pci_database_plans_list_spec_backup": "Ręczne i automatyczne kopie zapasowe"
+}

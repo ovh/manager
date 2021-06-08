@@ -1,0 +1,10 @@
+{
+  "pci_database_plans_list_spec_ram": "{{min}} a {{max}} RAM",
+  "pci_database_plans_list_spec_core": "{{min}} a {{max}} vCores",
+  "pci_database_plans_list_spec_storage": "{{min}} a {{max}} SSD",
+  "pci_database_plans_list_spec_nodes": "{{min}} nós",
+  "pci_database_plans_list_spec_nodes_single": "{{min}} nó",
+  "pci_database_plans_list_spec_nodes_range": "{{min}} nós incluídos, até {{max}} nós",
+  "pci_database_plans_list_spec_nodes_range_single_min": "{{min}} nós incluídos, até {{max}} nós",
+  "pci_database_plans_list_spec_backup": "Backups manuais e automáticos"
+}

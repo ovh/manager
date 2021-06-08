@@ -1,0 +1,8 @@
+{
+  "pci_databases_general_information_add_node": "Add node",
+  "pci_databases_general_information_add_node_confirm": "Confirm",
+  "pci_databases_general_information_add_node_cancel": "Cancel",
+  "pci_databases_general_information_add_node_description": "You currently have {{nodesCount}} nodes. You can add a node for",
+  "pci_databases_general_information_add_node_success": "Your request to add a node has been processed, and will be effective in a few minutes.",
+  "pci_databases_general_information_add_node_error": "An error has occurred adding the node: {{message}}"
+}

@@ -12,5 +12,6 @@
   "cpbc_hourly_load_balancer_title": "Load Balancer",
   "cpbc_hourly_serving_title": "ML Serving",
   "cpbc_hourly_training_title": "AI Training",
-  "cpbc_hourly_data_processing_title": "Processamento de dados"
+  "cpbc_hourly_data_processing_title": "Processamento de dados",
+  "cpbc_hourly_databases_title": "Bases de dados"
 }

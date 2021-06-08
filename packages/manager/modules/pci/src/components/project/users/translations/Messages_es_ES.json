@@ -21,5 +21,9 @@
   "pci_projects_project_users_delete_label": "Eliminar",
   "pci_projects_project_users_add_label": "Añadir un usuario",
   "pci_projects_project_users_matrix_show": "Mostrar la matriz de los roles",
-  "pci_projects_project_users_matrix_hide": "Ocultar la matriz de los roles"
+  "pci_projects_project_users_matrix_hide": "Ocultar la matriz de los roles",
+  "pci_projects_project_users_status_ready": "Activado",
+  "pci_projects_project_users_status_error": "En error",
+  "pci_projects_project_users_status_error_inconsistent_spec": "En error",
+  "pci_projects_project_users_status_pending": "Pendiente"
 }

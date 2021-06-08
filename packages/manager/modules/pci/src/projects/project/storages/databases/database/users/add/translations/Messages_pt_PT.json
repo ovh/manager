@@ -1,0 +1,10 @@
+{
+  "pci_databases_users_add": "Adicionar um utilizador",
+  "pci_databases_users_add_username_label": "Nome do utilizador",
+  "pci_databases_users_add_roles": "Editar as funções",
+  "pci_databases_users_add_roles_available": "Funções disponíveis",
+  "pci_databases_users_add_roles_selected": "Funções selecionadas",
+  "pci_databases_users_add_create": "Criar utilizador",
+  "pci_databases_users_add_success_message": "O utilizador {{ username }} foi adicionado com a palavra-passe {{ password }}.",
+  "pci_databases_users_add_error_save": "Ocorreu um erro ao criar o utilizador {{ user }}: {{ message }}."
+}

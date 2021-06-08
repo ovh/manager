@@ -1,0 +1,10 @@
+{
+  "pci_databases_general_information_upgrade_plan_description": "Vous pouvez migrer votre offre vers une version supérieure.",
+  "pci_databases_general_information_upgrade_plan_warning": "Une fois l’upgrade de base de données réalisé, vous ne pourrez plus revenir à une offre inférieure.",
+  "pci_databases_general_information_upgrade_plan_processing": "L'offre est en cours de migration",
+  "pci_databases_general_information_upgrade_plan_back": "Information",
+  "pci_databases_general_information_upgrade_plan_confirm": "Valider",
+  "pci_databases_general_information_upgrade_plan_cancel": "Annuler",
+  "pci_databases_general_information_upgrade_plan_success": "Votre changement d’offre a bien été pris en compte. Il sera effectif dans quelques minutes.",
+  "pci_databases_general_information_upgrade_plan_error": "Votre changement d’offre n’a pas été correctement effectué : {{ message }}"
+}

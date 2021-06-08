@@ -1,0 +1,8 @@
+{
+  "pci_databases_general_information_add_node": "Aggiungi un nodo",
+  "pci_databases_general_information_add_node_confirm": "Conferma",
+  "pci_databases_general_information_add_node_cancel": "Annulla",
+  "pci_databases_general_information_add_node_description": "Al momento hai a disposizione {{nodesCount}} nodi. Aggiungi un nodo per",
+  "pci_databases_general_information_add_node_success": "La richiesta di aggiunta di nodi è stata presa in carico e sarà effettiva entro qualche minuto.",
+  "pci_databases_general_information_add_node_error": "Si è verificato un errore durante l'aggiunta del nodo: {{message}}"
+}

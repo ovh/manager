@@ -1,0 +1,9 @@
+{
+  "pci_databases_general_information_edit_name": "Cambiar el nombre",
+  "pci_databases_general_information_edit_name_edit": "Editar",
+  "pci_databases_general_information_edit_name_cancel": "Cancelar",
+  "pci_databases_general_information_edit_name_description": "Modificar el nombre en el encabezado",
+  "pci_databases_general_information_edit_name_label": "Nombre",
+  "pci_databases_general_information_edit_name_success": "El nombre de la base de datos se ha actualizado.",
+  "pci_databases_general_information_edit_name_error": "Se ha producido un error al actualizar el nombre de la base de datos: {{ message }}"
+}

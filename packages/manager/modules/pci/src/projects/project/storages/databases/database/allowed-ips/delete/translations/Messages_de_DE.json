@@ -1,0 +1,8 @@
+{
+  "pci_databases_allowed_ips_delete_title": "Eine IP/Maske löschen",
+  "pci_databases_allowed_ips_delete_info": "Sind Sie sicher, dass Sie den Zugang dieser IP {{ip}} auf die Datenbank löschen möchten?",
+  "pci_databases_allowed_ips_delete_confirm": "Bestätigen",
+  "pci_databases_allowed_ips_delete_cancel": "Abbrechen",
+  "pci_databases_allowed_ips_delete_success": "Der Zugang der IP-Adresse zur Datenbank wurde gelöscht.",
+  "pci_databases_allowed_ips_delete_error": "Beim Löschen der IP/Maske ist ein Fehler aufgetreten: {{ message }}"
+}

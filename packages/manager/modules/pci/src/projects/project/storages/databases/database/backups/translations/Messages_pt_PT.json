@@ -1,0 +1,7 @@
+{
+  "pci_databases_backup": "Backups",
+  "pci_databases_backup_expiration_date": "Data de expiração",
+  "pci_databases_backup_restore": "Restaurar",
+  "pci_databases_backup_description1": "Poderá encontrar abaixo a lista dos seus backups. Pode restaurar ou eliminar cada um deles.",
+  "pci_databases_backup_description2": "Estes backups são conservados para a manutenção operacional do seu serviço."
+}

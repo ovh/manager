@@ -1,0 +1,9 @@
+{
+  "pci_databases_users_modify_password_title": "Alterar palavra-passe",
+  "pci_databases_users_modify_password_confirm": "Confirmar",
+  "pci_databases_users_modify_password_cancel": "Cancelar",
+  "pci_databases_users_modify_password_label": "Palavra-passe",
+  "pci_databases_users_modify_password_help_text": "Deve ter pelo menos um número, uma maiúscula e uma minúscula. E ter 8 ou mais caracteres.",
+  "pci_databases_users_modify_password_success": "A palavra-passe do utilizador {{ user }} foi alterada.",
+  "pci_databases_users_modify_password_error": "Ocorreu um erro durante a alteração da palavra-passe do utilizador {{ user }}: {{ message }}."
+}

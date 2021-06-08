@@ -1,0 +1,8 @@
+{
+  "pci_database_flavors_list_spec_ram": "{{ram}} RAM",
+  "pci_database_flavors_list_spec_core": "{{cores}} vCores",
+  "pci_database_flavors_list_spec_storage": "{{storage}} przestrzeni dyskowej",
+  "pci_database_flavors_list_spec_bandwidth": "{{bandwidth}} Mbps",
+  "pci_database_flavors_list_price_hourly": "{{price}} netto/godz.",
+  "pci_database_flavors_list_price_monthly": "Od {{price}} netto/m-c"
+}

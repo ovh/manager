@@ -1,0 +1,10 @@
+{
+  "pci_databases_general_information_upgrade_plan_description": "Możesz migrować usługę do wyższej wersji.",
+  "pci_databases_general_information_upgrade_plan_warning": "Po zakończeniu upgrade’u bazy danych nie będziesz mógł wrócić do niższej wersji.",
+  "pci_databases_general_information_upgrade_plan_processing": "Trwa migracja usługi",
+  "pci_databases_general_information_upgrade_plan_back": "Informacja",
+  "pci_databases_general_information_upgrade_plan_confirm": "Zatwierdź",
+  "pci_databases_general_information_upgrade_plan_cancel": "Anuluj",
+  "pci_databases_general_information_upgrade_plan_success": "Gratulacje! Zmiana wersji usługi została pomyślnie przeprowadzona. Stanie się widoczna w ciągu kilku minut.",
+  "pci_databases_general_information_upgrade_plan_error": "Zmiana wersji usługi nie została wykonana prawidłowo: {{message}}"
+}

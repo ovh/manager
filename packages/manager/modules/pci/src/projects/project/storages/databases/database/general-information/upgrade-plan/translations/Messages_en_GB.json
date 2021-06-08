@@ -1,0 +1,10 @@
+{
+  "pci_databases_general_information_upgrade_plan_description": "You can migrate your solution to a higher version.",
+  "pci_databases_general_information_upgrade_plan_warning": "Once you have upgraded your database, you will not be able to downgrade to a lower solution.",
+  "pci_databases_general_information_upgrade_plan_processing": "Migrating solution...",
+  "pci_databases_general_information_upgrade_plan_back": "Information",
+  "pci_databases_general_information_upgrade_plan_confirm": "Confirm",
+  "pci_databases_general_information_upgrade_plan_cancel": "Cancel",
+  "pci_databases_general_information_upgrade_plan_success": "Your solution change has been processed. It will be effective in a few minutes.",
+  "pci_databases_general_information_upgrade_plan_error": "Your solution has not been changed: {{message}}"
+}

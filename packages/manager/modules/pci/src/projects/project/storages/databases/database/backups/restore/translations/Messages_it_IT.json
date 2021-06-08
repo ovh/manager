@@ -1,0 +1,8 @@
+{
+  "pci_databases_backups_restore_title": "Ripristina un backup ",
+  "pci_databases_backups_restore_description": "Vuoi ripristinare il backup {{ name }}",
+  "pci_databases_backups_restore_confirm": "Conferma",
+  "pci_databases_backups_restore_cancel": "Annulla",
+  "pci_databases_backups_restore_success": "Richiesta di ripristino del backup {{ name }} creata correttamente.",
+  "pci_databases_backups_restore_error": "Impossibile ripristinare il backup: {{ message }}"
+}
