@@ -1,0 +1,8 @@
+{
+  "billing_main_history_debt_pay_title": "Balance payment",
+  "billing_main_history_debt_pay_confirm": "Pay balance",
+  "billing_main_history_debt_pay_explanation": "This action will generate a purchase order so you can immediately settle an amount. This purchase order will be valid for one hour.",
+  "billing_main_history_debt_pay_success": "A <a href=\"{{t1}}\" target=\"_blank\" rel=\"noopener\">purchase order {{t0}}</a> has been generated, so that you can settle your balance.",
+  "billing_main_history_debt_pay_error": "An error has occurred settling your balance.",
+  "billing_main_history_debt_pay_error_nothing_to_pay": "Currently you have no pending payments."
+}

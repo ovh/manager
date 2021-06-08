@@ -1,0 +1,10 @@
+{
+  "billing_payments_request_title": "Demandes de paiement",
+  "billing_payments_request_info": "La liste suivante montre les factures en cours de paiement suite au règlement de votre solde.",
+  "billing_payments_request_table_reference": "Referência",
+  "billing_payments_request_table_date": "Data",
+  "billing_payments_request_table_paid_date": "Payé le",
+  "billing_payments_request_table_amount": "Montante total",
+  "billing_payment_request_no_pending": "Vous n'avez aucune demande de paiement en cours.",
+  "billing_payment_request_load_error": "Une erreur est survenue lors du chargement des demandes de paiement."
+}
