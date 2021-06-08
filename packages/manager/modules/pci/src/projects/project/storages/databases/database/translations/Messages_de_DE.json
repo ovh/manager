@@ -1,0 +1,6 @@
+{
+  "pci_databases_dashboard_info_tab_title": "Allgemeine Informationen",
+  "pci_databases_dashboard_backup_tab_title": "Backups",
+  "pci_databases_dashboard_users_tab_title": "Nutzer",
+  "pci_databases_dashboard_allowed_ips_tab_title": "Zugelassene IPs"
+}

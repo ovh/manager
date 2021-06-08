@@ -1,0 +1,8 @@
+{
+  "pci_database_delete_database_title": "Eliminar la base de datos",
+  "pci_database_delete_database_submit_label": "Confirmar",
+  "pci_database_delete_database_cancel_label": "Cancelar",
+  "pci_database_delete_database_content": "¿Seguro que quiere eliminar la base de datos {{ databaseName }}?",
+  "pci_database_delete_database_success": "La base de datos {{ databaseName }} se ha eliminado.",
+  "pci_database_delete_database_error": "Se ha producido un error al eliminar la base de datos {{ databaseName }}: {{ message }}."
+}

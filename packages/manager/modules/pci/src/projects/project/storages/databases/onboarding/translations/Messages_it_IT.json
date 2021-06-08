@@ -1,0 +1,15 @@
+{
+  "pci_database_title": "Database as a Service per concentrarti sulla creazione di applicazioni",
+  "pci_database_onboarding_content1": "Sfrutta la potenza dei dati mantenendo il controllo sulle risorse.",
+  "pci_database_onboarding_content2": "Scegli il database più adatto alle tue esigenze tra una vasta gamma di motori open source e attivalo as a Service. In questo modo gli sviluppatori possono concentrarsi sulla creazione di applicazioni",
+  "pci_database_onboarding_content3": "mentre OVHcloud gestisce l'infrastruttura e l'amministrazione dei database. Così risparmi tempo e denaro e puoi dedicarti alla creazione e implementazione di applicazioni Cloud che ti permettono di distinguerti dalla concorrenza.",
+  "pci_database_onboarding_action_label": "Crea un'istanza di database",
+  "pci_database_guides_documentation_title": "Documentazione database",
+  "pci_database_guides_documentation_description": "Consulta la documentazione relativa ai nostri database.",
+  "pci_database_guides_public-cloud-database_title": "Cos'è una Database Public Cloud?",
+  "pci_database_guides_public-cloud-database_description": "Come installare i database nell'universo Public Cloud",
+  "pci_database_guides_deploy-database_title": "Installa il tuo primo database",
+  "pci_database_guides_deploy-database_description": "Questa guida ti mostra come installare rapidamente il tuo primo database dallo Spazio Cliente OVHcloud.",
+  "pci_database_guides_troubleshooting_title": "Gestisci il troubleshooting",
+  "pci_database_guides_troubleshooting_description": ""
+}

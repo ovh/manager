@@ -1,0 +1,15 @@
+{
+  "pci_database_title": "Databases as a Service - konzentrieren Sie sich ganz darauf, Ihre Anwendungen zu erstellen.",
+  "pci_database_onboarding_content1": "Nutzen Sie das gesamte Potenzial Ihrer Daten und behalten Sie dabei die Kontrolle über Ihre Ressourcen.",
+  "pci_database_onboarding_content2": "Wählen Sie aus einer breiten Palette von Open-Source-Engines die richtige Datenbank für sich aus und setzen Sie diese dann „as a Service“ ein. Ihre Entwickler können sich so voll darauf konzentrieren, Anwendungen zu erstellen.",
+  "pci_database_onboarding_content3": "Wir übernehmen die Verwaltung der Infrastruktur und Ihrer Datenbanken. Sie sparen Zeit und Geld. Verwenden Sie diese Kapazitäten darauf, Cloud-Anwendungen zu erstellen und einzusetzen. So heben Sie sich von der Konkurrenz ab.",
+  "pci_database_onboarding_action_label": "Eine Datenbank-Instanz erstellen",
+  "pci_database_guides_documentation_title": "Dokumentation der Datenbanken",
+  "pci_database_guides_documentation_description": "Hier finden Sie die gesamte Dokumentation zu unseren Datenbanken.",
+  "pci_database_guides_public-cloud-database_title": "Was ist eine Public Cloud Datenbank?",
+  "pci_database_guides_public-cloud-database_description": "Erfahren Sie, wie Sie Ihre Datenbanken im Public Cloud Universum einrichten.",
+  "pci_database_guides_deploy-database_title": "Ihre erste Datenbank einsetzen",
+  "pci_database_guides_deploy-database_description": "Erfahren Sie, wie Sie Ihre erste Datenbank schnell in Ihrem Kundencenter installieren.",
+  "pci_database_guides_troubleshooting_title": "Problemlösung verwalten",
+  "pci_database_guides_troubleshooting_description": ""
+}

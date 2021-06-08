@@ -1,0 +1,10 @@
+{
+  "pci_databases_users_add": "Add user",
+  "pci_databases_users_add_username_label": "Username",
+  "pci_databases_users_add_roles": "Edit roles",
+  "pci_databases_users_add_roles_available": "Available roles",
+  "pci_databases_users_add_roles_selected": "Selected roles",
+  "pci_databases_users_add_create": "Create User",
+  "pci_databases_users_add_success_message": "The user {{username}} has been added with the password {{password}}.",
+  "pci_databases_users_add_error_save": "An error has occurred creating the {{user}} user: {{message}}."
+}

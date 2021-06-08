@@ -1,0 +1,8 @@
+{
+  "pci_databases_general_information_add_node": "Node hinzufügen",
+  "pci_databases_general_information_add_node_confirm": "Bestätigen",
+  "pci_databases_general_information_add_node_cancel": "Abbrechen",
+  "pci_databases_general_information_add_node_description": "Sie haben derzeit {{nodesCount}} Node(s). Sie können einen Node hinzufügen für",
+  "pci_databases_general_information_add_node_success": "Die Anfrage einen Node hinzuzufügen wurde registriert und ist in einigen Minuten wirksam.",
+  "pci_databases_general_information_add_node_error": "Beim Hinzufügen des Nodes ist ein Fehler aufgetreten: {{message}}"
+}
