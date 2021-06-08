@@ -15,5 +15,6 @@
   "vps_dashboard_state_running": "En cours d'exécution",
   "vps_dashboard_state_stopped": "Arrêté",
   "vps_dashboard_state_stopping": "En cours d'extinction",
-  "vps_dashboard_state_upgrading": "En cours de changement d'offre"
+  "vps_dashboard_state_upgrading": "En cours de changement d'offre",
+  "vps_dashboard_auto_migration_warning_new": "Votre VPS {{vps}} est éligible à la migration en un clic vers la nouvelle gamme."
 }

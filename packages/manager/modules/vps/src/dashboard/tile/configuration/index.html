@@ -4,8 +4,10 @@
 >
     <oui-tile-definition
         data-term="{{ ::'vps_dashboard_product' | translate }}"
-        data-description="{{ ::$ctrl.vps.model }}"
     >
+        <oui-tile-description>
+            <span data-ng-bind="$ctrl.vps.model"></span>
+        </oui-tile-description>
     </oui-tile-definition>
 
     <oui-tile-definition
