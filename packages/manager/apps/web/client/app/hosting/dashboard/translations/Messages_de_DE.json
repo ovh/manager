@@ -15,6 +15,7 @@
   "hosting_dashboard_service_state_BLOQUED": "Gesperrt",
   "hosting_dashboard_service_state_MAINTENANCE": "Deaktiviert",
   "hosting_dashboard_service_state_DELETE": "Gekündigt",
+  "hosting_dashboard_service_state_DELETE_AT_EXPIRATION": "Wird am Ablaufdatum entfernt",
   "hosting_state_info_MAINTENANCE": "Infos zum Status 'deaktiviert'",
   "hosting_state_info_BLOQUED": "Infos zum Status 'blockiert'",
   "hosting_state_info_title": "Zu den Hilfen (neues Fenster)",
@@ -35,7 +36,6 @@
   "hosting_dashboard_disk_usage_total": "Verwendeter Speicherplatz:",
   "hosting_dashboard_disk_usage_configuration": "{{t0}} für die Serverkonfiguration",
   "hosting_dashboard_trafic_usage": "Verbrauchter Traffic",
-  "hosting_dashboard_hosting_activities": "Aktivität des Webhostings",
   "hosting_dashboard_php_support_SECURITY_FIXES": "Sie nutzen derzeit eine PHP-Version, die vom Anbieter nicht mehr weiter entwickelt wird. Es werden lediglich noch Sicherheitslücken behoben. Sie können die verwendete PHP-Version mit dem Button „Konfiguration ändern\" wechseln. Die Änderung der Version kann Auswirkungen auf das Funktionieren Ihrer Websites haben.",
   "hosting_dashboard_php_support_END_OF_LIFE": "Sie nutzen derzeit eine PHP-Version, die vom Anbieter nicht mehr weiter gepflegt wird. Sie können die verwendete PHP-Version mit dem Button „Konfiguration ändern\" wechseln. Die Änderung der Version kann Auswirkungen auf das Funktionieren Ihrer Websites haben.",
   "hosting_dashboard_php_support_BETA": "Betaversion",
@@ -542,6 +542,7 @@
   "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name": "Domain",
   "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_placeholder": "Subdomain",
   "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_www_question": "Auch die Subdomain {{t0}} erstellen",
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_information": "Auf die DNS Zone anzuwendende Konfiguration",
   "hosting_tab_DOMAINS_configuration_add_step3_summary": "Möchten Sie wirklich diese Domain(s) zu Ihrem Webhosting hinzufügen?",
   "hosting_tab_DOMAINS_configuration_add_step3_mode_OVH_autoconfigure": "Automatische Konfiguration (empfohlen)",
   "hosting_tab_DOMAINS_configuration_add_step3_mode_OVH_autoconfigure_text": "Die automatische Konfiguration entspricht der Erstellung der A und AAAA Einträge in der DNS-Zone der Domain",
@@ -558,6 +559,7 @@
   "hosting_tab_DOMAINS_configuration_add_step3_compatibility_nok": "Achtung, es bestehen Konflikte mit der derzeitigen Konfiguration:",
   "hosting_tab_DOMAINS_configuration_add_step3_compatibility_warning": "Es existiert bereits eine Weiterleitung der Domain <span class=\"bold\" translate=\"none\">{{t0}}</span> (<span class=\"bold\" translate=\"none\">{{t1}}</span> Eintrag)",
   "hosting_tab_DOMAINS_configuration_add_step3_compatibility_important": "Wichtig: die automatische Konfiguration versucht, bestehende Konflikte zu lösen, indem die mit der neuen Konfiguration inkompatiblen Einträge aus der DNS-Zone entfernt werden.",
+  "hosting_tab_DOMAINS_configuration_add_step3_delete_4a_records": "Löschen Sie die Felder AAAA aus Ihrer Domain {{domain}}",
   "hosting_tab_DOMAINS_configuration_add_step3_common_action": "Den <span class=\"bold\" translate=\"none\">{{t0}}</span> Eintrag Ihrer Domain <span class=\"bold\" translate=\"none\">{{t1}}</span> auf <span class=\"bold\" translate=\"none\">{{t2}}</span> verweisen lassen",
   "hosting_tab_DOMAINS_configuration_add_step3_insert_token_field": "Einen <span class=\"bold\" translate=\"none\">{{t0}}</span> Eintrag für die Domain <span class=\"bold\" translate=\"none\">{{t1}}</span> mit dem Wert <span class=\"bold\" translate=\"none\">{{t2}}</span> einfügen",
   "hosting_tab_DOMAINS_configuration_add_success": "Die Domain(s) wird/werden zu Ihrem Webhosting hinzugefügt.",
@@ -1373,8 +1375,5 @@
   "hosting_dashboard_service_common_active": "Aktiv",
   "hosting_dashboard_service_common_inactive": "Inaktiv",
   "hosting_dashboard_email_offer_get_error": "Es ist unmöglich, die E-Mail-Adresse wiederherzustellen.",
-  "hosting_dashboard_stats_status": "Beta",
-  "hosting_tab_DOMAINS_configuration_add_step3_delete_4a_records": "Löschen Sie die Felder AAAA aus Ihrer Domain {{domain}}",
-  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_information": "Auf die DNS Zone anzuwendende Konfiguration",
-  "hosting_dashboard_service_state_DELETE_AT_EXPIRATION": "Wird am Ablaufdatum entfernt"
+  "hosting_dashboard_stats_status": "Beta"
 }

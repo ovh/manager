@@ -15,6 +15,7 @@
   "hosting_dashboard_service_state_BLOQUED": "Bloqueado",
   "hosting_dashboard_service_state_MAINTENANCE": "Desactivado",
   "hosting_dashboard_service_state_DELETE": "Dado de baja",
+  "hosting_dashboard_service_state_DELETE_AT_EXPIRATION": "Eliminación en la fecha de expiración",
   "hosting_state_info_MAINTENANCE": "información sobre el estado desactivado",
   "hosting_state_info_BLOQUED": "información sobre el estado bloqueado",
   "hosting_state_info_title": "Ir a las guías (nueva ventana)",
@@ -35,7 +36,6 @@
   "hosting_dashboard_disk_usage_total": "Espacio utilizado:",
   "hosting_dashboard_disk_usage_configuration": "{{t0}} están asignados a la configuración del servidor",
   "hosting_dashboard_trafic_usage": "Tráfico consumido",
-  "hosting_dashboard_hosting_activities": "Actividad del alojamiento",
   "hosting_dashboard_php_support_SECURITY_FIXES": "Ya no existen más versiones actualizadas de la configuración de PHP que utiliza actualmente. Tan solo podrá corregir los fallos de seguridad. Haga clic en el botón «Modificar la configuración», que se muestra a la derecha de la versión actual, para actualizar su versión. El cambio de versión podría afectar al funcionamiento de sus sitios web.",
   "hosting_dashboard_php_support_END_OF_LIFE": "La versión de PHP que utiliza actualmente no está actualizada. Haga clic en el botón «Modificar la configuración», que se muestra a la derecha de la versión actual, para actualizar su versión. El cambio de versión podría afectar al funcionamiento de sus sitios web.",
   "hosting_dashboard_php_support_BETA": "Versión beta",
@@ -543,6 +543,7 @@
   "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name": "Dominio",
   "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_placeholder": "subdominio",
   "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_www_question": "Crear también el subdominio {{t0}}",
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_information": "Configuración de la zona DNS",
   "hosting_tab_DOMAINS_configuration_add_step3_summary": "¿Seguro que quiere añadir el dominio o dominios al alojamiento compartido?",
   "hosting_tab_DOMAINS_configuration_add_step3_mode_OVH_autoconfigure": "Configuración automática (recomendado)",
   "hosting_tab_DOMAINS_configuration_add_step3_mode_OVH_autoconfigure_text": "La configuración automática crea los campos A y AAAA en la zona DNS del dominio.",
@@ -559,6 +560,7 @@
   "hosting_tab_DOMAINS_configuration_add_step3_compatibility_nok": "¡Atención! Existen conflictos con la configuración actual:",
   "hosting_tab_DOMAINS_configuration_add_step3_compatibility_warning": "Ya hay una redirección del dominio <span class=\"bold\" translate=\"none\">{{t0}}</span> (registro <span class=\"bold\" translate=\"none\">{{t1}}</span>)",
   "hosting_tab_DOMAINS_configuration_add_step3_compatibility_important": "Importante: la configuración automática intentará resolver los conflictos eliminando de la zona DNS los registros incompatibles con la nueva configuración.",
+  "hosting_tab_DOMAINS_configuration_add_step3_delete_4a_records": "Elimine los registros AAA del dominio {{domain}}",
   "hosting_tab_DOMAINS_configuration_add_step3_common_action": "Haga que el registro <span class=\"bold\" translate=\"none\">{{t0}}</span> del dominio <span class=\"bold\" translate=\"none\">{{t1}}</span> apunte a <span class=\"bold\" translate=\"none\">{{t2}}</span>",
   "hosting_tab_DOMAINS_configuration_add_step3_insert_token_field": "Cree un registro <span class=\"bold\" translate=\"none\">{{t0}}</span> para el dominio <span class=\"bold\" translate=\"none\">{{t1}}</span> con el valor <span class=\"bold\" translate=\"none\">{{t2}}</span>",
   "hosting_tab_DOMAINS_configuration_add_success": "Van a añadirse el dominio o dominios al alojamiento compartido.",
@@ -1374,8 +1376,5 @@
   "hosting_dashboard_service_common_active": "Activo",
   "hosting_dashboard_service_common_inactive": "Inactivo",
   "hosting_dashboard_email_offer_get_error": "No se ha podido cargar la dirección de correo.",
-  "hosting_dashboard_stats_status": "Beta",
-  "hosting_tab_DOMAINS_configuration_add_step3_delete_4a_records": "Elimine los registros AAA del dominio {{domain}}",
-  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_information": "Configuración de la zona DNS",
-  "hosting_dashboard_service_state_DELETE_AT_EXPIRATION": "Eliminación en la fecha de expiración"
+  "hosting_dashboard_stats_status": "Beta"
 }
