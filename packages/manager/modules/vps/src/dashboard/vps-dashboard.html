@@ -4,17 +4,17 @@
 <vps-announcement-banner data-ng-if="$ctrl.canDisplayVpsAnnouncementBanner">
 </vps-announcement-banner>
 
-<oui-message data-ng-if="$ctrl.canScheduleMigration" data-type="warning">
+<oui-message data-ng-if="$ctrl.vpsMigration" data-type="warning" class="mb-3">
     <p
-        data-translate="vps_dashboard_migration_warning"
-        data-translate-values="{ date: $ctrl.vps2014MigrationData.autoMigrationDate }"
+        data-translate="vps_dashboard_auto_migration_warning_new"
+        data-translate-values="{ vps: $ctrl.serviceInfo.domain, expiration:$ctrl.expirationDate }"
     ></p>
-    <button
-        type="button"
-        class="oui-button p-0 oui-button_ghost"
-        data-ng-click="$ctrl.goToVpsMigration()"
-        data-translate="vps_dashboard_migration_link"
-    ></button>
+    <a
+        class="oui-tile__button oui-button oui-link_icon"
+        data-ng-href="{{ $ctrl.migrationLink }}"
+    >
+        <span data-translate="vps_dashboard_migration_link"></span>
+    </a>
 </oui-message>
 <oui-message
     data-ng-if="$ctrl.vpsMigrationTask && $ctrl.vps2014MigrationData.inAutoMigrationPhase"
@@ -154,6 +154,15 @@
                             data-ng-bind="$ctrl.vps.displayName || $ctrl.vps.name"
                         ></span>
                         <br />
+                        <a
+                            data-ng-if="$ctrl.vpsMigration"
+                            class="oui-tile__button oui-button oui-link_icon"
+                            data-ng-href="{{ $ctrl.migrationLink }}"
+                        >
+                            <span
+                                data-translate="vps_dashboard_migration_link"
+                            ></span>
+                        </a>
                         <button
                             type="button"
                             class="oui-button p-0 oui-button_ghost"

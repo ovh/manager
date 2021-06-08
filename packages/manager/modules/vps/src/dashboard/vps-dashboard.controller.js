@@ -57,6 +57,7 @@ export default class {
   }
 
   $onInit() {
+    this.expirationDate = moment(this.serviceInfo?.expiration).format('LL');
     this.vps2014MigrationData = {
       autoMigrationDate: moment(
         VPS_2014_AUTO_MIGRATION_DATE,
@@ -492,6 +493,10 @@ export default class {
               !this.loaders.polling &&
               !this.isVpsNewRange &&
               !this.isMigrationInProgress,
+          },
+          migrate: {
+            state: 'vps.detail.dashboard.migrate',
+            stateParams: { serviceName: this.serviceName },
           },
         };
       });
