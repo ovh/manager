@@ -80,7 +80,7 @@
         </oui-tile-description>
     </oui-tile-definition>
     <oui-tile-definition
-        ng-if="$ctrl.contactAvailability.isFeatureAvailable('contact')"
+        ng-if="$ctrl.contactAvailability.isFeatureAvailable('contact') && $ctrl.withContactManagement"
         term="{{:: 'manager_billing_subscription_contacts' | translate }}"
     >
         <oui-tile-description>

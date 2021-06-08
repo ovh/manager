@@ -15,6 +15,8 @@ export default {
     trackingPrefix: '@',
     user: '<',
     commitImpressionData: '<?',
+    withContactManagement: '<?',
+    disableServiceActions: '<?',
   },
   controller,
   template,

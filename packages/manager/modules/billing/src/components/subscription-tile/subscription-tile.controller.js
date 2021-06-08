@@ -23,9 +23,16 @@ export default class ServicesActionsCtrl {
   }
 
   $onInit() {
-    this.displayServiceActions = this.coreConfig.isRegion(['EU', 'CA']);
+    this.disableServiceActions = this.$attrs.disableServiceActions
+      ? this.disableServiceActions
+      : false;
     this.withEngagement =
       this.withEngagement || this.$attrs.withEngagement === '';
+    this.withContactManagement = this.$attrs.withContactManagement
+      ? this.withContactManagement
+      : true;
+    this.displayServiceActions =
+      this.coreConfig.isRegion(['EU', 'CA']) && !this.disableServiceActions;
     this.isLoading = true;
     return this.ovhFeatureFlipping
       .checkFeatureAvailability(['contact', 'contact:management'])
