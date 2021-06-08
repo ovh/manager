@@ -1,0 +1,8 @@
+{
+  "billing_main_history_debt_pay_title": "Liquidación",
+  "billing_main_history_debt_pay_confirm": "Regular saldo",
+  "billing_main_history_debt_pay_explanation": "Esta acción generará una orden de pedido válida durante una hora, que permita abonar el saldo inmediatamente. ",
+  "billing_main_history_debt_pay_success": "Se ha generado la <a href=\"{{t1}}\" target=\"_blank\" rel=\"noopener\">orden de pedido {{t0}}</a> que le permitirá abonar el importe pendiente.",
+  "billing_main_history_debt_pay_error": "Se ha producido un error al abonar el importe pendiente.",
+  "billing_main_history_debt_pay_error_nothing_to_pay": "Vous n'avez actuellement aucun paiement en attente."
+}

@@ -1,0 +1,17 @@
+{
+  "billing_history_balance_title": "Effettua il pagamento del tuo saldo",
+  "billing_history_balance_cancel": "Annulla",
+  "billing_history_balance_explain": "Il saldo del tuo account è di {{ balance }}.",
+  "billing_history_balance_no_balance": "Aucune balance n'a été trouvée sur votre compte. Clicca <a data-ui-sref=\"{{ backState }}\">qui</a> per tornare alla lista delle fatture.",
+  "billing_history_balance_choose_payment_method": "Scegli un metodo di pagamento",
+  "billing_history_balance_add_payment_method": "Aggiungi un metodo di pagamento",
+  "billing_history_balance_no_payment_method": "Non hai registrato alcun metodo di pagamento valido. <a data-ui-sref=\"{{ addPaymentMethodState }}\">Aggiungi un metodo di pagamento</a> prima di pagare il tuo saldo.",
+  "billing_history_balance_payment_doing": "Un pagamento del saldo è già in corso ed è necessario attendere che venga elaborato prima di procedere a un nuovo pagamento.",
+  "billing_history_balance_payment_go_tracking": "Accedi alla pagina di <a data-ui-sref=\"{{ trackState }}\">monitoraggio dei pagamenti</a> per ulteriori informazioni.",
+  "billing_history_balance_load_error": "Si è verificato un errore durante il caricamento del tuo saldo.",
+  "billing_history_balance_pay_success": "Il pagamento del tuo saldo è in fase di elaborazione e sarà effettivo tra qualche istante. Accedi alla pagina di <a data-ui-sref=\"{{ trackHref }}\">monitoraggio dei pagamenti</a> per ulteriori informazioni.",
+  "billing_history_balance_pay_error": "Si è verificato un errore durante il pagamento del tuo saldo.",
+  "billing_history_balance_payment_method_subtype_american_express": "American Express",
+  "billing_history_balance_payment_method_subtype_mastercard": "Mastercard",
+  "billing_history_balance_payment_method_subtype_visa": "Visa"
+}
