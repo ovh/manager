@@ -1,3 +1,12 @@
+# [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.2.5...@ovh-ux/ng-ovh-telecom-universe-components@7.3.0) (2021-06-09)
+
+
+### Features
+
+* **component.group.number:** rework on contact center solution ([#3243](https://github.com/ovh/manager/issues/3243)) ([0987e9e](https://github.com/ovh/manager/commit/0987e9e28813ab2c87bd87563bd98f381f296ec2))
+
+
+
 ## [7.2.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.2.4...@ovh-ux/ng-ovh-telecom-universe-components@7.2.5) (2021-05-19)
 
 
