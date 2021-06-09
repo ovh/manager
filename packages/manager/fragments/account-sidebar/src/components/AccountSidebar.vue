@@ -24,7 +24,7 @@ import { User } from '@/models/user';
 
 export default defineComponent({
   setup() {
-    const environment = inject('environment');
+    const environment = inject('environment') as any;
     const user = inject('user') as Ref<User>;
     const hasChatbot = ref(false);
     const sidebarOpen = ref(true);
