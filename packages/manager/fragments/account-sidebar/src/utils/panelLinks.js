@@ -1,5 +1,4 @@
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-import { Environment } from '@ovh-ux/manager-config';
 import { emit } from '@ovh-ux/ufrontend/communication';
 import RedirectionService from './redirectionService';
 
@@ -7,9 +6,9 @@ const openChatbot = () => {
   emit({ id: 'ovh.chatbot.open' });
 };
 
-const links = (user, hasChatbot) => [
+const links = (user, hasChatbot, region) => [
   {
-    href: RedirectionService?.getURL('help', {
+    href: RedirectionService?.getURL('help', region, {
       ovhSubsidiary: user?.ovhSubsidiary,
     }),
     icon: 'oui-icon oui-icon-lifebuoy_concept',
@@ -25,7 +24,7 @@ const links = (user, hasChatbot) => [
       ]
     : []),
   {
-    href: RedirectionService?.getURL('tasks'),
+    href: RedirectionService?.getURL('tasks', region),
     icon: 'oui-icon oui-icon-traffic-cone_concept',
     label: 'hub_links_tasks',
   },
@@ -34,7 +33,7 @@ const links = (user, hasChatbot) => [
     icon: 'oui-icon oui-icon-envelop_concept',
     label: 'hub_links_tickets',
   },
-  ...(['EU', 'CA'].includes(Environment.getRegion())
+  ...(['EU', 'CA'].includes(region)
     ? [
         {
           href: buildURL('dedicated', '#/support/tickets/new'),

@@ -1,11 +1,9 @@
 import { forOwn, get, isString, keys, some, startsWith } from 'lodash-es';
-import { Environment } from '@ovh-ux/manager-config';
-
 import constants from '../constants/redirection';
 
 export default class RedirectionService {
-  static getURL(id, params = {}) {
-    const regionConstants = constants[Environment.getRegion()];
+  static getURL(id, region, params = {}) {
+    const regionConstants = constants[region];
     let url = get(regionConstants, id);
 
     // if url is an object, then it depends on the ovhSUbsidiary
@@ -27,11 +25,5 @@ export default class RedirectionService {
     }
 
     return url;
-  }
-
-  static validate(url) {
-    return some(Object.values(Environment.getApplicationURLS()), (appURL) =>
-      startsWith(url, appURL),
-    );
   }
 }

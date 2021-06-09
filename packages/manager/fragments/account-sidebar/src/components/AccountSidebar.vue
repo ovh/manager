@@ -75,7 +75,7 @@ export default defineComponent({
       return shortcuts(this.user, this.environment.getRegion());
     },
     usefulLinks(): any {
-      return links(this.user, this.hasChatbot);
+      return links(this.user, this.hasChatbot, this.environment.getRegion());
     },
   },
 });

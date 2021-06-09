@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^6.0.0",
-    "@ovh-ux/ufrontend": "^1.0.0 || ^2.0.0",
+    "@ovh-ux/ufrontend": "^2.0.0",
     "@ovh-ux/ui-kit": "^4.4.3",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
