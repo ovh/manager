@@ -29,17 +29,10 @@
   "telephony_alias_tab_item_change_featureType": "Change configuration",
   "telephony_alias_tile_information": "Information",
   "telephony_alias_tile_configuration": "Configuration",
-<<<<<<< HEAD
-  "telephony_alias_tile_detailed_consumption": "Consommation détaillée",
-  "telephony_alias_presentation_title": "Qu’est-ce qu’un numéro ?",
-  "telephony_alias_presentation_part_one": "Un numéro, aussi appelé alias, est virtuel. À l’inverse d’une ligne téléphonique, il ne dispose d’aucun forfait d’appel ni d'aucun matériel.",
-  "telephony_alias_presentation_part_two": "Ce numéro est souvent votre premier moyen de contact avec le client, voire la carte de visite de votre entreprise. Il vous permet de mettre en place votre propre stratégie d'appels.",
-=======
   "telephony_alias_tile_detailed_consumption": "Detailed usage",
   "telephony_alias_presentation_title": "What is a number?",
   "telephony_alias_presentation_part_one": "A number, also known as an alias, is virtual. Unlike a telephone line, it does not have a call plan or any hardware.",
   "telephony_alias_presentation_part_two": "This number is often your first means of contact with the customer, as it is listed on your company's business card. It allows you to set up your own call strategy.",
->>>>>>> 3f308a96b2... fix(i18n): add missing translations [CDS 981]
   "telephony_alias_presentation_part_three": "Once you have ordered or ported it to OVHcloud, you can assign a role to it, depending on your needs: simple redirection, a call queue, an interactive multi-choice voice server, or even a conference call.",
   "telephony_alias_information_number": "Number",
   "telephony_alias_information_region": "Country/code",
