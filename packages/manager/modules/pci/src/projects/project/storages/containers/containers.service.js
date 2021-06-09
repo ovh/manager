@@ -16,6 +16,7 @@ import {
   CONTAINER_DEFAULT_PASSWORD_TENANTNAME,
   CONTAINER_DEFAULT_PASSWORD_USERNAME,
   CONTAINER_DEFAULT_PASSWORD,
+  OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE,
   OBJECT_CONTAINER_TYPE_STATIC,
   OBJECT_CONTAINER_TYPE_PUBLIC,
   OBJECT_TYPE_SEALED,
@@ -214,27 +215,36 @@ export default class PciStoragesContainersService {
     );
   }
 
-  addContainer(projectId, { archive, containerType, name, region }) {
-    return this.OvhApiCloudProjectStorage.v6()
-      .save(
-        {
-          projectId,
-        },
-        {
-          archive,
-          containerName: name,
-          region: region.name,
-        },
-      )
-      .$promise.then((container) => {
-        let returnPromise = this.$q.resolve();
-        if (containerType === OBJECT_CONTAINER_TYPE_STATIC) {
-          returnPromise = this.setContainerAsStatic(projectId, container);
-        } else if (containerType === OBJECT_CONTAINER_TYPE_PUBLIC) {
-          returnPromise = this.setContainerAsPublic(projectId, container);
-        }
-        return returnPromise;
-      });
+  addHighPerfStorageContainer(projectId, region, name) {
+    return this.$http
+      .post(`/cloud/project/${projectId}/region/${region}/storage`, { name })
+      .then(({ data }) => data);
+  }
+
+  addStorageContainer(projectId, region, name, archive) {
+    return this.OvhApiCloudProjectStorage.v6().save(
+      { projectId },
+      {
+        archive,
+        containerName: name,
+        region,
+      },
+    ).$promise;
+  }
+
+  addContainer(projectId, { archive, containerType, offer, name, region }) {
+    return (offer === OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE
+      ? this.addHighPerfStorageContainer(projectId, region.name, name)
+      : this.addStorageContainer(projectId, region.name, name, archive)
+    ).then((container) => {
+      let returnPromise = this.$q.resolve();
+      if (containerType === OBJECT_CONTAINER_TYPE_STATIC) {
+        returnPromise = this.setContainerAsStatic(projectId, container);
+      } else if (containerType === OBJECT_CONTAINER_TYPE_PUBLIC) {
+        returnPromise = this.setContainerAsPublic(projectId, container);
+      }
+      return returnPromise;
+    });
   }
 
   setContainerAsStatic(projectId, container) {

@@ -3,6 +3,8 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import some from 'lodash/some';
 
+import { OBJECT_CONTAINER_OFFERS } from '../../containers/containers.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.objects.add', {
     url: '/new',
@@ -10,16 +12,24 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       regions: /* @ngInject */ (PciProjectRegions, projectId) =>
         PciProjectRegions.getAvailableRegions(projectId).then((regions) => {
-          const supportedRegions = filter(regions, (region) =>
-            some(get(region, 'services', []), {
-              name: 'storage',
-              status: 'UP',
+          return OBJECT_CONTAINER_OFFERS.reduce(
+            (regionsConfiguration, offerName) => ({
+              ...regionsConfiguration,
+              [offerName]: map(
+                filter(regions, (region) =>
+                  some(get(region, 'services', []), {
+                    name: offerName,
+                    status: 'UP',
+                  }),
+                ),
+                (region) => ({
+                  ...region,
+                  hasEnoughQuota: () => true,
+                }),
+              ),
             }),
+            {},
           );
-          return map(supportedRegions, (region) => ({
-            ...region,
-            hasEnoughQuota: () => true,
-          }));
         }),
       goBack: /* @ngInject */ (goToStorageContainers) => goToStorageContainers,
       cancelLink: /* @ngInject */ ($state, projectId) =>
