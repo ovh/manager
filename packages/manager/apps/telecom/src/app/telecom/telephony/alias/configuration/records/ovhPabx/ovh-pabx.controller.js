@@ -8,11 +8,19 @@ import sortBy from 'lodash/sortBy';
 export default /* @ngInject */ function TelecomTelephonyAliasConfigurationRecordsOvhPabxCtrl(
   $q,
   $stateParams,
+  atInternet,
   TelephonyMediator,
   OvhApiTelephony,
   TucToastError,
 ) {
   const self = this;
+
+  self.$onInit = function $onInit() {
+    atInternet.trackClick({
+      name: 'ccs::group-number::consult-the-recordings',
+      type: 'navigation',
+    });
+  };
 
   /*= ==============================
   =            HELPERS            =

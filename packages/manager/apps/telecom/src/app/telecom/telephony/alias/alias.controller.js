@@ -15,6 +15,7 @@ export default class TelecomTelephonyAliasCtrl {
     TucToast,
     tucVoipService,
     tucVoipServiceAlias,
+    voipAliasGuides,
   ) {
     this.$q = $q;
     this.$state = $state;
@@ -27,6 +28,7 @@ export default class TelecomTelephonyAliasCtrl {
 
     this.billingAccount = $stateParams.billingAccount;
     this.serviceName = serviceName !== 'default' ? serviceName : null;
+    this.guides = voipAliasGuides;
   }
 
   $onInit() {
@@ -126,6 +128,10 @@ export default class TelecomTelephonyAliasCtrl {
 
   isContactCenterSolution() {
     return this.alias.isContactCenterSolution();
+  }
+
+  isContactCenterSolutionExpert() {
+    return get(this, 'alias.featureType') === 'contactCenterSolutionExpert';
   }
 
   isFeatureTypeObsolete() {

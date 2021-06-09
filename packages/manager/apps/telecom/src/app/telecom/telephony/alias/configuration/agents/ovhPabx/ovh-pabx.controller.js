@@ -27,6 +27,7 @@ export default class TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl {
     TelephonyMediator,
     tucTelecomVoip,
     TucToast,
+    voipAliasGuides,
   ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -37,6 +38,7 @@ export default class TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl {
     this.TucToast = TucToast;
     this.TelephonyMediator = TelephonyMediator;
     this.tucTelecomVoip = tucTelecomVoip;
+    this.guides = voipAliasGuides;
   }
 
   $onInit() {

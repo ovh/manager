@@ -9,6 +9,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationOvhPab
   TelephonyMediator,
   TucToast,
   tucJsPlumbService,
+  voipAliasGuides,
 ) {
   const self = this;
 
@@ -23,6 +24,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationOvhPab
   self.menu = null;
   self.jsPlumbInstanceOptions = JSPLUMB_INSTANCE_OPTIONS;
   self.jsPlumbInstance = null;
+  self.guides = voipAliasGuides;
 
   /*= =============================
     =            EVENTS            =

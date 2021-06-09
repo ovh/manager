@@ -1,18 +1,8 @@
 <div class="telephony-number-ovh-pabx">
     <!-- FEATURE IS LOADING -->
     <div class="voip-plan__step" data-ng-if="$ctrl.numberCtrl.loading.feature">
-        <div
-            class="voip-plan__step-icon voip-plan__step-icon--basic"
-            data-tuc-jsplumb-endpoint
-            data-tuc-jsplumb-endpoint-uuid="redirect-loading"
-        >
-            <span
-                class="fa fa-spinner fa-pulse"
-                data-tuc-jsplumb-connection
-                data-tuc-jsplumb-connection-target="incoming-call-{{ $ctrl.numberCtrl.number.serviceName }}"
-                aria-hidden="true"
-            >
-            </span>
+        <div class="voip-plan__step-icon voip-plan__step-icon--basic">
+            <oui-spinner></oui-spinner>
         </div>
         <div class="voip-plan__step-description">
             <span class="voip-plan__step-info" data-translate="loading"> </span>

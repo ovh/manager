@@ -18,8 +18,8 @@ export default /* @ngInject */ (
   VoipTimeConditionCondition,
 ) => {
   /*= ==================================
-    =            CONSTRUCTOR            =
-    =================================== */
+=            CONSTRUCTOR            =
+=================================== */
 
   function TelephonyGroupNumberOvhPabxDialplanExtension(extensionOptionsParam) {
     let extensionOptions = extensionOptionsParam;
@@ -75,8 +75,8 @@ export default /* @ngInject */ (
   /* -----  End of CONSTRUCTOR  ------*/
 
   /*= ========================================
-    =            PROTOTYPE METHODS            =
-    ========================================= */
+=            PROTOTYPE METHODS            =
+========================================= */
 
   TelephonyGroupNumberOvhPabxDialplanExtension.prototype.setInfos = function setInfos(
     extensionOptionsParam,
@@ -485,17 +485,17 @@ export default /* @ngInject */ (
     const self = this;
     const savePromises = [];
 
-    self.screenListConditions.forEach((screenList) => {
-      if (screenList.state === 'TO_DELETE') {
+    self.screenListConditions.forEach((condition) => {
+      if (condition.state === 'TO_DELETE') {
         savePromises.push(
-          screenList
+          condition
             .remove()
-            .then(() => self.removeScreenListCondition(screenList)),
+            .then(() => self.removeScreenListCondition(condition)),
         );
-      } else if (screenList.state === 'DRAFT') {
+      } else if (condition.state === 'DRAFT') {
         savePromises.push(
-          screenList.create().catch((error) => {
-            self.removeScreenListCondition(screenList);
+          condition.create('condition').catch((error) => {
+            self.removeScreenListCondition(condition);
             return $q.reject(error);
           }),
         );

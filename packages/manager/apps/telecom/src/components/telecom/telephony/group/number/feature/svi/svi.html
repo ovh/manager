@@ -2,14 +2,9 @@
     <!-- DIALPLAN BOX -->
     <div class="voip-plan__step">
         <div class="voip-plan__step-content voip-plan__step-content--node">
-            <div
-                class="voip-plan__step-icon voip-plan__step-icon--included"
-                data-tuc-jsplumb-endpoint
-            >
+            <div class="voip-plan__step-icon voip-plan__step-icon--included">
                 <span
                     data-ng-class="{ 'ovh-font ovh-font-phoneCall':!$ctrl.numberCtrl.loading.save, 'fa fa-spinner fa-pulse': $ctrl.numberCtrl.loading.save }"
-                    data-tuc-jsplumb-connection
-                    data-tuc-jsplumb-connection-target="incoming-call-{{ $ctrl.numberCtrl.number.serviceName }}"
                     aria-hidden="true"
                 >
                 </span>
@@ -85,6 +80,9 @@
                 data-popover-append-to-body="true"
                 data-popover-class="pretty-popover telephony-number-feature-popover telephony-number-svi-config-popup"
                 data-popover-is-open="$ctrl.popoverOpen"
+                data-popover-trigger="none"
+                data-popover-autofocus
+                data-popover-on-outside-click="$ctrl.onPopoverCancel()"
             >
                 <span
                     class="ovh-font ovh-font-config"

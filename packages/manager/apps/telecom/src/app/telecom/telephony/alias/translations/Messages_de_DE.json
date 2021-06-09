@@ -57,6 +57,7 @@
   "telephony_alias_configuration_configuration_type_empty": "Keiner",
   "telephony_alias_configuration_redirect_to": "Vers la ligne",
   "telephony_alias_configuration_choose": "Choisir une configuration",
+  "telephony_alias_configuration_queues_breadcrumb": "Anrufwarteschleifen verwalten",
   "telephony_alias_configuration_configure": "Paramétrer la configuration",
   "telephony_alias_configuration_delete_configuration": "Supprimer la configuration",
   "telephony_alias_configuration_delete_configuration_question_part1": "Êtes-vous sûr de vouloir supprimer votre configuration ?",

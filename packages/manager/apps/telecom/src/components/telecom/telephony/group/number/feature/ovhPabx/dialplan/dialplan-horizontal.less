@@ -1,0 +1,179 @@
+@import '../../../variables.less';
+
+@voip-plan-condition-tip: 11px;
+@voip-plan-links: 3px solid @voip-plan-main-color;
+
+.group-number-layout-horizontal {
+  .group-number {
+    &__step {
+      &-empty {
+        position: absolute;
+        top: 395px;
+        left: 430px;
+      }
+
+      &-wrapper {
+        position: absolute;
+        top: 0;
+        left: 405px;
+      }
+
+      &-container {
+        text-align: center;
+        list-style-type: none;
+        position: relative;
+        &::before,
+        &::after {
+          content: '';
+          position: absolute;
+          left: -20px;
+          bottom: 50%;
+          border-left: @voip-plan-links;
+          height: 100%;
+        }
+        &::after {
+          bottom: auto;
+          top: 50%;
+          border-top: @voip-plan-links;
+          width: 25px;
+        }
+        &:first-child::before,
+        &:last-child::after {
+          border: 0 none;
+        }
+        &:last-child::after {
+          border-top: @voip-plan-links;
+          width: 25px;
+          top: 50%;
+        }
+      }
+
+      &--condition {
+        &-icon {
+          margin-left: -26px;
+        }
+      }
+
+      &-confirm {
+        &-content {
+          top: 40%;
+        }
+      }
+    } // &__step
+
+    &__action {
+      &-wrapper {
+        left: 500px;
+        top: 0;
+        &::before {
+          content: '';
+          border-bottom: 3px solid #0050d7;
+          width: 240px;
+          left: -220px;
+          top: 65px;
+        }
+      }
+
+      &-container {
+        margin-left: -5px;
+        &:first-child::before {
+          border: 0 none;
+        }
+      }
+
+      &--condition {
+        &-icon {
+          margin-left: -26px;
+        }
+      }
+
+      &-negative {
+        margin-bottom: -33px;
+        display: flex;
+        margin-left: -20px;
+      }
+
+      &-btn {
+        &--add {
+          margin-left: 20px;
+        }
+      }
+    }
+
+    &__title {
+      &--container {
+        justify-content: center;
+      }
+    }
+
+    &__number {
+      &::before,
+      &::after {
+        left: 185px;
+      }
+    }
+
+    &__dialplan {
+      margin-top: 356px;
+      position: absolute;
+      &::before {
+        content: '';
+        position: absolute;
+        top: -29px;
+        left: 185px;
+        height: 25px;
+        right: auto;
+        border-left: @voip-plan-links;
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        border-top: @voip-plan-links;
+        width: 25px;
+        right: -28px;
+      }
+    }
+
+    .action_hidden {
+      top: 104px;
+    }
+
+    .voip-plan__step {
+      //display: none;
+      &-description-pabx {
+        /* padding-bottom: 1rem; */
+      }
+    }
+  } // .group-number
+
+  .number-header {
+    margin-top: 150px;
+    position: absolute;
+  }
+
+  // Display flex into columns
+  .rules-flex {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .reorder-step-button {
+    position: absolute;
+    left: -3rem;
+    bottom: -4rem;
+    > span {
+      transform: rotate(90deg);
+    }
+  }
+
+  .reorder-action-button {
+    position: absolute;
+    left: -2rem;
+    bottom: -2rem;
+    > span {
+      transform: rotate(90deg);
+    }
+  }
+} //.group-number-layout-horizontal

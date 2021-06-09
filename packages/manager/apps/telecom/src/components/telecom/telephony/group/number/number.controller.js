@@ -4,99 +4,136 @@ import {
   JSPLUMB_ENDPOINTS_OPTIONS,
 } from './number.constants';
 
-export default /* @ngInject */ function TelephonyNumberCtrl(
-  $q,
-  $translate,
-  $translatePartialLoader,
-  tucJsPlumbService,
-  TucToast,
-) {
-  const self = this;
+export default class TelephonyNumberCtrl {
+  /* @ngInject */
+  constructor(
+    $q,
+    $scope,
+    $translate,
+    $translatePartialLoader,
+    atInternet,
+    autoScrollOnToggle,
+    ovhUserPref,
+    tucJsPlumbService,
+    TucToastError,
+  ) {
+    this.$q = $q;
+    this.$scope = $scope;
+    this.$translate = $translate;
+    this.$translatePartialLoader = $translatePartialLoader;
+    this.atInternet = atInternet;
+    this.autoScrollOnToggle = autoScrollOnToggle;
+    this.ovhUserPref = ovhUserPref;
+    this.tucJsPlumbService = tucJsPlumbService;
+    this.TucToastError = TucToastError;
+    this.jsPlumbInstanceOptions = JSPLUMB_INSTANCE_OPTIONS;
+    this.jsPlumbEndpointsOptions = JSPLUMB_ENDPOINTS_OPTIONS;
+    this.jsPlumbConnectionsOptions = JSPLUMB_CONNECTIONS_OPTIONS;
+  }
 
-  self.loading = {
-    init: false,
-    feature: false,
-    translations: false,
-    save: false,
-  };
+  $onInit() {
+    this.loading = {
+      init: true,
+      feature: false,
+      translations: false,
+      save: false,
+    };
 
-  self.saveFeature = angular.noop;
-  self.jsplumbInstance = null;
-  self.jsPlumbInstanceOptions = JSPLUMB_INSTANCE_OPTIONS;
-  self.jsPlumbEndpointsOptions = JSPLUMB_ENDPOINTS_OPTIONS;
-  self.jsPlumbConnectionsOptions = JSPLUMB_CONNECTIONS_OPTIONS;
+    this.saveFeature = angular.noop;
+    this.jsPlumbInstance = null;
 
-  /*= ==============================
-    =            ACTIONS            =
-    =============================== */
+    this.verticalLayout = true;
+    this.reorderingMode = false;
+    this.reorderingPending = false;
+    this.actionsShowAll = false;
 
-  self.saveNumber = function saveNumber() {
-    self.loading.save = true;
+    this.$scope.$on('dialplan.extensions.loaded', () => {
+      this.dialplanLoaded = true;
+    });
 
-    if (self.number.getFeatureFamily() === 'ovhPabx') {
-      return $q.when(self.number);
+    return this.$q
+      .all([
+        this.getTranslations(),
+        this.fetchLayoutPreferences(),
+        this.tucJsPlumbService.initJsPlumb(),
+      ])
+      .finally(() => {
+        this.loading.init = false;
+      });
+  }
+
+  $onDestroy() {
+    this.number.stopEdition(true, true);
+  }
+
+  fetchLayoutPreferences() {
+    return this.ovhUserPref
+      .getValue('TELECOM_CCS_LAYOUT')
+      .then(({ vertical }) => {
+        this.verticalLayout = vertical;
+      })
+      .catch((error) => {
+        if (error.status === 404) {
+          return this.ovhUserPref.create('TELECOM_CCS_LAYOUT', {
+            vertical: this.verticalLayout,
+          });
+        }
+        return null;
+      });
+  }
+
+  saveNumber() {
+    this.loading.save = true;
+
+    if (this.number.getFeatureFamily() === 'ovhPabx') {
+      return this.$q.when(this.number);
     }
 
-    return self.number.save().then(
-      () => {
+    return this.number
+      .save()
+      .then(() => {
         // number is saved - stop its edition only
-        self.number.stopEdition().startEdition();
+        this.number.stopEdition().startEdition();
 
         // resolve save defered to tell feature sub component to launch feature save
-        return self.saveFeature();
-      },
-      (error) => {
-        self.loading.save = false;
-        TucToast.error(
-          [
-            $translate.instant('telephony_number_save_error'),
-            (error.data && error.data.message) || '',
-          ].join(' '),
-        );
-        return $q.reject(error);
-      },
-    );
-  };
+        return this.saveFeature();
+      })
+      .catch((err) => new this.TucToastError(err))
+      .finally(() => {
+        this.isLoading = false;
+      });
+  }
 
-  /* -----  End of ACTIONS  ------*/
+  getTranslations() {
+    this.loading.translations = true;
 
-  /*= =====================================
-    =            INITIALIZATION            =
-    ====================================== */
-
-  /* ----------  Translations load  ----------*/
-
-  function getTranslations() {
-    self.loading.translations = true;
-
-    $translatePartialLoader.addPart(
+    this.$translatePartialLoader.addPart(
       '../components/telecom/telephony/group/number',
     );
-    if (self.number.getFeatureFamily() === 'conference') {
-      $translatePartialLoader.addPart(
+    if (this.number.getFeatureFamily() === 'conference') {
+      this.$translatePartialLoader.addPart(
         '../components/telecom/telephony/group/number/feature/conference',
       );
     }
-    return $translate.refresh().finally(() => {
-      self.loading.translations = false;
+    return this.$translate.refresh().finally(() => {
+      this.loading.translations = false;
     });
   }
 
-  /* ----------  Component initialization  ----------*/
+  toggleCcsLayout() {
+    this.verticalLayout = !this.verticalLayout;
+    this.atInternet.trackClick({
+      name: `ccs::change-layout::to-${
+        this.verticalLayout ? 'vertical' : 'horizontal'
+      }`,
+      type: 'action',
+    });
+    this.ovhUserPref.assign('TELECOM_CCS_LAYOUT', {
+      vertical: this.verticalLayout,
+    });
+  }
 
-  self.$onInit = function $onInit() {
-    self.loading.init = true;
-
-    return $q
-      .all([getTranslations(), tucJsPlumbService.initJsPlumb()])
-      .finally(() => {
-        self.loading.init = false;
-      });
-  };
-
-  self.$onDestroy = function $onDestroy() {
-    self.number.stopEdition(true, true);
-  };
-
-  /* -----  End of INITIALIZATION  ------*/
+  validateReorderSteps() {
+    this.reorderingMode = false;
+  }
 }
