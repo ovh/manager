@@ -1,3 +1,12 @@
+# [4.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@4.0.6...@ovh-ux/manager-telecom-styles@4.1.0) (2021-06-09)
+
+
+### Features
+
+* **component.group.number:** rework on contact center solution ([#3243](https://github.com/ovh/manager/issues/3243)) ([0987e9e](https://github.com/ovh/manager/commit/0987e9e28813ab2c87bd87563bd98f381f296ec2))
+
+
+
 ## [4.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@4.0.5...@ovh-ux/manager-telecom-styles@4.0.6) (2021-05-19)
 
 
