@@ -1,6 +1,6 @@
 import angular from 'angular';
 import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
-import ovhManagerBilling from '@ovh-ux/manager-billing';
+import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 import uiRouter from '@uirouter/angularjs';
 
 import routing from './cancel-commitment.routing';
@@ -8,7 +8,7 @@ import routing from './cancel-commitment.routing';
 const moduleName = 'ovhManagerBillingAutorenewCancelCommitment';
 
 angular
-  .module(moduleName, [ngUiRouterLayout, ovhManagerBilling, uiRouter])
+  .module(moduleName, [ngUiRouterLayout, ovhManagerBillingComponents, uiRouter])
   .config(routing);
 
 export default moduleName;

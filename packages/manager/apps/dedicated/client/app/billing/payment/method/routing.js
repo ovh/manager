@@ -4,7 +4,7 @@ import find from 'lodash/find';
 import {
   SPLIT_PAYMENT,
   SPLIT_PAYMENT_FEATURE_NAME,
-} from '@ovh-ux/manager-billing';
+} from '@ovh-ux/manager-billing-components';
 
 import component from './component';
 

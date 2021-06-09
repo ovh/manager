@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import ovhManagerAdvices from '@ovh-ux/manager-advices';
 import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
-import ovhManagerBilling from '@ovh-ux/manager-billing';
+import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
 import component from './vps-dashboard.component';
@@ -40,7 +40,7 @@ angular
     ngOvhFeatureFlipping,
     ovhManagerAdvices,
     ovhManagerIncidentBanner,
-    ovhManagerBilling,
+    ovhManagerBillingComponents,
     ovhManagerVpsDashboardCommitment,
     ovhManagerVpsDashboardCancelCommitment,
     ovhManagerVpsDashboardCancelResiliation,

@@ -4,7 +4,7 @@ import angularTranslate from 'angular-translate';
 import '@ovh-ux/ui-kit';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
-import managerBilling from '@ovh-ux/manager-billing';
+import managerBillingComponents from '@ovh-ux/manager-billing-components';
 
 import addModule from './add';
 import defaultModule from './default';
@@ -31,7 +31,7 @@ angular
     defaultModule,
     deleteModule,
     editModule,
-    managerBilling,
+    managerBillingComponents,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)

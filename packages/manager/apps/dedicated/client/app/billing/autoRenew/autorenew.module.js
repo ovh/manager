@@ -4,7 +4,7 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
 import uiRouter from '@uirouter/angularjs';
-import ovhManagerBilling from '@ovh-ux/manager-billing';
+import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 import ovhManagerCore from '@ovh-ux/manager-core';
 
 import activation from './actions/activation/activation.module';
@@ -56,7 +56,7 @@ angular
     enable,
     ngAtInternet,
     ngTranslateAsyncLoader,
-    ovhManagerBilling,
+    ovhManagerBillingComponents,
     ovhManagerCore,
     'oui',
     resiliation,

@@ -18,7 +18,7 @@
     "lodash": "^4.17.14"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-billing": "^1.0.0 || ^2.0.0",
+    "@ovh-ux/manager-billing-components": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-catalog-price": "^1.2.0",
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
