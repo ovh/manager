@@ -1,12 +1,26 @@
 <section class="telephony-group-alias-configuration-queues-ovhPabx">
-    <header>
-        <tuc-section-back-link
-            data-tuc-section-back-link-to-state="telecom.telephony.billingAccount.alias.details.configuration"
-            data-tuc-section-back-link-title="{{ 'telephony_alias_configuration_back_link' | translate }}"
+    <tuc-section-back-link
+        data-tuc-section-back-link-to-state="telecom.telephony.billingAccount.alias.details.configuration"
+        data-tuc-section-back-link-title="{{ 'telephony_alias_configuration_back_link' | translate }}"
+    >
+    </tuc-section-back-link>
+    <oui-header
+        class="mt-2"
+        data-heading="{{:: 'telephony_alias_configuration_queues_title' | translate }}"
+    >
+        <oui-guide-menu
+            data-text="{{:: 'telephony_alias_configuration_guide' | translate }}"
         >
-        </tuc-section-back-link>
-        <h1 data-translate="telephony_alias_configuration_queues_title"></h1>
-    </header>
+            <oui-guide-menu-item
+                data-ng-href="{{:: QueuesOvhPabxCtrl.guides.getURL('ccs.queueCreation') }}"
+                data-external
+            >
+                <span
+                    data-translate="telephony_alias_configuration_queues_title"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
 
     <div class="text-center" data-ng-if="QueuesOvhPabxCtrl.loaders.init">
         <oui-spinner></oui-spinner>
@@ -23,11 +37,12 @@
                 ></h2>
             </header>
 
-            <button
-                type="button"
-                class="btn btn-default mb-1"
-                data-ng-click="QueuesOvhPabxCtrl.createQueue()"
-                data-ng-disabled="QueuesOvhPabxCtrl.isCreating"
+            <oui-button
+                class="mb-4"
+                data-variant="primary"
+                data-icon-left="oui-icon oui-icon-add"
+                data-on-click="QueuesOvhPabxCtrl.createQueue()"
+                data-disabled="QueuesOvhPabxCtrl.isCreating"
             >
                 <oui-spinner
                     class="mr-2"
@@ -38,7 +53,7 @@
                 <span
                     data-translate="telephony_alias_configuration_queues_queue_create"
                 ></span>
-            </button>
+            </oui-button>
 
             <!-- QUEUE LIST -->
             <uib-accordion
@@ -68,17 +83,21 @@
                         </div>
                     </uib-accordion-heading>
 
+                    <h3
+                        data-translate="telephony_alias_configuration_queues_options"
+                    ></h3>
+
                     <!-- QUEUE OPTIONS -->
                     <button
                         type="button"
-                        class="btn btn-default no-transition float-right"
+                        class="btn btn-default no-transition mb-2"
                         data-ng-if="!queue.inEdition"
                         data-ng-click="QueuesOvhPabxCtrl.startQueueEdition(queue)"
                         data-translate="telephony_alias_configuration_queues_options_manage"
                     ></button>
                     <button
                         type="button"
-                        class="btn btn-primary no-transition float-right ml-1"
+                        class="btn btn-primary no-transition ml-1"
                         data-ng-if="queue.inEdition"
                         data-ng-disabled="!QueuesOvhPabxCtrl.hasQueueInEditionChanges(queue)"
                         data-ng-click="QueuesOvhPabxCtrl.updateQueue(queue)"
@@ -86,15 +105,11 @@
                     ></button>
                     <button
                         type="button"
-                        class="btn btn-default no-transition float-right"
+                        class="btn btn-default no-transition"
                         data-ng-if="queue.inEdition"
                         data-ng-click="queue.inEdition = null"
                         data-translate="cancel"
                     ></button>
-
-                    <h3
-                        data-translate="telephony_alias_configuration_queues_options"
-                    ></h3>
 
                     <dl
                         data-in-view="QueuesOvhPabxCtrl.fetchSoundsOfQueue(queue)"
@@ -352,7 +367,7 @@
 
                     <button
                         type="button"
-                        class="btn btn-danger float-right"
+                        class="oui-button oui-button_secondary float-right"
                         data-ng-click="QueuesOvhPabxCtrl.deleteQueue(queue)"
                         data-ng-disabled="QueuesOvhPabxCtrl.isDeleting || QueuesOvhPabxCtrl.queues.length <= 1"
                     >

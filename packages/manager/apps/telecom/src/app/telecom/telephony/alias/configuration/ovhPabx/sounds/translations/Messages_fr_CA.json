@@ -1,7 +1,7 @@
 {
   "telephony_alias_ovh_pabx_sounds_list_title": "Liste des sons",
   "telephony_alias_ovh_pabx_sounds_list_info1": "Ici, vous pouvez gérer les sons disponibles.",
-  "telephony_alias_ovh_pabx_sounds_list_info2": "Une fois vos sons paramétrés, il vous faut les ajouter dans la configuration de votre serveur vocal pour les utiliser.",
+  "telephony_alias_ovh_pabx_sounds_list_info2": "Une fois vos sons paramétrés, il vous faut les ajouter dans les étapes de votre CCS pour les utiliser.",
   "telephony_alias_ovh_pabx_sounds_add": "Ajouter un son",
   "telephony_alias_ovh_pabx_sounds_add_limitations": "Taille max. : 10 Mo, formats principaux autorisés : wav, mp3, ogg et wma.",
   "telephony_alias_ovh_pabx_sounds_add_selected_file": "Fichier sélectionné: {{ file }}.",

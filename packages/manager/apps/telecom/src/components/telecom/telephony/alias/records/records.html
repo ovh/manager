@@ -31,7 +31,7 @@
                     id="queue"
                     class="form-control"
                     data-ng-model="$ctrl.queues.selected"
-                    data-ng-options="queue as ('telephony_alias_configuration_records_queue' | translate:{ id: queue.queueId }) for queue in $ctrl.queues.raw"
+                    data-ng-options="queue as ('telephony_alias_configuration_records_queue' | translate:{ id: $ctrl.getQueueLabel(queue) }) for queue in $ctrl.queues.raw"
                     data-ng-change="$ctrl.changeQueue()"
                 >
                 </select>

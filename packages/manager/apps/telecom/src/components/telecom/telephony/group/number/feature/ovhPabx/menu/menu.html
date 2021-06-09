@@ -45,11 +45,12 @@
             <div
                 class="voip-plan__step-description"
                 data-responsive-popover="$ctrl.popoverStatus.templateUrl"
-                data-popover-placement="auto right"
                 data-popover-trigger="none"
                 data-popover-is-open="$ctrl.popoverStatus.isOpen"
+                data-popover-placement="right"
                 data-popover-class="pretty-popover telephony-number-feature-popover telephony-number-ovh-pabx-actions-popup"
-                data-tuc-hide-outside-click="$ctrl.onMenuOutsideClick()"
+                data-popover-autofocus
+                data-popover-on-outside-click="$ctrl.onMenuOutsideClick()"
             >
                 <span
                     class="voip-plan__step-name voip-plan__step-name--has-info"
@@ -255,9 +256,6 @@
             >
                 <div
                     data-ng-repeat="entry in $ctrl.menu.entries track by $index"
-                    data-smooth-scroll
-                    data-scroll-if="{{ entry.status === 'DRAFT' && $ctrl.popoverStatus.isParentClicked }}"
-                    data-offset="550"
                     data-ng-if="$ctrl.displayHelpers.expanded"
                 >
                     <telephony-number-ovh-pabx-menu-entry

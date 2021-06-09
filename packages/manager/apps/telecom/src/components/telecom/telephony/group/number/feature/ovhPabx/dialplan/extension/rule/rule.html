@@ -2,22 +2,6 @@
     class="ovh-pabx-dialplan-extension-rule voip-plan__step voip-plan__step--point"
 >
     <!-- RULE BLOCK -->
-    <!-- POSITION -->
-    <div
-        class="voip-plan__step-icon voip-plan__step-icon--grip hover-grip rule-grip"
-        data-tuc-jsplumb-endpoint="$ctrl.numberCtrl.jsPlumbEndpointsOptions.topLeft"
-    >
-        <span
-            data-tuc-jsplumb-connection="!$ctrl.extension.enabled ? $ctrl.numberCtrl.jsPlumbConnectionsOptions.disabled : null"
-            data-tuc-jsplumb-connection-target="{{ $ctrl.rule.negativeAction ? $ctrl.extensionCtrl.uuid + '-condition' : $ctrl.extensionCtrl.uuid }}"
-            data-ng-if="!$ctrl.extensionCtrl.extension.collapsed"
-            data-ng-class="$ctrl.isLoading() ? 'fa fa-spinner fa-pulse' :'ovh-font ovh-font-grip'"
-            aria-hidden="true"
-        >
-        </span>
-    </div>
-    <!-- POSITION -->
-
     <!-- RULE ACTION -->
     <div
         class="voip-plan__step-content"
@@ -27,10 +11,11 @@
         data-popover-is-open="$ctrl.popoverStatus.isOpen"
         data-popover-class="pretty-popover telephony-number-feature-popover telephony-number-ovh-pabx-actions-popup"
         data-ng-class="{ 'voip-plan__step-content--delete-anim': $ctrl.deletePending }"
-        data-tuc-hide-outside-click="$ctrl.onRuleOutsideClick()"
+        data-popover-autofocus
+        data-popover-on-outside-click="$ctrl.onCancelRuleEdit()"
     >
         <div
-            class="voip-plan__step-description"
+            class="voip-plan__step-description-pabx"
             data-ng-switch="$ctrl.getActionFamily()"
         >
             <span
@@ -112,25 +97,36 @@
             </span>
             <!-- DEFAULT TYPE -->
             <!-- ACTION PARAM DISPLAY -->
+            <span
+                class="oui-badge oui-badge_s ng-scope oui-badge_warning"
+                data-ng-if="$ctrl.isTerminalAction()"
+                data-translate="telephony_number_feature_ovh_pabx_dialplan_terminal_action"
+            >
+            </span>
         </div>
         <!-- END OF RULE ACTION -->
 
         <!-- AVAILABLE RULE ACTIONS -->
-        <div class="voip-plan__step-btn-container" data-uib-dropdown>
+        <div
+            class="voip-plan__step-btn-container"
+            data-uib-dropdown
+            data-ng-if="!$ctrl.hideActions"
+            data-on-toggle="$ctrl.autoScrollOnToggle(open)"
+        >
             <button
                 type="button"
-                class="voip-plan__step-btn voip-plan__step-btn--default"
+                class="oui-action-button"
                 data-attr-id="extension-rule-{{ $ctrl.rule.ruleId }}-actions"
                 data-uib-dropdown-toggle
             >
                 <span
-                    class="ovh-font ovh-font-dots align-top"
+                    class="oui-icon oui-icon-ellipsis ml-0"
                     aria-hidden="true"
                 ></span>
             </button>
             <!-- ACTIONS LIST -->
             <ul
-                class="dropdown-menu ovh-dropdown-menu"
+                class="dropdown-menu ovh-dropdown-menu voip-plan__dialplan-extension-rule--dropdown"
                 data-uib-dropdown-menu
                 role="menu"
                 aria-labelledby="extension-rule-{{ $ctrl.rule.ruleId }}-actions"
@@ -141,7 +137,7 @@
                         type="button"
                         class="btn btn-link w-100"
                         data-translate="telephony_number_feature_ovh_pabx_step_rule_action_edit"
-                        data-ng-click="$ctrl.popoverStatus.isOpen = true"
+                        data-ng-click="$ctrl.openPopOver()"
                     ></button>
                 </li>
                 <!-- EDIT ACTION -->
@@ -150,7 +146,7 @@
                 <li role="menuitem">
                     <button
                         type="button"
-                        class="btn btn-link w-100"
+                        class="btn btn-link w-100 text-danger"
                         data-translate="telephony_number_feature_ovh_pabx_step_rule_action_delete"
                         data-ng-click="$ctrl.deletePending = true"
                     ></button>

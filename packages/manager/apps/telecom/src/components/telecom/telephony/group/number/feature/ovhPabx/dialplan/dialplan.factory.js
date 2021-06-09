@@ -5,7 +5,6 @@ import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 import map from 'lodash/map';
 import remove from 'lodash/remove';
-import sortBy from 'lodash/sortBy';
 
 export default /* @ngInject */ (
   $q,
@@ -258,17 +257,38 @@ export default /* @ngInject */ (
                   extensionId: chunkIds,
                 })
                 .$promise.then((resources) => {
-                  angular.forEach(
-                    sortBy(map(resources, 'value'), 'position'),
-                    (extenstionOptions) => {
-                      self.addExtension(extenstionOptions);
-                    },
-                  );
+                  angular.forEach(map(resources, 'value'), (res, order) => {
+                    self.addExtension({
+                      order,
+                      ...res,
+                    });
+                  });
                 }),
             ),
           )
+          .then(() => self.ensureExtensionsOrderIntegrity())
           .then(() => self),
       );
+  };
+
+  /**
+   * Because 'position' attribute of extensions is not maintained in a strict order by apiv6,
+   * we ensure that the extensions are correctly ordered by iterating other the list of ids.
+   */
+  TelephonyGroupNumberOvhPabxDialplan.prototype.ensureExtensionsOrderIntegrity = function ensureExtensionsOrderIntegrity() {
+    const todo = [];
+    let shouldReorder = false;
+    angular.forEach(this.extensions, (extension, index) => {
+      if (extension.position !== index + 1) {
+        shouldReorder = true;
+      }
+    });
+    if (shouldReorder) {
+      angular.forEach(this.extensions, (extension, index) => {
+        todo.push(extension.move(index + 1));
+      });
+    }
+    return $q.all(todo).catch(angular.noop);
   };
 
   TelephonyGroupNumberOvhPabxDialplan.prototype.addExtension = function addExtension(

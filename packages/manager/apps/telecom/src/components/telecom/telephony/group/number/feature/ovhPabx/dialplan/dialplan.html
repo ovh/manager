@@ -1,45 +1,53 @@
-<div class="voip-plan__step">
+<div class="group-number__step">
     <div
-        class="voip-plan__step-content voip-plan__step-content--node"
+        class="group-number__step-content group-number__step-content--node group-number__dialplan"
         data-responsive-popover="'components/telecom/telephony/group/number/feature/ovhPabx/dialplan/edit/edit.html'"
-        data-popover-trigger="test"
+        data-popover-trigger="none"
         data-popover-is-open="$ctrl.popoverStatus.isOpen"
         data-popover-placement="right"
         data-popover-class="pretty-popover telephony-number-feature-popover telephony-number-ovh-pabx-actions-popup"
-        data-tuc-hide-outside-click="$ctrl.onDialplanOutsideClick()"
+        data-popover-autofocus
+        data-popover-on-outside-click="$ctrl.onCancelEditDialplan()"
     >
-        <div class="voip-plan__step-icon voip-plan__step-icon--included">
+        <div class="group-number__step-icon group-number__step-icon--included">
             <span
                 data-ng-class="{ 'ovh-font ovh-font-config': !$ctrl.isLoading(), 'fa fa-spinner fa-pulse': $ctrl.isLoading() }"
                 aria-hidden="true"
             ></span>
         </div>
 
-        <div class="voip-plan__step-description">
+        <div class="group-number__step-description">
             <span
-                class="voip-plan__step-name voip-plan__step-name--has-info"
+                class="group-number__step-name group-number__step-name--has-info"
                 data-translate="telephony_number_feature_ovh_pabx_dialplan"
             >
             </span>
             <span
-                class="voip-plan__step-info elipse no-wrap"
+                class="group-number__step-info elipse no-wrap"
                 data-ng-bind="!$ctrl.dialplan.inEdition ? $ctrl.dialplan.name : $ctrl.dialplan.saveForEdition.name"
             >
             </span>
         </div>
 
-        <div class="voip-plan__step-btn-container" data-uib-dropdown>
+        <div
+            class="group-number__step-btn-container"
+            data-uib-dropdown
+            data-on-toggle="$ctrl.autoScrollOnToggle(open)"
+        >
             <button
                 type="button"
-                class="voip-plan__step-btn voip-plan__step-btn--included"
+                class="oui-action-button"
                 data-ng-attr-id="dialplan-{{ $ctrl.dialplan.dialplanId }}-actions"
                 data-uib-dropdown-toggle
             >
-                <span class="ovh-font ovh-font-dots" aria-hidden="true"></span>
+                <span
+                    class="oui-icon oui-icon-ellipsis ml-0"
+                    aria-hidden="true"
+                ></span>
             </button>
             <!-- DIALPLAN ACTIONS -->
             <ul
-                class="dropdown-menu ovh-dropdown-menu"
+                class="dropdown-menu ovh-dropdown-menu group-number__dialplan--dropdown"
                 data-uib-dropdown-menu
                 role="menu"
                 data-ng-attr-aria-labelledby="dialplan-{{ $ctrl.dialplan.dialplanId }}-actions"
@@ -71,7 +79,7 @@
                         type="button"
                         class="btn btn-link w-100"
                         data-translate="{{ $ctrl.displayHelpers.collapsed ? 'telephony_number_feature_ovh_pabx_dialplan_action_show_steps' : 'telephony_number_feature_ovh_pabx_dialplan_action_hide_steps' }}"
-                        data-ng-click="$ctrl.displayHelpers.collapsed = !$ctrl.displayHelpers.collapsed"
+                        data-ng-click="$ctrl.toggleCollapsed()"
                         data-ng-disabled="!$ctrl.dialplan.extensions.length"
                     ></button>
                 </li>
@@ -83,7 +91,7 @@
                         type="button"
                         class="btn btn-link w-100"
                         data-translate="telephony_number_feature_ovh_pabx_dialplan_action_delete"
-                        data-ng-click="$ctrl.dialplan.status = 'DELETE_PENDING'"
+                        data-ng-click="$ctrl.onDeleteDialplanBtnClick()"
                     ></button>
                 </li>
                 <!-- End of DELETE DIALPLAN BTN -->
@@ -92,12 +100,12 @@
         </div>
 
         <div
-            class="voip-plan__step-confirm"
+            class="group-number__step-confirm"
             data-ng-if="$ctrl.dialplan.status === 'DELETE_PENDING'"
         >
-            <div class="voip-plan__step-confirm-overlay"></div>
+            <div class="group-number__step-confirm-overlay"></div>
             <div
-                class="voip-plan__step-confirm-content animated fadeInRight flex-row-center"
+                class="group-number__step-confirm-content animated fadeInRight flex-row-center"
             >
                 <button
                     type="button"
@@ -117,24 +125,15 @@
     </div>
 </div>
 
-<div class="voip-plan__subpart" data-ng-if="$ctrl.dialplan">
+<div class="group-number__subpart" data-ng-if="$ctrl.dialplan">
     <!-- INIT LOADING -->
     <div data-ng-if="$ctrl.loading.init">
-        <div class="voip-plan__step">
-            <div
-                class="voip-plan__step-icon voip-plan__step-icon--basic"
-                data-tuc-jsplumb-endpoint="$ctrl.ovhPabxCtrl.numberCtrl.jsPlumbEndpointsOptions.topLeft"
-            >
-                <span
-                    class="fa fa-spinner fa-pulse"
-                    data-tuc-jsplumb-connection
-                    data-tuc-jsplumb-connection-target="incoming-call-{{ $ctrl.ovhPabxCtrl.numberCtrl.number.serviceName }}"
-                    aria-hidden="true"
-                >
-                </span>
+        <div class="group-number__step">
+            <div class="group-number__step-icon group-number__step-icon--basic">
+                <span class="fa fa-spinner fa-pulse" aria-hidden="true"> </span>
             </div>
-            <div class="voip-plan__step-description">
-                <span class="voip-plan__step-info" data-translate="loading">
+            <div class="group-number__step-description">
+                <span class="group-number__step-info" data-translate="loading">
                 </span>
             </div>
         </div>
@@ -149,43 +148,69 @@
             data-collapsing="$ctrl.onDialplanCollapsing()"
             data-expanding="$ctrl.onDialplanExpanding()"
             data-collapsed="$ctrl.onDialplanCollapsed()"
-            data-expanded="$ctrl.onDialplanExpanded()"
+            data-expanded="$ctrl.constructor.onDialplanExpanded()"
         >
-            <div
-                data-ui-sortable="$ctrl.sortableOptions"
+            <ul
+                id="group-number-extension-steps"
+                class="group-number__step-wrapper"
                 data-ng-model="$ctrl.dialplan.extensions"
             >
-                <div
-                    data-ng-repeat="extension in $ctrl.dialplan.extensions track by extension.extensionId"
-                    data-smooth-scroll
+                <li
+                    class="group-number__step-container"
+                    data-ng-repeat="extension in $ctrl.dialplan.extensions | orderBy: 'position' track by extension.extensionId"
                     data-ng-if="$ctrl.displayHelpers.expanded"
-                    data-scroll-if="{{ extension.status === 'IN_CREATION' }}"
-                    data-offset="550"
                 >
                     <telephony-number-ovh-pabx-dialplan-extension
                         data-extension="extension"
                     ></telephony-number-ovh-pabx-dialplan-extension>
-                </div>
-            </div>
+                </li>
+                <li
+                    class="group-number__step-container"
+                    data-ng-if="!$ctrl.numberCtrl.reorderingMode"
+                >
+                    <div class="group-number__step">
+                        <div class="group-number__step-btn--add-container">
+                            <button
+                                type="button"
+                                class="oui-action-button"
+                                data-translate-attr="{ title: 'telephony_number_feature_ovh_pabx_step_add' }"
+                                data-ng-click="$ctrl.onExtensionAddBtnClick()"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-add"
+                                    aria-hidden="true"
+                                >
+                                </span>
+                                <span
+                                    class="sr-only"
+                                    data-translate="common_add"
+                                >
+                                </span>
+                            </button>
+                            <span
+                                class="group-number__step-btn--add-description"
+                                data-translate="telephony_number_feature_ovh_pabx_step_add"
+                            >
+                            </span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
         <!-- ADDED EXTENSIONS -->
 
         <!-- Extension count and collapse -->
         <div
-            class="voip-plan__step"
+            class="group-number__step"
             style="margin-bottom: 64px;"
-            data-ng-if="!$ctrl.displayHelpers.expanded"
+            data-ng-if="!$ctrl.displayHelpers.expanded && $ctrl.dialplan.extensions.length"
         >
             <div
-                class="voip-plan__step-content voip-plan__step-content--after-grip voip-plan__step-content--node"
-                data-ng-if="!$ctrl.displayHelpers.expanded"
+                class="group-number__step-content group-number__step-content--after-grip group-number__step-content--node"
             >
-                <div
-                    class="voip-plan__step-description"
-                    data-ng-if="$ctrl.dialplan.extensions.length"
-                >
+                <div class="group-number__step-description">
                     <span
-                        class="voip-plan__step-info"
+                        class="group-number__step-info"
                         data-translate="{{ $ctrl.dialplan.extensions.length === 1 ? 'telephony_number_feature_ovh_pabx_dialplan_step_count_single' : 'telephony_number_feature_ovh_pabx_dialplan_step_count' }}"
                         data-translate-values="{ count: $ctrl.dialplan.extensions.length }"
                     >
@@ -197,38 +222,21 @@
                         data-translate="telephony_number_feature_ovh_pabx_dialplan_action_show_steps"
                     ></button>
                 </div>
-                <div
-                    class="voip-plan__step-description"
-                    data-ng-if="!$ctrl.dialplan.extensions.length"
+            </div>
+        </div>
+        <div
+            class="group-number__step-content group-number__step-content--node group-number__step-empty"
+            data-ng-if="!$ctrl.dialplan.extensions.length"
+        >
+            <div class="group-number__step-description">
+                <span
+                    class="group-number__step-info"
+                    data-translate="telephony_number_feature_ovh_pabx_dialplan_step_none"
                 >
-                    <span
-                        class="voip-plan__step-info"
-                        data-translate="telephony_number_feature_ovh_pabx_dialplan_step_none"
-                    >
-                    </span>
-                </div>
+                </span>
             </div>
         </div>
         <!-- Extension count and collapse -->
-
-        <!-- ADD BTN -->
-        <div class="voip-plan__step">
-            <button
-                type="button"
-                class="voip-plan__step-btn voip-plan__step-btn--primary voip-plan__step-btn--add"
-                data-tuc-jsplumb-endpoint="$ctrl.ovhPabxCtrl.numberCtrl.jsPlumbEndpointsOptions.topLeft"
-                data-translate-attr="{ title: 'telephony_number_feature_ovh_pabx_step_add' }"
-                data-ng-click="$ctrl.onExtensionAddBtnClick()"
-            >
-                <span
-                    class="ovh-font ovh-font-ajouter"
-                    data-tuc-jsplumb-connection
-                    data-tuc-jsplumb-connection-target="incoming-call-{{ $ctrl.ovhPabxCtrl.numberCtrl.number.serviceName }}"
-                >
-                </span>
-            </button>
-        </div>
-        <!-- ADD BTN -->
     </div>
     <!-- EXTENSION DISPLAY -->
 </div>

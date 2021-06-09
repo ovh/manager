@@ -69,6 +69,12 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
         text: this.$translate.instant(
           'telephony_alias_configuration_actions_number_modification_new',
         ),
+        onClick: () => {
+          this.atInternet.trackClick({
+            name: 'ccs::group-number::change-the-type-of-number',
+            type: 'navigation',
+          });
+        },
       },
     ];
 
@@ -90,6 +96,12 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
               ? 'telephony_alias_configuration_actions_number_hunting_agents'
               : 'telephony_alias_configuration_actions_number_hunting_members',
           ),
+          onClick: () => {
+            this.atInternet.trackClick({
+              name: 'ccs::group-number::manage-agents',
+              type: 'navigation',
+            });
+          },
         });
 
         // queue for both "CCS expert" and "File d'appel expert"
@@ -100,6 +112,12 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
           text: this.$translate.instant(
             'telephony_alias_configuration_actions_number_hunting_queues',
           ),
+          onClick: () => {
+            this.atInternet.trackClick({
+              name: 'ccs::group-number::manage-queues',
+              type: 'navigation',
+            });
+          },
         });
       }
 
@@ -116,6 +134,12 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
           text: this.$translate.instant(
             'telephony_alias_configuration_actions_menus_management',
           ),
+          onClick: () => {
+            this.atInternet.trackClick({
+              name: 'ccs::group-number::manage-menus',
+              type: 'navigation',
+            });
+          },
         });
       }
 
@@ -128,6 +152,12 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
           text: this.$translate.instant(
             'telephony_alias_configuration_actions_tts_management',
           ),
+          onClick: () => {
+            this.atInternet.trackClick({
+              name: 'ccs::group-number::manage-tts',
+              type: 'navigation',
+            });
+          },
         });
       }
 
@@ -142,6 +172,12 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
           text: this.$translate.instant(
             'telephony_alias_configuration_actions_sounds_management',
           ),
+          onClick: () => {
+            this.atInternet.trackClick({
+              name: 'ccs::group-number::manage-sounds',
+              type: 'navigation',
+            });
+          },
         },
         {
           divider: true,
@@ -153,33 +189,14 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
           text: this.$translate.instant(
             'telephony_alias_configuration_actions_number_cloud_hunting_events',
           ),
+          onClick: () => {
+            this.atInternet.trackClick({
+              name: 'ccs::group-number::manage-exceptional-time-slot',
+              type: 'navigation',
+            });
+          },
         },
       );
-
-      // add links for hunting board and hunting records for "CCS expert"
-      if (this.number.feature.featureType === 'contactCenterSolutionExpert') {
-        ovhPabxActions.push(
-          {
-            divider: true,
-          },
-          {
-            name: 'number_cloud_hunting_board',
-            sref:
-              'telecom.telephony.billingAccount.alias.details.configuration.stats.ovhPabx',
-            text: this.$translate.instant(
-              'telephony_alias_configuration_actions_number_hunting_board',
-            ),
-          },
-          {
-            name: 'number_cloud_hunting_records',
-            sref:
-              'telecom.telephony.billingAccount.alias.details.configuration.recordsOvhPabx',
-            text: this.$translate.instant(
-              'telephony_alias_configuration_actions_number_hunting_records',
-            ),
-          },
-        );
-      }
     }
     return ovhPabxActions;
   }

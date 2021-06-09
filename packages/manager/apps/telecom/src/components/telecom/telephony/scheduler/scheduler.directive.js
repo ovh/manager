@@ -113,7 +113,20 @@ export default /* @ngInject */ ($compile, $locale, coreConfig) => ({
           "'components/telecom/telephony/scheduler/events/events-popup.html'",
         'data-popover-append-to-body': 'true', // as we will use a form and scheduler is wrapped into a form element, we will append popover to body.
         'data-popover-trigger': 'none',
-        'data-popover-placement': 'auto left',
+        'data-popover-placement': function getPlacement() {
+          const { x, y } = element[0].getBoundingClientRect();
+          const nearFromBottomBorder = y >= (3 * window.screen.height) / 4;
+          const nearFromRightBorder = x >= (3 * window.screen.width) / 4;
+
+          if (nearFromRightBorder) {
+            return 'auto right';
+          }
+          if (nearFromBottomBorder) {
+            return 'top left';
+          }
+
+          return 'auto left';
+        },
         'data-popover-is-open': 'event.inEdition',
         'data-popover-class': 'pretty-popover telephony-scheduler-events-popup',
       });

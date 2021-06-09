@@ -1,56 +1,101 @@
+import find from 'lodash/find';
 import get from 'lodash/get';
+import maxBy from 'lodash/maxBy';
 import set from 'lodash/set';
 import some from 'lodash/some';
 
-export default /* @ngInject */ function telephonyNumberOvhPabxDialplanCtrl(
-  $q,
-  $timeout,
-  $translate,
-  TucToast,
-  TUC_UI_SORTABLE_HELPERS,
-) {
-  const self = this;
+export default class DialplanCtrl {
+  /* @ngInject */
+  constructor(
+    $q,
+    $scope,
+    $timeout,
+    $translate,
+    atInternet,
+    autoScrollOnToggle,
+    TucToast,
+  ) {
+    this.$q = $q;
+    this.$scope = $scope;
+    this.$timeout = $timeout;
+    this.$translate = $translate;
+    this.atInternet = atInternet;
+    this.TucToast = TucToast;
+    this.autoScrollOnToggle = autoScrollOnToggle;
+  }
 
-  self.loading = {
-    init: false,
-  };
+  $onInit() {
+    this.loading = {
+      init: false,
+    };
 
-  self.popoverStatus = {
-    isOpen: false,
-    move: false,
-    rightPage: null,
-  };
+    this.popoverStatus = {
+      isOpen: false,
+      move: false,
+      rightPage: null,
+    };
 
-  self.displayHelpers = {
-    collapsed: false,
-    expanded: true,
-  };
+    this.displayHelpers = {
+      collapsed: false,
+      expanded: true,
+    };
 
-  self.sortableOptions = null;
-  self.ovhPabx = null;
+    this.reorderQueue = [];
 
-  /*= ==============================
-    =            HELPERS            =
-    =============================== */
+    this.ovhPabx = null;
 
-  self.isLoading = function isLoading() {
+    let initPromise = this.$q.when();
+    this.loading.init = true;
+
+    // set ovhPabx instance
+    this.ovhPabx = this.numberCtrl.number.feature;
+
+    if (this.dialplan) {
+      // load extension if dialplan exists
+      initPromise = this.dialplan.getExtensions();
+    } else if (this.numberCtrl.number.feature.dialplans.length === 0) {
+      initPromise = this.createDialplan();
+    }
+
+    return initPromise
+      .then(() => {
+        this.checkForDisplayHelpers();
+      })
+      .finally(() => {
+        this.loading.init = false;
+        this.$scope.$emit('dialplan.extensions.loaded');
+      })
+      .catch((error) => {
+        this.TucToast.error(
+          [
+            this.$translate.instant(
+              'telephony_number_feature_ovh_pabx_load_error',
+            ),
+            get(error, 'data.message') || '',
+          ].join(' '),
+        );
+        return this.$q.reject(error);
+      });
+  }
+
+  isLoading() {
     return (
-      self.loading.init ||
-      (self.dialplan &&
-        ['OK', 'DRAFT', 'DELETE_PENDING'].indexOf(self.dialplan.status) === -1)
+      this.loading.init ||
+      (this.dialplan &&
+        ['OK', 'DRAFT', 'DELETE_PENDING'].indexOf(this.dialplan.status) === -1)
     );
-  };
+  }
 
-  self.hasInCreationExtension = function hasInCreationExtension() {
-    return some(self.dialplan.extensions, {
+  hasInCreationExtension() {
+    return some(this.dialplan.extensions, {
       status: 'IN_CREATION',
     });
-  };
+  }
 
-  function createDialplan() {
+  createDialplan() {
     // add a dialplan to ovh pabx instance
-    const dialplanToCreate = self.ovhPabx.addDialplan({
-      name: $translate.instant(
+    const dialplanToCreate = this.ovhPabx.addDialplan({
+      name: this.$translate.instant(
         'telephony_number_feature_ovh_pabx_dialplan_new_name',
       ),
       status: 'DRAFT',
@@ -61,187 +106,156 @@ export default /* @ngInject */ function telephonyNumberOvhPabxDialplanCtrl(
       .create()
       .catch((error) => {
         // remove extension from dialplan list
-        self.ovhPabx.removeDialplan(dialplanToCreate);
-        return $q.reject(error);
+        this.ovhPabx.removeDialplan(dialplanToCreate);
+        return this.$q.reject(error);
       })
       .finally(() => {
         // refresh current dialplan
-        self.ovhPabxCtrl.refreshDisplayedDialplan();
+        this.ovhPabxCtrl.refreshDisplayedDialplan();
       });
-  }
-
-  function setConnectionVisibility(visibility) {
-    $timeout(() => {
-      self.numberCtrl.jsplumbInstance
-        .getAllConnections()
-        .forEach((connection) => {
-          connection.setVisible(visibility);
-        });
-    }, 99);
   }
 
   /**
    *  Used to determine if extensions must be displayed or not.
    *  Used by telephonyNumberOvhPabxDialplanExtensionCtrl when an extension is deleted.
    */
-  self.checkForDisplayHelpers = function checkForDisplayHelpers() {
-    if (!self.dialplan.extensions.length) {
-      self.displayHelpers.collapsed = true;
-      self.displayHelpers.expanded = false;
+  checkForDisplayHelpers() {
+    if (!this.dialplan.extensions.length) {
+      this.displayHelpers.collapsed = true;
+      this.displayHelpers.expanded = false;
     }
-  };
+  }
 
-  /* -----  End of HELPERS  ------*/
+  onEditDialplanBtnClick() {
+    this.popoverStatus.isOpen = true;
+    this.atInternet.trackClick({
+      name: 'ccs::group-number::modify-ccs-options',
+      type: 'navigation',
+    });
+  }
 
-  /*= =============================
-    =            EVENTS            =
-    ============================== */
-
-  self.onDialplanOutsideClick = function onDialplanOutsideClick() {
-    if (self.dialplan.status !== 'DELETE_PENDING') {
-      return;
+  onCancelEditDialplan() {
+    this.popoverStatus.isOpen = false;
+    this.popoverStatus.move = false;
+    // if draft => remove from ovh pabx dialplans list and refresh current displayed dialplan
+    if (this.dialplan.status === 'DRAFT') {
+      this.ovhPabx.removeDialplan(this.dialplan);
+      this.ovhPabxCtrl.refreshDisplayedDialplan();
     }
+  }
 
-    // cancel delete confirm
-    self.dialplan.status = 'OK';
-  };
+  onDialplanExpanding() {
+    this.displayHelpers.expanded = true;
+  }
 
-  self.onEditDialplanBtnClick = function onEditDialplanBtnClick() {
-    self.popoverStatus.isOpen = true;
-  };
+  onExtensionAddBtnClick() {
+    this.displayHelpers.collapsed = false;
+    this.displayHelpers.expanded = true;
 
-  self.onDialplanCollapsed = function onDialplanCollapsed() {
-    self.numberCtrl.jsplumbInstance.customRepaint().then(() => {
-      setConnectionVisibility(true);
-      self.displayHelpers.expanded = false;
-    });
-  };
-
-  self.onDialplanExpanded = function onDialplanExpanded() {
-    self.numberCtrl.jsplumbInstance.customRepaint().then(() => {
-      setConnectionVisibility(true);
-    });
-  };
-
-  self.onDialplanCollapsing = function onDialplanCollapsing() {
-    setConnectionVisibility(false);
-  };
-
-  self.onDialplanExpanding = function onDialplanExpanding() {
-    self.displayHelpers.expanded = true;
-  };
-
-  self.onExtensionAddBtnClick = function onExtensionAddBtnClick() {
-    self.displayHelpers.collapsed = false;
-    self.displayHelpers.expanded = true;
-
-    const addedExtension = self.dialplan.addExtension({
-      position: self.dialplan.extensions.length + 1,
+    const addedExtension = this.dialplan.addExtension({
+      position: this.dialplan.extensions.length + 1,
       status: 'DRAFT',
     });
 
+    this.atInternet.trackClick({
+      name: 'ccs::group-number::add-step',
+      type: 'action',
+    });
+
     return addedExtension.create();
-  };
+  }
+
+  static onDialplanExpanded() {
+    const elt = angular.element('#group-number-extension-steps')[0];
+    if (elt) {
+      elt.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'nearest',
+      });
+    }
+  }
+
+  toggleCollapsed() {
+    this.displayHelpers.collapsed = !this.displayHelpers.collapsed;
+
+    if (this.displayHelpers.collapsed) {
+      this.atInternet.trackClick({
+        name: 'ccs::group-number::hide-steps',
+        type: 'action',
+      });
+    }
+  }
+
+  onDeleteDialplanBtnClick() {
+    this.dialplan.status = 'DELETE_PENDING';
+    this.atInternet.trackClick({
+      name: 'ccs::group-number::delete-ccs-configuration',
+      type: 'action',
+    });
+  }
 
   /**
    *  Manage dialplan delete confirm button click.
    *  Deleting a dialplan means deleting its configuration (extension, rules, ...).
    *  Once dialplan is deleted, create a new one with default title.
    */
-  self.onDialplanDeleteConfirmBtnClick = function onDialplanDeleteConfirmBtnClick() {
-    return self.dialplan
+  onDialplanDeleteConfirmBtnClick() {
+    return this.dialplan
       .remove()
       .then(() => {
-        self.ovhPabx.removeDialplan(self.dialplan);
-        return createDialplan();
+        this.ovhPabx.removeDialplan(this.dialplan);
+        return this.createDialplan();
       })
       .catch((error) => {
-        TucToast.error(
+        this.TucToast.error(
           [
-            $translate.instant(
+            this.$translate.instant(
               'telephony_number_feature_ovh_pabx_dialplan_delete_error',
             ),
             error.data && error.data.message,
           ].join(' '),
         );
-        return $q.reject(error);
-      })
-      .finally(() => {
-        self.ovhPabxDialplanCtrl.loading.remove = false;
+        return this.$q.reject(error);
       });
-  };
+  }
 
-  /* -----  End of EVENTS  ------*/
+  isLastExtension(extension) {
+    return (
+      extension.position ===
+      maxBy(this.dialplan.extensions, 'position')?.position
+    );
+  }
 
-  /*= =====================================
-    =            INITIALIZATION            =
-    ====================================== */
-
-  self.$onInit = function $onInit() {
-    let sortInterval = null;
-    let initPromise = $q.when(true);
-    self.loading.init = true;
-
-    // set ovhPabx instance
-    self.ovhPabx = self.numberCtrl.number.feature;
-
-    // set sortable options
-    self.sortableOptions = {
-      axis: 'y',
-      handle: '.extension-grip',
-      cancel: '.voip-plan__step-icon--grip-disabled',
-      containment: 'parent',
-      sort: TUC_UI_SORTABLE_HELPERS.variableHeightTolerance,
-      start() {
-        sortInterval = setInterval(() => {
-          self.numberCtrl.jsplumbInstance.repaintEverything();
-        }, 33);
-      },
-      stop() {
-        if (sortInterval) {
-          clearInterval(sortInterval);
-
-          // redraw links for the last time
-          self.numberCtrl.jsplumbInstance.customRepaint();
-        }
-      },
-      update() {
-        $timeout(() => {
-          // update extensions positions
-          angular.forEach(self.dialplan.extensions, (extension, index) => {
-            set(extension, 'position', index + 1);
-          });
-
-          // call api to update all positions
-          self.dialplan.updateExtensionsPositions();
-        });
-      },
-    };
-
-    if (self.dialplan) {
-      // load extension if dialplan exists
-      initPromise = self.dialplan.getExtensions();
-    } else if (self.numberCtrl.number.feature.dialplans.length === 0) {
-      initPromise = createDialplan();
+  /**
+   * Increase extension position by one
+   */
+  reorderExtension(extension) {
+    if (this.numberCtrl.reorderingPending) {
+      this.reorderQueue.push(extension);
+      return;
     }
-
-    return initPromise
-      .then(() => {
-        self.checkForDisplayHelpers();
-      })
-      .finally(() => {
-        self.loading.init = false;
-      })
-      .catch((error) => {
-        TucToast.error(
-          [
-            $translate.instant('telephony_number_feature_ovh_pabx_load_error'),
-            get(error, 'data.message') || '',
-          ].join(' '),
-        );
-        return $q.reject(error);
-      });
-  };
-
-  /* -----  End of INITIALIZATION  ------*/
+    this.numberCtrl.reorderingPending = true;
+    const other = find(this.dialplan.extensions, {
+      position: extension.position + 1,
+    });
+    if (other) {
+      const { position } = extension;
+      set(extension, 'position', other.position);
+      set(other, 'position', position);
+      this.$q
+        .all([extension.move(extension.position), other.move(other.position)])
+        .catch(() => {
+          set(other, 'position', extension.position);
+          set(extension, 'position', position);
+        })
+        .finally(() => {
+          this.numberCtrl.reorderingPending = false;
+          if (this.reorderQueue.length) {
+            const ext = this.reorderQueue.shift();
+            this.reorderExtension(ext);
+          }
+        });
+    }
+  }
 }

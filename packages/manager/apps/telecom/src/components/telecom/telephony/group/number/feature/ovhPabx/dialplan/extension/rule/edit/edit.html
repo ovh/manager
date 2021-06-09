@@ -2,14 +2,14 @@
     data-ng-controller="telephonyNumberOvhPabxDialplanExtensionRuleEditCtrl as $ctrl"
     class="telephony-number-ovh-pabx-extension-rule-edit popover-pages"
     data-ng-form="$ctrl.extensionRuleForm"
-    data-tuc-hide-outside-click="$ctrl.onCancelBtnClick()"
+    id="ruleEdit"
 >
-    <div
-        class="popover-pages-wrapper"
-        data-ng-class="{ move: $ctrl.parentCtrl.popoverStatus.move }"
-    >
+    <div class="popover-pages-wrapper">
         <!-- LEFT PAGE -->
-        <section class="popover-page page-section">
+        <section
+            data-ng-if="!$ctrl.parentCtrl.popoverStatus.move"
+            class="popover-page page-section"
+        >
             <header>
                 <h2
                     data-translate="{{ $ctrl.rule.status === 'DRAFT' ? 'telephony_number_feature_ovh_pabx_step_rule_new' : 'telephony_number_feature_ovh_pabx_step_rule_edit' }}"
@@ -32,8 +32,7 @@
                         <span
                             class="d-block"
                             data-translate="{{ 'telephony_number_feature_ovh_pabx_step_rule_' + ($ctrl.rule.action | tucSnakeCase) }}"
-                        >
-                        </span>
+                        ></span>
                         <div class="chevron-right">
                             <div class="chevron-wrapper">
                                 <i class="ovh-font ovh-font-arrow-right"></i>
@@ -162,7 +161,7 @@
                             <span
                                 class="d-block"
                                 data-ng-if="$ctrl.rule.actionParam"
-                                data-ng-bind="$ctrl.getServiceDisplayedName($ctrl.rule.actionParamInfos)"
+                                data-ng-bind="$ctrl.getServiceDisplayedName($ctrl.rule.actionParam)"
                             >
                             </span>
                             <div class="chevron-right">
@@ -306,6 +305,11 @@
                                 >
                                 </span>
                             </span>
+                            <oui-message type="info">
+                                <span
+                                    data-translate="telephony_number_feature_ovh_pabx_step_rule_read_dtmf_infos"
+                                ></span>
+                            </oui-message>
                         </div>
                         <!-- END OF READ DTMF -->
 
@@ -404,8 +408,9 @@
 
         <!-- RIGHT PAGE -->
         <section
-            class="popover-page page-section"
+            data-ng-if="$ctrl.parentCtrl.popoverStatus.move"
             data-ng-switch="$ctrl.parentCtrl.popoverStatus.rightPage"
+            class="popover-page page-section"
         >
             <header>
                 <button
@@ -496,7 +501,7 @@
                 data-ng-switch-when="playback"
                 data-ovh-pabx="$ctrl.menuEntryCtrl.menuCtrl.ovhPabx"
                 data-selected-sound-id="$ctrl.rule.actionParam"
-                data-on-sound-change="$ctrl.onSoundSelected"
+                data-on-sound-change="$ctrl.onSoundSelected.bind($ctrl)"
             >
             </telephony-number-ovh-pabx-sound-popover-section>
             <!-- END OF SOUND CHOICE FOR PLAYBACK -->
@@ -526,7 +531,7 @@
                 <!-- Search result -->
                 <div
                     class="section-group"
-                    data-ng-repeat="group in $ctrl.groups | filter:$ctrl.filterDisplayedGroup track by $index"
+                    data-ng-repeat="group in $ctrl.groupsFiltered track by $index"
                 >
                     <div class="group-title">
                         <span data-ng-bind="group.getDisplayedName()"></span>
@@ -585,7 +590,7 @@
                         data-ng-click="$ctrl.onAddIvrMenuButtonClick()"
                     >
                         <div class="d-table">
-                            <div class="d-table-cell align-middle px-3">
+                            <div class="d-table-cell align-top px-3">
                                 <i class="ovh-font ovh-font-ajouter fs18"></i>
                             </div>
                             <div class="d-table-cell align-middle">
@@ -594,11 +599,6 @@
                                     data-translate="telephony_number_feature_ovh_pabx_step_rule_ivr_menu_add_menu"
                                 >
                                 </label>
-                                <span
-                                    class="small font-weight-normal"
-                                    data-translate="telephony_number_feature_ovh_pabx_step_rule_ivr_menu_add_menu_explain"
-                                >
-                                </span>
                             </div>
                         </div>
                     </button>
@@ -606,12 +606,15 @@
                 </div>
 
                 <div class="section-group">
+                    <div
+                        class="group-title"
+                        data-translate="telephony_number_feature_ovh_pabx_step_rule_ivr_menu_already_added"
+                    ></div>
                     <div class="section-item menu-list-container">
                         <!-- MENUS LIST -->
                         <telephony-number-ovh-pabx-menu-list
                             data-ng-model="$ctrl.rule.actionParam"
                             data-with-choice="true"
-                            data-on-menu-selected="$ctrl.onIvrMenuSelectedChange"
                         >
                         </telephony-number-ovh-pabx-menu-list>
                         <!-- END OF MENUS LIST -->
@@ -627,6 +630,9 @@
                     class="alert alert-info mb-0"
                     role="alert"
                     data-translate="telephony_number_feature_ovh_pabx_step_rule_hunting_info"
+                    data-translate-values="{
+                        state: 'telecom.telephony.billingAccount.alias.details.configuration.queues.ovhPabx'
+                    }"
                     data-translate-compile
                 ></div>
                 <!-- END OF HUNTING INFOS -->
@@ -673,6 +679,9 @@
                     class="alert alert-info mb-0"
                     role="alert"
                     data-translate="telephony_number_feature_ovh_pabx_step_rule_tts_info"
+                    data-translate-values="{
+                        state: 'telecom.telephony.billingAccount.alias.details.configuration.ovhPabx.tts',
+                    }"
                     data-translate-compile
                 ></div>
                 <!-- End of TTS INFO -->
@@ -709,8 +718,8 @@
                 <div class="section-group" data-ng-if="$ctrl.state.collapse">
                     <div class="section-item">
                         <telephony-number-ovh-pabx-tts-create
-                            data-on-tts-creation-cancel="$ctrl.onTtsCreationCancel"
-                            data-on-tts-creation-success="$ctrl.onTtsCreationSuccess"
+                            data-on-tts-creation-cancel="$ctrl.onTtsCreationCancel.bind($ctrl)"
+                            data-on-tts-creation-success="$ctrl.onTtsCreationSuccess.bind($ctrl)"
                         >
                         </telephony-number-ovh-pabx-tts-create>
                     </div>
@@ -753,6 +762,7 @@
                                     <span class="oui-radio__icon"></span>
                                     <span
                                         class="oui-radio__text"
+                                        style="max-width: 20rem"
                                         data-ng-bind="tts.text"
                                     ></span>
                                 </span>

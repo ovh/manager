@@ -1,131 +1,137 @@
 import get from 'lodash/get';
 
-export default /* @ngInject */ function TelephonyNumberOvhPabxCtrl(
-  $q,
-  $translate,
-  $translatePartialLoader,
-  asyncLoader,
-  TelephonyMediator,
-  TucToast,
-) {
-  const self = this;
+import {
+  JSPLUMB_INSTANCE_OPTIONS,
+  JSPLUMB_ENDPOINTS_OPTIONS,
+  JSPLUMB_CONNECTIONS_OPTIONS,
+} from '../../number.constants';
 
-  self.popoverDatas = {
-    isOpen: false,
-    configType: null,
-  };
+export default class OvhPabxCtrl {
+  /* @ngInject */
+  constructor(
+    $q,
+    $translate,
+    $translatePartialLoader,
+    asyncLoader,
+    TelephonyMediator,
+    tucJsPlumbService,
+    TucToast,
+  ) {
+    this.$q = $q;
+    this.$translate = $translate;
+    this.$translatePartialLoader = $translatePartialLoader;
+    this.asyncLoader = asyncLoader;
+    this.TelephonyMediator = TelephonyMediator;
+    this.TucToast = TucToast;
 
-  self.loading = {
-    dialplan: false,
-    translations: false,
-  };
+    this.popoverDatas = {
+      isOpen: false,
+      configType: null,
+    };
 
-  self.ovhPabx = null;
-  self.dialplan = null;
+    this.loading = {
+      dialplan: false,
+      translations: false,
+    };
 
-  /*= ==============================
-    =            HELPERS            =
-    =============================== */
+    this.ovhPabx = null;
+    this.dialplan = null;
+    this.jsPlumbInstanceOptions = JSPLUMB_INSTANCE_OPTIONS;
+    this.jsPlumbEndpointsOptions = JSPLUMB_ENDPOINTS_OPTIONS;
+    this.jsPlumbConnectionsOptions = JSPLUMB_CONNECTIONS_OPTIONS;
+  }
 
-  self.refreshDisplayedDialplan = function refreshDisplayedDialplan() {
+  $onInit() {
+    let initPromises;
+
+    // set loading
+    this.numberCtrl.loading.feature = true;
+
+    // set ovhPabx
+    this.ovhPabx = this.numberCtrl.number.feature;
+
+    return this.getTranslations()
+      .then(() => {
+        initPromises = [
+          this.ovhPabx.getDialplans(),
+          this.ovhPabx.getSounds(),
+          this.TelephonyMediator.getAll(),
+        ];
+
+        if (
+          this.ovhPabx.featureType === 'cloudIvr' ||
+          this.ovhPabx.featureType === 'contactCenterSolutionExpert'
+        ) {
+          initPromises.push(this.ovhPabx.getMenus(true));
+        }
+        if (this.ovhPabx.featureType !== 'cloudIvr') {
+          initPromises.push(this.ovhPabx.getQueues());
+          if (this.ovhPabx.isCcs()) {
+            initPromises.push(this.ovhPabx.getTts());
+          }
+        }
+
+        return this.$q.allSettled(initPromises);
+      })
+      .then(() => {
+        this.refreshDisplayedDialplan();
+        this.displayedFeatureType();
+      })
+      .finally(() => {
+        this.numberCtrl.loading.feature = false;
+      })
+      .catch((error) => {
+        this.TucToast.error(
+          this.$translate.instant(
+            'telephony_number_feature_ovh_pabx_load_error',
+          ),
+        );
+        return this.$q.reject(error);
+      });
+  }
+
+  refreshDisplayedDialplan() {
     // for the moment it will only have one dialplan per ovhPabx. So we take the first.
-    self.dialplan = get(self.numberCtrl.number.feature.dialplans, '[0]');
-  };
+    this.dialplan = get(this.numberCtrl.number.feature.dialplans, '[0]');
+  }
 
-  self.displayedFeatureType = function displayedFeatureType() {
-    const { featureType } = self.numberCtrl.number.feature;
-    asyncLoader.addTranslations(
+  displayedFeatureType() {
+    const { featureType } = this.numberCtrl.number.feature;
+    this.asyncLoader.addTranslations(
       import(
-        `./types/${featureType}/translations/Messages_${$translate.use()}.json`
+        `./types/${featureType}/translations/Messages_${this.$translate.use()}.json`
       )
         .catch(() =>
           import(
-            `./types/${featureType}/translations/Messages_${$translate.fallbackLanguage()}.json`
+            `./types/${featureType}/translations/Messages_${this.$translate.fallbackLanguage()}.json`
           ),
         )
         .then((x) => x.default),
     );
-    $translate.refresh();
-  };
-
-  /* -----  End of HELPERS  ------*/
-
-  /*= =====================================
-    =            INITIALIZATION            =
-    ====================================== */
+    this.$translate.refresh();
+  }
 
   /* ----------  Translations load  ----------*/
 
-  function getTranslations() {
-    self.loading.translations = true;
+  getTranslations() {
+    this.loading.translations = true;
 
     // load ovhPabx translations
-    $translatePartialLoader.addPart(
+    this.$translatePartialLoader.addPart(
       '../components/telecom/telephony/group/number/feature/ovhPabx',
     );
 
     // load time condition slot transations
-    $translatePartialLoader.addPart(
+    this.$translatePartialLoader.addPart(
       '../components/telecom/telephony/timeCondition/slot',
     );
 
     // load specific types translations
-    $translatePartialLoader.addPart(
-      `../components/telecom/telephony/group/number/feature/ovhPabx/types/${self.ovhPabx.featureType}`,
+    this.$translatePartialLoader.addPart(
+      `../components/telecom/telephony/group/number/feature/ovhPabx/types/${this.ovhPabx.featureType}`,
     );
-    return $translate.refresh().finally(() => {
-      self.loading.translations = false;
+    return this.$translate.refresh().finally(() => {
+      this.loading.translations = false;
     });
   }
-
-  /* ----------  Component initialization  ----------*/
-
-  self.$onInit = function $onInit() {
-    let initPromises;
-
-    // set loading
-    self.numberCtrl.loading.feature = true;
-
-    // set ovhPabx
-    self.ovhPabx = self.numberCtrl.number.feature;
-
-    return getTranslations()
-      .then(() => {
-        initPromises = [
-          self.ovhPabx.getDialplans(),
-          self.ovhPabx.getSounds(),
-          TelephonyMediator.getAll(),
-        ];
-
-        if (
-          self.ovhPabx.featureType === 'cloudIvr' ||
-          self.ovhPabx.featureType === 'contactCenterSolutionExpert'
-        ) {
-          initPromises.push(self.ovhPabx.getMenus(true));
-        }
-        if (self.ovhPabx.featureType !== 'cloudIvr') {
-          initPromises.push(self.ovhPabx.getQueues());
-          if (self.ovhPabx.isCcs()) {
-            initPromises.push(self.ovhPabx.getTts());
-          }
-        }
-
-        return $q.allSettled(initPromises);
-      })
-      .then(() => {
-        self.refreshDisplayedDialplan();
-        self.displayedFeatureType();
-      })
-      .finally(() => {
-        self.numberCtrl.loading.feature = false;
-      })
-      .catch((error) => {
-        TucToast.error(
-          $translate.instant('telephony_number_feature_ovh_pabx_load_error'),
-        );
-        return $q.reject(error);
-      });
-  };
-
-  /* -----  End of INITIALIZATION  ------*/
 }
