@@ -1,9 +1,9 @@
 {
-  "bm_server_support_heading": "Support",
-  "bm_server_support_level": "Niveau de support",
-  "bm_server_support_open_tickets": "Tickets ouverts",
-  "bm_server_support_create_ticket": "Créer un ticket",
-  "bm_server_interventions": "Intervention en cours",
-  "bm_server_problem_with_your_product": "Un probléme sur vos produits?",
-  "bm_server_consult_travaux": "Consulter nos tâches Travaux"
+  "server_support_heading": "Support",
+  "server_support_level": "Niveau de support",
+  "server_support_open_tickets": "Tickets ouverts",
+  "server_support_create_ticket": "Créer un ticket",
+  "server_interventions": "Intervention en cours",
+  "server_problem_with_your_product": "Un probléme sur vos produits?",
+  "server_consult_travaux": "Consulter nos tâches Travaux"
 }

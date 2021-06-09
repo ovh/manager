@@ -1,22 +1,22 @@
 {
-  "name": "@ovh-ux/manager-bm-server-components",
+  "name": "@ovh-ux/manager-dedicated-server-components",
   "version": "0.0.0",
   "private": true,
-  "description": "Reusable components related to Baremetal Server.",
+  "description": "Reusable components related to Baremetal dedicated Server.",
   "keywords": [
     "angularjs",
     "baremetal",
     "components",
     "manager"
   ],
-  "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/bm-server-components#readme",
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/dedicated-server-components#readme",
   "bugs": {
     "url": "https://github.com/ovh/manager/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
-    "directory": "packages/manager/modules/bm-server-components"
+    "directory": "packages/manager/modules/dedicated-server-components"
   },
   "license": "BSD-3-Clause",
   "main": "./src/index.js",

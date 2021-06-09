@@ -1,4 +1,4 @@
-export default class BmServerKvm {
+export default class DedicatedServerKvm {
   constructor({ expiration, ip, name }, canOrderKvm) {
     Object.assign(this, {
       expiration,

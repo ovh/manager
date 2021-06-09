@@ -8,7 +8,7 @@ import { State, STATE_ENUM } from './state.class';
 
 import { getIpmiGuideUrl, ALERT_SECTION } from './constants';
 
-export default class BmServerIpmiController {
+export default class DedicatedServerIpmiController {
   /* @ngInject */
   constructor(
     $sce,
@@ -90,7 +90,7 @@ export default class BmServerIpmiController {
                 kvmFeatures: this.IpmiService.getKvmFeatures(
                   this.serviceName,
                 ).catch((error) => {
-                  this.handleError(error, 'bm_server_kvm_error');
+                  this.handleError(error, 'server_kvm_error');
                   return {};
                 }),
                 canOrderKvm: this.IpmiService.canOrderKvm(this.serviceName),
@@ -104,7 +104,7 @@ export default class BmServerIpmiController {
         taskInProgress: this.getTaskInProgress(),
       })
       .catch((error) => {
-        this.handleError(error, 'bm_server_ipmi_loading_error');
+        this.handleError(error, 'server_ipmi_loading_error');
         this.loader.error = true;
       })
       .finally(() => {
@@ -149,10 +149,10 @@ export default class BmServerIpmiController {
       .then((connect) => {
         this.loader.navigationReady = connect.value;
         this.$window.open(connect.value, '_blank', 'noopener');
-        this.handleSuccess('bm_server_ipmi_navigation_success');
+        this.handleSuccess('server_ipmi_navigation_success');
       })
       .catch((error) => {
-        this.handleError(error, 'bm_server_ipmi_navigation_error');
+        this.handleError(error, 'server_ipmi_navigation_error');
       })
       .finally(() => {
         this.loader.navigationLoading = false;
@@ -197,7 +197,7 @@ export default class BmServerIpmiController {
       .catch((error) => {
         this.disable.testIpmi = false;
         this.setPingState(STATE_ENUM.NONE);
-        this.handleError(error, 'bm_server_ipmi_loading_error');
+        this.handleError(error, 'server_ipmi_loading_error');
       });
   }
 
@@ -234,7 +234,7 @@ export default class BmServerIpmiController {
       .catch((error) => {
         this.disable.testIpmi = false;
         this.setPasswordState(STATE_ENUM.NONE);
-        this.handleError(error, 'bm_server_ipmi_loading_error');
+        this.handleError(error, 'server_ipmi_loading_error');
       });
   }
 
@@ -265,7 +265,7 @@ export default class BmServerIpmiController {
       .catch((error) => {
         this.setHttpState(STATE_ENUM.NONE);
         this.disable.testIpmi = true;
-        this.handleError(error, 'bm_server_ipmi_loading_error');
+        this.handleError(error, 'server_ipmi_loading_error');
       });
   }
 
@@ -277,7 +277,7 @@ export default class BmServerIpmiController {
         if (this.Polling.isResolve(state)) {
           this.disable.restartSession = false;
           this.disable.localTask = false;
-          this.handleSuccess('bm_server_ipmi_sessions_success');
+          this.handleSuccess('server_ipmi_sessions_success');
         } else {
           this.startIpmiPollSessionsReset(task);
         }
@@ -285,7 +285,7 @@ export default class BmServerIpmiController {
       .catch((error) => {
         this.disable.restartSession = false;
         this.disable.localTask = false;
-        this.handleError(error, 'bm_server_ipmi_restart_error_task_session');
+        this.handleError(error, 'server_ipmi_restart_error_task_session');
       });
   }
 
@@ -297,7 +297,7 @@ export default class BmServerIpmiController {
         if (this.Polling.isResolve(state)) {
           this.disable.restartIpmi = false;
           this.disable.localTask = false;
-          this.handleSuccess('bm_server_ipmi_restart_success');
+          this.handleSuccess('server_ipmi_restart_success');
         } else {
           this.startIpmiPollRestart(task);
         }
@@ -305,7 +305,7 @@ export default class BmServerIpmiController {
       .catch((error) => {
         this.disable.restartIpmi = false;
         this.disable.localTask = false;
-        this.handleError(error, 'bm_server_ipmi_restart_error_task');
+        this.handleError(error, 'server_ipmi_restart_error_task');
       });
   }
 
@@ -385,7 +385,7 @@ export default class BmServerIpmiController {
       .catch((error) => {
         this.loader.navigationLoading = false;
         this.loader.buttonStart = false;
-        this.handleError(error, 'bm_server_ipmi_navigation_error');
+        this.handleError(error, 'server_ipmi_navigation_error');
       });
   }
 
@@ -406,7 +406,7 @@ export default class BmServerIpmiController {
       .catch(({ error }) => {
         this.loader.navigationLoading = false;
         this.loader.buttonStart = false;
-        this.handleError(error, 'bm_server_ipmi_navigation_error');
+        this.handleError(error, 'server_ipmi_navigation_error');
       });
   }
 
@@ -415,10 +415,10 @@ export default class BmServerIpmiController {
       .then((kvmUrl) => {
         this.loader.kvmUrlReady = true;
         this.loader.kvmUrl = kvmUrl.value;
-        this.handleSuccess('bm_server_ipmi_navigation_success');
+        this.handleSuccess('server_ipmi_navigation_success');
       })
       .catch((error) => {
-        this.handleError(error, 'bm_server_ipmi_navigation_error');
+        this.handleError(error, 'server_ipmi_navigation_error');
       })
       .finally(() => {
         this.loader.kvmhtmlLoading = false;
@@ -437,7 +437,7 @@ export default class BmServerIpmiController {
       .catch((error) => {
         this.loader.kvmhtmlLoading = false;
         this.loader.buttonStart = false;
-        this.handleError(error, 'bm_server_ipmi_navigation_error');
+        this.handleError(error, 'server_ipmi_navigation_error');
       });
   }
 
@@ -457,12 +457,12 @@ export default class BmServerIpmiController {
       .catch((error) => {
         this.loader.kvmhtmlLoading = false;
         this.loader.buttonStart = false;
-        this.handleError(error, 'bm_server_ipmi_navigation_error');
+        this.handleError(error, 'server_ipmi_navigation_error');
       });
   }
 
   getIpmiJava() {
-    this.handleSuccess('bm_server_ipmi_java_success');
+    this.handleSuccess('server_ipmi_java_success');
     this.loader.buttonStart = false;
     this.javaState.setState(STATE_ENUM.DONE);
 
@@ -492,7 +492,7 @@ export default class BmServerIpmiController {
         }
       })
       .catch((error) => {
-        this.handleError(error, 'bm_server_ipmi_java_error');
+        this.handleError(error, 'server_ipmi_java_error');
       });
   }
 
@@ -507,7 +507,7 @@ export default class BmServerIpmiController {
       .catch((error) => {
         this.javaState.setState(STATE_ENUM.ERROR);
         this.loader.buttonStart = false;
-        this.handleError(error, 'bm_server_ipmi_java_error');
+        this.handleError(error, 'server_ipmi_java_error');
       });
   }
 
@@ -530,7 +530,7 @@ export default class BmServerIpmiController {
       .catch((error) => {
         this.javaState.setState(STATE_ENUM.ERROR);
         this.loader.buttonStart = false;
-        this.handleError(error, 'bm_server_ipmi_java_error');
+        this.handleError(error, 'server_ipmi_java_error');
       });
   }
 
@@ -567,10 +567,10 @@ export default class BmServerIpmiController {
     )
       .then((solSsh) => {
         this.ssh.solSshUrl = solSsh.value;
-        this.handleSuccess('bm_server_ipmi_ssh_success');
+        this.handleSuccess('server_ipmi_ssh_success');
       })
       .catch((error) => {
-        this.handleError(error, 'bm_server_ipmi_ssh_error');
+        this.handleError(error, 'server_ipmi_ssh_error');
       })
       .finally(() => {
         this.loader.solSshKeyLoading = false;
@@ -589,7 +589,7 @@ export default class BmServerIpmiController {
       .catch((error) => {
         this.loader.solSshKeyLoading = false;
         this.loader.buttonStart = false;
-        this.handleError(error, 'bm_server_ipmi_navigation_error');
+        this.handleError(error, 'server_ipmi_navigation_error');
       });
   }
 
@@ -610,7 +610,7 @@ export default class BmServerIpmiController {
       .catch((error) => {
         this.loader.solSshKeyLoading = false;
         this.loader.buttonStart = false;
-        this.handleError(error, 'bm_server_ipmi_navigation_error');
+        this.handleError(error, 'server_ipmi_navigation_error');
       });
   }
 
@@ -627,7 +627,7 @@ export default class BmServerIpmiController {
     const pollPromise = this.$q.defer();
 
     this.Polling.addTaskFast(
-      BmServerIpmiController.getTaskPath(serviceName, task.id),
+      DedicatedServerIpmiController.getTaskPath(serviceName, task.id),
       task,
       scopeId,
     )

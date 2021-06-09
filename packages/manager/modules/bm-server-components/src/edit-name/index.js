@@ -6,7 +6,7 @@ import '@ovh-ux/ng-translate-async-loader';
 
 import component from './component';
 
-const moduleName = 'ovhManagerBmServerEditNameComponent';
+const moduleName = 'ovhManagerDedicatedServerEditNameComponent';
 
 angular
   .module(moduleName, [
@@ -14,7 +14,7 @@ angular
     'pascalprecht.translate',
     'ngTranslateAsyncLoader',
   ])
-  .component('bmServerEditName', component)
+  .component('serverEditName', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

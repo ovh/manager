@@ -8,7 +8,7 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 
 import component from './component';
 
-const moduleName = 'ovhManagerBmServerInterventionsComponent';
+const moduleName = 'ovhManagerDedicatedServerInterventionsComponent';
 
 angular
   .module(moduleName, [
@@ -18,7 +18,7 @@ angular
     'ngTranslateAsyncLoader',
     ovhManagerCore,
   ])
-  .component('bmServerInterventions', component)
+  .component('serverInterventions', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

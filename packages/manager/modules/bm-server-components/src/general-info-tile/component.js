@@ -12,6 +12,6 @@ export default {
   controller,
   template,
   transclude: {
-    serverUpgrade: '?bmServerUpgrade',
+    serverUpgrade: '?serverUpgrade',
   },
 };

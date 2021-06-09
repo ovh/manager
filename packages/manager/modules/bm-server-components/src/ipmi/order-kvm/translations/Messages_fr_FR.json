@@ -1,12 +1,12 @@
 {
-  "bm_server_ipmi_order_kvm": "Commander un KVM",
-  "bm_server_kvm_order_step1_title": "Choisissez la durée",
-  "bm_server_kvm_order_step2_title": "Commande d'un KVM sur le serveur {{serverName}}",
-  "bm_server_kvm_order_step2_duration": "Période :",
-  "bm_server_kvm_order_step2_details": "Détails de la commande :",
-  "bm_server_kvm_order_step2_price": "Prix :",
-  "bm_server_kvm_order_finish_success": "La commande numéro <a href='{{orderUrl}}' target='_blank' rel='noopener'>{{orderId}}</a> a bien été prise en compte.",
-  "bm_server_kvm_order_error": "Une erreur est survenue lors de la commande de KVM: {{message}}",
-  "bm_server_common_confirm": "Confirmer",
-  "bm_server_common_cancel": "Annuler"
+  "server_ipmi_order_kvm": "Commander un KVM",
+  "server_kvm_order_step1_title": "Choisissez la durée",
+  "server_kvm_order_step2_title": "Commande d'un KVM sur le serveur {{serverName}}",
+  "server_kvm_order_step2_duration": "Période :",
+  "server_kvm_order_step2_details": "Détails de la commande :",
+  "server_kvm_order_step2_price": "Prix :",
+  "server_kvm_order_finish_success": "La commande numéro <a href='{{orderUrl}}' target='_blank' rel='noopener'>{{orderId}}</a> a bien été prise en compte.",
+  "server_kvm_order_error": "Une erreur est survenue lors de la commande de KVM: {{message}}",
+  "server_common_confirm": "Confirmer",
+  "server_common_cancel": "Annuler"
 }

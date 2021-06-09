@@ -1,6 +1,6 @@
 import isFunction from 'lodash/isFunction';
 
-export default class BmServerNetworkTileController {
+export default class DedicatedServerNetworkTileController {
   /* @ngInject */
   constructor($http, $translate, $q, coreURLBuilder) {
     this.$http = $http;

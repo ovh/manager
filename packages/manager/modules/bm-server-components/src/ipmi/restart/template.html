@@ -1,17 +1,17 @@
 <form
-    id="bmServerIpmiRestartConf"
-    name="bmServerIpmiRestartConf"
-    data-ng-submit="bmServerIpmiRestartConf.$valid && $ctrl.restartIpmi()"
+    id="serverIpmiRestartConf"
+    name="serverIpmiRestartConf"
+    data-ng-submit="serverIpmiRestartConf.$valid && $ctrl.restartIpmi()"
     novalidate
 >
     <oui-modal
-        data-heading="{{:: 'bm_server_ipmi_restart_title' | translate }}"
-        data-primary-label="{{:: 'bm_server_common_confirm' | translate }}"
-        data-secondary-label="{{:: 'bm_server_common_cancel' | translate }}"
+        data-heading="{{:: 'server_ipmi_restart_title' | translate }}"
+        data-primary-label="{{:: 'server_common_confirm' | translate }}"
+        data-secondary-label="{{:: 'server_common_cancel' | translate }}"
         data-secondary-action="$ctrl.handleCancel()"
         data-on-dismiss="$ctrl.handleCancel()"
         data-loading="$ctrl.loading"
     >
-        <p data-translate="bm_server_ipmi_restart_information"></p>
+        <p data-translate="server_ipmi_restart_information"></p>
     </oui-modal>
 </form>

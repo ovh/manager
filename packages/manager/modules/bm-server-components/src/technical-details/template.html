@@ -1,6 +1,6 @@
 <oui-tile
     class="h-100"
-    heading="{{:: 'bm_server_technical_details_heading' | translate }}"
+    heading="{{:: 'server_technical_details_heading' | translate }}"
     loading="$ctrl.loading"
 >
     <!-- cpu -->
@@ -19,12 +19,12 @@
         data-ng-if="$ctrl.isRamUpgradable()"
         on-click="$ctrl.onUpgradeRam()"
     >
-        <span data-translate="bm_server_technical_details_ram_upgrade"></span>
+        <span data-translate="server_technical_details_ram_upgrade"></span>
     </oui-tile-button>
     <!-- system disk -->
     <oui-tile-definition
         data-ng-if="$ctrl.formattedOsDisks.length"
-        term="{{:: 'bm_server_technical_details_system_disk_many' | translate }}"
+        term="{{:: 'server_technical_details_system_disk_many' | translate }}"
     >
         <oui-tile-description>
             <p
@@ -36,7 +36,7 @@
     <!-- data disk -->
     <oui-tile-definition
         data-ng-if="$ctrl.formattedDataDisks.length"
-        term="{{:: 'bm_server_technical_details_data_disk_many' | translate }}"
+        term="{{:: 'server_technical_details_data_disk_many' | translate }}"
     >
         <oui-tile-description>
             <p
@@ -50,12 +50,12 @@
         on-click="$ctrl.onUpgradeDisk()"
     >
         <span
-            data-translate="bm_server_technical_details_data_disk_upgrade"
+            data-translate="server_technical_details_data_disk_upgrade"
         ></span>
     </oui-tile-button>
     <!-- expansion cards -->
     <oui-tile-definition
-        term="{{:: 'bm_server_technical_details_extension_card_many' | translate }}"
+        term="{{:: 'server_technical_details_extension_card_many' | translate }}"
     >
         <oui-tile-description>
             <span data-ng-bind=":: $ctrl.formattedExtensionCard"></span>

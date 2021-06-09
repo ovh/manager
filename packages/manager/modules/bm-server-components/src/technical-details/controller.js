@@ -2,7 +2,7 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
 
-export default class BmServerTechnicalDetailsTileController {
+export default class DedicatedServerTechnicalDetailsTileController {
   /* @ngInject */
   constructor($translate, ovhFeatureFlipping) {
     this.$translate = $translate;
@@ -21,10 +21,10 @@ export default class BmServerTechnicalDetailsTileController {
       '-',
     );
     this.gbTranslated = this.$translate.instant(
-      'bm_server_technical_details_unit_gb',
+      'server_technical_details_unit_gb',
     );
     this.tbTranslated = this.$translate.instant(
-      'bm_server_technical_details_unit_tb',
+      'server_technical_details_unit_tb',
     );
     this.upgradeWithTicketAvailable = false;
     this.loading = true;
@@ -44,7 +44,7 @@ export default class BmServerTechnicalDetailsTileController {
       return '-';
     }
     const freqUnit = this.$translate.instant(
-      'bm_server_technical_details_ram_frequency_unit',
+      'server_technical_details_ram_frequency_unit',
     );
     const ramSize = ram.size ? `${ram.size} ${this.gbTranslated}` : '';
     const ramType = get(ram, 'type', '');
@@ -59,7 +59,7 @@ export default class BmServerTechnicalDetailsTileController {
       return '-';
     }
     const freqUnit = this.$translate.instant(
-      'bm_server_technical_details_cpu_frequency_unit',
+      'server_technical_details_cpu_frequency_unit',
     );
     const cpuBrand = get(cpu, 'brand', '');
     const cpuModel = get(cpu, 'model', '');

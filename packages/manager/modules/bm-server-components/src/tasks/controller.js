@@ -4,7 +4,7 @@ import toUpper from 'lodash/toUpper';
 
 import Task from './tasks.class';
 
-export default class BmServerTasksController {
+export default class DedicatedServerTasksController {
   /* @ngInject */
   constructor($http) {
     this.$http = $http;

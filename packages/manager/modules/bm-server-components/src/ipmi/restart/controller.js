@@ -2,7 +2,7 @@ import isFunction from 'lodash/isFunction';
 
 import { ALERT_SECTION } from '../constants';
 
-export default class BmServerIpmiRestartController {
+export default class DedicatedServerIpmiRestartController {
   /* @ngInject */
   constructor($translate, Alerter, IpmiService) {
     this.$translate = $translate;
@@ -18,8 +18,8 @@ export default class BmServerIpmiRestartController {
   restartIpmi() {
     this.loading = true;
     return this.IpmiService.ipmiRestart(this.serviceName)
-      .then(() => this.handleSuccess('bm_server_ipmi_restart_loading'))
-      .catch((error) => this.handleError(error, 'bm_server_ipmi_restart_error'))
+      .then(() => this.handleSuccess('server_ipmi_restart_loading'))
+      .catch((error) => this.handleError(error, 'server_ipmi_restart_error'))
       .finally(() => {
         this.loading = false;
       });

@@ -24,10 +24,7 @@
         term="{{:: 'server_configuration_description' | translate }}"
     >
         <oui-tile-description>
-            <span
-                data-ng-bind="$ctrl.server.commercialRange !== 'housing' ? $ctrl.server.description || '-' : ('server_configuration_description_housing' | translate)"
-            >
-            </span>
+            <span data-ng-bind="$ctrl.getFormatedCommercialRange()"> </span>
         </oui-tile-description>
     </oui-tile-definition>
     <!-- upgrade -->
@@ -54,7 +51,7 @@
             ></p>
         </oui-tile-description>
         <oui-action-menu
-            data-ng-if="!$ctrl.server.isExpired && $ctrl.server.commercialRange !== 'housing'"
+            data-ng-if="!$ctrl.server.isExpired && !$ctrl.isHousingRange()"
             data-compact
             data-placement="end"
             data-disabled="$ctrl.server.ola.isConfigured()"
@@ -81,7 +78,7 @@
     </oui-tile-definition>
     <!-- boot -->
     <oui-tile-definition
-        data-ng-if="$ctrl.server.commercialRange !== 'housing'"
+        data-ng-if="!$ctrl.isHousingRange()"
         term="{{:: 'server_configuration_boot' | translate }}"
     >
         <oui-tile-description>
@@ -120,9 +117,9 @@
         term="{{:: 'server_configuration_datacenter' | translate }}"
     >
         <oui-tile-description>
-            <bm-server-datacenter
+            <server-datacenter
                 name="{{ ::$ctrl.server.datacenter }}"
-            ></bm-server-datacenter>
+            ></server-datacenter>
         </oui-tile-description>
     </oui-tile-definition>
     <!-- rack -->

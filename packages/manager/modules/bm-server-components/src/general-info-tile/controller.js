@@ -1,6 +1,6 @@
 import isFunction from 'lodash/isFunction';
 
-export default class BmServerGeneralInfoTileController {
+export default class DedicatedServerGeneralInfoTileController {
   /* @ngInject */
   constructor($translate, coreConfig) {
     this.$translate = $translate;
@@ -27,5 +27,18 @@ export default class BmServerGeneralInfoTileController {
     if (isFunction(this.onEditNetboot)) {
       this.onEditNetboot({ type });
     }
+  }
+
+  getFormatedCommercialRange() {
+    if (this.isHousingRange()) {
+      return this.$translate.instant(
+        'server_configuration_description_housing',
+      );
+    }
+    return this.server.description || '-';
+  }
+
+  isHousingRange() {
+    return this.server.commercialRange === 'housing';
   }
 }

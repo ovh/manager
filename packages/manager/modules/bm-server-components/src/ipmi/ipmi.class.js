@@ -1,4 +1,4 @@
-export default class BmServerIpmi {
+export default class DedicatedServerIpmi {
   constructor(server, features, urlkvm) {
     this.server = server;
     this.model = features;

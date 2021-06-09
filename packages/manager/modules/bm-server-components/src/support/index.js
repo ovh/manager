@@ -6,7 +6,7 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 
 import component from './component';
 
-const moduleName = 'ovhManagerBmServerSupportTileComponent';
+const moduleName = 'ovhManagerDedicatedServerSupportTileComponent';
 
 angular
   .module(moduleName, [
@@ -15,7 +15,7 @@ angular
     'ngAtInternet',
     ovhManagerCore,
   ])
-  .component('bmServerSupport', component)
+  .component('serverSupport', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

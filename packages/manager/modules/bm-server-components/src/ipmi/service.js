@@ -1,4 +1,4 @@
-export default class BmServerIpmiService {
+export default class DedicatedServerIpmiService {
   /* @ngInject */
   constructor($http, $q) {
     this.$http = $http;

@@ -3,7 +3,7 @@ import set from 'lodash/set';
 
 import { ALERT_SECTION } from '../constants';
 
-export default class BmServerOrderKvmController {
+export default class DedicatedServerOrderKvmController {
   /* @ngInject */
   constructor($translate, $window, Alerter, IpmiService) {
     this.$translate = $translate;
@@ -37,7 +37,7 @@ export default class BmServerOrderKvmController {
           return this.order.details;
         });
       })
-      .catch((error) => this.handleError(error, 'bm_server_kvm_order_error'))
+      .catch((error) => this.handleError(error, 'server_kvm_order_error'))
       .finally(() => {
         this.loaders.details = false;
       });
@@ -57,11 +57,11 @@ export default class BmServerOrderKvmController {
       this.order.durationSelected,
     )
       .then((data) => {
-        this.handleSuccess(data, 'bm_server_kvm_order_finish_success');
+        this.handleSuccess(data, 'server_kvm_order_finish_success');
         this.$window.open(data.url, '_blank', 'noopener');
         return data;
       })
-      .catch((error) => this.handleError(error, 'bm_server_kvm_order_error'))
+      .catch((error) => this.handleError(error, 'server_kvm_order_error'))
       .finally(() => {
         this.loaders.validation = false;
       });

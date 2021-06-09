@@ -10,7 +10,7 @@ import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import component from './component';
 import service from '../service';
 
-const moduleName = 'ovhManagerBmServerIpmiRestartComponent';
+const moduleName = 'ovhManagerDedicatedServerIpmiRestartComponent';
 
 angular
   .module(moduleName, [
@@ -21,7 +21,7 @@ angular
     ovhManagerCore,
     ngOvhUtils,
   ])
-  .component('bmServerIpmiRestart', component)
+  .component('serverIpmiRestart', component)
   .service('IpmiService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 

@@ -9,7 +9,7 @@ import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import component from './component';
 import service from '../service';
 
-const moduleName = 'ovhManagerBmServerOrderKvmComponent';
+const moduleName = 'ovhManagerDedicatedServerOrderKvmComponent';
 
 angular
   .module(moduleName, [
@@ -19,7 +19,7 @@ angular
     'ngAtInternet',
     ngOvhUtils,
   ])
-  .component('bmServerOrderKvm', component)
+  .component('serverOrderKvm', component)
   .service('IpmiService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 

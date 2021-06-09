@@ -1,17 +1,17 @@
 <oui-tile
     class="h-100"
-    heading="{{:: 'bm_server_support_heading' | translate }}"
+    heading="{{:: 'server_support_heading' | translate }}"
     loading="$ctrl.loading"
 >
     <!-- level -->
-    <oui-tile-definition term="{{:: 'bm_server_support_level' | translate }}">
+    <oui-tile-definition term="{{:: 'server_support_level' | translate }}">
         <oui-tile-description>
             <span data-ng-bind=":: $ctrl.getFormatedSupportLevel()"></span>
         </oui-tile-description>
     </oui-tile-definition>
     <!-- open tickets -->
     <oui-tile-definition
-        term="{{:: 'bm_server_support_open_tickets' | translate }}"
+        term="{{:: 'server_support_open_tickets' | translate }}"
     >
         <oui-tile-description data-ng-if="$ctrl.numberOfTickets === 0">
             <span data-ng-bind="$ctrl.numberOfTickets"></span>
@@ -25,10 +25,10 @@
         <span data-ng-bind="$ctrl.numberOfTickets"></span>
     </oui-tile-button>
     <oui-tile-button class="ml-1" data-href="{{:: $ctrl.createNewTicketUrl }}">
-        <span data-translate="bm_server_support_create_ticket"></span>
+        <span data-translate="server_support_create_ticket"></span>
     </oui-tile-button>
     <!-- interventions -->
-    <oui-tile-definition term="{{:: 'bm_server_interventions' | translate }}">
+    <oui-tile-definition term="{{:: 'server_interventions' | translate }}">
     </oui-tile-definition>
     <oui-tile-button
         class="ml-1"
@@ -38,10 +38,10 @@
     </oui-tile-button>
     <!-- link to Travaux -->
     <oui-tile-definition
-        term="{{:: 'bm_server_problem_with_your_product' | translate }}"
+        term="{{:: 'server_problem_with_your_product' | translate }}"
     >
     </oui-tile-definition>
     <oui-tile-button class="ml-1" data-href="{{:: $ctrl.travauxUrl }}" external>
-        <span data-translate="bm_server_consult_travaux"></span>
+        <span data-translate="server_consult_travaux"></span>
     </oui-tile-button>
 </oui-tile>

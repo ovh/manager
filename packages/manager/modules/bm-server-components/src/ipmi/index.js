@@ -11,7 +11,7 @@ import component from './component';
 import service from './service';
 import polling from '../polling/polling.service';
 
-const moduleName = 'ovhManagerBmServerIpmiComponent';
+const moduleName = 'ovhManagerDedicatedServerIpmiComponent';
 
 angular
   .module(moduleName, [
@@ -22,7 +22,7 @@ angular
     ovhManagerCore,
     ngOvhUtils,
   ])
-  .component('bmServerIpmi', component)
+  .component('serverIpmi', component)
   .service('IpmiService', service)
   .service('Polling', polling)
   .run(/* @ngTranslationsInject:json ./translations */);

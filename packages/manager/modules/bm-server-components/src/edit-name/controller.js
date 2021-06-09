@@ -1,6 +1,6 @@
 import isFunction from 'lodash/isFunction';
 
-export default class BmServerEditNameController {
+export default class ServerEditNameController {
   /* @ngInject */
   constructor($http, $log, $translate, $q) {
     this.$http = $http;
@@ -62,7 +62,7 @@ export default class BmServerEditNameController {
 
   constructUrl() {
     if (this.serviceInfoApiUrl && this.urlParams) {
-      return BmServerEditNameController.formatUrl(
+      return ServerEditNameController.formatUrl(
         this.serviceInfoApiUrl,
         this.urlParams,
       );

@@ -1,11 +1,11 @@
-# manager-bm-server-components
+# manager-dedicated-server-components
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-bm-server-components)](https://www.npmjs.com/package/@ovh-ux/manager-bm-server-components) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-bm-server-components)](https://npmjs.com/package/@ovh-ux/manager-bm-server-components) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/bm-server-components)](https://npmjs.com/package/@ovh-ux/manager-bm-server-components?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/bm-server-components)](https://npmjs.com/package/@ovh-ux/manager-bm-server-components?activeTab=dependencies)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-dedicated-server-components)](https://www.npmjs.com/package/@ovh-ux/manager-dedicated-server-components) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-dedicated-server-components)](https://npmjs.com/package/@ovh-ux/manager-dedicated-server-components) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/bm-server-components)](https://npmjs.com/package/@ovh-ux/manager-dedicated-server-components?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/bm-server-components)](https://npmjs.com/package/@ovh-ux/manager-dedicated-server-components?activeTab=dependencies)
 
 ## Install
 
 ```sh
-yarn add @ovh-ux/manager-bm-server-components
+yarn add @ovh-ux/manager-dedicated-server-components
 ```
 
 ## Usage
@@ -14,16 +14,16 @@ yarn add @ovh-ux/manager-bm-server-components
 // import all the components required individually
 import angular from 'angular';
 import {
-  bmServerGeneralInfo,
-  bmServerNetwork,
-} from '@ovh-ux/manager-bm-server-components';
+  serverGeneralInfo,
+  serverNetwork,
+} from '@ovh-ux/manager-dedicated-server-components';
 
-angular.module('myApp', [bmServerGeneralInfo]);
+angular.module('myApp', [serverGeneralInfo]);
 ```
 
 ```html
-<bm-server-general-info server="$ctrl.server" user="$ctrl.user"></bm-server-general-info>
-<bm-server-network server="$ctrl.server"></bm-server-network>
+<server-general-info server="$ctrl.server" user="$ctrl.user"></server-general-info>
+<server-network server="$ctrl.server"></server-network>
 ````
 
 ## Build
@@ -46,9 +46,9 @@ yarn install
 Then you just have to start the project in development mode. For this, two choices are possible according to your needs:
 
 ```sh
-# Build the `manager-bm-server-components` workspace and all the nested workspaces in development mode and watch only `manager-bm-server-components` workspace
+# Build the `manager-dedicated-server-components` workspace and all the nested workspaces in development mode and watch only `manager-dedicated-server-components` workspace
 yarn start:dev
-# Build and watch the `manager-bm-server-components` workspace and all the nested workspaces in development mode
+# Build and watch the `manager-dedicated-server-components` workspace and all the nested workspaces in development mode
 yarn start:watch
 ```
 

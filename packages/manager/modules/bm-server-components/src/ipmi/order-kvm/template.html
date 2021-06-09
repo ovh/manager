@@ -1,10 +1,10 @@
-<h1 data-translate="bm_server_ipmi_order_kvm"></h1>
+<h1 data-translate="server_ipmi_order_kvm"></h1>
 <div data-ovh-alert="{{:: $ctrl.alertSection }}"></div>
 <oui-stepper>
     <!-- Get Durations -->
     <oui-step-form
-        name="bmServerOrderKvmChooseDurations"
-        data-header="{{:: 'bm_server_kvm_order_step1_title' | translate }}"
+        name="serverOrderKvmChooseDurations"
+        data-header="{{:: 'server_kvm_order_step1_title' | translate }}"
         data-editable="!$ctrl.isAdding"
         data-valid="$ctrl.order.durationSelected"
         data-navigation="$ctrl.order.durationSelected"
@@ -35,22 +35,22 @@
     </oui-step-form>
     <!-- Order details -->
     <oui-step-form
-        name="bmServerOrderKvmConfirm"
-        data-header="{{:: 'bm_server_kvm_order_step2_title' | translate }}"
+        name="serverOrderKvmConfirm"
+        data-header="{{:: 'server_kvm_order_step2_title' | translate }}"
         data-editable="!$ctrl.isAdding"
         data-on-submit="$ctrl.orderKvm()"
         data-on-cancel="$ctrl.cancelOrder()"
     >
         <p
-            data-translate="bm_server_kvm_order_step2_title"
+            data-translate="server_kvm_order_step2_title"
             data-translate-values="{ serverName: $ctrl.serviceName }"
         ></p>
         <dl>
-            <dt data-translate="bm_server_kvm_order_step2_duration"></dt>
+            <dt data-translate="server_kvm_order_step2_duration"></dt>
             <dd
                 data-ng-bind="$ctrl.order.durationSelected | wucDuration:'mediumDate'"
             ></dd>
-            <dt data-translate="bm_server_kvm_order_step2_details"></dt>
+            <dt data-translate="server_kvm_order_step2_details"></dt>
             <dd>
                 <ul>
                     <li
@@ -59,7 +59,7 @@
                     ></li>
                 </ul>
             </dd>
-            <dt data-translate="bm_server_kvm_order_step2_price"></dt>
+            <dt data-translate="server_kvm_order_step2_price"></dt>
             <dd
                 class="text-danger"
                 data-ng-bind-html="$ctrl.orderDetail.prices | ducPrice:$ctrl.user.ovhSubsidiary"

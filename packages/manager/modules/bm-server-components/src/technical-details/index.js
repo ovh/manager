@@ -8,7 +8,7 @@ import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
 import component from './component';
 
-const moduleName = 'ovhManagerBmServerTechnicalDetailsTileComponent';
+const moduleName = 'ovhManagerDedicatedServerTechnicalDetailsTileComponent';
 
 angular
   .module(moduleName, [
@@ -18,7 +18,7 @@ angular
     ngAtInternet,
     ngOvhFeatureFlipping,
   ])
-  .component('bmServerTechnicalDetails', component)
+  .component('serverTechnicalDetails', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

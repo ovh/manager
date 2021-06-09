@@ -1,7 +1,7 @@
 import isFunction from 'lodash/isFunction';
 import get from 'lodash/get';
 
-export default class BmServerInterventionsController {
+export default class DedicatedServerInterventionsController {
   /* @ngInject */
   constructor($http) {
     this.$http = $http;

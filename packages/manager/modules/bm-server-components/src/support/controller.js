@@ -1,6 +1,6 @@
 import { SUPPORT_LEVELS } from './constants';
 
-export default class BmServerSupportTileController {
+export default class DedicatedServerSupportTileController {
   /* @ngInject */
   constructor($http, $translate, $q, $window, coreURLBuilder) {
     this.$http = $http;
