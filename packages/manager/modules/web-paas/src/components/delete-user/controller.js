@@ -2,8 +2,9 @@ import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
-  constructor($translate, WebPaas) {
+  constructor($translate, atInternet, WebPaas) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.webPaasService = WebPaas;
   }
 
@@ -11,7 +12,21 @@ export default class {
     this.isLoading = false;
   }
 
+  cancel() {
+    this.atInternet.trackClick({
+      name:
+        'web-paas::project-user-license::user-table-options::delete-user-cancel',
+      type: 'action',
+    });
+    return this.goBack();
+  }
+
   delete() {
+    this.atInternet.trackClick({
+      name:
+        'web-paas::project-user-license::user-table-options::delete-user-confirm',
+      type: 'action',
+    });
     this.isLoading = true;
     return this.webPaasService
       .deleteUser(this.projectId, this.customer.customerId)

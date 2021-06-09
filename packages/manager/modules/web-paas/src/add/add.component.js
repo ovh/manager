@@ -3,6 +3,7 @@ import template from './template.html';
 
 export default {
   bindings: {
+    addons: '<',
     catalog: '<',
     cpu: '<',
     getOrdersURL: '<',
@@ -10,6 +11,7 @@ export default {
     plans: '<',
     projectId: '<',
     user: '<',
+    selectedProject: '<',
   },
   controller,
   template,

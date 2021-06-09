@@ -19,5 +19,8 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ (goToWebPaas) => goToWebPaas,
       breadcrumb: () => null,
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };

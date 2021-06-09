@@ -1,14 +1,15 @@
 import { find, get, set, max } from 'lodash';
-import { ADDON_FAMILY } from '../../../web-paas.constants';
+import { ADDON_FAMILY, PLAN_CODE } from '../../../web-paas.constants';
 import Plan from '../../../plan.class';
 
 export default class {
   /* @ngInject */
-  constructor($q, $timeout, $translate, $window, Alerter, WebPaas) {
+  constructor($q, $timeout, $translate, $window, atInternet, Alerter, WebPaas) {
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.Alerter = Alerter;
     this.WebPaas = WebPaas;
     this.alerts = {
@@ -174,6 +175,7 @@ export default class {
   }
 
   upgradeOffer() {
+    this.trackChangeOffer('confirm');
     this.orderInProgress = true;
     return this.WebPaas.checkoutUpgrade(
       this.selectedProject.serviceId,
@@ -189,6 +191,22 @@ export default class {
       .finally(() => {
         this.orderInProgress = false;
       });
+  }
+
+  trackChangeOffer(type) {
+    let trackText = '';
+    if (
+      this.selectedProject.selectedPlan.product === PLAN_CODE.EXPAND &&
+      this.selectedPlan.product === PLAN_CODE.DEVELOP
+    ) {
+      trackText = `web-paas::change-plan-downgrade-${type}::${this.selectedProject.selectedPlan.planCode}::${this.selectedPlan.planCode}`;
+    } else {
+      trackText = `web-paas::change-plan-upgrade-${type}::${this.selectedProject.selectedPlan.planCode}::${this.selectedPlan.planCode}`;
+    }
+    this.atInternet.trackClick({
+      name: trackText,
+      type: 'action',
+    });
   }
 
   /**
@@ -226,5 +244,10 @@ export default class {
     return (
       this.selectedProject.selectedPlan.planCode === this.selectedPlan.planCode
     );
+  }
+
+  cancel() {
+    this.trackChangeOffer('cancel');
+    return this.goBack();
   }
 }

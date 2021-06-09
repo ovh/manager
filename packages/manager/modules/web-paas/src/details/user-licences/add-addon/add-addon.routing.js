@@ -15,6 +15,10 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       ...commonResolves,
       goBack: /* @ngInject */ (goToUserLicences) => goToUserLicences,
+      trackTextPrefix: () => 'web-paas::project-user-licenses::',
+    },
+    atInternet: {
+      ignore: true,
     },
   });
 };

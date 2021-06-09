@@ -5,18 +5,35 @@ export default /* @ngInject */ ($stateProvider) => {
       projectView: 'webPaasDetailsService',
     },
     resolve: {
-      goToAddAddon: /* @ngInject */ ($state, projectId) => (addonType) =>
-        $state.go('web-paas.dashboard.service.add-addon', {
+      webPaasDashboardPrefix: () => 'web-paas::project-dashboard::',
+      goToAddAddon: /* @ngInject */ ($state, projectId, atInternet) => (
+        addonType,
+        trackText,
+      ) => {
+        atInternet.trackClick({
+          name: trackText,
+          type: 'action',
+        });
+        return $state.go('web-paas.dashboard.service.add-addon', {
           projectId,
           addonType,
-        }),
-      goToChangeOffer: /* @ngInject */ ($state, projectId) => (cpu) =>
-        $state.go('web-paas.dashboard.service.change-offer', {
+        });
+      },
+      goToChangeOffer: /* @ngInject */ ($state, projectId, atInternet) => (
+        trackText,
+        cpu,
+      ) => {
+        atInternet.trackClick({ name: trackText, type: 'action' });
+        return $state.go('web-paas.dashboard.service.change-offer', {
           projectId,
           cpu,
-        }),
+        });
+      },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('web_paas_general_info'),
+    },
+    atInternet: {
+      rename: 'web::web-paas-platform-sh::project-dashboard',
     },
   });
 };

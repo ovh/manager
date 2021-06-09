@@ -6,6 +6,7 @@ const component = {
     goBack: '<',
     project: '<',
     projectId: '<',
+    webPaasUserLicencesTrackingPrefix: '<',
   },
   controller,
   template,
