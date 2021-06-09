@@ -1,3 +1,12 @@
+## [13.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.22.0...@ovh-ux/manager-telecom@13.22.1) (2021-06-09)
+
+
+### Bug Fixes
+
+* **telecom:** telephony alias translation ([487d6c3](https://github.com/ovh/manager/commit/487d6c38023469ff8c53fbc108bd773471ec133c))
+
+
+
 # [13.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.21.1...@ovh-ux/manager-telecom@13.22.0) (2021-06-09)
 
 
