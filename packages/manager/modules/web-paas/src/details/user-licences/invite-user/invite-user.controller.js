@@ -2,8 +2,9 @@ import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
-  constructor($translate, WebPaas) {
+  constructor($translate, atInternet, WebPaas) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.webPaasService = WebPaas;
   }
 
@@ -12,6 +13,10 @@ export default class {
   }
 
   invite() {
+    this.atInternet.trackClick({
+      name: `${this.webPaasUserLicencesTrackingPrefix}invite-user-confirm`,
+      type: 'action',
+    });
     this.isLoading = true;
     return this.webPaasService
       .inviteUser(this.projectId, this.accountName)
@@ -32,5 +37,13 @@ export default class {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  cancel() {
+    this.atInternet.trackClick({
+      name: `${this.webPaasUserLicencesTrackingPrefix}invite-user-cancel`,
+      type: 'action',
+    });
+    return this.goBack();
   }
 }

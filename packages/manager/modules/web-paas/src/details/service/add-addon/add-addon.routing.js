@@ -15,6 +15,11 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       ...commonResolves,
       goBack: /* @ngInject */ (goToProjectDetails) => goToProjectDetails,
+      trackTextPrefix: /* @ngInject */ (webPaasDashboardPrefix) =>
+        webPaasDashboardPrefix,
+    },
+    atInternet: {
+      ignore: true,
     },
   });
 };

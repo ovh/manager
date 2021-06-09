@@ -11,6 +11,7 @@ const component = {
     serviceInfo: '<',
     user: '<',
     userList: '<',
+    webPaasDashboardPrefix: '<',
   },
   controller,
   template,

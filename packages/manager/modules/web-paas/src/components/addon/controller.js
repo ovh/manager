@@ -6,10 +6,11 @@ import { ADDON_TYPE } from '../../web-paas.constants';
 
 export default class {
   /* @ngInject */
-  constructor($q, $scope, $window, WebPaas, $translate) {
+  constructor($q, $scope, $window, atInternet, WebPaas, $translate) {
     this.$q = $q;
     this.$scope = $scope;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.WebPaas = WebPaas;
     this.$translate = $translate;
     this.disableNumeric = false;
@@ -89,6 +90,10 @@ export default class {
   orderAddon() {
     this.disableNumeric = true;
     this.disableSubmit = true;
+    this.atInternet.trackClick({
+      name: `${this.trackConfirmText}-${this.quantity || this.addon.quantity}`,
+      type: 'action',
+    });
     this.WebPaas.checkoutAddon(
       this.cart,
       this.project.serviceId,
@@ -138,6 +143,8 @@ export default class {
           'web_paas_service_add_storage_description',
           { storage: this.presentCount * STORAGE_MULTIPLE },
         );
+        this.trackCancelText = `${this.trackTextPrefix}upgrade-storage::cancel`;
+        this.trackConfirmText = `${this.trackTextPrefix}upgrade-storage::confirm`;
         break;
       case ADDON_TYPE.ENVIRONMENT:
         this.presentCount = this.project.getTotalEnvironment();
@@ -145,6 +152,8 @@ export default class {
           'web_paas_service_add_staging_description',
           { environment: this.presentCount },
         );
+        this.trackCancelText = `${this.trackTextPrefix}setup-additional-environments::cancel`;
+        this.trackConfirmText = `${this.trackTextPrefix}setup-additional-environments::confirm`;
         break;
       case ADDON_TYPE.LICENCES:
         this.presentCount = this.project.addonUserLicencesCount();
@@ -162,10 +171,20 @@ export default class {
         )} ${this.$translate.instant(
           'web_paas_service_add_license_description2',
         )}`;
+        this.trackCancelText = `${this.trackTextPrefix}setup-additional-licences::cancel`;
+        this.trackConfirmText = `${this.trackTextPrefix}upgrade-licences::confirm`;
         break;
 
       default:
         break;
     }
+  }
+
+  cancel() {
+    this.atInternet.trackClick({
+      name: this.trackCancelText,
+      type: 'action',
+    });
+    return this.goBack();
   }
 }

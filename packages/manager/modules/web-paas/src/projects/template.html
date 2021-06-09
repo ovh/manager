@@ -23,6 +23,7 @@
                     class="oui-link"
                     data-ui-sref="{{:: $ctrl.constructor.getDetailsState($row.serviceId) }}"
                     data-ng-bind="$row.projectName"
+                    data-ng-click="$ctrl.trackLink()"
                 >
                 </a>
             </oui-datagrid-column>
@@ -77,7 +78,7 @@
             </oui-datagrid-column>
             <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
-                    data-on-click="$ctrl.openPartnerConsole($row)"
+                    data-on-click="$ctrl.openPartnerConsole($row, $ctrl.WEB_PAAS_GOTO_PSH)"
                     data-disabled="!$row.isActive()"
                 >
                     <span
@@ -85,7 +86,7 @@
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-ng-href="{{:: $ctrl.viewDetails($row.serviceId)}}"
+                    data-on-click="$ctrl.goToDetails($row.serviceId, $ctrl.WEB_PAAS_MANAGE_PROJECT)"
                 >
                     <span data-translate="web_paas_goto_dashbboard"></span>
                 </oui-action-menu-item>
@@ -113,8 +114,7 @@
                     data-ng-click="$ctrl.createProject()"
                     class="oui-button oui-button_secondary oui-button_icon-left mb-2"
                     data-track-on="click"
-                    data-track-name="PLATFORM_SH_ADD"
-                    data-track-type="navigation"
+                    data-track-name="{{:: $ctrl.WEB_PAAS_ADD}}"
                 >
                     <span
                         class="oui-icon oui-icon-add"

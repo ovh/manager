@@ -16,5 +16,8 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ (goToUserLicences) => goToUserLicences,
       breadcrumb: () => null,
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };

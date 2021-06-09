@@ -12,6 +12,7 @@ export default {
     projectId: '<',
     selectedPlan: '<',
     user: '<',
+    trackTextPrefix: '<',
   },
   controller,
   template,

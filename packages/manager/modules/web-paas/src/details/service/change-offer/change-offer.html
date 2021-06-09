@@ -73,7 +73,7 @@
                 data-loading="$ctrl.isGettingCheckoutInfo || $ctrl.orderInProgress"
                 data-submit-text="{{:: 'web_paas_change_offer_submit_button' | translate }}"
                 data-cancel-text="{{ ::'web_paas_common_cancel' | translate }}"
-                data-on-cancel="$ctrl.goBack()"
+                data-on-cancel="$ctrl.cancel()"
                 data-on-submit="$ctrl.upgradeOffer()"
             >
                 <div class="mb-3">

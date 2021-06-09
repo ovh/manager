@@ -2,9 +2,10 @@ import get from 'lodash/get';
 
 export default class WebPaasTerminateCtrl {
   /* @ngInject */
-  constructor($translate, WebPaas) {
+  constructor($translate, WebPaas, atInternet) {
     this.$translate = $translate;
     this.WebPaas = WebPaas;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -12,6 +13,10 @@ export default class WebPaasTerminateCtrl {
   }
 
   terminate() {
+    this.atInternet.trackClick({
+      name: 'web-paas::projects-table::options::cancel-project-confirmation',
+      type: 'action',
+    });
     this.isDeleting = true;
     return this.WebPaas.terminateProject(this.projectId)
       .then(() =>
@@ -27,5 +32,13 @@ export default class WebPaasTerminateCtrl {
           'error',
         ),
       );
+  }
+
+  cancel() {
+    this.atInternet.trackClick({
+      name: 'web-paas::projects-table::options::cancel-project-cancel',
+      type: 'action',
+    });
+    return this.goBack();
   }
 }
