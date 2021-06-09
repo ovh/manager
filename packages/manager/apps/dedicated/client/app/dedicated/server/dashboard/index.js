@@ -7,7 +7,7 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import ovhManagerAdvices from '@ovh-ux/manager-advices';
 
-import ovhManagerBilling from '@ovh-ux/manager-billing';
+import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 import advancedFeatures from './advanced-features';
 import commitment from './commitment';
 import cancelCommitment from './cancel-commitment';
@@ -36,7 +36,7 @@ angular
     technicalDetails,
     upgradeRequest,
     'ui.router',
-    ovhManagerBilling,
+    ovhManagerBillingComponents,
     resiliation,
     ovhManagerAdvices,
     terminate,
