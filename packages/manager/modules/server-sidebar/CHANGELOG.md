@@ -1,3 +1,18 @@
+# [3.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.11.3...@ovh-ux/manager-server-sidebar@3.12.0) (2021-06-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 970] ([ab6beeb](https://github.com/ovh/manager/commit/ab6beebedccab557785145cf8a5a95a6666731b7))
+
+
+### Features
+
+* **webpaas:** add tracking ([#4971](https://github.com/ovh/manager/issues/4971)) ([0e5da88](https://github.com/ovh/manager/commit/0e5da88e4c1a8c7d643e499026f829430508f617))
+* **webpaas:** add web paas changes for ga release ([e32c63a](https://github.com/ovh/manager/commit/e32c63ac4c845208ca550eb23caeb4c99c7447e6)), closes [#MANAGER-5671](https://github.com/ovh/manager/issues/MANAGER-5671)
+
+
+
 ## [3.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.11.2...@ovh-ux/manager-server-sidebar@3.11.3) (2021-05-19)
 
 

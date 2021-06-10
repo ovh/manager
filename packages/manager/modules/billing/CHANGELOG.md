@@ -1,3 +1,13 @@
+# [2.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.9.2...@ovh-ux/manager-billing@2.10.0) (2021-06-10)
+
+
+### Features
+
+* **billing:** add contact management exception ([d57efc4](https://github.com/ovh/manager/commit/d57efc4a6666b55994d61fd810e53c0c8b0cbc63)), closes [#MANAGER-5671](https://github.com/ovh/manager/issues/MANAGER-5671)
+* **webpaas:** add web paas changes for ga release ([e32c63a](https://github.com/ovh/manager/commit/e32c63ac4c845208ca550eb23caeb4c99c7447e6)), closes [#MANAGER-5671](https://github.com/ovh/manager/issues/MANAGER-5671)
+
+
+
 ## [2.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.9.1...@ovh-ux/manager-billing@2.9.2) (2021-06-03)
 
 
