@@ -6,11 +6,11 @@ import { LIMIT } from './repayments.constants';
 
 export default class TelecomTelephonyAliasSpecialRepaymentsCtrl {
   /* @ngInject */
-  constructor($state, $stateParams, coreConfig, TucToast, OvhApiTelephony) {
+  constructor($state, $stateParams, $http, coreConfig, TucToast) {
+    this.$http = $http;
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.TucToast = TucToast;
-    this.OvhApiTelephony = OvhApiTelephony;
 
     this.currency = coreConfig.getUser().currency.symbol;
 
@@ -31,13 +31,15 @@ export default class TelecomTelephonyAliasSpecialRepaymentsCtrl {
 
     this.loading = true;
 
-    return this.OvhApiTelephony.Service()
-      .RepaymentConsumption()
-      .Aapi()
-      .repayment({
-        billingAccount: this.$stateParams.billingAccount,
+    return this.$http
+      .get(`/telephony/${this.$stateParams.billingAccount}/repayment`, {
+        params: {
+          serviceName: this.$stateParams.serviceName,
+        },
+        serviceType: 'aapi',
       })
-      .$promise.then((repayments) => {
+      .then((result) => {
+        const repayments = result.data;
         this.allRepayments = repayments;
         this.repayments = repayments.slice(0, LIMIT);
 
