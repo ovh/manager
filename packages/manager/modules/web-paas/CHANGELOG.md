@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.2.0...@ovh-ux/manager-web-paas@1.2.1) (2021-06-10)
+
+
+### Bug Fixes
+
+* **webpaas:** enable create button in onboarding ([#5094](https://github.com/ovh/manager/issues/5094)) ([9652ac3](https://github.com/ovh/manager/commit/9652ac350240e27ee118c0e596aecddc2e0bb9de))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.1.3...@ovh-ux/manager-web-paas@1.2.0) (2021-06-10)
 
 
