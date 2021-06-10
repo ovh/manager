@@ -1,3 +1,17 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.3.0...@ovh-ux/manager-support@1.4.0) (2021-06-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 970] ([ab6beeb](https://github.com/ovh/manager/commit/ab6beebedccab557785145cf8a5a95a6666731b7))
+
+
+### Features
+
+* **webpaas:** add web paas changes for ga release ([e32c63a](https://github.com/ovh/manager/commit/e32c63ac4c845208ca550eb23caeb4c99c7447e6)), closes [#MANAGER-5671](https://github.com/ovh/manager/issues/MANAGER-5671)
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.2.0...@ovh-ux/manager-support@1.3.0) (2021-06-02)
 
 
