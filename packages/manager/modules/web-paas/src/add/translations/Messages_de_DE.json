@@ -1,13 +1,12 @@
 {
   "web_paas_add_project_title": "Erstellen Ihres Web PaaS Projekts",
   "web_paas_add_project_description": "Erstellen Sie Ihr neues Web PaaS Projekt Powered by Platform.sh. Diese Entwicklungsplattform wurde für die Anforderungen von Entwicklern und ihren Teams ausgelegt. Hier können sie Web-Anwendungen konzipieren, bereitstellen und ausführen.",
-  "web_paas_add_project_success": "Ihre Bestellung wurde erfolgreich aufgegeben. Ihr Web Paas performed by Platform.sh Projekt wird gerade erstellt und ist in einigen Minuten verfügbar. Sie können den Verlauf der Lieferung in Ihrem Account mitverfolgen. Gehen Sie dazu in den Bereich <a href='{{orderURL}}'>Meine Bestellungen</a>",
+  "web_paas_add_project_success": "Ihre Bestellung wurde erfolgreich aufgegeben. Sie können den Verlauf Ihres Projekts „Web Paas performed by Platform.sh“ nachverfolgen. Gehen Sie dazu in Ihrem Account in den Bereich<a href='{{orderURL}}'>„Meine Bestellungen“</a>",
   "web_paas_add_project_error": "Bei der Erstellung Ihres Web PaaS Projekts ist ein Fehler aufgetreten: {{ message }}",
   "web_paas_add_project_loading": "Das Web PaaS Projekt wird gerade erstellt.",
   "web_paas_add_project_select_region": "Wählen Sie eine Region aus",
-  "web_paas_add_project_options_description": "Die Optionen für Storage, Umgebung und Benutzerlizenz sind bei der Beta-Version begrenzt.",
   "web_paas_add_project_storage": "{{ storageSize }} GB",
-  "web_paas_add_project_choose_offer_description": "Das Angebot ist derzeit als kostenlose Beta-Version verfügbar. Die Vertragsbindung beträgt einen Monat. Die Verlängerung erfolgt automatisch. Nach Ablauf des Angebots als Beta-Version wird es als kostenpflichtige Version verfügbar sein.",
+  "web_paas_add_project_choose_offer_description": "Wählen Sie das Angebot, das am besten zu Ihrem Projekt passt: Start, Develop oder Expand.",
   "web_paas_add_project_next": "Weiter",
   "web_paas_add_project_choose_offer": "Wählen Sie Ihr Angebot",
   "web_paas_add_project_configure": "Konfigurieren Sie Ihr Projekt",
@@ -25,5 +24,9 @@
   "web_paas_add_project_options_environment_popover": "Bei der Beta-Version können Sie die Umgebung nicht auswählen.",
   "web_paas_add_project_region_na": "Regionen nicht verfügbar. Erneut versuchen",
   "web_paas_add_project_environment": "{{count}} Umgebung",
-  "web_paas_add_project_license": "{{count}} Benutzerlizenz"
+  "web_paas_add_project_license": "{{count}} Benutzerlizenz",
+  "web_paas_add_project_options_description": "Fügen Sie Optionen für Storage, Umgebung und Nutzerlizenz hinzu.",
+  "web_paas_add_project_region_description": "Wählen Sie Ihr Rechenzentrum aus.",
+  "web_paas_add_project_summary_title": "Bestellungsübersicht",
+  "web_paas_add_project_create": "Ein Projekt erstellen"
 }

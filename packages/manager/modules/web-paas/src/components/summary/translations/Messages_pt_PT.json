@@ -1,0 +1,10 @@
+{
+  "web_paas_summary_offer": "Oferta",
+  "web_paas_summary_total": "Total",
+  "web_paas_summary_addon_storage": "{{quantity}}GB de armazenamento adicional",
+  "web_paas_summary_addon_user_licence": "{{ quantity}} licenças de utilizador adicionais",
+  "web_paas_summary_addon_environment": "{{ quantity}} ambiente de teste adicional",
+  "web_paas_summary_prorata_price": "Preço pro rata (calculado com base no mês em curso)",
+  "web_paas_summary_next_month_price": "Preço mensal (para os próximos meses)",
+  "web_paas_summary_price_per_month": "Mês"
+}

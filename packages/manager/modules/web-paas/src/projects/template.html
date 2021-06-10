@@ -11,10 +11,7 @@
     <div class="container-fluid w-100 h-100 pt-4 px-3 px-md-5">
         <!-- error messages -->
         <div data-ovh-alert="{{$ctrl.alerts.list}}"></div>
-        <oui-datagrid
-            data-rows="$ctrl.projects"
-            data-row-loader="$ctrl.getProjectDetails($row.serviceId)"
-        >
+        <oui-datagrid data-rows="$ctrl.projects">
             <oui-datagrid-column
                 data-title=":: 'web_paas_project' | translate"
                 data-property="projectName"
@@ -24,70 +21,100 @@
             >
                 <a
                     class="oui-link"
-                    data-ng-click="$ctrl.viewDetails($row.serviceId)"
+                    data-ui-sref="{{:: $ctrl.constructor.getDetailsState($row.serviceId) }}"
                     data-ng-bind="$row.projectName"
+                    data-ng-click="$ctrl.trackLink()"
                 >
                 </a>
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title=":: 'web_paas_region' | translate"
-                data-property="metadata.project.region"
+                data-searchable
+                data-filterable
+                ><span
+                    data-translate="{{:: 'web_paas_region_' + $row.getRegion() }}"
+                ></span
+                >(<span data-ng-bind="$row.getRegion()"></span>)
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-searchable
+                data-filterable
+                data-title=":: 'web_paas_vcpu' | translate"
+                data-property="selectedPlan.vcpuConfig"
+                data-type="string"
             ></oui-datagrid-column>
             <oui-datagrid-column
+                data-searchable
+                data-filterable
                 data-title=":: 'web_paas_status' | translate"
                 data-property="status"
             >
+                <web-paas-status data-project="$row"></web-paas-status>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-searchable
+                data-filterable
+                data-title=":: 'web_paas_plan_type' | translate"
+                data-property="offerName"
+                data-type="string"
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'web_paas_user_licences' | translate"
+            >
                 <span
-                    class="oui-badge"
-                    data-ng-class="{
-                                'oui-badge_success' : $row.isActive(),
-                                'oui-badge_warning' : $row.isProcessing(),
-                                'oui-badge_error' : $row.isError(),
-                                }"
-                    data-translate="{{ 'web_paas_project_status_' + $row.status }}"
+                    data-ng-bind="($row.getTotalLicences() - $row.getAvailableUserLicenses()) + '/' + ($row.getTotalLicences())"
                 >
                 </span>
             </oui-datagrid-column>
             <oui-datagrid-column
-                data-title=":: 'web_paas_plan_type' | translate"
-                data-property="offer"
-            ></oui-datagrid-column>
-            <oui-datagrid-column
-                data-title=":: 'web_paas_plan_rennewal_date' | translate"
-                data-property="metadata.project.renewDate"
-                data-type="date"
-            >
-                {{ $row.metadata.project.renewDate | date:medium }}
+                data-title=":: 'web_paas_environment' | translate"
+                ><span data-ng-bind="$row.getTotalEnvironment()"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column data-title=":: 'web_paas_storage' | translate">
+                <span
+                    data-translate="web_paas_storage_description"
+                    data-translate-values="{ storage: $row.getTotalStorage()}"
+                ></span>
             </oui-datagrid-column>
             <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
-                    data-on-click="$ctrl.openPartnerConsole($row)"
-                    data-data-disabled="!$row.isActive()"
+                    data-on-click="$ctrl.openPartnerConsole($row, $ctrl.WEB_PAAS_GOTO_PSH)"
+                    data-disabled="!$row.isActive()"
                 >
                     <span
                         data-translate="web_paas_open_in_web_paas_console"
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-on-click="$ctrl.viewDetails($row.serviceId)"
+                    data-on-click="$ctrl.goToDetails($row.serviceId, $ctrl.WEB_PAAS_MANAGE_PROJECT)"
                 >
                     <span data-translate="web_paas_goto_dashbboard"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
+                    data-on-click="$ctrl.goToUserLicences($row)"
+                    data-disabled="!$row.isActive()"
+                >
+                    <span data-translate="web_paas_manage_user_licences"></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-on-click="$ctrl.goToChangeOffer($row)"
+                    data-disabled="!$row.isAdmin || !$row.isActive()"
+                >
+                    <span data-translate="web_paas_change_range"></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
                     data-on-click="$ctrl.terminateProject($row)"
-                    data-data-disabled="!$row.isActive()"
+                    data-disabled="!$row.isAdmin || !$row.isActive()"
                 >
                     <span data-translate="web_paas_cancel_project"></span>
                 </oui-action-menu-item>
             </oui-action-menu>
             <oui-datagrid-topbar>
                 <button
-                    disabled
                     data-ng-click="$ctrl.createProject()"
                     class="oui-button oui-button_secondary oui-button_icon-left mb-2"
                     data-track-on="click"
-                    data-track-name="PLATFORM_SH_ADD"
-                    data-track-type="navigation"
+                    data-track-name="{{:: $ctrl.WEB_PAAS_ADD}}"
                 >
                     <span
                         class="oui-icon oui-icon-add"

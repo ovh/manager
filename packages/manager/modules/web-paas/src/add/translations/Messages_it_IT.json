@@ -1,13 +1,12 @@
 {
   "web_paas_add_project_title": "Crea il tuo progetto Web PaaS",
   "web_paas_add_project_description": "Crea il tuo nuovo progetto Web PaaS powered by Platform.sh. La piattaforma di sviluppo pensata per gli sviluppatori e i loro team per progettare, implementare ed eseguire applicazioni Web.",
-  "web_paas_add_project_success": "L’ordine è stato convalidato correttamente. Il tuo progetto Web Paas performed by Platform.sh è in corso di creazione e sarà disponibile in pochi minuti. Per monitorare lo stato della consegna consulta la sezione <a href='{{orderURL}}'>I tuoi ordini</a> dello Spazio Cliente.",
+  "web_paas_add_project_success": "L’ordine è stato convalidato correttamente. Segui l'evoluzione del tuo progetto Web Paas performed by Platform.sh nel tuo account, sezione <a href='{{orderURL}}'>I tuoi ordini</a>",
   "web_paas_add_project_error": "Si è verificato un errore durante la creazione del progetto Web Paas: {{ message }}",
   "web_paas_add_project_loading": "Creazione Web PaaS project in corso...",
   "web_paas_add_project_select_region": "Seleziona una Region",
-  "web_paas_add_project_options_description": "Le opzioni di storage, ambiente e licenza utente sono limitate in versione beta.",
   "web_paas_add_project_storage": "{{ storageSize }} GB",
-  "web_paas_add_project_choose_offer_description": "Al momento l'offerta è disponibile in versione beta gratuita. Il rinnovo automatico è attivo per un mese. Una volta completata l'offerta beta, sarà disponibile in versione a pagamento.",
+  "web_paas_add_project_choose_offer_description": "Scegli l'offerta più adatta al tuo progetto: Start, Develop o Expand.",
   "web_paas_add_project_next": "Continua",
   "web_paas_add_project_choose_offer": "Scegli la tua offerta",
   "web_paas_add_project_configure": "Configura il tuo progetto",
@@ -25,5 +24,9 @@
   "web_paas_add_project_options_environment_popover": "Non puoi selezionare l'ambiente in versione beta",
   "web_paas_add_project_region_na": "Region non disponibili. Riprova",
   "web_paas_add_project_environment": "{{count}} ambiente",
-  "web_paas_add_project_license": "{{count}} licenza utente"
+  "web_paas_add_project_license": "{{count}} licenza utente",
+  "web_paas_add_project_options_description": "Aggiungi opzioni di storage, ambiente e licenza utente.",
+  "web_paas_add_project_region_description": "Seleziona la localizzazione del tuo datacenter.",
+  "web_paas_add_project_summary_title": "Riepilogo del tuo ordine",
+  "web_paas_add_project_create": "Creare un progetto"
 }

@@ -1,13 +1,44 @@
 <p data-translate="web_paas_project_template_choose"></p>
+
 <div class="row mb-3">
+    <div class="col-md-12 d-flex">
+        <p
+            data-translate="web_paas_project_template_count"
+            data-translate-values="{ count: $ctrl.originalList.length }"
+        ></p>
+        <div class="ml-auto d-inline-flex" data-ng-if="!$ctrl.previewMode">
+            <a
+                class="mr-2"
+                data-ng-href="{{ $ctrl.TEMPLATE_GUIDE_URL }}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    class="oui-icon oui-icon-guides"
+                    aria-hidden="true"
+                ></span>
+                <span data-translate="web_paas_guides"></span>
+            </a>
+            <oui-search
+                model="$ctrl.searchText"
+                on-change="$ctrl.onChangeSearch(modelValue)"
+            >
+            </oui-search>
+        </div>
+    </div>
+    <span
+        class="col-md-4 mb-3"
+        data-translate="web_paas_project_template_no_result"
+        data-ng-if="($ctrl.templates | filter:$ctrl.searchText).length === 0"
+    ></span>
     <oui-select-picker
         class="col-md-4 mb-3"
-        data-ng-repeat="template in $ctrl.templates track by template.name"
+        data-ng-repeat="template in $ctrl.templates | filter:$ctrl.searchText track by template.name"
         name="template"
         data-model="$ctrl.selectedType"
         data-label="{{ template.name }}"
         data-variant="light"
-        data-on-change="$ctrl.onSelected(modelValue)"
+        data-on-change="$ctrl.onTemplateSelect(modelValue)"
         data-values="[template]"
         data-disabled="$ctrl.disabled"
         data-ng-if="!$ctrl.previewMode || template.name === $ctrl.selectedType.name"
@@ -24,4 +55,15 @@
             </ul>
         </oui-select-picker-section>
     </oui-select-picker>
+</div>
+<div class="row">
+    <div class="ml-md-auto mr-md-0 d-flex">
+        <oui-pagination
+            current-offset="$ctrl.offset"
+            page-size="$ctrl.pageSize"
+            total-items="$ctrl.originalList.length"
+            on-change="$ctrl.onChange($event)"
+        >
+        </oui-pagination>
+    </div>
 </div>

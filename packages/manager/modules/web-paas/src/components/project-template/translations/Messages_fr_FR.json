@@ -1,3 +1,5 @@
 {
-  "web_paas_project_template_choose": "Choisissez un template existant"
+  "web_paas_project_template_choose": "Choisissez un template existant",
+  "web_paas_project_template_count": "{{ count }} templates disponibles",
+  "web_paas_project_template_no_result": "Aucun résultat"
 }

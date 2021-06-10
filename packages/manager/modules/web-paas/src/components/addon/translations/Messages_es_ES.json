@@ -1,0 +1,20 @@
+{
+  "web_paas_service_add_addon_title_storage": "Aumente su almacenamiento",
+  "web_paas_service_add_addon_title_staging_environment": "Aumente sus entornos",
+  "web_paas_service_add_addon_title_user_license": "Aumente sus licencias de usuario",
+  "web_paas_service_add_storage_description": "Actualmente dispone de {{ storage }} GB de almacenamiento adicional. El precio del storage adicional es en función del número de entornos.",
+  "web_paas_service_add_license_description1": "Usted tiene contratado {{ offerName }} Dispone de {{ maxLicences }} licencias de usuario incluidas y {{ addonLicenses }} ",
+  "web_paas_service_add_license_description_licence_singular": "licencia de usuario adicional.",
+  "web_paas_service_add_license_description_licence_plural": "licencias de usuario adicionales.",
+  "web_paas_service_add_license_description2": "Puede añadir licencias de usuario con el fin de permitir a sus empleados acceder a sus proyectos web PaaS.",
+  "web_paas_service_add_staging_description": "Actualmente dispone de {{ environment }} entornos. El número de entornos también afecta al precio del storage que se aplica a todos sus entornos.",
+  "web_paas_service_add_addon_prorata_price_staging_environment": "La parte proporcional que debe pagar será de {{ prorataPrice }} {{ currencySymbol }} + IVA durante el mes de {{ currentMonth }} y de {{ currencySymbol }}/mes + IVA durante los meses siguientes por los nuevos entornos. El precio total del almacenamiento adicional dependerá del número de entorno y será {{ totalPrice }} {{ currencySymbol }}/mes + IVA.",
+  "web_paas_service_add_addon_prorata_price_storage": "La parte proporcional que debe pagar será de {{ prorataPrice }} {{ currencySymbol }} + IVA durante el mes de {{ nextMonthPrice }} y de {{ currencySymbol }}/mes + IVA durante los meses siguientes por el nuevo almacenamiento adicional. Es decir, un total de {{ totalPrice }} {{ currencySymbol }}/mes + IVA calculado en función del número de entornos.",
+  "web_paas_service_add_addon_prorata_price_user_license": "La parte proporcional que debe pagar será de {{ prorataPrice }} {{ currencySymbol }} + IVA durante el mes de {{ nextMonthPrice }} y de {{ currencySymbol }}/mes + IVA durante los meses siguientes por las nuevas licencias de usuario adicionales.",
+  "web_paas_service_add_addon_error": "Error al añadir el módulo complementario: {{ message }}",
+  "web_paas_service_add_addon_success_storage": "El almacenamiento se ha modificado. Puede seguir el progreso de la entrega en la sección <a href='{{orderURL}}'>Mis pedidos</a> de su cuenta.",
+  "web_paas_service_add_addon_success_staging_environment": "Los entornos de prueba se han modificado. Puede seguir el progreso de la entrega en la sección <a href='{{orderURL}}'>Mis pedidos</a> de su cuenta.",
+  "web_paas_service_add_addon_success_user_license": "La modificación de las licencias de usuario se ha registrado. Puede seguir el progreso de la entrega en la sección <a href='{{orderURL}}'>Mis pedidos</a> de su cuenta.",
+  "web_paas_service_add_addon_fetching_price": "Calculando el precio",
+  "web_paas_service_add_addon_storage_info": "Tenga en cuenta que, una vez que haya contratado almacenamiento adicional, no es posible reducir el almacenamiento de un proyecto."
+}

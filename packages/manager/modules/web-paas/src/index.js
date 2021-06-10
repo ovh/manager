@@ -7,11 +7,13 @@ import '@ovh-ux/ng-ovh-utils';
 import '@ovh-ux/ng-ui-router-layout';
 import '@ovh-ux/ng-ovh-payment-method';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
+import ngAtInternet from '@ovh-ux/ng-at-internet';
 
 import ovhManagerProductOffers from '@ovh-ux/manager-product-offers';
 import { OnboardingLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import './index.scss';
+import './index.less';
 
 const moduleName = 'ovhManagerWebPaasLazyLoad';
 
@@ -23,6 +25,7 @@ angular
     'ngOvhUtils',
     'ngUiRouterLayout',
     'ngOvhPaymentMethod',
+    ngAtInternet,
     OnboardingLayoutHelper,
     ovhManagerProductOffers,
   ])

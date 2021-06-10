@@ -1,0 +1,14 @@
+{
+  "web_paas_change_offer_title_edit": "Modify the plan",
+  "web_paas_change_offer_description": "You can change solutions, depending on which one you have already subscribed to.",
+  "web_paas_change_offer_choose_offer": "Choose your solution",
+  "web_paas_change_offer_next": "Next",
+  "web_paas_change_offer_options": "Choose your options",
+  "web_paas_change_offer_summary_title": "Summary of your order.",
+  "web_paas_change_offer_submit_button": "Modify the plan",
+  "web_paas_change_offer_downgrade_licence_warning": "The solution you have selected offers fewer user licences than your previous product.",
+  "web_paas_change_offer_downgrade_licence_warning_from_plan": "You now have {{licencesIncluded}} included user licences, and {{additionalLicences}} additional user licences.",
+  "web_paas_change_offer_downgrade_licence_warning_to_plan": "You will need to delete {{usersToRemove}} user licences if you want to downgrade your solution to a lower-level range.",
+  "web_paas_change_offer_success": "Your solution and options have been modified.",
+  "web_paas_change_offer_error": "An error has occurred modifying the solution: {{message}}"
+}

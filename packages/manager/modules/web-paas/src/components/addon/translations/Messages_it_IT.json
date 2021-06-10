@@ -1,0 +1,20 @@
+{
+  "web_paas_service_add_addon_title_storage": "Aumenta lo storage",
+  "web_paas_service_add_addon_title_staging_environment": "Configura i tuoi ambienti",
+  "web_paas_service_add_addon_title_user_license": "Aumenta le tue licenze utente",
+  "web_paas_service_add_storage_description": "Al momento, hai {{ storage }} GB di storage aggiuntivo. Il prezzo del tuo spazio di archiviazione aggiuntivo dipende dal numero dei tuoi ambienti.",
+  "web_paas_service_add_license_description1": "Hai scelto l’offerta {{ offerName }}. Hai {{ maxLicences }} licenze utente incluse e {{ addonLicenses }} ",
+  "web_paas_service_add_license_description_licence_singular": "licenza utente aggiuntiva.",
+  "web_paas_service_add_license_description_licence_plural": "licenze utente aggiuntive.",
+  "web_paas_service_add_license_description2": "Aggiungi licenze utente per permettere ai tuoi collaboratori di accedere ai tuoi progetti Web PaaS.",
+  "web_paas_service_add_staging_description": "Al momento, hai {{ environment }} ambienti. Il numero dei tuoi ambienti incide anche sul prezzo dello storage applicato a tutti i tuoi ambienti.",
+  "web_paas_service_add_addon_prorata_price_staging_environment": "Il prorata da pagare è di {{ prorataPrice }} +IVA per il mese di {{ currentMonth }} e di {{ nextMonthPrice }} +IVA/mese per i prossimi mesi sui nuovi ambienti. Il prezzo totale dello storage aggiuntivo in base al numero di ambienti sarà di {{ totalPrice }} +IVA/mese.",
+  "web_paas_service_add_addon_prorata_price_storage": "Il prorata da pagare è di {{ prorataPrice }} +IVA per il mese di {{ currentMonth }} e di {{ nextMonthPrice }} +IVA/mese per i prossimi mesi per il nuovo storage aggiuntivo, cioè un totale di {{ totalPrice }} +IVA/mese calcolato in base al numero dei tuoi ambienti.",
+  "web_paas_service_add_addon_prorata_price_user_license": "Il prorata da pagare è di {{ prorataPrice }} +IVA per il mese di {{ currentMonth }} e di {{ nextMonthPrice }} +IVA/mese per i prossimi mesi sulle nuove licenze utente aggiuntive.",
+  "web_paas_service_add_addon_error": "Errore durante l'aggiunta del modulo aggiuntivo: {{ message }}",
+  "web_paas_service_add_addon_success_storage": "La modifica del tuo storage è stata presa in carico. Per monitorare lo stato della consegna consulta la sezione <a href='{{orderURL}}'>I tuoi ordini</a> dello Spazio Cliente.",
+  "web_paas_service_add_addon_success_staging_environment": "La modifica del tuo ambiente di test è stata presa in carico. Per monitorare lo stato della consegna consulta la sezione <a href='{{orderURL}}'>I tuoi ordini</a> dello Spazio Cliente.",
+  "web_paas_service_add_addon_success_user_license": "La modifica delle tue licenze utente è stata presa in carico. Per monitorare lo stato della consegna consulta la sezione <a href='{{orderURL}}'>I tuoi ordini</a> dello Spazio Cliente.",
+  "web_paas_service_add_addon_fetching_price": "Calcolo del prezzo",
+  "web_paas_service_add_addon_storage_info": "Attenzione: una volta ordinato lo storage aggiuntivo non è possibile ridurre lo storage di un progetto."
+}

@@ -3,12 +3,16 @@ import template from './template.html';
 
 export default {
   bindings: {
+    catalog: '<',
     createProject: '<',
-    projects: '<',
-    viewDetails: '<',
-    openPartnerConsole: '<',
-    terminateProject: '<',
     guideUrl: '<',
+    goToChangeOffer: '<',
+    goToUserLicences: '<',
+    openPartnerConsole: '<',
+    projects: '<',
+    terminateProject: '<',
+    goToDetails: '<',
+    webPaasProjectsTablePrefix: '<',
   },
   controller,
   template,

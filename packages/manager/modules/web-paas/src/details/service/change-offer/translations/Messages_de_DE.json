@@ -1,0 +1,14 @@
+{
+  "web_paas_change_offer_title_edit": "Angebot bearbeiten",
+  "web_paas_change_offer_description": "Je nach bereits abonniertem Angebot können Sie zu einem anderen wechseln.",
+  "web_paas_change_offer_choose_offer": "Wählen Sie Ihr Angebot",
+  "web_paas_change_offer_next": "Weiter",
+  "web_paas_change_offer_options": "Wählen Sie Ihre Optionen aus",
+  "web_paas_change_offer_summary_title": "Bestellungsübersicht",
+  "web_paas_change_offer_submit_button": "Angebot bearbeiten",
+  "web_paas_change_offer_downgrade_licence_warning": "Sie haben nun eine Lösung gewählt, die weniger Nutzerlizenzen beinhaltet, als die vorherige.",
+  "web_paas_change_offer_downgrade_licence_warning_from_plan": "Sie verfügen nun über {{ licencesIncluded }} inklusive und {{ additionalLicences }} zusätzliche Nutzerlizenzen.",
+  "web_paas_change_offer_downgrade_licence_warning_to_plan": "Wenn Sie zu einer Produktreihe mit weniger Nutzerlizenzen wechseln möchten, müssen Sie daher {{ usersToRemove }} Nutzerlizenzen löschen.",
+  "web_paas_change_offer_success": "Die Änderung Ihres Angebots und Ihrer Optionen wurde registriert.",
+  "web_paas_change_offer_error": "Bei der Änderung des Angebots ist ein Fehler aufgetreten: {{ message }}"
+}

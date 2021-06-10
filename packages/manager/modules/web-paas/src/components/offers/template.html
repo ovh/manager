@@ -1,30 +1,51 @@
 <div class="row mb-3">
-    <oui-select-picker
+    <div
         class="col-md-4 mb-3"
-        data-ng-repeat="offer in $ctrl.offers track by offer.planCode"
-        name="offer"
-        data-model="$ctrl.selectedOffer"
-        data-label="{{:: 'web_paas_offer_' + offer.planCode | translate }}"
-        data-variant="light"
-        data-on-change="$ctrl.onSelected(modelValue)"
-        data-values="[offer]"
-        data-disabled="$ctrl.disabled"
-        data-ng-if="!$ctrl.previewMode || offer.planCode === $ctrl.selectedOffer.planCode"
+        data-ng-repeat="product in $ctrl.offers track by $index"
     >
-        <oui-select-picker-section>
-            <web-paas-offer-details data-offer="offer"></web-paas-offer-details>
-            <oui-select
-                disabled="$ctrl.selectedVcpu && offer.cpu.length === 1"
-                data-items="offer.cpu"
-                data-match="name"
-                data-model="$ctrl.selectedVcpu"
-                name="vcpu"
-                required
+        <oui-select-picker
+            name="offer"
+            data-model="$ctrl.selectedOffer"
+            data-label="{{:: $ctrl.getPlanName(product.name)}}"
+            data-variant="light"
+            data-on-change="$ctrl.onOfferSelect(modelValue)"
+            data-values="[product]"
+            data-disabled="$ctrl.isValid(product)"
+            data-ng-if="$ctrl.previewMode"
+        >
+            <oui-select-picker-picture
+                data-ng-if="$ctrl.selectedPlan.planCode === product.selectedPlan.planCode"
             >
-            </oui-select>
-        </oui-select-picker-section>
-        <oui-select-picker-footer>
-            <span data-translate="web_paas_offer_price_text"></span>
-        </oui-select-picker-footer>
-    </oui-select-picker>
+                <span
+                    class="oui-badge oui-badge_info"
+                    data-translate="web_paas_offer_current_offer"
+                ></span>
+            </oui-select-picker-picture>
+            <oui-select-picker-section>
+                <web-paas-offer-details
+                    data-offer="product.selectedPlan"
+                ></web-paas-offer-details>
+                <oui-select
+                    data-match="vcpuConfig"
+                    data-items="product.plans"
+                    data-model="product.selectedPlan"
+                    data-disable-items="!$item.available"
+                    data-on-change="$ctrl.onOfferSelect($ctrl.selectedOffer)"
+                    name="product.planCode"
+                    required
+                >
+                </oui-select>
+            </oui-select-picker-section>
+            <oui-select-picker-footer>
+                <ovh-manager-catalog-price
+                    data-price="product.selectedPlan.getRenewablePrice()"
+                    data-user="$ctrl.user"
+                    data-perform-rounding="false"
+                    data-maximum-fraction-digits="5"
+                >
+                </ovh-manager-catalog-price>
+                <span data-translate="web_paas_offer_price_per_month"></span>
+            </oui-select-picker-footer>
+        </oui-select-picker>
+    </div>
 </div>

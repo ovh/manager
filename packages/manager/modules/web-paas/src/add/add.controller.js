@@ -1,18 +1,20 @@
+import { find, get, map, set } from 'lodash';
+import { ADDON_FAMILY, STORAGE_MULTIPLE } from '../web-paas.constants';
 import {
-  pricingConstants,
-  workflowConstants,
-} from '@ovh-ux/manager-product-offers';
-import get from 'lodash/get';
+  DEFAULT_PROJECT_NAME,
+  NAME_VALIDATION,
+  PAGE_SECTION_HEADER,
+  TEMPLATE_GUIDE,
+} from './add.constants';
 
-import { WORKFLOW_OPTIONS } from './add.constants';
-
-export default class {
+export default class WebPassAddCtrl {
   /* @ngInject */
   constructor(
     $q,
     $timeout,
     $translate,
     $window,
+    atInternet,
     Alerter,
     WebPaas,
     WucOrderCartService,
@@ -21,44 +23,39 @@ export default class {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.Alerter = Alerter;
     this.WebPaas = WebPaas;
     this.WucOrderCartService = WucOrderCartService;
-    this.WORKFLOW_OPTIONS = WORKFLOW_OPTIONS;
     this.alerts = {
       add: 'web_paas_add',
     };
+    this.DEFAULT_PROJECT_NAME = DEFAULT_PROJECT_NAME;
+    this.NAME_VALIDATION = NAME_VALIDATION;
+    this.PAGE_SECTION_HEADER = PAGE_SECTION_HEADER;
+    this.TEMPLATE_GUIDE = TEMPLATE_GUIDE;
   }
 
   $onInit() {
-    this.isAdding = false;
-    this.isEditingTemplate = false;
-    this.isEditingOffers = false;
+    this.loader = {
+      isEditingTemplate: false,
+      isEditingOffers: false,
+      isGettingAddons: false,
+      isGettingCheckoutInfo: false,
+      orderInProgress: false,
+      loadingCapabilities: false,
+    };
+
+    this.prices = null;
 
     this.project = {
       region: null,
       offer: null,
-      name: null,
+      name: this.DEFAULT_PROJECT_NAME,
       template: {
         createNew: true,
         templateUrl: null,
       },
-    };
-
-    this.setStaticOptions();
-
-    this.productOffers = {
-      pricingType: pricingConstants.PRICING_CAPACITIES.RENEW,
-      user: this.user,
-      workflowOptions: {
-        catalog: this.catalog,
-        catalogItemTypeName: WORKFLOW_OPTIONS.catalogItemTypeName,
-        productName: WORKFLOW_OPTIONS.productName,
-        serviceNameToAddProduct: null,
-        getPlanCode: this.getPlanCode.bind(this),
-        onGetConfiguration: () => this.getConfiguration(),
-      },
-      workflowType: workflowConstants.WORKFLOW_TYPES.ORDER,
     };
   }
 
@@ -67,11 +64,12 @@ export default class {
   }
 
   onPlanSubmit() {
-    this.loadCapabilities(this.project.offer);
+    return this.loadCapabilities(this.project.offer);
   }
 
-  onPlanSelect(plan) {
-    this.project.offer = plan;
+  onPlanSelect(product) {
+    this.selectedPlan = product.selectedPlan;
+    this.project.offer = product.selectedPlan.planCode;
   }
 
   onTemplateSelect(templateUrl) {
@@ -79,19 +77,20 @@ export default class {
   }
 
   onTemplateFocus() {
-    this.isEditingTemplate = true;
+    this.loader.isEditingTemplate = true;
   }
 
   onTemplateSubmit() {
-    this.isEditingTemplate = false;
+    this.loadAddons();
+    this.loader.isEditingTemplate = false;
   }
 
   onOfferFocus() {
-    this.isEditingOffers = true;
+    this.loader.isEditingOffers = true;
   }
 
   onOfferSubmit() {
-    this.isEditingOffers = false;
+    this.loader.isEditingOffers = false;
   }
 
   getConfiguration() {
@@ -115,7 +114,9 @@ export default class {
   }
 
   loadCapabilities(planCode) {
-    this.loadingCapabilities = true;
+    this.project.template.createNew = true;
+    this.loader.loadingCapabilities = true;
+
     return this.WebPaas.getCapabilities(planCode)
       .then((capabilities) => {
         this.capabilities = capabilities;
@@ -134,33 +135,33 @@ export default class {
         ),
       )
       .finally(() => {
-        this.loadingCapabilities = false;
+        this.loader.loadingCapabilities = false;
       });
   }
 
   scrollToTop() {
     this.$timeout(() => {
-      document.getElementById('web-pass-add-header').scrollIntoView({
-        behavior: 'smooth',
-      });
-      document.getElementById('web-pass-add-alert').focus();
+      document.getElementById(this.PAGE_SECTION_HEADER).scrollIntoView(false);
     });
   }
 
-  onPlatformOrderSuccess(checkout) {
-    if (checkout.prices && checkout.prices.withTax.value > 0) {
+  onOrderSuccess(checkout) {
+    if (checkout?.prices?.withTaxValue > 0) {
       this.$window.open(checkout.url, '_blank', 'noopener');
     }
     this.Alerter.success(
       this.$translate.instant('web_paas_add_project_success', {
-        orderURL: this.getOrdersURL(checkout.orderId),
+        orderURL:
+          checkout && checkout.orderId
+            ? this.getOrdersURL(checkout.orderId)
+            : this.getOrdersURL(),
       }),
       this.alerts.add,
     );
     this.scrollToTop();
   }
 
-  onPlatformOrderError(error) {
+  onOrderError(error) {
     this.Alerter.alertFromSWS(
       `${this.$translate.instant('web_paas_add_project_error')} ${get(
         error,
@@ -172,44 +173,96 @@ export default class {
     this.scrollToTop();
   }
 
-  getPlanCode() {
-    return this.project.offer;
+  loadAddons() {
+    this.loader.isGettingAddons = true;
+    return this.WebPaas.getAddons(this.selectedPlan).then((addons) => {
+      const stagingEnvironment = find(addons, {
+        family: 'staging_environment',
+      });
+      if (stagingEnvironment) {
+        return this.WebPaas.getAddons(stagingEnvironment)
+          .then((stagingOptions) => {
+            addons.push(find(stagingOptions, { family: ADDON_FAMILY.STORAGE }));
+            set(this.selectedPlan, 'addons', addons);
+            return stagingOptions;
+          })
+          .finally(() => {
+            this.loader.isGettingAddons = false;
+          });
+      }
+      this.loader.isGettingAddons = false;
+      set(this.selectedPlan, 'addons', addons);
+      return addons;
+    });
   }
 
-  getOrderState(state) {
-    this.characteristics.isEditable = !state.isLoading;
+  onAddonsSubmit() {
+    this.prices = null;
+    this.loader.isGettingCheckoutInfo = true;
+    this.generatePayload();
+    return this.WebPaas.getOrderSummary(this.payload, this.getConfiguration())
+      .then(({ contracts, prices, cart }) => {
+        this.cart = cart;
+        this.contracts = contracts;
+        this.prices = prices;
+      })
+      .catch((error) => this.onOrderError(error))
+      .finally(() => {
+        this.loader.isGettingCheckoutInfo = false;
+      });
   }
 
-  setStaticOptions() {
-    this.availableStorages = [
-      {
-        value: this.plans[0].getStorage(),
-        name: this.$translate.instant('web_paas_add_project_storage', {
-          storageSize: this.plans[0].getStorage(),
-        }),
-      },
-    ];
-    this.availableEnvironments = [
-      {
-        value: this.plans[0].getProdEnvironment(),
-        name: this.$translate.instant('web_paas_add_project_environment', {
-          count: this.plans[0].getProdEnvironment(),
-        }),
-      },
-    ];
-    this.availableUserLicenses = [
-      {
-        value: this.plans[0].getMaxLicenses(),
-        name: this.$translate.instant('web_paas_add_project_license', {
-          count: this.plans[0].getMaxLicenses(),
-        }),
-      },
-    ];
-    this.project.configuration = {
-      ...this.project.configuration,
-      storage: this.availableStorages[0],
-      environment: this.availableEnvironments[0],
-      license: this.availableUserLicenses[0],
-    };
+  generatePayload() {
+    this.payload = angular.copy(this.selectedPlan);
+    this.storageAddon = find(this.payload?.addons, {
+      family: ADDON_FAMILY.STORAGE,
+    });
+    if (this.storageAddon) {
+      map(this.payload.addons, (addon) => {
+        if (addon.family === ADDON_FAMILY.ENVIRONMENT) {
+          set(addon, 'option', [
+            {
+              planCode: this.storageAddon.planCode,
+              quantity: this.storageAddon.quantity / STORAGE_MULTIPLE,
+            },
+          ]);
+        }
+      });
+    }
+  }
+
+  orderProject() {
+    this.trackClick(
+      `web-paas-platform-sh::config-create-project::${this.selectedPlan.planCode}`,
+    );
+    this.loader.orderInProgress = true;
+    return this.expressOrder();
+  }
+
+  cancel() {
+    this.trackClick(
+      `web-paas-platform-sh::config-cancel-project::${this.selectedPlan.planCode}`,
+    );
+    this.goBack();
+  }
+
+  trackClick(name) {
+    this.atInternet.trackClick({
+      name,
+      type: 'action',
+    });
+  }
+
+  expressOrder() {
+    return this.WebPaas.gotToExpressOrder(this.payload, this.getConfiguration())
+      .then(() => {
+        this.onOrderSuccess();
+      })
+      .catch((error) => {
+        this.onOrderError(error);
+      })
+      .finally(() => {
+        this.loader.orderInProgress = false;
+      });
   }
 }

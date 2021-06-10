@@ -1,13 +1,17 @@
 import controller from './add.controller';
-import template from './add.html';
+import template from './template.html';
 
 export default {
   bindings: {
+    addons: '<',
+    catalog: '<',
+    cpu: '<',
     getOrdersURL: '<',
     goBack: '<',
-    catalog: '<',
-    user: '<',
     plans: '<',
+    projectId: '<',
+    user: '<',
+    selectedProject: '<',
   },
   controller,
   template,

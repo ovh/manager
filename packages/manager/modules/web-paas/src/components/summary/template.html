@@ -1,0 +1,57 @@
+<div>
+    <h5 data-translate="web_paas_summary_offer"></h5>
+    <span data-ng-bind="$ctrl.selectedPlan.invoiceName"></span>
+    <div data-ng-repeat="addon in $ctrl.selectedPlan.addons track by $index">
+        <div
+            data-ng-if="addon.isStagingEnvironmentAddon() && addon.quantity > 0"
+        >
+            +<span
+                data-translate="web_paas_summary_addon_environment"
+                data-translate-values="{quantity: addon.quantity}"
+            >
+            </span>
+        </div>
+        <div data-ng-if="addon.isStorageAddon() && addon.quantity > 0">
+            +<span
+                data-translate="web_paas_summary_addon_storage"
+                data-translate-values="{quantity: addon.quantity}"
+            >
+            </span>
+        </div>
+        <div data-ng-if="addon.isUserLicenseAddon() && addon.quantity > 0">
+            +<span
+                data-translate="web_paas_summary_addon_user_licence"
+                data-translate-values="{quantity: addon.quantity}"
+            >
+            </span>
+        </div>
+    </div>
+</div>
+<div class="mt-3">
+    <h5 data-translate="web_paas_summary_total"></h5>
+    <p
+        data-translate="web_paas_summary_prorata_price"
+        data-ng-if="$ctrl.isChangeOffer()"
+    ></p>
+    <ovh-manager-catalog-price
+        data-price="$ctrl.prices.withoutTax.value"
+        data-tax="$ctrl.prices.tax.value"
+        data-user="$ctrl.user"
+        data-convert-to-ucents
+    >
+    </ovh-manager-catalog-price>
+    <span data-ng-if="!$ctrl.isChangeOffer()">
+        /<span data-translate="web_paas_summary_price_per_month"></span>
+    </span>
+</div>
+<div class="mt-3" data-ng-if="$ctrl.isChangeOffer()">
+    <p data-translate="web_paas_summary_next_month_price"></p>
+    <ovh-manager-catalog-price
+        data-price="$ctrl.selectedPlan.totalPrice"
+        data-user="$ctrl.user"
+        data-perform-rounding="false"
+        data-maximum-fraction-digits="5"
+    >
+    </ovh-manager-catalog-price>
+    /<span data-translate="web_paas_summary_price_per_month"></span>
+</div>

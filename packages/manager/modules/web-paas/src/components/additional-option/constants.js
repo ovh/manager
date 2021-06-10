@@ -1,0 +1,9 @@
+export const ADDON_FAMILY_STAGING_ENVIRONMENT = 'staging_environment';
+export const STORAGE_MULTIPLE = 5;
+export const DEFAULT_ENVIRONMENT = 2;
+
+export default {
+  ADDON_FAMILY_STAGING_ENVIRONMENT,
+  DEFAULT_ENVIRONMENT,
+  STORAGE_MULTIPLE,
+};

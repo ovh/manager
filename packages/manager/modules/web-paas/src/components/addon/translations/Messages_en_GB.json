@@ -1,0 +1,20 @@
+{
+  "web_paas_service_add_addon_title_storage": "Increase your storage",
+  "web_paas_service_add_addon_title_staging_environment": "Increase your environments",
+  "web_paas_service_add_addon_title_user_license": "Increase your user licences",
+  "web_paas_service_add_storage_description": "You currently have {{storage}}GB of additional storage. The price of your additional storage depends on the number of environments you have.",
+  "web_paas_service_add_license_description1": "You have signed up to the {{offerName}} solution. You have {{maxLicences}} user licences included, and {{addonLicenses}} ",
+  "web_paas_service_add_license_description_licence_singular": "additional user licence.",
+  "web_paas_service_add_license_description_licence_plural": "additional user licences.",
+  "web_paas_service_add_license_description2": "You can add user licences to grant your employees access to your Web PaaS projects.",
+  "web_paas_service_add_staging_description": "You currently have {{environment}} environments. The number of environments you have also affects the price of your storage, which is applied to all of your environments.",
+  "web_paas_service_add_addon_prorata_price_staging_environment": "The pro rata amount to be paid will be {{currencySymbol}}{{prorataPrice}} ex. VAT for the month of {{currentMonth}} and {{currencySymbol}}{{nextMonthPrice}} ex. VAT/month for the upcoming months, for your new environments. The total price of your additional storage depending on the number of environments will be {{currencySymbol}}{{totalPrice}} ex. VAT/month.",
+  "web_paas_service_add_addon_prorata_price_storage": "The pro rata amount to be paid will be {{currencySymbol}}{{ prorataPrice}} ex. VAT for the month of {{currentMonth}} and {{currencySymbol}}{{nextMonthPrice}} ex. VAT/month for the upcoming months, for your new additional storage. I.e. a total of {{currencySymbol}}{{totalPrice}} ex. VAT/month, depending on the number of environments you have.",
+  "web_paas_service_add_addon_prorata_price_user_license": "The pro rata amount to be paid will be {{currencySymbol}}{{prorataPrice}} ex. VAT for the month of {{currentMonth}} and {{currencySymbol}}{{nextMonthPrice}} ex. VAT/month for the upcoming months, for your new additional user licences.",
+  "web_paas_service_add_addon_error": "An error has occurred adding additional module: {{message}}",
+  "web_paas_service_add_addon_success_storage": "Your storage has been modified. You can track the progress of the delivery in your account, in the <a href='{{orderURL}}'>My orders</a> section",
+  "web_paas_service_add_addon_success_staging_environment": "Your test environments have been modified. You can track the progress of the delivery in your account, in the <a href='{{orderURL}}'>My orders</a> section",
+  "web_paas_service_add_addon_success_user_license": "Your user licences have been modified. You can track the progress of the delivery in your account, in the <a href='{{orderURL}}'>My orders</a> section",
+  "web_paas_service_add_addon_fetching_price": "Price calculation",
+  "web_paas_service_add_addon_storage_info": "Warning: it is not possible to reduce the storage of a project once the additional storage has been ordered."
+}

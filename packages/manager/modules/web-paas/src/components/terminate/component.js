@@ -3,9 +3,9 @@ import template from './template.html';
 
 const component = {
   bindings: {
+    goBack: '<',
     projectName: '<',
     projectId: '<',
-    goBack: '<',
   },
   template,
   controller,

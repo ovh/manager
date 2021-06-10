@@ -1,13 +1,12 @@
 {
   "web_paas_add_project_title": "Tworzenie projektu Web PaaS",
   "web_paas_add_project_description": "Utwórz nowy projekt Web PaaS powered by Platform.sh. Platforma dla programistów i ich zespołów, do tworzenia, wdrażania i uruchamiania aplikacji webowych.",
-  "web_paas_add_project_success": "Twoje zamówienie zostało zrealizowane. Trwa tworzenie projektu Web Paas performed by Platform.sh. Będzie on dostępny za kilka minut. Możesz śledzić postęp jego dostawy na Twoim koncie, w sekcji <a href='{{orderURL}}'>Moje zamówienia</a>",
+  "web_paas_add_project_success": "Twoje zamówienie zostało zrealizowane. Możesz śledzić postęp projektu Web Paas performed by Platform.sh na Twoim koncie, w sekcji <a href='{{orderURL}}'>Moje zamówienia</a>",
   "web_paas_add_project_error": "Wystąpił błąd podczas tworzenia projektu Web Paas: {{message}}.",
   "web_paas_add_project_loading": "Trwa tworzenie projektu Web PaaS",
   "web_paas_add_project_select_region": "Wybierz region",
-  "web_paas_add_project_options_description": "Opcje przestrzeni dyskowej, środowiska i licencji użytkownika są ograniczone w wersji beta.",
   "web_paas_add_project_storage": "{{storageSize}} GB",
-  "web_paas_add_project_choose_offer_description": "Oferta jest aktualnie dostępna w wersji beta. Zawierasz umowę na okres jednego miesiąca z automatycznym odnawianiem. Po zakończeniu fazy beta oferta będzie dostępna w wersji płatnej.",
+  "web_paas_add_project_choose_offer_description": "Wybierz ofertę najlepiej dopasowaną do Twojego projektu: Start, Develop lub Expand.",
   "web_paas_add_project_next": "Dalej",
   "web_paas_add_project_choose_offer": "Wybierz swój pakiet",
   "web_paas_add_project_configure": "Skonfiguruj projekt",
@@ -25,5 +24,9 @@
   "web_paas_add_project_options_environment_popover": "Nie możesz wybrać środowiska w wersji beta",
   "web_paas_add_project_region_na": "Regiony niedostępne. Spróbuj ponownie",
   "web_paas_add_project_environment": "Liczba środowisk: {{count}} ",
-  "web_paas_add_project_license": "Liczba licencji użytkowników: {{count}}"
+  "web_paas_add_project_license": "Liczba licencji użytkowników: {{count}}",
+  "web_paas_add_project_options_description": "Dodaj opcje przestrzeni dyskowej, środowiska i licencji użytkownika.",
+  "web_paas_add_project_region_description": "Wybierz lokalizację centrum danych.",
+  "web_paas_add_project_summary_title": "Podsumowanie zamówienia",
+  "web_paas_add_project_create": "Stwórz projekt"
 }

@@ -1,13 +1,19 @@
+import controller from './service.controller';
 import template from './service.html';
 
 const component = {
   bindings: {
-    createProject: '<',
-    terminateProject: '<',
+    goToChangeOffer: '<',
+    goToAddAddon: '<',
+    openPartnerConsole: '<',
     project: '<',
     projectId: '<',
-    openPartnerConsole: '<',
+    serviceInfo: '<',
+    user: '<',
+    userList: '<',
+    webPaasDashboardPrefix: '<',
   },
+  controller,
   template,
 };
 

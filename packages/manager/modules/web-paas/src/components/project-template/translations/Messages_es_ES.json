@@ -1,3 +1,5 @@
 {
-  "web_paas_project_template_choose": "Seleccione una plantilla existente"
+  "web_paas_project_template_choose": "Seleccione una plantilla existente",
+  "web_paas_project_template_count": "{{ count }} plantillas disponibles",
+  "web_paas_project_template_no_result": "No hay resultados"
 }
