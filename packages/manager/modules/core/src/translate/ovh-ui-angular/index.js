@@ -17,6 +17,7 @@ angular
       ouiClipboardConfiguration,
       ouiCriteriaAdderConfiguration,
       ouiDatagridConfiguration,
+      ouiDualListConfiguration,
       ouiFieldConfiguration,
       ouiFileConfiguration,
       ouiNavbarConfiguration,
@@ -111,6 +112,27 @@ angular
           submit_label: $translate.instant(
             'common_criteria_adder_submit_label',
           ),
+        });
+
+        set(ouiDualListConfiguration, 'translations', {
+          source: {
+            heading: $translate.instant('common_dual_list_source_heading'),
+            placeholder: $translate.instant(
+              'common_dual_list_source_placeholder',
+            ),
+            move: $translate.instant('common_dual_list_source_move'),
+            moveAll: $translate.instant('common_dual_list_source_move_all'),
+            search: $translate.instant('common_dual_list_source_search'),
+          },
+          target: {
+            heading: $translate.instant('common_dual_list_target_heading'),
+            placeholder: $translate.instant(
+              'common_dual_list_target_placeholder',
+            ),
+            move: $translate.instant('common_dual_list_target_move'),
+            moveAll: $translate.instant('common_dual_list_target_move_all'),
+            search: $translate.instant('common_dual_list_target_search'),
+          },
         });
 
         set(ouiDatagridConfiguration, 'translations', {
