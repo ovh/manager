@@ -7,9 +7,11 @@ export const SCALE_DEFAULT_VALUES = {
   HIGHEST_VALUE: 100,
   HIGHEST_MAX_VALUE: 100,
 };
+export const KUBE_PRODUCT_ID = 'kubernetes';
 
 export default {
   VERSION_ENUM_KEY,
   ANTI_AFFINITY_MAX_NODES,
   SCALE_DEFAULT_VALUES,
+  KUBE_PRODUCT_ID,
 };

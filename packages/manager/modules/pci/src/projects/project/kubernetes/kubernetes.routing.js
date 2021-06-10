@@ -93,17 +93,8 @@ export default /* @ngInject */ ($stateProvider) => {
       highestVersion: (versions) =>
         max(versions, (version) => parseFloat(`${version}`)),
 
-      regions: /* @ngInject */ (OvhApiCloudProjectKube, projectId) =>
-        OvhApiCloudProjectKube.v6()
-          .getRegions({
-            serviceName: projectId,
-          })
-          .$promise.then((regions) =>
-            map(regions, (region) => ({
-              name: region,
-              hasEnoughQuota: () => true,
-            })),
-          ),
+      regions: /* @ngInject */ (projectId, coreConfig, Kubernetes) =>
+        Kubernetes.getRegions(projectId, coreConfig.getUser().ovhSubsidiary),
 
       antiAffinityMaxNodes: /* @ngInject */ () => ANTI_AFFINITY_MAX_NODES,
       addPrivateNetworksLink: /* @ngInject */ ($state, projectId) =>

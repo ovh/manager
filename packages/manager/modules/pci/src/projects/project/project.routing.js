@@ -39,8 +39,9 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiCloudProject.v6().get({
           serviceName: projectId,
         }).$promise,
+      quotas: /* @ngInject */ (loadQuotas) => loadQuotas(),
 
-      quotas: /* @ngInject */ (PciProjectsService, projectId) =>
+      loadQuotas: /* @ngInject */ (PciProjectsService, projectId) => () =>
         PciProjectsService.getQuotas(projectId),
 
       breadcrumb: /* @ngInject */ (project) =>

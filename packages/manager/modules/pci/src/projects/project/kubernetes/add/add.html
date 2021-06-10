@@ -2,12 +2,12 @@
 
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
-<oui-stepper>
+<oui-stepper data-current-index="$ctrl.currentStep">
+    <!--Select region-->
     <oui-step-form
         name="kubernetes_add_region"
         data-header="{{:: 'kubernetes_add_region_title' | translate }}"
         data-editable="!$ctrl.isAdding"
-        data-valid="$ctrl.cluster.region"
         data-navigation="$ctrl.cluster.region"
         data-on-focus="$ctrl.displaySelectedRegion = false"
         data-on-submit="$ctrl.onRegionSubmit()"
@@ -17,17 +17,27 @@
             data-selected-region="$ctrl.cluster.region"
             data-display-selected-region="$ctrl.displaySelectedRegion"
         ></pci-project-regions-list>
+
+        <!--Add new region banner info-->
+        <oui-message type="info" data-ng-if="!$ctrl.displaySelectedRegion && $ctrl.cluster.region && !$ctrl.cluster.region.enabled">
+            <span data-translate="kubernetes_add_region_info"></span>
+        </oui-message>
     </oui-step-form>
+
+    <!--Select kube version-->
     <oui-step-form
+        name="kubernetes_add_version"
         data-header="{{:: 'kubernetes_add_version_title' | translate }}"
         data-editable="!$ctrl.isAdding"
         data-valid="$ctrl.cluster.version"
         data-navigation="$ctrl.cluster.version"
-        data-on-focus="$ctrl.displaySelectedVersion = false"
+        data-on-focus="$ctrl.onKubeVersionFocus()"
         data-on-submit="$ctrl.displaySelectedVersion = true"
-        name="kubernetes_add_version"
+        data-loading="$ctrl.isAddingNewRegion"
+        data-loading-text="{{ 'kubernetes_add_region_inprogress' | translate: { name: $ctrl.cluster.region.name } }}"
     >
         <pci-project-versions-list
+            data-ng-if="!$ctrl.isAddingNewRegion"
             data-versions="$ctrl.versions"
             data-selected-version="$ctrl.cluster.version"
             data-highest-version="$ctrl.highestVersion"
@@ -35,7 +45,8 @@
         >
         </pci-project-versions-list>
     </oui-step-form>
-    <!-- private network -->
+
+    <!--Select private network -->
     <oui-step-form
         data-header="{{:: 'kubernetes_add_private_network' | translate }}"
         data-editable="!$ctrl.isAdding"
@@ -67,7 +78,7 @@
         </oui-field>
     </oui-step-form>
 
-    <!-- select node pool configuration -->
+    <!--Select node pool configuration -->
     <oui-step-form
         data-header="{{:: 'kube_common_node_pool_title' | translate }}"
         data-editable="!$ctrl.isAdding"
@@ -132,6 +143,7 @@
         <p data-translate="kubernetes_add_billing_type_payment_method"></p>
     </oui-step-form>
 
+    <!--Choose the kube name-->
     <oui-step-form
         data-header="{{:: 'kubernetes_add_name_title' | translate }}"
         data-editable="!$ctrl.isAdding"
