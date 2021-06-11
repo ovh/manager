@@ -37,5 +37,6 @@
   "web_paas_expiry_date": "Date d'expiration",
   "web_paas_tile_subscription_manage_service": "Gérer le service",
   "web_paas_tile_subscription_pay_billing": "Payer la facturation",
-  "web_paas_tile_billing_error": "Une erreur s'est produite lors de la redirection vers la facturation: "
+  "web_paas_tile_billing_error": "Une erreur s'est produite lors de la redirection vers la facturation: ",
+  "web_paas_service_project_coming_soon": "Bientôt disponible"
 }
