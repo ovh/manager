@@ -1,13 +1,3 @@
-export const DEFAULT_OPTIONS = {
-  onlyValid: false,
-  transform: true, // transform legacy payment methods to payment methods
-};
-
-export const DEFAULT_TYPE_OPTIONS = {
-  onlyRegisterable: true,
-  transform: true, // transform legacy payment method types to payment method types
-};
-
 export const IBAN_BIC_RULES = {
   IBAN_FORMAT: {
     FR: [4, 4, 4, 4, 4, 4, 3],
@@ -53,38 +43,6 @@ export const IBAN_BIC_RULES = {
   IBAN_REGEXP: /^([A-Z]{2})(\d{2})(.*)$/g,
 };
 
-export const PAYMENT_METHOD_STATUS_ENUM = {
-  CANCELED: 'CANCELED',
-  CANCELING: 'CANCELING',
-  CREATED: 'CREATED',
-  ERROR: 'ERROR',
-  EXPIRED: 'EXPIRED',
-  CREATING: 'CREATING',
-  MAINTENANCE: 'MAINTENANCE',
-  PAUSED: 'PAUSED',
-  VALID: 'VALID',
-};
-
-export const PAYMENT_METHOD_TYPE_ENUM = {
-  BANK_ACCOUNT: 'BANK_ACCOUNT',
-  CREDIT_CARD: 'CREDIT_CARD',
-  DEFERRED_PAYMENT_ACCOUNT: 'DEFERRED_PAYMENT_ACCOUNT',
-  PAYPAL: 'PAYPAL',
-};
-
-export const TYPE_INTEGRATION_ENUM = {
-  COMPONENT: 'COMPONENT',
-  NONE: 'NONE',
-  REDIRECT: 'REDIRECT',
-  IFRAME_VANTIV: 'IFRAME_VANTIV',
-  IN_CONTEXT: 'IN_CONTEXT',
-};
-
 export default {
-  DEFAULT_OPTIONS,
-  DEFAULT_TYPE_OPTIONS,
   IBAN_BIC_RULES,
-  PAYMENT_METHOD_STATUS_ENUM,
-  PAYMENT_METHOD_TYPE_ENUM,
-  TYPE_INTEGRATION_ENUM,
 };
