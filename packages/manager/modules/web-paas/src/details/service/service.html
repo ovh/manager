@@ -93,7 +93,8 @@
                     <oui-tile-description>
                         <p data-ng-if="$ctrl.project.addonStorageCount() > 0">
                             <span
-                                data-ng-bind="$ctrl.project.getTotalStorage()"
+                                data-translate="web_paas_service_project_storage_included"
+                                data-translate-values="{ storage: $ctrl.getPlanStorage() }"
                             ></span>
                             +
                             <span

@@ -32,4 +32,11 @@ export default class WebPassDetailsServiceCtrl {
       'web_paas_dashboard_alert',
     );
   }
+
+  getPlanStorage() {
+    return (
+      this.project.getTotalStorage() -
+      this.project.addonStorageCount() * this.STORAGE_MULTIPLE
+    );
+  }
 }
