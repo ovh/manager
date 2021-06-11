@@ -37,5 +37,6 @@
   "web_paas_expiry_date": "Expiry date",
   "web_paas_tile_subscription_manage_service": "Manage service",
   "web_paas_tile_subscription_pay_billing": "Pay bill",
-  "web_paas_tile_billing_error": "An error has occurred redirecting to billing: "
+  "web_paas_tile_billing_error": "An error has occurred redirecting to billing: ",
+  "web_paas_service_project_coming_soon": "Coming soon"
 }
