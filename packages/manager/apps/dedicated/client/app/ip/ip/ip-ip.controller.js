@@ -364,17 +364,17 @@ angular.module('Module.ip.controllers').controller(
     $scope.alertsCount = function alertsCount(ipBlock) {
       if (ipBlock) {
         return (
-          ipBlock.alerts.spam.length +
-          ipBlock.alerts.antihack.length +
-          ipBlock.alerts.arp.length +
-          ipBlock.alerts.mitigation.length
+          get(ipBlock, 'alerts.spam', []).length +
+          get(ipBlock, 'alerts.antihack', []).length +
+          get(ipBlock, 'alerts.arp', []).length +
+          get(ipBlock, 'alerts.mitigation', []).length
         );
       }
       return (
-        $scope.alerts.spam.length +
-        $scope.alerts.antihack.length +
-        $scope.alerts.arp.length +
-        $scope.alerts.mitigation.length
+        get($scope, 'alerts.spam', []).length +
+        get($scope, 'alerts.antihack', []).length +
+        get($scope, 'alerts.arp', []).length +
+        get($scope, 'alerts.mitigation', []).length
       );
     };
 
