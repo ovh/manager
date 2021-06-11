@@ -1,8 +1,7 @@
 import { get } from 'lodash-es';
 
+import { AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM } from '@ovh-ux/ovh-payment-method';
 import { AVAILABLE_CALLBACK_STATUS_ENUM } from '../constants'; // from integration constants
-
-import { TYPE_INTEGRATION_ENUM } from '../../../payment-method.constants';
 
 export default class OvhPaymentMethodIntegrationRedirectCtrl {
   /* @ngInject */
@@ -18,7 +17,8 @@ export default class OvhPaymentMethodIntegrationRedirectCtrl {
         const { paymentMethodType } = this.integrationCtrl;
 
         if (
-          paymentMethodType.integration === TYPE_INTEGRATION_ENUM.REDIRECT &&
+          paymentMethodType.integration ===
+            AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM.REDIRECT &&
           response.url
         ) {
           this.$window.location = response.url;
