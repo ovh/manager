@@ -1,3 +1,12 @@
+## [16.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.30.0...@ovh-ux/manager-dedicated@16.30.1) (2021-06-11)
+
+
+### Bug Fixes
+
+* **ip:** fix error on IPs alerts count ([#5091](https://github.com/ovh/manager/issues/5091)) ([a330785](https://github.com/ovh/manager/commit/a3307854427fa8a98367bd759f3eb04bc36a4ac3))
+
+
+
 # [16.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.29.2...@ovh-ux/manager-dedicated@16.30.0) (2021-06-10)
 
 

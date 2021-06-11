@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@1.1.1...@ovh-ux/manager-web-paas-app@1.1.2) (2021-06-11)
+
+
+### Bug Fixes
+
+* **deps:** add missing dependencies ([#5099](https://github.com/ovh/manager/issues/5099)) ([5ed11b9](https://github.com/ovh/manager/commit/5ed11b9c26bf8e8ec6f0a862176933c8cf773ac2))
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@1.1.0...@ovh-ux/manager-web-paas-app@1.1.1) (2021-05-19)
 
 
