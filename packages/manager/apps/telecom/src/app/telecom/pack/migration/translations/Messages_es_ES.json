@@ -140,5 +140,6 @@
   "telecom_pack_migration_confirm_resume_contact_owner": "Datos de contacto",
   "telecom_pack_migration_confirm_resume_contact_phone": "Número de teléfono de contacto",
   "telecom_pack_migration_confirm_resume_phone_form_error": "El número introducido debe ser válido.",
-  "telecom_pack_migration_choose_offer_error": "Se ha producido un error al cargar las soluciones: {{ error }}."
+  "telecom_pack_migration_choose_offer_error": "Se ha producido un error al cargar las soluciones: {{ error }}.",
+  "telecom_pack_migration_promotion_installation_fees_offered": "Sin gastos de instalación"
 }

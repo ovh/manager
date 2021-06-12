@@ -6,7 +6,7 @@
   "hosting_database_order_private_step_header_duration": "Elija la duración",
   "hosting_database_order_private_step_header_activation": "Activación",
   "hosting_database_order_private_step_header_payment": "Pago",
-  "hosting_database_order_private_step_description_activation": "Para confirmar su solicitud, acepte las condiciones de uso",
+  "hosting_database_order_private_step_description_activation": "Para confirmar su solicitud, acepte las condiciones de uso.",
   "hosting_database_order_private_step_description_payment": "Para confirmar su solicitud, seleccione su forma de pago y acepte las condiciones de uso.",
   "hosting_database_order_private_submit_activate": "Activar",
   "hosting_database_order_private_submit_pay": "Pagar",
@@ -24,7 +24,7 @@
   "hosting_database_order_private_version_mongodb": "MongoDB {{version}}",
   "hosting_database_order_private_version_redis": "Redis {{version}}",
   "hosting_database_order_private_duration": "¿Por cuánto tiempo quiere utilizarlas?",
-  "hosting_database_order_private_duration_label": "{{duration}} :",
+  "hosting_database_order_private_duration_label": "{{duration}}:",
   "hosting_database_order_private_payment_total_price_without_tax": "Precio (sin IVA):",
   "hosting_database_order_private_payment_total_price_with_tax": "Precio (IVA incl.):"
 }

@@ -1,6 +1,6 @@
 {
   "private_database_order_private_sql_title": "Solicite un SQL privado",
-  "private_database_order_private_sql_error": "Se ha producido un error al contratar una base de datos: {{message}}",
+  "private_database_order_private_sql_error": "Se ha producido un error al solicitar una base de datos SQL: {{message}}",
   "private_database_order_private_sql_success": "La <a href=\"{{orderUrl}}\" target=\"_blank\">orden de pedido</a> se ha generado correctamente. El producto se activará una vez que lo haya validado.",
-  "private_database_order_private_sql_success_activation": "Su activación fue exitosa. Su producto se activará en unos momentos."
+  "private_database_order_private_sql_success_activation": "El producto se ha activado correctamente. El producto se activará en unos instantes."
 }

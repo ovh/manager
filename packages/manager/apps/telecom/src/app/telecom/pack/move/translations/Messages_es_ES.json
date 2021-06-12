@@ -246,5 +246,6 @@
   "pack_move_eligibility_building_type": "Tipo",
   "pack_move_eligibility_building_actions": "Acción",
   "pack_move_eligibility_building_select_building": "Seleccionar",
-  "pack_move_building_details_error": "Se ha producido un error al cargar la información de su edificio."
+  "pack_move_building_details_error": "Se ha producido un error al cargar la información de su edificio.",
+  "pack_move_promotion_installation_fees_offered": "Sin gastos de instalación"
 }
