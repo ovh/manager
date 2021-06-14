@@ -24,6 +24,7 @@ export default class {
           description: this.$translate.instant(
             `pci_projects_project_kubernetes_onboarding_guides_${guide.id}_description`,
           ),
+          link: guide.links[this.user.ovhSubsidiary] || guide.links.DEFAULT,
         },
       ],
       [],
