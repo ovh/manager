@@ -74,7 +74,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.loadbalancer',
         },
         title: 'Load Balancer',
-        regions: ['EU', 'CA'],
+        feature: 'load-balancer',
       },
       {
         id: 'private-network',
