@@ -1,3 +1,13 @@
+# [5.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.27.2...@ovh-ux/manager-pci@5.28.0) (2021-06-14)
+
+
+### Features
+
+* enable kubernetes in US ([#4965](https://github.com/ovh/manager/issues/4965)) ([7d03e9a](https://github.com/ovh/manager/commit/7d03e9ac87b334218ffe565a9aa33e20b6564798))
+* enable load balancer service in US region ([#4925](https://github.com/ovh/manager/issues/4925)) ([5d34236](https://github.com/ovh/manager/commit/5d3423656ed498b7b74571faeeb8993c3058c78a))
+
+
+
 ## [5.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.27.1...@ovh-ux/manager-pci@5.27.2) (2021-06-02)
 
 
