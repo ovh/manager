@@ -149,6 +149,19 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       step: /* @ngInject */ (getStep) => getStep('payment'),
+
+      historyStatusEnum: /* @ngInject */ (apiSchemas) => {
+        const statusEnumEntries = Object.entries(
+          apiSchemas.models['billing.order.followUp.HistoryStatusEnum'].enum,
+        );
+        return statusEnumEntries.reduce(
+          (results, statusEnum) => ({
+            [statusEnum[1]]: statusEnum[1],
+            ...results,
+          }),
+          {},
+        );
+      },
     },
   });
 };

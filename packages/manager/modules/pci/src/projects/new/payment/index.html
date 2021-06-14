@@ -74,12 +74,13 @@
                         $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.IN_CONTEXT
                     ].includes($ctrl.model.paymentMethod.integration)"
                 >
+                    <!--Create a project btn-->
                     <oui-button
                         data-variant="primary"
                         data-type="submit"
                         data-variant-nav="next"
                         data-disabled="$ctrl.globalLoading.finalize"
-                        data-ng-if="!$ctrl.isCheckingPaymentMethod"
+                        data-ng-if="!$ctrl.needToCheckCustomerInformations || !$ctrl.isCheckingPaymentMethod"
                     >
                         <span
                             data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
@@ -87,23 +88,41 @@
                     </oui-button>
                 </ovh-payment-method-integration>
 
-                <oui-button
-                    data-variant="primary"
-                    data-type="submit"
-                    data-variant-nav="next"
-                    data-disabled="!$ctrl.model.credit"
-                    data-ng-if="$ctrl.model.paymentMethod.paymentType === 'CREDIT'"
+                <!--Go to billing detail page-->
+                <a
+                    data-ng-if="$ctrl.needToCheckCustomerInformartions"
+                    class="oui-button oui-button_primary oui-button_icon-right text-white"
+                    data-ng-href="{{ $ctrl.orderBillingUrl }}"
+                    target="_blank"
+                    rel="noopener"
                 >
                     <span
-                        data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
+                        data-translate="pci_project_new_payment_check_anti_fraud_case_fraud_manual_review_link"
                     ></span>
-                </oui-button>
+                    <span
+                        class="oui-icon oui-icon-arrow-right"
+                        aria-hidden="true"
+                    ></span>
+                </a>
 
-                <oui-button
-                    data-variant="primary"
-                    data-type="submit"
-                    data-variant-nav="next"
-                    data-disabled="
+                <div data-ng-if="!$ctrl.needToCheckCustomerInformartions">
+                    <oui-button
+                        data-variant="primary"
+                        data-type="submit"
+                        data-variant-nav="next"
+                        data-disabled="!$ctrl.model.credit"
+                        data-ng-if="$ctrl.model.paymentMethod.paymentType === 'CREDIT'"
+                    >
+                        <span
+                            data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
+                        ></span>
+                    </oui-button>
+
+                    <oui-button
+                        data-variant="primary"
+                        data-type="submit"
+                        data-variant-nav="next"
+                        data-disabled="
                         ($ctrl.eligibility.isChallengePaymentMethodRequired() && !$ctrl.model.challenge.isValid($ctrl.defaultPaymentMethod.paymentType))
                         || (!$ctrl.model.paymentMethod && $ctrl.eligibility.isAddPaymentMethodRequired())
                         || (!$ctrl.defaultPaymentMethod &&
@@ -112,39 +131,40 @@
                         || $ctrl.model.challenge.checking
                         || $ctrl.globalLoading.finalize
                         || $ctrl.globalLoading.setDefaultPaymentMethod"
-                    data-ng-if="$ctrl.defaultPaymentMethod || !$ctrl.model.paymentMethod || ($ctrl.eligibility.isDefaultPaymentMethodChoiceRequired() && !$ctrl.model.paymentMethod) && !$ctrl.isCheckingPaymentMethod"
-                >
-                    <span
-                        data-translate="pci_project_new_payment_btn_continue_default"
-                    ></span>
-                </oui-button>
-
-                <oui-button
-                    variant="primary"
-                    type="button"
-                    on-click="$ctrl.initComponentInitialParams()"
-                    data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && !$ctrl.componentInitialParams && !$ctrl.isCheckingPaymentMethod"
-                    disabled="$ctrl.globalLoading.finalize"
-                >
-                    <span
-                        data-translate="pci_project_new_payment_btn_continue_bank_account"
-                    ></span>
-                </oui-button>
-
-                <a
-                    class="oui-button oui-button_primary oui-button_icon-right no-transition"
-                    data-ng-if="$ctrl.model.paymentMethod.type.isBankAccount()"
-                    data-ng-href="{{ $ctrl.paymentMethodAddUrl }}"
-                >
-                    <span
-                        data-translate="pci_project_new_payment_btn_continue_bank_account"
-                    ></span>
-                    <span
-                        class="oui-icon oui-icon-chevron-right"
-                        aria-hidden="true"
+                        data-ng-if="$ctrl.defaultPaymentMethod || !$ctrl.model.paymentMethod || ($ctrl.eligibility.isDefaultPaymentMethodChoiceRequired() && !$ctrl.model.paymentMethod) && !$ctrl.isCheckingPaymentMethod"
                     >
-                    </span>
-                </a>
+                        <span
+                            data-translate="pci_project_new_payment_btn_continue_default"
+                        ></span>
+                    </oui-button>
+
+                    <oui-button
+                        variant="primary"
+                        type="button"
+                        on-click="$ctrl.initComponentInitialParams()"
+                        data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && !$ctrl.componentInitialParams && !$ctrl.isCheckingPaymentMethod"
+                        disabled="$ctrl.globalLoading.finalize"
+                    >
+                        <span
+                            data-translate="pci_project_new_payment_btn_continue_bank_account"
+                        ></span>
+                    </oui-button>
+
+                    <a
+                        class="oui-button oui-button_primary oui-button_icon-right no-transition"
+                        data-ng-if="$ctrl.model.paymentMethod.type.isBankAccount()"
+                        data-ng-href="{{ $ctrl.paymentMethodAddUrl }}"
+                    >
+                        <span
+                            data-translate="pci_project_new_payment_btn_continue_bank_account"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-chevron-right"
+                            aria-hidden="true"
+                        >
+                        </span>
+                    </a>
+                </div>
             </form>
 
             <a
