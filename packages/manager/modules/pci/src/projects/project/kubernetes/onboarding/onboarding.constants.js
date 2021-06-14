@@ -1,27 +1,46 @@
 export const GUIDES = [
   {
     id: 'configure',
-    link: 'https://docs.ovh.com/gb/en/kubernetes/configuring-kubectl/',
+    links: {
+      US: 'https://support.us.ovhcloud.com/hc/en-us/articles/1500005047721',
+      DEFAULT: 'https://docs.ovh.com/gb/en/kubernetes/configuring-kubectl/',
+    },
   },
   {
     id: 'nodes',
-    link: 'https://docs.ovh.com/gb/en/kubernetes/adding-nodes/',
+    links: {
+      US: 'https://support.us.ovhcloud.com/hc/en-us/articles/1500004963921',
+      DEFAULT: 'https://docs.ovh.com/gb/en/kubernetes/adding-nodes/',
+    },
   },
   {
     id: 'deploy-app',
-    link: 'https://docs.ovh.com/gb/en/kubernetes/deploying-an-application/',
+    links: {
+      US: 'https://support.us.ovhcloud.com/hc/en-us/articles/1500004771762',
+      DEFAULT:
+        'https://docs.ovh.com/gb/en/kubernetes/deploying-an-application/',
+    },
   },
   {
     id: 'load-balancer',
-    link: 'https://docs.ovh.com/gb/en/kubernetes/using-lb/',
+    links: {
+      US: 'https://support.us.ovhcloud.com/hc/en-us/articles/1500004806361',
+      DEFAULT: 'https://docs.ovh.com/gb/en/kubernetes/using-lb/',
+    },
   },
   {
     id: 'helm',
-    link: 'https://docs.ovh.com/gb/en/kubernetes/installing-helm/',
+    links: {
+      US: '	https://support.us.ovhcloud.com/hc/en-us/articles/1500004934541',
+      DEFAULT: 'https://docs.ovh.com/gb/en/kubernetes/installing-helm/',
+    },
   },
   {
     id: 'istio',
-    link: 'https://docs.ovh.com/gb/en/kubernetes/installing-istio/',
+    links: {
+      US: 'https://support.us.ovhcloud.com/hc/en-us/articles/1500004941381',
+      DEFAULT: 'https://docs.ovh.com/gb/en/kubernetes/installing-istio/',
+    },
   },
 ];
 

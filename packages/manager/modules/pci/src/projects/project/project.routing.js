@@ -1,3 +1,5 @@
+import { GUIDES_URL } from '../../components/project/guides-header/guides-header.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project', {
     url: '/{projectId:[0-9a-zA-Z]{32}}',
@@ -42,6 +44,8 @@ export default /* @ngInject */ ($stateProvider) => {
       user: /* @ngInject */ (SessionService) => SessionService.getUser(),
       getQuotaUrl: /* @ngInject */ ($state) => () =>
         $state.href('pci.projects.project.quota'),
+      guideUrl: /* @ngInject */ (user) =>
+        GUIDES_URL[user.ovhSubsidiary] || GUIDES_URL.DEFAULT,
     },
   });
 };

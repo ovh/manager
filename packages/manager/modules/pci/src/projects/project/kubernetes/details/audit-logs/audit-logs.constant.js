@@ -1,5 +1,7 @@
 export const LOGS_INFO = {
-  DEFAULT: 'https://docs.ovh.com/fr/logs-data-platform/kubernetes-fluent-bit/',
+  FR: 'https://docs.ovh.com/fr/logs-data-platform/kubernetes-fluent-bit/',
+  DEFAULT:
+    'https://docs.ovh.com/gb/en/logs-data-platform/kubernetes-fluent-bit/',
 };
 
 export const HTTP_STATUS = {
