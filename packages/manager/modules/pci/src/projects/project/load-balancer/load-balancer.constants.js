@@ -9,7 +9,7 @@ export const GUIDES = [
       AU: 'https://docs.ovh.com/au/en/kubernetes/using-lb/',
       IE: 'https://docs.ovh.com/ie/en/kubernetes/using-lb/',
       SG: 'https://docs.ovh.com/sg/en/kubernetes/using-lb/',
-      US: 'https://support.us.ovhcloud.com/hc/en-us/articles/1500007799501',
+      US: 'https://support.us.ovhcloud.com/hc/en-us/articles/1500004806361',
     },
   },
 ];
