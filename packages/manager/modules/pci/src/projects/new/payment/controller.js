@@ -1,4 +1,15 @@
+import find from 'lodash/find';
+import {
+  ORDER_FOLLOW_UP_STATUS_ENUM,
+  ORDER_FOLLOW_UP_STEP_ENUM,
+} from '../../projects.constant';
+
 const getPaymentMethodTimeoutLimit = 30000;
+const ANTI_FRAUD = {
+  CASE_FRAUD_REFUSED: '(error 906)',
+  INTERVAL: 2000,
+};
+
 export default class PciProjectNewPaymentCtrl {
   /* @ngInject */
   constructor(
@@ -10,6 +21,7 @@ export default class PciProjectNewPaymentCtrl {
     coreURLBuilder,
     CucCloudMessage,
     pciProjectNew,
+    PciProjectsService,
     ovhPaymentMethod,
     OVH_PAYMENT_METHOD_INTEGRATION_TYPE,
   ) {
@@ -17,11 +29,13 @@ export default class PciProjectNewPaymentCtrl {
     this.$translate = $translate;
     this.$q = $q;
     this.$window = $window;
+    this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
     this.CucCloudMessage = CucCloudMessage;
     this.pciProjectNew = pciProjectNew;
+    this.PciProjectsService = PciProjectsService;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
-    this.coreConfig = coreConfig;
 
     // other attributes
     [
@@ -87,6 +101,95 @@ export default class PciProjectNewPaymentCtrl {
       });
   }
 
+  displayCucCloudMessage(type, suffix) {
+    this.CucCloudMessage[type](
+      this.$translate.instant(
+        `pci_project_new_payment_check_anti_fraud_case_${suffix}`,
+      ),
+      'pci.projects.new.payment',
+    );
+  }
+
+  displayAntiFraudMessage(validatingStep, order) {
+    const {
+      FRAUD_REFUSED,
+      FRAUD_DOCS_REQUESTED,
+      FRAUD_MANUAL_REVIEW,
+    } = this.historyStatusEnum;
+
+    (validatingStep?.history || []).forEach(({ label }) => {
+      if (label === FRAUD_REFUSED) {
+        this.displayCucCloudMessage('error', label.toLowerCase());
+      }
+      if ([FRAUD_MANUAL_REVIEW, FRAUD_DOCS_REQUESTED].includes(label)) {
+        this.orderBillingUrl = this.buildOrderBillingUrl(order);
+        this.needToCheckCustomerInformations = true;
+        this.displayCucCloudMessage('warning', label.toLowerCase());
+      }
+    });
+  }
+
+  static validatingStepIsDone(validatingStep) {
+    return validatingStep.status === ORDER_FOLLOW_UP_STATUS_ENUM.DONE;
+  }
+
+  isAntiFraudCases(validatingStep) {
+    const {
+      FRAUD_DOCS_REQUESTED,
+      FRAUD_MANUAL_REVIEW,
+    } = this.historyStatusEnum;
+
+    return !!validatingStep.history.find(({ label }) =>
+      [FRAUD_MANUAL_REVIEW, FRAUD_DOCS_REQUESTED].includes(label),
+    );
+  }
+
+  buildOrderBillingUrl({ orderId }) {
+    return this.coreURLBuilder.buildURL(
+      'dedicated',
+      '#/billing/orders/:orderId',
+      {
+        orderId,
+      },
+    );
+  }
+
+  stopAntiFraudChecker() {
+    if (this.followUpPolling) {
+      this.$timeout.cancel(this.followUpPolling);
+      this.followUpPolling = null;
+    }
+  }
+
+  startAntiFraudChecker(resolve, order) {
+    this.followUpPolling = this.$timeout(() => {
+      this.PciProjectsService.getOrderFollowUp(order.orderId)
+        .then((followUp) =>
+          find(followUp, {
+            step: ORDER_FOLLOW_UP_STEP_ENUM.VALIDATING,
+          }),
+        )
+        .then((validatingStep) => {
+          if (this.isAntiFraudCases(validatingStep)) {
+            this.needToCheckCustomerInformartions = true;
+            this.displayAntiFraudMessage(validatingStep, order);
+            return this.stopAntiFraudChecker();
+          }
+
+          if (!PciProjectNewPaymentCtrl.validatingStepIsDone(validatingStep)) {
+            return true;
+          }
+
+          return resolve(order);
+        })
+        .finally(() => {
+          if (this.followUpPolling) {
+            this.startAntiFraudChecker(resolve, order);
+          }
+        });
+    }, ANTI_FRAUD.INTERVAL);
+  }
+
   manageProjectCreation() {
     // reset message
     this.CucCloudMessage.flushMessages('pci.projects.new.payment');
@@ -123,9 +226,11 @@ export default class PciProjectNewPaymentCtrl {
         if (prices.withTax.value !== 0) {
           return null;
         }
-
         return this.pciProjectNew.finalizeCart(this.cart);
       })
+      .then((order) =>
+        this.$q((resolve) => this.startAntiFraudChecker(resolve, order)),
+      )
       .then((order) => {
         if (!order) {
           return this.onAskCreditPayment();
@@ -133,7 +238,16 @@ export default class PciProjectNewPaymentCtrl {
 
         return this.onCartFinalized(order);
       })
-      .catch(() => {
+      .catch(({ data }) => {
+        if (data.message.includes(ANTI_FRAUD.CASE_FRAUD_REFUSED)) {
+          this.CucCloudMessage.error(
+            this.$translate.instant(
+              'pci_project_new_payment_check_anti_fraud_case_fraud_refused',
+            ),
+            'pci.projects.new.payment',
+          );
+        }
+
         this.CucCloudMessage.error(
           this.$translate.instant('pci_project_new_payment_checkout_error'),
           'pci.projects.new.payment',
@@ -308,6 +422,10 @@ export default class PciProjectNewPaymentCtrl {
     }
 
     return null;
+  }
+
+  $onDestroy() {
+    this.stopAntiFraudChecker();
   }
 
   /* -----  End of Hooks  ------ */
