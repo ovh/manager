@@ -9,12 +9,13 @@
   "sign_up_activity_field_vat_personalcorporation_more": "Número de identificação da empresa ({{ vatLabel }})",
   "sign_up_activity_field_organisation_association": "Nome da associação",
   "sign_up_activity_field_organisation_corporation": "Nome da empresa",
-  "sign_up_activity_field_organisation_administration": "Nome da administração",
+  "sign_up_activity_field_organisation_administration": "Denominação social",
   "sign_up_activity_field_organisation_personalcorporation": "Nome da empresa individual",
-  "sign_up_activity_field_organisation": "Organização",
+  "sign_up_activity_field_organisation": "Denominação social",
   "sign_up_activity_field_corporationType": "Tipo de empresa",
   "sign_up_activity_field_nationalIdentificationNumber": "NIF",
   "sign_up_activity_field_companyNationalIdentificationNumber": "NIF",
   "sign_up_activity_field_companyNationalIdentificationNumber_fr": "NIF",
-  "sign_up_activity_field_italian_sdi": "Código do destinatário para a faturação eletrónica (SDI)"
+  "sign_up_activity_field_italian_sdi": "Código do destinatário para a faturação eletrónica (SDI)",
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "O NIF é necessário para melhorar o processo de faturação eletrónica"
 }
