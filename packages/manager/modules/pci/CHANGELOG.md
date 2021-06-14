@@ -1,3 +1,12 @@
+## [5.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.28.0...@ovh-ux/manager-pci@5.28.1) (2021-06-14)
+
+
+### Bug Fixes
+
+* **project.load-balancer:** update guide URL ([#5110](https://github.com/ovh/manager/issues/5110)) ([3afecfa](https://github.com/ovh/manager/commit/3afecfa8bcd0058d59fabf030a14cba7c07d95b5))
+
+
+
 # [5.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.27.2...@ovh-ux/manager-pci@5.28.0) (2021-06-14)
 
 
