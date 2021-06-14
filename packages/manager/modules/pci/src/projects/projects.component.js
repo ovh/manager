@@ -12,6 +12,7 @@ export default {
     isValidHdsSupportLevel: '<',
     projects: '<',
     terminateProject: '<',
+    apiSchemas: '<',
   },
   controller,
   template,

@@ -87,6 +87,9 @@ export default /* @ngInject */ ($stateProvider) => {
       terminateProject: /* @ngInject */ (OvhApiCloudProject) => (project) =>
         OvhApiCloudProject.v6().delete({ serviceName: project.serviceName })
           .$promise,
+
+      apiSchemas: /* @ngInject */ (PciProjectsService) =>
+        PciProjectsService.getApiSchemas(),
     },
   });
 };
