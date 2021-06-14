@@ -7,12 +7,6 @@ export default class ProjectCreation {
     this.OvhApiMeOrder = OvhApiMeOrder;
   }
 
-  getOrderFollowUp(orderId) {
-    return this.OvhApiMeOrder.v6().followUp({
-      orderId,
-    }).$promise;
-  }
-
   getOrderItemDetails(orderId, orderDetailId) {
     const url = `/me/order/${orderId}/details/${orderDetailId}/extension`;
     return this.$http.get(url).then(({ data }) => data);
