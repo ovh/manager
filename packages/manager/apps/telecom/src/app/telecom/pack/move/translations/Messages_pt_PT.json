@@ -77,5 +77,6 @@
   "pack_move_no_erdv_info": "France Telecom vous contactera dans les plus brefs délais pour convenir de la date d’intervention sur site.",
   "pack_move_contact_name_info": "Veuillez nous communiquer le nom de la personne susceptible d’accueillir le technicien le jour du rendez-vous.",
   "pack_move_mandatory_field": "Les champs marqués d’un astérisque sont obligatoires.",
-  "pack_move_slamming_error": "Oups ! Nous n'avons pas pu vérifier la portabilité de votre numéro"
+  "pack_move_slamming_error": "Oups ! Nous n'avons pas pu vérifier la portabilité de votre numéro",
+  "pack_move_promotion_installation_fees_offered": "Sem custos de instalação"
 }

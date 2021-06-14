@@ -134,5 +134,6 @@
   "telecom_pack_migration_pto_yes_not_known": "J'ai un boîtier mais je ne connais pas son numéro",
   "telecom_pack_migration_confirm_resume_contact_owner": "Informações de contacto",
   "telecom_pack_migration_confirm_resume_contact_phone": "Número de telefone através do qual poderá ser contactado, se necessário",
-  "telecom_pack_migration_confirm_resume_phone_form_error": "O número introduzido deve ser válido."
+  "telecom_pack_migration_confirm_resume_phone_form_error": "O número introduzido deve ser válido.",
+  "telecom_pack_migration_promotion_installation_fees_offered": "Sem custos de instalação"
 }
