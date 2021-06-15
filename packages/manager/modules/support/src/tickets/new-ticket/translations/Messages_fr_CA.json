@@ -14,10 +14,10 @@
   "ovhManagerSupport_new_category_description_incident": "Questions relatives aux incidents techniques survenant sur vos produits et services et ne relevant pas d'un problème d'utilisation",
   "ovhManagerSupport_new_category_description_account": "Questions relatives à la gestion de votre compte client, et qui ne concernent aucun produit",
 
-  "ovhManagerSupport_new_urgency": "Degré de priorité",
-  "ovhManagerSupport_new_urgency_low": "Faible",
-  "ovhManagerSupport_new_urgency_medium": "Normal",
-  "ovhManagerSupport_new_urgency_high": "Élevé",
+  "ovhManagerSupport_new_urgency": "Degré d’urgence",
+  "ovhManagerSupport_new_urgency_low": "Bas - J’ai un moyen de contournement viable",
+  "ovhManagerSupport_new_urgency_medium": "Moyen - J’ai un moyen de contournement temporaire",
+  "ovhManagerSupport_new_urgency_high": "Haut - Je n’ai aucun moyen de contournement",
 
   "ovhManagerSupport_new_serviceType": "Produit",
   "ovhManagerSupport_all_serviceType": "Afficher plus de produits",
