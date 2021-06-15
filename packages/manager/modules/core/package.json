@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core",
-  "version": "12.3.0",
+  "version": "12.3.1",
   "private": true,
   "description": "Core functionalities shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/core#readme",
