@@ -25,5 +25,6 @@
   "pci_projects_project_users_status_ready": "Enabled",
   "pci_projects_project_users_status_error": "Error",
   "pci_projects_project_users_status_error_inconsistent_spec": "Error",
-  "pci_projects_project_users_status_pending": "Queued"
+  "pci_projects_project_users_status_pending": "Queued",
+  "pci_projects_project_users_modify_password_label": "Modify password"
 }
