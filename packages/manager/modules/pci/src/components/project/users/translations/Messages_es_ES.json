@@ -25,5 +25,6 @@
   "pci_projects_project_users_status_ready": "Activado",
   "pci_projects_project_users_status_error": "En error",
   "pci_projects_project_users_status_error_inconsistent_spec": "En error",
-  "pci_projects_project_users_status_pending": "Pendiente"
+  "pci_projects_project_users_status_pending": "Pendiente",
+  "pci_projects_project_users_modify_password_label": "Cambiar la contraseña"
 }
