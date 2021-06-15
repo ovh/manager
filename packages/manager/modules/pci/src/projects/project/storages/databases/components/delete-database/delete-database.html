@@ -1,0 +1,14 @@
+<oui-modal
+    data-heading="{{ 'pci_database_delete_database_title' | translate }}"
+    data-primary-action="$ctrl.deleteDatabase()"
+    data-primary-label="{{:: 'pci_database_delete_database_submit_label' | translate }}"
+    data-secondary-action="$ctrl.cancel()"
+    data-secondary-label="{{:: 'pci_database_delete_database_cancel_label' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isDeleting"
+>
+    <p
+        data-translate="pci_database_delete_database_content"
+        data-translate-values="{ databaseName: $ctrl.database.description }"
+    ></p>
+</oui-modal>

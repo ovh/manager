@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_users_delete_title": "Usuń użytkownika",
+  "pci_projects_project_users_delete_submit_label": "Potwierdź",
+  "pci_projects_project_users_delete_cancel_label": "Anuluj",
+  "pci_projects_project_users_delete_content": "Usuń ostatecznie użytkownika {{ user }}",
+  "pci_projects_project_users_delete_success_message": "Użytkownik {{ user }} został usunięty.",
+  "pci_projects_project_users_delete_error_delete": "Wystąpił błąd podczas usuwania użytkownika {{ user }}: {{ message }}."
+}

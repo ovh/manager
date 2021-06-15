@@ -77,5 +77,15 @@
   "common_password_strong_password": "Strong password.",
   "common_criteria_adder_filter_label": "Filter",
   "common_back_button_back_to": "Back to",
-  "common_back_button_back_to_previous_page": "Back to previous page"
+  "common_back_button_back_to_previous_page": "Back to previous page",
+  "common_dual_list_source_heading": "Items to select",
+  "common_dual_list_source_placeholder": "No items to select",
+  "common_dual_list_source_move": "Add",
+  "common_dual_list_source_move_all": "Add all",
+  "common_dual_list_source_search": "Search source content",
+  "common_dual_list_target_heading": "Items selected",
+  "common_dual_list_target_placeholder": "No items selected",
+  "common_dual_list_target_move": "Delete",
+  "common_dual_list_target_move_all": "Delete all",
+  "common_dual_list_target_search": "Search target content"
 }

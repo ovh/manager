@@ -4,6 +4,7 @@
   "cloud_sidebar_compute_instance": "Instances",
   "cloud_sidebar_storage": "Storage",
   "cloud_sidebar_storage_block_storage": "Block Storage",
+  "cloud_sidebar_storage_databases_storage": "Bases de données",
   "cloud_sidebar_storage_object_storage": "Object Storage",
   "cloud_sidebar_storage_cold_storage": "Cloud Archive",
   "cloud_sidebar_storage_volume_storage": "Volume Snapshot",

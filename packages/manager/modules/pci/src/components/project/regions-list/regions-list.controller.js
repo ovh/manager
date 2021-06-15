@@ -68,6 +68,7 @@ export default class RegionsListController {
         formattedRegions,
         (region) => region.microRegion.code === this.selectedRegion.name,
       );
+      this.macroRegion = this.region?.macroRegion.text;
     }
   }
 

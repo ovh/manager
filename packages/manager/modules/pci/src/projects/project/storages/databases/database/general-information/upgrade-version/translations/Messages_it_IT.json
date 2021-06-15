@@ -1,0 +1,10 @@
+{
+  "pci_databases_general_information_upgrade_version_confirm": "Aggiorna la tua versione",
+  "pci_databases_general_information_upgrade_version_cancel": "Annulla",
+  "pci_databases_general_information_upgrade_version_description": "Stai utilizzando la versione {{currentVersion}} di {{engine}}. Per aggiornarla, clicca su 'Aggiorna la mia versione' qui sotto.",
+  "pci_databases_general_information_upgrade_version_warning": "Una volta effettuato l'upgrade della versione del database, non sarà possibile tornare a una versione inferiore.",
+  "pci_databases_general_information_upgrade_version_label": "Versione",
+  "pci_databases_general_information_upgrade_version_placeholder": "Seleziona una versione",
+  "pci_databases_general_information_upgrade_version_success": "La richiesta è stata presa in carico e sarà effettiva entro qualche minuto.",
+  "pci_databases_general_information_upgrade_version_error": "L’aggiornamento non è stato effettuato correttamente: {{ message }}"
+}

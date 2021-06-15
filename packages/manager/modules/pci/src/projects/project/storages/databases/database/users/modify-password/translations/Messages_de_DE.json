@@ -1,0 +1,9 @@
+{
+  "pci_databases_users_modify_password_title": "Passwort ändern",
+  "pci_databases_users_modify_password_confirm": "Bestätigen",
+  "pci_databases_users_modify_password_cancel": "Abbrechen",
+  "pci_databases_users_modify_password_label": "Das Passwort",
+  "pci_databases_users_modify_password_help_text": "muss mindestens eine Zahl sowie einen Groß- und einen Kleinbuchstaben enthalten; muss mindestens 8 Zeichen lang sein.",
+  "pci_databases_users_modify_password_success": "Das Passwort des Nutzers {{ user }} wurde geändert.",
+  "pci_databases_users_modify_password_error": "Bei der Änderung des Passworts des Nutzers {{ user }} ist ein Fehler aufgetreten: {{ message }}."
+}

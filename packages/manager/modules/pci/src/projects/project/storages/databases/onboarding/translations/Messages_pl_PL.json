@@ -1,0 +1,15 @@
+{
+  "pci_database_title": "Databases as a Service pozwoli Ci skoncentrować się na tworzeniu aplikacji",
+  "pci_database_onboarding_content1": "Wykorzystuj potencjał danych i zyskaj kontrolę nad zasobami.",
+  "pci_database_onboarding_content2": "Wybierz odpowiednią bazę danych z szerokiej gamy silników open source i uruchom ją as a Service. Dzięki temu Twoi programiści będą mogli skupić się na tworzeniu aplikacji.",
+  "pci_database_onboarding_content3": "Zarządzamy infrastrukturą i administrujemy Twoimi bazami danych. Oszczędzasz czas i pieniądze, które wykorzystasz na tworzenie i wdrażanie aplikacje cloud.",
+  "pci_database_onboarding_action_label": "Tworzenie instancji bazy danych",
+  "pci_database_guides_documentation_title": "Dokumentacja baz danych",
+  "pci_database_guides_documentation_description": "Zapoznaj się z dokumentacją dotyczącą naszych baz danych.",
+  "pci_database_guides_public-cloud-database_title": "Co to jest Public Cloud Database?",
+  "pci_database_guides_public-cloud-database_description": "Dowiedz się, jak wdrożyć bazy danych w ramach usługi Public Cloud",
+  "pci_database_guides_deploy-database_title": "Uruchom Twoją pierwszą bazę danych",
+  "pci_database_guides_deploy-database_description": "Dowiedz się, jak szybko zainstalować pierwszą bazę danych w managerze.",
+  "pci_database_guides_troubleshooting_title": "Zarządzanie usuwaniem błędów",
+  "pci_database_guides_troubleshooting_description": ""
+}

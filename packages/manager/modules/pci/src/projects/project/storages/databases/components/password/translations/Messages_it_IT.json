@@ -1,0 +1,14 @@
+{
+  "pci_database_password_label": "La password",
+  "pci_database_password_description": "Per accedere al cluster è necessario inserire una password",
+  "pci_database_password_placeholder": "Inserisci la password",
+  "pci_database_password_help": "La password deve essere alfanumerica, compresa tra 8 e 32 caratteri e contenere almeno 2 numeri.",
+  "pci_database_password_help_strength": "La tua password non è abbastanza forte",
+  "pci_database_password_help_alphanumeric": "Deve essere alfanumerica [A-Za-z0-9]",
+  "pci_database_password_help_upper_case": "Deve contenere almeno una lettera maiuscola",
+  "pci_database_password_help_number": "Deve contenere almeno due numeri",
+  "pci_database_password_help_length": "Deve contenere tra 8 e 32 caratteri",
+  "pci_database_password_confirm_label": "Conferma la password",
+  "pci_database_password_confirm_placeholder": "Inserisci di nuovo la password",
+  "pci_database_password_confirm_error": "Le password inserite non coincidono"
+}

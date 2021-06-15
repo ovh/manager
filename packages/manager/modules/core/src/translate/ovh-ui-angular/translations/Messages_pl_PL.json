@@ -77,5 +77,15 @@
   "common_password_strong_password": "Silne hasło.",
   "common_criteria_adder_filter_label": "Filtruj",
   "common_back_button_back_to": "Powrót do",
-  "common_back_button_back_to_previous_page": "Powrót do poprzedniej strony"
+  "common_back_button_back_to_previous_page": "Powrót do poprzedniej strony",
+  "common_dual_list_source_heading": "Elementy do wyboru",
+  "common_dual_list_source_placeholder": "Brak elementów do wyboru",
+  "common_dual_list_source_move": "Dodaj",
+  "common_dual_list_source_move_all": "Dodaj wszystko",
+  "common_dual_list_source_search": "Szukaj w treści źródłowej",
+  "common_dual_list_target_heading": "Wybrane elementy",
+  "common_dual_list_target_placeholder": "Brak wybranych elementów",
+  "common_dual_list_target_move": "Usuń",
+  "common_dual_list_target_move_all": "Usuń wszystko",
+  "common_dual_list_target_search": "Szukaj w treści docelowej"
 }

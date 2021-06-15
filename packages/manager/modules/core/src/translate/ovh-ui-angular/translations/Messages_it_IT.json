@@ -77,5 +77,15 @@
   "common_password_strong_password": "Password sicura",
   "common_criteria_adder_filter_label": "Filtra",
   "common_back_button_back_to": "Torna a",
-  "common_back_button_back_to_previous_page": "Torna alla pagina precedente"
+  "common_back_button_back_to_previous_page": "Torna alla pagina precedente",
+  "common_dual_list_source_heading": "Elementi da selezionare",
+  "common_dual_list_source_placeholder": "Nessun elemento da selezionare",
+  "common_dual_list_source_move": "Aggiungi",
+  "common_dual_list_source_move_all": "Aggiungi tutto",
+  "common_dual_list_source_search": "Cerca nel contenuto di partenza",
+  "common_dual_list_target_heading": "Elementi selezionati",
+  "common_dual_list_target_placeholder": "Nessun elemento selezionato",
+  "common_dual_list_target_move": "Elimina",
+  "common_dual_list_target_move_all": "Elimina tutto",
+  "common_dual_list_target_search": "Cerca nel contenuto di destinazione"
 }

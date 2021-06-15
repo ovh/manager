@@ -1,0 +1,15 @@
+{
+  "pci_database_allowed_ip_add": "Ajouter une adresse IP ou bloc d'adresses IP (CIDR)",
+  "pci_database_allowed_ip_update": "Editer une adresse IP ou bloc d'adresses IP (CIDR)",
+  "pci_database_allowed_ip_submit_label": "Confirmer",
+  "pci_database_allowed_ip_cancel_label": "Annuler",
+  "pci_database_allowed_ip_label": "Adresse IP ou IP/masque",
+  "pci_database_allowed_ip_description_label": "Description",
+  "pci_database_allowed_ip_help": "Doit être une IPv4 (ex : 192.168.0.1) ou un bloc d'adresses IP (ex: 192.168.0.1/24)",
+  "pci_database_allowed_ip_placeholder": "Entrez une adresse ou plage réseau IPv4",
+  "pci_database_allowed_ip_exits": "Cette adresse IP est déjà ajoutée",
+  "pci_database_allowed_ip_add_success": "L’adresse IP a bien été ajoutée à la whitelist.",
+  "pci_database_allowed_ip_add_error": "Une erreur est survenue lors de la création de la whitelist : {{message}}",
+  "pci_database_allowed_ip_update_success": "La modification de L'IP est prise en compte.",
+  "pci_database_allowed_ip_update_error": "Une erreur est survenue lors de l'édition de la whitelist : {{message}}"
+}

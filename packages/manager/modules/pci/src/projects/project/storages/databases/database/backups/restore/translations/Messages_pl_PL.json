@@ -1,0 +1,8 @@
+{
+  "pci_databases_backups_restore_title": "Przywróć kopię zapasową",
+  "pci_databases_backups_restore_description": "Chcesz przywrócić kopię zapasową: {{name}}.",
+  "pci_databases_backups_restore_confirm": "Zatwierdź",
+  "pci_databases_backups_restore_cancel": "Anuluj",
+  "pci_databases_backups_restore_success": "Polecenie przywrócenie kopii zapasowej {{name}} zostało utworzone.",
+  "pci_databases_backups_restore_error": "Nie można przywrócić kopii zapasowej: {{message}}."
+}

@@ -1,0 +1,10 @@
+{
+  "pci_databases_general_information_upgrade_version_confirm": "Zaktualizuj wersję",
+  "pci_databases_general_information_upgrade_version_cancel": "Anuluj",
+  "pci_databases_general_information_upgrade_version_description": "Aktualnie korzystasz z wersji {{currentVersion}} {{engine}}. Możesz ją zaktualizować, klikając poniżej na „Zaktualizuj wersję”.",
+  "pci_databases_general_information_upgrade_version_warning": "Po zmianie wersji bazy danych nie będziesz mógł wrócić do niższej wersji.",
+  "pci_databases_general_information_upgrade_version_label": "Wersja",
+  "pci_databases_general_information_upgrade_version_placeholder": "Wybierz wersję",
+  "pci_databases_general_information_upgrade_version_success": "Dyspozycja aktualizacji została przyjęta i zostanie zrealizowana w ciągu kilku minut.",
+  "pci_databases_general_information_upgrade_version_error": "Aktualizacja nie mogła zostać prawidłowo wykonana: {{message}}"
+}

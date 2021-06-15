@@ -1,8 +1,0 @@
-{
- "pci_projects_project_users_delete_title": "Elimina un utente",
- "pci_projects_project_users_delete_submit_label": "Conferma",
- "pci_projects_project_users_delete_cancel_label": "Annulla",
- "pci_projects_project_users_delete_content": "Elimina definitivamente l’utente {{ user }}",
- "pci_projects_project_users_delete_success_message": "L'utente {{ user }} è stato eliminato.",
- "pci_projects_project_users_delete_error_delete": "Si è verificato un errore durante l'eliminazione dell'alert {{ user }}: {{message}}"
-}

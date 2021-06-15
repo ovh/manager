@@ -1,0 +1,306 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import 'moment';
+
+import Backup from '../../../../components/project/storages/databases/backup.class';
+import Database from '../../../../components/project/storages/databases/database.class';
+import Engine from '../../../../components/project/storages/databases/engine.class';
+import Node from '../../../../components/project/storages/databases/node.class';
+
+export default class DatabaseService {
+  /* @ngInject */
+  constructor($http, $q, $translate, CucPriceHelper, Poller) {
+    this.$http = $http;
+    this.$q = $q;
+    this.$translate = $translate;
+    this.CucPriceHelper = CucPriceHelper;
+    this.Poller = Poller;
+  }
+
+  static getIcebergHeaders() {
+    return {
+      headers: {
+        'X-Pagination-Mode': 'CachedObjectList-Pages',
+        'X-Pagination-Size': 50000,
+      },
+    };
+  }
+
+  addNode(projectId, engine, databaseId, flavor, region) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/node`,
+        {
+          flavor,
+          region,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  addRestrictedIp(projectId, engine, databaseId, ip, description) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/ipRestriction`,
+        {
+          ip,
+          description,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  createDatabase(projectId, engine, orderData) {
+    return this.$http
+      .post(`/cloud/project/${projectId}/database/${engine}`, orderData)
+      .then(({ data }) => data);
+  }
+
+  createBackup(projectId, engine, databaseId, description) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/backup`,
+        { description },
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteDatabase(projectId, engine, databaseId) {
+    return this.$http.delete(
+      `/cloud/project/${projectId}/database/${engine}/${databaseId}`,
+    );
+  }
+
+  deleteRestrictedIp(projectId, engine, databaseId, ipBlock) {
+    return this.$http.delete(
+      `/cloud/project/${projectId}/database/${engine}/${databaseId}/ipRestriction/${encodeURIComponent(
+        ipBlock,
+      )}`,
+    );
+  }
+
+  editDatabase(projectId, engine, databaseId, description, plan, version) {
+    return this.$http
+      .put(`/cloud/project/${projectId}/database/${engine}/${databaseId}`, {
+        description,
+        plan,
+        version,
+      })
+      .then(({ data }) => data);
+  }
+
+  editRestrictedIp(projectId, engine, databaseId, ipBlock, description) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/ipRestriction/${encodeURIComponent(
+          ipBlock,
+        )}`,
+        { description },
+      )
+      .then(({ data }) => data);
+  }
+
+  restoreBackup(projectId, engine, databaseId, backupId) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/backup/${backupId}/restore`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getBackups(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/backup`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => map(data, (backup) => new Backup(backup)));
+  }
+
+  getAvailability(projectId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/database/availability`)
+      .then(({ data }) => data);
+  }
+
+  getCapabilities(projectId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/database/capabilities`)
+      .then(({ data }) => data);
+  }
+
+  getEngines(projectId) {
+    return this.$q
+      .all({
+        availability: this.getAvailability(projectId),
+        capabilities: this.getCapabilities(projectId),
+        prices: this.CucPriceHelper.getPrices(projectId),
+      })
+      .then(({ availability, capabilities, prices }) => {
+        availability.forEach((plan) => {
+          set(
+            plan,
+            'hourlyPrice',
+            get(
+              prices,
+              `databases.${plan.engine}-${plan.plan}-${plan.flavor}-launch.hour.consumption`,
+              {},
+            ),
+          );
+          set(
+            plan,
+            'monthlyPrice',
+            get(
+              prices,
+              `databases.${plan.engine}-${plan.plan}-${plan.flavor}-launch.month.consumption`,
+              {},
+            ),
+          );
+          set(
+            plan,
+            'flavor',
+            find(capabilities.flavors, { name: plan.flavor }),
+          );
+          set(plan, 'plan', find(capabilities.plans, { name: plan.plan }));
+        });
+        return capabilities.engines.map(
+          (engine) =>
+            new Engine(
+              engine,
+              availability,
+              capabilities.plans,
+              capabilities.flavors,
+            ),
+        );
+      });
+  }
+
+  getDatabases(projectId, engine) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then((databases) =>
+        databases.data.map((database) => ({
+          ...database,
+          engine,
+        })),
+      );
+  }
+
+  getIpRestrictions(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/ipRestriction`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  getRoles(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/role`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  getNodes(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/node`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  getPrivateNetworks(projectId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/network/private`)
+      .then(({ data: networks }) =>
+        filter(networks, {
+          type: 'private',
+        }),
+      );
+  }
+
+  getSubnets(projectId, networkId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/network/private/${networkId}/subnet`)
+      .then(({ data: subnets }) => subnets);
+  }
+
+  getUsers(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/user`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  addUser(projectId, engine, databaseId, name, password, roles) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/user`,
+        {
+          name,
+          password,
+          roles,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  editUser(projectId, engine, databaseId, userId, password) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/user/${userId}`,
+        { password },
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteUser(projectId, engine, databaseId, userId) {
+    return this.$http.delete(
+      `/cloud/project/${projectId}/database/${engine}/${databaseId}/user/${userId}`,
+    );
+  }
+
+  pollDatabaseStatus(projectId, engine, databaseId) {
+    return this.Poller.poll(
+      `/cloud/project/${projectId}/database/${engine}/${databaseId}`,
+      {},
+      {
+        namespace: `databases_${databaseId}`,
+        method: 'get',
+        successRule: (database) => !new Database(database).isProcessing(),
+      },
+    );
+  }
+
+  pollNodeStatus(projectId, engine, databaseId, nodeId) {
+    return this.Poller.poll(
+      `/cloud/project/${projectId}/database/${engine}/${databaseId}/node/${nodeId} `,
+      {},
+      {
+        namespace: `databases_${databaseId}_${nodeId}`,
+        method: 'get',
+        successRule: (node) => !new Node(node).isProcessing(),
+      },
+    );
+  }
+
+  stopPollingDatabaseStatus(databaseId) {
+    this.Poller.kill({ namespace: `databases_${databaseId}` });
+  }
+
+  stopPollingNodeStatus(databaseId, nodeId) {
+    this.Poller.kill({ namespace: `databases_${databaseId}_${nodeId}` });
+  }
+}

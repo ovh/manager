@@ -3,6 +3,7 @@ import '@ovh-ux/ui-kit';
 
 import blocks from './blocks';
 import cloudArchive from './cloud-archives';
+import databases from './databases';
 import instanceBackups from './instance-backups';
 import objects from './objects';
 import snapshots from './snapshots';
@@ -14,6 +15,7 @@ angular
   .module(moduleName, [
     blocks,
     cloudArchive,
+    databases,
     instanceBackups,
     'oui',
     objects,

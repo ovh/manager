@@ -1,0 +1,42 @@
+<div class="container-fluid px-0 mt-3">
+    <!-- error messages -->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <h2 data-translate="pci_databases_allowed_ip_title"></h2>
+
+    <oui-datagrid class="mt-5" data-rows="$ctrl.allowedIps">
+        <oui-datagrid-column
+            data-title="'pci_databases_allowed_ip_ip_network' | translate"
+            data-property="ip"
+            data-type="string"
+            data-sortable
+            data-searchable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'pci_databases_allowed_ip_description' | translate"
+            data-property="description"
+            data-type="string"
+            data-sortable
+            data-searchable
+        ></oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item data-on-click="$ctrl.openUpdateIp($row)"
+                ><span data-translate="pci_databases_allowed_ip_update"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item data-on-click="$ctrl.openDeleteIp($row)"
+                ><span data-translate="pci_databases_allowed_ip_delete"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+        <oui-datagrid-topbar>
+            <oui-button data-on-click="$ctrl.openAddIp()">
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
+                <span data-translate="pci_databases_allowed_ip_add"></span>
+            </oui-button>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+</div>

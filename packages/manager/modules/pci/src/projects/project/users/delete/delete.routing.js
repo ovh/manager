@@ -16,6 +16,10 @@ export default /* @ngInject */ ($stateProvider) => {
         userId,
       ) => PciProjectsProjectUsersService.get(projectId, userId),
       goBack: /* @ngInject */ (goToUsers) => goToUsers,
+      removeUser: /* @ngInject */ (
+        PciProjectsProjectUsersService,
+        projectId,
+      ) => (user) => PciProjectsProjectUsersService.delete(projectId, user),
     },
   });
 };

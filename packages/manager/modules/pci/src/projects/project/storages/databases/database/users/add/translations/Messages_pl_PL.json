@@ -1,0 +1,10 @@
+{
+  "pci_databases_users_add": "Dodaj użytkownika",
+  "pci_databases_users_add_username_label": "Nazwa użytkownika",
+  "pci_databases_users_add_roles": "Edytuj role",
+  "pci_databases_users_add_roles_available": "Dostępne role",
+  "pci_databases_users_add_roles_selected": "Wybrane role",
+  "pci_databases_users_add_create": "Utwórz użytkownika",
+  "pci_databases_users_add_success_message": "Użytkownik {{username}} został dodany wraz hasłem {{password}}.",
+  "pci_databases_users_add_error_save": "Wystąpił błąd podczas tworzenia użytkownika {{user}}: {{message}}."
+}

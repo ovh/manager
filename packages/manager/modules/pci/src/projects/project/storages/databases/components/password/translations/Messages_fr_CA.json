@@ -1,0 +1,14 @@
+{
+  "pci_database_password_label": "Le mot de passe",
+  "pci_database_password_description": "Un mot de passe est requis pour vous connecter à votre cluster",
+  "pci_database_password_placeholder": "Entrez un mot de passe",
+  "pci_database_password_help": "Votre mot de passe doit contenir au moins 2 nombres, doit être alphanumérique et contenir entre 8 et 32 caractères.",
+  "pci_database_password_help_strength": "Votre mot de passe n'est pas assez fort",
+  "pci_database_password_help_alphanumeric": "Doit être alphanumérique [A-Za-z0-9]",
+  "pci_database_password_help_upper_case": "Doit contenir au moins une majuscule",
+  "pci_database_password_help_number": "Doit contenir au moins 2 nombres",
+  "pci_database_password_help_length": "Doit contenir entre 8 et 32 caractères",
+  "pci_database_password_confirm_label": "Confirmer votre password",
+  "pci_database_password_confirm_placeholder": "Répéter le mot de passe",
+  "pci_database_password_confirm_error": "Non concordance des mots de passe"
+}

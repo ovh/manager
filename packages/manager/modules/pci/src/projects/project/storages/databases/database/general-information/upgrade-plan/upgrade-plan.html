@@ -1,0 +1,38 @@
+<oui-back-button
+    data-previous-page="{{:: 'pci_databases_general_information_upgrade_plan_back' | translate }}"
+    data-on-click="$ctrl.goBack()"
+>
+    <span
+        data-translate="pci_databases_general_information_upgrade_plan"
+    ></span>
+</oui-back-button>
+<oui-message type="warning">
+    <span
+        data-translate="pci_databases_general_information_upgrade_plan_warning"
+    ></span>
+</oui-message>
+<p
+    data-translate="pci_databases_general_information_upgrade_plan_description"
+></p>
+<database-plans-list
+    data-current-plan="$ctrl.currentPlan"
+    data-on-change="$ctrl.onPlanSelect(selectedPlan)"
+    data-plans="$ctrl.plans"
+    data-selected-plan="$ctrl.selectedPlan"
+    data-user="$ctrl.user"
+></database-plans-list>
+<div data-ng-if="$ctrl.upgradingPlan">
+    <oui-spinner data-size="s"></oui-spinner>
+    <span
+        data-translate="pci_databases_general_information_upgrade_plan_processing"
+    ></span>
+</div>
+<oui-form-actions
+    data-ng-if="!$ctrl.upgradingPlan"
+    data-submit-text="{{:: 'pci_databases_general_information_upgrade_plan_confirm' | translate }}"
+    data-cancel-text="{{:: 'pci_databases_general_information_upgrade_plan_cancel' | translate }}"
+    data-on-submit="$ctrl.upgradePlan()"
+    data-on-cancel="$ctrl.cancel()"
+    data-disabled="!$ctrl.selectedPlan"
+>
+</oui-form-actions>
