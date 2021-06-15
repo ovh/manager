@@ -1,3 +1,12 @@
+## [5.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.29.0...@ovh-ux/manager-pci@5.29.1) (2021-06-15)
+
+
+### Bug Fixes
+
+* **pci.storages.databases:** remove guides ([#5117](https://github.com/ovh/manager/issues/5117)) ([101083f](https://github.com/ovh/manager/commit/101083fcb2340e4167cb87372dd4ca1e7ac88bb1))
+
+
+
 # [5.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.28.1...@ovh-ux/manager-pci@5.29.0) (2021-06-15)
 
 
