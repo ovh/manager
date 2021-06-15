@@ -1,3 +1,18 @@
+# [5.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.28.1...@ovh-ux/manager-pci@5.29.0) (2021-06-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1003] ([498f001](https://github.com/ovh/manager/commit/498f001f523316a8a0189861b5903f7b04cd702d))
+* **i18n:** add missing translations [CDS 992] ([f8e2486](https://github.com/ovh/manager/commit/f8e24868e8a6484d203b7b47d4be6eafeb0472b9))
+
+
+### Features
+
+* **pci:** add databases storage ([4067ca7](https://github.com/ovh/manager/commit/4067ca79496e1161932671eb02080ac62b02409e)), closes [#MANAGER-6653](https://github.com/ovh/manager/issues/MANAGER-6653)
+
+
+
 ## [5.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.28.0...@ovh-ux/manager-pci@5.28.1) (2021-06-14)
 
 

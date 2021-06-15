@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.3.3...@ovh-ux/manager-catalog-price@1.4.0) (2021-06-15)
+
+
+### Features
+
+* **pci:** add databases storage ([4067ca7](https://github.com/ovh/manager/commit/4067ca79496e1161932671eb02080ac62b02409e)), closes [#MANAGER-6653](https://github.com/ovh/manager/issues/MANAGER-6653)
+
+
+
 ## [1.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.3.2...@ovh-ux/manager-catalog-price@1.3.3) (2021-03-02)
 
 

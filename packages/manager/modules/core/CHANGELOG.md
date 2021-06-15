@@ -1,3 +1,13 @@
+## [12.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.3.0...@ovh-ux/manager-core@12.3.1) (2021-06-15)
+
+
+### Bug Fixes
+
+* **core:** add translations for dual list component ([f338c52](https://github.com/ovh/manager/commit/f338c523adb3393ae1e0fb50483f0dde3069ac5a)), closes [#MANAGER-7125](https://github.com/ovh/manager/issues/MANAGER-7125)
+* **i18n:** add missing translations [CDS 1003] ([498f001](https://github.com/ovh/manager/commit/498f001f523316a8a0189861b5903f7b04cd702d))
+
+
+
 # [12.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.2.0...@ovh-ux/manager-core@12.3.0) (2021-05-27)
 
 
