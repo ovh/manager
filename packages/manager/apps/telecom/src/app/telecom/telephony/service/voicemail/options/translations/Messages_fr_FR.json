@@ -1,7 +1,7 @@
 {
   "telephony_line_answer_voicemail_options_recording_title": "Accueil et enregistrement des messages",
   "telephony_line_answer_voicemail_options_recording": "Enregistrement des messages :",
-  "telephony_line_answer_voicemail_options_notifications": "Activation des notifications :",
+  "telephony_line_answer_voicemail_options_notifications": "Conserver les messages après envoi des notifications :",
   "telephony_line_answer_voicemail_options_recording_disable_warn": "La désactivation de l'enregistrement des messages vocaux suspendra l'envoi des e-mails avec message joint en attachement.",
   "telephony_line_answer_voicemail_options_greetings": "Message d'accueil du répondeur :",
   "telephony_line_answer_voicemail_options_recording_greet": "Pré-annonce",
