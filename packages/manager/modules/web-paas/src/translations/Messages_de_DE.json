@@ -4,7 +4,6 @@
   "web_paas_region": "Region",
   "web_paas_status": "Projektstatus",
   "web_paas_plan_type": "Reihe",
-  "web_paas_plan_rennewal_date": "Verlängerungsdatum",
   "web_paas_plan_vcpu": "vCPU",
   "web_paas_plan_env": "Umgebung",
   "web_paas_plan_storage": "Speicher",
