@@ -1,0 +1,39 @@
+<oui-modal
+    data-heading="{{ 'pci_projects_project_storages_containers_container_addUser_'+ ($ctrl.archive ? 'archive' : 'object') + '_title' | translate }}"
+    data-primary-action="$ctrl.addUserStorage()"
+    data-primary-label="{{:: 'pci_projects_project_storages_containers_container_addUser_submit_label' | translate }}"
+    data-primary-disabled="$ctrl.isLoading"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'pci_projects_project_storages_containers_container_addUser_cancel_label' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading"
+>
+    <div data-ng-if="$ctrl.container">
+        <div data-ng-if="$ctrl.addUserStep === 0">
+            <oui-radio-group
+                model="$ctrl.selectedUser"
+                data-on-change="$ctrl.onUserSelect()"
+            >
+                <oui-radio
+                    ng-repeat="user in $ctrl.availableUsers track by $index"
+                    value="user.id"
+                    >{{ user.description }}</oui-radio
+                >
+            </oui-radio-group>
+        </div>
+        <div data-ng-if="$ctrl.addUserStep === 1">
+            <oui-radio-group
+                model="$ctrl.selectedRole"
+                on-change="$ctrl.onRoleSelect(modelValue)"
+            >
+                <oui-radio
+                    ng-repeat="role in $ctrl.OBJECT_CONTAINER_USER_ROLES track by $index"
+                    value="role"
+                    >{{
+                    'pci_projects_project_storages_containers_container_addUser_right_'
+                    + role | translate }}</oui-radio
+                >
+            </oui-radio-group>
+        </div>
+    </div>
+</oui-modal>

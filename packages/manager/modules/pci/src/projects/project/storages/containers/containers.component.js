@@ -10,6 +10,7 @@ export default {
     containerLink: '<',
     containers: '<',
     deleteContainer: '<',
+    addUserContainer: '<',
     goToStorageContainers: '<',
     guideUrl: '<',
     projectId: '<',

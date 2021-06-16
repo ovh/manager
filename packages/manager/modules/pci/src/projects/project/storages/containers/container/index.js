@@ -8,6 +8,7 @@ import 'ovh-api-services';
 import 'angular-ui-bootstrap';
 
 import deleteContainer from './delete';
+import addUser from './addUser';
 import object from './object';
 import component from './container.component';
 
@@ -16,6 +17,7 @@ const moduleName = 'ovhManagerPciStoragesContainersContainer';
 angular
   .module(moduleName, [
     deleteContainer,
+    addUser,
     object,
     'ngTranslateAsyncLoader',
     'oui',
