@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import includes from 'lodash/includes';
+import config from '../../config/config';
 
 export default class AccountUserContactsController {
   /* @ngInject */
@@ -9,7 +10,6 @@ export default class AccountUserContactsController {
     $scope,
     $state,
     $timeout,
-    AccountCreationURLS,
     Alerter,
     atInternet,
     coreConfig,
@@ -19,7 +19,6 @@ export default class AccountUserContactsController {
     this.$scope = $scope;
     this.$state = $state;
     this.$timeout = $timeout;
-    this.AccountCreationURLS = AccountCreationURLS;
     this.Alerter = Alerter;
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
@@ -64,8 +63,8 @@ export default class AccountUserContactsController {
     const subs = get(this.user, 'ovhSubsidiary', 'default');
     const languageSpecificSubs = '{$language}_{$subs}';
     const newNicUrl =
-      this.AccountCreationURLS[languageSpecificSubs] ||
-      this.AccountCreationURLS[subs];
+      config.constants.accountCreation[languageSpecificSubs] ||
+      config.constants.accountCreation[subs];
     return newNicUrl;
   }
 

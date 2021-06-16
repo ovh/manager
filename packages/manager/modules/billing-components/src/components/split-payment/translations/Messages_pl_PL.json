@@ -1,0 +1,16 @@
+{
+  "billing_payment_method_split_payment_title": "Split Payment",
+  "billing_payment_method_split_payment_information": "Mechanizm Split Payment ma zastosowanie w spółkach, stowarzyszeniach i podmiotach powiązanych lub kontrolowanych przez organy administracji publicznej, które figurują w oficjalnych wykazach.",
+  "billing_payment_method_split_payment_activate": "Włącz Split Payment",
+  "billing_payment_method_split_payment_deactivate": "Wyłącz Split Payment",
+  "billing_payment_method_split_payment_cancel": "Anuluj",
+  "billing_payment_method_split_payment_active": "Aktywny",
+  "billing_payment_method_split_payment_inactive": "Nieaktywny",
+  "billing_payment_method_split_payment_activating": "Oczekiwanie na zatwierdzenie",
+  "billing_payment_method_split_payment_deactivating": "Trwa wyłączanie",
+  "billing_payment_method_split_payment_information_link": "Informacje o Split Payment",
+  "billing_payment_method_split_payment_activate_success": "Dyspozycja włączenia Split Payment została przyjęta.",
+  "billing_payment_method_split_payment_activate_error": "Wystąpił błąd podczas włączania Split Payment. ",
+  "billing_payment_method_split_payment_deactivate_success": "Dyspozycja wyłączenia Split Payment została przyjęta.",
+  "billing_payment_method_split_payment_deactivate_error": "Wystąpił błąd podczas wyłączania Split Payment."
+}

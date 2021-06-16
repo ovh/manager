@@ -1,6 +1,6 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
-import ovhManagerBilling from '@ovh-ux/manager-billing';
+import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import 'ovh-api-services';
 
@@ -12,7 +12,7 @@ angular
   .module(moduleName, [
     'ui.router',
     'ovh-api-services',
-    ovhManagerBilling,
+    ovhManagerBillingComponents,
     ngAtInternet,
   ])
   .config(routing);

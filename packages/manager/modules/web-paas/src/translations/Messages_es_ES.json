@@ -4,7 +4,6 @@
   "web_paas_region": "Región",
   "web_paas_status": "Estado del proyecto",
   "web_paas_plan_type": "Gama",
-  "web_paas_plan_rennewal_date": "Fecha de renovación",
   "web_paas_plan_vcpu": "vCPU",
   "web_paas_plan_env": "Entorno",
   "web_paas_plan_storage": "Almacenamiento",

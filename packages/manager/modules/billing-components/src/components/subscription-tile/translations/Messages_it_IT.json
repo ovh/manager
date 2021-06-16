@@ -1,0 +1,17 @@
+{
+  "manager_billing_subscription": "Abbonamento",
+  "manager_billing_subscription_creation": "Data di creazione",
+  "manager_billing_subscription_next_due_date": "Prossima scadenza",
+  "manager_billing_subscription_engagement": "Impegno contrattuale",
+  "manager_billing_subscription_engagement_status_none": "Nessuno",
+  "manager_billing_subscription_contacts": "Contatti",
+  "manager_billing_subscription_contacts_admin": "Amministratore",
+  "manager_billing_subscription_contacts_tech": "Tecnico",
+  "manager_billing_subscription_contacts_billing": "Fatturazione",
+  "manager_billing_subscription_contacts_management": "Gestisci i contatti",
+  "manager_billing_subscription_error": "Si è verificato un errore durante il recupero delle informazioni: {{ message }}",
+  "manager_billing_subscription_engagement_commit": "Sottoscrivi un impegno contrattuale e usufruisci di uno sconto",
+  "manager_billing_subscription_engagement_commit_again": "Sottoscrivi un nuovo impegno contrattuale e usufruisci di uno sconto",
+  "manager_billing_subscription_engagement_status_engaged": "Termina il {{ endDate }}",
+  "manager_billing_subscription_engagement_status_engaged_expired": "Terminato il {{ endDate }}"
+}

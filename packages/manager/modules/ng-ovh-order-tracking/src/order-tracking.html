@@ -1,0 +1,137 @@
+<div class="order-tracking">
+    <oui-back-button data-on-click="$ctrl.onBackButtonClick()">
+        <span
+            data-translate="order_tracking_title"
+            data-translate-values="{ orderId: $ctrl.orderId }"
+        ></span>
+    </oui-back-button>
+
+    <div class="text-center">
+        <oui-spinner data-ng-if="$ctrl.isLoading" size="l"> </oui-spinner>
+    </div>
+
+    <oui-message type="error" data-ng-if="$ctrl.error">
+        <p>
+            <strong data-translate="order_tracking_error"></strong>
+        </p>
+        <p data-ng-bind="$ctrl.error.message"></p>
+        <p>
+            <small data-ng-bind="$ctrl.error.queryId"></small>
+        </p>
+        <oui-button data-variant="secondary" data-on-click="$ctrl.refresh()">
+            <span data-translate="order_tracking_try_again"></span>
+        </oui-button>
+    </oui-message>
+
+    <oui-message type="info" class="my-3" data-ng-if="!$ctrl.isLoading">
+        <p data-translate="order_tracking_bare_metal_delivery_delay"></p>
+    </oui-message>
+
+    <div data-ng-if="$ctrl.order">
+        <oui-spinner data-ng-if="!$ctrl.orderFollowUp" size="m"> </oui-spinner>
+        <div class="oui-progress-tracker" data-ng-if="$ctrl.orderFollowUp">
+            <ol class="oui-progress-tracker__steps">
+                <li
+                    class="oui-progress-tracker__step"
+                    data-ng-repeat="followUp in $ctrl.orderFollowUp track by $index"
+                    data-ng-class="{
+                        'oui-progress-tracker__step_complete': followUp.status === 'DONE',
+                        'oui-progress-tracker__step_active': followUp.status === 'DOING',
+                        'oui-progress-tracker__step_error': followUp.status === 'ERROR',
+                    }"
+                >
+                    <span class="oui-progress-tracker__status">
+                        <span
+                            class="oui-progress-tracker__label"
+                            data-translate="{{:: 'order_tracking_step_' + followUp.step }}"
+                        >
+                        </span>
+                    </span>
+                </li>
+            </ol>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mt-4">
+                <oui-tile
+                    data-heading="{{:: 'order_tracking_status' | translate }}"
+                >
+                    <oui-spinner data-ng-if="!$ctrl.orderHistory" size="m">
+                    </oui-spinner>
+                    <oui-tile-definition
+                        data-ng-repeat="event in $ctrl.orderHistory.slice(0, $ctrl.maxHistoryLength) track by $index"
+                    >
+                        <oui-tile-description>
+                            <div class="row">
+                                <strong
+                                    class="text-nowrap col-lg-4 col-xs-12"
+                                    data-ng-class="{ 'oui-color-p-800-text': $index > 0 }"
+                                >
+                                    <span
+                                        data-ng-bind="event.date | date:'medium'"
+                                    ></span>
+                                </strong>
+                                <strong
+                                    class="text-nowrap col-lg-8 col-xs-12"
+                                    data-ng-class="{ 'oui-color-p-800-text': $index > 0 }"
+                                    data-translate="{{ 'order_tracking_history_' + event.label }}"
+                                >
+                                </strong>
+                            </div>
+                            <div class="row">
+                                <span
+                                    class="text-break col-lg-8 offset-lg-4"
+                                    data-ng-class="{ 'oui-color-p-800-text': $index > 0 }"
+                                    data-translate="{{ 'order_tracking_history_details_' + event.label }}"
+                                    data-translate-compile
+                                    data-translate-values="{
+                                          billingUrl: $ctrl.billingUrl,
+                                          url: $ctrl.order.url,
+                                          helpUrl: $ctrl.HELP_URL,
+                                          paymentUrl: $ctrl.PAYMENT_METHOD_URL,
+                                      }"
+                                ></span>
+                            </div>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <oui-tile-definition
+                        data-ng-if="$ctrl.orderHistory.length === 0"
+                    >
+                        <oui-tile-description>
+                            <span
+                                data-translate="order_tracking_no_history"
+                            ></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <div
+                        data-ng-if="$ctrl.orderHistory.length > $ctrl.maxHistoryLength"
+                    >
+                        <oui-tile-definition></oui-tile-definition>
+                        <div class="text-center">
+                            <oui-button
+                                data-on-click="$ctrl.maxHistoryLength = Number.SAFE_MAX_INTEGER"
+                            >
+                                <span
+                                    data-translate="order_tracking_status_more"
+                                ></span>
+                            </oui-button>
+                        </div>
+                    </div>
+                </oui-tile>
+            </div>
+            <div class="col-md-6 mt-4">
+                <oui-tile
+                    data-heading="{{:: 'order_tracking_details' | translate }}"
+                >
+                    <oui-spinner data-ng-if="!$ctrl.orderDetails" size="m">
+                    </oui-spinner>
+                    <oui-tile-definition
+                        data-description="{{ detail.quantity + ' × ' + detail.description }}"
+                        data-ng-repeat="detail in $ctrl.orderDetails track by detail.orderDetailId"
+                    >
+                    </oui-tile-definition>
+                </oui-tile>
+            </div>
+        </div>
+    </div>
+</div>

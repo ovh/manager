@@ -3,7 +3,7 @@
   @import 'bootstrap4/scss/_variables.scss';
   @import 'bootstrap4/scss/_mixins.scss';
   @import 'bootstrap4/scss/_utilities.scss';
-  @import '~@ovh-ux/manager-hub/src/variables.scss';
+  @import '@ovh-ux/manager-hub/src/variables.scss';
 
   h3 {
     display: inline-block;

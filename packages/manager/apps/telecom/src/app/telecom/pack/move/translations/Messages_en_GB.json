@@ -238,5 +238,6 @@
   "pack_move_resume_move_out_date": "You have requested a line setup date for the {{ moveOutDate }}.",
   "pack_move_resume_contact_owner": "Contact information",
   "pack_move_resume_contact_phone": "Telephone number you can be reached on, if required",
-  "pack_move_resume_phone_form_error": "The number you enter must be valid."
+  "pack_move_resume_phone_form_error": "The number you enter must be valid.",
+  "pack_move_promotion_installation_fees_offered": "Setup fees included"
 }

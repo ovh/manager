@@ -220,7 +220,6 @@ export default (containerEl, environment) => {
         'ui.utils',
         'ui.validate',
         uiRouter,
-        'UserAccount',
         userContracts,
         'xeditable',
         ovhManagerCda,

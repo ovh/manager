@@ -39,22 +39,20 @@
         </oui-header>
 
         <div>
-            <div data-ng-if="!TerminateServiceCtrl.userLoading">
-                <oui-message
-                    data-type="warning"
-                    data-ng-if="TerminateServiceCtrl.USVersion"
-                    ><span
-                        data-translate="terminate_service_legacy_information_text"
-                    ></span
-                ></oui-message>
-                <oui-message
-                    data-type="warning"
-                    data-ng-if="!TerminateServiceCtrl.USVersion"
-                    ><span
-                        data-translate="terminate_service_legacy_information_text_non_US"
-                    ></span
-                ></oui-message>
-            </div>
+            <oui-message
+                data-type="warning"
+                data-ng-if="TerminateServiceCtrl.USVersion"
+                ><span
+                    data-translate="terminate_service_legacy_information_text"
+                ></span
+            ></oui-message>
+            <oui-message
+                data-type="warning"
+                data-ng-if="!TerminateServiceCtrl.USVersion"
+                ><span
+                    data-translate="terminate_service_legacy_information_text_non_US"
+                ></span
+            ></oui-message>
 
             <h4
                 class="mt-5 oui-heading_4"
@@ -208,7 +206,6 @@
                         data-translate="terminate_service_legacy_confirm"
                         data-ng-click="TerminateServiceCtrl.confirmTermination()"
                         data-ng-disabled="TerminateServiceCtrl.loading ||
-                                              TerminateServiceCtrl.userLoading ||
                                               !TerminateServiceCtrl.reason ||
                                               TerminateServiceCtrl.terminating"
                     ></button>

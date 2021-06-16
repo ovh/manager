@@ -12,7 +12,7 @@ export default /* @ngInject */ function UserAccountAgreementsDtailsController(
   Alerter,
   agreementId,
   $translate,
-  User,
+  coreConfig,
   coreURLBuilder,
 ) {
   const CGV_AGREEMENT_ID = 1635;
@@ -28,9 +28,9 @@ export default /* @ngInject */ function UserAccountAgreementsDtailsController(
     $q.all([
       UserAccountServicesAgreements.getAgreement(agreementId),
       UserAccountServicesAgreements.getContract(agreementId),
-      User.getUser(),
     ])
-      .then(([agreement, contract, user]) => {
+      .then(([agreement, contract]) => {
+        const user = coreConfig.getUser();
         this.agreement = agreement;
         this.contract = contract;
         this.isIndividual = user.legalform === 'individual';

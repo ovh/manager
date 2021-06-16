@@ -1,5 +1,11 @@
 import get from 'lodash/get';
 
+import {
+  SSH_CREATE_GUIDES,
+  SSH_ADD_GUIDES,
+  SSH_CHANGE_GUIDES,
+} from './user-ssh-guides';
+
 export default class UserAccountSshCtrl {
   /* @ngInject */
   constructor(
@@ -8,8 +14,8 @@ export default class UserAccountSshCtrl {
     $timeout,
     $translate,
     UseraccountSshService,
-    User,
     constants,
+    coreConfig,
     $log,
     Alerter,
   ) {
@@ -17,8 +23,8 @@ export default class UserAccountSshCtrl {
     this.$q = $q;
     this.$translate = $translate;
     this.UseraccountSshService = UseraccountSshService;
-    this.User = User;
     this.constants = constants;
+    this.coreConfig = coreConfig;
     this.$log = $log;
     this.Alerter = Alerter;
     this.$timeout = $timeout;
@@ -116,29 +122,20 @@ export default class UserAccountSshCtrl {
     this.getSshKeys();
   }
 
-  getGuideUrl(language, guideName) {
-    return (
-      this.constants.urls[language].guides[guideName] ||
-      this.constants.URLS.GB.guides[guideName]
-    );
-  }
-
   initGuides() {
-    this.guidesLoading = true;
-    return this.User.getUser()
-      .then((user) => {
-        this.guides = {
-          sshCreate: this.getGuideUrl(user.ovhSubsidiary, 'sshCreate'),
-          sshAdd: this.getGuideUrl(user.ovhSubsidiary, 'sshAdd'),
-          sshChange: this.getGuideUrl(user.ovhSubsidiary, 'sshChange'),
-        };
-        this.user = user;
-      })
-      .catch((error) => {
-        this.$log.error(error);
-      })
-      .finally(() => {
-        this.guidesLoading = false;
-      });
+    this.user = this.coreConfig.getUser();
+    this.guides = {
+      sshCreate: get(
+        SSH_CREATE_GUIDES,
+        this.user.ovhSubsidiary,
+        SSH_CREATE_GUIDES.FR,
+      ),
+      sshAdd: get(SSH_ADD_GUIDES, this.user.ovhSubsidiary, SSH_ADD_GUIDES.FR),
+      sshChange: get(
+        SSH_CHANGE_GUIDES,
+        this.user.ovhSubsidiary,
+        SSH_CHANGE_GUIDES.FR,
+      ),
+    };
   }
 }

@@ -22,7 +22,7 @@
     "@ovh-ux/manager-preloader": "^1.0.0",
     "@ovh-ux/ng-at-internet": "^5.6.1",
     "@ovh-ux/ng-ovh-http": "^5.0.1",
-    "@ovh-ux/ng-ovh-order-tracking": "^1.1.1",
+    "@ovh-ux/ng-ovh-order-tracking": "^1.1.1 || ^2.0.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.4.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.2",

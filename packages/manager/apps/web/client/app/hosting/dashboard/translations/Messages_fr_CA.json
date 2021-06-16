@@ -36,7 +36,6 @@
   "hosting_dashboard_disk_usage_total": "Espace utilisé :",
   "hosting_dashboard_disk_usage_configuration": "{{t0}} sont alloués à la configuration du serveur",
   "hosting_dashboard_trafic_usage": "Traffic utilisé",
-  "hosting_dashboard_hosting_activities": "Activités de l’hébergement",
   "hosting_dashboard_php_support_SECURITY_FIXES": "Vous utilisez actuellement une version de PHP qui n'évoluera plus. Seules les failles de sécurité seront corrigées. Vous pouvez mettre à jour cette version en utilisant le bouton \"modifier la configuration\" situé sur la droite. Le changement de version peut impacter le fonctionnement de vos sites Web.",
   "hosting_dashboard_php_support_END_OF_LIFE": "Vous utilisez actuellement une version de PHP qui n'est plus maintenue. Vous pouvez mettre à jour cette version en utilisant le bouton \"modifier la configuration\" situé sur la droite. Le changement de version peut impacter le fonctionnement de vos sites Web.",
   "hosting_dashboard_php_support_BETA": "Version beta",
@@ -1378,8 +1377,5 @@
   "hosting_dashboard_service_common_inactive": "Inactif",
   "hosting_dashboard_email_offer_get_error": "Impossible de récupérer l'adresse e-mail",
   "hosting_dashboard_stats_status": "Bêta",
-  "hosting_dashboard_service_setting_cdn": "Paramétrer le CDN",
-  "hosting_dashboard_tabs_dropdown": "Plus",
-  "hosting_dashboard_service_cdn_customer_has_no_cdn_banner_msg": "L’option Shared CDN permet d’améliorer les performances de votre site tout en vous apportant plus de souplesse d’utilisation.",
-  "hosting_dashboard_service_cdn_customer_has_no_cdn_banner_msg_link": "En savoir plus"
+  "hosting_dashboard_tabs_dropdown": "Plus"
 }

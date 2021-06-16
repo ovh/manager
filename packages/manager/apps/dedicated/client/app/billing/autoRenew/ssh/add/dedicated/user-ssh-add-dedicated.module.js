@@ -11,7 +11,7 @@ const moduleName = 'ovhManagerBillingAutorenewSshAddDedicated';
 
 angular
   .module(moduleName, [angularTranslate, ngAtInternet, 'oui', uiRouter])
-  .controller('UserAccount.controllers.ssh.dedicated.add', controller)
+  .controller('UserAccountSshDedicatedAdd', controller)
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(

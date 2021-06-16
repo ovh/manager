@@ -4,7 +4,7 @@ import map from 'lodash/map';
 import some from 'lodash/some';
 import values from 'lodash/values';
 
-angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
+export default [
   '$scope',
   '$q',
   '$translate',
@@ -222,4 +222,4 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
 
     /* -----  End of INITIALIZATION  ------ */
   },
-]);
+];

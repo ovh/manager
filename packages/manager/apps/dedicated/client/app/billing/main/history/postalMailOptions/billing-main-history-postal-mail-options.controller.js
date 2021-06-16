@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 
-export default /* @ngInject */ class {
+export default class {
+  /* @ngInject */
   constructor(
     $translate,
     $uibModalInstance,

@@ -1,9 +1,9 @@
 hub-payment-status {
-  @import '~bootstrap/scss/_functions';
-  @import '~bootstrap/scss/_variables';
-  @import '~bootstrap/scss/_mixins';
-  @import '~bootstrap/scss/_utilities.scss';
-  @import '~@ovh-ux/ui-kit/dist/scss/_tokens';
+  @import 'bootstrap/scss/_functions';
+  @import 'bootstrap/scss/_variables';
+  @import 'bootstrap/scss/_mixins';
+  @import 'bootstrap/scss/_utilities.scss';
+  @import '@ovh-ux/ui-kit/dist/scss/_tokens';
 
   .hub-payment-status_small {
     font-size: $mercury-font-size;

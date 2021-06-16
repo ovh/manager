@@ -1,8 +1,8 @@
-@import '~@ovh-ux/ui-kit/dist/scss/_tokens';
-@import '~bootstrap4/scss/_functions';
-@import '~bootstrap4/scss/_variables';
-@import '~bootstrap4/scss/_mixins';
-@import '~bootstrap4/scss/_utilities.scss';
+@import '@ovh-ux/ui-kit/dist/scss/_tokens';
+@import 'bootstrap4/scss/_functions';
+@import 'bootstrap4/scss/_variables';
+@import 'bootstrap4/scss/_mixins';
+@import 'bootstrap4/scss/_utilities.scss';
 
 a.oui-tile {
   background-color: $p-075;

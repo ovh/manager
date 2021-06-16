@@ -1,13 +1,13 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
-import ovhManagerBilling from '@ovh-ux/manager-billing';
+import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 
 import routing from './vps-commitment.routing';
 
 const moduleName = 'ovhManagerVpsCommitment';
 
 angular
-  .module(moduleName, ['ui.router', ovhManagerBilling])
+  .module(moduleName, ['ui.router', ovhManagerBillingComponents])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

@@ -4,7 +4,7 @@ import find from 'lodash/find';
 import {
   SPLIT_PAYMENT,
   SPLIT_PAYMENT_FEATURE_NAME,
-} from '@ovh-ux/manager-billing';
+} from '@ovh-ux/manager-billing-components';
 
 import component from './component';
 
@@ -34,8 +34,6 @@ export default /* @ngInject */ (
           : $state.go(
               'app.account.billing.payment.method.activateSplitPayment',
             ),
-
-      guides: /* @ngInject */ (User) => User.getUrlOf('guides'),
 
       paymentMethods: /* @ngInject */ (
         OVH_PAYMENT_MEAN_STATUS,

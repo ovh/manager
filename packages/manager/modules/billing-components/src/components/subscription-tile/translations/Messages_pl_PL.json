@@ -1,0 +1,17 @@
+{
+  "manager_billing_subscription": "Abonament",
+  "manager_billing_subscription_creation": "Data utworzenia",
+  "manager_billing_subscription_next_due_date": "Przyszła data wygaśnięcia",
+  "manager_billing_subscription_engagement": "Zobowiązanie",
+  "manager_billing_subscription_engagement_status_none": "Brak",
+  "manager_billing_subscription_contacts": "Kontakty",
+  "manager_billing_subscription_contacts_admin": "Administrator",
+  "manager_billing_subscription_contacts_tech": "Kontakt techniczny",
+  "manager_billing_subscription_contacts_billing": "Płatności",
+  "manager_billing_subscription_contacts_management": "Zarządzanie kontaktami",
+  "manager_billing_subscription_error": "Wystąpił błąd podczas pobierania informacji: {{message}}",
+  "manager_billing_subscription_engagement_commit": "Wybierz opcję umowy terminowej i skorzystaj z rabatu",
+  "manager_billing_subscription_engagement_commit_again": "Wybierz ponowie opcję umowy terminowej i skorzystaj z rabatu",
+  "manager_billing_subscription_engagement_status_engaged": "Kończy się w dniu {{endDate}}",
+  "manager_billing_subscription_engagement_status_engaged_expired": "Zakończona dnia {{endDate}}"
+}

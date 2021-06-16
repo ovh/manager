@@ -1,6 +1,6 @@
 {
-  "hosting_database_order_private_title": "Ordina un SQL privato",
-  "hosting_database_order_private_description": "È necessario disporre di un hosting per ordinare le opzioni Private SQL e Start SQL.",
+  "hosting_database_order_private_title": "Ordina un SQL Privato",
+  "hosting_database_order_private_description": "È necessario disporre di un hosting per ordinare le opzioni SQL Privato e Start SQL.",
   "hosting_database_order_private_step_header_type": "Tipo di banca dati",
   "hosting_database_order_private_step_header_customize": "Personalizzazione",
   "hosting_database_order_private_step_header_duration": "Seleziona la durata",
@@ -14,7 +14,7 @@
   "hosting_database_order_private_select_placeholder": "Seleziona...",
   "hosting_database_order_private_type": "Quale offerta database vuoi attivare?",
   "hosting_database_order_private_type_label": "SQL Privato",
-  "hosting_database_order_private_type_text": "Database con performance RAM garantite per il tuo hosting Web OVH",
+  "hosting_database_order_private_type_text": "Database con performance RAM garantite per il tuo hosting Web OVHcloud",
   "hosting_database_order_private_hosting": "Hosting",
   "hosting_database_order_private_ram": "RAM",
   "hosting_database_order_private_version": "Versione",

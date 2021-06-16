@@ -1,3 +1,0 @@
-export = {
-  mode: 'production',
-};

@@ -9,12 +9,13 @@
   "sign_up_activity_field_vat_personalcorporation_more": "Business identification number ({{ vatLabel }})",
   "sign_up_activity_field_organisation_association": "Association name",
   "sign_up_activity_field_organisation_corporation": "Company name",
-  "sign_up_activity_field_organisation_administration": "Administration name",
+  "sign_up_activity_field_organisation_administration": "Company name",
   "sign_up_activity_field_organisation_personalcorporation": "Individual company name",
-  "sign_up_activity_field_organisation": "Organisation",
+  "sign_up_activity_field_organisation": "Company name",
   "sign_up_activity_field_corporationType": "Type of company ",
   "sign_up_activity_field_nationalIdentificationNumber": "National identification number",
   "sign_up_activity_field_companyNationalIdentificationNumber": "National identification number",
-  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "National French business identification number (SIREN)",
-  "sign_up_activity_field_italian_sdi": "Recipient code for electronic billing (SDI)"
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "National identification number (SIRET)",
+  "sign_up_activity_field_italian_sdi": "Recipient code for electronic billing (SDI)",
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "A SIRET number is required to improve the electronic billing process (Chorus)"
 }

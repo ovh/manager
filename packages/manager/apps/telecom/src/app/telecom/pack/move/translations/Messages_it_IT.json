@@ -81,5 +81,6 @@
   "pack_move_go_back": "Dettagli del pack",
   "pack_move_gtr_available": "GTR OVHcloud disponibile",
   "pack_move_gtr_add": "Aggiungi la GTR OVHcloud",
-  "pack_move_confirm_resume_gtr_ovh": "Opzione GTR OVHcloud (se compatibile)"
+  "pack_move_confirm_resume_gtr_ovh": "Opzione GTR OVHcloud (se compatibile)",
+  "pack_move_promotion_installation_fees_offered": "Spese di attivazione incluse"
 }

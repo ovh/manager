@@ -10,7 +10,7 @@
   "telephony_group_billing_group_repayments_detail_total_call_singular": "{{ call }} Appel",
   "telephony_group_billing_group_repayments_detail_total_call_plural": "{{ call }} Appels",
   "telephony_group_billing_group_repayments_detail_total_call_empty": "Aucun Appel",
-  "telephony_group_billing_group_repayments_detail_total_duration_price": "({{ totalDuration }}sec.) soit {{ totalPrice }} HT",
+  "telephony_group_billing_group_repayments_detail_total_duration_price": "({{ totalDuration }}Sek.), das ergibt {{ totalPrice }} {{ currency }} inkl. MwSt.",
   "telephony_group_billing_group_repayments_detail_total_label": "Total :",
   "telephony_group_billing_group_repayments_total_title": "Total des reversements",
   "telephony_group_billing_group_repayments_total_differed_label": "Zeitversetzt",

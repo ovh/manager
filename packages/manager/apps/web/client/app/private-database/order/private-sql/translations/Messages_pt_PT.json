@@ -1,6 +1,6 @@
 {
-  "private_database_order_private_sql_title": "Ordem de SQL Privado",
-  "private_database_order_private_sql_error": "Erro ao ordenar um banco de dados SQL: {{message}}",
-  "private_database_order_private_sql_success": "Sua <a href=\"{{orderUrl}}\" target=\"_blank\">ordem de compra</a> foi gerada com êxito. O seu alojamento será ativado quando o validar.",
-  "private_database_order_private_sql_success_activation": "Sua ativação foi concluída com êxito. O seu produto ficará ativo dentro de alguns instantes."
+  "private_database_order_private_sql_title": "Encomendar um SQL Privado",
+  "private_database_order_private_sql_error": "Ocorreu um erro aquando da encomenda de uma base de dados SQL: {{message}}.",
+  "private_database_order_private_sql_success": "A sua <a href=\"{{orderUrl}}\" target=\"_blank\">nota de encomenda</a> foi gerada com sucesso. O seu produto será ativado depois de o ter validado.",
+  "private_database_order_private_sql_success_activation": "A sua ativação foi concluída com êxito. O seu produto ficará ativo dentro de alguns instantes."
 }

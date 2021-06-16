@@ -1,6 +1,6 @@
 {
   "hosting_database_order_private_title": "Ordina un SQL privato",
   "hosting_database_order_private_error": "Si è verificato un errore durante l'ordine di un database SQL: {{message}}",
-  "hosting_database_order_private_success": "Il tuo <a href=\"{{orderUrl}}\" target=\"_blank\">ordine</a> è stato generato. Il vostro prodotto sarà attivato una volta convalidato.",
+  "hosting_database_order_private_success": "Il tuo <a href=\"{{orderUrl}}\" target=\"_blank\">buono d’ordine</a>è stato generato correttamente! Una volta convalidato, il servizio verrà attivato.",
   "hosting_database_order_private_success_activation": "L’attivazione è stata effettuata correttamente. La soluzione scelta sarà attiva entro pochi minuti."
 }

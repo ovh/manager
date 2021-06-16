@@ -1,0 +1,17 @@
+{
+  "manager_billing_subscription": "Abonnement",
+  "manager_billing_subscription_creation": "Erstellungsdatum",
+  "manager_billing_subscription_next_due_date": "Nächstes Ablaufdatum",
+  "manager_billing_subscription_engagement": "Verpflichtung",
+  "manager_billing_subscription_engagement_status_none": "Keine",
+  "manager_billing_subscription_contacts": "Kontakte",
+  "manager_billing_subscription_contacts_admin": "Administrator",
+  "manager_billing_subscription_contacts_tech": "Technisch",
+  "manager_billing_subscription_contacts_billing": "Abrechnung",
+  "manager_billing_subscription_contacts_management": "Die Kontakte verwalten",
+  "manager_billing_subscription_error": "Beim Abruf der Informationen ist ein Fehler aufgetreten: {{ message }}",
+  "manager_billing_subscription_engagement_commit": "Abonnement mit fester Laufzeit bestellen und von der Ermäßigung profitieren",
+  "manager_billing_subscription_engagement_commit_again": "Abonnement mit fester Laufzeit verlängern und Vorzugspreis sichern",
+  "manager_billing_subscription_engagement_status_engaged": "Läuft ab am {{ endDate }}",
+  "manager_billing_subscription_engagement_status_engaged_expired": "Beendet am {{ endDate }}"
+}

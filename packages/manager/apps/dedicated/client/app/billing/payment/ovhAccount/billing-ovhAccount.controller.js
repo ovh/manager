@@ -13,7 +13,6 @@ export default /* @ngInject */ (
   BillingmessageParser,
   BillingOvhAccount,
   BillingdateRangeSelection,
-  User,
 ) => {
   $scope.ovhAccountLoading = false;
   $scope.ovhAccountsLoading = false;
@@ -26,10 +25,6 @@ export default /* @ngInject */ (
 
   function init() {
     $scope.ovhAccountsLoading = true;
-
-    User.getUser().then((user) => {
-      $scope.user = user;
-    });
 
     return BillingOvhAccount.getOvhAccount()
       .then((ovhAccountList) => {

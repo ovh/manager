@@ -1,7 +1,7 @@
 {
   "telephony_line_answer_voicemail_options_recording_title": "Accueil et enregistrement des messages",
   "telephony_line_answer_voicemail_options_recording": "Enregistrement des messages :",
-  "telephony_line_answer_voicemail_options_notifications": "Activation des notifications :",
+  "telephony_line_answer_voicemail_options_notifications": "Conserver les messages après envoi des notifications :",
   "telephony_line_answer_voicemail_options_recording_disable_warn": "La désactivation de l'enregistrement des messages vocaux suspendra l'envoi des e-mails avec message joint en attachement.",
   "telephony_line_answer_voicemail_options_greetings": "Message d'accueil du répondeur :",
   "telephony_line_answer_voicemail_options_recording_greet": "Pré-annonce",
@@ -23,7 +23,7 @@
   "telephony_line_answer_voicemail_options_mail_add": "Ajouter une adresse e-mail",
   "telephony_line_answer_voicemail_options_mail_add_confirm": "Ajouter",
   "telephony_line_answer_voicemail_options_mail_cancel": "Annuler",
-  "telephony_line_answer_voicemail_options_mail": "Courriel",
+  "telephony_line_answer_voicemail_options_mail": "E-mail",
   "telephony_line_answer_voicemail_options_mail_title": "Adresses e-mail à notifier",
   "telephony_line_answer_voicemail_options_mail_type": "Type de notification...",
   "telephony_line_answer_voicemail_options_mail_empty": "Vous n'avez pas encore configuré d'adresse e-mail à notifier.",

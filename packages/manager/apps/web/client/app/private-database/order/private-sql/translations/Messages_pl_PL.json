@@ -1,6 +1,6 @@
 {
-  "private_database_order_private_sql_title": "Zamówienie prywatnego kodu SQL",
+  "private_database_order_private_sql_title": "Zamów Private SQL",
   "private_database_order_private_sql_error": "Wystąpił błąd podczas zamawiania bazy danych SQL: {{message}}",
   "private_database_order_private_sql_success": "<a href=\"{{orderUrl}}\" target=\"_blank\">Zamówienie</a> zostało wygenerowane. Twoja usługa zostanie włączona, kiedy ją zatwierdzisz.",
-  "private_database_order_private_sql_success_activation": "Twoja aktywacja była udana. Twój produkt zostanie aktywowany w ciągu kilku chwil."
+  "private_database_order_private_sql_success_activation": "Aktywacja została ukończona pomyślnie. Usługa zostanie włączona za kilka minut."
 }

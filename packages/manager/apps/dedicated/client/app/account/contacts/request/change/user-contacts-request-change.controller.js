@@ -6,7 +6,7 @@ export default /* @ngInject */ function UserAccountContactsRequestController(
   $translate,
   UserAccountContactsService,
   Alerter,
-  User,
+  coreConfig,
 ) {
   $scope.task = angular.copy($scope.currentActionData.task);
   $scope.action = $scope.currentActionData.action;
@@ -14,6 +14,7 @@ export default /* @ngInject */ function UserAccountContactsRequestController(
   $scope.token = {
     value: $stateParams.token,
   };
+  $scope.user = coreConfig.getUser();
 
   const messages = {
     ACCEPT: {
@@ -114,23 +115,4 @@ export default /* @ngInject */ function UserAccountContactsRequestController(
         $scope.resetAction();
       });
   };
-
-  function getUser() {
-    User.getUser().then(
-      (user) => {
-        $scope.user = user;
-      },
-      (err) => {
-        Alerter.alertFromSWS(
-          $translate.instant('user_account_contacts_error'),
-          err,
-          'useraccount.alerts.dashboardContacts',
-        );
-      },
-    );
-  }
-
-  if (!$scope.user) {
-    getUser();
-  }
 }

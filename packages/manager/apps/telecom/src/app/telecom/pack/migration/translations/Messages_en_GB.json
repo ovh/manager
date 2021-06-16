@@ -140,5 +140,6 @@
   "telecom_pack_migration_confirm_resume_contact_owner": "Contact information",
   "telecom_pack_migration_confirm_resume_contact_phone": "Telephone number you can be reached on, if required",
   "telecom_pack_migration_confirm_resume_phone_form_error": "The number you enter must be valid.",
-  "telecom_pack_migration_choose_offer_error": "An error has occurred retrieving the solutions: {{ error }}."
+  "telecom_pack_migration_choose_offer_error": "An error has occurred retrieving the solutions: {{ error }}.",
+  "telecom_pack_migration_promotion_installation_fees_offered": "Setup fees included"
 }

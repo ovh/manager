@@ -9,7 +9,7 @@ const moduleName = 'ovhManagerBillingAutorenewSshView';
 
 angular
   .module(moduleName, [angularTranslate, uiRouter])
-  .controller('UserAccount.controllers.ssh.view', controller)
+  .controller('UserAccountSshView', controller)
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
