@@ -78,5 +78,6 @@
   "pack_move_contact_name_info": "Veuillez nous communiquer le nom de la personne susceptible d’accueillir le technicien le jour du rendez-vous.",
   "pack_move_mandatory_field": "Les champs marqués d’un astérisque sont obligatoires.",
   "pack_move_slamming_error": "Oups ! Nous n'avons pas pu vérifier la portabilité de votre numéro",
-  "pack_move_go_back": "Details zum Paket"
+  "pack_move_go_back": "Details zum Paket",
+  "pack_move_promotion_installation_fees_offered": "Setup gratis"
 }

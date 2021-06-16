@@ -1,6 +1,6 @@
 {
   "hosting_database_order_private_title": "Ordem de SQL Privado",
   "hosting_database_order_private_error": "Erro ao ordenar um banco de dados SQL: {{message}}",
-  "hosting_database_order_private_success": "Sua <a href=\"{{orderUrl}}\" target=\"_blank\">ordem de compra</a> foi gerada com êxito. O seu alojamento será ativado quando o validar.",
+  "hosting_database_order_private_success": "A sua <a href=\"{{orderUrl}}\" target=\"_blank\">nota de encomenda</a> foi gerada com sucesso. O seu produto será ativado depois de o ter validado.",
   "hosting_database_order_private_success_activation": "Sua ativação foi concluída com êxito. O seu produto ficará ativo dentro de alguns instantes."
 }

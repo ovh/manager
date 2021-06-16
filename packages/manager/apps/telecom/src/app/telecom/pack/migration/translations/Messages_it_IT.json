@@ -135,5 +135,6 @@
   "telecom_pack_migration_confirm_resume_contact_owner": "Informazioni di contatto",
   "telecom_pack_migration_confirm_resume_contact_phone": "Numero di telefono sul quale potrai essere contattato se necessario",
   "telecom_pack_migration_confirm_resume_phone_form_error": "Il numero inserito deve essere valido.",
-  "telecom_pack_migration_choose_offer_error": "Si è verificato un errore durante il recupero delle offerte: {{ error }}"
+  "telecom_pack_migration_choose_offer_error": "Si è verificato un errore durante il recupero delle offerte: {{ error }}",
+  "telecom_pack_migration_promotion_installation_fees_offered": "Spese di attivazione incluse"
 }

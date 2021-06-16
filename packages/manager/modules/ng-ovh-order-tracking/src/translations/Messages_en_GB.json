@@ -34,7 +34,7 @@
   "order_tracking_history_details_PAYMENT_INITIATED": "",
   "order_tracking_history_details_PAYMENT_RECEIVED": "",
   "order_tracking_history_details_REGISTERED_PAYMENT_INITIATED": "",
-  "order_tracking_history_details_custom_payment_waiting": "Your order is awaiting payment. There may be two reasons for this: <ul><li>you have generated a <a data-ng-href=\"{{ url }}\" rel=\"external\" target=\"_blank\">purchase order</a> without paying for it, or </li><li>you have paid for this order via cheque or bank transfer. An additional processing time is required.</li></ul>",
+  "order_tracking_history_details_custom_payment_waiting": "Your order is awaiting payment. There may be two reasons for this: <ul><li>You have generated a <a data-ng-href=\"{{ url }}\" rel=\"external\" target=\"_blank\">purchase order</a> without paying for it.</li><li>You have paid for this order by cheque or bank transfer. An additional processing time is required.</li></ul>",
   "order_tracking_history_details_custom_creation": "",
   "order_tracking_estimated_delivery_time": "Estimated delivery time",
   "order_tracking_estimated_delivery_time_info": "This period is an estimate only. Some factors may result in the delivery time taking longer.",

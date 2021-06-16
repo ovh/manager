@@ -1,6 +1,6 @@
 {
   "private_database_order_private_sql_title": "Order a Private SQL",
   "private_database_order_private_sql_error": "An error occurred when ordering an SQL database: {{message}}",
-  "private_database_order_private_sql_success": "Your <a href=\"{{orderUrl}}\" target=\"_blank\">order form</a> has been successfully generated. Your product will be activated once you have validated it.",
-  "private_database_order_private_sql_success_activation": "Your activation has been successfully completed. Your product will be enabled shortly."
+  "private_database_order_private_sql_success": "Your <a href=\"{{orderUrl}}\" target=\"_blank\">purchase order</a> has been generated. Your web hosting plan will be enabled once you have validated it.",
+  "private_database_order_private_sql_success_activation": "Your product has been enabled. Your product will be enabled shortly."
 }
