@@ -1,0 +1,100 @@
+<h4 data-translate="vps_dashboard_migrate_title"></h4>
+<div class="w-25 mt-3 oui-select-picker">
+    <label class="oui-select-picker__label-container">
+        <span class="oui-select-picker__body">
+            <h6 data-translate="vps_dashboard_migrate_current_range_title"></h6>
+            <div class="oui-select-picker__section">
+                <ul class="list-unstyled">
+                    <li>
+                        <span
+                            data-translate="vps_dashboard_migrate_configuration_label_core"
+                        ></span>
+                        <span
+                            data-translate="vps_dashboard_migrate_configuration_vcore"
+                            data-translate-values="{ count: $ctrl.stateVps.vcore }"
+                        ></span>
+                    </li>
+                    <li>
+                        <span
+                            data-translate="vps_dashboard_migrate_configuration_label_ram"
+                        ></span>
+                        <span
+                            data-ng-bind=":: $ctrl.formatMemory($ctrl.stateVps.model.memory) | cucBytes:0:false:'GB'"
+                        ></span>
+                    </li>
+                    <li>
+                        <span
+                            data-translate="vps_dashboard_migrate_configuration_label_disk"
+                        ></span>
+                        <span
+                            data-ng-bind=":: $ctrl.stateVps.model.disk | cucBytes:0:false:'GB'"
+                        ></span>
+                    </li>
+                </ul>
+            </div>
+        </span>
+    </label>
+</div>
+
+<p class="mt-3" data-translate="vps_dashboard_migrate_information"></p>
+<a data-ng-href="{{:: $ctrl.MIGRATE_FAQ_LINK }}" target="_blank" rel="noopener">
+    <span data-translate="vps_dashboard_migrate_faq_title"></span>
+    <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+</a>
+
+<oui-select-picker
+    class="w-25"
+    label="{{:: 'vps_dashboard_migrate_new_range_title' | translate }}"
+    model="$ctrl.selectedPlan"
+>
+    <oui-select-picker-section>
+        <ul class="list-unstyled">
+            <li>
+                <span
+                    data-translate="vps_dashboard_migrate_configuration_label_core"
+                ></span>
+                <span
+                    data-translate="vps_dashboard_migrate_configuration_vcore"
+                    data-translate-values="{ count: $ctrl.newPlan.configuration.cpu.cores }"
+                ></span>
+            </li>
+            <li>
+                <span
+                    data-translate="vps_dashboard_migrate_configuration_label_ram"
+                ></span>
+                <span
+                    data-ng-bind=":: ($ctrl.newPlan.configuration.memory.size) | cucBytes:0:false:'GB'"
+                ></span>
+            </li>
+            <li>
+                <span
+                    data-translate="vps_dashboard_migrate_configuration_label_disk"
+                ></span>
+                <span
+                    data-ng-bind=":: $ctrl.getStorageCapacity() | cucBytes:0:false:'GB'"
+                ></span>
+            </li>
+        </ul>
+    </oui-select-picker-section>
+    <oui-select-picker-footer>
+        <ovh-manager-catalog-price
+            data-price="$ctrl.getRenewablePrice()"
+            data-user="$ctrl.user"
+            data-perform-rounding="false"
+            data-maximum-fraction-digits="5"
+        >
+        </ovh-manager-catalog-price>
+    </oui-select-picker-footer>
+</oui-select-picker>
+<footer class="mt-5">
+    <oui-button
+        variant="primary"
+        size="l"
+        type="submit"
+        on-click="$ctrl.goToMigrateConfirm()"
+        ><span data-translate="vps_common_confirm"></span
+    ></oui-button>
+    <oui-button variant="link" size="l" on-click="$ctrl.goBack()"
+        ><span data-translate="vps_common_cancel"></span
+    ></oui-button>
+</footer>
