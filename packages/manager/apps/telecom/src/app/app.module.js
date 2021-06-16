@@ -221,7 +221,6 @@ export default (containerEl, environment) => {
         $urlRouterProvider,
         $locationProvider,
         $compileProvider,
-        $logProvider,
         telecomConfig,
       ) => {
         $urlRouterProvider.otherwise('/');
@@ -229,8 +228,8 @@ export default (containerEl, environment) => {
         // $locationProvider.html5Mode(true);
         $locationProvider.hashPrefix('');
 
+        // Debug mode is disabled in production.
         $compileProvider.debugInfoEnabled(telecomConfig.env !== 'prod');
-        $logProvider.debugEnabled(telecomConfig.env !== 'prod');
       },
     )
     .config((LineDiagnosticsProvider) => {
@@ -343,9 +342,12 @@ export default (containerEl, environment) => {
     )
     .controller('TelecomAppCtrl', TelecomAppCtrl)
     .run(
-      /* @ngInject */ ($rootScope, $state) => {
+      /* @ngInject */ ($log, $rootScope, $state) => {
         $state.defaultErrorHandler((error) => {
           if (error.type === RejectType.ERROR) {
+            // Useful for our error monitoring tool.
+            $log.error(error);
+
             $rootScope.$emit('ovh::sidebar::hide');
             $state.go(
               'telecomError',

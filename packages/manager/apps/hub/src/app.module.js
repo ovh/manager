@@ -114,9 +114,12 @@ export default (containerEl, environment) => {
       },
     )
     .run(
-      /* @ngInject */ ($state) => {
+      /* @ngInject */ ($log, $state) => {
         $state.defaultErrorHandler((error) => {
           if (error.type === RejectType.ERROR) {
+            // Useful for our error monitoring tool.
+            $log.error(error);
+
             $state.go(
               'error',
               {

@@ -289,16 +289,12 @@ export default (containerEl, environment) => {
         set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
       },
     ])
-    .config([
-      '$compileProvider',
-      '$logProvider',
-      'constants',
-      ($compileProvider, $logProvider, constants) => {
-        // Debug mode and logs are disabled in production
+    .config(
+      /* @ngInject */ ($compileProvider, constants) => {
+        // Debug mode is disabled in production.
         $compileProvider.debugInfoEnabled(!constants.prodMode);
-        $logProvider.debugEnabled(!constants.prodMode);
       },
-    ])
+    )
     .config(
       /* @ngInject */ (atInternetConfigurationProvider) => {
         atInternetConfigurationProvider.setConfig(TRACKING);
@@ -563,9 +559,12 @@ export default (containerEl, environment) => {
     })
     .constant('UNIVERSE', 'WEB')
     .run(
-      /* @ngInject */ ($rootScope, $state) => {
+      /* @ngInject */ ($log, $rootScope, $state) => {
         $state.defaultErrorHandler((error) => {
           if (error.type === RejectType.ERROR) {
+            // Useful for our error monitoring tool.
+            $log.error(error);
+
             $rootScope.$emit('ovh::sidebar::hide');
             $state.go(
               'error',

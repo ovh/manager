@@ -245,9 +245,9 @@ export default (containerEl, environment) => {
     })
     .constant('website_url', configConstants.website_url)
     .config(
-      /* @ngInject */ ($compileProvider, $logProvider) => {
+      /* @ngInject */ ($compileProvider) => {
+        // Debug mode is disabled in production.
         $compileProvider.debugInfoEnabled(!config.prodMode);
-        $logProvider.debugEnabled(!config.prodMode);
       },
     )
     .config(
@@ -297,6 +297,7 @@ export default (containerEl, environment) => {
     .run(
       /* @ngInject */ (
         $location,
+        $log,
         $rootScope,
         $state,
         $transitions,
@@ -358,6 +359,9 @@ export default (containerEl, environment) => {
 
         $state.defaultErrorHandler((error) => {
           if (error.type === RejectType.ERROR && !error.handled) {
+            // Useful for our error monitoring tool.
+            $log.error(error);
+
             $rootScope.$emit('ovh::sidebar::hide');
             $state.go(
               'error',
