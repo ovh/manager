@@ -9,12 +9,13 @@
   "sign_up_activity_field_vat_personalcorporation_more": "Numer identyfikacyjny firmy ({{vatLabel}})",
   "sign_up_activity_field_organisation_association": "Nazwa stowarzyszenia",
   "sign_up_activity_field_organisation_corporation": "Nazwa firmy",
-  "sign_up_activity_field_organisation_administration": "Nazwa organu administracji",
+  "sign_up_activity_field_organisation_administration": "Nazwa handlowa",
   "sign_up_activity_field_organisation_personalcorporation": "Nazwa jednoosobowej działalności gospodarczej",
-  "sign_up_activity_field_organisation": "Organizacja",
-  "sign_up_activity_field_corporationType": "Typ działalności",
+  "sign_up_activity_field_organisation": "Nazwa handlowa",
+  "sign_up_activity_field_corporationType": "Rodzaj firmy",
   "sign_up_activity_field_nationalIdentificationNumber": "Krajowy numer identyfikacyjny",
   "sign_up_activity_field_companyNationalIdentificationNumber": "Krajowy numer identyfikacyjny",
-  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Krajowy numer identyfikacyjny (SIREN)",
-  "sign_up_activity_field_italian_sdi": "Kod nabywcy na fakturze elektronicznej (SDI)"
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Numer NIP",
+  "sign_up_activity_field_italian_sdi": "Kod nabywcy na fakturze elektronicznej (SDI)",
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "Numer NIP jest niezbędny w procesie fakturowania elektronicznego"
 }

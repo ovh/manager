@@ -9,12 +9,13 @@
   "sign_up_activity_field_vat_personalcorporation_more": "Identifikationsnummer des Unternehmens ({{ vatLabel }})",
   "sign_up_activity_field_organisation_association": "Name der Organisation",
   "sign_up_activity_field_organisation_corporation": "Name des Unternehmens",
-  "sign_up_activity_field_organisation_administration": "Name der Verwaltung",
+  "sign_up_activity_field_organisation_administration": "Name",
   "sign_up_activity_field_organisation_personalcorporation": "Name des Einzelunternehmens",
-  "sign_up_activity_field_organisation": "Organisation",
+  "sign_up_activity_field_organisation": "Name",
   "sign_up_activity_field_corporationType": "Rechtsform",
   "sign_up_activity_field_nationalIdentificationNumber": "Nationale Identifikationsnummer",
   "sign_up_activity_field_companyNationalIdentificationNumber": "Nationale Identifikationsnummer",
-  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Nationale Identifikationsnummer (SIREN)",
-  "sign_up_activity_field_italian_sdi": "Empfänger-Code für elektronische Abrechnung (SDI)"
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Nationale Identifikationsnummer (SIRET, Système Informatique pour le Répertoire des Entreprises sur le Territoire)",
+  "sign_up_activity_field_italian_sdi": "Empfänger-Code für die elektronische Rechnungsstellung (SDI)",
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "Die SIRET Nummer ist notwendig, um den vom Staat eingerichteten Prozess der elektronischen Rechnungsstellung (Chorus) zu verbessern."
 }

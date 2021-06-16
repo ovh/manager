@@ -9,12 +9,13 @@
   "sign_up_activity_field_vat_personalcorporation_more": "Numero identificativo dell’azienda ({{ vatLabel }})",
   "sign_up_activity_field_organisation_association": "Nome dell'associazione",
   "sign_up_activity_field_organisation_corporation": "Nome dell'azienda",
-  "sign_up_activity_field_organisation_administration": "Nome dell’amministrazione",
+  "sign_up_activity_field_organisation_administration": "Ragione sociale",
   "sign_up_activity_field_organisation_personalcorporation": "Nome dell’impresa individuale",
-  "sign_up_activity_field_organisation": "Organizzazione",
+  "sign_up_activity_field_organisation": "Ragione sociale",
   "sign_up_activity_field_corporationType": "Tipo di azienda",
   "sign_up_activity_field_nationalIdentificationNumber": "Codice fiscale",
   "sign_up_activity_field_companyNationalIdentificationNumber": "Codice fiscale",
-  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Numero di identificazione nazionale (SIREN)",
-  "sign_up_activity_field_italian_sdi": "Codice destinatario per fatturazione elettronica (SDI)"
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Numero di partita IVA",
+  "sign_up_activity_field_italian_sdi": "Codice destinatario per fatturazione elettronica (SDI)",
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "Il numero di partita IVA è necessario per migliorare il processo di fatturazione elettronica"
 }
