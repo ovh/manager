@@ -7,7 +7,6 @@ export default {
     goToProjects: '<',
     goToProjectInactive: '<',
     isOpen: '<',
-    user: '<',
     onClick: '&',
   },
   controller,

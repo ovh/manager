@@ -1,11 +1,8 @@
-import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
-import get from 'lodash/get';
-import map from 'lodash/map';
 import set from 'lodash/set';
 
-import { getMenu, UNIVERSE, USER_TYPES_MAP } from './sidebar.constant';
+import { getMenu, UNIVERSE } from './sidebar.constant';
 
 export default class SidebarController {
   /* @ngInject */
@@ -21,8 +18,6 @@ export default class SidebarController {
     coreConfig,
     coreURLBuilder,
     OvhApiCloudProject,
-    OvhApiMe,
-    OvhApiServices,
     ovhFeatureFlipping,
   ) {
     this.$q = $q;
@@ -34,10 +29,7 @@ export default class SidebarController {
     this.$stateParams = $stateParams;
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
-    this.OvhApiMe = OvhApiMe;
     this.OvhApiCloudProject = OvhApiCloudProject;
-    this.OvhApiServices = OvhApiServices;
-    this.OvhApiCloudProjectServiceInfos = OvhApiCloudProject.ServiceInfos();
     this.ovhFeatureFlipping = ovhFeatureFlipping;
 
     this.isOpen = false;
@@ -52,13 +44,6 @@ export default class SidebarController {
     });
   }
 
-  isAvailableToUser(subItem) {
-    const allowedUsers = map(subItem.users, (userType) =>
-      get(this.serviceInfo, get(USER_TYPES_MAP, userType)),
-    );
-    return !subItem.users || includes(allowedUsers, this.user.nichandle);
-  }
-
   toggleProjectsList() {
     this.isDisplayingProjectsList = !this.isDisplayingProjectsList;
   }
@@ -70,11 +55,12 @@ export default class SidebarController {
 
     this.isLoading = true;
 
-    return this.$q
-      .all([this.getProjectInfo(serviceName), this.getServiceInfo(serviceName)])
-      .then(([project, serviceInfo]) => {
+    return this.OvhApiCloudProject.v6()
+      .get({
+        serviceName,
+      })
+      .$promise.then((project) => {
         this.project = project;
-        this.serviceInfo = serviceInfo;
       })
       .finally(() => {
         this.$rootScope.$broadcast('sidebar:loaded');
@@ -123,16 +109,6 @@ export default class SidebarController {
       }
       this.isDisplayingProjectsList = false;
     });
-  }
-
-  getProjectInfo(serviceName) {
-    return this.OvhApiCloudProject.v6().get({ serviceName }).$promise;
-  }
-
-  getServiceInfo(serviceName) {
-    return this.OvhApiCloudProjectServiceInfos.v6().get({
-      serviceName,
-    }).$promise;
   }
 
   onMenuItemClick({ id }) {
