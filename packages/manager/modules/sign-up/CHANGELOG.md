@@ -1,3 +1,13 @@
+## [2.1.8](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.1.7...@ovh-ux/sign-up@2.1.8) (2021-06-16)
+
+
+### Bug Fixes
+
+* **form:** reorder legal field value and update wording ([#5065](https://github.com/ovh/manager/issues/5065)) ([71fbb2f](https://github.com/ovh/manager/commit/71fbb2f506887f64521847bf628ab80147084f63))
+* **scss:** remove deprecated tilde imports ([3f2acd0](https://github.com/ovh/manager/commit/3f2acd008ad5bff397ab6ecf35437a506b4b90a5))
+
+
+
 ## [2.1.7](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.1.6...@ovh-ux/sign-up@2.1.7) (2021-03-02)
 
 

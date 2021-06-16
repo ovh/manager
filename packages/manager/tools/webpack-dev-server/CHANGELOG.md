@@ -1,3 +1,12 @@
+## [2.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-dev-server@2.8.1...@ovh-ux/manager-webpack-dev-server@2.8.2) (2021-06-16)
+
+
+### Performance Improvements
+
+* rename `*.ts` files into `*.js` ([036fdc9](https://github.com/ovh/manager/commit/036fdc985bf6f590e057ee2b32e6cf1a341f7bef))
+
+
+
 ## [2.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-dev-server@2.8.0...@ovh-ux/manager-webpack-dev-server@2.8.1) (2021-01-13)
 
 

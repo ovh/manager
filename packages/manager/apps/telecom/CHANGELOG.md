@@ -1,3 +1,20 @@
+## [13.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.22.1...@ovh-ux/manager-telecom@13.22.2) (2021-06-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1000] ([895cb6c](https://github.com/ovh/manager/commit/895cb6c5d4316c82c5d3b0dd1e0445de95ef17fb))
+* **i18n:** add missing translations [CDS 1004] ([cd652e3](https://github.com/ovh/manager/commit/cd652e3073bc649a7f051e978ada0aaf6d5ab0fc))
+* **i18n:** add missing translations [CDS 1005] ([e0da3ce](https://github.com/ovh/manager/commit/e0da3ced0dbe475c0f26a1816dd2a85325d9a772))
+* **i18n:** add missing translations [CDS 997] ([9161271](https://github.com/ovh/manager/commit/9161271cecc95b09445c0aefbbb1fbe86c038bc1))
+* **i18n:** add missing translations [CDS 998] ([0b231b0](https://github.com/ovh/manager/commit/0b231b072d7fa533cc75711d15cc5cebf09a2bdd))
+* **repayment:** get filtered repayment for servicename ([#5098](https://github.com/ovh/manager/issues/5098)) ([7186184](https://github.com/ovh/manager/commit/7186184e6d6b8b928a483701a94e096bbd35a98a))
+* **scss:** remove deprecated tilde imports ([3f2acd0](https://github.com/ovh/manager/commit/3f2acd008ad5bff397ab6ecf35437a506b4b90a5))
+* **telecom:** bootstrap scss imports ([3b8a08a](https://github.com/ovh/manager/commit/3b8a08a684c0280d7ae738ee8488cc2a549f2f15))
+* **telephony.service.voicemail.options:** update notification message ([#5068](https://github.com/ovh/manager/issues/5068)) ([31c0c68](https://github.com/ovh/manager/commit/31c0c68b29d489b92238efd370eb417d01e5f247))
+
+
+
 ## [13.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.22.0...@ovh-ux/manager-telecom@13.22.1) (2021-06-09)
 
 

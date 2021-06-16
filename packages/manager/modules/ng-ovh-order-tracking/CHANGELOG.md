@@ -1,3 +1,25 @@
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@1.1.1...@ovh-ux/ng-ovh-order-tracking@2.0.0) (2021-06-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1004] ([cd652e3](https://github.com/ovh/manager/commit/cd652e3073bc649a7f051e978ada0aaf6d5ab0fc))
+* **i18n:** add missing translations [CDS 1005] ([e0da3ce](https://github.com/ovh/manager/commit/e0da3ced0dbe475c0f26a1816dd2a85325d9a772))
+* **i18n:** add missing translations [CDS 980] ([0a30f6d](https://github.com/ovh/manager/commit/0a30f6da7109b85aa33bb8c2adfdf47831eaae94))
+* **i18n:** add missing translations [CDS 997] ([9161271](https://github.com/ovh/manager/commit/9161271cecc95b09445c0aefbbb1fbe86c038bc1))
+* **i18n:** add missing translations [CDS 998] ([0b231b0](https://github.com/ovh/manager/commit/0b231b072d7fa533cc75711d15cc5cebf09a2bdd))
+* **ng-ovh-order-tracking:** improve refused message details ([3547f16](https://github.com/ovh/manager/commit/3547f1695d44e772c51f12dca33b3411dee25d7e))
+* **scss:** remove deprecated tilde imports ([3f2acd0](https://github.com/ovh/manager/commit/3f2acd008ad5bff397ab6ecf35437a506b4b90a5))
+
+
+### BREAKING CHANGES
+
+* **ng-ovh-order-tracking:** package is now private
+
+Signed-off-by: frenauvh <florian.renaut@corp.ovh.com>
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@1.1.0...@ovh-ux/ng-ovh-order-tracking@1.1.1) (2021-03-25)
 
 

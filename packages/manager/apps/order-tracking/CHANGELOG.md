@@ -1,3 +1,12 @@
+## [2.2.2](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.2.1...@ovh-ux/order-tracking-app@2.2.2) (2021-06-16)
+
+
+### Bug Fixes
+
+* **deps:** bump ng-ovh-order-tracking to version 2.0.0 ([79ac36e](https://github.com/ovh/manager/commit/79ac36e3efccc0382e0a7319db37a36007c6447d))
+
+
+
 ## [2.2.1](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.2.0...@ovh-ux/order-tracking-app@2.2.1) (2021-05-19)
 
 
