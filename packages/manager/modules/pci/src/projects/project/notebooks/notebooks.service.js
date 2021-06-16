@@ -43,6 +43,12 @@ export default class NotebookService {
       .then(({ data }) => data.command);
   }
 
+  getNotebookConfigurationCommand(serviceName, notebookSpecs) {
+    return this.$http
+      .post(`/cloud/project/${serviceName}/ai/notebook/command`, notebookSpecs)
+      .then(({ data }) => data.command);
+  }
+
   getNotebooks(serviceName) {
     return this.$http
       .get(
