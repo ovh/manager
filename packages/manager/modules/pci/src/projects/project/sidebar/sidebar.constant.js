@@ -235,7 +235,6 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.billing',
         },
         regions: ['EU', 'CA'],
-        users: ['admin', 'billing'],
         title: 'Billing Control',
       },
       {
@@ -268,15 +267,8 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
 
 export const UNIVERSE = 'Public Cloud';
 
-export const USER_TYPES_MAP = {
-  admin: 'contactAdmin',
-  billing: 'contactBilling',
-  tech: 'contactTech',
-};
-
 export default {
   HORIZON,
   getMenu,
   UNIVERSE,
-  USER_TYPES_MAP,
 };
