@@ -1,0 +1,33 @@
+<form novalidate name="form">
+    <oui-modal
+        data-primary-label="{{ ::'vps_dashboard_migrate_confirm_button_text' | translate }}"
+        data-primary-action="$ctrl.migrateVps()"
+        data-secondary-action="$ctrl.cancel()"
+        data-secondary-label="{{ ::'vps_common_cancel' | translate }}"
+        data-on-dismiss="$ctrl.cancel()"
+        data-loading="$ctrl.loading"
+        data-heading="{{:: 'vps_dashboard_migrate_confirm_title' | translate}}"
+        data-type="info"
+    >
+        <span data-translate="vps_dashboard_migrate_confirm_description"></span>
+        <oui-message data-type="warning" class="mb-2">
+            <p
+                data-translate="vps_dashboard_migrate_confirm_warning_message"
+            ></p>
+        </oui-message>
+        <oui-field
+            data-label="{{ ::'vps_dashboard_migrate_confirm_label_text' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="deleteConfirmation"
+                name="deleteConfirmation"
+                data-ng-model="$ctrl.deleteConfirmation"
+                data-ng-pattern="$ctrl.MIGRATE_CONFIRMATION_INPUT_PATTERN"
+                required
+                autofocus
+            />
+        </oui-field>
+    </oui-modal>
+</form>
