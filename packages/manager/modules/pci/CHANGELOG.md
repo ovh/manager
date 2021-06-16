@@ -1,3 +1,12 @@
+## [5.29.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.29.1...@ovh-ux/manager-pci@5.29.2) (2021-06-16)
+
+
+### Bug Fixes
+
+* show billing control to all users ([#5082](https://github.com/ovh/manager/issues/5082)) ([8d25f7e](https://github.com/ovh/manager/commit/8d25f7e6594c7f0d23dcadc8a0fdab17005d1e6f))
+
+
+
 ## [5.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.29.0...@ovh-ux/manager-pci@5.29.1) (2021-06-15)
 
 

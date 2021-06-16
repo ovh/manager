@@ -1,3 +1,12 @@
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.4.0...@ovh-ux/manager-support@1.5.0) (2021-06-16)
+
+
+### Features
+
+* **support.tickets.new:** ticket content improvement ([#5120](https://github.com/ovh/manager/issues/5120)) ([984db3d](https://github.com/ovh/manager/commit/984db3d1240428bd738d8a35ca96e65a16f77b14))
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.3.0...@ovh-ux/manager-support@1.4.0) (2021-06-10)
 
 
