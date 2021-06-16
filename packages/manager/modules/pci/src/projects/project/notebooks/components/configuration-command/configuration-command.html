@@ -1,0 +1,23 @@
+<p
+    class="oui-heading_4"
+    data-translate="pci_notebook_configuration_command_title"
+></p>
+<p>
+    <span data-translate="pci_notebook_configuration_command_description"></span>
+    <a data-ng-href="{{:: $ctrl.documentationLink }}"
+       target="_blank"
+       rel="noopener"
+    >
+        <span data-translate="pci_notebook_configuration_command_help"></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+    </a>
+</p>
+<p data-translate=""></p>
+<pre class="bg-dark">
+    <div data-ng-if="$ctrl.loading">
+        <oui-skeleton randomized></oui-skeleton>
+        <oui-skeleton randomized></oui-skeleton>
+        <oui-skeleton randomized></oui-skeleton>
+    </div>
+    <span data-ng-if="!$ctrl.loading" class="oui-color-p-000" data-ng-bind="$ctrl.command"></span>
+</pre>
