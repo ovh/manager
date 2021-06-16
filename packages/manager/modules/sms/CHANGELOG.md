@@ -1,3 +1,12 @@
+## [8.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.4.4...@ovh-ux/manager-sms@8.4.5) (2021-06-16)
+
+
+### Bug Fixes
+
+* **scss:** remove deprecated tilde imports ([3f2acd0](https://github.com/ovh/manager/commit/3f2acd008ad5bff397ab6ecf35437a506b4b90a5))
+
+
+
 ## [8.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.4.3...@ovh-ux/manager-sms@8.4.4) (2021-05-19)
 
 

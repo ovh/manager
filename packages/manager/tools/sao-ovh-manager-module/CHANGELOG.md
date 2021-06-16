@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-module@1.2.0...@ovh-ux/sao-ovh-manager-module@1.2.1) (2021-06-16)
+
+
+### Bug Fixes
+
+* **scss:** remove deprecated tilde imports ([3f2acd0](https://github.com/ovh/manager/commit/3f2acd008ad5bff397ab6ecf35437a506b4b90a5))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-module@1.1.0...@ovh-ux/sao-ovh-manager-module@1.2.0) (2021-02-24)
 
 

@@ -1,3 +1,12 @@
+## [2.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip@2.0.5...@ovh-ux/manager-carrier-sip@2.0.6) (2021-06-16)
+
+
+### Bug Fixes
+
+* **scss:** remove deprecated tilde imports ([3f2acd0](https://github.com/ovh/manager/commit/3f2acd008ad5bff397ab6ecf35437a506b4b90a5))
+
+
+
 ## [2.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip@2.0.4...@ovh-ux/manager-carrier-sip@2.0.5) (2020-10-28)
 
 

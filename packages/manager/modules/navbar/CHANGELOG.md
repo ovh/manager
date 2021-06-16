@@ -1,3 +1,12 @@
+## [5.4.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.4.7...@ovh-ux/manager-navbar@5.4.8) (2021-06-16)
+
+
+### Bug Fixes
+
+* **scss:** remove deprecated tilde imports ([3f2acd0](https://github.com/ovh/manager/commit/3f2acd008ad5bff397ab6ecf35437a506b4b90a5))
+
+
+
 ## [5.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.4.6...@ovh-ux/manager-navbar@5.4.7) (2021-05-19)
 
 

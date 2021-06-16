@@ -1,3 +1,17 @@
+# [9.1.0](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@9.0.1...@ovh-ux/component-rollup-config@9.1.0) (2021-06-16)
+
+
+### Features
+
+* **component-rollup-config:** use node resolution for sass imports ([4fb577f](https://github.com/ovh/manager/commit/4fb577f2c85494c847d81f2b566b4e91837c7c05))
+
+
+### Performance Improvements
+
+* rename `*.ts` files into `*.js` ([036fdc9](https://github.com/ovh/manager/commit/036fdc985bf6f590e057ee2b32e6cf1a341f7bef))
+
+
+
 ## [9.0.1](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@9.0.0...@ovh-ux/component-rollup-config@9.0.1) (2021-01-27)
 
 

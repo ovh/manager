@@ -1,3 +1,17 @@
+# [16.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.30.1...@ovh-ux/manager-dedicated@16.31.0) (2021-06-16)
+
+
+### Bug Fixes
+
+* **deps:** bump ng-ovh-order-tracking to version 2.0.0 ([79ac36e](https://github.com/ovh/manager/commit/79ac36e3efccc0382e0a7319db37a36007c6447d))
+
+
+### Features
+
+* **dedicated:** account section lazy load ([2ee6d4c](https://github.com/ovh/manager/commit/2ee6d4c3ad2596dcc49b6444dcb0fabacb6455bf))
+
+
+
 ## [16.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.30.0...@ovh-ux/manager-dedicated@16.30.1) (2021-06-11)
 
 

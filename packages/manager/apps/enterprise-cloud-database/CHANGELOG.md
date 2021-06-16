@@ -1,3 +1,12 @@
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database-app@1.3.1...@ovh-ux/manager-enterprise-cloud-database-app@1.3.2) (2021-06-16)
+
+
+### Bug Fixes
+
+* **scss:** remove deprecated tilde imports ([3f2acd0](https://github.com/ovh/manager/commit/3f2acd008ad5bff397ab6ecf35437a506b4b90a5))
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database-app@1.3.0...@ovh-ux/manager-enterprise-cloud-database-app@1.3.1) (2021-05-19)
 
 

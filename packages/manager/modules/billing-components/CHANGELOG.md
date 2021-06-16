@@ -1,3 +1,22 @@
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@2.10.0...@ovh-ux/manager-billing-components@3.0.0) (2021-06-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1004] ([cd652e3](https://github.com/ovh/manager/commit/cd652e3073bc649a7f051e978ada0aaf6d5ab0fc))
+
+
+### Code Refactoring
+
+* **billing:** rename module ([8a9e8b7](https://github.com/ovh/manager/commit/8a9e8b7b3fb56351d9cafce4f23c3e30eef2b7c1))
+
+
+### BREAKING CHANGES
+
+* **billing:** rename billing module to billing-components
+
+
+
 # [2.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.9.2...@ovh-ux/manager-billing@2.10.0) (2021-06-10)
 
 

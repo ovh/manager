@@ -1,3 +1,13 @@
+## [7.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@7.0.0...@ovh-ux/manager-freefax-app@7.0.1) (2021-06-16)
+
+
+### Bug Fixes
+
+* **deps:** bump ng-ovh-order-tracking to version 2.0.0 ([79ac36e](https://github.com/ovh/manager/commit/79ac36e3efccc0382e0a7319db37a36007c6447d))
+* **scss:** remove deprecated tilde imports ([3f2acd0](https://github.com/ovh/manager/commit/3f2acd008ad5bff397ab6ecf35437a506b4b90a5))
+
+
+
 # [7.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@6.2.4...@ovh-ux/manager-freefax-app@7.0.0) (2021-05-05)
 
 

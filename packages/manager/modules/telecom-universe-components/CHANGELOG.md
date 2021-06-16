@@ -1,3 +1,12 @@
+## [7.3.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.3.0...@ovh-ux/ng-ovh-telecom-universe-components@7.3.1) (2021-06-16)
+
+
+### Bug Fixes
+
+* **scss:** remove deprecated tilde imports ([3f2acd0](https://github.com/ovh/manager/commit/3f2acd008ad5bff397ab6ecf35437a506b4b90a5))
+
+
+
 # [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.2.5...@ovh-ux/ng-ovh-telecom-universe-components@7.3.0) (2021-06-09)
 
 

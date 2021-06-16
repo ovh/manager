@@ -1,3 +1,12 @@
+## [4.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.15.1...@ovh-ux/manager-public-cloud@4.15.2) (2021-06-16)
+
+
+### Bug Fixes
+
+* **scss:** remove deprecated tilde imports ([3f2acd0](https://github.com/ovh/manager/commit/3f2acd008ad5bff397ab6ecf35437a506b4b90a5))
+
+
+
 ## [4.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.15.0...@ovh-ux/manager-public-cloud@4.15.1) (2021-05-19)
 
 

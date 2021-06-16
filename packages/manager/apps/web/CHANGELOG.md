@@ -1,3 +1,16 @@
+## [15.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.26.1...@ovh-ux/manager-web@15.26.2) (2021-06-16)
+
+
+### Bug Fixes
+
+* **deps:** bump ng-ovh-order-tracking to version 2.0.0 ([79ac36e](https://github.com/ovh/manager/commit/79ac36e3efccc0382e0a7319db37a36007c6447d))
+* **i18n:** add missing translations [CDS 1005] ([e0da3ce](https://github.com/ovh/manager/commit/e0da3ced0dbe475c0f26a1816dd2a85325d9a772))
+* **i18n:** add missing translations [CDS 997] ([9161271](https://github.com/ovh/manager/commit/9161271cecc95b09445c0aefbbb1fbe86c038bc1))
+* **i18n:** add missing translations [CDS 998] ([0b231b0](https://github.com/ovh/manager/commit/0b231b072d7fa533cc75711d15cc5cebf09a2bdd))
+* remove unused translations [CDS] ([af17298](https://github.com/ovh/manager/commit/af172986abcbb8cb1842e3d753fc5cbc3370f7e5))
+
+
+
 ## [15.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.26.0...@ovh-ux/manager-web@15.26.1) (2021-06-07)
 
 
