@@ -1,8 +1,13 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.blocks', {
-    url: '/blocks?help',
+    url: '/blocks?help&id',
     component: 'pciProjectStorageBlocks',
-
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     redirectTo: (transition) =>
       transition
         .injector()
@@ -51,11 +56,11 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           instanceId,
         }),
+      storageId: /* @ngInject */ ($transition$) => $transition$.params().id,
       storages: /* @ngInject */ (PciProjectStorageBlockService, projectId) =>
         PciProjectStorageBlockService.getAll(projectId),
 
       goToBlockStorage: /* @ngInject */ (
-        $rootScope,
         CucCloudMessage,
         $state,
         projectId,

@@ -14,7 +14,9 @@ export default {
     guideUrl: '<',
     help: '<',
     instanceLink: '<',
+    onListParamChange: '<',
     projectId: '<',
+    storageId: '<',
     storages: '<',
   },
 };
