@@ -38,6 +38,8 @@
         id="publicCloudInstancesDatagrid"
         data-rows="$ctrl.instances"
         data-row-loader="$ctrl.loadInstanceDetail($row)"
+        criteria="$ctrl.criteria"
+        on-criteria-change="$ctrl.onListParamChange($criteria)"
     >
         <oui-datagrid-column
             title=":: 'pci_projects_project_instances_name_label' | translate"
@@ -53,6 +55,14 @@
                 data-ng-bind="$value"
             ></a>
             <span data-ng-if="$row.isDeleting()" data-ng-bind="$value"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'pci_projects_project_instances_name_id' | translate"
+            data-property="id"
+            data-type="string"
+            data-filterable
+            data-sortable
+        >
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_instances_region_label' | translate"

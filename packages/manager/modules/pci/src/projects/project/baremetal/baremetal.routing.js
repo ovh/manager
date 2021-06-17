@@ -7,7 +7,7 @@ import Instance from '../../../components/project/instance/instance.class';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.baremetal', {
-    url: '/baremetal?help',
+    url: '/baremetal?help&id',
     component: 'pciProjectsProjectInstances',
     redirectTo: (transition) =>
       transition
@@ -18,6 +18,12 @@ export default /* @ngInject */ ($stateProvider) => {
             ? { state: 'pci.projects.project.baremetal.onboarding' }
             : false,
         ),
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_baremetal_title'),
@@ -25,6 +31,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('pci_projects_project_baremetal_beta_warning'),
       disablePrivateNetworks: () => true,
       help: /* @ngInject */ ($transition$) => $transition$.params().help,
+      instanceId: /* @ngInject */ ($transition$) => $transition$.params().id,
       instances: /* @ngInject */ (
         $q,
         PciProjectsProjectInstanceService,

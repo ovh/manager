@@ -1,6 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
 
 import { INSTANCE_HELP_REFERENCE_KEY } from './instances.constants';
+import { getCriteria } from '../project.utils';
 
 export default class CloudProjectComputeInfrastructureListCtrl {
   /* @ngInject */
@@ -26,6 +27,8 @@ export default class CloudProjectComputeInfrastructureListCtrl {
     this.hasVrack = !isEmpty(this.vrack);
     this.loadMessages();
     this.checkHelpDisplay();
+
+    this.criteria = getCriteria('id', this.instanceId);
   }
 
   loadMessages() {
