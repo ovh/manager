@@ -19,7 +19,11 @@
             data-messages="$ctrl.messages"
         ></cui-message-container>
 
-        <oui-datagrid data-rows="$ctrl.containers">
+        <oui-datagrid
+            data-rows="$ctrl.containers"
+            criteria="$ctrl.criteria"
+            on-criteria-change="$ctrl.onListParamsChange($criteria)"
+        >
             <oui-datagrid-column
                 data-title="'pci_projects_project_storages_containers_name_label' | translate"
                 data-property="name"
@@ -33,6 +37,14 @@
                     data-ng-bind="::$value"
                     class="text-truncate"
                 ></a>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'pci_projects_project_storages_containers_id_label' | translate"
+                data-property="id"
+                data-type="string"
+                data-sortable
+                data-filterable
+            >
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title="'pci_projects_project_storages_containers_region_label' | translate"

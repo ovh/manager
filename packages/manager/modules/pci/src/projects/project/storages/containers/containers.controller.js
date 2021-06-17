@@ -1,3 +1,5 @@
+import { getCriteria } from '../../project.utils';
+
 export default class PciStoragesContainersController {
   /* @ngInject */
   constructor($translate, CucCloudMessage) {
@@ -7,6 +9,8 @@ export default class PciStoragesContainersController {
 
   $onInit() {
     this.loadMessages();
+
+    this.criteria = getCriteria('id', this.containerId);
   }
 
   loadMessages() {
