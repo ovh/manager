@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.snapshots', {
-    url: '/volume-snapshots',
+    url: '/volume-snapshots?id',
     component: 'pciProjectStoragesSnapshots',
     redirectTo: (transition) =>
       transition
@@ -11,7 +11,14 @@ export default /* @ngInject */ ($stateProvider) => {
             ? { state: 'pci.projects.project.storages.snapshots.onboarding' }
             : false,
         ),
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     resolve: {
+      snapshotId: /* @ngInject */ ($transition$) => $transition$.params().id,
       snapshots: /* @ngInject */ (
         PciProjectStorageSnapshotsService,
         projectId,

@@ -2,6 +2,7 @@
   "pci_projects_project_storages_snapshots_title": "Volume Snapshot",
   "pci_projects_project_storages_snapshots_name_label": "Nom",
   "pci_projects_project_storages_snapshots_region_label": "Localisation",
+  "pci_projects_project_storages_snapshots_id_label": "ID",
 
   "pci_projects_project_storages_snapshots_volume_label": "Volume",
 
