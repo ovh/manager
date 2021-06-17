@@ -36,7 +36,7 @@ export default class PciTrainingJobsInfoController {
     const resourceN =
       this.job.spec.resources.gpu || this.job.spec.resources.cpu;
 
-    const catalog = this.getCatalogEntryF(this.job.spec.resources.flavor)
+    const catalog = this.getCatalogEntryF(this.job.spec.resources.flavor);
 
     this.unitPrice = catalog.priceInUcents * resourceN;
     this.unitTax = catalog.tax * resourceN;
@@ -114,7 +114,9 @@ export default class PciTrainingJobsInfoController {
 
   static getVolumeRepr(volume) {
     if (volume.privateSwift) {
-      const prefix = volume.privateSwift.prefix ? `/${volume.privateSwift.prefix}` : '';
+      const prefix = volume.privateSwift.prefix
+        ? `/${volume.privateSwift.prefix}`
+        : '';
       return `${volume.privateSwift.container}@${volume.privateSwift.region}${prefix}:${volume.mountPath}:${volume.permission}`;
     }
 
@@ -125,5 +127,7 @@ export default class PciTrainingJobsInfoController {
     if (volume.git) {
       return `${volume.git.url}:${volume.mountPath}:${volume.permission}`;
     }
+
+    return 'unknown volume type';
   }
 }

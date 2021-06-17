@@ -3,7 +3,12 @@ import { getCriteria } from '../../project.utils';
 
 export default class PciTrainingJobController {
   /* @ngInject */
-  constructor(CucCloudMessage, CucRegionService, PciProjectTrainingJobService, $interval) {
+  constructor(
+    CucCloudMessage,
+    CucRegionService,
+    PciProjectTrainingJobService,
+    $interval,
+  ) {
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
     this.PciProjectTrainingJobService = PciProjectTrainingJobService;
@@ -26,16 +31,14 @@ export default class PciTrainingJobController {
   }
 
   loadData() {
-    return this.PciProjectTrainingJobService.getAll(this.projectId).then((jobs) => {
-      if (!this.hasNonTerminalJob(jobs)) {
-        this.$onDestroy();
-      }
-      this.jobList = jobs;
-    });
-  }
-
-  hasNonTerminalJob(jobs) {
-    return filter(jobs, x => x.isTerminal()).length > 0;
+    return this.PciProjectTrainingJobService.getAll(this.projectId).then(
+      (jobs) => {
+        if (!filter(jobs, (x) => x.isTerminal()).length > 0) {
+          this.$onDestroy();
+        }
+        this.jobList = jobs;
+      },
+    );
   }
 
   loadMessages() {
