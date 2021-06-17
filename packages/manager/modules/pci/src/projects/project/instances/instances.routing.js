@@ -11,8 +11,14 @@ import Instance from '../../../components/project/instance/instance.class';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances', {
-    url: '/instances?help',
+    url: '/instances?help&id',
     component: 'pciProjectsProjectInstances',
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     redirectTo: (transition) =>
       transition
         .injector()
@@ -61,6 +67,7 @@ export default /* @ngInject */ ($stateProvider) => {
                 ),
             ),
           ),
+      instanceId: /* @ngInject */ ($transition$) => $transition$.params().id,
       addInstance: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.instances.add', {
           projectId,
