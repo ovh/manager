@@ -1,4 +1,5 @@
 import kebabCase from 'lodash/kebabCase';
+import { EngagementConfiguration } from '@ovh-ux/manager-models';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.billing.autorenew.cancel-resiliation', {
@@ -40,8 +41,13 @@ export default /* @ngInject */ ($stateProvider) => {
       engagement: /* @ngInject */ ($http, service) =>
         (service.canHaveEngagement()
           ? $http
-              .get(`/services/${service.id}/billing/engagement`)
-              .then((data) => ({ engagement: data }))
+              .get(`/services/${service.id}`)
+              .then(
+                ({ data }) =>
+                  new EngagementConfiguration(
+                    data.billing?.pricing?.engagementConfiguration,
+                  ),
+              )
               .catch({ engagement: null })
           : Promise.resolve({ engagement: null })
         ).then(({ engagement }) => engagement),
