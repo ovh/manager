@@ -57,7 +57,7 @@ export default class PciTrainingJobsSubmitController {
       {
         style: 'currency',
         currency: this.coreConfig.getUser().currency.code,
-        maximumFractionDigits: 2
+        maximumFractionDigits: 2,
       },
     );
 
@@ -86,7 +86,7 @@ export default class PciTrainingJobsSubmitController {
     this.resourceN = 1; // default number of resource
     this.flavors = [];
     this.flavorsType = [];
-    this.flavorsTypeSelected = "gpu";
+    this.flavorsTypeSelected = 'gpu';
     this.flavorSelected = {};
     this.flavorPrice = 0;
     this.flavorPriceTax = 0;
@@ -137,9 +137,16 @@ export default class PciTrainingJobsSubmitController {
 
   cliCommand() {
     this.loading = true;
-    this.PciProjectTrainingService.getJobCliCommand(this.projectId, this.computeJobSpec()).then(({data : {command}}) => {
-      this.cliCommandValue = command;
-    }).finally(() => this.loading = false)
+    this.PciProjectTrainingService.getJobCliCommand(
+      this.projectId,
+      this.computeJobSpec(),
+    )
+      .then(({ data: { command } }) => {
+        this.cliCommandValue = command;
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   splitStringCommandIntoArray() {
@@ -177,12 +184,14 @@ export default class PciTrainingJobsSubmitController {
   onChangeRegion(region) {
     // Update Resource
     this.PciProjectTrainingService.getFlavors(this.projectId, region.id).then(
-      ({data}) => {
-        this.flavors = map(data, flavor => {
-          flavor.catalog = this.getCatalogEntryF(flavor.id);
-          return flavor;
-        })
-        this.flavorsType = uniq(map(data, x => x.type));
+      ({ data }) => {
+        this.flavors = map(data, (flavor) => {
+          const catalog = this.getCatalogEntryF(flavor.id);
+          const enrichedFlavor = flavor;
+          enrichedFlavor.catalog = catalog;
+          return enrichedFlavor;
+        });
+        this.flavorsType = uniq(map(data, (x) => x.type));
         this.onResourceTypeChange();
       },
     );
@@ -201,18 +210,24 @@ export default class PciTrainingJobsSubmitController {
   }
 
   onResourceTypeChange() {
-    this.flavorSelected = head(filter(this.flavors, x => x.default && x.type === this.flavorsTypeSelected));
+    this.flavorSelected = head(
+      filter(
+        this.flavors,
+        (x) => x.default && x.type === this.flavorsTypeSelected,
+      ),
+    );
     this.computePrice(1);
   }
 
   computePrice(modelValue) {
-    this.resourceN = modelValue
-    this.flavorPrice = this.resourceN * this.flavorSelected.catalog.priceInUcents * 60;
+    this.resourceN = modelValue;
+    this.flavorPrice =
+      this.resourceN * this.flavorSelected.catalog.priceInUcents * 60;
     this.flavorPriceTax = this.resourceN * this.flavorSelected.catalog.tax * 60;
 
     this.job.resources = {
-      "flavor": this.flavorSelected.id,
-    }
+      flavor: this.flavorSelected.id,
+    };
 
     this.job.resources[this.flavorSelected.type] = modelValue;
   }

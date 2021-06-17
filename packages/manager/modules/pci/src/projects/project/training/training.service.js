@@ -121,10 +121,12 @@ export default class PciProjectTrainingService {
   }
 
   getFlavors(serviceName, region) {
-    return this.$http.get(`/cloud/project/${serviceName}/ai/capabilities/region/${region}/flavor`)
+    return this.$http.get(
+      `/cloud/project/${serviceName}/ai/capabilities/region/${region}/flavor`,
+    );
   }
 
   getJobCliCommand(serviceName, job) {
-    return this.$http.post(`/cloud/project/${serviceName}/ai/job/command`, job)
+    return this.$http.post(`/cloud/project/${serviceName}/ai/job/command`, job);
   }
 }
