@@ -107,7 +107,7 @@
         data-ng-if="(!$ctrl.service.shouldDeleteAtExpiration() || !$ctrl.service.isResiliated()) && !$ctrl.service.hasDebt() && !$ctrl.service.hasPendingResiliation()"
     >
         <oui-action-menu-item
-            ng-if="$ctrl.service.canBeResiliated($ctrl.user.nichandle) && (!$ctrl.service.hasPendingEngagement && !$ctrl.service.canCancelResiliationByEndRule() || $ctrl.service.canResiliateByEndRule())"
+            ng-if="$ctrl.service.canBeResiliated($ctrl.user.nichandle) || (!$ctrl.service.hasPendingEngagement && !$ctrl.service.canCancelResiliationByEndRule() || $ctrl.service.canResiliateByEndRule())"
             href="{{:: $ctrl.resiliateLink }}"
             on-click="$ctrl.trackAction('go-to-resiliate')"
             data-navi-id="go-to-resiliate"
