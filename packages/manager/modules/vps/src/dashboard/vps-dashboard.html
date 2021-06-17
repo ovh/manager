@@ -8,6 +8,8 @@
     <a
         class="oui-tile__button oui-button oui-link_icon"
         data-ng-href="{{ $ctrl.migrationLink }}"
+        data-track-on="click"
+        data-track-name="{{:: $ctrl.trackingPrefix + '::migrate-my-vps-banner' }}"
     >
         <span data-translate="vps_dashboard_migration_link"></span>
     </a>
@@ -144,6 +146,8 @@
                             data-ng-if="$ctrl.vpsMigration"
                             class="oui-tile__button oui-button oui-link_icon"
                             data-ng-href="{{ $ctrl.migrationLink }}"
+                            data-track-on="click"
+                            data-track-name="{{:: $ctrl.trackingPrefix + '::migrate-my-vps' }}"
                         >
                             <span
                                 data-translate="vps_dashboard_migration_link"
