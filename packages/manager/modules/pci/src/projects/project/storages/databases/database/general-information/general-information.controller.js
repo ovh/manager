@@ -23,10 +23,14 @@ export default class {
   getConnectionInformation() {
     const nodesConfig = this.database.nodes.map((node) => node.name).join(',');
     return {
-      mongoShell: `${
-        SHELL_NAMES[this.database.engine]
-      } --ssl --host replicaset/${nodesConfig} --username <username> --password <password>`,
-      application: `${this.database.engine}://<username>:<password>@${nodesConfig}/?replicaSet=replicaset&tls=True`,
+      mongoShell: `${SHELL_NAMES[this.database.engine]} --tls --host ${
+        this.database.nodes.length > 1 ? 'replicaset/' : ''
+      }${nodesConfig} --authenticationDatabase admin --username <username> --password <password>`,
+      application: `${
+        this.database.engine
+      }://<username>:<password>@${nodesConfig}/admin?${
+        this.database.nodes.length > 1 ? 'replicaSet=replicaset&' : ''
+      }tls=true`,
     };
   }
 
