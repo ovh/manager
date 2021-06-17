@@ -7,8 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('pci_projects_project_training_jobs_title'),
       pricesCatalog: /* @ngInject */ (PciProjectTrainingService, projectId) =>
         PciProjectTrainingService.getPricesFromCatalog(projectId),
-      getCatalogEntryF: /* @ngInject */ (pricesCatalog) => (resourceId) =>
-        pricesCatalog[`ai-training.ai1-1-${resourceId}.minute.consumption`],
+      getCatalogEntryF: /* @ngInject */ (pricesCatalog) => (resourceId) => {
+        return pricesCatalog[`ai-training.${resourceId}.minute.consumption`];
+      },
       getPrice: /* @ngInject */ (getCatalogEntryF) => (qty, resourceId) => {
         return getCatalogEntryF(resourceId).priceInUcents * 60 * qty;
       },

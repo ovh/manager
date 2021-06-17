@@ -24,90 +24,12 @@
             data-editable="!$ctrl.isSubmit"
             data-valid="$ctrl.job.image.id"
         >
-            <div class="container-fluid px-0">
-                <div class="row">
-                    <div
-                        class="col-md-6 col-xl-4 my-3"
-                        data-ng-repeat="preset in $ctrl.presetImages track by preset.id"
-                    >
-                        <oui-select-picker
-                            data-name="{{:: preset.id }}"
-                            data-description="{{:: preset.description }}"
-                            data-model="$ctrl.job.image"
-                            data-picture="{{:: preset.logo }}"
-                            data-label="{{:: preset.name }}"
-                            data-variant="light"
-                            data-on-change="$ctrl.generateName()"
-                            data-values="[preset]"
-                            data-required
-                        >
-                            <oui-select-picker-section
-                                class="oui-select-picker__section"
-                            >
-                                <a
-                                    target="_blank"
-                                    class="oui-button oui-button_ghost"
-                                    rel="noopener"
-                                    data-ng-href="{{:: preset.link }}"
-                                >
-                                    <span
-                                        data-translate="pci_projects_project_training_jobs_submit_select_image_preset_info"
-                                    ></span>
-                                    <i
-                                        class="oui-icon oui-icon-external-link"
-                                        aria-hidden="true"
-                                    ></i>
-                                </a>
-                            </oui-select-picker-section>
-                        </oui-select-picker>
-                    </div>
-                    <div class="col-md-6 col-xl-4 my-3">
-                        <oui-select-picker
-                            data-name="missing"
-                            data-description="{{:: 'pci_projects_project_training_jobs_submit_select_image_preset_request' | translate }}"
-                            data-picture=""
-                            data-label="{{:: 'pci_projects_project_training_jobs_submit_select_image_preset_missing_framework' | translate }}"
-                            data-variant="light"
-                            data-values="[preset]"
-                            data-required
-                            data-model="$ctrl.job.image"
-                            data-on-change="$ctrl.generateName()"
-                        >
-                            <oui-select-picker-section
-                                class="oui-select-picker__section"
-                            >
-                                <a
-                                    target="_blank"
-                                    class="oui-button oui-button_ghost"
-                                    rel="noopener"
-                                    data-ng-href="{{ $ctrl.communityUrl }}"
-                                >
-                                    <span>OVH AI Community</span>
-                                    <i
-                                        class="oui-icon oui-icon-external-link"
-                                        aria-hidden="true"
-                                    ></i>
-                                </a>
-                            </oui-select-picker-section>
-                        </oui-select-picker>
-                    </div>
-                </div>
-            </div>
-            <button
-                class="oui-button sizing__advanced-button oui-button_ghost mb-3"
-                oui-tooltip="{{:: 'pci_projects_project_training_jobs_submit_select_image_advanced_tips' | translate  }}"
-                oui-tooltip-placement="top"
-                type="button"
-                data-ng-click="$ctrl.onClickAdvancedImage()"
-            >
-                <span
-                    data-translate="pci_projects_project_training_jobs_submit_select_image_advanced"
-                ></span>
-            </button>
+            <oui-message type="info">
+                <span>{{ :: 'pci_projects_project_training_jobs_submit_select_image_info' | translate }}</span>
+            </oui-message>
             <oui-field
                 data-size="xl"
                 data-help-text="{{:: 'pci_projects_project_training_jobs_submit_select_image_tips' | translate  }}"
-                data-ng-if="$ctrl.showAdvancedImage"
             >
                 <input
                     class="oui-input"
@@ -376,7 +298,7 @@
             data-header="{{:: 'pci_projects_project_training_jobs_submit_select_config' | translate  }}"
             data-editable="!$ctrl.isSubmit"
         >
-            <div class="row d-lg-flex">
+            <div class="row d-lg-flex" data-ng-if="$ctrl.flavors.length">
                 <div class="col-md-8">
                     <oui-field
                         data-label="{{:: 'pci_projects_project_training_jobs_submit_select_config_name' | translate }}"
@@ -394,64 +316,103 @@
                             maxlength="64"
                         />
                     </oui-field>
-                    <oui-field data-label="Resource Type" data-size="auto">
+                    <oui-field data-label="Resource type" data-size="auto">
                         <oui-radio-toggle-group
-                            model="$ctrl.resourceId"
+                            model="$ctrl.flavorsTypeSelected"
                             on-change="$ctrl.onResourceTypeChange()"
                         >
-                            <oui-radio value="$ctrl.gpuId">
-                                {{::
-                                'pci_projects_project_training_jobs_submit_select_config_resources_tips_gpu_identifier'
-                                | translate }}
-                            </oui-radio>
-                            <oui-radio value="$ctrl.cpuId">
-                                {{::
-                                'pci_projects_project_training_jobs_submit_select_config_resources_tips_cpu_identifier'
-                                | translate }}
+                            <oui-radio
+                                data-value="type"
+                                data-ng-repeat="type in $ctrl.flavorsType track by type"
+                            >
+                                {{ type | uppercase }}
                             </oui-radio>
                         </oui-radio-toggle-group>
                     </oui-field>
-                    <div data-ng-if="$ctrl.resourceId == $ctrl.gpuId">
-                        <oui-field data-label="GPU" data-size="auto">
-                            <oui-select
-                                data-model="$ctrl.selectedGpu"
-                                data-items="$ctrl.resource.gpus"
-                                data-required
-                                match="model"
-                                name="gpu"
-                                inline
-                            >
-                                <span
-                                    ng-bind="$item.model"
-                                    class="d-inline-block text-truncate"
-                                ></span>
-                            </oui-select>
-                        </oui-field>
-                        <oui-field
-                            data-label="{{:: 'pci_projects_project_training_jobs_submit_select_config_resources_tips_gpu' | translate  }}"
-                            data-size="auto"
+                    <div class="ajust-flavors">
+                        <oui-select-picker
+                            class="d-inline-block col-md-6 col-xl-3 my-3"
+                            data-ng-repeat="flavor in $ctrl.flavors | filter: { type: $ctrl.flavorsTypeSelected } track by flavor.id"
+                            data-name="{{:: flavor.id }}"
+                            data-description="{{:: flavor.description}}"
+                            data-model="$ctrl.flavorSelected"
+                            data-values="[flavor]"
+                            data-variant="light"
+                            data-on-change="$ctrl.onFlavorChange(modelValue)"
+                            data-required
                         >
-                            <oui-numeric
-                                data-min="1"
-                                data-max="$ctrl.selectedGpu.maxGpus"
-                                data-model="$ctrl.job.resources.gpu"
-                                data-on-change="$ctrl.resourceN = modelValue"
-                                name="gpuCount"
-                            >
-                            </oui-numeric>
-                        </oui-field>
+                            <oui-select-picker-label>
+                                <strong data-ng-bind=":: flavor.id"></strong>
+                            </oui-select-picker-label>
+
+                            <oui-select-picker-section>
+                                <div class="d-flex">
+                                    <span
+                                        data-translate="pci_projects_project_training_jobs_submitresources_proposed_ram"
+                                        data-translate-values="{ ram: (flavor.resourcesPerUnit.memory | cucBytes:2:true:'B') }"
+                                    ></span>
+                                    <span
+                                        data-translate="pci_projects_project_training_jobs_submitresources_proposed_type_cpu"
+                                    ></span>
+                                </div>
+                                <div
+                                    class="d-flex"
+                                    data-ng-if="flavor.gpuInformation.gpuMemory"
+                                >
+                                    <span
+                                        data-translate="pci_projects_project_training_jobs_submitresources_proposed_ram"
+                                        data-translate-values="{ ram: (flavor.gpuInformation.gpuMemory | cucBytes:2:true:'B') }"
+                                    ></span>
+                                    <span
+                                        data-translate="pci_projects_project_training_jobs_submitresources_proposed_type_gpu"
+                                    ></span>
+                                </div>
+                                <div class="d-flex">
+                                    <span
+                                        data-translate="pci_project_flavors_spec_core_details"
+                                        data-translate-values="{ vcores: flavor.resourcesPerUnit.cpu }"
+                                    ></span>
+                                </div>
+                                <div class="d-flex">
+                                    <span
+                                        data-translate="pci_projects_project_training_jobs_submitresources_proposed_storage"
+                                        data-translate-values="{ memory: (flavor.resourcesPerUnit.ephemeralStorage | cucBytes:2:true:'B') }"
+                                    ></span>
+                                </div>
+                                <div class="d-flex">
+                                    <span
+                                        data-translate="pci_projects_project_training_jobs_submitresources_proposed_bandwidth"
+                                        data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.publicNetwork | cucBytes:2:false:'B') }"
+                                    ></span>
+                                </div>
+                                <div
+                                    class="d-flex"
+                                    data-ng-if="flavor.resourcesPerUnit.privateNetwork"
+                                >
+                                    <span
+                                        data-translate="pci_projects_project_training_jobs_submitresources_proposed_bandwidth"
+                                        data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.privateNetwork | cucBytes:2:false:'B') }"
+                                    ></span>
+                                </div>
+                            </oui-select-picker-section>
+                            <oui-select-picker-section>
+                                <strong
+                                    class="d-block"
+                                    data-translate="pci_projects_project_training_jobs_submitresources_proposed_resource_price_by_ressource"
+                                    data-translate-values="{ price: $ctrl.getFlavorPrice(flavor) }"
+                                >
+                                </strong>
+                            </oui-select-picker-section>
+                        </oui-select-picker>
                     </div>
-                    <div data-ng-if="$ctrl.resourceId == $ctrl.cpuId">
-                        <oui-field
-                            data-label="{{:: 'pci_projects_project_training_jobs_submit_select_config_resources_tips_cpu' | translate  }}"
-                            data-size="auto"
-                        >
+                    <div>
+                        <oui-field data-size="auto">
                             <oui-numeric
                                 data-min="1"
-                                data-max="$ctrl.maxCpus"
-                                data-model="$ctrl.job.resources.cpu"
-                                data-on-change="$ctrl.resourceN = modelValue"
-                                name="cpuCount"
+                                data-max="$ctrl.flavorSelected.max"
+                                data-model="$ctrl.resourceN"
+                                data-on-change="$ctrl.computePrice(modelValue)"
+                                name="count"
                             >
                             </oui-numeric>
                         </oui-field>
@@ -467,8 +428,8 @@
                         >
                             <oui-tile-description>
                                 <ovh-manager-catalog-price
-                                    data-price="$ctrl.getPrice($ctrl.resourceN, $ctrl.resourceId)"
-                                    data-tax="$ctrl.getTax($ctrl.resourceN, $ctrl.resourceId)"
+                                    data-price="$ctrl.flavorPrice"
+                                    data-tax="$ctrl.flavorPriceTax"
                                     data-user="$ctrl.user"
                                     data-perform-rounding="false"
                                     data-maximum-fraction-digits="3"
@@ -485,7 +446,8 @@
             data-header="{{:: 'pci_projects_project_training_jobs_submit_validation' | translate  }}"
             data-submit-text="{{:: 'pci_projects_project_training_jobs_list_submit_button' | translate  }}"
             data-editable="!$ctrl.isSubmit"
-            data-loading="$ctrl.isSubmit"
+            data-loading="$ctrl.isSubmit || $ctrl.loading"
+            data-on-focus="$ctrl.cliCommand()"
         >
             <div>
                 <div class="row d-lg-flex mb-3">
@@ -517,27 +479,36 @@
                         >
                             <oui-tile-definition
                                 data-term="{{:: 'pci_projects_project_training_jobs_submit_select_config_resources_tips_gpu' | translate  }}"
-                                ng-if="$ctrl.resourceId === $ctrl.gpuId"
                             >
-                                <oui-tile-description>
-                                    <span
-                                        data-ng-bind="$ctrl.job.resources.gpu"
-                                    ></span>
+                                <oui-tile-description
+                                    data-ng-if="$ctrl.flavorSelected.gpuInformation"
+                                >
+                                    <span data-ng-bind="$ctrl.resourceN"></span>
                                     <span>x</span>
                                     <span
                                         class="oui-status oui-status_info"
-                                        data-ng-bind="$ctrl.selectedGpu.model"
+                                        data-ng-bind="$ctrl.flavorSelected.gpuInformation.gpuModel"
                                     ></span>
                                 </oui-tile-description>
                             </oui-tile-definition>
                             <oui-tile-definition
                                 data-term="{{:: 'pci_projects_project_training_jobs_submit_select_config_resources_tips_cpu' | translate  }}"
-                                ng-if="$ctrl.resourceId === $ctrl.cpuId"
                             >
                                 <oui-tile-description>
                                     <span
-                                        data-ng-bind="$ctrl.job.resources.cpu"
+                                        data-ng-bind="$ctrl.resourceN * $ctrl.flavorSelected.resourcesPerUnit.cpu"
                                     ></span>
+                                </oui-tile-description>
+                            </oui-tile-definition>
+                            <oui-tile-definition
+                                data-term="{{:: 'pci_projects_project_training_jobs_submit_select_config_resources_tips_ram' | translate  }}"
+                            >
+                                <oui-tile-description>
+                                    <span>
+                                        {{$ctrl.resourceN *
+                                        $ctrl.flavorSelected.resourcesPerUnit.memory
+                                        | cucBytes:2:true:'B' }}
+                                    </span>
                                 </oui-tile-description>
                             </oui-tile-definition>
                             <oui-tile-definition
@@ -545,8 +516,8 @@
                             >
                                 <oui-tile-description>
                                     <ovh-manager-catalog-price
-                                        data-price="$ctrl.getPrice($ctrl.resourceN, $ctrl.resourceId)"
-                                        data-tax="$ctrl.getTax($ctrl.resourceN, $ctrl.resourceId)"
+                                        data-price="$ctrl.flavorPrice"
+                                        data-tax="$ctrl.flavorPriceTax"
                                         data-user="$ctrl.user"
                                         data-perform-rounding="false"
                                         data-maximum-fraction-digits="3"
@@ -566,10 +537,7 @@
                             <span
                                 data-translate="pci_projects_project_training_jobs_submit_ovhai_info"
                             ></span>
-                            <pre>
-{{:: 'pci_projects_project_training_parter_cli_name' | translate
-                                }} {{ $ctrl.cliCommand() }}</pre
-                            >
+                            <pre>{{ $ctrl.cliCommandValue }}</pre>
                             <span
                                 data-translate="pci_projects_project_training_jobs_submit_ovhai_help"
                             ></span>

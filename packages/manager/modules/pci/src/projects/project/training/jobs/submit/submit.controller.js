@@ -1,7 +1,10 @@
 import get from 'lodash/get';
+import uniq from 'lodash/uniq';
+import filter from 'lodash/filter';
+import map from 'lodash/map';
+import head from 'lodash/head';
 import { nameGenerator } from '../../../data-processing/data-processing.utils';
 import { COMMUNITY_URL } from '../../training.constants';
-import convertJobSpecToCliCommand from '../../command_line_converter';
 
 export default class PciTrainingJobsSubmitController {
   /* @ngInject */
@@ -11,7 +14,9 @@ export default class PciTrainingJobsSubmitController {
     PciProjectTrainingJobService,
     PciProjectStorageContainersService,
     atInternet,
+    coreConfig,
   ) {
+    this.coreConfig = coreConfig;
     this.$translate = $translate;
     this.PciProjectTrainingService = PciProjectTrainingService;
     this.PciProjectTrainingJobService = PciProjectTrainingJobService;
@@ -47,10 +52,17 @@ export default class PciTrainingJobsSubmitController {
   }
 
   $onInit() {
+    this.PriceFormatter = new Intl.NumberFormat(
+      this.coreConfig.getUserLocale().replace('_', '-'),
+      {
+        style: 'currency',
+        currency: this.coreConfig.getUser().currency.code,
+        maximumFractionDigits: 2
+      },
+    );
+
     this.httpHeader = [];
     this.volumesPermissions = ['RO', 'RW'];
-    this.gpuId = 'gpu';
-    this.cpuId = 'cpu';
     this.communityUrl = COMMUNITY_URL;
     // Form payload
     this.job = {
@@ -72,11 +84,13 @@ export default class PciTrainingJobsSubmitController {
     };
 
     this.resourceN = 1; // default number of resource
-    this.resourceId = 'gpu'; // default resource
-    this.resource = {};
-    this.selectedGpu = null;
-    this.maxCpus = null;
-    this.showAdvancedImage = false;
+    this.flavors = [];
+    this.flavorsType = [];
+    this.flavorsTypeSelected = "gpu";
+    this.flavorSelected = {};
+    this.flavorPrice = 0;
+    this.flavorPriceTax = 0;
+    this.onChangeRegion(head(this.regions));
     this.emptyData = this.containers.length === 0;
     this.filterContainers();
   }
@@ -122,7 +136,10 @@ export default class PciTrainingJobsSubmitController {
   }
 
   cliCommand() {
-    return convertJobSpecToCliCommand(this.computeJobSpec());
+    this.loading = true;
+    this.PciProjectTrainingService.getJobCliCommand(this.projectId, this.computeJobSpec()).then(({data : {command}}) => {
+      this.cliCommandValue = command;
+    }).finally(() => this.loading = false)
   }
 
   splitStringCommandIntoArray() {
@@ -146,7 +163,7 @@ export default class PciTrainingJobsSubmitController {
       resources: {
         cpu: this.job.resources.cpu,
         gpu: this.job.resources.gpu,
-        mem: this.job.resources.mem,
+        flavor: this.job.resources.flavor,
       },
     };
     if (this.job.command) {
@@ -159,11 +176,14 @@ export default class PciTrainingJobsSubmitController {
 
   onChangeRegion(region) {
     // Update Resource
-    this.PciProjectTrainingService.getResources(this.projectId, region.id).then(
-      (resource) => {
-        this.resource = resource;
-        [this.selectedGpu] = this.resource.gpus;
-        this.maxCpus = this.resource.maxCpus;
+    this.PciProjectTrainingService.getFlavors(this.projectId, region.id).then(
+      ({data}) => {
+        this.flavors = map(data, flavor => {
+          flavor.catalog = this.getCatalogEntryF(flavor.id);
+          return flavor;
+        })
+        this.flavorsType = uniq(map(data, x => x.type));
+        this.onResourceTypeChange();
       },
     );
   }
@@ -180,19 +200,25 @@ export default class PciTrainingJobsSubmitController {
     this.submitJob();
   }
 
-  onClickAdvancedImage() {
-    this.showAdvancedImage = !this.showAdvancedImage;
+  onResourceTypeChange() {
+    this.flavorSelected = head(filter(this.flavors, x => x.default && x.type === this.flavorsTypeSelected));
+    this.computePrice(1);
   }
 
-  onResourceTypeChange() {
-    this.resourceN = 1;
-    if (this.resourceId === this.cpuId) {
-      this.job.resources.gpu = 0;
-      this.job.resources.cpu = 1;
-    } else {
-      this.job.resources.gpu = 1;
-      this.job.resources.cpu = 0;
+  computePrice(modelValue) {
+    this.resourceN = modelValue
+    this.flavorPrice = this.resourceN * this.flavorSelected.catalog.priceInUcents * 60;
+    this.flavorPriceTax = this.resourceN * this.flavorSelected.catalog.tax * 60;
+
+    this.job.resources = {
+      "flavor": this.flavorSelected.id,
     }
+
+    this.job.resources[this.flavorSelected.type] = modelValue;
+  }
+
+  getFlavorPrice(flavor) {
+    return this.PriceFormatter.format(flavor.catalog.price.value * 60);
   }
 
   submitJob() {
