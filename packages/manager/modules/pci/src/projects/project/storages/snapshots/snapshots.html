@@ -19,12 +19,23 @@
             data-messages="$ctrl.messages"
         ></cui-message-container>
 
-        <oui-datagrid data-rows="$ctrl.snapshots">
+        <oui-datagrid
+            data-rows="$ctrl.snapshots"
+            criteria="$ctrl.criteria"
+            on-criteria-change="$ctrl.onListParamChange($criteria)"
+        >
             <oui-datagrid-column
                 data-title="'pci_projects_project_storages_snapshots_name_label' | translate"
                 data-property="name"
                 data-type="string"
                 data-searchable
+                data-filterable
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'pci_projects_project_storages_snapshots_id_label' | translate"
+                data-property="id"
+                data-type="string"
+                data-sortable
                 data-filterable
             ></oui-datagrid-column>
             <oui-datagrid-column

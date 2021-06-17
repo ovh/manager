@@ -1,3 +1,5 @@
+import { getCriteria } from '../../project.utils';
+
 export default class PciStorageSnapshotsController {
   /* @ngInject */
   constructor(
@@ -14,6 +16,7 @@ export default class PciStorageSnapshotsController {
 
   $onInit() {
     this.loadMessages();
+    this.criteria = getCriteria('id', this.snapshotId);
   }
 
   loadMessages() {
