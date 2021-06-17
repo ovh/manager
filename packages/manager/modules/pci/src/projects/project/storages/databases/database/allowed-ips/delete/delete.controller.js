@@ -39,9 +39,6 @@ export default class {
           }),
           'error',
         );
-      })
-      .finally(() => {
-        this.isLoading = false;
       });
   }
 

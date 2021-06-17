@@ -14,6 +14,7 @@ export default {
     goToModifyPassword: '<?',
     guideUrl: '<?',
     hideRolesMatrix: '<?',
+    isActionDisabled: '<?',
     openStackHorizonLink: '<',
     projectId: '<',
     regeneratePassword: '<?',
