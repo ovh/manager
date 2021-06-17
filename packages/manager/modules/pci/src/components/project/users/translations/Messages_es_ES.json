@@ -8,7 +8,7 @@
   "pci_projects_project_users_status_ok": "Activado",
   "pci_projects_project_users_status_deleting": "Eliminando...",
   "pci_projects_project_users_status_deleted": "Eliminado",
-  "pci_projects_project_users_status_updating": "Actualizando",
+  "pci_projects_project_users_status_updating": "Actualizando...",
   "pci_projects_project_users_horizon_label": "Abrir OpenStack Horizon",
   "pci_projects_project_users_openrc_label": "Descargar el archivo RC de OpenStack",
   "pci_projects_project_users_rclone_label": "Descargar un archivo de configuración Rclone",
