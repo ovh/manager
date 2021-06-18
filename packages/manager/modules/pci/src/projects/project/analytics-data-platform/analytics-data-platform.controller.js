@@ -3,6 +3,8 @@ import {
   ANALYTICS_DATA_PLATFORM_STATUS,
 } from './analytics-data-platform.constants';
 
+import { getCriteria } from '../project.utils';
+
 export default class {
   /* @ngInject */
   constructor(
@@ -21,6 +23,7 @@ export default class {
     this.STATUS_CLASS = ANALYTICS_DATA_PLATFORM_STATUS_MAP;
     this.ADP_STATUS = ANALYTICS_DATA_PLATFORM_STATUS;
     this.subscribeToMessages();
+    this.criteria = getCriteria('serviceName', this.clusterId);
   }
 
   refreshMessage() {

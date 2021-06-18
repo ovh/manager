@@ -26,6 +26,7 @@
   "analytics_data_platform_common_status_DEPLOYING": "Deploiement en cours",
   "analytics_data_platform_common_status_FAILED": "Echec",
   "analytics_data_platform_common_status": "Statut",
+  "analytics_data_platform_common_id": "ID",
   "analytics_data_platform_common_region": "Région",
   "analytics_data_platform_common_filter": "Filtrer par",
   "analytics_data_platform_common_select": "Sélectionner",
