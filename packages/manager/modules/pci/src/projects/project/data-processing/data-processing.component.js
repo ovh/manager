@@ -11,5 +11,7 @@ export default {
     projectId: '<',
     terminateJob: '<',
     getPricesFromCatalog: '<',
+    jobId: '<',
+    onListParamChange: '<',
   },
 };

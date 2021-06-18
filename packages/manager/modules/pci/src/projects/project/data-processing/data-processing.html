@@ -18,6 +18,8 @@
         <oui-datagrid
             data-rows-loader="$ctrl.getJobs($config)"
             data-refreshable
+            criteria="$ctrl.criteria"
+            on-criteria-change="$ctrl.onListParamChange($criteria)"
         >
             <oui-datagrid-column
                 data-title="::'data_processing_job_name' | translate"
@@ -33,6 +35,14 @@
                 >
                     <span data-ng-bind="::$row.name"></span>
                 </oui-button>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="::'data_processing_job_id' | translate"
+                data-property="id"
+                data-sortable
+                data-type="string"
+                data-filterable
+            >
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title="::'data_processing_region' | translate"

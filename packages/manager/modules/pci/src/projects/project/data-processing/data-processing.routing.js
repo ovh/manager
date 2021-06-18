@@ -1,7 +1,13 @@
 export default /* @ngInject */ ($stateProvider) =>
   $stateProvider.state('pci.projects.project.data-processing', {
-    url: '/data-processing',
+    url: '/data-processing?id',
     component: 'pciProjectDataProcessing',
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     redirectTo: (transition) =>
       Promise.all([transition.injector().getAsync('authorization')]).then(
         ([authorization]) => {
@@ -46,6 +52,7 @@ export default /* @ngInject */ ($stateProvider) =>
           jobName,
         });
       },
+      jobId: /* @ngInject */ ($transition$) => $transition$.params().id,
       lab: /* @ngInject */ (PciProjectLabsService, projectId) =>
         PciProjectLabsService.getLabByName(projectId, 'dataProcessing'),
     },
