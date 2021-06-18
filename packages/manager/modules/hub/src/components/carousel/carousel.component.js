@@ -5,6 +5,8 @@ export default {
   bindings: {
     items: '<',
     trackingPrefix: '@',
+    productType: '<',
+    items: '<',
   },
   controller,
   template,
