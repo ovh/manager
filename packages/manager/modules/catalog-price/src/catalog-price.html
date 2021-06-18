@@ -68,7 +68,7 @@
             data-ng-if="::$ctrl.isUSFormat()"
             data-ng-class="{ 'd-block': $ctrl.block }"
         >
-            <span data-ng-bind="::$ctrl.getPriceText($ctrl.price)"></span>
+            <span data-ng-bind="$ctrl.getPriceText($ctrl.price)"></span>
             <span data-ng-if="$ctrl.interval">
                 &#47;
                 <span
