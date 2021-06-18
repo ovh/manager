@@ -1,3 +1,5 @@
+import { getCriteria } from '../project.utils';
+
 const MESSAGES_CONTAINER_NAME = 'pci.projects.project.failover-ips';
 
 export default class FailoverIpController {
@@ -27,6 +29,7 @@ export default class FailoverIpController {
         onMessage: () => this.refreshMessage(),
       },
     );
+    this.criteria = getCriteria('ip', this.failoverIp);
   }
 
   refreshMessage() {

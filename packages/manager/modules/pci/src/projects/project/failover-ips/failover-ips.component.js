@@ -9,5 +9,7 @@ export default {
     instances: '<',
     guideUrl: '<',
     projectId: '<',
+    failoverIp: '<',
+    onListParamChange: '<',
   },
 };
