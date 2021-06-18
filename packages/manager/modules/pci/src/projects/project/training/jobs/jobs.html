@@ -13,10 +13,12 @@
         id="publicCloudTrainingJobsDatagrid"
         data-rows="$ctrl.jobList"
         data-row-loader="$row"
+        criteria="$ctrl.criteria"
+        on-criteria-change="$ctrl.onListParamChange($criteria)"
     >
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_training_jobs_name' | translate"
-            data-property="spec"
+            data-property="id"
             data-type="string"
             data-searchable
             data-filterable
