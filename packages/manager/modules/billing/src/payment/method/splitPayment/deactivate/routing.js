@@ -16,6 +16,9 @@ export default /* @ngInject */ ($stateProvider) => {
         action: /* @ngInject */ ($http, splitPaymentTag) => () =>
           $http.delete(`/me/tag/${splitPaymentTag}`),
         actionLabelKey: () => 'billing_payment_method_split_payment_deactivate',
+        actionWarningText: () =>
+          'billing_payment_method_split_payment_warning_deactivate',
+        displayDecreeHref: () => false,
         errorMessageKey: () =>
           'billing_payment_method_split_payment_deactivate_error',
         goBack: /* @ngInject */ (goPaymentList) => goPaymentList,

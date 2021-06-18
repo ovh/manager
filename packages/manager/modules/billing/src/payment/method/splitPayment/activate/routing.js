@@ -18,6 +18,9 @@ export default /* @ngInject */ ($stateProvider) => {
             tagName: splitPaymentTag,
           }),
         actionLabelKey: () => 'billing_payment_method_split_payment_activate',
+        actionWarningText: () =>
+          'billing_payment_method_split_payment_warning_activate',
+        displayDecreeHref: () => true,
         errorMessageKey: () =>
           'billing_payment_method_split_payment_activate_error',
         goBack: /* @ngInject */ (goPaymentList) => goPaymentList,
