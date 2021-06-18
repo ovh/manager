@@ -59,8 +59,9 @@
   "pci_projects_project_training_jobs_submit_select_image_info": "Besoin de notebooks Jupyter ou VSCode avec vos frameworks AI préférés tel que TensorFlow, PyTorch, scikit-learn ? Vous les trouverez désormais dans la section AI Notebooks de votre projet cloud",
   "pci_projects_project_training_jobs_submitresources_proposed_title": "Ressources proposées",
   "pci_projects_project_training_jobs_submitresources_proposed_ram": "{{ ram }} RAM",
-  "pci_projects_project_training_jobs_submitresources_proposed_storage": "{{ memory }} SSD",
-  "pci_projects_project_training_jobs_submitresources_proposed_bandwidth": "{{ bandwidth }}/s",
+  "pci_projects_project_training_jobs_submitresources_proposed_storage": "Stockage Local: {{ memory }} SSD",
+  "pci_projects_project_training_jobs_submitresources_proposed_public_bandwidth": "Réseau Public {{ bandwidth }}/s",
+  "pci_projects_project_training_jobs_submitresources_proposed_private_bandwidth": "Réseau Privé {{ bandwidth }}/s",
   "pci_projects_project_training_jobs_submitresources_proposed_resource_price_by_ressource": "{{ price }}/unité. HT/heure",
   "pci_projects_project_training_jobs_submitresources_proposed_type_gpu": " (GPU)",
   "pci_projects_project_training_jobs_submitresources_proposed_type_cpu": " (CPU)"
