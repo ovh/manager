@@ -25,6 +25,8 @@
             class="mt-5"
             data-rows="$ctrl.registries"
             data-row-loader="$ctrl.getRegistryPlan($row)"
+            criteria="$ctrl.criteria"
+            on-criteria-change="$ctrl.onListParamChange($criteria)"
         >
             <oui-datagrid-column
                 data-title=":: 'private_registry_name' | translate"
@@ -32,6 +34,13 @@
                 data-type="string"
                 data-searchable
                 data-sortable="asc"
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'private_registry_id' | translate"
+                data-property="id"
+                data-type="string"
+                data-searchable
+                data-sortable
             ></oui-datagrid-column>
             <oui-datagrid-column
                 data-title=":: 'private_registry_plan' | translate"

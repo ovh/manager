@@ -3,6 +3,7 @@
   "data_processing_title": "Data Processing",
   "data_processing_jobs": "Jobs",
   "data_processing_region": "Région",
+  "data_processing_job_id": "ID",
   "data_processing_job_type": "Type",
   "data_processing_job_cores_ram": "vCores/RAM",
   "data_processing_job_ram": "RAM",
