@@ -4,11 +4,17 @@ import map from 'lodash/map';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.failover-ips', {
-    url: '/failover-ips',
+    url: '/failover-ips?ip',
     component: 'pciProjectFailoverIps',
     translations: {
       format: 'json',
       value: ['.'],
+    },
+    params: {
+      ip: {
+        dynamic: true,
+        type: 'string',
+      },
     },
     redirectTo: (transition) =>
       transition
@@ -26,6 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .then(() =>
             $translate.instant('pci_projects_project_failoverip_title'),
           ),
+      failoverIp: /* @ngInject */ ($transition$) => $transition$.params().ip,
       failoverIps: /* @ngInject */ (
         $q,
         OvhApiCloudProject,
