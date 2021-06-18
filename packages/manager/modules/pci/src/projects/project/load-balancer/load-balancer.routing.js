@@ -2,8 +2,14 @@ import map from 'lodash/map';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.loadbalancer', {
-    url: '/load-balancer',
+    url: '/load-balancer?id',
     component: 'pciProjectLoadBalancer',
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     redirectTo: (transition) =>
       transition
         .injector()
@@ -14,6 +20,8 @@ export default /* @ngInject */ ($stateProvider) => {
             : false,
         ),
     resolve: {
+      loadBalancerId: /* @ngInject */ ($transition$) =>
+        $transition$.params().id,
       goToLoadBalancers: ($state, CucCloudMessage, projectId) => (
         message = false,
         type = 'success',
