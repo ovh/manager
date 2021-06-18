@@ -2,14 +2,11 @@ import filter from 'lodash/filter';
 
 export default class PciTrainingJobController {
   /* @ngInject */
-  constructor(CucCloudMessage, CucRegionService, PciProjectTrainingJobService, ouiDatagridService, $interval) {
+  constructor(CucCloudMessage, CucRegionService, PciProjectTrainingJobService, $interval) {
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
     this.PciProjectTrainingJobService = PciProjectTrainingJobService;
-    this.ouiDatagridService = ouiDatagridService;
     this.$interval = $interval;
-
-    this.terminalState = ["DONE", "ERROR", "FAILED", "INTERRUPTED"];
   }
 
   $onDestroy() {
@@ -36,11 +33,7 @@ export default class PciTrainingJobController {
   }
 
   hasNonTerminalJob(jobs) {
-    return filter(jobs, x => !this.terminalState.includes(x.status.state)).length > 0;
-  }
-
-  refreshList() {
-    this.loadData().then(() => this.ouiDatagridService.refresh("publicCloudTrainingJobsDatagrid", true));
+    return filter(jobs, x => x.isTerminal()).length > 0;
   }
 
   loadMessages() {
