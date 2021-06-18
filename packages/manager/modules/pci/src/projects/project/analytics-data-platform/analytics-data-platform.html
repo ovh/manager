@@ -18,7 +18,12 @@
         <cui-message-container
             data-messages="$ctrl.messages"
         ></cui-message-container>
-        <oui-datagrid class="mt-3" data-rows="$ctrl.clusters">
+        <oui-datagrid
+            class="mt-3"
+            data-rows="$ctrl.clusters"
+            criteria="$ctrl.criteria"
+            on-criteria-change="$ctrl.onListParamChange($criteria)"
+        >
             <oui-datagrid-column
                 data-title="::'analytics_data_platform_common_cluster_name' | translate"
                 data-property="clusterName"
@@ -33,6 +38,13 @@
                 >
                     <span data-ng-bind="::$row.clusterName"></span>
                 </oui-button>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="::'analytics_data_platform_common_id' | translate"
+                data-property="serviceName"
+                data-type="string"
+                data-filterable
+            >
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title="::'analytics_data_platform_common_status' | translate"

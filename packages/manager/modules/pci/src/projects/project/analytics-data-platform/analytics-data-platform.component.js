@@ -10,5 +10,7 @@ export default {
     guideUrl: '<',
     manageCluster: '<',
     projectId: '<',
+    clusterId: '<',
+    onListParamChange: '<',
   },
 };
