@@ -33,7 +33,7 @@ export default class PciTrainingJobController {
   loadData() {
     return this.PciProjectTrainingJobService.getAll(this.projectId).then(
       (jobs) => {
-        if (!filter(jobs, (x) => x.isTerminal()).length > 0) {
+        if (filter(jobs, (x) => x.isTerminal()).length > 0) {
           this.$onDestroy();
         }
         this.jobList = jobs;
