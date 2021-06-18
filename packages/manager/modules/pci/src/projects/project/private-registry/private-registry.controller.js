@@ -4,6 +4,8 @@ import {
   GUIDE_LINKS,
 } from './private-registry.constants';
 
+import { getCriteria } from '../project.utils';
+
 export default class {
   /* @ngInject */
   constructor(CucCloudMessage, pciPrivateRegistryService) {
@@ -16,6 +18,8 @@ export default class {
 
   $onInit() {
     this.loadMessages();
+
+    this.criteria = getCriteria('id', this.registryId);
   }
 
   loadMessages() {
