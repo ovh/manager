@@ -1,4 +1,5 @@
 import capitalize from 'lodash/capitalize';
+import { getCriteria } from '../../project.utils';
 
 export default class {
   /* @ngInject */
@@ -11,6 +12,7 @@ export default class {
 
   $onInit() {
     this.loadMessages();
+    this.criteria = getCriteria('id', this.databaseId);
   }
 
   loadMessages() {

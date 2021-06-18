@@ -6,8 +6,14 @@ import Node from '../../../../components/project/storages/databases/node.class';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.databases', {
-    url: '/databases',
+    url: '/databases?id',
     component: 'ovhManagerPciProjectDatabases',
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     redirectTo: (transition) =>
       transition
         .injector()
@@ -21,6 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
       databaseGuideUrl: () => DATABASES_GUIDES_URL,
       goToAddDatabase: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.storages.databases.add', { projectId }),
+      databaseId: /* @ngInject */ ($transition$) => $transition$.params().id,
       /* The DATABASE_TYPES.MONGO_DB is to be removed when we have multiple engines
          The API will give us the engine data at that time and we will have a
          new API to give us all the databases (across engines) consolidated. */

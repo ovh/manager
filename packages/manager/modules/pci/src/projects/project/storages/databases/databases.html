@@ -25,6 +25,8 @@
     <oui-datagrid
         id="publicCloudStorageDatabasesDatagrid"
         data-rows="$ctrl.databases"
+        criteria="$ctrl.criteria"
+        on-criteria-change="$ctrl.onListParamChange($criteria)"
     >
         <oui-datagrid-column
             title=":: 'pci_database_common_name' | translate"
@@ -43,6 +45,14 @@
                 data-ng-if="$row.isDeleting()"
                 data-ng-bind=":: $value"
             ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'pci_database_common_id' | translate"
+            data-property="id"
+            data-type="string"
+            data-filterable
+            data-sortable
+        >
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_database_list_region' | translate"
