@@ -1,6 +1,8 @@
 import get from 'lodash/get';
 import map from 'lodash/map';
 
+import { getCriteria } from '../project.utils';
+
 const CONTAINER_NAME = 'pci.projects.project.privateNetwork';
 
 export default class {
@@ -17,6 +19,7 @@ export default class {
 
   $onInit() {
     this.loadMessages();
+    this.criteria = getCriteria('id', this.networkId);
   }
 
   getCIDR(network) {

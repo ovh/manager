@@ -34,6 +34,8 @@
         data-rows="$ctrl.privateNetworks"
         data-row-loader="$ctrl.getCIDR($row)"
         data-ng-if="$ctrl.privateNetworks.length > 0"
+        criteria="$ctrl.criteria"
+        on-criteria-change="$ctrl.onListParamChange($criteria)"
     >
         <oui-datagrid-topbar>
             <button
@@ -54,6 +56,12 @@
             data-title=":: 'pci_projects_project_network_private_name' | translate"
             data-property="name"
             data-searchable
+            data-type="string"
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_network_private_id' | translate"
+            data-property="id"
             data-type="string"
             data-filterable
         ></oui-datagrid-column>
