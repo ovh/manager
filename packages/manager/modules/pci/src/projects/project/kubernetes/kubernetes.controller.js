@@ -1,3 +1,5 @@
+import { getCriteria } from '../project.utils';
+
 export default class {
   /* @ngInject */
   constructor($translate, CucCloudMessage, OvhApiCloudProjectKube, Kubernetes) {
@@ -9,6 +11,7 @@ export default class {
 
   $onInit() {
     this.loadMessages();
+    this.criteria = getCriteria('id', this.clusterId);
   }
 
   loadMessages() {

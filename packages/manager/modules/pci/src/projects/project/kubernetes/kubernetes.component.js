@@ -8,6 +8,8 @@ export default {
     kubernetes: '<',
     projectId: '<',
     privateNetworks: '<',
+    clusterId: '<',
+    onListParamChange: '<',
   },
   controller,
   template,
