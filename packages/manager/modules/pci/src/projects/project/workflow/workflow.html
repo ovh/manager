@@ -20,6 +20,8 @@
         <oui-datagrid
             data-rows="$ctrl.workflows"
             data-row-loader="$ctrl.getInstance($row)"
+            criteria="$ctrl.criteria"
+            on-criteria-change="$ctrl.onListParamChange($criteria)"
         >
             <oui-datagrid-column
                 data-title=":: 'pci_workflow_name' | translate"
@@ -30,6 +32,13 @@
                 data-type="string"
             >
                 <span class="text-truncate" data-ng-bind="::$row.name"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'pci_workflow_id' | translate"
+                data-property="id"
+                data-filterable
+                data-type="string"
+            >
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title=":: 'pci_workflow_type' | translate"
