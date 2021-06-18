@@ -25,7 +25,7 @@ import './license/license.module';
 
 import './components/components.bundle';
 import './account/account.bundle';
-import './cdn/cdn.bundle';
+import './cdn';
 import './configuration/configuration.bundle';
 import './dedicated/dedicated.bundle';
 import './double-authentication/double-authentication.bundle';
