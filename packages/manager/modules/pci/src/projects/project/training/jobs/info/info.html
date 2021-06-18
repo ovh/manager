@@ -135,6 +135,14 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
+                    data-ng-if="$ctrl.job.status.infos"
+                    data-term="{{ ::'pci_projects_project_training_jobs_info_title_6' | translate  }}"
+                >
+                    <oui-tile-description
+                        data-ng-bind="$ctrl.job.status.infos"
+                    ></oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
                     data-term="{{ 'pci_projects_project_training_jobs_time' | translate  }}"
                 >
                     <oui-tile-description>
