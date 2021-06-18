@@ -21,6 +21,8 @@
         <oui-datagrid
             data-rows="$ctrl.kubernetes"
             data-row-loader="$ctrl.getKubernetes($row)"
+            criteria="$ctrl.criteria"
+            on-criteria-change="$ctrl.onListParamChange($criteria)"
         >
             <oui-datagrid-column
                 data-title=":: 'kube_list_name' | translate"
@@ -36,6 +38,12 @@
                 >
                 </a>
             </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'kube_list_id' | translate"
+                type="string"
+                filterable
+                property="id"
+            ></oui-datagrid-column>
             <oui-datagrid-column
                 data-title=":: 'kube_list_region' | translate"
                 data-property="region"

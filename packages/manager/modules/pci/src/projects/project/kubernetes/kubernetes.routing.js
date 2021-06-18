@@ -10,7 +10,7 @@ import {
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.kubernetes', {
-    url: '/kubernetes',
+    url: '/kubernetes?id',
     component: 'ovhManagerPciProjectKubernetes',
     redirectTo: (transition) =>
       transition
@@ -21,6 +21,12 @@ export default /* @ngInject */ ($stateProvider) => {
             ? { state: 'pci.projects.project.kubernetes.onboarding' }
             : false,
         ),
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     resolve: {
       addCluster: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.kubernetes.add', { projectId }),
@@ -47,6 +53,7 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
+      clusterId: /* @ngInject */ ($transition$) => $transition$.params().id,
       kubernetes: /* @ngInject */ (OvhApiCloudProjectKube, projectId) =>
         OvhApiCloudProjectKube.v6()
           .query({
