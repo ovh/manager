@@ -1,3 +1,5 @@
+import { getCriteria } from '../project.utils';
+
 export default class PciServingController {
   /* @ngInject */
   constructor(CucCloudMessage, CucRegionService, atInternet) {
@@ -8,6 +10,7 @@ export default class PciServingController {
 
   $onInit() {
     this.loadMessages();
+    this.criteria = getCriteria('id', this.namespaceId);
   }
 
   loadMessages() {

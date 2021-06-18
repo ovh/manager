@@ -8,7 +8,12 @@
         data-messages="$ctrl.messages"
     ></cui-message-container>
 
-    <oui-datagrid data-rows="$ctrl.namespaces" data-row-loader="$row">
+    <oui-datagrid
+        data-rows="$ctrl.namespaces"
+        data-row-loader="$row"
+        criteria="$ctrl.criteria"
+        on-criteria-change="$ctrl.onListParamChange($criteria)"
+    >
         <oui-datagrid-column
             title=":: 'pci_projects_project_serving_description_label' | translate"
             data-property="description"
@@ -21,6 +26,14 @@
                 data-ng-href="{{:: $ctrl.namespaceLink($row) }}"
                 data-ng-bind="$value"
             ></a>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'pci_projects_project_serving_id_label' | translate"
+            data-property="id"
+            data-type="string"
+            data-filterable
+            data-sortable
+        >
         </oui-datagrid-column>
 
         <oui-datagrid-column

@@ -1,6 +1,7 @@
 {
   "pci_projects_project_serving_title": "ML Serving",
   "pci_projects_project_serving_description_label": "Description",
+  "pci_projects_project_serving_id_label": "ID",
   "pci_projects_project_serving_region_label": "Région",
   "pci_projects_project_serving_container_label": "Object Storage Conteneur",
   "pci_projects_project_serving_add_label": "Créer un namespace",
