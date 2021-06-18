@@ -8,6 +8,8 @@ export default {
     guideUrl: '<',
     privateNetworks: '<',
     projectId: '<',
+    networkId: '<',
+    onListParamChange: '<',
   },
   controller,
   template,
