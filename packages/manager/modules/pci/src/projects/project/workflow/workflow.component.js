@@ -11,6 +11,8 @@ export default {
     project: '<',
     projectId: '<',
     workflows: '<',
+    workflowId: '<',
+    onListParamChange: '<',
   },
   controller,
   template,

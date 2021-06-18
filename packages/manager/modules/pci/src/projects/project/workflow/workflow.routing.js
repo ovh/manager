@@ -6,7 +6,7 @@ import Workflow from './Workflow.class';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.workflow', {
-    url: '/workflow',
+    url: '/workflow?id',
     component: 'ovhManagerPciProjectsProjectWorkflow',
     redirectTo: (transition) =>
       transition
@@ -17,6 +17,12 @@ export default /* @ngInject */ ($stateProvider) => {
             ? { state: 'pci.projects.project.workflow.onboarding' }
             : false,
         ),
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     resolve: {
       add: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.workflow.new', { projectId }),
@@ -42,7 +48,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return promise;
       },
-
+      workflowId: /* @ngInject */ ($transition$) => $transition$.params().id,
       workflows: /* @ngInject */ (
         $q,
         iceberg,
