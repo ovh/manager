@@ -27,11 +27,21 @@
     <oui-datagrid
         data-rows="$ctrl.loadBalancers"
         data-row-loader="$ctrl.getLoadbalancerDetails($row)"
+        criteria="$ctrl.criteria"
+        on-criteria-change="$ctrl.onListParamChange($criteria)"
     >
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_load_balancer_list_name' | translate"
             data-property="name"
             data-searchable
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_load_balancer_list_id' | translate"
+            data-property="id"
             data-filterable
             data-sortable
             data-type="string"

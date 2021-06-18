@@ -4,6 +4,8 @@ import {
   USING_LOAD_BALANCER_GUIDE_ID,
 } from './load-balancer.constants';
 
+import { getCriteria } from '../project.utils';
+
 export default class {
   /* @ngInject */
   constructor(CucCloudMessage, PciLoadBalancerService) {
@@ -14,6 +16,7 @@ export default class {
   $onInit() {
     this.GUIDES = GUIDES;
     this.loadMessages();
+    this.criteria = getCriteria('id', this.loadBalancerId);
   }
 
   loadMessages() {
