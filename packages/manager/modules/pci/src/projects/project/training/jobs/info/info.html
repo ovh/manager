@@ -214,7 +214,7 @@
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{ 'pci_projects_project_training_jobs_price' | translate  }}"
-                    data-ng-if="$ctrl.job.status.state === 'DONE'"
+                    data-ng-if="$ctrl.job.isTerminal() && $ctrl.job.status.state !== 'ERROR'"
                 >
                     <oui-tile-description>
                         <ovh-manager-catalog-price
