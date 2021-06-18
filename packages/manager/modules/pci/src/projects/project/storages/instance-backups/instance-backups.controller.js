@@ -1,3 +1,5 @@
+import { getCriteria } from '../../project.utils';
+
 export default class PciInstanceBackupsController {
   /* @ngInject */
   constructor(CucCloudMessage, CucRegionService) {
@@ -7,6 +9,7 @@ export default class PciInstanceBackupsController {
 
   $onInit() {
     this.loadMessages();
+    this.criteria = getCriteria('id', this.backupId);
   }
 
   loadMessages() {
