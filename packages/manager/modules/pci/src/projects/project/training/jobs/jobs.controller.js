@@ -1,3 +1,5 @@
+import { getCriteria } from '../../project.utils';
+
 export default class PciTrainingJobController {
   /* @ngInject */
   constructor(CucCloudMessage, CucRegionService, PciProjectTrainingJobService) {
@@ -11,6 +13,7 @@ export default class PciTrainingJobController {
       this.jobList = jobs;
     });
     this.loadMessages();
+    this.criteria = getCriteria('id', this.jobId);
   }
 
   loadMessages() {
