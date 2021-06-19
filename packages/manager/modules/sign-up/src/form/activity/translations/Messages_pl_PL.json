@@ -17,5 +17,5 @@
   "sign_up_activity_field_companyNationalIdentificationNumber": "Krajowy numer identyfikacyjny",
   "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Numer NIP",
   "sign_up_activity_field_italian_sdi": "Kod nabywcy na fakturze elektronicznej (SDI)",
-  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "Numer NIP jest niezbędny w procesie fakturowania elektronicznego"
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "Numer NIP jest niezbędny do wystawienia faktury elektronicznej"
 }
