@@ -6,5 +6,14 @@
   "vps_dashboard_migration_link": "Zur neuen Reihe wechseln",
   "vps_dashboard_auto_migration_warning": "Ihr VPS Cloud 2013/2014 wird in {{days}} Tagen automatisch auf einen VPS der neuen Reihe umgestellt.",
   "vps_dashboard_migration_in_progress": "Ihr VPS Cloud 2013/2014 wird gerade auf die neue Reihe umgestellt.",
-  "vps_dashboard_migration_in_error": "Bei der Umstellung Ihres VPS ist ein Fehler aufgetreten. Unsere Teams werden sich um den weiteren Verlauf der Umstellung kümmern."
+  "vps_dashboard_migration_in_error": "Bei der Umstellung Ihres VPS ist ein Fehler aufgetreten. Unsere Teams werden sich um den weiteren Verlauf der Umstellung kümmern.",
+  "vps_dashboard_state": "Status",
+  "vps_dashboard_state_backuping": "Backup wird erstellt",
+  "vps_dashboard_state_installing": "Wird installiert",
+  "vps_dashboard_state_maintenance": "Wartungsarbeiten laufen",
+  "vps_dashboard_state_rebooting": "Wird neu gestartet",
+  "vps_dashboard_state_running": "Wird ausgeführt",
+  "vps_dashboard_state_stopped": "Angehalten",
+  "vps_dashboard_state_stopping": "Wird gelöscht",
+  "vps_dashboard_state_upgrading": "Angebot hierfür wird gerade gewechselt"
 }
