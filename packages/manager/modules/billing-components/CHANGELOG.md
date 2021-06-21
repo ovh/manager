@@ -1,3 +1,12 @@
+## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.0.0...@ovh-ux/manager-billing-components@3.0.1) (2021-06-21)
+
+
+### Bug Fixes
+
+* **services-action:** allow resiliation on commited services ([#5129](https://github.com/ovh/manager/issues/5129)) ([d0bcc7f](https://github.com/ovh/manager/commit/d0bcc7fa0f337f5d4c77e6ff551742def0c575f0))
+
+
+
 # [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@2.10.0...@ovh-ux/manager-billing-components@3.0.0) (2021-06-16)
 
 
