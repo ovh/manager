@@ -6,5 +6,14 @@
   "vps_dashboard_migration_link": "Migrate to the new range",
   "vps_dashboard_auto_migration_warning": "Your Cloud VPS 2013/2014 will be migrated automatically to a VPS from the new range in {{days}} days.",
   "vps_dashboard_migration_in_progress": "Your Cloud VPS 2013/2014 is currently migrating to the new range.",
-  "vps_dashboard_migration_in_error": "An error has occurred migrating your VPS. The rest of the migration process will be managed by our teams."
+  "vps_dashboard_migration_in_error": "An error has occurred migrating your VPS. The rest of the migration process will be managed by our teams.",
+  "vps_dashboard_state": "Status",
+  "vps_dashboard_state_backuping": "Saving...",
+  "vps_dashboard_state_installing": "Installing...",
+  "vps_dashboard_state_maintenance": "Under maintenance",
+  "vps_dashboard_state_rebooting": "Restarting...",
+  "vps_dashboard_state_running": "Running...",
+  "vps_dashboard_state_stopped": "Stopped",
+  "vps_dashboard_state_stopping": "Cancelling...",
+  "vps_dashboard_state_upgrading": "Changing solution..."
 }
