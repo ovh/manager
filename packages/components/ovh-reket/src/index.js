@@ -44,7 +44,7 @@ export const ssoAuthHookFn = (error) => {
  *
  * @return {Reket}          A Reket instance with predefined configuration.
  */
-export const useReket = (enableSsoAuth = false, requestTypes = 'default') => {
+export const useReket = (enableSsoAuth = true, requestTypes = 'default') => {
   const reketInstance = new Reket();
 
   reketInstance.config.client.set(new AxiosReketClient());
