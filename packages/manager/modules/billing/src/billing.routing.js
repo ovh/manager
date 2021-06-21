@@ -9,6 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller,
     resolve: {
+      currentUser: (coreConfig) => coreConfig.getUser(),
       denyEnterprise: ($q, $state, currentUser) => {
         if (
           currentUser.isEnterprise &&
