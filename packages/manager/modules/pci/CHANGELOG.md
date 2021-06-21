@@ -1,3 +1,13 @@
+## [5.29.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.29.3...@ovh-ux/manager-pci@5.29.4) (2021-06-21)
+
+
+### Bug Fixes
+
+* **storages.databases:** block database action when inactive ([#5134](https://github.com/ovh/manager/issues/5134)) ([c060295](https://github.com/ovh/manager/commit/c0602955efd6a087f3b6a2a84d477df5b6169f94))
+* **storages.databases:** correct database connection strings ([#5140](https://github.com/ovh/manager/issues/5140)) ([3944dc5](https://github.com/ovh/manager/commit/3944dc5d3d76f6139a677beef857970d3696ab6c))
+
+
+
 ## [5.29.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.29.2...@ovh-ux/manager-pci@5.29.3) (2021-06-16)
 
 

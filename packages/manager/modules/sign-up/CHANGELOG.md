@@ -1,3 +1,12 @@
+## [2.1.9](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.1.8...@ovh-ux/sign-up@2.1.9) (2021-06-21)
+
+
+### Bug Fixes
+
+* **sign-up:** flag-icon-css path ([#5135](https://github.com/ovh/manager/issues/5135)) ([d3f8e21](https://github.com/ovh/manager/commit/d3f8e21e2c54e644ae97cbacfef663a94fab9333))
+
+
+
 ## [2.1.8](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.1.7...@ovh-ux/sign-up@2.1.8) (2021-06-16)
 
 

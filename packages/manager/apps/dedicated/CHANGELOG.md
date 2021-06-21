@@ -1,3 +1,12 @@
+## [16.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.31.0...@ovh-ux/manager-dedicated@16.31.1) (2021-06-21)
+
+
+### Bug Fixes
+
+* **billing.resiliation:** update check on engagement ([#5109](https://github.com/ovh/manager/issues/5109)) ([7a4ff96](https://github.com/ovh/manager/commit/7a4ff96fdc972ae7e113f3e7472214d264a329b6))
+
+
+
 # [16.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.30.1...@ovh-ux/manager-dedicated@16.31.0) (2021-06-16)
 
 
