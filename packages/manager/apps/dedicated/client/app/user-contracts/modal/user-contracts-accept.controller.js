@@ -4,9 +4,9 @@ import size from 'lodash/size';
 
 export default class UserContractsAcceptModalCtrl {
   /* @ngInject */
-  constructor($scope, $translate, DucUserContractService) {
+  constructor($scope, $translate, ContractService) {
     this.$scope = $scope;
-    this.DucUserContractService = DucUserContractService;
+    this.ContractService = ContractService;
     this.$translate = $translate;
 
     this.model = {
@@ -19,7 +19,7 @@ export default class UserContractsAcceptModalCtrl {
       loading: false,
       load: () => {
         this.contracts.loading = true;
-        this.DucUserContractService.getAgreementsToValidate((contract) =>
+        this.ContractService.getAgreementsToValidate((contract) =>
           includes(['tos', 'pp'], contract.code),
         )
           .then((contracts) => {
@@ -40,7 +40,7 @@ export default class UserContractsAcceptModalCtrl {
   agree() {
     this.saving = true;
     this.hasSubmitError = false;
-    this.DucUserContractService.acceptAgreements(this.contracts.data)
+    this.ContractService.acceptAgreements(this.contracts.data)
       .then(() => $('#user-contracts-currentAction').modal('hide'))
       .catch(() => {
         this.model.accepted.value = false;

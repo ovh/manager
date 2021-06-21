@@ -1,7 +1,6 @@
 export default class {
+  /* @ngInject */
   constructor($q, OvhHttp) {
-    'ngInject';
-
     this.$q = $q;
     this.OvhHttp = OvhHttp;
   }

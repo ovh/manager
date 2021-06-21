@@ -2,11 +2,11 @@ import includes from 'lodash/includes';
 
 export default class UserContractsCtrl {
   /* @ngInject */
-  constructor($scope, $timeout, coreConfig, DucUserContractService, User) {
+  constructor($scope, $timeout, coreConfig, ContractService, User) {
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.coreConfig = coreConfig;
-    this.DucUserContractService = DucUserContractService;
+    this.ContractService = ContractService;
     this.User = User;
   }
 
@@ -14,7 +14,7 @@ export default class UserContractsCtrl {
     this.agreeTosAndPpOnManagerLoad = this.coreConfig.isRegion('US');
 
     if (this.agreeTosAndPpOnManagerLoad) {
-      this.DucUserContractService.getAgreementsToValidate((contract) =>
+      this.ContractService.getAgreementsToValidate((contract) =>
         includes(['tos', 'pp'], contract.code),
       ).then((contracts) => {
         if (contracts.length) {

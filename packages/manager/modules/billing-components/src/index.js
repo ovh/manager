@@ -3,6 +3,7 @@ import angular from 'angular';
 import commitment from './components/commitment';
 import commitmentDuration from './components/commitment-duration';
 import commitmentPricingMode from './components/commitment-pricing-mode';
+import contract from './components/contract';
 import cancelCommitment from './components/cancel-commitment';
 import cancelResiliation from './components/cancel-resiliation';
 import resiliation from './components/resiliation';
@@ -24,6 +25,7 @@ angular.module(moduleName, [
   commitment,
   commitmentDuration,
   commitmentPricingMode,
+  contract,
   cancelCommitment,
   cancelResiliation,
   resiliation,
