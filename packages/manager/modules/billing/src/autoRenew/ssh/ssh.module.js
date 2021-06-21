@@ -1,3 +1,5 @@
+import qAllSettled from '@ovh-ux/ng-q-allsettled';
+
 import uiRouter from '@uirouter/angularjs';
 import sshAddCloud from './add/cloud/user-ssh-add-cloud.module';
 import sshAddDedicated from './add/dedicated/user-ssh-add-dedicated.module';
@@ -11,6 +13,7 @@ const moduleName = 'ovhManagerBillingSshKeys';
 
 angular
   .module(moduleName, [
+    qAllSettled,
     sshAddCloud,
     sshAddDedicated,
     sshDelete,
