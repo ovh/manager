@@ -2988,6 +2988,42 @@
   dependencies:
     "@types/node" ">= 8"
 
+"@ovh-ux/component-rollup-config@^8.0.0 || ^9.0.0":
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-9.1.0.tgz#e6ff1565d2efb82a7d9218c7afc3b5a3282d1c2c"
+  integrity sha512-vCRrp0Ukck5lQKvCdZdhYgD3IRKxc6qbboy1pJjZTqVwpZZGr5mum+f6njszRhbbpEAZ0uxBE61GA4k+AJLN1w==
+  dependencies:
+    "@babel/core" "^7.12.10"
+    "@babel/plugin-proposal-class-properties" "^7.10.1"
+    "@babel/plugin-proposal-optional-chaining" "^7.10.1"
+    "@babel/plugin-proposal-private-methods" "^7.10.1"
+    "@babel/plugin-syntax-dynamic-import" "^7.8.3"
+    "@babel/preset-env" "^7.10.3"
+    "@ovh-ux/rollup-plugin-less-inject" "^1.0.5"
+    "@ovh-ux/rollup-plugin-less-tilde-importer" "^1.0.3"
+    "@rollup/plugin-babel" "^5.0.0"
+    "@rollup/plugin-commonjs" "^11.0.2"
+    "@rollup/plugin-dynamic-import-vars" "^1.1.0"
+    "@rollup/plugin-image" "^2.0.4"
+    "@rollup/plugin-json" "^4.0.2"
+    "@rollup/plugin-node-resolve" "^7.1.1"
+    "@rollup/pluginutils" "^3.0.8"
+    babel-plugin-angularjs-annotate "^0.10.0"
+    camelcase "^5.0.0"
+    core-js "^3.6.5"
+    estree-walker "^0.6.0"
+    less "~3.9.0"
+    less-plugin-remcalc "^0.1.0"
+    lodash "^4.17.15"
+    magic-string "^0.25.4"
+    node-sass "^4.10.0"
+    regenerator-runtime "^0.13.7"
+    rollup "^2.0.2"
+    rollup-plugin-html "^0.2.1"
+    rollup-plugin-peer-deps-external "^2.2.2"
+    rollup-plugin-sass "^1.2.2"
+    slash "^2.0.0"
+
 "@ovh-ux/ng-ovh-api-wrappers@^4.0.4", "@ovh-ux/ng-ovh-api-wrappers@^4.0.8":
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.8.tgz#f95c8ce909f7baa59f8fd85949801e7d74bf6dbd"
@@ -3005,6 +3041,14 @@
     lodash "^4.17.15"
     rollup-pluginutils "^2.8.2"
 
+"@ovh-ux/rollup-plugin-less-tilde-importer@^1.0.3":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-tilde-importer/-/rollup-plugin-less-tilde-importer-1.0.5.tgz#f26b906c1b1d83a31b45aa09c8cf6106b8816198"
+  integrity sha512-ezj6MZCvlIeNdavLyuzFORqB9w3vvcTTER0tDnwjBiKVI6x+btJyBXVn7b3ylEQf5miBjU8tVtOn4vfBOXVqAw==
+  dependencies:
+    magic-string "^0.25.7"
+    rollup-pluginutils "^2.8.2"
+
 "@ovh-ux/translate-async-loader@^1.0.8":
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
@@ -3014,6 +3058,19 @@
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-5.1.0.tgz#0024502cd38e29811d1b1cbb15ef489a901023b3"
   integrity sha512-5//YAnQCdju11S5J+i8ASiURtXibnmK2ko4Uj2sKt/fGtru565h7PiK9qKEzCLMM7BQMVOa3TvKujebBoTgEgw==
+
+"@ovhcloud/reket-axios-client@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/reket-axios-client/-/reket-axios-client-0.2.1.tgz#835997e9d3514a5855dc4d7ac867abe8b2c8638d"
+  integrity sha512-u6X7Opfcqk4cagz++cescEzKnOzyQStqj6DtoJWx4lFQKcM/bFu/g4n/DSVGFP+xDOmyMJFN2JJAmtRVJQjlfQ==
+  dependencies:
+    "@ovhcloud/reket-core" "^0.2.1"
+    axios "^0.21.1"
+
+"@ovhcloud/reket-core@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/reket-core/-/reket-core-0.2.1.tgz#b38a101af16a11683bb875e44cd228d636c1ba8f"
+  integrity sha512-RdRV7ZJU+CKULTeoXnZD+YNZDOui5RUD+SPT1EpGEpMI3Nbix5RiT9wZx/zPYFKCSw1eYJ+Ycr+8G4wEaWaTEQ==
 
 "@rollup/plugin-babel@^5.0.0":
   version "5.0.0"
@@ -4779,6 +4836,13 @@ axios@^0.19.2:
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
   dependencies:
     follow-redirects "1.5.10"
+
+axios@^0.21.1:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
+  dependencies:
+    follow-redirects "^1.10.0"
 
 babel-code-frame@^6.26.0:
   version "6.26.0"
@@ -9935,6 +9999,11 @@ follow-redirects@^1.0.0:
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
   integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
 
+follow-redirects@^1.10.0:
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.1.tgz#d9114ded0a1cfdd334e164e6662ad02bfd91ff43"
+  integrity sha512-HWqDgT7ZEkqRzBvc2s64vSZ/hfOceEol3ac/7tKwzuvEyWx3/4UegXh5oBOIotkGsObyk3xznnSRVADBgWSQVg==
+
 font-awesome@4.7.0, font-awesome@^4.0.0, font-awesome@^4.5.0, font-awesome@~4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
@@ -10113,7 +10182,7 @@ fsevents@~2.1.1, fsevents@~2.1.2:
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.1.2.tgz#4c0a1fb34bc68e543b4b82a9ec392bfbda840805"
   integrity sha512-R4wDiBwZ0KzpgOWetKDug1FZcYhqYnUYKtfZYt4mD5SBz76q0KR4Q9o7GIPamsVPGmW3EYPPJ0dOOjvx32ldZA==
 
-fsevents@~2.3.1:
+fsevents@~2.3.1, fsevents@~2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
@@ -12729,6 +12798,11 @@ lodash-es@^4.17.11, lodash-es@^4.17.15:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
   integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
+
+lodash-es@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"
@@ -17066,6 +17140,13 @@ rollup-pluginutils@^1.5.0:
   dependencies:
     estree-walker "^0.2.1"
     minimatch "^3.0.2"
+
+rollup@^2.0.2:
+  version "2.55.1"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.55.1.tgz#66a444648e2fb603d8e329e77a61c608a6510fda"
+  integrity sha512-1P9w5fpb6b4qroePh8vHKGIvPNxwoCQhjJpIqfZGHLKpZ0xcU2/XBmFxFbc9697/6bmHpmFTLk5R1dAQhFSo0g==
+  optionalDependencies:
+    fsevents "~2.3.2"
 
 rollup@^2.50.6:
   version "2.50.6"

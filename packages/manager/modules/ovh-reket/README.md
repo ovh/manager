@@ -1,1 +1,0 @@
-# ovh-payment-method

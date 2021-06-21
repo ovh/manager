@@ -96,7 +96,7 @@ export const usePaymentMean = ({ reketInstance, region }) => {
           availablePaymentMean.meanType !== PAYMENT_MEAN_TYPE_ENUM.bankAccount
         ) {
           if (!params.returnUrl) {
-            window.open(result.url, '_blank');
+            window.open(result.url, '_blank', 'noopener');
           } else {
             window.location = result.url;
           }

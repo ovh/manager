@@ -73,6 +73,12 @@ export class AvailablePaymentMethod {
      *  @type {Object}
      */
     this.original = options.original || null;
+
+    /**
+     * The optional form session id required by some integration components
+     * @type {String}
+     */
+    this.formSessionId = options.formSessionId || null;
   }
 
   /**
