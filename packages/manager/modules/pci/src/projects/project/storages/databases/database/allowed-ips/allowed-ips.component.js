@@ -4,6 +4,7 @@ import controller from './allowed-ips.controller';
 export default {
   bindings: {
     allowedIps: '<',
+    database: '<',
     goToAddIp: '<',
     goToDeleteIpBlock: '<',
     goToUpdateIp: '<',
