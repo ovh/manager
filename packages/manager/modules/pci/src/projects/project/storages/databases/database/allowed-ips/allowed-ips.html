@@ -22,15 +22,22 @@
             data-searchable
         ></oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">
-            <oui-action-menu-item data-on-click="$ctrl.openUpdateIp($row)"
+            <oui-action-menu-item
+                data-disabled="!$ctrl.database.isActive()"
+                data-on-click="$ctrl.openUpdateIp($row)"
                 ><span data-translate="pci_databases_allowed_ip_update"></span>
             </oui-action-menu-item>
-            <oui-action-menu-item data-on-click="$ctrl.openDeleteIp($row)"
+            <oui-action-menu-item
+                data-disabled="!$ctrl.database.isActive()"
+                data-on-click="$ctrl.openDeleteIp($row)"
                 ><span data-translate="pci_databases_allowed_ip_delete"></span>
             </oui-action-menu-item>
         </oui-action-menu>
         <oui-datagrid-topbar>
-            <oui-button data-on-click="$ctrl.openAddIp()">
+            <oui-button
+                data-disabled="!$ctrl.database.isActive()"
+                data-on-click="$ctrl.openAddIp()"
+            >
                 <span
                     class="oui-icon oui-icon-add pr-1"
                     aria-hidden="true"

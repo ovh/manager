@@ -58,6 +58,9 @@ export default /* @ngInject */ ($stateProvider) => {
           );
         },
 
+        isActionDisabled: /* @ngInject */ (database) => () =>
+          !database.isActive(),
+
         roles: /* @ngInject */ (DatabaseService, database, projectId) =>
           DatabaseService.getRoles(projectId, database.engine, database.id),
 
