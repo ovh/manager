@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import head from 'lodash/head';
 import { nameGenerator } from '../../../data-processing/data-processing.utils';
 import { COMMUNITY_URL } from '../../training.constants';
 import convertJobSpecToCliCommand from '../../command_line_converter';
@@ -79,6 +80,7 @@ export default class PciTrainingJobsSubmitController {
     this.showAdvancedImage = false;
     this.emptyData = this.containers.length === 0;
     this.filterContainers();
+    this.onChangeRegion(head(this.regions));
   }
 
   filterContainers() {
