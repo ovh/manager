@@ -3,6 +3,8 @@ import get from 'lodash/get';
 import omit from 'lodash/omit';
 import set from 'lodash/set';
 
+import { BILLING_GUIDE_URL } from '../constants/billing.constants';
+
 export default class BillingOrdersCtrl {
   /* @ngInject */
   constructor(
@@ -10,7 +12,7 @@ export default class BillingOrdersCtrl {
     $log,
     $translate,
     OvhApiMeOrder,
-    constants,
+    coreConfig,
     orders,
     schema,
     criteria,
@@ -35,8 +37,8 @@ export default class BillingOrdersCtrl {
     this.goToOrderRetractation = goToOrderRetractation;
     this.updateFilterParam = updateFilterParam;
     this.billingGuideUrl = get(
-      constants.urls[currentUser.ovhSubsidiary],
-      'guides.billing',
+      BILLING_GUIDE_URL,
+      `${coreConfig.getRegion()}.${currentUser.ovhSubsidiary}`,
     );
     this.allowOrderTracking = billingFeatureAvailability.allowOrderTracking();
   }
