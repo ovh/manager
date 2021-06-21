@@ -1,3 +1,5 @@
+import { User } from '@ovh-ux/manager-models';
+
 import controller from './billing.controller';
 import template from './billing.html';
 
@@ -9,7 +11,19 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller,
     resolve: {
-      currentUser: (coreConfig) => coreConfig.getUser(),
+      currentUser: (coreConfig) => {
+        const me = coreConfig.getUser();
+        return new User(
+          {
+            ...me,
+            firstName: me.firstname,
+            lastName: me.name,
+            billingCountry: me.country,
+            customerCode: me.customerCode,
+          },
+          me.certificates,
+        );
+      },
       denyEnterprise: ($q, $state, currentUser) => {
         if (
           currentUser.isEnterprise &&
