@@ -11,11 +11,8 @@ export default /* @ngInject */ function UserAccountAgreementsService(
   $q,
   $translate,
   accountMigrationService,
-  constants,
 ) {
   const userAgreementsCache = $cacheFactory('USER_AGREEMENTS');
-
-  const proxyPath = `${constants.swsProxyRootPath}me`;
 
   function getSuccessDataOrReject(response) {
     return response.status < 300 ? response.data : $q.reject(response.data);
@@ -57,16 +54,14 @@ export default /* @ngInject */ function UserAccountAgreementsService(
   };
 
   this.getAgreementIds = function getAgreementIds() {
-    return $http
-      .get(`${proxyPath}/agreements`)
-      .then((response) => response.data);
+    return $http.get('/me/agreements').then((response) => response.data);
   };
 
   this.getAgreement = function getAgreement(agreementId) {
     return this.getAgreementIds().then((agreementIds) =>
       agreementIds.includes(agreementId)
         ? $http
-            .get(`${proxyPath}/agreements/${agreementId}`)
+            .get(`/me/agreements/${agreementId}`)
             .then((response) => {
               if (response.data && response.data.contractId) {
                 const gdprAgreement = find(GDPR_AGREEMENTS_INFOS, {
@@ -93,7 +88,7 @@ export default /* @ngInject */ function UserAccountAgreementsService(
     return this.getAgreementIds().then((agreementIds) =>
       agreementIds.includes(contractId)
         ? $http
-            .get(`${proxyPath}/agreements/${contractId}/contract`)
+            .get(`/me/agreements/${contractId}/contract`)
             .then(getSuccessDataOrReject)
         : accountMigrationService.getContractInfo(contractId),
     );
@@ -156,7 +151,7 @@ export default /* @ngInject */ function UserAccountAgreementsService(
     return contract.migrationId
       ? accountMigrationService.acceptAgreement(contract.contractId)
       : $http
-          .post(`${proxyPath}/agreements/${contract.id}/accept`)
+          .post(`/me/agreements/${contract.id}/accept`)
           .then(formatList)
           .then(getSuccessDataOrReject)
           .then((response) => {
