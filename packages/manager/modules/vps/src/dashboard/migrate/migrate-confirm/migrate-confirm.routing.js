@@ -6,6 +6,11 @@ export default /* @ngInject */ ($stateProvider) => {
         component: 'ovhManagerVpsDashboardMigrateVpsConfirm',
       },
     },
+    resolve: {
+      migrationConfirmTrackingPrefix: /* @ngInject */ (vpsMigration) => {
+        return `vps::vps-migration-confirmation::from_${vpsMigration.currentPlan}_to_${vpsMigration.newPlan}`;
+      },
+    },
     layout: 'modal',
   });
 };

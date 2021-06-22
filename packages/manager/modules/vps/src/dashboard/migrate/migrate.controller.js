@@ -4,9 +4,8 @@ import { MEMORY_MULTIPLE, MIGRATE_FAQ_LINK } from './migrate.constants';
 export default class {
   /* @ngInject */
   constructor(atInternet, ovhManagerProductOffersService, VpsHelperService) {
-    this.ovhManagerProductOffersService = ovhManagerProductOffersService;
     this.atInternet = atInternet;
-    this.MIGRATE_FAQ_LINK = MIGRATE_FAQ_LINK;
+    this.ovhManagerProductOffersService = ovhManagerProductOffersService;
     this.VpsHelperService = VpsHelperService;
     this.MEMORY_MULTIPLE = MEMORY_MULTIPLE;
   }
@@ -20,6 +19,14 @@ export default class {
         this.newPlan.planCode,
       ),
     };
+  }
+
+  cancel() {
+    this.atInternet.trackClick({
+      name: `${this.migrationTrackingPrefix}::cancel`,
+      type: 'action',
+    });
+    return this.goBack();
   }
 
   getRenewablePrice() {
