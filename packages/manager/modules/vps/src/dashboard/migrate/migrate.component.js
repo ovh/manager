@@ -6,6 +6,7 @@ export default {
     catalog: '<',
     goBack: '<',
     goToMigrateConfirm: '<',
+    migrationTrackingPrefix: '<',
     newPlan: '<',
     serviceName: '<',
     stateVps: '<',
