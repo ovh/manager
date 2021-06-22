@@ -5,6 +5,7 @@ export default {
   bindings: {
     goBack: '<',
     goBackToMigrate: '<',
+    migrationConfirmTrackingPrefix: '<',
     serviceName: '<',
   },
   controller,

@@ -9,8 +9,25 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      goToMigrateConfirm: /* @ngInject */ ($state) => () =>
-        $state.go('vps.detail.dashboard.migrate.confirm'),
+      migrationTrackingPrefix: /* @ngInject */ (vpsMigration) => {
+        return `vps::vps-migration::from_${vpsMigration.currentPlan}_to_${vpsMigration.newPlan}`;
+      },
+      trackPage: /* @ngInject */ (atInternet, migrationTrackingPrefix) =>
+        atInternet.trackPage({
+          name: migrationTrackingPrefix,
+          type: 'navigation',
+        }),
+      goToMigrateConfirm: /* @ngInject */ (
+        $state,
+        atInternet,
+        migrationTrackingPrefix,
+      ) => () => {
+        atInternet.trackClick({
+          name: `${migrationTrackingPrefix}::confirm`,
+          type: 'action',
+        });
+        return $state.go('vps.detail.dashboard.migrate.confirm');
+      },
       newPlan: /* @ngInject */ (catalog, vpsMigration) =>
         find(catalog.plans, { planCode: vpsMigration.newPlan }),
       goBackToMigrate: /* @ngInject */ ($state, CucCloudMessage) => (
@@ -31,6 +48,9 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return promise;
       },
+    },
+    atInternet: {
+      ignore: true,
     },
   });
 };
