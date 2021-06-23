@@ -37,10 +37,16 @@
 </div>
 
 <p class="mt-3" data-translate="vps_dashboard_migrate_information"></p>
-<a data-ng-href="{{:: $ctrl.MIGRATE_FAQ_LINK }}" target="_blank" rel="noopener">
-    <span data-translate="vps_dashboard_migrate_faq_title"></span>
-    <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
-</a>
+<p class="mt-3">
+    <a
+        data-ng-href="{{:: $ctrl.MIGRATE_FAQ_LINK }}"
+        target="_blank"
+        rel="noopener"
+    >
+        <span data-translate="vps_dashboard_migrate_faq_title"></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+    </a>
+</p>
 
 <oui-select-picker
     class="w-25"
@@ -84,6 +90,7 @@
             data-maximum-fraction-digits="5"
         >
         </ovh-manager-catalog-price>
+        /<span data-translate="vps_dashboard_migrate_price_per_month"></span>
     </oui-select-picker-footer>
 </oui-select-picker>
 <footer class="mt-5">
@@ -94,7 +101,7 @@
         on-click="$ctrl.goToMigrateConfirm()"
         ><span data-translate="vps_common_confirm"></span
     ></oui-button>
-    <oui-button variant="link" size="l" on-click="$ctrl.goBack()"
+    <oui-button variant="link" size="l" on-click="$ctrl.cancel()"
         ><span data-translate="vps_common_cancel"></span
     ></oui-button>
 </footer>
