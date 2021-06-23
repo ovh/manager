@@ -1,3 +1,12 @@
+## [15.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.26.2...@ovh-ux/manager-web@15.26.3) (2021-06-23)
+
+
+### Bug Fixes
+
+* add redirection for /contact ([#5131](https://github.com/ovh/manager/issues/5131)) ([126c749](https://github.com/ovh/manager/commit/126c7494a66ad4ab5656fc941912b36546e4dfdb))
+
+
+
 ## [15.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.26.1...@ovh-ux/manager-web@15.26.2) (2021-06-16)
 
 

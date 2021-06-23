@@ -1,3 +1,12 @@
+## [5.29.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.29.4...@ovh-ux/manager-pci@5.29.5) (2021-06-23)
+
+
+### Bug Fixes
+
+* **project.storages.backups:** add missing public ip ([#5047](https://github.com/ovh/manager/issues/5047)) ([26c7dc3](https://github.com/ovh/manager/commit/26c7dc35dafe606a9b27e4490fc02b6430f4f359))
+
+
+
 ## [5.29.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.29.3...@ovh-ux/manager-pci@5.29.4) (2021-06-21)
 
 
