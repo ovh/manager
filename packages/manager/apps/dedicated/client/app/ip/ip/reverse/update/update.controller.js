@@ -122,7 +122,3 @@ export default class IpReverseUpdateCtrl {
     this.$scope.resetAction();
   }
 }
-
-angular
-  .module('Module.ip.controllers')
-  .controller('IpReverseUpdateCtrl', IpReverseUpdateCtrl);

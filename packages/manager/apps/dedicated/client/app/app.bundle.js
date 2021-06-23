@@ -18,9 +18,7 @@ import './dedicated/server/interfaces/detach/interfaces-detach.module';
 import './dedicated/server/interfaces/ola-activation/ola-activation.module';
 import './dedicated/server/interfaces/ola-configuration/ola-configuration.module';
 import './dedicated/server/interfaces/rename/interfaces-rename.module';
-import './ip/ip-controllers.module';
-import './ip/ip-services.module';
-import './ip/ip.filters.module';
+import './license/license.module';
 
 import './components/components.bundle';
 import './account/account.bundle';
@@ -29,3 +27,4 @@ import './dedicated/dedicated.bundle';
 import './double-authentication/double-authentication.bundle';
 import './download/download.bundle';
 import './ip/ip.bundle';
+import './license/license.bundle';
