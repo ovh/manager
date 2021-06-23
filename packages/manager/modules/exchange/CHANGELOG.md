@@ -1,3 +1,12 @@
+## [2.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@2.3.4...@ovh-ux/manager-exchange@2.3.5) (2021-06-23)
+
+
+### Bug Fixes
+
+* **group.member:** enable contact deletion ([#5153](https://github.com/ovh/manager/issues/5153)) ([f8db5e1](https://github.com/ovh/manager/commit/f8db5e18732e7f17570e1423cec20160ba752171))
+
+
+
 ## [2.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@2.3.3...@ovh-ux/manager-exchange@2.3.4) (2021-06-16)
 
 
