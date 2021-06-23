@@ -1,7 +1,7 @@
 import { DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS } from '../../../../../../components/dedicated-cloud/datacenter/drp/dedicatedCloud-datacenter-drp.constants';
 
-import legacyTemplate from '../../../../../../ip/ip/legacyOrder/ip-ip-legacyOrder.html';
-import template from '../../../../../../ip/ip/agoraOrder/ip-ip-agoraOrder.html';
+import legacyTemplate from '../../../../../../components/ip/legacyOrder/ip-ip-legacyOrder.html';
+import template from '../../../../../../components/ip/agoraOrder/ip-ip-agoraOrder.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
