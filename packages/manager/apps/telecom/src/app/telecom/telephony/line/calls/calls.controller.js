@@ -147,8 +147,11 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsCtrl(
       .then((line) => {
         self.line = line;
 
-        isTrunkRates = some(line.offers, (offer) =>
-          startsWith(offer, 'voip.main.offer.fr.trunk.rates'),
+        isTrunkRates = some(
+          line.offers,
+          (offer) =>
+            startsWith(offer, 'voip.main.offer.fr.trunk.rates') ||
+            startsWith(offer, 'voip.main.offer.fr.trunk.units'),
         );
 
         self.actions = filter(initActions(), (action) => {
