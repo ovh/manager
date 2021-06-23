@@ -10,16 +10,17 @@ export default class {
     $uibModal,
     CucCloudMessage,
     dataProcessingJobLogsService,
+    PciStoragesContainersService,
   ) {
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.dataProcessingJobLogsService = dataProcessingJobLogsService;
+    this.PciStoragesContainersService = PciStoragesContainersService;
     this.logger = dataProcessingJobLogsService;
     this.formatLogsDate = formatLogsDate;
     this.moment = moment;
     // let's do some binding
     this.downloadLogs = this.downloadLogs.bind(this);
-    this.isDownloadButtonDisabled = false;
   }
 
   $onInit() {
@@ -37,21 +38,19 @@ export default class {
   }
 
   downloadLogs() {
-    const re = /https:\/\/storage\.[a-z0-9]+\.cloud.ovh.net\/v1\/AUTH_[a-z0-9]+\/(.*)\/(.*)/;
-    const logsUrl = this.logger.logs.logsAddress;
-    if (logsUrl) {
-      const matches = logsUrl.match(re);
-      this.logger.downloadObject(
-        this.projectId,
-        this.job.region,
-        matches[1],
-        matches[2],
-      );
-      this.isDownloadButtonDisabled = true;
-      this.$timeout(() => {
-        this.isDownloadButtonDisabled = false;
-        this.$scope.$apply();
-      }, 3000);
-    }
+    // Get all the object storages available
+    return this.PciStoragesContainersService.getAll(this.projectId, false).then(
+      (containers) => {
+        // The logs are stored inside the 'odp-logs' storage so we're looking for this one
+        const container = containers.find(
+          (storage) => storage.name === 'odp-logs',
+        );
+        // If we find it, we get the id and redirect to the object storage page
+        if (container) {
+          return this.redirectToObjectStorage(this.projectId, container.id);
+        }
+        return null;
+      },
+    );
   }
 }
