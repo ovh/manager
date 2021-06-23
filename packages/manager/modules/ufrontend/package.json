@@ -10,8 +10,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "main": "application.js",
-  "module": "./src/index.js",
+  "main": "./dist/application.js",
   "files": [
     "application.js",
     "communication.js",
@@ -19,10 +18,22 @@
     "src/**/*",
     "url-builder.js"
   ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc",
+    "start": "lerna exec --stream --scope='@ovh-ux/ufrontend' --include-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/ufrontend' --include-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ufrontend' --include-dependencies -- yarn run dev:watch"
+  },
   "dependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@webcomponents/webcomponentsjs": "^2.4.3",
     "semver": "^7.3.2",
     "whatwg-fetch": "^3.5.0"
+  },
+  "devDependencies": {
+    "@types/semver": "^7.3.6",
+    "eslint": "^7.28.0",
+    "typescript": "^4.3.2"
   }
 }

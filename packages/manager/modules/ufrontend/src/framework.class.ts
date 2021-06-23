@@ -1,17 +1,32 @@
+import { Environment } from '@ovh-ux/manager-config/dist/types/environment/environment';
 import { fetchConfiguration as fetch2APIConfig } from '@ovh-ux/manager-config';
-import Deferred from './utils/deferred.class';
+import Deferred, { Callback, CustomPromise } from './utils/deferred.class';
 import OvhMicroFrontendApplicationAPI from './api.application.class';
 import OvhMicroFrontendFragmentAPI from './api.fragment.class';
+import OvhFragment from './fragment.class';
+import {
+  EnvironmentEventMessage,
+  FragmentConfig,
+  FragmentState,
+} from './ufrontend';
 
-class OvhMicroFrontend {
+export default class OvhMicroFrontend {
+  private environment: CustomPromise<Environment>;
+
+  private fragments: Record<string, CustomPromise<OvhFragment>>;
+
+  private listeners: Array<Callback>;
+
+  private messages: Array<EnvironmentEventMessage>;
+
   constructor() {
     this.fragments = {};
     this.messages = [];
     this.listeners = [];
-    this.environment = new Deferred();
+    this.environment = new Deferred<Environment>().defer;
   }
 
-  init(applicationName) {
+  init(applicationName: string): Promise<FragmentConfig> {
     return fetch2APIConfig(applicationName).then((environment) => {
       this.environment.resolve(environment);
       return {
@@ -21,11 +36,11 @@ class OvhMicroFrontend {
     });
   }
 
-  getEnvironment() {
+  getEnvironment(): Promise<Environment> {
     return this.environment.promise;
   }
 
-  addListener(callback) {
+  addListener(callback: Callback): Callback {
     this.listeners.push(callback);
     this.processMessageQueue();
     return function unlisten() {
@@ -36,7 +51,7 @@ class OvhMicroFrontend {
     };
   }
 
-  emitMessage(data, { timeout } = { timeout: 5000 }) {
+  emitMessage(data: unknown, { timeout } = { timeout: 5000 }): void {
     const now = new Date().getTime();
     this.messages.push({
       data,
@@ -46,8 +61,8 @@ class OvhMicroFrontend {
     this.processMessageQueue();
   }
 
-  processMessageQueue() {
-    const pendingMessages = [];
+  processMessageQueue(): void {
+    const pendingMessages = [] as EnvironmentEventMessage[];
     this.messages.forEach((message) => {
       if (!message.isExpired()) {
         pendingMessages.push(message);
@@ -63,14 +78,14 @@ class OvhMicroFrontend {
   }
 
   /** Called by fragment web-components at initialization */
-  onFragmentRegister(fragment) {
+  onFragmentRegister(fragment: OvhFragment): void {
     // the fragment code has not been dynamically loaded yet
     // we are registering a deferred value
-    this.fragments[fragment.id] = new Deferred(fragment);
+    this.fragments[fragment.id] = new Deferred(fragment).defer;
   }
 
   /** Called by the fragment code */
-  onFragmentLoaded({ id, resolve, reject }) {
+  onFragmentLoaded({ id, resolve, reject }: FragmentState): void {
     const fragment = this.fragments[id];
     if (!fragment) {
       throw new Error(
@@ -92,10 +107,8 @@ class OvhMicroFrontend {
     }
   }
 
-  onFragmentUnloaded(id) {
+  onFragmentUnloaded(id: string): void {
     // unregister the fragment
     delete this.fragments[id];
   }
 }
-
-export default OvhMicroFrontend;

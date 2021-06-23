@@ -13,13 +13,13 @@ yarn add @ovh-ux/ufrontend
 ### Application
 
 For a standalone application, you need to register it using the *registerApplication*
-method exported by the *@ovh-ux/ufrontend/application* package. This call acts as a bootstrap
+method exported by the *@ovh-ux/ufrontend* package. This call acts as a bootstrap
 for the application, initializing the micro frontend framework and returning a promise
 that will resolve to an initial environment. See *@ovh-ux/manager-config* for environment
 attributes.
 
-```js
-import registerApplication from '@ovh-ux/ufrontend/application';
+```ts
+import { registerApplication } from '@ovh-ux/ufrontend';
 
 registerApplication('myApplicationName').then(({ environment }) => {
   // initialization your application here
@@ -28,7 +28,7 @@ registerApplication('myApplicationName').then(({ environment }) => {
 
 ### Fragment
 
-Fragments have a dedicated *registerFragment* method that is exported by the *@ovh-ux/ufrontend/fragment*
+Fragments have a dedicated *registerFragment* method that is exported by the *@ovh-ux/ufrontend*
 package. This method needs to be called in order to initialize, load asynchronously and inject the
 fragment at runtime. It returns a promise that resolve with the *parent* element of the fragment and with
 the initial environment object.
@@ -37,8 +37,8 @@ Each fragment is identified with a unique identifier, passed when registering th
 the uniqueness of the fragment name when registering a new one.
 
 
-```js
-import registerFragment from '@ovh-ux/ufrontend/fragment';
+```ts
+import { registerFragment } from '@ovh-ux/ufrontend';
 
 registerFragment('myFragmentId').then(({ parent, environment }) => {
   // render the fragment on 'parent' element
@@ -76,8 +76,8 @@ an event lifetime will receive that event.
 
 Listening for events
 
-```js
-import { listen } from '@ovh-ux/ufrontend/communication';
+```ts
+import { listen } from '@ovh-ux/ufrontend';
 
 const unbind = listen((event) => {
   // handle event here
@@ -90,8 +90,8 @@ const unbind = listen((event) => {
 
 Emitting an event
 
-```js
-import { emit } from '@ovh-ux/ufrontend/communication';
+```ts
+import { emit } from '@ovh-ux/ufrontend';
 
 emit({
   id: 'foo',
@@ -101,8 +101,8 @@ emit({
 
 Emitting with a custom timeout value
 
-```js
-import { emit } from '@ovh-ux/ufrontend/communication';
+```ts
+import { emit } from '@ovh-ux/ufrontend';
 
 emit(
   {
@@ -124,8 +124,8 @@ When you want to build an URL for an outside application, you will use `url-buil
 
 Build the URL that redirect to `#/catalog` state from the `https://www.ovh.com/manager/` base URL with query parameter (`expand`)
 
-```js
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+```ts
+import { buildURL } from '@ovh-ux/ufrontend';
 
 const url = buildURL('https://www.ovh.com/manager/', '#/catalog', {
   expand: true,
@@ -135,8 +135,8 @@ const url = buildURL('https://www.ovh.com/manager/', '#/catalog', {
 
 Build multiples routes using an array of `{baseURL, path, params}`
 
-```js
-import { buildURLs } from '@ovh-ux/ufrontend/url-builder';
+```ts
+import { buildURLs } from '@ovh-ux/ufrontend';
 
 const [dashboard, catalog] = buildURLs([
   {
@@ -151,8 +151,8 @@ const [dashboard, catalog] = buildURLs([
 
 Build multiples routes using an object of `{baseURL, path, params}`
 
-```js
-import { buildURLs } from '@ovh-ux/ufrontend/url-builder';
+```ts
+import { buildURLs } from '@ovh-ux/ufrontend';
 
 const { dashboard, catalog } = buildURLs({
   dashboard: {

@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "es2020"],
+    "module": "CommonJs",
+    "removeComments": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "preserveConstEnums": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "downlevelIteration": true,
+    "declaration": true
+  },
+  "include": ["src/**/*", "*.js", "*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

@@ -50,6 +50,8 @@
     "@lerna/package-graph": "^3.18.5",
     "@lerna/project": "^3.21.0",
     "@ovh-ux/codename-generator": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/parser": "^4.27.0",
     "babel-eslint": "^10.1.0",
     "commander": "^6.0.0",
     "concat-stream": "^2.0.0",
