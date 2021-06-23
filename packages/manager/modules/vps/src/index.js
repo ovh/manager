@@ -38,17 +38,21 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
-      })
-      .state('vps.migration.**', {
-        url: '/migration',
-        lazyLoad: ($transition$) => {
-          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
-          return import('./migration/vps-migration.module').then((mod) =>
-            $ocLazyLoad.inject(mod.default || mod),
-          );
-        },
       });
+    // .state('vps.migration.**', {
+    //   url: '/migration',
+    //   lazyLoad: ($transition$) => {
+    //     const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+    //     return import('./migration/vps-migration.module').then((mod) =>
+    //       $ocLazyLoad.inject(mod.default || mod),
+    //     );
+    //   },
+    // });
+
+    $urlRouterProvider.when(/^\/iaas\/vps/, () => {
+      window.location.href = window.location.href.replace('/iaas/vps', '/vps');
+    });
 
     $urlRouterProvider.when(/^\/iaas\/vps/, () => {
       window.location.href = window.location.href.replace('/iaas/vps', '/vps');
