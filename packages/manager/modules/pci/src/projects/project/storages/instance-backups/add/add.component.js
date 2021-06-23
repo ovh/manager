@@ -5,6 +5,7 @@ export default {
   bindings: {
     backup: '<',
     goBack: '<',
+    publicNetwork: '<',
     privateNetworks: '<',
     projectId: '<',
     quota: '<',

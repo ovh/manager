@@ -6,6 +6,7 @@ export default class ExchangeTabMembersByGroupsCtrl {
     $timeout,
     mailingList,
     messaging,
+    navigation,
     $translate,
     goToGroup,
     group,
@@ -15,6 +16,7 @@ export default class ExchangeTabMembersByGroupsCtrl {
       wucExchange,
       $timeout,
       messaging,
+      navigation,
       $translate,
       group,
     };
