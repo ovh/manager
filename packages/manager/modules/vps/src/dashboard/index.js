@@ -9,7 +9,6 @@ import component from './vps-dashboard.component';
 import routing from './vps-dashboard.routing';
 
 import vpsUpgradeTileService from './tile/configuration/upgrade/service';
-import vpsMigrationService from '../migration/vps-migration.service';
 
 import vpsTileStatusItem from './vpsTileStatus/vps-tile-status.component';
 
@@ -25,7 +24,6 @@ import ovhManagerVpsDashboardRebuild from './rebuild';
 import ovhManagerVpsDashboardReinstall from './modal/reinstall';
 import ovhManagerVpsDashboardResiliation from './resiliation';
 import ovhManagerVpsDashboardReverseDns from './modal/reverse-dns';
-import ovhManagerVpsDashboardSchedule from './migration-schedule';
 import ovhManagerVpsDashboardSnapshotDelete from './modal/snapshot-delete';
 import ovhManagerVpsDashboardSnapshotRestore from './modal/snapshot-restore';
 import ovhManagerVpsDashboardSnapshotTake from './modal/snapshot-take';
@@ -57,7 +55,6 @@ angular
     ovhManagerVpsDashboardRebootRescue,
     ovhManagerVpsDashboardReinstall,
     ovhManagerVpsDashboardReverseDns,
-    ovhManagerVpsDashboardSchedule,
     ovhManagerVpsDashboardSnapshotDelete,
     ovhManagerVpsDashboardSnapshotRestore,
     ovhManagerVpsDashboardSnapshotTake,
@@ -69,7 +66,6 @@ angular
     'ui.router',
   ])
   .service('vpsUpgradeTile', vpsUpgradeTileService)
-  .service('VpsMigrationService', vpsMigrationService)
   .component(component.name, component)
   .component(vpsTileStatusItem.name, vpsTileStatusItem)
   .config(routing)
