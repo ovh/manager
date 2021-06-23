@@ -1,5 +1,5 @@
 import { NOTEBOOK_ATTACH_STORAGE } from '../../notebook.constants';
-import { NOTEBOOK_STORAGE_INFO } from '../../../Notebook.constants';
+import { NOTEBOOK_STORAGE_INFO } from '../../../notebook.constants';
 import Volume from '../../../Volume.class';
 
 export default class NotebookAttachController {

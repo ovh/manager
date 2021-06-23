@@ -1,5 +1,6 @@
 export const NOTEBOOK_TAGS = {
   LIMIT: 10,
+  MAX: 20,
 };
 
 export const NOTEBOOK_STATUS = {
