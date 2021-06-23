@@ -79,7 +79,6 @@ export default class AgoraIpOrderCtrl {
         }
       })
       .catch((err) => {
-        console.log(err);
         this.Alerter.error(this.$translate.instant('ip_order_loading_error'));
 
         return this.$state.go('^').then(() => this.$q.reject(err));

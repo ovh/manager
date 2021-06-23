@@ -1,9 +1,11 @@
-export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+import controller from './ip.controller';
+import template from './ip.html';
+
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip', {
     url: '/ip?serviceName&page&pageSize',
-    templateUrl: 'ip/ip.html',
-    controller: 'IpMainCtrl',
-    controllerAs: '$ctrl',
+    template,
+    controller,
     reloadOnSearch: false,
     redirectTo: 'app.ip.dashboard',
     resolve: {
@@ -17,9 +19,5 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         $state.go('app.ip.dashboard.organisation'),
       breadcrumb: /* @ngInject */ ($translate) => $translate.instant('ip_ip'),
     },
-  });
-
-  $urlRouterProvider.when(/^\/configuration\/ip/, () => {
-    window.location.href = window.location.href.replace('/configuration', '');
   });
 };

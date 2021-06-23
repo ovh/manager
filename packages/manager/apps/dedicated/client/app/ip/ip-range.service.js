@@ -2,7 +2,7 @@ import forEach from 'lodash/forEach';
 import padStart from 'lodash/padStart';
 import times from 'lodash/times';
 
-angular.module('Module.ip.services').service('IpRange', function IpRange() {
+export default function IpRange() {
   function convertIpToBin(_ip) {
     let ip = _ip;
     let bin = '';
@@ -106,4 +106,4 @@ angular.module('Module.ip.services').service('IpRange', function IpRange() {
 
     return range;
   };
-});
+}

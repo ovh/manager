@@ -121,6 +121,8 @@ import dedicatedUniverseComponents from './dedicatedUniverseComponents';
 import managedBaremetal from './managedBaremetal';
 import errorPage from './error';
 import expiredPage from './expired';
+import ip from './ip';
+import ipComponents from './components/ip/ip-components.module';
 
 import dedicatedServer from './dedicated/server';
 import dedicatedNas from './dedicated/nas';
@@ -159,10 +161,11 @@ export default (containerEl, environment) => {
         expiredPage,
         'filters',
         'internationalPhoneNumber',
+        ip,
+        ipComponents,
         'Module.download',
         environment.getRegion() === 'CA' ? moduleExchange : undefined,
         managedBaremetal,
-        'Module.ip',
         'Module.license',
         otrs,
         ovhManagerMfaEnrollment,
