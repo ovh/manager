@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import { MIGRATION_STATUS } from '../vps-dashboard.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vps.detail.dashboard.migrate', {
@@ -8,6 +9,15 @@ export default /* @ngInject */ ($stateProvider) => {
         component: 'ovhManagerVpsDashboardMigrateVps',
       },
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('vpsMigration')
+        .then((data) =>
+          data.status !== MIGRATION_STATUS.AVAILABLE
+            ? { state: 'vps.detail.dashboard' }
+            : null,
+        ),
     resolve: {
       migrationTrackingPrefix: /* @ngInject */ (vpsMigration) => {
         return `vps::vps-migration::from_${vpsMigration.currentPlan}_to_${vpsMigration.newPlan}`;

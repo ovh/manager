@@ -2,7 +2,10 @@ import kebabCase from 'lodash/kebabCase';
 import 'moment';
 
 import { EngagementConfiguration } from '@ovh-ux/manager-models';
-import { NEW_RANGE_VERSION } from '../dashboard/vps-dashboard.constants';
+import {
+  NEW_RANGE_VERSION,
+  MIGRATION_STATUS,
+} from '../dashboard/vps-dashboard.constants';
 import { RANGES } from '../upscale/upscale.constants';
 import { FEATURE_CLOUDDATABASE, PRODUCT_NAME } from './constants';
 
@@ -117,6 +120,14 @@ export default /* @ngInject */ ($stateProvider) => {
 
       catalog: /* @ngInject */ (connectedUser, VpsService) =>
         VpsService.getCatalog(connectedUser.ovhSubsidiary),
+
+      vpsMigration: /* @ngInject */ ($http, serviceName) =>
+        $http
+          .get(`/vps/${serviceName}/migration2016`)
+          .then(({ data }) => data)
+          .catch(() => false),
+      isMigrating: /* @ngInject */ (vpsMigration) =>
+        vpsMigration?.status === MIGRATION_STATUS.ONGOING,
 
       goToUpgradeSuccess: /* @ngInject */ ($state) => (params, options) =>
         $state.go(

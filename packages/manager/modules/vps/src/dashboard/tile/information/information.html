@@ -13,6 +13,7 @@
     >
         <oui-action-menu compact data-placement="end">
             <oui-action-menu-item
+                data-disabled="$ctrl.isMigrating"
                 aria-label="{{::$ctrl.actions.changeName.text}}"
                 on-click="$ctrl.actions.changeName.callback()"
             >
@@ -26,6 +27,7 @@
                 <span data-ng-bind="::$ctrl.actions.kvm.text"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
+                data-disabled="$ctrl.isMigrating"
                 on-click="$ctrl.actions.terminate.callback()"
                 ng-if="$ctrl.actions.terminate.isAvailable()"
             >
@@ -38,6 +40,7 @@
         description="{{ ::$ctrl.vps.netbootMode }}"
     >
         <oui-action-menu
+            data-disabled="$ctrl.isMigrating"
             compact
             ng-if="$ctrl.action.rebootRescue.isAvailable() || $ctrl.actions.reboot.isAvailable()"
             data-placement="end"
@@ -61,6 +64,7 @@
         description="{{ ::$ctrl.vps.distribution.name }}"
     >
         <oui-action-menu
+            data-disabled="$ctrl.isMigrating"
             compact
             ng-if="$ctrl.actions.reinstall.isAvailable() || $ctrl.actions.rebuild.isAvailable()"
             data-placement="end"

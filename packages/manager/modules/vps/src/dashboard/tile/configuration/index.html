@@ -17,7 +17,7 @@
             <span data-ng-bind=":: $ctrl.vps.vcore"></span>
             <p
                 class="p-0"
-                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteVcore && !$ctrl.isInRescueMode"
+                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteVcore && !$ctrl.isInRescueMode && !$ctrl.isMigrating"
             >
                 <a
                     data-ng-href="{{:: $ctrl.getUpscaleHref() }}"
@@ -75,7 +75,7 @@
             ></span>
             <p
                 class="p-0"
-                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteRam && !$ctrl.isInRescueMode"
+                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteRam && !$ctrl.isInRescueMode && !$ctrl.isMigrating"
             >
                 <a
                     data-ng-href="{{:: $ctrl.getUpscaleHref()}}"
@@ -103,7 +103,7 @@
             >
                 <oui-radio
                     data-value="$ctrl.configurationTile.currentPlan"
-                    data-disabled="$ctrl.vpsUpgradeTask && !$ctrl.isInRescueMode"
+                    data-disabled="$ctrl.isMigrating || ($ctrl.vpsUpgradeTask && !$ctrl.isInRescueMode)"
                 >
                     <span
                         data-ng-bind=":: $ctrl.stateVps.model.disk | cucBytes:0:false:'GB'"
@@ -111,7 +111,7 @@
                 </oui-radio>
                 <oui-radio
                     data-value="$ctrl.configurationTile.upgrades.storage.plan"
-                    data-disabled="$ctrl.vpsUpgradeTask && !$ctrl.isInRescueMode"
+                    data-disabled="$ctrl.isMigrating || ($ctrl.vpsUpgradeTask && !$ctrl.isInRescueMode)"
                 >
                     <span
                         data-ng-bind=":: ($ctrl.stateVps.model.disk * 2) | cucBytes:0:false:'GB'"
