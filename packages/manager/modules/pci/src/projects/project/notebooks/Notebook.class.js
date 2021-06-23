@@ -10,7 +10,7 @@ import {
   NOTEBOOK_STORAGE_INFO,
   NOTEBOOK_TAGS,
   NOTEBOOK_VOLUME_TYPE,
-} from './Notebook.constants';
+} from './notebook.constants';
 
 const VOLUME_TYPE = 'volumeType';
 
@@ -205,14 +205,6 @@ export default class Notebook {
     return this.spec?.region;
   }
 
-  get cpu() {
-    return this.spec?.resources?.cpu;
-  }
-
-  get gpu() {
-    return this.spec?.resources?.gpu;
-  }
-
   get unsecureHttp() {
     return this.spec?.unsecureHttp;
   }
@@ -285,11 +277,11 @@ export default class Notebook {
   }
 
   get cpu() {
-    return this.spec.resources.cpu;
+    return this.spec?.resources?.cpu;
   }
 
   get gpu() {
-    return this.spec.resources?.gpu || 'none';
+    return this.spec?.resources?.gpu || 'none';
   }
 
   get memory() {
