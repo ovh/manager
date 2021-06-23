@@ -494,10 +494,6 @@ export default class {
               !this.isVpsNewRange &&
               !this.isMigrationInProgress,
           },
-          migrate: {
-            state: 'vps.detail.dashboard.migrate',
-            stateParams: { serviceName: this.serviceName },
-          },
         };
       });
   }
