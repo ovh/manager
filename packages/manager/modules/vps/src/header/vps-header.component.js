@@ -6,6 +6,7 @@ export default {
     capabilities: '<',
     hasCloudDatabaseFeature: '<',
     hasBackupStorage: '<',
+    isMigrating: '<',
     isInRescueMode: '<',
     serviceName: '<',
     vps: '<',

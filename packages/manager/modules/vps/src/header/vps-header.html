@@ -9,11 +9,13 @@
             ><span data-translate="vps_tab_dashboard"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
+            data-disabled="$ctrl.isMigrating"
             data-state="vps.detail.secondary-dns"
             data-state-params="{ serviceName: $ctrl.serviceName }"
             ><span data-translate="vps_tab_secondary_dns"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
+            data-disabled="$ctrl.isMigrating"
             data-ng-repeat="feature in ::$ctrl.features track by $index"
             data-state="{{:: feature.state }}"
             ><span data-ng-bind=":: feature.textId | translate"></span

@@ -9,9 +9,9 @@ import 'moment';
 import {
   DASHBOARD_FEATURES,
   SERVICE_TYPE,
-  VPS_2014_AUTO_MIGRATION_DATE,
   COMMIT_IMPRESSION_TRACKING_DATA,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
+  MIGRATION_STATUS,
 } from './vps-dashboard.constants';
 import { CHANGE_OWNER_URL, RENEW_URL } from '../vps/constants';
 
@@ -58,14 +58,9 @@ export default class {
 
   $onInit() {
     this.expirationDate = moment(this.serviceInfo?.expiration).format('LL');
-    this.vps2014MigrationData = {
-      autoMigrationDate: moment(
-        VPS_2014_AUTO_MIGRATION_DATE,
-        'DD-MM-YYYY',
-      ).format('LL'),
-      inAutoMigrationPhase: moment().isSameOrAfter(
-        moment(VPS_2014_AUTO_MIGRATION_DATE, 'DD/MM/YYYY'),
-      ),
+    this.vpsMigrationData = {
+      inAutoMigrationPhase:
+        this.vpsMigration.status === MIGRATION_STATUS.ONGOING,
       migrationScheduledInDays:
         this.vpsMigrationTask && this.vpsMigrationTask.date
           ? moment(this.vpsMigrationTask.date).diff(moment(), 'days')
@@ -88,6 +83,10 @@ export default class {
         this.$state.reload();
       }
     });
+  }
+
+  canBeMigrated() {
+    return this.vpsMigration?.status === MIGRATION_STATUS.AVAILABLE;
   }
 
   $onDestroy() {

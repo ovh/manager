@@ -5,7 +5,10 @@
   "vps_dashboard_migrate_configuration_label_disk": "Stockage :",
   "vps_dashboard_migrate_title": "Migration de votre VPS",
   "vps_dashboard_migrate_faq_title": "Pour plus de détails, veuillez consulter la FAQ dédiée.",
-  "vps_dashboard_migrate_new_range_title": "VPS 2020 CLOUD Nouvelle gamme",
+  "vps_dashboard_migrate_new_range_title": "Votre nouvelle configuration",
   "vps_dashboard_migrate_current_range_title": "Votre configuration actuelle",
-  "vps_dashboard_migrate_information": "Selon vos spécifications techniques actuelles, nous vous proposons de migrer vers le VPS ci-dessous. La nouvelle tarification s'appliquera à l'échéance de votre abonnement. La durée de la migration varie selon la volumétrie de votre VPS. L'opération prendra de 30 minutes à quelques heures."
+  "vps_dashboard_migrate_information_1": "Selon vos spécifications techniques actuelles, nous vous proposons de migrer vers le VPS ci-dessous.",
+  "vps_dashboard_migrate_information_2": "La durée de la migration varie selon la volumétrie de votre VPS. L'opération prendra de 30 minutes à quelques heures.",
+  "vps_dashboard_migrate_link_information": "La nouvelle tarification s'appliquera à l'échéance de votre abonnement.",
+  "vps_dashboard_migrate_price_per_month": "mois"
 }

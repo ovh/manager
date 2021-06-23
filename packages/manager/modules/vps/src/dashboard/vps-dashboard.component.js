@@ -29,6 +29,7 @@ export default {
 
     hasBackupStorage: '<',
     canScheduleMigration: '<',
+    isMigrating: '<',
     isVpsNewRange: '<',
     plan: '<',
     serviceInfo: '<',
@@ -45,6 +46,7 @@ export default {
     vpsUpgradeTask: '<',
     canDisplayVpsAnnouncementBanner: '<',
     migrationLink: '<',
+    user: '<',
   },
   controller,
   name: 'ovhManagerVpsDashboard',

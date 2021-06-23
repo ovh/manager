@@ -90,7 +90,7 @@ export default /* @ngInject */ ($stateProvider) => {
       goToResiliation: /* @ngInject */ ($state) => () =>
         $state.href('vps.detail.dashboard.resiliation'),
       shouldReengage: /* @ngInject */ (vps) => vps.shouldReengage,
-      user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
+      user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
       vpsUpgradeTask: /* @ngInject */ (serviceName, vpsUpgradeTile) =>
         vpsUpgradeTile.getUpgradeTask(serviceName),
 
@@ -144,11 +144,6 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
 
-      vpsMigration: /* @ngInject */ ($http, serviceName) =>
-        $http
-          .get(`/vps/${serviceName}/migration2016`)
-          .then(({ data }) => data)
-          .catch(() => false),
       migrationLink: /* @ngInject */ ($state, serviceName) =>
         $state.href('vps.detail.dashboard.migrate', {
           serviceName,
