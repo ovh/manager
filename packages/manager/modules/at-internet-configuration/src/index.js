@@ -75,7 +75,7 @@ angular
   .run(
     /* @ngInject */ (
       $cookies,
-      $http,
+      $q,
       atInternet,
       atInternetConfiguration,
       coreConfig,
@@ -86,18 +86,14 @@ angular
         ...atInternetConfiguration.getConfig(coreConfig.getRegion()),
         ...(referrerSite ? { referrerSite } : {}),
       };
-
+      const me = coreConfig.getUser();
       atInternet.setDefaultsPromise(
-        $http
-          .get('/me')
-          .then(({ data: me }) => me)
-          .catch(() => {})
-          .then((me) => ({
-            ...data,
-            countryCode: me.country,
-            currencyCode: me.currency && me.currency.code,
-            visitorId: me.customerCode,
-          })),
+        $q.when({
+          ...data,
+          countryCode: me.country,
+          currencyCode: me.currency && me.currency.code,
+          visitorId: me.customerCode,
+        }),
       );
     },
   );
