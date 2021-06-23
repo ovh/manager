@@ -4,4 +4,7 @@ import template from './template.html';
 export default {
   template,
   controller,
+  bindings: {
+    visible: '<',
+  },
 };
