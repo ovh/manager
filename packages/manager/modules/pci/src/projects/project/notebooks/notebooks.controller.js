@@ -2,7 +2,7 @@ import capitalize from 'lodash/capitalize';
 import find from 'lodash/find';
 import get from 'lodash/get';
 
-import { NOTEBOOK_STATUS } from './Notebook.constants';
+import { NOTEBOOK_STATUS } from './notebook.constants';
 
 export default class {
   /* @ngInject */

@@ -10,7 +10,7 @@ import {
   NOTEBOOK_STORAGE_INFO,
   NOTEBOOK_TAGS,
   NOTEBOOK_VOLUME_TYPE,
-} from './Notebook.constants';
+} from './notebook.constants';
 
 const VOLUME_TYPE = 'volumeType';
 
@@ -45,6 +45,13 @@ export default class Notebook {
     this.spec.labels = Object.keys(this.labels).map((labelKey) =>
       Notebook.generateLabel(labelKey, this.labels[labelKey]),
     );
+
+    // Build a history actions
+    this.historyActions = [
+      { index: 1, action: 'create', date: this.createdAt },
+      { index: 2, action: 'restart', date: this.status.lastStartedAt },
+      { index: 3, action: 'stopped', date: this.status.lastStoppedAt },
+    ];
   }
 
   /**
@@ -189,14 +196,6 @@ export default class Notebook {
     return this.spec?.region;
   }
 
-  get cpu() {
-    return this.spec?.resources?.cpu;
-  }
-
-  get gpu() {
-    return this.spec?.resources?.gpu;
-  }
-
   get unsecureHttp() {
     return this.spec?.unsecureHttp;
   }
@@ -269,11 +268,11 @@ export default class Notebook {
   }
 
   get cpu() {
-    return this.spec.resources.cpu;
+    return this.spec?.resources?.cpu;
   }
 
   get gpu() {
-    return this.spec.resources?.gpu || 'none';
+    return this.spec?.resources?.gpu || 'none';
   }
 
   get memory() {
