@@ -1,4 +1,4 @@
-import { NOTEBOOK_AUTOMATION_INFO } from '../../../Notebook.constants';
+import { NOTEBOOK_AUTOMATION_INFO } from '../../../notebook.constants';
 
 export default class NotebookReviewController {
   /* @ngInject */
