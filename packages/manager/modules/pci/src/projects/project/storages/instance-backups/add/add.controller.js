@@ -130,6 +130,9 @@ export default class PciInstancesAddController {
           {
             networkId,
           },
+          {
+            networkId: this.publicNetwork.id,
+          },
         ]
       : [];
   }
