@@ -19,7 +19,7 @@ angular.module('services').service(
           $q
             .all({
               me: coreConfig.getUser(),
-              certificates: this.getUserCertificates(),
+              certificates: coreConfig.getUser().certificates,
             })
             .then((result) => {
               userPromiseRunning = false;
@@ -184,12 +184,6 @@ angular.module('services').service(
         meanRequests.push(promise);
       });
       return $q.all(meanRequests).then((response) => flatten(response));
-    };
-
-    this.getUserCertificates = function getUserCertificates() {
-      return OvhHttp.get('/me/certificates', {
-        rootPath: 'apiv6',
-      });
     };
   },
 );
