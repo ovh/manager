@@ -1,3 +1,12 @@
+## [16.31.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.31.2...@ovh-ux/manager-dedicated@16.31.3) (2021-06-24)
+
+
+### Bug Fixes
+
+* **dedicated:** account contact redirection ([#5170](https://github.com/ovh/manager/issues/5170)) ([d212343](https://github.com/ovh/manager/commit/d212343e5a946a0483d7d6a6e7fbee6db291885c))
+
+
+
 ## [16.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.31.1...@ovh-ux/manager-dedicated@16.31.2) (2021-06-24)
 
 
