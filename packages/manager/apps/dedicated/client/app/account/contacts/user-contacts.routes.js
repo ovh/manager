@@ -1,7 +1,7 @@
 import controller from './user-contacts.controller';
 import template from './user-contacts.html';
 
-export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   const name = 'app.account.contacts';
 
   $stateProvider.state(name, {
@@ -19,8 +19,4 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         $translate.instant('user_account_contacts'),
     },
   });
-
-  $urlRouterProvider.when(/^\/useraccount\/contacts/, ($location, $state) =>
-    $state.go(`${name}.services`, $location.search()),
-  );
 };
