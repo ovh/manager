@@ -4,6 +4,7 @@ import template from './dedicatedCloud-datacenter-add.html';
 export default {
   bindings: {
     goBack: '<',
+    goUpgradeRange: '<',
     serviceName: '<',
   },
   controller,

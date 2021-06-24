@@ -6,11 +6,13 @@ import orderLegacy from './orderLegacy';
 import resourceUpgrade from './resource-upgrade/upgrade';
 import resourceUpgradeLegacy from './resource-upgrade/upgradeLegacy';
 import routing from './datastore.routes';
+import convertToGlobal from './convert-to-global';
 
 const moduleName = 'managedBaremetalDatacenterDatastore';
 
 angular
   .module(moduleName, [
+    convertToGlobal,
     datacenterDatastoreComponent,
     order,
     orderLegacy,

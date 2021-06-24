@@ -28,6 +28,15 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      goUpgradeRange: /* @ngInject */ ($state, productId) => (
+        range,
+        upgradeCode,
+      ) => {
+        return $state.go(
+          'app.dedicatedCloud.details.datacenter.add-datacenter.upgrade-range',
+          { productId, range, upgradeCode },
+        );
+      },
       breadcrumb: () => null,
     },
   });

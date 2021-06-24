@@ -1,8 +1,10 @@
+import get from 'lodash/get';
 import { COMMERCIAL_RANGE_ENUM } from './dedicatedCloud-datacenter-add.constant';
 
 export default class {
   /* @ngInject */
-  constructor($translate, DedicatedCloud) {
+  constructor($q, $translate, DedicatedCloud) {
+    this.$q = $q;
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
     this.COMMERCIAL_RANGE_ENUM = COMMERCIAL_RANGE_ENUM;
@@ -21,20 +23,18 @@ export default class {
 
   load() {
     this.loader = true;
-    this.DedicatedCloud.getComplianceRangeList(this.serviceName)
-      .then(
-        (list) => {
-          this.commercialRange.list = list.map(({ name }) => name);
-        },
-        (data) => {
-          this.goBack(
-            `${this.$translate.instant(
-              'dedicatedCloud_datacenters_adding_load_error',
-            )}: ${data.message || ''}`,
-            'danger',
-          );
-        },
-      )
+    this.DedicatedCloud.getCommercialRangeCompliance(this.serviceName)
+      .then((compliance) => {
+        this.commercialRange.list = compliance;
+      })
+      .catch((err) => {
+        this.goBack(
+          `${this.$translate.instant(
+            'dedicatedCloud_datacenters_adding_load_error',
+          )}: ${err.message || ''}`,
+          'danger',
+        );
+      })
       .finally(() => {
         this.loader = false;
       });
@@ -42,9 +42,17 @@ export default class {
 
   addDatacenter() {
     this.loader = true;
-    this.DedicatedCloud.addDatacenter(
+
+    if (get(this.commercialRange, 'model.upgradeRequired')) {
+      return this.goUpgradeRange(
+        get(this.commercialRange, 'model.name'),
+        get(this.commercialRange, 'model.upgradeCode'),
+      );
+    }
+
+    return this.DedicatedCloud.addDatacenter(
       this.serviceName,
-      this.commercialRange.model,
+      this.commercialRange.model.name,
     ).then(
       () => {
         this.goBack(
