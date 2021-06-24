@@ -11,5 +11,9 @@
   "kube_node_pool_monthly_billing": "Cuota mensual",
   "kube_node_pool_anti_affinity": "Antiafinidad",
   "kube_node_pool_enabled": "Activado",
-  "kube_node_pool_disabled": "Desactivado"
+  "kube_node_pool_disabled": "Desactivada",
+  "kube_node_pool_nodes": "Ver los nodos",
+  "kube_node_pool_scale": "Configurar el tamaño del pool de nodos",
+  "kube_node_pool_autoscale_true": "Activo",
+  "kube_node_pool_autoscale_false": "Inactivo"
 }

@@ -11,5 +11,9 @@
   "kube_node_pool_monthly_billing": "Monthly rate ",
   "kube_node_pool_anti_affinity": "Anti-affinity",
   "kube_node_pool_enabled": "Enabled",
-  "kube_node_pool_disabled": "Disabled"
+  "kube_node_pool_disabled": "Disabled",
+  "kube_node_pool_nodes": "See nodes",
+  "kube_node_pool_scale": "Configure node pool size",
+  "kube_node_pool_autoscale_true": "Enabled",
+  "kube_node_pool_autoscale_false": "Disabled"
 }

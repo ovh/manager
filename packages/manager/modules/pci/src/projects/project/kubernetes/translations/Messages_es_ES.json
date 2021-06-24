@@ -9,7 +9,7 @@
   "kube_common_save": "Aceptar",
   "kube_common_cancel": "Cancelar",
   "kube_common_delete": "Eliminar",
-  "kube_common_node_pool_title": "Configure su pool de nodos",
+  "kube_common_node_pool_title": "Configure su tipo de nodos",
   "kube_common_billing_type_title": "Facturación y antiafinidad",
   "kube_common_create_node_pool": "Crear un pool de nodos",
   "kube_common_flavor_load_error": "Se ha producido un error al cargar los nodos: {{message}}",
@@ -19,5 +19,6 @@
   "kubernetes_add_private_network_label": "Red privada asociada",
   "kubernetes_add_private_network_none": "Ninguna (IP públicas)",
   "kubernetes_add_private_network_description": "Por defecto, sus nodos de trabajo disponen de una IPv4 pública. Si elige una red privada, las IP públicas de estos nodos solo se utilizarán para su administración/el enlace con el plano de control Kubernetes, y a sus nodos se les asignará una IP en la VLAN de la red privada elegida.",
-  "kubernetes_add_private_network_add": "Crear una red privada"
+  "kubernetes_add_private_network_add": "Crear una red privada",
+  "kube_common_node_pool_autoscaling_title": "Configurar el tamaño del pool de nodos"
 }

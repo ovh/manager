@@ -11,5 +11,9 @@
   "kube_node_pool_monthly_billing": "Abonament miesięczny",
   "kube_node_pool_anti_affinity": "Ochrona przed koligacją (anti-affinity)",
   "kube_node_pool_enabled": "Aktywny",
-  "kube_node_pool_disabled": "Wyłączony"
+  "kube_node_pool_disabled": "Wyłączony",
+  "kube_node_pool_nodes": "Sprawdź węzły",
+  "kube_node_pool_scale": "Skonfiguruj rozmiar puli węzłów",
+  "kube_node_pool_autoscale_true": "Aktywny",
+  "kube_node_pool_autoscale_false": "Nieaktywny"
 }
