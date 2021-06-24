@@ -93,6 +93,7 @@
                     data-ng-if="$ctrl.needToCheckCustomerInformations"
                     class="oui-button oui-button_primary oui-button_icon-right text-white"
                     data-ng-href="{{ $ctrl.orderBillingUrl }}"
+                    data-ng-click="$ctrl.sendTrack('project-creation::track-order')"
                     target="_blank"
                     rel="noopener"
                 >

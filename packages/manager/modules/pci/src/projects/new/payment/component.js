@@ -21,5 +21,7 @@ export default {
     globalLoading: '<',
     paymentStatus: '<',
     meEnums: '<',
+    trackPage: '<',
+    sendTrack: '<',
   },
 };

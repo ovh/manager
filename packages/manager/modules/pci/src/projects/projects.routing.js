@@ -113,6 +113,29 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
         ORDER_FOLLOW_UP_STEP: buildMapEnum('billing.order.followUp.StepEnum'),
       }),
+
+      projectsTrackPrefix: () => 'PublicCloud::pci::projects',
+
+      trackPage: /* @ngInject */ (atInternet, projectsTrackPrefix) => (
+        complement,
+      ) => {
+        return atInternet.trackPage({
+          name: `${projectsTrackPrefix}::${complement}`,
+        });
+      },
+
+      sendTrack: /* @ngInject */ (projectsTrackPrefix, trackClick) => (
+        complement,
+      ) => {
+        return trackClick(`${projectsTrackPrefix}::${complement}`);
+      },
+
+      trackClick: /* @ngInject */ (atInternet) => (hit) => {
+        return atInternet.trackClick({
+          name: hit,
+          type: 'action',
+        });
+      },
     },
   });
 };

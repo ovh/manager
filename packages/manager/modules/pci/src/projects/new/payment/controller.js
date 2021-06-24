@@ -108,16 +108,13 @@ export default class PciProjectNewPaymentCtrl {
 
   displayAntiFraudMessage(validatingStep, order) {
     const {
-      FRAUD_REFUSED,
       FRAUD_DOCS_REQUESTED,
       FRAUD_MANUAL_REVIEW,
     } = this.meEnums.ORDER_FOLLOW_UP_HISTORY_STATUS;
 
     (validatingStep?.history || []).forEach(({ label }) => {
-      if (label === FRAUD_REFUSED) {
-        this.displayCucCloudMessage('error', label.toLowerCase());
-      }
       if ([FRAUD_MANUAL_REVIEW, FRAUD_DOCS_REQUESTED].includes(label)) {
+        this.trackPage('antifraud-verification');
         this.orderBillingUrl = this.buildOrderBillingUrl(order);
         this.needToCheckCustomerInformations = true;
         this.displayCucCloudMessage('warning', label.toLowerCase());
@@ -236,6 +233,7 @@ export default class PciProjectNewPaymentCtrl {
       })
       .catch(({ data }) => {
         if (data.message.includes(ANTI_FRAUD.CASE_FRAUD_REFUSED)) {
+          this.trackPage('antifraud-error');
           this.CucCloudMessage.error(
             this.$translate.instant(
               'pci_project_new_payment_check_anti_fraud_case_fraud_refused',

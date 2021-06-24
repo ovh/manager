@@ -14,6 +14,8 @@ export default {
     terminateProject: '<',
     meApiSchemas: '<',
     meEnums: '<',
+    trackPage: '<',
+    sendTrack: '<',
   },
   controller,
   template,
