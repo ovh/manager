@@ -5,53 +5,59 @@ import { DEFAULT_PROJECT_KEY } from './index.constants';
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app', {
     url: '/?onboarding',
-    redirectTo: (trans) => {
-      const $q = trans.injector().get('$q');
-      const publicCloud = trans.injector().get('publicCloud');
-      return $q
-        .all([
-          publicCloud.getDefaultProject(),
-          publicCloud.getServices([
-            {
-              field: 'route.path',
-              comparator: 'eq',
-              reference: '/cloud/project/{serviceName}',
-            },
-            {
-              field: 'billing.lifecycle.current.state',
-              comparator: 'eq',
-              reference: 'unpaid',
-            },
-          ]),
-          publicCloud.getProjects([
-            {
-              field: 'status',
-              comparator: 'like',
-              reference: 'suspended',
-            },
-          ]),
-        ])
-        .then(([defaultProjectId, unPaidProjects, suspendedProjects]) => {
-          if (!isEmpty(suspendedProjects) || !isEmpty(unPaidProjects)) {
-            return { state: 'pci.projects' };
-          }
-          if (defaultProjectId) {
-            return {
-              state: 'pci.projects.project',
-              params: {
-                projectId: defaultProjectId,
-              },
-            };
-          }
-          return {
-            state: trans.params().onboarding
-              ? 'pci.projects.onboarding'
-              : 'pci.projects.new',
-          };
-        });
-    },
+    redirectTo: 'app.redirect',
     resolve: {
       rootState: () => 'app',
+    },
+  });
+
+  $stateProvider.state('app.redirect', {
+    url: '?onboarding',
+    resolve: {
+      defaultProjectId: /* @ngInject */ (publicCloud) =>
+        publicCloud.getDefaultProject(),
+      unPaidProjects: /* @ngInject */ (publicCloud) =>
+        publicCloud.getServices([
+          {
+            field: 'route.path',
+            comparator: 'eq',
+            reference: '/cloud/project/{serviceName}',
+          },
+          {
+            field: 'billing.lifecycle.current.state',
+            comparator: 'eq',
+            reference: 'unpaid',
+          },
+        ]),
+      suspendedProjects: /* @ngInject */ (publicCloud) =>
+        publicCloud.getProjects([
+          {
+            field: 'status',
+            comparator: 'like',
+            reference: 'suspended',
+          },
+        ]),
+      redirect: /* @ngInject */ (
+        $state,
+        $transition$,
+        defaultProjectId,
+        unPaidProjects,
+        suspendedProjects,
+      ) => {
+        if (!isEmpty(suspendedProjects) || !isEmpty(unPaidProjects)) {
+          return $state.go('pci.projects');
+        }
+        if (defaultProjectId) {
+          return $state.go('pci.projects.project', {
+            projectId: defaultProjectId,
+          });
+        }
+        return $state.go(
+          $transition$.params().onboarding
+            ? 'pci.projects.onboarding'
+            : 'pci.projects.new',
+        );
+      },
     },
   });
 
