@@ -7,7 +7,7 @@ import isPlainObject from 'lodash/isPlainObject';
 import { LANGUAGES } from '@ovh-ux/manager-config';
 
 export default /* @ngInject */ function UserAccountUpdateController(
-  UserAccountContactsService,
+  UserAccountContactUpdateService,
   $scope,
   $stateParams,
   $q,
@@ -133,35 +133,37 @@ export default /* @ngInject */ function UserAccountUpdateController(
 
     return $q
       .all([
-        UserAccountContactsService.getLegalFormEnum().then((legalforms) => {
-          $scope.controls.legalforms = legalforms;
-        }),
-        UserAccountContactsService.getCountryEnum().then((countries) => {
+        UserAccountContactUpdateService.getLegalFormEnum().then(
+          (legalforms) => {
+            $scope.controls.legalforms = legalforms;
+          },
+        ),
+        UserAccountContactUpdateService.getCountryEnum().then((countries) => {
           $scope.controls.countries = countries.filter(
             (country) => country !== 'UNKNOWN',
           );
         }),
-        UserAccountContactsService.getGendersEnum().then((genders) => {
+        UserAccountContactUpdateService.getGendersEnum().then((genders) => {
           $scope.controls.genders = genders;
         }),
-        UserAccountContactsService.getContactInfo($stateParams.contactId).then(
-          (contact) => {
-            $scope.owner = contact;
-            $scope.ownerModel = contact;
-          },
-        ),
-        UserAccountContactsService.getContactFields(
+        UserAccountContactUpdateService.getContactInfo(
+          $stateParams.contactId,
+        ).then((contact) => {
+          $scope.owner = contact;
+          $scope.ownerModel = contact;
+        }),
+        UserAccountContactUpdateService.getContactFields(
           $stateParams.contactId,
         ).then((fields) => {
           $scope.fields = fields;
         }),
-        UserAccountContactsService.getDomainsByOwner(
+        UserAccountContactUpdateService.getDomainsByOwner(
           $stateParams.contactId,
         ).then((domains) => {
           $scope.domainsOwner = domains;
         }),
         $scope.currentDomain
-          ? UserAccountContactsService.getOrderServiceOption(
+          ? UserAccountContactUpdateService.getOrderServiceOption(
               $scope.currentDomain,
             ).then((opts) => {
               $scope.hasTrade = find(opts, (opt) => opt.family === 'trade');
@@ -192,7 +194,7 @@ export default /* @ngInject */ function UserAccountUpdateController(
       $scope.ownerModel.vat = null;
     }
 
-    return UserAccountContactsService.updateContact($scope.ownerModel)
+    return UserAccountContactUpdateService.updateContact($scope.ownerModel)
       .then(
         (newOwnerData) => {
           $scope.owner = angular.copy(newOwnerData);
@@ -218,8 +220,8 @@ export default /* @ngInject */ function UserAccountUpdateController(
 
   $scope.init = () => {
     $q.all({
-      changeOwnerUrl: UserAccountContactsService.getUrlOf('changeOwner'),
-      domainOrderTradeUrl: UserAccountContactsService.getUrlOf(
+      changeOwnerUrl: UserAccountContactUpdateService.getUrlOf('changeOwner'),
+      domainOrderTradeUrl: UserAccountContactUpdateService.getUrlOf(
         'domainOrderTrade',
       ),
       owner: $scope.getOwner(),
