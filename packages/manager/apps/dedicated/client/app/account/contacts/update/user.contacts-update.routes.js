@@ -1,7 +1,7 @@
 import controller from './user-contacts-update.controller';
 import template from './user-contacts-update.html';
 
-export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.contact-update-domain', {
     url: '/contact/:currentDomain/:contactId?fields',
     template,
@@ -48,8 +48,4 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         $translate.instant('user_account_contacts_update'),
     },
   });
-
-  $urlRouterProvider.when(/^\/useraccount\/contact\//, ($location) =>
-    $location.url($location.url().replace('/useraccount', '')),
-  );
 };
