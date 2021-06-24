@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import {
+  ORDER_FOLLOW_UP_HISTORY_STATUS_ENUM,
   ORDER_FOLLOW_UP_STATUS_ENUM,
   ORDER_FOLLOW_UP_STEP_ENUM,
 } from '../../projects.constant';
@@ -7,7 +8,7 @@ import {
 const getPaymentMethodTimeoutLimit = 30000;
 const ANTI_FRAUD = {
   CASE_FRAUD_REFUSED: '(error 906)',
-  INTERVAL: 2000,
+  POLLING_INTERVAL: 2000,
 };
 
 export default class PciProjectNewPaymentCtrl {
@@ -115,7 +116,7 @@ export default class PciProjectNewPaymentCtrl {
       FRAUD_REFUSED,
       FRAUD_DOCS_REQUESTED,
       FRAUD_MANUAL_REVIEW,
-    } = this.historyStatusEnum;
+    } = ORDER_FOLLOW_UP_HISTORY_STATUS_ENUM;
 
     (validatingStep?.history || []).forEach(({ label }) => {
       if (label === FRAUD_REFUSED) {
@@ -129,15 +130,15 @@ export default class PciProjectNewPaymentCtrl {
     });
   }
 
-  static validatingStepIsDone(validatingStep) {
-    return validatingStep.status === ORDER_FOLLOW_UP_STATUS_ENUM.DONE;
+  validatingStepIsDoing(validatingStep) {
+    return validatingStep.status === ORDER_FOLLOW_UP_STATUS_ENUM.DOING;
   }
 
-  isAntiFraudCases(validatingStep) {
+  static isAntiFraudCases(validatingStep) {
     const {
       FRAUD_DOCS_REQUESTED,
       FRAUD_MANUAL_REVIEW,
-    } = this.historyStatusEnum;
+    } = ORDER_FOLLOW_UP_HISTORY_STATUS_ENUM;
 
     return !!validatingStep.history.find(({ label }) =>
       [FRAUD_MANUAL_REVIEW, FRAUD_DOCS_REQUESTED].includes(label),
@@ -170,13 +171,13 @@ export default class PciProjectNewPaymentCtrl {
           }),
         )
         .then((validatingStep) => {
-          if (this.isAntiFraudCases(validatingStep)) {
-            this.needToCheckCustomerInformartions = true;
-            this.displayAntiFraudMessage(validatingStep, order);
-            return this.stopAntiFraudChecker();
-          }
+          if (this.validatingStepIsDoing(validatingStep)) {
+            if (PciProjectNewPaymentCtrl.isAntiFraudCases(validatingStep)) {
+              this.needToCheckCustomerInformations = true;
+              this.displayAntiFraudMessage(validatingStep, order);
+              return this.stopAntiFraudChecker();
+            }
 
-          if (!PciProjectNewPaymentCtrl.validatingStepIsDone(validatingStep)) {
             return true;
           }
 
@@ -187,7 +188,7 @@ export default class PciProjectNewPaymentCtrl {
             this.startAntiFraudChecker(resolve, order);
           }
         });
-    }, ANTI_FRAUD.INTERVAL);
+    }, ANTI_FRAUD.POLLING_INTERVAL);
   }
 
   manageProjectCreation() {
@@ -259,6 +260,31 @@ export default class PciProjectNewPaymentCtrl {
       .finally(() => {
         this.globalLoading.finalize = false;
       });
+  }
+
+  isInvalidPaymentMethod() {
+    return (
+      (this.eligibility.isChallengePaymentMethodRequired() &&
+        !this.model.challenge.isValid(this.defaultPaymentMethod.paymentType)) ||
+      (!this.model.paymentMethod &&
+        this.eligibility.isAddPaymentMethodRequired()) ||
+      (!this.defaultPaymentMethod &&
+        !this.model.defaultPaymentMethod &&
+        this.eligibility.isDefaultPaymentMethodChoiceRequired()) ||
+      this.model.challenge.checking ||
+      this.globalLoading.finalize ||
+      this.globalLoading.setDefaultPaymentMethod
+    );
+  }
+
+  canProceedToCreateProject() {
+    return (
+      this.defaultPaymentMethod ||
+      !this.model.paymentMethod ||
+      (this.eligibility.isDefaultPaymentMethodChoiceRequired() &&
+        !this.model.paymentMethod &&
+        !this.isCheckingPaymentMethod)
+    );
   }
 
   /* -----  End of Helpers  ------ */

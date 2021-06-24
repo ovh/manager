@@ -88,8 +88,28 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiCloudProject.v6().delete({ serviceName: project.serviceName })
           .$promise,
 
-      apiSchemas: /* @ngInject */ (PciProjectsService) =>
-        PciProjectsService.getApiSchemas(),
+      projectsTrackPrefix: () => 'PublicCloud::pci::projects',
+
+      trackPage: /* @ngInject */ (atInternet, projectsTrackPrefix) => (
+        complement,
+      ) => {
+        return atInternet.trackPage({
+          name: `${projectsTrackPrefix}::${complement}`,
+        });
+      },
+
+      sendTrack: /* @ngInject */ (projectsTrackPrefix, trackClick) => (
+        complement,
+      ) => {
+        return trackClick(`${projectsTrackPrefix}::${complement}`);
+      },
+
+      trackClick: /* @ngInject */ (atInternet) => (hit) => {
+        return atInternet.trackClick({
+          name: hit,
+          type: 'action',
+        });
+      },
     },
   });
 };

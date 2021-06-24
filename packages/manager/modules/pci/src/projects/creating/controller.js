@@ -2,13 +2,11 @@ import find from 'lodash/find';
 import some from 'lodash/some';
 
 import { SLIDE_ANIMATION_INTERVAL, SLIDE_IMAGES } from './constants';
-
 import {
   ORDER_FOLLOW_UP_POLLING_INTERVAL,
   ORDER_FOLLOW_UP_STATUS_ENUM,
   ORDER_FOLLOW_UP_STEP_ENUM,
 } from '../projects.constant';
-
 import { PCI_HDS_ADDON } from '../project/project.constants';
 
 export default class PciProjectCreatingCtrl {

@@ -69,8 +69,4 @@ export default class {
     const endPoint = `/me/order/${orderId}/followUp`;
     return this.$http.get(endPoint).then(({ data }) => data);
   }
-
-  getApiSchemas() {
-    return this.$http.get('/me.json').then(({ data }) => data);
-  }
 }

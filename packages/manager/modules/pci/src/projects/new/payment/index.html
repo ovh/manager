@@ -90,7 +90,7 @@
 
                 <!--Go to billing detail page-->
                 <a
-                    data-ng-if="$ctrl.needToCheckCustomerInformartions"
+                    data-ng-if="$ctrl.needToCheckCustomerInformations"
                     class="oui-button oui-button_primary oui-button_icon-right text-white"
                     data-ng-href="{{ $ctrl.orderBillingUrl }}"
                     target="_blank"
@@ -105,7 +105,7 @@
                     ></span>
                 </a>
 
-                <div data-ng-if="!$ctrl.needToCheckCustomerInformartions">
+                <div data-ng-if="!$ctrl.needToCheckCustomerInformations">
                     <oui-button
                         data-variant="primary"
                         data-type="submit"
@@ -122,16 +122,8 @@
                         data-variant="primary"
                         data-type="submit"
                         data-variant-nav="next"
-                        data-disabled="
-                        ($ctrl.eligibility.isChallengePaymentMethodRequired() && !$ctrl.model.challenge.isValid($ctrl.defaultPaymentMethod.paymentType))
-                        || (!$ctrl.model.paymentMethod && $ctrl.eligibility.isAddPaymentMethodRequired())
-                        || (!$ctrl.defaultPaymentMethod &&
-                            !$ctrl.model.defaultPaymentMethod &&
-                            $ctrl.eligibility.isDefaultPaymentMethodChoiceRequired())
-                        || $ctrl.model.challenge.checking
-                        || $ctrl.globalLoading.finalize
-                        || $ctrl.globalLoading.setDefaultPaymentMethod"
-                        data-ng-if="$ctrl.defaultPaymentMethod || !$ctrl.model.paymentMethod || ($ctrl.eligibility.isDefaultPaymentMethodChoiceRequired() && !$ctrl.model.paymentMethod) && !$ctrl.isCheckingPaymentMethod"
+                        data-disabled="$ctrl.isInvalidPaymentMethod()"
+                        data-ng-if="$ctrl.canProceedToCreateProject()"
                     >
                         <span
                             data-translate="pci_project_new_payment_btn_continue_default"
@@ -153,7 +145,7 @@
                     <a
                         class="oui-button oui-button_primary oui-button_icon-right no-transition"
                         data-ng-if="$ctrl.model.paymentMethod.type.isBankAccount()"
-                        data-ng-href="{{ $ctrl.paymentMethodAddUrl }}"
+                        data-ng-href="{{:: $ctrl.paymentMethodAddUrl }}"
                     >
                         <span
                             data-translate="pci_project_new_payment_btn_continue_bank_account"
