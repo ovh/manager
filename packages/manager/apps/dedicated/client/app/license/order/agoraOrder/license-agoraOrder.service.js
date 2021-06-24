@@ -6,7 +6,8 @@ import keys from 'lodash/keys';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-class LicenseAgoraOrder {
+export default class LicenseAgoraOrder {
+  /* @ngInject */
   constructor($http, $q, $translate, Alerter, coreConfig, OvhHttp, User) {
     this.$http = $http;
     this.$q = $q;
@@ -258,7 +259,3 @@ class LicenseAgoraOrder {
     return productToOrder;
   }
 }
-
-angular
-  .module('Module.license')
-  .service('LicenseAgoraOrder', LicenseAgoraOrder);

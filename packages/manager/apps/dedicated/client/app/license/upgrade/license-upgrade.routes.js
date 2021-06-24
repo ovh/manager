@@ -1,15 +1,14 @@
-angular
-  .module('Module.license')
-  .config(($stateProvider) => {
-    $stateProvider.state('app.license.detail.upgrade', {
-      url: '/upgrade',
-      templateUrl: 'license/upgrade/license-upgrade.html',
-      controller: 'LicenseUpgradeCtrl',
-      translations: { value: ['..'], format: 'json' },
-      resolve: {
-        breadcrumb: /* @ngInject */ ($translate) =>
-          $translate.instant('license_upgrade'),
-      },
-    });
-  })
-  .run(/* @ngTranslationsInject:json ./translations */);
+import template from './license-upgrade.html';
+import controller from './license-upgrade.controller';
+
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('app.license.detail.upgrade', {
+    url: '/upgrade',
+    template,
+    controller,
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('license_upgrade'),
+    },
+  });
+};
