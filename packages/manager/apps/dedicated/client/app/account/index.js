@@ -1,5 +1,6 @@
 import contacts from './contacts';
 import contactUpdate from './contacts/update';
+import redirection from './account.redirection';
 import routing from './account.routing';
 import user from './user';
 
@@ -15,6 +16,7 @@ angular
     'ui.router',
     user,
   ])
+  .config(redirection)
   .config(routing);
 
 export default moduleName;
