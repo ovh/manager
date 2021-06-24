@@ -2,13 +2,7 @@ import find from 'lodash/find';
 import some from 'lodash/some';
 
 import { SLIDE_ANIMATION_INTERVAL, SLIDE_IMAGES } from './constants';
-
-import {
-  ORDER_FOLLOW_UP_POLLING_INTERVAL,
-  ORDER_FOLLOW_UP_STATUS_ENUM,
-  ORDER_FOLLOW_UP_STEP_ENUM,
-} from '../projects.constant';
-
+import { ORDER_FOLLOW_UP_POLLING_INTERVAL } from '../projects.constant';
 import { PCI_HDS_ADDON } from '../project/project.constants';
 
 export default class PciProjectCreatingCtrl {
@@ -69,17 +63,17 @@ export default class PciProjectCreatingCtrl {
       this.PciProjectsService.getOrderFollowUp(this.orderId)
         .then((followUp) => {
           const { status } = find(followUp, {
-            step: ORDER_FOLLOW_UP_STEP_ENUM.DELIVERING,
+            step: this.meEnums.ORDER_FOLLOW_UP_STEP.DELIVERING,
           });
 
-          if (status === ORDER_FOLLOW_UP_STATUS_ENUM.DONE) {
+          if (status === this.meEnums.ORDER_FOLLOW_UP_STATUS.DONE) {
             return this.getDeliveredProjectId().then((projectId) =>
               this.onProjectDelivered(projectId),
             );
           }
 
           const hasStepInError = some(followUp, {
-            status: ORDER_FOLLOW_UP_STATUS_ENUM.ERROR,
+            status: this.meEnums.ORDER_FOLLOW_UP_STATUS.ERROR,
           });
 
           if (hasStepInError) {

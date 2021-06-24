@@ -70,7 +70,7 @@ export default class {
     return this.$http.get(endPoint).then(({ data }) => data);
   }
 
-  getApiSchemas() {
+  getMeSchemas() {
     return this.$http.get('/me.json').then(({ data }) => data);
   }
 }

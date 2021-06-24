@@ -20,7 +20,6 @@ export default {
     onAskCreditPayment: '<',
     globalLoading: '<',
     paymentStatus: '<',
-    apiSchemas: '<',
-    historyStatusEnum: '<',
+    meEnums: '<',
   },
 };
