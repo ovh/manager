@@ -1,3 +1,12 @@
+## [16.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.31.1...@ovh-ux/manager-dedicated@16.31.2) (2021-06-24)
+
+
+### Bug Fixes
+
+* **account.contact.update:** add lazyloading to contact update ([#5164](https://github.com/ovh/manager/issues/5164)) ([f70395d](https://github.com/ovh/manager/commit/f70395dfbf9b58022b839341d94ba3f9dc5dc5aa))
+
+
+
 ## [16.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.31.0...@ovh-ux/manager-dedicated@16.31.1) (2021-06-21)
 
 
