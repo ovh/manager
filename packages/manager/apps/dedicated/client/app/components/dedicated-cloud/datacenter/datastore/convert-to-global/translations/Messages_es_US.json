@@ -1,0 +1,5 @@
+{
+  "dedicatedCloud_datacenter_delete_confirmation": "¿Está seguro(a) de que desea eliminar el centro de datos {{t0}}?",
+  "dedicatedCloud_datacenter_delete_success": "El centro de datos {{t0}} se va a eliminar en unos instantes.",
+  "dedicatedCloud_datacenter_delete_error": "Se ha producido un error al eliminar el centro de datos {{t0}}."
+}

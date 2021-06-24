@@ -6,6 +6,7 @@ import '@ovh-ux/ng-translate-async-loader';
 
 import addComponent from '../datacenter/add';
 import component from './datacenters.component';
+import upgradeRange from './upgrade-range';
 
 const moduleName = 'ovhManagerPccDatacenters';
 
@@ -15,6 +16,7 @@ angular
     'oui',
     'pascalprecht.translate',
     addComponent,
+    upgradeRange,
   ])
   .component('ovhManagerPccDatacenters', component)
   .run(/* @ngTranslationsInject:json ./translations */);

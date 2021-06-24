@@ -48,6 +48,21 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return promise;
         },
+        goToConvertToGlobal: /* @ngInject */ (
+          $state,
+          currentService,
+          datacenterId,
+        ) => (datastore) => {
+          return $state.go(
+            'app.managedBaremetal.details.datacenters.datacenter.datastores.convertToGlobal',
+            {
+              productId: currentService.serviceName,
+              datacenterId,
+              datastoreId: datastore.id,
+              isGlobal: datastore.dc == null,
+            },
+          );
+        },
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant(
             'managed_baremetal_datacenters_datacenter_datastores',
