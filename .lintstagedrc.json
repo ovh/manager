@@ -1,12 +1,11 @@
 {
   "*.html": [
     "htmlhint --ignore \"**/dist/**,**/dist-EU/**,**/dist-CA/**,**/dist-US/**\" \"packages/**/*.html\"",
-    "prettier --write",
-    "git add"
+    "prettier --write"
   ],
-  "*.js": ["eslint --fix", "git add"],
-  "*.{css,less,scss}": ["stylelint --fix", "git add"],
-  "!(*CHANGELOG).md": ["remark -qf .", "eslint --ext .md --fix", "git add"],
-  "**/package.json": ["npx sort-package-json", "git add"],
-  "*.json": ["prettier --write", "git add"]
+  "*.js": ["eslint --fix"],
+  "*.{css,less,scss}": ["stylelint --fix"],
+  "!(*CHANGELOG).md": ["remark -qf .", "eslint --ext .md --fix"],
+  "**/package.json": ["npx sort-package-json"],
+  "*.json": ["prettier --write"]
 }
