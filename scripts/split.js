@@ -120,8 +120,9 @@ program
     '-r, --remote [remote]',
     'remote url (like git@github.com:ovh-ux/manager.git)',
   )
-  .on('--help', () => {
-    console.log(`
+  .addHelpText(
+    'after',
+    `
 Examples:
 
   * Split a module:
@@ -135,15 +136,17 @@ Examples:
 
   * Split a module and push it to another repository:
     $ split @ovh-ux/manager-core --remote git@github.com:ovh-ux/manager.git
-    `);
-  })
+    `,
+  )
   .action(() => {
     const [packageName] = program.args;
+    const { branch, push, remote } = program.opts();
+
     if (packageName) {
       split(packageName, {
-        branch: program.branch || false,
-        push: program.push,
-        remote: program.remote || false,
+        branch: branch || false,
+        push,
+        remote: remote || false,
       });
     } else {
       program.outputHelp();

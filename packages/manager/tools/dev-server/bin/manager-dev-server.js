@@ -40,8 +40,9 @@ if (program.args.length === 0) {
 }
 
 const [path] = program.args;
-devServer(path, program.region, program.port, {
-  local2API: program.local2API,
-  localRegistry: program.localRegistry,
-  registryUrl: program.registryUrl,
+const { local2API, localRegistry, port, region, registryUrl } = program.opts();
+devServer(path, region, port, {
+  local2API,
+  localRegistry,
+  registryUrl,
 });

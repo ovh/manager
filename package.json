@@ -51,7 +51,7 @@
     "@lerna/project": "^3.21.0",
     "@ovh-ux/codename-generator": "^1.0.0",
     "babel-eslint": "^10.1.0",
-    "commander": "^6.0.0",
+    "commander": "^8.0.0",
     "concat-stream": "^2.0.0",
     "conventional-changelog-cli": "^2.0.25",
     "conventional-commits-parser": "^3.0.5",

@@ -14,9 +14,9 @@ program
   .option('-d, --date <date>', 'date to encode', moment().format('Y-MM-DD'))
   .option('-v, --verbose', 'verbose', false)
   .action(() => {
-    const { date, seed } = program;
+    const { date, seed, verbose } = program.opts();
 
-    if (program.verbose) {
+    if (verbose) {
       console.log('📅  date : ', date);
       console.log('🎲  seed : ', seed);
     }
