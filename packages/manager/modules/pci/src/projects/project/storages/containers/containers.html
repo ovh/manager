@@ -22,7 +22,7 @@
 
         <oui-datagrid data-rows="$ctrl.containers">
             <oui-datagrid-column
-                data-title="'pci_projects_project_storages_containers_name_label' | translate"
+                data-title=":: 'pci_projects_project_storages_containers_name_label' | translate"
                 data-property="name"
                 data-type="string"
                 data-searchable
@@ -36,24 +36,25 @@
                 ></a>
             </oui-datagrid-column>
             <oui-datagrid-column
-                data-title="'pci_projects_project_storages_containers_region_label' | translate"
+                data-title=":: 'pci_projects_project_storages_containers_region_label' | translate"
                 data-property="region"
                 data-type="string"
                 data-sortable
                 data-filterable
             ></oui-datagrid-column>
             <oui-datagrid-column
-                data-title="'pci_projects_project_storages_containers_containerType_label' | translate"
+                data-title=":: 'pci_projects_project_storages_containers_containerType_label' | translate"
                 data-property="containerType"
                 data-sortable
                 data-type="string"
             >
                 <span
+                    data-ng-if="$row.containerType"
                     data-ng-bind="'pci_projects_project_storages_containers_containerType_' + $row.containerType | translate"
                 ></span>
             </oui-datagrid-column>
             <oui-datagrid-column
-                data-title="'pci_projects_project_storages_containers_offer_label' | translate"
+                data-title=":: 'pci_projects_project_storages_containers_offer_label' | translate"
                 data-property="offer"
                 data-type="string"
                 data-sortable
@@ -61,7 +62,7 @@
             >
             </oui-datagrid-column>
             <oui-datagrid-column
-                data-title="'pci_projects_project_storages_containers_storedObjects_label' | translate"
+                data-title=":: 'pci_projects_project_storages_containers_storedObjects_label' | translate"
                 data-property="storedObjects"
                 data-type="number"
                 data-sortable
@@ -69,12 +70,16 @@
             >
             </oui-datagrid-column>
             <oui-datagrid-column
-                data-title="'pci_projects_project_storages_containers_storedBytes_label' | translate"
+                data-title=":: 'pci_projects_project_storages_containers_storedBytes_label' | translate"
                 data-property="storedBytes"
                 data-type="number"
                 data-sortable
             >
-                <span data-ng-bind="$value | RAUnitsBits"></span>
+                <span
+                    data-ng-if="$value > 0"
+                    data-ng-bind="$value | RAUnitsBits"
+                ></span>
+                <span data-ng-if="!$value">-</span>
             </oui-datagrid-column>
 
             <oui-action-menu data-compact data-placement="end">
@@ -99,15 +104,16 @@
                 </oui-action-menu-item>
             </oui-action-menu>
             <oui-datagrid-column
-                data-title="'pci_projects_project_storages_containers_public_label' | translate"
-                data-property="public"
+                data-title=":: 'pci_projects_project_storages_containers_public_label' | translate"
+                data-property="state"
                 data-sortable
                 data-filterable
             >
                 <oui-switch
                     model="$value"
-                    disabled="$ctrl.publicToggleLoading"
+                    disabled="$row.id === $ctrl.loadingContainer"
                     on-change="$ctrl.onPublicToggle($row)"
+                    data-ng-if="!$row.isHighPerfStorage"
                 >
                 </oui-switch>
             </oui-datagrid-column>

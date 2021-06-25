@@ -9,38 +9,37 @@ export default class PciStoragesContainersController {
 
   $onInit() {
     this.loadMessages();
+    this.publicToggleLoading = false;
   }
 
-  onPublicToggle(data) {
-    this.publicToggleLoading = true;
+  onPublicToggle(container) {
+    this.loadingContainer = container.id;
     return this.$http
-      .put(`/cloud/project/${this.projectId}/storage/${data.id}`, {
-        containerType: data.public ? 'private' : 'public',
+      .put(`/cloud/project/${this.projectId}/storage/${container.id}`, {
+        containerType: container.state ? 'private' : 'public',
       })
       .then(() =>
         this.CucCloudMessage.success(
           this.$translate.instant(
-            data.public
+            container.state
               ? 'pci_projects_project_storages_containers_toggle_private_succeed'
               : 'pci_projects_project_storages_containers_toggle_public_succeed',
-            { name: data.name },
+            { name: container.name },
           ),
           'pci.projects.project.storages.containers.container',
         ),
       )
-      .catch((err) =>
+      .catch((error) =>
         this.CucCloudMessage.error(
           this.$translate.instant(
             'pci_projects_project_storages_containers_toggle_fail',
-            {
-              message: err.message || err.data?.message,
-            },
+            { message: error.data?.message },
           ),
           'pci.projects.project.storages.containers.container',
         ),
       )
       .finally(() => {
-        this.publicToggleLoading = false;
+        this.loadingContainer = null;
       });
   }
 

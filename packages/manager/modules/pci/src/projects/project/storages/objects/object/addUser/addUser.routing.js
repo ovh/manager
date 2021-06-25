@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.objects.addUser', {
-    url: '/addUser?containerId',
+    url: '/addUser?containerId&isHighPerfStorage',
     views: {
       modal: {
         component: 'pciProjectStorageContainersContainerAddUser',
@@ -17,6 +17,8 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     layout: 'modal',
     resolve: {
+      isHighPerfStorage: /* @ngInject */ ($transition$) =>
+        $transition$.params().isHighPerfStorage === 'true',
       containerId: /* @ngInject */ ($transition$) =>
         $transition$.params().containerId,
       availableUsers: /* @ngInject */ ($http, projectId) =>
@@ -25,8 +27,9 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectStorageContainersService,
         projectId,
         containerId,
+        isHighPerfStorage,
       ) =>
-        PciProjectStorageContainersService.getContainer(projectId, containerId),
+        PciProjectStorageContainersService.getContainer(projectId, containerId, isHighPerfStorage),
       goToUsersAndRoles: /* @ngInject */ ($state) => () =>
         $state.go('pci.projects.project.users'),
       goBack: /* @ngInject */ (goToStorageContainers) => goToStorageContainers,

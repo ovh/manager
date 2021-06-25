@@ -20,6 +20,7 @@ import {
   OBJECT_CONTAINER_TYPE_STATIC,
   OBJECT_CONTAINER_TYPE_PUBLIC,
   OBJECT_TYPE_SEALED,
+  OPENIO_DEFAULT_REGION,
   STORAGE_GATEWAY,
   X_AUTH_TOKEN,
   X_CONTAINER_HEADERS_REGEX,
@@ -132,20 +133,36 @@ export default class PciStoragesContainersService {
       queryParams.archive = false;
     }
 
+    queryParams.region = OPENIO_DEFAULT_REGION;
+
     return this.OvhApiCloudProjectStorage.Aapi()
       .query(queryParams)
       .$promise.then((containers) =>
-        map(containers, (container) => new Container(container)),
+        map(
+          containers,
+          (container) =>
+            new Container({ ...container, state: container.public }),
+        ),
       );
   }
 
-  getContainer(projectId, containerId) {
-    return this.OvhApiCloudProjectStorage.v6()
-      .get({
+  getContainer(projectId, containerId, isHighPerfStorage) {
+    console.log('get containner', isHighPerfStorage);
+    let promise = null;
+    if (isHighPerfStorage) {
+      promise = this.$http
+        .get(
+          `/cloud/project/${projectId}/region/${OPENIO_DEFAULT_REGION}/storage/${containerId}`,
+        )
+        .then(({ data }) => data);
+    } else {
+      promise = this.OvhApiCloudProjectStorage.v6().get({
         projectId,
         containerId,
-      })
-      .$promise.then((container) =>
+      }).$promise;
+    }
+    return promise
+      .then((container) =>
         this.$q.all({
           container,
           publicUrl: this.getContainerUrl(projectId, container),
@@ -155,6 +172,7 @@ export default class PciStoragesContainersService {
         ({ container, publicUrl }) =>
           new Container({
             ...container,
+            state: container.public,
             objects: map(
               container.objects,
               (object) => new ContainerObject(object),
@@ -163,7 +181,10 @@ export default class PciStoragesContainersService {
             publicUrl,
             storageGateway: STORAGE_GATEWAY[
               this.coreConfig.getRegion()
-            ].replace('REGION', container.region.toLowerCase()),
+            ].replace(
+              'REGION',
+              (container.region || OPENIO_DEFAULT_REGION).toLowerCase(),
+            ),
           }),
       );
   }
@@ -171,7 +192,7 @@ export default class PciStoragesContainersService {
   getContainerUrl(projectId, container, file = null) {
     return this.getAccessAndToken(projectId).then(({ endpoints }) => {
       const url = `${
-        endpoints[container.region.toLowerCase()]
+        endpoints[(container.region || OPENIO_DEFAULT_REGION).toLowerCase()]
       }/${encodeURIComponent(container.name)}`;
       if (file) {
         return `${url}/${encodeURIComponent(file)}`;
@@ -271,7 +292,7 @@ export default class PciStoragesContainersService {
     });
   }
 
-  deleteContainer(projectId, container) {
+  deleteContainer(projectId, container, isHighPerfStorage) {
     const promises = reduce(
       container.objects,
       (result, object) => [
@@ -281,13 +302,17 @@ export default class PciStoragesContainersService {
       [],
     );
 
-    return this.$q.all(promises).then(
-      () =>
-        this.OvhApiCloudProjectStorage.v6().delete({
-          projectId,
-          containerId: container.id,
-        }).$promise,
-    );
+    return this.$q.all(promises).then(() => {
+      if (isHighPerfStorage) {
+        return this.$http.delete(
+          `/cloud/project/${projectId}/region/${container.region}/storage/${container.name}`,
+        );
+      }
+      return this.OvhApiCloudProjectStorage.v6().delete({
+        projectId,
+        containerId: container.id,
+      }).$promise;
+    });
   }
 
   static getFilePath(filePrefix, file) {

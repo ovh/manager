@@ -26,21 +26,27 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('pci.projects.project.storages.objects.object', {
           projectId,
           containerId: container.id,
+          isHighPerfStorage: container.isHighPerfStorage,
         }),
       deleteContainer: /* @ngInject */ ($state, projectId) => (container) =>
         $state.go('pci.projects.project.storages.objects.delete', {
           projectId,
           containerId: container.id,
+          isHighPerfStorage: container.isHighPerfStorage,
         }),
-      goToAddUserContainer: /* @ngInject */ ($state, projectId) => (container) =>
+      goToAddUserContainer: /* @ngInject */ ($state, projectId) => (
+        container,
+      ) =>
         $state.go('pci.projects.project.storages.objects.addUser', {
           projectId,
           containerId: container.id,
+          isHighPerfStorage: container.isHighPerfStorage,
         }),
       containerLink: /* @ngInject */ ($state, projectId) => (container) =>
         $state.href('pci.projects.project.storages.objects.object', {
           projectId,
           containerId: container.id,
+          isHighPerfStorage: container.isHighPerfStorage,
         }),
 
       goToStorageContainers: /* @ngInject */ (

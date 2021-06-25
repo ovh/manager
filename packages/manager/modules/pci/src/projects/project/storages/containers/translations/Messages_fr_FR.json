@@ -9,7 +9,7 @@
 
   "pci_projects_project_storages_containers_toggle_public_succeed": "Votre container {{name}} est passé en statut Public.",
   "pci_projects_project_storages_containers_toggle_private_succeed": "Le statut Public a été désactivé sur le container {{name}}.",
-  "pci_projects_project_storages_containers_toggle_fail": "Une erreur est survenue {{message}}",
+  "pci_projects_project_storages_containers_toggle_fail": "Une erreur est survenue: {{message}}",
 
   "pci_projects_project_storages_containers_containerType_label": "Type",
   "pci_projects_project_storages_containers_containerType_public": "Public",
