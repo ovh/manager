@@ -254,6 +254,14 @@ export const registerCoreModule = (environment) => {
         $urlServiceProvider.config.strictMode(false);
       },
     )
+    .config(
+      /* @ngInject */ ($logProvider) => {
+        $logProvider.debugEnabled(
+          !WEBPACK_ENV.production ||
+            window.localStorage.getItem('MANAGER_DEBUG_FLAG'),
+        );
+      },
+    )
     .run(
       /* @ngInject */ (OvhNgRequestTaggerInterceptor, coreConfig) => {
         OvhNgRequestTaggerInterceptor.setHeaderVersion(coreConfig.getVersion());
