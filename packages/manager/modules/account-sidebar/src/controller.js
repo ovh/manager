@@ -38,6 +38,7 @@ export default class OvhManagerAccountSidebarCtrl {
       this.me = this.coreConfig.getUser();
     }
 
+    this.isSidebarVisible = this.expand;
     this.hasChatbot = false;
     return this.$translate
       .refresh()
