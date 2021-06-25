@@ -1,0 +1,10 @@
+<oui-message data-ng-if="$ctrl.canDisplayPciAnnouncementBanner" data-type="info" dismissable>
+    <span data-translate="pci_projects_beta_public_cloud_banner_info"></span>
+    <button
+        type="button"
+        class="btn btn-link pl-0"
+        data-ng-disabled="$ctrl.disableRegionLink"
+        data-ng-click="$ctrl.onActivationRegionLinkClick()">
+        <span data-translate="pci_projects_beta_public_cloud_banner_info_link"></span>
+    </button>
+</oui-message>
