@@ -1,0 +1,55 @@
+<oui-tile
+    class="h-100"
+    heading="{{:: 'server_support_heading' | translate }}"
+    loading="$ctrl.loading"
+>
+    <!-- level -->
+    <oui-tile-definition term="{{:: 'server_support_level' | translate }}">
+        <oui-tile-description>
+            <span data-ng-bind=":: $ctrl.getFormatedSupportLevel()"></span>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <!-- open tickets -->
+    <oui-tile-definition
+        term="{{:: 'server_support_open_tickets' | translate }}"
+    >
+        <oui-tile-description data-ng-if="$ctrl.numberOfTickets === 0">
+            <span data-ng-bind="$ctrl.numberOfTickets"></span>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-button
+        class="ml-1"
+        data-ng-if="$ctrl.numberOfTickets > 0"
+        data-href="{{:: $ctrl.viewTicketsUrl }}"
+    >
+        <span data-ng-bind="$ctrl.numberOfTickets"></span>
+    </oui-tile-button>
+    <oui-tile-button class="ml-1" data-href="{{:: $ctrl.createNewTicketUrl }}">
+        <span data-translate="server_support_create_ticket"></span>
+    </oui-tile-button>
+    <!-- interventions -->
+    <div data-ng-if="$ctrl.viewInterventionsUrl">
+        <oui-tile-definition term="{{:: 'server_interventions' | translate }}">
+        </oui-tile-definition>
+        <oui-tile-button
+            class="ml-1"
+            data-href="{{:: $ctrl.viewInterventionsUrl }}"
+        >
+            <span data-ng-bind="$ctrl.numberOfInterventions"></span>
+        </oui-tile-button>
+    </div>
+    <!-- link to Travaux -->
+    <div data-ng-if="$ctrl.travauxUrl">
+        <oui-tile-definition
+            term="{{:: 'server_problem_with_your_product' | translate }}"
+        >
+        </oui-tile-definition>
+        <oui-tile-button
+            class="ml-1"
+            data-href="{{:: $ctrl.travauxUrl }}"
+            external
+        >
+            <span data-translate="server_consult_travaux"></span>
+        </oui-tile-button>
+    </div>
+</oui-tile>

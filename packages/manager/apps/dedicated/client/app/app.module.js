@@ -112,6 +112,8 @@ import ovhManagerCloudConnect from '@ovh-ux/manager-cloud-connect';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
+import { pollingService } from '@ovh-ux/manager-bm-server-components';
+import { serverBandwidth } from '@ovh-ux/manager-components';
 import account from './account';
 import cdn from './cdn';
 import moduleLicense from './license';
@@ -156,6 +158,7 @@ export default (containerEl, environment) => {
         dedicatedNas,
         dedicatedServer,
         dedicatedUniverseComponents,
+        serverBandwidth,
         'directives',
         errorPage,
         expiredPage,
@@ -230,6 +233,7 @@ export default (containerEl, environment) => {
         ovhManagerCda,
       ].filter(isString),
     )
+    .service('Polling', pollingService)
     .constant('constants', {
       prodMode: config.prodMode,
       swsProxyRootPath: config.swsProxyRootPath,
