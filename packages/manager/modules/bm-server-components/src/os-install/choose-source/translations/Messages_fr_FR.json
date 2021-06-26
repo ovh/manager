@@ -1,0 +1,10 @@
+{
+  "server_os_install_from_title": "Installer un système (OS)",
+  "server_os_install_from_info": "Vous êtes sur le point d'installer un OS sur le serveur {{serverName}}.",
+  "server_os_install_from_warning": "Attention : tous les disques du serveur seront formatés lors de l’installation.",
+  "server_os_install_from_ovh": "Installer à partir d'un template OVH",
+  "server_os_install_from_personal": "Installer un de vos gabarits",
+  "server_os_install_from_image": "Installer à partir d'une image personnalisée",
+  "server_os_install_select_from_type": "",
+  "server_os_install_step": "Etape suivante"
+}
