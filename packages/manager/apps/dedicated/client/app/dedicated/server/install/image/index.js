@@ -1,34 +1,25 @@
 import angular from 'angular';
 
-import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
-import 'angular-translate';
-import '@ovh-ux/ui-kit';
-import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import 'oclazyload';
 
-import configModule from './components/config';
-import configDriveModule from './components/config-drive';
-import optionsModule from './components/options';
+const moduleName = 'ovhManagerDedicatedServerInstallImageLazyLoading';
 
-import routing from './routing';
-import component from './component';
-import service from './service';
-
-const moduleName = 'ovhManagerDedicatedServerInstallImage';
-
-angular
-  .module(moduleName, [
-    'oui',
-    'pascalprecht.translate',
-    'ui.router',
-    ngUiRouterBreadcrumb,
-    configModule,
-    configDriveModule,
-    optionsModule,
-  ])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .service('dedicatedServerInstallImage', service)
-  .component(component.name, component);
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state(
+      'app.dedicated-server.server.dashboard.install.image.**',
+      {
+        url: '/image',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import('./module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      },
+    );
+  },
+);
 
 export default moduleName;

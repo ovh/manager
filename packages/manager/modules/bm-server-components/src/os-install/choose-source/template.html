@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <oui-back-button on-click="$ctrl.goBack()">
+        <span
+            data-translate="server_os_install_from_title"
+        ></span>
+    </oui-back-button>
+
+    <p data-translate="server_os_install_from_info"
+        data-translate-values="{ serverName: $ctrl.displayName || $ctrl.serviceName }"></p>
+
+    <oui-message type="warning">
+        <span data-translate="server_os_install_from_warning"></span>
+    </oui-message>
+
+    <oui-spinner size="s" class="mt-3" data-ng-if="$ctrl.loading"></oui-spinner>
+    <div data-ng-if="!$ctrl.loading" class="mt-3">
+        <div class="row mb-1">
+            <div
+                class="col-md-4"
+                data-ng-repeat="type in $ctrl.INSTALL_TYPES track by $index"
+            >
+                <oui-select-picker
+                    name="{{:: type }}"
+                    model="$ctrl.installType"
+                    label="{{:: ('server_os_install_from_'+type) | translate }}"
+                    values="[type]"
+                >
+                </oui-select-picker>
+            </div>
+        </div>
+        <oui-button
+            class="mt-2"
+            size="l"
+            variant="primary"
+            on-click="$ctrl.onSubmit()"
+            disabled="!$ctrl.installType">
+            <span data-translate="server_os_install_from_next_step"></span>
+        </oui-button>
+    </div>
+
+</div>

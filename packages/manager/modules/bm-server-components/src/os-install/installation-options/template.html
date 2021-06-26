@@ -1,0 +1,219 @@
+<oui-spinner data-ng-if="$ctrl.loader.loadingSshKeys"></oui-spinner>
+<form id="optionForm"
+    name="$ctrl.optionForm"
+    data-ng-if="!$ctrl.loader.loadingSshKeys">
+    <!-- host name -->
+    <oui-field label="{{:: 'server_os_install_options_hostname' | translate}}"
+        size="xl">
+        <input class="oui-input" type="text" id="customHostname" name="customHostname"
+            data-ng-model="$ctrl.installation.options.customHostname"
+            data-ng-pattern="/^[a-zA-Z0-9._-]{1,50}$/"
+            data-ng-trim="true" />
+    </oui-field>
+
+    <!-- post Installation Script Link -->
+    <div
+        class="oui-field oui-field_xl"
+        data-ng-class="{'oui-field_error': $ctrl.optionForm.postInstallationScriptLink.$invalid && $ctrl.optionForm.$dirty}"
+    >
+        <label
+            for="postInstallationScriptLink"
+            class="oui-field__label"
+        >
+            <span data-translate="server_os_install_options_installation_url"></span>&nbsp;
+            <span class="oui-icon oui-icon-help-circle"
+                data-oui-tooltip="{{:: 'server_configuration_installation_form_postInstallationScriptLink_help' | translate }}"
+                data-oui-tooltip-placement="right">
+            </span>
+        </label>
+        <div class="oui-field__control oui-field__control_5">
+            <input type="text" name="postInstallationScriptLink" id="postInstallationScriptLink"
+                class="oui-input"
+                data-ng-model="$ctrl.installation.options.postInstallationScriptLink"
+                data-ng-change="$ctrl.postInstallationScriptLinkValidator()"
+                data-ng-trim="true" />
+        </div>
+        <div class="oui-field__footer">
+            <div data-ng-class="{'oui-field__error': $ctrl.optionForm.postInstallationScriptLink.$invalid && $ctrl.optionForm.$dirty}">
+                <span ng-messages="$ctrl.getFirstError()" role="alert">
+                    <span data-ng-if="value" data-ng-repeat="(error, value) in $ctrl.optionForm.postInstallationScriptLink.$error"
+                        data-ng-bind="'server_configuration_installation_form_postInstallationScriptLink_' + error | translate">
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- postInstallationScriptReturn -->
+    <oui-field label="{{:: 'server_configuration_installation_form_postInstallationScriptLinkReturn' | translate}}"
+        label-popover="{{:: 'server_configuration_installation_form_postInstallationScriptLinkReturn_help' | translate}}"
+        data-ng-if="$ctrl.installation.options.postInstallationScriptLink !== null && $ctrl.installation.options.postInstallationScriptLink !== ''"
+        size="xl">
+        <input class="oui-input"
+            type="text"
+            id="postInstallationScriptReturn"
+            name="postInstallationScriptReturn"
+            data-ng-model="$ctrl.installation.options.postInstallationScriptReturn"
+            data-ng-trim="true" />
+    </oui-field>
+
+    <!-- useDistributionKernel -->
+    <oui-field data-ng-if="$ctrl.installation.selectDistribution.supportsDistributionKernel ||
+        $ctrl.installation.selectGabarit.supportsDistributionKernel">
+        <oui-checkbox model="$ctrl.installation.options.useDistributionKernel">
+            <span data-translate="server_configuration_installation_form_useDistribKernel"></span>
+        </oui-checkbox>
+    </oui-field>
+
+    <!-- installSqlServer -->
+    <oui-field data-ng-if="$ctrl.installation.selectDistribution.supportsSqlServer ||
+        $ctrl.installation.selectGabarit.supportsSqlServer">
+        <oui-checkbox model="$ctrl.installation.options.installSqlServer">
+            <span data-translate="server_configuration_installation_form_installSqlServer"></span>
+        </oui-checkbox>
+    </oui-field>
+
+    <!-- useSpla -->
+    <oui-field data-ng-if="$ctrl.installation.selectDistribution.family === $ctrl.constants.warningWindows ||
+        $ctrl.installation.selectGabarit.family == $ctrl.constants.warningWindows">
+        <oui-checkbox model="$ctrl.installation.options.useSpla">
+            <span data-translate="server_configuration_installation_form_useSpla"></span>
+        </oui-checkbox>
+    </oui-field>
+
+    <!-- sshKeyName -->
+    <oui-message
+        type="error"
+        class="mb-2"
+        data-ng-if="$ctrl.sshList.error">
+        <span
+            data-translate="server_configuration_installation_form_ssh_no"
+        >
+        </span>
+    </oui-message>
+    <oui-field
+        data-ng-if="$ctrl.installation.selectDistribution.family !== $ctrl.constants.warningWindows ||
+            $ctrl.installation.selectGabarit.family !== $ctrl.constants.warningWindows"
+        label="{{:: 'server_configuration_installation_form_ssh' | translate}}"
+        label-popover="{{:: 'server_configuration_installation_form_ssh_help' | translate}}"
+        size="xl">
+        <select
+            class="form-control"
+            id="sshKeyName"
+            name="sshKeyName"
+            data-ng-options="sskkey for sskkey in $ctrl.sshList.model"
+            data-ng-model="$ctrl.installation.options.sshKeyName">
+                <option value data-translate="server_configuration_installation_form_ssh_no">
+            </option>
+        </select>
+    </oui-field>
+
+    <!-- nbDisk -->
+    <oui-field
+        data-ng-if="$ctrl.informations.nbDisk > 1 && !$ctrl.installation.customInstall"
+        label="{{:: 'server_configuration_installation_form_nbdisk' | translate}}"
+        size="xl">
+        <select id="nbDiskUse"
+            name="nbDiskUse"
+            class="form-control"
+            data-ng-options="nbdisk as nbdisk for nbdisk in $ctrl.getNbDisqueList()"
+            data-ng-model="$ctrl.installation.nbDiskUse">
+        </select>
+    </oui-field>
+
+    <!-- saveGabarit -->
+    <oui-field
+        label="{{:: 'server_configuration_installation_ovh_step3_saveGabarit' | translate}}"
+        label-popover="{{:: 'server_configuration_installation_ovh_step3_saveGabarit_help' | translate}}"
+        size="xl">
+        <oui-switch
+            id="saveGabarit"
+            name="saveGabarit"
+            data-model="$ctrl.installation.options.saveGabarit"
+        ></oui-switch>
+    </oui-field>
+
+    <!-- gabaritNameSave -->
+    <oui-field
+        label="{{:: 'server_configuration_installation_form_gabaritNameSave' | translate}}"
+        data-ng-if="$ctrl.installation.options.saveGabarit"
+        size="xl">
+        <input
+            type="text"
+            class="form-control oui-input"
+            id="gabaritNameSave"
+            name="gabaritNameSave"
+            data-ng-model="$ctrl.installation.options.gabaritNameSave"
+            data-ng-pattern="/^[a-zA-Z0-9-]{1,50}$/"
+            data-ng-required="$ctrl.installation.options.saveGabarit"
+            data-ng-trim="true"
+        />
+    </oui-field>
+
+    <!-- variablePartition -->
+    <oui-field
+        data-ng-if="$ctrl.isOvhInstall &&
+            $ctrl.installation.customInstall &&
+            $ctrl.installation.options.saveGabarit &&
+            $ctrl.installation.variablePartition != null"
+        label="{{:: 'server_configuration_installation_ovh_step3_partiton_variable' | translate}}"
+        label-popover="{{:: 'server_configuration_installation_ovh_step3_partiton_variable_help' | translate}}"
+        size="xl">
+        <select
+            class="form-control"
+            id="variablePartition"
+            data-ng-options="partition as partition.mountPoint for partition in $ctrl.getMountPoint()"
+            data-ng-model="$ctrl.installation.options.variablePartition"
+        >
+            <option
+                value
+                data-ng-bind=":: 'server_configuration_installation_ovh_step3_partiton_none' | translate"
+            >
+            </option>
+        </select>
+    </oui-field>
+
+    <!-- changeLog -->
+    <oui-field label="{{:: 'server_configuration_installation_form_changeLog' | translate}}"
+        data-ng-if="$ctrl.installation.options.saveGabarit"
+        size="xl">
+        <textarea
+            class="form-control oui-textarea"
+            id="changeLog"
+            name="changeLog"
+            rows="1"
+            data-ng-model="$ctrl.installation.options.changeLog"
+        >
+        </textarea>
+    </oui-field>
+
+    <!-- error messages -->
+    <oui-message
+        type="error"
+        class="mb-2"
+        data-ng-if="$ctrl.configError.raidDiskUse">
+        <span
+            data-translate="server_configuration_installation_ovh_step2_error_raid_diskUse"
+        >
+        </span>
+    </oui-message>
+    <oui-message
+        type="error"
+        class="mb-2"
+        data-ng-if="$ctrl.installation.options.variablePartition && $ctrl.installation.options.saveGabarit">
+        <span
+            data-translate="server_configuration_installation_ovh_step3_partiton_variable_info"
+            data-translate-values="{ t0: $ctrl.installation.options.variablePartition.mountPoint }"
+        >
+        </span>
+    </oui-message>
+    <oui-message
+        type="error"
+        class="mb-2"
+        data-ng-if="$ctrl.configError.ws">
+        <span
+            data-ng-bind-html="$ctrl.configError.ws"
+        >
+        </span>
+    </oui-message>
+</form>

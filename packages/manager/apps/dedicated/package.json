@@ -152,7 +152,8 @@
     "ui-select": "^0.19.8",
     "urijs": "^1.19.1",
     "validator": "^3.39.0",
-    "whatwg-fetch": "^3.5.0"
+    "whatwg-fetch": "^3.5.0",
+    "@ovh-ux/manager-bm-server-components": "^0.0.0 || ^1.0.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.1.1 || ^4.0.0",
