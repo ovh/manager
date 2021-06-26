@@ -33,18 +33,239 @@
     <div class="row d-md-flex mb-5">
         <div class="col-md-4">
             <!-- GENERAL INFORMATIONS -->
-            <server-general-info
-                user="$ctrl.user"
-                server="$ctrl.server"
-                ola="$ctrl.ola"
-                installation-in-progress="$ctrl.dedicatedServer.$scope.disable.installationInProgress"
-                disable-installation="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask"
-                installation-failed="$ctrl.dedicatedServer.$scope.disable.installationInProgressError"
-                on-edit-name="$ctrl.goToNameEdit(name)"
-                on-edit-netboot="$ctrl.goToNetboot()"
-                on-os-install="$ctrl.openOsInstallation(type)"
-            >
-            </server-general-info>
+            <div class="oui-tile mb-5 h-100">
+                <h4
+                    class="oui-tile__title oui-heading_4"
+                    data-translate="server_informations_general"
+                ></h4>
+                <div class="oui-tile__body">
+                    <div class="oui-tile__item">
+                        <dl class="oui-tile__definition">
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="server_configuration_displayname"
+                            ></dt>
+                            <dd
+                                class="oui-tile__description"
+                                data-ng-bind="$ctrl.server.displayName"
+                            ></dd>
+                        </dl>
+                        <div
+                            class="oui-tile__actions"
+                            data-ng-if="$ctrl.worldPart !== 'US'"
+                        >
+                            <oui-action-menu
+                                aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_displayname' | translate) } }}"
+                                data-compact
+                                data-placement="end"
+                            >
+                                <oui-action-menu-item
+                                    data-ui-sref="app.dedicated-server.server.dashboard.edit-display-name"
+                                >
+                                    <span
+                                        data-translate="server_configuration_displayname_edit_button"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </div>
+                    </div>
+                    <div class="oui-tile__item">
+                        <dl class="oui-tile__definition">
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="server_configuration_description"
+                            ></dt>
+                            <dd
+                                class="oui-tile__description"
+                                data-ng-bind="$ctrl.server.commercialRange !== 'housing' ? $ctrl.server.description || '-' : ('server_configuration_description_housing' | translate)"
+                            ></dd>
+                        </dl>
+                    </div>
+                    <div
+                        class="oui-tile__item"
+                        data-ng-if="$ctrl.eligibleData.isEligible && $ctrl.eligibleData.upgradeName"
+                    >
+                        <dl class="oui-tile__definition">
+                            <dt class="oui-tile__term">
+                                <span
+                                    data-translate="server_configuration_upgrade_title"
+                                ></span>
+                                <span
+                                    class="badge"
+                                    data-translate="server_configuration_upgrade_badge"
+                                ></span>
+                            </dt>
+                            <dd class="oui-tile__description">
+                                <a
+                                    class="oui-link_icon"
+                                    target="_blank"
+                                    data-ng-href="{{:: $ctrl.URLS[$ctrl.user.ovhSubsidiary].UPGRADE }}"
+                                    data-track-on="click"
+                                    data-track-type="action"
+                                    data-track-name="upsell_to_rise2"
+                                    rel="noopener"
+                                >
+                                    <span
+                                        data-ng-bind="$ctrl.upgradeName"
+                                    ></span>
+                                    <span
+                                        class="oui-icon oui-icon-external-link"
+                                        aria-hidden="true"
+                                    ></span>
+                                </a>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="oui-tile__item">
+                        <dl class="oui-tile__definition">
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="server_configuration_distribution"
+                            ></dt>
+                            <dd class="oui-tile__description">
+                                <span
+                                    data-ng-if="$ctrl.server.os"
+                                    data-ng-bind="$ctrl.server.os === 'byoi_32' ? ('server_configuration_distribution_byoi' | translate) : $ctrl.server.os"
+                                ></span>
+                                <span
+                                    class="oui-badge oui-badge_warning"
+                                    data-ng-if="!$ctrl.server.os"
+                                    data-translate="server_configuration_distribution_none"
+                                >
+                                </span>
+                                <p
+                                    class="small"
+                                    data-ng-if="$ctrl.ola.isConfigured()"
+                                    data-translate="server_configuration_installation_no_public_network"
+                                ></p>
+                            </dd>
+                        </dl>
+                        <div
+                            class="oui-tile__actions"
+                            data-ng-if="!$ctrl.server.isExpired && $ctrl.server.commercialRange !== 'housing'"
+                        >
+                            <oui-action-menu
+                                aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_distribution' | translate) } }}"
+                                data-compact
+                                data-placement="end"
+                                data-disabled="$ctrl.ola.isConfigured()"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="$ctrl.openOsInstallation('progress')"
+                                    data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask"
+                                    data-ng-if="$ctrl.dedicatedServer.$scope.disable.installationInProgress"
+                                >
+                                    <span
+                                        data-translate="server_configuration_installation_button"
+                                    ></span>
+                                </oui-action-menu-item>
+                                <oui-action-menu-item
+                                    data-on-click="$ctrl.goToOsInstallFrom()"
+                                    data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask || $ctrl.ola.isConfigured()"
+                                    data-ng-if="!$ctrl.dedicatedServer.$scope.disable.installationInProgress && !$ctrl.ola.isConfigured()"
+                                >
+                                    <span
+                                        data-translate="server_configuration_installation_button"
+                                    ></span>
+                                </oui-action-menu-item>
+                                <oui-action-menu-item
+                                    data-on-click="$ctrl.goToOsInstallFrom()"
+                                    data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask"
+                                    data-ng-if="!$ctrl.server.os && !$ctrl.dedicatedServer.$scope.disable.installationInProgress && $ctrl.ola.isConfigured()"
+                                >
+                                    <span
+                                        data-translate="server_configuration_installation_button"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </div>
+                    </div>
+                    <div
+                        class="oui-tile__item"
+                        data-ng-if="$ctrl.server.commercialRange !== 'housing'"
+                    >
+                        <dl class="oui-tile__definition">
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="server_configuration_boot"
+                            ></dt>
+                            <dd class="oui-tile__description">
+                                <span
+                                    data-ng-if="$ctrl.server.netbootLabel"
+                                    data-ng-bind="$ctrl.server.netbootLabel"
+                                >
+                                </span>
+                                <span
+                                    class="text-muted"
+                                    data-ng-if="!$ctrl.server.netbootLabel"
+                                    data-translate="server_configuration_netboot_unavailable"
+                                >
+                                </span>
+                            </dd>
+                        </dl>
+                        <div
+                            class="oui-tile__actions"
+                            data-ng-if="!$ctrl.server.isExpired"
+                        >
+                            <oui-action-menu
+                                aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_boot' | translate) } }}"
+                                data-compact
+                                data-placement="end"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('netboot/dedicated-server-netboot')"
+                                    data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask || $ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED' || ($ctrl.dedicatedServer.$scope.disable.installationInProgress
+                                               && !$ctrl.dedicatedServer.$scope.disable.installationInProgressError)"
+                                >
+                                    <span
+                                        data-translate="server_configuration_netboot_title_button"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </div>
+                    </div>
+                    <div class="oui-tile__item">
+                        <dl class="oui-tile__definition">
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="server_configuration_datacenter"
+                            ></dt>
+                            <dd
+                                class="oui-tile__description"
+                                data-translate="{{'server_datacenter_' + $ctrl.server.datacenter.split('_')[0]}}"
+                                data-translate-values="{
+                                    number: $ctrl.server.datacenter.split('_')[1]
+                                  }"
+                            ></dd>
+                        </dl>
+                    </div>
+                    <div class="oui-tile__item">
+                        <dl class="oui-tile__definition">
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="server_configuration_rack"
+                            ></dt>
+                            <dd class="oui-tile__description">
+                                <span
+                                    data-ng-bind="$ctrl.infoServer.rack || '-'"
+                                ></span>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="oui-tile__item">
+                        <dl class="oui-tile__definition">
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="server_configuration_server_id"
+                            ></dt>
+                            <dd
+                                class="oui-tile__description"
+                                data-ng-bind="$ctrl.infoServer.serverId || '-'"
+                            ></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- TECHNICAL DETAILS -->

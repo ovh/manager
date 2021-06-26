@@ -1,6 +1,9 @@
 import isFunction from 'lodash/isFunction';
 
-import { BYOI_FEATURE, INSTALL_TYPES } from './constants';
+import {
+  BYOI_FEATURE,
+  INSTALL_TYPES,
+} from './constants';
 
 export default class BmServerComponentsOsInstallChooseSourceController {
   /* @ngInject */
@@ -28,24 +31,19 @@ export default class BmServerComponentsOsInstallChooseSourceController {
   }
 
   onSubmit() {
-    switch (this.installType) {
+    switch(this.installType) {
       case INSTALL_TYPES.OVH:
         this.trackPage(
           'dedicated::dedicated::server::system-install::public-catalog',
         );
-        break;
       case INSTALL_TYPES.PERSONAL:
         this.trackPage(
           'dedicated::dedicated::server::system-install::existing-template',
         );
-        break;
       case INSTALL_TYPES.IMAGE:
         this.trackPage(
           'dedicated::dedicated::server::system-install::personalized-image',
         );
-        break;
-      default:
-        break;
     }
     if (isFunction(this.onSelect)) {
       this.onSelect({ installFrom: this.installType });
@@ -57,7 +55,7 @@ export default class BmServerComponentsOsInstallChooseSourceController {
       name,
       type: 'navigation',
     });
-  }
+  };
 
   goBack() {
     if (isFunction(this.onGoBack)) {

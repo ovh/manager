@@ -131,8 +131,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      goToNameEdit: /* @ngInject */ ($state, serverName) => () =>
-        $state.go('app.dedicated-server.server.dashboard.edit-display-name', {
+      goToOsInstallFrom: /* @ngInject */ ($state, serverName) => () =>
+        $state.go('app.dedicated-server.server.dashboard.os-install-from', {
           productId: serverName,
         }),
       goToCommit: /* @ngInject */ ($state, serverName) => () =>

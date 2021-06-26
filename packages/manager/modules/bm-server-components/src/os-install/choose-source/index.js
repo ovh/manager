@@ -19,7 +19,6 @@ angular
     ngOvhFeatureFlipping,
   ])
   .component('serverOsInstallChooseSource', component)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngTranslationsInject:json ../translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
