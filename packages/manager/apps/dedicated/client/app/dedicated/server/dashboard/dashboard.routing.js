@@ -131,6 +131,10 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      goToOsInstallFrom: /* @ngInject */ ($state, serverName) => () =>
+        $state.go('app.dedicated-server.server.dashboard.os-install-from', {
+          productId: serverName,
+        }),
       goToCommit: /* @ngInject */ ($state, serverName) => () =>
         $state.href('app.dedicated-server.server.dashboard.commitment', {
           productId: serverName,

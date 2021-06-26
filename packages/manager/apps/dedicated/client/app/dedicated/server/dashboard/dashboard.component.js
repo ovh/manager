@@ -38,6 +38,7 @@ export default {
     resiliationCapability: '<',
     terminateLink: '<',
     serverName: '<',
+    goToOsInstallFrom: '<',
   },
   controller,
   template,

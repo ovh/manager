@@ -21,6 +21,8 @@
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
-    "oclazyload": "^1.1.0"
+    "oclazyload": "^1.1.0",
+    "@ovh-ux/ng-at-internet": "^5.5.0",
+    "@ovh-ux/ng-ovh-feature-flipping": "^1.0.2"
   }
 }
