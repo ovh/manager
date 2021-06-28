@@ -7,6 +7,7 @@ import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 
 import add from './add';
+import scale from './scale';
 import deleteNodePool from './delete';
 import nodePoolComponent from './node-pool.component';
 import nodes from './nodes';
@@ -19,6 +20,7 @@ angular
     add,
     deleteNodePool,
     nodes,
+    scale,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'oui',

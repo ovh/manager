@@ -1,6 +1,6 @@
 <oui-checkbox
     data-model="$ctrl.nodePool.antiAffinity"
-    disabled="$ctrl.nodePool.nodeCount > $ctrl.antiAffinityMaxNodes"
+    disabled="$ctrl.isInvalidAntiAffinity()"
     data-on-change="$ctrl.onAntiAffinityChange(modelValue)"
     class="mb-4"
     name="kube_anti_affinity"
