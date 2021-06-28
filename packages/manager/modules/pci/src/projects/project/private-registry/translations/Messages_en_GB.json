@@ -70,5 +70,6 @@
   "private_registry_guide_creating_and_using_a_private_image": "Creating and using private images",
   "private_registry_guide_using_private_registry_with_kubernetes": "Using OVHcloud Managed Private Registry with OVHcloud Managed Kubernetes",
   "private_registry_guide_using_the_helm_chart_museum": "Using Helm ChartMuseum",
-  "private_registry_common_cancel": "Cancel"
+  "private_registry_common_cancel": "Cancel",
+  "private_registry_id": "ID"
 }

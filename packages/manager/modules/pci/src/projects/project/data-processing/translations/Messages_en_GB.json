@@ -21,5 +21,6 @@
   "data_processing_list_button_job_details": "Job details",
   "data_processing_list_button_job_ui": "Access the graphical interface for the job",
   "data_processing_list_button_job_monitoring": "Access monitoring",
-  "data_processing_list_button_job_terminate": "Finish job"
+  "data_processing_list_button_job_terminate": "Finish job",
+  "data_processing_job_id": "ID"
 }

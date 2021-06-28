@@ -6,6 +6,7 @@
   "pci_database_list_nodes": "Nœuds",
   "pci_database_common_creation_date": "Date de création",
   "pci_database_common_name": "Nom",
+  "pci_database_common_id": "ID",
   "pci_database_common_status": "Statut",
   "pci_database_common_status_READY": "Déployé",
   "pci_database_common_status_DELETING": "Suppression",

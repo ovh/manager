@@ -70,5 +70,6 @@
   "private_registry_guide_creating_and_using_a_private_image": "Tworzenie i wykorzystywanie prywatnych obrazów",
   "private_registry_guide_using_private_registry_with_kubernetes": "Korzystanie z Managed Private Registry w powiązaniu z Managed Kubernetes",
   "private_registry_guide_using_the_helm_chart_museum": "Korzystanie z Helm ChartMuseum",
-  "private_registry_common_cancel": "Anuluj"
+  "private_registry_common_cancel": "Anuluj",
+  "private_registry_id": "ID"
 }
