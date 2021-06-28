@@ -21,5 +21,6 @@
   "data_processing_list_button_job_details": "Details des Auftrags",
   "data_processing_list_button_job_ui": "Auf das graphische Interface des Auftrags zugreifen",
   "data_processing_list_button_job_monitoring": "Auf das Monitoring zugreifen",
-  "data_processing_list_button_job_terminate": "Den Auftrag beenden"
+  "data_processing_list_button_job_terminate": "Den Auftrag beenden",
+  "data_processing_job_id": "ID"
 }

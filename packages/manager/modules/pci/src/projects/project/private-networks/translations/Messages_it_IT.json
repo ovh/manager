@@ -1,10 +1,11 @@
 {
- "pci_projects_project_network_private": "Reti private",
- "pci_projects_project_network_private_error": "Si è verificato un errore durante il caricamento delle informazioni: {{ message }}",
- "pci_projects_project_network_private_create": "Crea una rete privata",
- "pci_projects_project_network_private_name": "Nome",
- "pci_projects_project_network_private_region": "Localizzazioni",
- "pci_projects_project_network_private_vlan_id": "VLAN ID",
- "pci_projects_project_network_private_address": "Indirizzo della rete privata (CIDR)",
- "pci_projects_project_network_private_delete": "Elimina"
+  "pci_projects_project_network_private": "Reti private",
+  "pci_projects_project_network_private_error": "Si è verificato un errore durante il caricamento delle informazioni: {{ message }}",
+  "pci_projects_project_network_private_create": "Crea una rete privata",
+  "pci_projects_project_network_private_name": "Nome",
+  "pci_projects_project_network_private_region": "Localizzazioni",
+  "pci_projects_project_network_private_vlan_id": "VLAN ID",
+  "pci_projects_project_network_private_address": "Indirizzo della rete privata (CIDR)",
+  "pci_projects_project_network_private_delete": "Elimina",
+  "pci_projects_project_network_private_id": "ID"
 }

@@ -21,5 +21,6 @@
   "pci_workflow_executions_ececution_time": "Time (UTC)",
   "pci_workflow_executions_status": "Status",
   "pci_workflow_add": "Create a schedule",
-  "pci_workflow_executions": "Executions"
+  "pci_workflow_executions": "Executions",
+  "pci_workflow_id": "ID"
 }

@@ -19,5 +19,6 @@
   "pci_database_common_price": "Preis",
   "pci_database_common_none": "Keine",
   "pci_database_list_create_database": "Eine Datenbank erstellen",
-  "pci_database_list_manage_database": "Die Datenbank verwalten"
+  "pci_database_list_manage_database": "Die Datenbank verwalten",
+  "pci_database_common_id": "ID"
 }
