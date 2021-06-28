@@ -38,5 +38,6 @@
   "web_paas_tile_subscription_manage_service": "Gestisci il servizio",
   "web_paas_tile_subscription_pay_billing": "Salda la fattura",
   "web_paas_tile_billing_error": "Si è verificato un errore durante il reindirizzamento alla pagina di pagamento: ",
-  "web_paas_service_project_coming_soon": "In arrivo"
+  "web_paas_service_project_coming_soon": "In arrivo",
+  "web_paas_service_project_storage_included": "{{ storage }} GB inclusi"
 }

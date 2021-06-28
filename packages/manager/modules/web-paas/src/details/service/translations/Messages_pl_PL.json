@@ -38,5 +38,6 @@
   "web_paas_tile_subscription_manage_service": "Zarządzaj usługą",
   "web_paas_tile_subscription_pay_billing": "Ureguluj płatność",
   "web_paas_tile_billing_error": "Wystąpił błąd podczas przekierowywania do płatności: ",
-  "web_paas_service_project_coming_soon": "Dostępne wkrótce"
+  "web_paas_service_project_coming_soon": "Dostępne wkrótce",
+  "web_paas_service_project_storage_included": "{{storage}} GB zawarte"
 }
