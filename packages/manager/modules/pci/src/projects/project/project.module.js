@@ -34,6 +34,7 @@ import routing from './project.routing';
 import serving from './serving';
 import training from './training';
 import workflow from './workflow';
+import pciAnnouncementBanner from '../../components/pci-announcement-banner';
 
 import projectComponent from './project.component';
 
@@ -74,6 +75,7 @@ angular
     workflow,
     serving,
     training,
+    pciAnnouncementBanner,
   ])
   .config(routing)
   .component('pciProject', projectComponent)
