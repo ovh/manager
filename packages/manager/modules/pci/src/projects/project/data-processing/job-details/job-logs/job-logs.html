@@ -16,7 +16,7 @@
         </div>
         <div
             class="col-md-12 logger_placeholder"
-            data-ng-if="$ctrl.logger.logs.logsAddress !== null && !$ctrl.isJobTerminated()"
+            data-ng-if="$ctrl.logger.logs.logsAddress !== null && $ctrl.isJobTerminated()"
         >
             {{ ::'data_processing_details_logs_swift' |
             translate:{swiftUrl:$ctrl.logger.logs.logsAddress} }}
@@ -30,12 +30,6 @@
                     data-translate="data_processing_details_logs_swift_download_label"
                 ></span
             ></oui-button>
-        </div>
-        <div
-            class="col-md-12 logger_placeholder"
-            data-ng-if="$ctrl.isJobTerminated()"
-        >
-            {{ ::'data_processing_details_logs_terminated' | translate }}
         </div>
     </div>
 </div>
