@@ -38,5 +38,6 @@
   "web_paas_tile_subscription_manage_service": "Dienstleistung verwalten",
   "web_paas_tile_subscription_pay_billing": "Rechnung bezahlen",
   "web_paas_tile_billing_error": "Bei der Weiterleitung zur Abrechnung ist ein Fehler aufgetreten: ",
-  "web_paas_service_project_coming_soon": "Demnächst verfügbar"
+  "web_paas_service_project_coming_soon": "Demnächst verfügbar",
+  "web_paas_service_project_storage_included": "{{ storage }} GB inklusive"
 }
