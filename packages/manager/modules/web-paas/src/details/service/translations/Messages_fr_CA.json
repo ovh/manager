@@ -23,6 +23,7 @@
   "web_paas_service_project_additional_environment_none": "Rien",
   "web_paas_service_project_cpu_upgrade": "Modifier les vCPU",
   "web_paas_service_project_storage_upgrade": "Augmenter mon stockage",
+  "web_paas_service_project_storage_included": "{{ storage }} Go inclus",
   "web_paas_service_project_storage_additional": "{{ additionalStorageSize }} Go stockage supplémentaire",
   "web_paas_service_project_licences_upgrade": "Gérer mes licences utilisateur",
   "web_paas_service_project_environment_upgrade": "Ajouter des environnements de test",
