@@ -12,5 +12,9 @@
   "billing_payment_method_split_payment_activate_success": "Your request to enable Split Payment has been processed.",
   "billing_payment_method_split_payment_activate_error": "An error has occurred requesting to enable Split Payment.",
   "billing_payment_method_split_payment_deactivate_success": "Your request to disable Split Payment has been processed.",
-  "billing_payment_method_split_payment_deactivate_error": "An error has occurred requesting to disable Split Payment."
+  "billing_payment_method_split_payment_deactivate_error": "An error has occurred requesting to disable Split Payment.",
+  "billing_payment_method_split_payment_warning_title": "WARNING",
+  "billing_payment_method_split_payment_warning_activate": "Split Payment is reserved for national, regional and local public economic entities, special enterprises, and public companies providing personal services; foundations owned by public administrations; businesses controlled directly by the Prime Minister's Office and by government departments; companies directly or indirectly controlled by public administrations or by entities and businesses mentioned above; companies owned by public administrations or by entities and businesses mentioned above; listed companies included in the FTSE MIB index of the Italian Stock Exchange identified for value-added tax purposes.",
+  "billing_payment_method_split_payment_warning_deactivate": "By disabling Split Payment, you are requesting to return to an ordinary VAT management system. Invoices issued by OVHcloud after the Split Payment has been disabled will be processed in accordance with the ordinary procedure, and order payments will include payment of the full amount due, including VAT.",
+  "billing_payment_method_split_payment_warning_decree": "Extract from Legislative Decree No. 148 of 16 October 2017, article 3, paragraph 1 bis."
 }

@@ -12,5 +12,9 @@
   "billing_payment_method_split_payment_activate_success": "Votre demande d'activation du Split Payment a bien été prise en compte.",
   "billing_payment_method_split_payment_activate_error": "Une erreur est survenue lors de votre demande d'activation du Split Payment.",
   "billing_payment_method_split_payment_deactivate_success": "Votre demande de désactivation du Split Payment a bien été prise en compte.",
-  "billing_payment_method_split_payment_deactivate_error": "Une erreur est survenue lors de votre demande de désactivation du Split Payment."
+  "billing_payment_method_split_payment_deactivate_error": "Une erreur est survenue lors de votre demande de désactivation du Split Payment.",
+  "billing_payment_method_split_payment_warning_title": "ATTENTION",
+  "billing_payment_method_split_payment_warning_activate": "Le Split Payment est réservé aux entités publiques économiques nationales, régionales et locales, aux entreprises spéciales et aux entreprises publiques de services personnels ; aux fondations détenues par des administrations publiques ; aux entreprises contrôlées directement par le bureau du Premier ministre et par les ministères ; aux entreprises contrôlées directement ou indirectement par des administrations publiques ou par des entités et des entreprises mentionnées précédemment ; aux entreprises détenues par des administrations publiques ou par des entités et des entreprises mentionnées précédemment ; aux entreprises cotées en bourse incluses dans l'indice FTSE MIB de la Bourse italienne identifiées aux fins de la taxe sur la valeur ajoutée.",
+  "billing_payment_method_split_payment_warning_deactivate": "En désactivant le Split Payment, vous demandez à revenir à un système de gestion ordinaire de la TVA. Les factures émises par OVH après la désactivation du Split Payment seront traitées selon le régime ordinaire et le règlement des commandes prévoira le paiement de l'intégralité du montant dû TVA comprise.",
+  "billing_payment_method_split_payment_warning_decree": "Extrait du DÉCRET-LOI n° 148 du 16 octobre 2017, article 3, paragraphe 1-bis."
 }
