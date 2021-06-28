@@ -10,6 +10,11 @@
     <p data-translate="pci_projects_project_instances_onboarding_content3"></p>
     <p data-translate="pci_projects_project_instances_onboarding_content4"></p>
 
+    <pci-announcement-banner
+        data-get-state-name="$ctrl.getStateName()"
+        data-on-go-to-region="$ctrl.goToRegion()"
+    ></pci-announcement-banner>
+
     <oui-button data-variant="primary" data-on-click="$ctrl.addInstance()">
         <span
             data-translate="pci_projects_project_instances_onboarding_action_label"
