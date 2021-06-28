@@ -26,6 +26,7 @@ export default class {
   }
 
   $onInit() {
+    this.labAccepted = this.lab.isActivated();
     this.messageContainer = 'pci.projects.project.storages.databases.add';
     this.loadMessages();
     this.model = {
@@ -48,6 +49,10 @@ export default class {
       name: this.$translate.instant('pci_database_common_none'),
     };
     this.trackDatabases('configuration', 'page');
+  }
+
+  acceptLab(accepted) {
+    this.labAccepted = accepted;
   }
 
   loadMessages() {
@@ -166,11 +171,14 @@ export default class {
       'action',
       false,
     );
-    this.DatabaseService.createDatabase(
-      this.projectId,
-      this.model.engine.name,
-      this.orderData,
-    )
+    return this.DatabaseService.activateLab(this.projectId, this.lab)
+      .then(() =>
+        this.DatabaseService.createDatabase(
+          this.projectId,
+          this.model.engine.name,
+          this.orderData,
+        ),
+      )
       .then((databaseInfo) => {
         this.trackDatabases(
           `config_create_database_validated::${this.model.engine.name}`,
@@ -198,5 +206,9 @@ export default class {
         this.$anchorScroll('addMessages');
         this.processingOrder = false;
       });
+  }
+
+  $onDestroy() {
+    this.DatabaseService.stopPollingLabActivationStatus(this.lab.id);
   }
 }

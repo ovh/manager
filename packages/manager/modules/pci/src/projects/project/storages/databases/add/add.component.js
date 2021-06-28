@@ -7,6 +7,7 @@ export default {
     databaseGuideUrl: '<',
     engines: '<',
     guideUrl: '<',
+    lab: '<',
     onDatabaseAdd: '<',
     projectId: '<',
     privateNetworks: '<',
