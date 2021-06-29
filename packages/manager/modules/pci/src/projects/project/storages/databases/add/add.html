@@ -220,6 +220,8 @@
         name="review_order"
         data-header="{{:: 'pci_database_add_step6_title' | translate }}"
         data-on-focus="$ctrl.prepareOrderData()"
+        data-valid="$ctrl.labAccepted"
+        data-prevent-next="true"
         data-submit-text="{{:: 'pci_database_add_create_database' | translate }}"
         data-editable="!$ctrl.processingOrder"
     >
@@ -236,6 +238,13 @@
             data-order-data="$ctrl.orderData"
             data-user="$ctrl.user"
         ></database-order-command>
+        <div class="mb-3">
+            <pci-project-lab-agreements
+                data-lab="$ctrl.lab"
+                data-ng-if="!$ctrl.lab.isActivated()"
+                data-on-accept="$ctrl.acceptLab(accepted)"
+            ></pci-project-lab-agreements>
+        </div>
         <div data-ng-if="$ctrl.processingOrder">
             <oui-spinner data-size="s"></oui-spinner>
             <span

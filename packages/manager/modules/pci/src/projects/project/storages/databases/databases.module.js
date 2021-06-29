@@ -10,6 +10,7 @@ import add from './add';
 import component from './databases.component';
 import database from './database';
 import deteleDatabase from './delete';
+import labs from '../../../../components/project/labs';
 import node from './components/node';
 import onboarding from './onboarding';
 import routing from './databases.routing';
@@ -24,6 +25,7 @@ angular
     add,
     database,
     deteleDatabase,
+    labs,
     ngOvhSwimmingPoll,
     node,
     onboarding,
