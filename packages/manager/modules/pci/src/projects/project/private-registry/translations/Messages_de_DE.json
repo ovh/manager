@@ -3,9 +3,9 @@
   "private_registry_common_confirm": "Bestätigen",
   "private_registry_common_close": "Schließen",
   "private_registry_common_delete": "Löschen",
-  "private_registry_title": "Managed Private Registry",
   "private_registry_create_registry": "Private Registry erstellen",
   "private_registry_name": "Name des Registry",
+  "private_registry_id": "ID",
   "private_registry_plan": "Angebot",
   "private_registry_harbor_version": "Harbor-Version",
   "private_registry_status": "Status",
@@ -70,6 +70,5 @@
   "private_registry_guide_creating_and_using_a_private_image": "Erstellen und Verwenden von privaten Bildern",
   "private_registry_guide_using_private_registry_with_kubernetes": "Verwendung von OVHcloud Managed Private Registry mit OVHcloud Managed Kubernetes",
   "private_registry_guide_using_the_helm_chart_museum": "Verwenden des Helm-Chart-Museums ",
-  "private_registry_common_cancel": "Abbrechen",
-  "private_registry_id": "ID"
+  "private_registry_common_cancel": "Abbrechen"
 }

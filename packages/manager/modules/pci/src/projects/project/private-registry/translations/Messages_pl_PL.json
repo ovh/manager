@@ -3,9 +3,9 @@
   "private_registry_common_confirm": "Zatwierdź",
   "private_registry_common_close": "Zamknij",
   "private_registry_common_delete": "Usuń",
-  "private_registry_title": "Managed Private Registry",
   "private_registry_create_registry": "Utwórz Prywatny rejestr",
   "private_registry_name": "Nazwa rejestru",
+  "private_registry_id": "ID",
   "private_registry_plan": "Pakiet",
   "private_registry_harbor_version": "Wersja rejestru Harbor",
   "private_registry_status": "Status",
@@ -70,6 +70,5 @@
   "private_registry_guide_creating_and_using_a_private_image": "Tworzenie i wykorzystywanie prywatnych obrazów",
   "private_registry_guide_using_private_registry_with_kubernetes": "Korzystanie z Managed Private Registry w powiązaniu z Managed Kubernetes",
   "private_registry_guide_using_the_helm_chart_museum": "Korzystanie z Helm ChartMuseum",
-  "private_registry_common_cancel": "Anuluj",
-  "private_registry_id": "ID"
+  "private_registry_common_cancel": "Anuluj"
 }
