@@ -17,7 +17,11 @@
         <cui-message-container
             data-messages="$ctrl.messages"
         ></cui-message-container>
-        <oui-datagrid data-rows="$ctrl.failoverIps">
+        <oui-datagrid
+            data-rows="$ctrl.failoverIps"
+            criteria="$ctrl.criteria"
+            on-criteria-change="$ctrl.onListParamChange($criteria)"
+        >
             <oui-datagrid-topbar>
                 <oui-action-menu
                     data-text="{{:: 'pci_projects_project_failoverip_actions' | translate }}"

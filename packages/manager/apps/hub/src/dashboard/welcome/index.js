@@ -4,7 +4,7 @@ import '@ovh-ux/ui-kit';
 import ngOvhTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ovhManagerHub from '@ovh-ux/manager-hub';
 
-import component from './order-dashboard.component';
+import component from './welcome.component';
 
 const moduleName = 'ovhManagerHubDashboardWelcome';
 

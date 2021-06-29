@@ -46,6 +46,15 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.quota'),
       guideUrl: /* @ngInject */ (user) =>
         GUIDES_URL[user.ovhSubsidiary] || GUIDES_URL.DEFAULT,
+      onListParamChange: /* @ngInject */ ($state, $transition$) => () => {
+        return $state.go(
+          '.',
+          {
+            projectId: $transition$.params().projectId,
+          },
+          { inherit: false },
+        );
+      },
     },
   });
 };

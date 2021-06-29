@@ -60,5 +60,6 @@
   "pci_projects_project_instances_status_SHELVING": "Suspending",
   "pci_projects_project_instances_status_UNSHELVING": "Reactivating",
   "pci_projects_project_instances_shelve_label": "Suspend",
-  "pci_projects_project_instances_unshelve_label": "Reactivate "
+  "pci_projects_project_instances_unshelve_label": "Reactivate ",
+  "pci_projects_project_instances_name_id": "ID"
 }

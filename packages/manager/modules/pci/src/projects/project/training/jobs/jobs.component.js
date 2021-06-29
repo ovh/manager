@@ -18,5 +18,7 @@ export default {
     getPrice: '<',
     user: '<',
     goToJobSubmit: '<',
+    jobId: '<',
+    onListParamChange: '<',
   },
 };

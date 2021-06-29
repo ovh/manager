@@ -46,7 +46,7 @@
     "ovh-ui-kit-bs": "^4.2.0"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^8.0.0 || ^9.0.0"
+    "@ovh-ux/component-rollup-config": "^9.0.0 || ^10.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/ng-translate-async-loader": "^2.1.1",

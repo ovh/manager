@@ -6,5 +6,14 @@
   "vps_dashboard_migration_link": "Passa alla nuova gamma",
   "vps_dashboard_auto_migration_warning": "Il tuo VPS Cloud 2013/2014 sarà migrato automaticamente verso un VPS della nuova gamma tra {{days}} giorni.",
   "vps_dashboard_migration_in_progress": "Il tuo VPS Cloud 2013/2014 è in corso di migrazione verso la nuova gamma.",
-  "vps_dashboard_migration_in_error": "Si è verificato un errore durante la migrazione del VPS. Le fasi successive della migrazione verranno gestite dai nostri team."
+  "vps_dashboard_migration_in_error": "Si è verificato un errore durante la migrazione del VPS. Le fasi successive della migrazione verranno gestite dai nostri team.",
+  "vps_dashboard_state": "Stato",
+  "vps_dashboard_state_backuping": "Backup in corso...",
+  "vps_dashboard_state_installing": "Installazione in corso...",
+  "vps_dashboard_state_maintenance": "Manutenzione in corso...",
+  "vps_dashboard_state_rebooting": "Riavvio in corso...",
+  "vps_dashboard_state_running": "Esecuzione in corso...",
+  "vps_dashboard_state_stopped": "Cancellato",
+  "vps_dashboard_state_stopping": "Cancellazione in corso...",
+  "vps_dashboard_state_upgrading": "Modifica dell'offerta in corso..."
 }

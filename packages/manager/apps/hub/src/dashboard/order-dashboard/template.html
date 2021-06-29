@@ -1,16 +1,12 @@
 <hub-dashboard-welcome data-name="$ctrl.me.firstname"></hub-dashboard-welcome>
-<div class="row" data-ng-if="$ctrl.tickets">
+<div class="row">
     <ovh-manager-hub-support
         class="col-md-8"
         me="$ctrl.me"
-        tickets="$ctrl.tickets"
         tracking-prefix="{{ $ctrl.trackingPrefix }}"
     >
     </ovh-manager-hub-support>
 </div>
-<h2
-    data-ng-if="$ctrl.tickets"
-    data-translate="manager_hub_order_dashboard_discover"
-></h2>
+<h2 data-translate="manager_hub_order_dashboard_discover"></h2>
 <p data-translate="manager_hub_order_dashboard"></p>
-<hub-catalog-items items="$ctrl.products"></hub-catalog-items>
+<hub-catalog-items items-promise="$ctrl.products"></hub-catalog-items>

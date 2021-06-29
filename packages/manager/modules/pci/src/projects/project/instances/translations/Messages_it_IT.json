@@ -60,5 +60,6 @@
   "pci_projects_project_instances_status_SHELVING": "Sospensione in corso",
   "pci_projects_project_instances_status_UNSHELVING": "Riattivazione in corso",
   "pci_projects_project_instances_shelve_label": "Sospesa",
-  "pci_projects_project_instances_unshelve_label": "Riattiva"
+  "pci_projects_project_instances_unshelve_label": "Riattiva",
+  "pci_projects_project_instances_name_id": "ID"
 }

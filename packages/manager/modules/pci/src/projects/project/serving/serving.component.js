@@ -13,5 +13,7 @@ export default {
     deployModel: '<',
     viewNamespace: '<',
     deleteNamespace: '<',
+    namespaceId: '<',
+    onListParamChange: '<',
   },
 };

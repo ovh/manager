@@ -1,4 +1,4 @@
-<div class="row">
+<div ng-if="!loading" class="row">
     <div
         class="col-md-6 col-lg-4 mb-2 mb-md-4"
         data-ng-repeat="product in $ctrl.products | limitTo: ($ctrl.expand ? $ctrl.products.length : $ctrl.DEFAULT_DISPLAYED_TILES) track by product.productType"
@@ -7,7 +7,7 @@
             heading="{{:: 'manager_hub_products_' + product.productType | translate }}"
             badge-text="{{ product.count }}"
             class="oui-list"
-            on-click="$ctrl.onProductSelect({ productType: product.productType })"
+            on-click="$ctrl.goToProductPage({ productType: product.productType })"
             button-text="{{ 'manager_hub_products_see_all' | translate }}"
             data-navi-id="{{:: product.productType + '-block' }}"
         >
@@ -29,11 +29,30 @@
         </ovh-manager-hub-tile>
     </div>
 </div>
+<div ng-if="$ctrl.loading">
+    <div
+        class="col-md-6 col-lg-4 mb-2 mb-md-4"
+        data-ng-repeat="product in $ctrl.skeletonServices track by $index"
+    >
+        <ovh-manager-hub-tile class="oui-list">
+            <ul class="oui-list__items">
+                <li
+                    class="oui-list__item"
+                    data-ng-repeat="service in $ctrl.skeletonProducts track by $index"
+                >
+                    <div class="oui-skeleton oui-skeleton-m">
+                        <span class="oui-skeleton__loader"></span>
+                    </div>
+                </li>
+            </ul>
+        </ovh-manager-hub-tile>
+    </div>
+</div>
 <div class="text-center">
     <button
         type="button"
         class="oui-button oui-button_icon-right oui-button_ghost"
-        data-ng-if="$ctrl.products.length > $ctrl.DEFAULT_DISPLAYED_TILES"
+        data-ng-if="$ctrl.products.length > $ctrl.DEFAULT_DISPLAYED_TILES && !$ctrl.loading"
         data-ng-click="$ctrl.toggleExpand()"
         data-track-on="click"
         data-track-name="{{:: $ctrl.trackingPrefix + '::product::show_more' }}"

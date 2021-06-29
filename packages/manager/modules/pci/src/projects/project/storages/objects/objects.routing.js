@@ -1,7 +1,13 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.objects', {
-    url: '/objects',
+    url: '/objects?id',
     component: 'pciProjectStorageContainers',
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     redirectTo: (transition) =>
       transition
         .injector()
@@ -13,6 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       archive: () => false,
+      containerId: /* @ngInject */ ($transition$) => $transition$.params().id,
       containers: /* @ngInject */ (
         PciProjectStorageContainersService,
         archive,

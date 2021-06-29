@@ -3,8 +3,14 @@ import PrivateRegistry from './PrivateRegistry.class';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.private-registry', {
-    url: '/private-registry',
+    url: '/private-registry?id',
     component: 'pciPrivateRegistryComponent',
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     redirectTo: (transition) =>
       transition
         .injector()
@@ -118,6 +124,7 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
+      registryId: /* @ngInject */ ($transition$) => $transition$.params().id,
       registries: /* @ngInject */ (pciPrivateRegistryService, projectId) =>
         pciPrivateRegistryService
           .getRegistryList(projectId, true)

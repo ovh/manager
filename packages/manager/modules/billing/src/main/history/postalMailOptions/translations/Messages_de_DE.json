@@ -1,0 +1,8 @@
+{
+  "billing_main_history_postal_mail_options_title": "Änderung der Versandoptionen für Rechnungen",
+  "billing_main_history_postal_mail_options_activation": "Sind Sie sicher, dass Sie den Versand von Papierrechnungen aktivieren möchten?",
+  "billing_main_history_postal_mail_options_desactivation": "Sind Sie sicher, dass Sie den Versand von Papierrechnungen deaktivieren möchten?",
+  "billing_main_history_postal_mail_options_activate_success": "Die Einstellung wurde aktualisiert. Sie erhalten Ihre Rechnungen von nun an auf Papier.",
+  "billing_main_history_postal_mail_options_desactivate_success": "Die Einstellung wurde aktualisiert. Sie erhalten keine Papierrechnungen mehr.",
+  "billing_main_history_postal_mail_options_update_error": "Bei der Aktualisierung der Einstellung ist ein Fehler aufgetreten."
+}

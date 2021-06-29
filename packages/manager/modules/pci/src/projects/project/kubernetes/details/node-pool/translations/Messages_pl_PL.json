@@ -2,14 +2,17 @@
   "kube_node_pool_name": "Nazwa puli",
   "kube_node_pool_creation_date": "Data utworzenia",
   "kube_node_pool_node_count": "Liczba węzłów",
-  "kube_node_pool_edit": "Edytuj pulę ",
+  "kube_node_pool_monthly_billing": "Abonament miesięczny",
+  "kube_node_pool_nodes": "Sprawdź węzły",
+  "kube_node_pool_scale": "Skonfiguruj rozmiar puli węzłów",
   "kube_node_pool_delete": "Usuń pulę",
   "kube_node_pool_add": "Utwórz pulę węzłów",
   "kube_node_pool_refreh": "Odśwież tabelę",
   "kube_node_pool_title": "Pule węzłów",
-  "kube_add_billing_type_description": "Będziesz mógł zmienić model rozliczenia dla każdego węzła z płatności za godzinę na abonament miesięczny, przechodząc do widoku „edycja puli węzłów”.",
-  "kube_node_pool_monthly_billing": "Abonament miesięczny",
   "kube_node_pool_anti_affinity": "Ochrona przed koligacją (anti-affinity)",
+  "kube_add_billing_type_description": "Będziesz mógł zmienić model rozliczenia dla każdego węzła z płatności za godzinę na abonament miesięczny, przechodząc do widoku „edycja puli węzłów”.",
   "kube_node_pool_enabled": "Aktywny",
-  "kube_node_pool_disabled": "Wyłączony"
+  "kube_node_pool_disabled": "Wyłączony",
+  "kube_node_pool_autoscale_true": "Aktywny",
+  "kube_node_pool_autoscale_false": "Nieaktywny"
 }

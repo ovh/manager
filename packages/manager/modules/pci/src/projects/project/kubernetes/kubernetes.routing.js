@@ -4,12 +4,13 @@ import max from 'lodash/max';
 
 import {
   ANTI_AFFINITY_MAX_NODES,
+  SCALE_DEFAULT_VALUES,
   VERSION_ENUM_KEY,
 } from './kubernetes.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.kubernetes', {
-    url: '/kubernetes',
+    url: '/kubernetes?id',
     component: 'ovhManagerPciProjectKubernetes',
     redirectTo: (transition) =>
       transition
@@ -20,6 +21,12 @@ export default /* @ngInject */ ($stateProvider) => {
             ? { state: 'pci.projects.project.kubernetes.onboarding' }
             : false,
         ),
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     resolve: {
       addCluster: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.kubernetes.add', { projectId }),
@@ -46,12 +53,35 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
+      clusterId: /* @ngInject */ ($transition$) => $transition$.params().id,
       kubernetes: /* @ngInject */ (OvhApiCloudProjectKube, projectId) =>
         OvhApiCloudProjectKube.v6()
           .query({
             serviceName: projectId,
           })
           .$promise.then((kubernetes) => map(kubernetes, (id) => ({ id }))),
+
+      autoscaling: () => ({
+        autoscale: false,
+        isValidScale: false,
+        nodes: {
+          lowest: {
+            min: SCALE_DEFAULT_VALUES.LOWEST_MIN_VALUE,
+            value: SCALE_DEFAULT_VALUES.LOWEST_VALUE,
+            max: null,
+          },
+          desired: {
+            min: null,
+            value: SCALE_DEFAULT_VALUES.DESIRED_VALUE,
+            max: null,
+          },
+          highest: {
+            min: null,
+            value: SCALE_DEFAULT_VALUES.HIGHEST_VALUE,
+            max: SCALE_DEFAULT_VALUES.HIGHEST_MAX_VALUE,
+          },
+        },
+      }),
 
       /* @ngInject */
       versions: (OvhApiCloud) =>

@@ -34,6 +34,7 @@
   "kube_nodes_status_DELETING": "En cours de suppression",
   "kube_nodes_status_RESETTING": "En cours de réinitialisation",
   "kube_nodes_status_RESIZING": "Redimensionnement",
+  "kube_nodes_status_REDEPLOYING": "Application des changements",
   "kube_nodes_instances_error": "Une erreur s'est produite lors du chargement des détails de facturation : {{ message }}",
   "kube_nodes_billing_type": "Type de facturation",
   "kube_nodes_billing_monthly": "Mensuelle",

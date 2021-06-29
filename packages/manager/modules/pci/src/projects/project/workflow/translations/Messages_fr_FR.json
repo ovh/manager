@@ -1,6 +1,7 @@
 {
   "pci_workflow_title": "Gestion du workflow",
   "pci_workflow_name": "Nom",
+  "pci_workflow_id": "ID",
   "pci_workflow_type": "Workflow",
   "pci_workflow_resource": "Ressources ciblées",
   "pci_workflow_schedule": "Ordonnancement (UNIX Cron)",

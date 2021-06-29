@@ -6,5 +6,14 @@
   "vps_dashboard_migration_link": "Migruj do nowej gamy",
   "vps_dashboard_auto_migration_warning": "Twój VPS Cloud 2013/2014 zostanie automatycznie przeniesiony do VPS z nowej gamy w ciągu {{days}} dni.",
   "vps_dashboard_migration_in_progress": "Aktualnie trwa migracja VPS Cloud 2013/2014 do nowej gamy.",
-  "vps_dashboard_migration_in_error": "Wystąpił błąd podczas migracji VPS. Dalszym ciągiem migracji zajmie się zespół OVHcloud."
+  "vps_dashboard_migration_in_error": "Wystąpił błąd podczas migracji VPS. Dalszym ciągiem migracji zajmie się zespół OVHcloud.",
+  "vps_dashboard_state": "Status",
+  "vps_dashboard_state_backuping": "Trwa wykonywanie kopii zapasowej",
+  "vps_dashboard_state_installing": "Trwa instalacja",
+  "vps_dashboard_state_maintenance": "Trwają prace konserwacyjne...",
+  "vps_dashboard_state_rebooting": "Trwa uruchamianie",
+  "vps_dashboard_state_running": "Trwa wykonywanie",
+  "vps_dashboard_state_stopped": "Zatrzymano",
+  "vps_dashboard_state_stopping": "Wygasanie w trakcie",
+  "vps_dashboard_state_upgrading": "Zmiana oferty w trakcie"
 }

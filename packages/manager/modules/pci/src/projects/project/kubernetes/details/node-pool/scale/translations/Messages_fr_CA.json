@@ -1,0 +1,4 @@
+{
+  "kube_node_pool_autoscaling_scale_success": "L'ajustement de votre pool de nœuds est en cours.",
+  "kube_node_pool_autoscaling_scale_error": "Une erreur s'est produite lors de l'ajustement du pool de nœuds: {{message}}"
+}

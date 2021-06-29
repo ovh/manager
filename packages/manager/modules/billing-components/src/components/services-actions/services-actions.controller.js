@@ -8,7 +8,7 @@ export default class ServicesActionsCtrl {
     this.autorenewLink = coreConfig.isRegion(['EU', 'CA'])
       ? coreURLBuilder.buildURL('dedicated', '#/billing/autorenew')
       : '';
-
+    this.coreConfig = coreConfig;
     this.SERVICE_TYPE = SERVICE_TYPE;
   }
 
@@ -16,7 +16,7 @@ export default class ServicesActionsCtrl {
     const serviceTypeParam = this.service.serviceType
       ? `&serviceType=${this.service.serviceType}`
       : '';
-
+    this.user = this.coreConfig.getUser();
     this.commitmentLink =
       (this.getCommitmentLink && this.getCommitmentLink(this.service)) ||
       `${this.autorenewLink}/${this.service.id}/commitment`;

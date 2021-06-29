@@ -38,7 +38,7 @@
             data-sidebar-links="{}"
         >
         </ovh-manager-navbar>
-        <ovh-manager-account-sidebar expand="true" me="$ctrl.user">
+        <ovh-manager-account-sidebar expand="true" me="$ctrl.me">
         </ovh-manager-account-sidebar>
         <ovh-manager-notifications-sidebar> </ovh-manager-notifications-sidebar>
         <div class="position-relative w-100 h-100 overflow-auto ng-cloak">
@@ -62,7 +62,7 @@
                 <oui-message
                     class="incident-banner"
                     type="warning"
-                    data-ng-if="$ctrl.servicesImpactedWithIncident.length && $ctrl.user.ovhSubsidiary !== 'FR'"
+                    data-ng-if="$ctrl.servicesImpactedWithIncident.length && $ctrl.me.ovhSubsidiary !== 'FR'"
                 >
                     Information : Situation update in Strasbourg via
                     <a
@@ -111,8 +111,8 @@
         <ovh-chatbot
             data-ng-if="$ctrl.chatbotEnabled"
             data-language="{{$ctrl.currentLanguage}}"
-            data-country="{{$ctrl.user.ovhSubsidiary}}"
-            data-support-level="{{$ctrl.user.supportLevel.level}}"
+            data-country="{{$ctrl.me.ovhSubsidiary}}"
+            data-support-level="{{$ctrl.me.supportLevel.level}}"
         ></ovh-chatbot>
     </body>
 </html>

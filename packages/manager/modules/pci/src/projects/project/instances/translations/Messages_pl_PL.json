@@ -60,5 +60,6 @@
   "pci_projects_project_instances_status_SHELVING": "Zawieszanie w trakcie",
   "pci_projects_project_instances_status_UNSHELVING": "Ponowne włączenie w trakcie",
   "pci_projects_project_instances_shelve_label": "Zawieś",
-  "pci_projects_project_instances_unshelve_label": "Przywróć"
+  "pci_projects_project_instances_unshelve_label": "Przywróć",
+  "pci_projects_project_instances_name_id": "ID"
 }

@@ -5,9 +5,14 @@ import { VRACK_OPERATION_COMPLETED_STATUS } from './private-networks.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.privateNetwork', {
-    url: '/private-networks',
+    url: '/private-networks?id',
     component: 'pciProjectPrivateNetworks',
-
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     resolve: {
       createNetwork: ($state, projectId) => () =>
         $state.go('pci.projects.project.privateNetwork.add', { projectId }),
@@ -16,6 +21,8 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           networkId,
         }),
+
+      networkId: /* @ngInject */ ($transition$) => $transition$.params().id,
 
       privateNetworks: /* @ngInject */ (PciPrivateNetworks, projectId) =>
         PciPrivateNetworks.getPrivateNetworks(projectId),

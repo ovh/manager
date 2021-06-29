@@ -1,7 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.analytics-data-platform', {
     cache: false,
-    url: '/analytics-data-platform',
+    url: '/analytics-data-platform?id',
     component: 'analyticsDataPlatformComponent',
     redirectTo: (transition) =>
       transition
@@ -15,8 +15,14 @@ export default /* @ngInject */ ($stateProvider) => {
               }
             : false,
         ),
-
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     resolve: {
+      clusterId: /* @ngInject */ ($transition$) => $transition$.params().id,
       clusters: /* @ngInject */ (analyticsDataPlatformService, projectId) => {
         analyticsDataPlatformService.clearPlatformAllCache();
         return analyticsDataPlatformService.getAnalyticsDataPlatforms(

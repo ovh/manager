@@ -15,7 +15,8 @@
             </ovh-manager-hub-user-infos>
         </div>
         <div data-ng-if="!$ctrl.me.isEnterprise" class="mb-4">
-            <ovh-manager-hub-payment-mean> </ovh-manager-hub-payment-mean>
+            <ovh-manager-hub-payment-mean data-visible="$ctrl.isSidebarVisible">
+            </ovh-manager-hub-payment-mean>
         </div>
         <div class="mb-4">
             <ovh-manager-hub-shortcuts

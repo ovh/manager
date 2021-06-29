@@ -12,5 +12,9 @@
   "billing_payment_method_split_payment_activate_success": "La richiesta di attivazione dello Split Payment è stata presa in carico correttamente.",
   "billing_payment_method_split_payment_activate_error": "Si è verificato un errore durante la richiesta di attivazione dello Split Payment.",
   "billing_payment_method_split_payment_deactivate_success": "La richiesta di disattivazione dello Split Payment è stata presa in carico correttamente.",
-  "billing_payment_method_split_payment_deactivate_error": "Si è verificato un errore durante la richiesta di disattivazione dello Split Payment."
+  "billing_payment_method_split_payment_deactivate_error": "Si è verificato un errore durante la richiesta di disattivazione dello Split Payment.",
+  "billing_payment_method_split_payment_warning_title": "ATTENZIONE",
+  "billing_payment_method_split_payment_warning_activate": "Lo Split Payment è disponibile solo per enti pubblici economici nazionali, regionali e locali, le aziende speciali e le aziende pubbliche di servizi alla persona; fondazioni partecipate da amministrazioni pubbliche; società controllate direttamente dalla Presidenza del Consiglio dei Ministri e dai Ministeri; società controllate direttamente o indirettamente da amministrazioni pubbliche o da enti e società precedentemente citate; società partecipate da amministrazioni pubbliche o da enti e società precedentemente citate; società quotate inserite nell'indice FTSE MIB della Borsa italiana identificate agli effetti dell'imposta sul valore aggiunto.",
+  "billing_payment_method_split_payment_warning_deactivate": "Disattivando lo Split Payment, si richiede di tornare ad un sistema di gestione dell'IVA ordinario. Le fatture emesse da OVH successivamente alla disattivazione dello Split Payment verranno trattate secondo il regime ordinario e il pagamento degli ordini prevederà il versamento dell'intero importo dovuto inclusivo di IVA.",
+  "billing_payment_method_split_payment_warning_decree": "Estratto del DECRETO-LEGGE 16 ottobre 2017, n. 148, art. 3, comma 1-bis."
 }

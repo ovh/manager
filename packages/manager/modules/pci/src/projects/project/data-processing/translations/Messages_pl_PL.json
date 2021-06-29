@@ -21,5 +21,6 @@
   "data_processing_list_button_job_details": "Szczegóły zadania",
   "data_processing_list_button_job_ui": "Dostęp do interfejsu graficznego zadania",
   "data_processing_list_button_job_monitoring": "Dostęp do monitoringu",
-  "data_processing_list_button_job_terminate": "Zakończ zadanie"
+  "data_processing_list_button_job_terminate": "Zakończ zadanie",
+  "data_processing_job_id": "ID"
 }

@@ -1,0 +1,10 @@
+<span
+    class="oui-badge"
+    data-ng-class="{'oui-badge_success': $ctrl.vpsStateInfo.stateGroup.success,
+        'oui-badge_warning': $ctrl.vpsStateInfo.stateGroup.warning,
+        'oui-badge_error': $ctrl.vpsStateInfo.stateGroup.error,}"
+>
+    <span
+        data-ng-bind="'vps_dashboard_state_' + $ctrl.vpsStateInfo.state | translate"
+    ></span>
+</span>

@@ -1,7 +1,13 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.training.jobs', {
-    url: '/jobs',
+    url: '/jobs?id',
     component: 'pciProjectTrainingJobsComponent',
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_training_jobs_title'),
@@ -14,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       getTax: /* @ngInject */ (getCatalogEntryF) => (qty, resourceId) =>
         getCatalogEntryF(resourceId).tax * 60 * qty,
+      jobId: /* @ngInject */ ($transition$) => $transition$.params().id,
       job: /* @ngInject */ (PciProjectTrainingJobService, projectId) => (
         jobId,
       ) => PciProjectTrainingJobService.get(projectId, jobId),

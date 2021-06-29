@@ -1,8 +1,13 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.serving', {
-    url: '/serving',
+    url: '/serving?id',
     component: 'pciProjectServing',
-
+    params: {
+      id: {
+        dynamic: true,
+        type: 'string',
+      },
+    },
     redirectTo: (transition) =>
       transition
         .injector()
@@ -46,6 +51,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.serving.add', {
           projectId,
         }),
+      namespaceId: /* @ngInject */ ($transition$) => $transition$.params().id,
       namespaceLink: /* @ngInject */ ($state, projectId) => (namespace) =>
         $state.href('pci.projects.project.serving.namespace', {
           projectId,

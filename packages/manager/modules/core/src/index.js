@@ -168,8 +168,8 @@ export const registerCoreModule = (environment) => {
           .setAttribute('lang', coreConfig.getUserLanguage());
       },
     )
-    .run((ssoAuthentication /* , User */) => {
-      ssoAuthentication.login(); // .then(() => User.getUser());
+    .run((ssoAuthentication) => {
+      ssoAuthentication.setLoggedIn(environment.getUser());
     })
     .constant('OVH_SSO_AUTH_LOGIN_URL', '/auth')
     .factory('serviceTypeInterceptor', () => ({

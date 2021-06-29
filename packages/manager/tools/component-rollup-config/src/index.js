@@ -9,7 +9,6 @@ const image = require('@rollup/plugin-image');
 const json = require('@rollup/plugin-json');
 const lessInject = require('@ovh-ux/rollup-plugin-less-inject');
 const lessPluginRemcalc = require('less-plugin-remcalc');
-const lessTildeImporter = require('@ovh-ux/rollup-plugin-less-tilde-importer');
 const path = require('path');
 const peerdeps = require('rollup-plugin-peer-deps-external');
 const resolve = require('@rollup/plugin-node-resolve');
@@ -56,7 +55,6 @@ const generateConfig = (opts, pluginsOpts) =>
           compact: true,
           namedExports: false,
         }),
-        lessTildeImporter(pluginsOpts.lessTildeImporter),
         lessInject({
           option: {
             plugins: [lessPluginRemcalc],

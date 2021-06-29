@@ -1,5 +1,5 @@
 <oui-modal
-    heading="{{:: $ctrl.actionLabelKey | translate }}"
+    heading="{{:: 'billing_payment_method_split_payment_warning_title' | translate }}"
     primary-action="$ctrl.activateOrDeactivateSplitPayment()"
     primary-label="{{:: $ctrl.actionLabelKey | translate }}"
     primary-disabled="$ctrl.isActioning"
@@ -7,6 +7,15 @@
     secondary-label="{{:: 'billing_payment_method_split_payment_cancel' | translate }}"
     on-dismiss="$ctrl.goBack()"
     loading="$ctrl.isActioning"
+    type="warning"
 >
-    <p data-translate="billing_payment_method_split_payment_information"></p>
+    <p data-translate="{{:: $ctrl.actionWarningText }}"></p>
+    <a
+        class="oui-link"
+        data-ng-if="$ctrl.displayDecreeHref"
+        data-ng-href="{{:: $ctrl.DECREE_HREF }}"
+        data-translate="billing_payment_method_split_payment_warning_decree"
+        target="_blank"
+        rel="noopener"
+    ></a>
 </oui-modal>

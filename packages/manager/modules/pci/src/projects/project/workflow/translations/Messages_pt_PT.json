@@ -21,5 +21,6 @@
   "pci_workflow_executions_ececution_time": "Hora (UTC)",
   "pci_workflow_executions_status": "Estado",
   "pci_workflow_add": "Criar um planeamento",
-  "pci_workflow_executions": "Execuções"
+  "pci_workflow_executions": "Execuções",
+  "pci_workflow_id": "ID"
 }

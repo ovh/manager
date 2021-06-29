@@ -9,7 +9,7 @@
   "kube_common_save": "Zapisz",
   "kube_common_cancel": "Anuluj",
   "kube_common_delete": "Usuń",
-  "kube_common_node_pool_title": "Skonfiguruj pulę węzłów",
+  "kube_common_node_pool_title": "Skonfiguruj typ węzłów",
   "kube_common_billing_type_title": "Płatności i ochrona przed koligacją (anti-affinity)",
   "kube_common_create_node_pool": "Utwórz pulę węzłów",
   "kube_common_flavor_load_error": "Błąd podczas pobierania węzłów: {{message}}",
@@ -19,5 +19,7 @@
   "kubernetes_add_private_network_label": "Przypisana prywatna sieć",
   "kubernetes_add_private_network_none": "Brak (IP publiczne)",
   "kubernetes_add_private_network_description": "Domyślnie Twoje węzły robocze posiadają publiczny adres IPv4. Jeśli wybierzesz sieć prywatną, publiczne adresy IP tych węzłów będą używane wyłącznie do zarządzania nimi/połączenia z panelem kontrolnym Kubernetesa, a Twoim węzłom zostanie przypisany IP w sieci vLAN wybranej sieci prywatnej. ",
-  "kubernetes_add_private_network_add": "Utwórz prywatną sieć"
+  "kubernetes_add_private_network_add": "Utwórz prywatną sieć",
+  "kube_common_node_pool_autoscaling_title": "Skonfiguruj rozmiar puli węzłów",
+  "kube_list_id": "ID"
 }

@@ -2,7 +2,8 @@ import filter from 'lodash/filter';
 import forEach from 'lodash/forEach';
 import set from 'lodash/set';
 import some from 'lodash/some';
-import startsWith from 'lodash/startsWith';
+
+import { TRUNK_REGEX } from './calls.constants';
 
 export default /* @ngInject */ function TelecomTelephonyLineCallsCtrl(
   $translate,
@@ -147,9 +148,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsCtrl(
       .then((line) => {
         self.line = line;
 
-        isTrunkRates = some(line.offers, (offer) =>
-          startsWith(offer, 'voip.main.offer.fr.trunk.rates'),
-        );
+        isTrunkRates = some(line.offers, (offer) => offer.match(TRUNK_REGEX));
 
         self.actions = filter(initActions(), (action) => {
           let display = action.display === true;

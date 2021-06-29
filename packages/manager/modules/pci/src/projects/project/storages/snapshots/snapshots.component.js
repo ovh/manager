@@ -9,7 +9,9 @@ export default {
     createVolume: '<',
     deleteSnapshot: '<',
     guideUrl: '<',
+    onListParamChange: '<',
     projectId: '<',
+    snapshotId: '<',
     snapshots: '<',
   },
 };

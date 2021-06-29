@@ -6,10 +6,12 @@ export default {
   template,
   bindings: {
     addInstanceBackup: '<',
+    backupId: '<',
     createInstance: '<',
     deleteInstanceBackup: '<',
     instanceBackups: '<',
     guideUrl: '<',
+    onListParamChange: '<',
     projectId: '<',
   },
 };

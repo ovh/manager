@@ -6,6 +6,8 @@ import {
 } from './data-processing.utils';
 import { DATA_PROCESSING_GUIDE_URL } from './data-processing.constants';
 
+import { getCriteria } from '../project.utils';
+
 export default class {
   /* @ngInject */
   constructor(
@@ -28,6 +30,7 @@ export default class {
 
   $onInit() {
     this.subscribeToMessages();
+    this.criteria = getCriteria('id', this.jobId);
   }
 
   refreshMessage() {
@@ -52,7 +55,7 @@ export default class {
    */
   getJobs({ offset, pageSize, sort, criteria }) {
     const filters = criteria.map((c) => {
-      const name = c.name || 'name';
+      const name = c.property || 'name';
       return datagridToIcebergFilter(name, c.operator, c.value);
     });
     const pageOffset = Math.ceil(offset / pageSize);

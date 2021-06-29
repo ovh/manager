@@ -31,7 +31,7 @@ export default class HubController {
       },
     };
     this.currentLanguage = this.coreConfig.getUserLanguage();
-    this.user = this.coreConfig.getUser();
+    this.me = this.coreConfig.getUser();
     const unregisterListener = this.$scope.$on('app:started', () => {
       const CHATBOT_FEATURE = 'chatbot';
       this.ovhFeatureFlipping

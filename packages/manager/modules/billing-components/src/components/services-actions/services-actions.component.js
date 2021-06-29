@@ -5,7 +5,6 @@ export default {
   bindings: {
     service: '<',
     trackingPrefix: '@?',
-    user: '<',
     getCommitmentLink: '&?',
     getCancelCommitmentLink: '&?',
     getCancelResiliationLink: '&?',

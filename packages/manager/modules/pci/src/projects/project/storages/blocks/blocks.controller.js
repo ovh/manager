@@ -1,4 +1,5 @@
 import { VOLUME_HELP_PREFERENCE_KEY } from './block.constants';
+import { getCriteria } from '../../project.utils';
 
 export default class PciBlockStorageController {
   /* @ngInject */
@@ -19,6 +20,8 @@ export default class PciBlockStorageController {
   $onInit() {
     this.loadMessages();
     this.initLoaders();
+
+    this.criteria = getCriteria('id', this.storageId);
   }
 
   initLoaders() {

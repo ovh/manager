@@ -21,5 +21,6 @@
   "pci_workflow_executions_ececution_time": "Godzina (UTC)",
   "pci_workflow_executions_status": "Status",
   "pci_workflow_add": "Utwórz harmonogram",
-  "pci_workflow_executions": "Uruchomienia"
+  "pci_workflow_executions": "Uruchomienia",
+  "pci_workflow_id": "ID"
 }

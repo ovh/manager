@@ -316,6 +316,48 @@ export default function() {
 
     /**
      * @ngdoc function
+     * @name onLoginSuccess
+     * @methodOf ovh-angular-sso-auth.ssoAuthentication
+     *
+     * @description
+     * internal method called when user login is successfull
+     */
+    this.onLoginSuccess = function onLoginSuccess(userData) {
+      this.user = userData;
+      isLogged = true;
+      if (userData.state === NIC_STATE_ENUM.incomplete && !allowIncompleteNic) {
+        this.goToSignUpPage();
+      }
+    };
+
+    /**
+     * @ngdoc function
+     * @name onPostLogin
+     * @methodOf ovh-angular-sso-auth.ssoAuthentication
+     *
+     * @description
+     * internal method called after login
+     */
+    this.onPostLogin = function onPostLogin() {
+      this.userId = this.getUserIdCookie(); // store USERID
+      deferredObj.login.resolve();
+    };
+
+    /**
+     * @ngdoc function
+     * @name setLoggedIn
+     * @methodOf ovh-angular-sso-auth.ssoAuthentication
+     *
+     * @description
+     * Set logged in data if login is done in the app
+     */
+    this.setLoggedIn = function setLoggedIn(userData) {
+      this.onLoginSuccess(userData);
+      this.onPostLogin();
+    };
+
+    /**
+     * @ngdoc function
      * @name login
      * @methodOf ovh-angular-sso-auth.ssoAuthentication
      *
@@ -331,21 +373,11 @@ export default function() {
         method: 'GET',
         headers,
       })
-        .done((data) => {
-          self.user = data; // store user infos
-          isLogged = true;
-
-          if (data.state === NIC_STATE_ENUM.incomplete && !allowIncompleteNic) {
-            self.goToSignUpPage();
-          }
-        })
+        .done((data) => this.onLoginSuccess(data))
         .fail(() => {
           isLogged = false;
         })
-        .always(() => {
-          self.userId = self.getUserIdCookie(); // store USERID
-          deferredObj.login.resolve();
-        });
+        .always(() => this.onPostLogin());
 
       return deferredObj.login.promise;
     };

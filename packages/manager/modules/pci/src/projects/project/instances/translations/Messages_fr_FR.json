@@ -9,6 +9,7 @@
   "pci_projects_project_instances_privateIp_label": "IP privée(s)",
   "pci_projects_project_instances_volume_label": "Volume(s)",
   "pci_projects_project_instances_status_label": "Statut",
+  "pci_projects_project_instances_name_id": "ID",
 
   "pci_projects_project_instances_status_ACTIVE": "Activée",
   "pci_projects_project_instances_status_BUILDING": "Création",

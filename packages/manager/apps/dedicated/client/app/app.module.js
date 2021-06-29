@@ -87,6 +87,7 @@ import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-confi
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
+import ovhManagerBilling from '@ovh-ux/manager-billing';
 import ovhManagerEnterpriseCloudDatabase from '@ovh-ux/manager-enterprise-cloud-database';
 import ovhManagerDbaasLogs from '@ovh-ux/manager-dbaas-logs';
 import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
@@ -121,7 +122,6 @@ import managedBaremetal from './managedBaremetal';
 import errorPage from './error';
 import expiredPage from './expired';
 
-import billing from './billing';
 import dedicatedServer from './dedicated/server';
 import dedicatedNas from './dedicated/nas';
 import dedicatedHousing from './dedicated/housing';
@@ -141,10 +141,10 @@ export default (containerEl, environment) => {
       [
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
         account,
-        billing,
         ovhManagerAccountSidebar,
         registerCoreModule(environment),
         ovhManagerAtInternetConfiguration,
+        ovhManagerBilling,
         ovhManagerCookiePolicy,
         chartjs,
         'controllers',
