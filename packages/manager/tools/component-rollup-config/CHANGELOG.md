@@ -1,3 +1,23 @@
+# [10.0.0](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@9.1.0...@ovh-ux/component-rollup-config@10.0.0) (2021-06-29)
+
+
+### Bug Fixes
+
+* remove rollup-plugin-less-tilde-importer plugin ([b5b3b26](https://github.com/ovh/manager/commit/b5b3b260bb80bde8bb4fa3d9972413e00334054a))
+
+
+### Code Refactoring
+
+* **plugins:** remove both cs_CZ and lt_LT from languages list ([4a35113](https://github.com/ovh/manager/commit/4a3511375f7b191091e4aea3ed9f53d8feff0afd))
+
+
+### BREAKING CHANGES
+
+* **plugins:** remove both `cs_CZ` and `lt_LT` languages
+* remove `@ovh-ux/rollup-plugin-less-tilde-importer` dependency
+
+
+
 # [9.1.0](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@9.0.1...@ovh-ux/component-rollup-config@9.1.0) (2021-06-16)
 
 

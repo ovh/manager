@@ -1,3 +1,17 @@
+## [2.2.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.2.5...@ovh-ux/ng-ovh-cloud-universe-components@2.2.6) (2021-06-29)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/component-rollup-config` to `v10.0.0` ([8eac31f](https://github.com/ovh/manager/commit/8eac31f81e46d1570c131cf55788d6435842ab6d))
+
+
+### Performance Improvements
+
+* **feature-availability:** use coreConfig user ([#5176](https://github.com/ovh/manager/issues/5176)) ([6b18714](https://github.com/ovh/manager/commit/6b1871494292cc06b8fbf000cc742a1051ceb363))
+
+
+
 ## [2.2.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.2.4...@ovh-ux/ng-ovh-cloud-universe-components@2.2.5) (2021-05-19)
 
 

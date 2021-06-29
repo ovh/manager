@@ -1,3 +1,12 @@
+## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@2.0.0...@ovh-ux/ng-ovh-order-tracking@2.0.1) (2021-06-29)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/component-rollup-config` to `v10.0.0` ([8eac31f](https://github.com/ovh/manager/commit/8eac31f81e46d1570c131cf55788d6435842ab6d))
+
+
+
 # [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@1.1.1...@ovh-ux/ng-ovh-order-tracking@2.0.0) (2021-06-16)
 
 

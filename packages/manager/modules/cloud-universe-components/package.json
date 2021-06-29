@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-cloud-universe-components",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "private": true,
   "description": "Collection of components for the Cloud control panel.",
   "keywords": [
@@ -45,8 +45,8 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
-    "@ovh-ux/ng-ovh-user-pref": "^2.0.1",
-    "@ovh-ux/ng-translate-async-loader": "^2.1.1",
+    "@ovh-ux/ng-ovh-user-pref": "^2.0.2",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.2",
     "@ovh-ux/ui-kit": "^4.4.1",
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.5.0",

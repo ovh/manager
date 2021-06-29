@@ -1,3 +1,13 @@
+## [5.6.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.6.2...@ovh-ux/ng-at-internet@5.6.3) (2021-06-29)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/component-rollup-config` to `v10.0.0` ([cbdfb91](https://github.com/ovh/manager/commit/cbdfb91a9dc7daf20f6ee82ebeffb034238da4ce))
+* **deps:** upgrade `@ovh-ux/component-rollup-config` to `v10.0.0` ([8eac31f](https://github.com/ovh/manager/commit/8eac31f81e46d1570c131cf55788d6435842ab6d))
+
+
+
 ## [5.6.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.6.1...@ovh-ux/ng-at-internet@5.6.2) (2021-06-02)
 
 

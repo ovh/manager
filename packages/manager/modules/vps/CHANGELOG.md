@@ -1,3 +1,19 @@
+# [2.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.11.2...@ovh-ux/manager-vps@2.12.0) (2021-06-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1012] ([89a70d0](https://github.com/ovh/manager/commit/89a70d09bbc5a5d8e6150df730012cc45a9087b5))
+
+
+### Features
+
+* **vps.dashboard:** setup dashboard to add vps state ([8c0c721](https://github.com/ovh/manager/commit/8c0c721ca13d15e3b6b8553757ea693406b0ec2d))
+* **vps.dashboard.cmp.vps-state-info:** add vps state info cmp ([12dc76f](https://github.com/ovh/manager/commit/12dc76fc86e744d33d6beb03c610a43d5d4a3256))
+* **vps.dashboard.tile.information:** add vps state tile ([a4f9073](https://github.com/ovh/manager/commit/a4f9073c96d49a98d6529ebb6d7f9925219f4b69))
+
+
+
 ## [2.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.11.1...@ovh-ux/manager-vps@2.11.2) (2021-06-02)
 
 

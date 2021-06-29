@@ -1,3 +1,18 @@
+## [3.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.4.2...@ovh-ux/manager-account-sidebar@3.4.3) (2021-06-29)
+
+
+### Bug Fixes
+
+* **deps:** bump hub version ([a979b16](https://github.com/ovh/manager/commit/a979b16b3bb9bd7ff45fcb5b3ee3a8fa00ba230a))
+* **deps:** upgrade `@ovh-ux/component-rollup-config` to `v10.0.0` ([8eac31f](https://github.com/ovh/manager/commit/8eac31f81e46d1570c131cf55788d6435842ab6d))
+
+
+### Performance Improvements
+
+* lazy load payment methods ([#5159](https://github.com/ovh/manager/issues/5159)) ([d508e43](https://github.com/ovh/manager/commit/d508e4306a715fd9e821417265ebe1d9717eb205))
+
+
+
 ## [3.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.4.1...@ovh-ux/manager-account-sidebar@3.4.2) (2021-06-16)
 
 

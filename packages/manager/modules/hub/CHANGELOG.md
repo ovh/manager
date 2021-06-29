@@ -1,3 +1,18 @@
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.4.5...@ovh-ux/manager-hub@3.0.0) (2021-06-29)
+
+
+### Features
+
+* **hub:** fetch notifications in carousel ([27175d3](https://github.com/ovh/manager/commit/27175d3503cae604da2e9accc74d16e6d01c726a))
+* **hub:** split api calls in hub ([4acda51](https://github.com/ovh/manager/commit/4acda512ff5371589fb34a493578f36bbaf2a87d))
+
+
+### BREAKING CHANGES
+
+* **hub:** Carousel fetches notifications by default if items is undefined
+
+
+
 ## [2.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.4.4...@ovh-ux/manager-hub@2.4.5) (2021-06-16)
 
 

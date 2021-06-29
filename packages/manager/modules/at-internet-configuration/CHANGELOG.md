@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.2.0...@ovh-ux/manager-at-internet-configuration@1.2.1) (2021-06-29)
+
+
+### Performance Improvements
+
+* use coreConfig user ([#5160](https://github.com/ovh/manager/issues/5160)) ([0c12bf8](https://github.com/ovh/manager/commit/0c12bf872019fb07deddb13ae8fec1d66bf3b064))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.1.7...@ovh-ux/manager-at-internet-configuration@1.2.0) (2021-04-27)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-at-internet",
-  "version": "5.6.2",
+  "version": "5.6.3",
   "description": "ATInternet tracking library wrapper for AngularJS",
   "keywords": [
     "angularjs",
