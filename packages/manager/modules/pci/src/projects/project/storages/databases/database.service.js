@@ -8,15 +8,24 @@ import 'moment';
 import Backup from '../../../../components/project/storages/databases/backup.class';
 import Database from '../../../../components/project/storages/databases/database.class';
 import Engine from '../../../../components/project/storages/databases/engine.class';
+import Lab from '../../../../components/project/labs/lab.class';
 import Node from '../../../../components/project/storages/databases/node.class';
 
 export default class DatabaseService {
   /* @ngInject */
-  constructor($http, $q, $translate, CucPriceHelper, Poller) {
+  constructor(
+    $http,
+    $q,
+    $translate,
+    CucPriceHelper,
+    PciProjectLabsService,
+    Poller,
+  ) {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
     this.CucPriceHelper = CucPriceHelper;
+    this.PciProjectLabsService = PciProjectLabsService;
     this.Poller = Poller;
   }
 
@@ -27,6 +36,34 @@ export default class DatabaseService {
         'X-Pagination-Size': 50000,
       },
     };
+  }
+
+  activateLab(projectId, lab) {
+    return (lab.isOpen()
+      ? this.PciProjectLabsService.activateLab(projectId, lab)
+      : this.$q.resolve()
+    ).then(() =>
+      lab.isOpen() || lab.isActivating()
+        ? this.pollLabActivationStatus(projectId, lab.id)
+        : this.$q.resolve(),
+    );
+  }
+
+  pollLabActivationStatus(projectId, labId) {
+    return this.Poller.poll(
+      `/cloud/project/${projectId}/lab/${labId}`,
+      {},
+      {
+        namespace: `databases_${labId}`,
+        interval: 2000,
+        method: 'get',
+        successRule: (lab) => new Lab(lab).isActivated(),
+      },
+    );
+  }
+
+  stopPollingLabActivationStatus(labId) {
+    this.Poller.kill({ namespace: `databases_${labId}` });
   }
 
   addNode(projectId, engine, databaseId, flavor, region) {
