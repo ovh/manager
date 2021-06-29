@@ -1,3 +1,12 @@
+## [5.29.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.29.5...@ovh-ux/manager-pci@5.29.6) (2021-06-29)
+
+
+### Bug Fixes
+
+* **storages.databases:** add beta agreement to databases ([#5182](https://github.com/ovh/manager/issues/5182)) ([11b9863](https://github.com/ovh/manager/commit/11b986397f2d1288646a0bdc301184de4949174d))
+
+
+
 ## [5.29.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.29.4...@ovh-ux/manager-pci@5.29.5) (2021-06-23)
 
 
