@@ -24,7 +24,7 @@
             <!-- Tile item :: Created -->
             <oui-tile-definition
                 data-term="{{ :: 'data_processing_details_information_creation_date_label' | translate }}"
-                data-description="{{ $ctrl.formatDateToCalendar(job.creationDate) }}"
+                data-description="{{ $ctrl.formatDateToCalendar($ctrl.job.creationDate) }}"
             >
             </oui-tile-definition>
             <!-- Tile item :: Elapsed time -->
@@ -177,7 +177,7 @@
             <oui-tile-definition
                 data-term="{{ ::'data_processing_details_configuration_job_type_label' | translate }}"
                 title="{{ ::'data_processing_details_configuration_job_type_label' | translate }}"
-                data-description="{{ $ctrl.job.type }}"
+                data-description="{{ $ctrl.job.type}} {{$ctrl.job.engineVersion}} - {{$ctrl.job.engineParameters.job_type}}"
             >
             </oui-tile-definition>
             <oui-tile-definition
