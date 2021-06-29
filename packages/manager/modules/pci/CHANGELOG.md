@@ -1,3 +1,41 @@
+# [5.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.29.6...@ovh-ux/manager-pci@5.30.0) (2021-06-29)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([0dd47ac](https://github.com/ovh/manager/commit/0dd47ac96bb5c3d6f8f1e10a4832132f7ce4c22d))
+* **deps:** upgrade `@ovh-ux/component-rollup-config` to `v10.0.0` ([8eac31f](https://github.com/ovh/manager/commit/8eac31f81e46d1570c131cf55788d6435842ab6d))
+* **i18n:** add missing translations [CDS 1006] ([99bb67e](https://github.com/ovh/manager/commit/99bb67e6ec133470cbf9d083141976ac96b044af))
+* **i18n:** add missing translations [CDS 1007] ([0acf42e](https://github.com/ovh/manager/commit/0acf42e58f61da59fccff7beb65bb74d074498ce))
+* **i18n:** add missing translations [CDS 1010] ([#5148](https://github.com/ovh/manager/issues/5148)) ([a5a2079](https://github.com/ovh/manager/commit/a5a2079105d521a13f429ae587c0047f6f00c45c))
+* **i18n:** add missing translations [CDS 1015] ([262e1a9](https://github.com/ovh/manager/commit/262e1a99655e3bb9645b642b321fd014ce61a243))
+* **i18n:** add missing translations [CDS 1017] ([ecaa87b](https://github.com/ovh/manager/commit/ecaa87b55ded97cf43494f3c2d2e3f4d208f78f7))
+* **i18n:** add missing translations [CDS 1018] ([f94b987](https://github.com/ovh/manager/commit/f94b987fb787ad7a62b2ae77100223ac68db6b1f))
+* **i18n:** add missing translations [CDS 1021] ([16caf74](https://github.com/ovh/manager/commit/16caf747b563bb27d23ecc232a8cd9f895738fd7))
+
+
+### Features
+
+* **kube:** add autoscaling to node pools ([#4822](https://github.com/ovh/manager/issues/4822)) ([44d7ee3](https://github.com/ovh/manager/commit/44d7ee30338678760c9582a8eb2511308745f03a))
+* **project.analytics-data-platform:** add id column and filter ([c824c25](https://github.com/ovh/manager/commit/c824c25b37ef6f215ebaf180b626a028866b6996))
+* **project.data-processing:** add id column and filter ([660066f](https://github.com/ovh/manager/commit/660066fb346f404857bcea8d1b55ef8ecfb36a35))
+* **project.failover-ips:** add id column and filter ([6a23ed5](https://github.com/ovh/manager/commit/6a23ed55c29827dc97bc2d0c701e148dfd4a6be2))
+* **project.instance:** add id column and filter ([dd19504](https://github.com/ovh/manager/commit/dd195044a705a3a6cc619c9e0fea364d6ed41b9b))
+* **project.kubernetes:** add id column and filter ([17f113d](https://github.com/ovh/manager/commit/17f113d847a3bba43057d4854afdc5a87a79b38b))
+* **project.load-balancer:** add id column and filter ([0604530](https://github.com/ovh/manager/commit/060453096cf5cec5080fcc48855299bc0dad125f))
+* **project.private-network:** add id column and filter ([4d2a46b](https://github.com/ovh/manager/commit/4d2a46bf0efb0fff18820ce4e55976e493134be9))
+* **project.private-registry:** add id column and filter ([9f3cf9c](https://github.com/ovh/manager/commit/9f3cf9cb298b61eeae1b74f3436a711dd8e604fc))
+* **project.serving:** add id column and filter ([b77397c](https://github.com/ovh/manager/commit/b77397c9ac084064939239c4370b4fde48a38ee2))
+* **project.storages.backups:** add id column and filter ([f60eefc](https://github.com/ovh/manager/commit/f60eefc27a60db08557af1d3087d20dc9e04f048))
+* **project.storages.block:** add id column and filter ([97231ea](https://github.com/ovh/manager/commit/97231eaddf146a7ab76b21961bcf921949dfd217))
+* **project.storages.containers:** add id column and filter ([8be198e](https://github.com/ovh/manager/commit/8be198e3b79ecac290aceca6a6b5d41b72142f76))
+* **project.storages.databases:** add id column and filter ([d4ab68a](https://github.com/ovh/manager/commit/d4ab68ad353b139c0314e97ae4575e41f884a3f9))
+* **project.storages.snapshot:** add column id and filter ([18b00a6](https://github.com/ovh/manager/commit/18b00a64c76271622ef32e44d8374263dd130016))
+* **project.training:** add id column and filter ([09f05cd](https://github.com/ovh/manager/commit/09f05cd528138a8ed8301f005faf923b9390f50b))
+* **project.workflow:** add id column and filter ([9610a9b](https://github.com/ovh/manager/commit/9610a9b54b59cb3c30d72eeeddccd10fe0176063))
+
+
+
 ## [5.29.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.29.5...@ovh-ux/manager-pci@5.29.6) (2021-06-29)
 
 

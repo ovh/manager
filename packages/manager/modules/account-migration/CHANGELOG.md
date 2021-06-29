@@ -1,3 +1,12 @@
+## [1.1.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-migration@1.1.7...@ovh-ux/manager-account-migration@1.1.8) (2021-06-29)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/component-rollup-config` to `v10.0.0` ([8eac31f](https://github.com/ovh/manager/commit/8eac31f81e46d1570c131cf55788d6435842ab6d))
+
+
+
 ## [1.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-migration@1.1.6...@ovh-ux/manager-account-migration@1.1.7) (2021-05-05)
 
 

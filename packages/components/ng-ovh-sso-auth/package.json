@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-sso-auth",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "description": "OVH Single Sign On module",
   "keywords": [
     "angularjs",

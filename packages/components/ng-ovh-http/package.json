@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-http",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Simple HTTP provider for OVH API.",
   "keywords": [
     "angularjs",

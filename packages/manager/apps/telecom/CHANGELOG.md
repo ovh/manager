@@ -1,3 +1,18 @@
+# [13.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.22.2...@ovh-ux/manager-telecom@13.23.0) (2021-06-29)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/component-rollup-config` to `v10.0.0` ([8eac31f](https://github.com/ovh/manager/commit/8eac31f81e46d1570c131cf55788d6435842ab6d))
+* **telephony.line.calls:** update check for trunk lines ([#5130](https://github.com/ovh/manager/issues/5130)) ([fd2f431](https://github.com/ovh/manager/commit/fd2f431ff952295b16ce0b880e9e48ca1cef3634))
+
+
+### Features
+
+* **move.eligibility:** add test eligibility for partners ([#4712](https://github.com/ovh/manager/issues/4712)) ([de21047](https://github.com/ovh/manager/commit/de210475d4f80c4c8d8b84b52926eaa34cba0280))
+
+
+
 ## [13.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.22.1...@ovh-ux/manager-telecom@13.22.2) (2021-06-16)
 
 

@@ -1,3 +1,13 @@
+# [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.0.1...@ovh-ux/manager-billing-components@3.1.0) (2021-06-29)
+
+
+### Features
+
+* **billing:** set new content for split payment modal ([#5144](https://github.com/ovh/manager/issues/5144)) ([6e16b8c](https://github.com/ovh/manager/commit/6e16b8c0534571fc30384b58d0cf08e2de101429))
+* **hub:** split api calls in hub ([4acda51](https://github.com/ovh/manager/commit/4acda512ff5371589fb34a493578f36bbaf2a87d))
+
+
+
 ## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.0.0...@ovh-ux/manager-billing-components@3.0.1) (2021-06-21)
 
 

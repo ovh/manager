@@ -1,3 +1,18 @@
+# [15.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.26.3...@ovh-ux/manager-web@15.27.0) (2021-06-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1018] ([f94b987](https://github.com/ovh/manager/commit/f94b987fb787ad7a62b2ae77100223ac68db6b1f))
+* **i18n:** add missing translations [CDS 1020] ([7d19b0f](https://github.com/ovh/manager/commit/7d19b0f01ac45070bb2fc0203bd99add053924d0))
+
+
+### Features
+
+* **domain-operation:** handle DomainUnlock operation translation ([#5174](https://github.com/ovh/manager/issues/5174)) ([b1c543f](https://github.com/ovh/manager/commit/b1c543f19ac78e072060e061ab66e1240d2afd49))
+
+
+
 ## [15.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.26.2...@ovh-ux/manager-web@15.26.3) (2021-06-23)
 
 

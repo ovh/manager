@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-order-tracking",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "description": "OVH order tracking",
   "keywords": [
@@ -45,8 +45,8 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
-    "@ovh-ux/ng-at-internet": "^5.6.2",
-    "@ovh-ux/ng-translate-async-loader": "^2.1.1",
+    "@ovh-ux/ng-at-internet": "^5.6.3",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.2",
     "@ovh-ux/ui-kit": "^4.4.1",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",

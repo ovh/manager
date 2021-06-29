@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-banner",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "private": true,
   "description": "A banner component useful for a specific event.",
   "keywords": [
@@ -41,8 +41,8 @@
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
-    "@ovh-ux/ng-at-internet": "^5.4.1",
-    "@ovh-ux/ng-translate-async-loader": "^2.1.1",
+    "@ovh-ux/ng-at-internet": "^5.6.3",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.2",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "ovh-api-services": "^11.2.0"

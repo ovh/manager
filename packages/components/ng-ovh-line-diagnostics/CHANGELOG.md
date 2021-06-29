@@ -1,3 +1,12 @@
+## [5.0.7](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.0.6...@ovh-ux/ng-ovh-line-diagnostics@5.0.7) (2021-06-29)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/component-rollup-config` to `v10.0.0` ([8eac31f](https://github.com/ovh/manager/commit/8eac31f81e46d1570c131cf55788d6435842ab6d))
+
+
+
 ## [5.0.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.0.5...@ovh-ux/ng-ovh-line-diagnostics@5.0.6) (2021-01-27)
 
 

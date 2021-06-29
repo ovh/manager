@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-export-csv",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Export data as CSV file.",
   "keywords": [
     "angularjs",

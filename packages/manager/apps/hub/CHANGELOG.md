@@ -1,3 +1,12 @@
+# [3.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.14.3...@ovh-ux/manager-hub-app@3.15.0) (2021-06-29)
+
+
+### Features
+
+* **hub:** split api calls in hub ([4acda51](https://github.com/ovh/manager/commit/4acda512ff5371589fb34a493578f36bbaf2a87d))
+
+
+
 ## [3.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.14.2...@ovh-ux/manager-hub-app@3.14.3) (2021-06-16)
 
 

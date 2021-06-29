@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-browser-alert",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Display an alert when your browser isn't supported",
   "keywords": [
     "angularjs",

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-tail-logs",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Poll a log API for displaying messages",
   "keywords": [
     "angularjs",

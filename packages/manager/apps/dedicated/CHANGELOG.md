@@ -1,3 +1,26 @@
+# [16.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.31.3...@ovh-ux/manager-dedicated@16.32.0) (2021-06-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1007] ([0acf42e](https://github.com/ovh/manager/commit/0acf42e58f61da59fccff7beb65bb74d074498ce))
+* **i18n:** add missing translations [CDS 1008] ([2b4a681](https://github.com/ovh/manager/commit/2b4a681ab24e507756b6586b54b32aec4055026f))
+* **i18n:** add missing translations [CDS 1013] ([1d627c9](https://github.com/ovh/manager/commit/1d627c96747b351a41b42062e85e25148ab79320))
+* **i18n:** add missing translations [CDS 1014] ([46a225f](https://github.com/ovh/manager/commit/46a225f7feb9142f8372cbaadcc1ba9fc6fcfd3e))
+* **i18n:** add missing translations [CDS 1015] ([262e1a9](https://github.com/ovh/manager/commit/262e1a99655e3bb9645b642b321fd014ce61a243))
+
+
+### Features
+
+* **dedicated:** move billing section into new module ([46975aa](https://github.com/ovh/manager/commit/46975aad8609e7678dc28ceac4bc8f36006045a6))
+
+
+### Performance Improvements
+
+* remove unecessary user certificates call ([#5162](https://github.com/ovh/manager/issues/5162)) ([24abeeb](https://github.com/ovh/manager/commit/24abeeb71e8b2e7766c3cdebdb28474afb213607))
+
+
+
 ## [16.31.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.31.2...@ovh-ux/manager-dedicated@16.31.3) (2021-06-24)
 
 
