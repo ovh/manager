@@ -246,8 +246,7 @@
             ></oui-header-tabs-divider>
             <oui-header-tabs-item
                 data-ng-if="!$ctrl.hosting.isCloudWeb && $ctrl.isEmailDomainAvailable"
-                href="{{ $ctrl.emailLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.emailLink"
+                data-on-click="$ctrl.goToEmails($ctrl.associatedEmail)"
             >
                 <span data-translate="hosting_tab_menu_emails"></span>
             </oui-header-tabs-item>
