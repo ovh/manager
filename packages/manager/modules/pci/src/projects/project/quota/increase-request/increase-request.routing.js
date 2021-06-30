@@ -17,6 +17,21 @@ export default /* @ngInject */ ($stateProvider) => {
           language: $translate.use(),
           serviceType: ISSUE_SERVICE_TYPE,
         }).$promise,
+      serviceOptions: /* @ngInject */ ($http, projectId) => {
+        const rxPlanCode = /quota-([0-9]+)vms/;
+        return $http
+          .get(`/order/cartServiceOption/cloud/${projectId}`)
+          .then(({ data }) => {
+            return data
+              .filter((option) => option.family === 'quota')
+              .sort((a, b) => {
+                return (
+                  parseInt(rxPlanCode.exec(a.planCode)[1], 10) -
+                  parseInt(rxPlanCode.exec(b.planCode)[1], 10)
+                );
+              });
+          });
+      },
       goBack: /* @ngInject */ ($state, CucCloudMessage) => (
         message = false,
         type = 'success',

@@ -7,6 +7,7 @@ import 'ovh-api-services';
 
 import component from './increase-request.component';
 import routing from './increase-request.routing';
+import service from './increase-request.service';
 
 const moduleName = 'ovhManagerPciProjectQuotaIncrease';
 
@@ -20,6 +21,7 @@ angular
   ])
   .config(routing)
   .component('pciProjectQuotaIncrease', component)
+  .service('pciProjectQuotaIncrease', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
