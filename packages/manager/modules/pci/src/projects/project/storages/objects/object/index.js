@@ -6,7 +6,7 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import 'ovh-api-services';
 
-import containers from '../../containers/container';
+import container from '../../containers/container';
 import deleteContainer from './delete';
 import addObject from './object/add';
 import deleteObject from './object/delete';
@@ -16,7 +16,7 @@ const moduleName = 'ovhManagerPciStoragesObjectsObjectObject';
 
 angular
   .module(moduleName, [
-    containers,
+    container,
     addObject,
     deleteContainer,
     deleteObject,

@@ -1,4 +1,4 @@
-export default class PciStoragesContainersController {
+export default class PciStoragesContainersListController {
   /* @ngInject */
   constructor($translate, CucCloudMessage) {
     this.$translate = $translate;
@@ -11,7 +11,7 @@ export default class PciStoragesContainersController {
 
   loadMessages() {
     this.messageHandler = this.CucCloudMessage.subscribe(
-      'pci.projects.project.storages.containers',
+      'pci.projects.project.storages.objects.list',
       {
         onMessage: () => this.refreshMessages(),
       },

@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.storages.objects.delete', {
+  $stateProvider.state('pci.projects.project.storages.objects.list.delete', {
     url: '/delete?containerId',
     views: {
       modal: {

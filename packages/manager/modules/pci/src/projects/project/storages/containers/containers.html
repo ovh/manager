@@ -1,105 +1,38 @@
 <div data-ui-view>
-    <div>
-        <oui-header
-            data-heading="{{:: 'pci_projects_project_storages_containers_' + ($ctrl.archive ? 'archive' : 'object') + '_title' | translate }}"
-            class="mb-3"
+    <div data-ovh-alert="{{ $ctrl.alerts.dashboard }}"></div>
+    <oui-header
+        class="mb-3"
+        data-heading="{{:: 'pci_projects_project_storages_containers_' + ($ctrl.archive ? 'archive' : 'object') + '_title' | translate }}"
+        data-description="{{::$ctrl.project.projectId }}"
+    >
+        <oui-guide-menu
+            data-text="{{:: 'pci_project_guides_header' | translate }}"
         >
-            <oui-guide-menu
-                data-text="{{:: 'pci_project_guides_header' | translate }}"
-            >
-                <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
-                    <span
-                        data-translate="pci_project_guides_header_all_guides"
-                    ></span>
-                </oui-guide-menu-item>
-            </oui-guide-menu>
-        </oui-header>
-
-        <cui-message-container
-            data-messages="$ctrl.messages"
-        ></cui-message-container>
-
-        <oui-datagrid data-rows="$ctrl.containers">
-            <oui-datagrid-column
-                data-title="'pci_projects_project_storages_containers_name_label' | translate"
-                data-property="name"
-                data-type="string"
-                data-searchable
-                data-sortable="asc"
-                data-filterable
-            >
-                <a
-                    data-ng-href="{{:: $ctrl.containerLink($row) }}"
-                    data-ng-bind="::$value"
-                    class="text-truncate"
-                ></a>
-            </oui-datagrid-column>
-            <oui-datagrid-column
-                data-title="'pci_projects_project_storages_containers_region_label' | translate"
-                data-property="region"
-                data-type="string"
-                data-sortable
-                data-filterable
-            ></oui-datagrid-column>
-            <oui-datagrid-column
-                data-title="'pci_projects_project_storages_containers_containerType_label' | translate"
-                data-property="containerType"
-                data-sortable
-                data-type="string"
-            >
+            <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
                 <span
-                    data-ng-bind="'pci_projects_project_storages_containers_containerType_' + $row.containerType | translate"
+                    data-translate="pci_project_guides_header_all_guides"
                 ></span>
-            </oui-datagrid-column>
-            <oui-datagrid-column
-                data-title="'pci_projects_project_storages_containers_storedObjects_label' | translate"
-                data-property="storedObjects"
-                data-type="number"
-                data-sortable
-                data-filterable
-            >
-            </oui-datagrid-column>
-            <oui-datagrid-column
-                data-title="'pci_projects_project_storages_containers_storedBytes_label' | translate"
-                data-property="storedBytes"
-                data-type="number"
-                data-sortable
-            >
-                <span data-ng-bind="$value | RAUnitsBits"></span>
-            </oui-datagrid-column>
-
-            <oui-action-menu data-compact data-placement="end">
-                <oui-action-menu-item data-on-click="$ctrl.viewContainer($row)">
-                    <span
-                        data-ng-bind="'pci_projects_project_storages_containers_view_' + ($ctrl.archive ? 'archive' : 'object') + '_label' | translate"
-                    ></span>
-                </oui-action-menu-item>
-                <oui-action-menu-item
-                    data-on-click="$ctrl.deleteContainer($row)"
-                >
-                    <span
-                        data-translate="pci_projects_project_storages_containers_delete_label"
-                    ></span>
-                </oui-action-menu-item>
-            </oui-action-menu>
-
-            <oui-datagrid-topbar>
-                <button
-                    class="oui-button oui-button_secondary"
-                    data-ng-click="$ctrl.addContainer()"
-                    data-track-on="click"
-                    data-track-name="PCI_PROJECTS_CONTAINERS_ADD"
-                    data-track-type="navigation"
-                >
-                    <i
-                        class="oui-icon oui-icon-add pr-1"
-                        aria-hidden="true"
-                    ></i>
-                    <span
-                        data-ng-bind="'pci_projects_project_storages_blocks_add_' + ($ctrl.archive ? 'archive' : 'object') + '_label' | translate"
-                    ></span>
-                </button>
-            </oui-datagrid-topbar>
-        </oui-datagrid>
-    </div>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.containerListLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.containerListLink"
+                ><span
+                    data-translate="pci_projects_project_storages_containers_my_containers_label"
+                ></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.userListLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.userListLink"
+                ><span
+                    data-translate="pci_projects_project_storages_containers_s3_users_label"
+                ></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-header>
+    <div
+        class="container-fluid w-100 h-100 pt-4 px-3 px-md-5"
+        data-ui-view="containersView"
+    ></div>
 </div>

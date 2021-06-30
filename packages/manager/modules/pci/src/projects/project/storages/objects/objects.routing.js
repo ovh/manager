@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .then((containers) =>
           containers.length === 0
             ? { state: 'pci.projects.project.storages.objects.onboarding' }
-            : false,
+            : { state: 'pci.projects.project.storages.objects.list' },
         ),
     resolve: {
       archive: () => false,
@@ -18,28 +18,17 @@ export default /* @ngInject */ ($stateProvider) => {
         archive,
         projectId,
       ) => PciProjectStorageContainersService.getAll(projectId, archive),
-      addContainer: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.storages.objects.add', {
+      containerListLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.storages.objects.list', {
           projectId,
         }),
-      viewContainer: /* @ngInject */ ($state, projectId) => (container) =>
-        $state.go('pci.projects.project.storages.objects.object', {
+      currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
+        $state.href($state.current.name, $transition$.params()),
+      userListLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.storages.objects.user-list', {
           projectId,
-          containerId: container.id,
         }),
-      deleteContainer: /* @ngInject */ ($state, projectId) => (container) =>
-        $state.go('pci.projects.project.storages.objects.delete', {
-          projectId,
-          containerId: container.id,
-        }),
-      containerLink: /* @ngInject */ ($state, projectId) => (container) =>
-        $state.href('pci.projects.project.storages.objects.object', {
-          projectId,
-          containerId: container.id,
-        }),
-
       goToStorageContainers: /* @ngInject */ (
-        $rootScope,
         CucCloudMessage,
         $state,
         projectId,
