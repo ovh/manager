@@ -2,9 +2,14 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.objects.object', {
     url: '/{containerId}',
     component: 'pciProjectStorageContainersContainer',
+    params: {
+      defaultCriteria: [],
+    },
     resolve: {
       containerId: /* @ngInject */ ($transition$) =>
         $transition$.params().containerId,
+      defaultCriteria: /* @ngInject */ ($transition$) =>
+        $transition$.params().defaultCriteria,
       container: /* @ngInject */ (
         PciProjectStorageContainersService,
         projectId,
