@@ -5,7 +5,7 @@ import '@ovh-ux/ui-kit';
 import template from './cdn-dedicated-domain-rule-flush.html';
 import controller from './cdn-dedicated-domain-rule-flush.controller';
 
-const moduleName = 'cdnDedicatedDomainRuleDelete';
+const moduleName = 'cdnDedicatedDomainRuleFlush';
 
 angular
   .module(moduleName, ['oui', 'pascalprecht.translate'])
