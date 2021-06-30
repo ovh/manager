@@ -3,7 +3,7 @@
   "sign_up_form_enum_legalform_corporation": "Company",
   "sign_up_form_enum_legalform_personalcorporation": "Individual company",
   "sign_up_form_enum_legalform_individual": "Private individual",
-  "sign_up_form_enum_legalform_administration": "Public authority",
+  "sign_up_form_enum_legalform_administration": "Public administration",
   "sign_up_form_enum_legalform_other": "Other",
   "sign_up_form_enum_country_AD": "Andorra",
   "sign_up_form_enum_country_AE": "United Arab Emirates",
