@@ -1,6 +1,9 @@
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
-<oui-datagrid data-rows="$ctrl.containers">
+<oui-datagrid
+    data-rows="$ctrl.containers"
+    data-ng-if="$ctrl.containers.length > 0"
+>
     <oui-datagrid-column
         data-title="'pci_projects_project_storages_containers_name_label' | translate"
         data-property="name"

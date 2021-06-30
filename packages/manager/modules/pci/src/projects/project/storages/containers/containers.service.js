@@ -386,6 +386,37 @@ export default class PciStoragesContainersService {
     return this.$q.resolve();
   }
 
+  getS3Users(projectId) {
+    return this.OvhApiCloudProjectUser.v6()
+      .query({
+        serviceName: projectId,
+      })
+      .$promise.then((users) => {
+        const userList = [];
+        if (users.length > 0) {
+          return this.$q
+            .all(
+              map(users, (user) =>
+                this.$http
+                  .get(
+                    `/cloud/project/${projectId}/user/${user.id}/s3Credentials`,
+                  )
+                  .then(({ data }) => {
+                    if (data.length > 0) {
+                      userList.push({ ...user, s3Credentials: data });
+                    }
+                    return data;
+                  }),
+              ),
+            )
+            .then(() => {
+              return userList;
+            });
+        }
+        return [];
+      });
+  }
+
   getPriceEstimation(ovhSubsidiary) {
     return this.OvhApiOrderCatalogPublic.v6()
       .get({

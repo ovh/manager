@@ -7,6 +7,7 @@ export default {
   bindings: {
     addContainer: '<',
     archive: '<',
+    containerLink: '<',
     containers: '<',
     deleteContainer: '<',
     goToStorageContainers: '<',

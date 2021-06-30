@@ -7,17 +7,13 @@ import '@ovh-ux/ui-kit';
 import 'ovh-api-services';
 import 'angular-ui-bootstrap';
 
-import component from './containers.component';
-import service from './containers.service';
-import users from './user-list';
-import containerList from './list';
+import component from './user-list.component';
+import routing from './user-list.routing';
 
-const moduleName = 'ovhManagerPciStoragesContainers';
+const moduleName = 'ovhManagerPciStoragesContainersUserList';
 
 angular
   .module(moduleName, [
-    containerList,
-    users,
     'ngTranslateAsyncLoader',
     'oui',
     'ovh-api-services',
@@ -26,8 +22,8 @@ angular
     'ui.router',
     'ui.bootstrap',
   ])
-  .component('pciProjectStorageContainers', component)
-  .service('PciProjectStorageContainersService', service)
+  .component('pciProjectStorageContainersUserList', component)
+  .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

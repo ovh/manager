@@ -121,6 +121,7 @@ export default (containerEl, environment) => {
     .run(
       /* @ngInject */ ($rootScope, $state) => {
         $state.defaultErrorHandler((error) => {
+          console.log(error);
           if (error.type === RejectType.ERROR) {
             $rootScope.$emit('ovh::sidebar::hide');
             $state.go(
