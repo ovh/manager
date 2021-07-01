@@ -1,4 +1,0 @@
-{
-  "kube_node_pool_autoscaling_scale_success": "Modificando su pool de nodos...",
-  "kube_node_pool_autoscaling_scale_error": "Se ha producido un error al modificar el pool de nodos: {{message}}"
-}

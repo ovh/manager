@@ -15,6 +15,25 @@ export default /* @ngInject */ ($stateProvider) =>
         ) => dataProcessingService.getJob(projectId, jobId),
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('data_processing_details_logs_title'), // update breadcrumb with "/ Logs"
+
+        /**
+         * Redirect to the object storage and project provided while including a filter on the job id
+         */
+        redirectToObjectStorage: /* @ngInject */ ($state, jobId) => (
+          projectId,
+          containerId,
+        ) =>
+          $state.go('pci.projects.project.storages.objects.object', {
+            projectId,
+            containerId,
+            defaultCriteria: [
+              {
+                property: 'name',
+                operator: 'contains',
+                value: jobId,
+              },
+            ],
+          }),
       },
     },
   );

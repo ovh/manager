@@ -3,7 +3,6 @@
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
 <oui-stepper>
-    <!--Main setting-->
     <oui-step-form
         data-header="{{:: 'kube_add_node_pool_config_title' | translate }}"
         data-editable="!$ctrl.isAdding"
@@ -27,7 +26,6 @@
             />
         </oui-field>
     </oui-step-form>
-
     <!-- select node pool configuration -->
     <oui-step-form
         data-header="{{:: 'kube_common_node_pool_title' | translate }}"
@@ -45,30 +43,12 @@
             data-service-name="{{:: $ctrl.projectId }}"
             data-selected-flavor="$ctrl.nodePool.flavor"
             data-display-selected-flavor="$ctrl.displaySelectedFlavor"
+            data-node-count="$ctrl.nodePool.nodeCount"
             data-flavors="$ctrl.flavors"
         >
         </node-pool-configuration>
     </oui-step-form>
 
-    <!--Autoscaling-->
-    <oui-step-form
-        data-header="{{:: 'kube_common_node_pool_autoscaling_title' | translate }}"
-        data-editable="!$ctrl.isAdding"
-        data-on-focus="$ctrl.displayNodePoolSizing = true"
-        data-on-submit="$ctrl.displayNodePoolSizing = false"
-        name="nodepool_add_configuration"
-        data-loading="$ctrl.loadingFlavors"
-        valid="$ctrl.nodePool.autoscaling.isValidScale"
-        prevent-next
-    >
-        <node-pool-autoscaling
-            data-is-edit-mode="false"
-            data-node-pool="$ctrl.nodePool"
-            data-display-node-pool-sizing="$ctrl.displayNodePoolSizing">
-        </node-pool-autoscaling>
-    </oui-step-form>
-
-    <!--Billing-->
     <oui-step-form
         data-header="{{:: 'kube_add_billing_anti_affinity_title' | translate }}"
         data-editable="!$ctrl.isAdding"

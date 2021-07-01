@@ -53,7 +53,8 @@
             data-type-options="$ctrl.datacenterEnumFilter"
         >
             <span
-                data-translate="{{:: 'server_datacenter_' + $ctrl.constructor.toUpperSnakeCase($value) }}"
+                data-translate="{{:: 'server_datacenter_' + $ctrl.constructor.toUpperSnakeCase($value).split('_')[0] }}"
+                data-translate-values="{ number:  $ctrl.constructor.toUpperSnakeCase($value).split('_')[1] }"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column

@@ -1,14 +1,12 @@
-import controller from './scale.controller';
-import template from './scale.template.html';
+import controller from './controller';
+import template from './template.html';
 
 const component = {
   bindings: {
-    autoscaling: '<',
     goBack: '<',
     kubeId: '<',
-    nodePool: '<',
     nodePoolId: '<',
-    nodePoolName: '<',
+    nodeCount: '<',
     projectId: '<',
     sendKubeTrack: '<',
   },

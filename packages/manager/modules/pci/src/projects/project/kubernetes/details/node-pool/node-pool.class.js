@@ -18,8 +18,4 @@ export default class NodePool {
   isError() {
     return this.status === 'ERROR';
   }
-
-  getNodePoolLimitsLabel() {
-    return `(min: ${this.minNodes}, max: ${this.maxNodes})`;
-  }
 }
