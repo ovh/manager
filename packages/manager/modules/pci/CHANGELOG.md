@@ -1,3 +1,18 @@
+## [5.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.30.0...@ovh-ux/manager-pci@5.30.1) (2021-07-01)
+
+
+### Bug Fixes
+
+* **project.storage.containers:** use single call for deletion ([#5194](https://github.com/ovh/manager/issues/5194)) ([e24d7e0](https://github.com/ovh/manager/commit/e24d7e00b75c7d791358c5381f05345c60c6ee3d))
+* redirect user to the object storage page on the right container ([#5165](https://github.com/ovh/manager/issues/5165)) ([174a175](https://github.com/ovh/manager/commit/174a175b07b9b1096fab808a6ac22dd7f086982f))
+
+
+### Reverts
+
+* **kube:** add autoscaling to node pools ([4f14978](https://github.com/ovh/manager/commit/4f14978c73609297c61ca6144c40c775eb33b19b))
+
+
+
 # [5.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.29.6...@ovh-ux/manager-pci@5.30.0) (2021-06-29)
 
 

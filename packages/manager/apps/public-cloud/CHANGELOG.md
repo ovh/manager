@@ -1,3 +1,12 @@
+## [4.15.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.15.3...@ovh-ux/manager-public-cloud@4.15.4) (2021-07-01)
+
+
+### Bug Fixes
+
+* **deps:** add missing `@ovh-ux/manager-catalog-price` package ([add4e3a](https://github.com/ovh/manager/commit/add4e3a52c546aaecf7337011425c1c3354c524d))
+
+
+
 ## [4.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.15.2...@ovh-ux/manager-public-cloud@4.15.3) (2021-06-29)
 
 

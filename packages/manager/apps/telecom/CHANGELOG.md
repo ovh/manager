@@ -1,3 +1,12 @@
+## [13.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.23.0...@ovh-ux/manager-telecom@13.23.1) (2021-07-01)
+
+
+### Bug Fixes
+
+* **telephony.phone.order:** use customer country ([#5192](https://github.com/ovh/manager/issues/5192)) ([f448ed7](https://github.com/ovh/manager/commit/f448ed7bfd51208eefcdaaea93e49aa1f94fa14d))
+
+
+
 # [13.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.22.2...@ovh-ux/manager-telecom@13.23.0) (2021-06-29)
 
 
