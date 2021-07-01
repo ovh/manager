@@ -1,3 +1,13 @@
+## [16.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.32.0...@ovh-ux/manager-dedicated@16.32.1) (2021-07-01)
+
+
+### Bug Fixes
+
+* **servers:** display right datacenter location ([#5196](https://github.com/ovh/manager/issues/5196)) ([fa3a8bc](https://github.com/ovh/manager/commit/fa3a8bc008422b2ae5c6df4dc0883c8ba2539131))
+* **user-security:** fix IP restriction header ([#5189](https://github.com/ovh/manager/issues/5189)) ([9214f8c](https://github.com/ovh/manager/commit/9214f8cd104648165841b992e6580869ba71fd53))
+
+
+
 # [16.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.31.3...@ovh-ux/manager-dedicated@16.32.0) (2021-06-29)
 
 

@@ -1,3 +1,12 @@
+## [15.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.27.0...@ovh-ux/manager-web@15.27.1) (2021-07-01)
+
+
+### Bug Fixes
+
+* **hosting:** update redirection to mailing list ([#5193](https://github.com/ovh/manager/issues/5193)) ([7a732e4](https://github.com/ovh/manager/commit/7a732e431b7bbda652d1188079e1dad0edef8fec))
+
+
+
 # [15.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.26.3...@ovh-ux/manager-web@15.27.0) (2021-06-29)
 
 

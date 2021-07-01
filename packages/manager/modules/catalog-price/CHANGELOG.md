@@ -1,3 +1,12 @@
+## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.4.0...@ovh-ux/manager-catalog-price@1.4.1) (2021-07-01)
+
+
+### Bug Fixes
+
+* **catalog-price:** fix binding for dynamic price ([bb0f70c](https://github.com/ovh/manager/commit/bb0f70c6d1b1e43ccbf315f5bb837a8c006302c7))
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.3.3...@ovh-ux/manager-catalog-price@1.4.0) (2021-06-15)
 
 
