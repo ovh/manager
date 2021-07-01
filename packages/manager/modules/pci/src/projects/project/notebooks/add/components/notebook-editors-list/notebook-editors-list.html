@@ -1,0 +1,24 @@
+<div data-ng-if="$ctrl.displayNotebookEditors">
+    <!--Notebook editor description-->
+    <p class="mb-1" data-translate="pci_notebook_add_editors_title"></p>
+
+    <!--Notebook editors-->
+    <div class="row">
+        <oui-select-picker
+            class="d-inline-block col-md-6 col-xl-3 my-3"
+            data-ng-repeat="editor in $ctrl.editors track by editor.id"
+            data-name="{{:: editor.name}}"
+            data-label="{{:: 'pci_notebook_add_editors_editor_' + editor.id | translate}}"
+            data-picture="{{:: editor.logoUrl}}"
+            data-model="$ctrl.notebookModel.selected.editor"
+            data-on-change="$ctrl.onEditorChange(modelValue)"
+            data-values="[editor]"
+            data-variant="light"
+            data-required
+        >
+            <oui-select-picker-section>
+                <p data-ng-bind=":: editor.description"></p>
+            </oui-select-picker-section>
+        </oui-select-picker>
+    </div>
+</div>
