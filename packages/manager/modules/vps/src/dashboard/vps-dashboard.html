@@ -15,13 +15,13 @@
     </a>
 </oui-message>
 <oui-message
-    data-ng-if="$ctrl.vpsMigrationTask && $ctrl.vps2014MigrationData.inAutoMigrationPhase"
+    data-ng-if="$ctrl.vpsMigrationTask"
     data-type="warning"
 >
     <p
         data-ng-if="$ctrl.vpsMigrationTask.state === 'todo'"
         data-translate="vps_dashboard_auto_migration_warning"
-        data-translate-values="{ days: $ctrl.vps2014MigrationData.migrationScheduledInDays }"
+        data-translate-values="{ days: $ctrl.vpsMigrationData.migrationScheduledInDays }"
     ></p>
     <p
         data-ng-if="$ctrl.vpsMigrationTask.state !== 'todo'"

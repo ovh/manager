@@ -1,5 +1,6 @@
 import { pricingConstants } from '@ovh-ux/manager-product-offers';
 import { MEMORY_MULTIPLE, MIGRATE_FAQ_LINK } from './migrate.constants';
+import capitalize from 'lodash/capitalize';
 
 export default class {
   /* @ngInject */
@@ -34,6 +35,10 @@ export default class {
       this.newPlan?.pricings,
       pricingConstants.PRICING_CAPACITIES.RENEW,
     ).price;
+  }
+
+  getVpsName() {
+    return capitalize(this.newPlan.planCode.split('-')[1]);
   }
 
   getStorageCapacity() {

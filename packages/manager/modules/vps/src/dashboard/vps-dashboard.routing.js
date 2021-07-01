@@ -2,7 +2,10 @@ import filter from 'lodash/filter';
 import head from 'lodash/head';
 import 'moment';
 
-import { DASHBOARD_FEATURES } from './vps-dashboard.constants';
+import {
+  DASHBOARD_FEATURES,
+  VPS_MIGRATION_AVAILABLE_STATUS,
+} from './vps-dashboard.constants';
 import component from './vps-dashboard.component';
 
 import VpsConfigurationTile from './tile/configuration/service';
@@ -147,7 +150,9 @@ export default /* @ngInject */ ($stateProvider) => {
       vpsMigration: /* @ngInject */ ($http, serviceName) =>
         $http
           .get(`/vps/${serviceName}/migration2016`)
-          .then(({ data }) => data)
+          .then(({ data }) => {
+            return (data.status === VPS_MIGRATION_AVAILABLE_STATUS) ? data : false;
+          })
           .catch(() => false),
       migrationLink: /* @ngInject */ ($state, serviceName) =>
         $state.href('vps.detail.dashboard.migrate', {

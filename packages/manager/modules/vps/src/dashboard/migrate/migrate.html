@@ -50,7 +50,7 @@
 
 <oui-select-picker
     class="w-25"
-    label="{{:: 'vps_dashboard_migrate_new_range_title' | translate }}"
+    label="{{:: 'vps_dashboard_migrate_new_range_title' | translate : {name: $ctrl.getVpsName()} }}"
     model="$ctrl.selectedPlan"
 >
     <oui-select-picker-section>
