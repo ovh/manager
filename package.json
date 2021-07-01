@@ -69,7 +69,7 @@
     "git-raw-commits": "^2.0.2",
     "git-url-parse": "^11.1.2",
     "htmlhint": "^0.15.1",
-    "husky": "^6.0.0",
+    "husky": "^7.0.0",
     "inquirer": "^7.0.6",
     "lerna": "^3.18.1",
     "lint-staged": "^11.0.0",
