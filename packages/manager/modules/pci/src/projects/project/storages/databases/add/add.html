@@ -127,13 +127,26 @@
             />
         </oui-field>
 
+        <oui-message
+            data-ng-if="!($ctrl.model.flavor.supportsPublicNetwork && $ctrl.model.flavor.supportsPrivateNetwork)"
+            data-type="info"
+        >
+            <span
+                data-ng-bind="(
+                    $ctrl.model.flavor.supportsPublicNetwork
+                        ? 'pci_database_add_network_mode_private_incompatible'
+                        : 'pci_database_add_network_mode_public_incompatible'
+                    ) | translate"
+            ></span>
+        </oui-message>
+
         <oui-field
             data-label="{{ :: 'pci_database_add_network_mode_label' | translate }}"
         >
             <oui-radio-group data-model="$ctrl.model.usePrivateNetwork">
                 <oui-radio
                     data-value="false"
-                    data-disabled="$ctrl.loadingSubnets"
+                    data-disabled="$ctrl.loadingSubnets || !$ctrl.model.flavor.supportsPublicNetwork"
                 >
                     <span
                         data-translate="pci_database_add_network_mode_public"
@@ -141,7 +154,7 @@
                 </oui-radio>
                 <oui-radio
                     data-value="true"
-                    data-disabled="$ctrl.loadingSubnets"
+                    data-disabled="$ctrl.loadingSubnets || !$ctrl.model.flavor.supportsPrivateNetwork"
                 >
                     <span
                         data-translate="pci_database_add_network_mode_private"
