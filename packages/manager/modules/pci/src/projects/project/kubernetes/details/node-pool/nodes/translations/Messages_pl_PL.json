@@ -46,6 +46,5 @@
   "kube_nodes_switch_billing_type_error": "Nie można zmienić płatności na miesięczną: {{ message }}.",
   "kube_nodes_common_actions": "Operacje",
   "kube_nodes_add_nodes": "Dodaj węzły",
-  "kube_nodes_delete_nodes": "Usuń węzły",
-  "kube_nodes_status_REDEPLOYING": "Wdrażanie zmian"
+  "kube_nodes_delete_nodes": "Usuń węzły"
 }

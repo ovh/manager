@@ -8,6 +8,21 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/nodes',
       component: 'ovhManagerPciProjectKubernetesNodePoolNodesComponent',
       resolve: {
+        addNode: /* @ngInject */ ($state, kubeId, projectId, nodePoolId) => (
+          flavor,
+          nodeCount,
+        ) =>
+          $state.go(
+            'pci.projects.project.kubernetes.details.nodepools.details.nodes.add',
+            {
+              kubeId,
+              projectId,
+              nodePoolId,
+              flavor,
+              nodeCount,
+            },
+          ),
+
         deleteNode: /* @ngInject */ ($state, kubeId, projectId, nodePoolId) => (
           nodeId,
           nodeName,
@@ -20,6 +35,19 @@ export default /* @ngInject */ ($stateProvider) => {
               nodePoolId,
               nodeId,
               nodeName,
+            },
+          ),
+
+        bulkDelete: /* @ngInject */ ($state, kubeId, projectId, nodePoolId) => (
+          nodeCount,
+        ) =>
+          $state.go(
+            'pci.projects.project.kubernetes.details.nodepools.details.nodes.bulk-delete',
+            {
+              kubeId,
+              projectId,
+              nodePoolId,
+              nodeCount,
             },
           ),
 

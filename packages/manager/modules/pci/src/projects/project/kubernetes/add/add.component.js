@@ -5,7 +5,6 @@ export default {
   bindings: {
     addPrivateNetworksLink: '<',
     antiAffinityMaxNodes: '<',
-    autoscaling: '<',
     highestVersion: '<',
     goBack: '<',
     projectId: '<',

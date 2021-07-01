@@ -3,7 +3,7 @@ import get from 'lodash/get';
 import some from 'lodash/some';
 
 import Datacenter from '../../../../components/project/regions-list/datacenter.class';
-import { READY_STATUS } from './add.constants';
+import { READY_STATUS, DEFAULT_NODE_COUNT } from './add.constants';
 
 export default class {
   /* @ngInject */
@@ -37,8 +37,8 @@ export default class {
       nodePool: {
         antiAffinity: false,
         flavor: null,
+        nodeCount: DEFAULT_NODE_COUNT,
         monthlyBilling: false,
-        autoscaling: this.autoscaling,
       },
     };
 
@@ -60,16 +60,12 @@ export default class {
   create() {
     this.sendKubeTrack('add::confirm');
 
-    const { nodePool } = this.cluster;
     this.isAdding = true;
     const options = {
-      flavorName: nodePool.flavor.name,
-      antiAffinity: nodePool.antiAffinity,
-      monthlyBilled: nodePool.monthlyBilling,
-      autoscale: nodePool.autoscaling.autoscale,
-      minNodes: nodePool.autoscaling.nodes.lowest.value,
-      desiredNodes: nodePool.autoscaling.nodes.desired.value,
-      maxNodes: nodePool.autoscaling.nodes.highest.value,
+      desiredNodes: this.cluster.nodePool.nodeCount,
+      flavorName: this.cluster.nodePool.flavor.name,
+      antiAffinity: this.cluster.nodePool.antiAffinity,
+      monthlyBilled: this.cluster.nodePool.monthlyBilling,
     };
     return this.Kubernetes.createCluster(
       this.projectId,
@@ -164,10 +160,8 @@ export default class {
   }
 
   onNodePoolSubmit() {
-    const { nodes } = this.cluster.nodePool.autoscaling;
-
     this.displaySelectedFlavor = true;
-    if (nodes.desired.value > this.antiAffinityMaxNodes) {
+    if (this.cluster.nodePool.nodeCount > this.antiAffinityMaxNodes) {
       this.cluster.nodePool.antiAffinity = false;
     }
   }

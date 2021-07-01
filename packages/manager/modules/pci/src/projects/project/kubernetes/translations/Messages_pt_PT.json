@@ -9,7 +9,7 @@
   "kube_common_save": "Guardar",
   "kube_common_cancel": "Cancelar",
   "kube_common_delete": "Eliminar",
-  "kube_common_node_pool_title": "Configure o seu tipo de nós",
+  "kube_common_node_pool_title": "Configure o seu pool de nós",
   "kube_common_billing_type_title": "Faturação e anti-afinidade",
   "kube_common_create_node_pool": "Criar um pool de nós",
   "kube_common_flavor_load_error": "Falha ao alterar os nós: {{message}}",
@@ -19,7 +19,6 @@
   "kubernetes_add_private_network_label": "Rede privada associada",
   "kubernetes_add_private_network_none": "Nenhum (IP públicos)",
   "kubernetes_add_private_network_description": "Por predefinição, os seus nós de trabalho dispõem de um IPv4 público. Se escolher uma rede privada, os IP públicos destes nós serão utilizados exclusivamente para a sua administração/ligação ao painel de controlo Kubernetes, e os seus nós receberão um IP na vLAN da rede privada escolhida.",
-  "kubernetes_add_private_network_add": "Criar uma rede privada",
-  "kube_common_node_pool_autoscaling_title": "Configurar o tamanho do pool de nós",
-  "kube_list_id": "ID"
+  "kube_list_id": "ID",
+  "kubernetes_add_private_network_add": "Criar uma rede privada"
 }
