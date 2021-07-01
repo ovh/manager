@@ -18,5 +18,10 @@
   "pci_projects_project_quota_core": "vCPU",
   "pci_projects_project_quota_ram": "RAM",
   "pci_projects_project_quota_open_new_tab": "Apre una nuova scheda",
-  "pci_projects_project_quota_threshold_reached": "quota limitata"
+  "pci_projects_project_quota_threshold_reached": "quota limitata",
+  "pci_projects_project_quota_autoscaling": "Quota autoscaling",
+  "pci_projects_project_quota_autoscaling_on": "Attivo",
+  "pci_projects_project_quota_autoscaling_off": "Disattivato",
+  "pci_projects_project_quota_autoscaling_error": "Si è verificato un errore durante l'aggiornamento del quota autoscaling.",
+  "pci_projects_project_quota_autoscaling_help": "La tua quota si evolve automaticamente in base all’utilizzo e secondo una serie di criteri."
 }
