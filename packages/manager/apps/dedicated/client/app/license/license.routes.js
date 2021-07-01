@@ -1,7 +1,7 @@
 import dashboardTemplate from './license.html';
 import dashboardCtrl from './license.controller';
 
-export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.license', {
     url: '/license',
     template: '<ui-view/>',
@@ -19,9 +19,5 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     resolve: {
       hideBreadcrumb: () => true,
     },
-  });
-
-  $urlRouterProvider.when(/^\/configuration\/license/, () => {
-    window.location.href = window.location.href.replace('/configuration', '');
   });
 };
