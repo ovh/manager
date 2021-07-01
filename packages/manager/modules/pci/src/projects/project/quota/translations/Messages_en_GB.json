@@ -18,5 +18,10 @@
   "pci_projects_project_quota_core": "vCPU",
   "pci_projects_project_quota_ram": "RAM",
   "pci_projects_project_quota_open_new_tab": "Opens a new tab",
-  "pci_projects_project_quota_threshold_reached": "limited quota"
+  "pci_projects_project_quota_threshold_reached": "limited quota",
+  "pci_projects_project_quota_autoscaling": "Auto-scaling quota",
+  "pci_projects_project_quota_autoscaling_on": "Enabled",
+  "pci_projects_project_quota_autoscaling_off": "Disabled",
+  "pci_projects_project_quota_autoscaling_error": "An error has occurred updating the auto-scaling quota.",
+  "pci_projects_project_quota_autoscaling_help": "Your quota will be automatically increased depending on your usage, and based on a certain number of criteria."
 }
