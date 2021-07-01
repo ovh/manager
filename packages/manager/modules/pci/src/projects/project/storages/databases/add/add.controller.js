@@ -82,7 +82,7 @@ export default class {
   }
 
   onFlavorSelect() {
-    this.model.usePrivateNetwork = false;
+    this.model.usePrivateNetwork = !this.model.flavor.supportsPublicNetwork;
     this.model.privateNetwork = this.defaultPrivateNetwork;
     this.model.subnet = null;
     this.model.name = `${this.model.engine.name}-${this.model.flavor.name}-${this.model.plan.name}-`;
