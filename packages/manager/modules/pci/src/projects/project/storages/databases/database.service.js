@@ -32,6 +32,7 @@ export default class DatabaseService {
   static getIcebergHeaders() {
     return {
       headers: {
+        Pragma: 'no-cache',
         'X-Pagination-Mode': 'CachedObjectList-Pages',
         'X-Pagination-Size': 50000,
       },
