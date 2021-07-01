@@ -5,7 +5,7 @@ import 'oclazyload';
 const moduleName = 'licenseModuleLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
-  /* @ngInject */ ($stateProvider) => {
+  /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     $stateProvider.state('app.license.**', {
       url: '/license',
       lazyLoad: ($transition$) => {
@@ -15,6 +15,10 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
           $ocLazyLoad.inject(mod.default || mod),
         );
       },
+    });
+
+    $urlRouterProvider.when(/^\/configuration\/license/, () => {
+      window.location.href = window.location.href.replace('/configuration', '');
     });
   },
 );
