@@ -9,7 +9,7 @@
   "kube_common_save": "Speichern",
   "kube_common_cancel": "Abbrechen",
   "kube_common_delete": "Löschen",
-  "kube_common_node_pool_title": "Konfigurieren Sie Ihren Node-Typ",
+  "kube_common_node_pool_title": "Konfigurieren Sie Ihren Node-Pool",
   "kube_common_billing_type_title": "Abrechnung und Anti-Affinität",
   "kube_common_create_node_pool": "Node-Pool erstellen",
   "kube_common_flavor_load_error": "Laden der Nodes fehlgeschlagen: {{message}}",
@@ -19,7 +19,6 @@
   "kubernetes_add_private_network_label": "Verbundenes privates Netzwerk",
   "kubernetes_add_private_network_none": "Keine (öffentlichen IPs)",
   "kubernetes_add_private_network_description": "Standardmäßig verfügen Ihre Worker-Nodes über eine öffentliche IPv4. Wenn Sie sich für ein privates Netzwerk entscheiden, werden die öffentlichen IP-Adressen dieser Nodes ausschließlich für deren Verwaltung und der Verbindung zur Kubernetes-Control-Panel-Ebene verwendet. Ihren Nodes wird eine IP im vLAN des gewählten privaten Netzwerks zugewiesen.",
-  "kubernetes_add_private_network_add": "Privates Netzwerk erstellen",
-  "kube_common_node_pool_autoscaling_title": "Größe des Node-Pools konfigurieren",
-  "kube_list_id": "ID"
+  "kube_list_id": "ID",
+  "kubernetes_add_private_network_add": "Privates Netzwerk erstellen"
 }

@@ -8,13 +8,4 @@ export default class NodePoolAntiAffinityCtrl {
       delete this.nodePool.maxNodes;
     }
   }
-
-  isInvalidAntiAffinity() {
-    const { autoscale, nodes } = this.nodePool.autoscaling;
-
-    return (
-      (!autoscale && nodes.desired.value > this.antiAffinityMaxNodes) ||
-      (autoscale && nodes.highest.value > this.antiAffinityMaxNodes)
-    );
-  }
 }

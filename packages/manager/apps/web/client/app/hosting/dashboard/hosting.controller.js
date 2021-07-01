@@ -11,6 +11,7 @@ import union from 'lodash/union';
 export default class {
   /* @ngInject */
   constructor(
+    $http,
     $scope,
     $rootScope,
     $location,
@@ -33,7 +34,6 @@ export default class {
     cronLink,
     currentActiveLink,
     databaseLink,
-    emailLink,
     emailOptionIds,
     emailOptionDetachInformation,
     envvarsLink,
@@ -44,6 +44,7 @@ export default class {
     generalInformationLink,
     goToDetachEmail,
     goToDetachPrivateDB,
+    goToEmails,
     WucUser,
     HostingDatabase,
     HostingDomain,
@@ -62,6 +63,7 @@ export default class {
     PrivateDatabase,
     privateDatabasesDetachable,
     privateDatabasesIds,
+    serviceName,
     runtimesLink,
     taskLink,
     user,
@@ -69,6 +71,7 @@ export default class {
     HOSTING_STATUS,
     OVH_ORDER_URLS,
   ) {
+    this.$http = $http;
     this.$scope = $scope;
     this.$scope.cdnProperties = cdnProperties;
     this.$scope.cdnRange = cdnRange;
@@ -93,7 +96,7 @@ export default class {
     this.cronLink = cronLink;
     this.currentActiveLink = currentActiveLink;
     this.databaseLink = databaseLink;
-    this.emailLink = emailLink;
+    this.goToEmails = goToEmails;
     this.emailOptionIds = emailOptionIds;
     this.emailOptionDetachInformation = emailOptionDetachInformation;
     this.envvarsLink = envvarsLink;
@@ -126,6 +129,7 @@ export default class {
     this.user = user;
     this.userLogsLink = userLogsLink;
     this.OVH_ORDER_URLS = OVH_ORDER_URLS;
+    this.serviceName = serviceName;
   }
 
   $onInit() {
@@ -421,6 +425,7 @@ export default class {
         isEmpty(hosting.offer)
           ? this.$q.when({ hosting })
           : this.$q.all({
+              email: this.getAssociatedEmail(),
               indys: this.HostingIndy.getIndys(this.$stateParams.productId),
               freedoms: this.HostingFreedom.getFreedoms(
                 this.$stateParams.productId,
@@ -621,6 +626,19 @@ export default class {
         searchText: this.$scope.hosting.serviceInfos.domain,
       }),
     };
+  }
+
+  getAssociatedEmail() {
+    return this.$http
+      .get(`/hosting/web/${this.serviceName}/emailOption`, {
+        headers: {
+          'X-Pagination-Mode': 'CachedObjectList-Pages',
+        },
+      })
+      .then(({ data }) => data)
+      .then(([email]) => {
+        this.associatedEmail = email;
+      });
   }
 
   loadHosting() {

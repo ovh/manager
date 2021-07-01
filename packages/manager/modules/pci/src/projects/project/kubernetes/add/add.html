@@ -84,28 +84,10 @@
             data-service-name="{{:: $ctrl.projectId }}"
             data-selected-flavor="$ctrl.cluster.nodePool.flavor"
             data-display-selected-flavor="$ctrl.displaySelectedFlavor"
+            data-node-count="$ctrl.cluster.nodePool.nodeCount"
             data-flavors="$ctrl.flavors"
         >
         </node-pool-configuration>
-    </oui-step-form>
-
-    <!--Autoscaling-->
-    <oui-step-form
-        data-header="{{:: 'kube_common_node_pool_autoscaling_title' | translate }}"
-        data-editable="!$ctrl.isAdding"
-        data-on-focus="$ctrl.displayNodePoolSizing = true"
-        data-on-submit="$ctrl.displayNodePoolSizing = false"
-        name="nodepool_add_configuration"
-        data-loading="$ctrl.loadingFlavors"
-        valid="$ctrl.cluster.nodePool.autoscaling.isValidScale"
-        prevent-next
-    >
-        <node-pool-autoscaling
-            data-is-edit-mode="false"
-            data-node-pool="$ctrl.cluster.nodePool"
-            data-display-node-pool-sizing="$ctrl.displayNodePoolSizing"
-        >
-        </node-pool-autoscaling>
     </oui-step-form>
 
     <oui-step-form
@@ -124,7 +106,7 @@
         <p data-translate="kubernetes_add_billing_type_description"></p>
         <pci-project-flavor-billing
             data-flavor="$ctrl.cluster.nodePool.flavor"
-            data-number="$ctrl.cluster.nodePool.autoscaling.nodes.desired.value"
+            data-number="$ctrl.cluster.nodePool.nodeCount"
             data-monthly-billing="$ctrl.cluster.nodePool.monthlyBilling"
             data-disabled="false"
         >

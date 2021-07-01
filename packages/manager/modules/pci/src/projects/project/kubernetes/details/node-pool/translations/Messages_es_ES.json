@@ -12,7 +12,5 @@
   "kube_node_pool_anti_affinity": "Antiafinidad",
   "kube_add_billing_type_description": "En la vista edición del pool de nodos, puede pasar de facturación por horas a facturación mensual en cada nodo.",
   "kube_node_pool_enabled": "Activado",
-  "kube_node_pool_disabled": "Desactivada",
-  "kube_node_pool_autoscale_true": "Activo",
-  "kube_node_pool_autoscale_false": "Inactivo"
+  "kube_node_pool_disabled": "Desactivado"
 }

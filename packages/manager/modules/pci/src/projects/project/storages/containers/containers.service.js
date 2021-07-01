@@ -262,22 +262,11 @@ export default class PciStoragesContainersService {
   }
 
   deleteContainer(projectId, container) {
-    const promises = reduce(
-      container.objects,
-      (result, object) => [
-        ...result,
-        this.deleteObject(projectId, container, object),
-      ],
-      [],
-    );
-
-    return this.$q.all(promises).then(
-      () =>
-        this.OvhApiCloudProjectStorage.v6().delete({
-          projectId,
-          containerId: container.id,
-        }).$promise,
-    );
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/storage/${container.id}?recursive=true`,
+      )
+      .then(({ data }) => data);
   }
 
   static getFilePath(filePrefix, file) {

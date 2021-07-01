@@ -11,7 +11,6 @@ import routing from './add.routing';
 
 import antiAffinity from '../../../components/anti-affinity';
 import nodePool from '../../../components/node-pool';
-import autoscaling from '../../../components/autoscaling';
 
 const moduleName = 'ovhManagerPciProjectKubernetesNodePoolsAdd';
 
@@ -25,7 +24,6 @@ angular
     'ngOvhCloudUniverseComponents',
     nodePool,
     antiAffinity,
-    autoscaling,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)

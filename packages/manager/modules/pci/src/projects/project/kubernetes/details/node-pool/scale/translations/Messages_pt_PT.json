@@ -1,4 +1,0 @@
-{
-  "kube_node_pool_autoscaling_scale_success": "O ajustamento do pool de nós está em curso.",
-  "kube_node_pool_autoscaling_scale_error": "Ocorreu um erro durante a eliminação do pool de nós: {{message}}"
-}

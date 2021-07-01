@@ -4,7 +4,6 @@ import template from './add.html';
 const component = {
   bindings: {
     antiAffinityMaxNodes: '<',
-    autoscaling: '<',
     region: '<',
     goBack: '<',
     kubeId: '<',

@@ -16,6 +16,7 @@ export default class TelephonyLinePhoneOrderChoiceCtrl {
     $q,
     $scope,
     atInternet,
+    coreConfig,
     OvhApiOrder,
     OvhApiTelephony,
     TucToast,
@@ -24,6 +25,7 @@ export default class TelephonyLinePhoneOrderChoiceCtrl {
     this.$q = $q;
     this.$scope = $scope;
     this.atInternet = atInternet;
+    this.coreConfig = coreConfig;
     this.OvhApiOrder = OvhApiOrder;
     this.OvhApiTelephony = OvhApiTelephony;
     this.TucToast = TucToast;
@@ -72,7 +74,7 @@ export default class TelephonyLinePhoneOrderChoiceCtrl {
 
   fetchOfferPhones(offer) {
     return this.OvhApiTelephony.v6().getLineOfferPhones({
-      country: 'fr',
+      country: this.coreConfig.getUser().country.toLowerCase(),
       offer,
     }).$promise;
   }
