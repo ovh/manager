@@ -1,7 +1,7 @@
 <div ng-if="!loading" class="row">
     <div
         class="col-md-6 col-lg-4 mb-2 mb-md-4"
-        data-ng-repeat="product in $ctrl.products | limitTo: ($ctrl.expand ? $ctrl.products.length : $ctrl.DEFAULT_DISPLAYED_TILES) track by product.productType"
+        data-ng-repeat="product in $ctrl.products | limitTo: ($ctrl.expand ? $ctrl.products.length : $ctrl.DEFAULT_DISPLAYED_TILES) track by (product.productType + $index)"
     >
         <ovh-manager-hub-tile
             heading="{{:: 'manager_hub_products_' + product.productType | translate }}"
