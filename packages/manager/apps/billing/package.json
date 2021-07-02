@@ -21,7 +21,7 @@
   "dependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-banner": "^1.1.3",
-    "@ovh-ux/manager-billing": "^0.0.0 || ^0.1.0-alpha.0",
+    "@ovh-ux/manager-billing": "^0.2.0-alpha || ^0.3.0-alpha",
     "@ovh-ux/manager-billing-components": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-cookie-policy": "^0.0.0 || ^1.0.0",
