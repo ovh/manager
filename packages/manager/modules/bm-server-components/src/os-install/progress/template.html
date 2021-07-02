@@ -1,0 +1,114 @@
+<form id="osInstallProgress">
+    <oui-modal
+        data-on-dismiss="$ctrl.goBack()"
+        data-primary-label="{{:: 'server_configuration_installation_progress_button_modal' | translate}}"
+        data-secondary-action="$ctrl.goBack()"
+        data-primary-action="$ctrl.reduce()"
+        data-secondary-label="{{:: 'server_configuration_installation_progress_cancel_button_cancel' | translate}}"
+        data-loading="$ctrl.isLoading"
+        data-heading="{{:: 'server_configuration_installation_progress_title' | translate}}"
+    >
+        <div data-ng-if="!$ctrl.progress.installationTask">
+            <span
+                data-ng-if="$ctrl.isBringYourOwnImageInit()"
+                data-translate="server_configuration_installation_progress_info"
+            >
+            </span>
+            <div class="text-center">
+                <oui-spinner></oui-spinner>
+            </div>
+        </div>
+
+        <div data-ng-if="$ctrl.progress.installationTask">
+            <div
+                data-ng-bind-html="'server_configuration_installation_progress_info' | translate "
+            ></div>
+            <div class="mb-3">
+                <span
+                    data-ng-class="{ 'text-danger': $ctrl.progress.errorStep > 0 }"
+                    data-ng-bind="$ctrl.progress.currentStep"
+                >
+                </span>
+                <div
+                    class="progress progress-bar-striped mt-2 mb-0"
+                    data-ng-class="{
+                        'progress-bar-danger': $ctrl.progress.errorStep > 0,
+                        'active': $ctrl.progress.errorStep == 0,
+                        'progress-bar-warning': ($ctrl.progress.failStatut || $ctrl.progress.installationCancel) && $ctrl.progress.errorStep == 0
+                    }"
+                >
+                    <div
+                        class="progress-bar"
+                        data-ng-style="{ 'width': $ctrl.progress.installationValue + '%' }"
+                    ></div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-ng-hide="$ctrl.progress.disableCancel || $ctrl.progress.errorMessage || $ctrl.progress.installationCancel || $ctrl.progress.endInstallation"
+                    data-ng-click="$ctrl.progress.installationCancel = true"
+                    data-translate="server_configuration_installation_progress_cancel_button"
+                ></button>
+                <button
+                    type="button"
+                    class="btn btn-default"
+                    data-ng-if="!$ctrl.progress.disableCancel && !$ctrl.progress.errorMessage && $ctrl.progress.installationCancel && !$ctrl.progress.endInstallation"
+                    data-ng-click="$ctrl.progress.installationCancel = false"
+                    data-translate="server_configuration_installation_progress_cancel_button_cancel"
+                ></button>
+                <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-ng-if="!$ctrl.progress.disableCancel && !$ctrl.progress.errorMessage && $ctrl.progress.installationCancel && !$ctrl.progress.endInstallation"
+                    data-ng-click="$ctrl.cancelInstall()"
+                    data-translate="server_configuration_installation_progress_cancel_button_confirm"
+                ></button>
+                <button
+                    type="button"
+                    class="btn btn-default"
+                    data-ng-if="$ctrl.progress.errorMessage"
+                    data-ng-click="$ctrl.goToOsInstallChooseSource()"
+                    data-translate="server_configuration_installation_progress_cancel_retry"
+                ></button>
+            </div>
+            <p
+                class="text-danger"
+                data-ng-show="$ctrl.progress.failStatut"
+                data-ng-bind=":: 'server_configuration_installation_fail_state' | translate"
+            ></p>
+            <ul
+                class="list-unstyled"
+                data-ng-show="$ctrl.progress.errorMessage || $ctrl.progress.ws || $ctrl.progress.wsFail"
+            >
+                <li
+                    class="text-danger"
+                    data-ng-show="$ctrl.progress.errorMessage && $ctrl.progress.currentStepNum > 2"
+                    data-translate="server_configuration_installation_progress_installation_error"
+                    data-translate-values="{ t0: $ctrl.progress.server.name, t1: $ctrl.progress.errorMessage }"
+                ></li>
+                <li
+                    class="text-danger"
+                    data-ng-show="$ctrl.progress.errorMessage && $ctrl.progress.currentStepNum < 3"
+                    data-translate="server_configuration_installation_progress_installation_error2"
+                    data-translate-values="{ t0: $ctrl.progress.server.name, t1: $ctrl.progress.errorMessage }"
+                ></li>
+                <li
+                    class="text-danger"
+                    data-ng-show="!$ctrl.progress.disableCancel && !$ctrl.progress.errorMessage && $ctrl.progress.installationCancel && !$ctrl.progress.endInstallation"
+                    data-translate="server_configuration_installation_progress_cancel_info"
+                ></li>
+                <li
+                    data-ng-show="$ctrl.progress.ws && !$ctrl.progress.wsFail && !$ctrl.progress.errorMessage"
+                    data-ng-bind="$ctrl.progress.ws"
+                ></li>
+                <li
+                    class="text-danger"
+                    data-ng-show="$ctrl.progress.wsFail && !$ctrl.progress.errorMessage"
+                    data-ng-bind="$ctrl.progress.wsFail"
+                ></li>
+            </ul>
+        </div>
+    </oui-modal>
+</form>

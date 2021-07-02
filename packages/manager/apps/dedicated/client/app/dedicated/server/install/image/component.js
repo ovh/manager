@@ -1,14 +1,15 @@
 import controller from './controller';
-import template from './index.html';
+import template from './template.html';
 
 export default {
-  name: 'dedicatedServerInstallImage',
   bindings: {
-    loaders: '<',
-    model: '<',
     server: '<',
     user: '<',
-    goDashboard: '<',
+    goBack: '<',
+    installSource: '<',
+    installProgressHref: '<',
+    imageTypeEnum: '<',
+    checksumTypeEnum: '<',
   },
   controller,
   template,

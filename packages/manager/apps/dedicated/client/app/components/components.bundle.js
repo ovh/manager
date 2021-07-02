@@ -13,7 +13,7 @@ import './paymentMethod/vantiv/billing-vantiv-configurator.provider';
 import './paymentMethod/vantiv/billing-vantiv-instance.service';
 import './paymentMethod/vantiv/billing-vantiv.constants';
 import './paymentMethod/vantiv/billing-vantiv.factory';
-import './polling/polling.service';
+// import './polling/polling.service';
 import './services/services.constants';
 import './services/services.service';
 import './sidebar-menu/account/sidebar-menu-account.config';

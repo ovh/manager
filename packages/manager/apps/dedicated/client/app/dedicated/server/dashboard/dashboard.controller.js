@@ -303,17 +303,11 @@ export default class DedicatedServerDashboard {
   openOsInstallation(type) {
     if (type === 'progress') {
       this.trackPage(`${this.trackingPrefix}::system-installation-progress`);
+      this.goToOsInstallProgress();
     } else {
       this.trackPage(`${this.trackingPrefix}::system-install`);
+      this.goToOsInstallChooseSource();
     }
-    return this.dedicatedServer.$scope.setAction(
-      `installation/${type}/dedicated-server-installation-${type}`,
-      {
-        server: this.server,
-        serverCtrl: this.dedicatedServer,
-        user: this.user,
-      },
-    );
   }
 
   trackPage(name) {
