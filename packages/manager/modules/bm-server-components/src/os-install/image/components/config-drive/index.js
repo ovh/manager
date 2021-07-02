@@ -7,8 +7,7 @@ import '@ovh-ux/ui-kit';
 import component from './component';
 import './index.scss';
 
-const moduleName =
-  'ovhManagerBmServerComponentsOsInstallImageConfigDriveComponent';
+const moduleName = 'ovhManagerBmServerComponentsOsInstallImageConfigDriveComponent';
 
 angular
   .module(moduleName, ['oui', 'pascalprecht.translate'])

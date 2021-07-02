@@ -1,3 +1,4 @@
+import controller from './controller';
 import template from './template.html';
 
 export default {
@@ -7,8 +8,7 @@ export default {
     goBack: '<',
     installSource: '<',
     installProgressHref: '<',
-    handleError: '<',
-    handleSuccess: '<',
   },
+  controller,
   template,
 };

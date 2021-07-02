@@ -14,14 +14,7 @@ import service from './service';
 const moduleName = 'ovhManagerDedicatedServerInstall';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-    image,
-    chooseSource,
-    ovh,
-    gabarit,
-    progress,
-  ])
+  .module(moduleName, ['ui.router', image, chooseSource, ovh, gabarit, progress])
   .config(routing)
   .service('dedicatedServerInstall', service);
 

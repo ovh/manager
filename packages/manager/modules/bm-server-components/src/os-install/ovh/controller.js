@@ -17,10 +17,16 @@ import sortBy from 'lodash/sortBy';
 import take from 'lodash/take';
 import forEach from 'lodash/forEach';
 import isFunction from 'lodash/isFunction';
+import clone from 'lodash/clone';
 
 import Utils from '../utils';
 
-import { RTM_INSTALL_FEATURE, RTM_GUIDE_URLS, CONSTANTS } from './constants';
+import {
+  RTM_INSTALL_FEATURE,
+  RTM_GUIDE_URLS,
+  CONSTANTS,
+} from './constants';
+
 
 export default class BmServerComponentsOsInstallOvhCtrl {
   /* @ngInject */
@@ -28,10 +34,13 @@ export default class BmServerComponentsOsInstallOvhCtrl {
     $http,
     $scope,
     $q,
+    // $stateParams,
     $translate,
     atInternet,
+    // Server,
     $filter,
     osInstallService,
+    // Alerter,
     ovhFeatureFlipping,
     coreURLBuilder,
   ) {
@@ -257,7 +266,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       name,
       type: 'action',
     });
-  }
+  };
 
   initWatches() {
     // If the diskGroup is not the first disk group, we need to disable raid setup if it is enabled.
@@ -273,8 +282,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
           }
           this.refreshDiskGroupInfos(newValue);
         }
-      },
-    );
+    });
 
     this.$scope.$watch(
       () => this.installation.nbDiskUse,
@@ -282,8 +290,39 @@ export default class BmServerComponentsOsInstallOvhCtrl {
         if (this.installation.partitionSchemeModels) {
           this.validationNbDiskUse(newValue);
         }
-      },
-    );
+    });
+
+    // this.$scope.$watch('installation.hardwareRaid.controller', () => {
+    //   this.clearHardwareRaidSpace();
+    //   this.recalculateAvailableRaid();
+    // });
+
+    // this.$scope.$watch('installation.hardwareRaid.raid', () => {
+    //   this.clearHardwareRaidSpace();
+    //   this.recalculateAvailableRaidDisks();
+    // });
+
+    // this.$scope.$watch('installation.hardwareRaid.disks', () => {
+    //   this.clearHardwareRaidSpace();
+    //   this.recalculateAvailableArrays();
+    // });
+
+    // this.$scope.$watch('installation.hardwareRaid.arrays', () => {
+    //   this.recalculateSpace();
+    //   if (
+    //     this.installation.hardwareRaid.disks &&
+    //     this.installation.hardwareRaid.arrays
+    //   ) {
+    //     this.installation.hardwareRaid.error = this.invalidHardRaid();
+    //   }
+    // });
+
+    // this.$scope.$on(
+    //   'dedicated.informations.reinstall.form.update',
+    //   (e, validForm) => {
+    //     this.installation.options.validForm = validForm;
+    //   },
+    // );
   }
 
   // ------STEP1------
@@ -291,17 +330,16 @@ export default class BmServerComponentsOsInstallOvhCtrl {
     this.loader.loading = true;
 
     const getHardRaid = this.getHardwareRaid();
-    const getOvhTemplates = this.osInstallService
-      .getTemplates(this.serviceName, 'ovh')
+    const getOvhTemplates = this.osInstallService.getTemplates(this.serviceName, 'ovh')
       .then((templateList) => {
-        this.installation.desktopType = templateList.category.sort((a, b) =>
-          a.localeCompare(b),
+        this.installation.desktopType = templateList.category.sort(
+          (a, b) => a.localeCompare(b),
         );
         this.installation.familyType = templateList.family;
-        this.installation.distributionList = templateList.templates.results;
-        this.installation.formatedDistributionList = BmServerComponentsOsInstallOvhCtrl.transformData(
-          sortBy(templateList.templates.results, 'displayName'),
-        );
+        this.installation.distributionList =
+          templateList.templates.results;
+        this.installation.formatedDistributionList =
+          this.transformData(sortBy(templateList.templates.results, 'displayName'));
         this.installation.selectDesktopType = head(
           this.installation.desktopType,
         );
@@ -316,11 +354,11 @@ export default class BmServerComponentsOsInstallOvhCtrl {
           ),
         );
       });
-    const getSshKeys = this.osInstallService
-      .getSshKey(this.serviceName)
-      .then((data) => {
+    const getSshKeys = this.osInstallService.getSshKey(this.serviceName).then(
+      (data) => {
         this.sshList = data;
-      });
+      },
+    );
     const getRtmInstallAvailability = this.ovhFeatureFlipping
       .checkFeatureAvailability(RTM_INSTALL_FEATURE)
       .then((rtmFeatureResult) => {
@@ -329,17 +367,15 @@ export default class BmServerComponentsOsInstallOvhCtrl {
         );
       });
 
-    this.$q
-      .all([
-        getHardRaid,
-        getOvhTemplates,
-        getSshKeys,
-        getRtmInstallAvailability,
-      ])
-      .finally(() => {
-        this.loader.loading = false;
-      });
-  }
+    this.$q.all([
+      getHardRaid,
+      getOvhTemplates,
+      getSshKeys,
+      getRtmInstallAvailability,
+    ]).finally(() => {
+      this.loader.loading = false;
+    });
+  };
 
   getCountFilter(itemFamily) {
     const tab = this.$filter('filter')(this.installation.distributionList, {
@@ -352,22 +388,25 @@ export default class BmServerComponentsOsInstallOvhCtrl {
     }
 
     return tab;
-  }
+  };
 
   resetDiskGroup() {
     this.installation.diskGroup = head(this.informations.diskGroups);
   }
 
   getHardwareSpecification() {
-    return this.osInstallService
-      .getHardwareSpecifications(this.serviceName)
-      .then((spec) => {
+    return this.osInstallService.getHardwareSpecifications(this.serviceName).then(
+      (spec) => {
         this.informations.diskGroups = spec.diskGroups;
         this.resetDiskGroup();
-      });
+      },
+    );
   }
 
-  setSelectDistribution(distribution, bypass) {
+  setSelectDistribution(
+    distribution,
+    bypass,
+  ) {
     this.installation.noPartitioning = distribution?.noPartitioning;
     if (distribution?.noPartitioning) {
       this.installation.customInstall = false;
@@ -394,8 +433,10 @@ export default class BmServerComponentsOsInstallOvhCtrl {
 
       if (distribution) {
         this.loader.loadingCapabilities = true;
-        this.osInstallService
-          .getTemplateCapabilities(this.serviceName, distribution.id)
+        this.osInstallService.getTemplateCapabilities(
+          this.serviceName,
+          distribution.id,
+        )
           .then((data) => {
             this.installation.isHybridCompatible = data.hybridSupport;
             if (!this.installation.isHybridCompatible) {
@@ -406,7 +447,8 @@ export default class BmServerComponentsOsInstallOvhCtrl {
             this.loader.loadingCapabilities = false;
           });
 
-        this.installation.selectLanguage = this.installation.selectDistribution.defaultLanguage;
+        this.installation.selectLanguage =
+          this.installation.selectDistribution.defaultLanguage;
       } else {
         this.resetDiskGroup();
       }
@@ -415,33 +457,36 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       this.informations.gabaritName = null;
     }
 
-    if (this.server.raidController && this.installation.selectDistribution) {
+    if (
+      this.server.raidController &&
+      this.installation.selectDistribution
+    ) {
       if (this.installation.selectDistribution.hardRaidConfiguration) {
         this.installation.raidSetup = true;
       } else {
         this.installation.raidSetup = false;
       }
     }
-  }
+  };
 
   cancelSetSelectDistribution() {
     this.installation.warningExistPartition = false;
     this.installation.saveSelectDistribution = null;
-  }
+  };
 
   // ------STEP Hard Raid------
 
   getHardwareRaidProfile() {
-    return this.osInstallService
-      .getHardwareRaidProfile(this.serviceName)
-      .then((raidProfile) => {
+    return this.osInstallService.getHardwareRaidProfile(this.serviceName).then(
+      (raidProfile) => {
         this.informations.hardwareRaid.profile = raidProfile;
         if (some(get(raidProfile, 'controllers'))) {
           this.installation.hardwareRaid.controller = head(
             raidProfile.controllers,
           );
         }
-      });
+      },
+    );
   }
 
   getHardwareRaid() {
@@ -450,12 +495,14 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       return this.$q
         .all([this.getHardwareRaidProfile(), this.getHardwareSpecification()])
         .catch((error) => {
-          this.informations.hardwareRaid.error.wrongLocation = Utils.isHardRaidLocationError(
-            error,
-          );
-          this.informations.hardwareRaid.error.notAvailable = Utils.isHardRaidUnavailableError(
-            error,
-          );
+          this.informations.hardwareRaid.error.wrongLocation =
+            Utils.isHardRaidLocationError(
+              error,
+            );
+          this.informations.hardwareRaid.error.notAvailable =
+            Utils.isHardRaidUnavailableError(
+              error,
+            );
           if (
             !this.informations.hardwareRaid.error.wrongLocation &&
             !this.informations.hardwareRaid.error.notAvailable
@@ -469,8 +516,8 @@ export default class BmServerComponentsOsInstallOvhCtrl {
           }
         });
     }
-    return this.$q.when({});
-  }
+    return $q.when({});
+  };
 
   // Delete all Error message after cancel action
   clearError() {
@@ -499,7 +546,8 @@ export default class BmServerComponentsOsInstallOvhCtrl {
             realRemainingSize = remainingSize;
             break;
           case '_1':
-            realRemainingSize = remainingSize / this.installation.nbDiskUse;
+            realRemainingSize =
+              remainingSize / this.installation.nbDiskUse;
             break;
           case '_5':
             realRemainingSize =
@@ -507,7 +555,8 @@ export default class BmServerComponentsOsInstallOvhCtrl {
             break;
           case '_6':
             realRemainingSize =
-              remainingSize - (remainingSize / this.installation.nbDiskUse) * 2;
+              remainingSize -
+              (remainingSize / this.installation.nbDiskUse) * 2;
             break;
           case '_10':
             realRemainingSize =
@@ -531,88 +580,97 @@ export default class BmServerComponentsOsInstallOvhCtrl {
 
   showPartition() {
     // Select hight priority partition scheme
-    this.installation.selectPartitionScheme = this.installation.partitionSchemesList[
-      this.installation.partitionSchemesList.length - 1
-    ];
+    this.installation.selectPartitionScheme =
+      this.installation.partitionSchemesList[
+        this.installation.partitionSchemesList.length - 1
+      ];
 
     // Get Partition list of largest partition scheme
-    return this.osInstallService
-      .getOvhPartitionSchemesTemplatesDetail(
-        this.informations.gabaritName,
-        this.installation.selectPartitionScheme.name,
-      )
-      .then((partitionSchemeModels) => {
-        this.installation.partitionSchemeModels = partitionSchemeModels.results;
+    return this.osInstallService.getOvhPartitionSchemesTemplatesDetail(
+      this.informations.gabaritName,
+      this.installation.selectPartitionScheme.name,
+    ).then((partitionSchemeModels) => {
+      this.installation.partitionSchemeModels =
+        partitionSchemeModels.results;
 
-        // get total use size (remainingSize),
-        // assign random color
-        // rename order by orderTable
-        forEach(this.installation.partitionSchemeModels, (partition) => {
+      // get total use size (remainingSize),
+      // assign random color
+      // rename order by orderTable
+      forEach(
+        this.installation.partitionSchemeModels,
+        (partition, _index) => {
           set(partition, 'orderTable', angular.copy(partition.order));
-        });
+        },
+      );
 
-        // if one partition has size = 0 => replace by remaining size
-        let hasEmptyPartitionSize = false;
+      // if one partition has size = 0 => replace by remaining size
+      let hasEmptyPartitionSize = false;
 
-        forEachRight(
-          partitionSchemeModels.results,
-          (partitionSchemeModel, partitionIndex) => {
-            if (!hasEmptyPartitionSize) {
+      forEachRight(
+        partitionSchemeModels.results,
+        (partitionSchemeModel, partitionIndex) => {
+          if (!hasEmptyPartitionSize) {
+            set(
+              this.installation.partitionSchemeModels[partitionIndex],
+              'hasWarning',
+              false,
+            );
+
+            if (
+              get(
+                this.installation.partitionSchemeModels[partitionIndex],
+                'partitionSize',
+              ) === 0
+            ) {
               set(
                 this.installation.partitionSchemeModels[partitionIndex],
-                'hasWarning',
-                false,
+                'partitionSize',
+                this.getRealRemainingSize(
+                  this.installation.partitionSchemeModels[
+                    partitionIndex
+                  ].raid,
+                ),
               );
 
-              if (
-                get(
-                  this.installation.partitionSchemeModels[partitionIndex],
-                  'partitionSize',
-                ) === 0
-              ) {
-                set(
-                  this.installation.partitionSchemeModels[partitionIndex],
-                  'partitionSize',
-                  this.getRealRemainingSize(
-                    this.installation.partitionSchemeModels[partitionIndex]
-                      .raid,
-                  ),
-                );
-
-                // To save information if user change nb disque
-                // installation and personnalisation is not dirty
-                set(
-                  partitionSchemeModels[partitionIndex],
-                  'isRemainingSizePartition',
-                  true,
-                );
-                this.installation.dirtyPartition = false;
-                hasEmptyPartitionSize = true;
-              }
+              // To save information if user change nb disque
+              // installation and personnalisation is not dirty
+              set(
+                partitionSchemeModels[partitionIndex],
+                'isRemainingSizePartition',
+                true,
+              );
+              this.installation.dirtyPartition = false;
+              hasEmptyPartitionSize = true;
             }
-          },
-        );
+          }
+        },
+      );
 
-        // for refresh progress bar
-        this.getRemainingSize();
-      })
-      .catch((error) => {
-        set(error, 'type', 'ERROR');
-        this.handleError(
-          error,
-          this.$translate.instant(
-            'server_configuration_installation_ovh_fail_partition_schemes',
-            { t0: this.serviceName },
-          ),
-        );
-      })
-      .finally(() => {
-        this.loader.loadingPartition = false;
-      });
+      // for refresh progress bar
+      this.getRemainingSize();
+    })
+    .catch((error) => {
+      set(data, 'type', 'ERROR');
+      this.handleError(
+        error,
+        this.$translate.instant(
+          'server_configuration_installation_ovh_fail_partition_schemes',
+          { t0: this.serviceName },
+        ),
+      );
+    })
+    .finally(() => {
+      this.loader.loadingPartition = false;
+    });
   }
 
   // ------STEP2------
   loadPartiton() {
+    // if (
+    //   !this.installation.partitionSchemeModels ||
+    //   this.informations.totalSize !==
+    //   this.installation.hardwareRaid.availableSpace
+    // ) {
     if (!this.installation.partitionSchemeModels) {
       this.loader.loadingPartition = true;
 
@@ -623,109 +681,114 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       this.setPartition.delModel = null;
       this.clearError();
 
-      return this.osInstallService
-        .getOvhPartitionSchemesTemplates(
-          this.serviceName,
-          this.installation.selectDistribution.id,
-          this.installation.selectLanguage,
-          this.informations.customInstall,
-        )
-        .then((partitionSchemesList) => {
-          this.installation.partitionSchemesList = partitionSchemesList.results;
+      return this.osInstallService.getOvhPartitionSchemesTemplates(
+        this.serviceName,
+        this.installation.selectDistribution.id,
+        this.installation.selectLanguage,
+        this.informations.customInstall,
+      ).then((partitionSchemesList) => {
+        this.installation.partitionSchemesList =
+          partitionSchemesList.results;
 
-          this.informations.gabaritName = partitionSchemesList.gabaritName;
-          this.constants.raidList = partitionSchemesList.partitionRaidEnumMap;
-          this.constants.fileSystemList =
-            partitionSchemesList.templateOsFileSystemEnum;
-          this.constants.partitionTypeList =
-            partitionSchemesList.templatePartitionTypeEnum;
+        this.informations.gabaritName =
+          partitionSchemesList.gabaritName;
+        this.constants.raidList =
+          partitionSchemesList.partitionRaidEnumMap;
+        this.constants.fileSystemList =
+          partitionSchemesList.templateOsFileSystemEnum;
+        this.constants.partitionTypeList =
+          partitionSchemesList.templatePartitionTypeEnum;
 
-          // if hardware Raid
-          if (this.installation.hardwareRaid.raid) {
-            const newPartitioningScheme = {
-              name: `hardwareRaid-${this.installation.hardwareRaid.raid}`,
-              priority: 50,
-            };
-            return this.osInstallService
-              .createPartitioningScheme(
+        // if hardware Raid
+        if (this.installation.hardwareRaid.raid) {
+          const newPartitioningScheme = {
+            name: `hardwareRaid-${this.installation.hardwareRaid.raid}`,
+            priority: 50,
+          };
+          return this.osInstallService.createPartitioningScheme(
+            this.serviceName,
+            this.informations.gabaritName,
+            newPartitioningScheme,
+          )
+            .then(() =>
+              this.osInstallService.cloneDefaultPartitioningScheme(
                 this.serviceName,
                 this.informations.gabaritName,
+                `hardwareRaid-${this.installation.hardwareRaid.raid}`,
+              ),
+            )
+            .then(() => {
+              this.installation.partitionSchemesList.push(
                 newPartitioningScheme,
-              )
-              .then(() =>
-                this.osInstallService.cloneDefaultPartitioningScheme(
-                  this.serviceName,
-                  this.informations.gabaritName,
-                  `hardwareRaid-${this.installation.hardwareRaid.raid}`,
-                ),
-              )
-              .then(() => {
-                this.installation.partitionSchemesList.push(
-                  newPartitioningScheme,
-                );
-                this.installation.partitionSchemesList = sortBy(
-                  this.installation.partitionSchemesList,
-                  'priority',
-                );
-                return this.showPartition();
-              })
-              .catch((error) =>
-                this.handleError(
-                  error,
-                  this.$translate.instant(
-                    'server_configuration_installation_ovh_fail_partition_schemes',
-                    { t0: this.serviceName },
-                  ),
-                ),
-              )
-              .finally(() => {
-                this.loader.loadingPartition = false;
-              });
-          }
-          this.installation.partitionSchemesList = sortBy(
-            this.installation.partitionSchemesList,
-            'priority',
-          );
-          if (this.installation.partitionSchemesList.length > 0) {
-            return this.showPartition();
-          }
-          return null;
-        })
-        .catch((error) =>
-          this.handleError(
-            error,
-            this.$translate.instant(
-              'server_configuration_installation_ovh_fail_partition_schemes',
-              { t0: this.serviceName },
-            ),
+              );
+              this.installation.partitionSchemesList = sortBy(
+                this.installation.partitionSchemesList,
+                'priority',
+              );
+              return this.showPartition();
+            })
+            .catch((error) => this.handleError(
+              error,
+              this.$translate.instant(
+                'server_configuration_installation_ovh_fail_partition_schemes',
+                { t0: this.serviceName },
+              ),
+            ))
+            .finally(() => {
+              this.loader.loadingPartition = false;
+            });
+        }
+        this.installation.partitionSchemesList = sortBy(
+          this.installation.partitionSchemesList,
+          'priority',
+        );
+        if (this.installation.partitionSchemesList.length > 0) {
+          return this.showPartition();
+        }
+        return null;
+      })
+        .catch((error) => this.handleError(
+          error,
+          this.$translate.instant(
+            'server_configuration_installation_ovh_fail_partition_schemes',
+            { t0: this.serviceName },
           ),
-        )
+        ))
         .finally(() => {
           this.loader.loadingPartition = false;
         });
     }
-    return this.$q.when({});
+  };
+
+  toBytes(size) {
+    return Utils.toBytes(size)
   }
 
-  refreshDiskGroupInfos(newDiskGroup) {
-    this.informations.isCachecade = newDiskGroup.raidController === 'cache';
-    this.informations.raidController = newDiskGroup.raidController !== null;
+  refreshDiskGroupInfos(
+    newDiskGroup,
+  ) {
+    this.informations.isCachecade =
+      newDiskGroup.raidController === 'cache';
+    this.informations.raidController =
+      newDiskGroup.raidController !== null;
     this.informations.typeDisk = newDiskGroup.diskType;
     this.informations.nbPhysicalDisk = newDiskGroup.numberOfDisks;
     this.informations.diskSize = Math.round(
-      Utils.toBytes(newDiskGroup.diskSize) / 1000 / 1000,
+      this.toBytes(newDiskGroup.diskSize) / 1000 / 1000,
     );
     this.informations.nbDisk =
       newDiskGroup.raidController !== null ? 1 : newDiskGroup.numberOfDisks;
     this.installation.nbDiskUse = this.informations.nbDisk;
 
     if (this.installation.hardwareRaid.availableSpace) {
-      this.informations.totalSize = this.installation.hardwareRaid.availableSpace;
+      this.informations.totalSize =
+        this.installation.hardwareRaid.availableSpace;
     } else {
       this.informations.totalSize =
         newDiskGroup.raidController !== null
           ? this.informations.diskSize
-          : this.informations.diskSize * get(newDiskGroup, 'numberOfDisks', 0);
+          : this.informations.diskSize *
+            get(newDiskGroup, 'numberOfDisks', 0);
     }
 
     const otherDisk = find(
@@ -735,9 +798,9 @@ export default class BmServerComponentsOsInstallOvhCtrl {
     this.informations.otherDisk = map(compact([otherDisk]), (disk) => ({
       typeDisk: disk.diskType,
       nbDisk: disk.numberOfDisks,
-      sizeDisk: Math.round(Utils.toBytes(disk.diskSize) / 1000 / 1000),
+      sizeDisk: Math.round(this.toBytes(disk.diskSize) / 1000 / 1000),
     }));
-  }
+  };
 
   validationNbDiskUse(nbDisk) {
     let indexVarPartition = null;
@@ -794,13 +857,16 @@ export default class BmServerComponentsOsInstallOvhCtrl {
     let nbPrimary = 0;
     let nbOther = 0;
 
-    forEach(this.installation.partitionSchemeModels, (partition2) => {
-      if (partition2.typePartition === this.constants.warningPrimary) {
-        nbPrimary += 1;
-      } else {
-        nbOther += 1;
-      }
-    });
+    forEach(
+      this.installation.partitionSchemeModels,
+      (partition2) => {
+        if (partition2.typePartition === this.constants.warningPrimary) {
+          nbPrimary += 1;
+        } else {
+          nbOther += 1;
+        }
+      },
+    );
     if (forNewPartition) {
       return nbPrimary === 4;
     }
@@ -816,38 +882,44 @@ export default class BmServerComponentsOsInstallOvhCtrl {
     this.validation.volumeNameList = [];
     this.validation.hasSwap = false;
     this.validation.maxOrder = 0;
-    forEach(this.installation.partitionSchemeModels, (partition) => {
-      if (this.validation.maxOrder < partition.order) {
-        this.validation.maxOrder = partition.order;
-      }
-      if (!excludedPartition || excludedPartition.order !== partition.order) {
-        this.validation.orderList[partition.order] = true;
-      }
-      if (
-        !excludedPartition ||
-        excludedPartition.mountPoint !== partition.mountPoint
-      ) {
-        this.validation.mountPointList[
-          partition.mountPoint.toLowerCase()
-        ] = true;
-      }
-      if (
-        partition.volumeName &&
-        (!excludedPartition ||
-          excludedPartition.volumeName !== partition.volumeName)
-      ) {
-        this.validation.volumeNameList[
-          partition.volumeName.toLowerCase()
-        ] = true;
-      }
-      if (
-        partition.fileSystem === this.constants.warningSwap &&
-        (!excludedPartition ||
-          excludedPartition.fileSystem !== this.constants.warningSwap)
-      ) {
-        this.validation.hasSwap = true;
-      }
-    });
+    forEach(
+      this.installation.partitionSchemeModels,
+      (partition) => {
+        if (this.validation.maxOrder < partition.order) {
+          this.validation.maxOrder = partition.order;
+        }
+        if (
+          !excludedPartition ||
+          excludedPartition.order !== partition.order
+        ) {
+          this.validation.orderList[partition.order] = true;
+        }
+        if (
+          !excludedPartition ||
+          excludedPartition.mountPoint !== partition.mountPoint
+        ) {
+          this.validation.mountPointList[
+            partition.mountPoint.toLowerCase()
+          ] = true;
+        }
+        if (
+          partition.volumeName &&
+          (!excludedPartition ||
+            excludedPartition.volumeName !== partition.volumeName)
+        ) {
+          this.validation.volumeNameList[
+            partition.volumeName.toLowerCase()
+          ] = true;
+        }
+        if (
+          partition.fileSystem === this.constants.warningSwap &&
+          (!excludedPartition ||
+            excludedPartition.fileSystem !== this.constants.warningSwap)
+        ) {
+          this.validation.hasSwap = true;
+        }
+      },
+    );
   }
 
   // ------END VALIDATION TOOLS------
@@ -865,7 +937,10 @@ export default class BmServerComponentsOsInstallOvhCtrl {
     );
 
     if (
-      includes(this.constants.partitionTypeList, this.constants.warningLogical)
+      includes(
+        this.constants.partitionTypeList,
+        this.constants.warningLogical,
+      )
     ) {
       this.newPartition.typePartition = angular.copy(
         this.constants.warningLogical,
@@ -879,17 +954,29 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       this.installation.selectDistribution.family ===
       this.constants.warningWindows
     ) {
-      if (includes(this.constants.fileSystemList, this.constants.warningNTFS)) {
-        this.newPartition.fileSystem = angular.copy(this.constants.warningNTFS);
+      if (
+        includes(
+          this.constants.fileSystemList,
+          this.constants.warningNTFS,
+        )
+      ) {
+        this.newPartition.fileSystem = angular.copy(
+          this.constants.warningNTFS,
+        );
       } else {
         this.newPartition.fileSystem = angular.copy(
           this.constants.fileSystemList[0],
         );
       }
     } else if (
-      includes(this.constants.fileSystemList, this.constants.warningEXT4)
+      includes(
+        this.constants.fileSystemList,
+        this.constants.warningEXT4,
+      )
     ) {
-      this.newPartition.fileSystem = angular.copy(this.constants.warningEXT4);
+      this.newPartition.fileSystem = angular.copy(
+        this.constants.warningEXT4,
+      );
     } else {
       this.newPartition.fileSystem = angular.copy(
         this.constants.fileSystemList[0],
@@ -900,7 +987,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       this.errorInst.typePrimary = true;
     } else if (
       this.installation.selectDistribution.family ===
-        this.constants.warningWindows &&
+      this.constants.warningWindows &&
       this.newPartition.partitionSize < this.constants.minSizeWindows
     ) {
       this.errorInst.partitionSizeWindows = true;
@@ -914,7 +1001,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
     this.updateNoAllowProperties();
     this.newPartition.order = this.validation.maxOrder + 1;
     this.getRemainingSize();
-  }
+  };
 
   checkall(partition) {
     this.validationMountPoint(partition);
@@ -950,7 +1037,9 @@ export default class BmServerComponentsOsInstallOvhCtrl {
         this.buttonControl.addInProgress = false;
       } else {
         trueSize = this.newPartition.partitionSize;
-        if (this.newPartition.typePartition !== this.constants.warningLV) {
+        if (
+          this.newPartition.typePartition !== this.constants.warningLV
+        ) {
           this.newPartition.volumeName = null;
         }
 
@@ -961,22 +1050,21 @@ export default class BmServerComponentsOsInstallOvhCtrl {
           this.newPartition.raid = null;
         }
 
-        this.osInstallService
-          .postAddPartition(
-            this.informations.gabaritName,
-            this.installation.selectPartitionScheme.name,
-            {
-              raid: this.newPartition.raid,
-              fileSystem: this.newPartition.fileSystem,
-              typePartition: this.newPartition.typePartition,
-              volumeName: this.newPartition.volumeName,
-              order: this.newPartition.order,
-              mountPoint: this.newPartition.mountPoint,
-              oldMountPoint: this.newPartition.mountPoint,
-              partitionSize: trueSize,
-            },
-          )
-          .then(() => {
+        this.osInstallService.postAddPartition(
+          this.informations.gabaritName,
+          this.installation.selectPartitionScheme.name,
+          {
+            raid: this.newPartition.raid,
+            fileSystem: this.newPartition.fileSystem,
+            typePartition: this.newPartition.typePartition,
+            volumeName: this.newPartition.volumeName,
+            order: this.newPartition.order,
+            mountPoint: this.newPartition.mountPoint,
+            oldMountPoint: this.newPartition.mountPoint,
+            partitionSize: trueSize,
+          },
+        ).then(
+          () => {
             this.warning.raid0 = false;
             this.newPartition.partitionSize = trueSize;
             this.newPartition.orderTable = angular.copy(
@@ -1000,7 +1088,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
             this.buttonControl.addInProgress = false;
             this.clearError();
             // this.refreshBar();
-            this.validationNbDiskUse(this.installation.nbDiskUse);
+            validationNbDiskUse(this.installation.nbDiskUse);
           })
           .catch((error) => {
             this.buttonControl.addInProgress = false;
@@ -1017,13 +1105,13 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       this.buttonControl.addInProgress = false;
     }
     this.getRemainingSize();
-  }
+  };
 
   cancelAddPartition() {
     this.newPartition.display = false;
     this.getRemainingSize();
     this.clearError();
-  }
+  };
 
   // ------Set partition------
 
@@ -1046,12 +1134,13 @@ export default class BmServerComponentsOsInstallOvhCtrl {
     );
     this.updateNoAllowProperties(partition);
     this.getRemainingSize();
-  }
+  };
 
   validSetPartition(bypassRaid) {
-    const partitionToSet = this.installation.partitionSchemeModels[
+    const partitionToSet =
+      this.installation.partitionSchemeModels[
       this.setPartition.indexSet
-    ];
+      ];
     let trueSize = 0;
     this.buttonControl.setInProgress = true;
     this.checkall(partitionToSet);
@@ -1065,22 +1154,21 @@ export default class BmServerComponentsOsInstallOvhCtrl {
           partitionToSet.volumeName = null;
         }
 
-        this.osInstallService
-          .putSetPartition(
-            this.informations.gabaritName,
-            this.installation.selectPartitionScheme.name,
-            {
-              raid: partitionToSet.raid,
-              fileSystem: partitionToSet.fileSystem,
-              typePartition: partitionToSet.typePartition,
-              volumeName: partitionToSet.volumeName,
-              order: partitionToSet.order,
-              mountPoint: partitionToSet.mountPoint,
-              oldMountPoint: this.setPartition.save.mountPoint,
-              partitionSize: trueSize,
-            },
-          )
-          .then(() => {
+        this.osInstallService.putSetPartition(
+          this.informations.gabaritName,
+          this.installation.selectPartitionScheme.name,
+          {
+            raid: partitionToSet.raid,
+            fileSystem: partitionToSet.fileSystem,
+            typePartition: partitionToSet.typePartition,
+            volumeName: partitionToSet.volumeName,
+            order: partitionToSet.order,
+            mountPoint: partitionToSet.mountPoint,
+            oldMountPoint: this.setPartition.save.mountPoint,
+            partitionSize: trueSize,
+          },
+        ).then(
+          () => {
             if (partitionToSet.isRemainingSizePartition) {
               this.installation.dirtyPartition = true;
             }
@@ -1112,7 +1200,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       this.buttonControl.setInProgress = false;
     }
     this.getRemainingSize();
-  }
+  };
 
   cancelSetPartition() {
     this.installation.partitionSchemeModels[
@@ -1122,28 +1210,29 @@ export default class BmServerComponentsOsInstallOvhCtrl {
     this.setPartition.indexSet = -1;
     this.getRemainingSize();
     this.clearError();
-  }
+  };
 
   // ------Delete partition------
 
   deletePartition(partition) {
     this.setPartition.delModel = this.getIndexOfPartition(partition);
     this.getRemainingSize();
-  }
+  };
 
   deleteValidPartition() {
     this.buttonControl.deleteInProgress = true;
-    this.osInstallService
-      .deleteSetPartition(
-        this.informations.gabaritName,
-        this.installation.selectPartitionScheme.name,
-        this.installation.partitionSchemeModels[this.setPartition.delModel]
-          .mountPoint,
-      )
-      .then(() => {
+    this.osInstallService.deleteSetPartition(
+      this.informations.gabaritName,
+      this.installation.selectPartitionScheme.name,
+      this.installation.partitionSchemeModels[
+        this.setPartition.delModel
+      ].mountPoint,
+    ).then(
+      () => {
         if (
-          this.installation.partitionSchemeModels[this.setPartition.delModel]
-            .isRemainingSizePartition
+          this.installation.partitionSchemeModels[
+            this.setPartition.delModel
+          ].isRemainingSizePartition
         ) {
           this.installation.dirtyPartition = true;
         }
@@ -1167,27 +1256,33 @@ export default class BmServerComponentsOsInstallOvhCtrl {
           },
         );
       });
-  }
+  };
 
   deleteCancelPartition() {
     this.setPartition.delModel = null;
     this.getRemainingSize();
-  }
+  };
 
   // ------Common partition------
 
   cancelRaid0Partition() {
     this.buttonControl.displayAddConfirmation = false;
     this.getRemainingSize();
-  }
+  };
 
   validPartition() {
-    if (this.newPartition.display && !this.buttonControl.addInProgress) {
+    if (
+      this.newPartition.display &&
+      !this.buttonControl.addInProgress
+    ) {
       this.validAddPartition(true);
-    } else if (!this.buttonControl.setInProgress && this.setPartition.save) {
+    } else if (
+      !this.buttonControl.setInProgress &&
+      this.setPartition.save
+    ) {
       this.validSetPartition(true);
     }
-  }
+  };
 
   hasErrorOrder() {
     return (
@@ -1196,7 +1291,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       this.errorInst.orderType ||
       this.errorInst.orderFirstWin
     );
-  }
+  };
 
   validationOrder(partition) {
     let firstPartition = partition;
@@ -1210,20 +1305,27 @@ export default class BmServerComponentsOsInstallOvhCtrl {
           this.installation.partitionSchemeModels.length + 1,
         );
       } else {
-        set(partition, 'order', angular.copy(this.setPartition.save.order));
+        set(
+          partition,
+          'order',
+          angular.copy(this.setPartition.save.order),
+        );
       }
     }
     this.errorInst.order = this.validation.orderList[partition.order];
 
     if (!this.errorInst.order) {
-      forEach(this.installation.partitionSchemeModels, (partition2) => {
-        if (partition2.order < firstPartition.order) {
-          firstPartition = partition2;
-        }
-        if (partition2.mountPoint === this.constants.warningBoot) {
-          hasBoot = true;
-        }
-      });
+      forEach(
+        this.installation.partitionSchemeModels,
+        (partition2) => {
+          if (partition2.order < firstPartition.order) {
+            firstPartition = partition2;
+          }
+          if (partition2.mountPoint === this.constants.warningBoot) {
+            hasBoot = true;
+          }
+        },
+      );
       if (this.newPartition.display) {
         if (partition.mountPoint === this.constants.warningBoot) {
           hasBoot = true;
@@ -1245,7 +1347,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       }
     }
     this.validationType(partition);
-  }
+  };
 
   // ------TYPE VALIDATION------
   validationVolumeNameByType(partition) {
@@ -1264,7 +1366,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       this.errorInst.typeLogicalLv ||
       this.errorInst.mountPointPrimary
     );
-  }
+  };
 
   validationType(partition) {
     let nbLv = 0;
@@ -1276,7 +1378,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
 
     if (
       this.installation.selectDistribution.family ===
-        this.constants.warningWindows &&
+      this.constants.warningWindows &&
       partition.mountPoint === this.constants.warningCwin
     ) {
       this.errorInst.mountPointPrimary =
@@ -1295,28 +1397,38 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       !this.errorInst.typeLvSwap &&
       !this.errorInst.mountPointPrimary
     ) {
-      forEach(this.installation.partitionSchemeModels, (partition2) => {
-        // Primary first Test
-        if (
-          (partition2.order < partition.order &&
-            partition2.typePartition !== this.constants.warningPrimary &&
-            partition.typePartition === this.constants.warningPrimary) ||
-          (partition2.order > partition.order &&
-            partition2.typePartition === this.constants.warningPrimary &&
-            partition.typePartition !== this.constants.warningPrimary)
-        ) {
-          this.errorInst.orderType = true;
-        }
-        if (partition2.typePartition === this.constants.warningLV) {
-          nbLv += 1;
-        } else if (partition2.typePartition === this.constants.warningLogical) {
-          nbLogical += 1;
-        }
-      });
+      forEach(
+        this.installation.partitionSchemeModels,
+        (partition2) => {
+          // Primary first Test
+          if (
+            (partition2.order < partition.order &&
+              partition2.typePartition !==
+              this.constants.warningPrimary &&
+              partition.typePartition ===
+              this.constants.warningPrimary) ||
+            (partition2.order > partition.order &&
+              partition2.typePartition ===
+              this.constants.warningPrimary &&
+              partition.typePartition !== this.constants.warningPrimary)
+          ) {
+            this.errorInst.orderType = true;
+          }
+          if (partition2.typePartition === this.constants.warningLV) {
+            nbLv += 1;
+          } else if (
+            partition2.typePartition === this.constants.warningLogical
+          ) {
+            nbLogical += 1;
+          }
+        },
+      );
       if (this.newPartition.display) {
         if (partition.typePartition === this.constants.warningLV) {
           nbLv += 1;
-        } else if (partition.typePartition === this.constants.warningLogical) {
+        } else if (
+          partition.typePartition === this.constants.warningLogical
+        ) {
           nbLogical += 1;
         }
       }
@@ -1329,13 +1441,15 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       !this.errorInst.orderType && this.validationTypePrimary();
     this.validationRaid(partition);
     this.validationVolumeNameByType(partition);
-  }
+  };
 
   // ------FILE SYSTEM VALIDATION------
 
   hasErrorFileSystem() {
-    return this.errorInst.fileSystemSwap || this.errorInst.fileSystemNoSwap;
-  }
+    return (
+      this.errorInst.fileSystemSwap || this.errorInst.fileSystemNoSwap
+    );
+  };
 
   validationFileSystem(partition) {
     this.errorInst.fileSystemSwap =
@@ -1343,7 +1457,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       partition.fileSystem === this.constants.warningSwap;
     this.errorInst.fileSystemNoSwap =
       this.installation.selectDistribution.family !==
-        this.constants.warningWindows &&
+      this.constants.warningWindows &&
       !this.validation.hasSwap &&
       partition.fileSystem !== this.constants.warningSwap;
     if (!this.errorInst.fileSystemSwap) {
@@ -1353,7 +1467,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       }
       this.validationSize(partition);
     }
-  }
+  };
 
   // ------MOUNT POINT VALIDATION------
 
@@ -1367,7 +1481,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       this.errorInst.orderFirst ||
       this.errorInst.orderFirstWin
     );
-  }
+  };
 
   validationMountPoint(partition) {
     this.errorInst.mountPointEmpty = !partition.mountPoint;
@@ -1386,9 +1500,9 @@ export default class BmServerComponentsOsInstallOvhCtrl {
           (!!~this.constants.forbiddenMountPoint.indexOf(
             partition.mountPoint.toLowerCase(),
           ) ||
-          /\/\.{1,2}(\/|$)/.test(partition.mountPoint) || // /../
-          /\/-/.test(partition.mountPoint) || // /-
-          /\/\//.test(partition.mountPoint) || // //
+            /\/\.{1,2}(\/|$)/.test(partition.mountPoint) || // /../
+            /\/-/.test(partition.mountPoint) || // /-
+            /\/\//.test(partition.mountPoint) || // //
             !/^\/[A-Za-z0-9._\-/]{0,254}$/.test(partition.mountPoint));
 
         this.errorInst.mountPoint2 =
@@ -1414,7 +1528,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       this.errorInst.mountPointWindows = false;
     }
     this.validationOrder(partition);
-  }
+  };
 
   // ------VOLUME NAME VALIDATION------
 
@@ -1424,7 +1538,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       this.errorInst.volumeName ||
       this.errorInst.volumeNameUse
     );
-  }
+  };
 
   validationVolumeName(partition) {
     this.validationVolumeNameByType(partition);
@@ -1443,17 +1557,20 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       !this.errorInst.volumeName &&
       partition.typePartition === this.constants.warningLV &&
       this.validation.volumeNameList[partition.volumeName.toLowerCase()];
-  }
+  };
 
   // ------Soft RAID VALIDATION------
 
   hasErrorRaid() {
     return this.errorInst.raid0 || this.errorInst.raidLv;
-  }
+  };
 
   validationRaid(partition) {
     this.errorInst.raidLv = false;
-    if (this.installation.nbDiskUse > 1 && !this.informations.raidController) {
+    if (
+      this.installation.nbDiskUse > 1 &&
+      !this.informations.raidController
+    ) {
       this.errorInst.raid0 =
         partition.raid !== this.constants.warningRaid1 &&
         partition.raid !== this.constants.warningRaid0 &&
@@ -1469,18 +1586,21 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       !this.informations.raidController &&
       partition.typePartition === this.constants.warningLV
     ) {
-      forEach(this.installation.partitionSchemeModels, (partition2) => {
-        if (
-          partition2.typePartition === this.constants.warningLV &&
-          partition2.raid !== partition.raid
-        ) {
-          this.errorInst.raidLv = true;
-        }
-      });
+      forEach(
+        this.installation.partitionSchemeModels,
+        (partition2) => {
+          if (
+            partition2.typePartition === this.constants.warningLV &&
+            partition2.raid !== partition.raid
+          ) {
+            this.errorInst.raidLv = true;
+          }
+        },
+      );
     }
 
     this.validationSize(partition);
-  }
+  };
 
   // ------SIZE VALIDATION------
 
@@ -1495,7 +1615,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       this.errorInst.partitionSizeMin ||
       this.errorInst.partitionSizeRequired
     );
-  }
+  };
 
   // swap size > 30Go = error
   validationSizeSwap(partition) {
@@ -1550,7 +1670,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
   validationSizeWindowsMin(partition) {
     this.errorInst.partitionSizeWindows =
       this.installation.selectDistribution.family ===
-        this.constants.warningWindows &&
+      this.constants.warningWindows &&
       this.getRealDisplaySize({
         partition,
         notDisplay: true,
@@ -1592,19 +1712,19 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       this.validationSizeWindowsMin(partition) ||
       this.validationSizeMin(partition)
     );
-  }
+  };
 
   // ------END VALIDATION------
 
   // ------TOOLS------
 
   // return range between 1 and nbdisque of server if > 1
-  static getNbDisqueList(nbdisk) {
+  getNbDisqueList(nbdisk) {
     if (nbdisk > 1) {
       return range(1, nbdisk + 1);
     }
     return [nbdisk];
-  }
+  };
 
   // return list of available raid
   getRaidList(nbDisk) {
@@ -1618,25 +1738,29 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       return this.constants.raidList[nbDisk] || [];
     }
     return [];
-  }
+  };
 
   // Reture true if partition is in edit mode
   isSetPartition(partition) {
     return (
-      this.installation.partitionSchemeModels[this.setPartition.indexSet] ===
-      partition
+      this.installation.partitionSchemeModels[
+      this.setPartition.indexSet
+      ] === partition
     );
-  }
+  };
 
-  getDisplaySize(octetsSize, unitIndex = 0) {
+  getDisplaySize(
+    octetsSize,
+    unitIndex = 0,
+  ) {
     return this.$filter('formatSize')(octetsSize, unitIndex);
-  }
+  };
 
   getFullSize(partition) {
     set(partition, 'partitionSize', 0); // important
     set(partition, 'partitionSize', this.getRealRemainingSize(partition.raid));
     this.validationSize(partition);
-  }
+  };
 
   // Display real space depending on the raid. if setting or adding,
   // {partition, notDisplay, noRaid}
@@ -1654,13 +1778,18 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       } else if (option.partition.raid) {
         switch (option.partition.raid) {
           case '_0':
-            set(option, 'partition.realSize', option.partition.partitionSize);
+            set(
+              option,
+              'partition.realSize',
+              option.partition.partitionSize,
+            );
             break;
           case '_1':
             set(
               option,
               'partition.realSize',
-              option.partition.partitionSize * this.installation.nbDiskUse,
+              option.partition.partitionSize *
+              this.installation.nbDiskUse,
             );
             break;
           case '_5':
@@ -1668,8 +1797,8 @@ export default class BmServerComponentsOsInstallOvhCtrl {
               option,
               'partition.realSize',
               option.partition.partitionSize +
-                option.partition.partitionSize /
-                  (this.installation.nbDiskUse - 1),
+              option.partition.partitionSize /
+              (this.installation.nbDiskUse - 1),
             );
             break;
           case '_6':
@@ -1684,7 +1813,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
               option,
               'partition.realSize',
               option.partition.partitionSize *
-                (this.installation.nbDiskUse / 2),
+              (this.installation.nbDiskUse / 2),
             );
             break;
           default:
@@ -1697,21 +1826,24 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       return this.getDisplaySize(option.partition.realSize);
     }
     return null;
-  }
+  };
 
   // get remaining size
   getRemainingSize() {
     let remainingSize = this.informations.totalSize;
 
     // all partition
-    forEach(this.installation.partitionSchemeModels, (partition) => {
-      if (partition.partitionSize) {
-        remainingSize -= this.getRealDisplaySize({
-          partition,
-          notDisplay: true,
-        });
-      }
-    });
+    forEach(
+      this.installation.partitionSchemeModels,
+      (partition) => {
+        if (partition.partitionSize) {
+          remainingSize -= this.getRealDisplaySize({
+            partition,
+            notDisplay: true,
+          });
+        }
+      },
+    );
 
     // new partition
     if (
@@ -1727,16 +1859,20 @@ export default class BmServerComponentsOsInstallOvhCtrl {
     // delete partition
     if (
       this.setPartition.delModel &&
-      this.installation.partitionSchemeModels[this.setPartition.delModel] &&
+      this.installation.partitionSchemeModels[
+      this.setPartition.delModel
+      ] &&
       !Number.isNaN(
-        this.installation.partitionSchemeModels[this.setPartition.delModel]
-          .partitionSize,
+        this.installation.partitionSchemeModels[
+          this.setPartition.delModel
+        ].partitionSize,
       )
     ) {
       remainingSize += this.getRealDisplaySize({
-        partition: this.installation.partitionSchemeModels[
+        partition:
+          this.installation.partitionSchemeModels[
           this.setPartition.delModel
-        ],
+          ],
         notDisplay: true,
       });
     }
@@ -1751,7 +1887,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
     // this.refreshBar();
 
     return this.informations.remainingSize;
-  }
+  };
 
   prepareDiskList() {
     const disksPerArray =
@@ -1789,22 +1925,26 @@ export default class BmServerComponentsOsInstallOvhCtrl {
     if (
       (this.constants.minSizePartition > remainingSize &&
         this.installation.selectDistribution.family !==
-          this.constants.warningWindows) ||
+        this.constants.warningWindows) ||
       (this.constants.minSizeWindows > remainingSize &&
         this.installation.selectDistribution.family ===
-          this.constants.warningWindows)
+        this.constants.warningWindows)
     ) {
-      forEach(this.installation.partitionSchemeModels, (partition) => {
-        if (
-          !this.installation.options.variablePartition ||
-          (this.installation.options.variablePartition.partitionSize <
-            partition.partitionSize &&
-            this.installation.options.variablePartition.partitionSize !== 0)
-        ) {
-          this.installation.options.variablePartition = partition;
-          this.installation.variablePartition = true;
-        }
-      });
+      forEach(
+        this.installation.partitionSchemeModels,
+        (partition) => {
+          if (
+            !this.installation.options.variablePartition ||
+            (this.installation.options.variablePartition.partitionSize <
+              partition.partitionSize &&
+              this.installation.options.variablePartition
+                .partitionSize !== 0)
+          ) {
+            this.installation.options.variablePartition = partition;
+            this.installation.variablePartition = true;
+          }
+        },
+      );
     }
   }
 
@@ -1855,17 +1995,20 @@ export default class BmServerComponentsOsInstallOvhCtrl {
     this.errorInst.gabaritName = !/^[a-zA-Z0-9_-]{1,50}$/.test(
       this.installation.gabaritNameSave,
     );
-  }
+  };
 
   getMountPoint() {
     const list = [];
-    forEach(this.installation.partitionSchemeModels, (partition) => {
-      if (partition.fileSystem !== this.constants.warningSwap) {
-        list.push(partition);
-      }
-    });
+    forEach(
+      this.installation.partitionSchemeModels,
+      (partition) => {
+        if (partition.fileSystem !== this.constants.warningSwap) {
+          list.push(partition);
+        }
+      },
+    );
     return list;
-  }
+  };
 
   saveRemainingSize(_size, stop) {
     let size = _size;
@@ -1878,7 +2021,8 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       if (!size) {
         size = 0;
         if (this.installation.options.variablePartition) {
-          this.installation.saveSize = this.installation.options.variablePartition.partitionSize;
+          this.installation.saveSize =
+            this.installation.options.variablePartition.partitionSize;
         }
       }
 
@@ -1889,78 +2033,81 @@ export default class BmServerComponentsOsInstallOvhCtrl {
 
       if (this.installation.options.variablePartition) {
         this.loader.isInstalling = true;
-        this.osInstallService
-          .putSetPartition(
-            this.informations.gabaritName,
-            this.installation.selectPartitionScheme.name,
-            {
-              raid: this.installation.options.variablePartition.raid,
-              fileSystem: this.installation.options.variablePartition
-                .fileSystem,
-              typePartition: this.installation.options.variablePartition
-                .typePartition,
-              volumeName: this.installation.options.variablePartition
-                .volumeName,
-              order: this.installation.options.variablePartition.order,
-              mountPoint: this.installation.options.variablePartition
-                .mountPoint,
-              oldMountPoint: this.installation.options.variablePartition
-                .mountPoint,
-              partitionSize: size,
-            },
-          )
-          .then(() => {
-            if (!stop) {
-              this.install();
-            } else {
-              this.loader.isInstalling = false;
-            }
-          })
-          .catch((error) => {
-            if (size === 0) {
-              this.errorInst.wsinstall = this.$translate.instant(
-                'server_configuration_installation_ovh_step3_remaining_error',
-                {
-                  t0: this.installation.options.variablePartition.mountPoint,
-                  t1: error.message || error.data?.message,
-                },
-              );
-              this.handleError(error, this.errorInst.wsinstall);
-            } // else it's revert size
-          })
-          .finally(() => {
+        this.osInstallService.putSetPartition(
+          this.informations.gabaritName,
+          this.installation.selectPartitionScheme.name,
+          {
+            raid: this.installation.options.variablePartition.raid,
+            fileSystem:
+              this.installation.options.variablePartition.fileSystem,
+            typePartition:
+              this.installation.options.variablePartition.typePartition,
+            volumeName:
+              this.installation.options.variablePartition.volumeName,
+            order: this.installation.options.variablePartition.order,
+            mountPoint:
+              this.installation.options.variablePartition.mountPoint,
+            oldMountPoint:
+              this.installation.options.variablePartition.mountPoint,
+            partitionSize: size,
+          },
+        ).then(() => {
+          if (!stop) {
+            return this.install();
+          } else {
             this.loader.isInstalling = false;
-          });
+          }
+        })
+        .catch((error) => {
+          if (size === 0) {
+            this.errorInst.wsinstall = this.$translate.instant(
+              'server_configuration_installation_ovh_step3_remaining_error',
+              {
+                t0:
+                  this.installation.options.variablePartition.mountPoint,
+                t1: error.message || error.data?.message,
+              },
+            );
+            this.handleError(error,this.errorInst.wsinstall);
+
+          } // else it's revert size
+        })
+        .finally(() => {
+          this.loader.isInstalling = false;
+        });
       } else if (!stop) {
         this.install();
       }
     } else if (!stop) {
       this.install();
     }
-  }
+  };
 
   isDefaultDiskGroup(diskGroup) {
     return (
       diskGroup &&
-      this.informations.diskGroups[0].diskGroupId === diskGroup.diskGroupId
+      this.informations.diskGroups[0].diskGroupId ===
+      diskGroup.diskGroupId
     );
   }
 
   startInstall() {
     this.trackClick(
       `dedicated::dedicated::server::system-install::public-catalog::rtm::${
-        this.installation.options.installRTM ? 'activate' : 'deactivate'
+      this.installation.options.installRTM ? 'activate' : 'deactivate'
       }`,
     );
     this.loader.isInstalling = true;
-    this.osInstallService
-      .startInstallation(this.serviceName, this.informations.gabaritName, {
+    this.osInstallService.startInstallation(
+      this.serviceName,
+      this.informations.gabaritName,
+      {
         language: camelCase(this.installation.selectLanguage),
         installRTM: this.installation.options.installRTM || false,
         customHostname: this.installation.options.customHostname,
         installSqlServer: this.installation.options.installSqlServer,
-        postInstallationScriptLink: this.installation.options
-          .postInstallationScriptLink,
+        postInstallationScriptLink:
+          this.installation.options.postInstallationScriptLink,
         postInstallationScriptReturn: this.installation.options
           .postInstallationScriptLink
           ? this.installation.options.postInstallationScriptReturn
@@ -1969,7 +2116,8 @@ export default class BmServerComponentsOsInstallOvhCtrl {
         useDistribKernel: this.installation.options.useDistributionKernel,
         useSpla: this.installation.options.useSpla,
         softRaidDevices:
-          this.informations.nbDisk > 2 && this.installation.nbDiskUse > 1
+          this.informations.nbDisk > 2 &&
+            this.installation.nbDiskUse > 1
             ? this.installation.nbDiskUse
             : null,
         noRaid:
@@ -1979,44 +2127,43 @@ export default class BmServerComponentsOsInstallOvhCtrl {
           ? this.installation.diskGroup.diskGroupId
           : null,
         resetHwRaid: !this.isDefaultDiskGroup(this.installation.diskGroup),
-      })
-      .then((task) => {
+      },
+    ).then((task) => {
         set(task, 'id', task.taskId);
         this.goBack(
           this.$translate.instant('server_os_install_ovh_success', {
-            progressHref: this.installProgressHref,
+            progressHref: this.installProgressHref
           }),
         );
-      })
-      .catch((error) => {
-        this.saveRemainingSize(this.installation.saveSize, true);
-        this.errorInst.wsinstall = this.$translate.instant(
-          'server_configuration_installation_ovh_step3_error',
-          {
-            t0: this.installation.selectDistribution.displayName,
-            t1: this.serviceName,
-            t2: this.installation.selectLanguage,
-            t3: error.message || error.data?.message,
-          },
-        );
-        this.handleError(error, this.errorInst.wsinstall);
-      })
-      .finally(() => {
-        this.loader.isInstalling = false;
-      });
+    })
+    .catch((error) => {
+      this.saveRemainingSize(this.installation.saveSize, true);
+      this.errorInst.wsinstall = this.$translate.instant(
+        'server_configuration_installation_ovh_step3_error',
+        {
+          t0: this.installation.selectDistribution.displayName,
+          t1: this.serviceName,
+          t2: this.installation.selectLanguage,
+          t3: error.message || error.data?.message,
+        },
+      );
+      this.handleError(error, this.errorInst.wsinstall);
+    })
+    .finally(() => {
+      this.loader.isInstalling = false;
+    });
   }
 
   setHardwareRaid() {
-    const disks = this.prepareDiskList();
+    const disks = prepareDiskList();
 
-    this.osInstallService
-      .postHardwareRaid(
-        this.serviceName,
-        this.informations.gabaritName,
-        this.installation.selectPartitionScheme.name,
-        disks,
-        this.installation.hardwareRaid.raid,
-      )
+    this.osInstallService.postHardwareRaid(
+      this.serviceName,
+      this.informations.gabaritName,
+      this.installation.selectPartitionScheme.name,
+      disks,
+      this.installation.hardwareRaid.raid,
+    )
       .catch((error) => {
         if (error.status === 409) {
           return this.osInstallService.putHardwareRaid(
@@ -2027,7 +2174,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
             this.installation.hardwareRaid.raid,
           );
         }
-        return this.$q.reject(error);
+        return $q.reject(error);
       })
       .then(() => {
         this.startInstall();
@@ -2040,49 +2187,47 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       })
       .finally(() => {
         this.loader.loading = false;
-      });
+      });;
   }
 
   setGabarit() {
-    this.osInstallService
-      .putSetGabarit(
-        this.serviceName,
-        this.informations.gabaritName,
+    this.osInstallService.putSetGabarit(
+      this.serviceName,
+      this.informations.gabaritName,
+      this.installation.options.gabaritNameSave,
+      {
+        changeLog: this.installation.options.changeLog,
+        customHostname: this.installation.options.customHostname,
+        postInstallationScriptLink:
+          this.installation.options.postInstallationScriptLink,
+        postInstallationScriptReturn: this.installation.options
+          .postInstallationScriptLink
+          ? this.installation.options.postInstallationScriptReturn
+          : null,
+        sshKeyName: this.installation.options.sshKeyName,
+        useDistributionKernel:
+          this.installation.options.useDistributionKernel,
+      },
+    ).then(() => {
+      this.informations.gabaritName = angular.copy(
         this.installation.options.gabaritNameSave,
-        {
-          changeLog: this.installation.options.changeLog,
-          customHostname: this.installation.options.customHostname,
-          postInstallationScriptLink: this.installation.options
-            .postInstallationScriptLink,
-          postInstallationScriptReturn: this.installation.options
-            .postInstallationScriptLink
-            ? this.installation.options.postInstallationScriptReturn
-            : null,
-          sshKeyName: this.installation.options.sshKeyName,
-          useDistributionKernel: this.installation.options
-            .useDistributionKernel,
-        },
-      )
-      .then(() => {
-        this.informations.gabaritName = angular.copy(
-          this.installation.options.gabaritNameSave,
-        );
-        if (this.installation.hardwareRaid.raid) {
-          this.setHardwareRaid();
-        } else {
-          this.startInstall();
-        }
-      })
-      .catch((error) => {
-        this.saveRemainingSize(this.installation.saveSize, true);
-        this.errorInst.wsinstall = this.$translate.instant(
-          'server_configuration_installation_error_save',
-          { t0: error.data.message },
-        );
-      })
-      .finally(() => {
-        this.loader.isInstalling = false;
-      });
+      );
+      if (this.installation.hardwareRaid.raid) {
+        this.setHardwareRaid();
+      } else {
+        this.startInstall();
+      }
+    })
+    .catch((error) => {
+            this.saveRemainingSize(this.installation.saveSize, true);
+      this.errorInst.wsinstall = this.$translate.instant(
+        'server_configuration_installation_error_save',
+        { t0: error.data.message },
+      );
+    })
+    .finally(() => {
+      this.loader.isInstalling = false;
+    });
   }
 
   install() {
@@ -2093,53 +2238,56 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       this.loader.isInstalling = true;
       this.setGabarit();
     } else if (this.installation.hardwareRaid.raid) {
-      this.installation.options.gabaritNameSave = `tmp-mgr-hardwareRaid-${Math.round(
-        new Date().getTime() / 1000,
-      )}`;
+      this.installation.options.gabaritNameSave = `tmp-mgr-hardwareRaid-${moment().unix()}`;
       this.setGabarit();
     } else {
       this.startInstall();
     }
-  }
+  };
 
   canPersonnalizeRaid() {
     return (
       this.raidIsPersonnalizable() &&
       this.isDefaultDiskGroup(this.installation.diskGroup)
     );
-  }
+  };
 
   raidIsPersonnalizable() {
     return (
       this.constants.server.raidController &&
-      get(this.installation, 'selectDistribution.hardRaidConfiguration') !==
-        false &&
+      get(
+        this.installation,
+        'selectDistribution.hardRaidConfiguration',
+      ) !== false &&
       !this.informations.hardwareRaid.error.wrongLocation &&
       !this.informations.hardwareRaid.error.notAvailable
     );
-  }
+  };
 
   canEditDiskGroup() {
     return (
       this.informations.diskGroups.length > 1 &&
       this.installation.isHybridCompatible
     );
-  }
+  };
 
   hasVirtualDesktop() {
-    return !includes(get(this.installation, 'selectDistribution.id'), 'hyperv');
-  }
+    return !includes(
+      get(this.installation, 'selectDistribution.id'),
+      'hyperv',
+    );
+  };
 
   hasLicencedOs() {
     return find(
       this.installation.distributionList,
       (distribution) => distribution.family === 'WINDOWS',
     );
-  }
+  };
 
-  static transformData(templates) {
+  transformData(templates) {
     const categories = {};
-    forEach(templates, (template) => {
+    forEach(templates, template => {
       if (!categories[template.category]) {
         categories[template.category] = {};
       }
@@ -2155,7 +2303,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
     return categories;
   }
 
-  onPartitionFocus() {
+  onPartitionFocus () {
     // this.$scope.$broadcast('osInstall.configureInstallation.partitionFocus', true);
     this.refreshDiskGroupInfos(this.installation.diskGroup);
     this.loadPartiton();
@@ -2170,8 +2318,9 @@ export default class BmServerComponentsOsInstallOvhCtrl {
   handleError(error, message = null) {
     if (isFunction(this.onError)) {
       this.onError({
-        error: { message, data: error },
+        error: { message, data: error }
       });
     }
   }
+
 }

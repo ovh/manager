@@ -133,6 +133,10 @@ import otrs from './otrs';
 
 import { TRACKING } from './at-internet.constants';
 
+import {
+  pollingService
+ } from '@ovh-ux/manager-bm-server-components';
+
 export default (containerEl, environment) => {
   const configConstants = getConstants(environment.getRegion());
 

@@ -72,81 +72,59 @@ export default /* @ngInject */ ($stateProvider) => {
         Server.getBringYourOwnImage($stateParams.productId).catch(() => null),
 
       goToOsInstallChooseSource: /* @ngInject */ ($state, serverName) => () =>
-        $state.go(
-          'app.dedicated-server.server.dashboard.install.choose-source',
-          {
-            productId: serverName,
-          },
-        ),
-      goToOsInstallOvh: /* @ngInject */ ($state, serverName) => (
-        installSource,
-      ) =>
-        $state.go('app.dedicated-server.server.dashboard.install.ovh', {
+        $state.go('app.dedicated-server.server.install.choose-source', {
+          productId: serverName,
+        }),
+      goToOsInstallOvh: /* @ngInject */ ($state, serverName) => (installSource) =>
+        $state.go('app.dedicated-server.server.install.ovh', {
           productId: serverName,
           installSource,
         }),
-      goToOsInstallGabarit: /* @ngInject */ ($state, serverName) => (
-        installSource,
-      ) =>
-        $state.go('app.dedicated-server.server.dashboard.install.gabarit', {
+      goToOsInstallGabarit: /* @ngInject */ ($state, serverName) => (installSource) =>
+        $state.go('app.dedicated-server.server.install.gabarit', {
           productId: serverName,
           installSource,
         }),
-      goToOsInstallImage: /* @ngInject */ ($state, serverName) => (
-        installSource,
-      ) =>
-        $state.go('app.dedicated-server.server.dashboard.install.image', {
+      goToOsInstallImage: /* @ngInject */ ($state, serverName) => (installSource) =>
+        $state.go('app.dedicated-server.server.install.image', {
           productId: serverName,
           installSource,
         }),
       goToOsInstallProgress: /* @ngInject */ ($state, serverName) => () =>
-        $state.go('app.dedicated-server.server.dashboard.install.progress', {
+        $state.go('app.dedicated-server.server.install.progress', {
           productId: serverName,
         }),
       installProgressHref: /* @ngInject */ ($state, serverName) =>
-        $state.href('app.dedicated-server.server.dashboard.install.progress', {
+        $state.href('app.dedicated-server.server.install.progress', {
           productId: serverName,
         }),
       goToServerDetails: /* @ngInject */ ($state, Alerter, serverName) => (
-        message = false,
-        type = 'DONE',
-        reload = false,
-      ) => {
-        const promise = $state.go(
-          'app.dedicated-server.server',
-          {
-            productId: serverName,
-          },
-          {
-            reload,
-          },
-        );
+          message = false,
+          type = 'DONE',
+          reload = false,
+        ) => {
+          const promise = $state.go(
+            'app.dedicated-server.server',
+            {
+              productId: serverName,
+            },
+            {
+              reload,
+            },
+          );
 
-        if (message) {
-          promise.then(() => {
-            Alerter.alertFromSWS(
-              message,
-              type,
-              message.id || 'server_dashboard_alert',
-            );
-          });
-        }
+          if (message) {
+            promise.then(() => {
+              Alerter.alertFromSWS(
+                message,
+                type,
+                message.id || 'server_dashboard_alert',
+              );
+            });
+          }
 
-        return promise;
-      },
-
-      handleError: /* @ngInject */ (Alerter) => (error) =>
-        Alerter.error(
-          error.message || error.data?.message,
-          'server_dashboard_alert',
-        ),
-      handleSuccess: /* @ngInject */ (Alerter) => (message) =>
-        Alerter.success(message, 'server_dashboard_alert'),
-
-      goToNetboot: /* @ngInject */ ($state, serverName) => () =>
-        $state.go('app.dedicated-server.server.dashboard.netboot', {
-          productId: serverName,
-        }),
+          return promise;
+        },
     },
   });
 };

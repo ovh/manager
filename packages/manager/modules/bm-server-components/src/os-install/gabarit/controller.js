@@ -2,6 +2,7 @@ import angular from 'angular';
 import flatten from 'lodash/flatten';
 import map from 'lodash/map';
 import camelCase from 'lodash/camelCase';
+import range from 'lodash/range';
 import set from 'lodash/set';
 import isFunction from 'lodash/isFunction';
 import forEach from 'lodash/forEach';
@@ -85,13 +86,15 @@ export default class BmServerComponentsOsInstallGabaritCtrl {
     this.installation.selectLanguage = null;
     this.installation.deleteGabarit = null;
 
-    this.osInstallService
-      .getTemplates(this.serviceName, 'personal')
+    this.osInstallService.getTemplates(this.serviceName, 'personal')
       .then((templateList) => {
         this.installation.familyType = templateList.family;
-        this.installation.distributionList = templateList.templates.results;
-        this.installation.formatedDistributionList = BmServerComponentsOsInstallGabaritCtrl.transformData(
-          sortBy(this.installation.distributionList, 'displayName'),
+        this.installation.distributionList =
+          templateList.templates.results;
+        this.installation.formatedDistributionList = this.transformData(
+          sortBy(this.installation.distributionList,
+            'displayName',
+          ),
         );
         this.informations.nbDisk = this.installation.server.nbDisk;
         this.installation.nbDiskUse = this.installation.server.nbDisk;
@@ -108,19 +111,20 @@ export default class BmServerComponentsOsInstallGabaritCtrl {
       .finally(() => {
         this.loader.loading = false;
       });
-  }
+  };
 
   setSelectGabarit(gabarit) {
     this.installation.selectGabarit = gabarit;
-    this.installation.selectLanguage = this.installation.selectGabarit.defaultLanguage;
+    this.installation.selectLanguage =
+      this.installation.selectGabarit.defaultLanguage;
     this.initializeOptions();
-  }
+  };
 
   clearErrorPersonalTemplate() {
     this.errorGab.ws = null;
-  }
+  };
 
-  static getDisks(disks) {
+  getDisks(disks) {
     if (disks && disks[0].indexOf('[') > -1) {
       return flatten(
         map(disks, (_elem) => {
@@ -144,23 +148,22 @@ export default class BmServerComponentsOsInstallGabaritCtrl {
       gabaritNameSave: null,
       changeLog: this.installation.selectGabarit.changeLog,
       customHostname: this.installation.selectGabarit.customHostname,
-      postInstallationScriptLink: this.installation.selectGabarit
-        .postInstallationScriptLink,
-      postInstallationScriptReturn: this.installation.selectGabarit
-        .postInstallationScriptReturn,
+      postInstallationScriptLink:
+        this.installation.selectGabarit.postInstallationScriptLink,
+      postInstallationScriptReturn:
+        this.installation.selectGabarit.postInstallationScriptReturn,
       sshKeyName: this.installation.selectGabarit.sshKeyName,
-      useDistributionKernel: this.installation.selectGabarit
-        .useDistributionKernel,
+      useDistributionKernel:
+        this.installation.selectGabarit.useDistributionKernel,
       installSqlServer: false,
       useSpla: false,
       validForm: true,
     };
 
-    this.osInstallService
-      .getHighestPriorityPartitionScheme(
-        this.serviceName,
-        this.installation.selectGabarit.id,
-      )
+    this.osInstallService.getHighestPriorityPartitionScheme(
+      this.serviceName,
+      this.installation.selectGabarit.id,
+    )
       .then((response) => {
         return this.osInstallService.getPartitionSchemeHardwareRaid(
           this.serviceName,
@@ -199,7 +202,7 @@ export default class BmServerComponentsOsInstallGabaritCtrl {
             );
             this.informations.hardwareRaidCompatible = false;
           } else {
-            this.informations.hardwareRaid.disks = BmServerComponentsOsInstallGabaritCtrl.getDisks(
+            this.informations.hardwareRaid.disks = this.getDisks(
               this.informations.hardwareRaid.disks,
             );
             if (
@@ -230,7 +233,7 @@ export default class BmServerComponentsOsInstallGabaritCtrl {
       .finally(() => {
         this.loader.loadingHardwareRaidDetails = false;
       });
-  }
+  };
 
   onDelete(gabarit) {
     this.installation.deleteGabarit = gabarit;
@@ -255,33 +258,40 @@ export default class BmServerComponentsOsInstallGabaritCtrl {
     });
     this.loader.deletingGabarit = true;
 
-    this.osInstallService
-      .deleteGabarit(this.serviceName, this.installation.deleteGabarit.id)
-      .then(() => {
-        this.errorGab.delete = null;
-        this.handleSuccess(
-          this.$translate.instant('server_os_install_gabarit_delete_success', {
-            gabaritName: this.installation.deleteGabarit.displayName,
-          }),
-        );
-        this.installation.deleteGabarit = null;
-        this.load();
-      })
-      .catch((error) => {
-        this.errorGab.delete = this.$translate.instant(
-          'server_configuration_installation_gabarit_step1_delete_fail',
+    this.osInstallService.deleteGabarit(
+      this.serviceName,
+      this.installation.deleteGabarit.id,
+    ).then(() => {
+      this.errorGab.delete = null;
+      this.handleSuccess(
+        this.$translate.instant(
+          'server_os_install_gabarit_delete_success',
           {
-            t0: this.installation.deleteGabarit.displayName,
-            t1: error.data?.message || error.message,
+            gabaritName: this.installation.deleteGabarit.displayName,
           },
-        );
-        this.handleError(error, this.errorGab.delete);
-      })
-      .finally(() => {
-        this.showDeleteConf = false;
-        this.loader.deletingGabarit = false;
-      });
-  }
+        ),
+      );
+      this.installation.deleteGabarit = null;
+      this.load();
+    })
+    .catch((data) => {
+      this.errorGab.delete = this.$translate.instant(
+        'server_configuration_installation_gabarit_step1_delete_fail',
+        {
+          t0: this.installation.deleteGabarit.displayName,
+          t1: data.data.message,
+        },
+      );
+      this.handleError(
+        error,
+        this.errorGab.delete,
+      );
+    })
+    .finally(() => {
+      this.showDeleteConf = false;
+      this.loader.deletingGabarit = false;
+    });
+  };
 
   // ------INSTALL------
 
@@ -293,31 +303,35 @@ export default class BmServerComponentsOsInstallGabaritCtrl {
     });
 
     this.loader.isInstalling = true;
-    this.osInstallService
-      .startInstallation(this.serviceName, this.installation.selectGabarit.id, {
+    this.osInstallService.startInstallation(
+      this.serviceName,
+      this.installation.selectGabarit.id,
+      {
         language: camelCase(this.installation.selectLanguage),
         customHostname: this.installation.options.customHostname,
         installSqlServer: this.installation.options.installSqlServer,
-        postInstallationScriptLink: this.installation.options
-          .postInstallationScriptLink,
-        postInstallationScriptReturn: this.installation.options
-          .postInstallationScriptReturn,
+        postInstallationScriptLink:
+          this.installation.options.postInstallationScriptLink,
+        postInstallationScriptReturn:
+          this.installation.options.postInstallationScriptReturn,
         sshKeyName: this.installation.options.sshKeyName,
         useDistribKernel: this.installation.options.useDistributionKernel,
         useSpla: this.installation.options.useSpla,
         softRaidDevices:
-          this.informations.nbDisk > 2 && this.installation.nbDiskUse > 1
+          this.informations.nbDisk > 2 &&
+            this.installation.nbDiskUse > 1
             ? this.installation.nbDiskUse
             : null,
         noRaid:
           this.installation.nbDiskUse === 1 &&
           !this.informations.raidController,
-      })
+      },
+    )
       .then((task) => {
         set(task, 'id', task.taskId);
         this.goBack(
           this.$translate.instant('server_os_install_gabarit_success', {
-            progressHref: this.installProgressHref,
+            progressHref: this.installProgressHref
           }),
         );
       })
@@ -341,49 +355,55 @@ export default class BmServerComponentsOsInstallGabaritCtrl {
   install() {
     if (this.installation.options.saveGabarit) {
       this.loader.isInstalling = true;
-      this.osInstallService
-        .putSetGabarit(
-          this.serviceName,
-          this.installation.selectGabarit.id,
+      this.osInstallService.putSetGabarit(
+        this.serviceName,
+        this.installation.selectGabarit.id,
+        this.installation.options.gabaritNameSave,
+        {
+          changeLog: this.installation.options.changeLog,
+          customHostname: this.installation.options.customHostname,
+          postInstallationScriptLink:
+            this.installation.options.postInstallationScriptLink,
+          postInstallationScriptReturn:
+            this.installation.options.postInstallationScriptReturn,
+          sshKeyName: this.installation.options.sshKeyName,
+          useDistributionKernel:
+            this.installation.options.useDistributionKernel,
+        },
+      ).then(() => {
+        this.installation.selectGabarit.displayName = angular.copy(
           this.installation.options.gabaritNameSave,
-          {
-            changeLog: this.installation.options.changeLog,
-            customHostname: this.installation.options.customHostname,
-            postInstallationScriptLink: this.installation.options
-              .postInstallationScriptLink,
-            postInstallationScriptReturn: this.installation.options
-              .postInstallationScriptReturn,
-            sshKeyName: this.installation.options.sshKeyName,
-            useDistributionKernel: this.installation.options
-              .useDistributionKernel,
-          },
-        )
-        .then(() => {
-          this.installation.selectGabarit.displayName = angular.copy(
-            this.installation.options.gabaritNameSave,
-          );
-          this.installation.selectGabarit.id = angular.copy(
-            this.installation.options.gabaritNameSave,
-          );
-          this.startInstall();
-        })
-        .catch((error) => {
-          this.errorGab.ws = this.$translate.instant(
-            'server_configuration_installation_error_save',
-            { t0: error.data || error.data?.message },
-          );
-        })
-        .finally(() => {
-          this.loader.isInstalling = false;
-        });
+        );
+        this.installation.selectGabarit.id = angular.copy(
+          this.installation.options.gabaritNameSave,
+        );
+        this.startInstall();
+      })
+      .catch((error) => {
+        this.errorGab.ws = this.$translate.instant(
+          'server_configuration_installation_error_save',
+          { t0: error.data || error.data?.message },
+        );
+      })
+      .finally(() => {
+        this.loader.isInstalling = false;
+      });
     } else {
       this.startInstall();
     }
-  }
+  };
 
-  static transformData(templates) {
+  // return range between 1 and nbdisque of server if > 1
+  getNbDisqueList(nbdisk) {
+    if (nbdisk > 1) {
+      return range(1, nbdisk + 1);
+    }
+    return [nbdisk];
+  };
+
+  transformData(templates) {
     const families = {};
-    forEach(templates, (template) => {
+    forEach(templates, template => {
       if (!families[template.family]) {
         families[template.family] = {
           name: template.family,
@@ -405,7 +425,7 @@ export default class BmServerComponentsOsInstallGabaritCtrl {
   handleError(error, message = null) {
     if (isFunction(this.onError)) {
       this.onError({
-        error: { message, data: error },
+        error: { message, data: error }
       });
     }
   }
@@ -413,7 +433,7 @@ export default class BmServerComponentsOsInstallGabaritCtrl {
   handleSuccess(message) {
     if (isFunction(this.onSuccess)) {
       this.onSuccess({
-        message,
+        message
       });
     }
   }

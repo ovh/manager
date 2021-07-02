@@ -1,4 +1,6 @@
-import { TEMPLATE_OS_HARDWARE_RAID_ENUM } from '../ovh/constants';
+import {
+  TEMPLATE_OS_HARDWARE_RAID_ENUM,
+} from '../ovh/constants';
 
 import Utils from '../format-size/utils';
 
@@ -19,47 +21,38 @@ export default class BmServerComponentsOsInstallHardwareRaidController {
       () => {
         this.clearHardwareRaidSpace();
         this.recalculateAvailableRaid();
-      },
-    );
+    });
   }
 
   onControllerSelect() {
     this.clearHardwareRaidSpace();
     this.recalculateAvailableRaid();
-  }
+  };
 
   onRaidSelect() {
     this.clearHardwareRaidSpace();
     this.recalculateAvailableRaidDisks();
     this.initializeDisks();
-  }
+  };
 
   onDisksSelect() {
     this.clearHardwareRaidSpace();
     this.recalculateAvailableArrays();
     this.initializeArray();
-  }
+  };
 
   initializeDisks() {
-    if (
-      !this.installation.hardwareRaid.disks &&
-      this.informations.hardwareRaid.availableDisks.length === 1
-    ) {
-      [
-        this.installation.hardwareRaid.disks,
-      ] = this.informations.hardwareRaid.availableDisks;
-      this.onDisksSelect();
+    if (!this.installation.hardwareRaid.disks &&
+      this.informations.hardwareRaid.availableDisks.length === 1) {
+        this.installation.hardwareRaid.disks = this.informations.hardwareRaid.availableDisks[0];
+        this.onDisksSelect();
     }
   }
 
   initializeArray() {
-    if (
-      !this.installation.hardwareRaid.arrays &&
-      this.informations.hardwareRaid.availableArrays.length === 1
-    ) {
-      [
-        this.installation.hardwareRaid.arrays,
-      ] = this.informations.hardwareRaid.availableArrays;
+    if (!this.installation.hardwareRaid.arrays &&
+      this.informations.hardwareRaid.availableArrays.length === 1) {
+        this.installation.hardwareRaid.arrays = this.informations.hardwareRaid.availableArrays[0];
     }
   }
 
@@ -71,25 +64,23 @@ export default class BmServerComponentsOsInstallHardwareRaidController {
     ) {
       this.informations.hardwareRaid.error = this.isInvalidHardwareRaid();
     }
-  }
+  };
 
   isInvalidHardwareRaid() {
     return (
-      this.installation.hardwareRaid.disks %
-        this.installation.hardwareRaid.arrays !==
-      0
+      this.installation.hardwareRaid.disks % this.installation.hardwareRaid.arrays !== 0
     );
-  }
+  };
 
   clearHardwareRaidSpace() {
     this.installation.hardwareRaid.availableSpace = null;
     this.installation.hardwareRaid.totalSpace = null;
-  }
+  };
 
   recalculateAvailableRaid() {
     if (this.installation.hardwareRaid.controller) {
-      const nbOfDisk = this.installation.hardwareRaid.controller.disks[0].names
-        .length;
+      const nbOfDisk =
+        this.installation.hardwareRaid.controller.disks[0].names.length;
       this.installation.hardwareRaid.raid = null;
       this.informations.hardwareRaid.availableDisks = [];
       this.informations.hardwareRaid.availableRaids = [];
@@ -129,12 +120,12 @@ export default class BmServerComponentsOsInstallHardwareRaidController {
         );
       }
     }
-  }
+  };
 
   recalculateAvailableRaidDisks() {
     if (this.installation.hardwareRaid.controller) {
-      const nbOfDisk = this.installation.hardwareRaid.controller.disks[0].names
-        .length;
+      const nbOfDisk =
+        this.installation.hardwareRaid.controller.disks[0].names.length;
       let minDisks = 1;
       let minDisksPerArray = 1;
       this.informations.hardwareRaid.availableDisks = [];
@@ -173,15 +164,15 @@ export default class BmServerComponentsOsInstallHardwareRaidController {
         this.informations.hardwareRaid.availableDisks.push(i);
       }
     }
-  }
+  };
 
   recalculateAvailableArrays() {
     if (
       this.installation.hardwareRaid.disks &&
       this.installation.hardwareRaid.controller
     ) {
-      let maxNumberArray = this.installation.hardwareRaid.controller.disks[0]
-        .names.length;
+      let maxNumberArray =
+        this.installation.hardwareRaid.controller.disks[0].names.length;
       let minNumberArray = 1;
       let isMultipleArrays = false;
       this.informations.hardwareRaid.availableArrays = [];
@@ -219,7 +210,7 @@ export default class BmServerComponentsOsInstallHardwareRaidController {
         this.recalculateSpace();
       }
     }
-  }
+  };
 
   recalculateSpace() {
     if (
@@ -227,14 +218,11 @@ export default class BmServerComponentsOsInstallHardwareRaidController {
       this.installation.hardwareRaid.arrays &&
       this.installation.hardwareRaid.controller
     ) {
-      let diskSize = this.installation.hardwareRaid.controller.disks[0].capacity
-        .value;
+      let diskSize =
+        this.installation.hardwareRaid.controller.disks[0].capacity.value;
       const grappe = this.installation.hardwareRaid.arrays;
       const nbOfDisks = this.installation.hardwareRaid.disks;
-      diskSize = Utils.toMb(
-        diskSize,
-        this.installation.hardwareRaid.controller.disks[0].capacity.unit,
-      );
+      diskSize = Utils.toMb(diskSize, this.installation.hardwareRaid.controller.disks[0].capacity.unit);
 
       this.installation.hardwareRaid.totalSpace =
         this.installation.hardwareRaid.disks * diskSize;
@@ -248,7 +236,8 @@ export default class BmServerComponentsOsInstallHardwareRaidController {
             (nbOfDisks - grappe) * diskSize;
           break;
         case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid10:
-          this.installation.hardwareRaid.availableSpace = grappe * diskSize;
+          this.installation.hardwareRaid.availableSpace =
+            grappe * diskSize;
           break;
         case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid6:
           this.installation.hardwareRaid.availableSpace =
@@ -262,12 +251,16 @@ export default class BmServerComponentsOsInstallHardwareRaidController {
           this.installation.hardwareRaid.availableSpace = diskSize;
           break;
         default:
-          this.installation.hardwareRaid.availableSpace = this.installation.hardwareRaid.totalSpace;
+          this.installation.hardwareRaid.availableSpace =
+            this.installation.hardwareRaid.totalSpace;
       }
     }
-  }
+  };
 
-  getDisplaySize(octetsSize, unitIndex = 0) {
+  getDisplaySize(
+    octetsSize,
+    unitIndex = 0,
+  ) {
     return this.$filter('formatSize')(octetsSize, unitIndex);
-  }
+  };
 }

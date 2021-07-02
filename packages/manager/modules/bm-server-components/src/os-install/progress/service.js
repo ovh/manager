@@ -14,12 +14,11 @@ export default class DedicatedServerOsInstallProgressService {
           type,
         },
       })
-      .then(({ data }) => data);
+    .then(({ data }) => data);
   }
 
   cancelTask(serviceName, taskId) {
-    return this.$http
-      .post(`/dedicated/server/${serviceName}/task/${taskId}/cancel`)
+    return this.$http.post(`/dedicated/server/${serviceName}/task/${taskId}/cancel`)
       .then(({ data }) => data);
   }
 
@@ -34,4 +33,6 @@ export default class DedicatedServerOsInstallProgressService {
         return this.$q.reject(error);
       });
   }
+
+
 }

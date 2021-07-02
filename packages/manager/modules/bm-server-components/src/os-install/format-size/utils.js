@@ -1,13 +1,16 @@
-import find from 'lodash/find';
+import forEach from 'lodash/forEach';
 
-import { UNITS } from './constants';
+import {
+  UNITS,
+} from './constants';
 
 export default class ovhManagerBmServerComponentsOsInstallFormatSizeUtils {
   static toMb(diskSize, diskUnit) {
-    const unitModel = find(UNITS.model, (unit) => unit.label === diskUnit);
-    if (unitModel) {
-      return diskSize * unitModel.value;
-    }
+    forEach(UNITS.model, (unit) => {
+      if (unit.label === diskUnit) {
+        return diskSize *= unit.value;
+      }
+    });
     return diskSize;
   }
 }

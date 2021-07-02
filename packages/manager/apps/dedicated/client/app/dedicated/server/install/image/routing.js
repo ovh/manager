@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: ($transition$) => {
       if ($transition$.params().installSource === null) {
         return {
-          state: 'app.dedicated-server.server.dashboard.install.choose-source',
+          state: 'app.dedicated-server.server.install.choose-source',
         };
       }
       return null;
@@ -37,7 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
       user: /* @ngInject */ (currentUser) => currentUser,
 
       installSource: /* @ngInject */ ($transition$) =>
-        $transition$.params().installSource,
+          $transition$.params().installSource,
     },
     atInternet: {
       ignore: true,

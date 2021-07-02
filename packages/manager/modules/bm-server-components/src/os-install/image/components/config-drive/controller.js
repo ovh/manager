@@ -10,6 +10,9 @@ export default class BmServerComponentsOsInstallImageConfigDriveCtrl {
     this.supportedSshFormatsNames = SUPPORTED_SSH_KEY_FORMATS.map(
       ({ name }) => name,
     );
+
+    this.validateSshFormat =
+    BmServerComponentsOsInstallImageConfigDriveCtrl.validateSshFormat;
   }
 
   /*= =====================================
