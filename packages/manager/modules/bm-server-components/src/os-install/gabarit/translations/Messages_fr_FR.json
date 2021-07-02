@@ -1,0 +1,16 @@
+{
+  "server_os_install_gabarit_description": "Renseignez les paramètres de l'OS que vos souhaitez utilizer sur le serveur {{serverName}}",
+  "server_os_install_gabarit_os_header": "Gabarit à installer",
+  "server_os_install_gabarit_os_deprecated": "Le gabarit sélectionné est {{osName}} est obsolète",
+  "server_os_install_gabarit_next": "Suivant",
+  "server_os_install_gabarit_cancel": "Annuler",
+  "server_os_install_gabarit_install": "Installer le système",
+  "server_os_install_gabarit_os_language": "Langue du système",
+  "server_os_install_gabarit_in_progress": "Installation en cours",
+  "server_os_install_gabarit_delete_link": "Supprimer le gabarit sélectionné",
+  "server_os_install_gabarit_delete_title": "Suppression de gabarit",
+  "server_os_install_gabarit_delete_cancel": "Annuler la suppression",
+  "server_os_install_gabarit_delete_confirm": "Supprimer le gabarit",
+  "server_os_install_gabarit_delete_success": "Le gabarit {{gabaritName}} bien été supprimé",
+  "server_os_install_gabarit_success": "Votre système d’exploitation est en cours de déploiement. Cette opération peut nécessiter une dizaine de minutes. À la fin de l’installation, votre serveur redémarrera sur les disques sélectionnés. <a href=\"{{progressHref}}\">Cliquez ici pour visualiser son état d’avancement.</a>"
+}

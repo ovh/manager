@@ -17,7 +17,6 @@ import professionalUse from './professional-use';
 import technicalDetails from './technical-details';
 import terminate from '../terminate/terminate.module';
 import upgradeRequest from './upgrade-request';
-import osInstallChooseSource from './os-install/choose-source';
 
 import component from './dashboard.component';
 import routing from './dashboard.routing';
@@ -41,7 +40,6 @@ angular
     resiliation,
     ovhManagerAdvices,
     terminate,
-    osInstallChooseSource,
   ])
   .component('dedicatedServerDashboard', component)
   .config(routing)

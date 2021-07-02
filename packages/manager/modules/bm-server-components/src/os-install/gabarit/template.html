@@ -1,0 +1,138 @@
+<h1 class="oui-back-button__title mb-3"
+    data-ng-bind="'server_configuration_installation_gabarit_title' | translate">
+</h1>
+<p data-translate="server_os_install_gabarit_description"
+    data-translate-values="{ serverName: $ctrl.serviceName }"></p>
+
+<oui-stepper data-on-finish="$ctrl.install()">
+    <!-- Configure the OS -->
+    <oui-step-form
+        data-header="{{:: 'server_os_install_gabarit_os_header' | translate}}"
+        data-loading="$ctrl.loader.loading"
+        data-editable="!$ctrl.loader.isInstalling"
+        data-navigation="!$ctrl.loader.loading &&
+            $ctrl.installation.selectGabarit &&
+            $ctrl.installation.selectLanguage"
+        data-submit-text="{{ ::'server_os_install_gabarit_next' | translate }}"
+    >
+
+        <span
+            data-translate="server_configuration_installation_gabarit_step1_info"
+            data-translate-values="{ t0: $ctrl.installation.server.name }"
+        ></span>
+
+        <!-- select OS template -->
+        <div class="container-fluid px-0">
+            <div class="row">
+                <oui-select-picker
+                    class="d-inline-block col-md-6 col-xl-3 my-3"
+                    data-ng-repeat="family in $ctrl.installation.formatedDistributionList track by $index"
+                    label="{{ family.name }}"
+                    variant="light"
+                    model="$ctrl.installation.selectGabarit"
+                    match="displayName"
+                    values="family.templates"
+                    required
+                    on-change="$ctrl.setSelectGabarit(modelValue)"
+                >
+                </oui-select-picker>
+            </div>
+        </div>
+
+        <!-- deprication message -->
+        <oui-message
+            type="warning"
+            data-ng-if="$ctrl.installation.selectGabarit.isDeprecated">
+            <span data-translate="server_os_install_gabarit_os_deprecated"
+                data-translate-values="{ osName: $ctrl.installation.selectGabarit.displayName}"></span>
+        </oui-message>
+
+        <!-- select language -->
+        <oui-field
+            class="pt-1"
+            label="{{ ::'server_os_install_gabarit_os_language' | translate}}"
+            size="xl"
+            data-ng-if="$ctrl.installation.selectGabarit">
+            <select
+                class="form-control"
+                id="selectLanguage"
+                name="selectLanguage"
+                data-ng-options="language as language for language in $ctrl.installation.selectGabarit.availableLanguages"
+                data-ng-model="$ctrl.installation.selectLanguage"
+            >
+            </select>
+        </oui-field>
+
+        <!-- delete gabarit -->
+        <button
+            data-ng-if="$ctrl.installation.selectGabarit"
+            type="button"
+            class="oui-button oui-button__link p-1 mb-3"
+            data-ng-click="$ctrl.onDelete($ctrl.installation.selectGabarit)"
+        >
+            <span data-translate="server_os_install_gabarit_delete_link"></span>
+        </button>
+
+        <!-- show error messages -->
+        <oui-message
+            type="error"
+            data-ng-if="$ctrl.errorGab.delete">
+            <span data-ng-bind-html="$ctrl.errorGab.delete"></span>
+        </oui-message>
+
+    </oui-step-form>
+
+    <!-- installation options -->
+    <oui-step-form
+        data-header="{{:: 'server_configuration_installation_form_option' | translate}}"
+        data-submit-text="{{ ::'server_os_install_gabarit_install' | translate }}"
+        data-cancel-text="{{ :: 'server_os_install_gabarit_cancel' | translate }}"
+        data-on-cancel="$ctrl.onGoBack()"
+        data-editable="!$ctrl.loader.isInstalling"
+        data-on-focus="$ctrl.loadStep2()"
+        data-loading="$ctrl.loader.loadingHardwareRaidDetails"
+        data-navigation="$ctrl.installation.options.validForm &&
+            $ctrl.informations.hardwareRaidCompatible &&
+            !$ctrl.loader.loading &&
+            !$ctrl.loader.loadingHardwareRaidDetails">
+        <server-os-install-installation-options
+            data-ng-if="$ctrl.installation.selectGabarit"
+            service-name="$ctrl.serviceName"
+            installation="$ctrl.installation"
+            informations="$ctrl.informations"
+            config-error="$ctrl.errorGab"
+            is-ovh-install="false">
+        </server-os-install-installation-options>
+        <div data-ng-if="$ctrl.loader.isInstalling" class="d-flex align-items-center">
+            <oui-spinner data-size="m"></oui-spinner>
+            <span data-translate="server_os_install_gabarit_in_progress"></span>
+        </div>
+    </oui-step-form>
+</oui-stepper>
+
+<div data-ng-if="$ctrl.showDeleteConf">
+    <div class="modal d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <oui-modal
+                    heading="{{ :: 'server_os_install_gabarit_delete_title' | translate }}"
+                    type="warning"
+                    on-dismiss="$ctrl.onDeleteCancel()"
+                    primary-label="{{ :: 'server_os_install_gabarit_delete_confirm' | translate }}"
+                    primary-action="$ctrl.deleteGabarit()"
+                    secondary-label="{{ :: 'server_os_install_gabarit_delete_cancel' | translate }}"
+                    secondary-action="$ctrl.onDeleteCancel()"
+                    loading="$ctrl.loader.deletingGabarit">
+
+                    <p data-translate="server_configuration_installation_gabarit_step1_delete"
+                        data-translate-values="{
+                            t0: $ctrl.installation.deleteGabarit.displayName
+                        }">
+                    </p>
+
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>
