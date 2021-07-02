@@ -81,7 +81,7 @@
             data-repeat="contact in $ctrl.searchInList($select.search) track by contact.id"
         >
             <div
-                data-ng-bind-html="contact.firstName + ' ' + contact.lastName"
+                data-ng-bind="contact.firstName + ' ' + contact.lastName"
             ></div>
             <small data-ng-bind="contact.address.line1"></small><br />
             <small
