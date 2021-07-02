@@ -1,0 +1,15 @@
+{
+  "server_os_install_ovh_title": "Installer un système (OS) à partir d'un template OVH",
+  "server_os_install_ovh_description": "Renseignez les paramètres de l'OS que vos souhaitez utilizer sur le serveur {{serverName}}",
+  "server_os_install_ovh_os_header": "Système à installer",
+  "server_os_install_ovh_hardware_raid_header": "Configuration du hardware RAID",
+  "server_os_install_ovh_partition_header": "Configuration des partitions",
+  "server_os_install_ovh_os_deprecated": "La distribution du système d'exploitation sélectionnée {{osName}} est obsolète",
+  "server_os_install_ovh_next": "Suivant",
+  "server_os_install_ovh_cancel": "Annuler",
+  "server_os_install_ovh_install": "Installer le système",
+  "server_os_install_ovh_os_type": "Type de système",
+  "server_os_install_ovh_os_language": "Langue du système",
+  "server_os_install_ovh_in_progress": "Installation en cours",
+  "server_os_install_ovh_success": "Votre système d’exploitation est en cours de déploiement. Cette opération peut nécessiter une dizaine de minutes. À la fin de l’installation, votre serveur redémarrera sur les disques sélectionnés. <a href=\"{{progressHref}}\">Cliquez ici pour visualiser son état d’avancement.</a>"
+}
