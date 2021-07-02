@@ -1,0 +1,4 @@
+{
+  "server_os_install_options_hostname": "Hostname (optionnel)",
+  "server_os_install_options_installation_url": "URL du script d'installation (optionnel)"
+}

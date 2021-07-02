@@ -1,40 +1,27 @@
 import get from 'lodash/get';
 
-import component from './component';
-import configComponent from './components/config/component';
-import configDriveComponent from './components/config-drive/component';
-import optionsComponent from './components/options/component';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated-server.server.install.image', {
     url: '/image',
     views: {
       '@app.dedicated-server': {
-        component: component.name,
+        component: 'dedicatedServerInstallImage',
       },
-
-      'config@app.dedicated-server.server.install.image': configComponent.name,
-
-      'options@app.dedicated-server.server.install.image':
-        optionsComponent.name,
-
-      'configDrive@app.dedicated-server.server.install.image':
-        configDriveComponent.name,
+    },
+    params: {
+      installSource: null,
+    },
+    redirectTo: ($transition$) => {
+      if ($transition$.params().installSource === null) {
+        return {
+          state: 'app.dedicated-server.server.install.choose-source',
+        };
+      }
+      return null;
     },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dedicated_server_install_image_title'),
-
-      loaders: () => ({
-        launchInstall: false,
-      }),
-
-      model: () => ({
-        httpHeader: [],
-        configdrive: {
-          metadata: [],
-        },
-      }),
 
       dedicatedApiSchema: /* @ngInject */ (dedicatedServerInstall) =>
         dedicatedServerInstall.getDedicatedInstallTemplateApiSchema(),
@@ -44,6 +31,13 @@ export default /* @ngInject */ ($stateProvider) => {
 
       checksumTypeEnum: /* @ngInject */ (dedicatedApiSchema) =>
         get(dedicatedApiSchema, 'models["dedicated.CheckSumTypesEnum"].enum'),
+
+      goBack: /* @ngInject */ (goToServerDetails) => goToServerDetails,
+
+      user: /* @ngInject */ (currentUser) => currentUser,
+
+      installSource: /* @ngInject */ ($transition$) =>
+          $transition$.params().installSource,
     },
     atInternet: {
       ignore: true,

@@ -130,6 +130,10 @@ import otrs from './otrs';
 
 import { TRACKING } from './at-internet.constants';
 
+import {
+  pollingService
+ } from '@ovh-ux/manager-bm-server-components';
+
 export default (containerEl, environment) => {
   const configConstants = getConstants(environment.getRegion());
 
@@ -225,6 +229,7 @@ export default (containerEl, environment) => {
         ovhManagerCda,
       ].filter(isString),
     )
+    .service('Polling', pollingService)
     .constant('constants', {
       prodMode: config.prodMode,
       swsProxyRootPath: config.swsProxyRootPath,

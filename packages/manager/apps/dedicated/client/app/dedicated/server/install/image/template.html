@@ -1,0 +1,14 @@
+<server-os-install-image
+    server="$ctrl.server"
+    user="$ctrl.user"
+    service-name="{{ $ctrl.server.name }}"
+    display-name="{{ $ctrl.server.displayName }}"
+    install-from="{{ $ctrl.installSource }}"
+    on-go-back="$ctrl.goBack(message)"
+    on-error="$ctrl.handleError(error)"
+    on-success="$ctrl.handleSuccess(message)"
+    install-progress-href="$ctrl.installProgressHref"
+    image-type-enum="$ctrl.imageTypeEnum"
+    checksum-type-enum="$ctrl.checksumTypeEnum"
+
+></server-os-install-image>

@@ -1,0 +1,96 @@
+<p
+    data-ng-if="$ctrl.informations.hardwareRaid.profile.controllers.length === 0"
+    data-translate="server_configuration_installation_ovh_stephardraid_error_empty_controller"
+></p>
+<div
+    data-ng-if="$ctrl.informations.hardwareRaid.profile.controllers.length > 0"
+>
+    <form id="hardwareRaidForm"
+        name="hardwareRaidForm">
+        <p
+            data-translate="server_configuration_installation_ovh_stephardraid_info"
+        ></p>
+        <oui-field
+            label="{{ ::'server_configuration_installation_ovh_stephardraid_label_controllers' | translate}}"
+            size="xl">
+            <select
+                class="form-control"
+                id="hardwareRaidController"
+                name="hardwareRaidController"
+                data-ng-options="controller as (controller.model + ' (' + controller.type + ')') for controller in $ctrl.informations.hardwareRaid.profile.controllers"
+                data-ng-model="$ctrl.installation.hardwareRaid.controller"
+                data-ng-change="$ctrl.onControllerSelect()"
+                required
+            >
+            </select>
+        </oui-field>
+
+        <oui-field label="RAID" size="xl">
+            <select
+                class="form-control"
+                id="hardwareRaidRaidMode"
+                name="hardwareRaidRaidMode"
+                data-ng-if="$ctrl.installation.hardwareRaid.controller"
+                data-ng-options="raid as raid for raid in $ctrl.informations.hardwareRaid.availableRaids | orderBy:'toString()'"
+                data-ng-model="$ctrl.installation.hardwareRaid.raid"
+                data-ng-change="$ctrl.onRaidSelect()"
+                required
+            >
+            </select>
+        </oui-field>
+
+        <oui-field
+            label="{{ ::'server_configuration_installation_ovh_stephardraid_label_disks' | translate}}"
+            size="xl">
+            <select
+                class="form-control"
+                id="hardwareRaidNbDisks"
+                name="hardwareRaidNbDisks"
+                data-ng-disabled="!$ctrl.installation.hardwareRaid.raid"
+                data-ng-options="disk as disk for disk in $ctrl.informations.hardwareRaid.availableDisks"
+                data-ng-model="$ctrl.installation.hardwareRaid.disks"
+                data-ng-change="$ctrl.onDisksSelect()"
+                required
+            >
+            </select>
+        </oui-field>
+
+        <oui-field
+            label="{{ ::'server_configuration_installation_ovh_stephardraid_label_arrays' | translate}}"
+            size="xl">
+            <select
+                id="hardwareaRidNbArrays"
+                class="form-control"
+                name="hardwareaRidNbArrays"
+                data-ng-disabled="!$ctrl.installation.hardwareRaid.disks"
+                data-ng-model="$ctrl.installation.hardwareRaid.arrays"
+                data-ng-options="array as array for array in $ctrl.informations.hardwareRaid.availableArrays"
+                data-ng-change="$ctrl.onArraySelect()"
+                required
+            >
+            </select>
+        </oui-field>
+
+        <dl class="oui-description"
+            data-ng-if="$ctrl.installation.hardwareRaid.totalSpace ||
+                $ctrl.installation.hardwareRaid.availableSpace">
+            <dt data-translate="server_configuration_installation_ovh_stephardraid_label_space_total"></dt>
+            <dd
+                data-ng-if="$ctrl.installation.hardwareRaid.totalSpace"
+                data-ng-bind="$ctrl.getDisplaySize($ctrl.installation.hardwareRaid.totalSpace)">
+            </dd>
+
+            <dt data-translate="server_configuration_installation_ovh_stephardraid_label_space_available"></dt>
+            <dd
+                data-ng-if="$ctrl.installation.hardwareRaid.availableSpace"
+                data-ng-bind="$ctrl.getDisplaySize($ctrl.installation.hardwareRaid.availableSpace)">
+            </dd>
+        </dl>
+
+        <oui-message
+            type="error"
+            data-ng-if="$ctrl.installation.hardwareRaid.error">
+            <span data-translate="server_configuration_installation_gabarit_step2_invalid"></span>
+        </oui-message>
+    </form>
+</div>
