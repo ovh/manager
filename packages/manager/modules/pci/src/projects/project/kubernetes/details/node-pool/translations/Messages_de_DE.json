@@ -12,5 +12,8 @@
   "kube_node_pool_anti_affinity": "Anti-Affinität",
   "kube_add_billing_type_description": "In der Node-Pool-Editieransicht können Sie für jeden Node von der stündlichen auf die monatliche Abrechnung wechseln.",
   "kube_node_pool_enabled": "Aktiviert",
-  "kube_node_pool_disabled": "Deaktiviert"
+  "kube_node_pool_disabled": "Deaktiviert",
+  "kube_node_pool_autoscale_true": "Aktiv",
+  "kube_node_pool_autoscale_false": "Inaktiv",
+  "kube_node_pool_edit": "Pool bearbeiten"
 }
