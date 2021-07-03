@@ -12,5 +12,8 @@
   "kube_node_pool_anti_affinity": "Anti-affinity",
   "kube_add_billing_type_description": "You can switch from hourly billing to monthly billing for each node in the node pool edit view.",
   "kube_node_pool_enabled": "Enabled",
-  "kube_node_pool_disabled": "Disabled"
+  "kube_node_pool_disabled": "Disabled",
+  "kube_node_pool_autoscale_true": "Enabled",
+  "kube_node_pool_autoscale_false": "Disabled",
+  "kube_node_pool_edit": "Edit pool"
 }

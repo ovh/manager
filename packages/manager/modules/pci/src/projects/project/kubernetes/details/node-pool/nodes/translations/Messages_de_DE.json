@@ -46,5 +46,6 @@
   "kube_nodes_switch_billing_type_error": "Es konnte nicht auf monatliche Abrechnung umgestellt werden: {{ message }}",
   "kube_nodes_common_actions": "Aktionen",
   "kube_nodes_add_nodes": "Nodes hinzufügen",
-  "kube_nodes_delete_nodes": "Nodes löschen"
+  "kube_nodes_delete_nodes": "Nodes löschen",
+  "kube_nodes_status_REDEPLOYING": "Anwendung der Änderungen"
 }

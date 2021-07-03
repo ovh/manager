@@ -8,5 +8,8 @@
   "kube_node_pool_add": "Aggiungi un pool di nodi",
   "kube_node_pool_refreh": "Ricarica la tabella ",
   "kube_node_pool_title": "Pool di nodi",
-  "kube_add_billing_type_description": "Nella sezione di modifica del pool di nodi, è possibile passare dalla fatturazione oraria al forfait mensile per ogni nodo."
+  "kube_add_billing_type_description": "Nella sezione di modifica del pool di nodi, è possibile passare dalla fatturazione oraria al forfait mensile per ogni nodo.",
+  "kube_node_pool_autoscale_true": "Attivo",
+  "kube_node_pool_autoscale_false": "Disattivo",
+  "kube_node_pool_edit": "Modifica il pool"
 }
