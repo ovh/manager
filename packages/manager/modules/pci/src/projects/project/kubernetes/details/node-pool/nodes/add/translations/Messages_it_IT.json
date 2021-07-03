@@ -25,5 +25,7 @@
   "kube_nodes_add_same_flavor_message": "È possibile scegliere esclusivamente questo tipo di istanza perché il pool di nodi può essere composto solamente da nodi dello stesso tipo.",
   "kube_nodes_add_select_nodes": "Seleziona il numero di nuovi nodi da aggiungere",
   "kube_nodes_add_instance_type": "Tipo di istanza",
-  "kube_nodes_add_adding_message": "Ridimensionamento del pool"
+  "kube_nodes_add_adding_message": "Ridimensionamento del pool",
+  "kube_nodes_add_anti_affinity_active_info": "L'anti-affinità è attiva: il pool di nodi non potrà contenere più di {{ maxNodes }} nodi",
+  "kube_nodes_add_billing_type_unavailable": "La modalità di fatturazione di un pool di nodi non può essere modificata"
 }

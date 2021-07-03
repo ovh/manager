@@ -46,5 +46,6 @@
   "kube_nodes_switch_billing_type_error": "Não foi possível passar para uma faturação mensal: {{ message }}",
   "kube_nodes_common_actions": "Ações",
   "kube_nodes_add_nodes": "Adicionar nós",
-  "kube_nodes_delete_nodes": "Eliminar nós"
+  "kube_nodes_delete_nodes": "Eliminar nós",
+  "kube_nodes_status_REDEPLOYING": "Aplicação das alterações"
 }
