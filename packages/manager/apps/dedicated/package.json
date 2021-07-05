@@ -45,6 +45,7 @@
     "@ovh-ux/manager-models": "^1.0.0",
     "@ovh-ux/manager-nasha": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-navbar": "^4.0.0 || ^5.0.0",
+    "@ovh-ux/manager-netapp": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^1.0.1 || ^2.0.0",
     "@ovh-ux/manager-notifications-sidebar": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-preloader": "^1.0.0",
