@@ -19,7 +19,7 @@ export default class WebPaasProjectAdditionalOptionCtrl {
         (addon) => addon.family === ADDON_FAMILY_STAGING_ENVIRONMENT,
       ).quantity;
       return (
-        ((DEFAULT_ENVIRONMENT + (stagingQuantity || 1)) *
+        ((DEFAULT_ENVIRONMENT + (stagingQuantity || 0)) *
           price.value *
           this.option.quantity) /
         STORAGE_MULTIPLE

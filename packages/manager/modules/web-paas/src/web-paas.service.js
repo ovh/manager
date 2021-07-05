@@ -234,7 +234,11 @@ export default class WebPaasService {
   getAddons(plan) {
     return this.createCart()
       .then((cart) => this.assignCart(cart))
-      .then((cart) => this.addToCart(cart.cartId, plan))
+      .then((cart) =>
+        plan.family === 'staging_environment'
+          ? cart
+          : this.addToCart(cart.cartId, plan),
+      )
       .then((cart) => {
         this.cart = cart;
         return this.getAddonOptions(cart, plan).then((res) => res);
