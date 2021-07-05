@@ -19,6 +19,6 @@
   "pci_projects_project_storages_blocks_add_archive_label": "Créer un conteneur d'archive",
   "pci_projects_project_storages_blocks_add_object_label": "Créer un conteneur d'objets",
 
-  "pci_projects_project_storages_containers_my_containers_label": "Mes containers",
-  "pci_projects_project_storages_containers_s3_users_label": "S3 Policeies users"
+  "pci_projects_project_storages_containers_my_containers_label": "Mes conteneurs",
+  "pci_projects_project_storages_containers_s3_users_label": "S3 policies users"
 }

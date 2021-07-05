@@ -391,30 +391,18 @@ export default class PciStoragesContainersService {
       .query({
         serviceName: projectId,
       })
-      .$promise.then((users) => {
-        const userList = [];
-        if (users.length > 0) {
-          return this.$q
-            .all(
-              map(users, (user) =>
-                this.$http
-                  .get(
-                    `/cloud/project/${projectId}/user/${user.id}/s3Credentials`,
-                  )
-                  .then(({ data }) => {
-                    if (data.length > 0) {
-                      userList.push({ ...user, s3Credentials: data });
-                    }
-                    return data;
-                  }),
-              ),
-            )
-            .then(() => {
-              return userList;
-            });
-        }
-        return [];
-      });
+      .$promise.then((users) =>
+        this.$q.all(
+          map(users, (user) =>
+            this.$http
+              .get(`/cloud/project/${projectId}/user/${user.id}/s3Credentials`)
+              .then(({ data }) => ({
+                ...user,
+                s3Credentials: data.length > 0 ? data : undefined,
+              })),
+          ),
+        ),
+      );
   }
 
   getPriceEstimation(ovhSubsidiary) {
