@@ -441,4 +441,10 @@ export default class PciStoragesContainersService {
         return priceObj;
       });
   }
+
+  getUserStoragePolicy(projectId, userId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/user/${userId}/policy`)
+      .then(({ data }) => data);
+  }
 }
