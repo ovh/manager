@@ -27,11 +27,11 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        '/billing/payment/ovhAccount/createAlert/billing-ovhAccount-createAlert.html',
+        'billing/payment/ovhAccount/createAlert/billing-ovhAccount-createAlert.html',
         createAlertTpl,
       );
       $templateCache.put(
-        '/billing/payment/ovhAccount/renew/billing-ovhAccount-renew.html',
+        'billing/payment/ovhAccount/renew/billing-ovhAccount-renew.html',
         renewTpl,
       );
     },
