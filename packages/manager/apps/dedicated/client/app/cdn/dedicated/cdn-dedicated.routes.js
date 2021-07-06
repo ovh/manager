@@ -1,11 +1,14 @@
+import template from './cdn-dedicated.html';
+import controller from './cdn-dedicated.controller';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.networks.cdn.dedicated', {
     url: '/:productId',
     redirectTo: 'app.networks.cdn.dedicated.manage',
     views: {
       '': {
-        templateUrl: 'cdn/dedicated/cdn-dedicated.html',
-        controller: 'CdnCtrl',
+        template,
+        controller,
       },
     },
     resolve: {

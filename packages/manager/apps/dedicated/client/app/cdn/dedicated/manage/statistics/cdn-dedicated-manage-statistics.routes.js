@@ -1,18 +1,16 @@
 import template from './cdn-dedicated-manage-statistics.html';
+import controller from './cdn-dedicated-manage-statistics.controller';
 
-angular.module('App').config(
-  /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.networks.cdn.dedicated.manage.statistics', {
-      views: {
-        cdnView: {
-          template,
-          controller: 'CdnStatisticsCtrl',
-        },
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('app.networks.cdn.dedicated.manage.statistics', {
+    views: {
+      cdnView: {
+        template,
+        controller,
       },
-      translations: { value: ['.'], format: 'json' },
-      resolve: {
-        breadcrumb: () => null,
-      },
-    });
-  },
-);
+    },
+    resolve: {
+      breadcrumb: () => null,
+    },
+  });
+};
