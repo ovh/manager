@@ -1,6 +1,7 @@
 {
   "kube_list_title": "Kubernetes",
   "kube_list_name": "Name des Clusters",
+  "kube_list_id": "ID",
   "kube_list_region": "Region",
   "kube_list_version": "Version",
   "kube_list_cluster_manage": "Cluster verwalten",
@@ -19,7 +20,5 @@
   "kubernetes_add_private_network_label": "Verbundenes privates Netzwerk",
   "kubernetes_add_private_network_none": "Keine (öffentlichen IPs)",
   "kubernetes_add_private_network_description": "Standardmäßig verfügen Ihre Worker-Nodes über eine öffentliche IPv4. Wenn Sie sich für ein privates Netzwerk entscheiden, werden die öffentlichen IP-Adressen dieser Nodes ausschließlich für deren Verwaltung und der Verbindung zur Kubernetes-Control-Panel-Ebene verwendet. Ihren Nodes wird eine IP im vLAN des gewählten privaten Netzwerks zugewiesen.",
-  "kube_list_id": "ID",
-  "kubernetes_add_private_network_add": "Privates Netzwerk erstellen",
-  "kube_common_node_pool_autoscaling_title": "Größe des Node-Pools konfigurieren"
+  "kubernetes_add_private_network_add": "Privates Netzwerk erstellen"
 }
