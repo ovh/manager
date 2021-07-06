@@ -55,7 +55,7 @@ export const LICENCES_VALUES = {
   MAX: 100,
 };
 export const STORAGE_MULTIPLE = 5;
-export const DEFAULT_ENVIRONMENT = 2;
+export const DEFAULT_ENVIRONMENT_COUNT = 2;
 
 export default {
   ADDON_FAMILY,

@@ -12,12 +12,11 @@ import PlanFamily from './family.class';
 import UserLicence from './user-licence.class';
 import {
   ADDON_FAMILY,
-  DEFAULT_ENVIRONMENT,
+  DEFAULT_ENVIRONMENT_COUNT,
   PLAN_CODE,
   SORT_ORDER_PLANS,
   STORAGE_MULTIPLE,
 } from './web-paas.constants';
-import { ADDON_FAMILY_STAGING_ENVIRONMENT } from './components/additional-option/constants';
 
 export default class WebPaasService {
   /* @ngInject */
@@ -265,7 +264,7 @@ export default class WebPaasService {
               pricingMode: 'default',
               quantity:
                 addon.family === ADDON_FAMILY.ENVIRONMENT
-                  ? addon.quantity + DEFAULT_ENVIRONMENT
+                  ? addon.quantity + DEFAULT_ENVIRONMENT_COUNT
                   : addon.quantity,
               itemId: cart.itemId,
             }).$promise.then((cartResult) => {
@@ -391,7 +390,7 @@ export default class WebPaasService {
       .get(`/order/cartServiceOption/webPaaS/${serviceName}`)
       .then(({ data }) => {
         const environmentAddon = find(data, {
-          family: ADDON_FAMILY_STAGING_ENVIRONMENT,
+          family: ADDON_FAMILY.ENVIRONMENT,
         });
         if (environmentAddon) {
           return this.getAdditionalOption(
@@ -486,7 +485,7 @@ export default class WebPaasService {
             planCode: addon.planCode,
             quantity:
               addon.family === ADDON_FAMILY.ENVIRONMENT
-                ? addon.quantity + DEFAULT_ENVIRONMENT
+                ? addon.quantity + DEFAULT_ENVIRONMENT_COUNT
                 : addon.quantity,
             option:
               addon.option && addon.option[0].quantity > 0 ? addon.option : '',
