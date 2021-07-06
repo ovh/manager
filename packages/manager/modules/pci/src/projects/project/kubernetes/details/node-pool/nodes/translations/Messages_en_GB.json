@@ -46,6 +46,5 @@
   "kube_nodes_switch_billing_type_error": "Unable to switch to monthly billing: {{ message }}",
   "kube_nodes_common_actions": "Actions",
   "kube_nodes_add_nodes": "Add nodes",
-  "kube_nodes_delete_nodes": "Delete nodes",
-  "kube_nodes_status_REDEPLOYING": "Applying changes"
+  "kube_nodes_delete_nodes": "Delete nodes"
 }
