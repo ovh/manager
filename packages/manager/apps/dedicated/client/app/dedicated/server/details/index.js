@@ -12,6 +12,8 @@ import install from '../install';
 import interfaces from '../interfaces/interfaces.module';
 import monitoring from '../monitoring';
 import task from '../task';
+import ipmi from '../ipmi';
+import orderKvm from '../kvm/order';
 
 import bandwidthVrackOrderService from './server.bandwidth-vrack-order.service';
 import component from './server.component';
@@ -35,6 +37,8 @@ angular
     'pascalprecht.translate',
     task,
     'ui.router',
+    ipmi,
+    orderKvm,
   ])
   .component('dedicatedServer', component)
   .config(routing)
