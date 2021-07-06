@@ -12,5 +12,9 @@
   "billing_payment_method_split_payment_activate_success": "La solicitud de activación del Split Payment se ha enviado.",
   "billing_payment_method_split_payment_activate_error": "Se ha producido un error al solicitar la activación del Split Payment.",
   "billing_payment_method_split_payment_deactivate_success": "La solicitud de desactivación del Split Payment se ha enviado.",
-  "billing_payment_method_split_payment_deactivate_error": "Se ha producido un error al solicitar la desactivación del Split Payment."
+  "billing_payment_method_split_payment_deactivate_error": "Se ha producido un error al solicitar la desactivación del Split Payment.",
+  "billing_payment_method_split_payment_warning_title": "ATENCIÓN",
+  "billing_payment_method_split_payment_warning_activate": "El Split Payment está reservado a entidades públicas económicas nacionales, regionales y locales, empresas especiales y empresas públicas de servicios personales; fundaciones propiedad de las administraciones públicas; empresas controladas directamente por la oficina del Primer Ministro y por los ministerios; empresas controladas directa o indirectamente por administraciones públicas o por las entidades y empresas anteriormente mencionadas; empresas propiedad de las administraciones públicas o de las entidades y empresas anteriormente mencionadas; empresas cotizadas en bolsa e incluidas en el índice FTSE MIB de la Bolsa de Valores de Italia identificadas a efectos de la aplicación del impuesto sobre el valor añadido.",
+  "billing_payment_method_split_payment_warning_deactivate": "Al desactivar el Split Payment, solicita volver a un sistema de gestión ordinaria del IVA. Las facturas emitidas por OVHcloud tras la desactivación del Split Payment serán tratadas con arreglo al régimen ordinario y el pago de los pedidos incluirá el pago de la totalidad del importe del IVA incluido.",
+  "billing_payment_method_split_payment_warning_decree": "Extracto del Decreto Ley n.º 148 del 16 de octubre de 2017, artículo 3, párrafo 1 bis."
 }
