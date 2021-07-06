@@ -11,6 +11,16 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     },
   });
 
+  /**
+   * Using redirectTo and using future states, this triggers the lazy loading mechanism which will,
+   * once the state is loaded, execute a retry on the transition (https://github.com/ui-router/core/blob/master/src/hooks/lazyLoad.ts#L32-L67 )
+   *
+   * If we have some API calls in the redirectTo, calls are repeated.
+   * We can't use resolvables on the state that use redirectTo because resolves are executed once the state is entered, which is not the case.
+   *
+   * So this is a sort of hack : create an isolated state (without children), and in his resolves we use $state.go.
+   * This state shouldn't have sub states or you should override `redirect` resolve.
+   */
   $stateProvider.state('app.redirect', {
     url: '?onboarding',
     resolve: {
