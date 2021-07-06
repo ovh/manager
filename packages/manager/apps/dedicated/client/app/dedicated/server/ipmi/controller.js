@@ -1,4 +1,4 @@
-export default class DedicatedServerKvmOrderCtrl {
+export default class DedicatedServerIpmiCtrl {
   /* @ngInject */
   constructor(Alerter) {
     this.Alerter = Alerter;
@@ -16,5 +16,10 @@ export default class DedicatedServerKvmOrderCtrl {
       message,
       'server_dashboard_alert',
     );
+  }
+
+  onKvmOrder() {
+    console.log('onKVMOrder');
+    this.goToKvmOrder();
   }
 }

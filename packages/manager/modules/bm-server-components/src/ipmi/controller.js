@@ -89,7 +89,9 @@ export default class BmServerComponentsIpmiController {
                 ).catch((error) => {
                   this.handleError(
                     error,
-                    this.$translate.instant('server_configuration_kvm_error'),
+                    this.$translate.instant(
+                      'server_configuration_kvm_error',
+                    ),
                   );
                   return {};
                 }),
@@ -106,7 +108,9 @@ export default class BmServerComponentsIpmiController {
       .catch((error) => {
         this.handleError(
           error,
-          this.$translate.instant('server_configuration_impi_loading_error'),
+          this.$translate.instant(
+            'server_configuration_impi_loading_error',
+          ),
         );
         this.loader.error = true;
       })
@@ -161,7 +165,9 @@ export default class BmServerComponentsIpmiController {
       .catch((error) => {
         this.handleError(
           error,
-          this.$translate.instant('server_configuration_impi_navigation_error'),
+          this.$translate.instant(
+            'server_configuration_impi_navigation_error',
+          ),
         );
       })
       .finally(() => {
@@ -209,7 +215,9 @@ export default class BmServerComponentsIpmiController {
         this.setPingState(STATE_ENUM.NONE);
         this.handleError(
           error,
-          this.$translate.instant('server_configuration_impi_loading_error'),
+          this.$translate.instant(
+            'server_configuration_impi_loading_error',
+          ),
         );
       });
   }
@@ -249,7 +257,9 @@ export default class BmServerComponentsIpmiController {
         this.setPasswordState(STATE_ENUM.NONE);
         this.handleError(
           error,
-          this.$translate.instant('server_configuration_impi_loading_error'),
+          this.$translate.instant(
+            'server_configuration_impi_loading_error',
+          ),
         );
       });
   }
@@ -283,7 +293,9 @@ export default class BmServerComponentsIpmiController {
         this.disable.testIpmi = true;
         this.handleError(
           error,
-          this.$translate.instant('server_configuration_impi_loading_error'),
+          this.$translate.instant(
+            'server_configuration_impi_loading_error',
+          ),
         );
       });
   }
@@ -424,7 +436,9 @@ export default class BmServerComponentsIpmiController {
         this.loader.buttonStart = false;
         this.handleError(
           error,
-          this.$translate.instant('server_configuration_impi_navigation_error'),
+          this.$translate.instant(
+            'server_configuration_impi_navigation_error',
+          ),
         );
       });
   }
@@ -448,7 +462,9 @@ export default class BmServerComponentsIpmiController {
         this.loader.buttonStart = false;
         this.handleError(
           error,
-          this.$translate.instant('server_configuration_impi_navigation_error'),
+          this.$translate.instant(
+            'server_configuration_impi_navigation_error',
+          ),
         );
       });
   }
@@ -467,7 +483,9 @@ export default class BmServerComponentsIpmiController {
       .catch((error) => {
         this.handleError(
           error,
-          this.$translate.instant('server_configuration_impi_navigation_error'),
+          this.$translate.instant(
+            'server_configuration_impi_navigation_error',
+          ),
         );
       })
       .finally(() => {
@@ -489,7 +507,9 @@ export default class BmServerComponentsIpmiController {
         this.loader.buttonStart = false;
         this.handleError(
           error,
-          this.$translate.instant('server_configuration_impi_navigation_error'),
+          this.$translate.instant(
+            'server_configuration_impi_navigation_error',
+          ),
         );
       });
   }
@@ -512,14 +532,18 @@ export default class BmServerComponentsIpmiController {
         this.loader.buttonStart = false;
         this.handleError(
           error,
-          this.$translate.instant('server_configuration_impi_navigation_error'),
+          this.$translate.instant(
+            'server_configuration_impi_navigation_error',
+          ),
         );
       });
   }
 
   getIpmiJava() {
     this.handleSuccess(
-      this.$translate.instant('server_configuration_impi_java_success'),
+      this.$translate.instant(
+        'server_configuration_impi_java_success',
+      ),
     );
     this.loader.buttonStart = false;
     this.javaState.setState(STATE_ENUM.DONE);
@@ -552,7 +576,9 @@ export default class BmServerComponentsIpmiController {
       .catch((error) => {
         this.handleError(
           error,
-          this.$translate.instant('server_configuration_impi_navigation_error'),
+          this.$translate.instant(
+            'server_configuration_impi_navigation_error',
+          ),
         );
       });
   }
@@ -570,7 +596,9 @@ export default class BmServerComponentsIpmiController {
         this.loader.buttonStart = false;
         this.handleError(
           error,
-          this.$translate.instant('server_configuration_impi_java_error'),
+          this.$translate.instant(
+            'server_configuration_impi_java_error',
+          ),
         );
       });
   }
@@ -596,7 +624,9 @@ export default class BmServerComponentsIpmiController {
         this.loader.buttonStart = false;
         this.handleError(
           error,
-          this.$translate.instant('server_configuration_impi_java_error'),
+          this.$translate.instant(
+            'server_configuration_impi_java_error',
+          ),
         );
       });
   }
@@ -635,13 +665,17 @@ export default class BmServerComponentsIpmiController {
       .then((solSsh) => {
         this.ssh.solSshUrl = solSsh.value;
         this.handleSuccess(
-          this.$translate.instant('server_configuration_impi_ssh_success'),
+          this.$translate.instant(
+            'server_configuration_impi_ssh_success',
+          ),
         );
       })
       .catch((error) => {
         this.handleError(
           error,
-          this.$translate.instant('server_configuration_impi_ssh_error'),
+          this.$translate.instant(
+            'server_configuration_impi_ssh_error',
+          ),
         );
       })
       .finally(() => {
@@ -663,7 +697,9 @@ export default class BmServerComponentsIpmiController {
         this.loader.buttonStart = false;
         this.handleError(
           error,
-          this.$translate.instant('server_configuration_impi_navigation_error'),
+          this.$translate.instant(
+            'server_configuration_impi_navigation_error',
+          ),
         );
       });
   }
@@ -687,7 +723,9 @@ export default class BmServerComponentsIpmiController {
         this.loader.buttonStart = false;
         this.handleError(
           error,
-          this.$translate.instant('server_configuration_impi_navigation_error'),
+          this.$translate.instant(
+            'server_configuration_impi_navigation_error',
+          ),
         );
       });
   }
@@ -726,15 +764,17 @@ export default class BmServerComponentsIpmiController {
         this.disable.localTask = true;
         this.startIpmiPollRestart({ id: taskId });
         this.handleSuccess(
-          this.$translate.instant('server_configuration_impi_restart_loading'),
+          this.$translate.instant(
+            'server_configuration_impi_restart_loading',
+          ),
         );
       })
-      .catch((error) =>
-        this.handleError(
-          error,
-          this.$translate.instant('server_configuration_impi_restart_error'),
+      .catch((error) => this.handleError(
+        error,
+        this.$translate.instant(
+          'server_configuration_impi_restart_error',
         ),
-      )
+      ))
       .finally(() => {
         this.showIpmiRestartConf = false;
         this.loading = false;
@@ -750,7 +790,7 @@ export default class BmServerComponentsIpmiController {
   handleError(error, message = null) {
     if (isFunction(this.onError)) {
       this.onError({
-        error: { message, data: error },
+        error: { message, data: error }
       });
     }
   }
@@ -758,7 +798,7 @@ export default class BmServerComponentsIpmiController {
   handleSuccess(message) {
     if (isFunction(this.onSuccess)) {
       this.onSuccess({
-        message,
+        message
       });
     }
   }
