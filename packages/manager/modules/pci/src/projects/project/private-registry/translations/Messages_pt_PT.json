@@ -3,6 +3,7 @@
   "private_registry_common_confirm": "Confirmar",
   "private_registry_common_close": "Encerrar",
   "private_registry_common_delete": "Eliminar",
+  "private_registry_title": "Managed Private Registry",
   "private_registry_create_registry": "Criar um registo privado",
   "private_registry_name": "Nome do Registry",
   "private_registry_id": "ID",
