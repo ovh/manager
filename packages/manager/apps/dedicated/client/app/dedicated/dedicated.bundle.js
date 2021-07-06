@@ -52,11 +52,6 @@ import './server/ftp-backup/password/request/dedicated-server-ftp-backup-passwor
 import './server/ip/dedicated-server-ip-mitigation-statistics.controller';
 import './server/ip/dedicated-server-ip-mitigation.controller';
 import './server/ip/dedicated-server-ip.controller';
-import './server/ipmi/dedicated-server-ipmi.controller';
-import './server/ipmi/dedicated-server-ipmi.routes';
-import './server/ipmi/restart/dedicated-server-ipmi-restart.controller';
-import './server/ipmi/restart/session/dedicated-server-ipmi-restart-session.controller';
-import './server/kvm/order/dedicated-server-kvm-order.controller';
 import './server/monitoring/add/dedicated-server-monitoring-add.controller';
 import './server/monitoring/monitoring-update.controller';
 import './server/monitoring/delete/dedicated-server-monitoring-delete.controller';
