@@ -189,6 +189,14 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       breadcrumb: () => null,
       trackingPrefix: () => 'vps::detail::dashboard',
+      canDisplayVpsAnnouncementBanner: /* @ngInject */ (ovhFeatureFlipping) => {
+        const vpsAnnouncementBannerId = 'vps:vps-announcement-banner';
+        return ovhFeatureFlipping
+          .checkFeatureAvailability(vpsAnnouncementBannerId)
+          .then((newRegionFeature) =>
+            newRegionFeature.isFeatureAvailable(vpsAnnouncementBannerId),
+          );
+      },
     },
   });
 };
