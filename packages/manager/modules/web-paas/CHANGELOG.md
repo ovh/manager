@@ -1,3 +1,12 @@
+## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.2.2...@ovh-ux/manager-web-paas@1.2.3) (2021-07-06)
+
+
+### Bug Fixes
+
+* fixes issue with creating option for a new order ([#5211](https://github.com/ovh/manager/issues/5211)) ([c2e58a0](https://github.com/ovh/manager/commit/c2e58a0772b65caa22f2623e659ad38f3a27ea33))
+
+
+
 ## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.2.1...@ovh-ux/manager-web-paas@1.2.2) (2021-06-16)
 
 
