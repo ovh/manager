@@ -46,6 +46,5 @@
   "kube_nodes_switch_billing_type_error": "No es posible cambiar la facturación a la modalidad mensual: {{ message }}",
   "kube_nodes_common_actions": "Acciones",
   "kube_nodes_add_nodes": "Añadir nodos",
-  "kube_nodes_delete_nodes": "Eliminar nodos",
-  "kube_nodes_status_REDEPLOYING": "Aplicación de los cambios"
+  "kube_nodes_delete_nodes": "Eliminar nodos"
 }

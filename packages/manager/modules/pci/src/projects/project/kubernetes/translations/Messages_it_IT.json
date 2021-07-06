@@ -1,6 +1,7 @@
 {
   "kube_list_title": "Kubernetes",
   "kube_list_name": "Nome del cluster",
+  "kube_list_id": "ID",
   "kube_list_region": "Region",
   "kube_list_version": "Versione",
   "kube_list_cluster_manage": "Gestisci il cluster",
@@ -19,7 +20,5 @@
   "kubernetes_add_private_network_label": "Rete privata associata",
   "kubernetes_add_private_network_none": "Nessuno (IP pubblici)",
   "kubernetes_add_private_network_description": "Di default, i nodi di lavoro dispongono di un IPv4 pubblico. Se scegli una rete privata, gli IP pubblici di questi nodi saranno utilizzati esclusivamente per la loro amministrazione e il collegamento con il control plane Kubernetes; ai tuoi nodi verrà assegnato un IP sulla vLAN della rete privata scelta.",
-  "kube_list_id": "ID",
-  "kubernetes_add_private_network_add": "Crea una rete privata",
-  "kube_common_node_pool_autoscaling_title": "Configura la dimensione del pool di nodi"
+  "kubernetes_add_private_network_add": "Crea una rete privata"
 }
