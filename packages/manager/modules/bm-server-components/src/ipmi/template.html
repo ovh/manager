@@ -1,73 +1,64 @@
-<div
-    class="container-fluid mb-5"
-    data-ng-controller="ImpiCtrl"
-    data-ng-init="init()"
->
-    <div data-ovh-alert="server_tab_ipmi_alert"></div>
-    <div class="text-center" data-ng-if="loader.loading && !loader.error">
+<div class="container-fluid mb-1">
+    <div data-ovh-alert="{{:: $ctrl.alertSection }}"></div>
+    <div
+        class="text-center"
+        data-ng-if="$ctrl.loader.loading && !$ctrl.loader.error"
+    >
         <oui-spinner></oui-spinner>
     </div>
-    <div data-ng-if="!loader.loading && !loader.error">
-        <p
-            class="text-danger"
-            data-ng-if="server.state == 'HACKED' || server.state == 'HACKED_BLOCKED'"
-            data-ng-bind-html="'server_configuration_impi_disabled' | translate:{ t0: ('server_configuration_state_' + server.state | translate) }"
-        ></p>
-        <div
-            data-ng-if="server.state != 'HACKED' && server.state != 'HACKED_BLOCKED'"
-        >
-            <div data-ng-if="!ipmi.model.activated">
-                <div data-ng-if="!kvm.features">
+    <div data-ng-if="!$ctrl.loader.loading && !$ctrl.loader.error">
+        <p class="text-danger" data-ng-if="$ctrl.isServerHacked()">
+            <span
+                data-translate="server_configuration_impi_disabled"
+                data-translate-values="{
+                    serverState: ('server_configuration_state_' + $ctrl.server.state | translate)
+                }"
+            >
+            </span>
+        </p>
+        <div data-ng-if="!$ctrl.isServerHacked()">
+            <div data-ng-if="!$ctrl.ipmi.isActivated()">
+                <div data-ng-if="!$ctrl.kvm.featuresAvailable()">
                     <p data-translate="server_configuration_impi_off"></p>
-                    <div data-ng-if="kvm.canOrderKvm">
-                        <p
-                            data-translate="server_configuration_impi_off_kvm"
-                        ></p>
+                    <div data-ng-if="$ctrl.kvm.canOrderKvm()">
+                        <p data-translate="server_configuration_impi_off_kvm"></p>
                         <button
                             type="button"
                             class="btn btn-default"
-                            data-ng-click="setAction('kvm/order/dedicated-server-kvm-order', user)"
+                            data-ng-click="$ctrl.orderKvm()"
                         >
                             <span
-                                class="fa fa-shopping-cart"
+                                class="oui-icon oui-icon-cart"
                                 aria-hidden="true"
                             ></span>
-                            <span
-                                data-translate="server_configuration_impi_order_kvm"
-                            ></span>
+                            <span data-translate="server_configuration_impi_order_kvm"></span>
                         </button>
                     </div>
                 </div>
-                <div data-ng-if="kvm.features">
-                    <h3
-                        data-translate="server_configuration_kvm_informations"
-                    ></h3>
-                    <dl>
-                        <dt
-                            data-translate="server_configuration_kvm_informations_name"
-                        ></dt>
-                        <dd data-ng-bind="kvm.features.name"></dd>
-                        <dt
-                            data-translate="server_configuration_kvm_informations_ip"
-                        ></dt>
-                        <dd data-ng-bind="kvm.features.ip"></dd>
+                <div data-ng-if="$ctrl.kvm.featuresAvailable()">
+                    <h3 data-translate="server_configuration_kvm_informations"></h3>
+                    <dl class="oui-description">
+                        <dt data-translate="server_configuration_kvm_informations_name"></dt>
+                        <dd data-ng-bind="$ctrl.kvm.name"></dd>
+                        <dt data-translate="server_configuration_kvm_informations_ip"></dt>
+                        <dd data-ng-bind="$ctrl.kvm.ip"></dd>
                         <dt
                             data-translate="server_configuration_kvm_informations_expiration"
                         ></dt>
                         <dd
-                            data-ng-bind="kvm.features.expiration | date:'longDate'"
+                            data-ng-bind="$ctrl.kvm.expiration | date:'longDate'"
                         ></dd>
                     </dl>
                 </div>
             </div>
             <div
                 class="text-danger"
-                data-ng-if="ipmi.model.activated && (disable.otherTask || disable.localTask)"
+                data-ng-if="$ctrl.ipmi.isActivated() && ($ctrl.disable.otherTask || $ctrl.disable.localTask)"
                 data-translate="server_configuration_impi_disable"
             ></div>
             <div
                 class="row d-md-flex mb-5"
-                data-ng-if="ipmi.model.activated && !disable.otherTask && !disable.localTask"
+                data-ng-if="$ctrl.ipmi.isActivated() && !$ctrl.disable.otherTask && !$ctrl.disable.localTask"
             >
                 <div class="col-md-4">
                     <oui-tile
@@ -76,52 +67,52 @@
                         data-description="{{::'server_configuration_tile_kvm_description' | translate}}"
                     >
                         <oui-tile-definition
-                            data-ng-if="ipmi.model.supportedFeatures.kvmipHtml5URL"
+                            data-ng-if="$ctrl.ipmi.isKvmIpHtml5UrlSupported()"
                         >
                             <oui-tile-description>
                                 <button
                                     type="button"
                                     class="btn btn-default btn-block"
-                                    data-ng-click="getIpmiKvmUrl()"
-                                    data-ng-disabled="loader.buttonStart || disable.otherTask || disable.localTask"
+                                    data-ng-click="$ctrl.getIpmiKvmUrl()"
+                                    data-ng-disabled="$ctrl.loader.buttonStart || $ctrl.disable.otherTask || $ctrl.disable.localTask"
                                 >
                                     <span
                                         data-translate="server_configuration_impi_kvm_console"
                                     ></span>
                                     <oui-spinner
                                         class="ml-2"
-                                        data-ng-if="loader.kvmhtmlLoading"
+                                        data-ng-if="$ctrl.loader.kvmhtmlLoading"
                                         data-size="s"
                                     >
                                     </oui-spinner>
                                 </button>
                                 <a
                                     class="btn btn-default btn-block"
-                                    href="{{:: loader.kvmUrl }}"
+                                    href="{{:: $ctrl.loader.kvmUrl }}"
                                     target="_blank"
                                     rel="noopener"
-                                    data-ng-if="loader.kvmUrlReady && !disable.otherTask && !disable.localTask"
+                                    data-ng-if="$ctrl.loader.kvmUrlReady && !$ctrl.disable.otherTask && !$ctrl.disable.localTask"
                                     data-translate="server_configuration_impi_kvm_url"
                                 >
                                 </a>
                             </oui-tile-description>
                         </oui-tile-definition>
                         <oui-tile-definition
-                            data-ng-if="ipmi.model.supportedFeatures.kvmipJnlp"
+                            data-ng-if="$ctrl.ipmi.isKvmIpJnlpSupported()"
                         >
                             <oui-tile-description>
                                 <button
                                     type="button"
                                     class="btn btn-default btn-block"
-                                    data-ng-click="startIpmiJava()"
-                                    data-ng-disabled="loader.buttonStart || disable.otherTask || disable.localTask"
+                                    data-ng-click="$ctrl.startIpmiJava()"
+                                    data-ng-disabled="$ctrl.loader.buttonStart || $ctrl.disable.otherTask || $ctrl.disable.localTask"
                                 >
                                     <span
                                         data-translate="server_configuration_impi_java"
                                     ></span>
                                     <oui-spinner
                                         class="ml-2"
-                                        data-ng-if="loader.javaLoading"
+                                        data-ng-if="$ctrl.javaState.isLoading()"
                                         data-size="s"
                                     >
                                     </oui-spinner>
@@ -129,8 +120,8 @@
                                 <button
                                     type="button"
                                     class="btn btn-default btn-block"
-                                    data-ng-if="appletToDownload"
-                                    data-ng-click="downloadApplet()"
+                                    data-ng-if="$ctrl.appletToDownload"
+                                    data-ng-click="$ctrl.downloadApplet()"
                                     data-translate="server_configuration_impi_java_download"
                                 ></button>
                             </oui-tile-description>
@@ -143,30 +134,30 @@
                         data-heading="{{::'server_configuration_tile_sol_heading' | translate}}"
                         data-description="{{::'server_configuration_tile_sol_description' | translate}}"
                     >
-                        <oui-tile-definition data-ng-if="hasSOL()">
+                        <oui-tile-definition data-ng-if="$ctrl.hasSOL()">
                             <oui-tile-description>
                                 <button
                                     type="button"
                                     class="btn btn-default btn-block"
-                                    data-ng-click="startIpmiNavigation()"
-                                    data-ng-disabled="loader.buttonStart || disable.otherTask || disable.localTask"
+                                    data-ng-click="$ctrl.startIpmiNavigation()"
+                                    data-ng-disabled="$ctrl.loader.buttonStart || $ctrl.disable.otherTask || $ctrl.disable.localTask"
                                 >
                                     <span
                                         data-translate="server_configuration_impi_navigation"
                                     ></span>
                                     <oui-spinner
                                         class="ml-2"
-                                        data-ng-if="loader.navigationLoading"
+                                        data-ng-if="$ctrl.loader.navigationLoading"
                                         data-size="s"
                                     >
                                     </oui-spinner>
                                 </button>
                                 <a
                                     class="btn btn-default btn-block"
-                                    href="{{ loader.navigationReady }}"
+                                    href="{{ $ctrl.loader.navigationReady }}"
                                     target="_blank"
                                     rel="noopener"
-                                    data-ng-if="loader.navigationReady && !disable.otherTask && !disable.localTask"
+                                    data-ng-if="$ctrl.loader.navigationReady && !$ctrl.disable.otherTask && !$ctrl.disable.localTask"
                                     data-translate="server_configuration_impi_navigation_go"
                                 >
                                 </a>
@@ -178,22 +169,22 @@
                             <oui-tile-description>
                                 <oui-select
                                     data-placeholder="{{::'server_configuration_ssh_select' | translate}}"
-                                    data-items="ssh.list"
-                                    data-model="ssh.selectedKey"
-                                    data-on-change="onSelectSshKey()"
-                                    data-disabled="loader.solSshKeyLoading || loader.buttonStart || disable.otherTask || disable.localTask"
+                                    data-items="$ctrl.ssh.list"
+                                    data-model="$ctrl.ssh.selectedKey"
+                                    data-on-change="$ctrl.onSelectSshKey()"
+                                    data-disabled="$ctrl.loader.solSshKeyLoading || $ctrl.loader.buttonStart || $ctrl.disable.otherTask || $ctrl.disable.localTask"
                                 >
                                     <span ng-bind="$item"></span>
                                 </oui-select>
                                 <oui-spinner
                                     class="ml-2"
-                                    data-ng-if="loader.solSshKeyLoading"
+                                    data-ng-if="$ctrl.loader.solSshKeyLoading"
                                     data-size="s"
                                 >
                                 </oui-spinner>
                                 <oui-clipboard
-                                    data-model="'ssh ' + ssh.solSshUrl"
-                                    data-ng-if="ssh.solSshUrl"
+                                    data-model="'ssh ' + $ctrl.ssh.solSshUrl"
+                                    data-ng-if="$ctrl.ssh.solSshUrl"
                                 ></oui-clipboard>
                             </oui-tile-description>
                         </oui-tile-definition>
@@ -203,8 +194,8 @@
                     <button
                         type="button"
                         class="btn btn-default btn-block"
-                        data-ng-click="setAction('ipmi/restart/dedicated-server-ipmi-restart')"
-                        data-ng-disabled="disable.restartIpmi || disable.localTask || disable.otherTask"
+                        data-ng-click="$ctrl.onShowIpmiRestartConf()"
+                        data-ng-disabled="$ctrl.disable.restartIpmi || $ctrl.disable.localTask || $ctrl.disable.otherTask"
                     >
                         <span>
                             <span
@@ -212,7 +203,7 @@
                             ></span>
                             <span
                                 class="label label-defaut"
-                                data-ng-if="disable.restartIpmi"
+                                data-ng-if="$ctrl.disable.restartIpmi"
                                 data-translate="server_configuration_doing"
                             ></span>
                         </span>
@@ -220,17 +211,15 @@
                     <button
                         type="button"
                         class="btn btn-default btn-block"
-                        data-ng-click="startIpmiTest()"
-                        data-ng-disabled="disable.testIpmi || disable.otherTask || disable.localTask"
+                        data-ng-click="$ctrl.startIpmiTest()"
+                        data-ng-disabled="$ctrl.disable.testIpmi || $ctrl.disable.otherTask || $ctrl.disable.localTask"
                     >
                         <span>
-                            <span
-                                data-translate="server_configuration_impi_test"
-                            ></span>
+                            <span data-translate="server_configuration_impi_test"></span>
                             <span
                                 class="label label-defaut"
-                                data-ng-if="disable.testIpmi"
-                                data-translate="server_configuration_doing"
+                                data-ng-if="$ctrl.disable.testIpmi"
+                                data-translate="server_doing"
                             >
                             </span>
                         </span>
@@ -238,24 +227,21 @@
                 </div>
             </div>
             <div
-                data-ng-if="ipmi.model.activated && !disable.otherTask && !disable.localTask"
+                data-ng-if="$ctrl.ipmi.isActivated() && !$ctrl.disable.otherTask && !$ctrl.disable.localTask"
             >
-                <p
-                    data-translate="server_configuration_impi_monitoring_warning"
-                ></p>
-                <p data-ng-if="ipmiHelpUrl && hasSOL()">
-                    <span
-                        data-translate="server_configuration_impi_SOL_help"
-                    ></span>
+                <p data-translate="server_configuration_impi_monitoring_warning"></p>
+                <p data-ng-if="$ctrl.ipmiHelpUrl && $ctrl.hasSOL()">
+                    <span data-translate="server_configuration_impi_SOL_help"></span>
                     <a
-                        data-ng-href="{{::ipmiHelpUrl}}"
+                        data-ng-href="{{::$ctrl.ipmiHelpUrl}}"
                         target="_blank"
                         rel="noopener"
                     >
+                        <span data-translate="server_configuration_impi_SOL_help_link"></span>
                         <span
-                            data-translate="server_configuration_impi_SOL_help_link"
-                        ></span>
-                        <span class="fa fa-external-link" aria-hidden="true">
+                            class="oui-icon oui-icon-external-link"
+                            aria-hidden="true"
+                        >
                         </span>
                     </a>
                 </p>
@@ -263,70 +249,108 @@
         </div>
     </div>
 
-    <div data-ng-if="ipmi.model.activated && disable.testActive">
+    <div data-ng-if="$ctrl.ipmi.isActivated() && $ctrl.disable.testActive">
         <ul class="list-unstyled">
             <li>
                 <oui-spinner
-                    data-ng-if="loader.httpLoading"
+                    data-ng-if="$ctrl.httpState.isLoading()"
                     data-size="s"
                 ></oui-spinner>
                 <span
                     class="oui-icon oui-icon-error text-danger"
-                    data-ng-if="loader.httpError"
+                    data-ng-if="$ctrl.httpState.isError()"
+                    aria-hidden="true"
                 >
                 </span>
                 <span
                     class="oui-icon oui-icon-success text-success"
-                    data-ng-if="loader.httpDone"
+                    data-ng-if="$ctrl.httpState.isDone()"
+                    aria-hidden="true"
                 >
                 </span>
                 <span
                     class="ml-2"
-                    data-ng-class="{ 'font-weight-bold': loader.httpLoading }"
+                    data-ng-class="{ 'font-weight-bold': $ctrl.httpState.isLoading() }"
                     data-translate="server_configuration_impi_http"
                 >
                 </span>
             </li>
             <li>
-                <oui-spinner data-ng-if="loader.passwordLoading" data-size="s">
+                <oui-spinner
+                    data-ng-if="$ctrl.passwordState.isLoading()"
+                    data-size="s"
+                >
                 </oui-spinner>
                 <span
                     class="oui-icon oui-icon-error text-danger"
-                    data-ng-if="loader.passwordError"
+                    data-ng-if="$ctrl.passwordState.isError()"
+                    aria-hidden="true"
                 >
                 </span>
                 <span
                     class="oui-icon oui-icon-success text-success"
-                    data-ng-if="loader.passwordDone"
+                    data-ng-if="$ctrl.passwordState.isDone()"
+                    aria-hidden="true"
                 >
                 </span>
                 <span
                     class="ml-2"
-                    data-ng-class="{ 'font-weight-bold': loader.passwordLoading }"
+                    data-ng-class="{ 'font-weight-bold': $ctrl.passwordState.isLoading() }"
                     data-translate="server_configuration_impi_password"
                 >
                 </span>
             </li>
             <li>
-                <oui-spinner data-ng-if="loader.pingLoading" data-size="s">
+                <oui-spinner
+                    data-ng-if="$ctrl.pingState.isLoading()"
+                    data-size="s"
+                >
                 </oui-spinner>
                 <span
                     class="oui-icon oui-icon-error text-danger"
-                    data-ng-if="loader.pingError"
+                    data-ng-if="$ctrl.pingState.isError()"
+                    aria-hidden="true"
                 >
                 </span>
                 <span
                     class="oui-icon oui-icon-success text-success"
-                    data-ng-if="loader.pingDone"
+                    data-ng-if="$ctrl.pingState.isDone()"
+                    aria-hidden="true"
                 >
                 </span>
                 <span
                     class="ml-2"
-                    data-ng-class="{ 'font-weight-bold': loader.pingLoading }"
+                    data-ng-class="{ 'font-weight-bold': $ctrl.pingState.isLoading() }"
                     data-translate="server_configuration_impi_ping"
                 >
                 </span>
             </li>
         </ul>
     </div>
+</div>
+<div data-ng-if="$ctrl.showIpmiRestartConf">
+    <div class="modal d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <form
+                    id="serverIpmiRestartConf"
+                    name="serverIpmiRestartConf"
+                    data-ng-submit="$ctrl.restartIpmi()"
+                    novalidate
+                >
+                    <oui-modal
+                        data-heading="{{:: 'server_configuration_impi_restart_title' | translate }}"
+                        data-primary-label="{{:: 'server_common_confirm' | translate }}"
+                        data-secondary-label="{{:: 'server_common_cancel' | translate }}"
+                        data-secondary-action="$ctrl.onIpmiRestartCancel()"
+                        data-on-dismiss="$ctrl.onIpmiRestartCancel()"
+                        data-loading="$ctrl.loading"
+                    >
+                        <p data-translate="server_configuration_impi_restart_information"></p>
+                    </oui-modal>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
 </div>

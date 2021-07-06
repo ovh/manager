@@ -785,117 +785,20 @@ export default class ServerF {
     return this.aggregateMRTG(productId, mac, type, period);
   }
 
-  isIpmiActivated(serviceName) {
-    return this.OvhHttp.get('/dedicated/server/{serviceName}/features/ipmi', {
-      rootPath: 'apiv6',
-      urlParams: {
-        serviceName,
-      },
-      returnErrorKey: '',
-    }).catch((err) => {
-      if (err.status === 404) {
-        return {
-          activated: false,
-        };
-      }
-      return err;
-    });
-  }
-
-  ipmiStartTest(serviceName, type, ttl) {
-    return this.OvhHttp.post(
-      '/dedicated/server/{serviceName}/features/ipmi/test',
-      {
-        rootPath: 'apiv6',
-        urlParams: {
-          serviceName,
-        },
-        data: {
-          ttl,
-          type,
-        },
-      },
-    );
-  }
-
-  ipmiStartConnection({
-    serviceName,
-    type,
-    ttl,
-    ipToAllow,
-    sshKey,
-    withGeolocation,
-  }) {
-    let promise = this.$q.when(ipToAllow);
-
-    if (withGeolocation) {
-      promise = this.getIpGeolocation().then(({ ip }) => ip);
-    }
-
-    return promise.then((ip) =>
-      this.OvhHttp.post(
-        '/dedicated/server/{serviceName}/features/ipmi/access',
-        {
-          rootPath: 'apiv6',
-          urlParams: {
-            serviceName,
-          },
-          data: {
-            ttl,
-            type,
-            sshKey,
-            ipToAllow: ip,
-          },
-        },
-      ),
-    );
-  }
-
-  ipmiGetConnection(serviceName, type) {
+  getInterventions(serviceName, count, offset) {
     return this.OvhHttp.get(
-      '/dedicated/server/{serviceName}/features/ipmi/access',
+      '/sws/dedicated/server/{serviceName}/interventions',
       {
-        rootPath: 'apiv6',
+        rootPath: '2api',
         urlParams: {
           serviceName,
         },
         params: {
-          type,
+          count,
+          offset,
         },
       },
     );
-  }
-
-  ipmiRestart(serviceName) {
-    return this.OvhHttp.post(
-      '/dedicated/server/{serviceName}/features/ipmi/resetInterface',
-      {
-        rootPath: 'apiv6',
-        urlParams: {
-          serviceName,
-        },
-        broadcast: 'dedicated.ipmi.resetinterfaces',
-      },
-    );
-  }
-
-  ipmiSessionsReset(serviceName) {
-    return this.OvhHttp.post(
-      '/dedicated/server/{serviceName}/features/ipmi/resetSessions',
-      {
-        rootPath: 'apiv6',
-        urlParams: {
-          serviceName,
-        },
-        broadcast: 'dedicated.ipmi.resetsessions',
-      },
-    );
-  }
-
-  getIpGeolocation() {
-    return this.OvhHttp.post('/me/geolocation', {
-      rootPath: 'apiv6',
-    });
   }
 
   getTaskInProgress(serviceName, type) {
@@ -1243,59 +1146,6 @@ export default class ServerF {
         autoPayWithPreferredPaymentMethod: autoPay,
       },
     ).$promise;
-  }
-
-  canOrderKvm(productId) {
-    return this.get(productId, 'orderable/kvm', {
-      cache: this.serverCaches.ipmi,
-      proxypass: true,
-      urlPath: this.path.product,
-    });
-  }
-
-  getKvmOrderDurations(productId) {
-    return this.get(productId, 'kvm', {
-      urlPath: this.path.order,
-      proxypass: true,
-    });
-  }
-
-  getKvmOrderDetail(productId, duration) {
-    return this.get(productId, 'kvm/{duration}', {
-      urlPath: this.path.order,
-      proxypass: true,
-      urlParams: {
-        duration,
-      },
-    });
-  }
-
-  getKvmOrderDetails(productId, durations) {
-    const promises = [];
-
-    durations.forEach((duration) => {
-      promises.push(this.$q.when(this.getKvmOrderDetail(productId, duration)));
-    });
-
-    return this.$q.all(promises);
-  }
-
-  postKvmOrderInfos(productId, duration) {
-    return this.post(productId, 'kvm/{duration}', {
-      urlPath: this.path.order,
-      proxypass: true,
-      urlParams: {
-        duration,
-      },
-    });
-  }
-
-  getKvmFeatures(productId) {
-    return this.get(productId, 'features/kvm', {
-      cache: this.serverCaches.ipmi,
-      proxypass: true,
-      urlPath: this.path.product,
-    });
   }
 
   getHardwareSpecifications(productId) {
