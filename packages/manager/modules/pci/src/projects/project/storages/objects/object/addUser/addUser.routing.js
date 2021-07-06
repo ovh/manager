@@ -16,6 +16,8 @@ export default /* @ngInject */ ($stateProvider) => {
         containerId,
       ) =>
         PciProjectStorageContainersService.getContainer(projectId, containerId),
+      goToUsersAndRoles: /* @ngInject */ ($state) => () =>
+        $state.go('pci.projects.project.users'),
       goBack: /* @ngInject */ (goToStorageContainers) => goToStorageContainers,
       breadcrumb: () => null,
     },

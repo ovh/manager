@@ -1,14 +1,19 @@
 <oui-modal
-    data-heading="{{ 'pci_projects_project_storages_containers_container_addUser_'+ ($ctrl.archive ? 'archive' : 'object') + '_title' | translate }}"
+    data-heading="{{ $ctrl.availableUsers.length === 0 ? 'pci_projects_project_storages_containers_container_addUser_empty_title' : ('pci_projects_project_storages_containers_container_addUser_'+ ($ctrl.archive ? 'archive' : 'object') + '_title') | translate }}"
     data-primary-action="$ctrl.addUserStorage()"
-    data-primary-label="{{:: 'pci_projects_project_storages_containers_container_addUser_submit_label' | translate }}"
+    data-primary-label="{{ $ctrl.availableUsers.length === 0 ? 'pci_projects_project_storages_containers_container_addUser_empty_label' : 'pci_projects_project_storages_containers_container_addUser_submit_label' | translate }}"
     data-primary-disabled="$ctrl.isLoading"
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'pci_projects_project_storages_containers_container_addUser_cancel_label' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
     data-loading="$ctrl.isLoading"
 >
-    <div data-ng-if="$ctrl.container">
+    <div data-ng-if="$ctrl.availableUsers.length === 0">
+        <span
+            data-translate="pci_projects_project_storages_containers_container_addUser_empty_description"
+        ></span>
+    </div>
+    <div data-ng-if="$ctrl.container && $ctrl.availableUsers.length > 0">
         <div data-ng-if="$ctrl.addUserStep === 0">
             <oui-radio-group
                 model="$ctrl.selectedUser"

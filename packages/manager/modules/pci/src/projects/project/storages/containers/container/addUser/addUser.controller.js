@@ -37,6 +37,9 @@ export default class PciBlockStorageDetailsAddUserController {
   }
 
   addUserStorage() {
+    if (this.availableUsers.length === 0) {
+      return this.goToUsersAndRoles();
+    }
     if (this.addUserStep < 1) {
       this.addUserStep += 1;
       return null;

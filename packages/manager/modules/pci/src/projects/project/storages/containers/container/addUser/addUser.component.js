@@ -10,5 +10,6 @@ export default {
     containerId: '<',
     container: '<',
     goBack: '<',
+    goToUsersAndRoles: '<',
   },
 };
