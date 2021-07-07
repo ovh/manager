@@ -46,12 +46,16 @@ export default class ManagerHubShortcutsCtrl {
             },
           ]
         : []),
-      {
-        id: 'products',
-        icon: 'oui-icon-book-open_concept',
-        tracking: 'hub::sidebar::shortcuts::go-to-catalog',
-        url: this.coreURLBuilder.buildURL('hub', '#/catalog'),
-      },
+      ...(this.me.isTrusted
+        ? []
+        : [
+            {
+              id: 'products',
+              icon: 'oui-icon-book-open_concept',
+              tracking: 'hub::sidebar::shortcuts::go-to-catalog',
+              url: this.coreURLBuilder.buildURL('hub', '#/catalog'),
+            },
+          ]),
       ...(this.coreConfig.isRegion(['EU', 'CA'])
         ? [
             {
