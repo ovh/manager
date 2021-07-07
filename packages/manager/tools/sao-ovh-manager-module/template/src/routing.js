@@ -2,6 +2,15 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('app', {
+    url: '/<%= name %>',
+    template: '<div data-ui-view></div>',
+    redirectTo: 'app.index',
+    resolve: {
+      breadcrumb: () => '<%= name %>',
+    },
+  });
+
   $stateProvider.state('app.index', {
     url: `?${ListLayoutHelper.urlQueryParams}`,
     component: 'managerListLayout',
