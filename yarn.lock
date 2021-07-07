@@ -3017,6 +3017,38 @@
   dependencies:
     "@types/node" ">= 8"
 
+"@ovh-ux/component-rollup-config@^10.0.0":
+  version "10.0.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-10.0.2.tgz#b32f28288c09a20fc25af1c80d2e22cc0ad52584"
+  integrity sha512-5BOjq1j83UiRhMMFVjrlgodZ9Zim0xAuOde6VeyZh8vFV8LhdsO43GMk0lWaflYrS/i1JKGLStFcZU/H/oIWww==
+  dependencies:
+    "@babel/core" "^7.12.10"
+    "@babel/plugin-syntax-dynamic-import" "^7.8.3"
+    "@babel/preset-env" "^7.10.3"
+    "@ovh-ux/rollup-plugin-less-inject" "^1.0.5"
+    "@rollup/plugin-babel" "^5.0.0"
+    "@rollup/plugin-commonjs" "^11.0.2"
+    "@rollup/plugin-dynamic-import-vars" "^1.1.0"
+    "@rollup/plugin-image" "^2.0.4"
+    "@rollup/plugin-json" "^4.0.2"
+    "@rollup/plugin-node-resolve" "^7.1.1"
+    "@rollup/pluginutils" "^3.0.8"
+    babel-plugin-angularjs-annotate "^0.10.0"
+    camelcase "^5.0.0"
+    core-js "^3.6.5"
+    estree-walker "^0.6.0"
+    less "~3.9.0"
+    less-plugin-remcalc "^0.1.0"
+    lodash "^4.17.15"
+    magic-string "^0.25.4"
+    node-sass "^4.10.0"
+    regenerator-runtime "^0.13.7"
+    rollup "^2.50.6"
+    rollup-plugin-html "^0.2.1"
+    rollup-plugin-peer-deps-external "^2.2.2"
+    rollup-plugin-sass "^1.2.2"
+    slash "^2.0.0"
+
 "@ovh-ux/ng-ovh-api-wrappers@^4.0.4", "@ovh-ux/ng-ovh-api-wrappers@^4.0.8":
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.8.tgz#f95c8ce909f7baa59f8fd85949801e7d74bf6dbd"
@@ -3038,6 +3070,11 @@
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
+
+"@ovh-ux/ui-kit@^4.7.0":
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.7.0.tgz#898e57526c6c815103e5ce3b6889e18cfc439028"
+  integrity sha512-879lV+UnjaWyp4F7dPwJiv1jEUeeRmCdaKM5VtjjGO2OZhj+SAyup20mLEQxFVkakhkjAL07BT/z9ReM+9rPOQ==
 
 "@ovh-ux/ui-kit@^5.1.2":
   version "5.1.2"
@@ -13037,7 +13074,7 @@ lodash-es@^4.17.11, lodash-es@^4.17.15:
 
 lodash-es@^4.17.21:
   version "4.17.21"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  resolved "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
   integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
 lodash._reinterpolate@^3.0.0:
@@ -14841,6 +14878,13 @@ osenv@0, osenv@^0.1.4, osenv@^0.1.5:
   dependencies:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
+
+ovh-api-services@^11.2.0:
+  version "11.2.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-11.2.0.tgz#42583c9fe11e216beaa56cfabe535c36e3b5ca75"
+  integrity sha512-zwUANwCyRR+bqJgBgn8CbA6tV6zjB9koSfLb8ZkRXLgO/Y2t9Ra/tKyQeQxCyHL91UcNSN2Z1Mvcym9ehrDcMQ==
+  dependencies:
+    lodash "^4.17.20"
 
 ovh-api-services@^13.0.0:
   version "13.0.0"
