@@ -65,6 +65,10 @@
                             data-translate="xdsl_modem_ports_internal_port"
                         ></span>
                     </th>
+                    <th
+                        scope="col"
+                        data-translate="xdsl_modem_ports_internal_port_end"
+                    ></th>
                     <th data-translate="common_actions"></th>
                 </tr>
             </thead>
@@ -99,7 +103,13 @@
                     <td
                         data-title="{{ 'xdsl_modem_ports_internal_port' | translate }}"
                         data-ng-bind="port.internalPort"
-                    ></td>
+                    >
+                    </td>
+                    <td
+                        data-title="{{:: 'xdsl_modem_ports_internal_port_end' | translate }}"
+                        data-ng-bind="port.internalPortEnd"
+                    >
+                    </td>
                     <td class="dropdown">
                         <div
                             class="btn-group"
@@ -218,11 +228,11 @@
                             id="portExternalPortStart"
                             class="form-control"
                             data-ng-model="port.tempValue.externalPortStart"
-                            maxlength="5"
-                            min="1"
-                            max="65535"
+                            maxlength="{{PortCtrl.PACK_XDSL.maxlength}}"
+                            min="{{PortCtrl.PACK_XDSL.min}}"
+                            max="{{PortCtrl.PACK_XDSL.max}}"
                             required
-                            placeholder="80"
+                            placeholder="{{PortCtrl.PACK_XDSL.portExternalPortStartPlaceHolder}}"
                         />
                     </td>
 
@@ -242,11 +252,11 @@
                             id="portExternalPortEnd"
                             class="form-control"
                             data-ng-model="port.tempValue.externalPortEnd"
-                            maxlength="5"
-                            min="1"
-                            max="65535"
+                            maxlength="{{PortCtrl.PACK_XDSL.maxlength}}"
+                            min="{{PortCtrl.PACK_XDSL.min}}"
+                            max="{{PortCtrl.PACK_XDSL.max}}"
                             required
-                            placeholder="85"
+                            placeholder="{{PortCtrl.PACK_XDSL.portExternalPortEndPlaceHolder}}"
                         />
                     </td>
 
@@ -307,11 +317,33 @@
                             id="internalPort"
                             class="form-control"
                             data-ng-model="port.tempValue.internalPort"
-                            placeholder="8080"
-                            maxlength="5"
-                            min="1"
+                            maxlength="{{PortCtrl.PACK_XDSL.maxlength}}"
+                            min="{{PortCtrl.PACK_XDSL.min}}"
+                            max="{{PortCtrl.PACK_XDSL.max}}"
+                            placeholder="{{PortCtrl.PACK_XDSL.internalPortPlaceHolder}}"
                             required
-                            max="65535"
+                        />
+                    </td>
+                    <td
+                        data-title="{{ 'xdsl_modem_ports_internal_port_end' | translate }}"
+                        class="form-group"
+                        data-ng-class="{ 'has-error': localForm.internalPortEnd.$touched && localForm.internalPortEnd.$invalid }"
+                    >
+                        <label
+                            for="internalPortEnd"
+                            data-translate="xdsl_modem_ports_port_end"
+                            class="sr-only"
+                        ></label>
+                        <input
+                            type="number"
+                            name="internalPortEnd"
+                            id="internalPortEnd"
+                            class="form-control"
+                            data-ng-model="port.tempValue.internalPortEnd"
+                            maxlength="{{PortCtrl.PACK_XDSL.maxlength}}"
+                            min="{{PortCtrl.PACK_XDSL.min}}"
+                            max="{{PortCtrl.PACK_XDSL.max}}"
+                            placeholder="{{PortCtrl.PACK_XDSL.internalPortEndPlaceHolder}}"
                         />
                     </td>
 
