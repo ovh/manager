@@ -1,3 +1,12 @@
+## [16.32.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.32.1...@ovh-ux/manager-dedicated@16.32.2) (2021-07-07)
+
+
+### Bug Fixes
+
+* **ip:** fix ip parking filter ([#5191](https://github.com/ovh/manager/issues/5191)) ([4dd289b](https://github.com/ovh/manager/commit/4dd289bb7c16c92e5d2db68d6cfcb25e34a6578c))
+
+
+
 ## [16.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.32.0...@ovh-ux/manager-dedicated@16.32.1) (2021-07-01)
 
 

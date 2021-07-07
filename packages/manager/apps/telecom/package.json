@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom",
-  "version": "13.23.1",
+  "version": "13.24.0",
   "private": true,
   "description": "OVHcloud Telecom control panel.",
   "repository": {
