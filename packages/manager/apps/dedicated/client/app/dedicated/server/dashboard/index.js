@@ -26,6 +26,10 @@ import upgradeRequest from './upgrade-request';
 import component from './dashboard.component';
 import routing from './dashboard.routing';
 
+import {
+  serverGeneralInfo
+} from '@ovh-ux/manager-bm-server-components';
+
 const moduleName = 'ovhManagerDedicatedServerDashboard';
 
 angular
@@ -44,6 +48,7 @@ angular
     resiliation,
     ovhManagerAdvices,
     terminate,
+    serverGeneralInfo,
   ])
   .component('dedicatedServerDashboard', component)
   .config(routing)
