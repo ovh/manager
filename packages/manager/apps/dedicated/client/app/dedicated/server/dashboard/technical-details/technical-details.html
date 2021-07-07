@@ -13,15 +13,23 @@
         term="{{:: 'dedicated_server_dashboard_technical_details_ram' | translate }}"
     >
         <oui-tile-description>
-            <span data-ng-bind=":: $ctrl.formattedRAM"></span>
+            <p data-ng-bind=":: $ctrl.formattedRAM"></p>
+        </oui-tile-description>
+        <oui-tile-description>
+            <span
+                data-ng-if="$ctrl.upgradeTask.isUpgradeScheduled($ctrl.UPGRADE_TYPE.RAM)"
+                class="oui-badge oui-badge_warning m-0"
+                data-translate="dedicated_server_dashboard_technical_details_upgrade_in_progress"
+                data-translate-values="{ schedule: ($ctrl.upgradeTask.scheduledTimeSlot | date:'short') }"
+            ></span>
         </oui-tile-description>
     </oui-tile-definition>
     <oui-tile-button
-        ng-if="$ctrl.isRamUpgradable()"
-        on-click="$ctrl.goToManualUpgrade('ram')"
+        ng-if="$ctrl.isRamUpgradable() || $ctrl.upgradeTask.shouldScheduleUpgrade($ctrl.UPGRADE_TYPE.RAM)"
+        on-click="$ctrl.goToUpgrade($ctrl.UPGRADE_TYPE.RAM)"
     >
         <span
-            data-translate="dedicated_server_dashboard_technical_details_ram_upgrade"
+            data-ng-bind=":: ($ctrl.upgradeTask.shouldScheduleUpgrade($ctrl.UPGRADE_TYPE.RAM) ? 'dedicated_server_dashboard_technical_details_plan_upgrade' : 'dedicated_server_dashboard_technical_details_ram_upgrade') | translate"
         ></span>
     </oui-tile-button>
     <oui-tile-definition
@@ -45,13 +53,21 @@
                 data-ng-bind=":: formattedDisk"
             ></p>
         </oui-tile-description>
+        <oui-tile-description>
+            <span
+                data-ng-if="$ctrl.upgradeTask.isUpgradeScheduled($ctrl.UPGRADE_TYPE.STORAGE)"
+                class="oui-badge oui-badge_warning m-0"
+                data-translate="dedicated_server_dashboard_technical_details_upgrade_in_progress"
+                data-translate-values="{ schedule: ($ctrl.upgradeTask.scheduledTimeSlot | date:'short') }"
+            ></span>
+        </oui-tile-description>
     </oui-tile-definition>
     <oui-tile-button
-        ng-if="$ctrl.isDisksUpgradable()"
-        on-click="$ctrl.goToManualUpgrade('storage')"
+        ng-if="$ctrl.isDisksUpgradable() || $ctrl.upgradeTask.shouldScheduleUpgrade($ctrl.UPGRADE_TYPE.STORAGE)"
+        on-click="$ctrl.goToUpgrade($ctrl.UPGRADE_TYPE.STORAGE)"
     >
         <span
-            data-translate="dedicated_server_dashboard_technical_details_data_disk_upgrade"
+            data-ng-bind=":: ($ctrl.upgradeTask.shouldScheduleUpgrade($ctrl.UPGRADE_TYPE.STORAGE) ? 'dedicated_server_dashboard_technical_details_plan_upgrade' : 'dedicated_server_dashboard_technical_details_data_disk_upgrade') | translate"
         ></span>
     </oui-tile-button>
     <oui-tile-definition

@@ -16,7 +16,7 @@ import resiliation from './resiliation';
 import professionalUse from './professional-use';
 import technicalDetails from './technical-details';
 import terminate from '../terminate/terminate.module';
-import upgradeRequest from './upgrade-request';
+import upgrade from './upgrade';
 
 import component from './dashboard.component';
 import routing from './dashboard.routing';
@@ -34,7 +34,7 @@ angular
     'pascalprecht.translate',
     professionalUse,
     technicalDetails,
-    upgradeRequest,
+    upgrade,
     'ui.router',
     ovhManagerBillingComponents,
     resiliation,

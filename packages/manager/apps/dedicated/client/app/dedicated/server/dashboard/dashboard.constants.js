@@ -33,10 +33,16 @@ export const RECOMMIT_IMPRESSION_TRACKING_DATA = {
   variant: '[recommit]',
 };
 
+export const UPGRADE_TYPE = {
+  RAM: 'ram',
+  STORAGE: 'storage',
+};
+
 export default {
   ELIGIBLE_FOR_UPGRADE,
   URLS,
   WEATHERMAP_URL,
   COMMIT_IMPRESSION_TRACKING_DATA,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
+  UPGRADE_TYPE,
 };
