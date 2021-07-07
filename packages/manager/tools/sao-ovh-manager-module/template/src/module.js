@@ -23,6 +23,11 @@ angular
     ListLayoutHelper.moduleName,
   ])
   .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(
+    /* @ngInject */ ($translate, $transitions) => {
+      $transitions.onBefore({ to: 'app.**' }, () => $translate.refresh());
+    },
+  );
 
 export default moduleName;
