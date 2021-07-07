@@ -21,7 +21,7 @@
             <span
                 class="manager-hub-user-infos_text-small"
                 data-ng-if="$ctrl.supportLevel"
-                data-ng-bind="('hub_user_support_level_' + $ctrl.supportLevel.level) | translate"
+                data-ng-bind="('hub_user_support_level_' + $ctrl.supportLevel.level + ($ctrl.me.isTrusted ? '_trusted' : '')) | translate"
             ></span>
         </p>
         <p
