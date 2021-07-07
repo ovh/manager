@@ -5,13 +5,12 @@ import isString from 'lodash/isString';
 angular.module('App').controller(
   'configurationCtrl',
   class ConfigurationCtrl {
-    constructor($q, $translate, constants, coreConfig, OvhHttp, User) {
+    constructor($q, $translate, constants, coreConfig, OvhHttp) {
       this.$q = $q;
       this.$translate = $translate;
       this.constants = constants;
       this.coreConfig = coreConfig;
       this.OvhHttp = OvhHttp;
-      this.User = User;
     }
 
     $onInit() {
@@ -20,7 +19,7 @@ angular.module('App').controller(
       this.urlToAllGuides = this.getURLFromSection(
         this.constants.TOP_GUIDES.all,
       );
-
+      this.user = this.coreConfig.getUser();
       return this.buildingGuideURLs().then(() => this.gettingHelpCenterURLs());
     }
 
@@ -68,17 +67,15 @@ angular.module('App').controller(
     }
 
     gettingHelpCenterURLs() {
-      return this.User.getUser().then(({ ovhSubsidiary: subsidiary }) => {
-        this.subsidiary = subsidiary;
+      this.subsidiary = this.user.ovhSubsidiary;
 
-        this.helpCenterURLs = Object.keys(this.constants.urls).reduce(
-          (helpCenterURLs, subsidiaryName) => ({
-            ...helpCenterURLs,
-            [subsidiaryName]: this.constants.urls[subsidiaryName].support,
-          }),
-          {},
-        );
-      });
+      this.helpCenterURLs = Object.keys(this.constants.urls).reduce(
+        (helpCenterURLs, subsidiaryName) => ({
+          ...helpCenterURLs,
+          [subsidiaryName]: this.constants.urls[subsidiaryName].support,
+        }),
+        {},
+      );
     }
   },
 );
