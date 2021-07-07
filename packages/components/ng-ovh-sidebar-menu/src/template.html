@@ -8,9 +8,12 @@
         </div>
     </div>
 
-    <div data-ng-if="!sideBarCtrl.loading.init">
+    <div data-ng-if="!sideBarCtrl.loading.init" class="mt-3">
         <!-- ORDER ACTIONS MENU -->
-        <div class="order-actions-menu">
+        <div
+            class="order-actions-menu"
+            data-ng-if="sideBarCtrl.actionsOptions.length"
+        >
             <actions-menu
                 data-actions-menu-options="sideBarCtrl.actionsOptions"
                 data-actions-menu-popover-settings="sideBarCtrl.popoverSettings"
