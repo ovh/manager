@@ -7,6 +7,7 @@ export default class OvhManagerNetAppOrderCtrl {
   }
 
   $onInit() {
+    this.selectedRegion = null;
     this.regions = uniq(
       this.catalog.plans.flatMap(
         ({ configurations }) =>
@@ -14,5 +15,9 @@ export default class OvhManagerNetAppOrderCtrl {
       ),
     );
     console.log(this.regions);
+  }
+
+  onFocus() {
+    console.log(this.selectedRegion);
   }
 }

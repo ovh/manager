@@ -16,6 +16,7 @@
     "lodash-es": "^4.17.21"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-components": "^1.0.0",
     "@ovh-ux/manager-core": "^11.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/ui-kit": "^4.4.3",
