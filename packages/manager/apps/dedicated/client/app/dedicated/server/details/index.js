@@ -11,7 +11,7 @@ import dashboard from '../dashboard';
 import install from '../install';
 import interfaces from '../interfaces/interfaces.module';
 import monitoring from '../monitoring';
-import task from '../task';
+import tasks from '../tasks';
 
 import bandwidthVrackOrderService from './server.bandwidth-vrack-order.service';
 import component from './server.component';
@@ -33,7 +33,7 @@ angular
     'oui',
     ovhManagerIncidentBanner,
     'pascalprecht.translate',
-    task,
+    tasks,
     'ui.router',
   ])
   .component('dedicatedServer', component)
