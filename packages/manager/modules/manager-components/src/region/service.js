@@ -90,8 +90,7 @@ export default class ovhManagerRegionService {
   }
 
   getRegion(regionParam) {
-    let region = regionParam;
-    region = region.toUpperCase();
+    const region = regionParam.toUpperCase();
     return {
       macroRegion: {
         code: this.constructor.getMacroRegion(region),
