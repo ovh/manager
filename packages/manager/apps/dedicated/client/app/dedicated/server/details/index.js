@@ -5,6 +5,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
 import bandwidth from '../bandwidth/bandwidth.module';
 import dashboard from '../dashboard';
@@ -32,6 +33,7 @@ angular
     monitoring,
     'oui',
     ovhManagerIncidentBanner,
+    ngOvhFeatureFlipping,
     'pascalprecht.translate',
     task,
     'ui.router',
