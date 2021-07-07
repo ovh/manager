@@ -3,10 +3,11 @@ import map from 'lodash/map';
 import remove from 'lodash/remove';
 import set from 'lodash/set';
 
+import { PACK_XDSL } from './ports.constants';
+
 export default /* @ngInject */ function XdslModemPortsCtrl(
   $stateParams,
   $translate,
-  $scope,
   OvhApiXdslModemPort,
   TucToast,
   PackXdslModemPortObject,
@@ -17,6 +18,7 @@ export default /* @ngInject */ function XdslModemPortsCtrl(
   self.loader = true;
   this.validator = tucValidator;
   this.mediator = TucPackXdslModemMediator;
+  this.PACK_XDSL = PACK_XDSL;
 
   this.protocol = ['TCP', 'UDP'];
 

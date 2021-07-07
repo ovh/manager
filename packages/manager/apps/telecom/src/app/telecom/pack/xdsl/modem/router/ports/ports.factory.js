@@ -16,6 +16,7 @@ export default /* @ngInject */ (OvhApiXdsl, $translate, TucToast) => {
     internalClient: '',
     allowedRemoteIp: '',
     internalPort: null,
+    internalPortEnd: null,
     id: null,
   };
 
@@ -86,10 +87,11 @@ export default /* @ngInject */ (OvhApiXdsl, $translate, TucToast) => {
         );
         return self;
       })
-      .catch(() => {
+      .catch((error) => {
         TucToast.error(
           $translate.instant('xdsl_modem_ports_add_error', {
             name: self.name,
+            reason: error.data?.message || '',
           }),
         );
       })
