@@ -785,22 +785,6 @@ export default class ServerF {
     return this.aggregateMRTG(productId, mac, type, period);
   }
 
-  getInterventions(serviceName, count, offset) {
-    return this.OvhHttp.get(
-      '/sws/dedicated/server/{serviceName}/interventions',
-      {
-        rootPath: '2api',
-        urlParams: {
-          serviceName,
-        },
-        params: {
-          count,
-          offset,
-        },
-      },
-    );
-  }
-
   isIpmiActivated(serviceName) {
     return this.OvhHttp.get('/dedicated/server/{serviceName}/features/ipmi', {
       rootPath: 'apiv6',

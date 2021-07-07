@@ -1,0 +1,6 @@
+{
+  "server_configuration_intervention_type": "Typ",
+  "server_configuration_intervention_date": "Datum",
+  "server_configuration_intervention_empty": "Kein Eingriff",
+  "server_configuration_intervention_error": "Beim Laden der Informationen ist ein Fehler aufgetreten"
+}
