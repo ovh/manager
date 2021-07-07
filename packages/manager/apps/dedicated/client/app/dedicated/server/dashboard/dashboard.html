@@ -331,9 +331,7 @@
                             data-ng-href="{{:: $ctrl.terminateLink }}"
                             data-ng-if="(!$ctrl.server.isExpired && !$ctrl.server.engagement) || $ctrl.resiliationCapability.message"
                         >
-                            <span
-                                data-translate="server_close_service"
-                            ></span>
+                            <span data-translate="server_close_service"></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -545,7 +543,7 @@
                     <oui-action-menu-item
                         data-href="{{:: $ctrl.changeOwnerUrl }}"
                         data-external
-                        data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
+                        data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED' || !$ctrl.changeOwnerAvailable"
                     >
                         <span data-translate="core_change_owner"></span>
                     </oui-action-menu-item>
@@ -815,7 +813,7 @@
                     <oui-action-menu-item
                         data-href="{{:: $ctrl.changeOwnerUrl }}"
                         data-external
-                        data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
+                        data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED' || !$ctrl.changeOwnerAvailable"
                     >
                         <span data-translate="core_change_owner"></span>
                     </oui-action-menu-item>
