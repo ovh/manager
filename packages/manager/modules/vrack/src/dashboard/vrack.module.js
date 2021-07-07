@@ -8,6 +8,7 @@ import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ovh-toaster';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
 import 'font-awesome/css/font-awesome.css';
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
@@ -37,6 +38,7 @@ angular
     'ngOvhCloudUniverseComponents',
     'ngOvhToaster',
     'ui.router',
+    ngOvhFeatureFlipping,
     vrackAdd,
     vrackMoveDialog,
   ])
