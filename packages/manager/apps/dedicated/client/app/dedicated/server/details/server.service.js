@@ -785,20 +785,117 @@ export default class ServerF {
     return this.aggregateMRTG(productId, mac, type, period);
   }
 
-  getInterventions(serviceName, count, offset) {
-    return this.OvhHttp.get(
-      '/sws/dedicated/server/{serviceName}/interventions',
+  isIpmiActivated(serviceName) {
+    return this.OvhHttp.get('/dedicated/server/{serviceName}/features/ipmi', {
+      rootPath: 'apiv6',
+      urlParams: {
+        serviceName,
+      },
+      returnErrorKey: '',
+    }).catch((err) => {
+      if (err.status === 404) {
+        return {
+          activated: false,
+        };
+      }
+      return err;
+    });
+  }
+
+  ipmiStartTest(serviceName, type, ttl) {
+    return this.OvhHttp.post(
+      '/dedicated/server/{serviceName}/features/ipmi/test',
       {
-        rootPath: '2api',
+        rootPath: 'apiv6',
+        urlParams: {
+          serviceName,
+        },
+        data: {
+          ttl,
+          type,
+        },
+      },
+    );
+  }
+
+  ipmiStartConnection({
+    serviceName,
+    type,
+    ttl,
+    ipToAllow,
+    sshKey,
+    withGeolocation,
+  }) {
+    let promise = this.$q.when(ipToAllow);
+
+    if (withGeolocation) {
+      promise = this.getIpGeolocation().then(({ ip }) => ip);
+    }
+
+    return promise.then((ip) =>
+      this.OvhHttp.post(
+        '/dedicated/server/{serviceName}/features/ipmi/access',
+        {
+          rootPath: 'apiv6',
+          urlParams: {
+            serviceName,
+          },
+          data: {
+            ttl,
+            type,
+            sshKey,
+            ipToAllow: ip,
+          },
+        },
+      ),
+    );
+  }
+
+  ipmiGetConnection(serviceName, type) {
+    return this.OvhHttp.get(
+      '/dedicated/server/{serviceName}/features/ipmi/access',
+      {
+        rootPath: 'apiv6',
         urlParams: {
           serviceName,
         },
         params: {
-          count,
-          offset,
+          type,
         },
       },
     );
+  }
+
+  ipmiRestart(serviceName) {
+    return this.OvhHttp.post(
+      '/dedicated/server/{serviceName}/features/ipmi/resetInterface',
+      {
+        rootPath: 'apiv6',
+        urlParams: {
+          serviceName,
+        },
+        broadcast: 'dedicated.ipmi.resetinterfaces',
+      },
+    );
+  }
+
+  ipmiSessionsReset(serviceName) {
+    return this.OvhHttp.post(
+      '/dedicated/server/{serviceName}/features/ipmi/resetSessions',
+      {
+        rootPath: 'apiv6',
+        urlParams: {
+          serviceName,
+        },
+        broadcast: 'dedicated.ipmi.resetsessions',
+      },
+    );
+  }
+
+  getIpGeolocation() {
+    return this.OvhHttp.post('/me/geolocation', {
+      rootPath: 'apiv6',
+    });
   }
 
   getTaskInProgress(serviceName, type) {
