@@ -41,6 +41,8 @@ export default {
     goToOsInstallProgress: '<',
     goToNetboot: '<',
     goToNameEdit: '<',
+    handleError: '<',
+    handleSuccess: '<',
   },
   controller,
   template,

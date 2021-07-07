@@ -11,3 +11,4 @@ export { default as serverOrderKvm } from './ipmi/order-kvm';
 export { default as serverNetboot } from './netboot';
 export { default as serverGeneralInfo } from './general-info-tile';
 export { default as serverNetwork } from './network-tile';
+export { default as serverTechnicalDetails } from './technical-details';

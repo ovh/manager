@@ -12,7 +12,6 @@ import {
   serverGeneralInfo,
   serverNetwork,
   serverTechnicalDetails,
-  serverBandwidthDashboard,
 } from '@ovh-ux/manager-bm-server-components';
 import advancedFeatures from './advanced-features';
 import commitment from './commitment';
@@ -25,11 +24,6 @@ import upgradeRequest from './upgrade-request';
 
 import component from './dashboard.component';
 import routing from './dashboard.routing';
-
-import {
-  serverGeneralInfo,
-  serverNetwork,
-} from '@ovh-ux/manager-bm-server-components';
 
 const moduleName = 'ovhManagerDedicatedServerDashboard';
 
@@ -51,6 +45,7 @@ angular
     terminate,
     serverGeneralInfo,
     serverNetwork,
+    serverTechnicalDetails,
   ])
   .component('dedicatedServerDashboard', component)
   .config(routing)

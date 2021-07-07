@@ -37,9 +37,9 @@
                 user="$ctrl.user"
                 server="$ctrl.server"
                 ola="$ctrl.ola"
-                installationInProgress="$ctrl.dedicatedServer.$scope.disable.installationInProgress"
-                disableInstallation="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask"
-                installationFailed="$ctrl.dedicatedServer.$scope.disable.installationInProgressError"
+                installation-in-progress="$ctrl.dedicatedServer.$scope.disable.installationInProgress"
+                disable-installation="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask"
+                installation-failed="$ctrl.dedicatedServer.$scope.disable.installationInProgressError"
                 on-edit-name="$ctrl.goToNameEdit(name)"
                 on-edit-netboot="$ctrl.dedicatedServer.$scope.setAction('netboot/dedicated-server-netboot')"
                 on-os-install="$ctrl.openOsInstallation(type)">
