@@ -74,6 +74,13 @@
             data-ng-bind=":: ('dedicatedCloud_datacenter_backup_new_blocked_' + $ctrl.pccType) | translate"
         ></span>
     </oui-message>
+    <oui-message
+        data-type="info"
+        class="mt-3"
+        data-ng-if="$ctrl.currentUser.isTrusted"
+    >
+        <span data-translate="core_user_trusted_retail_prices"></span>
+    </oui-message>
     <oui-stepper
         class="mt-3"
         data-on-finish="$ctrl.orderBackup()"
