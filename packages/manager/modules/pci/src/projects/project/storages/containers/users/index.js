@@ -9,6 +9,7 @@ import 'angular-ui-bootstrap';
 
 import component from './users.component';
 import routing from './users.routing';
+import deleteUser from './delete';
 
 const moduleName = 'ovhManagerPciStoragesContainersUserList';
 
@@ -21,8 +22,9 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'ui.bootstrap',
+    deleteUser,
   ])
-  .component('pciProjectStorageContainersUserList', component)
+  .component('pciProjectStorageContainersUsers', component)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

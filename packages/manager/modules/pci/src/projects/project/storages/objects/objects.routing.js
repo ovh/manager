@@ -25,7 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       userListLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.storages.objects.user-list', {
+        $state.href('pci.projects.project.storages.objects.users', {
           projectId,
         }),
       goToStorageContainers: /* @ngInject */ (

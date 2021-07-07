@@ -6,5 +6,7 @@ export default {
   template,
   bindings: {
     userList: '<',
+    goToDeleteUser: '<',
+    goToUsersAndRoles: '<',
   },
 };
