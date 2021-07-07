@@ -341,51 +341,10 @@
     <div class="row d-md-flex mb-5">
         <div class="col-md-4" data-ng-if="!$ctrl.server.isExpired">
             <!-- Network -->
-            <oui-tile
-                class="h-100"
-                data-heading="{{:: 'server_network' | translate }}"
-            >
-                <div ovh-alert="bandwithError" data-ng-if="bandwithError"></div>
-
-                <!-- IPv4 -->
-                <oui-tile-definition
-                    term="{{:: 'server_configuration_ipv4' | translate }}"
-                >
-                    <oui-tile-description>
-                        <oui-clipboard
-                            class="ip-clipboard"
-                            data-model="$ctrl.server.ip"
-                        >
-                        </oui-clipboard>
-                    </oui-tile-description>
-                    <oui-action-menu
-                        aria-label="{{:: 'menu_action_label' | translate:{t0: ('server_configuration_ipv4' | translate)} }}"
-                        data-compact
-                        data-placement="end"
-                    >
-                        <oui-action-menu-item
-                            data-ui-sref="app.ip({serviceName: $ctrl.server.name})"
-                        >
-                            <span
-                                data-translate="server_configuration_ipv4_manage"
-                            ></span>
-                        </oui-action-menu-item>
-                    </oui-action-menu>
-                </oui-tile-definition>
-
-                <!-- IPv6 -->
-                <oui-tile-definition
-                    term="{{:: 'server_configuration_ipv6' | translate }}"
-                >
-                    <oui-tile-description>
-                        <oui-clipboard
-                            class="ip-clipboard"
-                            data-model="$ctrl.server.ipv6"
-                        >
-                        </oui-clipboard>
-                    </oui-tile-description>
-                </oui-tile-definition>
-
+            <server-network
+                on-error="$ctrl.handleError(error)"
+                server="$ctrl.server"
+                bandwidth="$ctrl.bandwidthInformations.bandwidth">
                 <div data-ng-if="$ctrl.bandwidthInformations.bandwidth">
                     <!-- Reverse -->
                     <oui-tile-definition
@@ -534,41 +493,8 @@
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
-
-                    <!-- vRack -->
-                    <oui-tile-definition
-                        data-ng-if="!!$ctrl.vrackInfos"
-                        data-term="{{:: 'server_vrack' | translate}}"
-                    >
-                        <oui-tile-description>
-                            <span
-                                data-ng-if="!$ctrl.vrackInfos.length"
-                                data-translate="server_vrack_none"
-                            >
-                            </span>
-                            <div class="oui-list">
-                                <ul
-                                    class="oui-list__items"
-                                    data-ng-if="$ctrl.vrackInfos.length"
-                                >
-                                    <li
-                                        class="oui-list__item"
-                                        data-ng-repeat="vrack in $ctrl.vrackInfos track by $index"
-                                    >
-                                        <span
-                                            data-ng-bind="vrack.name || vrack.serviceName"
-                                        ></span>
-                                        (<span
-                                            data-ng-bind="vrack.description"
-                                        ></span
-                                        >)
-                                    </li>
-                                </ul>
-                            </div>
-                        </oui-tile-description>
-                    </oui-tile-definition>
                 </div>
-            </oui-tile>
+            </server-network>
         </div>
 
         <!-- SUBSCRIPTIONS -->
