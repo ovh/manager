@@ -1,6 +1,8 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 
+import { UPGRADE_TYPE } from '../dashboard.constants';
+
 export default class TechnicalDetailsController {
   /* @ngInject */
   constructor($translate) {
@@ -18,12 +20,14 @@ export default class TechnicalDetailsController {
       'storage.raid',
       '-',
     );
+    this.UPGRADE_TYPE = UPGRADE_TYPE;
   }
 
   isRamUpgradable() {
     return (
       this.upgradeWithTicketAvailable &&
-      this.technicalDetails.memory?.upgradable?.length
+      this.technicalDetails.memory?.upgradable?.length &&
+      !this.upgradeTask
     );
   }
 
@@ -89,7 +93,8 @@ export default class TechnicalDetailsController {
   isDisksUpgradable() {
     return (
       this.upgradeWithTicketAvailable &&
-      this.technicalDetails.storage?.upgradable?.length
+      this.technicalDetails.storage?.upgradable?.length &&
+      !this.upgradeTask
     );
   }
 }

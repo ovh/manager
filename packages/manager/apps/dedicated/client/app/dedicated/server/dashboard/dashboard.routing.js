@@ -1,7 +1,9 @@
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 
+import UpgradeTask from './upgrade/upgrade-task.class';
 import { ELIGIBLE_FOR_UPGRADE } from './dashboard.constants';
+import { UPGRADE_MODE } from './upgrade/upgrade.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated-server.server.dashboard', {
@@ -235,14 +237,49 @@ export default /* @ngInject */ ($stateProvider) => {
       vrackInfos: /* @ngInject */ ($stateParams, Server) =>
         Server.getVrackInfos($stateParams.productId),
       breadcrumb: () => null,
-      goToManualUpgrade: /* @ngInject */ ($state) => (selectedUpgrade) =>
+      goToUpgrade: /* @ngInject */ ($state, upgradeTask) => (upgradeType) =>
         $state.go('app.dedicated-server.server.dashboard.upgrade', {
-          selectedUpgrade,
+          upgradeType: upgradeTask ? UPGRADE_MODE.SCHEDULE : upgradeType,
         }),
-      upgradeWithTicketAvailable: /* @ngInject */ (features) =>
-        features.isFeatureAvailable('dedicated-server:upgradeWithTicket'),
       changeOwnerAvailable: /* @ngInject */ (features) =>
         features.isFeatureAvailable('dedicated-server:changeOwner'),
+      upgradeTask: /* @ngInject */ ($http, $q, serverName) =>
+        $http
+          .get(
+            `/dedicated/server/${serverName}/task?function=hardware_update&status=todo`,
+          )
+          .then(({ data: taskIds }) =>
+            taskIds.length > 0
+              ? $http
+                  .get(`/dedicated/server/${serverName}/task/${taskIds[0]}`)
+                  .then(({ data: task }) => {
+                    return (task.plannedInterventionId
+                      ? $http
+                          .get(
+                            `/dedicated/server/${serverName}/plannedIntervention/${task.plannedInterventionId}`,
+                          )
+                          .then(
+                            ({ data: plannedIntervention }) =>
+                              plannedIntervention,
+                          )
+                      : $q.when(null)
+                    ).then((plannedIntervention) => {
+                      return new UpgradeTask({
+                        ...task,
+                        plannedIntervention,
+                      });
+                    });
+                  })
+              : null,
+          ),
+      upgradeWithTicketAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('dedicated-server:upgradeWithTicket')
+          .then((upgradeFeature) =>
+            upgradeFeature.isFeatureAvailable(
+              'dedicated-server:upgradeWithTicket',
+            ),
+          ),
     },
   });
 };

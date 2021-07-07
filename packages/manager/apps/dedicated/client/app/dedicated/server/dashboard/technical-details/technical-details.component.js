@@ -4,8 +4,9 @@ import template from './technical-details.html';
 export default {
   bindings: {
     technicalDetails: '<',
-    goToManualUpgrade: '<',
+    goToUpgrade: '<',
     upgradeWithTicketAvailable: '<',
+    upgradeTask: '<',
   },
   controller,
   template,
