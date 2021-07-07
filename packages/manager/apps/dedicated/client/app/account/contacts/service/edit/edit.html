@@ -12,7 +12,7 @@
         data-on-dismiss="$ctrl.goBack()"
     >
         <p
-            data-translate="account_contacts_service_edit_description"
+            data-translate="{{:: 'account_contacts_service_edit_description' + ($ctrl.currentUser.isTrusted ? '_trusted' : '') }}"
             data-translate-values="{
                 service: $ctrl.service.serviceName
             }"
