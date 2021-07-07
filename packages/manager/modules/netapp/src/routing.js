@@ -1,6 +1,17 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import template from './template.html';
 
 export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('netapp', {
+    url: '/netapp',
+    template,
+    redirectTo: 'netapp.index',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('netapp_title'),
+    },
+  });
+
   $stateProvider.state('netapp.index', {
     url: `?${ListLayoutHelper.urlQueryParams}`,
     views: {
