@@ -9,3 +9,4 @@ export { default as serverInterventions } from './interventions';
 export { default as serverIpmi } from './ipmi';
 export { default as serverOrderKvm } from './ipmi/order-kvm';
 export { default as serverNetboot } from './netboot';
+export { default as serverGeneralInfo } from './general-info-tile';

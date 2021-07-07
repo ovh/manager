@@ -1,0 +1,18 @@
+{
+  "server_informations_general": "Informations générales",
+  "server_configuration_displayname": "Nom",
+  "server_configuration_displayname_edit_button": "Modifier",
+  "server_configuration_description": "Nom commercial",
+  "server_configuration_description_housing": "Housing",
+  "server_configuration_distribution": "Système (OS)",
+  "server_configuration_distribution_none": "Non installé",
+  "server_configuration_distribution_byoi": "BringYourOwnImage",
+  "server_configuration_installation_no_public_network": "La configuration réseau appliquée sur votre serveur ne donnant pas accès au réseau public, il est impossible d’installer/réinstaller un OS sur celui-ci. Pour débloquer cette action, merci de modifier votre configuration réseau dans l’onglet « interfaces réseaux »",
+  "server_configuration_installation_button": "Installer",
+  "server_configuration_boot": "Boot",
+  "server_configuration_netboot_unavailable": "Information indisponible",
+  "server_configuration_netboot_title_button": "Modifier",
+  "server_configuration_datacenter": "Datacentre",
+  "server_configuration_rack": "Baie",
+  "server_configuration_server_id": "Serveur ID"
+}
