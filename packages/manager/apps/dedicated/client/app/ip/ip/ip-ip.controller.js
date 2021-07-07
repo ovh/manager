@@ -280,12 +280,6 @@ angular.module('Module.ip.controllers').controller(
         .then(({ data }) => data)
         .then(({ count, data }) => {
           $scope.ipsCount = count;
-          if ($scope.serviceName === '_PARK') {
-            $scope.ipsList = filter(
-              $scope.ipsList,
-              (ip) => !get(ip, 'routedTo.serviceName'),
-            );
-          }
           $scope.ipsList = map(data, (ip) => {
             const serviceName = get(ip, 'routedTo.serviceName');
             return {
@@ -297,6 +291,12 @@ angular.module('Module.ip.controllers').controller(
               },
             };
           });
+          if ($scope.serviceName === '_PARK') {
+            $scope.ipsList = filter(
+              $scope.ipsList,
+              (ip) => !get(ip, 'routedTo.serviceName'),
+            );
+          }
           $scope.ipsList.forEach(checkIps);
         })
         .catch((error) => {
