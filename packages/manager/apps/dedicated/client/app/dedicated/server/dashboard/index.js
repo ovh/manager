@@ -22,7 +22,8 @@ import component from './dashboard.component';
 import routing from './dashboard.routing';
 
 import {
-  serverGeneralInfo
+  serverGeneralInfo,
+  serverNetwork,
 } from '@ovh-ux/manager-bm-server-components';
 
 const moduleName = 'ovhManagerDedicatedServerDashboard';
@@ -45,6 +46,7 @@ angular
     ovhManagerAdvices,
     terminate,
     serverGeneralInfo,
+    serverNetwork,
   ])
   .component('dedicatedServerDashboard', component)
   .config(routing)
