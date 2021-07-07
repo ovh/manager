@@ -1,0 +1,118 @@
+<div>
+    <oui-back-button href="{{:: $ctrl.goBackLink }}">
+        <h1 data-translate="netapp_order"></h1>
+    </oui-back-button>
+    <oui-stepper on-finish="$ctrl.goToOrderUrl()">
+        <oui-step-form
+            name="region"
+            header="{{:: 'netapp_order_datacenter' | translate }}"
+            data-valid="$ctrl.selectedRegion"
+        >
+            <div class="mb-2">
+                <ovh-manager-region-selector
+                    regions="$ctrl.regions"
+                    model="$ctrl.selectedRegion"
+                ></ovh-manager-region-selector>
+            </div>
+        </oui-step-form>
+
+        <oui-step-form
+            name="license"
+            header="{{:: 'netapp_order_performance_level' | translate }}"
+            description="{{:: 'netapp_order_performance_level_description' | translate }}"
+            on-focus="$ctrl.onLicenceStepFocus()"
+            data-valid="$ctrl.selectedLicense"
+        >
+            <div class="row mb-2">
+                <div class="col-md-3">
+                    <oui-select-picker
+                        data-ng-repeat="license in $ctrl.licenses track by $index"
+                        name="license"
+                        model="$ctrl.selectedLicense"
+                        label="{{:: ('netapp_order_performance_level_type_' + license) | translate }}"
+                        on-change="$ctrl.onChange(modelValue)"
+                        values="[license]"
+                    >
+                    </oui-select-picker>
+                </div>
+            </div>
+        </oui-step-form>
+        <oui-step-form
+            name="size"
+            header="{{:: 'netapp_order_size' | translate }}"
+            description="{{:: 'netapp_order_size_description' | translate }}"
+            on-focus="$ctrl.onSizeStepFocus()"
+            valid="$ctrl.plan"
+        >
+            <div class="row mb-2">
+                <div class="col-md-3">
+                    <oui-select-picker
+                        data-ng-repeat="plan in $ctrl.highlightedPlans track by $index"
+                        name="size"
+                        model="$ctrl.plan"
+                        label="{{:: 'netapp_order_size_label' | translate:{'size': plan.size} }}"
+                        on-change="$ctrl.onPlanChange(modelValue)"
+                        values="[plan]"
+                    >
+                        <oui-select-picker-footer>
+                            <ovh-manager-catalog-price
+                                price="plan.defaultPrice.price"
+                                interval-unit="{{ plan.defaultPrice.intervalUnit }}"
+                            >
+                            </ovh-manager-catalog-price>
+                        </oui-select-picker-footer>
+                    </oui-select-picker>
+                </div>
+            </div>
+            <div class="oui-box oui-box_light mb-2">
+                <oui-field
+                    label="{{:: 'netapp_order_size_custom' | translate }}"
+                >
+                    <oui-numeric
+                        name="customSize"
+                        model="$ctrl.selectedSize"
+                        on-change="$ctrl.onCustomSizeChange(modelValue)"
+                        min="$ctrl.minSize"
+                        max="$ctrl.maxSize"
+                    >
+                    </oui-numeric>
+                    <ovh-manager-catalog-price
+                        show-zero-price="true"
+                        price="$ctrl.plan.defaultPrice.price"
+                    >
+                    </ovh-manager-catalog-price>
+                </oui-field>
+            </div>
+        </oui-step-form>
+        <oui-step-form
+            name="commitmentDuration"
+            header="{{:: 'netapp_order_commitment_duration' | translate }}"
+            description="{{:: 'netapp_order_commitment_duration_description' | translate }}"
+            on-focus="$ctrl.onCommitmentStepFocus()"
+            valid="$ctrl.duration"
+        >
+            <billing-commitment-duration
+                ng-if="$ctrl.pricings"
+                from-catalog
+                duration="$ctrl.duration"
+                pricings="$ctrl.pricings"
+            ></billing-commitment-duration>
+        </oui-step-form>
+        <oui-step-form
+            name="pricingMode"
+            header="{{:: 'netapp_order_commitment_payment' | translate }}"
+            on-focus="$ctrl.onPricingModeStepFocus()"
+            valid="$ctrl.pricingMode"
+            cancel-href="{{:: $ctrl.goBackLink }}"
+            submit-text="{{:: 'netapp_order_confirm' | translate }}"
+        >
+            <billing-commitment-pricing-mode
+                ng-if="$ctrl.pricingModes"
+                from-catalog
+                pricing-mode="$ctrl.pricingMode"
+                pricing-modes="$ctrl.pricingModes"
+            >
+            </billing-commitment-pricing-mode>
+        </oui-step-form>
+    </oui-stepper>
+</div>
