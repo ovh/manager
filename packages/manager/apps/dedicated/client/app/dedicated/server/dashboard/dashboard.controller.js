@@ -369,11 +369,4 @@ export default class DedicatedServerDashboard {
         this.updatingNoIntervention = false;
       });
   }
-
-  handleError(error) {
-    this.Alerter.error(
-      error.message || error.data?.message,
-      'server_dashboard_alert',
-    );
-  }
 }
