@@ -1,10 +1,11 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 
-export default class TechnicalDetailsController {
+export default class BmServerComponentsTechnicalDetailsController {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, ovhFeatureFlipping) {
     this.$translate = $translate;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
   $onInit() {
@@ -18,6 +19,9 @@ export default class TechnicalDetailsController {
       'storage.raid',
       '-',
     );
+    this.upgradeWithTicketAvailable = false;
+    this.loading = true;
+    this.loadData();
   }
 
   isRamUpgradable() {
@@ -35,7 +39,10 @@ export default class TechnicalDetailsController {
     const freqUnit = this.$translate.instant(
       'dedicated_server_dashboard_technical_details_ram_frequency_unit',
     );
-    const ramSize = ram.size ? `${ram.size} GB` : '';
+    const gbTranslated = this.$translate.instant(
+      'dedicated_server_dashboard_technical_details_ram_size_unit',
+    );
+    const ramSize = ram.size ? `${ram.size} ${gbTranslated}` : '';
     const ramType = get(ram, 'type', '');
     const ramECC = ram.ecc ? 'ECC' : '';
     const ramFrequency = ram.frequency ? `${ram.frequency} ${freqUnit}` : '';
@@ -68,6 +75,12 @@ export default class TechnicalDetailsController {
     if (!disks.length) {
       return [];
     }
+    const gbTranslated = this.$translate.instant(
+      'dedicated_server_dashboard_technical_details_ram_size_unit',
+    );
+    const tbTranslated = this.$translate.instant(
+      'dedicated_server_dashboard_technical_details_ram_size_unit_tb',
+    );
     return disks.map((disk) => {
       const number = get(disk, 'number', 1);
       const technology = get(disk, 'technology', '');
@@ -77,9 +90,10 @@ export default class TechnicalDetailsController {
       if (Number.isNaN(capacity)) {
         capacity = '-';
       } else if (capacity >= 1000) {
-        capacity = `${Math.round((100 * capacity) / 1000, 2) / 100} TB`;
+        capacity = `${Math.round((100 * capacity) / 1000, 2) /
+          100} ${tbTranslated}`;
       } else {
-        capacity = `${capacity} GB`;
+        capacity = `${capacity} ${gbTranslated}`;
       }
 
       return `${number}×${capacity} ${technology} ${diskInterface}`;
@@ -91,5 +105,19 @@ export default class TechnicalDetailsController {
       this.upgradeWithTicketAvailable &&
       this.technicalDetails.storage?.upgradable?.length
     );
+  }
+
+  loadData() {
+    this.loading = true;
+    this.ovhFeatureFlipping
+      .checkFeatureAvailability('dedicated-server:upgradeWithTicket')
+      .then((upgradeFeature) => {
+        this.upgradeWithTicketAvailable = upgradeFeature.isFeatureAvailable(
+          'dedicated-server:upgradeWithTicket',
+        );
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 }
