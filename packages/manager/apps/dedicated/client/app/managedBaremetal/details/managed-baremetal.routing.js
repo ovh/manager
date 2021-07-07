@@ -99,6 +99,8 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName: $stateParams.productId,
         }),
 
+      drpAvailability: /* @ngInject */ () => true,
+
       drpGlobalStatus: /* @ngInject */ (currentDrp, dedicatedCloudDrp) => ({
         error:
           dedicatedCloudDrp.constructor.isDrpNotInValidState(

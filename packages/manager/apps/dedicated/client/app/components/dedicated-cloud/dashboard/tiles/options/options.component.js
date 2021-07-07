@@ -8,6 +8,7 @@ export default {
     currentUser: '<',
     datacenterList: '<',
     deleteDrp: '<',
+    drpAvailability: '<',
     drpGlobalStatus: '<',
 
     goToDrp: '<',

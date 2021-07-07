@@ -8,6 +8,7 @@
 
     <div data-ng-if="!$ctrl.bindings.isLoading">
         <oui-tile-definition
+            data-ng-if="$ctrl.drpAvailability"
             data-term="{{:: 'ovhManagerPccDashboardOptions_security_term' | translate }}"
         >
             <oui-tile-description>

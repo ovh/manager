@@ -101,6 +101,13 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName: $stateParams.productId,
         }),
 
+      drpAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('dedicated-cloud:drp')
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable('dedicated-cloud:drp'),
+          ),
+
       drpGlobalStatus: /* @ngInject */ (currentDrp, dedicatedCloudDrp) => ({
         error:
           dedicatedCloudDrp.constructor.isDrpNotInValidState(
