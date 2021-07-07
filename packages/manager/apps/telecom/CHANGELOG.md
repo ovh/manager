@@ -1,3 +1,12 @@
+# [13.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.23.1...@ovh-ux/manager-telecom@13.24.0) (2021-07-07)
+
+
+### Features
+
+* **modem.ports:** add internal port end for port mapping ([#4832](https://github.com/ovh/manager/issues/4832)) ([fb2b67c](https://github.com/ovh/manager/commit/fb2b67ccc5a793f45f783d2bf4373fa68f223154))
+
+
+
 ## [13.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.23.0...@ovh-ux/manager-telecom@13.23.1) (2021-07-01)
 
 

@@ -1,3 +1,12 @@
+## [5.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.30.1...@ovh-ux/manager-pci@5.30.2) (2021-07-07)
+
+
+### Bug Fixes
+
+* **private-registry:** add missing translation ([#5220](https://github.com/ovh/manager/issues/5220)) ([01668eb](https://github.com/ovh/manager/commit/01668eb0786fa063ea4fa815b4d2b8c452a21fbb))
+
+
+
 ## [5.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.30.0...@ovh-ux/manager-pci@5.30.1) (2021-07-01)
 
 
