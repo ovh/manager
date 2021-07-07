@@ -10,6 +10,7 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import dashboard from './dashboard';
 import onboarding from './onboarding';
+import order from './order';
 import routing from './routing';
 
 import './index.scss';
@@ -22,6 +23,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     onboarding,
+    order,
     dashboard,
     'ngAtInternet',
     'ngAtInternetUiRouterPlugin',
