@@ -12,6 +12,7 @@ import addUser from './addUser';
 import addObject from './object/add';
 import deleteObject from './object/delete';
 import routing from './object.routing';
+import emptyUser from './emptyUser';
 
 const moduleName = 'ovhManagerPciStoragesObjectsObjectObject';
 
@@ -22,6 +23,7 @@ angular
     deleteContainer,
     addUser,
     deleteObject,
+    emptyUser,
     'ngTranslateAsyncLoader',
     'oui',
     'ovh-api-services',

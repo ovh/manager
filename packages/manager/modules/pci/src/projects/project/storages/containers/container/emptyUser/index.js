@@ -1,21 +1,19 @@
 import angular from 'angular';
 import '@ovh-ux/ng-translate-async-loader';
-import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import component from './addUser.component';
+import component from './emptyUser.component';
 
-const moduleName = 'ovhManagerPciStoragesContainersContainerAddUser';
+const moduleName = 'ovhManagerPciStoragesContainersContainerEmptyUser';
 
 angular
   .module(moduleName, [
-    'ui.router',
     'oui',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .component('pciProjectStorageContainersContainerAddUser', component)
+  .component('pciProjectStorageContainersContainerEmptyUser', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -11,12 +11,14 @@ import deleteContainer from './delete';
 import addUser from './addUser';
 import object from './object';
 import component from './container.component';
+import emptyUser from './emptyUser';
 
 const moduleName = 'ovhManagerPciStoragesContainersContainer';
 
 angular
   .module(moduleName, [
     deleteContainer,
+    emptyUser,
     addUser,
     object,
     'ngTranslateAsyncLoader',
