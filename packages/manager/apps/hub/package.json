@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "webpack --env.production",
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --env.localRegistry",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-hub-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-hub-app' --include-dependencies -- npm run dev --if-present",
