@@ -10,6 +10,8 @@ import dashboard from './dashboard';
 import onboarding from './onboarding';
 import routing from './routing';
 
+import './index.scss';
+
 const moduleName = 'ovhManagerNetApp';
 
 angular
