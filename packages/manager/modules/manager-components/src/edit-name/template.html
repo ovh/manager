@@ -1,0 +1,31 @@
+<form
+    id="serverEditName"
+    name="serverEditName"
+    data-ng-submit="serverEditName.$valid && $ctrl.saveName()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'server_name_edit_title' | translate }}"
+        data-primary-label="{{:: 'server_name_edit_common_save' | translate }}"
+        data-secondary-label="{{:: 'server_name_edit_common_cancel' | translate }}"
+        data-secondary-action="$ctrl.handleCancel()"
+        data-on-dismiss="$ctrl.handleCancel()"
+        data-loading="$ctrl.loading || $ctrl.isUpdating"
+        data-type="warning"
+    >
+        <p data-translate="server_name_edit_help"></p>
+        <oui-field
+            data-label="{{:: 'server_name_edit_displayname_label' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                name="server-edit-name"
+                id="server-edit-name"
+                data-ng-model="$ctrl.name"
+                required
+                autofocus
+            />
+        </oui-field>
+    </oui-modal>
+</form>
