@@ -28,9 +28,14 @@ export default class PciStoragesContainersController {
           'pci.projects.project.storages.containers.container',
         ),
       )
-      .catch(() =>
+      .catch((err) =>
         this.CucCloudMessage.error(
-          'yay',
+          this.$translate.instant(
+            'pci_projects_project_storages_containers_toggle_fail',
+            {
+              message: err.message || err.data?.message,
+            },
+          ),
           'pci.projects.project.storages.containers.container',
         ),
       )

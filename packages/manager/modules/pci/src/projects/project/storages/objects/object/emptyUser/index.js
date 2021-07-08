@@ -7,9 +7,9 @@ import '@ovh-ux/ui-kit';
 import 'ovh-api-services';
 
 import containers from '../../../containers';
-import routing from './addUser.routing';
+import routing from './emptyUser.routing';
 
-const moduleName = 'ovhManagerPciStoragesObjectsObjectAddUser';
+const moduleName = 'ovhManagerPciStoragesObjectsObjectEmptyUser';
 
 angular
   .module(moduleName, [

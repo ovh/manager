@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import { OBJECT_CONTAINER_USER_ROLES } from './addUser.constants';
 
 export default class PciBlockStorageDetailsAddUserController {
@@ -13,33 +12,25 @@ export default class PciBlockStorageDetailsAddUserController {
     this.$http = $http;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
-    this.selectedUser = null;
-    this.selectedRole = null;
-    this.addUserStep = 0;
+
     this.OBJECT_CONTAINER_USER_ROLES = OBJECT_CONTAINER_USER_ROLES;
   }
 
   $onInit() {
-    return this.getAvailableUsers();
+    this.selectedUser = null;
+    this.selectedRole = null;
+    this.addUserStep = 0;
   }
 
-  getAvailableUsers() {
-    return this.$http
-      .get(`/cloud/project/${this.projectId}/user`)
-      .then((res) => {
-        this.availableUsers = res.data;
-        this.isLoading = false;
-      });
+  stepBack() {
+    this.addUserStep = 0;
   }
 
-  selectUser() {
+  onUserSelect() {
     this.addUserStep = 1;
   }
 
   addUserStorage() {
-    if (this.availableUsers.length === 0) {
-      return this.goToUsersAndRoles();
-    }
     if (this.addUserStep < 1) {
       this.addUserStep += 1;
       return null;
@@ -69,7 +60,7 @@ export default class PciBlockStorageDetailsAddUserController {
           this.$translate.instant(
             'pci_projects_project_storages_containers_container_addUser_error_addUser',
             {
-              message: get(err, 'data.message', null),
+              message: err.message || err.data?.message,
             },
           ),
           'error',
