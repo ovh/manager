@@ -3,6 +3,8 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import './index.scss';
+
 const moduleName = 'ovhManager<%= pascalcasedName %>LazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
