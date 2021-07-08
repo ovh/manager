@@ -19,9 +19,6 @@
   "main": "./src/index.js",
   "dependencies": {
     "@babel/core": "^7.12.10",
-    "@babel/plugin-proposal-class-properties": "^7.10.1",
-    "@babel/plugin-proposal-optional-chaining": "^7.10.1",
-    "@babel/plugin-proposal-private-methods": "^7.10.1",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.10.3",
     "@ovh-ux/rollup-plugin-less-inject": "^1.0.5",
@@ -42,7 +39,7 @@
     "magic-string": "^0.25.4",
     "node-sass": "^4.10.0",
     "regenerator-runtime": "^0.13.7",
-    "rollup": "^2.0.2",
+    "rollup": "^2.50.6",
     "rollup-plugin-html": "^0.2.1",
     "rollup-plugin-peer-deps-external": "^2.2.2",
     "rollup-plugin-sass": "^1.2.2",
