@@ -1,3 +1,12 @@
+## [15.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.27.1...@ovh-ux/manager-web@15.27.2) (2021-07-09)
+
+
+### Bug Fixes
+
+* **web:** dedicated redirection regex ([#5237](https://github.com/ovh/manager/issues/5237)) ([3c21658](https://github.com/ovh/manager/commit/3c21658bca2ddfa26ab2c66121c1cbc08ed52e32))
+
+
+
 ## [15.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.27.0...@ovh-ux/manager-web@15.27.1) (2021-07-01)
 
 
