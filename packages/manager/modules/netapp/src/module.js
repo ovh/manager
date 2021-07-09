@@ -3,6 +3,7 @@ import angular from 'angular';
 import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
+import '@ovh-ux/ng-at-internet';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
@@ -19,6 +20,7 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
+    'ngAtInternet',
     onboarding,
     dashboard,
     ListLayoutHelper.moduleName,
