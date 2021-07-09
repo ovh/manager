@@ -1191,11 +1191,11 @@
   "server_error_bandwidth_order": "Une erreur est survenue lors de la commande de bande passante : {{error}}",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Interfaces réseau de groupe",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Dissocier les interfaces réseau",
-  "server_configuration_no_intervention": "Interventions sur site",
+  "server_configuration_no_intervention": "Désactiver les interventions sur site",
   "server_configuration_on": "On",
   "server_configuration_off": "Off",
-  "server_configuration_no_intervention_activate_success": "L'intervention sur site est activée sur le serveur {{serverName}}",
-  "server_configuration_no_intervention_activate_failed": "Une erreur est survenue lors de l'activation des interventions sur site sur le serveur {{serverName}}",
-  "server_configuration_no_intervention_deactivate_success": "L'intervention sur site est désactivé sur le serveur {{serverName}}",
-  "server_configuration_no_intervention_deactivate_failed": "Une erreur est survenue lors de la désactivation de l'intervention sur site sur le serveur {{serverName}}"
+  "server_configuration_intervention_deactivate_success": "L'intervention sur site est désactivée sur le serveur {{serverName}}",
+  "server_configuration_intervention_deactivate_failed": "Une erreur est survenue lors de la désactivation de l'intervention sur site sur le serveur {{serverName}}",
+  "server_configuration_intervention_activate_success": "L'intervention sur site est activée sur le serveur {{serverName}}",
+  "server_configuration_intervention_activate_failed": "Une erreur est survenue lors de l'activation des interventions sur site sur le serveur {{serverName}}"
 }
