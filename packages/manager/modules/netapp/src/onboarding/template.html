@@ -1,5 +1,52 @@
-<manager-on-boarding-layout data-guides="$ctrl.GUIDES">
-    <oui-button data-variant="primary" data-on-click="$ctrl.discover()">
-        <span>Discover product</span>
-    </oui-button>
-</manager-on-boarding-layout>
+<div class="container-fluid w-100 h-100 pt-4 px-3 px-md-5">
+    <oui-header>
+        <oui-guide-menu
+            text="{{:: 'netapp_onboarding_volumes_guides' | translate }}"
+            placement="end"
+        >
+            <oui-guide-menu-item
+                href="{{:: $ctrl.storageGuide.link }}"
+                on-click="$ctrl.trackClick($ctrl.storageGuide.hitName)"
+                external
+            >
+                <span data-translate="netapp_onboarding_storage_title"></span>
+            </oui-guide-menu-item>
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.volumeGuides track by guide.id"
+                href="{{:: guide.link }}"
+                on-click="$ctrl.trackClick(guide.hitSuffix)"
+                external
+            >
+                <span data-ng-bind="::guide.title"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+    <manager-on-boarding-layout
+        guides="$ctrl.highlightedGuides"
+        image-source="$ctrl.illustration"
+        image-alt="'OVHcloud with NetApp'"
+        on-guide-click="$ctrl.trackClick(guide.hitSuffix)"
+    >
+        <h1 data-translate="netapp_onboarding_title"></h1>
+        <p data-translate="netapp_onboarding_description"></p>
+        <oui-message
+            class="mb-5"
+            type="info"
+            data-ng-if="!$ctrl.hasRecommendedSupportLevel"
+        >
+            <a
+                class="oui_link"
+                data-ng-href="{{:: $ctrl.supportLevel.link }}"
+                target="_blank"
+                rel="noopener"
+                data-translate="netapp_onboarding_recommendation_1"
+                data-on-click="$ctrl.trackClick($ctrl.supportLevel.hitName)"
+            ></a>
+            <span data-translate="netapp_onboarding_recommendation_2"></span>
+        </oui-message>
+
+        <oui-button size="l" variant="primary" on-click="$ctrl.onOrderClick()">
+            <span data-translate="netapp_onboarding_order"></span>
+        </oui-button>
+    </manager-on-boarding-layout>
+</div>
