@@ -35,6 +35,8 @@ const moduleName = 'ovhManagerCore';
 
 export default moduleName;
 
+export { URLS };
+
 export const registerCoreModule = (environment) => {
   const managerCoreConfig = registerConfigModule(environment);
 
