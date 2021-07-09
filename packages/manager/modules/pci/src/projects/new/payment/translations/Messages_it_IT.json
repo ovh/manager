@@ -12,5 +12,8 @@
   "pci_project_new_payment_information": "Informazioni bancarie",
   "pci_project_new_payment_pending_check": "In attesa di conferma del tuo metodo di pagamento",
   "pci_project_new_payment_check_error": "La verifica del tuo metodo di pagamento presso il tuo istituto bancario sta richiedendo tempi anomali.",
-  "pci_project_new_payment_check_payment_method_status": "Ti consigliamo di consultare lo stato di quest'ultimo nella lista dei metodi di pagamento e ripristinare il tuo progetto Public Cloud una volta convalidato il metodo di pagamento."
+  "pci_project_new_payment_check_payment_method_status": "Ti consigliamo di consultare lo stato di quest'ultimo nella lista dei metodi di pagamento e ripristinare il tuo progetto Public Cloud una volta convalidato il metodo di pagamento.",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review": "Il nostro team sta procedendo alla convalida manuale del tuo ordine. Il tempo di elaborazione sarà maggiore, dato che la procedura richiede alcuni giorni. Durante questo periodo, verifica le informazioni e segui lo stato della richiesta.",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review_link": "Stato dell'ordine",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_refused": "In seguito a un'analisi dei dati associati al tuo ordine o relativi al tuo account,  sembra che questi non presentino tutte le garanzie necessarie in termini di sicurezza della transazione. Per poter procedere all'elaborazione e al pagamento dell’ordine e all'esecuzione del contratto, ti invitiamo a ripetere l'acquisto utilizzando un altro metodo di pagamento. Puoi anche contattare uno dei nostri consulenti tramite la sezione \"Aiuto\" del tuo account, per fornirci gli elementi utili al buon esito della transazione. In caso contrario, la transazione non sarà presa in considerazione."
 }
