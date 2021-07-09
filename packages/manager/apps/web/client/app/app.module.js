@@ -317,9 +317,9 @@ export default (containerEl, environment) => {
       },
     ])
     .constant('URLS_REDIRECTED_TO_DEDICATED', [
-      new RegExp('/useraccount/.*'),
-      new RegExp('/billing/.*'),
-      new RegExp('/contact/.*'),
+      new RegExp('^/useraccount/.*'),
+      new RegExp('^/billing/.*'),
+      new RegExp('^/contact/.*'),
     ])
     .config(
       /* @ngInject */ (ovhFeatureFlippingProvider) => {
