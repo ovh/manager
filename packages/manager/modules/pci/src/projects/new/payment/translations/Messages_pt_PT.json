@@ -12,5 +12,8 @@
   "pci_project_new_payment_information": "Informações bancárias",
   "pci_project_new_payment_pending_check": "A aguardar validação do seu método de pagamento",
   "pci_project_new_payment_check_error": "A verificação do seu método de pagamento junto do seu organismo bancário está a demorar mais tempo do que o previsto.",
-  "pci_project_new_payment_check_payment_method_status": "Sugerimos que consulte o respetivo estado na lista dos métodos de pagamento e que volte a criar o seu projeto Public Cloud após a validação do método de pagamento."
+  "pci_project_new_payment_check_payment_method_status": "Sugerimos que consulte o respetivo estado na lista dos métodos de pagamento e que volte a criar o seu projeto Public Cloud após a validação do método de pagamento.",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review": "A nossa equipa está a verificar a sua encomenda manualmente. É necessário um tempo de processamento adicional, o que poderá levar alguns dias. Durante este período, verifique as suas informações e acompanhe o estado do seu pedido.",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review_link": "Seguir encomenda",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_refused": "Após uma análise dos dados associados à sua encomenda ou relativos à sua conta, verificou-se que estes não apresentam todas as garantias necessárias em termos de segurança da transação. Para poder processar a sua encomenda, o seu pagamento e executar o contrato, a OVHcloud recomenda que renove a sua compra utilizando outro método de pagamento. Também pode contactar um dos nossos conselheiros através da secção “Ajuda” da sua conta para nos fornecer os elementos necessários à finalização da transação. Caso contrário, a transação não será tida em conta."
 }
