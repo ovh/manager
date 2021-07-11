@@ -11,6 +11,7 @@ import exchangeRouting from './exchange.routing';
 import ipRouting from './ip.routing';
 import sharepointRouting from './sharepoint.routing';
 import vrackRouting from './vrack.routing';
+import cloudConnectRouting from './cloud-connect.routing';
 
 import routing from './routing';
 
@@ -24,6 +25,7 @@ angular
     ListLayoutHelper.moduleName,
   ])
   .config(routing)
+  .config(cloudConnectRouting)
   .config(dedicatedCloudRouting)
   .config(exchangeRouting)
   .config(ipRouting)
