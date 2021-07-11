@@ -50,52 +50,54 @@ program
     'Force a release as patch, minor or major',
   )
   .action(() => {
-    if (!program.token) {
+    const options = program.opts();
+
+    if (!options.token) {
       console.warn('Missing <token> option, no github release will be done!');
     }
     return Promise.resolve()
-      .then(() => (program.check ? checkChanges() : false))
-      .then(() => getChangedRepositories(program.force))
+      .then(() => (options.check ? checkChanges() : false))
+      .then(() => getChangedRepositories(options.force))
       .then((repos) =>
         bumpRepositories(
           repos,
-          program.releaseType || null,
-          program.preRelease || false,
-          program.preId || null,
-          !program.noPreReleaseFileCheck || true,
+          options.releaseType || null,
+          options.preRelease || false,
+          options.preId || null,
+          !options.noPreReleaseFileCheck || true,
         ),
       )
       .then(updateChangelogs)
       .then((repos) =>
         getDependenciesToUpdate(repos)
           .then((deps) =>
-            program.dependencyCheck ? checkDependencies(deps) : deps,
+            options.dependencyCheck ? checkDependencies(deps) : deps,
           )
           .then(updateDependencies)
           .then(() => repos),
       )
       .then((repos) => {
-        if (program.changelog) {
-          writeChangelog(program.changelog, repos).then(() => repos);
+        if (options.changelog) {
+          writeChangelog(options.changelog, repos).then(() => repos);
         }
         return repos;
       })
       .then((repos) => {
-        if (program.release && repos.length) {
-          return getReleaseVersion(program.releaseName, program.seed)
+        if (options.release && repos.length) {
+          return getReleaseVersion(options.releaseName, options.seed)
             .then((version) => release(version, repos))
             .then((version) => {
-              if (program.token && program.organization) {
-                const options = {
-                  draft: program.draftRelease || false,
-                  prerelease: program.preRelease || false,
+              if (options.token && options.organization) {
+                const releaseOptions = {
+                  draft: options.draftRelease || false,
+                  prerelease: options.preRelease || false,
                 };
                 return releaseGithub(
-                  program.token,
-                  program.organization,
+                  options.token,
+                  options.organization,
                   version,
                   repos,
-                  options,
+                  releaseOptions,
                 );
               }
               return undefined;
