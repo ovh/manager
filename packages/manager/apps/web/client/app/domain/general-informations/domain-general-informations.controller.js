@@ -22,6 +22,7 @@ import {
 export default class DomainTabGeneralInformationsCtrl {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $rootScope,
     $scope,
@@ -47,6 +48,7 @@ export default class DomainTabGeneralInformationsCtrl {
     DOMAIN,
     goToDnsAnycast,
   ) {
+    this.$http = $http;
     this.$scope = $scope;
     this.$rootScope = $rootScope;
     this.$q = $q;
@@ -430,6 +432,28 @@ export default class DomainTabGeneralInformationsCtrl {
           }),
           {},
         );
+      })
+      .then(() => {
+        return this.$http
+          .get(`/domain/zone/${this.domain.name}/option/anycast`, {
+            serviceType: 'apiv6',
+          })
+          .then(({ data }) => {
+            this.options.dnsAnycast = {
+              option: 'dnsAnycast',
+              optionActivated: true,
+              ...data,
+            };
+          })
+          .catch((error) => {
+            if (error.status === 404) {
+              this.options.dnsAnycast = {
+                option: 'dnsAnycast',
+                optionActivated: false,
+              };
+            }
+            return error.status !== 404 ? this.$q.reject(error) : null;
+          });
       })
       .catch((err) =>
         this.Alerter.alertFromSWS(
