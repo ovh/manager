@@ -6,6 +6,7 @@ import map from 'lodash/map';
 import omit from 'lodash/omit';
 import pick from 'lodash/pick';
 import pull from 'lodash/pull';
+import size from 'lodash/size';
 import some from 'lodash/some';
 import startsWith from 'lodash/startsWith';
 import uniq from 'lodash/uniq';
@@ -21,6 +22,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
   TelephonyMediator,
   OvhApiMe,
   OvhApiOrder,
+  OvhApiTelephony,
   TucBankHolidays,
   TucToast,
 ) {
@@ -57,6 +59,8 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
   ];
 
   function init() {
+    self.autocompleteRedirectLines = [];
+
     self.order = {
       // default values
       executeAsSoonAsPossible: true,
@@ -217,11 +221,6 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
     );
   };
 
-  self.onChooseRedirectToLine = function onChooseRedirectToLine(result) {
-    self.order.lineToRedirectAliasTo = result.serviceName;
-    self.order.lineToRedirectAliasToDescription = result.description;
-  };
-
   // add sdaNumberToAdd number to numbersList
   self.addSdaNumber = function addSdaNumber() {
     self.order.numbersList.push(self.order.sdaNumberToAdd);
@@ -241,6 +240,37 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
       number = number.replace(/^\+/, '00');
     }
     return number;
+  };
+
+  self.onRedirectLineSearchChanged = function onRedirectLineSearchChanged(
+    value,
+  ) {
+    if (size(value) < 5) {
+      return;
+    }
+
+    OvhApiTelephony.v6()
+      .searchService({
+        axiom: value,
+      })
+      .$promise.then((d) => {
+        self.autocompleteRedirectLines = d.filter(
+          (service) => service.type === 'line',
+        );
+      })
+      .catch(() => $q.resolve([]));
+  };
+
+  self.onRedirectLineSearchSelected = function onRedirectLineSearchSelected(
+    value,
+  ) {
+    self.order.lineToRedirectAliasTo = value.domain;
+    self.order.lineToRedirectAliasToDescription = value.domain;
+  };
+
+  self.onRedirectLineSearchReset = function onRedirectLineSearchReset() {
+    self.order.lineToRedirectAliasTo = null;
+    self.order.lineToRedirectAliasToDescription = null;
   };
 
   self.goToConfigStep = function goToConfigStep() {
