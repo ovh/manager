@@ -1,0 +1,7 @@
+{
+  "server_name_edit_title": "Change the name",
+  "server_name_edit_help": "Changes the name displayed in the header.",
+  "server_name_edit_displayname_label": "Name",
+  "server_name_edit_common_save": "Save",
+  "server_name_edit_common_cancel": "Cancel"
+}

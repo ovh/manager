@@ -1,0 +1,33 @@
+<oui-datagrid data-rows-loader="$ctrl.getTasks($config)">
+    <oui-datagrid-column
+        data-title=":: 'server_configuration_task_last_action' | translate"
+    >
+        <span data-ng-bind="$row.lastUpdate | date: 'medium'"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'server_configuration_task_function' | translate"
+    >
+        <span
+            data-ng-bind="('server_configuration_task_'+ $row.action) | ducTranslateAlt: $row.action"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'server_configuration_task_comment' | translate"
+    >
+        <span data-ng-bind="$row.comment"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'server_configuration_task_status' | translate"
+    >
+        <span
+            class="oui-badge"
+            data-translate="{{ ::'server_configuration_task_status_' + $row.status }}"
+            data-ng-class="{
+                      'oui-badge_success': $row.isReady(),
+                      'oui-badge_danger': $row.isError(),
+                      'oui-badge_warning': $row.isUpdating()
+                  }"
+        >
+        </span>
+    </oui-datagrid-column>
+</oui-datagrid>

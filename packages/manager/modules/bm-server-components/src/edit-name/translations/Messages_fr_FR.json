@@ -1,0 +1,7 @@
+{
+  "server_name_edit_title": "Modifier le nom",
+  "server_name_edit_help": "Modifie le nom affiché dans l'entête.",
+  "server_name_edit_displayname_label": "Nom",
+  "server_name_edit_common_save": "Sauvegarder",
+  "server_name_edit_common_cancel": "Annuler"
+}

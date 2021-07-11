@@ -1,0 +1,37 @@
+{
+  "name": "@ovh-ux/manager-dedicated-server-components",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Reusable components related to Baremetal dedicated Server.",
+  "keywords": [
+    "angularjs",
+    "baremetal",
+    "components",
+    "manager"
+  ],
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/dedicated-server-components#readme",
+  "bugs": {
+    "url": "https://github.com/ovh/manager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/modules/dedicated-server-components"
+  },
+  "license": "BSD-3-Clause",
+  "main": "./src/index.js",
+  "dependencies": {
+    "lodash": "^4.17.15"
+  },
+  "peerDependencies": {
+    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/ng-at-internet": "^5.5.0",
+    "@ovh-ux/ng-ovh-feature-flipping": "^1.0.2",
+    "@ovh-ux/ng-ovh-utils": "^14.0.13",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.1",
+    "@ovh-ux/ui-kit": "^4.4.1",
+    "angular": "^1.7.8",
+    "angular-translate": "^2.18.1"
+  }
+}
