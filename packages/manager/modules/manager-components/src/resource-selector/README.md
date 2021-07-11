@@ -6,7 +6,9 @@ The `ovh-manager-resource-selector` component provides a quick way to create a h
 
 ```js
 import 'angular';
-import resourceSelector from '@ovh-ux/manager-components';
+import {
+  managerResourceSelector,
+} from '@ovh-ux/manager-components';
 
 angular.module('myModule', [resourceSelector]);
 ```
