@@ -32,8 +32,8 @@ export const DOMAIN_CONFIG = {
       stateParams: ['productId'],
       loadOnStateParams: ['allDom'],
       app: [WEB],
-      regions: ['EU'],
       icon: 'ovh-font ovh-font-domain',
+      feature: 'web:domains:all-dom',
       types: [
         {
           path: '/allDom/:productId/domain',
@@ -70,6 +70,7 @@ export const DOMAIN_CONFIG = {
       icon: 'oui-icon oui-icon-domain-dns',
       loadOnState: 'app.zone.details',
       app: [WEB],
+      feature: 'web:domains:zone',
       filter: {
         category: 'DOMAIN',
         fn: (items, compareTo) =>
@@ -85,7 +86,7 @@ export const DOMAIN_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-domain',
   app: [WEB],
-  regions: ['EU', 'CA'],
+  feature: 'web:domains',
 };
 
 export const HOSTING_CONFIG = {
@@ -103,7 +104,7 @@ export const HOSTING_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-hosting',
   app: [WEB],
-  regions: ['EU', 'CA'],
+  feature: 'hosting',
 };
 
 export const PRIVATE_DATABASE_CONFIG = {
@@ -121,7 +122,7 @@ export const PRIVATE_DATABASE_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-database',
   app: [WEB],
-  regions: ['EU', 'CA'],
+  feature: 'private-database',
 };
 
 export const EMAIL_PRO_CONFIG = {
@@ -139,7 +140,7 @@ export const EMAIL_PRO_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-mail',
   app: [WEB],
-  regions: ['EU'],
+  feature: 'email-pro',
 };
 
 export const EMAIL_CONFIG = {
@@ -153,7 +154,7 @@ export const EMAIL_CONFIG = {
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-mail',
       app: [WEB],
-      regions: ['EU'],
+      feature: 'emails:domain',
     },
     {
       path: '/email/mxplan',
@@ -163,7 +164,7 @@ export const EMAIL_CONFIG = {
       loadOnState: 'mxplan.dashboard',
       icon: 'ovh-font ovh-font-mail',
       app: [WEB],
-      regions: ['EU', 'CA'],
+      feature: 'emails:mxplan',
     },
     {
       path: '/email/domain/delegatedAccount',
@@ -173,12 +174,12 @@ export const EMAIL_CONFIG = {
       loadOnState: 'app.email-delegate.dashboard',
       icon: 'ovh-font ovh-font-mail',
       app: [WEB],
-      regions: ['EU'],
+      feature: 'emails:delegate',
     },
   ],
   icon: 'ovh-font ovh-font-mail',
   app: [WEB],
-  regions: ['EU', 'CA'],
+  feature: 'emails',
 };
 
 export const MICROSOFT_CONFIG = {
@@ -198,6 +199,7 @@ export const MICROSOFT_CONFIG = {
       loadOnState: 'exchange.dashboard',
       icon: 'ms-Icon ms-Icon--ExchangeLogo',
       app: [WEB],
+      feature: 'exchange:web-dashboard',
     },
     {
       id: 'office',
@@ -213,6 +215,7 @@ export const MICROSOFT_CONFIG = {
       loadOnState: 'office',
       icon: 'ms-Icon ms-Icon--OfficeLogo',
       app: [WEB],
+      feature: 'office',
     },
     {
       id: 'sharepoint',
@@ -228,13 +231,14 @@ export const MICROSOFT_CONFIG = {
       loadOnState: 'sharepoint',
       icon: 'ms-Icon ms-Icon--SharepointLogo',
       app: [WEB],
+      feature: 'sharepoint',
     },
   ],
   loadOnState: 'app.microsoft',
   icon: 'ms-Icon ms-Icon--WindowsLogo',
   forceDisplaySearch: true,
   app: [WEB],
-  regions: ['EU'],
+  feature: 'web:microsoft',
 };
 
 export const PSH_CONFIG = {
@@ -282,7 +286,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     linkId: 'orderDomain',
     target: '_blank',
     app: [WEB],
-    regions: ['EU', 'CA'],
+    feature: 'web:domains',
     tracker: 'web::orders::domain-name::order',
   },
   {
@@ -290,8 +294,8 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     title: 'zone',
     icon: 'oui-icon oui-icon-domain-dns',
     state: 'app.zone.new',
-    regions: ['EU', 'CA'],
     app: [WEB],
+    feature: 'web:domains:zone',
     tracker: 'web::orders::dns-zone::order',
   },
   {
@@ -301,7 +305,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     linkId: 'orderHosting',
     target: '_blank',
     app: [WEB],
-    regions: ['EU', 'CA'],
+    feature: 'hosting',
     tracker: 'web::orders::web-hosting::order',
   },
   {
@@ -311,7 +315,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     linkId: 'orderCloudWeb',
     target: '_blank',
     app: [WEB],
-    regions: ['EU'],
+    feature: 'cloud-web',
     tracker: 'web::orders::cloud-web::order',
   },
   {
@@ -321,7 +325,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     linkId: 'orderEmailPro',
     target: '_blank',
     app: [WEB],
-    regions: ['EU'],
+    feature: 'email-pro',
     tracker: 'web::orders::email-pro::order',
   },
   {
@@ -329,7 +333,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     title: 'mxplan',
     icon: 'ovh-font ovh-font-mail',
     state: 'app.mx-plan',
-    regions: ['EU'],
+    feature: 'emails:mxplan:order',
     app: [WEB],
     tracker: 'web::orders::mx-plan::order',
   },
@@ -338,7 +342,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     title: 'exchange',
     icon: 'ms-Icon ms-Icon--ExchangeLogo',
     state: 'exchange.order',
-    regions: ['EU'],
+    feature: 'exchange:web-dashboard',
     app: [WEB],
     tracker: 'web::orders::email-microsoft-exchange::order',
   },
@@ -349,7 +353,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     linkId: 'orderOffice',
     target: '_blank',
     app: [WEB],
-    regions: ['EU'],
+    feature: 'office',
     tracker: 'web::orders::licences-office::order',
   },
   {
@@ -359,7 +363,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     linkId: 'orderCsp2',
     target: '_blank',
     app: [WEB],
-    regions: ['EU'],
+    feature: 'office-reseller',
     tracker: 'web::orders::licences-office-reseller::order',
   },
   {
@@ -367,7 +371,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     title: 'sharepoint',
     icon: 'ms-Icon ms-Icon--SharepointLogo',
     state: 'sharepoint.order',
-    regions: ['EU'],
+    feature: 'sharepoint',
     app: [WEB],
     tracker: 'web::orders::microsoft-sharepoint::order',
   },
@@ -376,7 +380,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     title: 'cloudDatabase',
     icon: 'ovh-font ovh-font-database',
     state: 'app.private-database-order-clouddb',
-    regions: ['EU'],
+    feature: 'cloud-database',
     app: [WEB],
     tracker: 'web::orders::cloud-db::order',
   },
@@ -385,7 +389,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     title: 'privateDatabase',
     icon: 'ovh-font ovh-font-database',
     state: 'app.private-database.order',
-    regions: ['EU', 'CA'],
+    feature: 'private-database',
     app: [WEB],
   },
   {
@@ -394,7 +398,6 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     feature: 'web-paas',
     icon: 'oui-icon oui-icon-partner-platformsh_concept',
     state: 'web-paas.add',
-    regions: ['EU'],
     app: [WEB],
     tracker: 'web::orders::web-paas::order',
   },

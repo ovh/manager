@@ -1,6 +1,8 @@
 <div data-ui-view>
     <div class="hub-dashboard-content">
-        <hub-dashboard-welcome></hub-dashboard-welcome>
+        <hub-dashboard-welcome
+            data-is-trusted="$ctrl.me.isTrusted"
+        ></hub-dashboard-welcome>
         <div
             class="d-flex flex-wrap w-100 minw-0 align-items-center justify-content-between"
         >

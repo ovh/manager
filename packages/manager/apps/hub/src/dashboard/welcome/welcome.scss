@@ -1,0 +1,21 @@
+hub-dashboard-welcome {
+  @media (max-width: 768px) {
+    display: table;
+    width: 100%;
+
+    ovh-manager-trusted-nic-label {
+      display: table-header-group;
+    }
+
+    .trusted-nic-label {
+      display: block;
+      margin: 0 -1rem;
+      margin-top: -1.5rem;
+    }
+
+    .oui-badge {
+      border-radius: 0;
+      max-width: none;
+    }
+  }
+}

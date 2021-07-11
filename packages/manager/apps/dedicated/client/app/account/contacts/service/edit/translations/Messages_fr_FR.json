@@ -1,6 +1,7 @@
 {
   "account_contacts_service_edit": "Modifier les contacts",
   "account_contacts_service_edit_description": "Modifier les contacts du service {{ serviceName }}",
+  "account_contacts_service_edit_description_trusted": "Modifier les contacts de votre service {{ serviceName }} en zone de confiance.",
   "account_contacts_service_edit_contact_admin": "Contact administrateur",
   "account_contacts_service_edit_contact_tech": "Contact technique",
   "account_contacts_service_edit_contact_billing": "Contact facturation",

@@ -1,0 +1,14 @@
+ovh-manager-configuration {
+  @media (max-width: 768px) {
+    .trusted-nic-label {
+      display: block;
+      margin: 0 -1rem;
+      margin-top: -2rem;
+    }
+
+    .oui-badge {
+      border-radius: 0;
+      max-width: none;
+    }
+  }
+}

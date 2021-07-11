@@ -4,6 +4,7 @@ import template from './server.html';
 export default {
   bindings: {
     currentActiveLink: '<',
+    features: '<',
     ola: '<',
     server: '<',
     serviceInfos: '<',

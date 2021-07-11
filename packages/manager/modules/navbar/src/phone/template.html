@@ -1,0 +1,11 @@
+<a
+    data-ng-if="$ctrl.phoneNumber"
+    class="d-flex phone-link"
+    data-ng-href="{{ 'tel:' + $ctrl.phoneNumber }}"
+>
+    <span class="align-self-center oui-icon oui-icon-phone"></span>
+    <span
+        class="align-self-center d-none d-md-inline phone-number"
+        data-ng-bind="$ctrl.phoneNumber"
+    ></span>
+</a>

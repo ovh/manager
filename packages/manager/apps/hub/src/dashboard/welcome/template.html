@@ -1,6 +1,9 @@
 <h1
-    class="oui-heading_2"
+    class="oui-heading_2 d-inline-block"
     data-translate="manager_hub_dashboard_welcome"
     data-translate-values="{ name: $ctrl.name }"
     data-navi-id="hub-welcome-title"
 ></h1>
+<ovh-manager-trusted-nic-label
+    data-ng-if="$ctrl.isTrusted"
+></ovh-manager-trusted-nic-label>

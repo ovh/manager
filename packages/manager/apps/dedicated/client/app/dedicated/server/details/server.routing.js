@@ -25,6 +25,14 @@ export default /* @ngInject */ ($stateProvider) => {
         serverName,
         DedicatedServerInterfacesService,
       ) => DedicatedServerInterfacesService.getInterfaces(serverName),
+      features: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping.checkFeatureAvailability([
+          'dedicated-server:backup',
+          'dedicated-server:changeOwner',
+          'dedicated-server:dns',
+          'dedicated-server:firewall',
+          'dedicated-server:upgradeWithTicket',
+        ]),
       ola: /* @ngInject */ ($stateParams, interfaces, specifications) =>
         new Ola({
           interfaces,

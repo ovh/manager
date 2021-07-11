@@ -6,6 +6,7 @@ export default {
     bandwidthInformations: '<',
     biosSettings: '<',
     bringYourOwnImage: '<',
+    changeOwnerAvailable: '<',
     changeOwnerUrl: '<',
     eligibleData: '<',
     goToCommit: '<',

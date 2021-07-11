@@ -38,6 +38,10 @@
             ></span>
             <span class="sr-only" data-translate="navbar_search"></span>
         </a>
+        <ovh-manager-navbar-phone
+            data-ng-if="$ctrl.user.isTrusted"
+            data-user="$ctrl.user"
+        ></ovh-manager-navbar-phone>
         <ovh-manager-navbar-language-menu
             data-lang-options="$ctrl.langOptions"
         ></ovh-manager-navbar-language-menu>
