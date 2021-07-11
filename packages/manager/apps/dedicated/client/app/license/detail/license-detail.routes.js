@@ -1,9 +1,11 @@
-angular.module('Module.license').config(($stateProvider) => {
+import template from './license-detail.html';
+import controller from './license-detail.controller';
+
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.license.detail', {
     url: '/:licenseId',
-    templateUrl: 'license/detail/license-detail.html',
-    controller: 'LicenseDetailsCtrl',
-    translations: { value: ['..'], format: 'json' },
+    template,
+    controller,
     resolve: {
       licenseId: /* @ngInject */ ($transition$) =>
         $transition$.params().licenseId,
@@ -15,4 +17,4 @@ angular.module('Module.license').config(($stateProvider) => {
     url: '/detail',
     redirectTo: 'app.license.detail',
   });
-});
+};

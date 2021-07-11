@@ -1,10 +1,13 @@
-angular.module('App').config(($stateProvider) => {
+import template from './license-spla-add.html';
+import controller from './license-spla-add.controller';
+
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.license.dashboard.spla-add', {
     url: '/spla/add',
     views: {
       modal: {
-        templateUrl: 'license/spla/add/license-spla-add.html',
-        controller: 'LicenseSplaAddCtrl',
+        template,
+        controller,
       },
     },
     layout: 'modal',
@@ -12,4 +15,4 @@ angular.module('App').config(($stateProvider) => {
       hideBreadcrumb: () => true,
     },
   });
-});
+};

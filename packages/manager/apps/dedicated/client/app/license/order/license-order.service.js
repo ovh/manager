@@ -4,7 +4,8 @@ import get from 'lodash/get';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
 
-class LicenseOrder {
+export default class LicenseOrder {
+  /* @ngInject */
   constructor($q, License, LicenseAgoraOrder, licenseFeatureAvailability) {
     this.$q = $q;
     this.licenseFeatureAvailability = licenseFeatureAvailability;
@@ -77,5 +78,3 @@ class LicenseOrder {
     );
   }
 }
-
-angular.module('Module.license').service('LicenseOrder', LicenseOrder);
