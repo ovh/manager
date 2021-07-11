@@ -1,10 +1,10 @@
 import { merge } from 'lodash-es';
 
-import OvhPaymentMethod from '../../payment-method.class';
-import OvhPaymentMean from './payment-mean.class';
-import { PAYMENT_MEAN_TYPE_ENUM } from './payment-mean.constants';
+import { PaymentMean } from './payment-mean.class';
+import { PaymentMethod } from '../payment-method.class';
+import { PAYMENT_MEAN_TYPE_ENUM } from '../../enums/payment-mean.enum';
 
-export default class OvhPaymentMeanDeferredPaymentAccount extends OvhPaymentMean {
+export class PaymentMeanDeferredPaymentAccount extends PaymentMean {
   constructor(options = {}) {
     super(
       merge(options, {
@@ -17,7 +17,7 @@ export default class OvhPaymentMeanDeferredPaymentAccount extends OvhPaymentMean
   }
 
   toPaymentMethod() {
-    return new OvhPaymentMethod(
+    return new PaymentMethod(
       merge(super.toPaymentMethod(), {
         label: this.label,
         creationDate: this.creationDate,
@@ -26,3 +26,7 @@ export default class OvhPaymentMeanDeferredPaymentAccount extends OvhPaymentMean
     );
   }
 }
+
+export default {
+  PaymentMeanDeferredPaymentAccount,
+};

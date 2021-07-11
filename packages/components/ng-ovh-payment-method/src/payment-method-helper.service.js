@@ -1,9 +1,8 @@
 import { get } from 'lodash-es';
 
-import {
-  IBAN_BIC_RULES,
-  TYPE_INTEGRATION_ENUM,
-} from './payment-method.constants';
+import { AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM } from '@ovh-ux/ovh-payment-method';
+
+import { IBAN_BIC_RULES } from './payment-method.constants';
 
 import AdyenService from './components/integration/component/adyen/service';
 
@@ -42,8 +41,8 @@ export default class OvhPaymentMethodHelperService {
 
   static getCallbackIntegrationTypeRelated(locationSearch) {
     return AdyenService.hasCallbackUrlParams(locationSearch)
-      ? TYPE_INTEGRATION_ENUM.COMPONENT
-      : TYPE_INTEGRATION_ENUM.REDIRECT;
+      ? AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM.COMPONENT
+      : AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM.REDIRECT;
   }
 
   /* -----  End of Public methods  ------ */

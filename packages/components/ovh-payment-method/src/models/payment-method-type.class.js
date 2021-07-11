@@ -1,11 +1,11 @@
-import { PAYMENT_METHOD_TYPE_ENUM } from './payment-method.constants';
+import { AVAILABLE_PAYMENT_METHOD_TYPE_ENUM } from '../enums/payment-method.enum';
 
 /**
  *  Describe a payment method type object.
  */
-export default class OvhPaymentMehtodType {
+export class PaymentMethodType {
   /**
-   *  Create a OvhPaymentMehtodType.
+   *  Create a OvhPaymentMethodType.
    *
    *  @param {String} paymentType The name of the payment type.
    */
@@ -24,7 +24,7 @@ export default class OvhPaymentMehtodType {
    * @return {Boolean}
    */
   isBankAccount() {
-    return this.paymentType === PAYMENT_METHOD_TYPE_ENUM.BANK_ACCOUNT;
+    return this.paymentType === AVAILABLE_PAYMENT_METHOD_TYPE_ENUM.BANK_ACCOUNT;
   }
 
   /**
@@ -33,7 +33,7 @@ export default class OvhPaymentMehtodType {
    * @return {Boolean}
    */
   isCreditCard() {
-    return this.paymentType === PAYMENT_METHOD_TYPE_ENUM.CREDIT_CARD;
+    return this.paymentType === AVAILABLE_PAYMENT_METHOD_TYPE_ENUM.CREDIT_CARD;
   }
 
   /**
@@ -43,7 +43,8 @@ export default class OvhPaymentMehtodType {
    */
   isDeferredPaymentAccount() {
     return (
-      this.paymentType === PAYMENT_METHOD_TYPE_ENUM.DEFERRED_PAYMENT_ACCOUNT
+      this.paymentType ===
+      AVAILABLE_PAYMENT_METHOD_TYPE_ENUM.DEFERRED_PAYMENT_ACCOUNT
     );
   }
 
@@ -53,6 +54,10 @@ export default class OvhPaymentMehtodType {
    * @return {Boolean}
    */
   isPaypal() {
-    return this.paymentType === PAYMENT_METHOD_TYPE_ENUM.PAYPAL;
+    return this.paymentType === AVAILABLE_PAYMENT_METHOD_TYPE_ENUM.PAYPAL;
   }
 }
+
+export default {
+  PaymentMethodType,
+};

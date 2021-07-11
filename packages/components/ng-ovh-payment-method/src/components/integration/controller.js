@@ -8,9 +8,8 @@ import {
   values,
 } from 'lodash-es';
 
+import { AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM } from '@ovh-ux/ovh-payment-method';
 import { DEFAULT_BINDINGS_VALUES } from './constants';
-
-import { TYPE_INTEGRATION_ENUM } from '../../payment-method.constants';
 
 export default class OvhPaymentMethodIntegrationCtrl {
   /* @ngInject */
@@ -145,8 +144,8 @@ export default class OvhPaymentMethodIntegrationCtrl {
           if (
             !this.paymentMethodType.isRequiringFinalization() &&
             ![
-              TYPE_INTEGRATION_ENUM.COMPONENT,
-              TYPE_INTEGRATION_ENUM.REDIRECT,
+              AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM.COMPONENT,
+              AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM.REDIRECT,
             ].includes(this.paymentMethodType.integration)
           ) {
             this.manageCallback('onSubmitSuccess', { paymentValidation });

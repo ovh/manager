@@ -1,16 +1,16 @@
 import { isNull } from 'lodash-es';
 
-import { TYPE_INTEGRATION_ENUM } from './payment-method.constants';
-import OvhPaymentMethodType from './payment-method-type.class';
+import { AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM } from '../enums/payment-method.enum';
+import { PaymentMethodType } from './payment-method-type.class';
 
 /**
  *  Describe an available payment method object.
  */
-export default class OvhAvailablePaymentMethod {
+export class AvailablePaymentMethod {
   /**
-   *  Create a OvhAvailablePaymentMethod.
+   *  Create a AvailablePaymentMethod.
    *
-   *  @param {Object} options Options for creating a new OvhAvailablePaymentMethod object.
+   *  @param {Object} options Options for creating a new AvailablePaymentMethod object.
    *  @param {Object} options.icon Informations about the payment method type icon.
    *  @param {String} options.icon.name Name of the icon.
    *  @param {String} options.icon.data Icon in base64.
@@ -52,9 +52,9 @@ export default class OvhAvailablePaymentMethod {
 
     /**
      *  The type of the payment method.
-     *  @type {OvhPaymentMethodType}
+     *  @type {PaymentMethodType}
      */
-    this.type = new OvhPaymentMethodType(options.paymentType);
+    this.type = new PaymentMethodType(options.paymentType);
 
     /**
      *  Flag indicating if we can register the payment type.
@@ -97,7 +97,9 @@ export default class OvhAvailablePaymentMethod {
    *  @return {Boolean} true if type requires a billing contact id false otherwise.
    */
   isRequiringContactId() {
-    return [TYPE_INTEGRATION_ENUM.IFRAME_VANTIV].includes(this.integration);
+    return [AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM.IFRAME_VANTIV].includes(
+      this.integration,
+    );
   }
 
   /**
@@ -107,8 +109,8 @@ export default class OvhAvailablePaymentMethod {
    */
   isRequiringFinalization() {
     return [
-      TYPE_INTEGRATION_ENUM.IFRAME_VANTIV,
-      TYPE_INTEGRATION_ENUM.IN_CONTEXT,
+      AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM.IFRAME_VANTIV,
+      AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM.IN_CONTEXT,
     ].includes(this.integration);
   }
 
@@ -119,6 +121,12 @@ export default class OvhAvailablePaymentMethod {
    *  @return {Boolean} true if type requires inputs false otherwise.
    */
   isHandleByComponent() {
-    return [TYPE_INTEGRATION_ENUM.COMPONENT].includes(this.integration);
+    return [AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM.COMPONENT].includes(
+      this.integration,
+    );
   }
 }
+
+export default {
+  AvailablePaymentMethod,
+};

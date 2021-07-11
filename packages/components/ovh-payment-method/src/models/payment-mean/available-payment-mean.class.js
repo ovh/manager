@@ -1,25 +1,22 @@
 import { snakeCase } from 'lodash-es';
 
-import OvhAvailablePaymentMethod from '../../available-payment-method.class';
+import { AvailablePaymentMethod } from '../available-payment-method.class';
 
-export default class OvhPaymentMeanType {
+export class AvailablePaymentMean {
   constructor(options = {}) {
     this.meanType = options.value;
     this.registerable = options.registerable;
   }
 
-  /**
-   * @deprecated: use toAvailablePaymentMethod instead.
-   */
-  toPaymentMethodType() {
-    return this.toAvailablePaymentMethod();
-  }
-
   toAvailablePaymentMethod() {
-    return new OvhAvailablePaymentMethod({
+    return new AvailablePaymentMethod({
       paymentType: snakeCase(this.meanType).toUpperCase(),
       registerable: this.registerable,
       original: this,
     });
   }
 }
+
+export default {
+  AvailablePaymentMean,
+};

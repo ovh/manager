@@ -1,6 +1,6 @@
 import { snakeCase } from 'lodash-es';
 
-export default class OvhPaymentMean {
+export class PaymentMean {
   constructor(options = {}) {
     this.id = options.id;
     this.state = options.state;
@@ -22,3 +22,7 @@ export default class OvhPaymentMean {
     };
   }
 }
+
+export default {
+  PaymentMean,
+};

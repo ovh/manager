@@ -1,15 +1,16 @@
 import { isNull } from 'lodash-es';
 
-import OvhPaymentMethodType from './payment-method-type.class';
+import { PaymentMethodType } from './payment-method-type.class';
+import { PAYMENT_METHOD_STATUS_ENUM } from '../enums';
 
 /**
  *  Describe a payment method object.
  */
-export default class OvhPaymentMethod {
+export class PaymentMethod {
   /**
-   *  Create a OvhPaymentMethod.
+   *  Create a PaymentMethod.
    *
-   *  @param {Object} options Options for creating a new OvhPaymentMethod object.
+   *  @param {Object} options Options for creating a new PaymentMethod object.
    *  @param {Object} [options.icon] Informations about the payment method type icon.
    *  @param {String} options.icon.name Name of the icon.
    *  @param {String} options.icon.data Icon in base64.
@@ -80,9 +81,15 @@ export default class OvhPaymentMethod {
 
     /**
      *  The type of the payment method.
-     *  @type {OvhPaymentMethodType}
+     *  @type {PaymentMethodType}
      */
-    this.type = new OvhPaymentMethodType(options.paymentType);
+    this.type = new PaymentMethodType(options.paymentType);
+
+    /**
+     *  The type of the payment method.
+     *  @type {PaymentMethodType}
+     */
+    // this.type = new PaymentMethodType(options.paymentType);
 
     /**
      *  The ID of the associated billing contact.
@@ -153,21 +160,25 @@ export default class OvhPaymentMethod {
    */
   getStatusCategory() {
     switch (this.status) {
-      case 'CANCELED':
-      case 'ERROR':
-      case 'EXPIRED':
-      case 'TOO_MANY_FAILURES':
+      case PAYMENT_METHOD_STATUS_ENUM.CANCELED:
+      case PAYMENT_METHOD_STATUS_ENUM.ERROR:
+      case PAYMENT_METHOD_STATUS_ENUM.EXPIRED:
+      case PAYMENT_METHOD_STATUS_ENUM.TOO_MANY_FAILURES:
         return 'error';
-      case 'CANCELING':
-      case 'CREATING':
-      case 'MAINTENANCE':
-      case 'PAUSED':
+      case PAYMENT_METHOD_STATUS_ENUM.CANCELING:
+      case PAYMENT_METHOD_STATUS_ENUM.CREATING:
+      case PAYMENT_METHOD_STATUS_ENUM.MAINTENANCE:
+      case PAYMENT_METHOD_STATUS_ENUM.PAUSED:
         return 'warning';
-      case 'CREATED':
-      case 'VALID':
+      case PAYMENT_METHOD_STATUS_ENUM.CREATED:
+      case PAYMENT_METHOD_STATUS_ENUM.VALID:
         return 'success';
       default:
         return 'info';
     }
   }
 }
+
+export default {
+  PaymentMethod,
+};
