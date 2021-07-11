@@ -1,6 +1,7 @@
 export default class VeeamEnterpriseTerminateCtrl {
   /* @ngInject */
-  constructor(VeeamEnterpriseService) {
+  constructor(atInternet, VeeamEnterpriseService) {
+    this.atInternet = atInternet;
     this.VeeamEnterpriseService = VeeamEnterpriseService;
   }
 
@@ -9,6 +10,10 @@ export default class VeeamEnterpriseTerminateCtrl {
   }
 
   terminate() {
+    this.atInternet.trackClick({
+      name: 'veeam-enterprise::dashboard::license::terminate::confirm',
+      type: 'action',
+    });
     this.loading = true;
     this.VeeamEnterpriseService.terminate(this.serviceName)
       .then((response) => {

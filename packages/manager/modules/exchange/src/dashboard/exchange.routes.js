@@ -61,6 +61,16 @@ export default /* @ngInject */ ($stateProvider) => {
       reloadDashboard: /* @ngInject */ ($state) => () => {
         return $state.reload();
       },
+      trackTab: /* @ngInject */ (atInternet, exchange) => (tab) => {
+        const exchangeType = exchange.domain.split('-')[0];
+        const dedicated = ['private', 'exchange'];
+        return atInternet.trackPage({
+          name: `web::microsoft::exchange::${
+            dedicated.includes(exchangeType) ? 'dedicated' : exchangeType
+          }::${tab}`,
+          type: 'navigation',
+        });
+      },
     },
   });
 

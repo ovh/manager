@@ -68,8 +68,13 @@ export default /* @ngInject */ ($stateProvider) => {
       onMlSubscribe: /* @ngInject */ ($state) => () =>
         $state.go('app.managedBaremetal.details.dashboard.ml-subscribe'),
 
-      onTerminate: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.details.dashboard.terminate'),
+      onTerminate: /* @ngInject */ ($state, atInternet) => () => {
+        atInternet.trackClick({
+          name: 'dedicated::managedBaremetal::dashboard::terminate',
+          type: 'action',
+        });
+        $state.go('app.managedBaremetal.details.dashboard.terminate');
+      },
 
       onBasicOptionsUpgrade: /* @ngInject */ ($state) => (stateParams) =>
         $state.go(

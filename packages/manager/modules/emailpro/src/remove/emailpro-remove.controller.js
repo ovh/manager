@@ -1,6 +1,12 @@
 import angular from 'angular';
 
-export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro) => {
+export default /* @ngInject */ (
+  $scope,
+  $stateParams,
+  $translate,
+  atInternet,
+  EmailPro,
+) => {
   const getModel = function getModel(exchange) {
     const model = {
       exchangeType: exchange.offer,
@@ -23,6 +29,10 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro) => {
   };
 
   $scope.submit = function submit() {
+    atInternet.trackClick({
+      name: 'web::email-pro::delete::confirm',
+      type: 'action',
+    });
     EmailPro.updateDeleteAtExpiration(
       $stateParams.productId,
       getModel($scope.exchange),

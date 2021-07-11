@@ -2,6 +2,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasAdministrationTermi
   $q,
   $stateParams,
   $translate,
+  atInternet,
   OvhApiTelephony,
   TelephonyMediator,
   TucToast,
@@ -51,6 +52,11 @@ export default /* @ngInject */ function TelecomTelephonyAliasAdministrationTermi
   };
 
   self.terminate = function terminate() {
+    atInternet.trackClick({
+      name: 'telecom::telephony::billingAccount::alias::terminate::confirm',
+      type: 'action',
+    });
+
     self.isTerminating = true;
     OvhApiTelephony.Service()
       .v6()
@@ -76,6 +82,12 @@ export default /* @ngInject */ function TelecomTelephonyAliasAdministrationTermi
   };
 
   self.cancelTermination = function cancelTermination() {
+    atInternet.trackClick({
+      name:
+        'telecom::telephony::billingAccount::alias::terminate::cancel-delete',
+      type: 'action',
+    });
+
     self.isCancelling = true;
     OvhApiTelephony.Service()
       .v6()

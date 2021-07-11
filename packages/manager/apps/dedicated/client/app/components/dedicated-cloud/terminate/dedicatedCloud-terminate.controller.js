@@ -1,9 +1,10 @@
 export default class DedicatedCloudTerminateCtrl {
   /* @ngInject */
-  constructor($http, $q, $translate, OvhApiDedicatedCloud) {
+  constructor($http, $q, $translate, atInternet, OvhApiDedicatedCloud) {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
 
     this.loading = {
@@ -12,6 +13,7 @@ export default class DedicatedCloudTerminateCtrl {
   }
 
   $onInit() {
+    console.log(this.trackingPrefix);
     this.TERMINATE_OPTIONS = [
       'terminate',
       this.serviceInfos.renew.deleteAtExpiration
@@ -34,6 +36,10 @@ export default class DedicatedCloudTerminateCtrl {
     ============================== */
 
   onTerminateBtnClick() {
+    this.atInternet.trackClick({
+      name: `${this.this.trackingPrefix}::dashboard::terminate::confirm`,
+      type: 'action',
+    });
     this.loading.terminate = true;
     switch (this.model.termination.type) {
       case 'terminate':

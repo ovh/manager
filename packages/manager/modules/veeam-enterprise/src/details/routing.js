@@ -22,8 +22,15 @@ export default /* @ngInject */ ($stateProvider) => {
           $state.go('veeam-enterprise.details.dashboard.license.activate'),
         goToLicenseUpdate: /* @ngInject */ ($state) => () =>
           $state.go('veeam-enterprise.details.dashboard.license.update'),
-        goToLicenseTerminate: /* @ngInject */ ($state) => () =>
-          $state.go('veeam-enterprise.details.dashboard.license.terminate'),
+        goToLicenseTerminate: /* @ngInject */ ($state, atInternet) => () => {
+          atInternet.trackClick({
+            name: 'veeam-enterprise::dashboard::license::terminate',
+            type: 'action',
+          });
+          return $state.go(
+            'veeam-enterprise.details.dashboard.license.terminate',
+          );
+        },
         breadcrumb: /* @ngInject */ (serviceName) => serviceName,
       },
     })

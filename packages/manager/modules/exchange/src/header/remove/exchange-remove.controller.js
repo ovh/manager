@@ -6,6 +6,7 @@ export default class ExchangeRemoveExchangeCtrl {
     $scope,
     wucExchange,
     $translate,
+    atInternet,
     navigation,
     messaging,
     exchangeServiceInfrastructure,
@@ -14,6 +15,7 @@ export default class ExchangeRemoveExchangeCtrl {
     this.services = {
       $scope,
       wucExchange,
+      atInternet,
       $translate,
       navigation,
       messaging,
@@ -48,6 +50,28 @@ export default class ExchangeRemoveExchangeCtrl {
   }
 
   submit() {
+    switch (this.exchange.domain.split('-')[0]) {
+      case 'hosted':
+        this.services.atInternet.trackClick({
+          name: 'web::microsoft::exchange::hosted::delete::confirm',
+          type: 'action',
+        });
+        break;
+      case 'dedicated':
+        this.services.atInternet.trackClick({
+          name: 'web::microsoft::exchange::dedicated::delete::confirm',
+          type: 'action',
+        });
+        break;
+      case 'provider':
+        this.services.atInternet.trackClick({
+          name: 'web::microsoft::exchange::provider::delete::confirm',
+          type: 'action',
+        });
+        break;
+      default:
+        break;
+    }
     this.services.messaging.writeSuccess(
       this.services.$translate.instant('exchange_dashboard_action_doing'),
     );

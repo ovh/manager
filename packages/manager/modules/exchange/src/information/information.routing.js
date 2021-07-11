@@ -9,5 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: () => null,
     },
+    onEnter: /* @ngInject */ (trackTab) => trackTab('information'),
+    atInternet: {
+      ignore: true,
+    },
   });
 };

@@ -9,6 +9,7 @@ export default /* @ngInject */ function PackResiliationCtrl(
   $state,
   $templateCache,
   $translate,
+  atInternet,
   TucToastError,
   OvhApiPackXdslResiliation,
   TucToast,
@@ -324,6 +325,10 @@ export default /* @ngInject */ function PackResiliationCtrl(
    * @param {Boolean} accept If true the resiliation must be done
    */
   this.resiliatePack = function resiliatePack() {
+    atInternet.trackClick({
+      name: 'telecom::packs::pack::resiliation::confirm',
+      type: 'action',
+    });
     self.loading = true;
     return OvhApiPackXdslResiliation.v6()
       .resiliate(
@@ -361,6 +366,11 @@ export default /* @ngInject */ function PackResiliationCtrl(
    * @param  {Object} pack Pack to cancel resiliation
    */
   this.cancelPackResiliation = function cancelPackResiliation(pack) {
+    atInternet.trackClick({
+      name: 'telecom::packs::pack::resiliation::cancel-resiliation',
+      type: 'action',
+    });
+
     self.loading = true;
     return OvhApiPackXdslResiliation.v6()
       .cancelResiliation(

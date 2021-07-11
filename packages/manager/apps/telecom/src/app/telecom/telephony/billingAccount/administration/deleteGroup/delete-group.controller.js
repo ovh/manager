@@ -6,6 +6,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountAdministra
   $stateParams,
   $q,
   $translate,
+  atInternet,
   OvhApiTelephony,
   TucToast,
   TucToastError,
@@ -60,6 +61,10 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountAdministra
   }
 
   self.cancelTermination = function cancelTermination() {
+    atInternet.trackClick({
+      name: 'telecom::telephony::billingAccount::deleteGroup::cancel-delete',
+      type: 'action',
+    });
     self.cancelling = true;
     return OvhApiTelephony.v6()
       .cancelTermination(
@@ -84,6 +89,10 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountAdministra
   };
 
   self.terminate = function terminate() {
+    atInternet.trackClick({
+      name: 'telecom::telephony::billingAccount::deleteGroup::confirm',
+      type: 'action',
+    });
     self.deleting = true;
     return OvhApiTelephony.v6()
       .delete(

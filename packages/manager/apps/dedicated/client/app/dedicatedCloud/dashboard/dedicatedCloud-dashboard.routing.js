@@ -62,8 +62,13 @@ export default /* @ngInject */ ($stateProvider) => {
       onMlSubscribe: /* @ngInject */ ($state) => () =>
         $state.go('app.dedicatedCloud.details.dashboard.ml-subscribe'),
 
-      onTerminate: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedCloud.details.dashboard.terminate'),
+      onTerminate: /* @ngInject */ ($state, atInternet) => () => {
+        atInternet.trackClick({
+          name: 'dedicated::dedicatedClouds::dashboard::terminate',
+          type: 'action',
+        });
+        return $state.go('app.dedicatedCloud.details.dashboard.terminate');
+      },
 
       onBasicOptionsUpgrade: /* @ngInject */ ($state) => (stateParams) =>
         $state.go(

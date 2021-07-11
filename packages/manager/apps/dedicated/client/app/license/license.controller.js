@@ -7,6 +7,7 @@ import config from '../config/config';
 angular.module('Module.license').controller('LicenseCtrl', [
   '$scope',
   '$state',
+  'atInternet',
   'License',
   '$timeout',
   '$translate',
@@ -15,6 +16,7 @@ angular.module('Module.license').controller('LicenseCtrl', [
   (
     $scope,
     $state,
+    atInternet,
     License,
     $timeout,
     $translate,
@@ -34,7 +36,6 @@ angular.module('Module.license').controller('LicenseCtrl', [
     };
     $scope.filterType = null;
     $scope.$state = $state;
-
     /**
      * Search
      * @param  {String} type
@@ -151,6 +152,19 @@ angular.module('Module.license').controller('LicenseCtrl', [
       return renewUrl.replace('{serviceName}', '');
     };
 
+    $scope.delete = (license) => {
+      $timeout(() => {
+        $scope.setAction('delete/license-delete', { license });
+      }, 300);
+      atInternet.trackPage({
+        name: 'dedicated::license::delete',
+        type: 'navigation',
+      });
+      atInternet.trackClick({
+        name: 'dedicated::license::delete',
+        type: 'action',
+      });
+    };
     $scope.resetAction();
 
     $scope.formatName = (license) => {

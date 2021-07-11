@@ -30,6 +30,6 @@ export default class {
       name: 'vps::detail::dashboard::terminate::cancel',
       type: 'action',
     });
-    this.cancel();
+    return this.cancel();
   }
 }

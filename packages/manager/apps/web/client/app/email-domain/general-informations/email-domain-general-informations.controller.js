@@ -12,6 +12,8 @@ angular.module('App').controller(
       $state,
       $stateParams,
       $translate,
+      $window,
+      atInternet,
       Alerter,
       constants,
       coreConfig,
@@ -26,6 +28,8 @@ angular.module('App').controller(
       this.$state = $state;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
+      this.$window = $window;
+      this.atInternet = atInternet;
       this.Alerter = Alerter;
       this.constants = constants;
       this.coreConfig = coreConfig;
@@ -149,6 +153,14 @@ angular.module('App').controller(
         .finally(() => {
           this.loading.quotas = false;
         });
+    }
+
+    goToDeleteEmail() {
+      this.atInternet.trackClick({
+        name: 'web::email::domain::delete',
+        type: 'action',
+      });
+      this.$window.location = this.urls.delete;
     }
 
     loadUrls() {

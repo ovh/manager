@@ -10,5 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('exchange_diagnostic'),
     },
+    onEnter: /* @ngInject */ (trackTab) => trackTab('diagnostic'),
+    atInternet: {
+      ignore: true,
+    },
   });
 };
