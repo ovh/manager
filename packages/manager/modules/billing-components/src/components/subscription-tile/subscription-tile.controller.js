@@ -23,9 +23,6 @@ export default class ServicesActionsCtrl {
   }
 
   $onInit() {
-    this.disableServiceActions = this.$attrs.disableServiceActions
-      ? this.disableServiceActions
-      : false;
     this.withEngagement =
       this.withEngagement || this.$attrs.withEngagement === '';
     this.withContactManagement = this.$attrs.withContactManagement
@@ -35,9 +32,13 @@ export default class ServicesActionsCtrl {
       this.coreConfig.isRegion(['EU', 'CA']) && !this.disableServiceActions;
     this.isLoading = true;
     return this.ovhFeatureFlipping
-      .checkFeatureAvailability(['contact', 'contact:management'])
-      .then((contactAvailability) => {
-        this.contactAvailability = contactAvailability;
+      .checkFeatureAvailability([
+        'billing:management',
+        'contact',
+        'contact:management',
+      ])
+      .then((featuresAvailability) => {
+        this.featuresAvailability = featuresAvailability;
         return this.serviceInfos
           ? this.$q.when(new ServiceInfos(this.serviceInfos))
           : this.BillingService.getServiceInfos(this.servicePath);

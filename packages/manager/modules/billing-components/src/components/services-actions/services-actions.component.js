@@ -3,6 +3,7 @@ import template from './services-actions.html';
 
 export default {
   bindings: {
+    billingManagementAvailability: '<',
     service: '<',
     trackingPrefix: '@?',
     getCommitmentLink: '&?',

@@ -275,7 +275,11 @@
         <oui-datagrid-column
             data-title="::'billing_autorenew_service_actions' | translate"
         >
-            <billing-services-actions service="$row" user="$ctrl.currentUser">
+            <billing-services-actions
+                service="$row"
+                user="$ctrl.currentUser"
+                billing-management-availability="$ctrl.isAutorenewManagementAvailable"
+            >
             </billing-services-actions>
         </oui-datagrid-column>
     </oui-datagrid>

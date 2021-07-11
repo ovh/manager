@@ -18,6 +18,7 @@ export default {
     goToAutorenew: '<',
     hasAutoRenew: '<',
     homeLink: '<',
+    isAutorenewManagementAvailable: '<',
     isEnterpriseCustomer: '<',
     nicBilling: '<',
     nicRenew: '<',
