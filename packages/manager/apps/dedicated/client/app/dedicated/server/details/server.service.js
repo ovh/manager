@@ -229,29 +229,6 @@ export default class ServerF {
     });
   }
 
-  getNetboot(serviceName) {
-    return this.OvhHttp.get('/sws/dedicated/server/{serviceName}/netboot', {
-      rootPath: '2api',
-      urlParams: {
-        serviceName,
-      },
-    });
-  }
-
-  setNetBoot(serviceName, bootId, rootDevice) {
-    return this.OvhHttp.put('/dedicated/server/{serviceName}', {
-      rootPath: 'apiv6',
-      urlParams: {
-        serviceName,
-      },
-      data: {
-        bootId,
-        rootDevice,
-      },
-      broadcast: 'dedicated.informations.reload',
-    });
-  }
-
   updateMonitoring(serviceName, monitoring, noIntervention) {
     return this.OvhHttp.put('/dedicated/server/{serviceName}', {
       rootPath: 'apiv6',
@@ -267,24 +244,6 @@ export default class ServerF {
         monitoring,
         noIntervention,
       },
-    });
-  }
-
-  getRescueMail(productId) {
-    return this.get(productId, '', {
-      proxypass: true,
-      broadcast: 'dedicated.informations.reload',
-    });
-  }
-
-  updateRescueMail(productId, bootId, rescueMail) {
-    return this.put(productId, '', {
-      data: {
-        bootId,
-        rescueMail,
-      },
-      proxypass: true,
-      broadcast: 'dedicated.informations.reload',
     });
   }
 

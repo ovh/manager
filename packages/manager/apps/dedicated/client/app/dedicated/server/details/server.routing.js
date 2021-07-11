@@ -70,7 +70,10 @@ export default /* @ngInject */ ($stateProvider) => {
 
       bringYourOwnImage: /* @ngInject */ ($stateParams, Server) =>
         Server.getBringYourOwnImage($stateParams.productId).catch(() => null),
-
+      goToNetboot: /* @ngInject */ ($state, serverName) => () =>
+        $state.go('app.dedicated-server.server.dashboard.netboot', {
+          productId: serverName,
+        }),
       goToOsInstallChooseSource: /* @ngInject */ ($state, serverName) => () =>
         $state.go('app.dedicated-server.server.install.choose-source', {
           productId: serverName,
@@ -104,7 +107,7 @@ export default /* @ngInject */ ($stateProvider) => {
           reload = false,
         ) => {
           const promise = $state.go(
-            'app.dedicated-server.server',
+            'app.dedicated-server.server.dashboard',
             {
               productId: serverName,
             },
