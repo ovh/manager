@@ -112,5 +112,10 @@
   "domains_operations_progress_instructions_7": "You can contact your domain's current service provider, so that they can give their approval.",
   "domains_operations_update_key_firstname": "Update first name with valid content",
   "domains_operations_update_key_name": "Update surname with valid content",
-  "domains_operations_update_key_identificationNumber": "Update identification number with valid content"
+  "domains_operations_update_key_identificationNumber": "Update identification number with valid content",
+  "domains_operations_nicOperation_DomainEmailRedirectionsCreate": "Create anonymised email",
+  "domains_operations_nicOperation_DomainEmailRedirectionsDelete": "Delete anonymised email",
+  "domains_operations_nicOperation_DomainAfterMarket": "Incoming transfer via secondary market",
+  "domains_operations_nicOperation_DomainRegistryDelete": "Delete a domain name at the registry",
+  "domains_operations_nicOperation_DomainResourceDelete": "Permanently delete a domain name at OVHcloud"
 }
