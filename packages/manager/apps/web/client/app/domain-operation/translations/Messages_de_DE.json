@@ -113,5 +113,10 @@
   "domains_operations_progress_instructions_7": "Sie können den aktuellen Anbieter Ihrer Domain kontaktieren, damit dieser dem Transfer zustimmt.",
   "domains_operations_update_key_firstname": "Den Vornamen mit einer gültigen Angabe aktualisieren",
   "domains_operations_update_key_name": "Den Namen mit einer gültigen Angabe aktualisieren",
-  "domains_operations_update_key_identificationNumber": "Die Identifikationsnummer mit einer gültigen Angabe aktualisieren"
+  "domains_operations_update_key_identificationNumber": "Die Identifikationsnummer mit einer gültigen Angabe aktualisieren",
+  "domains_operations_nicOperation_DomainEmailRedirectionsCreate": "Eine anonymisierte E-Mail schreiben",
+  "domains_operations_nicOperation_DomainEmailRedirectionsDelete": "Die anonymisierte E-Mail löschen",
+  "domains_operations_nicOperation_DomainAfterMarket": "Über den Sekundärmarkt eingehender Transfer",
+  "domains_operations_nicOperation_DomainRegistryDelete": "Löschung des Domainnamens aus dem Register",
+  "domains_operations_nicOperation_DomainResourceDelete": "Endgültige Löschung des Domainnamens bei OVHcloud"
 }
