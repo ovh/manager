@@ -40,16 +40,6 @@ angular
               $ocLazyLoad.inject(mod.default || mod),
             );
           },
-        })
-        .state('vps.migration.**', {
-          url: '/migration',
-          lazyLoad: ($transition$) => {
-            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
-            return import('./migration/vps-migration.module').then((mod) =>
-              $ocLazyLoad.inject(mod.default || mod),
-            );
-          },
         });
 
       $urlRouterProvider.when(/^\/iaas\/vps/, () => {

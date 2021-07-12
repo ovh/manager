@@ -9,7 +9,6 @@ import 'moment';
 import {
   DASHBOARD_FEATURES,
   SERVICE_TYPE,
-  VPS_2014_AUTO_MIGRATION_DATE,
   COMMIT_IMPRESSION_TRACKING_DATA,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
 } from './vps-dashboard.constants';
@@ -57,14 +56,8 @@ export default class {
   }
 
   $onInit() {
-    this.vps2014MigrationData = {
-      autoMigrationDate: moment(
-        VPS_2014_AUTO_MIGRATION_DATE,
-        'DD-MM-YYYY',
-      ).format('LL'),
-      inAutoMigrationPhase: moment().isSameOrAfter(
-        moment(VPS_2014_AUTO_MIGRATION_DATE, 'DD/MM/YYYY'),
-      ),
+    this.expirationDate = moment(this.serviceInfo?.expiration).format('LL');
+    this.vpsMigrationData = {
       migrationScheduledInDays:
         this.vpsMigrationTask && this.vpsMigrationTask.date
           ? moment(this.vpsMigrationTask.date).diff(moment(), 'days')
