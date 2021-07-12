@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": ["dom", "es2020"],
+    "module": "ES2020",
+    "moduleResolution": "Node",
+    "removeComments": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "preserveConstEnums": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "downlevelIteration": true,
+    "declaration": true,
+    "declarationDir": "dist/types"
+  },
+  "include": ["src/**/*", "*.ts"],
+  "exclude": ["node_modules", "dist", "*.js"]
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import i18next from 'i18next';
-import registerFragment from '@ovh-ux/ufrontend/fragment';
+import { registerFragment } from '@ovh-ux/ufrontend';
 import { initReactI18next } from 'react-i18next';
 import Navbar from './navbar.jsx';
 import fallbackTranslations from './translations/navbar_fr_FR.json';

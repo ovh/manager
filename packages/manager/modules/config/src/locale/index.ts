@@ -1,9 +1,9 @@
-import { get } from 'lodash-es';
+import { LangId, Region } from '../types/ovhLanguages';
 import { LANGUAGES, localeRegex, localeStorageKey } from './locale.constants';
 
-const preferredCountry = (language, region) => {
+const preferredCountry = (language: LangId, region: Region) => {
   if (['FR', 'EN'].includes(language.toUpperCase())) {
-    const customLanguage = get(LANGUAGES.preferred, `${language}.${region}`);
+    const customLanguage = LANGUAGES?.preferred[language][region];
     if (customLanguage) {
       return customLanguage;
     }
@@ -11,7 +11,7 @@ const preferredCountry = (language, region) => {
   return language;
 };
 
-export const findLanguage = (language, country) => {
+export const findLanguage = (language: LangId, country: string) => {
   let searchCountry = country;
   if (!country) {
     searchCountry = language;
@@ -36,14 +36,19 @@ export const findLanguage = (language, country) => {
   return LANGUAGES.defaultLoc;
 };
 
-export const findAvailableLocale = (userLocale, region = 'EU') => {
-  let splittedLocale = null;
+export const findAvailableLocale = (
+  userLocale: string,
+  region = Region.EU,
+): string => {
+  let splittedLocale: string[] = null;
 
   // Handle specific browser locales gracefully, example : 'es-419'
   if (userLocale.match(/[-_][0-9]+$/)) {
-    splittedLocale = userLocale.split(/(-|_)/)[0].match(localeRegex);
+    splittedLocale = userLocale
+      .split(/(-|_)/)[0]
+      .match(localeRegex) as string[];
   } else {
-    splittedLocale = userLocale.match(localeRegex);
+    splittedLocale = userLocale.match(localeRegex) as string[];
   }
 
   if (!splittedLocale) {
@@ -54,7 +59,7 @@ export const findAvailableLocale = (userLocale, region = 'EU') => {
   const language = splittedLocale[1];
   const country = splittedLocale[2]
     ? splittedLocale[2]
-    : preferredCountry(language, region);
+    : preferredCountry(language as LangId, region);
 
   // Since following locales has been removed from the language menu picker
   // from the navbar we want to avoid to redirect customer to the default one
@@ -62,10 +67,10 @@ export const findAvailableLocale = (userLocale, region = 'EU') => {
   if (['cs', 'fi', 'lt', 'nl'].includes(language)) {
     return findAvailableLocale('en_GB');
   }
-  return findLanguage(language, country);
+  return findLanguage(language as LangId, country);
 };
 
-export const detectUserLocale = () => {
+export const detectUserLocale = (): string => {
   if (localStorage[localeStorageKey]) {
     return localStorage[localeStorageKey];
   }
@@ -75,23 +80,10 @@ export const detectUserLocale = () => {
   return LANGUAGES.defaultLoc;
 };
 
-export const saveUserLocale = (locale) => {
+export const saveUserLocale = (locale: string) => {
   localStorage[localeStorageKey] = locale;
 };
 
-/**
- * BCP 47 (also known as IETF language tag) is an international standard to identify human languages
- * @param {string} language The language to convert, in the OVHcloud format (i.e.: 'fr_FR')
- * @returns {string} The languag converted to BCP 47 (i.e.: 'fr-FR')
- */
-export const convertLanguageFromOVHToBCP47 = (language) => {
+export const convertLanguageFromOVHToBCP47 = (language: string): string => {
   return language.replace('_', '-');
-};
-
-export default {
-  convertLanguageFromOVHToBCP47,
-  detectUserLocale,
-  saveUserLocale,
-  findAvailableLocale,
-  findLanguage,
 };

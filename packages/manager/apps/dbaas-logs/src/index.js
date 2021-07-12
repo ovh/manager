@@ -5,7 +5,7 @@ import {
   attach as attachPreloader,
   displayMessage,
 } from '@ovh-ux/manager-preloader';
-import registerApplication from '@ovh-ux/ufrontend/application';
+import { registerApplication } from '@ovh-ux/ufrontend';
 import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
 
 attachPreloader(findAvailableLocale(detectUserLocale()));
