@@ -1,4 +1,3 @@
-<% const pascalcasedName = this.camelcase(name, { pascalCase: true }) -%>
 import angular from 'angular';
 
 import '@ovh-ux/manager-core';
@@ -11,7 +10,9 @@ import dashboard from './dashboard';
 import onboarding from './onboarding';
 import routing from './routing';
 
-const moduleName = 'ovhManager<%= pascalcasedName %>';
+import './index.scss';
+
+const moduleName = 'ovhManagerNetApp';
 
 angular
   .module(moduleName, [
@@ -23,11 +24,6 @@ angular
     ListLayoutHelper.moduleName,
   ])
   .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(
-    /* @ngInject */ ($translate, $transitions) => {
-      $transitions.onBefore({ to: 'app.**' }, () => $translate.refresh());
-    },
-  );
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

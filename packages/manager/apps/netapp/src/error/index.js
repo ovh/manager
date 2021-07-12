@@ -1,20 +1,17 @@
-<% const pascalcasedName = this.camelcase(name, { pascalCase: true }) -%>
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import './index.scss';
-
-const moduleName = 'ovhManager<%= pascalcasedName %>LazyLoading';
+const moduleName = 'ovhManagerNetappErrorPageLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.**', {
-      url: '/<%= name %>',
+    $stateProvider.state('error.**', {
+      url: '/error',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./module').then((mod) =>
+        return import('./error.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },

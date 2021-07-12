@@ -1,16 +1,13 @@
-<% const pascalcasedName = this.camelcase(name, { pascalCase: true }) -%>
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import './index.scss';
-
-const moduleName = 'ovhManager<%= pascalcasedName %>LazyLoading';
+const moduleName = 'ovhManagerNetAppOnboardingLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.**', {
-      url: '/<%= name %>',
+    $stateProvider.state('netapp.onboarding.**', {
+      url: '/onboarding',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
