@@ -1,3 +1,12 @@
+## [5.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.30.2...@ovh-ux/manager-pci@5.30.3) (2021-07-12)
+
+
+### Bug Fixes
+
+* **pci.storages.databases:** remove cache on iceberg apis ([#5198](https://github.com/ovh/manager/issues/5198)) ([bb6e7cc](https://github.com/ovh/manager/commit/bb6e7cc61ec029311e05d7423c1617788dfaba9d))
+
+
+
 ## [5.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.30.1...@ovh-ux/manager-pci@5.30.2) (2021-07-07)
 
 
