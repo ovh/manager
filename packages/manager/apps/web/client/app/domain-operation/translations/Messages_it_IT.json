@@ -113,5 +113,10 @@
   "domains_operations_progress_instructions_7": "Puoi contattare l'attuale provider del dominio per ottenere la sua autorizzazione",
   "domains_operations_update_key_firstname": "Aggiorna il nome con un contenuto valido",
   "domains_operations_update_key_name": "Aggiorna il cognome con un contenuto valido",
-  "domains_operations_update_key_identificationNumber": "Aggiorna il numero di identificazione con un contenuto valido"
+  "domains_operations_update_key_identificationNumber": "Aggiorna il numero di identificazione con un contenuto valido",
+  "domains_operations_nicOperation_DomainEmailRedirectionsCreate": "Crea email anonima",
+  "domains_operations_nicOperation_DomainEmailRedirectionsDelete": "Elimina email anonima",
+  "domains_operations_nicOperation_DomainAfterMarket": "Trasferimento in entrata attraverso il mercato secondario",
+  "domains_operations_nicOperation_DomainRegistryDelete": "Elimina il dominio dal registro",
+  "domains_operations_nicOperation_DomainResourceDelete": "Elimina definitivamente il dominio in OVHcloud"
 }
