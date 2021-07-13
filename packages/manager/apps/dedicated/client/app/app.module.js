@@ -112,7 +112,6 @@ import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import { pollingService } from '@ovh-ux/manager-bm-server-components';
-import { serverBandwidth } from '@ovh-ux/manager-components';
 import account from './account';
 import cdn from './cdn';
 import moduleLicense from './license';
@@ -132,10 +131,6 @@ import userContracts from './user-contracts';
 import otrs from './otrs';
 
 import { TRACKING } from './at-internet.constants';
-
-import {
-  pollingService
- } from '@ovh-ux/manager-bm-server-components';
 
 export default (containerEl, environment) => {
   const configConstants = getConstants(environment.getRegion());

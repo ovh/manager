@@ -1,9 +1,8 @@
 import range from 'lodash/range';
 import forEach from 'lodash/forEach';
+import isFunction from 'lodash/isFunction';
 
-import {
-  CONSTANTS,
-} from '../ovh/constants';
+import { CONSTANTS } from '../ovh/constants';
 
 export default class BmServerComponentsOsInstallInstallationOptionsCtrl {
   /* @ngInject */
@@ -25,30 +24,34 @@ export default class BmServerComponentsOsInstallInstallationOptionsCtrl {
       model: [],
       error: false,
     };
-    if (this.installation.selectDistribution?.family !== this.constants.warningWindows ||
-      this.installation.selectGabarit?.family !== this.constants.warningWindows) {
+    if (
+      this.installation.selectDistribution?.family !==
+        this.constants.warningWindows ||
+      this.installation.selectGabarit?.family !== this.constants.warningWindows
+    ) {
       this.load();
     }
   }
 
   load() {
     this.loader.loadingSshKeys = true;
-    this.osInstallService.getSshKey(this.serviceName)
-    .then((data) => {
-      this.sshList.model = data;
-    })
-    .catch((error) => {
-      this.sshList.error = true;
-      this.handleError(
-        error,
-        this.$translate.instant(
-          'server_configuration_installation_form_ssh_no',
-        ),
-      );
-    })
-    .finally(() => {
-      this.loader.loadingSshKeys = false;
-    });
+    this.osInstallService
+      .getSshKey(this.serviceName)
+      .then((data) => {
+        this.sshList.model = data;
+      })
+      .catch((error) => {
+        this.sshList.error = true;
+        this.handleError(
+          error,
+          this.$translate.instant(
+            'server_configuration_installation_form_ssh_no',
+          ),
+        );
+      })
+      .finally(() => {
+        this.loader.loadingSshKeys = false;
+      });
   }
 
   postInstallationScriptLinkValidator() {
@@ -69,46 +72,38 @@ export default class BmServerComponentsOsInstallInstallationOptionsCtrl {
         !port || (port >= 0 && port <= 65535),
       );
       input.$setValidity('bad_url_script', regexpUrlContent.test(val));
-      input.$setValidity(
-        'bad_protocol_script',
-        regexpUrlProtocol.test(val),
-      );
-      input.$setValidity(
-        'bad_extension_script',
-        regexpUrlExtension.test(val),
-      );
+      input.$setValidity('bad_protocol_script', regexpUrlProtocol.test(val));
+      input.$setValidity('bad_extension_script', regexpUrlExtension.test(val));
     } else {
       input.$setValidity('bad_port_script', true);
       input.$setValidity('bad_url_script', true);
       input.$setValidity('bad_protocol_script', true);
       input.$setValidity('bad_extension_script', true);
     }
-  };
+  }
 
-  getNbDisqueList(nbdisk) {
+  getNbDisqueList() {
+    const nbdisk = this.informations.nbDisk;
     if (nbdisk > 1) {
       return range(1, nbdisk + 1);
     }
     return [nbdisk];
-  };
+  }
 
   getMountPoint() {
     const list = [];
-    forEach(
-      this.installation.partitionSchemeModels,
-      (partition) => {
-        if (partition.fileSystem !== this.constants.warningSwap) {
-          list.push(partition);
-        }
-      },
-    );
+    forEach(this.installation.partitionSchemeModels, (partition) => {
+      if (partition.fileSystem !== this.constants.warningSwap) {
+        list.push(partition);
+      }
+    });
     return list;
-  };
+  }
 
   handleError(error, message = null) {
     if (isFunction(this.onError)) {
       this.onError({
-        error: { message, data: error }
+        error: { message, data: error },
       });
     }
   }

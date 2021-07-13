@@ -37,7 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
       user: /* @ngInject */ (currentUser) => currentUser,
 
       installSource: /* @ngInject */ ($transition$) =>
-          $transition$.params().installSource,
+        $transition$.params().installSource,
     },
     atInternet: {
       ignore: true,

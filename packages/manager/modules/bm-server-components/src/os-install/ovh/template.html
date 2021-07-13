@@ -15,6 +15,7 @@
             !$ctrl.installation.warningExistPartition &&
             !$ctrl.loader.loadingCapabilities"
         data-submit-text="{{ ::'server_os_install_ovh_next' | translate }}"
+        data-on-submit=$ctrl.onOsConfigurationSubmit(form)
     >
         <!-- select OS type -->
         <oui-field label="{{ ::'server_os_install_ovh_os_type' | translate}}"
@@ -240,9 +241,9 @@
                     <span data-ng-bind="$ctrl.informations.typeDisk"></span>
                 </dd>
                 <dt data-translate="server_configuration_installation_ovh_step2_total_size"></dt>
-                <dd><span data-ng-bind="$ctrl.getDisplaySize($ctrl.informations.totalSize)"></span></dd>
+                <dd><span data-ng-bind="$ctrl.getDisplaySize($ctrl.informations.totalSize)"></dd>
                 <dt data-translate="server_configuration_installation_ovh_step2_remaining_size"></dt>
-                <dd><span data-ng-bind="$ctrl.getDisplaySize($ctrl.informations.remainingSize)"></span></dd>
+                <dd><span data-ng-bind="$ctrl.getDisplaySize($ctrl.informations.remainingSize)"></dd>
             </dl>
 
             <div class="table-responsive">

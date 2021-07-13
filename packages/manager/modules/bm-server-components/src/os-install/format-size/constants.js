@@ -10,7 +10,7 @@ export const UNITS = {
     },
     {
       label: 'TB',
-      value: Math.pow(1000, 2),
+      value: 1000 ** 2,
     },
   ],
 };

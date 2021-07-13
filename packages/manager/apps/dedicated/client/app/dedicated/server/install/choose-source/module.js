@@ -1,9 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 
-import {
-  serverOsInstallFrom
- } from '@ovh-ux/manager-bm-server-components';
+import { serverOsInstallFrom } from '@ovh-ux/manager-bm-server-components';
 
 import routing from './routing';
 import component from './component';

@@ -1,5 +1,6 @@
 const HARDWARE_RAID_NOT_AVAILABLE = 'Not available from this location';
-const HARDWARE_RAID_NOT_SUPPORTED = 'Hardware RAID is not supported by this server';
+const HARDWARE_RAID_NOT_SUPPORTED =
+  'Hardware RAID is not supported by this server';
 
 export default class BmServerComponentsOsInstallUtils {
   static toBytes(size) {
@@ -9,22 +10,22 @@ export default class BmServerComponentsOsInstallUtils {
         multiplicator = 1024;
         break;
       case 'MB':
-        multiplicator = Math.pow(1024, 2);
+        multiplicator = 1024 ** 2;
         break;
       case 'GB':
-        multiplicator = Math.pow(1024, 3);
+        multiplicator = 1024 ** 3;
         break;
       case 'TB':
-        multiplicator = Math.pow(1024, 4);
+        multiplicator = 1024 ** 4;
         break;
       case 'PB':
-        multiplicator = Math.pow(1024, 5);
+        multiplicator = 1024 ** 5;
         break;
       case 'EB':
-        multiplicator = Math.pow(1024, 6);
+        multiplicator = 1024 ** 6;
         break;
       case 'YB':
-        multiplicator = Math.pow(1024, 7);
+        multiplicator = 1024 ** 7;
         break;
       default:
         break;
