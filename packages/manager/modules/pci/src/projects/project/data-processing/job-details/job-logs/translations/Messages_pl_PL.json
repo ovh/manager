@@ -2,6 +2,5 @@
   "data_processing_details_logs_title": "Logi",
   "data_processing_details_logs_swift": "Zadanie zostało zakończone. Odszukaj logi w kontenerze obiektów.",
   "data_processing_details_logs_swift_download_label": "Pobierz logi",
-  "data_processing_details_logs_terminated": "Zadanie zostało zatrzymane. Brak dostępnych logów.",
   "data_processing_details_logs_default_message": "Oczekiwanie na logi..."
 }

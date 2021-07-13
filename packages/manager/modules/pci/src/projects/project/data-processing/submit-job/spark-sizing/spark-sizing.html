@@ -125,7 +125,7 @@
                     name="driver-memory"
                     data-model="$ctrl.state.driverMemoryGb"
                     data-min="$ctrl.jobParameters.driver_memory.validator.min / 1024"
-                    data-max="$ctrl.jobParameters.driver_memory.validator.max / 1024"
+                    data-max="$ctrl.maxMemoryDriverGb"
                     data-on-change="$ctrl.onChangeDriverMemoryHandler(modelValue)"
                 >
                 </oui-numeric>
@@ -140,7 +140,7 @@
                     name="driver-memory-overhead"
                     data-model="$ctrl.state.driverMemoryOverheadMb"
                     data-min="$ctrl.jobParameters.driver_memory_overhead.validator.min"
-                    data-max="$ctrl.jobParameters.driver_memory_overhead.validator.max"
+                    data-max="$ctrl.maxOverheadMemoryDriverGb"
                     data-disabled="$ctrl.state.advancedSizingDriverMemOverheadAuto"
                 >
                 </oui-numeric>
@@ -182,7 +182,7 @@
                     name="worker-memory"
                     data-model="$ctrl.state.workerMemoryGb"
                     data-min="$ctrl.jobParameters.executor_memory.validator.min / 1024"
-                    data-max="$ctrl.jobParameters.executor_memory.validator.max / 1024"
+                    data-max="$ctrl.maxMemoryWorkerGb"
                     data-on-change="$ctrl.onChangeWorkerMemoryHandler(modelValue)"
                 >
                 </oui-numeric>
@@ -197,7 +197,7 @@
                     name="worker-memory-overhead"
                     data-model="$ctrl.state.workerMemoryOverheadMb"
                     data-min="$ctrl.jobParameters.executor_memory_overhead.validator.min"
-                    data-max="$ctrl.jobParameters.executor_memory_overhead.validator.max"
+                    data-max="$ctrl.maxOverheadMemoryWorkerGb"
                     data-disabled="$ctrl.state.advancedSizingWorkerMemOverheadAuto"
                 >
                 </oui-numeric>

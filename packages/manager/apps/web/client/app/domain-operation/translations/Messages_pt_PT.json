@@ -36,8 +36,8 @@
   "domains_operations_nicOperation_DomainHostCreate": "Criação do host",
   "domains_operations_nicOperation_DomainHostDelete": "Eliminação do host",
   "domains_operations_nicOperation_DomainHostUpdate": "Atualização do host",
-  "domains_operations_nicOperation_DomainLock": "Proteger domínio",
-  "domains_operations_nicOperation_DomainUnlock": "Desproteger domínio",
+  "domains_operations_nicOperation_DomainLock": "Proteção do domínio",
+  "domains_operations_nicOperation_DomainUnlock": "Desproteção do domínio",
   "domains_operations_nicOperation_DomainRenew": "Renovação do domínio",
   "domains_operations_nicOperation_DomainRestore": "Restaurar domínio",
   "domains_operations_nicOperation_DnssecResigning": "Assinatura DNSSEC da zona DNS",
@@ -113,5 +113,10 @@
   "domains_operations_progress_instructions_7": "Contacte agente de registo atualmente responsável  pelo domínio para obter a autorização.",
   "domains_operations_update_key_firstname": "Atualizar o nome com um conteúdo válido",
   "domains_operations_update_key_name": "Atualizar o sobrenome com um conteúdo válido",
-  "domains_operations_update_key_identificationNumber": "Atualizar o número de identificação com um conteúdo válido"
+  "domains_operations_update_key_identificationNumber": "Atualizar o número de identificação com um conteúdo válido",
+  "domains_operations_nicOperation_DomainEmailRedirectionsCreate": "Criação do e-mail anónimo",
+  "domains_operations_nicOperation_DomainEmailRedirectionsDelete": "Eliminação do e-mail anónimo",
+  "domains_operations_nicOperation_DomainAfterMarket": "Transferência para o mercado secundário",
+  "domains_operations_nicOperation_DomainRegistryDelete": "Eliminação do domínio no registry",
+  "domains_operations_nicOperation_DomainResourceDelete": "Eliminação definitiva do domínio na OVHcloud"
 }

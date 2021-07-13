@@ -1,0 +1,4 @@
+{
+  "kube_node_pool_autoscaling_scale_success": "Die Anpassung Ihres Node-Pools wird gerade durchgeführt.",
+  "kube_node_pool_autoscaling_scale_error": "Beim Anpassen des Node-Pools ist ein Fehler aufgetreten: {{message}}"
+}

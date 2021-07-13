@@ -12,5 +12,9 @@
   "billing_payment_method_split_payment_activate_success": "Dyspozycja włączenia Split Payment została przyjęta.",
   "billing_payment_method_split_payment_activate_error": "Wystąpił błąd podczas włączania Split Payment. ",
   "billing_payment_method_split_payment_deactivate_success": "Dyspozycja wyłączenia Split Payment została przyjęta.",
-  "billing_payment_method_split_payment_deactivate_error": "Wystąpił błąd podczas wyłączania Split Payment."
+  "billing_payment_method_split_payment_deactivate_error": "Wystąpił błąd podczas wyłączania Split Payment.",
+  "billing_payment_method_split_payment_warning_title": "UWAGA",
+  "billing_payment_method_split_payment_warning_activate": "Split Payment jest zarezerwowany dla krajowych, regionalnych i lokalnych podmiotów prawa gospodarczego publicznego, spółek specjalnych oraz publicznych spółek świadczących usługi dla osób fizycznych; fundacji będących własnością instytucji administracji publicznej; spółek kontrolowanych bezpośrednio przez Kancelarię Prezesa Rady Ministrów oraz przez ministerstwa; spółek kontrolowanych bezpośrednio lub pośrednio przez organy administracji publicznej lub przez wyżej wymienione podmioty i spółki; spółek będących własnością instytucji administracji publicznej lub podmiotów i spółek wymienionych powyżej; spółek notowanych na giełdzie, wchodzących w skład indeksu FTSE MIB włoskiej Giełdy Papierów Wartościowych zidentyfikowanych dla celów podatku od wartości dodanej",
+  "billing_payment_method_split_payment_warning_deactivate": "Wyłączając Split Payment, wybierasz powrót do standardowego systemu zarządzania podatkiem VAT. Faktury wystawione przez OVHcloud po wyłączeniu Split Payment będą przetwarzane zgodnie ze standardowym systemem, a płatności za zamówienia będą przewidywały zapłatę pełnej kwoty należności wraz z podatkiem VAT.",
+  "billing_payment_method_split_payment_warning_decree": "Wyciąg z dekretu z mocą ustawy nr 148 z dnia 16 października 2017 r., art. 3 ust. 1a."
 }

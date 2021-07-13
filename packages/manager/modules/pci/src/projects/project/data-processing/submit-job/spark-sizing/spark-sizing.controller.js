@@ -1,9 +1,4 @@
-import {
-  MEMORY_OVERHEAD_RATIO,
-  MIN_MEMORY_OVERHEAD_MB,
-  MAX_MEMORY_TOTAL_MB,
-  GIB_IN_MIB,
-} from './spark-sizing.constants';
+import { MEMORY_OVERHEAD_RATIO, GIB_IN_MIB } from './spark-sizing.constants';
 
 export default class {
   /* @ngInject */
@@ -20,7 +15,13 @@ export default class {
   }
 
   $onInit() {
-    this.minMemoryOverheadMb = MIN_MEMORY_OVERHEAD_MB;
+    this.minMemoryOverheadMb = this.jobParameters.executor_memory_overhead.validator.min;
+    this.maxMemoryDriverGb = Math.floor(
+      this.jobParameters.driver_memory.validator.max / 1024,
+    );
+    this.maxMemoryWorkerGb = Math.floor(
+      this.jobParameters.executor_memory.validator.max / 1024,
+    );
     // initialize component state
     this.state = {
       driverTemplate: '1',
@@ -28,10 +29,12 @@ export default class {
       workerCount: 1,
       workerCores: 1,
       workerMemoryGb: 1,
-      workerMemoryOverheadMb: MIN_MEMORY_OVERHEAD_MB,
+      workerMemoryOverheadMb: this.jobParameters.executor_memory_overhead
+        .validator.min,
       driverCores: 1,
       driverMemoryGb: 1,
-      driverMemoryOverheadMb: MIN_MEMORY_OVERHEAD_MB,
+      driverMemoryOverheadMb: this.jobParameters.driver_memory_overhead
+        .validator.min,
       advancedSizing: false,
       advancedSizingDriverMemOverheadAuto: true,
       advancedSizingWorkerMemOverheadAuto: true,
@@ -115,18 +118,40 @@ export default class {
   updateMemoryOverHead(memoryGb, autoComputation, nodeType) {
     if (this.state.advancedSizing && autoComputation) {
       let memOverhead = memoryGb * GIB_IN_MIB * MEMORY_OVERHEAD_RATIO; // overhead = 10% of memory in MiB
-      if (memOverhead < this.minMemoryOverheadMb) {
-        memOverhead = this.minMemoryOverheadMb;
-      } else if (memOverhead + memoryGb * GIB_IN_MIB > MAX_MEMORY_TOTAL_MB) {
-        memOverhead = parseInt(MAX_MEMORY_TOTAL_MB - memoryGb * GIB_IN_MIB, 10);
+      if (
+        memOverhead + memoryGb * GIB_IN_MIB >
+        this.jobParameters.executor_memory.validator.max
+      ) {
+        memOverhead = parseInt(
+          this.jobParameters.executor_memory.validator.max -
+            memoryGb * GIB_IN_MIB,
+          10,
+        );
       } else {
         memOverhead = parseInt(memOverhead, 10);
+      }
+
+      if (memOverhead < this.minMemoryOverheadMb) {
+        memOverhead = this.minMemoryOverheadMb;
       }
       if (nodeType === 'driver') {
         this.state.driverMemoryOverheadMb = memOverhead;
       } else if (nodeType === 'worker') {
         this.state.workerMemoryOverheadMb = memOverhead;
       }
+    }
+
+    if (nodeType === 'driver') {
+      this.maxOverheadMemoryDriverGb = parseInt(
+        this.jobParameters.driver_memory.validator.max - memoryGb * GIB_IN_MIB,
+        10,
+      );
+    } else if (nodeType === 'worker') {
+      this.maxOverheadMemoryWorkerGb = parseInt(
+        this.jobParameters.executor_memory.validator.max -
+          memoryGb * GIB_IN_MIB,
+        10,
+      );
     }
   }
 
@@ -144,18 +169,26 @@ export default class {
       // compute driver overhead in Mb while ensuring Spark's minimum
       let driverMemoryOverheadMb = Math.max(
         driverTpl.memory * MEMORY_OVERHEAD_RATIO,
-        MIN_MEMORY_OVERHEAD_MB,
+        this.jobParameters.driver_memory_overhead.validator.min,
       );
-      if (driverMemoryOverheadMb + workerTpl.memory > MAX_MEMORY_TOTAL_MB) {
-        driverMemoryOverheadMb = MAX_MEMORY_TOTAL_MB - workerTpl.memory;
+      if (
+        driverMemoryOverheadMb + driverTpl.memory >
+        this.jobParameters.driver_memory_overhead.validator.max
+      ) {
+        driverMemoryOverheadMb = this.jobParameters.driver_memory_overhead
+          .validator.min;
       }
       // compute worker overhead in Mb while ensuring Spark's minimum
       let workerMemoryOverheadMb = Math.max(
         workerTpl.memory * MEMORY_OVERHEAD_RATIO,
-        MIN_MEMORY_OVERHEAD_MB,
+        this.jobParameters.executor_memory_overhead.validator.min,
       );
-      if (workerMemoryOverheadMb + workerTpl.memory > MAX_MEMORY_TOTAL_MB) {
-        workerMemoryOverheadMb = MAX_MEMORY_TOTAL_MB - workerTpl.memory;
+      if (
+        workerMemoryOverheadMb + workerTpl.memory >
+        this.jobParameters.executor_memory_overhead.validator.max
+      ) {
+        workerMemoryOverheadMb = this.jobParameters.executor_memory_overhead
+          .validator.min;
       }
       Object.assign(this.state, {
         driverCores: driverTpl.cores,

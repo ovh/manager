@@ -1,11 +1,7 @@
 export const MEMORY_OVERHEAD_RATIO = 0.1;
-export const MIN_MEMORY_OVERHEAD_MB = 384;
-export const MAX_MEMORY_TOTAL_MB = 30720;
 export const GIB_IN_MIB = 1024;
 
 export default {
   MEMORY_OVERHEAD_RATIO,
-  MIN_MEMORY_OVERHEAD_MB,
-  MAX_MEMORY_TOTAL_MB,
   GIB_IN_MIB,
 };

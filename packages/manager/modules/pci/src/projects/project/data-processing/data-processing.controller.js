@@ -63,7 +63,7 @@ export default class {
       this.projectId,
       pageOffset,
       pageSize,
-      sort.property,
+      { name: sort.property, dir: sort.dir === -1 ? 'DESC' : 'ASC' },
       filters,
     );
   }

@@ -1,0 +1,11 @@
+{
+  "kubernetes_node_pool_autoscaling_description": "You can choose to scale each of your node pools automatically. This feature is sometimes called a cluster autoscaler, and complements the Kubernetes horizontal pod autoscaler.",
+  "kubernetes_node_pool_autoscaling_description_link": "More information.",
+  "kubernetes_node_pool_autoscaling_autoscale": "Autoscaling",
+  "kubernetes_node_pool_autoscaling_autoscale_toggle_true": "Autoscaling enabled",
+  "kubernetes_node_pool_autoscaling_autoscale_toggle_false": "Autoscaling disabled",
+  "kubernetes_node_pool_autoscaling_lowest_nodes_size": "Minimum pool size",
+  "kubernetes_node_pool_autoscaling_desired_nodes_size": "Number of nodes in the pool",
+  "kubernetes_node_pool_autoscaling_highest_nodes_size": "Maximum pool size",
+  "kubernetes_node_pool_autoscaling_desired_nodes_warning": "It is recommended that you configure a pool with a minimum of 3 nodes in order to optimise the rolling upgrade when you carry out security updates (patch updates) or minor version upgrades."
+}

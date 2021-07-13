@@ -1,23 +1,22 @@
-angular
-  .module('App')
-  .config(($stateProvider) => {
-    $stateProvider.state(
-      'app.networks.cdn.dedicated.manage.domain.dashboard.logs',
-      {
-        url: '/logs',
-        views: {
-          cdnDomainView: {
-            templateUrl:
-              'cdn/dedicated/domain/logs/cdn-dedicated-domain-logs.html',
-            controller: 'CdnDomainTabLogsCtrl',
-            controllerAs: '$ctrl',
-          },
-        },
-        resolve: {
-          breadcrumb: /* @ngInject */ ($translate) =>
-            $translate.instant('cdn_domains_logs'),
+import template from './cdn-dedicated-domain-logs.html';
+import controller from './cdn-dedicated-domain-logs.controller';
+
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state(
+    'app.networks.cdn.dedicated.manage.domain.dashboard.logs',
+    {
+      url: '/logs',
+      views: {
+        cdnDomainView: {
+          template,
+          controller,
+          controllerAs: '$ctrl',
         },
       },
-    );
-  })
-  .run(/* @ngTranslationsInject:json ./translations */);
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('cdn_domains_logs'),
+      },
+    },
+  );
+};

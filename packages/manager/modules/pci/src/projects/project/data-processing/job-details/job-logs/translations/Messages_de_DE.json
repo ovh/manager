@@ -2,6 +2,5 @@
   "data_processing_details_logs_title": "Logs",
   "data_processing_details_logs_swift": "Ihr Auftrag ist abgeschlossen. Die Logs dazu finden Sie im Objektcontainer.",
   "data_processing_details_logs_swift_download_label": "Die Logs herunterladen",
-  "data_processing_details_logs_terminated": "Ihr Auftrag wurde angehalten. Kein Log verfügbar.",
   "data_processing_details_logs_default_message": "Warten auf Logs..."
 }

@@ -2,11 +2,9 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import domains from './dedicated/manage/domains';
-
 const moduleName = 'ovhManagerCdnLazyLoading';
 
-angular.module(moduleName, ['ui.router', 'oc.lazyLoad', domains]).config(
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('app.networks.cdn', {
       url: '/cdn',

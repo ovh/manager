@@ -5,53 +5,69 @@ import { DEFAULT_PROJECT_KEY } from './index.constants';
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app', {
     url: '/?onboarding',
-    redirectTo: (trans) => {
-      const $q = trans.injector().get('$q');
-      const publicCloud = trans.injector().get('publicCloud');
-      return $q
-        .all([
-          publicCloud.getDefaultProject(),
-          publicCloud.getServices([
-            {
-              field: 'route.path',
-              comparator: 'eq',
-              reference: '/cloud/project/{serviceName}',
-            },
-            {
-              field: 'billing.lifecycle.current.state',
-              comparator: 'eq',
-              reference: 'unpaid',
-            },
-          ]),
-          publicCloud.getProjects([
-            {
-              field: 'status',
-              comparator: 'like',
-              reference: 'suspended',
-            },
-          ]),
-        ])
-        .then(([defaultProjectId, unPaidProjects, suspendedProjects]) => {
-          if (!isEmpty(suspendedProjects) || !isEmpty(unPaidProjects)) {
-            return { state: 'pci.projects' };
-          }
-          if (defaultProjectId) {
-            return {
-              state: 'pci.projects.project',
-              params: {
-                projectId: defaultProjectId,
-              },
-            };
-          }
-          return {
-            state: trans.params().onboarding
-              ? 'pci.projects.onboarding'
-              : 'pci.projects.new',
-          };
-        });
-    },
+    redirectTo: 'app.redirect',
     resolve: {
       rootState: () => 'app',
+    },
+  });
+
+  /**
+   * Using redirectTo and using future states, this triggers the lazy loading mechanism which will,
+   * once the state is loaded, execute a retry on the transition (https://github.com/ui-router/core/blob/master/src/hooks/lazyLoad.ts#L32-L67 )
+   *
+   * If we have some API calls in the redirectTo, calls are repeated.
+   * We can't use resolvables on the state that use redirectTo because resolves are executed once the state is entered, which is not the case.
+   *
+   * So this is a sort of hack : create an isolated state (without children), and in his resolves we use $state.go.
+   * This state shouldn't have sub states or you should override `redirect` resolve.
+   */
+  $stateProvider.state('app.redirect', {
+    url: '?onboarding',
+    resolve: {
+      defaultProjectId: /* @ngInject */ (publicCloud) =>
+        publicCloud.getDefaultProject(),
+      unPaidProjects: /* @ngInject */ (publicCloud) =>
+        publicCloud.getServices([
+          {
+            field: 'route.path',
+            comparator: 'eq',
+            reference: '/cloud/project/{serviceName}',
+          },
+          {
+            field: 'billing.lifecycle.current.state',
+            comparator: 'eq',
+            reference: 'unpaid',
+          },
+        ]),
+      suspendedProjects: /* @ngInject */ (publicCloud) =>
+        publicCloud.getProjects([
+          {
+            field: 'status',
+            comparator: 'like',
+            reference: 'suspended',
+          },
+        ]),
+      redirect: /* @ngInject */ (
+        $state,
+        $transition$,
+        defaultProjectId,
+        unPaidProjects,
+        suspendedProjects,
+      ) => {
+        if (!isEmpty(suspendedProjects) || !isEmpty(unPaidProjects)) {
+          return $state.go('pci.projects');
+        }
+        if (defaultProjectId) {
+          return $state.go('pci.projects.project', {
+            projectId: defaultProjectId,
+          });
+        }
+        return $state.go(
+          $transition$.params().onboarding
+            ? 'pci.projects.onboarding'
+            : 'pci.projects.new',
+        );
+      },
     },
   });
 

@@ -1,0 +1,4 @@
+{
+  "kube_node_pool_autoscaling_scale_success": "Trwa dostosowywanie puli węzłów.",
+  "kube_node_pool_autoscaling_scale_error": "Wystąpił błąd podczas dostosowywania puli węzłów: {{message}}"
+}

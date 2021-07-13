@@ -12,5 +12,9 @@
   "billing_payment_method_split_payment_activate_success": "O seu pedido de ativação do Split Payment foi corretamente tomado em conta.",
   "billing_payment_method_split_payment_activate_error": "Ocorreu um erro aquando do seu pedido de ativação do Split Payment.",
   "billing_payment_method_split_payment_deactivate_success": "O pedido de desativação do Split Payment foi registado pelo sistema.",
-  "billing_payment_method_split_payment_deactivate_error": "Ocorreu um erro aquando do seu pedido de desativação do Split Payment."
+  "billing_payment_method_split_payment_deactivate_error": "Ocorreu um erro aquando do seu pedido de desativação do Split Payment.",
+  "billing_payment_method_split_payment_warning_title": "ATENÇÃO",
+  "billing_payment_method_split_payment_warning_activate": "O Split Payment está reservado a entidades públicas nacionais, regionais e locais, a empresas especiais e a empresas públicas de serviços pessoais; fundações propriedade das administrações públicas; empresas controladas diretamente pelo gabinete do Primeiro-Ministro e pelos ministérios; empresas controladas direta ou indiretamente por administrações públicas ou por entidades e empresas acima referidas; empresas propriedade das administrações públicas ou entidades e empresas acima referidas; empresas cotadas na bolsa e incluídas no índice FTSE MIB da Bolsa italiana identificadas para efeitos da aplicação do imposto sobre o valor acrescentado.",
+  "billing_payment_method_split_payment_warning_deactivate": "Ao desativar o Split Payment, está a solicitar voltar a um sistema de gestão normal do IVA. As faturas emitidas pela OVHcloud após a desativação do Split Payment serão tratadas segundo o regime normal e o pagamento das encomendas incluirá o pagamento da totalidade do montante, IVA incluído.",
+  "billing_payment_method_split_payment_warning_decree": "Extrato do Decreto-Lei n.º 148 de 16 de outubro de 2017, artigo 3.º, alínea 1-bis."
 }

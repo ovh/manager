@@ -48,14 +48,14 @@ export default class DataProcessingService {
     projectId,
     offset = 0,
     pageSize = 25,
-    sort = 'creationDate',
+    sort = { name: 'creationDate', dir: 'desc' },
     filters = null,
   ) {
     let res = this.OvhApiCloudProjectDataProcessingJobs.query()
       .expand('CachedObjectList-Pages')
       .limit(pageSize)
       .offset(offset)
-      .sort(sort, 'desc');
+      .sort(sort.name, sort.dir);
     if (filters !== null) {
       filters.forEach((filter) => {
         res = res.addFilter(filter.name, filter.operator, filter.value);

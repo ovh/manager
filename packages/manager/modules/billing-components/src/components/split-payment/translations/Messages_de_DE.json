@@ -12,5 +12,9 @@
   "billing_payment_method_split_payment_activate_success": "Ihre Anfrage zur Aktivierung von Split Payment wurde registriert.",
   "billing_payment_method_split_payment_activate_error": "Bei der Anfrage zur Aktivierung von Split Payment ist ein Fehler aufgetreten.",
   "billing_payment_method_split_payment_deactivate_success": "Ihre Anfrage zur Deaktivierung von Split Payment wurde registriert.",
-  "billing_payment_method_split_payment_deactivate_error": "Bei der Anfrage zur Deaktivierung von Split Payment ist ein Fehler aufgetreten."
+  "billing_payment_method_split_payment_deactivate_error": "Bei der Anfrage zur Deaktivierung von Split Payment ist ein Fehler aufgetreten.",
+  "billing_payment_method_split_payment_warning_title": "ACHTUNG",
+  "billing_payment_method_split_payment_warning_activate": "Das Split Payment ist ausschließlich nationalen, regionalen und lokalen öffentlichen Wirtschaftseinheiten vorbehalten, darüber hinaus Spezialunternehmen und öffentlichen Unternehmen für persönliche Dienstleistungen, sowie Stiftungen im Besitz von Behörden und Unternehmen, die direkt durch das Büro des Ministerpräsidenten und die Ministerien kontrolliert werden, Unternehmen, die direkt oder indirekt von staatlichen Behörden oder von den oben genannten Einrichtungen und Unternehmen kontrolliert werden, Unternehmen im Besitz von staatlichen Behörden oder von oben genannten Einrichtungen und Unternehmen sowie börsennotierten und im FTSE-MIB-Index der italienischen Börse geführten Unternehmen, die zu Zwecken der Mehrwertsteuer identifiziert werden.",
+  "billing_payment_method_split_payment_warning_deactivate": "Wenn Sie das Split Payment deaktivieren, beantragen Sie die Rückkehr zum üblichen Mehrwertsteuerverwaltungssystem. Nach der Deaktivierung des Split Payment von OVHcloud ausgestellte Rechnungen werden nach dem üblichen Verfahren bearbeitet. Die Bezahlung der Bestellungen beinhaltet die Zahlung des gesamten Betrags einschließlich Mehrwertsteuer.",
+  "billing_payment_method_split_payment_warning_decree": "Auszug aus GESETZESDEKRET Nr. 148 vom 16. Oktober 2017, Artikel 3 Absatz 1-a."
 }

@@ -1,0 +1,61 @@
+<form class="form-horizontal" name="ctrl.zoneRecordForm">
+    <div data-ng-include="'domain/zone/record/header.html'"></div>
+
+    <div
+        class="form-group"
+        data-ng-class="{ 'has-error': ctrl.zoneRecordForm.target.$dirty && ctrl.zoneRecordForm.target.$invalid }"
+    >
+        <label
+            class="control-label col-md-3 required"
+            for="target"
+            data-translate="domain_configuration_dns_entry_add_target"
+        ></label>
+        <div class="col-md-9">
+            <div class="input-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="target"
+                    name="target"
+                    maxlength="255"
+                    required
+                    data-ng-change="ctrl.checkTarget(ctrl.zoneRecordForm.target, 'DNAME'); ctrl.setTargetValue('DNAME')"
+                    data-ng-maxlength="255"
+                    data-ng-model="ctrl.model.target.target"
+                />
+                <span
+                    class="input-group-addon"
+                    data-oui-tooltip="{{:: 'domain_configuration_dns_entry_add_target_host_valid' | translate }}"
+                    data-oui-tooltip-placement="left"
+                >
+                    <span
+                        class="fa fa-question-circle"
+                        aria-hidden="true"
+                    ></span>
+                </span>
+            </div>
+            <small
+                class="help-block"
+                data-ng-if="ctrl.targetIsRelativeDomain()"
+            >
+                <span
+                    data-ng-bind="('domain_configuration_dns_entry_relative_warning_title' | translate) + ' &laquo;&nbsp;' + ctrl.model.target.target + '.' + ctrl.domain.displayName + '.&nbsp;&raquo;'"
+                ></span>
+                <button
+                    class="btn btn-icon"
+                    type="button"
+                    data-ng-click="ctrl.switchTargetToAbsolute()"
+                    data-oui-tooltip="{{:: 'domain_configuration_dns_entry_relative_warning_tooltip' | translate }}"
+                    data-oui-tooltip-placement="left"
+                >
+                    <span
+                        class="fa fa-question-circle"
+                        aria-hidden="true"
+                    ></span>
+                </button>
+            </small>
+        </div>
+    </div>
+
+    <div data-ng-include="'domain/zone/record/bottom.html'"></div>
+</form>

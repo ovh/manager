@@ -113,5 +113,10 @@
   "domains_operations_progress_instructions_7": "Możesz skontaktować się z aktualnym operatorem domeny, aby wyraził on zgodę.",
   "domains_operations_update_key_firstname": "Zaktualizuj imię, wprowadzając prawidłową treść",
   "domains_operations_update_key_name": "Zaktualizuj nazwisko, wprowadzając prawidłową treść",
-  "domains_operations_update_key_identificationNumber": "Zaktualizuj numer identyfikacyjny, wprowadzając prawidłową treść"
+  "domains_operations_update_key_identificationNumber": "Zaktualizuj numer identyfikacyjny, wprowadzając prawidłową treść",
+  "domains_operations_nicOperation_DomainEmailRedirectionsCreate": "Tworzenie anonimizowanego e-maila",
+  "domains_operations_nicOperation_DomainEmailRedirectionsDelete": "Usunięcie anonimizowanego e-maila",
+  "domains_operations_nicOperation_DomainAfterMarket": "Transfer domeny z rynku wtórnego",
+  "domains_operations_nicOperation_DomainRegistryDelete": "Usunięcie domeny w rejestrze",
+  "domains_operations_nicOperation_DomainResourceDelete": "Definitywne usunięcie domeny w OVHcloud"
 }
