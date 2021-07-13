@@ -1,5 +1,10 @@
 <ovh-manager-incident-banner service-name="$ctrl.serviceName">
 </ovh-manager-incident-banner>
+
+<vps-announcement-banner
+    data-ng-if="$ctrl.canDisplayVpsAnnouncementBanner">
+</vps-announcement-banner>
+
 <oui-message data-ng-if="$ctrl.canScheduleMigration" data-type="warning">
     <p
         data-translate="vps_dashboard_migration_warning"

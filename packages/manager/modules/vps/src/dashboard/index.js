@@ -33,6 +33,7 @@ import ovhManagerVpsDashboardTerminate from './terminate';
 import ovhManagerVpsDashboardTerminateOption from './modal/terminate-option';
 import ovhManagerVpsDashboardTile from './tile';
 import vpsStateInfo from './components/vps-state-info';
+import vpsAnnouncementBanner from './components/vps-announcement-banner';
 
 const moduleName = 'ovhManagerVpsDashboard';
 
@@ -62,6 +63,7 @@ angular
     ovhManagerVpsDashboardTerminateOption,
     ovhManagerVpsDashboardTile,
     vpsStateInfo,
+    vpsAnnouncementBanner,
     'ui.router',
   ])
   .service('vpsUpgradeTile', vpsUpgradeTileService)

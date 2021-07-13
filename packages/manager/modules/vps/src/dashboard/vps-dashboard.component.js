@@ -42,6 +42,7 @@ export default {
     vpsMigrationTask: '<',
     vpsMigrationTaskInError: '<',
     vpsUpgradeTask: '<',
+    canDisplayVpsAnnouncementBanner: '<',
   },
   controller,
   name: 'ovhManagerVpsDashboard',
