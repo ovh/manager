@@ -10,9 +10,6 @@ export default class BmServerComponentsOsInstallImageConfigDriveCtrl {
     this.supportedSshFormatsNames = SUPPORTED_SSH_KEY_FORMATS.map(
       ({ name }) => name,
     );
-
-    this.validateSshFormat =
-    BmServerComponentsOsInstallImageConfigDriveCtrl.validateSshFormat;
   }
 
   /*= =====================================
@@ -32,8 +29,15 @@ export default class BmServerComponentsOsInstallImageConfigDriveCtrl {
     });
   }
 
-  static validateSshFormat(sshKey) {
-    return some(SUPPORTED_SSH_KEY_FORMATS, ({ regex }) => regex.test(sshKey));
+  validateSshFormat() {
+    const element = this.imageConfigDriveForm.sshKey;
+    if (element && this.model.configdrive.sshKey) {
+      const isValid = some(SUPPORTED_SSH_KEY_FORMATS, ({ regex }) =>
+        regex.test(this.model.configdrive.sshKey),
+      );
+      element.$setValidity('ssh', isValid);
+    }
+    element.$setValidity('ssh', true);
   }
 
   /*= =============================

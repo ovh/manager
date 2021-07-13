@@ -26,9 +26,7 @@ export default class BmServerComponentsOsInstallService {
 
   getHardwareRaidProfile(serviceName) {
     return this.$http
-      .get(
-        `/dedicated/server/${serviceName}/install/hardwareRaidProfile`,
-      )
+      .get(`/dedicated/server/${serviceName}/install/hardwareRaidProfile`)
       .then(({ data }) => data);
   }
 
@@ -44,13 +42,12 @@ export default class BmServerComponentsOsInstallService {
         params: {
           templateName,
         },
-    })
-    .then(({ data }) => data);
+      })
+      .then(({ data }) => data);
   }
 
-  getSshKey(serviceName) {
-    return this.$http.get(`/me/sshKey`)
-      .then(({ data }) => data);
+  getSshKey() {
+    return this.$http.get(`/me/sshKey`).then(({ data }) => data);
   }
 
   getPartitionSchemes(productId, templateName) {
@@ -61,23 +58,31 @@ export default class BmServerComponentsOsInstallService {
 
   getPartitionSchemePriority(productId, templateName, schemeName) {
     return this.$http
-      .get(`/me/installationTemplate/${templateName}/partitionScheme/${schemeName}`)
+      .get(
+        `/me/installationTemplate/${templateName}/partitionScheme/${schemeName}`,
+      )
       .then(({ data }) => data);
   }
 
   getOvhPartitionSchemesTemplates(serviceName, template, lang) {
     return this.$http
-      .get(`/sws/dedicated/server/${serviceName}/installation/${template}/${lang}/partitionSchemes`, {
-        serviceType: 'aapi',
-      })
+      .get(
+        `/sws/dedicated/server/${serviceName}/installation/${template}/${lang}/partitionSchemes`,
+        {
+          serviceType: 'aapi',
+        },
+      )
       .then(({ data }) => data);
   }
 
   getOvhPartitionSchemesTemplatesDetail(template, partitionScheme) {
     return this.$http
-      .get(`/sws/dedicated/server/installationTemplate/${template}/${partitionScheme}/partitions`, {
-        serviceType: 'aapi',
-      })
+      .get(
+        `/sws/dedicated/server/installationTemplate/${template}/${partitionScheme}/partitions`,
+        {
+          serviceType: 'aapi',
+        },
+      )
       .then(({ data }) => data);
   }
 
@@ -107,7 +112,7 @@ export default class BmServerComponentsOsInstallService {
         `/me/installationTemplate/${gabaritName}/partitionScheme/${gabaritSchemePartitionName}/partition`,
         data,
       )
-      .then(({ data }) => data);
+      .then((res) => res.data);
   }
 
   putSetPartition(gabaritName, gabaritSchemePartitionName, partition) {
@@ -130,7 +135,9 @@ export default class BmServerComponentsOsInstallService {
 
     return this.$http
       .put(
-        `/me/installationTemplate/${gabaritName}/partitionScheme/${gabaritSchemePartitionName}/partition/${encodeURIComponent(partition.oldMountPoint)}`,
+        `/me/installationTemplate/${gabaritName}/partitionScheme/${gabaritSchemePartitionName}/partition/${encodeURIComponent(
+          partition.oldMountPoint,
+        )}`,
         newPartition,
       )
       .then(({ data }) => data);
@@ -139,7 +146,9 @@ export default class BmServerComponentsOsInstallService {
   deleteSetPartition(gabaritName, gabaritSchemePartitionName, mountpoint) {
     return this.$http
       .delete(
-        `/me/installationTemplate/${gabaritName}/partitionScheme/${gabaritSchemePartitionName}/partition/${encodeURIComponent(mountpoint)}`,
+        `/me/installationTemplate/${gabaritName}/partitionScheme/${gabaritSchemePartitionName}/partition/${encodeURIComponent(
+          mountpoint,
+        )}`,
       )
       .then(({ data }) => data);
   }
@@ -155,7 +164,8 @@ export default class BmServerComponentsOsInstallService {
       )
       .then((status) => {
         if (status === 'no_partition') {
-          return this.$http.post(`/me/installationTemplate/${gabaritName}/partitionScheme`,
+          return this.$http.post(
+            `/me/installationTemplate/${gabaritName}/partitionScheme`,
             newPartitioningScheme,
           );
         }
@@ -169,81 +179,104 @@ export default class BmServerComponentsOsInstallService {
     gabaritName,
     newPartitioningSchemeName,
   ) {
-    return this.$http.get(`/me/installationTemplate/${gabaritName}/partitionScheme/default/partition`)
-    .then(({ data }) => data)
-    .then((mountpoints) => {
-      const getMountpoints = map(mountpoints, (mountpoint) =>
-        this.$http.get(`/me/installationTemplate/${gabaritName}/partitionScheme/${newPartitioningSchemeName}/partition/${encodeURIComponent(mountpoint)}`)
-          .then(({ data }) => data)
-          .catch((error) => {
-            return error.status === 404 ? 'no_mountpoint' : this.$q.reject(error);
-          })
-          .then((status) => {
-            if (status === 'no_mountpoint') {
-              return this.$http.get(`/me/installationTemplate/${gabaritName}/partitionScheme/default/partition/${encodeURIComponent(mountpoint)}`)
-              .then(({ data }) => data)
-              .then((mountpointDetails) =>
-                this.$http.post(`/me/installationTemplate/${gabaritName}/partitionScheme/${newPartitioningSchemeName}/partition`,
-                  {
-                    filesystem: mountpointDetails.filesystem,
-                    mountpoint: mountpointDetails.mountpoint,
-                    raid: mountpointDetails.raid,
-                    size: mountpointDetails.size.value,
-                    step: mountpointDetails.order,
-                    type: mountpointDetails.type,
-                    volumeName: mountpointDetails.volumeName,
-                  }
-                )
-                .then(({ data }) => data),
-              );
-            }
-            return null;
-          }),
-      );
+    return this.$http
+      .get(
+        `/me/installationTemplate/${gabaritName}/partitionScheme/default/partition`,
+      )
+      .then(({ data }) => data)
+      .then((mountpoints) => {
+        const getMountpoints = map(mountpoints, (mountpoint) =>
+          this.$http
+            .get(
+              `/me/installationTemplate/${gabaritName}/partitionScheme/${newPartitioningSchemeName}/partition/${encodeURIComponent(
+                mountpoint,
+              )}`,
+            )
+            .then(({ data }) => data)
+            .catch((error) => {
+              return error.status === 404
+                ? 'no_mountpoint'
+                : this.$q.reject(error);
+            })
+            .then((status) => {
+              if (status === 'no_mountpoint') {
+                return this.$http
+                  .get(
+                    `/me/installationTemplate/${gabaritName}/partitionScheme/default/partition/${encodeURIComponent(
+                      mountpoint,
+                    )}`,
+                  )
+                  .then(({ data }) => data)
+                  .then((mountpointDetails) =>
+                    this.$http
+                      .post(
+                        `/me/installationTemplate/${gabaritName}/partitionScheme/${newPartitioningSchemeName}/partition`,
+                        {
+                          filesystem: mountpointDetails.filesystem,
+                          mountpoint: mountpointDetails.mountpoint,
+                          raid: mountpointDetails.raid,
+                          size: mountpointDetails.size.value,
+                          step: mountpointDetails.order,
+                          type: mountpointDetails.type,
+                          volumeName: mountpointDetails.volumeName,
+                        },
+                      )
+                      .then(({ data }) => data),
+                  );
+              }
+              return null;
+            }),
+        );
 
-      return this.$q.all(getMountpoints);
-    });
+        return this.$q.all(getMountpoints);
+      });
   }
 
   startInstallation(serviceName, templateName, details) {
-    return this.$http.post(`/dedicated/server/${serviceName}/install/start`, {
+    return this.$http
+      .post(`/dedicated/server/${serviceName}/install/start`, {
         details,
         templateName,
-    })
-    .then(({ data }) => data);
+      })
+      .then(({ data }) => data);
   }
 
   getHighestPriorityPartitionScheme(productId, templateName) {
-    return this.getPartitionSchemes(productId, templateName)
-      .then((schemes) => {
-        const getSchemes = map(schemes, (scheme) =>
-          this.getPartitionSchemePriority(productId, templateName, scheme),
-        );
+    return this.getPartitionSchemes(productId, templateName).then((schemes) => {
+      const getSchemes = map(schemes, (scheme) =>
+        this.getPartitionSchemePriority(productId, templateName, scheme),
+      );
 
-        return this.$q.all(getSchemes).then((schemesDetails) => {
-          const list = sortBy(schemesDetails, 'priority').reverse();
+      return this.$q.all(getSchemes).then((schemesDetails) => {
+        const list = sortBy(schemesDetails, 'priority').reverse();
 
-          return list[0];
-        });
+        return list[0];
       });
+    });
   }
 
   getPartitionSchemeHardwareRaid(productId, templateName, schemeName) {
     return this.$http
-      .get(`/me/installationTemplate/${templateName}/partitionScheme/${schemeName}/hardwareRaid`)
+      .get(
+        `/me/installationTemplate/${templateName}/partitionScheme/${schemeName}/hardwareRaid`,
+      )
       .then(({ data }) => data)
       .then((response) => {
         const index = indexOf(response, 'managerHardRaid');
 
         if (index !== -1) {
           return this.$http
-            .get(`/me/installationTemplate/${templateName}/partitionScheme/${schemeName}/hardwareRaid/${response[index]}`)
+            .get(
+              `/me/installationTemplate/${templateName}/partitionScheme/${schemeName}/hardwareRaid/${response[index]}`,
+            )
             .then(({ data }) => data);
         }
 
         if (response.length > 0) {
           return this.$http
-            .get(`/me/installationTemplate/${templateName}/partitionScheme/${schemeName}/hardwareRaid/${response[0]}`)
+            .get(
+              `/me/installationTemplate/${templateName}/partitionScheme/${schemeName}/hardwareRaid/${response[0]}`,
+            )
             .then(({ data }) => data);
         }
 
@@ -265,5 +298,4 @@ export default class BmServerComponentsOsInstallService {
       .delete(`/me/installationTemplate/${gabaritName}`)
       .then(({ data }) => data);
   }
-
 }

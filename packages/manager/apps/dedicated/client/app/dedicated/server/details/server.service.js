@@ -1,14 +1,11 @@
-import camelCase from 'lodash/camelCase';
 import compact from 'lodash/compact';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import head from 'lodash/head';
-import indexOf from 'lodash/indexOf';
 import map from 'lodash/map';
 import parseInt from 'lodash/parseInt';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
-import sortBy from 'lodash/sortBy';
 import uniq from 'lodash/uniq';
 
 export default class ServerF {

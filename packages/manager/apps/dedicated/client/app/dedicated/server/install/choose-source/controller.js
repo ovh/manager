@@ -1,9 +1,6 @@
 export default class DedicatedServerInstallChooseSourceCtrl {
-  /* @ngInject */
-  constructor() {}
-
   onChooseSource(source) {
-    switch(source) {
+    switch (source) {
       case 'ovh':
         this.goToOsInstallOvh(source);
         break;
@@ -12,6 +9,8 @@ export default class DedicatedServerInstallChooseSourceCtrl {
         break;
       case 'image':
         this.goToOsInstallImage(source);
+        break;
+      default:
         break;
     }
   }

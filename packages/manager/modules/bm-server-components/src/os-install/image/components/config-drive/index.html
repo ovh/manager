@@ -1,4 +1,6 @@
-<div class="dedicated-server-install-image-config-drive">
+<form class="dedicated-server-install-image-config-drive"
+    name="$ctrl.imageConfigDriveForm"
+    id="imageConfigDriveForm">
     <h3 data-translate="dedicated_server_install_image_config_drive"></h3>
 
     <p>
@@ -62,7 +64,8 @@
                 id="sshKey"
                 data-ng-model="$ctrl.model.configdrive.sshKey"
                 data-ng-disabled="$ctrl.loaders.launchInstall"
-                data-ui-validate="{ ssh: '$ctrl.validateSshFormat($value)' }"
+                data-ng-change="$ctrl.validateSshFormat()"
+                data-ng-model-options="{ debounce: 1000 }"
                 rows="5"
             >
             </textarea>
@@ -159,4 +162,4 @@
             </div>
         </div>
     </div>
-</div>
+</form>

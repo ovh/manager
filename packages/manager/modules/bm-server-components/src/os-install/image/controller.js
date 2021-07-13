@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import filter from 'lodash/filter';
+import isFunction from 'lodash/isFunction';
 
 import { BYOI_GUIDE_URLS } from './constants';
 
@@ -112,7 +113,7 @@ export default class BmServerComponentsOsInstallImageCtrl {
   handleError(error, message = null) {
     if (isFunction(this.onError)) {
       this.onError({
-        error: { message, data: error }
+        error: { message, data: error },
       });
     }
   }
@@ -120,7 +121,7 @@ export default class BmServerComponentsOsInstallImageCtrl {
   handleSuccess(message) {
     if (isFunction(this.onSuccess)) {
       this.onSuccess({
-        message
+        message,
       });
     }
   }

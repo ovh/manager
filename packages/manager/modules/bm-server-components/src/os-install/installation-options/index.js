@@ -7,7 +7,8 @@ import '@ovh-ux/ng-translate-async-loader';
 
 import component from './component';
 
-const moduleName = 'ovhManagerBmServerComponentsOsInstallInstallationOptionsComponent';
+const moduleName =
+  'ovhManagerBmServerComponentsOsInstallInstallationOptionsComponent';
 
 angular
   .module(moduleName, [

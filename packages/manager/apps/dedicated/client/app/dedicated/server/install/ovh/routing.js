@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ (goToServerDetails) => goToServerDetails,
       user: /* @ngInject */ (currentUser) => currentUser,
       installSource: /* @ngInject */ ($transition$) =>
-          $transition$.params().installSource,
+        $transition$.params().installSource,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dedicated_server_install_ovh_title'),
     },

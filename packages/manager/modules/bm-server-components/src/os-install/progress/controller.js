@@ -5,10 +5,7 @@ import includes from 'lodash/includes';
 import forEach from 'lodash/forEach';
 import isFunction from 'lodash/isFunction';
 
-import {
-  BYOI_STATUS_ENUM,
-  BYOI_STARTING_MESSAGE,
-} from './constants';
+import { BYOI_STATUS_ENUM, BYOI_STARTING_MESSAGE } from './constants';
 
 const doingStatus = ['doing'];
 const endingStatus = ['done'];
@@ -57,19 +54,16 @@ export default class BmServerComponentsOsInstallProgressCtrl {
   startPollReinstall() {
     if (this.progress.task) {
       // Doing installation
-      this.addTaskFast(
-        this.serviceName,
-        this.progress.task,
-        this.$scope.$id,
-      ).then((state) => {
-        if (this.Polling.isResolve(state)) {
-          this.progress.task = null;
-        }
-        this.checkInstallationProgress();
-      })
-      .catch(() => {
-        this.reduce();
-      });
+      this.addTaskFast(this.serviceName, this.progress.task, this.$scope.$id)
+        .then((state) => {
+          if (this.Polling.isResolve(state)) {
+            this.progress.task = null;
+          }
+          this.checkInstallationProgress();
+        })
+        .catch(() => {
+          this.reduce();
+        });
     }
   }
 
@@ -82,7 +76,8 @@ export default class BmServerComponentsOsInstallProgressCtrl {
     if (this.isBringYourOwnImageInit()) {
       this.startPollReinstall();
     } else {
-      this.osInstallProgressService.progressInstallation(this.serviceName)
+      this.osInstallProgressService
+        .progressInstallation(this.serviceName)
         .then((task) => {
           this.progress.failStatut = false;
 
@@ -108,33 +103,32 @@ export default class BmServerComponentsOsInstallProgressCtrl {
       get(this.byoi, 'status') === BYOI_STATUS_ENUM.DOING &&
       get(this.byoi, 'message') === BYOI_STARTING_MESSAGE
     );
-  };
+  }
 
   load() {
     this.isLoading = true;
-    this.osInstallProgressService.getTaskInProgress(
-      this.serviceName,
-      'reinstallServer',
-    ).then((taskTab) => {
-      if (taskTab.length > 0) {
-        this.progress.task = head(taskTab);
-        // $rootScope.$broadcast(
-        //   'dedicated.informations.reinstall',
-        //   taskTab[0],
-        // );
-      }
-      this.checkInstallationProgress();
-    })
-    .catch((error) => {
-      // this.resetAction();
-      if (error.status === 404) {
-        this.noInstallationInProgress = true;
-      }
-    })
-    .finally(() => {
-      this.isLoading = false;
-    });
-  };
+    this.osInstallProgressService
+      .getTaskInProgress(this.serviceName, 'reinstallServer')
+      .then((taskTab) => {
+        if (taskTab.length > 0) {
+          this.progress.task = head(taskTab);
+          // $rootScope.$broadcast(
+          //   'dedicated.informations.reinstall',
+          //   taskTab[0],
+          // );
+        }
+        this.checkInstallationProgress();
+      })
+      .catch((error) => {
+        // this.resetAction();
+        if (error.status === 404) {
+          this.noInstallationInProgress = true;
+        }
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
+  }
 
   refreshStepProgress() {
     this.progress.currentStep = '';
@@ -165,10 +159,11 @@ export default class BmServerComponentsOsInstallProgressCtrl {
     this.progress.installationValue =
       ((this.progress.endStep + this.progress.errorStep) * 100) /
       this.progress.nbStep;
-  };
+  }
 
   cancelInstall() {
-    this.osInstallProgressService.cancelTask(this.serviceName, this.progress.task.id)
+    this.osInstallProgressService
+      .cancelTask(this.serviceName, this.progress.task.id)
       .then(() => {
         this.progress.disableCancel = true;
         this.progress.ws = this.$translate.instant(
@@ -184,13 +179,13 @@ export default class BmServerComponentsOsInstallProgressCtrl {
           { t0: error.message || error.data?.message },
         );
       });
-  };
+  }
 
   reduce() {
     this.killPolling();
     this.goBack();
     // $scope.resetAction();
-  };
+  }
 
   killPolling() {
     this.Polling.addKilledScope(this.$scope.$id);
@@ -234,5 +229,4 @@ export default class BmServerComponentsOsInstallProgressCtrl {
       this.onCancel();
     }
   }
-
 }
