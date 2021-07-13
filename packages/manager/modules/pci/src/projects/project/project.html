@@ -45,16 +45,10 @@
                             <ovh-manager-incident-banner
                                 service-name="$ctrl.project.project_id"
                             ></ovh-manager-incident-banner>
-                            <oui-message
-                                data-type="info"
-                                data-ng-if="!$ctrl.projectQuotaAboveThreshold"
-                            >
-                                <p
-                                    data-translate="pci_projects_project_quota_warning_message"
-                                    data-translate-values="{ quotaUrl: 'pci.projects.project.quota' }"
-                                    data-translate-compile
-                                ></p>
-                            </oui-message>
+                            <pci-announcement-banner
+                                data-get-state-name="$ctrl.getStateName()"
+                                data-on-go-to-region="$ctrl.goToRegion()"
+                            ></pci-announcement-banner>
                             <oui-message
                                 data-type="warning"
                                 data-ng-if="$ctrl.projectQuotaAboveThreshold"

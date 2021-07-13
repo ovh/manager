@@ -16,5 +16,7 @@ export default {
     onListParamChange: '<',
     projectId: '<',
     viewContainer: '<',
+    getStateName: '<',
+    goToRegion: '<',
   },
 };

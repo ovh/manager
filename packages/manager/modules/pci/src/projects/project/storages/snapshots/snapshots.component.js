@@ -13,5 +13,7 @@ export default {
     projectId: '<',
     snapshotId: '<',
     snapshots: '<',
+    getStateName: '<',
+    goToRegion: '<',
   },
 };

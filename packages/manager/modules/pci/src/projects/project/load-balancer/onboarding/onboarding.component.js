@@ -4,6 +4,8 @@ import template from './onboarding.html';
 export default {
   bindings: {
     user: '<',
+    getStateName: '<',
+    goToRegion: '<',
   },
   controller,
   template,

@@ -8,5 +8,7 @@ export default {
     addFailoverIp: '<',
     buyFailoverIp: '<',
     instances: '<',
+    getStateName: '<',
+    goToRegion: '<',
   },
 };

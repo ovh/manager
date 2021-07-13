@@ -7,5 +7,7 @@ export default {
   bindings: {
     addInstance: '<',
     isEnabled: '<',
+    getStateName: '<',
+    goToRegion: '<',
   },
 };

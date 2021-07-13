@@ -10,6 +10,8 @@ export default {
     projectId: '<',
     networkId: '<',
     onListParamChange: '<',
+    getStateName: '<',
+    goToRegion: '<',
   },
   controller,
   template,

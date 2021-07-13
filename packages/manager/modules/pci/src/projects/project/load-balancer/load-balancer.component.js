@@ -8,6 +8,8 @@ export default {
     projectId: '<',
     user: '<',
     onListParamChange: '<',
+    getStateName: '<',
+    goToRegion: '<',
   },
   controller,
   template,

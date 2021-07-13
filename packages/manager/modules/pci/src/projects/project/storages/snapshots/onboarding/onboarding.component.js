@@ -6,5 +6,7 @@ export default {
   template,
   bindings: {
     addSnapshot: '<',
+    getStateName: '<',
+    goToRegion: '<',
   },
 };

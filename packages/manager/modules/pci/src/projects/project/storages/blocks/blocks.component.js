@@ -18,5 +18,7 @@ export default {
     projectId: '<',
     storageId: '<',
     storages: '<',
+    getStateName: '<',
+    goToRegion: '<',
   },
 };
