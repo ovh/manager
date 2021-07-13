@@ -131,6 +131,17 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+
+      handleError: /* @ngInject */ (Alerter) => (error) =>
+        Alerter.error(
+          error.message || error.data?.message,
+          'server_dashboard_alert',
+        ),
+      handleSuccess: /* @ngInject */ (Alerter) => (message) =>
+        Alerter.success(
+          message,
+          'server_dashboard_alert',
+        ),
     },
   });
 };
