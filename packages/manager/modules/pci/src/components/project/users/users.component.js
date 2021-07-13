@@ -12,6 +12,7 @@ export default {
     editRoles: '<',
     generateOpenStackToken: '<',
     goToModifyPassword: '<?',
+    generateS3Credentials: '<',
     guideUrl: '<?',
     hideRolesMatrix: '<?',
     isActionDisabled: '<?',
