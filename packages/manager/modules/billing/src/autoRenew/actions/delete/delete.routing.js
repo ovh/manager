@@ -1,5 +1,8 @@
+import get from 'lodash/get';
 import kebabCase from 'lodash/kebabCase';
 import { BillingService } from '@ovh-ux/manager-models';
+
+import { SUPPORT_PHONE_NUMBER } from '../../../constants/billing.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.billing.autorenew.delete', {
@@ -43,8 +46,11 @@ export default /* @ngInject */ ($stateProvider) => {
               serviceId: service.id,
             }),
         ),
-      supportPhoneNumber: /* @ngInject */ (constants, currentUser) =>
-        constants.SUPPORT[currentUser.ovhSubsidiary],
+      supportPhoneNumber: /* @ngInject */ (coreConfig, currentUser) =>
+        get(
+          SUPPORT_PHONE_NUMBER,
+          `${coreConfig.getRegion()}.${currentUser.ovhSubsidiary}`,
+        ),
       confirmTermination: /* @ngInject */ (
         atInternet,
         BillingAutoRenew,

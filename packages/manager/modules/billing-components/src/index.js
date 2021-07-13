@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import commitment from './components/commitment';
+import contract from './components/contract';
 import cancelCommitment from './components/cancel-commitment';
 import cancelResiliation from './components/cancel-resiliation';
 import resiliation from './components/resiliation';
@@ -20,6 +21,7 @@ const moduleName = 'ovhManagerBilling';
 angular.module(moduleName, [
   cancellationForm,
   commitment,
+  contract,
   cancelCommitment,
   cancelResiliation,
   resiliation,

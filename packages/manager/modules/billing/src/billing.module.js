@@ -3,7 +3,9 @@ import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import ngRoute from 'angular-route';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 import ngSanitize from 'angular-sanitize';
+import ovhAccountMigration from '@ovh-ux/manager-account-migration';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import set from 'lodash/set';
 import uiBootstrap from 'angular-ui-bootstrap';
@@ -37,6 +39,9 @@ import renewFrequenceFilter from './components/filters/renewFrequence';
 import routing from './billing.routing';
 import billingTracking from './atInternetTracking.config';
 
+import './billing.less';
+import './billing.scss';
+
 const moduleName = 'Billing';
 
 angular
@@ -45,10 +50,12 @@ angular
     billingMain,
     history,
     'ngRoute',
+    ngPaginationFront,
     'ngSanitize',
     paymentCreditAdd,
     order,
     orders,
+    ovhAccountMigration,
     ovhAccountRefund,
     refunds,
     ngOvhExportCsv,

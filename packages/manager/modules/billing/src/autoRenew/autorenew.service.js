@@ -21,9 +21,8 @@ export default class {
     $q,
     $translate,
     $window,
-    constants,
     coreConfig,
-    DucUserContractService,
+    ContractService,
     OvhApiBillingAutorenewServices,
     OvhApiEmailExchange,
     OvhApiMeAutorenew,
@@ -33,9 +32,8 @@ export default class {
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
-    this.constants = constants;
     this.coreConfig = coreConfig;
-    this.DucUserContractService = DucUserContractService;
+    this.ContractService = ContractService;
     this.OvhApiBillingAutorenewServices = OvhApiBillingAutorenewServices;
     this.OvhApiEmailExchange = OvhApiEmailExchange;
     this.OvhHttp = OvhHttp;
@@ -266,8 +264,8 @@ export default class {
   }
 
   getAutorenewAgreements() {
-    return this.DucUserContractService.getAgreementsToValidate(
-      ({ contractId }) => values(CONTRACTS_IDS).includes(contractId),
+    return this.ContractService.getAgreementsToValidate(({ contractId }) =>
+      values(CONTRACTS_IDS).includes(contractId),
     ).then((contracts) =>
       map(contracts, ({ code: name, pdf: url, id }) => ({ name, url, id })),
     );
@@ -275,7 +273,7 @@ export default class {
 
   updateRenew(service, agreements) {
     const agreementsPromise = service.hasAutomaticRenew()
-      ? this.DucUserContractService.acceptAgreements(agreements)
+      ? this.ContractService.acceptAgreements(agreements)
       : Promise.resolve([]);
     return agreementsPromise.then(() =>
       this.updateServices([
