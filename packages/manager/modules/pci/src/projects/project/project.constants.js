@@ -92,8 +92,11 @@ export const PCI_HDS_ADDON = {
   planCode: 'certification.hds.2018',
 };
 
+export const LEGACY_PLAN_CODES = ['project.legacy', 'project.2018'];
+
 export default {
   ACTIONS,
   LINKS,
   PCI_HDS_ADDON,
+  LEGACY_PLAN_CODES,
 };

@@ -1,0 +1,11 @@
+{
+  "cpbh_current_month": "Rechnungen {{month}} {{year}} ",
+  "cpbh_next_month": "Monat vor ",
+  "cpbh_previous_month": "Monat zurück ",
+  "cpbhd_monthly_header": "Monatspauschalen im {{month}} {{year}} ",
+  "cpbhd_hourly_header": "Verbrauch on demand im {{month}} {{year}} ",
+  "cpbhd_bill_link": "Alle Rechnungen ",
+  "cpbhd_bill_pdf_tooltip": "Rechnung als PDF ",
+  "cpbhd_bill_pdf_link": "Rechnung {{month}} {{year}} ",
+  "cpb_error_message": "Leider können wir nicht alle Informationen abrufen. "
+}

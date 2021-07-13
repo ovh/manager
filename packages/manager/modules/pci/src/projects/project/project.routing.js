@@ -1,4 +1,7 @@
 import { GUIDES_URL } from '../../components/project/guides-header/guides-header.constants';
+import { LEGACY_PLAN_CODES } from './project.constants';
+
+const isLegacy = (planCode) => LEGACY_PLAN_CODES.includes(planCode);
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project', {
@@ -37,6 +40,18 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiCloudProject.v6().get({
           serviceName: projectId,
         }).$promise,
+      serviceInfos: /* @ngInject */ ($http, projectId) =>
+        $http
+          .get(`/cloud/project/${projectId}/serviceInfos`)
+          .then(({ data }) => data)
+          .catch(() => ({})),
+      service: /* @ngInject */ ($http, serviceInfos) =>
+        $http
+          .get(`/services/${serviceInfos.serviceId}`)
+          .then(({ data }) => data)
+          .catch(() => null),
+      isLegacyProject: /* @ngInject */ (service) =>
+        isLegacy(service?.billing?.plan?.code),
       quotas: /* @ngInject */ (PciProjectsService, projectId) =>
         PciProjectsService.getQuotas(projectId),
       breadcrumb: /* @ngInject */ (project) =>

@@ -7,8 +7,7 @@ export default {
   template,
   bindings: {
     projectId: '<',
-    usage: '<',
-    currencySymbol: '<',
+    resourceUsage: '<',
     trainingFeatures: '<',
     registry: '<',
     goToJobSubmit: '<',

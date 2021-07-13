@@ -4,23 +4,18 @@
 >
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-href="{{:: BillingCtrl.billingLink }}"
-            data-active="BillingCtrl.currentActiveLink() === BillingCtrl.billingLink"
+            data-href="{{:: $ctrl.billingLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.billingLink"
             ><span data-translate="cpbc_tab_consumption"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-href="{{:: BillingCtrl.estimateLink }}"
-            data-active="BillingCtrl.currentActiveLink() === BillingCtrl.estimateLink"
-            ><span data-translate="cpbc_tab_forecast"></span>
-        </oui-header-tabs-item>
-        <oui-header-tabs-item
-            data-href="{{:: BillingCtrl.historyLink }}"
-            data-active="BillingCtrl.currentActiveLink() === BillingCtrl.historyLink"
+            data-href="{{:: $ctrl.historyLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.historyLink"
             ><span data-translate="cpbc_tab_history"></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
     <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
-        <oui-guide-menu-item href="{{ BillingCtrl.guideUrl }}" data-external>
+        <oui-guide-menu-item href="{{:: $ctrl.guideUrl }}" data-external>
             <span data-translate="pci_project_guides_header_all_guides"></span>
         </oui-guide-menu-item>
     </oui-guide-menu>
@@ -28,51 +23,195 @@
 
 <div class="mt-4">
     <cui-message-container
-        data-messages="BillingCtrl.messages"
+        data-messages="$ctrl.messages"
     ></cui-message-container>
 </div>
 
 <div class="py-4" data-ui-view>
-    <h2 data-translate="cpbc_tab_consumption"></h2>
-    <div class="text-center" data-ng-if="BillingCtrl.loading">
-        <oui-spinner></oui-spinner>
-    </div>
-    <div data-ng-if="!BillingCtrl.loading">
-        <div class="row">
-            <div class="col-xl-6 mb-4">
-                <oui-tile heading="{{ ::'cpbc_monthly_header' | translate }}">
-                    <p class="oui-tile__legend">
-                        <span
-                            data-translate="cpbc_monthly_header_description"
-                        ></span>
-                        &nbsp;(<span
-                            data-ng-bind="BillingCtrl.data.totals.monthly.total.toFixed(2) + ' ' + BillingCtrl.data.totals.currencySymbol"
-                        ></span
-                        >)
-                    </p>
-                    <monthly-resource-list
-                        resources="BillingCtrl.data"
-                    ></monthly-resource-list>
-                </oui-tile>
-            </div>
-            <div class="col-xl-6">
-                <oui-tile heading="{{ ::'cpbc_hourly_header' | translate }}">
-                    <p class="oui-tile__legend">
-                        <span
-                            data-translate="cpbc_hourly_header_description"
-                        ></span>
-                        &nbsp;(<span
-                            data-ng-bind="BillingCtrl.data.totals.hourly.total.toFixed(2) + ' ' + BillingCtrl.data.totals.currencySymbol"
-                        ></span
-                        >)
-                    </p>
-                    <hourly-resource-list
-                        data-resources="BillingCtrl.data"
-                        data-switch-to-monthly-billing="BillingCtrl.switchToMonthly(instance)"
-                    >
-                    </hourly-resource-list>
-                </oui-tile>
+    <div class="row mb-3">
+        <div class="col-md-3 px-0">
+            <div class="oui-box text-right h-100">
+                <h4 class="oui-box__heading d-flex align-items-center">
+                    <span
+                        data-translate="cpbc_billing_control_consumption_current_monthly"
+                    ></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        oui-popover="{{:: 'cpbc_billing_control_consumption_current_period' | translate:{from: ($ctrl.consumption.beginDate | date), to: ($ctrl.consumption.endDate | date)} }}"
+                        oui-popover-placement="right"
+                    ></button>
+                </h4>
+                <p
+                    class="oui-heading_3"
+                    data-ng-bind="$ctrl.consumption.price.text"
+                ></p>
             </div>
         </div>
+    </div>
+    <div class="oui-datagrid-responsive">
+        <table class="oui-datagrid">
+            <thead>
+                <tr>
+                    <th
+                        class="oui-datagrid__header oui-datagrid__header_s"
+                    ></th>
+                    <th class="oui-datagrid__header">
+                        <span
+                            data-translate="cpbc_billing_control_consumption_product"
+                        ></span>
+                    </th>
+                    <th class="oui-datagrid__header">
+                        <span
+                            data-translate="cpbc_billing_control_consumption_details"
+                        ></span>
+                    </th>
+                    <th class="oui-datagrid__header">
+                        <span
+                            data-translate="cpbc_billing_control_consumption_unit_price"
+                        ></span>
+                    </th>
+                    <th class="oui-datagrid__header">
+                        <span
+                            data-translate="cpbc_billing_control_consumption_usage"
+                        ></span>
+                    </th>
+                    <th class="oui-datagrid__header">
+                        <span
+                            data-translate="cpbc_billing_control_consumption_current"
+                        ></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody data-ng-if="!$ctrl.consumption.priceByPlanFamily">
+                <tr class="oui-datagrid__row oui-datagrid__row_placeholder">
+                    <td
+                        class="oui-datagrid__cell oui-datagrid-empty"
+                        colspan="7"
+                    >
+                        <span
+                            data-translate="cpbc_billing_control_consumption_none"
+                        ></span>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody data-ng-if="$ctrl.consumption.priceByPlanFamily">
+                <tr
+                    class="oui-datagrid__row oui-datagrid__row_expandable"
+                    data-ng-repeat-start="$row in $ctrl.consumption.priceByPlanFamily track by $index"
+                    data-ng-click="$ctrl.expandRow($row)"
+                >
+                    <td class="oui-datagrid__cell oui-datagrid__cell_s">
+                        <button
+                            class="oui-button oui-button_ghost oui-button_s"
+                            type="button"
+                        >
+                            <span
+                                class="oui-icon"
+                                data-ng-class="{
+                                    'oui-icon-chevron-up': $ctrl.isExpanded[$row.planFamily],
+                                    'oui-icon-chevron-down': !$ctrl.isExpanded[$row.planFamily]
+                                }"
+                            ></span>
+                        </button>
+                    </td>
+                    <td class="oui-datagrid__cell">
+                        <span
+                            data-translate="{{ 'cpbc_billing_control_consumption_family_' +  $row.planFamily}}"
+                            data-translate-default="{{$row.planFamily}}"
+                        ></span>
+                    </td>
+                    <td class="oui-datagrid__cell"></td>
+                    <td class="oui-datagrid__cell"></td>
+                    <td class="oui-datagrid__cell"></td>
+                    <td class="oui-datagrid__cell">
+                        <span data-ng-bind="$row.price.text"></span>
+                    </td>
+                </tr>
+                <tr
+                    data-ng-repeat-start="(uniqueId, detail) in $row.details track by uniqueId"
+                    aria-hidden="true"
+                ></tr>
+                <tr
+                    data-ng-show="$ctrl.isExpanded[$row.planFamily]"
+                    data-ng-repeat="d in detail track by $index"
+                    aria-hidden="false"
+                >
+                    <td
+                        class="oui-datagrid__cell oui-datagrid__cell_s"
+                        data-ng-if="$first"
+                        data-ng-attr-rowspan="{{detail.length}}"
+                    ></td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-if="$first"
+                        data-ng-attr-rowspan="{{detail.length}}"
+                    >
+                        <a data-ng-if="d.url" data-ng-href="{{d.url}}">
+                            <span data-ng-bind="d.id"></span>
+                        </a>
+                        <span
+                            data-ng-if="!d.url"
+                            data-translate="{{ 'cpbc_billing_control_consumption_plan_' +  d.planCode}}"
+                            data-translate-values="{
+                                id: d.id
+                            }"
+                            data-translate-default="{{d.id}}"
+                        ></span>
+                    </td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-class="{
+                            'border-0': !$last
+                        }"
+                    >
+                        <div data-ng-if="d.serviceId">
+                            <span data-ng-bind="d.flavor"></span>
+                            <span
+                                data-ng-bind="::$ctrl.getDescription(d)"
+                            ></span>
+                            <span data-ng-bind="d.region"></span>
+                        </div>
+                    </td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-class="{
+                            'border-0': !$last
+                        }"
+                    >
+                        <span
+                            data-translate="{{:: 'cpbc_billing_control_consumption_unit_price_' + d.catalogPrice.unit }}"
+                            data-translate-values="{
+                                price: d.catalogPrice.value
+                            }"
+                        ></span>
+                    </td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-class="{
+                            'border-0': !$last
+                        }"
+                    >
+                        <span
+                            data-translate="{{ 'cpbc_billing_control_consumption_quantity_' + d.catalogPrice.unit }}"
+                            data-translate-values="{
+                                quantity: d.quantity
+                            }"
+                        >
+                        </span>
+                    </td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-class="{
+                            'border-0': !$last
+                        }"
+                    >
+                        <span data-ng-bind="d.price.text"></span>
+                    </td>
+                </tr>
+                <tr data-ng-repeat-end aria-hidden="true"></tr>
+                <tr data-ng-repeat-end aria-hidden="true"></tr>
+            </tbody>
+        </table>
     </div>
 </div>

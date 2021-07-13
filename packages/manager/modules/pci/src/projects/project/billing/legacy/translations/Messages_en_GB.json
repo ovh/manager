@@ -1,0 +1,11 @@
+{
+  "cpbc_billing_control": "Billing",
+  "cpbc_tab_consumption": "Current usage",
+  "cpbc_tab_forecast": "Estimate of my next invoice",
+  "cpbc_tab_history": "History",
+  "cpbc_monthly_header": "Already billed",
+  "cpbc_monthly_header_description": "Rates and pro-ratas",
+  "cpbc_hourly_header": "Future bills",
+  "cpbc_hourly_header_description": "On-demand usage for this month",
+  "cpb_error_message": "Oops, we can not retrieve all the information."
+}

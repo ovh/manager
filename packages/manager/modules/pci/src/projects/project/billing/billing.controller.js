@@ -1,53 +1,23 @@
 export default class CloudProjectBillingConsumptionCurrentCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    $state,
-    billingLink,
-    estimateLink,
-    CucCloudMessage,
-    CloudProjectBilling,
-    currentActiveLink,
-    historyLink,
-    guideUrl,
-    OvhApiCloudProjectUsageCurrent,
-    projectId,
-  ) {
-    this.$state = $state;
-    this.projectId = projectId;
-    this.data = {};
-    this.billingLink = billingLink;
-    this.estimateLink = estimateLink;
-    this.historyLink = historyLink;
-    this.currentActiveLink = currentActiveLink;
+  constructor($translate, CucCloudMessage) {
+    this.$translate = $translate;
 
     this.CucCloudMessage = CucCloudMessage;
-    this.guideUrl = guideUrl;
 
     this.loading = true;
 
     this.loadMessages();
-    OvhApiCloudProjectUsageCurrent.v6()
-      .get({ serviceName: projectId })
-      .$promise.then((billingInfo) =>
-        CloudProjectBilling.getConsumptionDetails(billingInfo, billingInfo),
-      )
-      .then((data) => {
-        this.data = data;
-      })
-      .catch((err) => {
-        this.CucCloudMessage.error(
-          [
-            $translate.instant('cpb_error_message'),
-            (err.data && err.data.message) || '',
-          ].join(' '),
-        );
-        return $q.reject(err);
-      })
-      .finally(() => {
-        this.loading = false;
-      });
+  }
+
+  $onInit() {
+    this.isExpanded = Object.keys(this.consumptionDetails).reduce(
+      (acc, planFamily) => ({
+        ...acc,
+        [planFamily]: false,
+      }),
+      {},
+    );
   }
 
   loadMessages() {
@@ -63,10 +33,13 @@ export default class CloudProjectBillingConsumptionCurrentCtrl {
     this.messages = this.messageHandler.getMessages();
   }
 
-  switchToMonthly({ instanceId }) {
-    return this.$state.go('pci.projects.project.billing.monthly', {
-      projectId: this.projectId,
-      instanceId,
-    });
+  expandRow($row) {
+    this.isExpanded[$row.planFamily] = !this.isExpanded[$row.planFamily];
+  }
+
+  getDescription(detail) {
+    const translationKey = `cpbc_billing_control_consumption_plan_${detail.planCode}`;
+    const description = this.$translate.instant(translationKey);
+    return description === translationKey ? '' : description;
   }
 }
