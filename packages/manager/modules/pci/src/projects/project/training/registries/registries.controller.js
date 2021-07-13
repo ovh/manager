@@ -1,8 +1,8 @@
 export default class PciTrainingRegistryController {
   /* @ngInject */
-  constructor(CucCloudMessage, CucRegionService, atInternet) {
+  constructor(CucCloudMessage, ovhManagerRegionService, atInternet) {
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.atInternet = atInternet;
   }
 

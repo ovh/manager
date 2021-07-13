@@ -1,9 +1,9 @@
 export default class IpLoadBalancerZoneService {
   /* @ngInject */
-  constructor($translate, OvhApiIpLoadBalancing, CucRegionService) {
+  constructor($translate, OvhApiIpLoadBalancing, ovhManagerRegionService) {
     this.$translate = $translate;
     this.IpLoadBalancing = OvhApiIpLoadBalancing;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
   }
 
   getIPLBZones(serviceName) {
@@ -15,7 +15,7 @@ export default class IpLoadBalancerZoneService {
       .$promise.then((zones) =>
         zones.map((zone) => ({
           id: zone,
-          name: this.CucRegionService.getRegion(zone).microRegion.text,
+          name: this.ovhManagerRegionService.getRegion(zone).microRegion.text,
         })),
       );
   }
@@ -32,6 +32,6 @@ export default class IpLoadBalancerZoneService {
   }
 
   humanizeZone(zone) {
-    return this.CucRegionService.getRegion(zone).microRegion.text;
+    return this.ovhManagerRegionService.getRegion(zone).microRegion.text;
   }
 }

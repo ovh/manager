@@ -5,12 +5,12 @@ export default class PciStorageSnapshotsController {
   constructor(
     $translate,
     CucCloudMessage,
-    CucRegionService,
+    ovhManagerRegionService,
     PciProjectStorageSnapshotsService,
   ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectStorageSnapshotsService = PciProjectStorageSnapshotsService;
   }
 

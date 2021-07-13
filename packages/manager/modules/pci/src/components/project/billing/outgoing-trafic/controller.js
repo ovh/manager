@@ -8,7 +8,7 @@ export default class OutgoingTraficComponentCtrl {
     $translate,
     coreConfig,
     CucControllerHelper,
-    CucRegionService,
+    ovhManagerRegionService,
     CucServiceHelper,
     CLOUD_GEOLOCALISATION,
     CLOUD_UNIT_CONVERSION,
@@ -17,7 +17,7 @@ export default class OutgoingTraficComponentCtrl {
     this.$translate = $translate;
     this.coreConfig = coreConfig;
     this.CucControllerHelper = CucControllerHelper;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.CucServiceHelper = CucServiceHelper;
     this.apacRegions = CLOUD_GEOLOCALISATION.instance.APAC;
     this.CLOUD_UNIT_CONVERSION = CLOUD_UNIT_CONVERSION;

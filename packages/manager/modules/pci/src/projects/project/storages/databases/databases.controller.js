@@ -3,11 +3,11 @@ import { getCriteria } from '../../project.utils';
 
 export default class {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, CucRegionService) {
+  constructor($translate, CucCloudMessage, ovhManagerRegionService) {
     this.$translate = $translate;
     this.capitalize = capitalize;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
   }
 
   $onInit() {

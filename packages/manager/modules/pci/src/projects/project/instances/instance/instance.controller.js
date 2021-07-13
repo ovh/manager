@@ -4,13 +4,13 @@ export default class PciInstanceController {
     $translate,
     coreConfig,
     CucCloudMessage,
-    CucRegionService,
+    ovhManagerRegionService,
     PciProjectsProjectInstanceService,
   ) {
     this.$translate = $translate;
     this.coreConfig = coreConfig;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
   }
 

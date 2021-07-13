@@ -1,3 +1,6 @@
+import region from './region';
 import resourceSelector from './resource-selector';
 
-export default resourceSelector;
+export { region };
+
+export default { resourceSelector };

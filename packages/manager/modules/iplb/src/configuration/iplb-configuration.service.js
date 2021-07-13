@@ -9,7 +9,7 @@ export default class IpLoadBalancerConfigurationService {
     $translate,
     CucCloudMessage,
     OvhApiIpLoadBalancing,
-    CucRegionService,
+    ovhManagerRegionService,
     CucServiceHelper,
   ) {
     this.$q = $q;
@@ -17,7 +17,7 @@ export default class IpLoadBalancerConfigurationService {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.IpLoadBalancing = OvhApiIpLoadBalancing;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.CucServiceHelper = CucServiceHelper;
   }
 
@@ -37,7 +37,7 @@ export default class IpLoadBalancerConfigurationService {
           const pending = find(pendingChanges, { zone });
           return {
             id: zone,
-            name: this.CucRegionService.getRegion(zone).microRegion.text,
+            name: this.ovhManagerRegionService.getRegion(zone).microRegion.text,
             changes: pending ? pending.number : 0,
             task: this.constructor.getLastUndoneTask(tasks, zone),
           };
@@ -58,7 +58,7 @@ export default class IpLoadBalancerConfigurationService {
         const pending = find(pendingChanges, { zone });
         return {
           id: zone,
-          name: this.CucRegionService.getRegion(zone).microRegion.text,
+          name: this.ovhManagerRegionService.getRegion(zone).microRegion.text,
           changes: pending ? pending.number : 0,
           task: this.constructor.getLastUndoneTask(tasks, zone),
         };

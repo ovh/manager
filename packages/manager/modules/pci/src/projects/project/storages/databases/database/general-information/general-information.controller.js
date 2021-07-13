@@ -4,11 +4,16 @@ import { SHELL_NAMES } from '../../databases.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, CucRegionService, DatabaseService) {
+  constructor(
+    $translate,
+    CucCloudMessage,
+    ovhManagerRegionService,
+    DatabaseService,
+  ) {
     this.$translate = $translate;
     this.capitalize = capitalize;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.DatabaseService = DatabaseService;
   }
 

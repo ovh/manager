@@ -16,6 +16,7 @@
     "moment": "^2.24.0"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-components": "^1.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/manager-server-sidebar": "^2.0.0 || ^3.0.0",

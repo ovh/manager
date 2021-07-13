@@ -18,7 +18,7 @@
             ></label>
             <div
                 class="oui-field__control"
-                data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.backup.region)"
+                data-ng-bind="$ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.backup.region)"
             ></div>
         </div>
 
@@ -67,7 +67,7 @@
                     data-translate-values="{
                         num: $ctrl.quota.getMaxNumberOfInstances($ctrl.flavor),
                         flavor: $ctrl.flavor.name,
-                        region: $ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.backup.region),
+                        region: $ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.backup.region),
                     }"
                 ></span>
                 <a

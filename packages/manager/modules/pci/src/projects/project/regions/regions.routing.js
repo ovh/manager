@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'pciProjectRegions',
     resolve: {
       availableRegions: /* @ngInject */ (
-        CucRegionService,
+        ovhManagerRegionService,
         OvhApiCloudProjectRegion,
         projectId,
       ) =>
@@ -14,18 +14,22 @@ export default /* @ngInject */ ($stateProvider) => {
           .v6()
           .query({ serviceName: projectId })
           .$promise.then((regionIds) =>
-            map(regionIds, (region) => CucRegionService.getRegion(region.name)),
+            map(regionIds, (region) =>
+              ovhManagerRegionService.getRegion(region.name),
+            ),
           ),
 
       regions: /* @ngInject */ (
-        CucRegionService,
+        ovhManagerRegionService,
         OvhApiCloudProjectRegion,
         projectId,
       ) =>
         OvhApiCloudProjectRegion.v6()
           .query({ serviceName: projectId })
           .$promise.then((regionIds) =>
-            map(regionIds, (region) => CucRegionService.getRegion(region)),
+            map(regionIds, (region) =>
+              ovhManagerRegionService.getRegion(region),
+            ),
           ),
 
       breadcrumb: /* @ngInject */ ($translate) =>

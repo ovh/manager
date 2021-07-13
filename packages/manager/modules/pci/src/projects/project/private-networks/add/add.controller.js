@@ -19,7 +19,7 @@ export default class NetworkAddCtrl {
     $q,
     $translate,
     CucCloudMessage,
-    CucRegionService,
+    ovhManagerRegionService,
     OvhApiCloudProject,
     PciPrivateNetworks,
     PciPrivateNetworksAdd,
@@ -27,7 +27,7 @@ export default class NetworkAddCtrl {
     this.$q = $q;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.PciPrivateNetworks = PciPrivateNetworks;
     this.PciPrivateNetworksAdd = PciPrivateNetworksAdd;
@@ -171,7 +171,7 @@ export default class NetworkAddCtrl {
         );
         return supportedRegions.map((region) => ({
           region: region.name,
-          displayedRegion: this.CucRegionService.getTranslatedMicroRegion(
+          displayedRegion: this.ovhManagerRegionService.getTranslatedMicroRegion(
             region.name,
           ),
           selected: true,

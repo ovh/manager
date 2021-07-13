@@ -11,12 +11,12 @@ export default class {
     $state,
     CucCloudMessage,
     analyticsDataPlatformService,
-    CucRegionService,
+    ovhManagerRegionService,
   ) {
     this.$state = $state;
     this.cucCloudMessage = CucCloudMessage;
     this.analyticsDataPlatformService = analyticsDataPlatformService;
-    this.cucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
   }
 
   $onInit() {

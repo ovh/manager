@@ -4,13 +4,13 @@ export default class VeeamCloudConnectStorageCtrl {
     $stateParams,
     $translate,
     CucControllerHelper,
-    CucRegionService,
+    ovhManagerRegionService,
     VeeamCloudConnectService,
   ) {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.CucControllerHelper = CucControllerHelper;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.VeeamCloudConnectService = VeeamCloudConnectService;
 
     this.storageInfos = CucControllerHelper.request.getArrayLoader({
@@ -39,7 +39,9 @@ export default class VeeamCloudConnectStorageCtrl {
   }
 
   getRegionText(region) {
-    return this.CucRegionService.getTranslatedMicroRegion(region.toUpperCase());
+    return this.ovhManagerRegionService.getTranslatedMicroRegion(
+      region.toUpperCase(),
+    );
   }
 
   updateQuota(inventoryName) {

@@ -11,12 +11,12 @@ export default class {
     $uibModal,
     CucCloudMessage,
     dataProcessingService,
-    CucRegionService,
+    ovhManagerRegionService,
   ) {
     this.$state = $state; // router state
     this.cucCloudMessage = CucCloudMessage;
     this.dataProcessingService = dataProcessingService;
-    this.cucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.DATA_PROCESSING_STATUS_TO_CLASS = DATA_PROCESSING_STATUS_TO_CLASS;
     this.getDataProcessingUiUrl = getDataProcessingUiUrl;
     this.guideUrl = DATA_PROCESSING_GUIDE_URL;

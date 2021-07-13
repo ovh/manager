@@ -11,12 +11,12 @@ export default class PciInstancesAddController {
   constructor(
     $translate,
     CucCloudMessage,
-    CucRegionService,
+    ovhManagerRegionService,
     PciProjectsProjectInstanceService,
   ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
   }
 

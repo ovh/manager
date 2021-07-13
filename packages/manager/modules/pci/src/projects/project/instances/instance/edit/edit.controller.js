@@ -10,12 +10,12 @@ export default class PciInstanceEditController {
   constructor(
     $translate,
     CucCloudMessage,
-    CucRegionService,
+    ovhManagerRegionService,
     PciProjectsProjectInstanceService,
   ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
     this.EDIT_PAGE_SECTIONS = EDIT_PAGE_SECTIONS;
   }

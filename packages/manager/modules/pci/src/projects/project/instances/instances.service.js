@@ -24,7 +24,7 @@ export default class PciProjectInstanceService {
     $http,
     $q,
     CucPriceHelper,
-    CucRegionService,
+    ovhManagerRegionService,
     OvhApiCloudProject,
     OvhApiCloudProjectFlavor,
     OvhApiCloudProjectImage,
@@ -39,7 +39,7 @@ export default class PciProjectInstanceService {
     this.$http = $http;
     this.$q = $q;
     this.CucPriceHelper = CucPriceHelper;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
     this.OvhApiCloudProjectImage = OvhApiCloudProjectImage;
@@ -434,7 +434,7 @@ export default class PciProjectInstanceService {
             (region) =>
               new Datacenter({
                 ...region,
-                ...this.CucRegionService.getRegion(region.name),
+                ...this.ovhManagerRegionService.getRegion(region.name),
                 available: has(region, 'status'),
               }),
           ),

@@ -2,9 +2,9 @@ import { getCriteria } from '../../project.utils';
 
 export default class PciInstanceBackupsController {
   /* @ngInject */
-  constructor(CucCloudMessage, CucRegionService) {
+  constructor(CucCloudMessage, ovhManagerRegionService) {
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
   }
 
   $onInit() {

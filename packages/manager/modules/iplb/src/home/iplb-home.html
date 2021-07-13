@@ -72,7 +72,7 @@
                         <oui-tile-description class="iplb-usage__content">
                             <div class="iplb-usage__region">
                                 <i
-                                    class="flag-icon {{ ::quota.region.icon }} flag flag__icon-sm mr-1"
+                                    class="{{ ::quota.region.icon }} mr-1"
                                     aria-hidden="true"
                                 ></i>
                                 <span
@@ -287,7 +287,7 @@
                         <oui-tile-description>
                             <div data-ng-if="!$ctrl.hasMultipleRegions()">
                                 <i
-                                    class="flag-icon {{ ::$ctrl.detailedRegions[0].icon }} flag flag__icon-sm mr-1"
+                                    class="{{ ::$ctrl.detailedRegions[0].icon }} mr-1"
                                     aria-hidden="true"
                                 ></i>
                                 <span
@@ -303,7 +303,7 @@
                                 data-ng-repeat="(key, regions) in $ctrl.regionsGroup track by $index"
                             >
                                 <i
-                                    class="flag-icon {{ ::regions[0].icon }} flag flag__icon-sm mr-1"
+                                    class="{{ ::regions[0].icon }} mr-1"
                                     aria-hidden="true"
                                 ></i>
                                 <span

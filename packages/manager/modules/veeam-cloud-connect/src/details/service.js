@@ -25,7 +25,7 @@ export default class VeeamCloudConnectService {
     $translate,
     $filter,
     OvhApiVeeam,
-    CucRegionService,
+    ovhManagerRegionService,
   ) {
     this.$interval = $interval;
     this.$q = $q;
@@ -33,7 +33,7 @@ export default class VeeamCloudConnectService {
     this.$translate = $translate;
     this.$filter = $filter;
     this.veeam = OvhApiVeeam.v6();
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
 
     this.unitOfWork = {};
     this.unitOfWork.init = () => {
@@ -72,7 +72,7 @@ export default class VeeamCloudConnectService {
     set(
       infos,
       'detail.location',
-      this.CucRegionService.getRegion(infos.detail.location),
+      this.ovhManagerRegionService.getRegion(infos.detail.location),
     );
     set(infos, 'detail.backupCount', infos.inventoryNames.length);
     return infos.detail;

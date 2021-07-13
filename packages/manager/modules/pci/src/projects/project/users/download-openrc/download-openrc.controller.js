@@ -8,9 +8,13 @@ const { saveAs } = require('file-saver');
 
 export default class PciUsersDownloadOpenRcController {
   /* @ngInject */
-  constructor($translate, CucRegionService, PciProjectsProjectUsersService) {
+  constructor(
+    $translate,
+    ovhManagerRegionService,
+    PciProjectsProjectUsersService,
+  ) {
     this.$translate = $translate;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectsProjectUsersService = PciProjectsProjectUsersService;
   }
 
@@ -20,7 +24,7 @@ export default class PciUsersDownloadOpenRcController {
 
     this.regions = map(this.regions, (region) => ({
       id: region,
-      label: this.CucRegionService.getTranslatedMicroRegion(region),
+      label: this.ovhManagerRegionService.getTranslatedMicroRegion(region),
     }));
     this.region = first(this.regions);
     this.hasGlobalRegions = this.PciProjectsProjectUsersService.checkGlobalRegion(

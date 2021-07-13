@@ -27,7 +27,7 @@ export default class {
     coreURLBuilder,
     CucCloudMessage,
     CucControllerHelper,
-    CucRegionService,
+    ovhManagerRegionService,
     VpsService,
     vpsUpgradeTile,
   ) {
@@ -40,7 +40,7 @@ export default class {
     this.coreURLBuilder = coreURLBuilder;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.VpsService = VpsService;
     this.vpsUpgradeTile = vpsUpgradeTile;
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
@@ -501,8 +501,10 @@ export default class {
     let detailedRegions = [];
     if (regions) {
       detailedRegions = !isArray(regions)
-        ? [this.CucRegionService.getRegion(regions)]
-        : map(regions, (region) => this.CucRegionService.getRegion(region));
+        ? [this.ovhManagerRegionService.getRegion(regions)]
+        : map(regions, (region) =>
+            this.ovhManagerRegionService.getRegion(region),
+          );
     }
     this.regionsGroup = groupBy(detailedRegions, 'country');
   }

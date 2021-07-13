@@ -9,6 +9,8 @@ import 'angular-ui-bootstrap';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 
+import { region } from '@ovh-ux/manager-components';
+
 import component from './component';
 import routing from './routing';
 import service from './service';
@@ -32,6 +34,7 @@ angular
     'ui.bootstrap',
     'ovh-api-services',
     'oui',
+    region,
   ])
   .config(routing)
   .component('ovhManagerVeeamCloudConnectComponent', component)

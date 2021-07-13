@@ -11,7 +11,7 @@ export default class VeeamCloudConnectDashboardCtrl {
     coreURLBuilder,
     CucControllerHelper,
     CucFeatureAvailabilityService,
-    CucRegionService,
+    ovhManagerRegionService,
     VeeamCloudConnectService,
   ) {
     this.$stateParams = $stateParams;
@@ -20,7 +20,7 @@ export default class VeeamCloudConnectDashboardCtrl {
     this.coreURLBuilder = coreURLBuilder;
     this.CucControllerHelper = CucControllerHelper;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.VeeamCloudConnectService = VeeamCloudConnectService;
 
     this.serviceName = this.$stateParams.serviceName;
@@ -136,7 +136,7 @@ export default class VeeamCloudConnectDashboardCtrl {
   }
 
   getRegion(region) {
-    this.region = this.CucRegionService.getRegion(region);
+    this.region = this.ovhManagerRegionService.getRegion(region);
   }
 
   static formatDate(date) {

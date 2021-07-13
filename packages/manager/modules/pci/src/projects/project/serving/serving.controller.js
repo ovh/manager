@@ -2,9 +2,9 @@ import { getCriteria } from '../project.utils';
 
 export default class PciServingController {
   /* @ngInject */
-  constructor(CucCloudMessage, CucRegionService, atInternet) {
+  constructor(CucCloudMessage, ovhManagerRegionService, atInternet) {
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.atInternet = atInternet;
   }
 

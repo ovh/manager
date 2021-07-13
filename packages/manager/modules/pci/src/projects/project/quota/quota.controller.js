@@ -11,14 +11,14 @@ export default class {
     $translate,
     coreURLBuilder,
     CucCloudMessage,
-    CucRegionService,
+    ovhManagerRegionService,
     OvhApiCloudProject,
   ) {
     this.$state = $state;
     this.$translate = $translate;
     this.coreURLBuilder = coreURLBuilder;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.OvhApiCloudProject = OvhApiCloudProject;
   }
 
