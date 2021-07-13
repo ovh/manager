@@ -12,9 +12,6 @@ export default class DedicatedServerKvmOrderCtrl {
   }
 
   handleSuccess(message) {
-    this.Alerter.success(
-      message,
-      'server_dashboard_alert',
-    );
+    this.Alerter.success(message, 'server_dashboard_alert');
   }
 }
