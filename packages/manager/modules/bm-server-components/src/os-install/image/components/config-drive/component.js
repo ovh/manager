@@ -9,6 +9,9 @@ export default {
     trackingPrefix: '<',
     server: '<',
   },
+  require: {
+    imageConfigDriveForm: '^form'
+  },
   controller,
   template,
 };

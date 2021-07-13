@@ -1,6 +1,7 @@
 <form class="dedicated-server-install-image-config-drive"
     name="$ctrl.imageConfigDriveForm"
-    id="imageConfigDriveForm">
+    id="imageConfigDriveForm"
+    novalidate>
     <h3 data-translate="dedicated_server_install_image_config_drive"></h3>
 
     <p>
@@ -65,7 +66,7 @@
                 data-ng-model="$ctrl.model.configdrive.sshKey"
                 data-ng-disabled="$ctrl.loaders.launchInstall"
                 data-ng-change="$ctrl.validateSshFormat()"
-                data-ng-model-options="{ debounce: 1000 }"
+                data-ng-model-options="{ debounce: 600 }"
                 rows="5"
             >
             </textarea>

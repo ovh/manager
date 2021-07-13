@@ -284,38 +284,6 @@ export default class BmServerComponentsOsInstallOvhCtrl {
         }
       },
     );
-
-    // this.$scope.$watch('installation.hardwareRaid.controller', () => {
-    //   this.clearHardwareRaidSpace();
-    //   this.recalculateAvailableRaid();
-    // });
-
-    // this.$scope.$watch('installation.hardwareRaid.raid', () => {
-    //   this.clearHardwareRaidSpace();
-    //   this.recalculateAvailableRaidDisks();
-    // });
-
-    // this.$scope.$watch('installation.hardwareRaid.disks', () => {
-    //   this.clearHardwareRaidSpace();
-    //   this.recalculateAvailableArrays();
-    // });
-
-    // this.$scope.$watch('installation.hardwareRaid.arrays', () => {
-    //   this.recalculateSpace();
-    //   if (
-    //     this.installation.hardwareRaid.disks &&
-    //     this.installation.hardwareRaid.arrays
-    //   ) {
-    //     this.installation.hardwareRaid.error = this.invalidHardRaid();
-    //   }
-    // });
-
-    // this.$scope.$on(
-    //   'dedicated.informations.reinstall.form.update',
-    //   (e, validForm) => {
-    //     this.installation.options.validForm = validForm;
-    //   },
-    // );
   }
 
   // ------STEP1------
