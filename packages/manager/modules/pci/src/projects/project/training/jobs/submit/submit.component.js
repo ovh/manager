@@ -1,5 +1,6 @@
 import controller from './submit.controller';
 import template from './submit.html';
+import './submit.scss';
 
 export default {
   controller,
@@ -9,8 +10,7 @@ export default {
     projectId: '<',
     user: '<',
     presetImages: '<',
-    getPrice: '<',
-    getTax: '<',
+    getCatalogEntryF: '<',
     regions: '<',
     containers: '<',
     goToData: '<',

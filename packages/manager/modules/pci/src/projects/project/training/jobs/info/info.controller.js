@@ -33,11 +33,13 @@ export default class PciTrainingJobsInfoController {
   $onInit() {
     this.guideUrl = GUIDE_URL;
 
-    const resourceId = this.job.spec.resources.gpu >= 1 ? 'gpu' : 'cpu';
     const resourceN =
       this.job.spec.resources.gpu || this.job.spec.resources.cpu;
-    this.unitPrice = this.getPrice(resourceN, resourceId);
-    this.unitTax = this.getTax(resourceN, resourceId);
+
+    const catalog = this.getCatalogEntryF(this.job.spec.resources.flavor)
+
+    this.unitPrice = catalog.priceInUcents * resourceN;
+    this.unitTax = catalog.tax * resourceN;
     const totalHour = this.job.status.duration / 3600;
     this.price = this.unitPrice * totalHour;
     this.tax = this.unitTax * totalHour;
@@ -111,7 +113,17 @@ export default class PciTrainingJobsInfoController {
   }
 
   static getVolumeRepr(volume) {
-    const prefix = volume.prefix ? `/${volume.prefix}` : '';
-    return `${volume.container}@${volume.region}${prefix}:${volume.mountPath}:${volume.permission}`;
+    if (volume.privateSwift) {
+      const prefix = volume.privateSwift.prefix ? `/${volume.privateSwift.prefix}` : '';
+      return `${volume.privateSwift.container}@${volume.privateSwift.region}${prefix}:${volume.mountPath}:${volume.permission}`;
+    }
+
+    if (volume.publicSwift) {
+      return `${volume.publicSwift.url}:${volume.mountPath}:${volume.permission}`;
+    }
+
+    if (volume.git) {
+      return `${volume.git.url}:${volume.mountPath}:${volume.permission}`;
+    }
   }
 }
