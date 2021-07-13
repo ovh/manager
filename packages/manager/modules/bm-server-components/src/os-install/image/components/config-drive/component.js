@@ -10,7 +10,7 @@ export default {
     server: '<',
   },
   require: {
-    imageConfigDriveForm: '^form'
+    imageConfigDriveForm: '^form',
   },
   controller,
   template,
