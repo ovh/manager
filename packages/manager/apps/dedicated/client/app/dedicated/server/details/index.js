@@ -15,6 +15,7 @@ import tasks from '../tasks';
 import interventions from '../intervention';
 import ipmi from '../ipmi';
 import orderKvm from '../kvm/order';
+import netboot from '../netboot';
 
 import bandwidthVrackOrderService from './server.bandwidth-vrack-order.service';
 import component from './server.component';
@@ -41,6 +42,7 @@ angular
     interventions,
     ipmi,
     orderKvm,
+    netboot,
   ])
   .component('dedicatedServer', component)
   .config(routing)

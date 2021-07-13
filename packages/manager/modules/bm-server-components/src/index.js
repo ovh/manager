@@ -8,3 +8,4 @@ export { default as serverTasks } from './tasks';
 export { default as serverInterventions } from './interventions';
 export { default as serverIpmi } from './ipmi';
 export { default as serverOrderKvm } from './ipmi/order-kvm';
+export { default as serverNetboot } from './netboot';
