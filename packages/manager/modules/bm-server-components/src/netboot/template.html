@@ -1,0 +1,253 @@
+<div class="container-fluid">
+    <oui-back-button on-click="$ctrl.goBack()">
+        <span data-translate="server_configuration_netboot_title"></span>
+    </oui-back-button>
+
+    <p
+        data-ng-bind="'server_configuration_netboot_current' | translate:{ t0: $ctrl.server.name }"
+    ></p>
+    <p data-ng-bind="$ctrl.server.netbootLabel"></p>
+
+    <oui-stepper data-on-finish="$ctrl.setNetboot()">
+        <!-- Configure the OS -->
+        <oui-step-form
+            id="configurationForm"
+            name="configurationForm"
+            data-header="{{:: 'server_configuration_netboot_step1_question' | translate}}"
+            data-loading="$ctrl.loading.init"
+            data-editable="!$ctrl.loading.setNetboot"
+            data-navigation="$ctrl.firstStepValidation()"
+            data-submit-text="{{ ::'server_configuration_netboot_next' | translate }}"
+            data-on-focus="$ctrl.isInConfigurationStep = true"
+            data-on-submit="$ctrl.onConfigurationSubmit(form)"
+        >
+            <div class="row mb-1">
+                <div
+                    class="col-md-4"
+                    data-ng-repeat="(key, data) in $ctrl.netboots track by $index"
+                >
+                    <oui-select-picker
+                        name="{{:: key }}"
+                        model="$ctrl.currentNetboot.type"
+                        label="{{:: ('server_configuration_netboot_option_'+ key) | translate }}"
+                        values="[key]"
+                    >
+                    </oui-select-picker>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <p
+                    data-ng-if="$ctrl.currentNetboot.type === $ctrl.RESCUE || $ctrl.currentNetboot.type === $ctrl.NETWORK"
+                >
+                    <strong
+                        data-translate="server_configuration_netboot_configuration"
+                    ></strong>
+                </p>
+
+                <div data-ng-if="$ctrl.currentNetboot.type === $ctrl.RESCUE">
+                    <oui-field
+                        label="{{:: 'server_configuration_netboot_rescue_choice' | translate}}"
+                        size="xl"
+                    >
+                        <select
+                            class="form-control"
+                            id="rescue"
+                            name="rescue"
+                            data-ng-options="rescue as rescue.kernel for rescue in $ctrl.netboots.rescue"
+                            data-ng-model="$ctrl.currentNetboot.rescue"
+                            required
+                        >
+                            <option
+                                value=""
+                                data-ng-disabled="true"
+                                data-translate="select_option"
+                            >
+                            </option>
+                        </select>
+                    </oui-field>
+
+                    <oui-field
+                        label="{{:: 'server_configuration_netboot_rescue_mail' | translate}}"
+                        size="xl"
+                    >
+                        <input
+                            class="oui-input"
+                            type="email"
+                            id="rescueMail"
+                            name="rescueMail"
+                            data-ng-model="$ctrl.currentNetboot.rescueMail"
+                            data-ng-trim="true"
+                        />
+                    </oui-field>
+                </div>
+
+                <div
+                    name="abcForm"
+                    data-ng-if="$ctrl.currentNetboot.type === $ctrl.NETWORK"
+                >
+                    <oui-field
+                        label="{{:: 'server_configuration_netboot_kernel_choice' | translate}}"
+                        size="xl"
+                    >
+                        <select
+                            class="form-control"
+                            id="kernel"
+                            name="kernel"
+                            data-ng-options="network as network.description group by network.kernel for network in $ctrl.netboots.network"
+                            data-ng-model="$ctrl.currentNetboot.network"
+                            required
+                        >
+                            <option
+                                value=""
+                                data-ng-disabled="true"
+                                data-translate="select_option"
+                            >
+                            </option>
+                        </select>
+                    </oui-field>
+
+                    <oui-field
+                        label="{{:: 'server_configuration_netboot_kernel_rootdevice' | translate}}"
+                        size="xl"
+                        data-error-messages="{ path: ('server_configuration_netboot_invalid' | translate) }"
+                        help-text="{{:: 'server_configuration_netboot_kernel_rootdevice_exemple' | translate}}"
+                    >
+                        <input
+                            class="oui-input"
+                            type="text"
+                            id="rootdevice"
+                            name="rootdevice"
+                            data-ng-model="$ctrl.rootDevice.root"
+                            data-ng-trim="true"
+                            required
+                        />
+                    </oui-field>
+
+                    <oui-message
+                        type="info"
+                        class="mb-2"
+                        data-ng-if="$ctrl.isInConfigurationStep"
+                    >
+                        <p
+                            data-translate="server_configuration_netboot_title_help_rootdevice"
+                        ></p>
+                        <ul>
+                            <li
+                                data-translate="server_configuration_netboot_title_help_rootdevice_list1"
+                            ></li>
+                            <li
+                                data-translate="server_configuration_netboot_title_help_rootdevice_list2"
+                            ></li>
+                            <li
+                                data-translate="server_configuration_netboot_title_help_rootdevice_list3"
+                            ></li>
+                            <li
+                                data-translate="server_configuration_netboot_title_help_rootdevice_list4"
+                            ></li>
+                            <li
+                                data-translate="server_configuration_netboot_title_help_rootdevice_list5"
+                            ></li>
+                            <li
+                                data-translate="server_configuration_netboot_title_help_rootdevice_list6"
+                            ></li>
+                            <li
+                                data-translate="server_configuration_netboot_title_help_rootdevice_list7"
+                            ></li>
+                        </ul>
+                    </oui-message>
+
+                    <div
+                        class="oui-list"
+                        data-ng-if="$ctrl.currentNetboot.network"
+                    >
+                        <ul>
+                            <li class="oui-list__group">
+                                <strong>
+                                    <span
+                                        data-translate="server_configuration_netboot_kernel_option"
+                                    ></span>
+                                </strong>
+                                <ul>
+                                    <li
+                                        data-ng-repeat="kerneloption in $ctrl.currentNetboot.network.options | filter:$ctrl.constructor.getActiveOptions track by $index"
+                                        data-ng-bind="kerneloption.option"
+                                    ></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </oui-step-form>
+        <oui-step-form
+            data-header="{{:: 'server_configuration_netboot_review' | translate}}"
+            data-editable="!$ctrl.loading.setNetboot"
+            data-submit-text="{{ ::'server_configuration_netboot_confirm' | translate }}"
+            data-cancel-text="{{ :: 'server_configuration_netboot_cancel' | translate }}"
+            data-on-cancel="$ctrl.goBack()"
+        >
+            <p
+                data-ng-bind="'server_configuration_netboot_step2_question' | translate:{ t0: $ctrl.server.name }"
+            ></p>
+            <ul class="list-unstyled">
+                <li>
+                    <strong
+                        data-ng-bind=":: 'server_configuration_netboot_step2_type' | translate"
+                    ></strong>
+                    <span
+                        data-translate="{{ 'server_configuration_netboot_option_' + $ctrl.currentNetboot.type }}"
+                    ></span>
+                </li>
+                <li data-ng-if="$ctrl.currentNetboot.type === $ctrl.RESCUE">
+                    <strong
+                        data-translate="server_configuration_netboot_step2_rescue"
+                    ></strong>
+                    <span
+                        data-ng-bind="$ctrl.currentNetboot.rescue.kernel"
+                    ></span>
+                </li>
+                <li data-ng-if="$ctrl.currentNetboot.type === $ctrl.RESCUE">
+                    <strong
+                        data-ng-bind=":: 'server_configuration_netboot_step2_rescue_mail' | translate"
+                    ></strong>
+                    <span data-ng-bind="$ctrl.currentNetboot.rescueMail"></span>
+                </li>
+                <li data-ng-if="$ctrl.currentNetboot.type === $ctrl.NETWORK">
+                    <strong
+                        data-translate="server_configuration_netboot_step2_kernel"
+                    ></strong>
+                    <span
+                        data-ng-bind="$ctrl.currentNetboot.network.kernel + ' (' + $ctrl.currentNetboot.network.description + ')'"
+                    ></span>
+                </li>
+                <li data-ng-if="$ctrl.currentNetboot.type === $ctrl.NETWORK">
+                    <strong
+                        data-translate="server_configuration_netboot_kernel_rootdevice"
+                    ></strong>
+                    <span data-ng-bind="$ctrl.rootDevice.root"></span>
+                </li>
+                <li data-ng-if="$ctrl.currentNetboot.type === $ctrl.NETWORK">
+                    <strong
+                        data-translate="server_configuration_netboot_kernel_option"
+                    ></strong>
+                    <ul>
+                        <li
+                            data-ng-repeat="kerneloption in $ctrl.currentNetboot.network.options | filter:$ctrl.constructor.getActiveOptions"
+                            data-ng-bind="kerneloption.option"
+                        ></li>
+                    </ul>
+                </li>
+            </ul>
+            <div
+                data-ng-if="$ctrl.loading.setNetboot"
+                class="d-flex align-items-center"
+            >
+                <oui-spinner data-size="m"></oui-spinner>
+                <span
+                    data-translate="server_configuration_netboot_save_in_progress"
+                ></span>
+            </div>
+        </oui-step-form>
+    </oui-stepper>
+</div>

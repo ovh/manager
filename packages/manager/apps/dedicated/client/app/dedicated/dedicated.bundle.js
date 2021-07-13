@@ -57,7 +57,6 @@ import './server/monitoring/monitoring-update.controller';
 import './server/monitoring/delete/dedicated-server-monitoring-delete.controller';
 import './server/monitoring/update/dedicated-server-monitoring-update.controller';
 import './server/monitoring/update/dedicated-server-monitoring-update.routes';
-import './server/netboot/dedicated-server-netboot.controller';
 import './server/ovh-tasks/dedicated-server-ovh-tasks.component';
 import './server/ovh-tasks/dedicated-server-ovh-tasks.routes';
 import './server/ovh-tasks/dedicated-server-ovh-tasks.service';
