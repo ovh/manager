@@ -37,7 +37,7 @@
   "pci_projects_project_training_jobs_submit_data_mount_path": "Mount directory",
   "pci_projects_project_training_jobs_submit_data_permission": "Permission",
   "pci_projects_project_training_jobs_submit_data_permission_RO": "Read-only",
-  "pci_projects_project_training_jobs_submit_data_permission_RW": "Read &amp; Write",
+  "pci_projects_project_training_jobs_submit_data_permission_RW": "Read and Write",
   "pci_projects_project_training_jobs_submit_ovhai_info": "With the following command, you can launch the same job using our ovhai CLI:",
   "pci_projects_project_training_jobs_submit_ovhai_help": "For more information on the available settings:",
   "pci_projects_project_training_jobs_common_cancel": "Cancel",

@@ -4,11 +4,13 @@ export default class PciProjectTrainingService {
   /* @ngInject */
   constructor(
     $q,
+    $http,
     OvhApiCloudProjectAi,
     OvhApiCloudProjectUser,
     CucPriceHelper,
   ) {
     this.$q = $q;
+    this.$http = $http;
     this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;
     this.OvhApiCloudProjectUser = OvhApiCloudProjectUser;
     this.CucPriceHelper = CucPriceHelper;
@@ -116,5 +118,15 @@ export default class PciProjectTrainingService {
         serviceName,
         region,
       }).$promise;
+  }
+
+  getFlavors(serviceName, region) {
+    return this.$http.get(
+      `/cloud/project/${serviceName}/ai/capabilities/region/${region}/flavor`,
+    );
+  }
+
+  getJobCliCommand(serviceName, job) {
+    return this.$http.post(`/cloud/project/${serviceName}/ai/job/command`, job);
   }
 }

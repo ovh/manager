@@ -135,6 +135,14 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
+                    data-ng-if="$ctrl.job.status.infos"
+                    data-term="{{ ::'pci_projects_project_training_jobs_info_title_6' | translate  }}"
+                >
+                    <oui-tile-description
+                        data-ng-bind="$ctrl.job.status.infos"
+                    ></oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
                     data-term="{{ 'pci_projects_project_training_jobs_time' | translate  }}"
                 >
                     <oui-tile-description>
@@ -189,24 +197,32 @@
                     ></oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
-                    ng-if="$ctrl.job.spec.resources.mem"
+                    ng-if="$ctrl.job.spec.resources.memory"
                     data-term="{{ 'pci_projects_project_training_jobs_ram' | translate  }}"
                 >
-                    <oui-tile-description
-                        data-ng-bind="$ctrl.job.spec.resources.mem"
-                    ></oui-tile-description>
+                    <oui-tile-description>
+                        {{ $ctrl.job.spec.resources.memory |
+                        cucBytes:2:true:'B'}}
+                    </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
                     ng-if="$ctrl.job.spec.resources.gpu"
                     data-term="{{ 'pci_projects_project_training_jobs_gpu' | translate  }}"
                 >
-                    <oui-tile-description
-                        data-ng-bind="$ctrl.job.spec.resources.gpu"
-                    ></oui-tile-description>
+                    <oui-tile-description>
+                        <span
+                            data-ng-bind="$ctrl.job.spec.resources.gpu"
+                        ></span>
+                        <span>x</span>
+                        <span
+                            class="oui-status oui-status_info"
+                            data-ng-bind="$ctrl.job.spec.resources.gpuModel"
+                        ></span>
+                    </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{ 'pci_projects_project_training_jobs_price' | translate  }}"
-                    data-ng-if="$ctrl.job.status.state === 'DONE' || $ctrl.job.status.state === 'DONE'"
+                    data-ng-if="$ctrl.job.isTerminal() && $ctrl.job.status.state !== 'ERROR'"
                 >
                     <oui-tile-description>
                         <ovh-manager-catalog-price
@@ -280,7 +296,7 @@
                                 class="api-list-item"
                             >
                                 <span
-                                    data-ng-bind="$ctrl.constructor.getVolumeRepr(data)"
+                                    data-ng-bind="::$ctrl.constructor.getVolumeRepr(data)"
                                 ></span>
                             </li>
                         </ul>
