@@ -9,5 +9,8 @@
   "kubernetes_add_name": "Nazwa",
   "kubernetes_add_billing_type_description": "Ten tryb płatności zostanie zastosowany do wszystkich utworzonych w przyszłości węzłów w tej puli. Będziesz mógł później zmienić płatność za godzinę na płatność miesięczną dla każdego węzła osobno.",
   "kubernetes_add_billing_type_payment_method": "Opłata zostanie pobrana pomocą domyślnego sposobu płatności.",
-  "kubernetes_add_billing_anti_affinity_title": "Płatności i ochrona przed koligacją (anti-affinity)"
+  "kubernetes_add_billing_anti_affinity_title": "Płatności i ochrona przed koligacją (anti-affinity)",
+  "kubernetes_add_region_info": "Wybrany region nie jest jeszcze aktywny dla Twojego projektu. Dodanie regionu zajmie kilka sekund i nie wpłynie na płatności.",
+  "kubernetes_add_region_inprogress": "Trwa dodawanie regionu {{name}}...",
+  "kubernetes_add_region_failed": "Wystąpił błąd podczas dodawania regionu: {{name}}: {{message}}"
 }

@@ -10,6 +10,7 @@ export default {
     projectId: '<',
     privateNetworks: '<',
     quotas: '<',
+    loadQuotas: '<',
     regions: '<',
     versions: '<',
     sendKubeTrack: '<',
