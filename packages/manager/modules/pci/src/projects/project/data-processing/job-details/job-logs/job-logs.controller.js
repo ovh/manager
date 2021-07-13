@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { formatLogsDate } from './job-logs.utils';
-import { DATA_PROCESSING_API_STATUSES } from '../../data-processing.constants';
+import { DATA_PROCESSING_ENDED_JOBS } from '../../data-processing.constants';
 
 export default class {
   /* @ngInject */
@@ -32,9 +32,7 @@ export default class {
   }
 
   isJobTerminated() {
-    return (
-      this.job.status.toUpperCase() === DATA_PROCESSING_API_STATUSES.TERMINATED
-    );
+    return DATA_PROCESSING_ENDED_JOBS.includes(this.job.status.toUpperCase());
   }
 
   downloadLogs() {
