@@ -40,6 +40,7 @@ export default {
     serverName: '<',
     goToOsInstallChooseSource: '<',
     goToOsInstallProgress: '<',
+    goToNetboot: '<',
   },
   controller,
   template,

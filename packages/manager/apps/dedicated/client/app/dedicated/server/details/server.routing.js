@@ -142,6 +142,11 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       handleSuccess: /* @ngInject */ (Alerter) => (message) =>
         Alerter.success(message, 'server_dashboard_alert'),
+
+      goToNetboot: /* @ngInject */ ($state, serverName) => () =>
+        $state.go('app.dedicated-server.server.dashboard.netboot', {
+          productId: serverName,
+        }),
     },
   });
 };
