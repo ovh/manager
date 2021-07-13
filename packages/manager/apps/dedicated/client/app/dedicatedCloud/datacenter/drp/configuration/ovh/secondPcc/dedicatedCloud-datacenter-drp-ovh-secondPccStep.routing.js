@@ -1,7 +1,7 @@
 import flatten from 'lodash/flatten';
 
-import legacyTemplate from '../../../../../../ip/ip/legacyOrder/ip-ip-legacyOrder.html';
-import template from '../../../../../../ip/ip/agoraOrder/ip-ip-agoraOrder.html';
+import legacyTemplate from '../../../../../../components/ip/legacyOrder/ip-ip-legacyOrder.html';
+import template from '../../../../../../components/ip/agoraOrder/ip-ip-agoraOrder.html';
 
 import {
   DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,

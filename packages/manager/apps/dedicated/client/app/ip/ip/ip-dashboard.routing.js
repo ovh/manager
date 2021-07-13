@@ -1,10 +1,11 @@
+import controller from './ip-ip.controller';
 import template from './ip-ip.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip.dashboard', {
     url: '',
+    controller,
     template,
-    controller: 'IpDashboardCtrl',
     reloadOnSearch: false,
     resolve: {
       goToDashboard: /* @ngInject */ ($state) => () =>

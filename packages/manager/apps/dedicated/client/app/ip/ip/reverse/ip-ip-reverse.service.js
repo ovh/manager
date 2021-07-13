@@ -88,5 +88,3 @@ export default class IpReverse {
       }).$promise;
   }
 }
-
-angular.module('Module.ip.services').service('IpReverse', IpReverse);
