@@ -1,8 +1,11 @@
 import debounce from 'lodash/debounce';
 import get from 'lodash/get';
 import moment from 'moment';
-import { STORAGE_MULTIPLE } from './constants';
-import { ADDON_TYPE } from '../../web-paas.constants';
+import {
+  ADDON_TYPE,
+  STORAGE_MULTIPLE,
+  DEFAULT_ENVIRONMENT_COUNT,
+} from '../../web-paas.constants';
 
 export default class {
   /* @ngInject */
@@ -34,6 +37,9 @@ export default class {
     if (this.addonType === ADDON_TYPE.STORAGE) {
       const stagingQuantity = this.project.getTotalEnvironment();
       return stagingQuantity * addonPrice * this.quantity;
+    }
+    if (this.addonType === ADDON_TYPE.ENVIRONMENT) {
+      return addonPrice * (this.quantity - DEFAULT_ENVIRONMENT_COUNT);
     }
     return addonPrice * this.quantity;
   }

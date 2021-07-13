@@ -18,6 +18,14 @@
                 data-translate="web_paas_service_add_addon_storage_info"
             ></span>
         </oui-message>
+        <oui-message
+            type="info"
+            data-ng-if="$ctrl.addon.isStagingEnvironmentAddon()"
+        >
+            <span
+                data-translate="web_paas_service_add_addon_environment_info"
+            ></span>
+        </oui-message>
         <web-paas-additional-option
             disabled="$ctrl.disableNumeric"
             option="$ctrl.addon"
