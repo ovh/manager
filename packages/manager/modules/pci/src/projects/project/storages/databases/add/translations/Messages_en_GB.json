@@ -28,5 +28,7 @@
   "pci_database_add_create_database": "Create a database instance",
   "pci_database_add_create_database_processing": "Creating data server...",
   "pci_database_add_create_database_success": "Your database is being created, and will be available in a few minutes.",
-  "pci_database_add_create_database_error": "An error has occurred creating your database. Please try the operation again later: {{message}}"
+  "pci_database_add_create_database_error": "An error has occurred creating your database. Please try the operation again later: {{message}}",
+  "pci_database_add_network_mode_public_incompatible": "The solution selected is not compatible with public networks.",
+  "pci_database_add_network_mode_private_incompatible": "The solution selected is not compatible with private networks."
 }
