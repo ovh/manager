@@ -14,6 +14,10 @@ export default class Flavor {
     this.isDefault = some(availability, 'default');
   }
 
+  isNetworkSupported(networkName) {
+    return some(this.availability, { network: networkName });
+  }
+
   get nodesCount() {
     return get(head(this.availability), 'minNodeNumber');
   }
@@ -38,5 +42,13 @@ export default class Flavor {
       priceInUcents: this.nodeMonthlyPrice.priceInUcents * this.nodesCount,
       tax: this.nodeMonthlyPrice.tax * this.nodesCount,
     };
+  }
+
+  get supportsPrivateNetwork() {
+    return this.isNetworkSupported('private');
+  }
+
+  get supportsPublicNetwork() {
+    return this.isNetworkSupported('public');
   }
 }

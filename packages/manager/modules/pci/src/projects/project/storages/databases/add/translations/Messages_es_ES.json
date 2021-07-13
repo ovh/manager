@@ -28,5 +28,7 @@
   "pci_database_add_create_database": "Crear una instancia de base de datos",
   "pci_database_add_create_database_processing": "Creando el servidor de datos...",
   "pci_database_add_create_database_success": "La base de datos se está creando y estará disponible en unos minutos.",
-  "pci_database_add_create_database_error": "Se ha producido un error al crear la base de datos. Por favor, vuelva a intentarlo más tarde: {{message}}"
+  "pci_database_add_create_database_error": "Se ha producido un error al crear la base de datos. Por favor, vuelva a intentarlo más tarde: {{message}}",
+  "pci_database_add_network_mode_public_incompatible": "El producto seleccionado no es compatible con las redes públicas.",
+  "pci_database_add_network_mode_private_incompatible": "El producto seleccionado no es compatible con las redes privadas."
 }

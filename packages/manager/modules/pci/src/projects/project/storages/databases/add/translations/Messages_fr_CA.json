@@ -17,6 +17,8 @@
   "pci_database_add_network_mode_label": "Type de réseau",
   "pci_database_add_network_mode_public": "Public",
   "pci_database_add_network_mode_private": "Privé",
+  "pci_database_add_network_mode_public_incompatible": "L'offre sélectionnée n'est pas compatible avec les réseaux publics.",
+  "pci_database_add_network_mode_private_incompatible": "L'offre sélectionnée n'est pas compatible avec les réseaux privés.",
   "pci_database_add_privateNetwork_label": "Réseau privé attaché",
   "pci_database_add_privateNetwork_description": "Par défaut, les bases de données possèdent un réseau public. Vous pouvez également ajouter un réseau privé, mais vous perdrez la configuration que vous venez d’établir.",
   "pci_database_add_privateNetwork_add": "Créer un réseau privé",

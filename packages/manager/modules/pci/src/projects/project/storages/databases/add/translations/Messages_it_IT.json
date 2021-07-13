@@ -28,5 +28,7 @@
   "pci_database_add_create_database": "Crea un'istanza di database",
   "pci_database_add_create_database_processing": "Creazione del server dati in corso...",
   "pci_database_add_create_database_success": "La creazione del database è in corso e sarà disponibile tra pochi minuti.",
-  "pci_database_add_create_database_error": "Si è verificato un errore durante la creazione del database. Riprova l'operazione in seguito: {{message}}"
+  "pci_database_add_create_database_error": "Si è verificato un errore durante la creazione del database. Riprova l'operazione in seguito: {{message}}",
+  "pci_database_add_network_mode_public_incompatible": "L'offerta selezionata non è compatibile con le reti pubbliche.",
+  "pci_database_add_network_mode_private_incompatible": "L'offerta selezionata non è compatibile con le reti private."
 }

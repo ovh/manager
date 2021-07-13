@@ -28,5 +28,7 @@
   "pci_database_add_create_database": "Eine Datenbank-Instanz erstellen",
   "pci_database_add_create_database_processing": "Der Datenserver wird gerade erstellt.",
   "pci_database_add_create_database_success": "Ihre Datenbank wird gerade erstellt und ist in einigen Minuten verfügbar.",
-  "pci_database_add_create_database_error": "Bei der Erstellung Ihrer Datenbank ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal: {{message}}"
+  "pci_database_add_create_database_error": "Bei der Erstellung Ihrer Datenbank ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal: {{message}}",
+  "pci_database_add_network_mode_public_incompatible": "Das gewählte Angebot ist nicht mit öffentlichen Netzwerken kompatibel.",
+  "pci_database_add_network_mode_private_incompatible": "Das gewählte Angebot ist nicht mit privaten Netzwerken kompatibel."
 }
