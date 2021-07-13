@@ -9,5 +9,8 @@
   "kubernetes_add_name": "Nome",
   "kubernetes_add_billing_type_description": "Todos os nós futuros deste pool de nós estarão sujeitos a este modo de faturação. Posteriormente, poderá passar cada um dos seus nós individualmente da faturação à hora para a faturação mensal.",
   "kubernetes_add_billing_type_payment_method": "A faturação será realizada através do seu método de pagamento predefinido.",
-  "kubernetes_add_billing_anti_affinity_title": "Faturação e anti-afinidade"
+  "kubernetes_add_billing_anti_affinity_title": "Faturação e anti-afinidade",
+  "kubernetes_add_region_info": "A região selecionada ainda não está ativa para o seu projeto. Esta adição demorará alguns segundos e não terá qualquer impacto na faturação.",
+  "kubernetes_add_region_inprogress": "A região {{ name }} está a ser adicionada...",
+  "kubernetes_add_region_failed": "Ocorreu um erro ao adicionar a região {{ name }}: {{ message }}"
 }
