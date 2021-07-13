@@ -22,20 +22,14 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dedicated_server_install_image_title'),
-
       dedicatedApiSchema: /* @ngInject */ (dedicatedServerInstall) =>
         dedicatedServerInstall.getDedicatedInstallTemplateApiSchema(),
-
       imageTypeEnum: /* @ngInject */ (dedicatedApiSchema) =>
         get(dedicatedApiSchema, 'models["dedicated.ImageTypesEnum"].enum'),
-
       checksumTypeEnum: /* @ngInject */ (dedicatedApiSchema) =>
         get(dedicatedApiSchema, 'models["dedicated.CheckSumTypesEnum"].enum'),
-
       goBack: /* @ngInject */ (goToServerDetails) => goToServerDetails,
-
       user: /* @ngInject */ (currentUser) => currentUser,
-
       installSource: /* @ngInject */ ($transition$) =>
           $transition$.params().installSource,
     },
