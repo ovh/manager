@@ -43,6 +43,7 @@
             data-on-submit="$ctrl.onSubmitJobSizingHandler(form)"
         >
             <pci-project-data-processing-submit-job-spark-sizing
+                data-ng-if="$ctrl.jobParameters"
                 data-project-id="$ctrl.projectId"
                 data-templates="$ctrl.state.jobEngine.templates"
                 data-values="$ctrl.state.jobSizing"

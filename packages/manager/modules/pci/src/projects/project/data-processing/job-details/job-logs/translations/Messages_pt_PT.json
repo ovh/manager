@@ -2,6 +2,5 @@
   "data_processing_details_logs_title": "Logs",
   "data_processing_details_logs_swift": "O seu job está finalizado. Consulte os logs no seu container de objetos.",
   "data_processing_details_logs_swift_download_label": "Descarregar os logs",
-  "data_processing_details_logs_terminated": "O seu job foi interrompido. Nenhum log disponível.",
   "data_processing_details_logs_default_message": "A aguardar logs..."
 }
