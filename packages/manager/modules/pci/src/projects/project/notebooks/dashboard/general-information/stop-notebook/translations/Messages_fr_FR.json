@@ -1,0 +1,8 @@
+{
+  "pci_notebooks_stop_notebook_title": "Arrêt de votre notebook",
+  "pci_notebooks_stop_notebook_submit_label": "Confirmer",
+  "pci_notebooks_stop_notebook_cancel_label": "Annuler",
+  "pci_notebooks_stop_notebook_content": "Êtes-vous sûr·e de vouloir arrêter votre notebook {{ notebook }} ?",
+  "pci_notebooks_stop_notebook_success": "Votre notebook a bien été arrêté.",
+  "pci_notebooks_stop_notebook_error": "Une erreur est survenue lors de l'arrête du notebook {{ notebook }} : {{ message }}."
+}

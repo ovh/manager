@@ -1,0 +1,14 @@
+<oui-modal
+    data-heading="{{:: 'pci_notebook_delete_notebook_title' | translate }}"
+    data-primary-action="$ctrl.deleteNotebook()"
+    data-primary-label="{{:: 'pci_notebook_delete_notebook_submit_label' | translate }}"
+    data-secondary-action="$ctrl.cancel()"
+    data-secondary-label="{{:: 'pci_notebook_delete_notebook_cancel_label' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isDeleting"
+>
+    <p
+        data-translate="pci_notebook_delete_notebook_content"
+        data-translate-values="{ notebookName: $ctrl.notebook.name }"
+    ></p>
+</oui-modal>

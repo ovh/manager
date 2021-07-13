@@ -1,0 +1,8 @@
+{
+  "pci_notebooks_start_notebook_title": "Démarrage de votre notebook",
+  "pci_notebooks_start_notebook_submit_label": "Confirmer",
+  "pci_notebooks_start_notebook_cancel_label": "Annuler",
+  "pci_notebooks_start_notebook_content": "Êtes-vous sûr·e de vouloir démarrer votre notebook {{ notebook }} ?",
+  "pci_notebooks_start_notebook_success": "Votre notebook a bien été démarré.",
+  "pci_notebooks_start_notebook_error": "Une erreur est survenue lors du démarrage du notebook {{ notebook }} : {{ message }}."
+}

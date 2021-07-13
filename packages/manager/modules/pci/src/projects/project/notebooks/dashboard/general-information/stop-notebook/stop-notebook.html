@@ -1,0 +1,15 @@
+<oui-modal
+    data-heading="{{:: 'pci_notebooks_stop_notebook_title' | translate }}"
+    data-primary-action="$ctrl.stopNotebook()"
+    data-primary-label="{{:: 'pci_notebooks_stop_notebook_submit_label' | translate }}"
+    data-primary-disabled="$ctrl.isLoading"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'pci_notebooks_stop_notebook_cancel_label' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading"
+>
+    <p
+        data-translate="pci_notebooks_stop_notebook_content"
+        data-translate-values="{ notebook: $ctrl.notebook.name}"
+    ></p>
+</oui-modal>

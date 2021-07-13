@@ -1,0 +1,108 @@
+<div data-ng-if="$ctrl.displayNotebookConfiguration">
+
+    <!--Notebook name-->
+    <div class="mb-4">
+
+        <!--Title-->
+        <p class="oui-heading_5 mb-2">
+            <strong
+                data-translate="pci_notebook_add_configuration_name"
+            ></strong>
+        </p>
+
+        <!--Name-->
+        <oui-field size="l">
+            <input
+                class="oui-input"
+                type="text"
+                id="configurationNotebookName"
+                name="configurationNotebookName"
+                data-ng-model="$ctrl.notebookModel.name"
+                required
+            />
+        </oui-field>
+
+    </div>
+
+    <!--labels-->
+    <div class="mb-4">
+
+            <!-- Title and description -->
+            <div class="oui-box oui-box_light pl-0 pb-2 border-0">
+                <h4 class="oui-box__heading mb-2" data-translate="pci_notebook_add_configuration_label"></h4>
+                <p data-translate="pci_notebook_add_configuration_label_description"></p>
+
+                <!--Manage labels-->
+                <div class="oui-inline-adder mb-2">
+                    <div
+                        class="oui-inline-adder__form"
+                        data-ng-repeat="label in $ctrl.notebookModel.labels track by $index"
+                    >
+                        <fieldset class="oui-inline-adder__fieldset">
+                            <div class="oui-inline-adder__row">
+                                <div class="oui-inline-adder__field">
+                                    <oui-field class="mb-2"
+                                               data-error-messages="{ duplicateLabelKey: ('pci_notebook_add_configuration_label_field_key_error_key_already_exist' | translate) }"
+                                               data-label="{{:: 'pci_notebook_add_configuration_label_field_key' | translate}}"
+                                    >
+                                        <input
+                                            type="text"
+                                            class="oui-input"
+                                            data-ng-init="labelKeyId = 'configurationLabelKey-' + $index"
+                                            data-ng-attr-name="{{labelKeyId}}"
+                                            data-ng-attr-id="{{labelKeyId}}"
+                                            data-ng-model="label.key"
+                                            data-ng-change="$ctrl.onKeyLabelEdit(label, labelKeyId)"
+                                            data-ng-maxlength="$ctrl.NOTEBOOK_LABELS.MAX_CHARS"
+                                            required
+                                        />
+                                    </oui-field>
+                                </div>
+                                <div class="oui-inline-adder__field">
+                                    <oui-field class="mb-2"
+                                               data-label="{{:: 'pci_notebook_add_configuration_label_field_value' | translate}}"
+                                    >
+                                        <input
+                                            type="text"
+                                            class="oui-input"
+                                            data-ng-init="labelValueId = 'configurationLabelValue-' + $index"
+                                            data-ng-attr-name="{{labelValueId}}"
+                                            data-ng-attr-id="{{labelValueId}}"
+                                            data-ng-model="label.value"
+                                            data-ng-maxlength="$ctrl.NOTEBOOK_LABELS.MAX_CHARS"
+                                            required
+                                        />
+                                    </oui-field>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <footer class="oui-inline-adder__footer">
+                            <button
+                                type="button"
+                                class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
+                                data-translate-attr="{title: 'pci_notebook_add_configuration_label_btn_remove'}"
+                                data-ng-click="$ctrl.onRemoveLabelClick(label)">
+                                <span class="oui-icon oui-icon-trash"></span>
+                            </button>
+                        </footer>
+                    </div>
+                </div>
+
+                <!--Add empty label entry-->
+                <oui-button
+                    data-icon-left="oui-icon-plus"
+                    data-variant="secondary"
+                    data-disabled="!$ctrl.canAddNewLabel()"
+                    data-on-click="$ctrl.onAddLabelClick()"
+                >
+                    <span
+                    data-translate="pci_notebook_add_configuration_label_btn_add"
+                ></span>
+                </oui-button>
+
+            </div>
+            <span data-translate="pci_notebook_add_configuration_label_quantity"
+                  data-translate-values="{ numberOfLabels: $ctrl.notebookModel.labels.length, maxLabels: $ctrl.NOTEBOOK_LABELS.MAX_ITEMS}"></span>
+
+        </div>
+</div>

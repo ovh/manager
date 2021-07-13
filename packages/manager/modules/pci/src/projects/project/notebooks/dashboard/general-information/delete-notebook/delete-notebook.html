@@ -1,0 +1,16 @@
+<oui-modal
+    data-heading="{{:: 'pci_notebooks_general_information_info_delete_notebook_title' | translate }}"
+    data-primary-action="$ctrl.deleteNotebook()"
+    data-primary-label="{{:: 'pci_notebooks_general_information_info_delete_notebook_action_delete' | translate }}"
+    data-primary-disabled="$ctrl.isLoading"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'pci_notebooks_general_information_info_delete_notebook_action_cancel' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading"
+>
+    <!--Description-->
+    <p
+        data-translate="pci_notebooks_general_information_info_delete_notebook_description"
+        data-translate-values="{ name: $ctrl.notebook.name }"
+    ></p>
+</oui-modal>
