@@ -9,5 +9,6 @@ export default {
     issueTypes: '<',
     projectId: '<',
     region: '<',
+    serviceOptions: '<',
   },
 };

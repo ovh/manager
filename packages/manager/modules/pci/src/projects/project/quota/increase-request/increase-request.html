@@ -4,17 +4,47 @@
         data-primary-action="$ctrl.increaseQuota()"
         data-primary-label="{{:: 'pci_projects_project_quota_increase_submit_label' | translate }}"
         data-primary-disabled="$ctrl.isLoading"
-        data-secondary-action="$ctrl.goBack()"
+        data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{:: 'pci_projects_project_quota_increase_cancel_label' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
         data-loading="$ctrl.isLoading"
     >
         <p
+            data-ng-if="$ctrl.serviceOptions.length > 0"
+            data-translate="pci_projects_project_quota_increase_buy_credits"
+        ></p>
+
+        <p
             data-translate="pci_projects_project_quota_increase_content"
             data-translate-values="{ 'projectId': $ctrl.projectId }"
         ></p>
 
-        <oui-field label="{{ $ctrl.issueTypeFieldsStr }}" size="xl">
+        <oui-select
+            data-ng-if="$ctrl.serviceOptions.length > 0"
+            data-required
+            data-name="serviceOptions"
+            data-model="$ctrl.serviceOption"
+            data-placeholder="{{:: 'pci_projects_project_quota_increase_select_volume' | translate}}"
+            data-items="$ctrl.serviceOptions"
+            data-match="formattedName"
+        >
+            <span
+                data-ng-bind="$item.planCode"
+                data-translate="{{'pci_projects_project_quota_increase_select_volume_' + $item.planCode}}"
+                class="d-inline-block text-truncate"
+            ></span>
+
+            <span
+                data-ng-bind="$item.prices[0].price.text"
+                class="d-inline-block pull-right"
+            ></span>
+        </oui-select>
+
+        <oui-field
+            label="{{ $ctrl.issueTypeFieldsStr }}"
+            size="xl"
+            ng-if="$ctrl.serviceOptions.length === 0"
+        >
             <textarea
                 class="oui-textarea"
                 id="description"
