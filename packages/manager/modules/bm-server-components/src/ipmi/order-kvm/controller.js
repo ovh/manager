@@ -34,12 +34,12 @@ export default class BmServerComponentsOrderKvmController {
           return this.order.details;
         });
       })
-      .catch((error) => this.handleError(
-        error,
-        this.$translate.instant(
-          'server_configuration_kvm_order_error',
+      .catch((error) =>
+        this.handleError(
+          error,
+          this.$translate.instant('server_configuration_kvm_order_error'),
         ),
-      ))
+      )
       .finally(() => {
         this.loaders.details = false;
       });
@@ -65,18 +65,18 @@ export default class BmServerComponentsOrderKvmController {
             {
               orderUrl: data.url,
               orderId: data.orderId,
-            }
+            },
           ),
         );
         this.$window.open(data.url, '_blank', 'noopener');
         return data;
       })
-      .catch((error) => this.handleError(
-        error,
-        this.$translate.instant(
-          'server_configuration_kvm_order_error',
+      .catch((error) =>
+        this.handleError(
+          error,
+          this.$translate.instant('server_configuration_kvm_order_error'),
         ),
-      ))
+      )
       .finally(() => {
         this.loaders.validation = false;
       });
@@ -97,7 +97,7 @@ export default class BmServerComponentsOrderKvmController {
   handleError(error, message = null) {
     if (isFunction(this.onError)) {
       this.onError({
-        error: { message, data: error }
+        error: { message, data: error },
       });
     }
   }
@@ -105,7 +105,7 @@ export default class BmServerComponentsOrderKvmController {
   handleSuccess(message) {
     if (isFunction(this.onSuccess)) {
       this.onSuccess({
-        message
+        message,
       });
     }
   }

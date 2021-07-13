@@ -1,4 +1,3 @@
-import controller from './controller';
 import template from './template.html';
 
 export default {
@@ -7,7 +6,8 @@ export default {
     user: '<',
     goBack: '<',
     goToKvmOrder: '<',
+    handleError: '<',
+    handleSuccess: '<',
   },
-  controller,
   template,
 };
