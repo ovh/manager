@@ -25,6 +25,12 @@ export const DATA_PROCESSING_API_STATUSES = Object.freeze({
   TERMINATED: 'TERMINATED',
 });
 
+export const DATA_PROCESSING_ENDED_JOBS = [
+  DATA_PROCESSING_API_STATUSES.FAILED,
+  DATA_PROCESSING_API_STATUSES.COMPLETED,
+  DATA_PROCESSING_API_STATUSES.TERMINATED,
+];
+
 export const DATA_PROCESSING_UI_URL = {
   GRA: 'https://adc.gra.dataconvergence.ovh.com',
   GRA5: 'https://adc.gra.dataconvergence.ovh.com',
@@ -39,6 +45,7 @@ export default {
   DATA_PROCESSING_UI_URL,
   DATA_PROCESSING_GUIDE_URL,
   DATA_PROCESSING_API_STATUSES,
+  DATA_PROCESSING_ENDED_JOBS,
 };
 
 export const METRICS_REFRESH_INTERVAL = 5000;
