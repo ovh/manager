@@ -213,7 +213,7 @@
                                 data-placement="end"
                             >
                                 <oui-action-menu-item
-                                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('netboot/dedicated-server-netboot')"
+                                    data-on-click="$ctrl.goToNetboot()"
                                     data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask || $ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED' || ($ctrl.dedicatedServer.$scope.disable.installationInProgress
                                                && !$ctrl.dedicatedServer.$scope.disable.installationInProgressError)"
                                 >
