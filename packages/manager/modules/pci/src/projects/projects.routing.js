@@ -87,6 +87,55 @@ export default /* @ngInject */ ($stateProvider) => {
       terminateProject: /* @ngInject */ (OvhApiCloudProject) => (project) =>
         OvhApiCloudProject.v6().delete({ serviceName: project.serviceName })
           .$promise,
+
+      meApiSchemas: /* @ngInject */ (PciProjectsService) =>
+        PciProjectsService.getMeSchemas(),
+
+      buildMapEnum: /* @ngInject */ (meApiSchemas) => (path) => {
+        const enums = Object.entries(meApiSchemas.models[path].enum);
+        return Object.freeze(
+          enums.reduce(
+            (results, statusEnum) => ({
+              [statusEnum[1]]: statusEnum[1],
+              ...results,
+            }),
+            {},
+          ),
+        );
+      },
+
+      meEnums: /* @ngInject */ (buildMapEnum) => ({
+        ORDER_FOLLOW_UP_HISTORY_STATUS: buildMapEnum(
+          'billing.order.followUp.HistoryStatusEnum',
+        ),
+        ORDER_FOLLOW_UP_STATUS: buildMapEnum(
+          'billing.order.followUp.StatusEnum',
+        ),
+        ORDER_FOLLOW_UP_STEP: buildMapEnum('billing.order.followUp.StepEnum'),
+      }),
+
+      projectsTrackPrefix: () => 'PublicCloud::pci::projects',
+
+      trackPage: /* @ngInject */ (atInternet, projectsTrackPrefix) => (
+        complement,
+      ) => {
+        return atInternet.trackPage({
+          name: `${projectsTrackPrefix}::${complement}`,
+        });
+      },
+
+      sendTrack: /* @ngInject */ (projectsTrackPrefix, trackClick) => (
+        complement,
+      ) => {
+        return trackClick(`${projectsTrackPrefix}::${complement}`);
+      },
+
+      trackClick: /* @ngInject */ (atInternet) => (hit) => {
+        return atInternet.trackClick({
+          name: hit,
+          type: 'action',
+        });
+      },
     },
   });
 };

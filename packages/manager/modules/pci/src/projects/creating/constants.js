@@ -27,22 +27,6 @@ export const GUIDE_URLS = {
   PT: 'https://docs.ovh.com/pt/public-cloud/',
 };
 
-export const ORDER_FOLLOW_UP_POLLING_INTERVAL = 7000;
-
-export const ORDER_FOLLOW_UP_STATUS_ENUM = {
-  DOING: 'DOING',
-  DONE: 'DONE',
-  ERROR: 'ERROR',
-  TODO: 'TODO',
-};
-
-export const ORDER_FOLLOW_UP_STEP_ENUM = {
-  AVAILABLE: 'AVAILABLE',
-  DELIVERING: 'DELIVERING',
-  VALIDATED: 'VALIDATED',
-  VALIDATING: 'VALIDATING',
-};
-
 export const SLIDE_ANIMATION_INTERVAL = 5000;
 
 export const SLIDE_IMAGES = [
@@ -58,9 +42,6 @@ export const SLIDE_IMAGES = [
 
 export default {
   GUIDE_URLS,
-  ORDER_FOLLOW_UP_POLLING_INTERVAL,
-  ORDER_FOLLOW_UP_STATUS_ENUM,
-  ORDER_FOLLOW_UP_STEP_ENUM,
   SLIDE_ANIMATION_INTERVAL,
   SLIDE_IMAGES,
 };

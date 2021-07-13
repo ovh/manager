@@ -12,5 +12,8 @@
   "pci_project_new_payment_information": "Informacje bankowe",
   "pci_project_new_payment_pending_check": "Oczekiwanie na zatwierdzenie Twojego sposobu płatności",
   "pci_project_new_payment_check_error": "Weryfikacja sposobu płatności w Twoim banku trwa wyjątkowo długo.",
-  "pci_project_new_payment_check_payment_method_status": "Prosimy o sprawdzenie statusu sposobu płatności na liście sposobów płatności. Po zatwierdzeniu sposobu płatności możesz wrócić do tworzenia projektu Public Cloud."
+  "pci_project_new_payment_check_payment_method_status": "Prosimy o sprawdzenie statusu sposobu płatności na liście sposobów płatności. Po zatwierdzeniu sposobu płatności możesz wrócić do tworzenia projektu Public Cloud.",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review": "Weryfikacja Twojego zamówienia jest przeprowadzana ręcznie przez nasze zespoły. Konieczny jest dodatkowy czas przetwarzania, procedura ta może potrwać kilka dni. W tym czasie zweryfikuj Twoje dane i sprawdź status zamówienia.",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review_link": "Informacje o zamówieniu",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_refused": "Po przeanalizowaniu danych powiązanych z zamówieniem lub kontem stwierdzamy, że prawdopodobnie nie spełniają one wszystkich warunków niezbędnych do zapewnienia bezpieczeństwa transakcji. Abyśmy mogli przetworzyć i sfinalizować zamówienie, dokonaj zakupu ponownie przy użyciu innego sposobu płatności. Możesz również skontaktować się z naszym konsultantem (sekcja pomocy na Twoim koncie), aby przekazać nam przydatne informacje umożliwiające sfinalizowanie transakcji. W przeciwnym razie transakcja nie zostanie zrealizowana."
 }

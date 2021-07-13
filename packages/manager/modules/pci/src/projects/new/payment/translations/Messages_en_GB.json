@@ -12,5 +12,8 @@
   "pci_project_new_payment_information": "Bank details",
   "pci_project_new_payment_pending_check": "Pending validation of your payment method",
   "pci_project_new_payment_check_error": "The payment method verification process with your bank is taking an unusually long time.",
-  "pci_project_new_payment_check_payment_method_status": "Please check the status in your payment method list, and return to create your Public Cloud project once your payment method has been validated."
+  "pci_project_new_payment_check_payment_method_status": "Please check the status in your payment method list, and return to create your Public Cloud project once your payment method has been validated.",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review": "Your order is being verified manually by our teams. An additional processing time is required, so this procedure may take a few days. During this period, please check your information and track the status of your request.",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review_link": "Order tracking",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_refused": "Based on an analysis of your order and account data, we believe that these do not meet all the necessary guarantees in terms of transaction security. To process your order, pay for it and execute the contract, please renew your purchase using another payment method. You can also contact one of our advisors via the help section of your account, to provide us with the information needed to complete the transaction. If not, this will not be taken into account."
 }

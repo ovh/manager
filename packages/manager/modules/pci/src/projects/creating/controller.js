@@ -1,22 +1,18 @@
 import find from 'lodash/find';
 import some from 'lodash/some';
 
-import {
-  ORDER_FOLLOW_UP_POLLING_INTERVAL,
-  ORDER_FOLLOW_UP_STATUS_ENUM,
-  ORDER_FOLLOW_UP_STEP_ENUM,
-  SLIDE_ANIMATION_INTERVAL,
-  SLIDE_IMAGES,
-} from './constants';
+import { SLIDE_ANIMATION_INTERVAL, SLIDE_IMAGES } from './constants';
+import { ORDER_FOLLOW_UP_POLLING_INTERVAL } from '../projects.constant';
 import { PCI_HDS_ADDON } from '../project/project.constants';
 
 export default class PciProjectCreatingCtrl {
   /* @ngInject */
-  constructor($q, $timeout, pciProjectCreating) {
+  constructor($q, $timeout, pciProjectCreating, PciProjectsService) {
     // dependencies injections
     this.$q = $q;
     this.$timeout = $timeout;
     this.pciProjectCreating = pciProjectCreating;
+    this.PciProjectsService = PciProjectsService;
 
     // other attributes
     this.pollingNamespace = 'pci.projects.order';
@@ -64,21 +60,20 @@ export default class PciProjectCreatingCtrl {
 
   startOrderFollowUpPolling(interval = ORDER_FOLLOW_UP_POLLING_INTERVAL) {
     this.orderFollowUpPolling = this.$timeout(() => {
-      this.pciProjectCreating
-        .getOrderFollowUp(this.orderId)
+      this.PciProjectsService.getOrderFollowUp(this.orderId)
         .then((followUp) => {
           const { status } = find(followUp, {
-            step: ORDER_FOLLOW_UP_STEP_ENUM.DELIVERING,
+            step: this.meEnums.ORDER_FOLLOW_UP_STEP.DELIVERING,
           });
 
-          if (status === ORDER_FOLLOW_UP_STATUS_ENUM.DONE) {
+          if (status === this.meEnums.ORDER_FOLLOW_UP_STATUS.DONE) {
             return this.getDeliveredProjectId().then((projectId) =>
               this.onProjectDelivered(projectId),
             );
           }
 
           const hasStepInError = some(followUp, {
-            status: ORDER_FOLLOW_UP_STATUS_ENUM.ERROR,
+            status: this.meEnums.ORDER_FOLLOW_UP_STATUS.ERROR,
           });
 
           if (hasStepInError) {

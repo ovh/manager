@@ -13,5 +13,6 @@ export default {
     orderId: '<',
     orderStatus: '<',
     voucherCode: '<?',
+    meEnums: '<',
   },
 };
