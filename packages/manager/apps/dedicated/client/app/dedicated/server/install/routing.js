@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicated-server.server.install', {
+  $stateProvider.state('app.dedicated-server.server.dashboard.install', {
     abstract: true,
     url: '/install',
     resolve: {
@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
           'app.dedicated-server.server.dashboard',
           {},
           {
-            reload: true,
+            reload: false,
           },
         ),
 

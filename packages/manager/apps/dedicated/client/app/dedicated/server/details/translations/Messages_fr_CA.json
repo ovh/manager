@@ -1069,5 +1069,6 @@
   "server_configuration_no_intervention_activate_failed": "Une erreur est survenue lors de l'activation des interventions sur site sur le serveur {{serverName}}",
   "server_configuration_no_intervention_deactivate_success": "L'intervention sur site est désactivé sur le serveur {{serverName}}",
   "server_configuration_no_intervention_deactivate_failed": "Une erreur est survenue lors de la désactivation de l'intervention sur site sur le serveur {{serverName}}",
-  "server_configuration_installation_button": "Installer"
+  "server_configuration_installation_button": "Installer",
+  "server_configuration_installation_progress_end": "L'installation est terminée."
 }

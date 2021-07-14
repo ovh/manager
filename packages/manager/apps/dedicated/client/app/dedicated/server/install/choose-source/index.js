@@ -8,7 +8,7 @@ const moduleName = 'ovhManagerDedicatedServerInstallChooseSourceLazyLoading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicated-server.server.install.choose-source.**',
+      'app.dedicated-server.server.dashboard.install.choose-source.**',
       {
         url: '/choose-source',
         lazyLoad: ($transition$) => {

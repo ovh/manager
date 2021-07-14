@@ -1069,5 +1069,6 @@
   "server_configuration_no_intervention_deactivate_success": "L'intervento in loco è disattivato sul server {{serverName}}",
   "server_configuration_no_intervention_deactivate_failed": "Si è verificato un errore durante la disattivazione dell'intervento in loco sul server {{serverName}}",
   "server_close_service_enterprise": "Per modificare i tuoi servizi e contratti, contatta il tuo Account Manager OVHcloud.",
-  "server_configuration_installation_button": "Installa"
+  "server_configuration_installation_button": "Installa",
+  "server_configuration_installation_progress_end": "Installazione completata"
 }
