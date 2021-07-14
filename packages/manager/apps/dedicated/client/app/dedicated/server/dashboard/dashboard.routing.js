@@ -131,6 +131,10 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      goToNameEdit: /* @ngInject */ ($state, serverName) => () =>
+        $state.go('app.dedicated-server.server.dashboard.edit-display-name', {
+          productId: serverName,
+        }),
       goToCommit: /* @ngInject */ ($state, serverName) => () =>
         $state.href('app.dedicated-server.server.dashboard.commitment', {
           productId: serverName,
@@ -239,14 +243,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.dedicated-server.server.dashboard.upgrade', {
           selectedUpgrade,
         }),
-      upgradeWithTicketAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
-        ovhFeatureFlipping
-          .checkFeatureAvailability('dedicated-server:upgradeWithTicket')
-          .then((upgradeFeature) =>
-            upgradeFeature.isFeatureAvailable(
-              'dedicated-server:upgradeWithTicket',
-            ),
-          ),
     },
   });
 };
