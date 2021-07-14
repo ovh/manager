@@ -983,5 +983,6 @@
   "server_configuration_no_intervention_deactivate_success": "La intervención in situ está desactivada en el servidor {{serverName}}.",
   "server_configuration_no_intervention_deactivate_failed": "Se ha producido un error al desactivar la intervención in situ en el servidor {{serverName}}.",
   "server_close_service_enterprise": "Si quiere realizar cambios en sus servicios y contratos, contacte con su gestor de cuentas de OVHcloud.",
-  "server_configuration_installation_button": "Instalar"
+  "server_configuration_installation_button": "Instalar",
+  "server_configuration_installation_progress_end": "La instalación ha finalizado."
 }

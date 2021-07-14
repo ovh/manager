@@ -72,36 +72,39 @@ export default /* @ngInject */ ($stateProvider) => {
         Server.getBringYourOwnImage($stateParams.productId).catch(() => null),
 
       goToOsInstallChooseSource: /* @ngInject */ ($state, serverName) => () =>
-        $state.go('app.dedicated-server.server.install.choose-source', {
-          productId: serverName,
-        }),
+        $state.go(
+          'app.dedicated-server.server.dashboard.install.choose-source',
+          {
+            productId: serverName,
+          },
+        ),
       goToOsInstallOvh: /* @ngInject */ ($state, serverName) => (
         installSource,
       ) =>
-        $state.go('app.dedicated-server.server.install.ovh', {
+        $state.go('app.dedicated-server.server.dashboard.install.ovh', {
           productId: serverName,
           installSource,
         }),
       goToOsInstallGabarit: /* @ngInject */ ($state, serverName) => (
         installSource,
       ) =>
-        $state.go('app.dedicated-server.server.install.gabarit', {
+        $state.go('app.dedicated-server.server.dashboard.install.gabarit', {
           productId: serverName,
           installSource,
         }),
       goToOsInstallImage: /* @ngInject */ ($state, serverName) => (
         installSource,
       ) =>
-        $state.go('app.dedicated-server.server.install.image', {
+        $state.go('app.dedicated-server.server.dashboard.install.image', {
           productId: serverName,
           installSource,
         }),
       goToOsInstallProgress: /* @ngInject */ ($state, serverName) => () =>
-        $state.go('app.dedicated-server.server.install.progress', {
+        $state.go('app.dedicated-server.server.dashboard.install.progress', {
           productId: serverName,
         }),
       installProgressHref: /* @ngInject */ ($state, serverName) =>
-        $state.href('app.dedicated-server.server.install.progress', {
+        $state.href('app.dedicated-server.server.dashboard.install.progress', {
           productId: serverName,
         }),
       goToServerDetails: /* @ngInject */ ($state, Alerter, serverName) => (
@@ -138,10 +141,7 @@ export default /* @ngInject */ ($stateProvider) => {
           'server_dashboard_alert',
         ),
       handleSuccess: /* @ngInject */ (Alerter) => (message) =>
-        Alerter.success(
-          message,
-          'server_dashboard_alert',
-        ),
+        Alerter.success(message, 'server_dashboard_alert'),
     },
   });
 };

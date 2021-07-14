@@ -983,5 +983,6 @@
   "server_configuration_no_intervention_deactivate_success": "On-site intervention is disabled on server {{serverName}}",
   "server_configuration_no_intervention_deactivate_failed": "An error has occurred disabling on-site interventions on the server {{serverName}}",
   "server_close_service_enterprise": "If you would like to make changes to your services and contracts, please contact your OVHcloud account manager",
-  "server_configuration_installation_button": "Install"
+  "server_configuration_installation_button": "Install",
+  "server_configuration_installation_progress_end": "Installation complete."
 }

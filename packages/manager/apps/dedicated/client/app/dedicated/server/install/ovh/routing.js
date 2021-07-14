@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicated-server.server.install.ovh', {
+  $stateProvider.state('app.dedicated-server.server.dashboard.install.ovh', {
     url: '/ovh',
     views: {
       '@app.dedicated-server': {
@@ -12,7 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: ($transition$) => {
       if ($transition$.params().installSource === null) {
         return {
-          state: 'app.dedicated-server.server.install.choose-source',
+          state: 'app.dedicated-server.server.dashboard.install.choose-source',
         };
       }
       return null;
