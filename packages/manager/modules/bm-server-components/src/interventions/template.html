@@ -1,0 +1,13 @@
+<oui-datagrid data-rows-loader="$ctrl.getInterventions($config)">
+    <oui-datagrid-column
+        data-title="::'server_configuration_intervention_date' | translate"
+    >
+        <span data-ng-bind="$row.date | date:'medium'"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'server_configuration_intervention_type' | translate"
+        data-property="type"
+        data-type="text"
+    >
+    </oui-datagrid-column>
+</oui-datagrid>

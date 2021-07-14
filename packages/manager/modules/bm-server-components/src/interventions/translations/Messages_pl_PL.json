@@ -1,0 +1,6 @@
+{
+  "server_configuration_intervention_type": "Typ",
+  "server_configuration_intervention_date": "Data",
+  "server_configuration_intervention_empty": "Brak interwencji",
+  "server_configuration_intervention_error": "Wystąpił błąd podczas pobierania danych."
+}
