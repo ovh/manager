@@ -7,6 +7,8 @@ export default {
     guideUrl: '<',
     projectId: '<',
     regions: '<',
+    getStateName: '<',
+    goToRegion: '<',
   },
   controller,
   template,
