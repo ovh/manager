@@ -3,6 +3,7 @@ import forEach from 'lodash/forEach';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
+
 import 'moment';
 
 export default class ExchangeExportToCsvAccountsCtrl {
@@ -16,6 +17,7 @@ export default class ExchangeExportToCsvAccountsCtrl {
     ExchangeSharedAccounts,
     messaging,
     navigation,
+    exportCsv,
   ) {
     this.services = {
       $scope,
@@ -66,6 +68,7 @@ export default class ExchangeExportToCsvAccountsCtrl {
     this.totalAccounts = navigation.currentActionData.total;
     this.csvExportType = navigation.currentActionData.csvExportType;
     this.exchange = wucExchange.value;
+    this.exportCsv = exportCsv;
 
     $scope.exportAccounts = () => this.exportAccounts();
     $scope.cancelExport = () => this.cancelExport();
@@ -116,18 +119,18 @@ export default class ExchangeExportToCsvAccountsCtrl {
         if (datas != null && !isEmpty(datas) && this.timeoutObject != null) {
           // get column name
           const { headers } = datas;
-          let csvContent = `${headers.join(';')}\n`;
+          let csvContent = `${headers.join(',')}\n`;
 
           forEach(datas.accounts, (data, index) => {
             let dataString = '';
 
             forEach(headers, (header) => {
               if (includes(exportOpts.toJointAttrs, header)) {
-                dataString += `${data[header].join(',')};`;
+                dataString += `${data[header].join(',')},`;
               } else if (includes(exportOpts.toConcatAttrs, header)) {
-                dataString += `${data[header].value + data[header].unit};`;
+                dataString += `${data[header].value + data[header].unit},`;
               } else {
-                dataString += `${data[header]};`;
+                dataString += `${data[header]},`;
               }
             });
 
@@ -135,33 +138,13 @@ export default class ExchangeExportToCsvAccountsCtrl {
               index < datas.accounts.length ? `${dataString}\n` : dataString;
           });
 
-          const blob = new Blob([csvContent], {
-            type: 'text/csv;charset=utf-8;',
+          this.exportCsv.exportData({
+            datas: csvContent,
+            fileName: `export_${this.csvExportType}_${
+              this.exchange.displayName
+            }_${moment().format('YYYY-MM-DD_HH:mm:ss')}.csv`,
+            separator: ',',
           });
-
-          const fileName = `export_${this.csvExportType}_${
-            this.exchange.displayName
-          }_${moment().format('YYYY-MM-DD_HH:mm:ss')}.csv`;
-
-          if (navigator.msSaveBlob) {
-            navigator.msSaveBlob(blob, fileName);
-          } else {
-            const link = document.createElement('a');
-
-            if (link.download != null) {
-              const url = window.URL.createObjectURL(blob);
-              link.setAttribute('href', url);
-              link.setAttribute('download', fileName);
-              link.style = 'visibility:hidden';
-              document.body.appendChild(link);
-              link.click();
-              document.body.removeChild(link);
-            } else {
-              window.open(
-                `data:text/csv;charset=utf-8,${encodeURIComponent(csvContent)}`,
-              );
-            }
-          }
 
           this.services.messaging.writeSuccess(
             this.services.$translate.instant('exchange_ACTION_export_success'),
