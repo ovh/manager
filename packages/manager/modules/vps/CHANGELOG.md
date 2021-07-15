@@ -1,3 +1,18 @@
+# [2.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.12.0...@ovh-ux/manager-vps@2.13.0) (2021-07-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1053] ([1c70cd8](https://github.com/ovh/manager/commit/1c70cd8773a8ef23cc7385e5ae54e0dbd1c9aa14))
+
+
+### Features
+
+* **vps.dashboard:** add announcement_banner ([edfccab](https://github.com/ovh/manager/commit/edfccab8e07c73f8018682b99226236ec67e4ec5))
+* **vps.dashboard.components.announcement-banner:** add component ([ce8874a](https://github.com/ovh/manager/commit/ce8874a7c5e7cb6f1ab83ff37bea05a3acff7ce5))
+
+
+
 # [2.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.11.2...@ovh-ux/manager-vps@2.12.0) (2021-06-29)
 
 
