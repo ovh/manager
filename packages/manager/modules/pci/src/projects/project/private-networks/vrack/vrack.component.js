@@ -7,6 +7,8 @@ export default {
     createVrack: '<',
     operation: '<?',
     onVrackCreated: '<',
+    getStateName: '<',
+    goToRegion: '<',
   },
   controller,
   template,

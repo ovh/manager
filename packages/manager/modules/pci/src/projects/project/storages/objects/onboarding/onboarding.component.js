@@ -6,5 +6,7 @@ export default {
   template,
   bindings: {
     addObjectStorage: '<',
+    getStateName: '<',
+    goToRegion: '<',
   },
 };
