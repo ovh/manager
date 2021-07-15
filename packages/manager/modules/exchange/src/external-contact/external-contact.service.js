@@ -128,9 +128,11 @@ export default class ExchangeExternalContacts {
       opts.count,
       offset,
       opts.filter,
-    ).then((accounts) => ({
-      accounts: accounts.list.results,
-      headers: keys(accounts.list.results[0]),
-    }));
+    ).then((accounts) => {
+      return {
+        accounts: accounts.data,
+        headers: keys(accounts.data[0]),
+      };
+    });
   }
 }
