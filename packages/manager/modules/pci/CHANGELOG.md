@@ -1,3 +1,12 @@
+# [5.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.30.3...@ovh-ux/manager-pci@5.31.0) (2021-07-15)
+
+
+### Features
+
+* add announcement banner  ([#5180](https://github.com/ovh/manager/issues/5180)) ([#5253](https://github.com/ovh/manager/issues/5253)) ([3dc425c](https://github.com/ovh/manager/commit/3dc425c57fae00026b1353bd586aa479beeb46cf))
+
+
+
 ## [5.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.30.2...@ovh-ux/manager-pci@5.30.3) (2021-07-12)
 
 
