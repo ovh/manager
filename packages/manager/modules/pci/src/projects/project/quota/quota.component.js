@@ -9,6 +9,8 @@ export default {
     quotas: '<',
     region: '<',
     increaseQuotaLink: '<',
+    getStateName: '<',
+    goToRegion: '<',
   },
   controller,
   template,

@@ -3,6 +3,11 @@
         data-messages="$ctrl.messages"
     ></cui-message-container>
 
+    <pci-announcement-banner
+        data-get-state-name="$ctrl.getStateName()"
+        data-on-go-to-region="$ctrl.goToRegion()"
+    ></pci-announcement-banner>
+
     <pci-project-private-networks-empty>
         <oui-button
             data-ng-if="!$ctrl.operation"

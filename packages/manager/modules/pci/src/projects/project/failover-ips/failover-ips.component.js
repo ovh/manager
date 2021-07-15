@@ -11,5 +11,7 @@ export default {
     projectId: '<',
     failoverIp: '<',
     onListParamChange: '<',
+    getStateName: '<',
+    goToRegion: '<',
   },
 };

@@ -31,21 +31,29 @@ export default /* @ngInject */ ($stateProvider) => {
           project,
           projectId,
         }),
+
       projectId: /* @ngInject */ ($transition$) =>
         $transition$.params().projectId,
+
       project: /* @ngInject */ (OvhApiCloudProject, projectId) =>
         OvhApiCloudProject.v6().get({
           serviceName: projectId,
         }).$promise,
+
       quotas: /* @ngInject */ (PciProjectsService, projectId) =>
         PciProjectsService.getQuotas(projectId),
+
       breadcrumb: /* @ngInject */ (project) =>
         project.status !== 'creating' ? project.description : null,
+
       user: /* @ngInject */ (SessionService) => SessionService.getUser(),
+
       getQuotaUrl: /* @ngInject */ ($state) => () =>
         $state.href('pci.projects.project.quota'),
+
       guideUrl: /* @ngInject */ (user) =>
         GUIDES_URL[user.ovhSubsidiary] || GUIDES_URL.DEFAULT,
+
       onListParamChange: /* @ngInject */ ($state, $transition$) => () => {
         return $state.go(
           '.',
@@ -54,6 +62,16 @@ export default /* @ngInject */ ($stateProvider) => {
           },
           { inherit: false },
         );
+      },
+
+      getStateName: /* @ngInject */ ($state) => () => {
+        return $state.current.name;
+      },
+
+      goToRegion: /* @ngInject */ ($state, projectId) => () => {
+        return $state.go('pci.projects.project.regions', {
+          projectId,
+        });
       },
     },
   });

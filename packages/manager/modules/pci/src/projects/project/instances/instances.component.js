@@ -34,5 +34,7 @@ export default {
     vrack: '<',
     vrackLink: '<',
     killTasks: '<',
+    getStateName: '<',
+    goToRegion: '<',
   },
 };

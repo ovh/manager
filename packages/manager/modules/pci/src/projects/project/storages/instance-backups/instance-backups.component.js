@@ -13,5 +13,7 @@ export default {
     guideUrl: '<',
     onListParamChange: '<',
     projectId: '<',
+    getStateName: '<',
+    goToRegion: '<',
   },
 };

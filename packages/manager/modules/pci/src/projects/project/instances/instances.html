@@ -7,7 +7,9 @@
 </oui-message>
 
 <div data-ui-view>
+
     <oui-header
+
         data-heading="{{:: 'pci_projects_project_instances_title' | translate }}"
         class="mb-3"
     >
@@ -21,6 +23,11 @@
             </oui-guide-menu-item>
         </oui-guide-menu>
     </oui-header>
+
+    <pci-announcement-banner
+        data-get-state-name="$ctrl.getStateName()"
+        data-on-go-to-region="$ctrl.goToRegion()"
+    ></pci-announcement-banner>
 
     <oui-message data-ng-if="!$ctrl.hasVrack" data-type="info" data-dismissable>
         <p data-translate="pci_projects_project_instances_vrack_none"></p>
