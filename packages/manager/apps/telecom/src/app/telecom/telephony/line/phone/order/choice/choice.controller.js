@@ -74,7 +74,7 @@ export default class TelephonyLinePhoneOrderChoiceCtrl {
 
   fetchOfferPhones(offer) {
     return this.OvhApiTelephony.v6().getLineOfferPhones({
-      country: this.coreConfig.getUser().country.toLowerCase(),
+      country: this.line.getCountry(),
       offer,
     }).$promise;
   }
