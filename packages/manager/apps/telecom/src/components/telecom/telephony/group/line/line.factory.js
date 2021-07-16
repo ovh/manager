@@ -219,6 +219,28 @@ export default /* @ngInject */ (
     return $q.when(self.hasSupportsPhonebook);
   };
 
+  TelephonyGroupLine.prototype.getCountry = function getCountry() {
+    // list of supported countries comes from apiv6 : telephony.NumberCountryEnum
+    switch (this.serviceName.substring(0, 4)) {
+      case '0032':
+        return 'be';
+      case '0041':
+        return 'ch';
+      case '0049':
+        return 'de';
+      case '0034':
+        return 'es';
+      case '0033':
+        return 'fr';
+      case '0044':
+        return 'gb';
+      case '0039':
+        return 'it';
+      default:
+        throw new Error(`Unhandled country for line ${this.serviceName}`);
+    }
+  };
+
   TelephonyGroupLine.prototype.getPhone = function getPhone() {
     const self = this;
 
