@@ -4,6 +4,8 @@
   "kube_node_pool_node_count": "Number of nodes",
   "kube_node_pool_monthly_billing": "Monthly rate ",
   "kube_node_pool_edit": "Edit pool",
+  "kube_node_pool_nodes": "See nodes",
+  "kube_node_pool_scale": "Configure node pool size",
   "kube_node_pool_delete": "Delete pool",
   "kube_node_pool_add": "Add a node pool",
   "kube_node_pool_refreh": "Reload table",
@@ -11,5 +13,7 @@
   "kube_node_pool_anti_affinity": "Anti-affinity",
   "kube_add_billing_type_description": "You can switch from hourly billing to monthly billing for each node in the node pool edit view.",
   "kube_node_pool_enabled": "Enabled",
-  "kube_node_pool_disabled": "Disabled"
+  "kube_node_pool_disabled": "Disabled",
+  "kube_node_pool_autoscale_true": "Enabled",
+  "kube_node_pool_autoscale_false": "Disabled"
 }

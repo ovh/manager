@@ -1,25 +1,4 @@
 <p data-translate="kubernetes_add_node_pool_description"></p>
-<oui-field
-    data-label="{{ ::'kubernetes_add_node_pool_node_count' | translate }}"
-    data-size="xl"
->
-    <oui-numeric
-        id="node-pool-count"
-        name="node-pool-count"
-        data-model="$ctrl.nodeCount"
-        min="$ctrl.nodeMinCount"
-        max="$ctrl.nodeMaxCount"
-        required
-    >
-    </oui-numeric>
-</oui-field>
-
-<oui-message
-    data-type="warning"
-    data-ng-if="!$ctrl.displaySelectedFlavor && $ctrl.nodeCount < 3"
->
-    <p data-translate="kubernetes_add_node_pool_warning"></p>
-</oui-message>
 
 <label
     for="select-flavor"
