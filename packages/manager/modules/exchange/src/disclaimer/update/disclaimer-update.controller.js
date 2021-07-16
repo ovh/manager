@@ -24,7 +24,7 @@ export default class ExchangeUpdateDisclaimerCtrl {
 
   loadOptions() {
     this.loadingData = true;
-
+    document.getElementsByClassName('modal')[0].removeAttribute('tabindex');
     return this.services.wucExchange
       .getUpdateDisclaimerOptions()
       .then((data) => {
