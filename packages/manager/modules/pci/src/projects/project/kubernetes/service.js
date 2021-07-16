@@ -110,12 +110,10 @@ export default class Kubernetes {
     );
   }
 
-  resizeNodePool(projectId, kubeId, nodePoolId, desiredNodes) {
+  resizeNodePool(projectId, kubeId, nodePoolId, kubeNodePool) {
     return this.$http.put(
       `/cloud/project/${projectId}/kube/${kubeId}/nodepool/${nodePoolId}`,
-      {
-        desiredNodes,
-      },
+      kubeNodePool,
     );
   }
 
@@ -182,6 +180,16 @@ export default class Kubernetes {
     return this.OvhApiCloudProjectInstance.v6().query({
       serviceName: projectId,
     }).$promise;
+  }
+
+  updateNodePool(projectId, kubeId, nodePoolId, kubeNodePool) {
+    const { autoscale, desiredNodes, maxNodes, minNodes } = kubeNodePool;
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/kube/${kubeId}/nodepool/${nodePoolId}`,
+        { autoscale, desiredNodes, maxNodes, minNodes },
+      )
+      .then(({ data }) => data);
   }
 
   switchToMonthlyBilling(serviceName, nodeId) {

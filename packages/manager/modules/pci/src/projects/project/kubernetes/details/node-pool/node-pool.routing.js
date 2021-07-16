@@ -15,6 +15,17 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
+      scaleNodePool: /* @ngInject */ ($state, kubeId, projectId) => (
+        nodePoolId,
+        nodePoolName,
+      ) =>
+        $state.go('pci.projects.project.kubernetes.details.nodepools.scale', {
+          kubeId,
+          projectId,
+          nodePoolId,
+          nodePoolName,
+        }),
+
       editNodePool: /* @ngInject */ ($state, kubeId, projectId) => (
         nodePoolId,
         nodePool,

@@ -11,5 +11,7 @@
   "kube_node_pool_anti_affinity": "Ochrona przed koligacją (anti-affinity)",
   "kube_add_billing_type_description": "Będziesz mógł zmienić model rozliczenia dla każdego węzła z płatności za godzinę na abonament miesięczny, przechodząc do widoku „edycja puli węzłów”.",
   "kube_node_pool_enabled": "Aktywny",
-  "kube_node_pool_disabled": "Wyłączony"
+  "kube_node_pool_disabled": "Wyłączony",
+  "kube_node_pool_autoscale_true": "Aktywny",
+  "kube_node_pool_autoscale_false": "Nieaktywny"
 }

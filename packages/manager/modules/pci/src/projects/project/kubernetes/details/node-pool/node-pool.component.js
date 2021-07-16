@@ -4,6 +4,7 @@ import template from './node-pool.html';
 const component = {
   bindings: {
     addNodePool: '<',
+    scaleNodePool: '<',
     cluster: '<',
     deleteNodePool: '<',
     editNodePool: '<',

@@ -1,7 +1,6 @@
 {
   "kube_list_title": "Kubernetes",
   "kube_list_name": "Cluster name",
-  "kube_list_id": "ID",
   "kube_list_region": "Region",
   "kube_list_version": "Version",
   "kube_list_cluster_manage": "Manage cluster",
@@ -10,7 +9,7 @@
   "kube_common_save": "Save",
   "kube_common_cancel": "Cancel",
   "kube_common_delete": "Delete",
-  "kube_common_node_pool_title": "Configure your node pool",
+  "kube_common_node_pool_title": "Configure your node type",
   "kube_common_billing_type_title": "Billing and anti-affinity",
   "kube_common_create_node_pool": "Create a node pool",
   "kube_common_flavor_load_error": "Failed to load nodes: {{message}}",
@@ -20,5 +19,7 @@
   "kubernetes_add_private_network_label": "Private network attached ",
   "kubernetes_add_private_network_none": "None (public IPs)",
   "kubernetes_add_private_network_description": "By default, your worker nodes have a public IPv4. If you choose a private network, the public IPs of these nodes will be used exclusively for administration/linking to the Kubernetes control plane, and your nodes will be assigned an IP on the vLAN of the private network you have chosen.",
-  "kubernetes_add_private_network_add": "Create a private network"
+  "kubernetes_add_private_network_add": "Create a private network",
+  "kube_common_node_pool_autoscaling_title": "Configure node pool size",
+  "kube_list_id": "ID"
 }

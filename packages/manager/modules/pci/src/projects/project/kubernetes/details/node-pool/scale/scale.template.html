@@ -1,0 +1,19 @@
+<form name="scaleAutoscalingForm">
+    <oui-modal
+        data-heading="{{:: 'kube_common_node_pool_autoscaling_title' | translate }}"
+        data-primary-label="{{:: 'kube_common_save' | translate }}"
+        data-secondary-label="{{:: 'kube_common_cancel' | translate }}"
+        data-primary-action="$ctrl.onNodePoolScaleModalValidate()"
+        data-primary-disabled="!$ctrl.autoscaling.isValidScale"
+        data-secondary-action="$ctrl.onNodePoolScaleModalCancel()"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isScaling"
+    >
+        <node-pool-autoscaling
+            data-is-edit-mode="true"
+            data-display-node-pool-sizing="true"
+            data-node-pool="$ctrl.nodePool"
+        >
+        </node-pool-autoscaling>
+    </oui-modal>
+</form>
