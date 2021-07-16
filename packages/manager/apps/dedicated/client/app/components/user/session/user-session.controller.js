@@ -1,5 +1,6 @@
 import isString from 'lodash/isString';
 import set from 'lodash/set';
+import startsWith from 'lodash/startsWith';
 
 angular.module('App').controller(
   'SessionCtrl',
@@ -29,7 +30,15 @@ angular.module('App').controller(
     $onInit() {
       this.$scope.$on('switchUniverse', (event, universe) => {
         this.sidebarNamespace = universe === 'server' ? undefined : 'hpc';
-        this.navbarOptions.universe = universe;
+        this.$transitions.onSuccess({}, (transition) => {
+          // Prevent displaying `server` as the current universe if user is
+          // browsing in account/billing section.
+          if (startsWith(transition.to().name, 'app.account')) {
+            this.navbarOptions.universe = undefined;
+          } else {
+            this.navbarOptions.universe = universe;
+          }
+        });
         this.coreConfig.setUniverse(universe);
       });
 
