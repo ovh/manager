@@ -65,17 +65,11 @@ export default class {
       isDeleting: false,
       poller: null,
     };
-    this.serviceInfos = null;
 
     this.outgoing.isLoading = true;
-    this.$q
-      .all({
-        outgoing: this.fetchOutgoingSms(),
-        serviceInfos: this.fetchServiceInfos(),
-      })
-      .then((results) => {
-        this.outgoing.raw = angular.copy(results.outgoing);
-        this.serviceInfos = results.serviceInfos;
+    this.fetchOutgoingSms()
+      .then((outgoing) => {
+        this.outgoing.raw = angular.copy(outgoing);
       })
       .catch((err) => {
         this.TucToastError(err);
@@ -114,16 +108,6 @@ export default class {
         sender,
       })
       .$promise.then((outgoing) => sortBy(outgoing).reverse());
-  }
-
-  /**
-   * Fetch service infos.
-   * @return {Promise}
-   */
-  fetchServiceInfos() {
-    return this.api.sms.getServiceInfos({
-      serviceName: this.$stateParams.serviceName,
-    }).$promise;
   }
 
   /**
@@ -299,7 +283,9 @@ export default class {
     return this.api.sms
       .getDocument({
         serviceName: this.$stateParams.serviceName,
-        'creationDatetime.from': moment(this.serviceInfos.creation).format(),
+        'creationDatetime.from': moment()
+          .subtract(1, 'years')
+          .format(),
         'creationDatetime.to': moment().format(),
         wayType: 'outgoing',
       })
