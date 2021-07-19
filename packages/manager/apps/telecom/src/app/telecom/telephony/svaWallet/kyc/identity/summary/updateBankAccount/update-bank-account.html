@@ -1,0 +1,33 @@
+<form novalidate name="$ctrl.form" data-ng-submit="$ctrl.confirm()">
+    <oui-modal
+        heading="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_title' | translate }}"
+        primary-label="{{::'telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_confirm' | translate}}"
+        secondary-action="$ctrl.cancel()"
+        secondary-label="{{::'telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_cancel' | translate}}"
+        on-dismiss="$ctrl.cancel()"
+        loading="$ctrl.isLoading"
+    >
+        <oui-message type="error" data-ng-if="$ctrl.errorMessage">
+            <span
+                data-translate="telephony_billingAccount_svaWallet_kyc_identity_summary_update_bankaccount_error"
+                data-translate-values="{ errorMessage: $ctrl.errorMessage }"
+            ></span>
+        </oui-message>
+
+        <oui-field
+            label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_iban' | translate }}"
+            data-error-messages="{ iban: ('telephony_billingAccount_svaWallet_kyc_identity_iban_format_error' | translate) }"
+            size="xl"
+        >
+            <input
+                class="oui-input"
+                name="iban"
+                placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_iban' | translate }}"
+                type="text"
+                ng-model="$ctrl.iban"
+                data-ui-validate="{ iban: '!$ctrl.isValidIban($ctrl.bankAccount.iban)' }"
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>

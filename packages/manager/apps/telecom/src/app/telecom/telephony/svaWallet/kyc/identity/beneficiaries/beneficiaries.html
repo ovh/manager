@@ -1,0 +1,23 @@
+<oui-message type="success" data-ng-if="$ctrl.successMessage">
+    <span data-ng-bind="$ctrl.successMessage"></span>
+</oui-message>
+
+<oui-button
+    variant="secondary"
+    on-click="$ctrl.addBeneficiary()"
+    class="mb-2"
+    data-ng-if="$ctrl.canAddBeneficiaries"
+>
+    <span class="oui-icon oui-icon-add"></span>
+    <span
+        data-translate="telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_action_add"
+    ></span>
+</oui-button>
+
+<telephony-sva-wallet-kyc-beneficiaries-list
+    beneficiaries="$ctrl.beneficiaries"
+    on-edit="$ctrl.editBeneficiary(beneficiary)"
+    on-delete="$ctrl.deleteBeneficiary(beneficiary)"
+    editable="$ctrl.editable"
+>
+</telephony-sva-wallet-kyc-beneficiaries-list>

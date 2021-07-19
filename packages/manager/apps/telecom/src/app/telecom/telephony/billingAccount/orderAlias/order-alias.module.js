@@ -12,6 +12,7 @@ import international from './international';
 import nonGeographical from './nonGeographical';
 import special from './special';
 
+import component from './order-alias.component';
 import routing from './order-alias.routing';
 import service from './order-alias.service';
 
@@ -30,6 +31,7 @@ angular
     special,
   ])
   .config(routing)
+  .component('telecomTelephonyBillingAccountOrderAlias', component)
   .service('TelecomTelephonyBillingAccountOrderAliasService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 

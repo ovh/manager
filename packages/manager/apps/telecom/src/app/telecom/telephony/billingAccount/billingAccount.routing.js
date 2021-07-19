@@ -107,6 +107,11 @@ export default /* @ngInject */ ($stateProvider) => {
       isBillingContact: /* @ngInject */ (coreConfig, serviceInformation) =>
         serviceInformation.contactBilling === coreConfig.getUser().nichandle,
       breadcrumb: /* @ngInject */ (billingAccount) => billingAccount,
+
+      svaWalletLink: /* @ngInject */ ($state, billingAccount) =>
+        $state.href('telecom.telephony.billingAccount.svaWallet', {
+          billingAccount,
+        }),
     },
     translations: { value: ['..', '.', './dashboard'], format: 'json' },
   });

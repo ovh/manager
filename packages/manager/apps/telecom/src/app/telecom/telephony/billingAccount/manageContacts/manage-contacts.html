@@ -17,6 +17,28 @@
             class="mb-5"
             data-translate="telephony_group_manage_contacts_change_info"
         ></p>
+        <div
+            class="alert alert-info mb-5"
+            role="alert"
+            data-ng-if="ManageContactsCtrl.hasAnyLimitedModifications"
+        >
+            <p
+                data-translate="telephony_group_manage_contacts_change_support"
+            ></p>
+            <a
+                class="oui-link_icon"
+                href="{{ ManageContactsCtrl.newSupportTicketLink }}"
+                target="new"
+            >
+                <span
+                    data-translate="telephony_group_manage_contacts_change_support_link"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-arrow-right"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </div>
         <div class="table-responsive">
             <table class="table table-hover table-striped">
                 <thead>
@@ -79,12 +101,12 @@
                             data-title="{{:: 'telephony_group_manage_contacts_nic_admin' | translate }}"
                         >
                             <span
-                                data-ng-if="!contact.editing || sectionId !== 'group'"
+                                data-ng-if="!contact.editing || contact.isModificationLimited || sectionId !== 'group'"
                                 data-ng-bind="contact.value.contactAdmin"
                             >
                             </span>
                             <div
-                                data-ng-if="contact.editing && sectionId === 'group'"
+                                data-ng-if="contact.editing && !contact.isModificationLimited && sectionId === 'group'"
                             >
                                 <input
                                     type="text"
@@ -113,12 +135,12 @@
                             data-title="{{:: 'telephony_group_manage_contacts_nic_billing' | translate }}"
                         >
                             <span
-                                data-ng-if="!contact.editing || sectionId !== 'group'"
+                                data-ng-if="!contact.editing || contact.isModificationLimited || sectionId !== 'group'"
                                 data-ng-bind="contact.value.contactBilling"
                             >
                             </span>
                             <div
-                                data-ng-if="contact.editing && sectionId === 'group'"
+                                data-ng-if="contact.editing && sectionId === 'group' && !contact.isModificationLimited"
                             >
                                 <input
                                     type="text"
@@ -148,20 +170,16 @@
                                         data-ng-if="!contact.editing && !ManageContactsCtrl.isEditing"
                                         data-ng-click="ManageContactsCtrl.editContact(contact)"
                                         data-ng-disabled="!contact.isModifiable"
-                                        data-translate="modify"
-                                    ></button>
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-pen"
+                                            title="{{ 'modify' | translate }}"
+                                        ></span>
+                                    </button>
                                 </div>
                                 <button
                                     type="button"
                                     class="btn btn-default no-transition"
-                                    data-ng-if="contact.editing"
-                                    data-ng-click="ManageContactsCtrl.cancelEdition(contact)"
-                                    data-ng-disabled="contact.submiting"
-                                    data-translate="cancel"
-                                ></button>
-                                <button
-                                    type="button"
-                                    class="btn btn-primary no-transition"
                                     data-ng-if="contact.editing"
                                     data-ng-disabled="contact.submiting || !ManageContactsCtrl.hasChanges(contact) || !ManageContactsCtrl.isContactValid(contact)"
                                     data-ng-click="ManageContactsCtrl.submitChanges(contact)"
@@ -172,7 +190,23 @@
                                         data-size="s"
                                     >
                                     </oui-spinner>
-                                    <span data-translate="submit"></span>
+                                    <span
+                                        data-ng-if="!contact.submiting"
+                                        class="oui-icon oui-icon-check"
+                                        title="{{ 'submit' | translate }}"
+                                    ></span>
+                                </button>
+                                <button
+                                    type="button"
+                                    class="btn btn-default no-transition"
+                                    data-ng-if="contact.editing"
+                                    data-ng-click="ManageContactsCtrl.cancelEdition(contact)"
+                                    data-ng-disabled="contact.submiting"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-close"
+                                        title="{{ 'close' | translate }}"
+                                    ></span>
                                 </button>
                             </div>
                         </td>

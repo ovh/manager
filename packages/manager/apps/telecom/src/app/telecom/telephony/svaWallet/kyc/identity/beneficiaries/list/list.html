@@ -1,0 +1,94 @@
+<div
+    class="oui-datagrid-responsive"
+    data-ng-if="$ctrl.beneficiaries.length > 0"
+>
+    <table
+        class="oui-datagrid"
+        aria-label="{{ :: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_list' | translate }}"
+    >
+        <thead>
+            <tr>
+                <th class="oui-datagrid__header" scope="col">
+                    <span
+                        data-translate="telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_lastname_header"
+                    ></span>
+                </th>
+                <th class="oui-datagrid__header" scope="col">
+                    <span
+                        data-translate="telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_firstname_header"
+                    ></span>
+                </th>
+                <th class="oui-datagrid__header" scope="col">
+                    <span
+                        data-translate="telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_birthdate"
+                    ></span>
+                </th>
+                <th class="oui-datagrid__header" scope="col">
+                    <span
+                        data-translate="telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_birthcity_header"
+                    ></span>
+                </th>
+                <th
+                    class="oui-datagrid__header"
+                    data-ng-if="$ctrl.editable"
+                    scope="col"
+                ></th>
+            </tr>
+        </thead>
+        <tbody aria-hidden="false">
+            <tr
+                class="oui-datagrid__row"
+                data-ng-repeat="beneficiary in $ctrl.beneficiaries track by $index"
+            >
+                <td
+                    class="oui-datagrid__cell "
+                    data-title="{{::'telephony_billingAccount_svaWallet_kyc_documents_type_title' | translate }}"
+                >
+                    <span data-ng-bind="beneficiary.lastname"></span>
+                </td>
+                <td
+                    class="oui-datagrid__cell "
+                    data-title="{{::'telephony_billingAccount_svaWallet_kyc_documents_name_title' | translate }}"
+                >
+                    <span data-ng-bind="beneficiary.firstname"></span>
+                </td>
+                <td
+                    class="oui-datagrid__cell "
+                    data-title="{{::'telephony_billingAccount_svaWallet_kyc_documents_name_title' | translate }}"
+                >
+                    <span
+                        data-ng-bind="beneficiary.dateOfBirth | date: 'shortDate' "
+                    ></span>
+                </td>
+                <td
+                    class="oui-datagrid__cell "
+                    data-title="{{::'telephony_billingAccount_svaWallet_kyc_documents_name_title' | translate }}"
+                >
+                    <span data-ng-bind="beneficiary.cityOfBirth"></span>
+                </td>
+                <td
+                    class="oui-datagrid__cell "
+                    data-title="{{::'telephony_billingAccount_svaWallet_kyc_documents_actions_title' | translate }}"
+                    data-ng-if="$ctrl.editable"
+                >
+                    <oui-action-menu aria-label="Actions" compact>
+                        <oui-action-menu-item
+                            on-click="$ctrl.onEdit({ beneficiary })"
+                        >
+                            <span
+                                data-translate="telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_action_edit"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            on-click="$ctrl.onDelete({ beneficiary })"
+                        >
+                            <span
+                                data-translate="telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_action_delete"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
