@@ -44,7 +44,7 @@
   "domains_operations_nicOperation_DnssecRollKsk": "DNSSEC: Aggiornamento della chiave KSK",
   "domains_operations_nicOperation_DnssecRollZsk": "DNSSEC: Aggiornamento della chiave ZSK",
   "domains_operations_nicOperation_DomainDsUpdate": "Aggiorna i record DS",
-  "domains_operations_nicOperation_DomainHold": "Blocca/Sblocca il tuo dominio",
+  "domains_operations_nicOperation_DomainHold": "Sospendi il dominio",
   "domains_operations_nicOperation_DomainOutgoingTransfer": "Trasferimento in uscita",
   "domains_operations_nicOperation_DnsAnycastUpdate": "Aggiorna DNS Anycast",
   "domains_operations_nicOperation_ContactControl": "Verifica il contatto",
@@ -118,5 +118,6 @@
   "domains_operations_nicOperation_DomainEmailRedirectionsDelete": "Elimina email anonima",
   "domains_operations_nicOperation_DomainAfterMarket": "Trasferimento in entrata attraverso il mercato secondario",
   "domains_operations_nicOperation_DomainRegistryDelete": "Elimina il dominio dal registro",
-  "domains_operations_nicOperation_DomainResourceDelete": "Elimina definitivamente il dominio in OVHcloud"
+  "domains_operations_nicOperation_DomainResourceDelete": "Elimina definitivamente il dominio in OVHcloud",
+  "domains_operations_nicOperation_DomainUnhold": "Riattiva il dominio"
 }
