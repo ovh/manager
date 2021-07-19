@@ -14,6 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('telephony_alias_portability_order_title'),
+      canOrderSpecialPortability: /* @ngInject */ (isSvaWalletValid) =>
+        isSvaWalletValid,
     },
   });
 };

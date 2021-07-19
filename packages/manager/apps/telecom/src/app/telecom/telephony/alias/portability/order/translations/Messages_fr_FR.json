@@ -13,7 +13,7 @@
   "telephony_alias_portability_order_landline": "Un numéro isolé",
   "telephony_alias_portability_order_sda": "Un ou plusieurs numéros appartenant à une tranche de numéros (SDA)",
   "telephony_alias_portability_order_callNumber": "Numéro à porter (format international)",
-  "telephony_alias_portability_order_sda_warning": "Les numéros spéciaux ne pouvantt faire l'objet d'une demande de portabilité en numéro isolé, veuillez choisir la portabilité pour une tranche de numéros (SDA)",
+  "telephony_alias_portability_order_sda_warning": "Les numéros spéciaux ne pouvant faire l'objet d'une demande de portabilité en numéro isolé, veuillez choisir la portabilité pour une tranche de numéros (SDA)",
   "telephony_alias_portability_order_number_international": "N° au format international",
   "telephony_alias_portability_order_callNumber_pattern_error": "Veuillez saisir un numéro au format international (0033… ou +33…).",
   "telephony_alias_portability_order_desireDate": "Date de portabilité souhaitée :",
@@ -92,5 +92,7 @@
   "telephony_order_specific_typology_relationship_label": "Relation client entreprise / administration / association",
   "telephony_order_specific_typology_content_label": "Sonneries, logos",
   "telephony_order_specific_typology_general_label": "Général",
-  "telephony_order_specific_typology_relaxing_label": "Services de détente"
+  "telephony_order_specific_typology_relaxing_label": "Services de détente",
+  "telephony_alias_portability_order_sda_sva_warning": "Pour toute portabilité de numéro spécial, vous devez remplir le formulaire de validation d’identité.",
+  "telephony_alias_portability_order_sda_sva_go_to_kyc": "Vérifier l'identité"
 }

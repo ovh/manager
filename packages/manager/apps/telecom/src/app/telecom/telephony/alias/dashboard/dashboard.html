@@ -95,66 +95,74 @@
             </oui-tile>
         </div>
         <div class="col-sm-4">
-            <oui-tile
-                class="h-100"
-                data-heading="{{:: 'telephony_alias_tile_configuration' | translate }}"
-            >
-                <oui-tile-definition
-                    data-ng-if="$ctrl.alias.featureType !== 'empty' && !$ctrl.hasExpertMode() && !$ctrl.isFeatureTypeObsolete()"
+            <div class="row">
+                <oui-tile
+                    class="h-100 mb-2"
+                    data-heading="{{:: 'telephony_alias_tile_configuration' | translate }}"
                 >
-                    <oui-tile-description>
-                        <img
-                            class="w-75"
-                            data-ng-if="$ctrl.alias"
-                            data-ng-src="assets/images/aliasFeature/schema-{{ $ctrl.groupNumberByFeatureType() }}.svg"
-                            alt=""
-                            data-ng-attr-alt="{{:: $ctrl.alias.featureType }}"
-                        />
-                    </oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    data-term="{{:: 'telephony_alias_configuration_configuration_type' | translate }}"
-                >
-                    <oui-tile-description>
-                        <p data-translate="{{:: $ctrl.featureTypeLabel }}"></p>
-                        <p
-                            class="oui-paragraph"
-                            data-ng-if="$ctrl.hasExpertMode()"
-                            data-ng-bind="'telephony_alias_config_feature_type_' + $ctrl.alias.featureType | translate"
-                        ></p>
-                    </oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    data-ng-if="$ctrl.alias.featureType === 'redirect' || $ctrl.alias.featureType === 'ddi'"
-                    data-term="{{:: 'telephony_alias_configuration_configuration_type_redirect_destination' | translate }}"
-                    data-description="{{:: $ctrl.redirectionInformations }}"
-                ></oui-tile-definition>
-                <div data-ng-if="$ctrl.alias.featureType !== 'empty'">
+                    <oui-tile-definition
+                        data-ng-if="$ctrl.alias.featureType !== 'empty' && !$ctrl.hasExpertMode() && !$ctrl.isFeatureTypeObsolete()"
+                    >
+                        <oui-tile-description>
+                            <img
+                                class="w-75"
+                                data-ng-if="$ctrl.alias"
+                                data-ng-src="assets/images/aliasFeature/schema-{{ $ctrl.groupNumberByFeatureType() }}.svg"
+                                alt=""
+                                data-ng-attr-alt="{{:: $ctrl.alias.featureType }}"
+                            />
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <oui-tile-definition
+                        data-term="{{:: 'telephony_alias_configuration_configuration_type' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <p
+                                data-translate="{{:: $ctrl.featureTypeLabel }}"
+                            ></p>
+                            <p
+                                class="oui-paragraph"
+                                data-ng-if="$ctrl.hasExpertMode()"
+                                data-ng-bind="'telephony_alias_config_feature_type_' + $ctrl.alias.featureType | translate"
+                            ></p>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <oui-tile-definition
+                        data-ng-if="$ctrl.alias.featureType === 'redirect' || $ctrl.alias.featureType === 'ddi'"
+                        data-term="{{:: 'telephony_alias_configuration_configuration_type_redirect_destination' | translate }}"
+                        data-description="{{:: $ctrl.redirectionInformations }}"
+                    ></oui-tile-definition>
+                    <div data-ng-if="$ctrl.alias.featureType !== 'empty'">
+                        <oui-tile-button
+                            data-on-click="$ctrl.$state.go('telecom.telephony.billingAccount.alias.details.configuration')"
+                            data-disabled="$ctrl.isFeatureTypeObsolete()"
+                        >
+                            <span
+                                data-translate="telephony_alias_configuration_configure"
+                            ></span>
+                        </oui-tile-button>
+                        <oui-tile-button
+                            data-on-click="$ctrl.deleteConfiguration()"
+                        >
+                            <span
+                                data-translate="telephony_alias_configuration_delete_configuration"
+                            ></span>
+                        </oui-tile-button>
+                    </div>
                     <oui-tile-button
-                        data-on-click="$ctrl.$state.go('telecom.telephony.billingAccount.alias.details.configuration')"
-                        data-disabled="$ctrl.isFeatureTypeObsolete()"
+                        data-ng-if="$ctrl.alias.featureType === 'empty'"
+                        data-on-click="$ctrl.redirectToChangeTypePage()"
                     >
                         <span
-                            data-translate="telephony_alias_configuration_configure"
+                            data-translate="telephony_alias_configuration_choose"
                         ></span>
                     </oui-tile-button>
-                    <oui-tile-button
-                        data-on-click="$ctrl.deleteConfiguration()"
-                    >
-                        <span
-                            data-translate="telephony_alias_configuration_delete_configuration"
-                        ></span>
-                    </oui-tile-button>
-                </div>
-                <oui-tile-button
-                    data-ng-if="$ctrl.alias.featureType === 'empty'"
-                    data-on-click="$ctrl.redirectToChangeTypePage()"
-                >
-                    <span
-                        data-translate="telephony_alias_configuration_choose"
-                    ></span>
-                </oui-tile-button>
-            </oui-tile>
+                </oui-tile>
+                <telephony-sva-wallet-profile-tile
+                    data-ng-if="$ctrl.showSvaProfile"
+                    sva-wallet="$ctrl.svaWallet"
+                ></telephony-sva-wallet-profile-tile>
+            </div>
         </div>
         <div class="col-sm-4" data-ng-if="$ctrl.hasConsumption()">
             <oui-tile

@@ -16,6 +16,8 @@ export default /* @ngInject */ function TelecomTelephonyAliasOrderSpecialCtrl(
   TelecomTelephonyBillingAccountOrderAliasService,
   TucToast,
   TucToastError,
+  svaWallet,
+  countryEnum,
 ) {
   const self = this;
 
@@ -168,33 +170,56 @@ export default /* @ngInject */ function TelecomTelephonyAliasOrderSpecialCtrl(
   this.order = function order() {
     this.loading.order = true;
     const fields = [
-      'city',
-      'displayUniversalDirectory',
-      'email',
       'firstname',
-      'legalform',
       'name',
-      'phone',
-      'pool',
-      'retractation',
-      'streetName',
-      'zip',
-      'zone',
-      'typology',
-      'range',
-      'ape',
-      'organisation',
-      'siret',
+      'email',
       'socialNomination',
+      'legalform',
+      'siret',
+      'streetName',
+      'streetType',
+      'zip',
+      'cedex',
+      'range',
+      'typology',
+      'country',
+      'city',
+      'adressExtra',
+      'retractation',
+      'displayUniversalDirectory',
+      'pool',
+      'description',
     ];
     const form = pick(this.form, fields);
-    form.country = self.user.country;
+    const companyKind = form.legalform;
+    const legalForm = () => {
+      if (['UE_UNLISTED_COMPANY', 'UNLISTED_COMPANY'].includes(companyKind)) {
+        return 'corporation';
+      }
+
+      if (companyKind === 'MICRO_ENTERPRISE') {
+        return 'individual';
+      }
+
+      if (
+        ['CRAFTSMAN', 'CSE', 'EARL', 'FCP', 'FI', 'FOUNDATION'].includes(
+          companyKind,
+        )
+      ) {
+        return 'other';
+      }
+
+      return companyKind.toLowerCase();
+    };
+    form.legalform = legalForm();
+
     if (form.pool === 1) {
       delete form.pool;
     }
     if (!form.pool) {
       form.specificNumber = this.form[this.form.numberType];
     }
+
     OvhApiOrder.Telephony()
       .v6()
       .orderNumberSpecial(
@@ -258,6 +283,9 @@ export default /* @ngInject */ function TelecomTelephonyAliasOrderSpecialCtrl(
    * Controller initialization
    */
   function init() {
+    self.wallet = svaWallet;
+    self.countryEnum = countryEnum;
+
     self.billingAccount = $stateParams.billingAccount;
     self.loading = {
       init: true,
@@ -268,7 +296,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasOrderSpecialCtrl(
       value: elt.value,
     }));
 
-    self.form = {
+    const defaultForm = {
       amount: find(self.preAmount, {
         value: 1,
       }),
@@ -277,6 +305,24 @@ export default /* @ngInject */ function TelecomTelephonyAliasOrderSpecialCtrl(
       pool: 1,
       legalform: 'corporation',
       displayUniversalDirectory: false,
+    };
+    const wallet = { ...self.wallet };
+
+    self.form = {
+      ...defaultForm,
+      firstname: wallet.representative.firstname,
+      name: wallet.representative.lastname,
+      email: wallet.representative.email,
+      socialNomination: wallet.company.name,
+      legalform: wallet.company.kind.toUpperCase(),
+      siret: wallet.company.identificationNumber,
+      streetName: wallet.representative.addressOfResidence.streetName,
+      streetType: wallet.representative.addressOfResidence.streetType,
+      zip: wallet.representative.postcodeOfResidence,
+      cedex: wallet.representative.addressOfResidence.cedex,
+      country: 'fr',
+      city: wallet.representative.addressOfResidence.cityOfResidence,
+      addressExtra: wallet.representative.addressOfResidence.addressExtra,
     };
 
     return TelecomTelephonyBillingAccountOrderAliasService.getUser()

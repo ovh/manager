@@ -1,0 +1,388 @@
+<h2 data-translate="telephony_billingAccount_svaWallet_kyc_summary_title"></h2>
+<p data-translate="telephony_billingAccount_svaWallet_kyc_summary_message"></p>
+
+<oui-message
+    type="success"
+    data-ng-if="$ctrl.showIBANSuccessMessage || $ctrl.showDocumentSuccessMessage"
+>
+    <span
+        data-ng-if="$ctrl.showIBANSuccessMessage"
+        data-translate="telephony_billingAccount_svaWallet_kyc_summary_iban_confirmation"
+    ></span>
+    <span
+        data-ng-if="$ctrl.showDocumentSuccessMessage"
+        data-translate="telephony_billingAccount_svaWallet_kyc_summary_document_confirmation"
+    ></span>
+</oui-message>
+
+<h3 data-translate="telephony_billingAccount_svaWallet_kyc_identity_title"></h3>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__control">
+        <span
+            data-ng-if="!$ctrl.svaWallet.company.reseller"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_type_pro"
+        ></span>
+
+        <span
+            data-ng-if="$ctrl.svaWallet.company.reseller"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_type_reseller"
+        ></span>
+    </div>
+</div>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_name"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-ng-bind="$ctrl.svaWallet.company.name"
+    ></div>
+</div>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_identification_number"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-ng-bind="$ctrl.svaWallet.company.identificationNumber"
+    ></div>
+</div>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_kind"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-translate="{{ 'telephony_billingAccount_svaWallet_kyc_company_kind_' + $ctrl.svaWallet.company.kind }}"
+    ></div>
+</div>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_description"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-ng-bind="$ctrl.svaWallet.company.description"
+    ></div>
+</div>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_address_street_number"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-ng-bind="$ctrl.svaWallet.representative.addressOfResidence.streetNumber"
+    ></div>
+</div>
+
+<div
+    class="oui-field oui-field_auto"
+    data-ng-if="$ctrl.svaWallet.representative.addressOfResidence.streetNumberExtra"
+>
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_address_street_number_extra"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-ng-bind="$ctrl.svaWallet.representative.addressOfResidence.streetNumberExtra"
+    ></div>
+</div>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_address_street_type"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-ng-bind="$ctrl.svaWallet.representative.addressOfResidence.streetType"
+    ></div>
+</div>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_address_street_name"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-ng-bind="$ctrl.svaWallet.representative.addressOfResidence.streetName"
+    ></div>
+</div>
+
+<div
+    class="oui-field oui-field_auto"
+    data-ng-if="$ctrl.svaWallet.representative.addressOfResidence.addressExtra"
+>
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_address_address_extra"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-ng-bind="$ctrl.svaWallet.representative.addressOfResidence.addressExtra"
+    ></div>
+</div>
+
+<div
+    class="oui-field oui-field_auto"
+    data-ng-if="$ctrl.svaWallet.representative.postcodeOfResidence"
+>
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_representative_postcode_residence"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-ng-bind="$ctrl.svaWallet.representative.postcodeOfResidence"
+    ></div>
+</div>
+
+<div
+    class="oui-field oui-field_auto"
+    data-ng-if="$ctrl.svaWallet.representative.addressOfResidence.cedex"
+>
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_address_cedex"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-ng-bind="$ctrl.svaWallet.representative.addressOfResidence.cedex"
+    ></div>
+</div>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_city_residence"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-ng-bind="$ctrl.svaWallet.representative.cityOfResidence"
+    ></div>
+</div>
+
+<div
+    class="oui-field oui-field_auto"
+    data-ng-if="$ctrl.svaWallet.representative.addressOfResidence.urbanDistrict"
+>
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_address_urban_district"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-ng-bind="$ctrl.svaWallet.representative.addressOfResidence.urbanDistrict"
+    ></div>
+</div>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_country_residence"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-translate="{{ 'telephony_billingAccount_svaWallet_kyc_country_' + $ctrl.svaWallet.representative.countryOfResidence }}"
+    ></div>
+</div>
+
+<h3
+    data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_title"
+></h3>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_lastname"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-ng-bind="$ctrl.svaWallet.representative.lastname"
+    ></div>
+</div>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_firstname"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-ng-bind="$ctrl.svaWallet.representative.firstname"
+    ></div>
+</div>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_birthdate"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-ng-bind="$ctrl.svaWallet.representative.dateOfBirth | date: 'shortDate'"
+    ></div>
+</div>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_birthcity"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-ng-bind="$ctrl.svaWallet.representative.cityOfBirth"
+    ></div>
+</div>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_birthcountry"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-translate="{{ 'telephony_billingAccount_svaWallet_kyc_country_' + $ctrl.svaWallet.representative.countryOfBirth }}"
+    ></div>
+</div>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_email"
+        ></label>
+    </div>
+    <div
+        class="oui-field__control"
+        data-ng-bind="$ctrl.svaWallet.representative.email"
+    ></div>
+</div>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_nationality"
+        ></label>
+    </div>
+    <div class="oui-field__control">
+        <span
+            data-ng-repeat="nationality in $ctrl.svaWallet.representative.nationality track by $index"
+        >
+            <span
+                data-translate="{{ 'telephony_billingAccount_svaWallet_kyc_country_' + nationality }}"
+            ></span>
+            <span data-ng-if="!$last">-</span>
+        </span>
+    </div>
+</div>
+
+<h3
+    data-translate="telephony_billingAccount_svaWallet_kyc_summary_bankaccount_title"
+></h3>
+
+<div class="oui-field oui-field_auto">
+    <div class="oui-field__header ng-scope">
+        <label
+            class="oui-field__label ng-binding"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_iban"
+        ></label>
+    </div>
+    <div class="oui-field__control" data-ng-bind="$ctrl.bankAccount.iban"></div>
+
+    <oui-button
+        variant="link"
+        icon-right="oui-icon-arrow-right"
+        on-click="$ctrl.updateBankAccount()"
+    >
+        <span
+            data-translate="telephony_billingAccount_svaWallet_kyc_summary_bankaccount_edit"
+        ></span>
+    </oui-button>
+</div>
+
+<h3
+    data-ng-if="$ctrl.svaWallet.company.beneficiaries.length < 4"
+    data-translate="telephony_billingAccount_svaWallet_kyc_summary_beneficiaries_title"
+></h3>
+
+<div
+    class="oui-field oui-field_auto"
+    data-ng-if="$ctrl.svaWallet.representative.isBeneficiary"
+>
+    <div
+        class="oui-field__control"
+        data-translate="telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_representativeIsBeneficiary"
+    ></div>
+</div>
+
+<telephony-sva-wallet-kyc-beneficiaries
+    beneficiaries="$ctrl.svaWallet.company.beneficiaries"
+    representative-is-beneficiary="$ctrl.svaWallet.representative.isBeneficiary"
+></telephony-sva-wallet-kyc-beneficiaries>
+
+<h3
+    data-translate="telephony_billingAccount_svaWallet_kyc_summary_documents_title"
+></h3>
+
+<telephony-sva-wallet-kyc-identity-documents-list
+    data-ng-if="$ctrl.documents.length"
+    documents="$ctrl.documents"
+    document-type-enum="$ctrl.documentTypeEnum"
+    document-nature-enum="$ctrl.documentNatureEnum"
+    upload-document="$ctrl.uploadDocument"
+    on-document-change="$ctrl.onDocumentChange(document)"
+    update
+></telephony-sva-wallet-kyc-identity-documents-list>
