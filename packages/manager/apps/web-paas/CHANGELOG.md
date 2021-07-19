@@ -1,3 +1,13 @@
+## [1.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@1.1.2...@ovh-ux/manager-web-paas-app@1.1.3) (2021-07-19)
+
+
+### Bug Fixes
+
+* **webpaas:** fix dependency issue ([f490445](https://github.com/ovh/manager/commit/f4904457eed63e4172cb20abdca1d30b8c709fd5)), closes [#MANAGER-7136](https://github.com/ovh/manager/issues/MANAGER-7136)
+* **webpaas:** fix storage translation ([576663a](https://github.com/ovh/manager/commit/576663aaf8cc9bf0d8d8bbecbc502e5aa7648629)), closes [#MANAGER-7136](https://github.com/ovh/manager/issues/MANAGER-7136)
+
+
+
 ## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@1.1.1...@ovh-ux/manager-web-paas-app@1.1.2) (2021-06-11)
 
 

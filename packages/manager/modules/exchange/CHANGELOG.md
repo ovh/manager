@@ -1,3 +1,13 @@
+## [2.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@2.3.5...@ovh-ux/manager-exchange@2.3.6) (2021-07-19)
+
+
+### Bug Fixes
+
+* **exchange:** not able to export external contacts ([30eb668](https://github.com/ovh/manager/commit/30eb6681855036e1491d45820079732d4fb65fc9)), closes [#DTRSD-41456](https://github.com/ovh/manager/issues/DTRSD-41456)
+* **exchange:** remove version test on get display value ([2b8eaf3](https://github.com/ovh/manager/commit/2b8eaf3c4dd463c941fec336054e36ad1194b728))
+
+
+
 ## [2.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@2.3.4...@ovh-ux/manager-exchange@2.3.5) (2021-06-23)
 
 
