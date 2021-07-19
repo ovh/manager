@@ -1,6 +1,4 @@
 import template from './order-alias.html';
-import mainTemplate from './order-alias-main.html';
-import controller from './order-alias.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecom.telephony.billingAccount.orderAlias', {
@@ -10,9 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
         template,
       },
       'telecomTelephonyBillingAccountOrderAliasView@telecom.telephony.billingAccount.orderAlias': {
-        template: mainTemplate,
-        controller,
-        controllerAs: 'AliasOrderCtrl',
+        component: 'telecomTelephonyBillingAccountOrderAlias',
       },
     },
     resolve: {
