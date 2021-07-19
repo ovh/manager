@@ -45,6 +45,9 @@ export default class XdslStatisticsCtrl {
     this.attenuation = {
       period: 'preview',
     };
+    this.errors = {
+      period: 'preview',
+    };
 
     const PingStatsPromise = this.getPingStatistics(this.ping.period).then(() =>
       this.getTrafficStatistics(this.traffic.period),
@@ -143,6 +146,9 @@ export default class XdslStatisticsCtrl {
    *          - ping
    *          - traffic:upload,
    *          - traffic:download,
+   *          - error:hec,
+   *          - error:fec,
+   *          - error:crc
    * @param {String} period Period to request :
    *          - daily
    *          - monthly
@@ -536,6 +542,102 @@ export default class XdslStatisticsCtrl {
       })
       .finally(() => {
         this.attenuation.loading = false;
+      });
+  }
+
+  /**
+   * Get errors statistic for the line
+   * @param {String} period Period to request :
+   *          - daily
+   *          - monthly
+   *          - preview
+   *          - weekly
+   *          - yearly
+   * @return {promise}
+   */
+  getErrorsStatistics(period) {
+    this.errors.loading = true;
+    return this.$q
+      .all({
+        hec: this.getLinesStatistics('error:hec', period),
+        fec: this.getLinesStatistics('error:fec', period),
+        crc: this.getLinesStatistics('error:crc', period),
+      })
+      .then((stats) => {
+        this.errors.haveSeries = !!(
+          stats.hec.length &&
+          stats.fec.length &&
+          stats.crc.length
+        );
+
+        this.errors.chart = new this.TucChartjsFactory(
+          angular.copy(this.PACK_XDSL_STATISTICS.chart),
+        );
+
+        this.errors.chart.setAxisOptions('yAxes', {
+          type: 'linear',
+        });
+
+        this.errors.chart.addSerie(
+          this.$translate.instant('xdsl_statistics_hec_label'),
+          map(stats.hec, (point) => ({
+            x: point[0],
+            y: point[1],
+          })),
+          {
+            dataset: {
+              fill: true,
+              borderWidth: 1,
+            },
+          },
+        );
+
+        this.errors.chart.addSerie(
+          this.$translate.instant('xdsl_statistics_fec_label'),
+          map(stats.fec, (point) => ({
+            x: point[0],
+            y: point[1],
+          })),
+          {
+            dataset: {
+              fill: true,
+              borderWidth: 1,
+            },
+          },
+        );
+
+        this.errors.chart.addSerie(
+          this.$translate.instant('xdsl_statistics_crc_label'),
+          map(stats.crc, (point) => ({
+            x: point[0],
+            y: point[1],
+          })),
+          {
+            dataset: {
+              fill: true,
+              borderWidth: 1,
+            },
+          },
+        );
+
+        if (!stats.hec.length && !stats.fec.length && !stats.crc.length) {
+          this.errors.chart.options.scales.xAxes = [];
+        }
+
+        this.errors.chart.setTooltipCallback('label', (item) =>
+          this.$translate.instant('xdsl_statistics_count', {
+            value: item.yLabel.toFixed(1),
+          }),
+        );
+
+        this.errors.chart.setYLabel(
+          this.$translate.instant('xdsl_statistics_count_legend'),
+        );
+
+        return this.errors.chart;
+      })
+      .finally(() => {
+        this.errors.loading = false;
       });
   }
 }
