@@ -26,5 +26,4 @@ import './configuration/configuration.bundle';
 import './dedicated/dedicated.bundle';
 import './double-authentication/double-authentication.bundle';
 import './download/download.bundle';
-import './ip/ip.bundle';
-import './license/license.bundle';
+import './ip/ip.module';
