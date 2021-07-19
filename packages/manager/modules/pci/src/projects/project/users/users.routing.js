@@ -86,15 +86,6 @@ export default /* @ngInject */ ($stateProvider) => {
         projectId,
       ) => (user) =>
         PciProjectsProjectUsersService.regeneratePassword(projectId, user),
-
-      generateS3Credentials: /* @ngInject */ (
-        PciProjectsProjectUsersService,
-        projectId,
-      ) => (user) =>
-        PciProjectsProjectUsersService.generateS3Credentials(
-          projectId,
-          user.id,
-        ),
     },
   });
 };

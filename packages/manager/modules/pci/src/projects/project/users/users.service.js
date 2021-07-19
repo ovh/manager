@@ -146,10 +146,4 @@ export default class PciProjectsProjectUsersService {
         };
       });
   }
-
-  generateS3Credentials(projectId, userId) {
-    return this.$http
-      .post(`/cloud/project/${projectId}/user/${userId}/s3Credentials`)
-      .then(({ data }) => data);
-  }
 }
