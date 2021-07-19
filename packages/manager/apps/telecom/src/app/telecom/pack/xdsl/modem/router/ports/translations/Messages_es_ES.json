@@ -7,7 +7,7 @@
   "xdsl_modem_ports_port_end": "Puerto final",
   "xdsl_modem_ports_protocol": "Protocolo",
   "xdsl_modem_ports_internal_client": "IP de destino",
-  "xdsl_modem_ports_internal_port": "Puerto interno",
+  "xdsl_modem_ports_internal_port": "Puerto interno inicial",
   "xdsl_modem_ports_internal_port_tooltip": "Si el puerto final es distinto del puerto inicial, la redirección se hará a un rango de puertos internos de tamaño equivalente que empiecen por el valor indicado en «Puerto interno».",
   "xdsl_modem_ports_add": "Añadir una redirección de puertos",
   "xdsl_modem_ports_delete_really": "¿Seguro que quiere eliminar la redirección de puertos?",
@@ -19,7 +19,8 @@
   "xdsl_modem_ports_firewall_info": "Para garantizar que las reglas de redirección funcionen correctamente, el cortafuegos del módem debe estar desactivado.",
   "xdsl_modem_ports_firewall_explaination": "La seguridad de su red no se verá afectada. El cortafuegos solo dejará pasar las peticiones entrantes destinadas a la IP en la que se aplique una regla de redirección.",
   "xdsl_modem_ports_read_error": "¡Vaya! No se han podido leer las redirecciones de puertos.",
-  "xdsl_modem_ports_add_error": "No se ha podido añadir la redirección de puerto <strong>{{ name }}</strong>.",
+  "xdsl_modem_ports_add_error": "No es posible añadir la redirección de puerto <strong>{{ name }}</strong>: {{ reason }}",
   "xdsl_modem_ports_edit_error": "No se ha podido actualizar la redirección de puerto <strong>{{ name }}</strong>.",
-  "xdsl_modem_ports_del_error": "No se ha podido actualizar la redirección de puerto <strong>{{ name }}</strong>."
+  "xdsl_modem_ports_del_error": "No se ha podido actualizar la redirección de puerto <strong>{{ name }}</strong>.",
+  "xdsl_modem_ports_internal_port_end": "Puerto interno final"
 }
