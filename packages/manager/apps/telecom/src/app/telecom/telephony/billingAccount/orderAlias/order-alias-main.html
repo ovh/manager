@@ -1,10 +1,10 @@
-<div class="text-center" data-ng-if="AliasOrderCtrl.loading.init">
+<div class="text-center" data-ng-if="$ctrl.loading.init">
     <oui-spinner></oui-spinner>
 </div>
 
 <tuc-toast-message></tuc-toast-message>
 
-<div class="row" data-ng-if="!AliasOrderCtrl.loading.init">
+<div class="row" data-ng-if="!$ctrl.loading.init">
     <div class="col-md-7 col-sm-12">
         <div class="widget-presentation mb-5">
             <h2
@@ -14,7 +14,7 @@
 
             <div
                 class="telephony-order mb-3 row"
-                data-ng-repeat="offer in AliasOrderCtrl.offers track by offer.id"
+                data-ng-repeat="offer in $ctrl.offers track by offer.id"
             >
                 <div class="col-md-7 col-sm-12">
                     <h5 class="oui-heading_5">
@@ -58,9 +58,19 @@
                         data-ng-disabled="!offer.withoutTax"
                         data-uib-tooltip="{{ offer.tip | translate }}"
                         data-tooltip-placement="left"
+                        data-ng-if="offer.id !== 'special' || $ctrl.canOrderSpecial"
                     >
                         <i class="ovh-font ovh-font-cart"></i>
                     </a>
+
+                    <oui-button
+                        data-variant="primary"
+                        data-size="l"
+                        data-on-click="$ctrl.goToSvaWallet()"
+                        data-ng-if="offer.id === 'special' && !$ctrl.canOrderSpecial"
+                    >
+                        <span data-translate="telephony_order_goto_kyc"></span>
+                    </oui-button>
                 </div>
             </div>
             <!-- /.telephony-order -->
