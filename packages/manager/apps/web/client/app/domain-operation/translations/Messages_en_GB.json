@@ -44,7 +44,7 @@
   "domains_operations_nicOperation_DnssecRollKsk": "DNSSEC: KSK rotation",
   "domains_operations_nicOperation_DnssecRollZsk": "DNSSEC: ZSK rotation",
   "domains_operations_nicOperation_DomainDsUpdate": "DS records update",
-  "domains_operations_nicOperation_DomainHold": "Domain locking/unlocking",
+  "domains_operations_nicOperation_DomainHold": "Domain suspension",
   "domains_operations_nicOperation_DomainOutgoingTransfer": "Outgoing transfer",
   "domains_operations_nicOperation_DnsAnycastUpdate": "Anycast DNS update",
   "domains_operations_nicOperation_ContactControl": "Contact verification",
@@ -118,5 +118,6 @@
   "domains_operations_nicOperation_DomainEmailRedirectionsDelete": "Delete anonymised email",
   "domains_operations_nicOperation_DomainAfterMarket": "Incoming transfer via secondary market",
   "domains_operations_nicOperation_DomainRegistryDelete": "Delete a domain name at the registry",
-  "domains_operations_nicOperation_DomainResourceDelete": "Permanently delete a domain name at OVHcloud"
+  "domains_operations_nicOperation_DomainResourceDelete": "Permanently delete a domain name at OVHcloud",
+  "domains_operations_nicOperation_DomainUnhold": "Domain reactivation"
 }
