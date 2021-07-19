@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import map from 'lodash/map';
-import { PACK_XDSL_STATISTICS } from './statistics.constant';
+import { PACK_XDSL_STATISTICS, PREVIEW } from './statistics.constant';
 
 export default class XdslStatisticsCtrl {
   /* @ngInject */
@@ -31,19 +31,22 @@ export default class XdslStatisticsCtrl {
     this.periodOptions = this.XDSL.statisticsPeriodEnum;
 
     this.synchronization = {
-      period: 'preview',
+      period: PREVIEW,
     };
     this.traffic = {
-      period: 'preview',
+      period: PREVIEW,
     };
     this.ping = {
-      period: 'preview',
+      period: PREVIEW,
     };
     this.snr = {
-      period: 'preview',
+      period: PREVIEW,
     };
     this.attenuation = {
-      period: 'preview',
+      period: PREVIEW,
+    };
+    this.errors = {
+      period: PREVIEW,
     };
 
     const PingStatsPromise = this.getPingStatistics(this.ping.period).then(() =>
@@ -54,7 +57,9 @@ export default class XdslStatisticsCtrl {
       return this.$q.all([
         this.getSNRstatistics(this.snr.period).then(() =>
           this.getAttenuationStatistics(this.attenuation.period).then(() =>
-            this.getSynchronizationStatistics(this.synchronization.period),
+            this.getSynchronizationStatistics(
+              this.synchronization.period,
+            ).then(() => this.getErrorsStatistics(this.errors.period)),
           ),
         ),
         PingStatsPromise,
@@ -113,6 +118,9 @@ export default class XdslStatisticsCtrl {
    *          - attenuation:download,
    *          - synchronization:upload,
    *          - synchronization:download
+   *          - error:hec,
+   *          - error:fec,
+   *          - error:crc
    * @param {String} period Period to request :
    *          - daily
    *          - monthly
@@ -537,5 +545,79 @@ export default class XdslStatisticsCtrl {
       .finally(() => {
         this.attenuation.loading = false;
       });
+  }
+
+  /**
+   * Get errors statistic for the line
+   * @param {String} period Period to request :
+   *          - daily
+   *          - monthly
+   *          - preview
+   *          - weekly
+   *          - yearly
+   * @return {promise}
+   */
+  getErrorsStatistics(period) {
+    this.errors.loading = true;
+    return this.$q
+      .all({
+        hec: this.getLinesStatistics('error:hec', period),
+        fec: this.getLinesStatistics('error:fec', period),
+        crc: this.getLinesStatistics('error:crc', period),
+      })
+      .then((stats) => {
+        this.errors.haveSeries = Object.values(stats).every(
+          (stat) => stat.length,
+        );
+
+        this.errors.chart = new this.TucChartjsFactory(
+          angular.copy(this.PACK_XDSL_STATISTICS.chart),
+        );
+
+        this.errors.chart.setAxisOptions('yAxes', {
+          type: 'linear',
+        });
+
+        this.addErrorsSeries(stats.hec, 'xdsl_statistics_hec_label');
+        this.addErrorsSeries(stats.fec, 'xdsl_statistics_fec_label');
+        this.addErrorsSeries(stats.crc, 'xdsl_statistics_crc_label');
+
+        if (!stats.hec.length && !stats.fec.length && !stats.crc.length) {
+          this.errors.chart.options.scales.xAxes = [];
+        }
+
+        this.errors.chart.setTooltipCallback('label', (item) =>
+          this.$translate.instant('xdsl_statistics_count', {
+            value: item.yLabel.toFixed(1),
+          }),
+        );
+
+        this.errors.chart.setYLabel(
+          this.$translate.instant('xdsl_statistics_count_legend'),
+        );
+
+        return this.errors.chart;
+      })
+      .finally(() => {
+        this.errors.loading = false;
+      });
+  }
+
+  /**
+   * Add error statistic to serie to prevent duplicate code
+   * @param {Array} stats : stats to add (HEC, FEC or CRC)
+   * @param {String} label : label to display for adding serie
+   */
+  addErrorsSeries(stats, label) {
+    this.errors.chart.addSerie(
+      this.$translate.instant(label),
+      stats.map(([x, y]) => ({ x, y })),
+      {
+        dataset: {
+          fill: true,
+          borderWidth: 1,
+        },
+      },
+    );
   }
 }

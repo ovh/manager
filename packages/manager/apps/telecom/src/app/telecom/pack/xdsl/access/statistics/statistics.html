@@ -243,5 +243,55 @@
                 ></div>
             </div>
         </li>
+
+        <!-- Errors HEC/FEC/CRC -->
+        <li class="oui-tile__item">
+            <div class="oui-tile__definition">
+                <h5
+                    class="mb-2"
+                    data-translate="xdsl_statistics_errors_title"
+                ></h5>
+
+                <form
+                    class="form-horizontal"
+                    data-ng-if="XdslStatistics.errors.haveSeries"
+                >
+                    <div class="form-group">
+                        <label
+                            for="errorsPeriod"
+                            class="col-xs-3 col-md-2 control-label text-left"
+                            data-translate="xdsl_statistics_period"
+                        >
+                        </label>
+                        <div class="col-xs-9 col-md-4 clearfix">
+                            <select
+                                id="errorsPeriod"
+                                name="errorsPeriod"
+                                class="form-control"
+                                data-ng-disabled="XdslStatistics.errors.loading"
+                                data-ng-change="XdslStatistics.getErrorsStatistics(XdslStatistics.errors.period)"
+                                data-ng-model="XdslStatistics.errors.period"
+                                data-ng-options="'xdsl_statistics_' + period  + '_label'| translate for period in XdslStatistics.periodOptions"
+                            >
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+                <div
+                    data-tuc-chartjs="XdslStatistics.errors.chart"
+                    class="chart-container"
+                >
+                </div>
+
+                <div
+                    class="my-3 alert alert-warning"
+                    role="alert"
+                    data-ng-if="!XdslStatistics.errors.haveSeries && !XdslStatistics.errors.loading"
+                    data-translate="xdsl_statistics_error"
+                >
+                </div>
+            </div>
+        </li>
     </ul>
 </div>
