@@ -1,3 +1,12 @@
+## [1.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.5.2...@ovh-ux/manager-support@1.5.3) (2021-07-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1025] ([d86ee70](https://github.com/ovh/manager/commit/d86ee70721ee330d7ca3081085cee5084e6a0cf9))
+
+
+
 ## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.5.1...@ovh-ux/manager-support@1.5.2) (2021-06-29)
 
 

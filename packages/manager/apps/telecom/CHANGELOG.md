@@ -1,3 +1,14 @@
+## [13.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.24.0...@ovh-ux/manager-telecom@13.24.1) (2021-07-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1059] ([5dc18c9](https://github.com/ovh/manager/commit/5dc18c90aa84a0882bcd56f80371425b8e52a17d))
+* **i18n:** add missing translations [CDS 1061] ([1fe0f30](https://github.com/ovh/manager/commit/1fe0f30e30c78554c83512243693cdd0c7c7e14e))
+* **telecom:** use line country when ordering phone ([#5261](https://github.com/ovh/manager/issues/5261)) ([60c99d7](https://github.com/ovh/manager/commit/60c99d72f52f857e88262ec958f2b42c24a606a9))
+
+
+
 # [13.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.23.1...@ovh-ux/manager-telecom@13.24.0) (2021-07-07)
 
 

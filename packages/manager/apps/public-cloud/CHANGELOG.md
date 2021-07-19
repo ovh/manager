@@ -1,3 +1,12 @@
+## [4.15.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.15.4...@ovh-ux/manager-public-cloud@4.15.5) (2021-07-19)
+
+
+### Bug Fixes
+
+* **redirection:** avoid redirection loop during lazyloading ([#5169](https://github.com/ovh/manager/issues/5169)) ([23e2db1](https://github.com/ovh/manager/commit/23e2db12d691618f79b12be150d15a07ab4ed3a6))
+
+
+
 ## [4.15.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.15.3...@ovh-ux/manager-public-cloud@4.15.4) (2021-07-01)
 
 
