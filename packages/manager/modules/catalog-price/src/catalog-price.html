@@ -12,6 +12,12 @@
                         data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.interval}}"
                     ></span>
                 </span>
+                <span data-ng-if="$ctrl.intervalUnit">
+                    &#47;
+                    <span
+                        data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.intervalUnit }}"
+                    ></span>
+                </span>
             </strong>
             <small
                 data-ng-if="::!$ctrl.isUndefined($ctrl.tax)"
@@ -35,6 +41,12 @@
                     &#47;
                     <span
                         data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.interval}}"
+                    ></span>
+                </span>
+                <span data-ng-if="$ctrl.intervalUnit">
+                    &#47;
+                    <span
+                        data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.intervalUnit }}"
                     ></span>
                 </span>
             </strong>
@@ -63,6 +75,12 @@
                     data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.interval}}"
                 ></span>
             </span>
+            <span data-ng-if="$ctrl.intervalUnit">
+                &#47;
+                <span
+                    data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.intervalUnit }}"
+                ></span>
+            </span>
         </strong>
         <strong
             data-ng-if="::$ctrl.isUSFormat()"
@@ -73,6 +91,12 @@
                 &#47;
                 <span
                     data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.interval}}"
+                ></span>
+            </span>
+            <span data-ng-if="$ctrl.intervalUnit">
+                &#47;
+                <span
+                    data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.intervalUnit }}"
                 ></span>
             </span>
         </strong>
