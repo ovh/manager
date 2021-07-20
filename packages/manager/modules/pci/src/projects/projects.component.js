@@ -12,6 +12,8 @@ export default {
     isValidHdsSupportLevel: '<',
     projects: '<',
     terminateProject: '<',
+    trackPage: '<',
+    sendTrack: '<',
   },
   controller,
   template,

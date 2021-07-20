@@ -6,7 +6,8 @@ import Quota from './quota.class';
 
 export default class {
   /* @ngInject */
-  constructor($q, ovhUserPref, OvhApiCloudProjectQuota, publicCloud) {
+  constructor($http, $q, ovhUserPref, OvhApiCloudProjectQuota, publicCloud) {
+    this.$http = $http;
     this.$q = $q;
     this.ovhUserPref = ovhUserPref;
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
@@ -62,5 +63,10 @@ export default class {
         serviceName: projectId,
       })
       .$promise.then((quotas) => map(quotas, (quota) => new Quota(quota)));
+  }
+
+  getOrderFollowUp(orderId) {
+    const endPoint = `/me/order/${orderId}/followUp`;
+    return this.$http.get(endPoint).then(({ data }) => data);
   }
 }
