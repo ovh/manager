@@ -6,6 +6,7 @@ const component = {
     block: '<',
     convertToUcents: '<',
     interval: '<?',
+    intervalUnit: '@?',
     price: '<',
     tax: '<',
     user: '<',
