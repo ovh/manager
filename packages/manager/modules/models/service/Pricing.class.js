@@ -1,19 +1,19 @@
 import { convertLanguageFromOVHToBCP47 } from '@ovh-ux/manager-config';
 
 export default class Pricing {
-  constructor({ duration, price, pricingMode }, locale) {
+  constructor({ duration, price, pricingMode, interval }, locale) {
     Object.assign(this, {
       duration,
       price,
       pricingMode,
+      interval,
     });
 
     this.locale = locale;
 
     this.price.text = price.text || this.getPriceAsText();
 
-    this.monthlyPriceValue =
-      this.price.value / moment.duration(this.duration).asMonths();
+    this.monthlyPriceValue = this.price.value / this.interval;
   }
 
   getPriceAsText(price = this.price.value) {
