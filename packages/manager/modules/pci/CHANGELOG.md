@@ -1,3 +1,12 @@
+# [5.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.32.0...@ovh-ux/manager-pci@5.33.0) (2021-07-20)
+
+
+### Features
+
+* add anti_fraud step check ([6f757a4](https://github.com/ovh/manager/commit/6f757a41ce5f5bc4268849b2f627e198002c2b38))
+
+
+
 # [5.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.31.0...@ovh-ux/manager-pci@5.32.0) (2021-07-19)
 
 
