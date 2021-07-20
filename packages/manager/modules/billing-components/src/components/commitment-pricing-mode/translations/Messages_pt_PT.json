@@ -1,0 +1,7 @@
+{
+  "billing_commitment_payment_description": "Obtenha um desconto adicional de {{ discount }}% na sua configuração de hardware pagando a totalidade imediatamente.",
+  "billing_commitment_payment_periodic": "Pagamento mensal",
+  "billing_commitment_payment_upfront": "Pagamento da totalidade",
+  "billing_commitment_payment_upfront_savings": "Economize {{ price }} adicionais",
+  "billing_commitment_payment_monthly": "{{ price }}/mês durante {{ duration }} meses"
+}
