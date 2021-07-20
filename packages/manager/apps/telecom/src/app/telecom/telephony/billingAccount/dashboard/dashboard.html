@@ -20,6 +20,9 @@
 
     <tuc-toast-message></tuc-toast-message>
 
+    <telephony-sva-wallet-status-banner
+        sva-wallet="DashboardCtrl.svaWallet"
+    ></telephony-sva-wallet-status-banner>
     <div
         class="row d-md-flex mb-5"
         data-ng-if="!DashboardCtrl.loading.init && DashboardCtrl.group"
@@ -188,34 +191,42 @@
                 </div>
             </div>
         </div>
-
         <div class="col-xs-12 col-md-4">
-            <div class="oui-tile h-100 mb-5">
-                <h3
-                    class="oui-tile__title oui-heading_3"
-                    data-translate="telephony_group_billing_dashboard_consumption_title"
-                ></h3>
-                <div class="oui-tile__body">
-                    <div class="oui-tile__item">
-                        <div class="oui-tile__definition text-center">
-                            <group-consumption-pie-chart
-                                data-dataset="DashboardCtrl.consumption"
-                            >
-                            </group-consumption-pie-chart>
-                            <span
-                                data-ng-if="!DashboardCtrl.loading.consumption"
-                            >
+            <div class="row">
+                <div class="oui-tile w-100 h-100 mb-5">
+                    <h3
+                        class="oui-tile__title oui-heading_3"
+                        data-translate="telephony_group_billing_dashboard_consumption_title"
+                    ></h3>
+                    <div class="oui-tile__body">
+                        <div class="oui-tile__item">
+                            <div class="oui-tile__definition textI-center">
+                                <group-consumption-pie-chart
+                                    data-dataset="DashboardCtrl.consumption"
+                                >
+                                </group-consumption-pie-chart>
                                 <span
-                                    data-translate="telephony_group_billing_dashboard_credit_current_out_plan"
-                                ></span>
-                                <span
-                                    class="text-danger"
-                                    data-ng-bind="DashboardCtrl.group.currentOutplan.text"
-                                ></span>
-                            </span>
+                                    data-ng-if="!DashboardCtrl.loading.consumption"
+                                >
+                                    <span
+                                        data-translate="telephony_group_billing_dashboard_credit_current_out_plan"
+                                    ></span>
+                                    <span
+                                        class="text-danger"
+                                        data-ng-bind="DashboardCtrl.group.currentOutplan.text"
+                                    ></span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <telephony-sva-wallet-profile-tile
+                    class="h100 mb-5"
+                    data-ng-if="DashboardCtrl.showSvaProfile"
+                    sva-wallet="DashboardCtrl.svaWallet"
+                    data-show-repayment-link="true"
+                ></telephony-sva-wallet-profile-tile>
             </div>
         </div>
     </div>
