@@ -1,5 +1,13 @@
 export default class CatalogPricing {
-  constructor({ interval, intervalUnit, commitment, price, capacities, mode }) {
+  constructor({
+    interval,
+    intervalUnit,
+    commitment,
+    price,
+    capacities,
+    mode,
+    engagementConfiguration,
+  }) {
     Object.assign(this, {
       interval,
       intervalUnit,
@@ -7,6 +15,7 @@ export default class CatalogPricing {
       price,
       capacities,
       mode,
+      engagementConfiguration,
     });
 
     this.duration =

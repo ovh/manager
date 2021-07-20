@@ -3,6 +3,7 @@ import {
   Commitment,
   Service,
 } from '@ovh-ux/manager-models';
+import { DEFAULT_DURATION, DEFAULT_TYPE } from './constants';
 
 export default class BillingService {
   /* @ngInject */
@@ -55,5 +56,26 @@ export default class BillingService {
     return this.$http.put(`/services/${serviceId}/billing/engagement/endRule`, {
       strategy,
     });
+  }
+
+  getAvailableEngagementFromCatalog(pricings) {
+    return pricings
+      .map((pricing) => ({
+        ...pricing,
+        priceInUcents: pricing.price,
+        price: {
+          value: pricing.price / 100000000,
+          currencyCode: this.coreConfig.getUser().currency.code,
+        },
+        duration: pricing.engagementConfiguration?.duration || DEFAULT_DURATION,
+        engagementConfiguration: pricing.engagementConfiguration || {
+          type: DEFAULT_TYPE,
+          duration: DEFAULT_DURATION,
+        },
+        pricingMode: pricing.mode,
+      }))
+      .map(
+        (pricing) => new Commitment(pricing, this.coreConfig.getUserLocale()),
+      );
   }
 }

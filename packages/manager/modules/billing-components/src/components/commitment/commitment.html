@@ -40,7 +40,7 @@
             name="duration"
             header="{{:: 'billing_commitment_duration' | translate}}"
             loading="$ctrl.isLoadingService"
-            valid="!!$ctrl.model.duration"
+            valid="$ctrl.model.duration"
         >
             <span
                 data-ng-if="$ctrl.defaultPrice"
@@ -48,40 +48,13 @@
                 data-translate-values="{ price: $ctrl.defaultPrice.price.text }"
             ></span>
 
-            <div class="row mb-1">
-                <div
-                    class="col-md-4"
-                    data-ng-repeat="duration in $ctrl.availableDurations track by duration.duration"
-                >
-                    <oui-select-picker
-                        name="{{:: 'duration-' + duration.duration }}"
-                        model="$ctrl.model.duration"
-                        label="{{:: ('billing_commitment_duration_monthly') | translate:{ months: duration.monthlyDuration } }}"
-                        values="[duration]"
-                        on-change="$ctrl.onDurationChange(modelValue)"
-                    >
-                        <oui-select-picker-description
-                            data-ng-if="duration.savings.value > 0"
-                        >
-                            <span
-                                data-translate="billing_commitment_duration_save"
-                                data-translate-values="{
-                            price: duration.savings.text
-                        }"
-                            ></span>
-                        </oui-select-picker-description>
-                        <oui-select-picker-footer>
-                            <span
-                                class="oui-heading_6"
-                                data-translate="billing_commitment_price_month"
-                                data-translate-values="{
-                                    price: duration.monthlyPrice
-                                }"
-                            ></span>
-                        </oui-select-picker-footer>
-                    </oui-select-picker>
-                </div>
-            </div>
+            <billing-commitment-duration
+                ng-if="$ctrl.availableEngagements"
+                duration="$ctrl.model.duration"
+                pricings="$ctrl.availableEngagements"
+                on-duration-change="$ctrl.onDurationChange(duration)"
+            >
+            </billing-commitment-duration>
         </oui-step-form>
 
         <oui-step-form
@@ -90,42 +63,12 @@
             on-focus="$ctrl.onPaymentStepFocus()"
             loading="$ctrl.isPaymentStepLoading"
         >
-            <span
-                data-ng-if="$ctrl.discount"
-                data-translate="billing_commitment_payment_description"
-                data-translate-values="{ discount: $ctrl.discount }"
-            ></span>
-
-            <div class="row mb-1">
-                <div
-                    class="col-md-4"
-                    data-ng-repeat="engagement in $ctrl.availableEngagements[$ctrl.model.duration.duration] track by engagement.commitmentType"
-                >
-                    <oui-select-picker
-                        name="{{:: 'engagement-' + engagement.commitmentType }}"
-                        model="$ctrl.model.engagement"
-                        label="{{:: ('billing_commitment_payment_' + engagement.commitmentType) | translate }}"
-                        values="[engagement]"
-                    >
-                        <oui-select-picker-description
-                            data-ng-if="engagement.isUpfront()"
-                        >
-                            <span
-                                data-translate="billing_commitment_payment_upfront_savings"
-                                data-translate-values="{ price: $ctrl.savings.text }"
-                            ></span>
-                        </oui-select-picker-description>
-                        <oui-select-picker-description
-                            data-ng-if="!engagement.isUpfront()"
-                        >
-                            <span
-                                data-translate="billing_commitment_payment_monthly"
-                                data-translate-values="{ price: engagement.pricing.monthlyPrice.text,  duration: engagement.durationInMonths}"
-                            ></span>
-                        </oui-select-picker-description>
-                    </oui-select-picker>
-                </div>
-            </div>
+            <billing-commitment-pricing-mode
+                ng-if="$ctrl.pricingModes"
+                pricing-mode="$ctrl.model.engagement"
+                pricing-modes="$ctrl.pricingModes"
+            >
+            </billing-commitment-pricing-mode>
         </oui-step-form>
 
         <oui-step-form

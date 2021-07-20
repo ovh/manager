@@ -1,6 +1,4 @@
-import { groupBy, map, sortBy } from 'lodash-es';
 import { EngagementConfiguration } from '@ovh-ux/manager-models';
-import CommitmentDuration from './CommitmentDuration.class';
 
 export default class {
   /* @ngInject */
@@ -64,25 +62,7 @@ export default class {
       this.service,
     )
       .then((availableEngagements) => {
-        this.availableEngagements = groupBy(
-          availableEngagements,
-          'configuration.duration',
-        );
-        this.availableDurations = sortBy(
-          map(
-            this.availableEngagements,
-            (commitment, duration) =>
-              new CommitmentDuration(duration, commitment, this.defaultPrice),
-          ),
-          'monthlyDuration',
-        );
-        this.model.duration =
-          this.availableDurations.find(
-            (duration) => duration.duration === this.duration,
-          ) || this.availableDurations[0];
-        [this.model.engagement] = this.availableEngagements[
-          this.model.duration.duration
-        ];
+        this.availableEngagements = availableEngagements;
       })
       .catch((error) => {
         this.error = error.data?.message || error.message;
@@ -90,21 +70,10 @@ export default class {
   }
 
   onDurationChange(duration) {
-    const commitments = this.availableEngagements[duration.duration];
-    [this.model.engagement] = commitments;
-  }
-
-  getDiscount() {
-    const commitments = this.availableEngagements[this.model.duration.duration];
-    const upfront = commitments.find((commitment) => commitment.isUpfront());
-    const periodic = commitments.find((commitment) => commitment.isPeriodic());
-
-    if (upfront && periodic) {
-      this.discount = Math.floor(
-        (periodic.totalPrice.value / upfront.totalPrice.value - 1) * 100,
-      );
-      this.savings = periodic.getPriceDiff(upfront);
-    }
+    this.pricingModes = this.availableEngagements.filter(
+      (commitment) => commitment.durationInMonths === duration.monthlyDuration,
+    );
+    [this.model.engagement] = this.pricingModes;
   }
 
   getStartingDate() {
@@ -129,7 +98,6 @@ export default class {
 
   onPaymentStepFocus() {
     this.isPaymentStepLoading = true;
-    this.getDiscount();
     return this.ovhPaymentMethod
       .getDefaultPaymentMethod()
       .then((paymentMethod) => {
