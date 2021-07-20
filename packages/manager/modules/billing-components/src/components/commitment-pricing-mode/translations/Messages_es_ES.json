@@ -1,0 +1,7 @@
+{
+  "billing_commitment_payment_description": "Ahorre un {{ discount }} % adicional en su pedido abonando por adelantado el importe íntegro del servicio.",
+  "billing_commitment_payment_periodic": "Pago de una cuota mensual",
+  "billing_commitment_payment_upfront": "Pago del importe íntegro",
+  "billing_commitment_payment_upfront_savings": "Ahorre {{ price }} adicionales",
+  "billing_commitment_payment_monthly": "{{ price }}/mes durante {{ duration }} meses"
+}
