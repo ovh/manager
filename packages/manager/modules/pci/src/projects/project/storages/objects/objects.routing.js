@@ -49,6 +49,11 @@ export default /* @ngInject */ ($stateProvider) => {
           containerId: container.id,
           isHighPerfStorage: container.isHighPerfStorage,
         }),
+      goToAddUserContainer: /* @ngInject */ ($state, projectId) => (container) =>
+        $state.go('pci.projects.project.storages.objects.addUser', {
+          projectId,
+          containerId: container.id,
+        }),
       containerLink: /* @ngInject */ ($state, projectId) => (container) =>
         $state.href('pci.projects.project.storages.objects.object', {
           projectId,
