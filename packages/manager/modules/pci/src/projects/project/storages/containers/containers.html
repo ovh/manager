@@ -2,6 +2,7 @@
     <div>
         <oui-header
             data-heading="{{:: 'pci_projects_project_storages_containers_' + ($ctrl.archive ? 'archive' : 'object') + '_title' | translate }}"
+            description="{{:: 'pci_projects_project_storages_containers_object_description' | translate}}"
             class="mb-3"
         >
             <oui-guide-menu
@@ -52,6 +53,14 @@
                 ></span>
             </oui-datagrid-column>
             <oui-datagrid-column
+                data-title="'pci_projects_project_storages_containers_offer_label' | translate"
+                data-property="offer"
+                data-type="string"
+                data-sortable
+                data-filterable
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'pci_projects_project_storages_containers_storedObjects_label' | translate"
                 data-property="storedObjects"
                 data-type="number"
@@ -69,6 +78,13 @@
             </oui-datagrid-column>
 
             <oui-action-menu data-compact data-placement="end">
+                <oui-action-menu-item
+                    data-on-click="$ctrl.goToAddUserContainer($row)"
+                >
+                    <span
+                        data-ng-bind="'pci_projects_project_storages_containers_view_add_user_label' | translate"
+                    ></span>
+                </oui-action-menu-item>
                 <oui-action-menu-item data-on-click="$ctrl.viewContainer($row)">
                     <span
                         data-ng-bind="'pci_projects_project_storages_containers_view_' + ($ctrl.archive ? 'archive' : 'object') + '_label' | translate"
@@ -82,6 +98,19 @@
                     ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
+            <oui-datagrid-column
+                data-title="'pci_projects_project_storages_containers_public_label' | translate"
+                data-property="public"
+                data-sortable
+                data-filterable
+            >
+                <oui-switch
+                    model="$value"
+                    disabled="$ctrl.publicToggleLoading"
+                    on-change="$ctrl.onPublicToggle($row)"
+                >
+                </oui-switch>
+            </oui-datagrid-column>
 
             <oui-datagrid-topbar>
                 <button
