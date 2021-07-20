@@ -9,7 +9,6 @@ const component = {
     intervalUnit: '@?',
     price: '<',
     tax: '<',
-    user: '<',
     fromToPrice: '<',
     performRounding: '<?',
     minimumFractionDigits: '<?',
