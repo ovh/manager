@@ -1,0 +1,67 @@
+<oui-modal
+    data-heading="{{ ::'pci_projects_project_storages_containers_container_addUser_object_title' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading"
+>
+    <div data-ng-if="$ctrl.container">
+        <div data-ng-if="$ctrl.addUserStep === 0">
+            <oui-radio-group
+                model="$ctrl.selectedUser"
+                data-on-change="$ctrl.onUserSelect()"
+            >
+                <oui-radio
+                    ng-repeat="user in $ctrl.availableUsers track by $index"
+                    value="user.id"
+                    ><span data-ng-bind="user.description"></span
+                ></oui-radio>
+            </oui-radio-group>
+        </div>
+        <div data-ng-if="$ctrl.addUserStep === 1">
+            <oui-radio-group
+                model="$ctrl.selectedRole"
+                on-change="$ctrl.onRoleSelect(modelValue)"
+            >
+                <oui-radio
+                    ng-repeat="role in $ctrl.OBJECT_CONTAINER_USER_ROLES track by $index"
+                    value="role"
+                    ><span
+                        data-ng-bind="
+                        'pci_projects_project_storages_containers_container_addUser_right_'
+                        + role | translate"
+                    ></span
+                ></oui-radio>
+            </oui-radio-group>
+        </div>
+    </div>
+    <div class="oui-modal__footer">
+        <oui-button
+            data-variant="secondary"
+            data-ng-if="$ctrl.addUserStep === 1"
+            data-size="l"
+            data-on-click="$ctrl.stepBack()"
+        >
+            <span data-translate="Back"></span>
+        </oui-button>
+        <oui-button
+            data-variant="secondary"
+            data-size="l"
+            class="ml-2"
+            data-on-click="$ctrl.goBack()"
+        >
+            <span
+                data-translate="pci_projects_project_storages_containers_container_addUser_cancel_label"
+            ></span>
+        </oui-button>
+        <oui-button
+            data-variant="primary"
+            class="ml-2"
+            data-type="submit"
+            data-size="l"
+            data-on-click="$ctrl.addUserStorage()"
+            data-disabled="$ctrl.isLoading"
+            ><span
+                data-translate="pci_projects_project_storages_containers_container_addUser_submit_label"
+            ></span>
+        </oui-button>
+    </div>
+</oui-modal>
