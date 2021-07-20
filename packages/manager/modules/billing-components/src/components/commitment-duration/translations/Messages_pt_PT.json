@@ -1,0 +1,5 @@
+{
+  "billing_commitment_duration_monthly": "{{ months }} meses",
+  "billing_commitment_duration_save": "Economize {{ price }}",
+  "billing_commitment_price_month": "{{ price }}/mês"
+}
