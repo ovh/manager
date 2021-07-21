@@ -110,18 +110,27 @@
                         <oui-select-picker-description
                             data-ng-if="engagement.isUpfront()"
                         >
-                            <span
-                                data-translate="billing_commitment_payment_upfront_savings"
-                                data-translate-values="{ price: $ctrl.savings.text }"
-                            ></span>
+                            <div
+                                data-translate="billing_commitment_payment_upfront_pay_now"
+                                data-translate-values="{ price: $ctrl.upfrontSavings.amountToPay }"
+                            ></div>
+                            <div
+                                data-translate="billing_commitment_savings"
+                                data-translate-values="{ price: $ctrl.upfrontSavings.amountSaved }"
+                            ></div>
                         </oui-select-picker-description>
                         <oui-select-picker-description
                             data-ng-if="!engagement.isUpfront()"
                         >
-                            <span
+                            <div
                                 data-translate="billing_commitment_payment_monthly"
                                 data-translate-values="{ price: engagement.pricing.monthlyPrice.text,  duration: engagement.durationInMonths}"
-                            ></span>
+                            ></div>
+                            <div
+                                data-ng-if="$ctrl.defaultPrice && $ctrl.model.duration.savings && $ctrl.model.duration.savings.value > 0"
+                                data-translate="billing_commitment_savings"
+                                data-translate-values="{ price: $ctrl.model.duration.savings.text }"
+                            ></div>
                         </oui-select-picker-description>
                     </oui-select-picker>
                 </div>
