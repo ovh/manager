@@ -27,5 +27,7 @@
   "billing_commitment_success_purchase": "Veuillez finaliser le paiement de votre <a href=\"{{url}}\" target=\"_blank\">bon de commande</a>.",
   "billing_commitment_error": "Une erreur est survenue.",
   "billing_commitment_summit": "Valider",
-  "billing_commitment_summary_description_end": "Après le {{ endDate }} votre service sera tacitement réengagé pour une durée similaire à votre dernier engagement."
+  "billing_commitment_summary_description_end": "Après le {{ endDate }} votre service sera tacitement réengagé pour une durée similaire à votre dernier engagement.",
+  "billing_commitment_savings": "Économisez un total de {{ price }}",
+  "billing_commitment_payment_upfront_pay_now": "Payez {{ price }} maintenant"
 }
