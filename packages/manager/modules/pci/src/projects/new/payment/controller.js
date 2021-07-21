@@ -159,7 +159,7 @@ export default class PciProjectNewPaymentCtrl {
     }
   }
 
-  startAntiFraudChecker(resolve, order) {
+  startAntiFraudChecker(order) {
     this.followUpPolling = this.$timeout(() => {
       this.PciProjectsService.getOrderFollowUp(order.orderId)
         .then((followUp) =>
@@ -178,12 +178,9 @@ export default class PciProjectNewPaymentCtrl {
             return true;
           }
 
-          return resolve(order);
-        })
-        .finally(() => {
-          if (this.followUpPolling) {
-            this.startAntiFraudChecker(resolve, order);
-          }
+          return this.followUpPolling
+            ? this.startAntiFraudChecker(order)
+            : this.$q.when(order);
         });
     }, ANTI_FRAUD.POLLING_INTERVAL);
   }
@@ -226,9 +223,7 @@ export default class PciProjectNewPaymentCtrl {
         }
         return this.pciProjectNew.finalizeCart(this.cart);
       })
-      .then((order) =>
-        this.$q((resolve) => this.startAntiFraudChecker(resolve, order)),
-      )
+      .then((order) => this.startAntiFraudChecker(order))
       .then((order) => {
         if (!order) {
           return this.onAskCreditPayment();
