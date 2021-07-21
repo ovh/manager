@@ -1,0 +1,55 @@
+<h2 data-translate="telephony_billingAccount_svaWallet_kyc_title"></h2>
+
+<h3
+    data-translate="telephony_billingAccount_svaWallet_kyc_documents_title"
+></h3>
+
+<p
+    data-translate="telephony_billingAccount_svaWallet_kyc_documents_description"
+></p>
+
+<oui-message type="warning">
+    <span
+        data-translate="telephony_billingAccount_svaWallet_kyc_documents_alert"
+    ></span>
+    <span
+        data-translate="telephony_billingAccount_svaWallet_kyc_documents_alert_required"
+    ></span>
+</oui-message>
+
+<ul data-ng-if="!$ctrl.loading">
+    <li
+        data-ng-repeat="document in $ctrl.documents | orderBy:id track by document.id"
+    >
+        <span
+            data-translate="{{:: 'telephony_billingAccount_svaWallet_kyc_documents_nature_' + document.nature }}"
+        ></span>
+
+        <span data-ng-if="document.beneficiary">
+            - {{ document.beneficiary.lastname}} {{
+            document.beneficiary.firstname}}
+        </span>
+    </li>
+</ul>
+
+<div class="oui-datagrid-responsive">
+    <telephony-sva-wallet-kyc-identity-documents-list
+        data-ng-if="$ctrl.documents.length"
+        documents="$ctrl.documents"
+        document-type-enum="$ctrl.documentTypeEnum"
+        document-nature-enum="$ctrl.documentNatureEnum"
+        upload-document="$ctrl.uploadDocument"
+        on-document-change="$ctrl.onDocumentChange(document)"
+    ></telephony-sva-wallet-kyc-identity-documents-list>
+
+    <oui-button
+        size="l"
+        variant="primary"
+        disabled="!$ctrl.uploadsCompleted"
+        data-on-click="$ctrl.goToBillingAccount()"
+    >
+        <span
+            data-translate="telephony_billingAccount_svaWallet_kyc_documents_back_to_dashboard"
+        ></span>
+    </oui-button>
+</div>

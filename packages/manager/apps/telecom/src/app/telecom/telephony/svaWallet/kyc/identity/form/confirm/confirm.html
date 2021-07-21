@@ -1,0 +1,33 @@
+<form novalidate name="$ctrl.form" data-ng-submit="$ctrl.confirm()">
+    <oui-modal
+        heading="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_confirm_title' | translate }}"
+        primary-label="{{::'telephony_billingAccount_svaWallet_kyc_identity_confirm_submit_label' | translate}}"
+        secondary-action="$ctrl.cancel()"
+        secondary-label="{{::'telephony_billingAccount_svaWallet_kyc_identity_confirm_cancel_label' | translate}}"
+        on-dismiss="$ctrl.cancel()"
+        type="info"
+    >
+        <p
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_confirm_message"
+        ></p>
+        <oui-message type="warning">
+            <span
+                data-translate="telephony_billingAccount_svaWallet_kyc_identity_confirm_alert"
+            ></span>
+        </oui-message>
+        <oui-field
+            label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_confirm_label' | translate : { confirmationCode: $ctrl.confirmationCode} }}"
+            size="auto"
+        >
+            <input
+                class="oui-input"
+                name="confirmationCode"
+                type="text"
+                ng-model="$ctrl.userConfirmationCode"
+                data-ng-pattern="$ctrl.confirmationPattern"
+                autofocus
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>
