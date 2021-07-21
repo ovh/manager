@@ -19,13 +19,17 @@
   "billing_commitment_payment_method_none": "Não dispõe de um método de pagamento válido.",
   "billing_commitment_payment_method_add": "Adicionar um novo método de pagamento",
   "billing_commitment_summary": "Finalização",
-  "billing_commitment_summary_description_periodic": "A partir de {{ renewDate }}, o seu serviço {{ serviceName }} será automaticamente renovado todos os meses até {{ engagementEndDate }}.",
-  "billing_commitment_summary_description_upfront": "A partir de {{ renewDate }}, o seu serviço {{ serviceName }} terá um período de compromisso até {{ engagementEndDate }}.",
+  "billing_commitment_summary_description_periodic": "A partir de {{ renewDate }}, o seu método de pagamento predefinido ({{ paymentMethodName }}) será automaticamente faturado no valor de {{ monthlyPrice }} quanto ao serviço {{ serviceName }} todos os meses até {{ engagementEndDate }}.",
+  "billing_commitment_summary_description_upfront": "Em {{ renewDate }}, o seu método de pagamento predefinido ({{ paymentMethodName }}) será automaticamente faturado no valor de {{ upfrontPrice }} quanto à totalidade do período de compromisso.",
   "billing_commitment_summary_description_payment": "O montante será debitado no seu método de pagamento predefinido: {{ paymentMethodType }} {{ paymentMethodName }}.",
   "billing_commitment_success": "O pedido de compromisso do serviço foi corretamente enviado. ",
   "billing_commitment_success_purchase": "Finalize o pagamento da sua <a href=\"{{url}}\" target=\"_blank\">nota de encomenda</a>.",
   "billing_commitment_error": "Ocorreu um erro.",
   "billing_commitment_summary_description_end": "Depois de {{ endDate }}, o seu serviço será tacitamente reiniciado por um período semelhante ao seu último compromisso.",
   "billing_commitment_summit": "Validar",
-  "billing_commitment_service_vps": "Servidores privados virtuais"
+  "billing_commitment_service_vps": "Servidores privados virtuais",
+  "billing_commitment_savings": "Poupe um total de {{ price }}",
+  "billing_commitment_payment_upfront_pay_now": "Pague {{ price }} agora",
+  "billing_commitment_summary_description_periodic_end": "Depois de {{ endDate }}, o serviço será tacitamente reiniciado por um período semelhante ao último compromisso.",
+  "billing_commitment_summary_description_upfront_end": "Depois de {{ engagementEndDate }}, o serviço {{ serviceName }} será tacitamente reiniciado por um período e uma modalidade de pagamento semelhantes ao seu último compromisso."
 }

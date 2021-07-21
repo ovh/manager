@@ -20,6 +20,7 @@ export default class Pricing {
     return Intl.NumberFormat(convertLanguageFromOVHToBCP47(this.locale), {
       style: 'currency',
       currency: this.price.currencyCode,
+      currencyDisplay: 'narrowSymbol',
     }).format(price);
   }
 

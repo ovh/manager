@@ -19,13 +19,17 @@
   "billing_commitment_payment_method_none": "Nie masz zarejestrowanego ważnego sposobu płatności.",
   "billing_commitment_payment_method_add": "Dodaj nowy sposób płatności",
   "billing_commitment_summary": "Zakończenie",
-  "billing_commitment_summary_description_periodic": "Począwszy od {{renewDate}} Twoja usługa {{serviceName}} będzie automatycznie odnawiana co miesiąc do dnia {{engagementEndDate}}.",
-  "billing_commitment_summary_description_upfront": "Począwszy od {{renewDate}} Twoja usługa {{serviceName}} będzie objęta umową terminową do dnia {{engagementEndDate}}.",
+  "billing_commitment_summary_description_periodic": "Od {{renewDate}} Twój domyślny sposób płatności ({{paymentMethodName}}) będzie automatycznie obciążany co miesiąc, do {{engagementEndDate}}, kwotą {{monthlyPrice}} za usługę {{serviceName}}.",
+  "billing_commitment_summary_description_upfront": "Od {{renewDate}} Twój domyślny sposób płatności ({{paymentMethodName}}) zostanie automatycznie obciążony kwotą {{upfrontPrice}} za cały okres trwania umowy.",
   "billing_commitment_summary_description_payment": "Należność będzie pobierana z Twojego domyślnego sposobu płatności: {{paymentMethodType}} {{paymentMethodName}}.",
   "billing_commitment_success": "Zamówienie usługi z opcją umowy terminowej zostało przyjęte.  ",
   "billing_commitment_success_purchase": "Prosimy o dokończenie płatności za <a href=\"{{url}}\" target=\"_blank\">zamówienie</a>.",
   "billing_commitment_error": "Wystąpił błąd.",
-  "billing_commitment_summary_description_end": "Po zakończeniu {{endDate}} usługa zostanie automatycznie wznowiona na kolejny okres objęty umową terminową zbliżony do czasu określonego w ostatnim zamówieniu.",
+  "billing_commitment_summary_description_end": "Po {{endDate}} usługa zostanie automatycznie odnowiona na kolejny okres, odpowiadający okresowi wskazanemu w ostatnim zamówieniu.",
   "billing_commitment_summit": "Zatwierdź",
-  "billing_commitment_service_vps": "Prywatne serwery wirtualne"
+  "billing_commitment_service_vps": "Prywatne serwery wirtualne",
+  "billing_commitment_savings": "Zaoszczędź łącznie {{ price }}",
+  "billing_commitment_payment_upfront_pay_now": "Zapłać teraz {{ price }}",
+  "billing_commitment_summary_description_periodic_end": "Po {{engagementEndDate}} usługa {{serviceName}} zostanie automatycznie odnowiona na kolejny okres, odpowiadający okresowi wskazanemu w ostatnim zamówieniu.",
+  "billing_commitment_summary_description_upfront_end": "Po {{engagementEndDate}} usługa {{serviceName}} zostanie automatycznie odnowiona na kolejny okres, odpowiadający okresowi wskazanemu w ostatnim zamówieniu, z uwzględnieniem tego samego sposobu płatności."
 }
