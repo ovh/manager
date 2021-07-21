@@ -1,11 +1,13 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.objects.object', {
-    url: '/{containerId}',
+    url: '/{containerId}?isHighPerfStorage',
     component: 'pciProjectStorageContainersContainer',
     params: {
       defaultCriteria: [],
     },
     resolve: {
+      isHighPerfStorage: /* @ngInject */ ($transition$) =>
+        $transition$.params().isHighPerfStorage === 'true',
       containerId: /* @ngInject */ ($transition$) =>
         $transition$.params().containerId,
       defaultCriteria: /* @ngInject */ ($transition$) =>
@@ -14,8 +16,13 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectStorageContainersService,
         projectId,
         containerId,
+        isHighPerfStorage,
       ) =>
-        PciProjectStorageContainersService.getContainer(projectId, containerId),
+        PciProjectStorageContainersService.getContainer(
+          projectId,
+          containerId,
+          isHighPerfStorage,
+        ),
 
       addObject: /* @ngInject */ ($state, projectId, containerId) => () =>
         $state.go('pci.projects.project.storages.objects.object.add', {

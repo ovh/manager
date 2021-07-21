@@ -65,6 +65,7 @@ export const X_STORAGE_POLICY = 'x-storage-policy';
 export const X_CONTAINER_READ = 'x-container-read';
 export const X_CONTAINER_META_WEB_LISTINGS = 'x-container-meta-web-listings';
 export const X_CONTAINER_READ_PUBLIC_VALUE = '.r:*,.rlistings';
+export const OPENIO_DEFAULT_REGION = 'PREPROD.SBG';
 
 export default {
   OBJECT_CONTAINER_OFFER_SWIFT,
@@ -86,6 +87,8 @@ export default {
   OBJECT_TYPE_UNSEALED,
   OBJECT_TYPE_PCA,
   OBJECT_TYPES,
+
+  OPENIO_DEFAULT_REGION,
 
   PUBLIC_CLOUD_PRODUCT_NAME,
 
