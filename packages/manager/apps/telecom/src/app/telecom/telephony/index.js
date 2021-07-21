@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import svaWallet from './svaWallet';
+import svaWalletModule from './svaWallet';
 import billingAccount from './billingAccount';
 
 import './telecom-telephony.less';
@@ -10,7 +10,12 @@ import './telecom-telephony.less';
 const moduleName = 'ovhManagerTelecomTelephonyLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad', billingAccount, svaWallet])
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+    billingAccount,
+    svaWalletModule,
+  ])
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider
@@ -26,14 +31,32 @@ angular
           resolve: {
             breadcrumb: /* @ngInject */ ($translate) =>
               $translate.instant('telephony_breadcrumb'),
+
             isSvaWalletFeatureAvailable: /* @ngInject */ (
               TelephonySvaWalletService,
             ) => TelephonySvaWalletService.isFeatureAvailable(),
-            getSvaWallet: /* @ngInject */ (TelephonySvaWalletService) => () =>
-              TelephonySvaWalletService.getSvaWallet(),
-            isSvaWalletValid: /* @ngInject */ (TelephonySvaWalletService) => (
-              wallet,
-            ) => TelephonySvaWalletService.isSvaWalletValid(wallet),
+
+            svaWallet: /* @ngInject */ (
+              $q,
+              isSvaWalletFeatureAvailable,
+              TelephonySvaWalletService,
+            ) =>
+              isSvaWalletFeatureAvailable
+                ? TelephonySvaWalletService.getSvaWallet().catch(() => false)
+                : $q.resolve(false),
+
+            isSvaWalletValid: /* @ngInject */ (
+              isSvaWalletFeatureAvailable,
+              $q,
+              svaWallet,
+              TelephonySvaWalletService,
+            ) => {
+              if (!isSvaWalletFeatureAvailable) {
+                return () => $q.when(false);
+              }
+              return TelephonySvaWalletService.isSvaWalletValid(svaWallet);
+            },
+
             goToSvaWallet: /* @ngInject */ ($state) => () =>
               $state.go('telecom.telephony.billingAccount.svaWallet'),
           },
