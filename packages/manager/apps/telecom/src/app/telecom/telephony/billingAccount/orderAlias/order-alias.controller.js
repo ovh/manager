@@ -17,13 +17,13 @@ export default class TelecomTelephonyBillingAccountOrderAliasCtrl {
   $onInit() {
     this.loading = { init: false };
 
-    let canOrderSpecialPromise = () => this.$q.when(true);
+    let canOrderSpecialPromise = this.$q.when(true);
     if (this.isSvaWalletFeatureAvailable) {
-      canOrderSpecialPromise = this.isSvaWalletValid;
+      canOrderSpecialPromise = this.$q.when(this.isSvaWalletValid);
     }
 
     return this.$q
-      .all([canOrderSpecialPromise(), this.loadOffers()])
+      .all([canOrderSpecialPromise, this.loadOffers()])
       .then(([canOrderSpecial, offers]) => {
         this.canOrderSpecial = canOrderSpecial;
         this.offers = offers;

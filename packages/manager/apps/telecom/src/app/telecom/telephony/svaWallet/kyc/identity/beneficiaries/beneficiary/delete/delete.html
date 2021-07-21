@@ -1,0 +1,14 @@
+<form novalidate name="$ctrl.form" data-ng-submit="$ctrl.confirm()">
+    <oui-modal
+        heading="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_delete_title' | translate }}"
+        primary-label="{{::'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_delete_confirm_label' | translate}}"
+        secondary-action="$ctrl.cancel()"
+        secondary-label="{{::'telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_delete_cancel_label' | translate}}"
+        on-dismiss="$ctrl.cancel()"
+        type="info"
+    >
+        <p
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_delete_message"
+        ></p>
+    </oui-modal>
+</form>

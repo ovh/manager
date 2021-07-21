@@ -1,0 +1,36 @@
+{
+  "telephony_billingAccount_svaWallet_kyc_identity_document_document_list": "Liste des documents",
+  "telephony_billingAccount_svaWallet_kyc_identity_document_document_upload_title": "Télécharger un document",
+  "telephony_billingAccount_svaWallet_kyc_identity_document_document_upload_submit_label": "Valider le document",
+  "telephony_billingAccount_svaWallet_kyc_identity_document_document_upload_cancel_label": "Annuler",
+  "telephony_billingAccount_svaWallet_kyc_identity_document_document_upload_label": "",
+  "telephony_billingAccount_svaWallet_kyc_identity_document_document_upload_error": "Une erreur est survenue lors de la sauvegarde du fichier : {{ errorMessage }}",
+
+  "telephony_billingAccount_svaWallet_kyc_documents_type_ADDRESS_PROOF": "Justificatif de domicile",
+  "telephony_billingAccount_svaWallet_kyc_documents_type_COMPANY_REGISTRATION": "KBIS de moins de trois mois",
+  "telephony_billingAccount_svaWallet_kyc_documents_type_DRIVER_LICENCE": "Permis de conduire (recto et verso)",
+  "telephony_billingAccount_svaWallet_kyc_documents_type_IBAN": "IBAN",
+  "telephony_billingAccount_svaWallet_kyc_documents_type_ID": "Carte d'identité (recto et verso)",
+  "telephony_billingAccount_svaWallet_kyc_documents_type_OTHER": "Tout autre document utile",
+  "telephony_billingAccount_svaWallet_kyc_documents_type_PASSEPORT_EU": "Passeport Européen",
+  "telephony_billingAccount_svaWallet_kyc_documents_type_PASSEPORT_OTHER": "Passeport Hors EU",
+  "telephony_billingAccount_svaWallet_kyc_documents_type_RESIDENCE_PERMIT": "Titre de séjour (recto et verso)",
+  "telephony_billingAccount_svaWallet_kyc_documents_type_SELFIE": "Une photo de profil ou selfie",
+  "telephony_billingAccount_svaWallet_kyc_documents_type_STATUS": "Statuts datés et signés",
+
+  "telephony_billingAccount_svaWallet_kyc_documents_type_title": "Pièces jointe à fournir",
+  "telephony_billingAccount_svaWallet_kyc_documents_name_title": "Nom du document",
+  "telephony_billingAccount_svaWallet_kyc_documents_status_title": "Status",
+  "telephony_billingAccount_svaWallet_kyc_documents_actions_title": "Actions",
+  "telephony_billingAccount_svaWallet_kyc_documents_actions_upload": "Télécharger",
+  "telephony_billingAccount_svaWallet_kyc_documents_actions_update": "Mettre à jour",
+
+  "telephony_billingAccount_svaWallet_kyc_documents_status_EXPIRED": "Invalide",
+  "telephony_billingAccount_svaWallet_kyc_documents_status_INIT": "A télécharger",
+  "telephony_billingAccount_svaWallet_kyc_documents_status_INVALID": "Invalide",
+  "telephony_billingAccount_svaWallet_kyc_documents_status_NEED_MANUAL_VALIDATION": "En cours de validation",
+  "telephony_billingAccount_svaWallet_kyc_documents_status_PENDING": "En cours de validation",
+  "telephony_billingAccount_svaWallet_kyc_documents_status_REJECTED": "Invalide",
+  "telephony_billingAccount_svaWallet_kyc_documents_status_UP_TO_DATE": "Valide",
+  "telephony_billingAccount_svaWallet_kyc_documents_status_WAITING_FOR_UPLOAD": "En attente d'envoi"
+}
