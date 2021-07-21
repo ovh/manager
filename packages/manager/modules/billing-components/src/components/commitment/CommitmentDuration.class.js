@@ -16,7 +16,7 @@ export default class CommitmentDuration {
     if (currentPricing) {
       this.savings = currentPricing.getDiff(
         this.commitment.pricing,
-        this.duration,
+        this.monthlyDuration,
       );
     }
   }

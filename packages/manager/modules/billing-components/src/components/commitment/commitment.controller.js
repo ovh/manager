@@ -1,5 +1,6 @@
 import { groupBy, map, sortBy } from 'lodash-es';
 import { EngagementConfiguration } from '@ovh-ux/manager-models';
+import { convertLanguageFromOVHToBCP47 } from '@ovh-ux/manager-config';
 import CommitmentDuration from './CommitmentDuration.class';
 
 export default class {
@@ -104,7 +105,29 @@ export default class {
         (periodic.totalPrice.value / upfront.totalPrice.value - 1) * 100,
       );
       this.savings = periodic.getPriceDiff(upfront);
+      let totalSavings = this.savings.value;
+      totalSavings += this.model.duration.savings
+        ? this.model.duration.savings.value
+        : 0;
+      this.upfrontSavings = {
+        amountSaved: this.getPriceAsText(
+          totalSavings,
+          upfront.pricing.price.currencyCode,
+        ),
+        amountToPay: upfront.totalPrice.text,
+      };
     }
+  }
+
+  getPriceAsText(price, currencyCode) {
+    return Intl.NumberFormat(
+      convertLanguageFromOVHToBCP47(this.coreConfig.getUserLocale()),
+      {
+        style: 'currency',
+        currency: currencyCode,
+        currencyDisplay: 'narrowSymbol',
+      },
+    ).format(price);
   }
 
   getStartingDate() {

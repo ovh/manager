@@ -19,13 +19,17 @@
   "billing_commitment_payment_method_none": "No dispone de ninguna forma de pago válida.",
   "billing_commitment_payment_method_add": "Añadir una nueva forma de pago",
   "billing_commitment_summary": "Finalización",
-  "billing_commitment_summary_description_periodic": "A partir del {{ renewDate }}, su servicio {{ serviceName }} se renovará automáticamente todos los meses hasta el {{ engagementEndDate }}.",
-  "billing_commitment_summary_description_upfront": "A partir del {{ renewDate }}, su servicio {{ serviceName }} se contratará con compromiso de permanencia hasta el {{ engagementEndDate }}.",
+  "billing_commitment_summary_description_periodic": "A partir del {{ renewDate }}, se cargará automáticamente un importe de {{ monthlyPrice }}, correspondiente al servicio {{ serviceName }}, en su forma de pago por defecto ({{ paymentMethodName }}) todos los meses hasta el {{ engagementEndDate }}.",
+  "billing_commitment_summary_description_upfront": "El {{ renewDate }}, se cargará automáticamente un importe de {{ upfrontPrice }}, correspondiente a todo el período de compromiso, en su forma de pago por defecto ({{ paymentMethodName }}).",
   "billing_commitment_summary_description_payment": "El importe se cargará en su forma de pago por defecto: {{ paymentMethodType }} {{ paymentMethodName }}.",
   "billing_commitment_success": "La solicitud de contratación con compromiso de permanencia se ha enviado correctamente. ",
   "billing_commitment_success_purchase": "Debe realizar el pago de su <a href=\"{{url}}\" target=\"_blank\">orden de pedido</a>.",
   "billing_commitment_error": "Se ha producido un error.",
   "billing_commitment_summary_description_end": "Después del {{ endDate }}, el servicio se renovará automáticamente por una duración idéntica a la de su último compromiso de permanencia.",
   "billing_commitment_summit": "Aceptar",
-  "billing_commitment_service_vps": "Servidores privados virtuales"
+  "billing_commitment_service_vps": "Servidores privados virtuales",
+  "billing_commitment_savings": "Ahorre un total de {{ price }}",
+  "billing_commitment_payment_upfront_pay_now": "Pague {{ price }} ahora",
+  "billing_commitment_summary_description_periodic_end": "Después del {{ engagementEndDate }}, el servicio {{ serviceName }} se renovará automáticamente con una duración idéntica a la de su último compromiso de permanencia.",
+  "billing_commitment_summary_description_upfront_end": "Después del {{ engagementEndDate }}, el servicio {{ serviceName }} se renovará automáticamente con una duración y una forma de pago idénticas a las de su último compromiso de permanencia."
 }

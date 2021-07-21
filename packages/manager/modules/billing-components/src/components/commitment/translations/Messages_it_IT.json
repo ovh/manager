@@ -19,13 +19,17 @@
   "billing_commitment_payment_method_none": "Non disponi di un metodo di pagamento valido.",
   "billing_commitment_payment_method_add": "Aggiungi un nuovo metodo di pagamento",
   "billing_commitment_summary": "Finalizzazione",
-  "billing_commitment_summary_description_periodic": "A partire dal {{ renewDate }} il servizio {{ serviceName }} verrà rinnovato automaticamente ogni mese fino al {{ engagementEndDate }}.",
-  "billing_commitment_summary_description_upfront": "A partire dal {{ renewDate }}, per il servizio {{ serviceName }} sarà sottoscritto un impegno contrattuale fino al {{ engagementEndDate }}.",
+  "billing_commitment_summary_description_periodic": "A partire dal {{ renewDate }} la tua modalità di pagamento predefinita ({{ paymentMethodName }}) verrà automaticamente fatturata {{ monthlyPrice }} per il servizio {{ serviceName }}, con cadenza mensile fino al {{ engagementEndDate }}.",
+  "billing_commitment_summary_description_upfront": "Dal {{ renewDate }} la tua modalità di pagamento predefinita ({{ paymentMethodName }}) verrà automaticamente fatturata {{ upfrontPrice }} per l'intero periodo contrattuale.",
   "billing_commitment_summary_description_payment": "L'importo verrà addebitato sul metodo di pagamento predefinito: {{ paymentMethodType }} {{ paymentMethodName }}.",
   "billing_commitment_success": "La richiesta di sottoscrizione di un impegno contrattuale per il servizio è stata presa in carico. ",
   "billing_commitment_success_purchase": "Completa il pagamento del tuo <a href=\"{{url}}\" target=\"_blank\"> buono d'ordine</a>.",
   "billing_commitment_error": "Si è verificato un errore,",
-  "billing_commitment_summary_description_end": "Dopo il {{ endDate }} il servizio verrà rinnovato tacitamente per una durata simile all'ultimo impegno contrattuale sottoscritto.",
+  "billing_commitment_summary_description_end": "Dopo il {{ endDate }} il servizio verrà rinnovato tacitamente per una durata corrispondente all'ultimo impegno contrattuale sottoscritto.",
   "billing_commitment_summit": "Conferma",
-  "billing_commitment_service_vps": "Server Privati Virtuali"
+  "billing_commitment_service_vps": "Server Privati Virtuali",
+  "billing_commitment_savings": "Risparmia un totale di {{ price }}",
+  "billing_commitment_payment_upfront_pay_now": "Paga {{ price }} adesso",
+  "billing_commitment_summary_description_periodic_end": "Dopo il {{ endDate }} il servizio verrà rinnovato tacitamente per una durata corrispondente all'ultimo impegno contrattuale sottoscritto.",
+  "billing_commitment_summary_description_upfront_end": "Dopo il {{ engagementEndDate }}, il servizio {{ serviceName }} verrà rinnovato tacitamente per una durata e con la modalità di pagamento scelti nell’ultimo impegno contrattuale sottoscritto."
 }
