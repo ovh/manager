@@ -102,6 +102,7 @@
             <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
                     data-on-click="$ctrl.goToAddUserContainer($row)"
+                    data-ng-if="$row.isHighPerfStorage"
                 >
                     <span
                         data-ng-bind="'pci_projects_project_storages_containers_view_add_user_label' | translate"
@@ -143,10 +144,10 @@
                     data-track-name="PCI_PROJECTS_CONTAINERS_ADD"
                     data-track-type="navigation"
                 >
-                    <i
+                    <span
                         class="oui-icon oui-icon-add pr-1"
                         aria-hidden="true"
-                    ></i>
+                    ></span>
                     <span
                         data-ng-bind="'pci_projects_project_storages_blocks_add_' + ($ctrl.archive ? 'archive' : 'object') + '_label' | translate"
                     ></span>
