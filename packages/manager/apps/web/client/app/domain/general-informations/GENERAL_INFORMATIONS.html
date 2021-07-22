@@ -313,11 +313,12 @@
                             data-ng-if="$ctrl.domainUnlockRegistry"
                         >
                             <span
-                                class="fa fa-exclamation-triangle mr-2"
+                                class="oui-icon oui-icon-warning"
                                 aria-hidden="true"
                             ></span>
                             <em
-                                data-ng-bind-html="::'domain_configuration_protection_auth_info_registry' | translate: { t0: $ctrl.domainUnlockRegistry }"
+                                data-translate="{{:: 'domain_configuration_protection_auth_info_registry_' + $ctrl.extension }}"
+                                data-translate-default="{{::'domain_configuration_protection_auth_info_registry' | translate: { t0: $ctrl.domainUnlockRegistry } }}"
                             ></em>
                         </small>
                     </oui-tile-description>
