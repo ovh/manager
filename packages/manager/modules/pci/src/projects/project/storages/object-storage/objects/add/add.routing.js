@@ -6,7 +6,7 @@ import some from 'lodash/some';
 import { OBJECT_CONTAINER_OFFERS } from '../../../containers/containers.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.storages.objects.add', {
+  $stateProvider.state('pci.projects.project.storages.containers.objects.add', {
     url: '/new',
     component: 'pciProjectStorageContainersAdd',
     resolve: {
@@ -33,7 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       goBack: /* @ngInject */ (goToStorageContainers) => goToStorageContainers,
       cancelLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.storages.objects', {
+        $state.href('pci.projects.project.storages.containers', {
           projectId,
         }),
       breadcrumb: /* @ngInject */ ($translate) =>
