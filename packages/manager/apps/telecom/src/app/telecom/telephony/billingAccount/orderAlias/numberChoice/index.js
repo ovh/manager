@@ -4,8 +4,6 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-api-services';
 
-import type from './type';
-
 import component from './number-choice.component';
 
 const moduleName =
@@ -17,7 +15,6 @@ angular
     'pascalprecht.translate',
     'ovh-api-services',
     'ui.router',
-    type,
   ])
   .component('telecomTelephonyBillingAccountOrderAliasNumberChoice', component);
 
