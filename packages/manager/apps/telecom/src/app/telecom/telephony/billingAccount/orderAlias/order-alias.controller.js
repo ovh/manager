@@ -15,7 +15,7 @@ export default class TelecomTelephonyBillingAccountOrderAliasCtrl {
   }
 
   $onInit() {
-    this.loading = { init: false };
+    this.loading = { init: true };
 
     let canOrderSpecialPromise = this.$q.when(true);
     if (this.isSvaWalletFeatureAvailable) {
