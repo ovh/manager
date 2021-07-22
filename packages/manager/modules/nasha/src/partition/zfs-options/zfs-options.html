@@ -47,41 +47,31 @@
         <oui-field
             data-label="{{::'nasha_partitions_zfs_sync_label' | translate}}"
         >
-            <div
-                class="oui-radio"
+            <oui-radio
                 data-ng-repeat="sync in NashaPartitionZFSOptionsCtrl.enums.sync track by $index"
+                disabled="$ctrl.disabled"
+                model="NashaPartitionZFSOptionsCtrl.model.sync"
+                name="syncs"
+                on-change="$ctrl.onChange(modelValue)"
+                value="sync.label"
             >
-                <input
-                    type="radio"
-                    class="oui-radio__input"
-                    id="syncs{{sync.label}}"
-                    name="syncs"
-                    data-ng-model="NashaPartitionZFSOptionsCtrl.model.sync"
-                    data-ng-value="sync.label"
-                />
-                <label
-                    class="oui-radio__label-container"
-                    for="syncs-{{sync.label}}"
-                >
-                    <span class="oui-radio__label">
-                        <span class="oui-radio__icon"></span>
-                        <span
-                            class="oui-radio__text"
-                            data-ng-bind="'nasha_partitions_zfs_sync_' + sync.label | translate"
-                        ></span>
-                    </span>
-                    <span class="oui-radio__description">
-                        <span
-                            data-ng-bind="'nasha_partitions_zfs_sync_description_' + sync.label | translate"
-                        ></span>
-                        <span
-                            class="d-inline-block"
-                            data-ng-if="sync.warning"
-                            data-ng-bind="'nasha_partitions_zfs_sync_description_' + sync.label + '_warning' | translate"
-                        ></span>
-                    </span>
-                </label>
-            </div>
+                <oui-radio-label>
+                    <span
+                        class="oui-radio__text"
+                        data-ng-bind="'nasha_partitions_zfs_sync_' + sync.label | translate"
+                    ></span>
+                </oui-radio-label>
+                <oui-radio-description>
+                    <span
+                        data-ng-bind="'nasha_partitions_zfs_sync_description_' + sync.label | translate"
+                    ></span>
+                    <span
+                        class="d-inline-block"
+                        data-ng-if="sync.warning"
+                        data-ng-bind="'nasha_partitions_zfs_sync_description_' + sync.label + '_warning' | translate"
+                    ></span>
+                </oui-radio-description>
+            </oui-radio>
         </oui-field>
     </oui-modal>
 </form>
