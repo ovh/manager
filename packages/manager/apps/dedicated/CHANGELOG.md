@@ -1,3 +1,12 @@
+## [16.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.33.0...@ovh-ux/manager-dedicated@16.33.1) (2021-07-23)
+
+
+### Bug Fixes
+
+* **ip:** missing ip range service ([#5297](https://github.com/ovh/manager/issues/5297)) ([71f202a](https://github.com/ovh/manager/commit/71f202ab9953fc475eefc9fa447d078ee945d3ce))
+
+
+
 # [16.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.32.2...@ovh-ux/manager-dedicated@16.33.0) (2021-07-19)
 
 
