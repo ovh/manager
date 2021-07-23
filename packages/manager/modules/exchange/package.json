@@ -12,6 +12,7 @@
   "author": "OVH SAS",
   "main": "src/index.js",
   "dependencies": {
+    "ckeditor": "^4.7.2",
     "filesize": "^3.6.1",
     "lodash": "^4.17.15",
     "punycode": "^1.4.1"
