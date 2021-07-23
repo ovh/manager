@@ -8,6 +8,7 @@ const state = {
   resolve: {
     breadcrumb: /* @ngInject */ ($translate) =>
       $translate.instant('emailpro_disclaimer'),
+    ckEditor: () => import('ckeditor/ckeditor.js'),
   },
 };
 
