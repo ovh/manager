@@ -9,6 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('exchange_disclaimer'),
+      ckEditor: () => import('ckeditor/ckeditor.js'),
     },
   });
 };
