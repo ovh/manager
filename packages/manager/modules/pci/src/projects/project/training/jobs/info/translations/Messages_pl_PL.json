@@ -28,5 +28,6 @@
   "pci_projects_project_training_job_logs_text_5": "Zadanie zostało zakończone. Możesz pobrać logi za pośrednictwem kontenera „ai-training-logs” w wybranym regionie i uruchomić zadanie.",
   "pci_projects_project_training_job_logs_text_4": "Możesz również użyć następującego polecenia, aby pobrać logi bezpośrednio:",
   "pci_projects_project_training_job_logs_text_pre_running": "Zadanie oczekuje na uruchomienie... Zakładka odświeży się automatycznie po rozpoczęciu zadania.",
-  "pci_projects_project_training_jobs_resubmit": "Uruchom ponownie"
+  "pci_projects_project_training_jobs_resubmit": "Uruchom ponownie",
+  "pci_projects_project_training_jobs_info_title_6": "Informacje"
 }

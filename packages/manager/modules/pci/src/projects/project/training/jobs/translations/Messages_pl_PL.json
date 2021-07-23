@@ -54,5 +54,15 @@
   "pci_projects_project_training_jobs_submit_data_cache_help": "Kontenery zapisane w pamięci cache mogą być ponownie wykorzystywane przez inne zadania bez dodatkowej synchronizacji. Kontenery są usuwane z pamięci cache po okresie nieaktywności.",
   "pci_projects_project_training_jobs_submit_select_data_select": "Chcę przypisać wolumeny danych do zadania",
   "pci_projects_project_training_jobs_submit_add_volume": "Dodaj",
-  "pci_projects_project_training_jobs_submit_add_volume_warning": "Uwaga, jeden lub kilka wolumenów nie zostało dodanych. Popraw, aby przejść do następnego etapu."
+  "pci_projects_project_training_jobs_submit_add_volume_warning": "Uwaga, jeden lub kilka wolumenów nie zostało dodanych. Popraw, aby przejść do następnego etapu.",
+  "pci_projects_project_training_jobs_submit_select_image_name": "Nazwa obrazu Docker",
+  "pci_projects_project_training_jobs_submit_select_image_info": "Potrzebujesz notebooków Jupyter lub VSCode ze sprawdzonymi frameworkami AI, takimi jak TensorFlow, PyTorch, scikit-learn? Znajdziesz je teraz w sekcji AI Notebooks Twojego projektu cloud",
+  "pci_projects_project_training_jobs_submitresources_proposed_title": "Proponowane zasoby",
+  "pci_projects_project_training_jobs_submitresources_proposed_ram": "{{ram}} RAM",
+  "pci_projects_project_training_jobs_submitresources_proposed_storage": "Lokalna przestrzeń dyskowa: {{memory}} SSD",
+  "pci_projects_project_training_jobs_submitresources_proposed_public_bandwidth": "Sieć publiczna {{bandwidth}}/s",
+  "pci_projects_project_training_jobs_submitresources_proposed_private_bandwidth": "Sieć prywatna {{bandwidth}}/s",
+  "pci_projects_project_training_jobs_submitresources_proposed_resource_price_by_ressource": "{{price}}/jednostka. netto/godz.",
+  "pci_projects_project_training_jobs_submitresources_proposed_type_gpu": " (GPU)",
+  "pci_projects_project_training_jobs_submitresources_proposed_type_cpu": " (CPU)"
 }

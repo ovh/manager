@@ -1,0 +1,6 @@
+{
+  "pci_notebook_configuration_command_title": "Automatyczne tworzenie identycznego notebooka",
+  "pci_notebook_configuration_command_description": "Możesz utworzyć ten sam notebook za pomocą tych wierszy poleceń w Twoim ovhai CLI.",
+  "pci_notebook_configuration_command_help": "Dowiedz się więcej.",
+  "pci_notebook_configuration_command_error": "Wystąpił błąd podczas próby pobrania identycznego zamówienia: {{message}}"
+}

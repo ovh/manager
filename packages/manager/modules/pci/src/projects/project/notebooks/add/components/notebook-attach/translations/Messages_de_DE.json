@@ -1,0 +1,15 @@
+{
+  "pci_notebook_add_attach_container_description": "Verbinden Sie bei Bedarf Object Storage Container von OVHcloud mit Ihrem Notebook. Wenn die Verbindung mit den Containern hergestellt ist, werden sie vorübergehend geladen und nahe an Ihrer Instanz im Cache abgelegt. Das reduziert die Latenz und verbessert die Leistung. Es hat sich bewährt, das Notebook mit einem Container für Ihre eingehenden Daten und einem weiteren für Ihre ausgehenden Daten zu verbinden.",
+  "pci_notebook_add_attach_container_description_link": "Mehr Informationen zum Speichern von Daten",
+  "pci_notebook_add_attach_container_btn_attach_storage_add": "Verbindung mit einem Object Storage Container herstellen",
+  "pci_notebook_add_attach_container_btn_attach_storage_remove": "Object Storage Container löschen",
+  "pci_notebook_add_attach_container_storage_container": "Storage Container",
+  "pci_notebook_add_attach_container_storage_container_select": "Storage Container",
+  "pci_notebook_add_attach_container_mount_path": "Mountverzeichnis",
+  "pci_notebook_add_attach_container_mount_path_error_key_already_exist": "Dieses Verzeichnis besteht bereits",
+  "pci_notebook_add_attach_container_permission": "Berechtigung",
+  "pci_notebook_add_attach_container_permission_select": "Berechtigung",
+  "pci_notebook_add_attach_container_permission_RO": "Nur Lesen",
+  "pci_notebook_add_attach_container_permission_RW": "Lesen - Schreiben",
+  "pci_notebook_add_attach_container_volumes_quantity": "{{ numberOfVolumes }} / {{ maxVolumes }} Volumes"
+}

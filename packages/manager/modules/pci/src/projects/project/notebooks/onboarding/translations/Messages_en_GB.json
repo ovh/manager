@@ -1,0 +1,17 @@
+{
+  "pci_notebook_title": "AI Notebooks",
+  "pci_notebook_onboarding_content1": "Get your notebooks up and running in seconds.",
+  "pci_notebook_onboarding_content2": "Get your projects and models started quicker with notebooks.",
+  "pci_notebook_onboarding_content3": "Are you a data scientist or developer looking to launch a notebook within a few minutes? Use our AI Notebooks solution for quick access to Jupyter or VS Code, and launch your notebooks quickly with the resources you need. You also get secure user access, simplified use of your data, and the most popular artificial intelligence frameworks (TensorFlow, PyTorch, Hugging Face and Scikit-learn) to develop your business.",
+  "pci_notebook_onboarding_action_label": "Create a Notebook",
+  "pci_notebook_guides_documentation_title": "Full AI Notebooks documentation",
+  "pci_notebook_guides_documentation_description": "Browse all the documentation for AI Notebooks.",
+  "pci_notebook_guides_definition_title": "AI Notebooks definition",
+  "pci_notebook_guides_definition_description": "Find out what an AI Notebook is at OVHcloud.",
+  "pci_notebook_guides_start_title": "Getting started with AI Notebooks",
+  "pci_notebook_guides_start_description": "Find out how to get started quickly with your Notebook via the OVHcloud Control Panel.",
+  "pci_notebook_guides_share_title": "Share a Notebook",
+  "pci_notebook_guides_share_description": "Learn how to share a Notebook with other developers.",
+  "pci_notebook_guides_object_storage_access_title": "Access your data from your object storage",
+  "pci_notebook_guides_object_storage_access_description": "Find out how to access your Notebook data with your object storage."
+}
