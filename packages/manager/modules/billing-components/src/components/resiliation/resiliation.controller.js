@@ -17,7 +17,7 @@ export default class BillingResiliationController {
       )
       .catch((error) =>
         this.displayErrorMessage(
-          `${this.$translate('billing_resiliation_error')} ${
+          `${this.$translate.instant('billing_resiliation_error')} ${
             error?.data?.message
           }`,
         ),
