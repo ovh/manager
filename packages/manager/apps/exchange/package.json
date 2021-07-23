@@ -21,7 +21,7 @@
     "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
-    "@ovh-ux/manager-exchange": "^2.0.0",
+    "@ovh-ux/manager-exchange": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^1.1.0 || ^2.0.0",
     "@ovh-ux/manager-preloader": "^1.1.0",
     "@ovh-ux/ng-at-internet": "^5.6.1",
