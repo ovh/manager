@@ -222,19 +222,18 @@ export default class PciProjectNewPaymentCtrl {
         // after GET /order/cart/{cartId}/checkout we know if a credit needs to be paid
         // with the total not equal to 0
         if (prices.withTax.value !== 0) {
-          return null;
+          return this.onAskCreditPayment();
         }
         return this.pciProjectNew.finalizeCart(this.cart);
       })
-      .then((order) =>
-        this.$q((resolve) => this.startAntiFraudChecker(resolve, order)),
-      )
       .then((order) => {
-        if (!order) {
-          return this.onAskCreditPayment();
+        if (order?.orderId) {
+          return this.$q((resolve) =>
+            this.startAntiFraudChecker(resolve, order),
+          ).then(() => this.onCartFinalized(order));
         }
 
-        return this.onCartFinalized(order);
+        return null;
       })
       .catch(({ data }) => {
         if (data.message.includes(ANTI_FRAUD.CASE_FRAUD_REFUSED)) {
