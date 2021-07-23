@@ -23,6 +23,8 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
   OvhApiOrder,
   TucBankHolidays,
   TucToast,
+  canOrderSpecialPortability,
+  goToSvaWallet,
 ) {
   const self = this;
 
@@ -57,6 +59,9 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
   ];
 
   function init() {
+    self.canOrderSpecialPortability = canOrderSpecialPortability;
+    self.goToSvaWallet = goToSvaWallet;
+
     self.order = {
       // default values
       executeAsSoonAsPossible: true,
