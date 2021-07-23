@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "16.33.0",
+  "version": "16.33.1",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {

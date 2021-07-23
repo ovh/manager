@@ -1,3 +1,12 @@
+## [5.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.33.0...@ovh-ux/manager-pci@5.33.1) (2021-07-23)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** fix anti fraud checker ([3d580f1](https://github.com/ovh/manager/commit/3d580f1ee8c6799c37204f4cc550c04207d5985b))
+
+
+
 # [5.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.32.0...@ovh-ux/manager-pci@5.33.0) (2021-07-20)
 
 
