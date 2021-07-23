@@ -49,9 +49,6 @@ import 'script-loader!messenger/build/js/messenger.min.js';
 import 'script-loader!filesize/lib/filesize.js';
 import 'script-loader!angular-websocket/dist/angular-websocket';
 
-// Ckeditor 4.x
-import 'ng-ckeditor';
-
 import './app.less';
 import './css/source.scss';
 /* eslint-enable import/no-webpack-loader-syntax, import/no-unresolved, import/extensions */
@@ -170,7 +167,6 @@ export default (containerEl, environment) => {
         moduleLicense,
         otrs,
         ovhManagerMfaEnrollment,
-        'ng.ckeditor',
         'ngMessages',
         ngAtInternet,
         ngAtInternetUiRouterPlugin,
