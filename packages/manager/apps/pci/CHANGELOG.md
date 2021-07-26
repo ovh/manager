@@ -1,3 +1,12 @@
+## [3.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.2.2...@ovh-ux/manager-pci-app@3.2.3) (2021-07-26)
+
+
+### Bug Fixes
+
+* sort package.json ([#5310](https://github.com/ovh/manager/issues/5310)) ([9bd6165](https://github.com/ovh/manager/commit/9bd6165c245a996dfe2651c94eb8d49e6ba862cb))
+
+
+
 ## [3.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.2.1...@ovh-ux/manager-pci-app@3.2.2) (2021-05-19)
 
 
