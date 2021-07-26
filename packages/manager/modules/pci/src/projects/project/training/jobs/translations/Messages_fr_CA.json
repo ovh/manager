@@ -2,6 +2,7 @@
   "pci_projects_project_training_jobs_list_message_1": "Pour accéder à cette liste de jobs via la ligne de commande, lancez la commande suivante :",
   "pci_projects_project_training_jobs_submit_select_region": "Choisir une région",
   "pci_projects_project_training_jobs_submit_select_image": "Renseigner l'image Docker",
+  "pci_projects_project_training_jobs_submit_select_image_name": "Nom de l'image Docker",
   "pci_projects_project_training_jobs_submit_select_image_preset_missing_framework": "Framework manquant ?",
   "pci_projects_project_training_jobs_submit_select_image_preset_request": "Suggérez des framework additionnels sur OVH AI Community",
   "pci_projects_project_training_jobs_submit_select_image_tips": "Renseigner le nom de l'image Docker du job",
@@ -54,5 +55,14 @@
   "pci_projects_project_training_jobs_resubmit_error": "Une erreur s'est produite durant le relancement du job : {{ message }}",
   "pci_projects_project_training_jobs_submit_select_data_select": "Je souhaite associer des volumes de données au job",
   "pci_projects_project_training_jobs_submit_add_volume": "Ajouter",
-  "pci_projects_project_training_jobs_submit_add_volume_warning": "Attention un ou plusieurs volumes n'ont pas été ajouté, veuillez corriger pour passer à l'étape suivante."
+  "pci_projects_project_training_jobs_submit_add_volume_warning": "Attention un ou plusieurs volumes n'ont pas été ajouté, veuillez corriger pour passer à l'étape suivante.",
+  "pci_projects_project_training_jobs_submit_select_image_info": "Besoin de notebooks Jupyter ou VSCode avec vos frameworks AI préférés tel que TensorFlow, PyTorch, scikit-learn ? Vous les trouverez désormais dans la section AI Notebooks de votre projet cloud",
+  "pci_projects_project_training_jobs_submitresources_proposed_title": "Ressources proposées",
+  "pci_projects_project_training_jobs_submitresources_proposed_ram": "{{ ram }} RAM",
+  "pci_projects_project_training_jobs_submitresources_proposed_storage": "Stockage Local: {{ memory }} SSD",
+  "pci_projects_project_training_jobs_submitresources_proposed_public_bandwidth": "Réseau Public {{ bandwidth }}/s",
+  "pci_projects_project_training_jobs_submitresources_proposed_private_bandwidth": "Réseau Privé {{ bandwidth }}/s",
+  "pci_projects_project_training_jobs_submitresources_proposed_resource_price_by_ressource": "{{ price }}/unité. HT/heure",
+  "pci_projects_project_training_jobs_submitresources_proposed_type_gpu": " (GPU)",
+  "pci_projects_project_training_jobs_submitresources_proposed_type_cpu": " (CPU)"
 }

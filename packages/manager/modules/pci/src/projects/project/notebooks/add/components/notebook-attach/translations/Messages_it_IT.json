@@ -1,0 +1,15 @@
+{
+  "pci_notebook_add_attach_container_description": "Se necessario, è possibile associare alcuni container Object Storage OVHcloud al proprio notebook. Una volta associati, vengono caricati temporaneamente e inseriti in cache vicino alla tua istanza per ridurre la latenza e migliorare le performance. La buona pratica è quella di associare  un container con i dati in entrata e un altro con i dati in uscita.",
+  "pci_notebook_add_attach_container_description_link": "Per maggiori informazioni sullo storage di dati",
+  "pci_notebook_add_attach_container_btn_attach_storage_add": "Crea un container Object Storage",
+  "pci_notebook_add_attach_container_btn_attach_storage_remove": "Elimina un container Object Storage",
+  "pci_notebook_add_attach_container_storage_container": "Container di storage",
+  "pci_notebook_add_attach_container_storage_container_select": "Container di storage",
+  "pci_notebook_add_attach_container_mount_path": "Directory di mount",
+  "pci_notebook_add_attach_container_mount_path_error_key_already_exist": "Questa directory esiste già",
+  "pci_notebook_add_attach_container_permission": "Autorizzazione",
+  "pci_notebook_add_attach_container_permission_select": "Autorizzazione",
+  "pci_notebook_add_attach_container_permission_RO": "Sola lettura",
+  "pci_notebook_add_attach_container_permission_RW": "Lettura - scrittura",
+  "pci_notebook_add_attach_container_volumes_quantity": "{{ numberOfVolumes }} / {{ maxVolumes }} volumi"
+}

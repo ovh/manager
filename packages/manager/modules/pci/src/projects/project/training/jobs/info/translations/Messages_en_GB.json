@@ -28,5 +28,6 @@
   "pci_projects_project_training_job_logs_text_5": "The job is complete. You can download your logs via object storage, in the \"ai-training-logs\" container in the region chosen to launch the job.",
   "pci_projects_project_training_job_logs_text_4": "You can also use the following command to download them directly:",
   "pci_projects_project_training_job_logs_text_pre_running": "The job is still waiting to start... The tab will refresh automatically once the job has started.",
-  "pci_projects_project_training_jobs_resubmit": "Relaunch"
+  "pci_projects_project_training_jobs_resubmit": "Relaunch",
+  "pci_projects_project_training_jobs_info_title_6": "Info"
 }

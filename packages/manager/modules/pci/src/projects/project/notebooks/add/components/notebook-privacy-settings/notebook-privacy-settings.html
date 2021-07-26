@@ -1,0 +1,40 @@
+<!--Notebook Privacy Networks -->
+<div class="row" data-ng-if="$ctrl.displayNotebookPrivacySettings">
+
+    <!--Settings restricted-->
+    <oui-select-picker
+        class="d-inline-block col-md-6 col-xl-3 my-3"
+        data-name="notebookPrivacyNetwork"
+        data-label="{{:: 'pci_notebook_add_privacy_settings_item_restricted' | translate}}"
+        data-model="$ctrl.notebookModel.selected.privacy"
+        data-on-change="$ctrl.onPrivacyChange(modelValue)"
+        data-values="[$ctrl.NOTEBOOK_PRIVACY_SETTINGS.RESTRICTED]"
+    >
+        <oui-select-picker-section>
+            <span
+                data-translate="pci_notebook_add_privacy_settings_item_restricted_description"
+            ></span>
+        </oui-select-picker-section>
+    </oui-select-picker>
+
+    <!--Settings public-->
+    <oui-select-picker
+        class="d-inline-block col-md-6 col-xl-3 my-3"
+        data-name="notebookPrivacyNetwork"
+        data-label="{{:: 'pci_notebook_add_privacy_settings_item_public' | translate}}"
+        data-model="$ctrl.notebookModel.selected.privacy"
+        data-on-change="$ctrl.onPrivacyChange(modelValue)"
+        data-values="[$ctrl.NOTEBOOK_PRIVACY_SETTINGS.PUBLIC]"
+    >
+        <oui-select-picker-section>
+            <span
+                data-translate="pci_notebook_add_privacy_settings_item_public_description"
+            ></span>
+        </oui-select-picker-section>
+        <oui-select-picker-section class="text-danger">
+            <span class="oui-icon oui-icon-warning"></span>
+            <span data-translate="pci_notebook_add_privacy_settings_item_public_warning"></span>
+        </oui-select-picker-section>
+    </oui-select-picker>
+
+</div>

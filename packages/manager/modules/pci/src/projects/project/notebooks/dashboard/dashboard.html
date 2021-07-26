@@ -1,0 +1,36 @@
+<oui-header data-heading="{{ $ctrl.notebook.spec.name }}" description="{{ $ctrl.notebook.id }}">
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            data-href="{{:: $ctrl.generalInformationLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.generalInformationLink"
+        ><span
+            data-translate="pci_notebooks_dashboard_info_tab_title"
+        ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-href="{{:: $ctrl.attachDataLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.attachDataLink"
+        ><span
+            data-translate="pci_notebooks_dashboard_attach_data_tab_title"
+        ></span>
+        </oui-header-tabs-item>
+    </oui-header-tabs>
+    <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
+        <oui-guide-menu-item data-href="{{ $ctrl.guideUrl }}" data-external>
+            <span data-translate="pci_project_guides_header_all_guides"></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
+</oui-header>
+<oui-message data-type="info"
+             dismissable>
+    <span data-translate="pci_notebooks_dashboard_banner_user_and_roles_info"></span>
+    <p class="m-0">
+        <a
+            target="_blank"
+            rel="noopener"
+            data-translate="pci_notebooks_dashboard_banner_user_and_roles_info_link"
+            data-ng-href="{{:: $ctrl.userAndRolesLink }}"
+        ></a>
+    </p>
+</oui-message>
+<div class="container-fluid" data-ui-view="notebookView"></div>

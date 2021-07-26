@@ -1,0 +1,8 @@
+{
+  "pci_notebook_delete_notebook_title": "Usuwanie notebooka",
+  "pci_notebook_delete_notebook_submit_label": "Zatwierdź",
+  "pci_notebook_delete_notebook_cancel_label": "Anuluj",
+  "pci_notebook_delete_notebook_content": "Czy na pewno chcesz usunąć notebooka {{ notebookName }}?",
+  "pci_notebook_delete_notebook_success": "Twój notebook został usunięty.",
+  "pci_notebook_delete_notebook_error": "Wystąpił błąd podczas usuwania notebooka {{message}}: {{message}}."
+}

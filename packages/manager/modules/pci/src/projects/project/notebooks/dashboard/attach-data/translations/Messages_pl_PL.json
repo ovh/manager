@@ -1,0 +1,15 @@
+{
+  "pci_notebooks_tab_attach_data_title": "Przypisz dane",
+  "pci_notebooks_tab_attach_data_page_title": "Przypisz kontenery danych",
+  "pci_notebooks_tab_attach_data_page_description": "W razie potrzeby możesz przypisać do Twojego notebooka kontenery Object Storage OVHcloud. Po przypisaniu zostaną one tymczasowo załadowane i umieszczone w pamięci cache w pobliżu Twojej instancji, aby skrócić czas odpowiedzi i zwiększyć wydajność. Dobrym rozwiązaniem jest powiązanie jednego kontenera z danymi wejściowymi, a drugiego z danymi wyjściowymi.",
+  "pci_notebooks_tab_attach_data_page_description_link": "Więcej informacji o przechowywaniu danych.",
+  "pci_notebooks_tab_attach_data_page_volumes_column_name": "Nazwisko",
+  "pci_notebooks_tab_attach_data_page_volumes_column_type": "Typ",
+  "pci_notebooks_tab_attach_data_page_volumes_column_region": "Lokalizacja",
+  "pci_notebooks_tab_attach_data_page_volumes_column_type_git": "Repozytorium",
+  "pci_notebooks_tab_attach_data_page_volumes_column_type_swift": "Kontener danych",
+  "pci_notebooks_tab_attach_data_page_volumes_column_mount_path": "Katalog montowania",
+  "pci_notebooks_tab_attach_data_page_volumes_column_permission": "Autoryzacja",
+  "pci_notebooks_tab_attach_data_page_volumes_column_permission_RO": "Do odczytu",
+  "pci_notebooks_tab_attach_data_page_volumes_column_permission_RW": "Odczyt - zapis"
+}

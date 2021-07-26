@@ -60,7 +60,7 @@
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_training_jobs_state' | translate"
-            data-property="status"
+            data-property="status.state"
             data-type="string"
             data-searchable
             data-filterable
@@ -68,7 +68,7 @@
         >
             <span class="oui-status" data-ng-class="$row.getClassForState()">
                 <span
-                    data-translate="{{:: 'pci_projects_project_training_jobs_state_' + $value.state }}"
+                    data-translate="{{:: 'pci_projects_project_training_jobs_state_' + $row.status.state }}"
                 ></span>
             </span>
         </oui-datagrid-column>
@@ -78,7 +78,7 @@
             data-type="date"
             data-searchable
             data-filterable
-            data-sortable
+            data-sortable="desc"
         >
             <span data-ng-bind="::$value | date:'medium'"></span>
         </oui-datagrid-column>
