@@ -1,0 +1,172 @@
+<div>
+    <oui-header data-heading="{{:: 'pci_notebook_add_title' | translate }}">
+        <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
+            <oui-guide-menu-item data-href="{{ $ctrl.guideUrl }}" data-external>
+                <span data-translate="pci_project_guides_header_all_guides"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+
+    <p data-translate="pci_notebook_add_description"></p>
+</div>
+
+<!--Banner messages-->
+<div class="mt-4" id="addMessages">
+    <!--Banner for User and Roles-->
+    <oui-message data-type="info">
+        <span data-translate="pci_notebook_add_banner_object_storage_description"></span>
+        <a
+            data-ng-href="{{ $ctrl.storageAddObjectLink }}"
+            data-translate="pci_notebook_add_banner_object_storage_description_link"
+            target="_blank"
+        >
+        </a>
+    </oui-message>
+
+    <!--Dynamic banner message-->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+</div>
+
+<!--Notebook stepper-->
+<oui-stepper data-on-finish="$ctrl.onNotebookSubmit()">
+
+    <!--Notebook Configuration-->
+    <oui-step-form
+        data-ng-init="stepConfig = $ctrl.stepper.notebookSettings"
+        data-name="{{:: stepConfig.name}}"
+        data-header="{{ $ctrl.getConfigHeader(stepConfig.display) }}"
+        data-on-focus="stepConfig.display = true"
+        data-on-submit="stepConfig.display = false"
+        data-prevent-next="true"
+    >
+        <notebook-configuration
+            data-display-notebook-configuration="stepConfig.display"
+            data-notebook-model="$ctrl.notebookModel"></notebook-configuration>
+    </oui-step-form>
+
+    <!--Notebook Editors-->
+    <oui-step-form
+        data-ng-init="stepEditors = $ctrl.stepper.notebookEditors"
+        data-name="{{:: stepEditors.name}}"
+        data-header="{{ $ctrl.getEditorHeader(stepEditors.display) }}"
+        data-on-focus="stepEditors.display = true"
+        data-on-submit="stepEditors.display = false"
+        data-valid="$ctrl.notebookModel.selected.editor"
+        data-prevent-next="true"
+    >
+        <notebook-editors-list
+            data-display-notebook-editors="stepEditors.display"
+            data-notebook-model="$ctrl.notebookModel"
+            data-editors="$ctrl.editors"></notebook-editors-list>
+    </oui-step-form>
+
+    <!--Notebook Framework-->
+    <oui-step-form
+        data-ng-init="stepFrameworks = $ctrl.stepper.notebookFrameworks"
+        data-name="{{:: stepFrameworks.name}}"
+        data-header="{{ $ctrl.getFrameworkHeader(stepFrameworks.display) }}"
+        data-on-focus="stepFrameworks.display = true"
+        data-on-submit="stepFrameworks.display = false"
+        data-valid="$ctrl.notebookModel.selected.framework.model"
+        data-prevent-next="true"
+    >
+        <notebook-frameworks-list
+            data-display-notebook-framework="stepFrameworks.display"
+            data-notebook-model="$ctrl.notebookModel"
+            data-frameworks="$ctrl.frameworks"></notebook-frameworks-list>
+    </oui-step-form>
+
+    <!--Notebook Privacy Settings-->
+    <oui-step-form
+        data-ng-init="stepPrivacy = $ctrl.stepper.notebookPrivateSettings"
+        data-name="{{:: stepPrivacy.name}}"
+        data-header="{{ $ctrl.getPrivacyHeader(stepPrivacy.display) }}"
+        data-on-focus="stepPrivacy.display = true"
+        data-on-submit="stepPrivacy.display = false"
+        data-navigation="$ctrl.notebookModel.selected.privacy"
+    >
+        <notebook-privacy-settings
+            data-display-notebook-privacy-settings="stepPrivacy.display"
+            data-notebook-model="$ctrl.notebookModel"></notebook-privacy-settings>
+    </oui-step-form>
+
+    <!--Notebook Datacenter Location-->
+    <oui-step-form
+        data-ng-init="stepRegions = $ctrl.stepper.notebookDatacenterLocation"
+        data-name="{{:: stepRegions.name}}"
+        data-header="{{ $ctrl.getRegionHeader(stepRegions.display) }}"
+        data-on-focus="stepRegions.display = true"
+        data-on-submit="stepRegions.display = false"
+        data-valid="$ctrl.notebookModel.selected.region"
+        data-prevent-next="true"
+    >
+        <div data-ng-if="stepRegions.display">
+            <p data-translate="pci_notebook_add_privacy_datacenter_location_description"></p>
+            <pci-project-regions-list
+                data-regions="$ctrl.regions"
+                data-selected-region="$ctrl.notebookModel.selected.region"
+                data-display-selected-region="$ctrl.displaySelectedRegion"
+                data-on-change="$ctrl.onRegionChange(region)"
+            ></pci-project-regions-list>
+        </div>
+    </oui-step-form>
+
+    <!--Notebook Resources-->
+    <oui-step-form
+        data-ng-init="stepResources = $ctrl.stepper.notebookResources"
+        data-name="{{:: stepResources.name}}"
+        data-header="{{ $ctrl.getResourceHeader(stepResources.display) }}"
+        data-loading="!$ctrl.flavorsAreLoaded"
+        data-on-focus="stepResources.display = true"
+        data-on-submit="stepResources.display = false"
+        data-valid="$ctrl.notebookModel.selected.resource.usage && $ctrl.notebookModel.selected.resource.flavor"
+        data-prevent-next="true"
+    >
+        <notebook-resources
+            data-ng-if="$ctrl.flavors"
+            data-display-notebook-resources="stepResources.display"
+            data-notebook-model="$ctrl.notebookModel"
+            data-flavors="$ctrl.flavors"
+            data-prices="$ctrl.prices"></notebook-resources>
+    </oui-step-form>
+
+    <!--Notebook Attach Container and Repository-->
+    <oui-step-form
+        data-ng-init="stepVolumes = $ctrl.stepper.notebookAttach"
+        data-name="{{:: stepVolumes.name}}"
+        data-header="{{ $ctrl.getAttachContainerHeader(stepVolumes.display) }}"
+        data-on-focus="stepVolumes.display = true"
+        data-on-submit="stepVolumes.display = false"
+        data-prevent-next="true"
+    >
+        <notebook-attach
+            data-ng-if="$ctrl.flavorsAreLoaded"
+            data-display-notebook-attach="stepVolumes.display"
+            data-notebook-model="$ctrl.notebookModel"
+            data-storages="$ctrl.storages"></notebook-attach>
+    </oui-step-form>
+
+    <!--Notebook Review-->
+    <oui-step-form
+        data-ng-init="stepReview = $ctrl.stepper.notebookReview"
+        data-name="{{:: stepReview.name}}"
+        data-header="{{:: 'pci_notebook_add_review_title' | translate }}"
+        data-submit-text="{{:: 'pci_notebook_add_notebook_create' | translate }}"
+        data-loading-text="{{:: 'pci_notebook_add_notebook_create_pending' | translate }}"
+        data-on-focus="stepReview.display = true"
+        data-on-submit="stepReview.display = false"
+        data-editable="!$ctrl.isAdding"
+        data-loading="$ctrl.isAdding"
+    >
+        <notebook-review
+            data-ng-if="stepReview.display && !$ctrl.stepper.notebookAttach.display"
+            data-project-id="$ctrl.projectId"
+            data-convert-notebook-model="$ctrl.constructor.convertNotebookModel"
+            data-display-notebook-review="stepReview.display"
+            data-notebook-model="$ctrl.notebookModel"
+            data-prices="$ctrl.prices"></notebook-review>
+    </oui-step-form>
+
+</oui-stepper>

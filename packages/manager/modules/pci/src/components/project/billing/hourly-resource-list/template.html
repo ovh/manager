@@ -85,6 +85,15 @@
 </oui-collapsible>
 <oui-collapsible
     class="mx-0"
+    heading="{{ ::'cpbc_hourly_notebooks_title' | translate }} ({{ $ctrl.resources.totals.hourly.notebooks.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+>
+    <pci-billing-resource-usage
+        data-currency-symbol="$ctrl.resources.totals.currencySymbol"
+        data-resource-usage="$ctrl.resources.notebooks"
+    ></pci-billing-resource-usage>
+</oui-collapsible>
+<oui-collapsible
+    class="mx-0"
     heading="{{ ::'cpbc_hourly_data_processing_title' | translate }} ({{ $ctrl.resources.totals.hourly.dataProcessing.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage

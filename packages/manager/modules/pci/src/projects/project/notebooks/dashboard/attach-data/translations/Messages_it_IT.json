@@ -1,0 +1,15 @@
+{
+  "pci_notebooks_tab_attach_data_title": "Associa dati",
+  "pci_notebooks_tab_attach_data_page_title": "Associa container di dati",
+  "pci_notebooks_tab_attach_data_page_description": "Se necessario, è possibile associare alcuni container Object Storage OVHcloud al proprio notebook. Una volta associati, vengono caricati temporaneamente e inseriti in cache vicino alla tua istanza per ridurre la latenza e migliorare le performance. La buona pratica è quella di associare  un container con i dati in entrata e un altro con i dati in uscita.",
+  "pci_notebooks_tab_attach_data_page_description_link": "Per maggiori informazioni sullo storage di dati",
+  "pci_notebooks_tab_attach_data_page_volumes_column_name": "Nome",
+  "pci_notebooks_tab_attach_data_page_volumes_column_type": "Tipo",
+  "pci_notebooks_tab_attach_data_page_volumes_column_region": "Localizzazione",
+  "pci_notebooks_tab_attach_data_page_volumes_column_type_git": "Repository",
+  "pci_notebooks_tab_attach_data_page_volumes_column_type_swift": "Container di dati",
+  "pci_notebooks_tab_attach_data_page_volumes_column_mount_path": "Directory di mount",
+  "pci_notebooks_tab_attach_data_page_volumes_column_permission": "Autorizzazione",
+  "pci_notebooks_tab_attach_data_page_volumes_column_permission_RO": "Sola lettura",
+  "pci_notebooks_tab_attach_data_page_volumes_column_permission_RW": "Lettura - scrittura"
+}

@@ -1,0 +1,11 @@
+{
+  "pci_notebook_add_configuration_name": "Nombre del notebook",
+  "pci_notebook_add_configuration_label": "Labels",
+  "pci_notebook_add_configuration_label_description": "Puede añadir labels a su notebook.",
+  "pci_notebook_add_configuration_label_field_key": "Clave",
+  "pci_notebook_add_configuration_label_field_key_error_key_already_exist": "Esta clave ya existe.",
+  "pci_notebook_add_configuration_label_field_value": "Valor",
+  "pci_notebook_add_configuration_label_btn_add": "Añadir un label",
+  "pci_notebook_add_configuration_label_btn_remove": "Eliminar el label",
+  "pci_notebook_add_configuration_label_quantity": "{{ numberOfLabels }} / {{ maxLabels }} label(s)"
+}

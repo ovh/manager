@@ -1,0 +1,8 @@
+{
+  "pci_notebooks_general_information_info_delete_notebook_title": "Usuwanie notebooka",
+  "pci_notebooks_general_information_info_delete_notebook_description": "Czy na pewno chcesz usunąć notebook {{ name }}?",
+  "pci_notebooks_general_information_info_delete_notebook_action_delete": "Zatwierdź",
+  "pci_notebooks_general_information_info_delete_notebook_action_cancel": "Anuluj",
+  "pci_notebooks_general_information_info_delete_notebook_action_delete_success": "Notebook został usunięty",
+  "pci_notebooks_general_information_info_delete_notebook_action_delete_fail": "Wystąpił błąd podczas usuwania notebooka {{name}}: {{message}}."
+}

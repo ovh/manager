@@ -28,5 +28,6 @@
   "pci_projects_project_training_job_logs_text_5": "O job está terminado e pode descarregar os logs através do Object Storage, no container \"ai-training-logs\" na região escolhida para lançar o job.",
   "pci_projects_project_training_job_logs_text_4": "Também pode usar o seguinte comando para os descarregar diretamente:",
   "pci_projects_project_training_job_logs_text_pre_running": "O job ainda está a aguardar o arranque... O separador será automaticamente atualizado assim que o job começar.",
-  "pci_projects_project_training_jobs_resubmit": "Relançar"
+  "pci_projects_project_training_jobs_resubmit": "Relançar",
+  "pci_projects_project_training_jobs_info_title_6": "Informações"
 }

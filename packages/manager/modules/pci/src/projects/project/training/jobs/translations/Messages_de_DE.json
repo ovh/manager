@@ -54,5 +54,15 @@
   "pci_projects_project_training_jobs_submit_data_cache_help": "Container im Cache können ohne zusätzliche Synchronisierung durch andere Aufträge wiederverwendet werden. Wenn sie über einen bestimmten Zeitraum nicht verwendet werden, werden die Container aus dem Cache entfernt.",
   "pci_projects_project_training_jobs_submit_select_data_select": "Ich möchte Data Volumes mit diesem Auftrag verbinden.",
   "pci_projects_project_training_jobs_submit_add_volume": "Hinzufügen",
-  "pci_projects_project_training_jobs_submit_add_volume_warning": "Bitte beachten Sie: Ein oder mehrere Volumes konnten nicht hinzugefügt werden. Bitte korrigieren Sie dies, um zum nächsten Schritt zu gelangen."
+  "pci_projects_project_training_jobs_submit_add_volume_warning": "Bitte beachten Sie: Ein oder mehrere Volumes konnten nicht hinzugefügt werden. Bitte korrigieren Sie dies, um zum nächsten Schritt zu gelangen.",
+  "pci_projects_project_training_jobs_submit_select_image_name": "Name des Docker Images",
+  "pci_projects_project_training_jobs_submit_select_image_info": "Brauchen Sie Notebooks mit Jupyter oder VSCode und den AI-Frameworks Ihrer Wahl wie TensorFlow, PyTorch oder scikit-learn? Diese Notebooks sind ab sofort verfügbar: im Bereich AI Notebooks Ihres Cloud Projekts.",
+  "pci_projects_project_training_jobs_submitresources_proposed_title": "Vorgeschlagene Ressourcen",
+  "pci_projects_project_training_jobs_submitresources_proposed_ram": "{{ram}} RAM",
+  "pci_projects_project_training_jobs_submitresources_proposed_storage": "Lokaler Speicher: {{ memory }} SSD",
+  "pci_projects_project_training_jobs_submitresources_proposed_public_bandwidth": "Öffentliches Netzwerk {{ bandwidth }}/s",
+  "pci_projects_project_training_jobs_submitresources_proposed_private_bandwidth": "Privates Netzwerk {{ bandwidth }}/s",
+  "pci_projects_project_training_jobs_submitresources_proposed_resource_price_by_ressource": "{{ price }}/Einheit zzgl. MwSt./Stunde",
+  "pci_projects_project_training_jobs_submitresources_proposed_type_gpu": " (GPU)",
+  "pci_projects_project_training_jobs_submitresources_proposed_type_cpu": " (CPU)"
 }

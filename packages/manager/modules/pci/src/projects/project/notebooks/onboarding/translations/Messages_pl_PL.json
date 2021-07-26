@@ -1,0 +1,17 @@
+{
+  "pci_notebook_title": "AI Notebooks",
+  "pci_notebook_onboarding_content1": "Twoje notebooki operacyjne, w pełni zarządzane w ciągu kilku sekund.",
+  "pci_notebook_onboarding_content2": "Przyspiesz uruchamianie projektów i modeli za pomocą notebooków.",
+  "pci_notebook_onboarding_content3": "Pracujesz jako data scientist lub programista i chcesz uruchomić notebook w ciągu zaledwie paru minut? Uzyskaj szybki dostęp do Jupyter lub VSCode i uruchom go przy użyciu niezbędnych zasobów dzięki rozwiązaniu AI Notebooks. Możesz również korzystać z bezpiecznego dostępu dla użytkowników, uproszczonego zarządzania danymi oraz najpopularniejszych frameworków sztucznej inteligencji (TensorFlow, PyTorch, Hugging Face lub Scikit-learn).",
+  "pci_notebook_onboarding_action_label": "Stwórz notebook",
+  "pci_notebook_guides_documentation_title": "Pełna dokumentacja AI Notebooks",
+  "pci_notebook_guides_documentation_description": "Zapoznaj się z dokumentacją AI Notebooks.",
+  "pci_notebook_guides_definition_title": "Definicja AI Notebooks",
+  "pci_notebook_guides_definition_description": "Dowiedz się, czym jest AI Notebook w OVHcloud.",
+  "pci_notebook_guides_start_title": "Rozpocznij pracę z AI Notebooks",
+  "pci_notebook_guides_start_description": "Dowiedz się, jak szybko uruchomić Twój Notebook z poziomu Panelu klienta.",
+  "pci_notebook_guides_share_title": "Udostępnij Notebook",
+  "pci_notebook_guides_share_description": "Dowiedz się, jak udostępnić Notebook innym programistom.",
+  "pci_notebook_guides_object_storage_access_title": "Uzyskaj dostęp do Twoich danych z poziomu object storage",
+  "pci_notebook_guides_object_storage_access_description": "Dowiedz się, jak uzyskać dostęp do Twoich danych Notebook za pośrednictwem Object Storage."
+}
