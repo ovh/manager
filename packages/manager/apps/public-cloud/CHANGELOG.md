@@ -1,3 +1,12 @@
+## [4.15.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.15.6...@ovh-ux/manager-public-cloud@4.15.7) (2021-07-26)
+
+
+### Bug Fixes
+
+* sort package.json ([#5310](https://github.com/ovh/manager/issues/5310)) ([9bd6165](https://github.com/ovh/manager/commit/9bd6165c245a996dfe2651c94eb8d49e6ba862cb))
+
+
+
 ## [4.15.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.15.5...@ovh-ux/manager-public-cloud@4.15.6) (2021-07-26)
 
 
