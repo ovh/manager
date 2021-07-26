@@ -1,3 +1,30 @@
+# [5.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.33.1...@ovh-ux/manager-pci@5.34.0) (2021-07-26)
+
+
+### Bug Fixes
+
+* **data-processing:** fix various minor bugs ([83fe52b](https://github.com/ovh/manager/commit/83fe52be9d36305104fc32d03a21907afb318fe9))
+* **i18n:** add missing translations [CDS 1026] ([c2c4768](https://github.com/ovh/manager/commit/c2c47687fa10cc3b3037a61c41f4a0bea33419cf))
+* **i18n:** add missing translations [CDS 1029] ([43e2457](https://github.com/ovh/manager/commit/43e24573d5e8701ab905a843589b4445c48e638c))
+* **i18n:** add missing translations [CDS 1054] ([d0a1c8b](https://github.com/ovh/manager/commit/d0a1c8bf33d705914c22ac9b980ff1469ec6f727))
+* **pci.projects.new:** fix anti fraud checker ([3d580f1](https://github.com/ovh/manager/commit/3d580f1ee8c6799c37204f4cc550c04207d5985b))
+* **pci.storages.databases:** disable unavailable networks ([eb9758b](https://github.com/ovh/manager/commit/eb9758b13d6acebfb09dc307ed63e35f786121df)), closes [#MANAGER-7190](https://github.com/ovh/manager/issues/MANAGER-7190)
+* remove unused translations [CDS] ([e5d5768](https://github.com/ovh/manager/commit/e5d5768637c8a09c376669382dca1facd17fa4df))
+
+
+### Features
+
+* add anti_fraud step check ([6f757a4](https://github.com/ovh/manager/commit/6f757a41ce5f5bc4268849b2f627e198002c2b38))
+* **pci.project.quota:** add autoscalling ([6df6443](https://github.com/ovh/manager/commit/6df6443b5d7b1a960a2547faf11db37bee649086))
+* **users.credentials:** generate s3 credentials ([#5247](https://github.com/ovh/manager/issues/5247)) ([16ff02c](https://github.com/ovh/manager/commit/16ff02cefd9383830aa0bb465c738466144595c4)), closes [#MANAGER-7050](https://github.com/ovh/manager/issues/MANAGER-7050)
+
+
+### Reverts
+
+* Revert "feat(users.credentials): generate s3 credentials (#5247)" ([7166fd7](https://github.com/ovh/manager/commit/7166fd75076b1224b189eb9b138f73a782fa6435)), closes [#5247](https://github.com/ovh/manager/issues/5247)
+
+
+
 ## [5.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.33.0...@ovh-ux/manager-pci@5.33.1) (2021-07-23)
 
 

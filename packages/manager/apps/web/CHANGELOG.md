@@ -1,3 +1,22 @@
+# [15.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.28.0...@ovh-ux/manager-web@15.29.0) (2021-07-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1063] ([73c243f](https://github.com/ovh/manager/commit/73c243fde698ce8c14d655bcfd7a05ac637e7813))
+* split domain hold operations ([#5202](https://github.com/ovh/manager/issues/5202)) ([7cfe9bf](https://github.com/ovh/manager/commit/7cfe9bf6fc115f8f38fd18e6486f9f64d6e5e5f7))
+* **i18n:** add missing translations [CDS 1032] ([f101cb2](https://github.com/ovh/manager/commit/f101cb255f1a10ac94f2bf97095fdd420fa412c9))
+* **i18n:** add missing translations [CDS 1037] ([3dbedb8](https://github.com/ovh/manager/commit/3dbedb8dd5fbdb9fb8408b3b71b9267d5cdad8a8))
+* **i18n:** add missing translations [CDS 1044] ([23a67b4](https://github.com/ovh/manager/commit/23a67b4a91703a7e9cfb93a563ecff0a847c5840))
+
+
+### Features
+
+* add missing domain operations translations ([#5177](https://github.com/ovh/manager/issues/5177)) ([a216dc4](https://github.com/ovh/manager/commit/a216dc42b4b11c353135bf1c1a707723f69f31a5))
+* **domain:** add DNAME records support ([#5173](https://github.com/ovh/manager/issues/5173)) ([858de69](https://github.com/ovh/manager/commit/858de69a514a5e304b145c3201a851bc286e10dc))
+
+
+
 # [15.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.27.2...@ovh-ux/manager-web@15.28.0) (2021-07-19)
 
 
