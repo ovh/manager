@@ -1,3 +1,17 @@
+## [13.24.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.24.2...@ovh-ux/manager-telecom@13.24.3) (2021-07-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1059] ([5dc18c9](https://github.com/ovh/manager/commit/5dc18c90aa84a0882bcd56f80371425b8e52a17d))
+* **i18n:** add missing translations [CDS 1061] ([1fe0f30](https://github.com/ovh/manager/commit/1fe0f30e30c78554c83512243693cdd0c7c7e14e))
+* **i18n:** add missing translations [CDS 1064] ([417e697](https://github.com/ovh/manager/commit/417e69722d0f20d4e7b0af9bcae3fe077dd1f48d))
+* **i18n:** add missing translations [CDS 1065] ([e86f03c](https://github.com/ovh/manager/commit/e86f03c1dfada4f4a1d4c30713684daf008cb194))
+* **telecom:** use line country when ordering phone ([#5261](https://github.com/ovh/manager/issues/5261)) ([60c99d7](https://github.com/ovh/manager/commit/60c99d72f52f857e88262ec958f2b42c24a606a9))
+* **xdsl.service.modal:** fix modal service for content sharing ([b64d874](https://github.com/ovh/manager/commit/b64d874e879d61aa5fed15fba13dc49dc1bc3484))
+
+
+
 ## [13.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.24.1...@ovh-ux/manager-telecom@13.24.2) (2021-07-23)
 
 

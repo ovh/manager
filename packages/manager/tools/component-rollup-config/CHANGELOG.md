@@ -1,3 +1,12 @@
+## [10.0.2](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@10.0.1...@ovh-ux/component-rollup-config@10.0.2) (2021-07-26)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `rollup` to `v2.50.6` ([6f0b40a](https://github.com/ovh/manager/commit/6f0b40a6d0554731957d3b2f481fe9a71a47a490))
+
+
+
 ## [10.0.1](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@10.0.0...@ovh-ux/component-rollup-config@10.0.1) (2021-07-19)
 
 

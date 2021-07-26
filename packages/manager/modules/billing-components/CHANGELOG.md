@@ -1,3 +1,14 @@
+## [3.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.1.1...@ovh-ux/manager-billing-components@3.1.2) (2021-07-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1032] ([f101cb2](https://github.com/ovh/manager/commit/f101cb255f1a10ac94f2bf97095fdd420fa412c9))
+* **i18n:** add missing translations [CDS 1044] ([23a67b4](https://github.com/ovh/manager/commit/23a67b4a91703a7e9cfb93a563ecff0a847c5840))
+* **i18n:** add missing translations [CDS 1048] ([e9694ff](https://github.com/ovh/manager/commit/e9694ff6b3cd164c1b1856031445700ac20927f0))
+
+
+
 ## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.1.0...@ovh-ux/manager-billing-components@3.1.1) (2021-07-19)
 
 

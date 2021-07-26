@@ -1,3 +1,12 @@
+## [8.4.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.4.7...@ovh-ux/manager-sms@8.4.8) (2021-07-26)
+
+
+### Bug Fixes
+
+* **sms:** update sms download from date ([#5260](https://github.com/ovh/manager/issues/5260)) ([2effeed](https://github.com/ovh/manager/commit/2effeed4c8db694ace6a4460b87da0f3372e8b19))
+
+
+
 ## [8.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.4.6...@ovh-ux/manager-sms@8.4.7) (2021-07-19)
 
 

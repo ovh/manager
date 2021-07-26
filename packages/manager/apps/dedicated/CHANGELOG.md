@@ -1,3 +1,27 @@
+# [16.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.33.1...@ovh-ux/manager-dedicated@16.34.0) (2021-07-26)
+
+
+### Bug Fixes
+
+* **dedicated:** fix ip and license import module ([5564aa3](https://github.com/ovh/manager/commit/5564aa3eb5d4b832cdf6a06ba5e9fb115418dca0))
+* **i18n:** add missing translations [CDS 1045] ([d4f72a2](https://github.com/ovh/manager/commit/d4f72a2e1207973da054a6478bbef364e0b4f70b))
+* **ip:** missing ip range service ([#5297](https://github.com/ovh/manager/issues/5297)) ([71f202a](https://github.com/ovh/manager/commit/71f202ab9953fc475eefc9fa447d078ee945d3ce))
+* **license:** move redirection into index.js ([f77a6f0](https://github.com/ovh/manager/commit/f77a6f0fa9e19283c14649133aa7dff9815bede9))
+* **user.session:** prevent display `server` as current universe ([#5252](https://github.com/ovh/manager/issues/5252)) ([4ea3150](https://github.com/ovh/manager/commit/4ea3150941c5f3c9b3fb23bd07bb102ef484358b)), closes [#4353](https://github.com/ovh/manager/issues/4353)
+
+
+### Features
+
+* **dedicated:** ip section lazy loading ([9290e04](https://github.com/ovh/manager/commit/9290e04b8562a54efef553dd6420b8a48cebc76f))
+
+
+### Performance Improvements
+
+* **cdn:** add lazyloading in CDN section ([#5145](https://github.com/ovh/manager/issues/5145)) ([144104d](https://github.com/ovh/manager/commit/144104de2618ff6334c5b43e79ab1c33bd01a457))
+* **license:** add lazyloading in license section ([6a110de](https://github.com/ovh/manager/commit/6a110dea0f5eacaed5c9243b85fe7111d6bbf717))
+
+
+
 ## [16.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.33.0...@ovh-ux/manager-dedicated@16.33.1) (2021-07-23)
 
 
