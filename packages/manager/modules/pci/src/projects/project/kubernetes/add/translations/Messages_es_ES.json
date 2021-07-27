@@ -9,5 +9,8 @@
   "kubernetes_add_name": "Nombre",
   "kubernetes_add_billing_type_description": "Este modo de facturación se aplicará a todos los nodos futuros del pool. Más adelante podrá modificar la facturación de cada uno de sus nodos pasando de la modalidad por horas a la mensual.",
   "kubernetes_add_billing_type_payment_method": "El importe se cargará en su forma de pago por defecto.",
-  "kubernetes_add_billing_anti_affinity_title": "Facturación y antiafinidad"
+  "kubernetes_add_billing_anti_affinity_title": "Facturación y antiafinidad",
+  "kubernetes_add_region_info": "La región seleccionada todavía no está activa en su proyecto. Esta adición tardará unos segundos y no afectará a la facturación.",
+  "kubernetes_add_region_inprogress": "Se está añadiendo la región {{ name }}...",
+  "kubernetes_add_region_failed": "Se ha producido un error al añadir la región {{ name }}: {{ message }}"
 }
