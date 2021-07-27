@@ -1,3 +1,12 @@
+# [5.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.34.1...@ovh-ux/manager-pci@5.35.0) (2021-07-27)
+
+
+### Features
+
+* **kube:** add autoscaling to node pools ([75d5b73](https://github.com/ovh/manager/commit/75d5b733b309f3b9ef9fa75cd190f143107325c6))
+
+
+
 ## [5.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.34.0...@ovh-ux/manager-pci@5.34.1) (2021-07-26)
 
 
