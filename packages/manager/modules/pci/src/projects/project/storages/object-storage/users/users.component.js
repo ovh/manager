@@ -5,8 +5,11 @@ export default {
   controller,
   template,
   bindings: {
+    projectId: '<',
     userList: '<',
+    goToImportPolicy: '<',
     goToDeleteUser: '<',
     goToUsersAndRoles: '<',
+    goToUsers: '<',
   },
 };

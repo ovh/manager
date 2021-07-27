@@ -13,6 +13,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('pci.projects.project.storages.objects.users.delete', {
           userId: user.id,
         }),
+      goToImportPolicy: /* @ngInject */ ($state) => (user) =>
+        $state.go('pci.projects.project.storages.objects.users.import-policy', {
+          userId: user.id,
+        }),
       goToUsers: /* @ngInject */ (CucCloudMessage, $state, projectId) => (
         message = false,
         type = 'success',

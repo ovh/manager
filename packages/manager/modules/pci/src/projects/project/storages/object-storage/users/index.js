@@ -10,6 +10,7 @@ import 'angular-ui-bootstrap';
 import component from './users.component';
 import routing from './users.routing';
 import deleteUser from './delete';
+import importPolicy from './import';
 
 const moduleName = 'ovhManagerPciStoragesContainersUserList';
 
@@ -23,6 +24,7 @@ angular
     'ui.router',
     'ui.bootstrap',
     deleteUser,
+    importPolicy,
   ])
   .component('pciProjectStorageContainersUsers', component)
   .config(routing)

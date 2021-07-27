@@ -2,21 +2,21 @@
 
 <div data-ng-if="$ctrl.userList.length === 0">
     <h5
-        data-translate="pci_projects_project_storages_containers_userlist_user_management"
+        data-translate="pci_projects_project_storages_containers_users_user_management"
     ></h5>
     <p
-        data-translate="pci_projects_project_storages_containers_userlist_user_description"
+        data-translate="pci_projects_project_storages_containers_users_user_description"
     ></p>
 </div>
 
 <h5
     data-ng-if="$ctrl.userList.length > 0"
-    data-translate="pci_projects_project_storages_containers_userlist_title"
+    data-translate="pci_projects_project_storages_containers_users_title"
 ></h5>
 
 <oui-datagrid data-rows="$ctrl.userList">
     <oui-datagrid-column
-        data-title="'pci_projects_project_storages_containers_userlist_username' | translate"
+        data-title="'pci_projects_project_storages_containers_users_username' | translate"
         data-property="username"
         data-type="string"
         data-searchable
@@ -25,21 +25,21 @@
     >
     </oui-datagrid-column>
     <oui-datagrid-column
-        data-title="'pci_projects_project_storages_containers_userlist_description' | translate"
+        data-title="'pci_projects_project_storages_containers_users_description' | translate"
         data-property="description"
         data-type="string"
         data-sortable
         data-filterable
     ></oui-datagrid-column>
     <oui-action-menu data-compact data-placement="end">
-        <oui-action-menu-item data-on-click="$ctrl.importJson($row)" disabled>
+        <oui-action-menu-item data-on-click="$ctrl.goToImportPolicy($row)">
             <span
-                data-translate="pci_projects_project_storages_containers_userlist_import_json"
+                data-translate="pci_projects_project_storages_containers_users_import_json"
             ></span>
         </oui-action-menu-item>
-        <oui-action-menu-item data-on-click="$ctrl.downloadJson($row)" disabled>
+        <oui-action-menu-item data-on-click="$ctrl.downloadJson($row)">
             <span
-                data-translate="pci_projects_project_storages_containers_userlist_download_json"
+                data-translate="pci_projects_project_storages_containers_users_download_json"
             ></span>
         </oui-action-menu-item>
         <oui-action-menu-item data-on-click="$ctrl.goToDeleteUser($row)">
@@ -58,7 +58,7 @@
         >
             <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i>
             <span
-                data-translate="pci_projects_project_storages_containers_userlist_add_user"
+                data-translate="pci_projects_project_storages_containers_users_add_user"
             ></span>
         </button>
     </oui-datagrid-topbar>
