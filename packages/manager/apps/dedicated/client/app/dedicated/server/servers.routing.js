@@ -31,6 +31,13 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
       orderUrl: /* @ngInject */ (User) => User.getUrlOf('dedicatedOrder'),
+      isOrderAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(['dedicated-server:order'])
+          .then((orderAvailability) =>
+            orderAvailability.isFeatureAvailable('dedicated-server:order'),
+          )
+          .catch(() => false),
       getServerDashboardLink: /* @ngInject */ ($state) => (server) =>
         $state.href('app.dedicated-server.server', { productId: server.name }),
       dedicatedServers: /* @ngInject */ ($transition$, iceberg) => {
