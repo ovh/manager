@@ -6,8 +6,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_notebook_add_title'),
 
-      storageAddObjectLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.storages.objects.add', {
+      createObjectStorage: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.storages.objects.add', {
           projectId,
         }),
 

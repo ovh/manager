@@ -6,6 +6,7 @@ export default {
     projectId: '<',
     storageAddObjectLink: '<',
     goToNotebooks: '<',
+    createObjectStorage: '<',
     guideUrl: '<',
     onNotebookAdd: '<',
     trackNotebooks: '<',
