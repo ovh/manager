@@ -20,5 +20,6 @@
   "kubernetes_add_private_network_label": "Rete privata associata",
   "kubernetes_add_private_network_none": "Nessuno (IP pubblici)",
   "kubernetes_add_private_network_description": "Di default, i nodi di lavoro dispongono di un IPv4 pubblico. Se scegli una rete privata, gli IP pubblici di questi nodi saranno utilizzati esclusivamente per la loro amministrazione e il collegamento con il control plane Kubernetes; ai tuoi nodi verrà assegnato un IP sulla vLAN della rete privata scelta.",
-  "kubernetes_add_private_network_add": "Crea una rete privata"
+  "kubernetes_add_private_network_add": "Crea una rete privata",
+  "kube_common_node_pool_autoscaling_title": "Configura la dimensione del pool di nodi"
 }

@@ -3,18 +3,18 @@ import '@uirouter/angularjs';
 import 'oclazyload';
 
 const moduleName =
-  'ovhManagerPciProjectKubernetesDetailsNodesBulkDeleteLazyloading';
+  'ovhManagerPciProjectKubernetesDetailsNodePoolsScaleLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'pci.projects.project.kubernetes.details.nodepools.details.nodes.bulk-delete.**',
+      'pci.projects.project.kubernetes.details.nodepools.scale.**',
       {
-        url: '/delete',
+        url: '/scale',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./delete.module').then((mod) =>
+          return import('./scale.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
