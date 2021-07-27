@@ -29,9 +29,11 @@ angular
             isSvaWalletFeatureAvailable: /* @ngInject */ (
               TelephonySvaWalletService,
             ) => TelephonySvaWalletService.isFeatureAvailable(),
-            isSvaWalletValid: /* @ngInject */ (
-              TelephonySvaWalletService,
-            ) => () => TelephonySvaWalletService.isSvaWalletValid(),
+            getSvaWallet: /* @ngInject */ (TelephonySvaWalletService) => () =>
+              TelephonySvaWalletService.getSvaWallet(),
+            isSvaWalletValid: /* @ngInject */ (TelephonySvaWalletService) => (
+              wallet,
+            ) => TelephonySvaWalletService.isSvaWalletValid(wallet),
             goToSvaWallet: /* @ngInject */ ($state) => () =>
               $state.go('telecom.telephony.billingAccount.svaWallet'),
           },

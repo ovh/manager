@@ -1,6 +1,7 @@
 export default class SvaWalletService {
   /* @ngInject */
-  constructor($q, ovhFeatureFlipping) {
+  constructor($http, $q, ovhFeatureFlipping) {
+    this.$http = $http;
     this.$q = $q;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
@@ -13,7 +14,13 @@ export default class SvaWalletService {
       );
   }
 
-  isSvaWalletValid() {
-    return this.$q.when(true);
+  isSvaWalletValid(svaWallet) {
+    return (svaWallet ? this.$q.when(svaWallet) : this.getSvaWallet())
+      .then((wallet) => wallet.kyc.status === 'UP_TO_DATE')
+      .catch(() => false);
+  }
+
+  getSvaWallet() {
+    return this.$http.get('/me/sva/wallet').then(({ data: wallet }) => wallet);
   }
 }
