@@ -2,6 +2,9 @@
   "pci_projects_project_storages_containers_container_addUser_archive_title": "Ajouter les utilisateurs",
   "pci_projects_project_storages_containers_container_addUser_object_title": "Ajouter les utilisateurs",
 
+  "pci_projects_project_storages_containers_container_addUser_description_step_0": "Sélectionnez l’utilisateur à ajouter à votre conteneur. S’il n’apparaît pas dans cette liste, veuillez le créer dans la section dédiée.",
+  "pci_projects_project_storages_containers_container_addUser_description_step_1": "Définissez le rôle de votre utilisateur sur le conteneur {{container}}.",
+
   "pci_projects_project_storages_containers_container_addUser_submit_label": "Confirmer",
   "pci_projects_project_storages_containers_container_addUser_cancel_label": "Annuler",
 
@@ -10,6 +13,6 @@
   "pci_projects_project_storages_containers_container_addUser_right_readOnly": "Lecture seule",
   "pci_projects_project_storages_containers_container_addUser_right_readWrite": "Lecture et écriture",
 
-  "pci_projects_project_storages_containers_container_addUser_success_message": "Votre utilisateur {{ name }} a été ajouté au conteneur {{ container }} en {{ role }}.",
+  "pci_projects_project_storages_containers_container_addUser_success_message": "Votre utilisateur {{ name }} a été ajouté au conteneur {{ container }} en tant que {{ role }}.",
   "pci_projects_project_storages_containers_container_addUser_error_addUser": "Votre utilisateur n’a pas été correctement ajouté au conteneur {{ container }} : {{ message }}."
 }

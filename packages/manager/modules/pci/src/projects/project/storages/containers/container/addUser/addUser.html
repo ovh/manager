@@ -5,6 +5,9 @@
 >
     <div data-ng-if="$ctrl.container">
         <div data-ng-if="$ctrl.addUserStep === 0">
+            <span
+                data-translate="pci_projects_project_storages_containers_container_addUser_description_step_0"
+            ></span>
             <oui-radio-group
                 model="$ctrl.selectedUser"
                 data-on-change="$ctrl.onUserSelect()"
@@ -17,6 +20,10 @@
             </oui-radio-group>
         </div>
         <div data-ng-if="$ctrl.addUserStep === 1">
+            <span
+                data-translate="pci_projects_project_storages_containers_container_addUser_description_step_1"
+                data-translate-values="{container: $ctrl.container.id}"
+            ></span>
             <oui-radio-group
                 model="$ctrl.selectedRole"
                 on-change="$ctrl.onRoleSelect(modelValue)"
