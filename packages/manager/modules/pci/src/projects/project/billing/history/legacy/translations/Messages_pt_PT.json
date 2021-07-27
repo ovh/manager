@@ -7,5 +7,5 @@
   "cpbhd_bill_link": "Consultar todas as faturas",
   "cpbhd_bill_pdf_tooltip": "Consultar a fatura PDF",
   "cpbhd_bill_pdf_link": "Fatura {{month}} {{year}}",
-  "cpb_error_message": "Oups, não conseguimos recuperar todas as informações."
+  "cpb_error_message": "Lamentamos, mas não foi possível recuperar todas as informações."
 }

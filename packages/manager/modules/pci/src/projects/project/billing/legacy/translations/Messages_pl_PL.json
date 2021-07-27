@@ -1,11 +1,11 @@
 {
   "cpbc_billing_control": "Płatności",
-  "cpbc_tab_consumption": "Aktualne wykorzystanie zasobów",
+  "cpbc_tab_consumption": "Aktualne zużycie zasobów",
   "cpbc_tab_forecast": "Oszacowanie kolejnej faktury",
   "cpbc_tab_history": "Historia",
   "cpbc_monthly_header": "Zafakturowane należności",
   "cpbc_monthly_header_description": "Abonamenty i proraty",
   "cpbc_hourly_header": "Kolejna faktura",
-  "cpbc_hourly_header_description": "Zasoby na żadanie w bieżącym miesiącu",
+  "cpbc_hourly_header_description": "Zasoby na żądanie w bieżącym miesiącu",
   "cpb_error_message": "Wystąpił problem z pobraniem wszystkich informacji."
 }
