@@ -827,5 +827,6 @@
   "domain_dashboard_recommended_hosting_label": "{{ reduction }} off on your {{ type }} hosting plan for Black Friday.",
   "domain_dashboard_recommended_hosting_discover": "Explore our solutions",
   "domain_tab_ZONE_no_zone_order_btn": "Order a DNS zone",
-  "domain_tab_emails": "Emails and mailing lists"
+  "domain_tab_emails": "Emails and mailing lists",
+  "domain_configuration_protection_auth_info_registry_LT": "To transfer your domain name away from OVH, please contact our customer service."
 }

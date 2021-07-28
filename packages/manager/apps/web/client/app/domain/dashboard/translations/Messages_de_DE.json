@@ -828,5 +828,6 @@
   "domain_dashboard_recommended_hosting_label": "- {{ reduction }} auf Ihr Hosting {{ type }} zum Black Friday.",
   "domain_dashboard_recommended_hosting_discover": "Zu den Lösungen",
   "domain_tab_ZONE_no_zone_order_btn": "Eine DNS Zone bestellen",
-  "domain_tab_emails": "E-Mails und Mailinglisten"
+  "domain_tab_emails": "E-Mails und Mailinglisten",
+  "domain_configuration_protection_auth_info_registry_LT": "Um Ihre Domain außerhalb von OVH zu transferieren kontaktieren Sie bitte unseren Kundendienst."
 }
