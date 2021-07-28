@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-telecom-universe-components",
-  "version": "7.3.2",
+  "version": "7.3.3",
   "private": true,
   "description": "Collection of components for the Telecom control panel.",
   "repository": {
@@ -19,7 +19,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-checkbox-table": "^2.0.2",
-    "@ovh-ux/ng-ovh-mondial-relay": "^8.0.8",
+    "@ovh-ux/ng-ovh-mondial-relay": "^8.0.9",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.3",
     "@ovh-ux/ng-translate-async-loader": "^2.1.2",
     "@ovh-ux/ui-kit": "^4.4.1",

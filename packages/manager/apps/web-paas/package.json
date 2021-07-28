@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-paas-app",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "private": true,
   "repository": {
     "type": "git",
@@ -35,7 +35,7 @@
     "@ovh-ux/ng-ovh-payment-method": "^8.1.2",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.2",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.5.0",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.5.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.3",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.2",
     "@ovh-ux/ng-ovh-utils": "^14.0.14",

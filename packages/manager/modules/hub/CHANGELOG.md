@@ -1,3 +1,12 @@
+## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.0.0...@ovh-ux/manager-hub@3.0.1) (2021-07-28)
+
+
+### Bug Fixes
+
+* bump @ovh-ux/ui-kit to v4.7.0 ([#5315](https://github.com/ovh/manager/issues/5315)) ([bd9b540](https://github.com/ovh/manager/commit/bd9b54015511a001a93866e43c48244fb81af907))
+
+
+
 # [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.4.5...@ovh-ux/manager-hub@3.0.0) (2021-06-29)
 
 

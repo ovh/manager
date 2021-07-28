@@ -1,3 +1,13 @@
+## [13.24.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.24.3...@ovh-ux/manager-telecom@13.24.4) (2021-07-28)
+
+
+### Bug Fixes
+
+* bump @ovh-ux/ui-kit to v4.7.0 ([#5315](https://github.com/ovh/manager/issues/5315)) ([bd9b540](https://github.com/ovh/manager/commit/bd9b54015511a001a93866e43c48244fb81af907))
+* **telecom:** text overflow on telephony alias configuration ([#5270](https://github.com/ovh/manager/issues/5270)) ([96e45ca](https://github.com/ovh/manager/commit/96e45ca3feed77f780654a2c242ac2e79ada076f)), closes [#MANAGER-7183](https://github.com/ovh/manager/issues/MANAGER-7183)
+
+
+
 ## [13.24.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.24.2...@ovh-ux/manager-telecom@13.24.3) (2021-07-26)
 
 

@@ -1,3 +1,18 @@
+# [5.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.35.0...@ovh-ux/manager-pci@5.36.0) (2021-07-28)
+
+
+### Bug Fixes
+
+* **ai.serving:** update documentation link ([#5283](https://github.com/ovh/manager/issues/5283)) ([80232c8](https://github.com/ovh/manager/commit/80232c88d8bc3ceef69eb496495a38a1330630f5))
+* **notebook.add:** fix link ([#5314](https://github.com/ovh/manager/issues/5314)) ([470573c](https://github.com/ovh/manager/commit/470573c0ce1196246eb87d735eed60606e9639f3))
+
+
+### Features
+
+* **project:** allow customers to add new regions ([#4967](https://github.com/ovh/manager/issues/4967)) ([7177879](https://github.com/ovh/manager/commit/717787999ce0befd88fb278b2a24559673cf3bf6))
+
+
+
 # [5.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.34.1...@ovh-ux/manager-pci@5.35.0) (2021-07-27)
 
 

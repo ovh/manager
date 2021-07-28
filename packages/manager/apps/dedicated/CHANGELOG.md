@@ -1,3 +1,17 @@
+# [16.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.34.1...@ovh-ux/manager-dedicated@16.35.0) (2021-07-28)
+
+
+### Bug Fixes
+
+* bump @ovh-ux/ui-kit to v4.7.0 ([#5315](https://github.com/ovh/manager/issues/5315)) ([bd9b540](https://github.com/ovh/manager/commit/bd9b54015511a001a93866e43c48244fb81af907))
+
+
+### Features
+
+* **dedicated:** housing section lazy loading ([59bdfed](https://github.com/ovh/manager/commit/59bdfedb9b75a94d2fa03c950383af60bfeb26ea))
+
+
+
 ## [16.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.34.0...@ovh-ux/manager-dedicated@16.34.1) (2021-07-28)
 
 

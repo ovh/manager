@@ -1,3 +1,12 @@
+## [2.2.7](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.2.6...@ovh-ux/ng-ovh-cloud-universe-components@2.2.7) (2021-07-28)
+
+
+### Bug Fixes
+
+* bump @ovh-ux/ui-kit to v4.7.0 ([#5315](https://github.com/ovh/manager/issues/5315)) ([bd9b540](https://github.com/ovh/manager/commit/bd9b54015511a001a93866e43c48244fb81af907))
+
+
+
 ## [2.2.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.2.5...@ovh-ux/ng-ovh-cloud-universe-components@2.2.6) (2021-06-29)
 
 

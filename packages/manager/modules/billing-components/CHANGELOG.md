@@ -1,3 +1,12 @@
+## [3.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.1.2...@ovh-ux/manager-billing-components@3.1.3) (2021-07-28)
+
+
+### Bug Fixes
+
+* **resiliation:** translate error message ([#5300](https://github.com/ovh/manager/issues/5300)) ([a00179a](https://github.com/ovh/manager/commit/a00179a2f7646b778700e904b8d99a71f854c3f6))
+
+
+
 ## [3.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.1.1...@ovh-ux/manager-billing-components@3.1.2) (2021-07-26)
 
 

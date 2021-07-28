@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "private": true,
   "description": "Set of components for Manager Hub",
   "repository": {
@@ -29,7 +29,7 @@
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
     "@ovh-ux/ng-ovh-order-tracking": "^1.1.1 || ^2.0.0",
     "@ovh-ux/ng-ovh-payment-method": "^8.1.2",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.5.0",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.5.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.3",
     "@ovh-ux/ng-translate-async-loader": "^2.1.2",
     "@ovh-ux/ui-kit": "^4.4.1",
