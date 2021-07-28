@@ -26,6 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           containerId,
         }),
+
       deleteObject: /* @ngInject */ ($state, projectId, containerId) => (
         object,
       ) =>

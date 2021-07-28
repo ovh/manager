@@ -155,7 +155,10 @@
                         data-translate="pci_projects_project_storages_containers_container_unseal_label"
                     ></span>
                 </oui-action-menu-item>
-                <oui-action-menu-item data-on-click="$ctrl.deleteObject($row)">
+                <oui-action-menu-item
+                    data-on-click="$ctrl.deleteObject($row)"
+                    data-ng-if="!$ctrl.container.isHighPerfStorage"
+                >
                     <span
                         data-translate="pci_projects_project_storages_containers_container_delete_label"
                     ></span>

@@ -16,12 +16,24 @@ export default class PciBlockStorageContainersContainerObjectAddController {
 
   addObjects() {
     this.isLoading = true;
-    return this.PciProjectStorageContainersService.addObjects(
-      this.projectId,
-      this.container,
-      this.prefix,
-      this.files,
-    )
+    let addPromise = null;
+
+    if (this.container.isHighPerfStorage) {
+      addPromise = this.addHighPerfObjects(
+        this.projectId,
+        this.container.region,
+        this.container.name,
+        this.files,
+      );
+    } else {
+      addPromise = this.PciProjectStorageContainersService.addObjects(
+        this.projectId,
+        this.container,
+        this.prefix,
+        this.files,
+      );
+    }
+    return addPromise
       .then(() =>
         this.goBack(
           this.$translate.instant(
@@ -47,5 +59,14 @@ export default class PciBlockStorageContainersContainerObjectAddController {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  addHighPerfObjects(serviceName, regionName, containerName, files) {
+    return this.PciProjectStorageContainersService.addHighPerfObjects(
+      serviceName,
+      regionName,
+      containerName,
+      files,
+    );
   }
 }
