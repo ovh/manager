@@ -101,7 +101,7 @@ export default /* @ngInject */ function(
     if (self.canChangeContacts()) {
       const redirectURL = coreURLBuilder.buildURL(
         'dedicated',
-        '/contacts/services',
+        '#/contacts/services',
         {
           tab: 'SERVICES',
           serviceName,
