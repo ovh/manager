@@ -135,16 +135,6 @@ export default class {
       });
   }
 
-  onRegionSubmit() {
-    this.cluster.region = new Datacenter({
-      name: this.cluster.region.name,
-      quota: find(this.quotas, { region: this.cluster.region.name }),
-    });
-    this.loadFlavors(this.cluster.region.name);
-    this.loadPrivateNetworks();
-    this.displaySelectedRegion = true;
-  }
-
   loadPrivateNetworks() {
     this.availablePrivateNetworks = [
       this.defaultPrivateNetwork,
@@ -160,6 +150,61 @@ export default class {
     ) {
       this.cluster.privateNetwork = this.defaultPrivateNetwork;
     }
+  }
+
+  setClusterRegion(isRegionEnabled = false) {
+    this.cluster.region = new Datacenter({
+      name: this.cluster.region.name,
+      enabled: isRegionEnabled || this.cluster.region.enabled,
+      quota: find(this.quotas, { region: this.cluster.region.name }),
+    });
+  }
+
+  onRegionSubmit() {
+    this.setClusterRegion();
+    this.loadPrivateNetworks();
+
+    if (this.cluster.region.enabled) {
+      this.loadFlavors(this.cluster.region.name);
+    }
+
+    this.displaySelectedRegion = true;
+  }
+
+  onKubeVersionFocus() {
+    const { region } = this.cluster;
+    const { name, enabled } = region;
+    this.displaySelectedRegion = true;
+
+    if (!enabled) {
+      this.isAddingNewRegion = true;
+
+      return this.Kubernetes.addRegion(this.projectId, region)
+        .then(() => this.loadQuotas())
+        .then((quotas) => {
+          this.quotas = quotas;
+          return this.quotas;
+        })
+        .then(() => this.setClusterRegion(true))
+        .then(() => {
+          this.isAddingNewRegion = false;
+        })
+        .catch(({ data: error }) => {
+          this.currentStep = 0;
+          this.displaySelectedRegion = false;
+          this.CucCloudMessage.error(
+            this.$translate.instant('kubernetes_add_region_failed', {
+              name,
+              message: error.message,
+            }),
+          );
+          return this.$q.reject();
+        })
+        .then(() => this.loadFlavors(this.cluster.region.name))
+        .catch(() => {});
+    }
+
+    return undefined;
   }
 
   onNodePoolFocus() {

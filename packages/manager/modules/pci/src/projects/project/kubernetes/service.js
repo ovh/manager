@@ -13,7 +13,10 @@ import {
   PROCESSING_STATUS,
 } from './details/constants';
 
-import { ANTI_AFFINITY_MAX_NODES } from './kubernetes.constants';
+import {
+  ANTI_AFFINITY_MAX_NODES,
+  KUBE_PRODUCT_ID,
+} from './kubernetes.constants';
 
 export default class Kubernetes {
   /* @ngInject */
@@ -211,6 +214,27 @@ export default class Kubernetes {
           type: 'private',
         }),
       );
+  }
+
+  getRegions(projectId, ovhSubsidiary) {
+    const product = KUBE_PRODUCT_ID;
+    return this.$http
+      .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
+        params: { product, ovhSubsidiary },
+      })
+      .then(({ data }) =>
+        data.products
+          .find(({ name }) => name === product)
+          .regions.map(({ name, enabled }) => ({
+            name,
+            enabled,
+            hasEnoughQuota: () => true,
+          })),
+      );
+  }
+
+  addRegion(serviceName, { name: region }) {
+    return this.$http.post(`/cloud/project/${serviceName}/region`, { region });
   }
 
   static getPrivateNetwork(privateNetworks, openstackId) {

@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 /**
  * @ngdoc controller
  * @name ng-ovh-sso-auth-modal-plugin.SsoAuthModalController
@@ -41,13 +39,18 @@ export default /* @ngInject */ function SsoAuthModalController(
 
   function getUser() {
     const deferredObj = $q.defer();
-    $.ajax(self.data.userConfig)
-      .done((data) => {
-        deferredObj.resolve(data);
+
+    fetch(self.data.userConfig.url, {
+      headers: self.data.userConfig.headers,
+      credentials: 'same-origin',
+    })
+      .then((data) => {
+        deferredObj.resolve(data.json());
       })
-      .fail((err) => {
+      .catch((err) => {
         deferredObj.resolve(err);
       });
+
     return deferredObj.promise;
   }
 
