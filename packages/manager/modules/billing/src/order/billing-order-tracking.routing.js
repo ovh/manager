@@ -1,7 +1,7 @@
 import controller from './billing-order-tracking.controller';
 import template from './billing-order-tracking.html';
 
-export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.billing.orders.order', {
     url: '/:orderId',
     params: {
@@ -31,6 +31,4 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       breadcrumb: /* @ngInject */ (orderId) => orderId,
     },
   });
-
-  $urlServiceProvider.rules.when('/billing/order/:id', '/billing/orders/:id');
 };
