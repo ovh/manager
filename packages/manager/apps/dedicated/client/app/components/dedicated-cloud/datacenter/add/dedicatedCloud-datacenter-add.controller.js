@@ -21,10 +21,10 @@ export default class {
 
   load() {
     this.loader = true;
-    this.DedicatedCloud.getCommercialRangeList(this.serviceName)
+    this.DedicatedCloud.getComplianceRangeList(this.serviceName)
       .then(
         (list) => {
-          this.commercialRange.list = list;
+          this.commercialRange.list = list.map(({ name }) => name);
         },
         (data) => {
           this.goBack(

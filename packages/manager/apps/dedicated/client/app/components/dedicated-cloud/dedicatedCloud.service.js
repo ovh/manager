@@ -268,6 +268,18 @@ class DedicatedCloudService {
     );
   }
 
+  getComplianceRangeList(serviceName) {
+    return this.OvhHttp.get(
+      '/dedicatedCloud/{serviceName}/commercialRange/compliance',
+      {
+        rootPath: 'apiv6',
+        urlParams: {
+          serviceName,
+        },
+      },
+    );
+  }
+
   addDatacenter(serviceName, commercialRangeName) {
     return this.OvhHttp.post('/dedicatedCloud/{serviceName}/datacenter', {
       rootPath: 'apiv6',
