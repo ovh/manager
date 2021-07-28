@@ -828,5 +828,6 @@
   "domain_dashboard_recommended_hosting_label": "- {{reduction}} na hosting {{type}} z okazji Black Friday.",
   "domain_dashboard_recommended_hosting_discover": "Sprawdź rozwiązania",
   "domain_tab_ZONE_no_zone_order_btn": "Zamów strefę DNS",
-  "domain_tab_emails": "E-maile i listy mailingowe"
+  "domain_tab_emails": "E-maile i listy mailingowe",
+  "domain_configuration_protection_auth_info_registry_LT": "Aby przenieść domenę z OVHcloud do innego operatora, skontaktuj się z naszym działem obsługi klienta."
 }
