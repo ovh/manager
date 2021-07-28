@@ -26,5 +26,8 @@
   "pci_projects_project_users_status_error": "In errore",
   "pci_projects_project_users_status_error_inconsistent_spec": "In errore",
   "pci_projects_project_users_status_pending": "In attesa",
-  "pci_projects_project_users_modify_password_label": "Modifica la password"
+  "pci_projects_project_users_modify_password_label": "Modifica la password",
+  "pci_projects_project_users_generate_s3_credentials": "Genera le credenziali S3",
+  "pci_projects_project_users_generate_s3_credentials_success": "Le credenziali S3 per l'utente {{user}} sono state rigenerate.",
+  "pci_projects_project_users_generate_s3_credentials_error": "Si è verificato un errore durante la generazione delle informazioni di identificazione per l’utente {{ user }} : {{ message }}."
 }

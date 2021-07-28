@@ -26,5 +26,8 @@
   "pci_projects_project_users_status_error": "Error",
   "pci_projects_project_users_status_error_inconsistent_spec": "Error",
   "pci_projects_project_users_status_pending": "Queued",
-  "pci_projects_project_users_modify_password_label": "Modify password"
+  "pci_projects_project_users_modify_password_label": "Modify password",
+  "pci_projects_project_users_generate_s3_credentials": "Generate S3 credentials",
+  "pci_projects_project_users_generate_s3_credentials_success": "S3 credentials for user {{user}} have been regenerated.",
+  "pci_projects_project_users_generate_s3_credentials_error": "An error has occurred generating identification details for the {{ registryName }} private registry: {{ message }}"
 }

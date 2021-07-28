@@ -10,7 +10,7 @@
   "kube_common_save": "Save",
   "kube_common_cancel": "Cancel",
   "kube_common_delete": "Delete",
-  "kube_common_node_pool_title": "Configure your node pool",
+  "kube_common_node_pool_title": "Configure your node type",
   "kube_common_billing_type_title": "Billing and anti-affinity",
   "kube_common_create_node_pool": "Create a node pool",
   "kube_common_flavor_load_error": "Failed to load nodes: {{message}}",
