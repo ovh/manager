@@ -828,5 +828,6 @@
   "domain_dashboard_recommended_hosting_label": "- {{ reduction }} no seu alojamento {{ type }} durante a Black Friday.",
   "domain_dashboard_recommended_hosting_discover": "Descobrir as soluções",
   "domain_tab_ZONE_no_zone_order_btn": "Encomendar uma zona DNS",
-  "domain_tab_emails": "Emails e listas de discussão"
+  "domain_tab_emails": "Emails e listas de discussão",
+  "domain_configuration_protection_auth_info_registry_LT": "Para transferir o seu domínio fora da OVHcloud, contacte o nosso apoio ao cliente."
 }
