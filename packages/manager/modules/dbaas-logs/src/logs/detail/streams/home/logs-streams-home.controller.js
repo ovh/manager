@@ -152,7 +152,7 @@ export default class LogsStreamsHomeCtrl {
 
   retentionInfo(stream) {
     const foundRetention = this.findRetention(stream);
-    if (foundRetention.duration) {
+    if (foundRetention?.duration) {
       if (
         foundRetention.duration === this.LogsConstants.RETENTION.FORTY_FIVE_DAYS
       ) {
