@@ -225,7 +225,7 @@ export default class Kubernetes {
       .then(({ data }) =>
         data.products
           .find(({ name }) => name === product)
-          .regions.map(({ name, enabled }) => ({
+          ?.regions.map(({ name, enabled }) => ({
             name,
             enabled,
             hasEnoughQuota: () => true,
