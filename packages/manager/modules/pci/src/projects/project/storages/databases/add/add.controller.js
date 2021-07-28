@@ -144,6 +144,10 @@ export default class {
       : true;
   }
 
+  onNetworkTypeChange(usePrivateNetwork) {
+    if (!usePrivateNetwork) this.model.subnet = null;
+  }
+
   prepareOrderData() {
     this.orderData = {
       description: this.model.name,
