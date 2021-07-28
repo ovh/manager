@@ -8,6 +8,8 @@ export default {
     goToMigrateConfirm: '<',
     migrationTrackingPrefix: '<',
     newPlan: '<',
+    currentPrice: '<',
+    newPrice: '<',
     serviceName: '<',
     stateVps: '<',
     vps: '<',

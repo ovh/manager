@@ -29,6 +29,13 @@ export default class {
     return this.goBack();
   }
 
+  getCurrentPrice() {
+    return this.ovhManagerProductOffersService.constructor.getUniquePricingOfCapacity(
+      this.currentPrice,
+      pricingConstants.PRICING_CAPACITIES.RENEW,
+    ).price;
+  }
+
   getRenewablePrice() {
     return this.ovhManagerProductOffersService.constructor.getUniquePricingOfCapacity(
       this.newPlan?.pricings,
