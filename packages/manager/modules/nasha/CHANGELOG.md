@@ -1,3 +1,12 @@
+## [2.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.2.2...@ovh-ux/manager-nasha@2.2.3) (2021-07-28)
+
+
+### Bug Fixes
+
+* **partition.zfs:** replace with oui-radio ([#5301](https://github.com/ovh/manager/issues/5301)) ([02696ea](https://github.com/ovh/manager/commit/02696ea9ed699617c8d3f8267c85213ca2a7ba30))
+
+
+
 ## [2.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.2.1...@ovh-ux/manager-nasha@2.2.2) (2021-06-29)
 
 

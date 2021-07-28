@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nasha",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "private": true,
   "description": "NAS-HA product.",
   "repository": {

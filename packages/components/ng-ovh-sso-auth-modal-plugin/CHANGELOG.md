@@ -1,3 +1,12 @@
+## [4.0.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth-modal-plugin@4.0.3...@ovh-ux/ng-ovh-sso-auth-modal-plugin@4.0.4) (2021-07-28)
+
+
+### Bug Fixes
+
+* **ng-ovh-sso-auth-modal-plugin:** set latest deps versions ([6f5f805](https://github.com/ovh/manager/commit/6f5f805732148f5da0c49b0355dba7b340f34f2a))
+
+
+
 ## [4.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth-modal-plugin@4.0.2...@ovh-ux/ng-ovh-sso-auth-modal-plugin@4.0.3) (2021-06-29)
 
 

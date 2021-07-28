@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-server-sidebar",
-  "version": "3.12.1",
+  "version": "3.12.2",
   "private": true,
   "description": "Sidebar component shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/server-sidebar#readme",
