@@ -1,3 +1,12 @@
+## [16.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.34.0...@ovh-ux/manager-dedicated@16.34.1) (2021-07-28)
+
+
+### Bug Fixes
+
+* **hpc:** switch orderable commercial ranges api ([#5320](https://github.com/ovh/manager/issues/5320)) ([9a3b39e](https://github.com/ovh/manager/commit/9a3b39e3cd2fe45b0e2502a8f06109259fc7b931))
+
+
+
 # [16.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.33.1...@ovh-ux/manager-dedicated@16.34.0) (2021-07-26)
 
 
