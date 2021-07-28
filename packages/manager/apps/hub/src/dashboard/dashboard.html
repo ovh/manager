@@ -26,13 +26,13 @@
             </hub-payment-status>
             <hub-enterprise-billing-summary
                 class="col-md-4 mb-3 mb-md-4 order-3 order-md-2"
-                data-ng-if="$ctrl.me.isEnterprise"
+                data-ng-if="$ctrl.me.enterprise"
                 tracking-prefix="hub::dashboard::activity"
             >
             </hub-enterprise-billing-summary>
             <hub-billing-summary
                 class="col-md-4 mb-3 mb-md-4 order-3 order-md-2"
-                data-ng-if="!$ctrl.me.isEnterprise"
+                data-ng-if="!$ctrl.me.enterprise"
                 bills="$ctrl.bills"
                 debt="$ctrl.debt"
                 me="$ctrl.me"
@@ -48,7 +48,7 @@
             </ovh-manager-hub-support>
             <hub-order-tracking
                 class="col-md-4 order-4"
-                data-ng-if="!$ctrl.me.isEnterprise"
+                data-ng-if="!$ctrl.me.enterprise"
                 order="$ctrl.order"
                 tracking-prefix="{{ $ctrl.trackingPrefix }}"
                 refresh="$ctrl.refreshOrder()"

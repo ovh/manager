@@ -28,7 +28,7 @@ export default class ManagerHubShortcutsCtrl {
       {
         id: 'bills',
         icon: 'oui-icon-receipt_concept',
-        url: this.me.isEnterprise
+        url: this.me.enterprise
           ? 'https://billing.us.ovhcloud.com/login'
           : this.coreURLBuilder.buildURL('dedicated', '#/billing/history'),
         tracking: 'hub::sidebar::shortcuts::go-to-bills',
