@@ -1,13 +1,89 @@
 <div>
-    <oui-header heading="{{:: $ctrl.serviceName }}">
+    <oui-header
+        heading="{{:: $ctrl.storage.name }}"
+        description="{{ $ctrl.storage.id }}"
+    >
         <oui-header-tabs>
             <oui-header-tabs-item
                 href="{{:: $ctrl.dashboardLink }}"
                 active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
             >
-                <span>Home</span>
+                <span
+                    data-translate="netapp_dashboard_general_information"
+                ></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
     </oui-header>
-    <div ui-view></div>
+    <div data-ovh-alert></div>
+    <div class="row" ui-view>
+        <oui-tile
+            class="col-md-4"
+            heading="{{:: 'netapp_dashboard_information' | translate }}"
+        >
+            <oui-tile-definition
+                term="{{:: 'netapp_dashboard_information_name' | translate }}"
+                description="{{ $ctrl.storage.name }}"
+            >
+            </oui-tile-definition>
+            <oui-tile-definition
+                term="{{:: 'netapp_dashboard_information_id' | translate }}"
+                description="{{ $ctrl.storage.id }}"
+            >
+            </oui-tile-definition>
+            <oui-tile-definition
+                term="{{:: 'netapp_dashboard_information_region' | translate }}"
+                description="{{ $ctrl.storage.region }}"
+            >
+            </oui-tile-definition>
+            <oui-tile-definition
+                term="{{:: 'netapp_dashboard_information_performance_level' | translate }}"
+                description="{{ $ctrl.storage.performanceLevel }}"
+            >
+            </oui-tile-definition>
+            <oui-tile-definition
+                term="{{:: 'netapp_dashboard_information_quota' | translate }}"
+                description="{{ 'netapp_dashboard_information_quota_formatted' | translate:{quota: $ctrl.storage.quota } }}"
+            >
+            </oui-tile-definition>
+        </oui-tile>
+        <div class="col-md-4">
+            <oui-tile
+                class="mb-3"
+                heading="{{:: 'netapp_dashboard_configuration' | translate }}"
+            >
+                <oui-tile-definition
+                    term="{{:: 'netapp_dashboard_configuration_status' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="{
+                            'oui-badge_success': $ctrl.storage.isActive(),
+                            'oui-badge_error': $ctrl.storage.isInactive(),
+                            'oui-badge_warning': $ctrl.storage.isPending()
+                        }"
+                            data-translate="{{:: 'netapp_dashboard_configuration_status_' + $ctrl.storage.status }}"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-button href="{{ $ctrl.createVolumeLink }}">
+                    <span
+                        data-translate="netapp_dashboard_configuration_create_volume"
+                    ></span>
+                </oui-tile-button>
+            </oui-tile>
+            <ovh-advices
+                service-name="{{ ::$ctrl.storage.id }}"
+                service-type="netapp"
+            >
+            </ovh-advices>
+        </div>
+        <billing-subscription-tile
+            class="col-md-4"
+            on-error="$ctrl.onBillingInformationError(error)"
+            service-path="{{ ::'/storage/netapp/' + $ctrl.storage.id }}"
+            with-engagement="$ctrl.isCommitmentAvailable"
+        >
+        </billing-subscription-tile>
+    </div>
 </div>
