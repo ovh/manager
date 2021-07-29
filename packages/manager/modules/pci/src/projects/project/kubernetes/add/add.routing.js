@@ -7,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .injector()
         .getAsync('regions')
         .then((regions) =>
-          regions.length === 0
+          regions?.length === 0
             ? { state: 'pci.projects.project.kubernetes.onboarding' }
             : false,
         ),
