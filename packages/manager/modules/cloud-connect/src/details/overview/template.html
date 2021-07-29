@@ -136,8 +136,8 @@
                         <span
                             class="oui-badge"
                             data-ng-class="{
-                                'oui-status_error': $ctrl.cloudConnect.status === 'closed',
-                                'oui-status_success': $ctrl.cloudConnect.status === 'active'
+                                'oui-badge_error': $ctrl.cloudConnect.status === 'closed',
+                                'oui-badge_success': $ctrl.cloudConnect.status === 'active'
                             }"
                             data-ng-bind="'cloud_connect_status_' +  $ctrl.cloudConnect.status | translate"
                         ></span>
@@ -321,18 +321,18 @@
                             <span
                                 class="oui-badge"
                                 data-ng-class="{
-                                    'oui-status_success': $interface.isIncomingLightStatusUp(),
-                                    'oui-status_error': !$interface.isIncomingLightStatusDown(),
-                                    'oui-status_info': !$interface.isIncomingLightStatusUnknown(),
+                                    'oui-badge_success': $interface.isIncomingLightStatusUp(),
+                                    'oui-badge_error': !$interface.isIncomingLightStatusDown(),
+                                    'oui-badge_info': !$interface.isIncomingLightStatusUnknown(),
                                 }"
                                 data-ng-bind="'IN'"
                             ></span>
                             <span
                                 class="oui-badge"
                                 data-ng-class="{
-                                    'oui-status_success': $interface.isOutgoingLightStatusUp(),
-                                    'oui-status_error': !$interface.isOutgoingLightStatusDown(),
-                                    'oui-status_info': !$interface.isOutgoingLightStatusUnknown(),
+                                    'oui-badge_success': $interface.isOutgoingLightStatusUp(),
+                                    'oui-badge_error': !$interface.isOutgoingLightStatusDown(),
+                                    'oui-badge_info': !$interface.isOutgoingLightStatusUnknown(),
                                 }"
                                 data-ng-bind="'OUT'"
                             ></span>
@@ -404,9 +404,9 @@
                                 <span
                                     class="oui-badge"
                                     data-ng-class="{
-                                        'oui-status_error': $pop.isError(),
-                                        'oui-status_success': $pop.isActive(),
-                                        'oui-status_warning': !$pop.isActive()
+                                        'oui-badge_error': $pop.isError(),
+                                        'oui-badge_success': $pop.isActive(),
+                                        'oui-badge_warning': !$pop.isActive()
                                     }"
                                     data-ng-bind="'cloud_connect_status_' +  $pop.status | translate"
                                 ></span>

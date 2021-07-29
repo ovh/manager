@@ -31,9 +31,9 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                    'oui-status_error': $row.isError(),
-                    'oui-status_success': $row.isDone(),
-                    'oui-status_info': $row.isInProcess(),
+                    'oui-badge_error': $row.isError(),
+                    'oui-badge_success': $row.isDone(),
+                    'oui-badge_info': $row.isInProcess(),
                 }"
                 data-ng-bind="'cloud_connect_tasks_status_' +  $row.status | translate"
             ></span>
