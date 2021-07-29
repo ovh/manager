@@ -6,7 +6,7 @@ import 'oclazyload';
 const moduleName = 'ovhManagerDedicatedBillingLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
-  /* @ngInject */ ($stateProvider) => {
+  /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
     $stateProvider.state('app.account.billing.**', {
       url: '/billing',
       lazyLoad: ($transition$) => {
@@ -16,6 +16,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         ).then((mod) => $ocLazyLoad.inject(mod.default || mod));
       },
     });
+    $urlServiceProvider.rules.when('/billing/order/:id', '/billing/orders/:id');
   },
 );
 

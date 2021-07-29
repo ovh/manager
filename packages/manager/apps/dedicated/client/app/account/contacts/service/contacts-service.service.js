@@ -34,7 +34,9 @@ export default class {
 
   changeContact(service) {
     return this.OvhHttp.post(
-      `${service.path}/${service.serviceName}/changeContact`,
+      `${service.path}/${window.encodeURIComponent(
+        service.serviceName,
+      )}/changeContact`,
       {
         rootPath: 'apiv6',
         data: {

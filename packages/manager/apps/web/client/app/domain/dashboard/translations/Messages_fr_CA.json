@@ -257,6 +257,7 @@
   "domain_configuration_protection_desactivate_step1_info": "Lorsque la protection sera désactivée, vous aurez accès au code AUTH/INFO permettant le transfert de domaine en cliquant sur le bouton correspondant.",
   "domain_configuration_protection_desactivate_step1_dnssec": "Votre domaine utilise le DNSSEC, vérifiez que votre nouveau prestataire puisse correctement le gérer. Dans le cas contraire, désactivez l'option avant de transférer votre domaine.",
   "domain_configuration_protection_auth_info_registry": "Pour transférer votre nom de domaine hors de chez OVH, vous devez contacter le Registry pour obtenir le code auth-info. Ceci est possible via le lien : <a href=\"{{t0}}\" target=\"_blank\">{{t0}}</a>",
+  "domain_configuration_protection_auth_info_registry_LT": "Pour transférer votre nom de domaine hors d'OVH, veuillez contacter notre service client.",
   "domain_configuration_protection_desactivate_step1_helpwizard_title": "Protection du domaine",
   "domain_configuration_protection_desactivate_step1_helpwizard_desc": "Activer la Protection du Domaine permet de vous protéger contre le vol de domaine, en interdisant tout transfert.",
   "domain_configuration_protection_desactivate_step1_helpwizard_question1": "Qu'est-ce que le vol de domaine ?",
