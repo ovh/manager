@@ -101,6 +101,11 @@ export default /* @ngInject */ ($stateProvider) => {
           billingAccount: billingAccountId,
         }),
       breadcrumb: /* @ngInject */ (billingAccount) => billingAccount,
+
+      svaWalletLink: /* @ngInject */ ($state, billingAccount) =>
+        $state.href('telecom.telephony.billingAccount.svaWallet', {
+          billingAccount,
+        }),
     },
     translations: { value: ['..', '.', './dashboard'], format: 'json' },
   });

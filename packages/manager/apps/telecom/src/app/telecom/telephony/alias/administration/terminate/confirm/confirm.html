@@ -1,0 +1,18 @@
+<oui-modal
+    heading="{{ :: 'telephony_alias_administration_terminate_title' | translate }}"
+    primary-action="$close(true)"
+    primary-label="{{:: 'telephony_alias_administration_terminate_confirm_primary' | translate }}"
+    secondary-action="$dismiss()"
+    secondary-label="{{:: 'telephony_alias_administration_terminate_confirm_cancel' | translate }}"
+>
+    <p>
+        <em
+            data-translate="telephony_alias_administration_terminate_confirm_message"
+        ></em>
+    </p>
+    <p data-ng-if="$ctrl.isSpecialNumber">
+        <strong
+            data-translate="telephony_alias_administration_terminate_confirm_sva_warning"
+        ></strong>
+    </p>
+</oui-modal>
