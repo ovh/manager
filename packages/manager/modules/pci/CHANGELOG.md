@@ -1,3 +1,12 @@
+## [5.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.36.0...@ovh-ux/manager-pci@5.36.1) (2021-07-29)
+
+
+### Bug Fixes
+
+* **kubernetes:** prevent no region available error ([#5338](https://github.com/ovh/manager/issues/5338)) ([def2d4a](https://github.com/ovh/manager/commit/def2d4a684986e095cb0807f9b462d10a2651190))
+
+
+
 # [5.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.35.0...@ovh-ux/manager-pci@5.36.0) (2021-07-28)
 
 
