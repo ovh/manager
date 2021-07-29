@@ -13,7 +13,6 @@ export default {
     goToCancelResiliation: '&',
     goToResiliation: '&',
     trackingPrefix: '@',
-    user: '<',
     commitImpressionData: '<?',
     withContactManagement: '<?',
     disableServiceActions: '<?',
