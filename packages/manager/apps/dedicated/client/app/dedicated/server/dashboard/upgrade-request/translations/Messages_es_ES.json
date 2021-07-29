@@ -6,8 +6,8 @@
   "dedicated_server_dashboard_upgrade_content_ram": "¿Necesita más memoria y quiere aumentar la RAM de su servidor <strong>{{ projectId }}</strong>?",
   "dedicated_server_dashboard_upgrade_content_storage": "¿Necesita más espacio y quiere aumentar el almacenamiento de su servidor <strong>{{ projectId }}</strong>?",
   "dedicated_server_dashboard_upgrade_label": "Describa su solicitud: franja horaria de la intervención, volumen requerido para los próximos meses, discos que desea añadir, memoria RAM, etc.",
-  "dedicated_server_dashboard_upgrade_success_message_ram": "La solicitud de mejora de la RAM se ha enviado. <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{ ticketUrl }}\">Haga clic aquí para consultar el progreso. <span class=\"oui-icon oui-icon-external_link\" aria-hidden=\"true\"></span></a>",
-  "dedicated_server_dashboard_upgrade_success_message_storage": "La solicitud de mejora del almacenamiento se ha enviado. <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{ ticketUrl }}\">Haga clic aquí para consultar el progreso. <span class=\"oui-icon oui-icon-external_link\" aria-hidden=\"true\"></span></a>",
+  "dedicated_server_dashboard_upgrade_success_message_ram": "La solicitud de mejora de la RAM se ha enviado. <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{ ticketUrl }}\">Haga clic aquí para consultar el progreso. <span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>",
+  "dedicated_server_dashboard_upgrade_success_message_storage": "La solicitud de mejora del almacenamiento se ha enviado. <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{ ticketUrl }}\">Haga clic aquí para consultar el progreso. <span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>",
   "dedicated_server_dashboard_upgrade_ticket_subject": "Quiero añadir un componente a mi servidor.",
   "dedicated_server_dashboard_upgrade_error_message": "Se ha producido un error al solicitar un aumento en los límites de su cuota: {{ message }}."
 }

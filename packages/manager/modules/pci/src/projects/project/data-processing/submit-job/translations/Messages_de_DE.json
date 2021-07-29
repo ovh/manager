@@ -25,7 +25,7 @@
   "data_processing_submit_job_error_message_odp_job_driverMemoryOverhead_tooSmall": "Eingabefehler: Es wird zu wenig Arbeitsspeicher-Overhead für den Treiber angefordert.",
   "data_processing_submit_job_error_message_odp_job_totalExecutorMemory_tooBig": "Eingabefehler: Es wird insgesamt zu viel Arbeitsspeicher und Overhead für die Arbeiterknoten angefordert.",
   "data_processing_submit_job_error_message_odp_job_totalDriverMemory_tooBig": "Eingabefehler: Es wird insgesamt zu viel Arbeitsspeicher und Overhead für den Treiber angefordert.",
-  "data_processing_submit_job_error_message_odp_project_notEnoughQuotas": "Fehlerhafte Anzahl von Quotas: Die Quotas Ihres Public Cloud Projekts reichen nicht aus. Bitte besuchen Sie die Seite <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\">um Ihre Public Cloud Quotas zu verwalten.<span class=\"oui-icon oui-icon-external_link\" aria-hidden=\"true\"></span></a>",
+  "data_processing_submit_job_error_message_odp_project_notEnoughQuotas": "Fehlerhafte Anzahl von Quotas: Die Quotas Ihres Public Cloud Projekts reichen nicht aus. Bitte besuchen Sie die Seite <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\">um Ihre Public Cloud Quotas zu verwalten.<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>",
   "data_processing_submit_job_error_message_odp_mainApplicationCode_notFound": "Eingabefehler: Die angeforderte Datei kann im angegebenen Object Storage Container nicht gefunden werden.",
   "data_processing_submit_job_error_message_odp_condaEnvironment_isRequired": "Eingabefehler: Im angegebenen Object Storage Container wurde keine Datei einer Conda-Umgebung gefunden."
 }
