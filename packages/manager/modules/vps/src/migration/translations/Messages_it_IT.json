@@ -1,7 +1,7 @@
 {
   "vps_migration_title": "Migrazione VPS",
   "vps_migration_button": "Pianifica la migrazione",
-  "vps_migration_description1": "Hai ricevuto una comunicazione sull’importanza di migrare il tuo VPS <b>prima del {{cutoffDate}}</b>. In caso di mancata azione entro questa data, la macchina sarà migrata automaticamente a partire dal {{autoMigrationDate}}. Il VPS attuale sarà sostituito da una macchina della nostra <a href='{{rangeLink}}' class='oui-link oui-link_icon' rel='noopener' target='_blank'>nuova gamma<span class='oui-icon oui-icon-external_link' aria-hidden='true'></span></a>, a un prezzo inferiore o equivalente.",
+  "vps_migration_description1": "Hai ricevuto una comunicazione sull’importanza di migrare il tuo VPS <b>prima del {{cutoffDate}}</b>. In caso di mancata azione entro questa data, la macchina sarà migrata automaticamente a partire dal {{autoMigrationDate}}. Il VPS attuale sarà sostituito da una macchina della nostra <a href='{{rangeLink}}' class='oui-link oui-link_icon' rel='noopener' target='_blank'>nuova gamma<span class='oui-icon oui-icon-external-link' aria-hidden='true'></span></a>, a un prezzo inferiore o equivalente.",
   "vps_migration_description4": "Le opzioni associate al VPS saranno automaticamente trasferite nella nuova macchina. Lo storico dei backup non verrà conservato. Durante il processo di migrazione, la configurazione di rete del VPS verrà modificata per utilizzare DHCP. A operazione terminata sarà possibile impostare nuovamente l’IP statico.",
   "vps_migration_description5": "Per procedere alla migrazione è sufficiente scegliere la data e l’orario. L’operazione verrà eseguita automaticamente.",
   "vps_migration_table_status": "Stato",

@@ -2,7 +2,7 @@
   "kube_service": "Usługa",
   "kube_service_error": "Wystąpił błąd podczas pobierania informacji: {{message}}.",
   "kube_service_name": "Nazwa",
-  "kube_service_description_information": "Poniżej znajdziesz dane umożliwiające dostęp do Twojej usługi Kubernetes przy użyciu <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">narzędzia kubetcl.<span class=\"oui-icon oui-icon-external_link\" aria-hidden=\"true\"></span></a>",
+  "kube_service_description_information": "Poniżej znajdziesz dane umożliwiające dostęp do Twojej usługi Kubernetes przy użyciu <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">narzędzia kubetcl.<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>",
   "kube_service_description_reset": "Możesz w każdym momencie zresetować konfigurację Twojego klastra Kubernetes.",
   "kube_service_offer_beta": "Zarządzana usługa Kubernetes (bezpłatna)",
   "kube_service_file": "Plik \"kubeconfig\"",

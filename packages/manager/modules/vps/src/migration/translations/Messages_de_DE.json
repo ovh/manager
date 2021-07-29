@@ -1,7 +1,7 @@
 {
   "vps_migration_title": "VPS Wechsel",
   "vps_migration_button": "Den Wechsel programmieren",
-  "vps_migration_description1": "Ihnen wurde mitgeteilt, dass es wichtig ist, ihren VPS <b>vor dem {{cutoffDate}}</b>umzustellen. Wenn Sie selbst nichts veranlassen, so wird Ihre Maschine nach diesem Datum ab dem {{autoMigrationDate}} automatisch umgestellt. Ihr derzeitiger VPS wird durch eine Maschine unserer <a href='{{rangeLink}}' class='oui-link oui-link_icon' rel='noopener' target='_blank'>neuen Reihe<span class='oui-icon oui-icon-external_link' aria-hidden='true'></span></a> ersetzt, zum gleichen oder einem niedrigeren Preis.",
+  "vps_migration_description1": "Ihnen wurde mitgeteilt, dass es wichtig ist, ihren VPS <b>vor dem {{cutoffDate}}</b>umzustellen. Wenn Sie selbst nichts veranlassen, so wird Ihre Maschine nach diesem Datum ab dem {{autoMigrationDate}} automatisch umgestellt. Ihr derzeitiger VPS wird durch eine Maschine unserer <a href='{{rangeLink}}' class='oui-link oui-link_icon' rel='noopener' target='_blank'>neuen Reihe<span class='oui-icon oui-icon-external-link' aria-hidden='true'></span></a> ersetzt, zum gleichen oder einem niedrigeren Preis.",
   "vps_migration_description4": "Die Optionen Ihres jetzigen VPS stehen Ihnen automatisch auch auf dem neuen VPS zur Verfügung. Der Backup-Verlauf wird indes nicht aufbewahrt. Während des Migrationsprozesses wird die Netzwerkkonfiguration Ihres VPS in DHCP-Form gezwungen. Wenn die Migration beendet ist, können Sie Ihren VPS auf Wunsch in einen festen IP konfigurieren.",
   "vps_migration_description5": "Für den Wechsel müssen Sie lediglich das gewünschte Datum und die gewünschte Zeit programmieren. Der Wechsel erfolgt dann automatisch.",
   "vps_migration_table_status": "Status",

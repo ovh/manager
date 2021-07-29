@@ -1,7 +1,7 @@
 {
   "vps_migration_title": "VPS Migration",
   "vps_migration_button": "Schedule migration",
-  "vps_migration_description1": "You received a notification about the importance of migrating your VPS <b>before {{cutoffDate}}</b>. After this date, if no action is taken on your part, the machine will be automatically migrated from {{autoMigrationDate}} onwards. Your current VPS will be replaced with a server from our <a href='{{rangeLink}}' class='oui-link oui-link_icon' rel='noopener' target='_blank'>new range<span class='oui-icon oui-icon-external_link' aria-hidden='true'></span></a>, at an equal or lower price.",
+  "vps_migration_description1": "You received a notification about the importance of migrating your VPS <b>before {{cutoffDate}}</b>. After this date, if no action is taken on your part, the machine will be automatically migrated from {{autoMigrationDate}} onwards. Your current VPS will be replaced with a server from our <a href='{{rangeLink}}' class='oui-link oui-link_icon' rel='noopener' target='_blank'>new range<span class='oui-icon oui-icon-external-link' aria-hidden='true'></span></a>, at an equal or lower price.",
   "vps_migration_description4": "The options linked to your VPS will be migrated to the new one automatically. However, please note that backups will not be stored. During the migration process, your VPS network configuration will be force-switched to DHCP. Once the migration is complete, you can configure your VPS to a fixed IP if you want to do so.",
   "vps_migration_description5": "To proceed with the migration, simply schedule a convenient date and time. It will then take place automatically.",
   "vps_migration_table_status": "Status",

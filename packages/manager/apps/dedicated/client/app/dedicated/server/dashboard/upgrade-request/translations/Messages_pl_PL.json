@@ -6,8 +6,8 @@
   "dedicated_server_dashboard_upgrade_content_ram": "Potrzebujesz więcej pamięci RAM na serwerze <strong>{{projectId}}</strong>?",
   "dedicated_server_dashboard_upgrade_content_storage": "Potrzebujesz więcej przestrzeni dyskowej na serwerze <strong>{{projectId}}</strong>?",
   "dedicated_server_dashboard_upgrade_label": "Opisz zlecenie: przedział czasowy interwencji, ilość zamówiona na najbliższe miesiące, dyski, które mają być dodane, RAM...",
-  "dedicated_server_dashboard_upgrade_success_message_ram": "Zlecenie zwiększenia RAM zostało przyjęte. <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{ ticketUrl }}\">Kliknij tutaj, aby śledzić postęp.<span class=\"oui-icon oui-icon-external_link\" aria-hidden=\"true\"></span></a>",
-  "dedicated_server_dashboard_upgrade_success_message_storage": "Twoje zlecenie zwiększenia przestrzeni dyskowej zostało przyjęte. <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{ ticketUrl }}\">Kliknij tutaj, aby śledzić postęp.<span class=\"oui-icon oui-icon-external_link\" aria-hidden=\"true\"></span></a>",
+  "dedicated_server_dashboard_upgrade_success_message_ram": "Zlecenie zwiększenia RAM zostało przyjęte. <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{ ticketUrl }}\">Kliknij tutaj, aby śledzić postęp.<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>",
+  "dedicated_server_dashboard_upgrade_success_message_storage": "Twoje zlecenie zwiększenia przestrzeni dyskowej zostało przyjęte. <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{ ticketUrl }}\">Kliknij tutaj, aby śledzić postęp.<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>",
   "dedicated_server_dashboard_upgrade_ticket_subject": "Chcę dodać komponent do mojego serwera",
   "dedicated_server_dashboard_upgrade_error_message": "Wystąpił błąd podczas zlecania zwiększenia rozmiaru projektu: {{message}}."
 }
