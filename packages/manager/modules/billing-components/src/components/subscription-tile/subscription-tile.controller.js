@@ -23,6 +23,7 @@ export default class ServicesActionsCtrl {
   }
 
   $onInit() {
+    this.user = this.coreConfig.getUser();
     this.disableServiceActions = this.$attrs.disableServiceActions
       ? this.disableServiceActions
       : false;
