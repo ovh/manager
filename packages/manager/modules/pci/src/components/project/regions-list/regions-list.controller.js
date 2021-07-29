@@ -77,10 +77,8 @@ export default class RegionsListController {
   }
 
   onMacroChange(macro, regions) {
-    if (regions.length === 1) {
-      [this.region] = regions;
-      this.onRegionChange(this.region);
-    }
+    [this.region] = regions;
+    this.onRegionChange(this.region);
   }
 
   onRegionChange(region) {
