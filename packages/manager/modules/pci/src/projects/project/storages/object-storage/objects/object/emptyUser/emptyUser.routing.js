@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'pci.projects.project.storages.containers.objects.emptyUser',
+    'pci.projects.project.storages.objects.objects.emptyUser',
     {
       url: '/emptyUser',
       views: {

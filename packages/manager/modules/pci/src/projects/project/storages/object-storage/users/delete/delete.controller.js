@@ -39,6 +39,9 @@ export default class PciStoragesContainersUsersDeleteController {
           ),
           'error',
         ),
-      );
+      )
+      .finally(() => {
+        this.isDeleting = false;
+      });
   }
 }

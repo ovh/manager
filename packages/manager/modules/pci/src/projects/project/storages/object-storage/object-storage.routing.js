@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.storages.containers', {
-    url: '/containers',
+  $stateProvider.state('pci.projects.project.storages.objects', {
+    url: '/objects',
     component: 'pciProjectStorageObjectStorage',
     redirectTo: (transition) =>
       transition
@@ -9,10 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
         .then((containers) =>
           containers.length === 0
             ? {
-                state:
-                  'pci.projects.project.storages.containers.objects.onboarding',
+                state: 'pci.projects.project.storages.objects.onboarding',
               }
-            : { state: 'pci.projects.project.storages.containers.objects' },
+            : { state: 'pci.projects.project.storages.objects.objects' },
         ),
     resolve: {
       archive: () => false,
@@ -22,13 +21,14 @@ export default /* @ngInject */ ($stateProvider) => {
         projectId,
       ) => PciProjectStorageContainersService.getAll(projectId, archive),
       containersLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.storages.containers.objects', {
+        $state.href('pci.projects.project.storages.objects.objects', {
           projectId,
         }),
-      currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
-        $state.href($state.current.name, $transition$.params()),
+      currentActiveLink: /* @ngInject */ ($transition$, $state) => () => {
+        return $state.href($state.current.name, $transition$.params());
+      },
       userListLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.storages.containers.users', {
+        $state.href('pci.projects.project.storages.objects.users', {
           projectId,
         }),
       goToStorageContainers: /* @ngInject */ (
@@ -39,7 +39,7 @@ export default /* @ngInject */ ($stateProvider) => {
         const reload = message && type === 'success';
 
         const promise = $state.go(
-          'pci.projects.project.storages.containers.objects',
+          'pci.projects.project.storages.objects.objects',
           {
             projectId,
           },
@@ -52,7 +52,7 @@ export default /* @ngInject */ ($stateProvider) => {
           promise.then(() =>
             CucCloudMessage[type](
               message,
-              'pci.projects.project.storages.containers',
+              'pci.projects.project.storages.objects.objects',
             ),
           );
         }

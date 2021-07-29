@@ -1,5 +1,5 @@
 <div data-ui-view>
-    <header class="mb-3 oui-header">
+    <header class="mb-3 oui-header" data-ng-if="$ctrl.archive">
         <div class="oui-header__container">
             <div class="text-truncate oui-header__content">
                 <h1
@@ -42,6 +42,7 @@
             ></p>
 
             <oui-field
+                data-ng-if="!$ctrl.container.isHighPerfStorage"
                 label="{{:: 'pci_projects_project_storages_containers_container_info_publicUrl' | translate }}"
                 label-popover="{{:: 'pci_projects_project_storages_containers_container_info_publicUrl_help' | translate }}"
             >
@@ -51,7 +52,7 @@
             </oui-field>
 
             <oui-field
-                data-ng-if="!$ctrl.archive"
+                data-ng-if="!$ctrl.archive && !$ctrl.container.isHighPerfStorage"
                 label="{{:: 'pci_projects_project_storages_containers_container_object_info_staticUrl' | translate }}"
                 label-popover="{{:: 'pci_projects_project_storages_containers_container_object_info_staticUrl_help' | translate }}"
             >

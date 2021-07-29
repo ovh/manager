@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.storages.containers.users', {
+  $stateProvider.state('pci.projects.project.storages.objects.users', {
     url: '/users',
     views: {
       containersView: 'pciProjectStorageContainersUsers',
@@ -10,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
       goToUsersAndRoles: /* @ngInject */ ($state) => () =>
         $state.go('pci.projects.project.users'),
       goToDeleteUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('pci.projects.project.storages.containers.users.delete', {
+        $state.go('pci.projects.project.storages.objects.users.delete', {
           userId: user.id,
         }),
       goToUsers: /* @ngInject */ (CucCloudMessage, $state, projectId) => (
@@ -20,7 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
         const reload = message && type === 'success';
 
         const promise = $state.go(
-          'pci.projects.project.storages.containers.users',
+          'pci.projects.project.storages.objects.users',
           {
             projectId,
           },
@@ -33,7 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
           promise.then(() =>
             CucCloudMessage[type](
               message,
-              'pci.projects.project.storages.containers.users',
+              'pci.projects.project.storages.objects.users',
             ),
           );
         }

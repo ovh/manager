@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerPciStoragesContainersUsersDeleteLoading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'pci.projects.project.storages.containers.objects.users.delete.**',
+      'pci.projects.project.storages.objects.users.delete.**',
       {
         url: '/delete',
         lazyLoad: ($transition$) => {

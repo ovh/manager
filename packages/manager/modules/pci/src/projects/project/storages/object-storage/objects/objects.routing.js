@@ -1,12 +1,8 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.storages.objects', {
-    url: '/objects?id',
-    component: 'pciProjectStorageContainers',
-    params: {
-      id: {
-        dynamic: true,
-        type: 'string',
-      },
+  $stateProvider.state('pci.projects.project.storages.objects.objects', {
+    url: '',
+    views: {
+      containersView: 'pciProjectStorageContainers',
     },
     redirectTo: (transition) =>
       transition
@@ -26,34 +22,30 @@ export default /* @ngInject */ ($stateProvider) => {
         projectId,
       ) => PciProjectStorageContainersService.getAll(projectId, archive),
       addContainer: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.storages.containers.objects.add', {
+        $state.go('pci.projects.project.storages.objects.add', {
           projectId,
         }),
       viewContainer: /* @ngInject */ ($state, projectId) => (container) =>
-        $state.go('pci.projects.project.storages.containers.objects.object', {
+        $state.go('pci.projects.project.storages.objects.objects.object', {
           projectId,
           containerId: container.id,
-          isHighPerfStorage: container.isHighPerfStorage,
         }),
       deleteContainer: /* @ngInject */ ($state, projectId) => (container) =>
-        $state.go('pci.projects.project.storages.containers.objects.delete', {
+        $state.go('pci.projects.project.storages.objects.objects.delete', {
           projectId,
           containerId: container.id,
-          isHighPerfStorage: container.isHighPerfStorage,
         }),
       goToAddUserContainer: /* @ngInject */ ($state, projectId) => (
         container,
       ) =>
-        $state.go('pci.projects.project.storages.containers.objects.addUser', {
+        $state.go('pci.projects.project.storages.objects.objects.addUser', {
           projectId,
           containerId: container.id,
-          isHighPerfStorage: container.isHighPerfStorage,
         }),
       containerLink: /* @ngInject */ ($state, projectId) => (container) =>
-        $state.href('pci.projects.project.storages.containers.objects.object', {
+        $state.href('pci.projects.project.storages.objects.objects.object', {
           projectId,
           containerId: container.id,
-          isHighPerfStorage: container.isHighPerfStorage,
         }),
 
       goToStorageContainers: /* @ngInject */ (
@@ -65,7 +57,7 @@ export default /* @ngInject */ ($stateProvider) => {
         const reload = message && type === 'success';
 
         const promise = $state.go(
-          'pci.projects.project.storages.containers',
+          'pci.projects.project.storages.objects.objects',
           {
             projectId,
           },

@@ -11,11 +11,15 @@ export default class PciStoragesObjectStorageController {
 
   loadMessages() {
     this.messageHandler = this.CucCloudMessage.subscribe(
-      'pci.projects.project.storages.containers.objects',
+      'pci.projects.project.storages.objects.objects',
       {
         onMessage: () => this.refreshMessages(),
       },
     );
+  }
+
+  isUserTabActive() {
+    return this.currentActiveLink().includes('users');
   }
 
   refreshMessages() {

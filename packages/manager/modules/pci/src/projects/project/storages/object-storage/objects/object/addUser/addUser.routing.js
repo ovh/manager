@@ -1,8 +1,10 @@
+import find from 'lodash/find';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'pci.projects.project.storages.containers.objects.addUser',
+    'pci.projects.project.storages.objects.objects.addUser',
     {
-      url: '/addUser?containerId&isHighPerfStorage',
+      url: '/addUser?containerId',
       views: {
         modal: {
           component: 'pciProjectStorageContainersContainerAddUser',
@@ -16,14 +18,12 @@ export default /* @ngInject */ ($stateProvider) => {
             availableUsers.length === 0
               ? {
                   state:
-                    'pci.projects.project.storages.containers.objects.emptyUser',
+                    'pci.projects.project.storages.objects.objects.emptyUser',
                 }
               : false,
           ),
       layout: 'modal',
       resolve: {
-        isHighPerfStorage: /* @ngInject */ ($transition$) =>
-          $transition$.params().isHighPerfStorage === 'true',
         containerId: /* @ngInject */ ($transition$) =>
           $transition$.params().containerId,
         availableUsers: /* @ngInject */ ($http, projectId) =>
@@ -34,13 +34,15 @@ export default /* @ngInject */ ($stateProvider) => {
           PciProjectStorageContainersService,
           projectId,
           containerId,
-          isHighPerfStorage,
-        ) =>
-          PciProjectStorageContainersService.getContainer(
+          containers,
+        ) => {
+          const container = find(containers, { id: containerId });
+          return PciProjectStorageContainersService.getContainer(
             projectId,
             containerId,
-            isHighPerfStorage,
-          ),
+            container.isHighPerfStorage,
+          );
+        },
         goToUsersAndRoles: /* @ngInject */ ($state) => () =>
           $state.go('pci.projects.project.users'),
         goBack: /* @ngInject */ (goToStorageContainers) =>

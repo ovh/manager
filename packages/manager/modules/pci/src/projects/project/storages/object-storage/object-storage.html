@@ -4,7 +4,7 @@
         data-heading="{{:: 'pci_projects_project_storages_containers_title' | translate }}"
         data-description="{{::$ctrl.project.projectId }}"
     >
-    <div data-ovh-alert="{{ $ctrl.alerts.dashboard }}"></div>
+        <div data-ovh-alert="{{ $ctrl.alerts.dashboard }}"></div>
         <oui-guide-menu
             data-text="{{:: 'pci_project_guides_header' | translate }}"
         >
@@ -17,14 +17,14 @@
         <oui-header-tabs>
             <oui-header-tabs-item
                 data-href="{{:: $ctrl.containersLink }}"
-                data-active="$ctrl.currentActiveLink() === $ctrl.containersLink"
+                data-active="!$ctrl.isUserTabActive()"
                 ><span
                     data-translate="pci_projects_project_storages_containers_my_containers_label"
                 ></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-href="{{:: $ctrl.userListLink }}"
-                data-active="$ctrl.currentActiveLink() === $ctrl.userListLink"
+                data-active="$ctrl.isUserTabActive()"
                 ><span
                     data-translate="pci_projects_project_storages_containers_s3_users_label"
                 ></span>
