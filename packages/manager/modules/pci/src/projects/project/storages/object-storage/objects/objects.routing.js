@@ -22,7 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
         projectId,
       ) => PciProjectStorageContainersService.getAll(projectId, archive),
       addContainer: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.storages.containers.objects.add', {
+        $state.go('pci.projects.project.storages.objects.add', {
           projectId,
         }),
       viewContainer: /* @ngInject */ ($state, projectId) => (container) =>
