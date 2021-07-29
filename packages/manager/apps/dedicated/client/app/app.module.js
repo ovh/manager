@@ -325,6 +325,7 @@ export default (containerEl, environment) => {
           }
 
           const HPC_STATES = [
+            'anthos',
             'app.hpc',
             'app.dedicatedCloud',
             'veeam-enterprise',

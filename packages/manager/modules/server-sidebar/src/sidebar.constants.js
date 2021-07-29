@@ -92,6 +92,34 @@ export const MANAGED_BAREMETAL_CONFIG = {
   regions: ['EU', 'CA', 'US'],
 };
 
+export const ANTHOS_CONFIG = {
+  id: 'anthos',
+  children: [
+    {
+      id: 'anthos_all',
+      state: 'anthos.index',
+      icon: 'ovh-font ovh-font-dedicatedCloud',
+      app: [DEDICATED],
+      namespace: HPC_NAMESPACE,
+    },
+  ],
+  types: [
+    {
+      path: '/dedicated/anthos/tenants',
+      state: 'anthos.dashboard',
+      stateParams: ['serviceName'],
+      icon: 'ovh-font ovh-font-dedicatedCloud',
+      app: [DEDICATED],
+      namespace: HPC_NAMESPACE,
+    },
+  ],
+  loadOnState: 'anthos',
+  icon: 'ovh-font ovh-font-dedicatedCloud',
+  app: [DEDICATED],
+  feature: 'anthos',
+  namespace: HPC_NAMESPACE,
+};
+
 export const NETWORKS_CONFIG = {
   id: 'networks',
   types: [
@@ -374,6 +402,7 @@ export const SIDEBAR_CONFIG = [
   VPS_CONFIG,
   MANAGED_BAREMETAL_CONFIG,
   DEDICATED_CLOUD_CONFIG,
+  ANTHOS_CONFIG,
   NETWORKS_CONFIG,
   ENTERPRISE_CLOUD_DATABASE,
 
