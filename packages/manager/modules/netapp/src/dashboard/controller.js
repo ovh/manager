@@ -1,10 +1,11 @@
 export default class OvhManagerNetAppDashboardCtrl {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, Alerter) {
     this.$translate = $translate;
+    this.Alerter = Alerter;
   }
 
-  $onInit() {
-    console.log('Hello', this.$translate.instant('world'));
+  onBillingInformationError(error) {
+    this.Alerter.error(error);
   }
 }

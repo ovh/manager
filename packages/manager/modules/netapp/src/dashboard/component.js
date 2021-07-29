@@ -3,9 +3,11 @@ import template from './template.html';
 
 export default {
   bindings: {
-    serviceName: '<',
     currentActiveLink: '<',
     dashboardLink: '<',
+    storage: '<',
+    createVolumeLink: '<',
+    isCommitmentAvailable: '<',
   },
   controller,
   template,
