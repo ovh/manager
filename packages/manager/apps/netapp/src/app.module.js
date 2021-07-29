@@ -7,6 +7,8 @@ import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerNetApp from '@ovh-ux/manager-netapp';
 
+import 'script-loader!moment/min/moment.min.js'; // eslint-disable-line
+
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
 import errorPage from './error';
