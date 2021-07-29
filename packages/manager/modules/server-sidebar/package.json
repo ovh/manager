@@ -34,7 +34,7 @@
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^9.0.0 || ^10.0.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.0",
-    "@ovh-ux/ui-kit": "^4.7.0"
+    "@ovh-ux/ui-kit": "^5.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
@@ -43,7 +43,7 @@
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-sidebar-menu": "^10.1.2",
     "@ovh-ux/ng-translate-async-loader": "^2.1.2",
-    "@ovh-ux/ui-kit": "^4.4.1",
+    "@ovh-ux/ui-kit": "^5.0.0",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "ovh-api-services": "^11.2.0"

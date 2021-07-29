@@ -27,7 +27,7 @@
     "@ovh-ux/ng-ovh-sidebar-menu": "^10.1.2",
     "@ovh-ux/ng-tail-logs": "^2.0.5",
     "@ovh-ux/ng-translate-async-loader": "^2.1.2",
-    "@ovh-ux/ui-kit": "^4.3.4",
+    "@ovh-ux/ui-kit": "^5.0.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-chart.js": "^1.1.1",

@@ -44,7 +44,7 @@
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.3",
     "@ovh-ux/ng-translate-async-loader": "^2.1.2",
     "@ovh-ux/ufrontend": "^1.0.0 || ^2.0.0",
-    "@ovh-ux/ui-kit": "^4.4.4",
+    "@ovh-ux/ui-kit": "^5.0.0",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "bootstrap4": "twbs/bootstrap#v4.0.0"

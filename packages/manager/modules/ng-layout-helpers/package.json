@@ -30,7 +30,7 @@
   "peerDependencies": {
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.6",
     "@ovh-ux/ng-translate-async-loader": "^2.1.2",
-    "@ovh-ux/ui-kit": "^4.2.0",
+    "@ovh-ux/ui-kit": "^5.0.0",
     "angular": "^1.7.9",
     "angular-translate": "^2.18.1",
     "bootstrap4": "^4.0.0"
