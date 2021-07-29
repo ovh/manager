@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/ui-kit": "^4.7.0",
+    "@ovh-ux/ui-kit": "^5.0.0",
     "bootstrap": "^3.4.1",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.15"
@@ -22,7 +22,7 @@
     "@ovh-ux/ng-ovh-mondial-relay": "^8.0.9",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.3",
     "@ovh-ux/ng-translate-async-loader": "^2.1.2",
-    "@ovh-ux/ui-kit": "^4.4.1",
+    "@ovh-ux/ui-kit": "^5.0.0",
     "@uirouter/angularjs": "^1.0.20",
     "CSV-JS": "^1.2.0",
     "angular": "^1.7.5",
