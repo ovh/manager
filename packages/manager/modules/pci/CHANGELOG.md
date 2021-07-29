@@ -1,3 +1,12 @@
+## [5.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.36.1...@ovh-ux/manager-pci@5.36.2) (2021-07-29)
+
+
+### Bug Fixes
+
+* **components.region:** autoselect region ([#5342](https://github.com/ovh/manager/issues/5342)) ([2141454](https://github.com/ovh/manager/commit/21414547473558818230f8dd14dc9d8ffdabe005))
+
+
+
 ## [5.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.36.0...@ovh-ux/manager-pci@5.36.1) (2021-07-29)
 
 

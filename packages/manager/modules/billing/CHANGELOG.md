@@ -1,3 +1,12 @@
+# [0.1.0-alpha.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.1.0-alpha.2...@ovh-ux/manager-billing@0.1.0-alpha.3) (2021-07-29)
+
+
+### Bug Fixes
+
+* **orders:** declare redirection order follow-up rule before lazyloading ([#5335](https://github.com/ovh/manager/issues/5335)) ([f9f8f39](https://github.com/ovh/manager/commit/f9f8f390383702755d0c6adc359a52da02b80a42))
+
+
+
 # [0.1.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.1.0-alpha.1...@ovh-ux/manager-billing@0.1.0-alpha.2) (2021-07-28)
 
 

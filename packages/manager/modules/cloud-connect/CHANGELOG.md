@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.2.0...@ovh-ux/manager-cloud-connect@1.2.1) (2021-07-29)
+
+
+### Bug Fixes
+
+* **translations:** refresh translations ([#5331](https://github.com/ovh/manager/issues/5331)) ([fdde78e](https://github.com/ovh/manager/commit/fdde78e646196663977fe419cf9dbf2ac73ba5c5))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.1.0...@ovh-ux/manager-cloud-connect@1.2.0) (2021-05-05)
 
 

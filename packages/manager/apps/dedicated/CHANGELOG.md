@@ -1,3 +1,12 @@
+## [16.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.35.0...@ovh-ux/manager-dedicated@16.35.1) (2021-07-29)
+
+
+### Bug Fixes
+
+* **account.contact:** encode parameter ([#5337](https://github.com/ovh/manager/issues/5337)) ([0bb3915](https://github.com/ovh/manager/commit/0bb39152cf852f9f033cf7882ba2141b3f869ac2))
+
+
+
 # [16.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.34.1...@ovh-ux/manager-dedicated@16.35.0) (2021-07-28)
 
 

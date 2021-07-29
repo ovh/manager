@@ -1,3 +1,13 @@
+## [15.29.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.29.1...@ovh-ux/manager-web@15.29.2) (2021-07-29)
+
+
+### Bug Fixes
+
+* **domain:** update content for registry unlock for .lt ([6ccc586](https://github.com/ovh/manager/commit/6ccc58609de64eaf9ce5f9078691c19dcca26b0d))
+* **i18n:** add missing translations [CDS 1077] ([046ffa5](https://github.com/ovh/manager/commit/046ffa551dacbfc9ef86c35275b763ff4cb11f87))
+
+
+
 ## [15.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.29.0...@ovh-ux/manager-web@15.29.1) (2021-07-28)
 
 
