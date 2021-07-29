@@ -1,3 +1,12 @@
+## [1.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.5.4...@ovh-ux/manager-dbaas-logs@1.5.5) (2021-07-29)
+
+
+### Bug Fixes
+
+* **dbaas.logs:** streams loading error ([#5330](https://github.com/ovh/manager/issues/5330)) ([1c9a3ce](https://github.com/ovh/manager/commit/1c9a3ceb7b2d650ae2fd79ce12b7c9f8701a28e6))
+
+
+
 ## [1.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.5.3...@ovh-ux/manager-dbaas-logs@1.5.4) (2021-06-03)
 
 

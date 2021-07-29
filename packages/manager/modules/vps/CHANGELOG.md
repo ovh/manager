@@ -1,3 +1,12 @@
+## [2.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.13.1...@ovh-ux/manager-vps@2.13.2) (2021-07-29)
+
+
+### Bug Fixes
+
+* **vps.dashboard:** remove duplicate delete shortcut ([#5328](https://github.com/ovh/manager/issues/5328)) ([27d0c2a](https://github.com/ovh/manager/commit/27d0c2afd42d7a1616bc676a60f7f57a2512acc7)), closes [#DTRSD-43079](https://github.com/ovh/manager/issues/DTRSD-43079)
+
+
+
 ## [2.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.13.0...@ovh-ux/manager-vps@2.13.1) (2021-07-28)
 
 
