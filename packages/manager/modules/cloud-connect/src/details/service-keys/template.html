@@ -25,9 +25,9 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                    'oui-status_error': $row.isError(),
-                    'oui-status_success': $row.isActive(),
-                    'oui-status_info': $row.isInProcess(),
+                    'oui-badge_error': $row.isError(),
+                    'oui-badge_success': $row.isActive(),
+                    'oui-badge_info': $row.isInProcess(),
                 }"
                 data-ng-bind="'cloud_connect_service_keys_status_' +  $row.status | translate"
             ></span>

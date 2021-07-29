@@ -25,7 +25,11 @@
             data-valid="$ctrl.job.image.id"
         >
             <oui-message type="info">
-                <span>{{ :: 'pci_projects_project_training_jobs_submit_select_image_info' | translate }}</span>
+                <span
+                    >{{ ::
+                    'pci_projects_project_training_jobs_submit_select_image_info'
+                    | translate }}</span
+                >
             </oui-message>
             <oui-field
                 data-size="xl"
@@ -487,7 +491,7 @@
                                     <span data-ng-bind="$ctrl.resourceN"></span>
                                     <span>x</span>
                                     <span
-                                        class="oui-status oui-status_info"
+                                        class="oui-badge oui-badge_info"
                                         data-ng-bind="$ctrl.flavorSelected.gpuInformation.gpuModel"
                                     ></span>
                                 </oui-tile-description>

@@ -42,21 +42,21 @@ export default class Job {
     switch (this.status.state) {
       case STATE_ENUM.FAILED:
       case STATE_ENUM.ERROR:
-        return 'oui-status_error';
+        return 'oui-badge_error';
       case STATE_ENUM.TIMEOUT:
       case STATE_ENUM.INTERRUPTING:
       case STATE_ENUM.INTERRUPTED:
-        return 'oui-status_warning';
+        return 'oui-badge_warning';
       case STATE_ENUM.PENDING:
       case STATE_ENUM.QUEUED:
       case STATE_ENUM.INITIALIZING:
       case STATE_ENUM.FINALIZING:
-        return 'oui-status_info';
+        return 'oui-badge_info';
       case STATE_ENUM.DONE:
       case STATE_ENUM.RUNNING:
-        return 'oui-status_success';
+        return 'oui-badge_success';
       default:
-        return 'oui-status_info';
+        return 'oui-badge_info';
     }
   }
 
