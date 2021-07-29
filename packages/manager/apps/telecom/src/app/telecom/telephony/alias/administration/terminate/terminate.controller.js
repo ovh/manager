@@ -1,105 +1,140 @@
-export default /* @ngInject */ function TelecomTelephonyAliasAdministrationTerminateCtrl(
-  $q,
-  $stateParams,
-  $translate,
-  OvhApiTelephony,
-  TelephonyMediator,
-  TucToast,
-  TucToastError,
-) {
-  const self = this;
+import confirmTemplate from './confirm/confirm.html';
+import controller from './confirm/confirm.controller';
 
-  function getTerminationReasons() {
-    return TelephonyMediator.getApiScheme().then(
+export default /* @ngInject */ class TerminateController {
+  /* @ngInject */
+  constructor(
+    $q,
+    $translate,
+    $uibModal,
+    OvhApiTelephony,
+    TelephonyMediator,
+    TucToast,
+    TucToastError,
+    tucVoipServiceAlias,
+  ) {
+    this.$q = $q;
+    this.$translate = $translate;
+    this.OvhApiTelephony = OvhApiTelephony;
+    this.TelephonyMediator = TelephonyMediator;
+    this.TucToast = TucToast;
+    this.TucToastError = TucToastError;
+    this.tucVoipServiceAlias = tucVoipServiceAlias;
+    this.$uibModal = $uibModal;
+  }
+
+  $onInit() {
+    this.isLoading = true;
+    this.$q
+      .all({
+        reason: this.getTerminationReasons(),
+        task: this.getTerminationTask(),
+        number: this.getNumber(),
+        isSpecialNumber: this.tucVoipServiceAlias.isSpecialNumber({
+          billingAccount: this.billingAccount,
+          serviceName: this.serviceName,
+        }),
+      })
+      .then(({ reason, task, number, isSpecialNumber }) => {
+        this.reasonEnum = reason;
+        this.task = task;
+        this.number = number;
+        this.isSpecialNumber = isSpecialNumber;
+      })
+      .catch((err) => new this.TucToastError(err))
+      .finally(() => {
+        this.isLoading = false;
+      });
+  }
+
+  getTerminationReasons() {
+    return this.TelephonyMediator.getApiScheme().then(
       (schema) => schema.models['telephony.TerminationReasonEnum'].enum,
     );
   }
 
-  function getNumber() {
-    return TelephonyMediator.getGroup(
-      $stateParams.billingAccount,
-    ).then((group) => group.getNumber($stateParams.serviceName));
+  getNumber() {
+    return this.TelephonyMediator.getGroup(this.billingAccount).then((group) =>
+      group.getNumber(this.serviceName),
+    );
   }
 
-  function getTerminationTask() {
-    return getNumber().then((number) => number.getTerminationTask());
+  getTerminationTask() {
+    return this.getNumber().then((number) => number.getTerminationTask());
   }
 
-  function init() {
-    self.isLoading = true;
-    $q.all({
-      reason: getTerminationReasons(),
-      task: getTerminationTask(),
-      number: getNumber(),
-    })
-      .then((result) => {
-        self.reasonEnum = result.reason;
-        self.task = result.task;
-        self.number = result.number;
-      })
-      .catch((err) => new TucToastError(err))
-      .finally(() => {
-        self.isLoading = false;
-      });
-  }
-
-  self.hasValidReason = function hasValidReason() {
-    if (self.reason === 'missingOptions' || self.reason === 'other') {
-      return self.details;
+  hasValidReason() {
+    if (this.reason === 'missingOptions' || this.reason === 'other') {
+      return this.details;
     }
-    return self.reason;
-  };
+    return this.reason;
+  }
 
-  self.terminate = function terminate() {
-    self.isTerminating = true;
-    OvhApiTelephony.Service()
+  terminate() {
+    const modal = this.$uibModal.open({
+      animation: true,
+      template: confirmTemplate,
+      controller,
+      controllerAs: '$ctrl',
+      resolve: {
+        isSpecialNumber: () => this.isSpecialNumber,
+      },
+    });
+    modal.result.then(() => {
+      this.saveTermination();
+    });
+    return modal;
+  }
+
+  saveTermination() {
+    this.isTerminating = true;
+
+    return this.OvhApiTelephony.Service()
       .v6()
       .delete({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-        details: self.details,
-        reason: self.reason,
+        billingAccount: this.billingAccount,
+        serviceName: this.serviceName,
+        details: this.details,
+        reason: this.reason,
       })
-      .$promise.then(() => getTerminationTask())
+      .$promise.then(() => this.getTerminationTask())
       .then((task) => {
-        self.task = task;
-        TucToast.success(
-          $translate.instant(
+        this.task = task;
+        this.TucToast.success(
+          this.$translate.instant(
             'telephony_alias_administration_terminate_success',
           ),
         );
       })
-      .catch((err) => new TucToastError(err))
+      .catch((err) => new this.TucToastError(err))
       .finally(() => {
-        self.isTerminating = false;
+        this.isTerminating = false;
       });
-  };
+  }
 
-  self.cancelTermination = function cancelTermination() {
-    self.isCancelling = true;
-    OvhApiTelephony.Service()
+  cancelTermination() {
+    this.isCancelling = true;
+    return this.OvhApiTelephony.Service()
       .v6()
       .cancelTermination(
         {
-          billingAccount: $stateParams.billingAccount,
-          serviceName: $stateParams.serviceName,
+          billingAccount: this.billingAccount,
+          serviceName: this.serviceName,
         },
         {},
       )
-      .$promise.then(() => getTerminationTask())
+      .$promise.then(() => this.getTerminationTask())
       .then((task) => {
-        self.task = task;
-        TucToast.success(
-          $translate.instant(
+        this.task = task;
+        this.TucToast.success(
+          this.$translate.instant(
             'telephony_alias_administration_cancel_termination_success',
           ),
         );
       })
-      .catch((err) => new TucToastError(err))
+      .catch((err) => new this.TucToastError(err))
       .finally(() => {
-        self.isCancelling = false;
+        this.isCancelling = false;
       });
-  };
-
-  init();
+  }
 }

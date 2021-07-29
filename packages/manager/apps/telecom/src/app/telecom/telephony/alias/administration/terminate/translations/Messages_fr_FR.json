@@ -22,5 +22,11 @@
   "telephony_alias_administration_terminate": "Résilier",
   "telephony_alias_administration_terminate_success": "Résiliation planifiée avec succès.",
   "telephony_alias_administration_cancel_termination": "Annuler la résiliation",
-  "telephony_alias_administration_cancel_termination_success": "Résiliation annulée."
+  "telephony_alias_administration_cancel_termination_success": "Résiliation annulée.",
+  "telephony_alias_administration_terminate_sva_warning": "Attention, vous êtes sur le point de supprimer un numéro spécial. Les revenus restants de ce numéro peuvent vous être versés durant les 3 prochains mois. Veuillez vérifier que votre identité et vos coordonnées bancaires sont valides afin de recevoir ce revenu.",
+  "telephony_alias_administration_terminate_sva_warning_link": "Vérifier mes coordonnées",
+  "telephony_alias_administration_terminate_confirm_message": "Êtes-vous sur de vouloir supprimer votre numéro ?",
+  "telephony_alias_administration_terminate_confirm_sva_warning": "Votre identité et votre IBAN doivent être valides pour recevoir vos reversements.",
+  "telephony_alias_administration_terminate_confirm_primary": "Confirmer",
+  "telephony_alias_administration_terminate_confirm_cancel": "Annuler"
 }

@@ -5,6 +5,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
 
+import component from './terminate.component';
 import routing from './terminate.routing';
 
 const moduleName = 'ovhManagerTelecomTelephonyAliasAdministrationTerminate';
@@ -18,6 +19,10 @@ angular
     'ui.router',
   ])
   .config(routing)
+  .component(
+    'ovhManagerTelecomTelephonyAliasAdministrationTerminate',
+    component,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
