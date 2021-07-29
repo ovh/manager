@@ -32,6 +32,14 @@
                     ></dd>
                 </dl>
             </div>
+            <div class="oui-select-picker__footer">
+                <strong
+                    data-ng-bind="$ctrl.currentPrice.priceWithoutTax.text"
+                ></strong>
+                /<span
+                    data-translate="vps_dashboard_migrate_price_per_month"
+                ></span>
+            </div>
         </span>
     </label>
 </div>
@@ -89,13 +97,7 @@
         </dl>
     </oui-select-picker-section>
     <oui-select-picker-footer>
-        <ovh-manager-catalog-price
-            data-price="$ctrl.getRenewablePrice()"
-            data-user="$ctrl.user"
-            data-perform-rounding="false"
-            data-maximum-fraction-digits="5"
-        >
-        </ovh-manager-catalog-price>
+        <strong data-ng-bind="$ctrl.newPrice.withoutTax.text"></strong>
         /<span data-translate="vps_dashboard_migrate_price_per_month"></span>
     </oui-select-picker-footer>
 </oui-select-picker>

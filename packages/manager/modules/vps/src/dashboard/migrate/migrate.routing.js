@@ -40,6 +40,23 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       newPlan: /* @ngInject */ (catalog, vpsMigration) =>
         find(catalog.plans, { planCode: vpsMigration.newPlan }),
+      currentPrice: /* @ngInject */ (migrateService, serviceInfos) => {
+        return migrateService.fetchCurrentPrice(serviceInfos.serviceId);
+      },
+      newPrice: /* @ngInject */ (
+        migrateService,
+        newPlan,
+        user,
+        vps,
+        vpsMigration,
+      ) => {
+        return migrateService.fetchNewPrice(
+          newPlan,
+          user.ovhSubsidiary,
+          vps,
+          vpsMigration,
+        );
+      },
       goBackToMigrate: /* @ngInject */ ($state, CucCloudMessage) => (
         message = false,
         type = 'success',
