@@ -1,3 +1,20 @@
 {
-  "world": "World!"
+  "netapp_dashboard_general_information": "Informations générales",
+  "netapp_dashboard_information": "Informations",
+  "netapp_dashboard_information_name": "Nom",
+  "netapp_dashboard_information_id": "ID",
+  "netapp_dashboard_information_region": "Localisation du datacente",
+  "netapp_dashboard_information_performance_level": "Niveau de performance",
+  "netapp_dashboard_information_quota": "Taille du stockage",
+  "netapp_dashboard_information_quota_formatted": "{{ quota }} Go",
+  "netapp_dashboard_configuration": "Configuration",
+  "netapp_dashboard_configuration_status": "Statut",
+  "netapp_dashboard_configuration_status_creating": "Création en cours",
+  "netapp_dashboard_configuration_status_running": "Déployé",
+  "netapp_dashboard_configuration_status_reopening": "Réouverture en cours",
+  "netapp_dashboard_configuration_status_suspending": "Suspension en cours",
+  "netapp_dashboard_configuration_status_suspended": "Suspendu",
+  "netapp_dashboard_configuration_status_deleting": "Suppression en cours",
+  "netapp_dashboard_configuration_status_deleted": "Supprimé",
+  "netapp_dashboard_configuration_create_volume": "Créer un volume"
 }
