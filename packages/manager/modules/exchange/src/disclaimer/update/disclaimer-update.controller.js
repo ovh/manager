@@ -4,8 +4,16 @@ import isEmpty from 'lodash/isEmpty';
 
 export default class ExchangeUpdateDisclaimerCtrl {
   /* @ngInject */
-  constructor($scope, wucExchange, navigation, messaging, $translate) {
+  constructor(
+    $document,
+    $scope,
+    wucExchange,
+    navigation,
+    messaging,
+    $translate,
+  ) {
     this.services = {
+      $document,
       $scope,
       wucExchange,
       navigation,
@@ -15,7 +23,6 @@ export default class ExchangeUpdateDisclaimerCtrl {
     this.$routerParams = wucExchange.getParams();
     this.mceId = 'update-disclaimer-editor';
     this.data = angular.copy(navigation.currentActionData);
-
     this.loadOptions();
 
     $scope.saveDisclaimer = () => this.saveDisclaimer();
@@ -24,6 +31,9 @@ export default class ExchangeUpdateDisclaimerCtrl {
 
   loadOptions() {
     this.loadingData = true;
+
+    // Remove tabindex from modal as it clashes with ckeditor modal
+    this.services.$document.find('.modal').removeAttr('tabindex');
 
     return this.services.wucExchange
       .getUpdateDisclaimerOptions()
