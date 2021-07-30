@@ -12,6 +12,12 @@
                     data-translate="netapp_dashboard_general_information"
                 ></span>
             </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{:: $ctrl.volumesLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.volumesLink"
+            >
+                <span data-translate="netapp_dashboard_volumes"></span>
+            </oui-header-tabs-item>
         </oui-header-tabs>
     </oui-header>
     <div data-ovh-alert></div>
@@ -66,7 +72,10 @@
                         ></span>
                     </oui-tile-description>
                 </oui-tile-definition>
-                <oui-tile-button href="{{ $ctrl.createVolumeLink }}">
+                <oui-tile-button
+                    href="{{ $ctrl.createVolumeLink }}"
+                    disabled="!$ctrl.isCreateVolumeAvailable"
+                >
                     <span
                         data-translate="netapp_dashboard_configuration_create_volume"
                     ></span>
