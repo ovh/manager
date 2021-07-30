@@ -1,4 +1,5 @@
 import NetApp from './Netapp.class';
+import Share from './Share.class';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.dashboard', {
@@ -15,6 +16,14 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('netapp.dashboard', $transition$.params()),
       createVolumeLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('netapp.dashboard.volumes.create', $transition$.params()),
+      volumes: /* @ngInject */ ($http, serviceName) =>
+        $http
+          .get(`/storage/netapp/${serviceName}/share?detail=true`)
+          .then(({ data }) => data.map((volume) => new Share(volume))),
+      isCreateVolumeAvailable: /* @ngInject */ (storage, volumes) =>
+        volumes.length < storage.maximumVolumesLimit,
+      volumesLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('netapp.dashboard.volumes', $transition$.params()),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       storage: /* @ngInject */ ($http, serviceName) =>
