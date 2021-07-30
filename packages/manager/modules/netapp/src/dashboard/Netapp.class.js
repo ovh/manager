@@ -1,3 +1,6 @@
+// TODO: Remove constant and use api to get service limit when endpoint is available
+const MAXIMUM_VOLUME_LIMIT = 50;
+
 export default class NetApp {
   constructor({ id, name, performanceLevel, quota, region, status }) {
     Object.assign(this, {
@@ -7,6 +10,7 @@ export default class NetApp {
       quota,
       region,
       status,
+      maximumVolumesLimit: MAXIMUM_VOLUME_LIMIT,
     });
   }
 
