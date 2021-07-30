@@ -76,8 +76,6 @@ export default class NotebookAddController {
 
   static buildVolumesBody(volumes, region) {
     return volumes.map((volume) => ({
-      container: volume.container,
-      region: region.name,
       mountPath: volume.mountPath,
       permission: volume.permission,
       cache: false,
