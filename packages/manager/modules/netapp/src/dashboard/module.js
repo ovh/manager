@@ -9,6 +9,8 @@ import '@ovh-ux/manager-billing-components';
 import component from './component';
 import routing from './routing';
 
+import volumes from './volumes';
+
 const moduleName = 'ovhManagerNetAppDashboard';
 
 angular
@@ -19,6 +21,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'ngOvhUtils',
+    volumes,
   ])
   .config(routing)
   .component('ovhManagerNetAppDashboard', component)
