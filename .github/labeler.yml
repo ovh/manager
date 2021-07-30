@@ -21,6 +21,7 @@ universe-public-cloud:
   - packages/manager/apps/public-cloud/**
 universe-bare-metal-cloud:
   - packages/manager/apps/dedicated/**/!(dedicatedCloud)/**
+  - packages/manager/*/billing/**
   - packages/manager/*/cda/**
   - packages/manager/*/cloud-connect/**
   - packages/manager/*/dbaas-logs/**
@@ -28,6 +29,7 @@ universe-bare-metal-cloud:
   - packages/manager/*/iplb/**
   - packages/manager/*/metrics/**
   - packages/manager/*/nasha/**
+  - packages/manager/*/netapp/**
   - packages/manager/*/veeam-*/**
   - packages/manager/*/vps/**
   - packages/manager/*/vps/**
@@ -48,3 +50,4 @@ universe-web-cloud:
   - packages/manager/*/exchange/**
   - packages/manager/*/office/**
   - packages/manager/*/sharepoint/**
+  - packages/manager/*/web-paas
