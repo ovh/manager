@@ -1,0 +1,62 @@
+{
+  "name": "@ovh-ux/manager-anthos-app",
+  "version": "0.0.0",
+  "private": true,
+  "description": "OVHcloud Anthos app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/apps/anthos"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "scripts": {
+    "build": "webpack --env.production",
+    "dev": "webpack-dev-server",
+    "dev:watch": "yarn run dev",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-anthos-app' --include-dependencies -- npm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-anthos-app' --include-dependencies -- npm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-anthos-app' --include-dependencies -- npm run dev:watch --if-present"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-anthos": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/manager-error-page": "^2.0.0",
+    "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
+    "@ovh-ux/manager-preloader": "^1.1.0",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.4",
+    "@ovh-ux/ng-ovh-http": "^5.0.0",
+    "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
+    "@ovh-ux/ng-ovh-swimming-poll": "^5.0.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.0",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.0.0",
+    "@ovh-ux/ng-ui-router-line-progress": "^1.2.2",
+    "@ovh-ux/ufrontend": "^1.1.1 || ^2.0.0",
+    "@ovh-ux/ui-kit": "^4.4.3",
+    "@uirouter/angularjs": "^1.0.23",
+    "angular": "^1.7.5",
+    "angular-aria": "^1.7.8",
+    "angular-cookies": "^1.7.8",
+    "angular-dynamic-locale": "^0.1.37",
+    "angular-i18n": "^1.7.8",
+    "angular-resource": "^1.7.8",
+    "angular-sanitize": "^1.7.8",
+    "angular-translate": "^2.18.1",
+    "angular-translate-loader-pluggable": "^1.3.1",
+    "core-js": "^3.6.5",
+    "flatpickr": "~4.5.2",
+    "jquery": "^2.1.3",
+    "lodash-es": "^4.17.15",
+    "oclazyload": "^1.1.0",
+    "ovh-api-services": "^11.0.0",
+    "whatwg-fetch": "^3.5.0"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-webpack-config": "^4.0.1",
+    "glob": "^7.1.6",
+    "lodash": "^4.17.15",
+    "webpack-merge": "^4.2.2"
+  }
+}
