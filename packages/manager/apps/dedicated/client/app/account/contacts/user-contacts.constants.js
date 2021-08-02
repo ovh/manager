@@ -1,4 +1,5 @@
 export const AVAILABLE_SERVICES = [
+  'ANTHOS',
   'CLOUD',
   'DOMAIN',
   'HOSTING',
