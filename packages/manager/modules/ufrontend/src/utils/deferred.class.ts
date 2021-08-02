@@ -28,7 +28,7 @@ export interface CustomPromise<T>
   reject: Reject;
 }
 
-export default class Deferred<T> {
+export class Deferred<T> {
   public result: T;
   public defer: CustomPromise<T>;
   isPending = false;

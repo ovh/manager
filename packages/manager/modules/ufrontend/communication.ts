@@ -19,8 +19,3 @@ export function listen(arg0: string | Callback, arg1?: Callback) {
   }
   return function unbind() {};
 }
-
-export default {
-  emit,
-  listen,
-};

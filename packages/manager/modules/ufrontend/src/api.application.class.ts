@@ -1,4 +1,4 @@
-import OvhMicroFrontendBaseAPI, { TimeoutObject } from './api.base.class';
+import { OvhMicroFrontendBaseAPI, TimeoutObject } from './api.base.class';
 
 export default class OvhMicroFrontendApplicationAPI extends OvhMicroFrontendBaseAPI {
   emit(data: Record<string, unknown>, opts: TimeoutObject) {

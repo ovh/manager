@@ -1,6 +1,6 @@
 import { Environment } from '@ovh-ux/manager-config/dist/types/environment/environment';
 import { fetchConfiguration as fetch2APIConfig } from '@ovh-ux/manager-config';
-import Deferred, { Callback, CustomPromise } from './utils/deferred.class';
+import { Deferred, Callback, CustomPromise } from './utils/deferred.class';
 import OvhMicroFrontendApplicationAPI from './api.application.class';
 import OvhMicroFrontendFragmentAPI from './api.fragment.class';
 import OvhFragment from './fragment.class';

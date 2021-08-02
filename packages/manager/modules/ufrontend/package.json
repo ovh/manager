@@ -10,13 +10,10 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "main": "./dist/application.js",
+  "sideEffects": false,
+  "module": "dist/index.js",
   "files": [
-    "application.js",
-    "communication.js",
-    "fragment.js",
-    "src/**/*",
-    "url-builder.js"
+    "dist"
   ],
   "scripts": {
     "build": "tsc",

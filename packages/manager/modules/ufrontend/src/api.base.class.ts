@@ -5,7 +5,7 @@ export interface TimeoutObject {
   timeout: number;
 }
 
-export default class OvhMicroFrontendBaseAPI {
+export class OvhMicroFrontendBaseAPI {
   ufrontend: OvhMicroFrontend;
 
   constructor(ufrontend: OvhMicroFrontend) {

@@ -1,4 +1,4 @@
-import OvhMicroFrontendBaseAPI, { TimeoutObject } from './api.base.class';
+import { OvhMicroFrontendBaseAPI, TimeoutObject } from './api.base.class';
 import OvhFragment from './fragment.class';
 import OvhMicroFrontend from './framework.class';
 

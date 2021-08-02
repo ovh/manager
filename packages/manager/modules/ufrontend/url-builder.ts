@@ -82,8 +82,3 @@ export function buildURLs(routes: Array<OvhURL> | Record<string, OvhURL>) {
     };
   }, {});
 }
-
-export default {
-  buildURL,
-  buildURLs,
-};

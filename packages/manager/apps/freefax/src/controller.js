@@ -1,4 +1,4 @@
-import { emit, listen } from '@ovh-ux/ufrontend/communication';
+import { emit, listen } from '@ovh-ux/ufrontend';
 
 export default class FreefaxAppController {
   /* @ngInject */

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { emit } from '@ovh-ux/ufrontend/communication';
+import { emit } from '@ovh-ux/ufrontend';
 import style from './navbar.scss';
 import { MESSAGES } from './constants';
 
