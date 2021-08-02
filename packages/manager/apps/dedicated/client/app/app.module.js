@@ -100,6 +100,7 @@ import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import chartjs from 'angular-chart.js';
 
+import ovhManagerAnthos from '@ovh-ux/manager-anthos';
 import moduleExchange from '@ovh-ux/manager-exchange';
 import ovhManagerFilters from '@ovh-ux/manager-filters';
 import ovhManagerMetrics from '@ovh-ux/manager-metrics';
@@ -207,6 +208,7 @@ export default (containerEl, environment) => {
         ovhManagerFilters,
         ngTailLogs,
         ovhContacts,
+        ovhManagerAnthos,
         ovhManagerBanner,
         ovhManagerEnterpriseCloudDatabase,
         ovhManagerMetrics,
