@@ -7,7 +7,7 @@
     <a
         class="d-inline-block mb-5"
         data-ui-sref="^"
-        title="{{ 'common_back' | translate }}"
+        title="{{ 'common_back' | translate }}"
     >
         <span class="fa fa-chevron-left mr-2" aria-hidden="true"> </span>
         <span data-translate="common_back"></span>
@@ -32,7 +32,7 @@
                         <button
                             type="button"
                             class="btn btn-link"
-                            title="{{ 'nas_snapshot_informations_cancel' | translate }}"
+                            title="{{ 'nas_snapshot_informations_cancel' | translate }}"
                             data-ng-hide="$ctrl.snapshots.save || $ctrl.disable.taskDoing || $ctrl.loading"
                             data-ng-click="$ctrl.editSnapshot()"
                         >
@@ -44,7 +44,7 @@
                         <button
                             type="button"
                             class="btn btn-link"
-                            title="{{ 'nas_snapshot_informations_valid' | translate }}"
+                            title="{{ 'nas_snapshot_informations_valid' | translate }}"
                             data-ng-show="$ctrl.snapshots.save && !$ctrl.disable.taskDoing && !$ctrl.loading"
                             data-ng-click="$ctrl.setSnapshot()"
                         >
@@ -53,7 +53,7 @@
                         <button
                             type="button"
                             class="btn btn-link"
-                            title="{{ 'nas_snapshot_informations_cancel' | translate }}"
+                            title="{{ 'nas_snapshot_informations_cancel' | translate }}"
                             data-ng-show="$ctrl.snapshots.save &&  !$ctrl.disable.taskDoing && !$ctrl.loading"
                             data-ng-click="$ctrl.cancelSnapshot()"
                         >
@@ -94,7 +94,7 @@
                             />
                         </td>
                         <td
-                            data-translate="{{ 'nas_snapshot_' + snapshot.type }}"
+                            data-translate="{{ 'nas_snapshot_' + snapshot.type }}"
                         ></td>
                     </tr>
                 </tbody>

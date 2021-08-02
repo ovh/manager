@@ -465,10 +465,10 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 51] ([66a6bc3](https://github.com/ovh-ux/manager/commit/66a6bc3))
-* **i18n:** add missing translations [CDS 54] ([f13a145](https://github.com/ovh-ux/manager/commit/f13a145))
-* **i18n:** add missing translations [CDS 55] ([e088a40](https://github.com/ovh-ux/manager/commit/e088a40))
-* **i18n:** add missing translations [CDS 57] ([b216e28](https://github.com/ovh-ux/manager/commit/b216e28))
+* **i18n:** add missing translations [CDS 51] ([66a6bc3](https://github.com/ovh-ux/manager/commit/66a6bc3))
+* **i18n:** add missing translations [CDS 54] ([f13a145](https://github.com/ovh-ux/manager/commit/f13a145))
+* **i18n:** add missing translations [CDS 55] ([e088a40](https://github.com/ovh-ux/manager/commit/e088a40))
+* **i18n:** add missing translations [CDS 57] ([b216e28](https://github.com/ovh-ux/manager/commit/b216e28))
 * fix version for wuc ([6eb2e21](https://github.com/ovh-ux/manager/commit/6eb2e21))
 
 
@@ -478,7 +478,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 49] ([9869351](https://github.com/ovh-ux/manager/commit/9869351))
+* **i18n:** add missing translations [CDS 49] ([9869351](https://github.com/ovh-ux/manager/commit/9869351))
 
 
 
@@ -515,7 +515,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 22] ([32b1c7c](https://github.com/ovh-ux/manager/commit/32b1c7c))
+* **i18n:** add missing translations [CDS 22] ([32b1c7c](https://github.com/ovh-ux/manager/commit/32b1c7c))
 
 
 
@@ -525,11 +525,11 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Bug Fixes
 
 * **exchange:** replace upperCase with toUpper ([#1118](https://github.com/ovh-ux/manager/issues/1118)) ([d062b57](https://github.com/ovh-ux/manager/commit/d062b57))
-* **i18n:** add missing translations [CDS 15] ([eab997d](https://github.com/ovh-ux/manager/commit/eab997d))
-* **i18n:** add missing translations [CDS 16] ([a28734b](https://github.com/ovh-ux/manager/commit/a28734b))
-* **i18n:** add missing translations [CDS 17] ([c52ac93](https://github.com/ovh-ux/manager/commit/c52ac93))
-* **i18n:** add missing translations [CDS 18] ([ef645d9](https://github.com/ovh-ux/manager/commit/ef645d9))
-* **i18n:** add missing translations [CDS 20] ([0e68589](https://github.com/ovh-ux/manager/commit/0e68589))
+* **i18n:** add missing translations [CDS 15] ([eab997d](https://github.com/ovh-ux/manager/commit/eab997d))
+* **i18n:** add missing translations [CDS 16] ([a28734b](https://github.com/ovh-ux/manager/commit/a28734b))
+* **i18n:** add missing translations [CDS 17] ([c52ac93](https://github.com/ovh-ux/manager/commit/c52ac93))
+* **i18n:** add missing translations [CDS 18] ([ef645d9](https://github.com/ovh-ux/manager/commit/ef645d9))
+* **i18n:** add missing translations [CDS 20] ([0e68589](https://github.com/ovh-ux/manager/commit/0e68589))
 
 
 

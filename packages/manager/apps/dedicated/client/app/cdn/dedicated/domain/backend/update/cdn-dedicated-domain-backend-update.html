@@ -3,7 +3,7 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="modifyBackend"
-        data-wizard-title=":: 'cdn_domain_configuration_change_backend_title' | translate"
+        data-wizard-title=":: 'cdn_domain_configuration_change_backend_title' | translate"
         data-wizard-bread-crumb
     >
         <div
@@ -12,7 +12,7 @@
             data-wizard-step-valid="backends && (existingBackend.value || newBackend.value) && !(newBackend.value && maxBackendsReached())"
         >
             <p
-                data-ng-bind="'cdn_domain_configuration_change_backend_step1_question' | translate:{ t0: domain.domain }"
+                data-ng-bind="'cdn_domain_configuration_change_backend_step1_question' | translate:{ t0: domain.domain }"
             ></p>
             <div data-ng-if="currentBackend">
                 <span
@@ -74,7 +74,7 @@
         <div data-wizard-step>
             <p
                 data-translate="cdn_domain_configuration_change_backend_step2_question"
-                data-translate-values="{ t0: domain.domain }"
+                data-translate-values="{ t0: domain.domain }"
             ></p>
             <dl>
                 <dt

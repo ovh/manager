@@ -8,7 +8,7 @@
             data-dismiss="alert"
             aria-label="Close"
             data-ng-click="resetMessages()"
-            title="{{ 'user_agreements_alert_close' | translate }}"
+            title="{{ 'user_agreements_alert_close' | translate }}"
         >
             <span aria-hidden="true">&times;</span>
         </button>
@@ -43,7 +43,7 @@
                     <th scope="row">
                         <a
                             data-ui-sref="app.account.billing.autorenew.agreements.agreement({ id: agreement.id })"
-                            data-ng-bind-html="'user_agreements_agreed' | translate:{ t0: agreement.name }"
+                            data-ng-bind-html="'user_agreements_agreed' | translate:{ t0: agreement.name }"
                         >
                         </a>
                     </th>
@@ -80,7 +80,7 @@
                                         class="btn btn-link"
                                         data-ng-click="accept(agreement)"
                                         data-translate="user_agreements_accept"
-                                        title="{{ 'user_agreements_accept_title' | translate:{ t0: agreement.name } }}"
+                                        title="{{ 'user_agreements_accept_title' | translate:{ t0: agreement.name } }}"
                                     ></button>
                                 </li>
                                 <li>
@@ -90,7 +90,7 @@
                                         rel="noopener"
                                         data-at-internet-click="{ name: 'dedicated::account::billing::autorenew::agreements::go-to-download-agreement' }"
                                         data-ng-href="{{agreement.pdfUrl}}"
-                                        title="{{ 'user_agreements_download_pdf_title' | translate:{ t0: agreement.name } }}"
+                                        title="{{ 'user_agreements_download_pdf_title' | translate:{ t0: agreement.name } }}"
                                     >
                                         <span
                                             data-translate="user_agreements_download_pdf"
@@ -162,7 +162,7 @@
                                 'label-success': agreement.state == 'OK',
                                 'label-danger': agreement.state == 'TODO'
                             }"
-                        data-translate="{{ 'user_agreements_status_'+agreement.state }}"
+                        data-translate="{{ 'user_agreements_status_'+agreement.state }}"
                     ></span>
                 </td>
                 <td data-ng-bind="agreement.date | date:'short'"></td>

@@ -448,7 +448,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 115] ([32d7b75](https://github.com/ovh/manager/commit/32d7b7521f9524f0aeba6ec905a3c2c36f0acf8f))
+* **i18n:** add missing translations [CDS 115] ([32d7b75](https://github.com/ovh/manager/commit/32d7b7521f9524f0aeba6ec905a3c2c36f0acf8f))
 
 
 ### Features
@@ -546,7 +546,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Bug Fixes
 
 * **core:** remove extra nl_NL language from constant file ([#1155](https://github.com/ovh-ux/manager/issues/1155)) ([c6401f1](https://github.com/ovh-ux/manager/commit/c6401f1))
-* **i18n:** add missing translations [CDS 22] ([32b1c7c](https://github.com/ovh-ux/manager/commit/32b1c7c))
+* **i18n:** add missing translations [CDS 22] ([32b1c7c](https://github.com/ovh-ux/manager/commit/32b1c7c))
 
 
 
@@ -555,7 +555,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 21] ([94ec9a2](https://github.com/ovh-ux/manager/commit/94ec9a2))
+* **i18n:** add missing translations [CDS 21] ([94ec9a2](https://github.com/ovh-ux/manager/commit/94ec9a2))
 
 
 
@@ -565,9 +565,9 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Bug Fixes
 
 * **core:** remove extra cs_CZ language from constant file ([#1137](https://github.com/ovh-ux/manager/issues/1137)) ([4bdc45c](https://github.com/ovh-ux/manager/commit/4bdc45c))
-* **i18n:** add missing translations [CDS 15] ([eab997d](https://github.com/ovh-ux/manager/commit/eab997d))
-* **i18n:** add missing translations [CDS 17] ([c52ac93](https://github.com/ovh-ux/manager/commit/c52ac93))
-* **i18n:** add missing translations [CDS 20] ([0e68589](https://github.com/ovh-ux/manager/commit/0e68589))
+* **i18n:** add missing translations [CDS 15] ([eab997d](https://github.com/ovh-ux/manager/commit/eab997d))
+* **i18n:** add missing translations [CDS 17] ([c52ac93](https://github.com/ovh-ux/manager/commit/c52ac93))
+* **i18n:** add missing translations [CDS 20] ([0e68589](https://github.com/ovh-ux/manager/commit/0e68589))
 
 
 

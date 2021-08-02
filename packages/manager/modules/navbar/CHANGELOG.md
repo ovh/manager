@@ -488,7 +488,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 86] ([643b2ae](https://github.com/ovh-ux/manager/commit/643b2ae))
+* **i18n:** add missing translations [CDS 86] ([643b2ae](https://github.com/ovh-ux/manager/commit/643b2ae))
 
 
 
@@ -497,8 +497,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 83] ([5f2edb4](https://github.com/ovh-ux/manager/commit/5f2edb4))
-* **i18n:** add missing translations [CDS 85] ([6062b1f](https://github.com/ovh-ux/manager/commit/6062b1f))
+* **i18n:** add missing translations [CDS 83] ([5f2edb4](https://github.com/ovh-ux/manager/commit/5f2edb4))
+* **i18n:** add missing translations [CDS 85] ([6062b1f](https://github.com/ovh-ux/manager/commit/6062b1f))
 
 
 
@@ -550,9 +550,9 @@ Due to the fact that ovh-ui-kit imports a reset stylesheet, if this component im
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 22] ([32b1c7c](https://github.com/ovh-ux/manager/commit/32b1c7c))
-* **i18n:** add missing translations [CDS 23] ([2d9677e](https://github.com/ovh-ux/manager/commit/2d9677e))
-* **i18n:** add missing translations [CDS 28] ([7eaf5d3](https://github.com/ovh-ux/manager/commit/7eaf5d3))
+* **i18n:** add missing translations [CDS 22] ([32b1c7c](https://github.com/ovh-ux/manager/commit/32b1c7c))
+* **i18n:** add missing translations [CDS 23] ([2d9677e](https://github.com/ovh-ux/manager/commit/2d9677e))
+* **i18n:** add missing translations [CDS 28] ([7eaf5d3](https://github.com/ovh-ux/manager/commit/7eaf5d3))
 
 
 

@@ -3,7 +3,7 @@
         data-wizard
         data-wizard-on-cancel="cancel"
         data-wizard-on-finish="addDoubleAuthTotp"
-        data-wizard-title="::'user_account_security_double_auth_type_totp_modal_title' | translate"
+        data-wizard-title="::'user_account_security_double_auth_type_totp_modal_title' | translate"
     >
         <div
             data-wizard-step
@@ -63,7 +63,7 @@
                                 class="form-control"
                                 id="code"
                                 name="code"
-                                placeholder="{{ 'user_account_security_double_auth_type_totp_modal_add_app_code_placeholder' | translate }}"
+                                placeholder="{{ 'user_account_security_double_auth_type_totp_modal_add_app_code_placeholder' | translate }}"
                                 required
                                 data-ng-model="totp.code"
                                 data-ng-pattern="/^\d{6}$/"
@@ -113,7 +113,7 @@
                                 class="form-control"
                                 id="description"
                                 name="description"
-                                placeholder="{{ 'user_account_security_double_auth_type_totp_modal_edit_description_placeholder' | translate }}"
+                                placeholder="{{ 'user_account_security_double_auth_type_totp_modal_edit_description_placeholder' | translate }}"
                                 data-ng-model="totp.description"
                                 data-ng-maxlength="100"
                             />

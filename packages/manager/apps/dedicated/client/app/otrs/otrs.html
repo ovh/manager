@@ -100,17 +100,17 @@
                     </option>
                     <option
                         value="open"
-                        data-ng-bind="'otrs_table_ticket_state_open' | translate"
+                        data-ng-bind="'otrs_table_ticket_state_open' | translate"
                     >
                     </option>
                     <option
                         value="closed"
-                        data-ng-bind="'otrs_table_ticket_state_closed' | translate"
+                        data-ng-bind="'otrs_table_ticket_state_closed' | translate"
                     >
                     </option>
                     <option
                         value="archived"
-                        data-ng-bind="'otrs_table_ticket_state_archived' | translate"
+                        data-ng-bind="'otrs_table_ticket_state_archived' | translate"
                     >
                     </option>
                 </select>
@@ -260,7 +260,7 @@
                         <button
                             type="button"
                             class="btn btn-block btn-icon btn-inline"
-                            title="{{ 'otrs_table_ticket_refresh' | translate }}"
+                            title="{{ 'otrs_table_ticket_refresh' | translate }}"
                             data-ng-click="getTicketsIds(true)"
                         >
                             <span
@@ -303,12 +303,12 @@
                     ></td>
                     <td data-ng-bind="::ticket.subject"></td>
                     <td
-                        data-translate="{{ 'otrs_table_ticket_lastMessageFrom_' + ticket.lastMessageFrom }}"
+                        data-translate="{{ 'otrs_table_ticket_lastMessageFrom_' + ticket.lastMessageFrom }}"
                     ></td>
                     <td data-ng-bind="ticket.creationDate | date: 'short'"></td>
                     <td data-ng-bind="ticket.updateDate | date: 'short'"></td>
                     <td
-                        data-translate="{{ 'otrs_table_ticket_state_' + ticket.state }}"
+                        data-translate="{{ 'otrs_table_ticket_state_' + ticket.state }}"
                         data-ng-class="{
                             'text-muted': ticket.state === 'closed'
                         }"
@@ -317,7 +317,7 @@
                         <button
                             type="button"
                             class="btn btn-link"
-                            title="{{ 'otrs_table_ticket_open' | translate }}"
+                            title="{{ 'otrs_table_ticket_open' | translate }}"
                             data-ng-click="goTo('/ticket/' + ticket.ticketId)"
                         >
                             <span
@@ -339,8 +339,8 @@
         data-nb-pages="nbPages"
         data-transform-item="transformItem(item)"
         data-on-transform-item-done="onTransformItemDone(items)"
-        data-page-placeholder="{{ 'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
+        data-page-placeholder="{{ 'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
         data-refresh="refreshTable"
-        data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+        data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
     ></div>
 </div>

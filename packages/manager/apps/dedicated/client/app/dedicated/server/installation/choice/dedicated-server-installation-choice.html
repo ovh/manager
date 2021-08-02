@@ -3,8 +3,8 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="goInstall"
-        data-wizard-title=":: 'server_configuration_installation_title' | translate"
-        data-wizard-confirm-button-text=":: 'common_next' | translate"
+        data-wizard-title=":: 'server_configuration_installation_title' | translate"
+        data-wizard-confirm-button-text=":: 'common_next' | translate"
         data-wizard-keydown-disabled
     >
         <div data-wizard-step data-wizard-step-on-load="load">
@@ -14,7 +14,7 @@
 
             <div data-ng-if="!loading.featureAvailability">
                 <p
-                    data-ng-bind-html="'server_configuration_installation_info' | translate:{ t0: server.name }"
+                    data-ng-bind-html="'server_configuration_installation_info' | translate:{ t0: server.name }"
                 ></p>
                 <div
                     class="alert alert-warning"

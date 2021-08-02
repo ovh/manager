@@ -290,9 +290,9 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 22] ([32b1c7c](https://github.com/ovh-ux/manager/commit/32b1c7c))
-* **i18n:** add missing translations [CDS 24] ([0a07874](https://github.com/ovh-ux/manager/commit/0a07874))
-* **i18n:** add missing translations [CDS 28] ([7eaf5d3](https://github.com/ovh-ux/manager/commit/7eaf5d3))
+* **i18n:** add missing translations [CDS 22] ([32b1c7c](https://github.com/ovh-ux/manager/commit/32b1c7c))
+* **i18n:** add missing translations [CDS 24] ([0a07874](https://github.com/ovh-ux/manager/commit/0a07874))
+* **i18n:** add missing translations [CDS 28] ([7eaf5d3](https://github.com/ovh-ux/manager/commit/7eaf5d3))
 
 
 

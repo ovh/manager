@@ -3,7 +3,7 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="install"
-        data-wizard-title=":: 'server_configuration_installation_gabarit_title' | translate"
+        data-wizard-title=":: 'server_configuration_installation_gabarit_title' | translate"
         data-wizard-hide-cancel-button="loader.loading"
         data-wizard-bread-crumb
         data-wizard-keydown-disabled
@@ -20,7 +20,7 @@
             <div data-ng-if="!loader.loading">
                 <span
                     data-translate="server_configuration_installation_gabarit_step1_info"
-                    data-translate-values="{ t0: installation.server.name }"
+                    data-translate-values="{ t0: installation.server.name }"
                 ></span>
                 <div
                     class="panel-group"
@@ -80,7 +80,7 @@
                                         <span>
                                             <span
                                                 class="text-muted"
-                                                data-translate="{{ 'server_configuration_installation' + gabarit.bitFormat }}"
+                                                data-translate="{{ 'server_configuration_installation' + gabarit.bitFormat }}"
                                             >
                                             </span>
                                             <span
@@ -206,7 +206,7 @@
                         ></span>
                         <strong
                             data-ng-if="informations.hardwareRaid.mode"
-                            data-ng-bind-html="'server_configuration_installation_gabarit_step2_hardwareRaid' | translate:{ t0: informations.hardwareRaid.mode, t1: informations.hardwareRaid.disks.length }"
+                            data-ng-bind-html="'server_configuration_installation_gabarit_step2_hardwareRaid' | translate:{ t0: informations.hardwareRaid.mode, t1: informations.hardwareRaid.disks.length }"
                         >
                         </strong>
                         <strong
@@ -350,7 +350,7 @@
                         />
                         <span
                             class="icon-question-sign"
-                            data-oui-tooltip="{{:: 'server_configuration_installation_form_postInstallationScriptLink_help' | translate }}"
+                            data-oui-tooltip="{{:: 'server_configuration_installation_form_postInstallationScriptLink_help' | translate }}"
                             data-oui-tooltip-placement="left"
                         >
                         </span>
@@ -390,7 +390,7 @@
                         />
                         <span
                             class="icon-question-sign"
-                            data-oui-tooltip="{{:: 'server_configuration_installation_form_postInstallationScriptLinkReturn_help' | translate }}"
+                            data-oui-tooltip="{{:: 'server_configuration_installation_form_postInstallationScriptLinkReturn_help' | translate }}"
                             data-oui-tooltip-placement="left"
                         >
                         </span>
@@ -473,7 +473,7 @@
                             </select>
                             <span
                                 class="icon-question-sign"
-                                data-oui-tooltip="{{:: 'server_configuration_installation_form_ssh_help' | translate }}"
+                                data-oui-tooltip="{{:: 'server_configuration_installation_form_ssh_help' | translate }}"
                                 data-oui-tooltip-placement="left"
                             >
                             </span>

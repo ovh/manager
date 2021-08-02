@@ -11,7 +11,7 @@
             class="form-control"
             id="filterIpType"
             name="filterIpType"
-            data-ng-options="type as (('license_order_filter_block_type_' + type) | translate) for type in availableIpBlock.availableIpTypes"
+            data-ng-options="type as (('license_order_filter_block_type_' + type) | translate) for type in availableIpBlock.availableIpTypes"
             data-ng-model="filters.block.type"
             data-ng-change="recheckIpBlockContained()"
         >

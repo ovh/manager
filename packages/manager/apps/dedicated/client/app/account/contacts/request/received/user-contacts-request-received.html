@@ -47,7 +47,7 @@
                         <th class="center" colspan="2" style="width: 25px;">
                             <button
                                 class="btn btn-block btn-icon btn-inline"
-                                title="{{ 'useraccount_contacts_task_refresh' | translate }}"
+                                title="{{ 'useraccount_contacts_task_refresh' | translate }}"
                                 data-ng-click="ctrlContactRequestsReceived.getContactChangeTasks()"
                             >
                                 <i
@@ -113,7 +113,7 @@
                         <td class="center">
                             <span
                                 class="label"
-                                data-translate="{{ 'useraccount_contacts_task_state_' + task.state }}"
+                                data-translate="{{ 'useraccount_contacts_task_state_' + task.state }}"
                                 data-ng-class="{'label-important': task.state === 'refused',
                                                  'label-success': task.state === 'done',
                                                  'label-warning': task.state === 'aborted',
@@ -127,7 +127,7 @@
                                 class="btn btn-icon btn-transparent"
                                 data-ng-click="setAction('contacts/request/change/user-contacts-request-change', {action: 'ACCEPT', method: 'RECEIVED',task: task})"
                                 data-ng-if="task.state === 'validatingByCustomers' && !task.hasPendingChange"
-                                data-oui-tooltip="{{:: 'useraccount_contacts_accept_request' | translate }}"
+                                data-oui-tooltip="{{:: 'useraccount_contacts_accept_request' | translate }}"
                                 data-oui-tooltip-placement="bottom"
                             >
                                 <i class="icon-ok"></i>
@@ -138,7 +138,7 @@
                                 class="btn btn-icon btn-transparent"
                                 data-ng-click="setAction('contacts/request/change/user-contacts-request-change', {action: 'REFUSE', method: 'RECEIVED', task: task})"
                                 data-ng-if="task.state === 'validatingByCustomers'  && !task.hasPendingChange"
-                                data-oui-tooltip="{{:: 'useraccount_contacts_refuse_request' | translate }}"
+                                data-oui-tooltip="{{:: 'useraccount_contacts_refuse_request' | translate }}"
                                 data-oui-tooltip-placement="bottom"
                             >
                                 <i class="icon-remove"></i>
@@ -158,8 +158,8 @@
                 data-nb-pages="nbPages"
                 data-transform-item="ctrlContactRequestsReceived.transformItem(item)"
                 data-on-transform-item-done="ctrlContactRequestsReceived.onTransformItemDone(items)"
-                data-page-placeholder="{{'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
-                data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+                data-page-placeholder="{{'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
+                data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
             ></div>
         </div>
     </div>

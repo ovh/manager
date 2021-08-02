@@ -3,7 +3,7 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="saveRemainingSize"
-        data-wizard-title=":: 'server_configuration_installation_ovh_title' | translate"
+        data-wizard-title=":: 'server_configuration_installation_ovh_title' | translate"
         data-wizard-hide-cancel-button="loader.loading"
         data-wizard-bread-crumb
         data-wizard-keydown-disabled
@@ -21,7 +21,7 @@
             <div data-ng-hide="loader.loading">
                 <p
                     data-translate="server_configuration_installation_ovh_step1_info"
-                    data-translate-values="{ t0: constants.server.name }"
+                    data-translate-values="{ t0: constants.server.name }"
                 ></p>
                 <div class="form-group">
                     <label
@@ -46,7 +46,7 @@
                     ></span>
                     <i
                         class="fa fa-question-circle"
-                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step1_desktop_licence_info_text' | translate }}"
+                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step1_desktop_licence_info_text' | translate }}"
                         data-oui-tooltip-placement="bottom"
                     >
                     </i>
@@ -109,7 +109,7 @@
                                         <span>
                                             <span
                                                 class="text-muted"
-                                                data-translate="{{ 'server_configuration_installation' + distribution.bitFormat }}"
+                                                data-translate="{{ 'server_configuration_installation' + distribution.bitFormat }}"
                                             >
                                             </span>
                                             <span
@@ -173,7 +173,7 @@
                     </select>
                     <oui-spinner
                         class="align-middle"
-                        aria-label="{{ 'common_loading' | translate }}"
+                        aria-label="{{ 'common_loading' | translate }}"
                         data-ng-if="loader.loadingCapabilities"
                         data-size="s"
                     >
@@ -183,7 +183,7 @@
                     class="text-danger"
                     data-ng-if="canEditDiskGroup() && raidIsPersonnalizable()"
                     data-translate="server_configuration_installation_ovh_step1_disk_group_warning"
-                    data-translate-values="{ t0: informations.diskGroups[0].description }"
+                    data-translate-values="{ t0: informations.diskGroups[0].description }"
                 >
                 </span>
 
@@ -521,14 +521,14 @@
                         class="btn btn-default"
                         data-ng-if="!informations.showAllDisk"
                         data-ng-click="informations.showAllDisk = true"
-                        data-ng-bind=":: 'server_configuration_installation_ovh_step2_show_all_disk' | translate"
+                        data-ng-bind=":: 'server_configuration_installation_ovh_step2_show_all_disk' | translate"
                     ></button>
                     <button
                         type="button"
                         class="btn btn-default"
                         data-ng-if="informations.showAllDisk"
                         data-ng-click="informations.showAllDisk = false"
-                        data-ng-bind=":: 'server_configuration_installation_ovh_step2_hide_all_disk' | translate"
+                        data-ng-bind=":: 'server_configuration_installation_ovh_step2_hide_all_disk' | translate"
                     ></button>
                 </div>
 
@@ -540,7 +540,7 @@
                                 <th>
                                     <span
                                         class="fa fa-question-circle"
-                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_available_order_help' | translate }}"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_available_order_help' | translate }}"
                                         data-oui-tooltip-placement="right"
                                     >
                                     </span>
@@ -565,7 +565,7 @@
                                     ></span>
                                     <span
                                         class="icon-question-sign icon-white"
-                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_raid_help' | translate }}"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_raid_help' | translate }}"
                                         data-oui-tooltip-placement="left"
                                     >
                                     </span>
@@ -576,7 +576,7 @@
                                     ></span>
                                     <span
                                         class="icon-question-sign icon-white"
-                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_available_size_help' | translate }}"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_available_size_help' | translate }}"
                                         data-oui-tooltip-placement="left"
                                     >
                                     </span>
@@ -589,7 +589,7 @@
                                     ></span>
                                     <span
                                         class="icon-question-sign icon-white"
-                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_size_help' | translate }}"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_size_help' | translate }}"
                                         data-oui-tooltip-placement="left"
                                     >
                                     </span>
@@ -641,7 +641,7 @@
                                 >
                                     <span
                                         data-ng-if="!isSetPartition(partition)"
-                                        data-translate="{{ 'server_configuration_installation_' + partition.typePartition }}"
+                                        data-translate="{{ 'server_configuration_installation_' + partition.typePartition }}"
                                     >
                                     </span>
                                     <select
@@ -661,7 +661,7 @@
                                 >
                                     <span
                                         data-ng-hide="isSetPartition(partition) && partition.fileSystem != constants.warningSwap"
-                                        data-translate="{{ 'server_configuration_installation_' + partition.fileSystem }}"
+                                        data-translate="{{ 'server_configuration_installation_' + partition.fileSystem }}"
                                     >
                                     </span>
                                     <select
@@ -745,17 +745,17 @@
                                     </select>
                                     <span
                                         class="oui-icon oui-icon-warning-circle"
-                                        aria-label="{{ 'server_configuration_installation_ovh_step2_error_raid_diskUse_icon' | translate }}"
+                                        aria-label="{{ 'server_configuration_installation_ovh_step2_error_raid_diskUse_icon' | translate }}"
                                         data-ng-show="partition.hasWarning && !isSetPartition(partition)"
-                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_error_raid_diskUse_icon' | translate }}"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_error_raid_diskUse_icon' | translate }}"
                                         data-oui-tooltip-placement="top"
                                     >
                                     </span>
                                     <span
                                         class="oui-icon oui-icon-warning-circle"
-                                        aria-label="{{ 'server_configuration_installation_ovh_step2_error_raid_0' | translate }}"
+                                        aria-label="{{ 'server_configuration_installation_ovh_step2_error_raid_0' | translate }}"
                                         data-ng-show="!partition.hasWarning && !isSetPartition(partition) && partition.raid == constants.warningRaid0"
-                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_error_raid_0' | translate }}"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_error_raid_0' | translate }}"
                                         data-oui-tooltip-placement="top"
                                     >
                                     </span>
@@ -796,7 +796,7 @@
                                                 type="button"
                                                 class="btn btn-default"
                                                 data-ng-click="getFullSize(partition)"
-                                                title="{{ 'server_configuration_installation_ovh_step2_remaining_size_button' | translate }}"
+                                                title="{{ 'server_configuration_installation_ovh_step2_remaining_size_button' | translate }}"
                                             >
                                                 <span
                                                     class="fa fa-expand"
@@ -1003,7 +1003,7 @@
                                             <button
                                                 type="button"
                                                 class="btn btn-default"
-                                                title="{{ 'server_configuration_installation_ovh_step2_remaining_size_button' | translate }}"
+                                                title="{{ 'server_configuration_installation_ovh_step2_remaining_size_button' | translate }}"
                                                 data-ng-click="getFullSize(newPartition)"
                                             >
                                                 <span
@@ -1121,7 +1121,7 @@
                             <span
                                 class="red"
                                 data-translate="server_configuration_installation_ovh_step2_error_partition_raid0"
-                                data-translate-values="{ t0: newPartition.display && newPartition.mountPoint || installation.partitionSchemeModels[setPartition.indexSet].mountPoint }"
+                                data-translate-values="{ t0: newPartition.display && newPartition.mountPoint || installation.partitionSchemeModels[setPartition.indexSet].mountPoint }"
                             ></span>
                         </li>
                         <li data-ng-show="errorInst.partitionSizeToAdd">
@@ -1333,7 +1333,7 @@
                                 <th scope="col">
                                     <span
                                         class="icon-question-sign icon-white"
-                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_available_order_help' | translate }}"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_available_order_help' | translate }}"
                                         data-oui-tooltip-placement="right"
                                     >
                                     </span>
@@ -1363,7 +1363,7 @@
                                     ></span>
                                     <span
                                         class="icon-question-sign icon-white"
-                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_raid_help' | translate }}"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_raid_help' | translate }}"
                                         data-oui-tooltip-placement="left"
                                     >
                                     </span>
@@ -1374,7 +1374,7 @@
                                     ></span>
                                     <span
                                         class="icon-question-sign icon-white"
-                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_available_size_help' | translate }}"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_available_size_help' | translate }}"
                                         data-oui-tooltip-placement="left"
                                     >
                                     </span>
@@ -1388,7 +1388,7 @@
                                     ></span>
                                     <span
                                         class="icon-question-sign icon-white"
-                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_size_help' | translate }}"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_size_help' | translate }}"
                                         data-oui-tooltip-placement="left"
                                     >
                                     </span>
@@ -1404,10 +1404,10 @@
                                     data-ng-bind="partition.order"
                                 ></th>
                                 <td
-                                    data-translate="{{ 'server_configuration_installation_' + partition.typePartition }}"
+                                    data-translate="{{ 'server_configuration_installation_' + partition.typePartition }}"
                                 ></td>
                                 <td
-                                    data-translate="{{ 'server_configuration_installation_' + partition.fileSystem }}"
+                                    data-translate="{{ 'server_configuration_installation_' + partition.fileSystem }}"
                                 ></td>
                                 <td data-ng-bind="partition.mountPoint"></td>
                                 <td>
@@ -1438,7 +1438,7 @@
                                     <span
                                         class="icon-warning"
                                         data-ng-if="partition.hasWarning"
-                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_error_raid_diskUse_icon' | translate }}"
+                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_error_raid_diskUse_icon' | translate }}"
                                         data-oui-tooltip-placement="top"
                                     >
                                     </span>
@@ -1600,8 +1600,8 @@
                             ></span>
                             <span
                                 class="fa fa-question-circle"
-                                aria-label="{{ 'server_configuration_installation_ovh_step3_saveGabarit_help' | translate }}"
-                                data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step3_saveGabarit_help' | translate }}"
+                                aria-label="{{ 'server_configuration_installation_ovh_step3_saveGabarit_help' | translate }}"
+                                data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step3_saveGabarit_help' | translate }}"
                                 data-oui-tooltip-placement="right"
                             >
                             </span>
@@ -1661,7 +1661,7 @@
                                 >&nbsp;
                                 <span
                                     class="icon-warning"
-                                    data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step3_partiton_variable_help' | translate }}"
+                                    data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step3_partiton_variable_help' | translate }}"
                                     data-oui-tooltip-placement="right"
                                 >
                                 </span>
@@ -1674,7 +1674,7 @@
                             >
                                 <option
                                     value
-                                    data-ng-bind=":: 'server_configuration_installation_ovh_step3_partiton_none' | translate"
+                                    data-ng-bind=":: 'server_configuration_installation_ovh_step3_partiton_none' | translate"
                                 >
                                 </option>
                             </select>
@@ -1749,7 +1749,7 @@
                                 >&nbsp;
                                 <span
                                     class="fa fa-question-circle"
-                                    data-oui-tooltip="{{:: 'server_configuration_installation_form_postInstallationScriptLink_help' | translate }}"
+                                    data-oui-tooltip="{{:: 'server_configuration_installation_form_postInstallationScriptLink_help' | translate }}"
                                     data-oui-tooltip-placement="right"
                                 >
                                 </span>
@@ -1793,7 +1793,7 @@
                                 ></span>
                                 <span
                                     class="fa fa-question-circle"
-                                    data-oui-tooltip="{{:: 'server_configuration_installation_form_postInstallationScriptLinkReturn_help' | translate }}"
+                                    data-oui-tooltip="{{:: 'server_configuration_installation_form_postInstallationScriptLinkReturn_help' | translate }}"
                                     data-oui-tooltip-placement="right"
                                 >
                                 </span>
@@ -1868,7 +1868,7 @@
                                 >&nbsp;
                                 <span
                                     class="fa fa-question-circle"
-                                    data-oui-tooltip="{{:: 'server_configuration_installation_form_ssh_help' | translate }}"
+                                    data-oui-tooltip="{{:: 'server_configuration_installation_form_ssh_help' | translate }}"
                                     data-oui-tooltip-placement="right"
                                 >
                                 </span>
@@ -1927,7 +1927,7 @@
                                 class="text-danger"
                                 data-ng-if="installation.options.variablePartition && installation.options.saveGabarit"
                                 data-translate="server_configuration_installation_ovh_step3_partiton_variable_info"
-                                data-translate-values="{ t0: installation.options.variablePartition.mountPoint }"
+                                data-translate-values="{ t0: installation.options.variablePartition.mountPoint }"
                             ></p>
                         </div>
                     </form>

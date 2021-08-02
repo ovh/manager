@@ -41,7 +41,7 @@
                     <button
                         type="button"
                         class="btn btn-link"
-                        title="{{ 'useraccount_contacts_task_refresh' | translate }}"
+                        title="{{ 'useraccount_contacts_task_refresh' | translate }}"
                         data-ng-click="ctrlContactRequests.getContactChangeTasks()"
                     >
                         <span class="fa fa-refresh" aria-hidden="true"> </span>
@@ -138,8 +138,8 @@
                         <div data-ng-if="!task.hasPendingChange">
                             <span
                                 class="fa fa-hourglass-start text-warning"
-                                data-simplepopover="{{::'useraccount_contacts_task_info_security' | translate:{ t0: ctrlContactRequests.user.email } }}"
-                                data-simplepopover-title="{{ 'useraccount_contacts_task_waiting_for_me' | translate }}"
+                                data-simplepopover="{{::'useraccount_contacts_task_info_security' | translate:{ t0: ctrlContactRequests.user.email } }}"
+                                data-simplepopover-title="{{ 'useraccount_contacts_task_waiting_for_me' | translate }}"
                                 data-simplepopover-placement="top"
                                 data-simplepopover-single="true"
                                 aria-hidden="true"
@@ -152,7 +152,7 @@
                     <div data-ng-switch-default>
                         <span
                             class="label label-default"
-                            data-translate="{{ 'useraccount_contacts_task_state_' + task.state }}"
+                            data-translate="{{ 'useraccount_contacts_task_state_' + task.state }}"
                         >
                         </span>
                         <small
@@ -193,7 +193,7 @@
                                 <button
                                     type="button"
                                     class="btn btn-link"
-                                    title="{{ 'useraccount_contacts_accept_request' | translate }}"
+                                    title="{{ 'useraccount_contacts_accept_request' | translate }}"
                                     data-ng-click="setAction('contacts/request/change/user-contacts-request-change', {
                                             action: 'ACCEPT',
                                             method: 'RECEIVED',
@@ -208,7 +208,7 @@
                                     class="btn btn-link"
                                     data-ng-click="setAction('contacts/request/change/user-contacts-request-change', { action: 'REFUSE', method: 'RECEIVED', task: task }, 'account/')"
                                     data-translate="useraccount_contacts_refuse_request"
-                                    title="{{ 'useraccount_contacts_refuse_request' | translate }}"
+                                    title="{{ 'useraccount_contacts_refuse_request' | translate }}"
                                 ></button>
                             </li>
                             <li role="menuitem">
@@ -217,7 +217,7 @@
                                     class="btn btn-link"
                                     data-ng-click="setAction('contacts/request/change/user-contacts-request-change', { action: 'RESEND', method: 'RECEIVED', task: task }, 'account/')"
                                     data-translate="useraccount_contacts_resend_request"
-                                    title="{{ 'useraccount_contacts_resend_request' | translate }}"
+                                    title="{{ 'useraccount_contacts_resend_request' | translate }}"
                                 ></button>
                             </li>
                         </ul>
@@ -236,7 +236,7 @@
         data-nb-pages="nbPages"
         data-transform-item="ctrlContactRequests.transformItem(item)"
         data-on-transform-item-done="ctrlContactRequests.onTransformItemDone(items)"
-        data-page-placeholder="{{'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
-        data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+        data-page-placeholder="{{'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
+        data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
     ></div>
 </div>

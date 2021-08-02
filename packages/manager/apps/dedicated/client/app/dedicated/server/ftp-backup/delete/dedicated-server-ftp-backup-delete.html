@@ -3,7 +3,7 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="deleteFtpBackup"
-        data-wizard-title=":: 'server_configuration_ftpbackup_delete' | translate"
+        data-wizard-title=":: 'server_configuration_ftpbackup_delete' | translate"
     >
         <div data-wizard-step data-wizard-step-valid="!loading">
             <div class="text-center" data-ng-if="loading">
@@ -13,11 +13,11 @@
             <div data-ng-if="!loading">
                 <p
                     data-translate="server_configuration_ftpbackup_delete_question"
-                    data-translate-values="{ t0: ftpBackup.ftpBackupName }"
+                    data-translate-values="{ t0: ftpBackup.ftpBackupName }"
                 ></p>
                 <p
                     class="font-weight-bold text-center text-danger"
-                    data-ng-bind=":: 'server_configuration_ftpbackup_delete_question2' | translate"
+                    data-ng-bind=":: 'server_configuration_ftpbackup_delete_question2' | translate"
                 ></p>
             </div>
         </div>

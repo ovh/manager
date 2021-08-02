@@ -27,7 +27,7 @@
                                 class="form-control"
                                 id="cacheRulesEntry"
                                 name="cacheRulesEntry"
-                                placeholder="{{ 'cdn_cacherule_search_placeholder' | translate }}"
+                                placeholder="{{ 'cdn_cacherule_search_placeholder' | translate }}"
                                 data-ng-disabled="searchLoading"
                                 data-ng-model="cacheRulesEntrySearchSelected"
                                 data-ng-model-options="{ debounce: 800 }"
@@ -39,7 +39,7 @@
                                 <button
                                     class="btn btn-default"
                                     type="button"
-                                    aria-label="{{ 'common_cancel' | translate }}"
+                                    aria-label="{{ 'common_cancel' | translate }}"
                                     data-ng-click="cacheRulesEntrySearchSelected = ''"
                                     data-ng-disabled="searchLoading"
                                 >
@@ -69,7 +69,7 @@
                         data-title="'cdn_cacherule_table_header_filetype' | translate"
                     >
                         <span
-                            data-translate="{{ 'cdn_cacherule_'+ $row.fileType }}"
+                            data-translate="{{ 'cdn_cacherule_'+ $row.fileType }}"
                         ></span>
                     </oui-datagrid-column>
                     <oui-datagrid-column
@@ -81,7 +81,7 @@
                         data-title="'cdn_cacherule_table_header_cachetype' | translate"
                     >
                         <span
-                            data-translate="{{ 'cdn_cacherule_'+ $row.cacheType }}"
+                            data-translate="{{ 'cdn_cacherule_'+ $row.cacheType }}"
                         ></span>
                     </oui-datagrid-column>
                     <oui-datagrid-column
@@ -100,7 +100,7 @@
                                   'label-success': $row.status === 'ON',
                                   'label-info': $row.status === 'UPDATING' || $row.status === 'CREATING'
                               }"
-                            data-translate="{{ 'cdn_cacherule_status_' + $row.status }}"
+                            data-translate="{{ 'cdn_cacherule_status_' + $row.status }}"
                         >
                         </span>
                     </oui-datagrid-column>

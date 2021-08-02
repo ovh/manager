@@ -406,8 +406,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 123] ([3b7c5a5](https://github.com/ovh/manager/commit/3b7c5a5529a3e3c911e56ec29359e914d800ba91))
-* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
+* **i18n:** add missing translations [CDS 123] ([3b7c5a5](https://github.com/ovh/manager/commit/3b7c5a5529a3e3c911e56ec29359e914d800ba91))
+* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
 * **i18n:** add missing translations [CDS 143] ([74efd95](https://github.com/ovh/manager/commit/74efd9532bf7c7b7a1dc77903f973fe976a16033))
 
 
@@ -426,7 +426,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 121] ([73c0866](https://github.com/ovh/manager/commit/73c08668cab11274c1d5d6f19508568849c9c2b9))
+* **i18n:** add missing translations [CDS 121] ([73c0866](https://github.com/ovh/manager/commit/73c08668cab11274c1d5d6f19508568849c9c2b9))
 
 
 
@@ -444,10 +444,10 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 113] ([f6db44f](https://github.com/ovh/manager/commit/f6db44faf967c25ce71d85bed84a7d35b42845fa))
-* **i18n:** add missing translations [CDS 115] ([32d7b75](https://github.com/ovh/manager/commit/32d7b7521f9524f0aeba6ec905a3c2c36f0acf8f))
-* **i18n:** add missing translations [CDS 116] ([388486f](https://github.com/ovh/manager/commit/388486fe3c54b991e9f55f46fb2e071a487e7b10))
-* **i18n:** add missing translations [CDS 118] ([31c432b](https://github.com/ovh/manager/commit/31c432b5c1d0a12f57b8b52b8c37fb8c32f220e9))
+* **i18n:** add missing translations [CDS 113] ([f6db44f](https://github.com/ovh/manager/commit/f6db44faf967c25ce71d85bed84a7d35b42845fa))
+* **i18n:** add missing translations [CDS 115] ([32d7b75](https://github.com/ovh/manager/commit/32d7b7521f9524f0aeba6ec905a3c2c36f0acf8f))
+* **i18n:** add missing translations [CDS 116] ([388486f](https://github.com/ovh/manager/commit/388486fe3c54b991e9f55f46fb2e071a487e7b10))
+* **i18n:** add missing translations [CDS 118] ([31c432b](https://github.com/ovh/manager/commit/31c432b5c1d0a12f57b8b52b8c37fb8c32f220e9))
 * **support:** remove whitespace at end of file name ([#1552](https://github.com/ovh/manager/issues/1552)) ([8844770](https://github.com/ovh/manager/commit/8844770eec57df259acee742af532deaf5444576))
 
 
@@ -457,8 +457,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 107] ([29611df](https://github.com/ovh/manager/commit/29611dfcb7c7443f257f303d9abfd060b55cde60))
-* **i18n:** add missing translations [CDS 112] ([7edf8f6](https://github.com/ovh/manager/commit/7edf8f6265aa70fa456d75162bc1f1013455b4b6))
+* **i18n:** add missing translations [CDS 107] ([29611df](https://github.com/ovh/manager/commit/29611dfcb7c7443f257f303d9abfd060b55cde60))
+* **i18n:** add missing translations [CDS 112] ([7edf8f6](https://github.com/ovh/manager/commit/7edf8f6265aa70fa456d75162bc1f1013455b4b6))
 
 
 ### Features
@@ -481,7 +481,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 103] ([b44f87b](https://github.com/ovh-ux/manager/commit/b44f87b))
+* **i18n:** add missing translations [CDS 103] ([b44f87b](https://github.com/ovh-ux/manager/commit/b44f87b))
 
 
 ### Features

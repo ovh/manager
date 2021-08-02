@@ -47,14 +47,14 @@
                                                     data-ng-bind="ftpBackup.model.usage || '0'"
                                                 ></span>
                                                 <span
-                                                    data-translate="{{ 'unit_size_'+ ftpBackup.model.quota.unit }}"
+                                                    data-translate="{{ 'unit_size_'+ ftpBackup.model.quota.unit }}"
                                                 ></span>
                                                 /
                                                 <span
                                                     data-ng-bind="ftpBackup.model.quota.value"
                                                 ></span>
                                                 <span
-                                                    data-translate="{{ 'unit_size_'+ ftpBackup.model.quota.unit }}"
+                                                    data-translate="{{ 'unit_size_'+ ftpBackup.model.quota.unit }}"
                                                 ></span>
                                             </span>
                                         </div>
@@ -93,7 +93,7 @@
                                     <button
                                         type="button"
                                         class="btn btn-link"
-                                        title="{{ 'refresh' | translate }}"
+                                        title="{{ 'refresh' | translate }}"
                                         data-ng-click="reloadIpsBackup()"
                                     >
                                         <span
@@ -206,7 +206,7 @@
                                         class="btn btn-link"
                                         data-ng-if="ipbackup != ipbackupCurrentEditBack && !disable.deleteFtp && ipbackup.isApplied"
                                         data-ng-click="setIpBackupCurrentEdit(ipbackup)"
-                                        data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_edit' | translate }}"
+                                        data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_edit' | translate }}"
                                     >
                                         <span
                                             class="oui-icon oui-icon-pen_concept"
@@ -218,7 +218,7 @@
                                         class="btn btn-link"
                                         data-ng-if="ipbackup == ipbackupCurrentEditBack && !loaders.edit && ipbackup.isApplied"
                                         data-ng-click="cancelIpBackupCurrentEdit()"
-                                        data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_cancel' | translate }}"
+                                        data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_cancel' | translate }}"
                                     >
                                         <span
                                             class="oui-icon oui-icon-error"
@@ -232,7 +232,7 @@
                                         class="btn btn-link"
                                         data-ng-if="ipbackup != ipbackupCurrentEditBack && !disable.deleteFtp && ipbackup.isApplied"
                                         data-ng-click="setAction('backup/access/delete/dedicated-housing-backup-access-delete', ipbackup)"
-                                        data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_delete' | translate }}"
+                                        data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_delete' | translate }}"
                                     >
                                         <span
                                             class="oui-icon oui-icon-trash_concept"
@@ -244,7 +244,7 @@
                                         class="btn btn-link"
                                         data-ng-if="ipbackup == ipbackupCurrentEditBack && !loaders.edit && ipbackup.isApplied && (ipbackupCurrentEdit.cifs || ipbackupCurrentEdit.ftp || ipbackupCurrentEdit.nfs)"
                                         data-ng-click="saveIpBackupCurrentEdit()"
-                                        data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_modify' | translate }}"
+                                        data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_modify' | translate }}"
                                     >
                                         <i
                                             class="oui-icon oui-icon-success"
@@ -269,8 +269,8 @@
                         data-items-per-page="itemsPerPage"
                         data-transform-item="transformItem(item)"
                         data-on-transform-item-done="onTransformItemDone(items)"
-                        data-page-placeholder="{{'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
-                        data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+                        data-page-placeholder="{{'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
+                        data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
                         data-refresh="reloadIps"
                     ></div>
                 </div>

@@ -4,7 +4,7 @@
         data-wizard-bread-crumb="true"
         data-wizard-on-cancel="closeModal"
         data-wizard-on-finish="confirmOrder"
-        data-wizard-title=":: 'ip_additional_order' | translate"
+        data-wizard-title=":: 'ip_additional_order' | translate"
     >
         <!-- Step 1: Select a service -->
         <div
@@ -47,7 +47,7 @@
                             class="help-block"
                             role="alert"
                             data-ng-show="orderableIpError"
-                            data-translate="{{ 'ip_order_error_'+orderableIpError }}"
+                            data-translate="{{ 'ip_order_error_'+orderableIpError }}"
                         >
                         </span>
                     </div>
@@ -78,7 +78,7 @@
                     <p
                         data-ng-show="model.service.serviceType === 'VPS'"
                         data-translate="ip_order_add_ipv4_step1_remaining"
-                        data-translate-values="{ t0: orderableIp.maximumAdditionnalIp }"
+                        data-translate-values="{ t0: orderableIp.maximumAdditionnalIp }"
                     ></p>
 
                     <p data-translate="ip_order_step1_ok"></p>

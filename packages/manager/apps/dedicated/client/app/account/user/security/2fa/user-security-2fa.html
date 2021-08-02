@@ -7,7 +7,7 @@
         data-wizard-hide-cancel-button="forced"
         data-wizard-hide-close-button="forced"
         data-wizard-bread-crumb
-        data-wizard-title="::'user_account_security_double_auth_action_activate' | translate"
+        data-wizard-title="::'user_account_security_double_auth_action_activate' | translate"
     >
         <!-- WELCOME -->
         <div data-wizard-step>
@@ -71,7 +71,7 @@
                     <span class="oui-radio__description">
                         <img
                             class="pull-left new-security-section-wizard-choice-icon"
-                            alt="{{ 'user_account_security_double_auth_type_sms_alt' | translate }}"
+                            alt="{{ 'user_account_security_double_auth_type_sms_alt' | translate }}"
                             src="images/user-account/security/sms.svg"
                             width="42"
                             height="42"
@@ -106,7 +106,7 @@
                     <span class="oui-radio__description">
                         <img
                             class="pull-left new-security-section-wizard-choice-icon"
-                            alt="{{ 'user_account_security_double_auth_type_totp_alt' | translate }}"
+                            alt="{{ 'user_account_security_double_auth_type_totp_alt' | translate }}"
                             src="images/user-account/security/app.svg"
                             width="42"
                             height="42"
@@ -141,7 +141,7 @@
                     <span class="oui-radio__description">
                         <img
                             class="pull-left new-security-section-wizard-choice-icon"
-                            alt="{{ 'user_account_security_double_auth_type_u2f_alt' | translate }}"
+                            alt="{{ 'user_account_security_double_auth_type_u2f_alt' | translate }}"
                             src="images/user-account/security/key.svg"
                             width="42"
                             height="42"
@@ -202,7 +202,7 @@
                                 class="form-control"
                                 id="phone"
                                 name="phone"
-                                placeholder="{{ 'user_account_security_double_auth_type_sms_modal_add_number_label' | translate }}"
+                                placeholder="{{ 'user_account_security_double_auth_type_sms_modal_add_number_label' | translate }}"
                                 data-ng-model="step2.sms.phone"
                                 data-ng-pattern="/^\+(?:[0-9] ?){6,14}[0-9]$/"
                                 data-ng-disabled="step2.sms.isSendingCode || step2.sms.isLoading"
@@ -379,7 +379,7 @@
                                 class="form-control"
                                 id="code"
                                 name="code"
-                                placeholder="{{ 'user_account_security_double_auth_type_totp_modal_add_app_code_placeholder' | translate }}"
+                                placeholder="{{ 'user_account_security_double_auth_type_totp_modal_add_app_code_placeholder' | translate }}"
                                 required
                                 data-ng-model="step2.totp.code"
                                 data-ng-pattern="/^\d{6}$/"
@@ -427,7 +427,7 @@
                                 class="form-control"
                                 id="description"
                                 name="description"
-                                placeholder="{{ 'user_account_security_double_auth_type_totp_modal_edit_description_placeholder' | translate }}"
+                                placeholder="{{ 'user_account_security_double_auth_type_totp_modal_edit_description_placeholder' | translate }}"
                                 data-ng-model="step2.totp.description"
                                 data-ng-maxlength="100"
                             />
@@ -500,7 +500,7 @@
                                     class="form-control"
                                     id="description"
                                     name="description"
-                                    placeholder="{{ 'user_account_security_double_auth_type_u2f_modal_edit_description_placeholder' | translate }}"
+                                    placeholder="{{ 'user_account_security_double_auth_type_u2f_modal_edit_description_placeholder' | translate }}"
                                     data-ng-model="step2.u2f.description"
                                     data-ng-maxlength="100"
                                 />
@@ -547,7 +547,7 @@
                 <span class="media-left">
                     <img
                         class="media-object"
-                        alt="{{ 'user_account_security_double_auth_type_backup_code_alt' | translate }}"
+                        alt="{{ 'user_account_security_double_auth_type_backup_code_alt' | translate }}"
                         width="42"
                         height="42"
                         src="images/user-account/security/code.svg"

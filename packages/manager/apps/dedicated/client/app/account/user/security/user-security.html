@@ -31,7 +31,7 @@
                 <span class="media-left">
                     <img
                         class="media-object"
-                        alt="{{ 'user_account_security_password_title' | translate }}"
+                        alt="{{ 'user_account_security_password_title' | translate }}"
                         width="16"
                         height="16"
                         src="images/user-account/security/icon-password.png"
@@ -62,7 +62,7 @@
                 <span class="media-left">
                     <img
                         class="media-object"
-                        alt="{{ 'user_account_security_double_auth_title' | translate }}"
+                        alt="{{ 'user_account_security_double_auth_title' | translate }}"
                         width="16"
                         height="16"
                         src="images/user-account/security/icon-2fa.png"
@@ -114,7 +114,7 @@
                             <span class="media-left">
                                 <img
                                     class="media-object"
-                                    alt="{{ 'user_account_security_double_auth_type_sms_alt' | translate }}"
+                                    alt="{{ 'user_account_security_double_auth_type_sms_alt' | translate }}"
                                     width="42"
                                     height="42"
                                     src="images/user-account/security/sms.svg"
@@ -262,7 +262,7 @@
                             <span class="media-left">
                                 <img
                                     class="media-object"
-                                    alt="{{ 'user_account_security_double_auth_type_totp_alt' | translate }}"
+                                    alt="{{ 'user_account_security_double_auth_type_totp_alt' | translate }}"
                                     width="42"
                                     height="42"
                                     src="images/user-account/security/app.svg"
@@ -408,7 +408,7 @@
                             <span class="float-left">
                                 <img
                                     class="media-object"
-                                    alt="{{ 'user_account_security_double_auth_type_u2f_alt' | translate }}"
+                                    alt="{{ 'user_account_security_double_auth_type_u2f_alt' | translate }}"
                                     width="42"
                                     height="42"
                                     src="images/user-account/security/key.svg"
@@ -554,7 +554,7 @@
                             <span class="float-left">
                                 <img
                                     class="media-object"
-                                    alt="{{ 'user_account_security_double_auth_type_backup_code_alt' | translate }}"
+                                    alt="{{ 'user_account_security_double_auth_type_backup_code_alt' | translate }}"
                                     width="42"
                                     height="42"
                                     src="images/user-account/security/code.svg"
@@ -600,7 +600,7 @@
                                     data-ng-pluralize
                                     data-count="backupCode.sotpAccount.remaining"
                                     data-when="{
-                                            '0': ('user_security_double_auth_backup_regenerate_codes_remaining' | translate),
+                                            '0': ('user_security_double_auth_backup_regenerate_codes_remaining' | translate),
                                             'one': ('user_security_double_auth_backup_regenerate_codes_remaining_1' | translate),
                                             'other': ('user_security_double_auth_backup_regenerate_codes_remaining_other' | translate:{ count: {} })
                                         }"
@@ -650,7 +650,7 @@
                 <span class="media-left">
                     <img
                         class="media-object"
-                        alt="{{ 'user_account_security_ip_restrictions_alt' | translate }}"
+                        alt="{{ 'user_account_security_ip_restrictions_alt' | translate }}"
                         src="images/user-account/security/icon-ip-restriction.png"
                     />
                 </span>
@@ -737,7 +737,7 @@
                                     ></span>
                                     <span
                                         class="oui-icon oui-icon-help-circle"
-                                        data-oui-tooltip="{{:: 'user_ipRestrictions_alert_information' | translate }}"
+                                        data-oui-tooltip="{{:: 'user_ipRestrictions_alert_information' | translate }}"
                                         data-oui-tooltip-placement="bottom"
                                         aria-hidden="true"
                                     >
@@ -786,9 +786,7 @@
                         </oui-message>
 
                         <!-- IP Restrictions -->
-                        <h5
-                            data-translate="user_ipRestrictions_list"
-                        ></h5>
+                        <h5 data-translate="user_ipRestrictions_list"></h5>
                         <table
                             class="table table-ip-restrict"
                             data-ng-class="{
@@ -809,7 +807,7 @@
                                         <div class="tooltip-container">
                                             <span
                                                 class="oui-icon oui-icon-help-circle"
-                                                data-oui-tooltip="{{:: 'user_ipRestrictions_alert_information' | translate }}"
+                                                data-oui-tooltip="{{:: 'user_ipRestrictions_alert_information' | translate }}"
                                                 data-oui-tooltip-placement="right"
                                                 aria-hidden="true"
                                             >
@@ -880,7 +878,7 @@
                                     <td>
                                         <span
                                             data-ng-hide="restriction == ipRestrictionCurrentEditBack"
-                                            data-translate="{{ 'user_ipRestrictions_rule_' + restriction.rule }}"
+                                            data-translate="{{ 'user_ipRestrictions_rule_' + restriction.rule }}"
                                         >
                                         </span>
                                         <div

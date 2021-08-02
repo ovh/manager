@@ -3,7 +3,7 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="setNetboot"
-        data-wizard-title=":: 'server_configuration_netboot_title' | translate"
+        data-wizard-title=":: 'server_configuration_netboot_title' | translate"
         data-wizard-hide-cancel-button="loading.setNetboot"
         data-wizard-bread-crumb
     >
@@ -18,7 +18,7 @@
 
             <div data-ng-if="!loading.init">
                 <p
-                    data-ng-bind="'server_configuration_netboot_current' | translate:{ t0: server.name }"
+                    data-ng-bind="'server_configuration_netboot_current' | translate:{ t0: server.name }"
                 ></p>
                 <p data-ng-bind="server.netbootLabel"></p>
 
@@ -39,7 +39,7 @@
                                 data-ng-model="currentNetboot.type"
                             />
                             <span
-                                data-translate="{{ 'server_configuration_netboot_option_'+ key }}"
+                                data-translate="{{ 'server_configuration_netboot_option_'+ key }}"
                             ></span>
                         </label>
                     </div>
@@ -219,20 +219,20 @@
 
             <div data-ng-if="!loading.setNetboot">
                 <p
-                    data-ng-bind="'server_configuration_netboot_step2_question' | translate:{ t0: server.name }"
+                    data-ng-bind="'server_configuration_netboot_step2_question' | translate:{ t0: server.name }"
                 ></p>
                 <ul class="list-unstyled">
                     <li>
                         <strong
-                            data-ng-bind=":: 'server_configuration_netboot_step2_type' | translate"
+                            data-ng-bind=":: 'server_configuration_netboot_step2_type' | translate"
                         ></strong>
                         <span
-                            data-translate="{{ 'server_configuration_netboot_option_' + currentNetboot.type }}"
+                            data-translate="{{ 'server_configuration_netboot_option_' + currentNetboot.type }}"
                         ></span>
                     </li>
                     <li data-ng-if="currentNetboot.type==RESCUE">
                         <strong
-                            data-ng-bind=":: 'server_configuration_netboot_step2_rescue' | translate"
+                            data-ng-bind=":: 'server_configuration_netboot_step2_rescue' | translate"
                         ></strong>
                         <span
                             data-ng-bind="currentNetboot.rescue.kernel"
@@ -240,13 +240,13 @@
                     </li>
                     <li data-ng-if="currentNetboot.type==RESCUE">
                         <strong
-                            data-ng-bind=":: 'server_configuration_netboot_step2_rescue_mail' | translate"
+                            data-ng-bind=":: 'server_configuration_netboot_step2_rescue_mail' | translate"
                         ></strong>
                         <span data-ng-bind="currentNetboot.rescueMail"></span>
                     </li>
                     <li data-ng-if="currentNetboot.type==NETWORK">
                         <strong
-                            data-ng-bind=":: 'server_configuration_netboot_step2_kernel' | translate"
+                            data-ng-bind=":: 'server_configuration_netboot_step2_kernel' | translate"
                         ></strong>
                         <span
                             data-ng-bind="currentNetboot.network.kernel + ' (' + currentNetboot.network.description + ')'"
@@ -254,7 +254,7 @@
                     </li>
                     <li data-ng-if="currentNetboot.type==NETWORK">
                         <strong
-                            data-ng-bind=":: 'server_configuration_netboot_kernel_rootdevice' | translate"
+                            data-ng-bind=":: 'server_configuration_netboot_kernel_rootdevice' | translate"
                         ></strong>
                         <span data-ng-bind="rootDevice.root"></span>
                     </li>
