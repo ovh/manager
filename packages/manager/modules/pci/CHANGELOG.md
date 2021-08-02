@@ -1,3 +1,17 @@
+# [5.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.36.2...@ovh-ux/manager-pci@5.37.0) (2021-08-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1081] ([f2134b9](https://github.com/ovh/manager/commit/f2134b9eb79c5cb9c9dc22a0264f3315461dfd45))
+
+
+### Features
+
+* **pci.quota:** increase quota by buying credits ([0178011](https://github.com/ovh/manager/commit/0178011b4a42a38587f4fcb8537e500f3097184b))
+
+
+
 ## [5.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.36.1...@ovh-ux/manager-pci@5.36.2) (2021-07-29)
 
 
