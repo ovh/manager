@@ -1,7 +1,7 @@
 {
   "manager_billing_subscription": "Subscription",
   "manager_billing_subscription_creation": "Creation date",
-  "manager_billing_subscription_next_due_date": "Next renewal date",
+  "manager_billing_subscription_next_due_date": "Next payment date",
   "manager_billing_subscription_engagement": "Commitment",
   "manager_billing_subscription_engagement_status_none": "None",
   "manager_billing_subscription_contacts": "Contacts",
