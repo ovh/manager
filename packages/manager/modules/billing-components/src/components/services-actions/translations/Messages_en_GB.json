@@ -18,6 +18,6 @@
   "billing_services_actions_menu_sms_renew": "Configure automatic reloading",
   "billing_services_actions_menu_resiliate_cancel": "Stop cancellation of service",
   "billing_services_actions_menu_see_dashboard": "View service details",
-  "billing_services_actions_menu_commit": "Manage my subscription",
+  "billing_services_actions_menu_commit": "Manage my commitment",
   "billing_services_actions_menu_commit_cancel": "Cancel subscription request"
 }
