@@ -66,6 +66,7 @@
   "billing_autorenew_service_type_CDN_WEBSITE": "CDN Site web",
   "billing_autorenew_service_type_CDN_WEBSTORAGE": "CDN WebStorage",
   "billing_autorenew_service_type_CLUSTER_HADOOP": "Cluster Hadoop",
+  "billing_autorenew_service_type_DEDICATED_ANTHOS": "Anthos",
   "billing_autorenew_service_type_DEDICATED_NAS": "Dedicated Nas",
   "billing_autorenew_service_type_DEDICATED_NASHA": "Dedicated NasHa",
   "billing_autorenew_service_autorenew_contact_filter": "Choisissez votre contact de facturation",
