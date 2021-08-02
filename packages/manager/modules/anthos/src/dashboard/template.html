@@ -1,0 +1,33 @@
+<div>
+    <oui-header heading="{{:: $ctrl.serviceName }}">
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                href="{{:: $ctrl.dashboardLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
+            >
+                <span
+                    data-translate="anthos_dashboard_header_general_information"
+                ></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{:: $ctrl.dashboardLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
+            >
+                <span data-translate="anthos_dashboard_header_host"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{:: $ctrl.dashboardLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
+            >
+                <span data-translate="anthos_dashboard_header_storage"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{:: $ctrl.dashboardLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
+            >
+                <span data-translate="anthos_dashboard_header_ips"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-header>
+    <div ui-view></div>
+</div>
