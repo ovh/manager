@@ -3,7 +3,6 @@
   "kube_node_pool_creation_date": "Data utworzenia",
   "kube_node_pool_node_count": "Liczba węzłów",
   "kube_node_pool_monthly_billing": "Abonament miesięczny",
-  "kube_node_pool_edit": "Edytuj pulę ",
   "kube_node_pool_nodes": "Sprawdź węzły",
   "kube_node_pool_scale": "Skonfiguruj rozmiar puli węzłów",
   "kube_node_pool_delete": "Usuń pulę",
