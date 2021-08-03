@@ -105,7 +105,7 @@
     </div>
 
     <div class="m-3 text-right">
-        <label for="manualQuotaSwitch" class="d-inline-block">
+        <label for="autoScalingSwitch" class="d-inline-block">
             <span
                 data-translate="pci_projects_project_quota_autoscaling"
             ></span>
@@ -117,17 +117,17 @@
         </label>
         <oui-switch
             class="mx-2"
-            data-model="$ctrl.model.manualQuota"
-            data-id="manualQuotaSwitch"
-            data-name="manualQuotaSwitch"
-            data-on-change="$ctrl.onManualQuotaSwitchChange(modelValue)"
-            data-disabled="$ctrl.loaders.manualQuota"
+            data-model="$ctrl.model.autoScaling"
+            data-id="autoScalingSwitch"
+            data-name="autoScalingSwitch"
+            data-on-change="$ctrl.onAutoScalingQuotaSwitchChange(modelValue)"
+            data-disabled="$ctrl.loaders.autoScaling"
         >
         </oui-switch>
         <label
-            for="manualQuotaSwitch"
+            for="autoScalingSwitch"
             class="d-inline-block"
-            data-translate="{{ $ctrl.model.manualQuota ? 'pci_projects_project_quota_autoscaling_on' : 'pci_projects_project_quota_autoscaling_off' }}"
+            data-translate="{{ $ctrl.model.autoScaling ? 'pci_projects_project_quota_autoscaling_on' : 'pci_projects_project_quota_autoscaling_off' }}"
         >
         </label>
     </div>
