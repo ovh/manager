@@ -17,7 +17,9 @@
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
+    "@ovh-ux/ng-translate-async-loader": "^2.1.2",
     "@ovh-ux/ui-kit": "^4.4.3",
-    "angular": "^1.7.5"
+    "angular": "^1.7.5",
+    "angular-translate": "^2.18.4"
   }
 }
