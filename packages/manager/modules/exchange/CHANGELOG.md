@@ -1,3 +1,12 @@
+## [2.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@2.3.7...@ovh-ux/manager-exchange@2.3.8) (2021-08-03)
+
+
+### Bug Fixes
+
+* **exchange.disclaimer:** not editable editor ([#5264](https://github.com/ovh/manager/issues/5264)) ([095dc23](https://github.com/ovh/manager/commit/095dc23026a4a831bf7b9473f36d55e32b24ee3d))
+
+
+
 ## [2.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@2.3.6...@ovh-ux/manager-exchange@2.3.7) (2021-07-26)
 
 
