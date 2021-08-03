@@ -4,8 +4,16 @@ import head from 'lodash/head';
 
 export default class ExchangeAddDisclaimerCtrl {
   /* @ngInject */
-  constructor($scope, wucExchange, navigation, messaging, $translate) {
+  constructor(
+    $document,
+    $scope,
+    wucExchange,
+    navigation,
+    messaging,
+    $translate,
+  ) {
     this.services = {
+      $document,
       $scope,
       wucExchange,
       navigation,
@@ -30,6 +38,9 @@ export default class ExchangeAddDisclaimerCtrl {
 
   loadAvailableDomains() {
     this.loadingData = true;
+
+    // Remove tabindex from modal as it clashes with ckeditor modal
+    this.services.$document.find('.modal').removeAttr('tabindex');
 
     return this.services.wucExchange
       .getNewDisclaimerOptions(
