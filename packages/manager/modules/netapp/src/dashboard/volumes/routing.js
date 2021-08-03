@@ -29,6 +29,29 @@ export default /* @ngInject */ ($stateProvider) => {
               accessPaths,
             }),
           ),
+      goToVolumes: /* @ngInject */ ($state, Alerter, storage) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const reload = message && type === 'success';
+        const promise = $state.go(
+          'netapp.dashboard.volumes',
+          {
+            serviceName: storage.id,
+          },
+          {
+            reload,
+          },
+        );
+
+        if (message) {
+          promise.then(() => {
+            Alerter[type](message);
+          });
+        }
+
+        return promise;
+      },
       goToCreateVolume: /* @ngInject */ ($state) => () =>
         $state.go('netapp.dashboard.volumes.create'),
       getVolumeDetailsHref: /* @ngInject */ ($state, $transition$) => (
@@ -60,7 +83,7 @@ export default /* @ngInject */ ($stateProvider) => {
       getVolumeDeleteHref: /* @ngInject */ ($state, $transition$) => (volume) =>
         $state.href('netapp.dashboard.volumes.delete', {
           serviceName: $transition$.params().serviceName,
-          volume,
+          volumeId: volume.id,
         }),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('netapp_volumes_breadcrumb'),
