@@ -1874,7 +1874,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Bug Fixes
 
 * **exchange:** fix help button on modal ([#1587](https://github.com/ovh/manager/issues/1587)) ([955fc6e](https://github.com/ovh/manager/commit/955fc6e73a157de4a260899f16179f9419d549e8))
-* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
+* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
 * **i18n:** add missing translations [CDS 125] ([1546463](https://github.com/ovh/manager/commit/15464639fb4bc02f124f481532a3e5dde44b8174))
 * **i18n:** add missing translations [CDS 129] ([5acca41](https://github.com/ovh/manager/commit/5acca41531fa79aea373d4b0b5b748b0c44fd1ea))
 * **i18n:** add missing translations [CDS 143] ([74efd95](https://github.com/ovh/manager/commit/74efd9532bf7c7b7a1dc77903f973fe976a16033))
@@ -1922,7 +1922,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Bug Fixes
 
 * **hosting:** change boost pricing description ([#1517](https://github.com/ovh/manager/issues/1517)) ([a3b8d50](https://github.com/ovh/manager/commit/a3b8d50262cd282c8a4745066bec02b9a5b4e50a))
-* **i18n:** add missing translations [CDS 122] ([95c8287](https://github.com/ovh/manager/commit/95c82871fd4ba168abe2f7a958eb1fc0e2a4490c))
+* **i18n:** add missing translations [CDS 122] ([95c8287](https://github.com/ovh/manager/commit/95c82871fd4ba168abe2f7a958eb1fc0e2a4490c))
 
 
 
@@ -1951,10 +1951,10 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 113] ([f6db44f](https://github.com/ovh/manager/commit/f6db44faf967c25ce71d85bed84a7d35b42845fa))
-* **i18n:** add missing translations [CDS 115] ([32d7b75](https://github.com/ovh/manager/commit/32d7b7521f9524f0aeba6ec905a3c2c36f0acf8f))
+* **i18n:** add missing translations [CDS 113] ([f6db44f](https://github.com/ovh/manager/commit/f6db44faf967c25ce71d85bed84a7d35b42845fa))
+* **i18n:** add missing translations [CDS 115] ([32d7b75](https://github.com/ovh/manager/commit/32d7b7521f9524f0aeba6ec905a3c2c36f0acf8f))
 * avoid loop between state when user is not connected ([2b51822](https://github.com/ovh/manager/commit/2b518222803dc644ef8332cd06b870a385725dbb))
-* **i18n:** add missing translations [CDS 116] ([388486f](https://github.com/ovh/manager/commit/388486fe3c54b991e9f55f46fb2e071a487e7b10))
+* **i18n:** add missing translations [CDS 116] ([388486f](https://github.com/ovh/manager/commit/388486fe3c54b991e9f55f46fb2e071a487e7b10))
 
 
 ### Features
@@ -1997,9 +1997,9 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Bug Fixes
 
 * **domain:** add expiration date for dns anycast option ([#1458](https://github.com/ovh/manager/issues/1458)) ([6b67460](https://github.com/ovh/manager/commit/6b67460b53d5348559367f9f22a9239900a0ccd4))
-* **i18n:** add missing translations [CDS 106] ([f9d2338](https://github.com/ovh/manager/commit/f9d2338268991329e2816d48e0da6bd293632590))
+* **i18n:** add missing translations [CDS 106] ([f9d2338](https://github.com/ovh/manager/commit/f9d2338268991329e2816d48e0da6bd293632590))
 * replace lodash imports ([af0b5ce](https://github.com/ovh/manager/commit/af0b5ce021b4cbb799624852c6f8e1d85b5976e4))
-* **i18n:** add missing translations [CDS 112] ([7edf8f6](https://github.com/ovh/manager/commit/7edf8f6265aa70fa456d75162bc1f1013455b4b6))
+* **i18n:** add missing translations [CDS 112] ([7edf8f6](https://github.com/ovh/manager/commit/7edf8f6265aa70fa456d75162bc1f1013455b4b6))
 * **private.database:** fix typo ([#1522](https://github.com/ovh/manager/issues/1522)) ([7e23001](https://github.com/ovh/manager/commit/7e23001527f0255f73e8ef26664d820d2d4d2d7f))
 
 
@@ -2009,8 +2009,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 104] ([da22965](https://github.com/ovh-ux/manager/commit/da22965))
-* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
+* **i18n:** add missing translations [CDS 104] ([da22965](https://github.com/ovh-ux/manager/commit/da22965))
+* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
 * **web.domain:** add redirection to zone activation ([#1473](https://github.com/ovh-ux/manager/issues/1473)) ([6563bbc](https://github.com/ovh-ux/manager/commit/6563bbc))
 
 
@@ -2135,9 +2135,9 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 21] ([13d41b6](https://github.com/ovh-ux/ovh-manager-web/commit/13d41b6))
-* **i18n:** add missing translations [CDS 22] ([012fe9b](https://github.com/ovh-ux/ovh-manager-web/commit/012fe9b))
-* **i18n:** add missing translations [CDS 25] ([556cf4b](https://github.com/ovh-ux/ovh-manager-web/commit/556cf4b))
+* **i18n:** add missing translations [CDS 21] ([13d41b6](https://github.com/ovh-ux/ovh-manager-web/commit/13d41b6))
+* **i18n:** add missing translations [CDS 22] ([012fe9b](https://github.com/ovh-ux/ovh-manager-web/commit/012fe9b))
+* **i18n:** add missing translations [CDS 25] ([556cf4b](https://github.com/ovh-ux/ovh-manager-web/commit/556cf4b))
 * **deps:** bump ovh-ui-angular to v3.7.4 ([#1245](https://github.com/ovh-ux/manager/issues/1245)) ([33ba95c](https://github.com/ovh-ux/manager/commit/33ba95c))
 
 
@@ -2156,7 +2156,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 20] ([0e4c85c](https://github.com/ovh-ux/ovh-manager-web/commit/0e4c85c))
+* **i18n:** add missing translations [CDS 20] ([0e4c85c](https://github.com/ovh-ux/ovh-manager-web/commit/0e4c85c))
 
 
 
@@ -2183,8 +2183,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 4] ([9dd2f91](https://github.com/ovh-ux/ovh-manager-web/commit/9dd2f91))
-* **i18n:** add missing translations [CDS 5] ([f164829](https://github.com/ovh-ux/ovh-manager-web/commit/f164829))
+* **i18n:** add missing translations [CDS 4] ([9dd2f91](https://github.com/ovh-ux/ovh-manager-web/commit/9dd2f91))
+* **i18n:** add missing translations [CDS 5] ([f164829](https://github.com/ovh-ux/ovh-manager-web/commit/f164829))
 * update manager urls ([#1192](https://github.com/ovh-ux/ovh-manager-web/issues/1192)) ([8743593](https://github.com/ovh-ux/ovh-manager-web/commit/8743593))
 * **layout:** display skipnav translation correctly ([#1194](https://github.com/ovh-ux/ovh-manager-web/issues/1194)) ([6f8c3fe](https://github.com/ovh-ux/ovh-manager-web/commit/6f8c3fe)), closes [#1193](https://github.com/ovh-ux/ovh-manager-web/issues/1193)
 

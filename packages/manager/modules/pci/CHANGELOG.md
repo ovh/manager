@@ -1959,8 +1959,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 123] ([3b7c5a5](https://github.com/ovh/manager/commit/3b7c5a5529a3e3c911e56ec29359e914d800ba91))
-* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
+* **i18n:** add missing translations [CDS 123] ([3b7c5a5](https://github.com/ovh/manager/commit/3b7c5a5529a3e3c911e56ec29359e914d800ba91))
+* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
 * instance capabilities ([#1515](https://github.com/ovh/manager/issues/1515)) ([76b512a](https://github.com/ovh/manager/commit/76b512a26c08fe7da53234f6cce55fb087506859))
 * **i18n:** add missing translations [CDS 134] ([3828d7a](https://github.com/ovh/manager/commit/3828d7a0f00da9b7c2d3bce3758662a1162d8a4a))
 * **i18n:** add missing translations [CDS 143] ([74efd95](https://github.com/ovh/manager/commit/74efd9532bf7c7b7a1dc77903f973fe976a16033))
@@ -2006,8 +2006,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 113] ([f6db44f](https://github.com/ovh/manager/commit/f6db44faf967c25ce71d85bed84a7d35b42845fa))
-* **i18n:** add missing translations [CDS 118] ([31c432b](https://github.com/ovh/manager/commit/31c432b5c1d0a12f57b8b52b8c37fb8c32f220e9))
+* **i18n:** add missing translations [CDS 113] ([f6db44f](https://github.com/ovh/manager/commit/f6db44faf967c25ce71d85bed84a7d35b42845fa))
+* **i18n:** add missing translations [CDS 118] ([31c432b](https://github.com/ovh/manager/commit/31c432b5c1d0a12f57b8b52b8c37fb8c32f220e9))
 
 
 
@@ -2051,7 +2051,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 106] ([f9d2338](https://github.com/ovh/manager/commit/f9d2338268991329e2816d48e0da6bd293632590))
+* **i18n:** add missing translations [CDS 106] ([f9d2338](https://github.com/ovh/manager/commit/f9d2338268991329e2816d48e0da6bd293632590))
 
 
 
@@ -2069,8 +2069,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 104] ([da22965](https://github.com/ovh-ux/manager/commit/da22965))
-* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
+* **i18n:** add missing translations [CDS 104] ([da22965](https://github.com/ovh-ux/manager/commit/da22965))
+* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
 * **pci.new:** redirect to custom error page ([d7976da](https://github.com/ovh-ux/manager/commit/d7976da))
 * **pci.project.kubernetes.details.service:** fix button display ([#1476](https://github.com/ovh-ux/manager/issues/1476)) ([6747643](https://github.com/ovh-ux/manager/commit/6747643))
 * **pci.project.users.add:** wrap oui-modal into a form element ([#1464](https://github.com/ovh-ux/manager/issues/1464)) ([7f07533](https://github.com/ovh-ux/manager/commit/7f07533))
@@ -2082,9 +2082,9 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 100] ([d5738e3](https://github.com/ovh-ux/manager/commit/d5738e3))
-* **i18n:** add missing translations [CDS 101] ([38dfed5](https://github.com/ovh-ux/manager/commit/38dfed5))
-* **i18n:** add missing translations [CDS 96] ([3d1a584](https://github.com/ovh-ux/manager/commit/3d1a584))
+* **i18n:** add missing translations [CDS 100] ([d5738e3](https://github.com/ovh-ux/manager/commit/d5738e3))
+* **i18n:** add missing translations [CDS 101] ([38dfed5](https://github.com/ovh-ux/manager/commit/38dfed5))
+* **i18n:** add missing translations [CDS 96] ([3d1a584](https://github.com/ovh-ux/manager/commit/3d1a584))
 * **pci.stream:** add name attribute on checkbox ([#1441](https://github.com/ovh-ux/manager/issues/1441)) ([403fbf6](https://github.com/ovh-ux/manager/commit/403fbf6))
 
 
@@ -2103,7 +2103,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 94] ([6e85f3f](https://github.com/ovh-ux/manager/commit/6e85f3f))
+* **i18n:** add missing translations [CDS 94] ([6e85f3f](https://github.com/ovh-ux/manager/commit/6e85f3f))
 * **pci:** update horizon url ([67fae7c](https://github.com/ovh-ux/manager/commit/67fae7c))
 * **pci:** update object storage type description ([c403f88](https://github.com/ovh-ux/manager/commit/c403f88))
 
@@ -2137,7 +2137,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 83] ([5f2edb4](https://github.com/ovh-ux/manager/commit/5f2edb4))
+* **i18n:** add missing translations [CDS 83] ([5f2edb4](https://github.com/ovh-ux/manager/commit/5f2edb4))
 
 
 
@@ -2146,9 +2146,9 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 66] ([0293e43](https://github.com/ovh-ux/manager/commit/0293e43))
-* **i18n:** add missing translations [CDS 72] ([b004ad8](https://github.com/ovh-ux/manager/commit/b004ad8))
-* **i18n:** add missing translations [CDS 73] ([4094aa6](https://github.com/ovh-ux/manager/commit/4094aa6))
+* **i18n:** add missing translations [CDS 66] ([0293e43](https://github.com/ovh-ux/manager/commit/0293e43))
+* **i18n:** add missing translations [CDS 72] ([b004ad8](https://github.com/ovh-ux/manager/commit/b004ad8))
+* **i18n:** add missing translations [CDS 73] ([4094aa6](https://github.com/ovh-ux/manager/commit/4094aa6))
 * **rclone-modal-text:** change rclone text ([#1128](https://github.com/ovh-ux/manager/issues/1128)) ([af01198](https://github.com/ovh-ux/manager/commit/af01198))
 
 
@@ -2163,7 +2163,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 65] ([eafe0bc](https://github.com/ovh-ux/manager/commit/eafe0bc))
+* **i18n:** add missing translations [CDS 65] ([eafe0bc](https://github.com/ovh-ux/manager/commit/eafe0bc))
 
 
 
@@ -2172,9 +2172,9 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 59] ([8f1d800](https://github.com/ovh-ux/manager/commit/8f1d800))
-* **i18n:** add missing translations [CDS 60] ([d24bce3](https://github.com/ovh-ux/manager/commit/d24bce3))
-* **i18n:** add missing translations [CDS 61] ([68a518e](https://github.com/ovh-ux/manager/commit/68a518e))
+* **i18n:** add missing translations [CDS 59] ([8f1d800](https://github.com/ovh-ux/manager/commit/8f1d800))
+* **i18n:** add missing translations [CDS 60] ([d24bce3](https://github.com/ovh-ux/manager/commit/d24bce3))
+* **i18n:** add missing translations [CDS 61] ([68a518e](https://github.com/ovh-ux/manager/commit/68a518e))
 
 
 
@@ -2183,10 +2183,10 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 53] ([28d27cf](https://github.com/ovh-ux/manager/commit/28d27cf))
-* **i18n:** add missing translations [CDS 54] ([f13a145](https://github.com/ovh-ux/manager/commit/f13a145))
-* **i18n:** add missing translations [CDS 55] ([e088a40](https://github.com/ovh-ux/manager/commit/e088a40))
-* **i18n:** add missing translations [CDS 58] ([754846a](https://github.com/ovh-ux/manager/commit/754846a))
+* **i18n:** add missing translations [CDS 53] ([28d27cf](https://github.com/ovh-ux/manager/commit/28d27cf))
+* **i18n:** add missing translations [CDS 54] ([f13a145](https://github.com/ovh-ux/manager/commit/f13a145))
+* **i18n:** add missing translations [CDS 55] ([e088a40](https://github.com/ovh-ux/manager/commit/e088a40))
+* **i18n:** add missing translations [CDS 58] ([754846a](https://github.com/ovh-ux/manager/commit/754846a))
 
 
 ### Features
@@ -2208,10 +2208,10 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 37] ([ea036c0](https://github.com/ovh-ux/manager/commit/ea036c0))
-* **i18n:** add missing translations [CDS 44] ([568093f](https://github.com/ovh-ux/manager/commit/568093f))
-* **i18n:** add missing translations [CDS 45] ([553ad4d](https://github.com/ovh-ux/manager/commit/553ad4d))
-* **i18n:** add missing translations [CDS 46] ([c1bcd46](https://github.com/ovh-ux/manager/commit/c1bcd46))
+* **i18n:** add missing translations [CDS 37] ([ea036c0](https://github.com/ovh-ux/manager/commit/ea036c0))
+* **i18n:** add missing translations [CDS 44] ([568093f](https://github.com/ovh-ux/manager/commit/568093f))
+* **i18n:** add missing translations [CDS 45] ([553ad4d](https://github.com/ovh-ux/manager/commit/553ad4d))
+* **i18n:** add missing translations [CDS 46] ([c1bcd46](https://github.com/ovh-ux/manager/commit/c1bcd46))
 * **kubernetes:** popover position ([#1170](https://github.com/ovh-ux/manager/issues/1170)) ([5860d56](https://github.com/ovh-ux/manager/commit/5860d56))
 
 
@@ -2248,7 +2248,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 35] ([4a01116](https://github.com/ovh-ux/manager/commit/4a01116))
+* **i18n:** add missing translations [CDS 35] ([4a01116](https://github.com/ovh-ux/manager/commit/4a01116))
 
 
 
@@ -2266,7 +2266,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 35] ([045a0de](https://github.com/ovh-ux/manager/commit/045a0de))
+* **i18n:** add missing translations [CDS 35] ([045a0de](https://github.com/ovh-ux/manager/commit/045a0de))
 
 
 
@@ -2275,9 +2275,9 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 29] ([d86bbc4](https://github.com/ovh-ux/manager/commit/d86bbc4))
-* **i18n:** add missing translations [CDS 30] ([9633e84](https://github.com/ovh-ux/manager/commit/9633e84))
-* **i18n:** add missing translations [CDS 31] ([84d1362](https://github.com/ovh-ux/manager/commit/84d1362))
+* **i18n:** add missing translations [CDS 29] ([d86bbc4](https://github.com/ovh-ux/manager/commit/d86bbc4))
+* **i18n:** add missing translations [CDS 30] ([9633e84](https://github.com/ovh-ux/manager/commit/9633e84))
+* **i18n:** add missing translations [CDS 31] ([84d1362](https://github.com/ovh-ux/manager/commit/84d1362))
 * **pci:** rename users & roles sidebar entry ([#1173](https://github.com/ovh-ux/manager/issues/1173)) ([db41cbc](https://github.com/ovh-ux/manager/commit/db41cbc))
 
 
@@ -2287,11 +2287,11 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 22] ([32b1c7c](https://github.com/ovh-ux/manager/commit/32b1c7c))
-* **i18n:** add missing translations [CDS 23] ([2d9677e](https://github.com/ovh-ux/manager/commit/2d9677e))
-* **i18n:** add missing translations [CDS 24] ([0a07874](https://github.com/ovh-ux/manager/commit/0a07874))
-* **i18n:** add missing translations [CDS 27] ([b1bd7e1](https://github.com/ovh-ux/manager/commit/b1bd7e1))
-* **i18n:** add missing translations [CDS 28] ([7eaf5d3](https://github.com/ovh-ux/manager/commit/7eaf5d3))
+* **i18n:** add missing translations [CDS 22] ([32b1c7c](https://github.com/ovh-ux/manager/commit/32b1c7c))
+* **i18n:** add missing translations [CDS 23] ([2d9677e](https://github.com/ovh-ux/manager/commit/2d9677e))
+* **i18n:** add missing translations [CDS 24] ([0a07874](https://github.com/ovh-ux/manager/commit/0a07874))
+* **i18n:** add missing translations [CDS 27] ([b1bd7e1](https://github.com/ovh-ux/manager/commit/b1bd7e1))
+* **i18n:** add missing translations [CDS 28] ([7eaf5d3](https://github.com/ovh-ux/manager/commit/7eaf5d3))
 * **pci.components.project.flavors.list:** filter available regions ([#1133](https://github.com/ovh-ux/manager/issues/1133)) ([22284c2](https://github.com/ovh-ux/manager/commit/22284c2))
 * **pci.components.project.images.list:** add missing translation ([#1130](https://github.com/ovh-ux/manager/issues/1130)) ([0810114](https://github.com/ovh-ux/manager/commit/0810114))
 * **pci.project.kubernetes:** read only user cant access service page ([#1135](https://github.com/ovh-ux/manager/issues/1135)) ([f5f0db1](https://github.com/ovh-ux/manager/commit/f5f0db1))
@@ -2344,10 +2344,10 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Bug Fixes
 
 * **analytics.data.platform.deploy:** check if inputs are undefined ([#1082](https://github.com/ovh-ux/manager/issues/1082)) ([1f6085c](https://github.com/ovh-ux/manager/commit/1f6085c))
-* **i18n:** add missing translations [CDS 13] ([9a53791](https://github.com/ovh-ux/manager/commit/9a53791))
-* **i18n:** add missing translations [CDS 15] ([eab997d](https://github.com/ovh-ux/manager/commit/eab997d))
-* **i18n:** add missing translations [CDS 17] ([c52ac93](https://github.com/ovh-ux/manager/commit/c52ac93))
-* **i18n:** add missing translations [CDS 20] ([0e68589](https://github.com/ovh-ux/manager/commit/0e68589))
+* **i18n:** add missing translations [CDS 13] ([9a53791](https://github.com/ovh-ux/manager/commit/9a53791))
+* **i18n:** add missing translations [CDS 15] ([eab997d](https://github.com/ovh-ux/manager/commit/eab997d))
+* **i18n:** add missing translations [CDS 17] ([c52ac93](https://github.com/ovh-ux/manager/commit/c52ac93))
+* **i18n:** add missing translations [CDS 20] ([0e68589](https://github.com/ovh-ux/manager/commit/0e68589))
 * **pci.project.storages.blocks.add:** fix error message ([#1122](https://github.com/ovh-ux/manager/issues/1122)) ([25e8125](https://github.com/ovh-ux/manager/commit/25e8125))
 
 
@@ -2389,7 +2389,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 14] ([3fa84a5](https://github.com/ovh-ux/manager/commit/3fa84a5))
+* **i18n:** add missing translations [CDS 14] ([3fa84a5](https://github.com/ovh-ux/manager/commit/3fa84a5))
 * **pci.projects.kube:** use api region ([#1099](https://github.com/ovh-ux/manager/issues/1099)) ([f68938d](https://github.com/ovh-ux/manager/commit/f68938d))
 
 
@@ -2406,8 +2406,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 * **i18n:** add missing translations ([7c2c4b3](https://github.com/ovh-ux/manager/commit/7c2c4b3))
 * **i18n:** add missing translations ([b2e283f](https://github.com/ovh-ux/manager/commit/b2e283f))
 * **i18n:** add missing translations ([a9e7f3b](https://github.com/ovh-ux/manager/commit/a9e7f3b))
-* **i18n:** add missing translations [CDS 8] ([ebb9765](https://github.com/ovh-ux/manager/commit/ebb9765))
-* **i18n:** add missing translations [CDS 9] ([f6b8c59](https://github.com/ovh-ux/manager/commit/f6b8c59))
+* **i18n:** add missing translations [CDS 8] ([ebb9765](https://github.com/ovh-ux/manager/commit/ebb9765))
+* **i18n:** add missing translations [CDS 9] ([f6b8c59](https://github.com/ovh-ux/manager/commit/f6b8c59))
 * **pci.components.project.regions.list:** set properly the region ([#1077](https://github.com/ovh-ux/manager/issues/1077)) ([c18b72c](https://github.com/ovh-ux/manager/commit/c18b72c))
 * **pci.project.private.registry:** improve external links display ([#980](https://github.com/ovh-ux/manager/issues/980)) ([5864586](https://github.com/ovh-ux/manager/commit/5864586))
 * **pci.project.private.registry:** remove extra oui-field ([#1090](https://github.com/ovh-ux/manager/issues/1090)) ([0d29faa](https://github.com/ovh-ux/manager/commit/0d29faa))

@@ -24,7 +24,7 @@
                 <span
                     class="text-danger"
                     data-ng-if="ctrl.traffic.data.usage.resetQuotaTimeLeft"
-                    data-translate="{{ 'server_consumption_summary_' + ctrl.traffic.data.usage.resetQuotaTimeLeft.unit }}"
+                    data-translate="{{ 'server_consumption_summary_' + ctrl.traffic.data.usage.resetQuotaTimeLeft.unit }}"
                     data-translate-values="{
                         t0: ctrl.traffic.data.usage.remainingOutputQuotaSize.text,
                         t1: ctrl.traffic.data.usage.resetQuotaTimeLeft.value
@@ -45,7 +45,7 @@
                 <dl class="oui-tile__definition">
                     <dt
                         class="oui-tile__term"
-                        data-ng-bind="'server_consumption_current_period_label' | translate:{ t0: ctrl.traffic.data.usage.outputQuotaSize.text }"
+                        data-ng-bind="'server_consumption_current_period_label' | translate:{ t0: ctrl.traffic.data.usage.outputQuotaSize.text }"
                     ></dt>
                     <dd
                         class="oui-tile__description"
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         <span
-                            data-ng-bind="'server_consumption_current_period_remaining' | translate:{ t0: ctrl.traffic.data.usage.remainingOutputQuotaSize.text }"
+                            data-ng-bind="'server_consumption_current_period_remaining' | translate:{ t0: ctrl.traffic.data.usage.remainingOutputQuotaSize.text }"
                         ></span>
                     </dd>
                 </dl>

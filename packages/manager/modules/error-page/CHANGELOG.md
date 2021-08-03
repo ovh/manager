@@ -82,8 +82,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 54] ([f13a145](https://github.com/ovh-ux/manager/commit/f13a145))
-* **i18n:** add missing translations [CDS 55] ([e088a40](https://github.com/ovh-ux/manager/commit/e088a40))
+* **i18n:** add missing translations [CDS 54] ([f13a145](https://github.com/ovh-ux/manager/commit/f13a145))
+* **i18n:** add missing translations [CDS 55] ([e088a40](https://github.com/ovh-ux/manager/commit/e088a40))
 
 
 ### Features

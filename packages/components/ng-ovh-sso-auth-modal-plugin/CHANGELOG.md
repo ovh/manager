@@ -56,7 +56,7 @@ Signed-off-by: Antoine Leblanc <ant.leblanc@gmail.com>
 ### Bug Fixes
 
 * **deps:** upgrade @ovh-ux/component-rollup-config to v7.0.0 ([#1469](https://github.com/ovh-ux/manager/issues/1469)) ([bbc8794](https://github.com/ovh-ux/manager/commit/bbc8794))
-* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
+* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
 
 
 
@@ -65,7 +65,7 @@ Signed-off-by: Antoine Leblanc <ant.leblanc@gmail.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 65] ([eafe0bc](https://github.com/ovh-ux/manager/commit/eafe0bc))
+* **i18n:** add missing translations [CDS 65] ([eafe0bc](https://github.com/ovh-ux/manager/commit/eafe0bc))
 
 
 
@@ -74,8 +74,8 @@ Signed-off-by: Antoine Leblanc <ant.leblanc@gmail.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 59] ([8f1d800](https://github.com/ovh-ux/manager/commit/8f1d800))
-* **i18n:** add missing translations [CDS 61] ([68a518e](https://github.com/ovh-ux/manager/commit/68a518e))
+* **i18n:** add missing translations [CDS 59] ([8f1d800](https://github.com/ovh-ux/manager/commit/8f1d800))
+* **i18n:** add missing translations [CDS 61] ([68a518e](https://github.com/ovh-ux/manager/commit/68a518e))
 
 
 

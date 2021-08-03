@@ -692,7 +692,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
+* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
 * **i18n:** add missing translations [CDS 143] ([74efd95](https://github.com/ovh/manager/commit/74efd9532bf7c7b7a1dc77903f973fe976a16033))
 * **order.constant:** remove enterprise cloud database in CA region ([#1760](https://github.com/ovh/manager/issues/1760)) ([631d4a2](https://github.com/ovh/manager/commit/631d4a2ab896c9a116d6b57f0591da272d88140e))
 * **server-sidebar:** update veeam-enterprise ([bb86c17](https://github.com/ovh/manager/commit/bb86c17b73e52966c17468fa98a53ea6de9c0f39))
@@ -710,7 +710,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 113] ([f6db44f](https://github.com/ovh/manager/commit/f6db44faf967c25ce71d85bed84a7d35b42845fa))
+* **i18n:** add missing translations [CDS 113] ([f6db44f](https://github.com/ovh/manager/commit/f6db44faf967c25ce71d85bed84a7d35b42845fa))
 
 
 ### Features
@@ -734,8 +734,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Bug Fixes
 
 * **deps:** upgrade @ovh-ux/component-rollup-config to v7.0.0 ([#1469](https://github.com/ovh-ux/manager/issues/1469)) ([bbc8794](https://github.com/ovh-ux/manager/commit/bbc8794))
-* **i18n:** add missing translations [CDS 104] ([da22965](https://github.com/ovh-ux/manager/commit/da22965))
-* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
+* **i18n:** add missing translations [CDS 104] ([da22965](https://github.com/ovh-ux/manager/commit/da22965))
+* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
 * **server.sidebar:** hide VPS section for US customer ([#1481](https://github.com/ovh-ux/manager/issues/1481)) ([a278003](https://github.com/ovh-ux/manager/commit/a278003))
 
 
@@ -745,10 +745,10 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 101] ([38dfed5](https://github.com/ovh-ux/manager/commit/38dfed5))
-* **i18n:** add missing translations [CDS 96] ([3d1a584](https://github.com/ovh-ux/manager/commit/3d1a584))
-* **i18n:** add missing translations [CDS 98] ([e180e8a](https://github.com/ovh-ux/manager/commit/e180e8a))
-* **i18n:** add missing translations [CDS 99] ([fe69b1c](https://github.com/ovh-ux/manager/commit/fe69b1c))
+* **i18n:** add missing translations [CDS 101] ([38dfed5](https://github.com/ovh-ux/manager/commit/38dfed5))
+* **i18n:** add missing translations [CDS 96] ([3d1a584](https://github.com/ovh-ux/manager/commit/3d1a584))
+* **i18n:** add missing translations [CDS 98] ([e180e8a](https://github.com/ovh-ux/manager/commit/e180e8a))
+* **i18n:** add missing translations [CDS 99] ([fe69b1c](https://github.com/ovh-ux/manager/commit/fe69b1c))
 
 
 
@@ -802,8 +802,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 54] ([f13a145](https://github.com/ovh-ux/manager/commit/f13a145))
-* **i18n:** add missing translations [CDS 55] ([e088a40](https://github.com/ovh-ux/manager/commit/e088a40))
+* **i18n:** add missing translations [CDS 54] ([f13a145](https://github.com/ovh-ux/manager/commit/f13a145))
+* **i18n:** add missing translations [CDS 55] ([e088a40](https://github.com/ovh-ux/manager/commit/e088a40))
 
 
 
@@ -812,8 +812,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 44] ([568093f](https://github.com/ovh-ux/manager/commit/568093f))
-* **i18n:** add missing translations [CDS 45] ([553ad4d](https://github.com/ovh-ux/manager/commit/553ad4d))
+* **i18n:** add missing translations [CDS 44] ([568093f](https://github.com/ovh-ux/manager/commit/568093f))
+* **i18n:** add missing translations [CDS 45] ([553ad4d](https://github.com/ovh-ux/manager/commit/553ad4d))
 
 
 

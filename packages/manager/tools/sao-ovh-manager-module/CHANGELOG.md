@@ -65,7 +65,7 @@
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
+* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
 * **saofile:** fix typo ([#1681](https://github.com/ovh/manager/issues/1681)) ([8a2bd5c](https://github.com/ovh/manager/commit/8a2bd5cde3ba1afdf3c05e15cca679af51a4b2c8)), closes [#1671](https://github.com/ovh/manager/issues/1671)
 
 

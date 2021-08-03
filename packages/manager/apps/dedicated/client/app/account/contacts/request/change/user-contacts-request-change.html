@@ -16,11 +16,11 @@
             <div data-ng-show="!loaders.loading">
                 <p
                     data-translate="user_account_contacts_refuse_info"
-                    data-translate-values="{ t0: task.serviceDomain }"
+                    data-translate-values="{ t0: task.serviceDomain }"
                 ></p>
                 <p
                     data-translate="user_account_contacts_received_info_roles"
-                    data-translate-values="{ t0: task.fromAccount }"
+                    data-translate-values="{ t0: task.fromAccount }"
                     data-ng-if="method === 'RECEIVED'"
                 ></p>
                 <p
@@ -30,7 +30,7 @@
                 <ul>
                     <li
                         data-ng-repeat="role in task.contactTypes track by $index"
-                        data-translate="{{ 'useraccount_contacts_' + role }}"
+                        data-translate="{{ 'useraccount_contacts_' + role }}"
                     ></li>
                 </ul>
 

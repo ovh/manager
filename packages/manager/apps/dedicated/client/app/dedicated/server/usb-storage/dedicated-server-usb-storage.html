@@ -4,33 +4,33 @@
     </div>
 
     <div data-ng-if="!loading">
-            <div data-ovh-alert="addTokenAlert"></div>
-            <div
-                data-translate="server_tab_USB_STORAGE_summary"
-                data-translate-values="{
+        <div data-ovh-alert="addTokenAlert"></div>
+        <div
+            data-translate="server_tab_USB_STORAGE_summary"
+            data-translate-values="{
                     t0: usbInformations.usbKeys.length || 0,
                     t1: usbInformations.numberOfFreeSlot.length
                 }"
-            ></div>
-            <div class="mt-4 text-center">
+        ></div>
+        <div class="mt-4 text-center">
+            <span
+                class="label label-success"
+                data-ng-repeat="usb in usbInformations.usbKeys track by $index"
+            >
+                <span class="icon-usb-white" aria-hidden="true"></span>
+                <span data-ng-bind="usb.value"></span>&nbsp;<span
+                    data-translate="{{ 'unit_size_' + usb.unit }}"
+                ></span>
+            </span>
+            <span
+                class="label label-success ml-2"
+                data-ng-repeat="freeSlot in usbInformations.numberOfFreeSlot track by $index"
+            >
+                <span class="icon-ok icon-white" aria-hidden="true"></span>
                 <span
-                    class="label label-success"
-                    data-ng-repeat="usb in usbInformations.usbKeys track by $index"
-                >
-                    <span class="icon-usb-white" aria-hidden="true"></span>
-                    <span data-ng-bind="usb.value"></span>&nbsp;<span
-                        data-translate="{{ 'unit_size_' + usb.unit }}"
-                    ></span>
-                </span>
-                <span
-                    class="label label-success ml-2"
-                    data-ng-repeat="freeSlot in usbInformations.numberOfFreeSlot track by $index"
-                >
-                    <span class="icon-ok icon-white" aria-hidden="true"></span>
-                    <span
-                        data-ng-bind=":: 'server_tab_USB_STORAGE_available_slot' | translate"
-                    ></span>
-                </span>
-            </div>
+                    data-ng-bind=":: 'server_tab_USB_STORAGE_available_slot' | translate"
+                ></span>
+            </span>
+        </div>
     </div>
 </div>

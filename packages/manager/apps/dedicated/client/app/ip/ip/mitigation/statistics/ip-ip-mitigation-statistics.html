@@ -4,9 +4,9 @@
         data-wizard-on-cancel="closeAction"
         data-wizard-on-finish="closeAction"
         data-wizard-hide-cancel-button="true"
-        data-wizard-confirm-button-text=":: 'wizard_close' | translate"
+        data-wizard-confirm-button-text=":: 'wizard_close' | translate"
         data-wizard-keydown-disabled="true"
-        data-wizard-title=":: 'ip_mitigation_statistics_title' | translate"
+        data-wizard-title=":: 'ip_mitigation_statistics_title' | translate"
         data-wizard-title-icon="mitigationStatusAuto == false && 'icon-mitigation-auto' || 'icon-mitigation-active'"
         class="module-ip-modal"
     >
@@ -14,7 +14,7 @@
             <div data-ng-if="!stats.noData">
                 <p
                     class="bold blue"
-                    data-ng-bind="'ip_mitigation_statistics_current_ip' | translate:{ t0: data.ip.ip }"
+                    data-ng-bind="'ip_mitigation_statistics_current_ip' | translate:{ t0: data.ip.ip }"
                 ></p>
                 <div>
                     <div data-ng-hide="statisticsScalesAvailable">

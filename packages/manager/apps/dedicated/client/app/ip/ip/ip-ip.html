@@ -272,7 +272,7 @@
                         </td>
                         <td colspan="42">
                             <span
-                                data-ng-bind="'ip_table_ipblock_refresh' | translate:{ t0: ipBlock.ipBlock }"
+                                data-ng-bind="'ip_table_ipblock_refresh' | translate:{ t0: ipBlock.ipBlock }"
                             ></span>
                         </td>
                     </tr>
@@ -338,7 +338,7 @@
                         <td>
                             <span
                                 class="label label-info"
-                                title="{{ 'ip_table_manage_delegation_ipv6block_delegation_reverse_dns' | translate }}"
+                                title="{{ 'ip_table_manage_delegation_ipv6block_delegation_reverse_dns' | translate }}"
                                 data-ng-if="ipBlock.delegation && ipBlock.delegation.length > 0"
                                 >NS</span
                             >
@@ -519,7 +519,7 @@
                                 class="badge"
                                 data-ng-if="ipBlock.virtualMac.status === 'PENDING'"
                                 data-translate="ip_taskpending_label"
-                                data-oui-tooltip="{{:: 'ip_manage_task_pending' | translate }}"
+                                data-oui-tooltip="{{:: 'ip_manage_task_pending' | translate }}"
                                 data-oui-tooltip-placement="top"
                             >
                             </span>
@@ -566,14 +566,14 @@
                             <span
                                 class="fa fa-minus-circle"
                                 data-ng-if="ip.spam === 'BLOCKED_FOR_SPAM'"
-                                data-oui-tooltip="{{:: 'ip_alerts_spam_1' | translate }}"
+                                data-oui-tooltip="{{:: 'ip_alerts_spam_1' | translate }}"
                                 data-oui-tooltip-placement="left"
                             >
                             </span>
                             <span
                                 class="fa fa-bug"
                                 data-ng-if="ip.antihack === 'BLOCKED'"
-                                data-oui-tooltip="{{:: 'ip_alerts_antihack_1' | translate }}"
+                                data-oui-tooltip="{{:: 'ip_alerts_antihack_1' | translate }}"
                                 data-oui-tooltip-placement="left"
                             >
                             </span>

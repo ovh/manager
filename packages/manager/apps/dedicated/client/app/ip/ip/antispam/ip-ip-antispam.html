@@ -30,7 +30,7 @@
                     <dd>
                         <span
                             data-ng-if="ipspam.state && ipspam.state !== 'UNBLOCKING'"
-                            data-translate="{{ 'ip_antispam_status_' + ipspam.state }}"
+                            data-translate="{{ 'ip_antispam_status_' + ipspam.state }}"
                         ></span>
                         <span
                             data-ng-if="ipspam.state && ipspam.state === 'UNBLOCKING'"
@@ -78,7 +78,7 @@
                             <td data-ng-bind="element.numberOfSpams"></td>
                             <td class="text-center">
                                 <a
-                                    title="{{ 'ip_antispam_periods_table_see_more' | translate }}"
+                                    title="{{ 'ip_antispam_periods_table_see_more' | translate }}"
                                     style="cursor: pointer"
                                     data-ng-click="setAction('ip/antispam/detail/ip-ip-antispam-detail', {block:block, ip:ipSpamming, timestamp: element.timestamp})"
                                 >

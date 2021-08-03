@@ -4,12 +4,12 @@
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="removeRule"
         data-wizard-hide-cancel-button="loading"
-        data-wizard-title=":: 'ip_firewall_remove_rule' | translate"
+        data-wizard-title=":: 'ip_firewall_remove_rule' | translate"
     >
         <div data-wizard-step data-wizard-step-valid="!loading">
             <p
                 data-ng-show="!loading"
-                data-ng-bind="'ip_firewall_remove_rule_confirmation' | translate:{ t0: data.rule.sequence }"
+                data-ng-bind="'ip_firewall_remove_rule_confirmation' | translate:{ t0: data.rule.sequence }"
             ></p>
 
             <div class="text-center" data-ng-show="loading">

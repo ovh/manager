@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-account-migration": "^0.0.0 || ^1.0.0",
-    "@ovh-ux/manager-account-sidebar": "^2.0.0 || ^3.0.0",
+    "@ovh-ux/manager-account-sidebar": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-at-internet-configuration": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-banner": "^1.1.3",
