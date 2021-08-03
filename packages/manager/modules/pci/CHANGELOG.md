@@ -1,3 +1,12 @@
+## [5.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.37.0...@ovh-ux/manager-pci@5.37.1) (2021-08-03)
+
+
+### Bug Fixes
+
+* **pci:** fix project quota auto-scaling issue ([#5359](https://github.com/ovh/manager/issues/5359)) ([e97e56d](https://github.com/ovh/manager/commit/e97e56d56951bcb89122d29ae42d09477e7fe572)), closes [#5358](https://github.com/ovh/manager/issues/5358)
+
+
+
 # [5.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.36.2...@ovh-ux/manager-pci@5.37.0) (2021-08-02)
 
 
