@@ -15,13 +15,13 @@ export default class {
     $state,
     $translate,
     analyticsDataPlatformService,
-    CucRegionService,
+    ovhManagerRegionService,
     CucServiceHelper,
   ) {
     this.$state = $state;
     this.analyticsDataPlatformService = analyticsDataPlatformService;
     this.cucServiceHelper = CucServiceHelper;
-    this.cucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.ALL_NODES_OPTION = $translate.instant(
       'analytics_data_platform_service_cluster_option_all',
     );

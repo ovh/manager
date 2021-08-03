@@ -2,9 +2,9 @@ import { NOTEBOOK_AUTOMATION_INFO } from '../../../notebook.constants';
 
 export default class NotebookReviewController {
   /* @ngInject */
-  constructor(coreConfig, CucRegionService) {
+  constructor(coreConfig, ovhManagerRegionService) {
     this.coreConfig = coreConfig;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.PriceFormatter = new Intl.NumberFormat(
       this.coreConfig.getUserLocale().replace('_', '-'),
       {
@@ -44,7 +44,7 @@ export default class NotebookReviewController {
 
   getRegionInfo() {
     const { region } = this.notebookModel.selected;
-    const regionInfo = this.CucRegionService.getRegion(region.name);
+    const regionInfo = this.ovhManagerRegionService.getRegion(region.name);
 
     return `${regionInfo.country} - ${regionInfo.macroRegion.text} (${region.name})`;
   }

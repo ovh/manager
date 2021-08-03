@@ -6,12 +6,12 @@ export default class PciTrainingJobsInfoController {
   /* @ngInject */
   constructor(
     CucCloudMessage,
-    CucRegionService,
+    ovhManagerRegionService,
     $interval,
     PciProjectTrainingJobService,
   ) {
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.$interval = $interval;
     this.PciProjectTrainingJobService = PciProjectTrainingJobService;
   }

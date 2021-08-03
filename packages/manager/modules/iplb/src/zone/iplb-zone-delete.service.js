@@ -10,14 +10,14 @@ export default class IpLoadBalancerZoneDeleteService {
     $translate,
     CucCloudMessage,
     OvhApiIpLoadBalancing,
-    CucRegionService,
+    ovhManagerRegionService,
     CucServiceHelper,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiIpLoadBalancing = OvhApiIpLoadBalancing;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.CucServiceHelper = CucServiceHelper;
   }
 
@@ -49,7 +49,7 @@ export default class IpLoadBalancerZoneDeleteService {
                     : '',
               },
             },
-            this.CucRegionService.getRegion(zone.name),
+            this.ovhManagerRegionService.getRegion(zone.name),
           ),
         ),
       )

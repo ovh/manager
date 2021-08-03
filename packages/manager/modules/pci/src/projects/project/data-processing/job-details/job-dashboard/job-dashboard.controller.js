@@ -19,7 +19,7 @@ export default class {
     $window,
     CucCloudMessage,
     dataProcessingService,
-    CucRegionService,
+    ovhManagerRegionService,
     PciStoragesContainersService,
     atInternet,
   ) {
@@ -28,7 +28,7 @@ export default class {
     this.$window = $window;
     this.cucCloudMessage = CucCloudMessage;
     this.dataProcessingService = dataProcessingService;
-    this.cucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.DATA_PROCESSING_STATUS_TO_CLASS = DATA_PROCESSING_STATUS_TO_CLASS;
     this.JOB_TYPE_JAVA = JOB_TYPE_JAVA;
     this.JOB_TYPE_PYTHON = JOB_TYPE_PYTHON;

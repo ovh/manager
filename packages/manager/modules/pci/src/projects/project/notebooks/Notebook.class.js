@@ -17,7 +17,7 @@ export default class Notebook {
    * Create a Notebook instance
    * @param notebook {Object}: native JS object
    * @param ovhSubsidiary {String|undefined}: (optional) used to get link info
-   * @param regionInfo {Object|undefined}: (optional) data from CucRegionService.getRegion()
+   * @param regionInfo {Object|undefined}: (optional) data from ovhManagerRegionService.getRegion()
    * */
   constructor(
     { createdAt, id, spec, status, updatedAt, user },

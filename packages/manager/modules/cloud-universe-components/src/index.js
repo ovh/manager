@@ -12,7 +12,6 @@ import cucNavigation from './navigation';
 import cucPoll from './poll';
 import cucPrice from './price';
 import cucProducts from './products';
-import cucRegion from './region';
 import cucVrack from './vrack';
 import cui from './cui';
 
@@ -29,7 +28,6 @@ angular.module(moduleName, [
   cucMessage,
   cucMomentFormat,
   cucNavigation,
-  cucRegion,
   cucPoll,
   cucPrice,
   cucProducts,

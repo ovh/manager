@@ -12,6 +12,7 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 import ngOvhDocUrl from '@ovh-ux/ng-ovh-doc-url';
 import '@ovh-ux/ng-ui-router-breadcrumb';
+import { region } from '@ovh-ux/manager-components';
 
 import IpLoadBalancerActionService from './iplb-action.service';
 import IpLoadBalancerCipherService from './iplb-cipher.service';
@@ -65,6 +66,7 @@ angular
     IplbGraphModule,
     IplbFrontendsModule,
     IplbConfigurationModule,
+    region,
   ])
   .config(routing)
   .config(

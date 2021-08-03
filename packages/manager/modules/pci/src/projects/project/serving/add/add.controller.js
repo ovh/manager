@@ -9,13 +9,13 @@ export default class PciServingAddController {
     $translate,
     PciProjectStorageContainersService,
     CucCloudMessage,
-    CucRegionService,
+    ovhManagerRegionService,
     atInternet,
   ) {
     this.$translate = $translate;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.atInternet = atInternet;
   }
 
@@ -41,7 +41,7 @@ export default class PciServingAddController {
     this.namedRegion = mapValues(
       keyBy(
         map(this.regions, (region) => ({
-          ...this.CucRegionService.getRegion(region.name),
+          ...this.ovhManagerRegionService.getRegion(region.name),
           name: region.name,
           continentCode: region.continentCode,
           hasEnoughQuota: region.hasEnoughQuota(),

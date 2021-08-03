@@ -7,7 +7,7 @@ export default class {
     $translate,
     $window,
     CucCloudMessage,
-    CucRegionService,
+    ovhManagerRegionService,
     OvhApiCloudProjectRegion,
     OvhApiCloudProjectRegionWorkflowBackup,
     PciProjectsProjectInstanceService,
@@ -15,7 +15,7 @@ export default class {
     this.$translate = $translate;
     this.$window = $window;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
     this.OvhApiCloudProjectRegionWorkflowBackup = OvhApiCloudProjectRegionWorkflowBackup;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;

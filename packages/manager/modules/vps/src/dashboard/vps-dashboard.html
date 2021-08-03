@@ -200,7 +200,7 @@
                             data-ng-repeat="(key, regions) in $ctrl.regionsGroup track by key"
                         >
                             <span
-                                class="flag-icon {{ ::regions[0].icon }} flag flag__icon-sm mr-1"
+                                class="{{ ::regions[0].icon }}mr-1"
                                 aria-hidden="true"
                             ></span>
                             <span
