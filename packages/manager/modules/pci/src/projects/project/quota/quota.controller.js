@@ -33,11 +33,11 @@ export default class {
     ]);
 
     this.model = {
-      manualQuota: this.project.manualQuota,
+      autoScaling: !this.project.manualQuota,
     };
 
     this.loaders = {
-      manualQuota: false,
+      autoScaling: false,
     };
   }
 
@@ -89,8 +89,8 @@ export default class {
       });
   }
 
-  onManualQuotaSwitchChange(modelValue) {
-    this.loaders.manualQuota = true;
+  onAutoScalingQuotaSwitchChange(modelValue) {
+    this.loaders.autoScaling = true;
 
     return this.OvhApiCloudProject.v6()
       .put(
@@ -98,7 +98,7 @@ export default class {
           serviceName: this.projectId,
         },
         {
-          manualQuota: modelValue,
+          manualQuota: !modelValue,
         },
       )
       .$promise.catch(() => {
@@ -108,10 +108,10 @@ export default class {
           ),
         );
 
-        this.model.manualQuota = !this.model.manualQuota;
+        this.model.autoScaling = !this.model.autoScaling;
       })
       .finally(() => {
-        this.loaders.manualQuota = false;
+        this.loaders.autoScaling = false;
       });
   }
 }
