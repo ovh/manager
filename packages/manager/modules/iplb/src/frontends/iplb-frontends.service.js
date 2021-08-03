@@ -9,7 +9,7 @@ export default class IpLoadBalancerFrontendsService {
     IpLoadBalancerConfigurationService,
     IpLoadBalancerZoneService,
     OvhApiIpLoadBalancing,
-    CucRegionService,
+    ovhManagerRegionService,
     CucServiceHelper,
   ) {
     this.$q = $q;
@@ -17,7 +17,7 @@ export default class IpLoadBalancerFrontendsService {
     this.IpLoadBalancerConfigurationService = IpLoadBalancerConfigurationService;
     this.IpLoadBalancerZoneService = IpLoadBalancerZoneService;
     this.IpLoadBalancing = OvhApiIpLoadBalancing;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.CucServiceHelper = CucServiceHelper;
 
     this.Frontend = {
@@ -88,7 +88,11 @@ export default class IpLoadBalancerFrontendsService {
         },
       });
     } else {
-      set(frontend, 'region', this.CucRegionService.getRegion(frontend.zone));
+      set(
+        frontend,
+        'region',
+        this.ovhManagerRegionService.getRegion(frontend.zone),
+      );
     }
 
     // Needed to trigger row loading with datagrid.
@@ -146,7 +150,7 @@ export default class IpLoadBalancerFrontendsService {
       .then((zones) =>
         zones.reduce((zonesMapParam, zoneName) => {
           const zonesMap = zonesMapParam;
-          zonesMap[zoneName] = this.CucRegionService.getRegion(
+          zonesMap[zoneName] = this.ovhManagerRegionService.getRegion(
             zoneName,
           ).microRegion.text;
           return zonesMap;

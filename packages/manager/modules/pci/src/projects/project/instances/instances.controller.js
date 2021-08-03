@@ -10,7 +10,7 @@ export default class CloudProjectComputeInfrastructureListCtrl {
     $translate,
     coreConfig,
     CucCloudMessage,
-    CucRegionService,
+    ovhManagerRegionService,
     ovhUserPref,
     PciProjectsProjectInstanceService,
   ) {
@@ -18,7 +18,7 @@ export default class CloudProjectComputeInfrastructureListCtrl {
     this.$translate = $translate;
     this.coreConfig = coreConfig;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.ovhUserPref = ovhUserPref;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
   }

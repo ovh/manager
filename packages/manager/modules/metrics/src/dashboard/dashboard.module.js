@@ -4,6 +4,7 @@ import 'angular-translate';
 import 'ovh-api-services';
 
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
+import { region } from '@ovh-ux/manager-components';
 import ovhManagerDashboardChartPie from './chart-pie';
 
 import routing from './dashboard.routing';
@@ -19,6 +20,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     ovhManagerDashboardChartPie,
+    region,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations ../token/translations ../translations */);

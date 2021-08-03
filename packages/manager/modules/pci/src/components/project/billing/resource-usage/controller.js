@@ -1,7 +1,7 @@
 export default class BillingResourceUsageCtrl {
   /* @ngInject */
-  constructor(CucRegionService) {
-    this.CucRegionService = CucRegionService;
+  constructor(ovhManagerRegionService) {
+    this.ovhManagerRegionService = ovhManagerRegionService;
   }
 
   static hourlyQuantity(quantity) {

@@ -2,9 +2,9 @@ import { GUIDE_URL, COMMUNITY_URL } from './training.constants';
 
 export default class PciTrainingController {
   /* @ngInject */
-  constructor(CucCloudMessage, CucRegionService) {
+  constructor(CucCloudMessage, ovhManagerRegionService) {
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
   }
 
   $onInit() {

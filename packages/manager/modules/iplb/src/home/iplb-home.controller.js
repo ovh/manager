@@ -29,7 +29,7 @@ export default class IpLoadBalancerHomeCtrl {
     IpLoadBalancerZoneDeleteService,
     IpLoadBalancerVrackHelper,
     IpLoadBalancerVrackService,
-    CucRegionService,
+    ovhManagerRegionService,
     CucVrackService,
   ) {
     this.$state = $state;
@@ -49,7 +49,7 @@ export default class IpLoadBalancerHomeCtrl {
     this.IpLoadBalancerZoneDeleteService = IpLoadBalancerZoneDeleteService;
     this.IpLoadBalancerVrackHelper = IpLoadBalancerVrackHelper;
     this.IpLoadBalancerVrackService = IpLoadBalancerVrackService;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.VrackService = CucVrackService;
 
     this.serviceName = this.$stateParams.serviceName;
@@ -357,8 +357,10 @@ export default class IpLoadBalancerHomeCtrl {
     this.regionsGroup = [];
     if (regions) {
       this.detailedRegions = !isArray(regions)
-        ? [this.CucRegionService.getRegion(regions)]
-        : map(regions, (region) => this.CucRegionService.getRegion(region));
+        ? [this.ovhManagerRegionService.getRegion(regions)]
+        : map(regions, (region) =>
+            this.ovhManagerRegionService.getRegion(region),
+          );
     }
 
     this.regionsGroup = groupBy(this.detailedRegions, 'country');

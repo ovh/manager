@@ -3,11 +3,11 @@ export default /* @ngInject */ function BillingArchiveStorageListComponentCtrl(
   $translate,
   coreConfig,
   CucCloudMessage,
-  CucRegionService,
+  ovhManagerRegionService,
 ) {
   const self = this;
 
-  self.CucRegionService = CucRegionService;
+  self.ovhManagerRegionService = ovhManagerRegionService;
 
   self.currencySymbol = '';
 

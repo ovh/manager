@@ -14,13 +14,13 @@ export default class {
     $state,
     CucCloudMessage,
     dataProcessingService,
-    CucRegionService,
+    ovhManagerRegionService,
     atInternet,
   ) {
     this.$state = $state;
     this.cucCloudMessage = CucCloudMessage;
     this.dataProcessingService = dataProcessingService;
-    this.cucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.atInternet = atInternet;
     this.isJobRunning = isJobRunning;
     this.getClassFromStatus = getClassFromStatus;

@@ -11,12 +11,12 @@ export default class PciUsersDownloadRcloneController {
   constructor(
     $compile,
     $translate,
-    CucRegionService,
+    ovhManagerRegionService,
     PciProjectsProjectUsersService,
   ) {
     this.$compile = $compile;
     this.$translate = $translate;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectsProjectUsersService = PciProjectsProjectUsersService;
   }
 
@@ -25,7 +25,7 @@ export default class PciUsersDownloadRcloneController {
 
     this.regions = map(this.regions, (region) => ({
       id: region,
-      label: this.CucRegionService.getTranslatedMicroRegion(region),
+      label: this.ovhManagerRegionService.getTranslatedMicroRegion(region),
     }));
     this.region = first(this.regions);
     this.hasGlobalRegions = this.PciProjectsProjectUsersService.checkGlobalRegion(

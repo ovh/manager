@@ -8,13 +8,13 @@ export default class IpLoadBalancerServerService {
     IpLoadBalancerConfigurationService,
     OvhApiIpLoadBalancing,
     CucServiceHelper,
-    CucRegionService,
+    ovhManagerRegionService,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.IpLoadBalancerConfigurationService = IpLoadBalancerConfigurationService;
     this.IpLoadBalancing = OvhApiIpLoadBalancing;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.CucServiceHelper = CucServiceHelper;
 
     this.Server = {
