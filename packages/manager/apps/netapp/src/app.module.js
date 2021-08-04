@@ -22,8 +22,8 @@ export default (containerEl, environment) => {
       moduleName,
       [
         registerCoreModule(environment),
-        'ngOvhUiRouterLayout',
-        'ngOvhUiRouterLineProgress',
+        'ngUiRouterLayout',
+        'ngUiRouterLineProgress',
         'ngUiRouterBreadcrumb',
         'ui.router',
         errorPage,
