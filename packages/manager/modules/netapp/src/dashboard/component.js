@@ -6,7 +6,7 @@ export default {
     currentActiveLink: '<',
     dashboardLink: '<',
     storage: '<',
-    createVolumeLink: '<',
+    goToCreateVolume: '<',
     volumesLink: '<',
     isCommitmentAvailable: '<',
     isCreateVolumeAvailable: '<',
