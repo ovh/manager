@@ -3,8 +3,9 @@ import { isString, get } from 'lodash-es';
 import { RejectType } from '@uirouter/angularjs';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
-import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
-import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import '@ovh-ux/ng-ui-router-layout';
+import '@ovh-ux/ng-ui-router-line-progress';
+import '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerNetApp from '@ovh-ux/manager-netapp';
 
 import 'script-loader!moment/min/moment.min.js'; // eslint-disable-line
@@ -21,8 +22,9 @@ export default (containerEl, environment) => {
       moduleName,
       [
         registerCoreModule(environment),
-        ngOvhUiRouterLineProgress,
-        ngUiRouterBreadcrumb,
+        'ngOvhUiRouterLayout',
+        'ngOvhUiRouterLineProgress',
+        'ngUiRouterBreadcrumb',
         'ui.router',
         errorPage,
         ovhManagerNetApp,
