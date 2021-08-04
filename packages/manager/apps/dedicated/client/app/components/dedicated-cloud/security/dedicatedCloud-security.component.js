@@ -12,7 +12,6 @@ export default {
     editKms: '<',
     pccType: '<',
     productId: '<',
-    securityAccess: '<',
     securityLogout: '<',
     setMessage: '<',
     updateMaxSimultaneousConnection: '<',

@@ -43,7 +43,6 @@
   "dedicatedCloud_vm_encryption_kms_add": "Ajouter un nouveau serveur KMS",
   "dedicatedCloud_SECURITY_change_timeout": "Modifier le délai d'expiration d'une session",
   "dedicatedCloud_SECURITY_change_nb_simultaneous_connection": "Modifier le nombre de connexions simultanées",
-  "dedicatedCloud_SECURITY_access_policy": "Modifier la politique d'accès au vCenter",
   "dedicatedCloud_SECURITY_change_logout_policy": "Modifier la politique de déconnexion",
   "dedicatedCloud_SECURITY_add_IP": "Ajouter une nouvelle plage d'adresses IP",
   "dedicatedCloud_SECURITY_delete_IP": "Supprimer des plages d'adresses IP",
