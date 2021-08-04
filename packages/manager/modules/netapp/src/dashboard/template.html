@@ -74,8 +74,8 @@
                         </oui-tile-description>
                     </oui-tile-definition>
                     <oui-tile-button
-                        href="{{ $ctrl.createVolumeLink }}"
                         disabled="!$ctrl.isCreateVolumeAvailable"
+                        on-click="$ctrl.goToCreateVolume()"
                     >
                         <span
                             data-translate="netapp_dashboard_configuration_create_volume"
