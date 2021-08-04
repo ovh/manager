@@ -14,8 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href($state.current.name, $transition$.params()),
       dashboardLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('netapp.dashboard', $transition$.params()),
-      createVolumeLink: /* @ngInject */ ($state, $transition$) =>
-        $state.href('netapp.dashboard.volumes.create', $transition$.params()),
+      goToCreateVolume: /* @ngInject */ ($state) => () =>
+        $state.go('netapp.dashboard.volumes.create'),
       volumes: /* @ngInject */ ($http, serviceName) =>
         $http
           .get(`/storage/netapp/${serviceName}/share?detail=true`)
