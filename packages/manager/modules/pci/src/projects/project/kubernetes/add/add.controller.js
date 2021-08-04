@@ -176,7 +176,7 @@ export default class {
     const { name, enabled } = region;
     this.displaySelectedRegion = true;
 
-    if (!enabled) {
+    if (enabled === false) {
       this.isAddingNewRegion = true;
 
       return this.Kubernetes.addRegion(this.projectId, region)
