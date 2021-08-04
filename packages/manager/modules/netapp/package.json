@@ -27,6 +27,7 @@
     "@ovh-ux/ng-at-internet": "^5.6.3",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.1.2",
     "@ovh-ux/ng-ovh-utils": "^14.0.14",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "@ovh-ux/ng-ui-router-layout": "^4.0.3",
     "@ovh-ux/ui-kit": "^4.4.3",
     "@uirouter/angularjs": "^1.0.23",
