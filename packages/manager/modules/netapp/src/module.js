@@ -1,6 +1,8 @@
 import angular from 'angular';
-
 import '@ovh-ux/manager-core';
+import '@ovh-ux/ng-ui-router-layout';
+import '@ovh-ux/ui-kit';
+import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-at-internet-ui-router-plugin';
@@ -18,11 +20,14 @@ const moduleName = 'ovhManagerNetApp';
 
 angular
   .module(moduleName, [
+    'ngTranslateAsyncLoader',
     'ovhManagerCore',
+    'oui',
     'pascalprecht.translate',
     'ui.router',
     onboarding,
     dashboard,
+    'ngUiRouterLayout',
     'ngAtInternet',
     'ngAtInternetUiRouterPlugin',
     ListLayoutHelper.moduleName,
