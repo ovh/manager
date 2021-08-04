@@ -12,6 +12,7 @@ export default {
     defaultPassword: '<?',
     deleteObject: '<',
     guideUrl: '<',
+    goToAddUserOnObject: '<',
     projectId: '<',
     refresh: '<',
     defaultCriteria: '<?',

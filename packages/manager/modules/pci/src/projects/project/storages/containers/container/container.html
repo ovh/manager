@@ -140,6 +140,13 @@
 
             <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
+                    data-on-click="$ctrl.goToAddUserOnObject($row)"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_containers_container_add_user_label"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
                     data-on-click="$ctrl.downloadObject($row)"
                     data-ng-if="!$ctrl.archive || $row.retrievalState === 'unsealed'"
                 >

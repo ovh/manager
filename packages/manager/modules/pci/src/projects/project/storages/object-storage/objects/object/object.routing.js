@@ -37,11 +37,15 @@ export default /* @ngInject */ ($stateProvider) => {
             objectId: object.name,
           },
         ),
+      goToAddUserOnObject: /* @ngInject */ ($state, containerId) => (object) =>
+        $state.go(
+          'pci.projects.project.storages.objects.objects.object.addUser',
+          { containerId, objectKey: object.key },
+        ),
 
       goBack: /* @ngInject */ (goToStorageContainers) => goToStorageContainers,
 
       goToStorageContainer: /* @ngInject */ (
-        $rootScope,
         CucCloudMessage,
         $state,
         projectId,
