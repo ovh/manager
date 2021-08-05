@@ -1,0 +1,26 @@
+<form name="form" enctype="multipart/form-data" novalidate>
+    <oui-modal
+        data-heading="{{:: 'pci_projects_project_storages_containers_users_import_title' | translate }}"
+        data-primary-action="$ctrl.importFile()"
+        data-primary-label="{{:: 'pci_projects_project_storages_containers_users_import_submit_label' | translate }}"
+        data-primary-disabled="$ctrl.isLoading || $ctrl.files.length === 0"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'common_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+    >
+        <span
+            data-translate="pci_projects_project_storages_containers_users_import_description"
+        ></span>
+        <oui-field
+            data-label="{{:: 'pci_projects_project_storages_containers_users_import_add_files_label' | translate }}"
+            data-size="xl"
+        >
+            <oui-file
+                data-model="$ctrl.files"
+                data-multiple
+                data-name="files"
+            ></oui-file>
+        </oui-field>
+    </oui-modal>
+</form>

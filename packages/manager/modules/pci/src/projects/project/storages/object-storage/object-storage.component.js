@@ -5,7 +5,7 @@ export default {
   controller,
   bindings: {
     guideUrl: '<',
-    currentActiveLink: '<',
+    isUserTabActive: '<',
     containersLink: '<',
     userListLink: '<',
   },

@@ -24,8 +24,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.storages.objects.objects', {
           projectId,
         }),
-      currentActiveLink: /* @ngInject */ ($transition$, $state) => () => {
-        return $state.href($state.current.name, $transition$.params());
+      isUserTabActive: /* @ngInject */ ($transition$, $state) => () => {
+        return $state
+          .href($state.current.name, $transition$.params())
+          .includes('users');
       },
       userListLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.storages.objects.users', {

@@ -18,10 +18,6 @@ export default class PciStoragesObjectStorageController {
     );
   }
 
-  isUserTabActive() {
-    return this.currentActiveLink().includes('users');
-  }
-
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
   }

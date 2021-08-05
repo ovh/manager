@@ -60,4 +60,10 @@ export default class PciStoragesObjectStorageService {
       .get(`/cloud/project/${projectId}/user/${userId}/policy`)
       .then(({ data }) => data);
   }
+
+  importUserPolicy(projectId, userId, policy) {
+    return this.$http
+      .post(`/cloud/project/${projectId}/user/${userId}/policy`, { policy })
+      .then(({ data }) => data);
+  }
 }
