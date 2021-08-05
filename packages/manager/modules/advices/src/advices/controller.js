@@ -1,11 +1,20 @@
+const ADVICE_TYPE_ENUM = {
+  RETENTION: 'retention',
+  UPSELL_CROSS_SELL: 'upsell-cross-sell',
+};
+
 export default class AdvicesCtrl {
   /* @ngInject */
-  constructor($http, atInternet) {
+  constructor($http, atInternet, $element) {
     this.$http = $http;
     this.atInternet = atInternet;
+    this.$element = $element;
   }
 
   $onInit() {
+    if (!this.adviceType) {
+      this.adviceType = ADVICE_TYPE_ENUM.UPSELL_CROSS_SELL;
+    }
     this.loading = true;
     this.adviceGroups = [];
     this.loadAdvices()
@@ -17,6 +26,7 @@ export default class AdvicesCtrl {
       })
       .finally(() => {
         this.loading = false;
+        this.onAdvicesLoaded(this.adviceGroups);
       });
   }
 
@@ -73,5 +83,18 @@ export default class AdvicesCtrl {
         click: advice.impression,
       })
     );
+  }
+
+  onAdvicesLoaded(advices) {
+    if (typeof this.onLoad === 'function') {
+      this.onLoad({ advices });
+    }
+    if (advices.length === 0) {
+      this.$element.remove();
+    }
+  }
+
+  isRetention() {
+    return this.adviceType === ADVICE_TYPE_ENUM.RETENTION;
   }
 }
