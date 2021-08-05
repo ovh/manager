@@ -1,14 +1,22 @@
 <div>
     <p class="oui-heading_3" data-translate="netapp_volumes_details"></p>
-    <span
+    <p
         data-translate="netapp_volumes_number"
         data-translate-values="{
-          'volumesNumber': $ctrl.detailedVolumes.length,
+          'volumesNumber': $ctrl.volumes.length,
           'volumesLimit': $ctrl.storage.volumesLimit,
         }"
-    ></span>
+    ></p>
+
+    <oui-button
+        aria-label="{{:: 'netapp_volumes_create' | translate }}"
+        on-click="$ctrl.goToCreateVolume()"
+        disabled="!$ctrl.isCreateVolumeAvailable"
+        ><span data-translate="netapp_volumes_create_volume"></span
+    ></oui-button>
 
     <oui-datagrid
+        class="mt-2"
         rows="$ctrl.volumes"
         row-loader="$ctrl.loadVolumeDetail($row)"
     >
@@ -37,11 +45,7 @@
             title=":: 'netapp_volumes_mount_path' | translate"
             property="mountPath"
         >
-            <oui-clipboard
-                class="extend"
-                name="mountPath"
-                model="$value"
-            ></oui-clipboard>
+            <oui-clipboard name="mountPath" model="$value"></oui-clipboard>
         </oui-datagrid-column>
         <oui-datagrid-column
             title=":: 'netapp_volumes_snapshot_policy' | translate"
@@ -78,13 +82,4 @@
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>
-
-    <oui-button
-        aria-label="{{:: 'netapp_volumes_create' | translate }}"
-        on-click="$ctrl.goToCreateVolume()"
-        disabled="!$ctrl.isCreateVolumeAvailable"
-        variant="primary"
-        size="l"
-        ><span data-translate="netapp_volumes_create_volume"></span
-    ></oui-button>
 </div>
