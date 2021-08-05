@@ -9,8 +9,6 @@ import routing from './routing';
 import deleteModule from './delete';
 import dashboard from './dashboard';
 
-import './style.scss';
-
 const moduleName = 'ovhManagerNetAppVolumes';
 
 angular
