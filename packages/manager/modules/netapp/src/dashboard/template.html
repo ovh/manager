@@ -21,78 +21,80 @@
         </oui-header-tabs>
     </oui-header>
     <div data-ovh-alert></div>
-    <div class="row" ui-view>
-        <oui-tile
-            class="col-md-4"
-            heading="{{:: 'netapp_dashboard_information' | translate }}"
-        >
-            <oui-tile-definition
-                term="{{:: 'netapp_dashboard_information_name' | translate }}"
-                description="{{ $ctrl.storage.name }}"
-            >
-            </oui-tile-definition>
-            <oui-tile-definition
-                term="{{:: 'netapp_dashboard_information_id' | translate }}"
-                description="{{ $ctrl.storage.id }}"
-            >
-            </oui-tile-definition>
-            <oui-tile-definition
-                term="{{:: 'netapp_dashboard_information_region' | translate }}"
-                description="{{ $ctrl.storage.region }}"
-            >
-            </oui-tile-definition>
-            <oui-tile-definition
-                term="{{:: 'netapp_dashboard_information_performance_level' | translate }}"
-                description="{{ $ctrl.storage.performanceLevel }}"
-            >
-            </oui-tile-definition>
-            <oui-tile-definition
-                term="{{:: 'netapp_dashboard_information_quota' | translate }}"
-                description="{{ 'netapp_dashboard_information_quota_formatted' | translate:{quota: $ctrl.storage.quota } }}"
-            >
-            </oui-tile-definition>
-        </oui-tile>
-        <div class="col-md-4">
+    <div ui-view>
+        <div class="row">
             <oui-tile
-                class="mb-3"
-                heading="{{:: 'netapp_dashboard_configuration' | translate }}"
+                class="col-md-4"
+                heading="{{:: 'netapp_dashboard_information' | translate }}"
             >
                 <oui-tile-definition
-                    term="{{:: 'netapp_dashboard_configuration_status' | translate }}"
+                    term="{{:: 'netapp_dashboard_information_name' | translate }}"
+                    description="{{ $ctrl.storage.name }}"
                 >
-                    <oui-tile-description>
-                        <span
-                            class="oui-badge"
-                            data-ng-class="{
+                </oui-tile-definition>
+                <oui-tile-definition
+                    term="{{:: 'netapp_dashboard_information_id' | translate }}"
+                    description="{{ $ctrl.storage.id }}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    term="{{:: 'netapp_dashboard_information_region' | translate }}"
+                    description="{{ $ctrl.storage.region }}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    term="{{:: 'netapp_dashboard_information_performance_level' | translate }}"
+                    description="{{ $ctrl.storage.performanceLevel }}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    term="{{:: 'netapp_dashboard_information_quota' | translate }}"
+                    description="{{ 'netapp_dashboard_information_quota_formatted' | translate:{quota: $ctrl.storage.quota } }}"
+                >
+                </oui-tile-definition>
+            </oui-tile>
+            <div class="col-md-4">
+                <oui-tile
+                    class="mb-3"
+                    heading="{{:: 'netapp_dashboard_configuration' | translate }}"
+                >
+                    <oui-tile-definition
+                        term="{{:: 'netapp_dashboard_configuration_status' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <span
+                                class="oui-badge"
+                                data-ng-class="{
                             'oui-badge_success': $ctrl.storage.isActive(),
                             'oui-badge_error': $ctrl.storage.isInactive(),
                             'oui-badge_warning': $ctrl.storage.isPending()
                         }"
-                            data-translate="{{:: 'netapp_dashboard_configuration_status_' + $ctrl.storage.status }}"
+                                data-translate="{{:: 'netapp_dashboard_configuration_status_' + $ctrl.storage.status }}"
+                            ></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <oui-tile-button
+                        href="{{ $ctrl.createVolumeLink }}"
+                        disabled="!$ctrl.isCreateVolumeAvailable"
+                    >
+                        <span
+                            data-translate="netapp_dashboard_configuration_create_volume"
                         ></span>
-                    </oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-button
-                    href="{{ $ctrl.createVolumeLink }}"
-                    disabled="!$ctrl.isCreateVolumeAvailable"
+                    </oui-tile-button>
+                </oui-tile>
+                <ovh-advices
+                    service-name="{{ ::$ctrl.storage.id }}"
+                    service-type="netapp"
                 >
-                    <span
-                        data-translate="netapp_dashboard_configuration_create_volume"
-                    ></span>
-                </oui-tile-button>
-            </oui-tile>
-            <ovh-advices
-                service-name="{{ ::$ctrl.storage.id }}"
-                service-type="netapp"
+                </ovh-advices>
+            </div>
+            <billing-subscription-tile
+                class="col-md-4"
+                on-error="$ctrl.onBillingInformationError(error)"
+                service-path="{{ ::'/storage/netapp/' + $ctrl.storage.id }}"
+                with-engagement="$ctrl.isCommitmentAvailable"
             >
-            </ovh-advices>
+            </billing-subscription-tile>
         </div>
-        <billing-subscription-tile
-            class="col-md-4"
-            on-error="$ctrl.onBillingInformationError(error)"
-            service-path="{{ ::'/storage/netapp/' + $ctrl.storage.id }}"
-            with-engagement="$ctrl.isCommitmentAvailable"
-        >
-        </billing-subscription-tile>
     </div>
 </div>
