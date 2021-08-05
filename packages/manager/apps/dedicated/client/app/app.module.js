@@ -244,6 +244,7 @@ export default (containerEl, environment) => {
       DEFAULT_LANGUAGE: configConstants.DEFAULT_LANGUAGE,
       FALLBACK_LANGUAGE: configConstants.FALLBACK_LANGUAGE,
       SUPPORT: configConstants.SUPPORT,
+      SECTIONS_UNIVERSE_MAP: configConstants.SECTIONS_UNIVERSE_MAP,
     })
     .constant('website_url', configConstants.website_url)
     .config(

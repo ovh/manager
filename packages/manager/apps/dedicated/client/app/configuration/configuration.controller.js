@@ -5,8 +5,9 @@ import isString from 'lodash/isString';
 angular.module('App').controller(
   'configurationCtrl',
   class ConfigurationCtrl {
-    constructor($q, $translate, constants, coreConfig, OvhHttp) {
+    constructor($q, $scope, $translate, constants, coreConfig, OvhHttp) {
       this.$q = $q;
+      this.$scope = $scope;
       this.$translate = $translate;
       this.constants = constants;
       this.coreConfig = coreConfig;
@@ -20,6 +21,7 @@ angular.module('App').controller(
         this.constants.TOP_GUIDES.all,
       );
       this.user = this.coreConfig.getUser();
+      this.$scope.$on('switchUniverse', () => this.buildingGuideURLs());
       return this.buildingGuideURLs().then(() => this.gettingHelpCenterURLs());
     }
 
@@ -31,20 +33,28 @@ angular.module('App').controller(
     }
 
     buildingGuideURLs() {
-      return this.fetchingGuideSectionNames().then((sectionNames) => {
-        this.sections = sectionNames.reduce(
-          (sections, sectionName) => ({
-            ...sections,
-            [sectionName]: {
-              name: sectionName,
-              links: this.getURLFromSection(
-                this.constants.TOP_GUIDES[sectionName],
-              ),
-            },
-          }),
-          {},
-        );
-      });
+      return this.fetchingGuideSectionNames()
+        .then((sectionNames) =>
+          sectionNames.filter((sectionName) =>
+            this.constants.SECTIONS_UNIVERSE_MAP[sectionName].includes(
+              this.coreConfig.getUniverse(),
+            ),
+          ),
+        )
+        .then((sectionNames) => {
+          this.sections = sectionNames.reduce(
+            (sections, sectionName) => ({
+              ...sections,
+              [sectionName]: {
+                name: sectionName,
+                links: this.getURLFromSection(
+                  this.constants.TOP_GUIDES[sectionName],
+                ),
+              },
+            }),
+            {},
+          );
+        });
     }
 
     fetchingGuideSectionNames() {
