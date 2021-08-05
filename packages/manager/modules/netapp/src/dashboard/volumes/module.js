@@ -8,8 +8,6 @@ import routing from './routing';
 
 import deleteModule from './delete';
 
-import './style.scss';
-
 const moduleName = 'ovhManagerNetAppVolumes';
 
 angular
