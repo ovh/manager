@@ -36,6 +36,8 @@ export default class Container {
       publicUrl,
       state,
     });
+    this.storedObjects = this.storedObjects || this.objectsCount;
+    this.storedBytes = this.storedBytes || this.objectsSize;
     this.id = this.id || this.name;
     this.region = this.region || OPENIO_DEFAULT_REGION;
   }

@@ -67,6 +67,8 @@ export const X_CONTAINER_META_WEB_LISTINGS = 'x-container-meta-web-listings';
 export const X_CONTAINER_READ_PUBLIC_VALUE = '.r:*,.rlistings';
 export const OPENIO_DEFAULT_REGION = 'PREPROD.SBG';
 
+export const OPENIO_PRESIGN_EXPIRE = 3600;
+
 export default {
   OBJECT_CONTAINER_OFFER_SWIFT,
   OBJECT_CONTAINER_OFFER_HIGH_PERFORMANCE,
@@ -89,6 +91,7 @@ export default {
   OBJECT_TYPES,
 
   OPENIO_DEFAULT_REGION,
+  OPENIO_PRESIGN_EXPIRE,
 
   PUBLIC_CLOUD_PRODUCT_NAME,
 
