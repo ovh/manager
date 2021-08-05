@@ -6,6 +6,7 @@ export default {
     currentUser: '<',
     partnerLevel: '<',
     schema: '<',
+    supportAvailability: '<',
     supportLevel: '<',
   },
   controller,
