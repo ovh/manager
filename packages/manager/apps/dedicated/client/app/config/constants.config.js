@@ -7,6 +7,10 @@ const constants = {
     vmsUrl: 'http://travaux.ovh.net/vms/',
     travauxUrl: 'http://travaux.ovh.net/',
     UNIVERS: 'dedicated',
+    SECTIONS_UNIVERSE_MAP: {
+      sd: ['server'],
+      pcc: ['hpc'],
+    },
     URLS: {
       CZ: {
         express_order: 'https://www.ovh.cz/order/express/#/express/',
@@ -745,6 +749,10 @@ const constants = {
     vmsUrl: 'http://status.ovh.net/vms/',
     travauxUrl: 'http://status.ovh.net/',
     UNIVERS: 'dedicated',
+    SECTIONS_UNIVERSE_MAP: {
+      sd: ['server'],
+      pcc: ['hpc'],
+    },
     URLS: {
       ASIA: {
         express_order: 'https://ca.ovh.com/asia/order/express/#/express/',
@@ -1105,6 +1113,10 @@ const constants = {
     travauxUrl: 'https://status.us.ovhcloud.com/',
     vrackUrl: 'https://us.ovhcloud.com/manager/cloud/index.html#/vrack',
     UNIVERS: 'dedicated',
+    SECTIONS_UNIVERSE_MAP: {
+      sd: ['server'],
+      pcc: ['hpc'],
+    },
     URLS: {
       US: {
         express_order: 'https://us.ovhcloud.com/order/express/#/express/',
