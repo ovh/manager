@@ -3,5 +3,5 @@
   "pci_databases_dashboard_backup_tab_title": "Backups ",
   "pci_databases_dashboard_users_tab_title": "Users",
   "pci_databases_dashboard_allowed_ips_tab_title": "Authorised IPs",
-  "pci_databases_dashboard_database_processing_state": "You can carry out operations on your cluster once its deployment is complete."
+  "pci_databases_dashboard_database_processing_state": "You can carry out operations on your cluster once the deployment process is complete."
 }
