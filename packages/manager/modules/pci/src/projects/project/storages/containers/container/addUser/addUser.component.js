@@ -10,6 +10,7 @@ export default {
     projectId: '<',
     containerId: '<',
     container: '<',
+    objectKey: '<',
     goBack: '<',
     goToUsersAndRoles: '<',
   },

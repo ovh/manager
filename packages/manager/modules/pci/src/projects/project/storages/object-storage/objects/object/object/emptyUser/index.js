@@ -6,10 +6,10 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import 'ovh-api-services';
 
-import containers from '../../../../containers';
-import routing from './addUser.routing';
+import containers from '../../../../../containers';
+import routing from './emptyUser.routing';
 
-const moduleName = 'ovhManagerPciStoragesObjectsObjectsAddUser';
+const moduleName = 'ovhManagerPciStoragesObjectsObjectsObjectEmptyUser';
 
 angular
   .module(moduleName, [

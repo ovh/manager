@@ -13,6 +13,8 @@ import addObject from './object/add';
 import deleteObject from './object/delete';
 import routing from './object.routing';
 import emptyUser from './emptyUser';
+import addUserOnObject from './object/addUser';
+import emptyUserObject from './object/emptyUser';
 
 const moduleName = 'ovhManagerPciStoragesObjectsObjectObject';
 
@@ -20,6 +22,8 @@ angular
   .module(moduleName, [
     container,
     addObject,
+    addUserOnObject,
+    emptyUserObject,
     deleteContainer,
     addUser,
     deleteObject,

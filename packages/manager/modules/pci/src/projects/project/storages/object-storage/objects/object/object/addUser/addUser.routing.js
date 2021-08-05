@@ -1,10 +1,8 @@
-import find from 'lodash/find';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'pci.projects.project.storages.objects.objects.addUser',
+    'pci.projects.project.storages.objects.objects.object.addUser',
     {
-      url: '/addUser/?containerId',
+      url: '/addUser',
       views: {
         modal: {
           component: 'pciProjectStorageContainersContainerAddUser',
@@ -18,35 +16,24 @@ export default /* @ngInject */ ($stateProvider) => {
             availableUsers.length === 0
               ? {
                   state:
-                    'pci.projects.project.storages.objects.objects.emptyUser',
+                    'pci.projects.project.storages.objects.objects.object.emptyUser',
                 }
               : false,
           ),
       layout: 'modal',
+      params: {
+        objectKey: null,
+      },
       resolve: {
-        containerId: /* @ngInject */ ($transition$) =>
-          $transition$.params().containerId,
+        objectKey: /* @ngInject */ ($transition$) =>
+          $transition$.params().objectKey,
         availableUsers: /* @ngInject */ ($http, projectId) =>
           $http
             .get(`/cloud/project/${projectId}/user`)
             .then(({ data }) => data),
-        container: /* @ngInject */ (
-          PciProjectStorageContainersService,
-          projectId,
-          containerId,
-          containers,
-        ) => {
-          const container = find(containers, { id: containerId });
-          return PciProjectStorageContainersService.getContainer(
-            projectId,
-            containerId,
-            container.isHighPerfStorage,
-          );
-        },
         goToUsersAndRoles: /* @ngInject */ ($state) => () =>
           $state.go('pci.projects.project.users'),
-        goBack: /* @ngInject */ (goToStorageContainers) =>
-          goToStorageContainers,
+        goBack: /* @ngInject */ (goToStorageContainer) => goToStorageContainer,
         breadcrumb: () => null,
       },
     },

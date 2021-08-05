@@ -41,6 +41,7 @@ export default class PciBlockStorageDetailsAddUserController {
         `/cloud/project/${this.projectId}/region/${this.container.region}/storage/${this.container.name}/policy/${this.selectedUser}`,
         {
           roleName: this.selectedRole,
+          objectKey: this.objectKey,
         },
       )
       .then(() =>
