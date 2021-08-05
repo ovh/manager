@@ -147,7 +147,6 @@ export default class PciStoragesContainersService {
   }
 
   getContainer(projectId, containerId, isHighPerfStorage) {
-    console.log('get containner', isHighPerfStorage);
     let promise = null;
     if (isHighPerfStorage) {
       promise = this.$http
