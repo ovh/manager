@@ -21,6 +21,7 @@
   "pci_notebooks_general_information_life_cycle_status_RUNNING": "Uruchomiony",
   "pci_notebooks_general_information_life_cycle_status_STOPPING": "Wygasanie w trakcie",
   "pci_notebooks_general_information_life_cycle_status_STOPPED": "Zatrzymano",
+  "pci_notebooks_general_information_life_cycle_status_FAILED": "Błąd",
   "pci_notebooks_general_information_life_cycle_action_start": "Uruchom",
   "pci_notebooks_general_information_life_cycle_action_stop": "Zatrzymaj",
   "pci_notebooks_general_information_life_cycle_action_delete": "Usuń",

@@ -21,6 +21,7 @@
   "pci_notebooks_general_information_life_cycle_status_RUNNING": "En ejecución",
   "pci_notebooks_general_information_life_cycle_status_STOPPING": "Cancelando",
   "pci_notebooks_general_information_life_cycle_status_STOPPED": "Detenido",
+  "pci_notebooks_general_information_life_cycle_status_FAILED": "Error",
   "pci_notebooks_general_information_life_cycle_action_start": "Iniciar",
   "pci_notebooks_general_information_life_cycle_action_stop": "Detener",
   "pci_notebooks_general_information_life_cycle_action_delete": "Eliminar",

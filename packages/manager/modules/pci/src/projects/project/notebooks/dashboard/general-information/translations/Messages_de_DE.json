@@ -21,6 +21,7 @@
   "pci_notebooks_general_information_life_cycle_status_RUNNING": "In Betrieb",
   "pci_notebooks_general_information_life_cycle_status_STOPPING": "Wird gelöscht",
   "pci_notebooks_general_information_life_cycle_status_STOPPED": "Angehalten",
+  "pci_notebooks_general_information_life_cycle_status_FAILED": "Fehler",
   "pci_notebooks_general_information_life_cycle_action_start": "Starten",
   "pci_notebooks_general_information_life_cycle_action_stop": "Anhalten",
   "pci_notebooks_general_information_life_cycle_action_delete": "Löschen",
