@@ -1,19 +1,28 @@
 import get from 'lodash/get';
 import {
   NOTEBOOK_FLAVOR_TYPE,
+  NOTEBOOK_MULTIPLY_SIGN,
   NOTEBOOK_VOLUME_TYPE,
 } from '../../notebook.constants';
 import Notebook from '../../Notebook.class';
 
 export default class {
   /* @ngInject */
-  constructor($translate, coreURLBuilder, CucCloudMessage, NotebookService) {
+  constructor(
+    $filter,
+    $translate,
+    coreURLBuilder,
+    CucCloudMessage,
+    NotebookService,
+  ) {
+    this.$filter = $filter;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.NotebookService = NotebookService;
 
     this.NOTEBOOK_VOLUME_TYPE = NOTEBOOK_VOLUME_TYPE;
     this.NOTEBOOK_FLAVOR_TYPE = NOTEBOOK_FLAVOR_TYPE;
+    this.NOTEBOOK_MULTIPLY_SIGN = NOTEBOOK_MULTIPLY_SIGN;
     this.billingUrl = coreURLBuilder.buildURL('dedicated', '#/billing/history');
   }
 
@@ -38,6 +47,26 @@ export default class {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  getCpuRamInfo() {
+    return `${this.$filter('cucBytes')(
+      this.flavor.resourcesPerUnit.memory,
+      0,
+      false,
+      'B',
+    )} RAM (${NOTEBOOK_FLAVOR_TYPE.CPU})`;
+  }
+
+  getGpuRamInfo() {
+    return this.flavor.gpuInformation
+      ? `${this.$filter('cucBytes')(
+          this.flavor.gpuInformation.gpuMemory,
+          0,
+          false,
+          'B',
+        )} RAM (${NOTEBOOK_FLAVOR_TYPE.GPU})`
+      : null;
   }
 
   onLabelRemove(label) {
