@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import component from './import.component';
 import routing from './import.routing';
 
-const moduleName = 'ovhManagerPciStoragesObjectsUserListImport';
+const moduleName = 'ovhManagerPciStoragesObjectStorageUserListImport';
 
 angular
   .module(moduleName, [
@@ -19,7 +19,7 @@ angular
     'pascalprecht.translate',
   ])
   .config(routing)
-  .component('pciStoragesObjectsUserListImport', component)
+  .component('pciStoragesObjectStorageUserListImport', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

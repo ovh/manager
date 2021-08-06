@@ -11,7 +11,7 @@ export default class PciStoragesObjectStorageController {
 
   loadMessages() {
     this.messageHandler = this.CucCloudMessage.subscribe(
-      'pci.projects.project.storages.objects.objects',
+      'pci.projects.project.storages.object-storage.objects',
       {
         onMessage: () => this.refreshMessages(),
       },

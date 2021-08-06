@@ -2,12 +2,12 @@ import find from 'lodash/find';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'pci.projects.project.storages.objects.users.import-policy',
+    'pci.projects.project.storages.object-storage.users.import-policy',
     {
       url: '/import-policy?userId',
       views: {
         modal: {
-          component: 'pciStoragesObjectsUserListImport',
+          component: 'pciStoragesObjectStorageUserListImport',
         },
       },
       layout: 'modal',

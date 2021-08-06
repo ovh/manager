@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.storages.objects.objects', {
+  $stateProvider.state('pci.projects.project.storages.object-storage.objects', {
     url: '',
     views: {
       containersView: 'pciProjectStorageContainers',
@@ -10,7 +10,10 @@ export default /* @ngInject */ ($stateProvider) => {
         .getAsync('containers')
         .then((containers) =>
           containers.length === 0
-            ? { state: 'pci.projects.project.storages.objects.onboarding' }
+            ? {
+                state:
+                  'pci.projects.project.storages.object-storage.onboarding',
+              }
             : false,
         ),
     resolve: {
@@ -22,31 +25,43 @@ export default /* @ngInject */ ($stateProvider) => {
         projectId,
       ) => PciProjectStorageContainersService.getAll(projectId, archive),
       addContainer: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.storages.objects.add', {
+        $state.go('pci.projects.project.storages.object-storage.add', {
           projectId,
         }),
       viewContainer: /* @ngInject */ ($state, projectId) => (container) =>
-        $state.go('pci.projects.project.storages.objects.objects.object', {
-          projectId,
-          containerId: container.id,
-        }),
+        $state.go(
+          'pci.projects.project.storages.object-storage.objects.object',
+          {
+            projectId,
+            containerId: container.id,
+          },
+        ),
       deleteContainer: /* @ngInject */ ($state, projectId) => (container) =>
-        $state.go('pci.projects.project.storages.objects.objects.delete', {
-          projectId,
-          containerId: container.id,
-        }),
+        $state.go(
+          'pci.projects.project.storages.object-storage.objects.delete',
+          {
+            projectId,
+            containerId: container.id,
+          },
+        ),
       goToAddUserContainer: /* @ngInject */ ($state, projectId) => (
         container,
       ) =>
-        $state.go('pci.projects.project.storages.objects.objects.addUser', {
-          projectId,
-          containerId: container.id,
-        }),
+        $state.go(
+          'pci.projects.project.storages.object-storage.objects.addUser',
+          {
+            projectId,
+            containerId: container.id,
+          },
+        ),
       containerLink: /* @ngInject */ ($state, projectId) => (container) =>
-        $state.href('pci.projects.project.storages.objects.objects.object', {
-          projectId,
-          containerId: container.id,
-        }),
+        $state.href(
+          'pci.projects.project.storages.object-storage.objects.object',
+          {
+            projectId,
+            containerId: container.id,
+          },
+        ),
 
       goToStorageContainers: /* @ngInject */ (
         $rootScope,
@@ -57,7 +72,7 @@ export default /* @ngInject */ ($stateProvider) => {
         const reload = message && type === 'success';
 
         const promise = $state.go(
-          'pci.projects.project.storages.objects.objects',
+          'pci.projects.project.storages.object-storage.objects',
           {
             projectId,
           },

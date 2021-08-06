@@ -3,12 +3,12 @@ import '@uirouter/angularjs';
 import 'oclazyload';
 
 const moduleName =
-  'ovhManagerPciStoragesObjectsUserListImportPolicyLazyLoading';
+  'ovhManagerPciStoragesObjectStorageUserListImportPolicyLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'pci.projects.project.storages.objects.users.import-policy.**',
+      'pci.projects.project.storages.object-storage.users.import-policy.**',
       {
         url: '/import-policy',
         lazyLoad: ($transition$) => {

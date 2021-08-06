@@ -9,7 +9,7 @@ export const ACTIONS = [
   },
   {
     translation: 'pci_projects_project_create_a_container',
-    state: 'pci.projects.project.storages.objects.add',
+    state: 'pci.projects.project.storages.object-storage.add',
   },
   {
     translation: 'pci_projects_project_activate_private_networks',

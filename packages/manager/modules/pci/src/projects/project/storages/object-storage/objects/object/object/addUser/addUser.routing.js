@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'pci.projects.project.storages.objects.objects.object.addUser',
+    'pci.projects.project.storages.object-storage.objects.object.addUser',
     {
       url: '/addUser',
       views: {
@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
             availableUsers.length === 0
               ? {
                   state:
-                    'pci.projects.project.storages.objects.objects.object.emptyUser',
+                    'pci.projects.project.storages.object-storage.objects.object.emptyUser',
                 }
               : false,
           ),

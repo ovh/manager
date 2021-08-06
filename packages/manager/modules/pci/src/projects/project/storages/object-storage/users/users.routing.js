@@ -1,8 +1,8 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.storages.objects.users', {
+  $stateProvider.state('pci.projects.project.storages.object-storage.users', {
     url: '/users',
     views: {
-      containersView: 'pciProjectStorageContainersUsers',
+      containersView: 'pciProjectStorageObjectStorageUsers',
     },
     resolve: {
       userList: /* @ngInject */ (PciStoragesObjectStorageService, projectId) =>
@@ -10,13 +10,16 @@ export default /* @ngInject */ ($stateProvider) => {
       goToUsersAndRoles: /* @ngInject */ ($state) => () =>
         $state.go('pci.projects.project.users'),
       goToDeleteUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('pci.projects.project.storages.objects.users.delete', {
+        $state.go('pci.projects.project.storages.object-storage.users.delete', {
           userId: user.id,
         }),
       goToImportPolicy: /* @ngInject */ ($state) => (user) =>
-        $state.go('pci.projects.project.storages.objects.users.import-policy', {
-          userId: user.id,
-        }),
+        $state.go(
+          'pci.projects.project.storages.object-storage.users.import-policy',
+          {
+            userId: user.id,
+          },
+        ),
       goToUsers: /* @ngInject */ (CucCloudMessage, $state, projectId) => (
         message = false,
         type = 'success',
@@ -24,7 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
         const reload = message && type === 'success';
 
         const promise = $state.go(
-          'pci.projects.project.storages.objects.users',
+          'pci.projects.project.storages.object-storage.users',
           {
             projectId,
           },
@@ -37,7 +40,7 @@ export default /* @ngInject */ ($stateProvider) => {
           promise.then(() =>
             CucCloudMessage[type](
               message,
-              'pci.projects.project.storages.objects.users',
+              'pci.projects.project.storages.object-storage.users',
             ),
           );
         }

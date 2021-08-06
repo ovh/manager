@@ -140,6 +140,7 @@
 
             <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
+                    data-ng-if="$ctrl.container.isHighPerfStorage"
                     data-on-click="$ctrl.goToAddUserOnObject($row)"
                 >
                     <span

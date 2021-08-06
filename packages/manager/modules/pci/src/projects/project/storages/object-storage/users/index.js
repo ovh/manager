@@ -12,7 +12,7 @@ import routing from './users.routing';
 import deleteUser from './delete';
 import importPolicy from './import';
 
-const moduleName = 'ovhManagerPciStoragesContainersUserList';
+const moduleName = 'ovhManagerPciStoragesObjectStorageUserList';
 
 angular
   .module(moduleName, [
@@ -26,7 +26,7 @@ angular
     deleteUser,
     importPolicy,
   ])
-  .component('pciProjectStorageContainersUsers', component)
+  .component('pciProjectStorageObjectStorageUsers', component)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

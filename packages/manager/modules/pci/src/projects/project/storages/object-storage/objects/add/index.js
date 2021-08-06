@@ -11,7 +11,7 @@ import 'angular-ui-bootstrap';
 import containersAdd from '../../../containers/add';
 import routing from './add.routing';
 
-const moduleName = 'ovhManagerPciStoragesObjectsAdd';
+const moduleName = 'ovhManagerPciStoragesObjectStorageAdd';
 
 angular
   .module(moduleName, [

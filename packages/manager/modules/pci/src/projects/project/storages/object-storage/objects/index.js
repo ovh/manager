@@ -14,7 +14,7 @@ import onboarding from './onboarding';
 
 import routing from './objects.routing';
 
-const moduleName = 'ovhManagerPciStoragesObjects';
+const moduleName = 'ovhManagerPciStoragesObjectStorageObjects';
 
 angular
   .module(moduleName, [

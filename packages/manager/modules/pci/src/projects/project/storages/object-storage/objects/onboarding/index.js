@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerPciStoragesObjectsOnboardingLazyLoading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'pci.projects.project.storages.objects.objects.onboarding.**',
+      'pci.projects.project.storages.object-storage.objects.onboarding.**',
       {
         url: '/onboarding',
         lazyLoad: ($transition$) => {

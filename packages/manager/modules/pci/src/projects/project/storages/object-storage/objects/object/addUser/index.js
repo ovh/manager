@@ -9,7 +9,7 @@ import 'ovh-api-services';
 import containers from '../../../../containers';
 import routing from './addUser.routing';
 
-const moduleName = 'ovhManagerPciStoragesObjectsObjectsAddUser';
+const moduleName = 'ovhManagerPciStoragesObjectStorageObjectsAddUser';
 
 angular
   .module(moduleName, [

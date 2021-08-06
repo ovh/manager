@@ -9,7 +9,7 @@ import 'ovh-api-services';
 import containers from '../../../../containers';
 import routing from './delete.routing';
 
-const moduleName = 'ovhManagerPciStoragesObjectsObjectDelete';
+const moduleName = 'ovhManagerPciStoragesObjectStorageObjectsDelete';
 
 angular
   .module(moduleName, [

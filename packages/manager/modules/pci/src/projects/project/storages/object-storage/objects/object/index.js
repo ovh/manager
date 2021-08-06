@@ -16,7 +16,7 @@ import emptyUser from './emptyUser';
 import addUserOnObject from './object/addUser';
 import emptyUserObject from './object/emptyUser';
 
-const moduleName = 'ovhManagerPciStoragesObjectsObjectObject';
+const moduleName = 'ovhManagerPciStoragesObjectStorageObjectsObject';
 
 angular
   .module(moduleName, [

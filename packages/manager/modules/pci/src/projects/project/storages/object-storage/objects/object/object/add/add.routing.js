@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'pci.projects.project.storages.objects.objects.object.add',
+    'pci.projects.project.storages.object-storage.objects.object.add',
     {
       url: '/new',
       views: {

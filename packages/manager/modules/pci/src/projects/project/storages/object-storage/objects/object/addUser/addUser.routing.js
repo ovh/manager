@@ -2,7 +2,7 @@ import find from 'lodash/find';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'pci.projects.project.storages.objects.objects.addUser',
+    'pci.projects.project.storages.object-storage.objects.addUser',
     {
       url: '/addUser/?containerId',
       views: {
@@ -18,7 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
             availableUsers.length === 0
               ? {
                   state:
-                    'pci.projects.project.storages.objects.objects.emptyUser',
+                    'pci.projects.project.storages.object-storage.objects.emptyUser',
                 }
               : false,
           ),

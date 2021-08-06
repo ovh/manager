@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'pci.projects.project.storages.objects.objects.object.delete',
+    'pci.projects.project.storages.object-storage.objects.object.delete',
     {
       url: '/:objectId/delete',
       views: {

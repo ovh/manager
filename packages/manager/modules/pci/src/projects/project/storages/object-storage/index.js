@@ -13,7 +13,7 @@ import component from './object-storage.component';
 import routing from './object-storage.routing';
 import service from './object-storage.service';
 
-const moduleName = 'ovhManagerPciStoragesObjectStorageContainers';
+const moduleName = 'ovhManagerPciStoragesObjectStorage';
 
 angular
   .module(moduleName, [

@@ -38,7 +38,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
       {
         id: 'object-storage',
         options: {
-          state: 'pci.projects.project.storages.objects',
+          state: 'pci.projects.project.storages.object-storage',
         },
         title: 'Object Storage',
       },

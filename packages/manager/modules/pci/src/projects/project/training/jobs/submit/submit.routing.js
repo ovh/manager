@@ -17,7 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
       presetImages: /* @ngInject */ (PciProjectTrainingService, projectId) =>
         PciProjectTrainingService.getPresetImages(projectId),
       goToData: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.storages.objects.add', {
+        $state.go('pci.projects.project.storages.object-storage.add', {
           projectId,
         }),
     },

@@ -7,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('pci_notebook_add_title'),
 
       createObjectStorage: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.storages.objects.add', {
+        $state.go('pci.projects.project.storages.object-storage.add', {
           projectId,
         }),
 
