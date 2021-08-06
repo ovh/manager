@@ -25,7 +25,6 @@ export default class PciInstancesAddController {
     coreConfig,
     CucCloudMessage,
     cucUcentsToCurrencyFilter,
-    OvhApiCloudProjectInstance,
     PciProjectsProjectInstanceService,
     atInternet,
   ) {
@@ -34,7 +33,6 @@ export default class PciInstancesAddController {
     this.coreConfig = coreConfig;
     this.CucCloudMessage = CucCloudMessage;
     this.cucUcentsToCurrencyFilter = cucUcentsToCurrencyFilter;
-    this.OvhApiCloudProjectInstance = OvhApiCloudProjectInstance;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
     this.atInternet = atInternet;
   }
