@@ -116,6 +116,11 @@
                         <small
                             data-ng-bind="::task.dateDone | date:'short'"
                         ></small>
+                        <button
+                            type="button"
+                            class="oui-popover-button mb-1"
+                            oui-popover="{{ ::'user_account_contacts_request_error_tooltip' | translate }}"
+                        ></button>
                     </div>
                     <div data-ng-switch-when="refused">
                         <span
