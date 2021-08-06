@@ -820,18 +820,6 @@ class DedicatedCloudService {
     });
   }
 
-  modifyPolicyAccess(serviceName, accessPolicy) {
-    return this.OvhHttp.put('/dedicatedCloud/{serviceName}', {
-      rootPath: 'apiv6',
-      urlParams: {
-        serviceName,
-      },
-      data: {
-        userAccessPolicy: camelCase(accessPolicy),
-      },
-    });
-  }
-
   modifyPolicyLogout(serviceName, logoutPolicy) {
     return this.OvhHttp.put('/dedicatedCloud/{serviceName}', {
       rootPath: 'apiv6',

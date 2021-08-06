@@ -1,6 +1,5 @@
 import angular from 'angular';
 
-import access from './access';
 import add from './add';
 import addKms from './kms/add';
 import datacenterSecurityComponent from '../../components/dedicated-cloud/security';
@@ -17,7 +16,6 @@ const moduleName = 'dedicatedCloudSecurityModule';
 
 angular
   .module(moduleName, [
-    access,
     add,
     addKms,
     datacenterSecurityComponent,
