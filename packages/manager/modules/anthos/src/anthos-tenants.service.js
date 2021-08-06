@@ -1,4 +1,4 @@
-import { GUIDES, ANTHOS_DOCS_NAME } from './anthos.constants';
+import { GUIDES } from './anthos.constants';
 
 export default class AnthosTenantsService {
   /* @ngInject */
@@ -6,30 +6,6 @@ export default class AnthosTenantsService {
     this.$http = $http;
     this.$translate = $translate;
     this.ovhDocUrl = ovhDocUrl;
-    this.initGuides();
-  }
-
-  initGuides() {
-    this.guides = {};
-    this.guides.title = this.$translate.instant('anthos_tenants_guides');
-    this.guides.list = [
-      {
-        name: this.$translate.instant('anthos_tenants_guides_all'),
-        url: this.ovhDocUrl.getDocUrl(ANTHOS_DOCS_NAME),
-        external: true,
-      },
-    ];
-  }
-
-  getGuides(subsidiary) {
-    return {
-      ...this.guides,
-      footer: {
-        name: this.$translate.instant('anthos_tenants_guides_footer'),
-        url: GUIDES[subsidiary] || GUIDES.DEFAULT,
-        external: true,
-      },
-    };
   }
 
   getTenants() {
@@ -40,5 +16,19 @@ export default class AnthosTenantsService {
     return this.$http
       .get(`/dedicated/anthos/tenants/${serviceName}`)
       .then(({ data }) => data);
+  }
+
+  getGuides(ovhSubsidiary) {
+    const guides = {};
+    guides.title = this.$translate.instant('anthos_tenants_guides');
+    guides.list = [
+      {
+        name: this.$translate.instant('anthos_tenants_guides_all'),
+        url: GUIDES[ovhSubsidiary] || GUIDES.DEFAULT,
+        external: true,
+      },
+    ];
+
+    return guides;
   }
 }
