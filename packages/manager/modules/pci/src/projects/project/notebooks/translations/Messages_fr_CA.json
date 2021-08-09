@@ -14,6 +14,7 @@
   "pci_notebook_list_status_RUNNING": "En service",
   "pci_notebook_list_status_STOPPING": "En cours d'extinction",
   "pci_notebook_list_status_STOPPED": "Arrêté",
+  "pci_notebook_list_status_FAILED": "Erreur",
   "pci_notebook_list_access": "Accès",
   "pci_notebook_list_create_notebook": "Créer un notebook",
   "pci_notebook_list_details": "Détails",

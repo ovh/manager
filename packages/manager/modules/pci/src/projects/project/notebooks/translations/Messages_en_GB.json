@@ -21,5 +21,6 @@
   "pci_notebook_list_stop_notebook": "Stop",
   "pci_notebook_list_delete_notebook": "Delete",
   "pci_notebook_list_start_error": "An error has occurred attempting to start the {{notebookName}} notebook: {{message}}",
-  "pci_notebook_list_stop_error": "An error has occurred attempting to stop the {{notebookName}} notebook: {{message}}"
+  "pci_notebook_list_stop_error": "An error has occurred attempting to stop the {{notebookName}} notebook: {{message}}",
+  "pci_notebook_list_status_FAILED": "Error"
 }
