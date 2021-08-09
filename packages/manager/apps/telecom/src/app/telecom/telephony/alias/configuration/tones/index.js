@@ -16,7 +16,6 @@ angular
     'ui.router',
     oldPabx,
   ])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(routing);
 
 export default moduleName;
