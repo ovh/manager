@@ -1,3 +1,12 @@
+## [5.37.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.37.1...@ovh-ux/manager-pci@5.37.2) (2021-08-09)
+
+
+### Bug Fixes
+
+* **quota.increase-request:** display amount of VMs ([#5387](https://github.com/ovh/manager/issues/5387)) ([5fd7801](https://github.com/ovh/manager/commit/5fd780140478fd3231af14e3afc370d97eabd34f))
+
+
+
 ## [5.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.37.0...@ovh-ux/manager-pci@5.37.1) (2021-08-03)
 
 
