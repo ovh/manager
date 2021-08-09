@@ -21,5 +21,5 @@
   "web_paas_service_add_addon_success_user_license": "La modification de votre licences utilisateur a bien été prise en compte. Vous pouvez suivre l’évolution de sa livraison dans votre compte, rubrique <a href='{{orderURL}}'>Mes commandes</a>",
   "web_paas_service_add_addon_fetching_price": "Calcul du prix",
   "web_paas_service_add_addon_storage_info": "Attention, il n'est pas possible de réduire le stockage d'un projet une fois le stockage additionnel commandé.",
-  "web_paas_service_add_addon_environment_info": "Attention, il n'est pas possible de réduire le nombre d’environnements de test d'un projet une fois l’environnements additionnel commandé."
+  "web_paas_service_add_addon_environment_info": "Attention, il n'est pas possible de réduire le nombre d’environnements de test d'un projet une fois l’environnement additionnel commandé."
 }
