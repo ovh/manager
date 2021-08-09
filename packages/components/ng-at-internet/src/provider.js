@@ -279,6 +279,10 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
         config.enabled = state;
       },
 
+      clearTrackQueue() {
+        trackQueue.splice(0, trackQueue.length);
+      },
+
       processTrackQueue() {
         const self = this;
         while (trackQueue.length) {
@@ -286,6 +290,7 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
           self[type](data);
         }
       },
+
       initTag() {
         atinternetTag = new $window.ATInternet.Tracker.Tag({
           ClientSideUserId: { clientSideMode: 'always' },
