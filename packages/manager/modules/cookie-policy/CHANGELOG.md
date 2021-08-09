@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cookie-policy@1.0.4...@ovh-ux/manager-cookie-policy@1.1.0) (2021-08-09)
+
+
+### Features
+
+* **tracking:** cookie banner tracking ([4ba2b29](https://github.com/ovh/manager/commit/4ba2b293a07489dd5e5b1211d20aa4ed9b95f0fa))
+
+
+
 ## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-cookie-policy@1.0.3...@ovh-ux/manager-cookie-policy@1.0.4) (2021-06-29)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-at-internet-configuration",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "private": true,
   "description": "OVHcloud manager atInternet common configuration",
   "repository": {
@@ -14,7 +14,7 @@
   "dependencies": {},
   "peerDependencies": {
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
-    "@ovh-ux/ng-at-internet": "^5.6.3",
+    "@ovh-ux/ng-at-internet": "^5.7.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.1.2",
     "angular": "^1.7.5"
   }

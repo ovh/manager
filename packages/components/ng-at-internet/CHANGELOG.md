@@ -1,3 +1,12 @@
+# [5.7.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.6.3...@ovh-ux/ng-at-internet@5.7.0) (2021-08-09)
+
+
+### Features
+
+* **provider:** add `clearTrackQueue` method ([cd2de0f](https://github.com/ovh/manager/commit/cd2de0f07b17d17b25fe0b3d8df1fab535b460e1))
+
+
+
 ## [5.6.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.6.2...@ovh-ux/ng-at-internet@5.6.3) (2021-06-29)
 
 
