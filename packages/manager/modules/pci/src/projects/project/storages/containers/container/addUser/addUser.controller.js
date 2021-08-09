@@ -29,10 +29,6 @@ export default class PciBlockStorageDetailsAddUserController {
     this.addUserStep = 0;
   }
 
-  onUserSelect() {
-    this.addUserStep = 1;
-  }
-
   addUserStorage() {
     if (this.addUserStep < 1) {
       this.addUserStep += 1;

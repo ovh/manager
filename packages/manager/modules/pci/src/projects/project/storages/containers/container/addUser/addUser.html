@@ -8,10 +8,7 @@
             <p
                 data-translate="pci_projects_project_storages_containers_container_addUser_description_step_0"
             ></p>
-            <oui-radio-group
-                model="$ctrl.selectedUser"
-                data-on-change="$ctrl.onUserSelect()"
-            >
+            <oui-radio-group model="$ctrl.selectedUser">
                 <oui-radio
                     ng-repeat="user in $ctrl.availableUsers track by $index"
                     value="user.id"
@@ -69,7 +66,9 @@
             data-on-click="$ctrl.addUserStorage()"
             data-disabled="$ctrl.isLoading || !$ctrl.selectedUser"
             ><span
-                data-translate="pci_projects_project_storages_containers_container_addUser_submit_label"
+                data-translate="{{
+                    'pci_projects_project_storages_containers_container_addUser_' + ($ctrl.addUserStep === 0 ? 'next' : 'submit') + '_label'
+                }}"
             ></span>
         </oui-button>
     </div>

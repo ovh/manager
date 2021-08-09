@@ -6,6 +6,7 @@
   "pci_projects_project_storages_containers_container_addUser_description_step_1": "Définissez le rôle de votre utilisateur sur le conteneur {{container}}.",
 
   "pci_projects_project_storages_containers_container_addUser_submit_label": "Confirmer",
+  "pci_projects_project_storages_containers_container_addUser_next_label": "Suivant",
   "pci_projects_project_storages_containers_container_addUser_cancel_label": "Annuler",
   "pci_projects_project_storages_containers_container_addUser_back_label": "Retour",
 
