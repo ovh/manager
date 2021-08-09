@@ -1,8 +1,8 @@
 <div data-ui-view>
     <div>
         <oui-header
-            data-heading="{{:: 'pci_projects_project_storages_containers_' + ($ctrl.archive ? 'archive' : 'object') + '_title' | translate }}"
-            description="{{:: 'pci_projects_project_storages_containers_object_description' | translate}}"
+            data-ng-if="$ctrl.archive"
+            data-heading="{{:: 'pci_projects_project_storages_containers_archive_title' | translate }}"
             class="mb-3"
         >
             <oui-guide-menu
@@ -72,11 +72,13 @@
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_offer_label' | translate"
-                data-property="offer"
                 data-type="string"
                 data-sortable
                 data-filterable
             >
+                <span
+                    data-ng-bind=":: 'pci_projects_project_storages_containers_offer_' + ($row.isHighPerfStorage ? 'high_performance' : 'swift') | translate"
+                ></span>
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title=":: 'pci_projects_project_storages_containers_storedObjects_label' | translate"

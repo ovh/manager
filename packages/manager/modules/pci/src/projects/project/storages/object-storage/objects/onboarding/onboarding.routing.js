@@ -18,12 +18,9 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: () => null, // Hide breadcrumb
         addObjectStorage: /* @ngInject */ ($state, projectId) => () =>
-          $state.go(
-            'pci.projects.project.storages.object-storage.objects.add',
-            {
-              projectId,
-            },
-          ),
+          $state.go('pci.projects.project.storages.object-storage.add', {
+            projectId,
+          }),
       },
     },
   );

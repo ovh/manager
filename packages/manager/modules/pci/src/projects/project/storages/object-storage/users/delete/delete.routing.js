@@ -25,6 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
           PciStoragesObjectStorageService,
         ) =>
           PciStoragesObjectStorageService.getS3Credentials(projectId, userId),
+        goBack: /* @ngInject */ (goToUsers) => goToUsers,
         breadcrumb: () => null,
       },
     },

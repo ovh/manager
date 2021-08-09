@@ -297,7 +297,7 @@ export default class PciStoragesContainersService {
     });
   }
 
-  deleteContainer(projectId, container, isHighPerfStorage) {
+  deleteContainer(projectId, container) {
     const promises = reduce(
       container.objects,
       (result, object) => [
@@ -308,7 +308,7 @@ export default class PciStoragesContainersService {
     );
 
     return this.$q.all(promises).then(() => {
-      if (isHighPerfStorage) {
+      if (container.isHighPerfStorage) {
         return this.$http.delete(
           `/cloud/project/${projectId}/region/${container.region}/storage/${container.name}`,
         );
@@ -405,7 +405,18 @@ export default class PciStoragesContainersService {
       });
   }
 
-  deleteObject(projectId, container, object) {
+  deleteHighPerfObject(projectId, containerId, objectKey) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/region/${OPENIO_DEFAULT_REGION}/storage/${containerId}/object/${objectKey}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteObject(projectId, container, object, isHighPerfStorage) {
+    if (isHighPerfStorage) {
+      return this.deleteHighPerfObject(projectId, container.id, object.name);
+    }
     return this.requestContainer(projectId, container, {
       method: 'DELETE',
       file: object.name,

@@ -17,6 +17,7 @@ export default class PciBlockStorageContainersContainerObjectDeleteController {
       this.projectId,
       this.container,
       this.object,
+      this.container.isHighPerfStorage,
     )
       .then(() =>
         this.goBack(

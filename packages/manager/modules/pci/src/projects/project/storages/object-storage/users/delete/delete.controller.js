@@ -20,7 +20,7 @@ export default class PciStoragesContainersUsersDeleteController {
       this.credentials,
     )
       .then(() =>
-        this.goToUsers(
+        this.goBack(
           this.$translate.instant(
             'pci_projects_project_storages_containers_users_delete_success',
             {
@@ -30,7 +30,7 @@ export default class PciStoragesContainersUsersDeleteController {
         ),
       )
       .catch((error) =>
-        this.goToUsers(
+        this.goBack(
           this.$translate.instant(
             'pci_projects_project_storages_containers_users_delete_error',
             {

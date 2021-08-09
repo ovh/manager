@@ -47,7 +47,9 @@
             data-size="l"
             data-on-click="$ctrl.stepBack()"
         >
-            <span data-translate="Back"></span>
+            <span
+                data-translate="pci_projects_project_storages_containers_container_addUser_back_label"
+            ></span>
         </oui-button>
         <oui-button
             data-variant="secondary"
@@ -65,7 +67,7 @@
             data-type="submit"
             data-size="l"
             data-on-click="$ctrl.addUserStorage()"
-            data-disabled="$ctrl.isLoading"
+            data-disabled="$ctrl.isLoading || !$ctrl.selectedUser"
             ><span
                 data-translate="pci_projects_project_storages_containers_container_addUser_submit_label"
             ></span>

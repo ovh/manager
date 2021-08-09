@@ -1,10 +1,9 @@
 <div data-ui-view>
     <oui-header
         class="mb-3"
-        data-heading="{{:: 'pci_projects_project_storages_containers_title' | translate }}"
-        data-description="{{::$ctrl.project.projectId }}"
+        data-heading="{{:: 'pci_projects_project_storages_containers_object_title' | translate }}"
+        description="{{:: 'pci_projects_project_storages_containers_object_description' | translate }}"
     >
-        <div data-ovh-alert="{{ $ctrl.alerts.dashboard }}"></div>
         <oui-guide-menu
             data-text="{{:: 'pci_project_guides_header' | translate }}"
         >
@@ -14,6 +13,7 @@
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
+
         <oui-header-tabs>
             <oui-header-tabs-item
                 data-href="{{:: $ctrl.containersLink }}"

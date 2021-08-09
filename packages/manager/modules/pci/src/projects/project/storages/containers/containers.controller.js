@@ -1,3 +1,4 @@
+import find from 'lodash/find';
 import { getCriteria } from '../../project.utils';
 
 export default class PciStoragesContainersController {
@@ -11,9 +12,9 @@ export default class PciStoragesContainersController {
 
   $onInit() {
     this.loadMessages();
-
     this.criteria = getCriteria('id', this.containerId);
     this.publicToggleLoading = false;
+    this.hasHighPerformanceStorage = this.hasHighPerformanceStorage();
   }
 
   onPublicToggle(container) {
@@ -54,6 +55,10 @@ export default class PciStoragesContainersController {
         onMessage: () => this.refreshMessages(),
       },
     );
+  }
+
+  hasHighPerformanceStorage() {
+    return find(this.containers, { isHighPerfStorage: true });
   }
 
   refreshMessages() {

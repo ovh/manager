@@ -4,10 +4,10 @@ import template from './delete.html';
 const component = {
   bindings: {
     credentials: '<',
-    userId: '<',
-    user: '<',
+    goBack: '<',
     projectId: '<',
-    goToUsers: '<',
+    user: '<',
+    userId: '<',
   },
   controller,
   template,

@@ -27,10 +27,10 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         objectKey: /* @ngInject */ ($transition$) =>
           $transition$.params().objectKey,
-        availableUsers: /* @ngInject */ ($http, projectId) =>
-          $http
-            .get(`/cloud/project/${projectId}/user`)
-            .then(({ data }) => data),
+        availableUsers: /* @ngInject */ (
+          PciStoragesObjectStorageService,
+          projectId,
+        ) => PciStoragesObjectStorageService.getS3Users(projectId),
         goToUsersAndRoles: /* @ngInject */ ($state) => () =>
           $state.go('pci.projects.project.users'),
         goBack: /* @ngInject */ (goToStorageContainer) => goToStorageContainer,

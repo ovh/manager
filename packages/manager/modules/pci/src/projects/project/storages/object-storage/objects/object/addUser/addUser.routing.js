@@ -26,10 +26,10 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         containerId: /* @ngInject */ ($transition$) =>
           $transition$.params().containerId,
-        availableUsers: /* @ngInject */ ($http, projectId) =>
-          $http
-            .get(`/cloud/project/${projectId}/user`)
-            .then(({ data }) => data),
+        availableUsers: /* @ngInject */ (
+          PciStoragesObjectStorageService,
+          projectId,
+        ) => PciStoragesObjectStorageService.getS3Users(projectId),
         container: /* @ngInject */ (
           PciProjectStorageContainersService,
           projectId,

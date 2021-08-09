@@ -55,7 +55,7 @@ export default /* @ngInject */ ($stateProvider) => {
           promise.then(() =>
             CucCloudMessage[type](
               message,
-              'pci.projects.project.storages.object-storage.objects',
+              'pci.projects.project.storages.containers',
             ),
           );
         }

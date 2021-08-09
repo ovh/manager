@@ -16,7 +16,7 @@ export default class PciStoragesContainersUsersController {
 
   loadMessages() {
     this.messageHandler = this.CucCloudMessage.subscribe(
-      'pci.projects.project.storages.object.users',
+      'pci.projects.project.storages.object-storage.users',
       {
         onMessage: () => this.refreshMessages(),
       },
@@ -48,7 +48,7 @@ export default class PciStoragesContainersUsersController {
                 user: user.username,
               },
             ),
-            'pci.projects.project.storages.object.users',
+            'pci.projects.project.storages.object-storage.users',
           ),
         );
       })
@@ -60,7 +60,7 @@ export default class PciStoragesContainersUsersController {
               message: err.data?.message || null,
             },
           ),
-          'pci.projects.project.storages.object.users',
+          'pci.projects.project.storages.object-storage.users',
         ),
       );
   }

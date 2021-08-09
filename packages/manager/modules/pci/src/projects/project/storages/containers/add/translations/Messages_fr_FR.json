@@ -16,7 +16,7 @@
   "pci_projects_project_storages_containers_add_type_private_label": "Privé",
   "pci_projects_project_storages_containers_add_type_private_description": "Facturation, informations légales, logs. Archivez simplement et selon vos usages.",
   "pci_projects_project_storages_containers_add_name_title": "Nom du conteneur",
-  "pci_projects_project_storages_containers_add_pattern_help_storage-s3-high-perf": "Le longueur du nom du conteneur doit être comprise entre 3 et 63, doit commencer et se terminer par des caractères alphanumériques minuscules (de a à z et de 0 à 9) et peut comporter les signes de ponctuation suivants : « . » et « - ».",
+  "pci_projects_project_storages_containers_add_pattern_help_storage-s3-high-perf": "Le nom du conteneur doit comporter entre 3 et 63 caractères, doit commencer et se terminer par des caractères alphanumériques minuscules (de a à z et de 0 à 9) et peut comporter les signes de ponctuation suivants : « . » et « - ».",
   "pci_projects_project_storages_containers_add_submit_title": "Validation",
   "pci_projects_project_storages_containers_add_submit_label": "Ajouter le conteneur",
   "pci_projects_project_storages_containers_add_cancel_label": "Annuler",

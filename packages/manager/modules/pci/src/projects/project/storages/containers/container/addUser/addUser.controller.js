@@ -20,6 +20,9 @@ export default class PciBlockStorageDetailsAddUserController {
     this.selectedUser = null;
     this.selectedRole = null;
     this.addUserStep = 0;
+    if (this.availableUsers.length === 1) {
+      this.selectedUser = this.availableUsers[0].id;
+    }
   }
 
   stepBack() {
@@ -51,7 +54,9 @@ export default class PciBlockStorageDetailsAddUserController {
             {
               container: this.container.name,
               name: this.selectedUser,
-              role: this.selectedRole,
+              role: this.$translate.instant(
+                `pci_projects_project_storages_containers_container_addUser_right_${this.selectedRole}`,
+              ),
             },
           ),
         ),

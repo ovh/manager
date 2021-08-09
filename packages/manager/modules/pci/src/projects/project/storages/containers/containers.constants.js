@@ -65,7 +65,7 @@ export const X_STORAGE_POLICY = 'x-storage-policy';
 export const X_CONTAINER_READ = 'x-container-read';
 export const X_CONTAINER_META_WEB_LISTINGS = 'x-container-meta-web-listings';
 export const X_CONTAINER_READ_PUBLIC_VALUE = '.r:*,.rlistings';
-export const OPENIO_DEFAULT_REGION = 'PREPROD.SBG';
+export const OPENIO_DEFAULT_REGION = 'SBG';
 
 export const OPENIO_PRESIGN_EXPIRE = 3600;
 
