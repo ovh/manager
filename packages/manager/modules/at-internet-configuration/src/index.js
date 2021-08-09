@@ -43,7 +43,21 @@ angular
     },
   )
   .run(
-    /* @ngInject */ ($cookies, atInternet, $rootScope) => {
+    /* @ngInject */ ($cookies, $rootScope, $window, atInternet) => {
+      $rootScope.$on('cookie-policy:decline', () => {
+        // initialize atInternet without cookies (enabled === false) and empty tracking queue
+        atInternet.setEnabled(trackingEnabled);
+        atInternet.clearTrackQueue();
+        $window.ATInternet.Utils.consentReceived(false); // disable cookie creation
+        atInternet.initTag();
+        atInternet.trackClick({
+          type: 'action',
+          name: 'cookie-banner-manager::decline',
+        });
+        // disable atInternet
+        atInternet.setEnabled(false);
+      });
+
       $rootScope.$on('cookie-policy:consent', () => {
         atInternet.setEnabled(trackingEnabled);
         if (trackingEnabled) {
@@ -65,6 +79,10 @@ angular
                 });
               }
             }
+            atInternet.trackClick({
+              type: 'action',
+              name: 'cookie-banner-manager::accept',
+            });
           } catch (e) {
             // nothing to do.
           }

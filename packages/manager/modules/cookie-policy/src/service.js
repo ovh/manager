@@ -35,11 +35,17 @@ export default class CookiePolicyService {
     if (consent) {
       // claim consent
       this.dispatchConsent();
+    } else {
+      this.dispatchDecline();
     }
   }
 
   dispatchConsent() {
     this.$rootScope.$broadcast('cookie-policy:consent');
+  }
+
+  dispatchDecline() {
+    this.$rootScope.$broadcast('cookie-policy:decline');
   }
 
   hasPrivacyCenterCookie() {
