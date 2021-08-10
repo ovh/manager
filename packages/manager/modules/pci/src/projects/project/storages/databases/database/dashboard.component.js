@@ -11,6 +11,7 @@ export default {
     guideUrl: '<',
     usersLink: '<',
     logsLink: '<',
+    metricsLink: '<',
   },
   template,
 };
