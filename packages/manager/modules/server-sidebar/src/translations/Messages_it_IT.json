@@ -69,5 +69,7 @@
   "server_sidebar_item_domain_bulk_title": "Azioni massive",
   "server_sidebar_item_web_paas_title": "Web PaaS",
   "server_sidebar_item_web_paas_all_accounts_title": "Tutti i progetti",
-  "server_sidebar_order_item_web_paas_title": "Web PaaS"
+  "server_sidebar_order_item_web_paas_title": "Web PaaS",
+  "server_sidebar_item_storage_backup_title": "Storage e backup",
+  "server_sidebar_item_enterprise_file_storage_title": "Enterprise File Storage"
 }
