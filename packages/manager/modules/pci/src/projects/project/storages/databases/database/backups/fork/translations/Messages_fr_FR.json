@@ -1,0 +1,6 @@
+{
+  "pci_databases_backups_fork_title": "Fork backup",
+  "pci_databases_backups_fork_description": "Do you want to fork your backup: {{name}} ?",
+  "pci_databases_backups_fork_confirm": "Confirm",
+  "pci_databases_backups_fork_cancel": "Cancel"
+}
