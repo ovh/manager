@@ -10,6 +10,7 @@ export default {
     generalInformationLink: '<',
     guideUrl: '<',
     usersLink: '<',
+    logsLink: '<',
   },
   template,
 };
