@@ -692,7 +692,7 @@
   "server_configuration_installation_resume_hardwareRaid": "Hardware RAID:",
   "server_configuration_installation_form_rtm": "Real Time Monitoring (RTM):",
   "server_configuration_installation_form_rtm_explain": "RTM ermöglicht die Überwachung Ihres Servers und der Aktivität seiner Komponenten (Prozessor, Arbeitsspeicher, Festplattenpartition...). Wenn Sie die Option aktivieren, wird der RTM-Agent standardmäßig installiert:",
-  "server_configuration_installation_form_rtm_explain_link_name": "Klicken Sie hier, um die Dokumentation dazu zu lesen",
+  "server_configuration_installation_form_rtm_explain_link_name": "Klicken Sie hier, um die Dokumentation dazu zu lesen.",
   "server_configuration_installation_form_rtm_deactivated": "Deaktiviert",
   "server_configuration_installation_form_rtm_activated": "Aktiviert",
   "server_configuration_installation_form_option": "Installationsoptionen:",
