@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.3.0...@ovh-ux/manager-at-internet-configuration@1.3.1) (2021-08-10)
+
+
+### Bug Fixes
+
+* **cookie-policy:** avoid sending events outside of modal consent ([#5397](https://github.com/ovh/manager/issues/5397)) ([1e075c2](https://github.com/ovh/manager/commit/1e075c222e2e4be93d9f8ea3f4f288195b38bc2a))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.2.1...@ovh-ux/manager-at-internet-configuration@1.3.0) (2021-08-09)
 
 
