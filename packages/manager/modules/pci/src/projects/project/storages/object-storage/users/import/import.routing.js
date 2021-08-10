@@ -18,6 +18,10 @@ export default /* @ngInject */ ($stateProvider) => {
           find(userList, { id: parseInt(userId, 10) }),
         goBack: /* @ngInject */ (goToUsers) => goToUsers,
       },
+      atInternet: {
+        rename:
+          'pci::projects::project::storages::objects::s3-policies-users::import-file',
+      },
     },
   );
 };

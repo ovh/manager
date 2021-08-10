@@ -17,10 +17,23 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
       resolve: {
         breadcrumb: () => null, // Hide breadcrumb
-        addObjectStorage: /* @ngInject */ ($state, projectId) => () =>
-          $state.go('pci.projects.project.storages.object-storage.add', {
+        addObjectStorage: /* @ngInject */ (
+          $state,
+          projectId,
+          atInternet,
+          trackingPrefix,
+        ) => () => {
+          atInternet.trackClick({
+            name: `${trackingPrefix}onboarding::add`,
+            type: 'action',
+          });
+          return $state.go('pci.projects.project.storages.object-storage.add', {
             projectId,
-          }),
+          });
+        },
+      },
+      atInternet: {
+        rename: 'pci::projects::project::storages::objects::onboarding',
       },
     },
   );

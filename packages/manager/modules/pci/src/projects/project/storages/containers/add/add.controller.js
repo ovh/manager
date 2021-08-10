@@ -15,11 +15,13 @@ export default class PciStoragesContainersAddController {
   /* @ngInject */
   constructor(
     $translate,
+    atInternet,
     CucCloudMessage,
     PciProjectStorageBlockService,
     PciProjectStorageContainersService,
   ) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectStorageBlockService = PciProjectStorageBlockService;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
@@ -97,6 +99,13 @@ export default class PciStoragesContainersAddController {
   }
 
   add() {
+    this.atInternet.trackClick({
+      name: `storage_container_create_${
+        this.container.offer === 'storage' ? 'standard' : this.container.offer
+      }_${this.container.region?.datacenterLocation}_${this.container
+        .containerType || 'standard'}`,
+      type: 'action',
+    });
     this.isLoading = true;
     return this.PciProjectStorageContainersService.addContainer(
       this.projectId,
@@ -124,6 +133,14 @@ export default class PciStoragesContainersAddController {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  cancel() {
+    this.atInternet.trackClick({
+      name: 'storage_container_cancel_creation',
+      type: 'action',
+    });
+    return this.cancelCreate();
   }
 
   getFormatedPrice(price) {

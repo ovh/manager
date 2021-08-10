@@ -44,16 +44,24 @@ export default /* @ngInject */ ($stateProvider) => {
             containerId: container.id,
           },
         ),
-      goToAddUserContainer: /* @ngInject */ ($state, projectId) => (
-        container,
-      ) =>
-        $state.go(
+      goToAddUserContainer: /* @ngInject */ (
+        $state,
+        projectId,
+        atInternet,
+        trackingPrefix,
+      ) => (container) => {
+        atInternet.trackClick({
+          name: `${trackingPrefix}add-user`,
+          type: 'action',
+        });
+        return $state.go(
           'pci.projects.project.storages.object-storage.objects.addUser',
           {
             projectId,
             containerId: container.id,
           },
-        ),
+        );
+      },
       containerLink: /* @ngInject */ ($state, projectId) => (container) =>
         $state.href(
           'pci.projects.project.storages.object-storage.objects.object',
@@ -67,6 +75,9 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant(
           'pci_projects_project_storages_containers_object_title',
         ),
+    },
+    atInternet: {
+      rename: 'pci::projects::project::storages::objects',
     },
   });
 };

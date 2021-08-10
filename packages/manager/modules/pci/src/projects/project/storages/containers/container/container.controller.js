@@ -8,12 +8,14 @@ export default class PciStoragesContainersContainerController {
     $q,
     $translate,
     $window,
+    atInternet,
     CucCloudMessage,
     PciProjectStorageContainersService,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
 
@@ -45,6 +47,10 @@ export default class PciStoragesContainersContainerController {
   }
 
   downloadObject(object) {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}object::download-file`,
+      type: 'action',
+    });
     let downloadPromise = null;
     if (object.isHighPerfStorage) {
       downloadPromise = this.downloadHighPerfObject(

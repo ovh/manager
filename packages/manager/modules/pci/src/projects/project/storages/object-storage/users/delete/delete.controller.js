@@ -2,9 +2,10 @@ import get from 'lodash/get';
 
 export default class PciStoragesContainersUsersDeleteController {
   /* @ngInject */
-  constructor($http, $translate, PciStoragesObjectStorageService) {
+  constructor($http, $translate, atInternet, PciStoragesObjectStorageService) {
     this.$http = $http;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.PciStoragesObjectStorageService = PciStoragesObjectStorageService;
   }
 
@@ -13,6 +14,11 @@ export default class PciStoragesContainersUsersDeleteController {
   }
 
   delete() {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}s3-policies-users::delete::confirm`,
+      type: 'action',
+    });
+
     this.isDeleting = true;
     return this.PciStoragesObjectStorageService.removeAllCredentials(
       this.projectId,
@@ -43,5 +49,13 @@ export default class PciStoragesContainersUsersDeleteController {
       .finally(() => {
         this.isDeleting = false;
       });
+  }
+
+  cancel() {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}s3-policies-users::delete::cancel`,
+      type: 'action',
+    });
+    return this.goBack();
   }
 }

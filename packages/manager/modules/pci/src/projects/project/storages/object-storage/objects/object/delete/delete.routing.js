@@ -31,6 +31,9 @@ export default /* @ngInject */ ($stateProvider) => {
           goToStorageContainers,
         breadcrumb: () => null,
       },
+      atInternet: {
+        rename: 'pci::projects::project::storages::objects::delete',
+      },
     },
   );
 };

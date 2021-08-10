@@ -32,17 +32,27 @@ export default /* @ngInject */ ($stateProvider) => {
             },
           ),
 
-        deleteObject: /* @ngInject */ ($state, projectId, containerId) => (
-          object,
-        ) =>
-          $state.go(
+        deleteObject: /* @ngInject */ (
+          $state,
+          atInternet,
+          projectId,
+          containerId,
+          trackingPrefix,
+        ) => (object) => {
+          atInternet.trackClick({
+            name: `${trackingPrefix}object::delete`,
+            type: 'action',
+          });
+
+          return $state.go(
             'pci.projects.project.storages.object-storage.objects.object.delete',
             {
               projectId,
               containerId,
               objectId: object.name,
             },
-          ),
+          );
+        },
         goToAddUserOnObject: /* @ngInject */ ($state, containerId) => (
           object,
         ) =>
@@ -87,6 +97,9 @@ export default /* @ngInject */ ($stateProvider) => {
         refresh: /* @ngInject */ (goToStorageContainer) => goToStorageContainer,
 
         breadcrumb: /* @ngInject */ (container) => container.name,
+      },
+      atInternet: {
+        rename: 'pci::projects::project::storages::objects::object',
       },
     },
   );

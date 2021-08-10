@@ -11,5 +11,6 @@ export default {
     goToDeleteUser: '<',
     goToUsersAndRoles: '<',
     goToUsers: '<',
+    trackingPrefix: '<',
   },
 };

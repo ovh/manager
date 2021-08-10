@@ -5,8 +5,9 @@ import { GUIDES } from './onboarding.constants';
 
 export default class PciStorageObjectsOnboardingController {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, atInternet) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -27,5 +28,12 @@ export default class PciStorageObjectsOnboardingController {
       ],
       [],
     );
+  }
+
+  onDocumentationClick(guide) {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}onboarding::documentation::${guide.id}`,
+      type: 'action',
+    });
   }
 }

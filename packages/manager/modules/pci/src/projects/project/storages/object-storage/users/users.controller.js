@@ -4,8 +4,14 @@ const { saveAs } = require('file-saver');
 
 export default class PciStoragesContainersUsersController {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, PciStoragesObjectStorageService) {
+  constructor(
+    $translate,
+    atInternet,
+    CucCloudMessage,
+    PciStoragesObjectStorageService,
+  ) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.PciStoragesObjectStorageService = PciStoragesObjectStorageService;
   }
@@ -28,6 +34,11 @@ export default class PciStoragesContainersUsersController {
   }
 
   downloadJson(user) {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}s3-policies-users::download-json`,
+      type: 'action',
+    });
+
     return this.PciStoragesObjectStorageService.getUserStoragePolicy(
       this.projectId,
       user.id,

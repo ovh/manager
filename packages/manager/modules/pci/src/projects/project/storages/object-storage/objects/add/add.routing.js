@@ -32,14 +32,17 @@ export default /* @ngInject */ ($stateProvider) => {
           );
         }),
       goBack: /* @ngInject */ (goToStorageContainers) => goToStorageContainers,
-      cancelLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.storages.object-storage', {
+      cancelCreate: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.storages.object-storage', {
           projectId,
         }),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant(
           'pci_projects_project_storages_containers_add_title',
         ),
+    },
+    atInternet: {
+      rename: 'pci::projects::project::storages::objects::add',
     },
   });
 };

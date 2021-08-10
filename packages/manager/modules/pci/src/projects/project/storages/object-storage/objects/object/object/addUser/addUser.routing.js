@@ -36,6 +36,9 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack: /* @ngInject */ (goToStorageContainer) => goToStorageContainer,
         breadcrumb: () => null,
       },
+      atInternet: {
+        rename: 'pci::projects::project::storages::objects::object::add-user',
+      },
     },
   );
 };
