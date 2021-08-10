@@ -38,6 +38,11 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      goToManagerUsers: /* @ngInject */ ($state, databaseId, projectId) => () =>
+        $state.go('pci.projects.project.storages.databases.dashboard.users', {
+          projectId,
+          databaseId,
+        }),
       goToDeleteDatabase: /* @ngInject */ ($state, database, projectId) => () =>
         $state.go(
           'pci.projects.project.storages.databases.dashboard.general-information.delete',
@@ -174,6 +179,8 @@ export default /* @ngInject */ ($stateProvider) => {
           }
         });
       },
+      users: /* @ngInject */ (DatabaseService, database, projectId) =>
+        DatabaseService.getUsers(projectId, database.engine, database.id),
       stopPollingDatabaseStatus: /* @ngInject */ (
         DatabaseService,
         databaseId,
