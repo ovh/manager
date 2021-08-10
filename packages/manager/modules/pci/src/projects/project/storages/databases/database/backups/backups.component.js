@@ -7,6 +7,7 @@ export default {
     database: '<',
     projectId: '<',
     goToRestore: '<',
+    goToFork: '<',
     refreshBackups: '<',
     trackDatabases: '<',
   },
