@@ -48,7 +48,7 @@ angular
               $cookies.put('atuserid', atuserid);
             }
 
-            cookiePolicy.consent(consent);
+            cookiePolicy.consent(consent, true);
           });
       }
     },

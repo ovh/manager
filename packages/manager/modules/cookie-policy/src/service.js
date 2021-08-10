@@ -29,23 +29,27 @@ export default class CookiePolicyService {
     }
   }
 
-  consent(consent = false) {
+  consent(consent = false, fromModal = false) {
     // register manager consent in cookie
     this.writeManagerTrackingConsent(consent);
     if (consent) {
       // claim consent
-      this.dispatchConsent();
+      this.dispatchConsent(fromModal);
     } else {
-      this.dispatchDecline();
+      this.dispatchDecline(fromModal);
     }
   }
 
-  dispatchConsent() {
-    this.$rootScope.$broadcast('cookie-policy:consent');
+  dispatchConsent(fromModal = false) {
+    this.$rootScope.$broadcast('cookie-policy:consent', {
+      fromModal,
+    });
   }
 
-  dispatchDecline() {
-    this.$rootScope.$broadcast('cookie-policy:decline');
+  dispatchDecline(fromModal = false) {
+    this.$rootScope.$broadcast('cookie-policy:decline', {
+      fromModal,
+    });
   }
 
   hasPrivacyCenterCookie() {
