@@ -7,6 +7,7 @@ import '@ovh-ux/ui-kit';
 import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
 
 import add from './add';
+import fork from './fork';
 import component from './databases.component';
 import database from './database';
 import deteleDatabase from './delete';
@@ -23,6 +24,7 @@ const moduleName = 'ovhManagerPciStoragesDatabases';
 angular
   .module(moduleName, [
     add,
+    fork,
     database,
     deteleDatabase,
     labs,
