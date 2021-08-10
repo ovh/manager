@@ -44,50 +44,62 @@ angular
   )
   .run(
     /* @ngInject */ ($cookies, $rootScope, $window, atInternet) => {
-      $rootScope.$on('cookie-policy:decline', () => {
-        // initialize atInternet without cookies (enabled === false) and empty tracking queue
-        atInternet.setEnabled(trackingEnabled);
-        atInternet.clearTrackQueue();
-        $window.ATInternet.Utils.consentReceived(false); // disable cookie creation
-        atInternet.initTag();
-        atInternet.trackClick({
-          type: 'action',
-          name: 'cookie-banner-manager::decline',
-        });
-        // disable atInternet
-        atInternet.setEnabled(false);
-      });
+      $rootScope.$on(
+        'cookie-policy:decline',
+        (event, { fromModal } = { fromModal: false }) => {
+          // initialize atInternet without cookies (enabled === false) and empty tracking queue
+          atInternet.setEnabled(trackingEnabled);
+          atInternet.clearTrackQueue();
+          if ($window.ATInternet) {
+            $window.ATInternet.Utils.consentReceived(false); // disable cookie creation
+            atInternet.initTag();
+            if (fromModal) {
+              atInternet.trackClick({
+                type: 'action',
+                name: 'cookie-banner-manager::decline',
+              });
+            }
+          }
+          // disable atInternet
+          atInternet.setEnabled(false);
+        },
+      );
 
-      $rootScope.$on('cookie-policy:consent', () => {
-        atInternet.setEnabled(trackingEnabled);
-        if (trackingEnabled) {
-          const cookie = $cookies.get(USER_ID);
-          const tag = atInternet.getTag();
-          try {
-            if (cookie) {
-              tag.clientSideUserId.set(cookie);
-            } else {
-              const value = tag.clientSideUserId.get();
-              tag.clientSideUserId.store();
+      $rootScope.$on(
+        'cookie-policy:consent',
+        (event, { fromModal } = { fromModal: false }) => {
+          atInternet.setEnabled(trackingEnabled);
+          if (trackingEnabled) {
+            const cookie = $cookies.get(USER_ID);
+            const tag = atInternet.getTag();
+            try {
+              if (cookie) {
+                tag.clientSideUserId.set(cookie);
+              } else {
+                const value = tag.clientSideUserId.get();
+                tag.clientSideUserId.store();
 
-              const element = document.getElementById('manager-tms-iframe');
+                const element = document.getElementById('manager-tms-iframe');
 
-              if (element) {
-                element.contentWindow.postMessage({
-                  id: 'ClientUserId',
-                  value,
+                if (element) {
+                  element.contentWindow.postMessage({
+                    id: 'ClientUserId',
+                    value,
+                  });
+                }
+              }
+              if (fromModal) {
+                atInternet.trackClick({
+                  type: 'action',
+                  name: 'cookie-banner-manager::accept',
                 });
               }
+            } catch (e) {
+              // nothing to do.
             }
-            atInternet.trackClick({
-              type: 'action',
-              name: 'cookie-banner-manager::accept',
-            });
-          } catch (e) {
-            // nothing to do.
           }
-        }
-      });
+        },
+      );
     },
   )
   .run(
