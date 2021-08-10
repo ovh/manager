@@ -14,7 +14,7 @@ export default class RedirectionService {
 
     // if url is an object, then it depends on the ovhSUbsidiary
     if (!isString(url) && keys(url).length) {
-      url = get(url, params.ovhSubsidiary);
+      url = get(url, this.coreConfig.getUser().ovhSubsidiary);
     }
 
     // replace dynamic parts of the url with parameters
