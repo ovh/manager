@@ -49,6 +49,11 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           databaseId,
         }),
+      logsLink: /* @ngInject */ ($state, databaseId, projectId) =>
+        $state.href('pci.projects.project.storages.databases.dashboard.logs', {
+          projectId,
+          databaseId,
+        }),
     },
     redirectTo:
       'pci.projects.project.storages.databases.dashboard.general-information',
