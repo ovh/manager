@@ -1,0 +1,27 @@
+$logger-background-color: white;
+$logger-text-color: black;
+
+.logger {
+  background: $logger-background-color;
+  padding: 0rem 0rem;
+  margin: 0rem 0;
+  color: $logger-text-color;
+  height: 65vh;
+  box-sizing: border-box;
+}
+
+.logger_placeholder {
+  text-align: center;
+  margin-top: 170px;
+  color: #999;
+}
+
+.logger__entry-message {
+  display: inline-block;
+  line-height: 20px;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  letter-spacing: 0.14px;
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 0.85rem;
+}
