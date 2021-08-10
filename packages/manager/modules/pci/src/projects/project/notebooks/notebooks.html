@@ -100,9 +100,9 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                    'oui-badge_success': $row.isRunning(),
-                    'oui-badge_warning': $row.isPending(),
-                    'oui-badge_error': $row.isStopped(),
+                    'oui-badge_success': $row.stateInfo.stateGroup.success,
+                    'oui-badge_warning': $row.stateInfo.stateGroup.warning,
+                    'oui-badge_error': $row.stateInfo.stateGroup.error,
                 }"
             >
                 <span
