@@ -38,4 +38,16 @@ export default class {
     this.trackDatabases('table::options_menu::delete_database');
     this.goToDeleteDatabase(database);
   }
+
+  getCurrentFlavor(database) {
+    this.currentEngine = this.engines.find(
+      (engine) => engine.name === database.engine,
+    );
+    return this.currentEngine.getFlavor(
+      database.version,
+      database.plan,
+      database.region,
+      database.flavor,
+    );
+  }
 }
