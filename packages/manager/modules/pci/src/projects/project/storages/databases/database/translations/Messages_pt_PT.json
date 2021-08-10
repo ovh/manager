@@ -4,5 +4,6 @@
   "pci_databases_dashboard_users_tab_title": "Utilizadores",
   "pci_databases_dashboard_allowed_ips_tab_title": "Endereços IP autorizados",
   "pci_databases_dashboard_logs_tab_title": "Logs",
-  "pci_databases_dashboard_database_processing_state": "Poderá realizar operações no seu cluster quando a sua implementação estiver finalizada."
+  "pci_databases_dashboard_database_processing_state": "Poderá realizar operações no seu cluster quando a sua implementação estiver finalizada.",
+  "pci_databases_dashboard_metrics_tab_title": "Metrics"
 }

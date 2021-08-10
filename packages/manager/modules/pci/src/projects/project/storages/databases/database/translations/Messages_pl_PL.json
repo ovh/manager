@@ -4,5 +4,6 @@
   "pci_databases_dashboard_users_tab_title": "Użytkownicy",
   "pci_databases_dashboard_allowed_ips_tab_title": "Autoryzowane adresy IP",
   "pci_databases_dashboard_logs_tab_title": "Logs",
-  "pci_databases_dashboard_database_processing_state": "Po zakończeniu wdrożenia klastra będziesz mógł  wykonywać na nim operacje."
+  "pci_databases_dashboard_database_processing_state": "Po zakończeniu wdrożenia klastra będziesz mógł  wykonywać na nim operacje.",
+  "pci_databases_dashboard_metrics_tab_title": "Metrics"
 }
