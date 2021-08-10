@@ -71,5 +71,7 @@
   "server_sidebar_item_web_paas_all_accounts_title": "Todos los proyectos",
   "server_sidebar_order_item_web_paas_title": "Web PaaS",
   "server_sidebar_item_anthos_title": "Anthos",
-  "server_sidebar_item_anthos_all_title": "Todos mis despliegues"
+  "server_sidebar_item_anthos_all_title": "Todos mis despliegues",
+  "server_sidebar_item_storage_backup_title": "Almacenamiento y backup",
+  "server_sidebar_item_enterprise_file_storage_title": "Enterprise File Storage"
 }
