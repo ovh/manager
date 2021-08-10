@@ -12,6 +12,7 @@
   "dedicatedCloud_SECURITY_logout_policy_FIRST": "Ersten verbundenen Benutzer abmelden",
   "dedicatedCloud_SECURITY_logout_policy_LAST": "Letzten verbundenen Benutzer abmelden",
   "dedicatedCloud_SECURITY_title_EPCC": "Zur Verbindung mit der Private Cloud berechtigte IPs und Blöcke:",
+  "dedicatedCloud_SECURITY_title_MBM": "IPs und Blöcke, die sich mit Managed Bare Metal verbinden dürfen:",
   "dedicatedCloud_SECURITY_IP_name": "IP-Name",
   "dedicatedCloud_SECURITY_allow": "Recht",
   "dedicatedCloud_SECURITY_description": "Beschreibung",
@@ -42,10 +43,8 @@
   "dedicatedCloud_vm_encryption_kms_add": "Neuen KMS-Server hinzufügen",
   "dedicatedCloud_SECURITY_change_timeout": "Sitzungstimeout ändern",
   "dedicatedCloud_SECURITY_change_nb_simultaneous_connection": "Anzahl der Simultanverbindungen ändern",
-  "dedicatedCloud_SECURITY_access_policy": "Zugangseinstellungen für vCenter bearbeiten",
   "dedicatedCloud_SECURITY_change_logout_policy": "Abmeldeeinstellungen ändern",
   "dedicatedCloud_SECURITY_add_IP": "Neuen IP-Bereich hinzufügen",
   "dedicatedCloud_SECURITY_delete_IP": "IP-Bereiche löschen",
-  "dedicatedCloud_dashboard_loading_error": "Beim Laden der Informationen Ihres Dienstes ist ein Fehler aufgetreten.",
-  "dedicatedCloud_SECURITY_title_MBM": "IPs und Blöcke, die sich mit Managed Bare Metal verbinden dürfen:"
+  "dedicatedCloud_dashboard_loading_error": "Beim Laden der Informationen Ihres Dienstes ist ein Fehler aufgetreten."
 }

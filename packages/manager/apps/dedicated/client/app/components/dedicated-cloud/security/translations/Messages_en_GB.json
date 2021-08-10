@@ -12,6 +12,7 @@
   "dedicatedCloud_SECURITY_logout_policy_FIRST": "Disconnection of the first user connected",
   "dedicatedCloud_SECURITY_logout_policy_LAST": "Disconnection of the last user connected",
   "dedicatedCloud_SECURITY_title_EPCC": "IPs and blocks authorised to connect to the Hosted Private Cloud: ",
+  "dedicatedCloud_SECURITY_title_MBM": "IPs and blocks authorised to connect to Managed Bare Metal:",
   "dedicatedCloud_SECURITY_IP_name": "IP name",
   "dedicatedCloud_SECURITY_allow": "Right",
   "dedicatedCloud_SECURITY_description": "Description",
@@ -42,10 +43,8 @@
   "dedicatedCloud_vm_encryption_kms_add": "Add a new KMS server",
   "dedicatedCloud_SECURITY_change_timeout": "Modify session expiry period",
   "dedicatedCloud_SECURITY_change_nb_simultaneous_connection": "Modify the number of concurrent connections",
-  "dedicatedCloud_SECURITY_access_policy": "Modify vCenter access policy",
   "dedicatedCloud_SECURITY_change_logout_policy": "Modify the disconnection policy",
   "dedicatedCloud_SECURITY_add_IP": "Add a new IP address range",
   "dedicatedCloud_SECURITY_delete_IP": "Delete IP address ranges",
-  "dedicatedCloud_dashboard_loading_error": "An error has occurred loading your service information.",
-  "dedicatedCloud_SECURITY_title_MBM": "IPs and blocks authorised to connect to Managed Bare Metal:"
+  "dedicatedCloud_dashboard_loading_error": "An error has occurred loading your service information."
 }
