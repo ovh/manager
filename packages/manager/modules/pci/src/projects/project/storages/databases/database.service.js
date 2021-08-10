@@ -79,6 +79,18 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
+  deleteNode(projectId, engine, databaseId, flavor, region) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/node`,
+        {
+          flavor,
+          region,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
   addRestrictedIp(projectId, engine, databaseId, ip, description) {
     return this.$http
       .post(
