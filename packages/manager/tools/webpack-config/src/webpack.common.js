@@ -164,7 +164,21 @@ module.exports = (opts) => {
             MiniCssExtractPlugin.loader,
             cacheLoader,
             'css-loader', // translates CSS into CommonJS
-            'sass-loader', // compiles Sass to CSS
+            {
+              loader: 'resolve-url-loader',
+              options: {
+                root: opts.root,
+              },
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+                sassOptions: {
+                  sourceMapContents: false,
+                },
+              },
+            },
           ],
         },
 
