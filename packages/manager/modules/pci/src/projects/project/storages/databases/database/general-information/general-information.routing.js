@@ -22,6 +22,14 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      goToDeleteNode: /* @ngInject */ ($state, databaseId, projectId) => () =>
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.general-information.delete-node',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
       goToAllowedIPs: /* @ngInject */ ($state, databaseId, projectId) => () =>
         $state.go(
           'pci.projects.project.storages.databases.dashboard.allowed-ips',

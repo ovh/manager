@@ -5,6 +5,7 @@
   "pci_databases_general_information_status_label": "Estado",
   "pci_databases_general_information_nodes_label": "Nodos",
   "pci_databases_general_information_add_nodes": "Añadir nodos",
+  "pci_databases_general_information_delete_nodes": "Delete a node",
   "pci_databases_general_information_service_label": "Servicio",
   "pci_databases_general_information_upgrade_version": "Actualización de la versión",
   "pci_databases_general_information_plan_label": "Plan",

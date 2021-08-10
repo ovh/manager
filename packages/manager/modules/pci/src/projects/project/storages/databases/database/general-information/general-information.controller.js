@@ -39,6 +39,11 @@ export default class {
     this.goToAddNode();
   }
 
+  deleteNode() {
+    this.trackDatabases('dashboard::general_information::delete_node');
+    this.goToDeleteNode();
+  }
+
   loadMessages() {
     this.CucCloudMessage.unSubscribe(this.messageContainer);
     this.messageHandler = this.CucCloudMessage.subscribe(

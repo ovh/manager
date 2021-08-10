@@ -1,0 +1,8 @@
+{
+  "pci_databases_general_information_delete_node": "Delete a node",
+  "pci_databases_general_information_delete_node_confirm": "Confirm",
+  "pci_databases_general_information_delete_node_cancel": "Cancel",
+  "pci_databases_general_information_delete_node_description": "You currently have {{nodesCount}} nodes. Do you really want to delete a node ?",
+  "pci_databases_general_information_delete_node_pending": "Your request to delete a node has been processed, and will be effective in a few minutes.",
+  "pci_databases_general_information_delete_node_success": "Your node has been successfully deleted"
+}

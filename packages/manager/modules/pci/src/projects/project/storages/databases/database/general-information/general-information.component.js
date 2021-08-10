@@ -8,6 +8,7 @@ export default {
     database: '<',
     getCurrentPlan: '<',
     goToAddNode: '<',
+    goToDeleteNode: '<',
     goToAllowedIPs: '<',
     goToDeleteDatabase: '<',
     goToEditName: '<',
