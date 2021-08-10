@@ -6,6 +6,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
 
 import addNode from './add-node';
+import deleteNode from './delete-node';
 import component from './general-information.component';
 import deleteDatabase from './delete-database';
 import editName from './edit-name';
@@ -24,6 +25,7 @@ angular
     'oui',
     'ui.router',
     addNode,
+    deleteNode,
     deleteDatabase,
     editName,
     node,
