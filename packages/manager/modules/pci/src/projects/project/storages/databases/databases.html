@@ -45,26 +45,7 @@
                 data-ng-if="$row.isDeleting()"
                 data-ng-bind=":: $value"
             ></span>
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            title=":: 'pci_database_common_id' | translate"
-            data-property="id"
-            data-type="string"
-            data-filterable
-            data-sortable
-        >
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            data-title=":: 'pci_database_list_region' | translate"
-            data-property="region"
-            data-type="string"
-            data-searchable
-            data-filterable
-            data-sortable
-        >
-            <span
-                data-ng-bind=":: $ctrl.ovhManagerRegionService.getTranslatedMacroRegion($row.region)"
-            ></span>
+            <p data-ng-bind=":: $row.id"></p>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_database_list_engine' | translate"
@@ -85,6 +66,35 @@
             data-filterable
         >
             <span data-ng-bind=":: $ctrl.capitalize($row.plan)"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_database_node_type_label' | translate"
+            data-property="plan"
+            data-type="string"
+            data-searchable
+            data-sortable
+            data-filterable
+        >
+            <span
+                data-translate="pci_database_node_type"
+                data-translate-values="{
+                    coreNumber: $ctrl.getCurrentFlavor($row).core,
+                    memorySize: $ctrl.getCurrentFlavor($row).memory,
+                    storageSize: $ctrl.getCurrentFlavor($row).storage
+                }"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_database_list_region' | translate"
+            data-property="region"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+            <span
+                data-ng-bind=":: $ctrl.ovhManagerRegionService.getTranslatedMacroRegion($row.region)"
+            ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_database_list_nodes' | translate"

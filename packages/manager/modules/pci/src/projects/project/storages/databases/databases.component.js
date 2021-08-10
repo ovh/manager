@@ -9,6 +9,7 @@ export default {
     goToDatabase: '<',
     goToDeleteDatabase: '<',
     guideUrl: '<',
+    engines: '<',
     databaseId: '<',
     databases: '<',
     onListParamChange: '<',
