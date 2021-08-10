@@ -2,6 +2,7 @@
   "pci_databases_backup": "Copias de seguridad",
   "pci_databases_backup_expiration_date": "Fecha de expiración",
   "pci_databases_backup_restore": "Restaurar",
+  "pci_databases_backup_fork": "Fork",
   "pci_databases_backup_description1": "Puede consultar a continuación la lista de sus copias de seguridad. Es posible restaurarlas o eliminarlas.",
   "pci_databases_backup_description2": "Estas copias de seguridad consecutivas se conservan para un buen mantenimiento operativo del servicio."
 }

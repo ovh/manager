@@ -2,6 +2,7 @@
   "pci_databases_backup": "Backups ",
   "pci_databases_backup_expiration_date": "Expiry date",
   "pci_databases_backup_restore": "Restore",
+  "pci_databases_backup_fork": "Fork",
   "pci_databases_backup_description1": "Below you will find the list of your backups. You can restore or delete any of them.",
   "pci_databases_backup_description2": "These rolling backups are kept for your service to remain operational."
 }

@@ -2,6 +2,7 @@
   "pci_databases_backup": "Kopie zapasowe",
   "pci_databases_backup_expiration_date": "Data wygasania",
   "pci_databases_backup_restore": "Przywróć",
+  "pci_databases_backup_fork": "Fork",
   "pci_databases_backup_description1": "Poniżej znajdziesz listę kopii zapasowych. Możesz każdą z nich przywrócić lub usunąć.",
   "pci_databases_backup_description2": "Kopie zapasowe są przechowywane w celu zapewnienia prawidłowego działania usługi."
 }

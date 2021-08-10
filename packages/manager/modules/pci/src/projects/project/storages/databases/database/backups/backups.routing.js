@@ -33,6 +33,14 @@ export default /* @ngInject */ ($stateProvider) => {
               backupInstance,
             },
           ),
+        goToFork: /* @ngInject */ ($state) => (backupInstance, database) =>
+          $state.go(
+            'pci.projects.project.storages.databases.dashboard.backups.fork',
+            {
+              backupInstance,
+              database,
+            },
+          ),
         refreshBackups: /* @ngInject */ ($state) => () => {
           return $state.reload();
         },
