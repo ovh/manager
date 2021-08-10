@@ -52,5 +52,4 @@ export default class {
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
   }
-
 }
