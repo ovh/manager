@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import map from 'lodash/map';
 
 export default class {
   /* @ngInject */
@@ -26,7 +25,7 @@ export default class {
       this.database.id,
       this.model.username,
       this.model.password,
-      map(this.model.selectedRoles, 'id'),
+      this.model.selectedRoles,
     )
       .then(({ username }) =>
         this.goBack({
