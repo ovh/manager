@@ -1,5 +1,6 @@
 {
   "pci_databases_users_modify_password_title": "Modifica la password",
+  "pci_databases_users_modify_password_modal_content_confirm": "Lorem Ipsum",
   "pci_databases_users_modify_password_confirm": "Conferma",
   "pci_databases_users_modify_password_cancel": "Annulla",
   "pci_databases_users_modify_password_label": "La password",
