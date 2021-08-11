@@ -5,6 +5,7 @@ import './logs.scss';
 export default {
   bindings: {
     projectId: '<',
+    database: '<',
     trackDatabases: '<',
   },
   controller,

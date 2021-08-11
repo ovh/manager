@@ -25,3 +25,20 @@ $logger-text-color: black;
   font-family: 'Ubuntu Mono', monospace;
   font-size: 0.85rem;
 }
+
+tail-logs p {
+  margin: 0;
+  font-size: medium;
+}
+tail-logs p.debug {
+  color: green;
+}
+tail-logs p.warning {
+  color: wheat;
+}
+tail-logs p.info {
+  color: white;
+}
+tail-logs p.error {
+  color: red;
+}
