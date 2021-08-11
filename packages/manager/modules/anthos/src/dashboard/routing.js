@@ -5,8 +5,10 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
-      dashboardLink: /* @ngInject */ ($state) =>
-        $state.href('anthos.dashboard'),
+      dashboardLink: /* @ngInject */ ($state, serviceName) =>
+        $state.href('anthos.dashboard', { serviceName }),
+      hostLink: /* @ngInject */ ($state, serviceName) =>
+        $state.href('anthos.dashboard.host', { serviceName }),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
