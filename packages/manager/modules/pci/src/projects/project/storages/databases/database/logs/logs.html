@@ -7,28 +7,21 @@
     <h2 data-translate="pci_database_logs_title"></h2>
 
     <p data-translate="pci_databases_logs_description"></p>
+    <oui-field label="Update logs" class="flex-right">
+        <oui-switch
+            model="$ctrl.pollLogs"
+            name="oui-switch"
+            on-change="$ctrl.changePoll(modelValue)"
+        >
+        </oui-switch>
+    </oui-field>
 
-    <div class="logger">
-        <div class="logger__entry">
-            <span class="logger__entry-message">
-                This is only a test. This needs to be plugged in to the real
-                service. mloginfo mongod.log --queries QUERIES namespace pattern
-                count min (ms) max (ms) mean (ms) 95%-ile (ms) sum (ms)
-                serverside.scrum_master {"datetime_used": {"$ne": 1}} 20 15753
-                17083 16434 17039.3 328692 serverside.django_session {"_id": 1}
-                562 101 1512 317 842.6 178168 serverside.user {"_types": 1,
-                "emails.email": 1} 700 101 1262 201 684.85 162311 local.slaves
-                {"_id": 1, "host": 1, "ns": 1} 131 101 1048 310 819.5 40738
-                serverside.email_alerts {"_types": 1, "email": 1, "pp_user_id":
-                1} 13 153 11639 2465 8865.2 32053 serverside.sign_up {"_id": 1}
-                77 103 843 269 551.0 20761 serverside.user_credits {"_id": 1} 6
-                204 900 369 763.75 2218 serverside.counters {"_id": 1, "_types":
-                1} 8 121 500 263 470.6 2111 serverside.auth_sessions
-                {"session_key": 1} 7 111 684 277 645.6 1940
-                serverside.credit_card {"_id": 1} 5 145 764 368 705.0 1840
-                serverside.email_alerts {"_types": 1, "request_code": 1} 6 143
-                459 277 415.0 1663
-            </span>
-        </div>
-    </div>
+    <tail-logs>
+        <p
+            ng-repeat="line in $ctrl.logs"
+            ng-class="$ctrl.findMessageLevel(line.message)"
+        >
+            {{line.timestamp}} {{line.hostname}} {{line.message}}
+        </p>
+    </tail-logs>
 </div>

@@ -379,4 +379,10 @@ export default class DatabaseService {
   stopPollingNodeStatus(databaseId, nodeId) {
     this.Poller.kill({ namespace: `databases_${databaseId}_${nodeId}` });
   }
+
+  getDatabaseLogs(projectId, engine, databaseId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/database/${engine}/${databaseId}/logs`)
+      .then(({ data }) => data);
+  }
 }
