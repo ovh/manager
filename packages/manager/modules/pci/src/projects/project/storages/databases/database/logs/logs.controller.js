@@ -2,7 +2,15 @@ import moment from 'moment';
 
 export default class logsCtrl {
   /* @ngInject */
-  constructor($anchorScroll, $translate, $q, CucCloudMessage, DatabaseService) {
+  constructor(
+    $anchorScroll,
+    $translate,
+    $q,
+    CucCloudMessage,
+    DatabaseService,
+    $scope,
+    $timeout,
+  ) {
     this.$anchorScroll = $anchorScroll;
     this.$translate = $translate;
     this.$q = $q;
