@@ -81,8 +81,6 @@
     "fast-sha256": "^1.1.0",
     "flatpickr": "^4.6.3",
     "font-awesome": "^4.0.0",
-    "jquery": "^2.1.3",
-    "jquery-ui": "^1.12.1",
     "konami-code-js": "^0.8.0",
     "lodash": "^4.17.15",
     "matchmedia-ng": "^1.0.8",
