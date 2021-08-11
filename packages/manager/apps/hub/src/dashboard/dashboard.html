@@ -6,11 +6,11 @@
         >
             <ovh-manager-banner
                 class="mb-4"
-                tracker="{{ $ctrl.trackingPrefix + '::event-banner' }}"
+                tracker="{{ $ctrl.prefix + '::event-banner' }}"
             ></ovh-manager-banner>
             <ovh-manager-hub-carousel
                 class="w-100"
-                tracking-prefix="{{ $ctrl.trackingPrefix }}"
+                tracking-prefix="{{ $ctrl.prefix }}"
             ></ovh-manager-hub-carousel>
         </div>
         <h2 data-translate="manager_hub_dashboard_overview"></h2>
@@ -18,7 +18,7 @@
             <hub-payment-status
                 class="col-md-8 mb-3 mb-md-4"
                 services="$ctrl.billingServices.data"
-                tracking-prefix="{{ $ctrl.trackingPrefix }}"
+                tracking-prefix="{{ $ctrl.prefix }}"
                 total-count="$ctrl.billingServices.count"
                 refresh="$ctrl.refreshBillingServices()"
                 user="$ctrl.me"
@@ -43,14 +43,14 @@
             <ovh-manager-hub-support
                 class="col-md-8 mb-3 mb-md-4 order-2 order-md-3"
                 me="$ctrl.me"
-                tracking-prefix="{{ $ctrl.trackingPrefix }}"
+                tracking-prefix="{{ $ctrl.prefix }}"
             >
             </ovh-manager-hub-support>
             <hub-order-tracking
                 class="col-md-4 order-4"
                 data-ng-if="!$ctrl.me.isEnterprise"
                 order="$ctrl.order"
-                tracking-prefix="{{ $ctrl.trackingPrefix }}"
+                tracking-prefix="{{ $ctrl.prefix }}"
                 refresh="$ctrl.refreshOrder()"
             >
             </hub-order-tracking>
@@ -59,7 +59,7 @@
             <h2 data-translate="manager_hub_dashboard_services"></h2>
             <hub-products
                 products-promise="$ctrl.products"
-                tracking-prefix="{{ $ctrl.trackingPrefix }}"
+                tracking-prefix="{{ $ctrl.prefix }}"
             ></hub-products>
         </div>
     </div>
