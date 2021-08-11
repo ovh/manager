@@ -44,13 +44,6 @@ angular
     enterpriseCloudDatabaseComponent,
   )
   .service('enterpriseCloudDatabaseService', enterpriseCloudDatabaseService)
-  .run(
-    /* @ngInject */ ($translate, $transitions) => {
-      $transitions.onBefore({ to: 'enterprise-cloud-database.**' }, () =>
-        $translate.refresh(),
-      );
-    },
-  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

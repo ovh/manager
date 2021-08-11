@@ -69,11 +69,6 @@ angular
         usageHelpTemplate,
       );
     },
-  )
-  .run(
-    /* @ngInject */ ($translate, $transitions) => {
-      $transitions.onBefore({ to: 'nasha.**' }, () => $translate.refresh());
-    },
   );
 
 export default moduleName;

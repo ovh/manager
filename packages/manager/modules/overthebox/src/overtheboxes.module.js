@@ -19,12 +19,6 @@ angular
   ])
   .config(routing)
   .component('ovhManagerOverTheBoxes', component)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(
-    /* @ngInject */ ($transitions, $translate) =>
-      $transitions.onBefore({ to: 'overTheBoxes.**' }, () =>
-        $translate.refresh(),
-      ),
-  );
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -430,11 +430,6 @@ export default (containerEl, environment) => {
         });
       },
     )
-    .run(
-      /* @ngInject */ ($translate, $transitions) => {
-        $transitions.onBefore({ to: 'app.**' }, () => $translate.refresh());
-      },
-    )
     .config(
       /* @ngInject */ (ovhFeatureFlippingProvider) => {
         ovhFeatureFlippingProvider.setApplicationName(

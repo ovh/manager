@@ -258,6 +258,13 @@ export const registerCoreModule = (environment) => {
       /* @ngInject */ (OvhNgRequestTaggerInterceptor, coreConfig) => {
         OvhNgRequestTaggerInterceptor.setHeaderVersion(coreConfig.getVersion());
       },
+    )
+    .run(
+      /* @ngInject */ ($transitions, $translate) => {
+        $transitions.onBefore({}, () => {
+          $translate.refresh();
+        });
+      },
     );
 
   return moduleName;

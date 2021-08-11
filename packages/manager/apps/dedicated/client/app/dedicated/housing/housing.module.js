@@ -26,13 +26,6 @@ angular
         rebootTpl,
       );
     },
-  )
-  .run(
-    /* @ngInject */ ($translate, $transitions) => {
-      $transitions.onBefore({ to: 'dedicated-housing.**' }, () =>
-        $translate.refresh(),
-      );
-    },
   );
 
 export default moduleName;

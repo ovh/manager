@@ -46,11 +46,6 @@ angular
         );
       });
     },
-  )
-  .run(
-    /* @ngInject */ ($translate, $transitions) => {
-      $transitions.onBefore({ to: 'metrics.**' }, () => $translate.refresh());
-    },
   );
 
 export default moduleName;
