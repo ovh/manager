@@ -1,22 +1,15 @@
+import moment from 'moment';
+
 export default class logsCtrl {
   /* @ngInject */
-  constructor(
-    $anchorScroll,
-    $translate,
-    $q,
-    CucCloudMessage,
-    DatabaseService,
-    $scope,
-    $timeout,
-  ) {
+  constructor($anchorScroll, $translate, $q, CucCloudMessage, DatabaseService) {
     this.$anchorScroll = $anchorScroll;
     this.$translate = $translate;
     this.$q = $q;
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
-    this.$scope = $scope;
-    this.$timeout = $timeout;
     this.findMessageLevel = logsCtrl.findMessageLevel;
+    this.formatTimestamp = logsCtrl.formatTimestamp;
   }
 
   $onInit() {
@@ -71,6 +64,10 @@ export default class logsCtrl {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  static formatTimestamp(timestamp) {
+    return moment(timestamp * 1000).format();
   }
 
   static findMessageLevel(message) {

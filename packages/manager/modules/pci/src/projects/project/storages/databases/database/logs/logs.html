@@ -21,7 +21,8 @@
             ng-repeat="line in $ctrl.logs"
             ng-class="$ctrl.findMessageLevel(line.message)"
         >
-            {{line.timestamp}} {{line.hostname}} {{line.message}}
+            {{$ctrl.formatTimestamp(line.timestamp)}} {{line.hostname}}
+            {{line.message}}
         </p>
     </tail-logs>
 </div>
