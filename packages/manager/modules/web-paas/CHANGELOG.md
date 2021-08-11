@@ -1,3 +1,12 @@
+## [1.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.2.5...@ovh-ux/manager-web-paas@1.2.6) (2021-08-11)
+
+
+### Bug Fixes
+
+* enable webPaas subscription environment upgrade ([#5218](https://github.com/ovh/manager/issues/5218)) ([00e1e44](https://github.com/ovh/manager/commit/00e1e44a2e0a604c56392d84ccd5f918cc300368))
+
+
+
 ## [1.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.2.4...@ovh-ux/manager-web-paas@1.2.5) (2021-07-26)
 
 

@@ -1,3 +1,12 @@
+## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.2.2...@ovh-ux/manager-exchange-app@0.2.3) (2021-08-11)
+
+
+### Performance Improvements
+
+* **exchange:** update exchange app ([e46eb57](https://github.com/ovh/manager/commit/e46eb57c99ef47ac27f8e5b618855510fa443b44))
+
+
+
 ## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.2.1...@ovh-ux/manager-exchange-app@0.2.2) (2021-07-28)
 
 

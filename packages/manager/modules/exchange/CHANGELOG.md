@@ -1,3 +1,17 @@
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@2.3.8...@ovh-ux/manager-exchange@3.0.0) (2021-08-11)
+
+
+### Performance Improvements
+
+* **exchange:** lazy load ckeditor ([3cb5fc6](https://github.com/ovh/manager/commit/3cb5fc615bf79a449e663294ceaecad37728d172))
+
+
+### BREAKING CHANGES
+
+* **exchange:** lazy load ckeditor, no longer a peer dependency
+
+
+
 ## [2.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@2.3.7...@ovh-ux/manager-exchange@2.3.8) (2021-08-03)
 
 

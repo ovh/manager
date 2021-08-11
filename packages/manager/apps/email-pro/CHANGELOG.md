@@ -1,3 +1,12 @@
+## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro-app@0.2.2...@ovh-ux/manager-emailpro-app@0.2.3) (2021-08-11)
+
+
+### Performance Improvements
+
+* **email-pro:** update email-pro app ([61e1318](https://github.com/ovh/manager/commit/61e131840ca770b5e1311a2802fb2cd0f3839b8f))
+
+
+
 ## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro-app@0.2.1...@ovh-ux/manager-emailpro-app@0.2.2) (2021-07-28)
 
 

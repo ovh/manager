@@ -1,3 +1,13 @@
+## [13.24.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.24.4...@ovh-ux/manager-telecom@13.24.5) (2021-08-11)
+
+
+### Bug Fixes
+
+* name correctly `country_RE` translation ([#5394](https://github.com/ovh/manager/issues/5394)) ([5231dc6](https://github.com/ovh/manager/commit/5231dc6cd2daef573c6ce37180daa74c45ee6c1e))
+* remove empty translation files ([#5392](https://github.com/ovh/manager/issues/5392)) ([fe9e94c](https://github.com/ovh/manager/commit/fe9e94c0e95b4d6e3770442831d259a521eed1b3))
+
+
+
 ## [13.24.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.24.3...@ovh-ux/manager-telecom@13.24.4) (2021-07-28)
 
 
