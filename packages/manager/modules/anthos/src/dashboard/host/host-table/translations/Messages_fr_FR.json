@@ -1,0 +1,17 @@
+{
+  "anthos_dashboard_host_id": "ID",
+  "anthos_dashboard_host_name": "Nom",
+  "anthos_dashboard_host_profile": "Profil",
+  "anthos_dashboard_host_rack": "Rack",
+  "anthos_dashboard_host_status": "Statut",
+  "anthos_dashboard_host_stateful": "Stateful",
+  "anthos_dashboard_host_status_BAREMETAL_STATUS_UNSPECIFIED": "Inconnu",
+  "anthos_dashboard_host_status_BAREMETAL_STATUS_DELIVERING": "Livraison en cours",
+  "anthos_dashboard_host_status_BAREMETAL_STATUS_AVAILABLE": "Disponible",
+  "anthos_dashboard_host_status_BAREMETAL_STATUS_IN_USE": "Utilisé",
+  "anthos_dashboard_host_status_BAREMETAL_STATUS_IN_MAINTENANCE": "En cours de maintenance",
+  "anthos_dashboard_host_status_BAREMETAL_STATUS_SUPPRESSING": "En suppression",
+  "anthos_dashboard_host_status_BAREMETAL_STATUS_RESTARTING": "Redémarrage",
+  "anthos_dashboard_host_retrieve_error": "Échec de l'obtention des hôtes: {{message}}",
+  "anthos_dashboard_host_empty": "Aucun hôtes trouvé"
+}

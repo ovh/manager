@@ -31,4 +31,23 @@ export default class AnthosTenantsService {
 
     return guides;
   }
+
+  getHosts(serviceName, additional, pageNumber, pageSize) {
+    return this.$http.get(
+      `/dedicated/anthos/tenants/${serviceName}/baremetals`,
+      {
+        headers: {
+          Pragma: 'no-cache',
+          'x-pagination-mode': 'CachedObjectList-Pages',
+          'x-pagination-number': pageNumber,
+          'x-pagination-size': pageSize,
+          ...(typeof additional === 'undefined'
+            ? {}
+            : {
+                'x-pagination-filter': `additional:eq=${additional}`,
+              }),
+        },
+      },
+    );
+  }
 }

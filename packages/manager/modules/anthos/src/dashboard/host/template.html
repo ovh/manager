@@ -1,0 +1,29 @@
+<h2 data-translate="anthos_dashboard_header_host"></h2>
+<p data-translate="anthos_dashboard_host_description"></p>
+<oui-button
+    class="mb-3"
+    data-variant="secondary"
+    data-icon-left="oui-icon-cart"
+>
+    <span data-translate="anthos_dashboard_host_order"></span>
+</oui-button>
+
+<oui-collapsible
+    heading="{{:: 'anthos_dashboard_host_included' | translate }}"
+    group="hosts"
+>
+    <anthos-host-table
+        data-service-name="$ctrl.serviceName"
+        data-additional-hosts="false"
+    ></anthos-host-table>
+</oui-collapsible>
+
+<oui-collapsible
+    heading="{{:: 'anthos_dashboard_host_additional' | translate }}"
+    group="hosts"
+>
+    <anthos-host-table
+        data-service-name="$ctrl.serviceName"
+        data-additional-hosts="true"
+    ></anthos-host-table>
+</oui-collapsible>
