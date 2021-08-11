@@ -1,0 +1,46 @@
+<oui-datagrid
+    data-rows-loader="$ctrl.loadHosts($config)"
+    data-empty-placeholder="{{ ($ctrl.error ? 'anthos_dashboard_host_retrieve_error' : 'anthos_dashboard_host_empty') | translate: {
+        message: $ctrl.error
+    } }}"
+>
+    <oui-datagrid-column
+        data-title=":: 'anthos_dashboard_host_id' | translate"
+        data-property="id"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'anthos_dashboard_host_name' | translate"
+        data-property="name"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'anthos_dashboard_host_profile' | translate"
+        data-property="profile"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'anthos_dashboard_host_rack' | translate"
+        data-property="rack"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'anthos_dashboard_host_status' | translate"
+    >
+        <span
+            class="oui-badge"
+            data-translate="{{ 'anthos_dashboard_host_status_' + $row.status }}"
+            data-ng-class="{
+                        'oui-badge_success': $row.statusGroup === $ctrl.STATUS.ACTIVE,
+                        'oui-badge_error': $row.statusGroup === $ctrl.STATUS.ERROR,
+                        'oui-badge_warning': $row.statusGroup === $ctrl.STATUS.PENDING
+                    }"
+        >
+        </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'anthos_dashboard_host_stateful' | translate"
+        data-property="stateful"
+    >
+    </oui-datagrid-column>
+</oui-datagrid>
