@@ -1,0 +1,6 @@
+{
+  "anthos_dashboard_host_description": "Vous pouvez personnaliser votre déploiement Anthos en y ajoutant des hôtes. Vous serez redirigés vers une nouvelle page où vous pourrez confirmer votre commande. Le prix affiché est valable pour une période d’un mois. En vous engageant sur une plus longue durée, vous bénéficiez de tarifs dégressifs.",
+  "anthos_dashboard_host_order": "Commander un hôte",
+  "anthos_dashboard_host_included": "Inclus dans le starter pack",
+  "anthos_dashboard_host_additional": "Hôtes additionnels"
+}

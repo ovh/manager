@@ -4,9 +4,7 @@ import template from './template.html';
 export default {
   bindings: {
     serviceName: '<',
-    currentActiveLink: '<',
-    dashboardLink: '<',
-    hostLink: '<',
+    additionalHosts: '<',
   },
   controller,
   template,
