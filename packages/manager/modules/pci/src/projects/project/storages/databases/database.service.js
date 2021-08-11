@@ -345,7 +345,15 @@ export default class DatabaseService {
           params: {
             period,
           },
-        },
+        },)
+        .then(({ data }) => data);
+  }
+  
+  resetUserCredentials(projectId, engine, databaseId, userId) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/user/${userId}/credentials/reset`,
+        {},
       )
       .then(({ data }) => data);
   }
