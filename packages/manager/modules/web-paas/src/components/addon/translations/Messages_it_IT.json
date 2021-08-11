@@ -16,5 +16,6 @@
   "web_paas_service_add_addon_success_staging_environment": "La modifica del tuo ambiente di test è stata presa in carico. Per monitorare lo stato della consegna consulta la sezione <a href='{{orderURL}}'>I tuoi ordini</a> dello Spazio Cliente.",
   "web_paas_service_add_addon_success_user_license": "La modifica delle tue licenze utente è stata presa in carico. Per monitorare lo stato della consegna consulta la sezione <a href='{{orderURL}}'>I tuoi ordini</a> dello Spazio Cliente.",
   "web_paas_service_add_addon_fetching_price": "Calcolo del prezzo",
-  "web_paas_service_add_addon_storage_info": "Attenzione: una volta ordinato lo storage aggiuntivo non è possibile ridurre lo storage di un progetto."
+  "web_paas_service_add_addon_storage_info": "Attenzione: una volta ordinato lo storage aggiuntivo non è possibile ridurre lo storage di un progetto.",
+  "web_paas_service_add_addon_environment_info": "Attenzione: una volta ordinato l'ambiente aggiuntivo, non è possibile ridurre il numero di ambienti di test di un progetto."
 }
