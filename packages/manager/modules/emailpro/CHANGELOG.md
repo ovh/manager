@@ -1,3 +1,17 @@
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@2.1.1...@ovh-ux/manager-emailpro@3.0.0) (2021-08-11)
+
+
+### Performance Improvements
+
+* **emailpro:** lazy load ckeditor ([047c06c](https://github.com/ovh/manager/commit/047c06c5d4172829b597223b9df902912a56dec9))
+
+
+### BREAKING CHANGES
+
+* **emailpro:** ckeditor lazy loading, no longer a peer dependency
+
+
+
 ## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@2.1.0...@ovh-ux/manager-emailpro@2.1.1) (2021-06-02)
 
 

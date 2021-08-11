@@ -1,3 +1,24 @@
+# [5.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.37.2...@ovh-ux/manager-pci@5.38.0) (2021-08-11)
+
+
+### Bug Fixes
+
+* **database.create:** fix issue on config ([#5327](https://github.com/ovh/manager/issues/5327)) ([9fdd096](https://github.com/ovh/manager/commit/9fdd096a00f923837605741ddeb3e50105e12e37))
+* **i18n:** add missing translations [CDS 1076] ([189dd6a](https://github.com/ovh/manager/commit/189dd6ac7bb6888c028b893e27158b98c2f2feb8))
+* **i18n:** add missing translations [CDS 1086] ([7809934](https://github.com/ovh/manager/commit/7809934fcad17a1fc6c97d18c84125955630d67f))
+* **i18n:** add missing translations [CDS 1090] ([57f0dce](https://github.com/ovh/manager/commit/57f0dcea0871a9e87762c75a205adc576be8c2af))
+* **notebook:** add new lifecycle status ([#5384](https://github.com/ovh/manager/issues/5384)) ([41f6102](https://github.com/ovh/manager/commit/41f6102b9d3a5d5f1b1c2bd24cd998213d3a5e8f))
+* remove unused translations [CDS] ([b8809bc](https://github.com/ovh/manager/commit/b8809bc69e2ca253648dc3177b47966a16e9122b))
+* **pci/ai-training:** remove use of deprecated fields ([#5343](https://github.com/ovh/manager/issues/5343)) ([226d803](https://github.com/ovh/manager/commit/226d8034c214c6272c9d5bf8661e148b007f10d3))
+* **public-cloud.contacts:** edit contact url ([#5326](https://github.com/ovh/manager/issues/5326)) ([a9efdc3](https://github.com/ovh/manager/commit/a9efdc3a8f4545b6fc28582a4b4ef406342decb2)), closes [#DTRSD-43865](https://github.com/ovh/manager/issues/DTRSD-43865)
+
+
+### Features
+
+* **pci.storages.databases:** add processing message ([#5241](https://github.com/ovh/manager/issues/5241)) ([ac9f057](https://github.com/ovh/manager/commit/ac9f057bbae7f07ec682b477f8e93464471c843b))
+
+
+
 ## [5.37.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.37.1...@ovh-ux/manager-pci@5.37.2) (2021-08-09)
 
 

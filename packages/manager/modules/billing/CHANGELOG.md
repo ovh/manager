@@ -1,3 +1,12 @@
+# [0.1.0-alpha.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.1.0-alpha.3...@ovh-ux/manager-billing@0.1.0-alpha.4) (2021-08-11)
+
+
+### Bug Fixes
+
+* name correctly `country_RE` translation ([#5394](https://github.com/ovh/manager/issues/5394)) ([5231dc6](https://github.com/ovh/manager/commit/5231dc6cd2daef573c6ce37180daa74c45ee6c1e))
+
+
+
 # [0.1.0-alpha.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.1.0-alpha.2...@ovh-ux/manager-billing@0.1.0-alpha.3) (2021-07-29)
 
 

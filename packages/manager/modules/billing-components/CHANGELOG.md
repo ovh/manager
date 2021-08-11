@@ -1,3 +1,12 @@
+## [3.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.1.3...@ovh-ux/manager-billing-components@3.1.4) (2021-08-11)
+
+
+### Bug Fixes
+
+* **dedicated:** cpanel commitment not working ([#5339](https://github.com/ovh/manager/issues/5339)) ([58848fd](https://github.com/ovh/manager/commit/58848fde915be39f3c8b4e65343dfb32fdc90d94)), closes [#DTRSD-43193](https://github.com/ovh/manager/issues/DTRSD-43193)
+
+
+
 ## [3.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.1.2...@ovh-ux/manager-billing-components@3.1.3) (2021-07-28)
 
 

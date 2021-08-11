@@ -1,3 +1,22 @@
+## [16.35.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.35.1...@ovh-ux/manager-dedicated@16.35.2) (2021-08-11)
+
+
+### Bug Fixes
+
+* name correctly `country_RE` translation ([#5394](https://github.com/ovh/manager/issues/5394)) ([5231dc6](https://github.com/ovh/manager/commit/5231dc6cd2daef573c6ce37180daa74c45ee6c1e))
+* **i18n:** add missing translations [CDS 1098] ([e185446](https://github.com/ovh/manager/commit/e1854465b7a0729ece46b1b28dad3234bd138294))
+* remove unused translations [CDS] ([39418b2](https://github.com/ovh/manager/commit/39418b27e4c5c122abc524e2d66be3a4363f5c98))
+* remove vCenter access policy button ([#5372](https://github.com/ovh/manager/issues/5372)) ([3fb20fa](https://github.com/ovh/manager/commit/3fb20fac9e7a5cf93a2a8a9921f6034c7f9ef51d))
+* **server.details:** add missing translation about rtm documentation ([#5379](https://github.com/ovh/manager/issues/5379)) ([9260144](https://github.com/ovh/manager/commit/9260144eaf6c7478921c9ab344dea8909d9a1255))
+
+
+### Performance Improvements
+
+* **dedicated:** remove ng-ckeditor import ([7df1489](https://github.com/ovh/manager/commit/7df14893daf790a99c6bb7c0c8d2562b08b48f8a))
+* **dedicated:** update exchange module ([aa356a8](https://github.com/ovh/manager/commit/aa356a83c2f97f14859a4d1ae8545f0c4450c323))
+
+
+
 ## [16.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.35.0...@ovh-ux/manager-dedicated@16.35.1) (2021-07-29)
 
 

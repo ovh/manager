@@ -1,3 +1,12 @@
+## [2.1.13](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.1.12...@ovh-ux/sign-up@2.1.13) (2021-08-11)
+
+
+### Bug Fixes
+
+* name correctly `country_RE` translation ([#5394](https://github.com/ovh/manager/issues/5394)) ([5231dc6](https://github.com/ovh/manager/commit/5231dc6cd2daef573c6ce37180daa74c45ee6c1e))
+
+
+
 ## [2.1.12](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.1.11...@ovh-ux/sign-up@2.1.12) (2021-07-26)
 
 

@@ -1,3 +1,17 @@
+## [15.29.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.29.2...@ovh-ux/manager-web@15.29.3) (2021-08-11)
+
+
+### Bug Fixes
+
+* name correctly `country_RE` translation ([#5394](https://github.com/ovh/manager/issues/5394)) ([5231dc6](https://github.com/ovh/manager/commit/5231dc6cd2daef573c6ce37180daa74c45ee6c1e))
+
+
+### Performance Improvements
+
+* **web:** update exchange module ([400511e](https://github.com/ovh/manager/commit/400511ebd115588e67edd4d72bf81efccf7b3237))
+
+
+
 ## [15.29.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.29.1...@ovh-ux/manager-web@15.29.2) (2021-07-29)
 
 
