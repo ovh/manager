@@ -1,23 +1,12 @@
-import isEmpty from 'lodash/isEmpty';
-
 angular.module('App').controller(
   'AppCtrl',
   class AppCtrl {
-    constructor(
-      $scope,
-      $rootScope,
-      $timeout,
-      $translate,
-      coreConfig,
-      incident,
-      WucUser,
-    ) {
+    constructor($scope, $rootScope, $timeout, $translate, coreConfig, WucUser) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;
       this.$timeout = $timeout;
       this.$translate = $translate;
       this.coreConfig = coreConfig;
-      this.incident = incident;
       this.WucUser = WucUser;
     }
 
@@ -27,8 +16,6 @@ angular.module('App').controller(
       this.$scope.currentAction = null;
       this.$scope.currentActionData = null;
 
-      this.incidentMessage = null;
-
       this.$scope.resetAction = () => {
         $('#currentActionApp').modal('hide');
         this.$scope.currentActionData = null;
@@ -37,14 +24,6 @@ angular.module('App').controller(
           this.$scope.stepPath = '';
         }, 300);
       };
-
-      this.incident.getOvhTasks().then((informations) => {
-        if (!isEmpty(informations)) {
-          this.incidentMessage =
-            informations.alert[this.$translate.use()] ||
-            informations.alert.en_GB;
-        }
-      });
 
       // Prevents a bug with CKEditor.
       // See: https://stackoverflow.com/a/23667151 and includes updates from https://github.com/twbs/bootstrap-sass/blob/5d6b2ebba0c2a5885ce2f0e01e9218db3d3b5e47/assets/javascripts/bootstrap/modal.js#L139

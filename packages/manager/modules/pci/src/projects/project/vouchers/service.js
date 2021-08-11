@@ -3,12 +3,11 @@ import set from 'lodash/set';
 
 export default class CloudVouchersService {
   /* @ngInject */
-  constructor($q, $translate, iceberg, OvhApiMeBill, OvhApiCloudProjectCredit) {
+  constructor($q, $translate, iceberg, OvhApiMeBill) {
     this.$q = $q;
     this.$translate = $translate;
     this.iceberg = iceberg;
     this.OvhApiMeBill = OvhApiMeBill;
-    this.OvhApiCloudProjectCredit = OvhApiCloudProjectCredit;
   }
 
   futureVoucherWithPdfUrl(voucher) {
