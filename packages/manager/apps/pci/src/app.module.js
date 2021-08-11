@@ -1,8 +1,5 @@
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 import angular from 'angular';
-import 'jquery-ui/ui/widget';
-import 'jquery-ui/ui/widgets/mouse';
-import 'jquery-ui/ui/widgets/draggable';
 import 'script-loader!moment/min/moment.min.js';
 import 'script-loader!angular-ui-validate/dist/validate.js';
 import '@ovh-ux/ui-kit';
