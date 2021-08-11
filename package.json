@@ -13,7 +13,7 @@
     "packages/manager/fragments/*"
   ],
   "scripts": {
-    "build": "node --experimental-worker scripts/build.js",
+    "build": "node scripts/build.js",
     "clean": "lerna clean -y && yarn run clean:dist && rimraf node_modules",
     "clean:dist": "rimraf \"packages/**/dist?(-EU|-CA|-US)\"",
     "format": "run-p format:*",
