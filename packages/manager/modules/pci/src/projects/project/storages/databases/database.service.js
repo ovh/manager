@@ -254,7 +254,7 @@ export default class DatabaseService {
   getRoles(projectId, engine, databaseId) {
     return this.$http
       .get(
-        `/cloud/project/${projectId}/database/${engine}/${databaseId}/role`,
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/roles`,
         DatabaseService.getIcebergHeaders(),
       )
       .then(({ data }) => data);
@@ -343,7 +343,15 @@ export default class DatabaseService {
           params: {
             period,
           },
-        },
+        }, )
+        .then(({ data }) => data);
+  }
+
+  resetUserCredentials(projectId, engine, databaseId, userId) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/user/${userId}/credentials/reset`,
+        {},
       )
       .then(({ data }) => data);
   }

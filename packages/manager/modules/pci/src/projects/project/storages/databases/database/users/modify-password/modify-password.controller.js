@@ -14,22 +14,22 @@ export default class {
   modifyPassword() {
     this.isLoading = true;
     return this.service
-      .editUser(
+      .resetUserCredentials(
         this.projectId,
         this.database.engine,
         this.database.id,
         this.user.id,
-        this.password,
       )
-      .then(() =>
-        this.goBack(
-          this.$translate.instant(
+      .then((data) =>
+        this.goBack({
+          textHtml: this.$translate.instant(
             'pci_databases_users_modify_password_success',
             {
               user: this.user.username,
+              password: data.password,
             },
           ),
-        ),
+        }),
       )
       .catch((error) =>
         this.goBack(

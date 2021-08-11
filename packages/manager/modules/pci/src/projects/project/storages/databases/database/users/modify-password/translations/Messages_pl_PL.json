@@ -1,6 +1,7 @@
 {
   "pci_databases_users_modify_password_title": "Zmień hasło",
   "pci_databases_users_modify_password_confirm": "Zatwierdź",
+  "pci_databases_users_modify_password_modal_content_confirm": "Lorem Ipsum",
   "pci_databases_users_modify_password_cancel": "Anuluj",
   "pci_databases_users_modify_password_label": "Hasło",
   "pci_databases_users_modify_password_help_text": "Musi zawierać przynajmniej jedną cyfrę, jedną wielką literę, jedną małą literę. Musi składać się z co najmniej 8 znaków.",
