@@ -60,7 +60,7 @@ angular.module('services').service(
         SSHFP: /^(1|2|3|4)\s+(1|2)\s+([a-zA-Z0-9]+)$/,
         SSHFP_fp1: /^(?:[a-zA-Z0-9]){40}$/,
         SSHFP_fp2: /^(?:[a-zA-Z0-9]){64}$/,
-        TXT: /^"?([^"]{1,255})"?$/,
+        TXT: /^"?([^"]+)"?$/,
         TLSA: /^(\d) (\d) (\d) ([a-z0-9]+)$/,
         CAA: /^(\d+)\s+(issue|issuewild|iodef)\s+"(\S+)"$/,
       };
