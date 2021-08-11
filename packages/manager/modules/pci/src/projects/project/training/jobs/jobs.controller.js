@@ -4,13 +4,13 @@ import { getCriteria } from '../../project.utils';
 export default class PciTrainingJobController {
   /* @ngInject */
   constructor(
-    CucCloudMessage,
-    CucRegionService,
-    PciProjectTrainingJobService,
     $interval,
+    CucCloudMessage,
+    ovhManagerRegionService,
+    PciProjectTrainingJobService,
   ) {
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectTrainingJobService = PciProjectTrainingJobService;
     this.$interval = $interval;
   }

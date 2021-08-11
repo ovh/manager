@@ -1,11 +1,11 @@
 <div data-ng-controller="IpFirewallAddRuleCtrl">
     <div
         data-wizard
-        data-wizard-confirm-button-text=":: 'ip_firewall_add_rule_confirm_button_text' | translate"
+        data-wizard-confirm-button-text=":: 'ip_firewall_add_rule_confirm_button_text' | translate"
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="addRule"
         data-wizard-hide-cancel-button="loading"
-        data-wizard-title=":: 'ip_firewall_add_title' | translate"
+        data-wizard-title=":: 'ip_firewall_add_title' | translate"
     >
         <div
             data-wizard-step
@@ -16,7 +16,7 @@
                     <label
                         class="control-label"
                         for="sequenceSelect"
-                        data-ng-bind=":: 'ip_firewall_position' | translate"
+                        data-ng-bind=":: 'ip_firewall_position' | translate"
                     >
                     </label>
                     <select
@@ -34,7 +34,7 @@
                     <label
                         class="control-label"
                         for="actionsRadio"
-                        data-ng-bind=":: 'ip_firewall_action' | translate"
+                        data-ng-bind=":: 'ip_firewall_action' | translate"
                     >
                     </label>
                     <div class="radio">
@@ -50,7 +50,7 @@
                                 required
                             />
                             <span
-                                data-translate="{{ 'ip_firewall_rule_'+action }}"
+                                data-translate="{{ 'ip_firewall_rule_'+action }}"
                             ></span>
                         </label>
                     </div>
@@ -60,7 +60,7 @@
                     <label
                         class="control-label"
                         for="protocolSelect"
-                        data-ng-bind=":: 'ip_firewall_protocol' | translate"
+                        data-ng-bind=":: 'ip_firewall_protocol' | translate"
                     >
                     </label>
                     <select
@@ -120,7 +120,7 @@
                     <span
                         class="fa fa-info-circle"
                         data-ng-show="validator.sourcePort === false"
-                        data-oui-tooltip="{{:: 'ip_firewall_source_port_tooltip' | translate }}"
+                        data-oui-tooltip="{{:: 'ip_firewall_source_port_tooltip' | translate }}"
                         data-oui-tooltip-placement="left"
                     >
                     </span>
@@ -150,7 +150,7 @@
                     <span
                         data-ng-show="validator.destinationPort === false"
                         class="fa fa-info-circle"
-                        data-oui-tooltip="{{:: 'ip_firewall_destination_port_tooltip' | translate }}"
+                        data-oui-tooltip="{{:: 'ip_firewall_destination_port_tooltip' | translate }}"
                         data-oui-tooltip-placement="left"
                     >
                     </span>
@@ -169,12 +169,12 @@
                                 data-ng-model="rule.tcpOptions.fragments"
                             />
                             <span
-                                data-ng-bind=":: 'ip_firewall_rule_fragments' | translate"
+                                data-ng-bind=":: 'ip_firewall_rule_fragments' | translate"
                             ></span>
                             <span
                                 data-ng-show="validator.fragment === false"
                                 class="fa fa-info-circle"
-                                data-oui-tooltip="{{:: 'ip_firewall_rule_fragments_tooltip' | translate }}"
+                                data-oui-tooltip="{{:: 'ip_firewall_rule_fragments_tooltip' | translate }}"
                                 data-oui-tooltip-placement="left"
                             >
                             </span>
@@ -193,7 +193,7 @@
                                 data-ng-model="rule.tcpOptions.option"
                             />
                             <span
-                                data-translate="{{ 'ip_firewall_rule_flags_'+tcpAction }}"
+                                data-translate="{{ 'ip_firewall_rule_flags_'+tcpAction }}"
                             ></span>
                         </label>
                     </div>

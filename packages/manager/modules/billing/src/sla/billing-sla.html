@@ -66,7 +66,7 @@
                                 </i>
                                 <p
                                     class="oui-message__body"
-                                    data-ng-bind="'sla_informations_end' | translate:{ t0: (sla.endDate | date:'short') }"
+                                    data-ng-bind="'sla_informations_end' | translate:{ t0: (sla.endDate | date:'short') }"
                                 ></p>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                                       'label-info': sla.status === 'created',
                                       'label-default': sla.status === 'notApplicable'
                                   }"
-                                data-translate="{{ 'sla_informations_status_' + sla.status }}"
+                                data-translate="{{ 'sla_informations_status_' + sla.status }}"
                             >
                             </span>
                         </div>
@@ -176,8 +176,8 @@
             data-transform-item="transformItem(item)"
             data-on-transform-item-notify="onTransformItemNotify(item)"
             data-on-transform-item-done="onTransformItemDone(items)"
-            data-page-placeholder="{{'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
-            data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+            data-page-placeholder="{{'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
+            data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
         ></div>
     </div>
 </div>

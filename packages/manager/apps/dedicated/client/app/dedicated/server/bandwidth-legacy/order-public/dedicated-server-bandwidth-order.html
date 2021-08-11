@@ -3,9 +3,9 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="openBC"
-        data-wizard-title="'server_order_bandwidth_title' | translate"
+        data-wizard-title="'server_order_bandwidth_title' | translate"
         data-wizard-bread-crumb
-        data-wizard-confirm-button-text="'wizard_pay' | translate"
+        data-wizard-confirm-button-text="'wizard_pay' | translate"
     >
         <div
             data-wizard-step
@@ -104,7 +104,7 @@
                         </select>
                         <span
                             data-ng-if="orderable[selectedBandwidthTypes.value].length == 1"
-                            data-ng-bind="'unit_gbps' | translate:{ t0: selectedBandwidth.value }"
+                            data-ng-bind="'unit_gbps' | translate:{ t0: selectedBandwidth.value }"
                         >
                         </span>
                     </div>
@@ -114,7 +114,7 @@
             <p
                 class="text-danger"
                 data-ng-if="!orderable.orderable && !orderable.orderable && !loaders.orderableVersion"
-                data-ng-bind="'server_order_bandwidth_not_available' | translate:{ t0: currentActionData }"
+                data-ng-bind="'server_order_bandwidth_not_available' | translate:{ t0: currentActionData }"
             ></p>
         </div>
 

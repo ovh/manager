@@ -1,6 +1,7 @@
 import trim from 'lodash/trim';
+import { COUNTRIES } from './constants';
 
-export default class CucRegionService {
+export default class ovhManagerRegionService {
   /* @ngInject */
   constructor($translate) {
     this.$translate = $translate;
@@ -23,28 +24,30 @@ export default class CucRegionService {
 
   getAllTranslatedMacroRegion() {
     return {
-      SBG: this.$translate.instant('cuc_region_SBG'),
-      BHS: this.$translate.instant('cuc_region_BHS'),
-      GRA: this.$translate.instant('cuc_region_GRA'),
-      WAW: this.$translate.instant('cuc_region_WAW'),
-      DE: this.$translate.instant('cuc_region_DE'),
-      UK: this.$translate.instant('cuc_region_UK'),
-      US: this.$translate.instant('cuc_region_US'),
-      SYD: this.$translate.instant('cuc_region_SYD'),
-      SGP: this.$translate.instant('cuc_region_SGP'),
+      SBG: this.$translate.instant('manager_components_region_SBG'),
+      BHS: this.$translate.instant('manager_components_region_BHS'),
+      GRA: this.$translate.instant('manager_components_region_GRA'),
+      WAW: this.$translate.instant('manager_components_region_WAW'),
+      DE: this.$translate.instant('manager_components_region_DE'),
+      UK: this.$translate.instant('manager_components_region_UK'),
+      US: this.$translate.instant('manager_components_region_US'),
+      SYD: this.$translate.instant('manager_components_region_SYD'),
+      SGP: this.$translate.instant('manager_components_region_SGP'),
     };
   }
 
   getTranslatedMacroRegion(region) {
     const translatedMacroRegion = this.$translate.instant(
-      `cuc_region_${this.constructor.getMacroRegion(region)}`,
+      `manager_components_region_${this.constructor.getMacroRegion(region)}`,
     );
     return translatedMacroRegion || region;
   }
 
   getTranslatedMicroRegion(region) {
     const translatedMicroRegion = this.$translate.instant(
-      `cuc_region_${this.constructor.getMacroRegion(region)}_micro`,
+      `manager_components_region_${this.constructor.getMacroRegion(
+        region,
+      )}_micro`,
       {
         micro: region,
       },
@@ -54,18 +57,22 @@ export default class CucRegionService {
 
   getTranslatedMicroRegionLocation(region) {
     const translatedMicroRegionLocation = this.$translate.instant(
-      `cuc_region_location_${this.constructor.getMacroRegion(region)}`,
+      `manager_components_region_location_${this.constructor.getMacroRegion(
+        region,
+      )}`,
     );
     return translatedMicroRegionLocation || region;
   }
 
-  getRegionIconFlag(region) {
-    return `flag-icon-${this.getMacroRegionLowercase(region)}`;
+  static getRegionIconFlag(region) {
+    return `oui-flag oui-flag_${ovhManagerRegionService.getCountry(region)}`;
   }
 
   getTranslatedRegionContinent(region) {
     const translatedRegionContinent = this.$translate.instant(
-      `cuc_region_continent_${this.constructor.getMacroRegion(region)}`,
+      `manager_components_region_continent_${this.constructor.getMacroRegion(
+        region,
+      )}`,
     );
     return translatedRegionContinent || region;
   }
@@ -75,6 +82,11 @@ export default class CucRegionService {
       region,
     );
     return trim(translatedMicroRegionLocation.split('(')[1], ')');
+  }
+
+  static getCountry(region) {
+    const macro = ovhManagerRegionService.getMacroRegion(region);
+    return (COUNTRIES[macro] || macro).toLowerCase();
   }
 
   getRegion(regionParam) {
@@ -91,7 +103,7 @@ export default class CucRegionService {
       },
       location: this.getTranslatedMicroRegionLocation(region),
       continent: this.getTranslatedRegionContinent(region),
-      icon: this.getRegionIconFlag(region),
+      icon: ovhManagerRegionService.getRegionIconFlag(region),
       country: this.getRegionCountry(region),
     };
   }

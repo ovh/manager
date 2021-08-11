@@ -269,7 +269,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 106] ([f9d2338](https://github.com/ovh/manager/commit/f9d2338268991329e2816d48e0da6bd293632590))
+* **i18n:** add missing translations [CDS 106] ([f9d2338](https://github.com/ovh/manager/commit/f9d2338268991329e2816d48e0da6bd293632590))
 
 
 
@@ -279,7 +279,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Bug Fixes
 
 * **deps:** upgrade @ovh-ux/component-rollup-config to v7.0.0 ([#1469](https://github.com/ovh-ux/manager/issues/1469)) ([bbc8794](https://github.com/ovh-ux/manager/commit/bbc8794))
-* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
+* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
 
 
 
@@ -288,7 +288,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 96] ([3d1a584](https://github.com/ovh-ux/manager/commit/3d1a584))
+* **i18n:** add missing translations [CDS 96] ([3d1a584](https://github.com/ovh-ux/manager/commit/3d1a584))
 
 
 
@@ -297,7 +297,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 94] ([6e85f3f](https://github.com/ovh-ux/manager/commit/6e85f3f))
+* **i18n:** add missing translations [CDS 94] ([6e85f3f](https://github.com/ovh-ux/manager/commit/6e85f3f))
 
 
 
@@ -306,8 +306,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 86] ([643b2ae](https://github.com/ovh-ux/manager/commit/643b2ae))
-* **i18n:** add missing translations [CDS 92] ([e83031b](https://github.com/ovh-ux/manager/commit/e83031b))
+* **i18n:** add missing translations [CDS 86] ([643b2ae](https://github.com/ovh-ux/manager/commit/643b2ae))
+* **i18n:** add missing translations [CDS 92] ([e83031b](https://github.com/ovh-ux/manager/commit/e83031b))
 
 
 
@@ -316,8 +316,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 83] ([5f2edb4](https://github.com/ovh-ux/manager/commit/5f2edb4))
-* **i18n:** add missing translations [CDS 85] ([6062b1f](https://github.com/ovh-ux/manager/commit/6062b1f))
+* **i18n:** add missing translations [CDS 83] ([5f2edb4](https://github.com/ovh-ux/manager/commit/5f2edb4))
+* **i18n:** add missing translations [CDS 85] ([6062b1f](https://github.com/ovh-ux/manager/commit/6062b1f))
 
 
 
@@ -335,9 +335,9 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 66] ([0293e43](https://github.com/ovh-ux/manager/commit/0293e43))
-* **i18n:** add missing translations [CDS 72] ([b004ad8](https://github.com/ovh-ux/manager/commit/b004ad8))
-* **i18n:** add missing translations [CDS 73] ([4094aa6](https://github.com/ovh-ux/manager/commit/4094aa6))
+* **i18n:** add missing translations [CDS 66] ([0293e43](https://github.com/ovh-ux/manager/commit/0293e43))
+* **i18n:** add missing translations [CDS 72] ([b004ad8](https://github.com/ovh-ux/manager/commit/b004ad8))
+* **i18n:** add missing translations [CDS 73] ([4094aa6](https://github.com/ovh-ux/manager/commit/4094aa6))
 
 
 

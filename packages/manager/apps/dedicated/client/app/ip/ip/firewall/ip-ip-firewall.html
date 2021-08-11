@@ -6,7 +6,7 @@
 
     <h4
         data-translate="ip_firewall_title"
-        data-translate-values="{ t0: selectedIp }"
+        data-translate-values="{ t0: selectedIp }"
     ></h4>
 
     <div
@@ -31,7 +31,7 @@
                         <span data-translate="ip_firewall_position"></span>
                         <i
                             class="fa fa-info-circle"
-                            data-oui-tooltip="{{:: 'ip_firewall_position_tooltip' | translate }}"
+                            data-oui-tooltip="{{:: 'ip_firewall_position_tooltip' | translate }}"
                             data-oui-tooltip-placement="right"
                         >
                         </i>
@@ -73,10 +73,10 @@
                 <tr data-ng-repeat="rule in rules.list.results track by $index">
                     <th scope="row" data-ng-bind="rule.sequence"></th>
                     <td
-                        data-translate="{{ 'ip_firewall_rule_' + rule.action }}"
+                        data-translate="{{ 'ip_firewall_rule_' + rule.action }}"
                     ></td>
                     <td
-                        data-translate="{{ 'ip_firewall_rule_protocol_' + rule.protocol }}"
+                        data-translate="{{ 'ip_firewall_rule_protocol_' + rule.protocol }}"
                     ></td>
                     <td>
                         <span
@@ -103,7 +103,7 @@
                             data-ng-class="{
                                   'label-success': rule.state === 'ok'
                               }"
-                            data-translate="{{ 'ip_firewall_rule_status_' + rule.state }}"
+                            data-translate="{{ 'ip_firewall_rule_status_' + rule.state }}"
                         >
                         </span>
                     </td>
@@ -111,7 +111,7 @@
                         <button
                             type="button"
                             class="btn btn-link"
-                            data-oui-tooltip="{{:: 'ip_firewall_remove_rule' | translate }}"
+                            data-oui-tooltip="{{:: 'ip_firewall_remove_rule' | translate }}"
                             data-oui-tooltip-placement="left"
                             data-ng-click="setAction('ip/firewall/rule/delete/ip-ip-firewall-rule-delete', { ipBlock: selectedBlock, ip: selectedIp, rule: rule })"
                             data-ng-show="rule.state === 'ok'"

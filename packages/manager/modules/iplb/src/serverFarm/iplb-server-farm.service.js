@@ -9,13 +9,13 @@ export default class IpLoadBalancerServerFarmService {
     IpLoadBalancerConfigurationService,
     OvhApiIpLoadBalancing,
     CucServiceHelper,
-    CucRegionService,
+    ovhManagerRegionService,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.IpLoadBalancerConfigurationService = IpLoadBalancerConfigurationService;
     this.IpLoadBalancing = OvhApiIpLoadBalancing;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.CucServiceHelper = CucServiceHelper;
 
     this.Farm = {
@@ -74,7 +74,11 @@ export default class IpLoadBalancerServerFarmService {
       .get({ serviceName }, { farmId })
       .$promise.then((farm) => {
         set(farm, 'type', type);
-        set(farm, 'zoneText', this.CucRegionService.getRegion(farm.zone));
+        set(
+          farm,
+          'zoneText',
+          this.ovhManagerRegionService.getRegion(farm.zone),
+        );
         return farm;
       });
   }

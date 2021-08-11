@@ -26,6 +26,7 @@ import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 import 'font-awesome/css/font-awesome.css';
 import 'ovh-common-style/dist/ovh-common-style.css';
 
+import { region } from '@ovh-ux/manager-components';
 import components from './components';
 import error from './error';
 import projects from './projects';
@@ -76,6 +77,7 @@ angular
     'oui',
     'ui.bootstrap',
     'ovhManagerBanner',
+    region,
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {

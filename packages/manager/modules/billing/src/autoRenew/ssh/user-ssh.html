@@ -68,7 +68,7 @@
                     <th>
                         <select
                             name="category-filter"
-                            aria-label="{{ :: 'user_ssh_category_filter' | translate }}"
+                            aria-label="{{ :: 'user_ssh_category_filter' | translate }}"
                             id="category-filter"
                             class="form-control input-sm"
                             data-ng-model="ctrlSsh.filters.categoryFilter"
@@ -133,7 +133,7 @@
                     </td>
                     <td>
                         <span
-                            data-translate="{{ 'user_ssh_category_' + ssh.category }}"
+                            data-translate="{{ 'user_ssh_category_' + ssh.category }}"
                         ></span>
                         <span data-ng-if="ssh.url">
                             (<a data-ng-href="{{ssh.url}}"
@@ -195,8 +195,8 @@
             data-items-per-page="itemsPerPage"
             data-nb-pages="nbPages"
             data-on-transform-item-done="ctrlSsh.onTransformItemDone(items)"
-            data-page-placeholder="{{ 'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
-            data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+            data-page-placeholder="{{ 'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
+            data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
         ></div>
         <br />
         <p

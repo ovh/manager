@@ -16,5 +16,6 @@
   "web_paas_service_add_addon_success_staging_environment": "Los entornos de prueba se han modificado. Puede seguir el progreso de la entrega en la sección <a href='{{orderURL}}'>Mis pedidos</a> de su cuenta.",
   "web_paas_service_add_addon_success_user_license": "La modificación de las licencias de usuario se ha registrado. Puede seguir el progreso de la entrega en la sección <a href='{{orderURL}}'>Mis pedidos</a> de su cuenta.",
   "web_paas_service_add_addon_fetching_price": "Calculando el precio",
-  "web_paas_service_add_addon_storage_info": "Tenga en cuenta que, una vez que haya contratado almacenamiento adicional, no es posible reducir el almacenamiento de un proyecto."
+  "web_paas_service_add_addon_storage_info": "Tenga en cuenta que, una vez que haya contratado almacenamiento adicional, no es posible reducir el almacenamiento de un proyecto.",
+  "web_paas_service_add_addon_environment_info": "Atención: No es posible reducir el número de entornos de prueba de un proyecto una vez que haya contratado entornos adicionales."
 }

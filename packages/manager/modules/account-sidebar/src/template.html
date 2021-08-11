@@ -4,7 +4,7 @@
     data-ng-class="{
          'sidebar-expand': $ctrl.expand,
      }"
-    data-ng-attr-aria-expanded="{{ $ctrl.isSidebarVisible }}"
+    data-ng-attr-aria-expanded="{{ $ctrl.isSidebarVisible }}"
 >
     <div class="manager-hub-user-panel">
         <div class="mb-3">
@@ -34,7 +34,7 @@
             <div data-ng-repeat="link in $ctrl.links">
                 <span
                     class="manager-hub-user-panel_divider"
-                    data-ng-if="link.href || link.action"
+                    data-ng-if="link.href || link.action"
                     aria-hidden="true"
                 >
                 </span>

@@ -11,7 +11,7 @@
                     data-translate="dedicatedCloud_SECURITY_expiration_session"
                 ></dt>
                 <dd
-                    data-ng-bind="$ctrl.policies.info.userSessionTimeout == 0 && ('dedicatedCloud_SECURITY_expiration_session_never' | translate) || 'dedicatedCloud_SECURITY_expiration_session_value' | translate:{ t0: $ctrl.policies.info.userSessionTimeout }"
+                    data-ng-bind="$ctrl.policies.info.userSessionTimeout == 0 && ('dedicatedCloud_SECURITY_expiration_session_never' | translate) || 'dedicatedCloud_SECURITY_expiration_session_value' | translate:{ t0: $ctrl.policies.info.userSessionTimeout }"
                 ></dd>
                 <dt
                     data-translate="dedicatedCloud_SECURITY_nb_simultaneous_connection"
@@ -23,11 +23,11 @@
                     data-translate="dedicatedCloud_SECURITY_userAccess_policy"
                 ></dt>
                 <dd
-                    data-translate="{{ 'dedicatedCloud_SECURITY_userAccess_policy_' + $ctrl.policies.info.userAccessPolicy }}"
+                    data-translate="{{ 'dedicatedCloud_SECURITY_userAccess_policy_' + $ctrl.policies.info.userAccessPolicy }}"
                 ></dd>
                 <dt data-translate="dedicatedCloud_SECURITY_logout_policy"></dt>
                 <dd
-                    data-translate="{{ 'dedicatedCloud_SECURITY_logout_policy_' + $ctrl.policies.info.logoutPolicy }}"
+                    data-translate="{{ 'dedicatedCloud_SECURITY_logout_policy_' + $ctrl.policies.info.logoutPolicy }}"
                 ></dd>
             </dl>
             <div class="text-center" data-ng-show="$ctrl.loaders.table">
@@ -60,7 +60,7 @@
                             }"
                         >
                             <span
-                                data-translate="{{ 'dedicatedCloud_configuration_SECURITY_status_' + $row.status }}"
+                                data-translate="{{ 'dedicatedCloud_configuration_SECURITY_status_' + $row.status }}"
                             ></span>
                         </span>
                     </oui-datagrid-column>
@@ -185,12 +185,6 @@
                 class="btn btn-block btn-default"
                 data-ng-click="$ctrl.updateMaxSimultaneousConnection($ctrl.policies.info.userLimitConcurrentSession)"
                 data-translate="dedicatedCloud_SECURITY_change_nb_simultaneous_connection"
-            ></button>
-            <button
-                type="button"
-                class="btn btn-block btn-default"
-                data-ng-click="$ctrl.securityAccess()"
-                data-translate="dedicatedCloud_SECURITY_access_policy"
             ></button>
             <button
                 type="button"

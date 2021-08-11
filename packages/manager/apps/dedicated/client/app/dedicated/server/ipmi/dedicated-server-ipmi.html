@@ -11,7 +11,7 @@
         <p
             class="text-danger"
             data-ng-if="server.state == 'HACKED' || server.state == 'HACKED_BLOCKED'"
-            data-ng-bind-html="'server_configuration_impi_disabled' | translate:{ t0: ('server_configuration_state_' + server.state | translate) }"
+            data-ng-bind-html="'server_configuration_impi_disabled' | translate:{ t0: ('server_configuration_state_' + server.state | translate) }"
         ></p>
         <div
             data-ng-if="server.state != 'HACKED' && server.state != 'HACKED_BLOCKED'"

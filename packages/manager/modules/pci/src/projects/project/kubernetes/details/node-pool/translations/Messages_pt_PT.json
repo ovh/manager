@@ -3,7 +3,6 @@
   "kube_node_pool_creation_date": "Data de criação",
   "kube_node_pool_node_count": "Número de nós",
   "kube_node_pool_monthly_billing": "Tarifa mensal",
-  "kube_node_pool_edit": "Editar o pool",
   "kube_node_pool_nodes": "Ver os nós",
   "kube_node_pool_scale": "Configurar o tamanho do pool de nós",
   "kube_node_pool_delete": "Eliminar o pool",

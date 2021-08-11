@@ -21,5 +21,6 @@
   "pci_notebook_list_stop_notebook": "Parar",
   "pci_notebook_list_delete_notebook": "Eliminar",
   "pci_notebook_list_start_error": "Ocorreu um erro durante a tentativa de lançamento do notebook {{notebookName}}: {{message}}",
-  "pci_notebook_list_stop_error": "Ocorreu um erro durante a tentativa de interrupção do notebook {{notebookName}}: {{message}}"
+  "pci_notebook_list_stop_error": "Ocorreu um erro durante a tentativa de interrupção do notebook {{notebookName}}: {{message}}",
+  "pci_notebook_list_status_FAILED": "Erro"
 }

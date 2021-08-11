@@ -13,7 +13,7 @@ export default class MetricsDashboardCtrl {
     CucCloudMessage,
     CucControllerHelper,
     CucFeatureAvailabilityService,
-    CucRegionService,
+    ovhManagerRegionService,
     MetricService,
     SidebarMenu,
   ) {
@@ -29,7 +29,7 @@ export default class MetricsDashboardCtrl {
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
     this.MetricService = MetricService;
     this.graphs = graphs;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.SidebarMenu = SidebarMenu;
 
     this.loading = {};
@@ -171,7 +171,7 @@ export default class MetricsDashboardCtrl {
   }
 
   transformRegion(regionCode) {
-    const region = this.CucRegionService.getRegion(regionCode);
+    const region = this.ovhManagerRegionService.getRegion(regionCode);
     return {
       name: region.microRegion.text,
       country: region.country,

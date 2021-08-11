@@ -12,6 +12,7 @@
   "dedicatedCloud_SECURITY_logout_policy_FIRST": "Desconexión del primer usuario conectado",
   "dedicatedCloud_SECURITY_logout_policy_LAST": "Desconexión del último usuario conectado",
   "dedicatedCloud_SECURITY_title_EPCC": "IP y bloques autorizados a conectarse a Hosted Private Cloud:",
+  "dedicatedCloud_SECURITY_title_MBM": "IP y bloques autorizados a conectarse al Managed Bare Metal:",
   "dedicatedCloud_SECURITY_IP_name": "Nombre de IP",
   "dedicatedCloud_SECURITY_allow": "Permiso",
   "dedicatedCloud_SECURITY_description": "Descripción",
@@ -42,10 +43,8 @@
   "dedicatedCloud_vm_encryption_kms_add": "Añadir un nuevo servidor KMS",
   "dedicatedCloud_SECURITY_change_timeout": "Modificar el plazo de expiración de una sesión",
   "dedicatedCloud_SECURITY_change_nb_simultaneous_connection": "Modificar el número de conexiones simultáneas",
-  "dedicatedCloud_SECURITY_access_policy": "Modificar la política de acceso al vCenter",
   "dedicatedCloud_SECURITY_change_logout_policy": "Modificar la política de desconexión",
   "dedicatedCloud_SECURITY_add_IP": "Añadir un nuevo rango de direcciones IP",
   "dedicatedCloud_SECURITY_delete_IP": "Eliminar los rangos de direcciones IP",
-  "dedicatedCloud_dashboard_loading_error": "Se ha producido un error al cargar los datos del servicio.",
-  "dedicatedCloud_SECURITY_title_MBM": "IP y bloques autorizados a conectarse al Managed Bare Metal:"
+  "dedicatedCloud_dashboard_loading_error": "Se ha producido un error al cargar los datos del servicio."
 }

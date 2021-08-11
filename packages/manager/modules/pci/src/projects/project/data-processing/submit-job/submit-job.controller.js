@@ -6,13 +6,13 @@ export default class {
     $scope,
     $state,
     dataProcessingService,
-    CucRegionService,
+    ovhManagerRegionService,
     atInternet,
   ) {
     this.$state = $state;
     this.$scope = $scope;
     this.dataProcessingService = dataProcessingService;
-    this.cucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.atInternet = atInternet;
     // let's do some function binding
     this.onChangeRegionHandler = this.onChangeRegionHandler.bind(this);

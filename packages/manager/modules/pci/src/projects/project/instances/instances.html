@@ -7,9 +7,7 @@
 </oui-message>
 
 <div data-ui-view>
-
     <oui-header
-
         data-heading="{{:: 'pci_projects_project_instances_title' | translate }}"
         class="mb-3"
     >
@@ -76,7 +74,7 @@
             data-property="region"
         >
             <span
-                data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($row.region)"
+                data-ng-bind="$ctrl.ovhManagerRegionService.getTranslatedMicroRegion($row.region)"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column

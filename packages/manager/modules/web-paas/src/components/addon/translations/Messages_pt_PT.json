@@ -16,5 +16,6 @@
   "web_paas_service_add_addon_success_staging_environment": "A modificação do seu ambiente de teste foi corretamente tomada em conta. Pode seguir a evolução da entrega na sua conta, na secção <a href='{{orderURL}}'>Encomendas</a>",
   "web_paas_service_add_addon_success_user_license": "A modificação das licenças de utilizador foi corretamente tomada em conta. Pode seguir a evolução da entrega na sua conta, na secção <a href='{{orderURL}}'>Encomendas</a>",
   "web_paas_service_add_addon_fetching_price": "Cálculo do preço",
-  "web_paas_service_add_addon_storage_info": "Tenha em conta que não é possível reduzir o armazenamento de um projeto após o armazenamento adicional ter sido encomendado."
+  "web_paas_service_add_addon_storage_info": "Tenha em conta que não é possível reduzir o armazenamento de um projeto após o armazenamento adicional ter sido encomendado.",
+  "web_paas_service_add_addon_environment_info": "Note que não é possível reduzir o número de ambientes de teste de um projeto depois de o ambiente adicional ter sido encomendado."
 }

@@ -2,7 +2,6 @@
   "kube_node_pool_name": "Nome del pool",
   "kube_node_pool_creation_date": "Data di creazione",
   "kube_node_pool_node_count": "Numero di nodi",
-  "kube_node_pool_edit": "Modifica il pool",
   "kube_node_pool_nodes": "Visualizza i nodi",
   "kube_node_pool_scale": "Configura la dimensione del pool di nodi",
   "kube_node_pool_delete": "Elimina il pool",

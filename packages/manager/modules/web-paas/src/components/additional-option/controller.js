@@ -1,9 +1,9 @@
 import set from 'lodash/set';
 import {
-  ADDON_FAMILY_STAGING_ENVIRONMENT,
+  ADDON_FAMILY,
+  DEFAULT_ENVIRONMENT_COUNT,
   STORAGE_MULTIPLE,
-  DEFAULT_ENVIRONMENT,
-} from './constants';
+} from '../../web-paas.constants';
 
 export default class WebPaasProjectAdditionalOptionCtrl {
   getPrice() {
@@ -16,10 +16,10 @@ export default class WebPaasProjectAdditionalOptionCtrl {
         return (price.value * this.option.quantity) / STORAGE_MULTIPLE;
       }
       const stagingQuantity = this.plan.addons?.find(
-        (addon) => addon.family === ADDON_FAMILY_STAGING_ENVIRONMENT,
+        (addon) => addon.family === ADDON_FAMILY.ENVIRONMENT,
       ).quantity;
       return (
-        ((DEFAULT_ENVIRONMENT + (stagingQuantity || 0)) *
+        ((DEFAULT_ENVIRONMENT_COUNT + (stagingQuantity || 0)) *
           price.value *
           this.option.quantity) /
         STORAGE_MULTIPLE

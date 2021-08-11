@@ -21,7 +21,7 @@
             ></span>
         </div>
 
-        <oui-field data-label="{{::'logs_dashboards_col_name' | translate}}">
+        <oui-field data-label="{{::'logs_dashboards_col_name' | translate}}">
             <input
                 type="text"
                 id="dashboard_name"
@@ -34,7 +34,7 @@
         </oui-field>
 
         <oui-field
-            data-label="{{::'logs_dashboards_col_description' | translate}}"
+            data-label="{{::'logs_dashboards_col_description' | translate}}"
         >
             <textarea
                 id="dashboard_description"
@@ -47,7 +47,7 @@
 
         <oui-field
             data-ng-if="ctrl.isDuplicate"
-            data-label="{{::'logs_dashboards_select_stream' | translate}}"
+            data-label="{{::'logs_dashboards_select_stream' | translate}}"
         >
             <oui-spinner data-ng-show="ctrl.streams.loading"></oui-spinner>
             <div class="oui-select" data-ng-hide="ctrl.streams.loading">
@@ -56,7 +56,7 @@
                     name="dashboard_stream"
                     id="dashboard_stream"
                     data-ng-model="ctrl.dashboard.data.streamId"
-                    title="{{::'logs_dashboards_select_stream_title' | translate}}"
+                    title="{{::'logs_dashboards_select_stream_title' | translate}}"
                 >
                     <option
                         value

@@ -3,9 +3,9 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="addSecondaryDns"
-        data-wizard-title=":: 'server_configuration_add_secondary_dns_title' | translate"
+        data-wizard-title=":: 'server_configuration_add_secondary_dns_title' | translate"
         data-wizard-bread-crumb
-        data-wizard-confirm-button-text=":: 'server_configuration_secondarydns_confirm_button_text' | translate"
+        data-wizard-confirm-button-text=":: 'server_configuration_secondarydns_confirm_button_text' | translate"
     >
         <div
             data-wizard-step
@@ -64,7 +64,7 @@
 
             <div
                 data-ng-if="!loadTokenLoading"
-                data-ng-bind-html="'server_configuration_secondarydns_add_step2' | translate: { t0: token.fieldType, t1: entry.domain, t2: token.subDomain, t3: token.fieldValue }"
+                data-ng-bind-html="'server_configuration_secondarydns_add_step2' | translate: { t0: token.fieldType, t1: entry.domain, t2: token.subDomain, t3: token.fieldValue }"
             ></div>
 
             <div data-ovh-alert="addTokenAlert"></div>

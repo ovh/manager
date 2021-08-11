@@ -143,7 +143,10 @@
         <oui-field
             data-label="{{ :: 'pci_database_add_network_mode_label' | translate }}"
         >
-            <oui-radio-group data-model="$ctrl.model.usePrivateNetwork">
+            <oui-radio-group
+                data-model="$ctrl.model.usePrivateNetwork"
+                data-on-change="$ctrl.onNetworkTypeChange(modelValue)"
+            >
                 <oui-radio
                     data-value="false"
                     data-disabled="$ctrl.loadingSubnets || !$ctrl.model.flavor.supportsPublicNetwork"

@@ -4,11 +4,11 @@ import 'angular-translate';
 
 import service from './service';
 
-const moduleName = 'cucCloudRegion';
+const moduleName = 'ovhManagerRegion';
 
 angular
   .module(moduleName, ['ngTranslateAsyncLoader', 'pascalprecht.translate'])
-  .service('CucRegionService', service)
+  .service('ovhManagerRegionService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

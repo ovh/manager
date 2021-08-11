@@ -53,7 +53,7 @@
 
             <span
                 data-ng-if="$row.consumption != null && $row.consumption > 0"
-                data-oui-tooltip="{{:: 'dedicatedCloud_tab_datastores_hourly_usage_update' | translate:{ t0: ($row.consumptionLastUpdate|date:'short') } }}"
+                data-oui-tooltip="{{:: 'dedicatedCloud_tab_datastores_hourly_usage_update' | translate:{ t0: ($row.consumptionLastUpdate|date:'short') } }}"
                 data-oui-tooltip-placement="top"
             >
                 <span
@@ -63,7 +63,7 @@
                 <span
                     data-ng-if="$row.consumption > 1"
                     data-translate="dedicatedCloud_tab_datastores_hourly_consumption_other"
-                    data-translate-value-t0="{{:: $row.consumption }}"
+                    data-translate-value-t0="{{:: $row.consumption }}"
                 ></span>
             </span>
         </span>

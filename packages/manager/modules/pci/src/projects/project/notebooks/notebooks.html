@@ -6,9 +6,11 @@
         <oui-guide-menu
             data-text="{{:: 'pci_project_guides_header' | translate }}"
         >
-            <oui-guide-menu-item data-href="{{ $ctrl.guideUrl }}"
-                                 data-on-click="$ctrl.onGuideLinkClick('all')"
-                                 data-external>
+            <oui-guide-menu-item
+                data-href="{{ $ctrl.guideUrl }}"
+                data-on-click="$ctrl.onGuideLinkClick('all')"
+                data-external
+            >
                 <span
                     data-translate="pci_project_guides_header_all_guides"
                 ></span>
@@ -41,7 +43,7 @@
             data-sortable
         >
             <span
-                data-ng-bind=":: $ctrl.CucRegionService.getTranslatedMacroRegion($row.region)"
+                data-ng-bind=":: $ctrl.ovhManagerRegionService.getTranslatedMacroRegion($row.region)"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
@@ -98,9 +100,9 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                    'oui-badge_success': $row.isRunning(),
-                    'oui-badge_warning': $row.isPending(),
-                    'oui-badge_error': $row.isStopped(),
+                    'oui-badge_success': $row.stateInfo.stateGroup.success,
+                    'oui-badge_warning': $row.stateInfo.stateGroup.warning,
+                    'oui-badge_error': $row.stateInfo.stateGroup.error,
                 }"
             >
                 <span
@@ -114,7 +116,6 @@
             data-type="string"
         >
             <div>
-
                 <!--Active link-->
                 <a
                     class="oui-link_icon"
@@ -131,8 +132,10 @@
                 </a>
 
                 <!--Inactive link-->
-                <span data-ng-if="!$row.isRunning()" data-ng-bind=":: $row.editor.name"></span>
-
+                <span
+                    data-ng-if="!$row.isRunning()"
+                    data-ng-bind=":: $row.editor.name"
+                ></span>
             </div>
         </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="left-start">

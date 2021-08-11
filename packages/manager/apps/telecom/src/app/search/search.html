@@ -7,7 +7,7 @@
         <div class="oui-input-group">
             <input
                 class="oui-input"
-                placeholder="{{ 'telecom_search_search_placeholder' | translate }}"
+                placeholder="{{ 'telecom_search_search_placeholder' | translate }}"
                 data-ng-model="$ctrl.query"
                 required
                 autofocus
@@ -54,7 +54,7 @@
         >
             <a
                 class="d-block"
-                data-ng-href="{{ $ctrl.getServiceLink($parent.result.billingAccount, $parent.result.value) }}"
+                data-ng-href="{{ $ctrl.getServiceLink($parent.result.billingAccount, $parent.result.value) }}"
                 data-ng-bind="$parent.result.value.serviceName"
             ></a>
             <div>

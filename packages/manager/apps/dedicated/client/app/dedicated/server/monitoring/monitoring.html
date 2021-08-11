@@ -1,7 +1,7 @@
 <div data-ovh-alert="monitoringAlert"></div>
 
 <oui-back-button
-    aria-label="{{ 'server_tab_MONITORING_back' | translate }}"
+    aria-label="{{ 'server_tab_MONITORING_back' | translate }}"
     on-click="$ctrl.goBack()"
 >
     <span data-translate="server_tab_MONITORING_back"></span>
@@ -12,7 +12,7 @@
 <button
     class="btn btn-default mb-2"
     type="button"
-    title="{{ 'server_tab_MONITORING_add' | translate }}"
+    title="{{ 'server_tab_MONITORING_add' | translate }}"
     data-ng-click="$ctrl.addMode = !$ctrl.addMode"
     data-ng-disabled="$ctrl.editMode"
     data-translate="server_tab_MONITORING_add"
@@ -58,7 +58,7 @@
                 <th scope="col" colspan="2">
                     <button
                         class="btn btn-link"
-                        title="{{ 'server_tab_MONITORING_table_header_refresh' | translate }}"
+                        title="{{ 'server_tab_MONITORING_table_header_refresh' | translate }}"
                         data-ng-click="$ctrl.refreshTableMonitoring()"
                         data-ng-disabled="$ctrl.addMode || $ctrl.editMode"
                     >
@@ -89,7 +89,7 @@
                                             id="select-monitoring-ip-add"
                                             name="selectIpsAdd"
                                             required
-                                            aria-label="{{ 'server_tab_MONITORING_add_ip' | translate }}"
+                                            aria-label="{{ 'server_tab_MONITORING_add_ip' | translate }}"
                                             data-ng-options="ip for ip in $ctrl.ips"
                                             data-ng-model="ctrlMonitoringAdd.monitoring.ip"
                                         >
@@ -101,7 +101,7 @@
                                             id="select-monitoring-protocol-add"
                                             name="selectProtocolsAdd"
                                             required
-                                            aria-label="{{ 'server_tab_MONITORING_add_protocol' | translate }}"
+                                            aria-label="{{ 'server_tab_MONITORING_add_protocol' | translate }}"
                                             data-ng-options="protocol for protocol in $ctrl.monitoringProtocolEnum"
                                             data-ng-model="ctrlMonitoringAdd.monitoring.protocol"
                                         >
@@ -116,10 +116,10 @@
                                             required
                                             min="1"
                                             max="65535"
-                                            aria-label="{{ 'server_tab_MONITORING_add_port' | translate }}"
+                                            aria-label="{{ 'server_tab_MONITORING_add_port' | translate }}"
                                             data-ng-model="ctrlMonitoringAdd.monitoring.port"
                                             data-ng-pattern="/^[0-9]+$/"
-                                            data-oui-tooltip="{{ ::'server_tab_MONITORING_add_port_text_help' | translate }}"
+                                            data-oui-tooltip="{{ ::'server_tab_MONITORING_add_port_text_help' | translate }}"
                                         />
                                     </td>
                                     <td>
@@ -129,10 +129,10 @@
                                             id="txt-monitoring-challengeText-add"
                                             name="txtChallengeTextAdd"
                                             maxlength="25"
-                                            aria-label="{{ 'server_tab_MONITORING_add_challenge_text' | translate }}"
+                                            aria-label="{{ 'server_tab_MONITORING_add_challenge_text' | translate }}"
                                             data-ng-model="ctrlMonitoringAdd.monitoring.challengeText"
                                             data-ng-pattern="/^[a-zA-Z0-9\s\.\-=\(\)\\\/;]*$/i"
-                                            data-oui-tooltip="{{ ::'server_tab_MONITORING_add_challenge_text_help' | translate }}"
+                                            data-oui-tooltip="{{ ::'server_tab_MONITORING_add_challenge_text_help' | translate }}"
                                             data-oui-tooltip-placement="right"
                                         />
                                         <p
@@ -147,7 +147,7 @@
                                             id="select-monitoring-interval"
                                             name="select-monitoring-interval"
                                             required
-                                            aria-label="{{ 'server_tab_MONITORING_add_interval' | translate }}"
+                                            aria-label="{{ 'server_tab_MONITORING_add_interval' | translate }}"
                                             data-ng-options="interval for interval in $ctrl.monitoringIntervalEnum"
                                             data-ng-model="ctrlMonitoringAdd.monitoring.interval"
                                         >
@@ -162,7 +162,7 @@
                                                 class="form-control"
                                                 name="monitoringUrl"
                                                 pattern="^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+[a-z]{2,15}$"
-                                                aria-label="{{ 'server_tab_MONITORING_add_url' | translate }}"
+                                                aria-label="{{ 'server_tab_MONITORING_add_url' | translate }}"
                                                 data-ng-model="ctrlMonitoringAdd.monitoring.url"
                                                 data-ng-required="ctrlMonitoringAdd.monitoring.protocol === 'DNS'"
                                             />
@@ -202,7 +202,7 @@
                                         <button
                                             type="submit"
                                             class="btn btn-link"
-                                            title="{{ 'wizard_confirm' | translate }}"
+                                            title="{{ 'wizard_confirm' | translate }}"
                                             data-ng-disabled="!formAddMonitoring.$valid"
                                         >
                                             <span
@@ -215,7 +215,7 @@
                                         <button
                                             type="reset"
                                             class="btn btn-link"
-                                            title="{{ 'wizard_cancel' | translate }}"
+                                            title="{{ 'wizard_cancel' | translate }}"
                                             data-ng-click="$ctrl.addMode = false"
                                         >
                                             <span
@@ -416,7 +416,7 @@
                                 <button
                                     type="button"
                                     class="btn btn-default"
-                                    title="{{ 'server_tab_MONITORING_notification_remove_recipient' | translate }}"
+                                    title="{{ 'server_tab_MONITORING_notification_remove_recipient' | translate }}"
                                     data-ng-if="ctrlMonitoringAdd.emailNotifications.length > 1"
                                     data-ng-click="ctrlMonitoringAdd.removeEMailNotification(emailNotification)"
                                     data-translate="server_tab_MONITORING_notification_remove_recipient"
@@ -553,7 +553,7 @@
                     <button
                         type="button"
                         class="btn btn-link"
-                        title="{{ 'server_tab_MONITORING_table_action_edit' | translate }}"
+                        title="{{ 'server_tab_MONITORING_table_action_edit' | translate }}"
                         data-ng-click="$ctrl.editMode = monitoring.monitoringId"
                         data-ng-disabled="$ctrl.addMode"
                     >
@@ -570,7 +570,7 @@
                     <button
                         type="button"
                         class="btn btn-link"
-                        title="{{ 'server_tab_MONITORING_table_action_delete' | translate }}"
+                        title="{{ 'server_tab_MONITORING_table_action_delete' | translate }}"
                         data-ng-click="$ctrl.dedicatedServer.$scope.setAction('monitoring/delete/dedicated-server-monitoring-delete', monitoring)"
                     >
                         <span
@@ -607,7 +607,7 @@
                                             id="select-monitoring-protocol-update"
                                             name="selectProtocolsUpdate"
                                             required
-                                            aria-label="{{ 'server_tab_MONITORING_add_protocol' | translate }}"
+                                            aria-label="{{ 'server_tab_MONITORING_add_protocol' | translate }}"
                                             data-ng-options="protocol for protocol in $ctrl.monitoringProtocolEnum"
                                             data-ng-model="ctrlMonitoringUpdate.monitoring.protocol"
                                         >
@@ -622,10 +622,10 @@
                                             min="1"
                                             max="65535"
                                             required
-                                            aria-label="{{ 'server_tab_MONITORING_add_port' | translate }}"
+                                            aria-label="{{ 'server_tab_MONITORING_add_port' | translate }}"
                                             data-ng-model="ctrlMonitoringUpdate.monitoring.port"
                                             data-ng-pattern="/^[0-9]+$/"
-                                            data-oui-tooltip="{{ 'server_tab_MONITORING_add_port_text_help' | translate }}"
+                                            data-oui-tooltip="{{ 'server_tab_MONITORING_add_port_text_help' | translate }}"
                                         />
                                     </td>
                                     <td>
@@ -635,10 +635,10 @@
                                             id="txt-monitoring-challengeText"
                                             name="txtChallengeTextUpdate"
                                             maxlength="25"
-                                            aria-label="{{ 'server_tab_MONITORING_add_challenge_text' | translate }}"
+                                            aria-label="{{ 'server_tab_MONITORING_add_challenge_text' | translate }}"
                                             data-ng-pattern="/^[a-zA-Z0-9\s\.\-=\(\)\\\/;]*$/i"
                                             data-ng-model="ctrlMonitoringUpdate.monitoring.challengeText"
-                                            data-oui-tooltip="{{ 'server_tab_MONITORING_add_challenge_text_help' | translate }}"
+                                            data-oui-tooltip="{{ 'server_tab_MONITORING_add_challenge_text_help' | translate }}"
                                         />
                                         <p
                                             class="text-danger"
@@ -652,7 +652,7 @@
                                             id="select-monitoring-interval"
                                             name="select-monitoring-interval"
                                             required
-                                            aria-label="{{ 'server_tab_MONITORING_add_interval' | translate }}"
+                                            aria-label="{{ 'server_tab_MONITORING_add_interval' | translate }}"
                                             data-ng-options="interval for interval in $ctrl.monitoringIntervalEnum"
                                             data-ng-model="ctrlMonitoringUpdate.monitoring.interval"
                                         >
@@ -705,7 +705,7 @@
                                         <button
                                             type="submit"
                                             class="btn btn-link"
-                                            title="{{ 'wizard_confirm' | translate }}"
+                                            title="{{ 'wizard_confirm' | translate }}"
                                             data-ng-disabled="!formUpdateMonitoring.$valid"
                                         >
                                             <span
@@ -718,7 +718,7 @@
                                         <button
                                             type="button"
                                             class="btn btn-link"
-                                            title="{{ 'wizard_cancel' | translate }}"
+                                            title="{{ 'wizard_cancel' | translate }}"
                                             data-ng-click="$ctrl.editMode = null"
                                         >
                                             <span
@@ -750,7 +750,7 @@
                                 >
                                     <span
                                         class="fa fa-envelope-o fa-3x"
-                                        aria-label="{{ 'server_tab_MONITORING_notifications_email_add_email' | translate }}"
+                                        aria-label="{{ 'server_tab_MONITORING_notifications_email_add_email' | translate }}"
                                     >
                                     </span>
                                 </div>
@@ -820,7 +820,7 @@
                                 >
                                     <i class="icon icon-trash pointer"></i>
                                     <span
-                                        data-ng-bind=":: 'server_tab_MONITORING_notification_remove_recipient' | translate"
+                                        data-ng-bind=":: 'server_tab_MONITORING_notification_remove_recipient' | translate"
                                     ></span>
                                 </button>
                                 <button
@@ -828,7 +828,7 @@
                                     class="btn btn-link"
                                     data-ng-if="ctrlMonitoringUpdate.emailNotificationsToDelete.indexOf(emailNotification) !== -1"
                                     data-ng-click="ctrlMonitoringUpdate.cancelDeleteEMailNotification(emailNotification)"
-                                    data-ng-bind=":: 'server_tab_MONITORING_notification_add_recipient' | translate"
+                                    data-ng-bind=":: 'server_tab_MONITORING_notification_add_recipient' | translate"
                                 ></button>
                             </div>
 
@@ -997,14 +997,14 @@
                                     type="button"
                                     data-ng-if="ctrlMonitoringUpdate.smsNotificationsToDelete.indexOf(smsNotification) === -1"
                                     data-ng-click="ctrlMonitoringUpdate.removeSmsNotification(smsNotification)"
-                                    data-ng-bind=":: 'server_tab_MONITORING_notification_remove_recipient' | translate"
+                                    data-ng-bind=":: 'server_tab_MONITORING_notification_remove_recipient' | translate"
                                 ></button>
                                 <button
                                     class="btn btn-default"
                                     type="button"
                                     data-ng-if="ctrlMonitoringUpdate.smsNotificationsToDelete.indexOf(smsNotification) !== -1"
                                     data-ng-click="ctrlMonitoringUpdate.cancelDeleteSmslNotification(smsNotification)"
-                                    data-ng-bind=":: 'server_tab_MONITORING_notification_add_recipient' | translate"
+                                    data-ng-bind=":: 'server_tab_MONITORING_notification_add_recipient' | translate"
                                 ></button>
                             </div>
 
@@ -1038,5 +1038,5 @@
     data-nb-pages="nbPages"
     data-items-per-page="itemsPerPage"
     data-page-placeholder="{{ 'pagination_page' | translate:{ t0: $ctrl.currentPage.monitorings, t1: $ctrl.nbPages } }}"
-    data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+    data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
 ></div>

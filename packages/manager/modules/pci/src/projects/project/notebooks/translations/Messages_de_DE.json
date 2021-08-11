@@ -21,5 +21,6 @@
   "pci_notebook_list_stop_notebook": "Anhalten",
   "pci_notebook_list_delete_notebook": "Löschen",
   "pci_notebook_list_start_error": "Beim Start des Notebooks {{notebookName}} ist ein Fehler aufgetreten: {{message}}",
-  "pci_notebook_list_stop_error": "Beim Anhalten des Notebooks {{notebookName}} ist ein Fehler aufgetreten: {{message}}"
+  "pci_notebook_list_stop_error": "Beim Anhalten des Notebooks {{notebookName}} ist ein Fehler aufgetreten: {{message}}",
+  "pci_notebook_list_status_FAILED": "Fehler"
 }

@@ -292,7 +292,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 ### Bug Fixes
 
 * add @ovh-ux/manager-core as peer dependency ([84a0c21](https://github.com/ovh/manager/commit/84a0c212bb2280bd81111dcaeee68d044962c285))
-* **i18n:** add missing translations [CDS 116] ([388486f](https://github.com/ovh/manager/commit/388486fe3c54b991e9f55f46fb2e071a487e7b10))
+* **i18n:** add missing translations [CDS 116] ([388486f](https://github.com/ovh/manager/commit/388486fe3c54b991e9f55f46fb2e071a487e7b10))
 
 
 
@@ -309,7 +309,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 * export module name ([#3](https://github.com/ovh-ux/ng-ovh-payment-method/issues/3)) ([aad7dc5](https://github.com/ovh-ux/ng-ovh-payment-method/commit/aad7dc5d15bf4969292ee7702605c93f6aed77e2))
 * **component:** improve responsive ([16286a7](https://github.com/ovh-ux/ng-ovh-payment-method/commit/16286a7a5ed6c12c646e3c0d6eb5c3202d8d7446))
 * provider injection ([39022f8](https://github.com/ovh-ux/ng-ovh-payment-method/commit/39022f889571c402cad90720a27f6125c90c086b))
-* **i18n:** add missing translations [CDS 114] ([d0adb8d](https://github.com/ovh-ux/ng-ovh-payment-method/commit/d0adb8d5948dbff2a29170909354c372b9c75611))
+* **i18n:** add missing translations [CDS 114] ([d0adb8d](https://github.com/ovh-ux/ng-ovh-payment-method/commit/d0adb8d5948dbff2a29170909354c372b9c75611))
 * failed status translation ([4ca0783](https://github.com/ovh-ux/ng-ovh-payment-method/commit/4ca0783e486125fc8ae30f0727328b4ea7cf4fc1))
 * fallback to col-md-x for bs3 grid compatibility ([3a9a108](https://github.com/ovh-ux/ng-ovh-payment-method/commit/3a9a1085d226091802b91be5b8e9255c73656f34))
 * get informations from API for available mean types ([2ed6881](https://github.com/ovh-ux/ng-ovh-payment-method/commit/2ed6881cafd7fa008c13f4735239c4866abc79f6))

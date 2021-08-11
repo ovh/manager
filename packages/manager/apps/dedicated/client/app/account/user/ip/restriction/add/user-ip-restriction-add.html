@@ -3,7 +3,7 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="addRestriction"
-        data-wizard-title="::'user_ipRestrictions_add' | translate"
+        data-wizard-title="::'user_ipRestrictions_add' | translate"
     >
         <div data-wizard-step data-wizard-step-valid="isValid">
             <p data-translate="user_ipRestrictions_add_informations"></p>
@@ -31,7 +31,7 @@
                         <span data-translate="user_ipRestrictions_alert"></span>
                         <span
                             class="oui-icon security-icon-help oui-icon-help-circle"
-                            data-oui-tooltip="{{:: 'user_ipRestrictions_alert_information' | translate }}"
+                            data-oui-tooltip="{{:: 'user_ipRestrictions_alert_information' | translate }}"
                             data-oui-tooltip-placement="bottom"
                             aria-hidden="true"
                         >
@@ -65,11 +65,11 @@
                             id="inputRule"
                         >
                             <option value="ACCEPT"
-                                >{{ 'user_ipRestrictions_rule_ACCEPT' |
+                                >{{ 'user_ipRestrictions_rule_ACCEPT' |
                                 translate }}</option
                             >
                             <option value="DENY"
-                                >{{ 'user_ipRestrictions_rule_DENY' | translate
+                                >{{ 'user_ipRestrictions_rule_DENY' | translate
                                 }}</option
                             >
                         </select>
@@ -101,7 +101,7 @@
 
                 <dt data-translate="user_ipRestrictions_rule"></dt>
                 <dd
-                    data-translate="{{ 'user_ipRestrictions_rule_'+restriction.rule }}"
+                    data-translate="{{ 'user_ipRestrictions_rule_'+restriction.rule }}"
                 ></dd>
             </dl>
         </div>

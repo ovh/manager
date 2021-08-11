@@ -8,14 +8,14 @@ export default class IpLoadBalancerHomeService {
     SidebarMenu,
     IpLoadBalancerCipherService,
     OvhApiIpLoadBalancing,
-    CucRegionService,
+    ovhManagerRegionService,
     CucServiceHelper,
   ) {
     this.$q = $q;
     this.SidebarMenu = SidebarMenu;
     this.IpLoadBalancerCipherService = IpLoadBalancerCipherService;
     this.OvhApiIpLoadBalancing = OvhApiIpLoadBalancing;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.CucServiceHelper = CucServiceHelper;
   }
 
@@ -65,7 +65,11 @@ export default class IpLoadBalancerHomeService {
       )
       .then((quotas) =>
         quotas.map((quota) => {
-          set(quota, 'region', this.CucRegionService.getRegion(quota.zone));
+          set(
+            quota,
+            'region',
+            this.ovhManagerRegionService.getRegion(quota.zone),
+          );
           return quota;
         }),
       )

@@ -2779,8 +2779,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 123] ([3b7c5a5](https://github.com/ovh/manager/commit/3b7c5a5529a3e3c911e56ec29359e914d800ba91))
-* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
+* **i18n:** add missing translations [CDS 123] ([3b7c5a5](https://github.com/ovh/manager/commit/3b7c5a5529a3e3c911e56ec29359e914d800ba91))
+* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
 * **i18n:** add missing translations [CDS 128] ([799c85b](https://github.com/ovh/manager/commit/799c85b600b736436e6f5d111b0ed65f8998e8d5))
 * **i18n:** add missing translations [CDS 129] ([5acca41](https://github.com/ovh/manager/commit/5acca41531fa79aea373d4b0b5b748b0c44fd1ea))
 * **i18n:** add missing translations [CDS 132] ([22f185e](https://github.com/ovh/manager/commit/22f185e5600324700f3f68a23487cf6ef8d52a6c))
@@ -2908,11 +2908,11 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 * **dedicated:** load exchange module on CA region ([#1554](https://github.com/ovh/manager/issues/1554)) ([3f15faa](https://github.com/ovh/manager/commit/3f15faaea1e5b488e21214bda94b41b4e7a5b3fa))
 * **dedicated:** replace account calendar ([2235173](https://github.com/ovh/manager/commit/223517364feadf224f8b75e02257efe6a75adc4b))
 * **dedicated.account.contacts:** fix lodash imports ([#1541](https://github.com/ovh/manager/issues/1541)) ([9d038e1](https://github.com/ovh/manager/commit/9d038e152af723d1eee17f375add4162fd266956))
-* **i18n:** add missing translations [CDS 113] ([f6db44f](https://github.com/ovh/manager/commit/f6db44faf967c25ce71d85bed84a7d35b42845fa))
+* **i18n:** add missing translations [CDS 113] ([f6db44f](https://github.com/ovh/manager/commit/f6db44faf967c25ce71d85bed84a7d35b42845fa))
 * polling works now correctly ([2923786](https://github.com/ovh/manager/commit/29237862be56b0467fa676bcd22525af1dd87550))
 * popover is now currently displayed ([#1549](https://github.com/ovh/manager/issues/1549)) ([c82634c](https://github.com/ovh/manager/commit/c82634cfa34436df1e1c1a1012bd3cb461400aea))
-* **i18n:** add missing translations [CDS 116] ([388486f](https://github.com/ovh/manager/commit/388486fe3c54b991e9f55f46fb2e071a487e7b10))
-* **i18n:** add missing translations [CDS 118] ([31c432b](https://github.com/ovh/manager/commit/31c432b5c1d0a12f57b8b52b8c37fb8c32f220e9))
+* **i18n:** add missing translations [CDS 116] ([388486f](https://github.com/ovh/manager/commit/388486fe3c54b991e9f55f46fb2e071a487e7b10))
+* **i18n:** add missing translations [CDS 118] ([31c432b](https://github.com/ovh/manager/commit/31c432b5c1d0a12f57b8b52b8c37fb8c32f220e9))
 
 
 ### Features
@@ -2959,11 +2959,11 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 * **dedicated:** remove max-width for oui-message ([#1498](https://github.com/ovh/manager/issues/1498)) ([ff34a6a](https://github.com/ovh/manager/commit/ff34a6a58dff0bfb47e22b5c22ecaaa7eddeba4f))
 * **dedicated:** sort styles import ([60372d6](https://github.com/ovh/manager/commit/60372d6902d5a9b7d358a30e84cd2022c6edfd1f))
 * **dedicated:** update spacing ([#1520](https://github.com/ovh/manager/issues/1520)) ([8df5d9b](https://github.com/ovh/manager/commit/8df5d9b71b7491aa9121418ea7d3b2a84d596e22))
-* **i18n:** add missing translations [CDS 106] ([f9d2338](https://github.com/ovh/manager/commit/f9d2338268991329e2816d48e0da6bd293632590))
+* **i18n:** add missing translations [CDS 106] ([f9d2338](https://github.com/ovh/manager/commit/f9d2338268991329e2816d48e0da6bd293632590))
 * fast polling now works correctly ([#1518](https://github.com/ovh/manager/issues/1518)) ([b209e0c](https://github.com/ovh/manager/commit/b209e0c87a55ad045f4fffbf1cd28e1139239bf5))
 * replace legacy autocomplete by oui-autocomplete ([#1503](https://github.com/ovh/manager/issues/1503)) ([bff4cfc](https://github.com/ovh/manager/commit/bff4cfc818d886c61405a6d16429d129533ba283))
 * replace lodash imports ([af0b5ce](https://github.com/ovh/manager/commit/af0b5ce021b4cbb799624852c6f8e1d85b5976e4))
-* **i18n:** add missing translations [CDS 112] ([7edf8f6](https://github.com/ovh/manager/commit/7edf8f6265aa70fa456d75162bc1f1013455b4b6))
+* **i18n:** add missing translations [CDS 112] ([7edf8f6](https://github.com/ovh/manager/commit/7edf8f6265aa70fa456d75162bc1f1013455b4b6))
 
 
 
@@ -2974,7 +2974,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 * **dedicated:** restore display size ([#1472](https://github.com/ovh-ux/manager/issues/1472)) ([e2e8c20](https://github.com/ovh-ux/manager/commit/e2e8c20))
 * **dedicated:** update ip range ([#1474](https://github.com/ovh-ux/manager/issues/1474)) ([aef93fb](https://github.com/ovh-ux/manager/commit/aef93fb))
-* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
+* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
 
 
 
@@ -3048,11 +3048,11 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 * **account.user.ssh:** update url to cloud ssh addition ([ab6a731](https://github.com/ovh-ux/ovh-manager-dedicated/commit/ab6a731))
 * **billing.autorenew:** allow autorenew activation for some subs ([#1304](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1304)) ([fc4d082](https://github.com/ovh-ux/ovh-manager-dedicated/commit/fc4d082))
 * **error:** prevent loop when user is not authenticated ([#1300](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1300)) ([848cb1a](https://github.com/ovh-ux/ovh-manager-dedicated/commit/848cb1a))
-* **i18n:** add missing translations [CDS 10] ([2a93004](https://github.com/ovh-ux/ovh-manager-dedicated/commit/2a93004))
-* **i18n:** add missing translations [CDS 6] ([4ae29b4](https://github.com/ovh-ux/ovh-manager-dedicated/commit/4ae29b4))
-* **i18n:** add missing translations [CDS 7] ([e363272](https://github.com/ovh-ux/ovh-manager-dedicated/commit/e363272))
-* **i18n:** add missing translations [CDS 8] ([32c1c30](https://github.com/ovh-ux/ovh-manager-dedicated/commit/32c1c30))
-* **i18n:** add missing translations [CDS 9] ([be94b0b](https://github.com/ovh-ux/ovh-manager-dedicated/commit/be94b0b))
+* **i18n:** add missing translations [CDS 10] ([2a93004](https://github.com/ovh-ux/ovh-manager-dedicated/commit/2a93004))
+* **i18n:** add missing translations [CDS 6] ([4ae29b4](https://github.com/ovh-ux/ovh-manager-dedicated/commit/4ae29b4))
+* **i18n:** add missing translations [CDS 7] ([e363272](https://github.com/ovh-ux/ovh-manager-dedicated/commit/e363272))
+* **i18n:** add missing translations [CDS 8] ([32c1c30](https://github.com/ovh-ux/ovh-manager-dedicated/commit/32c1c30))
+* **i18n:** add missing translations [CDS 9] ([be94b0b](https://github.com/ovh-ux/ovh-manager-dedicated/commit/be94b0b))
 
 
 ### Features
@@ -3116,7 +3116,7 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 6] ([fd5415f](https://github.com/ovh-ux/ovh-manager-dedicated/commit/fd5415f))
+* **i18n:** add missing translations [CDS 6] ([fd5415f](https://github.com/ovh-ux/ovh-manager-dedicated/commit/fd5415f))
 
 
 
@@ -3134,8 +3134,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 * **dedicated.universe.components.price:** add asia gst price text ([#1245](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1245)) ([5969d3f](https://github.com/ovh-ux/ovh-manager-dedicated/commit/5969d3f))
 * **i18n:** add missing translations ([9b40dcd](https://github.com/ovh-ux/ovh-manager-dedicated/commit/9b40dcd))
 * **i18n:** add missing translations ([9ec70fc](https://github.com/ovh-ux/ovh-manager-dedicated/commit/9ec70fc))
-* **i18n:** add missing translations [CDS 2] ([7ab19ed](https://github.com/ovh-ux/ovh-manager-dedicated/commit/7ab19ed))
-* **i18n:** add missing translations [CDS 4] ([6a015c5](https://github.com/ovh-ux/ovh-manager-dedicated/commit/6a015c5))
+* **i18n:** add missing translations [CDS 2] ([7ab19ed](https://github.com/ovh-ux/ovh-manager-dedicated/commit/7ab19ed))
+* **i18n:** add missing translations [CDS 4] ([6a015c5](https://github.com/ovh-ux/ovh-manager-dedicated/commit/6a015c5))
 * **ip.reverse.add:** display error fields when value are invalid ([#1277](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1277)) ([9a17342](https://github.com/ovh-ux/ovh-manager-dedicated/commit/9a17342))
 
 

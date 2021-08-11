@@ -16,5 +16,6 @@
   "web_paas_service_add_addon_success_staging_environment": "Your test environments have been modified. You can track the progress of the delivery in your account, in the <a href='{{orderURL}}'>My orders</a> section",
   "web_paas_service_add_addon_success_user_license": "Your user licences have been modified. You can track the progress of the delivery in your account, in the <a href='{{orderURL}}'>My orders</a> section",
   "web_paas_service_add_addon_fetching_price": "Price calculation",
-  "web_paas_service_add_addon_storage_info": "Warning: it is not possible to reduce the storage of a project once the additional storage has been ordered."
+  "web_paas_service_add_addon_storage_info": "Warning: it is not possible to reduce the storage of a project once the additional storage has been ordered.",
+  "web_paas_service_add_addon_environment_info": "Warning: The number of test environments for a project cannot be reduced once the additional environments have been ordered."
 }

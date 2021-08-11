@@ -639,8 +639,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 * remove VPS changeOwner feature for CA (not available in CA) ([#1710](https://github.com/ovh/manager/issues/1710)) ([33e828d](https://github.com/ovh/manager/commit/33e828db762bdc9cc272f462f540cd6c3263c4f5))
 * **cloud:** update use of cucContracts directive ([8bf0410](https://github.com/ovh/manager/commit/8bf0410f48edaa3fa8b3627105b1dcd25c7a029a))
-* **i18n:** add missing translations [CDS 123] ([3b7c5a5](https://github.com/ovh/manager/commit/3b7c5a5529a3e3c911e56ec29359e914d800ba91))
-* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
+* **i18n:** add missing translations [CDS 123] ([3b7c5a5](https://github.com/ovh/manager/commit/3b7c5a5529a3e3c911e56ec29359e914d800ba91))
+* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
 * **i18n:** add missing translations [CDS 143] ([74efd95](https://github.com/ovh/manager/commit/74efd9532bf7c7b7a1dc77903f973fe976a16033))
 
 
@@ -796,8 +796,8 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 29] ([9d51ea9](https://github.com/ovh-ux/ovh-manager-cloud/commit/9d51ea9))
-* **i18n:** add missing translations [CDS 30] ([55fd563](https://github.com/ovh-ux/ovh-manager-cloud/commit/55fd563))
+* **i18n:** add missing translations [CDS 29] ([9d51ea9](https://github.com/ovh-ux/ovh-manager-cloud/commit/9d51ea9))
+* **i18n:** add missing translations [CDS 30] ([55fd563](https://github.com/ovh-ux/ovh-manager-cloud/commit/55fd563))
 
 
 ### Features
@@ -819,10 +819,10 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 19] ([b37eb5b](https://github.com/ovh-ux/ovh-manager-cloud/commit/b37eb5b))
-* **i18n:** add missing translations [CDS 20] ([24463f3](https://github.com/ovh-ux/ovh-manager-cloud/commit/24463f3))
-* **i18n:** add missing translations [CDS 21] ([46fcec3](https://github.com/ovh-ux/ovh-manager-cloud/commit/46fcec3))
-* **i18n:** add missing translations [CDS 22] ([775d0ba](https://github.com/ovh-ux/ovh-manager-cloud/commit/775d0ba))
+* **i18n:** add missing translations [CDS 19] ([b37eb5b](https://github.com/ovh-ux/ovh-manager-cloud/commit/b37eb5b))
+* **i18n:** add missing translations [CDS 20] ([24463f3](https://github.com/ovh-ux/ovh-manager-cloud/commit/24463f3))
+* **i18n:** add missing translations [CDS 21] ([46fcec3](https://github.com/ovh-ux/ovh-manager-cloud/commit/46fcec3))
+* **i18n:** add missing translations [CDS 22] ([775d0ba](https://github.com/ovh-ux/ovh-manager-cloud/commit/775d0ba))
 
 
 ### Features
@@ -845,10 +845,10 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 2] ([0807841](https://github.com/ovh-ux/ovh-manager-cloud/commit/0807841))
-* **i18n:** add missing translations [CDS 4] ([4557c6b](https://github.com/ovh-ux/ovh-manager-cloud/commit/4557c6b))
+* **i18n:** add missing translations [CDS 2] ([0807841](https://github.com/ovh-ux/ovh-manager-cloud/commit/0807841))
+* **i18n:** add missing translations [CDS 4] ([4557c6b](https://github.com/ovh-ux/ovh-manager-cloud/commit/4557c6b))
 * update manager urls ([#1546](https://github.com/ovh-ux/ovh-manager-cloud/issues/1546)) ([500d1ba](https://github.com/ovh-ux/ovh-manager-cloud/commit/500d1ba))
-* **i18n:** add missing translations [CDS 8] ([b462140](https://github.com/ovh-ux/ovh-manager-cloud/commit/b462140))
+* **i18n:** add missing translations [CDS 8] ([b462140](https://github.com/ovh-ux/ovh-manager-cloud/commit/b462140))
 * **i18n:** add new postgres version ([#1542](https://github.com/ovh-ux/ovh-manager-cloud/issues/1542)) ([5446618](https://github.com/ovh-ux/ovh-manager-cloud/commit/5446618))
 * **iplb:** quota threshold modal ([#1544](https://github.com/ovh-ux/ovh-manager-cloud/issues/1544)) ([e7686fb](https://github.com/ovh-ux/ovh-manager-cloud/commit/e7686fb))
 

@@ -10,7 +10,7 @@
   "kube_common_save": "Salva",
   "kube_common_cancel": "Annulla",
   "kube_common_delete": "Elimina",
-  "kube_common_node_pool_title": "Configura il pool di nodi",
+  "kube_common_node_pool_title": "Configura il tipo di nodi",
   "kube_common_billing_type_title": "Modalità di fatturazione",
   "kube_common_create_node_pool": "Crea un pool di nodi",
   "kube_common_flavor_load_error": "Caricamento dei nodi non andato a buon fine: {{message}}",

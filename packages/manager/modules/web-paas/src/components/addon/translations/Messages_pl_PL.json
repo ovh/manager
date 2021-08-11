@@ -16,5 +16,6 @@
   "web_paas_service_add_addon_success_staging_environment": "Zmiana środowiska testowego została zarejestrowana. Możesz śledzić status dostawy na Twoim koncie, w sekcji <a href='{{orderURL}}'>Moje zamówienia</a>.",
   "web_paas_service_add_addon_success_user_license": "Zmiana licencji użytkownika została zarejestrowana. Możesz śledzić status dostawy na Twoim koncie, w sekcji <a href='{{orderURL}}'>Moje zamówienia</a>.",
   "web_paas_service_add_addon_fetching_price": "Obliczanie ceny",
-  "web_paas_service_add_addon_storage_info": "Uwaga: nie można zmniejszyć przestrzeni dyskowej projektu po zamówieniu dodatkowej przestrzeni dyskowej."
+  "web_paas_service_add_addon_storage_info": "Uwaga: nie można zmniejszyć przestrzeni dyskowej projektu po zamówieniu dodatkowej przestrzeni dyskowej.",
+  "web_paas_service_add_addon_environment_info": "Uwaga: nie można zmniejszyć liczby środowisk testowych projektu po zamówieniu dodatkowych środowisk."
 }

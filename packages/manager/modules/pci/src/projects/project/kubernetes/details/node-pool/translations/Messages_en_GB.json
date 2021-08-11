@@ -3,7 +3,6 @@
   "kube_node_pool_creation_date": "Creation date",
   "kube_node_pool_node_count": "Number of nodes",
   "kube_node_pool_monthly_billing": "Monthly rate ",
-  "kube_node_pool_edit": "Edit pool",
   "kube_node_pool_nodes": "See nodes",
   "kube_node_pool_scale": "Configure node pool size",
   "kube_node_pool_delete": "Delete pool",

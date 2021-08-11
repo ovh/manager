@@ -16,5 +16,6 @@
   "web_paas_service_add_addon_success_staging_environment": "Die Änderung Ihrer Testumgebung wurde registriert. Sie können den Verlauf der Lieferung in Ihrem Account mitverfolgen. Gehen Sie dazu in den Bereich <a href='{{orderURL}}'>Meine Bestellungen</a>",
   "web_paas_service_add_addon_success_user_license": "Die Änderung Ihrer Nutzerlizenz wurde registriert. Sie können den Verlauf der Lieferung in Ihrem Account mitverfolgen. Gehen Sie dazu in den Bereich <a href='{{orderURL}}'>Meine Bestellungen</a>",
   "web_paas_service_add_addon_fetching_price": "Berechnung des Preises",
-  "web_paas_service_add_addon_storage_info": "Bitte beachten Sie: Es ist nicht möglich, den Storage eines Projekts nach Bestellen von zusätzlichem Storage zu reduzieren."
+  "web_paas_service_add_addon_storage_info": "Bitte beachten Sie: Es ist nicht möglich, den Storage eines Projekts nach Bestellen von zusätzlichem Storage zu reduzieren.",
+  "web_paas_service_add_addon_environment_info": "Bitte beachten Sie: Die Anzahl der Testumgebungen eines Projekts kann nicht reduziert werden, wenn die zusätzliche Umgebung bereits bestellt ist."
 }

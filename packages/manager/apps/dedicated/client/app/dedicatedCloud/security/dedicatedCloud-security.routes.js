@@ -47,8 +47,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.dedicatedCloud.details.security.kms-edit', {
           kmsToEdit,
         }),
-      securityAccess: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedCloud.details.security.access'),
       securityLogout: /* @ngInject */ ($state) => () =>
         $state.go('app.dedicatedCloud.details.security.logout'),
       updateMaxSimultaneousConnection: /* @ngInject */ ($state) => (

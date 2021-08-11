@@ -12,6 +12,7 @@
   "dedicatedCloud_SECURITY_logout_policy_FIRST": "Disconnessione del primo utente connesso",
   "dedicatedCloud_SECURITY_logout_policy_LAST": "Disconnessione dell'ultimo utente connesso",
   "dedicatedCloud_SECURITY_title_EPCC": "IP e blocchi autorizzati a connettersi al Private Cloud:",
+  "dedicatedCloud_SECURITY_title_MBM": "IP e blocchi autorizzati a connettersi alla soluzione Managed Bare Metal:",
   "dedicatedCloud_SECURITY_IP_name": "Nome IP",
   "dedicatedCloud_SECURITY_allow": "Diritto",
   "dedicatedCloud_SECURITY_description": "Descrizione",
@@ -42,10 +43,8 @@
   "dedicatedCloud_vm_encryption_kms_add": "Aggiungi un nuovo server KMS",
   "dedicatedCloud_SECURITY_change_timeout": "Modifica la durata di una sessione",
   "dedicatedCloud_SECURITY_change_nb_simultaneous_connection": "Modifica il numero di connessioni simultanee",
-  "dedicatedCloud_SECURITY_access_policy": "Modifica la politica di accesso al vCenter",
   "dedicatedCloud_SECURITY_change_logout_policy": "Modifica la politica di disconnessione",
   "dedicatedCloud_SECURITY_add_IP": "Aggiungi una nuova classe di indirizzi IP",
   "dedicatedCloud_SECURITY_delete_IP": "Rimuovi classi di indirizzi IP",
-  "dedicatedCloud_dashboard_loading_error": "Si è verificato un errore durante il caricamento delle informazioni relative al tuo servizio.",
-  "dedicatedCloud_SECURITY_title_MBM": "IP e blocchi autorizzati a connettersi alla soluzione Managed Bare Metal:"
+  "dedicatedCloud_dashboard_loading_error": "Si è verificato un errore durante il caricamento delle informazioni relative al tuo servizio."
 }

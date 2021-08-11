@@ -31,7 +31,7 @@ export default /* @ngInject */ ($stateProvider) => {
         NotebookService,
         projectId,
         coreConfig,
-        CucRegionService,
+        ovhManagerRegionService,
         isAuthorized,
       ) =>
         isAuthorized
@@ -52,7 +52,7 @@ export default /* @ngInject */ ($stateProvider) => {
                       },
                     }),
                     coreConfig.getUser().ovhSubsidiary,
-                    CucRegionService.getRegion(notebook.spec.region),
+                    ovhManagerRegionService.getRegion(notebook.spec.region),
                   ),
               ),
             )

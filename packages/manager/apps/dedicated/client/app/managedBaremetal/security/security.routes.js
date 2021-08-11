@@ -47,8 +47,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.managedBaremetal.details.security.kms-edit', {
           kmsToEdit,
         }),
-      securityAccess: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.details.security.access'),
       securityLogout: /* @ngInject */ ($state) => () =>
         $state.go('app.managedBaremetal.details.security.logout'),
       updateMaxSimultaneousConnection: /* @ngInject */ ($state) => (

@@ -6,13 +6,13 @@ export default class PciBlockStorageController {
   constructor(
     $translate,
     CucCloudMessage,
-    CucRegionService,
+    ovhManagerRegionService,
     ovhUserPref,
     PciProjectStorageBlockService,
   ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
     this.ovhUserPref = ovhUserPref;
     this.PciProjectStorageBlockService = PciProjectStorageBlockService;
   }
