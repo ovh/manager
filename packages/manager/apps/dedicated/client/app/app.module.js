@@ -82,6 +82,7 @@ import ovhContacts from '@ovh-ux/ng-ovh-contacts';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import { registerCoreModule } from '@ovh-ux/manager-core';
+import { serverBandwidth } from '@ovh-ux/manager-components';
 import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerBilling from '@ovh-ux/manager-billing';
@@ -112,8 +113,8 @@ import ovhManagerCloudConnect from '@ovh-ux/manager-cloud-connect';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
+import ovhManagerNutanix from '@ovh-ux/manager-nutanix';
 import { pollingService } from '@ovh-ux/manager-bm-server-components';
-import { serverBandwidth } from '@ovh-ux/manager-components';
 import account from './account';
 import cdn from './cdn';
 import moduleLicense from './license';
@@ -204,6 +205,7 @@ export default (containerEl, environment) => {
         ovhManagerSupport,
         ovhManagerVeeamEnterprise,
         ovhManagerVeeamCloudConnect,
+        ovhManagerNutanix,
         ovhNotificationsSidebar,
         ovhManagerFilters,
         ngTailLogs,
@@ -333,6 +335,7 @@ export default (containerEl, environment) => {
             'app.hpc',
             'app.dedicatedCloud',
             'veeam-enterprise',
+            'nutanix',
           ];
           const IGNORE_STATES = [
             'app.configuration',

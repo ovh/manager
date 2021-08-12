@@ -2,11 +2,12 @@ import { SUPPORT_LEVELS } from './constants';
 
 export default class DedicatedServerSupportTileController {
   /* @ngInject */
-  constructor($http, $translate, $q, $window, coreURLBuilder) {
+  constructor($http, $translate, $q, $window, atInternet, coreURLBuilder) {
     this.$http = $http;
     this.$translate = $translate;
     this.$q = $q;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
   }
 
@@ -57,5 +58,14 @@ export default class DedicatedServerSupportTileController {
 
   getCreateNewTicketUrl() {
     return this.coreURLBuilder.buildURL('dedicated', '#/support/tickets/new');
+  }
+
+  trackClick(trackText) {
+    if (this.trackingPrefix) {
+      this.atInternet.trackClick({
+        name: `${this.trackingPrefix}::${trackText}`,
+        type: 'action',
+      });
+    }
   }
 }

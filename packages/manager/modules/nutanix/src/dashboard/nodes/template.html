@@ -1,0 +1,53 @@
+<oui-datagrid rows="$ctrl.nodes" data-page-size="25" class="mt-5">
+    <oui-datagrid-topbar>
+        <oui-spinner data-ng-if="ctrl.delete.loading"></oui-spinner>
+    </oui-datagrid-topbar>
+    <oui-datagrid-column
+        title="'nutanix_dashboard_nodes_list_display_name' | translate"
+        property="displayName"
+        data-sortable
+        data-searchable
+        data-filterable
+    >
+        <a
+            class="oui-link"
+            data-ui-sref="{{:: $ctrl.constructor.getNodeDetailsState($row.name) }}"
+            data-ng-bind="$row.displayName"
+        >
+        </a>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title="'nutanix_dashboard_nodes_list_type_of_server' | translate"
+        property="commercialRange"
+        data-sortable
+        data-searchable
+        data-filterable
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title="'nutanix_dashboard_nodes_list_status' | translate"
+        property="state"
+        data-sortable
+        data-searchable
+        data-filterable
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="{
+                'oui-badge_success': $row.state === 'OK',
+                'oui-badge_warning': $row.state === 'ERROR',
+                'oui-badge_error': $row.state === 'HACKED' || $row.state === 'HACKED_BLOCKED'
+                }"
+            data-ng-bind="('nutanix_dashboard_nodes_list_status_' + $row.state) | translate"
+        >
+        </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title="'nutanix_dashboard_nodes_list_localisation' | translate"
+        property="datacenter"
+    >
+        <span
+            data-ng-bind=":: $ctrl.ovhManagerRegionService.getTranslatedMicroRegion($row.datacenter)"
+        ></span>
+    </oui-datagrid-column>
+</oui-datagrid>

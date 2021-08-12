@@ -1,0 +1,17 @@
+{
+  "nutanix_onboarding_title": "Hosted Private Cloud powered by Nutanix",
+  "nutanix_onboarding_description": "Découvrez les nouvelles plateformes Hosted Private Cloud embarquant la technologie Nutanix pour des infrastructures hyperconvergées (HCI) dans un environnement totalement sécurisé et dédié.",
+  "nutanix_onboarding_feature_1": "Livraison d'une plateforme tout-en-un associant l’infrastructure OVHcloud et les licences Nutanix.",
+  "nutanix_onboarding_feature_2": "Cluster Nutanix prêt à l’emploi dès la livraison.",
+  "nutanix_onboarding_feature_3": "Approvisionnement en ressources hardware flexible, rentable et évolutif, avec une tarification transparente et prévisible.",
+  "nutanix_onboarding_feature_4": "Cluster entièrement isolé et dédié pour une sécurité maximale à tout moment.",
+
+  "nutanix_onboarding_usecases_title": "De multiples cas d’usage",
+  "nutanix_onboarding_usecases_1_title": "Plan de reprise d'activité",
+  "nutanix_onboarding_usecases_1_description": "Affinez votre stratégie de continuité de service, en basculant votre infrastructure secondaire dans le cloud en quelques clics. Totalement évolutive, cette approche s'adapte à votre budget.",
+  "nutanix_onboarding_usecases_2_title": "Débordement de charge vers le cloud",
+  "nutanix_onboarding_usecases_2_description": "La saisonnalité de certains environnements métier impose une variation forte des ressources IT nécessaires. Absorbez donc vos pics de charge grâce à la flexibilité du cloud.",
+  "nutanix_onboarding_usecases_3_title": "Stratégie cloud hybride ",
+  "nutanix_onboarding_usecases_3_description": "Déployez vos environnements au plus près de vos utilisateurs tout en conservant un niveau de sécurité élevé, grâce à nos possibilités d'interconnexions réseau privées.",
+  "nutanix_onboarding_contact_us": "Contactez-nous"
+}

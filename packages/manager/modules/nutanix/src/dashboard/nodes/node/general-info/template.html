@@ -1,0 +1,41 @@
+<div data-ui-view>
+    <div class="row d-md-flex mb-5">
+        <div class="col-md-4">
+            <!-- GENERAL INFORMATIONS -->
+            <server-general-info
+                user="$ctrl.user"
+                server="$ctrl.server"
+                on-edit-name="$ctrl.goToNameEdit(name)"
+                on-os-install="$ctrl.openOsInstallation(type)"
+                on-edit-netboot="$ctrl.goToNetboot()"
+            >
+            </server-general-info>
+        </div>
+
+        <!-- TECHNICAL DETAILS -->
+        <div class="col-md-4" data-ng-if="$ctrl.technicalDetails">
+            <server-technical-details
+                technical-details="$ctrl.technicalDetails"
+                go-to-manual-upgrade="$ctrl.goToManualUpgrade"
+            ></server-technical-details>
+        </div>
+
+        <!-- SUPPORT TICKET -->
+        <div class="col-md-4">
+            <server-support
+                service-name="{{$ctrl.serviceName}}"
+                travaux-url="{{$ctrl.TRAVAUX_LINK}}"
+            ></server-support>
+        </div>
+
+        <div class="col-md-4" data-ng-if="!$ctrl.server.isExpired">
+            <!-- Network -->
+            <nutanix-network-tile
+                bandwidth-informations="$ctrl.bandwidthInformations"
+                server="$ctrl.server"
+                specifications="$ctrl.specifications"
+            >
+            </nutanix-network-tile>
+        </div>
+    </div>
+</div>

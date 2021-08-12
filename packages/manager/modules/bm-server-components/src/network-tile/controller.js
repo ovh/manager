@@ -2,9 +2,10 @@ import isFunction from 'lodash/isFunction';
 
 export default class BmServerComponentsNetworkTileController {
   /* @ngInject */
-  constructor($http, $q, coreURLBuilder) {
+  constructor($http, $q, atInternet, coreURLBuilder) {
     this.$http = $http;
     this.$q = $q;
+    this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
   }
 
@@ -64,6 +65,15 @@ export default class BmServerComponentsNetworkTileController {
   handleError(error) {
     if (isFunction(this.onError)) {
       this.onError({ error });
+    }
+  }
+
+  trackClick(trackText) {
+    if (this.trackingPrefix) {
+      this.atInternet.trackClick({
+        name: `${this.trackingPrefix}::${trackText}`,
+        type: 'action',
+      });
     }
   }
 }

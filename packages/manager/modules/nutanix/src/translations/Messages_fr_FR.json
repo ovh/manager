@@ -1,0 +1,14 @@
+{
+  "nutanix_title": "Nutanix",
+  "nutanix_guides": "Guides",
+  "nutanix_guides_main": "Nutanix guides",
+  "nutanix_cluster_list_name": "Nom du cluster",
+  "nutanix_cluster_list_number_of_nodes": "Nombre de noeuds",
+  "nutanix_cluster_list_licence": "Licence Nutanix",
+  "nutanix_cluster_list_status": "Statut du node",
+  "nutanix_cluster_list_localisation": "Localisation",
+  "nutanix_cluster_list_status_active": "Actif",
+  "nutanix_cluster_list_status_deploying": "Déploiement",
+  "nutanix_cluster_list_status_error": "Erreur",
+  "nutanix_cluster_list_prism_central_url": "URL Prism Central"
+}

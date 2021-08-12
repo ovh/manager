@@ -1,0 +1,30 @@
+<server-network
+    server="$ctrl.server"
+    bandwidth="$ctrl.bandwidthInformations.bandwidth"
+>
+    <div data-ng-if="$ctrl.bandwidthInformations.bandwidth">
+        <!-- Reverse -->
+        <oui-tile-definition
+            term="{{:: 'server_configuration_reverse' | translate }}"
+        >
+            <oui-tile-description>
+                <oui-clipboard
+                    class="ip-clipboard"
+                    data-model="$ctrl.server.reverse || ('server_configuration_reverse_not_configured' | translate)"
+                >
+                </oui-clipboard>
+            </oui-tile-description>
+        </oui-tile-definition>
+
+        <server-bandwidth-dashboard
+            data-bandwidth-option="$ctrl.bandwidthInformations.bandwidthOption"
+            data-bandwidth-vrack-option="$ctrl.bandwidthInformations.bandwidthVrackOptions"
+            data-bandwidth-vrack-order-option="$ctrl.bandwidthInformations.bandwidthVrackOrderOptions"
+            data-order-private-link="$ctrl.orderPrivateBandwidthLink"
+            data-order-public-link="$ctrl.orderPublicBandwidthLink"
+            data-server="$ctrl.server"
+            data-specifications="$ctrl.specifications"
+        >
+        </server-bandwidth-dashboard>
+    </div>
+</server-network>
