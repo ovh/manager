@@ -1,4 +1,3 @@
-import 'script-loader!jquery'; // eslint-disable-line
 import 'whatwg-fetch';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';

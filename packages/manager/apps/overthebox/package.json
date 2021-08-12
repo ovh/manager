@@ -49,7 +49,6 @@
     "angularjs-scroll-glue": "^2.2.0",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "core-js": "^3.6.5",
-    "jquery": "^2.1.3",
     "lodash": "^4.17.15",
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
