@@ -79,14 +79,10 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
-  deleteNode(projectId, engine, databaseId, flavor, region) {
+  deleteNode(projectId, engine, databaseId, nodeId) {
     return this.$http
       .delete(
-        `/cloud/project/${projectId}/database/${engine}/${databaseId}/node`,
-        {
-          flavor,
-          region,
-        },
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/node/${nodeId}`,
       )
       .then(({ data }) => data);
   }
@@ -373,11 +369,13 @@ export default class DatabaseService {
       `/cloud/project/${projectId}/database/${engine}/${databaseId}/node/${nodeId} `,
       {},
       {
+        retryMaxAttempts: 0,
         namespace: `databases_${databaseId}_${nodeId}`,
         method: 'get',
         successRule: (node) => !new Node(node).isProcessing(),
+        errorRule: (error) => error.status === 404,
       },
-    );
+    ).catch((error) => (error.status === 404 ? true : Promise.reject(error)));
   }
 
   stopPollingDatabaseStatus(databaseId) {

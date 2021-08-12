@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const stateName =
@@ -161,6 +162,10 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => () => {
         database.nodes.forEach((node) => {
           if (node.isProcessing()) {
+            const successMessage =
+              node.status === STATUS.DELETING
+                ? 'pci_databases_general_information_delete_node_success'
+                : 'pci_databases_general_information_node_ready';
             DatabaseService.pollNodeStatus(
               projectId,
               database.engine,
@@ -168,13 +173,14 @@ export default /* @ngInject */ ($stateProvider) => {
               node.id,
             ).then((nodeInfo) => {
               CucCloudMessage.success(
-                $translate.instant(
-                  'pci_databases_general_information_node_ready',
-                  { nodeName: node.name },
-                ),
+                $translate.instant(successMessage, { nodeName: node.name }),
                 stateName,
               );
-              node.updateData(nodeInfo);
+              if (node.status === STATUS.DELETING) {
+                database.deleteNode(node.id);
+              } else {
+                node.updateData(nodeInfo);
+              }
             });
           }
         });
