@@ -113,6 +113,7 @@ import ovhManagerCloudConnect from '@ovh-ux/manager-cloud-connect';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
+import ovhManagerNutanix from '@ovh-ux/manager-nutanix';
 import { pollingService } from '@ovh-ux/manager-bm-server-components';
 import account from './account';
 import cdn from './cdn';
@@ -200,6 +201,7 @@ export default (containerEl, environment) => {
         ovhManagerSupport,
         ovhManagerVeeamEnterprise,
         ovhManagerVeeamCloudConnect,
+        ovhManagerNutanix,
         ovhNotificationsSidebar,
         ovhManagerFilters,
         ngTailLogs,
