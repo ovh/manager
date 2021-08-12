@@ -13,7 +13,7 @@ angular
     'pascalprecht.translate',
     'oui',
   ])
-  .component('managerInlinePropertyEditor', component)
+  .component('ovhManagerInlinePropertyEditor', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
