@@ -1,0 +1,23 @@
+{
+  "name": "@ovh-ux/manager-license",
+  "version": "0.0.0",
+  "private": true,
+  "description": "License managment",
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "main": "./src/index.js",
+  "dependencies": {
+    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-filters": "^0.1.0 || ^1.0.0",
+    "@ovh-ux/ng-ovh-http": "^5.0.2",
+    "@ovh-ux/ng-ovh-utils": "^14.0.14",
+    "@ovh-ux/ui-kit": "^4.7.0",
+    "@uirouter/angularjs": "^1.0.23",
+    "angular": "^1.7.5",
+    "angular-translate": "^2.17.0",
+    "angular-ui-bootstrap": "1.3.3",
+    "lodash": "^4.17.21",
+    "moment": "^2.24.0",
+    "oclazyload": "^1.1.0"
+  }
+}

@@ -17,7 +17,6 @@ import './dedicated/server/interfaces/detach/interfaces-detach.module';
 import './dedicated/server/interfaces/ola-activation/ola-activation.module';
 import './dedicated/server/interfaces/ola-configuration/ola-configuration.module';
 import './dedicated/server/interfaces/rename/interfaces-rename.module';
-import './license/license.module';
 
 import './components/components.bundle';
 import './account/account.bundle';

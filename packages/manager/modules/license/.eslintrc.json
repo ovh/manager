@@ -1,0 +1,8 @@
+{
+  "globals": {
+    "moment": true,
+    "WEBPACK_ENV": true,
+    "ipaddr": true,
+    "JSURL": true
+  }
+}
