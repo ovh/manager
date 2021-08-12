@@ -54,6 +54,15 @@ export default class Database extends Base {
     return find(this.nodes, { id: nodeId });
   }
 
+  setNodeStatus(node, status) {
+    const nodeObj = this.getNode(node.id);
+    nodeObj.status = status;
+  }
+
+  deleteNode(nodeId) {
+    this.nodes = this.nodes.filter((n) => n.id !== nodeId);
+  }
+
   setNodes(nodes) {
     nodes.forEach((node) => {
       const nodeObj = this.getNode(node.id);

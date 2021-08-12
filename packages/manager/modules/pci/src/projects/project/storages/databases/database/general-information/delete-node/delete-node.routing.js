@@ -1,3 +1,5 @@
+import { STATUS } from '../../../../../../../components/project/storages/databases/databases.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'pci.projects.project.storages.databases.dashboard.general-information.delete-node',
@@ -17,7 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
           goToDatabase,
           pollNodesStatus,
         ) => (nodeInfo, message, type) => {
-          database.deleteNode(getNodeObject(nodeInfo));
+          database.setNodeStatus(nodeInfo, STATUS.DELETING);
           pollNodesStatus();
           return goToDatabase(database, message, type);
         },
