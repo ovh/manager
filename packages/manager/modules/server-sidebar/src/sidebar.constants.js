@@ -369,6 +369,34 @@ export const DEDICATED_NETWORK_CONFIG = {
   ],
 };
 
+export const NUTANIX_CONFIG = {
+  id: 'nutanix',
+  types: [
+    {
+      path: '/nutanix',
+      types: [
+        {
+          path: '/nutanix/:serviceName',
+          state: 'app.nutanix.details.nodes.node',
+          stateParams: ['serviceName', 'nodeId'],
+          app: [DEDICATED],
+          namespace: HPC_NAMESPACE,
+        },
+      ],
+      state: 'app.nutanix.details',
+      stateParams: ['serviceName'],
+      icon: 'oui-icon oui-icon-nutanix_concept',
+      app: [DEDICATED],
+      namespace: HPC_NAMESPACE,
+    },
+  ],
+  loadOnState: 'app.nutanix.details',
+  icon: 'oui-icon oui-icon-nutanix_concept',
+  app: [DEDICATED],
+  namespace: HPC_NAMESPACE,
+  feature: 'nutanix',
+};
+
 export const SIDEBAR_CONFIG = [
   DEDICATED_SERVER_CONFIG,
   VPS_CONFIG,
@@ -376,6 +404,7 @@ export const SIDEBAR_CONFIG = [
   DEDICATED_CLOUD_CONFIG,
   NETWORKS_CONFIG,
   ENTERPRISE_CLOUD_DATABASE,
+  NUTANIX_CONFIG,
 
   // CLOUD IMPORT
   PAAS_CONFIG,
