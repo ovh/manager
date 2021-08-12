@@ -13,7 +13,10 @@ export default class BillingResiliationController {
       this.endStrategy,
     )
       .then(() =>
-        this.onSuccess(this.$translate.instant('billing_resiliation_success')),
+        this.onSuccess(
+          this.$translate.instant('billing_resiliation_success'),
+          this.endStrategy,
+        ),
       )
       .catch((error) =>
         this.displayErrorMessage(
