@@ -70,5 +70,6 @@
   "server_sidebar_order_item_cloudDatabase_title": "Cloud DB",
   "server_sidebar_order_item_ovh_cloud_connect_title": "OVHcloud Connect",
   "server_sidebar_order_item_web_paas_title": "Web PaaS",
-  "server_sidebar_item_nutanix_title": "Nutanix Platform"
+  "server_sidebar_item_nutanix_title": "Nutanix Platform",
+  "server_sidebar_item_nutanix_clusters_all_title": "Tous mes clusters"
 }

@@ -326,6 +326,7 @@ export default (containerEl, environment) => {
             'app.hpc',
             'app.dedicatedCloud',
             'veeam-enterprise',
+            'nutanix',
           ];
           const IGNORE_STATES = [
             'app.configuration',
