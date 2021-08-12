@@ -113,7 +113,7 @@ import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ovhManagerNutanix from '@ovh-ux/manager-nutanix';
 import { pollingService } from '@ovh-ux/manager-bm-server-components';
-import account from './account';
+import ovhManagerUserAccount from '@ovh-ux/manager-user-account';
 import cdn from './cdn';
 import moduleLicense from './license';
 import config, { getConstants } from './config/config';
@@ -143,7 +143,7 @@ export default (containerEl, environment) => {
       moduleName,
       [
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
-        account,
+        ovhManagerUserAccount,
         ovhManagerAccountSidebar,
         registerCoreModule(environment),
         ovhManagerAtInternetConfiguration,

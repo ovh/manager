@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import keys from 'lodash/keys';
 import set from 'lodash/set';
-import config from '../../../config/config';
+import config from '../../config/config';
 
 export default /* @ngInject */ function UserAccountInfosService(
   $http,

@@ -15,7 +15,7 @@ import values from 'lodash/values';
 
 import { LANGUAGES } from '@ovh-ux/manager-config';
 
-import config from '../../../../config/config';
+import config from '../../../config/config';
 import formConfig from './new-account-form-component.constants';
 import template from './new-account-form-component.html';
 

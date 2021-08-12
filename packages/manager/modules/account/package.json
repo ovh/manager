@@ -1,0 +1,37 @@
+{
+  "name": "@ovh-ux/manager-user-account",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Manager user account section",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/modules/account"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "main": "./src/index.js",
+  "dependencies": {
+    "moment": "^2.24.0"
+  },
+  "peerDependencies": {
+    "@ovh-ux/manager-beta-preference": "^1.0.0",
+    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/manager-models": "^1.0.0",
+    "@ovh-ux/ng-at-internet": "^5.7.0",
+    "@ovh-ux/ng-ovh-http": "^5.0.2",
+    "@ovh-ux/ng-ovh-swimming-poll": "^5.0.3",
+    "@ovh-ux/ng-ovh-utils": "^14.0.14",
+    "@ovh-ux/ui-kit": "^5.1.0",
+    "@uirouter/angularjs": "^1.0.23",
+    "angular": "1.7.x",
+    "angular-qr": "^0.2.3",
+    "angular-translate": "^2.17.0",
+    "jsurl": "^0.1.4",
+    "lodash": "^4.17.15",
+    "oclazyload": "^1.1.0",
+    "ovh-api-services": "^11.2.0",
+    "randexp": "fent/randexp.js#~0.4.0"
+  }
+}

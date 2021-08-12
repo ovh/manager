@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import includes from 'lodash/includes';
-import config from '../../config/config';
+import config from '../config/config';
 
 export default class AccountUserContactsController {
   /* @ngInject */

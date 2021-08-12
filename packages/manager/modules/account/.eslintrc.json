@@ -1,0 +1,7 @@
+{
+  "globals": {
+    "JSURL": true,
+    "moment": true,
+    "RandExp": true
+  }
+}
