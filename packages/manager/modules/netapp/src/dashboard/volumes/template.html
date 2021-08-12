@@ -15,7 +15,12 @@
         <oui-datagrid-column
             title=":: 'netapp_volumes_id' | translate"
             property="id"
-        ></oui-datagrid-column>
+        >
+            <a
+                data-ng-href="{{:: $ctrl.getVolumeDetailsHref($row) }}"
+                data-ng-bind="$row.id"
+            ></a>
+        </oui-datagrid-column>
         <oui-datagrid-column
             title=":: 'netapp_volumes_name' | translate"
             property="name"
