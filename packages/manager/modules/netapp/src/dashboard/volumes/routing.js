@@ -57,9 +57,9 @@ export default /* @ngInject */ ($stateProvider) => {
       getVolumeDetailsHref: /* @ngInject */ ($state, $transition$) => (
         volume,
       ) =>
-        $state.href('netapp.dashboard.volumes.volume.dashboard', {
+        $state.href('netapp.dashboard.volumes.dashboard', {
           serviceName: $transition$.params().serviceName,
-          volume,
+          volumeId: volume.id,
         }),
       getVolumeCreateSnapshotHref: /* @ngInject */ ($state, $transition$) => (
         volume,
