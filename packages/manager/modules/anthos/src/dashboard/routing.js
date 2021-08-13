@@ -10,6 +10,8 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
 
+      alertId: () => 'anthos_dashboard',
+
       tenant: /* @ngInject */ (serviceName, AnthosTenantsService) => {
         return AnthosTenantsService.getTenantDetails(serviceName);
       },
@@ -17,6 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
       hosts: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getHosts(serviceName).then(({ data }) => data),
 
+      // TODO:: remove the catch snippet code once API fixed issue with get
       netappStorage: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getTenantStorageUsage(serviceName),
 
@@ -24,7 +27,6 @@ export default /* @ngInject */ ($stateProvider) => {
       publicIPs: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getTenantPublicIPs(serviceName).catch(() => []),
 
-      // TODO:: remove the catch snippet code once API fixed issue with get
       privateIPs: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getTenantPrivateIPs(serviceName).catch(() => []),
 

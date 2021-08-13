@@ -7,6 +7,10 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('anthos_dashboard_header_host'),
+      goToHost: /* @ngInject */ (goToState, serviceName) => (message, type) =>
+        goToState('anthos.dashboard.host', { serviceName }, message, type),
+      goToOrderHost: /* @ngInject */ ($state, serviceName) => () =>
+        $state.go('anthos.dashboard.host.order', { serviceName }),
     },
   });
 };
