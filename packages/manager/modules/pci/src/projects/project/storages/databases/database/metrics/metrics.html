@@ -4,85 +4,37 @@
         data-messages="$ctrl.messages"
     ></cui-message-container>
 
-    <h2 data-translate="pci_database_metrics_title"></h2>
+    <h2 data-translate="pci_databases_metrics_title"></h2>
 
     <p data-translate="pci_databases_metrics_description"></p>
 
-    <div class="row">
-        <div class="col-md-3">
-            <span
-                data-translate="pci_databases_metrics_field_granularity"
-            ></span>
+    <div class="row px-3">
+        <div class="col">
+            <div class="oui-button-group">
+                <button class="oui-button oui-button-inline" 
+                    data-ng-class="{'oui-button_primary ': timeRange.value === $ctrl.selectedTimeRange.value, 'oui-button_secondary ': timeRange.value !== $ctrl.selectedTimeRange.value}" 
+                    data-ng-repeat="timeRange in $ctrl.timeRanges"
+                    data-ng-click="$ctrl.selectTimeRange(timeRange)">
+                    {{timeRange.label}}
+                </button>
+            </div>
         </div>
-        <div class="col-md-3">
-            <span data-translate="pci_databases_metrics_field_zoom"></span>
-        </div>
-    </div>
+        <div class="col-2">
+            <oui-field data-label="{{ :: 'pci_databases_metrics_refresh_label' | translate }}">
 
-    <div class="row">
-        <div class="col-md-3">
-            <oui-field>
-                <oui-select
-                    name="granularity"
-                    model="$ctrl.selectedGranularity"
-                    items="$ctrl.granularityValuesAvailable"
-                    required
-                >
-                </oui-select>
-            </oui-field>
-        </div>
-        <div class="col-md-3">
-            <oui-field>
-                <oui-select
-                    name="zoom"
-                    model="$ctrl.selectedZoom"
-                    items="$ctrl.zoomValuesAvailable"
-                    required
-                >
-                </oui-select>
+                <oui-switch
+                    model="$ctrl.autoRefresh"
+                    name="refresh-switch"
+                    on-change="$ctrl.onChangeAutoRefresh(modelValue)">
+                </oui-switch>
+
             </oui-field>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            <span
-                data-translate="pci_databases_metrics_field_current_display"
-            ></span>
-        </div>
-    </div>
-
-    <div class="row">
-        <oui-field class="col-md-3">
-            <oui-calendar id="date" name="date" model="$ctrl.dateFrom" required>
-            </oui-calendar>
-        </oui-field>
-
-        <oui-field class="col-md-2">
-            <oui-timepicker model="$ctrl.timeFrom" placeholder="HH:MM">
-            </oui-timepicker>
-        </oui-field>
-        <span data-translate="pci_databases_metrics_field_to"></span>
-
-        <oui-field class="col-md-3">
-            <oui-calendar
-                id="date"
-                name="date"
-                model="$ctrl.dateModel"
-                required
-            >
-            </oui-calendar>
-        </oui-field>
-
-        <oui-field class="col-md-2">
-            <oui-timepicker model="$ctrl.timeFrom" placeholder="HH:MM">
-            </oui-timepicker>
-        </oui-field>
-    </div>
-    <pci-project-data-processing-metrics-chart
-        class="chart__container"
-        data-data="$ctrl.metrics.randomData"
-        data-labels="$ctrl.metrics.labels"
-    >
-    </pci-project-data-processing-metrics-chart>
+    <div
+        data-ng-repeat="metric in $ctrl.availableMetrics"
+        data-pci-chartjs="$ctrl.metricsData[metric].chart"
+        class="chart-container"
+    >{{$ctrl.metricsData[metric].chart}}</div>
 </div>
