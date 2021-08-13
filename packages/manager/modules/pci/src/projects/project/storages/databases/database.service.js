@@ -322,6 +322,32 @@ export default class DatabaseService {
     );
   }
 
+  getAvailableMetrics(projectId, engine, databaseId, extended) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/metric`,
+        {
+          params: {
+            extended,
+          },
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  getMetrics(projectId, engine, databaseId, metricName, period) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/metric/${metricName}`,
+        {
+          params: {
+            period,
+          },
+        },
+      )
+      .then(({ data }) => data);
+  }
+
   pollDatabaseStatus(projectId, engine, databaseId) {
     return this.Poller.poll(
       `/cloud/project/${projectId}/database/${engine}/${databaseId}`,

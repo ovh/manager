@@ -13,6 +13,18 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('pci_database_metrics_title'),
+
+        availableMetrics: /* @ngInject */ (
+          DatabaseService,
+          database,
+          projectId,
+        ) =>
+          DatabaseService.getAvailableMetrics(
+            projectId,
+            database.engine,
+            database.id,
+            false,
+          ).then((data) => data.sort()),
       },
     },
   );

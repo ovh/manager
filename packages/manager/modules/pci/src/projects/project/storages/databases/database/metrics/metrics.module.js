@@ -6,7 +6,6 @@ import '@ovh-ux/ui-kit';
 
 import component from './metrics.component';
 import routing from './metrics.routing';
-import metricsChart from './metrics-chart';
 
 const moduleName = 'ovhManagerPciStoragesDatabasesMetrics';
 
@@ -15,7 +14,7 @@ angular
     'ngOvhCloudUniverseComponents',
     'ngOvhSwimmingPoll',
     'oui',
-    metricsChart,
+    'ovhManagerPciComponents',
   ])
   .config(routing)
   .component('ovhManagerPciStoragesDatabaseMetricsComponent', component)
