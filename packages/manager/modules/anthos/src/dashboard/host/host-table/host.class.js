@@ -12,7 +12,7 @@ export default class Host {
     status,
     serviceName,
   }) {
-    Object.assign(this, {
+    this.update({
       id,
       name,
       profile,
@@ -40,5 +40,13 @@ export default class Host {
       default:
         return STATUS.ERROR;
     }
+  }
+
+  isActive() {
+    return this.statusGroup === STATUS.ACTIVE;
+  }
+
+  update(data) {
+    Object.assign(this, data);
   }
 }

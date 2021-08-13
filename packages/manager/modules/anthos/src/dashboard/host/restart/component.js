@@ -4,8 +4,8 @@ import template from './template.html';
 export default {
   bindings: {
     serviceName: '<',
-    additionalHosts: '<',
-    goToRestartHost: '<',
+    goBack: '<',
+    host: '<',
   },
   controller,
   template,

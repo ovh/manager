@@ -133,4 +133,12 @@ export default class AnthosTenantsService {
       )
       .then(({ data }) => data);
   }
+
+  restartHost(serviceName, hostId) {
+    return this.$http
+      .post(
+        `/dedicated/anthos/tenants/${serviceName}/baremetals/${hostId}/actions/restart`,
+      )
+      .then(({ data }) => data);
+  }
 }
