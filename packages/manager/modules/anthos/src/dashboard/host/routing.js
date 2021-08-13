@@ -11,6 +11,8 @@ export default /* @ngInject */ ($stateProvider) => {
         goToState('anthos.dashboard.host', { serviceName }, message, type),
       goToOrderHost: /* @ngInject */ ($state, serviceName) => () =>
         $state.go('anthos.dashboard.host.order', { serviceName }),
+      goToRestartHost: /* @ngInject */ ($state, serviceName) => (host) =>
+        $state.go('anthos.dashboard.host.restart', { serviceName, host }),
     },
   });
 };
