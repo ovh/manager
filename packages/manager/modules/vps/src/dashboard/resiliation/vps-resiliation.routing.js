@@ -36,14 +36,18 @@ export default /* @ngInject */ ($stateProvider) => {
             ({ data }) =>
               data.models['services.billing.engagement.EndStrategyEnum']?.enum,
           ),
-      onSuccess: /* @ngInject */ (atInternet, goBack) => (successMessage) => {
-        atInternet.trackClick({
-          name: 'vps::detail::dashboard::resiliation::confirm',
-          type: 'action',
-        });
+      onSuccess: /* @ngInject */ (trackClick, goBack) => (
+        successMessage,
+        endStrategy,
+      ) => {
+        const hitToConcat = endStrategy ? `_${endStrategy}` : '';
+        trackClick(
+          `vps::detail::dashboard::resiliation::confirm${hitToConcat}`,
+        );
+
         return goBack(successMessage);
       },
-      goBack: /* @ngInject */ ($state, atInternet, CucCloudMessage) => (
+      goBack: /* @ngInject */ ($state, trackClick, CucCloudMessage) => (
         message = false,
         type = 'success',
         data,
@@ -59,12 +63,15 @@ export default /* @ngInject */ ($stateProvider) => {
             CucCloudMessage[type]({ textHtml: message }, state);
           });
         } else {
-          atInternet.trackClick({
-            name: 'vps::detail::dashboard::resiliation::cancel',
-            type: 'action',
-          });
+          trackClick('vps::detail::dashboard::resiliation::cancel');
         }
         return promise;
+      },
+      trackClick: /* @ngInject */ (atInternet) => (hit) => {
+        return atInternet.trackClick({
+          name: hit,
+          type: 'action',
+        });
       },
       serviceId: /* @ngInject */ (serviceInfo) => serviceInfo.serviceId,
       service: /* @ngInject */ ($http, serviceId) =>
