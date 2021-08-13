@@ -7,6 +7,7 @@ import 'angular-translate';
 import component from './component';
 import hostTable from './host-table';
 import orderHost from './order';
+import restartHost from './restart';
 import routing from './routing';
 
 const moduleName = 'ovhManagerAnthosDashboardHost';
@@ -19,6 +20,7 @@ angular
     'ui.router',
     hostTable,
     orderHost,
+    restartHost,
   ])
   .component('anthosHost', component)
   .config(routing)
