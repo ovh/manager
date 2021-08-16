@@ -7,6 +7,7 @@ export default {
     additionalHosts: '<',
     goToReinstallHost: '<',
     goToRestartHost: '<',
+    goToSetStateHost: '<',
   },
   controller,
   template,

@@ -1,0 +1,16 @@
+<oui-modal
+    data-primary-action="$ctrl.setState()"
+    data-primary-label="{{ ::'anthos_dashboard_set_state_host_submit' | translate }}"
+    data-primary-disabled="$ctrl.isStateful === $ctrl.host.stateful"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{ ::'anthos_dashboard_set_state_host_cancel' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-heading="{{:: 'anthos_dashboard_set_state_host_title' | translate}}"
+>
+    <p data-translate="anthos_dashboard_set_state_host_description"></p>
+    <oui-field
+        data-label="{{::'anthos_dashboard_set_state_host_stateful_label' | translate}}"
+    >
+        <oui-switch data-model="$ctrl.isStateful"></oui-switch>
+    </oui-field>
+</oui-modal>

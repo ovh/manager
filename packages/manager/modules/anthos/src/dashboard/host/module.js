@@ -10,6 +10,7 @@ import orderHost from './order';
 import reinstallHost from './reinstall';
 import restartHost from './restart';
 import routing from './routing';
+import setState from './set-state';
 
 const moduleName = 'ovhManagerAnthosDashboardHost';
 
@@ -23,6 +24,7 @@ angular
     orderHost,
     reinstallHost,
     restartHost,
+    setState,
   ])
   .component('anthosHost', component)
   .config(routing)
