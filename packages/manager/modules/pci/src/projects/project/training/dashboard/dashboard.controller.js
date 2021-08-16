@@ -1,7 +1,3 @@
-import flatten from 'lodash/flatten';
-import map from 'lodash/map';
-import filter from 'lodash/filter';
-
 export default class PciTrainingDashboardController {
   /* @ngInject */
   constructor(CucCloudMessage, ovhManagerRegionService, atInternet) {
@@ -12,15 +8,6 @@ export default class PciTrainingDashboardController {
 
   $onInit() {
     this.loadMessages();
-    this.resourceUsage = flatten(
-      map(
-        filter(this.usage.resourcesUsage, {
-          type: 'ai-training',
-        }),
-        'totalPrice',
-      ),
-    ).reduce((a, b) => a + b, 0);
-
     this.runningJobs = this.getJobsWithSelector((job) => job.isRunning());
     this.nbRunning = this.runningJobs.length;
     this.nbSuccess = this.getJobsNumberWithSelector((job) => job.isSuccess());

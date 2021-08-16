@@ -1,0 +1,78 @@
+<oui-header
+    data-heading="{{:: 'cpbc_billing_control' | translate }}"
+    class="mb-3"
+>
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            data-href="{{:: BillingCtrl.billingLink }}"
+            data-active="BillingCtrl.currentActiveLink() === BillingCtrl.billingLink"
+            ><span data-translate="cpbc_tab_consumption"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-href="{{:: BillingCtrl.estimateLink }}"
+            data-active="BillingCtrl.currentActiveLink() === BillingCtrl.estimateLink"
+            ><span data-translate="cpbc_tab_forecast"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-href="{{:: BillingCtrl.historyLink }}"
+            data-active="BillingCtrl.currentActiveLink() === BillingCtrl.historyLink"
+            ><span data-translate="cpbc_tab_history"></span>
+        </oui-header-tabs-item>
+    </oui-header-tabs>
+    <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
+        <oui-guide-menu-item href="{{ BillingCtrl.guideUrl }}" data-external>
+            <span data-translate="pci_project_guides_header_all_guides"></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
+</oui-header>
+
+<div class="mt-4">
+    <cui-message-container
+        data-messages="BillingCtrl.messages"
+    ></cui-message-container>
+</div>
+
+<div class="py-4" data-ui-view>
+    <h2 data-translate="cpbc_tab_consumption"></h2>
+    <div class="text-center" data-ng-if="BillingCtrl.loading">
+        <oui-spinner></oui-spinner>
+    </div>
+    <div data-ng-if="!BillingCtrl.loading">
+        <div class="row">
+            <div class="col-xl-6 mb-4">
+                <oui-tile heading="{{ ::'cpbc_monthly_header' | translate }}">
+                    <p class="oui-tile__legend">
+                        <span
+                            data-translate="cpbc_monthly_header_description"
+                        ></span>
+                        &nbsp;(<span
+                            data-ng-bind="BillingCtrl.data.totals.monthly.total.toFixed(2) + ' ' + BillingCtrl.data.totals.currencySymbol"
+                        ></span
+                        >)
+                    </p>
+                    <monthly-resource-list
+                        resources="BillingCtrl.data"
+                    ></monthly-resource-list>
+                </oui-tile>
+            </div>
+            <div class="col-xl-6">
+                <oui-tile heading="{{ ::'cpbc_hourly_header' | translate }}">
+                    <p class="oui-tile__legend">
+                        <span
+                            data-translate="cpbc_hourly_header_description"
+                        ></span>
+                        &nbsp;(<span
+                            data-ng-bind="BillingCtrl.data.totals.hourly.total.toFixed(2) + ' ' + BillingCtrl.data.totals.currencySymbol"
+                        ></span
+                        >)
+                    </p>
+                    <hourly-resource-list
+                        data-resources="BillingCtrl.data"
+                        data-switch-to-monthly-billing="BillingCtrl.switchToMonthly(instance)"
+                    >
+                    </hourly-resource-list>
+                </oui-tile>
+            </div>
+        </div>
+    </div>
+</div>
