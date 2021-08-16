@@ -1,7 +1,9 @@
+import { buildURL } from '@ovh-ux/ufrontend';
+
 export const USER_DASHBOARD_SHORTCUTS = [
   {
     key: 'ALL_BILLS',
-    state: 'app.account.billing.main.history',
+    href: buildURL('dedicated', '#/billing'),
     isAvailable: (user) => !user.enterprise,
   },
   {
@@ -11,7 +13,7 @@ export const USER_DASHBOARD_SHORTCUTS = [
   },
   {
     key: 'PAYMENT_FOLLOW_UP',
-    state: 'app.account.billing.main.payments',
+    href: buildURL('dedicated', '#/billing/payments'),
     isAvailable: (user) => !user.enterprise,
   },
   {
@@ -21,7 +23,7 @@ export const USER_DASHBOARD_SHORTCUTS = [
   },
   {
     key: 'ADD_PAYMENT_METHOD',
-    state: 'app.account.billing.payment.method.add',
+    href: buildURL('dedicated', '#/billing/payment/method/add'),
     isAvailable: (user) => !user.enterprise,
   },
   {
@@ -31,12 +33,12 @@ export const USER_DASHBOARD_SHORTCUTS = [
   },
   {
     key: 'MANAGE_SERVICES',
-    state: 'app.account.billing.autorenew',
+    href: buildURL('dedicated', '#/billing/autorenew'),
     regions: ['EU', 'CA'],
   },
   {
     key: 'ADD_CONTACT',
-    state: 'app.account.contacts.services',
+    href: buildURL('dedicated', '#/contacts/services'),
     regions: ['EU'],
   },
 ];

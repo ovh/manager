@@ -106,7 +106,6 @@
     "angular-dynamic-locale": "~0.1.27",
     "angular-i18n": "1.7.x",
     "angular-messages": "1.7.x",
-    "angular-qr": "^0.2.3",
     "angular-resource": "1.7.x",
     "angular-route": "1.7.x",
     "angular-sanitize": "1.7.x",

@@ -1,5 +1,43 @@
 const constants = {
   EU: {
+    URLS: {
+      CZ: {
+        express_order: 'https://www.ovh.cz/order/express/#/express/',
+      },
+      DE: {
+        express_order: 'https://www.ovh.de/order/express/#/express/',
+      },
+      ES: {
+        express_order: 'https://www.ovh.es/order/express/#/express/',
+      },
+      FI: {
+        express_order: 'https://www.ovh-hosting.fi/order/express/#/express/',
+      },
+      FR: {
+        express_order: 'https://www.ovh.com/fr/order/express/#/express/',
+      },
+      GB: {
+        express_order: 'https://www.ovh.co.uk/order/express/#/express/',
+      },
+      IT: {
+        express_order: 'https://www.ovh.it/order/express/#/express/',
+      },
+      LT: {
+        express_order: 'https://www.ovh.lt/order/express/#/express/',
+      },
+      NL: {
+        express_order: 'https://www.ovh.nl/order/express/#/express/',
+      },
+      PL: {
+        express_order: 'https://www.ovh.pl/order/express/#/express/',
+      },
+      PT: {
+        express_order: 'https://www.ovh.pt/order/express/#/express/',
+      },
+      IE: {
+        express_order: 'https://www.ovh.ie/order/express/#/express/',
+      },
+    },
     accountCreation: {
       default: 'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh',
       CZ: 'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=cz',
@@ -19,6 +57,32 @@ const constants = {
     },
   },
   CA: {
+    URLS: {
+      ASIA: {
+        express_order: 'https://ca.ovh.com/asia/order/express/#/express/',
+      },
+      AU: {
+        express_order: 'https://ca.ovh.com/au/order/express/#/express/',
+      },
+      CA: {
+        // eq to en_CA
+        express_order: 'https://ca.ovh.com/en/order/express/#/express/',
+      },
+      QC: {
+        // eq to fr_CA
+        express_order: 'https://ca.ovh.com/fr/order/express/#/express/',
+      },
+      SG: {
+        express_order: 'https://ca.ovh.com/sg/order/express/#/express/',
+      },
+      WE: {
+        express_order: 'https://us.ovh.com/us/order/express/#/express/',
+      },
+      WS: {
+        // eq to es_US
+        express_order: 'https://us.ovh.com/es/order/express/#/express/',
+      },
+    },
     accountCreation: {
       default: 'http://www.ovh.com/ca/fr/support/new_nic.xml',
       DE: 'http://www.ovh.de/support/new_nic.xml',
@@ -43,10 +107,14 @@ const constants = {
     },
   },
   US: {
+    URLS: {
+      US: {
+        express_order: 'https://us.ovhcloud.com/order/express/#/express/',
+      },
+    },
     accountCreation: {
       default: 'https://us.ovhcloud.com/auth/signup/',
     },
   },
 };
 
-export default constants;

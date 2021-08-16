@@ -3,6 +3,9 @@ import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import size from 'lodash/size';
 
+import { SECURITY_IMAGES } from '../user-security.constants';
+import { SECURITY_2FA_IMAGES } from './user-security-2fa.constants';
+
 export default [
   '$q',
   '$rootScope',
@@ -79,6 +82,11 @@ export default [
     };
 
     $scope.forced = false;
+
+    $scope.images = {
+      ...SECURITY_2FA_IMAGES,
+      ...SECURITY_IMAGES,
+    };
 
     OvhApiAuth.v6()
       .shouldDisplayMFAEnrollment()

@@ -4,6 +4,8 @@ import map from 'lodash/map';
 import some from 'lodash/some';
 import values from 'lodash/values';
 
+import { SECURITY_IMAGES } from './user-security.constants';
+
 export default [
   '$scope',
   '$q',
@@ -30,6 +32,8 @@ export default [
       backupCode: 'disabled',
       isLoading: false,
     };
+
+    $scope.images = SECURITY_IMAGES;
 
     /* ===============================
     =            HELPERS            =

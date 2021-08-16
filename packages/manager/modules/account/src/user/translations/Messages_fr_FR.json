@@ -607,5 +607,8 @@
   "user_account_support_level_title": "Mon niveau de support",
   "user_account_ssh_keys_title": "Mes clés SSH",
   "user_account_users_management_title": "Gestion des utilisateurs",
-  "user_account_advanced_title": "Paramètres avancés"
+  "user_account_advanced_title": "Paramètres avancés",
+  "pagination_page": "Page {{ current }} / {{ last }}",
+  "pagination_go": "OK",
+  "pagination_display": "Afficher"
 }

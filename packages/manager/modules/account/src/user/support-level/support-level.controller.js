@@ -5,12 +5,21 @@ import slice from 'lodash/slice';
 import some from 'lodash/some';
 
 import { SupportLevel } from '@ovh-ux/manager-models';
-import { SUBSCRIPTION, URLS } from './support-level.constants';
+import {
+  SUBSCRIPTION,
+  URLS,
+  SUPPORT_LEVEL_IMAGES,
+} from './support-level.constants';
+import { getConstants } from '../../config/config';
 
 export default class UserAccountSupportLevelCtrl {
   /* @ngInject */
-  constructor(constants) {
-    this.constants = constants;
+  constructor(coreConfig) {
+    this.constants = {
+      urls: getConstants(coreConfig.getRegion()).URLS,
+    };
+
+    this.images = SUPPORT_LEVEL_IMAGES;
   }
 
   $onInit() {

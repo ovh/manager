@@ -1,3 +1,15 @@
+import businessImg from './assets/images/business.png';
+import enterpriseImg from './assets/images/enterprise.png';
+import premiumImg from './assets/images/premium.png';
+import standardImg from './assets/images/standard.png';
+
+export const SUPPORT_LEVEL_IMAGES = {
+  business: businessImg,
+  enterprise: enterpriseImg,
+  premium: premiumImg,
+  standard: standardImg,
+};
+
 export const API_MODEL_SUPPORT_LEVEL = 'me.SupportLevel.LevelTypeEnum';
 
 export const SUBSCRIPTION = (level) => [
@@ -153,4 +165,5 @@ export default {
   API_MODEL_SUPPORT_LEVEL,
   SUBSCRIPTION,
   URLS,
+  SUPPORT_LEVEL_IMAGES,
 };

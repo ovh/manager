@@ -1,7 +1,9 @@
 {
   "globals": {
+    "ipaddr": true,
     "JSURL": true,
     "moment": true,
+    "punycode": true,
     "RandExp": true
   }
 }

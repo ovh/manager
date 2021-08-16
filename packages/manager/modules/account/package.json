@@ -12,7 +12,10 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "moment": "^2.24.0"
+    "angular-qr": "^0.2.3",
+    "ipaddr.js": "^1.6.0",
+    "moment": "^2.24.0",
+    "punycode": "^1.4.1"
   },
   "peerDependencies": {
     "@ovh-ux/manager-beta-preference": "^1.0.0",
@@ -23,15 +26,17 @@
     "@ovh-ux/ng-ovh-http": "^5.0.2",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.3",
     "@ovh-ux/ng-ovh-utils": "^14.0.14",
+    "@ovh-ux/ng-pagination-front": "^10.0.3",
+    "@ovh-ux/ng-ui-router-layout": "^4.0.3",
     "@ovh-ux/ui-kit": "^5.1.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "1.7.x",
-    "angular-qr": "^0.2.3",
     "angular-translate": "^2.17.0",
     "jsurl": "^0.1.4",
     "lodash": "^4.17.15",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^11.2.0",
+    "ovh-api-services": "^13.0.0",
+    "ovh-manager-webfont": "^1.2.0",
     "randexp": "fent/randexp.js#~0.4.0"
   }
 }

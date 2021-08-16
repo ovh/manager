@@ -6,6 +6,7 @@ import managerCore from '@ovh-ux/manager-core';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
+import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 
 import routing from './user-emails.routing';
 import service from './user-emails.service';
@@ -16,6 +17,7 @@ angular
   .module(moduleName, [
     managerCore,
     ngOvhUtils,
+    ngPaginationFront,
     'oc.lazyLoad',
     'oui',
     'ovh-api-services',
