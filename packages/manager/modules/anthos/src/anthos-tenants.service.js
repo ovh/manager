@@ -149,4 +149,12 @@ export default class AnthosTenantsService {
       )
       .then(({ data }) => data);
   }
+
+  setHostState(serviceName, hostId, stateful) {
+    return this.$http
+      .put(`/dedicated/anthos/tenants/${serviceName}/baremetals/${hostId}`, {
+        stateful,
+      })
+      .then(({ data }) => data);
+  }
 }

@@ -1,12 +1,12 @@
+import controller from './controller';
 import template from './template.html';
 
 export default {
   bindings: {
-    goToOrderHost: '<',
-    goToReinstallHost: '<',
-    goToRestartHost: '<',
-    goToSetStateHost: '<',
     serviceName: '<',
+    goBack: '<',
+    host: '<',
   },
+  controller,
   template,
 };
