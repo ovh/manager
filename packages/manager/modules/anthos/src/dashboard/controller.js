@@ -1,10 +1,7 @@
-export default class AnthosCtrl {
-  /* @ngInject */
-  constructor($translate) {
-    this.$translate = $translate;
-  }
+import { ANTHOS_TENANT_ALERTER } from '../anthos.constants';
 
-  $onInit() {
-    console.log('Hello', this.$translate.instant('world'));
+export default class AnthosCtrl {
+  constructor() {
+    this.ANTHOS_TENANT_ALERTER = ANTHOS_TENANT_ALERTER;
   }
 }

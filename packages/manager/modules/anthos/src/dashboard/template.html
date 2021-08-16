@@ -1,33 +1,37 @@
-<div>
-    <oui-header heading="{{:: $ctrl.serviceName }}">
-        <oui-header-tabs>
-            <oui-header-tabs-item
-                href="{{:: $ctrl.dashboardLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
-            >
-                <span
-                    data-translate="anthos_dashboard_header_general_information"
-                ></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item
-                href="{{:: $ctrl.hostLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.hostLink"
-            >
-                <span data-translate="anthos_dashboard_header_host"></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item
-                href="{{:: $ctrl.storageLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.storageLink"
-            >
-                <span data-translate="anthos_dashboard_header_storage"></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item
-                href="{{:: $ctrl.dashboardLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
-            >
-                <span data-translate="anthos_dashboard_header_ips"></span>
-            </oui-header-tabs-item>
-        </oui-header-tabs>
-    </oui-header>
-    <div ui-view></div>
-</div>
+<!--Dashboard tabs-->
+<oui-header data-heading="{{:: $ctrl.tenant.name }}" data-description="{{:: $ctrl.serviceName }}">
+    <oui-header-tabs>
+        <oui-header-tabs-item
+        href="{{:: $ctrl.dashboardLink }}"
+        active="$ctrl.currentActiveLink() === $ctrl.generalInformationLink"
+        >
+            <span
+            data-translate="anthos_dashboard_header_general_information"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            href="{{:: $ctrl.hostLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.hostLink"
+        >
+            <span data-translate="anthos_dashboard_header_host"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            href="{{:: $ctrl.storageLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.storageLink"
+        >
+            <span data-translate="anthos_dashboard_header_storage"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            href="{{:: $ctrl.dashboardLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
+        >
+            <span data-translate="anthos_dashboard_header_ips"></span>
+        </oui-header-tabs-item>
+    </oui-header-tabs>
+</oui-header>
+
+<!--Container message-->
+<div class="my-3" data-ovh-alert="{{:: $ctrl.ANTHOS_TENANT_ALERTER}}"></div>
+
+<!--Dashboard view-->
+<div class="container-fluid" data-ui-view="anthosTenantView"></div>
