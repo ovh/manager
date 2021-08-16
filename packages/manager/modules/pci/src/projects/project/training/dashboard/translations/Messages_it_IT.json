@@ -11,7 +11,7 @@
   "pci_projects_project_training_dashboard_cli_integration_doc": "Documentazione",
   "pci_projects_project_training_dashboard_cli_integration_install": "Installazione",
   "pci_projects_project_training_dashboard_billing_title": "Fatturazione in corso",
-  "pci_projects_project_training_dashboard_billing_month": "consumato questo mese",
+  "pci_projects_project_training_dashboard_billing_month": "{{ price }} consumato questo mese",
   "pci_projects_project_training_dashboard_billing_link": "Dettagli della fatturazione",
   "pci_projects_project_training_dashboard_active_jobs": "Job attivi",
   "pci_projects_project_training_dashboard_active_users": "Utenti AI Training",

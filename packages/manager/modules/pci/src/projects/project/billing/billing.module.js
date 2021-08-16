@@ -4,18 +4,18 @@ import 'ovh-api-services';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 
-import estimate from './estimate';
 import history from './history';
 import activateMonthly from './monthly';
+import legacy from './legacy/billing-legacy.module';
+import component from './billing.component';
 import routing from './billing.routing';
-import service from './billing.service';
 
 const moduleName = 'ovhManagerPciProjectBilling';
 
 angular
   .module(moduleName, [
     activateMonthly,
-    estimate,
+    legacy,
     history,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
@@ -23,7 +23,7 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .service('CloudProjectBilling', service)
+  .component('pciProjectBilling', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

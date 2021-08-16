@@ -1,182 +1,107 @@
-import find from 'lodash/find';
-import map from 'lodash/map';
+import last from 'lodash/last';
 import 'moment';
+
+import monthSelectPlugin from 'flatpickr/dist/plugins/monthSelect/index';
 
 const MESSAGES_CONTAINER_NAME = 'pci.projects.project.billing.history';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $q,
-    $state,
-    $stateParams,
-    coreURLBuilder,
-    validParams,
-    CloudProjectBilling,
-    CucCloudMessage,
-    OvhApiCloudProjectUsageCurrent,
-    OvhApiCloudProjectUsageHistory,
-  ) {
+  constructor($q, atInternet, CucCloudMessage) {
     this.$q = $q;
-    this.$state = $state;
-    this.$stateParams = $stateParams;
-    this.CloudProjectBilling = CloudProjectBilling;
+    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
-    this.OvhApiCloudProjectUsageCurrent = OvhApiCloudProjectUsageCurrent;
-    this.OvhApiCloudProjectUsageHistory = OvhApiCloudProjectUsageHistory;
-    this.validParams = validParams;
 
-    // Messages Management
-    this.messages = null;
     this.messageHandler = this.CucCloudMessage.subscribe(
       MESSAGES_CONTAINER_NAME,
       {
         onMessage: () => this.refreshMessage(),
       },
     );
-    // End - Messages Management
+  }
 
-    const monthBilling = moment.utc({
-      y: validParams.year,
-      M: validParams.month - 1,
-      d: 1,
-    });
-    this.data = {
-      monthBilling,
-      previousMonth: moment.utc(monthBilling).subtract(1, 'month'),
-      details: null,
+  $onInit() {
+    this.minDate = moment(last(this.history)?.beginDate);
+    this.maxDate = moment(this.history[0]?.beginDate).endOf('month');
+
+    this.disablePrevious =
+      this.minDate.month() + 1 === this.month &&
+      this.minDate.year() === this.year;
+
+    this.disableNext =
+      moment(this.maxDate).month() + 1 === this.month &&
+      moment(this.maxDate).year() === this.year;
+
+    this.calendarOptions = {
+      defaultDate: this.period,
+      minDate: this.minDate
+        .startOf('month')
+        .subtract(1, 'seconds')
+        .toISOString(),
+      maxDate: this.maxDate.toISOString(),
+      plugins: [
+        // eslint-disable-next-line
+        new monthSelectPlugin({
+          shorthand: false,
+          dateFormat: 'F Y',
+          altFormat: 'F Y',
+        }),
+      ],
     };
+    this.isExpanded = Object.keys(this.historyDetails).reduce(
+      (acc, planFamily) => ({
+        ...acc,
+        [planFamily]: false,
+      }),
+      {},
+    );
+  }
 
-    this.firstDayCurrentMonth = moment().startOf('month');
-    this.billingUrl = coreURLBuilder.buildURL('dedicated', '#/billing/history');
+  goToNextMonth() {
+    if (this.month === 12) {
+      return this.goToMonth(1, this.year + 1);
+    }
 
-    this.year = validParams.year;
-    this.month = validParams.month;
+    return this.goToMonth(this.month + 1, this.year);
+  }
 
-    this.loading = true;
-    this.initConsumptionHistory()
-      .catch((err) => {
-        this.CucCloudMessage.error(
-          [
-            this.$translate.instant('cpb_error_message'),
-            (err.data && err.data.message) || '',
-          ].join(' '),
-          MESSAGES_CONTAINER_NAME,
-        );
-        return this.$q.reject(err);
+  goToPreviousMonth() {
+    if (this.month === 1) {
+      return this.goToMonth(12, this.year - 1);
+    }
+
+    return this.goToMonth(this.month - 1, this.year);
+  }
+
+  onDateChange(selectedDates) {
+    const date = moment(selectedDates[0]);
+    return this.goToMonth(date.month() + 1, date.year());
+  }
+
+  expandRow($row) {
+    this.isExpanded[$row.planFamily] = !this.isExpanded[$row.planFamily];
+  }
+
+  exportConsumption() {
+    this.isLoadingExport = true;
+    this.atInternet.trackClick({
+      name: 'PublicCloud::pci::projects::project::billing::extract_csv',
+      type: 'action',
+    });
+    return this.exportToCSV(this.monthHistory.orderId)
+      .then((fileURL) => {
+        this.fileURL = fileURL;
       })
-      .finally(() => {
-        this.loading = false;
-      });
+      .catch((error) =>
+        this.CucCloudMessage.error(
+          `${this.translate.instant(
+            'cpbc_billing_control_history_export_error',
+          )} ${error.data?.message}`,
+        ),
+      );
   }
 
   refreshMessage() {
     this.messages = this.messageHandler.getMessages();
-  }
-
-  initConsumptionHistory() {
-    return this.OvhApiCloudProjectUsageHistory.v6()
-      .query({
-        serviceName: this.$stateParams.projectId,
-        from: this.data.previousMonth.format(),
-        to: this.data.monthBilling.format(),
-      })
-      .$promise.then((historyPeriods) =>
-        this.getConsumptionDetails(historyPeriods),
-      )
-      .then((details) => {
-        this.data.details = details;
-      });
-  }
-
-  getHourlyBillingDateInfo() {
-    const prev = moment(this.data.monthBilling).subtract(1, 'month');
-    return {
-      month: prev.format('MMMM'),
-      year: prev.year(),
-    };
-  }
-
-  getConsumptionDetails(periods) {
-    const detailPromises = map(
-      periods,
-      (period) =>
-        this.OvhApiCloudProjectUsageHistory.v6().get({
-          serviceName: this.$stateParams.projectId,
-          usageId: period.id,
-        }).$promise,
-    );
-
-    return this.$q
-      .all(detailPromises)
-      .then((periodDetails) => {
-        let monthlyDetails;
-
-        if (moment.utc().isSame(this.data.monthBilling, 'month')) {
-          monthlyDetails = this.OvhApiCloudProjectUsageCurrent.v6().get({
-            serviceName: this.$stateParams.projectId,
-          }).$promise;
-        } else {
-          monthlyDetails = find(periodDetails, (detail) =>
-            moment
-              .utc(detail.period.from)
-              .isSame(this.data.monthBilling, 'month'),
-          );
-        }
-
-        const hourlyDetails = find(periodDetails, (detail) =>
-          moment
-            .utc(detail.period.from)
-            .isSame(this.data.previousMonth, 'month'),
-        );
-
-        return {
-          hourly: hourlyDetails,
-          monthly: monthlyDetails,
-        };
-      })
-      .then((details) =>
-        this.$q
-          .all(details)
-          .then((allDetails) =>
-            this.CloudProjectBilling.getConsumptionDetails(
-              allDetails.hourly,
-              allDetails.monthly,
-            ),
-          ),
-      );
-  }
-
-  previousMonth() {
-    const lastMonth = this.data.monthBilling.subtract(1, 'month');
-    return this.$state.go(this.$state.current.name, {
-      year: lastMonth.year(),
-      month: lastMonth.month() + 1, // because moment indexes month from 0 to 11
-    });
-  }
-
-  nextMonth() {
-    const nextMonthDate = this.data.monthBilling.add(1, 'month');
-    return this.$state.go(this.$state.current.name, {
-      year: nextMonthDate.year(),
-      month: nextMonthDate.month() + 1, // because moment indexes month from 0 to 11
-    });
-  }
-
-  isLimitReached() {
-    return this.data.monthBilling.isSameOrAfter(
-      this.firstDayCurrentMonth,
-      'day',
-    );
-  }
-
-  getBillingDateInfo() {
-    if (this.data.monthBilling.isValid()) {
-      return {
-        month: this.data.monthBilling.format('MMMM'),
-        year: this.data.monthBilling.year(),
-      };
-    }
-    return null;
   }
 }

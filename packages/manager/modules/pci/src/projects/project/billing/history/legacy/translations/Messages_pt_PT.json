@@ -1,0 +1,11 @@
+{
+  "cpbh_current_month": "Faturas {{month}} {{year}}",
+  "cpbh_next_month": "Mês seguinte",
+  "cpbh_previous_month": "Mês anterior",
+  "cpbhd_monthly_header": "Pacotes mensais de {{month}} {{year}}",
+  "cpbhd_hourly_header": "Consumo a pedido de {{month}} {{year}}",
+  "cpbhd_bill_link": "Consultar todas as faturas",
+  "cpbhd_bill_pdf_tooltip": "Consultar a fatura PDF",
+  "cpbhd_bill_pdf_link": "Fatura {{month}} {{year}}",
+  "cpb_error_message": "Lamentamos, mas não foi possível recuperar todas as informações."
+}

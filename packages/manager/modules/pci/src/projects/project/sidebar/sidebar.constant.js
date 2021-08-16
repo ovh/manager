@@ -243,7 +243,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         options: {
           state: 'pci.projects.project.billing',
         },
-        regions: ['EU', 'CA'],
+        feature: 'public-cloud:billing',
         title: 'Billing Control',
       },
       {

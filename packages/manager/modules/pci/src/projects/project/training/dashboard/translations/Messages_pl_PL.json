@@ -11,7 +11,7 @@
   "pci_projects_project_training_dashboard_cli_integration_doc": "Dokumentacja",
   "pci_projects_project_training_dashboard_cli_integration_install": "Instalacja",
   "pci_projects_project_training_dashboard_billing_title": "Trwa wystawianie faktury",
-  "pci_projects_project_training_dashboard_billing_month": "zużycie w tym miesiącu",
+  "pci_projects_project_training_dashboard_billing_month": "{{price}} - zużycie w tym miesiącu",
   "pci_projects_project_training_dashboard_billing_link": "Data wystawienia faktury",
   "pci_projects_project_training_dashboard_active_jobs": "Aktywne zadania",
   "pci_projects_project_training_dashboard_active_users": "Użytkownicy AI Training",
