@@ -9,4 +9,8 @@ export default class Tenant {
 
     this.ovhSubsidiary = ovhSubsidiary;
   }
+
+  set storageAccessUrl(url) {
+    this.storage.accessUrl = url;
+  }
 }
