@@ -1,52 +1,56 @@
-<oui-header
-    class="mb-3"
-    heading="{{:: $ctrl.node.description }}"
-    description="{{:: $ctrl.nodeId }}"
->
-    <oui-header-tabs>
-        <oui-header-tabs-item
-            state="nutanix.dashboard.nodes.node.general-info"
-            state-params="{
-                serviceName: $ctrl.serviceName,
-                nodeId: $ctrl.nodeId
-            }"
-            ><span data-translate="nutanix_node_general_info"></span>
-        </oui-header-tabs-item>
-        <oui-header-tabs-item
-            state="nutanix.dashboard.nodes.node.interventions"
-            state-params="{
-                serviceName: $ctrl.serviceName,
-                nodeId: $ctrl.nodeId
-            }"
-            ><span data-translate="nutanix_node_interventions"></span>
-        </oui-header-tabs-item>
-        <oui-header-tabs-item
-            state="nutanix.dashboard.nodes.node.ipmi"
-            state-params="{
-                serviceName: $ctrl.serviceName,
-                nodeId: $ctrl.nodeId
-            }"
-            ><span>IPMI</span>
-        </oui-header-tabs-item>
-        <oui-header-tabs-item
-            state="nutanix.dashboard.nodes.node.tasks"
-            state-params="{
-                serviceName: $ctrl.serviceName,
-                nodeId: $ctrl.nodeId
-            }"
-            ><span data-translate="nutanix_node_tasks"></span>
-        </oui-header-tabs-item>
-    </oui-header-tabs>
-    <oui-guide-menu
-        data-text="{{:: 'nutanix_node_guides_header' | translate }}"
+<div data-ui-view>
+    <oui-header
+        class="mb-3"
+        heading="{{:: $ctrl.node.description }}"
+        description="{{:: $ctrl.nodeId }}"
     >
-        <oui-guide-menu-item
-            href="{{ $ctrl.dedicatedServerGuideUrl }}"
-            data-external
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                state="nutanix.dashboard.nodes.node.general-info"
+                state-params="{
+                serviceName: $ctrl.serviceName,
+                nodeId: $ctrl.nodeId
+            }"
+                ><span data-translate="nutanix_node_general_info"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                state="nutanix.dashboard.nodes.node.interventions"
+                state-params="{
+                serviceName: $ctrl.serviceName,
+                nodeId: $ctrl.nodeId
+            }"
+                ><span data-translate="nutanix_node_interventions"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                state="nutanix.dashboard.nodes.node.ipmi"
+                state-params="{
+                serviceName: $ctrl.serviceName,
+                nodeId: $ctrl.nodeId
+            }"
+                ><span>IPMI</span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                state="nutanix.dashboard.nodes.node.tasks"
+                state-params="{
+                serviceName: $ctrl.serviceName,
+                nodeId: $ctrl.nodeId
+            }"
+                ><span data-translate="nutanix_node_tasks"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+        <oui-guide-menu
+            data-text="{{:: 'nutanix_node_guides_header' | translate }}"
         >
-            <span data-translate="nutanix_node_guides_header_all_guides"></span>
-        </oui-guide-menu-item>
-    </oui-guide-menu>
-</oui-header>
-<div class="my-3" data-ovh-alert="nutanix_node_alert"></div>
-<div ui-view></div>
+            <oui-guide-menu-item
+                href="{{ $ctrl.dedicatedServerGuideUrl }}"
+                data-external
+            >
+                <span
+                    data-translate="nutanix_node_guides_header_all_guides"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+    <div class="my-3" data-ovh-alert="nutanix_node_alert"></div>
+    <div ui-view="serverView"></div>
+</div>

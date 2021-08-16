@@ -2,6 +2,8 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import './index.scss';
+
 const moduleName = 'ovhManagerNutanixLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(

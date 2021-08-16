@@ -3,10 +3,8 @@ import template from './template.html';
 
 export default {
   bindings: {
-    currentActiveLink: '<',
-    serviceName: '<',
     nodeId: '<',
-    node: '<',
+    goBack: '<',
   },
   controller,
   template,

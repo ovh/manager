@@ -3,10 +3,13 @@ import template from './template.html';
 
 export default {
   bindings: {
-    currentActiveLink: '<',
     serviceName: '<',
     nodeId: '<',
-    node: '<',
+    server: '<',
+    user: '<',
+    technicalDetails: '<',
+    goToNameEdit: '<',
+    goToNutanixNodeServer: '<',
   },
   controller,
   template,
