@@ -37,6 +37,7 @@
     "less-plugin-remcalc": "^0.1.0",
     "lodash": "^4.17.15",
     "magic-string": "^0.25.4",
+    "node-sass": "^4.10.0",
     "regenerator-runtime": "^0.13.7",
     "rollup": "^2.50.6",
     "rollup-plugin-html": "^0.2.1",
