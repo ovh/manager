@@ -1,6 +1,7 @@
 export default class CloudProjectBillingConsumptionCurrentCtrl {
   /* @ngInject */
-  constructor($translate, CucCloudMessage) {
+  constructor($filter, $translate, CucCloudMessage) {
+    this.$filter = $filter;
     this.$translate = $translate;
 
     this.CucCloudMessage = CucCloudMessage;
@@ -41,5 +42,19 @@ export default class CloudProjectBillingConsumptionCurrentCtrl {
     const translationKey = `cpbc_billing_control_consumption_plan_${detail.planCode}`;
     const description = this.$translate.instant(translationKey);
     return description === translationKey ? '' : description;
+  }
+
+  getPeriod() {
+    return this.$translate.instant(
+      'cpbc_billing_control_consumption_current_period',
+      {
+        from: this.$filter('date')(this.consumption.beginDate),
+        to: this.$filter('date')(this.consumption.endDate),
+      },
+      // Needed to display correctly some UTF-8 characters
+      {},
+      null,
+      'escapeParameters',
+    );
   }
 }
