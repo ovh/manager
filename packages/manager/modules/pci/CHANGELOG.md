@@ -1,3 +1,12 @@
+# [5.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.38.0...@ovh-ux/manager-pci@5.39.0) (2021-08-16)
+
+
+### Features
+
+* **pci.billing:** revamp ([#4596](https://github.com/ovh/manager/issues/4596)) ([6b677a5](https://github.com/ovh/manager/commit/6b677a56cf84229cf86430df33c3ebf9b946c4af))
+
+
+
 # [5.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.37.2...@ovh-ux/manager-pci@5.38.0) (2021-08-11)
 
 
