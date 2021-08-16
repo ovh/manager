@@ -25,7 +25,7 @@ export default class {
       this.database.id,
       this.model.username,
       this.model.password,
-      this.model.selectedRoles,
+      this.model.selectedRoles.map((role) => role.name),
     )
       .then(({ username }) =>
         this.goBack({
