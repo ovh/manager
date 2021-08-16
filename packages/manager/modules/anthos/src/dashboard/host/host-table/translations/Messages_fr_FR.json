@@ -14,5 +14,6 @@
   "anthos_dashboard_host_status_BAREMETAL_STATUS_RESTARTING": "Redémarrage",
   "anthos_dashboard_host_retrieve_error": "Échec de l'obtention des hôtes: {{message}}",
   "anthos_dashboard_host_empty": "Aucun hôtes trouvé",
-  "anthos_dashboard_host_restart": "Redémarrer"
+  "anthos_dashboard_host_restart": "Redémarrer",
+  "anthos_dashboard_host_reinstall": "Réinstaller"
 }
