@@ -8,6 +8,7 @@ import component from './component';
 import hostTable from './host-table';
 import orderHost from './order';
 import reinstallHost from './reinstall';
+import remove from './remove';
 import restartHost from './restart';
 import routing from './routing';
 import setState from './set-state';
@@ -23,6 +24,7 @@ angular
     hostTable,
     orderHost,
     reinstallHost,
+    remove,
     restartHost,
     setState,
   ])

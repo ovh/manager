@@ -4,6 +4,7 @@ export default {
   bindings: {
     goToOrderHost: '<',
     goToReinstallHost: '<',
+    goToRemoveHost: '<',
     goToRestartHost: '<',
     goToSetStateHost: '<',
     serviceName: '<',
