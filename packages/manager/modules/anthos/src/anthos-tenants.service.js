@@ -141,4 +141,12 @@ export default class AnthosTenantsService {
       )
       .then(({ data }) => data);
   }
+
+  reinstallHost(serviceName, hostId) {
+    return this.$http
+      .post(
+        `/dedicated/anthos/tenants/${serviceName}/baremetals/${hostId}/actions/reinstall`,
+      )
+      .then(({ data }) => data);
+  }
 }

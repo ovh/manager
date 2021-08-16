@@ -7,6 +7,7 @@ import 'angular-translate';
 import component from './component';
 import hostTable from './host-table';
 import orderHost from './order';
+import reinstallHost from './reinstall';
 import restartHost from './restart';
 import routing from './routing';
 
@@ -20,6 +21,7 @@ angular
     'ui.router',
     hostTable,
     orderHost,
+    reinstallHost,
     restartHost,
   ])
   .component('anthosHost', component)

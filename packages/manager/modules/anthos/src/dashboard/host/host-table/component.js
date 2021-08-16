@@ -5,6 +5,7 @@ export default {
   bindings: {
     serviceName: '<',
     additionalHosts: '<',
+    goToReinstallHost: '<',
     goToRestartHost: '<',
   },
   controller,
