@@ -8,28 +8,22 @@ export default class AnthosTenantsService {
     this.ovhDocUrl = ovhDocUrl;
   }
 
+  fetch(endPoint) {
+    return this.$http.get(endPoint).then(({ data }) => data);
+  }
+
   getTenants() {
-    return this.$http.get('/dedicated/anthos/tenants').then(({ data }) => data);
+    return this.fetch('/dedicated/anthos/tenants');
   }
 
   getTenantDetails(serviceName) {
-    return this.$http
-      .get(`/dedicated/anthos/tenants/${serviceName}`)
-      .then(({ data }) => data);
+    return this.fetch(`/dedicated/anthos/tenants/${serviceName}`);
   }
 
-  getGuides(ovhSubsidiary) {
-    const guides = {};
-    guides.title = this.$translate.instant('anthos_tenants_guides');
-    guides.list = [
-      {
-        name: this.$translate.instant('anthos_tenants_guides_all'),
-        url: GUIDES[ovhSubsidiary] || GUIDES.DEFAULT,
-        external: true,
-      },
-    ];
-
-    return guides;
+  updateTenant(serviceName, tenant) {
+    return this.$http
+      .put(`/dedicated/anthos/tenants/${serviceName}`, tenant)
+      .then(({ data }) => data);
   }
 
   getHosts(serviceName, additional, pageNumber, pageSize) {
@@ -51,6 +45,52 @@ export default class AnthosTenantsService {
     );
   }
 
+  getTenantStorageUsage(serviceName) {
+    return this.fetch(
+      `/dedicated/anthos/tenants/${serviceName}/storage/netapp/usage`,
+    );
+  }
+
+  getTenantPublicIPs(serviceName) {
+    return this.fetch(`/dedicated/anthos/tenants/${serviceName}/ips/public`);
+  }
+
+  getTenantPrivateIPs(serviceName) {
+    return this.fetch(`/dedicated/anthos/tenants/${serviceName}/ips/private`);
+  }
+
+  resetTenantAdminAccess(serviceName) {
+    return this.$http
+      .post(`/dedicated/anthos/tenants/${serviceName}/credentials/reset`)
+      .then(({ data }) => data);
+  }
+
+  resetTenantStorageAdminAccess(serviceName) {
+    return this.$http
+      .post(
+        `/dedicated/anthos/tenants/${serviceName}/storage/netapp/credentials/reset`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getServiceInfo(serviceName) {
+    return this.fetch(`/dedicated/anthos/tenants/${serviceName}/serviceInfos`);
+  }
+
+  getGuides(ovhSubsidiary) {
+    const guides = {};
+    guides.title = this.$translate.instant('anthos_tenants_guides');
+    guides.list = [
+      {
+        name: this.$translate.instant('anthos_tenants_guides_all'),
+        url: GUIDES[ovhSubsidiary] || GUIDES.DEFAULT,
+        external: true,
+      },
+    ];
+
+    return guides;
+  }
+
   getStorageVolumes(serviceName) {
     return this.$http
       .get(`/dedicated/anthos/tenants/${serviceName}/storage/netapp/svms`, {
@@ -59,12 +99,6 @@ export default class AnthosTenantsService {
           'X-Pagination-Size': 50000, // Expected to get only around 1-50 records
         },
       })
-      .then(({ data }) => data);
-  }
-
-  getStorageUsage(serviceName) {
-    return this.$http
-      .get(`/dedicated/anthos/tenants/${serviceName}/storage/netapp/usage`)
       .then(({ data }) => data);
   }
 }

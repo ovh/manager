@@ -19,6 +19,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-anthos-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
+    "@ovh-ux/manager-billing-components": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-anthos": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
@@ -35,6 +36,12 @@
     "@ovh-ux/ng-ui-router-line-progress": "^1.2.2",
     "@ovh-ux/ufrontend": "^1.1.1 || ^2.0.0",
     "@ovh-ux/ui-kit": "^4.4.3",
+    "@ovh-ux/ng-at-internet": "^5.7.0",
+    "@ovh-ux/ng-ovh-feature-flipping": "^1.0.3",
+    "@ovh-ux/ng-ovh-payment-method": "^8.1.2",
+    "bootstrap": "~3.3.7",
+    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "moment": "^2.24.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.8",

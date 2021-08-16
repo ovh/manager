@@ -25,6 +25,9 @@ export const GUIDES = {
   US: 'https://docs.us.ovhcloud.com/hosted-private-cloud-anthos/',
 };
 
+export const ANTHOS_TENANT_ALERTER = 'anthos_tenant_alerter';
+
 export default {
   GUIDES,
+  ANTHOS_TENANT_ALERTER,
 };
