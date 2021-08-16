@@ -1,0 +1,8 @@
+{
+  "anthos_dashboard_remove_host_title": "Supprimer l'hôte",
+  "anthos_dashboard_remove_host_description": "Cette machine sera immédiatement supprimée, et vous ne serez plus facturé au dela de sa date de fin d'engagement (le {{expiryDate}}).",
+  "anthos_dashboard_remove_host_warning": "La suppression entrainera l'effacement définitif de toutes les données correspondantes.",
+  "anthos_dashboard_remove_host_submit": "Supprimer l'hôte",
+  "anthos_dashboard_remove_host_cancel": "Annuler",
+  "anthos_dashboard_remove_host_error": "Une erreur s'est produite lors de la résiliation de votre hôte : {{message}}"
+}
