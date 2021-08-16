@@ -33,7 +33,7 @@
                 data-ng-class="{
                     'oui-input_error': !$ctrl.isIPValid() && $ctrl.currentIp
                     }"
-                id="{{:: 'ip' + $rowIndex }}"
+                id="{{:: 'ip-' + $rowIndex }}"
                 type="text"
                 required
                 data-ng-model="$ctrl.currentIp"
