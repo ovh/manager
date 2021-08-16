@@ -16,5 +16,6 @@
   "anthos_dashboard_host_empty": "Aucun hôtes trouvé",
   "anthos_dashboard_host_restart": "Redémarrer",
   "anthos_dashboard_host_reinstall": "Réinstaller",
-  "anthos_dashboard_host_set_state": "Définir l’état"
+  "anthos_dashboard_host_set_state": "Définir l’état",
+  "anthos_dashboard_host_remove": "Supprimer"
 }
