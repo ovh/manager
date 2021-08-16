@@ -59,6 +59,10 @@ export default class {
     this.getMetrics();
   }
 
+  $onDestroy() {
+    clearInterval(this.interval);
+  }
+
   loadMessages() {
     this.CucCloudMessage.unSubscribe(this.messageContainer);
     this.messageHandler = this.CucCloudMessage.subscribe(
