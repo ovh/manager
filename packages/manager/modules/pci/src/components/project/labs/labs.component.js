@@ -5,5 +5,6 @@ export default {
   bindings: {
     lab: '<',
     onAccept: '&',
+    onContractClick: '&'
   },
 };
