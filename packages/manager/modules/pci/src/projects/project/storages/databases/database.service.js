@@ -345,10 +345,11 @@ export default class DatabaseService {
           params: {
             period,
           },
-        },)
-        .then(({ data }) => data);
+        },
+      )
+      .then(({ data }) => data);
   }
-  
+
   resetUserCredentials(projectId, engine, databaseId, userId) {
     return this.$http
       .post(
