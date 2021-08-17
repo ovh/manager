@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/ui-kit": "^5.0.0",
+    "@ovh-ux/ui-kit": "^5.1.0",
     "bootstrap": "~3.3.7",
     "ovh-ui-kit-bs": "^4.2.0"
   },

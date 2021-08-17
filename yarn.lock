@@ -3009,10 +3009,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-5.0.0.tgz#225d7756a2fc75c7b08d7781143600697acd1541"
-  integrity sha512-QEIu8QWI0MF6w8C87a5zvykfh7hV16Fs3EaQ8voRVCp1U2YOdI5RmNDu3jKMw7RNM5tzbDpROEWl9IKP2dcWrw==
+"@ovh-ux/ui-kit@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-5.1.0.tgz#0024502cd38e29811d1b1cbb15ef489a901023b3"
+  integrity sha512-5//YAnQCdju11S5J+i8ASiURtXibnmK2ko4Uj2sKt/fGtru565h7PiK9qKEzCLMM7BQMVOa3TvKujebBoTgEgw==
 
 "@rollup/plugin-babel@^5.0.0":
   version "5.0.0"
@@ -9901,7 +9901,7 @@ flat-cache@^2.0.1:
 
 flatpickr@4.6.9, flatpickr@^4.6.3, flatpickr@~4.5.2:
   version "4.6.9"
-  resolved "https://registry.npmjs.org/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
   integrity sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==
 
 flatted@^2.0.0:
