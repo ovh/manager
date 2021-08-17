@@ -23,6 +23,13 @@ export default /* @ngInject */ ($stateProvider) => {
           pollNodesStatus();
           return goToDatabase(database, message, type);
         },
+        getCurrentFlavor: /* @ngInject */ (database, engine) => () =>
+          engine.getFlavor(
+            database.version,
+            database.plan,
+            database.region,
+            database.flavor,
+          ),
       },
     },
   );

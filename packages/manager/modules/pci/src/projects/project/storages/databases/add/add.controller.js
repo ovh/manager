@@ -55,6 +55,12 @@ export default class {
     this.labAccepted = accepted;
   }
 
+  clickOnContract() {
+    this.trackDatabases({
+      name: 'config_create_database::ga_contracts',
+    });
+  }
+
   loadMessages() {
     this.CucCloudMessage.unSubscribe(this.messageContainer);
     this.messageHandler = this.CucCloudMessage.subscribe(

@@ -248,7 +248,7 @@
                         </span>
                         <button
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"
-                            data-ng-click="$ctrl.goToManagerUsers()"
+                            data-ng-click="$ctrl.manageUsers()"
                         >
                             <span
                                 data-translate="pci_databases_general_information_manage_users"
@@ -299,14 +299,22 @@
                             data-translate="pci_database_common_none"
                         ></span>
                         <div data-ng-if="$ctrl.privateNetwork">
-                            <p
+                            <a
                                 class="mb-0"
-                                data-ng-bind=":: $ctrl.privateNetwork.id"
-                            ></p>
-                            <p
-                                class="mb-0"
-                                data-ng-bind=":: $ctrl.subnet.name"
-                            ></p>
+                                data-ng-href="{{:: $ctrl.vRackLink}}"
+                                data-ng-click="$ctrl.manageVRack()"
+                            >
+                                <span
+                                    data-translate="pci_databases_general_information_private_network_link"
+                                    data-translate-values="{
+                                        vRackId: $ctrl.vRack.id
+                                    }"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-arrow-right ml-1"
+                                    aria-hidden="true"
+                                ></span>
+                            </a>
                         </div>
                     </oui-tile-description>
                 </oui-tile-definition>

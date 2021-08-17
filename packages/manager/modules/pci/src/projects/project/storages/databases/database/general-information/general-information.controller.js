@@ -1,5 +1,4 @@
 import capitalize from 'lodash/capitalize';
-
 import { SHELL_NAMES } from '../../databases.constants';
 
 export default class {
@@ -9,12 +8,14 @@ export default class {
     CucCloudMessage,
     ovhManagerRegionService,
     DatabaseService,
+    $location,
   ) {
     this.$translate = $translate;
     this.capitalize = capitalize;
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.DatabaseService = DatabaseService;
+    this.$location = $location;
   }
 
   $onInit() {
@@ -45,8 +46,29 @@ export default class {
   }
 
   deleteNode() {
-    this.trackDatabases('dashboard::general_information::delete_node');
+    this.trackDatabases('dashboard::general_information::remove_node');
     this.goToDeleteNode();
+  }
+
+  manageUsers() {
+    if (this.users.length === 0) {
+      this.trackDatabases(
+        'dashboard::general_information::no_user_banner_manage_user',
+      );
+    } else {
+      this.trackDatabases('dashboard::general_information::manage_user');
+    }
+
+    this.goToManagerUsers();
+  }
+
+  manageVRack() {
+    this.trackDatabases('dashboard::general_information::goto_vrack');
+  }
+
+  manageAllowedIps() {
+    this.trackDatabases('dashboard::general_information::goto_vrack');
+    this.goToAllowedIPs();
   }
 
   loadMessages() {

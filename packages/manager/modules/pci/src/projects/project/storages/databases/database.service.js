@@ -275,6 +275,12 @@ export default class DatabaseService {
       );
   }
 
+  getVRack(projectId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/vrack`)
+      .then(({ data }) => data);
+  }
+
   getSubnets(projectId, networkId) {
     return this.$http
       .get(`/cloud/project/${projectId}/network/private/${networkId}/subnet`)
@@ -339,8 +345,9 @@ export default class DatabaseService {
           params: {
             period,
           },
-        }, )
-        .then(({ data }) => data);
+        },
+      )
+      .then(({ data }) => data);
   }
 
   resetUserCredentials(projectId, engine, databaseId, userId) {

@@ -8,9 +8,25 @@
     data-heading="{{:: 'pci_databases_general_information_delete_node' | translate}}"
 >
     <span
-        data-translate="pci_databases_general_information_delete_node_description"
+        data-translate="pci_databases_general_information_delete_node_description_1"
         data-translate-values="{
-            nodesCount: $ctrl.database.nodes.length
+            nodesCount: $ctrl.database.nodes.length,
         }"
     ></span>
+    <ovh-manager-catalog-price
+        data-price="$ctrl.getCurrentFlavor().monthlyPrice.priceInUcents"
+        data-tax="$ctrl.getCurrentFlavor().monthlyPrice.tax"
+        data-user="$ctrl.user"
+        data-show-zero-price="true"
+    >
+    </ovh-manager-catalog-price>
+    <span
+        data-translate="pci_databases_general_information_delete_node_description_2"
+    ></span>
+    <ovh-manager-catalog-price
+        data-price="{{pricePerHour}}"
+        data-tax="{{tax}}"
+        data-user="{{user}}"
+        data-show-zero-price="true"
+    ></ovh-manager-catalog-price>
 </oui-modal>
