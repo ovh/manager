@@ -17,6 +17,8 @@ export default {
     goToEditName: '<',
     goToUpgradePlan: '<',
     goToUpgradeVersion: '<',
+    vRack: '<',
+    vRackLink: '<',
     latestPlan: '<',
     latestVersion: '<',
     newDatabases: '<',

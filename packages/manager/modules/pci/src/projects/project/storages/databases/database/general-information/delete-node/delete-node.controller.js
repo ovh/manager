@@ -11,7 +11,7 @@ export default class {
   }
 
   deleteNode() {
-    this.trackDatabases('dashboard::general_information::add_node_validate');
+    this.trackDatabases('dashboard::general_information::remove_node_validate');
     this.deletingNode = true;
     this.nodeInfo = this.database.nodes[this.database.nodes.length - 1];
     return this.DatabaseService.deleteNode(
@@ -40,7 +40,7 @@ export default class {
   }
 
   cancel() {
-    this.trackDatabases('dashboard::general_information::delete_node_cancel');
+    this.trackDatabases('dashboard::general_information::remove_node_cancel');
     this.goBack();
   }
 }

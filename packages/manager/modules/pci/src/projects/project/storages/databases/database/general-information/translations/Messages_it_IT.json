@@ -26,6 +26,7 @@
   "pci_databases_general_information_maintenance_window_label": "Intervallo di manutenzione giornaliero",
   "pci_databases_general_information_maintenance_window": "{{startTime}} a {{endTime}}",
   "pci_databases_general_information_private_network_label": "Private Network",
+  "pci_databases_general_information_private_network_link": "Private Network : vRack n&deg;{{vRackId}}",
   "pci_databases_general_information_allowed_ips_label": "Indirizzi IP autorizzati",
   "pci_databases_general_information_manage_ips": "Gestire gli indirizzi IP",
   "pci_databases_general_information_subscription_title": "Abbonamento",

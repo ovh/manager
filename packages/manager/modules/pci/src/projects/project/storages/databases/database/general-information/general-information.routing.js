@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -68,18 +69,11 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
-      goToUpgradeVersion: /* @ngInject */ (
-        $state,
-        databaseId,
-        projectId,
-      ) => () =>
-        $state.go(
-          'pci.projects.project.storages.databases.dashboard.general-information.upgrade-version',
-          {
-            projectId,
-            databaseId,
-          },
-        ),
+      vRack: /* @ngInject */ (DatabaseService, projectId) =>
+        DatabaseService.getVRack(projectId),
+      vRackLink: /* @ngInject */ (vRack) => {
+        return buildURL('dedicated', `#/vrack/${vRack.id}`);
+      },
       goBack: /* @ngInject */ (database, goToDatabase) => (message, type) =>
         goToDatabase(database, message, type),
       goBackAndPoll: /* @ngInject */ (goBack, pollDatabaseStatus) => (

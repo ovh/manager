@@ -9,6 +9,7 @@ const component = {
     projectId: '<',
     trackDatabases: '<',
     user: '<',
+    getCurrentFlavor: '<',
   },
   template,
   controller,
