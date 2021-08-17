@@ -33,7 +33,9 @@
   "pci_notebooks_general_information_life_cycle_timeline_actions_restart": "Data de reinício",
   "pci_notebooks_general_information_life_cycle_timeline_actions_stopped": "Data de paragem",
   "pci_notebooks_general_information_resources_title": "Recursos",
-  "pci_notebooks_general_information_resources_local_storage": "Armazenamento local",
+  "pci_notebooks_general_information_resources_local_storage": "Armazenamento local por recurso",
   "pci_notebooks_general_information_resources_monitoring": "Seguimento do consumo",
-  "pci_notebooks_general_information_resources_monitoring_access_to_graph": "Aceder ao Graph Dashboard"
+  "pci_notebooks_general_information_resources_monitoring_access_to_graph": "Aceder ao Graph Dashboard",
+  "pci_notebooks_general_information_resources_quantity": "Recursos",
+  "pci_notebooks_general_information_resources_info": "GPU/CPU/RAM por recurso"
 }
