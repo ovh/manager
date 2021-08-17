@@ -47,7 +47,7 @@
     <!-- END OF NOT AN OVHPABX -->
 
     <!-- INFO -->
-    <div class="row">
+    <div class="row" data-ng-if="!$ctrl.loading.init">
         <div class="col-md-6">
             <div class="alert alert-info" role="alert">
                 <p
@@ -55,6 +55,7 @@
                 ></p>
                 <p
                     data-translate="telephony_alias_ovh_pabx_sounds_list_info2"
+                    data-translate-values="{ featureType: $ctrl.getFeatureType() }"
                 ></p>
             </div>
         </div>

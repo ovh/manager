@@ -1,3 +1,5 @@
+const FEATURES = { cloudIvr: 'SVI', contactCenterSolutionExpert: 'CCS' };
+
 export default /* @ngInject */ function TelecomTelephonyAliasConfigurationOvhPabxSoundsCtrl(
   $q,
   $stateParams,
@@ -65,6 +67,20 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationOvhPab
       .finally(() => {
         self.loading.init = false;
       });
+  };
+
+  self.getFeatureType = function $onInit() {
+    if (self.number.feature?.featureType) {
+      switch (self.number.feature.featureType) {
+        case 'cloudIvr':
+          return FEATURES.cloudIvr;
+        case 'contactCenterSolutionExpert':
+          return FEATURES.contactCenterSolutionExpert;
+        default:
+          return null;
+      }
+    }
+    return null;
   };
 
   /* -----  End of INITIALIZATION  ------*/

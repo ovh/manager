@@ -86,6 +86,7 @@
   "telephony_number_feature_ovh_pabx_step_conditions_screen_list_number_count": "{{ count }} numéros",
   "telephony_number_feature_ovh_pabx_step_conditions_screen_list_number_count_single": "{{ count }} numéro",
   "telephony_number_feature_ovh_pabx_step_rule_action_edit": "Modifier l'action",
+  "telephony_number_feature_ovh_pabx_step_rule_action_edit_menu_interactif": "Modifier le menu interactif",
   "telephony_number_feature_ovh_pabx_step_rule_action_delete": "Supprimer l'action",
   "telephony_number_feature_ovh_pabx_step_rule_action_delete_error": "Oups ! Une erreur est survenue lors de la suppression de l'action.",
   "telephony_number_feature_ovh_pabx_step_rule_set_caller_name": "Définir un nom d'appelant",
