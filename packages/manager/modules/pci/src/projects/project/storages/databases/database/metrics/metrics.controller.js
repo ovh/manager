@@ -35,7 +35,7 @@ export default class {
     this.messageContainer =
       'pci.projects.project.storages.databases.dashboard.metrics';
     this.loadMessages();
-    this.trackDatabases('metrics', 'page');
+    this.trackDatabases('dashboard::metrics', 'page');
 
     this.isLoading = false;
 
@@ -59,6 +59,7 @@ export default class {
     }
 
     this.$scope.$watch('$ctrl.selectedTimeRange', () => {
+      this.trackDatabases('dashboard::metrics::display_granularity_' + this.selectedTimeRange.value, 'page');
       this.getMetrics();
     });
 
