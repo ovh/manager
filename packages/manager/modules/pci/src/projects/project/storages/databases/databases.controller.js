@@ -39,6 +39,16 @@ export default class {
     this.goToDeleteDatabase(database);
   }
 
+  renameDatabase(database) {
+    this.trackDatabases('table::options_menu::rename_database');
+    this.goToEditName(database.id);
+  }
+
+  upgradeVersion(database) {
+    this.trackDatabases('table::options_menu::change_version');
+    this.goToUpgradeVersion(database.id);
+  }
+
   getCurrentFlavor(database) {
     this.currentEngine = this.engines.find(
       (engine) => engine.name === database.engine,
