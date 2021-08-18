@@ -2,6 +2,7 @@
 import angular from 'angular';
 
 import '@ovh-ux/manager-core';
+import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
@@ -15,6 +16,7 @@ const moduleName = 'ovhManager<%= pascalcasedName %>';
 
 angular
   .module(moduleName, [
+    'ngUiRouterBreadcrumb',
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
