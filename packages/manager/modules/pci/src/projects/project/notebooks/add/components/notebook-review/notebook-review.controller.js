@@ -57,8 +57,8 @@ export default class NotebookReviewController {
   }
 
   getResourceInfo() {
-    const { resource } = this.notebookModel.selected;
-    return `${resource.flavor.id} - x${resource.flavor.resourcesPerUnit.cpu}`;
+    const { selected, nbResources } = this.notebookModel;
+    return `${selected.resource.flavor.id} - x${nbResources}`;
   }
 
   getAutomationInfoLink() {

@@ -222,22 +222,32 @@
                 data-heading="{{:: 'pci_notebooks_general_information_resources_title' | translate }}"
                 data-loading="$ctrl.loading.instance"
             >
-                <!--GPU-->
+                <!--Resource quantity-->
                 <oui-tile-definition
-                    data-term="{{:: $ctrl.NOTEBOOK_FLAVOR_TYPE.GPU }}"
-                    data-description="{{:: $ctrl.notebook.gpu }}"
-                ></oui-tile-definition>
+                    data-term="{{:: 'pci_notebooks_general_information_resources_quantity' | translate }}">
+                    <oui-tile-description>
+                        <span data-ng-if="$ctrl.flavor.gpuInformation"
+                              data-ng-bind=":: $ctrl.notebook.gpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.notebook.flavor | uppercase)"></span>
+                        <span data-ng-if="!$ctrl.flavor.gpuInformation"
+                              data-ng-bind=":: $ctrl.notebook.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.notebook.flavor | uppercase)"></span>
+                    </oui-tile-description>
 
-                <!--CPU/RAM-->
+                </oui-tile-definition>
+
+                <!--CPU/GPU/RAM per resource-->
                 <oui-tile-definition
-                    data-term="CPU/RAM"
-                    data-description="{{:: $ctrl.notebook.cpu + 'x ' + $ctrl.notebook.getSelectedFlavor($ctrl.flavors).description }}"
+                    data-term="{{:: 'pci_notebooks_general_information_resources_info' | translate}}">
+                    <oui-tile-description>
+                        <p class="mb-1" data-ng-bind=":: $ctrl.flavor.resourcesPerUnit.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN + ($ctrl.flavor.description | uppercase)"></p>
+                        <p class="mb-1" data-ng-bind=":: $ctrl.getCpuRamInfo()"></p>
+                        <p class="mb-1" data-ng-bind=":: $ctrl.getGpuRamInfo()"></p>
+                    </oui-tile-description>
                 ></oui-tile-definition>
 
                 <!--Local storage-->
                 <oui-tile-definition
                     data-term="{{:: 'pci_notebooks_general_information_resources_local_storage' | translate}}"
-                    data-description="{{:: $ctrl.notebook.memory | cucBytes:0:false:'B'  }}"
+                    data-description="{{:: $ctrl.flavor.resourcesPerUnit.ephemeralStorage | cucBytes:0:false:'B'  }}"
                 ></oui-tile-definition>
 
                 <!--Life consumption-->

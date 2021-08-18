@@ -255,6 +255,14 @@ export default class Notebook {
     return this.spec.resources.memory;
   }
 
+  get gpuMemory() {
+    return this.spec.resources.gpuMemory;
+  }
+
+  get ephemeralStorage() {
+    return this.spec.resources.ephemeralStorage;
+  }
+
   get formattedRunningDuration() {
     return moment.duration(this.status.duration, 'seconds').humanize();
   }
@@ -282,6 +290,10 @@ export default class Notebook {
 
   get volumes() {
     return this.spec.volumes;
+  }
+
+  get flavor() {
+    return this.spec.resources.flavor;
   }
 
   geNbContainerByType(type) {

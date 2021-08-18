@@ -44,6 +44,8 @@ export const NOTEBOOK_STORAGE_INFO = {
   CA: 'https://docs.ovh.com/ca/en/ai-training/data/',
 };
 
+export const NOTEBOOK_MULTIPLY_SIGN = ' × ';
+
 export default {
   NOTEBOOK_TAGS,
   NOTEBOOK_STATUS,
@@ -54,4 +56,5 @@ export default {
   NOTEBOOK_STORAGE_INFO,
   NOTEBOOK_POLLER_NAMESPACES,
   NOTEBOOK_FRAMEWORK_INFO,
+  NOTEBOOK_MULTIPLY_SIGN,
 };

@@ -15,6 +15,9 @@ export default /* @ngInject */ ($stateProvider) => {
       flavors: /* @ngInject */ (projectId, notebook, NotebookService) =>
         NotebookService.getFlavors(projectId, notebook.region),
 
+      flavor: /* @ngInject */ (notebook, flavors) =>
+        notebook.getSelectedFlavor(flavors),
+
       goToAddTag: /* @ngInject */ (
         $state,
         projectId,
