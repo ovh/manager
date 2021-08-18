@@ -6,6 +6,7 @@ export default {
     accessPath: '<',
     currentActiveLink: '<',
     volumeDashboardLink: '<',
+    volumeDashboardAclLink: '<',
     volume: '<',
     updateVolume: '<',
     goToVolumeDashboard: '<',
