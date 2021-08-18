@@ -4,7 +4,8 @@ import template from './template.html';
 export default {
   bindings: {
     serviceName: '<',
-    cluster: '<',
+    nodeId: '<',
+    node: '<',
   },
   controller,
   template,

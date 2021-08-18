@@ -3,23 +3,21 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
-import component from './component';
 import routing from './routing';
-import nodes from './nodes';
-import generalInfo from './general-info';
+import node from './node';
+import component from './component';
 
-const moduleName = 'ovhManagerNutanixDashboard';
+const moduleName = 'ovhManagerNutanixNodes';
 
 angular
   .module(moduleName, [
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
-    generalInfo,
-    nodes,
+    node,
   ])
   .config(routing)
-  .component('nutanixDashboard', component)
+  .component('nutanixNodes', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
