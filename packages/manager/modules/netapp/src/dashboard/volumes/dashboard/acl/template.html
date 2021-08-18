@@ -1,0 +1,129 @@
+<div>
+    <h2>
+        <span data-translate="netapp_volumes_acl"></span>
+        (<abbr
+            data-translate-attr-title="netapp_volumes_acl_title"
+            data-translate="netapp_volumes_acl_title_abbr"
+        ></abbr
+        >)
+    </h2>
+    <p data-translate="netapp_volumes_acl_description"></p>
+    <oui-button
+        variant="secondary"
+        disabled="$ctrl.isAdding"
+        on-click="$ctrl.addAcl()"
+        icon-left="oui-icon-add"
+        class="mb-3"
+    >
+        <span data-translate="netapp_volumes_acl_add"></span>
+    </oui-button>
+    <oui-datagrid rows="$ctrl.acls" ng-if="$ctrl.acls.length">
+        <oui-datagrid-column
+            title=":: 'netapp_volumes_acl_access_type' | translate"
+        >
+            <span
+                data-ng-if="$ctrl.currentEditedRow !== $rowIndex"
+                data-translate="{{ 'netapp_volumes_acl_access_type_' + $row.accessType }}"
+            ></span>
+            <oui-select
+                ng-if="$ctrl.currentEditedRow === $rowIndex"
+                model="$ctrl.currentAcl.accessType"
+                match="label"
+                items="$ctrl.shareACLTypeEnum"
+            >
+            </oui-select>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'netapp_volumes_acl_access_to' | translate"
+        >
+            <span
+                data-ng-if="$ctrl.currentEditedRow !== $rowIndex"
+                data-ng-bind="$row.accessTo"
+            ></span>
+            <label
+                data-ng-if="$ctrl.currentEditedRow === $rowIndex"
+                class="sr-only"
+                for="{{:: 'access-to-' + $rowIndex}}"
+                data-translate="{{ 'netapp_volumes_acl_access_to_add' }}"
+            ></label>
+            <input
+                data-ng-if="$ctrl.currentEditedRow === $rowIndex"
+                class="oui-input oui-input_m"
+                data-ng-class="{
+                    'oui-input_error': !$ctrl.isIPValid() && $ctrl.currentAcl.to
+                }"
+                id="{{:: 'access-to-' + $rowIndex }}"
+                type="text"
+                required
+                data-ng-model="$ctrl.currentAcl.accessTo"
+            />
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'netapp_volumes_acl_access_level' | translate"
+        >
+            <span
+                data-ng-if="$ctrl.currentEditedRow !== $rowIndex"
+                data-translate="{{ 'netapp_volumes_acl_access_level_' + $row.accessLevel }}"
+            ></span>
+            <oui-select
+                ng-if="$ctrl.currentEditedRow === $rowIndex"
+                model="$ctrl.currentAcl.accessLevel"
+                match="label"
+                items="$ctrl.shareACLPermissionEnum"
+            >
+            </oui-select>
+        </oui-datagrid-column>
+        <oui-datagrid-column>
+            <div class="float-right">
+                <oui-button
+                    data-ng-if="$ctrl.currentEditedRow === $rowIndex"
+                    size="s"
+                    variant="secondary"
+                    disabled="$ctrl.isLoading || !$ctrl.isValid()"
+                    on-click="$ctrl.saveAcl($rowIndex)"
+                >
+                    <span
+                        class="oui-icon oui-icon-success"
+                        aria-hidden="true"
+                    ></span>
+                    <span
+                        class="sr-only"
+                        data-translate="netapp_volumes_acl_update"
+                    ></span>
+                </oui-button>
+                <oui-button
+                    data-ng-if="$ctrl.currentEditedRow === $rowIndex"
+                    size="s"
+                    variant="secondary"
+                    disabled="$ctrl.isLoading"
+                    on-click="$ctrl.cancelAcl($rowIndex)"
+                >
+                    <span
+                        class="oui-icon oui-icon-close"
+                        aria-hidden="true"
+                    ></span>
+                    <span
+                        class="sr-only"
+                        data-translate="netapp_volumes_acl_cancel"
+                    ></span>
+                </oui-button>
+                <oui-button
+                    data-ng-if="$ctrl.currentEditedRow !== $rowIndex"
+                    size="s"
+                    variant="secondary"
+                    disabled="$ctrl.isLoading"
+                    on-click="$ctrl.deleteAclRule($row, $rowIndex)"
+                >
+                    <span
+                        class="oui-icon oui-icon-bin"
+                        aria-hidden="true"
+                    ></span>
+                    <span
+                        class="sr-only"
+                        data-translate="netapp_volumes_acl_delete"
+                    ></span>
+                </oui-button>
+            </div>
+        </oui-datagrid-column>
+    </oui-datagrid>
+</div>
