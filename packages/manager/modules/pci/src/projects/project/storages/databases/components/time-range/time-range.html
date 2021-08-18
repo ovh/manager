@@ -1,0 +1,10 @@
+<div class="oui-button-group">
+    <button
+        class="oui-button oui-button-inline"
+        data-ng-class="{'oui-button_primary ': timeRange.value === $ctrl.selectedRange.value, 'oui-button_secondary ': timeRange.value !== $ctrl.selectedRange.value}"
+        data-ng-repeat="timeRange in $ctrl.available"
+        data-ng-click="$ctrl.selectTimeRange(timeRange)"
+    >
+        {{timeRange.label}}
+    </button>
+</div>

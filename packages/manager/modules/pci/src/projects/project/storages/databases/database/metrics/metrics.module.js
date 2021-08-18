@@ -6,6 +6,7 @@ import '@ovh-ux/ui-kit';
 
 import component from './metrics.component';
 import routing from './metrics.routing';
+import timeRange from '../../components/time-range';
 
 const moduleName = 'ovhManagerPciStoragesDatabasesMetrics';
 
@@ -15,6 +16,7 @@ angular
     'ngOvhSwimmingPoll',
     'oui',
     'ovhManagerPciComponents',
+    timeRange,
   ])
   .config(routing)
   .component('ovhManagerPciStoragesDatabaseMetricsComponent', component)

@@ -15,6 +15,7 @@ export default class {
     CucCloudMessage,
     DatabaseService,
     PciChartjsFactory,
+    $scope,
   ) {
     this.$anchorScroll = $anchorScroll;
     this.$translate = $translate;
@@ -27,6 +28,7 @@ export default class {
     this.timeRanges = METRICS_TIME_RANGES;
     this.metricsData = {};
     this.autoRefresh = false;
+    this.$scope = $scope;
   }
 
   $onInit() {
@@ -55,6 +57,10 @@ export default class {
         parseFloat(item.value, 10).toFixed(2),
       );
     }
+
+    this.$scope.$watch('$ctrl.selectedTimeRange', () => {
+      this.getMetrics();
+    });
 
     this.getMetrics();
   }
@@ -104,12 +110,6 @@ export default class {
         }
       });
     }
-  }
-
-  selectTimeRange(timeRange) {
-    this.selectedTimeRange = timeRange;
-
-    this.getMetrics();
   }
 
   onChangeAutoRefresh(autoRefresh) {
