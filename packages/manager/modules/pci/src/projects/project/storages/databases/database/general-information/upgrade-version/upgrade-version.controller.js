@@ -14,7 +14,7 @@ export default class {
     this.selectedVersion = null;
     this.trackDatabases(
       'dashboard::general_information::upgrade_version',
-      'page',
+      'page'
     );
   }
 
