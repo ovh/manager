@@ -59,7 +59,10 @@ export default class {
     }
 
     this.$scope.$watch('$ctrl.selectedTimeRange', () => {
-      this.trackDatabases('dashboard::metrics::display_granularity_' + this.selectedTimeRange.value, 'page');
+      this.trackDatabases(
+        `dashboard::metrics::display_granularity_${this.selectedTimeRange.value}`,
+        'page',
+      );
       this.getMetrics();
     });
 
