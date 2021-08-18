@@ -69,6 +69,14 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      goToUpgradeVersion: /* @ngInject */ ($state, databaseId, projectId) => () =>
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.general-information.upgrade-version',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
       vRack: /* @ngInject */ (DatabaseService, projectId) =>
         DatabaseService.getVRack(projectId),
       vRackLink: /* @ngInject */ (vRack) => {

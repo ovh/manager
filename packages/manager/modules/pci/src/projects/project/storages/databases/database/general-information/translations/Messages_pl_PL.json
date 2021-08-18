@@ -39,5 +39,7 @@
   "pci_databases_general_information_database_ready": "Twoja baza danych jest gotowa do użytku.",
   "pci_databases_general_information_node_ready": "Twój węzeł {{nodeName}} jest gotowy.",
   "pci_databases_general_information_generate_password": "Aby móc korzystać z klastra danych, wygeneruj ponownie hasło administratora.",
-  "pci_databases_general_information_no_ip": "You need authorized IP adresses on your cluster to be able to use it."
+  "pci_databases_general_information_no_ip": "You need authorized IP adresses on your cluster to be able to use it.",
+  "pci_databases_general_information_no_users": "Your cluster is not fully configured : you need to add users on your cluster to be able to use it.",
+  "pci_databases_general_information_no_ip_no_users": "Your cluster is not fully configured : you need to authorize IP adresses and add users."
 }

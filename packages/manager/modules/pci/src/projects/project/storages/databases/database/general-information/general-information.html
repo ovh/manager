@@ -15,11 +15,51 @@
     </oui-message>
 
     <oui-message
-        data-ng-if="$ctrl.allowedIps.length < 1"
+        data-ng-if="$ctrl.users.length === 0 && $ctrl.allowedIps.length > 0"
+        data-type="warning"
+        data-dismissable
+    >
+        <span data-translate="pci_databases_general_information_no_users"></span>
+        <a
+            href
+            data-ng-click="$ctrl.manageUsers()"
+        >
+            <span
+                data-translate="pci_databases_general_information_manage_users"
+            ></span>
+            <span
+                class="oui-icon oui-icon-arrow-right ml-1"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </oui-message>
+
+    <oui-message
+        data-ng-if="$ctrl.allowedIps.length === 0 && $ctrl.users.length > 0"
         data-type="warning"
         data-dismissable
     >
         <span data-translate="pci_databases_general_information_no_ip"></span>
+    </oui-message>
+
+    <oui-message
+        data-ng-if="$ctrl.allowedIps.length === 0 && $ctrl.users.length === 0"
+        data-type="warning"
+        data-dismissable
+    >
+        <span data-translate="pci_databases_general_information_no_ip_no_users"></span>
+        <a
+            href
+            data-ng-click="$ctrl.manageUsers()"
+        >
+            <span
+                data-translate="pci_databases_general_information_manage_users"
+            ></span>
+            <span
+                class="oui-icon oui-icon-arrow-right ml-1"
+                aria-hidden="true"
+            ></span>
+        </a>
     </oui-message>
 
     <div class="row py-4">
