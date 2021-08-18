@@ -1,0 +1,22 @@
+{
+  "netapp_volumes_acl": "Gérer la liste de contrôle d’accès",
+  "netapp_volumes_acl_breadcrumb": "ACL",
+  "netapp_volumes_acl_title": "Access control list",
+  "netapp_volumes_acl_title_abbr": "ACL",
+  "netapp_volumes_acl_description": "Ajoutez des adresses ou plages d’IP autorisées à accéder à ce volume. Par défaut, aucune adresse ou plage IP n’est autorisée.",
+  "netapp_volumes_acl_add": "Ajouter un nouvel accès",
+  "netapp_volumes_acl_access_type": "Type",
+  "netapp_volumes_acl_access_type_certificat": "Certificat",
+  "netapp_volumes_acl_access_type_ip": "IP",
+  "netapp_volumes_acl_access_type_user": "Utilisateur",
+  "netapp_volumes_acl_access_to": "Accès à",
+  "netapp_volumes_acl_access_to_add": "Ajouter un accès à",
+  "netapp_volumes_acl_access_level": "Autorisations d’accès",
+  "netapp_volumes_acl_access_level_rw": "Lecture et écriture",
+  "netapp_volumes_acl_access_level_ro": "Lecture seule",
+  "netapp_volumes_acl_update": "Valider",
+  "netapp_volumes_acl_cancel": "Annuler",
+  "netapp_volumes_acl_delete": "Supprimer",
+  "netapp_volumes_acl_add_success": "Votre règle d’accès (ACL) a été créée avec succès",
+  "netapp_volumes_acl_add_error": "Votre règle d’accès (ACL) n’a pas pu être créée, merci de réessayer"
+}

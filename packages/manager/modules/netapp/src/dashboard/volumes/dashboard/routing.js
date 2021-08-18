@@ -42,6 +42,11 @@ export default /* @ngInject */ ($stateProvider) => {
           'netapp.dashboard.volumes.dashboard',
           $transition$.params(),
         ),
+      volumeDashboardAclLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'netapp.dashboard.volumes.dashboard.acl',
+          $transition$.params(),
+        ),
       accessPath: /* @ngInject */ ($http, serviceName, volumeId) =>
         $http
           .get(`/storage/netapp/${serviceName}/share/${volumeId}/accessPath`)

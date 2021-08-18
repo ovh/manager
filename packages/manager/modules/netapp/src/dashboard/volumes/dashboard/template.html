@@ -12,6 +12,12 @@
                     data-translate="netapp_volumes_dashboard_general_information"
                 ></span>
             </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{:: $ctrl.volumeDashboardAclLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.volumeDashboardAclLink"
+            >
+                <span data-translate="netapp_volumes_dashboard_acl"></span>
+            </oui-header-tabs-item>
         </oui-header-tabs>
     </oui-header>
     <div data-ovh-alert></div>
