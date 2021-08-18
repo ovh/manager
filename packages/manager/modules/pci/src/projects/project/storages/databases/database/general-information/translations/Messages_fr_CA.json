@@ -39,5 +39,7 @@
   "pci_databases_general_information_database_ready": "Votre base de données est prête à être utilisée.",
   "pci_databases_general_information_node_ready": "Votre nœud {{nodeName}} est prêt.",
   "pci_databases_general_information_generate_password": "Vous devez regénérer votre mot de passe admin pour pouvoir utiliser votre cluster de données.",
-  "pci_databases_general_information_no_ip": "You need authorized IP adresses on your cluster to be able to use it."
+  "pci_databases_general_information_no_ip": "You need authorized IP adresses on your cluster to be able to use it.",
+  "pci_databases_general_information_no_users": "Your cluster is not fully configured : you need to add users on your cluster to be able to use it.",
+  "pci_databases_general_information_no_ip_no_users": "Your cluster is not fully configured : you need to authorize IP adresses and add users."
 }

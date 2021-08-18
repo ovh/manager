@@ -51,7 +51,11 @@ export default class {
   }
 
   manageUsers() {
-    if (this.users.length === 0) {
+    if(this.users.length === 0 && this.allowedIps.length === 0) {
+      this.trackDatabases(
+        'dashboard::general_information::no_user_ip_banner_manage_user',
+      );
+    } else if (this.users.length === 0) {
       this.trackDatabases(
         'dashboard::general_information::no_user_banner_manage_user',
       );
@@ -67,7 +71,7 @@ export default class {
   }
 
   manageAllowedIps() {
-    this.trackDatabases('dashboard::general_information::goto_vrack');
+    this.trackDatabases('dashboard::allowed-ips::options::manage_ips');
     this.goToAllowedIPs();
   }
 
