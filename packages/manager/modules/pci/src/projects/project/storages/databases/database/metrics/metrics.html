@@ -10,14 +10,10 @@
 
     <div class="row px-3">
         <div class="col">
-            <div class="oui-button-group">
-                <button class="oui-button oui-button-inline" 
-                    data-ng-class="{'oui-button_primary ': timeRange.value === $ctrl.selectedTimeRange.value, 'oui-button_secondary ': timeRange.value !== $ctrl.selectedTimeRange.value}" 
-                    data-ng-repeat="timeRange in $ctrl.timeRanges"
-                    data-ng-click="$ctrl.selectTimeRange(timeRange)">
-                    {{timeRange.label}}
-                </button>
-            </div>
+            <time-range
+                data-available="$ctrl.timeRanges"
+                data-selected-range="$ctrl.selectedTimeRange"
+            ></time-range>
         </div>
         <div class="col-2">
             <oui-field data-label="{{ :: 'pci_databases_metrics_refresh_label' | translate }}">

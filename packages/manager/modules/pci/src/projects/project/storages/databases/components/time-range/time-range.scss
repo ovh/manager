@@ -1,0 +1,17 @@
+.oui-button-group .oui-button-inline {
+  border-radius: 0px;
+  border-right-width: 0px;
+  margin-left: 0px;
+}
+
+.oui-button-group .oui-button + .oui-button,
+.oui-button-group
+  .oui-button_secondary
+  + .oui-button_secondary
+  .oui-button-inline {
+  margin-left: 0px;
+}
+
+.oui-button-group .oui-button:last-child {
+  border-right-width: 2px;
+}
