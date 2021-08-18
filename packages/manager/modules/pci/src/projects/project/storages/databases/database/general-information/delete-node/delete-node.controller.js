@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 export default class {
   /* @ngInject */
   constructor($translate, DatabaseService) {
@@ -29,10 +31,13 @@ export default class {
           'info',
         ),
       )
-      .catch(() =>
+      .catch((error) =>
         this.goBack(
           this.$translate.instant(
             'pci_databases_general_information_delete_node_error',
+            {
+              message: get(error, 'data.message'),
+            },
           ),
           'warning',
         ),
