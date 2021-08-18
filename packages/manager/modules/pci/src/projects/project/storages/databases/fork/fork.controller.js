@@ -2,6 +2,7 @@ import find from 'lodash/find';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
+import clone from 'lodash/clone';
 import sortBy from 'lodash/sortBy';
 
 import { NAME_PATTERN } from './fork.constants';
@@ -12,6 +13,7 @@ export default class {
     $anchorScroll,
     $translate,
     $q,
+    $scope,
     CucCloudMessage,
     DatabaseService,
     Poller,
@@ -19,6 +21,7 @@ export default class {
     this.$anchorScroll = $anchorScroll;
     this.$translate = $translate;
     this.$q = $q;
+    this.$scope = $scope;
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
     this.Poller = Poller;
@@ -29,26 +32,113 @@ export default class {
     this.labAccepted = this.lab.isActivated();
     this.messageContainer = 'pci.projects.project.storages.databases.fork';
     this.loadMessages();
+
+    // Retrieve data from db object
+    const engine = find(this.engines, (e) => e.name === this.database.engine);
+    engine.selectedVersion = find(
+      engine.versions,
+      (v) => v.version === this.database.version,
+    );
+    const plan = find(
+      engine.selectedVersion.plans,
+      (p) => p.name === this.database.plan,
+    );
+    const region = find(
+      plan.regions,
+      (r) => r.name === this.database.nodes[0].region,
+    );
+    const flavor = find(
+      region.flavors,
+      (f) => f.name === this.database.nodes[0].flavor,
+    );
+
+    // Get network
+    this.availablePrivateNetworks = this.getAvailableNetworks(region);
+    // Get subnet
+    if (this.database.networkType === 'private') {
+      this.getSubnets(region);
+    }
+
+    // Save current db state
+    this.current = {
+      engine: clone(engine),
+      plan: clone(plan),
+      flavor: clone(flavor),
+    };
+
+    // Initialize model object with db data
     this.model = {
-      engine: find(this.engines, this.database.engine.name),
-      plan: null,
-      region: null,
-      flavor: null,
-      name: '',
-      privateNetwork: null,
+      engine,
+      plan,
+      region,
+      flavor,
+      name: `${engine.name}-${flavor.name}-${plan.name}-`,
+      privateNetwork: this.availablePrivateNetworks[0],
       subnet: null,
-      usePrivateNetwork: false,
+      usePrivateNetwork: this.database.networkType === 'private',
     };
+
     this.orderData = null;
-    this.defaultPrivateNetwork = {
-      id: '',
-      name: this.$translate.instant('pci_database_common_none'),
-    };
-    this.defaultSubnet = {
-      id: '',
-      name: this.$translate.instant('pci_database_common_none'),
-    };
-    this.trackDatabases('configuration', 'page');
+    this.prepareOrderData();
+    this.trackDatabases('configuration_fork', 'page');
+  }
+
+  getAvailableNetworks(region) {
+    return [
+      ...sortBy(
+        map(
+          filter(this.privateNetworks, (network) =>
+            find(
+              network.regions,
+              (r) =>
+                r.region.startsWith(region.name) &&
+                r.status === 'ACTIVE' &&
+                r.openstackId === this.database.networkId,
+            ),
+          ),
+          (privateNetwork) => ({
+            ...privateNetwork,
+            name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${
+              privateNetwork.name
+            }`,
+          }),
+        ),
+        ['name'],
+      ),
+    ];
+  }
+
+  getSubnets(region) {
+    this.loadingSubnets = true;
+    this.DatabaseService.getSubnets(
+      this.projectId,
+      this.availablePrivateNetworks[0].id,
+    )
+      .then((subnets) => {
+        this.availableSubnets = [
+          ...map(
+            filter(subnets, (subnet) =>
+              find(subnet.ipPools, (ipPool) =>
+                ipPool.region.startsWith(region.name),
+              ),
+            ),
+            (subnet) => ({
+              ...subnet,
+              name: `${subnet.ipPools[0].network} - ${subnet.ipPools[0].region}`,
+            }),
+          ),
+        ];
+        this.model.subnet = find(
+          this.availableSubnets,
+          (subnet) => subnet.id === this.database.subnetId,
+        );
+      })
+      .catch(() => {
+        this.availableSubnets = [];
+      })
+      .finally(() => {
+        this.loadingSubnets = false;
+      });
   }
 
   acceptLab(accepted) {
@@ -67,18 +157,28 @@ export default class {
     this.messages = this.messageHandler.getMessages();
   }
 
-  setDefaultPlan() {
-    this.model.plan = this.model.engine.selectedVersion.getDefaultPlan(
-      this.model.plan,
+  onEngineSelect() {
+    this.model.plan = find(
+      this.model.engine.selectedVersion.plans,
+      (plan) => plan.name === this.model.plan.name,
     );
+    this.onPlanSelect();
   }
 
-  setDefaultRegion() {
-    this.model.region = this.model.plan.getDefaultRegion(this.model.region);
+  onPlanSelect() {
+    this.model.region = find(
+      this.model.plan.regions,
+      (region) => region.name === this.model.region.name,
+    );
+    this.onRegionSelect();
   }
 
-  setDefaultFlavor() {
-    this.model.flavor = this.model.region.getDefaultFlavor(this.model.flavor);
+  onRegionSelect() {
+    this.model.flavor = find(
+      this.model.region.flavors,
+      (flavor) => flavor.name === this.model.flavor.name,
+    );
+    this.onFlavorSelect();
   }
 
   onFlavorSelect() {
@@ -86,43 +186,18 @@ export default class {
     this.model.privateNetwork = this.defaultPrivateNetwork;
     this.model.subnet = null;
     this.model.name = `${this.model.engine.name}-${this.model.flavor.name}-${this.model.plan.name}-`;
-    this.availablePrivateNetworks = [
-      this.defaultPrivateNetwork,
-      ...sortBy(
-        map(
-          filter(this.privateNetworks, (network) =>
-            find(
-              network.regions,
-              (region) =>
-                region.region.startsWith(this.model.region.name) &&
-                region.status === 'ACTIVE',
-            ),
-          ),
-          (privateNetwork) => ({
-            ...privateNetwork,
-            name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${
-              privateNetwork.name
-            }`,
-          }),
-        ),
-        ['name'],
-      ),
-    ];
-  }
-
-  isNetworkSelected() {
-    return this.model.usePrivateNetwork
-      ? this.model.privateNetwork.id && this.model.subnet?.id
-      : true;
+    this.prepareOrderData();
   }
 
   prepareOrderData() {
     this.orderData = {
+      backup: {
+        id: this.backupInstance.id,
+        service: this.projectId,
+      },
       description: this.model.name,
-      networkId: this.model.privateNetwork.regions?.find(
-        (region) => region.region === this.model.subnet?.ipPools[0].region,
-      )?.openstackId,
-      subnetId: this.model.subnet?.id,
+      networkId: this.database?.networkId,
+      subnetId: this.database?.subnetId,
       nodesList: null,
       nodesPattern: {
         flavor: this.model.flavor.name,
@@ -137,9 +212,9 @@ export default class {
   createDatabase() {
     this.processingOrder = true;
     this.CucCloudMessage.flushMessages(this.messageContainer);
-    this.trackDatabases(`config_create_database::${this.model.engine.name}`);
+    this.trackDatabases(`config_fork_database::${this.model.engine.name}`);
     this.trackDatabases(
-      `PublicCloud_create_new_database::${this.model.engine.name}::${this.orderData.plan}::${this.orderData.nodesPattern.flavor}`,
+      `PublicCloud_fork_new_database::${this.model.engine.name}::${this.orderData.plan}::${this.orderData.nodesPattern.flavor}`,
       'action',
       false,
     );
@@ -153,7 +228,7 @@ export default class {
       )
       .then((databaseInfo) => {
         this.trackDatabases(
-          `config_create_database_validated::${this.model.engine.name}`,
+          `config_fork_database_validated::${this.model.engine.name}`,
         );
         return this.onDatabaseFork(
           {
@@ -166,7 +241,7 @@ export default class {
       })
       .catch((error) => {
         this.trackDatabases(
-          `config_create_database_error::${this.model.engine.name}`,
+          `config_fork_database_error::${this.model.engine.name}`,
         );
         this.CucCloudMessage.error(
           this.$translate.instant('pci_database_fork_create_database_error', {
@@ -174,7 +249,6 @@ export default class {
           }),
           this.messageContainer,
         );
-        this.currentStep = 0;
         this.$anchorScroll('forkMessages');
         this.processingOrder = false;
       });

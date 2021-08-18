@@ -8,6 +8,8 @@
         data-picture="{{:: $ctrl.ENGINE_LOGOS[engine.name] }}"
         data-label="{{:: $ctrl.capitalize(engine.name) }}"
         data-values="[engine]"
+        data-on-change="$ctrl.onChange({ selectedEngine: modelValue })"
+        data-disabled="$ctrl.disabled || ($ctrl.currentEngine && $ctrl.currentEngine.name !== engine.name)"
         data-required
     >
         <oui-select-picker-section>
@@ -16,7 +18,8 @@
                 data-match="version"
                 data-model="engine.selectedVersion"
                 data-name="{{ engine.name + 'versions' }}"
-                data-on-change="$ctrl.selectedEngine = engine"
+                data-on-change="$ctrl.selectedEngine = engine; $ctrl.onChange({ selectedEngine: modelValue })"
+                data-disable-items="$ctrl.currentEngine && $ctrl.currentEngine.selectedVersion.version > $item.version"
             >
                 <span data-ng-bind="$item.version"></span>
                 <span

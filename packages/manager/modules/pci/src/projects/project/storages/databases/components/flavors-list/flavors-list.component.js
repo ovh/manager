@@ -3,6 +3,8 @@ import template from './flavors-list.html';
 
 export default {
   bindings: {
+    currentFlavor: '<',
+    onChange: '&?',
     flavors: '<',
     selectedFlavor: '=',
     user: '<',
