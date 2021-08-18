@@ -17,10 +17,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
       backupInstance: /* @ngInject */ ($transition$) =>
         $transition$.params().backupInstance,
-
       database: /* @ngInject */ ($transition$) =>
         $transition$.params().database,
-
       onDatabaseFork: /* @ngInject */ (
         databases,
         getDatabaseObject,

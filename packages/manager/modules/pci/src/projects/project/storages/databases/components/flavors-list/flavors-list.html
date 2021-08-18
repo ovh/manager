@@ -4,12 +4,15 @@
         data-ng-repeat="flavor in $ctrl.flavors track by flavor.name"
         data-name="{{:: flavor.name }}"
         data-model="$ctrl.selectedFlavor"
+        data-disabled="$ctrl.currentFlavor && $ctrl.currentFlavor.compare(flavor) < 0"
         data-label="{{:: $ctrl.capitalize(flavor.name) }}"
         data-values="[flavor]"
         data-variant="light"
+        data-on-change="$ctrl.onChange({ selectedFlavor: modelValue })"
         data-required
     >
         <oui-select-picker-section>
+            <p>compare:{{$ctrl.currentFlavor.compare(flavor)}}</p>
             <div class="d-flex">
                 <span
                     data-translate="pci_database_flavors_list_spec_ram"
