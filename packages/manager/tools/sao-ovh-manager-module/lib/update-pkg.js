@@ -17,6 +17,7 @@ module.exports = ({ name, description }) => ({
   peerDependencies: {
     '@ovh-ux/manager-core': '^10.0.0 || ^11.0.0',
     '@ovh-ux/manager-ng-layout-helpers': '^2.0.0',
+    '@ovh-ux/ng-ui-router-breadcrumb': '^1.0.0',
     '@ovh-ux/ui-kit': '^4.4.3',
     '@uirouter/angularjs': '^1.0.23',
     angular: '^1.7.5',
