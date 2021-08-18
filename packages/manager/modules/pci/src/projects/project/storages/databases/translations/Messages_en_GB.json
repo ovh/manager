@@ -20,6 +20,8 @@
   "pci_database_common_none": "None",
   "pci_database_list_create_database": "Create a database",
   "pci_database_list_manage_database": "Manage database",
+  "pci_database_list_rename_database": "Rename database",
+  "pci_database_list_upgrade_version_database": "Upgrade version",
   "pci_database_common_id": "ID",
   "pci_database_node_type": "{{coreNumber}} CPU / {{memorySize}} GB RAM / {{storageSize}} GB Storage",
   "pci_database_node_type_label": "Node type"

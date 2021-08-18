@@ -11,6 +11,7 @@ import fork from './fork';
 import component from './databases.component';
 import database from './database';
 import deteleDatabase from './delete';
+import editName from './edit-name';
 import labs from '../../../../components/project/labs';
 import node from './components/node';
 import onboarding from './onboarding';
@@ -27,6 +28,7 @@ angular
     fork,
     database,
     deteleDatabase,
+    editName,
     labs,
     ngOvhSwimmingPoll,
     node,

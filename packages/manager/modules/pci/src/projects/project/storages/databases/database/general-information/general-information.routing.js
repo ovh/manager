@@ -69,7 +69,11 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
-      goToUpgradeVersion: /* @ngInject */ ($state, databaseId, projectId) => () =>
+      goToUpgradeVersion: /* @ngInject */ (
+        $state,
+        databaseId,
+        projectId,
+      ) => () =>
         $state.go(
           'pci.projects.project.storages.databases.dashboard.general-information.upgrade-version',
           {

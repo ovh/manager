@@ -131,6 +131,33 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           database,
         }),
+      goToEditName: /* @ngInject */ ($state, projectId) => (databaseId) =>
+        $state.go('pci.projects.project.storages.databases.name', {
+          projectId,
+          databaseId,
+        }),
+      goToUpgradePlan: /* @ngInject */ ($state, projectId) => (
+        databaseId,
+      ) =>
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.general-information.upgrade-plan',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
+      goToUpgradeVersion: /* @ngInject */ ($state, projectId) => (
+        databaseId,
+      ) =>
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.general-information.upgrade-version',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
+      goBack: /* @ngInject */ (goToDatabases) => (message, type) =>
+        goToDatabases(message, type),
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_database_list_title'),
