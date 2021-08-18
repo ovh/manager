@@ -8,14 +8,12 @@ export default class {
     CucCloudMessage,
     ovhManagerRegionService,
     DatabaseService,
-    $location,
   ) {
     this.$translate = $translate;
     this.capitalize = capitalize;
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.DatabaseService = DatabaseService;
-    this.$location = $location;
   }
 
   $onInit() {
