@@ -14,7 +14,6 @@ export default class {
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
     this.DatabaseService = DatabaseService;
-    this.$location = $location;
   }
 
   $onInit() {
