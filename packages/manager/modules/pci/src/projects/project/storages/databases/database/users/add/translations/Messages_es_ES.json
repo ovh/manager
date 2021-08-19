@@ -5,6 +5,6 @@
   "pci_databases_users_add_roles_available": "Roles disponibles",
   "pci_databases_users_add_roles_selected": "Roles seleccionados",
   "pci_databases_users_add_create": "Crear un usuario",
-  "pci_databases_users_add_success_message": "Se ha añadido el usuario {{ username }} con la contraseña {{ password }}.",
+  "pci_databases_users_add_success_message": "Se ha añadido el usuario {{ username }} con la contraseña {<code>{{password}}</code>",
   "pci_databases_users_add_error_save": "Se ha producido un error al crear el usuario {{ user }}: {{ message }}."
 }
