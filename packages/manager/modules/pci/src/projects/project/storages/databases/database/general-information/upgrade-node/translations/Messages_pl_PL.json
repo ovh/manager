@@ -1,10 +1,11 @@
 {
-  "pci_databases_general_information_upgrade_version_confirm": "Zaktualizuj wersję",
-  "pci_databases_general_information_upgrade_version_cancel": "Anuluj",
-  "pci_databases_general_information_upgrade_version_description": "Aktualnie korzystasz z wersji {{currentVersion}} {{engine}}. Możesz ją zaktualizować, klikając poniżej na „Zaktualizuj wersję”.",
-  "pci_databases_general_information_upgrade_version_warning": "Po zmianie wersji bazy danych nie będziesz mógł wrócić do niższej wersji.",
-  "pci_databases_general_information_upgrade_version_label": "Wersja",
-  "pci_databases_general_information_upgrade_version_placeholder": "Wybierz wersję",
-  "pci_databases_general_information_upgrade_version_success": "Dyspozycja aktualizacji została przyjęta i zostanie zrealizowana w ciągu kilku minut.",
-  "pci_databases_general_information_upgrade_version_error": "Aktualizacja nie mogła zostać prawidłowo wykonana: {{message}}"
+  "pci_databases_general_information_upgrade_node_confirm": "Upgrade my node model",
+  "pci_databases_general_information_upgrade_node_cancel": "Cancel",
+  "pci_databases_general_information_upgrade_node_description": "You are currently using node model {{currentNodeModel}}. You can upgrade it by clicking 'Upgrade my node model' below.",
+  "pci_databases_general_information_upgrade_node_warning": "Once you have upgraded your node model, you will not be able to downgrade to a lower version.",
+  "pci_databases_general_information_upgrade_node_label": "Model",
+  "pci_databases_general_information_upgrade_node_placeholder": "Select a node model",
+  "pci_databases_general_information_upgrade_node_success": "Your upgrade request has been processed, and will be effective in a few minutes.",
+  "pci_databases_general_information_upgrade_node_error": "Your upgrade could not be completed correctly: {{message}}",
+  "pci_databases_general_information_upgrade_node_processing": "Upgrading node ..."
 }

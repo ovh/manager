@@ -1,36 +1,41 @@
-<oui-modal
-    data-on-dismiss="$ctrl.goBack()"
-    data-primary-label="{{:: 'pci_databases_general_information_upgrade_version_confirm' | translate}}"
-    data-primary-disabled="!$ctrl.selectedVersion"
-    data-primary-action="$ctrl.upgradeVersion()"
-    data-secondary-action="$ctrl.cancel()"
-    data-secondary-label="{{:: 'pci_databases_general_information_upgrade_version_cancel' | translate}}"
-    data-loading="$ctrl.upgradingVersion"
-    data-heading="{{:: 'pci_databases_general_information_upgrade_version' | translate}}"
+<oui-back-button
+    data-previous-page="{{:: 'pci_databases_general_information_upgrade_node_back' | translate }}"
+    data-on-click="$ctrl.goBack()"
 >
-    <oui-message type="warning">
-        <span
-            data-translate="pci_databases_general_information_upgrade_version_warning"
-        ></span>
-    </oui-message>
-    <p
-        data-translate="pci_databases_general_information_upgrade_version_description"
-        data-translate-values="{
-            currentVersion: $ctrl.database.version,
-            engine: $ctrl.capitalize($ctrl.database.engine)
-        }"
-    ></p>
-    <oui-field
-        data-label="{{:: 'pci_databases_general_information_upgrade_version_label' | translate }}"
-        data-size="m"
-    >
-        <oui-select
-            data-items="$ctrl.versions"
-            data-match="version"
-            data-model="$ctrl.selectedVersion"
-            data-name="version"
-            data-placeholder="{{:: 'pci_databases_general_information_upgrade_version_placeholder' | translate }}"
-        >
-        </oui-select>
-    </oui-field>
-</oui-modal>
+    <span
+        data-translate="pci_databases_general_information_upgrade_node"
+    ></span>
+</oui-back-button>
+<oui-message type="warning">
+    <span
+        data-translate="pci_databases_general_information_upgrade_node_warning"
+    ></span>
+</oui-message>
+<p
+    data-translate="pci_databases_general_information_upgrade_node_description"
+    data-translate-values="{
+        currentNodeModel: $ctrl.currentFlavor.name
+    }"
+></p>
+<database-flavors-list
+    data-current-flavor="$ctrl.currentFlavor"
+    data-on-change="$ctrl.onFlavorSelect(selectedFlavor)"
+    data-flavors="$ctrl.flavors"
+    data-selected-flavor="$ctrl.selectedFlavor"
+    data-user="$ctrl.user"
+></database-flavors-list>
+<div data-ng-if="$ctrl.upgradingFlavor">
+    <oui-spinner data-size="s"></oui-spinner>
+    <span
+        data-translate="pci_databases_general_information_upgrade_node_processing"
+    ></span>
+</div>
+<oui-form-actions
+    data-ng-if="!$ctrl.upgradingFlavor"
+    data-submit-text="{{:: 'pci_databases_general_information_upgrade_node_confirm' | translate }}"
+    data-cancel-text="{{:: 'pci_databases_general_information_upgrade_node_cancel' | translate }}"
+    data-on-submit="$ctrl.upgradeNode()"
+    data-on-cancel="$ctrl.cancel()"
+    data-disabled="!$ctrl.selectedFlavor || $ctrl.selectedFlavor === $ctrl.currentFlavor"
+>
+</oui-form-actions>

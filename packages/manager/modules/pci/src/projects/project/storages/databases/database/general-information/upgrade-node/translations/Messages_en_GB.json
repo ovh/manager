@@ -1,10 +1,13 @@
 {
-  "pci_databases_general_information_upgrade_version_confirm": "Upgrade my version",
-  "pci_databases_general_information_upgrade_version_cancel": "Cancel",
-  "pci_databases_general_information_upgrade_version_description": "You are currently using version {{currentVersion}} of {{engine}}. You can upgrade it by clicking 'Upgrade my version' below.",
-  "pci_databases_general_information_upgrade_version_warning": "Once you have upgraded your database version, you will not be able to downgrade to a lower version.",
-  "pci_databases_general_information_upgrade_version_label": "Version",
-  "pci_databases_general_information_upgrade_version_placeholder": "Select a version",
-  "pci_databases_general_information_upgrade_version_success": "Your upgrade request has been processed, and will be effective in a few minutes.",
-  "pci_databases_general_information_upgrade_version_error": "Your upgrade could not be completed correctly: {{message}}"
+  "pci_databases_general_information_upgrade_node_confirm": "Upgrade my node model",
+  "pci_databases_general_information_upgrade_node": "Upgrade node model",
+  "pci_databases_general_information_upgrade_node_back": "Information",
+  "pci_databases_general_information_upgrade_node_cancel": "Cancel",
+  "pci_databases_general_information_upgrade_node_description": "You are currently using node model {{currentNodeModel}}. You can upgrade it by clicking 'Upgrade my node model' below.",
+  "pci_databases_general_information_upgrade_node_warning": "Once you have upgraded your node model, you will not be able to downgrade to a lower version.",
+  "pci_databases_general_information_upgrade_node_label": "Model",
+  "pci_databases_general_information_upgrade_node_placeholder": "Select a node model",
+  "pci_databases_general_information_upgrade_node_success": "Your upgrade request has been processed, and will be effective in a few minutes.",
+  "pci_databases_general_information_upgrade_node_error": "Your upgrade could not be completed correctly: {{message}}",
+  "pci_databases_general_information_upgrade_node_processing": "Upgrading node ..."
 }

@@ -97,6 +97,11 @@ export default class {
     this.goToUpgradePlan();
   }
 
+  upgradeNode() {
+    this.trackDatabases('dashboard::general_information::upgrade_node');
+    this.goToUpgradeNode();
+  }
+
   deleteDatabase() {
     this.trackDatabases('dashboard::general_information::delete_database');
     this.goToDeleteDatabase();

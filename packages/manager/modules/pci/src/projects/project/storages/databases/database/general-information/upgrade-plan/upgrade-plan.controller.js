@@ -36,6 +36,7 @@ export default class {
       this.database.description,
       this.selectedPlan.name,
       this.database.version,
+      this.database.flavor.name,
     )
       .then((databaseInfo) => {
         this.database.updateData(databaseInfo);

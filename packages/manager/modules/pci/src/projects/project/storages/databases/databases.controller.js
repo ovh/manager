@@ -49,6 +49,42 @@ export default class {
     this.goToUpgradeVersion(database.id);
   }
 
+  upgradePlan(database) {
+    this.trackDatabases('table::options_menu::upgrade_plan');
+    this.goToUpgradePlan(database.id);
+  }
+
+  upgradeNode(database) {
+    this.trackDatabases('table::options_menu::upgrade_node');
+    this.goToUpgradeNode(database.id);
+  }
+
+  getLatestVersion(database) {
+    this.currentEngine = this.engines.find(
+      (engine) => engine.name === database.engine,
+    );
+    return this.currentEngine.getLatestVersion().version;
+  }
+
+  getLatestPlan(database) {
+    this.currentEngine = this.engines.find(
+      (engine) => engine.name === database.engine,
+    );
+    return this.currentEngine.getLatestPlan(database.version, database.region)
+      .name;
+  }
+
+  getHighestFlavor(database) {
+    this.currentEngine = this.engines.find(
+      (engine) => engine.name === database.engine,
+    );
+    return this.currentEngine.getHighestFlavor(
+      database.version,
+      database.region,
+      database.plan,
+    ).name;
+  }
+
   getCurrentFlavor(database) {
     this.currentEngine = this.engines.find(
       (engine) => engine.name === database.engine,

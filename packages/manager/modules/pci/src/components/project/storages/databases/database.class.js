@@ -18,6 +18,10 @@ export default class Database extends Base {
     subnetId,
     engine,
     nodes,
+    flavor,
+    sslMode,
+    host,
+    port,
   }) {
     super();
     this.updateData({
@@ -35,11 +39,11 @@ export default class Database extends Base {
       subnetId,
       engine,
       nodes,
+      flavor,
+      sslMode,
+      host,
+      port,
     });
-  }
-
-  get flavor() {
-    return this.nodes[0]?.flavor;
   }
 
   get region() {

@@ -11,6 +11,7 @@ export default {
     goToEditName: '<',
     goToUpgradePlan: '<',
     goToUpgradeVersion: '<',
+    goToUpgradeNode: '<',
     guideUrl: '<',
     engines: '<',
     databaseId: '<',

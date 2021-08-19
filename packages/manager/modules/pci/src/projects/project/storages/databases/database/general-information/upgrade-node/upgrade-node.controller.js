@@ -10,28 +10,38 @@ export default class {
   }
 
   $onInit() {
-    this.upgradingVersion = false;
-    this.selectedVersion = null;
+    this.selectedFlavor = this.currentFlavor;
+    this.upgradingFlavor = false;
   }
 
-  upgradeVersion() {
+  onFlavorSelect(selectedFlavor) {
+    this.trackDatabases(`config_upgrade_node::select_${selectedFlavor.name}`);
     this.trackDatabases(
-      'dashboard::general_information::popin_upgrade_version_validate',
+      `PublicCloud::databases_upgrade_node_selection::${this.currentFlavor.name}::${selectedFlavor.name}`,
+      'action',
+      false,
     );
-    this.upgradingVersion = true;
+  }
+
+  upgradeNode() {
+    this.trackDatabases(
+      'dashboard::general_information::popin_upgrade_node_validate',
+    );
+    this.upgradingFlavor = true;
     return this.DatabaseService.editDatabase(
       this.projectId,
       this.database.engine,
       this.database.id,
       this.database.description,
       this.database.plan,
-      this.selectedVersion.version,
+      this.database.version,
+      this.selectedFlavor.name,
     )
       .then((databaseInfo) => {
         this.database.updateData(databaseInfo);
-        return this.onVersionUpgrade(
+        return this.onNodeUpgrade(
           this.$translate.instant(
-            'pci_databases_general_information_upgrade_version_success',
+            'pci_databases_general_information_upgrade_node_success',
           ),
           'info',
         );
@@ -39,7 +49,7 @@ export default class {
       .catch((error) =>
         this.goBack(
           this.$translate.instant(
-            'pci_databases_general_information_upgrade_version_error',
+            'pci_databases_general_information_upgrade_node_error',
             {
               message: get(error, 'data.message'),
             },
@@ -51,7 +61,7 @@ export default class {
 
   cancel() {
     this.trackDatabases(
-      'dashboard::general_information::popin_upgrade_version_cancel',
+      'dashboard::general_information::popin_upgrade_node_cancel',
     );
     this.goBack();
   }
