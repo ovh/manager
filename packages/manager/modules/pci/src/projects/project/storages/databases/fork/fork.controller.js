@@ -193,7 +193,7 @@ export default class {
     this.orderData = {
       backup: {
         id: this.backupInstance.id,
-        service: this.projectId,
+        service: this.database.id,
       },
       description: this.model.name,
       networkId: this.database?.networkId,
