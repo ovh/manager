@@ -27,13 +27,13 @@ export default class {
       this.model.password,
       this.model.selectedRoles.map((role) => role.name),
     )
-      .then(({ username }) =>
+      .then((createdUser) =>
         this.goBack({
           textHtml: this.$translate.instant(
             'pci_databases_users_add_success_message',
             {
-              username,
-              password: this.model.password,
+              username: createdUser.username,
+              password: createdUser.password,
             },
           ),
         }),
