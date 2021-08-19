@@ -5,8 +5,9 @@ const component = {
   bindings: {
     database: '<',
     goBack: '<',
-    onVersionUpgrade: '<',
-    versions: '<',
+    currentFlavor: '<',
+    onNodeUpgrade: '<',
+    flavors: '<',
     projectId: '<',
     trackDatabases: '<',
   },

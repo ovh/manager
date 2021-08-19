@@ -2,11 +2,12 @@ import angular from 'angular';
 
 import component from './upgrade-node.component';
 import routing from './upgrade-node.routing';
+import flavorsList from '../../../components/flavors-list';
 
 const moduleName = 'ovhManagerPciStoragesDatabaseGeneralInformationUpgradeNode';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, [flavorsList])
   .config(routing)
   .component(
     'ovhManagerPciProjectDatabaseGeneralInformationUpgradeNode',

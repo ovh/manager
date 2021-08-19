@@ -3,22 +3,14 @@ export default /* @ngInject */ ($stateProvider) => {
     'pci.projects.project.storages.databases.dashboard.general-information.upgrade-node',
     {
       url: '/upgrade-node',
-      views: {
-        modal: {
-          component:
-            'ovhManagerPciProjectDatabaseGeneralInformationUpgradeNode',
-        },
-      },
-      layout: 'modal',
+      component: 'ovhManagerPciProjectDatabaseGeneralInformationUpgradeNode',
       resolve: {
         breadcrumb: () => null,
-        versions: /* @ngInject */ (database, engine) => {
-          const currentVersion = engine.getVersion(database.flavor);
-          return engine.flavors.filter(
-            (flavor) => currentVersion.compare(flavor) > 0,
-          );
-        },
-        onVersionUpgrade: /* @ngInject */ (goBackAndPoll) => goBackAndPoll,
+        currentFlavor: /* @ngInject */ (getCurrentFlavor) => getCurrentFlavor(),
+        flavors: /* @ngInject */ (database, engine) =>
+          engine.getRegion(database.version, database.plan, database.region)
+            .flavors,
+        onNodeUpgrade: /* @ngInject */ (goBackAndPoll) => goBackAndPoll,
       },
     },
   );

@@ -22,6 +22,8 @@
   "pci_database_list_manage_database": "Gerir a base de dados",
   "pci_database_list_rename_database": "Rename database",
   "pci_database_list_upgrade_version_database": "Upgrade version",
+  "pci_database_list_upgrade_plan_database": "Upgrade plan",
+  "pci_database_list_upgrade_node_database": "Upgrade node model",
   "pci_database_common_id": "ID",
   "pci_database_node_type": "{{coreNumber}} CPU / {{memorySize}} GB RAM / {{storageSize}} GB Storage",
   "pci_database_node_type_label": "Node type"

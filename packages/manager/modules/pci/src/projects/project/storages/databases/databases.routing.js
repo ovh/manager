@@ -152,6 +152,14 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      goToUpgradeNode: /* @ngInject */ ($state, projectId) => (databaseId) =>
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.general-information.upgrade-node',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
       goBack: /* @ngInject */ (goToDatabases) => (message, type) =>
         goToDatabases(message, type),
 

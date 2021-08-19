@@ -3,12 +3,7 @@ import { SHELL_NAMES } from '../../databases.constants';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $translate,
-    CucCloudMessage,
-    CucRegionService,
-    DatabaseService,
-  ) {
+  constructor($translate, CucCloudMessage, CucRegionService, DatabaseService) {
     this.$translate = $translate;
     this.capitalize = capitalize;
     this.CucCloudMessage = CucCloudMessage;
@@ -95,6 +90,11 @@ export default class {
   upgradePlan() {
     this.trackDatabases('dashboard::general_information::upgrade_plan');
     this.goToUpgradePlan();
+  }
+
+  upgradeNode() {
+    this.trackDatabases('dashboard::general_information::upgrade_node');
+    this.goToUpgradeNode();
   }
 
   deleteDatabase() {

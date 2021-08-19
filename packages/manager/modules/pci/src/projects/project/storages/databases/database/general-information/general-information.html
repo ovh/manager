@@ -204,6 +204,20 @@
                                 storageSize: $ctrl.getCurrentFlavor().storage
                             }"
                             ></span>
+                            <button
+                                class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                                data-ng-if="$ctrl.database.flavor !== $ctrl.highestFlavor"
+                                data-ng-click="$ctrl.upgradeNode()"
+                                data-ng-disabled="!$ctrl.database.isActive()"
+                            >
+                                <span
+                                    data-translate="pci_databases_general_information_upgrade_node"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-arrow-right ml-1"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
                         </oui-tile-description>
                     </oui-tile-description>
                 </oui-tile-definition>
@@ -258,12 +272,18 @@
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_database_host' | translate }}"
-                    data-description="{{:: $ctrl.database.domain }}"
                 >
+                    <oui-tile-description
+                        ><ul>
+                            <li ng-repeat="host in $ctrl.database.host">
+                                {{:: host }}
+                            </li>
+                        </ul></oui-tile-description
+                    >
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_database_port' | translate }}"
-                    data-description="{{:: $ctrl.database.nodes[0].port }}"
+                    data-description="{{:: $ctrl.database.port }}"
                 >
                 </oui-tile-definition>
                 <oui-tile-definition
@@ -300,8 +320,13 @@
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_ssl_mode' | translate }}"
-                    data-description="REQUIRED"
+                    data-description="{{:: $ctrl.database.sslMode }}"
                 >
+                    <oui-tile-description>
+                        <span
+                            data-translate="{{'pci_databases_general_information_' + $ctrl.database.sslMode}}"
+                        ></span>
+                    </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>
         </div>

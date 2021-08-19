@@ -146,9 +146,28 @@
             <oui-action-menu-item data-on-click="$ctrl.renameDatabase($row)">
                 <span data-translate="pci_database_list_rename_database"></span>
             </oui-action-menu-item>
-            <oui-action-menu-item data-on-click="$ctrl.upgradeVersion($row)">
+            <oui-action-menu-item
+                data-ng-if="$ctrl.getLatestVersion($row) !== $row.version && $row.isActive()"
+                data-on-click="$ctrl.upgradeVersion($row)"
+            >
                 <span
                     data-translate="pci_database_list_upgrade_version_database"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$ctrl.getHighestFlavor($row) !== $row.flavor && $row.isActive()"
+                data-on-click="$ctrl.upgradeNode($row)"
+            >
+                <span
+                    data-translate="pci_database_list_upgrade_node_database"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$ctrl.getLatestPlan($row) !== $row.plan && $row.isActive()"
+                data-on-click="$ctrl.upgradePlan($row)"
+            >
+                <span
+                    data-translate="pci_database_list_upgrade_plan_database"
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item

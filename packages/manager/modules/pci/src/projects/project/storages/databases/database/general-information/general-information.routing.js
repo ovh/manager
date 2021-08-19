@@ -81,6 +81,14 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      goToUpgradeNode: /* @ngInject */ ($state, databaseId, projectId) => () =>
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.general-information.upgrade-node',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
       vRack: /* @ngInject */ (DatabaseService, projectId) =>
         DatabaseService.getVRack(projectId),
       vRackLink: /* @ngInject */ (vRack) => {
@@ -108,6 +116,12 @@ export default /* @ngInject */ ($stateProvider) => {
         engine.getLatestPlan(database.version, database.region).name,
       latestVersion: /* @ngInject */ (engine) =>
         engine.getLatestVersion().version,
+      highestFlavor: /* @ngInject */ (database, engine) =>
+        engine.getHighestFlavor(
+          database.version,
+          database.region,
+          database.plan,
+        ).name,
       privateNetwork: /* @ngInject */ (database, privateNetworks) =>
         find(privateNetworks, (privateNetwork) =>
           find(privateNetwork.regions, { openstackId: database.networkId }),
