@@ -17,6 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
           $transition$.params().backupInstance,
         breadcrumb: () => null,
         goBack: /* @ngInject */ (goBackToBackups) => goBackToBackups,
+        goToDashboard: /* @ngInject */ (goBackToDashboard) => goBackToDashboard,
       },
     },
   );

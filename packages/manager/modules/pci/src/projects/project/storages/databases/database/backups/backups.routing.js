@@ -17,10 +17,6 @@ export default /* @ngInject */ ($stateProvider) => {
           DatabaseService.getCapabilities(projectId).then((capabilities) =>
           find(capabilities.plans, (p) => p.name === database.plan).backupRetention
         ),
-        //backupRetentionTime: /* @ngInject */ (database, DatabaseService, projectId) => 
-        //  DatabaseService.getBackupsRetentionTime(projectId, database.engine, database.id),
-        //backupLocalisation: /* @ngInject */ (database, DatabaseService, projectId) => 
-        //  DatabaseService.getBackupsLocalisation(projectId, database.engine, database.id),
         goBackToBackups: /* @ngInject */ ($state, CucCloudMessage) => (
           message = false,
           type = 'success',
@@ -28,6 +24,21 @@ export default /* @ngInject */ ($stateProvider) => {
           const reload = message && type === 'success';
           const state =
             'pci.projects.project.storages.databases.dashboard.backups';
+          const promise = $state.go(state, {}, { reload });
+          if (message) {
+            promise.then(() => {
+              CucCloudMessage[type](message, state);
+            });
+          }
+          return promise;
+        },
+        goBackToDashboard: /* @ngInject */ ($state, CucCloudMessage) => (
+          message = false,
+          type = 'success'
+        ) => {
+          const reload = message && type === 'success';
+          const state =
+            'pci.projects.project.storages.databases.dashboard.general-information';
           const promise = $state.go(state, {}, { reload });
           if (message) {
             promise.then(() => {
