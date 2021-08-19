@@ -10,6 +10,7 @@ export default {
     goToFork: '<',
     refreshBackups: '<',
     trackDatabases: '<',
+    backupRetentionTime: '<'
   },
   controller,
   template,
