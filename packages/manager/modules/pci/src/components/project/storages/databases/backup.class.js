@@ -3,7 +3,7 @@ import 'moment';
 import Base from './base.class';
 
 export default class Backup extends Base {
-  constructor({ createdAt, id, status, description, size }) {
+  constructor({ createdAt, id, status, description, size, region }) {
     super();
     Object.assign(this, {
       createdAt,
@@ -11,6 +11,7 @@ export default class Backup extends Base {
       status,
       description,
       size,
+      region
     });
   }
 

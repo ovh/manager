@@ -9,6 +9,22 @@
     <p data-translate="pci_databases_backup_description1"></p>
     <p data-translate="pci_databases_backup_description2"></p>
 
+    <oui-tile heading="{{:: 'pci_databases_backup_informations_title' | translate}}">
+        <table class="oui-table">
+            <tbody>
+                <tr class="oui-table__row">
+                    <td class="oui-table__cell">
+                        <dl class="oui-description">
+                            <dt data-translate="pci_databases_backup_informations_retention"></dt>
+                            <dd data-translate="pci_databases_backup_informations_retention_time"
+                                data-translate-values="{days: $ctrl.backupRetentionTime}"></dd>
+                        </dl>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </oui-tile>
+
     <oui-datagrid class="mt-5" data-page-size="10" data-rows="$ctrl.backupList">
         <oui-datagrid-column
             data-title=":: 'pci_database_common_name' | translate"
@@ -18,6 +34,14 @@
             data-searchable
             data-filterable
         ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_backup_region' | translate"
+            data-property="region"
+            data-sortable="asc"
+            data-type="string"
+            data-filterable
+        >
+        </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_database_common_creation_date' | translate"
             data-property="createdAt"

@@ -3,6 +3,10 @@
   "pci_databases_backup_expiration_date": "Data di scadenza",
   "pci_databases_backup_restore": "Ripristina",
   "pci_databases_backup_fork": "Fork",
+  "pci_databases_backup_region": "Lorem Ipsum",
   "pci_databases_backup_description1": "Qui sotto è disponibile la lista dei backup. È possibile ripristinarli o eliminarli.",
-  "pci_databases_backup_description2": "Questi backup sono conservati per il buon funzionamento operativo del servizio."
+  "pci_databases_backup_description2": "Questi backup sono conservati per il buon funzionamento operativo del servizio.",
+  "pci_databases_backup_informations_title": "Lorem Ipsum",
+  "pci_databases_backup_informations_retention": "Lorem Ipsum",
+  "pci_databases_backup_informations_retention_time": "{{days}} Lorem Ipsum"
 }
