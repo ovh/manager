@@ -25,167 +25,169 @@
     <span data-translate="pci_database_fork_description3"></span>
 </p>
 
-<h2>{{:: 'pci_database_fork_step1_title' | translate }}</h2>
-<database-engines-list
-    data-disabled="true"
-    data-engines="$ctrl.engines"
-    data-current-engine="$ctrl.current.engine"
-    data-selected-engine="$ctrl.model.engine"
-    data-on-change="$ctrl.onEngineSelect()"
-></database-engines-list>
-
-<h2>{{:: 'pci_database_fork_step2_title' | translate }}</h2>
-{{$ctrl.current.plan.name}}
-<database-plans-list
-    data-plans="$ctrl.model.engine.selectedVersion.plans"
-    data-current-plan="$ctrl.current.plan"
-    data-selected-plan="$ctrl.model.plan"
-    data-user="$ctrl.user"
-    data-on-change="$ctrl.onPlanSelect()"
+<form novalidate name="forkDatabase" data-ng-submit="forkDatabase.$valid && $ctrl.createDatabase()"
 >
-</database-plans-list>
-
-<h2>{{:: 'pci_database_fork_step3_title' | translate }}</h2>
-<pci-project-regions-list
-    data-disabled="true"
-    data-regions="$ctrl.model.plan.regions"
-    data-selected-region="$ctrl.model.region"
-    data-on-change="$ctrl.onRegionSelect()"
-></pci-project-regions-list>
-
-<h2>{{:: 'pci_database_fork_step4_title' | translate }}</h2>
-<oui-field
-    data-label="{{ ::'pci_database_fork_nodes_count' | translate }}"
-    data-label-popover="{{ 'pci_database_fork_nodes_count_tooltip' | translate }}"
->
-    <oui-numeric
+    <h2>{{:: 'pci_database_fork_step1_title' | translate }}</h2>
+    <database-engines-list
         data-disabled="true"
-        data-name="nodesCount"
-        data-model="$ctrl.model.plan.nodesCount"
-        data-min="$ctrl.model.plan.minNodes"
-        data-max="$ctrl.model.plan.maxNodes"
+        data-engines="$ctrl.engines"
+        data-current-engine="$ctrl.current.engine"
+        data-selected-engine="$ctrl.model.engine"
+        data-on-change="$ctrl.onEngineSelect()"
+    ></database-engines-list>
+
+    <h2>{{:: 'pci_database_fork_step2_title' | translate }}</h2>
+    {{$ctrl.current.plan.name}}
+    <database-plans-list
+        data-plans="$ctrl.model.engine.selectedVersion.plans"
+        data-current-plan="$ctrl.current.plan"
+        data-selected-plan="$ctrl.model.plan"
+        data-user="$ctrl.user"
+        data-on-change="$ctrl.onPlanSelect()"
     >
-    </oui-numeric>
-</oui-field>
-<p data-translate="pci_database_fork_select_flavor"></p>
-<database-flavors-list
-    data-flavors="$ctrl.model.region.flavors"
-    data-current-flavor="$ctrl.current.flavor"
-    data-selected-flavor="$ctrl.model.flavor"
-    data-user="$ctrl.user"
-    data-on-change="$ctrl.onFlavorSelect()"
->
-</database-flavors-list>
+    </database-plans-list>
 
-<h2>{{:: 'pci_database_fork_step5_title' | translate }}</h2>
-<oui-field
-    data-size="l"
-    data-label="{{:: 'pci_database_fork_name' | translate }}"
-    data-help-text="{{:: 'pci_database_fork_name_help_text' | translate }}"
->
-    <input
-        class="oui-input"
-        type="text"
-        id="name"
-        name="name"
-        data-ng-model="$ctrl.model.name"
-        data-ng-pattern="$ctrl.NAME_PATTERN"
-        data-ng-change="$ctrl.prepareOrderData()"
-        required
-    />
-</oui-field>
+    <h2>{{:: 'pci_database_fork_step3_title' | translate }}</h2>
+    <pci-project-regions-list
+        data-disabled="true"
+        data-regions="$ctrl.model.plan.regions"
+        data-selected-region="$ctrl.model.region"
+        data-on-change="$ctrl.onRegionSelect()"
+    ></pci-project-regions-list>
 
-<oui-message
-    data-ng-if="!($ctrl.model.flavor.supportsPublicNetwork && $ctrl.model.flavor.supportsPrivateNetwork)"
-    data-type="info"
->
-    <span
-        data-ng-bind="(
-                $ctrl.model.flavor.supportsPublicNetwork
-                    ? 'pci_database_fork_network_mode_private_incompatible'
-                    : 'pci_database_fork_network_mode_public_incompatible'
-                ) | translate"
-    ></span>
-</oui-message>
-
-<oui-field
-    data-label="{{ :: 'pci_database_fork_network_mode_label' | translate }}"
->
-    <oui-radio-group data-model="$ctrl.model.usePrivateNetwork">
-        <oui-radio data-value="false" data-disabled="true">
-            <span data-translate="pci_database_fork_network_mode_public"></span>
-        </oui-radio>
-        <oui-radio data-value="true" data-disabled="true">
-            <span
-                data-translate="pci_database_fork_network_mode_private"
-            ></span>
-        </oui-radio>
-    </oui-radio-group>
-</oui-field>
-
-<div data-ng-if="$ctrl.model.usePrivateNetwork">
+    <h2>{{:: 'pci_database_fork_step4_title' | translate }}</h2>
     <oui-field
-        data-label="{{:: 'pci_database_fork_privateNetwork_label' | translate }}"
-        data-size="l"
+        data-label="{{ ::'pci_database_fork_nodes_count' | translate }}"
+        data-label-popover="{{ 'pci_database_fork_nodes_count_tooltip' | translate }}"
     >
-        <oui-select
-            data-name="privateNetwork"
-            data-model="$ctrl.model.privateNetwork"
-            data-items="$ctrl.availablePrivateNetworks"
-            data-match="name"
+        <oui-numeric
             data-disabled="true"
-            data-on-change="$ctrl.onPrivateNetworkChange(modelValue)"
+            data-name="nodesCount"
+            data-model="$ctrl.model.plan.nodesCount"
+            data-min="$ctrl.model.plan.minNodes"
+            data-max="$ctrl.model.plan.maxNodes"
         >
-        </oui-select>
+        </oui-numeric>
     </oui-field>
-    <div data-ng-if="$ctrl.model.privateNetwork.id">
+    <p data-translate="pci_database_fork_select_flavor"></p>
+    <database-flavors-list
+        data-flavors="$ctrl.model.region.flavors"
+        data-current-flavor="$ctrl.current.flavor"
+        data-selected-flavor="$ctrl.model.flavor"
+        data-user="$ctrl.user"
+        data-on-change="$ctrl.onFlavorSelect()"
+    >
+    </database-flavors-list>
+
+    <h2>{{:: 'pci_database_fork_step5_title' | translate }}</h2>
+    <oui-field
+        data-size="l"
+        data-label="{{:: 'pci_database_fork_name' | translate }}"
+        data-help-text="{{:: 'pci_database_fork_name_help_text' | translate }}"
+    >
+        <input
+            class="oui-input"
+            type="text"
+            id="name"
+            name="name"
+            data-ng-model="$ctrl.model.name"
+            data-ng-pattern="$ctrl.NAME_PATTERN"
+            data-ng-change="$ctrl.prepareOrderData()"
+            required
+        />
+    </oui-field>
+
+    <oui-message
+        data-ng-if="!($ctrl.model.flavor.supportsPublicNetwork && $ctrl.model.flavor.supportsPrivateNetwork)"
+        data-type="info"
+    >
+        <span
+            data-ng-bind="(
+                    $ctrl.model.flavor.supportsPublicNetwork
+                        ? 'pci_database_fork_network_mode_private_incompatible'
+                        : 'pci_database_fork_network_mode_public_incompatible'
+                    ) | translate"
+        ></span>
+    </oui-message>
+
+    <oui-field
+        data-label="{{ :: 'pci_database_fork_network_mode_label' | translate }}"
+    >
+        <oui-radio-group data-model="$ctrl.model.usePrivateNetwork">
+            <oui-radio data-value="false" data-disabled="true">
+                <span data-translate="pci_database_fork_network_mode_public"></span>
+            </oui-radio>
+            <oui-radio data-value="true" data-disabled="true">
+                <span
+                    data-translate="pci_database_fork_network_mode_private"
+                ></span>
+            </oui-radio>
+        </oui-radio-group>
+    </oui-field>
+
+    <div data-ng-if="$ctrl.model.usePrivateNetwork">
         <oui-field
-            data-ng-if="!$ctrl.loadingSubnets"
-            data-label="{{:: 'pci_database_fork_subnet_label' | translate }}"
+            data-label="{{:: 'pci_database_fork_privateNetwork_label' | translate }}"
             data-size="l"
         >
             <oui-select
-                data-name="subnet"
-                data-model="$ctrl.model.subnet"
-                data-items="$ctrl.availableSubnets"
+                data-name="privateNetwork"
+                data-model="$ctrl.model.privateNetwork"
+                data-items="$ctrl.availablePrivateNetworks"
                 data-match="name"
                 data-disabled="true"
+                data-on-change="$ctrl.onPrivateNetworkChange(modelValue)"
             >
             </oui-select>
         </oui-field>
+        <div data-ng-if="$ctrl.model.privateNetwork.id">
+            <oui-field
+                data-ng-if="!$ctrl.loadingSubnets"
+                data-label="{{:: 'pci_database_fork_subnet_label' | translate }}"
+                data-size="l"
+            >
+                <oui-select
+                    data-name="subnet"
+                    data-model="$ctrl.model.subnet"
+                    data-items="$ctrl.availableSubnets"
+                    data-match="name"
+                    data-disabled="true"
+                >
+                </oui-select>
+            </oui-field>
+        </div>
     </div>
-</div>
 
-<h2>{{:: 'pci_database_fork_step6_title' | translate }}</h2>
-<database-order-review
-    data-engine="$ctrl.model.engine.name"
-    data-flavor="$ctrl.model.flavor"
-    data-plan="$ctrl.model.plan.name"
-    data-user="$ctrl.user"
-    data-version="$ctrl.model.engine.selectedVersion.version"
->
-</database-order-review>
-<database-order-command
-    data-engine="$ctrl.model.engine.name"
-    data-project-id="$ctrl.projectId"
-    data-order-data="$ctrl.orderData"
-    data-user="$ctrl.user"
-></database-order-command>
-<div class="mb-3">
-    <pci-project-lab-agreements
-        data-lab="$ctrl.lab"
-        data-ng-if="!$ctrl.lab.isActivated()"
-        data-on-accept="$ctrl.acceptLab(accepted)"
-    ></pci-project-lab-agreements>
-</div>
-<div data-ng-if="$ctrl.processingOrder">
-    <oui-spinner data-size="s"></oui-spinner>
-    <span data-translate="pci_database_fork_create_database_processing"></span>
-</div>
-<oui-button
-    size="l"
-    data-variant="primary"
-    data-on-click="$ctrl.createDatabase()"
->
-    <span data-translate="pci_database_fork_create_database"></span>
-</oui-button>
+    <h2>{{:: 'pci_database_fork_step6_title' | translate }}</h2>
+    <database-order-review
+        data-engine="$ctrl.model.engine.name"
+        data-flavor="$ctrl.model.flavor"
+        data-plan="$ctrl.model.plan.name"
+        data-user="$ctrl.user"
+        data-version="$ctrl.model.engine.selectedVersion.version"
+    >
+    </database-order-review>
+    <database-order-command
+        data-engine="$ctrl.model.engine.name"
+        data-project-id="$ctrl.projectId"
+        data-order-data="$ctrl.orderData"
+        data-user="$ctrl.user"
+    ></database-order-command>
+    <div class="mb-3">
+        <pci-project-lab-agreements
+            data-lab="$ctrl.lab"
+            data-ng-if="!$ctrl.lab.isActivated()"
+            data-on-accept="$ctrl.acceptLab(accepted)"
+        ></pci-project-lab-agreements>
+    </div>
+    <div data-ng-if="$ctrl.processingOrder">
+        <oui-spinner data-size="s"></oui-spinner>
+        <span data-translate="pci_database_fork_create_database_processing"></span>
+    </div>
+    <oui-form-actions
+        data-ng-if="!$ctrl.processingOrder"
+        data-disabled="!forkDatabase.$valid"
+        data-submit-text="{{:: 'pci_database_fork_create_database' | translate }}"
+        >
+    </oui-form-actions>
+</form>
