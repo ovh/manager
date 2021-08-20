@@ -20,7 +20,9 @@
     "@ovh-ux/ui-kit": "^4.4.3",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
+    "angular-chart.js": "^1.1.1",
     "angular-translate": "^2.18.1",
+    "chart.js": "chartjs/Chart.js#^2.0",
     "oclazyload": "^1.1.0"
   }
 }

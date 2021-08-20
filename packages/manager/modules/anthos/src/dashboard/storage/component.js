@@ -4,10 +4,8 @@ import template from './template.html';
 export default {
   bindings: {
     serviceName: '<',
-    currentActiveLink: '<',
-    dashboardLink: '<',
-    hostLink: '<',
-    storageLink: '<',
+    storageUsage: '<',
+    storageVolumes: '<',
   },
   controller,
   template,
