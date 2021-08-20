@@ -56,6 +56,7 @@
             data-filterable
         >
             <span data-ng-bind=":: $ctrl.capitalize($row.engine)"></span>
+            <span data-ng-bind=":: $row.version"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_database_list_plan' | translate"
