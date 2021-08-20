@@ -1,0 +1,13 @@
+{
+  "anthos_dashboard_storage_description": "Vous pouvez décomposer l’espace de stockage disponible sur votre cluster NetApp dédié en plusieurs Volumes SVM. Vous pourrez associer ces volumes SVM à un déploiement Anthos spécifique, et les utiliser en tant que CSI prédéfini (Container Storage Interface).",
+  "anthos_dashboard_storage_order": "Ajouter un volume SVM",
+  "anthos_dashboard_storage_table_description": "Description",
+  "anthos_dashboard_storage_table_size": "Taille totale des volumes",
+  "anthos_dashboard_storage_table_delete": "Supprimer",
+  "anthos_dashboard_storage_unit_size_MB": "Mo",
+  "anthos_dashboard_storage_unit_size_TB": "To",
+  "anthos_dashboard_storage_allocated": "Stockage alloué",
+  "anthos_dashboard_storage_system": "Systeme",
+  "anthos_dashboard_storage_used": "SVM volumes",
+  "anthos_dashboard_storage_remaining": "Inutilisé"
+}

@@ -1,25 +1,24 @@
 import angular from 'angular';
+import chartjs from 'angular-chart.js';
 import '@ovh-ux/manager-core';
+import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
 import component from './component';
-import host from './host';
 import routing from './routing';
-import storage from './storage';
 
-const moduleName = 'ovhManagerAnthosDashboard';
-
+const moduleName = 'ovhManagerAnthosDashboardStorage';
 angular
   .module(moduleName, [
+    chartjs,
+    'oui',
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
-    host,
-    storage,
   ])
+  .component('anthosStorage', component)
   .config(routing)
-  .component('anthosDashboard', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
