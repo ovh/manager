@@ -28,6 +28,7 @@
   "pci_databases_general_information_maintenance_window_label": "Franja de mantenimiento diario",
   "pci_databases_general_information_maintenance_window": "{{startTime}} a {{endTime}}",
   "pci_databases_general_information_private_network_label": "Private Network",
+  "pci_databases_general_information_public_network_link": "Public Network",
   "pci_databases_general_information_private_network_link": "Private Network : vRack n&deg;{{vRackId}}",
   "pci_databases_general_information_allowed_ips_label": "Direcciones IP autorizadas",
   "pci_databases_general_information_manage_ips": "Gestionar las direcciones IP",
