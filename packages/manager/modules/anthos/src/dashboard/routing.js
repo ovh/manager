@@ -9,6 +9,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('anthos.dashboard', { serviceName }),
       hostLink: /* @ngInject */ ($state, serviceName) =>
         $state.href('anthos.dashboard.host', { serviceName }),
+      storageLink: /* @ngInject */ ($state, serviceName) =>
+        $state.href('anthos.dashboard.storage', { serviceName }),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,

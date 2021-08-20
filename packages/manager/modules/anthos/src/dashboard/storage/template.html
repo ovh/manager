@@ -1,0 +1,70 @@
+<h2 data-translate="anthos_dashboard_header_storage"></h2>
+<p data-translate="anthos_dashboard_storage_description"></p>
+<div class="row">
+    <div class="col-md-4">
+        <p
+            class="text-center oui-heading_4"
+            data-translate="anthos_dashboard_storage_allocated"
+        ></p>
+        <p
+            class="text-center oui-heading_6"
+            data-ng-bind=":: $ctrl.usageString"
+        ></p>
+        <canvas
+            id="doughnut"
+            class="chart chart-doughnut"
+            chart-colors="$ctrl.chartConfig.colors"
+            chart-data="$ctrl.chartConfig.data"
+            chart-labels="$ctrl.chartConfig.labels"
+            chart-options="$ctrl.chartConfig.options"
+        >
+        </canvas>
+    </div>
+    <div class="col-md-8">
+        <oui-datagrid
+            id="storageVolumesDatagrid"
+            data-rows="$ctrl.storageVolumes"
+        >
+            <oui-datagrid-column
+                title=":: 'anthos_dashboard_storage_table_description' | translate"
+                data-property="description"
+                data-type="string"
+                data-searchable
+                data-filterable
+                data-sortable="asc"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'anthos_dashboard_storage_table_size' | translate"
+                data-property="size"
+                data-type="number"
+                data-filterable
+                data-sortable
+            >
+                <span data-ng-bind=":: $row.sizeText"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column>
+                <a class="oui-link_icon" href="#">
+                    <span
+                        data-translate="anthos_dashboard_storage_table_delete"
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-arrow-right"
+                        aria-hidden="true"
+                    ></span>
+                </a>
+            </oui-datagrid-column>
+            <oui-datagrid-topbar>
+                <oui-button
+                    class="mb-3"
+                    data-variant="secondary"
+                    data-icon-left="oui-icon-add"
+                >
+                    <span
+                        data-translate="anthos_dashboard_storage_order"
+                    ></span>
+                </oui-button>
+            </oui-datagrid-topbar>
+        </oui-datagrid>
+    </div>
+</div>
