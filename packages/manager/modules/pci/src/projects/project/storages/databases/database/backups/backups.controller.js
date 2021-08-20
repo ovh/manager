@@ -36,7 +36,7 @@ export default class {
 
   getExpiryDate(backup) {
     return moment(backup.createdAt)
-    .add(this.backupRetentionTime, 'days')
-    .format();
+      .add(this.backupRetentionTime, 'days')
+      .format();
   }
 }
