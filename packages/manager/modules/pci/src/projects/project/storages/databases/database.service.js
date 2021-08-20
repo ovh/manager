@@ -368,15 +368,6 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
-  resetUserCredentials(projectId, engine, databaseId, userId) {
-    return this.$http
-      .post(
-        `/cloud/project/${projectId}/database/${engine}/${databaseId}/user/${userId}/credentials/reset`,
-        {},
-      )
-      .then(({ data }) => data);
-  }
-
   pollDatabaseStatus(projectId, engine, databaseId) {
     return this.Poller.poll(
       `/cloud/project/${projectId}/database/${engine}/${databaseId}`,

@@ -54,7 +54,7 @@
             data-property="expirationDate"
             data-sortable
         >
-            <span data-ng-bind="$row.expirationDate | date: 'medium'"></span>
+            <span data-ng-bind="$ctrl.getExpiryDate($row) | date: 'medium'"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_database_common_status' | translate"
