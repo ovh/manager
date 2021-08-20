@@ -38,16 +38,33 @@ export default class AnthosTenantsService {
       {
         headers: {
           Pragma: 'no-cache',
-          'x-pagination-mode': 'CachedObjectList-Pages',
-          'x-pagination-number': pageNumber,
-          'x-pagination-size': pageSize,
+          'X-Pagination-Mode': 'CachedObjectList-Pages',
+          'X-Pagination-Number': pageNumber,
+          'X-Pagination-Size': pageSize,
           ...(typeof additional === 'undefined'
             ? {}
             : {
-                'x-pagination-filter': `additional:eq=${additional}`,
+                'X-Pagination-Filter': `additional:eq=${additional}`,
               }),
         },
       },
     );
+  }
+
+  getStorageVolumes(serviceName) {
+    return this.$http
+      .get(`/dedicated/anthos/tenants/${serviceName}/storage/netapp/svms`, {
+        headers: {
+          'X-Pagination-Mode': 'CachedObjectList-Pages',
+          'X-Pagination-Size': 50000, // Expected to get only around 1-50 records
+        },
+      })
+      .then(({ data }) => data);
+  }
+
+  getStorageUsage(serviceName) {
+    return this.$http
+      .get(`/dedicated/anthos/tenants/${serviceName}/storage/netapp/usage`)
+      .then(({ data }) => data);
   }
 }
