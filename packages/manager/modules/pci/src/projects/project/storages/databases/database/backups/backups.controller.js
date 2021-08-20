@@ -33,4 +33,10 @@ export default class {
     this.trackDatabases('dashboard::backups::options_menu::restore');
     this.goToRestore(backup);
   }
+
+  getExpiryDate(backup) {
+    return moment(backup.createdAt)
+      .add(this.backupRetentionTime, 'days')
+      .format();
+  }
 }

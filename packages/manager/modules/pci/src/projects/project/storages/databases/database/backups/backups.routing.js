@@ -1,4 +1,4 @@
-import find from "lodash/find";
+import find from 'lodash/find';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -13,10 +13,16 @@ export default /* @ngInject */ ($stateProvider) => {
         /* @ngInject */
         backupList: (database, DatabaseService, projectId) =>
           DatabaseService.getBackups(projectId, database.engine, database.id),
-        backupRetentionTime: /*@ngInject*/ (database, DatabaseService, projectId) => 
-          DatabaseService.getCapabilities(projectId).then((capabilities) =>
-          find(capabilities.plans, (p) => p.name === database.plan).backupRetention
-        ),
+        backupRetentionTime: /* @ngInject */ (
+          database,
+          DatabaseService,
+          projectId,
+        ) =>
+          DatabaseService.getCapabilities(projectId).then(
+            (capabilities) =>
+              find(capabilities.plans, (p) => p.name === database.plan)
+                .backupRetention,
+          ),
         goBackToBackups: /* @ngInject */ ($state, CucCloudMessage) => (
           message = false,
           type = 'success',
@@ -34,7 +40,7 @@ export default /* @ngInject */ ($stateProvider) => {
         },
         goBackToDashboard: /* @ngInject */ ($state, CucCloudMessage) => (
           message = false,
-          type = 'success'
+          type = 'success',
         ) => {
           const reload = message && type === 'success';
           const state =

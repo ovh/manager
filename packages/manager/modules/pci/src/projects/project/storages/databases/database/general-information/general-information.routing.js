@@ -192,6 +192,7 @@ export default /* @ngInject */ ($stateProvider) => {
               database.id,
               node.id,
             ).then((nodeInfo) => {
+              CucCloudMessage.flushMessages(stateName);
               CucCloudMessage.success(
                 $translate.instant(successMessage, { nodeName: node.name }),
                 stateName,
