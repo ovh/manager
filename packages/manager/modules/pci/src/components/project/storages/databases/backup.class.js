@@ -11,7 +11,7 @@ export default class Backup extends Base {
       status,
       description,
       size,
-      region
+      region,
     });
   }
 
