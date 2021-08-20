@@ -39,6 +39,15 @@ export default class {
 
     this.isLoading = false;
 
+    this.selectedTimeRange.label = this.$translate.instant(
+      `pci_databases_metrics_range_label_${this.selectedTimeRange.label_key}`,
+    );
+    for (let i = 0; i < this.timeRanges.length; i += 1) {
+      this.timeRanges[i].label = this.$translate.instant(
+        `pci_databases_metrics_range_label_${this.timeRanges[i].label_key}`,
+      );
+    }
+
     for (let i = 0; i < this.availableMetrics.length; i += 1) {
       this.metricsData[this.availableMetrics[i]] = {};
       this.metricsData[
