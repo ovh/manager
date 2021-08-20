@@ -13,11 +13,11 @@ export const SHELL_NAMES = {
 };
 
 export const METRICS_TIME_RANGES = [
-  { label: '1H', value: 'lastHour' },
-  { label: '1D', value: 'lastDay' },
-  { label: '1W', value: 'lastWeek' },
-  { label: '1M', value: 'lastMonth' },
-  { label: '1Y', value: 'lastYear' },
+  { label_key: '1H', value: 'lastHour' },
+  { label_key: '1D', value: 'lastDay' },
+  { label_key: '1W', value: 'lastWeek' },
+  { label_key: '1M', value: 'lastMonth' },
+  { label_key: '1Y', value: 'lastYear' },
 ];
 
 export const CHART_METRICS_REFRESH_INTERVAL = 60000;
