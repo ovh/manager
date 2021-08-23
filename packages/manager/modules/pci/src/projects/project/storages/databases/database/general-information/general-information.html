@@ -162,15 +162,24 @@
                 >
                     <oui-tile-description>
                         <div>
-                            <database-node
+                            <span
                                 data-ng-repeat="node in $ctrl.database.nodes track by node.id"
-                                data-node="node"
                             >
-                            </database-node>
+                                <p
+                                    data-ng-if="$ctrl.database.nodes.length > 4 && $index === $ctrl.ceil($ctrl.database.nodes.length / 2)"
+                                ></p>
+                                <database-node data-node="node">
+                                </database-node>
+                            </span>
                         </div>
                     </oui-tile-description>
 
-                    <oui-action-menu data-compact data-placement="end">
+                    <oui-action-menu
+                        data-compact
+                        data-placement="end"
+                        ng-if="$ctrl.database.nodes.length < $ctrl.getCurrentPlan().maxNodes 
+                        || $ctrl.database.nodes.length > $ctrl.getCurrentPlan().minNodes"
+                    >
                         <oui-action-menu-item
                             data-on-click="$ctrl.addNode()"
                             data-ng-if="$ctrl.database.nodes.length < $ctrl.getCurrentPlan().maxNodes"
@@ -263,12 +272,6 @@
                             ></oui-clipboard>
                         </oui-tile-description>
                     </oui-tile-description>
-                </oui-tile-definition>
-
-                <oui-tile-definition
-                    data-term="{{:: 'pci_databases_general_information_database_name' | translate }}"
-                    data-description="{{:: $ctrl.database.description }}"
-                >
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_database_host' | translate }}"
