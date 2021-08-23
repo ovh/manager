@@ -1,0 +1,10 @@
+{
+  "anthos_dashboard_add_storage_title": "Créer un volume SVM",
+  "anthos_dashboard_add_storage_description": "Ce stockage sera utilisable sur vos clusters Anthos existants et nouveaux.",
+  "anthos_dashboard_add_storage_description_label": "Description",
+  "anthos_dashboard_add_storage_space_label": "Espace libre restant",
+  "anthos_dashboard_add_storage_submit": "Créer un volume SVM",
+  "anthos_dashboard_add_storage_cancel": "Annuler",
+  "anthos_dashboard_add_storage_success": "Demande de création d'un volume SVM enregistrée avec succès.",
+  "anthos_dashboard_add_storage_error": "Une erreur s'est produite lors de la création d'un volume SVM: {{message}}"
+}

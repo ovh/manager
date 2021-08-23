@@ -3,11 +3,9 @@ import template from './template.html';
 
 export default {
   bindings: {
-    goToAddStorage: '<',
-    goToRemoveStorage: '<',
     serviceName: '<',
-    storageUsage: '<',
-    storageVolumes: '<',
+    goBack: '<',
+    storage: '<',
   },
   controller,
   template,
