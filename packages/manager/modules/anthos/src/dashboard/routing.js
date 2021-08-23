@@ -28,6 +28,31 @@ export default /* @ngInject */ ($stateProvider) => {
       privateIPs: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getTenantPrivateIPs(serviceName).catch(() => []),
 
+      goToState: ($state, Alerter) => (
+        state,
+        stateParams = {},
+        message = false,
+        type = 'done',
+      ) => {
+        const reload = message && type === 'done';
+
+        const promise = $state.go(
+          state,
+          {
+            ...stateParams,
+          },
+          { reload },
+        );
+
+        if (message) {
+          promise.then(() =>
+            Alerter.alertFromSWS(message, type, ANTHOS_TENANT_ALERTER),
+          );
+        }
+
+        return promise;
+      },
+
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
 
@@ -38,7 +63,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('anthos.dashboard.general-information', {
           serviceName,
         }),
-
       hostLink: /* @ngInject */ ($state, serviceName) =>
         $state.href('anthos.dashboard.host', { serviceName }),
 

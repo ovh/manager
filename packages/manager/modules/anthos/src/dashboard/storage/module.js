@@ -5,13 +5,17 @@ import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
+import addStorage from './add';
 import component from './component';
+import removeStorage from './remove';
 import routing from './routing';
 
 const moduleName = 'ovhManagerAnthosDashboardStorage';
 angular
   .module(moduleName, [
+    addStorage,
     chartjs,
+    removeStorage,
     'oui',
     'ovhManagerCore',
     'pascalprecht.translate',
