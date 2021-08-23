@@ -1,4 +1,5 @@
 import capitalize from 'lodash/capitalize';
+import ceil from 'lodash/ceil';
 import { getCriteria } from '../../project.utils';
 
 export default class {
@@ -6,6 +7,7 @@ export default class {
   constructor($translate, CucCloudMessage, CucRegionService) {
     this.$translate = $translate;
     this.capitalize = capitalize;
+    this.ceil = ceil;
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
   }
