@@ -3,6 +3,7 @@
   "pci_projects_project_users_username_label": "Benutzername",
   "pci_projects_project_users_description_label": "Beschreibung",
   "pci_projects_project_users_role_label": "Rollen",
+  "pci_projects_project_users_createdAt_label": "Lorem Ipsum",
   "pci_projects_project_users_status_label": "Status",
   "pci_projects_project_users_status_creating": "Wird erstellt",
   "pci_projects_project_users_status_ok": "Aktiviert",
