@@ -7,6 +7,5 @@
   "pci_databases_backup_description1": "Nachfolgend finden Sie die Liste Ihrer Backups. Sie können jedes davon wiederherstellen oder löschen.",
   "pci_databases_backup_description2": "Diese Backups werden beibehalten, um das ordnungsgemäße Funktionieren Ihres Dienstes sicherzustellen.",
   "pci_databases_backup_informations_title": "Lorem Ipsum",
-  "pci_databases_backup_informations_retention": "Lorem Ipsum",
-  "pci_databases_backup_informations_retention_time": "{{days}} Lorem Ipsum"
+  "pci_databases_backup_informations_retention": "Lorem Ipsum"
 }
