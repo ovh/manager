@@ -44,21 +44,22 @@
                 <span data-ng-bind=":: $row.sizeText"></span>
             </oui-datagrid-column>
             <oui-datagrid-column>
-                <a class="oui-link_icon" href="#">
+                <oui-button
+                    data-variant="link"
+                    data-icon-right="oui-icon-arrow-right"
+                    data-on-click="$ctrl.goToRemoveStorage($row)"
+                >
                     <span
                         data-translate="anthos_dashboard_storage_table_delete"
                     ></span>
-                    <span
-                        class="oui-icon oui-icon-arrow-right"
-                        aria-hidden="true"
-                    ></span>
-                </a>
+                </oui-button>
             </oui-datagrid-column>
             <oui-datagrid-topbar>
                 <oui-button
                     class="mb-3"
                     data-variant="secondary"
                     data-icon-left="oui-icon-add"
+                    data-on-click="$ctrl.goToAddStorage()"
                 >
                     <span
                         data-translate="anthos_dashboard_storage_order"
