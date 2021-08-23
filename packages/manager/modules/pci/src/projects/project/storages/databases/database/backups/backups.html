@@ -16,8 +16,7 @@
                     <td class="oui-table__cell">
                         <dl class="oui-description">
                             <dt data-translate="pci_databases_backup_informations_retention"></dt>
-                            <dd data-translate="pci_databases_backup_informations_retention_time"
-                                data-translate-values="{days: $ctrl.backupRetentionTime}"></dd>
+                            <dd>{{$ctrl.backupRetentionTime.humanize()}}</dd>
                         </dl>
                     </td>
                 </tr>

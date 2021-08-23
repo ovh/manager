@@ -20,8 +20,8 @@ export default /* @ngInject */ ($stateProvider) => {
         ) =>
           DatabaseService.getCapabilities(projectId).then(
             (capabilities) =>
-              find(capabilities.plans, (p) => p.name === database.plan)
-                .backupRetention,
+              moment.duration(find(capabilities.plans, (p) => p.name === database.plan)
+                .backupRetention),
           ),
         goBackToBackups: /* @ngInject */ ($state, CucCloudMessage) => (
           message = false,

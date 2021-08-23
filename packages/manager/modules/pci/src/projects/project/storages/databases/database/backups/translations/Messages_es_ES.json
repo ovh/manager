@@ -7,6 +7,5 @@
   "pci_databases_backup_description1": "Puede consultar a continuación la lista de sus copias de seguridad. Es posible restaurarlas o eliminarlas.",
   "pci_databases_backup_description2": "Estas copias de seguridad consecutivas se conservan para un buen mantenimiento operativo del servicio.",
   "pci_databases_backup_informations_title": "Lorem Ipsum",
-  "pci_databases_backup_informations_retention": "Lorem Ipsum",
-  "pci_databases_backup_informations_retention_time": "{{days}} Lorem Ipsum"
+  "pci_databases_backup_informations_retention": "Lorem Ipsum"
 }

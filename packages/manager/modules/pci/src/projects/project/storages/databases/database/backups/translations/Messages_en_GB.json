@@ -7,6 +7,5 @@
   "pci_databases_backup_description1": "Below you will find the list of your backups. You can restore or delete any of them.",
   "pci_databases_backup_description2": "These rolling backups are kept for your service to remain operational.",
   "pci_databases_backup_informations_title": "Database backups",
-  "pci_databases_backup_informations_retention": "Retention time",
-  "pci_databases_backup_informations_retention_time": "{{days}} days"
+  "pci_databases_backup_informations_retention": "Retention time"
 }
