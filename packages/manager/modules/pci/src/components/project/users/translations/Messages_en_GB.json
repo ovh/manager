@@ -3,6 +3,7 @@
   "pci_projects_project_users_username_label": "Username",
   "pci_projects_project_users_description_label": "Description",
   "pci_projects_project_users_role_label": "Roles",
+  "pci_projects_project_users_createdAt_label": "Creation date",
   "pci_projects_project_users_status_label": "Status",
   "pci_projects_project_users_status_creating": "Creation in progress",
   "pci_projects_project_users_status_ok": "Enabled",
