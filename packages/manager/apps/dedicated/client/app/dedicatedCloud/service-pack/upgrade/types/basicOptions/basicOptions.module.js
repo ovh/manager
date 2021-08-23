@@ -4,6 +4,9 @@ import { registerState } from './basicOptions.routing';
 
 const moduleName = 'ovhManagerPccServicePackUpgradeBasicOptions';
 
-angular.module(moduleName, [basicOptionsModule]).config(registerState);
+angular
+  .module(moduleName, [basicOptionsModule])
+  .config(registerState)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
