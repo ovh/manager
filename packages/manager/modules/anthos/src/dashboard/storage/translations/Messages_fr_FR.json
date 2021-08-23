@@ -7,7 +7,7 @@
   "anthos_dashboard_storage_unit_size_MB": "Mo",
   "anthos_dashboard_storage_unit_size_TB": "To",
   "anthos_dashboard_storage_allocated": "Stockage alloué",
-  "anthos_dashboard_storage_system": "Systeme",
+  "anthos_dashboard_storage_system": "Système",
   "anthos_dashboard_storage_used": "SVM volumes",
   "anthos_dashboard_storage_remaining": "Inutilisé"
 }

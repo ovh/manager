@@ -1,8 +1,12 @@
 import { CHART_CONFIG } from './constant';
 
+const STORAGE_SIZE_MULTIPLIER = 1024;
+
 export default class AnthosStorageCtrl {
   static mbToTb(size) {
-    return parseFloat((size / 1024 / 1024).toFixed(2));
+    return parseFloat(
+      (size / STORAGE_SIZE_MULTIPLIER / STORAGE_SIZE_MULTIPLIER).toFixed(2),
+    );
   }
 
   /* @ngInject */
