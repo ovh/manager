@@ -40,17 +40,23 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       newPlan: /* @ngInject */ (catalog, vpsMigration) =>
         find(catalog.plans, { planCode: vpsMigration.newPlan }),
-      currentPrice: /* @ngInject */ (migrateService, serviceInfos) => {
-        return migrateService.fetchCurrentPrice(serviceInfos.serviceId);
+      currentPrice: /* @ngInject */ (
+        vpsMigrateService,
+        serviceInfos,
+        coreConfig,
+      ) => {
+        return coreConfig.isRegion('EU')
+          ? vpsMigrateService.fetchCurrentPrice(serviceInfos.serviceId)
+          : null;
       },
       newPrice: /* @ngInject */ (
-        migrateService,
+        vpsMigrateService,
         newPlan,
         user,
         vps,
         vpsMigration,
       ) => {
-        return migrateService.fetchNewPrice(
+        return vpsMigrateService.fetchNewPrice(
           newPlan,
           user.ovhSubsidiary,
           vps,

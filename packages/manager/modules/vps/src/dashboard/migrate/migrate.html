@@ -32,7 +32,10 @@
                     ></dd>
                 </dl>
             </div>
-            <div class="oui-select-picker__footer">
+            <div
+                class="oui-select-picker__footer"
+                data-ng-if="coreConfig.isRegion('EU')"
+            >
                 <strong
                     data-ng-bind="$ctrl.currentPrice.priceWithoutTax.text"
                 ></strong>
@@ -50,7 +53,7 @@
 </p>
 
 <p class="mt-3">
-    <b data-translate="vps_dashboard_migrate_link_information"></b>
+    <strong data-translate="vps_dashboard_migrate_link_information"></strong>
     <br />
     <a
         data-ng-href="{{:: $ctrl.MIGRATE_FAQ_LINK }}"

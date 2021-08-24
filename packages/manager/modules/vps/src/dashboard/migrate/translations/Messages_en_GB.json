@@ -1,0 +1,14 @@
+{
+  "vps_dashboard_migrate_configuration_vcore": "{{count}} vCores",
+  "vps_dashboard_migrate_configuration_label_ram": "RAM:",
+  "vps_dashboard_migrate_configuration_label_core": "Processor:",
+  "vps_dashboard_migrate_configuration_label_disk": "Storage:",
+  "vps_dashboard_migrate_title": "Migrate your VPS",
+  "vps_dashboard_migrate_faq_title": "For more details, please refer to the dedicated FAQ.",
+  "vps_dashboard_migrate_new_range_title": "Your new configuration",
+  "vps_dashboard_migrate_current_range_title": "Your current configuration",
+  "vps_dashboard_migrate_information_1": "Based on your current technical specifications, we recommend upgrading to the VPS below.",
+  "vps_dashboard_migrate_information_2": "The duration of the migration process will vary, depending on the volume of your VPS. The operation will take between 30 minutes and a few hours.",
+  "vps_dashboard_migrate_link_information": "The new pricing will apply when your subscription expires.",
+  "vps_dashboard_migrate_price_per_month": "month"
+}

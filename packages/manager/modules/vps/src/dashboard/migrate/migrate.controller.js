@@ -3,8 +3,14 @@ import { MEMORY_MULTIPLE, MIGRATE_FAQ_LINK } from './migrate.constants';
 
 export default class {
   /* @ngInject */
-  constructor(atInternet, ovhManagerProductOffersService, VpsHelperService) {
+  constructor(
+    atInternet,
+    coreConfig,
+    ovhManagerProductOffersService,
+    VpsHelperService,
+  ) {
     this.atInternet = atInternet;
+    this.coreConfig = coreConfig;
     this.ovhManagerProductOffersService = ovhManagerProductOffersService;
     this.VpsHelperService = VpsHelperService;
     this.MEMORY_MULTIPLE = MEMORY_MULTIPLE;

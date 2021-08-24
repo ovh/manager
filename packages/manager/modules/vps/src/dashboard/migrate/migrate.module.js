@@ -14,7 +14,7 @@ angular
   .module(moduleName, ['oui', 'ui.router', confirm, ovhManagerCatalogPrice])
   .config(routing)
   .component('ovhManagerVpsDashboardMigrateVps', component)
-  .service('migrateService', service)
+  .service('vpsMigrateService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -358,7 +358,6 @@ export default (containerEl, environment) => {
 
         $state.defaultErrorHandler((error) => {
           if (error.type === RejectType.ERROR && !error.handled) {
-            console.log(error);
             $rootScope.$emit('ovh::sidebar::hide');
             $state.go(
               'error',

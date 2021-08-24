@@ -2,10 +2,10 @@ import find from 'lodash/find';
 
 export default class {
   /* @ngInject */
-  constructor($http, $q, CucRegionService) {
+  constructor($http, $q, ovhManagerRegionService) {
     this.$http = $http;
     this.$q = $q;
-    this.CucRegionService = CucRegionService;
+    this.ovhManagerRegionService = ovhManagerRegionService;
   }
 
   fetchCurrentPrice(serviceId) {
@@ -53,8 +53,9 @@ export default class {
             `/order/cart/${data.cartId}/item/${data.itemId}/configuration`,
             {
               label: 'vps_datacenter',
-              value: this.CucRegionService.getRegion(vps.location.datacentre)
-                ?.macroRegion?.code,
+              value: this.ovhManagerRegionService.getRegion(
+                vps.location.datacentre,
+              )?.macroRegion?.code,
             },
           ),
         );
