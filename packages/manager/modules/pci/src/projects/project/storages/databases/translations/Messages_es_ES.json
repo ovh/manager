@@ -5,7 +5,7 @@
   "pci_database_list_plan": "Producto",
   "pci_database_list_nodes": "Nodos",
   "pci_database_common_creation_date": "Fecha de creación",
-  "pci_database_common_name": "Nombre",
+  "pci_database_common_name": "Nombre / ID",
   "pci_database_common_status": "Estado",
   "pci_database_common_status_READY": "Desplegado",
   "pci_database_common_status_DELETING": "Eliminación",

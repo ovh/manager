@@ -1,8 +1,6 @@
 {
   "pci_database_fork_title": "Tworzenie instancji bazy danych",
-  "pci_database_fork_description1": "Utwórz bazę danych dostępną w Twoim projekcie Public Cloud. Jeśli chcesz korzystać z prywatnej sieci, a ona jeszcze nie istnieje, ",
-  "pci_database_fork_description2": "najpierw utwórz sieć prywatną lub podsieć.",
-  "pci_database_fork_description3": " ",
+  "pci_database_fork_description": "Lorem ipsum {{backup.id}} {{backup.size.value}} {{backup.size.unit}}",
   "pci_database_fork_step1_title": "Wybierz bazę danych",
   "pci_database_fork_step1_description": "Wybierz bazę danych odpowiadającą Twoim potrzebom",
   "pci_database_fork_step2_title": "Wybierz ofertę",

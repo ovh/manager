@@ -1,6 +1,6 @@
 {
-  "pci_databases_backups_fork_title": "Fork backup",
-  "pci_databases_backups_fork_description": "Do you want to fork your backup: {{name}} ?",
-  "pci_databases_backups_fork_confirm": "Confirm",
-  "pci_databases_backups_fork_cancel": "Cancel"
+  "pci_databases_backups_fork_title": "Restaurer votre sauvegarde en créant un nouveau service",
+  "pci_databases_backups_fork_description": "La restauration de vos données sera faite dans un nouveau service crée pour l'occasion. Vous allez être redirigé·e vers le paramétrage de ce nouveau service.",
+  "pci_databases_backups_fork_confirm": "Confirmer",
+  "pci_databases_backups_fork_cancel": "Annuler"
 }

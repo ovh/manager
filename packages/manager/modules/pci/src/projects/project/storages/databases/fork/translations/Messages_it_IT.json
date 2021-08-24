@@ -1,8 +1,6 @@
 {
   "pci_database_fork_title": "Crea un'istanza di database",
-  "pci_database_fork_description1": "Crea un database disponibile nel tuo progetto Public Cloud. Se vuoi utilizzare una rete privata e questa non esiste ancora, devi innanzitutto creare",
-  "pci_database_fork_description2": "una rete privata o una sottorete",
-  "pci_database_fork_description3": ".",
+  "pci_database_fork_description": "Lorem ipsum {{backup.id}} {{backup.size.value}} {{backup.size.unit}}",
   "pci_database_fork_step1_title": "Scegli il tuo database",
   "pci_database_fork_step1_description": "Seleziona il database corrispondente alle tue necessità",
   "pci_database_fork_step2_title": "Seleziona un’offerta",

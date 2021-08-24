@@ -5,7 +5,7 @@
   "pci_database_list_plan": "Usługa",
   "pci_database_list_nodes": "Węzły",
   "pci_database_common_creation_date": "Data utworzenia",
-  "pci_database_common_name": "Nazwisko",
+  "pci_database_common_name": "Nazwisko / ID",
   "pci_database_common_status": "Status",
   "pci_database_common_status_READY": "Wdrożone",
   "pci_database_common_status_DELETING": "Usuwanie",
