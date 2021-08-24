@@ -8,16 +8,26 @@
   "main": "./src/index.js",
   "dependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.0.0",
+    "@ovh-ux/ng-ovh-feature-flipping": "^1.0.3",
     "@ovh-ux/ng-ovh-http": "^5.0.2",
     "@ovh-ux/ng-ovh-utils": "^14.0.14",
+    "@ovh-ux/ng-ovh-web-universe-components": "^8.0.0 || ^9.0.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.2",
+    "@ovh-ux/ng-ui-router-layout": "^4.0.3",
     "@ovh-ux/ui-kit": "^4.7.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
+    "angular-i18n": "1.7.x",
     "angular-translate": "^2.17.0",
     "angular-ui-bootstrap": "1.3.3",
+    "bootstrap": "~3.3.7",
+    "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.21",
     "moment": "^2.24.0",
-    "oclazyload": "^1.1.0"
+    "oclazyload": "^1.1.0",
+    "office-ui-fabric-core": "^11.0.0",
+    "ovh-api-services": "^11.2.0"
   }
 }

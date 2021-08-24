@@ -3,6 +3,7 @@
     "moment": true,
     "WEBPACK_ENV": true,
     "ipaddr": true,
-    "JSURL": true
+    "JSURL": true,
+    "URI": true
   }
 }

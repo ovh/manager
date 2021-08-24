@@ -8,14 +8,14 @@ import set from 'lodash/set';
 
 export default class LicenseAgoraOrder {
   /* @ngInject */
-  constructor($http, $q, $translate, Alerter, coreConfig, OvhHttp, User) {
+  constructor($http, $q, $translate, Alerter, coreConfig, OvhHttp) {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.coreConfig = coreConfig;
     this.OvhHttp = OvhHttp;
-    this.User = User;
+    this.User = coreConfig.getUser();
 
     this.licenseTypeToCatalog = {
       CLOUDLINUX: 'licenseCloudLinux',

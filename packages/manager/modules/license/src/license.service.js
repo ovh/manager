@@ -5,7 +5,7 @@ import set from 'lodash/set';
 
 export default /* @ngInject */ function LicenseService(
   WucApi,
-  constants,
+  licenseConstants,
   $q,
   LICENCE_TYPES,
   $rootScope,
@@ -25,7 +25,7 @@ export default /* @ngInject */ function LicenseService(
     angular.forEach(['get', 'put', 'post', 'delete'], (operationType) => {
       self[operationType] = function operation(a, b) {
         let opts = {};
-        let url = `${constants.aapiRootPath}sws/license`;
+        let url = `${licenseConstants.aapiRootPath}sws/license`;
 
         if (a) {
           url += `/get${a}`;
@@ -284,7 +284,7 @@ export default /* @ngInject */ function LicenseService(
   };
 
   this.model = function model(name) {
-    return OvhHttp.get(`${constants.swsProxyRootPath}order.json`, {
+    return OvhHttp.get(`${licenseConstants.swsProxyRootPath}order.json`, {
       cache: 'licenseOrder',
     }).then((schema) => schema.models[name] || null);
   };

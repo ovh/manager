@@ -12,7 +12,7 @@ export default /* @ngInject */ (
   License,
   licenseFeatureAvailability,
   LicenseOrder,
-  User,
+  coreConfig,
 ) => {
   $scope.alerts = {
     order: 'license.alerts.order',
@@ -127,7 +127,7 @@ export default /* @ngInject */ (
     return $q
       .all({
         ips: License.ips(),
-        user: User.getUser(),
+        user: coreConfig.getUser(),
       })
       .then((results) => {
         $scope.availableIpBlock = results.ips;

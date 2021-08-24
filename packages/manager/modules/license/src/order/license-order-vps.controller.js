@@ -13,9 +13,8 @@ export default /* @ngInject */ (
   $translate,
   Alerter,
   License,
-  licenseFeatureAvailability,
   LicenseOrder,
-  User,
+  WucUser,
 ) => {
   $scope.nbLicence = {
     value: 0,
@@ -266,8 +265,7 @@ export default /* @ngInject */ (
       pricingMode: get($scope.selected, 'duration.pricingMode'),
       quantity: 1,
     };
-
-    return User.getUrlOf('express_order_resume')
+    return WucUser.getUrlOf('express_order_resume')
       .then((url) => {
         $scope.selected.agoraUrl = `${url}?products=${JSURL.stringify([
           expressParams,

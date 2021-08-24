@@ -1,0 +1,7 @@
+{
+  "price_price_ht_label": "{{ price }} net",
+  "price_price_ttc_label": "{{ price }} brutto",
+  "price_price_free": "W ofercie",
+  "price_price_gst_excl_label": "{{ price }} netto",
+  "price_price_gst_incl_label": "{{ price }} brutto"
+}

@@ -10,7 +10,7 @@ export default /* @ngInject */ (
   License,
   $timeout,
   $translate,
-  constants,
+  licenseConstants,
   ovhFeatureFlipping,
 ) => {
   $scope.licencesTableLoading = false;
@@ -130,11 +130,12 @@ export default /* @ngInject */ (
    */
   $scope.getRenewUrl = () => {
     if (!$scope.user) {
-      return constants.renew.replace('{serviceName}', '');
+      return licenseConstants.renew.replace('{serviceName}', '');
     }
-    const renewUrl = config.constants.billingRenew[$scope.user.ovhSubsidiary];
+    const renewUrl =
+      config.licenseConstants.billingRenew[$scope.user.ovhSubsidiary];
     if (!renewUrl) {
-      return constants.renew.replace('{serviceName}', '');
+      return licenseConstants.renew.replace('{serviceName}', '');
     }
     return renewUrl.replace('{serviceName}', '');
   };
