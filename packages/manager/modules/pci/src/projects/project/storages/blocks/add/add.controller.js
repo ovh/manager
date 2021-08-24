@@ -1,6 +1,5 @@
 import angular from 'angular';
 import get from 'lodash/get';
-import map from 'lodash/map';
 
 import BlockStorage from '../block.class';
 import Region from '../region.class';
@@ -50,24 +49,24 @@ export default class PciBlockStorageAddController {
           regions: this.PciProjectStorageBlockService.getAvailablesRegions(
             this.projectId,
           ),
-          types: this.PciProjectStorageBlockService.getAvailablesTypes(),
+          consumptionVolumeAddons: this.PciProjectStorageBlockService.getConsumptionVolumesAddons(
+            this.catalog,
+          ),
         }),
       )
-      .then(({ regions, types }) => {
+      .then(({ regions, consumptionVolumeAddons }) => {
         this.regions = regions;
-        this.types = types;
+        this.consumptionVolumeAddons = consumptionVolumeAddons;
+        this.types = consumptionVolumeAddons.map(
+          (addon) => addon.blobs.technical.name,
+        );
 
-        this.typesList = map(this.types, (type) => ({
-          id: type,
-          name: this.$translate.instant(
-            `pci_projects_project_storages_blocks_add_type_${type}_description`,
-          ),
-        }));
-
-        return this.PciProjectStorageBlockService.getPricesEstimations(
-          this.projectId,
+        const volumeSize = 1;
+        return this.PciProjectStorageBlockService.constructor.getPricesEstimations(
+          this.catalog,
           this.regions,
-          1,
+          volumeSize,
+          this.types,
         );
       })
       .then((typeRegionPrices) => {
@@ -102,12 +101,24 @@ export default class PciBlockStorageAddController {
     this.messages = this.messageHandler.getMessages();
   }
 
+  isAvailableVolumeType(volumeAddon) {
+    const { region } = this.storage;
+    const volumePlan = this.volumesAvailability.plans.find(
+      (plan) => plan.code === volumeAddon.planCode,
+    );
+
+    return (
+      region && volumePlan.regions.some(({ name }) => name === region.name)
+    );
+  }
+
   onRegionsFocus() {
     this.displaySelectedRegion = false;
   }
 
   onRegionChange() {
     this.displaySelectedRegion = true;
+    this.selectedVolumeAddon = null;
   }
 
   onTypesFocus() {
@@ -117,7 +128,7 @@ export default class PciBlockStorageAddController {
   onTypeChange() {
     this.displaySelectedType = true;
 
-    this.storage.type = this.selectedType.id;
+    this.storage.type = this.selectedVolumeAddon.blobs.technical.name;
 
     this.loadings.size = true;
     return this.estimatePrice()
