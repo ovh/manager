@@ -3,7 +3,7 @@
   "pci_notebook_add_resources_usecase_item_standard": "AI Notebooks Standard (CPU resources)",
   "pci_notebook_add_resources_usecase_item_standard_description": "A lower price, offering standard performance. Suitable for learning, testing or workloads that only require CPU.",
   "pci_notebook_add_resources_usecase_item_advanced": "AI Notebooks Advanced (GPU resources)",
-  "pci_notebook_add_resources_usecase_item_advanced_description": "Powered by more than four GPUs and dozens of CPUs. Delivers higher performance for learning and intensive workloads.",
+  "pci_notebook_add_resources_usecase_item_advanced_description": "Powered by up to four GPUs and dozens of CPUs. Delivers higher performance for deep learning and intensive workloads.",
   "pci_notebook_add_resources_proposed_title": "Available resources",
   "pci_notebook_add_resources_proposed_ram": "{{ram}} RAM",
   "pci_notebook_add_resources_proposed_storage": "{{memory}} SSD",
