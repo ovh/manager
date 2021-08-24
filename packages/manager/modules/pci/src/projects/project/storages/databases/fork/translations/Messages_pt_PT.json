@@ -1,8 +1,6 @@
 {
   "pci_database_fork_title": "Criar uma instância de base de dados",
-  "pci_database_fork_description1": "Criar uma base de dados disponível no seu projeto Public Cloud. Se desejar utilizar uma rede privada e esta ainda não existir, agradecemos que comece por criar",
-  "pci_database_fork_description2": "uma rede privada ou uma sub-rede",
-  "pci_database_fork_description3": ".",
+  "pci_database_fork_description": "Lorem ipsum {{backup.id}} {{backup.size.value}} {{backup.size.unit}}",
   "pci_database_fork_step1_title": "Escolha a sua base de dados",
   "pci_database_fork_step1_description": "Selecionar a base de dados correspondente às suas necessidades",
   "pci_database_fork_step2_title": "Selecionar uma oferta",

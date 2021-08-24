@@ -7,7 +7,10 @@
     <h2 data-translate="pci_database_logs_title"></h2>
 
     <p data-translate="pci_databases_logs_description"></p>
-    <oui-field label="Update logs" class="flex-right">
+    <oui-field
+        label="{{:: 'pci_databases_logs_autorefresh' | translate }}"
+        class="flex-right"
+    >
         <oui-switch
             model="$ctrl.pollLogs"
             name="oui-switch"

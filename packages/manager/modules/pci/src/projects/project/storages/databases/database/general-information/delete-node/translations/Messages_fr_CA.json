@@ -6,5 +6,5 @@
   "pci_databases_general_information_delete_node_description_2": " per hour.",
   "pci_databases_general_information_delete_node_pending": "Your request to delete a node has been processed, and will be effective in a few minutes.",
   "pci_databases_general_information_delete_node_success": "Your node has been successfully deleted",
-  "pci_databases_general_information_delete_node_error": "An error has occurred removing the node: {{ message }}"
+  "pci_databases_general_information_delete_node_error": "An error occurred while deleting your node. Please try again later."
 }

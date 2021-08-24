@@ -15,17 +15,16 @@
     ></cui-message-container>
 </div>
 <p>
-    <span data-translate="pci_database_fork_description1"></span>
-    <a
-        data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
-        data-translate="pci_database_fork_description2"
-        data-ng-click="$ctrl.trackDatabases('top_create_private_network')"
-        rel="noopener"
-    ></a>
-    <span data-translate="pci_database_fork_description3"></span>
+    <span
+        data-translate="pci_database_fork_description"
+        data-translate-values="{backup: $ctrl.backupInstance}"
+    ></span>
 </p>
 
-<form novalidate name="forkDatabase" data-ng-submit="forkDatabase.$valid && $ctrl.createDatabase()"
+<form
+    novalidate
+    name="forkDatabase"
+    data-ng-submit="forkDatabase.$valid && $ctrl.createDatabase()"
 >
     <h2>{{:: 'pci_database_fork_step1_title' | translate }}</h2>
     <database-engines-list
@@ -115,7 +114,9 @@
     >
         <oui-radio-group data-model="$ctrl.model.usePrivateNetwork">
             <oui-radio data-value="false" data-disabled="true">
-                <span data-translate="pci_database_fork_network_mode_public"></span>
+                <span
+                    data-translate="pci_database_fork_network_mode_public"
+                ></span>
             </oui-radio>
             <oui-radio data-value="true" data-disabled="true">
                 <span
@@ -182,12 +183,14 @@
     </div>
     <div data-ng-if="$ctrl.processingOrder">
         <oui-spinner data-size="s"></oui-spinner>
-        <span data-translate="pci_database_fork_create_database_processing"></span>
+        <span
+            data-translate="pci_database_fork_create_database_processing"
+        ></span>
     </div>
     <oui-form-actions
         data-ng-if="!$ctrl.processingOrder"
         data-disabled="!forkDatabase.$valid"
         data-submit-text="{{:: 'pci_database_fork_create_database' | translate }}"
-        >
+    >
     </oui-form-actions>
 </form>

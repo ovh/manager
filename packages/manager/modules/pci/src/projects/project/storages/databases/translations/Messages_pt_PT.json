@@ -5,7 +5,7 @@
   "pci_database_list_plan": "Oferta",
   "pci_database_list_nodes": "Nós",
   "pci_database_common_creation_date": "Data de criação",
-  "pci_database_common_name": "Nome",
+  "pci_database_common_name": "Nome / ID",
   "pci_database_common_status": "Estado",
   "pci_database_common_status_READY": "Implementado",
   "pci_database_common_status_DELETING": "Supressão",
