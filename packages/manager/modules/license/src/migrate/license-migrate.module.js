@@ -12,7 +12,7 @@ angular
   .controller('LicenseMigrateCtrl', controller)
   .run(
     /* @ngInject */ ($templateCache) => {
-      $templateCache.put('migrate/license-migrate.html', template);
+      $templateCache.put('license/migrate/license-migrate.html', template);
     },
   );
 

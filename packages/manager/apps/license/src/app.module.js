@@ -9,6 +9,7 @@ import 'angular';
 import 'bootstrap';
 import 'angular-ui-bootstrap';
 import '@ovh-ux/ui-kit';
+import 'font-awesome/css/font-awesome.min.css';
 
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import uiRouter from '@uirouter/angularjs';

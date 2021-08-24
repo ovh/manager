@@ -11,7 +11,7 @@
             alt="{{ type.productName }}"
             width="120"
             data-ng-repeat="(key, type) in types"
-            data-ng-src="images/license/{{ key }}_medium.png"
+            data-ng-src="{{:: getLicenseTypeIcon(key) }}"
             data-ng-click="selectType(type)"
         />
         <p

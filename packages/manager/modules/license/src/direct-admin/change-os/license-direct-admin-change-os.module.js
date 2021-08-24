@@ -13,7 +13,7 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        'direct-admin/change-os/license-direct-admin-change-os.html',
+        'license/direct-admin/change-os/license-direct-admin-change-os.html',
         template,
       );
     },

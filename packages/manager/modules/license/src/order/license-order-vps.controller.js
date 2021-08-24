@@ -7,6 +7,7 @@ import last from 'lodash/last';
 import set from 'lodash/set';
 import startsWith from 'lodash/startsWith';
 import values from 'lodash/values';
+import getLicenseTypeIcon from '../utils';
 
 export default /* @ngInject */ (
   $scope,
@@ -30,6 +31,8 @@ export default /* @ngInject */ (
     bc: false,
     agoraUrl: false,
   };
+
+  $scope.getLicenseTypeIcon = getLicenseTypeIcon;
 
   const getOrderableVersion = function getOrderableVersion() {
     $scope.loaders.orderableVersion = true;

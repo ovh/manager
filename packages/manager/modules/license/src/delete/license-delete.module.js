@@ -12,7 +12,7 @@ angular
   .controller('LicenseDeleteCtrl', controller)
   .run(
     /* @ngInject */ ($templateCache) => {
-      $templateCache.put('delete/license-delete.html', template);
+      $templateCache.put('license/delete/license-delete.html', template);
     },
   );
 

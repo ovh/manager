@@ -12,7 +12,7 @@
             alt="{{ type }}"
             width="120"
             data-ng-repeat="type in availableTypes"
-            data-ng-src="images/license/{{ type }}_medium.png"
+            data-ng-src="{{:: getLicenseTypeIcon(type) }}"
             data-ng-click="selectType(type)"
             data-ng-style="!isAvailable(type) || loaders.orderableVersion == true || (loaders.prices && selected.licenseType !== type) ? {
                      filter: 'grayscale(100%)',

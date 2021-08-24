@@ -12,7 +12,10 @@ angular
   .controller('LicenseSplaRevokeCtrl', controller)
   .run(
     /* @ngInject */ ($templateCache) => {
-      $templateCache.put('spla/revoke/license-spla-revoke.html', template);
+      $templateCache.put(
+        'license/spla/revoke/license-spla-revoke.html',
+        template,
+      );
     },
   );
 

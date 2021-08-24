@@ -13,7 +13,7 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        'delete/at-expiration/license-delete-at-expiration.html',
+        'license/delete/at-expiration/license-delete-at-expiration.html',
         template,
       );
     },

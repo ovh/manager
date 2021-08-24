@@ -13,7 +13,7 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        'redirection/upgrade/license-redirection-upgrade.html',
+        'license/redirection/upgrade/license-redirection-upgrade.html',
         template,
       );
     },

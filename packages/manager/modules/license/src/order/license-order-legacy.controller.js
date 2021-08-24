@@ -12,6 +12,7 @@ import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 import split from 'lodash/split';
 import values from 'lodash/values';
+import getLicenseTypeIcon from '../utils';
 
 import {
   CPANEL_PREMIER_TYPES,
@@ -36,6 +37,8 @@ export default /* @ngInject */ (
   $scope.alerts = {
     order: 'license.alerts.order',
   };
+
+  $scope.getLicenseTypeIcon = getLicenseTypeIcon;
 
   function getFilteredIps() {
     const typesFiltered = $filter('filter')(

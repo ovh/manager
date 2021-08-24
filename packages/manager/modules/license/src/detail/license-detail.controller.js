@@ -1,4 +1,5 @@
 import config from '../config/config';
+import getLicenseTypeIcon from '../utils';
 
 export default /* @ngInject */ function LicenseDetailsCtrl(
   $q,
@@ -166,6 +167,8 @@ export default /* @ngInject */ function LicenseDetailsCtrl(
     }
     return renewUrl.replace('{serviceName}', '');
   };
+
+  $scope.getLicenseTypeIcon = getLicenseTypeIcon;
 
   get();
 }

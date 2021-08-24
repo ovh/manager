@@ -28,7 +28,7 @@
                         class="img-thumbnail"
                         alt="{{ license.type }}"
                         width="150"
-                        data-ng-src="images/license/{{ license.type }}_medium.png"
+                        data-ng-src="{{:: getLicenseTypeIcon(license.type) }}"
                     />
                 </div>
                 <div class="col-md-7">
