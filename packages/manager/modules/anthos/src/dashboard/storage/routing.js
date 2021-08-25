@@ -1,7 +1,9 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('anthos.dashboard.storage', {
     url: '/storage',
-    component: 'anthosStorage',
+    views: {
+      anthosTenantView: 'anthosStorage',
+    },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('anthos_dashboard_header_storage'),
@@ -19,10 +21,12 @@ export default /* @ngInject */ ($stateProvider) => {
           })),
         ),
       storageUsage: /* @ngInject */ (AnthosTenantsService, serviceName) =>
-        AnthosTenantsService.getStorageUsage(serviceName).then((usageData) => ({
-          ...usageData,
-          totalUsed: usageData.reservedSize + usageData.usedSize,
-        })),
+        AnthosTenantsService.getTenantStorageUsage(serviceName).then(
+          (usageData) => ({
+            ...usageData,
+            totalUsed: usageData.reservedSize + usageData.usedSize,
+          }),
+        ),
     },
   });
 };
