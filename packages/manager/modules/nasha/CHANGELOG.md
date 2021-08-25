@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.2.3...@ovh-ux/manager-nasha@2.3.0) (2021-08-25)
+
+
+### Features
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.0.0` ([d09ca10](https://github.com/ovh/manager/commit/d09ca10f4b7ca629e0b2f1fcb59278ea7f309a9e))
+
+
+
 ## [2.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.2.2...@ovh-ux/manager-nasha@2.2.3) (2021-07-28)
 
 

@@ -1,3 +1,18 @@
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.1.4...@ovh-ux/manager-billing-components@3.2.0) (2021-08-25)
+
+
+### Bug Fixes
+
+* **billing-components:** prevent test on service info while loading ([#5364](https://github.com/ovh/manager/issues/5364)) ([7fdd746](https://github.com/ovh/manager/commit/7fdd746f660327acc77820e607a99737a14c4da5))
+
+
+### Features
+
+* **billing-component.resiliation:** add end_strategy parameter ([b5c67dc](https://github.com/ovh/manager/commit/b5c67dc4657e6a15dcbe994f420457f1755d1622))
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.0.0` ([d09ca10](https://github.com/ovh/manager/commit/d09ca10f4b7ca629e0b2f1fcb59278ea7f309a9e))
+
+
+
 ## [3.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.1.3...@ovh-ux/manager-billing-components@3.1.4) (2021-08-11)
 
 

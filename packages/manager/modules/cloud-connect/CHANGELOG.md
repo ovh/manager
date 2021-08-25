@@ -1,3 +1,17 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.2.1...@ovh-ux/manager-cloud-connect@1.3.0) (2021-08-25)
+
+
+### Bug Fixes
+
+* replace `oui-status` by `oui-badge` ([e0267a1](https://github.com/ovh/manager/commit/e0267a1dc495de0ef466f1c3070c0d1ca9053791))
+
+
+### Features
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.0.0` ([d09ca10](https://github.com/ovh/manager/commit/d09ca10f4b7ca629e0b2f1fcb59278ea7f309a9e))
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.2.0...@ovh-ux/manager-cloud-connect@1.2.1) (2021-07-29)
 
 

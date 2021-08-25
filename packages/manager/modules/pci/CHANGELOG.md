@@ -1,3 +1,25 @@
+# [5.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.39.0...@ovh-ux/manager-pci@5.40.0) (2021-08-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1100] ([82b8428](https://github.com/ovh/manager/commit/82b8428aa845df64aa26bf470e611960b3e28aea))
+* **i18n:** add missing translations [CDS 1101] ([bd1573b](https://github.com/ovh/manager/commit/bd1573b5b73c8ef8fe0d69f8707b2fc5c67b2756))
+* **kubernetes.details.restrictions:** fix `id` attribute ([#5422](https://github.com/ovh/manager/issues/5422)) ([b373696](https://github.com/ovh/manager/commit/b373696ce4a71f630d48e1733f7aaa307e112b86))
+* **notebook:** fix resources content ([#5382](https://github.com/ovh/manager/issues/5382)) ([27f1430](https://github.com/ovh/manager/commit/27f1430425f3257172fc4e26410bd3b4e0257f85))
+* **notebook:** fix wrong resources amount ([#5383](https://github.com/ovh/manager/issues/5383)) ([7a08630](https://github.com/ovh/manager/commit/7a086307163936c728bb8abd9df19ea7490357f5))
+* **project.contacts:** update `accountId` label ([#5438](https://github.com/ovh/manager/issues/5438)) ([9ab08b2](https://github.com/ovh/manager/commit/9ab08b22a8b4f549c6a1605633b838f18add2989))
+* replace `oui-icon-external_link` by `oui-icon-external-link` ([645c8e6](https://github.com/ovh/manager/commit/645c8e675bad92c5928664a8aac2db36626fa397))
+* replace `oui-status` by `oui-badge` ([e0267a1](https://github.com/ovh/manager/commit/e0267a1dc495de0ef466f1c3070c0d1ca9053791))
+* **project.users:** remove html entity from menu entry ([#5403](https://github.com/ovh/manager/issues/5403)) ([f854dc1](https://github.com/ovh/manager/commit/f854dc1bc0f7a7367dd9e6e32dd0c6d0284863d1)), closes [#5265](https://github.com/ovh/manager/issues/5265)
+
+
+### Features
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.0.0` ([d09ca10](https://github.com/ovh/manager/commit/d09ca10f4b7ca629e0b2f1fcb59278ea7f309a9e))
+
+
+
 # [5.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.38.0...@ovh-ux/manager-pci@5.39.0) (2021-08-16)
 
 

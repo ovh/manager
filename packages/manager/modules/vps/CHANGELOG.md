@@ -1,3 +1,18 @@
+# [2.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.13.2...@ovh-ux/manager-vps@2.14.0) (2021-08-25)
+
+
+### Bug Fixes
+
+* replace `oui-icon-external_link` by `oui-icon-external-link` ([645c8e6](https://github.com/ovh/manager/commit/645c8e675bad92c5928664a8aac2db36626fa397))
+
+
+### Features
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.0.0` ([d09ca10](https://github.com/ovh/manager/commit/d09ca10f4b7ca629e0b2f1fcb59278ea7f309a9e))
+* **vps.dashboard.resiliation:** concat end_strategy option ([f1e6e1c](https://github.com/ovh/manager/commit/f1e6e1c116482536be96109601b6d670d0b1e722))
+
+
+
 ## [2.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.13.1...@ovh-ux/manager-vps@2.13.2) (2021-07-29)
 
 

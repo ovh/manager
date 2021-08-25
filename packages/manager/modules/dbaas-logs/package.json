@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dbaas-logs",
-  "version": "1.5.5",
+  "version": "1.6.0",
   "private": true,
   "description": "OVHcloud Logs Data Platform",
   "repository": {
@@ -21,7 +21,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.1.2",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
-    "@ovh-ux/ng-at-internet": "^5.6.3",
+    "@ovh-ux/ng-at-internet": "^5.7.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.3",
     "@ovh-ux/ng-ovh-doc-url": "^2.0.2",
     "@ovh-ux/ng-ovh-sidebar-menu": "^10.1.2",

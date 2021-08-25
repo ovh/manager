@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vps",
-  "version": "2.13.2",
+  "version": "2.14.0",
   "private": true,
   "description": "VPS product.",
   "repository": {
@@ -29,7 +29,7 @@
     "@ovh-ux/manager-models": "^1.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^1.1.0 || ^2.0.0",
     "@ovh-ux/manager-product-offers": "^4.0.0 || ^5.0.0",
-    "@ovh-ux/ng-at-internet": "^5.6.3",
+    "@ovh-ux/ng-at-internet": "^5.7.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.4",
     "@ovh-ux/ng-ovh-doc-url": "^2.0.2",
