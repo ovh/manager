@@ -9901,7 +9901,7 @@ flat-cache@^2.0.1:
 
 flatpickr@4.6.9, flatpickr@^4.6.3, flatpickr@~4.5.2:
   version "4.6.9"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
+  resolved "https://registry.npmjs.org/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
   integrity sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==
 
 flatted@^2.0.0:
@@ -12789,7 +12789,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-"lodash@4.6.1 || ^4.16.1", lodash@^4.0.0, lodash@^4.14.0, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.1, lodash@~4.17.10, lodash@~4.17.15:
+"lodash@4.6.1 || ^4.16.1", lodash@^4.0.0, lodash@^4.14.0, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.1, lodash@~4.17.10, lodash@~4.17.15:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -14509,12 +14509,12 @@ osenv@0, osenv@^0.1.4, osenv@^0.1.5:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-ovh-api-services@^11.2.0:
-  version "11.2.0"
-  resolved "https://registry.npmjs.org/ovh-api-services/-/ovh-api-services-11.2.0.tgz#42583c9fe11e216beaa56cfabe535c36e3b5ca75"
-  integrity sha512-zwUANwCyRR+bqJgBgn8CbA6tV6zjB9koSfLb8ZkRXLgO/Y2t9Ra/tKyQeQxCyHL91UcNSN2Z1Mvcym9ehrDcMQ==
+ovh-api-services@^13.0.0:
+  version "13.0.0"
+  resolved "https://registry.npmjs.org/ovh-api-services/-/ovh-api-services-13.0.0.tgz#755517dfd648c297b47a75773820611993522ebe"
+  integrity sha512-59BweK4J9e+GE69vDJNm1kvNu8o0Tt3prH4RWeYp+9B2lUb9DG/neKezL+KiUJidn6kTjH6k0x5k3iYVlngh4g==
   dependencies:
-    lodash "^4.17.20"
+    lodash "^4.17.21"
 
 ovh-common-style@^3.2.2:
   version "3.2.2"
