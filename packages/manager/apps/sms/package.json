@@ -62,7 +62,7 @@
     "moment": "^2.24.0",
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^11.2.0",
+    "ovh-api-services": "^13.0.0",
     "ovh-ngstrap": "^4.0.2",
     "regenerator-runtime": "^0.13.7",
     "validator-js": "^0.2.1",

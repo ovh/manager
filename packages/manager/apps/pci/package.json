@@ -69,7 +69,7 @@
     "lodash-es": "^4.17.15",
     "matchmedia-ng": "^1.0.8",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^11.2.0",
+    "ovh-api-services": "^13.0.0",
     "ovh-common-style": "^5.0.0",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ui-kit-bs": "^4.2.0",

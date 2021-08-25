@@ -132,7 +132,7 @@
     "ng-slide-down": "TheRusskiy/ng-slide-down#^1.0.0",
     "ngSmoothScroll": "d-oliveros/angular-smooth-scroll#~1.7.1",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^11.2.0",
+    "ovh-api-services": "^13.0.0",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ng-input-password": "^1.2.5",
     "ovh-ngstrap": "^4.0.2",
