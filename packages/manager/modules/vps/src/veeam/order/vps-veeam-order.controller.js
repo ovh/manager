@@ -42,6 +42,13 @@ export default class VpsVeeamOrderCtrl {
     return get(price, 'price');
   }
 
+  static getVeeamDuration(option) {
+    const price = find(option.prices, ({ capacities }) =>
+      capacities.includes('renew'),
+    );
+    return price?.duration;
+  }
+
   /* =============================
   =            EVENTS            =
   ============================== */

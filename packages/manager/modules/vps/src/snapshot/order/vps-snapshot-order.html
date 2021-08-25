@@ -20,7 +20,10 @@
                 >
                     <p
                         data-translate="vps_configuration_activate_snapshot_step1_alert"
-                        data-translate-values="{ amount: $ctrl.getSnapshotMonthlyPrice().text }"
+                        data-translate-values="{
+                            amount: $ctrl.getSnapshotMonthlyPrice().text,
+                            duration: ('vps_configuration_activate_snapshot_step1_alert_' + $ctrl.snapshotMonthlyPrice.duration | translate)
+                        }"
                     ></p>
 
                     <p

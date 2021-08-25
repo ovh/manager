@@ -39,7 +39,10 @@
                                     <strong
                                         class="d-block text-right"
                                         data-translate="vps_order_additional_disk_select_capacity_price_tax_free"
-                                        data-translate-values="{ price: $ctrl.getDiskMonthlyPrice(disk).text }"
+                                        data-translate-values="{
+                                            price: $ctrl.getDiskMonthlyPrice(disk).text,
+                                            duration: ('vps_order_additional_disk_select_capacity_price_' + $ctrl.constructor.getDiskDuration(disk) | translate)
+                                        }"
                                     >
                                     </strong>
                                 </oui-select-picker-section>

@@ -25,7 +25,10 @@
 
                     <p
                         data-translate="vps_configuration_activate_ftpbackup_step1_next"
-                        data-translate-values="{ price: $ctrl.getFtpBackupMonthlyPrice($ctrl.ftpBackupOption).text }"
+                        data-translate-values="{
+                            price: $ctrl.getFtpBackupMonthlyPrice($ctrl.ftpBackupOption).text,
+                            duration: ('vps_configuration_activate_ftpbackup_step1_alert_' + $ctrl.constructor.getFtpBackupDuration($ctrl.ftpBackupOption) | translate)
+                        }"
                     ></p>
 
                     <p
