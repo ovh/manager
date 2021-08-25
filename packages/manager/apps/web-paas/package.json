@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-paas-app",
-  "version": "1.1.5",
+  "version": "1.2.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
     "@ovh-ux/manager-product-offers": "^4.0.0 || ^5.0.0",
     "@ovh-ux/manager-web-paas": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-webpack-dev-server": "^2.8.2",
-    "@ovh-ux/ng-at-internet": "^5.6.3",
+    "@ovh-ux/ng-at-internet": "^5.7.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.8",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.4",

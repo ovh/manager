@@ -1,3 +1,12 @@
+# [6.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.1.3...@ovh-ux/manager-telecom-dashboard@6.2.0) (2021-08-25)
+
+
+### Features
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.0.0` ([d09ca10](https://github.com/ovh/manager/commit/d09ca10f4b7ca629e0b2f1fcb59278ea7f309a9e))
+
+
+
 ## [6.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.1.2...@ovh-ux/manager-telecom-dashboard@6.1.3) (2021-06-29)
 
 

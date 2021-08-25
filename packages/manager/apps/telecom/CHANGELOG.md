@@ -1,3 +1,21 @@
+# [13.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.24.5...@ovh-ux/manager-telecom@13.25.0) (2021-08-25)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.1.0` ([#5429](https://github.com/ovh/manager/issues/5429)) ([7099de9](https://github.com/ovh/manager/commit/7099de97320cdbdac5652b2c7ed70327251ed749))
+* **i18n:** add missing translations [CDS 1102] ([196eb3f](https://github.com/ovh/manager/commit/196eb3f2ae608f16558617d1a042968dfae10b80))
+* **i18n:** add missing translations [CDS 1108] ([4742eca](https://github.com/ovh/manager/commit/4742eca51f26be6b0230c6738bdf189df630757d))
+* **i18n:** add missing translations [CDS 1111] ([d57157f](https://github.com/ovh/manager/commit/d57157f80118d997f4aa8064c84488fec7868ec8))
+* **i18n:** add missing translations [CDS 1116] ([e6967e1](https://github.com/ovh/manager/commit/e6967e161d78ebbd27d801340d3de737c80777b7))
+
+
+### Features
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.0.0` ([d09ca10](https://github.com/ovh/manager/commit/d09ca10f4b7ca629e0b2f1fcb59278ea7f309a9e))
+
+
+
 ## [13.24.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.24.4...@ovh-ux/manager-telecom@13.24.5) (2021-08-11)
 
 

@@ -1,3 +1,17 @@
+# [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.4.3...@ovh-ux/manager-account-sidebar@3.5.0) (2021-08-25)
+
+
+### Bug Fixes
+
+* update chatbot menu entry ([#5436](https://github.com/ovh/manager/issues/5436)) ([a7c82fa](https://github.com/ovh/manager/commit/a7c82fa4edaf28671317bd42eedcbb311bafd9dc))
+
+
+### Features
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.0.0` ([d09ca10](https://github.com/ovh/manager/commit/d09ca10f4b7ca629e0b2f1fcb59278ea7f309a9e))
+
+
+
 ## [3.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.4.2...@ovh-ux/manager-account-sidebar@3.4.3) (2021-06-29)
 
 

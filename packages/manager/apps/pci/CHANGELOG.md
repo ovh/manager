@@ -1,3 +1,17 @@
+# [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.2.4...@ovh-ux/manager-pci-app@3.3.0) (2021-08-25)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.1.0` ([#5429](https://github.com/ovh/manager/issues/5429)) ([7099de9](https://github.com/ovh/manager/commit/7099de97320cdbdac5652b2c7ed70327251ed749))
+
+
+### Features
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.0.0` ([d09ca10](https://github.com/ovh/manager/commit/d09ca10f4b7ca629e0b2f1fcb59278ea7f309a9e))
+
+
+
 ## [3.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.2.3...@ovh-ux/manager-pci-app@3.2.4) (2021-07-28)
 
 

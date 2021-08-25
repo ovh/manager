@@ -1,3 +1,17 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.1.0...@ovh-ux/manager-components@1.2.0) (2021-08-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1100] ([82b8428](https://github.com/ovh/manager/commit/82b8428aa845df64aa26bf470e611960b3e28aea))
+
+
+### Features
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.0.0` ([d09ca10](https://github.com/ovh/manager/commit/d09ca10f4b7ca629e0b2f1fcb59278ea7f309a9e))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.0.0...@ovh-ux/manager-components@1.1.0) (2021-08-11)
 
 

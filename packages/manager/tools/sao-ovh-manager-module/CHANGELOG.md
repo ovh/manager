@@ -1,3 +1,12 @@
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-module@1.2.1...@ovh-ux/sao-ovh-manager-module@1.2.2) (2021-08-25)
+
+
+### Bug Fixes
+
+* add missing peerDeps `@ovh-ux/ng-ui-router-breadcrumb` ([#5430](https://github.com/ovh/manager/issues/5430)) ([43447e8](https://github.com/ovh/manager/commit/43447e8a78675eef388a20d3275da54dab5d0309))
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-module@1.2.0...@ovh-ux/sao-ovh-manager-module@1.2.1) (2021-06-16)
 
 

@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/mfa-enrollment@2.0.3...@ovh-ux/mfa-enrollment@2.1.0) (2021-08-25)
+
+
+### Features
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.0.0` ([d09ca10](https://github.com/ovh/manager/commit/d09ca10f4b7ca629e0b2f1fcb59278ea7f309a9e))
+
+
+
 ## [2.0.3](https://github.com/ovh/manager/compare/@ovh-ux/mfa-enrollment@2.0.2...@ovh-ux/mfa-enrollment@2.0.3) (2020-10-28)
 
 
