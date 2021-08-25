@@ -93,6 +93,15 @@
             <span data-ng-bind=":: $row.durationString"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title=":: 'pci_notebook_list_creator' | translate"
+            data-property="user"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_notebook_list_status' | translate"
             data-property="state"
             data-sortable
