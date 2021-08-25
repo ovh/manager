@@ -36,24 +36,31 @@ export default /* @ngInject */ ($stateProvider) => {
             ({ data }) =>
               data.models['services.billing.engagement.EndStrategyEnum']?.enum,
           ),
-      goBack: /* @ngInject */ (atInternet, goToDashboard) => (
+      goBack: /* @ngInject */ (trackClick, goToDashboard) => (
         message,
         type,
       ) => {
-        atInternet.trackClick({
-          name: 'dedicated::dedicated::server::dashboard::resiliation::cancel',
-          type: 'action',
-        });
+        trackClick(
+          'dedicated::dedicated::server::dashboard::resiliation::cancel',
+        );
         return goToDashboard(message, type);
       },
-      onSuccess: /* @ngInject */ (atInternet, goToDashboard) => (
+      onSuccess: /* @ngInject */ (trackClick, goToDashboard) => (
         successMessage,
+        endStrategy,
       ) => {
-        atInternet.trackClick({
-          name: 'dedicated::dedicated::server::dashboard::resiliation::confirm',
+        const hitToConcat = endStrategy ? `_${endStrategy}` : '';
+        trackClick(
+          `dedicated::dedicated::server::dashboard::resiliation::confirm${hitToConcat}`,
+        );
+
+        return goToDashboard(successMessage);
+      },
+      trackClick: /* @ngInject */ (atInternet) => (hit) => {
+        return atInternet.trackClick({
+          name: hit,
           type: 'action',
         });
-        return goToDashboard(successMessage);
       },
       serviceId: /* @ngInject */ (serviceInfos) => serviceInfos.serviceId,
       serviceName: /* @ngInject */ ($transition$) =>

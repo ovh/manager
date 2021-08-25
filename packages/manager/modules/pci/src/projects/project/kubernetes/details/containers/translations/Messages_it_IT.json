@@ -2,5 +2,5 @@
   "kube_containers_coming_soon": "In arrivo",
   "kube_containers_description": "Qui visualizzi tutti i container e i servizi ospitati nel tuo cluster Kubernetes.",
   "kube_containers_description_dashboard": "Ti consigliamo di utilizzare il tool da riga di comando \"kubectl\" o installare la Dashboard Kubernetes, un’interfaccia utente Web mantenuta dalla Community Kubernetes e disponibile come servizio all’interno del cluster.",
-  "kube_containers_description_dashboard_link": "Consulta <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">questa guida<span class=\"oui-icon oui-icon-external_link\" aria-hidden=\"true\"></span></a> per installare la dashboard Kubernetes."
+  "kube_containers_description_dashboard_link": "Consulta <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">questa guida<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> per installare la dashboard Kubernetes."
 }

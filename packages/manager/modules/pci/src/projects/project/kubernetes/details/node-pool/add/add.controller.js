@@ -4,11 +4,10 @@ import { NODE_POOL_NAME_REGEX } from './add.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, Kubernetes, OvhApiCloudProjectKube) {
+  constructor($translate, CucCloudMessage, Kubernetes) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.Kubernetes = Kubernetes;
-    this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
   }
 
   $onInit() {

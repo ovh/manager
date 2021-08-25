@@ -15,7 +15,7 @@
     "moment": "^2.24.0"
   },
   "devDependencies": {
-    "@ovh-ux/ui-kit": "^4.7.0",
+    "@ovh-ux/ui-kit": "^5.1.0",
     "bootstrap": "^4.4.1",
     "lodash-es": "^4.17.15"
   },
@@ -35,7 +35,7 @@
     "@ovh-ux/ng-ovh-utils": "^14.0.14",
     "@ovh-ux/ng-translate-async-loader": "^2.1.2",
     "@ovh-ux/ng-ui-router-layout": "^4.0.3",
-    "@ovh-ux/ui-kit": "^4.6.0",
+    "@ovh-ux/ui-kit": "^5.0.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "1.7.x",
     "angular-route": "1.7.x",

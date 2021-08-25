@@ -19,7 +19,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^6.0.0 || ^7.0.0",
-    "@ovh-ux/ui-kit": "^4.4.1",
+    "@ovh-ux/ui-kit": "^5.0.0",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "ovh-api-services": "^11.2.0",

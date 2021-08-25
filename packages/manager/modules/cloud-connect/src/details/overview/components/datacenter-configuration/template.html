@@ -54,9 +54,9 @@
                         <span
                             class="oui-badge"
                             data-ng-class="{
-                            'oui-status_success': $ctrl.datacenter.isActive(),
-                            'oui-status_error': $ctrl.datacenter.isError(),
-                            'oui-status_warning': $ctrl.datacenter.isInProcess()
+                            'oui-badge_success': $ctrl.datacenter.isActive(),
+                            'oui-badge_error': $ctrl.datacenter.isError(),
+                            'oui-badge_warning': $ctrl.datacenter.isInProcess()
                         }"
                             data-ng-bind="'cloud_connect_status_' +  $ctrl.datacenter.status | translate"
                         ></span>

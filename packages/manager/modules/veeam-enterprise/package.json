@@ -23,7 +23,7 @@
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.3",
     "@ovh-ux/ng-ui-router-layout": "^4.0.2",
-    "@ovh-ux/ui-kit": "^4.4.1",
+    "@ovh-ux/ui-kit": "^5.0.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",

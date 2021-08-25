@@ -89,9 +89,9 @@
                         <span
                             class="oui-badge"
                             data-ng-class="{
-                          'oui-status_success': extraConfig.isActive(),
-                          'oui-status_error': extraConfig.isError(),
-                          'oui-status_warning': extraConfig.isInProcess()
+                          'oui-badge_success': extraConfig.isActive(),
+                          'oui-badge_error': extraConfig.isError(),
+                          'oui-badge_warning': extraConfig.isInProcess()
                       }"
                             data-ng-bind="'cloud_connect_status_' +  extraConfig.status | translate"
                         ></span>

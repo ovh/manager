@@ -59,7 +59,7 @@
                 ></span>
             </div>
             <a
-                data-ng-if="$ctrl.constructor.showCommit($ctrl.serviceInfos, $ctrl.service.isEngaged(), $ctrl.highlightEngagement)"
+                data-ng-if="!$ctrl.isLoading && $ctrl.constructor.showCommit($ctrl.serviceInfos, $ctrl.service.isEngaged(), $ctrl.highlightEngagement)"
                 class="oui-link_icon"
                 data-ng-href="{{ $ctrl.goToCommit() }}"
                 data-ng-click="$ctrl.trackClick('go-to-commit')"

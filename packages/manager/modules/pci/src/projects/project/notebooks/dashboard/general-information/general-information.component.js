@@ -4,6 +4,7 @@ import template from './general-information.html';
 export default {
   bindings: {
     notebook: '<',
+    flavor: '<',
     flavors: '<',
     projectId: '<',
     trackNotebooks: '<',

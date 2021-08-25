@@ -30,7 +30,7 @@
     "@ovh-ux/ng-ovh-web-universe-components": "^8.0.0 || ^9.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.2",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.4",
-    "@ovh-ux/ui-kit": "^4.4.1",
+    "@ovh-ux/ui-kit": "^5.0.0",
     "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.7.5",
     "angular-route": "^1.7.5",

@@ -15,7 +15,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/ui-kit": "^4.7.0",
+    "@ovh-ux/ui-kit": "^5.1.0",
     "bootstrap": "^3.3.7"
   },
   "peerDependencies": {
@@ -27,7 +27,7 @@
     "@ovh-ux/ng-ovh-user-pref": "^2.0.2",
     "@ovh-ux/ng-ovh-utils": "^14.0.14",
     "@ovh-ux/ng-translate-async-loader": "^2.1.2",
-    "@ovh-ux/ui-kit": "^4.4.1",
+    "@ovh-ux/ui-kit": "^5.0.0",
     "@uirouter/angularjs": "^1.0.0",
     "URIjs": "^1.14.0",
     "angular": "^1.6.10",

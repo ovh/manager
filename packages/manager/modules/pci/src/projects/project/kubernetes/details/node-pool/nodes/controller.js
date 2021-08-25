@@ -7,20 +7,12 @@ import { STATUS } from '../../constants';
 
 export default class KubernetesNodesCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    CucCloudMessage,
-    Kubernetes,
-    PciProjectFlavors,
-    OvhApiCloudProjectKube,
-  ) {
+  constructor($q, $translate, CucCloudMessage, Kubernetes, PciProjectFlavors) {
     this.$q = $q;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.Kubernetes = Kubernetes;
     this.PciProjectFlavors = PciProjectFlavors;
-    this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
     this.STATUS = STATUS;
   }
 

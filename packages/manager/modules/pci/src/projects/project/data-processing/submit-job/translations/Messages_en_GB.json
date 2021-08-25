@@ -25,7 +25,7 @@
   "data_processing_submit_job_error_message_odp_job_driverMemoryOverhead_tooSmall": "Entry error: The overhead memory requested for the driver is too low",
   "data_processing_submit_job_error_message_odp_job_totalExecutorMemory_tooBig": "Entry error: The total memory and overhead memory requested for the worker nodes is too high",
   "data_processing_submit_job_error_message_odp_job_totalDriverMemory_tooBig": "Entry error: The total memory and overhead memory requested for the driver is too high",
-  "data_processing_submit_job_error_message_odp_project_notEnoughQuotas": "Quota error: The quotas for your Public Cloud project are insufficient. Please go to the following page to <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\">manage your Public Cloud quota<span class=\"oui-icon oui-icon-external_link\" aria-hidden=\"true\"></span></a>",
+  "data_processing_submit_job_error_message_odp_project_notEnoughQuotas": "Quota error: The quotas for your Public Cloud project are insufficient. Please go to the following page to <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\">manage your Public Cloud quota<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>",
   "data_processing_submit_job_error_message_odp_mainApplicationCode_notFound": "Entry error: The file requested cannot be found in the Object Storage container you have specified",
   "data_processing_submit_job_error_message_odp_condaEnvironment_isRequired": "Entry error: No Conda environment files have been found on the Object Storage container you have specified"
 }

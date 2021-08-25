@@ -1,24 +1,4 @@
 <div>
-    <div
-        class="alert alert-dismissible alert-warning mb-0"
-        role="alert"
-        data-ng-if="AppCtrl.incidentMessage"
-    >
-        <button
-            type="button"
-            class="close"
-            data-dismiss="alert"
-            aria-label="{{ 'wizard_close' | translate }}"
-        ></button>
-        <span data-ng-bind-html="AppCtrl.incidentMessage"></span>
-        <button
-            type="button"
-            class="btn btn-link p-0"
-            style="font-size: 1em;"
-            data-ng-click="AppCtrl.getIncidentInformations()"
-            data-translate="common_incident_details"
-        ></button>
-    </div>
     <div ui-view></div>
     <div
         id="currentActionApp"

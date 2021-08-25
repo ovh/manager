@@ -83,8 +83,8 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                    'oui-status_success' : $row.autoscale,
-                    'oui-status_error' : !$row.autoscale
+                    'oui-badge_success' : $row.autoscale,
+                    'oui-badge_error' : !$row.autoscale
                     }"
                 data-translate="{{:: 'kube_node_pool_autoscale_' + $row.autoscale }}"
             ></span>
@@ -134,17 +134,19 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                    'oui-status_success' : $row.isReady(),
-                    'oui-status_warning' : $row.isProcessing(),
-                    'oui-status_error' : $row.isError()
+                    'oui-badge_success' : $row.isReady(),
+                    'oui-badge_warning' : $row.isProcessing(),
+                    'oui-badge_error' : $row.isError()
                     }"
                 data-translate="{{:: 'kube_nodes_status_' + $row.status }}"
             >
             </span>
         </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">
-            <oui-action-menu-item data-on-click="$ctrl.scaleNodePool($row.id, $row.name)"
-                                  data-disabled="!$row.isReady()">
+            <oui-action-menu-item
+                data-on-click="$ctrl.scaleNodePool($row.id, $row.name)"
+                data-disabled="!$row.isReady()"
+            >
                 <span data-translate="kube_node_pool_scale"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
