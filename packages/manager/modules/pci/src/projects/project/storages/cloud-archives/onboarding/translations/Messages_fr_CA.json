@@ -1,0 +1,11 @@
+{
+  "pci_projects_project_storages_cloud_archives_onboarding_title": "Cloud Archive",
+  "pci_projects_project_storages_cloud_archives_onboarding_content1": "Vous n'avez pas encore créé de service Cloud Archive.",
+  "pci_projects_project_storages_cloud_archives_onboarding_content2": "Archivez vos données sur le long terme et accédez-y par des protocoles standards.",
+  "pci_projects_project_storages_cloud_archives_onboarding_content3": "Cloud Archive permet de conserver vos données dites « froides » sur de longues périodes. Il s’agit d’informations qui n'ont pas besoin d'être consultées régulièrement et qui doivent être gardées pour des raisons métier ou légales. Vous pouvez gérer vos données dans Cloud Archive via les protocoles standards SCP, SFTP et HTTPS, ainsi qu’en utilisant des outils tels que rsync ou le client OpenStack Swift. Pour récupérer vos informations, il suffit de les « réveiller » par une simple requête. Après un délai de quelques minutes à quelques heures, vous pourrez les télécharger.",
+  "pci_projects_project_storages_cloud_archives_onboarding_content4": "Vos données sont sécurisées par l'algorithme Erasure Code, afin de garantir leur pérennité, et vous profitez d'une facturation à l'usage dès le premier Go.",
+  "pci_projects_project_storages_cloud_archives_onboarding_action_label": "Créer un conteneur d'archive",
+
+  "pci_projects_project_storages_cloud_archives_onboarding_guides_retrieve-data-bcp_title": "Récupérer les données provenant de PCA",
+  "pci_projects_project_storages_cloud_archives_onboarding_guides_retrieve-data-bcp_description": ""
+}
