@@ -58,9 +58,7 @@ export default class Engine {
       versionName,
       planName,
       regionName,
-    ).flavors.reduce((highestFlavor, flavor) =>
-      flavor.compare(highestFlavor) < 0 ? flavor : highestFlavor,
-    );
+    ).flavors.sort((a, b) => a.compare(b))[0];
   }
 
   getAvailablePlans(versionName, regionName) {
