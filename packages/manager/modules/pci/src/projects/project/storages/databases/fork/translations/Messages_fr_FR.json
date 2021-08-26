@@ -10,7 +10,7 @@
   "pci_database_fork_nodes_count_tooltip": "Le nombre de nœuds varie en fonction de l’offre de service choisie. Pendant la béta, ce nombre ne peut pas être modifié à la création.",
   "pci_database_fork_select_flavor": "Sélectionner le modèle des nœuds",
   "pci_database_fork_step5_title": "Configurez vos options",
-  "pci_database_fork_name": "Nommez votre database",
+  "pci_database_fork_name": "Nommez votre service de base de données",
   "pci_database_fork_name_help_text": "Le nom doit comporter au moins 3 caractères",
   "pci_database_fork_network_mode_label": "Type de réseau",
   "pci_database_fork_network_mode_public": "Public",
