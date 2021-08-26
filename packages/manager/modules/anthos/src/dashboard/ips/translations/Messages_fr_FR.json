@@ -14,7 +14,7 @@
   "anthos_dashboard_ips_datagrid_private_actions_menu": "Actions",
   "anthos_dashboard_ips_datagrid_private_ips_header_type": "Type",
   "anthos_dashboard_ips_datagrid_private_ips_header_status": "Statut",
-  "anthos_dashboard_ips_datagrid_private_ips_header_delete": "Supprimer",
+  "anthos_dashboard_ips_datagrid_private_ips_header_remove": "Supprimer",
   "anthos_dashboard_ips_datagrid_private_ips_value_type": "Privée",
   "anthos_dashboard_ips_datagrid_private_ips_value_delete": "Supprimer",
   "anthos_dashboard_ips_datagrid_private_ips_value_status_true": "Actif",
