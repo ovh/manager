@@ -12,7 +12,7 @@
   "pci_database_add_nodes_count_tooltip": "The number of nodes depends on the plan you have chosen. In the beta test version, this number cannot be changed at the creation step.",
   "pci_database_add_select_flavor": "Select the node model",
   "pci_database_add_step5_title": "Configure your options",
-  "pci_database_add_name": "Name your database",
+  "pci_database_add_name": "Name your database service",
   "pci_database_add_name_help_text": "The name must include at least 3 characters",
   "pci_database_add_network_mode_label": "Network type",
   "pci_database_add_network_mode_public": "Public",
