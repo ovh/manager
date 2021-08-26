@@ -21,6 +21,8 @@ export default {
     goToTenant: '<',
     goToOrderHost: '<',
     goToOrderPublicIPs: '<',
+    goToAssignPrivateIp: '<',
+    goToRemovePrivateIp: '<',
     reloadState: '<',
   },
   controller,
