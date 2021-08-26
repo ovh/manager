@@ -41,17 +41,13 @@
                 title=":: 'pci_notebooks_tab_attach_data_page_volumes_column_name' | translate"
                 sortable="true"
             >
-                <span
-                    data-ng-bind="$row.container || $row.privateSwift.container"
-                ></span>
+                <span data-ng-bind="$row.privateSwift.container"></span>
             </oui-datagrid-column>
             <oui-datagrid-column
                 title=":: 'pci_notebooks_tab_attach_data_page_volumes_column_region' | translate"
                 sortable="true"
             >
-                <span
-                    data-ng-bind="$row.region || $row.privateSwift.region"
-                ></span>
+                <span data-ng-bind="$row.privateSwift.region"></span>
             </oui-datagrid-column>
             <oui-datagrid-column
                 title=":: 'pci_notebooks_tab_attach_data_page_volumes_column_mount_path' | translate"
