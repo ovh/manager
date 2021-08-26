@@ -38,7 +38,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-payment-method' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@adyen/adyen-web": "3.20.0",
+    "@adyen/adyen-web": "4.7.3",
     "lodash-es": "^4.17.11"
   },
   "devDependencies": {

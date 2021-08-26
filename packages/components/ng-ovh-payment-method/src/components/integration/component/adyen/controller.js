@@ -49,13 +49,9 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
 
   initializeComponent() {
     const adyenConfiguration = {
-      onConfigSuccess: () => {
-        this.$timeout(() => {
-          this.isComponentLoaded = true;
-        });
-      },
       onChange: (state) => {
         this.$timeout(() => {
+          this.isComponentLoaded = true;
           this.state = state;
           this.isInputsValid = state.isValid;
         });
@@ -68,6 +64,11 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
             locale: this.ovhPaymentMethod.getUserLocale(),
           }
         : {}),
+      environment: ADYEN_CONFIG.CLIENT_KEY_ENV_PATTERNS.test(
+        this.initialParams.paymentMethod.merchantId,
+      )
+        ? ADYEN_CONFIG.ENV_ENUM.TEST
+        : ADYEN_CONFIG.ENV_ENUM.LIVE,
     };
 
     this.createAdyenComponent(adyenConfiguration);
@@ -80,7 +81,9 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
     this.checkout = new AdyenCheckout(adyenConfiguration);
     this.checkout
       .create('card', {
-        brands: ['mc', 'visa', 'cartebancaire'],
+        ...AdyenService.parseFormSessionId(
+          this.initialParams.paymentMethod.formSessionId,
+        ),
       })
       .mount('#adyen-component-container');
   }
