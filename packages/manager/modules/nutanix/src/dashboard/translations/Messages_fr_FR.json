@@ -1,3 +1,6 @@
 {
-  "world": "World!"
+  "nutanix_dashboard_general_info": "Informations générales",
+  "nutanix_dashboard_nodes": "Nodes",
+  "nutanix_dashboard_guides_header": "Guides",
+  "nutanix_dashboard_guides_header_all_guides": "Tous les guides"
 }

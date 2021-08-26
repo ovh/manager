@@ -3,8 +3,7 @@ import template from './template.html';
 
 export default {
   bindings: {
-    serviceName: '<',
-    cluster: '<',
+    node: '<',
   },
   controller,
   template,
