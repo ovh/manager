@@ -4,7 +4,7 @@ import './time-range.scss';
 
 export default {
   bindings: {
-    available: '=',
+    available: '<',
     selectedRange: '=',
   },
   controller,
