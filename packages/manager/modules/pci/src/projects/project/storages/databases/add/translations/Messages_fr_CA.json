@@ -1,10 +1,10 @@
 {
-  "pci_database_add_title": "Créer une instance de base de données",
-  "pci_database_add_description1": "Créer une base de données disponible dans votre projet Public Cloud. Si vous souhaitez utiliser un réseau privé et que celui-ci n’existe pas encore, merci de créer",
+  "pci_database_add_title": "Créer un service de base de données",
+  "pci_database_add_description1": "Créer un service de base de données disponible dans votre projet Public Cloud. Si vous souhaitez utiliser un réseau privé et que celui-ci n’existe pas encore, merci de créer",
   "pci_database_add_description2": "un réseau privé ou un sous-réseau",
   "pci_database_add_description3": "d’abord.",
-  "pci_database_add_step1_title": "Choisissez votre base de données",
-  "pci_database_add_step1_description": "Sélectionner la base de données correspondant à vos besoins",
+  "pci_database_add_step1_title": "Choisissez votre type de base de données",
+  "pci_database_add_step1_description": "Sélectionner le type de base de données correspondant à vos besoins",
   "pci_database_add_step2_title": "Sélectionner une offre",
   "pci_database_add_step3_title": "Sélectionner une localisation",
   "pci_database_add_step4_title": "Caractéristiques",
@@ -12,7 +12,7 @@
   "pci_database_add_nodes_count_tooltip": "Le nombre de nœuds varie en fonction de l’offre de service choisie. Pendant la béta, ce nombre ne peut pas être modifié à la création.",
   "pci_database_add_select_flavor": "Sélectionner le modèle des nœuds",
   "pci_database_add_step5_title": "Configurez vos options",
-  "pci_database_add_name": "Nommez votre database",
+  "pci_database_add_name": "Nommez votre service de base de données",
   "pci_database_add_name_help_text": "Le nom doit comporter au moins 3 caractères",
   "pci_database_add_network_mode_label": "Type de réseau",
   "pci_database_add_network_mode_public": "Public",
@@ -26,9 +26,9 @@
   "pci_database_add_subnet_description": "Vous pouvez créer un sous-réseau, mais vous perdrez votre configuration actuelle.",
   "pci_database_add_subnet_add": "Créer un sous-réseau",
   "pci_database_add_subnet_loading": "Chargement de sous-réseaux",
-  "pci_database_add_step6_title": "Configuration de la base de données",
-  "pci_database_add_create_database": "Créer une instance de base de données",
-  "pci_database_add_create_database_processing": "Le serveur de données est en cours de création",
-  "pci_database_add_create_database_success": "Votre base de données est en cours de création et sera disponible dans quelques minutes.",
-  "pci_database_add_create_database_error": "Une erreur est survenue lors de la création de votre base de données. Veuillez retenter l’opération ultérieurement : {{message}}"
+  "pci_database_add_step6_title": "Configuration du service de base de données",
+  "pci_database_add_create_database": "Créer un service de base de données",
+  "pci_database_add_create_database_processing": "Le service est en cours de création",
+  "pci_database_add_create_database_success": "Votre service est en cours de création et sera disponible dans quelques minutes.",
+  "pci_database_add_create_database_error": "Une erreur est survenue lors de la création de votre service. Veuillez retenter l’opération ultérieurement : {{message}}"
 }

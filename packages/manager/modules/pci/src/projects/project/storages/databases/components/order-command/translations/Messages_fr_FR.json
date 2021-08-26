@@ -1,10 +1,10 @@
 {
   "pci_database_order_command_title": "Commande équivalente",
-  "pci_database_order_command_description": "La commande suivante vous permet de créer votre base de données grâce à",
+  "pci_database_order_command_description": "La commande suivante vous permet de créer votre service grâce à",
   "pci_database_order_command_api_link": "notre API",
   "pci_database_order_command_parameters": "Paramètres :",
   "pci_database_order_command_parameters_info": "Plus d’informations sur les paramètres disponibles :",
-  "pci_database_order_command_parameters_info_description": "Nom de votre base de données",
+  "pci_database_order_command_parameters_info_description": "Nom de votre service",
   "pci_database_order_command_parameters_info_networkId": "Réseau privé openstack id",
   "pci_database_order_command_parameters_info_subnetId": "Sous-réseau id",
   "pci_database_order_command_parameters_info_nodesPattern_flavor": "Caractéristiques sélectionnées",

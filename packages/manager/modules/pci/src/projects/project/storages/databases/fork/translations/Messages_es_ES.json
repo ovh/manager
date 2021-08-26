@@ -1,6 +1,6 @@
 {
   "pci_database_fork_title": "Crear una instancia de base de datos",
-  "pci_database_fork_description": "Lorem ipsum {{backup.id}} {{backup.size.value}} {{backup.size.unit}}",
+  "pci_database_fork_description": "Le fork de votre sauvegarde s’effectuera sur un nouveau cluster. Nous allons restaurer la sauvegarde {{backup.id}} de {{backup.size.value}} {{backup.size.unit}}.",
   "pci_database_fork_step1_title": "Seleccione su base de datos",
   "pci_database_fork_step1_description": "Seleccionar la base de datos que mejor se adapta a mis necesidades",
   "pci_database_fork_step2_title": "Seleccionar una solución",

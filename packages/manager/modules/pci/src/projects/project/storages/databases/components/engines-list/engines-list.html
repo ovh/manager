@@ -18,8 +18,8 @@
                 data-match="version"
                 data-model="engine.selectedVersion"
                 data-name="{{ engine.name + 'versions' }}"
-                data-on-change="$ctrl.selectedEngine = engine; $ctrl.onChange({ selectedEngine: modelValue })"
-                data-disable-items="$ctrl.currentEngine && $ctrl.currentEngine.selectedVersion.version > $item.version"
+                data-on-change="$ctrl.handleVersionChange(engine, modelValue)"
+                data-disable-items="$ctrl.isDisabledVersion($item)"
             >
                 <span data-ng-bind="$item.version"></span>
                 <span

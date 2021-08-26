@@ -3,9 +3,9 @@
   "pci_databases_backup_expiration_date": "Data de expiração",
   "pci_databases_backup_restore": "Restaurar",
   "pci_databases_backup_fork": "Fork",
-  "pci_databases_backup_region": "Lorem Ipsum",
+  "pci_databases_backup_region": "Localisation",
   "pci_databases_backup_description1": "Poderá encontrar abaixo a lista dos seus backups. Pode restaurar ou eliminar cada um deles.",
   "pci_databases_backup_description2": "Estes backups são conservados para a manutenção operacional do seu serviço.",
-  "pci_databases_backup_informations_title": "Lorem Ipsum",
-  "pci_databases_backup_informations_retention": "Lorem Ipsum"
+  "pci_databases_backup_informations_title": "Sauvegardes de la base de données",
+  "pci_databases_backup_informations_retention": "Durée de rétention"
 }

@@ -1,6 +1,6 @@
 {
   "pci_databases_backups_restore_title": "Backup wiederherstellen",
-  "pci_databases_backups_restore_description": "Möchten Sie das folgende Backup wiederherstellen: {{ name }}?",
+  "pci_databases_backups_restore_description": "La restauration d'une sauvegarde écrase la donnée actuellement présente sur votre cluster. Cela peut entrainer une perte de données.",
   "pci_databases_backups_restore_confirm": "Bestätigen",
   "pci_databases_backups_restore_cancel": "Abbrechen",
   "pci_databases_backups_restore_success": "Die Anfrage zur Wiederherstellung des Backups {{ name }} wurde erfolgreich erstellt.",

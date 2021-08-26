@@ -4,6 +4,5 @@
   "pci_databases_dashboard_users_tab_title": "Usuarios",
   "pci_databases_dashboard_allowed_ips_tab_title": "IP autorizadas",
   "pci_databases_dashboard_logs_tab_title": "Logs",
-  "pci_databases_dashboard_database_processing_state": "Una vez finalizado el despliegue, ya podrá realizar operaciones en su cluster.",
   "pci_databases_dashboard_metrics_tab_title": "Metrics"
 }

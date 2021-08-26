@@ -4,6 +4,6 @@
   "pci_databases_edit_name_cancel": "Annuler",
   "pci_databases_edit_name_description": "Modifie le nom affiché dans l’en-tête",
   "pci_databases_edit_name_label": "Nom",
-  "pci_databases_edit_name_success": "Le nom de la base de données a été mis à jour.",
-  "pci_databases_edit_name_error": "Une erreur est survenue lors du renommage de la base de données : {{ message }}"
+  "pci_databases_edit_name_success": "Le nom de votre service a été mis à jour.",
+  "pci_databases_edit_name_error": "Une erreur est survenue lors du renommage de votre service : {{ message }}"
 }

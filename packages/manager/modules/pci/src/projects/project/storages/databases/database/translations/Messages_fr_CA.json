@@ -2,8 +2,7 @@
   "pci_databases_dashboard_info_tab_title": "Informations générales",
   "pci_databases_dashboard_backup_tab_title": "Sauvegardes",
   "pci_databases_dashboard_users_tab_title": "Utilisateurs",
-  "pci_databases_dashboard_allowed_ips_tab_title": "IPs autorisées",  
+  "pci_databases_dashboard_allowed_ips_tab_title": "IPs autorisées",
   "pci_databases_dashboard_logs_tab_title": "Logs",
-  "pci_databases_dashboard_database_processing_state": "Vous pourrez réaliser des opérations sur votre cluster lorsque son déploiement sera finalisé.",
   "pci_databases_dashboard_metrics_tab_title": "Metrics"
 }
