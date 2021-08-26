@@ -1,5 +1,7 @@
 {
   "pci_databases_general_information_upgrade_node_confirm": "Upgrade my node model",
+  "pci_databases_general_information_upgrade_node": "Upgrade node model",
+  "pci_databases_general_information_upgrade_node_back": "Information",
   "pci_databases_general_information_upgrade_node_cancel": "Cancel",
   "pci_databases_general_information_upgrade_node_description": "You are currently using node model {{currentNodeModel}}. You can upgrade it by clicking 'Upgrade my node model' below.",
   "pci_databases_general_information_upgrade_node_warning": "Once you have upgraded your node model, you will not be able to downgrade to a lower version.",

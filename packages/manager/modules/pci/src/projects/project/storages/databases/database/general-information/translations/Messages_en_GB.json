@@ -39,7 +39,7 @@
   "pci_databases_general_information_connection_information": "Login information",
   "pci_databases_general_information_connection_information_mongo_shell": "Log in with mongo shell",
   "pci_databases_general_information_connection_information_application": "Log in with an application",
-  "pci_databases_general_information_database_ready": "Your database is ready to use.",
+  "pci_databases_general_information_database_ready": "Your service is ready to use.",
   "pci_databases_general_information_node_ready": "Your {{nodeName}} node is ready.",
   "pci_databases_general_information_generate_password": "You will need to regenerate your admin password to use your data cluster.",
   "pci_databases_general_information_no_ip": "You need authorized IP adresses on your cluster to be able to use it.",

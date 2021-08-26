@@ -25,8 +25,8 @@
   "pci_database_fork_subnet_add": "Créer un sous-réseau",
   "pci_database_fork_subnet_loading": "Chargement de sous-réseaux",
   "pci_database_fork_step6_title": "Configuration de la base de données",
-  "pci_database_fork_create_database": "Créer une instance de base de données",
-  "pci_database_fork_create_database_processing": "Le serveur de données est en cours de création",
-  "pci_database_fork_create_database_success": "Votre base de données est en cours de création et sera disponible dans quelques minutes.",
-  "pci_database_fork_create_database_error": "Une erreur est survenue lors de la création de votre base de données. Veuillez retenter l’opération ultérieurement : {{message}}"
+  "pci_database_fork_create_database": "Créer un service de base de données",
+  "pci_database_fork_create_database_processing": "Le service est en cours de création",
+  "pci_database_fork_create_database_success": "Votre service est en cours de création et sera disponible dans quelques minutes.",
+  "pci_database_fork_create_database_error": "Une erreur est survenue lors de la création de votre service. Veuillez retenter l’opération ultérieurement : {{message}}"
 }

@@ -4,6 +4,6 @@
   "pci_databases_general_information_edit_name_cancel": "Cancel",
   "pci_databases_general_information_edit_name_description": "Changes the name displayed in the header",
   "pci_databases_general_information_edit_name_label": "Name",
-  "pci_databases_general_information_edit_name_success": "The database name has been updated.",
-  "pci_databases_general_information_edit_name_error": "An error has occurred renaming the database: {{message}}"
+  "pci_databases_general_information_edit_name_success": "The service name has been updated.",
+  "pci_databases_general_information_edit_name_error": "An error has occurred renaming the service: {{message}}"
 }
