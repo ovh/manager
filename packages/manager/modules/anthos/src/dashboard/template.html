@@ -2,7 +2,7 @@
 <oui-header data-heading="{{:: $ctrl.tenant.name }}" data-description="{{:: $ctrl.serviceName }}">
     <oui-header-tabs>
         <oui-header-tabs-item
-        href="{{:: $ctrl.dashboardLink }}"
+        href="{{:: $ctrl.generalInformationLink }}"
         active="$ctrl.currentActiveLink() === $ctrl.generalInformationLink"
         >
             <span
@@ -22,8 +22,8 @@
             <span data-translate="anthos_dashboard_header_storage"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            href="{{:: $ctrl.dashboardLink }}"
-            active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
+            href="{{:: $ctrl.ipsLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.ipsLink"
         >
             <span data-translate="anthos_dashboard_header_ips"></span>
         </oui-header-tabs-item>
