@@ -13,10 +13,7 @@ export default {
   },
 
   hasCallbackUrlParams: (callbackUrlParams) => {
-    return (
-      callbackUrlParams.MD !== undefined &&
-      callbackUrlParams.PaRes !== undefined
-    );
+    return callbackUrlParams.redirectResult !== undefined;
   },
 
   parseFormSessionId: (formSessionId) => {

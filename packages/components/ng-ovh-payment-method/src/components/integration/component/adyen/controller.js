@@ -32,8 +32,7 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
     const status = callback[callbackStatusParamUrlName];
     if (status && AdyenService.hasCallbackUrlParams(callback)) {
       const callbackParams = {
-        MD: callback.MD,
-        PaRes: callback.PaRes,
+        redirectResult: callback.redirectResult,
         paymentMethodId: callback.paymentMethodId,
         transactionId: callback.transactionId,
       };
@@ -158,8 +157,7 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
     const { paymentMethodId, transactionId } = callbackParams;
 
     const detailsParams = {
-      MD: decodeURI(callbackParams.MD),
-      PaRes: decodeURI(callbackParams.PaRes),
+      redirectResult: decodeURI(callbackParams.redirectResult),
     };
     switch (status) {
       case AVAILABLE_CALLBACK_STATUS_ENUM.CANCEL:
