@@ -3,7 +3,7 @@
   "pci_databases_backup_expiration_date": "Ablaufdatum",
   "pci_databases_backup_restore": "Wiederherstellen",
   "pci_databases_backup_fork": "Fork",
-  "pci_databases_backup_region": "Lorem Ipsum",
+  "pci_databases_backup_region": "Localisation",
   "pci_databases_backup_description1": "Nachfolgend finden Sie die Liste Ihrer Backups. Sie können jedes davon wiederherstellen oder löschen.",
   "pci_databases_backup_description2": "Diese Backups werden beibehalten, um das ordnungsgemäße Funktionieren Ihres Dienstes sicherzustellen.",
   "pci_databases_backup_informations_title": "Sauvegardes de la base de données",
