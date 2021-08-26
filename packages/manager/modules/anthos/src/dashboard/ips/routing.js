@@ -8,8 +8,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('anthos_dashboard_header_storage'),
 
-      goToDeletePrivateIp: /* @ngInject */ ($state) => (privateIp) =>
-        $state.href('anthos.dashboard.ips.delete-private-ip', { privateIp }),
+      goBack: /* @ngInject */ ($state, goToTenant) => (message, type) =>
+        goToTenant(message, type, $state.$current.parent.name),
     },
   });
 };

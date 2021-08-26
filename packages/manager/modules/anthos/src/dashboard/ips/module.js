@@ -7,6 +7,9 @@ import 'angular-translate';
 import component from './component';
 import routing from './routing';
 
+import assignPrivateIp from './assign-private-ip';
+import removePrivateIp from './remove-private-ip';
+
 const moduleName = 'ovhManagerAnthosDashboardIPs';
 angular
   .module(moduleName, [
@@ -14,6 +17,8 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
+    assignPrivateIp,
+    removePrivateIp,
   ])
   .component('anthosIPs', component)
   .config(routing)
