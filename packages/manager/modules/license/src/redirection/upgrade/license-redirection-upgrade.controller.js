@@ -14,7 +14,7 @@ export default class LicenseRedirectionUpgradeCtrl {
   redirectToUpgrade() {
     this.$scope.resetAction();
     this.$timeout(() => {
-      this.$state.go('app.license.detail.upgrade', {
+      this.$state.go('license.detail.upgrade', {
         licenseId: this.licenseId,
       });
     }, 300);

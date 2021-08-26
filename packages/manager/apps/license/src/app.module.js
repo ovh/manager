@@ -19,8 +19,6 @@ import { isString, get } from 'lodash-es';
 import ovhManagerLicense from '@ovh-ux/manager-license';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
-import routing from './app.routes';
-
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 import './license.scss';
@@ -39,12 +37,6 @@ export default (containerEl, environment) => {
         uiRouter,
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),
-    )
-    .config(routing)
-    .config(
-      /* @ngInject */ ($urlRouterProvider) => {
-        $urlRouterProvider.otherwise('/license');
-      },
     )
     .config(
       /* @ngInject */ (coreConfigProvider) => {
@@ -71,13 +63,17 @@ export default (containerEl, environment) => {
     )
     .run(/* @ngTranslationsInject:json ./translations */)
     .run(
-      /* @ngInject */ ($rootScope, $transitions, $translate) => {
-        $transitions.onBefore({ to: 'app.**' }, () => $translate.refresh());
+      /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
           detachPreloader();
           $rootScope.$broadcast('app:started');
           unregisterHook();
         });
+      },
+    )
+    .config(
+      /* @ngInject */ ($urlRouterProvider) => {
+        $urlRouterProvider.otherwise('/license');
       },
     );
 

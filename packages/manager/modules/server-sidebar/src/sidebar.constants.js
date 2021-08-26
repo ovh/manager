@@ -208,7 +208,7 @@ export const MICROSOFT_CONFIG = {
 
 export const LICENCE_CONFIG = {
   id: 'licences',
-  state: 'app.license.dashboard',
+  state: 'license.dashboard',
   icon: 'ovh-font ovh-font-certificate',
   stateUrl: '#/configuration/license?landingTo=licences',
   app: [DEDICATED],

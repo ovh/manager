@@ -76,6 +76,11 @@ angular
     },
   )
   .run(/* @ngTranslationsInject:json ./translations */)
+  .run(
+    /* @ngInject */ ($transitions, $translate) => {
+      $transitions.onBefore({ to: 'license.**' }, () => $translate.refresh());
+    },
+  )
   .constant('LICENCE_TYPES', LICENSE_TYPES)
   .service('License', service)
   .service('licenseFeatureAvailability', licenseAvailabilityService);

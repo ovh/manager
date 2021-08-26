@@ -6,7 +6,7 @@ const moduleName = 'licenseModuleLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
-    $stateProvider.state('app.license.**', {
+    $stateProvider.state('license.**', {
       url: '/license',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

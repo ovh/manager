@@ -15,8 +15,8 @@
             </h2>
             <div data-ovh-alert></div>
             <a
-                data-ui-sref="app.license.dashboard"
-                title="{{ 'licence_details_title' | translate }}"
+                data-ui-sref="license.dashboard"
+                title="{{ 'licence_details_title' | translate }}"
             >
                 <span class="fa fa-chevron-left mr-2" aria-hidden="true">
                 </span>
@@ -206,7 +206,7 @@
                     <a
                         class="btn btn-default btn-block"
                         data-ng-if="canUpgrade && license.canBeUpgraded == true && license.isExpired == false"
-                        data-ui-sref="app.license.detail.upgrade({
+                        data-ui-sref="license.detail.upgrade({
                        licenseId: license.id
                    })"
                         data-translate="license_upgrade_title_button"

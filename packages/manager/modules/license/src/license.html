@@ -21,14 +21,14 @@
                     >
                         <oui-action-menu-item
                             aria-label="{{:: 'license_order_title_button' | translate }}"
-                            data-ui-sref="app.license.order"
+                            data-ui-sref="license.order"
                             ><span
                                 data-translate="license_order_title_button"
                             ></span>
                         </oui-action-menu-item>
                         <oui-action-menu-item
                             aria-label="{{:: 'license_spla_add_title_button' | translate }}"
-                            data-ui-sref="app.license.dashboard.spla-add"
+                            data-ui-sref="license.dashboard.spla-add"
                             ><span
                                 data-translate="license_spla_add_title_button"
                             ></span>
@@ -100,7 +100,7 @@
 
             <oui-action-menu compact data-placement="end">
                 <oui-action-menu-item
-                    href="{{ $state.href('app.license.detail', { licenseId: getLicenseId($row) }) }}"
+                    href="{{ $state.href('license.detail', { licenseId: getLicenseId($row) }) }}"
                     ><span
                         data-translate="license_dashboard_table_popover_details"
                     ></span>
@@ -121,7 +121,7 @@
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$row.canBeUpgraded === true && !$row.isExpired && canUpgrade"
-                    href="{{ $state.href('app.license.detail.upgrade', { licenseId: getLicenseId($row) }) }}"
+                    href="{{ $state.href('license.detail.upgrade', { licenseId: getLicenseId($row) }) }}"
                     ><span
                         data-translate="license_dashboard_table_popover_upgrade"
                     ></span>

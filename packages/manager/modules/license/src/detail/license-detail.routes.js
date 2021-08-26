@@ -2,7 +2,7 @@ import template from './license-detail.html';
 import controller from './license-detail.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.license.detail', {
+  $stateProvider.state('license.detail', {
     url: '/:licenseId',
     template,
     controller,
@@ -13,8 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
   });
 
-  $stateProvider.state('app.license.detail.redirection', {
+  $stateProvider.state('license.detail.redirection', {
     url: '/detail',
-    redirectTo: 'app.license.detail',
+    redirectTo: 'license.detail',
   });
 };

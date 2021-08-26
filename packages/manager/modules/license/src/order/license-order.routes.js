@@ -2,7 +2,7 @@ import template from './license-order.html';
 import controller from './license-order.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.license.order', {
+  $stateProvider.state('license.order', {
     url: '/order',
     template,
     controller,

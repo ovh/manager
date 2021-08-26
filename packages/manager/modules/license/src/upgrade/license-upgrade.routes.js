@@ -2,7 +2,7 @@ import template from './license-upgrade.html';
 import controller from './license-upgrade.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.license.detail.upgrade', {
+  $stateProvider.state('license.detail.upgrade', {
     url: '/upgrade',
     template,
     controller,
