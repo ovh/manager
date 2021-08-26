@@ -45,6 +45,9 @@ export default /* @ngInject */ ($stateProvider) => {
       storageLink: /* @ngInject */ ($state, serviceName) =>
         $state.href('anthos.dashboard.storage', { serviceName }),
 
+      ipsLink: /* @ngInject */ ($state, serviceName) =>
+        $state.href('anthos.dashboard.ips', { serviceName }),
+
       serviceInfo: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getServiceInfo(serviceName),
 

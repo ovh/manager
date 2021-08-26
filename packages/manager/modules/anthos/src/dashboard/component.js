@@ -16,6 +16,7 @@ export default {
     generalInformationLink: '<',
     hostLink: '<',
     storageLink: '<',
+    ipsLink: '<',
     goToTenant: '<',
     goToOrderHost: '<',
     goToOrderPublicIPs: '<',
