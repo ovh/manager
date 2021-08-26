@@ -1,6 +1,6 @@
 {
   "pci_database_fork_title": "Eine Datenbank-Instanz erstellen",
-  "pci_database_fork_description": "Lorem ipsum {{backup.id}} {{backup.size.value}} {{backup.size.unit}}",
+  "pci_database_fork_description": "Le fork de votre sauvegarde s’effectuera sur un nouveau cluster. Nous allons restaurer la sauvegarde {{backup.id}} de {{backup.size.value}} {{backup.size.unit}}.",
   "pci_database_fork_step1_title": "Wählen Sie Ihre Datenbank",
   "pci_database_fork_step1_description": "Wählen Sie die Datenbank aus, die Ihren Anforderungen entspricht",
   "pci_database_fork_step2_title": "Ein Angebot auswählen",

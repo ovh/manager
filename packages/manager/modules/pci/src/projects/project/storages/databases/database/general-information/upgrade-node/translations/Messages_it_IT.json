@@ -1,13 +1,13 @@
 {
-  "pci_databases_general_information_upgrade_node_confirm": "Upgrade my node model",
-  "pci_databases_general_information_upgrade_node": "Upgrade node model",
+  "pci_databases_general_information_upgrade_node_confirm": "Améliorer mon modèle de nœud",
+  "pci_databases_general_information_upgrade_node": "Améliorer votre modèle de nœud",
   "pci_databases_general_information_upgrade_node_back": "Information",
-  "pci_databases_general_information_upgrade_node_cancel": "Cancel",
-  "pci_databases_general_information_upgrade_node_description": "You are currently using node model {{currentNodeModel}}. You can upgrade it by clicking 'Upgrade my node model' below.",
-  "pci_databases_general_information_upgrade_node_warning": "Once you have upgraded your node model, you will not be able to downgrade to a lower version.",
-  "pci_databases_general_information_upgrade_node_label": "Model",
-  "pci_databases_general_information_upgrade_node_placeholder": "Select a node model",
-  "pci_databases_general_information_upgrade_node_success": "Your upgrade request has been processed, and will be effective in a few minutes.",
-  "pci_databases_general_information_upgrade_node_error": "Your upgrade could not be completed correctly: {{message}}",
-  "pci_databases_general_information_upgrade_node_processing": "Upgrading node ..."
+  "pci_databases_general_information_upgrade_node_cancel": "Annuler",
+  "pci_databases_general_information_upgrade_node_description": "Vous utilisez actuellement le modèle de nœud {{currentNodeModel}}. Vous pouvez l'améliorer en cliquant sur le bouton 'Améliorer mon modèle de nœud' ci-dessous.",
+  "pci_databases_general_information_upgrade_node_warning": "Une fois le modèle de nœud amélioré, vous ne pourrez plus revenir à un modèle inférieur.",
+  "pci_databases_general_information_upgrade_node_label": "Modèle",
+  "pci_databases_general_information_upgrade_node_placeholder": "Choisissez un modèle de nœud",
+  "pci_databases_general_information_upgrade_node_success": "Votre changement de modèle de nœud a bien été pris en compte. Il sera effectif dans quelques minutes.",
+  "pci_databases_general_information_upgrade_node_error": "Votre changement de modèle de nœud n’a pas été correctement effectué : {{message}}",
+  "pci_databases_general_information_upgrade_node_processing": "Amélioration de votre modèle de nœud..."
 }

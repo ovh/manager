@@ -1,6 +1,6 @@
 {
   "pci_databases_users_modify_password_title": "Passwort ändern",
-  "pci_databases_users_modify_password_modal_content_confirm": "Lorem Ipsum",
+  "pci_databases_users_modify_password_modal_content_confirm": "Voulez-vous vraiment génerer un nouveau mot de passe pour cet utilisateur ?",
   "pci_databases_users_modify_password_confirm": "Bestätigen",
   "pci_databases_users_modify_password_cancel": "Abbrechen",
   "pci_databases_users_modify_password_label": "Das Passwort",

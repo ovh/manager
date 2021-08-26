@@ -1,6 +1,6 @@
 {
   "pci_database_fork_title": "Restore your backup by creating a new service",
-  "pci_database_fork_description": "Your backup fork will occur on a new service. We will restore the backup {{backup.id}} ({{backup.size.value}} {{backup.size.unit}})",
+  "pci_database_fork_description": "Le fork de votre sauvegarde s’effectuera sur un nouveau cluster. Nous allons restaurer la sauvegarde {{backup.id}} de {{backup.size.value}} {{backup.size.unit}}.",
   "pci_database_fork_step1_title": "Choose your database service",
   "pci_database_fork_step1_description": "Select a database service to suit your needs",
   "pci_database_fork_step2_title": "Select a plan",

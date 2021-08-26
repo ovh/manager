@@ -6,6 +6,6 @@
   "pci_databases_backup_region": "Lorem Ipsum",
   "pci_databases_backup_description1": "Poniżej znajdziesz listę kopii zapasowych. Możesz każdą z nich przywrócić lub usunąć.",
   "pci_databases_backup_description2": "Kopie zapasowe są przechowywane w celu zapewnienia prawidłowego działania usługi.",
-  "pci_databases_backup_informations_title": "Lorem Ipsum",
-  "pci_databases_backup_informations_retention": "Lorem Ipsum"
+  "pci_databases_backup_informations_title": "Sauvegardes de la base de données",
+  "pci_databases_backup_informations_retention": "Durée de rétention"
 }
