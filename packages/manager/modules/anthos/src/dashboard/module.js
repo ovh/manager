@@ -9,10 +9,11 @@ import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 
 import component from './component';
 import routing from './routing';
-import storage from './storage';
 
 import generalInformation from './general-information';
 import host from './host';
+import storage from './storage';
+import ips from './ips';
 
 const moduleName = 'ovhManagerAnthosDashboard';
 
@@ -27,6 +28,7 @@ angular
     generalInformation,
     host,
     storage,
+    ips,
   ])
   .config(routing)
   .component('anthosDashboard', component)
