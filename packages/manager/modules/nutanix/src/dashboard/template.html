@@ -1,13 +1,41 @@
-<div>
-    <oui-header heading="{{:: $ctrl.serviceName }}">
+<div ui-view="nodeView">
+    <oui-header
+        class="mb-3"
+        heading="{{:: $ctrl.cluster.targetSpec.name }}"
+        description="{{:: $ctrl.serviceName }}"
+    >
         <oui-header-tabs>
             <oui-header-tabs-item
-                href="{{:: $ctrl.dashboardLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
-            >
-                <span>Home</span>
+                state="nutanix.dashboard.general-info"
+                state-params="{
+                    serviceName: $ctrl.serviceName,
+                }"
+                ><span data-translate="nutanix_dashboard_general_info"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                state="nutanix.dashboard.nodes"
+                state-params="{
+                    serviceName: $ctrl.serviceName,
+                }"
+                ><span data-translate="nutanix_dashboard_nodes"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
+        <oui-guide-menu
+            data-text="{{:: 'nutanix_dashboard_guides_header' | translate }}"
+        >
+            <oui-guide-menu-item
+                href="{{ $ctrl.nutanixGuideUrl }}"
+                data-external
+            >
+                <span
+                    data-translate="nutanix_dashboard_guides_header_all_guides"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
     </oui-header>
+    <div
+        class="alert-server my-3"
+        data-ovh-alert="nutanix_dashboard_alert"
+    ></div>
     <div ui-view></div>
 </div>
