@@ -1,6 +1,10 @@
 export const ADYEN_CONFIG = {
+  CLIENT_KEY_ENV_PATTERNS: /^(test)_/,
+  ENV_ENUM: {
+    TEST: 'test',
+    LIVE: 'live',
+  },
   DEFAULT: {
-    environment: 'live',
     showPayButton: false,
     hasHolderName: true,
     holderNameRequired: true,

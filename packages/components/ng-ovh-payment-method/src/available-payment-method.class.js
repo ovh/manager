@@ -73,6 +73,8 @@ export default class OvhAvailablePaymentMethod {
      *  @type {Object}
      */
     this.original = options.original || null;
+
+    this.formSessionId = options.formSessionId || null;
   }
 
   /**
