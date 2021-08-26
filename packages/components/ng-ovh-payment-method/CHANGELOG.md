@@ -1,3 +1,12 @@
+## [8.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.2.0...@ovh-ux/ng-ovh-payment-method@8.2.1) (2021-08-26)
+
+
+### Bug Fixes
+
+* handle redirect param ([#5450](https://github.com/ovh/manager/issues/5450)) ([f08def4](https://github.com/ovh/manager/commit/f08def417d3a4adda7570144570b4e3a41e4bbf0))
+
+
+
 # [8.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.1.2...@ovh-ux/ng-ovh-payment-method@8.2.0) (2021-08-26)
 
 
