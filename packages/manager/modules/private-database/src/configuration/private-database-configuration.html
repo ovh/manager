@@ -1,0 +1,85 @@
+<div>
+    <div data-ovh-alert="{{alerts.main}}"></div>
+
+    <div class="text-center" data-ng-if="configurationsCtrl.loading">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
+
+    <div data-ng-if="!configurationsCtrl.loading">
+        <oui-message
+            data-type="info"
+            data-ng-if="configurationsCtrl.database.type === 'postgresql'"
+        >
+            <span
+                data-translate="privateDatabase_configurations_general_postgresql_soon"
+            ></span>
+        </oui-message>
+        <oui-message
+            data-type="info"
+            data-ng-if="configurationsCtrl.database.type !== 'postgresql' && configurationsCtrl.configurations.length === 0"
+        >
+            <span
+                data-translate="privateDatabase_capability_disabled_explanation"
+            ></span>
+        </oui-message>
+
+        <div data-ng-if="configurationsCtrl.configurations.length >= 1">
+            <h2
+                data-ng-bind-html="'privateDatabase_configurations_general_' + configurationsCtrl.database.type | translate"
+            ></h2>
+
+            <p data-translate="privateDatabase_configuration_alert"></p>
+
+            <form
+                name="configurationsCtrl.dbConfigurationForm"
+                data-ng-submit="configurationsCtrl.dbConfigurationForm.$valid && configurationsCtrl.updateConfigurations()"
+                novalidate
+            >
+                <div
+                    data-ng-repeat="configuration in configurationsCtrl.configurations track by $index"
+                >
+                    <oui-field
+                        data-label="{{:: configuration.key}}"
+                        data-size="m"
+                        data-ng-if="configuration.type === 'select'"
+                        data-help-text="{{:: configuration.description}}"
+                    >
+                        <oui-select
+                            id="{{:: configuration.key + 'Field'}}"
+                            name="{{:: configuration.key + 'Field'}}"
+                            data-model="configuration.selectedValue"
+                            data-items="configuration.availableValues"
+                            data-match="text"
+                            required
+                        >
+                            <span data-ng-bind="$item.text"></span>
+                        </oui-select>
+                    </oui-field>
+                </div>
+                <div
+                    data-ng-repeat="configuration in configurationsCtrl.configurations track by $index"
+                >
+                    <oui-field
+                        data-label="{{:: configuration.key}}"
+                        data-size="s"
+                        data-ng-if="configuration.type === 'toggle'"
+                        data-help-text="{{:: configuration.description}}"
+                    >
+                        <oui-radio-toggle-group
+                            data-model="configuration.selectedValue.id"
+                        >
+                            <oui-radio
+                                data-ng-repeat="item in configuration.availableValues track by item.id"
+                                data-value="item.id"
+                                ><span data-ng-bind=":: item.text"></span
+                            ></oui-radio>
+                        </oui-radio-toggle-group>
+                    </oui-field>
+                </div>
+                <oui-form-actions
+                    data-submit-text="{{:: 'privateDatabase_configuration_confirm_btn' | translate }}"
+                ></oui-form-actions>
+            </form>
+        </div>
+    </div>
+</div>

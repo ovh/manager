@@ -79,6 +79,7 @@ import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
 import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
+import ovhManagerPrivateDatabase from '@ovh-ux/manager-private-database';
 import ovhManagerProductOffers from '@ovh-ux/manager-product-offers';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
@@ -96,7 +97,6 @@ import domain from './domain';
 import domainDnsZone from './dns-zone';
 import errorPage from './error-page/error-page.module';
 import hosting from './hosting';
-import privateDatabase from './private-database';
 import zone from './domain/zone/zone.module';
 
 import hostingEmail from './hosting/email';
@@ -172,6 +172,7 @@ export default (containerEl, environment) => {
         ovhManagerCatalogPrice,
         ovhManagerIncidentBanner,
         ovhManagerNavbar,
+        ovhManagerPrivateDatabase,
         ovhManagerProductOffers,
         ovhNotificationsSidebar,
         'oui',
@@ -184,7 +185,6 @@ export default (containerEl, environment) => {
         emailDomain,
         errorPage,
         hosting,
-        privateDatabase,
         zone,
         hostingEmail,
         hostingEmailActivateModule,

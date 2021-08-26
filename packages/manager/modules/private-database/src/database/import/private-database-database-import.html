@@ -1,0 +1,207 @@
+<div data-ng-controller="PrivateDatabaseImportCtrl as importBddCtrl">
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="importDatabase"
+        data-wizard-title="'private_database_database_configuration_import_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="importBddCtrl.isActionSelected()"
+        >
+            <form name="formFileUploadStep0">
+                <p data-translate="wizard_action_question"></p>
+
+                <div class="oui-radio">
+                    <input
+                        type="radio"
+                        class="oui-radio__input"
+                        id="hostingDatabaseImportNewFile"
+                        name="hostingDatabaseImportMode"
+                        data-ng-model="importBddCtrl.selected.action"
+                        data-ng-value="importBddCtrl.model.actions.IMPORT_FROM_NEW"
+                    />
+                    <label
+                        class="oui-radio__label-container"
+                        for="hostingDatabaseImportNewFile"
+                    >
+                        <span class="oui-radio__label">
+                            <span class="oui-radio__icon"></span>
+                            <span
+                                class="oui-radio__text"
+                                data-translate="private_database_database_table_popover_import_step0_new_file_mode"
+                            ></span>
+                        </span>
+                    </label>
+                </div>
+                <div class="oui-radio">
+                    <input
+                        type="radio"
+                        class="oui-radio__input"
+                        id="hostingDatabaseImportExistingFile"
+                        name="hostingDatabaseImportMode"
+                        data-ng-model="importBddCtrl.selected.action"
+                        data-ng-value="importBddCtrl.model.actions.IMPORT_FROM_EXISTING"
+                    />
+                    <label
+                        class="oui-radio__label-container"
+                        for="hostingDatabaseImportExistingFile"
+                    >
+                        <span class="oui-radio__label">
+                            <span class="oui-radio__icon"></span>
+                            <span
+                                class="oui-radio__text"
+                                data-translate="private_database_database_table_popover_import_step0_existing_file_mode"
+                            ></span>
+                        </span>
+                    </label>
+                </div>
+            </form>
+        </div>
+
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="getDocuments"
+            data-wizard-step-on-previous="resetDocumentSelection"
+            data-wizard-step-valid="importBddCtrl.isDocumentsValid()"
+        >
+            <div
+                data-ng-if="importBddCtrl.selected.action === importBddCtrl.model.actions.IMPORT_FROM_NEW"
+            >
+                <oui-spinner
+                    data-ng-if="importBddCtrl.isSendingFile"
+                ></oui-spinner>
+
+                <form
+                    name="importBddCtrl.formFileUpload"
+                    novalidate
+                    data-ng-show="!importBddCtrl.isSendingFile"
+                    data-ng-submit="importBddCtrl.submit()"
+                >
+                    <div
+                        class="form-group"
+                        data-ng-class="{'has-error': importBddCtrl.formFileUpload.uploadFileName.$dirty && importBddCtrl.formFileUpload.uploadFileName.$invalid}"
+                    >
+                        <label class="control-label" for="uploadFileName">
+                            <span
+                                data-translate="private_database_database_table_popover_import_step1_upload_file_name"
+                            ></span>
+                            <span
+                                class="fa fa-info-circle"
+                                aria-hidden="true"
+                                data-oui-tooltip="{{:: 'private_database_database_table_popover_import_step1_upload_file_name_info' | translate }}"
+                            ></span>
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="uploadFileName"
+                            name="uploadFileName"
+                            required
+                            data-ng-model="importBddCtrl.model.uploadFileName"
+                        />
+                        <small
+                            class="help-block"
+                            data-ng-repeat="(type, isError) in importBddCtrl.formFileUpload.uploadFileName.$error track by $index"
+                            data-ng-bind="(('private_database_database_table_popover_import_step1_upload_file_name_' + type + '_error' | translate) == 'private_database_database_table_popover_import_step1_upload_file_name_' + type + '_error')? error: ('private_database_database_table_popover_import_step1_upload_file_name_' + type + '_error' | translate)"
+                            data-ng-if="importBddCtrl.formFileUpload.uploadFileName.$dirty && importBddCtrl.formFileUpload.uploadFileName.$error"
+                        >
+                        </small>
+                    </div>
+
+                    <div
+                        class="form-group"
+                        data-ng-class="{'has-error': importBddCtrl.formFileUpload.file.$dirty && importBddCtrl.formFileUpload.file.$invalid}"
+                    >
+                        <label
+                            class="control-label"
+                            for="uploadFileFile"
+                            data-translate="private_database_database_table_popover_import_step1_upload_file_file"
+                        ></label>
+                        <input
+                            type="file"
+                            name="file"
+                            id="uploadFileFile"
+                            required
+                            data-wuc-file-change="importBddCtrl.onFileChange(importBddCtrl.formFileUpload.file)"
+                            data-ng-model="importBddCtrl.file"
+                        />
+                        <small
+                            class="help-block"
+                            data-ng-repeat="(type, isError) in importBddCtrl.formFileUpload.file.$error track by $index"
+                            data-ng-bind="(('private_database_database_table_popover_import_step1_upload_file_file_' + type + '_error' | translate) == 'private_database_database_table_popover_import_step1_upload_file_file_' + type + '_error')? error: ('private_database_database_table_popover_import_step1_upload_file_file_' + type + '_error' | translate)"
+                            data-ng-if="importBddCtrl.formFileUpload.file.$dirty && importBddCtrl.formFileUpload.file.$invalid"
+                        >
+                        </small>
+                        <div class="mt-3">
+                            <button
+                                class="oui-button oui-button_primary"
+                                type="submit"
+                                data-translate="private_database_database_table_popover_import_step1_upload"
+                                data-ng-disabled="importBddCtrl.formFileUpload.$invalid"
+                            ></button>
+                            <p
+                                class="text-success mt-3"
+                                data-translate="private_database_database_table_popover_import_step1_upload_succes"
+                                data-ng-if="importBddCtrl.atLeastOneFileHasBeenSend"
+                            ></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div
+                data-ng-if="importBddCtrl.selected.action === importBddCtrl.model.actions.IMPORT_FROM_EXISTING"
+            >
+                <oui-spinner
+                    data-ng-if="importBddCtrl.loading.documents"
+                ></oui-spinner>
+
+                <form data-ng-if="!importBddCtrl.loading.documents">
+                    <label
+                        class="oui-label"
+                        for="ddlDocuments"
+                        data-translate="private_database_database_table_popover_import_step1_choose_file"
+                    ></label>
+                    <div class="oui-select">
+                        <select
+                            class="oui-select__input"
+                            id="ddlDocuments"
+                            data-ng-model="importBddCtrl.model.document"
+                            data-ng-options="document.name for document in importBddCtrl.model.documents | orderBy: 'name' track by document.id"
+                        >
+                        </select>
+                        <span
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div data-wizard-step>
+            <form name="formFileUploadStep2" novalidate>
+                <p
+                    data-translate="private_database_database_table_popover_import_step2_title"
+                ></p>
+
+                <oui-checkbox
+                    id="flush_option"
+                    data-model="importBddCtrl.model.flushDatabase"
+                    ><span
+                        data-translate="private_database_database_table_popover_import_step2_flush_database"
+                    ></span>
+                </oui-checkbox>
+                <oui-checkbox
+                    id="send_email"
+                    data-model="importBddCtrl.model.sendEmail"
+                    ><span
+                        data-translate="private_database_database_table_popover_import_step2_send_email"
+                    ></span>
+                </oui-checkbox>
+            </form>
+        </div>
+    </div>
+</div>

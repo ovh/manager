@@ -1,0 +1,478 @@
+<div class="row">
+    <div class="col-md-9">
+        <div data-ovh-alert="{{alerts.main}}"></div>
+
+        <div data-ng-if="stateCtrl.database">
+            <div class="row">
+                <div class="col-md-6">
+                    <oui-tile
+                        data-heading="{{ ::'privateDatabase_dashboard_general_informations' | translate}}"
+                        class="mb-5"
+                    >
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_dashboard_state' | translate}}"
+                            data-ng-if="stateCtrl.database.state"
+                        >
+                            <oui-tile-description>
+                                <div
+                                    class="oui-badge"
+                                    data-ng-class="{
+                                        'oui-badge_error': stateCtrl.database.state === 'detached',
+                                        'oui-badge_warning' : stateCtrl.database.state === 'restartPending' || stateCtrl.database.state === 'stopPending' || database.state === 'stopped',
+                                        'oui-badge_success' : stateCtrl.database.state === 'startPending' || stateCtrl.database.state === 'started' }"
+                                    data-ng-bind="'privateDatabase_dashboard_' + stateCtrl.database.state | translate"
+                                ></div>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_dashboard_type' | translate}}"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    data-ng-bind=":: 'privateDatabase_dashboard_type_' + stateCtrl.database.type | translate"
+                                ></span>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_dashboard_version' | translate}}"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    data-translate="{{::('privateDatabase_dashboard_version_' + stateCtrl.database.type)}}"
+                                    data-translate-values="{ version: stateCtrl.database.versionNumber }"
+                                ></span>
+                            </oui-tile-description>
+                            <oui-action-menu
+                                data-compact
+                                data-ng-if="!stateCtrl.isExpired"
+                                data-placement="end"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="setAction('database/version/update/private-database-database-version-update', stateCtrl.database)"
+                                    data-disabled="taskState.lockAction"
+                                >
+                                    <span
+                                        data-translate="privateDatabase_change_version"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_dashboard_ram' | translate}}"
+                        >
+                            <oui-tile-description>
+                                <div
+                                    class="oui-badge"
+                                    data-ng-bind="::stateCtrl.database.ram.value + ('unit_size_' + stateCtrl.database.ram.unit | translate)"
+                                    data-ng-class="stateCtrl.database.oom.realList.length >= stateCtrl.database.oom.nbOomError ? 'oui-badge_error' : (stateCtrl.database.oom.realList.length > 0 ? 'oui-badge_warning' : 'oui-badge_success')"
+                                ></div>
+                                <button
+                                    class="btn btn-icon btn-xs d-block text-wrap text-left"
+                                    type="button"
+                                    title="{{:: 'privateDatabase_modale_oom_title' | translate }}"
+                                    data-ng-class="stateCtrl.database.oom.realList.length > stateCtrl.database.oom.nbOomError ? 'text-danger' : (stateCtrl.database.oom.realList.length > 0 ? 'text-warning' : '')"
+                                    data-ng-click="stateCtrl.goToOom()"
+                                >
+                                    <span
+                                        data-ng-if="stateCtrl.database.oom.realList.length > 0"
+                                        class="fa fa-exclamation-triangle"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        data-ng-if="stateCtrl.database.oom.realList.length === 0"
+                                        class="fa fa-check-circle"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        data-ng-if="stateCtrl.database.oom.realList.length > 0"
+                                        data-ng-bind-html="'privateDatabase_warning_oom' | translate: { t0: stateCtrl.database.oom.realList.length }"
+                                    ></span>
+                                    <span
+                                        data-ng-if="stateCtrl.database.oom.realList.length === 0"
+                                        data-ng-bind-html="'privateDatabase_no_oom' | translate"
+                                    ></span>
+                                </button>
+                            </oui-tile-description>
+                            <oui-action-menu
+                                data-compact
+                                data-ng-if="!stateCtrl.isExpired"
+                                data-placement="end"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="setAction('database/ram/update/private-database-database-ram-update', stateCtrl.database)"
+                                    data-disabled="taskState.lockAction"
+                                    data-ng-if="stateCtrl.canOrderRam"
+                                >
+                                    <span
+                                        data-translate="privateDatabase_change_ram_title"
+                                    ></span>
+                                </oui-action-menu-item>
+                                <oui-action-menu-item
+                                    data-on-click="stateCtrl.goToOom()"
+                                    data-disabled="taskState.lockAction"
+                                >
+                                    <span
+                                        data-translate="privateDatabase_modale_oom_state_button"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_dashboard_disk_usage' | translate}}"
+                        >
+                            <oui-tile-description>
+                                <oui-progress>
+                                    <oui-progress-bar
+                                        data-ng-if="stateCtrl.database.quotaPercent.value < 51"
+                                        data-type="success"
+                                        data-value="stateCtrl.database.quotaPercent.value"
+                                    >
+                                        <span
+                                            class="oui-progress__label"
+                                            data-ng-bind="::stateCtrl.convertBytesSize(stateCtrl.database.quotaUsed.value, stateCtrl.database.quotaUsed.unit, 2) + ' / ' + stateCtrl.convertBytesSize(stateCtrl.database.quotaSize.value, stateCtrl.database.quotaSize.unit)"
+                                        ></span>
+                                    </oui-progress-bar>
+                                    <oui-progress-bar
+                                        data-ng-if="stateCtrl.database.quotaPercent.value > 50 && stateCtrl.database.quotaPercent.value < 81"
+                                        data-type="warning"
+                                        data-value="stateCtrl.database.quotaPercent.value"
+                                    >
+                                        <span
+                                            class="oui-progress__label"
+                                            data-ng-bind="::stateCtrl.convertBytesSize(stateCtrl.database.quotaUsed.value, stateCtrl.database.quotaUsed.unit, 2) + ' / ' + stateCtrl.convertBytesSize(stateCtrl.database.quotaSize.value, stateCtrl.database.quotaSize.unit)"
+                                        ></span>
+                                    </oui-progress-bar>
+                                    <oui-progress-bar
+                                        data-ng-if="stateCtrl.database.quotaPercent.value > 80"
+                                        data-type="error"
+                                        data-value="stateCtrl.database.quotaPercent.value"
+                                    >
+                                        <span
+                                            class="oui-progress__label"
+                                            data-ng-bind="::stateCtrl.convertBytesSize(stateCtrl.database.quotaUsed.value, stateCtrl.database.quotaUsed.unit, 2) + ' / ' + stateCtrl.convertBytesSize(stateCtrl.database.quotaSize.value, stateCtrl.database.quotaSize.unit)"
+                                        ></span>
+                                    </oui-progress-bar>
+                                </oui-progress>
+                            </oui-tile-description>
+                            <oui-action-menu
+                                data-compact
+                                data-ng-if="!stateCtrl.isExpired"
+                                data-placement="end"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="stateCtrl.refreshQuota()"
+                                    data-disabled="taskState.lockAction"
+                                >
+                                    <span
+                                        data-translate="privateDatabase_quota_refresh"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_dashboard_infrastructure' | translate}}"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    data-ng-bind=":: 'privateDatabase_dashboard_infrastructure_' + stateCtrl.database.infrastructure | translate"
+                                ></span>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_dashboard_datacenter' | translate}}"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    data-ng-bind=":: (('privateDatabase_dashboard_datacenter_' + stateCtrl.database.datacenter | translate) == 'privateDatabase_dashboard_datacenter_' + stateCtrl.database.datacenter)? stateCtrl.database.datacenter: ('privateDatabase_dashboard_datacenter_' + stateCtrl.database.datacenter | translate)"
+                                ></span>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_dashboard_host' | translate}}"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    data-ng-bind="stateCtrl.database.server"
+                                ></span>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_renew_date' | translate}}"
+                            data-ng-if="isRenew()"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    data-ng-bind="::stateCtrl.database.serviceInfos.expiration | date:'MMMM yyyy'"
+                                ></span>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_expiration_date' | translate}}"
+                            data-ng-if="!isRenew()"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    data-ng-bind="::stateCtrl.database.serviceInfos.expiration | date:'mediumDate'"
+                                ></span>
+                            </oui-tile-description>
+                            <oui-action-menu data-compact data-placement="end">
+                                <oui-action-menu-item
+                                    title="{{:: 'button_renew' | translate }}"
+                                    data-ng-href="#/billing/autoRenew?selectedType=HOSTING_PRIVATE_DATABASE&searchText={{stateCtrl.database.serviceName}}"
+                                >
+                                    <span data-translate="button_renew"></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_dashboard_service_hosting_linked' | translate}}"
+                            data-ng-if="stateCtrl.database.offer === 'classic'"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    data-ng-if="stateCtrl.hostingsLinked && stateCtrl.hostingsLinked.length === 0"
+                                    data-translate="privateDatabase_dashboard_service_hosting_linked_none"
+                                ></span>
+                                <button
+                                    class="btn btn-link p-0"
+                                    type="button"
+                                    data-ng-if="stateCtrl.hostingsLinked && stateCtrl.hostingsLinked.length === 1"
+                                    data-ng-bind="stateCtrl.hostingsLinked[0].name"
+                                    data-ng-click="stateCtrl.goToHosting(stateCtrl.hostingsLinked[0].name)"
+                                    data-ng-disabled="!stateCtrl.hostingsLinked[0].isAdmin"
+                                ></button>
+                                <button
+                                    class="btn btn-icon"
+                                    type="button"
+                                    title="{{:: 'privateDatabase_dashboard_service_hosting_more' | translate }}"
+                                    data-ng-if="stateCtrl.hostingsLinked && stateCtrl.hostingsLinked.length > 1"
+                                    data-ng-click="stateCtrl.displayMore.value = !stateCtrl.displayMore.value"
+                                >
+                                    <span
+                                        class="fa fa-plus-square-o"
+                                        data-ng-if="!stateCtrl.displayMore.value"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="fa fa-minus-square-o"
+                                        data-ng-if="stateCtrl.displayMore.value"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="ml-3"
+                                        data-translate="privateDatabase_dashboard_service_hosting_more"
+                                    ></span>
+                                </button>
+                                <ul data-ng-if="stateCtrl.displayMore.value">
+                                    <li
+                                        data-ng-repeat="hostingLinked in stateCtrl.hostingsLinked track by $index"
+                                        data-ng-class="{'animated fadeInDown fast-fade-in-down': stateCtrl.displayMore.value}"
+                                    >
+                                        <button
+                                            class="btn btn-link p-0"
+                                            type="button"
+                                            data-ng-click="stateCtrl.goToHosting(hostingLinked.name)"
+                                            data-ng-disabled="!stateCtrl.hostingsLinked.isAdmin"
+                                            data-ng-bind="hostingLinked.name"
+                                        ></button>
+                                    </li>
+                                </ul>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                    </oui-tile>
+                    <oui-tile
+                        data-heading="{{ ::'privateDatabase_dashboard_admin_informations' | translate}}"
+                        data-ng-if="stateCtrl.database.offer === 'classic'"
+                        class="mb-5"
+                    >
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_gui' | translate}}"
+                        >
+                            <oui-tile-description>
+                                <a
+                                    data-ng-href="{{stateCtrl.database.guiURL}}"
+                                    target="_blank"
+                                    rel="noopener"
+                                    data-ng-bind="::stateCtrl.database.guiURL"
+                                ></a>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_tab_USER' | translate}}"
+                        >
+                            <oui-tile-description>
+                                <a
+                                    data-ng-href="{{:: stateCtrl.userLink }}"
+                                    class="oui-link"
+                                    data-translate="privateDatabase_dashboard_admin_informations_users"
+                                ></a>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                    </oui-tile>
+                </div>
+
+                <div class="col-md-6">
+                    <oui-tile
+                        data-heading="{{ ::'privateDatabase_dashboard_connections_title' | translate}}"
+                        class="mb-5"
+                    >
+                        <h4 class="oui-tile__definition oui-heading_5">
+                            SQL
+                        </h4>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_dashboard_hostname' | translate}}"
+                            data-term-popover="{{ ::'privateDatabase_dashboard_hostname_tooltip' | translate }}"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    data-ng-if="stateCtrl.database.infrastructure === 'docker'"
+                                    data-ng-bind="::stateCtrl.database.hostname"
+                                ></span>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_dashboard_port' | translate}}"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    data-ng-bind="::stateCtrl.database.port"
+                                ></span>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_tab_USER' | translate}}"
+                        >
+                            <oui-tile-description>
+                                <a
+                                    data-ng-href="{{:: stateCtrl.userLink }}"
+                                    class="oui-link"
+                                    data-translate="privateDatabase_dashboard_admin_informations_users"
+                                ></a>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_dashboard_certificate' | translate}}"
+                            data-term-popover="{{ ::'privateDatabase_dashboard_certificate_tooltip' | translate }}"
+                            data-ng-if="stateCtrl.database.tlsCa"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    data-ng-bind="::stateCtrl.database.certificateType"
+                                ></span>
+                            </oui-tile-description>
+                            <oui-action-menu data-compact data-placement="end">
+                                <oui-action-menu-item
+                                    data-on-click="setAction('database/certificate/private-database-database-certificate', stateCtrl.database)"
+                                >
+                                    <span
+                                        data-translate="privateDatabase_dashboard_see_certificate"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </oui-tile-definition>
+                        <h4
+                            class="oui-tile__definition oui-heading_5"
+                            data-ng-bind="'privateDatabase_dashboard_ftp_informations_' + stateCtrl.database.infrastructure | translate"
+                        ></h4>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_dashboard_ftp_username' | translate}}"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    data-ng-if="stateCtrl.database.infrastructure === 'docker'"
+                                    >admin</span
+                                >
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_password_' + stateCtrl.database.infrastructure | translate}}"
+                        >
+                            <oui-tile-description>
+                                <span data-ng-if="!taskState.changeFtpPassword"
+                                    >********</span
+                                >
+                                <div
+                                    class="ml-auto my-auto"
+                                    data-ng-if="!stateCtrl.isExpired"
+                                >
+                                    <span
+                                        class="ml-auto my-auto"
+                                        data-ng-show="taskState.changeFtpPassword"
+                                    >
+                                        <oui-spinner
+                                            data-size="s"
+                                        ></oui-spinner>
+                                        <span
+                                            data-translate="privateDatabase_action_changepassword_doing"
+                                        ></span>
+                                    </span>
+                                </div>
+                            </oui-tile-description>
+                            <oui-action-menu
+                                data-compact
+                                data-ng-if="!taskState.changeFtpPassword"
+                                data-placement="end"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="stateCtrl.changeFtpPassword()"
+                                    data-disabled="taskState.lockAction"
+                                >
+                                    <span
+                                        data-translate="privateDatabase_change_rootPassword"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_dashboard_hostname' | translate}}"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    data-ng-bind="::stateCtrl.database.hostnameFtp"
+                                ></span>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                        <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_dashboard_port' | translate}}"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    data-ng-bind="::stateCtrl.database.portFtp"
+                                ></span>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                    </oui-tile>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <oui-tile
+            data-heading="{{ ::'private_databases_guides' | translate}}"
+            data-ng-if="stateCtrl.guides"
+            class="mb-5"
+        >
+            <oui-tile-description>
+                <ul class="list-unstyled">
+                    <li
+                        class="oui-tile__item oui-tile__item_button"
+                        data-ng-repeat="guide in stateCtrl.guides track by $index"
+                    >
+                        <a
+                            class="oui-tile__button oui-button d-flex text-wrap oui-button_ghost oui-button_block"
+                            target="_blank"
+                            data-ng-href="{{guide.url}}"
+                        >
+                            <span data-ng-bind="guide.title | translate"></span>
+                            <span
+                                class="fa fa-external-link my-auto ml-auto"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </li>
+                </ul>
+            </oui-tile-description>
+        </oui-tile>
+    </div>
+</div>

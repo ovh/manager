@@ -1,0 +1,26 @@
+<div>
+    <div class="text-center" data-ng-if="$ctrl.isFetchingMetrics">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
+
+    <div data-ovh-alert="{{alerts.main}}"></div>
+
+    <div data-ng-if="!$ctrl.isFetchingMetrics">
+        <div data-ng-repeat="chart in $ctrl.charts track by $index">
+            <h2
+                data-ng-bind="'privateDatabase_metrics_' + chart.name  + '_title' | translate"
+            ></h2>
+
+            <div
+                data-ng-if="chart.hasData"
+                class="chart-container"
+                style="height: 320px;"
+                data-wuc-chartjs="chart.data"
+            ></div>
+
+            <oui-message data-ng-if="!chart.hasData" data-type="warning">
+                <span data-translate="privateDatabase_metrics_no_data"></span>
+            </oui-message>
+        </div>
+    </div>
+</div>

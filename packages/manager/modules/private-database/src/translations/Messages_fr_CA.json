@@ -1,0 +1,11 @@
+{
+  "private_databases_title": "Bases de données",
+  "private_databases_guides": "Astuces",
+  "private_database_guide_add_hosting_private_database": "Tout sur le SQL Privé",
+  "private_database_guide_add_hosting_private_database_dbaas_beginner": "Débuter avec CloudDB",
+  "private_database_guide_add_hosting_private_database_dbaas_db": "Démarrez avec MySQL et MariaDB",
+  "private_database_guide_add_hosting_private_database_dbaas_beginPostgre": "Demarrez avec PostgreSQL",
+  "private_database_pagination_page": "Page {{current}} / {{last}}",
+  "private_database_pagination_display": "Afficher",
+  "private_database_back": "Retour"
+}

@@ -1,5 +1,4 @@
 {
   "common_pagination_page": "Página {{currentPage}} / {{nbPages}}",
-  "common_pagination_display": "Visualização",
-  "common_temporary_error": "Ocorreu um erro temporário. Tente novamente mais tarde."
+  "common_pagination_display": "Visualização"
 }

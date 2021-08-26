@@ -1,0 +1,274 @@
+<div>
+    <div data-ovh-alert="{{alerts.page}}"></div>
+
+    <div class="text-center" data-ng-if="ctrl.loaders.details">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
+
+    <div data-ng-if="!ctrl.loaders.details">
+        <div class="oui-header">
+            <div class="oui-header__container">
+                <div class="oui-header__content row">
+                    <div class="col-md-9">
+                        <strong
+                            data-ng-if="database.offer === 'classic'"
+                            data-translate="privateDatabase_order_sql_type_premium_label"
+                        ></strong>
+                        <strong
+                            data-ng-if="database.offer === 'public'"
+                            data-translate="privateDatabase_order_sql_type_dbaas_label"
+                        ></strong>
+                        <div class="mb-3" data-ng-show="!ctrl.editMode">
+                            <div class="d-flex">
+                                <h1
+                                    class="d-inline-block mb-0"
+                                    data-ng-bind="database.displayName || database.serviceName || dbName"
+                                ></h1>
+                                <button
+                                    class="btn btn-icon my-auto ml-2"
+                                    type="button"
+                                    data-ng-click="ctrl.editDisplayName()"
+                                    data-ng-show="database"
+                                    data-ng-if="!ctrl.isExpired"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-pen_concept"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="sr-only"
+                                        data-translate="privateDatabase_configuration_edit_btn"
+                                    ></span>
+                                </button>
+                            </div>
+                            <span
+                                class="font-italic"
+                                data-ng-bind="::database.serviceName"
+                                data-ng-if="database.serviceName !== database.displayName"
+                            ></span>
+                        </div>
+
+                        <form
+                            class="my-4"
+                            name="formEditDisplayName"
+                            novalidate
+                            data-ng-show="ctrl.editMode"
+                            data-ng-submit="ctrl.saveDisplayName()"
+                        >
+                            <div class="oui-input-group">
+                                <input
+                                    type="text"
+                                    class="oui-input"
+                                    name="txtDisplayName"
+                                    id="privatedatabase-group-name"
+                                    data-event-blur="ctrl.newDisplayName.value = ''"
+                                    data-ng-maxlength="250"
+                                    data-ng-model="ctrl.newDisplayName.value"
+                                />
+                                <button
+                                    class="oui-button"
+                                    type="submit"
+                                    data-ng-disabled="formEditDisplayName.$invalid"
+                                >
+                                    <span
+                                        class="fa fa-check"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="sr-only"
+                                        data-translate="privateDatabase_dashboard_name_validate"
+                                    ></span>
+                                </button>
+                                <button
+                                    class="oui-button"
+                                    type="button"
+                                    data-ng-click="ctrl.editMode = false"
+                                >
+                                    <span
+                                        class="fa fa-remove"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="sr-only"
+                                        data-translate="privateDatabase_dashboard_name_cancel"
+                                    ></span>
+                                </button>
+                            </div>
+                        </form>
+
+                        <div
+                            class="alert alert-danger"
+                            role="alert"
+                            data-ng-if="ctrl.editMode && formEditDisplayName.txtDisplayName.$dirty && formEditDisplayName.$invalid"
+                            data-ng-messages="formEditDisplayName.txtDisplayName.$error"
+                        >
+                            <div
+                                data-ng-message="maxlength"
+                                data-ng-bind=":: 'privateDatabase_displayName_length' | translate"
+                            ></div>
+                        </div>
+
+                        <div
+                            class="mt-4"
+                            data-ng-if="database.serviceName && database.serviceInfos"
+                        >
+                            <wuc-service-expiration-date
+                                service-name="database.serviceName"
+                                service-type="HOSTING_PRIVATE_DATABASE"
+                                service-infos="database.serviceInfos"
+                            >
+                            </wuc-service-expiration-date>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 d-flex">
+                        <div class="btn-group ml-auto mt-4" data-uib-dropdown>
+                            <button
+                                type="button"
+                                class="oui-button oui-button_dropdown mb-0"
+                                aria-expanded="false"
+                                aria-haspopup="true"
+                                data-uib-dropdown-toggle
+                            >
+                                <span
+                                    data-translate="private_database_actions"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-chevron-down"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                            <ul
+                                class="dropdown-menu dropdown-menu-right"
+                                data-uib-dropdown-menu
+                            >
+                                <li data-ng-if="!ctrl.isExpired">
+                                    <button
+                                        class="btn btn-link"
+                                        type="button"
+                                        title="{{ 'privateDatabase_restart' | translate }}"
+                                        data-translate="privateDatabase_restart"
+                                        data-ng-click="setAction('database/restart/private-database-database-restart')"
+                                        data-ng-disabled="taskState.lockAction"
+                                    ></button>
+                                </li>
+                                <li
+                                    class="dropdown-divider"
+                                    data-ng-if="!ctrl.isExpired && (ctrl.changeOwnerUrl || ctrl.contactManagementLink)"
+                                >
+                                    <a
+                                        data-ng-if="ctrl.changeOwnerUrl"
+                                        class="btn btn-link"
+                                        title="{{:: 'private_database_change_owner' | translate }} ({{:: 'core_new_window' | translate }})"
+                                        target="_blank"
+                                        data-ng-href="{{::ctrl.changeOwnerUrl}}"
+                                        data-translate="private_database_change_owner"
+                                    >
+                                    </a>
+                                </li>
+                                <li data-ng-if="ctrl.contactManagementLink">
+                                    <a
+                                        class="btn btn-link"
+                                        data-ng-href="{{:: ctrl.contactManagementLink }}"
+                                        data-translate="privateDatabase_contacts_management"
+                                        data-ng-hide="database.isExpired"
+                                    >
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    data-ng-show="!(!taskState.changeVersion && database.state !== 'started') && !taskState.changeVersion"
+                >
+                    <p
+                        data-ng-if="!taskState.changeVersion && database && database.state !== 'started'"
+                        data-translate="privateDatabase_dashboard_information"
+                    ></p>
+                    <p
+                        class="text-danger"
+                        data-ng-if="taskState.changeVersion && database"
+                        data-translate="privateDatabase_dashboard_changeversion_information"
+                    ></p>
+                    <p
+                        data-ng-if="!taskState.changeVersion && !database"
+                        data-translate="privateDatabase_dashboard_not_administrator_information"
+                    ></p>
+                </div>
+            </div>
+            <oui-header-tabs>
+                <oui-header-tabs-item
+                    href="{{ ctrl.stateLink }}"
+                    active="ctrl.currentActiveLink() === ctrl.stateLink"
+                >
+                    <span data-translate="privateDatabase_tab_STATE"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-ng-if="database.serviceInfos.status !== 'expired'"
+                    href="{{ ctrl.userLink }}"
+                    active="ctrl.currentActiveLink() === ctrl.userLink"
+                >
+                    <span data-translate="privateDatabase_tab_USER"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-ng-if="database.serviceInfos.status !== 'expired'"
+                    href="{{ ctrl.databaseLink }}"
+                    active="ctrl.currentActiveLink() === ctrl.databaseLink"
+                >
+                    <span data-translate="privateDatabase_tab_DATABASE"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-ng-if="database.serviceInfos.status !== 'expired' && isDBaaS()"
+                    href="{{ ctrl.allowedIPsLink }}"
+                    active="ctrl.currentActiveLink() === ctrl.allowedIPsLink"
+                >
+                    <span data-translate="privateDatabase_tab_WHITELIST"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-ng-if="database.serviceInfos.status !== 'expired' && !isLegacyDatabase()"
+                    href="{{ ctrl.metricsLink }}"
+                    active="ctrl.currentActiveLink() === ctrl.metricsLink"
+                >
+                    <span data-translate="privateDatabase_tab_METRICS"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-ng-if="database.serviceInfos.status !== 'expired'"
+                    href="{{ ctrl.logsLink }}"
+                    active="ctrl.currentActiveLink() === ctrl.logsLink"
+                >
+                    <span data-translate="privateDatabase_tab_LOGS"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-ng-if="database.serviceInfos.status !== 'expired' && !isLegacyDatabase() && !hasConfiguration"
+                    href="{{ ctrl.configurationLink }}"
+                    active="ctrl.currentActiveLink() === ctrl.configurationLink"
+                >
+                    <span
+                        data-translate="privateDatabase_tab_CONFIGURATION"
+                    ></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-ng-if="database.serviceInfos.status !== 'expired'"
+                    href="{{ ctrl.taskLink }}"
+                    active="ctrl.currentActiveLink() === ctrl.taskLink"
+                >
+                    <span data-translate="privateDatabase_tab_TASK"></span>
+                </oui-header-tabs-item>
+            </oui-header-tabs>
+        </div>
+        <div ui-view></div>
+    </div>
+
+    <div id="currentAction" class="modal fade currentAction" role="dialog">
+        <div class="modal-dialog">
+            <div
+                id="modal-container"
+                class="modal-content"
+                data-ng-include="stepPath"
+            ></div>
+            <div id="modal-help" class="help4wizards"></div>
+        </div>
+    </div>
+</div>

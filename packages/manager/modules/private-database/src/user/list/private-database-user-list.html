@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-md-9">
+        <div data-ovh-alert="{{alerts.main}}"></div>
+
+        <oui-datagrid
+            data-rows="usersListCtrl.users"
+            data-row-loader="usersListCtrl.transformItem($row)"
+        >
+            <oui-datagrid-column
+                data-title="'privateDatabase_tabs_user_name' | translate"
+                data-property="userName"
+                data-sortable
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'privateDatabase_tabs_creation_date' | translate"
+                data-property="creationDate"
+            >
+                <span data-ng-bind="$row.creationDate | date:mediumDate"></span>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
+                <oui-action-menu-item
+                    data-ng-click="setAction('user/update/password/user/private-database-user-update-password-user', {user : $row, database: database})"
+                    data-ng-disabled="!database.capabilities.user.update || database.state !== 'started' || taskState.changeVersion || lockAction || $row.waitChangePassword"
+                    data-title="{{!database.capabilities.user.update ? ('privateDatabase_capability_disabled_explanation' | translate): ('privateDatabase_action_changepassword' | translate) }}"
+                    ><span
+                        data-translate="privateDatabase_action_changepassword"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-click="goToGrants($row)"
+                    data-ng-disabled="!database.capabilities.grant.update || database.state !== 'started' || taskState.changeVersion || lockAction"
+                    data-title="{{!database.capabilities.grant.update ? ('privateDatabase_capability_disabled_explanation' | translate): ('privateDatabase_action_grants' | translate) }}"
+                    ><span
+                        data-translate="privateDatabase_action_grants"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-click="setAction('user/delete/private-database-user-delete', $row)"
+                    data-ng-disabled="!database.capabilities.user.delete || database.state !== 'started' || taskState.changeVersion || lockAction"
+                    data-title="{{!database.capabilities.user.delete ? ('privateDatabase_capability_disabled_explanation' | translate): ('privateDatabase_action_delete_user' | translate) }}"
+                    ><span
+                        data-translate="privateDatabase_action_delete_user"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid>
+    </div>
+
+    <div class="col-md-3 mt-5 mt-lg-0">
+        <button
+            class="btn btn-block btn-default"
+            type="button"
+            data-translate="privateDatabase_tabs_add_user"
+            data-ng-click="setAction('user/add/private-database-user-add', {'user':usersListCtrl.usersIds})"
+            data-ng-disabled="!database.capabilities.user.create || database.state !== 'started' || taskState.changeVersion || usersListCtrl.lockAction"
+            title="{{!database.capabilities.user.create ? ('privateDatabase_capability_disabled_explanation' | translate): ('privateDatabase_tabs_add_user' | translate) }}"
+        ></button>
+    </div>
+</div>
