@@ -36,7 +36,6 @@
     ></database-engines-list>
 
     <h2>{{:: 'pci_database_fork_step2_title' | translate }}</h2>
-    {{$ctrl.current.plan.name}}
     <database-plans-list
         data-plans="$ctrl.model.engine.selectedVersion.plans"
         data-current-plan="$ctrl.current.plan"
