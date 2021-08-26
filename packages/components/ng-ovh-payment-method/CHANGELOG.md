@@ -1,3 +1,12 @@
+# [8.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.1.2...@ovh-ux/ng-ovh-payment-method@8.2.0) (2021-08-26)
+
+
+### Features
+
+* bump `@adyen/adyen-web` to `v4.7.3` ([#5435](https://github.com/ovh/manager/issues/5435)) ([0764eb1](https://github.com/ovh/manager/commit/0764eb1282d88f7b1ac790981414df29b20946ff))
+
+
+
 ## [8.1.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.1.1...@ovh-ux/ng-ovh-payment-method@8.1.2) (2021-06-29)
 
 
