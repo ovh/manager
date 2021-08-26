@@ -1,0 +1,10 @@
+{
+  "anthos_tenant_dashboard_ips_assign_private_ip_modal_title": "Assigner une IP privée",
+  "anthos_tenant_dashboard_ips_assign_private_ip_modal_description": "Define a usable IP CIDR block to be used within Anthos.",
+  "anthos_tenant_dashboard_ips_assign_private_ip_modal_body_field_range_ips_title": "IP ou bloc d'IPs",
+  "anthos_tenant_dashboard_ips_assign_private_ip_modal_body_field_range_ips_error": "Entrez un bloc IPv4 valide (ex: 10.10.50.10/20)",
+  "anthos_tenant_dashboard_ips_assign_private_ip_modal_action_add": "Assigner",
+  "anthos_tenant_dashboard_ips_assign_private_ip_modal_action_cancel": "Annuler",
+  "anthos_tenant_dashboard_ips_assign_private_ip_modal_action_add_success": "Le bloc/IP a été ajouté avec succès",
+  "anthos_tenant_dashboard_ips_assign_private_ip_modal_action_add_error": "Une erreur est survenue lors de l'ajout du bloc/IP : {{message}}"
+}
