@@ -8,8 +8,8 @@ export default class AnthosTenantsService {
     this.ovhDocUrl = ovhDocUrl;
   }
 
-  fetch(endPoint) {
-    return this.$http.get(endPoint).then(({ data }) => data);
+  fetch(endPoint, headers) {
+    return this.$http.get(endPoint, headers).then(({ data }) => data);
   }
 
   getTenants() {
@@ -52,11 +52,21 @@ export default class AnthosTenantsService {
   }
 
   getTenantPublicIPs(serviceName) {
-    return this.fetch(`/dedicated/anthos/tenants/${serviceName}/ips/public`);
+    return this.fetch(`/dedicated/anthos/tenants/${serviceName}/ips/public`, {
+      headers: {
+        'X-Pagination-Mode': 'CachedObjectList-Pages',
+        'X-Pagination-Size': 50000,
+      },
+    });
   }
 
   getTenantPrivateIPs(serviceName) {
-    return this.fetch(`/dedicated/anthos/tenants/${serviceName}/ips/private`);
+    return this.fetch(`/dedicated/anthos/tenants/${serviceName}/ips/private`, {
+      headers: {
+        'X-Pagination-Mode': 'CachedObjectList-Pages',
+        'X-Pagination-Size': 50000,
+      },
+    });
   }
 
   resetTenantAdminAccess(serviceName) {
