@@ -28,6 +28,7 @@ import 'script-loader!angular-dynamic-locale/dist/tmhDynamicLocale.js';
 import 'punycode';
 import 'script-loader!urijs/src/URI.min.js';
 import 'script-loader!ipaddr.js/ipaddr.min.js';
+import 'script-loader!validator/validator.min.js';
 import 'script-loader!angular-ui-utils/ui-utils.min.js';
 import 'script-loader!angular-ui-validate/dist/validate.min.js';
 import 'script-loader!randexp/build/randexp.min';
@@ -113,6 +114,7 @@ import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ovhManagerNutanix from '@ovh-ux/manager-nutanix';
 import { pollingService } from '@ovh-ux/manager-bm-server-components';
+import dedicatedHousing from '@ovh-ux/manager-dedicated-housing';
 import account from './account';
 import cdn from './cdn';
 import moduleLicense from './license';
@@ -127,7 +129,6 @@ import ipComponents from './components/ip/ip-components.module';
 
 import dedicatedServer from './dedicated/server';
 import dedicatedNas from './dedicated/nas';
-import dedicatedHousing from './dedicated/housing';
 import userContracts from './user-contracts';
 import otrs from './otrs';
 

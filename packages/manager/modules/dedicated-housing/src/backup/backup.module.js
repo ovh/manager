@@ -34,23 +34,23 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        'housing/backup/access/add/dedicated-housing-backup-access-add.html',
+        'dedicated/housing/backup/access/add/dedicated-housing-backup-access-add.html',
         accessAddTpl,
       );
       $templateCache.put(
-        'housing/backup/access/delete/dedicated-housing-backup-access-delete.html',
+        'dedicated/housing/backup/access/delete/dedicated-housing-backup-access-delete.html',
         accessDeleteTpl,
       );
       $templateCache.put(
-        'housing/backup/disable/dedicated-housing-backup-disable.html',
+        'dedicated/housing/backup/disable/dedicated-housing-backup-disable.html',
         backupEnableTpl,
       );
       $templateCache.put(
-        'housing/backup/disable/dedicated-housing-backup-disable.html',
+        'dedicated/housing/backup/disable/dedicated-housing-backup-disable.html',
         backupDisableTpl,
       );
       $templateCache.put(
-        'housing/backup/password/reset/dedicated-housing-backup-password-reset.html',
+        'dedicated/housing/backup/password/reset/dedicated-housing-backup-password-reset.html',
         passwordResetTpl,
       );
     },
