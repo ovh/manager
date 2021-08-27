@@ -9,6 +9,7 @@
   "pci_notebook_list_privacy_private": "Privé",
   "pci_notebook_list_privacy_public": "Public",
   "pci_notebook_list_running_time": "Durée de fonctionnement",
+  "pci_notebook_list_creator": "Utilisateur",
   "pci_notebook_list_status": "Statut",
   "pci_notebook_list_status_STARTING": "Démarrage",
   "pci_notebook_list_status_RUNNING": "En service",

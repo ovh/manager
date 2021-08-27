@@ -22,5 +22,6 @@
   "pci_notebook_list_delete_notebook": "Eliminar",
   "pci_notebook_list_start_error": "Se ha producido un error al intentar iniciar el notebook {{notebookName}}: {{message}}",
   "pci_notebook_list_stop_error": "Se ha producido un error al intentar detener el notebook {{notebookName}}: {{message}}",
-  "pci_notebook_list_status_FAILED": "Error"
+  "pci_notebook_list_status_FAILED": "Error",
+  "pci_notebook_list_creator": "Usuario"
 }
