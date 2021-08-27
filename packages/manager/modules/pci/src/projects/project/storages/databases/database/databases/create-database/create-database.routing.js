@@ -2,7 +2,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'pci.projects.project.storages.databases.dashboard.databases.create-database',
     {
-      url: '/upgrade-version',
+      url: '/create-database',
       views: {
         modal: {
           component:

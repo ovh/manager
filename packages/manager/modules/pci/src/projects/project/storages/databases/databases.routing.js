@@ -1,6 +1,6 @@
 import map from 'lodash/map';
 
-import { DATABASES_GUIDES_URL, DATABASE_TYPES } from './databases.constants';
+import { DATABASES_GUIDES_URL } from './databases.constants';
 import Database from '../../../../components/project/storages/databases/database.class';
 import Node from '../../../../components/project/storages/databases/node.class';
 
@@ -37,10 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
         getDatabaseObject,
         projectId,
       ) =>
-        DatabaseService.getDatabases(
-          projectId,
-          DATABASE_TYPES.MONGO_DB,
-        ).then((databases) =>
+        DatabaseService.getAllDatabases(projectId).then((databases) =>
           $q.all(map(databases, (database) => getDatabaseObject(database))),
         ),
 

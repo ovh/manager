@@ -14,6 +14,7 @@ export const DATABASE_TYPES = {
 
 export const SHELL_NAMES = {
   mongodb: 'mongo',
+  mysql: 'mysql',
 };
 
 export const METRICS_TIME_RANGES = [

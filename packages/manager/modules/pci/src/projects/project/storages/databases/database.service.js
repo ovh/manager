@@ -247,6 +247,15 @@ export default class DatabaseService {
       );
   }
 
+  getAllDatabases(projectId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/service`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then((databases) => databases.data);
+  }
+
   getIpRestrictions(projectId, engine, databaseId) {
     return this.$http
       .get(
