@@ -21,7 +21,7 @@
 
     <tail-logs>
         <p
-            ng-repeat="line in $ctrl.logs"
+            ng-repeat="line in $ctrl.logs track by $index"
             ng-class="$ctrl.findMessageLevel(line.message)"
         >
             {{$ctrl.formatTimestamp(line.timestamp)}} {{line.hostname}}
