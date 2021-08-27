@@ -7,7 +7,7 @@ export const DATABASES_GUIDES_URL =
 export const DATABASE_TYPES = {
   MONGO_DB: 'mongodb',
   MYSQL: 'mysql',
-  POSTGRE: 'postrgre',
+  POSTGRESQL: 'postgresql',
   REDIS: 'redis',
   KAFKA: 'kafka',
 };
@@ -15,6 +15,9 @@ export const DATABASE_TYPES = {
 export const SHELL_NAMES = {
   mongodb: 'mongo',
   mysql: 'mysql',
+  postgresql: 'postgresql',
+  redis: 'redis',
+  kafka: 'kafka',
 };
 
 export const METRICS_TIME_RANGES = [
