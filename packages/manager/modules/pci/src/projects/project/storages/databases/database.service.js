@@ -287,7 +287,8 @@ export default class DatabaseService {
   getVRack(projectId) {
     return this.$http
       .get(`/cloud/project/${projectId}/vrack`)
-      .then(({ data }) => data);
+      .then(({ data }) => data)
+      .catch((error) => (error.status === 404 ? [] : Promise.reject(error)));
   }
 
   getSubnets(projectId, networkId) {

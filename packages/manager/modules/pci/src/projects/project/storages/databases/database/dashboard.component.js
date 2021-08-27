@@ -12,6 +12,8 @@ export default {
     usersLink: '<',
     logsLink: '<',
     metricsLink: '<',
+    databasesLink: '<',
+    isFeatureActivated: '<',
   },
   template,
 };

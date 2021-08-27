@@ -1,0 +1,38 @@
+<div class="container-fluid px-0 mt-3">
+    <!-- error messages -->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <h2 data-translate="pci_databases_databases_tab_title"></h2>
+
+    <oui-datagrid class="mt-5" data-page-size="10" data-rows="$ctrl.databases">
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_databases_tab_name' | translate"
+            data-property="description"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-topbar>
+            <oui-button data-on-click="$ctrl.addDatabase()">
+                <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i>
+                <span data-translate="pci_databases_databases_tab_add"></span>
+            </oui-button>
+            <button
+                data-ng-if="$ctrl.databases.length > 0"
+                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
+                type="button"
+                data-title="{{:: 'pci_databases_common_refresh' | translate }}"
+                data-ng-click="$ctrl.refreshing=true; $ctrl.refreshDatabases()"
+                data-ng-disabled="$ctrl.refreshing"
+            >
+                <span
+                    class="oui-icon oui-icon-refresh"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+</div>

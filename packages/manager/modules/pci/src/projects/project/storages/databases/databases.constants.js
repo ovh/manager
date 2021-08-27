@@ -6,6 +6,10 @@ export const DATABASES_GUIDES_URL =
 
 export const DATABASE_TYPES = {
   MONGO_DB: 'mongodb',
+  MYSQL: 'mysql',
+  POSTGRE: 'postrgre',
+  REDIS: 'redis',
+  KAFKA: 'kafka',
 };
 
 export const SHELL_NAMES = {
