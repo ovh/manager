@@ -274,20 +274,6 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
-                    data-term="{{:: 'pci_databases_general_information_database_host' | translate }}"
-                >
-                    <oui-tile-description>
-                        <ul ng-if="$ctrl.database.host.length > 1">
-                            <li ng-repeat="host in $ctrl.database.host">
-                                {{:: host }}
-                            </li>
-                        </ul>
-                        <span ng-if="$ctrl.database.host.length === 1">
-                            {{:: $ctrl.database.host[0] }}
-                        </span>
-                    </oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_database_port' | translate }}"
                     data-description="{{:: $ctrl.database.port }}"
                 >
