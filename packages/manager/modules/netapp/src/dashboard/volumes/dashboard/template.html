@@ -13,6 +13,14 @@
                 ></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
+                href="{{:: $ctrl.volumeDashboardSnapshotsLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.volumeDashboardSnapshotsLink"
+            >
+                <span
+                    data-translate="netapp_volumes_dashboard_snapshots"
+                ></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
                 href="{{:: $ctrl.volumeDashboardAclLink }}"
                 active="$ctrl.currentActiveLink() === $ctrl.volumeDashboardAclLink"
             >
