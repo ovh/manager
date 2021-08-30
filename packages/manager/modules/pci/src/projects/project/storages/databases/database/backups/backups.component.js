@@ -11,6 +11,7 @@ export default {
     refreshBackups: '<',
     trackDatabases: '<',
     backupRetentionTime: '<',
+    isFeatureActivated: '<',
   },
   controller,
   template,
