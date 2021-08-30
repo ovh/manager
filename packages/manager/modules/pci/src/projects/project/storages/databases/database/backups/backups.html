@@ -9,13 +9,17 @@
     <p data-translate="pci_databases_backup_description1"></p>
     <p data-translate="pci_databases_backup_description2"></p>
 
-    <oui-tile heading="{{:: 'pci_databases_backup_informations_title' | translate}}">
+    <oui-tile
+        heading="{{:: 'pci_databases_backup_informations_title' | translate}}"
+    >
         <table class="oui-table">
             <tbody>
                 <tr class="oui-table__row">
                     <td class="oui-table__cell">
                         <dl class="oui-description">
-                            <dt data-translate="pci_databases_backup_informations_retention"></dt>
+                            <dt
+                                data-translate="pci_databases_backup_informations_retention"
+                            ></dt>
                             <dd>{{$ctrl.backupRetentionTime.humanize()}}</dd>
                         </dl>
                     </td>
@@ -53,7 +57,9 @@
             data-property="expirationDate"
             data-sortable
         >
-            <span data-ng-bind="$ctrl.getExpiryDate($row) | date: 'medium'"></span>
+            <span
+                data-ng-bind="$ctrl.getExpiryDate($row) | date: 'medium'"
+            ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_database_common_status' | translate"
@@ -86,6 +92,7 @@
             <oui-action-menu-item
                 data-on-click="$ctrl.forkBackup($row)"
                 data-disabled="!($row.isActive() && $ctrl.database.isActive())"
+                ng-if="$ctrl.isFeatureActivated('forkFromBackup')"
             >
                 <span data-translate="pci_databases_backup_fork"></span>
             </oui-action-menu-item>
