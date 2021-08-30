@@ -1,0 +1,9 @@
+{
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_title": "Supprimer une plage d'IP",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_description": "Vous êtes sur le point de supprimer la plage d'IPs :",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_description_question": "Êtes-vous sûr·e de vouloir effectuer cette opération ?",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_action_remove": "Supprimer",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_action_cancel": "Annuler",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_action_remove_success": "Le bloc/IP a été supprimée avec succès",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_action_remove_error": "Une erreur est survenue lors de la suppression du bloc/IP : {{message}}"
+}
