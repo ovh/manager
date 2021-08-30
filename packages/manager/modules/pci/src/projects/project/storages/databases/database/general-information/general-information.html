@@ -388,6 +388,44 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_replicas_label' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('replicas')"
+                >
+                    <oui-tile-description>
+                        <a
+                            class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                            data-ng-href=""
+                        >
+                            <span
+                                data-translate="pci_databases_general_information_replicas_link"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right ml-1"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_new_fork_label' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('forkFromGeneralInformation')"
+                >
+                    <oui-tile-description>
+                        <a
+                            class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                            data-ng-href=""
+                        >
+                            <span
+                                data-translate="pci_databases_general_information_new_fork_link"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right ml-1"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_allowed_ips_label' | translate }}"
                 >
                     <oui-tile-description>
