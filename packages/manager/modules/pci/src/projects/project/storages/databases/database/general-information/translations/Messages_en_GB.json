@@ -44,5 +44,9 @@
   "pci_databases_general_information_generate_password": "You will need to regenerate your admin password to use your data cluster.",
   "pci_databases_general_information_no_ip": "You need authorized IP adresses on your cluster to be able to use it.",
   "pci_databases_general_information_no_users": "Your cluster is not fully configured : you need to add users on your cluster to be able to use it.",
-  "pci_databases_general_information_no_ip_no_users": "Your cluster is not fully configured : you need to authorize IP adresses and add users."
+  "pci_databases_general_information_no_ip_no_users": "Your cluster is not fully configured : you need to authorize IP adresses and add users.",
+  "pci_databases_general_information_new_fork_label": "Fork",
+  "pci_databases_general_information_new_fork_link": "Create a service fork",
+  "pci_databases_general_information_replicas_label": "Read replicas",
+  "pci_databases_general_information_replicas_link": "Create a new replica"
 }

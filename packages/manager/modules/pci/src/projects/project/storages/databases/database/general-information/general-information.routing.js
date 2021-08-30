@@ -1,6 +1,7 @@
 import find from 'lodash/find';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
+import isFeatureActivated from '../../features.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const stateName =
@@ -219,6 +220,8 @@ export default /* @ngInject */ ($stateProvider) => {
         database.nodes.forEach((node) =>
           DatabaseService.stopPollingNodeStatus(node.id),
         ),
+      isFeatureActivated: /* @ngInject */ (engine) => (feature) =>
+        isFeatureActivated(feature, engine.name),
     },
   });
 };
