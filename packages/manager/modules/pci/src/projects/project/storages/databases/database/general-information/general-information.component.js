@@ -18,6 +18,7 @@ export default {
     goToUpgradePlan: '<',
     goToUpgradeVersion: '<',
     goToUpgradeNode: '<',
+    goToFork: '<',
     vRack: '<',
     vRackLink: '<',
     latestPlan: '<',

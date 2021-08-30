@@ -191,10 +191,6 @@ export default class {
 
   prepareOrderData() {
     this.orderData = {
-      backup: {
-        id: this.backupInstance.id,
-        service: this.database.id,
-      },
       description: this.model.name,
       networkId: this.database?.networkId,
       subnetId: this.database?.subnetId,
@@ -207,6 +203,12 @@ export default class {
       plan: this.model.plan.name,
       version: this.model.engine.selectedVersion.version,
     };
+    if (this.backupInstance) {
+      this.orderData.backup = {
+        id: this.backupInstance.id,
+        service: this.database.id,
+      };
+    }
   }
 
   createDatabase() {
