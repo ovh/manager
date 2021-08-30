@@ -411,9 +411,9 @@
                     data-ng-if="$ctrl.isFeatureActivated('forkFromGeneralInformation')"
                 >
                     <oui-tile-description>
-                        <a
+                        <button
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"
-                            data-ng-href=""
+                            data-ng-click="$ctrl.goToFork()"
                         >
                             <span
                                 data-translate="pci_databases_general_information_new_fork_link"
@@ -422,7 +422,7 @@
                                 class="oui-icon oui-icon-arrow-right ml-1"
                                 aria-hidden="true"
                             ></span>
-                        </a>
+                        </button>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
