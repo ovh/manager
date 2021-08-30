@@ -69,6 +69,18 @@ export default class AnthosTenantsService {
     });
   }
 
+  addTenantPrivateIP(serviceName, range) {
+    return this.$http
+      .post(`/dedicated/anthos/tenants/${serviceName}/ips/private`, range)
+      .then(({ data }) => data);
+  }
+
+  removeTenantPrivateIP(serviceName, rangeId) {
+    return this.$http.delete(
+      `/dedicated/anthos/tenants/${serviceName}/ips/private/${rangeId}`,
+    );
+  }
+
   resetTenantAdminAccess(serviceName) {
     return this.$http
       .post(`/dedicated/anthos/tenants/${serviceName}/credentials/reset`)
