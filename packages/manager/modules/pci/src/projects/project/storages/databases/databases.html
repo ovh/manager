@@ -105,9 +105,7 @@
             data-filterable
         >
             <span data-ng-repeat="node in $row.nodes track by node.id">
-                <p
-                    data-ng-if="$row.nodes.length > 4 && $index === $ctrl.ceil($row.nodes.length / 2)"
-                ></p>
+                <p data-ng-if="$row.nodes.length > 4 && $index % 4 === 0"></p>
                 <database-node data-node="node"> </database-node>
             </span>
         </oui-datagrid-column>

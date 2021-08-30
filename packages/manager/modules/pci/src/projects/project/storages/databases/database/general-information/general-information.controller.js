@@ -1,5 +1,4 @@
 import capitalize from 'lodash/capitalize';
-import ceil from 'lodash/ceil';
 import { SHELL_NAMES } from '../../databases.constants';
 
 export default class {
@@ -12,7 +11,6 @@ export default class {
   ) {
     this.$translate = $translate;
     this.capitalize = capitalize;
-    this.ceil = ceil;
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.DatabaseService = DatabaseService;
