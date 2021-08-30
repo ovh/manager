@@ -27,5 +27,7 @@
   "billing_commitment_error": "An error has occurred.",
   "billing_commitment_summary_description_end": "After {{ endDate }}, your service will be automatically renewed for the same duration as your last subscription.",
   "billing_commitment_summit": "Confirm",
-  "billing_commitment_service_vps": "Virtual private servers"
+  "billing_commitment_service_vps": "Virtual private servers",
+  "billing_commitment_savings": "Save a total of {{price}}",
+  "billing_commitment_payment_upfront_pay_now": "Pay {{price}} now"
 }

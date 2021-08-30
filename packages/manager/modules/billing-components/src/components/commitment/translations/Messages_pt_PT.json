@@ -27,5 +27,7 @@
   "billing_commitment_error": "Ocorreu um erro.",
   "billing_commitment_summary_description_end": "Depois de {{ endDate }}, o seu serviço será tacitamente reiniciado por um período semelhante ao seu último compromisso.",
   "billing_commitment_summit": "Validar",
-  "billing_commitment_service_vps": "Servidores privados virtuais"
+  "billing_commitment_service_vps": "Servidores privados virtuais",
+  "billing_commitment_savings": "Poupe um total de {{ price }}",
+  "billing_commitment_payment_upfront_pay_now": "Pague {{ price }} agora"
 }

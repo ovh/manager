@@ -27,5 +27,7 @@
   "billing_commitment_error": "Es ist ein Fehler aufgetreten.",
   "billing_commitment_summary_description_end": "Nach dem {{ endDate }} wird Ihre Dienstleistung stillschweigend für einen Zeitraum wie den Ihrer letzten Vertragslaufzeit erneut aktiviert.",
   "billing_commitment_summit": "Bestätigen",
-  "billing_commitment_service_vps": "Virtual Private Server"
+  "billing_commitment_service_vps": "Virtual Private Server",
+  "billing_commitment_savings": "Sparen Sie insgesamt {{ price }}",
+  "billing_commitment_payment_upfront_pay_now": "Zahlen Sie jetzt {{ price }}"
 }

@@ -27,5 +27,7 @@
   "billing_commitment_error": "Se ha producido un error.",
   "billing_commitment_summary_description_end": "Después del {{ endDate }}, el servicio se renovará automáticamente por una duración idéntica a la de su último compromiso de permanencia.",
   "billing_commitment_summit": "Aceptar",
-  "billing_commitment_service_vps": "Servidores privados virtuales"
+  "billing_commitment_service_vps": "Servidores privados virtuales",
+  "billing_commitment_savings": "Ahorre un total de {{ price }}",
+  "billing_commitment_payment_upfront_pay_now": "Pague {{ price }} ahora"
 }

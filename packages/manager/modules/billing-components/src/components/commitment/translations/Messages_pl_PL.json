@@ -27,5 +27,7 @@
   "billing_commitment_error": "Wystąpił błąd.",
   "billing_commitment_summary_description_end": "Po zakończeniu {{endDate}} usługa zostanie automatycznie wznowiona na kolejny okres objęty umową terminową zbliżony do czasu określonego w ostatnim zamówieniu.",
   "billing_commitment_summit": "Zatwierdź",
-  "billing_commitment_service_vps": "Prywatne serwery wirtualne"
+  "billing_commitment_service_vps": "Prywatne serwery wirtualne",
+  "billing_commitment_savings": "Zaoszczędź łącznie {{ price }}",
+  "billing_commitment_payment_upfront_pay_now": "Zapłać teraz {{ price }}"
 }

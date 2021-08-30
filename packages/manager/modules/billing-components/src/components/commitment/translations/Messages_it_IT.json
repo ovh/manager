@@ -27,5 +27,7 @@
   "billing_commitment_error": "Si è verificato un errore,",
   "billing_commitment_summary_description_end": "Dopo il {{ endDate }} il servizio verrà rinnovato tacitamente per una durata simile all'ultimo impegno contrattuale sottoscritto.",
   "billing_commitment_summit": "Conferma",
-  "billing_commitment_service_vps": "Server Privati Virtuali"
+  "billing_commitment_service_vps": "Server Privati Virtuali",
+  "billing_commitment_savings": "Risparmia un totale di {{ price }}",
+  "billing_commitment_payment_upfront_pay_now": "Paga {{ price }} adesso"
 }
