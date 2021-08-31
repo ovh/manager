@@ -32,8 +32,23 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href($state.current.name, $transition$.params()),
       databaseId: /* @ngInject */ ($transition$) =>
         $transition$.params().databaseId,
-      database: /* @ngInject */ (databaseId, databases) =>
-        find(databases, { id: databaseId }),
+      database: /* @ngInject */ (
+        databaseId,
+        databases,
+        projectId,
+        DatabaseService,
+      ) => {
+        const db = find(databases, { id: databaseId });
+        if (isFeatureActivated('certificate', db.engine) && !db.certificate) {
+          DatabaseService.getCertificate(projectId, db.engine, databaseId).then(
+            (data) => {
+              db.certificate = data;
+              return data;
+            },
+          );
+        }
+        return db;
+      },
       engine: /* @ngInject */ (database, engines) =>
         find(engines, { name: database.engine }),
       breadcrumb: /* @ngInject */ (database) => database.description,

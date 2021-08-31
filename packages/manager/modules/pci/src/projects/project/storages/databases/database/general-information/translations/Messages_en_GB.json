@@ -51,5 +51,9 @@
   "pci_databases_general_information_replicas_link": "Create a new replica",
   "pci_databases_general_information_termination_protection_label": "Termination Protection",
   "pci_databases_general_information_termination_protection_enabled_label": "Enabled",
-  "pci_databases_general_information_termination_protection_disabled_label": "Disabled"
+  "pci_databases_general_information_termination_protection_disabled_label": "Disabled",
+  "pci_databases_general_information_certificate_label": "CA certificate",
+  "pci_databases_general_information_certificate_link": "Show",
+  "pci_databases_general_information_certificate_download": "Download",
+  "pci_databases_general_information_certificate_tooltip": "Your CA certificate: <code>{{certificate}}</code>"
 }

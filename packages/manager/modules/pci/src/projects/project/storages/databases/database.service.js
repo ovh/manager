@@ -451,4 +451,12 @@ export default class DatabaseService {
     deferred.resolve({ name: databaseName });
     return deferred.promise;
   }
+
+  getCertificate(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/certificates`,
+      )
+      .then(({ data }) => data);
+  }
 }

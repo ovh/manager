@@ -6,6 +6,6 @@ export default class {
   }
 
   $onInit() {
-    this.flavors = this.flavors.sort((a, b) => b.compare(a));
+    this.flavors = this.flavors?.sort((a, b) => b.compare(a));
   }
 }

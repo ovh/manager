@@ -51,5 +51,9 @@
   "pci_databases_general_information_replicas_link": "Créer une nouvelle réplique",
   "pci_databases_general_information_termination_protection_label": "Protection contre la suppression",
   "pci_databases_general_information_termination_protection_enabled_label": "Activé",
-  "pci_databases_general_information_termination_protection_disabled_label": "Désactivé"
+  "pci_databases_general_information_termination_protection_disabled_label": "Désactivé",
+  "pci_databases_general_information_certificate_label": "Certificat CA",
+  "pci_databases_general_information_certificate_link": "Voir",
+  "pci_databases_general_information_certificate_download": "Télécharger",
+  "pci_databases_general_information_certificate_tooltip": "Votre certificat: <code>{{certificate}}</code>"
 }
