@@ -48,5 +48,8 @@
   "pci_databases_general_information_new_fork_label": "Fork",
   "pci_databases_general_information_new_fork_link": "Create a service fork",
   "pci_databases_general_information_replicas_label": "Read replicas",
-  "pci_databases_general_information_replicas_link": "Create a new replica"
+  "pci_databases_general_information_replicas_link": "Create a new replica",
+  "pci_databases_general_information_termination_protection_label": "Termination Protection",
+  "pci_databases_general_information_termination_protection_enabled_label": "Enabled",
+  "pci_databases_general_information_termination_protection_disabled_label": "Disabled"
 }

@@ -3,6 +3,9 @@
   "pci_database_delete_database_submit_label": "Confirmar",
   "pci_database_delete_database_cancel_label": "Cancelar",
   "pci_database_delete_database_content": "¿Seguro que quiere eliminar la base de datos {{ databaseName }}?",
+  "pci_database_delete_database_content_warning": "Lorem Ipsum",
   "pci_database_delete_database_success": "La base de datos {{ databaseName }} se ha eliminado.",
-  "pci_database_delete_database_error": "Se ha producido un error al eliminar la base de datos {{ databaseName }}: {{ message }}."
+  "pci_database_delete_database_error": "Se ha producido un error al eliminar la base de datos {{ databaseName }}: {{ message }}.",
+  "pci_database_delete_database_termination_protection": "Entrez {{keyword}} dans le champs suivant pour valider la suppression",
+  "pci_database_delete_database_termination_protection_key": "SUPPRIMER"
 }

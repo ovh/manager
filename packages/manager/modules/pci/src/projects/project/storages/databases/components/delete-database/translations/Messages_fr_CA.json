@@ -3,6 +3,9 @@
   "pci_database_delete_database_submit_label": "Confirmer",
   "pci_database_delete_database_cancel_label": "Annuler",
   "pci_database_delete_database_content": "Êtes-vous sûr de vouloir supprimer le service {{ databaseName }} ?",
+  "pci_database_delete_database_content_warning": "Lorem Ipsum",
   "pci_database_delete_database_success": "Le service {{ databaseName }} a été supprimé.",
-  "pci_database_delete_database_error": "Une erreur est survenue lors de la suppression du service {{ databaseName }} : {{ message }}."
+  "pci_database_delete_database_error": "Une erreur est survenue lors de la suppression du service {{ databaseName }} : {{ message }}.",
+  "pci_database_delete_database_termination_protection": "Entrez {{keyword}} dans le champs suivant pour valider la suppression",
+  "pci_database_delete_database_termination_protection_key": "SUPPRIMER"
 }

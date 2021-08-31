@@ -240,6 +240,28 @@
                         ></p>
                     </oui-tile-description>
                 </oui-tile-definition>
+
+                <oui-tile-definition
+                    data-ng-if="$ctrl.isFeatureActivated('terminationProtection')"
+                    data-term="{{:: 'pci_databases_general_information_termination_protection_label' | translate }}"
+                >
+                    <oui-tile-description>
+                        <oui-switch
+                            model="$ctrl.database.terminationProtection"
+                            on-change="$ctrl.onChangeTerminationProtection(terminationProtection)"
+                        >
+                        </oui-switch>
+                        <span
+                            data-ng-if="$ctrl.database.terminationProtection"
+                            data-translate="pci_databases_general_information_termination_protection_enabled_label"
+                        ></span>
+
+                        <span
+                            data-ng-if="!$ctrl.database.terminationProtection"
+                            data-translate="pci_databases_general_information_termination_protection_disabled_label"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
             </oui-tile>
         </div>
         <div class="col-md-4">

@@ -1,14 +1,43 @@
 <oui-modal
     data-heading="{{ 'pci_database_delete_database_title' | translate }}"
     data-primary-action="$ctrl.deleteDatabase()"
+    data-type="{{$ctrl.database.terminationProtection ? 'warning' : ''}}"
     data-primary-label="{{:: 'pci_database_delete_database_submit_label' | translate }}"
+    data-primary-disabled="$ctrl.keyword !== $ctrl.terminationInput && $ctrl.database.terminationProtection"
     data-secondary-action="$ctrl.cancel()"
     data-secondary-label="{{:: 'pci_database_delete_database_cancel_label' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
     data-loading="$ctrl.isDeleting"
 >
     <p
+        data-ng-if="!$ctrl.database.terminationProtection"
         data-translate="pci_database_delete_database_content"
         data-translate-values="{ databaseName: $ctrl.database.description }"
     ></p>
+    <span data-ng-if="$ctrl.database.terminationProtection">
+        <!-- Warning -->
+        <oui-message type="warning">
+            <span
+                data-translate="pci_database_delete_database_content_warning"
+            ></span>
+        </oui-message>
+        <p
+            style="font-weight: bold"
+            data-translate="pci_database_delete_database_termination_protection"
+            data-translate-values="{ keyword: $ctrl.keyword }"
+        ></p>
+        <oui-field>
+            <input
+                type="text"
+                id="terminationInput"
+                name="terminationInput"
+                class="oui-input"
+                style="font-weight: bold"
+                data-ng-class="$ctrl.keyword !== $ctrl.terminationInput ? 'oui-input_error' : ''"
+                data-ng-model="$ctrl.terminationInput"
+                required
+                autofocus
+            />
+        </oui-field>
+    </span>
 </oui-modal>
