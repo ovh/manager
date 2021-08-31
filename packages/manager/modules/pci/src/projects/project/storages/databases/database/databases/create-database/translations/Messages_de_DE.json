@@ -4,5 +4,7 @@
   "pci_databases_databases_create_database": "Créer une base de donnée",
   "pci_databases_databases_create_database_warning": "",
   "pci_databases_databases_create_database_description": "Ajouter une base de donnée à votre service.",
-  "pci_databases_databases_create_database_label": "Nom de la base de données:"
+  "pci_databases_databases_create_database_label": "Nom de la base de données:",
+  "pci_databases_databases_create_database_success_message": "Votre nouvelle base de données {{database.name}} a été ajoutée",
+  "pci_databases_databases_create_database_error_message": "Une erreur est survenue lors de la création de votre base de données: {{message}}"
 }

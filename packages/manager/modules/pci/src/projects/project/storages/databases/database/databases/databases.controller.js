@@ -1,4 +1,4 @@
-export default class logsCtrl {
+export default class databasesCtrl {
   /* @ngInject */
   constructor($anchorScroll, $translate, $q, CucCloudMessage, DatabaseService) {
     this.$anchorScroll = $anchorScroll;

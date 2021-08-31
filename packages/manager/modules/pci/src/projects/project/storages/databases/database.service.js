@@ -417,4 +417,38 @@ export default class DatabaseService {
       .get(`/cloud/project/${projectId}/database/${engine}/${databaseId}/logs`)
       .then(({ data }) => data);
   }
+
+  getServiceDatabases(projectId, engine, databaseId) {
+    /**
+     * Return a mocked list while backend is not ready.
+     * Replace with an api call later.
+     */
+    if (!this.mockedDatabases) this.mockedDatabases = [];
+    const deferred = this.$q.defer();
+    deferred.resolve(
+      this.mockedDatabases.filter(
+        (d) =>
+          d.projectId === projectId &&
+          d.engine === engine &&
+          d.databaseId === databaseId,
+      ),
+    );
+    return deferred.promise;
+  }
+
+  addServiceDatabase(projectId, engine, databaseId, databaseName) {
+    /**
+     * Add the database to the mocked list while backend is not ready.
+     * Replace with an api call later.
+     */
+    const deferred = this.$q.defer();
+    this.mockedDatabases.push({
+      name: databaseName,
+      projectId,
+      engine,
+      databaseId,
+    });
+    deferred.resolve({ name: databaseName });
+    return deferred.promise;
+  }
 }

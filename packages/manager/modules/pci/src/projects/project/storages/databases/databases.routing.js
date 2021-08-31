@@ -28,9 +28,6 @@ export default /* @ngInject */ ($stateProvider) => {
       goToAddDatabase: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.storages.databases.add', { projectId }),
       databaseId: /* @ngInject */ ($transition$) => $transition$.params().id,
-      /* The DATABASE_TYPES.MONGO_DB is to be removed when we have multiple engines
-         The API will give us the engine data at that time and we will have a
-         new API to give us all the databases (across engines) consolidated. */
       databases: /* @ngInject */ (
         $q,
         DatabaseService,

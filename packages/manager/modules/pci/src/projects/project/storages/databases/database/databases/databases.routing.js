@@ -10,6 +10,27 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('pci_database_databases_title'),
+        goBackToDatabase: /* @ngInject */ ($state, CucCloudMessage) => (
+          message = false,
+          type = 'success',
+        ) => {
+          const reload = message && type === 'success';
+          const state =
+            'pci.projects.project.storages.databases.dashboard.databases';
+          const promise = $state.go(state, {}, { reload });
+          if (message) {
+            promise.then(() => {
+              CucCloudMessage[type](message, state);
+            });
+          }
+          return promise;
+        },
+        databasesList: /* @ngInject */ (database, DatabaseService, projectId) =>
+          DatabaseService.getServiceDatabases(
+            projectId,
+            database.engine,
+            database.id,
+          ),
         addDatabase: /* @ngInject */ ($state, databaseId, projectId) => () =>
           $state.go(
             'pci.projects.project.storages.databases.dashboard.databases.create-database',

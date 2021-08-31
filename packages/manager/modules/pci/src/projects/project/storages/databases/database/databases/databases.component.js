@@ -7,6 +7,7 @@ export default {
     database: '<',
     trackDatabases: '<',
     addDatabase: '<',
+    databasesList: '<',
   },
   controller,
   template,

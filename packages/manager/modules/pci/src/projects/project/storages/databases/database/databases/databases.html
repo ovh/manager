@@ -6,10 +6,14 @@
 
     <h2 data-translate="pci_databases_databases_tab_title"></h2>
 
-    <oui-datagrid class="mt-5" data-page-size="10" data-rows="$ctrl.databases">
+    <oui-datagrid
+        class="mt-5"
+        data-page-size="10"
+        data-rows="$ctrl.databasesList"
+    >
         <oui-datagrid-column
             data-title=":: 'pci_databases_databases_tab_name' | translate"
-            data-property="description"
+            data-property="name"
             data-sortable="asc"
             data-type="string"
             data-searchable

@@ -2,11 +2,11 @@
     <oui-modal
         data-on-dismiss="$ctrl.goBack()"
         data-primary-label="{{:: 'pci_databases_databases_create_database_confirm' | translate}}"
-        data-primary-disabled="!$ctrl.selectedVersion"
+        data-primary-disabled="!$ctrl.databaseName"
         data-primary-action="$ctrl.addDatabase()"
         data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{:: 'pci_databases_databases_create_database_cancel' | translate}}"
-        data-loading="$ctrl.addingDatabase"
+        data-loading="$ctrl.processing"
         data-heading="{{:: 'pci_databases_databases_create_database' | translate}}"
     >
         <oui-message type="warning">
@@ -25,7 +25,7 @@
                 id="databaseName"
                 name="databaseName"
                 class="oui-input"
-                data-ng-model="$ctrl.name"
+                data-ng-model="$ctrl.databaseName"
                 required
                 autofocus
             />
