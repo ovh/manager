@@ -28,11 +28,9 @@ export default class RemovePrivateIpController {
           this.$translate.instant(
             'anthos_tenant_dashboard_ips_remove_private_ip_modal_action_remove_success',
           ),
-          'success',
         );
       })
       .catch((error) => {
-        this.removePrivateIp(this.privateIp.id);
         return this.goBack(
           this.$translate.instant(
             'anthos_tenant_dashboard_ips_remove_private_ip_modal_action_remove_error',

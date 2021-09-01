@@ -1,11 +1,11 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'anthos.dashboard.general-information.order-public-ips',
+    'anthos.dashboard.general-information.assign-private-ip',
     {
-      url: '/order-public-ips',
+      url: '/assign-private-ip',
       views: {
         modal: {
-          component: 'anthosDashboardOrderPublicIPs',
+          component: 'assignPrivateIp',
         },
       },
       layout: 'modal',
