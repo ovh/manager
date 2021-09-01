@@ -13,6 +13,7 @@ export default {
     logsLink: '<',
     metricsLink: '<',
     databasesLink: '<',
+    aclLink: '<',
     isFeatureActivated: '<',
   },
   template,

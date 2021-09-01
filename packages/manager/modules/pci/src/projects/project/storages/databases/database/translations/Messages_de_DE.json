@@ -5,5 +5,6 @@
   "pci_databases_dashboard_allowed_ips_tab_title": "Zugelassene IPs",
   "pci_databases_dashboard_logs_tab_title": "Logs",
   "pci_databases_dashboard_metrics_tab_title": "Metrics",
-  "pci_databases_dashboard_databases_tab_title": "Databases"
+  "pci_databases_dashboard_databases_tab_title": "Databases",
+  "pci_databases_dashboard_acl_tab_title": "ACL"
 }

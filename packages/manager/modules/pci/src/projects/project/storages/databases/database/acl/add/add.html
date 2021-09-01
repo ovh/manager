@@ -1,0 +1,51 @@
+<form name="editName">
+    <oui-modal
+        data-on-dismiss="$ctrl.goBack()"
+        data-primary-label="{{:: 'pci_databases_acl_add_confirm' | translate}}"
+        data-primary-disabled="!($ctrl.username && $ctrl.topic && $ctrl.permission)"
+        data-primary-action="$ctrl.addAcl()"
+        data-secondary-action="$ctrl.cancel()"
+        data-secondary-label="{{:: 'pci_databases_acl_add_cancel' | translate}}"
+        data-loading="$ctrl.processing"
+        data-heading="{{:: 'pci_databases_acl_add' | translate}}"
+    >
+        <oui-field
+            data-label="{{:: 'pci_databases_acl_add_username_label' | translate }}"
+        >
+            <input
+                type="text"
+                id="username"
+                name="username"
+                class="oui-input"
+                data-ng-model="$ctrl.username"
+                required
+                autofocus
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{:: 'pci_databases_acl_add_topic_label' | translate }}"
+        >
+            <input
+                type="text"
+                id="topic"
+                name="topic"
+                class="oui-input"
+                data-ng-model="$ctrl.topic"
+                required
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{:: 'pci_databases_acl_add_permission_label' | translate }}"
+        >
+            <oui-select
+                name="permission"
+                id="permission"
+                data-model="$ctrl.permission"
+                data-items="$ctrl.availablePermissions"
+                data-match="label"
+                required
+            >
+            </oui-select>
+        </oui-field>
+    </oui-modal>
+</form>

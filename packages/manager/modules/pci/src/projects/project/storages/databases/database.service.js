@@ -452,6 +452,81 @@ export default class DatabaseService {
     return deferred.promise;
   }
 
+  getServiceAcl(projectId, engine, databaseId) {
+    /**
+     * Return a mocked list while backend is not ready.
+     * Replace with an api call later.
+     */
+    if (!this.mockedAcl) this.mockedAcl = [];
+    const deferred = this.$q.defer();
+    deferred.resolve(
+      this.mockedAcl.filter(
+        (d) =>
+          d.projectId === projectId &&
+          d.engine === engine &&
+          d.databaseId === databaseId,
+      ),
+    );
+    return deferred.promise;
+  }
+
+  addServiceAcl(projectId, engine, databaseId, username, topic, permission) {
+    /**
+     * Add the database to the mocked list while backend is not ready.
+     * Replace with an api call later.
+     */
+    const deferred = this.$q.defer();
+    this.mockedAcl.push({
+      username,
+      topic,
+      permission,
+      projectId,
+      engine,
+      databaseId,
+    });
+    deferred.resolve({ username, topic, permission });
+    return deferred.promise;
+  }
+
+  deleteServiceAcl() {
+    /**
+     * Add the database to the mocked list while backend is not ready.
+     * Replace with an api call later.
+     */
+    const deferred = this.$q.defer();
+    this.mockedAcl = this.mockedAcl.pop();
+    deferred.resolve(this.mockedAcl);
+    return deferred.promise;
+  }
+
+  getPermissions() {
+    /**
+     * Add the database to the mocked list while backend is not ready.
+     * Replace with an api call later.
+     */
+    const deferred = this.$q.defer();
+    const mockedPermissions = [
+      {
+        label: 'Admin',
+        value: 'admin',
+      },
+      {
+        label: 'Produce',
+        value: 'produce',
+      },
+      {
+        label: 'Consume',
+        value: 'consume',
+      },
+      {
+        label: 'Consume and Produce',
+        value: 'consume_produce',
+      },
+    ];
+    deferred.resolve(mockedPermissions);
+    return deferred.promise;
+  }
+
   getCertificate(projectId, engine, databaseId) {
     return this.$http
       .get(

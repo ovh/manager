@@ -14,6 +14,7 @@ import users from './users';
 import logs from './logs';
 import metrics from './metrics';
 import databases from './databases';
+import acl from './acl';
 
 const moduleName = 'ovhManagerPciStoragesDatabase';
 
@@ -31,6 +32,7 @@ angular
     logs,
     metrics,
     databases,
+    acl,
   ])
   .config(routing)
   .component('ovhManagerPciProjectDatabase', component)
