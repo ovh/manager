@@ -3,15 +3,10 @@ export default /* @ngInject */ ($stateProvider) => {
     'nutanix.dashboard.nodes.node.general-info.edit-display-name',
     {
       url: '/edit-display-name',
-      views: {
-        modal: {
-          component: 'nutanixNodeGeneralInfoEditDisplayName',
-        },
-      },
+      component: 'nutanixNodeGeneralInfoEditDisplayName',
       layout: 'modal',
       resolve: {
-        goBack: /* @ngInject */ (goToNutanixNodeServer) =>
-          goToNutanixNodeServer,
+        goBack: /* @ngInject */ (goToNutanixNode) => goToNutanixNode,
         breadcrumb: () => null,
       },
     },

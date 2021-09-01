@@ -1,4 +1,4 @@
-<div data-ui-view>
+<div>
     <oui-header
         class="mb-3"
         heading="{{:: $ctrl.node.description }}"
@@ -42,7 +42,7 @@
             data-text="{{:: 'nutanix_node_guides_header' | translate }}"
         >
             <oui-guide-menu-item
-                href="{{ $ctrl.dedicatedServerGuideUrl }}"
+                href="{{:: $ctrl.dedicatedServerGuideUrl }}"
                 data-external
             >
                 <span

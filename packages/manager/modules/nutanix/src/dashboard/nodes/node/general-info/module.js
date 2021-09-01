@@ -12,6 +12,9 @@ import {
 import component from './component';
 import routing from './routing';
 
+import install from './install';
+import netboot from './netboot';
+
 const moduleName = 'ovhManagerNutanixNodeGeneralInfo';
 
 angular
@@ -21,6 +24,8 @@ angular
     'ngTranslateAsyncLoader',
     'ngUiRouterBreadcrumb',
     'ui.router',
+    install,
+    netboot,
     ngOvhUtils,
     serverGeneralInfo,
     serverTechnicalDetails,

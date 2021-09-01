@@ -5,6 +5,7 @@ export default {
   bindings: {
     nodeId: '<',
     goBack: '<',
+    server: '<',
   },
   controller,
   template,

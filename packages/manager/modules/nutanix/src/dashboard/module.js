@@ -7,7 +7,6 @@ import component from './component';
 import routing from './routing';
 import nodes from './nodes';
 import generalInfo from './general-info';
-import service from '../service';
 
 const moduleName = 'ovhManagerNutanixDashboard';
 
@@ -20,7 +19,6 @@ angular
     nodes,
   ])
   .config(routing)
-  .service('Nutanix', service)
   .component('nutanixDashboard', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

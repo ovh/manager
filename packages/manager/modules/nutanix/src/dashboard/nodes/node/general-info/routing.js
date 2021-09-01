@@ -6,8 +6,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       nodeId: /* @ngInject */ ($transition$) => $transition$.params().nodeId,
-      server: /* @ngInject */ (nodeId, Nutanix) => Nutanix.getServer(nodeId),
-      user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
+      server: /* @ngInject */ (nodeId, NutanixNode) =>
+        NutanixNode.getServer(nodeId),
       goToNameEdit: /* @ngInject */ ($state) => () =>
         $state.go(
           'nutanix.dashboard.nodes.node.general-info.edit-display-name',
@@ -21,7 +21,42 @@ export default /* @ngInject */ ($stateProvider) => {
             data?.baremetalServers?.storage ? data?.baremetalServers : null,
           )
           .catch(() => null),
-      goToNutanixNodeServer: /* @ngInject */ ($state, Alerter) => (
+      goToOsInstallProgress: /* @ngInject */ ($state, nodeId) => () =>
+        $state.go(
+          'nutanix.dashboard.nodes.node.general-info.install.progress',
+          {
+            productId: nodeId,
+          },
+        ),
+      goToOsInstallChooseSource: /* @ngInject */ ($state, nodeId) => () =>
+        $state.go(
+          'nutanix.dashboard.nodes.node.general-info.install.choose-source',
+          {
+            productId: nodeId,
+          },
+        ),
+      goToOsInstallOvh: /* @ngInject */ ($state, nodeId) => (installSource) =>
+        $state.go('nutanix.dashboard.nodes.node.general-info.install.ovh', {
+          productId: nodeId,
+          installSource,
+        }),
+      goToOsInstallGabarit: /* @ngInject */ ($state, nodeId) => (
+        installSource,
+      ) =>
+        $state.go('nutanix.dashboard.nodes.node.general-info.install.gabarit', {
+          productId: nodeId,
+          installSource,
+        }),
+      goToOsInstallImage: /* @ngInject */ ($state, nodeId) => (installSource) =>
+        $state.go('nutanix.dashboard.nodes.node.general-info.install.image', {
+          productId: nodeId,
+          installSource,
+        }),
+      goToNetboot: /* @ngInject */ ($state, nodeId) => () =>
+        $state.go('nutanix.dashboard.nodes.node.general-info.netboot', {
+          productId: nodeId,
+        }),
+      goToNutanixNode: /* @ngInject */ ($state, Alerter) => (
         message = false,
         type = 'success',
       ) => {

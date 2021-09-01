@@ -1,8 +1,8 @@
 export default class EditNameCtrl {
   /* @ngInject */
-  constructor($translate, Nutanix) {
+  constructor($translate, NutanixNode) {
     this.$translate = $translate;
-    this.Nutanix = Nutanix;
+    this.NutanixNode = NutanixNode;
   }
 
   onUpdateDisplayNameFormSubmit() {
@@ -12,7 +12,7 @@ export default class EditNameCtrl {
 
     this.loading.update = true;
 
-    return this.Nutanix.updateDisplayName({
+    return this.NutanixNode.updateDisplayName({
       serviceId: this.nodeId,
       serviceName: this.dedicatedServer.name,
       displayName: this.displayName,
@@ -20,14 +20,14 @@ export default class EditNameCtrl {
       .then(() => {
         this.goBack(
           this.$translate.instant(
-            'nutanix_server_displaname_edit_displayname_success',
+            'nutanix_node_server_displaname_edit_displayname_success',
           ),
         );
       })
       .catch(({ data }) => {
         this.goBack(
           this.$translate.instant(
-            'nutanix_server_displaname_edit_displayname_error',
+            'nutanix_node_server_displaname_edit_displayname_error',
             { message: data?.message || data.err?.message },
           ),
           'error',
@@ -46,17 +46,11 @@ export default class EditNameCtrl {
     this.actionEnabled = true;
 
     this.loading.init = true;
-    this.Nutanix.getServer(this.nodeId)
-      .then((server) => {
-        if (server.state === 'OK') {
-          this.dedicatedServer = server;
-          this.displayName = server.displayName;
-        } else {
-          this.actionEnabled = false;
-        }
-      })
-      .finally(() => {
-        this.loading.init = false;
-      });
+    if (this.server.state === 'OK') {
+      this.dedicatedServer = this.server;
+      this.displayName = this.server.displayName;
+    } else {
+      this.actionEnabled = false;
+    }
   }
 }

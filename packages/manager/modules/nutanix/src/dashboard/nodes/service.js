@@ -1,6 +1,6 @@
 import { DedicatedServer } from '@ovh-ux/manager-models';
 
-export default class NutanixService {
+export default class NutanixNodeService {
   /* @ngInject */
   constructor($http) {
     this.$http = $http;
@@ -23,11 +23,11 @@ export default class NutanixService {
   getServer(nodeId) {
     return this.$http
       .get(`/sws/dedicated/server/${nodeId}`, {
-        rootPath: '2api',
+        serviceType: 'aapi',
         urlParams: {
           serviceName: nodeId,
         },
       })
-      .then((data) => new DedicatedServer(data));
+      .then(({ data }) => new DedicatedServer(data));
   }
 }

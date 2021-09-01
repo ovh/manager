@@ -4,18 +4,18 @@
     data-ng-submit="$ctrl.onUpdateDisplayNameFormSubmit()"
 >
     <oui-modal
-        data-primary-label="{{($ctrl.actionEnabled ? 'common_change' : 'global_OK') | translate }}"
-        data-secondary-label="{{$ctrl.actionEnabled ? ('common_cancel' | translate) : '' }}"
-        data-secondary-action="$ctrl.$state.go('^')"
-        data-on-dismiss="$ctrl.$state.go('^')"
+        data-primary-label="{{($ctrl.actionEnabled ? 'nutanix_node_server_displaname_change' : 'nutanix_node_server_displaname_Ok') | translate }}"
+        data-secondary-label="{{$ctrl.actionEnabled ? ('nutanix_node_server_displaname_cancel' | translate) : '' }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.goBack()"
         data-loading="$ctrl.loading.init || $ctrl.loading.update"
         data-type="{{ !$ctrl.actionEnabled ? 'warning' : '' }}"
-        data-heading="{{ :: 'nutanix_server_displaname_edit_title' | translate }}"
+        data-heading="{{ :: 'nutanix_node_server_displaname_edit_title' | translate }}"
     >
         <div data-ng-if="$ctrl.actionEnabled">
-            <p data-translate="nutanix_server_displaname_edit_help"></p>
+            <p data-translate="nutanix_node_server_displaname_edit_help"></p>
             <oui-field
-                data-label="{{:: 'nutanix_server_displaname_edit_displayname_label' | translate }}"
+                data-label="{{:: 'nutanix_node_server_displaname_edit_displayname_label' | translate }}"
             >
                 <input
                     class="oui-input"

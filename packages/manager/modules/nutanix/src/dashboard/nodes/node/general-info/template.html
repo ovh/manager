@@ -1,4 +1,4 @@
-<div>
+<div data-ui-view>
     <div class="row d-md-flex mb-5">
         <div class="col-md-4">
             <!-- GENERAL INFORMATIONS -->
@@ -6,6 +6,8 @@
                 user="$ctrl.user"
                 server="$ctrl.server"
                 on-edit-name="$ctrl.goToNameEdit(name)"
+                on-os-install="$ctrl.openOsInstallation(type)"
+                on-edit-netboot="$ctrl.goToNetboot()"
             >
             </server-general-info>
         </div>

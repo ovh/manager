@@ -1,7 +1,10 @@
 {
-  "nutanix_server_displaname_edit_title": "Modifier le nom",
-  "nutanix_server_displaname_edit_help": "Modifie le nom affiché dans l'entête.",
-  "nutanix_server_displaname_edit_displayname_label": "Nom",
-  "nutanix_server_displaname_edit_displayname_success": "Le nom d'affichage a été mis à jour.",
-  "nutanix_server_displaname_edit_displayname_error": "Une erreur s'est produite lors de la mise à jour du nom d'affichage : {{message}}"
+  "nutanix_node_server_displaname_edit_title": "Modifier le nom",
+  "nutanix_node_server_displaname_edit_help": "Modifie le nom affiché dans l'entête.",
+  "nutanix_node_server_displaname_edit_displayname_label": "Nom",
+  "nutanix_node_server_displaname_edit_displayname_success": "Le nom d'affichage a été mis à jour.",
+  "nutanix_node_server_displaname_edit_displayname_error": "Une erreur s'est produite lors de la mise à jour du nom d'affichage : {{message}}",
+  "nutanix_node_server_displaname_change": "Modifier",
+  "nutanix_node_server_displaname_cancel": "Annuler",
+  "nutanix_node_server_displaname_Ok": "OK"
 }

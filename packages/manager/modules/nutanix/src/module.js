@@ -1,4 +1,5 @@
 import angular from 'angular';
+import 'angular-ui-bootstrap';
 
 import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
@@ -21,6 +22,7 @@ angular
     'ui.router',
     'ngTranslateAsyncLoader',
     'oui',
+    'ui.bootstrap',
     ngOvhUtils,
     ngUiRouterBreadcrumb,
     ListLayoutHelper.moduleName,
