@@ -302,6 +302,7 @@
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_user' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('usersTab')"
                 >
                     <oui-tile-description>
                         <span
