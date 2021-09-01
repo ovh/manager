@@ -56,13 +56,6 @@ angular
   )
   .constant('LogsConstants', constants)
   .component('dbaasLogs', component)
-  .run(
-    /* @ngInject */ ($translate, $transitions) => {
-      $transitions.onBefore({ to: 'dbaas-logs.**' }, () =>
-        $translate.refresh(),
-      );
-    },
-  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

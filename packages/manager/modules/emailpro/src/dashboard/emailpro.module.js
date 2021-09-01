@@ -67,11 +67,6 @@ angular
     }),
   )
   .run(cacheTemplate)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(
-    /* @ngInject */ ($translate, $transitions) => {
-      $transitions.onBefore({ to: 'email-pro.**' }, () => $translate.refresh());
-    },
-  );
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

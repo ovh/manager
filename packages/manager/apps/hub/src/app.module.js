@@ -90,7 +90,6 @@ export default (containerEl, environment) => {
     )
     .run(
       /* @ngInject */ ($anchorScroll, $rootScope, $translate, $transitions) => {
-        $transitions.onBefore({ to: 'app.**' }, () => $translate.refresh());
         $transitions.onSuccess({}, () => $anchorScroll('hub-scroll-top'));
 
         $transitions.onSuccess({ to: 'error' }, () => {

@@ -158,13 +158,6 @@ angular
       );
     },
   )
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(
-    /* @ngInject */ ($translate, $transitions) => {
-      $transitions.onBefore({ to: 'sharepoint.**' }, () =>
-        $translate.refresh(),
-      );
-    },
-  );
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
