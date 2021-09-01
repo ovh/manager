@@ -1,6 +1,8 @@
+import { TASK_STATUS } from '../housing.constants';
+
 export default class DedicatedHousingTaskController {
   /* @ngInject */
-  constructor($scope, $stateParams, Alerter, Housing, TASK_STATUS) {
+  constructor($scope, $stateParams, Alerter, Housing) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.Alerter = Alerter;

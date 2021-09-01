@@ -1,5 +1,6 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 
 import controller from './dedicated-housing-backup.controller';
 import routing from './backup.routes';
@@ -22,7 +23,7 @@ import passwordResetTpl from './password/reset/dedicated-housing-backup-password
 const moduleName = 'ovhManagerDedicatedHousingDashboardBackup';
 
 angular
-  .module(moduleName, ['oui', 'ui.router'])
+  .module(moduleName, ['oui', 'ui.router', ngPaginationFront])
   .config(routing)
   .controller('HousingFtpBackupCtrl', controller)
   .controller('HousingAddAccessFtpBackupCtrl', accessAddCtrl)

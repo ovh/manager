@@ -1,5 +1,8 @@
 import assign from 'lodash/assign';
 
+import { HOUSING_PHONE_SUPPORT } from '../housing.constants';
+import { getConstants } from '../config/config';
+
 export default /* @ngInject */ function HousingCtrl(
   $scope,
   $stateParams,
@@ -7,19 +10,18 @@ export default /* @ngInject */ function HousingCtrl(
   $translate,
   Alerter,
   backupLink,
-  constants,
   currentActiveLink,
   dashboardLink,
   name,
   Housing,
   ovhUserPref,
   taskLink,
-  User,
+  coreConfig,
 ) {
   $scope.loadingHousingInformations = true;
   $scope.loadingHousingError = false;
   $scope.housingPhoneStopBother = true;
-  $scope.housingPhoneNumber = constants.urls.FR.housingPhoneSupport;
+  $scope.housingPhoneNumber = HOUSING_PHONE_SUPPORT;
   $scope.disable = {
     reboot: false,
   };
@@ -67,14 +69,11 @@ export default /* @ngInject */ function HousingCtrl(
         $scope.loadingHousingError = true;
       });
 
-    User.getUser().then((user) => {
-      $scope.user = user;
-      checkIfStopBotherHousingPhone();
-    });
+    $scope.user = coreConfig.getUser();
+    checkIfStopBotherHousingPhone();
 
-    User.getUrlOf('changeOwner').then((link) => {
-      $scope.changeOwnerUrl = link;
-    });
+    const urls = getConstants(coreConfig.getRegion()).URLS;
+    $scope.changeOwnerUrl = urls[$scope.user.ovhSubsidiary].changeOwner;
 
     Housing.getOrderableApc($stateParams.productId).then((data) => {
       $scope.disable.reboot = !(data.free && data.orderable);

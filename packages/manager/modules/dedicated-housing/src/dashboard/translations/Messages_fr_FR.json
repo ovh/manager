@@ -157,5 +157,13 @@
   "housing_configuration_reboot_price": "Prix",
   "housing_configuration_reboot_price_ht": "Hors taxe",
   "housing_configuration_reboot_price_tax": "Taxes",
-  "housing_configuration_reboot_price_total": "Total"
+  "housing_configuration_reboot_price_total": "Total",
+  "core_change_owner": "Changer le propriétaire",
+  "common_configuration_creation": "Date de création",
+  "common_subscription_contacts": "Contacts",
+  "common_subscription_contacts_admin": "Administrateur",
+  "common_subscription_contacts_billing": "Facturation",
+  "common_subscription_contacts_tech": "Technique",
+  "common_unavailable_information": "Information indisponible",
+  "common_resiliate_contact_support": "Pour résilier ce service, merci de contacter notre support technique au numéro suivant : <strong>1007</strong> et <strong>appuyez directement sur 8.</strong> Merci pour votre compréhension."
 }

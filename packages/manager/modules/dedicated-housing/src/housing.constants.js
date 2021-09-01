@@ -1,0 +1,16 @@
+export const HOUSING_PHONE_SUPPORT = '09 72 10 00 70';
+
+export const TASK_STATUS = {
+  CANCELLED: 'CANCELLED',
+  CUSTOMER_ERROR: 'CUSTOMER_ERROR',
+  DOING: 'DOING',
+  DONE: 'DONE',
+  INIT: 'INIT',
+  OVH_ERROR: 'OVH_ERROR',
+  TODO: 'TODO',
+};
+
+export default {
+  HOUSING_PHONE_SUPPORT,
+  TASK_STATUS,
+};
