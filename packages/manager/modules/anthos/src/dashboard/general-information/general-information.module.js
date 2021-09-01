@@ -8,7 +8,8 @@ import routing from './general-information.routing';
 
 import renameService from './rename-service';
 import orderHost from './order-host';
-import orderPublicIPs from './order-public-ips';
+import orderPublicIp from './order-public-ip';
+import assignPrivateIp from './assign-private-ip';
 
 const moduleName = 'ovhManagerAnthosDashboardGeneralInformation';
 
@@ -19,7 +20,8 @@ angular
     'ui.router',
     renameService,
     orderHost,
-    orderPublicIPs,
+    orderPublicIp,
+    assignPrivateIp,
   ])
   .config(routing)
   .component('anthosDashboardGeneralInformation', component)

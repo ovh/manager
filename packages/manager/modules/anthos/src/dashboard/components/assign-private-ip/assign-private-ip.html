@@ -1,23 +1,23 @@
 <form name="assignPrivateIpForm">
     <oui-modal
-        data-heading="{{:: 'anthos_tenant_dashboard_ips_assign_private_ip_modal_title' | translate }}"
+        data-heading="{{:: 'anthos_tenant_dashboard_component_assign_private_ip_modal_title' | translate }}"
         data-primary-action="$ctrl.onAssignPrivateIpClick()"
-        data-primary-label="{{:: 'anthos_tenant_dashboard_ips_assign_private_ip_modal_action_add' | translate }}"
+        data-primary-label="{{:: 'anthos_tenant_dashboard_component_assign_private_ip_modal_action_add' | translate }}"
         data-primary-disabled="assignPrivateIpForm.$invalid"
         data-secondary-action="$ctrl.goBack()"
-        data-secondary-label="{{:: 'anthos_tenant_dashboard_ips_assign_private_ip_modal_action_cancel' | translate }}"
+        data-secondary-label="{{:: 'anthos_tenant_dashboard_component_assign_private_ip_modal_action_cancel' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
         data-loading="$ctrl.isAdding"
     >
         <p
             class="oui-paragraph"
-            data-translate="anthos_tenant_dashboard_ips_assign_private_ip_modal_description"
+            data-translate="anthos_tenant_dashboard_component_assign_private_ip_modal_description"
         ></p>
 
         <!-- SSL certificate name -->
         <oui-field
-            data-label="{{ :: 'anthos_tenant_dashboard_ips_assign_private_ip_modal_body_field_range_ips_title' | translate }}"
-            data-error-messages="{ pattern: ('anthos_tenant_dashboard_ips_assign_private_ip_modal_body_field_range_ips_error' | translate) }"
+            data-label="{{ :: 'anthos_tenant_dashboard_component_assign_private_ip_modal_body_field_range_ips_title' | translate }}"
+            data-error-messages="{ pattern: ('anthos_tenant_dashboard_component_assign_private_ip_modal_body_field_range_ips_error' | translate) }"
         >
             <input
                 class="oui-input"
