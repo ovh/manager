@@ -545,5 +545,6 @@
   "common_subscription_contacts_billing": "Faturação",
   "common_subscription_contacts_tech": "Técnico ",
   "common_unavailable_information": "Informação indisponível",
-  "common_resiliate_contact_support": "Para cancelar este serviço, contacte o nosso apoio ao cliente através do <strong>+351 213 155 642</strong>. Obrigado pela sua compreensão."
+  "common_resiliate_contact_support": "Para cancelar este serviço, contacte o nosso apoio ao cliente através do <strong>+351 213 155 642</strong>. Obrigado pela sua compreensão.",
+  "core_user_trusted_retail_prices": "Nota: o preço indicado corresponde ao preço do serviço. O custo adicional relativo ao Trusted Zone é adicionado à faturação mensal global."
 }

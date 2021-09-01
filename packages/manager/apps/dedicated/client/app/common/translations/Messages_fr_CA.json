@@ -520,6 +520,7 @@
   "core_service_renew_button": "Renouveler",
   "core_user_enterprise_retail_prices": "Note : Les prix indiqués sont des prix standards du catalogue et peuvent ne pas refléter les conditions négociées. Consultez votre facture mensuelle pour une tarification plus détaillée.",
   "core_user_enterprise_retail_prices_hpc": "Note : Les prix indiqués sont une estimation basée sur le calcul au prorata de ce module pour l'aligner sur la période de facturation de votre contrat actuel. Consultez votre facture mensuelle pour une tarification plus détaillée.",
+  "core_user_trusted_retail_prices": "Note : Le prix affiché correspond au prix du service. La majoration liée à la zone de confiance est ajoutée à la facturation mensuelle globale.",
   "browser_alert_not_supported": "Votre navigateur n'est pas supporté.",
   "browser_alert_deprecated": "Votre navigateur n'est pas à jour et peut contenir des failles de sécurité ou de compatibilité.",
   "browser_alert_update": "Nous vous recommandons de <a href=\"http://outdatedbrowser.com/fr\" class=\"alert-link\" target=\"_blank\">mettre à jour votre navigateur <i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a> afin de profiter d'une expérience optimale.",

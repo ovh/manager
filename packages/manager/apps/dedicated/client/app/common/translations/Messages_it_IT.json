@@ -545,5 +545,6 @@
   "common_subscription_contacts_billing": "Fatturazione",
   "common_subscription_contacts_tech": "Tecnico",
   "common_unavailable_information": "Informazione non disponibile",
-  "common_resiliate_contact_support": "Per disattivare questo servizio, contatta il nostro supporto tecnico al numero <strong>02 5560 0423</strong> o apri un ticket."
+  "common_resiliate_contact_support": "Per disattivare questo servizio, contatta il nostro supporto tecnico al numero <strong>02 5560 0423</strong> o apri un ticket.",
+  "core_user_trusted_retail_prices": "Attenzione: il prezzo visualizzato corrisponde al prezzo del servizio. Il costo supplementare per la Trusted Zone viene aggiunto alla fatturazione mensile totale."
 }
