@@ -9,5 +9,10 @@
   "hub_user_actions_aria_reduce": "Hide available actions",
   "hub_user_account": "Manage my account",
   "hub_user_role_user": "Connected as a sub-user",
-  "hub_user_role_none": "Connected in read-only mode"
+  "hub_user_role_none": "Connected in read-only mode",
+  "hub_user_support_level_standard_trusted": "Standard Trusted Zone",
+  "hub_user_support_level_premium_trusted": "Premium Trusted Zone",
+  "hub_user_support_level_premium-accredited_trusted": "Premium Advanced Trusted Zone",
+  "hub_user_support_level_business_trusted": "Business Trusted Zone",
+  "hub_user_support_level_enterprise_trusted": "Enterprise Trusted Zone"
 }

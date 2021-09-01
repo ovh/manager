@@ -9,5 +9,10 @@
   "hub_user_actions_aria_reduce": "Ukryj  dostępne operacje",
   "hub_user_account": "Zarządzanie kontem",
   "hub_user_role_user": "Połączony jako użytkownik konta podlegającego kontu głównemu",
-  "hub_user_role_none": "Połączony w trybie tylko do odczytu"
+  "hub_user_role_none": "Połączony w trybie tylko do odczytu",
+  "hub_user_support_level_standard_trusted": "Trusted Zone Standard",
+  "hub_user_support_level_premium_trusted": "Trusted Zone Premium",
+  "hub_user_support_level_premium-accredited_trusted": "Trusted Zone Premium Advanced",
+  "hub_user_support_level_business_trusted": "Trusted Zone Business",
+  "hub_user_support_level_enterprise_trusted": "Trusted Zone Enterprise"
 }

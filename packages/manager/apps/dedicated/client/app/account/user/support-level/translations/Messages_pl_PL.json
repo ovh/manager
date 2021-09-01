@@ -30,5 +30,7 @@
   "user_account_support_level_section_title_description_advanced_business": "Jesteś partnerem Advanced i wykupiłeś poziom wsparcia Business. Ten poziom gwarantuje wyższą jakość usługi, uprzywilejowany dostęp do wsparcia oraz priorytetowe przetwarzanie zgłoszeń. Jeśli chcesz korzystać z wyższego poziomu pomocy technicznej, możesz również wykupić rozwiązanie Enterprise.",
   "user_account_support_level_section_title_description_advanced_enterprise": "Jesteś partnerem Advanced i wykupiłeś poziom wsparcia Enterprise. Ten poziom gwarantuje wyższą jakość usługi, uprzywilejowany dostęp do wsparcia oraz priorytetowe przetwarzanie zgłoszeń.",
   "user_account_support_level_section_required": "Wymagany poziom",
-  "user_account_support_level_section_premium-accredited_description": "Poziom ten obejmuje proces integracji, stały monitoring usług oraz priorytetową obsługę przez telefon."
+  "user_account_support_level_section_premium-accredited_description": "Poziom ten obejmuje proces integracji, stały monitoring usług oraz priorytetową obsługę przez telefon.",
+  "user_account_support_level_section_title_what_trusted": "Dedykowane wsparcie realizowane wyłącznie z terytorium Europy",
+  "user_account_support_level_section_title_description_trusted": "Usługi OVHcloud oferowane w zaufanej strefie są obsługiwane 24/7 wyłącznie przez personel pracujący na terenie Unii Europejskiej. Szczególne środki bezpieczeństwa oraz izolacja systemów informatycznych pozwalają wzmocnić ochronę danych oraz zagwarantować ich suwerenność. Dane te nie mogą być przekazywane poza Unię Europejską."
 }
