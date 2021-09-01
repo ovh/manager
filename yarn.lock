@@ -2988,42 +2988,6 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@ovh-ux/component-rollup-config@^8.0.0 || ^9.0.0":
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-9.1.0.tgz#e6ff1565d2efb82a7d9218c7afc3b5a3282d1c2c"
-  integrity sha512-vCRrp0Ukck5lQKvCdZdhYgD3IRKxc6qbboy1pJjZTqVwpZZGr5mum+f6njszRhbbpEAZ0uxBE61GA4k+AJLN1w==
-  dependencies:
-    "@babel/core" "^7.12.10"
-    "@babel/plugin-proposal-class-properties" "^7.10.1"
-    "@babel/plugin-proposal-optional-chaining" "^7.10.1"
-    "@babel/plugin-proposal-private-methods" "^7.10.1"
-    "@babel/plugin-syntax-dynamic-import" "^7.8.3"
-    "@babel/preset-env" "^7.10.3"
-    "@ovh-ux/rollup-plugin-less-inject" "^1.0.5"
-    "@ovh-ux/rollup-plugin-less-tilde-importer" "^1.0.3"
-    "@rollup/plugin-babel" "^5.0.0"
-    "@rollup/plugin-commonjs" "^11.0.2"
-    "@rollup/plugin-dynamic-import-vars" "^1.1.0"
-    "@rollup/plugin-image" "^2.0.4"
-    "@rollup/plugin-json" "^4.0.2"
-    "@rollup/plugin-node-resolve" "^7.1.1"
-    "@rollup/pluginutils" "^3.0.8"
-    babel-plugin-angularjs-annotate "^0.10.0"
-    camelcase "^5.0.0"
-    core-js "^3.6.5"
-    estree-walker "^0.6.0"
-    less "~3.9.0"
-    less-plugin-remcalc "^0.1.0"
-    lodash "^4.17.15"
-    magic-string "^0.25.4"
-    node-sass "^4.10.0"
-    regenerator-runtime "^0.13.7"
-    rollup "^2.0.2"
-    rollup-plugin-html "^0.2.1"
-    rollup-plugin-peer-deps-external "^2.2.2"
-    rollup-plugin-sass "^1.2.2"
-    slash "^2.0.0"
-
 "@ovh-ux/ng-ovh-api-wrappers@^4.0.4", "@ovh-ux/ng-ovh-api-wrappers@^4.0.8":
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.8.tgz#f95c8ce909f7baa59f8fd85949801e7d74bf6dbd"
@@ -3039,14 +3003,6 @@
     estree-walker "^2.0.1"
     less "^3.9.0"
     lodash "^4.17.15"
-    rollup-pluginutils "^2.8.2"
-
-"@ovh-ux/rollup-plugin-less-tilde-importer@^1.0.3":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-tilde-importer/-/rollup-plugin-less-tilde-importer-1.0.5.tgz#f26b906c1b1d83a31b45aa09c8cf6106b8816198"
-  integrity sha512-ezj6MZCvlIeNdavLyuzFORqB9w3vvcTTER0tDnwjBiKVI6x+btJyBXVn7b3ylEQf5miBjU8tVtOn4vfBOXVqAw==
-  dependencies:
-    magic-string "^0.25.7"
     rollup-pluginutils "^2.8.2"
 
 "@ovh-ux/translate-async-loader@^1.0.8":
@@ -10182,7 +10138,7 @@ fsevents@~2.1.1, fsevents@~2.1.2:
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.1.2.tgz#4c0a1fb34bc68e543b4b82a9ec392bfbda840805"
   integrity sha512-R4wDiBwZ0KzpgOWetKDug1FZcYhqYnUYKtfZYt4mD5SBz76q0KR4Q9o7GIPamsVPGmW3EYPPJ0dOOjvx32ldZA==
 
-fsevents@~2.3.1, fsevents@~2.3.2:
+fsevents@~2.3.1:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
@@ -17140,13 +17096,6 @@ rollup-pluginutils@^1.5.0:
   dependencies:
     estree-walker "^0.2.1"
     minimatch "^3.0.2"
-
-rollup@^2.0.2:
-  version "2.55.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.55.1.tgz#66a444648e2fb603d8e329e77a61c608a6510fda"
-  integrity sha512-1P9w5fpb6b4qroePh8vHKGIvPNxwoCQhjJpIqfZGHLKpZ0xcU2/XBmFxFbc9697/6bmHpmFTLk5R1dAQhFSo0g==
-  optionalDependencies:
-    fsevents "~2.3.2"
 
 rollup@^2.50.6:
   version "2.50.6"

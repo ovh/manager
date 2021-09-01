@@ -28,6 +28,6 @@
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^8.0.0 || ^9.0.0"
+    "@ovh-ux/component-rollup-config": "^9.0.0 || ^10.0.0"
   }
 }
