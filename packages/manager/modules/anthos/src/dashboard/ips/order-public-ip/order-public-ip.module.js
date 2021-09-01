@@ -5,10 +5,10 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import routing from './assign-private-ip.routing';
-import assignPrivateIp from '../../components/assign-private-ip';
+import routing from './order-public-ip.routing';
+import orderPublicIp from '../../components/order-public-ip';
 
-const moduleName = 'ovhManagerAnthosDashboardIPsAssignPrivateIp';
+const moduleName = 'ovhManagerAnthosDashboardOrderPublicIp';
 
 angular
   .module(moduleName, [
@@ -16,7 +16,7 @@ angular
     'oui',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
-    assignPrivateIp,
+    orderPublicIp,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
