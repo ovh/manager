@@ -544,5 +544,6 @@
   "common_subscription_contacts_billing": "Abrechnung",
   "common_subscription_contacts_tech": "Technisch",
   "common_unavailable_information": "Information nicht verfügbar",
-  "common_resiliate_contact_support": "Um diesen Dienst zu kündigen, kontaktieren Sie bitte unseren Support unter <strong>+49 (0) 681 906730</strong>. Vielen Dank für Ihr Verständnis."
+  "common_resiliate_contact_support": "Um diesen Dienst zu kündigen, kontaktieren Sie bitte unseren Support unter <strong>+49 (0) 681 906730</strong>. Vielen Dank für Ihr Verständnis.",
+  "core_user_trusted_retail_prices": "Hinweis: Der angezeigte Preis entspricht dem Preis der Dienstleistung. Der Aufpreis für die Vertrauenswürdige Zone wird der monatlichen Gesamtabrechnung hinzugefügt."
 }

@@ -545,5 +545,6 @@
   "common_subscription_contacts_billing": "Płatności",
   "common_subscription_contacts_tech": "Kontakt techniczny",
   "common_unavailable_information": "Informacja niedostępna",
-  "common_resiliate_contact_support": "Aby zrezygnować z tej usługi, skontaktuj się z Pomocą techniczną. Zadzwoń na numer: <strong>71 750 02 00</strong> i <strong>wybierz 3.</strong> Dziękujemy za wyrozumiałość."
+  "common_resiliate_contact_support": "Aby zrezygnować z tej usługi, skontaktuj się z Pomocą techniczną. Zadzwoń na numer: <strong>71 750 02 00</strong> i <strong>wybierz 3.</strong> Dziękujemy za wyrozumiałość.",
+  "core_user_trusted_retail_prices": "Uwaga: Podana cena odpowiada cenie usługi. Dopłata za opcję Trusted Zone jest doliczana do kwoty miesięcznej faktury."
 }
