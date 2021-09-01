@@ -19,8 +19,6 @@ export default {
     ipsLink: '<',
     goToTenant: '<',
     goToOrderHost: '<',
-    goToOrderPublicIPs: '<',
-    goToAssignPrivateIp: '<',
     goToRemovePrivateIp: '<',
     reloadState: '<',
   },

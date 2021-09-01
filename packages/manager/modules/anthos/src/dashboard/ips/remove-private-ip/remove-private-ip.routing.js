@@ -9,6 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     onEnter: /* @ngInject */ ($transition$, goBack) => {
+      console.log('ZM:: onEnter', $transition$.params());
       if (!$transition$.params().privateIp) goBack(null);
     },
     resolve: {

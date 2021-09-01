@@ -7,6 +7,7 @@ import 'angular-translate';
 import component from './component';
 import routing from './routing';
 
+import orderPublicIp from './order-public-ip';
 import assignPrivateIp from './assign-private-ip';
 import removePrivateIp from './remove-private-ip';
 
@@ -17,6 +18,7 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
+    orderPublicIp,
     assignPrivateIp,
     removePrivateIp,
   ])

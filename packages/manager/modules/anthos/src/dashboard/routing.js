@@ -54,12 +54,11 @@ export default /* @ngInject */ ($stateProvider) => {
       goToTenant: ($state, tenant, displayAlerterMessage) => (
         message = false,
         type = 'success',
-        stateToGo = null,
+        stateToGo = 'anthos.dashboard',
       ) => {
         const reload = message && type === 'success';
-        const state = stateToGo || 'anthos.dashboard';
 
-        const promise = $state.go(state, {
+        const promise = $state.go(stateToGo, {
           reload,
         });
 
@@ -75,17 +74,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goToOrderHost: /* @ngInject */ ($state) => () =>
         $state.go('anthos.dashboard.general-information.order-host'),
-
-      goToOrderPublicIPs: /* @ngInject */ ($state) => () =>
-        $state.go('anthos.dashboard.general-information.order-public-ips'),
-
-      goToAssignPrivateIp: /* @ngInject */ ($state) => () =>
-        $state.go('anthos.dashboard.ips.assign-private-ip'),
-
-      goToRemovePrivateIp: /* @ngInject */ ($state) => (privateIp) =>
-        $state.go('anthos.dashboard.ips.remove-private-ip', {
-          privateIp,
-        }),
 
       reloadState: /* @ngInject */ ($state) => () => {
         $state.go($state.current, {}, { reload: true });

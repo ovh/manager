@@ -1,4 +1,4 @@
-import template from './order-public-ips.html';
+import template from './order-public-ip.html';
 
 export default {
   bindings: {

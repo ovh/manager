@@ -1,6 +1,6 @@
 {
   "anthos_dashboard_ips_title": "Addresses IPs",
-  "anthos_dashboard_ips_description": "Dans la console Anthos, vous avez besoin d’allouer des IPs à chacun de vos déploiements Anthos. Vous pouvez assigner autant d’IPs/ranges d’IPs que vous voudrez à votre déploiement Anthos. Vous bénéficiez également de 50 IPs publiques et pouvez en commander de nouvelles pour un faible tarif fixe.",
+  "anthos_dashboard_ips_description": "Dans la console Anthos, vous avez besoin d’allouer des IPs à chacun de vos déploiements Anthos. Vous pouvez assigner autant d’IPs/plages d’IPs que vous voudrez à votre déploiement Anthos. Vous bénéficiez également de 50 IPs publiques et pouvez en commander de nouvelles pour un faible tarif fixe.",
   "anthos_dashboard_ips_datagrid_public_actions_menu": "Actions",
   "anthos_dashboard_ips_datagrid_public_actions_order_ip": "Commander des IPs publiques",
   "anthos_dashboard_ips_datagrid_public_actions_assign_private_ip": "Assigner des IP privées",

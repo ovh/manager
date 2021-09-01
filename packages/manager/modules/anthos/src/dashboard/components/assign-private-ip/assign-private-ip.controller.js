@@ -1,4 +1,4 @@
-import { IPV4_BLOCK_REGEX } from '../constant';
+import { IPV4_BLOCK_REGEX } from './constant';
 
 export default class AssignPrivateIpController {
   /* @ngInject */
@@ -24,7 +24,7 @@ export default class AssignPrivateIpController {
         this.privateIPs.push(privateIP);
         return this.goBack(
           this.$translate.instant(
-            'anthos_tenant_dashboard_ips_assign_private_ip_modal_action_add_success',
+            'anthos_tenant_dashboard_component_assign_private_ip_modal_action_add_success',
           ),
           'success',
         );
@@ -32,7 +32,7 @@ export default class AssignPrivateIpController {
       .catch((error) => {
         return this.goBack(
           this.$translate.instant(
-            'anthos_tenant_dashboard_ips_assign_private_ip_modal_action_add_error',
+            'anthos_tenant_dashboard_component_assign_private_ip_modal_action_add_error',
             {
               message: error.message || error.data?.message,
             },
