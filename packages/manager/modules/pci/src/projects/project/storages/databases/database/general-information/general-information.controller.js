@@ -24,8 +24,6 @@ export default class {
     this.loadMessages();
     this.connectionInformation = this.getConnectionInformation();
     this.pollDatabaseStatus();
-
-    this.database.terminationProtection = true;
   }
 
   getConnectionInformation() {
@@ -130,10 +128,6 @@ export default class {
   deleteDatabase() {
     this.trackDatabases('dashboard::general_information::delete_database');
     this.goToDeleteDatabase();
-  }
-
-  onChangeTerminationProtection(terminationProtection) {
-    this.database.terminationProtection = terminationProtection;
   }
 
   $onDestroy() {

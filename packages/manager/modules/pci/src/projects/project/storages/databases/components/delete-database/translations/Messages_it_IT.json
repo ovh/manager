@@ -3,9 +3,6 @@
   "pci_database_delete_database_submit_label": "Conferma",
   "pci_database_delete_database_cancel_label": "Annulla",
   "pci_database_delete_database_content": "Vuoi davvero eliminare il database  {{ databaseName }} ?",
-  "pci_database_delete_database_content_warning": "Lorem Ipsum",
   "pci_database_delete_database_success": "Il database {{ databaseName }} è stato eliminato.",
-  "pci_database_delete_database_error": "Si è verificato un errore nell'eliminazione del database {{ databaseName }} : {{ message }}.",
-  "pci_database_delete_database_termination_protection": "Entrez {{keyword}} dans le champs suivant pour valider la suppression",
-  "pci_database_delete_database_termination_protection_key": "SUPPRIMER"
+  "pci_database_delete_database_error": "Si è verificato un errore nell'eliminazione del database {{ databaseName }} : {{ message }}."
 }

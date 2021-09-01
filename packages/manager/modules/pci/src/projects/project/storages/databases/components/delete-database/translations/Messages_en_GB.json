@@ -3,9 +3,6 @@
   "pci_database_delete_database_submit_label": "Confirm",
   "pci_database_delete_database_cancel_label": "Cancel",
   "pci_database_delete_database_content": "Are you sure you want to delete the {{databaseName}} service?",
-  "pci_database_delete_database_content_warning": "Lorem Ipsum",
   "pci_database_delete_database_success": "The {{databaseName}} service has been deleted.",
-  "pci_database_delete_database_error": "An error has occurred deleting the {{databaseName}} service: {{message}}",
-  "pci_database_delete_database_termination_protection": "Type {{keyword}} in the following field to confirm the action",
-  "pci_database_delete_database_termination_protection_key": "TERMINATE"
+  "pci_database_delete_database_error": "An error has occurred deleting the {{databaseName}} service: {{message}}"
 }

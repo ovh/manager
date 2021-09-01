@@ -9,9 +9,6 @@ export default class {
 
   $onInit() {
     this.isDeleting = false;
-    this.keyword = this.$translate.instant(
-      'pci_database_delete_database_termination_protection_key',
-    );
   }
 
   deleteDatabase() {
