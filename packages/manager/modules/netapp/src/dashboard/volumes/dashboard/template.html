@@ -1,6 +1,6 @@
 <div>
     <oui-header
-        heading="{{:: $ctrl.volume.name }}"
+        heading="{{:: $ctrl.volume.name || $ctrl.volume.id }}"
         description="{{:: $ctrl.volume.description }}"
     >
         <oui-header-tabs>
