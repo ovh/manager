@@ -3,12 +3,6 @@ import { DATABASE_TYPES } from './databases.constants';
 
 const features = {
   databaseTab: [DATABASE_TYPES.MYSQL, DATABASE_TYPES.POSTGRESQL],
-  forkFromGeneralInformation: [
-    DATABASE_TYPES.MYSQL,
-    DATABASE_TYPES.POSTGRESQL,
-    DATABASE_TYPES.REDIS,
-  ],
-  replicas: [DATABASE_TYPES.MYSQL, DATABASE_TYPES.POSTGRESQL],
   certificate: [
     DATABASE_TYPES.MYSQL,
     DATABASE_TYPES.POSTGRESQL,
@@ -28,6 +22,7 @@ const features = {
   ],
   backupTab: [
     DATABASE_TYPES.MONGO_DB,
+    DATABASE_TYPES.KAFKA,
     DATABASE_TYPES.MYSQL,
     DATABASE_TYPES.POSTGRESQL,
     DATABASE_TYPES.REDIS,
