@@ -453,78 +453,36 @@ export default class DatabaseService {
   }
 
   getServiceAcl(projectId, engine, databaseId) {
-    /**
-     * Return a mocked list while backend is not ready.
-     * Replace with an api call later.
-     */
-    if (!this.mockedAcl) this.mockedAcl = [];
-    const deferred = this.$q.defer();
-    deferred.resolve(
-      this.mockedAcl.filter(
-        (d) =>
-          d.projectId === projectId &&
-          d.engine === engine &&
-          d.databaseId === databaseId,
-      ),
-    );
-    return deferred.promise;
+    return this.$http
+      .get(`/cloud/project/${projectId}/database/${engine}/${databaseId}/acl`)
+      .then(({ data }) => data);
   }
 
   addServiceAcl(projectId, engine, databaseId, username, topic, permission) {
-    /**
-     * Add the database to the mocked list while backend is not ready.
-     * Replace with an api call later.
-     */
-    const deferred = this.$q.defer();
-    this.mockedAcl.push({
-      username,
-      topic,
-      permission,
-      projectId,
-      engine,
-      databaseId,
-    });
-    deferred.resolve({ username, topic, permission });
-    return deferred.promise;
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/acl`,
+        {
+          username,
+          topic,
+          permission,
+        },
+      )
+      .then(({ data }) => data);
   }
 
-  deleteServiceAcl() {
-    /**
-     * Add the database to the mocked list while backend is not ready.
-     * Replace with an api call later.
-     */
-    const deferred = this.$q.defer();
-    this.mockedAcl = this.mockedAcl.pop();
-    deferred.resolve(this.mockedAcl);
-    return deferred.promise;
+  deleteServiceAcl(projectId, engine, databaseId, aclId) {
+    return this.$http.delete(
+      `/cloud/project/${projectId}/database/${engine}/${databaseId}/acl/${aclId}`,
+    );
   }
 
-  getPermissions() {
-    /**
-     * Add the database to the mocked list while backend is not ready.
-     * Replace with an api call later.
-     */
-    const deferred = this.$q.defer();
-    const mockedPermissions = [
-      {
-        label: 'Admin',
-        value: 'admin',
-      },
-      {
-        label: 'Produce',
-        value: 'produce',
-      },
-      {
-        label: 'Consume',
-        value: 'consume',
-      },
-      {
-        label: 'Consume and Produce',
-        value: 'consume_produce',
-      },
-    ];
-    deferred.resolve(mockedPermissions);
-    return deferred.promise;
+  getPermissions(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/acl/permissions`,
+      )
+      .then(({ data }) => data);
   }
 
   getCertificate(projectId, engine, databaseId) {
