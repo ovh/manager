@@ -34,6 +34,7 @@ export default class databasesCtrl {
       this.database.id,
     ).then((topicsList) => {
       this.topicsList = topicsList;
+      this.refreshing = false;
     });
   }
 }
