@@ -56,12 +56,14 @@
                     data-label="{{:: 'pci_databases_topics_create_topic_retention_bytes' | translate }}"
                     class="col"
                 >
-                    <oui-numeric
-                        model="$ctrl.model.retentionBytes"
+                    <input
+                        class="oui-input"
                         name="retentionBytes"
+                        type="number"
+                        ng-model="$ctrl.model.retentionBytes"
                         min="-1"
-                    >
-                    </oui-numeric>
+                        max="429496509698"
+                    />
                 </oui-field>
             </div>
             <div class="row">
