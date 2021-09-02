@@ -1,13 +1,4 @@
 {
-  "cpbh_current_month": "Factures {{month}} {{year}}",
-  "cpbh_next_month": "Mois suivant",
-  "cpbh_previous_month": "Mois précédent",
-  "cpbhd_monthly_header": "Forfaits mensuels de {{month}} {{year}}",
-  "cpbhd_hourly_header": "Consommations à la demande de {{month}} {{year}}",
-  "cpbhd_bill_link": "Voir toutes les factures",
-  "cpbhd_bill_pdf_tooltip": "Voir la facture PDF",
-  "cpbhd_bill_pdf_link": "Facture {{month}} {{year}}",
-  "cpb_error_message": "Oups, nous n'arrivons pas à récupérer toutes les informations.",
   "cpbc_billing_control_consumption_month": "Facture totale {{month}} {{year}}",
   "cpbc_billing_control_consumption_history_product": "Produit",
   "cpbc_billing_control_consumption_history_product_details": "Détails",
