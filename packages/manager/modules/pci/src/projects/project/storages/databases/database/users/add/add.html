@@ -19,24 +19,26 @@
         required
     />
 </oui-field>
-
-<h2>Roles</h2>
-<oui-dual-list
-    data-source="$ctrl.availableRoles"
-    data-target="$ctrl.model.selectedRoles"
-    property="name"
->
-    <oui-dual-list-source
-        data-heading="{{:: 'pci_databases_users_add_roles_available' | translate }}"
-        data-searchable="true"
+<div ng-if="!$ctrl.isRolesReadOnly">
+    <h2>Roles</h2>
+    <oui-dual-list
+        data-source="$ctrl.availableRoles"
+        data-target="$ctrl.model.selectedRoles"
+        disabled="$ctrl.isFeatureActivated('getRoles')"
+        property="name"
     >
-    </oui-dual-list-source>
-    <oui-dual-list-target
-        data-heading="{{:: 'pci_databases_users_add_roles_selected' | translate }}"
-        data-searchable="true"
-    >
-    </oui-dual-list-target>
-</oui-dual-list>
+        <oui-dual-list-source
+            data-heading="{{:: 'pci_databases_users_add_roles_available' | translate }}"
+            data-searchable="true"
+        >
+        </oui-dual-list-source>
+        <oui-dual-list-target
+            data-heading="{{:: 'pci_databases_users_add_roles_selected' | translate }}"
+            data-searchable="true"
+        >
+        </oui-dual-list-target>
+    </oui-dual-list>
+</div>
 <div class="text-right">
     <oui-button size="l">Cancel</oui-button>
     <oui-button

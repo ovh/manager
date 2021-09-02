@@ -14,6 +14,25 @@ export default class {
       password: '',
       selectedRoles: [],
     };
+    this.isRolesReadOnly = !this.isFeatureActivated('getRoles');
+    if (this.isRolesReadOnly) {
+      this.model.selectedRoles.push(this.availableRoles[0]);
+    }
+  }
+
+  getUserFromModel() {
+    const user = {};
+    if (this.database.engine === 'redis') {
+      user.categories = [];
+      user.channels = [];
+      user.commands = [];
+      user.keys = [];
+      user.username = this.model.username;
+    } else {
+      user.name = this.model.username;
+      user.roles = this.model.selectedRoles.map((role) => role.name);
+    }
+    return user;
   }
 
   addUser() {
@@ -23,9 +42,7 @@ export default class {
       this.projectId,
       this.database.engine,
       this.database.id,
-      this.model.username,
-      this.model.password,
-      this.model.selectedRoles.map((role) => role.name),
+      this.getUserFromModel(),
     )
       .then((createdUser) =>
         this.goBack({

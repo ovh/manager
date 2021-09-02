@@ -24,6 +24,10 @@
         data-columns-parameters="[{
             name: 'description',
             hidden: !$ctrl.isDescriptionAvailable
+        },
+        {
+            name: 'roles',
+            hidden: !$ctrl.isRolesAvailable
         }]"
     >
         <oui-datagrid-column

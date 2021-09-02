@@ -18,6 +18,7 @@ export default class CloudProjectUsersCtrl {
       this.users,
       (user) => !!user.description,
     );
+    this.isRolesAvailable = some(this.users, (user) => !!user.roles);
     this.loadMessages();
   }
 

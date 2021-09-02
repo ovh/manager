@@ -18,13 +18,15 @@ export default /* @ngInject */ ($stateProvider) => {
             database.engine,
             database.id,
           ).then((users) =>
-            users.map((user) =>
-              set(
-                user,
-                'roles',
-                user.roles.map((role) => find(roles, { name: role })),
-              ),
-            ),
+            roles
+              ? users.map((user) =>
+                  set(
+                    user,
+                    'roles',
+                    user.roles?.map((role) => find(roles, { name: role })),
+                  ),
+                )
+              : users,
           ),
         addUser: /* @ngInject */ (
           $state,

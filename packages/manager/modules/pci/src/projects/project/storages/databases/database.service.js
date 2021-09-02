@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
 import 'moment';
+import isFeatureActivated from './features.constants';
 
 import Backup from '../../../../components/project/storages/databases/backup.class';
 import Database from '../../../../components/project/storages/databases/database.class';
@@ -266,12 +267,17 @@ export default class DatabaseService {
   }
 
   getRoles(projectId, engine, databaseId) {
-    return this.$http
-      .get(
-        `/cloud/project/${projectId}/database/${engine}/${databaseId}/roles`,
-        DatabaseService.getIcebergHeaders(),
-      )
-      .then(({ data }) => data);
+    if (isFeatureActivated('getRoles', engine)) {
+      return this.$http
+        .get(
+          `/cloud/project/${projectId}/database/${engine}/${databaseId}/roles`,
+          DatabaseService.getIcebergHeaders(),
+        )
+        .then(({ data }) => data);
+    }
+    const deferred = this.$q.defer();
+    deferred.resolve(['admin']);
+    return deferred.promise;
   }
 
   getNodes(projectId, engine, databaseId) {
@@ -315,15 +321,11 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
-  addUser(projectId, engine, databaseId, name, password, roles) {
+  addUser(projectId, engine, databaseId, user) {
     return this.$http
       .post(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/user`,
-        {
-          name,
-          password,
-          roles,
-        },
+        user,
       )
       .then(({ data }) => data);
   }
