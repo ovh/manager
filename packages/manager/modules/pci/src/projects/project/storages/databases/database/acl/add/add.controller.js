@@ -16,7 +16,7 @@ export default class {
       this.database.engine,
       this.database.id,
     ).then((permissions) => {
-      this.availablePermissions = permissions.permissions;
+      this.availablePermissions = permissions.name;
     });
   }
 
