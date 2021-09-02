@@ -252,7 +252,7 @@
                     <oui-tile-description>
                         <oui-tile-description>
                             <oui-clipboard
-                                data-model="$ctrl.connectionInformation.mongoShell"
+                                data-model="$ctrl.database.uri"
                                 data-id="connection-mongo-shell"
                                 data-name="connection-mongo-shell"
                             ></oui-clipboard>
@@ -262,6 +262,7 @@
 
                 <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_replicate_URI_label' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('replicateURI')"
                 >
                     <oui-tile-description>
                         <oui-tile-description>
