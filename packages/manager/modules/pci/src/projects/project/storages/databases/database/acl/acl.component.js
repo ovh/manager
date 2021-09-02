@@ -7,6 +7,8 @@ export default {
     database: '<',
     trackDatabases: '<',
     addAcl: '<',
+    deleteAcl: '<',
+    refreshAcl: '<',
     aclList: '<',
   },
   controller,

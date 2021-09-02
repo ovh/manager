@@ -27,13 +27,11 @@ export default class aclCtrl {
     this.messages = this.messageHandler.getMessages();
   }
 
-  refreshAcl() {
-    this.DatabaseService.getServiceDatabases(
-      this.projectId,
-      this.database.engine,
-      this.database.id,
-    ).then((aclList) => {
-      this.aclList = aclList;
+  delete(acl) {
+    this.deleteAcl(acl.id).then(() => {
+      this.refreshAcl(
+        this.$translate.instant('pci_databases_acl_tab_delete_success'),
+      );
     });
   }
 }

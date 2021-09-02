@@ -38,15 +38,27 @@ export default /* @ngInject */ ($stateProvider) => {
               databaseId,
             },
           ),
-        deleteAcl: /* @ngInject */ (
-          DatabaseService,
-          database,
-          projectId,
-        ) => () =>
+        refreshAcl: /* @ngInject */ ($state, CucCloudMessage) => (
+          message = false,
+          type = 'success',
+        ) => {
+          const state = 'pci.projects.project.storages.databases.dashboard.acl';
+          const promise = $state.reload();
+          if (message) {
+            promise.then(() => {
+              CucCloudMessage[type](message, state);
+            });
+          }
+          return promise;
+        },
+        deleteAcl: /* @ngInject */ (DatabaseService, database, projectId) => (
+          aclId,
+        ) =>
           DatabaseService.deleteServiceAcl(
             projectId,
             database.engine,
             database.id,
+            aclId,
           ),
       },
     },

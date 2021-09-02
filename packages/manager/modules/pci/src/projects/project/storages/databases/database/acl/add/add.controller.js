@@ -16,7 +16,7 @@ export default class {
       this.database.engine,
       this.database.id,
     ).then((permissions) => {
-      this.availablePermissions = permissions;
+      this.availablePermissions = permissions.permissions;
     });
   }
 
@@ -33,7 +33,7 @@ export default class {
       this.database.id,
       this.username,
       this.topic,
-      this.permission.value,
+      this.permission,
     )
       .then((acl) =>
         this.goBack({
