@@ -58,6 +58,30 @@ export default /* @ngInject */ ($stateProvider) => {
           .month(validMonth)
           .toDate();
       },
+      validParams: /* @ngInject */ (month, year) => {
+        const period = moment({
+          year,
+          month: month - 1, // because moment indexes month from 0 to 11
+        });
+        let validYear = year;
+        let validMonth = month;
+        if (!period.isValid() || period.isAfter(moment.utc())) {
+          validYear = moment.utc().year();
+          validMonth = moment.utc().month() + 1; // because moment indexes month from 0 to 11
+        }
+
+        if (year < 1990) {
+          validYear = moment.utc().year();
+        }
+        if (month < 1 || month > 12) {
+          validMonth = moment.utc().month() + 1; // because moment indexes month from 0 to 11
+        }
+
+        return {
+          year: validYear,
+          month: validMonth,
+        };
+      },
       year: /* @ngInject */ ($transition$) => $transition$.params().year,
       month: /* @ngInject */ ($transition$) => $transition$.params().month,
       history: /* @ngInject */ ($q, iceberg, isLegacyProject, serviceInfos) =>
