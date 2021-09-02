@@ -1,3 +1,12 @@
+## [5.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.40.0...@ovh-ux/manager-pci@5.40.1) (2021-09-02)
+
+
+### Bug Fixes
+
+* **billing.history:** add missing injection ([#5471](https://github.com/ovh/manager/issues/5471)) ([a67166f](https://github.com/ovh/manager/commit/a67166feb8de92ff9c26c45deab13e87d6214f47))
+
+
+
 # [5.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.39.0...@ovh-ux/manager-pci@5.40.0) (2021-08-25)
 
 
