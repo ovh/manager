@@ -1,11 +1,18 @@
 import find from 'lodash/find';
+import isFunction from 'lodash/isFunction';
+import map from 'lodash/map';
+import parseInt from 'lodash/parseInt';
+import head from 'lodash/head';
+import compact from 'lodash/compact';
+import filter from 'lodash/filter';
 
-export default class {
+export default class BmServerComponentsOrderPrivateBandwidthCtrl {
   /* @ngInject */
-  constructor($window, Server, coreConfig) {
+  constructor($translate, $window, OrderPrivateBandwidthService, coreConfig) {
     this.$window = $window;
-    this.Server = Server;
+    this.OrderPrivateBandwidthService = OrderPrivateBandwidthService;
     this.region = coreConfig.getRegion();
+    this.$translate = $translate;
   }
 
   $onInit() {
@@ -19,11 +26,13 @@ export default class {
         isLoading: () => this.isLoading,
         load: () => {
           this.isLoading = true;
-          return this.Server.getBareMetalPrivateBandwidthOptions(
+          return this.OrderPrivateBandwidthService.getBareMetalPrivateBandwidthOptions(
             this.serverName,
           )
             .then((plans) => {
-              this.plans = this.Server.getValidBandwidthPlans(plans);
+              this.plans = BmServerComponentsOrderPrivateBandwidthCtrl.getValidBandwidthPlans(
+                plans,
+              );
               this.plans.sort(
                 (a, b) =>
                   a.prices.find((el) => el.capacities.includes('renew'))
@@ -33,9 +42,14 @@ export default class {
               );
             })
             .catch((error) => {
-              this.goBack().then(() =>
-                this.alertError('server_error_bandwidth_order', error.data),
+              this.handleError(
+                error,
+                this.$translate.instant(
+                  'server_error_bandwidth_order',
+                  error.data,
+                ),
               );
+              this.goBack();
             })
             .finally(() => {
               this.isLoading = false;
@@ -47,7 +61,7 @@ export default class {
         isLoading: () => this.isLoading,
         load: () => {
           this.isLoading = true;
-          return this.Server.getBareMetalPrivateBandwidthOrder(
+          return this.OrderPrivateBandwidthService.getBareMetalPrivateBandwidthOrder(
             this.serverName,
             this.model.plan,
           )
@@ -61,9 +75,14 @@ export default class {
               this.provisionalPlan = res;
             })
             .catch((error) => {
-              this.goBack().then(() =>
-                this.alertError('server_error_bandwidth_order', error.data),
+              this.handleError(
+                error,
+                this.$translate.instant(
+                  'server_error_bandwidth_order',
+                  error.data,
+                ),
               );
+              this.goBack();
             })
             .finally(() => {
               this.isLoading = false;
@@ -90,7 +109,7 @@ export default class {
     if (this.model.plan) {
       this.isLoading = true;
       this.atTrack(`${this.trackingPrefix}confirm`);
-      return this.Server.bareMetalPrivateBandwidthPlaceOrder(
+      return this.OrderPrivateBandwidthService.bareMetalPrivateBandwidthPlaceOrder(
         this.serverName,
         this.model.plan,
         this.region === 'US' || this.model.autoPay,
@@ -107,5 +126,39 @@ export default class {
 
   seeOrder() {
     this.$window.open(this.model.orderUrl, '_blank');
+  }
+
+  static getValidBandwidthPlans(plans) {
+    const list = map(plans, (plan) => {
+      // Not to include already included plans (existing plan)
+      if (!plan.planCode.includes('included')) {
+        // Extract bandwidth value from product name
+        const bandwidth = parseInt(
+          head(filter(plan.productName.split('-'), (ele) => /^\d+$/.test(ele))),
+        );
+        return {
+          ...plan,
+          bandwidth,
+        };
+      }
+      return null;
+    });
+    return compact(list);
+  }
+
+  handleError(error, message = null) {
+    if (isFunction(this.onError)) {
+      this.onError({
+        error: { message, data: error },
+      });
+    }
+  }
+
+  handleSuccess(message) {
+    if (isFunction(this.onSuccess)) {
+      this.onSuccess({
+        message,
+      });
+    }
   }
 }
