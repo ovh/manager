@@ -6,5 +6,13 @@
   "pci_databases_users_add_roles_selected": "Wybrane role",
   "pci_databases_users_add_create": "Utwórz użytkownika",
   "pci_databases_users_add_success_message": "Użytkownik {{username}} został dodany wraz hasłem <code>{{password}}</code>",
-  "pci_databases_users_add_error_save": "Wystąpił błąd podczas tworzenia użytkownika {{user}}: {{message}}."
+  "pci_databases_users_add_error_save": "Wystąpił błąd podczas tworzenia użytkownika {{user}}: {{message}}.",
+  "pci_databases_users_add_categories_label": "Catégories",
+  "pci_databases_users_add_commands_label": "Commandes",
+  "pci_databases_users_add_channels_label": "Channels",
+  "pci_databases_users_add_keys_label": "Clés",
+  "pci_databases_users_add_keys_button_label": "Ajouter une clé",
+  "pci_databases_users_add_categories_button_label": "Ajouter une catégorie",
+  "pci_databases_users_add_commands_button_label": "Ajouter une commande",
+  "pci_databases_users_add_channels_button_label": "Ajouter un channel"
 }
