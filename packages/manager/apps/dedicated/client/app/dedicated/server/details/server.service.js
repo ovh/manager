@@ -1114,40 +1114,6 @@ export default class ServerF {
     ).$promise;
   }
 
-  getBareMetalPrivateBandwidthOptions(serviceName) {
-    return this.OvhApiOrderBaremetalPrivateBW.getPrivateBandwidthOptions({
-      serviceName,
-    }).$promise;
-  }
-
-  getBareMetalPrivateBandwidthOrder(serviceName, planCode) {
-    this.OvhApiOrderBaremetalPrivateBW.resetCache();
-    this.OvhApiOrderBaremetalPrivateBW.resetQueryCache();
-
-    return this.OvhApiOrderBaremetalPrivateBW.getPrivateBandwidthOrder(
-      {
-        serviceName,
-        planCode,
-      },
-      {
-        quantity: 1,
-      },
-    ).$promise;
-  }
-
-  bareMetalPrivateBandwidthPlaceOrder(serviceName, planCode, autoPay) {
-    return this.OvhApiOrderBaremetalPrivateBW.postPrivateBandwidthPlaceOrder(
-      {
-        serviceName,
-        planCode,
-      },
-      {
-        quantity: 1,
-        autoPayWithPreferredPaymentMethod: autoPay,
-      },
-    ).$promise;
-  }
-
   getHardwareSpecifications(productId) {
     return this.get(productId, 'specifications/hardware', {
       proxypass: true,

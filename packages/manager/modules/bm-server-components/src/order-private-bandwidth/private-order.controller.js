@@ -66,9 +66,11 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
             this.model.plan,
           )
             .then((res) => {
-              res.bandwidth = find(this.plans, {
-                planCode: this.model.plan,
-              }).bandwidth;
+              res.bandwidth = find(
+                this.plans,
+                'planCode',
+                this.model.plan,
+              ).bandwidth;
               res.planCode = this.model.plan;
               this.provisionalPlan = res;
             })
