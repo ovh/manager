@@ -1,8 +1,7 @@
 <oui-back-button
     data-previous-page="{{:: 'pci_projects_project_users_title' | translate }}"
     data-on-click="$ctrl.goBack()"
->
-</oui-back-button>
+></oui-back-button>
 
 <h2>Add user</h2>
 <oui-field
@@ -19,6 +18,7 @@
         required
     />
 </oui-field>
+
 <div ng-if="!$ctrl.isRolesReadOnly">
     <h2>Roles</h2>
     <oui-dual-list
@@ -39,13 +39,40 @@
         </oui-dual-list-target>
     </oui-dual-list>
 </div>
+
+<div ng-if="$ctrl.database.engine === 'redis'">
+    <tags-input
+        name="keys"
+        data-model="$ctrl.model.keys"
+        data-label="{{:: 'pci_databases_users_add_keys_label' | translate }}"
+        data-button-label="{{:: 'pci_databases_users_add_keys_button_label' | translate }}"
+    ></tags-input>
+    <tags-input
+        name="categories"
+        data-model="$ctrl.model.categories"
+        data-label="{{:: 'pci_databases_users_add_categories_label' | translate }}"
+        data-button-label="{{:: 'pci_databases_users_add_categories_button_label' | translate }}"
+    ></tags-input>
+    <tags-input
+        name="commands"
+        data-model="$ctrl.model.commands"
+        data-label="{{:: 'pci_databases_users_add_commands_label' | translate }}"
+        data-button-label="{{:: 'pci_databases_users_add_commands_button_label' | translate }}"
+    ></tags-input>
+    <tags-input
+        name="channels"
+        data-model="$ctrl.model.channels"
+        data-label="{{:: 'pci_databases_users_add_channels_label' | translate }}"
+        data-button-label="{{:: 'pci_databases_users_add_channels_button_label' | translate }}"
+    ></tags-input>
+</div>
 <div class="text-right">
     <oui-button size="l">Cancel</oui-button>
     <oui-button
         size="l"
         variant="primary"
         icon-right="oui-icon-arrow-right"
-        disabled="$ctrl.processing"
+        disabled="$ctrl.processing || !$ctrl.model.username"
         ng-click="$ctrl.addUser()"
         >Add user</oui-button
     >
