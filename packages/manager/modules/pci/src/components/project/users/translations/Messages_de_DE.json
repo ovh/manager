@@ -20,6 +20,8 @@
   "pci_projects_project_users_token_label": "OpenStack-Token erstellen",
   "pci_projects_project_users_password_label": "Passwort neu generieren",
   "pci_projects_project_users_modify_password_label": "Passwort ändern",
+  "pci_projects_project_users_show_key_label": "Afficher clé d'accès",
+  "pci_projects_project_users_show_cert_label": "Afficher certificat",
   "pci_projects_project_users_password_message_infos": "Das neue Passwort des Benutzers {{ user }} lautet <code>{{ password }}</code>.",
   "pci_projects_project_users_password_message_success": "Passworts des Benutzers {{ user }} wurde neu generiert.",
   "pci_projects_project_users_password_message_error": "Bei der Generierung des Passworts des Benutzers {{ user }} ist ein Fehler aufgetreten: {{ message }}.",

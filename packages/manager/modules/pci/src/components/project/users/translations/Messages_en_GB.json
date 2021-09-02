@@ -15,6 +15,8 @@
   "pci_projects_project_users_rclone_label": "Download an Rclone configuration file",
   "pci_projects_project_users_token_label": "Generate an OpenStack token",
   "pci_projects_project_users_password_label": "Generate a password",
+  "pci_projects_project_users_show_key_label": "Show access key",
+  "pci_projects_project_users_show_cert_label": "Show access cert",
   "pci_projects_project_users_password_message_infos": "The new password for the {{user}} user is <code>{{password}}</code>.",
   "pci_projects_project_users_password_message_success": "The password for the {{user}} user has been regenerated.",
   "pci_projects_project_users_password_message_error": "An error has occurred regenerating a password for the {{user}} user: {{message}}.",

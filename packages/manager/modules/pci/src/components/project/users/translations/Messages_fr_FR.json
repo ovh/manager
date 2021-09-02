@@ -21,6 +21,8 @@
   "pci_projects_project_users_token_label": "Générer un token OpenStack",
   "pci_projects_project_users_password_label": "Regénérer un mot de passe",
   "pci_projects_project_users_modify_password_label": "Générer un nouveau mot de passe",
+  "pci_projects_project_users_show_key_label": "Afficher clé d'accès",
+  "pci_projects_project_users_show_cert_label": "Afficher certificat",
 
   "pci_projects_project_users_password_message_infos": "Le nouveau mot de passe de l'utilisateur {{ user }} est <code>{{ password }}</code>.",
   "pci_projects_project_users_password_message_success": "Le mot de passe de l'utilisateur {{ user }} a été regénéré.",

@@ -26,6 +26,8 @@ const features = {
   aclTab: [DATABASE_TYPES.KAFKA],
   topicsTab: [DATABASE_TYPES.KAFKA],
   getRoles: [DATABASE_TYPES.MONGO_DB, DATABASE_TYPES.POSTGRESQL],
+  showKey: [DATABASE_TYPES.KAFKA],
+  showCert: [DATABASE_TYPES.KAFKA],
 };
 
 export default function isFeatureActivated(feature, databaseType) {

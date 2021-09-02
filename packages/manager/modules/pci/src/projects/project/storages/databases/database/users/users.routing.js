@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import set from 'lodash/set';
+import isFeatureActivated from '../../features.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -58,6 +59,52 @@ export default /* @ngInject */ ($stateProvider) => {
               userId: user.id,
             },
           );
+        },
+
+        showKey: /* @ngInject */ (
+          $state,
+          database,
+          projectId,
+          trackDatabases,
+        ) => {
+          if (isFeatureActivated('showKey', database.engine)) {
+            return (user) => {
+              trackDatabases('dashboard::users::options_menu::show_key');
+              return $state.go(
+                'pci.projects.project.storages.databases.dashboard.users.show-secret',
+                {
+                  projectId,
+                  databaseId: database.id,
+                  user,
+                  type: 'key',
+                },
+              );
+            };
+          }
+          return null;
+        },
+
+        showCert: /* @ngInject */ (
+          $state,
+          database,
+          projectId,
+          trackDatabases,
+        ) => {
+          if (isFeatureActivated('showCert', database.engine)) {
+            return (user) => {
+              trackDatabases('dashboard::users::options_menu::show_cert');
+              return $state.go(
+                'pci.projects.project.storages.databases.dashboard.users.show-secret',
+                {
+                  projectId,
+                  databaseId: database.id,
+                  user,
+                  type: 'cert',
+                },
+              );
+            };
+          }
+          return null;
         },
 
         isActionDisabled: /* @ngInject */ (database) => () =>

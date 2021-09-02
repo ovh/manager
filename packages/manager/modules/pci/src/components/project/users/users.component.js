@@ -10,6 +10,8 @@ export default {
     downloadOpenStackOpenRc: '<',
     downloadOpenStackRclone: '<',
     editRoles: '<',
+    showKey: '<',
+    showCert: '<',
     generateOpenStackToken: '<',
     goToModifyPassword: '<?',
     guideUrl: '<?',

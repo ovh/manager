@@ -6,6 +6,7 @@ import 'angular-translate';
 import addUser from './add';
 import deleteUser from './delete';
 import modifyPassword from './modify-password';
+import showSecret from './show-secret';
 import routing from './users.routing';
 import users from '../../../../../../components/project/users';
 
@@ -21,6 +22,7 @@ angular
     deleteUser,
     modifyPassword,
     users,
+    showSecret,
   ])
   .config(routing);
 

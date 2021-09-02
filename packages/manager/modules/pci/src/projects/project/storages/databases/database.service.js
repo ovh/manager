@@ -475,7 +475,7 @@ export default class DatabaseService {
   getPermissions(projectId, engine, databaseId) {
     return this.$http
       .get(
-        `/cloud/project/${projectId}/database/${engine}/${databaseId}/acl/permissions`,
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/permissions`,
       )
       .then(({ data }) => data);
   }
@@ -484,6 +484,14 @@ export default class DatabaseService {
     return this.$http
       .get(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/certificates`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getUserCertificate(projectId, engine, databaseId, userId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/user/${userId}/access`,
       )
       .then(({ data }) => data);
   }

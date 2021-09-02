@@ -20,6 +20,8 @@
   "pci_projects_project_users_token_label": "Wygeneruj token Openstack",
   "pci_projects_project_users_password_label": "Wygeneruj ponownie hasło.",
   "pci_projects_project_users_modify_password_label": "Zmień hasło",
+  "pci_projects_project_users_show_key_label": "Afficher clé d'accès",
+  "pci_projects_project_users_show_cert_label": "Afficher certificat",
   "pci_projects_project_users_password_message_infos": "Nowe hasło użytkownika {{user}} jest następujące: <code>{{password}}</code>.",
   "pci_projects_project_users_password_message_success": "Hasło dla użytkownika {{ user }} zostało ponownie wygenerowane.",
   "pci_projects_project_users_password_message_error": "Wystąpił błąd podczas generowania hasła dla użytkownika {{ user }}: {{ message }}.",
