@@ -2,8 +2,7 @@ import includes from 'lodash/includes';
 import { DATABASE_TYPES } from './databases.constants';
 
 const features = {
-  databaseTab: [], // Empty for now, will be activated with GA
-  forkFromBackup: [DATABASE_TYPES.MONGO_DB],
+  databaseTab: [DATABASE_TYPES.MYSQL, DATABASE_TYPES.POSTGRESQL],
   forkFromGeneralInformation: [
     DATABASE_TYPES.MYSQL,
     DATABASE_TYPES.POSTGRESQL,

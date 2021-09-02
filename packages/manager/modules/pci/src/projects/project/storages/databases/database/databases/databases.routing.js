@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
-          $translate.instant('pci_database_databases_title'),
+          $translate.instant('pci_databases_databases_tab_title'),
         goBackToDatabase: /* @ngInject */ ($state, CucCloudMessage) => (
           message = false,
           type = 'success',
@@ -37,6 +37,13 @@ export default /* @ngInject */ ($stateProvider) => {
             {
               projectId,
               databaseId,
+            },
+          ),
+        deleteDatabase: /* @ngInject */ ($state) => (dbInstance) =>
+          $state.go(
+            'pci.projects.project.storages.databases.dashboard.databases.delete-database',
+            {
+              dbInstance,
             },
           ),
       },

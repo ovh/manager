@@ -1,0 +1,12 @@
+<form name="deleteDatabase">
+    <oui-modal
+        data-on-dismiss="$ctrl.goBack()"
+        data-primary-label="{{:: 'pci_databases_databases_delete_database_confirm' | translate}}"
+        data-primary-action="$ctrl.deleteDatabase()"
+        data-secondary-action="$ctrl.cancel()"
+        data-secondary-label="{{:: 'pci_databases_databases_delete_database_cancel' | translate}}"
+        data-loading="$ctrl.processing"
+        data-heading="{{:: 'pci_databases_databases_delete_database' | translate}}"
+    >
+    </oui-modal>
+</form>

@@ -419,37 +419,30 @@ export default class DatabaseService {
   }
 
   getServiceDatabases(projectId, engine, databaseId) {
-    /**
-     * Return a mocked list while backend is not ready.
-     * Replace with an api call later.
-     */
-    if (!this.mockedDatabases) this.mockedDatabases = [];
-    const deferred = this.$q.defer();
-    deferred.resolve(
-      this.mockedDatabases.filter(
-        (d) =>
-          d.projectId === projectId &&
-          d.engine === engine &&
-          d.databaseId === databaseId,
-      ),
-    );
-    return deferred.promise;
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/database`,
+      )
+      .then(({ data }) => data);
   }
 
   addServiceDatabase(projectId, engine, databaseId, databaseName) {
-    /**
-     * Add the database to the mocked list while backend is not ready.
-     * Replace with an api call later.
-     */
-    const deferred = this.$q.defer();
-    this.mockedDatabases.push({
-      name: databaseName,
-      projectId,
-      engine,
-      databaseId,
-    });
-    deferred.resolve({ name: databaseName });
-    return deferred.promise;
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/database`,
+        {
+          database: databaseName,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteServiceDatabase(projectId, engine, databaseId, db) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/database/${db.id}`,
+      )
+      .then(({ data }) => data);
   }
 
   getServiceAcl(projectId, engine, databaseId) {

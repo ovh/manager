@@ -13,11 +13,6 @@ export default class databasesCtrl {
       'pci.projects.project.storages.databases.dashboard.databases';
     this.loadMessages();
     this.trackDatabases('dashboard::databases', 'page');
-    this.databases = [
-      { description: 'defaultdb' },
-      { description: 'users' },
-      { description: 'products' },
-    ];
   }
 
   loadMessages() {
@@ -30,5 +25,15 @@ export default class databasesCtrl {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  refreshDatabases() {
+    this.DatabaseService.getServiceDatabases(
+      this.projectId,
+      this.database.engine,
+      this.database.id,
+    ).then((databasesList) => {
+      this.databasesList = databasesList;
+    });
   }
 }

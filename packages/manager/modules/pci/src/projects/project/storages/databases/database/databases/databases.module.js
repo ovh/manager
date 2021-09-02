@@ -7,6 +7,7 @@ import '@ovh-ux/ui-kit';
 import component from './databases.component';
 import routing from './databases.routing';
 import createDatabase from './create-database';
+import deleteDatabase from './delete-database';
 
 const moduleName = 'ovhManagerPciStoragesDatabasesDatabases';
 
@@ -16,6 +17,7 @@ angular
     'ngOvhSwimmingPoll',
     'oui',
     createDatabase,
+    deleteDatabase,
   ])
   .config(routing)
   .component('ovhManagerPciStoragesDatabaseDatabasesComponent', component)
