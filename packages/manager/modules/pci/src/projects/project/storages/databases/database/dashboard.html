@@ -60,6 +60,14 @@
                 data-translate="pci_databases_dashboard_metrics_tab_title"
             ></span>
         </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('topicsTab')"
+            data-href="{{ $ctrl.topicsLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.topicsLink"
+            ><span
+                data-translate="pci_databases_dashboard_topics_tab_title"
+            ></span>
+        </oui-header-tabs-item>
     </oui-header-tabs>
     <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
         <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>

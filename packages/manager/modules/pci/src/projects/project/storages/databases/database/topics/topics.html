@@ -1,0 +1,100 @@
+<div class="container-fluid px-0 mt-3">
+    <!-- error messages -->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <h2 data-translate="pci_databases_topics_tab_title"></h2>
+
+    <oui-datagrid class="mt-5" data-page-size="10" data-rows="$ctrl.topicsList">
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_topics_tab_name' | translate"
+            data-property="name"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_topics_tab_partitions' | translate"
+            data-property="partitions"
+            data-sortable="asc"
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_topics_tab_replication' | translate"
+            data-property="replication"
+            data-sortable="asc"
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_topics_tab_minInsyncReplicas' | translate"
+            data-property="minInsyncReplicas"
+            data-sortable="asc"
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_topics_tab_retention_hours' | translate"
+            data-property="retentionHours"
+            data-sortable="asc"
+            data-filterable
+        >
+            <span
+                ng-if="$row.retentionHours >= 0"
+                data-ng-bind="$row.retentionHours"
+            ></span>
+            <span
+                ng-if="$row.retentionHours < 0"
+                data-ng-bind=":: 'pci_databases_topics_tab_unlimited' | translate"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_topics_tab_retention_bytes' | translate"
+            data-property="retentionBytes"
+            data-sortable="asc"
+            data-filterable
+        >
+            <span
+                ng-if="$row.retentionBytes >= 0"
+                data-ng-bind="$row.retentionBytes"
+            ></span>
+            <span
+                ng-if="$row.retentionBytes < 0"
+                data-ng-bind=":: 'pci_databases_topics_tab_unlimited' | translate"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_topics_tab_cleanup_policy' | translate"
+            data-sortable="asc"
+            data-filterable
+        >
+            <span>delete</span>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item data-on-click="$ctrl.deleteTopic($row)">
+                <span
+                    data-translate="pci_databases_topics_tab_delete_link"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+        <oui-datagrid-topbar>
+            <oui-button data-on-click="$ctrl.addTopic()">
+                <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i>
+                <span data-translate="pci_databases_topics_tab_add"></span>
+            </oui-button>
+            <button
+                data-ng-if="$ctrl.topicsList.length > 0"
+                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
+                type="button"
+                data-title="{{:: 'pci_databases_common_refresh' | translate }}"
+                data-ng-click="$ctrl.refreshing=true; $ctrl.refreshTopics()"
+                data-ng-disabled="$ctrl.refreshing"
+            >
+                <span
+                    class="oui-icon oui-icon-refresh"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+</div>

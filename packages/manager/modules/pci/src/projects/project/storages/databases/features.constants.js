@@ -33,6 +33,7 @@ const features = {
     DATABASE_TYPES.REDIS,
   ],
   aclTab: [DATABASE_TYPES.KAFKA],
+  topicsTab: [DATABASE_TYPES.KAFKA],
 };
 
 export default function isFeatureActivated(feature, databaseType) {

@@ -1,0 +1,107 @@
+<form novalidate name="addTopic">
+    <oui-modal
+        data-on-dismiss="$ctrl.goBack()"
+        data-primary-label="{{:: 'pci_databases_topics_create_topic_confirm' | translate}}"
+        data-primary-disabled="!$ctrl.model.name"
+        data-primary-action="$ctrl.addTopic()"
+        data-secondary-action="$ctrl.cancel()"
+        data-secondary-label="{{:: 'pci_databases_topics_create_topic_cancel' | translate}}"
+        data-loading="$ctrl.processing"
+        data-heading="{{:: 'pci_databases_topics_create_topic' | translate}}"
+    >
+        <p data-translate="pci_databases_topics_create_topic_description"></p>
+
+        <oui-field
+            data-label="{{:: 'pci_databases_topics_create_topic_label' | translate }}"
+        >
+            <input
+                type="text"
+                id="topicName"
+                name="topicName"
+                class="oui-input"
+                data-ng-model="$ctrl.model.name"
+                required
+                autofocus
+            />
+        </oui-field>
+        <oui-collapsible
+            heading="{{:: 'pci_databases_topics_create_topic_advanced' | translate }}"
+            group="advanced_configuration"
+        >
+            <!--Advanced config-->
+            <div class="row">
+                <oui-field
+                    data-label="{{:: 'pci_databases_topics_create_topic_replication' | translate }}"
+                    class="col"
+                >
+                    <oui-numeric
+                        model="$ctrl.model.replication"
+                        name="replication"
+                        min="2"
+                    >
+                    </oui-numeric>
+                </oui-field>
+                <oui-field
+                    data-label="{{:: 'pci_databases_topics_create_topic_partitions' | translate }}"
+                    class="col"
+                >
+                    <oui-numeric
+                        model="$ctrl.model.partitions"
+                        name="partitions"
+                        min="1"
+                    >
+                    </oui-numeric>
+                </oui-field>
+                <oui-field
+                    data-label="{{:: 'pci_databases_topics_create_topic_retention_bytes' | translate }}"
+                    class="col"
+                >
+                    <oui-numeric
+                        model="$ctrl.model.retentionBytes"
+                        name="retentionBytes"
+                        min="-1"
+                    >
+                    </oui-numeric>
+                </oui-field>
+            </div>
+            <div class="row">
+                <oui-field
+                    data-label="{{:: 'pci_databases_topics_create_topic_retention_hours' | translate }}"
+                    class="col"
+                >
+                    <oui-numeric
+                        model="$ctrl.model.retentionHours"
+                        name="retentionHours"
+                        min="-1"
+                    >
+                    </oui-numeric>
+                </oui-field>
+                <oui-field
+                    data-label="{{:: 'pci_databases_topics_create_topic_min_insync_replicas' | translate }}"
+                    class="col"
+                >
+                    <oui-numeric
+                        model="$ctrl.model.minInsyncReplicas"
+                        name="minInsyncReplicas"
+                        min="1"
+                    >
+                    </oui-numeric>
+                </oui-field>
+                <oui-field
+                    data-label="{{:: 'pci_databases_topics_create_topic_min_cleanup_policy' | translate }}"
+                    class="col"
+                >
+                    <oui-select
+                        name="cleanupPolicy"
+                        items="['delete']"
+                        match="name"
+                        model="$ctrl.model.cleanupPolicy"
+                        required
+                        disabled
+                    >
+                    </oui-select>
+                </oui-field>
+            </div>
+        </oui-collapsible>
+    </oui-modal>
+</form>

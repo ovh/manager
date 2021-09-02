@@ -485,4 +485,34 @@ export default class DatabaseService {
       )
       .then(({ data }) => data);
   }
+
+  getTopics(projectId, engine, databaseId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/database/${engine}/${databaseId}/topic`)
+      .then(({ data }) => data);
+  }
+
+  addTopic(projectId, engine, databaseId, topic) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/topic`,
+        {
+          name: topic.name,
+          partitions: topic.partitions,
+          replication: topic.replication,
+          minInsyncReplicas: topic.minInsyncReplicas,
+          retentionHours: topic.retentionHours,
+          retentionBytes: topic.retentionBytes,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteTopic(projectId, engine, databaseId, topicId) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/topic/${topicId}`,
+      )
+      .then(({ data }) => data);
+  }
 }

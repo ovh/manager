@@ -1,0 +1,8 @@
+{
+  "pci_databases_topics_delete_topic_confirm": "Delete topic",
+  "pci_databases_topics_delete_topic_cancel": "Cancel",
+  "pci_databases_topics_delete_topic": "Delete topic",
+  "pci_databases_topics_delete_topic_description": "Do you really want to delete the topic {{topic.name}} ?",
+  "pci_databases_topics_delete_topic_success_message": "The topic has been deleted",
+  "pci_databases_topics_delete_topic_error_message": "An error occured while deleting your datbase: {{message}}"
+}
