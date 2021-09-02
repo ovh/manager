@@ -1,9 +1,8 @@
-import template from './template.html';
+import controller from './private-order.controller';
+import template from './private-order.html';
 
 export default {
-  template,
   bindings: {
-    alertError: '<',
     atTrack: '<',
     goBack: '<',
     hasDefaultPaymentMethod: '<',
@@ -11,7 +10,9 @@ export default {
     specifications: '<',
     trackingPrefix: '<',
     user: '<',
-    handleError: '<',
-    handleSuccess: '<',
+    onError: '&?',
+    onSuccess: '&?',
   },
+  controller,
+  template,
 };
