@@ -25,7 +25,7 @@ export default class {
   }
 
   addAcl() {
-    this.trackDashboard('acl::add_a_user::define_role_validate');
+    this.trackDashboard('acl::add::add_an_acl_validate');
     this.processing = true;
     return this.DatabaseService.addServiceAcl(
       this.projectId,

@@ -41,6 +41,7 @@ export default class {
   }
 
   downloadCertificate() {
+    this.trackDashboard('general_information::download_certificate');
     this.CucControllerHelper.constructor.downloadContent({
       fileContent: this.database.certificate.ca,
       fileName: `ca.pem`,
