@@ -1,6 +1,7 @@
 import find from 'lodash/find';
 import set from 'lodash/set';
 import isFeatureActivated from '../../features.constants';
+import { SECRET_TYPE } from '../../databases.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -76,7 +77,7 @@ export default /* @ngInject */ ($stateProvider) => {
                   projectId,
                   databaseId: database.id,
                   user,
-                  type: 'key',
+                  type: SECRET_TYPE.key,
                 },
               );
             };
@@ -99,7 +100,7 @@ export default /* @ngInject */ ($stateProvider) => {
                   projectId,
                   databaseId: database.id,
                   user,
-                  type: 'cert',
+                  type: SECRET_TYPE.cert,
                 },
               );
             };
