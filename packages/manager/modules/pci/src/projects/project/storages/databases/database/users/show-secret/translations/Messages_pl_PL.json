@@ -1,11 +1,5 @@
 {
-  "pci_databases_users_modify_password_title": "Zmień hasło",
-  "pci_databases_users_modify_password_modal_content_confirm": "Voulez-vous vraiment génerer un nouveau mot de passe pour cet utilisateur ?",
-  "pci_databases_users_modify_password_confirm": "Zatwierdź",
-  "pci_databases_users_modify_password_modal_content_confirm": "Lorem Ipsum",
-  "pci_databases_users_modify_password_cancel": "Anuluj",
-  "pci_databases_users_modify_password_label": "Hasło",
-  "pci_databases_users_modify_password_help_text": "Musi zawierać przynajmniej jedną cyfrę, jedną wielką literę, jedną małą literę. Musi składać się z co najmniej 8 znaków.",
-  "pci_databases_users_modify_password_success": "Hasło dla użytkownika {{user}} zostało zmienione.",
-  "pci_databases_users_modify_password_error": "Wystąpił błąd podczas modyfikacji hasła dla użytkownika {{user}}: {{message}}."
+  "pci_databases_users_show_secret_title_cert": "Certificat",
+  "pci_databases_users_show_secret_title_key": "Clé d'accès",
+  "pci_databases_users_show_secret_confirm": "Fermer"
 }
