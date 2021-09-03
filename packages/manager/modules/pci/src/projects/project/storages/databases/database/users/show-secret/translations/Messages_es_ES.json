@@ -1,10 +1,5 @@
 {
-  "pci_databases_users_modify_password_title": "Cambiar la contraseña",
-  "pci_databases_users_modify_password_modal_content_confirm": "Voulez-vous vraiment génerer un nouveau mot de passe pour cet utilisateur ?",
-  "pci_databases_users_modify_password_confirm": "Confirmar",
-  "pci_databases_users_modify_password_cancel": "Cancelar",
-  "pci_databases_users_modify_password_label": "La contraseña",
-  "pci_databases_users_modify_password_help_text": "debe contener al menos una cifra, una letra mayúscula y una minúscula, y tener 8 caracteres o más.",
-  "pci_databases_users_modify_password_success": "La contraseña del usuario {{ user }} se ha modificado.",
-  "pci_databases_users_modify_password_error": "Se ha producido un error al modificar la contraseña del usuario {{ user }}: {{ message }}."
+  "pci_databases_users_show_secret_title_cert": "Certificat",
+  "pci_databases_users_show_secret_title_key": "Clé d'accès",
+  "pci_databases_users_show_secret_confirm": "Fermer"
 }
