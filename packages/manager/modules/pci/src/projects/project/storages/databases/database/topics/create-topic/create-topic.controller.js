@@ -10,6 +10,7 @@ export default class {
   }
 
   $onInit() {
+    this.trackDashboard('topics::add', 'page');
     this.model = {
       name: '',
       replication: 3,
@@ -27,8 +28,8 @@ export default class {
   }
 
   addTopic() {
-    // this.trackDashboard('users::add_a_user::define_role_validate');
     this.processing = true;
+    this.trackDashboard('topics::add_validate', 'page');
     return this.DatabaseService.addTopic(
       this.projectId,
       this.database.engine,

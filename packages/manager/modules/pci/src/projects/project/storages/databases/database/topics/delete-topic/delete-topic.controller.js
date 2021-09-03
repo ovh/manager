@@ -9,12 +9,16 @@ export default class {
     this.DatabaseService = DatabaseService;
   }
 
+  $onInit() {
+    this.trackDashboard('topics::delete', 'page');
+  }
+
   cancel() {
     this.goBack();
   }
 
   deleteTopic() {
-    // this.trackDashboard('users::add_a_user::define_role_validate');
+    this.trackDashboard('topics::delete_validate');
     this.processing = true;
     return this.DatabaseService.deleteTopic(
       this.projectId,

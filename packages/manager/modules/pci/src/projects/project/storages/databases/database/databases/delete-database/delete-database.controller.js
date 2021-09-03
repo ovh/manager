@@ -9,13 +9,17 @@ export default class {
     this.DatabaseService = DatabaseService;
   }
 
+  $onInit() {
+    this.trackDashboard('database::delete', 'page');
+  }
+
   cancel() {
     this.goBack();
   }
 
   deleteDatabase() {
-    // this.trackDashboard('users::add_a_user::define_role_validate');
     this.processing = true;
+    this.trackDashboard('database::delete_validate');
     return this.DatabaseService.deleteServiceDatabase(
       this.projectId,
       this.database.engine,
