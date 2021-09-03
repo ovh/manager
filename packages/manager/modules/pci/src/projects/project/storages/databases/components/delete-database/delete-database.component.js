@@ -8,7 +8,7 @@ export default {
     projectId: '<',
     database: '<',
     goBack: '<',
-    trackDashboard: '<',
+    trackDatabases: '<',
     trackingPrefix: '<',
   },
 };
