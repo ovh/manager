@@ -1,6 +1,6 @@
 import capitalize from 'lodash/capitalize';
 
-import { ENGINE_LOGOS } from './engines-list.constants';
+import { ENGINE_LOGOS } from '../../databases.constants';
 
 export default class {
   constructor() {

@@ -1,5 +1,18 @@
 import get from 'lodash/get';
 import head from 'lodash/head';
+import ASSET_MONGO_DB from './assets/mongodb.png';
+import ASSET_KAFKA from './assets/kafka.png';
+import ASSET_MYSQL from './assets/mysql.png';
+import ASSET_POSTGRE_SQL from './assets/postgresql.png';
+import ASSET_REDIS from './assets/redis.png';
+
+export const ENGINE_LOGOS = {
+  mongodb: ASSET_MONGO_DB,
+  kafka: ASSET_KAFKA,
+  mysql: ASSET_MYSQL,
+  postgresql: ASSET_POSTGRE_SQL,
+  redis: ASSET_REDIS,
+};
 
 export const DATABASES_GUIDES_URL =
   'https://docs.ovh.com/gb/en/publiccloud/databases/';
@@ -107,4 +120,6 @@ export default {
   SHELL_NAMES,
   METRICS_TIME_RANGES,
   CHART_METRICS_OPTIONS,
+  SECRET_TYPE,
+  ENGINE_LOGOS,
 };

@@ -1,5 +1,6 @@
 import capitalize from 'lodash/capitalize';
 import { getCriteria } from '../../project.utils';
+import { ENGINE_LOGOS } from './databases.constants';
 
 export default class {
   /* @ngInject */
@@ -8,6 +9,7 @@ export default class {
     this.capitalize = capitalize;
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
+    this.ENGINE_LOGOS = ENGINE_LOGOS;
   }
 
   $onInit() {
