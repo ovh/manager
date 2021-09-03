@@ -439,23 +439,27 @@
                 >
                     <oui-tile-description>
                         <span
-                            class="oui-badge"
-                            data-ng-class="{
-                                'oui-badge_success': ($ctrl.allowedIps.length >= 1),
-                                'oui-badge_warning': ($ctrl.allowedIps.length < 1),
-                            }"
+                            class="oui-badge oui-badge_warning"
+                            data-ng-if="$ctrl.allowedIps.length === 0"
                         >
                             <span
-                                data-ng-if="$ctrl.allowedIps.length === 0"
                                 data-translate="pci_database_common_none"
                             ></span>
-                            <p
-                                class="mb-0"
-                                data-ng-if="$ctrl.allowedIps.length !== 0 && $index < 3"
-                                data-ng-repeat="allowedIp in $ctrl.allowedIps track by allowedIp.ip"
-                                data-ng-bind="allowedIp.ip"
-                            ></p>
                         </span>
+
+                        <p
+                            data-ng-if="$ctrl.allowedIps.length !== 0 && $index < 3"
+                            data-ng-repeat="allowedIp in $ctrl.allowedIps track by allowedIp.ip"
+                        >
+                            <span
+                                class="oui-badge oui-badge_success"
+                                data-ng-bind="allowedIp.ip"
+                            ></span>
+                            <span
+                                data-ng-if="$ctrl.allowedIps.length > 3 && $index === 2"
+                                >...</span
+                            >
+                        </p>
                         <button
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                             data-ng-click="$ctrl.goToAllowedIPs()"
