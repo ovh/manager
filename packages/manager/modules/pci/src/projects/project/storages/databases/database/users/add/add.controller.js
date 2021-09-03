@@ -8,6 +8,7 @@ export default class {
   }
 
   $onInit() {
+    this.trackDashboard('users::add_a_user', 'page');
     this.availableRoles = [...this.roles];
     this.model = {
       username: '',
