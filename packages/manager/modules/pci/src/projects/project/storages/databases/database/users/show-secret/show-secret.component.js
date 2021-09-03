@@ -8,6 +8,7 @@ const component = {
     projectId: '<',
     user: '<',
     type: '<',
+    trackDashboard: '<',
     secretKeyAndAccess: '<',
   },
   controller,
