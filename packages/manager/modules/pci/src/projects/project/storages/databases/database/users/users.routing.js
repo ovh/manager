@@ -84,6 +84,27 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return null;
         },
+        showUserInformations: /* @ngInject */ (
+          $state,
+          database,
+          projectId,
+          trackDashboard,
+        ) => {
+          if (isFeatureActivated('showUserInformations', database.engine)) {
+            return (user) => {
+              trackDashboard('users::options_menu::show_informations');
+              return $state.go(
+                'pci.projects.project.storages.databases.dashboard.users.informations',
+                {
+                  projectId,
+                  databaseId: database.id,
+                  user,
+                },
+              );
+            };
+          }
+          return null;
+        },
 
         showCert: /* @ngInject */ (
           $state,

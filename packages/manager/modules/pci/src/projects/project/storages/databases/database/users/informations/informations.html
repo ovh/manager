@@ -1,0 +1,60 @@
+<oui-modal
+    data-heading="{{:: 'pci_databases_users_show_secret_title' | translate }}"
+    data-primary-label="{{:: 'pci_databases_users_informations_confirm' | translate }}"
+    data-primary-action="$ctrl.goBack()"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading"
+    class="user_informations"
+>
+    <oui-field
+        data-label="{{:: 'pci_databases_users_informations_name_label' | translate }}"
+        data-size="xl"
+    >
+        <input
+            class="oui-input"
+            type="text"
+            id="name"
+            name="name"
+            ng-model="$ctrl.user.username"
+            maxlength="255"
+            disabled
+        />
+    </oui-field>
+    <div class="row row-eq-height mb-1">
+        <div class="col">
+            <div class="oui-box oui-box_light">
+                <h4
+                    data-translate="pci_databases_users_informations_keys_label"
+                ></h4>
+                <oui-chips items="$ctrl.user.keys"></oui-chips>
+            </div>
+        </div>
+        <div class="col">
+            <div class="oui-box oui-box_light">
+                <h4
+                    data-translate="pci_databases_users_informations_categories_label"
+                ></h4>
+                <oui-chips items="$ctrl.user.categories"></oui-chips>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row row-eq-height">
+        <div class="col">
+            <div class="oui-box oui-box_light">
+                <h4
+                    data-translate="pci_databases_users_informations_commands_label"
+                ></h4>
+                <oui-chips items="$ctrl.user.commands"></oui-chips>
+            </div>
+        </div>
+        <div class="col">
+            <div class="oui-box oui-box_light">
+                <h4
+                    data-translate="pci_databases_users_informations_channels_label"
+                ></h4>
+                <oui-chips items="$ctrl.user.channels"></oui-chips>
+            </div>
+        </div>
+    </div>
+</oui-modal>

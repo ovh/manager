@@ -12,6 +12,7 @@ export default {
     editRoles: '<',
     showKey: '<',
     showCert: '<',
+    showUserInformations: '<',
     generateOpenStackToken: '<',
     goToModifyPassword: '<?',
     guideUrl: '<?',

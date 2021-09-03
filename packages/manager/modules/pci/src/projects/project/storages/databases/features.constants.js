@@ -27,6 +27,7 @@ const features = {
   getRoles: [DATABASE_TYPES.MONGO_DB, DATABASE_TYPES.POSTGRESQL],
   showKey: [DATABASE_TYPES.KAFKA],
   showCert: [DATABASE_TYPES.KAFKA],
+  showUserInformations: [DATABASE_TYPES.REDIS],
 };
 
 export default function isFeatureActivated(feature, databaseType) {

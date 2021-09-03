@@ -12,7 +12,9 @@ export default class {
   }
 
   deleteDatabase() {
-    this.trackDashboard(`${this.trackingPrefix}::delete_database_validate`);
+    this.trackDatabases(
+      `${this.trackingPrefix}::${this.database.engine}::delete_database_validate`,
+    );
     this.isDeleting = true;
     return this.DatabaseService.deleteDatabase(
       this.projectId,
@@ -38,7 +40,7 @@ export default class {
   }
 
   cancel() {
-    this.trackDashboard(`${this.trackingPrefix}::delete_database_cancel`);
+    this.trackDatabases(`${this.trackingPrefix}::delete_database_cancel`);
     this.goBack();
   }
 }
