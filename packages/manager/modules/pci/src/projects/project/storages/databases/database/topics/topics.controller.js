@@ -12,7 +12,7 @@ export default class databasesCtrl {
     this.messageContainer =
       'pci.projects.project.storages.databases.dashboard.topics';
     this.loadMessages();
-    this.trackDatabases('dashboard::topics', 'page');
+    this.trackDashboard('topics', 'page');
   }
 
   loadMessages() {

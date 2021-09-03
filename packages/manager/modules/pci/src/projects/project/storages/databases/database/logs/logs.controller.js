@@ -16,7 +16,7 @@ export default class logsCtrl {
     this.messageContainer =
       'pci.projects.project.storages.databases.dashboard.logs';
     this.loadMessages();
-    this.trackDatabases('dashboard::logs', 'page');
+    this.trackDashboard('logs', 'page');
     this.pollLogs = true;
     this.logs = [];
     // retrieve logs a first time, then start polling

@@ -41,7 +41,7 @@ export default class {
 
   addUser() {
     if (this.model.username) {
-      this.trackDatabases('dashboard::users::add_a_user::define_role_validate');
+      this.trackDashboard('users::add_a_user::define_role_validate');
       this.processing = true;
       this.DatabaseService.addUser(
         this.projectId,
@@ -72,7 +72,7 @@ export default class {
   }
 
   cancel(trackingCode) {
-    this.trackDatabases(trackingCode);
+    this.trackDashboard(trackingCode);
     this.goBack();
   }
 }

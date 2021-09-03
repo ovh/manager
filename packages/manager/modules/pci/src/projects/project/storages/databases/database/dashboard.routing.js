@@ -32,6 +32,13 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href($state.current.name, $transition$.params()),
       databaseId: /* @ngInject */ ($transition$) =>
         $transition$.params().databaseId,
+      dashboardTrackPrefix: (database) =>
+        `PublicCloud::pci::projects::project::storages::databases::dashboard::${database.engine}::`,
+      trackDashboard: /* @ngInject */ (
+        dashboardTrackPrefix,
+        trackDatabases,
+      ) => (complement, type = 'action') =>
+        trackDatabases(dashboardTrackPrefix + complement, type, false),
       database: /* @ngInject */ (
         databaseId,
         databases,

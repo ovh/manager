@@ -7,7 +7,7 @@ const component = {
     database: '<',
     goBack: '<',
     projectId: '<',
-    trackDatabases: '<',
+    trackDashboard: '<',
   },
   controller,
   template,

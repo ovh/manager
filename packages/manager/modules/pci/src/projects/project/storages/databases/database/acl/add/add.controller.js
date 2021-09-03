@@ -10,7 +10,7 @@ export default class {
   }
 
   $onInit() {
-    this.trackDatabases('dashboard::acl::add', 'page');
+    this.trackDashboard('acl::add', 'page');
     this.DatabaseService.getPermissions(
       this.projectId,
       this.database.engine,
@@ -25,7 +25,7 @@ export default class {
   }
 
   addAcl() {
-    // this.trackDatabases('dashboard::users::add_a_user::define_role_validate');
+    this.trackDashboard('acl::add_a_user::define_role_validate');
     this.processing = true;
     return this.DatabaseService.addServiceAcl(
       this.projectId,

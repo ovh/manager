@@ -7,7 +7,7 @@ export default {
     goBack: '<',
     projectId: '<',
     roles: '<',
-    trackDatabases: '<',
+    trackDashboard: '<',
     isFeatureActivated: '<',
   },
   controller,

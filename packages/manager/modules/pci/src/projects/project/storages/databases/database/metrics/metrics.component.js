@@ -5,7 +5,7 @@ import './metrics.scss';
 export default {
   bindings: {
     projectId: '<',
-    trackDatabases: '<',
+    trackDashboard: '<',
     availableMetrics: '<',
     database: '<',
   },

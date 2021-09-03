@@ -13,7 +13,7 @@ export default class {
   }
 
   addNode() {
-    this.trackDatabases('dashboard::general_information::add_node_validate');
+    this.trackDashboard('general_information::add_node_validate');
     this.addingNode = true;
     return this.DatabaseService.addNode(
       this.projectId,
@@ -45,7 +45,7 @@ export default class {
   }
 
   cancel() {
-    this.trackDatabases('dashboard::general_information::add_node_cancel');
+    this.trackDashboard('general_information::add_node_cancel');
     this.goBack();
   }
 }

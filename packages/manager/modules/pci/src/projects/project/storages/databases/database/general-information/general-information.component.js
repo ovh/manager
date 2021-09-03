@@ -31,7 +31,7 @@ export default {
     stopPollingDatabaseStatus: '<',
     stopPollingNodesStatus: '<',
     subnet: '<',
-    trackDatabases: '<',
+    trackDashboard: '<',
     isFeatureActivated: '<',
   },
   controller,

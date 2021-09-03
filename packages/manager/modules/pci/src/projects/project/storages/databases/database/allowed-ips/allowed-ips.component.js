@@ -8,7 +8,7 @@ export default {
     goToAddIp: '<',
     goToDeleteIpBlock: '<',
     goToUpdateIp: '<',
-    trackDatabases: '<',
+    trackDashboard: '<',
   },
   controller,
   template,

@@ -10,6 +10,6 @@ export default {
     existingIps: '<?',
     goBack: '<',
     projectId: '<',
-    trackDatabases: '<',
+    trackDashboard: '<',
   },
 };

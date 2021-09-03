@@ -12,7 +12,7 @@ export default class aclCtrl {
     this.messageContainer =
       'pci.projects.project.storages.databases.dashboard.acl';
     this.loadMessages();
-    this.trackDatabases('dashboard::acl', 'page');
+    this.trackDashboard('acl', 'page');
   }
 
   loadMessages() {

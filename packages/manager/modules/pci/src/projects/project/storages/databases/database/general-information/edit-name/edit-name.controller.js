@@ -13,7 +13,7 @@ export default class {
   }
 
   edit() {
-    this.trackDatabases('dashboard::general_information::modify_name_validate');
+    this.trackDashboard('general_information::modify_name_validate');
     this.isEditing = true;
     return this.DatabaseService.editDatabase(
       this.projectId,
@@ -45,7 +45,7 @@ export default class {
   }
 
   cancel() {
-    this.trackDatabases('dashboard::general_information::modify_name_cancel');
+    this.trackDashboard('general_information::modify_name_cancel');
     this.goBack();
   }
 }

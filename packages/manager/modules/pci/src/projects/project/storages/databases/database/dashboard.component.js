@@ -15,6 +15,8 @@ export default {
     databasesLink: '<',
     aclLink: '<',
     topicsLink: '<',
+    trackDashboard: '<',
+    trackDatabases: '<',
     isFeatureActivated: '<',
   },
   template,

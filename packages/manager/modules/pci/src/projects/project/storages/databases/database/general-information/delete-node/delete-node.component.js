@@ -7,7 +7,7 @@ const component = {
     goBack: '<',
     onNodeDelete: '<',
     projectId: '<',
-    trackDatabases: '<',
+    trackDashboard: '<',
     user: '<',
     getCurrentFlavor: '<',
   },

@@ -5,7 +5,7 @@ export default {
   bindings: {
     projectId: '<',
     database: '<',
-    trackDatabases: '<',
+    trackDashboard: '<',
     addTopic: '<',
     deleteTopic: '<',
     topicsList: '<',

@@ -27,7 +27,7 @@ export default class {
   }
 
   addTopic() {
-    // this.trackDatabases('dashboard::users::add_a_user::define_role_validate');
+    // this.trackDashboard('users::add_a_user::define_role_validate');
     this.processing = true;
     return this.DatabaseService.addTopic(
       this.projectId,

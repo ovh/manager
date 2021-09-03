@@ -8,7 +8,7 @@ export default class {
   }
 
   restoreInstance() {
-    this.trackDatabases('dashboard::backups::options_menu::restore_validate');
+    this.trackDashboard('backups::options_menu::restore_validate');
     this.isLoading = true;
     this.service
       .restoreBackup(
@@ -35,7 +35,7 @@ export default class {
   }
 
   cancel() {
-    this.trackDatabases('dashboard::backups::options_menu::restore_cancel');
+    this.trackDashboard('backups::options_menu::restore_cancel');
     this.goBack();
   }
 }

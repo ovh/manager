@@ -8,7 +8,7 @@ const component = {
     onVersionUpgrade: '<',
     versions: '<',
     projectId: '<',
-    trackDatabases: '<',
+    trackDashboard: '<',
   },
   template,
   controller,

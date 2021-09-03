@@ -9,7 +9,7 @@ export default {
     goToRestore: '<',
     goToFork: '<',
     refreshBackups: '<',
-    trackDatabases: '<',
+    trackDashboard: '<',
     backupRetentionTime: '<',
     isFeatureActivated: '<',
   },

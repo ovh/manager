@@ -10,10 +10,7 @@ export default class {
   }
 
   $onInit() {
-    this.trackDatabases(
-      'dashboard::general_information::upgrade_version',
-      'page',
-    );
+    this.trackDashboard('general_information::upgrade_version', 'page');
   }
 
   cancel() {
@@ -21,7 +18,7 @@ export default class {
   }
 
   addDatabase() {
-    // this.trackDatabases('dashboard::users::add_a_user::define_role_validate');
+    // this.trackDashboard('dashboard::users::add_a_user::define_role_validate');
     this.processing = true;
     return this.DatabaseService.addServiceDatabase(
       this.projectId,
