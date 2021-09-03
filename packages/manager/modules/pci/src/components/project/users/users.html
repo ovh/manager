@@ -127,6 +127,15 @@
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
+                data-ng-if="$ctrl.showUserInformations"
+                data-disabled="$ctrl.constructor.isPending($row) || $ctrl.isActionDisabled()"
+                data-on-click="$ctrl.showUserInformations($row)"
+            >
+                <span
+                    data-translate="pci_projects_project_users_show_user_informations_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
                 data-ng-if="$ctrl.showCert"
                 data-disabled="$ctrl.constructor.isPending($row) || $ctrl.isActionDisabled()"
                 data-on-click="$ctrl.showCert($row)"
