@@ -3,7 +3,7 @@
     data-on-click="$ctrl.goBack()"
 ></oui-back-button>
 
-<h2>Add user</h2>
+<h2 data-translate="pci_databases_users_add"></h2>
 <oui-field
     data-label="{{:: 'pci_databases_users_add_username_label' | translate }}"
     data-size="xl"
@@ -20,7 +20,7 @@
 </oui-field>
 
 <div ng-if="!$ctrl.isRolesReadOnly">
-    <h2>Roles</h2>
+    <h2 data-translate="pci_databases_users_add_roles"></h2>
     <oui-dual-list
         data-source="$ctrl.availableRoles"
         data-target="$ctrl.model.selectedRoles"
@@ -67,13 +67,19 @@
     ></tags-input>
 </div>
 <div class="text-right">
-    <oui-button size="l">Cancel</oui-button>
+    <oui-button size="l">
+        <span
+            data-translate="pci_databases_users_add_cancel"
+            ng-click="$ctrl.goBack()"
+        ></span>
+    </oui-button>
     <oui-button
         size="l"
         variant="primary"
         icon-right="oui-icon-arrow-right"
         disabled="$ctrl.processing || !$ctrl.model.username"
         ng-click="$ctrl.addUser()"
-        >Add user</oui-button
     >
+        <span data-translate="pci_databases_users_add_create"></span>
+    </oui-button>
 </div>
