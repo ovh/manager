@@ -1,9 +1,8 @@
-<form name="assignPrivateIpForm">
+<form name="assignPrivateIpForm" data-ng-submit="$ctrl.onAssignPrivateIpSubmit()">
     <oui-modal
+        data-ng-init="$ctrl.ipModel.form = assignPrivateIpForm"
         data-heading="{{:: 'anthos_tenant_dashboard_component_assign_private_ip_modal_title' | translate }}"
-        data-primary-action="$ctrl.onAssignPrivateIpClick()"
         data-primary-label="{{:: 'anthos_tenant_dashboard_component_assign_private_ip_modal_action_add' | translate }}"
-        data-primary-disabled="assignPrivateIpForm.$invalid"
         data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{:: 'anthos_tenant_dashboard_component_assign_private_ip_modal_action_cancel' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
@@ -16,18 +15,18 @@
 
         <!-- SSL certificate name -->
         <oui-field
-            data-label="{{ :: 'anthos_tenant_dashboard_component_assign_private_ip_modal_body_field_range_ips_title' | translate }}"
-            data-error-messages="{ pattern: ('anthos_tenant_dashboard_component_assign_private_ip_modal_body_field_range_ips_error' | translate) }"
-        >
+            data-label="{{ :: 'anthos_tenant_dashboard_component_assign_private_ip_modal_body_field_private_ip_title' | translate }}"
+            data-error-messages="{
+                INVALID_IP_FORMAT: ('anthos_tenant_dashboard_component_assign_private_ip_modal_body_field_private_ip_errors_wrong_format' | translate),
+                INVALID_PRIVATE_IP: ('anthos_tenant_dashboard_component_assign_private_ip_modal_body_field_private_ip_errors_invalid_private_ip' | translate) }"
+            >
             <input
                 class="oui-input"
                 type="text"
-                data-ng-init="ips = 'ips'"
-                data-ng-attr-name="{{ips}}"
-                data-ng-attr-id="{{ips}}"
-                data-ng-model="$ctrl.privateIP.range"
-                data-ng-pattern="$ctrl.IPV4_BLOCK_REGEX.RANGE"
-                data-ng-required
+                data-ng-attr-name="{{$ctrl.ipModel.labels.privateInputIp}}"
+                data-ng-attr-id="{{$ctrl.ipModel.labels.privateInputIp}}"
+                data-ng-model="$ctrl.ipModel.privateIp.range"
+                data-ng-required="true"
             />
         </oui-field>
     </oui-modal>
