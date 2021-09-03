@@ -1,7 +1,7 @@
 {
-  "anthos_dashboard_restart_host_title": "Redémarrer host",
-  "anthos_dashboard_restart_host_description": "Attention le redémarrage peut prendre quelques minutes. Prévoyez l'évacuation de vos pods pour limiter l'impact sur la disponibilité de vos applications.",
-  "anthos_dashboard_restart_host_submit": "Redémarrer",
+  "anthos_dashboard_restart_host_title": "Redémarrer votre hôte",
+  "anthos_dashboard_restart_host_description": "Attention, le redémarrage peut prendre quelques minutes. Prévoyez l’évacuation de vos pods pour limiter l’impact sur la disponibilité de vos applications.",
+  "anthos_dashboard_restart_host_submit": "Confirmer",
   "anthos_dashboard_restart_host_cancel": "Annuler",
   "anthos_dashboard_restart_host_error": "Une erreur s'est produite lors du redémarrage de votre hôte : {{message}}"
 }
