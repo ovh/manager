@@ -7,8 +7,9 @@ const MESSAGES_CONTAINER_NAME = 'pci.projects.project.billing.history';
 
 export default class {
   /* @ngInject */
-  constructor($q, atInternet, CucCloudMessage) {
+  constructor($q, $translate, atInternet, CucCloudMessage) {
     this.$q = $q;
+    this.$translate = $translate;
     this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
 
