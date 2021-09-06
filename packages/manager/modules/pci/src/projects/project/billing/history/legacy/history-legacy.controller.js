@@ -10,6 +10,7 @@ export default class {
     $q,
     $state,
     $stateParams,
+    $translate,
     coreURLBuilder,
     CloudProjectBilling,
     CucCloudMessage,
@@ -19,6 +20,7 @@ export default class {
     this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
+    this.$translate = $translate;
     this.CloudProjectBilling = CloudProjectBilling;
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiCloudProjectUsageCurrent = OvhApiCloudProjectUsageCurrent;
