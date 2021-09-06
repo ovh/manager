@@ -874,7 +874,6 @@
   "server_order_bandwidth_title": "Bandbreite bestellen",
   "server_order_bandwidth_vrack_title": "Bandbreite bestellen",
   "server_order_bandwidth_not_available": "Für den Server {{t0}} kann keiner der Bandbreitentypen bestellt werden",
-  "server_order_bandwidth_help": "Die Premium, Platinum und Ultimate Angebote garantieren die Qualität der Bandbreite in einem mehr oder weniger ausgedehnten Gebiet bis in die unmittelbare Nähe Ihrer Kunden.",
   "server_order_bandwidth_ready": "Ihre Bestellung ist fertig. Sofern der Zahlungsprozess abgeschlossen ist, sollte die Bandbreite in Kürze verfügbar sein.",
   "server_order_bandwidth_see_order": "Bestellschein anzeigen",
   "select_bandwidth_type_label": "Wählen Sie ein Angebot aus",
