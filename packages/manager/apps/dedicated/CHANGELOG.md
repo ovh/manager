@@ -1,3 +1,12 @@
+## [16.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.36.0...@ovh-ux/manager-dedicated@16.36.1) (2021-09-06)
+
+
+### Bug Fixes
+
+* **server:** fix bandwidth order for hgv2 range ([#5468](https://github.com/ovh/manager/issues/5468)) ([ec03d87](https://github.com/ovh/manager/commit/ec03d877860489a266c53991f8699ddcecba74cc))
+
+
+
 # [16.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.35.2...@ovh-ux/manager-dedicated@16.36.0) (2021-08-25)
 
 

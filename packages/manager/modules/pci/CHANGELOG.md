@@ -1,3 +1,12 @@
+## [5.40.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.40.1...@ovh-ux/manager-pci@5.40.2) (2021-09-06)
+
+
+### Bug Fixes
+
+* **billing:** avoid duplicate translation key ([#5470](https://github.com/ovh/manager/issues/5470)) ([61c2372](https://github.com/ovh/manager/commit/61c23727cbfbcaf8441e2e1eb6fc51cbbac9da4d))
+
+
+
 ## [5.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.40.0...@ovh-ux/manager-pci@5.40.1) (2021-09-02)
 
 
