@@ -5,8 +5,8 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'nutanixDashboard',
     resolve: {
       user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
-      cluster: /* @ngInject */ ($http, serviceName) =>
-        $http.get(`/nutanix/${serviceName}`).then((res) => res.data),
+      cluster: /* @ngInject */ (NutanixDashboard, serviceName) =>
+        NutanixDashboard.getCluster(serviceName),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
