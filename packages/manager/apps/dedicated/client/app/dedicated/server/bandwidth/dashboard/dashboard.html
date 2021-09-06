@@ -3,10 +3,6 @@
 >
     <oui-tile-description>
         <p>
-            <strong data-translate="dedicated_server_bandwidth_type"></strong>
-            <span
-                data-translate="{{:: 'dedicated_server_bandwidth_type_' + $ctrl.specifications.bandwidth.type}}"
-            ></span>
             <small
                 class="oui-tile__extra"
                 data-ng-if="$ctrl.bandwidthOption === 'released'"
@@ -64,12 +60,6 @@
     data-term="{{:: 'dedicated_server_bandwidth_private' | translate }}"
 >
     <oui-tile-description>
-        <p>
-            <strong data-translate="dedicated_server_bandwidth_type"></strong>
-            <span
-                data-translate="{{:: 'dedicated_server_bandwidth_type_' + $ctrl.specifications.vrack.type}}"
-            ></span>
-        </p>
         <div class="row">
             <div class="col-md-6">
                 <!-- Outgoing Bandwidth -->

@@ -112,31 +112,6 @@
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
-            data-title=":: 'dedicated_server_interfaces_ola_column_network_offer' | translate"
-        >
-            <span
-                class="oui-badge oui-badge_warning"
-                data-ng-if="$row.isPublic() && $ctrl.hasObsoleteBandwithOption()"
-            >
-                <span
-                    class="oui-icon font-inherit oui-icon-warning-circle oui-color-aw-400"
-                ></span>
-                <span
-                    data-ng-bind="'dedicated_server_bandwidth_type_' + $ctrl.specifications.bandwidth.type | translate"
-                ></span>
-            </span>
-            <span
-                data-ng-if="$row.isPublic() && $ctrl.specifications.bandwidth.type === 'included'"
-                data-ng-bind="'dedicated_server_bandwidth_type_' + $ctrl.specifications.bandwidth.type | translate"
-            >
-            </span>
-            <span
-                data-ng-if="$row.isPrivate()"
-                data-ng-bind="'dedicated_server_bandwidth_type_' + $ctrl.specifications.vrack.type | translate"
-            >
-            </span>
-        </oui-datagrid-column>
-        <oui-datagrid-column
             data-title=":: 'dedicated_server_interfaces_ola_column_bandwidth_outgoing' | translate"
         >
             <span class="oui-icon oui-icon-arrow-up font-inherit"></span>
