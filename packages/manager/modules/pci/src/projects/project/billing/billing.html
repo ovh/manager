@@ -6,12 +6,16 @@
         <oui-header-tabs-item
             data-href="{{:: $ctrl.billingLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.billingLink"
-            ><span data-translate="cpbc_tab_consumption"></span>
+            ><span
+                data-translate="cpbc_billing_control_consumption_current_monthly"
+            ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.historyLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.historyLink"
-            ><span data-translate="cpbc_tab_history"></span>
+            ><span
+                data-translate="cpbc_billing_control_consumption_history"
+            ></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
     <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
