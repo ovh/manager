@@ -9,7 +9,7 @@ import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
 
 attachPreloader(findAvailableLocale(detectUserLocale()));
 
-registerApplication('licenseApp').then(({ environment }) => {
+registerApplication('license').then(({ environment }) => {
   environment.setVersion(__VERSION__);
 
   if (environment.getMessage()) {

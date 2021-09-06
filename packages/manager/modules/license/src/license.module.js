@@ -1,6 +1,5 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-webpack-loader-syntax */
-
 import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import 'angular-translate';

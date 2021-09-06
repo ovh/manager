@@ -2,6 +2,8 @@ import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import remove from 'lodash/remove';
 import startCase from 'lodash/startCase';
+import moment from 'moment';
+
 import config from './config/config';
 
 export default /* @ngInject */ (

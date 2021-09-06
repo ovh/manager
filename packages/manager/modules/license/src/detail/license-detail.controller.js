@@ -1,3 +1,4 @@
+import moment from 'moment';
 import config from '../config/config';
 import getLicenseTypeIcon from '../utils';
 
