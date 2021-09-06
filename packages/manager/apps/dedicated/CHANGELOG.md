@@ -1,3 +1,12 @@
+## [16.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.36.1...@ovh-ux/manager-dedicated@16.36.2) (2021-09-06)
+
+
+### Bug Fixes
+
+* **server:** fix bandwidth order translation ([#5481](https://github.com/ovh/manager/issues/5481)) ([3b932e2](https://github.com/ovh/manager/commit/3b932e21fbdc74a15004de635e6a5777f481ee2b))
+
+
+
 ## [16.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.36.0...@ovh-ux/manager-dedicated@16.36.1) (2021-09-06)
 
 
