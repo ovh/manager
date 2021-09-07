@@ -1,0 +1,8 @@
+feature: ['feature/*', 'feat/*']
+fix: ['fix/*','bugfix/*', 'hotfix/*']
+refactor: ['chore/*','refactor/*']
+release: ['develop', 'release*']
+build: build/*
+continuous-integration: ci/*
+documentation: docs/*
+performance: perf/*
