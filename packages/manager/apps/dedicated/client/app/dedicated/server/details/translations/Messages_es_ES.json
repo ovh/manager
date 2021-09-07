@@ -874,7 +874,6 @@
   "server_order_bandwidth_title": "Contratar ancho de banda",
   "server_order_bandwidth_vrack_title": "Contratar ancho de banda",
   "server_order_bandwidth_not_available": "No es posible contratar ancho de banda para el servidor {{t0}}.",
-  "server_order_bandwidth_help": "Las ofertas Premium, Platinum y Ultimate garantizan la calidad del ancho de banda en una zona geográfica más o menos extensa para acercarle a sus clientes.",
   "server_order_bandwidth_ready": "El pedido está vacío. Una vez abonado el pedido, su ancho de banda enseguida debería estar disponible.",
   "server_order_bandwidth_see_order": "Ver la orden de pedido",
   "select_bandwidth_type_label": "Seleccione un servicio",

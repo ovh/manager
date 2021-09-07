@@ -88,7 +88,8 @@
                         data-value="$ctrl.provisionalPlan.planCode"
                     >
                         <span
-                            data-translate="{{:: 'plan_' + $ctrl.provisionalPlan.planCode }}"
+                            data-translate="plan_bandwidth"
+                            data-translate-values="{ bandwidth: $ctrl.provisionalPlan.bandwidth / 1000 }"
                         ></span>
                     </oui-radio>
                 </div>

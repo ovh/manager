@@ -874,7 +874,6 @@
   "server_order_bandwidth_title": "Zamów przepustowość",
   "server_order_bandwidth_vrack_title": "Zamów przepustowość",
   "server_order_bandwidth_not_available": "Nie możesz zamówić żadnego typu przepustowości dla serwera {{t0}}.",
-  "server_order_bandwidth_help": "Oferty Premium, Platinum i Ultimate gwarantują jakość przepustowości jak najbliżej Twoich klientów. ",
   "server_order_bandwidth_ready": "Twoje zamówienie jest gotowe. Usługa powinna być dostępna wkrótce po uregulowaniu należności.",
   "server_order_bandwidth_see_order": "Wyświetl zamówienie",
   "select_bandwidth_type_label": "Wybierz ofertę",

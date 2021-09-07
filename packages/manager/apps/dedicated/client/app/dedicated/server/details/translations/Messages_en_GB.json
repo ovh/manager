@@ -874,7 +874,6 @@
   "server_order_bandwidth_title": "Order bandwidth",
   "server_order_bandwidth_vrack_title": "Order bandwidth",
   "server_order_bandwidth_not_available": "No type of bandwidth can be ordered on the {{t0}} server",
-  "server_order_bandwidth_help": "The Premium, Platinum and Ultimate solutions guarantee high-quality bandwidth in a geographical zone that is as close as possible to your customers.",
   "server_order_bandwidth_ready": "Your order is ready. Depending on when payment is processed, the bandwidth should be available shortly.",
   "server_order_bandwidth_see_order": "View purchase order",
   "select_bandwidth_type_label": "Select a solution",
