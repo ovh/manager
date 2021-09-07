@@ -7,6 +7,7 @@ export default {
     currentActiveLink: '<',
     volumeDashboardLink: '<',
     volumeDashboardAclLink: '<',
+    volumeDashboardSnapshotsLink: '<',
     volume: '<',
     updateVolume: '<',
     goToVolumeDashboard: '<',

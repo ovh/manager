@@ -1,29 +1,32 @@
 import angular from 'angular';
 import '@ovh-ux/manager-core';
+import '@ovh-ux/ng-ovh-utils';
+import '@ovh-ux/ng-ui-router-breadcrumb';
+import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 import 'angular-translate';
-
-import { inlinePropertyEditor } from '@ovh-ux/manager-components';
 
 import component from './component';
 import routing from './routing';
 
-import aclModule from './acl';
-import snapshotsModule from './snapshots';
+import addModule from './add';
+import deleteModule from './delete';
 
-const moduleName = 'ovhManagerNetAppVolumesDashboard';
+const moduleName = 'ovhManagerNetAppVolumesDashboardSnapshots';
 
 angular
   .module(moduleName, [
+    'ngUiRouterBreadcrumb',
+    'ngOvhUtils',
+    'oui',
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
-    inlinePropertyEditor,
-    aclModule,
-    snapshotsModule,
+    addModule,
+    deleteModule,
   ])
   .config(routing)
-  .component('ovhManagerNetAppVolumesDashboard', component)
+  .component('ovhManagerNetAppVolumesDashboardSnapshots', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
