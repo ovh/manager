@@ -1197,5 +1197,11 @@
   "server_configuration_no_intervention_activate_success": "Der Eingriff vor Ort ist auf dem Server {{serverName}} aktiviert.",
   "server_configuration_no_intervention_activate_failed": "Bei der Aktivierung der Eingriffe vor Ort auf dem Server {{serverName}} ist ein Fehler aufgetreten.",
   "server_configuration_no_intervention_deactivate_success": "Der Eingriff vor Ort ist für den Server {{serverName}} deaktiviert.",
-  "server_configuration_no_intervention_deactivate_failed": "Bei der Deaktivierung des Eingriffs vor Ort auf dem Server {{serverName}} ist ein Fehler aufgetreten."
+  "server_configuration_no_intervention_deactivate_failed": "Bei der Deaktivierung des Eingriffs vor Ort auf dem Server {{serverName}} ist ein Fehler aufgetreten.",
+  "plan_bandwidth-1000-adv-gen2": "1 Gbit/s unbegrenzt und garantiert",
+  "plan_bandwidth-2000-adv-gen2": "2 Gbit/s unbegrenzt und garantiert",
+  "plan_bandwidth-3000-adv-gen2": "3 Gbit/s unbegrenzt und garantiert",
+  "plan_bandwidth-4000-adv-gen2": "4 Gbit/s unbegrenzt und garantiert",
+  "plan_bandwidth-5000-adv-gen2": "5 Gbit/s unbegrenzt und garantiert",
+  "plan_bandwidth-6000-adv-gen2": "6 Gbit/s unbegrenzt und garantiert"
 }

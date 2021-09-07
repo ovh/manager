@@ -1,5 +1,6 @@
 {
   "cpbc_billing_control_consumption_current_monthly": "Consommation actuelle",
+  "cpbc_billing_control_consumption_history": "Historique",
   "cpbc_billing_control_consumption_forecast": "Estimation de la prochaine facture",
   "cpbc_billing_control_consumption_product": "Produit",
   "cpbc_billing_control_consumption_details": "Détails",
