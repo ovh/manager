@@ -1,3 +1,20 @@
+## [16.36.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.36.2...@ovh-ux/manager-dedicated@16.36.3) (2021-09-07)
+
+
+### Bug Fixes
+
+* update billing url for enterprise customers ([#5329](https://github.com/ovh/manager/issues/5329)) ([d09753e](https://github.com/ovh/manager/commit/d09753e6f6ce6823171ee483568195dffc73ce27))
+* **i18n:** add missing translations [CDS 1118] ([58b7b7e](https://github.com/ovh/manager/commit/58b7b7e5c19798d3fcae828864717c57e07990d8))
+* **i18n:** add missing translations [CDS 1138] ([c927c3b](https://github.com/ovh/manager/commit/c927c3bd641c42b507659cd2d4a552a7a85be56a))
+* **server:** fix order bandwidth translation ([#5486](https://github.com/ovh/manager/issues/5486)) ([b5c6cd7](https://github.com/ovh/manager/commit/b5c6cd794f1643c873650249d10e6e2cd499be5b))
+* remove unused translations [CDS] ([d73b072](https://github.com/ovh/manager/commit/d73b072ffb7b0708fad0ab0d84f80730d5b1d36d))
+* **i18n:** add missing translations [CDS 1119] ([c9bb0db](https://github.com/ovh/manager/commit/c9bb0dbcd18fc9d2ba362c37c3b699d7c3e01128))
+* **i18n:** add missing translations [CDS 1121] ([#5458](https://github.com/ovh/manager/issues/5458)) ([025a1eb](https://github.com/ovh/manager/commit/025a1eb55793b84beb1efe81574ddbe4028705a4))
+* **i18n:** remove extra translation files ([#5469](https://github.com/ovh/manager/issues/5469)) ([3b93ab6](https://github.com/ovh/manager/commit/3b93ab6ca7cdc1334870f6ca34c7d6505a462145))
+* **translations:** refresh translation after transition ([#5405](https://github.com/ovh/manager/issues/5405)) ([9d940a2](https://github.com/ovh/manager/commit/9d940a218fbb327fc2f7c93c6b473ea44707c009))
+
+
+
 ## [16.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.36.1...@ovh-ux/manager-dedicated@16.36.2) (2021-09-06)
 
 

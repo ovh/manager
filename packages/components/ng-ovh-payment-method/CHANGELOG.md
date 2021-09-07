@@ -1,3 +1,12 @@
+# [8.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.2.1...@ovh-ux/ng-ovh-payment-method@8.3.0) (2021-09-07)
+
+
+### Features
+
+* use ovh-payment-method in ng-ovh-payment-method ([bd4776c](https://github.com/ovh/manager/commit/bd4776c19e1469adc77922a7d0992cf3ec523e71))
+
+
+
 ## [8.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.2.0...@ovh-ux/ng-ovh-payment-method@8.2.1) (2021-08-26)
 
 

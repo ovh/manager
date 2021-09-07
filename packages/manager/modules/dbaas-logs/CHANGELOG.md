@@ -1,3 +1,12 @@
+## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.6.0...@ovh-ux/manager-dbaas-logs@1.6.1) (2021-09-07)
+
+
+### Bug Fixes
+
+* **translations:** refresh translation after transition ([#5405](https://github.com/ovh/manager/issues/5405)) ([9d940a2](https://github.com/ovh/manager/commit/9d940a218fbb327fc2f7c93c6b473ea44707c009))
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.5.5...@ovh-ux/manager-dbaas-logs@1.6.0) (2021-08-25)
 
 

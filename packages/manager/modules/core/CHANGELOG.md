@@ -1,3 +1,12 @@
+## [12.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.4.0...@ovh-ux/manager-core@12.4.1) (2021-09-07)
+
+
+### Bug Fixes
+
+* **translations:** refresh translation after transition ([#5405](https://github.com/ovh/manager/issues/5405)) ([9d940a2](https://github.com/ovh/manager/commit/9d940a218fbb327fc2f7c93c6b473ea44707c009))
+
+
+
 # [12.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.3.2...@ovh-ux/manager-core@12.4.0) (2021-08-25)
 
 

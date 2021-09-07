@@ -1,3 +1,12 @@
+# [6.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@6.0.1...@ovh-ux/manager-config@6.1.0) (2021-09-07)
+
+
+### Features
+
+* **config:** use ovh-reket in config ([c41a52d](https://github.com/ovh/manager/commit/c41a52d2f3de2ab7d5bc0ed1eb786df07558dbc0))
+
+
+
 ## [6.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@6.0.0...@ovh-ux/manager-config@6.0.1) (2021-06-29)
 
 
