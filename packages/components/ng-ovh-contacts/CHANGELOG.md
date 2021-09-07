@@ -1,3 +1,12 @@
+## [4.0.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contacts@4.0.4...@ovh-ux/ng-ovh-contacts@4.0.5) (2021-09-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1121] ([#5458](https://github.com/ovh/manager/issues/5458)) ([025a1eb](https://github.com/ovh/manager/commit/025a1eb55793b84beb1efe81574ddbe4028705a4))
+
+
+
 ## [4.0.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contacts@4.0.3...@ovh-ux/ng-ovh-contacts@4.0.4) (2021-06-29)
 
 

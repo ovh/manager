@@ -1,3 +1,24 @@
+# [5.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.40.2...@ovh-ux/manager-pci@5.41.0) (2021-09-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1138] ([c927c3b](https://github.com/ovh/manager/commit/c927c3bd641c42b507659cd2d4a552a7a85be56a))
+* remove unused translations [CDS] ([d73b072](https://github.com/ovh/manager/commit/d73b072ffb7b0708fad0ab0d84f80730d5b1d36d))
+* **i18n:** add missing translations [CDS 1120] ([#5457](https://github.com/ovh/manager/issues/5457)) ([c3469d0](https://github.com/ovh/manager/commit/c3469d0582791c336464daff5d1bc4a835e89cfb))
+* **i18n:** add missing translations [CDS 1122] ([bb5a9f9](https://github.com/ovh/manager/commit/bb5a9f959d4acf24a54d14823adc0b1007d51a2e))
+* **i18n:** add missing translations [CDS 1135] ([0af5a82](https://github.com/ovh/manager/commit/0af5a8276a9ffb537aeeafd79f1925dc742854a2))
+* **i18n:** add missing translations [CDS 1137] ([6fd7f24](https://github.com/ovh/manager/commit/6fd7f24f314ea25f90e1ed5cb9d9fd722ec12d16))
+* **pci:** notebook dashboard still using outdated volume fields ([#5454](https://github.com/ovh/manager/issues/5454)) ([dd458ae](https://github.com/ovh/manager/commit/dd458ae92277041d79a4888dc885c7cecd4f871c))
+* **translations:** refresh translation after transition ([#5405](https://github.com/ovh/manager/issues/5405)) ([9d940a2](https://github.com/ovh/manager/commit/9d940a218fbb327fc2f7c93c6b473ea44707c009))
+
+
+### Features
+
+* **notebooks:** display user in notebooks' list ([#5439](https://github.com/ovh/manager/issues/5439)) ([0ae1090](https://github.com/ovh/manager/commit/0ae1090a37a56e60fc8f6905ef2ac145c9fb933d))
+
+
+
 ## [5.40.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.40.1...@ovh-ux/manager-pci@5.40.2) (2021-09-06)
 
 

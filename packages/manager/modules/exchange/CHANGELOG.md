@@ -1,3 +1,13 @@
+## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.1.0...@ovh-ux/manager-exchange@3.1.1) (2021-09-07)
+
+
+### Bug Fixes
+
+* **exchange:** fix security help message ([#5446](https://github.com/ovh/manager/issues/5446)) ([320444f](https://github.com/ovh/manager/commit/320444fc73e5204c59dff8c65077c6082703b48c))
+* **translations:** refresh translation after transition ([#5405](https://github.com/ovh/manager/issues/5405)) ([9d940a2](https://github.com/ovh/manager/commit/9d940a218fbb327fc2f7c93c6b473ea44707c009))
+
+
+
 # [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.0.0...@ovh-ux/manager-exchange@3.1.0) (2021-08-25)
 
 

@@ -1,3 +1,13 @@
+## [3.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.5.0...@ovh-ux/manager-account-sidebar@3.5.1) (2021-09-07)
+
+
+### Bug Fixes
+
+* update billing url for enterprise customers ([#5329](https://github.com/ovh/manager/issues/5329)) ([d09753e](https://github.com/ovh/manager/commit/d09753e6f6ce6823171ee483568195dffc73ce27))
+* **i18n:** add missing translations [CDS 1122] ([bb5a9f9](https://github.com/ovh/manager/commit/bb5a9f959d4acf24a54d14823adc0b1007d51a2e))
+
+
+
 # [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.4.3...@ovh-ux/manager-account-sidebar@3.5.0) (2021-08-25)
 
 

@@ -1,3 +1,14 @@
+## [3.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.16.0...@ovh-ux/manager-hub-app@3.16.1) (2021-09-07)
+
+
+### Bug Fixes
+
+* return number of services  value ([#5467](https://github.com/ovh/manager/issues/5467)) ([7f86ff0](https://github.com/ovh/manager/commit/7f86ff0e398ab09dc337a4a33ae16ed2fdc38853))
+* update billing url for enterprise customers ([#5329](https://github.com/ovh/manager/issues/5329)) ([d09753e](https://github.com/ovh/manager/commit/d09753e6f6ce6823171ee483568195dffc73ce27))
+* **translations:** refresh translation after transition ([#5405](https://github.com/ovh/manager/issues/5405)) ([9d940a2](https://github.com/ovh/manager/commit/9d940a218fbb327fc2f7c93c6b473ea44707c009))
+
+
+
 # [3.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.15.1...@ovh-ux/manager-hub-app@3.16.0) (2021-08-25)
 
 
