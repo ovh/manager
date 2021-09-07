@@ -19,11 +19,6 @@ angular
   .module(moduleName, ['oc.lazyLoad', 'ovhManagerCore', 'oui', 'ui.router'])
   .config(routing)
   .component('ovhManagerFreefax', component)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(
-    /* @ngInject */ ($transitions, $translate) => {
-      $transitions.onBefore({ to: 'freefaxes.**' }, () => $translate.refresh());
-    },
-  );
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

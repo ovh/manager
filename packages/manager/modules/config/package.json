@@ -27,8 +27,8 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "lodash-es": "^4.17.15",
-    "whatwg-fetch": "^3.5.0"
+    "@ovh-ux/ovh-reket": "0.0.0",
+    "lodash-es": "^4.17.15"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^9.0.0 || ^10.0.0"

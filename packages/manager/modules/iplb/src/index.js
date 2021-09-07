@@ -53,11 +53,6 @@ angular
       });
     },
   )
-  .run(
-    /* @ngInject */ ($transitions, $translate) => {
-      $transitions.onBefore({ to: 'iplb.**' }, () => $translate.refresh());
-    },
-  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

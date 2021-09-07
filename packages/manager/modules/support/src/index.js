@@ -30,11 +30,6 @@ angular
       });
     },
   )
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(
-    /* @ngInject */ ($transitions, $translate) => {
-      $transitions.onBefore({ to: 'support.**' }, () => $translate.refresh());
-    },
-  );
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

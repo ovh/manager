@@ -1,5 +1,5 @@
+import { useReket } from '@ovh-ux/ovh-reket';
 import _Environment from './environment';
-import 'whatwg-fetch';
 
 import {
   convertLanguageFromOVHToBCP47 as _convertLanguageFromOVHToBCP47,
@@ -26,30 +26,27 @@ export const LANGUAGES = _LANGUAGES;
 
 export const fetchConfiguration = (applicationName) => {
   const environment = new Environment();
-  let configurationURL = '/engine/2api/configuration';
+  const configRequestOptions = {
+    requestType: 'aapi',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      Accept: 'application/json',
+    },
+    credentials: 'same-origin',
+  };
+
+  let configurationURL = '/configuration';
+
   if (applicationName) {
     environment.setApplicationName(applicationName);
     configurationURL = `${configurationURL}?app=${encodeURIComponent(
       applicationName,
     )}`;
   }
-  return fetch(configurationURL, {
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-      Accept: 'application/json',
-    },
-    credentials: 'same-origin',
-  })
-    .then((response) => {
-      if (response.status === 401) {
-        window.location.assign(
-          `/auth?action=disconnect&onsuccess=${encodeURIComponent(
-            window.location.href,
-          )}`,
-        );
-      }
-      return response.json();
-    })
+
+  const Reket = useReket(true);
+
+  return Reket.get(configurationURL, configRequestOptions)
     .then((config) => {
       environment.setRegion(config.region);
       environment.setUser(config.user);

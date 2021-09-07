@@ -10,15 +10,10 @@ export default class OvhPaymentMethodProvider {
   }
 
   /* @ngInject */
-  $get($http, $log, $q, $translate, $window, coreConfig, OvhApiMe) {
+  $get($q, coreConfig) {
     return new OvhPaymentMethodService(
-      $http,
-      $log,
       $q,
-      $translate,
-      $window,
       coreConfig,
-      OvhApiMe,
       this.paymentMethodPageUrl,
       this.userLocale,
     );

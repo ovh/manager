@@ -874,7 +874,6 @@
   "server_order_bandwidth_title": "Commander de la bande passante",
   "server_order_bandwidth_vrack_title": "Commander de la bande passante",
   "server_order_bandwidth_not_available": "Aucun type de bande passante n'est commandable sur le serveur {{t0}}",
-  "server_order_bandwidth_help": "Les offres Premium, Platinum et Ultimate garantissent la qualité de la bande passante sur une zone géographique plus ou moins étendue jusqu'au plus près de vos clients.",
   "server_order_bandwidth_ready": "Votre commande est prête. Sous réserve de paiement, votre bande passante devrait être disponible prochainement.",
   "server_order_bandwidth_see_order": "Voir le bon de commande",
   "select_bandwidth_type_label": "Sélectionnez une offre",

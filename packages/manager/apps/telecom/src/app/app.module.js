@@ -372,11 +372,6 @@ export default (containerEl, environment) => {
           unregisterHook();
         });
       },
-    )
-    .run(
-      /* @ngInject */ ($translate, $transitions) => {
-        $transitions.onBefore({ to: 'telecom.**' }, () => $translate.refresh());
-      },
     );
 
   import('./app.bundle').then(() =>

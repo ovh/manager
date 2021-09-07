@@ -874,7 +874,6 @@
   "server_order_bandwidth_title": "Ordina banda passante",
   "server_order_bandwidth_vrack_title": "Ordina banda passante",
   "server_order_bandwidth_not_available": "Non è possibile ordinare banda passante sul server {{t0}}",
-  "server_order_bandwidth_help": "Le offerte Premium, Platinum e Ultimate garantiscono la qualità della banda passante su una zona geografica più o meno estesa, per essere il più vicino possibile ai tuoi clienti. Scegli quella perfetta per te. ",
   "server_order_bandwidth_ready": "Il tuo ordine è pronto. Una volta effettuato il saldo dell’ordine, il servizio dovrebbe essere disponibile.",
   "server_order_bandwidth_see_order": "Visualizza il buono d'ordine",
   "select_bandwidth_type_label": "Seleziona un'offerta",

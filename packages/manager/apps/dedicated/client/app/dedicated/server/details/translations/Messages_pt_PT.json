@@ -874,7 +874,6 @@
   "server_order_bandwidth_title": "Encomendar largura de banda",
   "server_order_bandwidth_vrack_title": "Encomendar largura de banda",
   "server_order_bandwidth_not_available": "Nenhum tipo de largura de banda pode ser encomendada para o servidor {{t0}}",
-  "server_order_bandwidth_help": "As ofertas Premium, Platinum e Ultimate garantem a qualidade da largura de banda numa zona geográfica mais ou menos próxima dos seus clientes.",
   "server_order_bandwidth_ready": "A sua encomenda está pronta. Dependendo do processamento do pagamento, a largura de banda deverá ficar disponível em breve.",
   "server_order_bandwidth_see_order": "Consultar a nota de encomenda",
   "select_bandwidth_type_label": "Selecionar uma oferta",

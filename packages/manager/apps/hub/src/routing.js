@@ -38,6 +38,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     abstract: true,
     redirectTo: 'app.dashboard',
     resolve: {
+      me: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
       sidebar: /* @ngInject */ ($rootScope) => {
         $rootScope.$broadcast('sidebar:loaded');
       },
@@ -47,7 +48,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           .then((data) =>
             transformOrder($q, data.data.data.lastOrder, OrderTracking),
           ),
-      numberOfServices: /* @ngInject */ ($http) => {
+      numberOfServices: /* @ngInject */ ($http) =>
         $http
           .get('/services', {
             headers: {
@@ -55,8 +56,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
               'X-Pagination-Size': 5,
             },
           })
-          .then((data) => data.data.length);
-      },
+          .then((data) => data.data.length),
       trackingPrefix: () => 'hub::dashboard::activity::payment-status',
       refresh: /* @ngInject */ ($http) => (type) =>
         $http

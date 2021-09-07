@@ -22,5 +22,6 @@
   "pci_notebook_list_delete_notebook": "Usuń",
   "pci_notebook_list_start_error": "Wystąpił błąd podczas próby uruchomienia notebooka {{notebookName}}: {{message}}",
   "pci_notebook_list_stop_error": "Wystąpił błąd podczas próby wyłączenia notebooka {{notebookName}}: {{message}}",
-  "pci_notebook_list_status_FAILED": "Błąd"
+  "pci_notebook_list_status_FAILED": "Błąd",
+  "pci_notebook_list_creator": "Użytkownik"
 }

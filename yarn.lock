@@ -3015,6 +3015,19 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-5.1.0.tgz#0024502cd38e29811d1b1cbb15ef489a901023b3"
   integrity sha512-5//YAnQCdju11S5J+i8ASiURtXibnmK2ko4Uj2sKt/fGtru565h7PiK9qKEzCLMM7BQMVOa3TvKujebBoTgEgw==
 
+"@ovhcloud/reket-axios-client@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/reket-axios-client/-/reket-axios-client-0.2.1.tgz#835997e9d3514a5855dc4d7ac867abe8b2c8638d"
+  integrity sha512-u6X7Opfcqk4cagz++cescEzKnOzyQStqj6DtoJWx4lFQKcM/bFu/g4n/DSVGFP+xDOmyMJFN2JJAmtRVJQjlfQ==
+  dependencies:
+    "@ovhcloud/reket-core" "^0.2.1"
+    axios "^0.21.1"
+
+"@ovhcloud/reket-core@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/reket-core/-/reket-core-0.2.1.tgz#b38a101af16a11683bb875e44cd228d636c1ba8f"
+  integrity sha512-RdRV7ZJU+CKULTeoXnZD+YNZDOui5RUD+SPT1EpGEpMI3Nbix5RiT9wZx/zPYFKCSw1eYJ+Ycr+8G4wEaWaTEQ==
+
 "@rollup/plugin-babel@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-babel/-/plugin-babel-5.0.0.tgz#2f01c9555927449c82cb13dd9e56213a358e1ce9"
@@ -4779,6 +4792,13 @@ axios@^0.19.2:
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
   dependencies:
     follow-redirects "1.5.10"
+
+axios@^0.21.1:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
+  dependencies:
+    follow-redirects "^1.10.0"
 
 babel-code-frame@^6.26.0:
   version "6.26.0"
@@ -9907,7 +9927,7 @@ flat-cache@^2.0.1:
 
 flatpickr@4.6.9, flatpickr@^4.6.3, flatpickr@~4.5.2:
   version "4.6.9"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
+  resolved "https://registry.npmjs.org/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
   integrity sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==
 
 flatted@^2.0.0:
@@ -9934,6 +9954,11 @@ follow-redirects@^1.0.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
   integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
+
+follow-redirects@^1.10.0:
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.1.tgz#d9114ded0a1cfdd334e164e6662ad02bfd91ff43"
+  integrity sha512-HWqDgT7ZEkqRzBvc2s64vSZ/hfOceEol3ac/7tKwzuvEyWx3/4UegXh5oBOIotkGsObyk3xznnSRVADBgWSQVg==
 
 font-awesome@4.7.0, font-awesome@^4.0.0, font-awesome@^4.5.0, font-awesome@~4.7.0:
   version "4.7.0"
@@ -12730,6 +12755,11 @@ lodash-es@^4.17.11, lodash-es@^4.17.15:
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
   integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
 
+lodash-es@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
+
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
@@ -12795,7 +12825,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-"lodash@4.6.1 || ^4.16.1", lodash@^4.0.0, lodash@^4.14.0, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.1, lodash@~4.17.10, lodash@~4.17.15:
+"lodash@4.6.1 || ^4.16.1", lodash@^4.0.0, lodash@^4.14.0, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.1, lodash@~4.17.10, lodash@~4.17.15:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -14515,12 +14545,12 @@ osenv@0, osenv@^0.1.4, osenv@^0.1.5:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-ovh-api-services@^11.2.0:
-  version "11.2.0"
-  resolved "https://registry.npmjs.org/ovh-api-services/-/ovh-api-services-11.2.0.tgz#42583c9fe11e216beaa56cfabe535c36e3b5ca75"
-  integrity sha512-zwUANwCyRR+bqJgBgn8CbA6tV6zjB9koSfLb8ZkRXLgO/Y2t9Ra/tKyQeQxCyHL91UcNSN2Z1Mvcym9ehrDcMQ==
+ovh-api-services@^13.0.0:
+  version "13.0.0"
+  resolved "https://registry.npmjs.org/ovh-api-services/-/ovh-api-services-13.0.0.tgz#755517dfd648c297b47a75773820611993522ebe"
+  integrity sha512-59BweK4J9e+GE69vDJNm1kvNu8o0Tt3prH4RWeYp+9B2lUb9DG/neKezL+KiUJidn6kTjH6k0x5k3iYVlngh4g==
   dependencies:
-    lodash "^4.17.20"
+    lodash "^4.17.21"
 
 ovh-common-style@^3.2.2:
   version "3.2.2"
