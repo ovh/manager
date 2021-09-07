@@ -38,6 +38,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     abstract: true,
     redirectTo: 'app.dashboard',
     resolve: {
+      me: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
       sidebar: /* @ngInject */ ($rootScope) => {
         $rootScope.$broadcast('sidebar:loaded');
       },
