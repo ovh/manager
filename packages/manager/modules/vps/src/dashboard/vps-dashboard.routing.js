@@ -154,14 +154,15 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('vps.detail.dashboard.migrate'),
       breadcrumb: () => null,
       trackingPrefix: () => 'vps::detail::dashboard',
-      canDisplayVpsAnnouncementBanner: /* @ngInject */ (ovhFeatureFlipping) => {
-        const vpsAnnouncementBannerId = 'vps:vps-announcement-banner';
-        return ovhFeatureFlipping
-          .checkFeatureAvailability(vpsAnnouncementBannerId)
-          .then((newRegionFeature) =>
-            newRegionFeature.isFeatureAvailable(vpsAnnouncementBannerId),
-          );
-      },
+
+      stein: /* @ngInject */ ($http, stateVps) =>
+        $http
+          .get('/vps/migrationStein')
+          .then(({ data: steins }) =>
+            steins.find(({ zone }) => zone === stateVps.zone),
+          ),
+
+      isVpsMaintenance: /* @ngInject */ (stein) => stein !== undefined,
     },
   });
 };

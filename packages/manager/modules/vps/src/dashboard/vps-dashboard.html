@@ -1,7 +1,8 @@
 <ovh-manager-incident-banner service-name="$ctrl.serviceName">
 </ovh-manager-incident-banner>
 
-<vps-announcement-banner data-ng-if="$ctrl.canDisplayVpsAnnouncementBanner">
+<vps-announcement-banner data-ng-if="$ctrl.isVpsMaintenance"
+                         data-stein="$ctrl.stein">
 </vps-announcement-banner>
 
 <oui-message
