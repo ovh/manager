@@ -1,13 +1,14 @@
 <oui-modal
-    data-heading="{{ ::'pci_projects_project_storages_containers_container_addUser_object_title' | translate }}"
+    data-heading="{{ ::'pci_projects_project_storages_containers_container_addUser_' + ($ctrl.objectKey ? 'object' : 'container') + '_title' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
     data-loading="$ctrl.isLoading"
 >
     <div data-ng-if="$ctrl.container">
         <div data-ng-if="$ctrl.addUserStep === 0">
             <p
-                data-translate="pci_projects_project_storages_containers_container_addUser_description_step_0"
+                data-translate="{{ 'pci_projects_project_storages_containers_container_addUser_description_' + ($ctrl.objectKey ? 'object' : 'container') + '_step_0' }}"
             ></p>
+
             <oui-radio-group model="$ctrl.selectedUser">
                 <oui-radio
                     ng-repeat="user in $ctrl.availableUsers track by $index"
