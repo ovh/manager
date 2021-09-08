@@ -13,7 +13,6 @@ import ipFilterByService from './filters/ip/ipFilterByService/ipServiceCollapsed
 import ipFirewallRulePort from './filters/ip/ipFirewallRulePort/ipFirewallRulePort';
 import ipPunycode from './filters/ip/ipPunycode/ipPunycode';
 
-import ipFeatureAvailability from './ip-feature-availability';
 import routing from './ip.routing';
 
 const moduleName = 'Ip';
@@ -36,7 +35,6 @@ angular
   .filter('ipFilterByService', ipFilterByService)
   .filter('ipFirewallRulePort', ipFirewallRulePort)
   .filter('ipPunycode', ipPunycode)
-  .service('ipFeatureAvailability', ipFeatureAvailability)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

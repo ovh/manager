@@ -1,4 +1,5 @@
 import angular from 'angular';
+import ipFeatureAvailability from './ip-feature-availability';
 
 import '@uirouter/angularjs';
 import 'oclazyload';
@@ -29,6 +30,7 @@ angular
         );
       });
     },
-  );
+  )
+  .service('ipFeatureAvailability', ipFeatureAvailability);
 
 export default moduleName;
