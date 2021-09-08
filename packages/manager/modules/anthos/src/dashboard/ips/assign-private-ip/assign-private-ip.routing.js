@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      breacrumb: () => null,
+      breadcrumb: () => null,
     },
   });
 };
