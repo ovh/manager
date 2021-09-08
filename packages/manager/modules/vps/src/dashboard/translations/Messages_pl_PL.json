@@ -15,5 +15,6 @@
   "vps_dashboard_state_running": "Trwa wykonywanie",
   "vps_dashboard_state_stopped": "Zatrzymano",
   "vps_dashboard_state_stopping": "Wygasanie w trakcie",
-  "vps_dashboard_state_upgrading": "Zmiana oferty w trakcie"
+  "vps_dashboard_state_upgrading": "Zmiana oferty w trakcie",
+  "vps_dashboard_state_rescued": "W trybie rescue"
 }

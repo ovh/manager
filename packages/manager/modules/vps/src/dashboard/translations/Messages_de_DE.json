@@ -15,5 +15,6 @@
   "vps_dashboard_state_running": "Wird ausgeführt",
   "vps_dashboard_state_stopped": "Angehalten",
   "vps_dashboard_state_stopping": "Wird gelöscht",
-  "vps_dashboard_state_upgrading": "Angebot hierfür wird gerade gewechselt"
+  "vps_dashboard_state_upgrading": "Angebot hierfür wird gerade gewechselt",
+  "vps_dashboard_state_rescued": "im Rescue"
 }
