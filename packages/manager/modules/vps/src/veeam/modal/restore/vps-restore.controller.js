@@ -6,7 +6,6 @@ export default class VpsRestoreCtrl {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.VpsService = VpsService;
-    this.RestorePointLabel = moment(this.RestorePoint).format('LLL');
 
     this.attachedBackup = null;
     this.loader = {
@@ -20,6 +19,7 @@ export default class VpsRestoreCtrl {
 
   $onInit() {
     this.loader.init = true;
+    this.RestorePointLabel = moment(this.restorePoint).format('LLL');
     this.VpsService.getVeeamAttachedBackup(this.serviceName)
       .then((data) => {
         this.attachedBackup = data.length;
