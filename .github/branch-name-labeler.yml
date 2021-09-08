@@ -1,5 +1,5 @@
 feature: ['feature/*', 'feat/*']
-fix: ['fix/*','bugfix/*', 'hotfix/*']
+bug: ['fix/*','bugfix/*', 'hotfix/*']
 refactor: ['chore/*','refactor/*']
 release: ['develop', 'release*']
 build: build/*
