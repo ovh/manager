@@ -28,6 +28,10 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         hideBreadcrumb: () => true,
       },
+      translations: {
+        value: ['.', '../add'],
+        format: 'json',
+      },
     })
     .state('nasha.nasha-unavailable', {
       url: '/unavailable',
