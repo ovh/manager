@@ -3,7 +3,7 @@
   "pci_projects_project_quota_increase_submit_label": "Conferma",
   "pci_projects_project_quota_increase_cancel_label": "Annulla",
   "pci_projects_project_quota_increase_content": "Vuoi davvero aumentare la quota del progetto <strong>{{ projectId }}</strong>?",
-  "pci_projects_project_quota_increase_success_message": "La richiesta di aumento della quota è stata presa in carico. <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{ ticketUrl }}\">Clicca qui per seguire lo stato di avanzamento. <span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>",
+  "pci_projects_project_quota_increase_success_message": "La tua richiesta di aumento della quota è stata presa in carico. <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{ ticketUrl }}\">Clicca qui per seguire la richiesta. <span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>",
   "pci_projects_project_quota_increase_error_message": "Si è verificato un errore durante la richiesta di aumento della quota: {{ message }}.",
   "pci_projects_project_quota_increase_buy_success_message": "Il buono d'ordine per aggiungere crediti al tuo progetto è disponibile <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{ billingUrl }}\">qui<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>",
   "pci_projects_project_quota_increase_select_volume": "Seleziona il volume",

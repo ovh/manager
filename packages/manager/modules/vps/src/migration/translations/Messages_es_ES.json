@@ -1,7 +1,7 @@
 {
   "vps_migration_title": "Migración de VPS",
   "vps_migration_button": "Programar la migración",
-  "vps_migration_description1": "Le hemos enviado un mensaje sobre la importancia de migrar su VPS <b>antes del {{cutoffDate}}</b>. Si no realiza ninguna acción antes de esa fecha, su máquina será migrada de forma automática a partir del {{autoMigrationDate}}. El VPS actual será sustituido por una máquina de nuestra <a href='{{rangeLink}}' class='oui-link oui-link_icon' rel='noopener' target='_blank'>nueva gama<span class='oui-icon oui-icon-external-link' aria-hidden='true'></span></a>, a un precio inferior o equivalente.",
+  "vps_migration_description1": "Le hemos enviado un mensaje sobre la importancia de migrar su VPS <b>antes del {{cutoffDate}}</b>. Si no realiza ninguna acción antes de esa fecha, su máquina será migrada de forma automática a partir del {{autoMigrationDate}}. Su VPS actual será sustituido por una máquina de nuestra <a href='{{rangeLink}}' class='oui-link oui-link_icon' rel='noopener' target='_blank'>nueva gama<span class='oui-icon oui-icon-external-link' aria-hidden='true'></span></a>, con un precio inferior o equivalente.",
   "vps_migration_description4": "Las opciones asociadas a su VPS serán migradas de forma automática hacia la nueva máquina. Tenga en cuenta que no conservará el historial de copias de seguridad. Durante la migración, la configuración de red de su VPS se forzará en DHCP. Una vez completada la migración, podrá configurar su VPS en IP fija.",
   "vps_migration_description5": "Para realizar la migración, solo tendrá que programar la fecha y la hora elegidas. La migración se realizará automáticamente.",
   "vps_migration_table_status": "Estado",
