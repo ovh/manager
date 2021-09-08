@@ -23,7 +23,7 @@ import component from './vrack.component';
 import mappedPartials from '../partials/mapped.html';
 import routing from './vrack.routing';
 import vrackAdd from '../add';
-import vrackMoveDialog from '../move-dialog';
+import vrackMoveDialog from '../move-dialog/vrack-move-dialog.module';
 
 const moduleName = 'ovhManagerVrackDetails';
 
