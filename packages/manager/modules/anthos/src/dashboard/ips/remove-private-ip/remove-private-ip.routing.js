@@ -9,11 +9,10 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     onEnter: /* @ngInject */ ($transition$, goBack) => {
-      console.log('ZM:: onEnter', $transition$.params());
       if (!$transition$.params().privateIp) goBack(null);
     },
     resolve: {
-      breacrumb: /* @ngInject */ () => false,
+      breadcrumb: /* @ngInject */ () => null,
 
       privateIp: /* @ngInject */ ($transition$) => {
         return $transition$.params().privateIp;
