@@ -31,5 +31,5 @@
   "pci_projects_project_storages_containers_container_object_error_download": "Une erreur est survenue lors du téléchargement de l'objet : {{ message }}.",
   "pci_projects_project_storages_containers_container_archive_error_unseal": "Une erreur est survenue lors du dégel de l'archive : {{ message }}.",
   "pci_projects_project_storages_containers_container_archive_success_unseal": "Le dégel de l'archive {{archive}} est en cours.",
-  "pci_projects_project_storages_containers_container_add_user_label": "Ajouter un utilisateur à mon conteneur"
+  "pci_projects_project_storages_containers_container_add_user_label": "Ajouter un utilisateur à mon objet"
 }
