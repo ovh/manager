@@ -8,5 +8,6 @@ export default {
     addObjectStorage: '<',
     getStateName: '<',
     goToRegion: '<',
+    trackingPrefix: '<',
   },
 };

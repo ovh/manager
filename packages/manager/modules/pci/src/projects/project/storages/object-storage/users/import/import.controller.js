@@ -1,8 +1,9 @@
 export default class PciBlockStorageContainersContainerObjectAddController {
   /* @ngInject */
-  constructor($http, $translate, PciStoragesObjectStorageService) {
+  constructor($http, $translate, atInternet, PciStoragesObjectStorageService) {
     this.$http = $http;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.PciStoragesObjectStorageService = PciStoragesObjectStorageService;
   }
 
@@ -21,6 +22,11 @@ export default class PciBlockStorageContainersContainerObjectAddController {
   }
 
   importFile() {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}s3-policies-users::import-file::confirm`,
+      type: 'action',
+    });
+
     this.isLoading = true;
     return new Promise((resolve) => {
       const reader = new FileReader();
@@ -64,5 +70,13 @@ export default class PciBlockStorageContainersContainerObjectAddController {
         'error',
       );
     });
+  }
+
+  cancel() {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}s3-policies-users::import-file::cancel`,
+      type: 'action',
+    });
+    return this.goBack();
   }
 }

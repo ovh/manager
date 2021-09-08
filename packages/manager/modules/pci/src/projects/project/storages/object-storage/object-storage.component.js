@@ -6,6 +6,8 @@ export default {
     isUserTabActive: '<',
     containersLink: '<',
     userListLink: '<',
+    onGuideLinkClick: '<',
+    trackingPrefix: '<',
   },
   template,
 };

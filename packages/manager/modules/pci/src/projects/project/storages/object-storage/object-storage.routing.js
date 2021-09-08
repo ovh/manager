@@ -16,6 +16,8 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       archive: () => false,
+      trackingPrefix: () =>
+        'PublicCloud::pci::projects::project::storages::objects::',
       containers: /* @ngInject */ (
         PciProjectStorageContainersService,
         archive,
@@ -33,6 +35,11 @@ export default /* @ngInject */ ($stateProvider) => {
       userListLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.storages.object-storage.users', {
           projectId,
+        }),
+      onGuideLinkClick: /* @ngInject */ (atInternet, trackingPrefix) => () =>
+        atInternet.trackClick({
+          name: `${trackingPrefix}onboarding::documentation::object_guide`,
+          type: 'action',
         }),
       goToStorageContainers: /* @ngInject */ (
         CucCloudMessage,

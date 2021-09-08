@@ -7,11 +7,12 @@ export default {
   bindings: {
     availableUsers: '<',
     archive: '<',
-    projectId: '<',
-    containerId: '<',
     container: '<',
-    objectKey: '<',
+    containerId: '<',
     goBack: '<',
     goToUsersAndRoles: '<',
+    objectKey: '<',
+    projectId: '<',
+    trackingPrefix: '<',
   },
 };

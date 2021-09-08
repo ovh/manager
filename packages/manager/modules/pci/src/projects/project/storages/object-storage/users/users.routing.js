@@ -7,8 +7,17 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       userList: /* @ngInject */ (PciStoragesObjectStorageService, projectId) =>
         PciStoragesObjectStorageService.getS3Users(projectId),
-      goToUsersAndRoles: /* @ngInject */ ($state) => () =>
-        $state.go('pci.projects.project.users'),
+      goToUsersAndRoles: /* @ngInject */ (
+        $state,
+        atInternet,
+        trackingPrefix,
+      ) => () => {
+        atInternet.trackClick({
+          name: `${trackingPrefix}s3-policies-users::add`,
+          type: 'action',
+        });
+        return $state.go('pci.projects.project.users');
+      },
       goToDeleteUser: /* @ngInject */ ($state) => (user) =>
         $state.go('pci.projects.project.storages.object-storage.users.delete', {
           userId: user.id,
@@ -51,6 +60,9 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant(
           'pci_projects_project_storages_containers_s3_users_label',
         ),
+    },
+    atInternet: {
+      rename: 'pci::projects::project::storages::objects::s3-policies-users',
     },
   });
 };

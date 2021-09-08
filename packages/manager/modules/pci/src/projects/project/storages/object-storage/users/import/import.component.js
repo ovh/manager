@@ -5,10 +5,11 @@ export default {
   controller,
   template,
   bindings: {
+    goBack: '<',
     projectId: '<',
+    trackingPrefix: '<',
     userList: '<',
     userId: '<',
     user: '<',
-    goBack: '<',
   },
 };

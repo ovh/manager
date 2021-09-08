@@ -28,6 +28,10 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack: /* @ngInject */ (goToUsers) => goToUsers,
         breadcrumb: () => null,
       },
+      atInternet: {
+        rename:
+          'pci::projects::project::storages::objects::s3-policies-users::delete',
+      },
     },
   );
 };

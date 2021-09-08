@@ -5,11 +5,13 @@ export default class PciBlockStorageDetailsAddUserController {
   constructor(
     $translate,
     $http,
+    atInternet,
     CucCloudMessage,
     PciProjectStorageContainersService,
   ) {
     this.$translate = $translate;
     this.$http = $http;
+    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
 
@@ -29,11 +31,27 @@ export default class PciBlockStorageDetailsAddUserController {
     this.addUserStep = 0;
   }
 
+  trackNextStepClick() {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}${
+        this.objectKey ? 'object::' : ''
+      }add-user::next`,
+      type: 'action',
+    });
+  }
+
   addUserStorage() {
     if (this.addUserStep < 1) {
       this.addUserStep += 1;
+      this.trackNextStepClick();
       return null;
     }
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}${
+        this.objectKey ? 'object::' : ''
+      }add-user::confirm`,
+      type: 'action',
+    });
     this.isLoading = true;
     return this.$http
       .post(
@@ -71,5 +89,15 @@ export default class PciBlockStorageDetailsAddUserController {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  cancel() {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}${
+        this.objectKey ? 'object::' : ''
+      }add-user::cancel`,
+      type: 'action',
+    });
+    return this.goBack();
   }
 }

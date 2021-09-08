@@ -7,7 +7,11 @@
         <oui-guide-menu
             data-text="{{:: 'pci_project_guides_header' | translate }}"
         >
-            <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
+            <oui-guide-menu-item
+                href="{{ $ctrl.guideUrl }}"
+                data-external
+                data-on-click="$ctrl.onGuideLinkClick()"
+            >
                 <span
                     data-translate="pci_project_guides_header_all_guides"
                 ></span>

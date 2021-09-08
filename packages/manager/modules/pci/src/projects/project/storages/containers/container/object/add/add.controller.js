@@ -2,8 +2,9 @@ import get from 'lodash/get';
 
 export default class PciBlockStorageContainersContainerObjectAddController {
   /* @ngInject */
-  constructor($translate, PciProjectStorageContainersService) {
+  constructor($translate, atInternet, PciProjectStorageContainersService) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
   }
 
@@ -17,7 +18,10 @@ export default class PciBlockStorageContainersContainerObjectAddController {
   addObjects() {
     this.isLoading = true;
     let addPromise = null;
-
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}object::add::confirm`,
+      type: 'action',
+    });
     if (this.container.isHighPerfStorage) {
       addPromise = this.addHighPerfObjects(
         this.projectId,
@@ -68,5 +72,13 @@ export default class PciBlockStorageContainersContainerObjectAddController {
       containerName,
       files,
     );
+  }
+
+  cancel() {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}object::add::cancel`,
+      type: 'action',
+    });
+    return this.goBack();
   }
 }

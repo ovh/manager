@@ -125,7 +125,7 @@
     <oui-step-form
         data-header="{{:: 'pci_projects_project_storages_containers_add_name_title' | translate }}"
         data-editable="!$ctrl.isLoading"
-        data-cancel-href="{{$ctrl.cancelLink}}"
+        data-on-cancel="$ctrl.cancel()"
         data-cancel-text="{{:: 'pci_projects_project_storages_containers_add_cancel_label' | translate }}"
         data-submit-text="{{:: 'pci_projects_project_storages_containers_add_submit_label' | translate }}"
         name="storage_container_add_name"
