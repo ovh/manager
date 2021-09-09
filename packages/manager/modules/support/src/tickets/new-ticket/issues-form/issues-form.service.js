@@ -103,9 +103,15 @@ export default class {
                 return ownServiceTypes.includes(parentServiceType);
               }
             }
+          } else {
+            // L1 service
+            switch (serviceType.route) {
+              case '/dedicated/anthos/tenants':
+                return ownServiceTypes.includes('dedicated_anthos_tenants');
+              default:
+                return ownServiceTypes.includes(serviceType.name);
+            }
           }
-          // L1 service
-          return ownServiceTypes.includes(serviceType.name);
         }),
       );
   }

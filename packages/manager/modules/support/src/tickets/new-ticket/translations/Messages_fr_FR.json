@@ -21,6 +21,7 @@
 
   "ovhManagerSupport_new_serviceType": "Produit",
   "ovhManagerSupport_all_serviceType": "Afficher plus de produits",
+  "ovhManagerSupport_new_serviceType_anthos": "Anthos",
   "ovhManagerSupport_new_serviceType_ml_serving": "ML Serving",
   "ovhManagerSupport_new_serviceType_DEDICATED": "Dédié",
   "ovhManagerSupport_new_serviceType_data_processing": "Data processing",
