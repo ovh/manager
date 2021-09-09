@@ -1,5 +1,22 @@
-<manager-on-boarding-layout data-guides="$ctrl.GUIDES">
-    <oui-button data-variant="primary" data-on-click="$ctrl.discover()">
-        <span>Discover product</span>
-    </oui-button>
+<manager-on-boarding-layout data-image-source="$ctrl.illustration"
+                            data-guides="$ctrl.guides">
+    <!--Title and description-->
+    <h1 data-translate="anthos_onboarding_title"></h1>
+    <p class="mb-3">
+        <span data-translate="anthos_onboarding_description_part_1"></span>
+        <strong data-translate="anthos_onboarding_description_part_2"></strong>
+        <span data-translate="anthos_onboarding_description_part_3"></span>
+    </p>
+
+    <!--Start with Anthos CTA-->
+    <a data-ng-href="{{:: $ctrl.anthosReadMoreInfoLink}}">
+        <oui-button
+            data-variant="primary"
+            data-on-click="$ctrl.onSubmitClick()"
+        >
+            <span
+                data-translate="anthos_onboarding_cta_start_with_anthos"
+            ></span>
+        </oui-button>
+    </a>
 </manager-on-boarding-layout>
