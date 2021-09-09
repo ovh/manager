@@ -84,6 +84,18 @@ export default {
      * @type {Object}
      */
     urlParams: '<',
+
+    /**
+     * Type of advice. Available values are 'retention' and 'upsell-cross-sell'
+     * Default value is 'upsell-cross-sell'
+     */
+    adviceType: '@',
+
+    /**
+     * callback handler called on load of advices
+     * @type {Function}
+     */
+    onLoad: '&?',
   },
   controller,
   template,

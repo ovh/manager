@@ -315,7 +315,7 @@
 
     <div class="row d-lg-flex">
         <div
-            class="col-xm-12 col-md-4"
+            class="col-xm-12 col-md-4 mb-3"
             data-ng-if="!$ctrl.vps.isExpired && $ctrl.hasFeature($ctrl.DASHBOARD_FEATURES.summary)"
         >
             <oui-tile
@@ -573,7 +573,7 @@
             </oui-tile>
         </div>
 
-        <div class="col-xm-12 col-md-4">
+        <div class="col-xm-12 col-md-4 mb-3">
             <billing-subscription-tile
                 on-error="$ctrl.onBillingInformationError(error)"
                 service-path="{{ ::'/vps/' + $ctrl.serviceName }}"
@@ -592,8 +592,17 @@
             >
             </billing-subscription-tile>
         </div>
+        <!-- Retention Advices -->
+        <ovh-advices
+            data-ng-if="!$ctrl.vps.isExpired"
+            class="col-xm-12 col-md-4 mb-3"
+            url="/retention/vps/:serviceName"
+            url-params="{ serviceName: $ctrl.serviceName }"
+            advice-type="retention"
+        >
+        </ovh-advices>
         <!-- advices -->
-        <div class="col-xm-12 col-md-4" data-ng-if="!$ctrl.vps.isExpired">
+        <div class="col-xm-12 col-md-4 mb-3" data-ng-if="!$ctrl.vps.isExpired">
             <ovh-advices
                 service-name="{{ ::$ctrl.serviceName }}"
                 service-type="{{ ::$ctrl.SERVICE_TYPE }}"

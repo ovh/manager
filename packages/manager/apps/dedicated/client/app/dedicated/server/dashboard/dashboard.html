@@ -331,9 +331,7 @@
                             data-ng-href="{{:: $ctrl.terminateLink }}"
                             data-ng-if="(!$ctrl.server.isExpired && !$ctrl.server.engagement) || $ctrl.resiliationCapability.message"
                         >
-                            <span
-                                data-translate="server_close_service"
-                            ></span>
+                            <span data-translate="server_close_service"></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -560,8 +558,8 @@
             </billing-subscription-tile>
         </div>
     </div>
-    <div class="row d-md-flex mb-5">
-        <div class="col-md-4" data-ng-if="!$ctrl.server.isExpired">
+    <div class="row d-md-flex mb-3">
+        <div class="col-md-4 mb-3" data-ng-if="!$ctrl.server.isExpired">
             <!-- Network -->
             <oui-tile
                 class="h-100"
@@ -794,7 +792,7 @@
         </div>
 
         <!-- SUBSCRIPTIONS -->
-        <div class="col-md-4" data-ng-if="$ctrl.technicalDetails">
+        <div class="col-md-4 mb-3" data-ng-if="$ctrl.technicalDetails">
             <billing-subscription-tile
                 on-error="$ctrl.onBillingInformationError(error)"
                 service-path="{{ '/dedicated/server/' + $ctrl.server.name }}"
@@ -831,7 +829,7 @@
         </div>
 
         <div
-            class="col-md-4"
+            class="col-md-4 mb-3"
             data-ng-if="!$ctrl.server.isExpired && $ctrl.biosSettings.sgx"
         >
             <dedicated-server-dashboard-advanced-features
@@ -841,8 +839,17 @@
                 user="$ctrl.user"
             ></dedicated-server-dashboard-advanced-features>
         </div>
+        <!-- Retention Advices -->
+        <ovh-advices
+            data-ng-if="!$ctrl.server.isExpired"
+            class="col-md-4 mb-3"
+            url="/retention/dedicated-server/:serviceName"
+            url-params="{ serviceName: $ctrl.server.name }"
+            advice-type="retention"
+        >
+        </ovh-advices>
         <!-- Advices -->
-        <div class="col-md-4" data-ng-if="!$ctrl.server.isExpired">
+        <div class="col-md-4 mb-3" data-ng-if="!$ctrl.server.isExpired">
             <ovh-advices
                 service-type="dedicated-server"
                 service-name="{{ ::$ctrl.server.name }}"
