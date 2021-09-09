@@ -1,3 +1,17 @@
+# [2.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.14.1...@ovh-ux/manager-vps@2.15.0) (2021-09-09)
+
+
+### Bug Fixes
+
+* **veeam.modal.restore:** fix veeam backup restore ([#5501](https://github.com/ovh/manager/issues/5501)) ([cd263a0](https://github.com/ovh/manager/commit/cd263a07d0a164bf76340c992c9283b6b79954c6))
+
+
+### Features
+
+* add retention advices ([#5375](https://github.com/ovh/manager/issues/5375)) ([e38b161](https://github.com/ovh/manager/commit/e38b161a6daeb6e5cb92f4df16344e488737b6bc))
+
+
+
 ## [2.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.14.0...@ovh-ux/manager-vps@2.14.1) (2021-09-07)
 
 

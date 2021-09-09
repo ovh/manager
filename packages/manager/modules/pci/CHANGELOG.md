@@ -1,3 +1,12 @@
+## [5.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.41.0...@ovh-ux/manager-pci@5.41.1) (2021-09-09)
+
+
+### Bug Fixes
+
+* **kubernetes.details.service:** fix command line tool typo ([#5499](https://github.com/ovh/manager/issues/5499)) ([182c0df](https://github.com/ovh/manager/commit/182c0dfa722f9a2ad319f893a7d6da17ee16ee4b))
+
+
+
 # [5.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.40.2...@ovh-ux/manager-pci@5.41.0) (2021-09-07)
 
 

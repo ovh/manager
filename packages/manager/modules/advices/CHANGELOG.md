@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-advices@1.2.0...@ovh-ux/manager-advices@1.3.0) (2021-09-09)
+
+
+### Features
+
+* add retention advices ([#5375](https://github.com/ovh/manager/issues/5375)) ([e38b161](https://github.com/ovh/manager/commit/e38b161a6daeb6e5cb92f4df16344e488737b6bc))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-advices@1.1.2...@ovh-ux/manager-advices@1.2.0) (2021-08-25)
 
 

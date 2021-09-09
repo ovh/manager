@@ -261,9 +261,7 @@ export const registerCoreModule = (environment) => {
     )
     .run(
       /* @ngInject */ ($transitions, $translate) => {
-        $transitions.onBefore({}, () => {
-          $translate.refresh();
-        });
+        $transitions.onBefore({}, () => $translate.refresh());
       },
     );
 

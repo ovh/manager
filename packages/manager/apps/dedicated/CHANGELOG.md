@@ -1,3 +1,18 @@
+# [16.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.36.3...@ovh-ux/manager-dedicated@16.37.0) (2021-09-09)
+
+
+### Bug Fixes
+
+* **ip:** expose service ([#5503](https://github.com/ovh/manager/issues/5503)) ([87862ea](https://github.com/ovh/manager/commit/87862eab5472421d0684362feeb24a79cca58d85))
+* **server.dashboard:** restore mrtg tile ([#5504](https://github.com/ovh/manager/issues/5504)) ([b963362](https://github.com/ovh/manager/commit/b96336254f7c96438b3e27d16e55b0c9ede5e9a7))
+
+
+### Features
+
+* add retention advices ([#5375](https://github.com/ovh/manager/issues/5375)) ([e38b161](https://github.com/ovh/manager/commit/e38b161a6daeb6e5cb92f4df16344e488737b6bc))
+
+
+
 ## [16.36.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.36.2...@ovh-ux/manager-dedicated@16.36.3) (2021-09-07)
 
 

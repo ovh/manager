@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'ovhManagerVrackComponent',
     resolve: {
       goToMoveDialog: /* @ngInject */ ($state) => (service) =>
-        $state.go('vrack.move', { service }),
+        $state.go('vrack.dashboard.move', { service }),
       vrackId: /* @ngInject */ ($transition$) => $transition$.params().vrackId,
       breadcrumb: /* @ngInject */ (vrackId) => vrackId,
     },

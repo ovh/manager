@@ -1,3 +1,12 @@
+## [15.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.30.1...@ovh-ux/manager-web@15.30.2) (2021-09-09)
+
+
+### Bug Fixes
+
+* **domain:** restore dns anycast activation link ([#5502](https://github.com/ovh/manager/issues/5502)) ([5f93fca](https://github.com/ovh/manager/commit/5f93fcadbe60729406b9e507064702433bbf930c))
+
+
+
 ## [15.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.30.0...@ovh-ux/manager-web@15.30.1) (2021-09-07)
 
 
