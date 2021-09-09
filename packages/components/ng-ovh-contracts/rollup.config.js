@@ -10,7 +10,6 @@ export default [
   config.umd({
     output: {
       globals: {
-        jquery: '$',
         angular: 'angular',
       },
     },
