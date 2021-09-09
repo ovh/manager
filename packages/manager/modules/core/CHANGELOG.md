@@ -1,3 +1,12 @@
+## [12.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.4.1...@ovh-ux/manager-core@12.4.2) (2021-09-09)
+
+
+### Bug Fixes
+
+* **core:** pause transition during translation refresh ([#5507](https://github.com/ovh/manager/issues/5507)) ([e79f854](https://github.com/ovh/manager/commit/e79f8542349f18bbe30325cc647db5e742fa8b55))
+
+
+
 ## [12.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.4.0...@ovh-ux/manager-core@12.4.1) (2021-09-07)
 
 

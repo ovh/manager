@@ -1,3 +1,12 @@
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.3.1...@ovh-ux/manager-vrack@1.3.2) (2021-09-09)
+
+
+### Bug Fixes
+
+* **move:** load and redirect to move modal ([#5506](https://github.com/ovh/manager/issues/5506)) ([f9433d8](https://github.com/ovh/manager/commit/f9433d89357940558d58e97af4453fd19cfec342))
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.3.0...@ovh-ux/manager-vrack@1.3.1) (2021-09-07)
 
 
