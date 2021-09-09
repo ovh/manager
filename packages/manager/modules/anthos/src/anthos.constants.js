@@ -25,9 +25,36 @@ export const GUIDES = {
   US: 'https://docs.us.ovhcloud.com/hosted-private-cloud-anthos/',
 };
 
+export const ANTHOS_READ_MORE_GUIDE = {
+  DEFAULT: 'https://ovhcloudcom.com/en/hosted-private-cloud/anthos',
+  ASIA: 'https://ovhcloudcom.com/asia/hosted-private-cloud/anthos',
+  DE: 'https://ovhcloudcom.com/de/hosted-private-cloud/anthos',
+  ES: 'https://ovhcloudcom.com/es-es/hosted-private-cloud/anthos',
+  IE: 'https://ovhcloudcom.com/en-ie/hosted-private-cloud/anthos',
+  IT: 'https://ovhcloudcom.com/it/hosted-private-cloud/anthos',
+  NL: 'https://ovhcloudcom.com/nl/hosted-private-cloud/anthos',
+  PL: 'https://ovhcloudcom.com/pl/hosted-private-cloud/anthos',
+  PT: 'https://ovhcloudcom.com/pt/hosted-private-cloud/anthos',
+  GB: 'https://ovhcloudcom.com/en-gb/hosted-private-cloud/anthos',
+  CA: 'https://ovhcloudcom.com/en-ca/hosted-private-cloud/anthos',
+  QC: 'https://ovhcloudcom.com/fr-ca/hosted-private-cloud/anthos',
+  MA: 'https://ovhcloudcom.com/fr-ma/hosted-private-cloud/anthos',
+  SN: 'https://ovhcloudcom.com/fr-sn/hosted-private-cloud/anthos',
+  TN: 'https://ovhcloudcom.com/fr-tn/hosted-private-cloud/anthos',
+  AU: 'https://ovhcloudcom.com/en-au/hosted-private-cloud/anthos',
+  SG: 'https://ovhcloudcom.com/en-sg/hosted-private-cloud/anthos',
+  FR: 'https://ovhcloudcom.com/fr-fr/hosted-private-cloud/anthos',
+  CZ: 'https://ovhcloudcom.com/cz-cs/hosted-private-cloud/anthos',
+  FI: 'https://ovhcloudcom.com/fi/hosted-private-cloud/anthos',
+  LT: 'https://ovhcloudcom.com/lt/hosted-private-cloud/anthos',
+  WE: 'https://ovhcloudcom.com/us-en/hosted-private-cloud/anthos',
+  WS: 'https://ovhcloudcom.com/us-en/hosted-private-cloud/anthos',
+};
+
 export const ANTHOS_TENANT_ALERTER = 'anthos_tenant_alerter';
 
 export default {
   GUIDES,
+  ANTHOS_READ_MORE_GUIDE,
   ANTHOS_TENANT_ALERTER,
 };
