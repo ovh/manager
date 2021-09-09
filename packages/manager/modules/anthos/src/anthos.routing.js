@@ -8,13 +8,22 @@ export default /* @ngInject */ ($stateProvider) => {
       transition
         .injector()
         .getAsync('tenants')
-        .then((tenants) =>
-          tenants.length === 0
-            ? {
-                state: 'anthos.onboarding',
-              }
-            : false,
-        ),
+        .then((tenants) => {
+          if (tenants.length === 0) {
+            return {
+              state: 'anthos.onboarding',
+            };
+          }
+          if (tenants.length === 1) {
+            return {
+              state: 'anthos.dashboard',
+              params: {
+                serviceName: tenants[0].serviceName,
+              },
+            };
+          }
+          return false;
+        }),
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('anthos_tenants'),
