@@ -529,11 +529,8 @@ export default class PciProjectInstanceService {
   }
 
   resize(projectId, { id: instanceId, flavorId }) {
-    return this.OvhApiCloudProjectInstance.v6().resize(
-      {
-        serviceName: projectId,
-        instanceId,
-      },
+    return this.$http.post(
+      `/cloud/project/${projectId}/instance/${instanceId}/resize`,
       {
         flavorId,
       },
