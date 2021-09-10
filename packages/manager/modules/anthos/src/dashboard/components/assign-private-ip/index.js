@@ -2,7 +2,7 @@ import angular from 'angular';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import component from './assign-private-ip.component';
+import component from './component';
 
 const moduleName = 'ovhManagerAnthosComponentsAssignPrivateIp';
 

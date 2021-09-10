@@ -6,6 +6,16 @@ export default class RemovePrivateIpController {
     this.AnthosTenantsService = AnthosTenantsService;
   }
 
+  $onInit() {
+    this.trackPage(this.removePrivateIpHitTracking);
+  }
+
+  onRemovePrivateIpCancel() {
+    this.trackClick(`${this.removePrivateIpHitTracking}::cancel`);
+
+    return this.goBack();
+  }
+
   removePrivateIp(rangeId) {
     const privateIpIndex = this.privateIPs.findIndex(
       ({ id }) => id === rangeId,
@@ -16,6 +26,7 @@ export default class RemovePrivateIpController {
   }
 
   onRemovePrivateIpClick() {
+    this.trackClick(`${this.removePrivateIpHitTracking}::confirm`);
     this.isRemoving = true;
 
     return this.AnthosTenantsService.removeTenantPrivateIP(

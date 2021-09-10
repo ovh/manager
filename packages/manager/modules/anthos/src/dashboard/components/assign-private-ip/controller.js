@@ -23,6 +23,10 @@ export default class AssignPrivateIpController {
     };
   }
 
+  $onInit() {
+    this.trackPage(this.assignPrivateIpHitTracking);
+  }
+
   static isValidV4Ip(ip) {
     return IPV4_REGEX.IP_V4_FORMAT.test(ip);
   }
@@ -117,7 +121,15 @@ export default class AssignPrivateIpController {
       });
   }
 
+  onAssignPrivateIpCancel() {
+    this.trackClick(`${this.assignPrivateIpHitTracking}::cancel`);
+
+    return this.goBack();
+  }
+
   onAssignPrivateIpSubmit() {
+    this.trackClick(`${this.assignPrivateIpHitTracking}::confirm`);
+
     if (this.isValidIp()) {
       return this.assignPrivateIp();
     }

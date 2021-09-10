@@ -5,8 +5,16 @@ export default class {
     this.AnthosTenantsService = AnthosTenantsService;
   }
 
+  $onInit() {
+    this.trackPage(this.removeHostHitTracking);
+  }
+
   removeHost() {
-    this.AnthosTenantsService.terminateServiceById(this.hostService.serviceId)
+    this.trackClick(`${this.removeHostHitTracking}::confirm`);
+
+    return this.AnthosTenantsService.terminateServiceById(
+      this.hostService.serviceId,
+    )
       .then(() => {
         this.goBack();
       })
@@ -18,5 +26,11 @@ export default class {
           'error',
         );
       });
+  }
+
+  onRemoveHostCancel() {
+    this.trackClick(`${this.removeHostHitTracking}::cancel`);
+
+    return this.goBack();
   }
 }

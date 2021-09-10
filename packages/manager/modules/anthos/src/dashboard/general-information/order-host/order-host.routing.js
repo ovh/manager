@@ -3,12 +3,16 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/order-host',
     views: {
       modal: {
-        component: 'anthosDashboardOrderHost',
+        component: 'anthosOrderHost',
       },
     },
     layout: 'modal',
     resolve: {
       breadcrumb: () => null,
+
+      orderHostHitTracking: () => {
+        return 'order-host';
+      },
     },
   });
 };

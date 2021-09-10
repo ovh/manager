@@ -7,6 +7,10 @@ export default class {
     this.AnthosTenantsService = AnthosTenantsService;
   }
 
+  $onInit() {
+    this.trackPage(this.generalInfoHitTracking);
+  }
+
   computeStoragePercent(value) {
     return (value / this.netappStorage.totalSize) * 100;
   }
@@ -19,7 +23,39 @@ export default class {
     return `${usedStorage} / ${totalStorage} (${percentStorage}%)`;
   }
 
+  onGoToOrderHost() {
+    this.trackClick(`${this.generalInfoHitTracking}::add-new-host`);
+
+    return this.goToOrderHost();
+  }
+
+  onGoToOrderStorage() {
+    this.trackClick(`${this.generalInfoHitTracking}::add-volume`);
+
+    return this.goToOrderStorage();
+  }
+
+  onGoToOrderPublicIp() {
+    this.trackClick(`${this.generalInfoHitTracking}::order-public-ip`);
+
+    return this.goToOrderPublicIp();
+  }
+
+  onGoToAssignPrivateIp() {
+    this.trackClick(`${this.generalInfoHitTracking}::assign-private-ip`);
+
+    return this.goToAssignPrivateIp();
+  }
+
+  onAnthosConsoleStart() {
+    return this.trackClick(
+      `${this.generalInfoHitTracking}::launch-anthos-console`,
+    );
+  }
+
   onAnthosRegeneratePasswordClick() {
+    this.trackClick(`${this.generalInfoHitTracking}::regen-admin-password`);
+
     return this.AnthosTenantsService.resetTenantAdminAccess(this.serviceName)
       .then(({ accessUrl }) => {
         this.tenant.accessUrl = accessUrl;

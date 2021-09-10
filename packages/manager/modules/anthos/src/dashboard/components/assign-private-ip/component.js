@@ -3,9 +3,13 @@ import template from './template.html';
 
 export default {
   bindings: {
-    goBack: '<',
     serviceName: '<',
-    storageUsage: '<',
+    goBack: '<',
+    privateIPs: '<',
+    trackingPrefix: '<',
+    trackClick: '<',
+    trackPage: '<',
+    assignPrivateIpHitTracking: '<',
   },
   controller,
   template,

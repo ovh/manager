@@ -16,11 +16,21 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName,
         }),
 
+      goToOrderHost: /* @ngInject */ ($state) => () =>
+        $state.go('anthos.dashboard.general-information.order-host'),
+
+      goToOrderStorage: /* @ngInject */ ($state) => () =>
+        $state.go('anthos.dashboard.general-information.add-storage'),
+
       goToOrderPublicIp: /* @ngInject */ ($state) => () =>
         $state.go('anthos.dashboard.general-information.order-public-ip'),
 
       goToAssignPrivateIp: /* @ngInject */ ($state) => () =>
         $state.go('anthos.dashboard.general-information.assign-private-ip'),
+
+      generalInfoHitTracking: () => {
+        return 'general-information';
+      },
     },
   });
 };

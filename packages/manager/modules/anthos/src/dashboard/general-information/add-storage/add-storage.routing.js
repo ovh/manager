@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('anthos.dashboard.storage.add', {
-    url: '/add',
+  $stateProvider.state('anthos.dashboard.general-information.add-storage', {
+    url: '/add-storage',
     views: {
       modal: {
         component: 'addStorage',
@@ -9,9 +9,6 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: () => null,
-
-      goBack: /* @ngInject */ (goToStorage) => (message, type) =>
-        goToStorage(message, type),
 
       addStorageHitTracking: () => {
         return 'add-volume';

@@ -5,10 +5,18 @@ export default class {
     this.AnthosTenantsService = AnthosTenantsService;
   }
 
+  $onInit() {
+    this.trackPage(this.reinstallHostHitTracking);
+  }
+
   reinstallHost() {
+    this.trackClick(`${this.reinstallHostHitTracking}::confirm`);
     this.isLoading = true;
 
-    this.AnthosTenantsService.reinstallHost(this.serviceName, this.host.id)
+    return this.AnthosTenantsService.reinstallHost(
+      this.serviceName,
+      this.host.id,
+    )
       .then((hostData) => {
         this.host.update(hostData);
         this.goBack();
@@ -24,5 +32,11 @@ export default class {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  onReinstallHostCancel() {
+    this.trackClick(`${this.reinstallHostHitTracking}::cancel`);
+
+    return this.goBack();
   }
 }

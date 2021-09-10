@@ -4,7 +4,7 @@ import '@ovh-ux/ui-kit';
 
 import orderComponent from './component';
 
-const moduleName = 'ovhManagerAnthosDashboardOrderHost';
+const moduleName = 'ovhManagerAnthosDashboardComponentOrderHost';
 
 angular
   .module(moduleName, ['oui', 'pascalprecht.translate'])

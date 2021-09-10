@@ -15,6 +15,8 @@ export default class AnthosStorageCtrl {
   }
 
   $onInit() {
+    this.trackPage(this.storageHitTracking);
+
     this.usageString = `${this.mbToTbString(
       this.storageUsage.totalUsed,
     )} / ${this.mbToTbString(this.storageUsage.totalSize)}`;
@@ -43,5 +45,17 @@ export default class AnthosStorageCtrl {
         ),
       ],
     };
+  }
+
+  onGoToAddStorage() {
+    this.trackClick(`${this.storageHitTracking}::add-volume`);
+
+    return this.goToAddStorage();
+  }
+
+  onGoToRemoveStorage(storage) {
+    this.trackClick(`${this.storageHitTracking}::delete-volume`);
+
+    return this.goToRemoveStorage(storage);
   }
 }

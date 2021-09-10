@@ -12,9 +12,15 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: () => null,
+
       goBack: /* @ngInject */ (goToStorage) => (message, type) =>
         goToStorage(message, type),
+
       storage: /* @ngInject */ ($transition$) => $transition$.params().storage,
+
+      removeStorageHitTracking: () => {
+        return 'delete-volume';
+      },
     },
   });
 };
