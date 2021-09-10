@@ -2,7 +2,7 @@
   "kube_service": "Dienstleistung",
   "kube_service_error": "Beim Laden der Informationen ist ein Fehler aufgetreten: {{message}}",
   "kube_service_name": "Name",
-  "kube_service_description_information": "Im Folgenden finden Sie Informationen zu Ihrem Kubernetes-Dienst. Mit diesen Angaben haben Sie über das <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">Tool kubetcl<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> darauf Zugriff.",
+  "kube_service_description_information": "Im Folgenden finden Sie Informationen zu Ihrem Kubernetes-Dienst. Mit diesen Angaben haben Sie über das <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">Tool kubectl<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> darauf Zugriff.",
   "kube_service_description_reset": "Sie können die Konfiguration Ihres Kubernetes-Clusters jederzeit zurücksetzen.",
   "kube_service_offer_beta": "Managed Kubernetes Service (gratis)",
   "kube_service_file": "kubeconfig-Datei",
