@@ -12,9 +12,15 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: () => null,
+
       goBack: /* @ngInject */ (goToHost) => (message, type) =>
         goToHost(message, type),
+
       host: /* @ngInject */ ($transition$) => $transition$.params().host,
+
+      reinstallHostHitTracking: () => {
+        return 'reinstall-host';
+      },
     },
   });
 };

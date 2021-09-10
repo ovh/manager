@@ -9,6 +9,10 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: () => null,
+
+      orderPublicIpHitTracking: () => {
+        return 'order-public-ip';
+      },
     },
   });
 };

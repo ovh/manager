@@ -4,7 +4,7 @@
     class="mb-3"
     data-variant="secondary"
     data-icon-left="oui-icon-cart"
-    data-on-click="$ctrl.goToOrderHost()"
+    data-on-click="$ctrl.onGoToOrderHost()"
 >
     <span data-translate="anthos_dashboard_host_order"></span>
 </oui-button>
@@ -19,6 +19,8 @@
         data-go-to-restart-host="$ctrl.goToRestartHost"
         data-go-to-reinstall-host="$ctrl.goToReinstallHost"
         data-go-to-set-state-host="$ctrl.goToSetStateHost"
+        data-track-click="$ctrl.trackClick"
+        data-hit-tracking="$ctrl.hostHitTracking"
     ></anthos-host-table>
 </oui-collapsible>
 

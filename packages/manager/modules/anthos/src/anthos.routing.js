@@ -47,10 +47,13 @@ export default /* @ngInject */ ($stateProvider) => {
             }),
         ),
 
-      getServiceNameLink: /* @ngInject */ ($state) => ({ serviceName }) =>
+      getServiceNameLink: /* @ngInject */ ($state) => ({ id }) =>
         $state.href('anthos.dashboard', {
-          serviceName,
+          serviceName: id,
         }),
+    },
+    atInternet: {
+      rename: 'hpc::anthos::projects',
     },
   });
 };

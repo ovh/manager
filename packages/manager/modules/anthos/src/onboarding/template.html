@@ -1,5 +1,7 @@
 <manager-on-boarding-layout data-image-source="$ctrl.illustration"
-                            data-guides="$ctrl.guides">
+                            data-guides="$ctrl.guides"
+                            data-on-guide-click="$ctrl.onGuideLinkClick(guide)">
+
     <!--Title and description-->
     <h1 data-translate="anthos_onboarding_title"></h1>
     <p class="mb-3">
@@ -9,14 +11,18 @@
     </p>
 
     <!--Start with Anthos CTA-->
-    <a data-ng-href="{{:: $ctrl.anthosReadMoreInfoLink}}">
-        <oui-button
-            data-variant="primary"
-            data-on-click="$ctrl.onSubmitClick()"
-        >
-            <span
-                data-translate="anthos_onboarding_cta_start_with_anthos"
-            ></span>
-        </oui-button>
+    <a
+        class="oui-button oui-button_primary"
+        data-ng-href="{{:: $ctrl.anthosReadMoreInfoLink}}"
+        data-ng-click="$ctrl.trackClick('onboarding::order-starter-pack')"
+        target="_blank"
+        rel="noopener"
+    >
+        <span data-translate="anthos_onboarding_cta_start_with_anthos"></span>
+        <span
+            class="oui-icon oui-icon-external-link"
+            aria-hidden="true"
+        ></span>
     </a>
+
 </manager-on-boarding-layout>

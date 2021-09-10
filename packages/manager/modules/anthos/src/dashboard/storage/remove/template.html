@@ -3,7 +3,7 @@
         data-primary-action="$ctrl.removeStorage()"
         data-primary-label="{{ ::'anthos_dashboard_remove_storage_submit' | translate }}"
         data-primary-disabled="!removeAnthosStorage.$valid"
-        data-secondary-action="$ctrl.goBack()"
+        data-secondary-action="$ctrl.onRemoveStorageCancel()"
         data-secondary-label="{{ ::'anthos_dashboard_remove_storage_cancel' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
         data-heading="{{:: 'anthos_dashboard_remove_storage_title' | translate}}"

@@ -1,3 +1,4 @@
+import controller from './controller';
 import template from './template.html';
 
 export default {
@@ -8,6 +9,10 @@ export default {
     goToRestartHost: '<',
     goToSetStateHost: '<',
     serviceName: '<',
+    trackClick: '<',
+    trackPage: '<',
+    hostHitTracking: '<',
   },
+  controller,
   template,
 };

@@ -17,6 +17,10 @@ export default /* @ngInject */ ($stateProvider) => {
       privateIp: /* @ngInject */ ($transition$) => {
         return $transition$.params().privateIp;
       },
+
+      removePrivateIpHitTracking: () => {
+        return 'delete-ip-range';
+      },
     },
   });
 };

@@ -9,6 +9,10 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: () => null,
+
+      assignPrivateIpHitTracking: () => {
+        return 'assign-private-ip';
+      },
     },
   });
 };

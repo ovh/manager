@@ -4,7 +4,7 @@
         data-primary-action="$ctrl.onRemovePrivateIpClick()"
         data-primary-label="{{:: 'anthos_tenant_dashboard_ips_remove_private_ip_modal_action_remove' | translate }}"
         data-primary-disabled="$ctrl.privateIp.inUse"
-        data-secondary-action="$ctrl.goBack()"
+        data-secondary-action="$ctrl.onRemovePrivateIpCancel()"
         data-secondary-label="{{:: 'anthos_tenant_dashboard_ips_remove_private_ip_modal_action_cancel' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
         data-loading="$ctrl.isRemoving"

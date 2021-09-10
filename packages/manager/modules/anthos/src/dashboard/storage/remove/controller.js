@@ -8,10 +8,19 @@ export default class {
     this.TERMINATE_INPUT = TERMINATE_INPUT;
   }
 
+  $onInit() {
+    this.trackPage(this.removeStorageHitTracking);
+  }
+
   removeStorage() {
+    this.trackClick(`${this.removeStorageHitTracking}::confirm`);
     this.isRemoving = true;
 
-    this.AnthosTenantsService.removeStorage(this.serviceName, this.storage.id)
+    return;
+    return this.AnthosTenantsService.removeStorage(
+      this.serviceName,
+      this.storage.id,
+    )
       .then(() =>
         this.goBack(
           this.$translate.instant('anthos_dashboard_remove_storage_success'),
@@ -28,5 +37,11 @@ export default class {
       .finally(() => {
         this.isRemoving = false;
       });
+  }
+
+  onRemoveStorageCancel() {
+    this.trackClick(`${this.removeStorageHitTracking}::cancel`);
+
+    return this.goBack();
   }
 }

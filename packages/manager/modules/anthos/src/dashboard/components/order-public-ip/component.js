@@ -3,12 +3,11 @@ import template from './template.html';
 
 export default {
   bindings: {
-    illustration: '<',
-    guides: '<',
-    anthosReadMoreInfoLink: '<',
+    goBack: '<',
     trackingPrefix: '<',
     trackClick: '<',
     trackPage: '<',
+    orderPublicIpHitTracking: '<',
   },
   controller,
   template,
