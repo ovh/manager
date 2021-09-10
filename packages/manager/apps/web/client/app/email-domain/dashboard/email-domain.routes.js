@@ -1,8 +1,11 @@
+import controller from './email-domain.controller';
+import template from './email-domain.html';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.email.domain', {
     url: '/:productId',
-    templateUrl: 'email-domain/dashboard/email-domain.html',
-    controller: 'EmailDomainCtrl',
+    template,
+    controller,
     controllerAs: 'ctrlEmailDomain',
     reloadOnSearch: false,
     resolve: {

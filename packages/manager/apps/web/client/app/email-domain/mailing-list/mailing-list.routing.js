@@ -1,10 +1,11 @@
+import controller from './email-domain-mailing-list-tab-modules.controller';
 import template from './email-domain-mailing-list-view.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.email.domain.mailing-list', {
     url: '/mailing-list',
     template,
-    controller: 'MailingListsTabModulesCtrl',
+    controller,
     controllerAs: 'ctrlMailingLists',
     resolve: {
       goToMailingList: /* @ngInject */ ($state, $transition$) => () =>

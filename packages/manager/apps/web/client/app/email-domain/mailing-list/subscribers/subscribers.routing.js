@@ -1,10 +1,11 @@
+import controller from './email-domain-mailing-list-subscribers.controller';
 import template from './email-domain-mailing-list-subscribers-view.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.email.domain.mailing-list.dashboard.subscribers', {
     url: '/subscribers',
     template,
-    controller: 'MailingListsSubscribersCtrl',
+    controller,
     controllerAs: 'ctrlSubscribers',
     params: {
       mailingList: {},

@@ -1,10 +1,11 @@
+import controller from './email-domain-email-redirection.controller';
 import template from './email-domain-email-redirection.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.email.domain.email.redirection', {
     url: '/redirection',
     template,
-    controller: 'EmailDomainEmailRedirectionCtrl',
+    controller,
     controllerAs: 'ctrlEmailDomainEmailRedirection',
     params: {
       quotas: {},
