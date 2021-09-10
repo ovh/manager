@@ -1,0 +1,12 @@
+<span
+    data-ng-if="$ctrl.serviceInfos.renew && $ctrl.isAutoRenew() && $ctrl.serviceInfos.status !== 'expired'"
+    data-translate="core_service_expiration_auto_renew"
+></span>
+<span
+    data-ng-if="$ctrl.serviceInfos.renew && !$ctrl.isAutoRenew() && $ctrl.serviceInfos.status !== 'expired'"
+    data-translate="core_service_expiration_manual_renew"
+></span>
+<span
+    data-ng-if="$ctrl.serviceInfos.renew && $ctrl.serviceInfos.status === 'expired'"
+    data-translate="core_service_expiration"
+></span>

@@ -165,5 +165,13 @@
   "common_subscription_contacts_billing": "Facturation",
   "common_subscription_contacts_tech": "Technique",
   "common_unavailable_information": "Information indisponible",
-  "common_resiliate_contact_support": "Pour résilier ce service, merci de contacter notre support technique au numéro suivant : <strong>1007</strong> et <strong>appuyez directement sur 8.</strong> Merci pour votre compréhension."
+  "common_resiliate_contact_support": "Pour résilier ce service, merci de contacter notre support technique au numéro suivant : <strong>1007</strong> et <strong>appuyez directement sur 8.</strong> Merci pour votre compréhension.",
+  "core_service_expiration_label": "Expiration",
+  "core_service_expiration": "Expiré le",
+  "core_service_expiration_manual_renew": "À renouveler le",
+  "core_service_expiration_auto_renew": "Renouvellement prévu le",
+  "core_service_renew_button": "Renouveler",
+  "pagination_page": "Page {{ current }} / {{ last }}",
+  "pagination_go": "OK",
+  "pagination_display": "Afficher"
 }

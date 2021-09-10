@@ -3,6 +3,8 @@ import '@uirouter/angularjs';
 import ngOvhAlerter from '@ovh-ux/ng-ovh-utils';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 
+import expirationModule from '../components/expiration/service-expiration.module';
+
 import routing from './dedicated-housing.routes';
 import service from './dedicated-housing.service';
 import pollingService from '../components/polling/polling.service';
@@ -20,6 +22,7 @@ angular
     task,
     ngOvhAlerter,
     ngOvhUserPref,
+    expirationModule,
   ])
   .config(routing)
   .service('Housing', service)

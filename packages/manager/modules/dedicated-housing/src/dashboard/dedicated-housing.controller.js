@@ -17,6 +17,7 @@ export default /* @ngInject */ function HousingCtrl(
   ovhUserPref,
   taskLink,
   coreConfig,
+  coreURLBuilder,
 ) {
   $scope.loadingHousingInformations = true;
   $scope.loadingHousingError = false;
@@ -74,6 +75,10 @@ export default /* @ngInject */ function HousingCtrl(
 
     const urls = getConstants(coreConfig.getRegion()).URLS;
     $scope.changeOwnerUrl = urls[$scope.user.ovhSubsidiary].changeOwner;
+
+    $scope.ipUrl = coreURLBuilder.buildURL('dedicated', '#/ip', {
+      serviceName: $scope.housing.name,
+    });
 
     Housing.getOrderableApc($stateParams.productId).then((data) => {
       $scope.disable.reboot = !(data.free && data.orderable);

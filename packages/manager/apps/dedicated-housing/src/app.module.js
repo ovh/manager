@@ -15,6 +15,7 @@ import errorPage from './error';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
+import 'font-awesome/css/font-awesome.css';
 import './theme/index.scss';
 
 export default (containerEl, environment) => {

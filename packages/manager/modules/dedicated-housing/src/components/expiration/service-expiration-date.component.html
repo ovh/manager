@@ -1,0 +1,24 @@
+<span
+    data-ng-bind=":: $ctrl.getDate() | date:'mediumDate'"
+    data-ng-if="$ctrl.coreConfig.getRegion() === 'US' && !$ctrl.hideRenewDate"
+>
+</span>
+<a
+    class="oui-link"
+    data-ng-href="{{:: $ctrl.getRenewUrl() }}"
+    data-ng-bind=":: $ctrl.getDate() | date:'mediumDate'"
+    data-ng-if="$ctrl.coreConfig.getRegion() !== 'US' && !$ctrl.hideRenewDate"
+>
+</a>
+<oui-action-menu
+    data-ng-if="!$ctrl.forceHideRenewAction && ((!$ctrl.isAutoRenew() && $ctrl.getRenewUrl() && !$ctrl.hideRenewAction) || ($ctrl.serviceInfos.status === 'expired'))"
+    aria-label="'menu_action_label' | translate:{ t0: 'core_service_expiration_label' | translate }"
+    data-compact
+    data-placement="end"
+>
+    <oui-action-menu-item
+        data-aria-label="{{ 'core_service_renew_button' | translate }}"
+        data-href="{{:: $ctrl.getRenewUrl() }}"
+        ><span data-translate="core_service_renew_button"></span>
+    </oui-action-menu-item>
+</oui-action-menu>
