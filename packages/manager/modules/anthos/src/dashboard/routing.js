@@ -19,16 +19,14 @@ export default /* @ngInject */ ($stateProvider) => {
       hosts: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getHosts(serviceName).then(({ data }) => data),
 
-      // TODO:: remove the catch snippet code once API fixed issue with get
       netappStorage: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getTenantStorageUsage(serviceName),
 
-      // TODO:: remove the catch snippet code once API fixed issue with get
       publicIPs: /* @ngInject */ (serviceName, AnthosTenantsService) =>
-        AnthosTenantsService.getTenantPublicIPs(serviceName).catch(() => []),
+        AnthosTenantsService.getTenantPublicIPs(serviceName),
 
       privateIPs: /* @ngInject */ (serviceName, AnthosTenantsService) =>
-        AnthosTenantsService.getTenantPrivateIPs(serviceName).catch(() => []),
+        AnthosTenantsService.getTenantPrivateIPs(serviceName),
 
       goToState: ($state, Alerter) => (
         state,
