@@ -8,6 +8,7 @@ import routing from './general-information.routing';
 
 import renameService from './rename-service';
 import orderHost from './order-host';
+import addStorage from './add-storage';
 import orderPublicIp from './order-public-ip';
 import assignPrivateIp from './assign-private-ip';
 
@@ -20,6 +21,7 @@ angular
     'ui.router',
     renameService,
     orderHost,
+    addStorage,
     orderPublicIp,
     assignPrivateIp,
   ])

@@ -12,11 +12,18 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: () => null,
+
       goBack: /* @ngInject */ (goToHost) => (message, type) =>
         goToHost(message, type),
+
       host: /* @ngInject */ ($transition$) => $transition$.params().host,
+
       hostService: /* @ngInject */ (AnthosTenantsService, host, serviceName) =>
         AnthosTenantsService.getHostService(serviceName, host.id),
+
+      removeHostHitTracking: () => {
+        return 'delete-host';
+      },
     },
   });
 };

@@ -5,10 +5,15 @@ export default class {
     this.AnthosTenantsService = AnthosTenantsService;
   }
 
+  $onInit() {
+    this.trackPage(this.addStorageHitTracking);
+  }
+
   addStorage() {
+    this.trackClick(`${this.addStorageHitTracking}::confirm`);
     this.isAdding = true;
 
-    this.AnthosTenantsService.addStorage(
+    return this.AnthosTenantsService.addStorage(
       this.serviceName,
       this.storageDescription,
     )
@@ -28,5 +33,11 @@ export default class {
       .finally(() => {
         this.isAdding = false;
       });
+  }
+
+  onAddStorageCancel() {
+    this.trackClick(`${this.addStorageHitTracking}::cancel`);
+
+    return this.goBack();
   }
 }

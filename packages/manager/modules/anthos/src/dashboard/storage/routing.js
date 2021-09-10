@@ -7,6 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('anthos_dashboard_header_storage'),
+
       storageVolumes: /* @ngInject */ (
         $translate,
         AnthosTenantsService,
@@ -20,6 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
             )}`,
           })),
         ),
+
       storageUsage: /* @ngInject */ (AnthosTenantsService, serviceName) =>
         AnthosTenantsService.getTenantStorageUsage(serviceName).then(
           (usageData) => ({
@@ -27,15 +29,22 @@ export default /* @ngInject */ ($stateProvider) => {
             totalUsed: usageData.reservedSize + usageData.usedSize,
           }),
         ),
+
       goToStorage: /* @ngInject */ (goToState, serviceName) => (
         message,
         type,
       ) =>
         goToState('anthos.dashboard.storage', { serviceName }, message, type),
+
       goToAddStorage: /* @ngInject */ ($state, serviceName) => () =>
         $state.go('anthos.dashboard.storage.add', { serviceName }),
+
       goToRemoveStorage: /* @ngInject */ ($state, serviceName) => (storage) =>
         $state.go('anthos.dashboard.storage.remove', { serviceName, storage }),
+
+      storageHitTracking: () => {
+        return 'storage';
+      },
     },
   });
 };

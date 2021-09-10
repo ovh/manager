@@ -6,7 +6,8 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
 import routing from './order-host.routing';
-import component from './order-host.component';
+
+import orderHost from '../../components/order-host';
 
 const moduleName = 'ovhManagerAnthosDashboardOrderHost';
 
@@ -16,9 +17,9 @@ angular
     'oui',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
+    orderHost,
   ])
   .config(routing)
-  .component('anthosDashboardOrderHost', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

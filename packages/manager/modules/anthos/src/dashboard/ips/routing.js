@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('anthos_dashboard_header_storage'),
+        $translate.instant('anthos_dashboard_header_ips'),
 
       removePrivateIpLink: /* @ngInject */ ($state, serviceName) => (
         privateIp,
@@ -30,6 +30,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('anthos.dashboard.ips.remove-private-ip', {
           privateIp,
         }),
+
+      ipHitTracking: () => {
+        return 'ip';
+      },
     },
   });
 };
