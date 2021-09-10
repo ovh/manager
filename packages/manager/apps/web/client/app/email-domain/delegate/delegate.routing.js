@@ -1,10 +1,11 @@
+import controller from './email-domain-delegate.controller';
 import template from './email-domain-delegate.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.email-delegate.dashboard', {
     url: '/:productId',
     template,
-    controller: 'EmailDelegateCtrl',
+    controller,
     controllerAs: 'ctrlEmailDelegate',
     reloadOnSearch: false,
     resolve: {

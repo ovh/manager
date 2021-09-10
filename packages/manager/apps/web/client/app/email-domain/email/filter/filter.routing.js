@@ -1,10 +1,11 @@
+import controller from './email-domain-email-filter.controller';
 import template from './email-domain-email-filter.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.email.domain.email.filter', {
     url: '/filter',
     template,
-    controller: 'EmailDomainEmailFilterCtrl',
+    controller,
     controllerAs: 'ctrlEmailDomainEmailFilter',
     params: {
       email: {},

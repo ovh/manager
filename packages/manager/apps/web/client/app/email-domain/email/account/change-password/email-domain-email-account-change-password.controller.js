@@ -1,96 +1,86 @@
 import get from 'lodash/get';
 
-angular.module('App').controller(
-  'EmailsChangePasswordAccountCtrl',
-  class EmailsChangePasswordAccountCtrl {
-    /**
-     * Constructor
-     * @param $scope
-     * @param $stateParams
-     * @param $translate
-     * @param Alerter
-     * @param WucEmails
-     */
-    constructor($scope, $stateParams, $translate, Alerter, WucEmails) {
-      this.$scope = $scope;
-      this.$stateParams = $stateParams;
-      this.$translate = $translate;
-      this.Alerter = Alerter;
-      this.WucEmails = WucEmails;
+export default class EmailsChangePasswordAccountCtrl {
+  /* @ngInject */
+  constructor($scope, $stateParams, $translate, Alerter, WucEmails) {
+    this.$scope = $scope;
+    this.$stateParams = $stateParams;
+    this.$translate = $translate;
+    this.Alerter = Alerter;
+    this.WucEmails = WucEmails;
+  }
+
+  $onInit() {
+    this.currentAccount = null;
+    this.constants = {
+      passwordMaxLength: 30,
+      passwordMinLength: 9,
+    };
+    this.model = { password: '' };
+    this.validation = { password: '' };
+
+    if (get(this.$scope.currentActionData, 'delegate', false)) {
+      this.currentAccount = this.$scope.currentActionData.account;
+    } else {
+      this.currentAccount = this.$scope.currentActionData;
     }
 
-    $onInit() {
-      this.currentAccount = null;
-      this.constants = {
-        passwordMaxLength: 30,
-        passwordMinLength: 9,
-      };
-      this.model = { password: '' };
-      this.validation = { password: '' };
+    this.$scope.changePasswordAccount = () => this.changePasswordAccount();
+  }
 
-      if (get(this.$scope.currentActionData, 'delegate', false)) {
-        this.currentAccount = this.$scope.currentActionData.account;
-      } else {
-        this.currentAccount = this.$scope.currentActionData;
-      }
+  accountPasswordCheck(input) {
+    input.$setValidity(
+      'passwordCheck',
+      !!this.model.password &&
+        !/^\s/.test(this.model.password) &&
+        !/\s$/.test(this.model.password) &&
+        !this.model.password.match(
+          /[ÂÃÄÀÁÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ]/,
+        ),
+    );
+  }
 
-      this.$scope.changePasswordAccount = () => this.changePasswordAccount();
-    }
+  isPasswordMatches() {
+    return this.model.password === this.validation.password;
+  }
 
-    accountPasswordCheck(input) {
-      input.$setValidity(
-        'passwordCheck',
-        !!this.model.password &&
-          !/^\s/.test(this.model.password) &&
-          !/\s$/.test(this.model.password) &&
-          !this.model.password.match(
-            /[ÂÃÄÀÁÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ]/,
-          ),
+  isPasswordDefined() {
+    return this.model.password && this.validation.password;
+  }
+
+  changePasswordAccount() {
+    let passwordPromise = null;
+    if (get(this.$scope.currentActionData, 'delegate', false)) {
+      passwordPromise = this.WucEmails.changePasswordDelegatedAccount(
+        this.currentAccount.email,
+        this.model,
+      );
+    } else {
+      passwordPromise = this.WucEmails.changePasswordAccount(
+        this.$stateParams.productId,
+        this.currentAccount.accountName,
+        this.model,
       );
     }
 
-    isPasswordMatches() {
-      return this.model.password === this.validation.password;
-    }
-
-    isPasswordDefined() {
-      return this.model.password && this.validation.password;
-    }
-
-    changePasswordAccount() {
-      let passwordPromise = null;
-      if (get(this.$scope.currentActionData, 'delegate', false)) {
-        passwordPromise = this.WucEmails.changePasswordDelegatedAccount(
-          this.currentAccount.email,
-          this.model,
-        );
-      } else {
-        passwordPromise = this.WucEmails.changePasswordAccount(
-          this.$stateParams.productId,
-          this.currentAccount.accountName,
-          this.model,
-        );
-      }
-
-      passwordPromise
-        .then(() =>
-          this.Alerter.success(
-            this.$translate.instant(
-              'email_tab_modal_change_account_password_success',
-            ),
-            this.$scope.alerts.main,
+    passwordPromise
+      .then(() =>
+        this.Alerter.success(
+          this.$translate.instant(
+            'email_tab_modal_change_account_password_success',
           ),
-        )
-        .catch((err) =>
-          this.Alerter.alertFromSWS(
-            this.$translate.instant(
-              'email_tab_modal_change_account_password_error',
-            ),
-            err,
-            this.$scope.alerts.main,
+          this.$scope.alerts.main,
+        ),
+      )
+      .catch((err) =>
+        this.Alerter.alertFromSWS(
+          this.$translate.instant(
+            'email_tab_modal_change_account_password_error',
           ),
-        )
-        .finally(() => this.$scope.resetAction());
-    }
-  },
-);
+          err,
+          this.$scope.alerts.main,
+        ),
+      )
+      .finally(() => this.$scope.resetAction());
+  }
+}

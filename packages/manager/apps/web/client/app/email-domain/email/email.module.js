@@ -5,9 +5,11 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 
 import routing from './email.routing';
 
-import accountMigration from './account/migrate/migrate.module';
+import account from './account/email-account.module';
 import acl from './acl/acl.module';
+import delegate from './delegate';
 import filter from './filter/filter.module';
+import help from './help';
 import redirection from './redirection/redirection.module';
 import responder from './responder/responder.module';
 
@@ -18,9 +20,11 @@ angular
     ngTranslateAsyncLoader,
     'oui',
     'pascalprecht.translate',
-    accountMigration,
+    account,
     acl,
+    delegate,
     filter,
+    help,
     redirection,
     responder,
   ])

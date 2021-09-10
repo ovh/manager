@@ -1,10 +1,11 @@
+import controller from './email-domain-email-responder.controller';
 import template from './email-domain-email-responder.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.email.domain.email.responder', {
     url: '/responder',
     template,
-    controller: 'EmailDomainEmailResponderCtrl',
+    controller,
     controllerAs: '$ctrl',
     params: {
       quotas: {},
