@@ -1,18 +1,22 @@
 import angular from 'angular';
+
+import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import routing from './routing';
-import storageUsage from '../../components/storage-usage';
+import routing from './add-storage.routing';
+
 import addStorage from '../../components/add-storage';
 
-const moduleName = 'ovhManagerAnthosDashboardStorageAdd';
+const moduleName = 'ovhManagerAnthosDashboardAddStorage';
 
 angular
   .module(moduleName, [
+    'ui.router',
     'oui',
+    'ngTranslateAsyncLoader',
     'pascalprecht.translate',
-    storageUsage,
     addStorage,
   ])
   .config(routing)

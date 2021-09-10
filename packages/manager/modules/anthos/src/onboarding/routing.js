@@ -28,6 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
       guides: /* @ngInject */ ($translate, ovhSubsidiary) => {
         return [
           {
+            name: 'documentation',
             title: $translate.instant('anthos_onboarding_guides_anthos_title'),
             description: $translate.instant(
               'anthos_onboarding_guides_anthos_description',
@@ -43,6 +44,23 @@ export default /* @ngInject */ ($stateProvider) => {
 
       tenants: /* @ngInject */ (AnthosTenantsService) =>
         AnthosTenantsService.getTenants(),
+
+      trackingPrefix: () => {
+        return 'hpc::anthos';
+      },
+
+      trackClick: /* @ngInject */ (atInternet, trackingPrefix) => (hit) => {
+        atInternet.trackClick({
+          name: `${trackingPrefix}::${hit}`,
+          type: 'action',
+        });
+      },
+
+      trackPage: /* @ngInject */ (atInternet, trackingPrefix) => (hit) => {
+        atInternet.trackPage({
+          name: `${trackingPrefix}::${hit}`,
+        });
+      },
     },
   });
 };

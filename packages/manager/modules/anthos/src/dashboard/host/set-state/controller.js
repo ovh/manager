@@ -6,11 +6,19 @@ export default class {
   }
 
   $onInit() {
+    this.trackPage(this.setStateHitTracking);
+
     this.isStateful = this.host.stateful;
   }
 
   setState() {
-    this.AnthosTenantsService.setHostState(
+    this.trackClick(
+      `${this.setStateHitTracking}::confirm_${
+        this.isStateful ? 'statefull' : 'stateless'
+      }`,
+    );
+
+    return this.AnthosTenantsService.setHostState(
       this.serviceName,
       this.host.id,
       this.isStateful,
@@ -27,5 +35,11 @@ export default class {
           'error',
         );
       });
+  }
+
+  onSetStateCancel() {
+    this.trackClick(`${this.setStateHitTracking}::cancel`);
+
+    return this.goBack();
   }
 }

@@ -96,11 +96,25 @@ export default /* @ngInject */ ($stateProvider) => {
       displayAlerterMessage: /* @ngInject */ (Alerter) => (type, message) =>
         Alerter[type](message, ANTHOS_TENANT_ALERTER),
 
-      goToOrderHost: /* @ngInject */ ($state) => () =>
-        $state.go('anthos.dashboard.general-information.order-host'),
-
       reloadState: /* @ngInject */ ($state) => () => {
         $state.go($state.current, {}, { reload: true });
+      },
+
+      trackingPrefix: () => {
+        return 'hpc::anthos::project';
+      },
+
+      trackClick: /* @ngInject */ (atInternet, trackingPrefix) => (hit) => {
+        atInternet.trackClick({
+          name: `${trackingPrefix}::${hit}`,
+          type: 'action',
+        });
+      },
+
+      trackPage: /* @ngInject */ (atInternet, trackingPrefix) => (hit) => {
+        atInternet.trackPage({
+          name: `${trackingPrefix}::${hit}`,
+        });
       },
     },
     redirectTo: 'anthos.dashboard.general-information',

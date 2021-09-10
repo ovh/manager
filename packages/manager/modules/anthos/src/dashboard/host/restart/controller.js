@@ -5,8 +5,14 @@ export default class {
     this.AnthosTenantsService = AnthosTenantsService;
   }
 
+  $onInit() {
+    this.trackPage(this.restartHostHitTracking);
+  }
+
   restartHost() {
-    this.AnthosTenantsService.restartHost(this.serviceName, this.host.id)
+    this.trackClick(`${this.restartHostHitTracking}::confirm`);
+
+    return this.AnthosTenantsService.restartHost(this.serviceName, this.host.id)
       .then((hostData) => {
         this.host.update(hostData);
         this.goBack();
@@ -19,5 +25,11 @@ export default class {
           'error',
         );
       });
+  }
+
+  onRestartHostCancel() {
+    this.trackClick(`${this.restartHostHitTracking}::cancel`);
+
+    return this.goBack();
   }
 }

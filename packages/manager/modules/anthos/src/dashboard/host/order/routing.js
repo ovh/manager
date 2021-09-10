@@ -9,7 +9,12 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: () => null,
+
       goBack: /* @ngInject */ (goToHost) => () => goToHost(),
+
+      orderHostHitTracking: () => {
+        return 'order-host';
+      },
     },
   });
 };

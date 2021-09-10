@@ -58,6 +58,7 @@
                         <oui-clipboard class="mb-2" data-model="$ctrl.tenant.accessUrl"></oui-clipboard>
                         <a class="oui-button oui-button_secondary"
                            data-ng-href="{{$ctrl.tenant.accessUrl}}"
+                           data-ng-click="$ctrl.onAnthosConsoleStart()"
                            target="_blank"
                            rel="noopener"
                         >
@@ -117,7 +118,7 @@
             <billing-subscription-tile
                 data-service-infos="$ctrl.serviceInfo"
                 data-user="$ctrl.user"
-                data-service-path="{{ ::'/dedicated/anthos/tenants/' + $ctrl.serviceName }}"
+                data-service-path="{{:: '/dedicated/anthos/tenants/' + $ctrl.serviceName }}"
                 data-with-engagement="$ctrl.isCommitmentAvailable"
                 data-highlight-engagement="$ctrl.shouldReengage"
                 data-go-to-commit="$ctrl.goToCommit()"
@@ -125,10 +126,7 @@
                 data-go-to-cancel-resiliation="$ctrl.goToCancelResiliation()"
                 data-go-to-resiliation="$ctrl.goToResiliation()"
                 data-on-error="$ctrl.onBillingInformationError(error)"
-                data-tracking-prefix="{{ ::$ctrl.trackingPrefix }}"
-                data-commit-impression-data="$ctrl.shouldReengage ?
-                    $ctrl.RECOMMIT_IMPRESSION_TRACKING_DATA :
-                    $ctrl.COMMIT_IMPRESSION_TRACKING_DATA"
+                data-tracking-prefix="{{:: ($ctrl.trackingPrefix + '::' + $ctrl.generalInfoHitTracking) }}"
             >
             </billing-subscription-tile>
         </div>
@@ -142,7 +140,7 @@
                 <oui-tile-definition
                     data-term="{{:: 'anthos_tenant_dashboard_general_information_tile_resources_hosts' | translate }}">
                     <oui-action-menu aria-label="Actions" data-compact data-placement="end">
-                        <oui-action-menu-item data-on-click="$ctrl.goToOrderHost()">
+                        <oui-action-menu-item data-on-click="$ctrl.onGoToOrderHost()">
                             <span
                                 data-translate="anthos_tenant_dashboard_general_information_tile_resources_hosts_menu_order_host"
                             ></span>
@@ -198,7 +196,7 @@
                     </oui-tile-description>
 
                     <oui-action-menu aria-label="Actions" data-compact data-placement="end">
-                        <oui-action-menu-item data-on-click="$ctrl.goToOrderStorage()">
+                        <oui-action-menu-item data-on-click="$ctrl.onGoToOrderStorage()">
                             <span
                                 data-translate="anthos_tenant_dashboard_general_information_tile_resources_persistent_storage_menu_add_volume"
                             ></span>
@@ -210,12 +208,12 @@
                 <oui-tile-definition
                     data-term="{{:: 'anthos_tenant_dashboard_general_information_tile_resources_ips' | translate }}">
                     <oui-action-menu aria-label="Actions" data-compact data-placement="end">
-                        <oui-action-menu-item data-on-click="$ctrl.goToOrderPublicIp()">
+                        <oui-action-menu-item data-on-click="$ctrl.onGoToOrderPublicIp()">
                             <span
                                 data-translate="anthos_tenant_dashboard_general_information_tile_resources_ips_menu_add_public_ip"
                             ></span>
                         </oui-action-menu-item>
-                        <oui-action-menu-item data-on-click="$ctrl.goToAssignPrivateIp()">
+                        <oui-action-menu-item data-on-click="$ctrl.onGoToAssignPrivateIp()">
                             <span
                                 data-translate="anthos_tenant_dashboard_general_information_tile_resources_ips_menu_add_private_ip"
                             ></span>
