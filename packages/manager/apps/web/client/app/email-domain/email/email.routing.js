@@ -1,10 +1,11 @@
+import controller from './email-domain-email.controller';
 import template from './email-domain-email.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.email.domain.email', {
     url: '/email',
     template,
-    controller: 'EmailDomainEmailCtrl',
+    controller,
     controllerAs: 'ctrlEmailDomainEmail',
     resolve: {
       goToAccountMigration: /* @ngInject */ ($state, $transition$) => (email) =>

@@ -1,10 +1,11 @@
+import controller from './email-domain-delegate-responder.controller';
 import template from './email-domain-delegate-responder.html';
 
 export default /* @ngInject */ ($stateProvider) =>
   $stateProvider.state('app.email-delegate.dashboard.responder', {
     url: '/responder',
     template,
-    controller: 'EmailDelegateResponderCtrl',
+    controller,
     controllerAs: 'ctrlEmailDelegateResponder',
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
