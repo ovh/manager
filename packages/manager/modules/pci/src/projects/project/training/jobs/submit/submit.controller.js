@@ -92,6 +92,7 @@ export default class PciTrainingJobsSubmitController {
     this.flavorSelected = {};
     this.flavorPrice = 0;
     this.flavorPriceTax = 0;
+    this.showAdvancedImage = false;
     this.onChangeRegion(head(this.regions));
     this.emptyData = this.containers.length === 0;
     this.filterContainers();
@@ -209,6 +210,10 @@ export default class PciTrainingJobsSubmitController {
 
   onStepperFinish() {
     this.submitJob();
+  }
+
+  onClickAdvancedImage() {
+    this.showAdvancedImage = !this.showAdvancedImage;
   }
 
   onResourceTypeChange() {
