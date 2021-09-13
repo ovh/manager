@@ -7,9 +7,11 @@ import { registerCoreModule } from '@ovh-ux/manager-core';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+
 import Nutanix from '@ovh-ux/manager-nutanix';
 
 import errorPage from './error';
+import './index.scss';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
