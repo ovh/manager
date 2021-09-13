@@ -3,7 +3,7 @@
   "vps_configuration_activate_ftpbackup_back_btn_title": "Back to Backup Storage list",
   "vps_configuration_activate_ftpbackup_step1_question": "Order backup storage option for the {{ serviceName }} VPS?",
   "vps_configuration_activate_ftpbackup_step1_alert": "This option will be billed at a rate of <strong>{{ price }} ex. VAT</strong>",
-  "vps_configuration_activate_ftpbackup_step1_next": "The service will then be billed at a rate of <strong>{{ price }} ex. VAT</strong>.",
+  "vps_configuration_activate_ftpbackup_step1_next": "The service will then be billed at a price of <strong>{{price}} ex. VAT</strong>/{{duration}}.",
   "vps_configuration_activate_ftpbackup_step1_confirmation": "For the first payment, you will be invoiced pro rata for the number of days remaining from your VPS renewal date.",
   "vps_configuration_activate_ftpbackup_step1_description": "The Backup Storage is an archiving space for transferring your content, data, settings and configurations.",
   "vps_configuration_activate_ftpbackup_step2_generation_bc": "Generating purchase order...",
@@ -16,5 +16,7 @@
   "vps_configuration_activate_ftpbackup_fail": "An error has occurred activating the Backup Storage option.",
   "vps_configuration_activate_ftpbackup_load_error": "An error has occurred loading the Backup Storage order information.",
   "vps_configuration_activate_ftpbackup_load_error_none": "No Backup Storage options have been found for your VPS.",
-  "vps_configuration_activate_ftpbackup_explain": "When you click the ‘Order’ button, a new tab will open and you will be automatically redirected to the payment interface."
+  "vps_configuration_activate_ftpbackup_explain": "When you click the ‘Order’ button, a new tab will open and you will be automatically redirected to the payment interface.",
+  "vps_configuration_activate_ftpbackup_step1_alert_P1M": "month",
+  "vps_configuration_activate_ftpbackup_step1_alert_P1Y": "year"
 }

@@ -3,7 +3,7 @@
   "vps_configuration_activate_ftpbackup_back_btn_title": "Zurück zur Liste der Storage-Backups",
   "vps_configuration_activate_ftpbackup_step1_question": "Storage-Backup Option für den VPS {{ serviceName }} bestellen?",
   "vps_configuration_activate_ftpbackup_step1_alert": "Diese Option wird mit <strong>{{ price }} zzgl. MwSt</strong> berechnet.",
-  "vps_configuration_activate_ftpbackup_step1_next": "Danach wird der Dienst mit <strong>{{ price }} zzgl. MwSt.</strong> berechnet.",
+  "vps_configuration_activate_ftpbackup_step1_next": "Danach wird der Service mit <strong>{{ price }} zzgl. MwSt.</strong>/{{duration}} berechnet.",
   "vps_configuration_activate_ftpbackup_step1_confirmation": "Bei der ersten Zahlung erfolgt eine anteilige Abrechnung der noch bis zum Verlängerungsdatum Ihres VPS verbleibenden Tage.",
   "vps_configuration_activate_ftpbackup_step1_description": "Das Storage-Backup ist ein Speicherbereich, auf dem Sie Ihre Daten, Inhalte, Einstellungen und Konfigurationen ablegen können.",
   "vps_configuration_activate_ftpbackup_step2_generation_bc": "Bestellschein wird erstellt...",
@@ -16,5 +16,7 @@
   "vps_configuration_activate_ftpbackup_fail": "Bei der Aktivierung der Storage-Backup Option ist ein Fehler aufgetreten.",
   "vps_configuration_activate_ftpbackup_load_error": "Beim Laden der Informationen zur Bestellung der Storage-Backup Option ist ein Fehler aufgetreten.",
   "vps_configuration_activate_ftpbackup_load_error_none": "Es konnte keine Storage-Backup Bestellung für Ihren VPS gefunden werden.",
-  "vps_configuration_activate_ftpbackup_explain": "Wenn Sie auf den Button „Bestellen“ klicken, öffnet sich ein neuer Browser-Tab und Sie werden auf das Zahlungsinterface weitergeleitet."
+  "vps_configuration_activate_ftpbackup_explain": "Wenn Sie auf den Button „Bestellen“ klicken, öffnet sich ein neuer Browser-Tab und Sie werden auf das Zahlungsinterface weitergeleitet.",
+  "vps_configuration_activate_ftpbackup_step1_alert_P1M": "Monat",
+  "vps_configuration_activate_ftpbackup_step1_alert_P1Y": "Jahr"
 }
