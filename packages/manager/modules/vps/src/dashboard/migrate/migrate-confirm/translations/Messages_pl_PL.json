@@ -1,0 +1,9 @@
+{
+  "vps_dashboard_migrate_confirm_title": "Migracja mojego VPS",
+  "vps_dashboard_migrate_confirm_description": "Pamiętaj, że podczas migracji VPS nie będzie już dostępny.",
+  "vps_dashboard_migrate_confirm_warning_message": "Uwaga, ta operacja jest nieodwracalna. Po kliknięciu \"Rozpocznij migrację\" Twój VPS zostanie automatycznie przeniesiony.",
+  "vps_dashboard_migrate_confirm_label_text": "Wpisz słowo \"MIGRATE\", aby potwierdzić wybór",
+  "vps_dashboard_migrate_confirm_button_text": "Rozpocznij migrację",
+  "vps_dashboard_migrate_confirm_success": "Twoje zlecenie zostało zarejestrowane. Trwa migracja usługi Otrzymasz e-mail z powiadomieniem o ponownym uruchomieniu usługi.",
+  "vps_dashboard_migrate_confirm_error": "Wystąpił błąd podczas migracji VPS."
+}

@@ -4,26 +4,32 @@
 <vps-announcement-banner data-ng-if="$ctrl.canDisplayVpsAnnouncementBanner">
 </vps-announcement-banner>
 
-<oui-message data-ng-if="$ctrl.canScheduleMigration" data-type="warning">
+<oui-message
+    data-ng-if="$ctrl.canBeMigrated()"
+    data-type="warning"
+    class="mb-3"
+>
     <p
-        data-translate="vps_dashboard_migration_warning"
-        data-translate-values="{ date: $ctrl.vps2014MigrationData.autoMigrationDate }"
+        data-translate="vps_dashboard_auto_migration_warning_new"
+        data-translate-values="{ vps: $ctrl.serviceInfo.domain, expiration: $ctrl.expirationDate }"
     ></p>
-    <button
-        type="button"
-        class="oui-button p-0 oui-button_ghost"
-        data-ng-click="$ctrl.goToVpsMigration()"
-        data-translate="vps_dashboard_migration_link"
-    ></button>
+    <a
+        class="oui-tile__button oui-button oui-link_icon"
+        data-ng-href="{{ $ctrl.migrationLink }}"
+        data-track-on="click"
+        data-track-name="{{:: $ctrl.trackingPrefix + '::migrate-my-vps-banner' }}"
+    >
+        <span data-translate="vps_dashboard_migration_link"></span>
+    </a>
 </oui-message>
 <oui-message
-    data-ng-if="$ctrl.vpsMigrationTask && $ctrl.vps2014MigrationData.inAutoMigrationPhase"
+    data-ng-if="$ctrl.vpsMigrationTask && $ctrl.vpsMigrationData.inAutoMigrationPhase"
     data-type="warning"
 >
     <p
         data-ng-if="$ctrl.vpsMigrationTask.state === 'todo'"
         data-translate="vps_dashboard_auto_migration_warning"
-        data-translate-values="{ days: $ctrl.vps2014MigrationData.migrationScheduledInDays }"
+        data-translate-values="{ days: $ctrl.vpsMigrationData.migrationScheduledInDays }"
     ></p>
     <p
         data-ng-if="$ctrl.vpsMigrationTask.state !== 'todo'"
@@ -45,6 +51,7 @@
                 go-to-reboot="$ctrl.goToReboot"
                 go-to-reboot-rescue="$ctrl.goToRebootRescue"
                 go-to-reinstall="$ctrl.goToReinstall"
+                is-migrating="$ctrl.isMigrating"
             >
             </vps-dashboard-tile-information>
         </div>
@@ -57,6 +64,13 @@
                 class="h-100"
             >
                 <oui-tile-button
+                    data-disabled="$ctrl.isMigrating"
+                    data-on-click="$ctrl.actions.terminate.callback()"
+                >
+                    <span data-translate="vps_configuration_terminate"></span>
+                </oui-tile-button>
+                <oui-tile-button
+                    data-disabled="$ctrl.isMigrating"
                     data-on-click="$ctrl.goToRebootRescue()"
                     data-ng-if="$ctrl.actions.rebootRescue.isAvailable()"
                     ><span
@@ -64,11 +78,13 @@
                     ></span>
                 </oui-tile-button>
                 <oui-tile-button
+                    data-disabled="$ctrl.isMigrating"
                     data-on-click="$ctrl.goToReboot()"
                     data-ng-if="$ctrl.actions.reboot.isAvailable()"
                     ><span data-ng-bind="::$ctrl.actions.reboot.text"></span>
                 </oui-tile-button>
                 <oui-tile-button
+                    data-disabled="$ctrl.isMigrating"
                     data-on-click="$ctrl.actions.rebuild.callback()"
                     data-ng-if="$ctrl.actions.rebuild.isAvailable()"
                 >
@@ -77,6 +93,7 @@
                     ></span>
                 </oui-tile-button>
                 <oui-tile-button
+                    data-disabled="$ctrl.isMigrating"
                     data-on-click="$ctrl.goToReinstall()"
                     data-ng-if="$ctrl.actions.reinstall.isAvailable()"
                     ><span data-ng-bind="::$ctrl.actions.reinstall.text"></span>
@@ -108,7 +125,7 @@
                 </div>
                 <div
                     class="oui-tile__item oui-tile__item_button"
-                    data-ng-if="$ctrl.hasFeature($ctrl.DASHBOARD_FEATURES.upgrade) && $ctrl.actions.upgrade.state && $ctrl.actions.upgrade.isAvailable()"
+                    data-ng-if="$ctrl.hasFeature($ctrl.DASHBOARD_FEATURES.upgrade) && $ctrl.actions.upgrade.state && $ctrl.actions.upgrade.isAvailable() && !$ctrl.isMigrating"
                 >
                     <a
                         class="oui-tile__button oui-button oui-link_icon oui-button_ghost oui-button_block"
@@ -121,6 +138,7 @@
                     </a>
                 </div>
                 <oui-tile-button
+                    data-disabled="$ctrl.isMigrating"
                     data-on-click="$ctrl.actions.terminate.callback()"
                     data-ng-if="$ctrl.actions.terminate.isAvailable()"
                 >
@@ -154,15 +172,23 @@
                             data-ng-bind="$ctrl.vps.displayName || $ctrl.vps.name"
                         ></span>
                         <br />
-                        <button
-                            type="button"
-                            class="oui-button p-0 oui-button_ghost"
-                            data-ng-click="$ctrl.goToVpsMigration()"
-                            data-ng-if="$ctrl.canScheduleMigration"
-                            data-translate="vps_dashboard_migration_link"
-                        ></button>
+                        <a
+                            data-ng-if="$ctrl.canBeMigrated()"
+                            class="oui-tile__button oui-button oui-link_icon"
+                            data-ng-href="{{ $ctrl.migrationLink }}"
+                            data-track-on="click"
+                            data-track-name="{{:: $ctrl.trackingPrefix + '::migrate-my-vps' }}"
+                        >
+                            <span
+                                data-translate="vps_dashboard_migration_link"
+                            ></span>
+                        </a>
                     </oui-tile-description>
-                    <oui-action-menu data-compact data-placement="end">
+                    <oui-action-menu
+                        data-compact
+                        data-placement="end"
+                        data-disabled="$ctrl.isMigrating"
+                    >
                         <oui-action-menu-item
                             aria-label="{{::$ctrl.actions.changeName.text}}"
                             data-on-click="$ctrl.actions.changeName.callback()"
@@ -291,6 +317,7 @@
                         data-description="{{ ::$ctrl.vps.reverseDns }}"
                     >
                         <oui-action-menu
+                            data-disabled="$ctrl.isMigrating"
                             data-compact
                             data-ng-if="$ctrl.actions.reverseDns.isAvailable()"
                             data-placement="end"
@@ -351,6 +378,7 @@
                             </span>
                         </oui-tile-description>
                         <oui-action-menu
+                            data-disabled="$ctrl.isMigrating"
                             data-compact
                             data-ng-if="$ctrl.tabSummary.ftpBackup.optionAvailable"
                             data-placement="end"
@@ -395,6 +423,7 @@
                             ></span>
                         </oui-tile-description>
                         <oui-action-menu
+                            data-disabled="$ctrl.isMigrating"
                             data-compact
                             data-ng-if="$ctrl.tabSummary.snapshot.optionActivated"
                             data-placement="end"
@@ -433,6 +462,7 @@
                             </oui-action-menu-item>
                         </oui-action-menu>
                         <oui-action-menu
+                            data-disabled="$ctrl.isMigrating"
                             data-compact
                             data-ng-if="!$ctrl.tabSummary.snapshot.optionActivated && $ctrl.snapshotActions.order.isAvailable()"
                             data-placement="end"
@@ -463,6 +493,7 @@
                             </span>
                         </oui-tile-description>
                         <oui-action-menu
+                            data-disabled="$ctrl.isMigrating"
                             data-compact
                             data-ng-if="$ctrl.tabSummary.veeam.optionAvailable"
                             data-placement="end"
@@ -509,6 +540,7 @@
                             </span>
                         </oui-tile-description>
                         <oui-action-menu
+                            data-disabled="$ctrl.isMigrating"
                             data-compact
                             data-ng-if="$ctrl.tabSummary.additionalDisk.optionAvailable"
                             data-placement="end"
@@ -553,7 +585,11 @@
                                 data-translate="vps_status_disabled"
                             ></span>
                         </oui-tile-description>
-                        <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu
+                            data-compact
+                            data-placement="end"
+                            data-disabled="$ctrl.isMigrating"
+                        >
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.actions.manageSla.isAvailable()"
                                 data-on-click="$ctrl.goToMonitoringSla(false, !$ctrl.vps.slaMonitoring)"

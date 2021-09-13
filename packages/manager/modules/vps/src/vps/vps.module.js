@@ -18,6 +18,7 @@ import { region } from '@ovh-ux/manager-components';
 import VpsTaskService from './vps-task.service';
 import VpsNotificationIpv6Service from '../import/notification.service';
 import VpsService from '../import/vps.service';
+import VpsHelperService from '../import/helper.service';
 
 import detailComponent from '../detail/vps-detail.component';
 import headerComponent from '../header/vps-header.component';
@@ -73,6 +74,7 @@ angular
   .service('VpsTaskService', VpsTaskService)
   .service('VpsNotificationIpv6', VpsNotificationIpv6Service)
   .service('VpsService', VpsService)
+  .service('VpsHelperService', VpsHelperService)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

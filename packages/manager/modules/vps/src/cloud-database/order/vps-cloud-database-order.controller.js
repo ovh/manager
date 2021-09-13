@@ -10,6 +10,7 @@ export default class {
     $translate,
     $window,
     atInternet,
+    coreConfig,
     CucCloudMessage,
     OvhApiHostingPrivateDatabase,
     OvhApiOrderPrivateDatabase,
@@ -20,6 +21,7 @@ export default class {
     this.$translate = $translate;
     this.$window = $window;
     this.atInternet = atInternet;
+    this.coreConfig = coreConfig;
     this.CucCloudMessage = CucCloudMessage;
     this.ApiPrivateDb = OvhApiHostingPrivateDatabase.v6();
     this.ApiOrderDb = OvhApiOrderPrivateDatabase.v6();
@@ -50,9 +52,7 @@ export default class {
     this.redirectionTimeout = null;
 
     this.loadSelectValues();
-    this.ApiMe.get().$promise.then((user) => {
-      this.user = user;
-    });
+    this.user = this.coreConfig.getUser();
   }
 
   loadSelectValues() {

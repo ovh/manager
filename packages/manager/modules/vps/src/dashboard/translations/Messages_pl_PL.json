@@ -2,7 +2,7 @@
   "vps_dashboard_upgrade_done": "Zmiana oferty serwera VPS została zakończona. Pamiętaj, że aktywacja nowej konfigurację nastąpi po zrestartowaniu serwera.",
   "vps_dashboard_upgrade_error": "Wystąpił błąd podczas zmiany oferty serwera VPS.",
   "vps_dashboard_upgrade_doing": "Trwa zmiana oferty serwera VPS. Poinformujemy Cię, kiedy będziesz mógł zrestartować serwer, aby aktywować nową konfigurację.",
-  "vps_dashboard_migration_warning": "Automatyczna migracja Twojego VPS Cloud 2013/2014 zostanie przeprowadzona od {{date}}. Jeśli chcesz, możesz już teraz zaprogramować tę operację.",
+  "vps_dashboard_migration_warning": "Automatyczna migracja Twojego VPS Cloud 2013/2014 będzie możliwa począwszy od {{date}}. Jeśli chcesz, możesz już teraz zaprogramować tę operację.",
   "vps_dashboard_migration_link": "Migruj do nowej gamy",
   "vps_dashboard_auto_migration_warning": "Twój VPS Cloud 2013/2014 zostanie automatycznie przeniesiony do VPS z nowej gamy w ciągu {{days}} dni.",
   "vps_dashboard_migration_in_progress": "Aktualnie trwa migracja VPS Cloud 2013/2014 do nowej gamy.",

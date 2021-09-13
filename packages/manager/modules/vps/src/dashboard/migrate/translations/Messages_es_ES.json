@@ -1,0 +1,14 @@
+{
+  "vps_dashboard_migrate_configuration_vcore": "{{count}} vCores",
+  "vps_dashboard_migrate_configuration_label_ram": "Memoria:",
+  "vps_dashboard_migrate_configuration_label_core": "Procesador:",
+  "vps_dashboard_migrate_configuration_label_disk": "Almacenamiento:",
+  "vps_dashboard_migrate_title": "Migración de su VPS",
+  "vps_dashboard_migrate_faq_title": "Para más información, consulte las FAQ.",
+  "vps_dashboard_migrate_new_range_title": "Su nueva configuración",
+  "vps_dashboard_migrate_current_range_title": "Su configuración actual",
+  "vps_dashboard_migrate_information_1": "Según las especificaciones técnicas actuales, le proponemos migrar hacia el VPS a continuación.",
+  "vps_dashboard_migrate_information_2": "La duración de la migración varía en función del tráfico de su VPS. La operación puede tardar entre 30 minutos y unas horas.",
+  "vps_dashboard_migrate_link_information": "El precio nuevo se aplicará al vencimiento de la suscripción.",
+  "vps_dashboard_migrate_price_per_month": "mes"
+}

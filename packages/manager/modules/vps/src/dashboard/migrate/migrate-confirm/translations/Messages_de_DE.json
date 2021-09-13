@@ -1,0 +1,9 @@
+{
+  "vps_dashboard_migrate_confirm_title": "Meine Konfiguration migrieren",
+  "vps_dashboard_migrate_confirm_description": "Während der Migration ist Ihr VPS nicht verfügbar.",
+  "vps_dashboard_migrate_confirm_warning_message": "Bitte beachten Sie: Diese Aktion kann nicht rückgängig gemacht werden! Wenn Sie auf \"Migration starten\" klicken, wird Ihr VPS automatisch migriert.",
+  "vps_dashboard_migrate_confirm_label_text": "Bitte geben Sie das Wort \"MIGRATE\" ein, um Ihre Wahl zu bestätigen",
+  "vps_dashboard_migrate_confirm_button_text": "Migration starten",
+  "vps_dashboard_migrate_confirm_success": "Ihre Anfrage wurde registriert. Ihr VPS wird gerade migriert. Sobald Ihr Dienst wieder betriebsbereit ist, werden Sie per E-Mail benachrichtigt.",
+  "vps_dashboard_migrate_confirm_error": "Bei der Migration Ihres VPS ist ein Fehler aufgetreten:"
+}
