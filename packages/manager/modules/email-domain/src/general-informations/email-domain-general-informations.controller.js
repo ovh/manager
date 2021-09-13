@@ -1,6 +1,20 @@
 import get from 'lodash/get';
 import set from 'lodash/set';
 
+const changeOwner = {
+  CZ: 'https://www.ovh.cz/cgi-bin/procedure/procedureChangeOwner.cgi',
+  DE: 'https://www.ovh.de/cgi-bin/procedure/procedureChangeOwner.cgi',
+  ES: 'https://www.ovh.es/cgi-bin/procedure/procedureChangeOwner.cgi',
+  FI: 'https://www.ovh.com/cgi-bin/fi/procedure/procedureChangeOwner.cgi',
+  FR: 'https://www.ovh.com/cgi-bin/fr/procedure/procedureChangeOwner.cgi',
+  UK: 'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
+  IT: 'https://www.ovh.it/cgi-bin/procedure/procedureChangeOwner.cgi',
+  LT: 'https://www.ovh.com/cgi-bin/lt/procedure/procedureChangeOwner.cgi',
+  NL: 'https://www.ovh.nl/cgi-bin/procedure/procedureChangeOwner.cgi',
+  PL: 'https://www.ovh.pl/cgi-bin/procedure/procedureChangeOwner.cgi',
+  PT: 'https://www.ovh.pt/cgi-bin/procedure/procedureChangeOwner.cgi',
+};
+
 export default class EmailTabGeneralInformationsCtrl {
   /* @ngInject */
   constructor(
@@ -173,13 +187,16 @@ export default class EmailTabGeneralInformationsCtrl {
         })
       : '';
 
-    return this.WucUser.getUrlOf('changeOwner')
-      .then((link) => {
-        this.urls.changeOwner = link;
-      })
-      .finally(() => {
-        this.loading.urls = false;
-      });
+    this.urls.changeOwner = null;
+    if (this.coreConfig.isRegion('EU')) {
+      this.urls.changeOwner = get(
+        changeOwner,
+        this.coreConfig.getUser().ovhSubsidiary,
+        changeOwner.FR,
+      );
+    }
+
+    this.loading.urls = false;
   }
 
   goToUpgrade() {

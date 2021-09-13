@@ -3,7 +3,7 @@
         <div data-ovh-alert="{{alerts.main}}"></div>
 
         <oui-back-button data-on-click="ctrlSubscribers.goToMailingList()">
-            <span data-translate="common_back"></span>
+            <span data-translate="emails_common_back"></span>
         </oui-back-button>
         <h2
             data-ng-bind-html="(ctrlSubscribers.subscribers.ids.length
@@ -26,7 +26,7 @@
                 <button
                     class="btn btn-default"
                     type="button"
-                    data-translate="common_delete"
+                    data-translate="emails_common_delete"
                     data-ng-click="setAction('email-domain/mailing-list/subscriber/delete/email-domain-mailing-list-subscriber-delete', { mailingList: ctrlSubscribers.mailingList, subscribers: ctrlSubscribers.subscribers.selected })"
                     data-ng-disabled="ctrlSubscribers.subscribers.updating"
                 ></button>
@@ -50,7 +50,7 @@
                                 class="form-control"
                                 id="searchSubscribers"
                                 name="searchSubscribers"
-                                placeholder="{{:: 'navigation_left_search' | translate }}"
+                                placeholder="{{:: 'emails_navigation_left_search' | translate }}"
                                 data-ng-change="ctrlSubscribers.goSearch()"
                                 data-ng-disabled="ctrlSubscribers.loading.subscribers"
                                 data-ng-model="ctrlSubscribers.search.subscribers"

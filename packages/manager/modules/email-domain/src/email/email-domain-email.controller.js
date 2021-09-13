@@ -6,6 +6,18 @@ import isEmpty from 'lodash/isEmpty';
 import round from 'lodash/round';
 import punycode from 'punycode';
 
+const emailsConfigurationGuides = {
+  DE: 'https://www.ovh.de/g1474.allgemeine-informationen-ovh-webhosting-mails',
+  ES: 'https://www.ovh.es/g1474.correo-alojamiento-compartido-ovh',
+  FI: 'https://www.ovh-hosting.fi/g1474.yleista-ovh-webhotellit-sahkopostit',
+  FR: 'https://docs.ovh.com/fr/fr/web/emails/',
+  GB: 'https://www.ovh.co.uk/g1474.ovh-mails-general-use',
+  IT: 'https://www.ovh.it/g1474.info-email-condivise-ovh',
+  NL: 'https://www.ovh.nl/g1474.algemene-informatie-ovh-webhosting-emails',
+  PL: 'https://www.ovh.pl/g1474.emaile-na-hostingu-www-ovh',
+  PT: 'https://www.ovh.pt/g1474.generalidades-mails-partilhados-ovh',
+};
+
 export default class EmailDomainEmailCtrl {
   /* @ngInject */
   constructor(
@@ -17,6 +29,7 @@ export default class EmailDomainEmailCtrl {
     $window,
     Alerter,
     constants,
+    coreConfig,
     goToAccountMigration,
     goToAcl,
     goToFilter,
@@ -35,6 +48,7 @@ export default class EmailDomainEmailCtrl {
 
     this.Alerter = Alerter;
     this.constants = constants;
+    this.coreConfig = coreConfig;
     this.goToAccountMigration = goToAccountMigration;
     this.goToAcl = goToAcl;
     this.goToFilter = goToFilter;
@@ -59,17 +73,11 @@ export default class EmailDomainEmailCtrl {
     this.works = {};
     this.statusWorksDone = ['closed', 'finished'];
 
-    this.WucUser.getUrlOf('guides')
-      .then((guides) => {
-        if (guides != null) {
-          this.$scope.guide = guides.emailsConfiguration;
-          this.$scope.guides = guides;
-        }
-      })
-      .catch(() => {
-        this.$scope.guide = null;
-        this.$scope.guides = null;
-      });
+    this.$scope.guide = get(
+      emailsConfigurationGuides,
+      this.coreConfig.getUser().ovhSubsidiary,
+      emailsConfigurationGuides.FR,
+    );
 
     this.$scope.$on('hosting.tabs.emails.refresh', () =>
       this.refreshAllInfos(true),
@@ -83,8 +91,6 @@ export default class EmailDomainEmailCtrl {
 
     this.$q
       .all({
-        webMailUrl: this.WucUser.getUrlOf('domainWebmailUrl'),
-        webOMMUrl: this.WucUser.getUrlOf('domainOMMUrl'),
         user: this.WucUser.getUser(),
         serviceInfos: this.WucEmails.getServiceInfos(
           this.$stateParams.productId,
@@ -93,27 +99,21 @@ export default class EmailDomainEmailCtrl {
         quotas: this.WucEmails.getQuotas(this.$stateParams.productId),
         summary: this.WucEmails.getSummary(this.$stateParams.productId),
       })
-      .then(
-        ({
-          webMailUrl,
-          webOMMUrl,
-          user,
-          serviceInfos,
-          allDomains,
-          quotas,
-          summary,
-        }) => {
-          this.webMailUrl = webMailUrl;
-          this.webOMMUrl = webOMMUrl;
-          this.delegationsIsAvailable = includes(
-            [serviceInfos.contactTech, serviceInfos.contactAdmin],
-            user.nichandle,
-          );
-          this.domains = allDomains;
-          this.quotas = quotas;
-          this.summary = summary;
-        },
-      )
+      .then(({ user, serviceInfos, allDomains, quotas, summary }) => {
+        this.webMailUrl = this.coreConfig.isRegion('EU')
+          ? 'https://mail.ovh.net/'
+          : null;
+        this.webOMMUrl = this.coreConfig.isRegion('EU')
+          ? 'https://omm.ovh.net/'
+          : null;
+        this.delegationsIsAvailable = includes(
+          [serviceInfos.contactTech, serviceInfos.contactAdmin],
+          user.nichandle,
+        );
+        this.domains = allDomains;
+        this.quotas = quotas;
+        this.summary = summary;
+      })
       .then(() => this.ovhUserPref.getValue('WEB_EMAILS'))
       .then((userPreferences) => {
         this.userPreferences = userPreferences;
