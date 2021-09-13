@@ -1,3 +1,12 @@
+## [8.3.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.3.0...@ovh-ux/ng-ovh-payment-method@8.3.1) (2021-09-13)
+
+
+### Bug Fixes
+
+* **adyen:** fix parse of special chars ([cb562e3](https://github.com/ovh/manager/commit/cb562e329a1735809cb546d722b641bdd190dcd8))
+
+
+
 # [8.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.2.1...@ovh-ux/ng-ovh-payment-method@8.3.0) (2021-09-07)
 
 
