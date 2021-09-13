@@ -3,10 +3,11 @@ import template from './template.html';
 
 export default {
   bindings: {
-    currentActiveLink: '<',
-    serviceName: '<',
-    nodeId: '<',
-    node: '<',
+    server: '<',
+    goBack: '<',
+    goToOsInstallOvh: '<',
+    goToOsInstallGabarit: '<',
+    goToOsInstallImage: '<',
   },
   controller,
   template,

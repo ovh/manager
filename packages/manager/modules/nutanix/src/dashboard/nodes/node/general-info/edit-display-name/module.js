@@ -1,25 +1,24 @@
 import angular from 'angular';
-import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
+import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
-import { OnboardingLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import component from './component';
 import routing from './routing';
 
-const moduleName = 'ovhManagerNutanixOnboarding';
+const moduleName = 'ovhManagerNutanixNodeGeneralInfoEditDisplayName';
 
 angular
   .module(moduleName, [
     'oui',
-    'ovhManagerCore',
     'pascalprecht.translate',
+    'ngTranslateAsyncLoader',
+    'ngUiRouterBreadcrumb',
     'ui.router',
-    OnboardingLayoutHelper,
   ])
   .config(routing)
-  .component('nutanixOnboarding', component)
+  .component('nutanixNodeGeneralInfoEditDisplayName', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
