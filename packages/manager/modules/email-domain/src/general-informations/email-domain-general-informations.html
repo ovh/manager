@@ -84,7 +84,7 @@
         </div>
         <div class="col-sm-4 mb-5">
             <oui-tile
-                data-heading="{{ ::'common_plan' | translate }}"
+                data-heading="{{ ::'emails_common_plan' | translate }}"
                 data-loading="ctrlTabGeneralInformations.loading.domain || ctrlTabGeneralInformations.loading.serviceInfos || ctrlTabGeneralInformations.loading.urls || ctrlTabGeneralInformations.loading.serviceDetails"
                 class="h-100"
             >
@@ -101,13 +101,13 @@
                             data-on-click="ctrlTabGeneralInformations.goToUpgrade()"
                         >
                             <span
-                                data-translate="common_upgrade_account"
+                                data-translate="emails_common_upgrade_account"
                             ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
                 <oui-tile-definition
-                    data-term="{{ ::'contacts_management'|translate }}"
+                    data-term="{{ ::'emails_contacts_management'|translate }}"
                 >
                     <oui-tile-description>
                         <p class="mb-0">
@@ -146,26 +146,28 @@
                             data-href="{{ ::ctrlTabGeneralInformations.urls.manageContacts }}"
                         >
                             <span
-                                data-translate="common_manage_contacts"
+                                data-translate="emails_common_manage_contacts"
                             ></span>
                         </oui-action-menu-item>
                         <oui-action-menu-item
                             data-href="{{ ::ctrlTabGeneralInformations.urls.changeOwner }}"
                             data-external
                         >
-                            <span data-translate="core_change_owner"></span>
+                            <span
+                                data-translate="emails_core_change_owner"
+                            ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
                 <oui-tile-definition
-                    data-term="{{ ::'common_creation_date' | translate }}"
+                    data-term="{{ ::'emails_common_creation_date' | translate }}"
                     data-description="{{ ::ctrlTabGeneralInformations.domain.creationDate | date : 'mediumDate' }}"
                 >
                     <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
                             data-href="{{ ::ctrlTabGeneralInformations.urls.delete }}"
                         >
-                            <span data-translate="common_delete"></span>
+                            <span data-translate="emails_common_delete"></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -176,7 +178,7 @@
         <div class="col-md-4 col-md-offset-8 col-sm-12">
             <div
                 data-wuc-guides
-                data-wuc-guides-title="'guide_subtitle' | translate"
+                data-wuc-guides-title="'emails_guide_subtitle' | translate"
                 data-wuc-guides-list="'emailsInfos'"
                 data-tr="tr"
             ></div>

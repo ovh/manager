@@ -6,6 +6,36 @@ import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import uniq from 'lodash/uniq';
 
+const allGuides = {
+  EU: {
+    CZ: 'https://docs.ovh.com/cz/cs/',
+    DE: 'https://docs.ovh.com/de/de/',
+    ES: 'https://docs.ovh.com/es/web/',
+    FI: 'https://docs.ovh.com/fi/fi/',
+    FR: 'https://docs.ovh.com/fr/web/',
+    GB: 'https://docs.ovh.com/gb/en/',
+    IT: 'https://docs.ovh.com/it/it/',
+    LT: 'https://docs.ovh.com/lt/lt/',
+    NL: 'https://docs.ovh.com/nl/nl/',
+    PL: 'https://docs.ovh.com/pl/pl/',
+    PT: 'https://docs.ovh.com/pt/pt/',
+  },
+  CA: {
+    ASIA: 'https://docs.ovh.com/asia/en/',
+    AU: 'https://docs.ovh.com/au/en/',
+    CA: 'https://docs.ovh.com/ca/en/',
+    QC: 'https://docs.ovh.com/ca/fr/',
+    SG: 'https://docs.ovh.com/sg/en/',
+    WE: 'https://docs.ovh.com/ca/en/',
+    WS: 'https://docs.ovh.com/us/es/',
+  },
+};
+
+const emailsOrderGuides = {
+  FR: 'https://www.ovh.com/emails/',
+  PL: 'https://www.ovh.pl/emaile/',
+};
+
 export default class EmailsMigrateAccountCtrl {
   /* @ngInject */
   constructor(
@@ -13,6 +43,7 @@ export default class EmailsMigrateAccountCtrl {
     $stateParams,
     $q,
     $translate,
+    coreConfig,
     Alerter,
     goToEmail,
     WucEmails,
@@ -22,6 +53,7 @@ export default class EmailsMigrateAccountCtrl {
     this.$stateParams = $stateParams;
     this.$q = $q;
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.Alerter = Alerter;
     this.goToEmail = goToEmail;
     this.WucEmails = WucEmails;
@@ -56,12 +88,29 @@ export default class EmailsMigrateAccountCtrl {
     this.$scope.alerts.migrate = 'domain_alert_migrate';
     this.$scope.migrateAccount = () => this.migrateAccount();
 
-    this.WucUser.getUrlOf('guides').then((guides) => {
-      this.allGuides = get(guides, 'all');
-    });
-    this.WucUser.getUrlOf('emailsOrder').then((url) => {
-      this.emailsOrder = url;
-    });
+    this.allGuides = null;
+    if (this.coreConfig.isRegion('EU')) {
+      this.allGuides = get(
+        allGuides.EU,
+        this.coreConfig.getUser().ovhSubsidiary,
+        allGuides.EU.FR,
+      );
+    } else if (this.coreConfig.isRegion('CA')) {
+      this.allGuides = get(
+        allGuides.CA,
+        this.coreConfig.getUser().ovhSubsidiary,
+        allGuides.CA.CA,
+      );
+    }
+
+    this.emailsOrder = null;
+    if (this.coreConfig.isRegion('EU')) {
+      this.emailsOrder = get(
+        emailsOrderGuides,
+        this.coreConfig.getUser().ovhSubsidiary,
+        emailsOrderGuides.FR,
+      );
+    }
 
     this.getServiceTypes();
   }
