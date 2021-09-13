@@ -6,10 +6,20 @@ export default {
       origin: window.location.origin,
     });
     // base64 the adyen component data
-    const formData = btoa(resultStr);
+    const formData = this.convertToBase64(resultStr);
+
     return {
       formData,
     };
+  },
+
+  convertToBase64: (stringToConvert) => {
+    return btoa(
+      encodeURIComponent(stringToConvert).replace(
+        /%([0-9A-F]{2})/g,
+        (match, p1) => String.fromCharCode(`0x${p1}`),
+      ),
+    );
   },
 
   hasCallbackUrlParams: (callbackUrlParams) => {
