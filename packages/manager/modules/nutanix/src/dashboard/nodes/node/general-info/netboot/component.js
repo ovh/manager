@@ -1,13 +1,12 @@
-import controller from './controller';
 import template from './template.html';
 
 export default {
   bindings: {
-    currentActiveLink: '<',
+    server: '<',
     serviceName: '<',
-    nodeId: '<',
-    node: '<',
+    goBack: '<',
+    handleError: '<',
+    handleSuccess: '<',
   },
-  controller,
   template,
 };

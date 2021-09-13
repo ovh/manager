@@ -1,0 +1,31 @@
+<form
+    name="updateDisplayNameForm"
+    novalidate
+    data-ng-submit="$ctrl.onUpdateDisplayNameFormSubmit()"
+>
+    <oui-modal
+        data-primary-label="{{($ctrl.actionEnabled ? 'nutanix_node_server_displaname_change' : 'nutanix_node_server_displaname_Ok') | translate }}"
+        data-secondary-label="{{$ctrl.actionEnabled ? ('nutanix_node_server_displaname_cancel' | translate) : '' }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.loading.init || $ctrl.loading.update"
+        data-type="{{ !$ctrl.actionEnabled ? 'warning' : '' }}"
+        data-heading="{{ :: 'nutanix_node_server_displaname_edit_title' | translate }}"
+    >
+        <div data-ng-if="$ctrl.actionEnabled">
+            <p data-translate="nutanix_node_server_displaname_edit_help"></p>
+            <oui-field
+                data-label="{{:: 'nutanix_node_server_displaname_edit_displayname_label' | translate }}"
+            >
+                <input
+                    class="oui-input"
+                    type="text"
+                    name="display-name"
+                    id="update-display-name"
+                    data-ng-model="$ctrl.displayName"
+                    required
+                />
+            </oui-field>
+        </div>
+    </oui-modal>
+</form>

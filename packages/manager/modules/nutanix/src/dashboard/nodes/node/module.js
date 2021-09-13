@@ -10,6 +10,8 @@ import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import component from './component';
 import routing from './routing';
 import ipmi from './ipmi';
+import generalInfo from './general-info';
+import editDisplayName from './general-info/edit-display-name';
 
 const moduleName = 'ovhManagerNutanixNode';
 
@@ -23,6 +25,8 @@ angular
     ngOvhUtils,
     ngUiRouterBreadcrumb,
     ipmi,
+    generalInfo,
+    editDisplayName,
   ])
   .config(routing)
   .component('nutanixNode', component)

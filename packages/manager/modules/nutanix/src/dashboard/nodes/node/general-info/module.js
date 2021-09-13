@@ -1,33 +1,37 @@
 import angular from 'angular';
-import 'angular-ui-bootstrap';
-
-import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
-import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import {
+  serverGeneralInfo,
+  serverTechnicalDetails,
+} from '@ovh-ux/manager-bm-server-components';
 
-import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-
+import component from './component';
 import routing from './routing';
 
-const moduleName = 'ovhManagerNutanix';
+import install from './install';
+import netboot from './netboot';
+
+const moduleName = 'ovhManagerNutanixNodeGeneralInfo';
 
 angular
   .module(moduleName, [
-    'ovhManagerCore',
-    'pascalprecht.translate',
-    'ui.router',
-    'ngTranslateAsyncLoader',
     'oui',
-    'ui.bootstrap',
+    'pascalprecht.translate',
+    'ngTranslateAsyncLoader',
+    'ngUiRouterBreadcrumb',
+    'ui.router',
+    install,
+    netboot,
     ngOvhUtils,
-    ngUiRouterBreadcrumb,
-    ListLayoutHelper.moduleName,
+    serverGeneralInfo,
+    serverTechnicalDetails,
   ])
   .config(routing)
+  .component('nutanixNodeGeneralInfo', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
