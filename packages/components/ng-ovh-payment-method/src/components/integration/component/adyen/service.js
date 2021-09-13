@@ -17,6 +17,14 @@ export default {
   },
 
   parseFormSessionId: (formSessionId) => {
-    return JSON.parse(atob(formSessionId));
+    const decodeBase64String = atob(formSessionId);
+    const decodeURIString = decodeURIComponent(
+      decodeBase64String
+        .split('')
+        .map((c) => `%${`00${c.charCodeAt(0).toString(16)}`.slice(-2)}`)
+        .join(''),
+    );
+
+    return JSON.parse(decodeURIString);
   },
 };
