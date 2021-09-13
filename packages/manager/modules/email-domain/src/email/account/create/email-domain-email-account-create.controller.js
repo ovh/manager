@@ -3,6 +3,8 @@ import get from 'lodash/get';
 import trim from 'lodash/trim';
 import punycode from 'punycode';
 
+import guides from './email-domain-email-account-guides';
+
 export default class EmailsCreateAccountCtrl {
   /* @ngInject */
   constructor(
@@ -10,6 +12,7 @@ export default class EmailsCreateAccountCtrl {
     $q,
     $stateParams,
     $translate,
+    coreConfig,
     Alerter,
     WucEmails,
     WucUser,
@@ -18,6 +21,7 @@ export default class EmailsCreateAccountCtrl {
     this.$stateParams = $stateParams;
     this.$q = $q;
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.Alerter = Alerter;
     this.WucEmails = WucEmails;
     this.WucUser = WucUser;
@@ -84,77 +88,122 @@ export default class EmailsCreateAccountCtrl {
 
     this.$scope.createAccount = () => this.createAccount();
 
-    this.WucUser.getUrlOf('guides').then((guides) => {
+    const subsidiary = this.coreConfig.getUser().ovhSubsidiary;
+
+    if (this.coreConfig.isRegion('EU')) {
       this.createGuide(
         'MAC',
         'El capitan',
-        get(guides, 'emailsConfigurationMacElCapitain'),
+        get(
+          guides,
+          `${subsidiary}.emailsConfigurationMacElCapitain`,
+          guides.FR.emailsConfigurationMacElCapitain,
+        ),
         'assets/images/logos/iOS9.png',
       );
       this.createGuide(
         'MAC',
         'Mavericks / Yosemite',
-        get(guides, 'emailsConfigurationMacMavericksAndYosemite'),
+        get(
+          guides,
+          `${subsidiary}.emailsConfigurationMacMavericksAndYosemite`,
+          guides.FR.emailsConfigurationMacMavericksAndYosemite,
+        ),
         'assets/images/logos/iOS9.png',
       );
       this.createGuide(
         'MAC',
         'Mountain Lion',
-        get(guides, 'emailsConfigurationMacMountainLion'),
+        get(
+          guides,
+          `${subsidiary}.emailsConfigurationMacMountainLion`,
+          guides.FR.emailsConfigurationMacMountainLion,
+        ),
         'assets/images/logos/iOS9.png',
       );
       this.createGuide(
         'OUTLOOK',
         '2016',
-        get(guides, 'emailsConfigurationOutlook2016'),
+        get(
+          guides,
+          `${subsidiary}.emailsConfigurationOutlook2016`,
+          guides.FR.emailsConfigurationOutlook2016,
+        ),
         'assets/images/logos/outlook2013.png',
       );
       this.createGuide(
         'OUTLOOK',
         '2013',
-        get(guides, 'emailsConfigurationOutlook2013'),
+        get(
+          guides,
+          `${subsidiary}.emailsConfigurationOutlook2013`,
+          guides.FR.emailsConfigurationOutlook2013,
+        ),
         'assets/images/logos/outlook2013.png',
       );
       this.createGuide(
         'OUTLOOK',
         '2010',
-        get(guides, 'emailsConfigurationOutlook2010'),
+        get(
+          guides,
+          `${subsidiary}.emailsConfigurationOutlook2010`,
+          guides.FR.emailsConfigurationOutlook2010,
+        ),
         'assets/images/logos/outlook2013.png',
       );
       this.createGuide(
         'OUTLOOK',
         '2007',
-        get(guides, 'emailsConfigurationOutlook2007'),
+        get(
+          guides,
+          `${subsidiary}.emailsConfigurationOutlook2007`,
+          guides.FR.emailsConfigurationOutlook2007,
+        ),
         'assets/images/logos/outlook2013.png',
       );
       this.createGuide(
         'IPHONE',
         '',
-        get(guides, 'emailsConfigurationAuto'),
+        get(
+          guides,
+          `${subsidiary}.emailsConfigurationAuto`,
+          guides.FR.emailsConfigurationAuto,
+        ),
         'assets/images/logos/iOS9.png',
       );
       this.createGuide(
         'IPHONE',
         '9.1',
-        get(guides, 'emailsConfigurationIos9'),
+        get(
+          guides,
+          `${subsidiary}.emailsConfigurationIos9`,
+          guides.FR.emailsConfigurationIos9,
+        ),
         'assets/images/logos/iOS9.png',
       );
       this.createGuide(
         'ANDROID',
         '6',
-        get(guides, 'emailsConfigurationAndroid6'),
+        get(
+          guides,
+          `${subsidiary}.emailsConfigurationAndroid6`,
+          guides.FR.emailsConfigurationAndroid6,
+        ),
         'assets/images/logos/android.jpg',
       );
       this.createGuide(
         'OTHER',
         'ALL',
-        get(guides, 'emailsConfiguration'),
+        get(
+          guides,
+          `${subsidiary}.emailsConfiguration`,
+          guides.FR.emailsConfiguration,
+        ),
         'assets/images/logos/OVH-logo.png',
       );
+    }
 
-      this.setGuideByName(this.currentGuideName);
-    });
-
+    this.setGuideByName(this.currentGuideName);
     this.getAccountSize();
   }
 

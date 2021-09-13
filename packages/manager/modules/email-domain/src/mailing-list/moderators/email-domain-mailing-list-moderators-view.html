@@ -3,7 +3,7 @@
         <div data-ovh-alert="{{alerts.main}}"></div>
 
         <oui-back-button data-on-click="ctrlModerators.goToMailingList()">
-            <span data-translate="common_back"></span>
+            <span data-translate="emails_common_back"></span>
         </oui-back-button>
         <h2>
             <span
@@ -28,7 +28,7 @@
                 <button
                     class="btn btn-default"
                     type="button"
-                    data-translate="common_delete"
+                    data-translate="emails_common_delete"
                     data-ng-click="setAction('email-domain/mailing-list/moderator/delete/email-domain-mailing-list-moderator-delete', { mailingList: ctrlModerators.mailingList, moderators: ctrlModerators.moderators.selected })"
                     data-ng-disabled="ctrlModerators.moderators.updating"
                 ></button>
@@ -52,7 +52,7 @@
                                 class="form-control"
                                 id="searchModerators"
                                 name="searchModerators"
-                                placeholder="{{:: 'navigation_left_search' | translate }}"
+                                placeholder="{{:: 'emails_navigation_left_search' | translate }}"
                                 data-ng-change="ctrlModerators.goSearch()"
                                 data-ng-disabled="ctrlModerators.loading.moderators"
                                 data-ng-model="ctrlModerators.search.moderators"

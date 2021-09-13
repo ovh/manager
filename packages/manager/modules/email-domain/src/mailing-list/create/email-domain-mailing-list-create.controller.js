@@ -1,4 +1,14 @@
 import indexOf from 'lodash/indexOf';
+import get from 'lodash/get';
+
+const emailsCreateMailingListGuide = {
+  FR:
+    'https://www.ovh.com/fr/g1596.mail_mutualise_guide_dutilisation_mailing-list',
+  IT: 'https://www.ovh.it/g1596.mail_mutualise_guide_dutilisation_mailing-list',
+  LT: 'https://www.ovh.lt/g1596.mail_mutualise_guide_dutilisation_mailing-list',
+  PL: 'https://www.ovh.pl/g1596.mail_mutualise_guide_dutilisation_mailing-list',
+  PT: 'https://www.ovh.pt/g1596.mail_mutualise_guide_dutilisation_mailing-list',
+};
 
 export default class MailingListsCreateCtrl {
   /* @ngInject */
@@ -7,6 +17,7 @@ export default class MailingListsCreateCtrl {
     $q,
     $stateParams,
     $translate,
+    coreConfig,
     Alerter,
     MailingLists,
     WucUser,
@@ -15,6 +26,7 @@ export default class MailingListsCreateCtrl {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.Alerter = Alerter;
     this.MailingLists = MailingLists;
     this.WucUser = WucUser;
@@ -34,7 +46,6 @@ export default class MailingListsCreateCtrl {
     };
     this.loading = {
       languages: false,
-      guides: false,
     };
     this.model = {
       mlModerationMsg: null,
@@ -116,19 +127,15 @@ export default class MailingListsCreateCtrl {
   //---------
 
   summary() {
-    this.loading.guides = true;
-    this.WucUser.getUrlOf('guides')
-      .then((guides) => {
-        if (guides && guides.emailsCreateMailingListGuide) {
-          this.guide = guides.emailsCreateMailingListGuide;
-        }
-      })
-      .catch(() => {
-        this.guide = null;
-      })
-      .finally(() => {
-        this.loading.guides = false;
-      });
+    this.guide = null;
+
+    if (this.coreConfig.isRegion('EU')) {
+      this.guide = get(
+        emailsCreateMailingListGuide,
+        this.coreConfig.getUser().ovhSubsidiary,
+        emailsCreateMailingListGuide.FR,
+      );
+    }
   }
 
   //------------------------

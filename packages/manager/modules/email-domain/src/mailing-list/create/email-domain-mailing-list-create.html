@@ -25,7 +25,7 @@
                 <form class="form-horizontal" name="ctrl.createMailingListForm">
                     <p>
                         <small class="text-danger">*</small>
-                        <small data-translate="required_fields"></small>
+                        <small data-translate="emails_required_fields"></small>
                     </p>
 
                     <div
@@ -231,7 +231,7 @@
                                     <option
                                         value
                                         disabled
-                                        data-translate="select_placeholder"
+                                        data-translate="emails_select_placeholder"
                                     ></option>
                                 </select>
                                 <span
@@ -339,84 +339,75 @@
         </div>
 
         <div data-wizard-step data-wizard-step-on-load="summary">
-            <oui-spinner data-ng-if="ctrl.loading.guides"></oui-spinner>
-
-            <div data-ng-if="!ctrl.loading.guides">
-                <p
-                    data-translate="mailing_list_tab_modal_create_list_validate_title"
-                ></p>
-                <dl class="dl-horizontal dl-lg">
-                    <dt
-                        data-translate="mailing_list_tab_modal_create_list_validate_name"
-                    ></dt>
-                    <dd
-                        data-ng-bind="ctrl.model.mlName + '@' + ctrl.domain"
-                    ></dd>
-                    <dt
-                        data-translate="mailing_list_tab_modal_create_list_owner"
-                    ></dt>
-                    <dd data-ng-bind="ctrl.model.mlOwner"></dd>
-                    <dt
-                        data-translate="mailing_list_tab_modal_create_list_language"
-                    ></dt>
-                    <dd
-                        data-ng-bind="'language_' + ctrl.model.mlLanguage | translate"
-                    ></dd>
-                    <dt
-                        data-translate="mailing_list_tab_modal_create_list_validate_options_selected"
-                    ></dt>
-                    <dd
-                        data-translate="mailing_list_tab_modal_update_list_reply_to_list"
-                        data-ng-if="ctrl.model.replyTo === ctrl.constants.MAILING_LIST"
-                    ></dd>
-                    <dd
-                        data-translate="mailing_list_tab_modal_update_list_reply_to_last_user"
-                        data-ng-if="ctrl.model.replyTo === ctrl.constants.LAST_USER"
-                    ></dd>
-                    <dd
-                        data-ng-if="ctrl.replyToSelector === ctrl.constants.REPLY_TO_EMAIL"
-                    >
-                        <span
-                            data-translate="mailing_list_tab_modal_update_list_reply_to_email"
-                        ></span>
-                        (<strong data-ng-bind="ctrl.model.replyTo"></strong>)
-                    </dd>
-                    <dd
-                        data-translate="mailing_list_tab_modal_create_list_moderator_all_messages"
-                        data-ng-if="ctrl.model.mlModerationMsg"
-                    ></dd>
-                    <dd
-                        data-translate="mailing_list_tab_modal_create_list_users_post_only"
-                        data-ng-if="!ctrl.model.mlModerationMsg && ctrl.model.mlModerationMsg !== null"
-                    ></dd>
-                    <dd
-                        data-translate="mailing_list_tab_modal_create_list_no_moderation"
-                        data-ng-if="ctrl.model.mlModerationMsg === null"
-                    ></dd>
-                    <dd
-                        data-translate="mailing_list_tab_modal_create_list_only_subscribers_moderator"
-                        data-ng-if="ctrl.model.mlSubscribersModeration"
-                    ></dd>
-                </dl>
-                <p class="mt-4" data-ng-if="ctrl.guide">
+            <p
+                data-translate="mailing_list_tab_modal_create_list_validate_title"
+            ></p>
+            <dl class="dl-horizontal dl-lg">
+                <dt
+                    data-translate="mailing_list_tab_modal_create_list_validate_name"
+                ></dt>
+                <dd data-ng-bind="ctrl.model.mlName + '@' + ctrl.domain"></dd>
+                <dt
+                    data-translate="mailing_list_tab_modal_create_list_owner"
+                ></dt>
+                <dd data-ng-bind="ctrl.model.mlOwner"></dd>
+                <dt
+                    data-translate="mailing_list_tab_modal_create_list_language"
+                ></dt>
+                <dd
+                    data-ng-bind="'language_' + ctrl.model.mlLanguage | translate"
+                ></dd>
+                <dt
+                    data-translate="mailing_list_tab_modal_create_list_validate_options_selected"
+                ></dt>
+                <dd
+                    data-translate="mailing_list_tab_modal_update_list_reply_to_list"
+                    data-ng-if="ctrl.model.replyTo === ctrl.constants.MAILING_LIST"
+                ></dd>
+                <dd
+                    data-translate="mailing_list_tab_modal_update_list_reply_to_last_user"
+                    data-ng-if="ctrl.model.replyTo === ctrl.constants.LAST_USER"
+                ></dd>
+                <dd
+                    data-ng-if="ctrl.replyToSelector === ctrl.constants.REPLY_TO_EMAIL"
+                >
                     <span
-                        data-translate="mailing_list_tab_modal_create_list_validate_help"
+                        data-translate="mailing_list_tab_modal_update_list_reply_to_email"
                     ></span>
-                    <a
-                        data-ng-href="{{guide}}"
-                        title="{{:: 'mailing_list_tab_modal_create_list_validate_help_link_title' | translate }} ({{:: 'core_new_window' | translate }})"
-                        target="_blank"
-                    >
-                        <span
-                            data-translate="mailing_list_tab_modal_create_list_validate_help_link"
-                        ></span>
-                        <span
-                            class="fa fa-external-link"
-                            aria-hidden="true"
-                        ></span>
-                    </a>
-                </p>
-            </div>
+                    (<strong data-ng-bind="ctrl.model.replyTo"></strong>)
+                </dd>
+                <dd
+                    data-translate="mailing_list_tab_modal_create_list_moderator_all_messages"
+                    data-ng-if="ctrl.model.mlModerationMsg"
+                ></dd>
+                <dd
+                    data-translate="mailing_list_tab_modal_create_list_users_post_only"
+                    data-ng-if="!ctrl.model.mlModerationMsg && ctrl.model.mlModerationMsg !== null"
+                ></dd>
+                <dd
+                    data-translate="mailing_list_tab_modal_create_list_no_moderation"
+                    data-ng-if="ctrl.model.mlModerationMsg === null"
+                ></dd>
+                <dd
+                    data-translate="mailing_list_tab_modal_create_list_only_subscribers_moderator"
+                    data-ng-if="ctrl.model.mlSubscribersModeration"
+                ></dd>
+            </dl>
+            <p class="mt-4" data-ng-if="ctrl.guide">
+                <span
+                    data-translate="mailing_list_tab_modal_create_list_validate_help"
+                ></span>
+                <a
+                    data-ng-href="{{ ctrl.guide }}"
+                    title="{{:: 'mailing_list_tab_modal_create_list_validate_help_link_title' | translate }} ({{:: 'core_new_window' | translate }})"
+                    target="_blank"
+                >
+                    <span
+                        data-translate="mailing_list_tab_modal_create_list_validate_help_link"
+                    ></span>
+                    <span class="fa fa-external-link" aria-hidden="true"></span>
+                </a>
+            </p>
         </div>
     </div>
 </div>

@@ -1,12 +1,46 @@
 import get from 'lodash/get';
 import punycode from 'punycode';
 
+const exchangeOrderGuides = {
+  EU: {
+    CZ: 'https://www.ovh.cz/emails/hosted-exchange-2013/',
+    DE: 'https://www.ovh.de/emails/hosted-exchange/',
+    ES: 'https://www.ovh.es/emails/hosted-exchange/',
+    FI: 'https://www.ovh-hosting.fi/sahkopostit/hosted-exchange/',
+    FR: 'https://www.ovh.com/fr/emails/hosted-exchange/',
+    GB: 'https://www.ovh.co.uk/emails/hosted-exchange/',
+    IT: 'https://www.ovh.it/emails/hosted-exchange/',
+    LT: 'https://www.ovh.lt/El_pastas/hosted-exchange/',
+    NL: 'https://www.ovh.nl/emails/hosted-exchange/',
+    PL: 'https://www.ovh.pl/emaile/hosted-exchange/',
+    PT: 'https://www.ovh.pt/emails/hosted-exchange-2013/',
+  },
+  CA: {
+    ASIA: 'https://www.ovh.com/us/emails/hosted-exchange/',
+    AU: 'https://www.ovh.com/us/emails/hosted-exchange/',
+    CA: 'https://www.ovh.com/ca/en/emails/hosted-exchange/',
+    QC: 'https://www.ovh.com/ca/fr/emails/hosted-exchange/',
+    SG: 'https://www.ovh.com/us/emails/hosted-exchange/',
+    WE: 'https://www.ovh.com/us/emails/hosted-exchange/',
+    WS: 'https://www.ovh.com/us/emails/hosted-exchange/',
+  },
+};
+
 export default class EmailsUpdateAccountCtrl {
   /* @ngInject */
-  constructor($scope, $stateParams, $translate, Alerter, WucEmails, WucUser) {
+  constructor(
+    $scope,
+    $stateParams,
+    $translate,
+    coreConfig,
+    Alerter,
+    WucEmails,
+    WucUser,
+  ) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.Alerter = Alerter;
     this.WucEmails = WucEmails;
     this.WucUser = WucUser;
@@ -28,20 +62,26 @@ export default class EmailsUpdateAccountCtrl {
 
     this.$scope.updateAccount = () => this.updateAccount();
 
-    this.WucUser.getUrlOf('exchangeOrder')
-      .then((exchangeOrder) => {
-        this.exchangeOrderUrl = exchangeOrder;
-      })
-      .catch(() => {
-        this.exchangeOrderUrl = null;
-      });
-    this.WucUser.getUrlOf('guides')
-      .then((guides) => {
-        this.guideMigrate = get(guides, 'emailsMigrateToExchange');
-      })
-      .catch(() => {
-        this.guideMigrate = null;
-      });
+    this.exchangeOrderUrl = null;
+    if (this.coreConfig.isRegion('EU')) {
+      this.exchangeOrderUrl = get(
+        exchangeOrderGuides.EU,
+        this.coreConfig.getUser().ovhSubsidiary,
+        exchangeOrderGuides.EU.FR,
+      );
+    } else if (this.coreConfig.isRegion('CA')) {
+      this.exchangeOrderUrl = get(
+        exchangeOrderGuides.CA,
+        this.coreConfig.getUser().ovhSubsidiary,
+        exchangeOrderGuides.CA.CA,
+      );
+    }
+
+    this.guideMigrate = null;
+    if (this.coreConfig.isRegion('EU')) {
+      this.guideMigrate =
+        'https://docs.ovh.com/fr/microsoft-collaborative-solutions/migration-adresse-e-mail-mutualisee-vers-exchange/';
+    }
 
     this.getAccountSize();
   }
