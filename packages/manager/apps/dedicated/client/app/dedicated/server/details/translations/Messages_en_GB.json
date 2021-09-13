@@ -879,8 +879,8 @@
   "select_bandwidth_type_label": "Select a solution",
   "select_bandwidth_vrack_type_label": "Select a solution",
   "select_bandwidth_plan_summary": "Order summary",
-  "plan_bandwidth": "{{bandwidth}} unlimited and guaranteed",
-  "plan_vrack-bandwidth": "{{bandwidth}} Gbit/s unlimited and guaranteed - Option vRack",
+  "plan_bandwidth": "{{bandwidth}} Gbit/s unlimited and guaranteed",
+  "plan_vrack-bandwidth": "{{bandwidth}} Gbit/s unlimited and guaranteed - vRack option",
   "plan_price_per_month": "ex. VAT/month",
   "server_order_bandwidth_empty_plans": "Unable to find plans to upgrade",
   "select_traffic_type_label": "Select a solution",
@@ -1197,5 +1197,11 @@
   "server_configuration_no_intervention_activate_success": "On-site intervention is enabled on server {{serverName}}",
   "server_configuration_no_intervention_activate_failed": "An error has occurred enabling on-site interventions on server {{serverName}}",
   "server_configuration_no_intervention_deactivate_success": "On-site intervention is disabled on server {{serverName}}",
-  "server_configuration_no_intervention_deactivate_failed": "An error has occurred disabling on-site interventions on the server {{serverName}}"
+  "server_configuration_no_intervention_deactivate_failed": "An error has occurred disabling on-site interventions on the server {{serverName}}",
+  "plan_bandwidth-1000-adv-gen2": "1Gbit/s unlimited and guaranteed",
+  "plan_bandwidth-2000-adv-gen2": "2Gbit/s unlimited and guaranteed",
+  "plan_bandwidth-3000-adv-gen2": "3Gbit/s unlimited and guaranteed",
+  "plan_bandwidth-4000-adv-gen2": "4Gbit/sunlimited and guaranteed",
+  "plan_bandwidth-5000-adv-gen2": "5Gbit/s unlimited and guaranteed",
+  "plan_bandwidth-6000-adv-gen2": "6Gbit/s unlimited and guaranteed"
 }
