@@ -141,7 +141,8 @@
                 data-translate-values="{
                     serviceName: $ctrl.service.name,
                     renewDate: $ctrl.formattedStartingDate,
-                    engagementEndDate: $ctrl.model.engagement.getEndDate($ctrl.startingDate)
+                    engagementEndDate: $ctrl.model.engagement.getEndDate($ctrl.startingDate),
+                    price: $ctrl.model.engagement.pricing.monthlyPrice.text
                 }"
             ></p>
             <p
