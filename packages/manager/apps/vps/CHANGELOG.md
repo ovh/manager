@@ -1,3 +1,12 @@
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.5.0...@ovh-ux/manager-vps-app@1.6.0) (2021-09-13)
+
+
+### Features
+
+* **vps:** migration of vps 2016 ([#5081](https://github.com/ovh/manager/issues/5081)) ([f5c2294](https://github.com/ovh/manager/commit/f5c22943c58d3f60df38f7e73c38522bbe11545a))
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.4.2...@ovh-ux/manager-vps-app@1.5.0) (2021-08-25)
 
 
