@@ -10,6 +10,7 @@ export default {
     goToReboot: '<',
     goToRebootRescue: '<',
     goToReinstall: '<',
+    isMigrating: '<',
   },
   template,
 };

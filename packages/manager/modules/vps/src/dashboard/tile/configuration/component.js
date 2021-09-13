@@ -14,5 +14,6 @@ export default {
     getUpscaleHref: '<',
     goToUpgrade: '<',
     vpsUpgradeTask: '<',
+    isMigrating: '<',
   },
 };

@@ -9,7 +9,6 @@ import component from './vps-dashboard.component';
 import routing from './vps-dashboard.routing';
 
 import vpsUpgradeTileService from './tile/configuration/upgrade/service';
-import vpsMigrationService from '../migration/vps-migration.service';
 
 import vpsTileStatusItem from './vpsTileStatus/vps-tile-status.component';
 
@@ -25,7 +24,6 @@ import ovhManagerVpsDashboardRebuild from './rebuild';
 import ovhManagerVpsDashboardReinstall from './modal/reinstall';
 import ovhManagerVpsDashboardResiliation from './resiliation';
 import ovhManagerVpsDashboardReverseDns from './modal/reverse-dns';
-import ovhManagerVpsDashboardSchedule from './migration-schedule';
 import ovhManagerVpsDashboardSnapshotDelete from './modal/snapshot-delete';
 import ovhManagerVpsDashboardSnapshotRestore from './modal/snapshot-restore';
 import ovhManagerVpsDashboardSnapshotTake from './modal/snapshot-take';
@@ -34,6 +32,7 @@ import ovhManagerVpsDashboardTerminateOption from './modal/terminate-option';
 import ovhManagerVpsDashboardTile from './tile';
 import vpsStateInfo from './components/vps-state-info';
 import vpsAnnouncementBanner from './components/vps-announcement-banner';
+import ovhManagerVpsDashboardMigrate from './migrate';
 
 const moduleName = 'ovhManagerVpsDashboard';
 
@@ -56,7 +55,6 @@ angular
     ovhManagerVpsDashboardRebootRescue,
     ovhManagerVpsDashboardReinstall,
     ovhManagerVpsDashboardReverseDns,
-    ovhManagerVpsDashboardSchedule,
     ovhManagerVpsDashboardSnapshotDelete,
     ovhManagerVpsDashboardSnapshotRestore,
     ovhManagerVpsDashboardSnapshotTake,
@@ -64,10 +62,10 @@ angular
     ovhManagerVpsDashboardTile,
     vpsStateInfo,
     vpsAnnouncementBanner,
+    ovhManagerVpsDashboardMigrate,
     'ui.router',
   ])
   .service('vpsUpgradeTile', vpsUpgradeTileService)
-  .service('VpsMigrationService', vpsMigrationService)
   .component(component.name, component)
   .component(vpsTileStatusItem.name, vpsTileStatusItem)
   .config(routing)
