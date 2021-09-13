@@ -5,7 +5,7 @@
   "vps_order_additionnal_disk_label": "Dodatkowy dysk {{ size }}",
   "vps_order_additional_disk_select_capacity": "Wybierz rozmiar dodatkowego dysku dla Twojego serwera VPS. Będzie on widoczny jako drugi dysk z poziomu systemu operacyjnego.",
   "vps_order_additional_disk_step2": "Dodatkowy dysk zostanie dodany do Twojego serwera i będzie aktywny do daty wygaśnięcia serwera VPS. Następnie będzie odnawiany wraz z serwerem VPS.",
-  "vps_order_additional_disk_select_capacity_price_tax_free": "{{price}} netto",
+  "vps_order_additional_disk_select_capacity_price_tax_free": "{{ price }} netto/{{duration}}",
   "vps_order_additional_disk_totalHT": "Cena netto:",
   "vps_order_additional_disk_totalTTC": "Cena brutto:",
   "vps_order_additional_disk_option": "Opcja:",
@@ -15,5 +15,7 @@
   "vps_order_additional_disk_fail": "Wystąpił błąd podczas zamawiania dodatkowego dysku.",
   "vps_order_additional_disk_load_error": "Wystąpił błąd podczas ładowania dostępnych dysków dodatkowych.",
   "vps_order_additional_disk_explain": "Po kliknięciu przycisku „Zamów” otworzy się nowa zakładka i zostaniesz przekierowany do interfejsu płatności.",
-  "vps_order_additional_disk_success": "Aby sfinalizować zamówienie, postępuj zgodnie z instrukcjami opisanymi w otwartej zakładce. Jeśli nie otworzy się żadna nowa zakładka, kliknij <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">tutaj</a>."
+  "vps_order_additional_disk_success": "Aby sfinalizować zamówienie, postępuj zgodnie z instrukcjami opisanymi w otwartej zakładce. Jeśli nie otworzy się żadna nowa zakładka, kliknij <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">tutaj</a>.",
+  "vps_order_additional_disk_select_capacity_price_P1M": "miesiąc",
+  "vps_order_additional_disk_select_capacity_price_P1Y": "rok"
 }
