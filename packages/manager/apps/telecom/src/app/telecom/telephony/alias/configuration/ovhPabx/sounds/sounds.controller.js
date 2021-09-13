@@ -70,17 +70,10 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationOvhPab
   };
 
   self.getFeatureType = function $onInit() {
-    if (self.number.feature?.featureType) {
-      switch (self.number.feature.featureType) {
-        case 'cloudIvr':
-          return FEATURES.cloudIvr;
-        case 'contactCenterSolutionExpert':
-          return FEATURES.contactCenterSolutionExpert;
-        default:
-          return null;
-      }
-    }
-    return null;
+    return (
+      FEATURES[self.number.feature.featureType] ||
+      self.number.feature.featureType
+    );
   };
 
   /* -----  End of INITIALIZATION  ------*/
