@@ -4,6 +4,7 @@ import indexOf from 'lodash/indexOf';
 export default class DialplanExtensionRuleCtrl {
   /* @ngInject */
   constructor(
+    $state,
     $q,
     $translate,
     atInternet,
@@ -11,6 +12,7 @@ export default class DialplanExtensionRuleCtrl {
     TelephonyMediator,
     TucToast,
   ) {
+    this.$state = $state;
     this.$q = $q;
     this.$translate = $translate;
     this.atInternet = atInternet;
@@ -163,5 +165,12 @@ export default class DialplanExtensionRuleCtrl {
       default:
         return false;
     }
+  }
+
+  onModifyInteractiveMenu() {
+    this.$state.go(
+      'telecom.telephony.billingAccount.alias.details.configuration.ovhPabx.menus',
+      { defaultMenuId: this.getMenu().menuId },
+    );
   }
 }

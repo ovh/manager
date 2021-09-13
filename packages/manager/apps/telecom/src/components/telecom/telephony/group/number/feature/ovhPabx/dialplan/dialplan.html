@@ -154,6 +154,10 @@
                 id="group-number-extension-steps"
                 class="group-number__step-wrapper"
                 data-ng-model="$ctrl.dialplan.extensions"
+                data-ng-class="{
+                    'px-0 justify-content-center' : $ctrl.dialplan.extensions.length === 1 &&
+                        $ctrl.numberCtrl.number.feature.featureType === 'cloudIvr'
+                }"
             >
                 <li
                     class="group-number__step-container"
@@ -166,7 +170,8 @@
                 </li>
                 <li
                     class="group-number__step-container"
-                    data-ng-if="!$ctrl.numberCtrl.reorderingMode"
+                    data-ng-if="!$ctrl.numberCtrl.reorderingMode &&
+                        $ctrl.numberCtrl.number.feature.featureType !== 'cloudIvr'"
                 >
                     <div class="group-number__step">
                         <div class="group-number__step-btn--add-container">

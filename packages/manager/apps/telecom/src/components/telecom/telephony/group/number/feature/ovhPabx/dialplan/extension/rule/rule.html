@@ -142,6 +142,19 @@
                 </li>
                 <!-- EDIT ACTION -->
                 <li class="divider"></li>
+
+                <!-- EDIT interactif menu -->
+                <li role="menuitem" data-ng-if="$ctrl.rule.action === 'ivr'">
+                    <button
+                        type="button"
+                        class="oui-button w-100"
+                        data-translate="telephony_number_feature_ovh_pabx_step_rule_action_edit_menu_interactif"
+                        data-ng-click="$ctrl.onModifyInteractiveMenu()"
+                    ></button>
+                </li>
+                <!-- EDIT interactif menu -->
+                <li class="divider"></li>
+
                 <!-- DELETE ACTION -->
                 <li role="menuitem">
                     <button

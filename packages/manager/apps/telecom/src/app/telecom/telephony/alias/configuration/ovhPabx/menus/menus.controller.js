@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 import { JSPLUMB_INSTANCE_OPTIONS } from '../../../../../../../components/telecom/telephony/group/number/number.constants';
 
 export default /* @ngInject */ function TelecomTelephonyAliasConfigurationOvhPabxMenusCtrl(
@@ -10,15 +12,15 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationOvhPab
   TucToast,
   tucJsPlumbService,
   voipAliasGuides,
+  defaultMenuId,
 ) {
   const self = this;
-
   self.loading = {
     init: false,
   };
 
   self.model = {
-    selectedMenu: null,
+    selectedMenu: defaultMenuId || null,
   };
 
   self.menu = null;
@@ -87,7 +89,13 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationOvhPab
         return self.number.feature.init().then(() => {
           if (self.number.getFeatureFamily() === 'ovhPabx') {
             initPromises = {
-              menus: self.number.feature.getMenus(true),
+              menus: self.number.feature.getMenus(true).then((menus) => {
+                const defaultMenu = find(self.number.feature.menus, (menu) => {
+                  return menu.menuId === self.model.selectedMenu;
+                });
+                self.onMenuSelected(defaultMenu);
+                return menus;
+              }),
               sounds: self.number.feature.getSounds(),
               tts: self.number.feature.getTts(),
               jsplumb: tucJsPlumbService.initJsPlumb(),
@@ -96,8 +104,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationOvhPab
             if (self.number.feature.featureType !== 'cloudIvr') {
               initPromises.queues = self.number.feature.getQueues();
             }
-
-            return $q.all();
+            return $q.all(initPromises);
           }
           return null;
         });
