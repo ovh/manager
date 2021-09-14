@@ -225,7 +225,7 @@ export default class OverTheBoxRemoteCtrl {
    * @param remote
    * @returns {*}
    */
-   reloadRemote(remote) {
+  reloadRemote(remote) {
     set(remote, 'busy', true);
     return this.OvhApiOverTheBox.v6()
       .loadRemote(
