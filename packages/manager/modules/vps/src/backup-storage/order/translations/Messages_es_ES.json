@@ -2,7 +2,8 @@
   "vps_configuration_activate_ftpbackup_title": "Activar la opción Backup Storage",
   "vps_configuration_activate_ftpbackup_back_btn_title": "Volver a la lista de Backup Storage",
   "vps_configuration_activate_ftpbackup_step1_question": "Contratar la opción Backup Storage en el VPS {{ serviceName }}",
-  "vps_configuration_activate_ftpbackup_step1_alert": "Esta opción tiene un coste de <strong>{{ price }} + IVA</strong>",
+  "vps_configuration_activate_ftpbackup_step1_alert_P1M": "mes",
+  "vps_configuration_activate_ftpbackup_step1_alert_P1Y": "año",
   "vps_configuration_activate_ftpbackup_step1_next": "A partir de entonces, el servicio tendrá un coste de<strong>{{ price }} + IVA</strong>/{{duration}}.",
   "vps_configuration_activate_ftpbackup_step1_confirmation": "Para el primer pago, se facturará la parte proporcional al número de días restantes hasta la fecha de renovación del VPS.",
   "vps_configuration_activate_ftpbackup_step1_description": "El Backup Storage es un espacio de archivado al que podrá transferir sus contenidos, datos, parámetros y configuraciones.",
@@ -16,7 +17,5 @@
   "vps_configuration_activate_ftpbackup_fail": "Se ha producido un error al activar la opción Backup Storage.",
   "vps_configuration_activate_ftpbackup_load_error": "Se ha producido un error al cargar la información del pedido de la opción Backup Storage.",
   "vps_configuration_activate_ftpbackup_load_error_none": "No se ha encontrado ningún pedido de la opción Backup Storage en su VPS.",
-  "vps_configuration_activate_ftpbackup_explain": "Al hacer clic en «Contratar», se abrirá una nueva pestaña y el sistema le redirigirá automáticamente a la interfaz de pago.",
-  "vps_configuration_activate_ftpbackup_step1_alert_P1M": "mes",
-  "vps_configuration_activate_ftpbackup_step1_alert_P1Y": "año"
+  "vps_configuration_activate_ftpbackup_explain": "Al hacer clic en «Contratar», se abrirá una nueva pestaña y el sistema le redirigirá automáticamente a la interfaz de pago."
 }

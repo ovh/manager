@@ -1147,6 +1147,7 @@
   "server_close_service_warning_manual_refund": "A eliminação não garante o direito a um reembolso. Contacte o suporte se tiver alguma pergunta sobre um possível reembolso.",
   "server_close_service_desc": "Receberá por e-mail o correto procedimento.",
   "server_close_service_question": "Deseja continuar?",
+  "server_close_service_enterprise": "Se pretender efetuar modificações nos seus serviços e contratos, contacte o seu gestor de contas OVHcloud",
   "server_close_service_success": "O pedido de cancelamento deste servidor foi registado. Um e-mail com o procedimento ser-lhe-á enviado.",
   "server_close_service_error": "Ocorreu um erro aquando do pedido de eliminação deste servidor:",
   "server_close_service_delete_at_expiration_activate_success": "O pedido de eliminação do servidor na data expiração foi registado",
@@ -1196,12 +1197,5 @@
   "server_configuration_no_intervention_activate_success": "A intervenção no local está ativa no servidor {{serverName}}",
   "server_configuration_no_intervention_activate_failed": "Ocorreu um erro aquando da ativação das intervenções no local no servidor {{serverName}}",
   "server_configuration_no_intervention_deactivate_success": "A intervenção no local está desativada no servidor {{serverName}}",
-  "server_configuration_no_intervention_deactivate_failed": "Ocorreu um erro aquando da desativação da intervenção no local no servidor {{serverName}}",
-  "server_close_service_enterprise": "Se pretender efetuar modificações nos seus serviços e contratos, contacte o seu gestor de contas OVHcloud",
-  "plan_bandwidth-1000-adv-gen2": "1 Gbps ilimitado e garantido",
-  "plan_bandwidth-2000-adv-gen2": "2 Gbps ilimitados e garantidos",
-  "plan_bandwidth-3000-adv-gen2": "3 Gbps ilimitados e garantidos",
-  "plan_bandwidth-4000-adv-gen2": "4 Gbps ilimitados e garantidos",
-  "plan_bandwidth-5000-adv-gen2": "5 Gbps ilimitados e garantidos",
-  "plan_bandwidth-6000-adv-gen2": "6 Gbps ilimitados e garantidos"
+  "server_configuration_no_intervention_deactivate_failed": "Ocorreu um erro aquando da desativação da intervenção no local no servidor {{serverName}}"
 }

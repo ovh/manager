@@ -2,7 +2,8 @@
   "vps_configuration_activate_ftpbackup_title": "Ativar a opção Backup Storage",
   "vps_configuration_activate_ftpbackup_back_btn_title": "Voltar à lista das opções Backup Storage",
   "vps_configuration_activate_ftpbackup_step1_question": "Encomendar a opção Backup Storage no VPS {{ serviceName }}?",
-  "vps_configuration_activate_ftpbackup_step1_alert": "Esta opção terá um preço mensal de <strong>{{ price }} + IVA</strong>",
+  "vps_configuration_activate_ftpbackup_step1_alert_P1M": "mês",
+  "vps_configuration_activate_ftpbackup_step1_alert_P1Y": "ano",
   "vps_configuration_activate_ftpbackup_step1_next": "A seguir, o serviço será faturado ao preço de <strong>{{ price }} + IVA</strong>/{{duration}}.",
   "vps_configuration_activate_ftpbackup_step1_confirmation": "Para o primeiro pagamento, a OVH fatura o número de dias restantes antes da data de renovação do VPS.",
   "vps_configuration_activate_ftpbackup_step1_description": "O Backup Storage é um espaço de arquivo que lhe permite transferir conteúdos, dados, parâmetros e configurações.",
@@ -16,7 +17,5 @@
   "vps_configuration_activate_ftpbackup_fail": "Ocorreu um erro durante a ativação da opção Backup Storage.",
   "vps_configuration_activate_ftpbackup_load_error": "Ocorreu um erro no carregamento das informações da encomenda da opção Backup Storage.",
   "vps_configuration_activate_ftpbackup_load_error_none": "Nenhuma encomenda de opção Backup Storage encontrada para este VPS.",
-  "vps_configuration_activate_ftpbackup_explain": "Ao clicar em “Encomendar”, irá visualizar um novo separador e será automaticamente reencaminhado para a página de pagamento.",
-  "vps_configuration_activate_ftpbackup_step1_alert_P1M": "mês",
-  "vps_configuration_activate_ftpbackup_step1_alert_P1Y": "ano"
+  "vps_configuration_activate_ftpbackup_explain": "Ao clicar em “Encomendar”, irá visualizar um novo separador e será automaticamente reencaminhado para a página de pagamento."
 }
