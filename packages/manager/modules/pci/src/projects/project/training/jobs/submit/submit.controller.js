@@ -4,7 +4,7 @@ import filter from 'lodash/filter';
 import map from 'lodash/map';
 import head from 'lodash/head';
 import { nameGenerator } from '../../../data-processing/data-processing.utils';
-import { COMMUNITY_URL } from '../../training.constants';
+import { DISCORD_URL } from '../../training.constants';
 
 export default class PciTrainingJobsSubmitController {
   /* @ngInject */
@@ -65,7 +65,7 @@ export default class PciTrainingJobsSubmitController {
 
     this.httpHeader = [];
     this.volumesPermissions = ['RO', 'RW'];
-    this.communityUrl = COMMUNITY_URL;
+    this.discordUrl = DISCORD_URL;
     // Form payload
     this.job = {
       addVolume: false,
