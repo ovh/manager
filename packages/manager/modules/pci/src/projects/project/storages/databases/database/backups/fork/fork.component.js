@@ -1,12 +1,12 @@
-import controller from './restore.controller';
-import template from './restore.html';
+import controller from './fork.controller';
+import template from './fork.html';
 
 const component = {
   bindings: {
     backupInstance: '<',
     database: '<',
     goBack: '<',
-    goBackToDashboard: '<',
+    goToFork: '<',
     projectId: '<',
     trackDatabases: '<',
   },

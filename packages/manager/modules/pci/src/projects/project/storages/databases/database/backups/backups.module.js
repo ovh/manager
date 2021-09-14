@@ -8,6 +8,7 @@ import '@ovh-ux/ui-kit';
 import backupsComponent from './backups.component';
 import routing from './backups.routing';
 import restore from './restore';
+import fork from './fork';
 
 const moduleName = 'ovhManagerPciStoragesDatabaseBackups';
 
@@ -19,6 +20,7 @@ angular
     'oui',
     'ui.router',
     restore,
+    fork,
   ])
   .config(routing)
   .component('ovhManagerPciStoragesDatabaseBackupsComponent', backupsComponent)

@@ -2,6 +2,10 @@
   "pci_databases_backup": "Sauvegardes",
   "pci_databases_backup_expiration_date": "Date d'expiration",
   "pci_databases_backup_restore": "Restaurer",
-  "pci_databases_backup_description1": "Vous trouverez ci-dessous la liste de vos sauvegardes. Vous pouvez restaurer ou supprimer chacune d'entre elles.",
-  "pci_databases_backup_description2": "Ces sauvegardes glissantes sont conservées pour le bon maintien opérationnel de votre service."
+  "pci_databases_backup_fork": "Fork",
+  "pci_databases_backup_region": "Localisation",
+  "pci_databases_backup_description1": "Vous trouverez ci-dessous la liste de vos sauvegardes. Vous pouvez restaurer ou fork chacune d'entre elles.",
+  "pci_databases_backup_description2": "Ces sauvegardes glissantes sont conservées pour le bon maintien opérationnel de votre service.",
+  "pci_databases_backup_informations_title": "Sauvegardes de la base de données",
+  "pci_databases_backup_informations_retention": "Durée de rétention"
 }
