@@ -13,10 +13,10 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
+    "dev:hub": "APP=hub vite",
     "lint": "eslint ./src",
     "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-shell-app' --include-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-shell-app' --include-dependencies -- yarn run dev"
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-shell-app' --include-dependencies -- yarn run build"
   },
   "dependencies": {
     "react": "^17.0.2",

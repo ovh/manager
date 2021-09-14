@@ -1,4 +1,5 @@
 const { defineConfig } = require('vite');
+const fs = require('fs');
 const reactRefresh = require('@vitejs/plugin-react-refresh');
 const path = require('path');
 const legacy = require('@vitejs/plugin-legacy');
@@ -9,7 +10,6 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 function viteOvhDevServerPlugin() {
   const region = process.env.REGION || 'EU';
-  console.log('REGION', region);
   return {
     name: 'vite-ovh-dev-server',
     configureServer(server) {
@@ -19,7 +19,20 @@ function viteOvhDevServerPlugin() {
       app.get('/auth/check', sso.checkAuth.bind(sso));
       const v6Proxy = proxy.v6(region);
       app.use(createProxyMiddleware(v6Proxy.context, v6Proxy));
-      // app.use(createProxyMiddleware(proxy.aapi.context, proxy.aapi));
+      const appDistPath = path.join(
+        __dirname,
+        '../',
+        process.env.APP || '',
+        'dist',
+      );
+      const appEntryPoint = path.join(appDistPath, 'index.html');
+      if (!fs.existsSync(appEntryPoint)) {
+        app.all('/app', (req, res) => {
+          res.status(404).send('Application not found');
+        });
+      } else {
+        app.use('/app', express.static(appDistPath));
+      }
       server.middlewares.use(app);
     },
   };
@@ -35,13 +48,6 @@ module.exports = defineConfig({
     }),
     viteOvhDevServerPlugin(),
   ],
-  resolve: {
-    alias: {
-      src: path.resolve(__dirname, 'src'),
-      // @TODO get non-relative monorepo root path
-      '~': path.resolve(__dirname, '../../../../node_modules'),
-    },
-  },
   build: {
     outDir: path.resolve(__dirname, 'dist'),
     emptyOutDir: true,
@@ -49,6 +55,6 @@ module.exports = defineConfig({
   },
   server: {
     port: 9000,
-    open: true,
+    strictPort: true,
   },
 });
