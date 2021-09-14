@@ -1,3 +1,12 @@
+## [8.3.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.3.2...@ovh-ux/ng-ovh-payment-method@8.3.3) (2021-09-14)
+
+
+### Bug Fixes
+
+* **adyen:** fix function declaration ([0a72dc1](https://github.com/ovh/manager/commit/0a72dc1d159755415bc29b9a85b96746fc51c4db))
+
+
+
 ## [8.3.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.3.1...@ovh-ux/ng-ovh-payment-method@8.3.2) (2021-09-14)
 
 
