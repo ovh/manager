@@ -1,3 +1,12 @@
+## [8.3.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.3.1...@ovh-ux/ng-ovh-payment-method@8.3.2) (2021-09-14)
+
+
+### Bug Fixes
+
+* **adyen:** fix parse chars before submit ([f3b314e](https://github.com/ovh/manager/commit/f3b314e564126c0499ad40d42d9c75120d453d44))
+
+
+
 ## [8.3.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.3.0...@ovh-ux/ng-ovh-payment-method@8.3.1) (2021-09-13)
 
 
