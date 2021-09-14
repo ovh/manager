@@ -1,0 +1,10 @@
+{
+  "pci_databases_general_information_delete_node": "Supprimer un nœud",
+  "pci_databases_general_information_delete_node_confirm": "Valider",
+  "pci_databases_general_information_delete_node_cancel": "Annuler",
+  "pci_databases_general_information_delete_node_description_1": "Vous disposez actuellement de {{nodesCount}} nœud(s). Souhaitez-vous supprimer un nœud ? Vous allez réduire votre facture de ",
+  "pci_databases_general_information_delete_node_description_2": " par heure.",
+  "pci_databases_general_information_delete_node_pending": "Votre demande de suppression a bien été prise en compte et sera effective dans quelques minutes.",
+  "pci_databases_general_information_delete_node_success": "Votre nœud a été supprimé de votre cluster avec succès",
+  "pci_databases_general_information_delete_node_error": "Une erreur est survenue lors de la suppression du nœud."
+}
