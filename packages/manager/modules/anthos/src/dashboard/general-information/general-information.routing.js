@@ -8,6 +8,16 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: () => false,
 
+      user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
+
+      isCommitmentAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(['billing:commitment'])
+          .then((commitmentAvailability) =>
+            commitmentAvailability.isFeatureAvailable('billing:commitment'),
+          )
+          .catch(() => false),
+
       goBack: /* @ngInject */ ($state, goToTenant) => (message, type) =>
         goToTenant(message, type, $state.$current.parent.name),
 
