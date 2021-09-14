@@ -1,3 +1,12 @@
+const convertToBase64 = function convertToBase64(stringToConvert) {
+  return btoa(
+    encodeURIComponent(stringToConvert).replace(
+      /%([0-9A-F]{2})/g,
+      (match, p1) => String.fromCharCode(`0x${p1}`),
+    ),
+  );
+};
+
 export default {
   constructPostParams: (state) => {
     // stringify the adyen component data
@@ -6,21 +15,14 @@ export default {
       origin: window.location.origin,
     });
     // base64 the adyen component data
-    const formData = this.convertToBase64(resultStr);
+    const formData = convertToBase64(resultStr);
 
     return {
       formData,
     };
   },
 
-  convertToBase64: (stringToConvert) => {
-    return btoa(
-      encodeURIComponent(stringToConvert).replace(
-        /%([0-9A-F]{2})/g,
-        (match, p1) => String.fromCharCode(`0x${p1}`),
-      ),
-    );
-  },
+  convertToBase64,
 
   hasCallbackUrlParams: (callbackUrlParams) => {
     return callbackUrlParams.redirectResult !== undefined;
