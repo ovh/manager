@@ -14,18 +14,18 @@ Have any questions? Check out the contributing docs at https://github.com/ovh/ma
 | Tickets          | Fix #... <!-- prefix each issue number with "Fix #", if any -->
 | License          | BSD 3-Clause
 
-<!-- 
+<!--
   Before submitting your PR, please review the following checklist:
 -->
 
 - [ ] Try to keep pull requests small so they can be easily reviewed.
 - [ ] Commits are signed-off
 - [ ] Only FR translations have been updated
-- [ ] Branch is up-to-date with target branch 
+- [ ] Branch is up-to-date with target branch
 - [ ] Lint has passed locally
-- [ ] Standalone app was ran and tested locally 
+- [ ] Standalone app was ran and tested locally
 - [ ] Ticket reference is mentioned in linked commits (internal only)
-- [ ] Breaking change is mentioned in relevant commits 
+- [ ] Breaking change is mentioned in relevant commits
 
 ## Description
 
