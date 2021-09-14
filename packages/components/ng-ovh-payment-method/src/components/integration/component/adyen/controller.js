@@ -139,16 +139,13 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
 
   handleDetailsResult(detailsResult) {
     const formSessionIdObject = AdyenService.parseFormSessionId(
-      detailsResult.data.formSessionId,
+      detailsResult.formSessionId,
     );
 
     if (formSessionIdObject.action) {
       this.handleAdditionalAction(formSessionIdObject);
     } else {
-      this.handleResponse(
-        formSessionIdObject,
-        detailsResult.data.paymentMethodId,
-      );
+      this.handleResponse(formSessionIdObject, detailsResult.paymentMethodId);
     }
   }
 
@@ -187,13 +184,10 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
   /* Global method */
   setDetails(details, paymentMethodId, transactionId) {
     return this.ovhPaymentMethod
-      .addPaymentDetails(
-        paymentMethodId,
-        JSON.stringify({
-          transactionId: parseInt(transactionId, 10),
-          details: AdyenService.convertToBase64(JSON.stringify(details)),
-        }),
-      )
+      .addPaymentDetails(paymentMethodId, {
+        transactionId: parseInt(transactionId, 10),
+        details: AdyenService.convertToBase64(JSON.stringify(details)),
+      })
       .then((detailsResponse) => {
         this.handleDetailsResult(detailsResponse);
       })
