@@ -5,6 +5,8 @@ export default {
   bindings: {
     serviceName: '<',
     serviceInfo: '<',
+    user: '<',
+    isCommitmentAvailable: '<',
     tenant: '<',
     hosts: '<',
     netappStorage: '<',
