@@ -1,6 +1,10 @@
 import map from 'lodash/map';
 
-import { DATABASES_GUIDES_URL, DATABASE_TYPES } from './databases.constants';
+import {
+  DATABASES_GUIDES_URL,
+  DATABASE_TYPES,
+  NODES_PER_ROW,
+} from './databases.constants';
 import Database from '../../../../components/project/storages/databases/database.class';
 import Node from '../../../../components/project/storages/databases/node.class';
 
@@ -131,6 +135,37 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           database,
         }),
+      goToEditName: /* @ngInject */ ($state, projectId) => (databaseId) =>
+        $state.go('pci.projects.project.storages.databases.name', {
+          projectId,
+          databaseId,
+        }),
+      goToUpgradePlan: /* @ngInject */ ($state, projectId) => (databaseId) =>
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.general-information.upgrade-plan',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
+      goToUpgradeVersion: /* @ngInject */ ($state, projectId) => (databaseId) =>
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.general-information.upgrade-version',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
+      goToUpgradeNode: /* @ngInject */ ($state, projectId) => (databaseId) =>
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.general-information.upgrade-node',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
+      goBack: /* @ngInject */ (goToDatabases) => (message, type) =>
+        goToDatabases(message, type),
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_database_list_title'),
@@ -174,6 +209,8 @@ export default /* @ngInject */ ($stateProvider) => {
           name: hit,
         });
       },
+
+      nodesPerRow: () => NODES_PER_ROW,
     },
   });
 };

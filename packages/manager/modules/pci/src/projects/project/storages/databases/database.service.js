@@ -79,6 +79,14 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
+  deleteNode(projectId, engine, databaseId, nodeId) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/node/${nodeId}`,
+      )
+      .then(({ data }) => data);
+  }
+
   addRestrictedIp(projectId, engine, databaseId, ip, description) {
     return this.$http
       .post(
@@ -120,12 +128,21 @@ export default class DatabaseService {
     );
   }
 
-  editDatabase(projectId, engine, databaseId, description, plan, version) {
+  editDatabase(
+    projectId,
+    engine,
+    databaseId,
+    description,
+    plan,
+    version,
+    flavor,
+  ) {
     return this.$http
       .put(`/cloud/project/${projectId}/database/${engine}/${databaseId}`, {
         description,
         plan,
         version,
+        flavor,
       })
       .then(({ data }) => data);
   }
@@ -242,7 +259,7 @@ export default class DatabaseService {
   getRoles(projectId, engine, databaseId) {
     return this.$http
       .get(
-        `/cloud/project/${projectId}/database/${engine}/${databaseId}/role`,
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/roles`,
         DatabaseService.getIcebergHeaders(),
       )
       .then(({ data }) => data);
@@ -265,6 +282,13 @@ export default class DatabaseService {
           type: 'private',
         }),
       );
+  }
+
+  getVRack(projectId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/vrack`)
+      .then(({ data }) => data)
+      .catch((error) => (error.status === 404 ? [] : Promise.reject(error)));
   }
 
   getSubnets(projectId, networkId) {
@@ -310,6 +334,41 @@ export default class DatabaseService {
     );
   }
 
+  getAvailableMetrics(projectId, engine, databaseId, extended) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/metric`,
+        {
+          params: {
+            extended,
+          },
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  getMetrics(projectId, engine, databaseId, metricName, period) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/metric/${metricName}`,
+        {
+          params: {
+            period,
+          },
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  resetUserCredentials(projectId, engine, databaseId, userId) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/user/${userId}/credentials/reset`,
+        {},
+      )
+      .then(({ data }) => data);
+  }
+
   pollDatabaseStatus(projectId, engine, databaseId) {
     return this.Poller.poll(
       `/cloud/project/${projectId}/database/${engine}/${databaseId}`,
@@ -327,11 +386,13 @@ export default class DatabaseService {
       `/cloud/project/${projectId}/database/${engine}/${databaseId}/node/${nodeId} `,
       {},
       {
+        retryMaxAttempts: 0,
         namespace: `databases_${databaseId}_${nodeId}`,
         method: 'get',
         successRule: (node) => !new Node(node).isProcessing(),
+        errorRule: (error) => error.status === 404,
       },
-    );
+    ).catch((error) => (error.status === 404 ? true : Promise.reject(error)));
   }
 
   stopPollingDatabaseStatus(databaseId) {
@@ -340,5 +401,11 @@ export default class DatabaseService {
 
   stopPollingNodeStatus(databaseId, nodeId) {
     this.Poller.kill({ namespace: `databases_${databaseId}_${nodeId}` });
+  }
+
+  getDatabaseLogs(projectId, engine, databaseId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/database/${engine}/${databaseId}/logs`)
+      .then(({ data }) => data);
   }
 }

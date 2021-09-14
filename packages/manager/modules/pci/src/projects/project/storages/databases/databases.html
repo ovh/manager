@@ -1,4 +1,4 @@
-<div data-ui-view>
+<div data-ui-view id="databasesUiView">
     <oui-header
         data-heading="{{:: 'pci_database_list_title' | translate }}"
         class="mb-3"
@@ -45,26 +45,7 @@
                 data-ng-if="$row.isDeleting()"
                 data-ng-bind=":: $value"
             ></span>
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            title=":: 'pci_database_common_id' | translate"
-            data-property="id"
-            data-type="string"
-            data-filterable
-            data-sortable
-        >
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            data-title=":: 'pci_database_list_region' | translate"
-            data-property="region"
-            data-type="string"
-            data-searchable
-            data-filterable
-            data-sortable
-        >
-            <span
-                data-ng-bind=":: $ctrl.ovhManagerRegionService.getTranslatedMacroRegion($row.region)"
-            ></span>
+            <p data-ng-bind=":: $row.id"></p>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_database_list_engine' | translate"
@@ -75,6 +56,7 @@
             data-filterable
         >
             <span data-ng-bind=":: $ctrl.capitalize($row.engine)"></span>
+            <span data-ng-bind=":: $row.version"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_database_list_plan' | translate"
@@ -87,17 +69,47 @@
             <span data-ng-bind=":: $ctrl.capitalize($row.plan)"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title=":: 'pci_database_node_type_label' | translate"
+            data-property="plan"
+            data-type="string"
+            data-searchable
+            data-sortable
+            data-filterable
+        >
+            <span
+                data-translate="pci_database_node_type"
+                data-translate-values="{
+                    coreNumber: $ctrl.getCurrentFlavor($row).core,
+                    memorySize: $ctrl.getCurrentFlavor($row).memory,
+                    storageSize: $ctrl.getCurrentFlavor($row).storage
+                }"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_database_list_region' | translate"
+            data-property="region"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+            <span
+                data-ng-bind=":: $ctrl.CucRegionService.getTranslatedMacroRegion($row.region)"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_database_list_nodes' | translate"
             data-property="nodeNumber"
             data-type="number"
             data-sortable
             data-filterable
         >
-            <database-node
-                data-ng-repeat="node in $row.nodes track by node.id"
-                data-node="node"
-            >
-            </database-node>
+            <span data-ng-repeat="node in $row.nodes track by node.id">
+                <p
+                    data-ng-if="$row.nodes.length > $ctrl.nodesPerRow && $index % $ctrl.nodesPerRow === 0"
+                ></p>
+                <database-node data-node="node"> </database-node>
+            </span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_database_common_creation_date' | translate"
@@ -132,6 +144,33 @@
         >
             <oui-action-menu-item data-on-click="$ctrl.goToDatabase($row)">
                 <span data-translate="pci_database_list_manage_database"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item data-on-click="$ctrl.renameDatabase($row)">
+                <span data-translate="pci_database_list_rename_database"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$ctrl.getLatestVersion($row) !== $row.version && $row.isActive()"
+                data-on-click="$ctrl.upgradeVersion($row)"
+            >
+                <span
+                    data-translate="pci_database_list_upgrade_version_database"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$ctrl.getHighestFlavor($row) !== $row.flavor && $row.isActive()"
+                data-on-click="$ctrl.upgradeNode($row)"
+            >
+                <span
+                    data-translate="pci_database_list_upgrade_node_database"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$ctrl.getLatestPlan($row) !== $row.plan && $row.isActive()"
+                data-on-click="$ctrl.upgradePlan($row)"
+            >
+                <span
+                    data-translate="pci_database_list_upgrade_plan_database"
+                ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-on-click="$ctrl.deleteDatabase($row)"
