@@ -3,6 +3,7 @@
   "pci_projects_project_users_username_label": "Nom d'utilisateur",
   "pci_projects_project_users_description_label": "Description",
   "pci_projects_project_users_role_label": "Rôles",
+  "pci_projects_project_users_createdAt_label": "Date de création",
   "pci_projects_project_users_status_label": "Status",
   "pci_projects_project_users_status_creating": "Création en cours",
   "pci_projects_project_users_status_ok": "Activé",
@@ -19,7 +20,7 @@
   "pci_projects_project_users_rclone_label": "Télécharger un fichier de configuration rClone",
   "pci_projects_project_users_token_label": "Générer un token OpenStack",
   "pci_projects_project_users_password_label": "Regénérer un mot de passe",
-  "pci_projects_project_users_modify_password_label": "Modifier le mot de passe",
+  "pci_projects_project_users_modify_password_label": "Générer un nouveau mot de passe",
 
   "pci_projects_project_users_password_message_infos": "Le nouveau mot de passe de l'utilisateur {{ user }} est <code>{{ password }}</code>.",
   "pci_projects_project_users_password_message_success": "Le mot de passe de l'utilisateur {{ user }} a été regénéré.",
