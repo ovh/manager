@@ -53,6 +53,14 @@ export default class Engine {
     );
   }
 
+  getHighestFlavorRange(versionName, regionName, planName) {
+    return this.getRegion(
+      versionName,
+      planName,
+      regionName,
+    ).flavors.sort((a, b) => a.compare(b))[0];
+  }
+
   getAvailablePlans(versionName, regionName) {
     return this.getPlans(versionName).filter((plan) =>
       plan.getRegion(regionName),
@@ -72,5 +80,9 @@ export default class Engine {
     return this.getPlan(versionName, planName)
       .getRegion(regionName)
       .getFlavor(flavorName);
+  }
+
+  getRegion(versionName, planName, regionName) {
+    return this.getPlan(versionName, planName).getRegion(regionName);
   }
 }

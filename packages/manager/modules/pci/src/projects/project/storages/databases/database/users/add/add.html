@@ -4,58 +4,50 @@
 >
 </oui-back-button>
 
-<oui-stepper data-on-finish="$ctrl.addUser()">
-    <oui-step-form
-        id="user_details"
-        name="user_details"
-        data-header="{{:: 'pci_databases_users_add' | translate }}"
-        data-prevent-next="true"
-        data-on-cancel="$ctrl.cancel('dashboard::users::add_a_user::cancel')"
-        data-on-submit="$ctrl.trackDatabases('dashboard::users::add_a_user::next_step')"
-        data-editable="!$ctrl.processing"
+<h2 data-translate="pci_databases_users_add"></h2>
+<oui-field
+    data-label="{{:: 'pci_databases_users_add_username_label' | translate }}"
+    data-size="xl"
+>
+    <input
+        class="oui-input"
+        type="text"
+        id="username"
+        name="username"
+        ng-model="$ctrl.model.username"
+        maxlength="255"
+        required
+    />
+</oui-field>
+
+<h2 data-translate="pci_databases_users_add_roles"></h2>
+<oui-dual-list
+    data-source="$ctrl.availableRoles"
+    data-target="$ctrl.model.selectedRoles"
+    property="name"
+>
+    <oui-dual-list-source
+        data-heading="{{:: 'pci_databases_users_add_roles_available' | translate }}"
+        data-searchable="true"
     >
-        <oui-field
-            data-label="{{:: 'pci_databases_users_add_username_label' | translate }}"
-            data-size="xl"
-        >
-            <input
-                class="oui-input"
-                type="text"
-                id="username"
-                name="username"
-                ng-model="$ctrl.model.username"
-                maxlength="255"
-                required
-            />
-        </oui-field>
-        <database-password
-            data-password="$ctrl.model.password"
-            data-confirm="true"
-        ></database-password>
-    </oui-step-form>
-    <oui-step-form
-        id="roles"
-        name="roles"
-        data-submit-text="{{:: 'pci_databases_users_add_create' | translate }}"
-        data-header="{{:: 'pci_databases_users_add_roles' | translate }}"
-        data-on-cancel="$ctrl.cancel('dashboard::users::add_a_user::define_role_cancel')"
-        data-editable="!$ctrl.processing"
+    </oui-dual-list-source>
+    <oui-dual-list-target
+        data-heading="{{:: 'pci_databases_users_add_roles_selected' | translate }}"
+        data-searchable="true"
     >
-        <oui-dual-list
-            data-source="$ctrl.availableRoles"
-            data-target="$ctrl.model.selectedRoles"
-            property="name"
-        >
-            <oui-dual-list-source
-                data-heading="{{:: 'pci_databases_users_add_roles_available' | translate }}"
-                data-searchable="true"
-            >
-            </oui-dual-list-source>
-            <oui-dual-list-target
-                data-heading="{{:: 'pci_databases_users_add_roles_selected' | translate }}"
-                data-searchable="true"
-            >
-            </oui-dual-list-target>
-        </oui-dual-list>
-    </oui-step-form>
-</oui-stepper>
+    </oui-dual-list-target>
+</oui-dual-list>
+<div class="text-right">
+    <oui-button ng-click="$ctrl.cancel()" size="l">
+        <span data-translate="pci_databases_users_add_cancel"></span>
+    </oui-button>
+    <oui-button
+        size="l"
+        variant="primary"
+        icon-right="oui-icon-arrow-right"
+        disabled="$ctrl.processing"
+        ng-click="$ctrl.addUser()"
+    >
+        <span data-translate="pci_databases_users_add_create"></span>
+    </oui-button>
+</div>

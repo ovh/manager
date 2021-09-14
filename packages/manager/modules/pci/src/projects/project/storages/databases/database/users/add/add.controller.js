@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import map from 'lodash/map';
 
 export default class {
   /* @ngInject */
@@ -26,15 +25,15 @@ export default class {
       this.database.id,
       this.model.username,
       this.model.password,
-      map(this.model.selectedRoles, 'id'),
+      this.model.selectedRoles.map((role) => role.name),
     )
-      .then(({ username }) =>
+      .then((createdUser) =>
         this.goBack({
           textHtml: this.$translate.instant(
             'pci_databases_users_add_success_message',
             {
-              username,
-              password: this.model.password,
+              username: createdUser.username,
+              password: createdUser.password,
             },
           ),
         }),

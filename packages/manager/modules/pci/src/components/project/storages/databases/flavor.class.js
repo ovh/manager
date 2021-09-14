@@ -51,4 +51,12 @@ export default class Flavor {
   get supportsPublicNetwork() {
     return this.isNetworkSupported('public');
   }
+
+  compare(flavor) {
+    // greater than 0 if current flavor is the lower one
+    // less than 0 if current flavor is the higher one
+    // 0 if equal
+    if (!flavor) return -1;
+    return flavor.memory - this.memory;
+  }
 }

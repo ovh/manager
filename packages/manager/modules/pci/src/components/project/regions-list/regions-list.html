@@ -29,7 +29,7 @@
                         data-values="[macro]"
                         data-variant="light"
                         data-on-change="$ctrl.onMacroChange(modelValue, regions)"
-                        data-disabled="$ctrl.constructor.isRegionDisabled(regions)"
+                        data-disabled="$ctrl.disabled || $ctrl.constructor.isRegionDisabled(regions)"
                         data-required
                     >
                         <oui-select-picker-section

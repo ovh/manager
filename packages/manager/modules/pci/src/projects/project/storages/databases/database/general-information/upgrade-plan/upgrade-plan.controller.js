@@ -22,7 +22,7 @@ export default class {
   }
 
   upgradePlan() {
-    this.trackDatabases('config_upgrade_plan::validate');
+    this.trackDatabases('config_upgrade_plan_validate');
     this.trackDatabases(
       `PublicCloud::databases_upgrade_plan_validated::${this.currentPlan.name}::${this.selectedPlan.name}`,
       'action',
@@ -36,6 +36,7 @@ export default class {
       this.database.description,
       this.selectedPlan.name,
       this.database.version,
+      this.database.flavor.name,
     )
       .then((databaseInfo) => {
         this.database.updateData(databaseInfo);
@@ -60,7 +61,7 @@ export default class {
   }
 
   cancel() {
-    this.trackDatabases('config_upgrade_plan::cancel');
+    this.trackDatabases('config_upgrade_plan_cancel');
     this.goBack();
   }
 }

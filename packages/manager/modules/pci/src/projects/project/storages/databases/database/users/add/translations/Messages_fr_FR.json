@@ -5,6 +5,7 @@
   "pci_databases_users_add_roles_available": "Rôles disponibles",
   "pci_databases_users_add_roles_selected": "Rôles sélectionnés",
   "pci_databases_users_add_create": "Créer un utilisateur",
-  "pci_databases_users_add_success_message": "L'utilisateur {{ username }} a été ajouté avec le mot de passe {{ password }}.",
-  "pci_databases_users_add_error_save": "Une erreur est survenue lors de la création de l'utilisateur {{ user }} : {{ message }}."
+  "pci_databases_users_add_success_message": "L'utilisateur {{ username }} a été ajouté avec le mot de passe <code>{{password}}</code>",
+  "pci_databases_users_add_error_save": "Une erreur est survenue lors de la création de l'utilisateur {{ user }} : {{ message }}.",
+  "pci_databases_users_add_cancel": "Annuler"
 }
