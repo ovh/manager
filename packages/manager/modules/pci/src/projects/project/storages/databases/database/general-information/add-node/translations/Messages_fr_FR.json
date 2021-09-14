@@ -2,7 +2,7 @@
   "pci_databases_general_information_add_node": "Ajouter un nœud",
   "pci_databases_general_information_add_node_confirm": "Valider",
   "pci_databases_general_information_add_node_cancel": "Annuler",
-  "pci_databases_general_information_add_node_description": "Vous disposez actuellement de {{nodesCount}} nœud(s). Vous pouvez ajouter un nœud pour",
+  "pci_databases_general_information_add_node_description": "Vous disposez actuellement de {{nodesCount}} nœud(s). Vouslez-vous vraiment en ajouter un ? Votre facture sera augmentée de",
   "pci_databases_general_information_add_node_success": "Votre demande d’ajout de nœud a bien été prise en compte et sera effective dans quelques minutes.",
   "pci_databases_general_information_add_node_error": "Une erreur est survenue lors d'ajout de nœud : {{ message }}"
 }
