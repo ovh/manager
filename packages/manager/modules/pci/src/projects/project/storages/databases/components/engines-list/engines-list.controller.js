@@ -7,4 +7,18 @@ export default class {
     this.capitalize = capitalize;
     this.ENGINE_LOGOS = ENGINE_LOGOS;
   }
+
+  handleVersionChange(engine, modelValue) {
+    this.selectedEngine = engine;
+    if (this.onChange) {
+      this.onChange({ selectedEngine: modelValue });
+    }
+  }
+
+  isDisabledVersion($item) {
+    return (
+      this.currentEngine &&
+      this.currentEngine.selectedVersion.version > $item.version
+    );
+  }
 }
