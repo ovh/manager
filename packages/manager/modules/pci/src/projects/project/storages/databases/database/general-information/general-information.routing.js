@@ -1,4 +1,7 @@
 import find from 'lodash/find';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
+import { NODES_PER_ROW } from '../../databases.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const stateName =
@@ -22,6 +25,14 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      goToDeleteNode: /* @ngInject */ ($state, databaseId, projectId) => () =>
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.general-information.delete-node',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
       goToAllowedIPs: /* @ngInject */ ($state, databaseId, projectId) => () =>
         $state.go(
           'pci.projects.project.storages.databases.dashboard.allowed-ips',
@@ -30,6 +41,11 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      goToManagerUsers: /* @ngInject */ ($state, databaseId, projectId) => () =>
+        $state.go('pci.projects.project.storages.databases.dashboard.users', {
+          projectId,
+          databaseId,
+        }),
       goToDeleteDatabase: /* @ngInject */ ($state, database, projectId) => () =>
         $state.go(
           'pci.projects.project.storages.databases.dashboard.general-information.delete',
@@ -66,6 +82,19 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      goToUpgradeNode: /* @ngInject */ ($state, databaseId, projectId) => () =>
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.general-information.upgrade-node',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
+      vRack: /* @ngInject */ (DatabaseService, projectId) =>
+        DatabaseService.getVRack(projectId),
+      vRackLink: /* @ngInject */ (vRack) => {
+        return buildURL('dedicated', `#/vrack/${vRack.id}`);
+      },
       goBack: /* @ngInject */ (database, goToDatabase) => (message, type) =>
         goToDatabase(database, message, type),
       goBackAndPoll: /* @ngInject */ (goBack, pollDatabaseStatus) => (
@@ -88,6 +117,12 @@ export default /* @ngInject */ ($stateProvider) => {
         engine.getLatestPlan(database.version, database.region).name,
       latestVersion: /* @ngInject */ (engine) =>
         engine.getLatestVersion().version,
+      highestFlavor: /* @ngInject */ (database, engine) =>
+        engine.getHighestFlavor(
+          database.version,
+          database.region,
+          database.plan,
+        ).name,
       privateNetwork: /* @ngInject */ (database, privateNetworks) =>
         find(privateNetworks, (privateNetwork) =>
           find(privateNetwork.regions, { openstackId: database.networkId }),
@@ -148,24 +183,32 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => () => {
         database.nodes.forEach((node) => {
           if (node.isProcessing()) {
+            const successMessage =
+              node.status === STATUS.DELETING
+                ? 'pci_databases_general_information_delete_node_success'
+                : 'pci_databases_general_information_node_ready';
             DatabaseService.pollNodeStatus(
               projectId,
               database.engine,
               database.id,
               node.id,
             ).then((nodeInfo) => {
+              CucCloudMessage.flushMessages(stateName);
               CucCloudMessage.success(
-                $translate.instant(
-                  'pci_databases_general_information_node_ready',
-                  { nodeName: node.name },
-                ),
+                $translate.instant(successMessage, { nodeName: node.name }),
                 stateName,
               );
-              node.updateData(nodeInfo);
+              if (node.status === STATUS.DELETING) {
+                database.deleteNode(node.id);
+              } else {
+                node.updateData(nodeInfo);
+              }
             });
           }
         });
       },
+      users: /* @ngInject */ (DatabaseService, database, projectId) =>
+        DatabaseService.getUsers(projectId, database.engine, database.id),
       stopPollingDatabaseStatus: /* @ngInject */ (
         DatabaseService,
         databaseId,
@@ -177,6 +220,7 @@ export default /* @ngInject */ ($stateProvider) => {
         database.nodes.forEach((node) =>
           DatabaseService.stopPollingNodeStatus(node.id),
         ),
+      nodesPerRow: () => NODES_PER_ROW,
     },
   });
 };

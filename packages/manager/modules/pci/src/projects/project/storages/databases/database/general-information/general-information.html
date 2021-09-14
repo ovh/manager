@@ -14,6 +14,52 @@
         ></span>
     </oui-message>
 
+    <oui-message
+        data-ng-if="$ctrl.users.length === 0 && $ctrl.allowedIps.length > 0"
+        data-type="warning"
+        data-dismissable
+    >
+        <span
+            data-translate="pci_databases_general_information_no_users"
+        ></span>
+        <a href data-ng-click="$ctrl.manageUsers()">
+            <span
+                data-translate="pci_databases_general_information_manage_users"
+            ></span>
+            <span
+                class="oui-icon oui-icon-arrow-right ml-1"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </oui-message>
+
+    <oui-message
+        data-ng-if="$ctrl.allowedIps.length === 0 && $ctrl.users.length > 0"
+        data-type="warning"
+        data-dismissable
+    >
+        <span data-translate="pci_databases_general_information_no_ip"></span>
+    </oui-message>
+
+    <oui-message
+        data-ng-if="$ctrl.allowedIps.length === 0 && $ctrl.users.length === 0"
+        data-type="warning"
+        data-dismissable
+    >
+        <span
+            data-translate="pci_databases_general_information_no_ip_no_users"
+        ></span>
+        <a href data-ng-click="$ctrl.manageUsers()">
+            <span
+                data-translate="pci_databases_general_information_manage_users"
+            ></span>
+            <span
+                class="oui-icon oui-icon-arrow-right ml-1"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </oui-message>
+
     <div class="row py-4">
         <div class="col-md-4">
             <oui-tile
@@ -57,33 +103,6 @@
                                 data-ng-bind="('pci_database_common_status_' + $ctrl.database.status) | translate"
                             ></span>
                         </span>
-                    </oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    data-term="{{:: 'pci_databases_general_information_nodes_label' | translate }}"
-                >
-                    <oui-tile-description>
-                        <div>
-                            <database-node
-                                data-ng-repeat="node in $ctrl.database.nodes track by node.id"
-                                data-node="node"
-                            >
-                            </database-node>
-                        </div>
-                        <button
-                            class="oui-tile__button oui-button oui-button_ghost oui-button_block"
-                            data-ng-if="$ctrl.database.nodes.length < $ctrl.getCurrentPlan().maxNodes"
-                            data-ng-click="$ctrl.addNode()"
-                            data-ng-disabled="!$ctrl.database.isActive()"
-                        >
-                            <span
-                                data-translate="pci_databases_general_information_add_nodes"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-arrow-right ml-1"
-                                aria-hidden="true"
-                            ></span>
-                        </button>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
@@ -139,6 +158,79 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_nodes_label' | translate }}"
+                >
+                    <oui-tile-description>
+                        <div>
+                            <span
+                                data-ng-repeat="node in $ctrl.database.nodes track by node.id"
+                            >
+                                <p
+                                    data-ng-if="$ctrl.database.nodes.length > $ctrl.nodesPerRow && $index % $ctrl.nodesPerRow === 0"
+                                ></p>
+                                <database-node data-node="node">
+                                </database-node>
+                            </span>
+                        </div>
+                    </oui-tile-description>
+
+                    <oui-action-menu
+                        data-compact
+                        data-placement="end"
+                        ng-if="$ctrl.database.nodes.length < $ctrl.getCurrentPlan().maxNodes 
+                        || $ctrl.database.nodes.length > $ctrl.getCurrentPlan().minNodes"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.addNode()"
+                            data-ng-if="$ctrl.database.nodes.length < $ctrl.getCurrentPlan().maxNodes"
+                            data-disabled="!$ctrl.database.isActive()"
+                        >
+                            <span
+                                data-translate="pci_databases_general_information_add_nodes"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.deleteNode()"
+                            data-ng-if="$ctrl.database.nodes.length > $ctrl.getCurrentPlan().minNodes"
+                            data-disabled="!$ctrl.database.isActive()"
+                        >
+                            <span
+                                data-translate="pci_databases_general_information_delete_nodes"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_node_type_label' | translate }}"
+                >
+                    <oui-tile-description>
+                        <oui-tile-description>
+                            <span
+                                data-translate="pci_databases_general_information_node_type"
+                                data-translate-values="{
+                                coreNumber: $ctrl.getCurrentFlavor().core,
+                                memorySize: $ctrl.getCurrentFlavor().memory,
+                                storageSize: $ctrl.getCurrentFlavor().storage
+                            }"
+                            ></span>
+                            <button
+                                class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                                data-ng-if="$ctrl.database.flavor !== $ctrl.highestFlavor"
+                                data-ng-click="$ctrl.upgradeNode()"
+                                data-ng-disabled="!$ctrl.database.isActive()"
+                            >
+                                <span
+                                    data-translate="pci_databases_general_information_upgrade_node"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-arrow-right ml-1"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                        </oui-tile-description>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_region_label' | translate }}"
                 >
                     <oui-tile-description>
@@ -152,6 +244,87 @@
         </div>
         <div class="col-md-4">
             <oui-tile
+                data-heading="{{:: 'pci_databases_general_information_connection_information' | translate }}"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_service_URI_label' | translate }}"
+                >
+                    <oui-tile-description>
+                        <oui-tile-description>
+                            <oui-clipboard
+                                data-model="$ctrl.connectionInformation.mongoShell"
+                                data-id="connection-mongo-shell"
+                                data-name="connection-mongo-shell"
+                            ></oui-clipboard>
+                        </oui-tile-description>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_replicate_URI_label' | translate }}"
+                >
+                    <oui-tile-description>
+                        <oui-tile-description>
+                            <oui-clipboard
+                                data-model="$ctrl.connectionInformation.application"
+                                data-id="connection-application"
+                                data-name="connection-application"
+                            ></oui-clipboard>
+                        </oui-tile-description>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_database_port' | translate }}"
+                    data-description="{{:: $ctrl.database.port }}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_user' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="{
+                                'oui-badge_success': ($ctrl.users.length >= 1),
+                                'oui-badge_warning': ($ctrl.users.length < 1),
+                            }"
+                        >
+                            <span
+                                data-translate="pci_databases_general_information_users"
+                                data-translate-values="{
+                                    userNumber: $ctrl.users.length
+                                }"
+                            ></span>
+                        </span>
+                        <button
+                            class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                            data-ng-click="$ctrl.manageUsers()"
+                        >
+                            <span
+                                data-translate="pci_databases_general_information_manage_users"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right ml-1"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_ssl_mode' | translate }}"
+                    data-description="{{:: $ctrl.database.sslMode }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-translate="{{'pci_databases_general_information_' + $ctrl.database.sslMode}}"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+        <div class="col-md-4">
+            <oui-tile
+                class="form-group"
                 data-heading="{{:: 'pci_databases_general_information_configuration_title' | translate }}"
             >
                 <oui-tile-definition
@@ -178,17 +351,25 @@
                     <oui-tile-description>
                         <span
                             data-ng-if="!$ctrl.privateNetwork"
-                            data-translate="pci_database_common_none"
+                            data-translate="pci_databases_general_information_public_network_link"
                         ></span>
                         <div data-ng-if="$ctrl.privateNetwork">
-                            <p
+                            <a
                                 class="mb-0"
-                                data-ng-bind=":: $ctrl.privateNetwork.id"
-                            ></p>
-                            <p
-                                class="mb-0"
-                                data-ng-bind=":: $ctrl.subnet.name"
-                            ></p>
+                                data-ng-href="{{:: $ctrl.vRackLink}}"
+                                data-ng-click="$ctrl.trackManageVRack()"
+                            >
+                                <span
+                                    data-translate="pci_databases_general_information_private_network_link"
+                                    data-translate-values="{
+                                        vRackId: $ctrl.vRack.id
+                                    }"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-arrow-right ml-1"
+                                    aria-hidden="true"
+                                ></span>
+                            </a>
                         </div>
                     </oui-tile-description>
                 </oui-tile-definition>
@@ -197,15 +378,23 @@
                 >
                     <oui-tile-description>
                         <span
-                            data-ng-if="$ctrl.allowedIps.length === 0"
-                            data-translate="pci_database_common_none"
-                        ></span>
-                        <p
-                            class="mb-0"
-                            data-ng-if="$ctrl.allowedIps.length !== 0 && $index < 3"
-                            data-ng-repeat="allowedIp in $ctrl.allowedIps track by allowedIp.ip"
-                            data-ng-bind="allowedIp.ip"
-                        ></p>
+                            class="oui-badge"
+                            data-ng-class="{
+                                'oui-badge_success': ($ctrl.allowedIps.length >= 1),
+                                'oui-badge_warning': ($ctrl.allowedIps.length < 1),
+                            }"
+                        >
+                            <span
+                                data-ng-if="$ctrl.allowedIps.length === 0"
+                                data-translate="pci_database_common_none"
+                            ></span>
+                            <p
+                                class="mb-0"
+                                data-ng-if="$ctrl.allowedIps.length !== 0 && $index < 3"
+                                data-ng-repeat="allowedIp in $ctrl.allowedIps track by allowedIp.ip"
+                                data-ng-bind="allowedIp.ip"
+                            ></p>
+                        </span>
                         <button
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                             data-ng-click="$ctrl.goToAllowedIPs()"
@@ -221,8 +410,6 @@
                     </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>
-        </div>
-        <div class="col-md-4">
             <oui-tile
                 data-heading="{{:: 'pci_databases_general_information_subscription_title' | translate }}"
             >
@@ -263,36 +450,6 @@
                             ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
-                </oui-tile-definition>
-            </oui-tile>
-        </div>
-    </div>
-    <div class="row py-4">
-        <div class="col-md-8">
-            <oui-tile
-                data-heading="{{:: 'pci_databases_general_information_connection_information' | translate }}"
-            >
-                <oui-tile-definition
-                    data-term="{{:: 'pci_databases_general_information_connection_information_mongo_shell' | translate }}"
-                >
-                    <oui-tile-description>
-                        <oui-clipboard
-                            data-model="$ctrl.connectionInformation.mongoShell"
-                            data-id="connection-mongo-shell"
-                            data-name="connection-mongo-shell"
-                        ></oui-clipboard>
-                    </oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    data-term="{{:: 'pci_databases_general_information_connection_information_application' | translate }}"
-                >
-                    <oui-tile-description>
-                        <oui-clipboard
-                            data-model="$ctrl.connectionInformation.application"
-                            data-id="connection-application"
-                            data-name="connection-application"
-                        ></oui-clipboard>
-                    </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>
         </div>
