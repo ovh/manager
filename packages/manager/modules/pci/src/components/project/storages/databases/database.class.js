@@ -18,6 +18,10 @@ export default class Database extends Base {
     subnetId,
     engine,
     nodes,
+    flavor,
+    sslMode,
+    host,
+    port,
   }) {
     super();
     this.updateData({
@@ -35,11 +39,11 @@ export default class Database extends Base {
       subnetId,
       engine,
       nodes,
+      flavor,
+      sslMode,
+      host,
+      port,
     });
-  }
-
-  get flavor() {
-    return this.nodes[0]?.flavor;
   }
 
   get region() {
@@ -54,11 +58,29 @@ export default class Database extends Base {
     return find(this.nodes, { id: nodeId });
   }
 
+  setNodeStatus(node, status) {
+    const nodeObj = this.getNode(node.id);
+    nodeObj.status = status;
+  }
+
+  deleteNode(nodeId) {
+    this.nodes = this.nodes.filter((n) => n.id !== nodeId);
+  }
+
   setNodes(nodes) {
     nodes.forEach((node) => {
       const nodeObj = this.getNode(node.id);
       return nodeObj ? nodeObj.updateData(node) : this.addNode(node);
     });
+  }
+
+  getEngineFromList(engines) {
+    if (!this.currentEngine) {
+      this.currentEngine = engines.find(
+        (engine) => engine.name === this.engine,
+      );
+    }
+    return this.currentEngine;
   }
 
   updateData(data) {
