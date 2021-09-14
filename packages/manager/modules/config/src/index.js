@@ -24,6 +24,8 @@ export const findLanguage = _findLanguage;
 export const findAvailableLocale = _findAvailableLocale;
 export const LANGUAGES = _LANGUAGES;
 
+export const isTopLevelApplication = () => window.top === window.self;
+
 export const fetchConfiguration = (applicationName) => {
   const environment = new Environment();
   const configRequestOptions = {
@@ -67,5 +69,6 @@ export default {
   fetchConfiguration,
   findLanguage,
   findAvailableLocale,
+  isTopLevelApplication,
   LANGUAGES,
 };
