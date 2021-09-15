@@ -502,7 +502,6 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
-
   getTopics(projectId, engine, databaseId) {
     return this.$http
       .get(
