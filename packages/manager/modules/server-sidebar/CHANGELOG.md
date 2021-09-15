@@ -1,3 +1,12 @@
+## [3.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.13.0...@ovh-ux/manager-server-sidebar@3.13.1) (2021-09-15)
+
+
+### Bug Fixes
+
+* **server-sidebar:** add missing features ([5e35787](https://github.com/ovh/manager/commit/5e35787405ef3e0ebe73da336e5534030a40bf5e)), closes [#MANAGER-7130](https://github.com/ovh/manager/issues/MANAGER-7130)
+
+
+
 # [3.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.12.2...@ovh-ux/manager-server-sidebar@3.13.0) (2021-08-25)
 
 

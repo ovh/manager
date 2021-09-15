@@ -1,3 +1,12 @@
+## [10.1.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sidebar-menu@10.1.2...@ovh-ux/ng-ovh-sidebar-menu@10.1.3) (2021-09-15)
+
+
+### Bug Fixes
+
+* **server-sidebar:** add missing features ([5e35787](https://github.com/ovh/manager/commit/5e35787405ef3e0ebe73da336e5534030a40bf5e)), closes [#MANAGER-7130](https://github.com/ovh/manager/issues/MANAGER-7130)
+
+
+
 ## [10.1.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sidebar-menu@10.1.1...@ovh-ux/ng-ovh-sidebar-menu@10.1.2) (2021-06-29)
 
 

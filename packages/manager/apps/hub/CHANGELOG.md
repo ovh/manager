@@ -1,3 +1,12 @@
+## [3.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.16.1...@ovh-ux/manager-hub-app@3.16.2) (2021-09-15)
+
+
+### Bug Fixes
+
+* **hub:** add trusted label ([ccafd30](https://github.com/ovh/manager/commit/ccafd3028e9465488cdbd9512eb3e75f145a6e0c)), closes [#MANAGER-7130](https://github.com/ovh/manager/issues/MANAGER-7130)
+
+
+
 ## [3.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.16.0...@ovh-ux/manager-hub-app@3.16.1) (2021-09-07)
 
 
