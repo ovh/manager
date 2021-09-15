@@ -85,6 +85,13 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      aclLink: ($state, databaseId, projectId) =>
+        $state.href('pci.projects.project.storages.databases.dashboard.acl', {
+          projectId,
+          databaseId,
+        }),
+      isFeatureActivated: /* @ngInject */ (engine) => (feature) =>
+        isFeatureActivated(feature, engine.name),
     },
     redirectTo:
       'pci.projects.project.storages.databases.dashboard.general-information',

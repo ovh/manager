@@ -12,6 +12,7 @@ export default {
     usersLink: '<',
     logsLink: '<',
     metricsLink: '<',
+    aclLink: '<',
     trackDashboard: '<',
     trackDatabases: '<',
     isFeatureActivated: '<',

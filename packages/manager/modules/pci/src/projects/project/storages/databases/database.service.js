@@ -419,4 +419,32 @@ export default class DatabaseService {
       .get(`/cloud/project/${projectId}/database/${engine}/${databaseId}/logs`)
       .then(({ data }) => data);
   }
+
+  getServiceAcl(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/acl`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  addServiceAcl(projectId, engine, databaseId, username, topic, permission) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/acl`,
+        {
+          username,
+          topic,
+          permission,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteServiceAcl(projectId, engine, databaseId, aclId) {
+    return this.$http.delete(
+      `/cloud/project/${projectId}/database/${engine}/${databaseId}/acl/${aclId}`,
+    );
+  }
 }

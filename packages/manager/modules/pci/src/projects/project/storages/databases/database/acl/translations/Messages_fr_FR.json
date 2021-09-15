@@ -1,0 +1,11 @@
+{
+  "pci_database_acl_title": "ACL",
+  "pci_databases_acl_tab_title": "ACL",
+  "pci_databases_acl_tab_username": "Utilisateur",
+  "pci_databases_acl_tab_topic": "Topic",
+  "pci_databases_acl_tab_permission": "Permission",
+  "pci_databases_acl_tab_add": "Ajouter une nouvelle entrée",
+  "pci_databases_acl_tab_delete": "Supprimer",
+  "pci_databases_acl_tab_delete_success": "L'entrée a été supprimée",
+  "pci_databases_acl_tab_delete_error": "Une erreur a été remontée lors de la suppression de l'entrée : {{message}}"
+}
