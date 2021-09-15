@@ -9,6 +9,7 @@ const component = {
     onNodeUpgrade: '<',
     flavors: '<',
     projectId: '<',
+    trackDashboard: '<',
     trackDatabases: '<',
   },
   template,

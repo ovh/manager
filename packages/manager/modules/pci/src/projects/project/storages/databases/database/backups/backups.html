@@ -86,6 +86,7 @@
         </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
+                data-ng-if="$ctrl.isFeatureActivated('restoreFromBackup')"
                 data-on-click="$ctrl.restoreBackup($row)"
                 data-disabled="!($row.isActive() && $ctrl.database.isActive())"
             >

@@ -38,39 +38,33 @@ export default class {
   }
 
   addNode() {
-    this.trackDatabases('dashboard::general_information::add_node');
+    this.trackDashboard('general_information::add_node');
     this.goToAddNode();
   }
 
   deleteNode() {
-    this.trackDatabases('dashboard::general_information::remove_node');
+    this.trackDashboard('general_information::remove_node');
     this.goToDeleteNode();
   }
 
   manageUsers() {
     if (this.users.length === 0 && this.allowedIps.length === 0) {
-      this.trackDatabases(
-        'dashboard::general_information::no_user_ip_banner_manage_user',
-      );
+      this.trackDashboard('general_information::no_user_ip_banner_manage_user');
     } else if (this.users.length === 0) {
-      this.trackDatabases(
-        'dashboard::general_information::no_user_banner_manage_user',
-      );
+      this.trackDashboard('general_information::no_user_banner_manage_user');
     } else {
-      this.trackDatabases('dashboard::general_information::manage_user');
+      this.trackDashboard('general_information::manage_user');
     }
 
     this.goToManagerUsers();
   }
 
   trackManageVRack() {
-    this.trackDatabases('dashboard::general_information::goto_vrack');
+    this.trackDashboard('general_information::goto_vrack');
   }
 
   manageAllowedIps() {
-    this.trackDatabases(
-      'dashboard::general_information::configuration::manage_ips',
-    );
+    this.trackDashboard('general_information::configuration::manage_ips');
     this.goToAllowedIPs();
   }
 
@@ -89,22 +83,22 @@ export default class {
   }
 
   upgradeVersion() {
-    this.trackDatabases('dashboard::general_information::upgrade_version');
+    this.trackDashboard('general_information::upgrade_version');
     this.goToUpgradeVersion();
   }
 
   upgradePlan() {
-    this.trackDatabases('dashboard::general_information::upgrade_plan');
+    this.trackDashboard('general_information::upgrade_plan');
     this.goToUpgradePlan();
   }
 
   upgradeNode() {
-    this.trackDatabases('dashboard::general_information::upgrade_node');
+    this.trackDashboard('general_information::upgrade_node');
     this.goToUpgradeNode();
   }
 
   deleteDatabase() {
-    this.trackDatabases('dashboard::general_information::delete_database');
+    this.trackDashboard('general_information::delete_database');
     this.goToDeleteDatabase();
   }
 

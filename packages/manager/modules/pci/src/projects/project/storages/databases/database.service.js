@@ -247,6 +247,15 @@ export default class DatabaseService {
       );
   }
 
+  getAllDatabases(projectId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/service`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then((databases) => databases.data);
+  }
+
   getIpRestrictions(projectId, engine, databaseId) {
     return this.$http
       .get(
@@ -286,7 +295,10 @@ export default class DatabaseService {
 
   getVRack(projectId) {
     return this.$http
-      .get(`/cloud/project/${projectId}/vrack`)
+      .get(
+        `/cloud/project/${projectId}/vrack`,
+        DatabaseService.getIcebergHeaders(),
+      )
       .then(({ data }) => data)
       .catch((error) => (error.status === 404 ? [] : Promise.reject(error)));
   }

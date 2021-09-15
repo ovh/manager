@@ -31,10 +31,10 @@ export default class {
   }
 
   processIp() {
-    this.trackDatabases(
+    this.trackDashboard(
       this.allowedIp
-        ? 'dashboard::allowed-ips::options::update_ips_confirm'
-        : 'dashboard::allowed-ips::add_ips_confirm',
+        ? 'allowed-ips::options::update_ips_confirm'
+        : 'allowed-ips::add_ips_confirm',
     );
     this.isLoading = true;
     return (this.allowedIp
@@ -54,10 +54,10 @@ export default class {
         )
     )
       .then(() => {
-        this.trackDatabases(
+        this.trackDashboard(
           this.allowedIp
-            ? 'dashboard::allowed-ips::options::update_ips_validate'
-            : 'dashboard::allowed-ips::add_ips_validate',
+            ? 'allowed-ips::options::update_ips_validate'
+            : 'allowed-ips::add_ips_validate',
         );
         return this.goBack(
           this.$translate.instant(
@@ -68,10 +68,10 @@ export default class {
         );
       })
       .catch((error) => {
-        this.trackDatabases(
+        this.trackDashboard(
           this.allowedIp
-            ? 'dashboard::allowed-ips::options::update_ips_error'
-            : 'dashboard::allowed-ips::add_ips_error',
+            ? 'allowed-ips::options::update_ips_error'
+            : 'allowed-ips::add_ips_error',
         );
         this.goBack(
           this.$translate.instant(
@@ -88,10 +88,10 @@ export default class {
   }
 
   cancel() {
-    this.trackDatabases(
+    this.trackDashboard(
       this.allowedIp
-        ? 'dashboard::allowed-ips::options::update_ips_cancel'
-        : 'dashboard::allowed-ips::add_ips_cancel',
+        ? 'allowed-ips::options::update_ips_cancel'
+        : 'allowed-ips::add_ips_cancel',
     );
     this.goBack();
   }

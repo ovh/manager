@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import isFeatureActivated from '../features.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.databases.dashboard', {
@@ -31,8 +32,30 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href($state.current.name, $transition$.params()),
       databaseId: /* @ngInject */ ($transition$) =>
         $transition$.params().databaseId,
-      database: /* @ngInject */ (databaseId, databases) =>
-        find(databases, { id: databaseId }),
+      dashboardTrackPrefix: (database) =>
+        `PublicCloud::pci::projects::project::storages::databases::dashboard::${database.engine}::`,
+      trackDashboard: /* @ngInject */ (
+        dashboardTrackPrefix,
+        trackDatabases,
+      ) => (complement, type = 'action') =>
+        trackDatabases(dashboardTrackPrefix + complement, type, false),
+      database: /* @ngInject */ (
+        databaseId,
+        databases,
+        projectId,
+        DatabaseService,
+      ) => {
+        const db = find(databases, { id: databaseId });
+        if (isFeatureActivated('certificate', db.engine) && !db.certificate) {
+          DatabaseService.getCertificate(projectId, db.engine, databaseId).then(
+            (data) => {
+              db.certificate = data;
+              return data;
+            },
+          );
+        }
+        return db;
+      },
       engine: /* @ngInject */ (database, engines) =>
         find(engines, { name: database.engine }),
       breadcrumb: /* @ngInject */ (database) => database.description,

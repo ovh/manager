@@ -22,6 +22,7 @@ export default class Database extends Base {
     sslMode,
     host,
     port,
+    uri,
   }) {
     super();
     this.updateData({
@@ -43,6 +44,7 @@ export default class Database extends Base {
       sslMode,
       host,
       port,
+      uri,
     });
   }
 

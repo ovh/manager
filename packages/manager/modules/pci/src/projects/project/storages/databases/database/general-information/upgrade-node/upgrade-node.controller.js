@@ -24,9 +24,7 @@ export default class {
   }
 
   upgradeNode() {
-    this.trackDatabases(
-      'dashboard::general_information::popin_upgrade_node_validate',
-    );
+    this.trackDashboard('general_information::popin_upgrade_node_validate');
     this.upgradingFlavor = true;
     return this.DatabaseService.editDatabase(
       this.projectId,
@@ -60,9 +58,7 @@ export default class {
   }
 
   cancel() {
-    this.trackDatabases(
-      'dashboard::general_information::popin_upgrade_node_cancel',
-    );
+    this.trackDashboard('general_information::popin_upgrade_node_cancel');
     this.goBack();
   }
 }

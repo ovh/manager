@@ -89,6 +89,10 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      goToFork: /* @ngInject */ ($state, database) => () =>
+        $state.go('pci.projects.project.storages.databases.fork', {
+          database,
+        }),
       vRack: /* @ngInject */ (DatabaseService, projectId) =>
         DatabaseService.getVRack(projectId),
       vRackLink: /* @ngInject */ (vRack, coreURLBuilder) => {
