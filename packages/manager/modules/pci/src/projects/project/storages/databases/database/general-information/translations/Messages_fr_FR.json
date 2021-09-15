@@ -46,5 +46,9 @@
   "pci_databases_general_information_generate_password": "Vous devez regénérer votre mot de passe admin pour pouvoir utiliser votre cluster de données.",
   "pci_databases_general_information_no_ip": "Votre cluster n'est pas totalement configuré : vous devez autoriser des IP afin d'en bénéficier.",
   "pci_databases_general_information_no_users": "Votre cluster n'est pas totalement configuré : vous devez ajouter des utilisateurs afin d'en bénéficier. Pour cela, rendez-vous dans ",
-  "pci_databases_general_information_no_ip_no_users": "Votre cluster n'est pas totalement configuré : vous devez autoriser des IP ainsi qu'ajouter des utilisateurs via "
+  "pci_databases_general_information_no_ip_no_users": "Votre cluster n'est pas totalement configuré : vous devez autoriser des IP ainsi qu'ajouter des utilisateurs via ",
+  "pci_databases_general_information_certificate_label": "Certificat CA",
+  "pci_databases_general_information_certificate_link": "Voir",
+  "pci_databases_general_information_certificate_download": "Télécharger",
+  "pci_databases_general_information_certificate_tooltip": "Votre certificat: <code>{{certificate}}</code>"
 }

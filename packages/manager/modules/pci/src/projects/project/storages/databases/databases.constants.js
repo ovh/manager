@@ -33,6 +33,17 @@ export const SHELL_NAMES = {
   kafka: 'kafka',
 };
 
+export const SECRET_TYPE = {
+  cert: {
+    label: 'cert',
+    filename: 'service.cert',
+  },
+  key: {
+    label: 'key',
+    filename: 'service.key',
+  },
+};
+
 export const METRICS_TIME_RANGES = [
   { label_key: '1H', value: 'lastHour' },
   { label_key: '1D', value: 'lastDay' },
@@ -110,5 +121,6 @@ export default {
   METRICS_TIME_RANGES,
   CHART_METRICS_OPTIONS,
   NODES_PER_ROW,
+  SECRET_TYPE,
   ENGINE_LOGOS,
 };
