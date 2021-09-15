@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import ReactNavbar from '@ovh-ux/react-navbar';
+import ReactNavbar from './navbar/index.jsx';
 
 import appContext from './context';
 
 ReactDOM.render(
-  <ReactNavbar
-    environment={appContext.getEnvironment()}
-  />,
+  <Suspense fallback="">
+    <ReactNavbar
+      environment={appContext.getEnvironment()}
+    />
+  </Suspense>,
   document.getElementById('shell-header'),
 );

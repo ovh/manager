@@ -41,6 +41,7 @@ function viteOvhDevServerPlugin() {
 module.exports = defineConfig({
   root: path.resolve(__dirname, 'src'),
   clearScreen: false,
+  publicDir: 'public',
   plugins: [
     reactRefresh(),
     legacy({

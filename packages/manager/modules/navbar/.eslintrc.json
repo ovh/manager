@@ -1,6 +1,0 @@
-{
-  "globals": {
-    "moment": true,
-    "Tour": true
-  }
-}
