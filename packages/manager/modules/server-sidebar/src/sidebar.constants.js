@@ -32,7 +32,7 @@ export const DEDICATED_SERVER_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-server',
   app: [DEDICATED],
-  regions: ['EU', 'CA', 'US'],
+  feature: 'dedicated-server',
 };
 
 export const DEDICATED_CLOUD_CONFIG = {
@@ -61,8 +61,8 @@ export const DEDICATED_CLOUD_CONFIG = {
   loadOnState: 'app.dedicatedCloud.details',
   icon: 'ovh-font ovh-font-dedicatedCloud',
   app: [DEDICATED],
-  regions: ['EU', 'CA', 'US'],
   namespace: HPC_NAMESPACE,
+  feature: 'dedicated-cloud',
 };
 
 export const MANAGED_BAREMETAL_CONFIG = {
@@ -89,7 +89,7 @@ export const MANAGED_BAREMETAL_CONFIG = {
   loadOnState: 'app.managedBaremetal.details',
   icon: 'oui-icon oui-icon-cloud-essential_concept',
   app: [DEDICATED],
-  regions: ['EU', 'CA', 'US'],
+  feature: 'managed-bare-metal',
 };
 
 export const NETWORKS_CONFIG = {
@@ -103,7 +103,6 @@ export const NETWORKS_CONFIG = {
           state: 'app.networks.cdn.dedicated.manage.domain.dashboard',
           stateParams: ['productId', 'domain'],
           app: [DEDICATED],
-          regions: ['EU'],
         },
       ],
       state: 'app.networks.cdn.dedicated',
@@ -111,8 +110,8 @@ export const NETWORKS_CONFIG = {
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-cdn',
       app: [DEDICATED],
-      regions: ['EU'],
       searchKeys: ['Content Delivery Network'],
+      feature: 'dedicated-cdn',
     },
     {
       path: '/dedicated/nas',
@@ -120,8 +119,8 @@ export const NETWORKS_CONFIG = {
       stateParams: ['nasId'],
       icon: 'ovh-font ovh-font-cloudnas',
       app: [DEDICATED],
-      regions: ['EU', 'CA'],
       searchKeys: ['NAS'],
+      feature: 'dedicated-nas',
     },
     {
       path: '/dedicated/nasha',
@@ -129,8 +128,8 @@ export const NETWORKS_CONFIG = {
       stateParams: ['nashaId'],
       icon: 'ovh-font ovh-font-cloudnas',
       app: [DEDICATED],
-      regions: ['EU', 'CA'],
       searchKeys: ['NAS', 'NASHA', 'NAS-HA'],
+      feature: 'dedicated-nasha',
     },
   ],
   loadOnState: [
@@ -140,16 +139,16 @@ export const NETWORKS_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-network',
   app: [DEDICATED],
-  regions: ['EU', 'CA'],
+  feature: 'dedicated-networks',
 };
 
 export const ENTERPRISE_CLOUD_DATABASE = {
   app: [DEDICATED],
   icon: 'ovh-font ovh-font-database',
   id: 'enterprise_cloud_database',
-  regions: ['EU'],
   state: 'enterprise-cloud-database',
   stateUrl: '#/enterprise-cloud-database',
+  feature: 'enterprise-cloud-database',
 };
 
 export const MICROSOFT_CONFIG = {
@@ -176,6 +175,7 @@ export const MICROSOFT_CONFIG = {
   icon: 'ms-Icon ms-Icon--ExchangeLogo',
   app: [DEDICATED],
   regions: ['CA'],
+  feature: 'exchange:dedicated-dashboard',
 };
 
 export const LICENCE_CONFIG = {
@@ -184,7 +184,7 @@ export const LICENCE_CONFIG = {
   icon: 'ovh-font ovh-font-certificate',
   stateUrl: '#/configuration/license?landingTo=licences',
   app: [DEDICATED],
-  regions: ['EU', 'CA', 'US'],
+  feature: 'license',
 };
 
 export const IP_CONFIG = {
@@ -193,8 +193,8 @@ export const IP_CONFIG = {
   stateUrl: '#/configuration/ip?landingTo=ip',
   icon: 'ovh-font ovh-font-ip',
   app: [DEDICATED],
-  regions: ['EU', 'CA', 'US'],
   namespace: [undefined, HPC_NAMESPACE],
+  feature: 'ip',
 };
 
 export const VPS_CONFIG = {
@@ -213,6 +213,7 @@ export const VPS_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-cloud-root',
   app: [DEDICATED],
+  feature: 'vps',
 };
 
 export const PAAS_CONFIG = {
@@ -230,9 +231,9 @@ export const PAAS_CONFIG = {
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-cloud-disk-array',
       app: [DEDICATED],
-      regions: ['EU', 'CA'],
       searchKeys: ['Cloud Disk Array', 'CDA'],
       namespace: [undefined],
+      feature: 'cloud-disk-array',
     },
     {
       path: '/veeamCloudConnect',
@@ -240,9 +241,9 @@ export const PAAS_CONFIG = {
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-veeam',
       app: [DEDICATED],
-      regions: ['EU', 'CA'],
       searchKeys: ['Veeam Cloud Connect', 'VEEAM'],
       namespace: [undefined],
+      feature: 'veeam-cloud-connect',
     },
     {
       path: '/veeam/veeamEnterprise',
@@ -250,14 +251,14 @@ export const PAAS_CONFIG = {
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-veeam',
       app: [DEDICATED],
-      regions: ['EU'],
       searchKeys: ['Veeam Enterprise', 'VEEAM_ENTERPRISE'],
       namespace: [HPC_NAMESPACE],
+      feature: 'veeam-enterprise',
     },
   ],
   icon: 'ovh-font ovh-font-cloud-package',
   app: [DEDICATED],
-  regions: ['EU', 'CA'],
+  feature: 'paas',
   namespace: [undefined, HPC_NAMESPACE],
 };
 
@@ -276,7 +277,7 @@ export const METRICS_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-graph',
   app: [DEDICATED],
-  regions: ['EU'],
+  feature: 'metrics',
 };
 
 export const LOGS_CONFIG = {
@@ -302,7 +303,7 @@ export const LOGS_CONFIG = {
   ],
   icon: 'fa fa-bar-chart',
   app: [DEDICATED],
-  regions: ['EU', 'CA'],
+  feature: 'logs-data-platform',
 };
 
 export const IPLB_CONFIG = {
@@ -320,20 +321,21 @@ export const IPLB_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-iplb',
   app: [DEDICATED],
-  regions: ['EU', 'CA'],
+  feature: 'ip-load-balancer',
 };
 
 export const DEDICATED_NETWORK_CONFIG = {
   id: 'dedicated_network',
   forceDisplaySearch: true,
   app: [DEDICATED],
-  regions: ['EU', 'CA', 'US'],
   namespace: [undefined, HPC_NAMESPACE],
   icon: 'oui-icon oui-icon-bandwidth_concept',
   loadOnState: ['vrack.dashboard', 'cloud-connect'],
+  feature: 'dedicated-network',
   children: [
     {
       id: 'vrack',
+      feature: 'vrack:bare-metal-cloud',
       loadOnState: 'vrack',
       types: [
         {
@@ -341,13 +343,29 @@ export const DEDICATED_NETWORK_CONFIG = {
           state: 'vrack.dashboard',
           stateParams: ['vrackId'],
           app: [DEDICATED],
-          namespace: [undefined, HPC_NAMESPACE],
+          namespace: [undefined],
         },
       ],
       icon: 'ovh-font ovh-font-vRack',
       app: [DEDICATED],
-      regions: ['EU', 'CA', 'US'],
-      namespace: [undefined, HPC_NAMESPACE],
+      namespace: [undefined],
+    },
+    {
+      id: 'vrack',
+      feature: 'vrack:hosted-private-cloud',
+      loadOnState: 'vrack',
+      types: [
+        {
+          path: '/vrack',
+          state: 'vrack.dashboard',
+          stateParams: ['vrackId'],
+          app: [DEDICATED],
+          namespace: [HPC_NAMESPACE],
+        },
+      ],
+      icon: 'ovh-font ovh-font-vRack',
+      app: [DEDICATED],
+      namespace: [HPC_NAMESPACE],
     },
     {
       id: 'cloud_connect',

@@ -172,62 +172,71 @@ export default class OvhManagerServerSidebarController {
 
   buildOrderMenu() {
     this.SidebarMenu.actionsMenuOptions = [];
-    return this.SessionService.getUser().then(({ ovhSubsidiary }) => {
-      const actionsMenuOptions = map(
-        this.filterFeatures(this.filterRegions(this.SIDEBAR_ORDER_CONFIG)),
-        (orderItemConfig) => {
-          if (
-            !has(orderItemConfig, 'featureType') ||
-            this.CucFeatureAvailabilityService.hasFeature(
-              orderItemConfig.featureType,
-              'sidebarOrder',
-              ovhSubsidiary,
-            )
-          ) {
-            const isExternal = !includes(orderItemConfig.app, this.universe);
+    return this.SessionService.getUser().then(
+      ({ ovhSubsidiary, isTrusted }) => {
+        const actionsMenuOptions = isTrusted
+          ? []
+          : map(
+              this.filterFeatures(
+                this.filterRegions(this.SIDEBAR_ORDER_CONFIG),
+              ),
+              (orderItemConfig) => {
+                if (
+                  !has(orderItemConfig, 'featureType') ||
+                  this.CucFeatureAvailabilityService.hasFeature(
+                    orderItemConfig.featureType,
+                    'sidebarOrder',
+                    ovhSubsidiary,
+                  )
+                ) {
+                  const isExternal = !includes(
+                    orderItemConfig.app,
+                    this.universe,
+                  );
 
-            let link = null;
-            if (
-              (isExternal || !has(orderItemConfig, 'state')) &&
-              (has(orderItemConfig, 'linkId') ||
-                has(orderItemConfig, 'linkPart'))
-            ) {
-              link = this.buildUrl(orderItemConfig, ovhSubsidiary);
-            }
+                  let link = null;
+                  if (
+                    (isExternal || !has(orderItemConfig, 'state')) &&
+                    (has(orderItemConfig, 'linkId') ||
+                      has(orderItemConfig, 'linkPart'))
+                  ) {
+                    link = this.buildUrl(orderItemConfig, ovhSubsidiary);
+                  }
 
-            if (!isExternal || link) {
-              return {
-                id: orderItemConfig.id,
-                title: this.$translate.instant(
-                  `server_sidebar_order_item_${orderItemConfig.title}_title`,
-                ),
-                icon: orderItemConfig.icon,
-                href: link,
-                state: isExternal ? null : orderItemConfig.state,
-                target: get(
-                  orderItemConfig,
-                  'target',
-                  isExternal ? '_blank' : null,
-                ),
-                external: get(orderItemConfig, 'external', false),
-                onClick: () => {
-                  this.atInternet.trackClick({
-                    type: 'action',
-                    name: get(orderItemConfig, 'tracker'),
-                  });
-                },
-              };
-            }
-          }
+                  if (!isExternal || link) {
+                    return {
+                      id: orderItemConfig.id,
+                      title: this.$translate.instant(
+                        `server_sidebar_order_item_${orderItemConfig.title}_title`,
+                      ),
+                      icon: orderItemConfig.icon,
+                      href: link,
+                      state: isExternal ? null : orderItemConfig.state,
+                      target: get(
+                        orderItemConfig,
+                        'target',
+                        isExternal ? '_blank' : null,
+                      ),
+                      external: get(orderItemConfig, 'external', false),
+                      onClick: () => {
+                        this.atInternet.trackClick({
+                          type: 'action',
+                          name: get(orderItemConfig, 'tracker'),
+                        });
+                      },
+                    };
+                  }
+                }
 
-          return null;
-        },
-      );
+                return null;
+              },
+            );
 
-      return this.SidebarMenu.addActionsMenuOptions(
-        compact(actionsMenuOptions),
-      );
-    });
+        return this.SidebarMenu.addActionsMenuOptions(
+          compact(actionsMenuOptions),
+        );
+      },
+    );
   }
 
   addItems(services, parent = null) {

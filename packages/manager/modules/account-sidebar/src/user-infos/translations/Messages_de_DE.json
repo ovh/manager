@@ -9,5 +9,10 @@
   "hub_user_actions_aria_reduce": "Die verfügbaren Aktionen verbergen",
   "hub_user_account": "Meinen Account verwalten",
   "hub_user_role_user": "Als Subuser angemeldet",
-  "hub_user_role_none": "Nur mit Lesefunktion angemeldet"
+  "hub_user_role_none": "Nur mit Lesefunktion angemeldet",
+  "hub_user_support_level_standard_trusted": "Vertrauenswürdige Zone Standard",
+  "hub_user_support_level_premium_trusted": "Vertrauenswürdige Zone Premium",
+  "hub_user_support_level_premium-accredited_trusted": "Vertrauenswürdige Zone Premium Advanced",
+  "hub_user_support_level_business_trusted": "Vertrauenswürdige Zone Business",
+  "hub_user_support_level_enterprise_trusted": "Vertrauenswürdige Zone Enterprise"
 }

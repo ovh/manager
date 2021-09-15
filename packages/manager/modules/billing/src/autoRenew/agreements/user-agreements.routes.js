@@ -11,6 +11,14 @@ export default /* @ngInject */ (
       url: '/agreements',
       template,
       controller,
+      redirectTo: (transition) =>
+        transition
+          .injector()
+          .getAsync('currentUser')
+          .then(
+            (currentUser) =>
+              currentUser.isTrusted && 'app.account.billing.autorenew',
+          ),
       resolve: {
         gotoAcceptAllAgreements: /* @ngInject */ ($state, atInternet) => (
           agreements,

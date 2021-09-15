@@ -58,6 +58,7 @@ import has from 'lodash/has';
 import set from 'lodash/set';
 import values from 'lodash/values';
 import isString from 'lodash/isString';
+import trustedNic from '@ovh-ux/manager-trusted-nic';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
@@ -214,6 +215,7 @@ export default (containerEl, environment) => {
         ovhPaymentMethod,
         'pascalprecht.translate',
         'services',
+        trustedNic,
         'ui.bootstrap',
         'ui.router',
         'ui.select',
@@ -242,6 +244,7 @@ export default (containerEl, environment) => {
       DEFAULT_LANGUAGE: configConstants.DEFAULT_LANGUAGE,
       FALLBACK_LANGUAGE: configConstants.FALLBACK_LANGUAGE,
       SUPPORT: configConstants.SUPPORT,
+      SECTIONS_UNIVERSE_MAP: configConstants.SECTIONS_UNIVERSE_MAP,
     })
     .constant('website_url', configConstants.website_url)
     .config(

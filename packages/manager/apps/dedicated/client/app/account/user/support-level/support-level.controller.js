@@ -36,7 +36,10 @@ export default class UserAccountSupportLevelCtrl {
             subscriptionUrl: this.getSubscriptionUrl(level),
           }),
       )
-      .filter((level) => this.isLevelActive(level));
+      .filter((level) => this.isLevelActive(level))
+      .filter(({ name }) =>
+        this.supportAvailability.isFeatureAvailable(`support:${name}`),
+      );
   }
 
   getSubscriptionUrl(supportLevel) {
