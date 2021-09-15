@@ -6,7 +6,7 @@ export default {
     projectId: '<',
     database: '<',
     trackDashboard: '<',
-    addAcl: '<',
+    goToAddAcl: '<',
     deleteAcl: '<',
     refreshAcl: '<',
     aclList: '<',

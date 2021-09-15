@@ -1,11 +1,9 @@
 export default class aclCtrl {
   /* @ngInject */
-  constructor($anchorScroll, $translate, $q, CucCloudMessage, DatabaseService) {
-    this.$anchorScroll = $anchorScroll;
+  constructor($translate, $q, CucCloudMessage) {
     this.$translate = $translate;
     this.$q = $q;
     this.CucCloudMessage = CucCloudMessage;
-    this.DatabaseService = DatabaseService;
   }
 
   $onInit() {

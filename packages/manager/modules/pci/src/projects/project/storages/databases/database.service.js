@@ -275,9 +275,7 @@ export default class DatabaseService {
         )
         .then(({ data }) => data);
     }
-    const deferred = this.$q.defer();
-    deferred.resolve([]);
-    return deferred.promise;
+    return this.$q.when([]);
   }
 
   getNodes(projectId, engine, databaseId) {
@@ -306,7 +304,7 @@ export default class DatabaseService {
         DatabaseService.getIcebergHeaders(),
       )
       .then(({ data }) => data)
-      .catch((error) => (error.status === 404 ? [] : Promise.reject(error)));
+      .catch((error) => (error.status === 404 ? [] : this.$q.reject(error)));
   }
 
   getSubnets(projectId, networkId) {
@@ -405,7 +403,7 @@ export default class DatabaseService {
         successRule: (node) => !new Node(node).isProcessing(),
         errorRule: (error) => error.status === 404,
       },
-    ).catch((error) => (error.status === 404 ? true : Promise.reject(error)));
+    ).catch((error) => (error.status === 404 ? true : this.$q.reject(error)));
   }
 
   stopPollingDatabaseStatus(databaseId) {

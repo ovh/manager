@@ -10,8 +10,8 @@
             ng-keypress="$ctrl.handleKeyPressed($event)"
         />
         <oui-button disabled="$ctrl.isDisabled()" ng-click="$ctrl.addTag()"
-            >{{$ctrl.buttonLabel}}</oui-button
-        >
+            ><span data-ng-bind="$ctrl.buttonLabel"></span
+        ></oui-button>
     </div>
     <oui-chips
         items="$ctrl.items"

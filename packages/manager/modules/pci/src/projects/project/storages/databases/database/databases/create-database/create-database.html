@@ -1,29 +1,25 @@
-<form name="editName">
-    <oui-modal
-        data-on-dismiss="$ctrl.goBack()"
-        data-primary-label="{{:: 'pci_databases_databases_create_database_confirm' | translate}}"
-        data-primary-disabled="!$ctrl.databaseName"
-        data-primary-action="$ctrl.addDatabase()"
-        data-secondary-action="$ctrl.cancel()"
-        data-secondary-label="{{:: 'pci_databases_databases_create_database_cancel' | translate}}"
-        data-loading="$ctrl.processing"
-        data-heading="{{:: 'pci_databases_databases_create_database' | translate}}"
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-label="{{:: 'pci_databases_databases_create_database_confirm' | translate}}"
+    data-primary-disabled="!$ctrl.databaseName"
+    data-primary-action="$ctrl.addDatabase()"
+    data-secondary-action="$ctrl.cancel()"
+    data-secondary-label="{{:: 'pci_databases_databases_create_database_cancel' | translate}}"
+    data-loading="$ctrl.processing"
+    data-heading="{{:: 'pci_databases_databases_create_database' | translate}}"
+>
+    <p data-translate="pci_databases_databases_create_database_description"></p>
+    <oui-field
+        data-label="{{:: 'pci_databases_databases_create_database_label' | translate }}"
     >
-        <p
-            data-translate="pci_databases_databases_create_database_description"
-        ></p>
-        <oui-field
-            data-label="{{:: 'pci_databases_databases_create_database_label' | translate }}"
-        >
-            <input
-                type="text"
-                id="databaseName"
-                name="databaseName"
-                class="oui-input"
-                data-ng-model="$ctrl.databaseName"
-                required
-                autofocus
-            />
-        </oui-field>
-    </oui-modal>
-</form>
+        <input
+            type="text"
+            id="databaseName"
+            name="databaseName"
+            class="oui-input"
+            data-ng-model="$ctrl.databaseName"
+            required
+            autofocus
+        />
+    </oui-field>
+</oui-modal>

@@ -18,7 +18,6 @@ export default class {
   }
 
   addDatabase() {
-    // this.trackDashboard('dashboard::users::add_a_user::define_role_validate');
     this.processing = true;
     this.trackDashboard('database::add_validate');
     return this.DatabaseService.addServiceDatabase(

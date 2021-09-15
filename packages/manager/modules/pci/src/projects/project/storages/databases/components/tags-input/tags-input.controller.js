@@ -1,6 +1,7 @@
 import remove from 'lodash/remove';
+import pull from 'lodash/pull';
 
-export default class {
+export default class PciTagsInputController {
   $onInit() {
     this.items = [];
     this.tag = '';
@@ -18,7 +19,7 @@ export default class {
   }
 
   removeTag(tag) {
-    this.model.pop(tag);
+    pull(this.model, tag.title);
     remove(this.items, (i) => i.title === tag);
   }
 

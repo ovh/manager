@@ -30,7 +30,7 @@ export default /* @ngInject */ ($stateProvider) => {
             database.engine,
             database.id,
           ),
-        addAcl: /* @ngInject */ ($state, databaseId, projectId) => () =>
+        goToAddAcl: /* @ngInject */ ($state, databaseId, projectId) => () =>
           $state.go(
             'pci.projects.project.storages.databases.dashboard.acl.add',
             {

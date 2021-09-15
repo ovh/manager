@@ -1,11 +1,9 @@
 import get from 'lodash/get';
-import capitalize from 'lodash/capitalize';
 
 export default class {
   /* @ngInject */
   constructor($translate, DatabaseService) {
     this.$translate = $translate;
-    this.capitalize = capitalize;
     this.DatabaseService = DatabaseService;
   }
 
