@@ -111,6 +111,14 @@ export default class Notebook {
     return this.status?.state === NOTEBOOK_STATUS.FAILED;
   }
 
+  isErrored() {
+    return this.status?.state === NOTEBOOK_STATUS.FAILED;
+  }
+
+  isTerminal() {
+    return this.isStopped() || this.isFailed() || this.isErrored();
+  }
+
   getLabelIndex(label) {
     return this.labels.findIndex((l) => l.id === label.id);
   }
