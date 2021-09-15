@@ -10,5 +10,6 @@
   "account_contacts_service_edit_success": "Die Anfrage zur Kontaktänderung wurde erfolgreich durchgeführt. Die von der Änderung betroffenen Kontakte erhalten nun eine E-Mail, in der die Vorgehensweise zur Bestätigung der Anfrage beschrieben wird.",
   "account_contacts_service_edit_warn_debt": "Sie können den Rechnungskontakt nicht ändern, da noch eine ausstehende Rechnung für diesen Dienst vorhanden ist. Bitte begleichen Sie diese Rechnung, um die Änderung durchzuführen.",
   "account_contacts_service_edit_pay": "Rechnung begleichen",
-  "account_contacts_service_edit_warn_contact_billing": "Sie können den Rechnungskontakt nicht ändern, da noch eine ausstehende Rechnung für diesen Dienst vorhanden ist. Bitte wenden Sie sich an den aktuellen Rechnungskontakt {{ nicBilling }}, um diese Änderung vorzunehmen."
+  "account_contacts_service_edit_warn_contact_billing": "Sie können den Rechnungskontakt nicht ändern, da noch eine ausstehende Rechnung für diesen Dienst vorhanden ist. Bitte wenden Sie sich an den aktuellen Rechnungskontakt {{ nicBilling }}, um diese Änderung vorzunehmen.",
+  "account_contacts_service_edit_description_trusted": "Die Kontakte Ihres Dienstes {{ serviceName }} in einer vertrauenswürdigen Zone ändern."
 }

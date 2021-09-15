@@ -1,3 +1,4 @@
 {
-  "user_account_contacts_request": "My requests"
+  "user_account_contacts_request": "My requests",
+  "user_account_contacts_request_error_tooltip": "For more details please contact support"
 }

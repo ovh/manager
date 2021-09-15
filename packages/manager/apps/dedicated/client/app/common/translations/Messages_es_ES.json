@@ -545,5 +545,6 @@
   "common_subscription_contacts_billing": "Facturación",
   "common_subscription_contacts_tech": "Técnico",
   "common_unavailable_information": "Información no disponible",
-  "common_resiliate_contact_support": "Para dar de baja este servicio, puede ponerse en contacto con nuestro Soporte en el <strong>91 758 34 77</strong>. ¡Gracias por su comprensión!"
+  "common_resiliate_contact_support": "Para dar de baja este servicio, puede ponerse en contacto con nuestro Soporte en el <strong>91 758 34 77</strong>. ¡Gracias por su comprensión!",
+  "core_user_trusted_retail_prices": "Nota: El precio mostrado corresponde al precio del servicio. El recargo correspondiente a la zona de confianza (Trusted Zone) se añade a la facturación mensual global."
 }

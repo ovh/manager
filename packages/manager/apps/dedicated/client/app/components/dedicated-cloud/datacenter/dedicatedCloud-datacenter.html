@@ -59,9 +59,12 @@
         <oui-header-tabs-item data-state="{{:: $ctrl.backupState }}"
             ><span data-translate="dedicatedCloud_tab_backup"></span
         ></oui-header-tabs-item>
-        <oui-header-tabs-item data-state="{{:: $ctrl.drpState }}"
-            ><span data-translate="dedicatedCloud_tab_drp"></span
-        ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.drpAvailability"
+            data-state="{{:: $ctrl.drpState }}"
+        >
+            <span data-translate="dedicatedCloud_tab_drp"></span>
+        </oui-header-tabs-item>
     </oui-header-tabs>
 </header>
 

@@ -8,6 +8,7 @@ export default {
     datacenter: '<',
     dedicatedCloud: '<',
     deleteDatacenter: '<',
+    drpAvailability: '<',
     drpGlobalStatus: '<',
     editDetails: '<',
     goToVpnConfiguration: '<',

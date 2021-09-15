@@ -8,6 +8,7 @@ export default {
     backupState: '<',
     dashboardState: '<',
     datastoresState: '<',
+    drpAvailability: '<',
     drpState: '<',
     hostsState: '<',
     surveyUrl: '<',

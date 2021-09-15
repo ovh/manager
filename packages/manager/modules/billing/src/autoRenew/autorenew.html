@@ -9,7 +9,7 @@
         <oui-header-tabs-item
             href="{{:: $ctrl.agreementsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.agreementsLink"
-            data-ng-if="$ctrl.agreementsLink"
+            data-ng-if="$ctrl.agreementsLink && !$ctrl.currentUser.isTrusted"
             ><span data-translate="billing_agreements_title"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
