@@ -49,7 +49,15 @@ export const fetchConfiguration = async (applicationName: string) => {
       environment.setMessage(config.message);
       return environment;
     })
-    .catch(() => {
+    .catch((err) => {
+      if (err && err.status === 401 && !isTopLevelApplication()) {
+        window.parent.postMessage({
+          id: 'ovh-auth-redirect',
+          url: `/auth?action=disconnect&onsuccess=${encodeURIComponent(
+            window.location.href,
+          )}`,
+        });
+      }
       environment.setRegion(HOSTNAME_REGIONS[window.location.hostname]);
       return environment;
     });
