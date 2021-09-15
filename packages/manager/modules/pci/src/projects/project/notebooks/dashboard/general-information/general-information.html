@@ -10,7 +10,6 @@
             <oui-tile
                 data-heading="{{:: 'pci_notebooks_general_information_info_title' | translate }}"
             >
-
                 <!--Name-->
                 <oui-tile-definition
                     data-term="{{:: 'pci_notebooks_general_information_info_notebook_name' | translate }}"
@@ -19,17 +18,20 @@
 
                 <!--Editor-->
                 <oui-tile-definition
-                    data-term="{{:: 'pci_notebooks_general_information_info_notebook_editor_code' | translate }}">
+                    data-term="{{:: 'pci_notebooks_general_information_info_notebook_editor_code' | translate }}"
+                >
                     <oui-tile-description>
                         <oui-button
                             size="m"
                             icon-right="oui-icon-external-link"
                             data-disabled="!$ctrl.notebook.isRunning()"
-                            data-on-click="$ctrl.onOpenLiveCodeEditorClick($ctrl.notebook.spec.env.editorId)">
-                            <span data-ng-bind=":: $ctrl.notebook.spec.env.editorId"></span>
+                            data-on-click="$ctrl.onOpenLiveCodeEditorClick($ctrl.notebook.spec.env.editorId)"
+                        >
+                            <span
+                                data-ng-bind=":: $ctrl.notebook.spec.env.editorId"
+                            ></span>
                         </oui-button>
                     </oui-tile-description>
-
                 </oui-tile-definition>
 
                 <!--Container-->
@@ -121,33 +123,42 @@
                                                       'oui-badge_warning': $ctrl.notebook.stateInfo.stateGroup.warning,
                                                       'oui-badge_error': $ctrl.notebook.stateInfo.stateGroup.error}"
                         >
-                                                    <span
-                                                        data-ng-bind="'pci_notebooks_general_information_life_cycle_status_' + $ctrl.notebook.stateInfo.state | translate"
-                                                    ></span>
-                                                </span>
+                            <span
+                                data-ng-bind="'pci_notebooks_general_information_life_cycle_status_' + $ctrl.notebook.stateInfo.state | translate"
+                            ></span>
+                        </span>
                     </oui-tile-description>
 
-                    <oui-action-menu aria-label="Actions" data-compact data-placement="end">
-                        <oui-action-menu-item data-on-click="$ctrl.onNotebookStartClick($ctrl.notebook.id)"
-                                              data-disabled="!$ctrl.notebook.isStopped()">
+                    <oui-action-menu
+                        aria-label="Actions"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.onNotebookStartClick($ctrl.notebook.id)"
+                            data-disabled="!$ctrl.notebook.isTerminal()"
+                        >
                             <span
                                 data-translate="pci_notebooks_general_information_life_cycle_action_start"
                             ></span>
                         </oui-action-menu-item>
-                        <oui-action-menu-item data-on-click="$ctrl.onNotebookStopClick($ctrl.notebook.id)"
-                                              data-disabled="!$ctrl.notebook.isRunning()">
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.onNotebookStopClick($ctrl.notebook.id)"
+                            data-disabled="!$ctrl.notebook.isRunning()"
+                        >
                             <span
                                 data-translate="pci_notebooks_general_information_life_cycle_action_stop"
                             ></span>
                         </oui-action-menu-item>
-                        <oui-action-menu-item data-on-click="$ctrl.onDeleteNotebookClick()"
-                                              data-disabled="!$ctrl.notebook.isStopped()">
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.onDeleteNotebookClick()"
+                            data-disabled="!$ctrl.notebook.isTerminal()"
+                        >
                             <span
                                 data-translate="pci_notebooks_general_information_life_cycle_action_delete"
                             ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
-
                 </oui-tile-definition>
 
                 <!--Running duration-->
@@ -192,13 +203,16 @@
                     data-description="{{:: $ctrl.notebook.name }}"
                 >
                     <oui-tile-description>
-                        <div class="oui-progress-tracker oui-progress-tracker_vertical mt-3">
+                        <div
+                            class="oui-progress-tracker oui-progress-tracker_vertical mt-3"
+                        >
                             <ol class="oui-progress-tracker__steps">
-
                                 <!--Notebook creation date-->
-                                <li data-ng-repeat="history in ($ctrl.notebook.historyActions | orderBy: ['index', 'date']) track by $index"
+                                <li
+                                    data-ng-repeat="history in ($ctrl.notebook.historyActions | orderBy: ['index', 'date']) track by $index"
                                     data-ng-if="history.date"
-                                    class="oui-progress-tracker__step oui-progress-tracker__step_complete">
+                                    class="oui-progress-tracker__step oui-progress-tracker__step_complete"
+                                >
                                     <span class="oui-progress-tracker__status">
                                         <span
                                             class="oui-progress-tracker__label"
@@ -224,25 +238,40 @@
             >
                 <!--Resource quantity-->
                 <oui-tile-definition
-                    data-term="{{:: 'pci_notebooks_general_information_resources_quantity' | translate }}">
+                    data-term="{{:: 'pci_notebooks_general_information_resources_quantity' | translate }}"
+                >
                     <oui-tile-description>
-                        <span data-ng-if="$ctrl.flavor.gpuInformation"
-                              data-ng-bind=":: $ctrl.notebook.gpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.notebook.flavor | uppercase)"></span>
-                        <span data-ng-if="!$ctrl.flavor.gpuInformation"
-                              data-ng-bind=":: $ctrl.notebook.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.notebook.flavor | uppercase)"></span>
+                        <span
+                            data-ng-if="$ctrl.flavor.gpuInformation"
+                            data-ng-bind=":: $ctrl.notebook.gpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.notebook.flavor | uppercase)"
+                        ></span>
+                        <span
+                            data-ng-if="!$ctrl.flavor.gpuInformation"
+                            data-ng-bind=":: $ctrl.notebook.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.notebook.flavor | uppercase)"
+                        ></span>
                     </oui-tile-description>
-
                 </oui-tile-definition>
 
                 <!--CPU/GPU/RAM per resource-->
                 <oui-tile-definition
-                    data-term="{{:: 'pci_notebooks_general_information_resources_info' | translate}}">
+                    data-term="{{:: 'pci_notebooks_general_information_resources_info' | translate}}"
+                >
                     <oui-tile-description>
-                        <p class="mb-1" data-ng-bind=":: $ctrl.flavor.resourcesPerUnit.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN + ($ctrl.flavor.description | uppercase)"></p>
-                        <p class="mb-1" data-ng-bind=":: $ctrl.getCpuRamInfo()"></p>
-                        <p class="mb-1" data-ng-bind=":: $ctrl.getGpuRamInfo()"></p>
+                        <p
+                            class="mb-1"
+                            data-ng-bind=":: $ctrl.flavor.resourcesPerUnit.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN + ($ctrl.flavor.description | uppercase)"
+                        ></p>
+                        <p
+                            class="mb-1"
+                            data-ng-bind=":: $ctrl.getCpuRamInfo()"
+                        ></p>
+                        <p
+                            class="mb-1"
+                            data-ng-bind=":: $ctrl.getGpuRamInfo()"
+                        ></p>
                     </oui-tile-description>
-                ></oui-tile-definition>
+                    ></oui-tile-definition
+                >
 
                 <!--Local storage-->
                 <oui-tile-definition
@@ -255,12 +284,20 @@
                     data-term="{{:: 'pci_notebooks_general_information_resources_monitoring' | translate}}"
                 >
                     <oui-tile-description>
-                        <a class="oui-button oui-button_secondary"
-                           data-ng-href="{{:: $ctrl.notebook.status.monitoringUrl}}"
-                           data-ng-click="$ctrl.onGraphDashboardClick()"
-                           target="_blank" rel="noopener">
-                            <span data-translate="pci_notebooks_general_information_resources_monitoring_access_to_graph"></span>
-                            <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+                        <a
+                            class="oui-button oui-button_secondary"
+                            data-ng-href="{{:: $ctrl.notebook.status.monitoringUrl}}"
+                            data-ng-click="$ctrl.onGraphDashboardClick()"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <span
+                                data-translate="pci_notebooks_general_information_resources_monitoring_access_to_graph"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-external-link"
+                                aria-hidden="true"
+                            ></span>
                         </a>
                     </oui-tile-description>
                 </oui-tile-definition>
@@ -272,9 +309,10 @@
         <div class="col-md">
             <oui-tile>
                 <oui-tile-description>
-                    <manager-notebooks-configuration-command data-ng-if="$ctrl.notebookModel"
-                                                             data-notebook-specs="::$ctrl.notebookModel"
-                                                             data-project-id="$ctrl.projectId"
+                    <manager-notebooks-configuration-command
+                        data-ng-if="$ctrl.notebookModel"
+                        data-notebook-specs="::$ctrl.notebookModel"
+                        data-project-id="$ctrl.projectId"
                     ></manager-notebooks-configuration-command>
                 </oui-tile-description>
             </oui-tile>
