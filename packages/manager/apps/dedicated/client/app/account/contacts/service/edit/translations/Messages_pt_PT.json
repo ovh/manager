@@ -10,5 +10,6 @@
   "account_contacts_service_edit_success": "O pedido de alteração de contacto foi efetuado com sucesso. Os contactos afetados pelo pedido receberão um e-mail explicando o procedimento de validação.",
   "account_contacts_service_edit_warn_debt": "Não pode alterar o contacto de faturação, pois existe uma faturação por pagar para este serviço. Sugerimos que pague a fatura para poder realizar esta alteração.",
   "account_contacts_service_edit_pay": "Pagar a fatura",
-  "account_contacts_service_edit_warn_contact_billing": "Não pode alterar o contacto de faturação, pois existe uma faturação por pagar para este serviço. Entre em contacto com o contacto de faturação atual {{ nicBilling }} para realizar esta alteração."
+  "account_contacts_service_edit_warn_contact_billing": "Não pode alterar o contacto de faturação, pois existe uma faturação por pagar para este serviço. Entre em contacto com o contacto de faturação atual {{ nicBilling }} para realizar esta alteração.",
+  "account_contacts_service_edit_description_trusted": "Alterar os contactos do seu serviço {{ serviceName }} numa zona de confiança."
 }

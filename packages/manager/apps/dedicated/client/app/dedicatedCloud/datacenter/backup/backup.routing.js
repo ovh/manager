@@ -12,7 +12,10 @@ import {
   BACKUP_MINIMUM_HOST_COUNT,
 } from '../../../components/dedicated-cloud/datacenter/backup/backup.constants';
 
-import { BACKUP_TARIFF_URL } from './backup.constants';
+import {
+  BACKUP_TARIFF_URL,
+  TRUSTED_ACCOUNT_BACKUP_TARIFF_URL,
+} from './backup.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedCloud.details.datacenter.details.backup', {
@@ -116,8 +119,13 @@ export default /* @ngInject */ ($stateProvider) => {
           currentUser.ovhSubsidiary,
           BACKUP_CONDITIONS_URL.FR,
         ),
-      backupTariffUrl: /* @ngInject */ (currentUser) =>
-        get(BACKUP_TARIFF_URL, currentUser.ovhSubsidiary, BACKUP_TARIFF_URL.FR),
+      backupTariffUrl: /* @ngInject */ (currentUser) => {
+        const BACKUP_URL = currentUser.isTrusted
+          ? TRUSTED_ACCOUNT_BACKUP_TARIFF_URL
+          : BACKUP_TARIFF_URL;
+        return get(BACKUP_URL, currentUser.ovhSubsidiary, BACKUP_URL.FR);
+      },
+
       goToUpgradeOffer: /* @ngInject */ ($state, productId, datacenterId) => (
         actualOffer,
       ) =>

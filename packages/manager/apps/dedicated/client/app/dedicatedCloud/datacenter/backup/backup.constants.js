@@ -47,6 +47,12 @@ export const BACKUP_TARIFF_URL = {
     'https://www.ovhcloud.com/es/enterprise/products/hosted-private-cloud/prices/',
 };
 
+export const TRUSTED_ACCOUNT_BACKUP_TARIFF_URL = {
+  FR:
+    'https://www.ovhcloud.com/fr/enterprise/products/hosted-private-cloud/secnumcloud/prices/',
+};
+
 export default {
   BACKUP_TARIFF_URL,
+  TRUSTED_ACCOUNT_BACKUP_TARIFF_URL,
 };

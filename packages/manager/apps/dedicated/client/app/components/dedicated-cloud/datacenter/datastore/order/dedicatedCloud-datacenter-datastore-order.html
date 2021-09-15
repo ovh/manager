@@ -11,6 +11,13 @@
     >
         <span data-translate="core_user_enterprise_retail_prices_hpc"></span>
     </oui-message>
+    <oui-message
+        class="d-block mb-4"
+        data-type="info"
+        data-ng-if="$ctrl.user.isTrusted"
+    >
+        <span data-translate="core_user_trusted_retail_prices"></span>
+    </oui-message>
     <p
         data-ng-bind=":: ('dedicatedCloud_datastore_order_info_' + $ctrl.pccType) | translate"
     ></p>

@@ -9,5 +9,10 @@
   "hub_user_actions_aria_reduce": "Ocultar las acciones disponibles",
   "hub_user_account": "Gestionar mi cuenta",
   "hub_user_role_user": "Conectado como usuario secundario",
-  "hub_user_role_none": "Conectado en modo de solo lectura"
+  "hub_user_role_none": "Conectado en modo de solo lectura",
+  "hub_user_support_level_standard_trusted": "Trusted Zone Standard",
+  "hub_user_support_level_premium_trusted": "Trusted Zone Premium",
+  "hub_user_support_level_premium-accredited_trusted": "Trusted Zone Advanced",
+  "hub_user_support_level_business_trusted": "Trusted Zone Business",
+  "hub_user_support_level_enterprise_trusted": "Trusted Zone Enterprise"
 }

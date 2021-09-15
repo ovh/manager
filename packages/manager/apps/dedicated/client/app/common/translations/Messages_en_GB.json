@@ -545,5 +545,6 @@
   "common_subscription_contacts_billing": "Billing",
   "common_subscription_contacts_tech": "Technical",
   "common_unavailable_information": "Information unavailable",
-  "common_resiliate_contact_support": "To cancel this service, please call our support team on: <strong>0333 370 0425</strong>. Thank you for choosing OVH."
+  "common_resiliate_contact_support": "To cancel this service, please call our support team on: <strong>0333 370 0425</strong>. Thank you for choosing OVH.",
+  "core_user_trusted_retail_prices": "Note: The price displayed corresponds to the price of the service. The trust zone surcharge is added to the overall monthly bill."
 }

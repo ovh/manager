@@ -8,6 +8,7 @@ import '@ovh-ux/ui-kit';
 
 import languageMenu from './language-menu';
 import notificationsMenu from './notifications-menu';
+import phone from './phone';
 import userMenu from './user-menu';
 
 import navbarComponent from './component';
@@ -26,6 +27,7 @@ angular
     'oui',
     languageMenu,
     notificationsMenu,
+    phone,
     userMenu,
   ])
   .component('ovhManagerNavbar', navbarComponent)

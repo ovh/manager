@@ -8,6 +8,7 @@ export default {
     datacenterList: '<',
     deleteDrp: '<',
     disableVmwareOption: '<',
+    drpAvailability: '<',
     drpGlobalStatus: '<',
     editDetails: '<',
     goToDrp: '<',
