@@ -1,3 +1,12 @@
+## [3.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.16.2...@ovh-ux/manager-hub-app@3.16.3) (2021-09-15)
+
+
+### Bug Fixes
+
+* **routing:** remove duplicate key ([#5544](https://github.com/ovh/manager/issues/5544)) ([181bb7a](https://github.com/ovh/manager/commit/181bb7a9a64438ffc16fd6d3cf9e70f6538438b3))
+
+
+
 ## [3.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.16.1...@ovh-ux/manager-hub-app@3.16.2) (2021-09-15)
 
 

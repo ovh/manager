@@ -1,3 +1,12 @@
+## [16.37.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.37.1...@ovh-ux/manager-dedicated@16.37.2) (2021-09-15)
+
+
+### Bug Fixes
+
+* **dedicated.server:** order bandwith for new ranges ([#5540](https://github.com/ovh/manager/issues/5540)) ([bf7d806](https://github.com/ovh/manager/commit/bf7d8068643a6122eff7b0de1029a0b6c785dbf8))
+
+
+
 ## [16.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.37.0...@ovh-ux/manager-dedicated@16.37.1) (2021-09-15)
 
 

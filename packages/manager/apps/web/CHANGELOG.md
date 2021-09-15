@@ -1,3 +1,12 @@
+## [15.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.30.2...@ovh-ux/manager-web@15.30.3) (2021-09-15)
+
+
+### Bug Fixes
+
+* **hosting.cdn.shared:** update month factor ([#5533](https://github.com/ovh/manager/issues/5533)) ([1ba35f8](https://github.com/ovh/manager/commit/1ba35f814f58f7dc08af46a994cc4bfd6009395a))
+
+
+
 ## [15.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.30.1...@ovh-ux/manager-web@15.30.2) (2021-09-09)
 
 

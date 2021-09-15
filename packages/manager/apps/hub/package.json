@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub-app",
-  "version": "3.16.2",
+  "version": "3.16.3",
   "private": true,
   "description": "OVHcloud Dashboard control panel.",
   "repository": {
@@ -41,7 +41,7 @@
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.3",
     "@ovh-ux/ng-ovh-http": "^5.0.2",
     "@ovh-ux/ng-ovh-order-tracking": "^1.1.1 || ^2.0.0",
-    "@ovh-ux/ng-ovh-payment-method": "^8.3.3",
+    "@ovh-ux/ng-ovh-payment-method": "^8.3.4",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.2",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.5.1",
