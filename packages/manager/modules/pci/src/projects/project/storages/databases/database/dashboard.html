@@ -23,6 +23,14 @@
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('databaseTab')"
+            data-href="{{ $ctrl.databasesLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.databasesLink"
+            ><span
+                data-translate="pci_databases_dashboard_databases_tab_title"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
             data-href="{{ $ctrl.backupsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.backupsLink"
             ><span

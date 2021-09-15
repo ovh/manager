@@ -420,6 +420,33 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
+  getServiceDatabases(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/database`,
+      )
+      .then(({ data }) => data);
+  }
+
+  addServiceDatabase(projectId, engine, databaseId, databaseName) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/database`,
+        {
+          name: databaseName,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteServiceDatabase(projectId, engine, databaseId, db) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/database/${db.id}`,
+      )
+      .then(({ data }) => data);
+  }
+
   getServiceAcl(projectId, engine, databaseId) {
     return this.$http
       .get(
