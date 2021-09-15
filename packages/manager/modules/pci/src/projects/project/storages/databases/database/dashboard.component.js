@@ -14,6 +14,7 @@ export default {
     metricsLink: '<',
     databasesLink: '<',
     aclLink: '<',
+    topicsLink: '<',
     trackDashboard: '<',
     trackDatabases: '<',
     isFeatureActivated: '<',
