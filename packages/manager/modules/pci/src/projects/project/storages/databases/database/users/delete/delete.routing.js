@@ -15,12 +15,12 @@ export default /* @ngInject */ ($stateProvider) => {
         breadcrumb: () => null, // Hide breadcrumb
         userId: /* @ngInject */ ($transition$) => $transition$.params().userId,
         user: /* @ngInject */ (users, userId) => find(users, { id: userId }),
-        goBack: /* @ngInject */ (goToUsers, trackDatabases) => (
+        goBack: /* @ngInject */ (goToUsers, trackDashboard) => (
           message,
           type,
         ) => {
           if (!message && !type) {
-            trackDatabases(
+            trackDashboard(
               'dashboard::users::options_menu::delete_user_cancel',
             );
           }
@@ -30,9 +30,9 @@ export default /* @ngInject */ ($stateProvider) => {
           DatabaseService,
           database,
           projectId,
-          trackDatabases,
+          trackDashboard,
         ) => (user) => {
-          trackDatabases(
+          trackDashboard(
             'dashboard::users::options_menu::delete_user_validate',
           );
           return DatabaseService.deleteUser(

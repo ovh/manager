@@ -8,6 +8,7 @@
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('usersTab')"
             data-href="{{ $ctrl.usersLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.usersLink"
             ><span
