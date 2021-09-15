@@ -1,3 +1,24 @@
+## [16.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.37.0...@ovh-ux/manager-dedicated@16.37.1) (2021-09-15)
+
+
+### Bug Fixes
+
+* **dedicated:** add trusted label ([db48e30](https://github.com/ovh/manager/commit/db48e3097b154c3d5773b10ab2d88a33f7af60c8)), closes [#MANAGER-7130](https://github.com/ovh/manager/issues/MANAGER-7130)
+* **dedicated:** breadcrumb translations for options ([af60402](https://github.com/ovh/manager/commit/af6040224e9ee6323963eaaf71fd43eb59aaa0d5)), closes [#MANAGER-7499](https://github.com/ovh/manager/issues/MANAGER-7499)
+* **dedicated:** change backup url for snc hpc ([431a6d6](https://github.com/ovh/manager/commit/431a6d6882a0af76501037746aa095d07ba3bf4b))
+* **dedicated:** display guides based on universe ([43e4ee5](https://github.com/ovh/manager/commit/43e4ee5f8bc3aefeb5e885097c168c13f2636602)), closes [#MANAGER-7417](https://github.com/ovh/manager/issues/MANAGER-7417)
+* **dedicated:** drp availability for trusted nic ([8ce6cea](https://github.com/ovh/manager/commit/8ce6ceae102f181c82ec9ab021757140a07be653)), closes [#MANAGER-5414](https://github.com/ovh/manager/issues/MANAGER-5414)
+* **dedicated:** hpc users breadcrumb ([88de01b](https://github.com/ovh/manager/commit/88de01ba60cdeeeaa19e013294f98aac3a4b22e8)), closes [#MANAGER-7422](https://github.com/ovh/manager/issues/MANAGER-7422)
+* **dedicated:** trusted nic price info ([d1f50f1](https://github.com/ovh/manager/commit/d1f50f142e2163d77344947f9e8c0d7d69df1e55)), closes [#MANAGER-5414](https://github.com/ovh/manager/issues/MANAGER-5414)
+* **dedicated:** update service contacts for trusted nic ([335e2a2](https://github.com/ovh/manager/commit/335e2a2dfa4f611db71d5ed5d4f7516acbc720ac)), closes [#MANAGER-7130](https://github.com/ovh/manager/issues/MANAGER-7130)
+* **dedicated.contacts.request:** error popover ([d3e2000](https://github.com/ovh/manager/commit/d3e2000c20a35ee2d5a724ed27141dca80651ed7)), closes [#MANAGER-7355](https://github.com/ovh/manager/issues/MANAGER-7355)
+* **dedicated.dedicated-cloud:** add 'hosted' text to private cloud ([4d5699f](https://github.com/ovh/manager/commit/4d5699fa907ae57d3854c16719245217556c5c0d)), closes [#MANAGER-7420](https://github.com/ovh/manager/issues/MANAGER-7420)
+* **dedicated.support:** support levels based on availability ([e077d2c](https://github.com/ovh/manager/commit/e077d2c9bb5e5c29ad374517e37597a13220ec2b)), closes [#MANAGER-7351](https://github.com/ovh/manager/issues/MANAGER-7351)
+* **i18n:** add missing translations [CDS 1129] ([51b8eff](https://github.com/ovh/manager/commit/51b8effb7e90c1f0aec8912d886299606fd975aa))
+* **i18n:** add missing translations [CDS 1130] ([e61e7c7](https://github.com/ovh/manager/commit/e61e7c74f401e9c39f10c182b67a44d5af579d8a))
+
+
+
 # [16.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.36.3...@ovh-ux/manager-dedicated@16.37.0) (2021-09-09)
 
 

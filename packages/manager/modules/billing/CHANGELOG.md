@@ -1,3 +1,12 @@
+# [0.2.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.2.0-alpha.1...@ovh-ux/manager-billing@0.2.0-alpha.2) (2021-09-15)
+
+
+### Bug Fixes
+
+* **dedicated:** hide contracts tab ([d110434](https://github.com/ovh/manager/commit/d1104343bd4b46de9f7802d6d19f7bc892312355)), closes [#MANAGER-7598](https://github.com/ovh/manager/issues/MANAGER-7598)
+
+
+
 # [0.2.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.2.0-alpha.0...@ovh-ux/manager-billing@0.2.0-alpha.1) (2021-09-07)
 
 

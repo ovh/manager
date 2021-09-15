@@ -1,3 +1,13 @@
+## [3.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.5.1...@ovh-ux/manager-account-sidebar@3.5.2) (2021-09-15)
+
+
+### Bug Fixes
+
+* **account-sidebar:** add trusted support levels ([c3be8de](https://github.com/ovh/manager/commit/c3be8deab1565e157906d8fe98b35d0942e1b8e2)), closes [#MANAGER-7130](https://github.com/ovh/manager/issues/MANAGER-7130)
+* **i18n:** add missing translations [CDS 1130] ([e61e7c7](https://github.com/ovh/manager/commit/e61e7c74f401e9c39f10c182b67a44d5af579d8a))
+
+
+
 ## [3.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.5.0...@ovh-ux/manager-account-sidebar@3.5.1) (2021-09-07)
 
 

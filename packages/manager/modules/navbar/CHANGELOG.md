@@ -1,3 +1,13 @@
+## [5.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.5.0...@ovh-ux/manager-navbar@5.5.1) (2021-09-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1130] ([e61e7c7](https://github.com/ovh/manager/commit/e61e7c74f401e9c39f10c182b67a44d5af579d8a))
+* **navbar:** add phone for trusted nics ([f2257b8](https://github.com/ovh/manager/commit/f2257b8c9e386f83ba28e24bf51715f220fa5d80)), closes [#MANAGER-7130](https://github.com/ovh/manager/issues/MANAGER-7130)
+
+
+
 # [5.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.4.10...@ovh-ux/manager-navbar@5.5.0) (2021-08-25)
 
 
