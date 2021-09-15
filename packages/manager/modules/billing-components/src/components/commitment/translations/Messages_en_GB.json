@@ -1,7 +1,7 @@
 {
   "billing_commitment_commit": "Subscribe and get a discount",
   "billing_commitment_commit_again": "Re-subscribe and get a discount",
-  "billing_commitment_none": "You do not have a commitment on your {{ serviceName }} subscription. You can get a discount today if you add a commitment to your &lt;dedicated server>{{ serviceType }} subscription.",
+  "billing_commitment_none": "You do not have a commitment on your {{serviceName}} subscription. You can get a discount today if you add a commitment to your {{serviceName}} {{serviceType}} subscription.",
   "billing_commitment_commit_again_description": "You are currently committed to your {{ serviceName }} subscription until {{ endDate }}. By extending your subscription, you can maintain your discount for your new commitment period. You can also increase your commitment and adjust your payment option for additional discounts.",
   "billing_commitment_service_dedicated_server": "dedicated server",
   "billing_commitment_duration": "Select a subscription commitment",
@@ -19,7 +19,7 @@
   "billing_commitment_payment_method_none": "You do not have a valid payment method.",
   "billing_commitment_payment_method_add": "Add a new payment method ",
   "billing_commitment_summary": "Finalizing",
-  "billing_commitment_summary_description_periodic": "Starting {{ renewDate }} your default payment method will automatically be charged [$XX.XX] every month for {{ serviceName }} until {{ engagementEndDate }}.",
+  "billing_commitment_summary_description_periodic": "Starting {{renewDate}} your default payment method will automatically be charged {{price}} every month for {{serviceName}} until {{engagementEndDate}}.",
   "billing_commitment_summary_description_upfront": "On {{ renewDate }} your default payment method will be charged for the full commitment period.",
   "billing_commitment_summary_description_payment": "The amount will be taken from your default payment method: {{ paymentMethodType }} {{ paymentMethodName }}",
   "billing_commitment_success": "The service subscription request has been processed. ",
