@@ -380,6 +380,25 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_new_fork_label' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('forkFromGeneralInformation')"
+                >
+                    <oui-tile-description>
+                        <button
+                            class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                            data-ng-click="$ctrl.goToFork()"
+                        >
+                            <span
+                                data-translate="pci_databases_general_information_new_fork_link"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right ml-1"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_allowed_ips_label' | translate }}"
                 >
                     <oui-tile-description>

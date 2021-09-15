@@ -1,6 +1,7 @@
 import find from 'lodash/find';
 import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
 import { NODES_PER_ROW } from '../../databases.constants';
+import isFeatureActivated from '../../features.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const stateName =
@@ -219,11 +220,14 @@ export default /* @ngInject */ ($stateProvider) => {
       stopPollingNodesStatus: /* @ngInject */ (
         DatabaseService,
         database,
-      ) => () =>
+      ) => () => {
         database.nodes.forEach((node) =>
           DatabaseService.stopPollingNodeStatus(database.id, node.id),
-        ),
+        );
+      },
       nodesPerRow: () => NODES_PER_ROW,
+      isFeatureActivated: /* @ngInject */ (engine) => (feature) =>
+        isFeatureActivated(feature, engine.name),
     },
   });
 };

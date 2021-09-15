@@ -31,6 +31,7 @@
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('backupTab')"
             data-href="{{ $ctrl.backupsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.backupsLink"
             ><span
