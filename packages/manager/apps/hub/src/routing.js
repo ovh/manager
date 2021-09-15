@@ -42,7 +42,6 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       sidebar: /* @ngInject */ ($rootScope) => {
         $rootScope.$broadcast('sidebar:loaded');
       },
-      me: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
       order: /* @ngInject */ ($q, $http, OrderTracking) =>
         $http
           .get('/hub/lastOrder', { serviceType: 'aapi' })
