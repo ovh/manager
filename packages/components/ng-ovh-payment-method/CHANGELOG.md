@@ -1,3 +1,12 @@
+## [8.3.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.3.3...@ovh-ux/ng-ovh-payment-method@8.3.4) (2021-09-15)
+
+
+### Bug Fixes
+
+* **adyen:** remove stringify and fix result handling ([df70d39](https://github.com/ovh/manager/commit/df70d39a3886cb0adf35bedfdf3f9dea0711d495))
+
+
+
 ## [8.3.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.3.2...@ovh-ux/ng-ovh-payment-method@8.3.3) (2021-09-14)
 
 
