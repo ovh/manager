@@ -16,5 +16,12 @@
   "pci_projects_project_storages_containers_add_success_message": "Der Container {{ container }} wurde hinzugefügt.",
   "pci_projects_project_storages_containers_add_error_post": "Beim Hinzufügen des Containers {{ container }} ist ein Fehler aufgetreten: {{ message }}.",
   "pci_projects_project_storages_containers_add_archive_title": "Archivcontainer erstellen",
-  "pci_projects_project_storages_containers_add_type_price": "{{ price }} ohne MWSt./Monat/GB"
+  "pci_projects_project_storages_containers_add_type_price": "{{ price }} ohne MWSt./Monat/GB",
+  "pci_projects_project_storages_containers_add_offer_title": "Wählen Sie Ihr Angebot",
+  "pci_projects_project_storages_containers_add_offer_label_beta": "Beta",
+  "pci_projects_project_storages_containers_add_offer_storage": "Standard (Swift)",
+  "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf": "High Performance",
+  "pci_projects_project_storages_containers_add_offer_storage_description": "Ein Speicherplatz mit HTTPS-Zugang über die OpenStack-Swift-API oder die S3-API",
+  "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf_description": "Unser neues High Performance Angebot ist in bestimmten Rechenzentren verfügbar.",
+  "pci_projects_project_storages_containers_add_pattern_help_storage-s3-high-perf": "Der Name des Containers muss aus 3 bis 63 Zeichen bestehen und mit Zahlen oder Kleinbuchstaben beginnen und enden, also von a bis z und 0 bis 9. Zulässig sind die Satzzeichen „.“ und „-“."
 }

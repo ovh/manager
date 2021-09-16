@@ -1,0 +1,13 @@
+{
+  "pci_projects_project_storages_containers_users_title": "Adicionar utilizadores",
+  "pci_projects_project_storages_containers_users_username": "Nome do utilizador",
+  "pci_projects_project_storages_containers_users_description": "Descrição",
+  "pci_projects_project_storages_containers_users_import_json": "Importar um ficheiro JSON",
+  "pci_projects_project_storages_containers_users_download_json": "Descarregar o ficheiro JSON",
+  "pci_projects_project_storages_containers_users_user_management": "Gestão de utilizadores",
+  "pci_projects_project_storages_containers_users_user_description": "Para adicionar novos utilizadores, deve criá-los na secção \"Utilizadores e funções\"",
+  "pci_projects_project_storages_containers_users_user_description_warning": "Depois de criar o utilizador, será necessário gerar um certificado S3 na secção \"Utilizadores e funções\".",
+  "pci_projects_project_storages_containers_users_add_user": "Adicionar utilizadores",
+  "pci_projects_project_storages_containers_users_import_success_message": "O download do ficheiro JSON associado ao utilizador {{user}} foi efetuado com êxito.",
+  "pci_projects_project_storages_containers_users_import_error_message": "Ocorreu um erro aquando do download do ficheiro JSON associado ao utilizador: {{ message }}."
+}

@@ -28,5 +28,5 @@
   "pci_projects_project_storages_containers_container_object_error_download": "Beim Download des Objekts ist ein Fehler aufgetreten: {{ message }}.",
   "pci_projects_project_storages_containers_container_archive_error_unseal": "Bei der Freigabe des Archivs ist ein Fehler aufgetreten: {{ message }}.",
   "pci_projects_project_storages_containers_container_archive_success_unseal": "Das Archiv {{ archive }} wird freigegeben.",
-  "pci_projects_project_storages_containers_container_add_user_label": "Einen Nutzer zu meinem Objekt hinzufügen"
+  "pci_projects_project_storages_containers_container_add_user_label": "Einen Nutzer zu meinem Container hinzufügen"
 }

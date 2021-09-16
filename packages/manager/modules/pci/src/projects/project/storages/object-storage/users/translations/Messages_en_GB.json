@@ -1,0 +1,13 @@
+{
+  "pci_projects_project_storages_containers_users_title": "Add users",
+  "pci_projects_project_storages_containers_users_username": "Username",
+  "pci_projects_project_storages_containers_users_description": "Description",
+  "pci_projects_project_storages_containers_users_import_json": "Import JSON file",
+  "pci_projects_project_storages_containers_users_download_json": "Download JSON file",
+  "pci_projects_project_storages_containers_users_user_management": "User management",
+  "pci_projects_project_storages_containers_users_user_description": "To add new users, you will need to create them in the ‘Users &amp; Roles’ section",
+  "pci_projects_project_storages_containers_users_user_description_warning": "Once your user has been created, you will need to generate an S3 certificate for them in the ‘Users &amp; Roles’ section.",
+  "pci_projects_project_storages_containers_users_add_user": "Add users",
+  "pci_projects_project_storages_containers_users_import_success_message": "The JSON file linked to the {{user}} user has been downloaded.",
+  "pci_projects_project_storages_containers_users_import_error_message": "An error has occurred downloading the JSON file linked to the user: {{message}}"
+}

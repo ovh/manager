@@ -28,5 +28,5 @@
   "pci_projects_project_storages_containers_container_object_error_download": "Se ha producido un error al descargar el objeto: {{ message }}.",
   "pci_projects_project_storages_containers_container_archive_error_unseal": "Se ha producido un error al descongelar el archivo: {{ message }}.",
   "pci_projects_project_storages_containers_container_archive_success_unseal": "Descongelando el archivo {{archive}}...",
-  "pci_projects_project_storages_containers_container_add_user_label": "Añadir un usuario a mi objeto"
+  "pci_projects_project_storages_containers_container_add_user_label": "Añadir un usuario a mi contenedor"
 }
