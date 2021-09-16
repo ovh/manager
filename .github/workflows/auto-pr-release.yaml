@@ -1,0 +1,20 @@
+name: "Develop to master"
+on:
+  push:
+    branches:
+    - develop
+    - "release/*"
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "master"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        pr_title: "New release"
+        pr_label: "release"
+        pr_draft: true
+        pr_template: ".github/RELEASE_TEMPLATE.md"
