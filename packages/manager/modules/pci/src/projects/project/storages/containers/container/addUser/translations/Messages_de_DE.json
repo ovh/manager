@@ -1,7 +1,20 @@
 {
   "pci_projects_project_storages_containers_container_addUser_container_title": "Einen Nutzer zu meinem Container hinzufügen",
-  "pci_projects_project_storages_containers_container_addUser_object_title": "Einen Nutzer zu meinem Objekt hinzufügen",
+  "pci_projects_project_storages_containers_container_addUser_object_title": "Einen Nutzer zu meinem Container hinzufügen",
   "pci_projects_project_storages_containers_container_addUser_description_container_step_0": "Wählen Sie den Nutzer aus, den Sie Ihrem Container hinzufügen möchten. Wird er auf dieser Liste nicht angezeigt? Dann erstellen Sie ihn bitte im entsprechenden Bereich.",
   "pci_projects_project_storages_containers_container_addUser_description_object_step_0": "Wählen Sie den Nutzer aus, den Sie Ihrem Container hinzufügen möchten. Wird er auf dieser Liste nicht angezeigt? Dann erstellen Sie ihn bitte im entsprechenden Bereich.",
-  "pci_projects_project_storages_containers_container_addUser_object_success_message": "Der Nutzer {{ name }} wurde dem Objekt {{ container }} als {{ role }} hinzugefügt."
+  "pci_projects_project_storages_containers_container_addUser_object_success_message": "Der Nutzer {{ name }} wurde dem Objekt {{ container }} als {{ role }} hinzugefügt.",
+  "pci_projects_project_storages_containers_container_addUser_archive_title": "Einen Nutzer zu meinem Container hinzufügen",
+  "pci_projects_project_storages_containers_container_addUser_description_step_0": "Wählen Sie den Nutzer aus, den Sie Ihrem Container hinzufügen möchten. Wird er auf dieser Liste nicht angezeigt? Dann erstellen Sie ihn bitte im entsprechenden Bereich.",
+  "pci_projects_project_storages_containers_container_addUser_description_step_1": "Legen Sie die Rolle des Nutzers in Bezug auf den Container {{container}} fest.",
+  "pci_projects_project_storages_containers_container_addUser_submit_label": "Bestätigen",
+  "pci_projects_project_storages_containers_container_addUser_next_label": "Weiter",
+  "pci_projects_project_storages_containers_container_addUser_cancel_label": "Abbrechen",
+  "pci_projects_project_storages_containers_container_addUser_back_label": "Zurück",
+  "pci_projects_project_storages_containers_container_addUser_right_admin": "Administrator",
+  "pci_projects_project_storages_containers_container_addUser_right_readWrite": "Lesen und schreiben",
+  "pci_projects_project_storages_containers_container_addUser_right_readOnly": "Nur Lesezugang",
+  "pci_projects_project_storages_containers_container_addUser_right_deny": "Deny",
+  "pci_projects_project_storages_containers_container_addUser_success_message": "Der Nutzer {{ name }} wurde dem Container {{ container }} als {{ role }} hinzugefügt.",
+  "pci_projects_project_storages_containers_container_addUser_error_addUser": "Der Nutzer wurde dem Container {{ container }} nicht korrekt hinzugefügt: {{ message }}."
 }

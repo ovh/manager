@@ -1,6 +1,6 @@
 {
   "pci_projects_project_storages_containers_archive_title": "Cloud Archive",
-  "pci_projects_project_storages_containers_object_title": "Object Storage",
+  "pci_projects_project_storages_containers_object_title": "Contenedores",
   "pci_projects_project_storages_containers_name_label": "Nombre",
   "pci_projects_project_storages_containers_region_label": "Localización",
   "pci_projects_project_storages_containers_containerType_label": "Tipo",
@@ -14,5 +14,14 @@
   "pci_projects_project_storages_containers_delete_label": "Eliminar",
   "pci_projects_project_storages_blocks_add_archive_label": "Crear un contenedor de archivos",
   "pci_projects_project_storages_blocks_add_object_label": "Crear un contenedor de objetos",
-  "pci_projects_project_storages_containers_id_label": "ID"
+  "pci_projects_project_storages_containers_id_label": "ID",
+  "pci_projects_project_storages_containers_object_description": "Aloje su catálogo de datos en nuestra solución Object Storage. Puede administrar estos datos desde su aplicación gracias a las API S3.",
+  "pci_projects_project_storages_containers_offer_label": "Solución",
+  "pci_projects_project_storages_containers_public_label": "Público",
+  "pci_projects_project_storages_containers_view_add_user_label": "Añadir un usuario a un contenedor",
+  "pci_projects_project_storages_containers_offer_high_performance": "Alto rendimiento",
+  "pci_projects_project_storages_containers_offer_swift": "Swift",
+  "pci_projects_project_storages_containers_toggle_public_succeed": "Su contenedor {{name}} ha cambiado al estado «Público».",
+  "pci_projects_project_storages_containers_toggle_private_succeed": "Se ha desactivado el estado «Público» del contenedor {{name}}.",
+  "pci_projects_project_storages_containers_toggle_fail": "Se ha producido un error: {{message}}"
 }

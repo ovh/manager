@@ -26,5 +26,8 @@
   "pci_projects_project_users_delete_label": "Usuń",
   "pci_projects_project_users_add_label": "Dodaj użytkownika",
   "pci_projects_project_users_matrix_show": "Wyświetl macierz ról",
-  "pci_projects_project_users_matrix_hide": "Ukryj macierz ról"
+  "pci_projects_project_users_matrix_hide": "Ukryj macierz ról",
+  "pci_projects_project_users_generate_s3_credentials": "Generowanie certyfikatów S3",
+  "pci_projects_project_users_generate_s3_credentials_success": "Dane do logowania S3 dla użytkownika {{user}} zostały wygenerowane ponownie.",
+  "pci_projects_project_users_generate_s3_credentials_error": "Wystąpił błąd podczas generowania danych do logowania dla użytkownika {{user}} : {{message}}."
 }

@@ -28,5 +28,5 @@
   "pci_projects_project_storages_containers_container_object_error_download": "An error has occurred downloading the object: {{message}}.",
   "pci_projects_project_storages_containers_container_archive_error_unseal": "An error has occurred unfreezing the archive: {{message}}.",
   "pci_projects_project_storages_containers_container_archive_success_unseal": "Unfreezing the {{archive}} archive.",
-  "pci_projects_project_storages_containers_container_add_user_label": "Add a user to my object"
+  "pci_projects_project_storages_containers_container_add_user_label": "Add a user to my container"
 }

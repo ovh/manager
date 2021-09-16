@@ -16,5 +16,12 @@
   "pci_projects_project_storages_containers_add_success_message": "Kontener {{ container }} został dodany.",
   "pci_projects_project_storages_containers_add_error_post": "Wystąpił błąd podczas dodawania kontenera {{container}}: {{message}}.",
   "pci_projects_project_storages_containers_add_archive_title": "Utwórz kontener archiwów",
-  "pci_projects_project_storages_containers_add_type_price": "{{price}} netto/m-c/GB"
+  "pci_projects_project_storages_containers_add_type_price": "{{price}} netto/m-c/GB",
+  "pci_projects_project_storages_containers_add_offer_title": "Wybierz Twoje rozwiązanie",
+  "pci_projects_project_storages_containers_add_offer_label_beta": "Beta",
+  "pci_projects_project_storages_containers_add_offer_storage": "Standard (Swift)",
+  "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf": "High Performance",
+  "pci_projects_project_storages_containers_add_offer_storage_description": "Przestrzeń dyskowa dostępna przez HTTPS i zarządzana przy użyciu API OpenStack Swift lub API S3",
+  "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf_description": "Nasza nowa oferta High Performance jest dostępna w ograniczonej liczbie centrów danych.",
+  "pci_projects_project_storages_containers_add_pattern_help_storage-s3-high-perf": "Nazwa kontenera musi zawierać od 3 do 63 znaków, musi zaczynać się i kończyć małym znakiem alfanumerycznym (od „a” do „z” i od 0 do 9) i może zawierać następujące znaki interpunkcyjne: „.” oraz „-”."
 }
