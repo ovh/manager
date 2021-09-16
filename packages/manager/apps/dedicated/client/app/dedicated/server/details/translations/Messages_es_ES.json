@@ -1197,5 +1197,11 @@
   "server_configuration_no_intervention_activate_failed": "Se ha producido un error al activar las intervenciones in situ en el servidor {{serverName}}.",
   "server_configuration_no_intervention_deactivate_success": "La intervención in situ está desactivada en el servidor {{serverName}}.",
   "server_configuration_no_intervention_deactivate_failed": "Se ha producido un error al desactivar la intervención in situ en el servidor {{serverName}}.",
-  "server_close_service_enterprise": "Si quiere realizar cambios en sus servicios y contratos, contacte con su gestor de cuentas de OVHcloud."
+  "server_close_service_enterprise": "Si quiere realizar cambios en sus servicios y contratos, contacte con su gestor de cuentas de OVHcloud.",
+  "plan_bandwidth-1000-adv-gen2": "1 Gb/s ilimitado y garantizado",
+  "plan_bandwidth-2000-adv-gen2": "2 Gb/s ilimitado y garantizado",
+  "plan_bandwidth-3000-adv-gen2": "3 Gb/s ilimitado y garantizado",
+  "plan_bandwidth-4000-adv-gen2": "4 Gb/s ilimitado y garantizado",
+  "plan_bandwidth-5000-adv-gen2": "5 Gb/s ilimitado y garantizado",
+  "plan_bandwidth-6000-adv-gen2": "6 Gb/s ilimitado y garantizado"
 }
