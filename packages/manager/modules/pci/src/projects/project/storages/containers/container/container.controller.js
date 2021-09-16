@@ -8,12 +8,14 @@ export default class PciStoragesContainersContainerController {
     $q,
     $translate,
     $window,
+    atInternet,
     CucCloudMessage,
     PciProjectStorageContainersService,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
 
@@ -45,25 +47,51 @@ export default class PciStoragesContainersContainerController {
   }
 
   downloadObject(object) {
-    return this.PciProjectStorageContainersService.downloadObject(
-      this.projectId,
-      this.containerId,
-      object,
-    )
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}object::download-file`,
+      type: 'action',
+    });
+    let downloadPromise = null;
+    if (object.isHighPerfStorage) {
+      downloadPromise = this.downloadHighPerfObject(
+        this.projectId,
+        this.container.region,
+        this.container.name,
+        object,
+      );
+    } else {
+      downloadPromise = this.PciProjectStorageContainersService.downloadObject(
+        this.projectId,
+        this.containerId,
+        object,
+      );
+    }
+    return downloadPromise
       .then((url) => {
         this.$window.location = url;
       })
-      .catch((err) =>
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            `pci_projects_project_storages_containers_container_${
-              this.archive ? 'archive' : 'object'
-            }_error_download`,
-            { message: get(err, 'data.message', '') },
-          ),
-          'pci.projects.project.storages.containers.container',
-        ),
-      );
+      .catch((err) => this.handleDownloadError(err));
+  }
+
+  downloadHighPerfObject(serviceName, regionName, containerName, object) {
+    return this.PciProjectStorageContainersService.downloadHighPerfObject(
+      serviceName,
+      regionName,
+      containerName,
+      object,
+    ).then(({ url }) => url);
+  }
+
+  handleDownloadError(err) {
+    this.CucCloudMessage.error(
+      this.$translate.instant(
+        `pci_projects_project_storages_containers_container_${
+          this.archive ? 'archive' : 'object'
+        }_error_download`,
+        { message: get(err, 'data.message', '') },
+      ),
+      'pci.projects.project.storages.containers.container',
+    );
   }
 
   unsealObject(object) {

@@ -2,8 +2,9 @@ import get from 'lodash/get';
 
 export default class PciBlockStorageContainersContainerObjectDeleteController {
   /* @ngInject */
-  constructor($translate, PciProjectStorageContainersService) {
+  constructor($translate, atInternet, PciProjectStorageContainersService) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
   }
 
@@ -12,11 +13,17 @@ export default class PciBlockStorageContainersContainerObjectDeleteController {
   }
 
   deleteObject() {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}object::delete::confirm`,
+      type: 'action',
+    });
+
     this.isLoading = true;
     return this.PciProjectStorageContainersService.deleteObject(
       this.projectId,
       this.container,
       this.object,
+      this.container.isHighPerfStorage,
     )
       .then(() =>
         this.goBack(
@@ -46,5 +53,13 @@ export default class PciBlockStorageContainersContainerObjectDeleteController {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  cancel() {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}object::delete::cancel`,
+      type: 'action',
+    });
+    return this.goBack();
   }
 }

@@ -11,6 +11,7 @@ export default {
     containers: '<',
     containerId: '<',
     deleteContainer: '<',
+    goToAddUserContainer: '<',
     goToStorageContainers: '<',
     guideUrl: '<',
     onListParamChange: '<',

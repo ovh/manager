@@ -9,8 +9,9 @@ export default {
     projectId: '<',
     containerId: '<',
     container: '<',
+    goBack: '<',
     objectId: '<',
     object: '<',
-    goBack: '<',
+    trackingPrefix: '<',
   },
 };

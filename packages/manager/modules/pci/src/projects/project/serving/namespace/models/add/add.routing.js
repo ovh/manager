@@ -51,7 +51,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         ),
       goToContainer: /* @ngInject */ ($state, projectId, namespace) => () =>
-        $state.go('pci.projects.project.storages.objects.object', {
+        $state.go('pci.projects.project.storages.object-storage.object', {
           projectId,
           containerId: namespace.containerId,
         }),

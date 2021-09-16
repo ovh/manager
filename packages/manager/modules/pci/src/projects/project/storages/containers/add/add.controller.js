@@ -3,20 +3,32 @@ import map from 'lodash/map';
 
 import Container from '../container.class';
 
-import { OBJECT_CONTAINER_TYPES } from '../containers.constants';
+import {
+  OBJECT_CONTAINER_NAME_PATTERN,
+  OBJECT_CONTAINER_OFFERS,
+  OBJECT_CONTAINER_OFFERS_LABELS,
+  OBJECT_CONTAINER_TYPE_OFFERS,
+  OBJECT_CONTAINER_TYPES,
+} from '../containers.constants';
 
 export default class PciStoragesContainersAddController {
   /* @ngInject */
   constructor(
     $translate,
+    atInternet,
     CucCloudMessage,
     PciProjectStorageBlockService,
     PciProjectStorageContainersService,
   ) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectStorageBlockService = PciProjectStorageBlockService;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
+    this.OBJECT_CONTAINER_NAME_PATTERN = OBJECT_CONTAINER_NAME_PATTERN;
+    this.OBJECT_CONTAINER_OFFERS = OBJECT_CONTAINER_OFFERS;
+    this.OBJECT_CONTAINER_OFFERS_LABELS = OBJECT_CONTAINER_OFFERS_LABELS;
+    this.OBJECT_CONTAINER_TYPE_OFFERS = OBJECT_CONTAINER_TYPE_OFFERS;
   }
 
   $onInit() {
@@ -87,6 +99,13 @@ export default class PciStoragesContainersAddController {
   }
 
   add() {
+    this.atInternet.trackClick({
+      name: `storage_container_create_${
+        this.container.offer === 'storage' ? 'standard' : this.container.offer
+      }_${this.container.region?.datacenterLocation}_${this.container
+        .containerType || 'standard'}`,
+      type: 'action',
+    });
     this.isLoading = true;
     return this.PciProjectStorageContainersService.addContainer(
       this.projectId,
@@ -114,6 +133,14 @@ export default class PciStoragesContainersAddController {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  cancel() {
+    this.atInternet.trackClick({
+      name: 'storage_container_cancel_creation',
+      type: 'action',
+    });
+    return this.cancelCreate();
   }
 
   getFormatedPrice(price) {
