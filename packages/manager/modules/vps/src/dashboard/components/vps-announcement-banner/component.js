@@ -1,8 +1,9 @@
-import controller from './controller';
 import template from './template.html';
 
 const component = {
-  controller,
+  bindings: {
+    stein: '<',
+  },
   template,
 };
 

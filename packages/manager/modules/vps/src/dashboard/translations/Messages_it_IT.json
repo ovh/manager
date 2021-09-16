@@ -15,5 +15,6 @@
   "vps_dashboard_state_running": "Esecuzione in corso...",
   "vps_dashboard_state_stopped": "Cancellato",
   "vps_dashboard_state_stopping": "Cancellazione in corso...",
-  "vps_dashboard_state_upgrading": "Modifica dell'offerta in corso..."
+  "vps_dashboard_state_upgrading": "Modifica dell'offerta in corso...",
+  "vps_dashboard_state_rescued": "In Rescue"
 }

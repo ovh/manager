@@ -47,6 +47,8 @@ export default {
     canDisplayVpsAnnouncementBanner: '<',
     migrationLink: '<',
     user: '<',
+    stein: '<',
+    isVpsMaintenance: '<',
   },
   controller,
   name: 'ovhManagerVpsDashboard',

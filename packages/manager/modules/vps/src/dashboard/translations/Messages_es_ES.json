@@ -15,5 +15,6 @@
   "vps_dashboard_state_running": "Ejecutando",
   "vps_dashboard_state_stopped": "Cancelado",
   "vps_dashboard_state_stopping": "Cancelando",
-  "vps_dashboard_state_upgrading": "Cambiando de solución"
+  "vps_dashboard_state_upgrading": "Cambiando de solución",
+  "vps_dashboard_state_rescued": "En rescue"
 }
