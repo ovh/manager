@@ -1,6 +1,6 @@
 {
   "pci_projects_project_storages_containers_archive_title": "Cloud Archive",
-  "pci_projects_project_storages_containers_object_title": "Object Storage",
+  "pci_projects_project_storages_containers_object_title": "Containers",
   "pci_projects_project_storages_containers_name_label": "Name",
   "pci_projects_project_storages_containers_region_label": "Region",
   "pci_projects_project_storages_containers_containerType_label": "Type",
@@ -14,5 +14,14 @@
   "pci_projects_project_storages_containers_delete_label": "Delete",
   "pci_projects_project_storages_blocks_add_archive_label": "Create an archive container",
   "pci_projects_project_storages_blocks_add_object_label": "Create an object container ",
-  "pci_projects_project_storages_containers_id_label": "ID"
+  "pci_projects_project_storages_containers_id_label": "ID",
+  "pci_projects_project_storages_containers_object_description": "Host your data catalogue in our Object Storage solution. You can manage this data from your application using the S3 APIs.",
+  "pci_projects_project_storages_containers_offer_label": "Solution ",
+  "pci_projects_project_storages_containers_public_label": "Public",
+  "pci_projects_project_storages_containers_view_add_user_label": "Add a user to a container",
+  "pci_projects_project_storages_containers_offer_high_performance": "High performance",
+  "pci_projects_project_storages_containers_offer_swift": "2012 - Swift",
+  "pci_projects_project_storages_containers_toggle_public_succeed": "Your {{name}} container has been switched to Public status.",
+  "pci_projects_project_storages_containers_toggle_private_succeed": "Public status has been disabled on the {{name}} container.",
+  "pci_projects_project_storages_containers_toggle_fail": "An error has occurred: {{message}}"
 }

@@ -16,5 +16,12 @@
   "pci_projects_project_storages_containers_add_success_message": "The {{container}} container has been added. ",
   "pci_projects_project_storages_containers_add_error_post": "There was an error when adding the {{ container }} container: {{ message }}.",
   "pci_projects_project_storages_containers_add_archive_title": "Create an object container",
-  "pci_projects_project_storages_containers_add_type_price": "{{ price }} ex. VAT/month/GB"
+  "pci_projects_project_storages_containers_add_type_price": "{{ price }} ex. VAT/month/GB",
+  "pci_projects_project_storages_containers_add_offer_title": "Select your solution",
+  "pci_projects_project_storages_containers_add_offer_label_beta": "Beta",
+  "pci_projects_project_storages_containers_add_offer_storage": "Standard (Swift)",
+  "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf": "High Performance",
+  "pci_projects_project_storages_containers_add_offer_storage_description": "A space accessible in HTTPS via the OpenStack Swift API or the S3 API",
+  "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf_description": "Our new High Performance solution is available in a limited number of datacentres.",
+  "pci_projects_project_storages_containers_add_pattern_help_storage-s3-high-perf": "The container name must be between 3 and 63 characters, must start and end with lower-case alphanumeric characters (a to z and 0 to 9), and may include the following punctuation marks: ‘.’ and ‘-’."
 }
