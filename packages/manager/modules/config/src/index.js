@@ -1,5 +1,6 @@
 import { useReket } from '@ovh-ux/ovh-reket';
 import _Environment from './environment';
+import initIframeApplication from './iframe';
 
 import {
   convertLanguageFromOVHToBCP47 as _convertLanguageFromOVHToBCP47,
@@ -55,6 +56,9 @@ export const fetchConfiguration = (applicationName) => {
       environment.setApplicationURLs(config.applicationURLs);
       environment.setUniverse(config.universe);
       environment.setMessage(config.message);
+      if (!isTopLevelApplication()) {
+        initIframeApplication(environment);
+      }
       return environment;
     })
     .catch((err) => {
