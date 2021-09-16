@@ -1,3 +1,18 @@
+# [2.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.16.0...@ovh-ux/manager-vps@2.17.0) (2021-09-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1139] ([3990083](https://github.com/ovh/manager/commit/3990083cd07c169e3ab5227d968a365707d975b3))
+
+
+### Features
+
+* **vps.dashboard:** display banner only on maintenance ([156c3f3](https://github.com/ovh/manager/commit/156c3f34973348d088f998374802e8ca64a0bf14))
+* **vps.dashboard.components:** update banner ([948557c](https://github.com/ovh/manager/commit/948557cf7bd26b04ff788937bf20768c75e91c93))
+
+
+
 # [2.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.15.0...@ovh-ux/manager-vps@2.16.0) (2021-09-13)
 
 
