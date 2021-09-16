@@ -1,3 +1,27 @@
+# [5.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.41.1...@ovh-ux/manager-pci@5.42.0) (2021-09-16)
+
+
+### Bug Fixes
+
+* **high.perf:** fix translations ([#5498](https://github.com/ovh/manager/issues/5498)) ([61d4615](https://github.com/ovh/manager/commit/61d4615ab77f6c43b32317e60ffcf3cf3b5de46d)), closes [#MANAGER-7577](https://github.com/ovh/manager/issues/MANAGER-7577)
+* **pci:** add high performance object storage configuration ([3019613](https://github.com/ovh/manager/commit/3019613e5be9be2108ff12984f0e9d03c4fdf94b)), closes [#MANAGER-7045](https://github.com/ovh/manager/issues/MANAGER-7045)
+
+
+### Features
+
+* **containers.user:** manage import and export of user policy ([#5319](https://github.com/ovh/manager/issues/5319)) ([9e280a6](https://github.com/ovh/manager/commit/9e280a69d369beb2efa6f35fb8ecfd81782d6de6)), closes [#MANAGER-7156](https://github.com/ovh/manager/issues/MANAGER-7156)
+* **dashboard:** update list for new options ([c40021e](https://github.com/ovh/manager/commit/c40021e730eadf14f81e71f34e24cf2650502655)), closes [#MANAGER-7047](https://github.com/ovh/manager/issues/MANAGER-7047)
+* **dashboard:** update list for new options ([#5227](https://github.com/ovh/manager/issues/5227)) ([b165ec9](https://github.com/ovh/manager/commit/b165ec94880636ac6604d3b843c58b1b8016f725))
+* **objects.users:** add user policy on objects ([#5369](https://github.com/ovh/manager/issues/5369)) ([8aaefcc](https://github.com/ovh/manager/commit/8aaefcc99d8f88c6f4ba35dd9ef11f9980435a74)), closes [#MANAGER-7049](https://github.com/ovh/manager/issues/MANAGER-7049)
+* **objects.users.list:** s3 users list ([#5295](https://github.com/ovh/manager/issues/5295)) ([eb50060](https://github.com/ovh/manager/commit/eb500607bb5d0a39a2bc0a6fcf521d71882078f8)), closes [#MANAGER-7048](https://github.com/ovh/manager/issues/MANAGER-7048)
+* **pci.storages.objects:** fix issues ([e43279a](https://github.com/ovh/manager/commit/e43279a573258f277c31018b274e6e9618f3fa87)), closes [#MANAGER-6009](https://github.com/ovh/manager/issues/MANAGER-6009)
+* **pci.storages.objects:** rename of states ([e5a0de2](https://github.com/ovh/manager/commit/e5a0de206795d45d980c5a02f2dfa8271ac93f01)), closes [#MANAGER-6009](https://github.com/ovh/manager/issues/MANAGER-6009)
+* **pci.storages.objects:** tracking implementation ([#5396](https://github.com/ovh/manager/issues/5396)) ([5d777fa](https://github.com/ovh/manager/commit/5d777fa7e00f5d1e2197474cc39a7c91c3dee087)), closes [#MANAGER-7374](https://github.com/ovh/manager/issues/MANAGER-7374)
+* **public-cloud:** upload and download objects to openIO ([#5373](https://github.com/ovh/manager/issues/5373)) ([773a048](https://github.com/ovh/manager/commit/773a0485ce3de8e5829971c362e7c4a4e270c306)), closes [#MANAGER-7353](https://github.com/ovh/manager/issues/MANAGER-7353)
+* **users.credentials:** generate s3 credentials ([#5381](https://github.com/ovh/manager/issues/5381)) ([6fd3c60](https://github.com/ovh/manager/commit/6fd3c6061d3473f27842db58d5fdacbb0261cf89)), closes [#MANAGER-7050](https://github.com/ovh/manager/issues/MANAGER-7050)
+
+
+
 ## [5.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.41.0...@ovh-ux/manager-pci@5.41.1) (2021-09-09)
 
 
