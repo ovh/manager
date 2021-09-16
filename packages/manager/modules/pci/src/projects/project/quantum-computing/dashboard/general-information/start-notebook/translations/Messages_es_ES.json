@@ -1,0 +1,8 @@
+{
+  "pci_quantum_computing_notebooks_start_notebook_title": "Inicio de su notebook",
+  "pci_quantum_computing_notebooks_start_notebook_submit_label": "Confirmar",
+  "pci_quantum_computing_notebooks_start_notebook_cancel_label": "Cancelar",
+  "pci_quantum_computing_notebooks_start_notebook_content": "¿Seguro que quiere iniciar el notebook {{ notebook }}?",
+  "pci_quantum_computing_notebooks_start_notebook_success": "El notebook se ha iniciado correctamente.",
+  "pci_quantum_computing_notebooks_start_notebook_error": "Se ha producido un error al iniciar el notebook {{ notebook }}: {{ message }}."
+}

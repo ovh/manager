@@ -1,0 +1,7 @@
+{
+  "pci_notebook_add_privacy_settings_item_restricted": "Acceso restringido",
+  "pci_notebook_add_privacy_settings_item_restricted_description": "Solamente los usuarios de Public Cloud de OVHcloud creados en su proyecto pueden acceder a su notebook.",
+  "pci_notebook_add_privacy_settings_item_public": "Acceso público",
+  "pci_notebook_add_privacy_settings_item_public_description": "Todos los usuarios pueden acceder a su notebook a través de su URL. Cualquier usuario puede acceder al código y a los datos asociados.",
+  "pci_notebook_add_privacy_settings_item_public_warning": "¡Preste especial atención a sus datos sensibles!"
+}

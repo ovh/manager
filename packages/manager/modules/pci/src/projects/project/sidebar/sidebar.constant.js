@@ -161,6 +161,15 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         title: 'ML Serving',
         regions: ['EU', 'CA'],
       },
+      {
+        id: 'quantum-computing',
+        alpha: true,
+        options: {
+          state: 'pci.projects.project.quantum-computing',
+        },
+        title: 'Quantum Computing',
+        regions: ['CA', 'EU'],
+      },
     ],
     regions: ['EU', 'CA'],
     title: 'AI & Machine Learning',

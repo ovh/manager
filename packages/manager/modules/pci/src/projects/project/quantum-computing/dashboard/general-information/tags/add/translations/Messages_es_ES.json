@@ -1,0 +1,8 @@
+{
+  "pci_quantum_computing_notebooks_general_information_info_tags_add_title": "Añadir un label",
+  "pci_quantum_computing_notebooks_general_information_info_tags_add_description": "Va a crear un nuevo label para el notebook {{ name }}.",
+  "pci_quantum_computing_notebooks_general_information_info_tags_add_action_add_success": "El label se ha añadido correctamente.",
+  "pci_quantum_computing_notebooks_general_information_info_tags_add_action_add_fail": "Se ha producido un error al añadir el label: {{ message }}.",
+  "pci_quantum_computing_notebooks_general_information_info_tags_add_action_add": "Añadir un label al notebook",
+  "pci_quantum_computing_notebooks_general_information_info_tags_add_action_cancel": "Cancelar"
+}

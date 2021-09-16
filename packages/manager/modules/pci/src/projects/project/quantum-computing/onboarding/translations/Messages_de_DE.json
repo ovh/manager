@@ -1,0 +1,17 @@
+{
+  "pci_notebook_title": "Quantencomputing",
+  "pci_notebook_onboarding_content1": "Bringen Sie Ihre Quantum Computing-Umgebung in Sekundenschnelle zum Laufen.",
+  "pci_notebook_onboarding_content2": "Starten Sie Ihre Quantencomputing-Projekte in wenigen Minuten mit unseren Quantenemulatoren.",
+  "pci_notebook_onboarding_content3": "Sie sind ein Quantenwissenschaftler oder Quantenentwickler und möchten innerhalb weniger Minuten eine Quantenumgebung starten? Nutzen Sie unsere Quantum Computing Notebooks Lösung für einen schnellen Zugang zu emulierten Qubits mit Jupyter. Sie erhalten einen sicheren Benutzerzugang mit einer sofort einsatzbereiten Jupyter-Umgebung in Kombination mit einem speziellen Quantum Computing Framework.",
+  "pci_notebook_onboarding_action_label": "Erstellen einer Quantencomputing-Umgebung",
+  "pci_notebook_guides_documentation_title": "Vollständige Dokumentation zur Quantencomputing-Umgebung",
+  "pci_notebook_guides_documentation_description": "Durchsuchen Sie die gesamte Dokumentation für Quantencomputing-Umgebungen.",
+  "pci_notebook_guides_definition_title": "Definition der Quantencomputing-Umgebung",
+  "pci_notebook_guides_definition_description": "Finden Sie heraus, was eine Quantum Computing Umgebung bei OVHcloud ist.",
+  "pci_notebook_guides_start_title": "Erste Schritte mit Quantum Computing Environment",
+  "pci_notebook_guides_start_description": "Finden Sie heraus, wie Sie schnell mit Ihrer Quantum Computing-Umgebung über das OVHcloud Control Panel starten können.",
+  "pci_notebook_guides_share_title": "Ein Quantum Computing Notebook teilen",
+  "pci_notebook_guides_share_description": "Erfahren Sie, wie Sie ein Quantum Computing Notebook mit anderen Entwicklern teilen können.",
+  "pci_notebook_guides_object_storage_access_title": "Zugriff auf die Sicherungen Ihres Quantum Computing Notebooks, die sich in Ihrem Objektspeicher befinden",
+  "pci_notebook_guides_object_storage_access_description": "Finden Sie heraus, wo Ihre Quantum Computing Notebooks gespeichert sind."
+}

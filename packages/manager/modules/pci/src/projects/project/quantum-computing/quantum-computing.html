@@ -1,0 +1,189 @@
+<div data-ui-view>
+    <oui-header
+        data-heading="{{:: 'pci_notebook_list_title' | translate }}"
+        class="mb-3"
+    >
+        <oui-guide-menu
+            data-text="{{:: 'pci_project_guides_header' | translate }}"
+        >
+            <oui-guide-menu-item
+                data-href="{{ $ctrl.guideUrl }}"
+                data-on-click="$ctrl.onGuideLinkClick('all')"
+                data-external
+            >
+                <span
+                    data-translate="pci_project_guides_header_all_guides"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+    <oui-datagrid
+        id="publicCloudQuantumComputingDatagrid"
+        data-rows="$ctrl.notebooks"
+    >
+        <oui-datagrid-column
+            title=":: 'pci_notebook_list_name' | translate"
+            data-property="name"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable="asc"
+        >
+            <a
+                data-ng-href="{{:: $ctrl.notebookLink($row) }}"
+                data-ng-bind=":: $value"
+            ></a>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_notebook_list_region' | translate"
+            data-property="region"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+            <span
+                data-ng-bind=":: $ctrl.ovhManagerRegionService.getTranslatedMacroRegion($row.region)"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_notebook_list_environment' | translate"
+            data-property="spec.env.frameworkId"
+            data-type="string"
+            data-searchable
+            data-sortable
+            data-filterable
+        >
+            <span data-ng-bind=":: $row.framework.name"></span>-
+            <span data-ng-bind=":: $row.frameworkVersion"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_notebook_list_cpu' | translate"
+            data-property="cpu"
+            data-type="number"
+            data-sortable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_notebook_list_gpu' | translate"
+            data-property="gpu"
+            data-type="number"
+            data-sortable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_notebook_list_privacy' | translate"
+            data-property="unsecureHttp"
+            data-type="boolean"
+            data-sortable
+            data-filterable
+        >
+            <span
+                data-translate="{{:: $row.unsecureHttp ? 'pci_notebook_list_privacy_public' : 'pci_notebook_list_privacy_private' }}"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_notebook_list_running_time' | translate"
+            data-property="duration"
+            data-type="number"
+            data-sortable
+        >
+            <span data-ng-bind=":: $row.durationString"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_notebook_list_creator' | translate"
+            data-property="user"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_notebook_list_status' | translate"
+            data-property="state"
+            data-sortable
+        >
+            <span
+                class="oui-badge"
+                data-ng-class="{
+                    'oui-badge_success': $row.stateInfo.stateGroup.success,
+                    'oui-badge_warning': $row.stateInfo.stateGroup.warning,
+                    'oui-badge_error': $row.stateInfo.stateGroup.error,
+                }"
+            >
+                <span
+                    data-ng-bind="('pci_notebook_list_status_' + $row.state) | translate"
+                ></span>
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_notebook_list_access' | translate"
+            data-property="accessUrl"
+            data-type="string"
+        >
+            <div>
+                <!--Active link-->
+                <a
+                    class="oui-link_icon"
+                    rel="noopener"
+                    target="_blank"
+                    data-ng-if="$row.isRunning()"
+                    data-ng-href="{{ $row.accessUrl }}"
+                >
+                    <span data-ng-bind=":: $row.editor.name"></span>
+                    <span
+                        class="oui-icon oui-icon-external-link"
+                        aria-hidden="true"
+                    ></span>
+                </a>
+
+                <!--Inactive link-->
+                <span
+                    data-ng-if="!$row.isRunning()"
+                    data-ng-bind=":: $row.editor.name"
+                ></span>
+            </div>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="left-start">
+            <oui-action-menu-item
+                data-on-click="$ctrl.goToNotebookDetails($row)"
+            >
+                <span data-translate="pci_notebook_list_details"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.onNotebookStartClick($row.id)"
+                data-disabled="!$row.isStopped()"
+            >
+                <span data-translate="pci_notebook_list_start_notebook"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.onNotebookStopClick($row.id)"
+                data-disabled="!$row.isRunning()"
+            >
+                <span data-translate="pci_notebook_list_stop_notebook"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.deleteNotebook($row)"
+                data-disabled="!$row.isStopped()"
+            >
+                <span data-translate="pci_notebook_list_delete_notebook"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+        <oui-datagrid-topbar>
+            <button
+                type="button"
+                class="oui-button oui-button_secondary oui-button_icon-left"
+                data-ng-click="$ctrl.createNotebook()"
+            >
+                <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
+                <span data-translate="pci_notebook_list_create_notebook"></span>
+            </button>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+</div>

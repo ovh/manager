@@ -1,0 +1,17 @@
+{
+  "pci_notebook_title": "Quantum Computing",
+  "pci_notebook_onboarding_content1": "Get your Quantum Computing Environment up and running in seconds.",
+  "pci_notebook_onboarding_content2": "Get your Quantum Computing projects started in minuted with our Quantum Emulators.",
+  "pci_notebook_onboarding_content3": "Are you a Quantum Scientist or Quantum developer looking to launch a Quantum Environment within a few minutes? Use our Quantum Computing Notebooks solution for quick access to Emulated Qubits with Jupyter. You will get secure user access with a ready to go Jupyter Environment combined with a dedicated Quantum Computing Framework.",
+  "pci_notebook_onboarding_action_label": "Create a Quantum Computing Environment",
+  "pci_notebook_guides_documentation_title": "Full Quantum Computing Environment documentation",
+  "pci_notebook_guides_documentation_description": "Browse all the documentation for Quantum Computing Environments.",
+  "pci_notebook_guides_definition_title": "Quantum Computing Environment definition",
+  "pci_notebook_guides_definition_description": "Find out what's a Quantum Computing Environment is at OVHcloud.",
+  "pci_notebook_guides_start_title": "Getting started with Quantum Computing Environment",
+  "pci_notebook_guides_start_description": "Find out how to get started quickly with your  Quantum Computing Environment via the OVHcloud Control Panel.",
+  "pci_notebook_guides_share_title": "Share a Quantum Computing Notebook",
+  "pci_notebook_guides_share_description": "Learn how to share a Quantum Computing Notebook with other developers.",
+  "pci_notebook_guides_object_storage_access_title": "Access your Quantum Computing Notebooks backups located in your object storage",
+  "pci_notebook_guides_object_storage_access_description": "Find out where your Quantum Computing Notebooks are stored."
+}

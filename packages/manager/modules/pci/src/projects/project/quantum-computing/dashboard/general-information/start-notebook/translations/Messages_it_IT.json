@@ -1,0 +1,8 @@
+{
+  "pci_quantum_computing_notebooks_start_notebook_title": "Avvia il notebook",
+  "pci_quantum_computing_notebooks_start_notebook_submit_label": "Conferma",
+  "pci_quantum_computing_notebooks_start_notebook_cancel_label": "Annulla",
+  "pci_quantum_computing_notebooks_start_notebook_content": "Vuoi davvero avviare il notebook {{ notebook }}?",
+  "pci_quantum_computing_notebooks_start_notebook_success": "Il notebook è stato avviato correttamente.",
+  "pci_quantum_computing_notebooks_start_notebook_error": "Si è verificato un errore durante l'avvio del notebook {{ notebook }}: {{ message }}"
+}

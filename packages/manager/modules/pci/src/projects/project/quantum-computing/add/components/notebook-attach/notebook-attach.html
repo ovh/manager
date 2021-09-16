@@ -1,0 +1,150 @@
+<div data-ng-if="$ctrl.displayNotebookAttach">
+    <!--Notebook attach object storage-->
+    <div class="mb-2">
+        <!--Description-->
+        <span>
+            <span
+                class="mb-0"
+                data-translate="pci_notebook_add_attach_container_description"
+            ></span>
+            <a
+                data-ng-href="{{:: $ctrl.getStorageInfoLink() }}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="pci_notebook_add_attach_container_description_link"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-target"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </span>
+    </div>
+
+    <!--Notebook storage labels-->
+    <div class="mb-4">
+        <div class="oui-box oui-box_light pl-0 pb-2 border-0">
+            <!--Manage labels-->
+            <div class="oui-inline-adder mb-2">
+                <div
+                    class="oui-inline-adder__form"
+                    data-ng-repeat="volume in $ctrl.notebookModel.volumes track by $index"
+                >
+                    <fieldset class="oui-inline-adder__fieldset">
+                        <div class="oui-inline-adder__row">
+                            <div class="oui-inline-adder__field">
+                                <oui-field
+                                    label="{{:: 'pci_notebook_add_attach_container_storage_container' | translate}}"
+                                >
+                                    <label class="oui-select">
+                                        <select
+                                            class="oui-select__input"
+                                            data-ng-init="volumeContainerId = 'volumeContainer-' + $index"
+                                            data-ng-attr-name="{{volumeContainerId}}"
+                                            data-ng-attr-id="{{volumeContainerId}}"
+                                            data-ng-model="volume.container"
+                                            required
+                                        >
+                                            <option
+                                                data-ng-bind="'pci_notebook_add_attach_container_storage_container_select' | translate"
+                                                default
+                                            ></option>
+                                            <option
+                                                ng-repeat="storage in $ctrl.storages track by storage.id"
+                                                data-ng-bind="::storage.name"
+                                                value="{{storage.name}}"
+                                            >
+                                            </option>
+                                        </select>
+                                        <span
+                                            class="oui-icon oui-icon-chevron-down"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </label>
+                                </oui-field>
+                            </div>
+                            <div class="oui-inline-adder__field">
+                                <oui-field
+                                    data-label="{{:: 'pci_notebook_add_attach_container_mount_path' | translate}}"
+                                    data-error-messages="{ duplicateVolumeMountPath: ('pci_notebook_add_attach_container_mount_path_error_key_already_exist' | translate) }"
+                                >
+                                    <input
+                                        type="text"
+                                        class="oui-input"
+                                        placeholder="/workspace/demo"
+                                        data-ng-init="volumeMountPathId = 'volumeMountPath-' + $index"
+                                        data-ng-attr-name="{{volumeMountPathId}}"
+                                        data-ng-attr-id="{{volumeMountPathId}}"
+                                        data-ng-change="$ctrl.onVolumeMountPathEdit(volume, volumeMountPathId)"
+                                        data-ng-model="volume.mountPath"
+                                        data-ng-pattern="$ctrl.NOTEBOOK_ATTACH_STORAGE.MOUNT_PATH_REGEX"
+                                        required
+                                    />
+                                </oui-field>
+                            </div>
+                            <div class="oui-inline-adder__field">
+                                <oui-field
+                                    label="{{:: 'pci_notebook_add_attach_container_permission' | translate}}"
+                                >
+                                    <label class="oui-select">
+                                        <select
+                                            class="oui-select__input"
+                                            data-ng-init="volumePermissionId = 'volumePermission-' + $index"
+                                            data-ng-attr-name="{{volumePermissionId}}"
+                                            data-ng-attr-id="{{volumePermissionId}}"
+                                            data-ng-model="volume.permission"
+                                            required
+                                        >
+                                            <option
+                                                data-ng-bind="'pci_notebook_add_attach_container_permission_select' | translate"
+                                                default
+                                            ></option>
+                                            <option
+                                                ng-repeat="permission in $ctrl.permissions"
+                                                value="{{permission}}"
+                                                data-ng-bind="::'pci_notebook_add_attach_container_permission_' + permission  | translate"
+                                            >
+                                            </option>
+                                        </select>
+                                        <span
+                                            class="oui-icon oui-icon-chevron-down"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </label>
+                                </oui-field>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <footer class="oui-inline-adder__footer">
+                        <button
+                            type="button"
+                            class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
+                            data-translate-attr="{title: 'pci_notebook_add_attach_container_btn_attach_storage_remove'}"
+                            data-ng-click="$ctrl.onRemoveVolumeClick(volume)"
+                        >
+                            <span class="oui-icon oui-icon-trash"></span>
+                        </button>
+                    </footer>
+                </div>
+            </div>
+
+            <!--Add label-->
+            <oui-button
+                data-icon-left="oui-icon-plus"
+                data-variant="secondary"
+                data-disabled="!$ctrl.canAddNewVolume()"
+                data-on-click="$ctrl.onAddVolumeClick()"
+            >
+                <span
+                    data-translate="pci_notebook_add_attach_container_btn_attach_storage_add"
+                ></span>
+            </oui-button>
+        </div>
+        <span
+            data-translate="pci_notebook_add_attach_container_volumes_quantity"
+            data-translate-values="{ numberOfVolumes: $ctrl.notebookModel.volumes.length, maxVolumes: $ctrl.NOTEBOOK_ATTACH_STORAGE.MAX_VOLUMES}"
+        ></span>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+{
+  "pci_notebook_add_configuration_name": "Name des Quantum Computing Notebooks",
+  "pci_notebook_add_configuration_label": "Label",
+  "pci_notebook_add_configuration_label_description": "Sie können Ihrem Notebook Labels hinzufügen.",
+  "pci_notebook_add_configuration_label_field_key": "Schlüssel",
+  "pci_notebook_add_configuration_label_field_key_error_key_already_exist": "Dieser Schlüssel besteht bereits",
+  "pci_notebook_add_configuration_label_field_value": "Wert",
+  "pci_notebook_add_configuration_label_btn_add": "Ein Label hinzufügen",
+  "pci_notebook_add_configuration_label_btn_remove": "Das Label entfernen",
+  "pci_notebook_add_configuration_label_quantity": "{{ numberOfLabels }} / {{ maxLabels }} Label(s)"
+}

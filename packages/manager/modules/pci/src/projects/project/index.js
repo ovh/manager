@@ -10,7 +10,6 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       url: '/{projectId:[0-9a-zA-Z]{32}}',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
         return import('./project.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );

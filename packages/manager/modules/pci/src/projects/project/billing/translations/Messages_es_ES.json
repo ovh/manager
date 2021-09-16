@@ -25,6 +25,7 @@
   "cpbc_billing_control_consumption_family_databases": "Databases",
   "cpbc_billing_control_consumption_family_data-processing-job": "Data Processing",
   "cpbc_billing_control_consumption_family_ai-notebook": "AI Notebooks",
+  "cpbc_billing_control_consumption_family_quantum-notebook": "Quantum Computing",
   "cpbc_billing_control_consumption_quantity_hour": "x {{ quantity }} hora(s)",
   "cpbc_billing_control_consumption_quantity_month": "x {{ quantity }} mes(es)",
   "cpbc_billing_control_consumption_quantity_h": "x {{ quantity }} hora(s)",

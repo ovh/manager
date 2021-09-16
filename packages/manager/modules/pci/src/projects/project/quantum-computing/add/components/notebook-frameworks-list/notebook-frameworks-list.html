@@ -1,0 +1,37 @@
+<div data-ng-if="$ctrl.displayNotebookFramework">
+    <!--Notebook framework description-->
+    <p class="mb-1">
+        <span data-translate="pci_notebook_add_framework_description"></span>
+        <a
+            data-ng-href="{{:: $ctrl.getFrameworkInfoLink() }}"
+            target="_blank"
+            rel="noopener"
+        >
+            <span
+                data-translate="pci_notebook_add_framework_description_link"
+            ></span>
+            <span class="oui-icon oui-icon-target" aria-hidden="true"></span>
+        </a>
+    </p>
+
+    <!--Notebook frameworks-->
+    <div class="row">
+        <oui-select-picker
+            class="d-inline-block col-md-6 col-xl-3 my-3"
+            data-ng-repeat="framework in $ctrl.frameworks track by framework.id"
+            data-name="{{:: framework.name}}"
+            data-label="{{:: framework.name}}"
+            data-picture="{{:: framework.logoUrl}}"
+            data-model="$ctrl.notebookModel.selected.framework.version"
+            data-on-change="$ctrl.onFrameworkChange(framework, modelValue)"
+            data-values="framework.versions"
+            data-match="version"
+            data-variant="light"
+            data-required
+        >
+            <oui-select-picker-section>
+                <p data-ng-bind=":: framework.description"></p>
+            </oui-select-picker-section>
+        </oui-select-picker>
+    </div>
+</div>

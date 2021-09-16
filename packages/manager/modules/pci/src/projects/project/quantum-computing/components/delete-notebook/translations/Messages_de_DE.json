@@ -1,0 +1,8 @@
+{
+  "pci_notebook_delete_notebook_title": "Löschen des Quantum Computing Notebooks",
+  "pci_notebook_delete_notebook_submit_label": "Bestätigen",
+  "pci_notebook_delete_notebook_cancel_label": "Abbrechen",
+  "pci_notebook_delete_notebook_content": "Sind Sie sicher, dass Sie das Notebook {{ notebookName }} löschen möchten?",
+  "pci_notebook_delete_notebook_success": "Ihr Notebook wurde gelöscht.",
+  "pci_notebook_delete_notebook_error": "Beim Löschen des Quantum Computing Notebooks {{notebookName}} ist ein Fehler aufgetreten: {{message}}."
+}

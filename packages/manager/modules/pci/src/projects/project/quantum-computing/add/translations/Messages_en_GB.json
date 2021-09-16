@@ -1,0 +1,19 @@
+{
+  "pci_notebook_add_title": "Create a Quantum Computing notebook",
+  "pci_notebook_add_description": "Get a quick, simple start launching your Quantum Computing Jupyter notebooks in the cloud.",
+  "pci_notebook_add_banner_object_storage_description": "",
+  "pci_notebook_add_banner_object_storage_description_link": "",
+  "pci_notebook_add_configuration_title": "Configure your Quantum Computing notebook",
+  "pci_notebook_add_configuration_title_selected": "Quantum Computing notebook name: {{notebook}} ({{labelsLength}} labels)  ",
+  "pci_notebook_add_privacy_settings_title": "Privacy settings",
+  "pci_notebook_add_privacy_settings_title_selected": "Privacy selected: {{privacy}}",
+  "pci_notebook_add_privacy_settings_item_selected_restricted": "Restricted access",
+  "pci_notebook_add_privacy_settings_item_selected_public": "Public access",
+  "pci_notebook_add_resources_title": "Resources",
+  "pci_notebook_add_resources_title_selected": "Resource selected: {{flavor}} - x{{quantity}}",
+  "pci_notebook_add_review_title": "Review ",
+  "pci_notebook_add_notebook_create": "Create a quantum computing notebook",
+  "pci_notebook_add_notebook_create_pending": "Creating quantum computing Notebook...",
+  "pci_notebook_add_notebook_create_success": "Your quantum computing notebook has been created.",
+  "pci_notebook_add_notebook_create_error": "An error has occurred creating the quantum computing notebook: {{message}}."
+}

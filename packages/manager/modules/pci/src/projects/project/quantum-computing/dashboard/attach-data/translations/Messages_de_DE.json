@@ -1,0 +1,15 @@
+{
+  "pci_quantum_computing_notebooks_tab_attach_data_title": "Daten verbinden",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_title": "Verbindung mit Datencontainern herstellen",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_description": "Verbinden Sie bei Bedarf Object Storage Container von OVHcloud mit Ihrem Notebook. Wenn die Verbindung mit den Containern hergestellt ist, werden sie vorübergehend geladen und nahe an Ihrer Instanz im Cache abgelegt. Das reduziert die Latenz und verbessert die Leistung. Es hat sich bewährt, das Notebook mit einem Container für Ihre eingehenden Daten und einem weiteren für Ihre ausgehenden Daten zu verbinden.",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_description_link": "Mehr Informationen zum Speichern von Daten",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_name": "Name",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_type": "Typ",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_region": "Standort",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_type_git": "Repository",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_type_swift": "Datencontainer",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_mount_path": "Mountverzeichnis",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_permission": "Berechtigung",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_permission_RO": "Nur Lesen",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_permission_RW": "Lesen - Schreiben"
+}

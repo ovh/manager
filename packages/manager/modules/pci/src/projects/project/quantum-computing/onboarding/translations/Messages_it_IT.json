@@ -1,0 +1,17 @@
+{
+  "pci_notebook_title": "Quantum Computing Notebooks",
+  "pci_notebook_onboarding_content1": "Notebook operativi e totalmente gestiti in pochi secondi.",
+  "pci_notebook_onboarding_content2": "Accelera l'avvio dei tuoi progetti e modelli con i notebook.",
+  "pci_notebook_onboarding_content3": "Sei un data scientist o uno sviluppatore e vuoi avviare un notebook in pochi minuti? Accedi rapidamente a Jupyter o VS Code e avvialo istantaneamente con le risorse necessarie, grazie alla nostra soluzione Quantum Computing Notebooks. Potrai usufruire di un accesso utente sicuro, di un utilizzo semplificato dei dati e dei principali framework di Intelligenza Artificiale (TensorFlow, PyTorch, Hugging Face e Scikit-learn).",
+  "pci_notebook_onboarding_action_label": "Crea un notebook",
+  "pci_notebook_guides_documentation_title": "Documentazione completa Quantum Computing Notebooks",
+  "pci_notebook_guides_documentation_description": "Consulta tutta la documentazione di Quantum Computing Notebooks.",
+  "pci_notebook_guides_definition_title": "Definizione Quantum Computing Notebooks",
+  "pci_notebook_guides_definition_description": "Scopri cos'è un Notebook in OVHcloud.",
+  "pci_notebook_guides_start_title": "Iniziare con Quantum Computing Notebooks",
+  "pci_notebook_guides_start_description": "Scopri come avviare rapidamente il tuo notebook dallo Spazio Cliente.",
+  "pci_notebook_guides_share_title": "Condividere un notebook",
+  "pci_notebook_guides_share_description": "Scopri come condividere un notebook con altri sviluppatori.",
+  "pci_notebook_guides_object_storage_access_title": "Accedi ai tuoi dati dall’object storage",
+  "pci_notebook_guides_object_storage_access_description": "Scopri come accedere ai tuoi dati di Quantum Computing Notebooks con il tuo object storage."
+}

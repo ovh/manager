@@ -1,0 +1,8 @@
+{
+  "pci_quantum_computing_notebooks_stop_notebook_title": "Anhalten Ihres Quantum Computing Notebooks",
+  "pci_quantum_computing_notebooks_stop_notebook_submit_label": "Bestätigen",
+  "pci_quantum_computing_notebooks_stop_notebook_cancel_label": "Abbrechen",
+  "pci_quantum_computing_notebooks_stop_notebook_content": "Sind Sie sicher, dass Sie Ihr Notebook {{ notebook }} anhalten möchten?",
+  "pci_quantum_computing_notebooks_stop_notebook_success": "Ihr Notebook wurde angehalten.",
+  "pci_quantum_computing_notebooks_stop_notebook_error": "Beim Anhalten des Notebook {{ notebook }} ist ein Fehler aufgetreten: {{ message }}."
+}

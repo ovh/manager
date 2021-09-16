@@ -1,0 +1,21 @@
+{
+  "pci_notebook_add_resources_usecase": "Modalità di utilizzo",
+  "pci_notebook_add_resources_usecase_item_standard": "Quantum Computing Notebooks standard (risorse CPU)",
+  "pci_notebook_add_resources_usecase_item_standard_description": "Meno costoso e con performance standard. Ideale per l'apprendimento, i test e i workload che richiedono solo CPU.",
+  "pci_notebook_add_resources_usecase_item_advanced": "Quantum Computing Notebooks avanzato (risorse GPU)",
+  "pci_notebook_add_resources_usecase_item_advanced_description": "Alimentazione fino a quattro GPU e decine di CPU. Offre prestazioni migliori per l'apprendimento deep learning e i carichi di lavoro intensivi.",
+  "pci_notebook_add_resources_proposed_title": "Risorse proposte",
+  "pci_notebook_add_resources_proposed_ram": "{{ ram }} RAM",
+  "pci_notebook_add_resources_proposed_storage": "{{ memory }} SSD",
+  "pci_notebook_add_resources_proposed_bandwidth": "{{ bandwidth }}/s",
+  "pci_notebook_add_resources_proposed_resource_price_by_resource": "+IVA /risorsa/ora",
+  "pci_notebook_add_resources_proposed_type_gpu": "(GPU)",
+  "pci_notebook_add_resources_proposed_type_gpu_description": "Visualizzazione delle istanze GPU",
+  "pci_notebook_add_resources_proposed_type_cpu": "(CPU)",
+  "pci_notebook_add_resources_proposed_type_cpu_description": "Visualizzazione delle istanze CPU",
+  "pci_notebook_add_resources_number_of_resources": "Numero di risorse",
+  "pci_notebook_add_resources_number_of_resources_description": "Risorse CPU/GPU",
+  "pci_notebook_add_resources_number_of_resources_type_cpu": "Risorse CPU",
+  "pci_notebook_add_resources_number_of_resources_type_gpu": "Risorse GPU",
+  "pci_notebook_add_resources_number_of_resources_number_of_resource": "Numero di CPU"
+}

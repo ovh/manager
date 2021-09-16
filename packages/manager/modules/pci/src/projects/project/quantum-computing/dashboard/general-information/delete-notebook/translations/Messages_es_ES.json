@@ -1,0 +1,8 @@
+{
+  "pci_quantum_computing_notebooks_general_information_info_delete_notebook_title": "Eliminación del notebook",
+  "pci_quantum_computing_notebooks_general_information_info_delete_notebook_description": "¿Seguro que quiere eliminar el notebook {{ name }}?",
+  "pci_quantum_computing_notebooks_general_information_info_delete_notebook_action_delete": "Confirmar",
+  "pci_quantum_computing_notebooks_general_information_info_delete_notebook_action_cancel": "Cancelar",
+  "pci_quantum_computing_notebooks_general_information_info_delete_notebook_action_delete_success": "El notebook se ha eliminado correctamente.",
+  "pci_quantum_computing_notebooks_general_information_info_delete_notebook_action_delete_fail": "Se ha producido un error al eliminar el notebook {{ name }}: {{ message }}."
+}

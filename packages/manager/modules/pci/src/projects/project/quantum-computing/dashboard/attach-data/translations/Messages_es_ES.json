@@ -1,0 +1,15 @@
+{
+  "pci_quantum_computing_notebooks_tab_attach_data_title": "Asociar datos",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_title": "Asociar contenedores de datos",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_description": "Si lo necesita, puede asociar contenedores Object Storage de OVHcloud a su notebook. Una vez que haya asociado sus contenedores, estos se cargarán temporalmente y se almacenarán en caché lo más cerca posible de su instancia para reducir la latencia y mejorar el rendimiento. Para un funcionamiento óptimo, le recomendamos que asocie un contenedor con los datos entrantes y otro con los datos salientes.",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_description_link": "Más información sobre el almacenamiento de datos.",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_name": "Nombre",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_type": "Tipo",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_region": "Localización",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_type_git": "Repositorio",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_type_swift": "Contenedor de datos",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_mount_path": "Directorio de montaje",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_permission": "Autorización",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_permission_RO": "Solo lectura",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_permission_RW": "Lectura y escritura"
+}

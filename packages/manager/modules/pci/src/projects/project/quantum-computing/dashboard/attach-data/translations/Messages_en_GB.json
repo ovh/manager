@@ -1,0 +1,15 @@
+{
+  "pci_quantum_computing_notebooks_tab_attach_data_title": "Attach data",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_title": "Attach data containers",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_description": "If necessary, you can attach OVHcloud Object Storage containers to your notebook. Once they are attached, they will be temporarily loaded and cached near your instance, to minimise latency and improve performance. The best practice is to attach one container with your incoming data, and another with your outgoing data.",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_description_link": "Learn more about data storage.",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_name": "Name",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_type": "Type",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_region": "Location",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_type_git": "Repository",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_type_swift": "Data container",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_mount_path": "Mount directory",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_permission": "Authorisation",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_permission_RO": "Read-only",
+  "pci_quantum_computing_notebooks_tab_attach_data_page_volumes_column_permission_RW": "Read/Write"
+}
