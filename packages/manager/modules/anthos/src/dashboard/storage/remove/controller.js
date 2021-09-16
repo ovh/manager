@@ -16,7 +16,6 @@ export default class {
     this.trackClick(`${this.removeStorageHitTracking}::confirm`);
     this.isRemoving = true;
 
-    return;
     return this.AnthosTenantsService.removeStorage(
       this.serviceName,
       this.storage.id,
