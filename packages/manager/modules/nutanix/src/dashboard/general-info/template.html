@@ -1,1 +1,14 @@
-<div>coming soon...</div>
+<div class="row d-md-flex mb-5">
+    <div class="col-md-4">
+        <billing-subscription-tile
+            on-error="$ctrl.onBillingInformationError(error)"
+            go-to-commit="$ctrl.goToCommit()"
+            go-to-cancel-commit="$ctrl.goToCancelCommit()"
+            go-to-cancel-resiliation="$ctrl.goToCancelResiliation()"
+            go-to-resiliation="$ctrl.goToResiliation()"
+            service-infos="$ctrl.serviceInfo"
+            user="$ctrl.user"
+        >
+        </billing-subscription-tile>
+    </div>
+</div>
