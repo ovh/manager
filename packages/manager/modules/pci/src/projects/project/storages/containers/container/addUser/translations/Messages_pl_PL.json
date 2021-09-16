@@ -1,0 +1,7 @@
+{
+  "pci_projects_project_storages_containers_container_addUser_container_title": "Dodaj użytkownika do kontenera",
+  "pci_projects_project_storages_containers_container_addUser_object_title": "Dodaj użytkownika do obiektu",
+  "pci_projects_project_storages_containers_container_addUser_description_container_step_0": "Wybierz użytkownika, którego chcesz dodać do kontenera. Jeśli nie wyświetla się on na tej liście, utwórz go w przeznaczonej do tego sekcji.",
+  "pci_projects_project_storages_containers_container_addUser_description_object_step_0": "Wybierz użytkownika, którego chcesz dodać do obiektu. Jeśli nie wyświetla się on na tej liście, utwórz go w przeznaczonej do tego sekcji.",
+  "pci_projects_project_storages_containers_container_addUser_object_success_message": "Użytkownik {{name}} został dodany do obiektu {{container}} jako {{role}}."
+}

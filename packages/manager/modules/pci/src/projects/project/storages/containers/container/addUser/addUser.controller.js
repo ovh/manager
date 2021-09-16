@@ -64,7 +64,9 @@ export default class PciBlockStorageDetailsAddUserController {
       .then(() =>
         this.goBack(
           this.$translate.instant(
-            'pci_projects_project_storages_containers_container_addUser_success_message',
+            this.objectKey
+              ? 'pci_projects_project_storages_containers_container_addUser_object_success_message'
+              : 'pci_projects_project_storages_containers_container_addUser_success_message',
             {
               container: this.container.name,
               name: this.selectedUser,
