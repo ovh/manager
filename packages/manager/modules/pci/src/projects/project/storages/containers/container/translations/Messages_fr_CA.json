@@ -1,0 +1,35 @@
+{
+  "pci_projects_project_storages_containers_container_back_label": "Retour",
+  "pci_projects_project_storages_containers_container_archive_info_storedObjects": "Archives : {{ count }}",
+  "pci_projects_project_storages_containers_container_object_info_storedObjects": "Objets : {{ count }}",
+  "pci_projects_project_storages_containers_container_info_storedBytes": "Espace utilisé : {{ bytes }}",
+  "pci_projects_project_storages_containers_container_info_publicUrl": "URL du conteneur",
+  "pci_projects_project_storages_containers_container_info_publicUrl_help": "Cette information est nécessaire pour récupérer ou manipuler vos objets via l'API. Rendez-vous dans la section guide pour plus de détails.",
+  "pci_projects_project_storages_containers_container_archive_info_staticUrl": "Adresse du serveur pour rsync/sftp/scp :",
+  "pci_projects_project_storages_containers_container_object_info_staticUrl": "Valeur de l'enregistrement CNAME/TXT :",
+  "pci_projects_project_storages_containers_container_object_info_staticUrl_help": "Pour utiliser le conteneur « hébergement statique » sur un domaine ou un sous-domaine, éditez simplement la zone DNS en ajoutant un champs CNAME contenant cette valeur.",
+  "pci_projects_project_storages_containers_container_archive_info_user": "Nom de l'utilisateur : {{ user }}",
+  "pci_projects_project_storages_containers_container_archive_info_password": "Mot de passe (la concaténation des champs suivant) :",
+
+  "pci_projects_project_storages_containers_container_name_label": "Nom",
+  "pci_projects_project_storages_containers_container_lastModified_label": "Dernière modification",
+  "pci_projects_project_storages_containers_container_size_label": "Taille",
+  "pci_projects_project_storages_containers_container_contentType_label": "Type",
+  "pci_projects_project_storages_containers_container_retrievalState_label": "Disponibilité",
+  "pci_projects_project_storages_containers_container_retrievalState_unsealed": "Oui",
+  "pci_projects_project_storages_containers_container_retrievalState_sealed": "Gelée",
+  "pci_projects_project_storages_containers_container_unseal_label": "Dégeler",
+  "pci_projects_project_storages_containers_container_download_label": "Télécharger",
+  "pci_projects_project_storages_containers_container_delete_label": "Supprimer",
+
+  "pci_projects_project_storages_containers_container_add_archive_label": "Ajouter des archives",
+  "pci_projects_project_storages_containers_container_add_object_label": "Ajouter des objets",
+
+  "pci_projects_project_storages_containers_container_archive_error_query": "Une erreur est survenue lors de la récupération du conteneur d'archive : {{ message }}.",
+  "pci_projects_project_storages_containers_container_object_error_query": "Une erreur est survenue lors de la récupération du conteneur d'objet : {{ message }}.",
+  "pci_projects_project_storages_containers_container_archive_error_download": "Une erreur est survenue lors du téléchargement de l'archive : {{ message }}.",
+  "pci_projects_project_storages_containers_container_object_error_download": "Une erreur est survenue lors du téléchargement de l'objet : {{ message }}.",
+  "pci_projects_project_storages_containers_container_archive_error_unseal": "Une erreur est survenue lors du dégel de l'archive : {{ message }}.",
+  "pci_projects_project_storages_containers_container_archive_success_unseal": "Le dégel de l'archive {{archive}} est en cours.",
+  "pci_projects_project_storages_containers_container_add_user_label": "Ajouter un utilisateur à mon objet"
+}
