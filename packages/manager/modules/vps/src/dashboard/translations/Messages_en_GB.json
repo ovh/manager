@@ -16,5 +16,6 @@
   "vps_dashboard_state_stopped": "Stopped",
   "vps_dashboard_state_stopping": "Cancelling...",
   "vps_dashboard_state_upgrading": "Changing solution...",
-  "vps_dashboard_auto_migration_warning_new": "Your {{vps}} VPS is eligible for 1-click migration to the new range."
+  "vps_dashboard_auto_migration_warning_new": "Your {{vps}} VPS is eligible for 1-click migration to the new range.",
+  "vps_dashboard_state_rescued": "In rescue"
 }

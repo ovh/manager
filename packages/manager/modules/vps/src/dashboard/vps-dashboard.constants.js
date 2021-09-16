@@ -12,7 +12,7 @@ export const NEW_RANGE_VERSION = '2019v1';
 
 export const VPS_STATES = {
   ERROR: ['maintenance', 'stopped', 'stopping'],
-  WARNING: ['backuping', 'installing', 'rebooting', 'upgrading'],
+  WARNING: ['backuping', 'installing', 'rebooting', 'upgrading', 'rescued'],
   SUCCESS: ['running'],
 };
 

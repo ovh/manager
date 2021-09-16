@@ -11,6 +11,7 @@
   "vps_dashboard_state_backuping": "En cours de sauvegarde",
   "vps_dashboard_state_installing": "En cours d'installation",
   "vps_dashboard_state_maintenance": "En cours de maintenance",
+  "vps_dashboard_state_rescued": "En rescue",
   "vps_dashboard_state_rebooting": "En cours de redémarrage",
   "vps_dashboard_state_running": "En cours d'exécution",
   "vps_dashboard_state_stopped": "Arrêté",
