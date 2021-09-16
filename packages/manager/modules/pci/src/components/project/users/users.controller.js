@@ -1,13 +1,13 @@
-import get from 'lodash/get';
 import some from 'lodash/some';
 
 import { ACTIVE_STATUS, PENDING_STATUS } from './users.constants';
 
 export default class CloudProjectUsersCtrl {
   /* @ngInject */
-  constructor($q, $translate, CucCloudMessage) {
+  constructor($q, $translate, atInternet, CucCloudMessage) {
     this.$q = $q;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
   }
 
@@ -40,6 +40,11 @@ export default class CloudProjectUsersCtrl {
   }
 
   generatePassword(user) {
+    this.atInternet.trackClick({
+      name: 'PublicCloud::pci::projects::project::users::regen-password',
+      type: 'action',
+    });
+
     return this.regeneratePassword(user)
       .then(({ password }) => {
         this.CucCloudMessage.success(
@@ -70,11 +75,42 @@ export default class CloudProjectUsersCtrl {
             'pci_projects_project_users_password_message_error',
             {
               user: user.username,
-              message: get(err, 'data.message', null),
+              message: err.message || err.data?.message,
             },
           ),
           this.messageChannel,
         );
       });
+  }
+
+  generateCredentials(user) {
+    this.atInternet.trackClick({
+      name: 'PublicCloud::pci::projects::project::users::get-s3-credentials',
+      type: 'action',
+    });
+    return this.generateS3Credentials(user)
+      .then(() =>
+        this.CucCloudMessage.success(
+          this.$translate.instant(
+            'pci_projects_project_users_generate_s3_credentials_success',
+            {
+              user: user.username,
+            },
+          ),
+          this.messageChannel,
+        ),
+      )
+      .catch((err) =>
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_projects_project_users_generate_s3_credentials_error',
+            {
+              user: user.username,
+              message: err.message || err.data?.message,
+            },
+          ),
+          this.messageChannel,
+        ),
+      );
   }
 }

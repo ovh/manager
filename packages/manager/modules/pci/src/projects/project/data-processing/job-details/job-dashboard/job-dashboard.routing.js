@@ -43,7 +43,7 @@ export default /* @ngInject */ ($stateProvider) =>
         browseObjectStorage: /* @ngInject */ ($state, projectId) => (
           containerId,
         ) => {
-          $state.go('pci.projects.project.storages.objects.object', {
+          $state.go('pci.projects.project.storages.object-storage.object', {
             projectId,
             containerId,
           });

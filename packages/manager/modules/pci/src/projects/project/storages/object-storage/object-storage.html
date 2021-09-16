@@ -1,0 +1,42 @@
+<div data-ui-view>
+    <oui-header
+        class="mb-3"
+        data-heading="{{:: 'pci_projects_project_storages_containers_object_title' | translate }}"
+        description="{{:: 'pci_projects_project_storages_containers_object_description' | translate }}"
+    >
+        <oui-guide-menu
+            data-text="{{:: 'pci_project_guides_header' | translate }}"
+        >
+            <oui-guide-menu-item
+                href="{{ $ctrl.guideUrl }}"
+                data-external
+                data-on-click="$ctrl.onGuideLinkClick()"
+            >
+                <span
+                    data-translate="pci_project_guides_header_all_guides"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.containersLink }}"
+                data-active="!$ctrl.isUserTabActive()"
+                ><span
+                    data-translate="pci_projects_project_storages_containers_my_containers_label"
+                ></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.userListLink }}"
+                data-active="$ctrl.isUserTabActive()"
+                ><span
+                    data-translate="pci_projects_project_storages_containers_s3_users_label"
+                ></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-header>
+    <div
+        class="container-fluid w-100 h-100 pt-4 px-3 px-md-5"
+        data-ui-view="containersView"
+    ></div>
+</div>

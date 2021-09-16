@@ -1,0 +1,13 @@
+<oui-modal
+    data-heading="{{:: 'pci_projects_project_storages_containers_users_delete_title' | translate }}"
+    data-primary-label="{{:: 'pci_projects_project_storages_containers_users_delete_label' | translate }}"
+    data-primary-action="$ctrl.delete()"
+    data-secondary-label="{{:: 'pci_projects_project_storages_containers_users_delete_cancel' | translate }}"
+    data-secondary-action="$ctrl.cancel()"
+    data-on-dismiss="$ctrl.goToUsers()"
+    data-loading="$ctrl.isDeleting"
+>
+    <p
+        data-translate="pci_projects_project_storages_containers_users_delete_question"
+    ></p>
+</oui-modal>

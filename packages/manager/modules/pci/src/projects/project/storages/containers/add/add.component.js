@@ -9,7 +9,8 @@ export default {
     archive: '<',
     regions: '<',
     goBack: '<',
-    cancelLink: '<',
+    cancelCreate: '<',
+    trackingPrefix: '<',
     user: '<',
   },
 };

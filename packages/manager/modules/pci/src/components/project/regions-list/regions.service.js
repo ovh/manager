@@ -1,3 +1,4 @@
+import compact from 'lodash/compact';
 import map from 'lodash/map';
 
 export default class Regions {
@@ -13,15 +14,15 @@ export default class Regions {
       })
       .$promise.then((regions) =>
         Promise.all(
-          map(
-            regions,
-            (id) =>
-              this.OvhApiCloudProjectRegion.v6().get({
+          map(regions, (id) =>
+            this.OvhApiCloudProjectRegion.v6()
+              .get({
                 serviceName: projectId,
                 id,
-              }).$promise,
+              })
+              .$promise.catch(() => null),
           ),
-        ),
+        ).then((regionsDetail) => compact(regionsDetail)),
       );
   }
 }
