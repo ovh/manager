@@ -52,7 +52,7 @@ const initRouter = (iframe, hashPrefix = '#') => {
 
     // check if application's path needs to be updated
     if (pathCompare(iframeURL.pathname, path) === false) {
-      iframeURL.pathname = path;
+      iframeURL.pathname = path.replace(/([^/])$/, '$1/');
     }
 
     // check if application's hash needs to be updated
@@ -71,6 +71,8 @@ const initRouter = (iframe, hashPrefix = '#') => {
   if (hashCompare(url.hash, '')) {
     if (window.location.hostname === 'localhost') {
       url.hash = '/app';
+    } else {
+      url.hash = '/hub/';
     }
     window.location.replace(url);
   }
