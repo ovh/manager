@@ -1,0 +1,17 @@
+{
+  "pci_projects_project_storages_objects_onboarding_title": "Object Storage",
+  "pci_projects_project_storages_objects_onboarding_content1": "Vous n'avez pas encore créé de service d'Object Storage.",
+  "pci_projects_project_storages_objects_onboarding_content2": "Profitez du stockage illimité à la demande, accessible par API.",
+  "pci_projects_project_storages_objects_onboarding_content3": "L’Object Storage consiste à placer vos données dans un espace illimité, accessible directement via une API HTTP. Vous pouvez ainsi intégrer l'accès à ces informations depuis vos applications, grâce aux nombreuses librairies OpenStack Swift existantes. Outre l’administration des droits d'accès, l'Object Storage intègre des fonctionnalités de « stockage intelligent » comme la gestion des versions et des dates d'expiration, ainsi que la synchronisation entre différentes localisations.",
+  "pci_projects_project_storages_objects_onboarding_content4": "Vos données sont sécurisées sur trois réplicas, afin de garantir leur durée de vie, et vous profitez d'une facturation à l'usage dès le premier Go.",
+  "pci_projects_project_storages_objects_onboarding_action_label": "Créer un conteneur d'objet",
+
+  "pci_projects_project_storages_objects_onboarding_guides_object-storage-domain_title": "Placer un conteneur de l’Object Storage derriere un nom de domaine",
+  "pci_projects_project_storages_objects_onboarding_guides_object-storage-domain_description": "",
+  "pci_projects_project_storages_objects_onboarding_guides_auto-delete-object_title": "Configurer la suppression automatique d’objets",
+  "pci_projects_project_storages_objects_onboarding_guides_auto-delete-object_description": "",
+  "pci_projects_project_storages_objects_onboarding_guides_share-object-temporary-url_title": "Partager un objet avec une adresse temporaire",
+  "pci_projects_project_storages_objects_onboarding_guides_share-object-temporary-url_description": "Découvrez comment partager un objet sans fournir vos informations personnelles",
+  "pci_projects_project_storages_objects_onboarding_guides_sync-object-containers_title": "Synchroniser des conteneurs d’objets",
+  "pci_projects_project_storages_objects_onboarding_guides_sync-object-containers_description": ""
+}
