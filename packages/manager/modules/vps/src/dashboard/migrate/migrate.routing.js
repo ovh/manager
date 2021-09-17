@@ -53,13 +53,11 @@ export default /* @ngInject */ ($stateProvider) => {
         vpsMigrateService,
         newPlan,
         user,
-        vps,
         vpsMigration,
       ) => {
         return vpsMigrateService.fetchNewPrice(
           newPlan,
           user.ovhSubsidiary,
-          vps,
           vpsMigration,
         );
       },
