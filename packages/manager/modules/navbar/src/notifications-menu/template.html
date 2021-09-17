@@ -1,0 +1,15 @@
+<button
+    class="d-inline-flex oui-navbar-link oui-navbar-link_icon notifications py-0"
+    data-ng-disabled="$ctrl.isLoading"
+    data-ng-click="$ctrl.onClick()"
+>
+    <span class="oui-icon oui-icon-bell">
+        <span
+            class="oui-icon__badge"
+            data-ng-bind="$ctrl.numberOfActiveNotifications"
+            data-ng-if="$ctrl.numberOfActiveNotifications"
+        >
+        </span>
+    </span>
+    <oui-spinner data-size="s" data-ng-if="$ctrl.isLoading"></oui-spinner>
+</button>
