@@ -1,5 +1,5 @@
 {
   "pci_database_logs_title": "Logs",
-  "pci_databases_logs_description": "Pour vous aider à suivre et piloter votre service, vous trouverez les derniers événements (logs) ci-dessous, quasiment en direct. Leur durée de rétention dépend de votre offre de service. Pour télécharger vos logs, veuillez consulter la documentation.",
+  "pci_databases_logs_description": "Pour vous aider à suivre et à piloter votre service de base de données, vous trouverez les derniers événements (logs) ci-dessous, quasiment en direct. Leur durée de rétention dépend de votre offre de service.",
   "pci_databases_logs_autorefresh": "Auto-Refresh"
 }

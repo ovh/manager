@@ -1,10 +1,10 @@
 {
   "pci_databases_general_information_upgrade_node_confirm": "Améliorer mon modèle de nœud",
-  "pci_databases_general_information_upgrade_node": "Améliorer votre modèle de nœud",
+  "pci_databases_general_information_upgrade_node": "Changer de modèle de nœud",
   "pci_databases_general_information_upgrade_node_back": "Information",
   "pci_databases_general_information_upgrade_node_cancel": "Annuler",
   "pci_databases_general_information_upgrade_node_description": "Vous utilisez actuellement le modèle de nœud {{currentNodeModel}}. Vous pouvez l'améliorer en cliquant sur le bouton 'Améliorer mon modèle de nœud' ci-dessous.",
-  "pci_databases_general_information_upgrade_node_warning": "Une fois le modèle de nœud amélioré, vous ne pourrez plus revenir à un modèle inférieur.",
+  "pci_databases_general_information_upgrade_node_warning": "Une fois la modification réalisée, vous ne pourrez plus revenir à un modèle inférieur.",
   "pci_databases_general_information_upgrade_node_label": "Modèle",
   "pci_databases_general_information_upgrade_node_placeholder": "Choisissez un modèle de nœud",
   "pci_databases_general_information_upgrade_node_success": "Votre changement de modèle de nœud a bien été pris en compte. Il sera effectif dans quelques minutes.",

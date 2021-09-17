@@ -1,8 +1,8 @@
 {
-  "pci_databases_general_information_upgrade_version_confirm": "Mettre à jour ma version",
+  "pci_databases_general_information_upgrade_version_confirm": "Changer de version",
   "pci_databases_general_information_upgrade_version_cancel": "Annuler",
-  "pci_databases_general_information_upgrade_version_description": "Vous utilisez actuellement la version {{currentVersion}} de {{engine}}. Vous pouvez la mettre à jour en cliquant sur 'Mettre à jour ma version' ci-dessous.",
-  "pci_databases_general_information_upgrade_version_warning": "Une fois l’upgrade de la version de la base de données réalisé, vous ne pourrez plus revenir à une version inférieure.",
+  "pci_databases_general_information_upgrade_version_description": "Vous utilisez actuellement {{engine}} en version {{currentVersion}}. Vous pouvez mettre à jour votre instance en cliquant sur 'Mettre à jour ma version' ci-dessous.",
+  "pci_databases_general_information_upgrade_version_warning": "Une fois la mise à jour réalisée, vous ne pourrez plus revenir à une version antérieure.",
   "pci_databases_general_information_upgrade_version_label": "Version",
   "pci_databases_general_information_upgrade_version_placeholder": "Sélectionner une version",
   "pci_databases_general_information_upgrade_version_success": "Votre demande de mise à jour a bien été prise en compte et sera effective dans quelques minutes.",

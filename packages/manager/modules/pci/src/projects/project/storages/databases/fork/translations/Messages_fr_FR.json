@@ -1,5 +1,5 @@
 {
-  "pci_database_fork_title": "Restaurer votre sauvegarde en créant un nouveau service",
+  "pci_database_fork_title": "Dupliquer votre service de base de données (fork)",
   "pci_database_fork_description": "Le fork de votre sauvegarde s’effectuera sur un nouveau cluster. Nous allons restaurer la sauvegarde {{backup.id}} de {{backup.size.value}} {{backup.size.unit}}.",
   "pci_database_fork_step1_title": "Choisissez votre type de base de données",
   "pci_database_fork_step1_description": "Sélectionner le type de base de données correspondant à vos besoins",

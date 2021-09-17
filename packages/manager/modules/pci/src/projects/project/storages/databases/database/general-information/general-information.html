@@ -26,10 +26,6 @@
             <span
                 data-translate="pci_databases_general_information_manage_users"
             ></span>
-            <span
-                class="oui-icon oui-icon-arrow-right ml-1"
-                aria-hidden="true"
-            ></span>
         </a>
     </oui-message>
 
@@ -290,10 +286,15 @@
                             }"
                         >
                             <span
+                                data-ng-if="$ctrl.users.length >= 1"
                                 data-translate="pci_databases_general_information_users"
                                 data-translate-values="{
                                     userNumber: $ctrl.users.length
                                 }"
+                            ></span>
+                            <span
+                                data-ng-if="$ctrl.users.length < 1"
+                                data-translate="pci_databases_general_information_users_no_users"
                             ></span>
                         </span>
                         <button
@@ -355,6 +356,7 @@
                         ></span>
                         <div data-ng-if="$ctrl.privateNetwork">
                             <a
+                                data-ng-if="$ctrl.vRack"
                                 class="mb-0"
                                 data-ng-href="{{:: $ctrl.vRackLink}}"
                                 data-ng-click="$ctrl.trackManageVRack()"
@@ -370,6 +372,10 @@
                                     aria-hidden="true"
                                 ></span>
                             </a>
+                            <span
+                                data-ng-if="!$ctrl.vRack"
+                                data-translate="pci_databases_general_information_private_network_none"
+                            ></span>
                         </div>
                     </oui-tile-description>
                 </oui-tile-definition>

@@ -1,6 +1,6 @@
 {
-  "pci_database_metrics_title": "Metrics",
-  "pci_databases_metrics_title": "Metrics",
+  "pci_database_metrics_title": "Métriques",
+  "pci_databases_metrics_title": "Métriques",
   "pci_databases_metrics_refresh_label": "Auto-Refresh (1M)",
   "pci_databases_metrics_range_label": "Time range",
   "pci_databases_metrics_range_label_1H": "1H",
@@ -8,5 +8,5 @@
   "pci_databases_metrics_range_label_1W": "1W",
   "pci_databases_metrics_range_label_1M": "1M",
   "pci_databases_metrics_range_label_1Y": "1Y",
-  "pci_databases_metrics_description": "Pour vous aider à suivre et à piloter votre service, vous trouverez ses principales métriques et statistiques ci-dessous. Leur durée de rétention dépend de votre offre de service."
+  "pci_databases_metrics_description": "Pour vous aider à suivre et piloter votre instance de base de données, vous trouverez ses principales métriques et statistiques ci-dessous. Leur durée de rétention dépend de votre offre de service."
 }
