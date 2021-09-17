@@ -42,6 +42,7 @@ module.exports = defineConfig({
   base: './',
   root: path.resolve(__dirname, 'src'),
   clearScreen: false,
+  publicDir: 'public',
   plugins: [
     reactRefresh(),
     legacy({
