@@ -22,7 +22,6 @@
         </oui-tile-description>
         <oui-tile-actions data-ng-if="!$ctrl.isLoading">
             <billing-services-actions
-                data-ng-if="$ctrl.displayServiceActions"
                 service="$ctrl.serviceInfos"
                 tracking-prefix="{{ $ctrl.trackingPrefix }}"
                 user="$ctrl.user"
@@ -30,6 +29,7 @@
                 get-cancel-commitment-link="$ctrl.goToCancelCommit()"
                 get-cancel-resiliation-link="$ctrl.goToCancelResiliation()"
                 get-resiliation-link="$ctrl.goToResiliation()"
+                billing-management-availability="$ctrl.featuresAvailability.isFeatureAvailable('billing:management')"
             >
             </billing-services-actions>
         </oui-tile-actions>
@@ -80,7 +80,7 @@
         </oui-tile-description>
     </oui-tile-definition>
     <oui-tile-definition
-        ng-if="$ctrl.contactAvailability.isFeatureAvailable('contact') && $ctrl.withContactManagement"
+        ng-if="$ctrl.featuresAvailability.isFeatureAvailable('contact') && $ctrl.withContactManagement"
         term="{{:: 'manager_billing_subscription_contacts' | translate }}"
     >
         <oui-tile-description>
@@ -103,7 +103,7 @@
             ></span>
         </oui-tile-description>
         <oui-tile-actions
-            ng-if="$ctrl.contactAvailability.isFeatureAvailable('contact:management') && !$ctrl.serviceInfos.isExpired()"
+            ng-if="$ctrl.featuresAvailability.isFeatureAvailable('contact:management') && !$ctrl.serviceInfos.isExpired()"
         >
             <oui-action-menu compact placement="end">
                 <oui-action-menu-item
