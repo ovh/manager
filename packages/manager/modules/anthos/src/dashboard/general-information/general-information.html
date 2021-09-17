@@ -11,11 +11,13 @@
             <oui-tile
                 data-heading="{{:: 'anthos_tenant_dashboard_general_information_tile_information_title' | translate }}"
             >
-                <!--Description-->
+                <!--Name-->
                 <oui-tile-definition
-                    data-term="{{:: 'anthos_tenant_dashboard_general_information_tile_information_description' | translate }}"
-                    data-description="{{:: $ctrl.tenant.description }}"
+                    data-term="{{:: 'anthos_tenant_dashboard_general_information_tile_information_name' | translate }}"
                 >
+                    <oui-tile-description>
+                        <span data-ng-bind="$ctrl.tenant.name"></span>
+                    </oui-tile-description>
                     <oui-action-menu aria-label="Actions" data-compact data-placement="end">
                         <oui-action-menu-item data-on-click="$ctrl.goToRenameService()">
                             <span
@@ -80,8 +82,8 @@
 
                 </oui-tile-definition>
 
-                <!--Netapp access-->
-                <oui-tile-definition
+                <!--TODO:: Netapp access it will be used for second stage. To uncomment later.-->
+                <!--<oui-tile-definition
                     data-term="{{:: 'anthos_tenant_dashboard_general_information_tile_security_center_access_netapp_title' | translate }}">
 
                     <oui-tile-description>
@@ -108,7 +110,7 @@
                         </oui-action-menu-item>
                     </oui-action-menu>
 
-                </oui-tile-definition>
+                </oui-tile-definition>-->
 
             </oui-tile>
         </div>
