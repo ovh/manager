@@ -26,7 +26,7 @@ fetchConfiguration('shell')
         ns: [], // namespaces to load by default
         backend: {
           // path construction for async load, ns: namespace, lng: locale
-          loadPath: '/translations/{{ns}}/Messages_{{lng}}.json',
+          loadPath: './translations/{{ns}}/Messages_{{lng}}.json',
         },
       });
 
