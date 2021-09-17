@@ -1,3 +1,12 @@
+## [2.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.17.0...@ovh-ux/manager-vps@2.17.1) (2021-09-17)
+
+
+### Bug Fixes
+
+* **vps.migration:** fix datacenter issue ([#5550](https://github.com/ovh/manager/issues/5550)) ([1f23dc3](https://github.com/ovh/manager/commit/1f23dc3bc6eb73f817880b28d812f2bb10b1c049))
+
+
+
 # [2.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.16.0...@ovh-ux/manager-vps@2.17.0) (2021-09-16)
 
 
