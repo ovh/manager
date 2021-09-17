@@ -171,7 +171,12 @@ export const registerCoreModule = (environment) => {
     .run((ssoAuthentication) => {
       ssoAuthentication.setLoggedIn(environment.getUser());
     })
-    .constant('OVH_SSO_AUTH_LOGIN_URL', '/auth')
+    .constant(
+      'OVH_SSO_AUTH_LOGIN_URL',
+      window.location.host === 'www.ovhtelecom.fr'
+        ? 'https://www.ovh.com/auth/'
+        : '/auth',
+    )
     .factory('serviceTypeInterceptor', () => ({
       request(config) {
         const localConfig = config;
