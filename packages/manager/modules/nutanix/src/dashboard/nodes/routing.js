@@ -3,6 +3,8 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/nodes',
     component: 'nutanixNodes',
     resolve: {
+      nodes: /* @ngInject */ (cluster, NutanixNode) =>
+        NutanixNode.getNodeDetails(cluster.getNodes()),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('nutanix_dashboard_nodes'),
     },
