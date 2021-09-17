@@ -1,4 +1,5 @@
 import { ANTHOS_TENANT_ALERTER } from '../anthos.constants';
+import Tenant from '../Tenant.class';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('anthos.dashboard', {
@@ -13,7 +14,9 @@ export default /* @ngInject */ ($stateProvider) => {
       alertId: () => 'anthos_dashboard',
 
       tenant: /* @ngInject */ (serviceName, AnthosTenantsService) => {
-        return AnthosTenantsService.getTenantDetails(serviceName);
+        return AnthosTenantsService.getTenantDetails(serviceName).then(
+          (tenant) => new Tenant(tenant),
+        );
       },
 
       hosts: /* @ngInject */ (serviceName, AnthosTenantsService) =>

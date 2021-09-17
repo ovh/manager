@@ -4,39 +4,40 @@ export default class RenameServiceController {
     this.$translate = $translate;
     this.AnthosTenantsService = AnthosTenantsService;
 
-    this.DISPLAY_NAME_MAX_LENGTH = 255;
+    this.TENANT_NAME_MAX_LENGTH = 255;
   }
 
   $onInit() {
-    this.displayName = this.tenant.name;
+    this.tenantName = this.tenant.name;
   }
 
   canRenameTenant(renameTenantForm) {
     return (
       !this.isUpdating &&
-      this.tenant.name !== this.displayName &&
+      this.tenantName !== this.tenant.name &&
       renameTenantForm.$valid
     );
   }
 
   onRenameTenantConfirmClick() {
-    // this.trackTenants('dashboard::delete_notebook_confirm');
-
     this.isUpdating = true;
+
     return this.AnthosTenantsService.updateTenant(this.tenant.serviceName, {
-      name: this.displayName,
+      name: this.tenantName,
     })
-      .then(() => {
+      .then((tenant) => {
+        this.tenant.update(tenant);
+
         return this.goToTenant(
           this.$translate.instant(
-            'anthos_tenant_dashboard_general_information_tile_information_description_modal_rename_success',
+            'anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_success',
           ),
         );
       })
       .catch((error) => {
         return this.goBack(
           this.$translate.instant(
-            'anthos_tenant_dashboard_general_information_tile_information_description_modal_rename_failed',
+            'anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_failed',
             {
               name: this.tenant.name,
               message: error.message || error.data?.message,
@@ -48,10 +49,5 @@ export default class RenameServiceController {
       .finally(() => {
         this.isUpdating = false;
       });
-  }
-
-  onRenameTenantCancelClick() {
-    // this.trackTenants('dashboard::delete_notebook_cancel');
-    return this.goBack();
   }
 }
