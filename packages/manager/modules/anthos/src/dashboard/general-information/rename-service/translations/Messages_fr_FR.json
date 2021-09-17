@@ -1,9 +1,9 @@
 {
-  "anthos_tenant_dashboard_general_information_tile_information_description_modal_rename_title": "Modifier",
-  "anthos_tenant_dashboard_general_information_tile_information_description_modal_rename_description": "Modifier le nom affiché dans le menu de gauche ainsi que dans l'entête.",
-  "anthos_tenant_dashboard_general_information_tile_information_description_modal_rename_field_name": "Nom",
-  "anthos_tenant_dashboard_general_information_tile_information_description_modal_rename_action_confirm": "Renommer",
-  "anthos_tenant_dashboard_general_information_tile_information_description_modal_rename_action_cancel": "Annuler",
-  "anthos_tenant_dashboard_general_information_tile_information_description_modal_rename_success": "Le nom a été modifié avec succès",
-  "anthos_tenant_dashboard_general_information_tile_information_description_modal_rename_failed": "Une erreur est survenue lors de la modification du nom : {{message}}"
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_title": "Modifier",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_description": "Modifier le nom affiché dans le menu de gauche ainsi que dans l'entête.",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_field_name": "Nom",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_action_confirm": "Renommer",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_action_cancel": "Annuler",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_success": "Le nom a été modifié avec succès",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_failed": "Une erreur est survenue lors de la modification du nom : {{message}}"
 }

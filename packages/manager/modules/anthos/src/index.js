@@ -56,6 +56,7 @@ angular
     /* @ngInject */ ($translate, $transitions) => {
       $transitions.onBefore({ to: 'anthos.**' }, () => $translate.refresh());
     },
-  );
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

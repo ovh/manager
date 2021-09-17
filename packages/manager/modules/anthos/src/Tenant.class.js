@@ -5,12 +5,16 @@ export default class Tenant {
    * @param ovhSubsidiary {String|undefined}: (optional) used to get link info
    * */
   constructor(tenant, ovhSubsidiary) {
-    Object.assign(this, tenant);
+    this.update(tenant);
 
     this.ovhSubsidiary = ovhSubsidiary;
   }
 
   set storageAccessUrl(url) {
     this.storage.accessUrl = url;
+  }
+
+  update(tenant) {
+    Object.assign(this, tenant);
   }
 }

@@ -6,7 +6,7 @@
   "anthos_tenant_dashboard_general_information_tile_information_software": "Solution Logicielle",
   "anthos_tenant_dashboard_general_information_tile_information_software_status_upcoming": "Mise à jour bientôt disponible",
   "anthos_tenant_dashboard_general_information_tile_information_location": "Localisation",
-  "anthos_tenant_dashboard_general_information_tile_information_description": "Description",
+  "anthos_tenant_dashboard_general_information_tile_information_name": "Nom",
   "anthos_tenant_dashboard_general_information_tile_information_description_action_rename": "Modifier",
 
   "anthos_tenant_dashboard_general_information_tile_security_title": "Sécurité et accès",
