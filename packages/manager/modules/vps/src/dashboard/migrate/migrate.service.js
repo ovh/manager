@@ -18,8 +18,8 @@ export default class {
       .then(({ data }) => data);
   }
 
-  fetchNewPrice(newPlan, ovhSubsidiary, vps, vpsMigration) {
-    const hasWindowsOption = find(newPlan.options, (option) =>
+  fetchNewPrice(newPlan, ovhSubsidiary, vpsMigration) {
+    const hasWindowsOption = find(vpsMigration.options, (option) =>
       option.newPlan.includes('windows'),
     );
     return this.$http
@@ -53,9 +53,7 @@ export default class {
             `/order/cart/${data.cartId}/item/${data.itemId}/configuration`,
             {
               label: 'vps_datacenter',
-              value: this.ovhManagerRegionService.getRegion(
-                vps.location.datacentre,
-              )?.macroRegion?.code,
+              value: vpsMigration.datacenter,
             },
           ),
         );
