@@ -1,5 +1,6 @@
 import { useReket } from '@ovh-ux/ovh-reket';
 import _Environment from './environment';
+import initIframeApplication from './iframe';
 
 import {
   convertLanguageFromOVHToBCP47 as _convertLanguageFromOVHToBCP47,
@@ -55,11 +56,24 @@ export const fetchConfiguration = (applicationName) => {
       environment.setApplicationURLs(config.applicationURLs);
       environment.setUniverse(config.universe);
       environment.setMessage(config.message);
+      if (!isTopLevelApplication()) {
+        initIframeApplication(environment);
+      }
       return environment;
     })
-    .catch(() => ({
-      region: HOSTNAME_REGIONS[window.location.hostname],
-    }));
+    .catch((err) => {
+      if (err && err.status === 401 && !isTopLevelApplication()) {
+        window.parent.postMessage({
+          id: 'ovh-auth-redirect',
+          url: `/auth?action=disconnect&onsuccess=${encodeURIComponent(
+            window.location.href,
+          )}`,
+        });
+      }
+      return {
+        region: HOSTNAME_REGIONS[window.location.hostname],
+      };
+    });
 };
 
 export default {
