@@ -20,6 +20,12 @@ export default class NutanixNodeService {
     });
   }
 
+  getNodeDetails(nodes) {
+    return this.$q
+      .all(nodes.map((node) => this.getServer(node.server)))
+      .then((res) => res);
+  }
+
   getServer(nodeId) {
     return this.$http
       .get(`/sws/dedicated/server/${nodeId}`, {
