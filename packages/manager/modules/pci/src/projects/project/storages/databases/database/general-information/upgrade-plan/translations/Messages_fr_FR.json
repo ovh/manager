@@ -1,4 +1,5 @@
 {
+  "pci_databases_general_information_upgrade_plan": "Changer d'offre",
   "pci_databases_general_information_upgrade_plan_description": "Vous pouvez migrer votre offre vers une version supérieure.",
   "pci_databases_general_information_upgrade_plan_warning": "Une fois l’upgrade de votre offre réalisé, vous ne pourrez plus revenir à une offre inférieure.",
   "pci_databases_general_information_upgrade_plan_processing": "L'offre est en cours de migration",
