@@ -193,12 +193,12 @@ export default /* @ngInject */ ($stateProvider) => {
               database.id,
               node.id,
             ).then((nodeInfo) => {
-              CucCloudMessage.flushMessages(stateName);
               CucCloudMessage.success(
                 $translate.instant(successMessage, { nodeName: node.name }),
                 stateName,
               );
               if (node.status === STATUS.DELETING) {
+                CucCloudMessage.flushMessages(stateName);
                 database.deleteNode(node.id);
               } else {
                 node.updateData(nodeInfo);
