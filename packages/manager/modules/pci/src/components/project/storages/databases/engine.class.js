@@ -53,7 +53,7 @@ export default class Engine {
     );
   }
 
-  getHighestFlavor(versionName, regionName, planName) {
+  getHighestFlavorRange(versionName, regionName, planName) {
     return this.getRegion(
       versionName,
       planName,

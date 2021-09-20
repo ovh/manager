@@ -21,4 +21,11 @@ export default class {
       this.currentEngine.selectedVersion.version > $item.version
     );
   }
+
+  isEngineDisabled(engine) {
+    return (
+      this.disabled ||
+      (this.currentEngine && this.currentEngine.name !== engine.name)
+    );
+  }
 }

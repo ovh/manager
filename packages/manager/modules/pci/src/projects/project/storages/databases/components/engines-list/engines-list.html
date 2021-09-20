@@ -9,7 +9,7 @@
         data-label="{{:: $ctrl.capitalize(engine.name) }}"
         data-values="[engine]"
         data-on-change="$ctrl.onChange({ selectedEngine: modelValue })"
-        data-disabled="$ctrl.disabled || ($ctrl.currentEngine && $ctrl.currentEngine.name !== engine.name)"
+        data-disabled="$ctrl.isEngineDisabled(engine)"
         data-required
     >
         <oui-select-picker-section>
