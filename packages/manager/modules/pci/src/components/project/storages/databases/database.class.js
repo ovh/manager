@@ -46,6 +46,10 @@ export default class Database extends Base {
     });
   }
 
+  setStatus(status) {
+    this.status = status;
+  }
+
   get region() {
     return this.nodes[0]?.region;
   }

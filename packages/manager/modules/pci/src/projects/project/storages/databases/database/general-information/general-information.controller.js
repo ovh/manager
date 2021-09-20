@@ -17,8 +17,7 @@ export default class {
   }
 
   $onInit() {
-    this.messageContainer =
-      'pci.projects.project.storages.databases.dashboard.general-information';
+    this.messageContainer = `pci.projects.project.storages.databases.dashboard.general-information-${this.database.id}`;
     this.loadMessages();
     this.connectionInformation = this.getConnectionInformation();
     this.pollDatabaseStatus();

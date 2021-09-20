@@ -124,8 +124,8 @@ export default /* @ngInject */ ($stateProvider) => {
         );
         return message
           ? promise.then(() => {
-              CucCloudMessage.flushMessages(stateName);
-              CucCloudMessage[type](message, stateName);
+              CucCloudMessage.flushMessages(`${stateName}-${database.id}`);
+              CucCloudMessage[type](message, `${stateName}-${database.id}`);
             })
           : promise;
       },

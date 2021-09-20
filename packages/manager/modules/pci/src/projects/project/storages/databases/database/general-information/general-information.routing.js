@@ -157,12 +157,12 @@ export default /* @ngInject */ ($stateProvider) => {
             database.id,
           )
             .then((databaseInfo) => {
-              CucCloudMessage.flushMessages(stateName);
+              CucCloudMessage.flushMessages(+'-' + databaseInfo.id);
               CucCloudMessage.success(
                 $translate.instant(
                   'pci_databases_general_information_database_ready',
                 ),
-                stateName,
+                `${stateName}-${databaseInfo.id}`,
               );
               database.updateData(databaseInfo);
               return getNodes(database).then((nodes) =>
@@ -195,10 +195,10 @@ export default /* @ngInject */ ($stateProvider) => {
             ).then((nodeInfo) => {
               CucCloudMessage.success(
                 $translate.instant(successMessage, { nodeName: node.name }),
-                stateName,
+                `${stateName}-${database.id}`,
               );
               if (node.status === STATUS.DELETING) {
-                CucCloudMessage.flushMessages(stateName);
+                CucCloudMessage.flushMessages(+'-' + database.id);
                 database.deleteNode(node.id);
               } else {
                 node.updateData(nodeInfo);
