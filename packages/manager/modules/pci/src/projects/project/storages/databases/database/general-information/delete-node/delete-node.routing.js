@@ -13,14 +13,17 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       resolve: {
         breadcrumb: () => null,
-        onNodeDelete: /* @ngInject */ (database, goBackAndPoll) => (
-          nodeInfo,
-          message,
-          type,
-        ) => {
+        onNodeDelete: /* @ngInject */ (
+          database,
+          pollDatabaseStatus,
+          pollNodesStatus,
+          goToDatabase,
+        ) => (nodeInfo, message, type) => {
           database.setNodeStatus(nodeInfo, STATUS.DELETING);
           database.setStatus(STATUS.UPDATING);
-          return goBackAndPoll(message, type);
+          pollDatabaseStatus();
+          pollNodesStatus();
+          return goToDatabase(database, message, type);
         },
         price: /* @ngInject */ (getCurrentFlavor) =>
           getCurrentFlavor().nodeMonthlyPrice,

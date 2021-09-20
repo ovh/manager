@@ -217,7 +217,7 @@ export default /* @ngInject */ ($stateProvider) => {
         database,
       ) => () =>
         database.nodes.forEach((node) =>
-          DatabaseService.stopPollingNodeStatus(node.id),
+          DatabaseService.stopPollingNodeStatus(database.id, node.id),
         ),
       nodesPerRow: () => NODES_PER_ROW,
     },
