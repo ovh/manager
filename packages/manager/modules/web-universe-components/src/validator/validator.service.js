@@ -22,7 +22,7 @@ export default function() {
     return (
       split.length === 2 &&
       this.isValidIpv4(split[0]) &&
-      parseInt(split[1], 10) > 0 &&
+      parseInt(split[1], 10) >= 0 &&
       parseInt(split[1], 10) < 33
     );
   };
@@ -37,7 +37,7 @@ export default function() {
     return (
       split.length === 2 &&
       this.isValidIpv6(split[0]) &&
-      parseInt(split[1], 10) > 0 &&
+      parseInt(split[1], 10) >= 0 &&
       parseInt(split[1], 10) < 129
     );
   };
