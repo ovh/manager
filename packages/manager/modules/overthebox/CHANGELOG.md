@@ -1,3 +1,12 @@
+## [6.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.4.1...@ovh-ux/manager-overthebox@6.4.2) (2021-09-20)
+
+
+### Bug Fixes
+
+* **overthebox.remote:** fix error on remove remote access ([#5537](https://github.com/ovh/manager/issues/5537)) ([3914caa](https://github.com/ovh/manager/commit/3914caa9249822a24bc77d570cf77ce9d36aef40))
+
+
+
 ## [6.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.4.0...@ovh-ux/manager-overthebox@6.4.1) (2021-09-07)
 
 
