@@ -36,6 +36,7 @@ export default class {
     // Retrieve data from db object
     const engine = this.database.getEngineFromList(this.engines);
     const version = engine.getVersion(this.database.version);
+    engine.selectedVersion = version;
     const plan = version.getPlan(this.database.plan);
     const region = plan.getRegion(this.database.nodes[0].region);
     const flavor = region.getFlavor(this.database.nodes[0].flavor);
