@@ -201,7 +201,7 @@ export default class DatabaseService {
             'hourlyPrice',
             get(
               prices,
-              `databases.${plan.engine}-${plan.plan}-${plan.flavor}-launch.hour.consumption`,
+              `databases.${plan.engine}-${plan.plan}-${plan.flavor}.hour.consumption`,
               {},
             ),
           );
@@ -210,7 +210,7 @@ export default class DatabaseService {
             'monthlyPrice',
             get(
               prices,
-              `databases.${plan.engine}-${plan.plan}-${plan.flavor}-launch.month.consumption`,
+              `databases.${plan.engine}-${plan.plan}-${plan.flavor}.month.consumption`,
               {},
             ),
           );
@@ -364,7 +364,6 @@ export default class DatabaseService {
     return this.$http
       .post(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/user/${userId}/credentials/reset`,
-        {},
       )
       .then(({ data }) => data);
   }

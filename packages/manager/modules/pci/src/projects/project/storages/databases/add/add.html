@@ -254,7 +254,10 @@
             data-order-data="$ctrl.orderData"
             data-user="$ctrl.user"
         ></database-order-command>
-        <div class="mb-3">
+        <div
+            class="mb-3"
+            data-ng-if="$ctrl.model.engine.selectedVersion.status === 'BETA'"
+        >
             <pci-project-lab-agreements
                 data-lab="$ctrl.lab"
                 data-ng-if="!$ctrl.lab.isActivated()"

@@ -69,7 +69,9 @@ export default class {
   }
 
   manageAllowedIps() {
-    this.trackDatabases('dashboard::allowed-ips::options::manage_ips');
+    this.trackDatabases(
+      'dashboard::general_information::configuration::manage_ips',
+    );
     this.goToAllowedIPs();
   }
 
