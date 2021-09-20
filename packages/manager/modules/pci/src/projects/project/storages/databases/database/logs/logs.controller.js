@@ -63,10 +63,10 @@ export default class logsCtrl {
 
   static getMessageLevelClassNames(message) {
     return {
-      debug: message.startsWith('DEBUG'),
-      info: message.startsWith('INFO'),
-      warning: message.startsWith('WARNING'),
-      error: message.startsWith('ERROR'),
+      'oui-color-as-400': message.startsWith('DEBUG'),
+      'oui-color-aw-100': message.startsWith('INFO'),
+      'oui-color-aw-300': message.startsWith('WARNING'),
+      'oui-color-ae-400': message.startsWith('ERROR'),
     };
   }
 }

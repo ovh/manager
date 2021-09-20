@@ -12,20 +12,22 @@
     <oui-tile
         heading="{{:: 'pci_databases_backup_informations_title' | translate}}"
     >
-        <table class="oui-table">
-            <tbody>
-                <tr class="oui-table__row">
-                    <td class="oui-table__cell">
-                        <dl class="oui-description">
-                            <dt
+        <div class="oui-table">
+            <div>
+                <div class="oui-table__row">
+                    <div class="oui-table__cell">
+                        <div class="oui-description">
+                            <div
                                 data-translate="pci_databases_backup_informations_retention"
-                            ></dt>
-                            <dd>{{:: $ctrl.backupRetentionTime.humanize()}}</dd>
-                        </dl>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                            ></div>
+                            <div>
+                                {{:: $ctrl.backupRetentionTime.humanize()}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </oui-tile>
 
     <oui-datagrid class="mt-5" data-page-size="10" data-rows="$ctrl.backupList">

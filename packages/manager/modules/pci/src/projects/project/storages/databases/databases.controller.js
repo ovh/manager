@@ -71,10 +71,11 @@ export default class {
       .getLatestPlan(database.version, database.region).name;
   }
 
-  getHighestFlavor(database) {
+  getHighestFlavorRange(database) {
     return database
       .getEngineFromList(this.engines)
-      .getHighestFlavor(database.version, database.region, database.plan).name;
+      .getHighestFlavorRange(database.version, database.region, database.plan)
+      .name;
   }
 
   getCurrentFlavor(database) {

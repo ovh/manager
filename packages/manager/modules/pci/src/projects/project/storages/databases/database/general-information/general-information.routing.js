@@ -118,7 +118,7 @@ export default /* @ngInject */ ($stateProvider) => {
       latestVersion: /* @ngInject */ (engine) =>
         engine.getLatestVersion().version,
       highestFlavor: /* @ngInject */ (database, engine) =>
-        engine.getHighestFlavor(
+        engine.getHighestFlavorRange(
           database.version,
           database.region,
           database.plan,
