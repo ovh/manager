@@ -1,0 +1,22 @@
+name: Yarn Lock Changes
+on: [pull_request]
+
+jobs:
+  yarn_lock_changes:
+    runs-on: ubuntu-latest
+    # Permission overwrite is required for Dependabot PRs, see "Common issues" below
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      # Please use `main` as version before the stable release will be published as `v1`
+      - name: Yarn Lock Changes
+        uses: Simek/yarn-lock-changes@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Optional inputs, can be deleted safely if you are happy with default values
+          collapsibleThreshold: 10
+          failOnDowngrade: false
+          path: yarn.lock
+          updateComment: true
