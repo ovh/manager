@@ -1,3 +1,12 @@
+## [15.30.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.30.3...@ovh-ux/manager-web@15.30.4) (2021-09-20)
+
+
+### Bug Fixes
+
+* **domain:** remove deprecated api call ([#5558](https://github.com/ovh/manager/issues/5558)) ([9a956c1](https://github.com/ovh/manager/commit/9a956c125712ba477c43bd2edf5a8c846d6fb3d7))
+
+
+
 ## [15.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.30.2...@ovh-ux/manager-web@15.30.3) (2021-09-15)
 
 

@@ -1,3 +1,12 @@
+## [5.42.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.42.1...@ovh-ux/manager-pci@5.42.2) (2021-09-20)
+
+
+### Bug Fixes
+
+* **pci.instance.edit:** get instance flavor type if no image available ([#5547](https://github.com/ovh/manager/issues/5547)) ([df4962a](https://github.com/ovh/manager/commit/df4962ac8cde11f68e672004b2f4b4efd5fe8260))
+
+
+
 ## [5.42.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.42.0...@ovh-ux/manager-pci@5.42.1) (2021-09-16)
 
 
