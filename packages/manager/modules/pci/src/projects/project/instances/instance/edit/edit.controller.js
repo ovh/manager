@@ -90,17 +90,22 @@ export default class PciInstanceEditController {
   }
 
   onFlavorChange(flavorGroup) {
-    if (flavorGroup && this.instance.image) {
+    if (
+      flavorGroup &&
+      (this.instance.image || this.instance.volumes.length > 0)
+    ) {
+      const flavorType =
+        this.instance?.image?.type || this.instance.flavor.osType;
       if (!this.defaultFlavor) {
         const flavor = new Flavor(this.instance.flavor);
         this.defaultFlavor = flavorGroup.getFlavorByOsType(
-          this.instance.image.type,
+          flavorType,
           flavor.isFlex(),
         );
       }
 
       this.editInstance.flavorId = flavorGroup.getFlavorId(
-        this.instance.image.type,
+        flavorType,
         this.instance.region,
         this.defaultFlavor.isFlex(),
       );
