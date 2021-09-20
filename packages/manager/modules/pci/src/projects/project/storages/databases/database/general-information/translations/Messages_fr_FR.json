@@ -31,7 +31,7 @@
   "pci_databases_general_information_private_network_label": "Réseau utilisé",
   "pci_databases_general_information_public_network_link": "Réseau public",
   "pci_databases_general_information_private_network_link": "Réseau privé : vRack n&deg;{{vRackId}}",
-  "pci_databases_general_information_private_network_none": "Aucun",
+  "pci_databases_general_information_private_network_none": "Aucune",
   "pci_databases_general_information_allowed_ips_label": "Adresses IP autorisées",
   "pci_databases_general_information_manage_ips": "Gérer les adresses IP",
   "pci_databases_general_information_subscription_title": "Abonnement",
