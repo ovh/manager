@@ -11,11 +11,10 @@ import { TEMPLATES } from '../../domain/zone/activate/activate.constants';
 
 export default class newDnsZoneCtrl {
   /* @ngInject */
-  constructor($translate, atInternet, Alerter, constants, newDnsZone) {
+  constructor($translate, atInternet, Alerter, constants) {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.Alerter = Alerter;
-    this.newDnsZone = newDnsZone;
     this.URLS = constants.urls;
 
     this.TEMPLATES = TEMPLATES;
