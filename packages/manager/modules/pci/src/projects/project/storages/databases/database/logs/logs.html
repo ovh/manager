@@ -20,8 +20,8 @@
     </oui-field>
     <tail-logs>
         <p
-            ng-repeat="line in $ctrl.logs track by $index"
-            ng-class="$ctrl.constructor.getMessageLevelClassNames(line.message)"
+            data-ng-repeat="line in $ctrl.logs track by $index"
+            data-ng-class="$ctrl.constructor.getMessageLevelClassNames(line.message)"
         >
             <span
                 data-ng-bind="$ctrl.constructor.formatTimestamp(line.timestamp)"
