@@ -5,7 +5,8 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/upgrade-node',
       component: 'ovhManagerPciProjectDatabaseGeneralInformationUpgradeNode',
       resolve: {
-        breadcrumb: () => null,
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('pci_databases_general_information_upgrade_node'),
         currentFlavor: /* @ngInject */ (getCurrentFlavor) => getCurrentFlavor(),
         flavors: /* @ngInject */ (database, engine) =>
           engine.getRegion(database.version, database.plan, database.region)

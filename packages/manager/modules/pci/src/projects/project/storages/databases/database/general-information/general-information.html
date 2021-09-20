@@ -384,23 +384,16 @@
                 >
                     <oui-tile-description>
                         <span
-                            class="oui-badge"
-                            data-ng-class="{
-                                'oui-badge_success': ($ctrl.allowedIps.length >= 1),
-                                'oui-badge_warning': ($ctrl.allowedIps.length < 1),
-                            }"
-                        >
-                            <span
-                                data-ng-if="$ctrl.allowedIps.length === 0"
-                                data-translate="pci_database_common_none"
-                            ></span>
-                            <p
-                                class="mb-0"
-                                data-ng-if="$ctrl.allowedIps.length !== 0 && $index < 3"
-                                data-ng-repeat="allowedIp in $ctrl.allowedIps track by allowedIp.ip"
-                                data-ng-bind="allowedIp.ip"
-                            ></p>
-                        </span>
+                            data-ng-if="$ctrl.allowedIps.length === 0"
+                            class="oui-badge oui-badge_warning"
+                            data-translate="pci_database_common_none"
+                        ></span>
+                        <p
+                            data-ng-if="$ctrl.allowedIps.length !== 0 && $index < 3"
+                            class="mb-0 oui-badge oui-badge_success"
+                            data-ng-repeat="allowedIp in $ctrl.allowedIps track by allowedIp.ip"
+                            data-ng-bind="allowedIp.ip"
+                        ></p>
                         <button
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                             data-ng-click="$ctrl.goToAllowedIPs()"
