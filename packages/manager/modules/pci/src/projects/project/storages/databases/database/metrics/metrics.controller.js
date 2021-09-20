@@ -56,24 +56,19 @@ export default class {
   }
 
   initMetrics() {
-    for (let i = 0; i < this.availableMetrics.length; i += 1) {
-      this.metricsData[this.availableMetrics[i]] = {};
-      this.metricsData[
-        this.availableMetrics[i]
-      ].chart = new this.PciChartjsFactory(
-        angular.copy(CHART_METRICS_OPTIONS.chart),
-      );
+    this.availableMetrics.forEach((metric) => {
+      this.metricsData[metric] = {
+        chart: new this.PciChartjsFactory(
+          angular.copy(CHART_METRICS_OPTIONS.chart),
+        ),
+      };
 
-      this.metricsData[this.availableMetrics[i]].chart.setTitle(
-        this.availableMetrics[i],
-      );
+      this.metricsData[metric].chart.setTitle(metric);
 
-      this.metricsData[
-        this.availableMetrics[i]
-      ].chart.setTooltipCallback('label', (item) =>
+      this.metricsData[metric].chart.setTooltipCallback('label', (item) =>
         parseFloat(item.value, 10).toFixed(2),
       );
-    }
+    });
   }
 
   onTimeRangeChange(selectedTimeRange) {
@@ -90,21 +85,21 @@ export default class {
   }
 
   getMetrics() {
-    for (let i = 0; i < this.availableMetrics.length; i += 1) {
+    this.availableMetrics.forEach((availableMetric) => {
       this.DatabaseService.getMetrics(
         this.projectId,
         this.database.engine,
         this.database.id,
-        this.availableMetrics[i],
+        availableMetric,
         this.selectedTimeRange.value,
       ).then((data) => {
         const metrics = sortBy(data.metrics, 'hostname');
         this.metricsData[data.name].data = data;
 
-        for (let j = 0; j < metrics.length; j += 1) {
+        metrics.forEach((metric) => {
           this.metricsData[data.name].chart.updateSerie(
-            metrics[j].hostname.substring(0, metrics[j].hostname.indexOf('-')),
-            map(metrics[j].dataPoints, (point) => ({
+            metric.hostname.substring(0, metric.hostname.indexOf('-')),
+            map(metric.dataPoints, (point) => ({
               x: moment.unix(point.timestamp),
               y: point.value,
             })),
@@ -115,11 +110,11 @@ export default class {
               },
             },
           );
-        }
+        });
 
         this.metricsData[data.name].utils.refresh();
       });
-    }
+    });
   }
 
   onChangeAutoRefresh(autoRefresh) {
