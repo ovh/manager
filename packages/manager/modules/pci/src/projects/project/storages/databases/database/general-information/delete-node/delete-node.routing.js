@@ -26,7 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return goToDatabase(database, message, type);
         },
         price: /* @ngInject */ (getCurrentFlavor) =>
-          getCurrentFlavor().nodeMonthlyPrice,
+          getCurrentFlavor().nodeHourlyPrice,
       },
     },
   );

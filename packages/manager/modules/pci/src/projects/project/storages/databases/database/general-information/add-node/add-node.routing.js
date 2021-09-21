@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: () => null,
         price: /* @ngInject */ (getCurrentFlavor) =>
-          getCurrentFlavor().nodeMonthlyPrice,
+          getCurrentFlavor().nodeHourlyPrice,
         onNodeAdd: /* @ngInject */ (
           database,
           getNodeObject,
