@@ -22,9 +22,6 @@ export default /* @ngInject */ ($stateProvider) => {
       hosts: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getHosts(serviceName).then(({ data }) => data),
 
-      netappStorage: /* @ngInject */ (serviceName, AnthosTenantsService) =>
-        AnthosTenantsService.getTenantStorageUsage(serviceName),
-
       publicIPs: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getTenantPublicIPs(serviceName),
 
@@ -102,6 +99,14 @@ export default /* @ngInject */ ($stateProvider) => {
       reloadState: /* @ngInject */ ($state) => () => {
         $state.go($state.current, {}, { reload: true });
       },
+
+      storageUsage: /* @ngInject */ (AnthosTenantsService, serviceName) =>
+        AnthosTenantsService.getTenantStorageUsage(serviceName).then(
+          (usageData) => ({
+            ...usageData,
+            totalUsed: usageData.reservedSize + usageData.usedSize,
+          }),
+        ),
 
       trackingPrefix: () => {
         return 'hpc::anthos::project';
