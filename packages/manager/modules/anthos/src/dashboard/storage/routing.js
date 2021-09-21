@@ -22,14 +22,6 @@ export default /* @ngInject */ ($stateProvider) => {
           })),
         ),
 
-      storageUsage: /* @ngInject */ (AnthosTenantsService, serviceName) =>
-        AnthosTenantsService.getTenantStorageUsage(serviceName).then(
-          (usageData) => ({
-            ...usageData,
-            totalUsed: usageData.reservedSize + usageData.usedSize,
-          }),
-        ),
-
       goToStorage: /* @ngInject */ (goToState, serviceName) => (
         message,
         type,

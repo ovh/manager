@@ -5,6 +5,7 @@ import '@ovh-ux/ui-kit';
 
 import component from './general-information.component';
 import routing from './general-information.routing';
+import storageUsage from '../components/storage-usage';
 
 import renameService from './rename-service';
 import orderHost from './order-host';
@@ -24,6 +25,7 @@ angular
     addStorage,
     orderPublicIp,
     assignPrivateIp,
+    storageUsage,
   ])
   .config(routing)
   .component('anthosDashboardGeneralInformation', component)

@@ -1,6 +1,7 @@
 {
   "anthos_tenant_dashboard_general_information_title": "Informations générales",
   "anthos_tenant_dashboard_general_information_description": "Retrouvez ici les paramètres généraux de votre déploiement Anthos. Vous pouvez accéder à vos consoles Anthos et NetApp si vous possédez cette option. Les informations de votre projet, sa facturation et les contacts associés peuvent être modifiés. Consultez et gérez les hôtes de votre déploiement Anthos, l’espace de stockage et les adresses IP via les onglets correspondants.",
+  "anthos_tenant_dashboard_general_information_actions": "Actions",
 
   "anthos_tenant_dashboard_general_information_tile_information_title": "Informations générales",
   "anthos_tenant_dashboard_general_information_tile_information_software": "Solution Logicielle",

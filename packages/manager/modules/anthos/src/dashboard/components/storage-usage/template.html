@@ -2,13 +2,13 @@
     <span
         data-translate="anthos_dashboard_storage_usage_unit_size_TB"
         data-translate-values="{
-        size: $ctrl.constructor.mbToTb($ctrl.data.usedSpace)
+        size: ($ctrl.constructor.mbToTb($ctrl.data.usedSpace) | number:2)
     }"
     ></span
     >/<span
         data-translate="anthos_dashboard_storage_usage_unit_size_TB"
         data-translate-values="{
-        size: $ctrl.constructor.mbToTb($ctrl.storageUsage.totalSize)
+        size: ($ctrl.constructor.mbToTb($ctrl.storageUsage.totalSize) | number:2)
     }"
     ></span>
     (<span data-ng-bind=":: $ctrl.data.occupiedPercentage"></span>%)

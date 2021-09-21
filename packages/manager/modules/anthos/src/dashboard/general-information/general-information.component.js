@@ -9,7 +9,7 @@ export default {
     isCommitmentAvailable: '<',
     tenant: '<',
     hosts: '<',
-    netappStorage: '<',
+    storageUsage: '<',
     publicIPs: '<',
     privateIPs: '<',
     displayAlerterMessage: '<',

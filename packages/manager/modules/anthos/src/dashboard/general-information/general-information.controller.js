@@ -11,18 +11,6 @@ export default class {
     this.trackPage(this.generalInfoHitTracking);
   }
 
-  computeStoragePercent(value) {
-    return (value / this.netappStorage.totalSize) * 100;
-  }
-
-  getStorageInfo() {
-    const { totalSize, usedSize } = this.netappStorage;
-    const usedStorage = this.$filter('cucBytes')(usedSize, 0, false, 'MB');
-    const totalStorage = this.$filter('cucBytes')(totalSize, 0, false, 'MB');
-    const percentStorage = this.computeStoragePercent(usedSize).toFixed(2);
-    return `${usedStorage} / ${totalStorage} (${percentStorage}%)`;
-  }
-
   onGoToOrderHost() {
     this.trackClick(`${this.generalInfoHitTracking}::add-new-host`);
 

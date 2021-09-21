@@ -8,7 +8,7 @@ export default {
     alertId: '<',
     tenant: '<',
     hosts: '<',
-    netappStorage: '<',
+    storageUsage: '<',
     publicIPs: '<',
     privateIPs: '<',
     displayAlerterMessage: '<',
