@@ -33,6 +33,8 @@ export default class Engine {
     });
 
     this.isDefault = some(availability, 'default');
+
+    this.status = availability.filter((a) => a.engine === this.name)[0].status;
   }
 
   getVersion(versionName) {
