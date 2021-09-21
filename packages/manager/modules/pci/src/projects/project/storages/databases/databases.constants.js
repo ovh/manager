@@ -113,6 +113,7 @@ export const CHART_METRICS_OPTIONS = {
 };
 
 export const NODES_PER_ROW = 4;
+export const MAX_IPS_DISPLAY = 3;
 
 export default {
   DATABASES_GUIDES_URL,

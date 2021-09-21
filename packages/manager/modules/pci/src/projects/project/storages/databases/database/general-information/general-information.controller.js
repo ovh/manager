@@ -1,5 +1,5 @@
 import capitalize from 'lodash/capitalize';
-import { SHELL_NAMES } from '../../databases.constants';
+import { SHELL_NAMES, MAX_IPS_DISPLAY } from '../../databases.constants';
 
 export default class {
   /* @ngInject */
@@ -23,6 +23,7 @@ export default class {
     this.loadMessages();
     this.connectionInformation = this.getConnectionInformation();
     this.pollDatabaseStatus();
+    this.maxAllowedIpsToShow = MAX_IPS_DISPLAY;
   }
 
   getConnectionInformation() {
