@@ -152,14 +152,7 @@
             <billing-subscription-tile
                 data-service-infos="$ctrl.serviceInfo"
                 data-user="$ctrl.user"
-                data-with-engagement="$ctrl.isCommitmentAvailable"
                 data-service-path="{{:: '/dedicated/anthos/tenants/' + $ctrl.serviceName }}"
-                data-highlight-engagement="$ctrl.shouldReengage"
-                data-go-to-commit="$ctrl.goToCommit()"
-                data-go-to-cancel-commit="$ctrl.goToCancelCommit()"
-                data-go-to-cancel-resiliation="$ctrl.goToCancelResiliation()"
-                data-go-to-resiliation="$ctrl.goToResiliation()"
-                data-on-error="$ctrl.onBillingInformationError(error)"
                 data-tracking-prefix="{{:: ($ctrl.trackingPrefix + '::' + $ctrl.generalInfoHitTracking) }}"
             >
             </billing-subscription-tile>
