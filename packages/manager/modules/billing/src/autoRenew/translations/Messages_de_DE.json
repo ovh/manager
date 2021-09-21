@@ -6,7 +6,7 @@
   "billing_autorenew_service_disable_autorenew": "Automatische Zahlung deaktivieren",
   "billing_autorenew_service_align_renew": "Die Ablaufdaten aneinander angleichen.",
   "billing_autorenew_service_enable_autorenew": "Automatische Zahlung aktivieren",
-  "billing_autorenew_service_disable_all_dom": "Automatische Verlängerung für alle Domains deaktivieren.",
+  "billing_autorenew_service_disable_all_dom": "Automatische Verlängerung für alle Domains deaktivieren",
   "billing_autorenew_service_status": "Status",
   "billing_autorenew_service_status_auto": "Automatische Verlängerung",
   "billing_autorenew_service_status_automatic": "Automatische Verlängerung",
