@@ -32,6 +32,6 @@
   "pci_projects_project_users_matrix_hide": "Masquer la matrice des rôles",
   "pci_projects_project_users_generate_s3_credentials": "Générer les certificats S3",
 
-  "pci_projects_project_users_generate_s3_credentials_success": "Les informations d'identification S3 pour l'utilisateur {{user}} ont été régénérées.",
+  "pci_projects_project_users_generate_s3_credentials_success": "Les informations d'identification S3 pour l'utilisateur {{user}} ont été regénérées. Votre clé d'accès est {{access}} and la clé secrète est {{secret}}.",
   "pci_projects_project_users_generate_s3_credentials_error": "Une erreur s'est produite lors de la génération des informations d'identification pour l'utilisateur {{ user }} : {{ message }}."
 }
