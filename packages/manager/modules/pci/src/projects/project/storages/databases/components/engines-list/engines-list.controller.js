@@ -1,3 +1,4 @@
+import { isFunction } from 'angular';
 import capitalize from 'lodash/capitalize';
 
 import { ENGINE_LOGOS } from '../../databases.constants';
@@ -10,7 +11,7 @@ export default class {
 
   handleVersionChange(engine, modelValue) {
     this.selectedEngine = engine;
-    if (this.onChange) {
+    if (this.onChange && isFunction(this.onChange)) {
       this.onChange({ selectedEngine: modelValue });
     }
   }

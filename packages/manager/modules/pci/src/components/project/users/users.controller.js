@@ -28,6 +28,10 @@ export default class CloudProjectUsersCtrl {
     });
   }
 
+  isDisabledOrPending($row) {
+    return this.constructor.isPending($row) || this.isActionDisabled();
+  }
+
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
   }
