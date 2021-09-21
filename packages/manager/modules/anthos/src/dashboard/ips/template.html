@@ -1,21 +1,27 @@
 <div>
-
     <!--Title and description-->
-    <oui-header class="mb-0" data-heading="{{:: 'anthos_dashboard_ips_title' | translate}}"
-                data-description="{{:: 'anthos_dashboard_ips_description' | translate}}">
+    <oui-header
+        class="mb-0"
+        data-heading="{{:: 'anthos_dashboard_ips_title' | translate}}"
+        data-description="{{:: 'anthos_dashboard_ips_description' | translate}}"
+    >
     </oui-header>
 
     <!--Public and Private IPs datagrid-->
     <div class="row">
-
         <!--Public IPs datagrid-->
         <div class="col-lg-6">
             <oui-datagrid
                 data-page-size="{{:: $ctrl.DATAGRID_CONFIG.PUBLIC.PAGE_SIZE}}"
-                data-rows="$ctrl.publicIPs">
+                data-rows="$ctrl.publicIPs"
+            >
                 <oui-datagrid-topbar>
-                    <oui-action-menu data-text="{{:: 'anthos_dashboard_ips_datagrid_public_actions_menu' | translate}}">
-                        <oui-action-menu-item data-on-click="$ctrl.goToOrderPublicIp()">
+                    <oui-action-menu
+                        data-text="{{:: 'anthos_dashboard_ips_datagrid_public_actions_menu' | translate}}"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.goToOrderPublicIp()"
+                        >
                             <span
                                 data-translate="anthos_dashboard_ips_datagrid_public_actions_order_ip"
                             ></span>
@@ -28,12 +34,14 @@
                     data-type="string"
                     data-searchable
                     data-filterable
-                    data-sortable="asc">
+                    data-sortable="asc"
+                >
                 </oui-datagrid-column>
                 <oui-datagrid-column
                     data-title=":: 'anthos_dashboard_ips_datagrid_public_ips_header_type' | translate"
                     data-type="string"
-                    data-sortable="asc">
+                    data-sortable="asc"
+                >
                     <span
                         data-translate="anthos_dashboard_ips_datagrid_public_ips_value_type"
                     ></span>
@@ -44,18 +52,19 @@
                     data-type="string"
                     data-searchable
                     data-filterable
-                    data-sortable="asc">
-                        <span
-                            class="oui-badge"
-                            data-ng-class="{
+                    data-sortable="asc"
+                >
+                    <span
+                        class="oui-badge"
+                        data-ng-class="{
                                 'oui-badge_success': $row.inUse,
                                 'oui-badge_error': !$row.inUse,
                             }"
-                                >
-                            <span
-                                data-ng-bind="('anthos_dashboard_ips_datagrid_public_ips_value_status_' + $row.inUse) | translate"
-                            ></span>
-                        </span>
+                    >
+                        <span
+                            data-ng-bind="('anthos_dashboard_ips_datagrid_public_ips_value_status_' + $row.inUse) | translate"
+                        ></span>
+                    </span>
                 </oui-datagrid-column>
             </oui-datagrid>
         </div>
@@ -64,10 +73,15 @@
         <div class="col-lg-6">
             <oui-datagrid
                 data-page-size="{{:: $ctrl.DATAGRID_CONFIG.PRIVATE.PAGE_SIZE}}"
-                data-rows="$ctrl.privateIPs">
+                data-rows="$ctrl.privateIPs"
+            >
                 <oui-datagrid-topbar>
-                    <oui-action-menu data-text="{{:: 'anthos_dashboard_ips_datagrid_private_actions_menu' | translate}}">
-                        <oui-action-menu-item data-on-click="$ctrl.onGoToAssignPrivateIp()">
+                    <oui-action-menu
+                        data-text="{{:: 'anthos_dashboard_ips_datagrid_private_actions_menu' | translate}}"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.onGoToAssignPrivateIp()"
+                        >
                             <span
                                 data-translate="anthos_dashboard_ips_datagrid_public_actions_assign_private_ip"
                             ></span>
@@ -80,12 +94,14 @@
                     data-type="string"
                     data-searchable
                     data-filterable
-                    data-sortable="asc">
+                    data-sortable="asc"
+                >
                 </oui-datagrid-column>
                 <oui-datagrid-column
                     data-title=":: 'anthos_dashboard_ips_datagrid_private_ips_header_type' | translate"
                     data-type="string"
-                    data-sortable="asc">
+                    data-sortable="asc"
+                >
                     <span
                         data-translate="anthos_dashboard_ips_datagrid_private_ips_value_type"
                     ></span>
@@ -96,30 +112,33 @@
                     data-type="string"
                     data-searchable
                     data-filterable
-                    data-sortable="asc">
-                        <span
-                            class="oui-badge"
-                            data-ng-class="{
+                    data-sortable="asc"
+                >
+                    <span
+                        class="oui-badge"
+                        data-ng-class="{
                                 'oui-badge_success': $row.inUse,
                                 'oui-badge_error': !$row.inUse,
-                            }">
-                            <span
-                                data-ng-bind="('anthos_dashboard_ips_datagrid_private_ips_value_status_' + $row.inUse) | translate"
-                            ></span>
-                        </span>
+                            }"
+                    >
+                        <span
+                            data-ng-bind="('anthos_dashboard_ips_datagrid_private_ips_value_status_' + $row.inUse) | translate"
+                        ></span>
+                    </span>
                 </oui-datagrid-column>
                 <oui-datagrid-column>
-                    <button
-                        class="oui-button float-right"
-                        data-ng-click="$ctrl.onGoToRemovePrivateIp($row)"
-                        data-ng-disabled="$row.inUse"
+                    <oui-button
+                        data-variant="link"
+                        data-icon-right="oui-icon-arrow-right"
+                        data-disabled="$row.inUse"
+                        data-on-click="$ctrl.onGoToRemovePrivateIp($row)"
                     >
-                        <span data-translate="anthos_dashboard_ips_datagrid_private_ips_value_delete"></span>
-                        <span class="oui-icon oui-icon-arrow-right" aria-hidden="true"></span>
-                    </button>
+                        <span
+                            data-translate="anthos_dashboard_ips_datagrid_private_ips_value_delete"
+                        ></span>
+                    </oui-button>
                 </oui-datagrid-column>
             </oui-datagrid>
         </div>
     </div>
-
 </div>
