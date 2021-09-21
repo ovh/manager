@@ -32,6 +32,7 @@ export default {
     stopPollingNodesStatus: '<',
     subnet: '<',
     trackDatabases: '<',
+    trackDashboard: '<',
     nodesPerRow: '<',
     isFeatureActivated: '<',
   },

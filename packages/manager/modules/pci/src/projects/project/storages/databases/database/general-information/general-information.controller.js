@@ -8,9 +8,11 @@ export default class {
     CucCloudMessage,
     ovhManagerRegionService,
     DatabaseService,
+    CucControllerHelper,
   ) {
     this.$translate = $translate;
     this.capitalize = capitalize;
+    this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.DatabaseService = DatabaseService;
