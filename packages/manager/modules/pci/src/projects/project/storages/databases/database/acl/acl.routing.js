@@ -3,7 +3,6 @@ export default /* @ngInject */ ($stateProvider) => {
     'pci.projects.project.storages.databases.dashboard.acl',
     {
       url: '/acl',
-      cache: false,
       views: {
         databaseView: 'ovhManagerPciStoragesDatabaseAclComponent',
       },

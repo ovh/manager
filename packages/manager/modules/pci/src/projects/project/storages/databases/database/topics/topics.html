@@ -41,7 +41,7 @@
         >
             <span
                 ng-if="$row.retentionHours >= 0"
-                data-ng-bind="$row.retentionHours"
+                data-ng-bind="::$row.retentionHours"
             ></span>
             <span
                 ng-if="$row.retentionHours < 0"
@@ -56,7 +56,7 @@
         >
             <span
                 ng-if="$row.retentionBytes >= 0"
-                data-ng-bind="$row.retentionBytes"
+                data-ng-bind="::$row.retentionBytes"
             ></span>
             <span
                 ng-if="$row.retentionBytes < 0"
@@ -87,7 +87,7 @@
                 class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                 type="button"
                 data-title="{{:: 'pci_databases_common_refresh' | translate }}"
-                data-ng-click="$ctrl.refreshing=true; $ctrl.refreshTopics()"
+                data-ng-click="$ctrl.refreshTopics()"
                 data-ng-disabled="$ctrl.refreshing"
             >
                 <span

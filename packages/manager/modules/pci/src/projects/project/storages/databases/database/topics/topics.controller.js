@@ -1,9 +1,7 @@
 export default class databasesCtrl {
   /* @ngInject */
-  constructor($anchorScroll, $translate, $q, CucCloudMessage, DatabaseService) {
-    this.$anchorScroll = $anchorScroll;
+  constructor($translate, CucCloudMessage, DatabaseService) {
     this.$translate = $translate;
-    this.$q = $q;
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
   }
@@ -28,6 +26,7 @@ export default class databasesCtrl {
   }
 
   refreshTopics() {
+    this.refreshing = true;
     this.DatabaseService.getTopics(
       this.projectId,
       this.database.engine,

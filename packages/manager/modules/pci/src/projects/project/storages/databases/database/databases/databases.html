@@ -40,9 +40,13 @@
                 class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                 type="button"
                 data-title="{{:: 'pci_databases_common_refresh' | translate }}"
-                data-ng-click="$ctrl.refreshing=true; $ctrl.refreshDatabases()"
+                data-ng-click="$ctrl.refreshDatabases()"
                 data-ng-disabled="$ctrl.refreshing"
             >
+                <span
+                    class="sr-only"
+                    data-translate="pci_databases_common_refresh"
+                ></span>
                 <span
                     class="oui-icon oui-icon-refresh"
                     aria-hidden="true"

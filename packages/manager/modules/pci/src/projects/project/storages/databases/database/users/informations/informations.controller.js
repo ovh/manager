@@ -1,4 +1,5 @@
 import { map } from 'lodash';
+import { USER_INFORMATIONS_LISTS } from './informations.constant';
 
 export default class usrInfomrationCtrl {
   /* @ngInject */
@@ -9,10 +10,9 @@ export default class usrInfomrationCtrl {
 
   $onInit() {
     this.isLoading = false;
-    this.mapArrayForChip('keys');
-    this.mapArrayForChip('categories');
-    this.mapArrayForChip('channels');
-    this.mapArrayForChip('commands');
+    USER_INFORMATIONS_LISTS.forEach((element) => {
+      this.mapArrayForChip(element);
+    });
   }
 
   mapArrayForChip(key) {

@@ -220,11 +220,10 @@ export default /* @ngInject */ ($stateProvider) => {
       stopPollingNodesStatus: /* @ngInject */ (
         DatabaseService,
         database,
-      ) => () => {
+      ) => () =>
         database.nodes.forEach((node) =>
           DatabaseService.stopPollingNodeStatus(database.id, node.id),
-        );
-      },
+        ),
       nodesPerRow: () => NODES_PER_ROW,
       isFeatureActivated: /* @ngInject */ (engine) => (feature) =>
         isFeatureActivated(feature, engine.name),

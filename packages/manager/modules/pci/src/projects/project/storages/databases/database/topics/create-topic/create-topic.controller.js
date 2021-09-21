@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import capitalize from 'lodash/capitalize';
+import { TOPICS_DEFAULT_VALUES } from './create-topic.constants';
 
 export default class {
   /* @ngInject */
@@ -13,13 +14,13 @@ export default class {
     this.trackDashboard('topics::add', 'page');
     this.model = {
       name: '',
-      replication: 3,
-      partitions: 1,
-      retentionBytes: -1,
-      retentionHours: -1,
-      minInsyncReplicas: 2,
-      cleanupPolicy: 'default',
-      status: 'READY',
+      replication: TOPICS_DEFAULT_VALUES.replication,
+      partitions: TOPICS_DEFAULT_VALUES.partitions,
+      retentionBytes: TOPICS_DEFAULT_VALUES.retentionBytes,
+      retentionHours: TOPICS_DEFAULT_VALUES.retentionHours,
+      minInsyncReplicas: TOPICS_DEFAULT_VALUES.minInsyncReplicas,
+      cleanupPolicy: TOPICS_DEFAULT_VALUES.cleanupPolicy,
+      status: TOPICS_DEFAULT_VALUES.status,
     };
   }
 

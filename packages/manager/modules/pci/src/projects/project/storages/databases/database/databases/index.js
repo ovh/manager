@@ -1,6 +1,5 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
-import '@ovh-ux/ng-tail-logs';
 import 'oclazyload';
 
 import '@ovh-ux/manager-core';
@@ -8,12 +7,7 @@ import '@ovh-ux/manager-core';
 const moduleName = 'ovhManagerPciStoragesDatabasesDatabasesLazyloading';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-    'ovhManagerCore',
-    'oc.lazyLoad',
-    'ngTailLogs',
-  ])
+  .module(moduleName, ['ui.router', 'ovhManagerCore', 'oc.lazyLoad'])
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state(

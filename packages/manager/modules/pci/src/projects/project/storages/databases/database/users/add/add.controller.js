@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import { DATABASE_TYPES } from '../../../databases.constants';
 
 export default class {
   /* @ngInject */
@@ -29,7 +30,7 @@ export default class {
     const user = {
       name: this.model.username,
     };
-    if (this.database.engine === 'redis') {
+    if (this.database.engine === DATABASE_TYPES.REDIS) {
       user.categories = this.model.categories;
       user.channels = this.model.channels;
       user.commands = this.model.commands;
