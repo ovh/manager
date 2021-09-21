@@ -1,11 +1,9 @@
 {
+  "pci_projects_project_storages_containers_container_addUser_archive_title": "Dodaj użytkownika do kontenera",
   "pci_projects_project_storages_containers_container_addUser_container_title": "Dodaj użytkownika do kontenera",
   "pci_projects_project_storages_containers_container_addUser_object_title": "Dodaj użytkownika do kontenera",
   "pci_projects_project_storages_containers_container_addUser_description_container_step_0": "Wybierz użytkownika, którego chcesz dodać do kontenera. Jeśli nie wyświetla się on na tej liście, utwórz go w przeznaczonej do tego sekcji.",
   "pci_projects_project_storages_containers_container_addUser_description_object_step_0": "Wybierz użytkownika, którego chcesz dodać do obiektu. Jeśli nie wyświetla się on na tej liście, utwórz go w przeznaczonej do tego sekcji.",
-  "pci_projects_project_storages_containers_container_addUser_object_success_message": "Użytkownik {{name}} został dodany do obiektu {{container}} jako {{role}}.",
-  "pci_projects_project_storages_containers_container_addUser_archive_title": "Dodaj użytkownika do kontenera",
-  "pci_projects_project_storages_containers_container_addUser_description_step_0": "Wybierz użytkownika, którego chcesz dodać do kontenera. Jeśli nie wyświetla się on na tej liście, utwórz go w przeznaczonej do tego sekcji.",
   "pci_projects_project_storages_containers_container_addUser_description_step_1": "Zdefiniuj rolę użytkownika w kontenerze {{container}}.",
   "pci_projects_project_storages_containers_container_addUser_submit_label": "Zatwierdź",
   "pci_projects_project_storages_containers_container_addUser_next_label": "Dalej",
@@ -16,5 +14,6 @@
   "pci_projects_project_storages_containers_container_addUser_right_readOnly": "Read only",
   "pci_projects_project_storages_containers_container_addUser_right_deny": "Deny",
   "pci_projects_project_storages_containers_container_addUser_success_message": "Użytkownik {{name}} został dodany do kontenera {{container}} jako {{role}}.",
+  "pci_projects_project_storages_containers_container_addUser_object_success_message": "Użytkownik {{name}} został dodany do obiektu {{container}} jako {{role}}.",
   "pci_projects_project_storages_containers_container_addUser_error_addUser": "Użytkownik nie został poprawnie dodany do kontenera {{container}}: {{message}}"
 }
