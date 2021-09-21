@@ -1,6 +1,6 @@
 {
   "anthos_dashboard_remove_host_title": "Supprimer votre hôte",
-  "anthos_dashboard_remove_host_description": "Cette machine sera immédiatement supprimée, et vous ne serez plus facturé au-delà de sa date de fin d’engagement (le {{expiryDate}}).",
+  "anthos_dashboard_remove_host_description": "Cette machine sera immédiatement supprimée et vous ne serez plus facturé.",
   "anthos_dashboard_remove_host_warning": "La suppression entraînera l’effacement définitif de toutes les données correspondantes.",
   "anthos_dashboard_remove_host_submit": "Confirmer",
   "anthos_dashboard_remove_host_cancel": "Annuler",
