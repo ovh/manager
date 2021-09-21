@@ -1,4 +1,4 @@
-const initSso = () => {
+export const initSso = () => {
   window.addEventListener(
     'message',
     ({ data }) => {
@@ -10,4 +10,4 @@ const initSso = () => {
   );
 };
 
-export default initSso;
+export default { initSso };
