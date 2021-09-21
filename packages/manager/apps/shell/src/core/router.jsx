@@ -29,6 +29,13 @@ function RouteHandler(props) {
   return null;
 }
 
+function DefaultRouteHandler() {
+  if (window.location.hostname === 'localhost') {
+    return <Redirect to="/app/" />;
+  }
+  return <Redirect to="/hub/" />;
+}
+
 export function initRouter(element, iframe) {
   const application = new Application(iframe);
   application.listenForChanges();
@@ -36,7 +43,7 @@ export function initRouter(element, iframe) {
     <HashRouter>
       <Switch>
         <Route exact path="/">
-          <Redirect to="/app/" />
+          <DefaultRouteHandler />
         </Route>
         <Route path="/:appId/(.*)">
           <RouteHandler app={application} />
