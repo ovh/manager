@@ -47,12 +47,12 @@
         </oui-select-picker-section>
         <oui-select-picker-section>
             <span
-                data-ng-if="plan.minMonthlyPrice.priceInUcents > 0"
+                data-ng-if="plan.minHourlyPrice.priceInUcents > 0"
                 data-translate="pci_database_common_price_starts_from"
             ></span>
             <ovh-manager-catalog-price
-                data-price="plan.minMonthlyPrice.priceInUcents"
-                data-tax="plan.minMonthlyPrice.tax"
+                data-price="plan.minHourlyPrice.priceInUcents"
+                data-tax="plan.minHourlyPrice.tax"
                 data-user="$ctrl.user"
                 data-show-zero-price="true"
             >
