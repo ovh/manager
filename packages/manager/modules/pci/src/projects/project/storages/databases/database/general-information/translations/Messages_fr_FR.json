@@ -49,8 +49,6 @@
   "pci_databases_general_information_no_ip_no_users": "Votre cluster n'est pas totalement configuré : vous devez autoriser des IP ainsi qu'ajouter des utilisateurs via ",
   "pci_databases_general_information_new_fork_label": "Fork",
   "pci_databases_general_information_new_fork_link": "Créer un fork du service",
-  "pci_databases_general_information_replicas_label": "Répliques",
-  "pci_databases_general_information_replicas_link": "Créer une nouvelle réplique",
   "pci_databases_general_information_certificate_label": "Certificat CA",
   "pci_databases_general_information_certificate_link": "Voir",
   "pci_databases_general_information_certificate_download": "Télécharger",
