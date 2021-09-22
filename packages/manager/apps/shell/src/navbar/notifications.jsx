@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { emit, listen } from '@ovh-ux/ufrontend/communication';
-import style from './navbar.scss';
+import style from './navbar.module.scss';
 import { MESSAGES, TRANSLATE_NAMESPACE } from './constants';
 
 function NavbarNotifications() {

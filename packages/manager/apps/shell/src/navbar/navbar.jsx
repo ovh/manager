@@ -10,7 +10,7 @@ import Search from './search.jsx';
 import Hamburger from './hamburger-menu.jsx';
 import LanguageMenu from './language.jsx';
 import { fetchUniverses, getBrandURL } from './service';
-import style from './navbar.scss';
+import style from './navbar.module.scss';
 import { MESSAGES } from './constants';
 
 function Navbar({ user, universe }) {

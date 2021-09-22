@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { capitalize, truncate } from 'lodash-es';
 import { emit, listen } from '@ovh-ux/ufrontend/communication';
-import style from './navbar.scss';
+import style from './navbar.module.scss';
 import { MESSAGES, TRANSLATE_NAMESPACE } from './constants';
 
 function NavbarAccount({ user }) {

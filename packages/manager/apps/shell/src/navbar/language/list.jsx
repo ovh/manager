@@ -3,7 +3,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { TRANSLATE_NAMESPACE } from '../constants';
-import styles from '../navbar.scss';
+import styles from '../navbar.module.scss';
 
 const LanguageMenu = ({ languages, onSelect }) => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
