@@ -8,7 +8,6 @@ export default {
     anthosReadMoreInfoLink: '<',
     trackingPrefix: '<',
     trackClick: '<',
-    trackPage: '<',
   },
   controller,
   template,

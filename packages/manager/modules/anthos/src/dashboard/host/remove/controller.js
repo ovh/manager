@@ -5,10 +5,6 @@ export default class {
     this.AnthosTenantsService = AnthosTenantsService;
   }
 
-  $onInit() {
-    this.trackPage(this.removeHostHitTracking);
-  }
-
   removeHost() {
     this.trackClick(`${this.removeHostHitTracking}::confirm`);
 

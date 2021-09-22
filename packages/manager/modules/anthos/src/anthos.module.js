@@ -5,6 +5,7 @@ import '@uirouter/angularjs';
 import '@ovh-ux/ui-kit';
 import 'angular-translate';
 import '@ovh-ux/ng-translate-async-loader';
+import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 
 import routing from './anthos.routing';
 import component from './anthos.component';
@@ -18,6 +19,7 @@ angular
     'pascalprecht.translate',
     'oui',
     'ui.router',
+    ngAtInternetUiRouterPlugin,
   ])
   .config(routing)
   .component('anthosTenants', component)

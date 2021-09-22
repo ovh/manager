@@ -5,10 +5,6 @@ export default class {
     this.AnthosTenantsService = AnthosTenantsService;
   }
 
-  $onInit() {
-    this.trackPage(this.addStorageHitTracking);
-  }
-
   addStorage() {
     this.trackClick(`${this.addStorageHitTracking}::confirm`);
     this.isAdding = true;

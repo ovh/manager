@@ -155,6 +155,17 @@
                 data-service-path="{{:: '/dedicated/anthos/tenants/' + $ctrl.serviceName }}"
                 data-tracking-prefix="{{:: ($ctrl.trackingPrefix + '::' + $ctrl.generalInfoHitTracking) }}"
             >
+                <billing-contact-actions>
+                    <oui-action-menu-item
+                        data-href="{{:: $ctrl.changeOwnerUrl }}"
+                        data-on-click="$ctrl.onChangeOwnerClick()"
+                        data-external
+                    >
+                        <span
+                            data-translate="anthos_tenant_dashboard_general_information_tile_subscription_change_contact"
+                        ></span>
+                    </oui-action-menu-item>
+                </billing-contact-actions>
             </billing-subscription-tile>
         </div>
 

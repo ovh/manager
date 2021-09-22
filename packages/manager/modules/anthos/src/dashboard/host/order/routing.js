@@ -1,3 +1,5 @@
+import { TRACKING_PREFIX } from '../../constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('anthos.dashboard.host.order', {
     url: '/order',
@@ -15,6 +17,9 @@ export default /* @ngInject */ ($stateProvider) => {
       orderHostHitTracking: () => {
         return 'order-host';
       },
+    },
+    atInternet: {
+      rename: `${TRACKING_PREFIX}::order-host`,
     },
   });
 };

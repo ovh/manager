@@ -7,7 +7,6 @@ export default {
     goBack: '<',
     storage: '<',
     trackClick: '<',
-    trackPage: '<',
     removeStorageHitTracking: '<',
   },
   controller,

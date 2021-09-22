@@ -27,6 +27,7 @@
   "anthos_tenant_dashboard_general_information_tile_subscription_renwal_date": "Prochaine échéance",
   "anthos_tenant_dashboard_general_information_tile_subscription_commitment": "Engagement",
   "anthos_tenant_dashboard_general_information_tile_subscription_contacts": "Contacts",
+  "anthos_tenant_dashboard_general_information_tile_subscription_change_contact": "Changer le propriétaire",
 
   "anthos_tenant_dashboard_general_information_tile_resources_title": "Ressources",
   "anthos_tenant_dashboard_general_information_tile_resources_hosts": "Hôtes",

@@ -5,10 +5,6 @@ export default class {
     this.AnthosTenantsService = AnthosTenantsService;
   }
 
-  $onInit() {
-    this.trackPage(this.reinstallHostHitTracking);
-  }
-
   reinstallHost() {
     this.trackClick(`${this.reinstallHostHitTracking}::confirm`);
     this.isLoading = true;

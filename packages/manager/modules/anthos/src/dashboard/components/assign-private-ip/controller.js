@@ -23,10 +23,6 @@ export default class AssignPrivateIpController {
     };
   }
 
-  $onInit() {
-    this.trackPage(this.assignPrivateIpHitTracking);
-  }
-
   static isValidV4Ip(ip) {
     return IPV4_REGEX.IP_V4_FORMAT.test(ip);
   }

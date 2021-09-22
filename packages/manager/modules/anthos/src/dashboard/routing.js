@@ -1,4 +1,5 @@
 import { ANTHOS_TENANT_ALERTER } from '../anthos.constants';
+import { TRACKING_PREFIX } from './constants';
 import Tenant from '../Tenant.class';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -109,7 +110,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
 
       trackingPrefix: () => {
-        return 'hpc::anthos::project';
+        return TRACKING_PREFIX;
       },
 
       trackClick: /* @ngInject */ (atInternet, trackingPrefix) => (hit) => {

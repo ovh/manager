@@ -1,3 +1,5 @@
+import { TRACKING_PREFIX } from '../../constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('anthos.dashboard.host.restart', {
     url: '/restart',
@@ -21,6 +23,9 @@ export default /* @ngInject */ ($stateProvider) => {
       restartHostHitTracking: () => {
         return 'reboot-host';
       },
+    },
+    atInternet: {
+      rename: `${TRACKING_PREFIX}::reboot-host`,
     },
   });
 };

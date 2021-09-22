@@ -1,3 +1,5 @@
+import { CHANGE_OWNER_URL } from './general-information.constants';
+
 export default class {
   /* @ngInject */
   constructor($filter, $translate, Alerter, AnthosTenantsService) {
@@ -8,7 +10,8 @@ export default class {
   }
 
   $onInit() {
-    this.trackPage(this.generalInfoHitTracking);
+    this.changeOwnerUrl =
+      CHANGE_OWNER_URL[this.user.ovhSubsidiary] || CHANGE_OWNER_URL.FR;
   }
 
   onGoToOrderHost() {
@@ -41,8 +44,12 @@ export default class {
     );
   }
 
+  onChangeOwnerClick() {
+    return this.trackClick(`${this.generalInfoHitTracking}::change-owner`);
+  }
+
   onAnthosRegeneratePasswordClick() {
-    this.trackClick(`${this.generalInfoHitTracking}::regen-admin-password`);
+    this.trackClick(`${this.generalInfoHitTracking}::regen-anthos-password`);
 
     return this.AnthosTenantsService.resetTenantAdminAccess(this.serviceName)
       .then(({ accessUrl }) => {

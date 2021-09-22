@@ -1,3 +1,5 @@
+import { TRACKING_PREFIX } from '../constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('anthos.dashboard.ips', {
     url: '/ips',
@@ -34,6 +36,9 @@ export default /* @ngInject */ ($stateProvider) => {
       ipHitTracking: () => {
         return 'ip';
       },
+    },
+    atInternet: {
+      rename: `${TRACKING_PREFIX}::ip`,
     },
   });
 };

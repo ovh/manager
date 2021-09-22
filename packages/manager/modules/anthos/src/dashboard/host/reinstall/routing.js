@@ -1,3 +1,5 @@
+import { TRACKING_PREFIX } from '../../constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('anthos.dashboard.host.reinstall', {
     url: '/reinstall',
@@ -21,6 +23,9 @@ export default /* @ngInject */ ($stateProvider) => {
       reinstallHostHitTracking: () => {
         return 'reinstall-host';
       },
+    },
+    atInternet: {
+      rename: `${TRACKING_PREFIX}::reinstall-host`,
     },
   });
 };

@@ -1,3 +1,5 @@
+import { TRACKING_PREFIX } from '../../constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('anthos.dashboard.host.remove', {
     url: '/remove',
@@ -24,6 +26,9 @@ export default /* @ngInject */ ($stateProvider) => {
       removeHostHitTracking: () => {
         return 'delete-host';
       },
+    },
+    atInternet: {
+      rename: `${TRACKING_PREFIX}::delete-host`,
     },
   });
 };

@@ -1,3 +1,5 @@
+import { TRACKING_PREFIX } from '../../constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('anthos.dashboard.storage.add', {
     url: '/add',
@@ -16,6 +18,9 @@ export default /* @ngInject */ ($stateProvider) => {
       addStorageHitTracking: () => {
         return 'add-volume';
       },
+    },
+    atInternet: {
+      rename: `${TRACKING_PREFIX}::add-volume`,
     },
   });
 };

@@ -7,7 +7,6 @@ export default {
     serviceName: '<',
     storageUsage: '<',
     trackClick: '<',
-    trackPage: '<',
     addStorageHitTracking: '<',
   },
   controller,

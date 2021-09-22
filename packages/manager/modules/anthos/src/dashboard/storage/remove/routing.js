@@ -1,3 +1,5 @@
+import { TRACKING_PREFIX } from '../../constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('anthos.dashboard.storage.remove', {
     url: '/remove',
@@ -21,6 +23,9 @@ export default /* @ngInject */ ($stateProvider) => {
       removeStorageHitTracking: () => {
         return 'delete-volume';
       },
+    },
+    atInternet: {
+      rename: `${TRACKING_PREFIX}::delete-volume`,
     },
   });
 };

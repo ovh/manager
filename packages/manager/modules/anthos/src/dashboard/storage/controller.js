@@ -15,8 +15,6 @@ export default class AnthosStorageCtrl {
   }
 
   $onInit() {
-    this.trackPage(this.storageHitTracking);
-
     this.usageString = `${this.mbToTbString(
       this.storageUsage.totalUsed,
     )} / ${this.mbToTbString(this.storageUsage.totalSize)}`;

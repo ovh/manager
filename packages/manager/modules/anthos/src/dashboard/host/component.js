@@ -10,7 +10,6 @@ export default {
     goToSetStateHost: '<',
     serviceName: '<',
     trackClick: '<',
-    trackPage: '<',
     hostHitTracking: '<',
   },
   controller,

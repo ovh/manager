@@ -6,7 +6,6 @@ export default {
     serviceName: '<',
     goBack: '<',
     host: '<',
-    trackPage: '<',
     trackClick: '<',
     reinstallHostHitTracking: '<',
   },

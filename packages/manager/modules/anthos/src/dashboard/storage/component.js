@@ -9,7 +9,6 @@ export default {
     storageUsage: '<',
     storageVolumes: '<',
     trackClick: '<',
-    trackPage: '<',
     storageHitTracking: '<',
   },
   controller,

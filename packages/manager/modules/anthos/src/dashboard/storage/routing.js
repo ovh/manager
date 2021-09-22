@@ -1,3 +1,5 @@
+import { TRACKING_PREFIX } from '../constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('anthos.dashboard.storage', {
     url: '/storage',
@@ -37,6 +39,9 @@ export default /* @ngInject */ ($stateProvider) => {
       storageHitTracking: () => {
         return 'storage';
       },
+    },
+    atInternet: {
+      rename: `${TRACKING_PREFIX}::storage`,
     },
   });
 };

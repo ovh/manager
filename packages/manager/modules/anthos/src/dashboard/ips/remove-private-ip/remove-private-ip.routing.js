@@ -1,3 +1,5 @@
+import { TRACKING_PREFIX } from '../../constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('anthos.dashboard.ips.remove-private-ip', {
     url: '/remove-private-ip',
@@ -21,6 +23,9 @@ export default /* @ngInject */ ($stateProvider) => {
       removePrivateIpHitTracking: () => {
         return 'delete-ip-range';
       },
+    },
+    atInternet: {
+      rename: `${TRACKING_PREFIX}::delete-ip-range`,
     },
   });
 };
