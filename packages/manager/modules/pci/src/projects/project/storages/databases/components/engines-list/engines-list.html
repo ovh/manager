@@ -14,7 +14,7 @@
         <oui-select-picker-label>
             <span data-ng-bind=":: $ctrl.capitalize(engine.name)"></span>
             <span
-                data-ng-if="engine.status === 'BETA'"
+                data-ng-if="engine.isBeta"
                 class="oui-badge oui-badge_s oui-badge_beta"
                 data-translate="pci_database_engines_list_beta"
             ></span>

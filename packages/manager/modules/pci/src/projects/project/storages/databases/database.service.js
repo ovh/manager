@@ -6,6 +6,11 @@ import set from 'lodash/set';
 import 'moment';
 import isFeatureActivated from './features.constants';
 
+import {
+  ENGINES_STATUS,
+  ENGINES_PRICE_SUFFIX,
+} from '../../../../components/project/storages/databases/engines.constants';
+
 import Backup from '../../../../components/project/storages/databases/backup.class';
 import Database from '../../../../components/project/storages/databases/database.class';
 import Engine from '../../../../components/project/storages/databases/engine.class';
@@ -197,7 +202,10 @@ export default class DatabaseService {
       })
       .then(({ availability, capabilities, prices }) => {
         availability.forEach((plan) => {
-          const beta = plan.status === 'BETA' ? '-beta' : '';
+          const beta =
+            plan.status === ENGINES_STATUS.BETA
+              ? ENGINES_PRICE_SUFFIX.BETA
+              : '';
           set(
             plan,
             'hourlyPrice',
