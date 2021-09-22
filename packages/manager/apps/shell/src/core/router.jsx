@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import {
   HashRouter,
   Redirect,
@@ -8,7 +8,7 @@ import {
   useHistory,
   useParams,
 } from 'react-router-dom';
-import Application from './application';
+import Application from '@/core/application';
 
 function RouteHandler(props) {
   const { appId, '0': appHash } = useParams();
@@ -36,10 +36,10 @@ function DefaultRouteHandler() {
   return <Redirect to="/hub/" />;
 }
 
-export function initRouter(element, iframe) {
-  const application = new Application(iframe);
+function Router(props) {
+  const application = new Application(props.iframe);
   application.listenForChanges();
-  ReactDOM.render(
+  return (
     <HashRouter>
       <Switch>
         <Route exact path="/">
@@ -49,9 +49,12 @@ export function initRouter(element, iframe) {
           <RouteHandler app={application} />
         </Route>
       </Switch>
-    </HashRouter>,
-    element,
+    </HashRouter>
   );
 }
 
-export default { initRouter };
+Router.propTypes = {
+  iframe: PropTypes.instanceOf(HTMLIFrameElement).isRequired,
+};
+
+export default Router;

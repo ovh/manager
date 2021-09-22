@@ -7,11 +7,6 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>OVHcloud</title>
         <link rel="icon shortcut" type="image/x-icon" href="favicon.ico" />
-        <style>
-            .manager-shell {
-                display: none;
-            }
-        </style>
     </head>
     <body>
         <noscript>
@@ -20,16 +15,7 @@
                 JavaScript enabled. Please enable it to continue.
             </strong>
         </noscript>
-        <div class="manager-shell">
-            <div id="shell-router"></div>
-            <div class="manager-shell_header">
-                <div id="shell-header"></div>
-            </div>
-            <div class="manager-shell_content">
-                <iframe src="/"></iframe>
-            </div>
-            <div class="manager-shell_footer"></div>
-        </div>
+        <div id="app"></div>
         <script type="module" src="./index.js"></script>
     </body>
 </html>

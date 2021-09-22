@@ -54,7 +54,10 @@ class Application {
   }
 
   updateRouting({ applicationId, applicationHash }) {
-    const url = this.getURL();
+    let url = this.getURL();
+    if (url.pathname === 'blank') {
+      url = new URL(window.location);
+    }
     if (url.pathname !== `/${applicationId}/`) {
       url.pathname = `/${applicationId}/`;
     }

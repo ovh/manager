@@ -5,7 +5,7 @@ import Navbar from './navbar.jsx';
 import { Provider as EnvironmentProvider } from './environment';
 import { TRANSLATE_NAMESPACE } from './constants';
 
-export const ReactNavbar = withTranslation(TRANSLATE_NAMESPACE)((props) => {
+const ReactNavbar = withTranslation(TRANSLATE_NAMESPACE)((props) => {
   const { t, environment } = props;
 
   return (

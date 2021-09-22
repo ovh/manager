@@ -43,6 +43,11 @@ module.exports = defineConfig({
   root: path.resolve(__dirname, 'src'),
   clearScreen: false,
   publicDir: 'public',
+  resolve: {
+    alias: {
+      '@': path.resolve(path.join(__dirname, 'src')),
+    },
+  },
   plugins: [
     reactRefresh(),
     legacy({
