@@ -1,11 +1,14 @@
 import get from 'lodash/get';
 import { DATABASE_TYPES } from '../../../databases.constants';
+import { NAME_PATTERN, NAME_MAX_LENGTH } from './add.constants';
 
 export default class {
   /* @ngInject */
   constructor($translate, DatabaseService) {
     this.$translate = $translate;
     this.DatabaseService = DatabaseService;
+    this.NAME_PATTERN = NAME_PATTERN;
+    this.NAME_MAX_LENGTH = NAME_MAX_LENGTH;
   }
 
   $onInit() {
