@@ -275,7 +275,7 @@
                 >
                 </oui-tile-definition>
                 <oui-tile-definition
-                    data-term="{{:: 'pci_databases_general_information_user' | translate }}"
+                    data-term="{{:: 'pci_databases_general_information_user_label' | translate }}"
                 >
                     <oui-tile-description>
                         <span
@@ -286,15 +286,13 @@
                             }"
                         >
                             <span
-                                data-ng-if="$ctrl.users.length >= 1"
-                                data-translate="pci_databases_general_information_users"
-                                data-translate-values="{
-                                    userNumber: $ctrl.users.length
+                                data-ng-pluralize
+                                data-count="$ctrl.users.length"
+                                data-when="{
+                                    '0': ('pci_databases_general_information_users_no_users' | translate),
+                                    '1': ('pci_databases_general_information_user' | translate),
+                                    'other': ('pci_databases_general_information_users' | translate:{ userNumber: $ctrl.users.length }),
                                 }"
-                            ></span>
-                            <span
-                                data-ng-if="$ctrl.users.length < 1"
-                                data-translate="pci_databases_general_information_users_no_users"
                             ></span>
                         </span>
                         <button
