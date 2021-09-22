@@ -1,15 +1,7 @@
-class ApplicationContext {
-  constructor() {
-    this.environment = null;
-  }
+import React from 'react';
 
-  setEnvironment(env) {
-    this.environment = env;
-  }
+const ApplicationContext = React.createContext({
+  environment: null,
+});
 
-  getEnvironment() {
-    return this.environment;
-  }
-}
-
-export default new ApplicationContext();
+export default ApplicationContext;

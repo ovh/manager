@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import ReactDOM from 'react-dom';
 import Router from '@/core/router';
 import ShellHeader from './header';
 import style from './shell.module.scss';
 
-export function Shell() {
+function Shell() {
   const iframeRef = useRef(null);
   const [iframe, setIframe] = useState(null);
   useEffect(() => {
@@ -24,11 +23,4 @@ export function Shell() {
   );
 }
 
-export function renderShell(element) {
-  ReactDOM.render(<Shell />, element);
-}
-
-export default {
-  Shell,
-  renderShell,
-};
+export default Shell;

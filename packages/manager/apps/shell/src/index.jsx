@@ -1,11 +1,14 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 import { fetchConfiguration } from '@ovh-ux/manager-config';
 
 import { initSso } from '@/core/sso';
-import appContext from '@/context';
-import { renderShell } from '@/shell';
+import ApplicationContext from './context';
+import Shell from '@/shell';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './index.scss';
@@ -27,7 +30,15 @@ fetchConfiguration('shell')
           loadPath: './translations/{{ns}}/Messages_{{lng}}.json',
         },
       });
-
-    appContext.setEnvironment(environment);
+    return environment;
   })
-  .then(() => renderShell(document.querySelector('#app')));
+  .then((environment) => {
+    ReactDOM.render(
+      <React.StrictMode>
+        <ApplicationContext.Provider value={{ environment }}>
+          <Shell />
+        </ApplicationContext.Provider>
+      </React.StrictMode>,
+      document.querySelector('#app'),
+    );
+  });

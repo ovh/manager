@@ -1,12 +1,16 @@
 import React, { Suspense } from 'react';
 import ReactNavbar from '@/navbar/index.jsx';
-import appContext from '@/context';
+import ApplicationContext from '@/context';
 
 function ShellHeader() {
   return (
-    <Suspense fallback="">
-      <ReactNavbar environment={appContext.getEnvironment()} />
-    </Suspense>
+    <ApplicationContext.Consumer>
+      {({ environment }) => (
+        <Suspense fallback="">
+          <ReactNavbar environment={environment} />
+        </Suspense>
+      )}
+    </ApplicationContext.Consumer>
   );
 }
 
