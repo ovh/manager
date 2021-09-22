@@ -1,3 +1,13 @@
+## [13.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.25.1...@ovh-ux/manager-telecom@13.25.2) (2021-09-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1151] ([d9acfd7](https://github.com/ovh/manager/commit/d9acfd7f3af430ca49da08d5c8a8fdc2275680cf))
+* **telephony:** access to configuration menu ([#5424](https://github.com/ovh/manager/issues/5424)) ([284ec72](https://github.com/ovh/manager/commit/284ec725e242625c4d5106524ef6c0d0b98eb940))
+
+
+
 ## [13.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.25.0...@ovh-ux/manager-telecom@13.25.1) (2021-09-07)
 
 

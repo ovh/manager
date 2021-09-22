@@ -1,3 +1,17 @@
+## [16.37.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.37.2...@ovh-ux/manager-dedicated@16.37.3) (2021-09-22)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([c910a7e](https://github.com/ovh/manager/commit/c910a7ebaaad62e4734ec0714919c2b546dfeed0))
+* **i18n:** add missing translations [CDS 1143] ([82a4903](https://github.com/ovh/manager/commit/82a490322241b549bcbcbae767bc100828efe909))
+* **i18n:** add missing translations [CDS 1147] ([f4f0bf3](https://github.com/ovh/manager/commit/f4f0bf31b7cea03fe24565b25e8edfab286b3820))
+* **i18n:** add missing translations [CDS 1153] ([ebe69d0](https://github.com/ovh/manager/commit/ebe69d0113f36cccb3c3f9625bb87aaa50f37725))
+* **i18n:** add missing translations [CDS 1157] ([905a852](https://github.com/ovh/manager/commit/905a852abab9e8ffdf5fe2f47dbfd477e75ba146))
+* remove unused translations [CDS] ([8d4164c](https://github.com/ovh/manager/commit/8d4164cfc23dbf0f936a3d5167f29170d8202016))
+
+
+
 ## [16.37.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.37.1...@ovh-ux/manager-dedicated@16.37.2) (2021-09-15)
 
 
