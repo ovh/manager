@@ -197,12 +197,13 @@ export default class DatabaseService {
       })
       .then(({ availability, capabilities, prices }) => {
         availability.forEach((plan) => {
+          const beta = plan.status === 'BETA' ? '-beta' : '';
           set(
             plan,
             'hourlyPrice',
             get(
               prices,
-              `databases.${plan.engine}-${plan.plan}-${plan.flavor}.hour.consumption`,
+              `databases.${plan.engine}-${plan.plan}-${plan.flavor}${beta}.hour.consumption`,
               {},
             ),
           );
@@ -211,7 +212,7 @@ export default class DatabaseService {
             'monthlyPrice',
             get(
               prices,
-              `databases.${plan.engine}-${plan.plan}-${plan.flavor}.month.consumption`,
+              `databases.${plan.engine}-${plan.plan}-${plan.flavor}${beta}.month.consumption`,
               {},
             ),
           );
