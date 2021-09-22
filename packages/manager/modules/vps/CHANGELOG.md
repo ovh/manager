@@ -1,3 +1,18 @@
+## [2.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.17.1...@ovh-ux/manager-vps@2.17.2) (2021-09-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1140] ([ef28cc6](https://github.com/ovh/manager/commit/ef28cc6c77f0349bfc3f7355414a4d062d4a35f8))
+* **i18n:** add missing translations [CDS 1148] ([625d0f9](https://github.com/ovh/manager/commit/625d0f994462a7e5f8eff9de64c670a2d48e08ec))
+* **i18n:** add missing translations [CDS 1151] ([d9acfd7](https://github.com/ovh/manager/commit/d9acfd7f3af430ca49da08d5c8a8fdc2275680cf))
+* **i18n:** add missing translations [CDS 1153] ([ebe69d0](https://github.com/ovh/manager/commit/ebe69d0113f36cccb3c3f9625bb87aaa50f37725))
+* **i18n:** add missing translations [CDS 1159] ([269c269](https://github.com/ovh/manager/commit/269c269f8a286907e25a00f03ab10804d7bc76bb))
+* remove unused translations [CDS] ([8d4164c](https://github.com/ovh/manager/commit/8d4164cfc23dbf0f936a3d5167f29170d8202016))
+* **options.order:** display duration for price ([#5447](https://github.com/ovh/manager/issues/5447)) ([ff3a8f8](https://github.com/ovh/manager/commit/ff3a8f82a7654ec0b02c9d8fcc4b2dc73736da34))
+
+
+
 ## [2.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.17.0...@ovh-ux/manager-vps@2.17.1) (2021-09-17)
 
 

@@ -1,3 +1,14 @@
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-advices@1.3.0...@ovh-ux/manager-advices@1.3.1) (2021-09-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1142] ([e446250](https://github.com/ovh/manager/commit/e446250d1bd4ae425d29adb45fcfc8a00c1dde8c))
+* **i18n:** add missing translations [CDS 1143] ([82a4903](https://github.com/ovh/manager/commit/82a490322241b549bcbcbae767bc100828efe909))
+* **i18n:** add missing translations [CDS 1148] ([625d0f9](https://github.com/ovh/manager/commit/625d0f994462a7e5f8eff9de64c670a2d48e08ec))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-advices@1.2.0...@ovh-ux/manager-advices@1.3.0) (2021-09-09)
 
 
