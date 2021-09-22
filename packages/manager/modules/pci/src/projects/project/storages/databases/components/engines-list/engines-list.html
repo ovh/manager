@@ -6,12 +6,19 @@
         data-model="$ctrl.selectedEngine"
         data-description="{{:: engine.description }}"
         data-picture="{{:: $ctrl.ENGINE_LOGOS[engine.name] }}"
-        data-label="{{:: $ctrl.capitalize(engine.name) }}"
         data-values="[engine]"
         data-on-change="$ctrl.onChange({ selectedEngine: modelValue })"
         data-disabled="$ctrl.isEngineDisabled(engine)"
         data-required
     >
+        <oui-select-picker-label>
+            <span data-ng-bind=":: $ctrl.capitalize(engine.name)"></span>
+            <span
+                data-ng-if="engine.isBeta"
+                class="oui-badge oui-badge_s oui-badge_beta"
+                data-translate="pci_database_engines_list_beta"
+            ></span>
+        </oui-select-picker-label>
         <oui-select-picker-section>
             <oui-select
                 data-items="engine.versions"

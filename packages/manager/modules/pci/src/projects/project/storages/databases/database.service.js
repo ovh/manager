@@ -6,6 +6,11 @@ import set from 'lodash/set';
 import 'moment';
 import isFeatureActivated from './features.constants';
 
+import {
+  ENGINES_STATUS,
+  ENGINES_PRICE_SUFFIX,
+} from '../../../../components/project/storages/databases/engines.constants';
+
 import Backup from '../../../../components/project/storages/databases/backup.class';
 import Database from '../../../../components/project/storages/databases/database.class';
 import Engine from '../../../../components/project/storages/databases/engine.class';
@@ -197,23 +202,23 @@ export default class DatabaseService {
       })
       .then(({ availability, capabilities, prices }) => {
         availability.forEach((plan) => {
+          let prefix = `databases.${plan.engine}-${plan.plan}-${plan.flavor}`;
+          if (plan.status === ENGINES_STATUS.BETA) {
+            if (
+              prices[`${prefix}-${ENGINES_PRICE_SUFFIX.BETA}.hour.consumption`]
+            ) {
+              prefix = `${prefix}-${ENGINES_PRICE_SUFFIX.BETA}`;
+            }
+          }
           set(
             plan,
             'hourlyPrice',
-            get(
-              prices,
-              `databases.${plan.engine}-${plan.plan}-${plan.flavor}.hour.consumption`,
-              {},
-            ),
+            get(prices, `${prefix}.hour.consumption`, {}),
           );
           set(
             plan,
             'monthlyPrice',
-            get(
-              prices,
-              `databases.${plan.engine}-${plan.plan}-${plan.flavor}.month.consumption`,
-              {},
-            ),
+            get(prices, `${prefix}.month.consumption`, {}),
           );
           set(
             plan,

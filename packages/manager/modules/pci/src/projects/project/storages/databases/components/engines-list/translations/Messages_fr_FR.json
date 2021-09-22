@@ -1,4 +1,5 @@
 {
   "pci_database_engines_list_version_new": "Nouveau",
-  "pci_database_engines_list_version_getting_deprecated": "Bientôt déprécié"
+  "pci_database_engines_list_version_getting_deprecated": "Bientôt déprécié",
+  "pci_database_engines_list_beta": "Beta"
 }

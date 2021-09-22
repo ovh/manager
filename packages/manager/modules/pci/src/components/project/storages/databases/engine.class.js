@@ -2,6 +2,8 @@ import 'moment';
 import find from 'lodash/find';
 import some from 'lodash/some';
 
+import { ENGINES_STATUS } from './engines.constants';
+
 import Version from './version.class';
 
 export default class Engine {
@@ -33,6 +35,8 @@ export default class Engine {
     });
 
     this.isDefault = some(availability, 'default');
+
+    this.isBeta = some(availability, (x) => x.status === ENGINES_STATUS.BETA);
   }
 
   getVersion(versionName) {
