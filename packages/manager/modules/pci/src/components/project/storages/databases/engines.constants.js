@@ -3,7 +3,7 @@ export const ENGINES_STATUS = {
 };
 
 export const ENGINES_PRICE_SUFFIX = {
-  BETA: '-beta',
+  BETA: 'beta',
 };
 
 export default {
