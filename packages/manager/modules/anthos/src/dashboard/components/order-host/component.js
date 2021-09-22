@@ -6,7 +6,6 @@ export default {
     goBack: '<',
     trackingPrefix: '<',
     trackClick: '<',
-    trackPage: '<',
     orderHostHitTracking: '<',
   },
   template,

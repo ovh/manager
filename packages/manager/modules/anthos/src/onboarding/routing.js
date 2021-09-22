@@ -55,12 +55,9 @@ export default /* @ngInject */ ($stateProvider) => {
           type: 'action',
         });
       },
-
-      trackPage: /* @ngInject */ (atInternet, trackingPrefix) => (hit) => {
-        atInternet.trackPage({
-          name: `${trackingPrefix}::${hit}`,
-        });
-      },
+    },
+    atInternet: {
+      rename: 'hpc::anthos::onboarding',
     },
   });
 };

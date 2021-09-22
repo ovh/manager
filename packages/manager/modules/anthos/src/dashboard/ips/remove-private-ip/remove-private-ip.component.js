@@ -8,7 +8,6 @@ export default {
     privateIPs: '<',
     privateIp: '<',
     trackClick: '<',
-    trackPage: '<',
     removePrivateIpHitTracking: '<',
   },
   controller,

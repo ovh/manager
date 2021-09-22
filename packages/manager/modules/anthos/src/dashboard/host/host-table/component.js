@@ -9,6 +9,8 @@ export default {
     goToRemoveHost: '<',
     goToRestartHost: '<',
     goToSetStateHost: '<',
+    hitTracking: '<',
+    trackClick: '<',
   },
   controller,
   template,

@@ -3,6 +3,7 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
+import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import { OnboardingLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import component from './component';
@@ -15,6 +16,7 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
+    ngAtInternetUiRouterPlugin,
     OnboardingLayoutHelper,
   ])
   .config(routing)

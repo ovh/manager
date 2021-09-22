@@ -14,7 +14,6 @@ export default {
     goToAssignPrivateIp: '<',
     goToRemovePrivateIp: '<',
     trackClick: '<',
-    trackPage: '<',
     ipHitTracking: '<',
   },
   controller,

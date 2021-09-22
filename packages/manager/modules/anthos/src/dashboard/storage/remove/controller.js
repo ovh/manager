@@ -8,10 +8,6 @@ export default class {
     this.TERMINATE_INPUT = TERMINATE_INPUT;
   }
 
-  $onInit() {
-    this.trackPage(this.removeStorageHitTracking);
-  }
-
   removeStorage() {
     this.trackClick(`${this.removeStorageHitTracking}::confirm`);
     this.isRemoving = true;

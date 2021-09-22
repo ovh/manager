@@ -1,3 +1,5 @@
+import { TRACKING_PREFIX } from '../constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   const stateName = 'anthos.dashboard.general-information';
   $stateProvider.state(stateName, {
@@ -41,6 +43,9 @@ export default /* @ngInject */ ($stateProvider) => {
       generalInfoHitTracking: () => {
         return 'general-information';
       },
+    },
+    atInternet: {
+      rename: `${TRACKING_PREFIX}::general-information`,
     },
   });
 };

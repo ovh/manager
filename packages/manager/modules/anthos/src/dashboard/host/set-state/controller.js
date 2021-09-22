@@ -6,8 +6,6 @@ export default class {
   }
 
   $onInit() {
-    this.trackPage(this.setStateHitTracking);
-
     this.isStateful = this.host.stateful;
   }
 

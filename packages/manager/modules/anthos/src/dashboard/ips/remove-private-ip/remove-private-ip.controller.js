@@ -6,10 +6,6 @@ export default class RemovePrivateIpController {
     this.AnthosTenantsService = AnthosTenantsService;
   }
 
-  $onInit() {
-    this.trackPage(this.removePrivateIpHitTracking);
-  }
-
   onRemovePrivateIpCancel() {
     this.trackClick(`${this.removePrivateIpHitTracking}::cancel`);
 

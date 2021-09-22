@@ -33,4 +33,24 @@ export default class AnthosHostTableCtrl {
         };
       });
   }
+
+  restartHost(host) {
+    this.trackClick(`${this.hitTracking}::reboot-host`);
+    this.goToRestartHost(host);
+  }
+
+  reinstallHost(host) {
+    this.trackClick(`${this.hitTracking}::reinstall-host`);
+    this.goToReinstallHost(host);
+  }
+
+  setHostState(host) {
+    this.trackClick(`${this.hitTracking}::define-state-host`);
+    this.goToSetStateHost(host);
+  }
+
+  removeHost(host) {
+    this.trackClick(`${this.hitTracking}::delete-host`);
+    this.goToRemoveHost(host);
+  }
 }
