@@ -14,6 +14,7 @@
         <oui-select-picker-section>
             <p
                 class="mb-0"
+                data-ng-if="plan.minMemory !== plan.maxMemory"
                 data-translate="pci_database_plans_list_spec_ram"
                 data-translate-values="{ 
                     min: (plan.minMemory | cucBytes:0:false:'GB'),
@@ -22,6 +23,15 @@
             ></p>
             <p
                 class="mb-0"
+                data-ng-if="plan.minMemory === plan.maxMemory"
+                data-translate="pci_database_plans_list_spec_ram_unique"
+                data-translate-values="{ 
+                    ram: (plan.minMemory | cucBytes:0:false:'GB')
+                }"
+            ></p>
+            <p
+                class="mb-0"
+                data-ng-if="plan.minCores !== plan.maxCores"
                 data-translate="pci_database_plans_list_spec_core"
                 data-translate-values="{
                     min: plan.minCores,
@@ -30,10 +40,27 @@
             ></p>
             <p
                 class="mb-0"
+                data-ng-if="plan.minCores === plan.maxCores"
+                data-translate="pci_database_plans_list_spec_core_unique"
+                data-translate-values="{
+                    core: plan.minCores
+                }"
+            ></p>
+            <p
+                class="mb-0"
+                data-ng-if="plan.minStorage !== plan.maxStorage"
                 data-translate="pci_database_plans_list_spec_storage"
                 data-translate-values="{ 
                 min: (plan.minStorage | cucBytes:2:false:'GB'),
                 max: (plan.maxStorage | cucBytes:2:false:'GB')
+            }"
+            ></p>
+            <p
+                class="mb-0"
+                data-ng-if="plan.minStorage === plan.maxStorage"
+                data-translate="pci_database_plans_list_spec_storage_unique"
+                data-translate-values="{ 
+                    storage: (plan.minStorage | cucBytes:2:false:'GB')
             }"
             ></p>
             <p
