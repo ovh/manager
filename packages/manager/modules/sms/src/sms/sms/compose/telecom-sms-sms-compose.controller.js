@@ -34,6 +34,7 @@ export default class {
     $translate,
     $stateParams,
     $filter,
+    $http,
     $uibModal,
     OvhApiSms,
     TucSmsMediator,
@@ -46,6 +47,7 @@ export default class {
     this.$translate = $translate;
     this.$stateParams = $stateParams;
     this.$filter = $filter;
+    this.$http = $http;
     this.$uibModal = $uibModal;
     this.TucSmsMediator = TucSmsMediator;
     this.api = {
@@ -268,10 +270,36 @@ export default class {
   computeRemainingChar(checkValue) {
     const isShort = this.isShortNumber() ? true : this.sms.noStopClause;
     const suffix = checkValue !== undefined ? checkValue : isShort;
-    return assign(
-      this.message,
-      this.TucSmsMediator.getSmsInfoText(this.sms.message, !suffix),
+    const smsInfoText = this.TucSmsMediator.getSmsInfoText(
+      this.sms.message,
+      !suffix,
     );
+
+    if (!this.sms.message) {
+      return assign(this.message, smsInfoText);
+    }
+
+    const currentSender = this.senders.raw.find(
+      ({ sender }) => sender === this.sms.sender,
+    );
+    return this.$http
+      .post(`/sms/estimate`, {
+        message: this.sms.message,
+        noStopClause: this.sms.noStopClause,
+        senderType: this.isShortNumber() ? 'shortcode' : currentSender.type,
+      })
+      .then(({ data }) => {
+        smsInfoText.remainingCharacters =
+          data.maxCharactersPerPart - data.characters;
+        smsInfoText.defaultSize = data.maxCharactersPerPart;
+        smsInfoText.equivalence = data.parts;
+        smsInfoText.coding = data.charactersClass;
+
+        return assign(this.message, smsInfoText);
+      })
+      .catch(() => {
+        return assign(this.message, smsInfoText);
+      });
   }
 
   /**

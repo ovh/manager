@@ -3,7 +3,8 @@ import { SMS_COMPOSE } from '../../sms/compose/telecom-sms-sms-compose.constant'
 
 export default class SmsCompositionController {
   /* @ngInject */
-  constructor($timeout, TucSmsMediator) {
+  constructor($http, $timeout, TucSmsMediator) {
+    this.$http = $http;
     this.$timeout = $timeout;
     this.TucSmsMediator = TucSmsMediator;
   }
@@ -26,6 +27,31 @@ export default class SmsCompositionController {
         this.model.message,
         !suffix,
       );
+
+      if (!this.model.message) {
+        return this.model.messageDetails;
+      }
+
+      return this.$http
+        .post(`/sms/estimate`, {
+          message: this.model.message,
+          noStopClause: suffix,
+          senderType: SmsCompositionController.isShortNumber(this.model.sender)
+            ? 'shortcode'
+            : this.model.sender.type,
+        })
+        .then(({ data }) => {
+          this.model.messageDetails.remainingCharacters =
+            data.maxCharactersPerPart - data.characters;
+          this.model.messageDetails.defaultSize = data.maxCharactersPerPart;
+          this.model.messageDetails.equivalence = data.parts;
+          this.model.messageDetails.coding = data.charactersClass;
+
+          return this.model.messageDetails;
+        })
+        .catch(() => {
+          return this.model.messageDetails;
+        });
     });
   }
 
