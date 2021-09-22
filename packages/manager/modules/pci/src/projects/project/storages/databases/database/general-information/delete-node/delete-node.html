@@ -8,7 +8,7 @@
     data-heading="{{:: 'pci_databases_general_information_delete_node' | translate}}"
 >
     <span
-        data-translate="pci_databases_general_information_delete_node_description_1"
+        data-translate="pci_databases_general_information_delete_node_description"
         data-translate-values="{
             nodesCount: $ctrl.database.nodes.length,
         }"
@@ -18,9 +18,7 @@
         data-tax="$ctrl.price.tax"
         data-user="$ctrl.user"
         data-show-zero-price="true"
+        data-interval="'hour'"
     >
     </ovh-manager-catalog-price>
-    <span
-        data-translate="pci_databases_general_information_delete_node_description_2"
-    ></span>
 </oui-modal>
