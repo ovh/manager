@@ -16,5 +16,6 @@
   "vps_dashboard_state_stopped": "Zatrzymano",
   "vps_dashboard_state_stopping": "Wygasanie w trakcie",
   "vps_dashboard_state_upgrading": "Zmiana oferty w trakcie",
-  "vps_dashboard_state_rescued": "W trybie rescue"
+  "vps_dashboard_state_rescued": "W trybie rescue",
+  "vps_dashboard_auto_migration_warning_new": "Twój VPS {{vps}} kwalifikuje się do migracji do wyższej gamy. Możesz to zrobić za pomocą kilku kliknięć."
 }

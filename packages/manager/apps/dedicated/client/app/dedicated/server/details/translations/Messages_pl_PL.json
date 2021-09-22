@@ -879,8 +879,8 @@
   "select_bandwidth_type_label": "Wybierz ofertę",
   "select_bandwidth_vrack_type_label": "Wybierz ofertę",
   "select_bandwidth_plan_summary": "Podsumowanie zamówienia",
-  "plan_bandwidth": "{{bandwidth}}  Gbps bez limitu i z gwarancją przepustowości",
-  "plan_vrack-bandwidth": "{{bandwidth}}  Gbps bez limitu i z gwarancją przepustowości - opcja vRack",
+  "plan_bandwidth": "{{bandwidth}} Gbps bez limitu i z gwarancją przepustowości",
+  "plan_vrack-bandwidth": "{{bandwidth}} Gbps bez limitu i z gwarancją przepustowości - opcja vRack",
   "plan_price_per_month": "netto/m-c",
   "server_order_bandwidth_empty_plans": "Nie można znaleźć planów aktualizacji",
   "select_traffic_type_label": "Wybierz ofertę",
@@ -1197,5 +1197,11 @@
   "server_configuration_no_intervention_activate_failed": "Wystąpił błąd podczas włączania interwencji w centrum danych dla serwera {{serverName}}",
   "server_configuration_no_intervention_deactivate_success": "Interwencja w centrum danych została wyłączona dla serwera {{serverName}}",
   "server_configuration_no_intervention_deactivate_failed": "Wystąpił błąd podczas wyłączania interwencji w centrum danych dla serwera {{serverName}}",
-  "server_close_service_enterprise": "Jeśli chcesz wprowadzić zmiany w swoich usługach i umowach, skontaktuj się z opiekunem klienta OVHcloud"
+  "server_close_service_enterprise": "Jeśli chcesz wprowadzić zmiany w swoich usługach i umowach, skontaktuj się z opiekunem klienta OVHcloud",
+  "plan_bandwidth-1000-adv-gen2": "1 Gbps bez limitu i z gwarancją przepustowości ",
+  "plan_bandwidth-2000-adv-gen2": "2 Gbps bez limitu i z gwarancją przepustowości ",
+  "plan_bandwidth-3000-adv-gen2": "3 Gbps bez limitu i z gwarancją przepustowości",
+  "plan_bandwidth-4000-adv-gen2": "4 Gbps bez limitu i z gwarancją przepustowości ",
+  "plan_bandwidth-5000-adv-gen2": "5 Gbps bez limitu i z gwarancją przepustowości",
+  "plan_bandwidth-6000-adv-gen2": "6 Gbps bez limitu i z gwarancją przepustowości "
 }

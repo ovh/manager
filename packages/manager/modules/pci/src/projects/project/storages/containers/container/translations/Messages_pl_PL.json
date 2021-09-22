@@ -28,5 +28,5 @@
   "pci_projects_project_storages_containers_container_object_error_download": "Wystąpił błąd podczas pobierania obiektu: {{message}}.",
   "pci_projects_project_storages_containers_container_archive_error_unseal": "Wystąpił błąd podczas odblokowywania archiwum:{{message}}.",
   "pci_projects_project_storages_containers_container_archive_success_unseal": "Trwa odblokowywanie archiwum {{archive}}...",
-  "pci_projects_project_storages_containers_container_add_user_label": "Dodaj użytkownika do kontenera"
+  "pci_projects_project_storages_containers_container_add_user_label": "Dodaj użytkownika do obiektu"
 }
