@@ -429,6 +429,7 @@ export default class DatabaseService {
     return this.$http
       .get(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/database`,
+        DatabaseService.getIcebergHeaders(),
       )
       .then(({ data }) => data);
   }
