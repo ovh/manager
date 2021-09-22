@@ -38,5 +38,6 @@
   "cpbc_billing_control_consumption_plan_volume.snapshot.consumption": "Volume Snapshot {{id}}",
   "cpbc_billing_control_consumption_plan_data-processing-job.core.minute.consumption": "Processors (vCores)",
   "cpbc_billing_control_consumption_plan_data-processing-job.memory-gib.minute.consumption": "Memory (RAM)",
-  "cpbc_billing_control_consumption_current_period": "The current resource usage displayed is calculated between {{from}} and {{to}}"
+  "cpbc_billing_control_consumption_current_period": "The current resource usage displayed is calculated between {{from}} and {{to}}",
+  "cpbc_billing_control_consumption_history": "History"
 }

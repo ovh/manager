@@ -25,7 +25,7 @@
   "data_processing_submit_job_error_message_odp_job_driverMemoryOverhead_tooSmall": "Błąd przy wprowadzaniu danych: żądany narzut pamięci dla sterownika jest zbyt mały",
   "data_processing_submit_job_error_message_odp_job_totalExecutorMemory_tooBig": "Błąd przy wprowadzaniu danych: suma pamięci i narzutu żądanych dla węzłów workers jest zbyt duża",
   "data_processing_submit_job_error_message_odp_job_totalDriverMemory_tooBig": "Błąd przy wprowadzaniu danych: suma pamięci i narzutu żądanych dla sterownika jest zbyt duża",
-  "data_processing_submit_job_error_message_odp_project_notEnoughQuotas": "Błąd ustawienia limitów: limity projektu Public Cloud są niewystarczające. Przejdź do następnej strony, aby <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\">ustawić limit projektu Public Cloud<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>",
+  "data_processing_submit_job_error_message_odp_project_notEnoughQuotas": "Błąd ustawienia limitów: limity projektu Public Cloud są niewystarczające. Aby <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\">zarządzać limitem Public Cloud,<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> przejdź do następnej strony.",
   "data_processing_submit_job_error_message_odp_mainApplicationCode_notFound": "Błąd przy wprowadzaniu danych: nie można odnaleźć żądanego pliku we wskazanym kontenerze Object Storage",
   "data_processing_submit_job_error_message_odp_condaEnvironment_isRequired": "Błąd przy wprowadzaniu danych: nie odnaleziono żadnego pliku Conda we wskazanym kontenerze Object Storage"
 }

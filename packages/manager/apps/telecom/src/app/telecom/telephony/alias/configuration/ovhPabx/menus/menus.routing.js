@@ -13,9 +13,14 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: '$ctrl',
         },
       },
+      params: {
+        defaultMenuId: null,
+      },
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('telephony_alias_ovh_pabx_menus_breadcrumb'),
+        defaultMenuId: /* @ngInject */ ($transition$) =>
+          $transition$.params().defaultMenuId,
       },
     },
   );

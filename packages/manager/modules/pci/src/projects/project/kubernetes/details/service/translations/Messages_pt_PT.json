@@ -2,7 +2,7 @@
   "kube_service": "Serviço",
   "kube_service_error": "Ocorreu um erro ao carregar as informações: {{message}}",
   "kube_service_name": "Nome",
-  "kube_service_description_information": "Encontrará abaixo as informações do seu serviço Kubernetes, que lhe permite aceder através da <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">ferramenta kubectl.<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>",
+  "kube_service_description_information": "Poderá consultar a seguir as informações do seu serviço Kubernetes, que lhe permite aceder através da <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">ferramenta kubectl.<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>",
   "kube_service_description_reset": "Pode reiniciar a configuração do seu cluster Kubernetes a qualquer momento.",
   "kube_service_offer_beta": "Serviço gerido Kubernetes (grátis)",
   "kube_service_file": "Ficheiro kubeconfig",

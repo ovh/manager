@@ -1,11 +1,9 @@
 {
+  "pci_projects_project_storages_containers_container_addUser_archive_title": "Add a user to my container",
   "pci_projects_project_storages_containers_container_addUser_container_title": "Add a user to my container",
   "pci_projects_project_storages_containers_container_addUser_object_title": "Add a user to my container",
   "pci_projects_project_storages_containers_container_addUser_description_container_step_0": "Select the user to add to your container. If the user does not appear in this list, please create them in the dedicated section.",
   "pci_projects_project_storages_containers_container_addUser_description_object_step_0": "Select the user for your object. If the user does not appear in this list, please create them in the dedicated section.",
-  "pci_projects_project_storages_containers_container_addUser_object_success_message": "Your {{name}} user has been added to the {{container}} object as {{role}}.",
-  "pci_projects_project_storages_containers_container_addUser_archive_title": "Add a user to my container",
-  "pci_projects_project_storages_containers_container_addUser_description_step_0": "Select the user to add to your container. If the user does not appear in this list, please create them in the dedicated section.",
   "pci_projects_project_storages_containers_container_addUser_description_step_1": "Define your user’s role on the {{container}} container.",
   "pci_projects_project_storages_containers_container_addUser_submit_label": "Confirm",
   "pci_projects_project_storages_containers_container_addUser_next_label": "Next",
@@ -16,5 +14,6 @@
   "pci_projects_project_storages_containers_container_addUser_right_readOnly": "Read only",
   "pci_projects_project_storages_containers_container_addUser_right_deny": "Deny",
   "pci_projects_project_storages_containers_container_addUser_success_message": "Your {{name}} user has been added to the {{container}} container as {{role}}.",
+  "pci_projects_project_storages_containers_container_addUser_object_success_message": "Your {{name}} user has been added to the {{container}} object as {{role}}.",
   "pci_projects_project_storages_containers_container_addUser_error_addUser": "Your user has not been correctly added to the {{container}} container: {{message}}"
 }

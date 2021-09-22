@@ -10,8 +10,10 @@
             data-ng-bind="::adviceGroup.localizedDescription"
         ></oui-tile-term>
         <oui-tile-description>
-            <div data-ng-repeat="advice in adviceGroup.advices track by $index"
-                data-ng-class="{ 'advice-description': advice.localizedDescription }">
+            <div
+                data-ng-repeat="advice in adviceGroup.advices track by $index"
+                data-ng-class="{ 'advice-description': advice.localizedDescription }"
+            >
                 <span
                     data-ng-if="advice.localizedDescription"
                     data-ng-bind="advice.localizedDescription"

@@ -2,6 +2,6 @@
   "user_agreements_accept_all_count": "Vertrag {{current}}/{{total}}",
   "user_agreements_accept_all_accept_and_next": "Annehmen und zum nächsten wechseln",
   "user_agreements_accept_all_read_and_accepted": "Ich habe {{contractTitle}} gelesen und nehme ihn an.",
-  "user_agreements_accept_all_annexes": "Die Anhänge sind fester Bestandteil des Vertrags (insbesondere die Allgemeinen Geschäftsbedingungen, die Besonderen Vertragsbedingungen und der Anhang zur Verarbeitung personenbezogener Daten (DPA)). Um sie einzusehen folgen Sie bitte <a href= {{url}}' target='_blank' rel=' noopener' class= ja-link_icon'>diesem Link<span class= ja-icon ycon-icon-exterlink' aria-hidden= true'></span></a>",
+  "user_agreements_accept_all_annexes": "<a href='{{url}}' target='_blank' rel='noopener' class='oui-link_icon'>Über diesen Link<span class='oui-icon oui-icon-external-link' aria-hidden='true'></span></a> gelangen Sie zu den Anhängen. Diese sind integrale Bestandteile des Vertrags, insbesondere die Allgemeinen Geschäftsbedingungen, die Besonderen Bedingungen und der Anhang zur Verarbeitung personenbezogener Daten (Data Processing Agreement, DPA).",
   "user_agreements_accept_all_error": "Bei der Verarbeitung des Vertrags ist ein Fehler aufgetreten: {{message}}"
 }

@@ -1,11 +1,9 @@
 {
+  "pci_projects_project_storages_containers_container_addUser_archive_title": "Adicionar um utilizador ao meu container",
   "pci_projects_project_storages_containers_container_addUser_container_title": "Adicionar um utilizador ao meu container",
-  "pci_projects_project_storages_containers_container_addUser_object_title": "Adicionar um utilizador ao meu container",
+  "pci_projects_project_storages_containers_container_addUser_object_title": "Adicionar um utilizador ao meu objeto",
   "pci_projects_project_storages_containers_container_addUser_description_container_step_0": "Selecione o utilizador que quer adicionar ao seu container. Se não aparecer nesta lista, crie-o na secção dedicada.",
   "pci_projects_project_storages_containers_container_addUser_description_object_step_0": "Selecione o utilizador para o seu objeto. Se não aparecer nesta lista, crie-o na secção para o efeito.",
-  "pci_projects_project_storages_containers_container_addUser_object_success_message": "O seu utilizador {{ name }} foi adicionado ao objeto {{ container }} enquanto {{ role }}.",
-  "pci_projects_project_storages_containers_container_addUser_archive_title": "Adicionar um utilizador ao meu container",
-  "pci_projects_project_storages_containers_container_addUser_description_step_0": "Selecione o utilizador que quer adicionar ao seu container. Se não aparecer nesta lista, crie-o na secção dedicada.",
   "pci_projects_project_storages_containers_container_addUser_description_step_1": "Defina a função do seu utilizador no container {{container}}.",
   "pci_projects_project_storages_containers_container_addUser_submit_label": "Confirmar",
   "pci_projects_project_storages_containers_container_addUser_next_label": "Seguinte",
@@ -16,5 +14,6 @@
   "pci_projects_project_storages_containers_container_addUser_right_readOnly": "Apenas leitura",
   "pci_projects_project_storages_containers_container_addUser_right_deny": "Deny",
   "pci_projects_project_storages_containers_container_addUser_success_message": "O seu utilizador {{ name }} foi adicionado ao container {{ container }} enquanto {{ role }}.",
+  "pci_projects_project_storages_containers_container_addUser_object_success_message": "O seu utilizador {{ name }} foi adicionado ao objeto {{ container }} enquanto {{ role }}.",
   "pci_projects_project_storages_containers_container_addUser_error_addUser": "O seu utilizador não foi corretamente adicionado ao container {{ container }}: {{ message }}."
 }

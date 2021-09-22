@@ -49,7 +49,6 @@ export default class DialplanCtrl {
 
     // set ovhPabx instance
     this.ovhPabx = this.numberCtrl.number.feature;
-
     if (this.dialplan) {
       // load extension if dialplan exists
       initPromise = this.dialplan.getExtensions();

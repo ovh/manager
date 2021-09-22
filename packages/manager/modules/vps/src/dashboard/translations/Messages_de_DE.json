@@ -16,5 +16,6 @@
   "vps_dashboard_state_stopped": "Angehalten",
   "vps_dashboard_state_stopping": "Wird gelöscht",
   "vps_dashboard_state_upgrading": "Angebot hierfür wird gerade gewechselt",
+  "vps_dashboard_auto_migration_warning_new": "Ihr VPS {{vps}} kann mit einem Klick auf die neue Reihe migriert werden.",
   "vps_dashboard_state_rescued": "im Rescue"
 }

@@ -1147,6 +1147,7 @@
   "server_close_service_warning_manual_refund": "La eliminación no garantiza la concesión de ninguna devolución. Si tiene cualquier pregunta sobre una posible devolución, puede ponerse en contacto con el equipo de soporte.",
   "server_close_service_desc": "Recibirá por correo electrónico el procedimiento de eliminación del servidor.",
   "server_close_service_question": "¿Seguro que quiere continuar?",
+  "server_close_service_enterprise": "Si quiere realizar cambios en sus servicios y contratos, contacte con su gestor de cuentas de OVHcloud.",
   "server_close_service_success": "La solicitud de eliminación del servidor se ha registrado correctamente. Recibirá un mensaje de correo electrónico con el procedimiento que debe seguir.",
   "server_close_service_error": "Se ha producido un error al solicitar la eliminación del servidor:",
   "server_close_service_delete_at_expiration_activate_success": "La solicitud de eliminación de este servidor en la fecha de expiración se ha registrado correctamente.",
@@ -1196,6 +1197,5 @@
   "server_configuration_no_intervention_activate_success": "La intervención in situ está activada en el servidor {{serverName}}.",
   "server_configuration_no_intervention_activate_failed": "Se ha producido un error al activar las intervenciones in situ en el servidor {{serverName}}.",
   "server_configuration_no_intervention_deactivate_success": "La intervención in situ está desactivada en el servidor {{serverName}}.",
-  "server_configuration_no_intervention_deactivate_failed": "Se ha producido un error al desactivar la intervención in situ en el servidor {{serverName}}.",
-  "server_close_service_enterprise": "Si quiere realizar cambios en sus servicios y contratos, contacte con su gestor de cuentas de OVHcloud."
+  "server_configuration_no_intervention_deactivate_failed": "Se ha producido un error al desactivar la intervención in situ en el servidor {{serverName}}."
 }

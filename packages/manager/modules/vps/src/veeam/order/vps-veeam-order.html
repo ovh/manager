@@ -22,7 +22,10 @@
 
                     <p
                         data-translate="vps_configuration_veeam_order_step1_info2"
-                        data-translate-values="{ price: $ctrl.getVeeamMonthlyPrice($ctrl.veeamOption).text }"
+                        data-translate-values="{
+                            price: $ctrl.getVeeamMonthlyPrice($ctrl.veeamOption).text,
+                            duration: ('vps_configuration_veeam_order_step1_info2_' + $ctrl.constructor.getVeeamDuration($ctrl.veeamOption)| translate)
+                        }"
                     ></p>
 
                     <p

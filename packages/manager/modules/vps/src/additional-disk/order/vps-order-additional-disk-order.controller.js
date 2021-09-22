@@ -48,6 +48,13 @@ export default class VpsOrderDiskCtrl {
     return get(price, 'price');
   }
 
+  static getDiskDuration(disk) {
+    const price = find(disk.prices, ({ capacities }) =>
+      capacities.includes('renew'),
+    );
+    return price?.duration;
+  }
+
   /* =============================
   =            EVENTS            =
   ============================== */

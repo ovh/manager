@@ -6,7 +6,7 @@
   "billing_autorenew_service_disable_autorenew": "Wyłącz płatność automatyczną",
   "billing_autorenew_service_align_renew": "Wyrównanie dat odnowienia",
   "billing_autorenew_service_enable_autorenew": "Włącz płatność automatyczną",
-  "billing_autorenew_service_disable_all_dom": "Wyłącz automatyczne odnawianie dla wszystkich domen.",
+  "billing_autorenew_service_disable_all_dom": "Wyłącz automatyczne odnawianie dla wszystkich domen",
   "billing_autorenew_service_status": "Status",
   "billing_autorenew_service_status_auto": "Automatyczne odnowienie ",
   "billing_autorenew_service_status_automatic": "Automatyczne odnowienie ",

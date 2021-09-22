@@ -1,7 +1,7 @@
 {
   "telephony_alias_ovh_pabx_sounds_list_title": "List of tones",
   "telephony_alias_ovh_pabx_sounds_list_info1": "Here you can manage the available tones.",
-  "telephony_alias_ovh_pabx_sounds_list_info2": "Once you have set your tones, you need to add them in the steps of your CCS to use them.",
+  "telephony_alias_ovh_pabx_sounds_list_info2": "Once you have configured your tones, you will need to add them in the steps of your {{featureType}} to use them.",
   "telephony_alias_ovh_pabx_sounds_add": "Add a tone",
   "telephony_alias_ovh_pabx_sounds_add_limitations": "Max size: 10MB, main formats allowed: .wav, .mp3, .ogg and .wma.",
   "telephony_alias_ovh_pabx_sounds_add_selected_file": "File selected: {{file}}",

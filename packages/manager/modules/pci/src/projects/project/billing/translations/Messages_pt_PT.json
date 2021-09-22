@@ -38,5 +38,6 @@
   "cpbc_billing_control_consumption_plan_volume.snapshot.consumption": "Volume Snapshot {{id}}",
   "cpbc_billing_control_consumption_plan_data-processing-job.core.minute.consumption": "Processadores (vCores)",
   "cpbc_billing_control_consumption_plan_data-processing-job.memory-gib.minute.consumption": "Memória (RAM)",
-  "cpbc_billing_control_consumption_current_period": "O consumo atual apresentado é calculado entre {{ from }} e {{ to }}"
+  "cpbc_billing_control_consumption_current_period": "O consumo atual apresentado é calculado entre {{ from }} e {{ to }}",
+  "cpbc_billing_control_consumption_history": "Histórico"
 }

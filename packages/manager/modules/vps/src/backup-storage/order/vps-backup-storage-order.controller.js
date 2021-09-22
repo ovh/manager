@@ -43,6 +43,13 @@ export default class VpsBackupStorageOrderCtrl {
     return get(price, 'price');
   }
 
+  static getFtpBackupDuration(option) {
+    const price = find(option.prices, ({ capacities }) =>
+      capacities.includes('renew'),
+    );
+    return price?.duration;
+  }
+
   /* =============================
   =            EVENTS            =
   ============================== */

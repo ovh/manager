@@ -25,7 +25,7 @@
   "data_processing_submit_job_error_message_odp_job_driverMemoryOverhead_tooSmall": "Errore di inserimento: l'overhead di memoria richiesto per il driver è troppo basso",
   "data_processing_submit_job_error_message_odp_job_totalExecutorMemory_tooBig": "Errore di inserimento: la somma di memoria e overhead richiesta per i worker è troppo elevata",
   "data_processing_submit_job_error_message_odp_job_totalDriverMemory_tooBig": "Errore di inserimento: la somma di memoria e overhead richiesta per il driver è troppo elevata",
-  "data_processing_submit_job_error_message_odp_project_notEnoughQuotas": "Errore quota: le quote del progetto Public Cloud non sono sufficienti Accedi alla pagina seguente per <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\">gestire la tua quota Public Cloud<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>.",
+  "data_processing_submit_job_error_message_odp_project_notEnoughQuotas": "Errore quota: le quote del progetto Public Cloud non sono sufficienti Accedi alla pagina successiva per <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\">gestire la tua quota Public Cloud<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>",
   "data_processing_submit_job_error_message_odp_mainApplicationCode_notFound": "Errore di inserimento: impossibile trovare il file  richiesto nel container Object Storage specificato",
   "data_processing_submit_job_error_message_odp_condaEnvironment_isRequired": "Errore di inserimento: impossibile trovare il file d’ambiente nel container Object Storage specificato"
 }
