@@ -346,6 +346,7 @@
                                         rows="4"
                                         required
                                         data-ng-model="$ctrl.sms.message"
+                                        data-ng-model-options="{ debounce: 500 }"
                                         data-ng-change="$ctrl.computeRemainingChar()"
                                         data-ng-maxlength="$ctrl.message.maxlength"
                                         data-ng-trim="false"

@@ -11,6 +11,8 @@ export const GUIDES = {
   PL: 'https://docs.ovh.com/pl/dedicated/ola-manager/',
   PT: 'https://docs.ovh.com/pt/dedicated/ola-manager/',
   SG: 'https://docs.ovh.com/sg/en/dedicated/ola-manager/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/360009918959-How-to-Configure-OVHcloud-Link-Aggregation-in-the-OVHcloud-Manager',
   default: 'https://docs.ovh.com/gb/en/dedicated/ola-manager/',
 };
 
