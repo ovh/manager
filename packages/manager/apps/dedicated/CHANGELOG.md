@@ -1,3 +1,12 @@
+## [16.37.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.37.3...@ovh-ux/manager-dedicated@16.37.4) (2021-09-23)
+
+
+### Bug Fixes
+
+* **guides:** correct us wrongGuideLinksForUS ([#5598](https://github.com/ovh/manager/issues/5598)) ([911b547](https://github.com/ovh/manager/commit/911b5474f19c257241d61c69d4e8a951816f764f))
+
+
+
 ## [16.37.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.37.2...@ovh-ux/manager-dedicated@16.37.3) (2021-09-22)
 
 
