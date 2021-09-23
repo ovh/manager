@@ -1,6 +1,7 @@
 import find from 'lodash/find';
 
 import Base from './base.class';
+import { SSL_MODE_REQUIRED, SSL_MODE_NA } from './databases.constants';
 
 export default class Database extends Base {
   constructor({
@@ -87,6 +88,19 @@ export default class Database extends Base {
       );
     }
     return this.currentEngine;
+  }
+
+  getSSLModeKey() {
+    if (!this.sslModeKey) {
+      this.sslModeKey = this.sslMode;
+      if (SSL_MODE_REQUIRED.includes(this.sslMode)) {
+        this.sslModeKey = 'required';
+      }
+      if (SSL_MODE_NA.includes(this.sslMode)) {
+        this.sslModeKey = 'n/a';
+      }
+    }
+    return this.sslModeKey;
   }
 
   updateData(data) {
