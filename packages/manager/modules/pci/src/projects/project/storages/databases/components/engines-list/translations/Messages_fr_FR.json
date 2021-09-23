@@ -6,5 +6,6 @@
   "pci_database_engines_list_description_postgresql": "Système de gestion de base de données relationnelle et objet",
   "pci_database_engines_list_description_kafka": "Système de streaming distribué et haute-performance",
   "pci_database_engines_list_description_redis": "Système de stockage de données clé-valeur en mémoire",
-  "pci_database_engines_list_description_mongodb": "Système de gestion de base de données orienté documents"
+  "pci_database_engines_list_description_mongodb": "Système de gestion de base de données orienté documents",
+  "pci_database_engines_list_description_opensearch": "NEED INFO"
 }

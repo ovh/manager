@@ -12,6 +12,7 @@ export const ENGINES_NAMES = {
   postgresql: 'PostgreSQL',
   kafka: 'Kafka',
   redis: 'Redis',
+  opensearch: 'OpenSearch',
 };
 
 export default {
