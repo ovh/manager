@@ -24,13 +24,14 @@ const features = {
     DATABASE_TYPES.REDIS,
     DATABASE_TYPES.OPEN_SEARCH,
   ],
-  restoreFromBackup: [DATABASE_TYPES.MONGO_DB, DATABASE_TYPES.OPEN_SEARCH],
+  restoreFromBackup: [DATABASE_TYPES.MONGO_DB],
   aclTab: [DATABASE_TYPES.KAFKA],
   topicsTab: [DATABASE_TYPES.KAFKA],
   getRoles: [DATABASE_TYPES.MONGO_DB, DATABASE_TYPES.POSTGRESQL],
   showKey: [DATABASE_TYPES.KAFKA],
   showCert: [DATABASE_TYPES.KAFKA],
   showUserInformations: [DATABASE_TYPES.REDIS],
+  indexesTab: [DATABASE_TYPES.OPEN_SEARCH],
 };
 
 export default function isFeatureActivated(feature, databaseType) {
