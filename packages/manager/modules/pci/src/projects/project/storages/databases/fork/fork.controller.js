@@ -5,7 +5,7 @@ import map from 'lodash/map';
 import clone from 'lodash/clone';
 import sortBy from 'lodash/sortBy';
 
-import { NAME_PATTERN } from './fork.constants';
+import { NAME_PATTERN, MAX_NAME_LENGTH } from './fork.constants';
 
 export default class {
   /* @ngInject */
@@ -26,6 +26,7 @@ export default class {
     this.DatabaseService = DatabaseService;
     this.Poller = Poller;
     this.NAME_PATTERN = NAME_PATTERN;
+    this.MAX_NAME_LENGTH = MAX_NAME_LENGTH;
   }
 
   $onInit() {
