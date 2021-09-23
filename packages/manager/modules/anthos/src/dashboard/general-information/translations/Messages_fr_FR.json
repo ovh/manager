@@ -12,15 +12,10 @@
 
   "anthos_tenant_dashboard_general_information_tile_security_title": "Sécurité et accès",
   "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_title": "Anthos Management Center Access",
-  "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd": "Regénerér un mot de passe administrateur",
+  "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd": "Réinitialiser l'accès",
   "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd_success": "L'accès administrateur a été modifié avec succès.",
   "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd_failed": "Une erreur est survenue lors de la modification de l'accès administrateur : {{message}}",
   "anthos_tenant_dashboard_general_information_tile_security_cta_start_console": "Lancer la console Anthos CTA",
-  "anthos_tenant_dashboard_general_information_tile_security_center_access_netapp_title": "Accès NetApp dédié",
-  "anthos_tenant_dashboard_general_information_tile_security_center_access_netapp_menu_regenerate_pwd": "Regénerér un mot de passe administrateur",
-  "anthos_tenant_dashboard_general_information_tile_security_center_access_netapp_menu_regenerate_pwd_success": "L'accès administrateur a été modifié avec succès.",
-  "anthos_tenant_dashboard_general_information_tile_security_center_access_netapp_menu_regenerate_pwd_failed": "Une erreur est survenue lors de la modification de l'accès administrateur : {{message}}",
-  "anthos_tenant_dashboard_general_information_tile_security_center_access_netapp_cta_start_console": "Lancer la console NetApp",
 
   "anthos_tenant_dashboard_general_information_tile_subscription_title": "Abonnement",
   "anthos_tenant_dashboard_general_information_tile_subscription_creation_date": "Date de création",

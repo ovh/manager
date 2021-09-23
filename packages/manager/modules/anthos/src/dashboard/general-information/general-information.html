@@ -104,46 +104,6 @@
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
-
-                <!--Netapp access-->
-                <oui-tile-definition
-                    data-term="{{:: 'anthos_tenant_dashboard_general_information_tile_security_center_access_netapp_title' | translate }}"
-                >
-                    <oui-tile-description>
-                        <oui-clipboard
-                            class="mb-2"
-                            data-model="$ctrl.tenant.storage.accessUrl"
-                        ></oui-clipboard>
-                        <a
-                            class="oui-button oui-button_secondary"
-                            data-ng-href="{{$ctrl.tenant.storage.accessUrl}}"
-                            target="_blank"
-                            rel="noopener"
-                        >
-                            <span
-                                data-translate="anthos_tenant_dashboard_general_information_tile_security_center_access_netapp_cta_start_console"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-external-link"
-                                aria-hidden="true"
-                            ></span>
-                        </a>
-                    </oui-tile-description>
-
-                    <oui-action-menu
-                        aria-label="{{:: 'anthos_tenant_dashboard_general_information_actions' | translate }}"
-                        data-compact
-                        data-placement="end"
-                    >
-                        <oui-action-menu-item
-                            data-on-click="$ctrl.onNetappRegeneratePasswordClick()"
-                        >
-                            <span
-                                data-translate="anthos_tenant_dashboard_general_information_tile_security_center_access_netapp_menu_regenerate_pwd"
-                            ></span>
-                        </oui-action-menu-item>
-                    </oui-action-menu>
-                </oui-tile-definition>
             </oui-tile>
         </div>
 
