@@ -73,30 +73,4 @@ export default class {
         );
       });
   }
-
-  onNetappRegeneratePasswordClick() {
-    return this.AnthosTenantsService.resetTenantStorageAdminAccess(
-      this.serviceName,
-    )
-      .then(({ accessUrl }) => {
-        this.tenant.storageAccessUrl = accessUrl;
-        return this.displayAlerterMessage(
-          'success',
-          this.$translate.instant(
-            'anthos_tenant_dashboard_general_information_tile_security_center_access_netapp_menu_regenerate_pwd_success',
-          ),
-        );
-      })
-      .catch((error) => {
-        return this.displayAlerterMessage(
-          'error',
-          this.$translate.instant(
-            'anthos_tenant_dashboard_general_information_tile_security_center_access_netapp_menu_regenerate_pwd_failed',
-            {
-              message: error.message || error.data?.message,
-            },
-          ),
-        );
-      });
-  }
 }
