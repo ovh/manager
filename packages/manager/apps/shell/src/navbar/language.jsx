@@ -5,19 +5,16 @@ import { LANGUAGES } from '@ovh-ux/manager-config';
 import { emit } from '@ovh-ux/ufrontend/communication';
 import { MESSAGES } from './constants';
 
-import { useEnvironment } from './environment';
-
 import LanguageButton from './language/button.jsx';
 import LanguageList from './language/list.jsx';
 
-function LanguageMenu() {
+function LanguageMenu({ userLocale }) {
   const ref = useRef();
   const [show, setShow] = useState(false);
   const handleRootClose = () => setShow(false);
 
   useClickAway(ref, handleRootClose);
 
-  const userLocale = useEnvironment().getUserLocale();
   const [currentLanguage, setCurrentLanguage] = useState(null);
   const [availableLanguages, setAvailableLanguages] = useState([]);
 
