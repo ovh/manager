@@ -46,6 +46,9 @@
             data-type="string"
             data-filterable
         >
+            <span
+                data-ng-bind="$ctrl.ovhManagerRegionService.getTranslatedMacroRegion($row.region)"
+            ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_database_common_creation_date' | translate"

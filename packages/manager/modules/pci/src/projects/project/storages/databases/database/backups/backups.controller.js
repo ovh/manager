@@ -1,7 +1,8 @@
 export default class {
   /* @ngInject */
-  constructor(CucCloudMessage) {
+  constructor(CucCloudMessage, ovhManagerRegionService) {
     this.CucCloudMessage = CucCloudMessage;
+    this.ovhManagerRegionService = ovhManagerRegionService;
   }
 
   $onInit() {
