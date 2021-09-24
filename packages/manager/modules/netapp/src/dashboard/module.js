@@ -9,6 +9,7 @@ import '@ovh-ux/manager-billing-components';
 import component from './component';
 import routing from './routing';
 
+import snapshotPolicies from './snapshot-policies';
 import volumes from './volumes';
 
 const moduleName = 'ovhManagerNetAppDashboard';
@@ -21,6 +22,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'ngOvhUtils',
+    snapshotPolicies,
     volumes,
   ])
   .config(routing)
