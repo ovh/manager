@@ -30,13 +30,14 @@ export default class aclCtrl {
     this.deleteAcl(acl.id)
       .then(() => {
         this.refreshAcl(
-          this.$translate.instant('pci_databases_acl_tab_delete_success'),
+          this.$translate.instant('pci_databases_acl_tab_delete_success', {
+            acl: acl.username,
+          }),
         );
       })
       .catch((error) =>
         this.refreshAcl(
           this.$translate.instant('pci_databases_acl_tab_delete_error', {
-            databaseName: this.database.description,
             message: get(error, 'data.message'),
           }),
           'error',

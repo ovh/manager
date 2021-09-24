@@ -6,6 +6,6 @@
   "pci_databases_acl_tab_permission": "Permission",
   "pci_databases_acl_tab_add": "Ajouter une nouvelle entrée",
   "pci_databases_acl_tab_delete": "Supprimer",
-  "pci_databases_acl_tab_delete_success": "L'entrée a été supprimée",
-  "pci_databases_acl_tab_delete_error": "Une erreur a été remontée lors de la suppression de l'entrée : {{message}}"
+  "pci_databases_acl_tab_delete_success": "Votre utilisateur ACL {{acl}} a été supprimé avec succès.",
+  "pci_databases_acl_tab_delete_error": "Une erreur a été remontée lors de la suppression de l'utilisateur ACL: {{message}}"
 }
