@@ -18,6 +18,14 @@
             >
                 <span data-translate="netapp_dashboard_volumes"></span>
             </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{:: $ctrl.snapshotPoliciesLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.snapshotPoliciesLink"
+            >
+                <span
+                    data-translate="netapp_dashboard_snapshot_policies"
+                ></span>
+            </oui-header-tabs-item>
         </oui-header-tabs>
     </oui-header>
     <div data-ovh-alert></div>

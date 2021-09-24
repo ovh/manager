@@ -17,5 +17,6 @@
   "netapp_dashboard_configuration_status_deleting": "Suppression en cours",
   "netapp_dashboard_configuration_status_deleted": "Supprimé",
   "netapp_dashboard_configuration_create_volume": "Créer un volume",
-  "netapp_dashboard_volumes": "Volumes"
+  "netapp_dashboard_volumes": "Volumes",
+  "netapp_dashboard_snapshot_policies": "Snapshot policies"
 }
