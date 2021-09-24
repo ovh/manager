@@ -17,7 +17,10 @@
 <p>
     <span
         data-translate="pci_database_fork_description"
-        data-translate-values="{backup: $ctrl.backupInstance}"
+        data-translate-values="{
+            backup: $ctrl.backupInstance,
+            backupSize: ($ctrl.backupInstance.size.value | cucBytes)
+        }"
     ></span>
 </p>
 
