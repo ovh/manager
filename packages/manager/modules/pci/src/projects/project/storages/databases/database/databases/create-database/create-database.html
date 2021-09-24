@@ -1,25 +1,37 @@
-<oui-modal
-    data-on-dismiss="$ctrl.goBack()"
-    data-primary-label="{{:: 'pci_databases_databases_create_database_confirm' | translate}}"
-    data-primary-disabled="!$ctrl.databaseName"
-    data-primary-action="$ctrl.addDatabase()"
-    data-secondary-action="$ctrl.cancel()"
-    data-secondary-label="{{:: 'pci_databases_databases_create_database_cancel' | translate}}"
-    data-loading="$ctrl.processing"
-    data-heading="{{:: 'pci_databases_databases_create_database' | translate}}"
->
-    <p data-translate="pci_databases_databases_create_database_description"></p>
-    <oui-field
-        data-label="{{:: 'pci_databases_databases_create_database_label' | translate }}"
+<form name="addDatabase">
+    <oui-modal
+        data-on-dismiss="$ctrl.goBack()"
+        data-primary-label="{{:: 'pci_databases_databases_create_database_confirm' | translate}}"
+        data-primary-disabled="!$ctrl.databaseName"
+        data-primary-action="$ctrl.addDatabase()"
+        data-secondary-action="$ctrl.cancel()"
+        data-secondary-label="{{:: 'pci_databases_databases_create_database_cancel' | translate}}"
+        data-loading="$ctrl.processing"
+        data-heading="{{:: 'pci_databases_databases_create_database' | translate}}"
     >
-        <input
-            type="text"
-            id="databaseName"
-            name="databaseName"
-            class="oui-input"
-            data-ng-model="$ctrl.databaseName"
-            required
-            autofocus
-        />
-    </oui-field>
-</oui-modal>
+        <p
+            data-translate="pci_databases_databases_create_database_description"
+        ></p>
+        <oui-message type="info">
+            <span
+                data-translate="{{:: 'pci_databases_databases_create_database_banner' | translate : { min: $ctrl.minNameLength, max: $ctrl.maxNameLength } }}"
+            ></span>
+        </oui-message>
+        <oui-field
+            data-label="{{:: 'pci_databases_databases_create_database_label' | translate }}"
+        >
+            <input
+                type="text"
+                id="databaseName"
+                name="databaseName"
+                class="oui-input"
+                data-ng-model="$ctrl.databaseName"
+                data-minlength="$ctrl.minNameLength"
+                data-ng-maxlength="$ctrl.maxNameLength"
+                data-ng-pattern="$ctrl.pattern"
+                required
+                autofocus
+            />
+        </oui-field>
+    </oui-modal>
+</form>
