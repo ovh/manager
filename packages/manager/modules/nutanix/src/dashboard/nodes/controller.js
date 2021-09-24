@@ -1,10 +1,5 @@
 export default class NutanixDashboardCtrl {
-  /* @ngInject */
-  constructor($translate) {
-    this.$translate = $translate;
-  }
-
-  $onInit() {
-    this.nutanixGuideUrl = '';
+  static getNodeDetailsState(nodeId) {
+    return `nutanix.dashboard.nodes.node.general-info({ nodeId: '${nodeId}'})`;
   }
 }
