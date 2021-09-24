@@ -2,7 +2,8 @@ import { DedicatedServer } from '@ovh-ux/manager-models';
 
 export default class NutanixNodeService {
   /* @ngInject */
-  constructor($http) {
+  constructor($q, $http) {
+    this.$q = $q;
     this.$http = $http;
   }
 

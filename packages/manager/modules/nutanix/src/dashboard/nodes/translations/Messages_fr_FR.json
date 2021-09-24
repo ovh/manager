@@ -1,0 +1,10 @@
+{
+  "nutanix_dashboard_nodes_list_display_name": "Nom du node",
+  "nutanix_dashboard_nodes_list_type_of_server": "Type de serveur",
+  "nutanix_dashboard_nodes_list_status": "Statut du node",
+  "nutanix_dashboard_nodes_list_localisation": "Localisation",
+  "nutanix_dashboard_nodes_list_status_OK": "Normal",
+  "nutanix_dashboard_nodes_list_status_ERROR": "En erreur",
+  "nutanix_dashboard_nodes_list_status_HACKED": "Hacké",
+  "nutanix_dashboard_nodes_list_status_HACKED_BLOCKED": "Hacké et bloqué"
+}
