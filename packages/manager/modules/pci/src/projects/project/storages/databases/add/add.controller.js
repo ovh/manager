@@ -56,9 +56,7 @@ export default class {
   }
 
   clickOnContract() {
-    this.trackDatabases({
-      name: 'config_create_database::ga_contracts',
-    });
+    this.trackDatabases('config_create_database::ga_contracts');
   }
 
   loadMessages() {
