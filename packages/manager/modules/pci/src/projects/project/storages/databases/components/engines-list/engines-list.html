@@ -12,7 +12,7 @@
         data-required
     >
         <oui-select-picker-label>
-            <span data-ng-bind=":: $ctrl.capitalize(engine.name)"></span>
+            <span data-ng-bind=":: engine.getLabel()"></span>
             <span
                 data-ng-if="engine.isBeta"
                 class="oui-badge oui-badge_s oui-badge_beta"

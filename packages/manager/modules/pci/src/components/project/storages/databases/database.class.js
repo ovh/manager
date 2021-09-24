@@ -2,6 +2,8 @@ import find from 'lodash/find';
 
 import Base from './base.class';
 
+import { ENGINES_NAMES } from './engines.constants';
+
 export default class Database extends Base {
   constructor({
     createdAt,
@@ -54,6 +56,10 @@ export default class Database extends Base {
 
   get region() {
     return this.nodes[0]?.region;
+  }
+
+  getEngineLabel() {
+    return ENGINES_NAMES[this.engine];
   }
 
   addNode(node) {

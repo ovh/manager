@@ -60,7 +60,7 @@
                 data-ng-src="{{:: $ctrl.ENGINE_LOGOS[$row.engine]}}"
                 alt="{{:: $row.engine}}"
             />
-            <span data-ng-bind=":: $ctrl.capitalize($row.engine)"></span>
+            <span data-ng-bind=":: $row.getEngineLabel()"></span>
             <span data-ng-bind=":: $row.version"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
