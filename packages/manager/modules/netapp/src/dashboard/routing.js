@@ -22,6 +22,8 @@ export default /* @ngInject */ ($stateProvider) => {
           .then(({ data }) => data.map((volume) => new Share(volume))),
       isCreateVolumeAvailable: /* @ngInject */ (storage, volumes) =>
         volumes.length < storage.maximumVolumesLimit,
+      snapshotPoliciesLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('netapp.dashboard.snapshotPolicies', $transition$.params()),
       volumesLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('netapp.dashboard.volumes', $transition$.params()),
       serviceName: /* @ngInject */ ($transition$) =>

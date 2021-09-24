@@ -7,6 +7,7 @@ export default {
     dashboardLink: '<',
     storage: '<',
     goToCreateVolume: '<',
+    snapshotPoliciesLink: '<',
     volumesLink: '<',
     isCommitmentAvailable: '<',
     isCreateVolumeAvailable: '<',
