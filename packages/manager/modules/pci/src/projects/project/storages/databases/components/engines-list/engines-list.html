@@ -4,7 +4,7 @@
         class="d-inline-block col-md-6 col-xl-4 my-3"
         data-name="{{:: engine.name }}"
         data-model="$ctrl.selectedEngine"
-        data-description="{{:: engine.description }}"
+        data-description="{{:: 'pci_database_engines_list_description_' + engine.name | translate }}"
         data-picture="{{:: $ctrl.ENGINE_LOGOS[engine.name] }}"
         data-values="[engine]"
         data-on-change="$ctrl.onChange({ selectedEngine: modelValue })"
