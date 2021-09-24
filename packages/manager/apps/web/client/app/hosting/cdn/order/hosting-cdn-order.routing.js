@@ -148,10 +148,7 @@ export default /* @ngInject */ ($stateProvider) => {
     pricingType: () => pricingConstants.PRICING_CAPACITIES.UPGRADE,
     workflowType: () => workflowConstants.WORKFLOW_TYPES.SERVICES,
     workflowOptions: /* @ngInject */ (
-      catalog,
-      isV1CDN,
       ovhManagerProductOffersActionService,
-      ovhManagerProductOffersService,
       serviceInfo,
       trackClick,
     ) => {
@@ -176,23 +173,8 @@ export default /* @ngInject */ ($stateProvider) => {
                 HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS_FREE,
               ].includes(planCode),
           );
-
-          const cdn1Addon = catalog.addons.find(
-            (addon) =>
-              addon.planCode ===
-              HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS,
-          );
-
-          const [
-            cdn1Price,
-          ] = ovhManagerProductOffersService.constructor.filterPricingsByCapacity(
-            cdn1Addon.pricings,
-            pricingConstants.PRICING_CAPACITIES.RENEW,
-          );
-
           return {
             plancodes: cdnUpgrades,
-            currentOptionPrice: isV1CDN ? cdn1Price : null,
             onPricingSubmit: () => {
               trackClick('web::hosting::cdn::order::next');
             },
