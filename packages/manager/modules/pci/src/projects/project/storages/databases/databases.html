@@ -48,6 +48,14 @@
             <p data-ng-bind=":: $row.id"></p>
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-property="id"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+            <span></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_database_list_engine' | translate"
             data-property="engine"
             data-type="string"
