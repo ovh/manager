@@ -15,8 +15,8 @@
             id="username"
             name="username"
             ng-model="$ctrl.model.username"
-            data-ng-pattern="$ctrl.NAME_PATTERN"
-            data-ng-maxlength="$ctrl.NAME_MAX_LENGTH"
+            data-ng-pattern="$ctrl.inputRules.name.pattern"
+            data-ng-maxlength="$ctrl.inputRules.name.max"
             required
         />
     </oui-field>
@@ -46,24 +46,36 @@
         <tags-input
             name="keys"
             data-model="$ctrl.model.keys"
+            data-min="$ctrl.inputRules.keys.min"
+            data-max="$ctrl.inputRules.keys.max"
+            data-pattern="$ctrl.inputRules.keys.pattern"
             data-label="{{:: 'pci_databases_users_add_keys_label' | translate }}"
             data-button-label="{{:: 'pci_databases_users_add_keys_button_label' | translate }}"
         ></tags-input>
         <tags-input
             name="categories"
             data-model="$ctrl.model.categories"
+            data-min="$ctrl.inputRules.categories.min"
+            data-max="$ctrl.inputRules.categories.max"
+            data-pattern="$ctrl.inputRules.categories.pattern"
             data-label="{{:: 'pci_databases_users_add_categories_label' | translate }}"
             data-button-label="{{:: 'pci_databases_users_add_categories_button_label' | translate }}"
         ></tags-input>
         <tags-input
             name="commands"
             data-model="$ctrl.model.commands"
+            data-min="$ctrl.inputRules.commands.min"
+            data-max="$ctrl.inputRules.commands.max"
+            data-pattern="$ctrl.inputRules.commands.pattern"
             data-label="{{:: 'pci_databases_users_add_commands_label' | translate }}"
             data-button-label="{{:: 'pci_databases_users_add_commands_button_label' | translate }}"
         ></tags-input>
         <tags-input
             name="channels"
             data-model="$ctrl.model.channels"
+            data-min="$ctrl.inputRules.channels.min"
+            data-max="$ctrl.inputRules.channels.max"
+            data-pattern="$ctrl.inputRules.channels.pattern"
             data-label="{{:: 'pci_databases_users_add_channels_label' | translate }}"
             data-button-label="{{:: 'pci_databases_users_add_channels_button_label' | translate }}"
         ></tags-input>

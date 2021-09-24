@@ -5,6 +5,9 @@ export default {
   bindings: {
     model: '=',
     label: '@',
+    min: '<?',
+    max: '<?',
+    pattern: '<?',
     buttonLabel: '@',
   },
   controller,

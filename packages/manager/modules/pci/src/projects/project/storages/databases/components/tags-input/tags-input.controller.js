@@ -8,6 +8,9 @@ export default class PciTagsInputController {
     this.model.forEach((element) => {
       this.items.push({ title: element });
     });
+    this.min = this.min || 1;
+    this.max = this.max || 255;
+    this.pattern = this.pattern || null;
   }
 
   addTag() {
@@ -25,13 +28,14 @@ export default class PciTagsInputController {
 
   isDisabled() {
     const isEmptyOrSpaces =
-      this.tag === null || this.tag.match(/^ *$/) !== null;
+      !this.tag || this.tag === null || this.tag.match(/^ *$/) !== null;
     return isEmptyOrSpaces || this.model.indexOf(this.tag) !== -1;
   }
 
-  handleKeyPressed(key) {
-    if (key.which === 13) {
+  handleKeyPressed(e) {
+    if (e.which === 13) {
       this.addTag();
+      e.preventDefault();
     }
   }
 }

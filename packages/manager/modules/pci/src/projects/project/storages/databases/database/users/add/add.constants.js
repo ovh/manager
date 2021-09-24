@@ -1,7 +1,30 @@
-export const NAME_PATTERN = /^[a-zA-Z0-9_][a-zA-Z0-9_.-]{0,253}$/;
-export const NAME_MAX_LENGTH = 254;
+export const ADD_USER_FORM_RULES = {
+  name: {
+    pattern: /^[a-zA-Z0-9_][a-zA-Z0-9_.-]{0,253}$/,
+    max: 254,
+  },
+  keys: {
+    pattern: /^[a-zA-Z0-9_@./#&+-]{1,254}$/,
+    min: 1,
+    max: 254,
+  },
+  categories: {
+    pattern: /^[+-][a-zA-Z0-9_@./#&+-]{0,253}$/,
+    min: 1,
+    max: 254,
+  },
+  commands: {
+    pattern: /^[+-][a-zA-Z0-9_@./#&+-]{0,253}$/,
+    min: 1,
+    max: 254,
+  },
+  channels: {
+    pattern: /^[a-zA-Z0-9_@./#&+-]{1,254}$/,
+    min: 1,
+    max: 254,
+  },
+};
 
 export default {
-  NAME_PATTERN,
-  NAME_MAX_LENGTH,
+  ADD_USER_FORM_RULES,
 };
