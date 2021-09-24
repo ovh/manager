@@ -5,6 +5,8 @@ export default {
   bindings: {
     serviceName: '<',
     cluster: '<',
+    serviceInfo: '<',
+    user: '<',
   },
   controller,
   template,

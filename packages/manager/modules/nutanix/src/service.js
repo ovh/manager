@@ -1,5 +1,5 @@
 import { BillingService } from '@ovh-ux/manager-models';
-import Cluster from '../cluster.class';
+import Cluster from './cluster.class';
 
 export default class NutanixService {
   /* @ngInject */

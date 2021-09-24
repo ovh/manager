@@ -22,7 +22,7 @@ angular
   ])
   .config(routing)
   .component('nutanixDashboard', component)
-  .service('NutanixDashboard', service)
+  .service('NutanixService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
