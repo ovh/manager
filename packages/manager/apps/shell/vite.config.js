@@ -55,6 +55,13 @@ module.exports = defineConfig({
     }),
     viteOvhDevServerPlugin(),
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        includePaths: [path.resolve(__dirname, '../../../../node_modules')],
+      },
+    },
+  },
   build: {
     outDir: path.resolve(__dirname, 'dist'),
     emptyOutDir: true,
