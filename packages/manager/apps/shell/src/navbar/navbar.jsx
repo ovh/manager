@@ -13,7 +13,11 @@ import { fetchUniverses, getBrandURL } from './service';
 import style from './navbar.module.scss';
 import { MESSAGES } from './constants';
 
-function Navbar({ user, universe }) {
+function Navbar({ environment, isAccountSidebarOpen, setIsAccountSidebarOpen }) {
+  const user = environment.getUser();
+  const universe = environment.getUniverse();
+  const userLocale = environment.getUserLocale();
+
   const [universes, setUniverses] = useState([]);
   const [searchURL, setSearchURL] = useState();
   const [currentUniverse, setCurrentUniverse] = useState(universe);
@@ -40,13 +44,16 @@ function Navbar({ user, universe }) {
           </div>
         )}
         <div className="oui-navbar-list__item">
-          <LanguageMenu></LanguageMenu>
+          <LanguageMenu userLocale={userLocale}></LanguageMenu>
         </div>
         <div className="oui-navbar-list__item">
           <Notifications />
         </div>
         <div className="oui-navbar-list__item">
-          <Account user={user} />
+          <Account
+            user={user}
+            isAccountSidebarOpen={isAccountSidebarOpen}
+            setIsAccountSidebarOpen={setIsAccountSidebarOpen} />
         </div>
       </div>
     </div>
@@ -54,8 +61,7 @@ function Navbar({ user, universe }) {
 }
 
 Navbar.propTypes = {
-  user: PropTypes.object.isRequired,
-  universe: PropTypes.string,
+  environment: PropTypes.object.isRequired,
 };
 
 export default Navbar;
