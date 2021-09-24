@@ -31,6 +31,7 @@ export default /* @ngInject */ ($stateProvider) => {
           database,
           projectId,
           trackDashboard,
+          $translate,
         ) => (user) => {
           trackDashboard(
             'dashboard::users::options_menu::delete_user_validate',
@@ -40,7 +41,21 @@ export default /* @ngInject */ ($stateProvider) => {
             database.engine,
             database.id,
             user.id,
-          );
+          ).then((success) => {
+            if (!success) {
+              const error = new Error();
+              error.data = {
+                message: $translate.instant(
+                  'pci_databases_users_delete_error_forbidden',
+                  {
+                    username: user.username,
+                  },
+                ),
+              };
+              throw error;
+            }
+            return success;
+          });
         },
       },
     },

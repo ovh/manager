@@ -346,9 +346,12 @@ export default class DatabaseService {
   }
 
   deleteUser(projectId, engine, databaseId, userId) {
-    return this.$http.delete(
-      `/cloud/project/${projectId}/database/${engine}/${databaseId}/user/${userId}`,
-    );
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/user/${userId}`,
+      )
+      .then(() => true)
+      .catch((error) => (error.status === 403 ? false : this.$q.reject(error)));
   }
 
   getAvailableMetrics(projectId, engine, databaseId, extended) {
