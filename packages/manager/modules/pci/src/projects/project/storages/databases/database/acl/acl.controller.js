@@ -1,7 +1,10 @@
+import get from 'lodash/get';
+
 export default class aclCtrl {
   /* @ngInject */
-  constructor(CucCloudMessage) {
+  constructor($translate, CucCloudMessage) {
     this.CucCloudMessage = CucCloudMessage;
+    this.$translate = $translate;
   }
 
   $onInit() {
@@ -24,10 +27,20 @@ export default class aclCtrl {
   }
 
   delete(acl) {
-    this.deleteAcl(acl.id).then(() => {
-      this.refreshAcl(
-        this.$translate.instant('pci_databases_acl_tab_delete_success'),
+    this.deleteAcl(acl.id)
+      .then(() => {
+        this.refreshAcl(
+          this.$translate.instant('pci_databases_acl_tab_delete_success'),
+        );
+      })
+      .catch((error) =>
+        this.refreshAcl(
+          this.$translate.instant('pci_databases_acl_tab_delete_error', {
+            databaseName: this.database.description,
+            message: get(error, 'data.message'),
+          }),
+          'error',
+        ),
       );
-    });
   }
 }
