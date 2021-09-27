@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-md-2">
+        <select-checkboxes
+            items="$ctrl.options"
+            on-select="$ctrl.onSelected(items)"
+            placeholder="{{ $ctrl.optionList.length === 0 ? 'Choisissez une date' : $ctrl.optionList.length + ' date(s)' }}"
+        >
+            <span data-ng-bind="$item.label"></span>
+        </select-checkboxes>
+    </div>
+
+    <div class="col-md-2">
+        <oui-select
+            data-items="['a', 'b', 'c']"
+            data-model="$ctrl.model"
+            name="letter"
+        >
+        </oui-select>
+    </div>
+</div>
