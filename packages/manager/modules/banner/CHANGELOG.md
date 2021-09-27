@@ -1,3 +1,12 @@
+## [1.2.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.9...@ovh-ux/manager-banner@1.2.10) (2021-09-27)
+
+
+### Bug Fixes
+
+* **banner:** fix tracking on banner ([#5593](https://github.com/ovh/manager/issues/5593)) ([b949276](https://github.com/ovh/manager/commit/b949276121cee434c4edaa3880e20ef4b8ad456a))
+
+
+
 ## [1.2.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.8...@ovh-ux/manager-banner@1.2.9) (2021-06-29)
 
 

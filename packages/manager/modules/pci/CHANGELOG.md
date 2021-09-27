@@ -1,3 +1,18 @@
+# [5.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.42.3...@ovh-ux/manager-pci@5.43.0) (2021-09-27)
+
+
+### Bug Fixes
+
+* **notebooks:** relaunch errored notebook ([#5551](https://github.com/ovh/manager/issues/5551)) ([d8fa815](https://github.com/ovh/manager/commit/d8fa815dcf39721d75fd8c445ac0c1c2a2db8ca7))
+* **notebooks.add:** keep consistency for AI product flavor display ([#5514](https://github.com/ovh/manager/issues/5514)) ([b148b22](https://github.com/ovh/manager/commit/b148b22e3cf3348c91ae09554b07738f30ae2506))
+
+
+### Features
+
+* **training:** add set of predefined images for training job submission ([#5523](https://github.com/ovh/manager/issues/5523)) ([0e3a9b2](https://github.com/ovh/manager/commit/0e3a9b260795b7c38313fad0b4136fcb6544ea99))
+
+
+
 ## [5.42.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.42.2...@ovh-ux/manager-pci@5.42.3) (2021-09-22)
 
 
