@@ -2,7 +2,7 @@ import { IPluginInvocation } from './client/shell-client';
 
 export interface IPluginEntry {
   id: string;
-  instance: any;
+  instance: Record<string, CallableFunction>;
   isAvailable: boolean;
 }
 
@@ -13,7 +13,10 @@ export default class PluginManager {
     this.plugins = {};
   }
 
-  registerPlugin(pluginId: string, pluginInstance: unknown): void {
+  registerPlugin(
+    pluginId: string,
+    pluginInstance: Record<string, CallableFunction>,
+  ): void {
     if (Object.keys(this.plugins).includes(pluginId)) {
       throw new Error(`Plugin '${pluginId}' is already registered`);
     }
@@ -40,7 +43,7 @@ export default class PluginManager {
     if (!pluginMethod) {
       throw new Error(`Method '${method}' not exposed by plugin '${plugin}'`);
     }
-    return Promise.resolve(pluginMethod.apply(null, args));
+    return Promise.resolve(pluginMethod(...args));
   }
 
   setPluginAvailability(plugin: string, available: boolean): void {

@@ -36,7 +36,11 @@ export default class ShellClient {
     }
   }
 
-  invokePluginMethod({ plugin, method, args }: IPluginInvocation): PromiseLike<unknown> {
+  invokePluginMethod({
+    plugin,
+    method,
+    args,
+  }: IPluginInvocation): PromiseLike<unknown> {
     const uid = this.getUniqueResponseId();
     window.parent.postMessage({
       type: 'ovh-shell-plugin-event',
