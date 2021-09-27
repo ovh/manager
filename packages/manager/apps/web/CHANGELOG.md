@@ -1,3 +1,12 @@
+## [15.30.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.30.4...@ovh-ux/manager-web@15.30.5) (2021-09-27)
+
+
+### Bug Fixes
+
+* **dns-zone.new:** prevent TypeError console error ([#5614](https://github.com/ovh/manager/issues/5614)) ([ccc1151](https://github.com/ovh/manager/commit/ccc1151ddebca6385a63d8fc9c00f1670c66f0ed)), closes [#5558](https://github.com/ovh/manager/issues/5558)
+
+
+
 ## [15.30.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.30.3...@ovh-ux/manager-web@15.30.4) (2021-09-20)
 
 
