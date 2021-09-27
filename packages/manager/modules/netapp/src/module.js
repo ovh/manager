@@ -10,6 +10,7 @@ import 'angular-translate';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
+import components from './components';
 import dashboard from './dashboard';
 import onboarding from './onboarding';
 import order from './order';
@@ -21,6 +22,7 @@ const moduleName = 'ovhManagerNetApp';
 
 angular
   .module(moduleName, [
+    components,
     'ngTranslateAsyncLoader',
     'ovhManagerCore',
     'oui',

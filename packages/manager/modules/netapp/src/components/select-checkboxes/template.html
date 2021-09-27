@@ -1,0 +1,34 @@
+<div class="select-checkboxes">
+    <div
+        class="selectBox"
+        data-ng-click="$ctrl.toggleList()"
+        data-ng-class="{ 'active': $ctrl.showList }"
+    >
+        <label class="oui-select">
+            <select
+                class="oui-select__input"
+                data-ng-keydown="$ctrl.focusOnItems($event)"
+            >
+                <option data-ng-bind="$ctrl.getCountLabel()"></option>
+            </select>
+            <span
+                class="oui-icon oui-icon-chevron-down"
+                aria-hidden="true"
+            ></span>
+        </label>
+        <div class="overSelect"></div>
+    </div>
+    <div class="checkbox_list" data-ng-if="$ctrl.showList">
+        <div
+            class="checkbox_container"
+            data-ng-repeat="$item in $ctrl.items track by $index"
+        >
+            <oui-checkbox
+                data-on-change="$ctrl.onItemSelect($item, modelValue)"
+                data-model="$item.checked"
+            >
+                <span name="templatePlaceholder"></span>
+            </oui-checkbox>
+        </div>
+    </div>
+</div>

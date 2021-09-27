@@ -1,0 +1,73 @@
+@import '@ovh-ux/ui-kit/dist/scss/_tokens.scss';
+
+select-checkboxes {
+  .select-checkboxes {
+    width: inherit;
+  }
+
+  :hover {
+    cursor: pointer;
+  }
+
+  .selectBox {
+    position: relative;
+
+    select {
+      width: 100%;
+      font-weight: bold;
+    }
+  }
+
+  .selectBox.active select {
+    border-color: $p-100 $p-100 $p-500;
+    background-color: $p-050;
+  }
+
+  .selectBox:hover select.oui-select__input {
+    border-color: $p-100 $p-100 $p-500;
+    background-color: $p-100;
+  }
+
+  .overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  .checkbox_container {
+    background: transparent;
+    color: $p-800-text;
+    line-height: 1.5;
+
+    &:hover,
+    &:focus {
+      background: $p-100;
+    }
+
+    &:checked {
+      background: $p-500;
+      color: $p-000;
+    }
+
+    .oui-checkbox {
+      width: 100%;
+      max-height: 200rem;
+      margin: 0;
+      padding: 0.1rem 0.5rem;
+      overflow-x: hidden;
+      overflow-y: auto;
+      list-style: none;
+    }
+  }
+
+  .checkbox_list {
+    border: 1px solid $p-100;
+    expanded: true;
+
+    label {
+      display: block;
+    }
+  }
+}
