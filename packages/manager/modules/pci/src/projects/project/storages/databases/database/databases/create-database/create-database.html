@@ -1,4 +1,4 @@
-<form name="addDatabase">
+<form name="addDatabase" ng-submit="$ctrl.addDatabase()">
     <oui-modal
         data-on-dismiss="$ctrl.goBack()"
         data-primary-label="{{:: 'pci_databases_databases_create_database_confirm' | translate}}"
@@ -13,9 +13,18 @@
             data-translate="pci_databases_databases_create_database_description"
         ></p>
         <oui-message type="info">
-            <span
-                data-translate="{{:: 'pci_databases_databases_create_database_banner' | translate : { min: $ctrl.minNameLength, max: $ctrl.maxNameLength } }}"
-            ></span>
+            <p
+                data-translate="{{:: 'pci_databases_databases_create_database_banner' | translate}}"
+            ></p>
+            <p
+                data-translate="{{:: 'pci_databases_databases_create_database_banner_min_chatacters' | translate : { min: $ctrl.minNameLength} }}"
+            ></p>
+            <p
+                data-translate="{{:: 'pci_databases_databases_create_database_banner_max_chatacters' | translate : { max: $ctrl.maxNameLength } }}"
+            ></p>
+            <p
+                data-translate="{{:: 'pci_databases_databases_create_database_banner_allowed_chatacters' | translate }}"
+            ></p>
         </oui-message>
         <oui-field
             data-label="{{:: 'pci_databases_databases_create_database_label' | translate }}"
