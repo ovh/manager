@@ -1,5 +1,10 @@
 import remove from 'lodash/remove';
 import pull from 'lodash/pull';
+import {
+  DEFAULT_MIN_LENGTH,
+  DEFAULT_MAX_LENGTH,
+  DEFAULT_PATTERN,
+} from './tags-input.constants';
 
 export default class PciTagsInputController {
   $onInit() {
@@ -8,9 +13,9 @@ export default class PciTagsInputController {
     this.model.forEach((element) => {
       this.items.push({ title: element });
     });
-    this.min = this.min || 1;
-    this.max = this.max || 255;
-    this.pattern = this.pattern || null;
+    this.min = this.min || DEFAULT_MIN_LENGTH;
+    this.max = this.max || DEFAULT_MAX_LENGTH;
+    this.pattern = this.pattern || DEFAULT_PATTERN;
   }
 
   addTag() {
@@ -27,8 +32,7 @@ export default class PciTagsInputController {
   }
 
   isDisabled() {
-    const isEmptyOrSpaces =
-      !this.tag || this.tag === null || this.tag.match(/^ *$/) !== null;
+    const isEmptyOrSpaces = !this.tag || this.tag.match(/^ *$/) !== null;
     return isEmptyOrSpaces || this.model.indexOf(this.tag) !== -1;
   }
 
