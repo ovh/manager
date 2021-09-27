@@ -1,4 +1,14 @@
-const buildURLPattern = (pattern, params) => {
+interface OvhURL {
+  baseURL: string;
+  path: string;
+  params: Record<string, ParamValueType>;
+}
+type ParamValueType = string | number | boolean;
+
+const buildURLPattern = (
+  pattern: string,
+  params: Record<string, ParamValueType>,
+) => {
   let url = pattern;
   let filteredParams = params;
 
@@ -29,12 +39,16 @@ const buildURLPattern = (pattern, params) => {
   return { url, params: filteredParams };
 };
 
-const buildQueryString = (data) =>
+const buildQueryString = (data: Record<string, ParamValueType>) =>
   Object.keys(data)
     .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
     .join('&');
 
-export const buildURL = (baseURL, path, params) => {
+export const buildURL = (
+  baseURL: string,
+  path: string,
+  params: Record<string, ParamValueType>,
+): string => {
   const { url: buildedPath, params: queryObject } = buildURLPattern(
     path,
     params,
@@ -50,7 +64,11 @@ export const buildURL = (baseURL, path, params) => {
   return `${baseURL}${buildedPath}${queryString}`;
 };
 
-export const buildURLs = (routes) => {
+export function buildURLs(routes: Array<OvhURL>): Array<OvhURL>;
+export function buildURLs(
+  routes: Record<string, OvhURL>,
+): Record<string, OvhURL>;
+export function buildURLs(routes: Array<OvhURL> | Record<string, OvhURL>) {
   if (Array.isArray(routes)) {
     return routes.map(({ baseURL, path, params }) =>
       buildURL(baseURL, path, params),
@@ -63,9 +81,4 @@ export const buildURLs = (routes) => {
       [name]: buildURL(baseURL, path, params),
     };
   }, {});
-};
-
-export default {
-  buildURL,
-  buildURLs,
-};
+}

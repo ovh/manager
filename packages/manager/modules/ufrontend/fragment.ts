@@ -1,4 +1,8 @@
-export default function registerFragment(fragmentId) {
+import { FragmentConfig } from './src/ufrontend';
+
+export default function registerFragment(
+  fragmentId: string,
+): Promise<FragmentConfig> {
   if (!/^[\w-]+$/.test(fragmentId) || fragmentId === 'application') {
     return Promise.reject(new Error(`invalid fragment id '${fragmentId}'`));
   }

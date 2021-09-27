@@ -1,4 +1,6 @@
-export const LANGUAGES = {
+import { CountryCode, OVHLanguages } from '../types/ovhLanguages';
+
+export const LANGUAGES: OVHLanguages = {
   available: [
     {
       name: 'Deutsch',
@@ -37,23 +39,17 @@ export const LANGUAGES = {
   fallback: 'fr_FR',
   preferred: {
     en: {
-      US: 'GB',
-      CA: 'GB',
-      EU: 'GB',
+      US: CountryCode.GB,
+      CA: CountryCode.GB,
+      EU: CountryCode.GB,
     },
     fr: {
-      US: 'CA',
-      CA: 'CA',
-      EU: 'FR',
+      US: CountryCode.CA,
+      CA: CountryCode.CA,
+      EU: CountryCode.FR,
     },
   },
 };
 
 export const localeStorageKey = 'univers-selected-language';
 export const localeRegex = /^([a-zA-Z]+)(?:[_-]([a-zA-Z]+))?$/;
-
-export default {
-  LANGUAGES,
-  localeStorageKey,
-  localeRegex,
-};

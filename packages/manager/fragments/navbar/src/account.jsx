@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { capitalize, truncate } from 'lodash-es';
-import { emit, listen } from '@ovh-ux/ufrontend/communication';
+import { emit, listen } from '@ovh-ux/ufrontend';
 import style from './navbar.scss';
 import { MESSAGES } from './constants';
 
