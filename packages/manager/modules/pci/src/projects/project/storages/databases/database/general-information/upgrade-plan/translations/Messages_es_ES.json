@@ -1,10 +1,11 @@
 {
   "pci_databases_general_information_upgrade_plan_description": "Puede migrar su solución hacia una versión superior.",
-  "pci_databases_general_information_upgrade_plan_warning": "Una vez que haya realizado el upgrade de su base de datos, no podrá volver a una versión inferior.",
+  "pci_databases_general_information_upgrade_plan_warning": "Una vez que haya realizado el upgrade de su plan, no podrá volver a una versión inferior.",
   "pci_databases_general_information_upgrade_plan_processing": "Migrando la solución...",
   "pci_databases_general_information_upgrade_plan_back": "Información",
   "pci_databases_general_information_upgrade_plan_confirm": "Aceptar",
   "pci_databases_general_information_upgrade_plan_cancel": "Cancelar",
   "pci_databases_general_information_upgrade_plan_success": "Su solicitud de cambio de solución se ha enviado. Será efectivo en unos minutos.",
-  "pci_databases_general_information_upgrade_plan_error": "El cambio de solución no se ha realizado correctamente: {{ message }}"
+  "pci_databases_general_information_upgrade_plan_error": "El cambio de solución no se ha realizado correctamente: {{ message }}",
+  "pci_databases_general_information_upgrade_plan": "Cambiar de plan"
 }

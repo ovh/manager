@@ -1,10 +1,10 @@
 {
-  "pci_databases_general_information_upgrade_version_confirm": "Meine Version aktualisieren",
+  "pci_databases_general_information_upgrade_version_confirm": "Version ändern",
   "pci_databases_general_information_upgrade_version_cancel": "Abbrechen",
-  "pci_databases_general_information_upgrade_version_description": "Sie verwenden derzeit die Version {{currentVersion}} von {{engine}}. Sie können die Version aktualisieren, indem Sie unten auf „Meine Version aktualisieren“ klicken.",
-  "pci_databases_general_information_upgrade_version_warning": "Sobald die Version der Datenbank aktualisiert ist, können Sie nicht mehr zu einer älteren Version zurückkehren.",
+  "pci_databases_general_information_upgrade_version_description": "Sie verwenden derzeit {{engine}} in der Version {{currentVersion}}. Sie können Ihre Instanz aktualisieren, indem Sie unten auf „Meine Version aktualisieren“ klicken.",
+  "pci_databases_general_information_upgrade_version_warning": "Wenn das Update abgeschlossen ist, können Sie nicht mehr zu einer vorherigen Version zurückkehren.",
   "pci_databases_general_information_upgrade_version_label": "Version",
-  "pci_databases_general_information_upgrade_version_placeholder": "Eine Version auswählen",
+  "pci_databases_general_information_upgrade_version_placeholder": "Version auswählen",
   "pci_databases_general_information_upgrade_version_success": "Ihre Anfrage nach Aktualisierung wurde registriert und ist in ein paar Minuten wirksam.",
   "pci_databases_general_information_upgrade_version_error": "Ihr Update konnte nicht korrekt durchgeführt werden: {{ message }}"
 }

@@ -1,6 +1,6 @@
 {
-  "pci_databases_backups_restore_title": "Ripristina un backup ",
-  "pci_databases_backups_restore_description": "Vuoi ripristinare il backup {{ name }}",
+  "pci_databases_backups_restore_title": "Ripristina il backup",
+  "pci_databases_backups_restore_description": "Il ripristino di un backup cancella le informazioni presenti sul cluster. Questa operazione può causare la perdita di dati.",
   "pci_databases_backups_restore_confirm": "Conferma",
   "pci_databases_backups_restore_cancel": "Annulla",
   "pci_databases_backups_restore_success": "Richiesta di ripristino del backup {{ name }} creata correttamente.",

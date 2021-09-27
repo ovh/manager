@@ -1,6 +1,6 @@
 {
-  "pci_databases_backups_restore_title": "Restaurer une sauvegarde",
-  "pci_databases_backups_restore_description": "Voulez vous restaurer votre sauvegarde : {{ name }}",
+  "pci_databases_backups_restore_title": "Restaurer votre sauvegarde",
+  "pci_databases_backups_restore_description": "La restauration d'une sauvegarde écrase les informations présentes actuellement sur votre cluster. Cette opération peut donc provoquer une perte de données.",
   "pci_databases_backups_restore_confirm": "Confirmer",
   "pci_databases_backups_restore_cancel": "Annuler",
   "pci_databases_backups_restore_success": "Requête de restauration de la sauvegarde {{ name }} créée avec succès.",

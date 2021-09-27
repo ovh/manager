@@ -1,10 +1,11 @@
 {
   "pci_databases_general_information_upgrade_plan_description": "Sie können die Dienstleistung auf eine höhere Version migrieren.",
-  "pci_databases_general_information_upgrade_plan_warning": "Nach Upgrade der Datenbank können Sie kein niedrigeres Angebot mehr nutzen.",
+  "pci_databases_general_information_upgrade_plan_warning": "Nach abgeschlossenem Angebotsupgrade können Sie nicht mehr zu einem niedrigeren Angebot zurückkehren.",
   "pci_databases_general_information_upgrade_plan_processing": "Das Angebot wird gerade migriert",
   "pci_databases_general_information_upgrade_plan_back": "Information",
   "pci_databases_general_information_upgrade_plan_confirm": "Bestätigen",
   "pci_databases_general_information_upgrade_plan_cancel": "Abbrechen",
-  "pci_databases_general_information_upgrade_plan_success": "Der Wechsel zu einem anderen Angebot wurde registriert. In wenigen Minuten ist der Wechsel wirksam.",
-  "pci_databases_general_information_upgrade_plan_error": "Der Wechsel des Angebots wurde nicht korrekt durchgeführt: {{ message }}"
+  "pci_databases_general_information_upgrade_plan_success": "Der Angebotswechsel wurde registriert und ist in wenigen Minuten wirksam.",
+  "pci_databases_general_information_upgrade_plan_error": "Der Wechsel des Angebots wurde nicht korrekt durchgeführt: {{ message }}",
+  "pci_databases_general_information_upgrade_plan": "Angebot wechseln"
 }

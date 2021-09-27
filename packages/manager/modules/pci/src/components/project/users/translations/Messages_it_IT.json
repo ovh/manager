@@ -18,7 +18,7 @@
   "pci_projects_project_users_rclone_label": "Scarica un file di configurazione rClone",
   "pci_projects_project_users_token_label": "Genera un token OpenStack",
   "pci_projects_project_users_password_label": "Genera una password",
-  "pci_projects_project_users_modify_password_label": "Modifica la password",
+  "pci_projects_project_users_modify_password_label": "Rigenera la password",
   "pci_projects_project_users_password_message_infos": "La nuova password associata all’utente {{ user }} è <code>{{ password }}</code>.",
   "pci_projects_project_users_password_message_success": "La password dell'utente {{ user }} è stata rigenerata.",
   "pci_projects_project_users_password_message_error": "Si è verificato un errore durante la generazione della password dell'utente {{ user }}: {{ message }}.",
@@ -27,12 +27,8 @@
   "pci_projects_project_users_add_label": "Aggiungi un utente",
   "pci_projects_project_users_matrix_show": "Mostra la matrice dei ruoli",
   "pci_projects_project_users_matrix_hide": "Nascondi la matrice dei ruoli",
-  "pci_projects_project_users_status_ready": "Attivo",
-  "pci_projects_project_users_status_error": "In errore",
-  "pci_projects_project_users_status_error_inconsistent_spec": "In errore",
-  "pci_projects_project_users_status_pending": "In attesa",
-  "pci_projects_project_users_modify_password_label": "Modifica la password",
   "pci_projects_project_users_generate_s3_credentials": "Genera i certificati S3",
   "pci_projects_project_users_generate_s3_credentials_success": "Le credenziali S3 per l'utente {{user}} sono state rigenerate.",
-  "pci_projects_project_users_generate_s3_credentials_error": "Si è verificato un errore durante la generazione delle informazioni di identificazione per l’utente {{ user }} : {{ message }}."
+  "pci_projects_project_users_generate_s3_credentials_error": "Si è verificato un errore durante la generazione delle informazioni di identificazione per l’utente {{ user }} : {{ message }}.",
+  "pci_projects_project_users_createdAt_label": "Data di creazione"
 }

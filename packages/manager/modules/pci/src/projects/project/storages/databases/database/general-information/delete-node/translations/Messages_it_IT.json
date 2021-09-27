@@ -1,0 +1,11 @@
+{
+  "pci_databases_general_information_delete_node": "Elimina un nodo",
+  "pci_databases_general_information_delete_node_confirm": "Conferma",
+  "pci_databases_general_information_delete_node_cancel": "Annulla",
+  "pci_databases_general_information_delete_node_description_1": "Al momento hai a disposizione {{nodesCount}} nodi. Vuoi eliminare un nodo? Stai per ridurre la fatturazione di ",
+  "pci_databases_general_information_delete_node_description_2": " all'ora",
+  "pci_databases_general_information_delete_node_pending": "La richiesta di eliminazione è stata presa in carico correttamente e sarà effettiva in pochi minuti.",
+  "pci_databases_general_information_delete_node_success": "Il nodo è stato eliminato correttamente dal cluster",
+  "pci_databases_general_information_delete_node_error": "Si è verificato un errore durante l'eliminazione del nodo. Riprova più tardi o contatta il supporto.",
+  "pci_databases_general_information_delete_node_description": "Al momento hai a disposizione {{nodesCount}} nodi. Vuoi eliminare un nodo? Stai per ridurre la fatturazione di "
+}

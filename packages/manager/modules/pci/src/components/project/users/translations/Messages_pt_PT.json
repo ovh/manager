@@ -18,7 +18,7 @@
   "pci_projects_project_users_rclone_label": "Transferir um ficheiro de configuração rClone",
   "pci_projects_project_users_token_label": "Gerar um token OpenStack",
   "pci_projects_project_users_password_label": "Reinicializar uma palavra-passe",
-  "pci_projects_project_users_modify_password_label": "Alterar palavra-passe",
+  "pci_projects_project_users_modify_password_label": "Gerar nova palavra-passe",
   "pci_projects_project_users_password_message_infos": "A nova palavra-passe do utilizador {{ user }} é <code>{{ password }}</code>.",
   "pci_projects_project_users_password_message_success": "A palavra-passe do utilizador {{ user }} foi reinicializada.",
   "pci_projects_project_users_password_message_error": "Ocorreu um erro ao reinicializar a palavra-passe do utilizador {{ user }}: {{ message }}.",
@@ -29,5 +29,6 @@
   "pci_projects_project_users_matrix_hide": "Ocultar a matriz das funções",
   "pci_projects_project_users_generate_s3_credentials": "Gerar os certificados S3",
   "pci_projects_project_users_generate_s3_credentials_success": "As informações de identificação S3 para o utilizador {{user}} foram regeneradas.",
-  "pci_projects_project_users_generate_s3_credentials_error": "Ocorreu um erro ao gerar as informações de identificação para o utilizador {{ user }}: {{ message }}."
+  "pci_projects_project_users_generate_s3_credentials_error": "Ocorreu um erro ao gerar as informações de identificação para o utilizador {{ user }}: {{ message }}.",
+  "pci_projects_project_users_createdAt_label": "Data de criação"
 }

@@ -2,7 +2,7 @@
   "pci_databases_general_information_add_node": "Añadir un nodo",
   "pci_databases_general_information_add_node_confirm": "Aceptar",
   "pci_databases_general_information_add_node_cancel": "Cancelar",
-  "pci_databases_general_information_add_node_description": "Actualmente tiene {{nodesCount}} nodos. Puede añadir un nodo para",
+  "pci_databases_general_information_add_node_description": "Actualmente tiene {{nodesCount}} nodos. ¿Seguro que quiere añadir uno? Su factura aumentará en",
   "pci_databases_general_information_add_node_success": "La solicitud para añadir el nodo se ha registrado y será efectiva en unos minutos.",
   "pci_databases_general_information_add_node_error": "Se ha producido un error al añadir el nodo: {{ message }}"
 }

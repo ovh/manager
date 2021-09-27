@@ -1,0 +1,9 @@
+{
+  "pci_databases_edit_name": "Alterar o nome",
+  "pci_databases_edit_name_edit": "Alterar",
+  "pci_databases_edit_name_cancel": "Cancelar",
+  "pci_databases_edit_name_description": "Altera o nome apresentado no cabeçalho",
+  "pci_databases_edit_name_label": "Nome",
+  "pci_databases_edit_name_success": "O nome do serviço foi atualizado.",
+  "pci_databases_edit_name_error": "Ocorreu um erro aquando da renomeação do seu serviço: {{ message }}"
+}

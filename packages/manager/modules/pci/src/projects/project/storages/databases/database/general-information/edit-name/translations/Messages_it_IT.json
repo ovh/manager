@@ -4,6 +4,6 @@
   "pci_databases_general_information_edit_name_cancel": "Annulla",
   "pci_databases_general_information_edit_name_description": "Modifica il nome visualizzato nell'header",
   "pci_databases_general_information_edit_name_label": "Nome",
-  "pci_databases_general_information_edit_name_success": "Il nome del database è stato aggiornato.",
-  "pci_databases_general_information_edit_name_error": "Si è verificato un errore durante l’aggiornamento del nome del database: {{error}}"
+  "pci_databases_general_information_edit_name_success": "Il nome del servizio è stato aggiornato.",
+  "pci_databases_general_information_edit_name_error": "Si è verificato un errore durante la modifica del nome del servizio: {{ message }}"
 }

@@ -1,6 +1,6 @@
 {
-  "pci_databases_backups_restore_title": "Restaurar una copia de seguridad",
-  "pci_databases_backups_restore_description": "¿Quiere restaurar la copia de seguridad {{ name }}?",
+  "pci_databases_backups_restore_title": "Restaurar la copia de seguridad (backup)",
+  "pci_databases_backups_restore_description": "La restauración de una copia de seguridad sustituye la información que se encuentra en el cluster actualmente. Esta operación puede provocar la pérdida de datos.",
   "pci_databases_backups_restore_confirm": "Confirmar",
   "pci_databases_backups_restore_cancel": "Cancelar",
   "pci_databases_backups_restore_success": "La solicitud de restauración de la copia de seguridad {{ name }} se ha creado.",

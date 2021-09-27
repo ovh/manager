@@ -2,6 +2,10 @@
   "pci_databases_backup": "Backups",
   "pci_databases_backup_expiration_date": "Data de expiração",
   "pci_databases_backup_restore": "Restaurar",
-  "pci_databases_backup_description1": "Poderá encontrar abaixo a lista dos seus backups. Pode restaurar ou eliminar cada um deles.",
-  "pci_databases_backup_description2": "Estes backups são conservados para a manutenção operacional do seu serviço."
+  "pci_databases_backup_description1": "Poderá encontrar abaixo a lista dos seus backups. Pode restaurar ou fork cada um deles.",
+  "pci_databases_backup_description2": "Estes backups são conservados para a manutenção operacional do seu serviço.",
+  "pci_databases_backup_fork": "Duplicar (Fork)",
+  "pci_databases_backup_region": "Localização",
+  "pci_databases_backup_informations_title": "Backups das bases de dados",
+  "pci_databases_backup_informations_retention": "Período de retenção"
 }
