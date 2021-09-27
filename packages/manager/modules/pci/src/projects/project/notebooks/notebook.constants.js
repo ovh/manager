@@ -9,6 +9,7 @@ export const NOTEBOOK_STATUS = {
   STOPPING: 'STOPPING',
   STOPPED: 'STOPPED',
   FAILED: 'FAILED',
+  ERROR: 'ERROR',
 };
 
 export const NOTEBOOK_POLLER_NAMESPACES = {
