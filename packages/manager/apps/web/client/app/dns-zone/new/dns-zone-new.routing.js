@@ -52,7 +52,7 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
-      isZoneValid: /* @ngInject */ () => Promise.resolve(true),
+      isZoneValid: /* @ngInject */ () => () => Promise.resolve(true),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('domains_newdnszone_order_title'),
     },

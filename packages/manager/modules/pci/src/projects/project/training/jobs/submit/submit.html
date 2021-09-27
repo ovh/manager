@@ -24,17 +24,90 @@
             data-editable="!$ctrl.isSubmit"
             data-valid="$ctrl.job.image.id"
         >
-            <oui-message type="info">
+            <div class="container-fluid px-0">
+                <div class="row">
+                    <div
+                        class="col-md-6 col-xl-4 my-3"
+                        data-ng-repeat="preset in $ctrl.presetImages track by preset.id"
+                    >
+                        <oui-select-picker
+                            data-name="{{:: preset.id }}"
+                            data-description="{{:: preset.description }}"
+                            data-model="$ctrl.job.image"
+                            data-picture="{{:: preset.logo }}"
+                            data-label="{{:: preset.name }}"
+                            data-variant="light"
+                            data-on-change="$ctrl.generateName()"
+                            data-values="[preset]"
+                            data-required
+                        >
+                            <oui-select-picker-section
+                                class="oui-select-picker__section"
+                            >
+                                <a
+                                    target="_blank"
+                                    class="oui-button oui-button_ghost"
+                                    rel="noopener"
+                                    data-ng-href="{{:: preset.link }}"
+                                >
+                                    <span
+                                        data-translate="pci_projects_project_training_jobs_submit_select_image_preset_info"
+                                    ></span>
+                                    <span
+                                        class="oui-icon oui-icon-external-link"
+                                        aria-hidden="true"
+                                    ></span>
+                                </a>
+                            </oui-select-picker-section>
+                        </oui-select-picker>
+                    </div>
+                    <div class="col-md-6 col-xl-4 my-3">
+                        <oui-select-picker
+                            data-name="missing"
+                            data-description="{{:: 'pci_projects_project_training_jobs_submit_select_image_preset_request' | translate }}"
+                            data-label="{{:: 'pci_projects_project_training_jobs_submit_select_image_preset_missing_framework' | translate }}"
+                            data-variant="light"
+                            data-values="[preset]"
+                            data-required
+                            data-model="$ctrl.job.image"
+                            data-on-change="$ctrl.generateName()"
+                        >
+                            <oui-select-picker-section
+                                class="oui-select-picker__section"
+                            >
+                                <a
+                                    target="_blank"
+                                    class="oui-button oui-button_ghost"
+                                    rel="noopener"
+                                    data-ng-href="{{ $ctrl.discordUrl }}"
+                                >
+                                    <span>OVHcloud Discord</span>
+                                    <span
+                                        class="oui-icon oui-icon-external-link"
+                                        aria-hidden="true"
+                                    ></span>
+                                </a>
+                            </oui-select-picker-section>
+                        </oui-select-picker>
+                    </div>
+                </div>
+            </div>
+            <button
+                class="oui-button sizing__advanced-button oui-button_ghost mb-3"
+                oui-tooltip="{{:: 'pci_projects_project_training_jobs_submit_select_image_advanced_tips' | translate  }}"
+                oui-tooltip-placement="top"
+                type="button"
+                data-ng-click="$ctrl.onClickAdvancedImage()"
+            >
                 <span
-                    >{{ ::
-                    'pci_projects_project_training_jobs_submit_select_image_info'
-                    | translate }}</span
-                >
-            </oui-message>
+                    data-translate="pci_projects_project_training_jobs_submit_select_image_advanced"
+                ></span>
+            </button>
             <oui-field
                 data-size="xl"
-                data-label="{{:: 'pci_projects_project_training_jobs_submit_select_image_name' | translate }}"
                 data-help-text="{{:: 'pci_projects_project_training_jobs_submit_select_image_tips' | translate  }}"
+                data-label="{{:: 'pci_projects_project_training_jobs_submit_select_image_name' | translate }}"
+                data-ng-if="$ctrl.showAdvancedImage"
             >
                 <input
                     class="oui-input"
