@@ -1,0 +1,12 @@
+<form name="deleteTopic">
+    <oui-modal
+        data-on-dismiss="$ctrl.goBack()"
+        data-primary-label="{{:: 'pci_databases_topics_delete_topic_confirm' | translate}}"
+        data-primary-action="$ctrl.deleteTopic()"
+        data-secondary-action="$ctrl.cancel()"
+        data-secondary-label="{{:: 'pci_databases_topics_delete_topic_cancel' | translate}}"
+        data-loading="$ctrl.processing"
+        data-heading="{{:: 'pci_databases_topics_delete_topic' | translate}}"
+    >
+    </oui-modal>
+</form>

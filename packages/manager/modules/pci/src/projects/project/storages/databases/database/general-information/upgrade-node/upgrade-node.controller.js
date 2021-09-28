@@ -12,6 +12,7 @@ export default class {
   $onInit() {
     this.selectedFlavor = this.currentFlavor;
     this.upgradingFlavor = false;
+    this.trackDatabases('config_upgrade_node', 'page');
   }
 
   onFlavorSelect(selectedFlavor) {
@@ -24,9 +25,7 @@ export default class {
   }
 
   upgradeNode() {
-    this.trackDatabases(
-      'dashboard::general_information::popin_upgrade_node_validate',
-    );
+    this.trackDashboard('general_information::popin_upgrade_node_validate');
     this.upgradingFlavor = true;
     return this.DatabaseService.editDatabase(
       this.projectId,
@@ -60,9 +59,7 @@ export default class {
   }
 
   cancel() {
-    this.trackDatabases(
-      'dashboard::general_information::popin_upgrade_node_cancel',
-    );
+    this.trackDashboard('general_information::popin_upgrade_node_cancel');
     this.goBack();
   }
 }

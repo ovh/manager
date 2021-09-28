@@ -26,6 +26,9 @@ export default /* @ngInject */ ($stateProvider) => {
           }),
         goBack: /* @ngInject */ (goBackToBackups) => goBackToBackups,
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };

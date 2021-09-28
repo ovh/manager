@@ -1,5 +1,6 @@
-import find from 'lodash/find';
 import set from 'lodash/set';
+import isFeatureActivated from '../../features.constants';
+import { SECRET_TYPE } from '../../databases.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -12,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('pci_projects_project_users_title'),
-        users: /* @ngInject */ (DatabaseService, database, projectId, roles) =>
+        users: /* @ngInject */ (DatabaseService, database, projectId) =>
           DatabaseService.getUsers(
             projectId,
             database.engine,
@@ -22,7 +23,9 @@ export default /* @ngInject */ ($stateProvider) => {
               set(
                 user,
                 'roles',
-                user.roles.map((role) => find(roles, { name: role })),
+                user.roles?.map((role, index) => {
+                  return { id: index, name: role };
+                }),
               ),
             ),
           ),
@@ -30,9 +33,9 @@ export default /* @ngInject */ ($stateProvider) => {
           $state,
           database,
           projectId,
-          trackDatabases,
+          trackDashboard,
         ) => () => {
-          trackDatabases('dashboard::users::add_a_user');
+          trackDashboard('users::add_a_user');
           return $state.go(
             'pci.projects.project.storages.databases.dashboard.users.add',
             {
@@ -45,9 +48,9 @@ export default /* @ngInject */ ($stateProvider) => {
           $state,
           database,
           projectId,
-          trackDatabases,
+          trackDashboard,
         ) => (user) => {
-          trackDatabases('dashboard::users::options_menu::delete_user');
+          trackDashboard('users::options_menu::delete_user');
           return $state.go(
             'pci.projects.project.storages.databases.dashboard.users.delete',
             {
@@ -56,6 +59,73 @@ export default /* @ngInject */ ($stateProvider) => {
               userId: user.id,
             },
           );
+        },
+
+        showKey: /* @ngInject */ (
+          $state,
+          database,
+          projectId,
+          trackDashboard,
+        ) => {
+          if (isFeatureActivated('showKey', database.engine)) {
+            return (user) => {
+              trackDashboard('users::options_menu::show_key');
+              return $state.go(
+                'pci.projects.project.storages.databases.dashboard.users.show-secret',
+                {
+                  projectId,
+                  databaseId: database.id,
+                  user,
+                  type: SECRET_TYPE.key,
+                },
+              );
+            };
+          }
+          return null;
+        },
+        showUserInformations: /* @ngInject */ (
+          $state,
+          database,
+          projectId,
+          trackDashboard,
+        ) => {
+          if (isFeatureActivated('showUserInformations', database.engine)) {
+            return (user) => {
+              trackDashboard('users::options_menu::show_informations');
+              return $state.go(
+                'pci.projects.project.storages.databases.dashboard.users.informations',
+                {
+                  projectId,
+                  databaseId: database.id,
+                  user,
+                },
+              );
+            };
+          }
+          return null;
+        },
+
+        showCert: /* @ngInject */ (
+          $state,
+          database,
+          projectId,
+          trackDashboard,
+        ) => {
+          if (isFeatureActivated('showCert', database.engine)) {
+            return (user) => {
+              trackDashboard('dashboard::users::options_menu::show_cert');
+              return $state.go(
+                'pci.projects.project.storages.databases.dashboard.users.show-secret',
+                {
+                  projectId,
+                  databaseId: database.id,
+                  user,
+                  type: SECRET_TYPE.cert,
+                },
+              );
+            };
+          }
+          return null;
         },
 
         isActionDisabled: /* @ngInject */ (database) => () =>
@@ -102,9 +172,9 @@ export default /* @ngInject */ ($stateProvider) => {
         goToModifyPassword: /* @ngInject */ (
           $state,
           projectId,
-          trackDatabases,
+          trackDashboard,
         ) => (user) => {
-          trackDatabases('dashboard::users::options_menu::modify_password');
+          trackDashboard('users::options_menu::modify_password');
           return $state.go(
             'pci.projects.project.storages.databases.dashboard.users.modify-password',
             {

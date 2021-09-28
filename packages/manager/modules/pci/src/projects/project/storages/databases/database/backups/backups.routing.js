@@ -75,6 +75,9 @@ export default /* @ngInject */ ($stateProvider) => {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('pci_databases_backup'),
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };

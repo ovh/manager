@@ -107,7 +107,7 @@
                     <oui-tile-description>
                         <p
                             class="mb-1"
-                            data-ng-bind=":: $ctrl.capitalize($ctrl.database.engine)"
+                            data-ng-bind=":: $ctrl.database.getEngineLabel()"
                         ></p>
                         <p
                             class="mb-0"
@@ -248,7 +248,7 @@
                     <oui-tile-description>
                         <oui-tile-description>
                             <oui-clipboard
-                                data-model="$ctrl.connectionInformation.mongoShell"
+                                data-model="$ctrl.database.uri"
                                 data-id="connection-mongo-shell"
                                 data-name="connection-mongo-shell"
                             ></oui-clipboard>
@@ -258,6 +258,7 @@
 
                 <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_replicate_URI_label' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('replicateURI')"
                 >
                     <oui-tile-description>
                         <oui-tile-description>
@@ -270,12 +271,18 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_database_host' | translate }}"
+                    data-description="{{:: $ctrl.database.domain }}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_database_port' | translate }}"
                     data-description="{{:: $ctrl.database.port }}"
                 >
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_user_label' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('usersTab')"
                 >
                     <oui-tile-description>
                         <span
@@ -315,9 +322,30 @@
                 >
                     <oui-tile-description>
                         <span
-                            data-translate="{{'pci_databases_general_information_' + $ctrl.database.sslMode}}"
+                            data-translate="{{'pci_databases_general_information_' + $ctrl.database.getSSLModeKey()}}"
                         ></span>
                     </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_certificate_label' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('certificate')"
+                >
+                    <oui-tile-description>
+                        <oui-clipboard
+                            data-model="$ctrl.database.certificate.ca"
+                            data-id="certificata-ca"
+                            data-name="certificata-ca"
+                        ></oui-clipboard>
+                    </oui-tile-description>
+                    <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.downloadCertificate()"
+                        >
+                            <span
+                                data-translate="pci_databases_general_information_certificate_download"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
                 </oui-tile-definition>
             </oui-tile>
         </div>
@@ -378,20 +406,47 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_new_fork_label' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('forkFromGeneralInformation')"
+                >
+                    <oui-tile-description>
+                        <button
+                            class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                            data-ng-click="$ctrl.goToFork()"
+                        >
+                            <span
+                                data-translate="pci_databases_general_information_new_fork_link"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right ml-1"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_allowed_ips_label' | translate }}"
                 >
                     <oui-tile-description>
                         <span
-                            data-ng-if="$ctrl.allowedIps.length === 0"
                             class="oui-badge oui-badge_warning"
+                            data-ng-if="$ctrl.allowedIps.length === 0"
                             data-translate="pci_databases_general_information_allowed_ips_none"
                         ></span>
+
                         <p
-                            data-ng-if="$ctrl.allowedIps.length !== 0 && $index < 3"
-                            class="mb-0 oui-badge oui-badge_success"
+                            data-ng-if="$ctrl.allowedIps.length !== 0 && $index < $ctrl.maxAllowedIpsToShow"
                             data-ng-repeat="allowedIp in $ctrl.allowedIps track by allowedIp.ip"
-                            data-ng-bind="allowedIp.ip"
-                        ></p>
+                        >
+                            <span
+                                class="oui-badge oui-badge_success"
+                                data-ng-bind="allowedIp.ip"
+                            ></span>
+                            <span
+                                data-ng-if="$ctrl.allowedIps.length > $ctrl.maxAllowedIpsToShow && $index === ($ctrl.maxAllowedIpsToShow-1)"
+                                >...</span
+                            >
+                        </p>
                         <button
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                             type="button"

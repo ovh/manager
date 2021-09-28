@@ -1,6 +1,6 @@
 import set from 'lodash/set';
 import uniqueId from 'lodash/uniqueId';
-import Chart from 'chart.js'; // eslint-disable-line
+import Chart from 'chart.js';
 
 import template from './chartjs.html';
 
@@ -20,8 +20,6 @@ export default /* @ngInject */ () => ({
     set(controller, 'ctx', canvas.getContext('2d'));
   },
   controller: /* @ngInject */ function directiveController($scope) {
-    const self = this;
-
     this.createChart = function createChart(data) {
       if (this.chartInstance) {
         this.chartInstance.destroy();
@@ -48,17 +46,17 @@ export default /* @ngInject */ () => ({
 
       this.utils = {
         refresh: () => {
-          if (self.chartInstance) {
-            self.chartInstance.update();
+          if (this.chartInstance) {
+            this.chartInstance.update();
           } else {
-            self.createChart(this.pciChartjs);
+            this.createChart(this.pciChartjs);
           }
         },
       };
 
       $scope.$on('destroy', () => {
-        if (self.chartInstance) {
-          self.chartInstance.destroy();
+        if (this.chartInstance) {
+          this.chartInstance.destroy();
         }
       });
     };

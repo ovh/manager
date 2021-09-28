@@ -9,10 +9,11 @@ export default class {
 
   $onInit() {
     this.isLoading = false;
+    this.trackDashboard('allowed-ips::options::delete', 'page');
   }
 
   deleteIp() {
-    this.trackDatabases('dashboard::allowed-ips::options::delete_ips_confirm');
+    this.trackDashboard('allowed-ips::options::delete_ips_confirm');
     this.isLoading = true;
     return this.service
       .deleteRestrictedIp(
@@ -22,17 +23,13 @@ export default class {
         this.ipToDelete.ip,
       )
       .then(() => {
-        this.trackDatabases(
-          'dashboard::allowed-ips::options::delete_ips_validate',
-        );
+        this.trackDashboard('allowed-ips::options::delete_ips_validate');
         this.goBack(
           this.$translate.instant('pci_databases_allowed_ips_delete_success'),
         );
       })
       .catch((error) => {
-        this.trackDatabases(
-          'dashboard::allowed-ips::options::delete_ips_error',
-        );
+        this.trackDashboard('allowed-ips::options::delete_ips_error');
         this.goBack(
           this.$translate.instant('pci_databases_allowed_ips_delete_error', {
             message: get(error, 'data.message'),
@@ -43,7 +40,7 @@ export default class {
   }
 
   cancel() {
-    this.trackDatabases('dashboard::allowed-ips::options::delete_ips_cancel');
+    this.trackDashboard('allowed-ips::options::delete_ips_cancel');
     this.goBack();
   }
 }

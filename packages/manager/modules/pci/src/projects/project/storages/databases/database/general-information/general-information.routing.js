@@ -1,6 +1,7 @@
 import find from 'lodash/find';
 import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
 import { NODES_PER_ROW } from '../../databases.constants';
+import isFeatureActivated from '../../features.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const stateName =
@@ -89,6 +90,10 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      goToFork: /* @ngInject */ ($state, database) => () =>
+        $state.go('pci.projects.project.storages.databases.fork', {
+          database,
+        }),
       vRack: /* @ngInject */ (DatabaseService, projectId) =>
         DatabaseService.getVRack(projectId),
       vRackLink: /* @ngInject */ (vRack, coreURLBuilder) => {
@@ -156,7 +161,7 @@ export default /* @ngInject */ ($stateProvider) => {
             database.id,
           )
             .then((databaseInfo) => {
-              CucCloudMessage.flushMessages(+'-' + databaseInfo.id);
+              CucCloudMessage.flushMessages(`${stateName}-${databaseInfo.id}`);
               CucCloudMessage.success(
                 $translate.instant(
                   'pci_databases_general_information_database_ready',
@@ -220,6 +225,8 @@ export default /* @ngInject */ ($stateProvider) => {
           DatabaseService.stopPollingNodeStatus(database.id, node.id),
         ),
       nodesPerRow: () => NODES_PER_ROW,
+      isFeatureActivated: /* @ngInject */ (engine) => (feature) =>
+        isFeatureActivated(feature, engine.name),
     },
   });
 };

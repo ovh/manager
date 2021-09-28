@@ -1,0 +1,25 @@
+<form ng-submit="$ctrl.addTag()">
+    <oui-field data-label="{{ $ctrl.label }}" data-size="xl">
+        <div class="oui-input-group oui-input-group_xl">
+            <input
+                class="oui-input"
+                type="text"
+                id="tagInput"
+                name="tagInput"
+                ng-model="$ctrl.tag"
+                ng-minlength="$ctrl.min"
+                ng-maxlength="$ctrl.max"
+                ng-pattern="$ctrl.pattern"
+                ng-keypress="$ctrl.handleKeyPressed($event)"
+            />
+            <oui-button disabled="$ctrl.isDisabled()" ng-click="$ctrl.addTag()"
+                ><span data-ng-bind="$ctrl.buttonLabel"></span
+            ></oui-button>
+        </div>
+        <oui-chips
+            items="$ctrl.items"
+            on-remove="$ctrl.removeTag(removed)"
+            closable
+        ></oui-chips>
+    </oui-field>
+</form>

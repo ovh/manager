@@ -1,5 +1,9 @@
 import capitalize from 'lodash/capitalize';
-import { SHELL_NAMES } from '../../databases.constants';
+import {
+  SHELL_NAMES,
+  MAX_IPS_DISPLAY,
+  CERTIFICATE_FILENAME,
+} from '../../databases.constants';
 
 export default class {
   /* @ngInject */
@@ -8,9 +12,11 @@ export default class {
     CucCloudMessage,
     ovhManagerRegionService,
     DatabaseService,
+    CucControllerHelper,
   ) {
     this.$translate = $translate;
     this.capitalize = capitalize;
+    this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.DatabaseService = DatabaseService;
@@ -21,6 +27,7 @@ export default class {
     this.loadMessages();
     this.connectionInformation = this.getConnectionInformation();
     this.pollDatabaseStatus();
+    this.maxAllowedIpsToShow = MAX_IPS_DISPLAY;
   }
 
   getConnectionInformation() {
@@ -37,40 +44,56 @@ export default class {
     };
   }
 
+  downloadCertificate() {
+    this.trackDashboard('general_information::download_certificate');
+    this.CucControllerHelper.constructor.downloadContent({
+      fileContent: this.database.certificate.ca,
+      fileName: CERTIFICATE_FILENAME,
+    });
+  }
+
+  showCertificate() {
+    this.CucCloudMessage.info(
+      {
+        textHtml: this.$translate.instant(
+          'pci_databases_general_information_certificate_tooltip',
+          {
+            certificate: this.database.certificate.ca,
+          },
+        ),
+      },
+      this.messageContainer,
+    );
+  }
+
   addNode() {
-    this.trackDatabases('dashboard::general_information::add_node');
+    this.trackDashboard('general_information::add_node');
     this.goToAddNode();
   }
 
   deleteNode() {
-    this.trackDatabases('dashboard::general_information::remove_node');
+    this.trackDashboard('general_information::remove_node');
     this.goToDeleteNode();
   }
 
   manageUsers() {
     if (this.users.length === 0 && this.allowedIps.length === 0) {
-      this.trackDatabases(
-        'dashboard::general_information::no_user_ip_banner_manage_user',
-      );
+      this.trackDashboard('general_information::no_user_ip_banner_manage_user');
     } else if (this.users.length === 0) {
-      this.trackDatabases(
-        'dashboard::general_information::no_user_banner_manage_user',
-      );
+      this.trackDashboard('general_information::no_user_banner_manage_user');
     } else {
-      this.trackDatabases('dashboard::general_information::manage_user');
+      this.trackDashboard('general_information::manage_user');
     }
 
     this.goToManagerUsers();
   }
 
   trackManageVRack() {
-    this.trackDatabases('dashboard::general_information::goto_vrack');
+    this.trackDashboard('general_information::goto_vrack');
   }
 
   manageAllowedIps() {
-    this.trackDatabases(
-      'dashboard::general_information::configuration::manage_ips',
-    );
+    this.trackDashboard('general_information::configuration::manage_ips');
     this.goToAllowedIPs();
   }
 
@@ -89,22 +112,22 @@ export default class {
   }
 
   upgradeVersion() {
-    this.trackDatabases('dashboard::general_information::upgrade_version');
+    this.trackDashboard('general_information::upgrade_version');
     this.goToUpgradeVersion();
   }
 
   upgradePlan() {
-    this.trackDatabases('dashboard::general_information::upgrade_plan');
+    this.trackDashboard('general_information::upgrade_plan');
     this.goToUpgradePlan();
   }
 
   upgradeNode() {
-    this.trackDatabases('dashboard::general_information::upgrade_node');
+    this.trackDashboard('general_information::upgrade_node');
     this.goToUpgradeNode();
   }
 
   deleteDatabase() {
-    this.trackDatabases('dashboard::general_information::delete_database');
+    this.trackDashboard('general_information::delete_database');
     this.goToDeleteDatabase();
   }
 

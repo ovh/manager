@@ -10,10 +10,11 @@ export default class {
   $onInit() {
     this.deletingNode = false;
     this.name = this.database.description;
+    this.trackDashboard('general_information::remove_node', 'page');
   }
 
   deleteNode() {
-    this.trackDatabases('dashboard::general_information::remove_node_validate');
+    this.trackDashboard('general_information::remove_node_validate');
     this.deletingNode = true;
     this.nodeInfo = this.database.nodes[this.database.nodes.length - 1];
     return this.DatabaseService.deleteNode(
@@ -45,7 +46,7 @@ export default class {
   }
 
   cancel() {
-    this.trackDatabases('dashboard::general_information::remove_node_cancel');
+    this.trackDashboard('general_information::remove_node_cancel');
     this.goBack();
   }
 }

@@ -5,3 +5,8 @@ ovh-manager-database-list {
   @import '~bootstrap4/scss/_utilities';
   @import '~bootstrap4/scss/_grid';
 }
+ovh-manager-pci-project-databases {
+  img.database-engine-logo {
+    width: 3.125rem;
+  }
+}

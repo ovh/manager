@@ -18,6 +18,9 @@ export default /* @ngInject */ ($stateProvider) => {
         breadcrumb: () => null,
         goBack: /* @ngInject */ (goBackToAllowedIps) => goBackToAllowedIps,
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };

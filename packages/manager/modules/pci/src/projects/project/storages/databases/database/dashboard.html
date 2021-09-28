@@ -8,6 +8,7 @@
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('usersTab')"
             data-href="{{ $ctrl.usersLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.usersLink"
             ><span
@@ -15,6 +16,23 @@
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('aclTab')"
+            data-href="{{ $ctrl.aclLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.aclLink"
+            ><span
+                data-translate="pci_databases_dashboard_acl_tab_title"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('databaseTab')"
+            data-href="{{ $ctrl.databasesLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.databasesLink"
+            ><span
+                data-translate="pci_databases_dashboard_databases_tab_title"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('backupTab')"
             data-href="{{ $ctrl.backupsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.backupsLink"
             ><span
@@ -40,6 +58,14 @@
             data-active="$ctrl.currentActiveLink() === $ctrl.metricsLink"
             ><span
                 data-translate="pci_databases_dashboard_metrics_tab_title"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('topicsTab')"
+            data-href="{{ $ctrl.topicsLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.topicsLink"
+            ><span
+                data-translate="pci_databases_dashboard_topics_tab_title"
             ></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
