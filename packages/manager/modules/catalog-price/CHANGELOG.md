@@ -1,3 +1,17 @@
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.4.1...@ovh-ux/manager-catalog-price@1.5.0) (2021-09-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1171] ([f28d620](https://github.com/ovh/manager/commit/f28d620e8b25af15c95884fbbc840b245319e4ca))
+
+
+### Features
+
+* display price with hourly interval ([be132a3](https://github.com/ovh/manager/commit/be132a319ce37589ca9dc5b42b6369d9f8914a9c))
+
+
+
 ## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.4.0...@ovh-ux/manager-catalog-price@1.4.1) (2021-07-01)
 
 

@@ -1,3 +1,18 @@
+# [5.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.43.0...@ovh-ux/manager-pci@5.44.0) (2021-09-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1171] ([f28d620](https://github.com/ovh/manager/commit/f28d620e8b25af15c95884fbbc840b245319e4ca))
+* **users.roles:** fix generate s3 cred error ([#5631](https://github.com/ovh/manager/issues/5631)) ([8a92771](https://github.com/ovh/manager/commit/8a92771fb085bc699d9b445edb6fa50bc6f0f0e6))
+
+
+### Features
+
+* **pci.databases:** add MongoDB offer ([c7a288d](https://github.com/ovh/manager/commit/c7a288dce72ab10df7c53af2fea8b51ff40ee46d))
+
+
+
 # [5.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.42.3...@ovh-ux/manager-pci@5.43.0) (2021-09-27)
 
 
