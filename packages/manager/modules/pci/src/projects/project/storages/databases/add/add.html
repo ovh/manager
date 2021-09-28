@@ -85,7 +85,6 @@
     >
         <oui-field
             data-label="{{ ::'pci_database_add_nodes_count' | translate }}"
-            data-label-popover="{{ 'pci_database_add_nodes_count_tooltip' | translate }}"
         >
             <oui-numeric
                 data-disabled="true"
@@ -254,11 +253,15 @@
             data-order-data="$ctrl.orderData"
             data-user="$ctrl.user"
         ></database-order-command>
-        <div class="mb-3">
+        <div
+            class="mb-3"
+            data-ng-if="$ctrl.model.engine.selectedVersion.status === 'BETA'"
+        >
             <pci-project-lab-agreements
                 data-lab="$ctrl.lab"
                 data-ng-if="!$ctrl.lab.isActivated()"
                 data-on-accept="$ctrl.acceptLab(accepted)"
+                data-on-contract-click="$ctrl.clickOnContract()"
             ></pci-project-lab-agreements>
         </div>
         <div data-ng-if="$ctrl.processingOrder">

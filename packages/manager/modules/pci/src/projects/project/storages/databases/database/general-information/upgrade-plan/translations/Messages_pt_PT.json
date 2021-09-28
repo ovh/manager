@@ -6,5 +6,6 @@
   "pci_databases_general_information_upgrade_plan_confirm": "Validar",
   "pci_databases_general_information_upgrade_plan_cancel": "Cancelar",
   "pci_databases_general_information_upgrade_plan_success": "A alteração da oferta foi registada. Ficará efetiva dentro de alguns minutos.",
-  "pci_databases_general_information_upgrade_plan_error": "A sua alteração da oferta não foi corretamente efetuada: {{ message }}"
+  "pci_databases_general_information_upgrade_plan_error": "A sua alteração da oferta não foi corretamente efetuada: {{ message }}",
+  "pci_databases_general_information_upgrade_plan": "Mudar de oferta"
 }

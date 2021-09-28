@@ -46,10 +46,11 @@
         ></dt>
         <dd class="col-sm-9 my-auto">
             <ovh-manager-catalog-price
-                data-price="$ctrl.flavor.monthlyPrice.priceInUcents"
-                data-tax="$ctrl.flavor.monthlyPrice.tax"
+                data-price="$ctrl.flavor.hourlyPrice.priceInUcents"
+                data-tax="$ctrl.flavor.hourlyPrice.tax"
                 data-user="$ctrl.user"
                 data-show-zero-price="true"
+                data-interval="'hour'"
             >
             </ovh-manager-catalog-price>
         </dd>

@@ -1,0 +1,13 @@
+{
+  "pci_databases_general_information_upgrade_node_confirm": "Melhorar o modelo de nó",
+  "pci_databases_general_information_upgrade_node": "Mudar de modelo de nó",
+  "pci_databases_general_information_upgrade_node_back": "Informação",
+  "pci_databases_general_information_upgrade_node_cancel": "Cancelar",
+  "pci_databases_general_information_upgrade_node_description": "Atualmente, utiliza o modelo de nó {{currentNodeModel}}. Pode melhorá-lo clicando no botão «Melhorar o meu modelo de nó», em baixo.",
+  "pci_databases_general_information_upgrade_node_warning": "Depois de realizar a alteração, não poderá voltar a um modelo inferior.",
+  "pci_databases_general_information_upgrade_node_label": "Modelo",
+  "pci_databases_general_information_upgrade_node_placeholder": "Escolha um modelo de nó",
+  "pci_databases_general_information_upgrade_node_success": "A alteração do modelo de nó foi registada. Ficará efetiva dentro de alguns minutos.",
+  "pci_databases_general_information_upgrade_node_error": "A alteração de modelo de nó não foi corretamente efetuada: {{message}}",
+  "pci_databases_general_information_upgrade_node_processing": "Melhoramento do seu modelo de nó..."
+}

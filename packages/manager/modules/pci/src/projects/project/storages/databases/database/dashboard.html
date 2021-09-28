@@ -28,6 +28,20 @@
                 data-translate="pci_databases_dashboard_allowed_ips_tab_title"
             ></span>
         </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-href="{{ $ctrl.logsLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.logsLink"
+            ><span
+                data-translate="pci_databases_dashboard_logs_tab_title"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-href="{{ $ctrl.metricsLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.metricsLink"
+            ><span
+                data-translate="pci_databases_dashboard_metrics_tab_title"
+            ></span>
+        </oui-header-tabs-item>
     </oui-header-tabs>
     <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
         <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>

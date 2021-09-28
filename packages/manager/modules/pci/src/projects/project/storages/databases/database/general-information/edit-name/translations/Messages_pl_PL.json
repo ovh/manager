@@ -4,6 +4,6 @@
   "pci_databases_general_information_edit_name_cancel": "Anuluj",
   "pci_databases_general_information_edit_name_description": "Zmień nazwę, która wyświetla się w nagłówku.",
   "pci_databases_general_information_edit_name_label": "Nazwisko",
-  "pci_databases_general_information_edit_name_success": "Nazwa bazy danych została zaktualizowana.",
-  "pci_databases_general_information_edit_name_error": "Wystąpił błąd podczas zmiany nazwy bazy danych: {{message}}"
+  "pci_databases_general_information_edit_name_success": "Nazwa Twojej usługi została zaktualizowana.",
+  "pci_databases_general_information_edit_name_error": "Wystąpił błąd podczas zmiany nazwy usługi: {{ message }}"
 }

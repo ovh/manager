@@ -1,0 +1,6 @@
+{
+  "pci_databases_backups_fork_title": "Duplicar la instancia de base de datos (fork)",
+  "pci_databases_backups_fork_description": "Al duplicar la instancia (fork) se creará un nuevo servicio sin perder datos. El sistema va a redirigirle hacia la configuración de este nuevo servicio.",
+  "pci_databases_backups_fork_confirm": "Confirmar",
+  "pci_databases_backups_fork_cancel": "Cancelar"
+}

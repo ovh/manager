@@ -2,7 +2,7 @@
     <oui-select-picker
         class="d-inline-block col-md-6 col-xl-4 my-3"
         data-ng-repeat="plan in $ctrl.plans track by plan.name"
-        data-disabled="$ctrl.currentPlan && $ctrl.currentPlan.compare(plan) <= 0"
+        data-disabled="$ctrl.currentPlan && $ctrl.currentPlan.compare(plan) < 0"
         data-name="{{:: plan.name }}"
         data-model="$ctrl.selectedPlan"
         data-label="{{:: $ctrl.capitalize(plan.name) }}"
@@ -47,14 +47,15 @@
         </oui-select-picker-section>
         <oui-select-picker-section>
             <span
-                data-ng-if="plan.minMonthlyPrice.priceInUcents > 0"
+                data-ng-if="plan.minHourlyPrice.priceInUcents > 0"
                 data-translate="pci_database_common_price_starts_from"
             ></span>
             <ovh-manager-catalog-price
-                data-price="plan.minMonthlyPrice.priceInUcents"
-                data-tax="plan.minMonthlyPrice.tax"
+                data-price="plan.minHourlyPrice.priceInUcents"
+                data-tax="plan.minHourlyPrice.tax"
                 data-user="$ctrl.user"
                 data-show-zero-price="true"
+                data-interval="'hour'"
             >
             </ovh-manager-catalog-price>
         </oui-select-picker-section>

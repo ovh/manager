@@ -1,6 +1,6 @@
 {
   "order_catalog_price_free": "Inklusive",
-  "order_catalog_price_tax_excl_label": "{{ price }} zzgl. MwSt.",
+  "order_catalog_price_tax_excl_label": "{{price}} zzgl. MwSt.",
   "order_catalog_price_tax_incl_label": "{{ price }} inkl. MwSt.",
   "order_catalog_price_gst_excl_label": "{{ price }} zzgl. GST",
   "order_catalog_price_gst_incl_label": "{{ price }} inkl. GST",
@@ -8,5 +8,6 @@
   "order_catalog_price_interval_month": "Monat",
   "order_catalog_price_interval_year": "Jahr",
   "order_catalog_price_from": "Von",
-  "order_catalog_price_to": "bis"
+  "order_catalog_price_to": "bis",
+  "order_catalog_price_interval_hour": "Stunde"
 }

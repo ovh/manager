@@ -9,6 +9,27 @@
     <p data-translate="pci_databases_backup_description1"></p>
     <p data-translate="pci_databases_backup_description2"></p>
 
+    <oui-tile
+        heading="{{:: 'pci_databases_backup_informations_title' | translate}}"
+    >
+        <div class="oui-table">
+            <div>
+                <div class="oui-table__row">
+                    <div class="oui-table__cell">
+                        <div class="oui-description">
+                            <div
+                                data-translate="pci_databases_backup_informations_retention"
+                            ></div>
+                            <div>
+                                {{:: $ctrl.backupRetentionTime.humanize()}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </oui-tile>
+
     <oui-datagrid class="mt-5" data-page-size="10" data-rows="$ctrl.backupList">
         <oui-datagrid-column
             data-title=":: 'pci_database_common_name' | translate"
@@ -18,6 +39,14 @@
             data-searchable
             data-filterable
         ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_backup_region' | translate"
+            data-property="region"
+            data-sortable="asc"
+            data-type="string"
+            data-filterable
+        >
+        </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_database_common_creation_date' | translate"
             data-property="createdAt"
@@ -30,7 +59,9 @@
             data-property="expirationDate"
             data-sortable
         >
-            <span data-ng-bind="$row.expirationDate | date: 'medium'"></span>
+            <span
+                data-ng-bind=":: $ctrl.getExpiryDate($row) | date: 'medium'"
+            ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_database_common_status' | translate"
@@ -59,6 +90,12 @@
                 data-disabled="!($row.isActive() && $ctrl.database.isActive())"
             >
                 <span data-translate="pci_databases_backup_restore"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.forkBackup($row)"
+                data-disabled="!($row.isActive() && $ctrl.database.isActive())"
+            >
+                <span data-translate="pci_databases_backup_fork"></span>
             </oui-action-menu-item>
         </oui-action-menu>
         <oui-datagrid-topbar data-ng-if="$ctrl.backupList > 0">

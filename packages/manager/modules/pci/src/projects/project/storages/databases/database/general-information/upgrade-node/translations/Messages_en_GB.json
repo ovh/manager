@@ -1,0 +1,13 @@
+{
+  "pci_databases_general_information_upgrade_node_confirm": "Upgrade my node template",
+  "pci_databases_general_information_upgrade_node": "Change node template",
+  "pci_databases_general_information_upgrade_node_back": "Information",
+  "pci_databases_general_information_upgrade_node_cancel": "Cancel",
+  "pci_databases_general_information_upgrade_node_description": "You are currently using the {{currentNodeModel}} node template. You can upgrade it by clicking the 'Upgrade my node template' button below.",
+  "pci_databases_general_information_upgrade_node_warning": "Once you have made changes, you cannot switch back to a lower template.",
+  "pci_databases_general_information_upgrade_node_label": "Template",
+  "pci_databases_general_information_upgrade_node_placeholder": "Choose a node template",
+  "pci_databases_general_information_upgrade_node_success": "Your node template change has been processed. It will be effective in a few minutes.",
+  "pci_databases_general_information_upgrade_node_error": "Your node template upgrade has not been completed: {{message}}",
+  "pci_databases_general_information_upgrade_node_processing": "Upgrading your node template..."
+}

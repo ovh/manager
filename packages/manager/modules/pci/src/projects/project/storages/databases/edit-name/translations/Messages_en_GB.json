@@ -1,0 +1,9 @@
+{
+  "pci_databases_edit_name": "Change the name",
+  "pci_databases_edit_name_edit": "Edit",
+  "pci_databases_edit_name_cancel": "Cancel",
+  "pci_databases_edit_name_description": "Changes the name displayed in the header",
+  "pci_databases_edit_name_label": "Name",
+  "pci_databases_edit_name_success": "Your service has been renamed.",
+  "pci_databases_edit_name_error": "An error occurred while renaming your service: {{ message }}"
+}

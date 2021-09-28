@@ -22,7 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
               set(
                 user,
                 'roles',
-                user.roles.map((role) => find(roles, { id: role })),
+                user.roles.map((role) => find(roles, { name: role })),
               ),
             ),
           ),
@@ -62,8 +62,18 @@ export default /* @ngInject */ ($stateProvider) => {
           !database.isActive(),
 
         roles: /* @ngInject */ (DatabaseService, database, projectId) =>
-          DatabaseService.getRoles(projectId, database.engine, database.id),
-
+          DatabaseService.getRoles(
+            projectId,
+            database.engine,
+            database.id,
+          ).then((roles) =>
+            roles.map((role, index) => {
+              return {
+                id: index,
+                name: role,
+              };
+            }),
+          ),
         goToUsers: /* @ngInject */ (CucCloudMessage, $state, projectId) => (
           message = false,
           type = 'success',

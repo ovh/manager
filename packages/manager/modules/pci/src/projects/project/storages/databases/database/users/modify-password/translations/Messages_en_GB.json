@@ -1,9 +1,10 @@
 {
-  "pci_databases_users_modify_password_title": "Modify password",
+  "pci_databases_users_modify_password_title": "Reset password",
   "pci_databases_users_modify_password_confirm": "Confirm",
   "pci_databases_users_modify_password_cancel": "Cancel",
   "pci_databases_users_modify_password_label": "Password",
   "pci_databases_users_modify_password_help_text": "Must contain at least one number, one upper-case letter, and one lower-case letter. Must contain 8 characters or more.",
-  "pci_databases_users_modify_password_success": "The password for the {{user}} user has been changed.",
-  "pci_databases_users_modify_password_error": "An error has occurred changing the password for the user {{user}}: {{message}}."
+  "pci_databases_users_modify_password_success": "The password for user {{ user }} has been successfully reset: <code>{{ password }}</code>. Please note it down as it cannot be retrieved later.",
+  "pci_databases_users_modify_password_error": "An error occurred while changing the password for the user {{user}}: {{message}}.",
+  "pci_databases_users_modify_password_modal_content_confirm": "Are you sure you want to reset the password for this user?"
 }

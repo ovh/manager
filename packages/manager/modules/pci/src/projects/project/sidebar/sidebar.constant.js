@@ -44,7 +44,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
       },
       {
         id: 'databases',
-        beta: true,
+        new: true,
         options: {
           state: 'pci.projects.project.storages.databases',
         },

@@ -1,0 +1,9 @@
+{
+  "pci_databases_edit_name": "Zmień nazwę",
+  "pci_databases_edit_name_edit": "Zmień",
+  "pci_databases_edit_name_cancel": "Anuluj",
+  "pci_databases_edit_name_description": "Zmień nazwę, która wyświetla się w nagłówku.",
+  "pci_databases_edit_name_label": "Nazwisko",
+  "pci_databases_edit_name_success": "Nazwa Twojej usługi została zaktualizowana.",
+  "pci_databases_edit_name_error": "Wystąpił błąd podczas zmiany nazwy usługi: {{ message }}"
+}
