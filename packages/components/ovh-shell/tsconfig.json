@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "moduleResolution": "Node",
+    "lib": ["dom"],
+    "module": "ES6",
+    "removeComments": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationDir": "dist/types"
+  },
+  "exclude": ["node_modules", "dist"]
+}

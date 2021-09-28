@@ -1,0 +1,31 @@
+{
+  "name": "@ovh-ux/shell",
+  "version": "0.0.0",
+  "description": "Communication and interaction between applications",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/components/ovh-shell"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "sideEffects": "false",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./client": "./dist/client/index.js",
+    "./plugin/i18n": "./dist/plugin/i18n/index.js"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "nanoid": "^3.1.25"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.31.2",
+    "@typescript-eslint/parser": "^4.31.2",
+    "typescript": "^4.4.3"
+  }
+}
