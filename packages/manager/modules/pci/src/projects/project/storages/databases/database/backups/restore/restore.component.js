@@ -6,6 +6,7 @@ const component = {
     backupInstance: '<',
     database: '<',
     goBack: '<',
+    goBackToDashboard: '<',
     projectId: '<',
     trackDatabases: '<',
   },

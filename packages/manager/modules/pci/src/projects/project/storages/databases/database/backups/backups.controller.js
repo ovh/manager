@@ -24,8 +24,19 @@ export default class {
     this.messages = this.messageHandler.getMessages();
   }
 
+  forkBackup(backup) {
+    this.trackDatabases('dashboard::backups::options_menu::fork');
+    this.goToFork(backup, this.database);
+  }
+
   restoreBackup(backup) {
     this.trackDatabases('dashboard::backups::options_menu::restore');
     this.goToRestore(backup);
+  }
+
+  getExpiryDate(backup) {
+    return moment(backup.createdAt)
+      .add(this.backupRetentionTime)
+      .format();
   }
 }

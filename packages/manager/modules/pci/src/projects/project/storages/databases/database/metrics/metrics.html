@@ -1,0 +1,40 @@
+<div class="container-fluid px-0 mt-3">
+    <!-- error messages -->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <h2 data-translate="pci_databases_metrics_title"></h2>
+
+    <p data-translate="pci_databases_metrics_description"></p>
+
+    <div class="row px-3">
+        <div class="col">
+            <time-range
+                data-available="$ctrl.timeRanges"
+                data-selected-range="$ctrl.selectedTimeRange"
+                data-on-change="$ctrl.onTimeRangeChange(selectedTimeRange)"
+            ></time-range>
+        </div>
+        <div class="col-2">
+            <oui-field
+                data-label="{{ :: 'pci_databases_metrics_refresh_label' | translate }}"
+            >
+                <oui-switch
+                    model="$ctrl.autoRefresh"
+                    name="refresh-switch"
+                    on-change="$ctrl.onChangeAutoRefresh(modelValue)"
+                >
+                </oui-switch>
+            </oui-field>
+        </div>
+    </div>
+
+    <div
+        data-ng-repeat="metric in $ctrl.availableMetrics track by $index"
+        data-pci-chartjs="$ctrl.metricsData[metric].chart"
+        class="chart-container"
+        data-auto-reload="false"
+        data-utils="$ctrl.metricsData[metric].utils"
+    ></div>
+</div>

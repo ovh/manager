@@ -1,7 +1,7 @@
 {
   "pci_database_order_review_title": "Twoje zamówienie",
   "pci_database_order_review_selected_database": "Wybrana baza danych",
-  "pci_database_order_review_selected_plan": "Wybrany pakiet",
+  "pci_database_order_review_selected_plan": "Wybrana oferta",
   "pci_database_order_review_selected_flavor": "Wybrane parametry",
   "pci_database_order_review_nodes_single": "węzeł",
   "pci_database_order_review_nodes_multi": "węzły"

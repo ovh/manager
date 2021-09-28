@@ -6,6 +6,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
 
 import addNode from './add-node';
+import deleteNode from './delete-node';
 import component from './general-information.component';
 import deleteDatabase from './delete-database';
 import editName from './edit-name';
@@ -13,6 +14,7 @@ import node from '../../components/node';
 import routing from './general-information.routing';
 import upgradePlan from './upgrade-plan';
 import upgradeVersion from './upgrade-version';
+import upgradeNode from './upgrade-node';
 
 const moduleName = 'ovhManagerPciStoragesDatabaseGeneralInformation';
 
@@ -24,11 +26,13 @@ angular
     'oui',
     'ui.router',
     addNode,
+    deleteNode,
     deleteDatabase,
     editName,
     node,
     upgradePlan,
     upgradeVersion,
+    upgradeNode,
   ])
   .config(routing)
   .component('ovhManagerPciProjectDatabaseGeneralInformation', component)

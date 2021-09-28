@@ -1,10 +1,11 @@
 {
-  "pci_databases_users_add": "Nutzer hinzufügen",
+  "pci_databases_users_add": "Benutzer hinzufügen",
   "pci_databases_users_add_username_label": "Benutzername",
   "pci_databases_users_add_roles": "Rollen bearbeiten",
   "pci_databases_users_add_roles_available": "Verfügbare Rollen",
   "pci_databases_users_add_roles_selected": "Ausgewählte Rollen",
   "pci_databases_users_add_create": "Benutzer erstellen",
-  "pci_databases_users_add_success_message": "Der Nutzer {{ username }} wurde hinzugefügt mit dem Passwort {{ password }}.",
-  "pci_databases_users_add_error_save": "Bei der Erstellung des Benutzers {{ user }} ist ein Fehler aufgetreten: {{ message }}."
+  "pci_databases_users_add_success_message": "Der Benutzer {{ username }} wurde mit dem Passwort <code>{{ password }}</code> hinzugefügt.",
+  "pci_databases_users_add_error_save": "Bei der Erstellung des Benutzers {{ user }} ist ein Fehler aufgetreten: {{ message }}.",
+  "pci_databases_users_add_cancel": "Abbrechen"
 }

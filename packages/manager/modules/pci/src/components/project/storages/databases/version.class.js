@@ -12,6 +12,7 @@ export default class Version {
       endOfLife: moment(get(head(availability), 'endOfLife'), 'YYYY-MM-DD'),
       startDate: moment(get(head(availability), 'startDate'), 'YYYY-MM-DD'),
       plans: Version.getPlans(availability, plans, flavors),
+      status: get(head(availability), 'status'),
       version,
     });
   }

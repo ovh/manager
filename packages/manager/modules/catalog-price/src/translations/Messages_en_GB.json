@@ -8,5 +8,6 @@
   "order_catalog_price_interval_month": "month",
   "order_catalog_price_interval_year": "year",
   "order_catalog_price_from": "From",
-  "order_catalog_price_to": "to"
+  "order_catalog_price_to": "to",
+  "order_catalog_price_interval_hour": "hour"
 }

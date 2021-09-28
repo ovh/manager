@@ -1,4 +1,6 @@
 import find from 'lodash/find';
+import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
+import { NODES_PER_ROW } from '../../databases.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const stateName =
@@ -22,6 +24,14 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      goToDeleteNode: /* @ngInject */ ($state, databaseId, projectId) => () =>
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.general-information.delete-node',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
       goToAllowedIPs: /* @ngInject */ ($state, databaseId, projectId) => () =>
         $state.go(
           'pci.projects.project.storages.databases.dashboard.allowed-ips',
@@ -30,6 +40,11 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      goToManagerUsers: /* @ngInject */ ($state, databaseId, projectId) => () =>
+        $state.go('pci.projects.project.storages.databases.dashboard.users', {
+          projectId,
+          databaseId,
+        }),
       goToDeleteDatabase: /* @ngInject */ ($state, database, projectId) => () =>
         $state.go(
           'pci.projects.project.storages.databases.dashboard.general-information.delete',
@@ -66,6 +81,19 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      goToUpgradeNode: /* @ngInject */ ($state, databaseId, projectId) => () =>
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.general-information.upgrade-node',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
+      vRack: /* @ngInject */ (DatabaseService, projectId) =>
+        DatabaseService.getVRack(projectId),
+      vRackLink: /* @ngInject */ (vRack, coreURLBuilder) => {
+        return coreURLBuilder.buildURL('dedicated', `#/vrack/${vRack.id}`);
+      },
       goBack: /* @ngInject */ (database, goToDatabase) => (message, type) =>
         goToDatabase(database, message, type),
       goBackAndPoll: /* @ngInject */ (goBack, pollDatabaseStatus) => (
@@ -88,6 +116,12 @@ export default /* @ngInject */ ($stateProvider) => {
         engine.getLatestPlan(database.version, database.region).name,
       latestVersion: /* @ngInject */ (engine) =>
         engine.getLatestVersion().version,
+      highestFlavor: /* @ngInject */ (database, engine) =>
+        engine.getHighestFlavorRange(
+          database.version,
+          database.region,
+          database.plan,
+        ).name,
       privateNetwork: /* @ngInject */ (database, privateNetworks) =>
         find(privateNetworks, (privateNetwork) =>
           find(privateNetwork.regions, { openstackId: database.networkId }),
@@ -122,12 +156,12 @@ export default /* @ngInject */ ($stateProvider) => {
             database.id,
           )
             .then((databaseInfo) => {
-              CucCloudMessage.flushMessages(stateName);
+              CucCloudMessage.flushMessages(+'-' + databaseInfo.id);
               CucCloudMessage.success(
                 $translate.instant(
                   'pci_databases_general_information_database_ready',
                 ),
-                stateName,
+                `${stateName}-${databaseInfo.id}`,
               );
               database.updateData(databaseInfo);
               return getNodes(database).then((nodes) =>
@@ -148,6 +182,10 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => () => {
         database.nodes.forEach((node) => {
           if (node.isProcessing()) {
+            const successMessage =
+              node.status === STATUS.DELETING
+                ? 'pci_databases_general_information_delete_node_success'
+                : 'pci_databases_general_information_node_ready';
             DatabaseService.pollNodeStatus(
               projectId,
               database.engine,
@@ -155,17 +193,21 @@ export default /* @ngInject */ ($stateProvider) => {
               node.id,
             ).then((nodeInfo) => {
               CucCloudMessage.success(
-                $translate.instant(
-                  'pci_databases_general_information_node_ready',
-                  { nodeName: node.name },
-                ),
-                stateName,
+                $translate.instant(successMessage, { nodeName: node.name }),
+                `${stateName}-${database.id}`,
               );
-              node.updateData(nodeInfo);
+              if (node.status === STATUS.DELETING) {
+                CucCloudMessage.flushMessages(+'-' + database.id);
+                database.deleteNode(node.id);
+              } else {
+                node.updateData(nodeInfo);
+              }
             });
           }
         });
       },
+      users: /* @ngInject */ (DatabaseService, database, projectId) =>
+        DatabaseService.getUsers(projectId, database.engine, database.id),
       stopPollingDatabaseStatus: /* @ngInject */ (
         DatabaseService,
         databaseId,
@@ -175,8 +217,9 @@ export default /* @ngInject */ ($stateProvider) => {
         database,
       ) => () =>
         database.nodes.forEach((node) =>
-          DatabaseService.stopPollingNodeStatus(node.id),
+          DatabaseService.stopPollingNodeStatus(database.id, node.id),
         ),
+      nodesPerRow: () => NODES_PER_ROW,
     },
   });
 };

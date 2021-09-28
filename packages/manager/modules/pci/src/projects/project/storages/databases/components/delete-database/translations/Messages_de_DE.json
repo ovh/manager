@@ -1,8 +1,8 @@
 {
-  "pci_database_delete_database_title": "Die Datenbank löschen",
+  "pci_database_delete_database_title": "Dienst löschen",
   "pci_database_delete_database_submit_label": "Bestätigen",
   "pci_database_delete_database_cancel_label": "Abbrechen",
-  "pci_database_delete_database_content": "Sind Sie sicher, dass Sie die Datenbank {{databaseName }} löschen möchten?",
-  "pci_database_delete_database_success": "Die Datenbank {{ databaseName }} wurde gelöscht.",
-  "pci_database_delete_database_error": "Beim Löschen der Datenbank {{ databaseName }} ist ein Fehler aufgetreten: {{ message }}."
+  "pci_database_delete_database_content": "Sind Sie sicher, dass Sie den Dienst {{ databaseName }} löschen möchten?",
+  "pci_database_delete_database_success": "Der Dienst {{ databaseName }} wurde gelöscht.",
+  "pci_database_delete_database_error": "Beim Löschen des Dienstes {{ databaseName }} ist ein Fehler aufgetreten: {{ message }}."
 }

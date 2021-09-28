@@ -1,9 +1,10 @@
 {
-  "pci_databases_users_modify_password_title": "Cambiar la contraseña",
+  "pci_databases_users_modify_password_title": "Regenerar la contraseña",
   "pci_databases_users_modify_password_confirm": "Confirmar",
   "pci_databases_users_modify_password_cancel": "Cancelar",
   "pci_databases_users_modify_password_label": "La contraseña",
   "pci_databases_users_modify_password_help_text": "debe contener al menos una cifra, una letra mayúscula y una minúscula, y tener 8 caracteres o más.",
-  "pci_databases_users_modify_password_success": "La contraseña del usuario {{ user }} se ha modificado.",
-  "pci_databases_users_modify_password_error": "Se ha producido un error al modificar la contraseña del usuario {{ user }}: {{ message }}."
+  "pci_databases_users_modify_password_success": "La contraseña del usuario {{ user }} se ha regenerado correctamente: <code>{{ password }}</code>. Tenga en cuenta que no podrá recuperarla más adelante.",
+  "pci_databases_users_modify_password_error": "Se ha producido un error al modificar la contraseña del usuario {{ user }}: {{ message }}.",
+  "pci_databases_users_modify_password_modal_content_confirm": "¿Seguro que quiere regenerar la contraseña de usuario?"
 }

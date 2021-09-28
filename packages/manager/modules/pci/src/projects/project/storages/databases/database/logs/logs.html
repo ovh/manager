@@ -1,0 +1,33 @@
+<div class="container-fluid px-0 mt-3">
+    <!-- error messages -->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <h2 data-translate="pci_database_logs_title"></h2>
+
+    <p data-translate="pci_databases_logs_description"></p>
+    <oui-field
+        label="{{:: 'pci_databases_logs_autorefresh' | translate }}"
+        class="flex-right"
+    >
+        <oui-switch
+            model="$ctrl.pollLogs"
+            name="logs-switch-autorefresh"
+            on-change="$ctrl.changePoll(modelValue)"
+        >
+        </oui-switch>
+    </oui-field>
+    <tail-logs>
+        <p
+            data-ng-repeat="line in $ctrl.logs track by $index"
+            data-ng-class="$ctrl.constructor.getMessageLevelClassNames(line.message)"
+        >
+            <span
+                data-ng-bind="$ctrl.constructor.formatTimestamp(line.timestamp)"
+            ></span>
+            <span data-ng-bind="line.hostname"></span>
+            <span data-ng-bind="line.message"></span>
+        </p>
+    </tail-logs>
+</div>

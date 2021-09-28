@@ -1,0 +1,6 @@
+{
+  "pci_databases_backups_fork_title": "Duplica l’istanza di database (fork)",
+  "pci_databases_backups_fork_description": "La duplicazione dell’istanza (fork) comporta la creazione di un nuovo servizio, senza perdita di dati. Verrai reindirizzato verso la configurazione di questo nuovo servizio.",
+  "pci_databases_backups_fork_confirm": "Conferma",
+  "pci_databases_backups_fork_cancel": "Annulla"
+}

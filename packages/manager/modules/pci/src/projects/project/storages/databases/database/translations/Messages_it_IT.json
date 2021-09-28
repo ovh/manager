@@ -3,5 +3,7 @@
   "pci_databases_dashboard_backup_tab_title": "Backup",
   "pci_databases_dashboard_users_tab_title": "Utenti",
   "pci_databases_dashboard_allowed_ips_tab_title": "IP autorizzati",
-  "pci_databases_dashboard_database_processing_state": "Una volta completato il deploy, sarà possibile eseguire operazioni sul cluster."
+  "pci_databases_dashboard_database_processing_state": "Una volta completato il deploy, sarà possibile eseguire operazioni sul cluster.",
+  "pci_databases_dashboard_logs_tab_title": "Log",
+  "pci_databases_dashboard_metrics_tab_title": "Metriche"
 }

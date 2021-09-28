@@ -1,6 +1,6 @@
 {
   "pci_databases_backups_restore_title": "Backup wiederherstellen",
-  "pci_databases_backups_restore_description": "Möchten Sie das folgende Backup wiederherstellen: {{ name }}?",
+  "pci_databases_backups_restore_description": "Bei der Backup-Wiederherstellung werden die aktuell auf Ihrem Cluster vorhandenen Informationen überschrieben. Dieser Vorgang kann daher zu Datenverlust führen.",
   "pci_databases_backups_restore_confirm": "Bestätigen",
   "pci_databases_backups_restore_cancel": "Abbrechen",
   "pci_databases_backups_restore_success": "Die Anfrage zur Wiederherstellung des Backups {{ name }} wurde erfolgreich erstellt.",

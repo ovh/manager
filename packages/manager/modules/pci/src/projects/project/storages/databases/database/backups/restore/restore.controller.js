@@ -18,7 +18,7 @@ export default class {
         this.backupInstance.id,
       )
       .then(() =>
-        this.goBack(
+        this.goBackToDashboard(
           this.$translate.instant('pci_databases_backups_restore_success', {
             name: this.backupInstance.description,
           }),

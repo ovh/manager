@@ -1,0 +1,12 @@
+{
+  "pci_database_metrics_title": "Metrics",
+  "pci_databases_metrics_title": "Metrics",
+  "pci_databases_metrics_refresh_label": "Auto-Refresh (1m)",
+  "pci_databases_metrics_range_label": "Time range",
+  "pci_databases_metrics_range_label_1H": "1 hour",
+  "pci_databases_metrics_range_label_1D": "1 day",
+  "pci_databases_metrics_range_label_1W": "1 week",
+  "pci_databases_metrics_range_label_1M": "1 month",
+  "pci_databases_metrics_range_label_1Y": "1 year",
+  "pci_databases_metrics_description": "To help you track and manage your database instance, view its main metrics and statistics below. Their retention period depends on your service solution."
+}
