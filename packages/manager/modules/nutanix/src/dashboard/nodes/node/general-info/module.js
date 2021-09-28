@@ -7,6 +7,7 @@ import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import {
   serverGeneralInfo,
   serverTechnicalDetails,
+  serverSupport,
 } from '@ovh-ux/manager-bm-server-components';
 
 import component from './component';
@@ -29,6 +30,7 @@ angular
     ngOvhUtils,
     serverGeneralInfo,
     serverTechnicalDetails,
+    serverSupport,
   ])
   .config(routing)
   .component('nutanixNodeGeneralInfo', component)
