@@ -142,6 +142,7 @@
             </oui-action-menu-item>
 
             <oui-action-menu-item
+                data-ng-if="$ctrl.generateS3Credentials"
                 data-on-click="$ctrl.generateCredentials($row)"
                 data-disabled="$ctrl.isActionDisabled()"
             >
