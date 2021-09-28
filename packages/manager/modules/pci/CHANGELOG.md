@@ -1,3 +1,12 @@
+## [5.44.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.44.0...@ovh-ux/manager-pci@5.44.1) (2021-09-28)
+
+
+### Bug Fixes
+
+* **project.storages.databases.add:** allow creation ([#5641](https://github.com/ovh/manager/issues/5641)) ([16a7acc](https://github.com/ovh/manager/commit/16a7acc6639fac7789437d924d042692279cc64a))
+
+
+
 # [5.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.43.0...@ovh-ux/manager-pci@5.44.0) (2021-09-28)
 
 
