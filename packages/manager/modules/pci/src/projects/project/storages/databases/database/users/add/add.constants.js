@@ -1,7 +1,7 @@
 export const ADD_USER_FORM_RULES = {
   name: {
-    pattern: /^[a-zA-Z0-9_][a-zA-Z0-9_.-]{0,253}$/,
-    max: 254,
+    pattern: /^[a-zA-Z0-9_][a-zA-Z0-9_.-]{0,63}$/,
+    max: 64,
   },
   keys: {
     pattern: /^[a-zA-Z0-9_@./#&+-]{1,254}$/,
