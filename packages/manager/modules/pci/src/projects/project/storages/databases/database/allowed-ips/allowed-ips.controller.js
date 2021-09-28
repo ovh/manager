@@ -9,17 +9,17 @@ export default class {
   }
 
   openAddIp() {
-    this.trackDatabases('dashboard::allowed-ips::add_ips');
+    this.trackDashboard('allowed-ips::add_ips');
     this.goToAddIp();
   }
 
   openUpdateIp(ip) {
-    this.trackDatabases('dashboard::allowed-ips::options::update_ips');
+    this.trackDashboard('allowed-ips::options::update_ips');
     this.goToUpdateIp(ip);
   }
 
   openDeleteIp(ip) {
-    this.trackDatabases('dashboard::allowed-ips::options::delete_ips');
+    this.trackDashboard('allowed-ips::options::delete_ips');
     this.goToDeleteIpBlock(ip);
   }
 

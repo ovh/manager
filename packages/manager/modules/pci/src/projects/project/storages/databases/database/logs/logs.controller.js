@@ -6,13 +6,15 @@ export default class logsCtrl {
   constructor(CucCloudMessage, DatabaseService) {
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
+    this.findMessageLevel = logsCtrl.findMessageLevel;
+    this.formatTimestamp = logsCtrl.formatTimestamp;
   }
 
   $onInit() {
     this.messageContainer =
       'pci.projects.project.storages.databases.dashboard.logs';
     this.loadMessages();
-    this.trackDatabases('dashboard::logs', 'page');
+    this.trackDashboard('logs', 'page');
     this.pollLogs = false;
     this.logs = [];
     // retrieve logs a first time, then start polling

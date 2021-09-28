@@ -6,13 +6,13 @@ export default class {
   }
 
   forkInstance() {
-    this.trackDatabases('dashboard::backups::options_menu::fork_validate');
+    this.trackDashboard('backups::options_menu::fork_validate');
     this.isLoading = true;
     this.goToFork(this.backupInstance, this.database);
   }
 
   cancel() {
-    this.trackDatabases('dashboard::backups::options_menu::fork_cancel');
+    this.trackDashboard('backups::options_menu::fork_cancel');
     this.goBack();
   }
 }

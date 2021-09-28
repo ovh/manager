@@ -1,7 +1,8 @@
 export default class {
   /* @ngInject */
-  constructor(CucCloudMessage) {
+  constructor(CucCloudMessage, ovhManagerRegionService) {
     this.CucCloudMessage = CucCloudMessage;
+    this.ovhManagerRegionService = ovhManagerRegionService;
   }
 
   $onInit() {
@@ -25,12 +26,12 @@ export default class {
   }
 
   forkBackup(backup) {
-    this.trackDatabases('dashboard::backups::options_menu::fork');
+    this.trackDashboard('backups::options_menu::fork');
     this.goToFork(backup, this.database);
   }
 
   restoreBackup(backup) {
-    this.trackDatabases('dashboard::backups::options_menu::restore');
+    this.trackDashboard('backups::options_menu::restore');
     this.goToRestore(backup);
   }
 

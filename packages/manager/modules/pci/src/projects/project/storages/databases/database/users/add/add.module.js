@@ -5,6 +5,7 @@ import 'angular-translate';
 
 import addUserComponent from './add.component';
 import password from '../../../components/password';
+import tagsInput from '../../../components/tags-input';
 import routing from './add.routing';
 
 const moduleName = 'ovhManagerPciStoragesDatabaseUsersAdd';
@@ -15,6 +16,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     password,
+    tagsInput,
   ])
   .config(routing)
   .component('ovhManagerPciProjectDatabaseUsersAdd', addUserComponent)
