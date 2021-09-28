@@ -3,7 +3,7 @@
   "pci_database_add_description1": "Crea un database disponibile nel tuo progetto Public Cloud. Se vuoi utilizzare una rete privata e questa non esiste ancora, devi innanzitutto creare",
   "pci_database_add_description2": "una rete privata o una sottorete",
   "pci_database_add_description3": ".",
-  "pci_database_add_step1_title": "Seleziona il tipo di database",
+  "pci_database_add_step1_title": "Seleziona il tuo tipo di database:",
   "pci_database_add_step1_description": "Seleziona il database corrispondente alle tue necessità",
   "pci_database_add_step2_title": "Seleziona un’offerta",
   "pci_database_add_step3_title": "Seleziona una localizzazione",

@@ -28,5 +28,5 @@
   "pci_projects_project_storages_containers_container_object_error_download": "Si è verificato un errore durante il download dell'oggetto: {{message}}",
   "pci_projects_project_storages_containers_container_archive_error_unseal": "Si è verificato un errore durante l’operazione di sblocco dell'archivio: {{message}}",
   "pci_projects_project_storages_containers_container_archive_success_unseal": "Sblocco dell’archivio {{archive}} in corso...",
-  "pci_projects_project_storages_containers_container_add_user_label": "Aggiungi un utente al tuo container"
+  "pci_projects_project_storages_containers_container_add_user_label": "Aggiungi un utente al tuo oggetto"
 }
