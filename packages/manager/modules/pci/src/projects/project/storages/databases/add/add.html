@@ -235,7 +235,7 @@
         name="review_order"
         data-header="{{:: 'pci_database_add_step6_title' | translate }}"
         data-on-focus="$ctrl.prepareOrderData()"
-        data-valid="$ctrl.labAccepted"
+        data-valid="$ctrl.labAccepted || $ctrl.model.engine.selectedVersion.status !== 'BETA'"
         data-prevent-next="true"
         data-submit-text="{{:: 'pci_database_add_create_database' | translate }}"
         data-editable="!$ctrl.processingOrder"
