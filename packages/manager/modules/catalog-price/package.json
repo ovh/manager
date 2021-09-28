@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-catalog-price",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "private": true,
   "description": "Component to display catalog prices, formatted by locale",
   "repository": {
