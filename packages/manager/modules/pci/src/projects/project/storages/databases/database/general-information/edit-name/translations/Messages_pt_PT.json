@@ -4,6 +4,6 @@
   "pci_databases_general_information_edit_name_cancel": "Cancelar",
   "pci_databases_general_information_edit_name_description": "Altera o nome apresentado no cabeçalho",
   "pci_databases_general_information_edit_name_label": "Nome",
-  "pci_databases_general_information_edit_name_success": "O nome da base de dados foi atualizado.",
-  "pci_databases_general_information_edit_name_error": "Ocorreu um erro ao alterar o nome da base de dados: {{ message }}"
+  "pci_databases_general_information_edit_name_success": "O nome do serviço foi atualizado.",
+  "pci_databases_general_information_edit_name_error": "Ocorreu um erro aquando da renomeação do seu serviço: {{ message }}"
 }

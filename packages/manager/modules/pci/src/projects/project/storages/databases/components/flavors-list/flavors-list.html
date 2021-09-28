@@ -4,9 +4,11 @@
         data-ng-repeat="flavor in $ctrl.flavors track by flavor.name"
         data-name="{{:: flavor.name }}"
         data-model="$ctrl.selectedFlavor"
+        data-disabled="$ctrl.currentFlavor && $ctrl.currentFlavor.compare(flavor) < 0"
         data-label="{{:: $ctrl.capitalize(flavor.name) }}"
         data-values="[flavor]"
         data-variant="light"
+        data-on-change="$ctrl.onChange({ selectedFlavor: modelValue })"
         data-required
     >
         <oui-select-picker-section>
@@ -35,10 +37,11 @@
         </oui-select-picker-section>
         <oui-select-picker-section>
             <ovh-manager-catalog-price
-                data-price="flavor.monthlyPrice.priceInUcents"
-                data-tax="flavor.monthlyPrice.tax"
+                data-price="flavor.hourlyPrice.priceInUcents"
+                data-tax="flavor.hourlyPrice.tax"
                 data-user="$ctrl.user"
                 data-show-zero-price="true"
+                data-interval="'hour'"
             >
             </ovh-manager-catalog-price>
         </oui-select-picker-section>

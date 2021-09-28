@@ -33,6 +33,6 @@
     data-cancel-text="{{:: 'pci_databases_general_information_upgrade_plan_cancel' | translate }}"
     data-on-submit="$ctrl.upgradePlan()"
     data-on-cancel="$ctrl.cancel()"
-    data-disabled="!$ctrl.selectedPlan"
+    data-disabled="!$ctrl.selectedPlan || $ctrl.selectedPlan === $ctrl.currentPlan"
 >
 </oui-form-actions>

@@ -12,6 +12,10 @@ export default class {
   $onInit() {
     this.upgradingVersion = false;
     this.selectedVersion = null;
+    this.trackDatabases(
+      'dashboard::general_information::upgrade_version',
+      'page',
+    );
   }
 
   upgradeVersion() {
@@ -26,6 +30,7 @@ export default class {
       this.database.description,
       this.database.plan,
       this.selectedVersion.version,
+      this.database.flavor.name,
     )
       .then((databaseInfo) => {
         this.database.updateData(databaseInfo);

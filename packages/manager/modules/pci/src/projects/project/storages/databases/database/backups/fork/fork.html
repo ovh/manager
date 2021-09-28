@@ -1,0 +1,14 @@
+<oui-modal
+    data-heading="{{:: 'pci_databases_backups_fork_title' | translate }}"
+    data-primary-label="{{:: 'pci_databases_backups_fork_confirm' | translate }}"
+    data-primary-action="$ctrl.forkInstance()"
+    data-secondary-label="{{:: 'pci_databases_backups_fork_cancel' | translate }}"
+    data-secondary-action="$ctrl.cancel()"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading"
+>
+    <p
+        data-translate="pci_databases_backups_fork_description"
+        data-translate-values="{ name: $ctrl.backupInstance.description }"
+    ></p>
+</oui-modal>

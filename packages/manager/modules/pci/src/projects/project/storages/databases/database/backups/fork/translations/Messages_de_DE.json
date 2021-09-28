@@ -1,0 +1,6 @@
+{
+  "pci_databases_backups_fork_title": "Datenbank-Instanz duplizieren (Fork)",
+  "pci_databases_backups_fork_description": "Beim Duplizieren Ihrer Instanz (Fork) wird ein neuer Dienst erstellt, ohne dass es dabei zu Datenverlust kommt. Sie werden anschließend zur Konfiguration des neuen Dienstes weitergeleitet.",
+  "pci_databases_backups_fork_confirm": "Bestätigen",
+  "pci_databases_backups_fork_cancel": "Abbrechen"
+}

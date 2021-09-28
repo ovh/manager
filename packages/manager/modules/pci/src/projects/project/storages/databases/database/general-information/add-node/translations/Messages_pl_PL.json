@@ -2,7 +2,7 @@
   "pci_databases_general_information_add_node": "Dodaj węzeł",
   "pci_databases_general_information_add_node_confirm": "Zatwierdź",
   "pci_databases_general_information_add_node_cancel": "Anuluj",
-  "pci_databases_general_information_add_node_description": "Liczba węzłów, którymi aktualnie dysponujesz :{{nodesCount}}. Możesz dodać węzeł dla",
-  "pci_databases_general_information_add_node_success": "Dyspozycja dodania węzła została przyjęta i zostanie zrealizowane w ciągu kilku minut.",
+  "pci_databases_general_information_add_node_description": "Liczba węzłów, którymi aktualnie dysponujesz :{{nodesCount}}. Czy na pewno chcesz dodać jeden? Faktura zostanie zwiększona o",
+  "pci_databases_general_information_add_node_success": "Dyspozycja dodania węzła została przyjęta i będzie zrealizowana w ciągu kilku minut.",
   "pci_databases_general_information_add_node_error": "Wystąpił błąd podczas dodawania węzła: {{message}}"
 }

@@ -1,0 +1,12 @@
+{
+  "pci_database_metrics_title": "Metryki",
+  "pci_databases_metrics_title": "Metryki",
+  "pci_databases_metrics_refresh_label": "Auto-Refresh (1M)",
+  "pci_databases_metrics_range_label": "Time Range",
+  "pci_databases_metrics_range_label_1H": "1 H",
+  "pci_databases_metrics_range_label_1D": "1 D",
+  "pci_databases_metrics_range_label_1W": "1 W",
+  "pci_databases_metrics_range_label_1M": "1 M",
+  "pci_databases_metrics_range_label_1Y": "1 Y",
+  "pci_databases_metrics_description": "Aby ułatwić Ci monitorowanie i zarządzanie instancją bazy danych, poniżej znajdziesz jej najważniejsze metryki i statystyki. Czas ich retencji zależy od Twojej oferty usługi."
+}

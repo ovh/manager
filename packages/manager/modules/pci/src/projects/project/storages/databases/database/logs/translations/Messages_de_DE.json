@@ -1,0 +1,5 @@
+{
+  "pci_database_logs_title": "Logs",
+  "pci_databases_logs_description": "Nachstehend finden Sie die neuesten Events (Logs) zur Nachverfolgung und Verwaltung Ihres Datenbankdienstes, praktisch in Echtzeit. Die Rückhaltedauer ist abhängig von Ihrem Dienst-Angebot.",
+  "pci_databases_logs_autorefresh": "Auto-Refresh"
+}

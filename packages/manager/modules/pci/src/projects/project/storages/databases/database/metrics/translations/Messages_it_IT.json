@@ -1,0 +1,12 @@
+{
+  "pci_database_metrics_title": "Metriche",
+  "pci_databases_metrics_title": "Metriche",
+  "pci_databases_metrics_refresh_label": "Auto-Refresh (1M)",
+  "pci_databases_metrics_range_label": "Time range",
+  "pci_databases_metrics_range_label_1H": "1 h",
+  "pci_databases_metrics_range_label_1D": "1D",
+  "pci_databases_metrics_range_label_1W": "1W",
+  "pci_databases_metrics_range_label_1M": "1 m",
+  "pci_databases_metrics_range_label_1Y": "1 a",
+  "pci_databases_metrics_description": "Per monitorare e gestire l'istanza database, consulta le principali metriche e statistiche disponibili qui sotto. Il loro periodo di conservazione dipende dal tuo piano di servizio."
+}

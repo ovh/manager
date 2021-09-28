@@ -1,0 +1,12 @@
+{
+  "pci_database_metrics_title": "Messwerte",
+  "pci_databases_metrics_title": "Messwerte",
+  "pci_databases_metrics_refresh_label": "Auto-Refresh (1M)",
+  "pci_databases_metrics_range_label": "Time Range",
+  "pci_databases_metrics_range_label_1H": "1 h",
+  "pci_databases_metrics_range_label_1D": "1 d",
+  "pci_databases_metrics_range_label_1W": "1 Wo",
+  "pci_databases_metrics_range_label_1M": "1 Mt",
+  "pci_databases_metrics_range_label_1Y": "1 a",
+  "pci_databases_metrics_description": "Nachstehend finden Sie die wichtigsten Metriken und Statistiken zur Überwachung und Verwaltung Ihrer Datenbankinstanz. Die Rückhaltedauer ist abhängig von Ihrem Dienst-Angebot."
+}

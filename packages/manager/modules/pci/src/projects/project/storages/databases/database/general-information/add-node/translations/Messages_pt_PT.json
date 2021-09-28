@@ -2,7 +2,7 @@
   "pci_databases_general_information_add_node": "Adicionar um nó",
   "pci_databases_general_information_add_node_confirm": "Validar",
   "pci_databases_general_information_add_node_cancel": "Cancelar",
-  "pci_databases_general_information_add_node_description": "Dispõe atualmente de {{nodesCount}} nó(s). Pode adicionar um nó por",
+  "pci_databases_general_information_add_node_description": "Dispõe atualmente de {{nodesCount}} nó(s). Quer mesmo adicionar um? A sua fatura contemplará um aumento de",
   "pci_databases_general_information_add_node_success": "O seu pedido de adição de nós foi corretamente tomado em conta e ficará efetivo dentro de alguns minutos.",
   "pci_databases_general_information_add_node_error": "Ocorreu um erro aquando da adição de nós: {{ message }}"
 }

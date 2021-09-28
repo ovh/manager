@@ -1,6 +1,6 @@
 {
-  "pci_databases_backups_restore_title": "Restaurar um backup",
-  "pci_databases_backups_restore_description": "Pretende restaurar o seu backup: {{ name }}?",
+  "pci_databases_backups_restore_title": "Restaurar o seu backup",
+  "pci_databases_backups_restore_description": "O restauro de um backup elimina as informações atualmente presentes no seu cluster. Esta operação pode, por conseguinte, provocar uma perda de dados.",
   "pci_databases_backups_restore_confirm": "Confirmar",
   "pci_databases_backups_restore_cancel": "Cancelar",
   "pci_databases_backups_restore_success": "O pedido de restauro do backup {{ name }} foi criado com êxito e está a ser tratado.",

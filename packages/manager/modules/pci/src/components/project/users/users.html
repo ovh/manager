@@ -52,6 +52,13 @@
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title=":: 'pci_projects_project_users_createdAt_label' | translate"
+            data-property="createdAt"
+            data-sortable
+        >
+            <span data-ng-bind="$row.createdAt | date: 'medium'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_users_status_label' | translate"
             data-property="status"
         >
@@ -135,6 +142,7 @@
             </oui-action-menu-item>
 
             <oui-action-menu-item
+                data-ng-if="$ctrl.generateS3Credentials"
                 data-on-click="$ctrl.generateCredentials($row)"
                 data-disabled="$ctrl.isActionDisabled()"
             >

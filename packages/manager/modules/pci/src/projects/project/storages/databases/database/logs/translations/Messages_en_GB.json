@@ -1,0 +1,5 @@
+{
+  "pci_database_logs_title": "Logs",
+  "pci_databases_logs_description": "To help you monitor and manage your database service, view the latest events (logs) below in almost-real time. Their retention period depends on your service solution.",
+  "pci_databases_logs_autorefresh": "Auto-Refresh"
+}

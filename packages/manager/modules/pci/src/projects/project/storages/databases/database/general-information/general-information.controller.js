@@ -1,5 +1,4 @@
 import capitalize from 'lodash/capitalize';
-
 import { SHELL_NAMES } from '../../databases.constants';
 
 export default class {
@@ -18,8 +17,7 @@ export default class {
   }
 
   $onInit() {
-    this.messageContainer =
-      'pci.projects.project.storages.databases.dashboard.general-information';
+    this.messageContainer = `pci.projects.project.storages.databases.dashboard.general-information-${this.database.id}`;
     this.loadMessages();
     this.connectionInformation = this.getConnectionInformation();
     this.pollDatabaseStatus();
@@ -44,6 +42,38 @@ export default class {
     this.goToAddNode();
   }
 
+  deleteNode() {
+    this.trackDatabases('dashboard::general_information::remove_node');
+    this.goToDeleteNode();
+  }
+
+  manageUsers() {
+    if (this.users.length === 0 && this.allowedIps.length === 0) {
+      this.trackDatabases(
+        'dashboard::general_information::no_user_ip_banner_manage_user',
+      );
+    } else if (this.users.length === 0) {
+      this.trackDatabases(
+        'dashboard::general_information::no_user_banner_manage_user',
+      );
+    } else {
+      this.trackDatabases('dashboard::general_information::manage_user');
+    }
+
+    this.goToManagerUsers();
+  }
+
+  trackManageVRack() {
+    this.trackDatabases('dashboard::general_information::goto_vrack');
+  }
+
+  manageAllowedIps() {
+    this.trackDatabases(
+      'dashboard::general_information::configuration::manage_ips',
+    );
+    this.goToAllowedIPs();
+  }
+
   loadMessages() {
     this.CucCloudMessage.unSubscribe(this.messageContainer);
     this.messageHandler = this.CucCloudMessage.subscribe(
@@ -66,6 +96,11 @@ export default class {
   upgradePlan() {
     this.trackDatabases('dashboard::general_information::upgrade_plan');
     this.goToUpgradePlan();
+  }
+
+  upgradeNode() {
+    this.trackDatabases('dashboard::general_information::upgrade_node');
+    this.goToUpgradeNode();
   }
 
   deleteDatabase() {

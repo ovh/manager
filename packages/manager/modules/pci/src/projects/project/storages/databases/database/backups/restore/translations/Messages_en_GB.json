@@ -1,6 +1,6 @@
 {
-  "pci_databases_backups_restore_title": "Restore backup",
-  "pci_databases_backups_restore_description": "Do you want to restore your backup: {{name}}",
+  "pci_databases_backups_restore_title": "Restore your backup",
+  "pci_databases_backups_restore_description": "Restoring a backup overwrites the information currently saved on your cluster. This operation may result in a loss of data.",
   "pci_databases_backups_restore_confirm": "Confirm",
   "pci_databases_backups_restore_cancel": "Cancel",
   "pci_databases_backups_restore_success": "Your request to restore the {{name}} backup has been created successfully.",

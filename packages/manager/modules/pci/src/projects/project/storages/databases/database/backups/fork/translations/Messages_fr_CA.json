@@ -1,0 +1,6 @@
+{
+  "pci_databases_backups_fork_title": "Dupliquer votre instance de base de données (fork)",
+  "pci_databases_backups_fork_description": "La duplication de votre instance (fork) entraîne la création d'un nouveau service, sans perte de données. Vous allez être redirigé·e vers le paramétrage de ce nouveau service.",
+  "pci_databases_backups_fork_confirm": "Confirmer",
+  "pci_databases_backups_fork_cancel": "Annuler"
+}
