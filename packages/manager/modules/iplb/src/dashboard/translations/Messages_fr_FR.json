@@ -86,5 +86,6 @@
   "iplb_tile_subscription_creation_date": "Date de création",
   "iplb_preview_see": "Voir l'aperçu",
   "iplb_complete_order": "Régler le bon de commande",
-  "iplb_tile_subscription_autorenew": "Renouvellement automatique"
+  "iplb_tile_subscription_autorenew": "Renouvellement automatique",
+  "iplb_tile_subscription_expiration_date": "Date d'expiration"
 }
