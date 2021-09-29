@@ -34,9 +34,12 @@ export default class Engine {
       version: this.defaultVersion,
     });
 
-    this.isDefault = some(availability, 'default');
+    this.isDefault = some(availability, (x) => x.default && x.engine === name);
 
-    this.isBeta = some(availability, (x) => x.status === ENGINES_STATUS.BETA);
+    this.isBeta = some(
+      availability,
+      (x) => x.status === ENGINES_STATUS.BETA && x.engine === name,
+    );
   }
 
   getLabel() {
