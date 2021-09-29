@@ -14,6 +14,9 @@ export default /* @ngInject */ ($stateProvider) => {
         breadcrumb: () => null,
         goBack: /* @ngInject */ (goBackToDatabase) => goBackToDatabase,
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };

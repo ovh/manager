@@ -19,6 +19,9 @@ export default /* @ngInject */ ($stateProvider) => {
         dbInstance: /* @ngInject */ ($transition$) =>
           $transition$.params().dbInstance,
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };
