@@ -3,6 +3,9 @@ export default class {
   constructor($translate, DatabaseService) {
     this.$translate = $translate;
     this.service = DatabaseService;
+  }
+
+  $onInit() {
     this.trackDashboard('backups::options_menu::fork', 'page');
   }
 
