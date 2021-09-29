@@ -2,7 +2,9 @@ import PluginManager from './plugin-manager';
 
 export default class Shell {
   iframe: HTMLIFrameElement;
+
   pluginEventHandler: (event: MessageEvent) => void;
+
   pluginManager: PluginManager;
 
   constructor() {
@@ -21,13 +23,15 @@ export default class Shell {
 
     const onError = (error: Error) =>
       this.iframe.contentWindow.postMessage({
-        ...data,
+        type: data.type,
+        uid: data.uid,
         error,
       });
 
     const onSuccess = (success: unknown) =>
       this.iframe.contentWindow.postMessage({
-        ...data,
+        type: data.type,
+        uid: data.uid,
         success,
       });
 
