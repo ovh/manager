@@ -114,6 +114,7 @@ export const CHART_METRICS_OPTIONS = {
 
 export const NODES_PER_ROW = 4;
 export const MAX_IPS_DISPLAY = 3;
+export const CERTIFICATE_FILENAME = 'ca.pem';
 
 export default {
   DATABASES_GUIDES_URL,
@@ -124,4 +125,5 @@ export default {
   NODES_PER_ROW,
   SECRET_TYPE,
   ENGINE_LOGOS,
+  CERTIFICATE_FILENAME,
 };

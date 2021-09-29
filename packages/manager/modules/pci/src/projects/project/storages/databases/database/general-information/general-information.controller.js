@@ -1,5 +1,9 @@
 import capitalize from 'lodash/capitalize';
-import { SHELL_NAMES, MAX_IPS_DISPLAY } from '../../databases.constants';
+import {
+  SHELL_NAMES,
+  MAX_IPS_DISPLAY,
+  CERTIFICATE_FILENAME,
+} from '../../databases.constants';
 
 export default class {
   /* @ngInject */
@@ -44,7 +48,7 @@ export default class {
     this.trackDashboard('general_information::download_certificate');
     this.CucControllerHelper.constructor.downloadContent({
       fileContent: this.database.certificate.ca,
-      fileName: `ca.pem`,
+      fileName: CERTIFICATE_FILENAME,
     });
   }
 
