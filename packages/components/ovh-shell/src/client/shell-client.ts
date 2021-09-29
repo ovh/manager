@@ -28,8 +28,8 @@ export default class ShellClient {
     if (data.type === 'ovh-shell-plugin-event') {
       const deferred = this.deferredResponse[data.uid];
       if (deferred) {
-        if (data.error) deferred.reject(data.error);
-        else if (data.success) deferred.resolve(data.success);
+        if ('error' in data) deferred.reject(data.error);
+        else if ('success' in data) deferred.resolve(data.success);
         else deferred.reject();
         delete this.deferredResponse[data.uid];
       }
