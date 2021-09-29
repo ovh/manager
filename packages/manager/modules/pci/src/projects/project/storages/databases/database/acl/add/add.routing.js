@@ -13,6 +13,9 @@ export default /* @ngInject */ ($stateProvider) => {
         breadcrumb: () => null,
         goBack: /* @ngInject */ (goBackToAcl) => goBackToAcl,
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };

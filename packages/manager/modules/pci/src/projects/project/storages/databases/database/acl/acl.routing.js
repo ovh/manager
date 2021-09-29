@@ -60,6 +60,9 @@ export default /* @ngInject */ ($stateProvider) => {
             aclId,
           ),
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };
