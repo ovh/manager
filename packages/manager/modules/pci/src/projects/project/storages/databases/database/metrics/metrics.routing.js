@@ -26,6 +26,9 @@ export default /* @ngInject */ ($stateProvider) => {
             false,
           ).then((data) => data.sort()),
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };
