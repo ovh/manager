@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
-import ReactNavbar from '@/navbar/index.jsx';
-import ApplicationContext from '@/context';
+import ReactNavbar from '../navbar/index.jsx';
+import ApplicationContext from '../context';
 
 function ShellHeader() {
   return (

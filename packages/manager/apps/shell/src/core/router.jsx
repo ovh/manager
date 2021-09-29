@@ -8,7 +8,7 @@ import {
   useHistory,
   useParams,
 } from 'react-router-dom';
-import Application from '@/core/application';
+import Application from './application';
 
 function RouteHandler(props) {
   const { appId, '0': appHash } = useParams();

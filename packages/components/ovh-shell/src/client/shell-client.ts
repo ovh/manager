@@ -11,11 +11,18 @@ export interface IPluginInvocation {
   args?: unknown[];
 }
 
+function iframeCheck() {
+  if (!window.parent || window.parent === window.self) {
+    window.location.href = '/';
+  }
+}
+
 export default class ShellClient {
   deferredResponse: Record<string, IDeferred>;
 
   constructor() {
     this.deferredResponse = {};
+    iframeCheck();
   }
 
   getUniqueResponseId(): string {
@@ -28,8 +35,8 @@ export default class ShellClient {
     if (data.type === 'ovh-shell-plugin-event') {
       const deferred = this.deferredResponse[data.uid];
       if (deferred) {
-        if (data.error) deferred.reject(data.error);
-        else if (data.success) deferred.resolve(data.success);
+        if ('error' in data) deferred.reject(data.error);
+        else if ('success' in data) deferred.resolve(data.success);
         else deferred.reject();
         delete this.deferredResponse[data.uid];
       }

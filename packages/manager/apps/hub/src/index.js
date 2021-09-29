@@ -2,6 +2,7 @@ import 'script-loader!jquery'; // eslint-disable-line
 import 'whatwg-fetch';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import { client as shellClient } from '@ovh-ux/shell';
 
 import {
   attach as attachPreloader,
@@ -14,6 +15,8 @@ import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
 import { BILLING_REDIRECTIONS } from './constants';
 
 attachPreloader(findAvailableLocale(detectUserLocale()));
+
+shellClient.useShellApi().routing.init();
 
 registerApplication('hub').then(({ environment }) => {
   environment.setVersion(__VERSION__);

@@ -48,9 +48,7 @@ class Application {
   }
 
   onHashChange() {
-    this.hashChangeListeners.forEach((listener) =>
-      listener.call(undefined, { iframe: this }),
-    );
+    this.hashChangeListeners.forEach((listener) => listener());
   }
 
   updateRouting({ applicationId, applicationHash }) {
