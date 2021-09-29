@@ -7,6 +7,7 @@ export default class {
 
   $onInit() {
     this.loadMessages();
+    this.trackDashboard('backups', 'page');
   }
 
   loadMessages() {
