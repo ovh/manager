@@ -1,7 +1,9 @@
-import { NO_OS_INSTALLED_REGEX } from './constants';
+import { NO_OS_INSTALLED_REGEX, TRAVAUX_LINK } from './constants';
 
 export default class NutanixNodeGeneralInfoCtrl {
+  /* @ngInject */
   $onInit() {
+    this.TRAVAUX_LINK = TRAVAUX_LINK;
     this.loadServer();
   }
 
