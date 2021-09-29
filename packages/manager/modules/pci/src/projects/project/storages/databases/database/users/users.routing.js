@@ -1,4 +1,3 @@
-import find from 'lodash/find';
 import set from 'lodash/set';
 import isFeatureActivated from '../../features.constants';
 import { SECRET_TYPE } from '../../databases.constants';
@@ -14,21 +13,21 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('pci_projects_project_users_title'),
-        users: /* @ngInject */ (DatabaseService, database, projectId, roles) =>
+        users: /* @ngInject */ (DatabaseService, database, projectId) =>
           DatabaseService.getUsers(
             projectId,
             database.engine,
             database.id,
           ).then((users) =>
-            roles
-              ? users.map((user) =>
-                  set(
-                    user,
-                    'roles',
-                    user.roles?.map((role) => find(roles, { name: role })),
-                  ),
-                )
-              : users,
+            users.map((user) =>
+              set(
+                user,
+                'roles',
+                user.roles?.map((role, index) => {
+                  return { id: index, name: role };
+                }),
+              ),
+            ),
           ),
         addUser: /* @ngInject */ (
           $state,
