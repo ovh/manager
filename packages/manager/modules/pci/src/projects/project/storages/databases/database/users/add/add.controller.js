@@ -45,7 +45,7 @@ export default class {
 
   addUser() {
     if (this.model.username) {
-      this.trackDashboard('users::add_a_user::define_role_validate');
+      this.trackDashboard('users::add_a_user_validate');
       this.processing = true;
       this.DatabaseService.addUser(
         this.projectId,

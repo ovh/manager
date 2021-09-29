@@ -9,6 +9,7 @@ export default class usrInfomrationCtrl {
   }
 
   $onInit() {
+    this.trackDashboard('users::show_informations', 'page');
     this.isLoading = false;
     USER_INFORMATIONS_LISTS.forEach((element) => {
       this.mapArrayForChip(element);
