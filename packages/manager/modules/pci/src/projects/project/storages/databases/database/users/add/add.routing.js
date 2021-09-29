@@ -12,6 +12,9 @@ export default /* @ngInject */ ($stateProvider) => {
         isFeatureActivated: /* @ngInject */ (engine) => (feature) =>
           isFeatureActivated(feature, engine.name),
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };

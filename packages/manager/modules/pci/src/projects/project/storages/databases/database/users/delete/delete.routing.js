@@ -58,6 +58,9 @@ export default /* @ngInject */ ($stateProvider) => {
           });
         },
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };
