@@ -45,7 +45,7 @@ export default class {
 
   addUser() {
     if (this.model.username) {
-      this.trackDashboard('users::add_a_user_validate');
+      this.trackDashboard('users::add_a_user::validate');
       this.processing = true;
       this.DatabaseService.addUser(
         this.projectId,
@@ -75,8 +75,8 @@ export default class {
     }
   }
 
-  cancel(trackingCode) {
-    this.trackDashboard(trackingCode);
+  cancel() {
+    this.trackDashboard('users::add_a_user::cancel');
     this.goBack();
   }
 }
