@@ -29,7 +29,10 @@ export default class CloudProjectUsersCtrl {
   }
 
   isDisabledOrPending($row) {
-    return this.constructor.isPending($row) || this.isActionDisabled();
+    return (
+      this.constructor.isPending($row) ||
+      (this.isActionDisabled instanceof Function && this.isActionDisabled())
+    );
   }
 
   refreshMessages() {

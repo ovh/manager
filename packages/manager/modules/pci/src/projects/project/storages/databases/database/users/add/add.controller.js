@@ -37,7 +37,8 @@ export default class {
       user.channels = this.model.channels;
       user.commands = this.model.commands;
       user.keys = this.model.keys;
-    } else if (this.isFeatureActivated('getRoles')) {
+    }
+    if (this.isFeatureActivated('getRoles')) {
       user.roles = this.model.selectedRoles.map((role) => role.name);
     }
     return user;

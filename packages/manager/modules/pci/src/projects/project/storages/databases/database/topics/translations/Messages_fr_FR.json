@@ -7,7 +7,7 @@
   "pci_databases_topics_tab_retention_hours": "Temps de rétention",
   "pci_databases_topics_tab_retention_bytes": "Taille de rétention (octets)",
   "pci_databases_topics_tab_cleanup_policy": "Politique de suppression",
-  "pci_databases_topics_tab_status": "Status",
+  "pci_databases_topics_tab_status": "Statut",
   "pci_databases_topics_tab_add": "Ajouter un topic",
   "pci_databases_topics_tab_delete_link": "Supprimer",
   "pci_databases_topics_tab_unlimited": "illimité"
