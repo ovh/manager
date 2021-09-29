@@ -17,6 +17,9 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack: /* @ngInject */ (goBackToTopics) => goBackToTopics,
         topic: /* @ngInject */ ($transition$) => $transition$.params().topic,
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };
