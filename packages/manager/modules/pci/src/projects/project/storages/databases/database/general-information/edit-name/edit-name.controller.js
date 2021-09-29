@@ -10,6 +10,7 @@ export default class {
   $onInit() {
     this.isEditing = false;
     this.name = this.database.description;
+    this.trackDashboard('general_information::modify_name', 'page');
   }
 
   edit() {

@@ -12,6 +12,7 @@ export default class {
   $onInit() {
     this.selectedFlavor = this.currentFlavor;
     this.upgradingFlavor = false;
+    this.trackDatabases('config_upgrade_node', 'page');
   }
 
   onFlavorSelect(selectedFlavor) {

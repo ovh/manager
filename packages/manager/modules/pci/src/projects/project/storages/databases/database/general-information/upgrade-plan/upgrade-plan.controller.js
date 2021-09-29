@@ -10,6 +10,7 @@ export default class {
   $onInit() {
     this.selectedPlan = null;
     this.upgradingPlan = false;
+    this.trackDatabases('config_upgrade_plan', 'page');
   }
 
   onPlanSelect(selectedPlan) {

@@ -10,6 +10,7 @@ export default class {
   $onInit() {
     this.addingNode = false;
     this.name = this.database.description;
+    this.trackDashboard('general_information::add_node');
   }
 
   addNode() {

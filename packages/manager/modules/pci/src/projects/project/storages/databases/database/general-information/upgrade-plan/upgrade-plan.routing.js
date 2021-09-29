@@ -12,6 +12,9 @@ export default /* @ngInject */ ($stateProvider) => {
           engine.getAvailablePlans(database.version, database.region),
         onPlanUpgrade: /* @ngInject */ (goBackAndPoll) => goBackAndPoll,
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };

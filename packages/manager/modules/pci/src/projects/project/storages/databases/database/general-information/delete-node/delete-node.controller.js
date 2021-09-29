@@ -10,6 +10,7 @@ export default class {
   $onInit() {
     this.deletingNode = false;
     this.name = this.database.description;
+    this.trackDashboard('general_information::remove_node', 'page');
   }
 
   deleteNode() {
