@@ -1,12 +1,15 @@
 <!--Dashboard tabs-->
-<oui-header data-heading="{{ $ctrl.tenant.name }}" data-description="{{:: $ctrl.serviceName }}">
+<oui-header
+    data-heading="{{ $ctrl.tenant.name }}"
+    data-description="{{:: $ctrl.serviceName }}"
+>
     <oui-header-tabs>
         <oui-header-tabs-item
-        href="{{:: $ctrl.generalInformationLink }}"
-        active="$ctrl.currentActiveLink() === $ctrl.generalInformationLink"
+            href="{{:: $ctrl.generalInformationLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.generalInformationLink"
         >
             <span
-            data-translate="anthos_dashboard_header_general_information"
+                data-translate="anthos_dashboard_header_general_information"
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
@@ -16,6 +19,7 @@
             <span data-translate="anthos_dashboard_header_host"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
+            data-ng-if="$ctrl.storageUsage"
             href="{{:: $ctrl.storageLink }}"
             active="$ctrl.currentActiveLink() === $ctrl.storageLink"
         >

@@ -163,6 +163,7 @@
 
                 <!--Persistent storage-->
                 <oui-tile-definition
+                    data-ng-if="$ctrl.storageUsage"
                     data-term="{{:: 'anthos_tenant_dashboard_general_information_tile_resources_persistent_storage' | translate }}"
                     data-description="{{:: $ctrl.tenant.storage }}"
                 >

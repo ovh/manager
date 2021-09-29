@@ -102,12 +102,18 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       storageUsage: /* @ngInject */ (AnthosTenantsService, serviceName) =>
-        AnthosTenantsService.getTenantStorageUsage(serviceName).then(
-          (usageData) => ({
+        AnthosTenantsService.getTenantStorageUsage(serviceName)
+          .then((usageData) => ({
             ...usageData,
             totalUsed: usageData.reservedSize + usageData.usedSize,
+          }))
+          .catch((error) => {
+            if (error.status !== 404) {
+              throw error;
+            } else {
+              return null;
+            }
           }),
-        ),
 
       trackingPrefix: () => {
         return TRACKING_PREFIX;
