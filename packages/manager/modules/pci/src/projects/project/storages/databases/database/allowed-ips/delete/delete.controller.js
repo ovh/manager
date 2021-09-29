@@ -9,6 +9,7 @@ export default class {
 
   $onInit() {
     this.isLoading = false;
+    this.trackDashboard('allowed-ips::options::delete', 'page');
   }
 
   deleteIp() {

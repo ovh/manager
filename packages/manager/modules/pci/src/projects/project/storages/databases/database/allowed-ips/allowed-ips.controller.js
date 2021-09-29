@@ -6,6 +6,7 @@ export default class {
 
   $onInit() {
     this.loadMessages();
+    this.trackDashboard('allowed-ips::add_ips', 'page');
   }
 
   openAddIp() {
