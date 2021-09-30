@@ -1,7 +1,6 @@
-export default class NutanixNodeIpmiCtrl {
+export default class NutanixNodeTasksCtrl {
   /* @ngInject */
-  constructor($translate, Alerter) {
-    this.$translate = $translate;
+  constructor(Alerter) {
     this.Alerter = Alerter;
   }
 
