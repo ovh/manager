@@ -293,7 +293,10 @@ export default class {
           data.maxCharactersPerPart - data.characters;
         smsInfoText.defaultSize = data.maxCharactersPerPart;
         smsInfoText.equivalence = data.parts;
-        smsInfoText.coding = data.charactersClass;
+        // TODO: Align both Enum `sms.EncodingEnum` and `sms.CodingEnum`.
+        // Since `charactersClass` could be `7bits` or `unicode`, we manually
+        // set the expected `coding`.
+        smsInfoText.coding = data.charactersClass === '7bits' ? '7bit' : '8bit';
 
         return assign(this.message, smsInfoText);
       })
