@@ -30,6 +30,7 @@ export default class HostingGeneralInformationsCtrl {
     HostingRuntimes,
     hostingSSLCertificate,
     OvhApiScreenshot,
+    user,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -52,6 +53,7 @@ export default class HostingGeneralInformationsCtrl {
     this.HostingRuntimes = HostingRuntimes;
     this.hostingSSLCertificate = hostingSSLCertificate;
     this.OvhApiScreenshot = OvhApiScreenshot;
+    this.user = user;
   }
 
   $onInit() {
@@ -315,6 +317,33 @@ export default class HostingGeneralInformationsCtrl {
   flushCdn(action) {
     this.sendTrackClick('web::hosting::empty-cdn-cache');
     this.$scope.setAction(action);
+  }
+
+  canOrderOrEditCdn() {
+    if (!this.hasCdnRights()) {
+      return false;
+    }
+
+    const {
+      flushCdnState,
+      hosting: { hasCdn, offer },
+    } = this.$scope;
+
+    const isFlushCdnStateOk = flushCdnState === 'ok';
+    const isOfferStart10M = offer === 'START_10_M';
+
+    return hasCdn || (isFlushCdnStateOk && !isOfferStart10M);
+  }
+
+  hasCdnRights() {
+    const {
+      hosting: {
+        serviceInfos: { contactAdmin, contactBilling },
+      },
+    } = this.$scope;
+    const { nichandle } = this.user;
+
+    return [contactAdmin, contactBilling].includes(nichandle);
   }
 
   onMoreInfoLinkClicked() {

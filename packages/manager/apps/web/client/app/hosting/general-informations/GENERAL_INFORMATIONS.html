@@ -407,7 +407,7 @@
                         <oui-action-menu
                             data-compact
                             data-placement="end"
-                            data-ng-if="flushCdnState === 'ok' && !hosting.hasCdn && hosting.offer!== 'START_10_M' || hosting.hasCdn && flushCdnState === 'ok' || hosting.hasCdn"
+                            data-ng-if="$ctrl.canOrderOrEditCdn()"
                         >
                             <oui-action-menu-item
                                 data-ng-if="isUpgradable && hosting.hasCdn"
