@@ -86,5 +86,6 @@
   "iplb_tile_subscription_creation_date": "Data utworzenia",
   "iplb_preview_see": "Wyświetl podgląd",
   "iplb_complete_order": "Ureguluj płatność za zamówienie",
-  "iplb_tile_subscription_autorenew": "Automatyczne odnowienie"
+  "iplb_tile_subscription_autorenew": "Automatyczne odnowienie",
+  "iplb_tile_subscription_expiration_date": "Data wygasania"
 }
