@@ -11,6 +11,7 @@ import component from './component';
 import routing from './routing';
 import ipmi from './ipmi';
 import generalInfo from './general-info';
+import tasks from './tasks';
 import editDisplayName from './general-info/edit-display-name';
 
 const moduleName = 'ovhManagerNutanixNode';
@@ -27,6 +28,7 @@ angular
     ipmi,
     generalInfo,
     editDisplayName,
+    tasks,
   ])
   .config(routing)
   .component('nutanixNode', component)
