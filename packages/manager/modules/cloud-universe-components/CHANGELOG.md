@@ -1,3 +1,12 @@
+## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.3.0...@ovh-ux/ng-ovh-cloud-universe-components@2.3.1) (2021-09-30)
+
+
+### Bug Fixes
+
+* **helper.order:** update target URL for `AU` subsidiary ([#5650](https://github.com/ovh/manager/issues/5650)) ([cc4ca3c](https://github.com/ovh/manager/commit/cc4ca3c1425e4f653e415c190860cd153efa4c73))
+
+
+
 # [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.2.7...@ovh-ux/ng-ovh-cloud-universe-components@2.3.0) (2021-08-25)
 
 
