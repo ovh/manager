@@ -316,7 +316,7 @@
                             items="$ctrl.hstsMaxAgeUnits"
                             model="$ctrl.hstsMaxAgeUnit"
                             disabled="!$ctrl.model.hsts.enabled"
-                            on-change="$ctrl.setHstsMaxAge()"
+                            on-change="$ctrl.handleHSTSUnit(modelValue)"
                         >
                             <span data-ng-bind="$item.key"></span>
                         </oui-select>
