@@ -29,6 +29,8 @@ import component from './instances.component';
 import routing from './instances.routing';
 import service from './instances.service';
 
+import './instances.scss';
+
 const moduleName = 'ovhManagerPciInstances';
 
 angular
