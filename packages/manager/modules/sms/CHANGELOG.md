@@ -1,3 +1,12 @@
+## [8.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.5.2...@ovh-ux/manager-sms@8.5.3) (2021-09-30)
+
+
+### Bug Fixes
+
+* **sms.compose:** apply corresponding coding to the message ([#5656](https://github.com/ovh/manager/issues/5656)) ([57ea78a](https://github.com/ovh/manager/commit/57ea78ab53ccdef7f912ddad069d8ccabeaebe28))
+
+
+
 ## [8.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.5.1...@ovh-ux/manager-sms@8.5.2) (2021-09-23)
 
 
