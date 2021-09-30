@@ -45,7 +45,11 @@ export default class SmsCompositionController {
             data.maxCharactersPerPart - data.characters;
           this.model.messageDetails.defaultSize = data.maxCharactersPerPart;
           this.model.messageDetails.equivalence = data.parts;
-          this.model.messageDetails.coding = data.charactersClass;
+          // TODO: Align both Enum `sms.EncodingEnum` and `sms.CodingEnum`.
+          // Since `charactersClass` could be `7bits` or `unicode`, we manually
+          // set the expected `coding`.
+          this.model.messageDetails.coding =
+            data.charactersClass === '7bits' ? '7bit' : '8bit';
 
           return this.model.messageDetails;
         })
