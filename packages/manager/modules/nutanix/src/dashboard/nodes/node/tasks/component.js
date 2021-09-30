@@ -3,7 +3,7 @@ import template from './template.html';
 
 export default {
   bindings: {
-    node: '<',
+    nodeId: '<',
     user: '<',
   },
   controller,
