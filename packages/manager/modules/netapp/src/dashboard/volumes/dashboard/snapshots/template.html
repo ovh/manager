@@ -83,7 +83,7 @@
             text="{{:: 'netapp_volumes_snapshots_actions' | translate }}"
             compact
         >
-            <oui-action-menu-item on-click="$ctrl.editSnapshot($row)">
+            <oui-action-menu-item on-click="$ctrl.editSnapshot($row.id)">
                 <span
                     data-translate="netapp_volumes_snapshots_actions_edit"
                 ></span>
