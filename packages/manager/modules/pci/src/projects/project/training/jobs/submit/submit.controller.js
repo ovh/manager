@@ -4,7 +4,7 @@ import filter from 'lodash/filter';
 import map from 'lodash/map';
 import head from 'lodash/head';
 import { nameGenerator } from '../../../data-processing/data-processing.utils';
-import { DISCORD_URL } from '../../training.constants';
+import { DISCORD_URL, DOC_DOCKER_BUILD_URL } from '../../training.constants';
 
 export default class PciTrainingJobsSubmitController {
   /* @ngInject */
@@ -66,6 +66,7 @@ export default class PciTrainingJobsSubmitController {
     this.httpHeader = [];
     this.volumesPermissions = ['RO', 'RW'];
     this.discordUrl = DISCORD_URL;
+    this.docDockerBuildUrl = DOC_DOCKER_BUILD_URL;
     // Form payload
     this.job = {
       addVolume: false,
