@@ -29,7 +29,7 @@
   "hosting_cdn_shared_option_https_redirect_description": "Proteggi il traffico totale del tuo sito Web reindirizzandolo al protocollo HTTPS in modo temporaneo o permanente.",
   "hosting_cdn_shared_option_https_redirect_301": "Reindirizzamento permanente (301)",
   "hosting_cdn_shared_option_https_redirect_302": "Reindirizzamento temporaneo (302)",
-  "hosting_cdn_shared_option_hsts_description": "Limita l'accesso al tuo sito alla sola modalità HTTPS. In questo modo la tua soluzione è protetta dagli attacchi di downgrade.",
+  "hosting_cdn_shared_option_hsts_description": "Limita l'accesso al tuo sito esclusivamente in modalità HTTPS. In questo modo la tua soluzione è protetta dagli attacchi di downgrade.",
   "hosting_cdn_shared_option_hsts_max_age": "Età massima.",
   "hosting_cdn_shared_option_hsts_max_age_seconds": "Secondi",
   "hosting_cdn_shared_option_hsts_max_age_days": "Giorni",
