@@ -29,7 +29,7 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.ts'],
+      files: ['**/*.ts', '**/*.tsx'],
       parser: '@typescript-eslint/parser',
       plugins: ['@typescript-eslint'],
       extends: [
