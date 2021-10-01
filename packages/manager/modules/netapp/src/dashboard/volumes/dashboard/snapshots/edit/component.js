@@ -3,13 +3,11 @@ import template from './template.html';
 
 export default {
   bindings: {
-    addSnapshotLink: '<',
-    deleteSnapshot: '<',
-    editSnapshot: '<',
+    goBack: '<',
     serviceName: '<',
-    snapshots: '<',
-    totalSnapshots: '<',
+    snapshot: '<',
     volumeId: '<',
+    volume: '<',
   },
   controller,
   template,
