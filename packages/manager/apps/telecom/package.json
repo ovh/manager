@@ -115,7 +115,6 @@
     "font-awesome": "4.7.0",
     "fullcalendar": "~2.7.1",
     "international-phone-number": "mareczek/international-phone-number#^0.0.16",
-    "intl-tel-input": "~5.1.0",
     "ip-address": "^5.9.2",
     "jquery": "^2.1.3",
     "jquery-ui": ">=1.12.x",
