@@ -1,4 +1,4 @@
-import { IPluginInvocation } from './client/shell-client';
+import { IPluginInvocation } from '../client/shell-client';
 
 export interface IPluginEntry {
   id: string;

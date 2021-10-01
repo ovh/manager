@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import {
   HashRouter,
   Redirect,
@@ -8,24 +7,44 @@ import {
   useHistory,
   useParams,
 } from 'react-router-dom';
-import Application from '@/core/application';
+import Application from './application';
 
-function RouteHandler(props) {
-  const { appId, '0': appHash } = useParams();
-  const history = useHistory();
+export const hashChangeEvent = 'ovh-routing-hash-change';
+
+interface RouteHandlerProps {
+  app: Application;
+}
+
+interface RouteHandlerParams {
+  appId: string;
+  '0': string;
+}
+
+interface RouterProps {
+  iframe: HTMLIFrameElement;
+}
+
+function RouteHandler(props: RouteHandlerProps): JSX.Element {
+  const { appId, '0': appHash } = useParams<RouteHandlerParams>();
   const { app } = props;
 
+  const history = useHistory();
   useEffect(() => {
-    app.addHashChangeListener(() => {
-      const { applicationId, applicationHash } = app.getApplicationRouting();
-      history.replace({ pathname: `/${applicationId}${applicationHash}` });
-    });
+    window.addEventListener(
+      hashChangeEvent,
+      () => {
+        const { applicationId, applicationHash } = app.getApplicationRouting();
+        history.replace({ pathname: `/${applicationId}${applicationHash}` });
+      },
+      false,
+    );
   }, []);
 
   app.updateRouting({
     applicationId: appId,
     applicationHash: appHash,
   });
+
   return null;
 }
 
@@ -36,9 +55,8 @@ function DefaultRouteHandler() {
   return <Redirect to="/hub/" />;
 }
 
-function Router(props) {
+function Router(props: RouterProps) {
   const application = new Application(props.iframe);
-  application.listenForChanges();
   return (
     <HashRouter>
       <Switch>
@@ -52,9 +70,5 @@ function Router(props) {
     </HashRouter>
   );
 }
-
-Router.propTypes = {
-  iframe: PropTypes.instanceOf(HTMLIFrameElement).isRequired,
-};
 
 export default Router;
