@@ -11,17 +11,20 @@
   "author": "OVH SAS",
   "sideEffects": "false",
   "type": "module",
-  "exports": {
-    ".": "./dist/index.js",
-    "./client": "./dist/client/index.js",
-    "./plugin/i18n": "./dist/plugin/i18n/index.js"
-  },
   "main": "./dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "tsc -w"
   },
   "dependencies": {
-    "nanoid": "^3.1.25"
+    "@types/react": "^17.0.24",
+    "@types/react-router-dom": "^5.3.0",
+    "nanoid": "^3.1.25",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-i18next": "^11.11.4",
+    "react-router-dom": "^5.3.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.31.2",

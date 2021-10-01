@@ -9,5 +9,22 @@ export default function exposeApi(shell: ShellClient) {
           method: 'getLocale',
         }),
     },
+    routing: {
+      init: () =>
+        window.addEventListener('hashchange', () => {
+          if (window.parent !== window.self) {
+            shell.invokePluginMethod({
+              plugin: 'routing',
+              method: 'onHashChange',
+              args: [
+                {
+                  hash: window.location.hash,
+                  path: window.location.pathname,
+                },
+              ],
+            });
+          }
+        }),
+    },
   };
 }
