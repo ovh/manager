@@ -23,6 +23,15 @@ export default /* @ngInject */ ($stateProvider) => {
           snapshotId,
         }),
 
+      editSnapshot: /* @ngInject */ ($state, serviceName, volumeId) => (
+        snapshotId,
+      ) =>
+        $state.go('netapp.dashboard.volumes.dashboard.snapshots.edit', {
+          serviceName,
+          volumeId,
+          snapshotId,
+        }),
+
       goToSnapshots: /* @ngInject */ (
         $state,
         Alerter,
