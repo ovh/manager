@@ -11,11 +11,18 @@ export interface IPluginInvocation {
   args?: unknown[];
 }
 
+function iframeCheck() {
+  if (!window.parent || window.parent === window.self) {
+    window.location.href = '/';
+  }
+}
+
 export default class ShellClient {
   deferredResponse: Record<string, IDeferred>;
 
   constructor() {
     this.deferredResponse = {};
+    iframeCheck();
   }
 
   getUniqueResponseId(): string {
