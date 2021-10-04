@@ -1,6 +1,9 @@
 import find from 'lodash/find';
 
 import Base from './base.class';
+import { SSL_MODE_REQUIRED, SSL_MODE_NA } from './databases.constants';
+
+import { ENGINES_NAMES } from './engines.constants';
 
 export default class Database extends Base {
   constructor({
@@ -22,6 +25,7 @@ export default class Database extends Base {
     sslMode,
     host,
     port,
+    uri,
   }) {
     super();
     this.updateData({
@@ -43,6 +47,7 @@ export default class Database extends Base {
       sslMode,
       host,
       port,
+      uri,
     });
   }
 
@@ -52,6 +57,10 @@ export default class Database extends Base {
 
   get region() {
     return this.nodes[0]?.region;
+  }
+
+  getEngineLabel() {
+    return ENGINES_NAMES[this.engine];
   }
 
   addNode(node) {
@@ -85,6 +94,19 @@ export default class Database extends Base {
       );
     }
     return this.currentEngine;
+  }
+
+  getSSLModeKey() {
+    if (!this.sslModeKey) {
+      this.sslModeKey = this.sslMode;
+      if (SSL_MODE_REQUIRED.includes(this.sslMode)) {
+        this.sslModeKey = 'required';
+      }
+      if (SSL_MODE_NA.includes(this.sslMode)) {
+        this.sslModeKey = 'n/a';
+      }
+    }
+    return this.sslModeKey;
   }
 
   updateData(data) {

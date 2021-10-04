@@ -13,6 +13,9 @@ export default /* @ngInject */ ($stateProvider) => {
             .flavors,
         onNodeUpgrade: /* @ngInject */ (goBackAndPoll) => goBackAndPoll,
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };

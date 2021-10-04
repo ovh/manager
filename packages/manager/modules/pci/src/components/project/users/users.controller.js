@@ -18,6 +18,7 @@ export default class CloudProjectUsersCtrl {
       this.users,
       (user) => !!user.description,
     );
+    this.isRolesAvailable = some(this.users, (user) => !!user.roles);
     this.loadMessages();
   }
 
@@ -25,6 +26,13 @@ export default class CloudProjectUsersCtrl {
     this.messageHandler = this.CucCloudMessage.subscribe(this.messageChannel, {
       onMessage: () => this.refreshMessages(),
     });
+  }
+
+  isDisabledOrPending($row) {
+    return (
+      this.constructor.isPending($row) ||
+      (this.isActionDisabled instanceof Function && this.isActionDisabled())
+    );
   }
 
   refreshMessages() {

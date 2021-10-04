@@ -8,13 +8,15 @@ export default class Region {
     Object.assign(this, {
       name,
     });
-    this.flavors = flavors.map(
-      (flavor) =>
-        new Flavor(
-          flavor,
-          availability.filter((plan) => plan.flavor.name === flavor.name),
-        ),
-    );
+    this.flavors = flavors
+      .map(
+        (flavor) =>
+          new Flavor(
+            flavor,
+            availability.filter((plan) => plan.flavor.name === flavor.name),
+          ),
+      )
+      .sort((a, b) => b.compare(a));
     this.hasSufficientQuota = true;
     this.isDefault = some(availability, 'default');
   }

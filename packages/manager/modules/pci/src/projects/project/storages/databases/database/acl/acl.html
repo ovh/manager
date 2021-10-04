@@ -1,0 +1,59 @@
+<div class="container-fluid px-0 mt-3">
+    <!-- error messages -->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <h2 data-translate="pci_databases_acl_tab_title"></h2>
+
+    <oui-datagrid class="mt-5" data-page-size="10" data-rows="$ctrl.aclList">
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_acl_tab_username' | translate"
+            data-property="username"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_acl_tab_topic' | translate"
+            data-property="topic"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_acl_tab_permission' | translate"
+            data-property="permission"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item data-on-click="$ctrl.delete($row)">
+                <span data-translate="pci_databases_acl_tab_delete"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+        <oui-datagrid-topbar>
+            <oui-button data-on-click="$ctrl.goToAddAcl()">
+                <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i>
+                <span data-translate="pci_databases_acl_tab_add"></span>
+            </oui-button>
+            <button
+                data-ng-if="$ctrl.aclList.length > 0"
+                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
+                type="button"
+                data-title="{{:: 'pci_databases_common_refresh' | translate }}"
+                data-ng-click="$ctrl.refreshing=true; $ctrl.refreshAcl()"
+                data-ng-disabled="$ctrl.refreshing"
+            >
+                <span
+                    class="oui-icon oui-icon-refresh"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+</div>

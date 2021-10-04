@@ -14,6 +14,9 @@ export default /* @ngInject */ ($stateProvider) => {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('pci_database_logs_title'),
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };

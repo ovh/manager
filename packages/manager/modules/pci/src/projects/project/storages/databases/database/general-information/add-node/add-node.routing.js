@@ -29,6 +29,9 @@ export default /* @ngInject */ ($stateProvider) => {
           return goToDatabase(database, message, type);
         },
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };

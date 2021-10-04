@@ -12,16 +12,11 @@ export default class {
   $onInit() {
     this.upgradingVersion = false;
     this.selectedVersion = null;
-    this.trackDatabases(
-      'dashboard::general_information::upgrade_version',
-      'page',
-    );
+    this.trackDashboard('general_information::upgrade_version', 'page');
   }
 
   upgradeVersion() {
-    this.trackDatabases(
-      'dashboard::general_information::popin_upgrade_version_validate',
-    );
+    this.trackDashboard('general_information::popin_upgrade_version_validate');
     this.upgradingVersion = true;
     return this.DatabaseService.editDatabase(
       this.projectId,
@@ -55,9 +50,7 @@ export default class {
   }
 
   cancel() {
-    this.trackDatabases(
-      'dashboard::general_information::popin_upgrade_version_cancel',
-    );
+    this.trackDashboard('general_information::popin_upgrade_version_cancel');
     this.goBack();
   }
 }

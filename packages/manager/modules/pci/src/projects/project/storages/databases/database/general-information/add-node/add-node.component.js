@@ -8,7 +8,7 @@ const component = {
     onNodeAdd: '<',
     price: '<',
     projectId: '<',
-    trackDatabases: '<',
+    trackDashboard: '<',
     user: '<',
   },
   template,

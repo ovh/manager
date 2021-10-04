@@ -6,7 +6,7 @@ export default {
   bindings: {
     projectId: '<',
     database: '<',
-    trackDatabases: '<',
+    trackDashboard: '<',
   },
   controller,
   template,

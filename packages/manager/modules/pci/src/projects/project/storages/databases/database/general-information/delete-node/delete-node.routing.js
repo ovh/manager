@@ -28,6 +28,9 @@ export default /* @ngInject */ ($stateProvider) => {
         price: /* @ngInject */ (getCurrentFlavor) =>
           getCurrentFlavor().nodeHourlyPrice,
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };

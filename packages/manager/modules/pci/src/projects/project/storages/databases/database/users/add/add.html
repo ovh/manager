@@ -1,53 +1,101 @@
 <oui-back-button
     data-previous-page="{{:: 'pci_projects_project_users_title' | translate }}"
     data-on-click="$ctrl.goBack()"
->
-</oui-back-button>
+></oui-back-button>
 
-<h2 data-translate="pci_databases_users_add"></h2>
-<oui-field
-    data-label="{{:: 'pci_databases_users_add_username_label' | translate }}"
-    data-size="xl"
->
-    <input
-        class="oui-input"
-        type="text"
-        id="username"
-        name="username"
-        ng-model="$ctrl.model.username"
-        maxlength="255"
-        required
-    />
-</oui-field>
+<form novalidate>
+    <h2 data-translate="pci_databases_users_add"></h2>
+    <oui-field
+        data-label="{{:: 'pci_databases_users_add_username_label' | translate }}"
+        data-size="xl"
+    >
+        <input
+            class="oui-input"
+            type="text"
+            id="username"
+            name="username"
+            ng-model="$ctrl.model.username"
+            data-ng-pattern="$ctrl.inputRules.name.pattern"
+            data-ng-maxlength="$ctrl.inputRules.name.max"
+            required
+        />
+    </oui-field>
 
-<h2 data-translate="pci_databases_users_add_roles"></h2>
-<oui-dual-list
-    data-source="$ctrl.availableRoles"
-    data-target="$ctrl.model.selectedRoles"
-    property="name"
->
-    <oui-dual-list-source
-        data-heading="{{:: 'pci_databases_users_add_roles_available' | translate }}"
-        data-searchable="true"
-    >
-    </oui-dual-list-source>
-    <oui-dual-list-target
-        data-heading="{{:: 'pci_databases_users_add_roles_selected' | translate }}"
-        data-searchable="true"
-    >
-    </oui-dual-list-target>
-</oui-dual-list>
-<div class="text-right">
-    <oui-button ng-click="$ctrl.cancel()" size="l">
-        <span data-translate="pci_databases_users_add_cancel"></span>
-    </oui-button>
-    <oui-button
-        size="l"
-        variant="primary"
-        icon-right="oui-icon-arrow-right"
-        disabled="$ctrl.processing"
-        ng-click="$ctrl.addUser()"
-    >
-        <span data-translate="pci_databases_users_add_create"></span>
-    </oui-button>
-</div>
+    <div ng-if="!$ctrl.isRolesReadOnly">
+        <h2 data-translate="pci_databases_users_add_roles"></h2>
+        <oui-dual-list
+            data-source="$ctrl.availableRoles"
+            data-target="$ctrl.model.selectedRoles"
+            disabled="$ctrl.isFeatureActivated('getRoles')"
+            property="name"
+        >
+            <oui-dual-list-source
+                data-heading="{{:: 'pci_databases_users_add_roles_available' | translate }}"
+                data-searchable="true"
+            >
+            </oui-dual-list-source>
+            <oui-dual-list-target
+                data-heading="{{:: 'pci_databases_users_add_roles_selected' | translate }}"
+                data-searchable="true"
+            >
+            </oui-dual-list-target>
+        </oui-dual-list>
+    </div>
+
+    <div ng-if="$ctrl.database.engine === 'redis'">
+        <tags-input
+            name="keys"
+            data-model="$ctrl.model.keys"
+            data-min="$ctrl.inputRules.keys.min"
+            data-max="$ctrl.inputRules.keys.max"
+            data-pattern="$ctrl.inputRules.keys.pattern"
+            data-label="{{:: 'pci_databases_users_add_keys_label' | translate }}"
+            data-button-label="{{:: 'pci_databases_users_add_keys_button_label' | translate }}"
+        ></tags-input>
+        <tags-input
+            name="categories"
+            data-model="$ctrl.model.categories"
+            data-min="$ctrl.inputRules.categories.min"
+            data-max="$ctrl.inputRules.categories.max"
+            data-pattern="$ctrl.inputRules.categories.pattern"
+            data-label="{{:: 'pci_databases_users_add_categories_label' | translate }}"
+            data-button-label="{{:: 'pci_databases_users_add_categories_button_label' | translate }}"
+        ></tags-input>
+        <tags-input
+            name="commands"
+            data-model="$ctrl.model.commands"
+            data-min="$ctrl.inputRules.commands.min"
+            data-max="$ctrl.inputRules.commands.max"
+            data-pattern="$ctrl.inputRules.commands.pattern"
+            data-label="{{:: 'pci_databases_users_add_commands_label' | translate }}"
+            data-button-label="{{:: 'pci_databases_users_add_commands_button_label' | translate }}"
+        ></tags-input>
+        <tags-input
+            name="channels"
+            data-model="$ctrl.model.channels"
+            data-min="$ctrl.inputRules.channels.min"
+            data-max="$ctrl.inputRules.channels.max"
+            data-pattern="$ctrl.inputRules.channels.pattern"
+            data-label="{{:: 'pci_databases_users_add_channels_label' | translate }}"
+            data-button-label="{{:: 'pci_databases_users_add_channels_button_label' | translate }}"
+        ></tags-input>
+    </div>
+    <div class="text-right">
+        <oui-button
+            size="l"
+            disabled="$ctrl.processing"
+            ng-click="$ctrl.cancel()"
+        >
+            <span data-translate="pci_databases_users_add_cancel"></span>
+        </oui-button>
+        <oui-button
+            size="l"
+            variant="primary"
+            icon-right="oui-icon-arrow-right"
+            disabled="$ctrl.processing || !$ctrl.model.username"
+            ng-click="$ctrl.addUser()"
+        >
+            <span data-translate="pci_databases_users_add_create"></span>
+        </oui-button>
+    </div>
+</form>

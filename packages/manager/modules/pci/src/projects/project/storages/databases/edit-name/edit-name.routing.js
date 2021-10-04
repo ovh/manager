@@ -16,5 +16,8 @@ export default /* @ngInject */ ($stateProvider) => {
       database: /* @ngInject */ (databaseId, databases) =>
         find(databases, { id: databaseId }),
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };

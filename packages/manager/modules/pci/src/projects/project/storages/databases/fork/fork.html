@@ -17,7 +17,10 @@
 <p>
     <span
         data-translate="pci_database_fork_description"
-        data-translate-values="{backup: $ctrl.backupInstance}"
+        data-translate-values="{
+            backup: $ctrl.backupInstance,
+            backupSize: ($ctrl.backupInstance.size.value | cucBytes)
+        }"
     ></span>
 </p>
 
@@ -90,6 +93,7 @@
             name="name"
             data-ng-model="$ctrl.model.name"
             data-ng-pattern="$ctrl.NAME_PATTERN"
+            data-ng-maxlength="$ctrl.MAX_NAME_LENGTH"
             data-ng-change="$ctrl.prepareOrderData()"
             required
         />

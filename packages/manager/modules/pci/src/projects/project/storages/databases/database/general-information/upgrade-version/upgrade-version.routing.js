@@ -20,6 +20,9 @@ export default /* @ngInject */ ($stateProvider) => {
         },
         onVersionUpgrade: /* @ngInject */ (goBackAndPoll) => goBackAndPoll,
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };
