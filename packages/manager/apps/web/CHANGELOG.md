@@ -1,3 +1,12 @@
+## [15.30.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.30.5...@ovh-ux/manager-web@15.30.6) (2021-10-04)
+
+
+### Bug Fixes
+
+* **web.hosting.cds:** default to month for hsts ([#5567](https://github.com/ovh/manager/issues/5567)) ([600d353](https://github.com/ovh/manager/commit/600d353c2e2cb897550f7b727d458c1004777dad))
+
+
+
 ## [15.30.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.30.4...@ovh-ux/manager-web@15.30.5) (2021-09-27)
 
 

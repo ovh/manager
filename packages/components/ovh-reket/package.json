@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ovh-reket",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Expose a way to get a predefined Reket instance",
   "repository": {
     "type": "git",

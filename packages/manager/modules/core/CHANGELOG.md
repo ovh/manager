@@ -1,3 +1,12 @@
+## [12.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.4.2...@ovh-ux/manager-core@12.4.3) (2021-10-04)
+
+
+### Bug Fixes
+
+* **core:** telecom auth url ([4e25ab9](https://github.com/ovh/manager/commit/4e25ab9cc2ccb6f8e2f131f9785944375f93f255))
+
+
+
 ## [12.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.4.1...@ovh-ux/manager-core@12.4.2) (2021-09-09)
 
 
