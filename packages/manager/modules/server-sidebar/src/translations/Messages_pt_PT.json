@@ -4,7 +4,7 @@
   "server_sidebar_item_title_WEB": "Web",
   "server_sidebar_item_empty_title": "Nenhum serviço",
   "server_sidebar_item_dedicatedServers_title": "Servidores dedicados",
-  "server_sidebar_item_dedicatedClouds_title": "Hosted Private Cloud",
+  "server_sidebar_item_dedicatedClouds_title": "VMware",
   "server_sidebar_item_networks_title": "NAS e CDN",
   "server_sidebar_item_licences_title": "Licenças",
   "server_sidebar_item_ip_title": "IP",
@@ -34,7 +34,7 @@
   "server_sidebar_order_item_vps_title": "Servidores privados virtuais",
   "server_sidebar_order_item_dedicated_server_title": "Servidor dedicado",
   "server_sidebar_order_item_cloud_project_title": "Projeto cloud",
-  "server_sidebar_order_item_dedicated_cloud_title": "Hosted Private Cloud",
+  "server_sidebar_order_item_dedicated_cloud_title": "VMware",
   "server_sidebar_order_item_ip_title": "IP adicional",
   "server_sidebar_order_item_iplb_title": "Load Balancer",
   "server_sidebar_order_item_vrack_title": "vRack",
@@ -69,5 +69,7 @@
   "server_sidebar_item_domain_bulk_title": "Ações massivas",
   "server_sidebar_item_web_paas_title": "Web PaaS",
   "server_sidebar_item_web_paas_all_accounts_title": "Todos os projetos",
-  "server_sidebar_order_item_web_paas_title": "Web PaaS"
+  "server_sidebar_order_item_web_paas_title": "Web PaaS",
+  "server_sidebar_item_anthos_title": "Anthos",
+  "server_sidebar_item_anthos_all_title": "Todas as minhas implementações"
 }

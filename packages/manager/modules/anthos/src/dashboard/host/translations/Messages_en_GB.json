@@ -1,0 +1,6 @@
+{
+  "anthos_dashboard_host_description": "You can customise your Anthos deployment by adding hosts to it. You will be redirected to a new page where you can confirm your order. The price displayed is valid for a period of one month. If you sign up for a longer period, you will get lower prices.",
+  "anthos_dashboard_host_order": "Order a host",
+  "anthos_dashboard_host_included": "Included in the starter pack",
+  "anthos_dashboard_host_additional": "Additional hosts"
+}

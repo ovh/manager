@@ -1,0 +1,10 @@
+{
+  "anthos_onboarding_breadcrumb": "Anthos",
+  "anthos_onboarding_title": "Hosted Private Cloud powered by Anthos",
+  "anthos_onboarding_description_part_1": "\"Utilizza la migliore piattaforma Cloud-native per ospitare le tue applicazioni moderne, in modalità privata e Bare Metal.",
+  "anthos_onboarding_description_part_2": "Scegli un pacchetto iniziale e usufruisci della console Anthos privata per creare il tuo primo cluster Kubernetes. Scopri le funzionalità avanzate di Anthos Private Mode (osservabilità, servizio mesh...) e aggiungi nodi supplementari on demand.",
+  "anthos_onboarding_description_part_3": "Gestiamo l'infrastruttura e tutti i componenti del control plane. Risparmia tempo e denaro e concentrati su creazione, modernizzazione e miglioramento continuo delle tue applicazioni.\"",
+  "anthos_onboarding_cta_start_with_anthos": "Scopri di più su Anthos",
+  "anthos_onboarding_guides_anthos_title": "Documentazione di Anthos",
+  "anthos_onboarding_guides_anthos_description": "Consulta tutta la documentazione su Anthos"
+}

@@ -1,0 +1,10 @@
+{
+  "anthos_dashboard_remove_storage_title": "Usuń wolumen SVM",
+  "anthos_dashboard_remove_storage_description": "Chcesz definitywnie usunąć wolumen SVM {{storageName}}.",
+  "anthos_dashboard_remove_storage_warning": "Usunięcie spowoduje trwałe wykasowanie wszystkich powiązanych danych.",
+  "anthos_dashboard_remove_storage_confirm": "Wpisz „TERMINATE”, aby potwierdzić wybór.",
+  "anthos_dashboard_remove_storage_submit": "Zatwierdź",
+  "anthos_dashboard_remove_storage_cancel": "Anuluj",
+  "anthos_dashboard_remove_storage_success": "Wolumen został usunięty.",
+  "anthos_dashboard_remove_storage_error": "Wystąpił błąd podczas usuwania wolumenu: {{message}}"
+}

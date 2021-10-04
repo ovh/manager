@@ -68,7 +68,7 @@
   "billing_autorenew_service_type_DEDICATED_SERVER": "Serwer dedykowany",
   "billing_autorenew_service_type_dedicated_server": "Serwer dedykowany",
   "billing_autorenew_service_type_DEDICATED_HOUSING": "Housing",
-  "billing_autorenew_service_type_DEDICATED_CLOUD": "Hosted Private Cloud",
+  "billing_autorenew_service_type_DEDICATED_CLOUD": "VMware",
   "billing_autorenew_service_type_DOMAIN": "Domena",
   "billing_autorenew_service_type_ENTERPRISE_CLOUD_DATABASE": "Enterprise Cloud Databases",
   "billing_autorenew_service_type_HOSTING_PRIVATE_DATABASE": "Serwer Private SQL",
@@ -123,5 +123,6 @@
   "billing_autorenew_service_activate_alert": "Posiadasz co najmniej jedną usługę w trybie automatycznego odnowienia, ale nie zatwierdziłeś jeszcze tej opcji.",
   "billing_autorenew_service_type_OVH_CLOUD_CONNECT": "OVHCloud Connect",
   "billing_autorenew_service_type_ESSENTIALS": "Managed Bare Metal",
-  "billing_autorenew_service_type_WEB_PAAS": "Web PaaS"
+  "billing_autorenew_service_type_WEB_PAAS": "Web PaaS",
+  "billing_autorenew_service_type_DEDICATED_ANTHOS": "Anthos"
 }

@@ -1,0 +1,8 @@
+{
+  "anthos_dashboard_remove_host_title": "Eliminar o host",
+  "anthos_dashboard_remove_host_description": "Esta máquina será eliminada imediatamente e não lhe será faturado mais nenhum custo.",
+  "anthos_dashboard_remove_host_warning": "A eliminação apagará definitivamente todos os dados correspondentes.",
+  "anthos_dashboard_remove_host_submit": "Confirmar",
+  "anthos_dashboard_remove_host_cancel": "Cancelar",
+  "anthos_dashboard_remove_host_error": "Ocorreu um erro aquando da rescisão do seu host: {{message}}"
+}

@@ -1,0 +1,10 @@
+{
+  "anthos_dashboard_remove_storage_title": "Elimina il tuo volume SVM",
+  "anthos_dashboard_remove_storage_description": "Stai per eliminare definitivamente il volume SVM {{storageName}}.",
+  "anthos_dashboard_remove_storage_warning": "L'eliminazione di questo elemento comporta la cancellazione definitiva di tutti i dati ad esso associati.",
+  "anthos_dashboard_remove_storage_confirm": "Inserisci \"TERMINATE\" per confermare la tua scelta.",
+  "anthos_dashboard_remove_storage_submit": "Conferma",
+  "anthos_dashboard_remove_storage_cancel": "Annulla",
+  "anthos_dashboard_remove_storage_success": "Il volume è stato eliminato correttamente.",
+  "anthos_dashboard_remove_storage_error": "Si è verificato un errore durante l'eliminazione del tuo volume: {{message}}"
+}
