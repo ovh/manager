@@ -277,7 +277,7 @@
                     data-ng-if="$ctrl.runningJobs.length == 0"
                 >
                     <span
-                        data-translate="{{:: 'pci_projects_project_training_dashboard_jobs_list_none' | translate  }}"
+                        data-translate="pci_projects_project_training_dashboard_jobs_list_none"
                     ></span>
                 </oui-message>
 
@@ -287,24 +287,26 @@
                 >
                     <thead>
                         <tr>
-                            <th class="oui-table__header">
-                                {{:: 'pci_projects_project_training_jobs_image'
-                                | translate}}
-                            </th>
-                            <th class="oui-table__header">
-                                {{::
-                                'pci_projects_project_training_jobs_creator' |
-                                translate}}
-                            </th>
-                            <th class="oui-table__header">
-                                {{:: 'pci_projects_project_training_jobs_state'
-                                | translate}}
-                            </th>
-                            <th class="oui-table__header">
-                                {{::
-                                'pci_projects_project_training_jobs_created' |
-                                translate}}
-                            </th>
+                            <th
+                                class="oui-table__header"
+                                data-translate="pci_projects_project_training_jobs_name"
+                            ></th>
+                            <th
+                                class="oui-table__header"
+                                data-translate="pci_projects_project_training_jobs_image"
+                            ></th>
+                            <th
+                                class="oui-table__header"
+                                data-translate="pci_projects_project_training_jobs_creator"
+                            ></th>
+                            <th
+                                class="oui-table__header"
+                                data-translate="pci_projects_project_training_jobs_state"
+                            ></th>
+                            <th
+                                class="oui-table__header"
+                                data-translate="pci_projects_project_training_jobs_created"
+                            ></th>
                             <th class="oui-table__header"></th>
                         </tr>
                     </thead>
@@ -313,12 +315,18 @@
                             data-ng-repeat="job in $ctrl.runningJobs"
                             class="oui-table__row"
                         >
-                            <td class="oui-table__cell ellipsis">
-                                {{ job.spec.image }}
-                            </td>
-                            <td class="oui-table__cell ellipsis">
-                                {{ job.user }}
-                            </td>
+                            <td
+                                class="oui-table__cell ellipsis"
+                                data-ng-bind="job.spec.name"
+                            ></td>
+                            <td
+                                class="oui-table__cell ellipsis"
+                                data-ng-bind="job.spec.image"
+                            ></td>
+                            <td
+                                class="oui-table__cell ellipsis"
+                                data-ng-bind="job.user"
+                            ></td>
                             <td class="oui-table__cell">
                                 <span
                                     class="oui-badge"
