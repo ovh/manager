@@ -103,7 +103,8 @@ export default class CdnSharedSettingsController {
       },
     ];
     this.hstsMaxAgeValue = this.model.hsts?.config.ttl;
-    [this.hstsMaxAgeUnit] = this.hstsMaxAgeUnits; // Max age is expressed in seconds by default
+    this.hstsMaxAgeUnit = maxBy(this.hstsMaxAgeUnits, 'value'); // Max age is expressed in months by default
+    this.handleHSTSUnit(this.hstsMaxAgeUnit);
     this.redirection = this.redirections.find(
       ({ value }) => value === this.model.https_redirect?.config?.statusCode,
     );
@@ -330,6 +331,10 @@ export default class CdnSharedSettingsController {
   setHstsMaxAge() {
     this.model.hsts.config.ttl =
       this.hstsMaxAgeValue * this.hstsMaxAgeUnit.value;
+  }
+
+  handleHSTSUnit(unit) {
+    this.hstsMaxAgeValue = this.model.hsts.config.ttl / unit.value;
   }
 
   hasSecurityOptions(config) {
