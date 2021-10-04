@@ -1,3 +1,12 @@
+# [5.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.44.1...@ovh-ux/manager-pci@5.45.0) (2021-10-04)
+
+
+### Features
+
+* **pci.databases:** add new engines ([#5488](https://github.com/ovh/manager/issues/5488)) ([439b9cf](https://github.com/ovh/manager/commit/439b9cf0236784161e1255ebf681a3bfd0fee475))
+
+
+
 ## [5.44.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.44.0...@ovh-ux/manager-pci@5.44.1) (2021-09-28)
 
 
