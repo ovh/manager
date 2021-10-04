@@ -48,6 +48,14 @@
             <p data-ng-bind=":: $row.id"></p>
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-property="id"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+            <span></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_database_list_engine' | translate"
             data-property="engine"
             data-type="string"
@@ -55,7 +63,12 @@
             data-sortable
             data-filterable
         >
-            <span data-ng-bind=":: $ctrl.capitalize($row.engine)"></span>
+            <img
+                class="database-engine-logo"
+                data-ng-src="{{:: $ctrl.ENGINE_LOGOS[$row.engine]}}"
+                alt="{{:: $row.engine}}"
+            />
+            <span data-ng-bind=":: $row.getEngineLabel()"></span>
             <span data-ng-bind=":: $row.version"></span>
         </oui-datagrid-column>
         <oui-datagrid-column

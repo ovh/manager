@@ -54,6 +54,7 @@
         data-editable="!$ctrl.processingOrder"
     >
         <database-plans-list
+            data-ng-if="$ctrl.currentStep >= 1"
             data-plans="$ctrl.model.engine.selectedVersion.plans"
             data-selected-plan="$ctrl.model.plan"
             data-user="$ctrl.user"
@@ -97,6 +98,7 @@
         </oui-field>
         <p data-translate="pci_database_add_select_flavor"></p>
         <database-flavors-list
+            data-ng-if="$ctrl.currentStep >= 3"
             data-flavors="$ctrl.model.region.flavors"
             data-selected-flavor="$ctrl.model.flavor"
             data-user="$ctrl.user"
@@ -122,6 +124,7 @@
                 name="name"
                 data-ng-model="$ctrl.model.name"
                 data-ng-pattern="$ctrl.NAME_PATTERN"
+                data-ng-maxlength="$ctrl.MAX_NAME_LENGTH"
                 required
             />
         </oui-field>

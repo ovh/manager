@@ -12,7 +12,9 @@ export default class {
   }
 
   deleteDatabase() {
-    this.trackDatabases(`${this.trackingPrefix}::delete_database_validate`);
+    this.trackDatabases(
+      `${this.trackingPrefix}::${this.database.engine}::delete_database_validate`,
+    );
     this.isDeleting = true;
     return this.DatabaseService.deleteDatabase(
       this.projectId,

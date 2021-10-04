@@ -4,6 +4,12 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
 import 'moment';
+import isFeatureActivated from './features.constants';
+
+import {
+  ENGINES_STATUS,
+  ENGINES_PRICE_SUFFIX,
+} from '../../../../components/project/storages/databases/engines.constants';
 
 import Backup from '../../../../components/project/storages/databases/backup.class';
 import Database from '../../../../components/project/storages/databases/database.class';
@@ -196,23 +202,23 @@ export default class DatabaseService {
       })
       .then(({ availability, capabilities, prices }) => {
         availability.forEach((plan) => {
+          let prefix = `databases.${plan.engine}-${plan.plan}-${plan.flavor}`;
+          if (plan.status === ENGINES_STATUS.BETA) {
+            if (
+              prices[`${prefix}-${ENGINES_PRICE_SUFFIX.BETA}.hour.consumption`]
+            ) {
+              prefix = `${prefix}-${ENGINES_PRICE_SUFFIX.BETA}`;
+            }
+          }
           set(
             plan,
             'hourlyPrice',
-            get(
-              prices,
-              `databases.${plan.engine}-${plan.plan}-${plan.flavor}.hour.consumption`,
-              {},
-            ),
+            get(prices, `${prefix}.hour.consumption`, {}),
           );
           set(
             plan,
             'monthlyPrice',
-            get(
-              prices,
-              `databases.${plan.engine}-${plan.plan}-${plan.flavor}.month.consumption`,
-              {},
-            ),
+            get(prices, `${prefix}.month.consumption`, {}),
           );
           set(
             plan,
@@ -247,6 +253,15 @@ export default class DatabaseService {
       );
   }
 
+  getAllDatabases(projectId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/service`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then((databases) => databases.data);
+  }
+
   getIpRestrictions(projectId, engine, databaseId) {
     return this.$http
       .get(
@@ -257,12 +272,15 @@ export default class DatabaseService {
   }
 
   getRoles(projectId, engine, databaseId) {
-    return this.$http
-      .get(
-        `/cloud/project/${projectId}/database/${engine}/${databaseId}/roles`,
-        DatabaseService.getIcebergHeaders(),
-      )
-      .then(({ data }) => data);
+    if (isFeatureActivated('getRoles', engine)) {
+      return this.$http
+        .get(
+          `/cloud/project/${projectId}/database/${engine}/${databaseId}/roles`,
+          DatabaseService.getIcebergHeaders(),
+        )
+        .then(({ data }) => data);
+    }
+    return this.$q.when([]);
   }
 
   getNodes(projectId, engine, databaseId) {
@@ -286,9 +304,12 @@ export default class DatabaseService {
 
   getVRack(projectId) {
     return this.$http
-      .get(`/cloud/project/${projectId}/vrack`)
+      .get(
+        `/cloud/project/${projectId}/vrack`,
+        DatabaseService.getIcebergHeaders(),
+      )
       .then(({ data }) => data)
-      .catch((error) => (error.status === 404 ? [] : Promise.reject(error)));
+      .catch((error) => (error.status === 404 ? [] : this.$q.reject(error)));
   }
 
   getSubnets(projectId, networkId) {
@@ -306,15 +327,11 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
-  addUser(projectId, engine, databaseId, name, password, roles) {
+  addUser(projectId, engine, databaseId, user) {
     return this.$http
       .post(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/user`,
-        {
-          name,
-          password,
-          roles,
-        },
+        user,
       )
       .then(({ data }) => data);
   }
@@ -329,9 +346,12 @@ export default class DatabaseService {
   }
 
   deleteUser(projectId, engine, databaseId, userId) {
-    return this.$http.delete(
-      `/cloud/project/${projectId}/database/${engine}/${databaseId}/user/${userId}`,
-    );
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/user/${userId}`,
+      )
+      .then(() => true)
+      .catch((error) => (error.status === 403 ? false : this.$q.reject(error)));
   }
 
   getAvailableMetrics(projectId, engine, databaseId, extended) {
@@ -391,7 +411,7 @@ export default class DatabaseService {
         successRule: (node) => !new Node(node).isProcessing(),
         errorRule: (error) => error.status === 404,
       },
-    ).catch((error) => (error.status === 404 ? true : Promise.reject(error)));
+    ).catch((error) => (error.status === 404 ? true : this.$q.reject(error)));
   }
 
   stopPollingDatabaseStatus(databaseId) {
@@ -405,6 +425,119 @@ export default class DatabaseService {
   getDatabaseLogs(projectId, engine, databaseId) {
     return this.$http
       .get(`/cloud/project/${projectId}/database/${engine}/${databaseId}/logs`)
+      .then(({ data }) => data);
+  }
+
+  getServiceDatabases(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/database`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  addServiceDatabase(projectId, engine, databaseId, databaseName) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/database`,
+        {
+          name: databaseName,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteServiceDatabase(projectId, engine, databaseId, db) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/database/${db.id}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getServiceAcl(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/acl`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  addServiceAcl(projectId, engine, databaseId, username, topic, permission) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/acl`,
+        {
+          username,
+          topic,
+          permission,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteServiceAcl(projectId, engine, databaseId, aclId) {
+    return this.$http.delete(
+      `/cloud/project/${projectId}/database/${engine}/${databaseId}/acl/${aclId}`,
+    );
+  }
+
+  getPermissions(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/permissions`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getCertificate(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/certificates`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getUserCertificate(projectId, engine, databaseId, userId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/user/${userId}/access`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getTopics(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/topic`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  addTopic(projectId, engine, databaseId, topic) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/topic`,
+        {
+          name: topic.name,
+          partitions: topic.partitions,
+          replication: topic.replication,
+          minInsyncReplicas: topic.minInsyncReplicas,
+          retentionHours: topic.retentionHours,
+          retentionBytes: topic.retentionBytes,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteTopic(projectId, engine, databaseId, topicId) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/topic/${topicId}`,
+      )
       .then(({ data }) => data);
   }
 }

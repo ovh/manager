@@ -20,8 +20,7 @@ export default /* @ngInject */ (PCI_CHARTS) => {
    *  - dataset => see chartjs (http://www.chartjs.org/docs/latest/charts/line.html#dataset-properties)
    * @return {Object} new added serie
    */
-  ChartjsFactory.prototype.addSerie = function addSerie(name, data, opts) {
-    const options = opts || {};
+  ChartjsFactory.prototype.addSerie = function addSerie(name, data, opts = {}) {
     this.data.datasets.push(
       assignIn(
         {
@@ -29,7 +28,7 @@ export default /* @ngInject */ (PCI_CHARTS) => {
           data,
         },
         PCI_CHARTS.colors[this.data.datasets.length % PCI_CHARTS.colors.length],
-        options.dataset,
+        opts.dataset,
       ),
     );
     return last(this.data.datasets);

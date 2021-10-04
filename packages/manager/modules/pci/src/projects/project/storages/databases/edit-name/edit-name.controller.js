@@ -10,6 +10,7 @@ export default class {
   $onInit() {
     this.isEditing = false;
     this.name = this.database.description;
+    this.trackDatabases('table::options_menu::rename_database');
   }
 
   edit() {

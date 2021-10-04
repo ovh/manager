@@ -24,6 +24,10 @@
         data-columns-parameters="[{
             name: 'description',
             hidden: !$ctrl.isDescriptionAvailable
+        },
+        {
+            name: 'roles',
+            hidden: !$ctrl.isRolesAvailable
         }]"
     >
         <oui-datagrid-column
@@ -115,11 +119,38 @@
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-ng-if="$ctrl.editRoles"
-                data-disabled="$ctrl.isActionDisabled()"
+                data-disabled="$ctrl.isDisabledOrPending($row)"
                 data-on-click="$ctrl.editRoles($row)"
             >
                 <span
                     data-translate="pci_projects_project_users_roles_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$ctrl.showUserInformations"
+                data-disabled="$ctrl.isDisabledOrPending($row)"
+                data-on-click="$ctrl.showUserInformations($row)"
+            >
+                <span
+                    data-translate="pci_projects_project_users_show_user_informations_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$ctrl.showCert"
+                data-disabled="$ctrl.isDisabledOrPending($row)"
+                data-on-click="$ctrl.showCert($row)"
+            >
+                <span
+                    data-translate="pci_projects_project_users_show_cert_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$ctrl.showKey"
+                data-disabled="$ctrl.isDisabledOrPending($row)"
+                data-on-click="$ctrl.showKey($row)"
+            >
+                <span
+                    data-translate="pci_projects_project_users_show_key_label"
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
@@ -134,7 +165,7 @@
             <oui-action-menu-item
                 data-ng-if="$ctrl.goToModifyPassword"
                 data-on-click="$ctrl.goToModifyPassword($row)"
-                data-disabled="$ctrl.constructor.isPending($row) || $ctrl.isActionDisabled()"
+                data-disabled="$ctrl.isDisabledOrPending($row)"
             >
                 <span
                     data-translate="pci_projects_project_users_modify_password_label"
@@ -153,7 +184,7 @@
 
             <oui-action-menu-item
                 data-on-click="$ctrl.deleteUser($row)"
-                data-disabled="$ctrl.constructor.isPending($row) || $ctrl.isActionDisabled()"
+                data-disabled="$ctrl.isDisabledOrPending($row)"
             >
                 <span
                     data-translate="pci_projects_project_users_delete_label"
