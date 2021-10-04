@@ -1,11 +1,11 @@
 {
- "pci_projects_project_storages_containers_container_delete_archive_title": "Archivcontainer löschen",
- "pci_projects_project_storages_containers_container_delete_object_title": "Objektcontainer löschen",
- "pci_projects_project_storages_containers_container_delete_submit_label": "Bestätigen",
- "pci_projects_project_storages_containers_container_delete_cancel_label": "Abbrechen",
- "pci_projects_project_storages_containers_container_delete_content": "{{ container }} endgültig löschen",
- "pci_projects_project_storages_containers_container_delete_archive_erase_message": "Sämtliche Daten in Ihrem Archivcontainer gehen dabei verloren.",
- "pci_projects_project_storages_containers_container_delete_object_erase_message": "Sämtliche Daten in Ihrem Objektcontainer gehen dabei verloren.",
- "pci_projects_project_storages_containers_container_delete_success_message": "Der Container {{ container }} wurde gelöscht.",
- "pci_projects_project_storages_containers_container_delete_error_delete": "Beim Löschen des Containers {{ container }} ist ein Fehler aufgetreten: {{ message }}."
+  "pci_projects_project_storages_containers_container_delete_archive_title": "Archivcontainer löschen",
+  "pci_projects_project_storages_containers_container_delete_object_title": "Objektcontainer löschen",
+  "pci_projects_project_storages_containers_container_delete_submit_label": "Bestätigen",
+  "pci_projects_project_storages_containers_container_delete_cancel_label": "Abbrechen",
+  "pci_projects_project_storages_containers_container_delete_archive_erase_message": "Sämtliche Daten in Ihrem Archivcontainer gehen dabei verloren.",
+  "pci_projects_project_storages_containers_container_delete_object_erase_message": "Sämtliche Daten in Ihrem Objektcontainer gehen dabei verloren.",
+  "pci_projects_project_storages_containers_container_delete_success_message": "Der Container {{ container }} wurde gelöscht.",
+  "pci_projects_project_storages_containers_container_delete_error_delete": "Beim Löschen des Containers {{ container }} ist ein Fehler aufgetreten: {{ message }}.",
+  "pci_projects_project_storages_containers_container_delete_warning": "Wenn Sie Ihren Container endgültig löschen möchten, müssen Sie zuerst alle mit ihm verbundenen Objekte löschen."
 }

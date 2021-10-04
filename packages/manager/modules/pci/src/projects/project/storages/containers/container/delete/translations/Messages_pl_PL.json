@@ -3,9 +3,9 @@
   "pci_projects_project_storages_containers_container_delete_object_title": "Usuń kontener obiektów",
   "pci_projects_project_storages_containers_container_delete_submit_label": "Potwierdź",
   "pci_projects_project_storages_containers_container_delete_cancel_label": "Anuluj",
-  "pci_projects_project_storages_containers_container_delete_content": "Usuń definitywnie  {{ container }}",
   "pci_projects_project_storages_containers_container_delete_archive_erase_message": "Wszystkie dane przechowywane w kontenerze archiwów zostaną utracone.",
   "pci_projects_project_storages_containers_container_delete_object_erase_message": "Wszystkie dane przechowywane w kontenerze obiektów zostaną utracone.",
   "pci_projects_project_storages_containers_container_delete_success_message": "Kontener {{ container }} został usunięty.",
-  "pci_projects_project_storages_containers_container_delete_error_delete": "Wystąpił błąd podczas usuwania kontenera: {{message}}."
+  "pci_projects_project_storages_containers_container_delete_error_delete": "Wystąpił błąd podczas usuwania kontenera: {{message}}.",
+  "pci_projects_project_storages_containers_container_delete_warning": "Jeśli chcesz definitywnie usunąć kontener, najpierw usuń wszystkie powiązane z nim obiekty."
 }

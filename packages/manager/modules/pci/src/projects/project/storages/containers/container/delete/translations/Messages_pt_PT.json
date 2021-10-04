@@ -1,11 +1,11 @@
 {
- "pci_projects_project_storages_containers_container_delete_archive_title": "Eliminar um container de arquivos",
- "pci_projects_project_storages_containers_container_delete_object_title": "Eliminar um container de objetos",
- "pci_projects_project_storages_containers_container_delete_submit_label": "Confirmar",
- "pci_projects_project_storages_containers_container_delete_cancel_label": "Anular",
- "pci_projects_project_storages_containers_container_delete_content": "Eliminar {{ container }} de forma definitiva",
- "pci_projects_project_storages_containers_container_delete_archive_erase_message": "Todos os dados do container de arquivos serão eliminados.",
- "pci_projects_project_storages_containers_container_delete_object_erase_message": "Todos os dados do container de objetos serão eliminados.",
- "pci_projects_project_storages_containers_container_delete_success_message": "O container {{ container }} foi eliminado.",
- "pci_projects_project_storages_containers_container_delete_error_delete": "Ocorreu um erro ao eliminar o container {{ container }}: {{ message }}."
+  "pci_projects_project_storages_containers_container_delete_archive_title": "Eliminar um container de arquivos",
+  "pci_projects_project_storages_containers_container_delete_object_title": "Eliminar um container de objetos",
+  "pci_projects_project_storages_containers_container_delete_submit_label": "Confirmar",
+  "pci_projects_project_storages_containers_container_delete_cancel_label": "Anular",
+  "pci_projects_project_storages_containers_container_delete_archive_erase_message": "Todos os dados do container de arquivos serão eliminados.",
+  "pci_projects_project_storages_containers_container_delete_object_erase_message": "Todos os dados do container de objetos serão eliminados.",
+  "pci_projects_project_storages_containers_container_delete_success_message": "O container {{ container }} foi eliminado.",
+  "pci_projects_project_storages_containers_container_delete_error_delete": "Ocorreu um erro ao eliminar o container {{ container }}: {{ message }}.",
+  "pci_projects_project_storages_containers_container_delete_warning": "Se deseja definitivamente eliminar o seu container, deve primeiro eliminar todos os objetos que lhe estão associados."
 }

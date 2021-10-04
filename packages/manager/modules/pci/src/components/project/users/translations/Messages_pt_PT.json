@@ -28,7 +28,7 @@
   "pci_projects_project_users_matrix_show": "Mostrar a matriz das funções",
   "pci_projects_project_users_matrix_hide": "Ocultar a matriz das funções",
   "pci_projects_project_users_generate_s3_credentials": "Gerar os certificados S3",
-  "pci_projects_project_users_generate_s3_credentials_success": "As informações de identificação S3 para o utilizador {{user}} foram regeneradas.",
+  "pci_projects_project_users_generate_s3_credentials_success": "As informações de identificação S3 para o utilizador {{user}} foram regeneradas. A sua chave de acesso é {{access}} e a chave secreta é {{secret}}.",
   "pci_projects_project_users_generate_s3_credentials_error": "Ocorreu um erro ao gerar as informações de identificação para o utilizador {{ user }}: {{ message }}.",
   "pci_projects_project_users_createdAt_label": "Data de criação",
   "pci_projects_project_users_show_key_label": "Mostrar a chave de acesso",

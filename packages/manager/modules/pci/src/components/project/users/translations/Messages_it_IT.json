@@ -28,7 +28,7 @@
   "pci_projects_project_users_matrix_show": "Mostra la matrice dei ruoli",
   "pci_projects_project_users_matrix_hide": "Nascondi la matrice dei ruoli",
   "pci_projects_project_users_generate_s3_credentials": "Genera i certificati S3",
-  "pci_projects_project_users_generate_s3_credentials_success": "Le credenziali S3 per l'utente {{user}} sono state rigenerate.",
+  "pci_projects_project_users_generate_s3_credentials_success": "Le credenziali S3 per l'utente {{user}} sono state rigenerate. La tua chiave di accesso è {{access}} e la chiave segreta è {{secret}}.",
   "pci_projects_project_users_generate_s3_credentials_error": "Si è verificato un errore durante la generazione delle informazioni di identificazione per l’utente {{ user }} : {{ message }}.",
   "pci_projects_project_users_createdAt_label": "Data di creazione",
   "pci_projects_project_users_show_key_label": "Mostra la chiave di accesso",
