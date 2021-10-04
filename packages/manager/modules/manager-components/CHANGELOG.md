@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.2.0...@ovh-ux/manager-components@1.3.0) (2021-10-04)
+
+
+### Features
+
+* **pci.databases:** add new engines ([#5488](https://github.com/ovh/manager/issues/5488)) ([439b9cf](https://github.com/ovh/manager/commit/439b9cf0236784161e1255ebf681a3bfd0fee475))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.1.0...@ovh-ux/manager-components@1.2.0) (2021-08-25)
 
 
