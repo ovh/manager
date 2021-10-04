@@ -556,6 +556,7 @@ angular
           type: 'kvmipHtml5URL',
           ttl: $scope.ttl,
           ipToAllow: $scope.ipmi.model.clientIp,
+          withGeolocation: true,
         })
           .then(({ taskId }) => {
             startIpmiKvmUrlPoll({ id: taskId });
