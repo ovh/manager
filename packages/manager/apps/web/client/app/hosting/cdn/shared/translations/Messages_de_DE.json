@@ -29,7 +29,7 @@
   "hosting_cdn_shared_option_https_redirect_description": "Schützen Sie den gesamten Traffic Ihrer Website, indem Sie ihn vorübergehend oder dauerhaft auf das HTTPS-Protokoll umleiten.",
   "hosting_cdn_shared_option_https_redirect_301": "Dauerhafte Weiterleitung (301)",
   "hosting_cdn_shared_option_https_redirect_302": "Vorübergehende Weiterleitung (302)",
-  "hosting_cdn_shared_option_hsts_description": "Erlauben Sie den Zugang zu Ihrer Website nur über HTTPS. So sichern Sie Ihre IT-Lösung gegen Downgrade-Angriffe ab.",
+  "hosting_cdn_shared_option_hsts_description": "Machen Sie HTTPS verpflichtend für den Zugang zu Ihrer Website. So sichern Sie Ihre IT-Lösung gegen Downgrade-Angriffe.",
   "hosting_cdn_shared_option_hsts_max_age": "Höchstalter.",
   "hosting_cdn_shared_option_hsts_max_age_seconds": "Sekunden",
   "hosting_cdn_shared_option_hsts_max_age_days": "Tage",
