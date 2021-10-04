@@ -13,7 +13,7 @@
   "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd": "Zugang zurücksetzen",
   "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd_success": "Der Administratoren-Zugang wurde geändert.",
   "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd_failed": "Bei der Änderung des Administratoren-Zugangs ist ein Fehler aufgetreten: {{message}}",
-  "anthos_tenant_dashboard_general_information_tile_security_cta_start_console": "Die Anthos-Konsole starten CTA",
+  "anthos_tenant_dashboard_general_information_tile_security_cta_start_console": "Die Anthos-Konsole starten",
   "anthos_tenant_dashboard_general_information_tile_subscription_title": "Abonnement",
   "anthos_tenant_dashboard_general_information_tile_subscription_creation_date": "Erstellungsdatum",
   "anthos_tenant_dashboard_general_information_tile_subscription_renwal_date": "Nächstes Ablaufdatum",

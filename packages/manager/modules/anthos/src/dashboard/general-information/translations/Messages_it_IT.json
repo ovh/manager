@@ -13,7 +13,7 @@
   "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd": "Ripristina l'accesso",
   "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd_success": "L'accesso amministratore è stato modificato correttamente.",
   "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd_failed": "Si è verificato un errore durante la modifica dell'accesso amministratore: {{message}}",
-  "anthos_tenant_dashboard_general_information_tile_security_cta_start_console": "Avvia la console Anthos CTA",
+  "anthos_tenant_dashboard_general_information_tile_security_cta_start_console": "Avvia la console Anthos",
   "anthos_tenant_dashboard_general_information_tile_subscription_title": "Abbonamento",
   "anthos_tenant_dashboard_general_information_tile_subscription_creation_date": "Data di creazione",
   "anthos_tenant_dashboard_general_information_tile_subscription_renwal_date": "Prossima scadenza",

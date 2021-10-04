@@ -13,7 +13,7 @@
   "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd": "Reset access",
   "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd_success": "The administrator access has been modified.",
   "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd_failed": "An error has occurred modifying administrator access: {{message}}",
-  "anthos_tenant_dashboard_general_information_tile_security_cta_start_console": "Launch the Anthos CTA console",
+  "anthos_tenant_dashboard_general_information_tile_security_cta_start_console": "Launch the Anthos console",
   "anthos_tenant_dashboard_general_information_tile_subscription_title": "Subscription",
   "anthos_tenant_dashboard_general_information_tile_subscription_creation_date": "Creation date",
   "anthos_tenant_dashboard_general_information_tile_subscription_renwal_date": "Next payment date",
