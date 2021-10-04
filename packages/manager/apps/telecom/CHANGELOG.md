@@ -1,3 +1,12 @@
+## [13.25.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.25.2...@ovh-ux/manager-telecom@13.25.3) (2021-10-04)
+
+
+### Bug Fixes
+
+* **telephony.alias.special:** fix repayments date ([#5657](https://github.com/ovh/manager/issues/5657)) ([500cad6](https://github.com/ovh/manager/commit/500cad6fadabc6eef2263cdf1facc8b6de883ba3))
+
+
+
 ## [13.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.25.1...@ovh-ux/manager-telecom@13.25.2) (2021-09-22)
 
 

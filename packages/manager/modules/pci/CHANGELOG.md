@@ -1,3 +1,12 @@
+## [5.45.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.45.0...@ovh-ux/manager-pci@5.45.1) (2021-10-04)
+
+
+### Bug Fixes
+
+* **pci:** instances dropdown ([#5661](https://github.com/ovh/manager/issues/5661)) ([9dac2de](https://github.com/ovh/manager/commit/9dac2def81fcf8484664c64bcf38b0de00400015))
+
+
+
 # [5.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.44.1...@ovh-ux/manager-pci@5.45.0) (2021-10-04)
 
 
