@@ -1,4 +1,5 @@
 import { BillingService as Service } from '@ovh-ux/manager-models';
+import set from 'lodash/set';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated-server.server.dashboard.resiliation', {
@@ -45,15 +46,19 @@ export default /* @ngInject */ ($stateProvider) => {
         );
         return goToDashboard(message, type);
       },
-      onSuccess: /* @ngInject */ (trackClick, goToDashboard) => (
-        successMessage,
-        endStrategy,
-      ) => {
+      onSuccess: /* @ngInject */ (
+        trackClick,
+        goToDashboard,
+        goToDeleteService,
+        endStrategies,
+      ) => (successMessage, endStrategy) => {
         const hitToConcat = endStrategy ? `_${endStrategy}` : '';
         trackClick(
           `dedicated::dedicated::server::dashboard::resiliation::confirm${hitToConcat}`,
         );
-
+        if (endStrategy === endStrategies.CANCEL_SERVICE) {
+          return goToDeleteService();
+        }
         return goToDashboard(successMessage);
       },
       trackClick: /* @ngInject */ (atInternet) => (hit) => {
@@ -61,6 +66,20 @@ export default /* @ngInject */ ($stateProvider) => {
           name: hit,
           type: 'action',
         });
+      },
+      goToDeleteService: /* @ngInject */ (
+        $window,
+        coreURLBuilder,
+        serviceName,
+      ) => () => {
+        set(
+          $window.location,
+          'href',
+          coreURLBuilder.buildURL(
+            'dedicated',
+            `#/billing/autorenew/delete?serviceId=${serviceName}`,
+          ),
+        );
       },
       serviceId: /* @ngInject */ (serviceInfos) => serviceInfos.serviceId,
       serviceName: /* @ngInject */ ($transition$) =>
