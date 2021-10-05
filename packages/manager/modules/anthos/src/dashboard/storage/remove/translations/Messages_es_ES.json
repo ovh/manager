@@ -1,0 +1,10 @@
+{
+  "anthos_dashboard_remove_storage_title": "Eliminar el volumen SVM",
+  "anthos_dashboard_remove_storage_description": "Va a eliminar de forma definitiva el volumen SVM {{storageName}}.",
+  "anthos_dashboard_remove_storage_warning": "La eliminación del cluster provocará el borrado definitivo de todos los datos correspondientes.",
+  "anthos_dashboard_remove_storage_confirm": "Introduzca «TERMINATE» para confirmar su elección.",
+  "anthos_dashboard_remove_storage_submit": "Confirmar",
+  "anthos_dashboard_remove_storage_cancel": "Cancelar",
+  "anthos_dashboard_remove_storage_success": "El volumen se ha eliminado correctamente.",
+  "anthos_dashboard_remove_storage_error": "Se ha producido un error al eliminar el volumen: {{message}}"
+}
