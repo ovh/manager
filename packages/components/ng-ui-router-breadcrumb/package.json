@@ -36,7 +36,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ui-router-breadcrumb' --include-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^9.0.0 || ^10.0.0"
+    "@ovh-ux/component-rollup-config": "^10.0.0 || ^11.0.0"
   },
   "peerDependencies": {
     "@uirouter/angularjs": "^1.0.22",
