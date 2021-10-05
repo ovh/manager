@@ -2,10 +2,8 @@
   "pci_databases_general_information_delete_node": "Node löschen",
   "pci_databases_general_information_delete_node_confirm": "Bestätigen",
   "pci_databases_general_information_delete_node_cancel": "Abbrechen",
-  "pci_databases_general_information_delete_node_description_1": "Sie haben derzeit {{nodesCount}} Node(s). Möchten Sie einen Node löschen? Dies verringert Ihre Rechnung um ",
-  "pci_databases_general_information_delete_node_description_2": " pro Stunde.",
+  "pci_databases_general_information_delete_node_description": "Sie haben derzeit {{nodesCount}} Node(s). Möchten Sie einen Node löschen? Dies verringert Ihre Rechnung um ",
   "pci_databases_general_information_delete_node_pending": "Ihre Löschanfrage wurde registriert und ist in wenigen Minuten wirksam.",
   "pci_databases_general_information_delete_node_success": "Ihr Node wurde erfolgreich aus Ihrem Cluster gelöscht.",
-  "pci_databases_general_information_delete_node_error": "Beim Löschen Ihres Nodes ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie den Kundendienst.",
-  "pci_databases_general_information_delete_node_description": "Sie haben derzeit {{nodesCount}} Node(s). Möchten Sie einen Node löschen? Dies verringert Ihre Rechnung um "
+  "pci_databases_general_information_delete_node_error": "Beim Löschen Ihres Nodes ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie den Kundendienst."
 }
