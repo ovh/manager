@@ -14,6 +14,7 @@ export default {
     metricsLink: '<',
     databasesLink: '<',
     aclLink: '<',
+    userAclLink: '<',
     topicsLink: '<',
     trackDashboard: '<',
     trackDatabases: '<',

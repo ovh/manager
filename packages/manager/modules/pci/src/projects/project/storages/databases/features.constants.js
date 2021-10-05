@@ -26,6 +26,7 @@ const features = {
   ],
   restoreFromBackup: [DATABASE_TYPES.MONGO_DB],
   aclTab: [DATABASE_TYPES.KAFKA],
+  userAclTab: [DATABASE_TYPES.OPEN_SEARCH],
   topicsTab: [DATABASE_TYPES.KAFKA],
   getRoles: [DATABASE_TYPES.MONGO_DB, DATABASE_TYPES.POSTGRESQL],
   showKey: [DATABASE_TYPES.KAFKA],

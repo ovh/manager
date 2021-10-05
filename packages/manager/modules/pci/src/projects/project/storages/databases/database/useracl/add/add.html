@@ -1,0 +1,81 @@
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-label="{{:: 'pci_databases_useracl_create_confirm' | translate}}"
+    data-primary-disabled="!$ctrl.usernameform.$valid || $ctrl.rules.length === 0"
+    data-primary-action="$ctrl.addTopic()"
+    data-secondary-action="$ctrl.cancel()"
+    data-secondary-label="{{:: 'pci_databases_useracl_create_cancel' | translate}}"
+    data-loading="$ctrl.processing"
+    data-heading="{{:: 'pci_databases_useracl_create' | translate}}"
+>
+    <oui-message type="info">
+        <p data-translate="pci_databases_useracl_create_description"></p>
+    </oui-message>
+    <oui-field
+        data-label="{{:: 'pci_databases_useracl_create_username' | translate}}"
+        ng-form="$ctrl.usernameform"
+    >
+        <oui-select
+            id="username"
+            name="user"
+            items="$ctrl.usersList"
+            data-match="username"
+            model="$ctrl.user"
+            placeholder="{{:: 'pci_databases_useracl_create_username_placeholder' | translate}}"
+            required
+            inline
+        >
+        </oui-select>
+    </oui-field>
+
+    <oui-inline-adder
+        on-add="$ctrl.onAdd(form)"
+        on-change="$ctrl.onChange(form)"
+        on-remove="$ctrl.onRemove(form)"
+    >
+        <oui-inline-adder-row>
+            <oui-inline-adder-field>
+                <oui-field
+                    label="{{:: 'pci_databases_useracl_create_permission' | translate}}"
+                    size="s"
+                >
+                    <label class="oui-select">
+                        <select
+                            id="permission"
+                            name="permission"
+                            class="oui-select__input"
+                            ng-model="permission"
+                            required
+                        >
+                            <option
+                                ng-repeat="permission in $ctrl.permissionsList.names track by permission"
+                                value="{{permission}}"
+                                >{{::'pci_databases_useracl_permission_' +
+                                permission | translate}}</option
+                            >
+                        </select>
+                        <span
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></span>
+                    </label>
+                </oui-field>
+            </oui-inline-adder-field>
+            <oui-inline-adder-field>
+                <oui-field
+                    label="{{:: 'pci_databases_useracl_create_pattern' | translate}}"
+                    size="m"
+                >
+                    <input
+                        type="text"
+                        class="oui-input"
+                        name="pattern"
+                        ng-model="pattern"
+                        placeholder="{{:: 'pci_databases_useracl_create_pattern_placeholder' | translate}}"
+                        required
+                    />
+                </oui-field>
+            </oui-inline-adder-field>
+        </oui-inline-adder-row>
+    </oui-inline-adder>
+</oui-modal>

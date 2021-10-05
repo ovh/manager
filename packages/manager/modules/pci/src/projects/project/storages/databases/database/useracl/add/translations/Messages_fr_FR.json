@@ -1,0 +1,11 @@
+{
+  "pci_databases_useracl_create_confirm": "Créer un utilisateur ACL",
+  "pci_databases_useracl_create_cancel": "Annuler",
+  "pci_databases_useracl_create": "Créer un utilisateur ACL",
+  "pci_databases_useracl_create_description": "Les modèles d'index utilisent le système standard de correspondance, aussi appelé le standard glob pattern ('' fonctionne pour n'importe quel nombre de caractères et '?' pour n'importe quel caractère). Par exemple le modèle 'logs_200?' fonctionnera pour la correspondance de l'index 'logs_200904' mais pas 'logs_201904'.",
+  "pci_databases_useracl_create_username": "Nom d'utilisateur",
+  "pci_databases_useracl_create_username_placeholder": "Sélectionnez un utilisateur",
+  "pci_databases_useracl_create_permission": "Permission",
+  "pci_databases_useracl_create_pattern": "Modèle",
+  "pci_databases_useracl_create_pattern_placeholder": "logs_*"
+}

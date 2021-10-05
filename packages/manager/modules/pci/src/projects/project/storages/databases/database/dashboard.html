@@ -24,6 +24,14 @@
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('userAclTab')"
+            data-href="{{ $ctrl.userAclLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.userAclLink"
+            ><span
+                data-translate="pci_databases_dashboard_acl_tab_title"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
             data-ng-if="$ctrl.isFeatureActivated('databaseTab')"
             data-href="{{ $ctrl.databasesLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.databasesLink"
