@@ -29,7 +29,7 @@
   "hosting_cdn_shared_option_https_redirect_description": "Chroń cały ruch na Twojej stronie WWW, przekierowując go na HTTPS tymczasowo lub na stałe.",
   "hosting_cdn_shared_option_https_redirect_301": "Stałe przekierowanie (301)",
   "hosting_cdn_shared_option_https_redirect_302": "Tymczasowe przekierowanie (302)",
-  "hosting_cdn_shared_option_hsts_description": "Upewnij się, że strona „wymusza” użycie HTTPS.  Dzięki temu Twoja rozwiązanie internetowe jest zabezpieczone przed atakami downgrade.",
+  "hosting_cdn_shared_option_hsts_description": "Upewnij się, że strona wymusza użycie HTTPS.  Dzięki temu Twoja rozwiązanie internetowe jest zabezpieczone przed atakami downgrade.",
   "hosting_cdn_shared_option_hsts_max_age": "Maksymalny wiek.",
   "hosting_cdn_shared_option_hsts_max_age_seconds": "Sekundy",
   "hosting_cdn_shared_option_hsts_max_age_days": "Dni",
