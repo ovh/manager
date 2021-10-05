@@ -4,17 +4,7 @@ const path = require('path');
 
 const ALL_LANGUAGES = process.env.OVH_BUILD_LANGUAGES
   ? process.env.OVH_BUILD_LANGUAGES.split(',')
-  : [
-      'de_DE',
-      'en_GB',
-      'es_ES',
-      'es_US',
-      'fr_CA',
-      'fr_FR',
-      'it_IT',
-      'pl_PL',
-      'pt_PT',
-    ];
+  : ['de_DE', 'en_GB', 'es_ES', 'fr_CA', 'fr_FR', 'it_IT', 'pl_PL', 'pt_PT'];
 
 const injectTranslationImport = (languages, trads, id, subdirectory) => {
   let result = '';
