@@ -317,8 +317,23 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_service_URI_kibana_label' | translate }}"
+                    ng-if="$ctrl.isFeatureActivated('showKibanaURI')"
+                >
+                    <oui-tile-description>
+                        <oui-tile-description>
+                            <oui-clipboard
+                                data-model="$ctrl.database.uri"
+                                data-id="connection-kibana-shell"
+                                data-name="connection-kibana-shell"
+                            ></oui-clipboard>
+                        </oui-tile-description>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_ssl_mode' | translate }}"
                     data-description="{{:: $ctrl.database.sslMode }}"
+                    ng-if="$ctrl.isFeatureActivated('showSSL')"
                 >
                     <oui-tile-description>
                         <span

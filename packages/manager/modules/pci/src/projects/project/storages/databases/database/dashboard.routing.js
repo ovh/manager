@@ -54,7 +54,17 @@ export default /* @ngInject */ ($stateProvider) => {
             },
           );
         }
-        return db;
+        return DatabaseService.getDatabaseDetails(
+          projectId,
+          db.engine,
+          databaseId,
+        ).then((details) => {
+          db.updateData({
+            ...details,
+            ...db,
+          });
+          return db;
+        });
       },
       engine: /* @ngInject */ (database, engines) =>
         find(engines, { name: database.engine }),
