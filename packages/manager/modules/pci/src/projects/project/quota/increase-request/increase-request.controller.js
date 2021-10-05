@@ -1,7 +1,7 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 import isNil from 'lodash/isNil';
-import { ISSUE_TYPE_ID } from './increase.constants';
+import { ISSUE_TYPE_IDS } from './increase.constants';
 
 export default class PciProjectQuotaIncreaseController {
   /* @ngInject */
@@ -21,9 +21,8 @@ export default class PciProjectQuotaIncreaseController {
 
   $onInit() {
     this.isLoading = false;
-    this.issueType = find(
-      this.issueTypes,
-      (issue) => issue.id === ISSUE_TYPE_ID,
+    this.issueType = find(this.issueTypes, ({ id }) =>
+      ISSUE_TYPE_IDS.includes(id),
     );
     this.issueTypeFieldsStr = get(this.issueType, 'fields', [])
       .map((issueType) => get(issueType, 'label'))
@@ -66,7 +65,7 @@ export default class PciProjectQuotaIncreaseController {
 
     return this.OvhApiSupport.v6()
       .createTickets({
-        issueTypeId: ISSUE_TYPE_ID,
+        issueTypeId: this.issueType.id,
         serviceName: this.projectId,
         subject: get(this.issueType, 'label'),
         body: `
