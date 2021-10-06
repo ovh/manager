@@ -45,14 +45,13 @@
                         </oui-radio>
                     </div>
                     <div class="col-md-3 pl-0">
-                        <span
-                            class="red bold"
-                            data-ng-bind-html="plan.prices[2].price.text"
-                        ></span>
-                        <span
-                            class="small italic"
-                            data-translate="plan_price_per_month"
-                        ></span>
+                        <ovh-manager-catalog-price
+                            data-price="plan.prices[2].priceInUcents"
+                            data-tax="plan.prices[2].tax"
+                            data-interval="plan.prices[2].intervalUnit"
+                            data-user="$ctrl.user"
+                        >
+                        </ovh-manager-catalog-price>
                     </div>
                 </div>
             </div>
