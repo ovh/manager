@@ -28,20 +28,6 @@ export default /* @ngInject */ ($stateProvider) => {
         setAclState: () => (value) => value,
         usersList: /* @ngInject */ (database, DatabaseService, projectId) =>
           DatabaseService.getUsers(projectId, database.engine, database.id),
-        userAclList: /* @ngInject */ () => [
-          {
-            id: '1',
-            patterns: ['log_*', '*'],
-            permissions: ['admin', 'readwrite'],
-            username: 'Avnadmin',
-          },
-          {
-            id: '2',
-            patterns: ['log_*', '*'],
-            permissions: ['read', 'deny'],
-            username: 'User 1',
-          },
-        ],
         goToAddUserAcl: /* @ngInject */ ($state, databaseId, projectId) => () =>
           $state.go(
             'pci.projects.project.storages.databases.dashboard.useracl.add',
@@ -50,6 +36,15 @@ export default /* @ngInject */ ($stateProvider) => {
               databaseId,
             },
           ),
+        goToManagerUsers: /* @ngInject */ (
+          $state,
+          databaseId,
+          projectId,
+        ) => () =>
+          $state.go('pci.projects.project.storages.databases.dashboard.users', {
+            projectId,
+            databaseId,
+          }),
         refreshUserAcl: /* @ngInject */ ($state, CucCloudMessage) => (
           message = false,
           type = 'success',

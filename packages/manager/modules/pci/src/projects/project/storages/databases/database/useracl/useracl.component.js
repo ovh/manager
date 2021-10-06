@@ -12,6 +12,7 @@ export default {
     userAclList: '<',
     usersList: '<',
     aclState: '<',
+    goToManagerUsers: '<',
   },
   controller,
   template,

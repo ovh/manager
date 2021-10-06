@@ -10,21 +10,7 @@ export default class aclCtrl {
       'pci.projects.project.storages.databases.dashboard.useracl';
     this.loadMessages();
     this.trackDashboard('acl', 'page');
-    this.permissionOptions = {
-      values: {
-        admin: this.$translate.instant(
-          'pci_databases_useracl_permission_admin',
-        ),
-        read: this.$translate.instant('pci_databases_useracl_permission_read'),
-        write: this.$translate.instant(
-          'pci_databases_useracl_permission_write',
-        ),
-        readwrite: this.$translate.instant(
-          'pci_databases_useracl_permission_readwrite',
-        ),
-        deny: this.$translate.instant('pci_databases_useracl_permission_deny'),
-      },
-    };
+    this.aclList = this.usersList.filter((u) => u.acls.length > 0);
   }
 
   loadMessages() {
@@ -41,5 +27,15 @@ export default class aclCtrl {
 
   isDisabled() {
     return this.usersList.length === 0 || !this.aclState;
+  }
+
+  trackAndAddAcl() {
+    this.trackDashboard('acl::create_acl_user');
+    this.goToAddUserAcl();
+  }
+
+  trackAndDeleteAcl(acl) {
+    this.trackDashboard('acl_user::delete_rule');
+    this.goToDeleteUserAcl(acl);
   }
 }

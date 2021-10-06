@@ -7,6 +7,8 @@
   "pci_databases_useracl_tab_pattern": "Pattern",
   "pci_databases_useracl_tab_add": "Créer un utilisateur ACL",
   "pci_databases_useracl_tab_delete": "Supprimer",
+  "pci_databases_useracl_tab_no_user": "Aucun utilisateur n’est configuré.",
+  "pci_databases_useracl_tab_user_link": "Cliquez ici pour en ajouter un.",
   "pci_databases_useracl_permission_admin": "Administrateur",
   "pci_databases_useracl_permission_read": "Lecture seule",
   "pci_databases_useracl_permission_write": "Ecriture",
