@@ -37,10 +37,10 @@
             name="patternName"
             class="oui-input"
             data-ng-model="$ctrl.model.pattern"
-            data-minlength="$ctrl.minNameLength"
-            data-ng-maxlength="$ctrl.maxNameLength"
-            data-ng-pattern="$ctrl.pattern"
-            placeholder="Logs_*"
+            data-ng-minlength="$ctrl.formRules.pattern.min"
+            data-ng-maxlength="$ctrl.formRules.pattern.max"
+            data-ng-pattern="$ctrl.formRules.pattern.pattern"
+            placeholder="{{:: 'pci_databases_indexes_create_pattern_pattern_placeholder' | translate }}"
             required
             autofocus
         />
@@ -48,12 +48,13 @@
     <oui-field
         data-label="{{:: 'pci_databases_indexes_create_pattern_max_index' | translate }}"
     >
-        <oui-numeric
-            model="$ctrl.model.maxIndexCount"
-            name="replication"
-            min="0"
-            max="$ctrl.database.nodes.length"
-        >
-        </oui-numeric>
+        <input
+            class="oui-input"
+            name="maxIndexCount"
+            type="number"
+            ng-model="$ctrl.model.maxIndexCount"
+            min="{{$ctrl.formRules.maxIndexCount.min}}"
+            max="{{$ctrl.formRules.maxIndexCount.max}}"
+        />
     </oui-field>
 </oui-modal>

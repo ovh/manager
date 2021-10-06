@@ -1,10 +1,6 @@
 import get from 'lodash/get';
 import capitalize from 'lodash/capitalize';
-import {
-  NAME_PATTERN,
-  MIN_LENGTH,
-  MAX_LENGTH,
-} from './create-pattern.constants';
+import { CREATE_PATTERN_FORM_RULES } from './create-pattern.constants';
 
 export default class {
   /* @ngInject */
@@ -12,9 +8,7 @@ export default class {
     this.$translate = $translate;
     this.capitalize = capitalize;
     this.DatabaseService = DatabaseService;
-    this.pattern = NAME_PATTERN;
-    this.minNameLength = MIN_LENGTH;
-    this.maxNameLength = MAX_LENGTH;
+    this.formRules = CREATE_PATTERN_FORM_RULES;
   }
 
   $onInit() {

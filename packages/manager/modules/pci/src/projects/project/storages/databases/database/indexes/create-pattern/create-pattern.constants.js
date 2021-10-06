@@ -1,9 +1,15 @@
-export const NAME_PATTERN = /^[a-zA-Z0-9_.*?-]{0,39}$/;
-export const MIN_LENGTH = 1;
-export const MAX_LENGTH = 40;
+export const CREATE_PATTERN_FORM_RULES = {
+  pattern: {
+    pattern: /^[A-Za-z0-9-_.*?]+$/,
+    min: 1,
+    max: 1024,
+  },
+  maxIndexCount: {
+    min: 0,
+    max: 9223372036854775807,
+  },
+};
 
 export default {
-  NAME_PATTERN,
-  MIN_LENGTH,
-  MAX_LENGTH,
+  CREATE_PATTERN_FORM_RULES,
 };
