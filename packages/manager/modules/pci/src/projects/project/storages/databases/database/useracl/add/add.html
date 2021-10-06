@@ -71,6 +71,9 @@
                         class="oui-input"
                         name="pattern"
                         ng-model="pattern"
+                        data-ng-minlength="$ctrl.inputRules.pattern.min"
+                        data-ng-maxlength="$ctrl.inputRules.pattern.max"
+                        data-ng-pattern="$ctrl.inputRules.pattern.pattern"
                         placeholder="{{:: 'pci_databases_useracl_create_pattern_placeholder' | translate}}"
                         required
                     />

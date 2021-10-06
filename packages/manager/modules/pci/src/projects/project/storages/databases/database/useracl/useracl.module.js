@@ -7,6 +7,7 @@ import '@ovh-ux/ui-kit';
 import component from './useracl.component';
 import routing from './useracl.routing';
 import add from './add';
+import del from './delete';
 
 const moduleName = 'ovhManagerPciStoragesDatabasesUserAcl';
 
@@ -16,6 +17,7 @@ angular
     'ngOvhSwimmingPoll',
     'oui',
     add,
+    del,
   ])
   .config(routing)
   .component('ovhManagerPciStoragesDatabaseUserAclComponent', component)

@@ -59,11 +59,11 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return promise;
         },
-        goToDeleteUserAcl: /* @ngInject */ ($state) => (acl) =>
+        goToDeleteUserAcl: /* @ngInject */ ($state) => (user) =>
           $state.go(
             'pci.projects.project.storages.databases.dashboard.useracl.delete',
             {
-              acl,
+              user,
             },
           ),
       },

@@ -8,6 +8,6 @@
   "pci_databases_useracl_create_permission": "Permission",
   "pci_databases_useracl_create_pattern": "Modèle",
   "pci_databases_useracl_create_pattern_placeholder": "logs_*",
-  "pci_databases_useracl_create_success_message": "Les ACL de l'utilisateur ont bien été ajoutées.",
-  "pci_databases_useracl_create_error_message": "Une erreur est survenue lors de l'ajout des ACL à l'utilisateur."
+  "pci_databases_useracl_create_success_message": "Les ACL de l'utilisateur ont bien été ajoutés.",
+  "pci_databases_useracl_create_error_message": "Une erreur est survenue lors de l'ajout des ACL à l'utilisateur: {{message}}"
 }

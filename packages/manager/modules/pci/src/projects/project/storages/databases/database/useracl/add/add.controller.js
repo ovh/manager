@@ -1,13 +1,13 @@
 import remove from 'lodash/remove';
 import get from 'lodash/get';
-import { ADD_USER_FORM_RULES } from './add.constants';
+import { ADD_USER_ACL_FORM } from './add.constants';
 
 export default class {
   /* @ngInject */
   constructor($translate, DatabaseService) {
     this.$translate = $translate;
     this.DatabaseService = DatabaseService;
-    this.inputRules = ADD_USER_FORM_RULES;
+    this.inputRules = ADD_USER_ACL_FORM;
   }
 
   $onInit() {
