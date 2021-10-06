@@ -1,3 +1,12 @@
+# [4.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.16.0...@ovh-ux/manager-public-cloud@4.17.0) (2021-10-06)
+
+
+### Features
+
+* **ufrontend:** add treeshaking ([7ff7623](https://github.com/ovh/manager/commit/7ff7623b2d13b6f2aea2d3a4bfd9d62e169e93c6))
+
+
+
 # [4.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.15.8...@ovh-ux/manager-public-cloud@4.16.0) (2021-08-25)
 
 

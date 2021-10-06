@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.3.1...@ovh-ux/manager-web-paas@1.4.0) (2021-10-06)
+
+
+### Features
+
+* **ufrontend:** add treeshaking ([7ff7623](https://github.com/ovh/manager/commit/7ff7623b2d13b6f2aea2d3a4bfd9d62e169e93c6))
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.3.0...@ovh-ux/manager-web-paas@1.3.1) (2021-09-07)
 
 

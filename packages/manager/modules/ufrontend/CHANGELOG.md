@@ -1,3 +1,13 @@
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ufrontend@2.0.0...@ovh-ux/ufrontend@2.1.0) (2021-10-06)
+
+
+### Features
+
+* **types:** add typescript to ufrontend and manager config ([4c76c32](https://github.com/ovh/manager/commit/4c76c325157939fdce0baf1c739bf606cd846f33))
+* **ufrontend:** add treeshaking ([7ff7623](https://github.com/ovh/manager/commit/7ff7623b2d13b6f2aea2d3a4bfd9d62e169e93c6))
+
+
+
 # [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ufrontend@1.1.3...@ovh-ux/ufrontend@2.0.0) (2021-05-05)
 
 

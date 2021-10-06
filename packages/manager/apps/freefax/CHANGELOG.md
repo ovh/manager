@@ -1,3 +1,12 @@
+# [7.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@7.0.1...@ovh-ux/manager-freefax-app@7.1.0) (2021-10-06)
+
+
+### Features
+
+* **ufrontend:** add treeshaking ([7ff7623](https://github.com/ovh/manager/commit/7ff7623b2d13b6f2aea2d3a4bfd9d62e169e93c6))
+
+
+
 ## [7.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@7.0.0...@ovh-ux/manager-freefax-app@7.0.1) (2021-06-16)
 
 

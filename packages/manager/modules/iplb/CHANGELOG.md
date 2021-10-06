@@ -1,3 +1,12 @@
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.2.1...@ovh-ux/manager-iplb@1.2.2) (2021-10-06)
+
+
+### Bug Fixes
+
+* **dashboard:** add missing translation ([#5636](https://github.com/ovh/manager/issues/5636)) ([ccf8cb6](https://github.com/ovh/manager/commit/ccf8cb615070d7eb17846c0f7b0961ecb87e01dc))
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.2.0...@ovh-ux/manager-iplb@1.2.1) (2021-09-07)
 
 

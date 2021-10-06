@@ -1,3 +1,12 @@
+# [6.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@6.1.0...@ovh-ux/manager-config@6.2.0) (2021-10-06)
+
+
+### Features
+
+* **types:** add typescript to ufrontend and manager config ([4c76c32](https://github.com/ovh/manager/commit/4c76c325157939fdce0baf1c739bf606cd846f33))
+
+
+
 # [6.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@6.0.1...@ovh-ux/manager-config@6.1.0) (2021-09-07)
 
 

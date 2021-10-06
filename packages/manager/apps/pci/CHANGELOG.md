@@ -1,3 +1,12 @@
+# [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.3.0...@ovh-ux/manager-pci-app@3.4.0) (2021-10-06)
+
+
+### Features
+
+* **ufrontend:** add treeshaking ([7ff7623](https://github.com/ovh/manager/commit/7ff7623b2d13b6f2aea2d3a4bfd9d62e169e93c6))
+
+
+
 # [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.2.4...@ovh-ux/manager-pci-app@3.3.0) (2021-08-25)
 
 

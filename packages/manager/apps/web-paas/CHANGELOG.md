@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@1.2.0...@ovh-ux/manager-web-paas-app@1.3.0) (2021-10-06)
+
+
+### Features
+
+* **types:** add typescript to ufrontend and manager config ([4c76c32](https://github.com/ovh/manager/commit/4c76c325157939fdce0baf1c739bf606cd846f33))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@1.1.5...@ovh-ux/manager-web-paas-app@1.2.0) (2021-08-25)
 
 

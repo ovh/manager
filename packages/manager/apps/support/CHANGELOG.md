@@ -1,3 +1,12 @@
+# [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.5.0...@ovh-ux/manager-support-app@2.6.0) (2021-10-06)
+
+
+### Features
+
+* **ufrontend:** add treeshaking ([7ff7623](https://github.com/ovh/manager/commit/7ff7623b2d13b6f2aea2d3a4bfd9d62e169e93c6))
+
+
+
 # [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.4.2...@ovh-ux/manager-support-app@2.5.0) (2021-08-25)
 
 

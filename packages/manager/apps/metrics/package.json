@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-metrics-app",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -34,7 +34,7 @@
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.2",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.4",
-    "@ovh-ux/ng-ovh-sidebar-menu": "^10.1.2",
+    "@ovh-ux/ng-ovh-sidebar-menu": "^10.1.3",
     "@ovh-ux/ng-ovh-sso-auth": "^4.5.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.3",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.2",

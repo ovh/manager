@@ -1,3 +1,18 @@
+# [13.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.25.3...@ovh-ux/manager-telecom@13.26.0) (2021-10-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1180] ([9d1497f](https://github.com/ovh/manager/commit/9d1497f6473d3d2298078097471c1ac6e1582e3c))
+
+
+### Features
+
+* **ufrontend:** add treeshaking ([7ff7623](https://github.com/ovh/manager/commit/7ff7623b2d13b6f2aea2d3a4bfd9d62e169e93c6))
+* **xdsl.statistics:** add HEC, FEC and CRC ([#5280](https://github.com/ovh/manager/issues/5280)) ([14b1394](https://github.com/ovh/manager/commit/14b1394891e31db487cd23ac485bf492ac7db4f3))
+
+
+
 ## [13.25.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.25.2...@ovh-ux/manager-telecom@13.25.3) (2021-10-04)
 
 

@@ -1,3 +1,21 @@
+# [16.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.37.4...@ovh-ux/manager-dedicated@16.38.0) (2021-10-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1164] ([8d86437](https://github.com/ovh/manager/commit/8d86437286e1ebbc48054e9512108994b0e8a0bc))
+* **licence:** fix controller name ([#5671](https://github.com/ovh/manager/issues/5671)) ([9c2ebfa](https://github.com/ovh/manager/commit/9c2ebfa6ab594c08837b3753fa5ab67cea478f94))
+* **server.dashboard:** disable on-site intervention ([#5683](https://github.com/ovh/manager/issues/5683)) ([6f0e41a](https://github.com/ovh/manager/commit/6f0e41ade7793758a92e1aa762943ac38e8cc47c))
+* **server.dashboard:** remove intervention typo ([#5236](https://github.com/ovh/manager/issues/5236)) ([703f231](https://github.com/ovh/manager/commit/703f2310acadd20458fb0534b319139347176aad))
+* remove unused translations [CDS] ([b334f10](https://github.com/ovh/manager/commit/b334f1006af2bbb3057646127e5ebc5ce5390b63))
+
+
+### Features
+
+* **ufrontend:** add treeshaking ([7ff7623](https://github.com/ovh/manager/commit/7ff7623b2d13b6f2aea2d3a4bfd9d62e169e93c6))
+
+
+
 ## [16.37.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.37.3...@ovh-ux/manager-dedicated@16.37.4) (2021-09-23)
 
 
