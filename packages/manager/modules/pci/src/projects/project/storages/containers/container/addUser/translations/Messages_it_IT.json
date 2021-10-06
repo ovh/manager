@@ -1,7 +1,7 @@
 {
   "pci_projects_project_storages_containers_container_addUser_archive_title": "Aggiungi un utente al tuo container",
   "pci_projects_project_storages_containers_container_addUser_container_title": "Aggiungi un utente al tuo container",
-  "pci_projects_project_storages_containers_container_addUser_object_title": "Aggiungi un utente al tuo container",
+  "pci_projects_project_storages_containers_container_addUser_object_title": "Aggiungi un utente al tuo oggetto",
   "pci_projects_project_storages_containers_container_addUser_description_container_step_0": "Seleziona l'utente da aggiungere al container. Se non compare in questa lista, è necessario crearlo nella sezione dedicata.",
   "pci_projects_project_storages_containers_container_addUser_description_object_step_0": "Seleziona l'utente per il tuo oggetto. Se non compare in questa lista, crealo nella sezione dedicata.",
   "pci_projects_project_storages_containers_container_addUser_description_step_1": "Definisci il ruolo dell'utente sul container {{container}}.",

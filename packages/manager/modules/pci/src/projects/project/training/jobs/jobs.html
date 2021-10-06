@@ -17,7 +17,7 @@
         on-criteria-change="$ctrl.onListParamChange($criteria)"
     >
         <oui-datagrid-column
-            data-title=":: 'pci_projects_project_training_jobs_name' | translate"
+            data-title=":: 'pci_projects_project_training_jobs_id' | translate"
             data-property="id"
             data-type="string"
             data-searchable
@@ -27,6 +27,16 @@
             <a href="{{:: $ctrl.jobInfoLink($row.id) }}">
                 <span data-ng-bind="::$row.id"></span>
             </a>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_training_jobs_name' | translate"
+            data-property="spec"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+            <span data-ng-bind="::$value.name"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_training_jobs_region' | translate"

@@ -1,6 +1,6 @@
 {
-  "pci_database_metrics_title": "Messwerte",
-  "pci_databases_metrics_title": "Messwerte",
+  "pci_database_metrics_title": "Metriken",
+  "pci_databases_metrics_title": "Metriken",
   "pci_databases_metrics_refresh_label": "Auto-Refresh (1M)",
   "pci_databases_metrics_range_label": "Time Range",
   "pci_databases_metrics_range_label_1H": "1 h",

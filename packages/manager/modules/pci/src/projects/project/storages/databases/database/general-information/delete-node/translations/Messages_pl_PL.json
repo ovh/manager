@@ -2,10 +2,8 @@
   "pci_databases_general_information_delete_node": "Usuń węzeł",
   "pci_databases_general_information_delete_node_confirm": "Zatwierdź",
   "pci_databases_general_information_delete_node_cancel": "Anuluj",
-  "pci_databases_general_information_delete_node_description_1": "Liczba węzłów, którymi aktualnie dysponujesz :{{nodesCount}}. Czy chcesz usunąć węzeł? Zmniejszysz fakturę o ",
-  "pci_databases_general_information_delete_node_description_2": " za godzinę.",
+  "pci_databases_general_information_delete_node_description": "Liczba węzłów, którymi aktualnie dysponujesz: {{nodesCount}}. Czy na pewno chcesz usunąć węzeł? Obniżysz kwotę na fakturze o ",
   "pci_databases_general_information_delete_node_pending": "Zlecenie usunięcia zostało zarejestrowane. Operacja zostanie wykonana w ciągu kilku minut.",
   "pci_databases_general_information_delete_node_success": "Węzeł został pomyślnie usunięty z klastra.",
-  "pci_databases_general_information_delete_node_error": "Wystąpił błąd podczas usuwania węzła. Spróbuj ponownie później lub skontaktuj się z pomocą techniczną.",
-  "pci_databases_general_information_delete_node_description": "Liczba węzłów, którymi aktualnie dysponujesz: {{nodesCount}}. Czy na pewno chcesz usunąć węzeł? Obniżysz kwotę na fakturze o "
+  "pci_databases_general_information_delete_node_error": "Wystąpił błąd podczas usuwania węzła. Spróbuj ponownie później lub skontaktuj się z pomocą techniczną."
 }

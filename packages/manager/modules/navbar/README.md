@@ -36,16 +36,13 @@ Configure language menu.
 ```
 
 The supported langs are:
-- cs_CZ
 - de_DE
 - en_GB
 - es_ES
 - es_US
-- fi_FI
 - fr_CA
 - fr_FR
 - it_IT
-- lt_LT
 - pl_PL
 - pt_PT
 

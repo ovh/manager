@@ -353,21 +353,21 @@ export default class DedicatedServerDashboard {
       .then(() =>
         noIntervention
           ? this.showSuccessMessage(
-              'server_configuration_no_intervention_activate_success',
+              'server_configuration_intervention_deactivate_success',
             )
           : this.showSuccessMessage(
-              'server_configuration_no_intervention_deactivate_success',
+              'server_configuration_intervention_activate_success',
             ),
       )
       .catch((err) => {
         this.server.noIntervention = !noIntervention;
         return noIntervention
           ? this.showErrorMessage(
-              'server_configuration_no_intervention_activate_failed',
+              'server_configuration_intervention_deactivate_failed',
               err,
             )
           : this.showErrorMessage(
-              'server_configuration_no_intervention_deactivate_failed',
+              'server_configuration_intervention_activate_failed',
               err,
             );
       })

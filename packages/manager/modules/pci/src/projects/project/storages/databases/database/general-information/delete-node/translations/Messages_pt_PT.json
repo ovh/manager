@@ -2,10 +2,8 @@
   "pci_databases_general_information_delete_node": "Eliminar um nó",
   "pci_databases_general_information_delete_node_confirm": "Confirmar",
   "pci_databases_general_information_delete_node_cancel": "Cancelar",
-  "pci_databases_general_information_delete_node_description_1": "Dispõe atualmente de {{nodesCount}} nó(s). Deseja eliminar um nó? Reduzirá a sua fatura em ",
-  "pci_databases_general_information_delete_node_description_2": " à hora.",
+  "pci_databases_general_information_delete_node_description": "Dispõe atualmente de {{nodesCount}} nó(s). Deseja eliminar um nó? Reduzirá a sua fatura em ",
   "pci_databases_general_information_delete_node_pending": "O pedido de eliminação foi registado. A eliminação terá efeito dentro de alguns minutos.",
   "pci_databases_general_information_delete_node_success": "O nó foi eliminado do cluster com sucesso",
-  "pci_databases_general_information_delete_node_error": "Ocorreu um erro aquando da eliminação do nó. Tente novamente mais tarde ou contacte o Apoio ao Cliente.",
-  "pci_databases_general_information_delete_node_description": "Dispõe atualmente de {{nodesCount}} nó(s). Deseja eliminar um nó? Reduzirá a sua fatura em "
+  "pci_databases_general_information_delete_node_error": "Ocorreu um erro aquando da eliminação do nó. Tente novamente mais tarde ou contacte o Apoio ao Cliente."
 }

@@ -1,8 +1,12 @@
+import { VEEAM_PORT } from './license.constants';
+
 export default class VeeamEnterpriseLicenseCtrl {
   /* @ngInject */
   constructor(VeeamEnterpriseService) {
     this.VeeamEnterpriseService = VeeamEnterpriseService;
-    this.form = {};
+    this.form = {
+      port: VEEAM_PORT,
+    };
   }
 
   dismissModal() {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { emit, listen } from '@ovh-ux/ufrontend/communication';
+import { emit, listen } from '@ovh-ux/ufrontend';
 import style from './navbar.scss';
 import { MESSAGES } from './constants';
 

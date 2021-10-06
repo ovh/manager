@@ -42,7 +42,7 @@
                     <button
                         type="button"
                         class="oui-popover-button"
-                        oui-popover="{{:: 'cpbc_billing_control_consumption_current_period' | translate:{from: ($ctrl.consumption.beginDate | date), to: ($ctrl.consumption.endDate | date)} }}"
+                        oui-popover="{{:: $ctrl.getPeriod() }}"
                         oui-popover-placement="right"
                     ></button>
                 </h4>

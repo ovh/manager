@@ -58,6 +58,9 @@ export const PACK_XDSL_STATISTICS = {
   },
 };
 
+export const PREVIEW = 'preview';
+
 export default {
   PACK_XDSL_STATISTICS,
+  PREVIEW,
 };

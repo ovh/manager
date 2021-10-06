@@ -2,10 +2,8 @@
   "pci_databases_general_information_delete_node": "Eliminar un nodo",
   "pci_databases_general_information_delete_node_confirm": "Confirmar",
   "pci_databases_general_information_delete_node_cancel": "Cancelar",
-  "pci_databases_general_information_delete_node_description_1": "Actualmente tiene {{nodesCount}} nodos. ¿Quiere eliminar un nodo? Reducirá su factura en ",
-  "pci_databases_general_information_delete_node_description_2": " por hora.",
+  "pci_databases_general_information_delete_node_description": "Actualmente tiene {{nodesCount}} nodos. ¿Quiere eliminar un nodo? Reducirá su factura en ",
   "pci_databases_general_information_delete_node_pending": "Se ha enviado la solicitud de eliminación y será efectiva en unos minutos.",
   "pci_databases_general_information_delete_node_success": "Se ha eliminado el nodo correctamente del cluster.",
-  "pci_databases_general_information_delete_node_error": "¡Vaya! Se ha producido un error al eliminar el nodo. Por favor, vuelva a intentarlo más tarde o contacte con el soporte.",
-  "pci_databases_general_information_delete_node_description": "Actualmente tiene {{nodesCount}} nodos. ¿Quiere eliminar un nodo? Reducirá su factura en "
+  "pci_databases_general_information_delete_node_error": "¡Vaya! Se ha producido un error al eliminar el nodo. Por favor, vuelva a intentarlo más tarde o contacte con el soporte."
 }

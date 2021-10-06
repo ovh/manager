@@ -1,6 +1,6 @@
 {
   "pci_database_add_title": "Crear un servicio de base de datos",
-  "pci_database_add_description1": "Crear un servicio de base de datos disponible en su proyecto de Public Cloud. Si quiere utilizar una red privada que todavía no existe, deberá crear",
+  "pci_database_add_description1": "Crear una base de datos disponible en su proyecto de Public Cloud. Si quiere utilizar una red privada que todavía no existe, deberá crear",
   "pci_database_add_description2": "una red privada o una subred",
   "pci_database_add_description3": "primero.",
   "pci_database_add_step1_title": "Seleccione el tipo de base de datos",

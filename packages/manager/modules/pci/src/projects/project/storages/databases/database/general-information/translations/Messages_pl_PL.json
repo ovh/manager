@@ -42,7 +42,7 @@
   "pci_databases_general_information_ssl_mode": "SSL mode",
   "pci_databases_general_information_required": "Obowiązkowe",
   "pci_databases_general_information_public_network_link": "Sieć publiczna",
-  "pci_databases_general_information_private_network_link": "Prywatna sieć: vRack nr {{vRackId}}",
+  "pci_databases_general_information_private_network_link": "Sieć prywatna: vRack nr {{vRackId}}",
   "pci_databases_general_information_private_network_none": "Brak",
   "pci_databases_general_information_no_ip": "Twój klaster nie jest w pełni skonfigurowany: autoryzuj adresy IP.",
   "pci_databases_general_information_no_users": "Twój klaster nie jest w pełni skonfigurowany: aby korzystać z usługi, dodaj użytkowników. W tym celu przejdź do ",

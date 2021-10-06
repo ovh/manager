@@ -377,6 +377,8 @@
                     </oui-action-menu>
                 </oui-tile-definition>
                 <!-- No intervention -->
+                <!--
+                TODO: Needs to be uncommented (relates to MANAGER-7799).
                 <oui-tile-definition
                     data-term="{{ ::'server_configuration_no_intervention' | translate }}"
                     class="border-top-0 padding-top-0"
@@ -389,16 +391,9 @@
                             data-ng-if="!$ctrl.server.isExpired && $ctrl.server.monitored"
                         >
                         </oui-switch>
-                        <span
-                            data-ng-if="!$ctrl.server.noIntervention"
-                            data-translate="server_configuration_off"
-                        ></span>
-                        <span
-                            data-ng-if="$ctrl.server.noIntervention"
-                            data-translate="server_configuration_on"
-                        ></span>
                     </oui-tile-description>
                 </oui-tile-definition>
+                -->
                 <!-- Monitored services -->
                 <oui-tile-definition
                     data-term="{{ ::'server_configuration_monitoring_services' | translate }}"

@@ -2,10 +2,8 @@
   "pci_databases_general_information_delete_node": "Delete a node",
   "pci_databases_general_information_delete_node_confirm": "Confirm",
   "pci_databases_general_information_delete_node_cancel": "Cancel",
-  "pci_databases_general_information_delete_node_description_1": "You currently have {{nodesCount}} nodes. Do you want to delete a node? You will reduce your bill by ",
-  "pci_databases_general_information_delete_node_description_2": " per hour.",
+  "pci_databases_general_information_delete_node_description": "You currently have {{nodesCount}} nodes. Do you want to delete a node? You will reduce your bill by ",
   "pci_databases_general_information_delete_node_pending": "Your deletion request has been processed. It will be effective in a few minutes.",
-  "pci_databases_general_information_delete_node_success": "Your node has been successfully deleted from your cluster",
-  "pci_databases_general_information_delete_node_error": "An error occurred while deleting your node. Please try again later or contact support.",
-  "pci_databases_general_information_delete_node_description": "You currently have {{nodesCount}} nodes. Do you want to delete a node? You will reduce your bill by "
+  "pci_databases_general_information_delete_node_success": "Your node has been successfully deleted from your cluster.",
+  "pci_databases_general_information_delete_node_error": "An error occurred while deleting your node. Please try again later or contact support."
 }

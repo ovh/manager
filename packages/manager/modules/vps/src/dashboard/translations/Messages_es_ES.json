@@ -5,7 +5,7 @@
   "vps_dashboard_migration_warning": "Su VPS Cloud será migrado automáticamente a partir del {{date}}. Si lo desea, ya puede planificar esta operación.",
   "vps_dashboard_migration_link": "Migrar a la nueva gama",
   "vps_dashboard_auto_migration_warning": "Su VPS Cloud será migrado automáticamente hacia un VPS de la nueva gama dentro de {{days}} días.",
-  "vps_dashboard_migration_in_progress": "Estamos migrando su VPS Cloud hacia la nueva gama.",
+  "vps_dashboard_migration_in_progress": "Migrando su VPS Cloud hacia la nueva gama...",
   "vps_dashboard_migration_in_error": "Se ha producido un error al migrar el VPS. Nuestro equipo se encargará del resto de la migración.",
   "vps_dashboard_state": "Estado",
   "vps_dashboard_state_backuping": "Realizando el backup",
@@ -16,5 +16,6 @@
   "vps_dashboard_state_stopped": "Cancelado",
   "vps_dashboard_state_stopping": "Cancelando",
   "vps_dashboard_state_upgrading": "Cambiando de solución",
-  "vps_dashboard_state_rescued": "En rescue"
+  "vps_dashboard_state_rescued": "En rescue",
+  "vps_dashboard_auto_migration_warning_new": "Le confirmamos que es posible migrar su VPS {{vps}} hacia la nueva gama en un clic."
 }

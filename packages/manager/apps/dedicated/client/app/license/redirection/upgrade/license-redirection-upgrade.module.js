@@ -9,7 +9,7 @@ const moduleName = 'licenseRedirectionUpgrade';
 
 angular
   .module(moduleName, ['oui', 'pascalprecht.translate'])
-  .controller('LicenseMigrateCtrl', controller)
+  .controller('LicenseRedirectionUpgradeCtrl', controller)
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(

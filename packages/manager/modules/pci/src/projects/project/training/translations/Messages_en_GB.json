@@ -9,6 +9,7 @@
   "pci_projects_project_training_data_list_add": "Attach a data container",
   "pci_projects_project_training_dashboard_title": "Home",
   "pci_projects_project_training_jobs_name": "Name",
+  "pci_projects_project_training_jobs_id": "ID",
   "pci_projects_project_training_jobs_creator": "User",
   "pci_projects_project_training_jobs_state": "Status",
   "pci_projects_project_training_jobs_image": "Docker Image",
