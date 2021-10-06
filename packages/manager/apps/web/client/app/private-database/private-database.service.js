@@ -1375,4 +1375,11 @@ export default class PrivateDatabase {
 
     return null;
   }
+
+  refreshQuota(serviceName) {
+    this.resetCache();
+    return this.$http
+      .post(`${this.swsProxypassPath}/${serviceName}/quotaRefresh`)
+      .then((response) => response.data);
+  }
 }
