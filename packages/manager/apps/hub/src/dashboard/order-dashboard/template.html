@@ -3,10 +3,13 @@
     <ovh-manager-hub-support
         class="col-md-8"
         me="$ctrl.me"
-        tracking-prefix="{{ $ctrl.trackingPrefix }}"
+        tracking-prefix="{{ $ctrl.prefix }}"
     >
     </ovh-manager-hub-support>
 </div>
 <h2 data-translate="manager_hub_order_dashboard_discover"></h2>
 <p data-translate="manager_hub_order_dashboard"></p>
-<hub-catalog-items items-promise="$ctrl.products"></hub-catalog-items>
+<hub-catalog-items
+    items-promise="$ctrl.products"
+    tracking-prefix="{{$ctrl.prefix}}"
+></hub-catalog-items>
