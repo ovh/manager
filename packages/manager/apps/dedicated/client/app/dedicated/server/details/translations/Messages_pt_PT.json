@@ -1191,11 +1191,15 @@
   "server_error_bandwidth_order": "Ocorreu um erro aquando da encomenda da largura de banda: {{error}}",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Interfaces de rede do grupo",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Separar as interfaces de rede",
-  "server_configuration_no_intervention": "Intervenções no local",
+  "server_configuration_no_intervention": "Desativar as intervenções no local",
   "server_configuration_on": "On",
   "server_configuration_off": "Off",
   "server_configuration_no_intervention_activate_success": "A intervenção no local está ativa no servidor {{serverName}}",
   "server_configuration_no_intervention_activate_failed": "Ocorreu um erro aquando da ativação das intervenções no local no servidor {{serverName}}",
   "server_configuration_no_intervention_deactivate_success": "A intervenção no local está desativada no servidor {{serverName}}",
-  "server_configuration_no_intervention_deactivate_failed": "Ocorreu um erro aquando da desativação da intervenção no local no servidor {{serverName}}"
+  "server_configuration_no_intervention_deactivate_failed": "Ocorreu um erro aquando da desativação da intervenção no local no servidor {{serverName}}",
+  "server_configuration_intervention_deactivate_success": "A intervenção no local está desativada no servidor {{serverName}}",
+  "server_configuration_intervention_deactivate_failed": "Ocorreu um erro aquando da desativação da intervenção no local no servidor {{serverName}}",
+  "server_configuration_intervention_activate_success": "A intervenção no local está ativa no servidor {{serverName}}",
+  "server_configuration_intervention_activate_failed": "Ocorreu um erro aquando da ativação das intervenções no local no servidor {{serverName}}"
 }
