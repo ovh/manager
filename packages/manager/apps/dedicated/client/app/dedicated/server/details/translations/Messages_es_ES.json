@@ -1191,11 +1191,15 @@
   "server_error_bandwidth_order": "Se ha producido un error al contratar al ancho de banda: {{error}}",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Interfaces de red de grupo",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Desvincular las interfaces de red",
-  "server_configuration_no_intervention": "Intervenciones in situ",
+  "server_configuration_no_intervention": "Desactivar las intervenciones in situ",
   "server_configuration_on": "On",
   "server_configuration_off": "Off",
   "server_configuration_no_intervention_activate_success": "La intervención in situ está activada en el servidor {{serverName}}.",
   "server_configuration_no_intervention_activate_failed": "Se ha producido un error al activar las intervenciones in situ en el servidor {{serverName}}.",
   "server_configuration_no_intervention_deactivate_success": "La intervención in situ está desactivada en el servidor {{serverName}}.",
-  "server_configuration_no_intervention_deactivate_failed": "Se ha producido un error al desactivar la intervención in situ en el servidor {{serverName}}."
+  "server_configuration_no_intervention_deactivate_failed": "Se ha producido un error al desactivar la intervención in situ en el servidor {{serverName}}.",
+  "server_configuration_intervention_deactivate_success": "La intervención in situ está desactivada en el servidor {{serverName}}.",
+  "server_configuration_intervention_deactivate_failed": "Se ha producido un error al desactivar la intervención in situ en el servidor {{serverName}}.",
+  "server_configuration_intervention_activate_success": "La intervención in situ está activada en el servidor {{serverName}}.",
+  "server_configuration_intervention_activate_failed": "Se ha producido un error al activar las intervenciones in situ en el servidor {{serverName}}."
 }
