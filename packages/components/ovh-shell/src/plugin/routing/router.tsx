@@ -8,6 +8,7 @@ import {
   useParams,
 } from 'react-router-dom';
 import Application from './application';
+import RoutingConfiguration from './configuration';
 
 export const hashChangeEvent = 'ovh-routing-hash-change';
 
@@ -21,7 +22,12 @@ interface RouteHandlerParams {
 }
 
 interface RouterProps {
-  iframe: HTMLIFrameElement;
+  application: Application;
+  routing: RoutingConfiguration;
+}
+
+interface DefaultRouteHandlerProps {
+  routing: RoutingConfiguration;
 }
 
 function RouteHandler(props: RouteHandlerProps): JSX.Element {
@@ -40,31 +46,31 @@ function RouteHandler(props: RouteHandlerProps): JSX.Element {
     );
   }, []);
 
-  app.updateRouting({
-    applicationId: appId,
-    applicationHash: appHash,
-  });
+  try {
+    app.updateRouting({
+      applicationId: appId,
+      applicationHash: appHash,
+    });
+  } catch (error) {
+    console.error(error);
+  }
 
   return null;
 }
 
-function DefaultRouteHandler() {
-  if (window.location.hostname === 'localhost') {
-    return <Redirect to="/app/" />;
-  }
-  return <Redirect to="/hub/" />;
+function DefaultRouteHandler(props: DefaultRouteHandlerProps) {
+  return <Redirect to={`/${props.routing.getDefault().id}/`} />;
 }
 
 function Router(props: RouterProps) {
-  const application = new Application(props.iframe);
   return (
     <HashRouter>
       <Switch>
         <Route exact path="/">
-          <DefaultRouteHandler />
+          <DefaultRouteHandler routing={props.routing} />
         </Route>
         <Route path="/:appId/(.*)">
-          <RouteHandler app={application} />
+          <RouteHandler app={props.application} />
         </Route>
       </Switch>
     </HashRouter>
