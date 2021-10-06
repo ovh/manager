@@ -1,3 +1,21 @@
+# [15.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.30.6...@ovh-ux/manager-web@15.31.0) (2021-10-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1180] ([9d1497f](https://github.com/ovh/manager/commit/9d1497f6473d3d2298078097471c1ac6e1582e3c))
+* **i18n:** add missing translations [CDS 1187] ([6427962](https://github.com/ovh/manager/commit/6427962e97c6c6a4a1677521e173561f3588c4a6))
+* **i18n:** add missing translations [CDS 1189] ([0aca01f](https://github.com/ovh/manager/commit/0aca01feec0c0cf4e7dff46e8b2459676d04ade1))
+* **i18n:** cdn shared french translation typo ([43033b0](https://github.com/ovh/manager/commit/43033b03b3bed6b1aa4943b158d3b505f6f4d9da))
+
+
+### Features
+
+* **hosting:** hide the CDN order button if needed ([491424a](https://github.com/ovh/manager/commit/491424a961bbc8e1f9fcf8e5ffca0dd91c85700c))
+* **ufrontend:** add treeshaking ([7ff7623](https://github.com/ovh/manager/commit/7ff7623b2d13b6f2aea2d3a4bfd9d62e169e93c6))
+
+
+
 ## [15.30.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.30.5...@ovh-ux/manager-web@15.30.6) (2021-10-04)
 
 

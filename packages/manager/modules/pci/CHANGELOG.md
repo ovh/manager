@@ -1,3 +1,27 @@
+# [5.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.45.1...@ovh-ux/manager-pci@5.46.0) (2021-10-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1164] ([8d86437](https://github.com/ovh/manager/commit/8d86437286e1ebbc48054e9512108994b0e8a0bc))
+* **i18n:** add missing translations [CDS 1170] ([ecc3163](https://github.com/ovh/manager/commit/ecc31638ac278221e9858072e606259599f3a1a1))
+* **i18n:** add missing translations [CDS 1174] ([558ef9b](https://github.com/ovh/manager/commit/558ef9bb56748ba032e098e069144040e40eb511))
+* **i18n:** add missing translations [CDS 1176] ([#5645](https://github.com/ovh/manager/issues/5645)) ([e1b8663](https://github.com/ovh/manager/commit/e1b8663321a4aa23ea41f775c26b406349bb6ae9))
+* **i18n:** add missing translations [CDS 1181] ([e25108d](https://github.com/ovh/manager/commit/e25108d55c9639ae56826595c197dfda9c3655c6))
+* **i18n:** add missing translations [CDS 1187] ([6427962](https://github.com/ovh/manager/commit/6427962e97c6c6a4a1677521e173561f3588c4a6))
+* **i18n:** add missing translations [CDS 1189] ([0aca01f](https://github.com/ovh/manager/commit/0aca01feec0c0cf4e7dff46e8b2459676d04ade1))
+* **pci.project.quota:** set issue type constants to id list ([#5600](https://github.com/ovh/manager/issues/5600)) ([61758c2](https://github.com/ovh/manager/commit/61758c2e22767a3b04b7c177946f737e7c0c5c46))
+* **project.billing:** fix month injection encoding issue ([#5423](https://github.com/ovh/manager/issues/5423)) ([fd87ba5](https://github.com/ovh/manager/commit/fd87ba5bce514e0aef93b6aa15d36a06504648b2))
+* remove unused translations [CDS] ([0d52f62](https://github.com/ovh/manager/commit/0d52f62fd814b584977e4153198d024754304cac))
+
+
+### Features
+
+* **ai.training:** add `ID` column in job list ([#5644](https://github.com/ovh/manager/issues/5644)) ([07862c7](https://github.com/ovh/manager/commit/07862c728fd673125ff22cd46aaed1bc720c9379))
+* **ai.training:** custom docker link ([#5648](https://github.com/ovh/manager/issues/5648)) ([b6de56e](https://github.com/ovh/manager/commit/b6de56e4acf28e77643a95ab7f36e66f80f737da))
+
+
+
 ## [5.45.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.45.0...@ovh-ux/manager-pci@5.45.1) (2021-10-04)
 
 

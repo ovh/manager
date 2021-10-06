@@ -1,3 +1,12 @@
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.2.1...@ovh-ux/manager-veeam-enterprise@1.2.2) (2021-10-06)
+
+
+### Bug Fixes
+
+* **dashboard.license:** make veeam port as non editable field ([#5632](https://github.com/ovh/manager/issues/5632)) ([ace19cc](https://github.com/ovh/manager/commit/ace19ccfab4ab5f6ed4acf86dcb27d7e642e8c43))
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.2.0...@ovh-ux/manager-veeam-enterprise@1.2.1) (2021-09-07)
 
 
