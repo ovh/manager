@@ -1,4 +1,5 @@
-export default /* @ngInject */ class LicenseRedirectionUpgradeCtrl {
+export default class LicenseRedirectionUpgradeCtrl {
+  /* @ngInject */
   constructor($scope, $state, $timeout) {
     this.$scope = $scope;
     this.$state = $state;
