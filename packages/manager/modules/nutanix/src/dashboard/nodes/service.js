@@ -8,15 +8,9 @@ export default class NutanixNodeService {
   }
 
   updateDisplayName({ serviceId, displayName }) {
-    return this.$http.put('/service/{serviceId}', {
-      rootPath: 'apiv6',
-      urlParams: {
-        serviceId,
-      },
-      data: {
-        resource: {
-          displayName,
-        },
+    return this.$http.put(`/service/${serviceId}`, {
+      resource: {
+        displayName,
       },
     });
   }
