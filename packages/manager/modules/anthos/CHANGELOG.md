@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@1.0.0...@ovh-ux/manager-anthos@1.0.1) (2021-10-07)
+
+
+### Bug Fixes
+
+* **anthos:** redirect some subs to main pages ([#5703](https://github.com/ovh/manager/issues/5703)) ([a0011a3](https://github.com/ovh/manager/commit/a0011a38492c298ea301748cac8be6fa10fc7506))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@0.0.0...@ovh-ux/manager-anthos@1.0.0) (2021-10-07)
 
 
