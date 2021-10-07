@@ -3,9 +3,10 @@ import { CREATE_PATTERN_FORM_RULES } from './create-pattern.constants';
 
 export default class {
   /* @ngInject */
-  constructor(DatabaseService) {
+  constructor($translate, DatabaseService) {
     this.DatabaseService = DatabaseService;
     this.formRules = CREATE_PATTERN_FORM_RULES;
+    this.$translate = $translate;
   }
 
   $onInit() {
@@ -29,7 +30,7 @@ export default class {
       .then((database) =>
         this.goBack({
           textHtml: this.$translate.instant(
-            'pci_databases_databases_create_database_success_message',
+            'pci_databases_indexes_create_pattern_success_message',
             {
               database,
             },
@@ -39,7 +40,7 @@ export default class {
       .catch((err) =>
         this.goBack(
           this.$translate.instant(
-            'pci_databases_databases_create_database_error_message',
+            'pci_databases_indexes_create_pattern_error_message',
             {
               message: get(err, 'data.message', null),
             },

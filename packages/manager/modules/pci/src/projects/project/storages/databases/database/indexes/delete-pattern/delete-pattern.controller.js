@@ -2,8 +2,9 @@ import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
-  constructor(DatabaseService) {
+  constructor($translate, DatabaseService) {
     this.DatabaseService = DatabaseService;
+    this.$translate = $translate;
   }
 
   $onInit() {
