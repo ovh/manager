@@ -1,0 +1,8 @@
+{
+  "anthos_dashboard_remove_host_title": "Eliminar el host",
+  "anthos_dashboard_remove_host_description": "Esta máquina se eliminará de inmediato y no será facturada.",
+  "anthos_dashboard_remove_host_warning": "Su eliminación provocará el borrado definitivo de todos los datos correspondientes.",
+  "anthos_dashboard_remove_host_submit": "Confirmar",
+  "anthos_dashboard_remove_host_cancel": "Cancelar",
+  "anthos_dashboard_remove_host_error": "Se ha producido un error al dar de baja el host: {{message}}"
+}

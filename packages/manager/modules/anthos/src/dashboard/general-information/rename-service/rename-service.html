@@ -1,0 +1,33 @@
+<form name="anthosDashboardRenameService">
+    <oui-modal
+        data-heading="{{:: 'anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_title' | translate }}"
+        data-primary-action="$ctrl.onRenameTenantConfirmClick()"
+        data-primary-label="{{:: 'anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_action_confirm' | translate }}"
+        data-primary-disabled="!$ctrl.canRenameTenant(anthosDashboardRenameService)"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_action_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isUpdating"
+    >
+        <oui-spinner data-ng-if="$ctrl.isUpdating"></oui-spinner>
+        <p
+            class="oui-paragraph"
+            data-ng-if="!$ctrl.accountDetails.loading"
+            data-translate="anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_description"
+            data-translate-values="{displayName: $ctrl.displayName}"
+        ></p>
+        <oui-field
+            data-label="{{:: 'anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_field_name' | translate }}"
+        >
+            <input
+                type="text"
+                id="tenant_name"
+                name="tenant_name"
+                class="oui-input"
+                data-ng-model="$ctrl.tenantName"
+                data-ng-maxlength="$ctrl.TENANT_NAME_MAX_LENGTH"
+                data-ng-required
+            />
+        </oui-field>
+    </oui-modal>
+</form>

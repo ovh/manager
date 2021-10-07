@@ -19,7 +19,7 @@
   "ovhManagerSupport_new_serviceType_email_pro": "E-Mail Pro",
   "ovhManagerSupport_new_serviceType_hubic": "hubiC",
   "ovhManagerSupport_new_serviceType_OTHER": "Sonstige",
-  "ovhManagerSupport_new_serviceType_dedicated_cloud": "Hosted Private Cloud",
+  "ovhManagerSupport_new_serviceType_dedicated_cloud": "VMware",
   "ovhManagerSupport_new_serviceType_cloud_project": "Public Cloud (Projekt)",
   "ovhManagerSupport_new_serviceType_telephony": "Telefonie",
   "ovhManagerSupport_new_serviceType_telephony_fax": "Fax",
@@ -127,5 +127,6 @@
   "ovhManagerSupport_new_serviceType_managed_bare_metal": "Managed Bare Metal",
   "ovhManagerSupport_new": "Eine Anfrage erstellen",
   "ovhManagerSupport_new_serviceType_ai_training_job": "AI Training",
-  "ovhManagerSupport_new_serviceType_webpaas": "Web PaaS"
+  "ovhManagerSupport_new_serviceType_webpaas": "Web PaaS",
+  "ovhManagerSupport_new_serviceType_anthos": "Anthos"
 }

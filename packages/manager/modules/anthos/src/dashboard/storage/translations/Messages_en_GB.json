@@ -1,0 +1,13 @@
+{
+  "anthos_dashboard_storage_description": "You can divide the storage space available on your Dedicated Network into several SVM volumes. You can link these SVM volumes to a specific Anthos deployment, and use it as a predefined CSI (Container Storage Interface).",
+  "anthos_dashboard_storage_order": "Add an SVM volume",
+  "anthos_dashboard_storage_table_description": "Description",
+  "anthos_dashboard_storage_table_size": "Total volume size",
+  "anthos_dashboard_storage_table_delete": "Delete",
+  "anthos_dashboard_storage_unit_size_MB": "MB",
+  "anthos_dashboard_storage_unit_size_TB": "TB",
+  "anthos_dashboard_storage_allocated": "Allocated storage",
+  "anthos_dashboard_storage_system": "System",
+  "anthos_dashboard_storage_used": "SVM volumes",
+  "anthos_dashboard_storage_remaining": "Unused"
+}

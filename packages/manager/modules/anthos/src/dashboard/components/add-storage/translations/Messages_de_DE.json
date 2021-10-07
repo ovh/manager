@@ -1,0 +1,10 @@
+{
+  "anthos_dashboard_add_storage_title": "SVM-Volume erstellen",
+  "anthos_dashboard_add_storage_description": "Verwenden Sie dieses Volume für Ihre neuen oder bestehenden Deployments von Anthos.",
+  "anthos_dashboard_add_storage_description_label": "Beschreibung",
+  "anthos_dashboard_add_storage_space_label": "Freier Speicherplatz",
+  "anthos_dashboard_add_storage_submit": "SVM-Volume erstellen",
+  "anthos_dashboard_add_storage_cancel": "Abbrechen",
+  "anthos_dashboard_add_storage_success": "Das SVM-Volume wurde erfolgreich erstellt.",
+  "anthos_dashboard_add_storage_error": "Bei der Erstellung des SVM-Volumes ist ein Fehler aufgetreten: {{message}}"
+}

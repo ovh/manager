@@ -1,0 +1,13 @@
+{
+  "anthos_dashboard_storage_description": "Przestrzeń dyskową dostępną na dedykowanej macierzy NetApp możesz podzielić na kilka wolumenów SVM. Powiąż wolumeny SVM z wdrożeniem Anthos i wykorzystaj je jako wstępnie zdefiniowane rozwiązanie CSI (Container Storage Interface).",
+  "anthos_dashboard_storage_order": "Dodaj wolumen SVM",
+  "anthos_dashboard_storage_table_description": "Opis",
+  "anthos_dashboard_storage_table_size": "Całkowity rozmiar wolumenów",
+  "anthos_dashboard_storage_table_delete": "Usuń",
+  "anthos_dashboard_storage_unit_size_MB": "MB",
+  "anthos_dashboard_storage_unit_size_TB": "TB",
+  "anthos_dashboard_storage_allocated": "Przydzielona przestrzeń dyskowa",
+  "anthos_dashboard_storage_system": "System",
+  "anthos_dashboard_storage_used": "Wolumeny SVM",
+  "anthos_dashboard_storage_remaining": "Niewykorzystana"
+}

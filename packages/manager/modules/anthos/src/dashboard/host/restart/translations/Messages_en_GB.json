@@ -1,0 +1,7 @@
+{
+  "anthos_dashboard_restart_host_title": "Reboot your host",
+  "anthos_dashboard_restart_host_description": "Warning: the reboot may take a few minutes. Plan to evict your pods in advance, in order to limit the impact on the availability of your applications.",
+  "anthos_dashboard_restart_host_submit": "Confirm",
+  "anthos_dashboard_restart_host_cancel": "Cancel",
+  "anthos_dashboard_restart_host_error": "An error has occurred rebooting your host: {{message}}"
+}

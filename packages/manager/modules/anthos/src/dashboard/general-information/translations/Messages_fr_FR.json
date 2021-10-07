@@ -1,0 +1,42 @@
+{
+  "anthos_tenant_dashboard_general_information_title": "Informations générales",
+  "anthos_tenant_dashboard_general_information_description": "Retrouvez ici les paramètres généraux de votre déploiement Anthos. Vous pouvez accéder à vos consoles Anthos et NetApp si vous possédez cette option. Les informations de votre projet, sa facturation et les contacts associés peuvent être modifiés. Consultez et gérez les hôtes de votre déploiement Anthos, l’espace de stockage et les adresses IP via les onglets correspondants.",
+  "anthos_tenant_dashboard_general_information_actions": "Actions",
+
+  "anthos_tenant_dashboard_general_information_tile_information_title": "Informations générales",
+  "anthos_tenant_dashboard_general_information_tile_information_software": "Solution Logicielle",
+  "anthos_tenant_dashboard_general_information_tile_information_software_status_upcoming": "Mise à jour bientôt disponible",
+  "anthos_tenant_dashboard_general_information_tile_information_location": "Localisation",
+  "anthos_tenant_dashboard_general_information_tile_information_name": "Nom",
+  "anthos_tenant_dashboard_general_information_tile_information_description_action_rename": "Modifier",
+
+  "anthos_tenant_dashboard_general_information_tile_security_title": "Sécurité et accès",
+  "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_title": "Anthos Management Center Access",
+  "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd": "Réinitialiser l'accès",
+  "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd_success": "L'accès administrateur a été modifié avec succès.",
+  "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd_failed": "Une erreur est survenue lors de la modification de l'accès administrateur : {{message}}",
+  "anthos_tenant_dashboard_general_information_tile_security_cta_start_console": "Lancer la console Anthos",
+
+  "anthos_tenant_dashboard_general_information_tile_subscription_title": "Abonnement",
+  "anthos_tenant_dashboard_general_information_tile_subscription_creation_date": "Date de création",
+  "anthos_tenant_dashboard_general_information_tile_subscription_renwal_date": "Prochaine échéance",
+  "anthos_tenant_dashboard_general_information_tile_subscription_commitment": "Engagement",
+  "anthos_tenant_dashboard_general_information_tile_subscription_contacts": "Contacts",
+  "anthos_tenant_dashboard_general_information_tile_subscription_change_contact": "Changer le propriétaire",
+
+  "anthos_tenant_dashboard_general_information_tile_resources_title": "Ressources",
+  "anthos_tenant_dashboard_general_information_tile_resources_hosts": "Hôtes",
+  "anthos_tenant_dashboard_general_information_tile_resources_hosts_quantity": "Hôte·s",
+  "anthos_tenant_dashboard_general_information_tile_resources_hosts_menu_order_host": "Commander un hôte supplémentaire",
+  "anthos_tenant_dashboard_general_information_tile_resources_persistent_storage": "Stockage persistant (NetApp)",
+  "anthos_tenant_dashboard_general_information_tile_resources_persistent_storage_type_system": "Systeme",
+  "anthos_tenant_dashboard_general_information_tile_resources_persistent_storage_type_svm": "SVM Volumes",
+  "anthos_tenant_dashboard_general_information_tile_resources_persistent_storage_menu_add_volume": "Ajouter un volume SVM supplémentaire",
+  "anthos_tenant_dashboard_general_information_tile_resources_ips": "IPs",
+  "anthos_tenant_dashboard_general_information_tile_resources_ips_public_quantity": "IP publique·s",
+  "anthos_tenant_dashboard_general_information_tile_resources_ips_private_quantity": "IP privée·s",
+  "anthos_tenant_dashboard_general_information_tile_resources_ips_menu_add_public_ip": "Commander une IP Publique",
+  "anthos_tenant_dashboard_general_information_tile_resources_ips_menu_add_private_ip": "Assigner une IP Privée",
+  "anthos_tenant_dashboard_general_information_tile_resources_private_network": "Réseau privé (vRack)",
+  "anthos_tenant_dashboard_general_information_tile_resources_private_network_cta_attach_vrack": "Attacher un réseau vRack"
+}

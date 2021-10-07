@@ -1,0 +1,8 @@
+{
+  "anthos_dashboard_remove_host_title": "Ihren Host löschen",
+  "anthos_dashboard_remove_host_description": "Diese Maschine wird sofort gelöscht und Ihnen nicht mehr in Rechnung gestellt.",
+  "anthos_dashboard_remove_host_warning": "Beim Löschen werden alle zugehörigen Daten unwiderruflich gelöscht.",
+  "anthos_dashboard_remove_host_submit": "Bestätigen",
+  "anthos_dashboard_remove_host_cancel": "Abbrechen",
+  "anthos_dashboard_remove_host_error": "Bei der Kündigung Ihres Hosts ist ein Fehler aufgetreten: {{message}}"
+}

@@ -1,0 +1,7 @@
+{
+  "anthos_dashboard_restart_host_title": "Zrestartuj host",
+  "anthos_dashboard_restart_host_description": "Uwaga: restart może zająć kilka minut. Zaplanuj migrację podów, aby ograniczyć wpływ na dostępność Twoich aplikacji.",
+  "anthos_dashboard_restart_host_submit": "Zatwierdź",
+  "anthos_dashboard_restart_host_cancel": "Anuluj",
+  "anthos_dashboard_restart_host_error": "Wystąpił błąd podczas restartu hosta: {{message}}"
+}

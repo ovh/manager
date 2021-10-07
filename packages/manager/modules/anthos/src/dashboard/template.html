@@ -1,0 +1,41 @@
+<!--Dashboard tabs-->
+<oui-header
+    data-heading="{{ $ctrl.tenant.name }}"
+    data-description="{{:: $ctrl.serviceName }}"
+>
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            href="{{:: $ctrl.generalInformationLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.generalInformationLink"
+        >
+            <span
+                data-translate="anthos_dashboard_header_general_information"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            href="{{:: $ctrl.hostLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.hostLink"
+        >
+            <span data-translate="anthos_dashboard_header_host"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.storageUsage"
+            href="{{:: $ctrl.storageLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.storageLink"
+        >
+            <span data-translate="anthos_dashboard_header_storage"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            href="{{:: $ctrl.ipsLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.ipsLink"
+        >
+            <span data-translate="anthos_dashboard_header_ips"></span>
+        </oui-header-tabs-item>
+    </oui-header-tabs>
+</oui-header>
+
+<!--Container message-->
+<div class="my-3" data-ovh-alert="{{:: $ctrl.ANTHOS_TENANT_ALERTER}}"></div>
+
+<!--Dashboard view-->
+<div class="container-fluid" data-ui-view="anthosTenantView"></div>

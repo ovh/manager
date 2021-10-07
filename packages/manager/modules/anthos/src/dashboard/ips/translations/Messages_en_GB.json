@@ -1,0 +1,22 @@
+{
+  "anthos_dashboard_ips_title": "IP addresses",
+  "anthos_dashboard_ips_description": "In the Anthos console, you need to allocate IPs to each of your Anthos deployments. You can assign as many IPs/IP ranges as you want to your Anthos deployment. You also get 50 public IPs, and can order new ones at a low fixed price.",
+  "anthos_dashboard_ips_datagrid_public_actions_menu": "Actions",
+  "anthos_dashboard_ips_datagrid_public_actions_order_ip": "Order public IPs",
+  "anthos_dashboard_ips_datagrid_public_actions_assign_private_ip": "Assign private IPs",
+  "anthos_dashboard_ips_datagrid_public_ips_header_ip": "IP",
+  "anthos_dashboard_ips_datagrid_public_ips_header_type": "Type",
+  "anthos_dashboard_ips_datagrid_public_ips_header_status": "Status",
+  "anthos_dashboard_ips_datagrid_public_ips_value_type": "Public",
+  "anthos_dashboard_ips_datagrid_public_ips_value_status_true": "Enabled",
+  "anthos_dashboard_ips_datagrid_public_ips_value_status_false": "Disabled",
+  "anthos_dashboard_ips_datagrid_private_ips_header_ip": "IP",
+  "anthos_dashboard_ips_datagrid_private_actions_menu": "Actions",
+  "anthos_dashboard_ips_datagrid_private_ips_header_type": "Type",
+  "anthos_dashboard_ips_datagrid_private_ips_header_status": "Status",
+  "anthos_dashboard_ips_datagrid_private_ips_header_remove": "Delete",
+  "anthos_dashboard_ips_datagrid_private_ips_value_type": "Private",
+  "anthos_dashboard_ips_datagrid_private_ips_value_delete": "Delete",
+  "anthos_dashboard_ips_datagrid_private_ips_value_status_true": "Enabled",
+  "anthos_dashboard_ips_datagrid_private_ips_value_status_false": "Disabled"
+}
