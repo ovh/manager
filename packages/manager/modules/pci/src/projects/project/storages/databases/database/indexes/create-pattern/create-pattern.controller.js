@@ -1,12 +1,9 @@
 import get from 'lodash/get';
-import capitalize from 'lodash/capitalize';
 import { CREATE_PATTERN_FORM_RULES } from './create-pattern.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate, DatabaseService) {
-    this.$translate = $translate;
-    this.capitalize = capitalize;
+  constructor(DatabaseService) {
     this.DatabaseService = DatabaseService;
     this.formRules = CREATE_PATTERN_FORM_RULES;
   }

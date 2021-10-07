@@ -1,6 +1,5 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
-import '@ovh-ux/ng-tail-logs';
 import 'oclazyload';
 
 import '@ovh-ux/manager-core';

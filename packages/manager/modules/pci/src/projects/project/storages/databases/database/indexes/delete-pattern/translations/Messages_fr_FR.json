@@ -2,7 +2,7 @@
   "pci_databases_indexes_delete_pattern_confirm": "Confirmer",
   "pci_databases_indexes_delete_pattern_cancel": "Annuler",
   "pci_databases_indexes_delete_index": "Supprimer un modèle",
-  "pci_databases_indexes_delete_pattern_description": "Êtes-vous sûr de vouloir supprimer cet modèle ?",
+  "pci_databases_indexes_delete_pattern_description": "Êtes-vous sûr de vouloir supprimer ce modèle ?",
   "pci_databases_indexes_delete_pattern_success_message": "L'index a bien été supprimé.",
-  "pci_databases_indexes_delete_pattern_error_message": "Une erreur est survenue lors de la suppression de votre modèle: {{message}}"
+  "pci_databases_indexes_delete_pattern_error_message": "Une erreur est survenue lors de la suppression de votre modèle : {{message}}"
 }
