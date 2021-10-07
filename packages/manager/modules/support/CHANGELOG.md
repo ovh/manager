@@ -1,3 +1,15 @@
+## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.6.1...@ovh-ux/manager-support@1.6.2) (2021-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1184] ([df03553](https://github.com/ovh/manager/commit/df035537b0d5271384d1cddb582d583279e15318))
+* **i18n:** add missing translations [CDS 1191] ([9c37bb4](https://github.com/ovh/manager/commit/9c37bb4748eebfdbe0a5e40f5593dede2afab073))
+* add anthos to support page ([1d06691](https://github.com/ovh/manager/commit/1d066911ff79fbe3e9fdd8a628407df8020fa829)), closes [#MANAGER-7442](https://github.com/ovh/manager/issues/MANAGER-7442)
+* rename hosted private cloud to vmware ([030a38f](https://github.com/ovh/manager/commit/030a38f1421c52a86bc43c482a8c99fd912e69ad)), closes [#MANAGER-7545](https://github.com/ovh/manager/issues/MANAGER-7545)
+
+
+
 ## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.6.0...@ovh-ux/manager-support@1.6.1) (2021-09-07)
 
 

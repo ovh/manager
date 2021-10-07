@@ -1,3 +1,15 @@
+## [3.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.13.1...@ovh-ux/manager-server-sidebar@3.13.2) (2021-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1184] ([df03553](https://github.com/ovh/manager/commit/df035537b0d5271384d1cddb582d583279e15318))
+* **i18n:** add missing translations [CDS 1191] ([9c37bb4](https://github.com/ovh/manager/commit/9c37bb4748eebfdbe0a5e40f5593dede2afab073))
+* rename hosted private cloud to vmware ([030a38f](https://github.com/ovh/manager/commit/030a38f1421c52a86bc43c482a8c99fd912e69ad)), closes [#MANAGER-7545](https://github.com/ovh/manager/issues/MANAGER-7545)
+* **server-sidebar:** add anthos entry ([9618f79](https://github.com/ovh/manager/commit/9618f79c90721687a6f43e4f9c72713b53e10853)), closes [#MANAGER-7384](https://github.com/ovh/manager/issues/MANAGER-7384)
+
+
+
 ## [3.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.13.0...@ovh-ux/manager-server-sidebar@3.13.1) (2021-09-15)
 
 
