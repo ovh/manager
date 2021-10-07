@@ -540,4 +540,12 @@ export default class DatabaseService {
       )
       .then(({ data }) => data);
   }
+
+  setUserAclStatus(projectId, engine, databaseId, aclsEnabled) {
+    return this.$http
+      .put(`/cloud/project/${projectId}/database/${engine}/${databaseId}`, {
+        aclsEnabled,
+      })
+      .then(({ data }) => data);
+  }
 }

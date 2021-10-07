@@ -19,7 +19,7 @@
 
     <oui-field label="Activer les ACL">
         <oui-switch
-            model="$ctrl.aclState"
+            model="$ctrl.database.aclsEnabled"
             name="oui-switch"
             on-change="$ctrl.setAclState(modelValue)"
         >

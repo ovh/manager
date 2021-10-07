@@ -26,7 +26,7 @@ export default class aclCtrl {
   }
 
   isDisabled() {
-    return this.usersList.length === 0 || !this.aclState;
+    return this.usersList.length === 0 || !this.database.aclsEnabled;
   }
 
   trackAndAddAcl() {

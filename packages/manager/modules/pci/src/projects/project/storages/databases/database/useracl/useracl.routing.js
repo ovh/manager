@@ -24,8 +24,15 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return promise;
         },
-        aclState: () => true,
-        setAclState: () => (value) => value,
+        setAclState: /* @ngInject */ (database, DatabaseService, projectId) => (
+          aclsEnabled,
+        ) =>
+          DatabaseService.setUserAclStatus(
+            projectId,
+            database.engine,
+            database.id,
+            aclsEnabled,
+          ),
         usersList: /* @ngInject */ (database, DatabaseService, projectId) =>
           DatabaseService.getUsers(projectId, database.engine, database.id),
         goToAddUserAcl: /* @ngInject */ ($state, databaseId, projectId) => () =>
