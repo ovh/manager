@@ -75,7 +75,7 @@ export default class TelecomTelephonyAliasHomeController {
 
           return this.tucVoipService
             .getServiceDirectory(alias)
-            .then(({ directory }) => {
+            .then((directory) => {
               this.alias.directory = directory;
 
               return this.$q

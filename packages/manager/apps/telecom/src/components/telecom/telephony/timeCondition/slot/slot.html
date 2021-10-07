@@ -18,20 +18,7 @@
         <div data-ng-if="!$ctrl.slot.noConfig">
             <!-- SLOT NOT DEFINED -->
             <div data-ng-if="!$ctrl.getSlotDetail('number')">
-                <button
-                    class="p-0 oui-button_ghost"
-                    aria-label="{{:: 'voip_time_condition_slots_configure' | translate }}"
-                    data-ng-if="::!!$ctrl.isScheduler"
-                    data-ng-click="$ctrl.$state.go('^')"
-                >
-                    <span
-                        data-translate="voip_time_condition_slots_configure"
-                    ></span>
-                </button>
-                <small
-                    data-ng-if="::!$ctrl.isScheduler"
-                    data-translate="voip_time_condition_slots_undefined"
-                >
+                <small data-translate="voip_time_condition_slots_undefined">
                 </small>
             </div>
             <!-- END OF SLOT NOT DEFINED -->

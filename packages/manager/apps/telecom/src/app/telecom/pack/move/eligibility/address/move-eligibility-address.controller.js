@@ -321,28 +321,39 @@ export default class {
    * @param { Object } building building eligibility result
    */
   sendLineOffers(copper, fiber, eligType, status, building) {
-    const copperOffers = copper.result.offers.filter(
-      (offer) => offer.eligibility.eligible === true,
-    );
+    const copperOffers = copper.result
+      ? copper.result.offers.filter(
+          (offer) => offer.eligibility.eligible === true,
+        )
+      : null;
     const offer = {
       eligType,
       status,
-      eligibilityReference: copper.result.eligibilityReference,
+      eligibilityReference: copper.result
+        ? copper.result.eligibilityReference
+        : null,
       offers: copperOffers,
       endpoint: {
-        copperInfo: copper.result.endpoint.copperInfo,
-        portability: copper.result.endpoint.portability,
-        reference: copper.result.endpoint.reference,
-        referenceType: copper.result.endpoint.referenceType,
+        copperInfo: copper.result ? copper.result.endpoint.copperInfo : null,
+        portability: copper.result ? copper.result.endpoint.portability : null,
+        reference: copper.result ? copper.result.endpoint.reference : null,
+        referenceType: copper.result
+          ? copper.result.endpoint.referenceType
+          : null,
       },
       searchAddress: this.address,
       building,
     };
     if (fiber) {
-      if (copper.result.endpoint.address !== fiber.addressFiber) {
+      if (
+        !copper.result ||
+        copper.result.endpoint.address !== fiber.addressFiber
+      ) {
         assign(offer.endpoint, {
           address: fiber.addressFiber,
-          neighbourAddress: copper.result.endpoint.address,
+          neighbourAddress: copper.result
+            ? copper.result.endpoint.address
+            : null,
         });
       } else {
         assign(offer.endpoint, {
@@ -358,13 +369,16 @@ export default class {
 
     if (this.isFiberOffers) {
       offer.eligibilityReferenceFiber = fiber.eligibilityReferenceFiber;
-      offer.offers = [...copperOffers, ...fiber.offers];
+      offer.offers = copperOffers
+        ? [...copperOffers, ...fiber.offers]
+        : [...fiber.offers];
       assign(offer.endpoint, {
         fiberInfo: fiber.fiberInfo,
         referenceFiber: fiber.referenceFiber,
         referenceTypeFiber: fiber.referenceTypeFiber,
       });
     }
+
     this.offersChange({
       OFFERS: [offer],
     });

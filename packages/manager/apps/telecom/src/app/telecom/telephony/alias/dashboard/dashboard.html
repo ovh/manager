@@ -82,7 +82,7 @@
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'telephony_alias_information_coordinates_directory' | translate }}"
-                    data-description="{{:: ($ctrl.alias.directory.displayMarketingDirectory ? 'yes' : 'no') | translate | tucCapitalize }}"
+                    data-description="{{:: ($ctrl.alias.directory.displayUniversalDirectory ? 'yes' : 'no') | translate | tucCapitalize }}"
                 ></oui-tile-definition>
                 <oui-tile-button
                     data-on-click="$ctrl.$state.go('telecom.telephony.billingAccount.alias.details.contact')"

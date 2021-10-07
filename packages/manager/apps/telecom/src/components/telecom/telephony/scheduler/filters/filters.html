@@ -12,15 +12,15 @@
             <div class="d-inline-block">
                 <voip-time-condition-slot
                     data-time-condition-slot="$ctrl.convertCategoryToSlot(category.value)"
-                    data-is-scheduler="true"
                     data-has-popover="true"
+                    data-slot-enable-edition="true"
                 >
                 </voip-time-condition-slot>
             </div>
             <button
                 type="button"
                 aria-label="{{ (category.active ? 'hide' : 'show') | translate }}"
-                class="d-inline-block oui-button oui-button_s mt-1"
+                class="d-inline-block oui-button oui-button_s mt-3"
                 data-ng-click="$ctrl.toggleCategoryDisplay(category)"
             >
                 <span

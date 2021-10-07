@@ -77,8 +77,8 @@
                 <span
                     data-translate="private_registry_consumption_display"
                     data-translate-values="{
-                        used: ($row.size | cucBytes),
-                        limit: ($row.limit | cucBytes)
+                        used: ($row.size | cucBytes:2:true:'B'),
+                        limit: ($row.limit | cucBytes:2:true:'B')
                     }"
                 ></span>
             </oui-datagrid-column>

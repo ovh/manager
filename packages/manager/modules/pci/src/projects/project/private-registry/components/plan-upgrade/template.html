@@ -19,7 +19,9 @@
                     <span
                         data-translate="private_registry_upgrade_plan_available_storage"
                     ></span>
-                    <span data-ng-bind="plan.capacity | cucBytes"></span>
+                    <span
+                        data-ng-bind="plan.capacity | cucBytes:2:true:'B'"
+                    ></span>
                 </li>
                 <li
                     data-translate="private_registry_upgrade_plan_connections"
