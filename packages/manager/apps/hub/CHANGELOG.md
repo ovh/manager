@@ -1,3 +1,12 @@
+## [3.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.17.0...@ovh-ux/manager-hub-app@3.17.1) (2021-10-07)
+
+
+### Bug Fixes
+
+* **dashboard:** add missing tracking prefix ([#5406](https://github.com/ovh/manager/issues/5406)) ([7ba33e6](https://github.com/ovh/manager/commit/7ba33e68836df8bfc6e36f867a132dfbab01a4cb))
+
+
+
 # [3.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.16.3...@ovh-ux/manager-hub-app@3.17.0) (2021-10-06)
 
 

@@ -1,3 +1,12 @@
+## [17.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.0.0...@ovh-ux/manager-dedicated@17.0.1) (2021-10-07)
+
+
+### Bug Fixes
+
+* **dedicated:** pcc service pack upgrade ([#5696](https://github.com/ovh/manager/issues/5696)) ([3cfb6fc](https://github.com/ovh/manager/commit/3cfb6fcd15335c29d3b86b8781cdf59450c0d591))
+
+
+
 # [17.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.38.0...@ovh-ux/manager-dedicated@17.0.0) (2021-10-07)
 
 
