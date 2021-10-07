@@ -1,4 +1,0 @@
-{
-  "cdn_dashboard_loading_error": "Se ha producido un error al cargar los datos del servicio.",
-  "cdn_domain_configuration_update_fail": "Se ha producido un error al cambiar el bypass del dominio {{t0}}"
-}
