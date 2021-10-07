@@ -1,0 +1,22 @@
+{
+  "billing_main_history_loading_errors": "Se ha producido un error al cargar sus facturas.",
+  "billing_main_history_export_error": "Se ha producido un error al exportar sus facturas en formato CSV.",
+  "billing_main_history_invoices_postal_mail": "Recibir facturas en formato impreso",
+  "billing_main_history_table_actions": "Acciones",
+  "billing_main_history_table_actions_title": "Mis facturas: acciones",
+  "billing_main_history_table_action_pay_debt": "Abonar el importe pendiente inmediatamente",
+  "billing_main_history_table_action_pay_debt_title": "Mis facturas: abonar el importe pendiente ahora",
+  "billing_main_history_table_id": "Référence",
+  "billing_main_history_table_order_id": "Número de pedido",
+  "billing_main_history_table_date": "Fecha de emisión",
+  "billing_main_history_table_total": "Montant",
+  "billing_main_history_table_total_with_VAT": "Montant TTC",
+  "billing_main_history_table_balance_due_amount": "Saldo a pagar",
+  "billing_main_history_table_download_html": "Ver la versión HTML",
+  "billing_main_history_table_download_pdf": "Ver la versión PDF",
+  "billing_main_history_table_download_pdf_beta": "Ver la versión en PDF (Beta)",
+  "billing_main_history_table_debt_detail": "Ver los detalles de esta deuda",
+  "billing_main_history_table_debt_pay": "Abonar el importe pendiente inmediatamente",
+  "billing_main_history_debt_to_pay": "Tiene pendiente un importe de <strong>{{t0}}</strong> para poder renovar sus servicios.",
+  "billing_main_history_debt_automatically_collected": "Se realizará un cargo por el importe de <strong>{{t0}}</strong> en su forma de pago por defecto."
+}

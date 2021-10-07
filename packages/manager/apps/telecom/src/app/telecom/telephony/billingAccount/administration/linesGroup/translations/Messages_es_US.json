@@ -1,0 +1,19 @@
+{
+  "telephony_lines_group_title": "Regroupement de lignes",
+  "telephony_lines_group_info": "Información",
+  "telephony_lines_group_select": "Selección",
+  "telephony_lines_group_select_another": "Anterior",
+  "telephony_lines_group_select_ba_help": "Choisissez le groupe contenant les services que vous souhaitez attacher au groupe actuel :",
+  "telephony_lines_group_select_help": "Choisissez les services à attacher au groupe actuel :",
+  "telephony_lines_group_line_count": "Nombre de lignes attachées : <strong>{{lines}}</strong>",
+  "telephony_lines_group_number_count": "Nombre de numéros attachés : <strong>{{numbers}}</strong>",
+  "telephony_lines_group_telephony_group": "Groupe de téléphonie",
+  "telephony_lines_group_line_and_number": "Lignes et numéros",
+  "telephony_lines_group_line": "Ligne",
+  "telephony_lines_group_alias": "Número",
+  "telephony_lines_group_pool": "Plage de numéros",
+  "telephony_lines_group_attach": "Attacher les services sélectionnés",
+  "telephony_lines_group_service_none": "Le groupe {{ group }} ne contient aucun service à attacher.",
+  "telephony_lines_group_attach_success": "Service(s) attaché(s) avec succès.",
+  "telephony_lines_group_attach_warning": "Certains services n'ont pas pu être attachés."
+}

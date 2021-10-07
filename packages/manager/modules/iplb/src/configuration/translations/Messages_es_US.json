@@ -1,0 +1,15 @@
+{
+  "iplb_configuration_title": "Aplicar la configuración",
+  "iplb_configuration_intro": "La configuración de su Load Balancer debe aplicarse expresamente en cada centro de datos. Solo entonces será visible para sus visitantes. Esto permite realizar un cambio complejo de configuración de una sola vez.",
+  "iplb_configuration_datacenter": "Centro de datos",
+  "iplb_configuration_progress": "Progreso",
+  "iplb_configuration_status": "Estado",
+  "iplb_configuration_action_apply": "Aplicar la configuración",
+  "iplb_configuration_changes_0": "Aucun changement",
+  "iplb_configuration_changes_1": "1 cambio",
+  "iplb_configuration_changes_count": "{{count}} cambios",
+  "iplb_configuration_info_error": "Se ha producido un error al cargar la información del balanceador de carga: {{message}}",
+  "iplb_configuration_apply_success": "Configurando balanceador de carga...",
+  "iplb_configuration_apply_error": "Se ha producido un error al aplicar la configuración del balanceador de carga: {{message}}",
+  "iplb_configuration_pending_changes": "La configuración del balanceador de carga no se ha aplicado en todos los centros de datos."
+}

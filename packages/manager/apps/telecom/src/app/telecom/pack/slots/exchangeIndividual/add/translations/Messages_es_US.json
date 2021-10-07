@@ -1,0 +1,10 @@
+{
+  "account_informations": "Informations sur le compte",
+  "account_last_name": "Nombre",
+  "account_first_name": "Nombre",
+  "account_display_name": "Nom à afficher",
+  "antispam_option": "Je souhaite bénéficier des protections antivirus et antispam",
+  "all_fields_are_required": "Todos los campos son obligatorios.",
+  "success_validation": "Votre demande a bien été prise en compte",
+  "an_error_ocurred": "Une erreur est survenue lors de la création de votre compte"
+}

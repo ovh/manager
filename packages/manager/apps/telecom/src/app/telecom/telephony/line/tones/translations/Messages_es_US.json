@@ -1,0 +1,21 @@
+{
+  "telephony_line_tones_title": "Gestion des musiques et sonneries",
+  "telephony_line_tones_info1": "Cette page vous permet de définir des musiques et sonneries pour votre ligne.<br /> Plusieurs personnalisations s'offrent à vous :",
+  "telephony_line_tones_info2": "<strong>La sonnerie de pré-décroché</strong> : remplace la tonalité par défaut de pré-décroché.",
+  "telephony_line_tones_info3": "<strong>La musique d'attente</strong> : musique diffusée lorsque l'appelant est en attente. La musique d'attente sera diffusée si vous mettez en attente un interlocuteur lors d'une conversation téléphonique.",
+  "telephony_line_tones_info4": "<strong>L'annonce sur ligne occupée</strong> : annonce diffusée lorsque la ligne est occupée. L'annonce sera diffusée lors d'un appel direct (sans passer par un easyPabx ou un miniPabx au préalable), aucune mise en relation avec l'appelé ne sera établie.",
+  "telephony_line_tones_ringback": "Sonnerie de pré-décroché",
+  "telephony_line_tones_onhold": "Musique d'attente",
+  "telephony_line_tones_callwaiting": "Annonce sur ligne occupée",
+  "telephony_line_tones_type_custom_sound": "Personnalisée",
+  "telephony_line_tones_type_none": "Par défaut",
+  "telephony_line_tones_type_predefined_1": "Prédéfinie 1",
+  "telephony_line_tones_type_predefined_2": "Prédéfinie 2",
+  "telephony_line_tones_choose_file": "Choisir un fichier",
+  "telephony_line_tones_choose_file_confirm": "Envoyer le fichier",
+  "telephony_line_tones_choose_file_ring_success": "Sonnerie mise à jour",
+  "telephony_line_tones_choose_file_sound_success": "Musique mise à jour",
+  "telephony_line_tones_choose_file_announce_success": "Annonce mise à jour",
+  "telephony_line_tones_choose_file_type_error": "Le format du fichier sélectionné n'est pas supporté.",
+  "telephony_line_tones_apply": "Aplicar modificaciones"
+}

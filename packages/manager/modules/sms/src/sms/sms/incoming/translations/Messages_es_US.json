@@ -1,0 +1,22 @@
+{
+  "sms_section_back_link": "Retour aux SMS",
+  "sms_sms_incoming_title": "SMS reçus",
+  "sms_sms_incoming_label_date": "Date",
+  "sms_sms_incoming_label_sender": "Expéditeur",
+  "sms_sms_incoming_label_message": "Message",
+  "sms_sms_incoming_empty": "Aucun SMS reçu",
+  "sms_sms_incoming_read_title": "Consultar",
+  "sms_sms_incoming_read_label_sms_size": "Taille du SMS",
+  "sms_sms_incoming_read_label_sms_size_text": "{{ numberOfSms }} SMS (soit {{ credits | number: 2 }} crédits)",
+  "sms_sms_incoming_read_label_message": "Message complet",
+  "sms_sms_incoming_remove_title": "Confirmation",
+  "sms_sms_incoming_remove_confirm": "Êtes-vous sûr de vouloir supprimer le SMS affiché ci-dessous ?",
+  "sms_sms_incoming_removing": "Suppression du SMS en cours…",
+  "sms_sms_incoming_removed": "SMS supprimé",
+  "sms_sms_incoming_remove_ko": "Impossible de supprimer le SMS.<br/>{{error}}",
+  "sms_sms_incoming_download_history": "Télécharger l’historique",
+  "sms_sms_incoming_download_history_ko": "Oups ! Le téléchargement de l’historique n’a pu être effectué.",
+  "sms_sms_incoming_remove": "Supprimer le SMS sélectionné",
+  "sms_sms_incoming_remove_plural": "Supprimer les {{ count }} SMS sélectionnés",
+  "sms_sms_incoming_remove_success": "Suppression en cours…"
+}

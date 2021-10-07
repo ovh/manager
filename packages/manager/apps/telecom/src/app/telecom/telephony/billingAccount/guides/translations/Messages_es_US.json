@@ -1,0 +1,19 @@
+{
+  "telephony_guides_empty": "Aucun guide n’est disponible pour la langue sélectionnée.",
+  "telephony_guides_section_line": "Lignes téléphoniques",
+  "telephony_guides_activate_services": "Activer ou désactiver des services depuis le téléphone",
+  "telephony_guides_configure_call_forward": "Filtrer et renvoyer ses appels",
+  "telephony_guides_configure_programmable_keys": "Configurer les touches programmables de votre téléphone OVH",
+  "telephony_guides_configure_exceptionnal_closures": "Configurer des plages horaires et des fermetures exceptionnelles sur une ligne",
+  "telephony_guides_configure_answering_machine": "Configurer et consulter le répondeur de sa ligne",
+  "telephony_guides_configure_click2call": "Configurer et utiliser le Click2Call sur une ligne SIP",
+  "telephony_guides_manage_abreviated_numbers": "Gérer des numéros abrégés sur une ligne SIP",
+  "telephony_guides_manage_simultaneous_calling": "Gérer et utiliser les appels simultanés",
+  "telephony_guides_manage_number_presentation": "Configurer la présentation de son numéro",
+  "telephony_guides_import_phonebook": "Gérer un carnet de contacts sur une ligne SIP",
+  "telephony_guides_intercom_mode": "Gérer le mode intercom de votre ligne",
+  "telephony_guides_update_sounds": "Modifier les musiques et sonneries de votre ligne",
+  "telephony_guides_restrict_sip_line": "Restreindre sa ligne SIP OVH par IP",
+  "telephony_guides_section_phone_troubleshooting": "Diagnostic et dépannage",
+  "telephony_guides_phone_troubleshooting_pap": "Dépanner son téléphone Plug and Phone"
+}

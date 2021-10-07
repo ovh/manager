@@ -1,0 +1,13 @@
+{
+  "telephony_group_billing_bill_title": "Relevé de consommation",
+  "telephony_group_billing_bill_subtitle": "Vos relevés",
+  "telephony_group_billing_bill_empty": "Aucun relevé disponible",
+  "telephony_group_billing_bill_date": "Date",
+  "telephony_group_billing_bill_amount": "Montant HT",
+  "telephony_group_billing_bill_paid": "Déjà réglé",
+  "telephony_group_billing_bill_download": "Télécharger",
+  "telephony_group_billing_bill_download_pdf": "Relevé de consommation au format PDF",
+  "telephony_group_billing_bill_download_csv_emited": "Listing de vos appels émis au format CSV",
+  "telephony_group_billing_bill_download_csv_received": "Listing de vos appels reçus au format CSV",
+  "telephony_group_billing_bill_refresh": "Recargar"
+}

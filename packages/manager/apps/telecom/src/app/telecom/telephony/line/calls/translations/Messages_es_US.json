@@ -1,0 +1,15 @@
+{
+  "telephony_line_calls_back_link": "Retour à la gestion des appels",
+  "telephony_line_calls_actions_line_manage_onboarding": "Cliquez & glissez sur l'agenda pour créer une plage horaire",
+  "telephony_line_calls_actions_line_manage_filtering_lists_new": "Filtrage d'appels",
+  "telephony_line_calls_actions_line_locking": "Verrouillage des appels sortants",
+  "telephony_line_calls_actions_line_forwardcall": "Renvoi d'appel",
+  "telephony_line_calls_actions_line_displayNumber": "Présentation du numéro",
+  "telephony_line_calls_actions_line_simultaneouslines": "Appels simultanés",
+  "telephony_line_calls_actions_line_manage_slots": "Gérer les plages horaires",
+  "telephony_line_calls_actions_line_calendar": "Gérer les fermetures exceptionnelles",
+  "telephony_line_calls_actions_line_callWaiting": "Double appel et Intercom",
+  "telephony_line_calls_actions_line_abbreviated_numbers": "Numéros abrégés",
+  "telephony_line_calls_actions_line_click2call": "Appel en 1 clic (Click2Call)",
+  "telephony_line_calls_actions_line_external_number_display": "Présentation d'un numéro externe"
+}

@@ -1,0 +1,11 @@
+{
+  "veeam_storage_title": "Espacio de almacenamiento",
+  "veeam_storage_back": "Volver al inicio",
+  "veeam_storage_add_storage": "Añadir espacio de almacenamiento",
+  "veeam_storage_search": "Rechercher...",
+  "veeam_storage_update_title": "Modificar",
+  "veeam_storage_update_quota_title": "Modificar el espacio de almacenamiento",
+  "veeam_storage_update_quota_information": "Defina la capacidad máxima de su espacio de almacenamiento. El valor debe estar comprendido entre 1000 GB y {{maxquota}} GB.",
+  "veeam_storage_update_quota_cancel": "Cancelar",
+  "veeam_storage_update_quota_confirm": "Modificar"
+}

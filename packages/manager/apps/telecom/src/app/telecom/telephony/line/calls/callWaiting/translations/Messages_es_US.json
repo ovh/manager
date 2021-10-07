@@ -1,0 +1,17 @@
+{
+  "telephony_line_actions_line_calls_call_waiting_title": "Double appel et intercom",
+  "telephony_line_actions_line_calls_call_waiting_cw_checkbox_label": "Activer le double appel",
+  "telephony_line_actions_line_calls_call_waiting_cw_title": "Double appel",
+  "telephony_line_actions_line_calls_call_waiting_intercom_checkbox_label": "Activer le mode Intercom avec préfixe <strong>3691</strong>",
+  "telephony_line_actions_line_calls_call_waiting_intercom_title": "Mode Intercom",
+  "telephony_line_actions_line_calls_call_waiting_load_error": "Erreur lors de la lecture de la configuration.",
+  "telephony_line_actions_line_calls_call_waiting_save_error": "Impossible de sauvegarder la configuration. Veuillez réessayer ultérieurement.",
+  "telephony_line_actions_line_calls_call_waiting_cw_save_success_true": "Le double appel est activé.",
+  "telephony_line_actions_line_calls_call_waiting_cw_save_success_false": "Le double appel est désactivé.",
+  "telephony_line_actions_line_calls_call_waiting_intercom_save_success_no": "Le mode Intercom est désactivé.",
+  "telephony_line_actions_line_calls_call_waiting_intercom_save_success_prefixed": "Le mode Intercom est activé avec le préfixe 3691.",
+  "telephony_line_actions_line_calls_call_waiting_cw_explain": "Cette option permets d'activer ou de désactiver la fonction \"double appel\", présente sur votre ligne.",
+  "telephony_line_actions_line_calls_call_waiting_cw_explain1": "Si l'option est désactivée, vous ne pourrez plus transférer votre appel ou prendre un deuxième appel.",
+  "telephony_line_actions_line_calls_call_waiting_intercom_explain": "Mode intercom : Décrochage automatique avec activation du haut parleur.",
+  "telephony_line_actions_line_calls_call_waiting_intercom_detail": "Les téléphones proposés par OVH comptatibles avec le service Intercom sont : le Thomson ST2030, la série Cisco SPA5 et la gamme LG IP 88XX."
+}

@@ -1,0 +1,10 @@
+{
+  "sso_modal_title": "OVH: Autenticación",
+  "sso_modal_loading": "Chargement...",
+  "sso_modal_user_title": "Usted estaba conectado como:",
+  "sso_modal_currentuser_title": "Usted está conectado ahora como:",
+  "sso_modal_disconnected": "Usted está desconectado ahora.",
+  "sso_modal_what": "Que souhaitez-vous faire ?",
+  "sso_modal_action_reload": "Continuar como <strong>{{name}}</strong>",
+  "sso_modal_action_logout": "Ir a la página de autenticación"
+}

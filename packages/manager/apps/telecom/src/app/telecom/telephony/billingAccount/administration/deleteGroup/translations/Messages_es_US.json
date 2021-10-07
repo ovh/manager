@@ -1,0 +1,10 @@
+{
+  "telephony_delete_group_title": "Supprimer le groupe",
+  "telephony_delete_group_warning": "La suppression d'un groupe téléphonie entraînera la résiliation des lignes et numéros associés.",
+  "telephony_delete_group_infos": "La demande de suppression d'un groupe est planifiée à la date de votre prochaine facturation. Jusqu'à cette date, celle-ci peut être annulée.",
+  "telephony_delete_group_pending": "Suppression du groupe {{group}} planifiée le :",
+  "telephony_delete_group_cancel": "Cancelar la eliminación",
+  "telephony_delete_group_cancel_success": "La suppression du groupe {{group}} a été annulée avec succés.",
+  "telephony_delete_group_delete": "Supprimer {{group}}",
+  "telephony_delete_group_delete_success": "La suppression du groupe {{group}} a été planifiée avec succés."
+}

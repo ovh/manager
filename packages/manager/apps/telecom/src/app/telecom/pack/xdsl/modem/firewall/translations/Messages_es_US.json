@@ -1,0 +1,11 @@
+{
+  "xdsl_modem_firewall_title": "Niveau du Pare-feu",
+  "xdsl_modem_firewall_description": "Protège votre réseau local de connexions externes indésirables.",
+  "xdsl_modem_firewall_level_blockall": "Imperméable",
+  "xdsl_modem_firewall_level_disabled": "Desactivada",
+  "xdsl_modem_firewall_level_normal": "Normal",
+  "xdsl_modem_firewall_change": "Niveau",
+  "xdsl_modem_firewall_doing": "Modification du pare-feu en cours",
+  "xdsl_modem_firewall_submit": "Aceptar",
+  "xdsl_modem_firewall_an_error_ocurred": "FIREWALLj: Une erreur est survenue !"
+}

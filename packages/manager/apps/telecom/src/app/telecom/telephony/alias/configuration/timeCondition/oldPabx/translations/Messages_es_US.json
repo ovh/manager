@@ -1,0 +1,8 @@
+{
+  "telephony_time_condition_old_pabx_params_timeout": "Délai avant le renvoi en \"hors plage horaire\" si la redirection ne peut être réalisée",
+  "telephony_time_condition_old_pabx_params_timeout_choice": "{{value}} segundos",
+  "telephony_line_calls_time_condition_bulk_all_success": "La configuration des plages horaires a bien été appliquée aux services sélectionnés.",
+  "telephony_line_calls_time_condition_bulk_some_success": "La configuration des plages horaires a bien été appliquée à {{ count }} des services sélectionnés.",
+  "telephony_line_calls_time_condition_bulk_error": "La configuration des plages horaires n'a pas pu être appliquée au(x) service(s) suivant(s) :",
+  "telephony_line_calls_time_condition_bulk_on_error": "Oups ! Une erreur est survenue lors de l'application de la configuration des plages horaires."
+}

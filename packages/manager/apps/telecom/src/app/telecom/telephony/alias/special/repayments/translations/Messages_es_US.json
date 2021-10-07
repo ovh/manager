@@ -1,0 +1,18 @@
+{
+  "telephony_alias_special_repayments_title": "Reversements et coûts",
+  "telephony_alias_special_repayments_subtitle": "Vous retrouverez ci-dessous les reversements et/ou les coûts liés aux appels reçus sur votre numéro spécial.",
+  "telephony_alias_special_transfer_title": "Reversements",
+  "telephony_alias_special_transfer_pending": "Reversements en attente",
+  "telephony_alias_special_transfer_available": "Reversements disponibles",
+  "telephony_alias_special_transfer_demand": "Demander un virement",
+  "telephony_alias_special_fees_title": "Coûts",
+  "telephony_alias_special_fees_to_pay": "Coûts à verser",
+  "telephony_alias_special_transfer_date": "Date",
+  "telephony_alias_special_transfer_calling": "Persona que realiza la llamada",
+  "telephony_alias_special_transfer_duration": "Durée (sec.)",
+  "telephony_alias_special_transfer_operator": "Opérateur",
+  "telephony_alias_special_transfer_transfer": "Reversements HT",
+  "telephony_alias_special_transfer_fees": "Coûts HT",
+  "telephony_alias_special_repayments_get_error": "Une erreur est survenue lors de la récupération des reversements et coûts",
+  "telephony_alias_special_repayment_price": "{{price}} € HT"
+}

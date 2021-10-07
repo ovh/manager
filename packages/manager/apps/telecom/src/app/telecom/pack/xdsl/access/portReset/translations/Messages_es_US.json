@@ -1,0 +1,8 @@
+{
+  "xdsl_access_dslam_reset": "Reiniciar",
+  "xdsl_access_dslam_reset_an_error_ocurred": "[Réinitialisation port de connexion] Une erreur est survenue !",
+  "xdsl_access_dslam_reset_success": "Réinitialisation du port de connexion en cours",
+  "xdsl_access_dslam_reset_really": "Êtes-vous sûr(e) de vouloir réinitialiser votre port de connexion ?",
+  "xdsl_access_dslam_reset_description": "Cette fonction vous permet de rebooter le port de connexion de votre ligne, au niveau de son raccordement sur le DSLAM. Attention ! Votre connexion sera interrompue quelques minutes.",
+  "xdsl_access_dslam_reset_warning": "Attention ! Votre connexion sera interrompue quelques minutes."
+}

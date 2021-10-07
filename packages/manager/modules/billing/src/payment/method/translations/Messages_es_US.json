@@ -1,0 +1,21 @@
+{
+  "billing_payment_method_title": "Mis formas de pago",
+  "billing_payment_method_load_error": "Se ha producido un error al cargar las formas de pago.",
+  "billing_payment_method_table_type": "Forma de pago",
+  "billing_payment_method_table_label": "Compte",
+  "billing_payment_method_table_expiration_date": "Date d'expiration",
+  "billing_payment_method_table_description": "Descripción",
+  "billing_payment_method_table_default": "Forma de pago por defecto",
+  "billing_payment_method_table_state": "Estado",
+  "billing_payment_method_table_3d_secure": "3D Secure",
+  "billing_payment_method_table_top_add_method": "Ajouter un moyen de paiement",
+  "billing_payment_method_autorenew_guide_help": "¿Necesita ayuda para renovar sus servicios?",
+  "billing_payment_method_autorenew_guide_help_link": "Más información",
+  "billing_payment_method_bank_account_pending_validation": "Usted ha añadido una cuenta bancaria en el manager. Aún no hemos recibido la autorización de domiciliación a dicha cuenta que debe enviarnos por correo postal.",
+  "billing_payment_method_bank_account_processing_delay": "Su cuenta bancaria se validará en las 24 a 48 horas posteriores a la recepción de su autorización de domiciliación.",
+  "billing_payment_method_table_action_download_procedure": "Descargar el documento que deberá enviar por correo postal",
+  "billing_payment_method_table_action_description_edit": "Modificar la descripción",
+  "billing_payment_method_table_action_set_default": "Establecer como forma de pago por defecto",
+  "billing_payment_method_table_action_delete": "Eliminar esta forma de pago",
+  "billing_payment_method_credit_card_disclaimer": "Es obligatorio registrar un medio de pago si va a renovar sus servicios de forma automática. Puede modificarlo cuando desee. Si no cuenta con servicios que se renuevan de forma automática y desea eliminar este medio de pago, cree un ticket para ponerse en contacto con nuestro equipo de atención al cliente."
+}

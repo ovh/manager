@@ -1,0 +1,12 @@
+{
+  "sms_page_title": "SMS \"{{name}}\"",
+  "sms_tabs_dashboard": "Tableau de bord",
+  "sms_tabs_contacts": "Contactos",
+  "sms_tabs_senders": "Expéditeurs",
+  "sms_tabs_api_users": "Utilisateurs API",
+  "sms_tabs_options": "Options",
+  "sms_tabs_guides": "Guías",
+  "sms_rename_error": "Impossible de renommer votre pack {{serviceName}}.",
+  "sms_loading_error": "Une erreur est survenue lors du chargement de SMS",
+  "sms_feature_soon_available": "Cette fonctionnalité sera bientôt disponible."
+}

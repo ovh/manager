@@ -1,0 +1,7 @@
+{
+  "telephony_service_consumption_incoming_all": "Tous les appels reçus",
+  "telephony_service_consumption_incoming_empty": "Aucun appel reçu.",
+  "telephony_service_consumption_incoming_not_found": "Aucun appel ne correspond à ce filtre.",
+  "telephony_service_consumption_incoming_period": "Période du <strong>{{ start }}</strong> au <strong>{{ end }}</strong>",
+  "telephony_service_consumption_incoming_summary": "Appel(s) : <strong>{{ calls }}</strong>, durée totale : <strong>{{ duration }}</strong>"
+}

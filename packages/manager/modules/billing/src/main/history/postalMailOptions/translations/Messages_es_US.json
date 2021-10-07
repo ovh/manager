@@ -1,0 +1,8 @@
+{
+  "billing_main_history_postal_mail_options_title": "Modificar las opciones para el envío de facturas",
+  "billing_main_history_postal_mail_options_activation": "¿Está seguro(a) de que desea activar el envío de sus facturas en formato papel?",
+  "billing_main_history_postal_mail_options_desactivation": "¿Está seguro(a) de que desea desactivar el envío de sus facturas en formato papel?",
+  "billing_main_history_postal_mail_options_activate_success": "El parámetro se ha actualizado correctamente. A partir de ahora usted recibirá sus facturas en formato papel.",
+  "billing_main_history_postal_mail_options_desactivate_success": "El parámetro se ha actualizado correctamente. Ya no recibirá sus facturas en formato papel.",
+  "billing_main_history_postal_mail_options_update_error": "Se ha producido un error al actualizar el parámetro."
+}

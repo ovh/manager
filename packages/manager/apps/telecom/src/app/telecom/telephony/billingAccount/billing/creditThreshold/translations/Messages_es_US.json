@@ -1,0 +1,14 @@
+{
+  "telephony_group_billing_credit_threshold_title": "Modifier votre limite de dépôt de garantie",
+  "telephony_group_billing_credit_threshold_info_subtitle": "Información",
+  "telephony_group_billing_credit_threshold_credit_threshold": "Votre limite actuelle est de :",
+  "telephony_group_billing_credit_threshold_allowed_out_plan": "Votre hors forfait autorisé actuel est de :",
+  "telephony_group_billing_credit_threshold_current_out_plan": "Votre hors forfait global actuel est de :",
+  "telephony_group_billing_credit_threshold_credits_label": "Modification du crédit :",
+  "telephony_group_billing_credit_threshold_new_credit": "Après validation, votre limite sera de :",
+  "telephony_group_billing_credit_threshold_without_tax": "+ IVA",
+  "telephony_group_billing_credit_threshold_contracts_subtitle": "Aceptación de los contratos",
+  "telephony_group_billing_credit_threshold_contracts": "Vous devez accepter les contrats OVH avant de valider la demande de dépôt de garantie.",
+  "telephony_group_billing_credit_threshold_submit": "Modificar",
+  "telephony_group_billing_credit_threshold_success": "La demande de modification de la limite a été enregistrée avec succès !"
+}

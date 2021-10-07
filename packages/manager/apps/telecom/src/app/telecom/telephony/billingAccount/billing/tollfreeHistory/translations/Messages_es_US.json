@@ -1,0 +1,10 @@
+{
+  "telephony_group_billing_tollfree_history_title": "Historique des coûts SVA",
+  "telephony_group_billing_tollfree_history_init_error": "Oups ! Une erreur est survenue lors de l'initialisation de l'historique des coûts SVA.",
+  "telephony_group_billing_tollfree_history_download_error": "Oups ! Une erreur est survenue lors du téléchargement du détail du reversement.",
+  "telephony_group_billing_tollfree_history_list_title": "Coûts SVA du groupe {{ groupName }}",
+  "telephony_group_billing_tollfree_history_list_date": "Date de la facturation",
+  "telephony_group_billing_tollfree_history_list_price": "Montant de la facture",
+  "telephony_group_billing_tollfree_history_list_download_csv": "Détails du reversement au format CSV",
+  "telephony_group_billing_tollfree_history_list_no_results": "Aucun reversement trouvé"
+}

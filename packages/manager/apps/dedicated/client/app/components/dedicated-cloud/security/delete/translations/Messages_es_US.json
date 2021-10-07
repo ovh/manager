@@ -1,0 +1,10 @@
+{
+    "dedicatedCloud_configuration_security_policy_delete_title": "Eliminar IP",
+    "dedicatedCloud_configuration_security_policy_delete_step1_question": "¿Está seguro(a) de que desea eliminar el acceso para la IP {{t0}}?",
+    "dedicatedCloud_configuration_security_policy_delete_step1_question_plural": "¿Está seguro(a) de que desea eliminar el acceso para las {{t0}} direcciones IP?",
+    "dedicatedCloud_configuration_security_policy_delete_step1_no_selected_entries": "No ha seleccionado ninguna IP.",
+    "dedicatedCloud_configuration_SECURITY_policy_delete_success_other": "Van a eliminarse las reglas de seguridad.",
+    "dedicatedCloud_configuration_SECURITY_policy_delete_success_one": "Va a eliminarse la regla de seguridad.",
+    "dedicatedCloud_configuration_SECURITY_policy_delete_fail_other": "Se ha producido un error al eliminar las reglas de seguridad.",
+    "dedicatedCloud_configuration_SECURITY_policy_delete_fail_one": "Se ha producido un error al eliminar la regla de seguridad."
+}

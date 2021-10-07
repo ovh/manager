@@ -1,0 +1,14 @@
+{
+  "telephony_group_billing_actions_group_billing_back_link": "Retour à la facturation",
+  "telephony_group_billing_actions_group_billing_deposit": "Dépôt de garantie",
+  "telephony_group_billing_actions_group_billing_deposit_movement": "Transfert de vos dépôts de garantie entre groupes",
+  "telephony_group_billing_actions_group_billing_credit_threshold": "Modifier votre limite de dépôt de garantie",
+  "telephony_group_billing_actions_group_billing_bill": "Relevé de consommation",
+  "telephony_group_billing_actions_group_call_list_summary": "Consommation générale",
+  "telephony_group_billing_actions_group_repayments": "Reversements SVA du groupe",
+  "telephony_group_billing_actions_group_reversments_history": "Historique des reversements",
+  "telephony_group_billing_actions_group_group_called_fees": "Coûts SVA du groupe",
+  "telephony_group_billing_actions_group_called_fees_history": "Historique des coûts SVA",
+  "telephony_group_billing_actions_group_banking_management": "Changer mes coordonnées bancaires",
+  "telephony_group_billing_actions_group_delayed_account_transfert": "Transferencia a una cuenta bancaria "
+}

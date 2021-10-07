@@ -1,0 +1,11 @@
+{
+  "telephony_line_phone_actions_line_details_phon_offer": "Informations générales",
+  "telephony_line_phone_actions_line_codecs_management": "Codecs",
+  "telephony_line_phone_actions_line_interface": "Choix de l'interface",
+  "telephony_line_phone_actions_line_plug_and_phone_custom_parameters_list": "Paramètres Plug & Phone personnalisés",
+  "telephony_line_phone_actions_line_programmable_keys": "Touches programmables",
+  "telephony_line_phone_actions_line_phone_upgrade_firmware": "Mise à jour du firmware",
+  "telephony_line_phone_actions_line_phone_reboot": "Redémarrer",
+  "telephony_line_phone_actions_line_order_accessories": "Commander des accessoires",
+  "telephony_group_line_phone_section_back_link": "Retour à la gestion du téléphone"
+}

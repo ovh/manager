@@ -1,0 +1,20 @@
+{
+  "telecom_task_page_title": "Opérations en cours",
+  "telecom_task_service": "Résumé de mes opérations",
+  "telecom_task_date": "Date",
+  "telecom_task_cancelled": "Cancelada",
+  "telecom_task_doing": "En cours",
+  "telecom_task_done": "Réalisée",
+  "telecom_task_error": "En error",
+  "telecom_task_problem": "Problema",
+  "telecom_task_todo": "Programada",
+  "telecom_task_all": "Todos",
+  "telecom_task_status": "Estado",
+  "telecom_task_pack": "Pack",
+  "telecom_task_filter_status_placeholder": "Filtrer par statut",
+  "telecom_task_filter_none": "Toutes les opérations",
+  "telecom_task_none": "Aucune tâche trouvée",
+  "telecom_task_page": "Página",
+  "telecom_task_page_amount": "éléments par page",
+  "telecom_task_function": "Action"
+}

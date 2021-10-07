@@ -1,0 +1,8 @@
+{
+  "dedicatedCloud_subscribe_mailing": "Suscribirse a la lista de correo",
+  "dedicatedCloud_subscribe_mailing_disabled_EPCC": "La suscripción a la lista de difusión Private Cloud ({{t0}}) no está disponible.",
+  "dedicatedCloud_subscribe_mailing_step1_EPCC": "Introduzca la dirección de correo electrónico que desea suscribir a la lista de direcciones de Private Cloud ({{t0}}):",
+  "dedicatedCloud_subscribe_mailing_step2_EPCC": "Usted va a suscribir {{t0}} a la lista de direcciones de Private Cloud ({{t1}})",
+  "dedicatedCloud_subscribe_mailing_step2_success": "La solicitud de suscripción de <b>{{t0}}</b> se ha enviado",
+  "dedicatedCloud_subscribe_mailing_step2_error": "Se ha producido un error al solicitar la suscripción de <b>{{t0}}</b>"
+}

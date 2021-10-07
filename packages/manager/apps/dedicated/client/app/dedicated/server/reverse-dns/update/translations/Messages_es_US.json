@@ -1,0 +1,5 @@
+{
+  "server_reversedns_update_title": "Modificar la DNS inversa",
+  "server_reversedns_update_reversedns_label": "DNS inversa",
+  "server_reversedns_update_loading_error": "Se ha producido un error al cargar el servicio."
+}

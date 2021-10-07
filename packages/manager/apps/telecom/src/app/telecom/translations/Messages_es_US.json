@@ -1,0 +1,14 @@
+{
+  "common_tabs_more": "Autres catégories",
+  "common_newtab": "(nouvel onglet)",
+  "common_window": "(nueva ventana)",
+  "common_vip": "Statut VIP",
+  "common_table_header_type": "Tipo",
+  "common_table_edit": ": éditer",
+  "common_table_delete": ": supprimer",
+  "common_table_validate_entry": ": ajouter cette entrée",
+  "common_table_cancel_entry": ": annuler l'ajout",
+  "common_table_validate_modifications": ": valider les modifications",
+  "common_table_cancel_modifications": ": annuler les modifications",
+  "common_required_fields": "Los campos marcados por un asterisco son obligatorios."
+}

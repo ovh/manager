@@ -1,0 +1,11 @@
+{
+  "dedicatedCloud_tab_drp": "Plan de reprise d’activité (PRA)",
+  "dedicatedCloud_datacenter_drp_subtitle": "Créez votre plan de reprise d’activité avec Zerto",
+  "dedicatedCloud_datacenter_drp_details_EPCC": "Assurez la protection de votre système d’information en configurant votre plan de reprise d’activité. Basculez votre infrastructure en 1 clic et quelques minutes en cas de dysfonctionnement ou d’interruption de service. Attention, vous devez posséder un Private Cloud secondaire avant d’activer cette option.",
+  "dedicatedCloud_datacenter_drp_warning": "Votre datacenter actuel ne dispose d’aucun host. Veuillez en commander un pour utiliser ce datacenter pour votre PRA, ou choisissez un datacenter disposant d’au moins un host.",
+  "dedicatedCloud_tab_drp_choice_plan_type": "Choisissez le type de PRA souhaité :",
+  "dedicatedCloud_datacenter_ovh_choice_EPCC": "Entre deux Private Cloud OVH",
+  "dedicatedCloud_datacenter_onPremise_choice_EPCC": "Entre votre infrastructure et un Private Cloud OVH",
+  "dedicatedCloud_datacenter_activate_zerto_drp": "Activer Zerto PRA",
+  "dedicatedCloud_datacenter_drp_get_state_error": "Une erreur est survenue lors de la récupération des informations de votre PRA."
+}
