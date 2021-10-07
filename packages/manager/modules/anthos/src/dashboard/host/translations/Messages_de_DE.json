@@ -1,0 +1,6 @@
+{
+  "anthos_dashboard_host_description": "Passen Sie Ihr Anthos-Deployment Ihren Anforderungen mit zusätzlichen Hosts an. Sie werden dann auf eine neue Seite weitergeleitet, um dort Ihre Bestellung zu bestätigen. Der angezeigte Preis gilt für einen Monat. Bei längeren Vertragslaufzeiten profitieren Sie von noch günstigeren Monatspreisen.",
+  "anthos_dashboard_host_order": "Host bestellen",
+  "anthos_dashboard_host_included": "Im Starter Pack inklusive",
+  "anthos_dashboard_host_additional": "Zusätzliche Hosts"
+}

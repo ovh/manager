@@ -1,0 +1,9 @@
+{
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_title": "Delete a private IP",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_description": "You are about to delete an IP/IP range:",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_description_question": "Are you sure you want to perform this operation?",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_action_remove": "Confirm",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_action_cancel": "Cancel",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_action_remove_success": "Private IP deleted.",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_action_remove_error": "Unable to delete private IP: {{message}}"
+}

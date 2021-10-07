@@ -1,0 +1,9 @@
+{
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_title": "Usuń prywatny adres IP",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_description": "Chcesz usunąć adres IP/zakres adresów IP:",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_description_question": "Czy na pewno chcesz wykonać tę operację?",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_action_remove": "Zatwierdź",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_action_cancel": "Anuluj",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_action_remove_success": "Prywatny adres IP został usunięty.",
+  "anthos_tenant_dashboard_ips_remove_private_ip_modal_action_remove_error": "Usunięcie prywatnego adresu IP nie mogło zostać zakończone: {{message}}"
+}

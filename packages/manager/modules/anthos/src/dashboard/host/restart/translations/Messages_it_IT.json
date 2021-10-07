@@ -1,0 +1,7 @@
+{
+  "anthos_dashboard_restart_host_title": "Riavvia il tuo host",
+  "anthos_dashboard_restart_host_description": "Attenzione: il riavvio potrebbe richiedere alcuni minuti. Prevedi il drain dei tuoi pod per limitare l'impatto sulla disponibilità delle tue applicazioni.",
+  "anthos_dashboard_restart_host_submit": "Conferma",
+  "anthos_dashboard_restart_host_cancel": "Annulla",
+  "anthos_dashboard_restart_host_error": "Si è verificato un errore durante il riavvio del tuo host: {{message}}"
+}

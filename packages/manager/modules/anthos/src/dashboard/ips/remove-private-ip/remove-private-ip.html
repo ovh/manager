@@ -1,0 +1,27 @@
+<form name="removePrivateIpForm">
+    <oui-modal
+        data-heading="{{:: 'anthos_tenant_dashboard_ips_remove_private_ip_modal_title' | translate }}"
+        data-primary-action="$ctrl.onRemovePrivateIpClick()"
+        data-primary-label="{{:: 'anthos_tenant_dashboard_ips_remove_private_ip_modal_action_remove' | translate }}"
+        data-primary-disabled="$ctrl.privateIp.inUse"
+        data-secondary-action="$ctrl.onRemovePrivateIpCancel()"
+        data-secondary-label="{{:: 'anthos_tenant_dashboard_ips_remove_private_ip_modal_action_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isRemoving"
+    >
+
+        <!--Description-->
+        <div>
+            <p class="oui-paragraph mb-1"
+               data-translate="anthos_tenant_dashboard_ips_remove_private_ip_modal_description"
+            ></p>
+            <p>
+                <b data-ng-bind=":: $ctrl.privateIp.range"></b>
+            </p>
+        </div>
+
+        <!-- Question -->
+        <p data-translate="anthos_tenant_dashboard_ips_remove_private_ip_modal_description_question"></p>
+
+    </oui-modal>
+</form>

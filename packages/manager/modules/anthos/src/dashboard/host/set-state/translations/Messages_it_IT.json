@@ -1,0 +1,8 @@
+{
+  "anthos_dashboard_set_state_host_title": "Definisci lo stato del tuo host",
+  "anthos_dashboard_set_state_host_description": "Di default, tutti gli host sono considerati stateless. In caso di incidente, OVHcloud potrà tentare di reinstallare o cambiare la macchina, dopo aver chiesto di eseguire il drain a Kubernetes. Puoi contrassegnare alcuni host come \"stateful\". In caso di incidente, ti contatteremo e cercheremo di conservare i dati locali degli host stateful durante la manutenzione, nel limite del possibile.",
+  "anthos_dashboard_set_state_host_stateful_label": "Stateless",
+  "anthos_dashboard_set_state_host_submit": "Conferma",
+  "anthos_dashboard_set_state_host_cancel": "Annulla",
+  "anthos_dashboard_set_state_host_error": "Si è verificato un errore durante la definizione dello stato del tuo host: {{message}}"
+}

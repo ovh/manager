@@ -1,0 +1,21 @@
+{
+  "anthos_dashboard_host_id": "ID",
+  "anthos_dashboard_host_name": "Name",
+  "anthos_dashboard_host_profile": "Profile",
+  "anthos_dashboard_host_rack": "Rack",
+  "anthos_dashboard_host_status": "Status",
+  "anthos_dashboard_host_stateful": "Stateful",
+  "anthos_dashboard_host_status_BAREMETAL_STATUS_UNSPECIFIED": "Unknown",
+  "anthos_dashboard_host_status_BAREMETAL_STATUS_DELIVERING": "Delivery in progress",
+  "anthos_dashboard_host_status_BAREMETAL_STATUS_AVAILABLE": "Available",
+  "anthos_dashboard_host_status_BAREMETAL_STATUS_IN_USE": "Used",
+  "anthos_dashboard_host_status_BAREMETAL_STATUS_IN_MAINTENANCE": "Under maintenance",
+  "anthos_dashboard_host_status_BAREMETAL_STATUS_SUPPRESSING": "Deleting...",
+  "anthos_dashboard_host_status_BAREMETAL_STATUS_RESTARTING": "Reboot",
+  "anthos_dashboard_host_retrieve_error": "Unable to retrieve hosts: {{message}}",
+  "anthos_dashboard_host_empty": "No hosts found",
+  "anthos_dashboard_host_restart": "Restart",
+  "anthos_dashboard_host_reinstall": "Reinstall",
+  "anthos_dashboard_host_set_state": "Set status",
+  "anthos_dashboard_host_remove": "Delete"
+}

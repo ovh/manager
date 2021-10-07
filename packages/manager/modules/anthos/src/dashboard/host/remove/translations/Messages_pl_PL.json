@@ -1,0 +1,8 @@
+{
+  "anthos_dashboard_remove_host_title": "Usuń hosta",
+  "anthos_dashboard_remove_host_description": "Maszyna zostanie bezzwłocznie usunięta i nie będzie już fakturowana.",
+  "anthos_dashboard_remove_host_warning": "Usunięcie spowoduje trwałe wykasowanie wszystkich powiązanych danych.",
+  "anthos_dashboard_remove_host_submit": "Zatwierdź",
+  "anthos_dashboard_remove_host_cancel": "Anuluj",
+  "anthos_dashboard_remove_host_error": "Wystąpił błąd podczas usuwania hosta: {{message}}"
+}

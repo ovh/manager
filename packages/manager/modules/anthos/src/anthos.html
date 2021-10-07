@@ -1,0 +1,65 @@
+<div data-ui-view>
+    <oui-header data-heading="{{ ::'anthos_tenants_title' | translate }}">
+        <oui-guide-menu data-text="{{ ::$ctrl.guides.title }}">
+            <oui-guide-menu-item
+                data-ng-repeat="guideItem in $ctrl.guides.list track by guideItem.url"
+                data-href="{{ ::guideItem.url }}"
+                data-external="guideItem.external"
+                ><span data-ng-bind="::guideItem.name"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+    <oui-datagrid id="hpcAnthosTenantsDatagrid" data-rows="$ctrl.tenants">
+        <oui-datagrid-column
+            title=":: 'anthos_tenants_grid_headers_serviceName' | translate"
+            data-property="id"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable="asc"
+        >
+            <a
+                data-ng-href="{{:: $ctrl.getServiceNameLink($row) }}"
+                data-ng-bind=":: $value"
+            ></a>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'anthos_tenants_grid_headers_displayName' | translate"
+            data-property="name"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'anthos_tenants_grid_headers_location' | translate"
+            data-property="location"
+            data-type="string"
+            data-searchable
+            data-sortable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'anthos_tenants_grid_headers_version' | translate"
+            data-property="version"
+            data-type="string"
+            data-sortable
+            data-filterable
+        >
+            <span data-ng-bind="::$ctrl.versionPrefix + ' ' + $value"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'anthos_tenants_grid_headers_vrackId' | translate"
+            data-property="vrackId"
+            data-type="number"
+            data-sortable
+            data-filterable
+        >
+        </oui-datagrid-column>
+    </oui-datagrid>
+</div>

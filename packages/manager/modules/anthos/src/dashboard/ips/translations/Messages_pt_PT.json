@@ -1,0 +1,22 @@
+{
+  "anthos_dashboard_ips_title": "Endereços IP",
+  "anthos_dashboard_ips_description": "Na consola Anthos, precisa de atribuir endereços IP a cada uma das suas implementações Anthos. Pode atribuir à sua implementação Anthos todos os IP/intervalos de IP que desejar . Beneficia igualmente de 50 IP públicos e pode encomendar mais por um preço fixo baixo.",
+  "anthos_dashboard_ips_datagrid_public_actions_menu": "Ações",
+  "anthos_dashboard_ips_datagrid_public_actions_order_ip": "Encomendar IP públicos",
+  "anthos_dashboard_ips_datagrid_public_actions_assign_private_ip": "Atribuir endereços IP privados",
+  "anthos_dashboard_ips_datagrid_public_ips_header_ip": "IP",
+  "anthos_dashboard_ips_datagrid_public_ips_header_type": "Tipo",
+  "anthos_dashboard_ips_datagrid_public_ips_header_status": "Estado",
+  "anthos_dashboard_ips_datagrid_public_ips_value_type": "Pública",
+  "anthos_dashboard_ips_datagrid_public_ips_value_status_true": "Ativo",
+  "anthos_dashboard_ips_datagrid_public_ips_value_status_false": "Inativo",
+  "anthos_dashboard_ips_datagrid_private_ips_header_ip": "IP",
+  "anthos_dashboard_ips_datagrid_private_actions_menu": "Ações",
+  "anthos_dashboard_ips_datagrid_private_ips_header_type": "Tipo",
+  "anthos_dashboard_ips_datagrid_private_ips_header_status": "Estado",
+  "anthos_dashboard_ips_datagrid_private_ips_header_remove": "Eliminar",
+  "anthos_dashboard_ips_datagrid_private_ips_value_type": "Privada",
+  "anthos_dashboard_ips_datagrid_private_ips_value_delete": "Eliminar",
+  "anthos_dashboard_ips_datagrid_private_ips_value_status_true": "Ativo",
+  "anthos_dashboard_ips_datagrid_private_ips_value_status_false": "Inativo"
+}

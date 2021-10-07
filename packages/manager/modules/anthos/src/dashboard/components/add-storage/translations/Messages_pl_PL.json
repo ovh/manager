@@ -1,0 +1,10 @@
+{
+  "anthos_dashboard_add_storage_title": "Utwórz wolumen SVM",
+  "anthos_dashboard_add_storage_description": "Wolumen ten może zostać wykorzystany w przypadku nowych lub istniejących wdrożeń Anthos.",
+  "anthos_dashboard_add_storage_description_label": "Opis",
+  "anthos_dashboard_add_storage_space_label": "Pozostała wolna przestrzeń",
+  "anthos_dashboard_add_storage_submit": "Utwórz wolumen SVM",
+  "anthos_dashboard_add_storage_cancel": "Anuluj",
+  "anthos_dashboard_add_storage_success": "Wolumen SVM został utworzony.",
+  "anthos_dashboard_add_storage_error": "Wystąpił błąd podczas tworzenia wolumenu SVM: {{message}}"
+}

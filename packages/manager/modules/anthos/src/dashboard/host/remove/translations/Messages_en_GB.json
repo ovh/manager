@@ -1,0 +1,8 @@
+{
+  "anthos_dashboard_remove_host_title": "Delete your host",
+  "anthos_dashboard_remove_host_description": "This machine will be deleted immediately, and you will no longer be charged.",
+  "anthos_dashboard_remove_host_warning": "Deleting it will permanently erase all corresponding data.",
+  "anthos_dashboard_remove_host_submit": "Confirm",
+  "anthos_dashboard_remove_host_cancel": "Cancel",
+  "anthos_dashboard_remove_host_error": "An error has occurred cancelling your host: {{message}}"
+}

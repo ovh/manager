@@ -1,0 +1,5 @@
+{
+  "anthos_tenant_dashboard_component_order_public_ip_modal_title": "Commander une IP Publique",
+  "anthos_tenant_dashboard_component_order_public_ip_modal_description": "Pour commander une IP publique supplémentaire, veuillez contacter votre conseiller commercial",
+  "anthos_tenant_dashboard_component_order_public_ip_modal_action_cancel": "Annuler"
+}

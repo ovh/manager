@@ -21,6 +21,7 @@
 
   "ovhManagerSupport_new_serviceType": "Produit",
   "ovhManagerSupport_all_serviceType": "Afficher plus de produits",
+  "ovhManagerSupport_new_serviceType_anthos": "Anthos",
   "ovhManagerSupport_new_serviceType_ml_serving": "ML Serving",
   "ovhManagerSupport_new_serviceType_DEDICATED": "Dédié",
   "ovhManagerSupport_new_serviceType_data_processing": "Data processing",
@@ -29,7 +30,7 @@
   "ovhManagerSupport_new_serviceType_email_pro": "E-mail Pro",
   "ovhManagerSupport_new_serviceType_hubic": "Hubic",
   "ovhManagerSupport_new_serviceType_OTHER": "Autre",
-  "ovhManagerSupport_new_serviceType_dedicated_cloud": "Hosted Private Cloud",
+  "ovhManagerSupport_new_serviceType_dedicated_cloud": "VMware",
   "ovhManagerSupport_new_serviceType_managed_bare_metal": "Managed Bare Metal",
   "ovhManagerSupport_new_serviceType_cloud_project": "Public Cloud (project)",
   "ovhManagerSupport_new_serviceType_telephony": "Téléphonie",

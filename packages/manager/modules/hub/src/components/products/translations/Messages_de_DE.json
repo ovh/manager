@@ -5,7 +5,7 @@
   "manager_hub_products_DBAAS_LOGS": "Logs Data Platform",
   "manager_hub_products_DBAAS_QUEUE": "DbaaS Queue",
   "manager_hub_products_DEDICATED_CEPH": "Cloud Disk Array",
-  "manager_hub_products_DEDICATED_CLOUD": "Hosted Private Cloud",
+  "manager_hub_products_DEDICATED_CLOUD": "VMware",
   "manager_hub_products_DEDICATED_HOUSING": "Server-Housing",
   "manager_hub_products_DEDICATED_NASHA": "HA-NAS",
   "manager_hub_products_DEDICATED_SERVER": "Dedicated Server",

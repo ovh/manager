@@ -1,0 +1,22 @@
+{
+  "anthos_dashboard_ips_title": "Direcciones IP",
+  "anthos_dashboard_ips_description": "La consola Anthos le permitirá asignar direcciones IP a cada uno de sus despliegues Anthos. Puede asignar tantas IP/rangos de IP como desee a su despliegue Anthos. También dispone de 50 IP públicas y puede contratar nuevas direcciones IP a un precio fijo reducido.",
+  "anthos_dashboard_ips_datagrid_public_actions_menu": "Acciones",
+  "anthos_dashboard_ips_datagrid_public_actions_order_ip": "Contratar IP públicas",
+  "anthos_dashboard_ips_datagrid_public_actions_assign_private_ip": "Asignar IP privadas",
+  "anthos_dashboard_ips_datagrid_public_ips_header_ip": "IP",
+  "anthos_dashboard_ips_datagrid_public_ips_header_type": "Tipo",
+  "anthos_dashboard_ips_datagrid_public_ips_header_status": "Estado",
+  "anthos_dashboard_ips_datagrid_public_ips_value_type": "Pública",
+  "anthos_dashboard_ips_datagrid_public_ips_value_status_true": "Activo",
+  "anthos_dashboard_ips_datagrid_public_ips_value_status_false": "Inactivo",
+  "anthos_dashboard_ips_datagrid_private_ips_header_ip": "IP",
+  "anthos_dashboard_ips_datagrid_private_actions_menu": "Acciones",
+  "anthos_dashboard_ips_datagrid_private_ips_header_type": "Tipo",
+  "anthos_dashboard_ips_datagrid_private_ips_header_status": "Estado",
+  "anthos_dashboard_ips_datagrid_private_ips_header_remove": "Eliminar",
+  "anthos_dashboard_ips_datagrid_private_ips_value_type": "Privada",
+  "anthos_dashboard_ips_datagrid_private_ips_value_delete": "Eliminar",
+  "anthos_dashboard_ips_datagrid_private_ips_value_status_true": "Activo",
+  "anthos_dashboard_ips_datagrid_private_ips_value_status_false": "Inactivo"
+}

@@ -1,0 +1,14 @@
+<oui-modal
+    data-primary-action="$ctrl.removeHost()"
+    data-primary-label="{{ ::'anthos_dashboard_remove_host_submit' | translate }}"
+    data-secondary-action="$ctrl.onRemoveHostCancel()"
+    data-secondary-label="{{ ::'anthos_dashboard_remove_host_cancel' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-heading="{{:: 'anthos_dashboard_remove_host_title' | translate}}"
+    data-type="warning"
+>
+    <p data-translate="anthos_dashboard_remove_host_description"></p>
+    <oui-message data-type="warning">
+        <span data-translate="anthos_dashboard_remove_host_warning"></span>
+    </oui-message>
+</oui-modal>

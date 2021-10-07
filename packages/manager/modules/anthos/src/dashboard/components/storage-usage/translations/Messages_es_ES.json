@@ -1,0 +1,5 @@
+{
+  "anthos_dashboard_storage_usage_system": "Sistema",
+  "anthos_dashboard_storage_usage_volumes": "Volúmenes SVM",
+  "anthos_dashboard_storage_usage_unit_size_TB": "{{size}} TB"
+}
