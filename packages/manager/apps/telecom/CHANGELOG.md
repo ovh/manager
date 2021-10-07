@@ -1,3 +1,14 @@
+## [13.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.26.0...@ovh-ux/manager-telecom@13.26.1) (2021-10-07)
+
+
+### Bug Fixes
+
+* **telephony.alias:** fix directory information variable ([#5678](https://github.com/ovh/manager/issues/5678)) ([c9d1b27](https://github.com/ovh/manager/commit/c9d1b274072d1bf08c0fc762975d6f714570bf7f))
+* **telephony.calls.events:** fix events configuration button ([#5698](https://github.com/ovh/manager/issues/5698)) ([faea097](https://github.com/ovh/manager/commit/faea097bc7aead76fa952364bf696505f26f9a25))
+* **xdsl.move:** fix errors when no copper eligibility ([#5608](https://github.com/ovh/manager/issues/5608)) ([eca4182](https://github.com/ovh/manager/commit/eca41828f00bd6b0681dac242deaefa8bf5333b4))
+
+
+
 # [13.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.25.3...@ovh-ux/manager-telecom@13.26.0) (2021-10-06)
 
 

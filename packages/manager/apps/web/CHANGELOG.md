@@ -1,3 +1,13 @@
+## [15.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.31.0...@ovh-ux/manager-web@15.31.1) (2021-10-07)
+
+
+### Bug Fixes
+
+* **databases.archives:** fix state parameter name ([#5702](https://github.com/ovh/manager/issues/5702)) ([8158906](https://github.com/ovh/manager/commit/8158906cc8b20b9a6285018db1418de160ec2e97))
+* **i18n:** add missing translations [CDS 1194] ([#5690](https://github.com/ovh/manager/issues/5690)) ([d583550](https://github.com/ovh/manager/commit/d583550ff9a572c591e08ad558a2702e06820cdf))
+
+
+
 # [15.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.30.6...@ovh-ux/manager-web@15.31.0) (2021-10-06)
 
 

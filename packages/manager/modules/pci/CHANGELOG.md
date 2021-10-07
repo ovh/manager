@@ -1,3 +1,13 @@
+## [5.46.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.46.0...@ovh-ux/manager-pci@5.46.1) (2021-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1196] ([#5699](https://github.com/ovh/manager/issues/5699)) ([f500de5](https://github.com/ovh/manager/commit/f500de594d8a1549d5b9a08f04d3741e7b58852b))
+* **project.private-registry:** apply right bytes conversion ([#5697](https://github.com/ovh/manager/issues/5697)) ([d805831](https://github.com/ovh/manager/commit/d805831457740e0f4de6c249d12345458ac469f4))
+
+
+
 # [5.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.45.1...@ovh-ux/manager-pci@5.46.0) (2021-10-06)
 
 
