@@ -1,3 +1,12 @@
+## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.2.0...@ovh-ux/manager-billing-components@3.2.1) (2021-10-07)
+
+
+### Bug Fixes
+
+* **anthos:** tracking bugs ([05dd6a8](https://github.com/ovh/manager/commit/05dd6a81596193154f488d5f67ecb3d47cf488a6)), closes [#MANAGER-7392](https://github.com/ovh/manager/issues/MANAGER-7392)
+
+
+
 # [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.1.4...@ovh-ux/manager-billing-components@3.2.0) (2021-08-25)
 
 

@@ -1,3 +1,29 @@
+# [17.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.38.0...@ovh-ux/manager-dedicated@17.0.0) (2021-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1184] ([df03553](https://github.com/ovh/manager/commit/df035537b0d5271384d1cddb582d583279e15318))
+* **i18n:** add missing translations [CDS 1191] ([9c37bb4](https://github.com/ovh/manager/commit/9c37bb4748eebfdbe0a5e40f5593dede2afab073))
+* add anthos to services and contacts page ([d5b8b90](https://github.com/ovh/manager/commit/d5b8b90f6874356da88e8de74a367ccca407230f)), closes [#MANAGER-7385](https://github.com/ovh/manager/issues/MANAGER-7385)
+* rename hosted private cloud to vmware ([030a38f](https://github.com/ovh/manager/commit/030a38f1421c52a86bc43c482a8c99fd912e69ad)), closes [#MANAGER-7545](https://github.com/ovh/manager/issues/MANAGER-7545)
+* **server-sidebar:** add anthos entry ([9618f79](https://github.com/ovh/manager/commit/9618f79c90721687a6f43e4f9c72713b53e10853)), closes [#MANAGER-7384](https://github.com/ovh/manager/issues/MANAGER-7384)
+
+
+### Features
+
+* add anthos ([14e3f25](https://github.com/ovh/manager/commit/14e3f25178a1a6884444b4576dc96e2a0818499f)), closes [#MANAGER-7296](https://github.com/ovh/manager/issues/MANAGER-7296)
+
+
+### BREAKING CHANGES
+
+* add anthos module
+
+Signed-off-by: Ganesh Kumar <ganesh.kumar@ovhcloud.com>
+Signed-off-by: mohammed-zahaf <mohammed.zahaf.ext@ovhcloud.com>
+
+
+
 # [16.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.37.4...@ovh-ux/manager-dedicated@16.38.0) (2021-10-06)
 
 
