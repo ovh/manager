@@ -1,0 +1,22 @@
+{
+  "anthos_dashboard_ips_title": "Addresses IPs",
+  "anthos_dashboard_ips_description": "Dans la console Anthos, vous avez besoin d’allouer des IPs à chacun de vos déploiements Anthos. Vous pouvez assigner autant d’IPs/plages d’IPs que vous voudrez à votre déploiement Anthos. Vous bénéficiez également de 50 IPs publiques et pouvez en commander de nouvelles pour un faible tarif fixe.",
+  "anthos_dashboard_ips_datagrid_public_actions_menu": "Actions",
+  "anthos_dashboard_ips_datagrid_public_actions_order_ip": "Commander des IPs publiques",
+  "anthos_dashboard_ips_datagrid_public_actions_assign_private_ip": "Assigner des IP privées",
+  "anthos_dashboard_ips_datagrid_public_ips_header_ip": "IP",
+  "anthos_dashboard_ips_datagrid_public_ips_header_type": "Type",
+  "anthos_dashboard_ips_datagrid_public_ips_header_status": "Statut",
+  "anthos_dashboard_ips_datagrid_public_ips_value_type": "Publique",
+  "anthos_dashboard_ips_datagrid_public_ips_value_status_true": "Actif",
+  "anthos_dashboard_ips_datagrid_public_ips_value_status_false": "Inactif",
+  "anthos_dashboard_ips_datagrid_private_ips_header_ip": "IP",
+  "anthos_dashboard_ips_datagrid_private_actions_menu": "Actions",
+  "anthos_dashboard_ips_datagrid_private_ips_header_type": "Type",
+  "anthos_dashboard_ips_datagrid_private_ips_header_status": "Statut",
+  "anthos_dashboard_ips_datagrid_private_ips_header_remove": "Supprimer",
+  "anthos_dashboard_ips_datagrid_private_ips_value_type": "Privée",
+  "anthos_dashboard_ips_datagrid_private_ips_value_delete": "Supprimer",
+  "anthos_dashboard_ips_datagrid_private_ips_value_status_true": "Actif",
+  "anthos_dashboard_ips_datagrid_private_ips_value_status_false": "Inactif"
+}

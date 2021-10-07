@@ -1,0 +1,13 @@
+{
+  "anthos_tenants": "Anthos",
+  "anthos_hpc_title": "Hosted Private Cloud",
+  "anthos_tenants_title": "Platforma Anthos",
+  "anthos_tenants_guides": "Przewodniki",
+  "anthos_tenants_guides_all": "Wszystkie przewodniki",
+  "anthos_tenants_grid_create_tenant": "Zamów hosta",
+  "anthos_tenants_grid_headers_serviceName": "Usługa",
+  "anthos_tenants_grid_headers_displayName": "Nazwa",
+  "anthos_tenants_grid_headers_location": "Centrum danych",
+  "anthos_tenants_grid_headers_version": "Wersja",
+  "anthos_tenants_grid_headers_vrackId": "vRack"
+}

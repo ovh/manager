@@ -1,0 +1,9 @@
+{
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_title": "Edit",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_description": "Edit the name displayed in the left-hand menu and in the header.",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_field_name": "Name",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_action_confirm": "Rename",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_action_cancel": "Cancel",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_success": "The name has been modified",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_failed": "An error has occurred modifying the name: {{message}}"
+}

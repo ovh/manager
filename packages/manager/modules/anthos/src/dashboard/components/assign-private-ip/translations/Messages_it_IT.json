@@ -1,0 +1,12 @@
+{
+  "anthos_tenant_dashboard_component_assign_private_ip_modal_title": "Assegna IP Privati",
+  "anthos_tenant_dashboard_component_assign_private_ip_modal_description": "Definisci un IPv4, un intervallo di IPv4 o un blocco IPv4 CIDR che potrà essere utilizzato all'interno di Anthos.",
+  "anthos_tenant_dashboard_component_assign_private_ip_modal_body_field_private_ip_title": "IPv4 o blocco IPv4 CIDR",
+  "anthos_tenant_dashboard_component_assign_private_ip_modal_body_field_private_ip_errors_wrong_format": "Il formato non è corretto: è necessario inserire un IPv4, un blocco IPv4 CIDR o un intervallo IPv4 (due indirizzi separati da uno -)",
+  "anthos_tenant_dashboard_component_assign_private_ip_modal_body_field_private_ip_errors_invalid_private_ip": "Sono utilizzabili solo gli intervalli privati definiti nella RFC 1918.",
+  "anthos_tenant_dashboard_component_assign_private_ip_modal_body_field_private_ip_errors_already_exist": "Questo intervallo esiste già o fa parte di uno esistente.",
+  "anthos_tenant_dashboard_component_assign_private_ip_modal_action_add": "Conferma",
+  "anthos_tenant_dashboard_component_assign_private_ip_modal_action_cancel": "Annulla",
+  "anthos_tenant_dashboard_component_assign_private_ip_modal_action_add_success": "L'assegnazione di un IP privato è stata effettuata correttamente.",
+  "anthos_tenant_dashboard_component_assign_private_ip_modal_action_add_error": "La creazione di un IP privato non è andata a buon fine: {{message}}"
+}

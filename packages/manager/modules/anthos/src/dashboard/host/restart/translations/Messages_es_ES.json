@@ -1,0 +1,7 @@
+{
+  "anthos_dashboard_restart_host_title": "Reiniciar el host",
+  "anthos_dashboard_restart_host_description": "Atención: el reinicio puede tardar unos minutos. Planifique la evacuación de sus pods para limitar el impacto sobre la disponibilidad de sus aplicaciones.",
+  "anthos_dashboard_restart_host_submit": "Confirmar",
+  "anthos_dashboard_restart_host_cancel": "Cancelar",
+  "anthos_dashboard_restart_host_error": "Se ha producido un error al reiniciar el host: {{message}}"
+}

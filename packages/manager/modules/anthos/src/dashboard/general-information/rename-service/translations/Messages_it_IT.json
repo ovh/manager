@@ -1,0 +1,9 @@
+{
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_title": "Modifica",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_description": "Modifica il nome visualizzato nel menu di sinistra e nell'intestazione.",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_field_name": "Nome",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_action_confirm": "Rinomina",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_action_cancel": "Annulla",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_success": "Il nome è stato modificato correttamente",
+  "anthos_tenant_dashboard_general_information_tile_information_name_modal_rename_failed": "Si è verificato un errore durante la modifica del nome: {{message}}"
+}

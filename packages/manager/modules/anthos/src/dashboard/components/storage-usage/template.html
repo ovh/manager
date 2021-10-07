@@ -1,0 +1,39 @@
+<p class="available-space">
+    <span
+        data-translate="anthos_dashboard_storage_usage_unit_size_TB"
+        data-translate-values="{
+        size: ($ctrl.constructor.mbToTb($ctrl.data.usedSpace) | number:2)
+    }"
+    ></span
+    >/<span
+        data-translate="anthos_dashboard_storage_usage_unit_size_TB"
+        data-translate-values="{
+        size: ($ctrl.constructor.mbToTb($ctrl.storageUsage.totalSize) | number:2)
+    }"
+    ></span>
+    (<span data-ng-bind=":: $ctrl.data.occupiedPercentage"></span>%)
+</p>
+
+<oui-progress>
+    <oui-progress-bar
+        data-type="system"
+        data-value="$ctrl.data.systemPercentage"
+    >
+        <span></span>
+    </oui-progress-bar>
+    <oui-progress-bar
+        data-type="volumes"
+        data-value="$ctrl.data.volumesPercentage"
+    >
+        <span></span>
+    </oui-progress-bar>
+</oui-progress>
+
+<oui-progress compact>
+    <oui-progress-bar class="mr-3" type="system">
+        <span translate="anthos_dashboard_storage_usage_system"></span>
+    </oui-progress-bar>
+    <oui-progress-bar type="volumes">
+        <span translate="anthos_dashboard_storage_usage_volumes"></span>
+    </oui-progress-bar>
+</oui-progress>

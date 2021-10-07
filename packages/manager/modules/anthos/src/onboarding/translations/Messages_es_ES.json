@@ -1,0 +1,10 @@
+{
+  "anthos_onboarding_breadcrumb": "Anthos",
+  "anthos_onboarding_title": "Hosted Private Cloud powered by VMware",
+  "anthos_onboarding_description_part_1": "Utilice la mejor plataforma nativa de cloud para alojar sus aplicaciones en modo privado y bare metal.",
+  "anthos_onboarding_description_part_2": "Elija un pack de inicio y disfrute de su propia consola Anthos privada para crear su primer cluster Kubernetes. Descubra las funcionalidades avanzadas de Anthos en modo privado (observabilidad, servicio mesh...) y añada nodos adicionales bajo demanda.",
+  "anthos_onboarding_description_part_3": "OVHcloud se encarga de gestionar la infraestructura y todos los componentes del plano de control. ¡Concéntrese en la creación, modernización o mejora continua de sus aplicaciones, ahorrando tiempo y dinero!",
+  "anthos_onboarding_cta_start_with_anthos": "Más información sobre Anthos",
+  "anthos_onboarding_guides_anthos_title": "Documentación de Anthos",
+  "anthos_onboarding_guides_anthos_description": "Consulte toda la documentación sobre Anthos"
+}

@@ -1,0 +1,7 @@
+{
+  "anthos_dashboard_restart_host_title": "Ihren Host neu starten",
+  "anthos_dashboard_restart_host_description": "Bitte beachten Sie, dass der Neustart einige Minuten dauern kann. Stellen Sie sich auf die Evakuierung Ihrer Pods ein, um die Verfügbarkeit Ihrer Anwendungen möglichst nicht zu beeinträchtigen.",
+  "anthos_dashboard_restart_host_submit": "Bestätigen",
+  "anthos_dashboard_restart_host_cancel": "Abbrechen",
+  "anthos_dashboard_restart_host_error": "Beim Neustart Ihres Hosts ist ein Fehler aufgetreten: {{message}}"
+}

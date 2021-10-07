@@ -1,0 +1,8 @@
+{
+  "anthos_dashboard_set_state_host_title": "Den Zustand Ihres Hosts einstellen",
+  "anthos_dashboard_set_state_host_description": "Standardmäßig gelten alle Hosts als zustandslos. Im Falle einer Störung kann OVHcloud versuchen, die Maschine erneut zu installieren oder auszutauschen. Zuvor muss jedoch über Kubernetes deren Entleerung erfolgen. Bestimmte Hosts können Sie als „zustandshaltend“ (stateful) markieren. Im Falle einer Störung werden wir Sie kontaktieren und uns bemühen, die lokalen Daten der zustandshaltenden Hosts während der Wartungsarbeiten so weit wie möglich zu bewahren.",
+  "anthos_dashboard_set_state_host_stateful_label": "Zustandslos",
+  "anthos_dashboard_set_state_host_submit": "Bestätigen",
+  "anthos_dashboard_set_state_host_cancel": "Abbrechen",
+  "anthos_dashboard_set_state_host_error": "Bei der Festlegung des Zustands Ihres Hosts ist ein Fehler aufgetreten: {{message}}"
+}

@@ -109,6 +109,7 @@
                 <oui-action-menu-item
                     aria-label="{{:: 'manager_billing_subscription_contacts_management' | translate }}"
                     href="{{ $ctrl.contactManagementUrl }}"
+                    on-click="$ctrl.trackClick('manage-contacts')"
                     ><span
                         data-translate="manager_billing_subscription_contacts_management"
                     ></span

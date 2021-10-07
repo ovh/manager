@@ -1,0 +1,37 @@
+<form name="removeAnthosStorage">
+    <oui-modal
+        data-primary-action="$ctrl.removeStorage()"
+        data-primary-label="{{ ::'anthos_dashboard_remove_storage_submit' | translate }}"
+        data-primary-disabled="!removeAnthosStorage.$valid"
+        data-secondary-action="$ctrl.onRemoveStorageCancel()"
+        data-secondary-label="{{ ::'anthos_dashboard_remove_storage_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-heading="{{:: 'anthos_dashboard_remove_storage_title' | translate}}"
+        data-type="warning"
+        data-loading="$ctrl.isRemoving"
+    >
+        <p
+            data-translate="anthos_dashboard_remove_storage_description"
+            data-translate-values="{
+            storageName: $ctrl.storage.name
+        }"
+        ></p>
+        <oui-message class="mb-3" data-type="warning">
+            <span
+                data-translate="anthos_dashboard_remove_storage_warning"
+            ></span>
+        </oui-message>
+        <oui-field
+            data-label="{{:: 'anthos_dashboard_remove_storage_confirm' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                name="removeStorageConfirm"
+                data-ng-model="$ctrl.terminateConfirmation"
+                data-ng-pattern="$ctrl.TERMINATE_INPUT"
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>

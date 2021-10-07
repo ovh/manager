@@ -1,0 +1,22 @@
+{
+  "anthos_dashboard_ips_title": "Adresy IP",
+  "anthos_dashboard_ips_description": "W konsoli Anthos należy przypisać adresy IP do każdego z wdrożeń. Liczba adresów IP/zakresów adresów IP przypisanych do wdrożenia Anthos może być dowolna. Otrzymujesz również do dyspozycji 50 publicznych adresów IP. Możesz zamówić nowe adresy za niewielką stałą opłatą.",
+  "anthos_dashboard_ips_datagrid_public_actions_menu": "Operacje",
+  "anthos_dashboard_ips_datagrid_public_actions_order_ip": "Zamów publiczne adresy IP",
+  "anthos_dashboard_ips_datagrid_public_actions_assign_private_ip": "Przypisz prywatne adresy IP",
+  "anthos_dashboard_ips_datagrid_public_ips_header_ip": "Adresy IP",
+  "anthos_dashboard_ips_datagrid_public_ips_header_type": "Typ",
+  "anthos_dashboard_ips_datagrid_public_ips_header_status": "Status",
+  "anthos_dashboard_ips_datagrid_public_ips_value_type": "Publiczny",
+  "anthos_dashboard_ips_datagrid_public_ips_value_status_true": "Aktywny",
+  "anthos_dashboard_ips_datagrid_public_ips_value_status_false": "Nieaktywny",
+  "anthos_dashboard_ips_datagrid_private_ips_header_ip": "Adres IP",
+  "anthos_dashboard_ips_datagrid_private_actions_menu": "Operacje",
+  "anthos_dashboard_ips_datagrid_private_ips_header_type": "Typ",
+  "anthos_dashboard_ips_datagrid_private_ips_header_status": "Status",
+  "anthos_dashboard_ips_datagrid_private_ips_header_remove": "Usuń",
+  "anthos_dashboard_ips_datagrid_private_ips_value_type": "Prywatny",
+  "anthos_dashboard_ips_datagrid_private_ips_value_delete": "Usuń",
+  "anthos_dashboard_ips_datagrid_private_ips_value_status_true": "Aktywny",
+  "anthos_dashboard_ips_datagrid_private_ips_value_status_false": "Nieaktywny"
+}

@@ -1,0 +1,22 @@
+{
+  "anthos_dashboard_ips_title": "IP-Adressen",
+  "anthos_dashboard_ips_description": "Weisen Sie mittels der Anthos-Konsole jedem Ihrer Anthos-Deployments IP-Adressen zu. Sie können Ihrem Anthos-Deployment beliebig viele IP-Adressen oder IP-Bereiche zuweisen. 50 öffentliche IP-Adressen stehen Ihnen bereits zur Verfügung. Weitere können Sie zu einem moderaten Festpreis bestellen.",
+  "anthos_dashboard_ips_datagrid_public_actions_menu": "Aktionen",
+  "anthos_dashboard_ips_datagrid_public_actions_order_ip": "Öffentliche IP-Adressen bestellen",
+  "anthos_dashboard_ips_datagrid_public_actions_assign_private_ip": "Private IP-Adressen zuweisen",
+  "anthos_dashboard_ips_datagrid_public_ips_header_ip": "IP",
+  "anthos_dashboard_ips_datagrid_public_ips_header_type": "Typ",
+  "anthos_dashboard_ips_datagrid_public_ips_header_status": "Status",
+  "anthos_dashboard_ips_datagrid_public_ips_value_type": "Öffentlich",
+  "anthos_dashboard_ips_datagrid_public_ips_value_status_true": "Aktiv",
+  "anthos_dashboard_ips_datagrid_public_ips_value_status_false": "Inaktiv",
+  "anthos_dashboard_ips_datagrid_private_ips_header_ip": "IP",
+  "anthos_dashboard_ips_datagrid_private_actions_menu": "Aktionen",
+  "anthos_dashboard_ips_datagrid_private_ips_header_type": "Typ",
+  "anthos_dashboard_ips_datagrid_private_ips_header_status": "Status",
+  "anthos_dashboard_ips_datagrid_private_ips_header_remove": "Löschen",
+  "anthos_dashboard_ips_datagrid_private_ips_value_type": "Privat",
+  "anthos_dashboard_ips_datagrid_private_ips_value_delete": "Löschen",
+  "anthos_dashboard_ips_datagrid_private_ips_value_status_true": "Aktiv",
+  "anthos_dashboard_ips_datagrid_private_ips_value_status_false": "Inaktiv"
+}

@@ -1,0 +1,7 @@
+{
+  "anthos_dashboard_reinstall_host_title": "Reinstalar o host",
+  "anthos_dashboard_reinstall_host_description": "Atenção, a reinstalação pode levar algumas dezenas de minutos e todos os dados serão perdidos.",
+  "anthos_dashboard_reinstall_host_submit": "Confirmar",
+  "anthos_dashboard_reinstall_host_cancel": "Cancelar",
+  "anthos_dashboard_reinstall_host_error": "Ocorreu um erro aquando da reinstalação do host: {{message}}"
+}

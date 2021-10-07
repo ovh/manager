@@ -1,0 +1,236 @@
+<div>
+    <oui-header
+        class="mb-0"
+        data-heading="{{:: 'anthos_tenant_dashboard_general_information_title' | translate}}"
+        data-description="{{:: 'anthos_tenant_dashboard_general_information_description' | translate}}"
+    >
+    </oui-header>
+
+    <div class="row py-4">
+        <!--General information tile-->
+        <div class="col-md-4">
+            <oui-tile
+                data-heading="{{:: 'anthos_tenant_dashboard_general_information_tile_information_title' | translate }}"
+            >
+                <!--Name-->
+                <oui-tile-definition
+                    data-term="{{:: 'anthos_tenant_dashboard_general_information_tile_information_name' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span data-ng-bind="$ctrl.tenant.name"></span>
+                    </oui-tile-description>
+                    <oui-action-menu
+                        aria-label="{{:: 'anthos_tenant_dashboard_general_information_actions' | translate }}"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.goToRenameService()"
+                        >
+                            <span
+                                data-translate="anthos_tenant_dashboard_general_information_tile_information_description_action_rename"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+
+                <!--Software-->
+                <oui-tile-definition
+                    data-term="{{:: 'anthos_tenant_dashboard_general_information_tile_information_software' | translate }}"
+                >
+                    <oui-tile-description>
+                        <p
+                            class="mb-0"
+                            data-ng-bind=":: $ctrl.tenant.version"
+                        ></p>
+                        <p
+                            class="oui-badge oui-badge_warning"
+                            data-translate="anthos_tenant_dashboard_general_information_tile_information_software_status_upcoming"
+                        ></p>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <!--Location-->
+                <oui-tile-definition
+                    data-term="{{:: 'anthos_tenant_dashboard_general_information_tile_information_location' | translate }}"
+                    data-description="{{:: $ctrl.tenant.location}}"
+                >
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+
+        <!--Security and access-->
+        <div class="col-md-4">
+            <oui-tile
+                data-heading="{{:: 'anthos_tenant_dashboard_general_information_tile_security_title' | translate }}"
+            >
+                <!--Anthos console-->
+                <oui-tile-definition
+                    data-term="{{:: 'anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_title' | translate }}"
+                >
+                    <oui-tile-description>
+                        <oui-clipboard
+                            class="mb-2"
+                            data-model="$ctrl.tenant.accessUrl"
+                        ></oui-clipboard>
+                        <a
+                            class="oui-button oui-button_secondary"
+                            data-ng-href="{{$ctrl.tenant.accessUrl}}"
+                            data-ng-click="$ctrl.onAnthosConsoleStart()"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <span
+                                data-translate="anthos_tenant_dashboard_general_information_tile_security_cta_start_console"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-external-link"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </oui-tile-description>
+
+                    <oui-action-menu
+                        aria-label="{{:: 'anthos_tenant_dashboard_general_information_actions' | translate }}"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.onAnthosRegeneratePasswordClick()"
+                        >
+                            <span
+                                data-translate="anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+
+        <!--Commitment tile-->
+        <div class="col-md-4">
+            <billing-subscription-tile
+                data-service-infos="$ctrl.serviceInfo"
+                data-user="$ctrl.user"
+                data-service-path="{{:: '/dedicated/anthos/tenants/' + $ctrl.serviceName }}"
+                data-tracking-prefix="{{:: ($ctrl.trackingPrefix + '::' + $ctrl.generalInfoHitTracking) }}"
+            >
+                <billing-contact-actions>
+                    <oui-action-menu-item
+                        data-href="{{:: $ctrl.changeOwnerUrl }}"
+                        data-on-click="$ctrl.onChangeOwnerClick()"
+                        data-external
+                    >
+                        <span
+                            data-translate="anthos_tenant_dashboard_general_information_tile_subscription_change_contact"
+                        ></span>
+                    </oui-action-menu-item>
+                </billing-contact-actions>
+            </billing-subscription-tile>
+        </div>
+
+        <!--Resources tile-->
+        <div class="col-md-4">
+            <oui-tile
+                data-heading="{{:: 'anthos_tenant_dashboard_general_information_tile_resources_title' | translate }}"
+            >
+                <!--Hosts-->
+                <oui-tile-definition
+                    data-term="{{:: 'anthos_tenant_dashboard_general_information_tile_resources_hosts' | translate }}"
+                >
+                    <oui-action-menu
+                        aria-label="{{:: 'anthos_tenant_dashboard_general_information_actions' | translate }}"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.onGoToOrderHost()"
+                        >
+                            <span
+                                data-translate="anthos_tenant_dashboard_general_information_tile_resources_hosts_menu_order_host"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+
+                    <oui-tile-description>
+                        <span data-ng-bind="$ctrl.hosts.length"></span>
+                        <span> </span>
+                        <span
+                            data-translate="anthos_tenant_dashboard_general_information_tile_resources_hosts_quantity"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <!--Persistent storage-->
+                <oui-tile-definition
+                    data-ng-if="$ctrl.storageUsage"
+                    data-term="{{:: 'anthos_tenant_dashboard_general_information_tile_resources_persistent_storage' | translate }}"
+                    data-description="{{:: $ctrl.tenant.storage }}"
+                >
+                    <oui-tile-description>
+                        <anthos-storage-usage
+                            data-storage-usage="$ctrl.storageUsage"
+                        ></anthos-storage-usage>
+                    </oui-tile-description>
+
+                    <oui-action-menu
+                        aria-label="{{:: 'anthos_tenant_dashboard_general_information_actions' | translate }}"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.onGoToOrderStorage()"
+                        >
+                            <span
+                                data-translate="anthos_tenant_dashboard_general_information_tile_resources_persistent_storage_menu_add_volume"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+
+                <!--IPs-->
+                <oui-tile-definition
+                    data-term="{{:: 'anthos_tenant_dashboard_general_information_tile_resources_ips' | translate }}"
+                >
+                    <oui-action-menu
+                        aria-label="Actions"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.onGoToOrderPublicIp()"
+                        >
+                            <span
+                                data-translate="anthos_tenant_dashboard_general_information_tile_resources_ips_menu_add_public_ip"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.onGoToAssignPrivateIp()"
+                        >
+                            <span
+                                data-translate="anthos_tenant_dashboard_general_information_tile_resources_ips_menu_add_private_ip"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+
+                    <oui-tile-description>
+                        <p class="mb-1">
+                            <span data-ng-bind="$ctrl.publicIPs.length"></span>
+                            <span> </span>
+                            <span
+                                data-translate="anthos_tenant_dashboard_general_information_tile_resources_ips_public_quantity"
+                            ></span>
+                        </p>
+                        <p class="mb-1">
+                            <span data-ng-bind="$ctrl.privateIPs.length"></span>
+                            <span> </span>
+                            <span
+                                data-translate="anthos_tenant_dashboard_general_information_tile_resources_ips_private_quantity"
+                            ></span>
+                        </p>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+{
+  "anthos_dashboard_set_state_host_title": "Definir el estado de su host",
+  "anthos_dashboard_set_state_host_description": "Por defecto, todos los hosts se consideran «stateless». En caso de incidencia, OVHcloud podrá intentar reinstalar o cambiar la máquina, tras haber solicitado la evacuación a Kubernetes. Puede marcar algunos hosts como «stateful». En caso de incidencia, nos pondremos en contacto con usted y haremos todo lo posible para conservar los datos locales de los hosts «stateful» durante el mantenimiento, en la medida de lo posible.",
+  "anthos_dashboard_set_state_host_stateful_label": "Stateless",
+  "anthos_dashboard_set_state_host_submit": "Confirmar",
+  "anthos_dashboard_set_state_host_cancel": "Cancelar",
+  "anthos_dashboard_set_state_host_error": "Se ha producido un error al definir el estado de su host: {{message}}"
+}

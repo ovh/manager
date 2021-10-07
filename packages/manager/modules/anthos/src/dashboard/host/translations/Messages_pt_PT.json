@@ -1,0 +1,6 @@
+{
+  "anthos_dashboard_host_description": "Pode personalizar a implementação Anthos adicionando hosts. Vai ser reencaminhado para uma nova página, onde poderá confirmar a encomenda. O preço indicado é válido por um período de um mês. Ao comprometer-se com uma duração mais longa, beneficia de preços degressivos.",
+  "anthos_dashboard_host_order": "Encomendar um host",
+  "anthos_dashboard_host_included": "Incluído no starter pack",
+  "anthos_dashboard_host_additional": "Hosts adicionais"
+}

@@ -1,0 +1,33 @@
+<form name="assignPrivateIpForm" data-ng-submit="$ctrl.onAssignPrivateIpSubmit()">
+    <oui-modal
+        data-ng-init="$ctrl.ipModel.form = assignPrivateIpForm"
+        data-heading="{{:: 'anthos_tenant_dashboard_component_assign_private_ip_modal_title' | translate }}"
+        data-primary-label="{{:: 'anthos_tenant_dashboard_component_assign_private_ip_modal_action_add' | translate }}"
+        data-secondary-action="$ctrl.onAssignPrivateIpCancel()"
+        data-secondary-label="{{:: 'anthos_tenant_dashboard_component_assign_private_ip_modal_action_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isAdding"
+    >
+        <p
+            class="oui-paragraph"
+            data-translate="anthos_tenant_dashboard_component_assign_private_ip_modal_description"
+        ></p>
+
+        <!-- SSL certificate name -->
+        <oui-field
+            data-label="{{ :: 'anthos_tenant_dashboard_component_assign_private_ip_modal_body_field_private_ip_title' | translate }}"
+            data-error-messages="{
+                INVALID_IP_FORMAT: ('anthos_tenant_dashboard_component_assign_private_ip_modal_body_field_private_ip_errors_wrong_format' | translate),
+                INVALID_PRIVATE_IP: ('anthos_tenant_dashboard_component_assign_private_ip_modal_body_field_private_ip_errors_invalid_private_ip' | translate) }"
+            >
+            <input
+                class="oui-input"
+                type="text"
+                data-ng-attr-name="{{$ctrl.ipModel.labels.privateInputIp}}"
+                data-ng-attr-id="{{$ctrl.ipModel.labels.privateInputIp}}"
+                data-ng-model="$ctrl.ipModel.privateIp.range"
+                data-ng-required="true"
+            />
+        </oui-field>
+    </oui-modal>
+</form>
