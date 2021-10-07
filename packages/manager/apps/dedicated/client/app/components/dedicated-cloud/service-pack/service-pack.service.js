@@ -1,6 +1,7 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import flatten from 'lodash/flatten';
+import get from 'lodash/get';
 import head from 'lodash/head';
 import isEqual from 'lodash/isEqual';
 import map from 'lodash/map';
@@ -169,14 +170,20 @@ const ServicePackService = class ServicePack {
   }
 
   static getPricingsFromAddonsForPlanCode(addons, planCode) {
-    return find(
-      addons,
-      (addon) => head(addon.plan.planCode.split('-consumption')) === planCode,
-    ).plan.details.pricings;
+    return get(
+      find(
+        addons,
+        (addon) => head(addon.plan.planCode.split('-consumption')) === planCode,
+      ),
+      'plan.details.pricings',
+    );
   }
 
   static getPricingFromPricingsForServicePackName(pricings, servicePackName) {
-    return pricings[`pcc-servicepack-${servicePackName}`][0];
+    if (pricings) {
+      return pricings[`pcc-servicepack-${servicePackName}`][0];
+    }
+    return undefined;
   }
 
   static getHostsOfBillingType(hosts, billingType) {
@@ -219,9 +226,11 @@ const ServicePackService = class ServicePack {
               servicePack.name,
             );
 
-            acc[host.billingType] =
-              (acc[host.billingType] || 0) + pricing.price.value;
-            acc.currencyCode = pricing.price.currencyCode;
+            if (pricing) {
+              acc[host.billingType] =
+                (acc[host.billingType] || 0) + pricing.price.value;
+              acc.currencyCode = pricing.price.currencyCode;
+            }
 
             return acc;
           },

@@ -24,7 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go(
           'app.private-database.dashboard.database.archive.dashboard.dump',
           {
-            database: database.databaseName,
+            databaseName: database.databaseName,
           },
         ),
       goToUsers: /* @ngInject */ ($state) => (database) =>

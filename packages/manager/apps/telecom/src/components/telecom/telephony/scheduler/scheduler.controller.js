@@ -164,7 +164,10 @@ export default /* @ngInject */ function TelephonySchedulerCtrl(
 
     // stop the timeCondition edition
     if (self.timeCondition) {
-      self.timeCondition.stopEdition(true).startEdition();
+      self.timeCondition
+        .stopEdition(true)
+        .stopSlotsEdition(true, true)
+        .startEdition();
     }
 
     // and refetch events to update ui calendar display
@@ -199,7 +202,10 @@ export default /* @ngInject */ function TelephonySchedulerCtrl(
         .save()
         .then(() => {
           // stop edition and restart with saved value
-          self.timeCondition.stopEdition(false, true).startEdition();
+          self.timeCondition
+            .stopEdition(false, true)
+            .stopSlotsEdition(false, false, true)
+            .startEdition();
         })
         .catch((error) => {
           TucToast.error(
@@ -510,7 +516,7 @@ export default /* @ngInject */ function TelephonySchedulerCtrl(
   self.$onDestroy = function $onDestroy() {
     self.scheduler.stopEdition(true);
     if (self.timeCondition) {
-      self.timeCondition.stopEdition(true);
+      self.timeCondition.stopEdition(true).stopSlotsEdition(true, true);
     }
 
     // stop task polling

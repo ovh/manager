@@ -8,6 +8,5 @@ export default {
     slot: '=timeConditionSlot',
     enableEdition: '<?slotEnableEdition',
     hasPopover: '<?',
-    isScheduler: '<?',
   },
 };

@@ -1377,5 +1377,8 @@
   "hosting_dashboard_service_common_inactive": "Inactif",
   "hosting_dashboard_email_offer_get_error": "Impossible de récupérer l'adresse e-mail",
   "hosting_dashboard_stats_status": "Bêta",
-  "hosting_dashboard_tabs_dropdown": "Plus"
+  "hosting_dashboard_service_setting_cdn": "Paramétrer le CDN",
+  "hosting_dashboard_tabs_dropdown": "Plus",
+  "hosting_dashboard_service_cdn_customer_has_no_cdn_banner_msg": "L’option Shared CDN permet d’améliorer les performances de votre site tout en vous apportant plus de souplesse d’utilisation.",
+  "hosting_dashboard_service_cdn_customer_has_no_cdn_banner_msg_link": "En savoir plus"
 }

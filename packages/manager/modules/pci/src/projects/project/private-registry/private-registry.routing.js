@@ -141,14 +141,17 @@ export default /* @ngInject */ ($stateProvider) => {
       getRegistryPlan: /* @ngInject */ (
         pciPrivateRegistryService,
         projectId,
-      ) => (registry) =>
-        pciPrivateRegistryService.getRegistryPlan(projectId, registry.id).then(
-          (plan) =>
-            new PrivateRegistry({
-              ...registry,
-              plan,
-            }),
-        ),
+      ) => (registry) => {
+        return pciPrivateRegistryService
+          .getRegistryPlan(projectId, registry.id)
+          .then(
+            (plan) =>
+              new PrivateRegistry({
+                ...registry,
+                plan,
+              }),
+          );
+      },
 
       list: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.private-registry', {

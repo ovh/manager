@@ -1,3 +1,4 @@
+import controller from '../dashboard.controller';
 import template from './template.html';
 
 export default {
@@ -7,5 +8,6 @@ export default {
     tickets: '<',
     trackingPrefix: '<',
   },
+  controller,
   template,
 };
