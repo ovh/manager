@@ -8,7 +8,7 @@
         data-secondary-label="{{$ctrl.actionEnabled ? ('nutanix_node_server_displaname_cancel' | translate) : '' }}"
         data-secondary-action="$ctrl.goBack()"
         data-on-dismiss="$ctrl.goBack()"
-        data-loading="$ctrl.loading.init || $ctrl.loading.update"
+        data-loading="$ctrl.loading.update"
         data-type="{{ !$ctrl.actionEnabled ? 'warning' : '' }}"
         data-heading="{{ :: 'nutanix_node_server_displaname_edit_title' | translate }}"
     >

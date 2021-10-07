@@ -9,11 +9,11 @@ export default class EditNameCtrl {
     if (!this.actionEnabled) {
       return this.goBack();
     }
-
+    console.log(this.nodeId, this.dedicatedServer.name, this.displayName);
     this.loading.update = true;
 
     return this.NutanixNode.updateDisplayName({
-      serviceId: this.nodeId,
+      serviceId: this.dedicatedServer.serviceId,
       serviceName: this.dedicatedServer.name,
       displayName: this.displayName,
     })
@@ -40,12 +40,10 @@ export default class EditNameCtrl {
 
   $onInit() {
     this.loading = {
-      init: false,
       update: false,
     };
     this.actionEnabled = true;
 
-    this.loading.init = true;
     if (this.server.state === 'OK') {
       this.dedicatedServer = this.server;
       this.displayName = this.server.displayName;

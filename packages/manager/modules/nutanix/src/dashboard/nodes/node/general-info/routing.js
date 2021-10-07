@@ -72,6 +72,16 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+
+      handleError: /* @ngInject */ (Alerter) => (error) =>
+        Alerter.error(
+          error.message || error.data?.message,
+          'nutanix_node_alert',
+        ),
+
+      handleSuccess: /* @ngInject */ (Alerter) => (message) =>
+        Alerter.success(message, 'nutanix_node_alert'),
+
       breadcrumb: /* @ngInject */ (nodeId) => nodeId,
     },
   });
