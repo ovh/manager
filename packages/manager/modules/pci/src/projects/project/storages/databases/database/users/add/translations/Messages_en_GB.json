@@ -5,7 +5,7 @@
   "pci_databases_users_add_roles_available": "Available roles",
   "pci_databases_users_add_roles_selected": "Selected roles",
   "pci_databases_users_add_create": "Create User",
-  "pci_databases_users_add_success_message": "User {{username}} has been added with the password <code>{{password}}.</code>",
+  "pci_databases_users_add_success_message": "User {{username}} has been added with the password <code>{{password}}</code>",
   "pci_databases_users_add_error_save": "An error occurred while creating the user {{user}}: {{message}}.",
   "pci_databases_users_add_cancel": "Cancel"
 }
