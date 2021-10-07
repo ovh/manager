@@ -50,6 +50,9 @@ export default class {
         this.goBack({
           textHtml: this.$translate.instant(
             'pci_databases_useracl_create_success_message',
+            {
+              username: this.user.username,
+            },
           ),
         }),
       )

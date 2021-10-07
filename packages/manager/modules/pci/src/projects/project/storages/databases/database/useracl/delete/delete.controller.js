@@ -42,6 +42,9 @@ export default class {
         this.goBack({
           textHtml: this.$translate.instant(
             'pci_databases_useracl_delete_success_message',
+            {
+              username: this.user.username,
+            },
           ),
         }),
       )
@@ -50,6 +53,7 @@ export default class {
           this.$translate.instant(
             'pci_databases_useracl_delete_error_message',
             {
+              username: this.user.username,
               message: get(err, 'data.message', null),
             },
           ),
