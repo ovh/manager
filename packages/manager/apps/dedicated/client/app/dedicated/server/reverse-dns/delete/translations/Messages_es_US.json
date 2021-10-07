@@ -1,6 +1,0 @@
-{
-  "server_reversedns_delete_title": "Eliminar la DNS inversa",
-  "server_reversedns_delete_reversedns_confirmation": "¿Desea eliminar la DNS inversa: {{t0}}?",
-  "server_reversedns_delete_loading_error": "Se ha producido un error al cargar el servicio.",
-  "server_reversedns_delete_confirm": "Eliminar la DNS inversa"
-}

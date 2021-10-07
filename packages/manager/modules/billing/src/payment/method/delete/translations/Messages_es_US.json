@@ -1,5 +1,0 @@
-{
-  "billing_payment_method_delete_title": "Eliminación de la forma de pago",
-  "billing_payment_method_delete_explain": "Está a punto de eliminar la forma de pago <strong>{{ label }}</strong>.",
-  "billing_payment_method_delete_question": "¿Seguro que quiere continuar?"
-}
