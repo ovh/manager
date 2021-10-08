@@ -6,5 +6,8 @@
   "pci_database_plans_list_spec_nodes_single": "{{min}} nœud",
   "pci_database_plans_list_spec_nodes_range": "{{min}} nœuds inclus, jusqu'à {{max}} nœuds",
   "pci_database_plans_list_spec_nodes_range_single_min": "{{min}} nœuds inclus, jusqu'à {{max}} nœuds",
-  "pci_database_plans_list_spec_backup": "Sauvegardes manuelles et automatiques"
+  "pci_database_plans_list_spec_backup": "Sauvegardes manuelles et automatiques",
+  "pci_database_plans_list_spec_ram_unique": "{{ram}} RAM",
+  "pci_database_plans_list_spec_core_unique": "{{core}} VCores",
+  "pci_database_plans_list_spec_storage_unique": "{{storage}} SSD"
 }

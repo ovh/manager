@@ -28,7 +28,7 @@
   "pci_databases_general_information_generate_password": "Per utilizzare il cluster di dati è necessario rigenerare la password admin.",
   "pci_databases_general_information_delete_nodes": "Elimina un nodo",
   "pci_databases_general_information_node_type_label": "Modello di nodo",
-  "pci_databases_general_information_node_type": "{{coreNumber}} CPU / {{memorySize}} GB RAM / {{storageSize}} GB Storage",
+  "pci_databases_general_information_node_type": "{{coreNumber}} CPU/{{memorySize}} GB RAM/{{storageSize}} GB Storage SSD",
   "pci_databases_general_information_upgrade_node": "Migliora il modello di nodo",
   "pci_databases_general_information_service_URI_label": "URI del servizio",
   "pci_databases_general_information_replicate_URI_label": "URI replica",
@@ -48,5 +48,12 @@
   "pci_databases_general_information_no_users": "Il tuo cluster non è completamente configurato: è necessario aggiungere utenti per poterli utilizzare. Per farlo, accedi a ",
   "pci_databases_general_information_no_ip_no_users": "Il tuo cluster non è completamente configurato: è necessario autorizzare gli indirizzi IP e aggiungere utenti tramite ",
   "pci_databases_general_information_user_label": "Utenti",
-  "pci_databases_general_information_allowed_ips_none": "Nessuno"
+  "pci_databases_general_information_allowed_ips_none": "Nessuno",
+  "pci_databases_general_information_n/a": "Non applicabile",
+  "pci_databases_general_information_new_fork_label": "Fork",
+  "pci_databases_general_information_new_fork_link": "Crea un fork del servizio",
+  "pci_databases_general_information_certificate_label": "Certificato CA",
+  "pci_databases_general_information_certificate_link": "Visualizza",
+  "pci_databases_general_information_certificate_download": "Scarica",
+  "pci_databases_general_information_certificate_tooltip": "Il tuo certificato: <code>{{certificate}}</code>"
 }
