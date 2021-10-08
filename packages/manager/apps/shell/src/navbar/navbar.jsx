@@ -13,7 +13,7 @@ import { fetchUniverses, getBrandURL } from './service';
 import style from './navbar.module.scss';
 import { MESSAGES } from './constants';
 
-function Navbar({ environment, isAccountSidebarOpen, setIsAccountSidebarOpen }) {
+function Navbar({ environment, ux }) {
   const user = environment.getUser();
   const universe = environment.getUniverse();
   const userLocale = environment.getUserLocale();
@@ -47,13 +47,10 @@ function Navbar({ environment, isAccountSidebarOpen, setIsAccountSidebarOpen }) 
           <LanguageMenu userLocale={userLocale}></LanguageMenu>
         </div>
         <div className="oui-navbar-list__item">
-          <Notifications />
+          <Notifications ux={ux} />
         </div>
         <div className="oui-navbar-list__item">
-          <Account
-            user={user}
-            isAccountSidebarOpen={isAccountSidebarOpen}
-            setIsAccountSidebarOpen={setIsAccountSidebarOpen} />
+          <Account user={user} ux={ux} />
         </div>
       </div>
     </div>
@@ -62,6 +59,7 @@ function Navbar({ environment, isAccountSidebarOpen, setIsAccountSidebarOpen }) 
 
 Navbar.propTypes = {
   environment: PropTypes.object.isRequired,
+  ux: PropTypes.object.isRequired,
 };
 
 export default Navbar;
