@@ -1,3 +1,12 @@
+## [8.3.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.3.4...@ovh-ux/ng-ovh-payment-method@8.3.5) (2021-10-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies ([#5712](https://github.com/ovh/manager/issues/5712)) ([53e7155](https://github.com/ovh/manager/commit/53e7155e00dbb5cb78a14b8dc8bba1040cd09005))
+
+
+
 ## [8.3.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.3.3...@ovh-ux/ng-ovh-payment-method@8.3.4) (2021-09-15)
 
 
