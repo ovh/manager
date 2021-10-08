@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { capitalize, truncate } from 'lodash-es';
 import style from './navbar.module.scss';
-import { MESSAGES, TRANSLATE_NAMESPACE } from './constants';
+import { TRANSLATE_NAMESPACE } from './constants';
 
-function NavbarAccount({ user, isAccountSidebarOpen, setIsAccountSidebarOpen }) {
+function NavbarAccount({ user, ux }) {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const firstName = capitalize(user.firstname);
   const lastName = truncate(capitalize(user.name), {
@@ -19,7 +19,7 @@ function NavbarAccount({ user, isAccountSidebarOpen, setIsAccountSidebarOpen }) 
       className={`oui-navbar-link oui-navbar-link_icon oui-navbar-link_tertiary ${style.navbarLink}`}
       aria-label={t('navbar_account')}
       onClick={() => {
-        setIsAccountSidebarOpen(!isAccountSidebarOpen)
+        ux.toggleSidebar('account');
       }}
     >
       <span className="oui-navbar-link__wrapper oui-navbar-link__wrapper_border">
