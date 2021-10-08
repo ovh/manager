@@ -30,7 +30,7 @@ export default class PluginManager {
   invokePluginMethod({
     plugin,
     method,
-    args,
+    args = [],
   }: IPluginInvocation): Promise<unknown> {
     if (!Object.keys(this.plugins).includes(plugin)) {
       throw new Error(`Plugin '${plugin}' is not available`);
