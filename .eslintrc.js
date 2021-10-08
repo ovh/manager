@@ -7,6 +7,7 @@ module.exports = {
     'angular/mocks': true,
     browser: true,
     jquery: true,
+    jest: true,
   },
   globals: {
     fixture: false,

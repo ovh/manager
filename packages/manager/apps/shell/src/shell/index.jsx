@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { plugin, shell as shellApi } from '@ovh-ux/shell';
 
-import ApplicationContext from '@/context';
+import ApplicationContext from '../context';
 import ShellHeader from './header';
 import style from './shell.module.scss';
 
@@ -40,7 +40,12 @@ function Shell() {
         <ShellHeader />
       </div>
       <div className={style.managerShell_content}>
-        <iframe src="about:blank" ref={iframeRef}></iframe>
+        <iframe
+          label="app"
+          role="document"
+          src="about:blank"
+          ref={iframeRef}
+        ></iframe>
       </div>
       <div className={style.managerShell_footer}></div>
     </div>

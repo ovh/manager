@@ -1,9 +1,9 @@
 import React, { Suspense } from 'react';
-import Navbar from '@/navbar/navbar.jsx';
-import AccountSidebar from '@/account-sidebar';
-import NotificationsSidebar from '@/notifications-sidebar';
-import ApplicationContext from '@/context';
-import { NotificationsProvider } from '@/core/notifications';
+import Navbar from '../navbar/navbar.jsx';
+import AccountSidebar from '../account-sidebar';
+import NotificationsSidebar from '../notifications-sidebar';
+import { NotificationsProvider } from '../core/notifications';
+import ApplicationContext from '../context';
 
 function ShellHeader() {
   return (
