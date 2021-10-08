@@ -565,6 +565,7 @@ export default (containerEl, environment) => {
     .run(
       /* @ngInject */ ($rootScope, $state) => {
         $state.defaultErrorHandler((error) => {
+          console.log('ZM:: teststststststt');
           if (error.type === RejectType.ERROR) {
             $rootScope.$emit('ovh::sidebar::hide');
             $state.go(
