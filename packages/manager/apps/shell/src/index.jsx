@@ -7,7 +7,7 @@ import { initReactI18next } from 'react-i18next';
 import { fetchConfiguration } from '@ovh-ux/manager-config';
 
 import { initSso } from '@/core/sso';
-import ApplicationContext from './context';
+import { ApplicationProvider } from './context';
 import Shell from '@/shell';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -35,9 +35,9 @@ fetchConfiguration('shell')
   .then((environment) => {
     ReactDOM.render(
       <React.StrictMode>
-        <ApplicationContext.Provider value={{ environment }}>
+        <ApplicationProvider environment={environment}>
           <Shell />
-        </ApplicationContext.Provider>
+        </ApplicationProvider>
       </React.StrictMode>,
       document.querySelector('#app'),
     );

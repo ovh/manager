@@ -10,8 +10,11 @@ function Shell() {
   const iframeRef = useRef(null);
   const [iframe, setIframe] = useState(null);
   const [router, setRouter] = useState(null);
-  const { environment } = useContext(ApplicationContext);
+  const { environment, ux } = useContext(ApplicationContext);
   let shell = null;
+
+  ux.registerSidebar('account', { isOpen: true });
+  ux.registerSidebar('notifications', { isOpen: false });
 
   useEffect(() => {
     shell = shellApi.initShell();
