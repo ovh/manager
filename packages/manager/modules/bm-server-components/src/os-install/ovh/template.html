@@ -1,6 +1,11 @@
-<h1 class="oui-back-button__title mb-3" data-ng-bind="$ctrl.localisedPageTitle"></h1>
-<p data-translate="server_os_install_ovh_description"
-    data-translate-values="{ serverName: $ctrl.serviceName }"></p>
+<h1
+    class="oui-back-button__title mb-3"
+    data-ng-bind="$ctrl.localisedPageTitle"
+></h1>
+<p
+    data-translate="server_os_install_ovh_description"
+    data-translate-values="{ serverName: $ctrl.serviceName }"
+></p>
 
 <oui-stepper data-on-finish="$ctrl.saveRemainingSize()">
     <!-- Configure the OS -->
@@ -17,8 +22,10 @@
         data-submit-text="{{ ::'server_os_install_ovh_next' | translate }}"
     >
         <!-- select OS type -->
-        <oui-field label="{{ ::'server_os_install_ovh_os_type' | translate}}"
-            size="xl">
+        <oui-field
+            label="{{ ::'server_os_install_ovh_os_type' | translate}}"
+            size="xl"
+        >
             <select
                 class="form-control"
                 id="selectDesktopType"
@@ -60,26 +67,33 @@
             <!-- depricated warning and OS not supported error -->
             <oui-message
                 type="warning"
-                data-ng-if="$ctrl.installation.selectDistribution.isDeprecated">
-                <span data-translate="server_os_install_ovh_os_deprecated"
-                    data-translate-values="{ osName: $ctrl.installation.selectDistribution.displayName }" ></span>
+                data-ng-if="$ctrl.installation.selectDistribution.isDeprecated"
+            >
+                <span
+                    data-translate="server_os_install_ovh_os_deprecated"
+                    data-translate-values="{ osName: $ctrl.installation.selectDistribution.displayName }"
+                ></span>
             </oui-message>
             <oui-message
                 type="warning"
-                data-ng-if="$ctrl.server.raidController && $ctrl.installation.selectDistribution && !$ctrl.installation.selectDistribution.hardRaidConfiguration">
-                <span data-translate="server_configuration_installation_ovh_step1_hardwareRaid_os_not_supported_short"></span>
+                data-ng-if="$ctrl.server.raidController && $ctrl.installation.selectDistribution && !$ctrl.installation.selectDistribution.hardRaidConfiguration"
+            >
+                <span
+                    data-translate="server_configuration_installation_ovh_step1_hardwareRaid_os_not_supported_short"
+                ></span>
             </oui-message>
-            <oui-message
-                type="error"
-                data-ng-if="!$ctrl.hasVirtualDesktop()">
-                <span data-ng-bind-html="'server_configuration_installation_ovh_step1_virtual_desktop_not_supported' | translate:{ t0: $ctrl.installation.selectDistribution.displayName, t1: $ctrl.LICENSE_URL }"></span>
+            <oui-message type="error" data-ng-if="!$ctrl.hasVirtualDesktop()">
+                <span
+                    data-ng-bind-html="'server_configuration_installation_ovh_step1_virtual_desktop_not_supported' | translate:{ t0: $ctrl.installation.selectDistribution.displayName, t1: $ctrl.LICENSE_URL }"
+                ></span>
             </oui-message>
         </div>
         <!-- select language -->
         <oui-field
             class="pt-1"
             label="{{ ::'server_os_install_ovh_os_language' | translate}}"
-            size="xl">
+            size="xl"
+        >
             <select
                 class="form-control"
                 id="selectLanguage"
@@ -93,7 +107,8 @@
         <!-- select disk group -->
         <oui-field
             label="{{ ::'server_configuration_installation_ovh_step1_disk_group' | translate}}"
-            size="xl">
+            size="xl"
+        >
             <select
                 id="diskGroup"
                 name="diskGroup"
@@ -109,15 +124,19 @@
         <oui-message
             type="error"
             class="pb-2"
-            data-ng-if="$ctrl.canEditDiskGroup() && $ctrl.raidIsPersonnalizable()">
-            <span data-translate="server_configuration_installation_ovh_step1_disk_group_warning"
-                data-translate-values="{ t0: $ctrl.informations.diskGroups[0].description }">
+            data-ng-if="$ctrl.canEditDiskGroup() && $ctrl.raidIsPersonnalizable()"
+        >
+            <span
+                data-translate="server_configuration_installation_ovh_step1_disk_group_warning"
+                data-translate-values="{ t0: $ctrl.informations.diskGroups[0].description }"
+            >
             </span>
         </oui-message>
         <oui-message
             type="error"
             class="pb-2"
-            data-ng-if="$ctrl.installation.selectDistribution.hardRaidConfiguration === false">
+            data-ng-if="$ctrl.installation.selectDistribution.hardRaidConfiguration === false"
+        >
             <span
                 data-translate="server_configuration_installation_ovh_step1_hardwareRaid_os_not_supported"
             >
@@ -126,7 +145,8 @@
         <oui-message
             type="error"
             class="pb-2"
-            data-ng-if="$ctrl.informations.hardwareRaid.error.wrongLocation">
+            data-ng-if="$ctrl.informations.hardwareRaid.error.wrongLocation"
+        >
             <span
                 data-translate="server_configuration_installation_ovh_step1_hardwareRaid_wrong_location"
             >
@@ -143,8 +163,7 @@
 
         <!-- existing partition warning -->
         <div data-ng-if="$ctrl.installation.warningExistPartition">
-            <oui-message
-                type="error">
+            <oui-message type="error">
                 <span
                     data-ng-bind-html="'server_configuration_installation_ovh_step1_warning_exist' | translate:{ t0: $ctrl.installation.selectDistribution.displayName }"
                 >
@@ -182,7 +201,8 @@
         <server-os-install-hardware-raid
             installation="$ctrl.installation"
             informations="$ctrl.informations"
-            data-ng-if="$ctrl.installation.selectLanguage && $ctrl.installation.selectDistribution">
+            data-ng-if="$ctrl.installation.selectLanguage && $ctrl.installation.selectDistribution"
+        >
         </server-os-install-hardware-raid>
     </oui-step-form>
 
@@ -205,9 +225,7 @@
             data-translate-values="{ t0: $ctrl.serverName, t1: $ctrl.installation.selectDistribution.displayName }"
         ></p>
 
-        <div
-            data-ng-if="$ctrl.installation.partitionSchemesList.length > 0"
-        >
+        <div data-ng-if="$ctrl.installation.partitionSchemesList.length > 0">
             <div
                 data-ng-bind-html="'server_configuration_installation_ovh_step2_info' | translate:{ t0: $ctrl.installation.selectDistribution.displayName }"
             ></div>
@@ -234,15 +252,31 @@
             </oui-field> -->
 
             <dl class="oui-description">
-                <dt data-translate="server_configuration_installation_ovh_step2_type_disk"></dt>
+                <dt
+                    data-translate="server_configuration_installation_ovh_step2_type_disk"
+                ></dt>
                 <dd>
-                    <span data-ng-bind="$ctrl.informations.nbPhysicalDisk"></span>
+                    <span
+                        data-ng-bind="$ctrl.informations.nbPhysicalDisk"
+                    ></span>
                     <span data-ng-bind="$ctrl.informations.typeDisk"></span>
                 </dd>
-                <dt data-translate="server_configuration_installation_ovh_step2_total_size"></dt>
-                <dd><span data-ng-bind="$ctrl.getDisplaySize($ctrl.informations.totalSize)"></span></dd>
-                <dt data-translate="server_configuration_installation_ovh_step2_remaining_size"></dt>
-                <dd><span data-ng-bind="$ctrl.getDisplaySize($ctrl.informations.remainingSize)"></span></dd>
+                <dt
+                    data-translate="server_configuration_installation_ovh_step2_total_size"
+                ></dt>
+                <dd>
+                    <span
+                        data-ng-bind="$ctrl.getDisplaySize($ctrl.informations.totalSize)"
+                    ></span>
+                </dd>
+                <dt
+                    data-translate="server_configuration_installation_ovh_step2_remaining_size"
+                ></dt>
+                <dd>
+                    <span
+                        data-ng-bind="$ctrl.getDisplaySize($ctrl.informations.remainingSize)"
+                    ></span>
+                </dd>
             </dl>
 
             <div class="table-responsive">
@@ -804,11 +838,8 @@
 
             <div>
                 <ul>
-                    <li data-ng-if="warning.raid0">
-                        <i
-                            style="margin-right: 5px;"
-                            class="icon-warning"
-                        ></i
+                    <li data-ng-if="$ctrl.warning.raid0">
+                        <i style="margin-right: 5px;" class="icon-warning"></i
                         ><span
                             class="red"
                             data-translate="server_configuration_installation_ovh_step2_warning_partition_raid0"
@@ -1060,19 +1091,23 @@
         data-submit-text="{{ ::'server_os_install_ovh_install' | translate }}"
         data-cancel-text="{{ :: 'server_os_install_ovh_cancel' | translate }}"
         data-on-cancel="$ctrl.onGoBack()"
-        data-editable="!$ctrl.loader.isInstalling">
+        data-editable="!$ctrl.loader.isInstalling"
+    >
         <server-os-install-installation-options
             data-ng-if="$ctrl.installation.selectDistribution"
             service-name="$ctrl.serviceName"
             installation="$ctrl.installation"
             informations="$ctrl.informations"
             config-error="$ctrl.configError"
-            is-ovh-install="true">
+            is-ovh-install="true"
+        >
         </server-os-install-installation-options>
-        <div data-ng-if="$ctrl.loader.isInstalling" class="d-flex align-items-center">
+        <div
+            data-ng-if="$ctrl.loader.isInstalling"
+            class="d-flex align-items-center"
+        >
             <oui-spinner data-size="m"></oui-spinner>
             <span data-translate="server_os_install_ovh_in_progress"></span>
         </div>
     </oui-step-form>
-
 </oui-stepper>
