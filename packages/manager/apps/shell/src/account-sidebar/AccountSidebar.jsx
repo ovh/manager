@@ -8,11 +8,11 @@ import UsefulLinks from './UsefulLinks';
 
 import { TRANSLATE_NAMESPACE } from './constants';
 
-const AccountSidebar = ({ environment, isAccountSidebarOpen }) => {
+const AccountSidebar = ({ environment, ux }) => {
   return (
     <div
       className="manager-account-sidebar-wrapper"
-      aria-expanded={isAccountSidebarOpen}
+      aria-expanded={ux.sidebars.account.isOpen}
     >
       <div className="manager-account-sidebar">
         <UserInfos environment={environment} />

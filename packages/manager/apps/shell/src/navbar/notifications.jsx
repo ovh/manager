@@ -1,33 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { emit, listen } from '@ovh-ux/ufrontend/communication';
+
+import useNotifications from '@/core/notifications';
+
 import style from './navbar.module.scss';
-import { MESSAGES, TRANSLATE_NAMESPACE } from './constants';
+import { TRANSLATE_NAMESPACE } from './constants';
 
-function NavbarNotifications() {
+function NavbarNotifications(props) {
+  const { ux } = props;
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
-  const [notificationsCount, setNotificationsCount] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    listen(MESSAGES.notificationsCount, ({ count }) => {
-      setNotificationsCount(count);
-    });
+  const { getNavbarNotificationCount, toggleSidebar, isSidebarOpen } = ux;
+  const { readAllNotifications } = useNotifications();
 
-    listen(MESSAGES.notificationsStatusChange, ({ status }) => {
-      setIsOpen(status);
-    });
-  }, []);
+  const notificationCount = getNavbarNotificationCount();
 
   function onClick() {
-    if (isOpen) {
-      emit({
-        id: MESSAGES.notificationsHide,
-      });
-    } else {
-      emit({
-        id: MESSAGES.notificationsOpen,
-      });
+    const openState = isSidebarOpen('notifications');
+    toggleSidebar('notifications');
+    if (openState) {
+      readAllNotifications();
     }
   }
 
@@ -38,12 +30,11 @@ function NavbarNotifications() {
       className={`oui-navbar-link oui-navbar-link_icon oui-navbar-link_tertiary ${style.navbarLink}`}
       title={t('navbar_notifications')}
       aria-label={t('navbar_notifications')}
-      disabled={notificationsCount === null}
       onClick={onClick}
     >
       <span className="oui-icon oui-icon-bell" aria-hidden="true">
-        {notificationsCount > 0 && (
-          <span className="oui-icon__badge">{notificationsCount}</span>
+        {notificationCount > 0 && (
+          <span className="oui-icon__badge">{notificationCount}</span>
         )}
       </span>
     </button>

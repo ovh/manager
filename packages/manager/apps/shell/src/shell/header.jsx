@@ -1,24 +1,20 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense } from 'react';
 import Navbar from '@/navbar/navbar.jsx';
 import AccountSidebar from '@/account-sidebar';
+import NotificationsSidebar from '@/notifications-sidebar';
 import ApplicationContext from '@/context';
+import { NotificationsProvider } from '@/core/notifications';
 
 function ShellHeader() {
-  const [isAccountSidebarOpen, setIsAccountSidebarOpen] = useState(true);
-
   return (
     <ApplicationContext.Consumer>
-      {({ environment }) => (
+      {({ environment, ux }) => (
         <Suspense fallback="">
-          <Navbar
-            environment={environment}
-            isAccountSidebarOpen={isAccountSidebarOpen}
-            setIsAccountSidebarOpen={setIsAccountSidebarOpen}
-          />
-          <AccountSidebar
-            environment={environment}
-            isAccountSidebarOpen={isAccountSidebarOpen}
-          />
+          <NotificationsProvider environment={environment}>
+            <Navbar environment={environment} ux={ux} />
+            <AccountSidebar environment={environment} ux={ux} />
+            <NotificationsSidebar environment={environment} ux={ux} />
+          </NotificationsProvider>
         </Suspense>
       )}
     </ApplicationContext.Consumer>
