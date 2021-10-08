@@ -138,12 +138,6 @@
                             <th
                                 class="text-center"
                                 scope="col"
-                                data-translate="hosting_tab_DOMAINS_table_header_cdn"
-                                data-ng-if="hosting.hasCdn"
-                            ></th>
-                            <th
-                                class="text-center"
-                                scope="col"
                                 data-translate="hosting_tab_DOMAINS_table_header_ssl"
                             ></th>
                             <th class="min-width text-right">
@@ -227,25 +221,6 @@
                                         }"
                                 >
                                 </span>
-                            </td>
-                            <td class="text-center" data-ng-if="hosting.hasCdn">
-                                <span
-                                    class="oui-badge"
-                                    data-ng-bind="(('hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn | translate) == 'hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn)? domain.cdn: ('hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn | translate)"
-                                    data-ng-class="{
-                                            'align-bottom': canEditCdn(domain),
-                                            'oui-badge_success': domain.cdn === 'ACTIVE',
-                                            'oui-badge_error': domain.cdn === 'NONE'
-                                        }"
-                                >
-                                </span>
-                                <button
-                                    class="oui-button oui-button_secondary float-right"
-                                    data-ng-click="goToCdnConfiguration(domain)"
-                                    data-ng-disabled="!canEditCdn(domain)"
-                                >
-                                    <span class="oui-icon oui-icon-pen"></span>
-                                </button>
                             </td>
                             <td class="text-center">
                                 <span
