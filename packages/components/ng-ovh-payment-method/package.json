@@ -40,7 +40,7 @@
   "dependencies": {
     "@adyen/adyen-web": "4.7.3",
     "@ovh-ux/ovh-payment-method": "^0.0.0",
-    "@ovh-ux/ovh-reket": "^0.0.0",
+    "@ovh-ux/ovh-reket": "^0.0.1",
     "lodash-es": "^4.17.11"
   },
   "devDependencies": {
