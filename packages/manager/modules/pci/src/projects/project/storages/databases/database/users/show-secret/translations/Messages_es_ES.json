@@ -1,0 +1,6 @@
+{
+  "pci_databases_users_show_secret_title_cert": "Certificado",
+  "pci_databases_users_show_secret_title_key": "Clave de acceso",
+  "pci_databases_users_show_secret_confirm": "Cerrar",
+  "pci_databases_users_show_secret_download": "Descargar"
+}

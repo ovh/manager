@@ -1,0 +1,11 @@
+{
+  "pci_database_acl_title": "ACL",
+  "pci_databases_acl_tab_title": "ACL",
+  "pci_databases_acl_tab_username": "Usuario",
+  "pci_databases_acl_tab_topic": "Tema",
+  "pci_databases_acl_tab_permission": "Permiso",
+  "pci_databases_acl_tab_add": "Añadir una nueva entrada",
+  "pci_databases_acl_tab_delete": "Eliminar",
+  "pci_databases_acl_tab_delete_success": "El usuario ACL {{acl}} se ha eliminado correctamente.",
+  "pci_databases_acl_tab_delete_error": "Se ha producido un error al eliminar el usuario ACL: {{message}}"
+}
