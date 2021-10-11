@@ -15,6 +15,7 @@ import logs from './logs';
 import metrics from './metrics';
 import databases from './databases';
 import acl from './acl';
+import userAcl from './useracl';
 import topics from './topics';
 import indexes from './indexes';
 
@@ -35,6 +36,7 @@ angular
     metrics,
     databases,
     acl,
+    userAcl,
     topics,
     indexes,
   ])
