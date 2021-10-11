@@ -270,11 +270,11 @@ export default class TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl {
 
   // Check if external numbers are defined into the list
   checkExternalNumber() {
-    return !this.addAgentForm.numbers.some((newNumber) => {
+    return this.addAgentForm.numbers.some((newNumber) => {
       const internalNumber = this.getInternalNumber(newNumber);
       return (
-        internalNumber !== undefined &&
-        ALLOWED_FEATURE_TYPES.includes(internalNumber.serviceType)
+        internalNumber === undefined ||
+        !ALLOWED_FEATURE_TYPES.includes(internalNumber.serviceType)
       );
     });
   }
