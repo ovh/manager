@@ -1,4 +1,16 @@
 {
   "emails_domain_title": "Emails",
-  "emails_domain_delegate_title": "Email delegations"
+  "emails_domain_delegate_title": "Email delegations",
+  "emails_contacts_management": "Contacts",
+  "emails_common_plan": "Subscription",
+  "emails_common_manage_contacts": "Manage contacts",
+  "emails_common_creation_date": "Creation date",
+  "emails_core_change_owner": "Change domain name holder",
+  "emails_common_delete": "Delete",
+  "emails_guide_subtitle": "Guides",
+  "emails_navigation_left_search": "Searching...",
+  "emails_common_back": "Back",
+  "emails_common_upgrade_account": "Change solution",
+  "emails_select_placeholder": "Select...",
+  "emails_required_fields": "Fields followed by an asterisk are mandatory."
 }
