@@ -1,5 +1,3 @@
-import { set } from 'lodash-es';
-
 import { ACKNOWLEDGED_STATUS, NOTIFICATION_STATUS_ENUM } from './constants';
 
 /**
@@ -45,7 +43,9 @@ export const useNotification = (notification) => {
    * @param  {String} newStatus The new status of the notification (see NOTIFICATION_STATUS_ENUM for available status)
    */
   const setStatus = (newStatus) => {
-    set(notification, 'status', newStatus);
+    Object.assign(notification, {
+      status: newStatus,
+    });
   };
 
   /**
@@ -53,7 +53,9 @@ export const useNotification = (notification) => {
    * @param  {Boolean} updatingState
    */
   const setUpdating = (updatingState) => {
-    set(notification, 'updating', updatingState);
+    Object.assign(notification, {
+      updating: updatingState,
+    });
   };
 
   return {

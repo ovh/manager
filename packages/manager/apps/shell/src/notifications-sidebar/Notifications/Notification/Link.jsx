@@ -8,8 +8,6 @@ const NotificationIcon = ({ children, url, notificationId }) => {
   const { toggleNotificationReadStatus } = useNotifications();
 
   const onNotificationLinkClick = () => {
-    console.log('onNotificationLinkClick');
-    debugger;
     return toggleNotificationReadStatus(notificationId, true);
   };
 

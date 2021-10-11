@@ -1,12 +1,9 @@
 import React from 'react';
-import { withTranslation } from 'react-i18next';
 
 import UserInfos from './UserInfos';
-import PaymentMethod from './PaymentMethod';
+import PaymentMethod from './PaymentMethod/PaymentMethod.jsx';
 import Shortcuts from './Shortcuts';
 import UsefulLinks from './UsefulLinks';
-
-import { TRANSLATE_NAMESPACE } from './constants';
 
 const AccountSidebar = ({ environment, ux }) => {
   return (
@@ -24,4 +21,4 @@ const AccountSidebar = ({ environment, ux }) => {
   );
 };
 
-export default withTranslation(TRANSLATE_NAMESPACE)(AccountSidebar);
+export default AccountSidebar;
