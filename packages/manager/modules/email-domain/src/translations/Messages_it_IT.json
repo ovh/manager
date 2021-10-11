@@ -1,4 +1,16 @@
 {
   "emails_domain_title": "Email",
-  "emails_domain_delegate_title": "Deleghe email"
+  "emails_domain_delegate_title": "Deleghe email",
+  "emails_contacts_management": "Contatti",
+  "emails_common_plan": "Abbonamento",
+  "emails_common_manage_contacts": "Gestisci i contatti",
+  "emails_common_creation_date": "Data di creazione",
+  "emails_core_change_owner": "Modifica proprietario",
+  "emails_common_delete": "Elimina",
+  "emails_guide_subtitle": "Guide",
+  "emails_navigation_left_search": "Ricerca in corso...",
+  "emails_common_back": "Indietro",
+  "emails_common_upgrade_account": "Modifica offerta",
+  "emails_select_placeholder": "Seleziona...",
+  "emails_required_fields": "I campi contrassegnati dall'asterisco sono obbligatori."
 }
