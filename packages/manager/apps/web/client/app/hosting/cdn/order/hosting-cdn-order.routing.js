@@ -4,7 +4,6 @@ import {
 } from '@ovh-ux/manager-product-offers';
 
 import {
-  HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_ADVANCED,
   HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS,
   HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS_FREE,
   HOSTING_CDN_ORDER_CDN_VERSION_V1,
@@ -33,14 +32,11 @@ export default /* @ngInject */ ($stateProvider) => {
             'renew',
           );
 
-          return planCodeAPrice.priceInUcents > planCodeBPrice.priceInUcents;
+          return planCodeAPrice.priceInUcents - planCodeBPrice.priceInUcents;
         })
         .map(({ planCode }) => ({
           planCode,
-          available:
-            !planCode.includes(cdnProperties?.type) &&
-            planCode !==
-              HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_ADVANCED,
+          available: !planCode.includes(cdnProperties?.type),
           current: planCode.includes(cdnProperties?.type),
         })),
 
