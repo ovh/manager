@@ -1,8 +1,15 @@
 import { nanoid } from 'nanoid';
+import MessageBus from '../message-bus';
 
 export interface IDeferred {
   resolve: (value: unknown | PromiseLike<unknown>) => void;
   reject: (reason?: unknown) => void;
+}
+
+interface IPluginResponse {
+  uid: string;
+  error?: unknown;
+  success?: unknown;
 }
 
 export interface IPluginInvocation {
@@ -20,8 +27,11 @@ function iframeCheck() {
 export default class ShellClient {
   deferredResponse: Record<string, IDeferred>;
 
+  messageBus: MessageBus;
+
   constructor() {
     this.deferredResponse = {};
+    this.messageBus = null;
     iframeCheck();
   }
 
@@ -30,16 +40,13 @@ export default class ShellClient {
     return uid in this.deferredResponse ? this.getUniqueResponseId() : uid;
   }
 
-  handleEvent(event: MessageEvent): void {
-    const { data } = event;
-    if (data.type === 'ovh-shell-plugin-event') {
-      const deferred = this.deferredResponse[data.uid];
-      if (deferred) {
-        if ('error' in data) deferred.reject(data.error);
-        else if ('success' in data) deferred.resolve(data.success);
-        else deferred.reject();
-        delete this.deferredResponse[data.uid];
-      }
+  handleMessage(data: IPluginResponse): void {
+    const deferred = this.deferredResponse[data.uid];
+    if (deferred) {
+      if ('error' in data) deferred.reject(data.error);
+      else if ('success' in data) deferred.resolve(data.success);
+      else deferred.reject();
+      delete this.deferredResponse[data.uid];
     }
   }
 
@@ -49,8 +56,7 @@ export default class ShellClient {
     args,
   }: IPluginInvocation): PromiseLike<unknown> {
     const uid = this.getUniqueResponseId();
-    window.parent.postMessage({
-      type: 'ovh-shell-plugin-event',
+    this.messageBus.send({
       uid,
       plugin,
       method,
@@ -59,5 +65,13 @@ export default class ShellClient {
     return new Promise((resolve, reject) => {
       this.deferredResponse[uid] = { resolve, reject };
     });
+  }
+
+  setMessageBus(bus: MessageBus) {
+    this.messageBus = bus;
+    this.messageBus.onReceive((data: IPluginResponse) =>
+      this.handleMessage(data),
+    );
+    return this;
   }
 }
