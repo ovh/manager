@@ -1,10 +1,13 @@
 import Shell from './shell';
+import IFrameMessageBus from '../message-bus/iframe';
 
 export function initShell() {
   const shell = new Shell();
   return {
-    connectApi: (iframe: HTMLIFrameElement) => shell.connectApi(iframe),
-    disconnectApi: () => shell.disconnectApi(),
+    connectIFrameApplication: (iframe: HTMLIFrameElement) => {
+      shell.setMessageBus(new IFrameMessageBus(iframe));
+      return shell;
+    },
     registerPlugin: (
       pluginId: string,
       pluginApi: Record<string, CallableFunction>,
