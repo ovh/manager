@@ -31,6 +31,7 @@ const features = {
   showKey: [DATABASE_TYPES.KAFKA],
   showCert: [DATABASE_TYPES.KAFKA],
   showUserInformations: [DATABASE_TYPES.REDIS],
+  indexesTab: [DATABASE_TYPES.OPEN_SEARCH],
 };
 
 export default function isFeatureActivated(feature, databaseType) {

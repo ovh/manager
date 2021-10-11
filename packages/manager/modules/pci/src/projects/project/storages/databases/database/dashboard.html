@@ -24,6 +24,14 @@
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('indexesTab')"
+            data-href="{{ $ctrl.indexesLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.indexesLink"
+            ><span
+                data-translate="pci_databases_dashboard_indexes_tab_title"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
             data-ng-if="$ctrl.isFeatureActivated('databaseTab')"
             data-href="{{ $ctrl.databasesLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.databasesLink"
