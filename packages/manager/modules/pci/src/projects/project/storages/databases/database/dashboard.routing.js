@@ -106,6 +106,14 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      indexesLink: /* @ngInject */ ($state, databaseId, projectId) =>
+        $state.href(
+          'pci.projects.project.storages.databases.dashboard.indexes',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
       isFeatureActivated: /* @ngInject */ (engine) => (feature) =>
         isFeatureActivated(feature, engine.name),
     },

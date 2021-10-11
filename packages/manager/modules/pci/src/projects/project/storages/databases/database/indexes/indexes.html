@@ -1,0 +1,142 @@
+<div class="container-fluid px-0 mt-3">
+    <!-- error messages -->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <h2 data-translate="pci_databases_pattern_tab_title"></h2>
+
+    <oui-datagrid
+        class="mt-5"
+        data-page-size="10"
+        data-rows="$ctrl.patternsList"
+    >
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_indexes_pattern_model' | translate"
+            data-property="pattern"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_indexes_pattern_max_index' | translate"
+            data-property="maxIndexCount"
+            data-sortable="asc"
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column class="content-r">
+            <div class="text-right">
+                <button
+                    class="oui-button oui-button_s oui-button_secondary"
+                    data-ng-click="$ctrl.deletePattern($row)"
+                >
+                    <span
+                        class="oui-icon oui-icon-bin"
+                        aria-hidden="true"
+                    ></span>
+                </button>
+            </div>
+        </oui-datagrid-column>
+        <oui-datagrid-topbar>
+            <oui-button data-on-click="$ctrl.trackAndCreatePattern()">
+                <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i>
+                <span data-translate="pci_databases_indexes_pattern_add"></span>
+            </oui-button>
+            <button
+                data-ng-if="$ctrl.patternsList.length > 0"
+                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
+                type="button"
+                data-title="{{:: 'pci_databases_common_refresh' | translate }}"
+                data-ng-click="$ctrl.refreshPatterns()"
+                data-ng-disabled="$ctrl.patternRefreshing"
+            >
+                <span
+                    class="oui-icon oui-icon-refresh"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+
+    <h2 data-translate="pci_databases_indexes_tab_title"></h2>
+    <!-- Indexes-->
+    <oui-datagrid
+        class="mt-5"
+        data-page-size="10"
+        data-rows="$ctrl.indexesList"
+    >
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_indexes_index_name' | translate"
+            data-property="name"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_indexes_index_shard_number' | translate"
+            data-property="shardsNumber"
+            data-sortable="asc"
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_indexes_index_replicas_number' | translate"
+            data-property="replicasNumber"
+            data-sortable="asc"
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_indexes_index_size' | translate"
+            data-property="size"
+            data-sortable="asc"
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_indexes_index_document' | translate"
+            data-property="documents"
+            data-sortable="asc"
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_database_common_creation_date' | translate"
+            data-property="createdAt"
+            data-sortable
+        >
+            <span data-ng-bind="$row.createdAt | date: 'medium'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column>
+            <div class="text-right">
+                <button
+                    class="oui-button oui-button_s oui-button_secondary"
+                    data-ng-click="$ctrl.deleteIndex($row)"
+                >
+                    <span
+                        class="oui-icon oui-icon-bin"
+                        aria-hidden="true"
+                    ></span>
+                </button>
+            </div>
+        </oui-datagrid-column>
+        <oui-datagrid-topbar>
+            <button
+                data-ng-if="$ctrl.indexesList.length > 0"
+                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
+                type="button"
+                data-title="{{:: 'pci_databases_common_refresh' | translate }}"
+                data-ng-click="$ctrl.refreshIndexes()"
+                data-ng-disabled="$ctrl.indexesRefreshing"
+            >
+                <span
+                    class="oui-icon oui-icon-refresh"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+</div>

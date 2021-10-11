@@ -1,0 +1,18 @@
+{
+  "pci_databases_pattern_tab_title": "Modèles",
+  "pci_databases_indexes_tab_title": "Indexes",
+  "pci_databases_indexes_pattern_model": "Modèle",
+  "pci_databases_indexes_pattern_max_index": "Nombre maximal d’index",
+  "pci_databases_indexes_pattern_add": "Ajouter un modèle",
+
+  "pci_databases_indexes_index_name": "Index",
+  "pci_databases_indexes_index_shard_number": "Shards",
+  "pci_databases_indexes_index_replicas_number": "Réplicas",
+  "pci_databases_indexes_index_size": "Taille",
+  "pci_databases_indexes_index_document": "Documents",
+  "pci_databases_indexes_index_date": "Date de création",
+
+  "pci_databases_indexes_delete_index_error_message": "Une erreur est survenue lors de la suppression de l'index. Merci de bien vouloir recommencer.",
+  "pci_databases_indexes_delete_pattern_error_message": "Une erreur est survenue lors de la suppression du modèle. Merci de bien vouloir recommencer.",
+  "pci_databases_indexes_delete_index_error_forbidden": "Vous ne pouvez pas supprimer l'index .kibana_1 depuis votre console OVHcloud. Cette action se fait directement depuis OpenSearch."
+}
