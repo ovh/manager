@@ -54,7 +54,17 @@ export default /* @ngInject */ ($stateProvider) => {
             },
           );
         }
-        return db;
+        return DatabaseService.getDatabaseDetails(
+          projectId,
+          db.engine,
+          databaseId,
+        ).then((details) => {
+          db.updateData({
+            ...details,
+            ...db,
+          });
+          return db;
+        });
       },
       engine: /* @ngInject */ (database, engines) =>
         find(engines, { name: database.engine }),
@@ -109,6 +119,14 @@ export default /* @ngInject */ ($stateProvider) => {
       topicsLink: /* @ngInject */ ($state, databaseId, projectId) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.topics',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
+      indexesLink: /* @ngInject */ ($state, databaseId, projectId) =>
+        $state.href(
+          'pci.projects.project.storages.databases.dashboard.indexes',
           {
             projectId,
             databaseId,

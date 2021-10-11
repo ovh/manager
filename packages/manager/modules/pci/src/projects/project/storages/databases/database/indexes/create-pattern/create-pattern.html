@@ -1,0 +1,60 @@
+<oui-modal
+    ng-form="createPattern"
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-label="{{:: 'pci_databases_indexes_create_pattern_confirm' | translate}}"
+    data-primary-disabled="!createPattern.$valid"
+    data-primary-action="$ctrl.addPattern()"
+    data-secondary-action="$ctrl.cancel()"
+    data-secondary-label="{{:: 'pci_databases_indexes_create_pattern_cancel' | translate}}"
+    data-loading="$ctrl.processing"
+    data-heading="{{:: 'pci_databases_indexes_create_pattern' | translate}}"
+>
+    <p data-translate="pci_databases_indexes_create_pattern_description_1"></p>
+    <p data-translate="pci_databases_indexes_create_pattern_description_2"></p>
+    <p
+        data-translate="pci_databases_indexes_create_pattern_description_example"
+    ></p>
+    <ul>
+        <li
+            data-translate="pci_databases_indexes_create_pattern_description_example_1"
+        ></li>
+        <li
+            data-translate="pci_databases_indexes_create_pattern_description_example_2"
+        ></li>
+        <li
+            data-translate="pci_databases_indexes_create_pattern_description_example_3"
+        ></li>
+        <li
+            data-translate="pci_databases_indexes_create_pattern_description_example_4"
+        ></li>
+    </ul>
+    <oui-field
+        data-label="{{:: 'pci_databases_indexes_create_pattern_label' | translate }}"
+    >
+        <input
+            type="text"
+            id="patternName"
+            name="patternName"
+            class="oui-input"
+            data-ng-model="$ctrl.model.pattern"
+            data-ng-minlength="$ctrl.formRules.pattern.min"
+            data-ng-maxlength="$ctrl.formRules.pattern.max"
+            data-ng-pattern="$ctrl.formRules.pattern.pattern"
+            placeholder="{{:: 'pci_databases_indexes_create_pattern_pattern_placeholder' | translate }}"
+            required
+            autofocus
+        />
+    </oui-field>
+    <oui-field
+        data-label="{{:: 'pci_databases_indexes_create_pattern_max_index' | translate }}"
+    >
+        <input
+            class="oui-input"
+            name="maxIndexCount"
+            type="number"
+            ng-model="$ctrl.model.maxIndexCount"
+            min="{{$ctrl.formRules.maxIndexCount.min}}"
+            max="{{$ctrl.formRules.maxIndexCount.max}}"
+        />
+    </oui-field>
+</oui-modal>
