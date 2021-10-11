@@ -108,6 +108,14 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           databaseId,
         }),
+      userAclLink: ($state, databaseId, projectId) =>
+        $state.href(
+          'pci.projects.project.storages.databases.dashboard.useracl',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
       topicsLink: /* @ngInject */ ($state, databaseId, projectId) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.topics',
