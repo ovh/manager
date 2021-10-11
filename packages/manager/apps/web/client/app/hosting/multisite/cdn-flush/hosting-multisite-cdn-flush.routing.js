@@ -1,10 +1,10 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.hosting.dashboard.cdn.flush', {
+  $stateProvider.state('app.hosting.dashboard.multisite.cdn-flush', {
     url: '/flush?domain',
     layout: 'modal',
     views: {
       modal: {
-        component: 'hostingFlushCdnComponent',
+        component: 'hostingCdnFlushComponent',
       },
     },
     resolve: {
