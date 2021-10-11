@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos-app@1.0.1...@ovh-ux/manager-anthos-app@1.0.2) (2021-10-11)
+
+
+### Bug Fixes
+
+* **deps:** add missing dependency ([#5720](https://github.com/ovh/manager/issues/5720)) ([15b7897](https://github.com/ovh/manager/commit/15b789709b0dff6b70c7d8680851a8d9ce107031))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos-app@1.0.0...@ovh-ux/manager-anthos-app@1.0.1) (2021-10-08)
 
 
