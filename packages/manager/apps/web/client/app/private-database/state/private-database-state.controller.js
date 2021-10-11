@@ -183,4 +183,23 @@ export default class PrivateDatabaseStateCtrl {
       database: this.$scope.database,
     });
   }
+
+  refreshQuota() {
+    this.privateDatabaseService
+      .refreshQuota(this.$stateParams.productId)
+      .then((task) => {
+        this.alerter.success(
+          this.$translate.instant('privateDatabase_quota_refresh_success'),
+          this.$scope.alerts.main,
+        );
+        this.$scope.pollAction(task);
+      })
+      .catch((err) => {
+        this.alerter.alertFromSWS(
+          this.$translate.instant('privateDatabase_quota_refresh_fail'),
+          get(err, 'data', err),
+          this.$scope.alerts.main,
+        );
+      });
+  }
 }
