@@ -540,4 +540,50 @@ export default class DatabaseService {
       )
       .then(({ data }) => data);
   }
+
+  getIndexes(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/index`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteIndex(projectId, engine, databaseId, indexId) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/index/${indexId}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getPatterns(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/pattern`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  addPattern(projectId, engine, databaseId, pattern) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/pattern`,
+        {
+          pattern: pattern.pattern,
+          maxIndexCount: pattern.maxIndexCount,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  deletePattern(projectId, engine, databaseId, patternId) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/pattern/${patternId}`,
+      )
+      .then(({ data }) => data);
+  }
 }
