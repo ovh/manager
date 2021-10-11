@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.notebooks.add', {
     url: '/new',
@@ -29,12 +31,13 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
 
       regions: /* @ngInject */ (projectId, NotebookService) =>
-        NotebookService.getRegions(projectId).then((regions) =>
-          regions.map((region) => ({
-            name: region,
+        NotebookService.getRegions(projectId).then((regions) => {
+          return map(regions, (region) => ({
+            ...region,
+            name: region.id,
             hasEnoughQuota: () => true,
-          })),
-        ),
+          }));
+        }),
 
       prices: /* @ngInject */ (projectId, CucPriceHelper) =>
         CucPriceHelper.getPrices(projectId),
