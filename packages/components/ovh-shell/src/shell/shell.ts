@@ -1,14 +1,21 @@
 import PluginManager from './plugin-manager';
+import MessageBus from '../message-bus';
+
+export interface IPluginMessage {
+  uid: string;
+  plugin: string;
+  method: string;
+}
 
 export default class Shell {
-  iframe: HTMLIFrameElement;
-
   pluginEventHandler: (event: MessageEvent) => void;
 
   pluginManager: PluginManager;
 
+  messageBus: MessageBus;
+
   constructor() {
-    this.iframe = null;
+    this.messageBus = null;
     this.pluginManager = new PluginManager();
     this.pluginEventHandler = null;
   }
@@ -17,20 +24,17 @@ export default class Shell {
     return this.pluginManager;
   }
 
-  handleMessage(event: MessageEvent) {
-    const { data } = event;
-    if (data.type !== 'ovh-shell-plugin-event') return;
-
+  handleMessage(data: IPluginMessage) {
     const onError = (error: Error) =>
-      this.iframe.contentWindow.postMessage({
-        type: data.type,
+      this.messageBus &&
+      this.messageBus.send({
         uid: data.uid,
         error,
       });
 
     const onSuccess = (success: unknown) =>
-      this.iframe.contentWindow.postMessage({
-        type: data.type,
+      this.messageBus &&
+      this.messageBus.send({
         uid: data.uid,
         success,
       });
@@ -41,14 +45,11 @@ export default class Shell {
       .catch(onError);
   }
 
-  connectApi(iframe: HTMLIFrameElement) {
-    this.iframe = iframe;
-    this.pluginEventHandler = (event) => this.handleMessage(event);
-    window.addEventListener('message', this.pluginEventHandler);
-  }
-
-  disconnectApi() {
-    window.removeEventListener('message', this.pluginEventHandler);
-    this.iframe = null;
+  setMessageBus(bus: MessageBus) {
+    this.messageBus = bus;
+    this.messageBus.onReceive((data: IPluginMessage) =>
+      this.handleMessage(data),
+    );
+    return this;
   }
 }
