@@ -16,13 +16,13 @@
   "bandwidth_unit_size_EiB": "EiB",
   "bandwidth_unit_size_ZiB": "ZiB",
   "bandwidth_unit_size_YiB": "YiB",
-  "bandwidth_unit_size_bps": "bps",
-  "bandwidth_unit_size_Kbps": "kbps",
+  "bandwidth_unit_size_bps": "bit/s",
+  "bandwidth_unit_size_Kbps": "kbit/s",
   "bandwidth_unit_size_Mbps": "Mbit/s",
   "bandwidth_unit_size_Gbps": "Gbit/s",
   "bandwidth_unit_size_Tbps": "Tbit/s",
-  "bandwidth_unit_size_Pbps": "Pbps",
-  "bandwidth_unit_size_Ebps": "Ebps",
-  "bandwidth_unit_size_Zbps": "Zbps",
-  "bandwidth_unit_size_Ybps": "Ybps"
+  "bandwidth_unit_size_Pbps": "Pbit/s",
+  "bandwidth_unit_size_Ebps": "Ebit/s",
+  "bandwidth_unit_size_Zbps": "Zbit/s",
+  "bandwidth_unit_size_Ybps": "Ybit/s"
 }

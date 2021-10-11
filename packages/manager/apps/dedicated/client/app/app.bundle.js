@@ -10,7 +10,6 @@ import './components/ovh-ui-angular/ovh-ui-angular.module';
 import './components/services.module';
 import './controllers.module';
 import './dedicated/dedicated.module';
-import './dedicated/server/bandwidth/dashboard/dashboard.module';
 import './dedicated/server/bandwidth/private-order/private-order.module';
 import './dedicated/server/bandwidth/public-order/public-order.module';
 import './dedicated/server/interfaces/attach/interfaces-attach.module';
@@ -19,7 +18,6 @@ import './dedicated/server/interfaces/ola-activation/ola-activation.module';
 import './dedicated/server/interfaces/ola-configuration/ola-configuration.module';
 import './dedicated/server/interfaces/rename/interfaces-rename.module';
 import './license/license.module';
-
 import './components/components.bundle';
 import './account/account.bundle';
 import './configuration/configuration.bundle';
