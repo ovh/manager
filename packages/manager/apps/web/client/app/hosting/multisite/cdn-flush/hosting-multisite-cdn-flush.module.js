@@ -3,15 +3,14 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import uiRouter from '@uirouter/angularjs';
+import cdnFlush from '../../cdn/flush';
 
-import component from './hosting-cdn-flush.component';
-import routing from './hosting-cdn-flush.routing';
+import routing from './hosting-multisite-cdn-flush.routing';
 
-const moduleName = 'ovhManagerHostingCdnFlush';
+const moduleName = 'ovhManagerHostingMultisiteCdnFlush';
 
 angular
-  .module(moduleName, [ngTranslateAsyncLoader, uiRouter])
-  .component('hostingFlushCdnComponent', component)
+  .module(moduleName, [cdnFlush, ngTranslateAsyncLoader, uiRouter])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

@@ -1,22 +1,19 @@
 import angular from 'angular';
-import '@uirouter/angularjs';
-import 'oclazyload';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
+import '@ovh-ux/ui-kit';
 
-const moduleName = 'ovhManagerHostingCdnFlushLazyLoading';
+import component from './hosting-cdn-flush.component';
 
-angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
-  /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.hosting.dashboard.cdn.flush.**', {
-      url: '/flush?domain',
-      lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+const moduleName = 'ovhManagerHostingCdnFlush';
 
-        return import('./hosting-cdn-flush.module').then((mod) =>
-          $ocLazyLoad.inject(mod.default || mod),
-        );
-      },
-    });
-  },
-);
+angular
+  .module(moduleName, [
+    'oui',
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
+  ])
+  .component('hostingCdnFlushComponent', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
