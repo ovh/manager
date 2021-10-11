@@ -19,8 +19,7 @@ function Shell() {
   useEffect(() => {
     shell = shellApi.initShell();
     shell.registerPlugin('i18n', plugin.i18n(environment));
-    shell.connectApi(iframeRef.current);
-    return () => shell.disconnectApi();
+    shell.connectIFrameApplication(iframeRef.current);
   }, []);
 
   useEffect(() => {
