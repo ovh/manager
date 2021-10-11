@@ -96,6 +96,7 @@
     </div>
 
     <oui-datagrid
+        id="ovhAccountMovements"
         data-ng-if="ovhAccount.choice"
         data-rows-loader="loadOvhAccount($config)"
         empty-placeholder="{{:: (ovhAccount.model.hasOvhAccount ? 'ovhAccount_table_empty' : 'ovhAccount_no_account' )| translate }}"
