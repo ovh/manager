@@ -239,6 +239,15 @@ export default class DatabaseService {
       });
   }
 
+  getDatabaseDetails(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then((response) => response.data);
+  }
+
   getDatabases(projectId, engine) {
     return this.$http
       .get(
