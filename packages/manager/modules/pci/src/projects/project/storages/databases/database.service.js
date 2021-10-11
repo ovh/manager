@@ -241,10 +241,7 @@ export default class DatabaseService {
 
   getDatabaseDetails(projectId, engine, databaseId) {
     return this.$http
-      .get(
-        `/cloud/project/${projectId}/database/${engine}/${databaseId}`,
-        DatabaseService.getIcebergHeaders(),
-      )
+      .get(`/cloud/project/${projectId}/database/${engine}/${databaseId}`)
       .then((response) => response.data);
   }
 
