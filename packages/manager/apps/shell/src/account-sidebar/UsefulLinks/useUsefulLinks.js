@@ -1,5 +1,4 @@
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-import { get } from 'lodash-es';
 
 import constants from './constants';
 
@@ -14,7 +13,7 @@ const useUsefulLinks = (environment) => {
     return [
       {
         id: 'helpCenter',
-        href: get(constants, `${region}.help.${user.ovhSubsidiary}`),
+        href: constants[region]?.help[user.ovhSubsidiary],
         tracking: `${trackingPrefix}::go-to-helpcenter`,
         icon: 'oui-icon oui-icon-lifebuoy_concept',
       },
@@ -31,7 +30,7 @@ const useUsefulLinks = (environment) => {
         : []),
       {
         id: 'tasks',
-        href: get(constants, `${region}.tasks`),
+        href: constants[region]?.tasks,
         tracking: `${trackingPrefix}::go-to-ovh-status`,
         icon: 'oui-icon oui-icon-traffic-cone_concept',
       },
