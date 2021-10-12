@@ -4,6 +4,7 @@ import template from './template.html';
 export default {
   bindings: {
     serviceName: '<',
+    technicalDetails: '<',
     cluster: '<',
     serviceInfo: '<',
     user: '<',

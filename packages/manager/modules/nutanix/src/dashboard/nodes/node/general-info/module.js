@@ -6,7 +6,6 @@ import '@ovh-ux/ui-kit';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import {
   serverGeneralInfo,
-  serverTechnicalDetails,
   serverSupport,
 } from '@ovh-ux/manager-bm-server-components';
 
@@ -29,7 +28,6 @@ angular
     netboot,
     ngOvhUtils,
     serverGeneralInfo,
-    serverTechnicalDetails,
     serverSupport,
   ])
   .config(routing)

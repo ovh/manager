@@ -12,15 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go(
           'nutanix.dashboard.nodes.node.general-info.edit-display-name',
         ),
-      technicalDetails: /* @ngInject */ ($http, nodeId) =>
-        $http
-          .get(`/dedicated/technical-details/${nodeId}`, {
-            serviceType: 'aapi',
-          })
-          .then(({ data }) =>
-            data?.baremetalServers?.storage ? data?.baremetalServers : null,
-          )
-          .catch(() => null),
+      technicalDetails: /* @ngInject */ (NutanixService, nodeId) =>
+        NutanixService.getNodeHardwareInfo(nodeId),
       goToOsInstallProgress: /* @ngInject */ ($state, nodeId) => () =>
         $state.go(
           'nutanix.dashboard.nodes.node.general-info.install.progress',

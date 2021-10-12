@@ -18,4 +18,15 @@ export default class NutanixService {
       .get(`/nutanix/${serviceName}/serviceInfos`)
       .then(({ data }) => new BillingService(data));
   }
+
+  getNodeHardwareInfo(nodeId) {
+    return this.$http
+      .get(`/dedicated/technical-details/${nodeId}`, {
+        serviceType: 'aapi',
+      })
+      .then(({ data }) =>
+        data?.baremetalServers?.storage ? data?.baremetalServers : null,
+      )
+      .catch(() => null);
+  }
 }

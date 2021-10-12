@@ -10,4 +10,8 @@ export default class Cluster {
   getNodes() {
     return this.targetSpec?.nodes || [];
   }
+
+  getFirstNode() {
+    return this.targetSpec?.nodes[0]?.server;
+  }
 }
