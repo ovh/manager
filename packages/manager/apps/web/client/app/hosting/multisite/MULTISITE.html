@@ -138,9 +138,15 @@
                             <th
                                 class="text-center"
                                 scope="col"
+                                data-translate="hosting_tab_DOMAINS_table_header_cdn"
+                                data-ng-if="hosting.hasCdn"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
                                 data-translate="hosting_tab_DOMAINS_table_header_ssl"
                             ></th>
-                            <th class="min-width text-right">
+                            <th scope="col" class="min-width text-right">
                                 <button
                                     class="btn btn-icon"
                                     type="button"
@@ -157,29 +163,32 @@
                         </tr>
                     </thead>
 
+                    <!--Domains table is loading-->
                     <tbody data-ng-if="loading.domains">
                         <tr>
                             <td
                                 class="text-center"
-                                colspan="{{hosting.numberOfColumns}}"
+                                colspan="{{numberOfColumns}}"
                             >
                                 <oui-spinner></oui-spinner>
                             </td>
                         </tr>
                     </tbody>
 
+                    <!--No domains table (empty)-->
                     <tbody
                         data-ng-if="!loading.domains && domains.list.results.length <= 0"
                     >
                         <tr>
                             <td
                                 class="text-center"
-                                colspan="{{hosting.numberOfColumns}}"
+                                colspan="{{numberOfColumns}}"
                                 data-translate="table_search_noresult"
                             ></td>
                         </tr>
                     </tbody>
 
+                    <!--Domains table-->
                     <tbody
                         data-ng-if="!loading.domains && domains.list.results.length > 0"
                     >
