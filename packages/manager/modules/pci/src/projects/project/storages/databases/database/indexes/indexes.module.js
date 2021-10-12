@@ -3,6 +3,8 @@ import angular from 'angular';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ovh-swimming-poll';
 import '@ovh-ux/ui-kit';
+import 'angular-translate';
+import '@ovh-ux/ng-translate-async-loader';
 
 import component from './indexes.component';
 import routing from './indexes.routing';

@@ -16,8 +16,9 @@
             <span data-translate="pci_databases_useracl_tab_user_link"></span>
         </a>
     </oui-message>
-
-    <oui-field label="Activer les ACL">
+    <oui-field
+        data-label="{{ ::'pci_databases_useracl_tab_activate_acl' | translate }}"
+    >
         <oui-switch
             model="$ctrl.database.aclsEnabled"
             name="oui-switch"
@@ -66,7 +67,10 @@
                 data-on-click="$ctrl.trackAndAddAcl()"
                 data-disabled="$ctrl.isDisabled()"
             >
-                <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i>
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
                 <span data-translate="pci_databases_useracl_tab_add"></span>
             </oui-button>
             <button

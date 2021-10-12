@@ -5,6 +5,7 @@
   "pci_databases_useracl_tab_permission": "Permission",
   "pci_databases_useracl_tab_pattern": "Modèle d'index",
   "pci_databases_useracl_tab_add": "Ajouter une ACL",
+  "pci_databases_useracl_tab_activate_acl": "Activer les ACL",
   "pci_databases_useracl_tab_delete": "Supprimer",
   "pci_databases_useracl_tab_no_user": "Aucun utilisateur n’est configuré.",
   "pci_databases_useracl_tab_user_link": "Cliquez ici pour en ajouter un.",
