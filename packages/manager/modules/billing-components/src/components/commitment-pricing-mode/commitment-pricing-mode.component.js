@@ -5,7 +5,6 @@ export default {
   bindings: {
     pricingMode: '=',
     pricingModes: '<',
-    fromCatalog: '<',
   },
   controller,
   template,

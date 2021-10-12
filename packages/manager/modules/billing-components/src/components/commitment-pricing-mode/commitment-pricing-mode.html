@@ -7,7 +7,7 @@
     <div class="row mb-1">
         <div
             class="col-md-4"
-            data-ng-repeat="engagement in $ctrl.modes track by engagement.commitmentType"
+            data-ng-repeat="engagement in $ctrl.pricingModes track by engagement.commitmentType"
         >
             <oui-select-picker
                 name="{{:: 'engagement-' + engagement.commitmentType }}"
@@ -20,7 +20,7 @@
                 >
                     <span
                         data-translate="billing_commitment_payment_upfront_savings"
-                        data-translate-values="{ price: $ctrl.savings.text }"
+                        data-translate-values="{ price: $ctrl.getDiscount().text }"
                     ></span>
                 </oui-select-picker-description>
                 <oui-select-picker-description
@@ -31,6 +31,21 @@
                         data-translate-values="{ price: engagement.pricing.monthlyPrice.text,  duration: engagement.durationInMonths}"
                     ></span>
                 </oui-select-picker-description>
+                <oui-select-picker-footer>
+                    <span
+                        data-ng-if="engagement.isPeriodic()"
+                        class="oui-heading_6"
+                        data-translate="billing_commitment_pricing_price_month"
+                        data-translate-values="{
+                            price: engagement.pricing.price.text
+                        }"
+                    ></span>
+                    <span
+                        data-ng-if="engagement.isUpfront()"
+                        class="oui-heading_6"
+                        data-ng-bind="engagement.pricing.price.text"
+                    ></span>
+                </oui-select-picker-footer>
             </oui-select-picker>
         </div>
     </div>
