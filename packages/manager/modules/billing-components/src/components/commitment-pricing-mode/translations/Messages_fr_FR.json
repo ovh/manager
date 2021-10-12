@@ -3,5 +3,6 @@
   "billing_commitment_payment_periodic": "Paiement mensualisé",
   "billing_commitment_payment_upfront": "Paiement en totalité",
   "billing_commitment_payment_upfront_savings": "Economisez {{ price }} supplémentaires",
-  "billing_commitment_payment_monthly": "{{ price }}/mois pendant {{ duration }} mois"
+  "billing_commitment_payment_monthly": "{{ price }}/mois pendant {{ duration }} mois",
+  "billing_commitment_pricing_price_month": "{{price}}/mois"
 }
