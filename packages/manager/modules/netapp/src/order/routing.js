@@ -6,6 +6,13 @@ export default /* @ngInject */ ($stateProvider) => {
         component: 'ovhManagerNetAppOrder',
       },
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('features')
+        .then((features) =>
+          features.isFeatureAvailable('netapp:order') ? false : 'netapp.index',
+        ),
     resolve: {
       catalog: /* @ngInject */ ($http, coreConfig) =>
         $http

@@ -19,6 +19,7 @@
                 <span data-translate="netapp_dashboard_volumes"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
+                ng-if="$ctrl.isSnapshotPoliciesAvailable"
                 href="{{:: $ctrl.snapshotPoliciesLink }}"
                 active="$ctrl.currentActiveLink() === $ctrl.snapshotPoliciesLink"
             >
@@ -82,6 +83,7 @@
                         </oui-tile-description>
                     </oui-tile-definition>
                     <oui-tile-button
+                        ng-if="$ctrl.canCreateVolume"
                         disabled="!$ctrl.isCreateVolumeAvailable"
                         on-click="$ctrl.goToCreateVolume()"
                     >
@@ -97,6 +99,7 @@
                 </ovh-advices>
             </div>
             <billing-subscription-tile
+                ng-if="$ctrl.canManageSubscription"
                 class="col-md-4"
                 on-error="$ctrl.onBillingInformationError(error)"
                 service-path="{{ ::'/storage/netapp/' + $ctrl.storage.id }}"

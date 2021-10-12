@@ -40,6 +40,12 @@ export default /* @ngInject */ ($stateProvider) => {
             commitmentAvailability.isFeatureAvailable('billing:commitment'),
           )
           .catch(() => false),
+      canCreateVolume: /* @ngInject */ (features) =>
+        features.isFeatureAvailable('netapp:volumes:create-volume'),
+      canManageSubscription: /* @ngInject */ (features) =>
+        features.isFeatureAvailable('netapp:dashboard:subscription-tile'),
+      isSnapshotPoliciesAvailable: /* @ngInject */ (features) =>
+        features.isFeatureAvailable('netapp:snapshot-policies'),
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
   });
