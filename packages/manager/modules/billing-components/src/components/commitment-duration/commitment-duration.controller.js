@@ -19,7 +19,7 @@ export default class {
       map(
         this.availableEngagements,
         (commitment, duration) =>
-          new CommitmentDuration(duration, commitment, this.defaultPricing),
+          new CommitmentDuration(duration, commitment, this.defaultPrice),
       ),
       'monthlyDuration',
     );
