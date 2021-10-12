@@ -25,6 +25,10 @@ export const MANAGER_BASE_URLS = [
   'https://www.ovhtelecom.fr/manager/',
   'https://ca.ovh.com/manager/',
   'https://us.ovhcloud.com/manager/',
+
+  // Lab EU
+  'https://www.build-ovh.com/manager/',
+  'https://www.build-ovhtelecom.fr/manager/',
 ];
 
 export default {
