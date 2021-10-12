@@ -7,7 +7,7 @@
     <div class="row mb-1">
         <div
             class="col-md-4"
-            data-ng-repeat="engagement in $ctrl.modes track by engagement.commitmentType"
+            data-ng-repeat="engagement in $ctrl.pricingModes track by engagement.commitmentType"
         >
             <oui-select-picker
                 name="{{:: 'engagement-' + engagement.commitmentType }}"
@@ -35,9 +35,9 @@
                         data-translate-values="{ price: engagement.pricing.monthlyPrice.text,  duration: engagement.durationInMonths}"
                     ></p>
                     <p
-                        data-ng-if="$ctrl.defaultPrice && $ctrl.model.duration.savings && $ctrl.model.duration.savings.value > 0"
+                        data-ng-if="$ctrl.defaultPrice && $ctrl.duration.savings && $ctrl.duration.savings.value > 0"
                         data-translate="billing_commitment_savings"
-                        data-translate-values="{ price: $ctrl.model.duration.savings.text }"
+                        data-translate-values="{ price: $ctrl.duration.savings.text }"
                     ></p>
                 </oui-select-picker-description>
             </oui-select-picker>

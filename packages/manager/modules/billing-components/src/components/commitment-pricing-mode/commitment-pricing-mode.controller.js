@@ -9,17 +9,16 @@ export default class {
   }
 
   $onInit() {
-    this.fromCatalog = this.fromCatalog || this.$attrs.fromCatalog === '';
-    this.modes = this.fromCatalog
-      ? this.BillingService.getAvailableEngagementFromCatalog(this.pricingModes)
-      : this.pricingModes;
-
     this.getDiscount();
   }
 
   getDiscount() {
-    const upfront = this.modes.find((commitment) => commitment.isUpfront());
-    const periodic = this.modes.find((commitment) => commitment.isPeriodic());
+    const upfront = this.pricingModes.find((commitment) =>
+      commitment.isUpfront(),
+    );
+    const periodic = this.pricingModes.find((commitment) =>
+      commitment.isPeriodic(),
+    );
 
     if (upfront && periodic) {
       this.discount = Math.floor(
