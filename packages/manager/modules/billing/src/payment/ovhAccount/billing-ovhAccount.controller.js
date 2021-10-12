@@ -13,6 +13,7 @@ export default /* @ngInject */ (
   BillingmessageParser,
   BillingOvhAccount,
   BillingdateRangeSelection,
+  ouiDatagridService,
 ) => {
   $scope.ovhAccountLoading = false;
   $scope.ovhAccountsLoading = false;
@@ -39,6 +40,9 @@ export default /* @ngInject */ (
           } else {
             $scope.ovhAccount.choice = head(ovhAccountList);
           }
+          $scope.ovhAccount.model = {
+            hasOvhAccount: true,
+          };
         } else {
           $scope.ovhAccount.model = {
             hasOvhAccount: false,
@@ -100,9 +104,7 @@ export default /* @ngInject */ (
   };
 
   $scope.onDateRangeChanged = function onDateRangeChanged() {
-    $scope.loadOvhAccount({
-      offset: 1,
-    });
+    ouiDatagridService.refresh('ovhAccountMovements', true);
   };
 
   $scope.getPriceClasses = function getPriceClasses(price) {
