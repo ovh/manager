@@ -12,16 +12,17 @@ export default /* @ngInject */ ($stateProvider) => {
     },
 
     redirectTo: (transition) =>
-      transition
-        .injector()
-        .getAsync('resources')
-        .then((services) =>
-          services.data.length !== 0
-            ? {
-                state: 'netapp.index',
-              }
-            : false,
-        ),
+      Promise.all([
+        transition.injector().getAsync('resources'),
+        transition.injector().getAsync('features'),
+      ]).then(([services, features]) =>
+        services.data.length !== 0 ||
+        !features.isFeatureAvailable('netapp:order')
+          ? {
+              state: 'netapp.index',
+            }
+          : false,
+      ),
 
     resolve: {
       resources: /* @ngInject */ ($http) => $http.get('/storage/netapp'),

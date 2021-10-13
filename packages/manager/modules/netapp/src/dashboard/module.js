@@ -3,6 +3,7 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ng-ovh-utils';
+import '@ovh-ux/ng-ovh-feature-flipping';
 
 import '@ovh-ux/manager-advices';
 import '@ovh-ux/manager-billing-components';
@@ -16,6 +17,7 @@ const moduleName = 'ovhManagerNetAppDashboard';
 
 angular
   .module(moduleName, [
+    'ngOvhFeatureFlipping',
     'ovhManagerBilling',
     'ovhManagerCore',
     'ovhManagerAdvices',

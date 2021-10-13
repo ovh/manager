@@ -85,6 +85,12 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName: $transition$.params().serviceName,
           volumeId: volume.id,
         }),
+      isCountAvailable: /* @ngInject */ (features) =>
+        features.isFeatureAvailable('netapp:volumes:count'),
+      canEditVolumes: /* @ngInject */ (features) =>
+        features.isFeatureAvailable('netapp:volumes:actions'),
+      isDashboardAvailable: /* @ngInject */ (features) =>
+        features.isFeatureAvailable('netapp:volumes:dashboard'),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('netapp_volumes_breadcrumb'),
     },
