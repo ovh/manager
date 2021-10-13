@@ -3,6 +3,7 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
+import { serverTechnicalDetails } from '@ovh-ux/manager-bm-server-components';
 import component from './component';
 import routing from './routing';
 import nodes from './nodes';
@@ -19,6 +20,7 @@ angular
     'ui.router',
     generalInfo,
     nodes,
+    serverTechnicalDetails,
   ])
   .config(routing)
   .component('nutanixDashboard', component)

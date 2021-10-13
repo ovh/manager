@@ -11,4 +11,12 @@
         >
         </billing-subscription-tile>
     </div>
+
+    <!-- TECHNICAL DETAILS -->
+    <div class="col-md-4" data-ng-if="$ctrl.technicalDetails">
+        <server-technical-details
+            technical-details="$ctrl.technicalDetails"
+            go-to-manual-upgrade="$ctrl.goToManualUpgrade"
+        ></server-technical-details>
+    </div>
 </div>
