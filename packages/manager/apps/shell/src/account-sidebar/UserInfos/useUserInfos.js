@@ -43,7 +43,9 @@ const useUserInfos = (user) => {
   };
 
   const getUserRole = () => {
-    return !EXCLUDED_ROLES.includes(user.auth.method) ? user.auth.method : '';
+    return !EXCLUDED_ROLES.includes(user?.auth?.method)
+      ? user?.auth?.method
+      : '';
   };
 
   return {
