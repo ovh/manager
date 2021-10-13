@@ -1,6 +1,6 @@
 {
   "pci_database_fork_title": "Datenbankdienst duplizieren (Fork)",
-  "pci_database_fork_description": "Der Fork Ihres Backups wird auf einem neuen Cluster ausgeführt. Wir werden das Backup {{backup.id}} mit {{backup.size.value}} {{backup.size.unit}} wiederherstellen.",
+  "pci_database_fork_description": "Der Fork Ihres Backups wird auf einem neuen Cluster ausgeführt. Wir stellen das Backup {{backup.id}} von {{backupSize}} wieder her.",
   "pci_database_fork_step1_title": "Datenbanktyp auswählen",
   "pci_database_fork_step1_description": "Wählen Sie den Datenbanktyp aus, der Ihren Anforderungen entspricht",
   "pci_database_fork_step2_title": "Angebot auswählen",

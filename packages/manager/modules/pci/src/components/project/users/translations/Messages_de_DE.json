@@ -30,5 +30,8 @@
   "pci_projects_project_users_generate_s3_credentials": "S3-Zertifikate generieren",
   "pci_projects_project_users_generate_s3_credentials_success": "Die S3-Login-Daten für den Nutzer {{user}} wurden neu generiert.",
   "pci_projects_project_users_generate_s3_credentials_error": "Beim Generieren der Login-Daten des Nutzers {{ user }} ist ein Fehler aufgetreten: {{ message }}.",
-  "pci_projects_project_users_createdAt_label": "Erstellungsdatum"
+  "pci_projects_project_users_createdAt_label": "Erstellungsdatum",
+  "pci_projects_project_users_show_key_label": "Zugriffsschlüssel anzeigen",
+  "pci_projects_project_users_show_cert_label": "Zertifikat anzeigen",
+  "pci_projects_project_users_show_user_informations_label": "Details anzeigen"
 }
