@@ -10,7 +10,6 @@ import './boost/enable/hosting-boost-enable.controller';
 import './boost/hosting-boost.controller';
 import './boost/hosting-boost.service';
 import './boost/update/hosting-boost-update.controller';
-import './cdn/flush/hosting-cdn-flush.controller';
 import './cdn/order/hosting-cdn-order.component';
 import './cdn/order/hosting-cdn-order.routing';
 import './cdn/order/hosting-cdn-order.service';
