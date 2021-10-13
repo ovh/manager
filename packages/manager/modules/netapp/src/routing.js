@@ -1,5 +1,6 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import template from './template.html';
+import { FEATURES } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp', {
@@ -7,6 +8,10 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     redirectTo: 'netapp.index',
     resolve: {
+      features: /* @ngInject */ (ovhFeatureFlipping) => {
+        const features = FEATURES.map((feature) => `netapp:${feature}`);
+        return ovhFeatureFlipping.checkFeatureAvailability(features);
+      },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('netapp_title'),
     },

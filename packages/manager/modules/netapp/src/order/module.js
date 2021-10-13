@@ -5,6 +5,7 @@ import 'angular-translate';
 import { region } from '@ovh-ux/manager-components';
 import '@ovh-ux/manager-catalog-price';
 import '@ovh-ux/manager-billing-components';
+import '@ovh-ux/ng-ovh-feature-flipping';
 
 import component from './component';
 import routing from './routing';
@@ -13,6 +14,7 @@ const moduleName = 'ovhManagerNetAppOrder';
 
 angular
   .module(moduleName, [
+    'ngOvhFeatureFlipping',
     'ovhManagerBilling',
     'ovhManagerCore',
     'ovhManagerCatalogPrice',

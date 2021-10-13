@@ -1,14 +1,16 @@
 <div>
     <p class="oui-heading_3" data-translate="netapp_volumes_details"></p>
     <p
+        ng-if="$ctrl.isCountAvailable"
         data-translate="netapp_volumes_number"
         data-translate-values="{
           'volumesNumber': $ctrl.volumes.length,
-          'volumesLimit': $ctrl.storage.volumesLimit,
+          'volumesLimit': $ctrl.storage.maximumVolumesLimit,
         }"
     ></p>
 
     <oui-button
+        ng-if="$ctrl.canCreateVolume"
         aria-label="{{:: 'netapp_volumes_create' | translate }}"
         on-click="$ctrl.goToCreateVolume()"
         disabled="!$ctrl.isCreateVolumeAvailable"
@@ -25,9 +27,14 @@
             property="id"
         >
             <a
+                ng-if="$ctrl.isDashboardAvailable"
                 data-ng-href="{{:: $ctrl.getVolumeDetailsHref($row) }}"
                 data-ng-bind="$row.id"
             ></a>
+            <span
+                data-ng-if="!isDashboardAvailable"
+                data-ng-bind="$row.id"
+            ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             title=":: 'netapp_volumes_name' | translate"
@@ -56,7 +63,7 @@
             title=":: 'netapp_volumes_status' | translate"
             property="status"
         ></oui-datagrid-column>
-        <oui-action-menu compact="true">
+        <oui-action-menu compact="true" ng-if="$ctrl.canEditVolumes">
             <oui-action-menu-item
                 href="{{:: $ctrl.getVolumeDetailsHref($row) }}"
             >

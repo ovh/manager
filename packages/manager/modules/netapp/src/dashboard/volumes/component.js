@@ -12,6 +12,10 @@ export default {
     loadVolumeDetail: '<',
     storage: '<',
     isCreateVolumeAvailable: '<',
+    canCreateVolume: '<',
+    isCountAvailable: '<',
+    canEditVolumes: '<',
+    isDashboardAvailable: '<',
   },
   template,
 };

@@ -6,6 +6,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-at-internet-ui-router-plugin';
+import '@ovh-ux/ng-ovh-feature-flipping';
 import 'angular-translate';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
@@ -23,6 +24,7 @@ const moduleName = 'ovhManagerNetApp';
 angular
   .module(moduleName, [
     components,
+    'ngOvhFeatureFlipping',
     'ngTranslateAsyncLoader',
     'ovhManagerCore',
     'oui',
