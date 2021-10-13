@@ -7,7 +7,13 @@ const moduleName = 'ovhManagerDedicatedHousingExpiration';
 
 angular
   .module(moduleName, [])
-  .component('serviceExpirationLabel', serviceExpirationLabelComponent)
-  .component('serviceExpirationDate', serviceExpirationDateComponent);
+  .component(
+    'dedicatedHousingServiceExpirationLabel',
+    serviceExpirationLabelComponent,
+  )
+  .component(
+    'dedicatedHousingServiceExpirationDate',
+    serviceExpirationDateComponent,
+  );
 
 export default moduleName;
