@@ -12,6 +12,7 @@ import {
   serverGeneralInfo,
   serverNetwork,
   serverTechnicalDetails,
+  serverBandwidthDashboard,
 } from '@ovh-ux/manager-bm-server-components';
 import advancedFeatures from './advanced-features';
 import commitment from './commitment';
@@ -46,6 +47,7 @@ angular
     serverGeneralInfo,
     serverNetwork,
     serverTechnicalDetails,
+    serverBandwidthDashboard,
   ])
   .component('dedicatedServerDashboard', component)
   .config(routing)

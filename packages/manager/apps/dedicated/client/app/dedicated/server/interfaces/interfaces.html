@@ -177,13 +177,13 @@
         <div data-ng-if="$row.isPublic()">
             <span class="oui-icon oui-icon-arrow-up font-inherit"></span>
             <span
-                data-ng-bind="$ctrl.specifications.bandwidth.OvhToInternet | ducBandwidth"
+                data-ng-bind="$ctrl.specifications.bandwidth.OvhToInternet | serverBandwidth"
             ></span>
         </div>
         <div data-ng-if="!$row.isPublic()">
             <span class="oui-icon oui-icon-arrow-up font-inherit"></span>
             <span
-                data-ng-bind="$ctrl.specifications.vrack.bandwidth | ducBandwidth"
+                data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
             ></span>
             <span
                 class="font-weight-bold"
@@ -198,13 +198,13 @@
         <div data-ng-if="$row.isPublic()">
             <span class="oui-icon oui-icon-arrow-down font-inherit"></span>
             <span
-                data-ng-bind="$ctrl.specifications.connection | ducBandwidth"
+                data-ng-bind="$ctrl.specifications.connection | serverBandwidth"
             ></span>
         </div>
         <div data-ng-if="!$row.isPublic()">
             <span class="oui-icon oui-icon-arrow-down font-inherit"></span>
             <span
-                data-ng-bind="$ctrl.specifications.vrack.bandwidth | ducBandwidth"
+                data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
             ></span>
             <span
                 class="font-weight-bold"

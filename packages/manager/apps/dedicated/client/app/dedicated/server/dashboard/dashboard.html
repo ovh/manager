@@ -371,7 +371,7 @@
                         </oui-action-menu>
                     </oui-tile-definition>
 
-                    <dedicated-server-bandwidth-dashboard
+                    <server-bandwidth-dashboard
                         data-bandwidth-option="$ctrl.bandwidthInformations.bandwidthOption"
                         data-bandwidth-vrack-option="$ctrl.bandwidthInformations.bandwidthVrackOptions"
                         data-bandwidth-vrack-order-option="$ctrl.bandwidthInformations.bandwidthVrackOrderOptions"
@@ -380,7 +380,7 @@
                         data-server="$ctrl.server"
                         data-specifications="$ctrl.specifications"
                     >
-                    </dedicated-server-bandwidth-dashboard>
+                    </server-bandwidth-dashboard>
 
                     <!-- Traffic -->
                     <oui-tile-definition
@@ -397,7 +397,7 @@
                             <span
                                 data-ng-if="!$ctrl.trafficInformations.traffic.data.usage.outputQuotaSize.text"
                                 data-translate="server_traffic_unlimited_text"
-                                data-translate-values="{ t0: (bandwidth.bandwidth.OvhToInternet | ducBandwidth) }"
+                                data-translate-values="{ t0: (bandwidth.bandwidth.OvhToInternet | serverBandwidth) }"
                             >
                             </span>
                             <small

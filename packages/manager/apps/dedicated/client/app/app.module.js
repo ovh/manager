@@ -112,6 +112,7 @@ import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import { pollingService } from '@ovh-ux/manager-bm-server-components';
+import { serverBandwidth } from '@ovh-ux/manager-components';
 import account from './account';
 import cdn from './cdn';
 import moduleLicense from './license';
@@ -156,6 +157,7 @@ export default (containerEl, environment) => {
         dedicatedNas,
         dedicatedServer,
         dedicatedUniverseComponents,
+        serverBandwidth,
         'directives',
         errorPage,
         expiredPage,
