@@ -1,7 +1,8 @@
 import { CDN_TYPE } from '../hosting-multisite.constants';
 import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../../cdn/order/hosting-cdn-order.constant';
+import { PURGE_TYPE_ENUM } from './cdn-flush.constants';
 
-export default class HostingCdnFlushCtrl {
+export default class HostingMultisiteCdnFlushCtrl {
   /* @ngInject */
   constructor(
     $translate,
@@ -15,13 +16,14 @@ export default class HostingCdnFlushCtrl {
     this.Hosting = Hosting;
     this.HostingCdnSharedService = HostingCdnSharedService;
     this.Alerter = Alerter;
+
+    this.PURGE_TYPE_ENUM = PURGE_TYPE_ENUM;
   }
 
   $onInit() {
     this.isFlushing = false;
 
     const { type, version } = this.cdnProperties;
-    const defaultOptionName = 'all';
 
     this.isAdvancedCdnType = type === CDN_TYPE.ADVANCED;
     this.isV1Cdn = version === HOSTING_CDN_ORDER_CDN_VERSION_V1;
@@ -30,47 +32,57 @@ export default class HostingCdnFlushCtrl {
       options: [
         {
           disabled: false,
-          name: 'all',
+          patternType: PURGE_TYPE_ENUM.ALL,
           hint: null,
-          fieldValue: '',
+          pattern: '',
         },
         {
           disabled: !this.isAdvancedCdnType,
-          name: 'folder',
+          patternType: PURGE_TYPE_ENUM.FOLDER,
           hint: '/FOLDER/',
-          fieldValue: '',
+          pattern: '',
         },
         {
           disabled: !this.isAdvancedCdnType,
-          name: 'uri',
+          patternType: PURGE_TYPE_ENUM.URI,
           hint: '/FOLDER/FILE.EXT',
-          fieldValue: '',
+          pattern: '',
         },
         {
           disabled: !this.isAdvancedCdnType,
-          name: 'extension',
+          patternType: PURGE_TYPE_ENUM.EXTENSION,
           hint: '/.EXT',
-          fieldValue: '',
+          pattern: '',
         },
         {
           disabled: !this.isAdvancedCdnType,
-          name: 'regex',
+          patternType: PURGE_TYPE_ENUM.REGEX,
           hint: '.*/FILE.EXT$',
-          fieldValue: '',
+          pattern: '',
         },
       ],
     };
-    this.cdnFlushModel.selectedOption = this.getSelectedOption(
-      defaultOptionName,
-    );
 
-    this.atInternet.trackPage({
-      name: 'web::hosting::multisites::purge-cdn',
-    });
+    // Used to preselect a default option
+    this.cdnFlushModel.selectedOption = this.getSelectedOption(
+      PURGE_TYPE_ENUM.ALL,
+    );
   }
 
-  getSelectedOption(optionName) {
-    return this.cdnFlushModel.options.find(({ name }) => name === optionName);
+  getSelectedOption(patternType) {
+    return this.cdnFlushModel.options.find(
+      (option) => option.patternType === patternType,
+    );
+  }
+
+  getPurgeQueryParams() {
+    const { pattern, patternType } = this.cdnFlushModel.selectedOption;
+
+    if (this.isAdvancedCdnType && patternType !== PURGE_TYPE_ENUM.ALL) {
+      return new URLSearchParams({ pattern, patternType }).toString();
+    }
+
+    return '';
   }
 
   sendTrackClick(hit) {
@@ -84,18 +96,18 @@ export default class HostingCdnFlushCtrl {
     this.isFlushing = true;
 
     const flushPromise = this.isV1Cdn
-      ? this.flushBasicOrSecurityCdn()
-      : this.flushAdvancedCdn();
+      ? this.flushV1Cdn()
+      : this.flushSharedCdn();
     return flushPromise
       .then(() => {
         this.onFlushSuccess();
         return this.goBack(
-          this.$translate.instant('hosting_dashboard_cdn_flush_success'),
+          this.$translate.instant('hosting_multisite_cdn_flush_success'),
         );
       })
       .catch((err) => {
         return this.goBack(
-          `${this.$translate.instant('hosting_dashboard_cdn_flush_error')} ${
+          `${this.$translate.instant('hosting_multisite_cdn_flush_error')} ${
             err.data?.message
           }`,
           'error',
@@ -107,23 +119,25 @@ export default class HostingCdnFlushCtrl {
   }
 
   /**
-   * Flush CDN that have type basic or security
+   * Flush v1 CDN version
    * @returns {Promise}
    */
-  flushBasicOrSecurityCdn() {
+  flushV1Cdn() {
     this.sendTrackClick('web::hosting::cdn::empty-cache::confirm');
     return this.Hosting.flushCdn(this.serviceName);
   }
 
   /**
-   * Flush CDN that have type advanced
+   * Flush Shared CDN
    * @returns {Promise}
    */
-  flushAdvancedCdn() {
+  flushSharedCdn() {
     this.sendTrackClick('web::hosting::multisites::purge-cdn::confirm');
+
     return this.HostingCdnSharedService.flushCDNDomainCache(
       this.serviceName,
       this.domain,
+      this.getPurgeQueryParams(),
     );
   }
 }
