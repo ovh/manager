@@ -19,36 +19,25 @@ const UserInfos = ({ environment }) => {
   const translationBase = 'user_infos';
 
   return (
-    <div
-      className={`${cssBaseClassName} mb-3`}
-    >
+    <div className={`${cssBaseClassName} mb-3`}>
       <a
         className={`${cssBaseClassName}_profile`}
         aria-label={t(`${translationBase}_manage_my_account`)}
       >
-        <UserInitials
-          user={user}
-          cssBaseClassName={cssBaseClassName}
-        />
+        <UserInitials user={user} cssBaseClassName={cssBaseClassName} />
         <UserSupportLevel
           user={user}
           cssBaseClassName={cssBaseClassName}
           translationBase={translationBase}
         />
-        <UserName
-          user={user}
-          cssBaseClassName={cssBaseClassName}
-        />
+        <UserName user={user} cssBaseClassName={cssBaseClassName} />
       </a>
       <UserRole
         user={user}
         cssBaseClassName={cssBaseClassName}
         translationBase={translationBase}
       />
-      <UserDetails
-        user={user}
-        cssBaseClassName={cssBaseClassName}
-      />
+      <UserDetails user={user} cssBaseClassName={cssBaseClassName} />
       <UserInfosFooter
         cssBaseClassName={cssBaseClassName}
         translationBase={translationBase}

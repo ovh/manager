@@ -1,6 +1,6 @@
 import React from 'react';
 
-import useNotifications from '@/core/notifications';
+import useNotifications from '../../../core/notifications';
 
 import style from './notification.module.scss';
 

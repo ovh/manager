@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import useNotifications from '@/core/notifications';
+import useNotifications from '../core/notifications';
 
 import style from './navbar.module.scss';
 import { TRANSLATE_NAMESPACE } from './constants';
