@@ -38,7 +38,7 @@
             size="l"
         >
             <oui-select
-                disabled="{{:: $ctrl.protocolList.length === 1 }}"
+                disabled="$ctrl.protocolList.length === 1"
                 items="$ctrl.protocolList"
                 match="key"
                 model="$ctrl.newVolumeProtocol"
