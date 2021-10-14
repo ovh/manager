@@ -64,6 +64,7 @@
             data-filterable
         >
             <img
+                ng-if="$ctrl.ENGINE_LOGOS[$row.engine]"
                 class="database-engine-logo"
                 data-ng-src="{{:: $ctrl.ENGINE_LOGOS[$row.engine]}}"
                 alt="{{:: $row.engine}}"
