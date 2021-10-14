@@ -39,7 +39,7 @@
             <tbody data-ng-if="!$ctrl.loading" class="oui-table__body">
                 <tr
                     class="oui-table__row"
-                    data-ng-repeat="storage in $ctrl.storages | orderBy: 'region' track by storage.region"
+                    data-ng-repeat="storage in $ctrl.storages | orderBy: 'region' track by $index"
                 >
                     <td
                         class="oui-table__cell"
