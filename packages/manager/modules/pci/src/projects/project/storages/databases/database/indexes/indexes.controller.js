@@ -1,4 +1,4 @@
-export default class indexesCtrl {
+export default class IndexesCtrl {
   /* @ngInject */
   constructor($translate, CucCloudMessage, DatabaseService) {
     this.$translate = $translate;
