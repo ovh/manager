@@ -26,6 +26,7 @@ export const DATABASE_TYPES = {
   REDIS: 'redis',
   KAFKA: 'kafka',
   OPEN_SEARCH: 'opensearch',
+  KAFKA_MIRROR_MAKER: 'kafkamirrormaker',
 };
 
 export const SHELL_NAMES = {
@@ -35,6 +36,7 @@ export const SHELL_NAMES = {
   redis: 'redis',
   kafka: 'kafka',
   opensearch: 'opensearch',
+  kafkamirrormaker: 'kafkamirrormaker',
 };
 
 export const SECRET_TYPE = {
