@@ -1,6 +1,6 @@
 {
   "pci_database_fork_title": "Duplikuj usługę bazy danych (fork)",
-  "pci_database_fork_description": "Rozwidlenie (fork) Twojej kopii zapasowej zostanie utworzone na nowym klastrze. Przywrócimy kopię zapasową {{backup.id}} dla {{backup.size.value}} {{backup.size.unit}}.",
+  "pci_database_fork_description": "Fork Twojej kopii zapasowej zostanie wykonany w nowym klastrze. Przywrócimy kopię zapasową {{backup.id}} z {{backupSize}}.",
   "pci_database_fork_step1_title": "Wybierz rodzaj bazy danych",
   "pci_database_fork_step1_description": "Wybierz rodzaj bazy danych odpowiadający Twoim potrzebom",
   "pci_database_fork_step2_title": "Wybierz ofertę",
