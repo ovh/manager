@@ -1,5 +1,5 @@
 name: Yarn Lock Changes
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   yarn_lock_changes:
