@@ -11,7 +11,7 @@ import ApplicationContext from '../../context';
 // TODO: improve mocks to render shell with both sidebars
 const server = setupServer(
   rest.get('/engine/2api/notification', (req, res, ctx) => {
-    return res(ctx.json({}));
+    return res(ctx.json([]));
   }),
   rest.get('/engine/2api/universes', (req, res, ctx) => {
     return res(ctx.json([]));
