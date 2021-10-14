@@ -1,6 +1,6 @@
-<section class="metrics__dashboard">
+<section class="metrics__dashboard mt-3">
     <div class="row d-lg-flex">
-        <div class="col-xm-12 col-md-5">
+        <div class="col-xm-12 col-md-5 mb-3">
             <oui-tile
                 data-heading="{{ ::'metrics_tiles_shortcut_title' | translate }}"
                 class="h-100 oui-tile-h-100"
@@ -9,7 +9,12 @@
                     <oui-tile-description>
                         <a
                             data-ui-sref="metrics.detail.token.add({ serviceName: $ctrl.serviceName })"
-                            class="oui-tile__button oui-button oui-link_icon oui-button_ghost oui-button_block"
+                            class="
+                                oui-tile__button
+                                oui-button
+                                oui-link_icon
+                                oui-button_ghost oui-button_block
+                            "
                             rel="noopener"
                         >
                             <span
@@ -27,7 +32,12 @@
                         >
                             <a
                                 data-ng-href="{{ ::graph.url }}"
-                                class="oui-tile__button oui-button oui-link_icon oui-button_ghost oui-button_block"
+                                class="
+                                    oui-tile__button
+                                    oui-button
+                                    oui-link_icon
+                                    oui-button_ghost oui-button_block
+                                "
                                 rel="noopener"
                                 target="_blank"
                             >
@@ -42,7 +52,7 @@
                 </oui-tile-definition>
             </oui-tile>
         </div>
-        <div class="col-xm-12 col-md-7">
+        <div class="col-xm-12 col-md-7 mb-3">
             <oui-tile
                 data-heading="{{ ::'metrics_tiles_usage_title' | translate }}"
                 class="h-100 oui-tile-h-100"
@@ -88,8 +98,8 @@
             </oui-tile>
         </div>
     </div>
-    <div class="row d-lg-flex">
-        <div class="col-xm-12 col-md-6">
+    <div class="row d-lg-flex mb-3">
+        <div class="col-xm-12 col-md-6 mb-3">
             <oui-tile
                 data-heading="{{ ::'metrics_tiles_configuration_title' | translate }}"
                 class="oui-tile-h-100 h-100"
@@ -154,7 +164,7 @@
                 </div>
             </oui-tile>
         </div>
-        <div class="col-xm-12 col-md-6">
+        <div class="col-xm-12 col-md-6 mb-3">
             <oui-tile
                 data-heading="{{ ::'metrics_tile_subscription' | translate }}"
                 data-loading="$ctrl.loading.plan"
