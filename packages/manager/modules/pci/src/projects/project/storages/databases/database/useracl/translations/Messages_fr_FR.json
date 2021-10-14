@@ -1,5 +1,5 @@
 {
-  "pci_database_useracl_title": "ACL",
+  "pci_databases_useracl_title": "ACL",
   "pci_databases_useracl_tab_title": "ACL OpenSearch",
   "pci_databases_useracl_tab_username": "Utilisateur",
   "pci_databases_useracl_tab_permission": "Permission",

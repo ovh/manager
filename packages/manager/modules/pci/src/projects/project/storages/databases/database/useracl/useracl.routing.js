@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
-          $translate.instant('pci_database_useracl_title'),
+          $translate.instant('pci_databases_useracl_title'),
         goBackToUserAcl: /* @ngInject */ ($state, CucCloudMessage) => (
           message = false,
           type = 'success',
