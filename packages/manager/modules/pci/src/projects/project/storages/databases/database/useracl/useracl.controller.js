@@ -1,4 +1,4 @@
-export default class aclCtrl {
+export default class AclCtrl {
   /* @ngInject */
   constructor($translate, CucCloudMessage) {
     this.CucCloudMessage = CucCloudMessage;
