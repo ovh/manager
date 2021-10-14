@@ -41,6 +41,23 @@
             ></button>
         </oui-message>
 
+        <oui-message
+            type="info"
+            aria-close-button-label="{{:: 'close' | translate }}"
+            data-ng-if=":: $ctrl.canOrderOrEditCdn() && cdnProperties.type !== $ctrl.CDN_ADVANCED && cdnProperties.version !== $ctrl.CDN_VERSION_V1"
+            dismissable
+        >
+            <span
+                data-translate="hosting_dashboard_general_informations_cdn_banner"
+            ></span>
+            <button
+                class="oui-link"
+                type="button"
+                data-translate="hosting_dashboard_general_informations_cdn_banner_cta"
+                data-ng-click="$ctrl.goToOrderOrUpgrade()"
+            ></button>
+        </oui-message>
+
         <div class="row d-md-flex" data-ng-if="!hosting.isExpired">
             <div class="col-md-4 mb-3">
                 <oui-tile
