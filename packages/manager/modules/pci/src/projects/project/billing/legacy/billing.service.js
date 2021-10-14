@@ -278,7 +278,7 @@ export default class CloudProjectBillingService {
   }
 
   initNotebooks() {
-    this.initResourceUsage('ai-notebooks', 'notebooks');
+    this.initResourceUsage('ai-notebook', 'notebooks');
   }
 
   initServing() {
