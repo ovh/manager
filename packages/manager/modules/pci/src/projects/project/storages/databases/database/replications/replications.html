@@ -1,0 +1,127 @@
+<div class="container-fluid px-0 mt-3" data-ui-view>
+    <!-- error messages -->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <h2 data-translate="pci_databases_replications_tab_title"></h2>
+
+    <p data-translate="pci_databases_replications_tab_description"></p>
+
+    <oui-datagrid
+        class="mt-5"
+        data-page-size="10"
+        data-rows="$ctrl.replicationsList"
+    >
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_replications_tab_source' | translate"
+            data-property="source"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_replications_tab_target' | translate"
+            data-property="target"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_replications_tab_topics' | translate"
+            data-property="topics"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+            <span data-ng-repeat="topic in $row.topics track by $index">
+                <p
+                    data-ng-if="$row.topics.length > $ctrl.MAX_TOPIC_PER_LINE && $index % $ctrl.MAX_TOPIC_PER_LINE === 0"
+                ></p>
+                <span class="oui-badge oui-badge_info">{{topic}}</span>
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_replications_tab_topics_blacklist' | translate"
+            data-property="topicsBlacklist"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+            <span
+                data-ng-repeat="topic in $row.topicsBlacklist track by $index"
+            >
+                <p
+                    data-ng-if="$row.topicsBlacklist.length > $ctrl.MAX_TOPIC_PER_LINE && $index % $ctrl.MAX_TOPIC_PER_LINE === 0"
+                ></p>
+                <span class="oui-badge oui-badge_info">{{topic}}</span>
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_replications_tab_sync_group_offsets' | translate"
+            data-property="syncGroupOffset"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_replications_tab_sync_interval' | translate"
+            data-property="syncInterval"
+            data-sortable="asc"
+            data-type="number"
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_replications_tab_status' | translate"
+            data-property="status"
+            data-sortable="asc"
+            data-type="string"
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item
+                data-on-click="$ctrl.trackAndEditReplication($row)"
+            >
+                <span
+                    data-translate="pci_databases_replications_tab_edit"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.trackAndDeleteReplication($row)"
+            >
+                <span
+                    data-translate="pci_databases_replications_tab_delete"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+        <oui-datagrid-topbar>
+            <oui-button data-on-click="$ctrl.trackAndAddReplication()">
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    data-translate="pci_databases_replications_tab_add"
+                ></span>
+            </oui-button>
+            <button
+                data-ng-if="$ctrl.replicationsList.length > 0"
+                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
+                type="button"
+                data-title="{{:: 'pci_databases_common_refresh' | translate }}"
+                data-ng-click="$ctrl.refreshing=true; $ctrl.refreshReplications()"
+                data-ng-disabled="$ctrl.refreshing || $ctrl.isDisabled()"
+            >
+                <span
+                    class="oui-icon oui-icon-refresh"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+</div>

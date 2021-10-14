@@ -42,6 +42,7 @@ const features = {
   showUserInformations: [DATABASE_TYPES.REDIS],
   indexesTab: [DATABASE_TYPES.OPEN_SEARCH],
   serviceIntegrationTab: [DATABASE_TYPES.KAFKA_MIRROR_MAKER],
+  replicationsTab: [DATABASE_TYPES.KAFKA_MIRROR_MAKER],
 };
 
 export default function isFeatureActivated(feature, databaseType) {
