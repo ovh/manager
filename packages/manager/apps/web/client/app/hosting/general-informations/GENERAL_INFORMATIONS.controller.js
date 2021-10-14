@@ -3,7 +3,10 @@ import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
 import get from 'lodash/get';
 
-import { QUOTA_DECIMAL_PRECISION } from './general-informations.constants';
+import {
+  CDN_ADVANCED,
+  QUOTA_DECIMAL_PRECISION,
+} from './general-informations.constants';
 import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
 import { SHARED_CDN_GET_MORE_INFO } from '../cdn/shared/hosting-cdn-shared-settings.constants';
 
@@ -54,6 +57,9 @@ export default class HostingGeneralInformationsCtrl {
     this.hostingSSLCertificate = hostingSSLCertificate;
     this.OvhApiScreenshot = OvhApiScreenshot;
     this.user = user;
+
+    this.CDN_ADVANCED = CDN_ADVANCED;
+    this.CDN_VERSION_V1 = HOSTING_CDN_ORDER_CDN_VERSION_V1;
   }
 
   $onInit() {
