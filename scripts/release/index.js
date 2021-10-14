@@ -135,6 +135,12 @@ const release = (version, repos) =>
     .then(() => console.log(`    released ${version}`))
     .then(() => version);
 
+const updateSonarProjectVersion = (version) =>
+  MonoRepository.updateSonarProjectVersion(version)
+    .logging(`updating .sonarcloud.properties with ${version}`)
+    .then(() => console.log(`    updated sonar.projectVersion to ${version}`))
+    .then(() => version);
+
 const writeChangelog = (file, repos) =>
   MonoRepository.writeChangelog(file, repos);
 
@@ -167,5 +173,6 @@ module.exports = {
   getReleaseVersion,
   release,
   releaseGithub,
+  updateSonarProjectVersion,
   writeChangelog,
 };

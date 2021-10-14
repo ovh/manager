@@ -11,6 +11,7 @@ const {
   getReleaseVersion,
   release,
   releaseGithub,
+  updateSonarProjectVersion,
   writeChangelog,
 } = require('./release/index');
 
@@ -53,6 +54,7 @@ program
     if (!program.token) {
       console.warn('Missing <token> option, no github release will be done!');
     }
+
     return Promise.resolve()
       .then(() => (program.check ? checkChanges() : false))
       .then(() => getChangedRepositories(program.force))
@@ -83,6 +85,7 @@ program
       .then((repos) => {
         if (program.release && repos.length) {
           return getReleaseVersion(program.releaseName, program.seed)
+            .then((version) => updateSonarProjectVersion(version))
             .then((version) => release(version, repos))
             .then((version) => {
               if (program.token && program.organization) {
@@ -90,6 +93,7 @@ program
                   draft: program.draftRelease || false,
                   prerelease: program.preRelease || false,
                 };
+
                 return releaseGithub(
                   program.token,
                   program.organization,
