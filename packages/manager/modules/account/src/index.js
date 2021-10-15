@@ -5,6 +5,11 @@ import redirection from './account.redirection';
 import routing from './account.routing';
 import user from './user';
 
+/* eslint-disable import/no-webpack-loader-syntax, import/no-unresolved, import/extensions */
+import 'punycode';
+import 'script-loader!ipaddr.js/ipaddr.min';
+/* eslint-enable import/no-webpack-loader-syntax, import/no-unresolved, import/extensions */
+
 import validatorService from './components/validator/validator.service';
 
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
