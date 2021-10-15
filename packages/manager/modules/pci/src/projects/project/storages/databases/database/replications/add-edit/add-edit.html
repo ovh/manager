@@ -123,7 +123,7 @@
                 <oui-select
                     model="$ctrl.model.policy"
                     name="policy"
-                    items="['org.apache.kafka.connect.mirror.DefaultReplicationPolicy', 'org.apache.kafka.connect.mirror.NotDefaultReplicationPolicy']"
+                    items="$ctrl.policies"
                     required
                 >
                 </oui-select>
@@ -165,7 +165,9 @@
             disabled="$ctrl.processing"
             ng-click="$ctrl.cancel()"
         >
-            <span data-translate="pci_databases_users_add_cancel"></span>
+            <span
+                data-translate="pci_databases_replications_add_edit_cancel"
+            ></span>
         </oui-button>
         <oui-button
             type="submit"
@@ -174,9 +176,14 @@
             icon-right="oui-icon-arrow-right"
             disabled="$ctrl.addOrEditReplicationForm.$invalid || $ctrl.invalidTargetSource"
         >
-            <span data-translate="pci_databases_users_add_create"></span>
+            <span
+                ng-if="$ctrl.isUpdate"
+                data-translate="pci_databases_replications_edit_validate"
+            ></span>
+            <span
+                ng-if="!$ctrl.isUpdate"
+                data-translate="pci_databases_replications_add_validate"
+            ></span>
         </oui-button>
     </div>
 </form>
-
-<pre>{{$ctrl.model | json}}</pre>
