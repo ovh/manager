@@ -19,7 +19,7 @@
             id="username"
             name="user"
             items="$ctrl.usersList"
-            data-match="username"
+            match="username"
             model="$ctrl.user"
             placeholder="{{:: 'pci_databases_useracl_create_username_placeholder' | translate}}"
             required
@@ -50,9 +50,8 @@
                             <option
                                 ng-repeat="permission in $ctrl.permissionsList.names track by permission"
                                 value="{{permission}}"
-                                >{{::'pci_databases_useracl_permission_' +
-                                permission | translate}}</option
-                            >
+                                data-translate="{{::'pci_databases_useracl_permission_' + permission | translate}}"
+                            ></option>
                         </select>
                         <span
                             class="oui-icon oui-icon-chevron-down"
