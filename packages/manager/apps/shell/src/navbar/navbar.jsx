@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { listen } from '@ovh-ux/ufrontend/communication';
+import { listen } from '@ovh-ux/ufrontend';
 
 import Brand from './brand.jsx';
 import Universes from './universes.jsx';

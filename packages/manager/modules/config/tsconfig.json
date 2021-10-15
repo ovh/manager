@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2015",
     "moduleResolution": "Node",
     "lib": ["dom"],
-    "module": "commonjs",
+    "module": "ES2015",
     "removeComments": true,
     "outDir": "dist",
     "esModuleInterop": true,

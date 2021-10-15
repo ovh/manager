@@ -1,4 +1,4 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import { buildURL } from '@ovh-ux/ufrontend';
 
 const useShortcuts = (environment) => {
   const region = environment.getRegion();

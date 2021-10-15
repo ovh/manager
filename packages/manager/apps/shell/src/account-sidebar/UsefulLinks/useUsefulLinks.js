@@ -1,4 +1,4 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import { buildURL } from '@ovh-ux/ufrontend';
 
 import constants from './constants';
 
