@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import useClickAway from 'react-use/lib/useClickAway';
 
 import { LANGUAGES } from '@ovh-ux/manager-config';
-import { emit } from '@ovh-ux/ufrontend/communication';
+import { emit } from '@ovh-ux/ufrontend';
 import { MESSAGES } from './constants';
 
 import LanguageButton from './language/button.jsx';
