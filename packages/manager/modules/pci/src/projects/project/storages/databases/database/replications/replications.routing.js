@@ -80,13 +80,13 @@ export default /* @ngInject */ ($stateProvider) => {
               databaseId,
             },
           ),
-        goToEditReplications: /* @ngInject */ (
+        goToEditReplication: /* @ngInject */ (
           $state,
           databaseId,
           projectId,
         ) => (replication) =>
           $state.go(
-            'pci.projects.project.storages.databases.dashboard.replications.add',
+            'pci.projects.project.storages.databases.dashboard.replications.edit',
             {
               projectId,
               databaseId,
@@ -107,7 +107,7 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return promise;
         },
-        goToDeleteReplications: /* @ngInject */ ($state) => (user) =>
+        goToDeleteReplication: /* @ngInject */ ($state) => (user) =>
           $state.go(
             'pci.projects.project.storages.databases.dashboard.replications.delete',
             {
