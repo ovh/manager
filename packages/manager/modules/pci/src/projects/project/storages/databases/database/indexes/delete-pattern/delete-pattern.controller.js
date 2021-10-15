@@ -12,6 +12,7 @@ export default class {
   }
 
   cancel() {
+    this.trackDashboard('indexes::delete_pattern_cancel');
     this.goBack();
   }
 
