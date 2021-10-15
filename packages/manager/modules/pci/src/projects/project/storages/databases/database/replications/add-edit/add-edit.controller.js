@@ -9,7 +9,11 @@ export default class {
   }
 
   $onInit() {
-    // this.trackDashboard('users::add_a_user', 'page');
+    if (this.isUpdate) {
+      this.trackDashboard('replication_flows::modify_replication_flow', 'page');
+    } else {
+      this.trackDashboard('replication_flows::create', 'page');
+    }
     this.invalidTargetSource = false;
     this.model = {
       source: this.isUpdate ? this.replication.source : null,
@@ -35,7 +39,13 @@ export default class {
   }
 
   cancel() {
-    // this.trackDashboard('users::add_a_user::cancel');
+    if (this.isUpdate) {
+      this.trackDashboard(
+        'replication_flows::actions_menu::modify_replication_flow_cancel',
+      );
+    } else {
+      this.trackDashboard('replication_flows::create_replication_flow_cancel');
+    }
     this.goBack();
   }
 
@@ -47,6 +57,13 @@ export default class {
   }
 
   addOrEditReplication() {
+    if (this.isUpdate) {
+      this.trackDashboard(
+        'replication_flows::actions_menu::modify_replication_flow_confirm',
+      );
+    } else {
+      this.trackDashboard('replication_flows::create_replication_flow_confirm');
+    }
     this.model.submitted = true;
   }
 }

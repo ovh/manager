@@ -6,6 +6,7 @@ import '@ovh-ux/ui-kit';
 import component from './replications.component';
 import routing from './replications.routing';
 import addEdit from './add-edit';
+import deleteReplication from './delete';
 
 const moduleName = 'ovhManagerPciStoragesDatabasesReplications';
 
@@ -14,6 +15,7 @@ angular
     'ngOvhCloudUniverseComponents',
     'oui',
     addEdit,
+    deleteReplication,
   ])
   .config(routing)
   .component('ovhManagerPciStoragesDatabaseReplicationsComponent', component)

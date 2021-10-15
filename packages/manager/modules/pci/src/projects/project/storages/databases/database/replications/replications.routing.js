@@ -107,11 +107,11 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return promise;
         },
-        goToDeleteReplication: /* @ngInject */ ($state) => (user) =>
+        goToDeleteReplication: /* @ngInject */ ($state) => (replication) =>
           $state.go(
-            'pci.projects.project.storages.databases.dashboard.replications.delete',
+            'pci.projects.project.storages.databases.dashboard.replications.delete-replication',
             {
-              user,
+              replication,
             },
           ),
       },
