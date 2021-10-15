@@ -11,6 +11,7 @@ export default {
     isUpdate: '<',
     replication: '<',
     kafkaSource: '<',
+    policies: '<',
   },
   controller,
   template,
