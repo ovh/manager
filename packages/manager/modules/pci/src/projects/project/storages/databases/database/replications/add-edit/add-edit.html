@@ -1,0 +1,140 @@
+<oui-back-button
+    data-previous-page="{{:: 'pci_databases_replications_add_edit_back' | translate }}"
+    data-on-click="$ctrl.goBack()"
+></oui-back-button>
+
+<h2
+    ng-if="!$ctrl.isUpdate"
+    data-translate="pci_databases_replications_add_title"
+></h2>
+<h2
+    ng-if="$ctrl.isUpdate"
+    data-translate="pci_databases_replications_edit_title"
+></h2>
+
+<duv class="row">
+    <div class="col">
+        <oui-field
+            data-label="{{:: 'pci_databases_replications_add_edit_source' | translate }}"
+        >
+            <oui-select
+                model="$ctrl.model.source"
+                name="source"
+                items="$ctrl.kafkaSource"
+                match="description"
+            >
+            </oui-select>
+        </oui-field>
+    </div>
+    <div class="col">
+        <oui-field
+            data-label="{{:: 'pci_databases_replications_add_edit_target' | translate }}"
+        >
+            <oui-select
+                model="$ctrl.model.target"
+                name="target"
+                items="$ctrl.kafkaSource"
+                match="description"
+            >
+            </oui-select>
+        </oui-field>
+    </div>
+</duv>
+
+<div class="row">
+    <div class="col">
+        <tags-input
+            name="topics"
+            data-placeholder="{{:: 'pci_databases_replications_add_edit_topics_placeholder' | translate }}"
+            data-model="$ctrl.model.topics"
+            data-min="$ctrl.inputRules.keys.min"
+            data-max="$ctrl.inputRules.keys.max"
+            data-pattern="$ctrl.inputRules.keys.pattern"
+            data-label="{{:: 'pci_databases_replications_add_edit_topics' | translate }}"
+            data-button-label="{{:: 'pci_databases_replications_add_edit_topics_add' | translate }}"
+        ></tags-input>
+    </div>
+    <div class="col">
+        <tags-input
+            name="blacklisted-topics"
+            data-placeholder="{{:: 'pci_databases_replications_add_edit_blacklisted_topics_placeholder' | translate }}"
+            data-model="$ctrl.model.blacklistedTopics"
+            data-min="$ctrl.inputRules.keys.min"
+            data-max="$ctrl.inputRules.keys.max"
+            data-pattern="$ctrl.inputRules.keys.pattern"
+            data-label="{{:: 'pci_databases_replications_add_edit_blacklisted_topics' | translate }}"
+            data-button-label="{{:: 'pci_databases_replications_add_edit_blacklisted_topics_add' | translate }}"
+        ></tags-input>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <oui-field
+            data-label="{{ ::'pci_databases_replications_add_edit_sync_group_offset' | translate }}"
+        >
+            <oui-switch
+                model="$ctrl.model.syncGroupOffset"
+                name="sync-group-offset"
+            >
+            </oui-switch>
+            <strong
+                >{{ 'pci_databases_replications_add_edit_syncGroupOffset_' +
+                $ctrl.model.syncGroupOffset | translate }}</strong
+            >
+        </oui-field>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <oui-field
+            data-label="{{:: 'pci_databases_replications_add_edit_sync_interval' | translate }}"
+        >
+            <input
+                data-ng-model="$ctrl.model.editSyncInterval"
+                class="oui-input"
+                name="sync-interval"
+                type="number"
+                min="-1"
+            />
+        </oui-field>
+    </div>
+    <div class="col">
+        <oui-field
+            data-label="{{:: 'pci_databases_replications_add_edit_policy' | translate }}"
+        >
+            <oui-select
+                model="$ctrl.model.policy"
+                name="policy"
+                items="['org.apache.kafka.connect.mirror.DefaultReplicationPolicy', 'org.apache.kafka.connect.mirror.NotDefaultReplicationPolicy']"
+            >
+            </oui-select>
+        </oui-field>
+    </div>
+</div>
+
+<div class="row">
+    <oui-field
+        data-label="{{ ::'pci_databases_replications_add_edit_heartbeat' | translate }}"
+        class="mr-5"
+    >
+        <oui-switch model="$ctrl.model.heartbeat" name="heartbeat">
+        </oui-switch>
+        <strong
+            >{{'pci_databases_replications_add_edit_heartbeat_' +
+            $ctrl.model.heartbeat | translate }}</strong
+        >
+    </oui-field>
+    <oui-field
+        data-label="{{ ::'pci_databases_replications_add_edit_status' | translate }}"
+    >
+        <oui-switch model="$ctrl.model.status" name="status"> </oui-switch>
+        <strong
+            >{{ 'pci_databases_replications_add_edit_status_' +
+            $ctrl.model.status | translate }}</strong
+        >
+    </oui-field>
+</div>
+
+<pre>{{$ctrl.model | json}}</pre>
