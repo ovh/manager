@@ -1,30 +1,27 @@
-export const ADD_USER_FORM_RULES = {
-  name: {
-    pattern: /^[a-zA-Z0-9_][a-zA-Z0-9_.-]{0,31}$/,
-    max: 32,
-  },
-  keys: {
-    pattern: /^[a-zA-Z0-9_@./#&+-]{1,254}$/,
+export const FORM_RULES = {
+  topics: {
+    pattern: /^[A-Za-z0-9-_.*?]+$/,
     min: 1,
-    max: 254,
+    max: 1024,
   },
-  categories: {
-    pattern: /^[+-][a-zA-Z0-9_@./#&+-]{0,253}$/,
+  blacklistedTopics: {
+    pattern: /^[A-Za-z0-9-_.*?]+$/,
     min: 1,
-    max: 254,
+    max: 1024,
   },
-  commands: {
-    pattern: /^[+-][a-zA-Z0-9_@./#&+-]{0,253}$/,
+  editSyncInterval: {
     min: 1,
-    max: 254,
+    max: 31536000,
   },
-  channels: {
-    pattern: /^[a-zA-Z0-9_@./#&+-]{1,254}$/,
-    min: 1,
-    max: 254,
-  },
+};
+export const DEFAULT_VALUES = {
+  editSyncInterval: 60,
+  syncGroupOffset: false,
+  heartbeat: true,
+  status: true,
 };
 
 export default {
-  ADD_USER_FORM_RULES,
+  FORM_RULES,
+  DEFAULT_VALUES,
 };
