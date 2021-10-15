@@ -231,6 +231,17 @@
                                 >
                                 </span>
                             </td>
+                            <td class="text-center" data-ng-if="hosting.hasCdn">
+                                <span
+                                    class="oui-badge"
+                                    data-ng-bind="(('hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn | translate) == 'hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn)? domain.cdn: ('hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn | translate)"
+                                    data-ng-class="{
+                                            'align-bottom': canEditCdn(domain),
+                                            'oui-badge_success': domain.cdn === 'ACTIVE',
+                                            'oui-badge_error': domain.cdn === 'NONE'
+                                        }"
+                                ></span>
+                            </td>
                             <td class="text-center">
                                 <span
                                     class="oui-badge"

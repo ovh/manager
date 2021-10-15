@@ -150,7 +150,7 @@ angular
           .then(() => Hosting.getSelected($stateParams.productId))
           .then((hosting) => {
             $scope.hosting = hosting;
-            $scope.numberOfColumns = 4 + hosting.isCloudWeb + hosting.hasCdn;
+            $scope.numberOfColumns = 6 + hosting.isCloudWeb + hosting.hasCdn;
 
             if (hosting.isCloudWeb) {
               const promises = map(
