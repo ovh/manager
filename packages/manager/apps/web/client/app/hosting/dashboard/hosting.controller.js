@@ -530,29 +530,28 @@ export default class {
   // FLUSH CDN
   checkFlushCdnState() {
     this.$scope.flushCdnState = 'check';
-    this.Hosting.checkTaskUnique(
-      this.$stateParams.productId,
-      'web/flushCache',
-    ).then((taskIds) => {
-      if (taskIds && taskIds.length) {
-        this.$scope.flushCdnState = 'doing';
-        this.$rootScope.$broadcast(this.Hosting.events.tasksChanged);
-        this.Hosting.pollFlushCdn(this.$stateParams.productId, taskIds).then(
-          () => {
-            this.$rootScope.$broadcast(this.Hosting.events.tasksChanged);
-            this.$scope.flushCdnState = 'ok';
-            this.Alerter.success(
-              this.$translate.instant(
-                'hosting_dashboard_cdn_flush_done_success',
-              ),
-              this.$scope.alerts.main,
-            );
-          },
-        );
-      } else {
-        this.$scope.flushCdnState = 'ok';
-      }
-    });
+    this.Hosting.checkTaskUnique(this.$stateParams.productId, 'cdn/flush').then(
+      (taskIds) => {
+        if (taskIds && taskIds.length) {
+          this.$scope.flushCdnState = 'doing';
+          this.$rootScope.$broadcast(this.Hosting.events.tasksChanged);
+          this.Hosting.pollFlushCdn(this.$stateParams.productId, taskIds).then(
+            () => {
+              this.$rootScope.$broadcast(this.Hosting.events.tasksChanged);
+              this.$scope.flushCdnState = 'ok';
+              this.Alerter.success(
+                this.$translate.instant(
+                  'hosting_dashboard_cdn_flush_done_success',
+                ),
+                this.$scope.alerts.main,
+              );
+            },
+          );
+        } else {
+          this.$scope.flushCdnState = 'ok';
+        }
+      },
+    );
   }
 
   checkSqlPriveState() {
