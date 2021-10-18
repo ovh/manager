@@ -14,12 +14,14 @@
   "dedicatedCloud_tab_datastores_hourly_consumption_na": "In arrivo",
   "dedicatedCloud_tab_datastores_hourly_consumption_1": "1 ora",
   "dedicatedCloud_tab_datastores_hourly_consumption_other": " {{t0}} ore",
-  "dedicatedCloud_tab_datastores_hourly_usage_update": "In data  {{t0}}",
+  "dedicatedCloud_tab_datastores_hourly_usage_update": "In data {{t0}}",
   "dedicatedCloud_tab_datastores_status": "Stato",
   "dedicatedCloud_tab_datastores_status_ADDING": "Aggiunta in corso...",
   "dedicatedCloud_tab_datastores_status_DELIVERED": "Attivo",
   "dedicatedCloud_tab_datastores_status_ERROR": "Errore",
   "dedicatedCloud_tab_datastores_status_REMOVING": "Eliminazione in corso...",
   "dedicatedCloud_tab_datastores_status_UNKNOWN": "Sconosciuto",
-  "dedicatedCloud_tab_datastores_empty": "Nessun datastore"
+  "dedicatedCloud_tab_datastores_empty": "Nessun datastore",
+  "dedicatedCloud_convert_datastore_to_global": "Converti il datastore in globale",
+  "dedicatedCloud_tab_datastores_global_information": "Un datastore globale è un datastore montato su tutti i cluster/datacenter virtuali di un'infrastruttura VMware, cioè condiviso tra più vDC. Alcuni datastore possono non essere compatibili: in questo caso è possibile ordinare nuovi datastore e utilizzare VMware Storage vMotion. A questo proposito, consulta le nostre guide <a href=\"{{ billingGuideUrl }}\" target=\"_blank\">Informazioni sulla fatturazione Private Cloud</a> e <a href=\"{{ vMotionGuideUrl }}\" target=\"_blank\">VMware Storage vMotion</a>."
 }
