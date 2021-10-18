@@ -1554,5 +1554,15 @@ angular.module('services').service(
         })
         .catch(catchErrorAndGoOn);
     }
+
+    /**
+     * Get DNS Zone history
+     * @param {string} zoneName
+     */
+    getZoneHistory(zoneName) {
+      return this.OvhHttp.get(`/domain/zone/${zoneName}/history`, {
+        rootPath: 'apiv6',
+      });
+    }
   },
 );
