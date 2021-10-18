@@ -1,0 +1,24 @@
+<oui-modal
+    ng-form="addServiceIntegration"
+    data-on-dismiss="$ctrl.cancel()"
+    data-primary-label="{{:: 'pci_databases_service_integration_add_confirm' | translate}}"
+    data-primary-disabled="addServiceIntegration.$invalid"
+    data-primary-action="$ctrl.addServiceIntegration()"
+    data-secondary-action="$ctrl.cancel()"
+    data-secondary-label="{{:: 'pci_databases_service_integration_add_cancel' | translate}}"
+    data-loading="$ctrl.processing"
+    data-heading="{{:: 'pci_databases_service_integration_add' | translate}}"
+>
+    <oui-field
+        data-label="{{:: 'pci_databases_service_integration_add_service_label' | translate }}"
+    >
+        <oui-select
+            model="$ctrl.service"
+            name="service"
+            items="$ctrl.addableServicesList"
+            match="description"
+            required
+        >
+        </oui-select>
+    </oui-field>
+</oui-modal>

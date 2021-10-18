@@ -611,4 +611,32 @@ export default class DatabaseService {
       )
       .then(({ data }) => data);
   }
+
+  getIntegrations(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/integration`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  addIntegration(projectId, engine, databaseId, service) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/integration`,
+        {
+          serviceId: service.id,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteIntegration(projectId, engine, databaseId, integration) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/integration/${integration.id}`,
+      )
+      .then(({ data }) => data);
+  }
 }

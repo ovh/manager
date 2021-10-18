@@ -18,6 +18,7 @@ import acl from './acl';
 import userAcl from './useracl';
 import topics from './topics';
 import indexes from './indexes';
+import serviceIntegration from './service-integration';
 
 const moduleName = 'ovhManagerPciStoragesDatabase';
 
@@ -39,6 +40,7 @@ angular
     userAcl,
     topics,
     indexes,
+    serviceIntegration,
   ])
   .config(routing)
   .component('ovhManagerPciProjectDatabase', component)
