@@ -855,7 +855,6 @@
   "server_configuration_installation_progress_button": "Progression de l'installation",
   "server_configuration_installation_progress_title": "Progression de l'installation",
   "server_configuration_installation_progress_info": "La demande d'installation a bien été prise en compte.",
-  "server_configuration_installation_progress_button_modal": "Réduire",
   "server_configuration_installation_progress_end": "L'installation est terminée.",
   "server_configuration_installation_progress_cancel_success": "La demande d'annulation de l'installation a bien été prise en compte.",
   "server_configuration_installation_progress_cancel_fail": "Une erreur est survenue lors de la demande d'annulation de l'installation ({{t0}})",
