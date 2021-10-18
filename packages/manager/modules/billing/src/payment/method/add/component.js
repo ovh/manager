@@ -10,6 +10,7 @@ export default {
     callback: '<',
     currentUser: '<',
     defaultPaymentMethodIntegration: '<',
+    hasAllowDefaultChoiceForFirstPaymentMethod: '<',
     isLastStep: '<',
     isStepVisible: '<',
     getBackButtonHref: '<',

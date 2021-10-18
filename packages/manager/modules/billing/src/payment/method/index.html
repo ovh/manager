@@ -55,6 +55,15 @@
 
     <h2 data-translate="billing_payment_method_title"></h2>
 
+    <p data-ng-if="$ctrl.hasAllowDefaultChoiceForFirstPaymentMethod">
+        <span
+            data-translate="billing_payment_method_information_add_ovh_sas"
+        ></span>
+        <span
+            data-translate="billing_payment_method_information_add_default"
+        ></span>
+    </p>
+
     <oui-datagrid data-rows="$ctrl.paymentMethods">
         <oui-datagrid-column
             data-title=":: 'billing_payment_method_table_type' | translate"
