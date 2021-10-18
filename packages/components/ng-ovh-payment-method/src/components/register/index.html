@@ -43,17 +43,31 @@
     <!-- set as default -->
     <div data-ng-if="$ctrl.showSetAsDefaultChoice">
         <p
-            data-ng-if="$ctrl.registeredPaymentMethods.length === 0"
+            data-ng-if="$ctrl.registeredPaymentMethods.length === 0 && $ctrl.automaticDefault"
             data-translate="ovh_payment_method_register_force_as_default"
         ></p>
 
         <oui-checkbox
+            class="mb-3"
             data-model="$ctrl.model.setAsDefault"
-            data-ng-if="$ctrl.registeredPaymentMethods.length > 0"
+            data-ng-if="$ctrl.registeredPaymentMethods.length > 0 || !$ctrl.automaticDefault"
         >
             <span
                 data-translate="ovh_payment_method_register_set_as_default_choice"
             ></span>
         </oui-checkbox>
+
+        <oui-message
+            class="mb-3"
+            data-ng-if="$ctrl.model.setAsDefault && !$ctrl.automaticDefault"
+            type="info"
+        >
+            <span
+                data-translate="{{:: $ctrl.hasDefaultPaymentMethod ? 'ovh_payment_method_register_set_as_default_choice_information_has_default_payment_method' : 'ovh_payment_method_register_set_as_default_choice_information_no_default_payment_method_ovh_sas' }}"
+            ></span>
+            <span
+                data-translate="ovh_payment_method_register_set_as_default_choice_information"
+            ></span>
+        </oui-message>
     </div>
 </div>

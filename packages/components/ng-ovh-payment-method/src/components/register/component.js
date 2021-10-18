@@ -9,6 +9,7 @@ export default {
     defaultPaymentMethodType: '@?',
     defaultPaymentMethodIntegration: '@?',
     model: '<',
+    automaticDefault: '<?',
     paymentMethodTypesOrder: '<?',
     paymentMethodTypesPerLine: '<?',
     registeredPaymentMethods: '<?',
