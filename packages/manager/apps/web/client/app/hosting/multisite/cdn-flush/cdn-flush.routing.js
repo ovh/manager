@@ -18,8 +18,8 @@ export default /* @ngInject */ ($stateProvider) => {
           Alerter[type](message, 'app.alerts.main');
         }),
 
-      onFlushSuccess: /* @ngInject */ ($rootScope) => () =>
-        $rootScope.$broadcast('hosting.cdn.flush.refresh'),
+      onFlushSuccess: /* @ngInject */ ($rootScope) => (operation) =>
+        $rootScope.$broadcast('hosting.cdn.flush.refresh', operation),
     },
     atInternet: {
       rename: 'web::hosting::multisites::purge-cdn',
