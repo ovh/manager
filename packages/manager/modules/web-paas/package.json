@@ -27,7 +27,7 @@
     "@ovh-ux/ng-at-internet": "^5.7.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.2.4",
     "@ovh-ux/ng-ovh-contracts": "^4.0.4",
-    "@ovh-ux/ng-ovh-payment-method": "^8.3.4",
+    "@ovh-ux/ng-ovh-payment-method": "^9.0.0",
     "@ovh-ux/ng-ovh-toaster": "^2.0.2",
     "@ovh-ux/ng-ovh-utils": "^14.0.14",
     "@ovh-ux/ng-ovh-web-universe-components": "^9.0.0",
