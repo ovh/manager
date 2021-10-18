@@ -29,7 +29,7 @@
     "@ovh-ux/manager-models": "^1.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/manager-preloader": "^1.0.0",
-    "@ovh-ux/manager-user-account": "^0.0.0",
+    "@ovh-ux/manager-user-account": "^0.0.0 || ^1.0.0",
     "@ovh-ux/ng-at-internet": "^5.6.1",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.1.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.8",
