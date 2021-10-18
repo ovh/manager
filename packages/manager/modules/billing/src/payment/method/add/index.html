@@ -58,6 +58,7 @@
                         data-registered-payment-methods="$ctrl.paymentMethods"
                         data-show-set-as-default-choice="true"
                         data-on-initialized="$ctrl.addSteps.paymentMethodType.loading = false"
+                        data-automatic-default="!$ctrl.hasAllowDefaultChoiceForFirstPaymentMethod"
                     >
                         <ovh-payment-method-register-explanation-text>
                             <div
@@ -77,12 +78,6 @@
                                     ></p>
                                 </div>
                                 <p data-ng-switch-when="BANK_ACCOUNT">
-                                    <span
-                                        class="d-block"
-                                        data-translate="billing_payment_method_add_selected_common_redirect"
-                                        data-ng-if="$ctrl.model.selectedPaymentMethodType.isLegacy()"
-                                    >
-                                    </span>
                                     <span
                                         class="d-block"
                                         data-translate="billing_payment_method_add_bank_account_selected"
