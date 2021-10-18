@@ -1,4 +1,7 @@
 {
   "ovh_payment_method_register_force_as_default": "Ce moyen de paiement sera utilisé pour les paiements automatiques de votre produit. Vous pouvez à tout moment modifier celui-ci dans vos moyens de paiements. Vous serez notifié par e-mail avant chaque nouvelle échéance.",
-  "ovh_payment_method_register_set_as_default_choice": "Je veux sélectionner ce moyen de paiement par défaut dès sa validation."
+  "ovh_payment_method_register_set_as_default_choice": "Je veux sélectionner ce moyen de paiement par défaut dès sa validation.",
+  "ovh_payment_method_register_set_as_default_choice_information_no_default_payment_method_ovh_sas": "En cochant cette case, vous autorisez OVH SAS à enregistrer ce moyen de paiement comme moyen de paiement par défaut afin de faciliter le règlement de vos prochaines commandes.",
+  "ovh_payment_method_register_set_as_default_choice_information_has_default_payment_method": "En cochant cette case, vous désignez ce moyen de paiement comme moyen de paiement par défaut.",
+  "ovh_payment_method_register_set_as_default_choice_information": "Il sera automatiquement utilisé, à chaque nouvelle échéance, pour le paiement de vos services en renouvellement automatique et en paiement à l’usage (« Pay as you go »). Vous pouvez à tout moment modifier des moyens de paiement dans votre espace client."
 }
