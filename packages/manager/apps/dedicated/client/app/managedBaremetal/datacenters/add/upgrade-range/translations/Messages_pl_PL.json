@@ -1,3 +1,4 @@
 {
-  "managed_baremetal_user_rights": "Uprawnienia"
+  "managed_baremetal_user_rights": "Uprawnienia",
+  "managed_baremetal_upgrade_range": "Migracja"
 }

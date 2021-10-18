@@ -1,3 +1,4 @@
 {
-  "managed_baremetal_user_rights": "Rechte"
+  "managed_baremetal_user_rights": "Rechte",
+  "dedicated_cloud_upgrade_range": "Migration"
 }
