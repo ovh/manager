@@ -5,7 +5,6 @@ import 'script-loader!jsurl/lib/jsurl.js'; // eslint-disable-line
 import 'script-loader!bootstrap/dist/js/bootstrap'; // eslint-disable-line
 
 import 'angular-ui-bootstrap';
-import 'angular-animate';
 import 'angular-translate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
@@ -36,7 +35,6 @@ export default (containerEl, environment) => {
     .module(
       moduleName,
       [
-        'ngAnimate',
         ngOvhFeatureFlipping,
         ngOvhSsoAuthModalPlugin,
         ngOvhUiRouterLineProgress,
