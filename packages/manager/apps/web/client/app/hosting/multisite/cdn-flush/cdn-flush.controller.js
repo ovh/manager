@@ -99,8 +99,8 @@ export default class HostingMultisiteCdnFlushCtrl {
       ? this.flushV1Cdn()
       : this.flushSharedCdn();
     return flushPromise
-      .then(() => {
-        this.onFlushSuccess();
+      .then(({ data: operation }) => {
+        this.onFlushSuccess(operation);
         return this.goBack(
           this.$translate.instant('hosting_multisite_cdn_flush_success'),
         );
@@ -124,6 +124,7 @@ export default class HostingMultisiteCdnFlushCtrl {
    */
   flushV1Cdn() {
     this.sendTrackClick('web::hosting::cdn::empty-cache::confirm');
+
     return this.Hosting.flushCdn(this.serviceName);
   }
 
