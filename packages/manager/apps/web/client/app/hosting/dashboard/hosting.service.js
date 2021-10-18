@@ -29,6 +29,7 @@ import union from 'lodash/union';
         WucConverterService,
         HOSTING,
         HOSTING_UPGRADES,
+        HOSTING_OPERATION_STATUS,
         OvhHttp,
         Poll,
       ) {
@@ -40,6 +41,7 @@ import union from 'lodash/union';
         this.WucConverterService = WucConverterService;
         this.HOSTING = HOSTING;
         this.HOSTING_UPGRADES = HOSTING_UPGRADES;
+        this.HOSTING_OPERATION_STATUS = HOSTING_OPERATION_STATUS;
         this.OvhHttp = OvhHttp;
         this.Poll = Poll;
 
@@ -587,11 +589,35 @@ import union from 'lodash/union';
 
       /* -------------------------POLLING-------------------------*/
 
+      /**
+       * kept only for CDN v1 purpose, we have to remove it once all customers use CDN v2
+       * @param serviceName {String}: product id
+       * @param taskIds {Array}: list of tasks ids
+       * @returns {Promise}: poll promise
+       */
       pollFlushCdn(serviceName, taskIds) {
         return this.$q.all(
           map(taskIds, (taskId) =>
             this.Poll.poll(
               `apiv6/hosting/web/${serviceName}/tasks/${taskId}`,
+              null,
+              {
+                namespace: 'hosting.cdn.flush.refresh',
+                interval: 30000,
+              },
+            ).then(
+              (resp) => resp,
+              (err) => err,
+            ),
+          ),
+        );
+      }
+
+      pollSharedFlushCdn(serviceName, operationIds) {
+        return this.$q.all(
+          map(operationIds, (operationId) =>
+            this.Poll.poll(
+              `apiv6/hosting/web/${serviceName}/cdn/operation/${operationId}`,
               null,
               {
                 namespace: 'hosting.cdn.flush.refresh',
@@ -636,28 +662,44 @@ import union from 'lodash/union';
         this.Poll.kill({ namespace: 'hosting.database.sqlPrive' });
       }
 
-      /**
-       * Check task unique
-       * @param {string} serviceName
-       * @param {string} fct
-       */
       checkTaskUnique(serviceName, fct) {
         let tasks = [];
-        const r = map(['init', 'doing', 'todo'], (status) =>
-          this.OvhHttp.get(`/hosting/web/${serviceName}/tasks`, {
-            rootPath: 'apiv6',
-            params: {
-              function: fct,
-              status,
-            },
-          }).then((response) => {
-            if (isArray(response.data) && !isEmpty(response.data)) {
-              tasks = union(tasks, response.data);
-            }
-          }),
+        const tasksPromises = map(['init', 'doing', 'todo'], (status) =>
+          this.$http
+            .get(`/hosting/web/${serviceName}/tasks`, {
+              params: {
+                function: fct,
+                status,
+              },
+            })
+            .then((response) => {
+              if (isArray(response.data) && !isEmpty(response.data)) {
+                tasks = union(tasks, response.data);
+              }
+            }),
         );
 
-        return this.$q.all(r).then(() => tasks);
+        return this.$q.all(tasksPromises).then(() => tasks);
+      }
+
+      checkSharedCdnOperations(serviceName, fct) {
+        const statusToCheck = [
+          this.HOSTING_OPERATION_STATUS.TODO,
+          this.HOSTING_OPERATION_STATUS.DOING,
+        ];
+
+        return this.$http
+          .get(`/hosting/web/${serviceName}/cdn/operation`)
+          .then(({ data: operations }) => {
+            return {
+              all: operations,
+              active: operations.filter(
+                (operation) =>
+                  operation.function === fct &&
+                  statusToCheck.includes(operation.status),
+              ),
+            };
+          });
       }
 
       /* -------------------------ORDER/HOSTING/WEB-------------------------*/
