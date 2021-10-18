@@ -351,6 +351,28 @@
         </div>
         <div class="col-md-4">
             <oui-tile
+                data-ng-if="$ctrl.isFeatureActivated('showServiceIntegration')"
+                class="form-group"
+                data-heading="{{:: 'pci_databases_general_information_service_integration_title' | translate }}"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information__kafka_mirror_maker_label' | translate }}"
+                >
+                    <oui-tile-description>
+                        <p
+                            data-ng-if="!$ctrl.serviceIntegration.length === 0"
+                            data-translate="pci_databases_general_information__kafka_mirror_maker_none"
+                        ></p>
+                        <p
+                            class="mb-0"
+                            ng-repeat="service in $ctrl.serviceIntegration track by $index"
+                        >
+                            {{service.name}}
+                        </p>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+            <oui-tile
                 class="form-group"
                 data-heading="{{:: 'pci_databases_general_information_configuration_title' | translate }}"
             >

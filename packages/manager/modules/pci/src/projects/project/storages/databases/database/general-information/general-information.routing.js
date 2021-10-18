@@ -211,6 +211,23 @@ export default /* @ngInject */ ($stateProvider) => {
           }
         });
       },
+      serviceIntegration: /* @ngInject */ (database) =>
+        isFeatureActivated('showServiceIntegration', database.engine)
+          ? [
+              {
+                type: 'MM',
+                name: 'Kafka-Mirror-Maker-db-120',
+              },
+              {
+                type: 'MM',
+                name: 'Kafka-Mirror-Maker-db-60',
+              },
+              {
+                type: 'MM',
+                name: 'Kafka-Mirror-Maker-db-30',
+              },
+            ]
+          : null,
       users: /* @ngInject */ (DatabaseService, database, projectId) =>
         isFeatureActivated('usersTab', database.engine)
           ? DatabaseService.getUsers(projectId, database.engine, database.id)
