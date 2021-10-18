@@ -49,6 +49,10 @@ export default class OvhPaymentMethodRegisterCtrl {
       this.registeredPaymentMethods = [];
     }
 
+    this.hasDefaultPaymentMethod = this.registeredPaymentMethods.some(
+      ({ default: isDefault }) => isDefault === true,
+    );
+
     // paymentMethodTypesOrder is an array with default ordered payment types
     if (!this.paymentMethodTypesOrder) {
       this.paymentMethodTypesOrder = DEFAULT_ORDERED_PAYMENT_METHOD_TYPES;
@@ -150,8 +154,9 @@ export default class OvhPaymentMethodRegisterCtrl {
 
         // set default model
         if (
-          !has(this.model, 'setAsDefault') ||
-          isNil(this.model.setAsDefault)
+          (!has(this.model, 'setAsDefault') ||
+            isNil(this.model.setAsDefault)) &&
+          this.automaticDefault
         ) {
           this.model.setAsDefault = this.registeredPaymentMethods.length === 0;
         }
