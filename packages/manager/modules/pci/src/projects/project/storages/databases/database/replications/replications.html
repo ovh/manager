@@ -11,11 +11,11 @@
     <oui-datagrid
         class="mt-5"
         data-page-size="10"
-        data-rows="$ctrl.replicationsList"
+        data-rows="$ctrl.mappedReplications"
     >
         <oui-datagrid-column
             data-title=":: 'pci_databases_replications_tab_source' | translate"
-            data-property="sourceService"
+            data-property="serviceNameSource"
             data-sortable="asc"
             data-type="string"
             data-searchable
@@ -23,7 +23,7 @@
         ></oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_replications_tab_target' | translate"
-            data-property="targetService"
+            data-property="serviceNameTarget"
             data-sortable="asc"
             data-type="string"
             data-searchable
@@ -68,7 +68,11 @@
             data-type="boolean"
             data-searchable
             data-filterable
-        ></oui-datagrid-column>
+        >
+            <span
+                data-translate="pci_databases_replications_tab_sync_group_offsets_{{$row.enabled}}"
+            ></span>
+        </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_replications_tab_sync_interval' | translate"
             data-property="syncInterval"
@@ -78,11 +82,15 @@
         ></oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_replications_tab_status' | translate"
-            data-property="status"
+            data-property="enabled"
             data-sortable="asc"
             data-type="boolean"
             data-filterable
-        ></oui-datagrid-column>
+        >
+            <span
+                data-translate="pci_databases_replications_tab_status_{{$row.enabled}}"
+            ></span>
+        </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
                 data-on-click="$ctrl.trackAndEditReplication($row)"
