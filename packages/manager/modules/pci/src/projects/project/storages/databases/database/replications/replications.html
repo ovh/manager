@@ -15,7 +15,7 @@
     >
         <oui-datagrid-column
             data-title=":: 'pci_databases_replications_tab_source' | translate"
-            data-property="source"
+            data-property="sourceService"
             data-sortable="asc"
             data-type="string"
             data-searchable
@@ -23,7 +23,7 @@
         ></oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_replications_tab_target' | translate"
-            data-property="target"
+            data-property="targetService"
             data-sortable="asc"
             data-type="string"
             data-searchable
@@ -46,26 +46,26 @@
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_replications_tab_topics_blacklist' | translate"
-            data-property="topicsBlacklist"
+            data-property="topicExcludeList"
             data-sortable="asc"
             data-type="string"
             data-searchable
             data-filterable
         >
             <span
-                data-ng-repeat="topic in $row.topicsBlacklist track by $index"
+                data-ng-repeat="topic in $row.topicExcludeList track by $index"
             >
                 <p
-                    data-ng-if="$row.topicsBlacklist.length > $ctrl.MAX_TOPIC_PER_LINE && $index % $ctrl.MAX_TOPIC_PER_LINE === 0"
+                    data-ng-if="$row.topicExcludeList.length > $ctrl.MAX_TOPIC_PER_LINE && $index % $ctrl.MAX_TOPIC_PER_LINE === 0"
                 ></p>
                 <span class="oui-badge oui-badge_info">{{topic}}</span>
             </span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_replications_tab_sync_group_offsets' | translate"
-            data-property="syncGroupOffset"
+            data-property="syncGroupOffsets"
             data-sortable="asc"
-            data-type="string"
+            data-type="boolean"
             data-searchable
             data-filterable
         ></oui-datagrid-column>
@@ -80,7 +80,7 @@
             data-title=":: 'pci_databases_replications_tab_status' | translate"
             data-property="status"
             data-sortable="asc"
-            data-type="string"
+            data-type="boolean"
             data-filterable
         ></oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">

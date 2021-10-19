@@ -659,4 +659,13 @@ export default class DatabaseService {
       )
       .then(({ data }) => data);
   }
+
+  getReplications(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/replication`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
 }
