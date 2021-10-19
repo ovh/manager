@@ -16,7 +16,7 @@
     "@ovh-ux/testcafe-manager": "^1.0.0"
   },
   "devDependencies": {
-    "@ovh-ux/ui-kit": "^5.1.0",
+    "@ovh-ux/ui-kit": "^5.1.2",
     "bootstrap": "^4.4.1",
     "lodash-es": "^4.17.15"
   },
