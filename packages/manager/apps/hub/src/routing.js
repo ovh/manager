@@ -12,7 +12,7 @@ const parseErrors = (data) =>
 
 const transformOrder = ($q, lastOrder, OrderTracking) => {
   const latestOrder = lastOrder.data;
-  return latestOrder
+  return lastOrder.status === 'OK'
     ? $q
         .all({
           status: OrderTracking.getOrderStatus(latestOrder),
