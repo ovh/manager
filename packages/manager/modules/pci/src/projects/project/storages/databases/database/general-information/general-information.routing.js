@@ -212,7 +212,9 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
       users: /* @ngInject */ (DatabaseService, database, projectId) =>
-        DatabaseService.getUsers(projectId, database.engine, database.id),
+        isFeatureActivated('userAclTab', database.engine)
+          ? DatabaseService.getUsers(projectId, database.engine, database.id)
+          : [],
       stopPollingDatabaseStatus: /* @ngInject */ (
         DatabaseService,
         databaseId,
