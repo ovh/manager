@@ -21,11 +21,12 @@
                 ng-class="{'oui-field_error': $ctrl.invalidTargetSource}"
             >
                 <oui-select
-                    model="$ctrl.model.source"
+                    model="$ctrl.model.sourceService"
                     name="source"
-                    items="$ctrl.kafkaSource"
-                    match="description"
+                    items="$ctrl.serviceIntegrationList"
+                    match="serviceName"
                     on-change="$ctrl.checkTargetAndSourceValidity()"
+                    disabled="$ctrl.isUpdate"
                     required
                 >
                 </oui-select>
@@ -37,11 +38,12 @@
                 ng-class="{'oui-field_error': $ctrl.invalidTargetSource}"
             >
                 <oui-select
-                    model="$ctrl.model.target"
+                    model="$ctrl.model.targetService"
                     name="target"
-                    items="$ctrl.kafkaSource"
-                    match="description"
+                    items="$ctrl.serviceIntegrationList"
+                    match="serviceName"
                     on-change="$ctrl.checkTargetAndSourceValidity()"
+                    disabled="$ctrl.isUpdate"
                     required
                 >
                 </oui-select>
@@ -66,7 +68,7 @@
             <tags-input
                 name="blacklisted-topics"
                 data-placeholder="{{:: 'pci_databases_replications_add_edit_blacklisted_topics_placeholder' | translate }}"
-                data-model="$ctrl.model.blacklistedTopics"
+                data-model="$ctrl.model.topicExcludeList"
                 data-min="$ctrl.FORM_RULES.blacklistedTopics.min"
                 data-max="$ctrl.FORM_RULES.blacklistedTopics.max"
                 data-pattern="$ctrl.FORM_RULES.blacklistedTopics.pattern"
@@ -82,13 +84,13 @@
                 data-label="{{ ::'pci_databases_replications_add_edit_sync_group_offset' | translate }}"
             >
                 <oui-switch
-                    model="$ctrl.model.syncGroupOffset"
+                    model="$ctrl.model.syncGroupOffsets"
                     name="sync-group-offset"
                 >
                 </oui-switch>
                 <strong
                     >{{ 'pci_databases_replications_add_edit_syncGroupOffset_' +
-                    $ctrl.model.syncGroupOffset | translate }}</strong
+                    $ctrl.model.syncGroupOffsets | translate }}</strong
                 >
             </oui-field>
         </div>
@@ -100,7 +102,7 @@
                 data-label="{{:: 'pci_databases_replications_add_edit_sync_interval' | translate }}"
             >
                 <input
-                    data-ng-model="$ctrl.model.editSyncInterval"
+                    data-ng-model="$ctrl.model.syncInterval"
                     class="oui-input"
                     name="sync-interval"
                     type="number"
@@ -136,13 +138,13 @@
             <oui-field
                 data-label="{{ ::'pci_databases_replications_add_edit_heartbeat' | translate }}"
                 class="d-inline-block"
-                size="s"
+                size="m"
             >
-                <oui-switch model="$ctrl.model.heartbeat" name="heartbeat">
+                <oui-switch model="$ctrl.model.heartbeatsEmit" name="heartbeat">
                 </oui-switch>
                 <strong
                     >{{'pci_databases_replications_add_edit_heartbeat_' +
-                    $ctrl.model.heartbeat | translate }}</strong
+                    $ctrl.model.heartbeatsEmit | translate }}</strong
                 >
             </oui-field>
             <oui-field
@@ -150,11 +152,11 @@
                 class="d-inline-block"
                 size="s"
             >
-                <oui-switch model="$ctrl.model.status" name="status">
+                <oui-switch model="$ctrl.model.enabled" name="status">
                 </oui-switch>
                 <strong
                     >{{ 'pci_databases_replications_add_edit_status_' +
-                    $ctrl.model.status | translate }}</strong
+                    $ctrl.model.enabled | translate }}</strong
                 >
             </oui-field>
         </div>

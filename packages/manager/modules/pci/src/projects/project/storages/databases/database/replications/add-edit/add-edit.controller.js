@@ -1,3 +1,4 @@
+import find from 'lodash/find';
 import { FORM_RULES, DEFAULT_VALUES } from './add-edit.constants';
 
 export default class {
@@ -16,25 +17,29 @@ export default class {
     }
     this.invalidTargetSource = false;
     this.model = {
-      source: this.isUpdate ? this.replication.source : null,
-      target: this.isUpdate ? this.replication.target : null,
+      sourceService: this.isUpdate
+        ? find(this.serviceIntegrationList, {
+            id: this.replication.sourceService,
+          })
+        : null,
+      targetService: this.isUpdate
+        ? find(this.serviceIntegrationList, {
+            id: this.replication.targetService,
+          })
+        : null,
       topics: this.isUpdate ? this.replication.topics : [],
-      blacklistedTopics: this.isUpdate
-        ? this.replication.blacklistedTopics
-        : [],
-      syncGroupOffset: this.isUpdate
-        ? this.replication.syncGroupOffset
+      topicExcludeList: this.isUpdate ? this.replication.topicExcludeList : [],
+      syncGroupOffsets: this.isUpdate
+        ? this.replication.syncGroupOffsets
         : DEFAULT_VALUES.status,
-      editSyncInterval: this.isUpdate
-        ? this.replication.editSyncInterval
+      syncInterval: this.isUpdate
+        ? this.replication.syncInterval
         : DEFAULT_VALUES.editSyncInterval,
       policy: this.isUpdate ? this.replication.policy : null,
-      heartbeat: this.isUpdate
-        ? this.replication.heartbeat
+      heartbeatsEmit: this.isUpdate
+        ? this.replication.heartbeatsEmit
         : DEFAULT_VALUES.heartbeat,
-      status: this.isUpdate
-        ? this.replication.status === 'enabled'
-        : DEFAULT_VALUES.status,
+      enabled: this.isUpdate ? this.replication.enabled : DEFAULT_VALUES.status,
     };
   }
 
@@ -51,19 +56,67 @@ export default class {
 
   checkTargetAndSourceValidity() {
     this.invalidTargetSource =
-      this.model.target &&
-      this.model.source &&
-      this.model.target.id === this.model.source.id;
+      this.model.targetService &&
+      this.model.sourceService &&
+      this.model.targetService.id === this.model.sourceService.id;
   }
 
   addOrEditReplication() {
+    this.processing = true;
     if (this.isUpdate) {
       this.trackDashboard(
         'replication_flows::actions_menu::modify_replication_flow_confirm',
       );
-    } else {
-      this.trackDashboard('replication_flows::create_replication_flow_confirm');
+      this.model.id = this.replication.id;
+      return this.DatabaseService.updateReplication(
+        this.projectId,
+        this.database.engine,
+        this.database.id,
+        this.model,
+      )
+        .then(() =>
+          this.goBack({
+            textHtml: this.$translate.instant(
+              'pci_databases_replications_edit_success_message',
+            ),
+          }),
+        )
+        .catch((err) =>
+          this.goBack(
+            this.$translate.instant(
+              'pci_databases_replications_edit_error_message',
+              {
+                message: err.data?.message || null,
+              },
+            ),
+            'error',
+          ),
+        );
     }
-    this.model.submitted = true;
+    this.trackDashboard('replication_flows::create_replication_flow_confirm');
+    return this.DatabaseService.addReplication(
+      this.projectId,
+      this.database.engine,
+      this.database.id,
+      this.model,
+    )
+      .then(() =>
+        this.goBack({
+          textHtml: this.$translate.instant(
+            'pci_databases_replications_add_success_message',
+          ),
+        }),
+      )
+      .catch((err) =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_databases_replications_add_error_message',
+            {
+              message: err.data?.message || null,
+            },
+          ),
+          'error',
+        ),
+      );
   }
 }
