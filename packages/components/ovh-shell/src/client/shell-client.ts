@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import MessageBus from '../message-bus';
+import IMessageBus from '../message-bus/IMessageBus';
 
 export interface IDeferred {
   resolve: (value: unknown | PromiseLike<unknown>) => void;
@@ -27,11 +27,14 @@ function iframeCheck() {
 export default class ShellClient {
   deferredResponse: Record<string, IDeferred>;
 
-  messageBus: MessageBus;
+  messageBus: IMessageBus;
 
-  constructor() {
+  constructor(bus: IMessageBus) {
     this.deferredResponse = {};
-    this.messageBus = null;
+    this.messageBus = bus;
+    this.messageBus.onReceive((data: IPluginResponse) =>
+      this.handleMessage(data),
+    );
     iframeCheck();
   }
 
@@ -53,7 +56,7 @@ export default class ShellClient {
   invokePluginMethod({
     plugin,
     method,
-    args,
+    args = [],
   }: IPluginInvocation): PromiseLike<unknown> {
     const uid = this.getUniqueResponseId();
     this.messageBus.send({
@@ -65,13 +68,5 @@ export default class ShellClient {
     return new Promise((resolve, reject) => {
       this.deferredResponse[uid] = { resolve, reject };
     });
-  }
-
-  setMessageBus(bus: MessageBus) {
-    this.messageBus = bus;
-    this.messageBus.onReceive((data: IPluginResponse) =>
-      this.handleMessage(data),
-    );
-    return this;
   }
 }

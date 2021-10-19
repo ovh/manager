@@ -18,7 +18,7 @@ class Application {
     this.iframe.contentWindow.location.replace(url);
   }
 
-  getApplicationId(): string | undefined {
+  getApplicationId(): string {
     const path = this.getApplicationPath();
     const appConfig = this.config.findByPath(path);
     if (!appConfig) {
@@ -45,16 +45,15 @@ class Application {
     };
   }
 
-  updateRouting({
-    applicationId,
-    applicationHash,
-  }: {
-    applicationId: string;
-    applicationHash: string;
-  }) {
-    let url = this.getURL();
-    if (url.pathname === 'blank') {
-      url = new URL(window.location.href);
+  updateURL(
+    url: URL,
+    applicationId: string,
+    applicationHash: string,
+    currentAppPath: string,
+  ): URL {
+    let newURL = url;
+    if (newURL.pathname === 'blank') {
+      newURL = new URL(window.location.href);
     }
     const config = this.config.findById(applicationId);
     if (!config) {
@@ -62,13 +61,30 @@ class Application {
         `Cannot find configuration for application with id '${applicationId}'`,
       );
     }
-    const currentAppPath = this.getApplicationPath();
     // check for path equality before updating otherwise '/foo' would be updated
     // by '/foo/' and would trigger full page reload in the application
-    url.pathname = this.config.pathEquals(currentAppPath, config.path)
+    newURL.pathname = this.config.pathEquals(currentAppPath, config.path)
       ? currentAppPath
       : config.path;
-    url.hash = `/${applicationHash}`;
+    newURL.hash = `/${applicationHash}`;
+
+    return newURL;
+  }
+
+  updateRouting({
+    applicationId,
+    applicationHash,
+  }: {
+    applicationId: string;
+    applicationHash: string;
+  }) {
+    const currentAppPath = this.getApplicationPath();
+    const url = this.updateURL(
+      this.getURL(),
+      applicationId,
+      applicationHash,
+      currentAppPath,
+    );
     this.setURL(url.href);
   }
 }

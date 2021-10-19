@@ -17,9 +17,8 @@ function Shell() {
   ux.registerSidebar('notifications', { isOpen: false });
 
   useEffect(() => {
-    shell = shellApi.initShell();
+    shell = shellApi.initShell(iframeRef.current);
     shell.registerPlugin('i18n', plugin.i18n(environment));
-    shell.connectIFrameApplication(iframeRef.current);
   }, []);
 
   useEffect(() => {

@@ -1,6 +1,8 @@
+import IMessageBus from './IMessageBus';
+
 const IFRAME_MESSAGE_TYPE = 'ovh-shell-iframe-message';
 
-export default class IFrameMessageBus {
+export default class IFrameMessageBus implements IMessageBus {
   iframe?: HTMLIFrameElement;
 
   listeners: CallableFunction[];
@@ -20,15 +22,21 @@ export default class IFrameMessageBus {
 
   send(message: unknown) {
     if (this.iframe) {
-      this.iframe.contentWindow.postMessage({
-        type: IFRAME_MESSAGE_TYPE,
-        message,
-      });
+      this.iframe.contentWindow.postMessage(
+        {
+          type: IFRAME_MESSAGE_TYPE,
+          message,
+        },
+        '*',
+      );
     } else {
-      window.parent.postMessage({
-        type: IFRAME_MESSAGE_TYPE,
-        message,
-      });
+      window.parent.postMessage(
+        {
+          type: IFRAME_MESSAGE_TYPE,
+          message,
+        },
+        '*',
+      );
     }
   }
 

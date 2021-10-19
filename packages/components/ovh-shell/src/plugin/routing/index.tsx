@@ -21,7 +21,7 @@ function initRoutingConfiguration(routing: RoutingConfiguration) {
   }
 }
 
-export function initRouting(iframe: HTMLIFrameElement) {
+function initRouting(iframe: HTMLIFrameElement) {
   const routingConfig = new RoutingConfiguration();
   const application = new Application(iframe, routingConfig);
   const router = <Router application={application} routing={routingConfig} />;
@@ -36,4 +36,4 @@ export function initRouting(iframe: HTMLIFrameElement) {
   };
 }
 
-export default { initRouting };
+export default { initRouting, initRoutingConfiguration };

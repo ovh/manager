@@ -1,4 +1,6 @@
-export function i18n(environment: any) {
+import { Environment } from '@ovh-ux/manager-config';
+
+export function i18n(environment: Environment) {
   return {
     getLocale: (): string => environment.getUserLocale(),
   };
