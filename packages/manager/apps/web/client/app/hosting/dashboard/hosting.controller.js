@@ -554,7 +554,7 @@ export default class {
 
     return this.Hosting.checkTaskUnique(
       this.$stateParams.productId,
-      'web/cdn/flush',
+      'cdn/flush',
     ).then((taskIds) => {
       if (taskIds && taskIds.length) {
         this.$scope.flushCdnState = this.$scope.HOSTING_FLUSH_STATE.DOING;
