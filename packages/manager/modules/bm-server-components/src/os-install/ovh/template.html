@@ -370,6 +370,7 @@
                                     data-ng-if="$ctrl.isSetPartition(partition)"
                                     data-ng-model="partition.order"
                                     data-ng-change="$ctrl.validationOrder(partition)"
+                                    data-ng-disabled="$ctrl.buttonControl.displayAddConfirmation && !$ctrl.buttonControl.setInProgress && !$ctrl.buttonControl.addInProgress"
                                 />
                             </td>
                             <td
@@ -389,6 +390,7 @@
                                     data-ng-options="type as ('server_configuration_installation_' + type | translate) for type in $ctrl.constants.partitionTypeList"
                                     data-ng-model="partition.typePartition"
                                     data-ng-change="$ctrl.validationType(partition)"
+                                    data-ng-disabled="$ctrl.buttonControl.displayAddConfirmation && !$ctrl.buttonControl.setInProgress && !$ctrl.buttonControl.addInProgress"
                                 >
                                 </select>
                             </td>
@@ -409,6 +411,7 @@
                                     data-ng-options="fileSystem as ('server_configuration_installation_' + fileSystem | translate) for fileSystem in $ctrl.constants.fileSystemList"
                                     data-ng-model="partition.fileSystem"
                                     data-ng-change="$ctrl.validationFileSystem(partition)"
+                                    data-ng-disabled="$ctrl.buttonControl.displayAddConfirmation && !$ctrl.buttonControl.setInProgress && !$ctrl.buttonControl.addInProgress"
                                 >
                                 </select>
                             </td>
@@ -430,7 +433,7 @@
                                     data-ng-model="partition.mountPoint"
                                     data-ng-required="true"
                                     data-ng-change="$ctrl.validationMountPoint(partition)"
-                                    data-ng-disabled="!$ctrl.validation.hasSwap && partition.fileSystem == $ctrl.constants.warningSwap"
+                                    data-ng-disabled="(!$ctrl.validation.hasSwap && partition.fileSystem == $ctrl.constants.warningSwap) || ($ctrl.buttonControl.displayAddConfirmation && !$ctrl.buttonControl.setInProgress && !$ctrl.buttonControl.addInProgress)"
                                 />
                             </td>
                             <td
@@ -455,6 +458,7 @@
                                     data-ng-model="partition.volumeName"
                                     data-ng-required="partition.typePartition == $ctrl.constants.warningLV"
                                     data-ng-change="$ctrl.validationVolumeName(partition)"
+                                    data-ng-disabled="$ctrl.buttonControl.displayAddConfirmation && !$ctrl.buttonControl.setInProgress && !$ctrl.buttonControl.addInProgress"
                                 />
                             </td>
                             <td
@@ -480,6 +484,7 @@
                                     data-ng-options="raid as raid.replace('_', '') for raid in $ctrl.getRaidList($ctrl.installation.nbDiskUse)"
                                     data-ng-model="partition.raid"
                                     data-ng-change="$ctrl.validationRaid(partition)"
+                                    data-ng-disabled="$ctrl.buttonControl.displayAddConfirmation && !$ctrl.buttonControl.setInProgress && !$ctrl.buttonControl.addInProgress"
                                 >
                                 </select>
                                 <span
@@ -536,6 +541,7 @@
                                             class="btn btn-default"
                                             data-ng-click="$ctrl.getFullSize(partition)"
                                             title="{{ 'server_configuration_installation_ovh_step2_remaining_size_button' | translate }}"
+                                            data-ng-disabled="$ctrl.buttonControl.displayAddConfirmation && !$ctrl.buttonControl.setInProgress && !$ctrl.buttonControl.addInProgress"
                                         >
                                             <span
                                                 class="oui-icon oui-icon-expansion-arrows_concept"
@@ -551,6 +557,7 @@
                                         data-ng-if="$ctrl.isSetPartition(partition)"
                                         data-ng-model="partition.partitionSize"
                                         data-ng-change="$ctrl.validationSize(partition)"
+                                        data-ng-disabled="$ctrl.buttonControl.displayAddConfirmation && !$ctrl.buttonControl.setInProgress && !$ctrl.buttonControl.addInProgress"
                                     />
                                     <span
                                         class="input-group-addon"
