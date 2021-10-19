@@ -10,7 +10,7 @@ export default {
     trackDashboard: '<',
     isUpdate: '<',
     replication: '<',
-    kafkaSource: '<',
+    serviceIntegrationList: '<',
     policies: '<',
   },
   controller,

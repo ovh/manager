@@ -23,9 +23,13 @@
   "pci_databases_replications_add_edit_syncGroupOffset_false": "Désactivée",
   "pci_databases_replications_add_edit_heartbeat_true": "Activée",
   "pci_databases_replications_add_edit_heartbeat_false": "Désactivée",
-  "pci_databases_replications_add_edit_status_true": "Activée",
+  "pci_databases_replications_add_edit_status_true": "Activé",
   "pci_databases_replications_add_edit_status_false": "Désactivée",
   "pci_databases_replications_add_edit_cancel": "Annuler",
   "pci_databases_replications_edit_validate": "Modifier",
-  "pci_databases_replications_add_validate": "Créer"
+  "pci_databases_replications_add_validate": "Créer",
+  "pci_databases_replications_add_success_message": "Le flux de réplication a été créé avec succès.",
+  "pci_databases_replications_edit_success_message": "Le flux de réplication a été modifié avec succès.",
+  "pci_databases_replications_add_error_message": "Une erreur est survenue lors de la création de votre flux de réplication : {{message}}",
+  "pci_databases_replications_edit_error_message": "Une erreur est survenue lors de la modification de votre flux de réplication : {{message}}"
 }

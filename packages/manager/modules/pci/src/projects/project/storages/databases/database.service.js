@@ -668,4 +668,48 @@ export default class DatabaseService {
       )
       .then(({ data }) => data);
   }
+
+  addReplication(projectId, engine, databaseId, replication) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/replication`,
+        {
+          sourceService: replication.sourceService.id,
+          targetService: replication.targetService.id,
+          topics: replication.topics,
+          topicExcludeList: replication.topicExcludeList,
+          syncInterval: replication.syncInterval,
+          syncGroupOffsets: replication.syncGroupOffsets,
+          heartbeatsEmit: replication.heartbeatsEmit,
+          enabled: replication.enabled,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  updateReplication(projectId, engine, databaseId, replication) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/replication/${replication.id}`,
+        {
+          sourceService: replication.sourceService.id,
+          targetService: replication.targetService.id,
+          topics: replication.topics,
+          topicExcludeList: replication.topicExcludeList,
+          syncInterval: replication.syncInterval,
+          syncGroupOffsets: replication.syncGroupOffsets,
+          heartbeatsEmit: replication.heartbeatsEmit,
+          enabled: replication.enabled,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteReplication(projectId, engine, databaseId, replication) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/integration/${replication.id}`,
+      )
+      .then(({ data }) => data);
+  }
 }
