@@ -11,6 +11,8 @@ export default {
     goToEditReplication: '<',
     refreshReplications: '<',
     replicationsList: '<',
+    kafkaServicesList: '<',
+    serviceIntegrationList: '<',
   },
   controller,
   template,

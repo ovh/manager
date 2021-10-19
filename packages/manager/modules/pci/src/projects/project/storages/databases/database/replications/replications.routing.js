@@ -1,3 +1,5 @@
+import { DATABASE_TYPES } from '../../databases.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'pci.projects.project.storages.databases.dashboard.replications',
@@ -30,6 +32,18 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         ) =>
           DatabaseService.getReplications(
+            projectId,
+            database.engine,
+            database.id,
+          ),
+        kafkaServicesList: /* @ngInject */ (DatabaseService, projectId) =>
+          DatabaseService.getDatabases(projectId, DATABASE_TYPES.KAFKA),
+        serviceIntegrationList: /* @ngInject */ (
+          database,
+          DatabaseService,
+          projectId,
+        ) =>
+          DatabaseService.getIntegrations(
             projectId,
             database.engine,
             database.id,
