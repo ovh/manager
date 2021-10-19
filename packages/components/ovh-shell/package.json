@@ -17,9 +17,11 @@
     "dev": "tsc -w"
   },
   "dependencies": {
+    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@types/react": "^17.0.24",
     "@types/react-router-dom": "^5.3.0",
     "dompurify": "^2.3.3",
+    "jest-cucumber": "^3.0.1",
     "nanoid": "^3.1.25",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
