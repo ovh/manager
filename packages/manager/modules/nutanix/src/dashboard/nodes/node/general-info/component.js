@@ -7,6 +7,8 @@ export default {
     nodeId: '<',
     server: '<',
     user: '<',
+    bandwidthInformations: '<',
+    specifications: '<',
     technicalDetails: '<',
     goToNameEdit: '<',
     goToNetboot: '<',

@@ -6,8 +6,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       nodeId: /* @ngInject */ ($transition$) => $transition$.params().nodeId,
-      server: /* @ngInject */ (nodeId, NutanixNode) =>
-        NutanixNode.getServer(nodeId),
+      server: /* @ngInject */ (nodeId, NutanixService) =>
+        NutanixService.getServer(nodeId),
       goToNameEdit: /* @ngInject */ ($state) => () =>
         $state.go(
           'nutanix.dashboard.nodes.node.general-info.edit-display-name',
@@ -65,15 +65,10 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-
-      handleError: /* @ngInject */ (Alerter) => (error) =>
-        Alerter.error(
-          error.message || error.data?.message,
-          'nutanix_node_alert',
-        ),
-
-      handleSuccess: /* @ngInject */ (Alerter) => (message) =>
-        Alerter.success(message, 'nutanix_node_alert'),
+      specifications: /* @ngInject */ (nodeId, NutanixService) =>
+        NutanixService.getBandwidth(nodeId),
+      bandwidthInformations: /* @ngInject */ (nodeId, NutanixService) =>
+        NutanixService.getBandwidthOptions(nodeId),
 
       breadcrumb: /* @ngInject */ (nodeId) => nodeId,
     },
