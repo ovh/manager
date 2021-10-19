@@ -1,5 +1,5 @@
 import PluginManager from './plugin-manager';
-import MessageBus from '../message-bus';
+import IMessageBus from '../message-bus/IMessageBus';
 
 export interface IPluginMessage {
   uid: string;
@@ -12,10 +12,13 @@ export default class Shell {
 
   pluginManager: PluginManager;
 
-  messageBus: MessageBus;
+  messageBus: IMessageBus;
 
-  constructor() {
-    this.messageBus = null;
+  constructor(bus: IMessageBus) {
+    this.messageBus = bus;
+    this.messageBus.onReceive((data: IPluginMessage) =>
+      this.handleMessage(data),
+    );
     this.pluginManager = new PluginManager();
     this.pluginEventHandler = null;
   }
@@ -43,13 +46,5 @@ export default class Shell {
       .invokePluginMethod(data)
       .then(onSuccess)
       .catch(onError);
-  }
-
-  setMessageBus(bus: MessageBus) {
-    this.messageBus = bus;
-    this.messageBus.onReceive((data: IPluginMessage) =>
-      this.handleMessage(data),
-    );
-    return this;
   }
 }
