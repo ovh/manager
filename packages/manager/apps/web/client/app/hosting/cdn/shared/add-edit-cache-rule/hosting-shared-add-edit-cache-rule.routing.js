@@ -1,3 +1,5 @@
+import { CDN_ADVANCED } from './hosting-shared-add-edit-cache-rule.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   const resolve = {
     goBack: /* @ngInject */ ($state) => () => $state.go('^'),
@@ -8,6 +10,14 @@ export default /* @ngInject */ ($stateProvider) => {
 
     callbacks: /* @ngInject */ ($transition$) =>
       $transition$.params().callbacks,
+
+    resourceTypes: /* @ngInject */ ($http) =>
+      $http
+        .get('/hosting/web.json')
+        .then(({ data }) => data?.models?.['cdn.OptionPatternTypeEnum'].enum),
+
+    enableOnlyExtension: /* @ngInject */ (cdnProperties) =>
+      cdnProperties.type !== CDN_ADVANCED,
   };
   const resolveEdit = {
     rule: /* @ngInject */ ($transition$) => $transition$.params().rule,
