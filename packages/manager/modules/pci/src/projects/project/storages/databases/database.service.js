@@ -681,6 +681,7 @@ export default class DatabaseService {
           syncInterval: replication.syncInterval,
           syncGroupOffsets: replication.syncGroupOffsets,
           heartbeatsEmit: replication.heartbeatsEmit,
+          replicationPolicyClass: replication.replicationPolicyClass,
           enabled: replication.enabled,
         },
       )
@@ -699,6 +700,7 @@ export default class DatabaseService {
           syncInterval: replication.syncInterval,
           syncGroupOffsets: replication.syncGroupOffsets,
           heartbeatsEmit: replication.heartbeatsEmit,
+          replicationPolicyClass: replication.replicationPolicyClass,
           enabled: replication.enabled,
         },
       )

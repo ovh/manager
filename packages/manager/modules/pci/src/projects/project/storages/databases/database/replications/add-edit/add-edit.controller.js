@@ -1,5 +1,5 @@
 import find from 'lodash/find';
-import { FORM_RULES, DEFAULT_VALUES } from './add-edit.constants';
+import { FORM_RULES, POLICIES, DEFAULT_VALUES } from './add-edit.constants';
 
 export default class {
   /* @ngInject */
@@ -7,6 +7,7 @@ export default class {
     this.$translate = $translate;
     this.DatabaseService = DatabaseService;
     this.FORM_RULES = FORM_RULES;
+    this.POLICIES = POLICIES;
   }
 
   $onInit() {
@@ -18,12 +19,12 @@ export default class {
     this.invalidTargetSource = false;
     this.model = {
       sourceService: this.isUpdate
-        ? find(this.serviceIntegrationList, {
+        ? find(this.readyServiceIntegrationList, {
             id: this.replication.sourceService,
           })
         : null,
       targetService: this.isUpdate
-        ? find(this.serviceIntegrationList, {
+        ? find(this.readyServiceIntegrationList, {
             id: this.replication.targetService,
           })
         : null,
@@ -31,11 +32,13 @@ export default class {
       topicExcludeList: this.isUpdate ? this.replication.topicExcludeList : [],
       syncGroupOffsets: this.isUpdate
         ? this.replication.syncGroupOffsets
-        : DEFAULT_VALUES.status,
+        : DEFAULT_VALUES.syncGroupOffset,
       syncInterval: this.isUpdate
         ? this.replication.syncInterval
         : DEFAULT_VALUES.editSyncInterval,
-      policy: this.isUpdate ? this.replication.policy : null,
+      replicationPolicyClass: this.isUpdate
+        ? this.replication.replicationPolicyClass
+        : null,
       heartbeatsEmit: this.isUpdate
         ? this.replication.heartbeatsEmit
         : DEFAULT_VALUES.heartbeat,

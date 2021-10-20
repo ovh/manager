@@ -68,7 +68,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
         readyServiceIntegrationList: /* @ngInject */ (serviceIntegrationList) =>
           serviceIntegrationList.filter((s) => s.statusGroup === STATUS.READY),
-        goToAddReplications: /* @ngInject */ (
+        goToAddReplication: /* @ngInject */ (
           $state,
           databaseId,
           projectId,
