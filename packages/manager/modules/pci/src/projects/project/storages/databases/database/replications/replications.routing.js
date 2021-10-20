@@ -2,6 +2,7 @@ import map from 'lodash/map';
 import ServiceIntegration from '../../../../../../components/project/storages/databases/serviceIntegration.class';
 import Replication from '../../../../../../components/project/storages/databases/replication.class';
 import { DATABASE_TYPES } from '../../databases.constants';
+import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -65,6 +66,8 @@ export default /* @ngInject */ ($stateProvider) => {
               return serviceIntegration;
             }),
           ),
+        readyServiceIntegrationList: /* @ngInject */ (serviceIntegrationList) =>
+          serviceIntegrationList.filter((s) => s.statusGroup === STATUS.READY),
         goToAddReplications: /* @ngInject */ (
           $state,
           databaseId,
