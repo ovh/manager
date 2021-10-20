@@ -12,6 +12,7 @@ export default {
     serviceIntegrationList: '<',
     kafkaServicesList: '<',
     addableServicesList: '<',
+    stopPollingIntegrationsStatus: '<',
   },
   controller,
   template,

@@ -1,7 +1,3 @@
-import { set } from 'lodash';
-import find from 'lodash/find';
-import { MIN_KAFKA_SERVICE } from './service-integration.constant';
-
 export default class ServiceIntegrationCtrl {
   /* @ngInject */
   constructor($translate, CucCloudMessage) {
@@ -14,18 +10,6 @@ export default class ServiceIntegrationCtrl {
       'pci.projects.project.storages.databases.dashboard.service-integration';
     this.loadMessages();
     this.trackDashboard('service_integration', 'page');
-    this.minKafkaService = MIN_KAFKA_SERVICE;
-
-    this.mappedIntegration = this.serviceIntegrationList.map((i) =>
-      set(
-        i,
-        'serviceName',
-        find(this.kafkaServicesList, { id: i.serviceId }).description ||
-          this.$translate.instant(
-            'pci_databases_service_integration_tab_unknown_service',
-          ),
-      ),
-    );
   }
 
   loadMessages() {
@@ -48,5 +32,9 @@ export default class ServiceIntegrationCtrl {
   trackAndDeleteServiceIntegration(serviceIntegration) {
     this.trackDashboard('service_integration::delete_kafka');
     this.goToDeleteServiceIntegration(serviceIntegration);
+  }
+
+  $onDestroy() {
+    this.stopPollingIntegrationsStatus();
   }
 }
