@@ -15,7 +15,7 @@
     </oui-message>
 
     <oui-message
-        data-ng-if="$ctrl.users.length === 0 && $ctrl.allowedIps.length > 0"
+        data-ng-if="$ctrl.users.length === 0 && $ctrl.isFeatureActivated('usersTab') && $ctrl.allowedIps.length > 0"
         data-type="warning"
         data-dismissable
     >
@@ -30,7 +30,7 @@
     </oui-message>
 
     <oui-message
-        data-ng-if="$ctrl.allowedIps.length === 0 && $ctrl.users.length > 0"
+        data-ng-if="$ctrl.allowedIps.length === 0 && ($ctrl.users.length > 0 || !$ctrl.isFeatureActivated('usersTab'))"
         data-type="warning"
         data-dismissable
     >
@@ -38,7 +38,7 @@
     </oui-message>
 
     <oui-message
-        data-ng-if="$ctrl.allowedIps.length === 0 && $ctrl.users.length === 0"
+        data-ng-if="$ctrl.allowedIps.length === 0 && $ctrl.users.length === 0 && $ctrl.isFeatureActivated('usersTab')"
         data-type="warning"
         data-dismissable
     >
@@ -364,10 +364,11 @@
                             data-translate="pci_databases_general_information__kafka_mirror_maker_none"
                         ></p>
                         <p
-                            class="mb-0"
-                            ng-repeat="service in $ctrl.serviceIntegration track by $index"
+                            ng-repeat="integration in $ctrl.serviceIntegration track by $index"
                         >
-                            {{service.name}}
+                            <span class="oui-badge_success oui-badge">
+                                {{integration.serviceName}}
+                            </span>
                         </p>
                     </oui-tile-description>
                 </oui-tile-definition>
