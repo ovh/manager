@@ -7,5 +7,6 @@
   "pci_databases_backup_fork": "Duplikuj (Fork)",
   "pci_databases_backup_region": "Lokalizacja",
   "pci_databases_backup_informations_title": "Kopie zapasowe bazy danych",
-  "pci_databases_backup_informations_retention": "Okres retencji"
+  "pci_databases_backup_informations_retention": "Czas retencji",
+  "pci_databases_backup_name": "Nazwisko"
 }

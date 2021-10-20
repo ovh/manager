@@ -1,0 +1,16 @@
+{
+  "pci_databases_topics_create_topic_confirm": "Create topic",
+  "pci_databases_topics_create_topic_cancel": "Cancel",
+  "pci_databases_topics_create_topic": "Create a topic",
+  "pci_databases_topics_create_topic_description": "Add a topic",
+  "pci_databases_topics_create_topic_label": "Topic name:",
+  "pci_databases_topics_create_topic_success_message": "Your new topic {{topic.name}} has been added",
+  "pci_databases_topics_create_topic_error_message": "An error occurred while creating your topic: {{ message }}",
+  "pci_databases_topics_create_topic_advanced": "Advanced configuration",
+  "pci_databases_topics_create_topic_replication": "Replication",
+  "pci_databases_topics_create_topic_partitions": "Partitions",
+  "pci_databases_topics_create_topic_retention_bytes": "Retention bytes",
+  "pci_databases_topics_create_topic_retention_hours": "Retention hours",
+  "pci_databases_topics_create_topic_min_insync_replicas": "Min Insync replicas",
+  "pci_databases_topics_create_topic_min_cleanup_policy": "Cleanup Policy"
+}

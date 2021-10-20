@@ -1,0 +1,8 @@
+{
+  "pci_databases_topics_delete_topic_confirm": "Usuń temat",
+  "pci_databases_topics_delete_topic_cancel": "Anuluj",
+  "pci_databases_topics_delete_topic": "Usuń temat",
+  "pci_databases_topics_delete_topic_description": "Czy na pewno chcesz usunąć temat {{topic.name}}?",
+  "pci_databases_topics_delete_topic_success_message": "Temat został usunięty.",
+  "pci_databases_topics_delete_topic_error_message": "Wystąpił błąd podczas usuwania tematu: {{message}}."
+}

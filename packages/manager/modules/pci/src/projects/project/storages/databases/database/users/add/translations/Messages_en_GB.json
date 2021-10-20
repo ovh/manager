@@ -5,7 +5,15 @@
   "pci_databases_users_add_roles_available": "Available roles",
   "pci_databases_users_add_roles_selected": "Selected roles",
   "pci_databases_users_add_create": "Create User",
-  "pci_databases_users_add_success_message": "User {{username}} has been added with the password <code>{{password}}</code>",
-  "pci_databases_users_add_error_save": "An error occurred while creating the user {{user}}: {{message}}.",
-  "pci_databases_users_add_cancel": "Cancel"
+  "pci_databases_users_add_success_message": "User {{username}} has been added with the password <code>{{password}}.</code>",
+  "pci_databases_users_add_error_save": "An error has occurred creating the {{user}} user: {{message}}.",
+  "pci_databases_users_add_cancel": "Cancel",
+  "pci_databases_users_add_categories_label": "Categories",
+  "pci_databases_users_add_commands_label": "Orders",
+  "pci_databases_users_add_channels_label": "Channels",
+  "pci_databases_users_add_keys_label": "Keys",
+  "pci_databases_users_add_keys_button_label": "Add a key",
+  "pci_databases_users_add_categories_button_label": "Add a category",
+  "pci_databases_users_add_commands_button_label": "Add a command",
+  "pci_databases_users_add_channels_button_label": "Add a channel"
 }

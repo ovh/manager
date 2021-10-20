@@ -1,0 +1,9 @@
+{
+  "pci_databases_databases_create_database_confirm": "Datenbank erstellen",
+  "pci_databases_databases_create_database_cancel": "Abbrechen",
+  "pci_databases_databases_create_database": "Datenbank erstellen",
+  "pci_databases_databases_create_database_description": "Eine Datenbank zu Ihrem Dienst hinzufügen.",
+  "pci_databases_databases_create_database_label": "Name der Datenbank:",
+  "pci_databases_databases_create_database_success_message": "Ihre neue Datenbank {{database.name}} wurde hinzugefügt",
+  "pci_databases_databases_create_database_error_message": "Bei der Erstellung Ihrer Datenbank ist ein Fehler aufgetreten: {{message}}"
+}

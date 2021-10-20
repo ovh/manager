@@ -1,6 +1,6 @@
 {
-  "pci_databases_general_information_info_title": "Dane dotyczące klastra",
-  "pci_databases_general_information_name": "Nazwa",
+  "pci_databases_general_information_info_title": "Szczegóły klastra",
+  "pci_databases_general_information_name": "Nazwisko",
   "pci_databases_general_information_cluster_id": "ID klastra",
   "pci_databases_general_information_status_label": "Status",
   "pci_databases_general_information_nodes_label": "Węzły",
@@ -35,7 +35,7 @@
   "pci_databases_general_information_database_name": "Database Name",
   "pci_databases_general_information_database_host": "Host",
   "pci_databases_general_information_database_port": "Port",
-  "pci_databases_general_information_user": "1 użytkownik",
+  "pci_databases_general_information_user": "Użytkownicy",
   "pci_databases_general_information_users": "{{userNumber}} użytkowników",
   "pci_databases_general_information_users_no_users": "Brak skonfigurowanych użytkowników",
   "pci_databases_general_information_manage_users": "Zarządzanie użytkownikami",
@@ -48,5 +48,13 @@
   "pci_databases_general_information_no_users": "Twój klaster nie jest w pełni skonfigurowany: aby korzystać z usługi, dodaj użytkowników. W tym celu przejdź do ",
   "pci_databases_general_information_no_ip_no_users": "Twój klaster nie jest w pełni skonfigurowany: autoryzuj adresy IP i dodaj użytkowników za pomocą ",
   "pci_databases_general_information_user_label": "Użytkownicy",
-  "pci_databases_general_information_allowed_ips_none": "Brak"
+  "pci_databases_general_information_allowed_ips_none": "Brak",
+  "pci_databases_general_information_new_fork_label": "Fork",
+  "pci_databases_general_information_new_fork_link": "Stwórz rozgałęzienie (fork) usługi",
+  "pci_databases_general_information_replicas_label": "Repliki",
+  "pci_databases_general_information_replicas_link": "Utwórz nową replikę",
+  "pci_databases_general_information_certificate_label": "Certyfikat CA",
+  "pci_databases_general_information_certificate_link": "Zobacz",
+  "pci_databases_general_information_certificate_download": "Pobierz",
+  "pci_databases_general_information_certificate_tooltip": "Twój certyfikat: <code>{{certificate}}</code>"
 }

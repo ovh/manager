@@ -26,7 +26,7 @@
   "pci_database_add_subnet_loading": "Carregamento de sub-redes",
   "pci_database_add_step6_title": "Configuração do serviço de base de dados",
   "pci_database_add_create_database": "Criar um serviço de base de dados",
-  "pci_database_add_create_database_processing": "O serviço está a ser criado",
+  "pci_database_add_create_database_processing": "O serviço está a ser criado.",
   "pci_database_add_create_database_success": "O serviço está a ser criado e estará disponível dentro de alguns minutos.",
   "pci_database_add_create_database_error": "Ocorreu um erro aquando da criação do serviço. Tente novamente mais tarde: {{message}}",
   "pci_database_add_network_mode_public_incompatible": "A oferta selecionada não é compatível com as redes públicas.",

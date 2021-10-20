@@ -1,0 +1,14 @@
+{
+  "pci_databases_topics_tab_title": "Temas",
+  "pci_databases_topics_tab_name": "Tema",
+  "pci_databases_topics_tab_partitions": "Particiones",
+  "pci_databases_topics_tab_replication": "Replicación",
+  "pci_databases_topics_tab_minInsyncReplicas": "min.Insync Replicas",
+  "pci_databases_topics_tab_retention_hours": "Retention Hours",
+  "pci_databases_topics_tab_retention_bytes": "Retention Bytes",
+  "pci_databases_topics_tab_cleanup_policy": "Cleanup Policy",
+  "pci_databases_topics_tab_status": "Estado",
+  "pci_databases_topics_tab_add": "Añadir un tema",
+  "pci_databases_topics_tab_delete_link": "Eliminar",
+  "pci_databases_topics_tab_unlimited": "ilimitado"
+}

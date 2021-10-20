@@ -1,0 +1,9 @@
+{
+  "pci_databases_databases_create_database_confirm": "Utwórz bazę danych",
+  "pci_databases_databases_create_database_cancel": "Anuluj",
+  "pci_databases_databases_create_database": "Utwórz bazę danych",
+  "pci_databases_databases_create_database_description": "Dodaj bazę danych do Twojej usługi.",
+  "pci_databases_databases_create_database_label": "Nazwa bazy danych:",
+  "pci_databases_databases_create_database_success_message": "Nowa baza danych {{database.name}} została dodana",
+  "pci_databases_databases_create_database_error_message": "Wystąpił błąd podczas tworzenia bazy danych: {{message}}"
+}
