@@ -4,6 +4,7 @@ import map from 'lodash/map';
 import pick from 'lodash/pick';
 import omit from 'lodash/omit';
 import snakeCase from 'lodash/snakeCase';
+import uniq from 'lodash/uniq';
 
 import Image from './images.class';
 import { IMAGES_REGEX } from './images.constants';
@@ -41,7 +42,12 @@ export default class ImagesList {
       imagesByName,
       (image) =>
         new Image({
-          ...omit(image[0], ['id', 'region']),
+          ...omit(image[0], ['id', 'region', 'flavorTypes']),
+          flavorType: uniq(
+            image.flatMap(
+              ({ flavorType }) => (!flavorType && []) || flavorType.split(','),
+            ),
+          ).join(','),
           regions: ImagesList.getImageRegions(image),
         }),
     );
