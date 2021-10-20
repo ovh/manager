@@ -1,5 +1,3 @@
-import set from 'lodash/set';
-import find from 'lodash/find';
 import { MAX_TOPIC_PER_LINE } from './replications.constants';
 
 export default class ReplicationsCtrl {
@@ -15,39 +13,6 @@ export default class ReplicationsCtrl {
       'pci.projects.project.storages.databases.dashboard.replications';
     this.loadMessages();
     this.trackDashboard('replication_flows', 'page');
-
-    this.mappedIntegration = this.serviceIntegrationList.map((i) =>
-      set(
-        i,
-        'serviceName',
-        find(this.kafkaServicesList, { id: i.serviceId }).description ||
-          this.$translate.instant(
-            'pci_databases_replications_tab_no_kafka_service',
-          ),
-      ),
-    );
-
-    this.mappedReplications = this.replicationsList
-      .map((r) =>
-        set(
-          r,
-          'serviceNameSource',
-          find(this.mappedIntegration, { id: r.sourceService })?.serviceName ||
-            this.$translate.instant(
-              'pci_databases_replications_tab_no_kafka_service',
-            ),
-        ),
-      )
-      .map((r) =>
-        set(
-          r,
-          'serviceNameTarget',
-          find(this.mappedIntegration, { id: r.targetService })?.serviceName ||
-            this.$translate.instant(
-              'pci_databases_replications_tab_no_kafka_service',
-            ),
-        ),
-      );
   }
 
   loadMessages() {
