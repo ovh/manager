@@ -14,6 +14,7 @@ export const ENGINE_LOGOS = {
   postgresql: ASSET_POSTGRE_SQL,
   redis: ASSET_REDIS,
   opensearch: ASSET_OPEN_SEARCH,
+  kafkamirrormaker: ASSET_KAFKA,
 };
 
 export const DATABASES_GUIDES_URL =
