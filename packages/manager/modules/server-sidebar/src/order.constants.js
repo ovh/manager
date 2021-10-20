@@ -36,7 +36,7 @@ export const ORDER_URLS = {
     managed_bare_metal: {
       CZ: 'https://www.ovhcloud.com/en-ie/managed-bare-metal/',
       DE: 'https://www.ovhcloud.com/de/managed-bare-metal/',
-      ES: 'https://www.ovhcloud.com/es/managed-bare-metal/',
+      ES: 'https://www.ovhcloud.com/es-es/managed-bare-metal/',
       FI: 'https://www.ovhcloud.com/en-ie/managed-bare-metal/',
       FR: 'https://www.ovhcloud.com/fr/managed-bare-metal/',
       GB: 'https://www.ovhcloud.com/en-gb/managed-bare-metal/',
@@ -327,7 +327,7 @@ export const ORDER_URLS = {
       QC: 'https://www.ovhcloud.com/fr-ca/managed-bare-metal/',
       SG: 'https://www.ovhcloud.com/en-sg/managed-bare-metal/',
       WE: 'https://www.ovhcloud.com/en/managed-bare-metal/',
-      WS: 'https://www.ovhcloud.com/es-es/managed-bare-metal/',
+      WS: 'https://www.ovhcloud.com/es/managed-bare-metal/',
     },
     cloud_disk_array: {},
     dbaas_logs: {
