@@ -83,6 +83,16 @@ export default /* @ngInject */ ($stateProvider) => {
           kafkaServicesList.filter(
             (k) => !serviceIntegrationList.find((i) => i.serviceId === k.id),
           ),
+        replicationsList: /* @ngInject */ (
+          DatabaseService,
+          database,
+          projectId,
+        ) =>
+          DatabaseService.getReplications(
+            projectId,
+            database.engine,
+            database.id,
+          ),
         goToAddServiceIntegration: /* @ngInject */ (
           $state,
           databaseId,
