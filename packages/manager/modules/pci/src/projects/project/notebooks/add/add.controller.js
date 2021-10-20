@@ -75,15 +75,27 @@ export default class NotebookAddController {
   }
 
   static buildVolumesBody(volumes, region) {
-    return volumes.map((volume) => ({
-      mountPath: volume.mountPath,
-      permission: volume.permission,
-      cache: false,
-      privateSwift: {
-        container: volume.container,
-        region: region.name,
-      },
-    }));
+    return volumes.map((volume) => {
+      if (volume.swiftVolume) {
+        return {
+          mountPath: volume.mountPath,
+          permission: volume.permission,
+          cache: false,
+          privateSwift: {
+            container: volume.container,
+            region: region.name,
+          },
+        };
+      }
+      return {
+        mountPath: volume.mountPath,
+        permission: volume.permission,
+        cache: false,
+        publicGit: {
+          url: volume.url,
+        },
+      };
+    });
   }
 
   static convertNotebookModel(notebookModel) {

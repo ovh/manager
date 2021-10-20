@@ -3,11 +3,27 @@ export default class Volume {
     container = null,
     mountPath = null,
     permission = null,
+    swiftVolume = true,
   ) {
     return new Volume({
       container,
       mountPath,
       permission,
+      swiftVolume,
+    });
+  }
+
+  static createVolumeGitModel(
+    url = null,
+    mountPath = null,
+    permission = null,
+    gitVolume = true,
+  ) {
+    return new Volume({
+      url,
+      mountPath,
+      permission,
+      gitVolume,
     });
   }
 

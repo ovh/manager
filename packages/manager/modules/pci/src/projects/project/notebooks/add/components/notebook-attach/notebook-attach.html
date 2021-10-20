@@ -1,5 +1,4 @@
 <div data-ng-if="$ctrl.displayNotebookAttach">
-
     <!--Notebook attach object storage-->
     <div class="mb-2">
         <!--Description-->
@@ -8,28 +7,37 @@
                 class="mb-0"
                 data-translate="pci_notebook_add_attach_container_description"
             ></span>
-            <a data-ng-href="{{:: $ctrl.getStorageInfoLink() }}" target="_blank" rel="noopener">
+            <a
+                data-ng-href="{{:: $ctrl.getStorageInfoLink() }}"
+                target="_blank"
+                rel="noopener"
+            >
                 <span
                     data-translate="pci_notebook_add_attach_container_description_link"
                 ></span>
-                <span class="oui-icon oui-icon-target" aria-hidden="true"></span>
+                <span
+                    class="oui-icon oui-icon-target"
+                    aria-hidden="true"
+                ></span>
             </a>
         </span>
     </div>
 
     <!--Notebook storage labels-->
     <div class="mb-4">
-
         <div class="oui-box oui-box_light pl-0 pb-2 border-0">
             <!--Manage labels-->
             <div class="oui-inline-adder mb-2">
                 <div
                     class="oui-inline-adder__form"
-                    data-ng-repeat="volume in $ctrl.notebookModel.volumes track by $index">
-
+                    data-ng-repeat="volume in $ctrl.notebookModel.volumes track by $index"
+                >
                     <fieldset class="oui-inline-adder__fieldset">
                         <div class="oui-inline-adder__row">
-                            <div class="oui-inline-adder__field">
+                            <div
+                                class="oui-inline-adder__field"
+                                ng-if="volume.swiftVolume"
+                            >
                                 <oui-field
                                     label="{{:: 'pci_notebook_add_attach_container_storage_container' | translate}}"
                                 >
@@ -42,7 +50,10 @@
                                             data-ng-model="volume.container"
                                             required
                                         >
-                                            <option data-ng-bind="'pci_notebook_add_attach_container_storage_container_select' | translate" default></option>
+                                            <option
+                                                data-ng-bind="'pci_notebook_add_attach_container_storage_container_select' | translate"
+                                                default
+                                            ></option>
                                             <option
                                                 ng-repeat="storage in $ctrl.storages track by storage.id"
                                                 data-ng-bind="::storage.name"
@@ -55,6 +66,25 @@
                                             aria-hidden="true"
                                         ></span>
                                     </label>
+                                </oui-field>
+                            </div>
+                            <div
+                                class="oui-inline-adder__field"
+                                ng-if="volume.gitVolume"
+                            >
+                                <oui-field
+                                    label="{{:: 'pci_notebook_add_attach_container_git_url' | translate}}"
+                                >
+                                    <input
+                                        type="text"
+                                        class="oui-input"
+                                        placeholder=""
+                                        data-ng-init="volumeGitUrlId = 'volumeGitUrl-' + $index"
+                                        data-ng-attr-name="{{volumeGitUrlId}}"
+                                        data-ng-attr-id="{{volumeGitUrlId}}"
+                                        data-ng-model="volume.url"
+                                        required
+                                    />
                                 </oui-field>
                             </div>
                             <div class="oui-inline-adder__field">
@@ -89,7 +119,10 @@
                                             data-ng-model="volume.permission"
                                             required
                                         >
-                                            <option data-ng-bind="'pci_notebook_add_attach_container_permission_select' | translate" default></option>
+                                            <option
+                                                data-ng-bind="'pci_notebook_add_attach_container_permission_select' | translate"
+                                                default
+                                            ></option>
                                             <option
                                                 ng-repeat="permission in $ctrl.permissions"
                                                 value="{{permission}}"
@@ -111,7 +144,8 @@
                             type="button"
                             class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
                             data-translate-attr="{title: 'pci_notebook_add_attach_container_btn_attach_storage_remove'}"
-                            data-ng-click="$ctrl.onRemoveVolumeClick(volume)">
+                            data-ng-click="$ctrl.onRemoveVolumeClick(volume)"
+                        >
                             <span class="oui-icon oui-icon-trash"></span>
                         </button>
                     </footer>
@@ -129,10 +163,21 @@
                     data-translate="pci_notebook_add_attach_container_btn_attach_storage_add"
                 ></span>
             </oui-button>
+            <!--Add label-->
+            <oui-button
+                data-icon-left="oui-icon-plus"
+                data-variant="secondary"
+                data-disabled="!$ctrl.canAddNewVolume()"
+                data-on-click="$ctrl.onAddVolumeGitClick()"
+            >
+                <span
+                    data-translate="pci_notebook_add_attach_container_btn_attach_repo_git_add"
+                ></span>
+            </oui-button>
         </div>
-        <span data-translate="pci_notebook_add_attach_container_volumes_quantity"
-              data-translate-values="{ numberOfVolumes: $ctrl.notebookModel.volumes.length, maxVolumes: $ctrl.NOTEBOOK_ATTACH_STORAGE.MAX_VOLUMES}"></span>
-
+        <span
+            data-translate="pci_notebook_add_attach_container_volumes_quantity"
+            data-translate-values="{ numberOfVolumes: $ctrl.notebookModel.volumes.length, maxVolumes: $ctrl.NOTEBOOK_ATTACH_STORAGE.MAX_VOLUMES}"
+        ></span>
     </div>
-
 </div>

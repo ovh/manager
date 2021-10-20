@@ -66,6 +66,12 @@ export default class NotebookAttachController {
     }
   }
 
+  onAddVolumeGitClick() {
+    if (!this.maxVolumesIsReached()) {
+      this.addVolume(Volume.createVolumeGitModel());
+    }
+  }
+
   onRemoveVolumeClick(volume) {
     this.removeVolume(volume);
   }
