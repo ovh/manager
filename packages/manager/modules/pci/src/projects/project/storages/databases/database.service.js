@@ -697,7 +697,7 @@ export default class DatabaseService {
   deleteReplication(projectId, engine, databaseId, replication) {
     return this.$http
       .delete(
-        `/cloud/project/${projectId}/database/${engine}/${databaseId}/integration/${replication.id}`,
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/replication/${replication.id}`,
       )
       .then(({ data }) => data);
   }

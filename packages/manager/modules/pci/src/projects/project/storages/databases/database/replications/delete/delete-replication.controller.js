@@ -28,7 +28,7 @@ export default class {
       this.projectId,
       this.database.engine,
       this.database.id,
-      this.replication.id,
+      this.replication,
     )
       .then(() =>
         this.goBack({
