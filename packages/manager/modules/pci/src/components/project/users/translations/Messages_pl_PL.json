@@ -6,7 +6,7 @@
   "pci_projects_project_users_status_label": "Status",
   "pci_projects_project_users_status_creating": "Trwa tworzenie",
   "pci_projects_project_users_status_ok": "Aktywny",
-  "pci_projects_project_users_status_deleting": "Trwa usuwanie...",
+  "pci_projects_project_users_status_deleting": "Trwa usuwanie",
   "pci_projects_project_users_status_deleted": "Usunięty",
   "pci_projects_project_users_status_updating": "Trwa aktualizacja",
   "pci_projects_project_users_status_ready": "Aktywny",

@@ -27,7 +27,7 @@
   "pci_database_add_step6_title": "Configuración del servicio de base de datos",
   "pci_database_add_create_database": "Crear un servicio de base de datos",
   "pci_database_add_create_database_processing": "Creando el servicio...",
-  "pci_database_add_create_database_success": "El servicio de base de datos se está creando y estará disponible en unos minutos.",
+  "pci_database_add_create_database_success": "El servicio se está creando y estará disponible en unos minutos.",
   "pci_database_add_create_database_error": "Se ha producido un error al crear el servicio. Por favor, vuelva a intentarlo más tarde: {{message}}",
   "pci_database_add_network_mode_public_incompatible": "El producto seleccionado no es compatible con las redes públicas.",
   "pci_database_add_network_mode_private_incompatible": "El producto seleccionado no es compatible con las redes privadas."

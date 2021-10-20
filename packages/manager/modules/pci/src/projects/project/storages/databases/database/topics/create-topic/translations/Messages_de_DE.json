@@ -9,8 +9,8 @@
   "pci_databases_topics_create_topic_advanced": "Erweiterte Konfiguration",
   "pci_databases_topics_create_topic_replication": "Replikation",
   "pci_databases_topics_create_topic_partitions": "Partitionen",
-  "pci_databases_topics_create_topic_retention_bytes": "Retention Bytes",
-  "pci_databases_topics_create_topic_retention_hours": "Retention Hours",
-  "pci_databases_topics_create_topic_min_insync_replicas": "Min Insync Replicas",
-  "pci_databases_topics_create_topic_min_cleanup_policy": "Cleanup Policy"
+  "pci_databases_topics_create_topic_retention_bytes": "Retentionsgröße (Bytes)",
+  "pci_databases_topics_create_topic_retention_hours": "Retentionszeit",
+  "pci_databases_topics_create_topic_min_insync_replicas": "Mindestanzahl an „In-Sync“ Replikationen",
+  "pci_databases_topics_create_topic_min_cleanup_policy": "Regeln für das Löschen"
 }

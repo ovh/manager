@@ -2,7 +2,7 @@
   "pci_database_add_title": "Utwórz usługę bazy danych",
   "pci_database_add_description1": "Utwórz usługę bazy danych dostępną w Twoim projekcie Public Cloud. Jeśli chcesz korzystać z prywatnej sieci, a ona jeszcze nie istnieje, ",
   "pci_database_add_description2": "najpierw utwórz sieć prywatną lub podsieć.",
-  "pci_database_add_description3": " ",
+  "pci_database_add_description3": "",
   "pci_database_add_step1_title": "Wybierz rodzaj bazy danych:",
   "pci_database_add_step1_description": "Wybierz rodzaj bazy danych odpowiadający Twoim potrzebom",
   "pci_database_add_step2_title": "Wybierz ofertę",

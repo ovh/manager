@@ -8,5 +8,5 @@
   "pci_databases_backup_region": "Lokalizacja",
   "pci_databases_backup_informations_title": "Kopie zapasowe bazy danych",
   "pci_databases_backup_informations_retention": "Czas retencji",
-  "pci_databases_backup_name": "Nazwisko"
+  "pci_databases_backup_name": "Nazwa"
 }

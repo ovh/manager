@@ -5,5 +5,9 @@
   "pci_databases_databases_create_database_description": "Añadir una base de datos al servicio.",
   "pci_databases_databases_create_database_label": "Nombre de la base de datos:",
   "pci_databases_databases_create_database_success_message": "Se ha añadido la nueva base de datos {{database.name}}",
-  "pci_databases_databases_create_database_error_message": "Se ha producido un error al crear la base de datos: {{message}}"
+  "pci_databases_databases_create_database_error_message": "Se ha producido un error al crear la base de datos: {{message}}",
+  "pci_databases_databases_create_database_banner": "Atención: El nombre debe cumplir los siguientes criterios:",
+  "pci_databases_databases_create_database_banner_min_chatacters": "- mínimo {{min}} caracteres",
+  "pci_databases_databases_create_database_banner_max_chatacters": "- máximo {{max}} caracteres",
+  "pci_databases_databases_create_database_banner_allowed_chatacters": "- debe estar formado únicamente por cifras y letras"
 }

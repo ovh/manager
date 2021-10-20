@@ -5,5 +5,9 @@
   "pci_databases_databases_create_database_description": "Add a database to your service.",
   "pci_databases_databases_create_database_label": "Database name:",
   "pci_databases_databases_create_database_success_message": "Your new database {{database.name}} has been added",
-  "pci_databases_databases_create_database_error_message": "An error occurred while creating your database: {{message}}"
+  "pci_databases_databases_create_database_error_message": "An error occurred while creating your database: {{message}}",
+  "pci_databases_databases_create_database_banner": "Please note, the name must meet the following conditions:",
+  "pci_databases_databases_create_database_banner_min_chatacters": "- Minimum {{min}} character",
+  "pci_databases_databases_create_database_banner_max_chatacters": "- Maximum {{max}} characters ",
+  "pci_databases_databases_create_database_banner_allowed_chatacters": "- Must only contain letters and numbers."
 }

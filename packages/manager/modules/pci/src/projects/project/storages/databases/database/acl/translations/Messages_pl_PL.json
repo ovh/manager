@@ -2,10 +2,10 @@
   "pci_database_acl_title": "ACL",
   "pci_databases_acl_tab_title": "ACL",
   "pci_databases_acl_tab_username": "Użytkownik",
-  "pci_databases_acl_tab_topic": "Temat",
+  "pci_databases_acl_tab_topic": "Topic",
   "pci_databases_acl_tab_permission": "Uprawnienie",
   "pci_databases_acl_tab_add": "Dodaj nowy wpis",
   "pci_databases_acl_tab_delete": "Usuń",
-  "pci_databases_acl_tab_delete_success": "Wpis został usunięty",
-  "pci_databases_acl_tab_delete_error": "Wystąpił błąd podczas usuwania wpisu: {{message}}"
+  "pci_databases_acl_tab_delete_success": "Użytkownik ACL {{acl}} został usunięty.",
+  "pci_databases_acl_tab_delete_error": "Wystąpił błąd podczas usuwania użytkownika ACL: {{message}}"
 }

@@ -6,6 +6,6 @@
   "pci_databases_acl_tab_permission": "Permission",
   "pci_databases_acl_tab_add": "Add a new entry",
   "pci_databases_acl_tab_delete": "Delete",
-  "pci_databases_acl_tab_delete_success": "The entry has been deleted",
-  "pci_databases_acl_tab_delete_error": "An error occurred while deleting the entry: {{message}}"
+  "pci_databases_acl_tab_delete_success": "Your {{acl}} ACL user has been deleted.",
+  "pci_databases_acl_tab_delete_error": "An error has occurred deleting the ACL user: {{message}}"
 }

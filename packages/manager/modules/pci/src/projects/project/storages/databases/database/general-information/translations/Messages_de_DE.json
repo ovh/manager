@@ -28,14 +28,14 @@
   "pci_databases_general_information_generate_password": "Sie müssen Ihr Admin-Passwort neu erstellen, um Ihren Datencluster zu verwenden.",
   "pci_databases_general_information_delete_nodes": "Node löschen",
   "pci_databases_general_information_node_type_label": "Node-Modell",
-  "pci_databases_general_information_node_type": "{{coreNumber}} CPU / {{memorySize}} GB RAM / {{storageSize}} GB Storage",
+  "pci_databases_general_information_node_type": "{{coreNumber}} CPU / {{memorySize}} GB RAM / {{storageSize}} GB SSD-Storage",
   "pci_databases_general_information_upgrade_node": "Node-Modell upgraden",
   "pci_databases_general_information_service_URI_label": "Dienst-URI",
   "pci_databases_general_information_replicate_URI_label": "Replica-URI",
   "pci_databases_general_information_database_name": "Database Name",
   "pci_databases_general_information_database_host": "Host",
   "pci_databases_general_information_database_port": "Port",
-  "pci_databases_general_information_user": "Benutzer",
+  "pci_databases_general_information_user": "1 Nutzer",
   "pci_databases_general_information_users": "{{userNumber}} Benutzer",
   "pci_databases_general_information_users_no_users": "Keine Benutzer eingerichtet",
   "pci_databases_general_information_manage_users": "Benutzer verwalten",
@@ -56,5 +56,6 @@
   "pci_databases_general_information_certificate_label": "CA-Zertifikat",
   "pci_databases_general_information_certificate_link": "Anzeigen",
   "pci_databases_general_information_certificate_download": "Herunterladen",
-  "pci_databases_general_information_certificate_tooltip": "Ihr Zertifikat: <code>{{certificate}}</code>"
+  "pci_databases_general_information_certificate_tooltip": "Ihr Zertifikat: <code>{{certificate}}</code>",
+  "pci_databases_general_information_n/a": "Unzutreffend"
 }

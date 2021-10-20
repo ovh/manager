@@ -6,6 +6,6 @@
   "pci_databases_acl_tab_permission": "Permissão",
   "pci_databases_acl_tab_add": "Adicionar uma nova entrada",
   "pci_databases_acl_tab_delete": "Eliminar",
-  "pci_databases_acl_tab_delete_success": "A entrada foi eliminada",
-  "pci_databases_acl_tab_delete_error": "Ocorreu um erro aquando da eliminação da entrada: {{message}}"
+  "pci_databases_acl_tab_delete_success": "O seu utilizador ACL {{acl}} foi eliminado com êxito.",
+  "pci_databases_acl_tab_delete_error": "Ocorreu um erro aquando da eliminação do utilizador ACL: {{message}}"
 }

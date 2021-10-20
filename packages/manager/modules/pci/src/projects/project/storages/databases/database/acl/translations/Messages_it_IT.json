@@ -6,6 +6,6 @@
   "pci_databases_acl_tab_permission": "Permesso",
   "pci_databases_acl_tab_add": "Aggiungi un nuovo record",
   "pci_databases_acl_tab_delete": "Elimina",
-  "pci_databases_acl_tab_delete_success": "Il record è stato eliminato",
-  "pci_databases_acl_tab_delete_error": "Si è verificato un errore durante l'eliminazione del record: {{message}}"
+  "pci_databases_acl_tab_delete_success": "L’utente ACL {{acl}} è stato eliminato correttamente.",
+  "pci_databases_acl_tab_delete_error": "Si è verificato un errore durante l'eliminazione dell’utente ACL: {{message}}"
 }

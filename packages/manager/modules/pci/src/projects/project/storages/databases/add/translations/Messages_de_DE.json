@@ -1,8 +1,8 @@
 {
   "pci_database_add_title": "Datenbankdienst erstellen",
-  "pci_database_add_description1": "Eine in Ihrem Public Cloud Projekt verfügbare Datenbank erstellen. Wenn Sie ein privates Netzwerk verwenden möchten, das noch nicht existiert, erstellen Sie bitte",
-  "pci_database_add_description2": "zuerst ein privates Netzwerk oder Subnetz.",
-  "pci_database_add_description3": "",
+  "pci_database_add_description1": "Eine in Ihrem Public Cloud Projekt verfügbare Datenbank erstellen. Möchten Sie ein privates Netzwerk verwenden, das noch nicht existiert? Dann erstellen Sie bitte",
+  "pci_database_add_description2": "ein privates Netzwerk oder Subnetzwerk",
+  "pci_database_add_description3": "als erster Schritt.",
   "pci_database_add_step1_title": "Wählen Sie Ihren Datenbanktyp aus:",
   "pci_database_add_step1_description": "Wählen Sie den Datenbanktyp aus, der Ihren Anforderungen entspricht",
   "pci_database_add_step2_title": "Angebot auswählen",
