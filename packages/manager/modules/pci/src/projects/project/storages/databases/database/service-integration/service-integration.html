@@ -20,7 +20,7 @@
     <oui-datagrid
         class="mt-5"
         data-page-size="10"
-        data-rows="$ctrl.mappedIntegration"
+        data-rows="$ctrl.serviceIntegrationList"
     >
         <oui-datagrid-column
             data-title=":: 'pci_databases_service_integration_tab_kafka_service' | translate"
@@ -30,9 +30,27 @@
             data-searchable
             data-filterable
         ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_database_common_status' | translate"
+            data-property="status"
+        >
+            <span
+                class="oui-badge"
+                data-ng-class="{
+                    'oui-badge_success': ($row.statusGroup === 'READY'),
+                    'oui-badge_warning': ($row.statusGroup === 'PENDING'),
+                    'oui-badge_error': ($row.statusGroup === 'ERROR'),
+                }"
+            >
+                <span
+                    data-ng-bind=":: ('pci_database_common_status_' + $row.status) | translate"
+                ></span>
+            </span>
+        </oui-datagrid-column>
         <oui-datagrid-column class="content-r">
             <div class="text-right">
                 <button
+                    data-ng-disabled="$row.statusGroup !== 'READY'"
                     class="oui-button oui-button_s oui-button_secondary"
                     data-ng-click="$ctrl.trackAndDeleteServiceIntegration($row)"
                 >

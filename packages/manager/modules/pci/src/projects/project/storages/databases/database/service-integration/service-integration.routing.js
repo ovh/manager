@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+import ServiceIntegration from '../../../../../../components/project/storages/databases/serviceIntegration.class';
 import { DATABASE_TYPES } from '../../databases.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -33,11 +35,46 @@ export default /* @ngInject */ ($stateProvider) => {
           database,
           DatabaseService,
           projectId,
+          CucCloudMessage,
+          $translate,
+          kafkaServicesList,
         ) =>
           DatabaseService.getIntegrations(
             projectId,
             database.engine,
             database.id,
+          ).then((integrations) => {
+            const serviceIntegrations = map(integrations, (i) => {
+              const serviceIntegration = new ServiceIntegration(i);
+              serviceIntegration.setServiceName(kafkaServicesList);
+              return serviceIntegration;
+            });
+            serviceIntegrations.forEach((i) => {
+              if (i.isProcessing()) {
+                DatabaseService.pollIntegrationStatus(
+                  projectId,
+                  database.engine,
+                  database.id,
+                  i.id,
+                ).then((integrationInfos) => {
+                  CucCloudMessage.success(
+                    $translate.instant(
+                      'pci_databases_service_integration_tab_service_ready',
+                    ),
+                  );
+                  i.updateData(integrationInfos);
+                });
+              }
+            });
+            return serviceIntegrations;
+          }),
+        stopPollingIntegrationsStatus: /* @ngInject */ (
+          DatabaseService,
+          serviceIntegrationList,
+          database,
+        ) => () =>
+          serviceIntegrationList.forEach((s) =>
+            DatabaseService.stopPollingIntegrationStatus(database.id, s.id),
           ),
         addableServicesList: /* @ngInject */ (
           kafkaServicesList,
