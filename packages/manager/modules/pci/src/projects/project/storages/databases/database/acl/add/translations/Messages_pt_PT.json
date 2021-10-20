@@ -1,0 +1,10 @@
+{
+  "pci_databases_acl_add_confirm": "Adicionar acesso",
+  "pci_databases_acl_add_cancel": "Cancelar",
+  "pci_databases_acl_add": "Adicionar acesso",
+  "pci_databases_acl_add_username_label": "Nome do utilizador:",
+  "pci_databases_acl_add_topic_label": "Topic:",
+  "pci_databases_acl_add_permission_label": "Permissão:",
+  "pci_databases_acl_add_success_message": "O utilizador {{username}} foi adicionado",
+  "pci_databases_acl_add_error_message": "Ocorreu um erro durante a adição do acesso: {{message}}"
+}

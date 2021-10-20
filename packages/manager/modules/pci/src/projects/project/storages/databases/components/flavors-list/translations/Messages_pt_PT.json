@@ -1,7 +1,7 @@
 {
   "pci_database_flavors_list_spec_ram": "{{ram}} de RAM",
   "pci_database_flavors_list_spec_core": "{{cores}} vCores",
-  "pci_database_flavors_list_spec_storage": "{{storage}} de armazenamento",
+  "pci_database_flavors_list_spec_storage": "{{storage}} de armazenamento SSD",
   "pci_database_flavors_list_spec_bandwidth": "{{ bandwidth }} Mbps",
   "pci_database_flavors_list_price_hourly": "{{price}} /hora + IVA",
   "pci_database_flavors_list_price_monthly": "A partir de {{price}} /mês + IVA"

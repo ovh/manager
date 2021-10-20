@@ -25,6 +25,6 @@
   "pci_database_list_upgrade_version_database": "Cambiar la versión",
   "pci_database_list_upgrade_plan_database": "Upgrade de la solución",
   "pci_database_list_upgrade_node_database": "Upgrade de la plantilla de nodos",
-  "pci_database_node_type": "{{coreNumber}} CPU / {{memorySize}} GB RAM / {{storageSize}} GB Storage",
+  "pci_database_node_type": "{{coreNumber}} CPU / {{memorySize}} GB RAM / {{storageSize}} GB almacenamiento SSD",
   "pci_database_node_type_label": "Plantilla de nodo"
 }

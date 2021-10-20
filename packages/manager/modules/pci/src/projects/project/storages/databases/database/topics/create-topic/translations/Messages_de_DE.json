@@ -1,0 +1,16 @@
+{
+  "pci_databases_topics_create_topic_confirm": "Topic erstellen",
+  "pci_databases_topics_create_topic_cancel": "Abbrechen",
+  "pci_databases_topics_create_topic": "Topic erstellen",
+  "pci_databases_topics_create_topic_description": "Topic hinzufügen",
+  "pci_databases_topics_create_topic_label": "Topic-Name:",
+  "pci_databases_topics_create_topic_success_message": "Ihr neues Topic {{topic.name}} wurde hinzugefügt",
+  "pci_databases_topics_create_topic_error_message": "Bei der Erstellung Ihres Topics ist ein Fehler aufgetreten: {{ message }}",
+  "pci_databases_topics_create_topic_advanced": "Erweiterte Konfiguration",
+  "pci_databases_topics_create_topic_replication": "Replikation",
+  "pci_databases_topics_create_topic_partitions": "Partitionen",
+  "pci_databases_topics_create_topic_retention_bytes": "Retentionsgröße (Bytes)",
+  "pci_databases_topics_create_topic_retention_hours": "Retentionszeit",
+  "pci_databases_topics_create_topic_min_insync_replicas": "Mindestanzahl an „In-Sync“ Replikationen",
+  "pci_databases_topics_create_topic_min_cleanup_policy": "Regeln für das Löschen"
+}

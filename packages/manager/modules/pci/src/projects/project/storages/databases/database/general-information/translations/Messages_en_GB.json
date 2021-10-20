@@ -28,7 +28,7 @@
   "pci_databases_general_information_generate_password": "You will need to reset your admin password to use your data cluster.",
   "pci_databases_general_information_delete_nodes": "Delete a node",
   "pci_databases_general_information_node_type_label": "Node template",
-  "pci_databases_general_information_node_type": "{{coreNumber}} CPU / {{memorySize}} GB RAM / {{storageSize}} GB Storage",
+  "pci_databases_general_information_node_type": "{{coreNumber}} CPU / {{memorySize}}GB RAM / {{storageSize}}GB SSD storage",
   "pci_databases_general_information_upgrade_node": "Upgrade your node template",
   "pci_databases_general_information_service_URI_label": "Service URI",
   "pci_databases_general_information_replicate_URI_label": "Replica URI",
@@ -48,5 +48,14 @@
   "pci_databases_general_information_no_users": "Your cluster is not fully configured: you must add users in order to use it. To do this, go to ",
   "pci_databases_general_information_no_ip_no_users": "Your cluster is not fully configured: you must authorise IP addresses and add users via ",
   "pci_databases_general_information_user_label": "Users",
-  "pci_databases_general_information_allowed_ips_none": "None"
+  "pci_databases_general_information_allowed_ips_none": "None",
+  "pci_databases_general_information_new_fork_label": "Fork",
+  "pci_databases_general_information_new_fork_link": "Create a service fork",
+  "pci_databases_general_information_replicas_label": "Replicas",
+  "pci_databases_general_information_replicas_link": "Create a new replica",
+  "pci_databases_general_information_certificate_label": "CA certificate",
+  "pci_databases_general_information_certificate_link": "View",
+  "pci_databases_general_information_certificate_download": "Download",
+  "pci_databases_general_information_certificate_tooltip": "Your certificate: <code>{{certificate}}</code>",
+  "pci_databases_general_information_n/a": "Not applicable"
 }

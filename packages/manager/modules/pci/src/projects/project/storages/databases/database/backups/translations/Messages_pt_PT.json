@@ -7,5 +7,6 @@
   "pci_databases_backup_fork": "Duplicar (Fork)",
   "pci_databases_backup_region": "Localização",
   "pci_databases_backup_informations_title": "Backups das bases de dados",
-  "pci_databases_backup_informations_retention": "Período de retenção"
+  "pci_databases_backup_informations_retention": "Período de retenção",
+  "pci_databases_backup_name": "Nome"
 }

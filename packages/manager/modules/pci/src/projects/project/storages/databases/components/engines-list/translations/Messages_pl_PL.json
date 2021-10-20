@@ -1,4 +1,10 @@
 {
   "pci_database_engines_list_version_new": "Nowość",
-  "pci_database_engines_list_version_getting_deprecated": "Wkrótce wersja przestarzała"
+  "pci_database_engines_list_version_getting_deprecated": "Wkrótce wersja przestarzała",
+  "pci_database_engines_list_beta": "Beta",
+  "pci_database_engines_list_description_mysql": "System zarządzania relacyjnymi bazami danych",
+  "pci_database_engines_list_description_postgresql": "System zarządzania relacyjnymi i obiektowymi bazami danych",
+  "pci_database_engines_list_description_kafka": "Rozproszony system streamingu o wysokiej wydajności",
+  "pci_database_engines_list_description_redis": "System przechowywania danych klucz-wartość w pamięci",
+  "pci_database_engines_list_description_mongodb": "System zarządzania bazami danych zorientowanymi na dokumenty"
 }
