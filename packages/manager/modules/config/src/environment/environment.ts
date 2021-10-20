@@ -3,13 +3,19 @@ import {
   detectUserLocale,
   findAvailableLocale,
   saveUserLocale,
+  LangId,
 } from '../locale';
-import { Region, LangId } from '../types/ovhLanguages';
-import { User } from '../types/user';
+import { User } from './user';
 
 export type EnvMessage = {
   [key in LangId]: { description: string };
 };
+
+export const enum Region {
+  US = 'US',
+  CA = 'CA',
+  EU = 'EU',
+}
 
 export interface IEnvironment {
   getRegion: () => Region;

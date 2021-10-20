@@ -1,5 +1,7 @@
-import { Environment } from '@ovh-ux/manager-config/dist/types/environment/environment';
-import { fetchConfiguration as fetch2APIConfig } from '@ovh-ux/manager-config';
+import {
+  fetchConfiguration as fetch2APIConfig,
+  Environment,
+} from '@ovh-ux/manager-config';
 import { Deferred, Callback, CustomPromise } from './utils/deferred.class';
 import OvhMicroFrontendApplicationAPI from './api.application.class';
 import OvhMicroFrontendFragmentAPI from './api.fragment.class';
@@ -26,7 +28,7 @@ export default class OvhMicroFrontend {
     this.environment = new Deferred<Environment>().defer;
   }
 
-  init(applicationName: string): Promise<FragmentConfig> {
+  async init(applicationName: string): Promise<FragmentConfig> {
     return fetch2APIConfig(applicationName).then((environment) => {
       this.environment.resolve(environment);
       return {
