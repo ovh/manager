@@ -40,7 +40,7 @@
     "set-value": "^2.0.1"
   },
   "dependencies": {
-    "@ovh-ux/ui-kit": "^5.1.0",
+    "@ovh-ux/ui-kit": "^5.1.2",
     "bootstrap": "~3.4.1",
     "lodash": "^4.17.15",
     "ovh-ui-kit-bs": "^4.2.0"
