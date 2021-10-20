@@ -11,7 +11,7 @@
     <oui-datagrid
         class="mt-5"
         data-page-size="10"
-        data-rows="$ctrl.serviceIntegrationList"
+        data-rows="$ctrl.replicationsList"
     >
         <oui-datagrid-column
             data-title=":: 'pci_databases_replications_tab_source' | translate"
@@ -70,7 +70,7 @@
             data-filterable
         >
             <span
-                data-translate="pci_databases_replications_tab_sync_group_offsets_{{$row.enabled}}"
+                data-translate="pci_databases_replications_tab_sync_group_offsets_{{$row.syncGroupOffsets}}"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
@@ -133,3 +133,4 @@
         </oui-datagrid-topbar>
     </oui-datagrid>
 </div>
+<pre>{{$ctrl.replicationsList | json}}</pre>

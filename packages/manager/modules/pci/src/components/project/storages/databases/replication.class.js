@@ -11,6 +11,7 @@ export default class ServiceIntegration {
     syncInterval,
     heartbeatsEmit,
     replicationPolicyClass,
+    enabled,
   }) {
     this.updateData({
       id,
@@ -22,6 +23,7 @@ export default class ServiceIntegration {
       syncInterval,
       heartbeatsEmit,
       replicationPolicyClass,
+      enabled,
     });
   }
 
@@ -44,6 +46,7 @@ export default class ServiceIntegration {
     syncInterval,
     heartbeatsEmit,
     replicationPolicyClass,
+    enabled,
   }) {
     Object.assign(this, {
       id,
@@ -55,6 +58,7 @@ export default class ServiceIntegration {
       syncInterval,
       heartbeatsEmit,
       replicationPolicyClass,
+      enabled,
     });
   }
 }
