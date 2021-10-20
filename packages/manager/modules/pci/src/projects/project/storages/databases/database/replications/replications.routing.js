@@ -1,3 +1,6 @@
+import map from 'lodash/map';
+import ServiceIntegration from '../../../../../../components/project/storages/databases/serviceIntegration.class';
+import Replication from '../../../../../../components/project/storages/databases/replication.class';
 import { DATABASE_TYPES } from '../../databases.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -30,11 +33,18 @@ export default /* @ngInject */ ($stateProvider) => {
           DatabaseService,
           database,
           projectId,
+          serviceIntegrationList,
         ) =>
           DatabaseService.getReplications(
             projectId,
             database.engine,
             database.id,
+          ).then((replications) =>
+            map(replications, (r) => {
+              const replication = new Replication(r);
+              replication.setServicesNames(serviceIntegrationList);
+              return replication;
+            }),
           ),
         kafkaServicesList: /* @ngInject */ (DatabaseService, projectId) =>
           DatabaseService.getDatabases(projectId, DATABASE_TYPES.KAFKA),
@@ -42,11 +52,18 @@ export default /* @ngInject */ ($stateProvider) => {
           database,
           DatabaseService,
           projectId,
+          kafkaServicesList,
         ) =>
           DatabaseService.getIntegrations(
             projectId,
             database.engine,
             database.id,
+          ).then((integrations) =>
+            map(integrations, (i) => {
+              const serviceIntegration = new ServiceIntegration(i);
+              serviceIntegration.setServiceName(kafkaServicesList);
+              return serviceIntegration;
+            }),
           ),
         goToAddReplications: /* @ngInject */ (
           $state,
