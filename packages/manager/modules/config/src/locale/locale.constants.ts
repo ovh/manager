@@ -1,4 +1,4 @@
-import { CountryCode, OVHLanguages } from '../types/ovhLanguages';
+import { CountryCode, OVHLanguages } from '../locale';
 
 export const LANGUAGES: OVHLanguages = {
   available: [

@@ -1,6 +1,6 @@
 import { useReket } from '@ovh-ux/ovh-reket';
 import Environment from './environment';
-import { Region } from './types/ovhLanguages';
+import { Region } from './environment/environment';
 
 export const HOSTNAME_REGIONS: Record<string, Region> = {
   'www.ovh.com': Region.EU,
