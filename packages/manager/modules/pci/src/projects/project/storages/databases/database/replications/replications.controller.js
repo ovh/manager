@@ -1,4 +1,4 @@
-import { MAX_TOPIC_PER_LINE } from './replications.constants';
+import { MAX_TOPIC_PER_LINE, MIN_INTEGRATION } from './replications.constants';
 
 export default class ReplicationsCtrl {
   /* @ngInject */
@@ -6,6 +6,7 @@ export default class ReplicationsCtrl {
     this.CucCloudMessage = CucCloudMessage;
     this.$translate = $translate;
     this.MAX_TOPIC_PER_LINE = MAX_TOPIC_PER_LINE;
+    this.MIN_INTEGRATION = MIN_INTEGRATION;
   }
 
   $onInit() {

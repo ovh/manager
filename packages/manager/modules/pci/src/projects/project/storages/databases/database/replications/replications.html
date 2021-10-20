@@ -6,6 +6,16 @@
 
     <h2 data-translate="pci_databases_replications_tab_title"></h2>
 
+    <oui-message
+        data-ng-if="$ctrl.readyServiceIntegrationList.length < $ctrl.MIN_INTEGRATION"
+        data-type="warning"
+        data-dismissable
+    >
+        <span
+            data-translate="pci_databases_replications_tab_no_integration"
+        ></span>
+    </oui-message>
+
     <p data-translate="pci_databases_replications_tab_description"></p>
 
     <oui-datagrid
@@ -108,7 +118,10 @@
             </oui-action-menu-item>
         </oui-action-menu>
         <oui-datagrid-topbar>
-            <oui-button data-on-click="$ctrl.trackAndAddReplication()">
+            <oui-button
+                data-on-click="$ctrl.trackAndAddReplication()"
+                data-disabled="$ctrl.readyServiceIntegrationList.length < $ctrl.MIN_INTEGRATION"
+            >
                 <span
                     class="oui-icon oui-icon-add pr-1"
                     aria-hidden="true"
@@ -133,4 +146,3 @@
         </oui-datagrid-topbar>
     </oui-datagrid>
 </div>
-<pre>{{$ctrl.replicationsList | json}}</pre>

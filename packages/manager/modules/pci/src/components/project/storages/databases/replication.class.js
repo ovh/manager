@@ -29,10 +29,10 @@ export default class ServiceIntegration {
 
   setServicesNames(replications) {
     this.serviceNameSource = find(replications, {
-      serviceId: this.sourceService,
+      id: this.sourceService,
     })?.serviceName;
     this.serviceNameTarget = find(replications, {
-      serviceId: this.targetService,
+      id: this.targetService,
     })?.serviceName;
   }
 

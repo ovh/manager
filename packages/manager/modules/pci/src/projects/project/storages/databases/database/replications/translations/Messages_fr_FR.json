@@ -11,7 +11,7 @@
   "pci_databases_replications_tab_edit": "Modifier le flux de réplication",
   "pci_databases_replications_tab_delete": "Supprimer le flux de réplication",
   "pci_databases_replications_tab_add": "Créer un flux de réplication ",
-  "pci_databases_replications_tab_no_kafka_service": "Vous devez avoir au moins un service kafka non connecté",
+  "pci_databases_replications_tab_no_integration": "Avant de créer un flux de réplication, veuillez vous assurer que vous avez configuré au moins 2 Kafka.",
   "pci_databases_replications_tab_sync_group_offsets_true": "Oui",
   "pci_databases_replications_tab_sync_group_offsets_false": "Non",
   "pci_databases_replications_tab_status_true": "Activé",
