@@ -23,7 +23,7 @@
                 <oui-select
                     model="$ctrl.model.sourceService"
                     name="source"
-                    items="$ctrl.serviceIntegrationList"
+                    items="$ctrl.readyServiceIntegrationList"
                     match="serviceName"
                     on-change="$ctrl.checkTargetAndSourceValidity()"
                     disabled="$ctrl.isUpdate"
@@ -40,7 +40,7 @@
                 <oui-select
                     model="$ctrl.model.targetService"
                     name="target"
-                    items="$ctrl.serviceIntegrationList"
+                    items="$ctrl.readyServiceIntegrationList"
                     match="serviceName"
                     on-change="$ctrl.checkTargetAndSourceValidity()"
                     disabled="$ctrl.isUpdate"
@@ -123,9 +123,9 @@
                                 }}"
             >
                 <oui-select
-                    model="$ctrl.model.policy"
+                    model="$ctrl.model.replicationPolicyClass"
                     name="policy"
-                    items="$ctrl.policies"
+                    items="$ctrl.POLICIES"
                     required
                 >
                 </oui-select>

@@ -14,10 +14,6 @@ export default /* @ngInject */ ($stateProvider) => {
           isUpdate: /* @ngInject */ () => false,
           kafkaSource: (projectId, DatabaseService) =>
             DatabaseService.getDatabases(projectId, DATABASE_TYPES.KAFKA),
-          policies: () => [
-            'org.apache.kafka.connect.mirror.DefaultReplicationPolicy',
-            'org.apache.kafka.connect.mirror.NotDefaultReplicationPolicy',
-          ],
         },
         atInternet: {
           ignore: true,

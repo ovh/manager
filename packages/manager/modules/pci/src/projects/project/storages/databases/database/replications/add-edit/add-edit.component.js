@@ -10,7 +10,7 @@ export default {
     trackDashboard: '<',
     isUpdate: '<',
     replication: '<',
-    serviceIntegrationList: '<',
+    readyServiceIntegrationList: '<',
     policies: '<',
   },
   controller,

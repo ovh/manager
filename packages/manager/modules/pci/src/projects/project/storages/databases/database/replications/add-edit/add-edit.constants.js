@@ -20,8 +20,12 @@ export const DEFAULT_VALUES = {
   heartbeat: true,
   status: true,
 };
-
+export const POLICIES = [
+  'org.apache.kafka.connect.mirror.DefaultReplicationPolicy',
+  'org.apache.kafka.connect.mirror.IdentityReplicationPolicy',
+];
 export default {
   FORM_RULES,
   DEFAULT_VALUES,
+  POLICIES,
 };
