@@ -6,12 +6,14 @@ export default {
   template,
   bindings: {
     cdnOptionTypeEnum: '<',
+    enableOnlyExtension: '<',
     goBack: '<',
     domain: '<',
     rule: '<',
     rules: '<',
     priority: '<',
     callbacks: '<',
+    resourceTypes: '<',
     trackClick: '<',
   },
 };
