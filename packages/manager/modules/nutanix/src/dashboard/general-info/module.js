@@ -4,6 +4,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 
 import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
+import { serverSupport } from '@ovh-ux/manager-bm-server-components';
 import routing from './routing';
 import component from './component';
 
@@ -15,6 +16,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     ovhManagerBillingComponents,
+    serverSupport,
   ])
   .config(routing)
   .component('nutanixGeneralInfo', component)
