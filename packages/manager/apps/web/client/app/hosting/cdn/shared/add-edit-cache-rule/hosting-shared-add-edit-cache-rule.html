@@ -60,16 +60,35 @@
             </span>
         </div>
 
+        <!--Resource Type-->
+        <div class="mb-4">
+            <label
+                class="oui-field__label"
+                data-translate="hosting_cdn_shared_modal_add_rule_field_resource_type"
+            ></label>
+            <oui-radio
+                data-ng-repeat="resourceType in $ctrl.resourceTypes track by resourceType"
+                data-name="resourceType"
+                data-value="resourceType"
+                data-model="$ctrl.ruleModel.patternType"
+                data-disabled="$ctrl.rule || ($ctrl.enableOnlyExtension && resourceType !== $ctrl.RESOURCE_TYPE_EXTENSION)"
+            >
+                <span
+                    data-translate="{{ 'hosting_cdn_shared_modal_add_rule_field_resource_' + resourceType }}"
+                ></span>
+            </oui-radio>
+        </div>
+
         <!--Rule URI-->
         <div class="mb-4">
             <label
                 for="rule_pattern"
                 class="oui-field__label"
-                data-translate="hosting_cdn_shared_modal_add_rule_field_uri"
+                data-translate="hosting_cdn_shared_modal_add_rule_field_resource"
             ></label>
             <div
                 class="oui-paragraph mb-0"
-                data-translate="hosting_cdn_shared_modal_add_rule_field_uri_info"
+                data-translate="hosting_cdn_shared_modal_add_rule_field_resource_info"
             ></div>
             <input
                 class="oui-input"
@@ -79,7 +98,7 @@
                 data-ng-disabled="$ctrl.rule"
                 data-ng-model="$ctrl.ruleModel.pattern"
                 data-ng-change="$ctrl.isValidRulePattern($ctrl.ruleModel)"
-                data-ng-pattern="/^[\w\d]+$/"
+                data-ng-pattern="$ctrl.RESOURCE_REGEX[$ctrl.ruleModel.patternType]"
                 required
             />
             <span
@@ -96,7 +115,7 @@
                 <span
                     class="text-danger"
                     data-ng-message="pattern"
-                    data-translate="hosting_cdn_shared_modal_field_uri_error_pattern"
+                    data-ng-bind="('hosting_cdn_shared_modal_field_uri_error_pattern_' + $ctrl.ruleModel.patternType) | translate"
                 ></span>
                 <span
                     class="text-danger"
