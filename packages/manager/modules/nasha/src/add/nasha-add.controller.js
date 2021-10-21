@@ -25,14 +25,13 @@ export default class NashaAddCtrl {
     this.data = {
       selectedDatacenter: null,
       selectedModel: null,
-      selectedDuration: null,
+      selectedDuration: 1,
       order: null,
     };
 
     this.loadMessages();
-    this.datacenters.load();
+    this.datacenters = [];
     this.offers.load();
-    this.durations.load();
     this.catalog.load();
   }
 
@@ -47,26 +46,16 @@ export default class NashaAddCtrl {
   }
 
   isLoadingOfferData() {
-    return (
-      this.datacenters.loading || this.offers.loading || this.durations.loading
-    );
+    return this.offers.loading;
   }
 
   initLoaders() {
-    this.datacenters = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.NashaAddService.getAvailableRegions(),
-    });
-
     this.offers = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
         this.NashaAddService.getOffers().then((offers) => {
           this.allOffers = offers;
           return offers;
         }),
-    });
-
-    this.durations = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.NashaAddService.getDurations(),
     });
 
     this.catalog = this.CucControllerHelper.request.getArrayLoader({
@@ -88,17 +77,12 @@ export default class NashaAddCtrl {
     );
   }
 
-  onDatacenterChanged() {
-    const plans = this.catalog.data.plans
-      .filter((plan) =>
-        plan.configurations[0].values.includes(
-          this.data.selectedDatacenter.toUpperCase(),
-        ),
-      )
-      .map(({ planCode }) => planCode);
-
-    this.offers.data = this.allOffers.filter((offer) =>
-      plans.includes(offer.planCode),
+  onOfferChanged() {
+    const plan = this.catalog.data.plans.find(
+      ({ planCode }) => planCode === this.data.selectedModel,
     );
+    this.datacenters =
+      plan.configurations.find(({ name }) => name === 'datacenter').values ||
+      [];
   }
 }

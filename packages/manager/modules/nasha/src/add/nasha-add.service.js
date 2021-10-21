@@ -1,4 +1,3 @@
-import filter from 'lodash/filter';
 import forEach from 'lodash/forEach';
 import set from 'lodash/set';
 
@@ -20,18 +19,6 @@ export default class NashaAddService {
     this.OvhApiMe = OvhApiMe;
     this.OvhApiOrder = OvhApiOrder;
     this.CucServiceHelper = CucServiceHelper;
-  }
-
-  getAvailableRegions() {
-    return this.OvhApiOrder.v6()
-      .schema()
-      .$promise.then((response) =>
-        filter(
-          response.models['dedicated.NasHAZoneEnum'].enum,
-          (datacenter) => datacenter !== 'gra',
-        ),
-      )
-      .catch(this.CucServiceHelper.errorHandler('nasha_order_loading_error'));
   }
 
   getCatalog() {
@@ -85,27 +72,6 @@ export default class NashaAddService {
         return response.offers;
       })
       .catch(this.CucServiceHelper.errorHandler('nasha_order_loading_error'));
-  }
-
-  getDurations() {
-    return this.$q.when([
-      {
-        value: 1,
-        text: `01 ${this.$translate.instant('nas_order_month')}`,
-      },
-      {
-        value: 3,
-        text: `03 ${this.$translate.instant('nas_order_month')}`,
-      },
-      {
-        value: 6,
-        text: `06 ${this.$translate.instant('nas_order_month')}`,
-      },
-      {
-        value: 12,
-        text: `12 ${this.$translate.instant('nas_order_month')}`,
-      },
-    ]);
   }
 
   order(model) {
