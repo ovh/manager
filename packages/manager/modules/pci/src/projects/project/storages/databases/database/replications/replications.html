@@ -47,12 +47,15 @@
             data-searchable
             data-filterable
         >
-            <span data-ng-repeat="topic in $row.topics track by $index">
+            <div
+                class="d-inline"
+                data-ng-repeat="topic in $row.topics track by $index"
+            >
                 <p
                     data-ng-if="$row.topics.length > $ctrl.MAX_TOPIC_PER_LINE && $index % $ctrl.MAX_TOPIC_PER_LINE === 0"
                 ></p>
                 <span class="oui-badge oui-badge_info">{{topic}}</span>
-            </span>
+            </div>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_replications_tab_topics_blacklist' | translate"
@@ -62,14 +65,15 @@
             data-searchable
             data-filterable
         >
-            <span
+            <div
+                class="d-inline"
                 data-ng-repeat="topic in $row.topicExcludeList track by $index"
             >
                 <p
                     data-ng-if="$row.topicExcludeList.length > $ctrl.MAX_TOPIC_PER_LINE && $index % $ctrl.MAX_TOPIC_PER_LINE === 0"
                 ></p>
                 <span class="oui-badge oui-badge_info">{{topic}}</span>
-            </span>
+            </div>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_replications_tab_sync_group_offsets' | translate"
