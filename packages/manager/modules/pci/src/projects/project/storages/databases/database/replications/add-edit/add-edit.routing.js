@@ -1,5 +1,3 @@
-import { DATABASE_TYPES } from '../../../databases.constants';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state(
@@ -12,8 +10,6 @@ export default /* @ngInject */ ($stateProvider) => {
           goBack: /* @ngInject */ (goBackToReplications) =>
             goBackToReplications,
           isUpdate: /* @ngInject */ () => false,
-          kafkaSource: (projectId, DatabaseService) =>
-            DatabaseService.getDatabases(projectId, DATABASE_TYPES.KAFKA),
         },
         atInternet: {
           ignore: true,
