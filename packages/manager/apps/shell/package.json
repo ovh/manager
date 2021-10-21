@@ -13,7 +13,10 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
+    "dev:dedicated": "APP=dedicated vite",
     "dev:hub": "APP=hub vite",
+    "dev:telecom": "APP=telecom vite",
+    "dev:web": "APP=web vite",
     "lint": "eslint ./src",
     "prepare": "yarn run build",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-shell-app' --include-dependencies -- yarn run build"
