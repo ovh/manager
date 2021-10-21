@@ -51,9 +51,9 @@
                 class="d-inline"
                 data-ng-repeat="topic in $row.topics track by $index"
             >
-                <p
+                <br
                     data-ng-if="$row.topics.length > $ctrl.MAX_TOPIC_PER_LINE && $index % $ctrl.MAX_TOPIC_PER_LINE === 0"
-                ></p>
+                />
                 <span class="oui-badge oui-badge_info">{{topic}}</span>
             </div>
         </oui-datagrid-column>
