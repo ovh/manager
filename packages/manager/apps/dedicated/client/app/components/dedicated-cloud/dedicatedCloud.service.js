@@ -72,7 +72,7 @@ class DedicatedCloudService {
                 serviceName: pccId,
               })
               .$promise.catch((error) =>
-                error.status === UNAVAILABLE_PCC_CODE
+                UNAVAILABLE_PCC_CODE.includes(error.status)
                   ? undefined
                   : this.$q.reject(error),
               ),
