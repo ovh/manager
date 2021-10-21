@@ -34,6 +34,7 @@ angular
   .config(routing)
   .component('ovhManagerPciProjectNotebooks', component)
   .service('NotebookService', service)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(/* @ngTranslationsInject:json ../training/jobs/translations */);
 
 export default moduleName;

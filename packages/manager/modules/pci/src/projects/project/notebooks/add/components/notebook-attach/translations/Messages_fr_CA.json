@@ -7,9 +7,5 @@
   "pci_notebook_add_attach_container_storage_container_select": "Conteneur de stockage",
   "pci_notebook_add_attach_container_mount_path": "Répertoire de montage",
   "pci_notebook_add_attach_container_mount_path_error_key_already_exist": "Ce répertoire existe déjà",
-  "pci_notebook_add_attach_container_permission": "Autorisation",
-  "pci_notebook_add_attach_container_permission_select": "Autorisation",
-  "pci_notebook_add_attach_container_permission_RO": "Lecture seule",
-  "pci_notebook_add_attach_container_permission_RW": "Lecture - écriture",
   "pci_notebook_add_attach_container_volumes_quantity": "{{ numberOfVolumes }} / {{ maxVolumes }} volumes"
 }

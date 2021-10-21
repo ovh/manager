@@ -56,6 +56,26 @@
                             </div>
                             <div
                                 class="oui-inline-adder__field"
+                                ng-if="volume.container !== undefined"
+                            >
+                                <oui-field
+                                    data-label="{{:: 'pci_projects_project_training_jobs_submit_data_prefix' | translate  }}"
+                                    data-label-popover="{{:: 'pci_projects_project_training_jobs_submit_data_prefix_help' | translate }}"
+                                >
+                                    <input
+                                        type="text"
+                                        class="oui-input"
+                                        placeholder=""
+                                        data-ng-init="volumePrefixId = 'volumePrefix-' + $index"
+                                        data-ng-attr-name="{{volumePrefixId}}"
+                                        data-ng-attr-id="{{volumePrefixId}}"
+                                        data-ng-model="volume.prefix"
+                                        data-ng-pattern="$ctrl.NOTEBOOK_ATTACH_STORAGE.PREFIX_REGEX"
+                                    />
+                                </oui-field>
+                            </div>
+                            <div
+                                class="oui-inline-adder__field"
                                 ng-if="volume.gitUrl !== undefined"
                             >
                                 <oui-field
@@ -69,6 +89,7 @@
                                         data-ng-attr-name="{{volumeGitUrlId}}"
                                         data-ng-attr-id="{{volumeGitUrlId}}"
                                         data-ng-model="volume.gitUrl"
+                                        data-ng-pattern="$ctrl.NOTEBOOK_ATTACH_STORAGE.URL_REGEX"
                                         required
                                     />
                                 </oui-field>
@@ -94,7 +115,8 @@
                             </div>
                             <div class="oui-inline-adder__field">
                                 <oui-field
-                                    label="{{:: 'pci_notebook_add_attach_container_permission' | translate}}"
+                                    data-label="{{:: 'pci_projects_project_training_jobs_submit_data_permission' | translate  }}"
+                                    data-label-popover="{{:: 'pci_projects_project_training_jobs_submit_data_permission_help' | translate }}"
                                 >
                                     <label class="oui-select">
                                         <select
@@ -106,13 +128,13 @@
                                             required
                                         >
                                             <option
-                                                data-ng-bind="'pci_notebook_add_attach_container_permission_select' | translate"
+                                                data-ng-bind="'pci_projects_project_training_jobs_submit_data_permission_select' | translate"
                                                 default
                                             ></option>
                                             <option
                                                 ng-repeat="permission in $ctrl.permissions"
                                                 value="{{permission}}"
-                                                data-ng-bind="::'pci_notebook_add_attach_container_permission_' + permission  | translate"
+                                                data-ng-bind="::'pci_projects_project_training_jobs_submit_data_permission_' + permission  | translate"
                                             >
                                             </option>
                                         </select>
@@ -121,6 +143,22 @@
                                             aria-hidden="true"
                                         ></span>
                                     </label>
+                                </oui-field>
+                            </div>
+                            <div class="oui-inline-adder__field">
+                                <oui-field
+                                    data-label="{{:: 'pci_projects_project_training_jobs_submit_data_cache' | translate  }}"
+                                    data-label-popover="{{:: 'pci_projects_project_training_jobs_submit_data_cache_help' | translate }}"
+                                    size="auto"
+                                >
+                                    <oui-checkbox
+                                        class="oui-checkbox"
+                                        name="cache"
+                                        data-ng-init="volumeCacheId = 'volumeCache-' + $index"
+                                        data-ng-attr-name="{{volumeCacheId}}"
+                                        data-ng-attr-id="{{volumeCacheId}}"
+                                        data-model="volume.cache"
+                                    ></oui-checkbox>
                                 </oui-field>
                             </div>
                         </div>

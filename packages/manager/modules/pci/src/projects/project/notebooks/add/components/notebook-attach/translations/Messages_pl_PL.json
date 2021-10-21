@@ -7,9 +7,5 @@
   "pci_notebook_add_attach_container_storage_container_select": "Kontener do przechowywania danych",
   "pci_notebook_add_attach_container_mount_path": "Katalog montowania",
   "pci_notebook_add_attach_container_mount_path_error_key_already_exist": "Ten katalog już istnieje",
-  "pci_notebook_add_attach_container_permission": "Autoryzacja",
-  "pci_notebook_add_attach_container_permission_select": "Autoryzacja",
-  "pci_notebook_add_attach_container_permission_RO": "Do odczytu",
-  "pci_notebook_add_attach_container_permission_RW": "Odczyt - zapis",
   "pci_notebook_add_attach_container_volumes_quantity": "{{ numberOfVolumes }} / {{ maxVolumes }} objętości"
 }

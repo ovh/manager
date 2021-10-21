@@ -44,6 +44,7 @@
   "pci_projects_project_training_jobs_submit_data_prefix": "Filtrer par préfixe",
   "pci_projects_project_training_jobs_submit_data_prefix_help": "Seuls les objets correspondants au préfixe sont chargés dans le système de fichier",
   "pci_projects_project_training_jobs_submit_data_permission": "Permission",
+  "pci_projects_project_training_jobs_submit_data_permission_select": "Permission",
   "pci_projects_project_training_jobs_submit_data_permission_help": "En `Lecture Seule` aucune synchronisation n'est lancée en fin de job. Le job se finalise ainsi plus rapidement.",
   "pci_projects_project_training_jobs_submit_data_permission_RO": "Lecture Seule",
   "pci_projects_project_training_jobs_submit_data_permission_RW": "Lecture & Ecriture",

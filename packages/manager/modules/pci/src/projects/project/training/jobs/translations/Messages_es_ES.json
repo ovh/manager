@@ -36,6 +36,7 @@
   "pci_projects_project_training_jobs_submit_data_container": "Contenedor",
   "pci_projects_project_training_jobs_submit_data_mount_path": "Directorio de montaje",
   "pci_projects_project_training_jobs_submit_data_permission": "Permiso",
+  "pci_projects_project_training_jobs_submit_data_permission_select": "Permiso",
   "pci_projects_project_training_jobs_submit_data_permission_RO": "Solo lectura",
   "pci_projects_project_training_jobs_submit_data_permission_RW": "Lectura y escritura",
   "pci_projects_project_training_jobs_submit_ovhai_info": "El siguiente comando le permite lanzar el mismo job gracias a nuestro CLI ovhai:",
