@@ -2,6 +2,7 @@
   "pci_project_instances_display_nonavailable": "Mostrar las imágenes no disponibles",
   "pci_project_instances_os_linux": "Distribuciones Unix",
   "pci_project_instances_os_windows": "Distribuciones Windows",
+  "pci_project_instances_os_baremetal-linux": "Baremetal distributions",
   "pci_project_instances_apps": "Distribuciones y aplicaciones",
   "pci_project_instances_shapshots": "Backups",
   "pci_project_instances_licence": "La utilización de imágenes está sujeta a la aceptación previa del contrato de licencia para el usuario final del proveedor.",
