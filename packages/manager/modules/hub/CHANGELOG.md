@@ -1,3 +1,12 @@
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.1.1...@ovh-ux/manager-hub@3.2.0) (2021-10-21)
+
+
+### Features
+
+* use feature availability to display renew actions ([#5054](https://github.com/ovh/manager/issues/5054)) ([d3de920](https://github.com/ovh/manager/commit/d3de92098fea3aa35d06cc9f9308bd330ee2bd7e))
+
+
+
 ## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.1.0...@ovh-ux/manager-hub@3.1.1) (2021-10-07)
 
 

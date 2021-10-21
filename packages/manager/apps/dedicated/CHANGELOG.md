@@ -1,3 +1,12 @@
+# [17.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.0.1...@ovh-ux/manager-dedicated@17.1.0) (2021-10-21)
+
+
+### Features
+
+* commit re-commit text changes ([6588853](https://github.com/ovh/manager/commit/658885373ef0f592a0776eec0759b9a5c9d84273)), closes [#MANAGER-7434](https://github.com/ovh/manager/issues/MANAGER-7434)
+
+
+
 ## [17.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.0.0...@ovh-ux/manager-dedicated@17.0.1) (2021-10-07)
 
 

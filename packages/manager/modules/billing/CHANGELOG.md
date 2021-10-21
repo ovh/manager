@@ -1,3 +1,12 @@
+# [0.3.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.2.0-alpha.4...@ovh-ux/manager-billing@0.3.0-alpha.0) (2021-10-21)
+
+
+### Features
+
+* use feature availability to display renew actions ([#5054](https://github.com/ovh/manager/issues/5054)) ([d3de920](https://github.com/ovh/manager/commit/d3de92098fea3aa35d06cc9f9308bd330ee2bd7e))
+
+
+
 # [0.2.0-alpha.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.2.0-alpha.3...@ovh-ux/manager-billing@0.2.0-alpha.4) (2021-10-07)
 
 
