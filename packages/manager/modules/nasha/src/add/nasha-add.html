@@ -6,7 +6,8 @@
     <cui-message-container
         data-ng-if="!NashaAddCtrl.isLoadingOfferData()"
         data-messages="NashaAddCtrl.messages"
-    ></cui-message-container>
+    >
+    </cui-message-container>
 
     <div>
         <div class="text-center" data-ng-if="NashaAddCtrl.isLoadingOfferData()">
@@ -31,37 +32,6 @@
                     <div class="oui-field">
                         <label
                             class="oui-field__label oui-label"
-                            data-translate="nasha_order_datacenter"
-                            for="selectDatacenter"
-                        ></label>
-                        <div class="oui-field__content">
-                            <div class="oui-field-control oui-field-control_4">
-                                <label class="oui-select">
-                                    <select
-                                        id="selectDatacenter"
-                                        name="select"
-                                        class="oui-select__input"
-                                        data-ng-model="NashaAddCtrl.data.selectedDatacenter"
-                                        data-ng-change="NashaAddCtrl.onDatacenterChanged()"
-                                        data-ng-options="datacenter as ('nasha_order_datacenter_' + datacenter | translate) for datacenter in NashaAddCtrl.datacenters.data"
-                                    >
-                                        <option
-                                            value
-                                            data-translate="nasha_order_select_placeholder"
-                                        ></option>
-                                    </select>
-                                    <i
-                                        class="oui-icon oui-icon-chevron-down"
-                                        aria-hidden="true"
-                                    ></i>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="oui-field">
-                        <label
-                            class="oui-field__label oui-label"
                             data-translate="nasha_order_name"
                             for="selectModel"
                         ></label>
@@ -72,6 +42,7 @@
                                         id="selectModel"
                                         name="select"
                                         class="oui-select__input"
+                                        data-ng-change="NashaAddCtrl.onOfferChanged()"
                                         data-ng-model="NashaAddCtrl.data.selectedModel"
                                         data-ng-options="offer.planCode as offer.productName + ' - ' + offer.prices[0].price.text + '/' + ('nas_order_month' | translate) for offer in NashaAddCtrl.offers.data | orderBy: 'prices[0].priceInUcents'"
                                     >
@@ -92,18 +63,18 @@
                     <div class="oui-field">
                         <label
                             class="oui-field__label oui-label"
-                            data-translate="nasha_order_duration"
-                            for="selectDuration"
+                            data-translate="nasha_order_datacenter"
+                            for="selectDatacenter"
                         ></label>
                         <div class="oui-field__content">
                             <div class="oui-field-control oui-field-control_4">
                                 <label class="oui-select">
                                     <select
-                                        id="selectDuration"
+                                        id="selectDatacenter"
                                         name="select"
                                         class="oui-select__input"
-                                        data-ng-model="NashaAddCtrl.data.selectedDuration"
-                                        data-ng-options="duration.value as duration.text for duration in NashaAddCtrl.durations.data | orderBy : 'value'"
+                                        data-ng-model="NashaAddCtrl.data.selectedDatacenter"
+                                        data-ng-options="datacenter as ('nasha_order_datacenter_' + datacenter.toLowerCase() | translate) for datacenter in NashaAddCtrl.datacenters"
                                     >
                                         <option
                                             value
