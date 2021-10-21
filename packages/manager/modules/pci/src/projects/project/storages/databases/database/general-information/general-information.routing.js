@@ -242,7 +242,7 @@ export default /* @ngInject */ ($stateProvider) => {
                 ),
               ),
             )
-          : null,
+          : [],
       users: /* @ngInject */ (DatabaseService, database, projectId) =>
         isFeatureActivated('usersTab', database.engine)
           ? DatabaseService.getUsers(projectId, database.engine, database.id)
