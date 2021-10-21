@@ -1,3 +1,18 @@
+# [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.2.1...@ovh-ux/manager-billing-components@3.3.0) (2021-10-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1085] ([2e3b699](https://github.com/ovh/manager/commit/2e3b699f505718404788412f135810f8935bdeed))
+
+
+### Features
+
+* commit re-commit text changes ([6588853](https://github.com/ovh/manager/commit/658885373ef0f592a0776eec0759b9a5c9d84273)), closes [#MANAGER-7434](https://github.com/ovh/manager/issues/MANAGER-7434)
+* use feature availability to display renew actions ([#5054](https://github.com/ovh/manager/issues/5054)) ([d3de920](https://github.com/ovh/manager/commit/d3de92098fea3aa35d06cc9f9308bd330ee2bd7e))
+
+
+
 ## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.2.0...@ovh-ux/manager-billing-components@3.2.1) (2021-10-07)
 
 
