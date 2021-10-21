@@ -131,6 +131,7 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
     this.isCreating = true;
     this.error = null;
 
+    this.trackClick('snapshot-policy::create::confirm');
     return this.$http
       .post(
         `/storage/netapp/${this.serviceName}/snapshotPolicy`,

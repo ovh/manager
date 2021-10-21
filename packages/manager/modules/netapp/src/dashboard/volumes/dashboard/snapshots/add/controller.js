@@ -11,6 +11,7 @@ export default class NetAppVolumesDashboardSnapshotsAddController {
 
   addSnapshot() {
     this.isLoading = true;
+    this.trackClick('create::confirm');
     return this.$http
       .post(
         `/storage/netapp/${this.serviceName}/share/${this.volumeId}/snapshot`,

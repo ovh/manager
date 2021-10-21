@@ -21,18 +21,14 @@ export default /* @ngInject */ ($stateProvider) => {
           .then(() => {
             Alerter.success(successMessage);
           }),
-      goBack: /* @ngInject */ (goToVolumes) => goToVolumes,
+      goBack: /* @ngInject */ (goToVolumes, trackClick) => {
+        trackClick('create::cancel');
+        return goToVolumes;
+      },
       protocolEnum: /* @ngInject */ (schema) =>
         schema.models['storage.ProtocolEnum'].enum,
       schema: /* @ngInject */ ($http) =>
         $http.get('/storage.json').then(({ data }) => data),
-      trackClick: /* @ngInject */ (atInternet) => () => {
-        atInternet.trackClick({
-          name: `${hitName}::confirm`,
-          type: 'action',
-        });
-      },
-
       breadcrumb: () => null,
     },
     atInternet: {

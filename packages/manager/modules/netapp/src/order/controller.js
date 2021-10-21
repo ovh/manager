@@ -29,11 +29,13 @@ export default class OvhManagerNetAppOrderCtrl {
   constructor(
     $translate,
     $window,
+    atInternet,
     BillingService,
     coreConfig,
     RedirectionService,
   ) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.BillingService = BillingService;
     this.$window = $window;
     this.coreConfig = coreConfig;
@@ -130,6 +132,10 @@ export default class OvhManagerNetAppOrderCtrl {
   }
 
   goToOrderUrl() {
+    this.atInternet.trackClick({
+      name: `netapp::order::confirm::${this.selectedRegion}_${this.selectedLicense}_${this.selectedSize}TB_${this.duration}_${this.pricingMode.pricingMode}`,
+      type: 'action',
+    });
     const order = {
       planCode: this.plan.planCode,
       productId: 'netapp',
