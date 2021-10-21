@@ -74,16 +74,17 @@ export default class NotebookAddController {
     };
   }
 
-  static buildVolumesBody(volumes, region) {
+  static buildVolumesBody(volumes) {
     return volumes.map((volume) => {
-      if (volume.swiftVolume) {
+      if (volume.container !== undefined) {
         return {
           mountPath: volume.mountPath,
           permission: volume.permission,
           cache: false,
           privateSwift: {
-            container: volume.container,
-            region: region.name,
+            container: volume.container.name,
+            region: volume.container.region,
+            prefix: volume.prefix,
           },
         };
       }
@@ -92,7 +93,7 @@ export default class NotebookAddController {
         permission: volume.permission,
         cache: false,
         publicGit: {
-          url: volume.url,
+          url: volume.gitUrl,
         },
       };
     });
@@ -116,7 +117,7 @@ export default class NotebookAddController {
         resource.flavor,
         nbResources,
       ),
-      volumes: NotebookAddController.buildVolumesBody(volumes, region),
+      volumes: NotebookAddController.buildVolumesBody(volumes),
       unsecureHttp: NOTEBOOK_PRIVACY_SETTINGS.PUBLIC === privacy,
     };
   }
@@ -124,6 +125,9 @@ export default class NotebookAddController {
   $onInit() {
     this.messageContainer = 'pci.projects.project.notebooks.add';
     this.loadMessages();
+    if (this.storages.length === 0) {
+      this.notebookModel.volumes = [];
+    }
   }
 
   loadMessages() {
@@ -236,15 +240,6 @@ export default class NotebookAddController {
     this.NotebookService.getFlavors(this.projectId, regionName)
       .then((flavors) => {
         this.flavors = flavors;
-        return this.NotebookService.getStorages(this.projectId);
-      })
-      .then((storages) => {
-        this.storages = storages.filter(({ region }) => region === regionName);
-
-        if (this.storages.length === 0) {
-          this.notebookModel.volumes = [];
-        }
-
         this.flavorsAreLoaded = true;
       })
       .catch((error) => this.CucCloudMessage.error(get(error, 'data.message')));

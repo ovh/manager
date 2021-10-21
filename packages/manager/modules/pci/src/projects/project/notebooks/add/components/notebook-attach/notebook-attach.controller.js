@@ -62,6 +62,7 @@ export default class NotebookAttachController {
 
   onAddVolumeClick() {
     if (!this.maxVolumesIsReached()) {
+      this.filterStorages();
       this.addVolume(Volume.createVolumeModel());
     }
   }
@@ -88,5 +89,23 @@ export default class NotebookAttachController {
       'duplicateVolumeMountPath',
       true,
     );
+  }
+
+  filterStorages() {
+    this.filteredStorages = this.storages
+      // Remove containers that are already on volume list
+      .filter(({ name, region }) => {
+        return !this.notebookModel.volumes
+          // eslint-disable-next-line no-shadow
+          .map(({ container }) => `${container.name}-${container.region}`)
+          .includes(`${name}-${region}`);
+      })
+      .map(({ name, region }) => {
+        return {
+          name,
+          region,
+          description: `${name} - ${region}`,
+        };
+      });
   }
 }

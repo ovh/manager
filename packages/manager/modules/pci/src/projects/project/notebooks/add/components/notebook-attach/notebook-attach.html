@@ -36,41 +36,27 @@
                         <div class="oui-inline-adder__row">
                             <div
                                 class="oui-inline-adder__field"
-                                ng-if="volume.swiftVolume"
+                                ng-if="volume.container !== undefined"
                             >
                                 <oui-field
                                     label="{{:: 'pci_notebook_add_attach_container_storage_container' | translate}}"
                                 >
                                     <label class="oui-select">
-                                        <select
-                                            class="oui-select__input"
-                                            data-ng-init="volumeContainerId = 'volumeContainer-' + $index"
-                                            data-ng-attr-name="{{volumeContainerId}}"
-                                            data-ng-attr-id="{{volumeContainerId}}"
-                                            data-ng-model="volume.container"
-                                            required
+                                        <oui-select
+                                            name="container"
+                                            data-model="volume.container"
+                                            data-items="$ctrl.filteredStorages"
+                                            data-match="description"
+                                            data-searchable
+                                            data-required="volume.container"
                                         >
-                                            <option
-                                                data-ng-bind="'pci_notebook_add_attach_container_storage_container_select' | translate"
-                                                default
-                                            ></option>
-                                            <option
-                                                ng-repeat="storage in $ctrl.storages track by storage.id"
-                                                data-ng-bind="::storage.name"
-                                                value="{{storage.name}}"
-                                            >
-                                            </option>
-                                        </select>
-                                        <span
-                                            class="oui-icon oui-icon-chevron-down"
-                                            aria-hidden="true"
-                                        ></span>
+                                        </oui-select>
                                     </label>
                                 </oui-field>
                             </div>
                             <div
                                 class="oui-inline-adder__field"
-                                ng-if="volume.gitVolume"
+                                ng-if="volume.gitUrl !== undefined"
                             >
                                 <oui-field
                                     label="{{:: 'pci_notebook_add_attach_container_git_url' | translate}}"
@@ -82,7 +68,7 @@
                                         data-ng-init="volumeGitUrlId = 'volumeGitUrl-' + $index"
                                         data-ng-attr-name="{{volumeGitUrlId}}"
                                         data-ng-attr-id="{{volumeGitUrlId}}"
-                                        data-ng-model="volume.url"
+                                        data-ng-model="volume.gitUrl"
                                         required
                                     />
                                 </oui-field>
