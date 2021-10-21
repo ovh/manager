@@ -89,9 +89,10 @@
                 >
                 </oui-switch>
                 <strong
-                    >{{ 'pci_databases_replications_add_edit_syncGroupOffset_' +
-                    $ctrl.model.syncGroupOffsets | translate }}</strong
+                    data-translate="{{'pci_databases_replications_add_edit_syncGroupOffset_' +
+                    $ctrl.model.syncGroupOffsets | translate }}"
                 >
+                </strong>
             </oui-field>
         </div>
     </div>
@@ -117,9 +118,9 @@
                 data-label="{{:: 'pci_databases_replications_add_edit_policy' | translate }}"
                 data-label-popover="{{::
                                 ('pci_databases_replications_add_edit_policy_tooltip_1' | translate)
-                                +'\r\n\r\n' + ('pci_databases_replications_add_edit_policy_tooltip_2' | translate)
+                                +'\r\n\r\n' + ('pci_databases_replications_add_edit_policy_tooltip_2' | translate : { defaultPolicy: $ctrl.POLICIES[0] })
                                 +'\r\n\r\n' + ('pci_databases_replications_add_edit_policy_tooltip_3' | translate)
-                                +'\r\n\r\n' + ('pci_databases_replications_add_edit_policy_tooltip_4' | translate)
+                                +'\r\n\r\n' + ('pci_databases_replications_add_edit_policy_tooltip_4' | translate : {identificationPolicy: $ctrl.POLICIES[1]})
                                 }}"
             >
                 <oui-select

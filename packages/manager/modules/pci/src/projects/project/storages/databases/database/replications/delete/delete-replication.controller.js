@@ -1,4 +1,4 @@
-export default class {
+export default class DeleteReplicationCtrl {
   /* @ngInject */
   constructor($translate, DatabaseService) {
     this.DatabaseService = DatabaseService;
