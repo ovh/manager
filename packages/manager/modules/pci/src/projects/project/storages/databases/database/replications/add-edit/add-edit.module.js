@@ -7,7 +7,7 @@ import addEditReplicationComponent from './add-edit.component';
 import tagsInput from '../../../components/tags-input';
 import routing from './add-edit.routing';
 
-const moduleName = 'ovhManagerPciStoragesDatabaseReplicationsAddEdot';
+const moduleName = 'ovhManagerPciStoragesDatabaseReplicationsAddEdit';
 
 angular
   .module(moduleName, [

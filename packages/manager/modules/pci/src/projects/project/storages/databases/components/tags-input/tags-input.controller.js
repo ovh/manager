@@ -27,10 +27,6 @@ export default class PciTagsInputController {
   }
 
   removeTag(tag) {
-    // Workaround to fix oui-chip bug
-    document.getElementsByClassName('oui-chip_closable').forEach((e) => {
-      e.setAttribute('type', 'button');
-    });
     pull(this.model, tag.title);
     remove(this.items, (i) => i.title === tag);
   }
