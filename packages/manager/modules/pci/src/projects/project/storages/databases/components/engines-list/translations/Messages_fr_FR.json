@@ -8,5 +8,5 @@
   "pci_database_engines_list_description_redis": "Système de stockage de données clé-valeur en mémoire",
   "pci_database_engines_list_description_mongodb": "Système de gestion de base de données orienté documents",
   "pci_database_engines_list_description_opensearch": "Moteur de recherche et d'analyse distribuée. Fork d'Elasticsearch 7.10.2 et de Kibana 7.10.2",
-  "pci_database_engines_list_description_kafkamirrormaker": "Système de réplication de données entre deux Kafka"
+  "pci_database_engines_list_description_kafkaMirrorMaker": "Système de réplication de données entre deux Kafka"
 }
