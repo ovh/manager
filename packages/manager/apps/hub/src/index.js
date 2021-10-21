@@ -9,20 +9,20 @@ import {
   displayMessage,
 } from '@ovh-ux/manager-preloader';
 
-import { registerApplication, buildURL } from '@ovh-ux/ufrontend';
+import { buildURL } from '@ovh-ux/ufrontend';
 import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
 import { BILLING_REDIRECTIONS } from './constants';
 
 attachPreloader(findAvailableLocale(detectUserLocale()));
 
-shellClient.useShellApi().routing.init();
-
-registerApplication('hub').then(({ environment }) => {
+shellClient.init('hub').then(({ environment, shell }) => {
   environment.setVersion(__VERSION__);
 
   if (environment.getMessage()) {
     displayMessage(environment.getMessage(), environment.getUserLanguage());
   }
+
+  shell.routing.init();
 
   BILLING_REDIRECTIONS.forEach((redirectionRegex) => {
     const hash = window.location.hash.replace('#', '');
