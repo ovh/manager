@@ -477,6 +477,7 @@
   "domain_configuration_dns_entry_add_step1_helpwizard_txt_desc": "Permet d’entrer n’importe quel texte dans la zone DNS.",
   "domain_configuration_dns_entry_add_step3_info": "Vous allez ajouter l'entrée suivante dans votre zone DNS :",
   "domain_configuration_dns_entry_add_step3_alert": "L’ajout sera immédiat dans la zone DNS, mais veuillez prendre en compte le temps de propagation (maximum 24h).",
+  "domain_configuration_dns_entry_edit_step3_alert": "La modification sera immédiate dans la zone DNS, mais veuillez prendre en compte le temps de propagation (maximum 24h).",
   "domain_configuration_dns_entry_add_step3_check_warning1": "Attention, un ou plusieurs conflits peuvent survenir :",
   "domain_configuration_dns_entry_add_step3_check_warning2": "Le sous-domaine utilise déjà un enregistrement DNS. Vous ne pouvez pas enregistrer de champ CNAME en raison d'une incompatibilité. Supprimez les enregistrements existants pour ce sous-domaine, afin de pouvoir en ajouter un, de type CNAME.",
   "domain_configuration_dns_entry_add_step3_check_warning3": "Le sous-domaine est déjà utilisé par un enregistrement CNAME. Un enregistrement CNAME n'est pas autorisé à coexister avec d'autres champs sur le même sous-domaine.",

@@ -174,6 +174,12 @@
                 data-ng-if="ctrl.model.target.value"
                 data-ng-include="'domain/zone/record/resume.html'"
             ></div>
+            <div
+                class="alert alert-info mt-4"
+                role="alert"
+                data-translate="domain_configuration_dns_entry_add_step3_alert"
+                data-ng-if="ctrl.recordConflicts"
+            ></div>
         </div>
     </div>
 </div>
