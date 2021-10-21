@@ -1,6 +1,5 @@
 import capitalize from 'lodash/capitalize';
 import {
-  SHELL_NAMES,
   MAX_IPS_DISPLAY,
   CERTIFICATE_FILENAME,
 } from '../../databases.constants';
@@ -25,23 +24,8 @@ export default class {
   $onInit() {
     this.messageContainer = `pci.projects.project.storages.databases.dashboard.general-information-${this.database.id}`;
     this.loadMessages();
-    this.connectionInformation = this.getConnectionInformation();
     this.pollDatabaseStatus();
     this.maxAllowedIpsToShow = MAX_IPS_DISPLAY;
-  }
-
-  getConnectionInformation() {
-    const nodesConfig = this.database.nodes.map((node) => node.name).join(',');
-    return {
-      mongoShell: `${SHELL_NAMES[this.database.engine]} --tls --host ${
-        this.database.nodes.length > 1 ? 'replicaset/' : ''
-      }${nodesConfig} --authenticationDatabase admin --username <username> --password <password>`,
-      application: `${
-        this.database.engine
-      }://<username>:<password>@${nodesConfig}/admin?${
-        this.database.nodes.length > 1 ? 'replicaSet=replicaset&' : ''
-      }tls=true`,
-    };
   }
 
   downloadCertificate() {
