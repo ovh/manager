@@ -14,7 +14,7 @@ export const ENGINE_LOGOS = {
   postgresql: ASSET_POSTGRE_SQL,
   redis: ASSET_REDIS,
   opensearch: ASSET_OPEN_SEARCH,
-  kafkamirrormaker: ASSET_KAFKA,
+  kafkaMirrorMaker: ASSET_KAFKA,
 };
 
 export const DATABASES_GUIDES_URL =
@@ -27,7 +27,7 @@ export const DATABASE_TYPES = {
   REDIS: 'redis',
   KAFKA: 'kafka',
   OPEN_SEARCH: 'opensearch',
-  KAFKA_MIRROR_MAKER: 'kafkamirrormaker',
+  KAFKA_MIRROR_MAKER: 'kafkaMirrorMaker',
 };
 
 export const SHELL_NAMES = {
@@ -37,7 +37,7 @@ export const SHELL_NAMES = {
   redis: 'redis',
   kafka: 'kafka',
   opensearch: 'opensearch',
-  kafkamirrormaker: 'kafkamirrormaker',
+  kafkaMirrorMaker: 'kafkaMirrorMaker',
 };
 
 export const SECRET_TYPE = {
