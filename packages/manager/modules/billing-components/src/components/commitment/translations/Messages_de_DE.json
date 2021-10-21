@@ -19,13 +19,17 @@
   "billing_commitment_payment_method_none": "Sie haben kein gültiges Zahlungsmittel.",
   "billing_commitment_payment_method_add": "Neues Zahlungsmittel hinzufügen",
   "billing_commitment_summary": "Abschluss",
-  "billing_commitment_summary_description_periodic": "Ab dem {{ renewDate }} wird Ihr Dienst {{ serviceName }} bis zum {{ engagementEndDate }} jeden Monat automatisch verlängert.",
-  "billing_commitment_summary_description_upfront": "Das Abonnement Ihres Dienstes {{ serviceName }} ist vom {{ renewDate }} bis zum {{ engagementEndDate }} aktiv.",
+  "billing_commitment_summary_description_periodic": "Ab dem {{ renewDate }} wird Ihr Standardzahlungsmittel ({{ paymentMethodName }}) für Ihren Dienst {{ serviceName }} automatisch monatlich bis zum {{ engagementEndDate }} mit {{ monthlyPrice }} belastet.",
+  "billing_commitment_summary_description_upfront": "Am {{ renewDate }} wird Ihr Standardzahlungsmittel ({{ paymentMethodName }}) automatisch mit {{ upfrontPrice }} für die gesamte Vertragslaufzeit belastet.",
   "billing_commitment_summary_description_payment": "Der Betrag wird von Ihrem Standardzahlungsmittel abgebucht: {{ paymentMethodType }} {{ paymentMethodName }}.",
   "billing_commitment_success": "Die Abonnementbestellung des Dienstes wurde erfolgreich durchgeführt. ",
   "billing_commitment_success_purchase": "Bitte beenden Sie die Zahlung Ihres <a href=\"{{url}}\" target=\"_blank\">Bestellscheins</a>.",
   "billing_commitment_error": "Es ist ein Fehler aufgetreten.",
-  "billing_commitment_summary_description_end": "Nach dem {{ endDate }} wird Ihre Dienstleistung stillschweigend für einen Zeitraum wie den Ihrer letzten Vertragslaufzeit erneut aktiviert.",
+  "billing_commitment_summary_description_end": "Nach dem {{ endDate }} wird Ihr Dienst stillschweigend erneut für eine Laufzeit aktiviert, die Ihrer letzten Vertragslaufzeit entspricht.",
   "billing_commitment_summit": "Bestätigen",
-  "billing_commitment_service_vps": "Virtual Private Server"
+  "billing_commitment_service_vps": "Virtual Private Server",
+  "billing_commitment_savings": "Insgesamt {{ price }} sparen",
+  "billing_commitment_payment_upfront_pay_now": "Zahlen Sie jetzt {{ price }}",
+  "billing_commitment_summary_description_periodic_end": "Nach dem {{ engagementEndDate }} wird Ihr Dienst stillschweigend erneut für eine Laufzeit aktiviert, die Ihrer letzten Vertragslaufzeit entspricht.",
+  "billing_commitment_summary_description_upfront_end": "Nach dem {{ engagementEndDate }} wird Ihr Dienst {{ serviceName }} stillschweigend wieder aktiviert. Die Dauer und Zahlungsart entsprechen Ihrem letzten Abonnement."
 }

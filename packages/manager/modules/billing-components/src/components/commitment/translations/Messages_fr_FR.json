@@ -20,12 +20,16 @@
   "billing_commitment_payment_method_none": "Vous ne disposez pas d'un moyen de paiement valide.",
   "billing_commitment_payment_method_add": "Ajouter un nouveau moyen de paiement",
   "billing_commitment_summary": "Finalisation",
-  "billing_commitment_summary_description_periodic": "À compter du {{ renewDate }} votre service {{ serviceName }} sera automatiquement renouvelé tous les mois jusqu’au {{ engagementEndDate }}.",
-  "billing_commitment_summary_description_upfront": "À compter du {{ renewDate }} votre service {{ serviceName }} sera engagé jusqu’au {{ engagementEndDate }}.",
+  "billing_commitment_summary_description_periodic": "À compter du {{ renewDate }}, votre moyen de paiement par défaut ({{ paymentMethodName }}) sera automatiquement facturé de {{ monthlyPrice }} pour votre service {{ serviceName }} tous les mois jusqu’au{{ engagementEndDate }}.",
+  "billing_commitment_summary_description_periodic_end": "Après le {{ engagementEndDate }}, votre service {{ serviceName }} sera tacitement réengagé pour une durée similaire à votre dernier engagement.",
+  "billing_commitment_summary_description_upfront": "Au {{ renewDate }}, votre moyen de paiement par défaut ({{ paymentMethodName }}) sera automatiquement facturé de {{ upfrontPrice }} pour l'intégralité de la période d'engagement.",
+  "billing_commitment_summary_description_upfront_end": "Après le {{ engagementEndDate }}, votre service {{ serviceName }} sera tacitement réengagé pour une durée et une modalité de paiement similaire à votre dernier engagement.",
   "billing_commitment_summary_description_payment": "Le montant sera prélevé sur votre moyen de paiement par défaut : {{ paymentMethodType }} {{ paymentMethodName }}.",
   "billing_commitment_success": "La demande d'engagement du service a bien été prise en compte. ",
   "billing_commitment_success_purchase": "Veuillez finaliser le paiement de votre <a href=\"{{url}}\" target=\"_blank\">bon de commande</a>.",
   "billing_commitment_error": "Une erreur est survenue.",
   "billing_commitment_summit": "Valider",
-  "billing_commitment_summary_description_end": "Après le {{ endDate }} votre service sera tacitement réengagé pour une durée similaire à votre dernier engagement."
+  "billing_commitment_summary_description_end": "Après le {{ endDate }} votre service sera tacitement réengagé pour une durée similaire à votre dernier engagement.",
+  "billing_commitment_savings": "Économiser un total de {{ price }}",
+  "billing_commitment_payment_upfront_pay_now": "Payez {{ price }} maintenant"
 }
