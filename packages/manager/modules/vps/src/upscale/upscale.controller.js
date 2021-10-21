@@ -42,7 +42,6 @@ export default class UpscaleController {
       this.upscaleOptions,
       this.vps.model.name,
     );
-    upscaleRanges = this.filterLowerRanges(this.currentVpsRange, upscaleRanges);
     upscaleRanges = upscaleRanges
       .filter(({ formattedName }) => formattedName !== RANGES.STARTER)
       .map((range) => this.formatRange(range));
@@ -213,22 +212,6 @@ export default class UpscaleController {
         value: renewPricing.price.value,
       };
     }
-  }
-
-  filterLowerRanges(currentRangeName, allRanges) {
-    const currentRange = allRanges.find(
-      ({ formattedName }) => formattedName === capitalize(currentRangeName),
-    );
-    return allRanges.filter(({ prices }) => {
-      const renewPricing = this.getIndicativePricing(prices);
-      const currentRangeRenewPricing = this.getIndicativePricing(
-        currentRange.prices,
-      );
-
-      return (
-        renewPricing.priceInUcents >= currentRangeRenewPricing.priceInUcents
-      );
-    });
   }
 
   static getPlanCodeFromSelectedRangeAndConfiguration(
