@@ -270,17 +270,30 @@ export default class TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl {
 
   // Check if external numbers are defined into the list
   checkExternalNumber() {
-    return this.addAgentForm.numbers.some((newNumber) => {
+    const detailNumber = {
+      anyExternalNumber: false,
+      detail: [],
+    };
+    detailNumber.detail = this.addAgentForm.numbers.map((newNumber) => {
       const internalNumber = this.getInternalNumber(newNumber);
-      return (
+      let obj = {};
+      if (
         internalNumber === undefined ||
         !ALLOWED_FEATURE_TYPES.includes(internalNumber.serviceType)
-      );
+      ) {
+        obj = { serviceName: newNumber, description: '' };
+        detailNumber.anyExternalNumber = true;
+      } else {
+        obj = internalNumber;
+      }
+      return obj;
     });
+    return detailNumber;
   }
 
   addAgents() {
-    if (this.checkExternalNumber()) {
+    const detailNumber = this.checkExternalNumber();
+    if (detailNumber.anyExternalNumber) {
       this.$uibModal
         .open({
           animation: true,
@@ -289,19 +302,19 @@ export default class TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl {
           controllerAs: '$ctrl',
         })
         .result.then(() => {
-          this.createAgents();
+          this.createAgents(detailNumber);
         });
     } else {
-      this.createAgents();
+      this.createAgents(detailNumber);
     }
   }
 
-  createAgents() {
+  createAgents(detailNumber) {
     this.addAgentForm.isAdding = true;
     return this.$q
       .all(
-        this.addAgentForm.numbers.map((number) => {
-          if (!number || !number.length) {
+        detailNumber.detail.map((number) => {
+          if (!number.serviceName || !number.serviceName.length) {
             return this.$q.when(null);
           }
           return this.OvhApiTelephony.OvhPabx()
@@ -314,7 +327,8 @@ export default class TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl {
                 serviceName: this.$stateParams.serviceName,
               },
               {
-                number,
+                number: number.serviceName,
+                description: number.description,
                 simultaneousLines: 1,
                 status: 'available',
                 timeout: 20,
