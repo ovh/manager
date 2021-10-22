@@ -1,4 +1,5 @@
-import set from 'lodash/set';
+import map from 'lodash/map';
+import User from '../../../../../../components/project/storages/databases/user.class';
 import isFeatureActivated from '../../features.constants';
 import { SECRET_TYPE } from '../../databases.constants';
 
@@ -18,17 +19,22 @@ export default /* @ngInject */ ($stateProvider) => {
             projectId,
             database.engine,
             database.id,
-          ).then((users) =>
-            users.map((user) =>
-              set(
-                user,
-                'roles',
-                user.roles?.map((role, index) => {
-                  return { id: index, name: role };
-                }),
-              ),
-            ),
-          ),
+          ).then((users) => {
+            const mappedUsers = map(users, (u) => new User(u));
+            mappedUsers.forEach((u) => {
+              if (u.isProcessing()) {
+                DatabaseService.pollUserStatus(
+                  projectId,
+                  database.engine,
+                  database.id,
+                  u.id,
+                ).then((userInfos) => {
+                  u.updateData({ ...userInfos, rolesArray: userInfos.roles });
+                });
+              }
+            });
+            return mappedUsers;
+          }),
         addUser: /* @ngInject */ (
           $state,
           database,
@@ -186,6 +192,10 @@ export default /* @ngInject */ ($stateProvider) => {
 
         guideUrl: () => null,
         hideRolesMatrix: () => true,
+        onDestroy: /* @ngInject */ (DatabaseService, users, database) => () =>
+          users.forEach((u) =>
+            DatabaseService.stopPollingUserStatus(database.id, u.id),
+          ),
       },
     },
   );

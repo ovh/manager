@@ -121,4 +121,8 @@ export default class CloudProjectUsersCtrl {
         ),
       );
   }
+
+  $onDestroy() {
+    this.onDestroy();
+  }
 }
