@@ -8,8 +8,5 @@
   "pci_notebooks_tab_attach_data_page_volumes_column_region": "Localizzazione",
   "pci_notebooks_tab_attach_data_page_volumes_column_type_git": "Repository",
   "pci_notebooks_tab_attach_data_page_volumes_column_type_swift": "Container di dati",
-  "pci_notebooks_tab_attach_data_page_volumes_column_mount_path": "Directory di mount",
-  "pci_notebooks_tab_attach_data_page_volumes_column_permission": "Autorizzazione",
-  "pci_notebooks_tab_attach_data_page_volumes_column_permission_RO": "Sola lettura",
-  "pci_notebooks_tab_attach_data_page_volumes_column_permission_RW": "Lettura - scrittura"
+  "pci_notebooks_tab_attach_data_page_volumes_column_mount_path": "Directory di mount"
 }

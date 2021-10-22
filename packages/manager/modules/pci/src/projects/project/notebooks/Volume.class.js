@@ -5,6 +5,7 @@ export default class Volume {
     cache = false,
     container = null,
     prefix = null,
+    privateSwift = true,
   ) {
     return new Volume({
       mountPath,
@@ -12,6 +13,7 @@ export default class Volume {
       cache,
       container,
       prefix,
+      privateSwift,
     });
   }
 
@@ -20,12 +22,14 @@ export default class Volume {
     permission = null,
     cache = false,
     gitUrl = null,
+    publicGit = true,
   ) {
     return new Volume({
       mountPath,
       permission,
       cache,
       gitUrl,
+      publicGit,
     });
   }
 

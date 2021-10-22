@@ -33,10 +33,13 @@ export default class NotebookAttachController {
 
   canAddNewVolume() {
     return (
-      this.canAttachStorages() &&
-      (this.notebookModel.volumes.length === 0 ||
-        !(this.maxVolumesIsReached() || this.notebookAttachForm.$invalid))
+      this.notebookModel.volumes.length === 0 ||
+      !(this.maxVolumesIsReached() || this.notebookAttachForm.$invalid)
     );
+  }
+
+  canAddNewStorageVolume() {
+    return this.canAttachStorages() && this.canAddNewVolume();
   }
 
   volumeMountPathExist(volume) {
@@ -96,7 +99,7 @@ export default class NotebookAttachController {
       // Remove containers that are already on volume list
       .filter(({ name, region }) => {
         return !this.notebookModel.volumes
-          // eslint-disable-next-line no-shadow
+          .filter(({ privateSwift }) => privateSwift)
           .map(({ container }) => `${container.name}-${container.region}`)
           .includes(`${name}-${region}`);
       })

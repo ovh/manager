@@ -80,7 +80,7 @@ export default class NotebookAddController {
         return {
           mountPath: volume.mountPath,
           permission: volume.permission,
-          cache: false,
+          cache: volume.cache,
           privateSwift: {
             container: volume.container.name,
             region: volume.container.region,
@@ -91,7 +91,7 @@ export default class NotebookAddController {
       return {
         mountPath: volume.mountPath,
         permission: volume.permission,
-        cache: false,
+        cache: volume.cache,
         publicGit: {
           url: volume.gitUrl,
         },

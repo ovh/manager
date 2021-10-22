@@ -34,14 +34,20 @@
 
         <!--Table-->
         <oui-datagrid
-            rows="$ctrl.notebook.spec.volumes"
+            rows="$ctrl.privateSwiftVolumes"
             page-size="::$ctrl.DATAGRID_MAX_ITEMS_PER_PAGE"
         >
             <oui-datagrid-column
-                title=":: 'pci_notebooks_tab_attach_data_page_volumes_column_name' | translate"
+                title=":: 'pci_notebooks_tab_attach_data_page_volumes_column_type_swift' | translate"
                 sortable="true"
             >
                 <span data-ng-bind="$row.privateSwift.container"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_notebooks_tab_attach_data_page_volumes_column_prefix' | translate"
+                sortable="true"
+            >
+                <span data-ng-bind="$row.privateSwift.prefix"></span>
             </oui-datagrid-column>
             <oui-datagrid-column
                 title=":: 'pci_notebooks_tab_attach_data_page_volumes_column_region' | translate"
@@ -55,13 +61,60 @@
                 <oui-clipboard model="$row.mountPath"></oui-clipboard>
             </oui-datagrid-column>
             <oui-datagrid-column
-                title=":: 'pci_notebooks_tab_attach_data_page_volumes_column_permission' | translate"
+                title=":: 'pci_projects_project_training_jobs_submit_data_permission' | translate"
                 sortable="true"
                 property="permission"
             >
                 <span
-                    data-ng-bind=":: 'pci_notebooks_tab_attach_data_page_volumes_column_permission_' + $row.permission | translate"
+                    data-ng-bind=":: 'pci_projects_project_training_jobs_submit_data_permission_' + $row.permission | translate"
                 ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_projects_project_training_jobs_submit_data_cache' | translate"
+                sortable="true"
+            >
+                <span data-ng-bind="$row.cache"></span>
+            </oui-datagrid-column>
+        </oui-datagrid>
+
+        <!--Title and description-->
+        <div class="oui-box oui-box_light mb-4 p-0 border-0">
+            <h4
+                class="oui-box__heading"
+                data-translate="pci_notebooks_tab_attach_data_page_title_git"
+            ></h4>
+        </div>
+        <!--Table-->
+        <oui-datagrid
+            rows="$ctrl.publicGitVolumes"
+            empty-placeholder="{{:: 'pci_notebooks_tab_attach_data_page_volumes_git_none' | translate }}"
+            page-size="::$ctrl.DATAGRID_MAX_ITEMS_PER_PAGE"
+        >
+            <oui-datagrid-column
+                title=":: 'pci_notebooks_tab_attach_data_page_volumes_column_git_url' | translate"
+                sortable="true"
+            >
+                <span data-ng-bind="$row.publicGit.url"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_notebooks_tab_attach_data_page_volumes_column_mount_path' | translate"
+            >
+                <oui-clipboard model="$row.mountPath"></oui-clipboard>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_projects_project_training_jobs_submit_data_permission' | translate"
+                sortable="true"
+                property="permission"
+            >
+                <span
+                    data-ng-bind=":: 'pci_projects_project_training_jobs_submit_data_permission_' + $row.permission | translate"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_projects_project_training_jobs_submit_data_cache' | translate"
+                sortable="true"
+            >
+                <span data-ng-bind="$row.cache"></span>
             </oui-datagrid-column>
         </oui-datagrid>
     </div>
