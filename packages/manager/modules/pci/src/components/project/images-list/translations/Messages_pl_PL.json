@@ -2,6 +2,7 @@
   "pci_project_instances_display_nonavailable": "Wyświetl niedostępne obrazy",
   "pci_project_instances_os_linux": "Dystrybucje Unix",
   "pci_project_instances_os_windows": "Dystrybucje Windows",
+  "pci_project_instances_os_baremetal-linux": "Baremetal distributions",
   "pci_project_instances_apps": "Dystrybucje + Aplikacje",
   "pci_project_instances_shapshots": "Kopie zapasowe",
   "pci_project_instances_licence": "Użycie obrazu dysku wymaga wcześniejszej akceptacji warunków Umowy Licencyjnej zawartej między Użytkownikiem a Dostawcą.",
