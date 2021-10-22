@@ -50,7 +50,8 @@
         <oui-datagrid-column class="content-r">
             <div class="text-right">
                 <button
-                    data-ng-disabled="$row.statusGroup !== 'READY'"
+                    type="button"
+                    data-ng-disabled="$ctrl.isServiceIntegrationDeletable($row)"
                     class="oui-button oui-button_s oui-button_secondary"
                     data-ng-click="$ctrl.trackAndDeleteServiceIntegration($row)"
                 >
