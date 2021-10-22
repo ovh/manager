@@ -1,0 +1,132 @@
+<oui-datagrid rows="$ctrl.policies">
+    <oui-datagrid-column>
+        <oui-radio
+            model="$ctrl.selected"
+            name="policyToSelect"
+            value="$row.id"
+            data-ng-if="$ctrl.isSelectable"
+        >
+        </oui-radio>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title=":: 'netapp_snapshot_policies_id' | translate"
+        property="id"
+        filterable
+        searchable
+        type="string"
+    ></oui-datagrid-column>
+    <oui-datagrid-column
+        title=":: 'netapp_snapshot_policies_name' | translate"
+        property="name"
+        filterable
+        searchable
+        type="string"
+    >
+        <span data-ng-bind="::$row.name"></span>
+        <span
+            class="oui-badge oui-badge_info"
+            data-translate="netapp_snapshot_policies_default"
+            data-ng-if="$row.isDefault"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column>
+        <oui-button
+            on-click="$ctrl.onDeleteClick($row)"
+            data-ng-if="!$row.isDefault && $ctrl.hasDeleteFunction && $row.isAvailable()"
+            disabled="$ctrl.isDeleting"
+        >
+            <span
+                class="sr-only"
+                data-translate="netapp_snapshot_policies_delete"
+            ></span>
+            <span class="oui-icon oui-icon-bin" aria-hidden="true"></span>
+        </oui-button>
+    </oui-datagrid-column>
+    <oui-datagrid-row-detail>
+        <p>
+            <strong data-translate="netapp_snapshot_policies_name"></strong>
+            <span data-ng-bind="$row.description"></span>
+        </p>
+        <div class="row" data-ng-repeat="rule in $row.rules track by $index">
+            <div class="col-md-3">
+                <strong
+                    data-translate="netapp_snapshot_policies_rule_prefix"
+                ></strong>
+                <span data-ng-bind="rule.prefix"></span>
+            </div>
+            <div class="col-md-3">
+                <strong
+                    data-translate="netapp_snapshot_policies_rule_copies_to_keep"
+                ></strong>
+                <span data-ng-bind="rule.copies"></span>
+            </div>
+            <div class="col-md-6">
+                <strong
+                    data-translate="netapp_snapshot_policies_rule_schedule"
+                ></strong>
+                <ul>
+                    <li>
+                        <strong
+                            data-translate="netapp_snapshot_policies_rule_days"
+                        ></strong>
+                        <span
+                            data-ng-repeat="day in rule.schedule.days track by $index"
+                        >
+                            <span
+                                data-ng-bind="::day + (!$last && day !== undefined ? ',' : '')"
+                            ></span>
+                        </span>
+                    </li>
+                    <li>
+                        <strong
+                            data-translate="netapp_snapshot_policies_rule_hours"
+                        ></strong>
+                        <span
+                            data-ng-repeat="hour in rule.schedule.hours track by $index"
+                        >
+                            <span
+                                data-ng-bind="::$ctrl.constructor.getFormattedHour(hour) + (!$last && hour !== undefined ? ',' : '')"
+                            ></span>
+                        </span>
+                    </li>
+                    <li>
+                        <strong
+                            data-translate="netapp_snapshot_policies_rule_minutes"
+                        ></strong>
+                        <span
+                            data-ng-repeat="minute in rule.schedule.minutes track by $index"
+                        >
+                            <span
+                                data-ng-bind="::minute + (!$last && minute !== undefined ? ',' : '')"
+                            ></span>
+                        </span>
+                    </li>
+                    <li>
+                        <strong
+                            data-translate="netapp_snapshot_policies_rule_months"
+                        ></strong>
+                        <span
+                            data-ng-repeat="month in rule.schedule.months track by $index"
+                        >
+                            <span
+                                data-ng-bind="::$ctrl.constructor.getFormattedMonth(month) + (!$last && month !== undefined ? ',' : '')"
+                            ></span>
+                        </span>
+                    </li>
+                    <li>
+                        <strong
+                            data-translate="netapp_snapshot_policies_rule_weekdays"
+                        ></strong>
+                        <span
+                            data-ng-repeat="weekday in rule.schedule.weekdays track by $index"
+                        >
+                            <span
+                                data-ng-bind="::$ctrl.constructor.getFormattedWeekday(weekday) + (!$last && weekday !== undefined ? ',' : '')"
+                            ></span>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </oui-datagrid-row-detail>
+</oui-datagrid>
