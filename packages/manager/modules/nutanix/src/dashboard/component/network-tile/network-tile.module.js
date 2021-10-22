@@ -3,20 +3,15 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
-import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import {
-  serverGeneralInfo,
-  serverSupport,
   serverNetwork,
+  serverBandwidthDashboard,
 } from '@ovh-ux/manager-bm-server-components';
+import { serverBandwidth } from '@ovh-ux/manager-components';
 
-import component from './component';
-import routing from './routing';
+import component from './network-tile.component';
 
-import install from './install';
-import netboot from './netboot';
-
-const moduleName = 'ovhManagerNutanixNodeGeneralInfo';
+const moduleName = 'ovhManagerNutanixNetworkTile';
 
 angular
   .module(moduleName, [
@@ -25,15 +20,11 @@ angular
     'ngTranslateAsyncLoader',
     'ngUiRouterBreadcrumb',
     'ui.router',
-    install,
-    netboot,
-    ngOvhUtils,
-    serverGeneralInfo,
+    serverBandwidth,
+    serverBandwidthDashboard,
     serverNetwork,
-    serverSupport,
   ])
-  .config(routing)
-  .component('nutanixNodeGeneralInfo', component)
+  .component('nutanixNetworkTile', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -1,10 +1,10 @@
-import { DedicatedServer } from '@ovh-ux/manager-models';
-
 export default class NutanixNodeService {
   /* @ngInject */
-  constructor($q, $http) {
+  constructor($q, $http, $translate, NutanixService) {
     this.$q = $q;
     this.$http = $http;
+    this.$translate = $translate;
+    this.NutanixService = NutanixService;
   }
 
   updateDisplayName({ serviceId, displayName }) {
@@ -17,18 +17,7 @@ export default class NutanixNodeService {
 
   getNodeDetails(nodes) {
     return this.$q
-      .all(nodes.map((node) => this.getServer(node.server)))
+      .all(nodes.map((node) => this.NutanixService.getServer(node.server)))
       .then((res) => res);
-  }
-
-  getServer(nodeId) {
-    return this.$http
-      .get(`/sws/dedicated/server/${nodeId}`, {
-        serviceType: 'aapi',
-        urlParams: {
-          serviceName: nodeId,
-        },
-      })
-      .then(({ data }) => new DedicatedServer(data));
   }
 }

@@ -9,8 +9,8 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: 'nutanix.dashboard.nodes.node.general-info',
     resolve: {
       nodeId: /* @ngInject */ ($transition$) => $transition$.params().nodeId,
-      node: /* @ngInject */ (nodeId, NutanixNode) =>
-        NutanixNode.getServer(nodeId),
+      node: /* @ngInject */ (nodeId, NutanixService) =>
+        NutanixService.getServer(nodeId),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       breadcrumb: /* @ngInject */ (nodeId) => nodeId,

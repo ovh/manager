@@ -19,6 +19,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-billing-components": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-bm-server-components": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/manager-components": "^1.0.0",
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",

@@ -9,7 +9,6 @@ export default class EditNameCtrl {
     if (!this.actionEnabled) {
       return this.goBack();
     }
-    console.log(this.nodeId, this.dedicatedServer.name, this.displayName);
     this.loading.update = true;
 
     return this.NutanixNode.updateDisplayName({

@@ -27,5 +27,15 @@
                 travaux-url="{{$ctrl.TRAVAUX_LINK}}"
             ></server-support>
         </div>
+
+        <div class="col-md-4" data-ng-if="!$ctrl.server.isExpired">
+            <!-- Network -->
+            <nutanix-network-tile
+                bandwidth-informations="$ctrl.bandwidthInformations"
+                server="$ctrl.server"
+                specifications="$ctrl.specifications"
+            >
+            </nutanix-network-tile>
+        </div>
     </div>
 </div>

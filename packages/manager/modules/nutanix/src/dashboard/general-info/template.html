@@ -19,4 +19,14 @@
             go-to-manual-upgrade="$ctrl.goToManualUpgrade"
         ></server-technical-details>
     </div>
+
+    <!-- Network -->
+    <div class="col-md-4" data-ng-if="!$ctrl.server.isExpired">
+        <nutanix-network-tile
+            bandwidth-informations="$ctrl.bandwidthInformations"
+            server="$ctrl.server"
+            specifications="$ctrl.specifications"
+        >
+        </nutanix-network-tile>
+    </div>
 </div>

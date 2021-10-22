@@ -9,6 +9,8 @@ import routing from './routing';
 import nodes from './nodes';
 import generalInfo from './general-info';
 
+import nutanixNetworkTile from './component/network-tile/network-tile.module';
+
 import service from './service';
 
 const moduleName = 'ovhManagerNutanixDashboard';
@@ -20,6 +22,7 @@ angular
     'ui.router',
     generalInfo,
     nodes,
+    nutanixNetworkTile,
     serverTechnicalDetails,
   ])
   .config(routing)

@@ -5,10 +5,16 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       serviceInfo: /* @ngInject */ (NutanixService, serviceName) =>
         NutanixService.getServiceInfo(serviceName),
-      technicalDetails: /* @ngInject */ (NutanixService, cluster) => {
-        const nodeId = cluster.getFirstNode();
+      nodeId: /* @ngInject */ (cluster) => cluster.getFirstNode(),
+      technicalDetails: /* @ngInject */ (NutanixService, nodeId) => {
         return NutanixService.getNodeHardwareInfo(nodeId);
       },
+      server: /* @ngInject */ (nodeId, NutanixService) =>
+        NutanixService.getServer(nodeId),
+      specifications: /* @ngInject */ (nodeId, NutanixService) =>
+        NutanixService.getBandwidth(nodeId),
+      bandwidthInformations: /* @ngInject */ (nodeId, NutanixService) =>
+        NutanixService.getBandwidthOptions(nodeId),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('nutanix_dashboard_general_info'),
     },
