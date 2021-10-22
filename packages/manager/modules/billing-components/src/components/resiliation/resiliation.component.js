@@ -10,6 +10,7 @@ export default {
     onSuccess: '<',
     service: '<',
     serviceName: '<',
+    serviceType: '<',
   },
   controller,
   name: 'ovhManagerBillingResiliation',
