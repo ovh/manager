@@ -389,6 +389,109 @@
                 </div>
             </div>
         </oui-step-form>
+        <oui-step-form
+            data-header="{{ :: 'pci_projects_project_training_jobs_submit_select_ssh' | translate }}"
+            data-editable="!$ctrl.isSubmit"
+        >
+            <oui-message type="info" dismissable="true">
+                <span
+                    class="d-block"
+                    data-translate="pci_projects_project_training_jobs_submit_select_ssh_tips_1"
+                ></span>
+            </oui-message>
+            <oui-field
+                data-size="xl"
+                data-label="{{:: 'pci_projects_project_training_jobs_submit_select_ssh_default_select' | translate  }}"
+            >
+                <oui-switch
+                    data-model="$ctrl.enabledSshPublicKey"
+                    name="enabledSshPublicKey"
+                    on-change="$ctrl.changeEnabledSshPublicKey(modelValue)"
+                >
+                </oui-switch>
+            </oui-field>
+            <div
+                class="oui-field__control"
+                data-ng-if="$ctrl.enabledSshPublicKey"
+            >
+                <div class="oui-inline-adder mb-2">
+                    <div
+                        class="oui-inline-adder__form"
+                        data-ng-repeat="sshKey in $ctrl.addedSshKeys track by $index"
+                    >
+                        <fieldset class="oui-inline-adder__fieldset">
+                            <legend>
+                                {{::
+                                'pci_projects_project_training_jobs_submit_select_ssh_legend'
+                                | translate }}
+                            </legend>
+                            <div class="oui-inline-adder__row">
+                                <div class="oui-inline-adder__field">
+                                    <oui-field
+                                        data-size="m"
+                                        data-label="{{:: 'pci_projects_project_training_jobs_submit_select_ssh_name_tips' | translate  }}"
+                                        data-ng-if="$ctrl.allKeyNames.length > 0"
+                                    >
+                                        <oui-select
+                                            id="savedKeyName"
+                                            name="savedKeyName"
+                                            data-model="$ctrl.addedSshKeys[$index].keyName"
+                                            data-items="$ctrl.allKeyNames"
+                                            on-change="$ctrl.changeSavedSshKey($index)"
+                                        >
+                                        </oui-select>
+                                    </oui-field>
+                                    <oui-field
+                                        data-label="{{:: 'pci_projects_project_training_jobs_submit_select_ssh_input_tips' | translate  }}"
+                                    >
+                                        <textarea
+                                            type="textarea"
+                                            class="oui-input"
+                                            placeholder="{{:: $ctrl.addedSshKeys[$index].placeHolder }}"
+                                            name="sshPublicKey"
+                                            rows="5"
+                                            data-ng-model="$ctrl.addedSshKeys[$index].model"
+                                            data-ng-required
+                                            data-ng-disabled="$ctrl.addedSshKeys[$index].disabled"
+                                        />
+                                    </oui-field>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <footer class="oui-inline-adder__footer">
+                            <button
+                                type="button"
+                                class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
+                                data-translate-attr="{title: 'dedicated_server_install_image_config_http_header_delete'}"
+                                data-ng-click="$ctrl.onSshPublickeysDeleteBtnClick($index)"
+                                data-ng-disabled="$ctrl.addedSshKeys.length == 1"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-trash"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                        </footer>
+                    </div>
+                </div>
+                <oui-button
+                    data-icon-left="oui-icon-plus"
+                    data-variant="secondary"
+                    data-disabled="!$ctrl.canAddNewSshPublicKey()"
+                    data-on-click="$ctrl.addNewSshPublicKey()"
+                >
+                    <span
+                        data-translate="pci_projects_project_training_jobs_submit_select_ssh_add"
+                    ></span>
+                </oui-button>
+                <div class="oui-field__control pt-2 pb-2">
+                    <span
+                        data-translate="pci_projects_project_training_jobs_submit_select_ssh_quantity"
+                        data-translate-values="{ numberOfSshKeys: $ctrl.getAllSshKeys().length, maxSshKeys: $ctrl.JOB_MAX_SSH_KEYS}"
+                    ></span>
+                </div>
+            </div>
+        </oui-step-form>
 
         <oui-step-form
             data-header="{{:: 'pci_projects_project_training_jobs_submit_select_config' | translate  }}"
@@ -537,7 +640,6 @@
                 </div>
             </div>
         </oui-step-form>
-
         <oui-step-form
             data-header="{{:: 'pci_projects_project_training_jobs_submit_validation' | translate  }}"
             data-submit-text="{{:: 'pci_projects_project_training_jobs_list_submit_button' | translate  }}"
