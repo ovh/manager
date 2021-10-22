@@ -37,9 +37,9 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                    'oui-badge_success': ($row.statusGroup === 'READY'),
-                    'oui-badge_warning': ($row.statusGroup === 'PENDING'),
-                    'oui-badge_error': ($row.statusGroup === 'ERROR'),
+                    'oui-badge_success': ($row.isStatusGroupReady()),
+                    'oui-badge_warning': ($row.isStatusGroupPending()),
+                    'oui-badge_error': ($row.isStatusGroupError()),
                 }"
             >
                 <span
