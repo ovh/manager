@@ -352,7 +352,7 @@
         <div class="col-md-4">
             <oui-tile
                 data-ng-if="$ctrl.isFeatureActivated('showServiceIntegration')"
-                class="form-group"
+                class="mb-3"
                 data-heading="{{:: 'pci_databases_general_information_service_integration_title' | translate }}"
             >
                 <oui-tile-definition
@@ -366,15 +366,17 @@
                         <p
                             data-ng-repeat="integration in $ctrl.serviceIntegration track by $index"
                         >
-                            <span class="oui-badge_success oui-badge">
-                                {{integration.serviceName}}
+                            <span
+                                class="oui-badge_success oui-badge"
+                                data-ng-bind="integration.serviceName"
+                            >
                             </span>
                         </p>
                     </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>
             <oui-tile
-                class="form-group"
+                class="mb-3"
                 data-heading="{{:: 'pci_databases_general_information_configuration_title' | translate }}"
             >
                 <oui-tile-definition
