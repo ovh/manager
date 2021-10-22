@@ -21,9 +21,12 @@ export const BYOI_STATUS_ENUM = {
 
 export const BYOI_STARTING_MESSAGE = 'starting';
 
+export const SERVICE_TYPE = 'DEDICATED_SERVER';
+
 export default {
   BYOI_STARTING_MESSAGE,
   BYOI_STATUS_ENUM,
   NEW_RANGE,
   NO_AUTORENEW_COUNTRIES,
+  SERVICE_TYPE,
 };

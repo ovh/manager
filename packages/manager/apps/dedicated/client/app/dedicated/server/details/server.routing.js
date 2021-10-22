@@ -1,4 +1,5 @@
 import { DedicatedServer } from '@ovh-ux/manager-models';
+import { SERVICE_TYPE } from './server.constants';
 
 import Ola from '../interfaces/ola.class';
 
@@ -59,6 +60,7 @@ export default /* @ngInject */ ($stateProvider) => {
               ? 'FORCED_MANUAL'
               : serviceInfo.status,
           statusHelp: resiliationCapability?.billingInformation || null,
+          serviceType: SERVICE_TYPE,
         })),
       specifications: /* @ngInject */ (serverName, Server) =>
         Server.getBandwidth(serverName),
