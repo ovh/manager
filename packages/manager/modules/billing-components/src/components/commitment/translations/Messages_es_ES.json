@@ -28,7 +28,7 @@
   "billing_commitment_summary_description_end": "Después del {{ endDate }}, el servicio se renovará automáticamente por una duración idéntica a la de su último compromiso de permanencia.",
   "billing_commitment_summit": "Aceptar",
   "billing_commitment_service_vps": "Servidores privados virtuales",
-  "billing_commitment_savings": "Ahorre un total de {{ price }}",
+  "billing_commitment_savings": "Ahorrar un total de {{ price }}",
   "billing_commitment_payment_upfront_pay_now": "Pague {{ price }} ahora",
   "billing_commitment_summary_description_periodic_end": "Después del {{ engagementEndDate }}, el servicio {{ serviceName }} se renovará automáticamente con una duración idéntica a la de su último compromiso de permanencia.",
   "billing_commitment_summary_description_upfront_end": "Después del {{ engagementEndDate }}, el servicio {{ serviceName }} se renovará automáticamente con una duración y una forma de pago idénticas a las de su último compromiso de permanencia."

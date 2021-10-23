@@ -28,7 +28,7 @@
   "billing_commitment_summary_description_end": "Po {{endDate}} usługa zostanie automatycznie odnowiona na kolejny okres, odpowiadający okresowi wskazanemu w ostatnim zamówieniu.",
   "billing_commitment_summit": "Zatwierdź",
   "billing_commitment_service_vps": "Prywatne serwery wirtualne",
-  "billing_commitment_savings": "Zaoszczędź łącznie {{ price }}",
+  "billing_commitment_savings": "Zaoszczędź łącznie {{price}}",
   "billing_commitment_payment_upfront_pay_now": "Zapłać teraz {{ price }}",
   "billing_commitment_summary_description_periodic_end": "Po {{engagementEndDate}} usługa {{serviceName}} zostanie automatycznie odnowiona na kolejny okres, odpowiadający okresowi wskazanemu w ostatnim zamówieniu.",
   "billing_commitment_summary_description_upfront_end": "Po {{engagementEndDate}} usługa {{serviceName}} zostanie automatycznie odnowiona na kolejny okres, odpowiadający okresowi wskazanemu w ostatnim zamówieniu, z uwzględnieniem tego samego sposobu płatności."

@@ -19,8 +19,8 @@
   "billing_commitment_payment_method_none": "You do not have a valid payment method.",
   "billing_commitment_payment_method_add": "Add a new payment method ",
   "billing_commitment_summary": "Confirm",
-  "billing_commitment_summary_description_periodic": "From {{renewDate}} onwards, your default payment method ({{paymentMethodName}}) will be automatically billed {{monthlyPrice}} for your {{serviceName}} service every month until {{engagementEndDate}}.",
-  "billing_commitment_summary_description_upfront": "On {{renewDate}}, your default payment method ({{paymentMethodName}}) will automatically be billed at {{upfrontPrice}} for the entire subscription period.",
+  "billing_commitment_summary_description_periodic": "Starting {{renewDate}} your default payment method ({{paymentMethodName}}) will automatically be charged {{monthlyPrice}} every month for {{serviceName}} until {{engagementEndDate}}.",
+  "billing_commitment_summary_description_upfront": "On {{renewDate}} your default payment method ({{paymentMethodName}}) will be charged {{upfrontPrice}} for the full commitment period.",
   "billing_commitment_summary_description_payment": "The amount will be taken from your default payment method: {{ paymentMethodType }} {{ paymentMethodName }}",
   "billing_commitment_success": "The service subscription request has been processed. ",
   "billing_commitment_success_purchase": "Please finalise the payment for your <a href=\"{{url}}\" target=\"_blank\">purchase order</a>.",
@@ -30,6 +30,6 @@
   "billing_commitment_service_vps": "Virtual private servers",
   "billing_commitment_savings": "Save a total of {{price}}",
   "billing_commitment_payment_upfront_pay_now": "Pay {{price}} now",
-  "billing_commitment_summary_description_periodic_end": "After {{engagementEndDate}}, your {{serviceName}} service will be automatically renewed for the same duration as your last subscription.",
-  "billing_commitment_summary_description_upfront_end": "After {{engagementEndDate}}, your {{serviceName}} service will be automatically renewed for the same duration as your last subscription, and billed via the same payment method."
+  "billing_commitment_summary_description_periodic_end": "After {{engagementEndDate}} your {{serviceName}} subscription will automatically be renewed for the same commitment period and payment option.",
+  "billing_commitment_summary_description_upfront_end": "After {{engagementEndDate}} your {{serviceName}} subscription will automatically be renewed for the same commitment period and payment option."
 }

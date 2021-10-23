@@ -28,7 +28,7 @@
   "billing_commitment_summary_description_end": "Depois de {{ endDate }}, o seu serviço será tacitamente reiniciado por um período semelhante ao seu último compromisso.",
   "billing_commitment_summit": "Validar",
   "billing_commitment_service_vps": "Servidores privados virtuais",
-  "billing_commitment_savings": "Poupe um total de {{ price }}",
+  "billing_commitment_savings": "Poupar um total de {{ price }}",
   "billing_commitment_payment_upfront_pay_now": "Pague {{ price }} agora",
   "billing_commitment_summary_description_periodic_end": "Depois de {{ endDate }}, o serviço será tacitamente reiniciado por um período semelhante ao último compromisso.",
   "billing_commitment_summary_description_upfront_end": "Depois de {{ engagementEndDate }}, o serviço {{ serviceName }} será tacitamente reiniciado por um período e uma modalidade de pagamento semelhantes ao seu último compromisso."
