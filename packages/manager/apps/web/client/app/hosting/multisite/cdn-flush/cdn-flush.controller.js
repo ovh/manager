@@ -133,7 +133,9 @@ export default class HostingMultisiteCdnFlushCtrl {
    * @returns {Promise}
    */
   flushSharedCdn() {
-    this.sendTrackClick('web::hosting::multisites::purge-cdn::confirm');
+    this.sendTrackClick(
+      `web::hosting::multisites::purge-cdn::confirm::${this.cdnFlushModel.selectedOption.patternType}`,
+    );
 
     return this.HostingCdnSharedService.flushCDNDomainCache(
       this.serviceName,

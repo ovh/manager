@@ -132,7 +132,9 @@ export default class {
   validateRule() {
     if (this.addCacheRuleForm.$valid) {
       if (!this.rule) {
-        this.trackClick('web::hosting::cdn::configure::create-rule::confirm');
+        this.trackClick(
+          `web::hosting::cdn::configure::create-rule::${this.ruleModel.patternType}::confirm`,
+        );
         this.callbacks.success(this.createRule());
       } else {
         this.callbacks.success(this.updateRule(this.rule));
