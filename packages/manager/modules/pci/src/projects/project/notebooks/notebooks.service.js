@@ -150,4 +150,8 @@ export default class NotebookService {
       .post(`/cloud/project/${serviceName}/ai/authorization`)
       .then(({ data }) => data);
   }
+
+  getSavedSshKeys(serviceName) {
+    return this.$http.get(`/cloud/project/${serviceName}/sshkey`);
+  }
 }

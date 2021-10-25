@@ -164,6 +164,22 @@
         ></notebook-attach>
     </oui-step-form>
 
+    <!--Notebook add public ssh keys-->
+    <oui-step-form
+        data-ng-init="stepSshKeys = $ctrl.stepper.notebookSshKeys"
+        data-name="{{:: stepSshKeys.name}}"
+        data-header="{{ $ctrl.getSshKeysHeader(stepSshKeys.display) }}"
+        data-on-focus="stepSshKeys.display = true"
+        data-on-submit="stepSshKeys.display = false"
+        data-prevent-next="true"
+    >
+        <notebook-ssh-keys
+            data-project-id="$ctrl.projectId"
+            data-display-notebook-ssh-keys="stepSshKeys.display"
+            data-notebook-model="$ctrl.notebookModel"
+        ></notebook-ssh-keys>
+    </oui-step-form>
+
     <!--Notebook Review-->
     <oui-step-form
         data-ng-init="stepReview = $ctrl.stepper.notebookReview"

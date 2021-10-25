@@ -1,0 +1,10 @@
+{
+  "pci_projects_project_training_notebook_add_select_ssh": "Attacher des clés publiques ssh (optionnel)",
+  "pci_projects_project_training_notebook_add_select_ssh_tips_1": "Attacher une clé publique ssh vous permet par la suite d'accéder à distance au notebook via le protocole ssh ou scp",
+  "pci_projects_project_training_notebook_add_select_ssh_default_select": "Renseigner la clé publique ssh à utiliser (optionnel)",
+  "pci_projects_project_training_notebook_add_select_ssh_name_tips": "Choisir le nom de la clé parmis celles enregistrées",
+  "pci_projects_project_training_notebook_add_select_ssh_input_tips": "Contenu de la clé publique ssh",
+  "pci_projects_project_training_notebook_add_select_ssh_add": "Ajouter une nouvelle clé publique ssh",
+  "pci_projects_project_training_notebook_add_select_ssh_quantity": "{{ numberOfSshKeys }} / {{ maxSshKeys }} clé(s) ssh",
+  "pci_projects_project_training_notebook_add_select_ssh_legend": "Clé publique SSH"
+}

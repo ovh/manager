@@ -22,8 +22,16 @@ export const NOTEBOOK_ATTACH_STORAGE = {
   MAX_VOLUMES: 10,
 };
 
+export const NOTEBOOK_SSH_KEYS = {
+  MAX: 10,
+  CUSTOM_SELECT: '-',
+  PLACEHOLDER: 'ssh-rsa AAAAB3...',
+  NB_ROWS: 5,
+};
+
 export default {
   NOTEBOOK_LABELS,
   NOTEBOOK_PRIVACY_SETTINGS,
   NOTEBOOK_RESOURCES,
+  NOTEBOOK_SSH_KEYS,
 };

@@ -13,6 +13,7 @@ export default class NotebookAddController {
 
     // Stepper config object
     this.stepper = {
+      notebookSshKeys: { name: 'notebook_ssh_keys', display: null },
       notebookSettings: { name: 'notebook_settings', display: null },
       notebookEditors: { name: 'notebook_editors', display: null },
       notebookFrameworks: { name: 'notebook_frameworks', display: null },
@@ -37,6 +38,7 @@ export default class NotebookAddController {
       mountPath: '',
       nbResources: NOTEBOOK_RESOURCES.NB_RESOURCES,
       volumes: [],
+      sshPublicKeys: [],
       selected: {
         editor: null,
         framework: {
@@ -101,7 +103,7 @@ export default class NotebookAddController {
 
   static convertNotebookModel(notebookModel) {
     const { name, nbResources } = notebookModel;
-    const { labels, volumes, selected } = notebookModel;
+    const { labels, volumes, selected, sshPublicKeys } = notebookModel;
     const { editor, framework, region, resource, privacy } = selected;
 
     return {
@@ -119,6 +121,7 @@ export default class NotebookAddController {
       ),
       volumes: NotebookAddController.buildVolumesBody(volumes),
       unsecureHttp: NOTEBOOK_PRIVACY_SETTINGS.PUBLIC === privacy,
+      sshPublicKeys,
     };
   }
 
@@ -223,6 +226,16 @@ export default class NotebookAddController {
     }
 
     return this.$translate.instant('pci_notebook_add_resources_title');
+  }
+
+  getSshKeysHeader(display) {
+    if (display === false) {
+      return this.$translate.instant('pci_notebook_add_ssh_keys_selected', {
+        quantity: this.notebookModel.sshPublicKeys.length,
+      });
+    }
+
+    return this.$translate.instant('pci_notebook_add_ssh_keys');
   }
 
   getAttachContainerHeader(display) {
