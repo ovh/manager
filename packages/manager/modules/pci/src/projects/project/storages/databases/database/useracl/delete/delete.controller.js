@@ -25,18 +25,18 @@ export default class {
 
   deleteUserAcl() {
     this.processing = true;
-    this.user.acls = this.user.acls.filter(
-      (a) =>
-        !this.aclToDelete.find(
-          (b) => a.permission === b.permission && a.pattern === b.pattern,
-        ),
-    );
     this.trackDashboard('acl_user::delete_rule_validate');
-    return this.DatabaseService.editUser(
+    return this.DatabaseService.editUserAcl(
       this.projectId,
       this.database.engine,
       this.database.id,
-      this.user,
+      this.user.acls.filter(
+        (a) =>
+          !this.aclToDelete.find(
+            (b) => a.permission === b.permission && a.pattern === b.pattern,
+          ),
+      ),
+      this.user.id,
     )
       .then(() =>
         this.goBack({

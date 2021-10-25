@@ -555,6 +555,17 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
+  editUserAcl(projectId, engine, databaseId, acls, userId) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/user/${userId}`,
+        {
+          acls,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
   getIndexes(projectId, engine, databaseId) {
     return this.$http
       .get(
