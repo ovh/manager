@@ -38,13 +38,13 @@ export default class {
 
   addUserAcl() {
     this.processing = true;
-    this.user.acls = this.user.acls.concat(this.rules);
     this.trackDashboard('acl_user::create_acl_user_validate');
-    return this.DatabaseService.editUser(
+    return this.DatabaseService.editUserAcl(
       this.projectId,
       this.database.engine,
       this.database.id,
-      this.user,
+      this.user.acls.concat(this.rules),
+      this.user.id,
     )
       .then(() =>
         this.goBack({

@@ -60,8 +60,8 @@ export default /* @ngInject */ ($stateProvider) => {
           databaseId,
         ).then((details) => {
           db.updateData({
-            ...details,
             ...db,
+            ...details,
           });
           return db;
         });
