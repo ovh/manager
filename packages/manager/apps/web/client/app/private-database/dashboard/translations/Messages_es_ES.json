@@ -485,5 +485,8 @@
   "privateDatabase_tabs_list_extensions_enable_success": "La extensión se ha activado correctamente.",
   "privateDatabase_tabs_list_extensions_enable_error": "Se ha producido un error al activar la extensión.",
   "privateDatabase_tabs_list_extensions_disable_success": "La extensión se ha desactivado correctamente.",
-  "privateDatabase_tabs_list_extensions_disable_error": "Se ha producido un error al desactivar la extensión."
+  "privateDatabase_tabs_list_extensions_disable_error": "Se ha producido un error al desactivar la extensión.",
+  "privateDatabase_quota_refresh": "Actualizar el límite de su base de datos.",
+  "privateDatabase_quota_refresh_success": "La solicitud de actualización del límite se enviará enseguida.",
+  "privateDatabase_quota_refresh_fail": "Se ha producido un error al solicitar la actualización del límite."
 }

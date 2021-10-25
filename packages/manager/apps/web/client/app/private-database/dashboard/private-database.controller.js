@@ -156,6 +156,9 @@ export default class PrivateDatabaseCtrl {
           this.getDetails(true);
           this.runPoll(task, true);
           break;
+        case 'quotaRefresh':
+          this.runPoll(task, true);
+          break;
         case 'refresh':
         case 'changeRootPassword':
         case 'changeFtpPassword':
