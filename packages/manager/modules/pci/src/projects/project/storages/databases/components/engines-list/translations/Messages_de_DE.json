@@ -1,4 +1,10 @@
 {
   "pci_database_engines_list_version_new": "Neu",
-  "pci_database_engines_list_version_getting_deprecated": "Bald veraltet"
+  "pci_database_engines_list_version_getting_deprecated": "Bald veraltet",
+  "pci_database_engines_list_beta": "Beta",
+  "pci_database_engines_list_description_mysql": "Verwaltungssystem für relationale Datenbanken",
+  "pci_database_engines_list_description_postgresql": "Verwaltungssystem für relationale Datenbanken und Objekte",
+  "pci_database_engines_list_description_kafka": "Verteiltes und hochleistungsfähiges Streaming-System",
+  "pci_database_engines_list_description_redis": "In-Memory-Speichersystem für Key-Value-Daten",
+  "pci_database_engines_list_description_mongodb": "Für Dokumente ausgelegtes Datenbankverwaltungssystem"
 }

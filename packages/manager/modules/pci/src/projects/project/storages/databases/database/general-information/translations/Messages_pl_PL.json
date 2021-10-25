@@ -1,5 +1,5 @@
 {
-  "pci_databases_general_information_info_title": "Dane dotyczące klastra",
+  "pci_databases_general_information_info_title": "Szczegóły klastra",
   "pci_databases_general_information_name": "Nazwa",
   "pci_databases_general_information_cluster_id": "ID klastra",
   "pci_databases_general_information_status_label": "Status",
@@ -28,7 +28,7 @@
   "pci_databases_general_information_generate_password": "Aby móc korzystać z klastra danych, wygeneruj ponownie hasło administratora.",
   "pci_databases_general_information_delete_nodes": "Usuń węzeł",
   "pci_databases_general_information_node_type_label": "Model węzła",
-  "pci_databases_general_information_node_type": "{{coreNumber}} CPU / {{memorySize}} GB RAM / {{storageSize}} GB Storage",
+  "pci_databases_general_information_node_type": "{{coreNumber}} CPU / {{memorySize}} GB RAM / {{storageSize}} GB Storage SSD",
   "pci_databases_general_information_upgrade_node": "Ulepsz model węzła",
   "pci_databases_general_information_service_URI_label": "URI usługi",
   "pci_databases_general_information_replicate_URI_label": "URI replica",
@@ -48,5 +48,14 @@
   "pci_databases_general_information_no_users": "Twój klaster nie jest w pełni skonfigurowany: aby korzystać z usługi, dodaj użytkowników. W tym celu przejdź do ",
   "pci_databases_general_information_no_ip_no_users": "Twój klaster nie jest w pełni skonfigurowany: autoryzuj adresy IP i dodaj użytkowników za pomocą ",
   "pci_databases_general_information_user_label": "Użytkownicy",
-  "pci_databases_general_information_allowed_ips_none": "Brak"
+  "pci_databases_general_information_allowed_ips_none": "Brak",
+  "pci_databases_general_information_new_fork_label": "Fork",
+  "pci_databases_general_information_new_fork_link": "Stwórz fork usługi",
+  "pci_databases_general_information_replicas_label": "Repliki",
+  "pci_databases_general_information_replicas_link": "Utwórz nową replikę",
+  "pci_databases_general_information_certificate_label": "Certyfikat CA",
+  "pci_databases_general_information_certificate_link": "Wyświetl",
+  "pci_databases_general_information_certificate_download": "Pobierz",
+  "pci_databases_general_information_certificate_tooltip": "Twój certyfikat: <code>{{certificate}}</code>",
+  "pci_databases_general_information_n/a": "Nie dotyczy"
 }

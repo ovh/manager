@@ -1,0 +1,9 @@
+{
+  "pci_databases_users_show_secret_title": "User information",
+  "pci_databases_users_informations_confirm": "Close",
+  "pci_databases_users_informations_name_label": "Name",
+  "pci_databases_users_informations_keys_label": "Keys",
+  "pci_databases_users_informations_categories_label": "Categories",
+  "pci_databases_users_informations_commands_label": "Orders",
+  "pci_databases_users_informations_channels_label": "Channels"
+}

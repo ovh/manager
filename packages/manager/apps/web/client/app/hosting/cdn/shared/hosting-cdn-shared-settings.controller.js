@@ -243,7 +243,7 @@ export default class CdnSharedSettingsController {
     this.tasks.toUpdate.push(rule);
   }
 
-  openCreatCacheRuleModal(status) {
+  openCreateCacheRuleModal(status) {
     const priority = {
       max: this.getMaxPriority() + 1,
       value: this.getMaxPriority() + 1,
@@ -334,7 +334,7 @@ export default class CdnSharedSettingsController {
   }
 
   handleHSTSUnit(unit) {
-    this.hstsMaxAgeValue = this.model.hsts.config.ttl / unit.value;
+    this.hstsMaxAgeValue = this.model.hsts?.config.ttl || 0 / unit.value;
   }
 
   hasSecurityOptions(config) {

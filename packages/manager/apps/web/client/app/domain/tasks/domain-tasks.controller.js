@@ -22,7 +22,9 @@ angular.module('controllers').controller(
           zoneDnsTasks: this.Domain.getZoneDnsTasks(
             this.$stateParams.productId,
           ).catch(() => []),
-          tasks: this.Domain.getTasks(this.$stateParams.productId),
+          tasks: this.Domain.getTasks(
+            this.$stateParams.productId,
+          ).catch(() => []),
         })
         .then(({ zoneDnsTasks, tasks }) => {
           this.tasks = this.constructor

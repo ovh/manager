@@ -1,0 +1,9 @@
+{
+  "pci_databases_users_show_secret_title": "Dane użytkownika",
+  "pci_databases_users_informations_confirm": "Zamknij",
+  "pci_databases_users_informations_name_label": "Nazwa",
+  "pci_databases_users_informations_keys_label": "Klucze",
+  "pci_databases_users_informations_categories_label": "Kategorie",
+  "pci_databases_users_informations_commands_label": "Polecenia",
+  "pci_databases_users_informations_channels_label": "Kanały"
+}

@@ -7,5 +7,13 @@
   "pci_databases_users_add_create": "Criar utilizador",
   "pci_databases_users_add_success_message": "O utilizador {{ username }} foi adicionado com a palavra-passe <code>{{ password }}</code>",
   "pci_databases_users_add_error_save": "Ocorreu um erro ao criar o utilizador {{ user }}: {{ message }}.",
-  "pci_databases_users_add_cancel": "Cancelar"
+  "pci_databases_users_add_cancel": "Cancelar",
+  "pci_databases_users_add_categories_label": "Categorias",
+  "pci_databases_users_add_commands_label": "Comandos",
+  "pci_databases_users_add_channels_label": "Canais",
+  "pci_databases_users_add_keys_label": "Chaves",
+  "pci_databases_users_add_keys_button_label": "Adicionar uma chave",
+  "pci_databases_users_add_categories_button_label": "Adicionar uma categoria",
+  "pci_databases_users_add_commands_button_label": "Adicionar uma encomenda",
+  "pci_databases_users_add_channels_button_label": "Adicionar um canal"
 }

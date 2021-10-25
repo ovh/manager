@@ -1,5 +1,6 @@
 {
   "pci_databases_backup": "Sauvegardes",
+  "pci_databases_backup_name": "Nom",
   "pci_databases_backup_expiration_date": "Date d'expiration",
   "pci_databases_backup_restore": "Restaurer",
   "pci_databases_backup_fork": "Dupliquer (Fork)",

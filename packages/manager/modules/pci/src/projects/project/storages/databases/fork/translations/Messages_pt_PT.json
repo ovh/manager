@@ -1,6 +1,6 @@
 {
   "pci_database_fork_title": "Duplicar o serviço de base de dados (fork)",
-  "pci_database_fork_description": "O fork do seu backup será efetuado num novo cluster. Vamos restaurar o backup {{backup.id}} de {{backup.size.value}} {{backup.size.unit}}.",
+  "pci_database_fork_description": "O fork do seu backup será efetuado num novo cluster. Vamos restaurar o backup {{backup.id}} de {{backupSize}}.",
   "pci_database_fork_step1_title": "Selecione o tipo de base de dados:",
   "pci_database_fork_step1_description": "Selecionar o tipo de base de dados que corresponde às suas necessidades",
   "pci_database_fork_step2_title": "Selecionar uma oferta",

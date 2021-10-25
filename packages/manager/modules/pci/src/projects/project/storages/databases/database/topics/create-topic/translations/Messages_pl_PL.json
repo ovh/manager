@@ -1,0 +1,16 @@
+{
+  "pci_databases_topics_create_topic_confirm": "Utwórz topic",
+  "pci_databases_topics_create_topic_cancel": "Anuluj",
+  "pci_databases_topics_create_topic": "Utwórz topic",
+  "pci_databases_topics_create_topic_description": "Dodaj topic",
+  "pci_databases_topics_create_topic_label": "Nazwa tematu:",
+  "pci_databases_topics_create_topic_success_message": "Nowy temat {{topic.name}} został dodany",
+  "pci_databases_topics_create_topic_error_message": "Wystąpił błąd podczas tworzenia tematu: {{message}}.",
+  "pci_databases_topics_create_topic_advanced": "Konfiguracja zaawansowana",
+  "pci_databases_topics_create_topic_replication": "Replikacja",
+  "pci_databases_topics_create_topic_partitions": "Partycje",
+  "pci_databases_topics_create_topic_retention_bytes": "Rozmiar retencji (bajty)",
+  "pci_databases_topics_create_topic_retention_hours": "Czas retencji",
+  "pci_databases_topics_create_topic_min_insync_replicas": "Minimalna replika in-sync",
+  "pci_databases_topics_create_topic_min_cleanup_policy": "Polityka usuwania"
+}
