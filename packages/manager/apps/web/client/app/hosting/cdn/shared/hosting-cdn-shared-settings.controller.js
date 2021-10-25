@@ -292,6 +292,7 @@ export default class CdnSharedSettingsController {
   }
 
   removeRule(rule, status) {
+    this.trackClick('web::hosting::cdn::configure::delete_cdn_rule');
     CdnSharedSettingsController.activateDeactivateStatus(status, true);
     return this.HostingCdnSharedService.deleteCDNDomainOption(
       this.serviceName,
