@@ -1,3 +1,12 @@
+## [3.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.17.1...@ovh-ux/manager-hub-app@3.17.2) (2021-10-25)
+
+
+### Bug Fixes
+
+* prevent global error if last order call fails ([#5764](https://github.com/ovh/manager/issues/5764)) ([4211655](https://github.com/ovh/manager/commit/42116556030dc9b063b01eee9a0b2903aa749106))
+
+
+
 ## [3.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.17.0...@ovh-ux/manager-hub-app@3.17.1) (2021-10-07)
 
 

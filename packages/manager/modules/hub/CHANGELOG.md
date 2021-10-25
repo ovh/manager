@@ -1,3 +1,12 @@
+## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.2.0...@ovh-ux/manager-hub@3.2.1) (2021-10-25)
+
+
+### Bug Fixes
+
+* **hub:** billing component tracking ([#5771](https://github.com/ovh/manager/issues/5771)) ([3804812](https://github.com/ovh/manager/commit/3804812f6166cf14c0310f3ee81121c6fc7732f2))
+
+
+
 # [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.1.1...@ovh-ux/manager-hub@3.2.0) (2021-10-21)
 
 

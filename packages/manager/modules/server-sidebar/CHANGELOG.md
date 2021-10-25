@@ -1,3 +1,12 @@
+## [3.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.13.2...@ovh-ux/manager-server-sidebar@3.13.3) (2021-10-25)
+
+
+### Bug Fixes
+
+* **server-sidebar:** managed bare metal order url for ES ([#5772](https://github.com/ovh/manager/issues/5772)) ([f31cb0f](https://github.com/ovh/manager/commit/f31cb0f3cd6b78ff1b64dfb7e58c7b891efb1b74))
+
+
+
 ## [3.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.13.1...@ovh-ux/manager-server-sidebar@3.13.2) (2021-10-07)
 
 

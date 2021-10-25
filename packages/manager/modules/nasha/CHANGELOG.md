@@ -1,3 +1,12 @@
+## [2.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.3.1...@ovh-ux/manager-nasha@2.3.2) (2021-10-25)
+
+
+### Bug Fixes
+
+* **nasha:** order datacenters availability ([#5787](https://github.com/ovh/manager/issues/5787)) ([c1e1232](https://github.com/ovh/manager/commit/c1e1232d748f9e8fdd435d1e587e3407520308ce))
+
+
+
 ## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.3.0...@ovh-ux/manager-nasha@2.3.1) (2021-09-07)
 
 

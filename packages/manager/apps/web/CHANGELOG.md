@@ -1,3 +1,14 @@
+## [15.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.31.1...@ovh-ux/manager-web@15.31.2) (2021-10-25)
+
+
+### Bug Fixes
+
+* **domain.tasks:** catch `getTasks` errors ([#5781](https://github.com/ovh/manager/issues/5781)) ([e4361d8](https://github.com/ovh/manager/commit/e4361d83501203b2e3f2d9633a49a3343b7c4a76))
+* **hosting.cdn:** prevent error if hsts is undefined ([#5802](https://github.com/ovh/manager/issues/5802)) ([f0d9681](https://github.com/ovh/manager/commit/f0d9681080dfd2bdca8cbb91323325b5fbd31e48))
+* **i18n:** add missing translations [CDS 1224] ([#5780](https://github.com/ovh/manager/issues/5780)) ([6a81f04](https://github.com/ovh/manager/commit/6a81f04f3144cea6dfdf01a7fd518eebd5987c7d))
+
+
+
 ## [15.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.31.0...@ovh-ux/manager-web@15.31.1) (2021-10-07)
 
 

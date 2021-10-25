@@ -1,3 +1,16 @@
+## [5.46.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.46.1...@ovh-ux/manager-pci@5.46.2) (2021-10-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1221] ([#5767](https://github.com/ovh/manager/issues/5767)) ([dca1aae](https://github.com/ovh/manager/commit/dca1aaebf7fdcc4b478ce8b308e9bb3680f382c2))
+* **i18n:** add missing translations [CDS 1223] ([#5779](https://github.com/ovh/manager/issues/5779)) ([d85beb2](https://github.com/ovh/manager/commit/d85beb29ff2df05f01160dcb247b6a253ca9b885))
+* **instance.add:** allow different flavor types depending on region ([#5776](https://github.com/ovh/manager/issues/5776)) ([701e956](https://github.com/ovh/manager/commit/701e95638aace7c69cb92b9992b185119967fb3d))
+* **project.billing:** fix ai-notebook billing ([#5744](https://github.com/ovh/manager/issues/5744)) ([a93aadb](https://github.com/ovh/manager/commit/a93aadb672c99db7835159850a9fbc36a6629537))
+* **project.images-list:** add missing `baremetal-linux` image ([#5794](https://github.com/ovh/manager/issues/5794)) ([4418a74](https://github.com/ovh/manager/commit/4418a74c1e6ea52e220734b82b539e2670d96408))
+
+
+
 ## [5.46.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.46.0...@ovh-ux/manager-pci@5.46.1) (2021-10-07)
 
 

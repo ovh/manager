@@ -1,3 +1,13 @@
+## [17.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.1.0...@ovh-ux/manager-dedicated@17.1.1) (2021-10-25)
+
+
+### Bug Fixes
+
+* **server:** translate correctly localization filter ([#5775](https://github.com/ovh/manager/issues/5775)) ([a22cd02](https://github.com/ovh/manager/commit/a22cd021b1870fe7213df1473de8f442c56103f7))
+* **server.details:** enable bandwidth option for new range ([#5740](https://github.com/ovh/manager/issues/5740)) ([509bde1](https://github.com/ovh/manager/commit/509bde13487b3f8dcb7b4a72e403d6c65ed55e1c))
+
+
+
 # [17.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.0.1...@ovh-ux/manager-dedicated@17.1.0) (2021-10-21)
 
 
