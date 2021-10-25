@@ -21,7 +21,7 @@
                 ng-class="{'oui-field_error': $ctrl.invalidTargetSource}"
             >
                 <oui-select
-                    model="$ctrl.model.sourceService"
+                    model="$ctrl.model.sourceIntegration"
                     name="source"
                     items="$ctrl.readyServiceIntegrationList"
                     match="serviceName"
@@ -38,7 +38,7 @@
                 ng-class="{'oui-field_error': $ctrl.invalidTargetSource}"
             >
                 <oui-select
-                    model="$ctrl.model.targetService"
+                    model="$ctrl.model.targetIntegration"
                     name="target"
                     items="$ctrl.readyServiceIntegrationList"
                     match="serviceName"

@@ -3,8 +3,8 @@ import find from 'lodash/find';
 export default class ServiceIntegration {
   constructor({
     id,
-    sourceService,
-    targetService,
+    sourceIntegration,
+    targetIntegration,
     topics,
     topicExcludeList,
     syncGroupOffsets,
@@ -15,8 +15,8 @@ export default class ServiceIntegration {
   }) {
     this.updateData({
       id,
-      sourceService,
-      targetService,
+      sourceIntegration,
+      targetIntegration,
       topics,
       topicExcludeList,
       syncGroupOffsets,
@@ -28,18 +28,18 @@ export default class ServiceIntegration {
   }
 
   setServicesNames(replications) {
-    this.serviceNameSource = find(replications, {
-      id: this.sourceService,
+    this.integrationNameSource = find(replications, {
+      id: this.sourceIntegration,
     })?.serviceName;
-    this.serviceNameTarget = find(replications, {
-      id: this.targetService,
+    this.integrationNameTarget = find(replications, {
+      id: this.targetIntegration,
     })?.serviceName;
   }
 
   updateData({
     id,
-    sourceService,
-    targetService,
+    sourceIntegration,
+    targetIntegration,
     topics,
     topicExcludeList,
     syncGroupOffsets,
@@ -50,8 +50,8 @@ export default class ServiceIntegration {
   }) {
     Object.assign(this, {
       id,
-      sourceService,
-      targetService,
+      sourceIntegration,
+      targetIntegration,
       topics,
       topicExcludeList,
       syncGroupOffsets,
