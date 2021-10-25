@@ -141,7 +141,7 @@ export default class MetricsCtrl {
   }
 
   static setMomentLocale(lang) {
-    let language = lang;
+    let language;
     if (['en_GB', 'es_US', 'fr_CA'].includes(lang)) {
       language = lang.toLowerCase().replace('_', '-');
     } else {
