@@ -71,6 +71,8 @@ export const SERVICE_STATUS = {
   RESILIATED: 'expired',
 };
 
+export const SERVICE_TYPES_WITH_END_RULE_ALLOWED = ['DEDICATED_SERVER', 'VPS'];
+
 export const URL_PARAMETER_SEPARATOR = '%20';
 
 export default {
@@ -81,5 +83,6 @@ export default {
   SERVICE_EXPIRATION,
   SERVICE_STATES,
   SERVICE_STATUS,
+  SERVICE_TYPES_WITH_END_RULE_ALLOWED,
   URL_PARAMETER_SEPARATOR,
 };

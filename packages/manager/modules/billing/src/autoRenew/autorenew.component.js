@@ -15,6 +15,7 @@ export default {
     enableBulkAutorenew: '<',
     filters: '<',
     getServices: '<',
+    getResiliationLink: '<',
     goToAutorenew: '<',
     hasAutoRenew: '<',
     homeLink: '<',

@@ -5,7 +5,10 @@ import range from 'lodash/range';
 
 import { BillingService } from '@ovh-ux/manager-models';
 
-import { NIC_ALL } from './autorenew.constants';
+import {
+  NIC_ALL,
+  SERVICE_TYPES_WITH_END_RULE_ALLOWED,
+} from './autorenew.constants';
 
 export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
   $stateProvider.state('app.account.billing.autorenewRedirection', {
@@ -59,6 +62,15 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             {},
             { inherit: false },
           ),
+        getResiliationLink: /* @ngInject */ () => (service) => {
+          if (
+            SERVICE_TYPES_WITH_END_RULE_ALLOWED.includes(service.serviceType)
+          ) {
+            return `${service.url}/resiliation`;
+          }
+
+          return null;
+        },
         goToAutorenew: /* @ngInject */ ($state, $timeout, Alerter) => (
           message = false,
           type = 'success',
