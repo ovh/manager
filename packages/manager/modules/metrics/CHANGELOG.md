@@ -1,3 +1,12 @@
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics@1.2.1...@ovh-ux/manager-metrics@1.2.2) (2021-10-25)
+
+
+### Bug Fixes
+
+* **metrics:** prevent tiles superpositions ([#5741](https://github.com/ovh/manager/issues/5741)) ([5e7a3c5](https://github.com/ovh/manager/commit/5e7a3c562c59cd2041d0e821062fd340ae1cb4d3))
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics@1.2.0...@ovh-ux/manager-metrics@1.2.1) (2021-09-07)
 
 

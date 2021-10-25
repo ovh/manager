@@ -22,7 +22,7 @@ export default class ServersCtrl {
       this.serverStateEnum,
       'server_configuration_state_',
     );
-    this.datacenterEnumFilter = this.getEnumFilter(
+    this.datacenterEnumFilter = this.getDcEnumFilter(
       this.datacenterEnum,
       'server_datacenter_',
     );
@@ -38,6 +38,28 @@ export default class ServersCtrl {
 
   static toUpperSnakeCase(str) {
     return snakeCase(str).toUpperCase();
+  }
+
+  getDcEnumFilter(list, translationPrefix) {
+    return {
+      values: reduce(
+        list,
+        (result, item) => {
+          const splittedDcEnumItem = item.split(/(\d+)/);
+
+          return {
+            ...result,
+            [item]: this.$translate.instant(
+              `${translationPrefix}${this.constructor.toUpperSnakeCase(
+                splittedDcEnumItem[0],
+              )}`,
+              { number: splittedDcEnumItem?.[1] },
+            ),
+          };
+        },
+        {},
+      ),
+    };
   }
 
   getEnumFilter(list, translationPrefix) {

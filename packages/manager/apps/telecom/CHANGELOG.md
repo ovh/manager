@@ -1,3 +1,12 @@
+## [13.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.26.1...@ovh-ux/manager-telecom@13.26.2) (2021-10-25)
+
+
+### Bug Fixes
+
+* **telephony.contact:** prevent sending inseeCode on directory update ([#5770](https://github.com/ovh/manager/issues/5770)) ([4af50a9](https://github.com/ovh/manager/commit/4af50a9f2547875fd16ee971c2b7fd054d24aec9))
+
+
+
 ## [13.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.26.0...@ovh-ux/manager-telecom@13.26.1) (2021-10-07)
 
 

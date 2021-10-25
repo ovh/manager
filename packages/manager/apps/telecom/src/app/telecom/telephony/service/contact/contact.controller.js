@@ -164,7 +164,7 @@ export default /* @ngInject */ function TelecomTelephonyServiceContactCtrl(
           billingAccount: $stateParams.billingAccount,
           serviceName: $stateParams.serviceName,
         },
-        modified,
+        omit(modified, 'inseeCode'),
       )
       .$promise.then(() => {
         self.directory = angular.copy(self.directoryForm);

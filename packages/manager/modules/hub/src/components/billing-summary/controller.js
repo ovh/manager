@@ -40,7 +40,7 @@ export default class ManagerHubBillingSummaryCtrl {
   }
 
   loadBills() {
-    return this.fetchBills().then(({ data }) => {
+    return this.fetchBills(1, false).then(({ data }) => {
       this.bills = data;
       this.formattedBillingPrice = this.getFormattedPrice(
         data.total,
@@ -114,28 +114,30 @@ export default class ManagerHubBillingSummaryCtrl {
     });
   }
 
-  fetchBills(monthlyPeriod = 1) {
-    switch (monthlyPeriod) {
-      case 1:
-        this.atInternet.trackClick({
-          name: `${this.trackingPrefix}::order::action::go-to-one-month`,
-          type: 'action',
-        });
-        break;
-      case 3:
-        this.atInternet.trackClick({
-          name: `${this.trackingPrefix}::order::action::go-to-three-month`,
-          type: 'action',
-        });
-        break;
-      case 6:
-        this.atInternet.trackClick({
-          name: `${this.trackingPrefix}::order::action::go-to-six-month`,
-          type: 'action',
-        });
-        break;
-      default:
-        break;
+  fetchBills(monthlyPeriod = 1, withTracking = true) {
+    if (withTracking) {
+      switch (monthlyPeriod) {
+        case 1:
+          this.atInternet.trackClick({
+            name: `${this.trackingPrefix}::order::action::go-to-one-month`,
+            type: 'action',
+          });
+          break;
+        case 3:
+          this.atInternet.trackClick({
+            name: `${this.trackingPrefix}::order::action::go-to-three-month`,
+            type: 'action',
+          });
+          break;
+        case 6:
+          this.atInternet.trackClick({
+            name: `${this.trackingPrefix}::order::action::go-to-six-month`,
+            type: 'action',
+          });
+          break;
+        default:
+          break;
+      }
     }
     return this.$http
       .get('/hub/bills', {

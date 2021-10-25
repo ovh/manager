@@ -1,3 +1,12 @@
+## [2.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.17.3...@ovh-ux/manager-vps@2.17.4) (2021-10-25)
+
+
+### Bug Fixes
+
+* **upscale:** allow to upscale according to specs only ([#5777](https://github.com/ovh/manager/issues/5777)) ([973283e](https://github.com/ovh/manager/commit/973283e434dd75fc2ca72dbf25ea806e74fa6d6a))
+
+
+
 ## [2.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.17.2...@ovh-ux/manager-vps@2.17.3) (2021-10-06)
 
 
