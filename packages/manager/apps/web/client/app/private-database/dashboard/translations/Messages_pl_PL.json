@@ -485,5 +485,8 @@
   "privateDatabase_tabs_list_extensions_enable_success": "Rozszerzenie poprawnie aktywowane.",
   "privateDatabase_tabs_list_extensions_enable_error": "Wystąpił błąd podczas aktywowania rozszerzenia.",
   "privateDatabase_tabs_list_extensions_disable_success": "Rozszerzenie poprawnie dezaktywowane.",
-  "privateDatabase_tabs_list_extensions_disable_error": "Wystąpił błąd podczas aktywowania rozszerzenia."
+  "privateDatabase_tabs_list_extensions_disable_error": "Wystąpił błąd podczas aktywowania rozszerzenia.",
+  "privateDatabase_quota_refresh": "Odśwież limit wielkości bazy danych.",
+  "privateDatabase_quota_refresh_success": "Dyspozycja odświeżania limitu zostanie zrealizowana w ciągu kilku minut.",
+  "privateDatabase_quota_refresh_fail": "Wystąpił błąd podczas odświeżania limitu."
 }

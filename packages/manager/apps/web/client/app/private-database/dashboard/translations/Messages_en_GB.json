@@ -483,5 +483,8 @@
   "privateDatabase_tabs_list_extensions_enable_success": "Extension correctly enabled.",
   "privateDatabase_tabs_list_extensions_enable_error": "An error has occurred enabling your extension.",
   "privateDatabase_tabs_list_extensions_disable_success": "Extension correctly disabled.",
-  "privateDatabase_tabs_list_extensions_disable_error": "An error has occurred disabling the extension."
+  "privateDatabase_tabs_list_extensions_disable_error": "An error has occurred disabling the extension.",
+  "privateDatabase_quota_refresh": "Refresh your database quota.",
+  "privateDatabase_quota_refresh_success": "Your request to refresh your quota will be processed in a few moments.",
+  "privateDatabase_quota_refresh_fail": "An error has occurred submitting the quota refresh request."
 }

@@ -485,5 +485,8 @@
   "privateDatabase_tabs_list_extensions_enable_success": "Estensione attivata correttamente.",
   "privateDatabase_tabs_list_extensions_enable_error": "Si è verificato un errore durante l'attivazione dell'estensione.",
   "privateDatabase_tabs_list_extensions_disable_success": "Estensione disattivata correttamente.",
-  "privateDatabase_tabs_list_extensions_disable_error": "Si è verificato un errore durante la disattivazione dell'estensione."
+  "privateDatabase_tabs_list_extensions_disable_error": "Si è verificato un errore durante la disattivazione dell'estensione.",
+  "privateDatabase_quota_refresh": "Aggiorna la quota del tuo database",
+  "privateDatabase_quota_refresh_success": "La richiesta di aggiornamento della tua quota sarà presa in carico entro pochi minuti.",
+  "privateDatabase_quota_refresh_fail": "Si è verificato un errore durante la richiesta di aggiornamento della quota."
 }
