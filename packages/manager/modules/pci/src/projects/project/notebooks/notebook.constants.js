@@ -33,7 +33,7 @@ export const NOTEBOOK_FLAVOR_TYPE = {
 };
 
 export const NOTEBOOK_FRAMEWORK_INFO = {
-  DEFAULT: 'https://community.ovh.com/en/c/Data-AI',
+  DEFAULT: 'https://discord.com/invite/vXVurFfwe9',
 };
 
 export const NOTEBOOK_AUTOMATION_INFO = {
