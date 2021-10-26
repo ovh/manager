@@ -53,6 +53,18 @@ export default class SelectCheckboxesCtrl {
 
   toggleList() {
     this.showList = !this.showList;
+
+    if (this.showList) {
+      this.$timeout(() => {
+        this.resizeDropdown();
+      });
+    }
+  }
+
+  resizeDropdown() {
+    const [selectCheckbox] = this.$element.find('label.oui-select');
+    const [checkboxList] = this.$element.find('div.checkbox_list');
+    checkboxList.style.width = `${selectCheckbox.offsetWidth}px`;
   }
 
   onItemSelect(item, checked) {
