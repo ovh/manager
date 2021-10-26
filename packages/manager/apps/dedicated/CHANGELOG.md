@@ -1,3 +1,12 @@
+## [17.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.1.1...@ovh-ux/manager-dedicated@17.1.2) (2021-10-26)
+
+
+### Bug Fixes
+
+* **dedicated:** disable features in dedicated server for trusted nic ([51eb1f1](https://github.com/ovh/manager/commit/51eb1f17479f5ea15a2aaf334d383da45a5ec2c2))
+
+
+
 ## [17.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.1.0...@ovh-ux/manager-dedicated@17.1.1) (2021-10-25)
 
 
