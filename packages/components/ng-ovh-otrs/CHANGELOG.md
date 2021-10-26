@@ -1,3 +1,13 @@
+## [9.2.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.2.2...@ovh-ux/ng-ovh-otrs@9.2.3) (2021-10-26)
+
+
+### Bug Fixes
+
+* **dev-deps:** upgrade @ovh-ux/component-rollup-config to `v11.0.0` ([3ae659b](https://github.com/ovh/manager/commit/3ae659bea59244fd5660375b9dac52055cc374b0))
+* **locales:** remove es_US translations files ([#5709](https://github.com/ovh/manager/issues/5709)) ([3894a13](https://github.com/ovh/manager/commit/3894a1388393ea08b51e08bbfda416e7746fc8ca)), closes [#5685](https://github.com/ovh/manager/issues/5685)
+
+
+
 ## [9.2.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.2.1...@ovh-ux/ng-ovh-otrs@9.2.2) (2021-06-29)
 
 

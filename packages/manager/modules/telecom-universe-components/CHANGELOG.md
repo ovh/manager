@@ -1,3 +1,12 @@
+## [7.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.4.0...@ovh-ux/ng-ovh-telecom-universe-components@7.4.1) (2021-10-26)
+
+
+### Bug Fixes
+
+* **locales:** remove es_US translations files ([#5709](https://github.com/ovh/manager/issues/5709)) ([3894a13](https://github.com/ovh/manager/commit/3894a1388393ea08b51e08bbfda416e7746fc8ca)), closes [#5685](https://github.com/ovh/manager/issues/5685)
+
+
+
 # [7.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.3.3...@ovh-ux/ng-ovh-telecom-universe-components@7.4.0) (2021-08-25)
 
 

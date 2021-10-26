@@ -1,3 +1,13 @@
+## [3.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.13.3...@ovh-ux/manager-server-sidebar@3.13.4) (2021-10-26)
+
+
+### Bug Fixes
+
+* remove spelling errors ([#5465](https://github.com/ovh/manager/issues/5465)) ([45e0505](https://github.com/ovh/manager/commit/45e05058f367e39f866082ad866f7f4e2ccf17a1))
+* **dev-deps:** upgrade @ovh-ux/component-rollup-config to `v11.0.0` ([3ae659b](https://github.com/ovh/manager/commit/3ae659bea59244fd5660375b9dac52055cc374b0))
+
+
+
 ## [3.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.13.2...@ovh-ux/manager-server-sidebar@3.13.3) (2021-10-25)
 
 

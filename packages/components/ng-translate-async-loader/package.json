@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-translate-async-loader",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Angular translate asynchronous loader",
   "keywords": [
     "angularjs",

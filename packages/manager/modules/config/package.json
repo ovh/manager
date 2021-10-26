@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-config",
-  "version": "6.2.0",
+  "version": "6.2.1",
   "private": true,
   "description": "Retrieve configuration based on the environment.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/config#readme",
@@ -31,7 +31,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/ovh-reket": "^0.0.1",
+    "@ovh-ux/ovh-reket": "^0.0.2",
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {

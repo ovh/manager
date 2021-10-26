@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-styles",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "description": "[DEPRECATED] - Collection of stylesheets for the Cloud control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/cloud-styles#readme",

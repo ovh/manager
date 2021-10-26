@@ -1,3 +1,12 @@
+## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.2.2...@ovh-ux/manager-iplb@1.2.3) (2021-10-26)
+
+
+### Bug Fixes
+
+* **locales:** remove es_US translations files ([#5709](https://github.com/ovh/manager/issues/5709)) ([3894a13](https://github.com/ovh/manager/commit/3894a1388393ea08b51e08bbfda416e7746fc8ca)), closes [#5685](https://github.com/ovh/manager/issues/5685)
+
+
+
 ## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.2.1...@ovh-ux/manager-iplb@1.2.2) (2021-10-06)
 
 

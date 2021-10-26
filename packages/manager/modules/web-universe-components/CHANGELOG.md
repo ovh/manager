@@ -1,3 +1,12 @@
+## [9.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.2.0...@ovh-ux/ng-ovh-web-universe-components@9.2.1) (2021-10-26)
+
+
+### Bug Fixes
+
+* **locales:** remove es_US translations files ([#5709](https://github.com/ovh/manager/issues/5709)) ([3894a13](https://github.com/ovh/manager/commit/3894a1388393ea08b51e08bbfda416e7746fc8ca)), closes [#5685](https://github.com/ovh/manager/issues/5685)
+
+
+
 # [9.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.1.3...@ovh-ux/ng-ovh-web-universe-components@9.2.0) (2021-08-25)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-timeline",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "An Angular.js directive that generates a responsive, data-driven vertical timeline to tell a story, show history or describe a sequence of events.",
   "keywords": [
     "angular",

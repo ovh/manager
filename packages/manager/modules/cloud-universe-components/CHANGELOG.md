@@ -1,3 +1,12 @@
+## [2.3.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.3.1...@ovh-ux/ng-ovh-cloud-universe-components@2.3.2) (2021-10-26)
+
+
+### Bug Fixes
+
+* **dev-deps:** upgrade @ovh-ux/component-rollup-config to `v11.0.0` ([3ae659b](https://github.com/ovh/manager/commit/3ae659bea59244fd5660375b9dac52055cc374b0))
+
+
+
 ## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.3.0...@ovh-ux/ng-ovh-cloud-universe-components@2.3.1) (2021-09-30)
 
 

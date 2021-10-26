@@ -1,3 +1,17 @@
+# [11.0.0](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@10.0.2...@ovh-ux/component-rollup-config@11.0.0) (2021-10-26)
+
+
+### Code Refactoring
+
+* **plugins:** remove `es_US` language support ([d4f94e0](https://github.com/ovh/manager/commit/d4f94e0230d4bdd2aa1fa4ca03c492a3ef216d4c))
+
+
+### BREAKING CHANGES
+
+* **plugins:** remove `es_US` language support
+
+
+
 ## [10.0.2](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@10.0.1...@ovh-ux/component-rollup-config@10.0.2) (2021-07-26)
 
 

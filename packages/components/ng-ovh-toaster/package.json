@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-toaster",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Show a hot toast for user",
   "keywords": [
     "angularjs",

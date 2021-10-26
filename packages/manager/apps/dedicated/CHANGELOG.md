@@ -1,3 +1,15 @@
+## [17.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.1.2...@ovh-ux/manager-dedicated@17.1.3) (2021-10-26)
+
+
+### Bug Fixes
+
+* **server.traffic:** fix usage quota balance ([#5733](https://github.com/ovh/manager/issues/5733)) ([a10a4aa](https://github.com/ovh/manager/commit/a10a4aa80e66d6015b93ef12ccd3ffcb56d8466e))
+* remove unused translations [CDS] ([258488f](https://github.com/ovh/manager/commit/258488f9a54ce332e6dfb016ccc32d14d985c67d))
+* **locales:** remove es_US translations files ([#5709](https://github.com/ovh/manager/issues/5709)) ([3894a13](https://github.com/ovh/manager/commit/3894a1388393ea08b51e08bbfda416e7746fc8ca)), closes [#5685](https://github.com/ovh/manager/issues/5685)
+* **server.ipmi:** force to use a trusted ip ([#5679](https://github.com/ovh/manager/issues/5679)) ([dfb1dea](https://github.com/ovh/manager/commit/dfb1dea1071f7ed5a42d8b0480a4b20471e9290d))
+
+
+
 ## [17.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.1.1...@ovh-ux/manager-dedicated@17.1.2) (2021-10-26)
 
 

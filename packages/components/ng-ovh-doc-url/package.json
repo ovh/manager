@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-doc-url",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Easily create links or get urls to 2api endpoint which redirects to documentation systems",
   "keywords": [
     "angularjs",

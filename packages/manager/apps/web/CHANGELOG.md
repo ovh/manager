@@ -1,3 +1,18 @@
+# [15.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.31.2...@ovh-ux/manager-web@15.32.0) (2021-10-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1216] ([#5754](https://github.com/ovh/manager/issues/5754)) ([bc2c1ec](https://github.com/ovh/manager/commit/bc2c1eccdd1456942d3aa99b14d7b9b30ea66ad6))
+* **locales:** remove es_US translations files ([#5709](https://github.com/ovh/manager/issues/5709)) ([3894a13](https://github.com/ovh/manager/commit/3894a1388393ea08b51e08bbfda416e7746fc8ca)), closes [#5685](https://github.com/ovh/manager/issues/5685)
+
+
+### Features
+
+* **private-database:** add clouddb quota refresh ([#5727](https://github.com/ovh/manager/issues/5727)) ([ea24ce1](https://github.com/ovh/manager/commit/ea24ce137b166d8933e61ff4176f7e34ed5b1f50)), closes [#5694](https://github.com/ovh/manager/issues/5694)
+
+
+
 ## [15.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.31.1...@ovh-ux/manager-web@15.31.2) (2021-10-25)
 
 

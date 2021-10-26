@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-freefax",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "private": true,
   "description": "Freefax product.",
   "repository": {
@@ -24,11 +24,11 @@
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
-    "@ovh-ux/ng-ovh-contracts": "^4.0.4",
+    "@ovh-ux/ng-ovh-contracts": "^4.0.5",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^6.0.0 || ^7.0.0",
-    "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.0.2",
-    "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.4",
-    "@ovh-ux/ng-ui-router-title": "^3.0.2",
+    "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.0.3",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.5",
+    "@ovh-ux/ng-ui-router-title": "^3.0.3",
     "@ovh-ux/ui-kit": "^5.0.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",

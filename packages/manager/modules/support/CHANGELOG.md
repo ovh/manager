@@ -1,3 +1,12 @@
+## [1.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.6.2...@ovh-ux/manager-support@1.6.3) (2021-10-26)
+
+
+### Bug Fixes
+
+* **support.tickets.new:** add label for mongodb service type ([#5674](https://github.com/ovh/manager/issues/5674)) ([724a500](https://github.com/ovh/manager/commit/724a500fe350964097766d327c1ae4376ab87365))
+
+
+
 ## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.6.1...@ovh-ux/manager-support@1.6.2) (2021-10-07)
 
 

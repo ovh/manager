@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-preloader",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "private": true,
   "description": "OVHcloud manager preloader",
   "repository": {
