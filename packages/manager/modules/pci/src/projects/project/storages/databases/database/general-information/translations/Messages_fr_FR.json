@@ -11,7 +11,6 @@
   "pci_databases_general_information_upgrade_node": "Améliorer votre modèle de nœud",
   "pci_databases_general_information_service_label": "Service",
   "pci_databases_general_information_service_URI_label": "URI du service",
-  "pci_databases_general_information_replicate_URI_label": "URI replica",
   "pci_databases_general_information_database_name": "Database Name",
   "pci_databases_general_information_database_host": "Hôte",
   "pci_databases_general_information_database_port": "Port",
