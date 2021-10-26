@@ -1,3 +1,12 @@
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@1.5.0...@ovh-ux/manager-vrack-app@1.5.1) (2021-10-26)
+
+
+### Bug Fixes
+
+* **dedicated:** disable features in dedicated server for trusted nic ([51eb1f1](https://github.com/ovh/manager/commit/51eb1f17479f5ea15a2aaf334d383da45a5ec2c2))
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@1.4.0...@ovh-ux/manager-vrack-app@1.5.0) (2021-10-06)
 
 
