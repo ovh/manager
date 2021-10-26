@@ -1,3 +1,12 @@
+## [1.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.12.0...@ovh-ux/manager-models@1.12.1) (2021-10-26)
+
+
+### Bug Fixes
+
+* **billing.components:** allow cancel resiliation for expired services ([#5729](https://github.com/ovh/manager/issues/5729)) ([05b9be6](https://github.com/ovh/manager/commit/05b9be6d38bf5e9c54185e9ec11e5d3f6c6f9d34))
+
+
+
 # [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.11.1...@ovh-ux/manager-models@1.12.0) (2021-10-21)
 
 

@@ -1,3 +1,25 @@
+# [5.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.46.2...@ovh-ux/manager-pci@5.47.0) (2021-10-26)
+
+
+### Bug Fixes
+
+* **ai.notebook:** wrong api call to get available regions ([#5693](https://github.com/ovh/manager/issues/5693)) ([e2a1480](https://github.com/ovh/manager/commit/e2a14802e7c03a0d94324cfbf376ead9d4c3e3bf))
+* **i18n:** add missing translations [CDS 1198] ([e166bb8](https://github.com/ovh/manager/commit/e166bb84715189a3fc0d8b1c00e0137506359fa4))
+* **i18n:** add missing translations [CDS 1199] ([335594f](https://github.com/ovh/manager/commit/335594fa93fdbc075806371295d5f5d38b70bf8b))
+* **i18n:** add missing translations [CDS 1206] ([afb4e7b](https://github.com/ovh/manager/commit/afb4e7b611d3f7dd933eb78453e6d4208ea6f43f))
+* **i18n:** add missing translations [CDS 1207] ([40d818d](https://github.com/ovh/manager/commit/40d818d6b9e2d2e693282acdfde6fc9168830bb7))
+* **i18n:** add missing translations [CDS 1208] ([3d3520f](https://github.com/ovh/manager/commit/3d3520fd30f4402e940bec7be3be933954b2edd3))
+* **locales:** remove es_US translations files ([#5709](https://github.com/ovh/manager/issues/5709)) ([3894a13](https://github.com/ovh/manager/commit/3894a1388393ea08b51e08bbfda416e7746fc8ca)), closes [#5685](https://github.com/ovh/manager/issues/5685)
+
+
+### Features
+
+* **data-processing.job-details:** migrate metrics to internal endpoints ([#5682](https://github.com/ovh/manager/issues/5682)) ([d24d05d](https://github.com/ovh/manager/commit/d24d05d1dfe9f91ed64c0905553d938ba6212dab))
+* **pci.kube.component.autoscaling:** allow empty desired nodes ([#5783](https://github.com/ovh/manager/issues/5783)) ([6b032b7](https://github.com/ovh/manager/commit/6b032b7bc8a7395b4f3d0ee1f425e324f765b4a0))
+* **storages.blocks.add:** add automatically new volumes ([#5441](https://github.com/ovh/manager/issues/5441)) ([cff3cae](https://github.com/ovh/manager/commit/cff3caee1fbd2ff8ae34e73bf41515c8646af9cd))
+
+
+
 ## [5.46.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.46.1...@ovh-ux/manager-pci@5.46.2) (2021-10-25)
 
 

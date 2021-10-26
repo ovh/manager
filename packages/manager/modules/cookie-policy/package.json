@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cookie-policy",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "description": "Cookie Policy",
   "keywords": [
@@ -38,7 +38,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.1",
     "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
-    "@ovh-ux/ng-translate-async-loader": "^2.1.2",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.3",
     "@ovh-ux/ui-kit": "^5.0.0",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",

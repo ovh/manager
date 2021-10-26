@@ -1,3 +1,13 @@
+## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.2.2...@ovh-ux/manager-veeam-enterprise@1.2.3) (2021-10-26)
+
+
+### Bug Fixes
+
+* remove spelling errors ([#5465](https://github.com/ovh/manager/issues/5465)) ([45e0505](https://github.com/ovh/manager/commit/45e05058f367e39f866082ad866f7f4e2ccf17a1))
+* **locales:** remove es_US translations files ([#5709](https://github.com/ovh/manager/issues/5709)) ([3894a13](https://github.com/ovh/manager/commit/3894a1388393ea08b51e08bbfda416e7746fc8ca)), closes [#5685](https://github.com/ovh/manager/issues/5685)
+
+
+
 ## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.2.1...@ovh-ux/manager-veeam-enterprise@1.2.2) (2021-10-06)
 
 

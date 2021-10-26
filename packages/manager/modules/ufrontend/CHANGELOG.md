@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ufrontend@2.1.0...@ovh-ux/ufrontend@2.1.1) (2021-10-26)
+
+
+### Bug Fixes
+
+* **config:** move types in appropriate folders ([#5768](https://github.com/ovh/manager/issues/5768)) ([2a8a3ec](https://github.com/ovh/manager/commit/2a8a3ecca270e104296b103b41de285eaf515c15))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ufrontend@2.0.0...@ovh-ux/ufrontend@2.1.0) (2021-10-06)
 
 

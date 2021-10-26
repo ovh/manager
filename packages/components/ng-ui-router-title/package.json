@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ui-router-title",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "AngularJS module for updating browser title/history based on the current ui-router state.",
   "keywords": [
     "angularjs",

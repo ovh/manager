@@ -1,3 +1,12 @@
+## [3.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.5.2...@ovh-ux/manager-account-sidebar@3.5.3) (2021-10-26)
+
+
+### Bug Fixes
+
+* **dev-deps:** upgrade @ovh-ux/component-rollup-config to `v11.0.0` ([3ae659b](https://github.com/ovh/manager/commit/3ae659bea59244fd5660375b9dac52055cc374b0))
+
+
+
 ## [3.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.5.1...@ovh-ux/manager-account-sidebar@3.5.2) (2021-09-15)
 
 

@@ -1,3 +1,12 @@
+## [3.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.1.1...@ovh-ux/manager-emailpro@3.1.2) (2021-10-26)
+
+
+### Bug Fixes
+
+* **locales:** remove es_US translations files ([#5709](https://github.com/ovh/manager/issues/5709)) ([3894a13](https://github.com/ovh/manager/commit/3894a1388393ea08b51e08bbfda416e7746fc8ca)), closes [#5685](https://github.com/ovh/manager/issues/5685)
+
+
+
 ## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.1.0...@ovh-ux/manager-emailpro@3.1.1) (2021-09-07)
 
 

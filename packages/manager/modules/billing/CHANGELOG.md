@@ -1,3 +1,13 @@
+# [0.3.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.3.0-alpha.0...@ovh-ux/manager-billing@0.3.0-alpha.1) (2021-10-26)
+
+
+### Bug Fixes
+
+* **locales:** remove es_US translations files ([#5709](https://github.com/ovh/manager/issues/5709)) ([3894a13](https://github.com/ovh/manager/commit/3894a1388393ea08b51e08bbfda416e7746fc8ca)), closes [#5685](https://github.com/ovh/manager/issues/5685)
+* **payment.ovhaccount:** update data on date change ([#5728](https://github.com/ovh/manager/issues/5728)) ([d2feb7a](https://github.com/ovh/manager/commit/d2feb7abf946cd29b9d5b9a9f5791d1908f5ba79))
+
+
+
 # [0.3.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.2.0-alpha.4...@ovh-ux/manager-billing@0.3.0-alpha.0) (2021-10-21)
 
 
