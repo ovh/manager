@@ -49,13 +49,11 @@
   "pci_databases_general_information_no_ip_no_users": "Your cluster is not fully configured: you must authorise IP addresses and add users via ",
   "pci_databases_general_information_user_label": "Users",
   "pci_databases_general_information_allowed_ips_none": "None",
+  "pci_databases_general_information_n/a": "Not applicable",
   "pci_databases_general_information_new_fork_label": "Fork",
   "pci_databases_general_information_new_fork_link": "Create a service fork",
-  "pci_databases_general_information_replicas_label": "Replicas",
-  "pci_databases_general_information_replicas_link": "Create a new replica",
   "pci_databases_general_information_certificate_label": "CA certificate",
   "pci_databases_general_information_certificate_link": "View",
   "pci_databases_general_information_certificate_download": "Download",
-  "pci_databases_general_information_certificate_tooltip": "Your certificate: <code>{{certificate}}</code>",
-  "pci_databases_general_information_n/a": "Not applicable"
+  "pci_databases_general_information_certificate_tooltip": "Your certificate: <code>{{certificate}}</code>"
 }

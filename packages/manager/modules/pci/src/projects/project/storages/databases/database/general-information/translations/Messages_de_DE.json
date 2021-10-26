@@ -49,13 +49,11 @@
   "pci_databases_general_information_no_ip_no_users": "Ihr Cluster ist nicht vollständig konfiguriert: Autorisieren Sie IP-Adressen und fügen Sie Benutzer hinzu über ",
   "pci_databases_general_information_user_label": "Benutzer",
   "pci_databases_general_information_allowed_ips_none": "Keine",
+  "pci_databases_general_information_n/a": "Unzutreffend",
   "pci_databases_general_information_new_fork_label": "Fork",
   "pci_databases_general_information_new_fork_link": "Fork des Dienstes erstellen",
-  "pci_databases_general_information_replicas_label": "Replikas",
-  "pci_databases_general_information_replicas_link": "Neue Replika erstellen",
   "pci_databases_general_information_certificate_label": "CA-Zertifikat",
   "pci_databases_general_information_certificate_link": "Anzeigen",
   "pci_databases_general_information_certificate_download": "Herunterladen",
-  "pci_databases_general_information_certificate_tooltip": "Ihr Zertifikat: <code>{{certificate}}</code>",
-  "pci_databases_general_information_n/a": "Unzutreffend"
+  "pci_databases_general_information_certificate_tooltip": "Ihr Zertifikat: <code>{{certificate}}</code>"
 }

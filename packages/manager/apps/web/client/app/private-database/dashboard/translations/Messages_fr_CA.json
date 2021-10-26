@@ -328,7 +328,6 @@
   "privateDatabase_order_step1_datacenter": "Datacentre",
   "privateDatabase_order_step1_error": "Une erreur est survenue lors de la récupération des bases de données disponible.",
   "privateDatabase_order_step2_title": "2. Choisissez une durée",
-  "privateDatabase_order_sql_period_sub_title": "Combien de temps désirez-vous l'utiliser ?",
   "privateDatabase_order_step2_duration_fail": "Une erreur est survenue lors de la récupération des durées disponible.",
   "privateDatabase_order_step2_price_fail": "Une erreur est survenue lors de la récupération des prix pour cette durée.",
   "privateDatabase_order_step3_title": "3. Validation",
@@ -342,6 +341,9 @@
   "privateDatabase_order_step3_pay_button": "Régler",
   "privateDatabase_order_step3_bc_information": "Un nouvel onglet s'ouvrira et vous serez automatiquement redirigé(e) vers l'interface de paiement OVH.",
   "privateDatabase_order_step3_fail": "Une erreur est survenue lors de la génération du bon de commande.",
+  "privateDatabase_quota_refresh": "Rafraîchir le quota de votre base de données.",
+  "privateDatabase_quota_refresh_success": "La demande de rafraîchissement de votre quota sera prise en compte dans quelques instants.",
+  "privateDatabase_quota_refresh_fail": "Une erreur est survenue lors de la demande de rafraîchissement de votre quota.",
   "privateDatabase_change_ram": "Modifier",
   "privateDatabase_change_ram_title": "Changer la quantité de la RAM",
   "privateDatabase_order_select_ram_description": "La quantité de ram sélectionnée remplacera la quantité actuelle.",
@@ -393,6 +395,8 @@
   "privateDatabase_metrics_memoryUsages_graph_dbaas_metrics_exec_memsw": "Utilisation mémoire",
   "privateDatabase_metrics_activeConnections_title": "Statistiques du total des connexions par minute",
   "privateDatabase_metrics_activeConnections_graph_dbaas_metrics_mysql_threads_connected": "Total des connexions par minute",
+  "privateDatabase_metrics_queryExecutionTimes_title": "Statistiques du temps d'exécution des requêtes",
+  "privateDatabase_metrics_queryExecutionTimes_graph_dbaas_metrics_mysql_query_time_average": "Temps d'exécution d'une requête",
   "privateDatabase_metrics_memoryUsages_graph_y": "Mémoire RAM",
   "privateDatabase_metrics_activeConnections_graph_mysql_active_connections": "Connexions actives",
   "privateDatabase_metrics_connections_graph_dbaas_metrics_mysql_threads_connected": "Connexions actives",
@@ -485,5 +489,6 @@
   "privateDatabase_tabs_list_extensions_enable_success": "Extension correctement activée.",
   "privateDatabase_tabs_list_extensions_enable_error": "Une erreur est survenue lors de l'action de l'extension.",
   "privateDatabase_tabs_list_extensions_disable_success": "Extension correctement désactivée.",
-  "privateDatabase_tabs_list_extensions_disable_error": "Une erreur est survenue lors de la désactivation de l'extension."
+  "privateDatabase_tabs_list_extensions_disable_error": "Une erreur est survenue lors de la désactivation de l'extension.",
+  "privateDatabase_order_sql_period_sub_title": "Combien de temps désirez-vous l'utiliser ?"
 }

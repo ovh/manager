@@ -8,11 +8,10 @@
             data-header="{{:: 'pci_projects_project_storages_blocks_add_region_title' | translate }}"
             data-loading="$ctrl.loadings.regions"
             data-navigation="$ctrl.storage.region"
-            data-submit-text="{{:: 'pci_projects_project_storages_blocks_add_submit_label' | translate }}"
             data-on-focus="$ctrl.onRegionsFocus()"
             data-on-submit="$ctrl.onRegionChange()"
             data-editable="!$ctrl.loadings.save"
-            name="block_storage_add_region"
+            data-name="block_storage_add_region"
         >
             <pci-project-regions-list
                 data-regions="$ctrl.regions"
@@ -26,10 +25,10 @@
             data-header="{{:: 'pci_projects_project_storages_blocks_add_type_title' | translate }}"
             data-on-focus="$ctrl.onTypesFocus()"
             data-on-submit="$ctrl.onTypeChange()"
-            data-navigation="$ctrl.selectedType"
+            data-navigation="$ctrl.selectedVolumeAddon"
             data-editable="!$ctrl.loadings.save"
             data-loading="$ctrl.loadings.size"
-            name="block_storage_add_type"
+            data-name="block_storage_add_type"
         >
             <div
                 class="container-fluid px-0"
@@ -37,21 +36,16 @@
             >
                 <div class="row">
                     <oui-select-picker
-                        data-ng-if="!$ctrl.displaySelectedType || $ctrl.selectedType === type"
-                        data-ng-repeat="type in $ctrl.typesList track by $index"
+                        data-ng-repeat="volumeAddon in $ctrl.consumptionVolumeAddons track by $index"
+                        data-ng-if="!$ctrl.displaySelectedType || $ctrl.selectedVolumeAddon === volumeAddon"
+                        data-disabled="!$ctrl.isAvailableVolumeType(volumeAddon)"
+                        data-model="$ctrl.selectedVolumeAddon"
                         class="d-inline-block col-md-6 col-xl-4 my-3"
                         data-name="type"
-                        data-match="name"
-                        data-model="$ctrl.selectedType"
-                        data-label="{{ 'pci_projects_project_storages_blocks_add_type_' + type.id + '_label' | translate }}"
-                        data-values="[type]"
+                        data-label="{{:: volumeAddon.blobs.technical.name }}"
+                        data-values="[volumeAddon]"
                         data-variant="light"
-                        data-required
-                    >
-                        <oui-select-picker-section
-                            data-translate="pci_projects_project_storages_blocks_add_type_price"
-                            data-translate-values="{ price: $ctrl.typeRegionPrices[type.id][$ctrl.storage.region.name].monthly.text }"
-                        ></oui-select-picker-section>
+                        data-required>
                     </oui-select-picker>
                 </div>
             </div>

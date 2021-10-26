@@ -1374,5 +1374,6 @@
   "hosting_dashboard_service_common_inactive": "Nieaktywny",
   "hosting_dashboard_email_offer_get_error": "Nie można pobrać adresu e-mail",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Więcej"
+  "hosting_dashboard_tabs_dropdown": "Więcej",
+  "hosting_tab_DATABASES_table_header_server_address_tooltip": "Do połączenia z Twoją instancją użyj dostarczonej nazwy hosta, ponieważ przypisany do instancji adres IP może się z czasem zmienić."
 }

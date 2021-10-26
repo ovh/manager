@@ -49,13 +49,11 @@
   "pci_databases_general_information_no_ip_no_users": "Twój klaster nie jest w pełni skonfigurowany: autoryzuj adresy IP i dodaj użytkowników za pomocą ",
   "pci_databases_general_information_user_label": "Użytkownicy",
   "pci_databases_general_information_allowed_ips_none": "Brak",
+  "pci_databases_general_information_n/a": "Nie dotyczy",
   "pci_databases_general_information_new_fork_label": "Fork",
   "pci_databases_general_information_new_fork_link": "Stwórz fork usługi",
-  "pci_databases_general_information_replicas_label": "Repliki",
-  "pci_databases_general_information_replicas_link": "Utwórz nową replikę",
   "pci_databases_general_information_certificate_label": "Certyfikat CA",
   "pci_databases_general_information_certificate_link": "Wyświetl",
   "pci_databases_general_information_certificate_download": "Pobierz",
-  "pci_databases_general_information_certificate_tooltip": "Twój certyfikat: <code>{{certificate}}</code>",
-  "pci_databases_general_information_n/a": "Nie dotyczy"
+  "pci_databases_general_information_certificate_tooltip": "Twój certyfikat: <code>{{certificate}}</code>"
 }

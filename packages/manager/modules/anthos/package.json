@@ -20,7 +20,7 @@
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.1.2",
     "@ovh-ux/ng-translate-async-loader": "^2.1.2",
-    "@ovh-ux/ui-kit": "^5.1.0",
+    "@ovh-ux/ui-kit": "^5.1.2",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-chart.js": "^1.1.1",

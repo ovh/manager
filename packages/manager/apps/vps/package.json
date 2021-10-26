@@ -23,8 +23,8 @@
   },
   "dependencies": {
     "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",
-    "@ovh-ux/manager-components": "^1.0.0",
     "@ovh-ux/manager-catalog-price": "^1.0.0",
+    "@ovh-ux/manager-components": "^1.0.0",
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.0.0",
@@ -52,7 +52,7 @@
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.4",
     "@ovh-ux/ng-ui-router-layout": "^4.0.3",
     "@ovh-ux/ufrontend": "^1.1.1 || ^2.0.0",
-    "@ovh-ux/ui-kit": "^5.1.0",
+    "@ovh-ux/ui-kit": "^5.1.2",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.8",

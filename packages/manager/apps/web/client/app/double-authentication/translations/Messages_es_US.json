@@ -1,7 +1,0 @@
-{
-  "doubleauth_modal_alert_title": "Código de emergencia",
-  "doubleauth_modal_alert_message": "Atención: usted ya no dispone de códigos de emergencia de un solo uso.",
-  "doubleauth_modal_alert_message_1": "Atención: usted solamente dispone de un código de emergencia de un solo uso.",
-  "doubleauth_modal_alert_message_other": "Atención: usted solamente dispone de <strong>{{t0}}</strong> códigos de emergencia de un solo uso.",
-  "doubleauth_modal_alert_message_regenerate": "¿Desea restablecer un nuevo set de códigos de emergencia?"
-}

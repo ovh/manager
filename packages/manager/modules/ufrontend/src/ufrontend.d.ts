@@ -1,4 +1,4 @@
-import { Environment } from '@ovh-ux/manager-config/dist/types/environment/environment';
+import { Environment } from '@ovh-ux/manager-config';
 import OvhMicroFrontendApplicationAPI from './api.application.class';
 import OvhMicroFrontendFragmentAPI from './api.fragment.class';
 import OvhMicroFrontend from './framework.class';

@@ -106,27 +106,27 @@ class ServerTrafficService {
       toKibi: true,
     });
 
+    const isQuotaUsed =
+      parseFloat(quotaSize.value) <= parseFloat(upsizedQuotaUsed.value);
+
     // If quota used > quotaSize we have to make sure remaining size is at zero.
-    const remainingSize =
-      quotaSize.value <= upsizedQuotaUsed.value
-        ? 0
-        : quotaSize.value - upsizedQuotaUsed.value;
+    const remainingSize = isQuotaUsed
+      ? 0
+      : quotaSize.value - upsizedQuotaUsed.value;
     const remainingSizeUnit = quotaSize.nonTranslatedUnit;
 
     // If quota used > quotaSize we have to make sure percent is not greater than 100.
-    const percent =
-      quotaSize.value <= upsizedQuotaUsed.value
-        ? 100
-        : (upsizedQuotaUsed.value / quotaSize.value) * 100;
+    const percent = isQuotaUsed
+      ? 100
+      : (upsizedQuotaUsed.value / quotaSize.value) * 100;
 
-    const overQuota = quotaSize.value <= upsizedQuotaUsed.value;
-    const nearQuota = overQuota && percent > 80;
+    const nearQuota = isQuotaUsed && percent > 80;
 
     return {
       unit: remainingSizeUnit,
       value: remainingSize,
       percent,
-      overQuota,
+      overQuota: isQuotaUsed,
       nearQuota,
       text: this.getQuotaText({
         unit: remainingSizeUnit,

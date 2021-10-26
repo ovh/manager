@@ -14,7 +14,7 @@ export default class AutoscalingController {
       return min < max;
     }
 
-    return desired > SCALE_DEFAULT_VALUES.LOWEST_MIN_VALUE;
+    return desired >= SCALE_DEFAULT_VALUES.LOWEST_MIN_VALUE;
   }
 
   /* @ngInject */

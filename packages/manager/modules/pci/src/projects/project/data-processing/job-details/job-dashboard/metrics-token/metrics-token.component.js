@@ -6,6 +6,7 @@ const component = {
     goBack: '<',
     projectId: '<',
     jobId: '<',
+    job: '<',
     metricsToken: '<',
   },
   template,

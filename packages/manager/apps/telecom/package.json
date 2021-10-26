@@ -75,7 +75,7 @@
     "@ovh-ux/ng-ui-router-line-progress": "^1.2.5",
     "@ovh-ux/ng-ui-router-title": "^3.0.2",
     "@ovh-ux/ufrontend": "^1.1.3 || ^2.0.0",
-    "@ovh-ux/ui-kit": "^5.1.0",
+    "@ovh-ux/ui-kit": "^5.1.2",
     "@uirouter/angularjs": "^1.0.23",
     "CSV-JS": "^1.0.0",
     "angular": "^1.7.5",

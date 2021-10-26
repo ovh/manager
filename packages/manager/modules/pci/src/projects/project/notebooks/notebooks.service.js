@@ -120,7 +120,7 @@ export default class NotebookService {
   getRegions(serviceName) {
     return this.$http
       .get(
-        `/cloud/project/${serviceName}/ai/capabilities/serving/region`,
+        `/cloud/project/${serviceName}/ai/capabilities/region`,
         NotebookService.getIcebergHeaders(),
       )
       .then(({ data }) => data);
