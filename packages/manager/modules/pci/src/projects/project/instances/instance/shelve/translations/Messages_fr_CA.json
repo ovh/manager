@@ -2,7 +2,8 @@
   "pci_projects_project_instances_instance_shelve_title": "Suspension de votre instance",
   "pci_projects_project_instances_instance_shelve_submit_label": "Confirmer",
   "pci_projects_project_instances_instance_shelve_cancel_label": "Annuler",
-  "pci_projects_project_instances_instance_shelve_content": "Vous allez suspendre votre instance {{ instance }}. Les ressources dédiées à votre instance Public Cloud seront relâchées mais son IP sera conservée. Les données de votre disque local seront stockées, et seul le stockage utilisé pour cela sera facturé. La durée de l'opération est en fonction de la taille de votre disque local. Vous pourrez réactiver votre instance à tout moment.",
+  "pci_projects_project_instances_instance_shelve_content": "Vous allez suspendre votre instance {{ instance }}. Les ressources dédiées à votre instance Public Cloud seront relâchées mais son IP sera conservée. Les données de votre disque local seront stockées, et seul le stockage utilisé pour cela sera facturé (1). La durée de l'opération est en fonction de la taille de votre disque local. Vous pourrez réactiver votre instance à tout moment.",
+  "pci_projects_project_instances_instance_shelve_content_asterisk_1": "(1) Attention : Pour les instances passées au mois, la facturation classique continuera tout de même, quelque soit le statut du service.",
   "pci_projects_project_instances_instance_shelve_success_inprogress_message": "L'instance {{ instance }} est en cours de suspension.",
   "pci_projects_project_instances_instance_shelve_success_message": "L'instance {{ instance }} a été suspendue.",
   "pci_projects_project_instances_instance_shelve_error_message": "Une erreur est survenue lors de la suspension de l'instance {{ instance }} : {{ message }}."
