@@ -3,6 +3,7 @@ import template from './vrack.html';
 
 export default {
   bindings: {
+    features: '<',
     goToMoveDialog: '<',
   },
   controller,

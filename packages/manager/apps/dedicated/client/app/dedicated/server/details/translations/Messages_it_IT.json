@@ -881,7 +881,6 @@
   "select_bandwidth_plan_summary": "Riepilogo dell’ordine",
   "plan_bandwidth": "{{bandwidth}} 50 Gbps illimitata e garantita",
   "plan_vrack-bandwidth": "{{bandwidth}} Gbps illimitata e garantita - Opzione vRack",
-  "plan_price_per_month": "+IVA/mese",
   "server_order_bandwidth_empty_plans": "Impossibile trovare soluzioni per eseguire l’aggiornamento",
   "select_traffic_type_label": "Seleziona un'offerta",
   "toggle_button_label_ultimate": "Ultimate",

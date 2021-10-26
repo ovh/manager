@@ -881,7 +881,6 @@
   "select_bandwidth_plan_summary": "Bestellübersicht",
   "plan_bandwidth": "{{bandwidth}} Gbit/s unbegrenzt und garantiert",
   "plan_vrack-bandwidth": "{{bandwidth}} Gbit/s unbegrenzt und garantiert - vRack-Option",
-  "plan_price_per_month": "/ Monat (zzgl. MwSt.)",
   "server_order_bandwidth_empty_plans": "Es konnte kein Angebot zum Upgraden gefunden werden",
   "select_traffic_type_label": "Wählen Sie ein Angebot aus",
   "toggle_button_label_ultimate": "Ultimate",

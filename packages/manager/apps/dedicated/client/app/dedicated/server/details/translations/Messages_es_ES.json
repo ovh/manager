@@ -881,7 +881,6 @@
   "select_bandwidth_plan_summary": "Resumen del pedido",
   "plan_bandwidth": "{{bandwidth}} Gb/s ilimitado y garantizado",
   "plan_vrack-bandwidth": "{{bandwidth}} Gb/s ilimitado y garantizado - Opción vRack",
-  "plan_price_per_month": "/mes + IVA",
   "server_order_bandwidth_empty_plans": "No se han podido encontrar planes para mejorar el existente.",
   "select_traffic_type_label": "Seleccione un servicio",
   "toggle_button_label_ultimate": "Ultimate",

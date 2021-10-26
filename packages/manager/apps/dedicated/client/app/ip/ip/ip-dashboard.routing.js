@@ -24,6 +24,15 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       breadcrumb: () => null,
       hideBreadcrumb: () => true,
+      orderIpAvailable: /* @ngInject */ (coreConfig, ovhFeatureFlipping) => {
+        const universe =
+          coreConfig.getUniverse() === 'server' ? 'server' : 'hpc';
+        return ovhFeatureFlipping
+          .checkFeatureAvailability(`ip:order:${universe}`)
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(`ip:order:${universe}`),
+          );
+      },
     },
   });
 

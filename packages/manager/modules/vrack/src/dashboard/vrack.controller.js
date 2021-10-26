@@ -16,6 +16,7 @@ import last from 'lodash/last';
 import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
 import merge from 'lodash/merge';
+import pickBy from 'lodash/pickBy';
 import reject from 'lodash/reject';
 import remove from 'lodash/remove';
 import startsWith from 'lodash/startsWith';
@@ -25,7 +26,12 @@ import without from 'lodash/without';
 
 import angular from 'angular';
 
-import { POLLING_INTERVAL, STATUS, VRACK_URLS } from './vrack.constant';
+import {
+  FEATURE_NAMES,
+  POLLING_INTERVAL,
+  STATUS,
+  VRACK_URLS,
+} from './vrack.constant';
 import arrowIcon from '../../assets/icon_vrack-mapper-arrows.svg';
 
 export default class VrackMoveDialogCtrl {
@@ -236,7 +242,7 @@ export default class VrackMoveDialogCtrl {
           allServices.dedicatedServerInterface = [];
         }
 
-        return allServices;
+        return this.getAvailableServices(allServices);
       });
   }
 
@@ -246,6 +252,12 @@ export default class VrackMoveDialogCtrl {
       [STATUS.ok, STATUS.delivered].includes(service.state) &&
       service.status === STATUS.ok
     );
+  }
+
+  getAvailableServices(allServices) {
+    return pickBy(allServices, (_, serviceType) => {
+      return this.features.isFeatureAvailable(FEATURE_NAMES[serviceType]);
+    });
   }
 
   getVrackServices() {
@@ -328,7 +340,7 @@ export default class VrackMoveDialogCtrl {
           allServices.dedicatedServerInterface = [];
         }
 
-        return allServices;
+        return this.getAvailableServices(allServices);
       });
   }
 

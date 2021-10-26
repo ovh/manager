@@ -538,7 +538,7 @@
                     <oui-action-menu-item
                         data-href="{{:: $ctrl.changeOwnerUrl }}"
                         data-external
-                        data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
+                        data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED' || !$ctrl.changeOwnerAvailable"
                     >
                         <span data-translate="core_change_owner"></span>
                     </oui-action-menu-item>
@@ -808,7 +808,7 @@
                     <oui-action-menu-item
                         data-href="{{:: $ctrl.changeOwnerUrl }}"
                         data-external
-                        data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
+                        data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED' || !$ctrl.changeOwnerAvailable"
                     >
                         <span data-translate="core_change_owner"></span>
                     </oui-action-menu-item>
