@@ -31,6 +31,7 @@ export default /* @ngInject */
   IpOrganisation,
   IpReverse,
   IpVirtualMac,
+  orderIpAvailable,
   Validator,
 ) => {
   $scope.currentView = 'table';
@@ -96,9 +97,10 @@ export default /* @ngInject */
   }
 
   $scope.canImportIPFO = () => ipFeatureAvailability.allowIPFailoverImport();
-  $scope.canOrderIPFO = () => ipFeatureAvailability.allowIPFailoverOrder();
+  $scope.canOrderIPFO = () =>
+    ipFeatureAvailability.allowIPFailoverOrder() && orderIpAvailable;
   $scope.canOrderAgoraIPFO = () =>
-    ipFeatureAvailability.allowIPFailoverAgoraOrder();
+    ipFeatureAvailability.allowIPFailoverAgoraOrder() && orderIpAvailable;
 
   $scope.singleService = () =>
     $scope.serviceName !== '_ALL' && $scope.serviceName !== 'FAILOVER';

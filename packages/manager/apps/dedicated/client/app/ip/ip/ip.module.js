@@ -1,3 +1,5 @@
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
+
 import routing from './ip-dashboard.routing';
 
 import antihack from './antihack/antihack.module';
@@ -27,6 +29,7 @@ angular
     exportCsv,
     firewall,
     mitigation,
+    ngOvhFeatureFlipping,
     organisation,
     reverse,
     virtualMac,
