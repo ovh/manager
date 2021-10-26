@@ -18,7 +18,8 @@ export default /* @ngInject */ ($stateProvider) => {
           .sort('date', 'DESC')
           .limit(1)
           .execute(null, true)
-          .$promise.then((lastBill) => head(lastBill.data)),
+          .$promise.then((lastBill) => head(lastBill.data))
+          .catch(() => ({})),
       shortcuts: /* @ngInject */ ($state, coreConfig, currentUser) =>
         USER_DASHBOARD_SHORTCUTS.filter(
           ({ regions, isAvailable }) =>
