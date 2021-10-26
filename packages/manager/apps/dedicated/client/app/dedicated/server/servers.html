@@ -75,10 +75,9 @@
                 data-translate="{{:: 'server_configuration_state_' + $ctrl.constructor.toUpperSnakeCase($value) }}"
             ></span>
         </oui-datagrid-column>
-        <oui-datagrid-topbar>
+        <oui-datagrid-topbar data-ng-if="$ctrl.isOrderAvailable">
             <a
                 class="oui-button oui-button_secondary oui-button_icon-right"
-                data-ng-if="$ctrl.isOrderAvailable"
                 data-track-on="click"
                 data-track-type="action"
                 data-track-name="dedicated::dedicated::servers::order"
