@@ -5,7 +5,7 @@ export default class ExchangeDomainMxAutoconfigCtrl {
     wucExchange,
     ExchangeDomains,
     EXCHANGE_MX_CONFIG,
-    constants,
+    coreConfig,
     messaging,
     navigation,
     $translate,
@@ -16,7 +16,7 @@ export default class ExchangeDomainMxAutoconfigCtrl {
       wucExchange,
       ExchangeDomains,
       EXCHANGE_MX_CONFIG,
-      constants,
+      coreConfig,
       messaging,
       navigation,
       $translate,
@@ -34,10 +34,10 @@ export default class ExchangeDomainMxAutoconfigCtrl {
       .then((data) => {
         this.domainDiag = data;
 
-        if (constants.target === 'CA') {
-          this.domainDiag.mx.spam = EXCHANGE_MX_CONFIG.CA.spam;
-        } else if (constants.target === 'EU') {
+        if (coreConfig.isRegion('EU')) {
           this.domainDiag.mx.spam = EXCHANGE_MX_CONFIG.EU.spam;
+        } else if (coreConfig.isRegion('CA')) {
+          this.domainDiag.mx.spam = EXCHANGE_MX_CONFIG.CA.spam;
         }
 
         if (this.domainDiag.isOvhDomain) {
