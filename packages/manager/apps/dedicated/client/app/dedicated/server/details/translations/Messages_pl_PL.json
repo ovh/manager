@@ -881,7 +881,6 @@
   "select_bandwidth_plan_summary": "Podsumowanie zamówienia",
   "plan_bandwidth": "{{bandwidth}} Gbps bez limitu i z gwarancją przepustowości",
   "plan_vrack-bandwidth": "{{bandwidth}} Gbps bez limitu i z gwarancją przepustowości - opcja vRack",
-  "plan_price_per_month": "netto/m-c",
   "server_order_bandwidth_empty_plans": "Nie można znaleźć planów aktualizacji",
   "select_traffic_type_label": "Wybierz ofertę",
   "toggle_button_label_ultimate": "Ultimate",

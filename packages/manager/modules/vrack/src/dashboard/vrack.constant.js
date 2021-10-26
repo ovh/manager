@@ -26,6 +26,19 @@ export const VRACK_URLS = {
   },
 };
 
+export const FEATURE_NAMES = {
+  cloudProject: 'public-cloud',
+  dedicatedCloud: 'dedicated-cloud',
+  dedicatedCloudDatacenter: 'dedicated-cloud',
+  dedicatedServer: 'dedicated-server',
+  dedicatedServerInterface: 'dedicated-server',
+  ip: 'ip',
+  ipLoadbalancing: 'ip-load-balancer',
+  legacyVrack: 'vrack',
+  managedBareMetal: 'managed-bare-metal',
+  managedBareMetalDatacenter: 'managed-bare-metal',
+};
+
 export const POLLING_INTERVAL = 500;
 
 export const STATUS = {
@@ -34,6 +47,7 @@ export const STATUS = {
 };
 
 export default {
+  FEATURE_NAMES,
   POLLING_INTERVAL,
   STATUS,
   VRACK_URLS,

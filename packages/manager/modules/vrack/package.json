@@ -36,6 +36,7 @@
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.4",
+    "@ovh-ux/ng-ovh-feature-flipping": "^1.0.3",
     "@ovh-ux/ng-ovh-toaster": "^2.0.2",
     "@ovh-ux/ng-translate-async-loader": "^2.1.2",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.4",

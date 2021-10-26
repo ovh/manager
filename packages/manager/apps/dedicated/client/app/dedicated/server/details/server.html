@@ -35,6 +35,7 @@
         ></oui-header-tabs-item>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.getTabItemUrl('dns') }}"
+            data-ng-if="$ctrl.features.isFeatureAvailable('dedicated-server:dns')"
             active="$ctrl.getTabItemUrl('dns') === $ctrl.currentActiveLink()"
             data-disabled="server.isExpired"
             ><span data-translate="server_tab_dns"></span
@@ -43,7 +44,7 @@
             data-href="{{:: $ctrl.getTabItemUrl('ftpBackup') }}"
             active="$ctrl.getTabItemUrl('ftpBackup') === $ctrl.currentActiveLink()"
             data-disabled="server.isExpired"
-            data-ng-if="worldPart !== 'US'"
+            data-ng-if="$ctrl.features.isFeatureAvailable('dedicated-server:backup')"
             ><span data-translate="server_tab_ftp_backup"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
@@ -56,7 +57,7 @@
             data-href="{{:: $ctrl.getTabItemUrl('firewall') }}"
             active="$ctrl.getTabItemUrl('firewall') === $ctrl.currentActiveLink()"
             data-disabled="server.isExpired"
-            data-ng-if="worldPart !== 'US'"
+            data-ng-if="$ctrl.features.isFeatureAvailable('dedicated-server:firewall')"
             ><span data-translate="server_tab_firewall"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
