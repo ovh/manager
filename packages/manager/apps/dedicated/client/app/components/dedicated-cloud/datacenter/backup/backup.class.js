@@ -24,6 +24,7 @@ export default class Backup {
     scheduleHour,
     state,
     vmwareVmId,
+    offerName,
   }) {
     Object.assign(this, {
       backupDurationInReport,
@@ -41,8 +42,10 @@ export default class Backup {
       scheduleHour,
       state,
       vmwareVmId,
+      offerName,
     });
 
+    this.offerName = this.offerName || this.backupOffer;
     this.backupSizeInReport = backupSizeInReport || false;
     this.fullDayInReport = fullDayInReport || false;
     this.restorePointInReport = restorePointInReport || false;
