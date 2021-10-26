@@ -20,7 +20,8 @@ export default class SelectCheckboxesCtrl {
     event.preventDefault();
 
     switch (event.keyCode) {
-      case (13, 32):
+      case 13:
+      case 32:
         this.toggleList();
         break;
       default:

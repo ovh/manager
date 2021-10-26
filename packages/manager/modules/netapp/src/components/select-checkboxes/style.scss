@@ -13,6 +13,7 @@ select-checkboxes {
     position: relative;
 
     select {
+      min-width: 7rem;
       width: 100%;
       font-weight: bold;
     }
@@ -63,8 +64,9 @@ select-checkboxes {
   }
 
   .checkbox_list {
+    position: absolute;
     border: 1px solid $p-100;
-    expanded: true;
+    z-index: 9999;
 
     label {
       display: block;
