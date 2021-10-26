@@ -83,7 +83,7 @@ export default class BmServerComponentsOsInstallOvhCtrl {
       saveSelectDistribution: null,
       selectLanguage: null,
       diskGroup: null,
-      customInstall: false, // load personnalisation partition screen
+      customInstall: true, // load personnalisation partition screen
       // STEP HARD RAID
       hardwareRaid: {
         controller: null, // RAID controller
