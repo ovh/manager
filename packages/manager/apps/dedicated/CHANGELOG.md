@@ -1,3 +1,18 @@
+# [17.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.1.3...@ovh-ux/manager-dedicated@17.2.0) (2021-10-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1239] ([51239cf](https://github.com/ovh/manager/commit/51239cfb10e50f2d78aa4b42ae07d8e6a2021bc7))
+* add corresponding translations for netapp product ([f6b7039](https://github.com/ovh/manager/commit/f6b70399ae82b7c8a091a18a8d71d387c3043674))
+
+
+### Features
+
+* add `@ovh-ux/manager-netapp` module ([b544301](https://github.com/ovh/manager/commit/b544301a11aa39cecce6abff10c376911a792ab1))
+
+
+
 ## [17.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.1.2...@ovh-ux/manager-dedicated@17.1.3) (2021-10-26)
 
 

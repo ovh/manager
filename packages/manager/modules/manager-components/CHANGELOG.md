@@ -1,3 +1,18 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.3.0...@ovh-ux/manager-components@1.4.0) (2021-10-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1239] ([51239cf](https://github.com/ovh/manager/commit/51239cfb10e50f2d78aa4b42ae07d8e6a2021bc7))
+
+
+### Features
+
+* **inline-editor:** add inline property editor ([ee5b411](https://github.com/ovh/manager/commit/ee5b411fd7660ad76fbbf2dc6a5b0c26d8e46b8f))
+* **region:** add region selector component ([e11214e](https://github.com/ovh/manager/commit/e11214e1bb7e5cb406cb2b828f5c90abe12ebc09))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.2.0...@ovh-ux/manager-components@1.3.0) (2021-10-04)
 
 

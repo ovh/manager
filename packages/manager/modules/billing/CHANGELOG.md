@@ -1,3 +1,13 @@
+# [0.3.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.3.0-alpha.1...@ovh-ux/manager-billing@0.3.0-alpha.2) (2021-10-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1239] ([51239cf](https://github.com/ovh/manager/commit/51239cfb10e50f2d78aa4b42ae07d8e6a2021bc7))
+* add corresponding translations for netapp product ([f6b7039](https://github.com/ovh/manager/commit/f6b70399ae82b7c8a091a18a8d71d387c3043674))
+
+
+
 # [0.3.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.3.0-alpha.0...@ovh-ux/manager-billing@0.3.0-alpha.1) (2021-10-26)
 
 
