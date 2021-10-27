@@ -5,17 +5,31 @@ export default class HostingCdnSharedConfirmController {
     this.Alerter = Alerter;
   }
 
+  static getOptions(model) {
+    return Object.values(model.options)
+      .reduce(
+        (options, optionsTypes) =>
+          options.concat(Object.values(optionsTypes).map(({ api }) => api)),
+        [],
+      )
+      .filter((option) => option !== null);
+  }
+
   static getSettingsToValidate(model, oldModel) {
-    return Object.keys(model)
-      .filter((key) => !angular.equals(oldModel[key], model[key]))
-      .map((key) => model[key]);
+    const options = HostingCdnSharedConfirmController.getOptions(model);
+    const oldOptions = HostingCdnSharedConfirmController.getOptions(oldModel);
+
+    return options.filter((option, index) => {
+      return !angular.equals(option, oldOptions[index]);
+    });
   }
 
   onConfirm() {
-    this.loading = true;
     this.trackClick(
       'web::hosting::cdn::configure::apply-configuration::confirm',
     );
+
+    this.loading = true;
     const settings = HostingCdnSharedConfirmController.getSettingsToValidate(
       this.model,
       this.oldModel,
@@ -45,6 +59,6 @@ export default class HostingCdnSharedConfirmController {
   }
 
   static getCorsOriginsList(origins) {
-    return origins.split(',');
+    return (origins || '').split(',');
   }
 }

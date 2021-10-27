@@ -28,6 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
           ),
         ),
+
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
 
       model: /* @ngInject */ ($transition$) => $transition$.params().model,
