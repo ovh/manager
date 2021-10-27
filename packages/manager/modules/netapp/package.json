@@ -12,6 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
+    "@ovh-ux/manager-config": "^6.1.0",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "jsurl": "^0.1.5",
     "lodash-es": "^4.17.21"
@@ -35,6 +36,7 @@
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
+    "moment": "^2.29.1",
     "oclazyload": "^1.1.0"
   }
 }
