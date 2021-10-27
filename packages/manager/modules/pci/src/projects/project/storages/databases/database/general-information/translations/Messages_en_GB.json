@@ -57,5 +57,6 @@
   "pci_databases_general_information_certificate_link": "View",
   "pci_databases_general_information_certificate_download": "Download",
   "pci_databases_general_information_certificate_tooltip": "Your certificate: <code>{{certificate}}</code>",
-  "pci_databases_general_information_n/a": "Not applicable"
+  "pci_databases_general_information_n/a": "Not applicable",
+  "pci_databases_general_information_SSL_TLS": "SSL/TLS"
 }
