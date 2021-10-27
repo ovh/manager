@@ -1,8 +1,8 @@
 <div ui-view="nodeView">
     <oui-header
         class="mb-3"
-        heading="{{:: $ctrl.cluster.targetSpec.name }}"
-        description="{{:: $ctrl.serviceName }}"
+        heading="{{:: $ctrl.serviceDetails.resource.displayName }}"
+        description="{{:: $ctrl.cluster.targetSpec.name }}"
     >
         <oui-header-tabs>
             <oui-header-tabs-item

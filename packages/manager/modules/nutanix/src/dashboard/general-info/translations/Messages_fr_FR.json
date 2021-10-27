@@ -1,0 +1,17 @@
+{
+  "nutanix_dashboard_general_info": "Informations générales",
+  "nutanix_dashboard_cluster_name": "Nom",
+  "nutanix_dashboard_cluster_edit_button": "Modifier",
+  "nutanix_dashboard_cluster_commercial_name": "Nom commercial",
+  "nutanix_dashboard_cluster_commercial_name_housing": "Housing",
+  "nutanix_dashboard_cluster_admin_interface": "Interface d’administration",
+  "nutanix_dashboard_cluster_access_admin_interface": "Accéder à Prism Central",
+  "nutanix_dashboard_cluster_licence": "Licence",
+  "nutanix_dashboard_cluster_deployment_mode": "Mode de déploiement",
+  "nutanix_dashboard_cluster_rack_awareness_info": "Votre cluster Nutanix est déployé dans plusieurs baies.",
+  "nutanix_dashboard_cluster_node_awareness_info": "Votre cluster Nutanix est déployé dans une seule baie.",
+  "nutanix_dashboard_cluster_replication_factor": "Facteur de réplication",
+  "nutanix_dashboard_cluster_datacenter": "Datacentre",
+  "nutanix_dashboard_cluster_rack": "Baie",
+  "nutanix_dashboard_cluster_server_id": "ID du serveur"
+}

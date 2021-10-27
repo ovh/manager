@@ -14,4 +14,8 @@ export default class Cluster {
   getFirstNode() {
     return this.targetSpec?.nodes[0]?.server;
   }
+
+  isRackAwareness() {
+    return this.targetSpec.rackAwareness;
+  }
 }

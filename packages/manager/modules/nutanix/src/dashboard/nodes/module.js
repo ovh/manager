@@ -3,6 +3,8 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
+import { region } from '@ovh-ux/manager-components';
+
 import routing from './routing';
 import node from './node';
 import component from './component';
@@ -17,6 +19,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     node,
+    region,
   ])
   .config(routing)
   .component('nutanixNodes', component)

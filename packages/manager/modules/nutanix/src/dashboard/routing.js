@@ -9,6 +9,10 @@ export default /* @ngInject */ ($stateProvider) => {
         NutanixService.getCluster(serviceName),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
+      serviceInfo: /* @ngInject */ (NutanixService, serviceName) =>
+        NutanixService.getServiceInfo(serviceName),
+      serviceDetails: /* @ngInject */ (NutanixService, serviceInfo) =>
+        NutanixService.getServiceDetails(serviceInfo.serviceId),
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
   });
