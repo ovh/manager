@@ -40,6 +40,8 @@
   "server_sidebar_order_item_vps_title": "Serveurs privés virtuels",
   "server_sidebar_item_web_paas_title": "Web PaaS",
   "server_sidebar_item_web_paas_all_accounts_title": "Tous les projets",
+  "server_sidebar_item_storage_backup_title": "Storage et Backup",
+  "server_sidebar_item_enterprise_file_storage_title": "Enterprise File Storage",
   "server_sidebar_order_item_dedicated_server_title": "Serveur Dédié",
   "server_sidebar_order_item_cloud_project_title": "Projet Cloud",
   "server_sidebar_order_item_dedicated_cloud_title": "VMware",
