@@ -3,7 +3,7 @@
   "netapp_dashboard_information": "Informations",
   "netapp_dashboard_information_name": "Nom",
   "netapp_dashboard_information_id": "ID",
-  "netapp_dashboard_information_region": "Localisation du datacente",
+  "netapp_dashboard_information_region": "Localisation du datacenter",
   "netapp_dashboard_information_performance_level": "Niveau de performance",
   "netapp_dashboard_information_quota": "Taille du stockage",
   "netapp_dashboard_information_quota_formatted": "{{ quota }} Go",
