@@ -22,3 +22,19 @@ export const SHARED_CDN_GET_MORE_INFO = {
   TN: 'https://www.ovh.com/tn/hebergement-web/',
   IE: 'https://www.ovh.ie/web-hosting/cdn.xml',
 };
+
+export const SHARED_CDN_RANGE = {
+  BASIC: 'BASIC',
+  SECURITY: 'SECURITY',
+  ADVANCED: 'ADVANCED',
+};
+
+export const SHARED_CDN_OPTIONS = {
+  QUERY_STRING: {
+    SORT_PARAMS: { SORT: 'sorted', IGNORED: 'ignored' },
+  },
+  MOBILE_REDIRECT: {
+    STILL_URL: 'still',
+    KEEP_URL: 'keep',
+  },
+};

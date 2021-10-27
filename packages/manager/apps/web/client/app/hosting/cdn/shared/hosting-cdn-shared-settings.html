@@ -2,99 +2,316 @@
     <div data-ovh-alert="cdnSharedSettingsError"></div>
 
     <div>
-        <!--Description-->
-        <h2
-            class="mb-3"
-            data-translate="hosting_cdn_shared_title"
-            data-translate-values="{ 'range': $ctrl.cdnRange, 'domainName': $ctrl.domainName }"
-        ></h2>
-        <p class="oui-paragraph" data-translate="hosting_cdn_shared_info"></p>
+        <!--Title and description-->
+        <div class="oui-box oui-box_light border-0 pl-0">
+            <h3 class="oui-box__heading" data-translate="hosting_cdn_shared_title" data-translate-values="{ 'range': $ctrl.cdnRange, 'domainName': $ctrl.domainName }"></h3>
+            <p data-translate="hosting_cdn_shared_info"></p>
 
-        <oui-message type="info">
-            <span data-translate="hosting_cdn_shared_help"></span>
-            <a
-                class="oui-link"
-                data-ng-href="{{:: $ctrl.guideLinkHref }}"
-                target="_blank"
-                rel="noopener"
-                data-translate="hosting_cdn_shared_help_link"
-            >
-            </a>
-        </oui-message>
+            <oui-message type="info">
+                <span data-translate="hosting_cdn_shared_help"></span>
+                <a
+                    class="oui-link"
+                    data-ng-href="{{:: $ctrl.guideLinkHref }}"
+                    target="_blank"
+                    rel="noopener"
+                    data-translate="hosting_cdn_shared_help_link"
+                >
+                </a>
+            </oui-message>
+        </div>
 
+
+        <!--PERFORMANCE OPTIONS-->
         <h3
             data-translate="hosting_cdn_shared_option_category_performance"
         ></h3>
+
         <!--Always online-->
-        <div class="mb-4">
-            <p class="oui-heading_5 mb-1"><strong>Always online</strong></p>
-            <div
-                class="oui-paragraph"
-                data-translate="hosting_cdn_shared_option_always_online_info"
-            ></div>
+        <div class="oui-box oui-box_light border-0 pl-0 pt-0"
+             data-ng-init="alwaysOnline = $ctrl.model.options.perf.always_online">
+
+            <h4 class="oui-box__heading" data-translate="hosting_cdn_shared_option_always_online_title"></h4>
+            <p data-translate="hosting_cdn_shared_option_always_online_info"></p>
+
             <oui-switch
-                disabled="true"
-                model="$ctrl.model.alwaysOnline.enabled"
+                disabled="!alwaysOnline.operate"
+                model="alwaysOnline.enabled"
             >
             </oui-switch>
             <strong
-                data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.alwaysOnline.enabled)"
+                data-ng-bind="$ctrl.getSwitchBtnStatusText(alwaysOnline.enabled)"
             ></strong>
         </div>
 
         <!--HTTP/2-->
-        <div class="mb-4">
-            <p class="oui-heading_5 mb-1"><strong>HTTP/2</strong></p>
-            <div
-                class="oui-paragraph"
-                data-translate="hosting_cdn_shared_option_http_https_info"
-            ></div>
-            <oui-switch disabled="true" model="$ctrl.model.http.enabled">
+        <div class="oui-box oui-box_light border-0 pl-0 pt-0"
+             data-ng-init="httpOption = $ctrl.model.options.perf.http">
+
+            <h4 class="oui-box__heading" data-translate="hosting_cdn_shared_option_http_https_title"></h4>
+            <p data-translate="hosting_cdn_shared_option_http_https_info"></p>
+
+            <oui-switch
+                disabled="!httpOption.operate"
+                model="httpOption.enabled"
+            >
             </oui-switch>
             <strong
-                data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.http.enabled)"
+                data-ng-bind="$ctrl.getSwitchBtnStatusText(httpOption.enabled)"
             ></strong>
         </div>
 
         <!--BROTLI-->
-        <div class="mb-4">
-            <p class="oui-heading_5 mb-1"><strong>Brotli</strong></p>
-            <div
-                class="oui-paragraph"
-                data-translate="hosting_cdn_shared_option_brotli_info"
-            ></div>
+        <div class="oui-box oui-box_light border-0 pl-0 pt-0"
+             data-ng-if="$ctrl.getOption($ctrl.model.optionTypes.PERF, $ctrl.cdnOptionTypeEnum.BROTLI).api"
+             data-ng-init="brotli = $ctrl.getOption($ctrl.model.optionTypes.PERF, $ctrl.cdnOptionTypeEnum.BROTLI).api">
+
+            <h4 class="oui-box__heading" data-translate="hosting_cdn_shared_option_brotli_title"></h4>
+            <p data-translate="hosting_cdn_shared_option_brotli_info"></p>
+
             <oui-switch
-                disabled="!$ctrl.model.brotli"
-                model="$ctrl.model.brotli.enabled"
+                disabled="!brotli"
+                model="brotli.enabled"
             >
             </oui-switch>
             <strong
-                data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.brotli.enabled)"
+                data-ng-bind="$ctrl.getSwitchBtnStatusText(brotli.enabled)"
             ></strong>
         </div>
 
+        <!--HTTP Geo-location-->
+        <div class="oui-box oui-box_light border-0 pl-0 pt-0"
+             data-ng-if="$ctrl.getOption($ctrl.model.optionTypes.PERF, $ctrl.cdnOptionTypeEnum.GEO_HEADERS).api"
+             data-ng-init="geoHeaders = $ctrl.getOption($ctrl.model.optionTypes.PERF, $ctrl.cdnOptionTypeEnum.GEO_HEADERS).api">
+
+            <h4 class="oui-box__heading" data-translate="hosting_cdn_shared_option_http_geolocation_title"></h4>
+            <p data-translate="hosting_cdn_shared_option_http_geolocation_info"></p>
+
+            <oui-switch
+                disabled="!geoHeaders"
+                model="geoHeaders.enabled"
+                on-change="$ctrl.onGeoLocationOptionChange(modelValue)"
+            >
+            </oui-switch>
+            <strong
+                data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.options.perf.geo_headers.api.enabled)"
+            ></strong>
+        </div>
+
+        <!--Prefetch-->
+        <div class="oui-box oui-box_light border-0 pl-0 pt-0"
+             data-ng-if="$ctrl.getOption($ctrl.model.optionTypes.PERF, $ctrl.cdnOptionTypeEnum.PREFETCH).api"
+             data-ng-init="prefetch = $ctrl.getOption($ctrl.model.optionTypes.PERF, $ctrl.cdnOptionTypeEnum.PREFETCH).api">
+
+            <h4 class="oui-box__heading" data-translate="hosting_cdn_shared_option_prefetch_title"></h4>
+            <p data-translate="hosting_cdn_shared_option_prefetch_info"></p>
+
+            <oui-switch
+                disabled="!prefetch"
+                model="prefetch.enabled"
+                on-change="$ctrl.onPrefetchOptionChange(modelValue)"
+            >
+            </oui-switch>
+            <strong
+                data-ng-bind="$ctrl.getSwitchBtnStatusText(prefetch.enabled)"
+            ></strong>
+        </div>
+
+        <!--Mobile redirect-->
+        <div class="oui-box oui-box_light border-0 pl-0 pt-0"
+             data-ng-if="$ctrl.getOption($ctrl.model.optionTypes.PERF, $ctrl.cdnOptionTypeEnum.MOBILE_REDIRECT).api"
+             data-ng-init="mobileRedirect = $ctrl.getOption($ctrl.model.optionTypes.PERF, $ctrl.cdnOptionTypeEnum.MOBILE_REDIRECT)">
+
+            <h4 class="oui-box__heading" data-translate="hosting_cdn_shared_option_mobile_redirect_title"></h4>
+            <p data-translate="hosting_cdn_shared_option_mobile_redirect_info"></p>
+
+            <!--Mobile redirect settings-->
+            <div>
+                <oui-switch
+                    disabled="!mobileRedirect"
+                    model="mobileRedirect.api.enabled"
+                >
+                </oui-switch>
+                <strong
+                    data-ng-bind="$ctrl.getSwitchBtnStatusText(mobileRedirect.api.enabled)"
+                ></strong>
+
+                <!--Redirect ui-->
+                <div data-ng-if="mobileRedirect.api.enabled">
+                    <label class="mt-2 oui-select">
+                        <select
+                            class="oui-select__input"
+                            data-ng-init="mobileRedirectName = 'mobileRedirectName'"
+                            data-ng-attr-name="{{mobileRedirectName}}"
+                            data-ng-attr-id="{{mobileRedirectName}}"
+                            data-ng-model="mobileRedirect.selected"
+                            data-ng-change="$ctrl.onMobileRedirectStrategyChange()"
+                            required
+                        >
+                            <option
+                                ng-repeat="redirectionOption in mobileRedirect.redirectOptions track by $index"
+                                data-ng-bind=":: ('hosting_cdn_shared_option_mobile_redirect_strategy_' + redirectionOption) | translate"
+                                value="{{redirectionOption}}"
+                            >
+                            </option>
+                        </select>
+                        <span
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></span>
+                    </label>
+
+                    <input
+                        type="text"
+                        class="mt-2 oui-input"
+                        data-ng-if="mobileRedirect.api.config.followUri"
+                        data-ng-init="labelKeyId = 'followUriKey'"
+                        data-ng-attr-name="{{labelKeyId}}"
+                        data-ng-attr-id="{{labelKeyId}}"
+                        data-ng-model="mobileRedirect.api.config.destination"
+                    />
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!--CACHE OPTIONS-->
         <h3 data-translate="hosting_cdn_shared_option_category_cache"></h3>
 
-        <!--DEV-MODE-->
-        <div class="mb-4">
-            <p class="oui-heading_5 mb-1"><strong>Dev-mode</strong></p>
-            <div
-                class="oui-paragraph"
-                data-translate="hosting_cdn_shared_option_dev_mode_info"
-            ></div>
-            <oui-switch
-                disabled="!$ctrl.model.devmode"
-                model="$ctrl.model.devmode.enabled"
-            >
-            </oui-switch>
+        <!--Dev-mode-->
+        <div class="oui-box oui-box_light border-0 pl-0 pt-0"
+             data-ng-if="$ctrl.getOption($ctrl.model.optionTypes.CACHE, $ctrl.cdnOptionTypeEnum.DEVMODE).api"
+             data-ng-init="devmode = $ctrl.getOption($ctrl.model.optionTypes.CACHE, $ctrl.cdnOptionTypeEnum.DEVMODE).api">
+
+            <h4 class="oui-box__heading" data-translate="hosting_cdn_shared_option_dev_mode_title"></h4>
+            <p data-translate="hosting_cdn_shared_option_dev_mode_info"></p>
+
+            <oui-switch disabled="!devmode" model="devmode.enabled"></oui-switch>
             <strong
-                data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.devmode.enabled)"
+                data-ng-bind="$ctrl.getSwitchBtnStatusText(devmode.enabled)"
             ></strong>
         </div>
 
-        <!--CACHE RULE-->
+        <!--Advanced flush-->
+        <div class="oui-box oui-box_light border-0 pl-0 pt-0"
+             data-ng-init="advancedPurge = $ctrl.model.options.cache.advanced_purge">
+            <h4 class="oui-box__heading" data-translate="hosting_cdn_shared_option_advanced_flush_title"></h4>
+            <p data-translate="hosting_cdn_shared_option_advanced_flush_info"></p>
+
+            <oui-switch
+                disabled="advancedPurge.operate"
+                model="advancedPurge.enabled"
+                on-change="$ctrl.onAdvancedFlushOptionChange(advancedPurge)"
+            >
+            </oui-switch>
+            <strong
+                data-ng-bind="$ctrl.getSwitchBtnStatusText(advancedPurge.enabled)"
+            ></strong>
+        </div>
+
+        <!--Query string-->
+        <div class="oui-box oui-box_light border-0 pl-0 pt-0"
+             data-ng-if="$ctrl.getOption($ctrl.model.optionTypes.CACHE, $ctrl.cdnOptionTypeEnum.QUERYSTRING).api"
+             data-ng-init="queryString = $ctrl.getOption($ctrl.model.optionTypes.CACHE, $ctrl.cdnOptionTypeEnum.QUERYSTRING)">
+
+            <h4 class="oui-box__heading" data-translate="hosting_cdn_shared_option_query_string_title"></h4>
+            <p data-translate="hosting_cdn_shared_option_query_string_info"></p>
+
+            <!--query string option-->
+            <div>
+                <oui-switch
+                    disabled="!queryString.api"
+                    model="queryString.api.enabled"
+                    on-change="$ctrl.onQueryStringOptionChange(modelValue)"
+                >
+                </oui-switch>
+                <strong
+                    data-ng-bind="$ctrl.getSwitchBtnStatusText(queryString.enabled)"
+                ></strong>
+                <div>
+                    <p class="mb-0" data-translate="hosting_cdn_shared_option_query_string_sort_ignored"></p>
+                    <p class="mb-0" data-translate="hosting_cdn_shared_option_query_string_sort_true"></p>
+                    <p class="mb-0" data-translate="hosting_cdn_shared_option_query_string_sort_false"></p>
+                </div>
+
+                <oui-field class="mb-0" data-size="m">
+                    <label class="mt-2 oui-select">
+                        <select
+                            class="oui-select__input"
+                            data-ng-init="queryStringOption = 'queryStringOption'"
+                            data-ng-attr-name="{{queryStringOption}}"
+                            data-ng-attr-id="{{queryStringOption}}"
+                            data-ng-model="queryString.api.config.queryParameters"
+                            data-ng-change="$ctrl.onQueryStringParamChange()"
+                            required
+                        >
+                            <option
+                                ng-repeat="sortOption in queryString.sortOptions track by $index"
+                                data-ng-bind=":: ('hosting_cdn_shared_option_query_string_list_' + sortOption) | translate"
+                                value="{{sortOption}}"
+                            >
+                            </option>
+                        </select>
+                        <span
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></span>
+                    </label>
+                </oui-field>
+            </div>
+        </div>
+
+        <!--Prewarm-->
+        <div class="oui-box oui-box_light border-0 pl-0 pt-0"
+             data-ng-if="$ctrl.getOption($ctrl.model.optionTypes.CACHE, $ctrl.cdnOptionTypeEnum.PREWARM).api"
+             data-ng-init="prewarm = $ctrl.getOption($ctrl.model.optionTypes.CACHE, $ctrl.cdnOptionTypeEnum.PREWARM).api">
+
+            <h4 class="oui-box__heading" data-translate="hosting_cdn_shared_option_prewarm_title"></h4>
+            <p data-translate="hosting_cdn_shared_option_prewarm_info"></p>
+
+            <!--Prewarm option-->
+            <div>
+                <oui-switch
+                    disabled="!prewarm"
+                    model="prewarm.enabled"
+                    on-change="$ctrl.onPrewarmOptionChange(modelValue)"
+                >
+                </oui-switch>
+                <strong
+                    data-ng-bind="$ctrl.getSwitchBtnStatusText(prewarm.enabled)"
+                ></strong>
+
+                <div class="mt-3">
+                    <p class="mb-0"><strong data-translate="hosting_cdn_shared_option_prewarm_quota"></strong></p>
+                    <p data-ng-bind="$ctrl.getPrewarmQuotaUsage()"></p>
+                    <progress
+                        class="w-25 oui-progress oui-progress_info"
+                        value="prewarm.extra.usage"
+                        max="prewarm.extra.quota">
+                    </progress>
+
+                    <oui-button
+                        variant="primary"
+                        size="m"
+                        data-disabled="!prewarm.enabled"
+                        data-on-click="$ctrl.onPrewarmOptionClick()">
+                        <span data-translate="hosting_cdn_shared_option_prewarm_btn_edit_urls"></span>
+                    </oui-button>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <!--CACHE RULES TABLE-->
         <div class="mb-4">
-            <p class="oui-heading_5 mb-1"><strong>Cache rule</strong></p>
+            <p class="oui-heading_5 mb-1">
+                <strong data-translate="hosting_cdn_shared_option_cache_rule_title"></strong>
+            </p>
             <oui-button
                 class="mb-1"
                 variant="secondary"
@@ -209,13 +426,16 @@
             </div>
         </div>
 
-        <div data-ng-if="::$ctrl.hasSecurityOptions($ctrl.model)">
+        <!--SECURITY OPTIONS-->
+        <div data-ng-if=":: $ctrl.hasSecurityOptions($ctrl.model)">
             <h3
                 data-translate="hosting_cdn_shared_option_category_security"
             ></h3>
 
             <!-- Cross-Origin Resource Sharing (CORS) -->
-            <div class="mb-4">
+            <div class="mb-4"
+                 data-ng-init="cors = $ctrl.getOption($ctrl.model.optionTypes.SECURITY, $ctrl.cdnOptionTypeEnum.CORS).api">
+
                 <p class="oui-heading_5 mb-1">
                     <strong>Cross-Origin Resource Sharing (CORS)</strong>
                 </p>
@@ -223,15 +443,15 @@
                     class="oui-paragraph"
                     data-translate="hosting_cdn_shared_option_cors_description"
                 ></div>
-                <oui-switch model="$ctrl.model.cors.enabled"></oui-switch>
+                <oui-switch model="cors.enabled"></oui-switch>
                 <strong
-                    data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.cors.enabled)"
+                    data-ng-bind="$ctrl.getSwitchBtnStatusText(cors.enabled)"
                 ></strong>
                 <oui-button
                     class="d-block mt-1"
                     variant="primary"
-                    on-click="$ctrl.openCorsList($ctrl.model.cors)"
-                    disabled="!$ctrl.model.cors.enabled"
+                    on-click="$ctrl.openCorsList(cors)"
+                    disabled="!cors.enabled"
                 >
                     <span
                         data-translate="hosting_cdn_shared_option_cors_edit"
@@ -240,7 +460,9 @@
             </div>
 
             <!-- HTTPS Redirect -->
-            <div class="mb-4">
+            <div class="mb-4"
+                 data-ng-init="httpsRedirect = $ctrl.getOption($ctrl.model.optionTypes.SECURITY, $ctrl.cdnOptionTypeEnum.HTTPS_REDIRECT).api">
+
                 <p class="oui-heading_5 mb-1">
                     <strong>HTTPS-Redirect</strong>
                 </p>
@@ -250,16 +472,15 @@
                 ></p>
                 <oui-message
                     type="warning"
-                    data-ng-if="!$ctrl.hasSslForDomain && $ctrl.model.https_redirect.enabled"
+                    data-ng-if="!$ctrl.hasSslForDomain && httpsRedirect.enabled"
                 >
                     <span
                         data-translate="hosting_cdn_ssl_required_warning"
                     ></span>
                 </oui-message>
-                <oui-switch model="$ctrl.model.https_redirect.enabled">
-                </oui-switch>
+                <oui-switch model="httpsRedirect.enabled"></oui-switch>
                 <strong
-                    data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.https_redirect.enabled)"
+                    data-ng-bind="$ctrl.getSwitchBtnStatusText(httpsRedirect.enabled)"
                 ></strong>
 
                 <oui-select
@@ -269,12 +490,14 @@
                     items="$ctrl.redirections"
                     model="$ctrl.redirection"
                     on-change="$ctrl.setRedirection(modelValue)"
-                    disabled="!$ctrl.model.https_redirect.enabled"
+                    disabled="!httpsRedirect.enabled"
                 ></oui-select>
             </div>
 
             <!-- HTTP Strict Transport Security (HSTS) -->
-            <div class="mb-4">
+            <div class="mb-4"
+                 data-ng-init="hsts = $ctrl.getOption($ctrl.model.optionTypes.SECURITY, $ctrl.cdnOptionTypeEnum.HSTS).api">
+
                 <p class="oui-heading_5 mb-1">
                     <strong>HTTP Strict Transport Security (HSTS)</strong>
                 </p>
@@ -284,15 +507,15 @@
                 ></div>
                 <oui-message
                     type="warning"
-                    data-ng-if="!$ctrl.hasSslForDomain && $ctrl.model.hsts.enabled"
+                    data-ng-if="!$ctrl.hasSslForDomain && hsts.enabled"
                 >
                     <span
                         data-translate="hosting_cdn_ssl_required_warning"
                     ></span>
                 </oui-message>
-                <oui-switch model="$ctrl.model.hsts.enabled"></oui-switch>
+                <oui-switch model="hsts.enabled"></oui-switch>
                 <strong
-                    data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.hsts.enabled)"
+                    data-ng-bind="$ctrl.getSwitchBtnStatusText(hsts.enabled)"
                 ></strong>
 
                 <oui-field
@@ -305,7 +528,7 @@
                             class="oui-input"
                             name="maxAgeValue"
                             type="text"
-                            data-ng-disabled="!$ctrl.model.hsts.enabled"
+                            data-ng-disabled="!hsts.enabled"
                             data-ng-pattern="/\d+/"
                             data-ng-model="$ctrl.hstsMaxAgeValue"
                             data-ng-change="$ctrl.setHstsMaxAge()"
@@ -315,7 +538,7 @@
                             match="key"
                             items="$ctrl.hstsMaxAgeUnits"
                             model="$ctrl.hstsMaxAgeUnit"
-                            disabled="!$ctrl.model.hsts.enabled"
+                            disabled="!hsts.enabled"
                             on-change="$ctrl.handleHSTSUnit(modelValue)"
                         >
                             <span data-ng-bind="$item.key"></span>
@@ -325,7 +548,9 @@
             </div>
 
             <!-- Mixed content -->
-            <div class="mb-4">
+            <div class="mb-4"
+                 data-ng-init="mixedContent = $ctrl.getOption($ctrl.model.optionTypes.SECURITY, $ctrl.cdnOptionTypeEnum.MIXED_CONTENT).api">
+
                 <p class="oui-heading_5 mb-1">
                     <strong>Mixed content</strong>
                 </p>
@@ -333,15 +558,17 @@
                     class="oui-paragraph"
                     data-translate="hosting_cdn_shared_option_mixed_content_description"
                 ></div>
-                <oui-switch model="$ctrl.model.mixed_content.enabled">
+                <oui-switch model="mixedContent.enabled">
                 </oui-switch>
                 <strong
-                    data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.mixed_content.enabled)"
+                    data-ng-bind="$ctrl.getSwitchBtnStatusText(mixedContent.enabled)"
                 ></strong>
             </div>
 
             <!-- Web Application Firewall (WAF) -->
-            <div class="mb-4">
+            <div class="mb-4"
+                 data-ng-init="waf = $ctrl.getOption($ctrl.model.optionTypes.SECURITY, $ctrl.cdnOptionTypeEnum.WAF).api">
+
                 <p class="oui-heading_5 mb-1">
                     <strong>Web Application Firewall (WAF)</strong>
                 </p>
@@ -349,12 +576,14 @@
                     class="oui-paragraph"
                     data-translate="hosting_cdn_shared_option_waf_description"
                 ></div>
-                <oui-switch model="$ctrl.model.waf.enabled"></oui-switch>
+                <oui-switch model="waf.enabled"></oui-switch>
                 <strong
-                    data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.waf.enabled)"
+                    data-ng-bind="$ctrl.getSwitchBtnStatusText(waf.enabled)"
                 ></strong>
             </div>
+
         </div>
+
         <!--Cancel settings-->
         <oui-button
             size="l"
@@ -378,5 +607,6 @@
                 data-translate="hosting_cdn_shared_option_cache_rule_btn_validate"
             ></span>
         </oui-button>
+
     </div>
 </section>
