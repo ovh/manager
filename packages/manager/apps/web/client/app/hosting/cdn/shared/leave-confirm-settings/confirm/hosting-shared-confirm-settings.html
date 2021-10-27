@@ -14,62 +14,113 @@
     ></div>
 
     <dl class="oui-description oui-description_horizontal">
+
+        <!--PERF OPTIONS-->
         <dt><strong>Always online</strong></dt>
         <dd
-            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.alwaysOnline.enabled ? 'enable' : 'disabled') }}"
+            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.options.perf.always_online.enabled ? 'enable' : 'disabled') }}"
         ></dd>
+
         <dt><strong>HTTP/2</strong></dt>
         <dd
-            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.http.enabled ? 'enable' : 'disabled') }}"
+            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.options.perf.http.enabled ? 'enable' : 'disabled') }}"
         ></dd>
-        <dt><strong>Devmode</strong></dt>
-        <dd
-            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.devmode.enabled ? 'enable' : 'disabled') }}"
-        ></dd>
+
         <dt><strong>Brotli</strong></dt>
         <dd
-            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.brotli.enabled ? 'enable' : 'disabled') }}"
+            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.options.perf.api.enabled ? 'enable' : 'disabled') }}"
         ></dd>
-        <div data-ng-if="$ctrl.model.cors">
+
+        <div data-ng-if="$ctrl.model.options.perf.geo_headers.api">
+            <dt><strong>Geo Location</strong></dt>
+            <dd
+                data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.options.perf.geo_headers.api.enabled ? 'enable' : 'disabled') }}"
+            ></dd>
+        </div>
+
+        <div data-ng-if="$ctrl.model.options.perf.prefetch.api">
+            <dt><strong>Prefetch</strong></dt>
+            <dd
+                data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.options.perf.prefetch.api.enabled ? 'enable' : 'disabled') }}"
+            ></dd>
+        </div>
+
+        <div data-ng-if="$ctrl.model.options.perf.mobile_redirect.api">
+            <dt><strong>Mobile redirect</strong></dt>
+            <dd
+                data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.options.perf.mobile_redirect.api.enabled ? 'enable' : 'disabled') }}"
+            ></dd>
+        </div>
+
+
+
+        <!--CACHE OPTIONS-->
+        <dt><strong>Devmode</strong></dt>
+        <dd
+            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.options.cache.devmode.api.enabled ? 'enable' : 'disabled') }}"
+        ></dd>
+
+        <div data-ng-if="$ctrl.model.options.cache.querystring.api">
+            <dt><strong>Query string</strong></dt>
+            <dd
+                data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.options.cache.querystring.api.enabled ? 'enable' : 'disabled') }}"
+            ></dd>
+        </div>
+
+        <div data-ng-if="$ctrl.model.options.cache.prewarm.api">
+            <dt><strong>Prewarm</strong></dt>
+            <dd
+                data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.options.cache.prewarm.api.enabled ? 'enable' : 'disabled') }}"
+            ></dd>
+        </div>
+
+
+
+        <!--SECURITY OPTIONS-->
+        <div data-ng-if="$ctrl.model.options.security.cors.api">
             <dt><strong>CORS</strong></dt>
             <dd>
                 <span
-                    data-ng-if="!$ctrl.model.cors.enabled"
+                    data-ng-if="!$ctrl.model.options.security.cors.api.enabled"
                     data-translate="hosting_cdn_shared_state_disabled"
                 ></span>
                 <span
-                    data-ng-if="$ctrl.model.cors.enabled"
-                    data-ng-repeat="origin in ::$ctrl.constructor.getCorsOriginsList($ctrl.model.cors.config.origins) track by origin"
+                    data-ng-if="$ctrl.model.options.security.cors.api.enabled"
+                    data-ng-repeat="origin in ::$ctrl.constructor.getCorsOriginsList($ctrl.model.options.security.cors.api.config.origins) track by origin"
                 >
                     <span data-ng-bind="::origin"></span>
                     <span data-ng-if="!$last">, </span>
                 </span>
             </dd>
         </div>
-        <div data-ng-if="$ctrl.model.https_redirect">
+
+        <div data-ng-if="$ctrl.model.options.security.https_redirect.api">
             <dt><strong>HTTPS-Redirect</strong></dt>
             <dd
-                data-ng-bind="$ctrl.model.https_redirect.enabled ? $ctrl.model.https_redirect.config.statusCode : ('hosting_cdn_shared_state_disabled' | translate )"
-            ></dd>
-        </div>
-        <div data-ng-if="$ctrl.model.hsts">
-            <dt><strong>HSTS</strong></dt>
-            <dd
-                data-ng-bind="$ctrl.model.hsts.enabled ? $ctrl.model.hsts.config.ttl : ('hosting_cdn_shared_state_disabled' | translate )"
-            ></dd>
-        </div>
-        <div data-ng-if="$ctrl.model.mixed_content">
-            <dt><strong>Mixed Content</strong></dt>
-            <dd
-                data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.mixed_content.enabled ? 'enable' : 'disabled') }}"
+                data-ng-bind="$ctrl.model.options.security.https_redirect.api.enabled ? $ctrl.model.options.security.https_redirect.api.config.statusCode : ('hosting_cdn_shared_state_disabled' | translate )"
             ></dd>
         </div>
 
-        <div data-ng-if="$ctrl.model.waf">
-            <dt><strong>WAF</strong></dt>
+        <div data-ng-if="$ctrl.model.options.security.hsts.api">
+            <dt><strong>HSTS</strong></dt>
             <dd
-                data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.waf.enabled ? 'enable' : 'disabled') }}"
+                data-ng-bind="$ctrl.model.options.security.hsts.api.enabled ? $ctrl.model.options.security.hsts.api.ttl : ('hosting_cdn_shared_state_disabled' | translate )"
             ></dd>
         </div>
+
+        <div data-ng-if="$ctrl.model.options.security.mixed_content.api">
+            <dt><strong>Mixed Content</strong></dt>
+            <dd
+                data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.options.security.mixed_content.api.enabled ? 'enable' : 'disabled') }}"
+            ></dd>
+        </div>
+
+        <div data-ng-if="$ctrl.model.options.security.waf.api">
+            <dt><strong>WAF</strong></dt>
+            <dd
+                data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.options.security.waf.api.enabled ? 'enable' : 'disabled') }}"
+            ></dd>
+        </div>
+
     </dl>
 </oui-modal>
