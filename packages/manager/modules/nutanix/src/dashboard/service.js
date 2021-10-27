@@ -22,6 +22,14 @@ export default class NutanixService {
       .then(({ data }) => new BillingService(data));
   }
 
+  getServiceDetails(serviceId) {
+    return this.$http.get(`/service/${serviceId}`).then(({ data }) => data);
+  }
+
+  getServicesDetails(serviceId) {
+    return this.$http.get(`/services/${serviceId}`).then(({ data }) => data);
+  }
+
   getNodeHardwareInfo(nodeId) {
     return this.$http
       .get(`/dedicated/technical-details/${nodeId}`, {

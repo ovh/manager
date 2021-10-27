@@ -5,8 +5,10 @@ import 'angular-translate';
 
 import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 import { serverSupport } from '@ovh-ux/manager-bm-server-components';
+import { region } from '@ovh-ux/manager-components';
 import routing from './routing';
 import component from './component';
+import editName from './edit-display-name';
 
 const moduleName = 'ovhManagerNutanixGeneralInfo';
 
@@ -17,6 +19,8 @@ angular
     'ui.router',
     ovhManagerBillingComponents,
     serverSupport,
+    region,
+    editName,
   ])
   .config(routing)
   .component('nutanixGeneralInfo', component)

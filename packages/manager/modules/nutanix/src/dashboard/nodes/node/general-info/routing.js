@@ -1,3 +1,4 @@
+const STATUS_DONE = 'DONE';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.dashboard.nodes.node.general-info', {
     url: '',
@@ -51,9 +52,9 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       goToNutanixNode: /* @ngInject */ ($state, Alerter) => (
         message = false,
-        type = 'success',
+        type = STATUS_DONE,
       ) => {
-        const reload = message && type === 'success';
+        const reload = message && type === STATUS_DONE;
 
         const promise = $state.go('nutanix.dashboard.nodes.node.general-info', {
           reload,

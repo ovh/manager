@@ -42,10 +42,12 @@
         >
         </span>
     </oui-datagrid-column>
-    <!--TODO : Use region service from manager components to fetch accurate region-->
     <oui-datagrid-column
         title="'nutanix_dashboard_nodes_list_localisation' | translate"
         property="datacenter"
     >
+        <span
+            data-ng-bind=":: $ctrl.ovhManagerRegionService.getTranslatedMicroRegion($row.datacenter)"
+        ></span>
     </oui-datagrid-column>
 </oui-datagrid>
