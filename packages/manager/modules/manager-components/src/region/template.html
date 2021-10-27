@@ -1,0 +1,18 @@
+<div class="row">
+    <oui-select-picker
+        data-ng-repeat="region in $ctrl.formattedRegions track by $index"
+        class="col-md-4 col-lg-3 mt-0"
+        description="{{:: region.country }}"
+        name="region"
+        model="$ctrl.model"
+        label="{{:: region.macroRegion.text}}"
+        values="[region.microRegion.code]"
+    >
+        <oui-select-picker-picture>
+            <span
+                class="region-selector-icon"
+                data-ng-class="region.icon"
+            ></span>
+        </oui-select-picker-picture>
+    </oui-select-picker>
+</div>
