@@ -1,0 +1,396 @@
+<section>
+    <oui-back-button>
+        <span data-translate="netapp_snapshot_policies_create"></span>
+    </oui-back-button>
+
+    <oui-message
+        data-ng-if="$ctrl.error"
+        type="error"
+        on-dismiss="$ctrl.error = null"
+        dismissable="true"
+    >
+        <span data-translate="netapp_snapshot_policies_create_error"></span>
+        <span data-ng-bind="$ctrl.error"></span>
+    </oui-message>
+
+    <p data-translate="netapp_snapshot_policies_create_information"></p>
+
+    <oui-collapsible
+        data-heading="{{:: 'netapp_snapshot_policies_create_exemple' | translate }}"
+        aria-label="{{:: 'netapp_snapshot_policies_create_exemple' | translate }}"
+    >
+        <div>
+            <strong
+                data-translate="netapp_snapshot_policies_create_exemple_1"
+            ></strong>
+            <span
+                data-translate="netapp_snapshot_policies_create_exemple_1_description"
+            ></span>
+            <dl class="oui-description oui-description_horizontal my-3 w-25">
+                <dt
+                    data-translate="netapp_snapshot_policies_create_prefix"
+                ></dt>
+                <dd>My policy</dd>
+                <dt
+                    data-translate="netapp_snapshot_policies_create_minutes"
+                ></dt>
+                <dd>0</dd>
+                <dt data-translate="netapp_snapshot_policies_create_hours"></dt>
+                <dd>0, 6, 12, 18</dd>
+                <dt data-translate="netapp_snapshot_policies_create_days"></dt>
+                <dd data-translate="netapp_snapshot_policies_create_empty"></dd>
+                <dt
+                    data-translate="netapp_snapshot_policies_create_months"
+                ></dt>
+                <dd data-translate="netapp_snapshot_policies_create_empty"></dd>
+                <dt
+                    data-translate="netapp_snapshot_policies_create_weekdays"
+                ></dt>
+                <dd data-translate="netapp_snapshot_policies_create_empty"></dd>
+                <dt
+                    data-translate="netapp_snapshot_policies_create_snapshots_to_keep"
+                ></dt>
+                <dd>4</dd>
+            </dl>
+        </div>
+        <div>
+            <strong
+                data-translate="netapp_snapshot_policies_create_exemple_2"
+            ></strong>
+            <span
+                data-translate="netapp_snapshot_policies_create_exemple_2_description"
+            ></span>
+
+            <dl class="oui-description oui-description_horizontal my-3 w-25">
+                <dt
+                    data-translate="netapp_snapshot_policies_create_prefix"
+                ></dt>
+                <dd>My other policy</dd>
+                <dt
+                    data-translate="netapp_snapshot_policies_create_minutes"
+                ></dt>
+                <dd>5, 10</dd>
+                <dt data-translate="netapp_snapshot_policies_create_hours"></dt>
+                <dd>3, 10</dd>
+                <dt data-translate="netapp_snapshot_policies_create_days"></dt>
+                <dd>1, 2, 5</dd>
+                <dt
+                    data-translate="netapp_snapshot_policies_create_months"
+                ></dt>
+                <dd>2, 4, 6, 8, 10, 12</dd>
+                <dt
+                    data-translate="netapp_snapshot_policies_create_weekdays"
+                ></dt>
+                <dd data-translate="netapp_snapshot_policies_create_empty"></dd>
+                <dt
+                    data-translate="netapp_snapshot_policies_create_snapshots_to_keep"
+                ></dt>
+                <dd>4</dd>
+            </dl>
+        </div>
+    </oui-collapsible>
+
+    <form
+        novalidate
+        name="$ctrl.newSnapshotPolicyForm"
+        data-ng-submit="$ctrl.addNewSnapshotPolicy()"
+    >
+        <oui-field
+            size="m"
+            label="{{:: 'netapp_snapshot_policies_create_name' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                name="name"
+                data-ng-model="$ctrl.newSnapshotPolicy.name"
+            />
+        </oui-field>
+
+        <oui-field
+            size="m"
+            label="{{:: 'netapp_snapshot_policies_create_description' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                name="description"
+                data-ng-model="$ctrl.newSnapshotPolicy.description"
+            />
+        </oui-field>
+
+        <strong
+            id="rules_count"
+            class="d-block"
+            data-translate="netapp_snapshot_policies_create_rules"
+            data-translate-values="{ 'count': $ctrl.newSnapshotPolicy.rules.length }"
+        ></strong>
+
+        <oui-button
+            class="my-3"
+            data-on-click="$ctrl.addSnapshotPolicyRule()"
+            data-disabled="$ctrl.newRule !== null || $ctrl.isCreating"
+        >
+            <span class="oui-icon oui-icon-plus" aria-hidden="true"></span>
+            <span
+                data-translate="netapp_snapshot_policies_create_add_rule"
+            ></span>
+        </oui-button>
+
+        <table class="oui-table" aria-describedby="rules_count">
+            <thead>
+                <th class="oui-table__header" scope="col">
+                    <span
+                        data-translate="netapp_snapshot_policies_create_prefix"
+                    ></span>
+                </th>
+                <th class="oui-table__header" scope="col">
+                    <span
+                        data-translate="netapp_snapshot_policies_create_minutes"
+                    ></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        oui-popover="{{:: 'netapp_snapshot_policies_create_minutes_help' | translate:{ 'min': 1, 'max': 60 } }}"
+                        oui-popover-placement="right"
+                    ></button>
+                </th>
+                <th class="oui-table__header" scope="col">
+                    <span
+                        data-translate="netapp_snapshot_policies_create_hours"
+                    ></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        oui-popover="{{:: 'netapp_snapshot_policies_create_hours_help' | translate:{ 'min': 0, 'max': 23 } }}"
+                        oui-popover-placement="right"
+                    ></button>
+                </th>
+                <th class="oui-table__header" scope="col">
+                    <span
+                        data-translate="netapp_snapshot_policies_create_days"
+                    ></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        oui-popover="{{:: 'netapp_snapshot_policies_create_days_help' | translate:{ 'min': 1, 'max': 31 } }}"
+                        oui-popover-placement="right"
+                    ></button>
+                </th>
+                <th class="oui-table__header" scope="col">
+                    <span
+                        data-translate="netapp_snapshot_policies_create_months"
+                    ></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        oui-popover="{{:: 'netapp_snapshot_policies_create_months_help' | translate:{ 'min': 1, 'max': 12 } }}"
+                        oui-popover-placement="right"
+                    ></button>
+                </th>
+                <th class="oui-table__header" scope="col">
+                    <span
+                        data-translate="netapp_snapshot_policies_create_weekdays"
+                    ></span>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        oui-popover="{{:: 'netapp_snapshot_policies_create_weekdays_help' | translate:{ 'min': 0, 'max': 6 } }}"
+                        oui-popover-placement="right"
+                    ></button>
+                </th>
+                <th class="oui-table__header" scope="col">
+                    <span
+                        data-translate="netapp_snapshot_policies_create_snapshots_to_keep"
+                    ></span>
+                </th>
+                <th class="oui-table__header" scope="col">&nbsp;</th>
+            </thead>
+
+            <tbody>
+                <tr class="oui-table__row" data-ng-if="$ctrl.newRule !== null">
+                    <td class="oui-table__cell">
+                        <input
+                            type="text"
+                            name="prefix"
+                            class="oui-input"
+                            data-ng-model="$ctrl.newRule.prefix"
+                            data-ng-pattern="/^(\w(\d)?(-)?)+$/"
+                            required
+                        />
+                    </td>
+                    <td class="oui-table__cell">
+                        <input
+                            type="text"
+                            name="minutes"
+                            class="oui-input w-75"
+                            data-ng-model="$ctrl.minutes"
+                            data-ng-change="$ctrl.addArrayValuesTo('minutes')"
+                        />
+                    </td>
+                    <td class="oui-table__cell">
+                        <input
+                            type="text"
+                            name="hours"
+                            class="oui-input w-75"
+                            data-ng-model="$ctrl.hours"
+                            data-ng-change="$ctrl.addArrayValuesTo('hours')"
+                        />
+                    </td>
+                    <td class="oui-table__cell">
+                        <input
+                            type="text"
+                            name="days"
+                            class="oui-input w-75"
+                            data-ng-model="$ctrl.days"
+                            data-ng-change="$ctrl.addArrayValuesTo('days')"
+                        />
+                    </td>
+                    <td class="oui-table__cell">
+                        <select-checkboxes
+                            items="$ctrl.months"
+                            on-select="$ctrl.onMonthsSelect(items)"
+                            placeholder="{{ $ctrl.newRule.schedule.months.length === 0 ? ('netapp_snapshot_policies_create_select_placeholder' | translate ) : ('netapp_snapshot_policies_create_selected_months' | translate:{ 'months': $ctrl.newRule.schedule.months.length }) }}"
+                        >
+                            <span data-ng-bind="$item.label"></span>
+                        </select-checkboxes>
+                    </td>
+                    <td class="oui-table__cell">
+                        <select-checkboxes
+                            items="$ctrl.weekdays"
+                            on-select="$ctrl.onWeekdaysSelect(items)"
+                            placeholder="{{ $ctrl.newRule.schedule.weekdays.length === 0 ? ('netapp_snapshot_policies_create_select_placeholder' | translate ) : ('netapp_snapshot_policies_create_selected_days' | translate:{ 'days': $ctrl.newRule.schedule.weekdays.length }) }}"
+                        >
+                            <span data-ng-bind="$item.label"></span>
+                        </select-checkboxes>
+                    </td>
+                    <td class="oui-table__cell">
+                        <oui-numeric model="$ctrl.newRule.copies" min="1">
+                        </oui-numeric>
+                    </td>
+                    <td class="oui-table__cell">
+                        <oui-button
+                            on-click="$ctrl.validateSnapshotPolicyRule()"
+                            disabled="!$ctrl.isNewRuleValid() || !$ctrl.newSnapshotPolicyForm.$valid || !$ctrl.isRulePrefixAllowed()"
+                        >
+                            <span
+                                class="oui-icon oui-icon-check"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="sr-only"
+                                data-translate="netapp_snapshot_policies_create_add_rule_validate"
+                            ></span>
+                        </oui-button>
+
+                        <oui-button on-click="$ctrl.resetNewRule()">
+                            <span
+                                class="oui-icon oui-icon-close"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="sr-only"
+                                data-translate="netapp_snapshot_policies_create_add_rule_cancel"
+                            ></span>
+                        </oui-button>
+                    </td>
+                </tr>
+                <tr
+                    class="oui-table__row"
+                    data-ng-repeat="rule in $ctrl.newSnapshotPolicy.rules track by rule.prefix"
+                >
+                    <td class="oui-table__cell">
+                        <span data-ng-bind="::rule.prefix"></span>
+                    </td>
+                    <td class="oui-table__cell">
+                        <span
+                            data-ng-repeat="minute in rule.schedule.minutes track by $index"
+                        >
+                            <span data-ng-bind="::minute"></span>
+                            <span
+                                data-ng-if="!$last && rule.schedule.minutes.length > 1"
+                                >,
+                            </span>
+                        </span>
+                    </td>
+                    <td class="oui-table__cell">
+                        <span
+                            data-ng-repeat="hour in rule.schedule.hours track by $index"
+                        >
+                            <span data-ng-bind="::hour"></span>
+                            <span
+                                data-ng-if="!$last && rule.schedule.hours.length > 1"
+                                >,
+                            </span>
+                        </span>
+                    </td>
+                    <td class="oui-table__cell">
+                        <span
+                            data-ng-repeat="day in rule.schedule.days track by $index"
+                        >
+                            <span data-ng-bind="::day"></span>
+                            <span
+                                data-ng-if="!$last && rule.schedule.days.length > 1"
+                                >,
+                            </span>
+                        </span>
+                    </td>
+                    <td class="oui-table__cell">
+                        <span
+                            data-ng-repeat="month in rule.schedule.months track by $index"
+                        >
+                            <span
+                                data-ng-bind="::$ctrl.getValueLabel(month, 'months')"
+                            ></span>
+                            <span
+                                data-ng-if="!$last && rule.schedule.months.length > 1"
+                                >,
+                            </span>
+                        </span>
+                    </td>
+                    <td class="oui-table__cell">
+                        <span
+                            data-ng-repeat="weekday in rule.schedule.weekdays track by $index"
+                        >
+                            <span
+                                data-ng-bind="::$ctrl.getValueLabel(weekday, 'weekdays')"
+                            ></span>
+                            <span
+                                data-ng-if="!$last && rule.schedule.weekdays.length > 1"
+                                >,
+                            </span>
+                        </span>
+                    </td>
+                    <td class="oui-table__cell">
+                        <span data-ng-bind="::rule.copies"></span>
+                    </td>
+                    <td class="oui-table__cell">
+                        <oui-button on-click="$ctrl.removeRule(rule)">
+                            <span
+                                class="oui-icon oui-icon-bin"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="sr-only"
+                                data-translate="netapp_snapshot_policies_create_rule_delete"
+                            ></span>
+                        </oui-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <oui-button
+            type="submit"
+            variant="primary"
+            size="l"
+            on-click="$ctrl.createSnapshotPolicy()"
+            disabled="!$ctrl.newSnapshotPolicy.rules.length || $ctrl.isCreating || $ctrl.newRule != null"
+        >
+            <span
+                data-translate="netapp_snapshot_policies_create_submit"
+            ></span>
+            <oui-spinner data-ng-if="$ctrl.isCreating" size="s"></oui-spinner>
+        </oui-button>
+    </form>
+</section>
