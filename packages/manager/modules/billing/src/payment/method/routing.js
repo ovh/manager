@@ -28,6 +28,10 @@ export default /* @ngInject */ (
         return $state.href(`${name}.${action}`, params);
       },
 
+      errors: () => ({
+        load: false,
+      }),
+
       goToSplitPaymentAction: /* @ngInject */ ($state, splitPayment) => () =>
         splitPayment.canBeDeactivated
           ? $state.go(
@@ -41,6 +45,7 @@ export default /* @ngInject */ (
         OVH_PAYMENT_MEAN_STATUS,
         OVH_PAYMENT_METHOD_TYPE,
         ovhPaymentMethod,
+        errors,
       ) =>
         ovhPaymentMethod
           .getAllPaymentMethods({
@@ -53,7 +58,13 @@ export default /* @ngInject */ (
               }
               return status !== OVH_PAYMENT_MEAN_STATUS.BLOCKED_FOR_INCIDENTS;
             }),
-          ),
+          )
+          .catch(() => {
+            Object.assign(errors, {
+              load: true,
+            });
+            return [];
+          }),
 
       goPaymentList: /* @ngInject */ ($timeout, Alerter, $state) => (
         message = null,
