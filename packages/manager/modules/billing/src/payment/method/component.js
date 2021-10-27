@@ -15,5 +15,6 @@ export default {
     splitPayment: '<',
     splitPaymentInformationHref: '@?',
     tagStatusEnum: '<',
+    errors: '<',
   },
 };
