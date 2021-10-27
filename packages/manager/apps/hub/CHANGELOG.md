@@ -1,3 +1,12 @@
+## [3.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.17.3...@ovh-ux/manager-hub-app@3.17.4) (2021-10-27)
+
+
+### Bug Fixes
+
+* update check for lastorder ([#5833](https://github.com/ovh/manager/issues/5833)) ([c159c9b](https://github.com/ovh/manager/commit/c159c9b7124fd2f338b69e0e7544ba388b41e8f7))
+
+
+
 ## [3.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.17.2...@ovh-ux/manager-hub-app@3.17.3) (2021-10-26)
 
 
