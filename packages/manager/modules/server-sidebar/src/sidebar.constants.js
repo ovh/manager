@@ -415,6 +415,33 @@ export const DEDICATED_NETWORK_CONFIG = {
   ],
 };
 
+export const STORAGE_BACKUP_CONFIG = {
+  id: 'storage_backup',
+  forceDisplaySearch: true,
+  app: [DEDICATED],
+  feature: 'netapp',
+  icon: 'ovh-font ovh-font-cloudnas',
+  loadOnState: ['netapp'],
+  children: [
+    {
+      id: 'enterprise_file_storage',
+      feature: 'netapp',
+      loadOnState: 'netapp',
+      types: [
+        {
+          path: '/storage/netapp',
+          state: 'netapp.dashboard',
+          stateParams: ['serviceName'],
+          icon: 'oui-icon oui-icon-enterprise-file-storage_concept',
+          app: [DEDICATED],
+        },
+      ],
+      icon: 'oui-icon oui-icon-enterprise-file-storage_concept',
+      app: [DEDICATED],
+    },
+  ],
+};
+
 export const SIDEBAR_CONFIG = [
   DEDICATED_SERVER_CONFIG,
   VPS_CONFIG,
@@ -430,6 +457,7 @@ export const SIDEBAR_CONFIG = [
   LOGS_CONFIG,
   IPLB_CONFIG,
   DEDICATED_NETWORK_CONFIG,
+  STORAGE_BACKUP_CONFIG,
 
   // DEDICATED END
   MICROSOFT_CONFIG,

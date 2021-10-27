@@ -20,6 +20,13 @@ import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
 angular.module('myApp', [ovhManagerCatalogPrice]);
 ```
 
+## Attributes
+
+| Attribute         | Type            | Binding | One-time binding | Values                    | Default    | Description
+| ----              | ----            | ----    | ----             | ----                      | ----       | ----
+| `price`           | string          | <       | no               |n/a                        | n/a        | The price to be shown
+| `interval-unit`   | string          | @?      | no               | n/a                       | n/a        | Time interval for which the price is expressed (e.g: month)
+
 ## Contributing
 
 Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh/manager/issues/new) or working on some of the [open issues](https://github.com/ovh/manager/issues), our [contributing guide](https://github.com/ovh/manager/blob/master/CONTRIBUTING.md) will help get you started.

@@ -1,0 +1,20 @@
+{
+  "netapp_order": "Install Enterprise File Storage",
+  "netapp_order_datacenter": "Datacentre location",
+  "netapp_order_performance_level": "Performance level",
+  "netapp_order_performance_level_description": "Choose the level of service performance you need",
+  "netapp_order_performance_level_type_Premium": "Premium licence",
+  "netapp_order_performance_level_type_Premium_description": "A balance between price and performance.",
+  "netapp_order_performance_level_type_Standard": "Standard licence",
+  "netapp_order_performance_level_type_Standard_description": "For storage use cases.",
+  "netapp_order_performance_level_type_Extreme": "Ultra licence",
+  "netapp_order_performance_level_type_Extreme_description": "For when your business needs high bandwidth.",
+  "netapp_order_size": "Storage capacity",
+  "netapp_order_size_description": "Specify the total storage capacity you want for your Enterprise File Storage service.",
+  "netapp_order_size_label": "{{size}}TB",
+  "netapp_order_size_custom": "Custom storage (TB)",
+  "netapp_order_commitment_duration": "Contract duration",
+  "netapp_order_commitment_duration_description": "Get a discount by subscribing.",
+  "netapp_order_commitment_payment": "Payment methods",
+  "netapp_order_confirm": "Confirm"
+}

@@ -1,0 +1,44 @@
+<form
+    id="addSnapshot"
+    name="addSnapshot"
+    data-ng-submit="addSnapshot.$valid && $ctrl.addSnapshot()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{ ::'netapp_volumes_snapshots_add_title' | translate }}"
+        data-primary-label="{{ ::'netapp_volumes_snapshots_add_confirm' | translate }}"
+        data-secondary-label="{{ ::'netapp_volumes_snapshots_add_cancel' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+    >
+        <p
+            data-translate="netapp_volumes_snapshots_add_description"
+            data-translate-values="{
+                volumeName: '<strong>' + ($ctrl.volume.name || $ctrl.volume.id) + '</strong>'
+            }"
+        ></p>
+        <oui-field
+            label="{{:: 'netapp_volumes_snapshots_add_name_label' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="snapshotName"
+                type="text"
+                data-ng-model="$ctrl.name"
+                maxlength="255"
+            />
+        </oui-field>
+        <oui-field
+            label="{{:: 'netapp_volumes_snapshots_add_description_label' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="snapshotDescription"
+                type="text"
+                data-ng-model="$ctrl.description"
+                maxlength="255"
+            />
+        </oui-field>
+    </oui-modal>
+</form>
