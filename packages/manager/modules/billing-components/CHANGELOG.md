@@ -1,3 +1,17 @@
+# [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.3.1...@ovh-ux/manager-billing-components@3.4.0) (2021-10-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1239] ([51239cf](https://github.com/ovh/manager/commit/51239cfb10e50f2d78aa4b42ae07d8e6a2021bc7))
+
+
+### Features
+
+* add engagement component ([79f603c](https://github.com/ovh/manager/commit/79f603c4d811b60a4416e1a9cf499ffc4365d250))
+
+
+
 ## [3.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.3.0...@ovh-ux/manager-billing-components@3.3.1) (2021-10-26)
 
 

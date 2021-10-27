@@ -1,3 +1,12 @@
+## [4.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@4.0.3...@ovh-ux/manager-webpack-config@4.0.4) (2021-10-27)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `^11.0.0` ([7cbdd08](https://github.com/ovh/manager/commit/7cbdd08ffaf8d7d05f0165bdf0d30d19ed9e428f))
+
+
+
 ## [4.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@4.0.2...@ovh-ux/manager-webpack-config@4.0.3) (2021-06-29)
 
 
