@@ -13,12 +13,6 @@ export interface IDeferred {
   reject: (reason?: unknown) => void;
 }
 
-function iframeCheck() {
-  if (!window.parent || window.parent === window.self) {
-    window.location.href = '/';
-  }
-}
-
 export default class ShellClient {
   deferredResponse: Record<string, IDeferred>;
 
@@ -39,7 +33,6 @@ export default class ShellClient {
         this.handlePluginResult(data.message as IShellPluginResult);
       }
     });
-    iframeCheck();
   }
 
   getUniqueResponseId(): string {
