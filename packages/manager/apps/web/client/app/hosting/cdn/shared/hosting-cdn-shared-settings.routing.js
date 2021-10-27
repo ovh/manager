@@ -67,6 +67,16 @@ export default /* @ngInject */ ($stateProvider) => {
           model: params,
         }),
 
+      displayChangeCdnOfferModal: /* @ngInject */ ($state) => (model) =>
+        $state.go('app.hosting.dashboard.cdn.shared.cdn-change-offer', {
+          model,
+        }),
+
+      displayPrewarmEditUrlsModal: /* @ngInject */ ($state) => (model) =>
+        $state.go('app.hosting.dashboard.cdn.shared.edit-urls', {
+          model,
+        }),
+
       openCorsList: /* @ngInject */ ($state) => (cors) =>
         $state.go('app.hosting.dashboard.cdn.shared.cors', {
           cors,
