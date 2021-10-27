@@ -1,0 +1,10 @@
+{
+  "netapp_volumes_snapshots_edit_title": "Edit a snapshot",
+  "netapp_volumes_snapshots_edit_id_label": "Snapshot ID",
+  "netapp_volumes_snapshots_edit_name_label": "Snapshot name (optional)",
+  "netapp_volumes_snapshots_edit_description_label": "Description (optional)",
+  "netapp_volumes_snapshots_edit_confirm": "Confirm",
+  "netapp_volumes_snapshots_edit_cancel": "Cancel",
+  "netapp_volumes_snapshots_edit_success": "Your snapshot has been edited.",
+  "netapp_volumes_snapshots_edit_error": "Your snapshot could not be edited. Please try again later. {{message}}"
+}

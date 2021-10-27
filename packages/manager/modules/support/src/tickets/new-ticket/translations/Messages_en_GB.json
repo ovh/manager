@@ -19,7 +19,7 @@
   "ovhManagerSupport_new_serviceType_email_pro": "Email Pro",
   "ovhManagerSupport_new_serviceType_hubic": "hubiC",
   "ovhManagerSupport_new_serviceType_OTHER": "Other",
-  "ovhManagerSupport_new_serviceType_dedicated_cloud": "VMware",
+  "ovhManagerSupport_new_serviceType_dedicated_cloud": "Hosted Private Cloud",
   "ovhManagerSupport_new_serviceType_cloud_project": "Public Cloud (project)",
   "ovhManagerSupport_new_serviceType_telephony": "Telephony",
   "ovhManagerSupport_new_serviceType_telephony_fax": "Fax",
@@ -129,5 +129,6 @@
   "ovhManagerSupport_new_serviceType_ai_training_job": "AI Training",
   "ovhManagerSupport_new_serviceType_webpaas": "Web PaaS",
   "ovhManagerSupport_new_serviceType_anthos": "Anthos",
-  "ovhManagerSupport_new_serviceType_mongodb": "Public Cloud Databases for MongoDB"
+  "ovhManagerSupport_new_serviceType_mongodb": "Public Cloud Databases for MongoDB",
+  "ovhManagerSupport_new_serviceType_netapp": "NetApp"
 }

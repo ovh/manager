@@ -1,0 +1,16 @@
+{
+  "netapp_volume_create_title": "Create a volume ",
+  "netapp_volume_create_cancel": "Cancel",
+  "netapp_volume_create_name": "Volume name (optional)",
+  "netapp_volume_create_description": "Description (optional)",
+  "netapp_volume_create_protocol": "Protocol",
+  "netapp_volume_create_protocol_NFS": "NFSv3",
+  "netapp_volume_create_size": "Volume size",
+  "netapp_volume_create_size_help": "The volume size is between {{minSize}}GB and {{maxSize}}GB",
+  "netapp_volume_create_size_required": "Please enter the volume size.",
+  "netapp_volume_create_size_invalid_number_error": "Please enter a valid number.",
+  "netapp_volume_create_size_minimum_error": "Minimum size required: {{minSize}}GB",
+  "netapp_volume_create_size_maximum_error": "Maximum size permitted: {{maxSize}}GB",
+  "netapp_volume_create_success": "Your volume has been created. You can log in once the access control rules have been configured.",
+  "netapp_volume_create_error": "An error has occurred creating the volume. {{message}}"
+}

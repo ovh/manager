@@ -1,7 +1,7 @@
 {
-  "billing_commitment_payment_description": "Monthly payments are due until the end of the commitment period selected above. An additional discount is available when you choose up-front payment.",
+  "billing_commitment_payment_description": "Save {{discount}}% more on your hardware configuration by paying the total price up-front.",
   "billing_commitment_payment_periodic": "Monthly payment",
-  "billing_commitment_payment_upfront": "Payment up-front",
-  "billing_commitment_payment_upfront_savings": "Save a Total of  {{ price }}",
-  "billing_commitment_payment_monthly": "Pay {{ price }}/month for {{ duration }} months"
+  "billing_commitment_payment_upfront": "Up-front payment",
+  "billing_commitment_payment_upfront_savings": "Save an additional {{price}}",
+  "billing_commitment_payment_monthly": "{{price}}/month for {{duration}} months"
 }
