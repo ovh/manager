@@ -4,21 +4,16 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
-import create from './create';
+import './style.scss';
 
 import component from './component';
 import routing from './routing';
 
-const moduleName = 'ovhManagerNetAppSnapshotPolicies';
+const moduleName = 'ovhManagerNetAppSnapshotPoliciesCreate';
 
 angular
-  .module(moduleName, [
-    create,
-    'ovhManagerCore',
-    'pascalprecht.translate',
-    'ui.router',
-  ])
-  .component('ovhManagerNetAppSnapshotPolicies', component)
+  .module(moduleName, ['ovhManagerCore', 'pascalprecht.translate', 'ui.router'])
+  .component('ovhManagerNetAppSnapshotPoliciesCreate', component)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 
