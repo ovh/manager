@@ -1,1 +1,7 @@
-{}
+{
+  "nutanix_onboarding_title": "Hosted Private Cloud powered by Nutanix",
+  "nutanix_onboarding_description_1": "Affinez votre stratégie de continuité de service, en basculant votre infrastructure secondaire dans le cloud en quelques clics. Totalement évolutive, cette approche s'adapte à votre budget.",
+  "nutanix_onboarding_description_2": "La saisonnalité de certains environnements métier impose une variation forte des ressources IT nécessaires. Absorbez donc vos pics de charge grâce à la flexibilité du cloud.",
+  "nutanix_onboarding_description_3": "Découvrez la puissance de l'infrastructure hyperconvergée avec la plateforme leader de son marché. et ce, dans un environnement totalement sécurisé qui vous est dédié.",
+  "nutanix_onboarding_learn_more_button_text": "En savoir plus sur Nutanix"
+}
