@@ -48,7 +48,7 @@
   "cloud_connect_pop_interface_status": "Optic status",
   "cloud_connect_dc_title": "DC configuration",
   "cloud_connect_dc_add_button": "Add a configuration",
-  "cloud_connect_dc_get_configuration_error": "Unable to retrieve datacentre configuration: {{message}}",
+  "cloud_connect_dc_get_configuration_error": "Unable to retrieve datacenter configuration: {{message}}",
   "cloud_connect_service_key_get_error": "Unable to retrieve service key: {{message}}",
   "cloud_connect_service_keys": "Service keys",
   "cloud_connect_service_key_active_send": "Send the valid service key",

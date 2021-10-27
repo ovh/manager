@@ -1,13 +1,13 @@
 {
- "analytics_data_platform_tile_heading_cluster_info": "Cluster information",
- "analytics_data_platform_tile_heading_billing": "Payment",
- "analytics_data_platform_tile_heading_cluster_mgmt": "Cluster management",
- "analytics_data_platform_tile_desc_datacenter": "Datacentre",
- "analytics_data_platform_tile_desc_solution": "Solution",
- "analytics_data_platform_tile_desc_creation_date": "Creation date",
- "analytics_data_platform_tile_menu_billing_console": "Payment console",
- "analytics_data_platform_tile_link_manage_users": "Manage users (Free IPA)",
- "analytics_data_platform_tile_link_manage_cluster": "Manage cluster (Ambari)",
- "analytics_data_platform_tile_link_manage_security": "Manage data security (Ranger)",
- "analytics_data_platform_service_terminate": "Delete the service"
+  "analytics_data_platform_tile_heading_cluster_info": "Cluster information",
+  "analytics_data_platform_tile_heading_billing": "Payment",
+  "analytics_data_platform_tile_heading_cluster_mgmt": "Cluster management",
+  "analytics_data_platform_tile_desc_datacenter": "Datacenter",
+  "analytics_data_platform_tile_desc_solution": "Solution",
+  "analytics_data_platform_tile_desc_creation_date": "Creation date",
+  "analytics_data_platform_tile_menu_billing_console": "Payment console",
+  "analytics_data_platform_tile_link_manage_users": "Manage users (Free IPA)",
+  "analytics_data_platform_tile_link_manage_cluster": "Manage cluster (Ambari)",
+  "analytics_data_platform_tile_link_manage_security": "Manage data security (Ranger)",
+  "analytics_data_platform_service_terminate": "Delete the service"
 }

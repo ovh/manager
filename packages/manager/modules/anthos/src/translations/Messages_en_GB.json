@@ -7,7 +7,7 @@
   "anthos_tenants_grid_create_tenant": "Order a host",
   "anthos_tenants_grid_headers_serviceName": "Service",
   "anthos_tenants_grid_headers_displayName": "Name",
-  "anthos_tenants_grid_headers_location": "Datacentre",
+  "anthos_tenants_grid_headers_location": "Datacenter",
   "anthos_tenants_grid_headers_version": "Version",
   "anthos_tenants_grid_headers_vrackId": "vRack"
 }

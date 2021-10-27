@@ -16,7 +16,7 @@
   "veeam_infos_subscription_renew_automatic_description": "Automatic",
   "veeam_table_storage": "Storage space ",
   "veeam_table_usage": "Use",
-  "veeam_table_datacenter": "Replication datacentre ",
+  "veeam_table_datacenter": "Replication datacenter ",
   "veeam_table_action": "Action",
   "veeam_storage_list_load_error": "An error has occurred loading storage spaces.",
   "veeam_storage_update_quota_pending": "Updating storage quota. ",

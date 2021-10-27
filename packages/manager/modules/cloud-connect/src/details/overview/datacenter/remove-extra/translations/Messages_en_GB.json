@@ -1,6 +1,6 @@
 {
   "cloud_connect_routing_remove": "Delete additional configuration",
-  "cloud_connect_routing_remove_description": "This will delete the additional configuration for the datacentre selected.",
+  "cloud_connect_routing_remove_description": "This will delete the additional configuration for the datacenter selected.",
   "cloud_connect_datacenter_remove_routing_error": "Unable to delete routing configuration: {{message}}",
   "cloud_connect_datacenter_remove_routing_success": "Deleting routing configuration. <a href=\"{{ tasksUrl }}\">Click here to view its status.</a>"
 }

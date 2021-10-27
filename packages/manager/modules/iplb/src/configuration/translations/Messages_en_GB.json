@@ -1,7 +1,7 @@
 {
   "iplb_configuration_title": "Apply configuration ",
-  "iplb_configuration_intro": "With this procedure, you can make several changes at the same time. Your Load Balancer’s configuration will be applied in all of the datacentres your services are located in. Once you have applied this configuration, the changes will be effective for your visitors between a few minutes to a few hours later, depending on the number of changes that have been made.",
-  "iplb_configuration_datacenter": "Datacentre",
+  "iplb_configuration_intro": "With this procedure, you can make several changes at the same time. Your Load Balancer’s configuration will be applied in all of the datacenters your services are located in. Once you have applied this configuration, the changes will be effective for your visitors between a few minutes to a few hours later, depending on the number of changes that have been made.",
+  "iplb_configuration_datacenter": "Datacenter",
   "iplb_configuration_progress": "Progress",
   "iplb_configuration_status": "Number of changes to apply",
   "iplb_configuration_action_apply": "Apply configuration ",
@@ -9,11 +9,11 @@
   "iplb_configuration_changes_1": "1 change",
   "iplb_configuration_changes_count": "{{count}} changes",
   "iplb_configuration_changesApplied": "Application complete",
-  "iplb_configuration_excludedZones_some": "The configuration of the following datacentres is already in use: {{datacenters}}.",
-  "iplb_configuration_excludedZones_all": "All selected datacentres are already being configured.",
-  "iplb_configuration_excludedZones_explanation": "A configuration can only be applied to datacentres where no changes are in progress.",
+  "iplb_configuration_excludedZones_some": "The configuration of the following datacenters is already in use: {{datacenters}}.",
+  "iplb_configuration_excludedZones_all": "All selected datacenters are already being configured.",
+  "iplb_configuration_excludedZones_explanation": "A configuration can only be applied to datacenters where no changes are in progress.",
   "iplb_configuration_info_error": "An error has occurred recovering information on the Load Balancer: {{message}}",
   "iplb_configuration_apply_success": "The Load Balancer is currently being configured.",
   "iplb_configuration_apply_error": "An error  has occurred applying the configuration of the Load Balancer: {{message}}",
-  "iplb_configuration_pending_changes": "Your Load Balancer configuration has not been applied in all datacentres."
+  "iplb_configuration_pending_changes": "Your Load Balancer configuration has not been applied in all datacenters."
 }
