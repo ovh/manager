@@ -1,0 +1,71 @@
+<oui-modal
+    heading="{{:: 'netapp_volume_create_title' | translate }}"
+    loading="$ctrl.isCreating"
+    primary-action="$ctrl.onCreateVolume()"
+    primary-label="{{:: 'netapp_volume_create_title' | translate }}"
+    primary-disabled="$ctrl.createVolumeForm.$invalid"
+    secondary-action="$ctrl.goBack()"
+    secondary-label="{{:: 'netapp_volume_create_cancel' | translate }}"
+    on-dismiss="$ctrl.goBack()"
+>
+    <form novalidate name="$ctrl.createVolumeForm">
+        <oui-field
+            label="{{:: 'netapp_volume_create_name' | translate }}"
+            size="l"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="volumeName"
+                name="volumeName"
+                data-ng-model="$ctrl.newVolume.name"
+            />
+        </oui-field>
+        <oui-field
+            label="{{:: 'netapp_volume_create_description' | translate }}"
+            size="l"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="volumeDescription"
+                name="volumeDescription"
+                data-ng-model="$ctrl.newVolume.description"
+            />
+        </oui-field>
+        <oui-field
+            label="{{:: 'netapp_volume_create_protocol' | translate }}"
+            size="l"
+        >
+            <oui-select
+                disabled="$ctrl.protocolList.length === 1"
+                items="$ctrl.protocolList"
+                match="key"
+                model="$ctrl.newVolumeProtocol"
+                name="volumeProtocol"
+            >
+            </oui-select>
+        </oui-field>
+        <oui-field
+            label="{{:: 'netapp_volume_create_size' | translate }}"
+            help-text="{{:: 'netapp_volume_create_size_help' | translate:{ 'minSize': $ctrl.minimumVolumeSize, 'maxSize': $ctrl.availableVolumeSize } }}"
+            error-messages="{
+              'min': ('netapp_volume_create_size_minimum_error' | translate:{ 'minSize': $ctrl.minimumVolumeSize }),
+              'max': ('netapp_volume_create_size_maximum_error' | translate:{ 'maxSize': $ctrl.availableVolumeSize }),
+              'number': ('netapp_volume_create_size_invalid_number_error' | translate),
+              'required': ('netapp_volume_create_size_required' | translate),
+            }"
+            size="l"
+        >
+            <input
+                class="oui-input"
+                type="number"
+                name="volumeSize"
+                min="{{:: $ctrl.minimumVolumeSize }}"
+                max="{{:: $ctrl.availableVolumeSize }}"
+                data-ng-model="$ctrl.newVolume.size"
+                data-ng-required="true"
+            />
+        </oui-field>
+    </form>
+</oui-modal>
