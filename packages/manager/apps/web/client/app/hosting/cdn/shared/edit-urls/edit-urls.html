@@ -1,0 +1,102 @@
+<form name="editUrlsForm">
+    <oui-modal
+        heading="{{:: 'hosting_cdn_shared_change_edit_urls_modal_title' | translate }}"
+        primary-action="$ctrl.onEditUrlsCancelOrConfirm($ctrl.TRACKING.CONFIRM)"
+        primary-label="{{:: 'hosting_cdn_shared_change_edit_urls_modal_action_validate' | translate }}"
+        primary-disabled="$ctrl.editUrlsForm.$dirty"
+        secondary-action="$ctrl.onEditUrlsCancelOrConfirm($ctrl.TRACKING.CANCEL)"
+        secondary-label="{{:: 'hosting_cdn_shared_change_edit_urls_modal_action_cancel' | translate }}"
+        type="info"
+        on-dismiss="$ctrl.onEditUrlsCancel()"
+        loading="$ctrl.loading"
+    >
+        <!--Description-->
+        <p
+            data-ng-bind=":: 'hosting_cdn_shared_change_edit_urls_modal_info' | translate"
+        ></p>
+
+        <!--Choose a protocol-->
+        <oui-field class="mb-0" data-size="m">
+            <label class="mt-2 oui-select">
+                <select
+                    class="oui-select__input"
+                    data-ng-init="httpProtocols = 'httpProtocols'"
+                    data-ng-attr-name="{{httpProtocols}}"
+                    data-ng-attr-id="{{httpProtocols}}"
+                    data-ng-model="$ctrl.editUrlsModel.protocol.selected"
+                    data-ng-change="$ctrl.onProtocolChange()"
+                    required
+                >
+                    <option
+                        ng-repeat="protocol in $ctrl.editUrlsModel.protocol.list track by $index"
+                        data-ng-bind=":: ('hosting_cdn_shared_change_edit_urls_modal_propdown_protocol_' + protocol) | translate"
+                        value="{{protocol}}"
+                    >
+                    </option>
+                </select>
+                <span
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></span>
+            </label>
+        </oui-field>
+
+        <!--Add a URL-->
+        <oui-field data-label="{{:: 'hosting_cdn_shared_change_edit_urls_modal_url_label' | translate}}"
+                       data-error-messages="{ invalidInputFormat: ('hosting_cdn_shared_change_edit_urls_modal_url_error_invalid_format' | translate),
+                                              limitUrlReached: ('hosting_cdn_shared_change_edit_urls_modal_url_error_limit_reached' | translate)}">
+                <input
+                    type="text"
+                    class="oui-input"
+                    data-ng-init="labelKeyId = $ctrl.editUrlsModel.newUrl.urlLabelId"
+                    data-ng-attr-name="{{labelKeyId}}"
+                    data-ng-attr-id="{{labelKeyId}}"
+                    data-ng-model="$ctrl.editUrlsModel.newUrl.url"
+                    data-ng-change="$ctrl.onUrlEdit(labelKeyId)"
+                />
+                <oui-button
+                    class="mt-2"
+                    variant="primary"
+                    data-on-click="$ctrl.onAddUrlClick(editUrlsForm)"
+                    data-disabled="$ctrl.editUrlsModel.newUrl.url.length === 0">
+                    <span data-translate="hosting_cdn_shared_change_edit_urls_modal_url_cta_add"></span>
+                </oui-button>
+            </oui-field>
+
+        <!--List of added URLs-->
+        <div class="mt-5">
+            <label class="mb-2 oui-select">
+                <span data-translate="hosting_cdn_shared_change_edit_urls_modal_url_to_preload_label"></span>
+                <p
+                    class="m-0"
+                    data-translate="hosting_cdn_shared_change_edit_urls_modal_url_to_preload_info"
+                    data-translate-values="{ numberOfUrls: $ctrl.editUrlsModel.preloadedUrls.list.size, maxUrls: $ctrl.MAX_URL_ENTRIES}"></p>
+                <select
+                    data-ng-init="preloadedUrls = 'preloadedUrls'"
+                    data-ng-disabled="$ctrl.model.options.cache.prewarm.api.config.resources.length === 0"
+                    data-ng-model="$ctrl.editUrlsModel.preloadedUrls.selected"
+                    data-ng-attr-id="{{preloadedUrls}}"
+                    data-ng-attr-name="{{preloadedUrls}}"
+                    class="oui-select__input"
+                    multiple
+                >
+                    <option
+                        data-ng-repeat="url in $ctrl.model.options.cache.prewarm.api.config.resources track by $index"
+                        data-ng-bind="url"
+                        value="{{url}}"
+                    ></option>
+                </select>
+                <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+            </label>
+
+            <oui-button
+                variant="primary"
+                size="m"
+                data-on-click="$ctrl.onRemoveUrlClick()"
+                data-disabled="!$ctrl.editUrlsModel.preloadedUrls.selected">
+                <span data-translate="hosting_cdn_shared_change_edit_urls_modal_url_to_preload_cta_remove"></span>
+            </oui-button>
+        </div>
+
+    </oui-modal>
+</form>
