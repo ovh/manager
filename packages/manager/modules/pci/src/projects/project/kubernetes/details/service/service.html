@@ -168,17 +168,51 @@
     </div>
     <div class="col-md-4">
         <oui-tile heading="{{:: 'kube_service_access_security' | translate }}">
-            <!-- upgrade policy -->
+
+            <!--Kube API URL-->
             <oui-tile-definition
-                data-term="{{ ::'kube_service_upgrade_policy' | translate }}"
+                data-term="{{:: 'kube_service_cluster_api_url' | translate }}"
             >
                 <oui-tile-description>
-                    <span
-                        data-translate="{{ 'kube_service_upgrade_policy_' + $ctrl.cluster.updatePolicy }}"
-                    ></span>
+                    <oui-clipboard
+                        data-model="$ctrl.cluster.url"
+                    ></oui-clipboard>
                 </oui-tile-description>
             </oui-tile-definition>
-            <!-- end of upgrade policy -->
+
+            <!--Limit access to APIServer-->
+            <oui-tile-definition
+                term="{{:: 'kube_service_restrictions' | translate }}"
+            >
+                <oui-tile-description data-ng-if="$ctrl.loadingRestrictions">
+                    <oui-skeleton size="m"></oui-skeleton>
+                </oui-tile-description>
+                <oui-tile-description data-ng-if="!$ctrl.loadingRestrictions">
+                    <span
+                        data-ng-pluralize
+                        data-count="$ctrl.restrictions.length"
+                        data-when="{
+                            '0': ('kube_service_restrictions_no_count' | translate),
+                            '1': ('kube_service_restrictions_one' | translate),
+                            'other': ('kube_service_restrictions_count' | translate:{ count: $ctrl.restrictions.length }),
+                        }"
+                    ></span>
+                    <a
+                        class="oui-link oui-link_icon d-block"
+                        data-ng-href="{{:: $ctrl.restrictionsLink }}"
+                    >
+                        <span
+                            data-translate="kube_service_restrictions_edit"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-arrow-right"
+                            aria-hidden="true"
+                        ></span>
+                    </a>
+                </oui-tile-description>
+            </oui-tile-definition>
+
+            <!-- end of upgrade policy - kube config file-->
             <div class="oui-tile__item">
                 <dl class="oui-tile__definition">
                     <dt class="oui-tile__term">
@@ -229,45 +263,20 @@
                     </dd>
                 </dl>
             </div>
+
+            <!--OIDC-->
+
+            <!-- upgrade policy -->
             <oui-tile-definition
-                data-term="{{:: 'kube_service_cluster_api_url' | translate }}"
+                data-term="{{ ::'kube_service_upgrade_policy' | translate }}"
             >
                 <oui-tile-description>
-                    <oui-clipboard
-                        data-model="$ctrl.cluster.url"
-                    ></oui-clipboard>
-                </oui-tile-description>
-            </oui-tile-definition>
-            <oui-tile-definition
-                term="{{:: 'kube_service_restrictions' | translate }}"
-            >
-                <oui-tile-description data-ng-if="$ctrl.loadingRestrictions">
-                    <oui-skeleton size="m"></oui-skeleton>
-                </oui-tile-description>
-                <oui-tile-description data-ng-if="!$ctrl.loadingRestrictions">
                     <span
-                        data-ng-pluralize
-                        data-count="$ctrl.restrictions.length"
-                        data-when="{
-                            '0': ('kube_service_restrictions_no_count' | translate),
-                            '1': ('kube_service_restrictions_one' | translate),
-                            'other': ('kube_service_restrictions_count' | translate:{ count: $ctrl.restrictions.length }),
-                        }"
+                        data-translate="{{ 'kube_service_upgrade_policy_' + $ctrl.cluster.updatePolicy }}"
                     ></span>
-                    <a
-                        class="oui-link oui-link_icon d-block"
-                        data-ng-href="{{:: $ctrl.restrictionsLink }}"
-                    >
-                        <span
-                            data-translate="kube_service_restrictions_edit"
-                        ></span>
-                        <span
-                            class="oui-icon oui-icon-arrow-right"
-                            aria-hidden="true"
-                        ></span>
-                    </a>
                 </oui-tile-description>
             </oui-tile-definition>
+
         </oui-tile>
     </div>
 </div>
