@@ -4,17 +4,24 @@ import {
   attach as attachPreloader,
   displayMessage,
 } from '@ovh-ux/manager-preloader';
-import { registerApplication } from '@ovh-ux/ufrontend';
-import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
+import {
+  fetchConfiguration,
+  findAvailableLocale,
+  detectUserLocale,
+} from '@ovh-ux/manager-config';
+import { useShellClient } from '@ovh-ux/shell';
 
 attachPreloader(findAvailableLocale(detectUserLocale()));
 
-registerApplication('dedicated').then(({ environment }) => {
+fetchConfiguration('dedicated').then((environment) => {
   environment.setVersion(__VERSION__);
 
   if (environment.getMessage()) {
     displayMessage(environment.getMessage(), environment.getUserLanguage());
   }
+
+  const shellClient = useShellClient();
+  shellClient.routing.init();
 
   import(`./config-${environment.getRegion()}`)
     .catch(() => {})
