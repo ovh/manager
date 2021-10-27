@@ -18,6 +18,8 @@ export default {
     displayUpdateCacheRuleModal: '<',
     displayConfirmSettingsModal: '<',
     displayLeaveSettingsModal: '<',
+    displayChangeCdnOfferModal: '<',
+    displayPrewarmEditUrlsModal: '<',
     guideLinkHref: '<',
     hasSslForDomain: '<',
     openCorsList: '<',
