@@ -6,5 +6,6 @@
   "navbar_universe_hpc": "Hosted Private Cloud",
   "navbar_universe_telecom": "Telecom",
   "navbar_universe_web": "Web Cloud",
-  "navbar_search": "Search"
+  "navbar_search": "Search",
+  "navbar_universe_marketplace": "Marketplace"
 }

@@ -74,11 +74,12 @@ export default class {
   buildMainLinks() {
     return this.Navbar.getUniverses(get(this.navbarOptions, 'version')).then(
       (universes) => {
-        this.mainLinks = universes.map(({ universe: name, url }) => ({
+        this.mainLinks = universes.map(({ universe: name, url, external }) => ({
           name,
           title: this.$translate.instant(`navbar_universe_${name}`),
           url: url || '#',
           isPrimary: !NON_PRIMARY_ITEMS.includes(name),
+          external,
         }));
       },
     );
