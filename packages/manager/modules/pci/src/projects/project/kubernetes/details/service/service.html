@@ -123,7 +123,7 @@
                                     'oui-badge_warning' : $ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status),
                                     'oui-badge_error' : $ctrl.Kubernetes.constructor.isError($ctrl.cluster.status),
                                     }"
-                        data-translate="{{ 'kube_service_cluster_status_' + $ctrl.cluster.status }}"
+                        data-ng-bind=":: ('kube_service_cluster_status_' + $ctrl.cluster.status) | translate"
                     >
                     </span>
                 </oui-tile-description>
@@ -265,6 +265,52 @@
             </div>
 
             <!--OIDC-->
+            <oui-tile-definition
+                data-term="{{:: 'kube_service_access_security_oidc_title' | translate }}"
+            >
+                <oui-tile-description>
+
+                    <!--No OIDC provider-->
+                    <span
+                        data-ng-if="!$ctrl.oidcProvider.isDefined()"
+                        data-translate="kube_service_access_security_oidc_no_provider"
+                    ></span>
+
+                    <!--OIDC Provider-->
+                    <div data-ng-if="$ctrl.oidcProvider.isDefined()">
+                        <oui-clipboard
+                            data-model="$ctrl.oidcProvider.issuerUrl"
+                        ></oui-clipboard>
+
+                        <span data-ng-bind=":: $ctrl.oidcProvider.clientId"></span>
+                    </div>
+
+                </oui-tile-description>
+                <oui-action-menu
+                    aria-label="{{:: 'kube_service_access_security_oidc_menu_action_sr_only' | translate }}"
+                    compact>
+
+                    <!--Add OIDC provider-->
+                    <oui-action-menu-item disabled="$ctrl.oidcProvider.isDefined()"
+                                          data-on-click="$ctrl.addOidcProvider()">
+                        <span data-translate="kube_service_access_security_oidc_menu_action_add_provider"></span>
+                    </oui-action-menu-item>
+
+                    <!--Set OIDC provider info-->
+                    <oui-action-menu-item disabled="!$ctrl.oidcProvider.isDefined()"
+                                          data-on-click="$ctrl.updateOidcProvider()">
+                        <span data-translate="kube_service_access_security_oidc_menu_action_set_provider"></span>
+                    </oui-action-menu-item>
+
+                    <!--Remove OIDC provider-->
+                    <oui-action-menu-item disabled="!$ctrl.oidcProvider.isDefined()"
+                                          data-on-click="$ctrl.removeOidcProvider()">
+                        <span data-translate="kube_service_access_security_oidc_menu_action_remove_provider"></span>
+                    </oui-action-menu-item>
+
+                </oui-action-menu>
+
+            </oui-tile-definition>
 
             <!-- upgrade policy -->
             <oui-tile-definition
@@ -272,7 +318,7 @@
             >
                 <oui-tile-description>
                     <span
-                        data-translate="{{ 'kube_service_upgrade_policy_' + $ctrl.cluster.updatePolicy }}"
+                        data-ng-bind=":: ('kube_service_upgrade_policy_' + $ctrl.cluster.updatePolicy) | translate"
                     ></span>
                 </oui-tile-description>
             </oui-tile-definition>
