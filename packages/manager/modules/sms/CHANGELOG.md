@@ -1,3 +1,12 @@
+# [8.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.5.4...@ovh-ux/manager-sms@8.6.0) (2021-10-28)
+
+
+### Features
+
+* **navbar.marketplace:** add marketplace to top navbar ([#5828](https://github.com/ovh/manager/issues/5828)) ([815c49f](https://github.com/ovh/manager/commit/815c49f4f3cf7a598aee79d99798033ac5952bba))
+
+
+
 ## [8.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.5.3...@ovh-ux/manager-sms@8.5.4) (2021-10-26)
 
 

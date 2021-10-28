@@ -1,3 +1,12 @@
+# [15.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.32.0...@ovh-ux/manager-web@15.33.0) (2021-10-28)
+
+
+### Features
+
+* **navbar.marketplace:** add marketplace to top navbar ([#5828](https://github.com/ovh/manager/issues/5828)) ([815c49f](https://github.com/ovh/manager/commit/815c49f4f3cf7a598aee79d99798033ac5952bba))
+
+
+
 # [15.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.31.2...@ovh-ux/manager-web@15.32.0) (2021-10-26)
 
 
