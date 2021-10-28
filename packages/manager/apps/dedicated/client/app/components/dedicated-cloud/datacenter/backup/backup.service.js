@@ -128,7 +128,7 @@ export default class BackupService {
       .then((data) => get(data, 'data'));
   }
 
-  getBackupOffers(serviceName, datacenterId, ovhSubsidiary) {
+  getBackupOffers(serviceName, datacenterId, ovhSubsidiary, backup) {
     return this.$q
       .all([
         this.getOfferCapabilities(serviceName, datacenterId),
@@ -136,7 +136,7 @@ export default class BackupService {
       ])
       .then(([backupOffers, catalog]) =>
         sortBy(
-          BackupService.transformBackupOffers(backupOffers, catalog),
+          BackupService.transformBackupOffers(backupOffers, catalog, backup),
           'price',
         ),
       );
@@ -157,7 +157,15 @@ export default class BackupService {
     return get(find(get(plan, 'addonsFamily'), { family }), 'addons');
   }
 
-  static transformBackupOffers(backupOffers, catalog) {
+  static transformBackupOffers(backupOffers, catalog, backup) {
+    if (backup && backup.backupOffer) {
+      const currentOffer = find(backupOffers, {
+        offerName: backup.backupOffer,
+      });
+      if (!currentOffer) {
+        backupOffers.push(new Backup(backup));
+      }
+    }
     remove(backupOffers, (offer) => offer.offerName === BACKUP_OFFER_LEGACY);
     return map(backupOffers, (offer) => {
       const backupManagedAddon = find(
