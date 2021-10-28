@@ -1,3 +1,12 @@
+# [4.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@4.2.1...@ovh-ux/manager-telecom-styles@4.3.0) (2021-10-28)
+
+
+### Features
+
+* **navbar.marketplace:** add marketplace to top navbar ([#5828](https://github.com/ovh/manager/issues/5828)) ([815c49f](https://github.com/ovh/manager/commit/815c49f4f3cf7a598aee79d99798033ac5952bba))
+
+
+
 ## [4.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@4.2.0...@ovh-ux/manager-telecom-styles@4.2.1) (2021-10-26)
 
 
