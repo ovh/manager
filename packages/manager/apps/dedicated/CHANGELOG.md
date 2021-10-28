@@ -1,3 +1,17 @@
+# [17.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.2.0...@ovh-ux/manager-dedicated@17.3.0) (2021-10-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1214] ([f96763a](https://github.com/ovh/manager/commit/f96763a289143bc296d89f15137b6d33fe4898fd))
+
+
+### Features
+
+* **hpc:** enable range migration ([3feb2dd](https://github.com/ovh/manager/commit/3feb2dd09ebd8fe0e883dd55ced1a83f3c3737c6))
+
+
+
 # [17.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.1.3...@ovh-ux/manager-dedicated@17.2.0) (2021-10-27)
 
 
