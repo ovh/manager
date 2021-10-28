@@ -1,5 +1,11 @@
 <h2 data-translate="dedicatedCloud_tab_datastores_title"></h2>
 
+<p
+    class="my-4"
+    data-translate="dedicatedCloud_tab_datastores_global_information"
+    data-translate-values="{ billingGuideUrl: $ctrl.guides.billing, vMotionGuideUrl: $ctrl.guides.vMotion }"
+></p>
+
 <oui-datagrid data-rows-loader="$ctrl.loadDatastores($config)">
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_id' | translate"
@@ -70,10 +76,11 @@
     </oui-datagrid-column>
     <oui-action-menu
         data-compact
-        data-ng-if="$row.billing === $ctrl.RESOURCE_BILLING_TYPES.hourly && $row.status === 'DELIVERED'"
         data-placement="end"
+        data-ng-if="($row.billing === $ctrl.RESOURCE_BILLING_TYPES.hourly && $row.status === 'DELIVERED') || $row.isGlobalCompatible"
     >
         <oui-action-menu-item
+            data-ng-if="$row.billing === $ctrl.RESOURCE_BILLING_TYPES.hourly && $row.status === 'DELIVERED'"
             data-on-click="$ctrl.resourceUpgrade(
                 $row.id,
                 $ctrl.usesLegacyOrder ? 'filer' : $ctrl.RESOURCE_UPGRADE_TYPES.datastore,
@@ -81,6 +88,14 @@
             )"
             ><span
                 data-translate="dedicatedCloud_updateResource_toMonthly"
+            ></span
+        ></oui-action-menu-item>
+
+        <oui-action-menu-item
+            data-ng-if="$row.isGlobalCompatible"
+            data-on-click="$ctrl.goToConvertToGlobal($row)"
+            ><span
+                data-translate="dedicatedCloud_convert_datastore_to_global"
             ></span
         ></oui-action-menu-item>
     </oui-action-menu>
