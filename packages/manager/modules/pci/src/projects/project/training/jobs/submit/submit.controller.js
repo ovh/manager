@@ -11,6 +11,7 @@ import {
 } from '../../training.constants';
 
 export const CUSTOM_SELECT = '-';
+export const PLACEHOLDER_SSH_KEY = 'ssh-rsa AAAAB3...';
 
 export default class PciTrainingJobsSubmitController {
   /* @ngInject */
@@ -24,6 +25,7 @@ export default class PciTrainingJobsSubmitController {
     coreConfig,
   ) {
     this.JOB_MAX_SSH_KEYS = JOB_MAX_SSH_KEYS;
+    this.PLACEHOLDER_SSH_KEY = PLACEHOLDER_SSH_KEY;
     this.coreConfig = coreConfig;
     this.$translate = $translate;
     this.PciProjectTrainingService = PciProjectTrainingService;
@@ -311,7 +313,6 @@ export default class PciTrainingJobsSubmitController {
   addNewSshPublicKey() {
     this.addedSshKeys.push({
       disabled: false,
-      placeHolder: 'ssh-rsa AAAAB3...',
       model: null,
       keyName: CUSTOM_SELECT,
     });
@@ -333,8 +334,11 @@ export default class PciTrainingJobsSubmitController {
   // Return all non empty ssh keys
   getAllSshKeys() {
     return this.addedSshKeys
-      .map((x) => x.model)
-      .filter((x) => x && x.length !== 0 && x.trim());
+      .map((sshKey) => sshKey.model)
+      .filter(
+        (sshKeyModel) =>
+          sshKeyModel && sshKeyModel.length > 0 && sshKeyModel.trim(),
+      );
   }
 
   changeSavedSshKey(index) {

@@ -420,11 +420,9 @@
                         data-ng-repeat="sshKey in $ctrl.addedSshKeys track by $index"
                     >
                         <fieldset class="oui-inline-adder__fieldset">
-                            <legend>
-                                {{::
-                                'pci_projects_project_training_jobs_submit_select_ssh_legend'
-                                | translate }}
-                            </legend>
+                            <legend
+                                data-ng-bind=":: 'pci_projects_project_training_jobs_submit_select_ssh_legend' | translate"
+                            ></legend>
                             <div class="oui-inline-adder__row">
                                 <div class="oui-inline-adder__field">
                                     <oui-field
@@ -447,7 +445,7 @@
                                         <textarea
                                             type="textarea"
                                             class="oui-input"
-                                            placeholder="{{:: $ctrl.addedSshKeys[$index].placeHolder }}"
+                                            placeholder="{{:: $ctrl.PLACEHOLDER_SSH_KEY }}"
                                             name="sshPublicKey"
                                             rows="5"
                                             data-ng-model="$ctrl.addedSshKeys[$index].model"
@@ -464,7 +462,7 @@
                                 class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
                                 data-translate-attr="{title: 'dedicated_server_install_image_config_http_header_delete'}"
                                 data-ng-click="$ctrl.onSshPublickeysDeleteBtnClick($index)"
-                                data-ng-disabled="$ctrl.addedSshKeys.length == 1"
+                                data-ng-disabled="$ctrl.addedSshKeys.length === 1"
                             >
                                 <span
                                     class="oui-icon oui-icon-trash"
