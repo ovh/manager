@@ -87,7 +87,9 @@ export default class TechnicalDetailsController {
   }
 
   isDisksUpgradable() {
+    const serverRange = get(this.technicalDetails, 'server.range');
     return (
+      serverRange !== 'scale' &&
       this.upgradeWithTicketAvailable &&
       this.technicalDetails.storage?.upgradable?.length
     );
