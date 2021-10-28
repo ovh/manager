@@ -4,7 +4,7 @@ import has from 'lodash/has';
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 
-import { BRAND, MARKETPLACE, NON_PRIMARY_ITEMS } from './constants';
+import { BRAND, NON_PRIMARY_ITEMS } from './constants';
 
 export default class {
   /* @ngInject */
@@ -15,7 +15,6 @@ export default class {
     this.$window = $window;
     this.atInternet = atInternet;
     this.Navbar = Navbar;
-    this.MARKETPLACE = MARKETPLACE;
   }
 
   $onInit() {
@@ -75,18 +74,15 @@ export default class {
   buildMainLinks() {
     return this.Navbar.getUniverses(get(this.navbarOptions, 'version')).then(
       (universes) => {
-        this.mainLinks = universes.map(({ universe: name, url }) => ({
+        this.mainLinks = universes.map(({ universe: name, url, external }) => ({
           name,
           title: this.$translate.instant(`navbar_universe_${name}`),
           url: url || '#',
           isPrimary: !NON_PRIMARY_ITEMS.includes(name),
+          external,
         }));
       },
     );
-  }
-
-  isExternal(universe) {
-    return universe === this.MARKETPLACE;
   }
 
   buildResponsiveLinks() {

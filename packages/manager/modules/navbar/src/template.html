@@ -21,7 +21,7 @@
                 href="{{:: link.url }}"
                 variant="{{:: link.isPrimary ? 'primary' : 'secondary' }}"
                 on-click="$ctrl.onUniverseChange(link.name)"
-                external="$ctrl.isExternal(link.name)"
+                external="link.external"
             >
                 <span data-ng-bind=":: link.title"></span>
             </oui-navbar-link>
