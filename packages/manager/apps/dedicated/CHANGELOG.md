@@ -1,3 +1,12 @@
+## [17.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.4.0...@ovh-ux/manager-dedicated@17.4.1) (2021-10-28)
+
+
+### Bug Fixes
+
+* update range for @ovh-ux/manager-billing ([#5851](https://github.com/ovh/manager/issues/5851)) ([130b87b](https://github.com/ovh/manager/commit/130b87b021ca5641863626a08da4bb412cec29e3))
+
+
+
 # [17.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.3.0...@ovh-ux/manager-dedicated@17.4.0) (2021-10-28)
 
 
