@@ -1,3 +1,12 @@
+## [17.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.4.1...@ovh-ux/manager-dedicated@17.4.2) (2021-10-28)
+
+
+### Bug Fixes
+
+* ip reverse delete ([#5848](https://github.com/ovh/manager/issues/5848)) ([0b08abb](https://github.com/ovh/manager/commit/0b08abb9039d5f3e16831c42b8a8dfd2f68f34a5))
+
+
+
 ## [17.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.4.0...@ovh-ux/manager-dedicated@17.4.1) (2021-10-28)
 
 
