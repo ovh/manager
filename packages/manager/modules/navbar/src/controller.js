@@ -4,7 +4,7 @@ import has from 'lodash/has';
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 
-import { BRAND, NON_PRIMARY_ITEMS } from './constants';
+import { BRAND, MARKETPLACE, NON_PRIMARY_ITEMS } from './constants';
 
 export default class {
   /* @ngInject */
@@ -15,6 +15,7 @@ export default class {
     this.$window = $window;
     this.atInternet = atInternet;
     this.Navbar = Navbar;
+    this.MARKETPLACE = MARKETPLACE;
   }
 
   $onInit() {
@@ -82,6 +83,10 @@ export default class {
         }));
       },
     );
+  }
+
+  isExternal(universe) {
+    return universe === this.MARKETPLACE;
   }
 
   buildResponsiveLinks() {
