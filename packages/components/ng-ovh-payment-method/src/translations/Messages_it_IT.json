@@ -1,5 +1,5 @@
 {
-  "ovh_payment_type_bank_account": "Conto bancario",
+  "ovh_payment_type_bank_account": "Addebito SEPA",
   "ovh_payment_type_paypal": "PayPal",
   "ovh_payment_type_credit_card": "Carta bancaria",
   "ovh_payment_type_deferred_payment_account": "Conto di pagamento differito",
