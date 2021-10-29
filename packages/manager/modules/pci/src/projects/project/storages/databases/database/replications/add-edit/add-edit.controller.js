@@ -18,6 +18,7 @@ export default class {
     }
     this.invalidTargetSource = false;
     this.model = {
+      id: this.isUpdate ? this.replication.id : null,
       sourceService: this.isUpdate
         ? find(this.readyServiceIntegrationList, {
             id: this.replication.sourceService,
@@ -64,18 +65,32 @@ export default class {
       this.model.targetService.id === this.model.sourceService.id;
   }
 
+  prepareModel() {
+    return {
+      id: this.model.id,
+      sourceService: this.model.sourceService.id,
+      targetService: this.model.targetService.id,
+      topics: this.model.topics,
+      topicExcludeList: this.model.topicExcludeList,
+      syncInterval: this.model.syncInterval,
+      syncGroupOffsets: this.model.syncGroupOffsets,
+      heartbeatsEmit: this.model.heartbeatsEmit,
+      replicationPolicyClass: this.model.replicationPolicyClass,
+      enabled: this.model.enabled,
+    };
+  }
+
   addOrEditReplication() {
     this.processing = true;
     if (this.isUpdate) {
       this.trackDashboard(
         'replication_flows::actions_menu::modify_replication_flow_confirm',
       );
-      this.model.id = this.replication.id;
       return this.DatabaseService.updateReplication(
         this.projectId,
         this.database.engine,
         this.database.id,
-        this.model,
+        this.prepareModel(),
       )
         .then(() =>
           this.goBack({
@@ -101,7 +116,7 @@ export default class {
       this.projectId,
       this.database.engine,
       this.database.id,
-      this.model,
+      this.prepareModel(),
     )
       .then(() =>
         this.goBack({
