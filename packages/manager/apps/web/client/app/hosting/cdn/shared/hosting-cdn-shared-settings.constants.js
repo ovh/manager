@@ -38,3 +38,5 @@ export const SHARED_CDN_OPTIONS = {
     KEEP_URL: 'keep',
   },
 };
+
+export const SETTING_BASE_TRACKING_HIT = 'web::hosting::cdn::configure';
