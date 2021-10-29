@@ -662,17 +662,7 @@ export default class DatabaseService {
     return this.$http
       .post(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/replication`,
-        {
-          sourceService: replication.sourceService.id,
-          targetService: replication.targetService.id,
-          topics: replication.topics,
-          topicExcludeList: replication.topicExcludeList,
-          syncInterval: replication.syncInterval,
-          syncGroupOffsets: replication.syncGroupOffsets,
-          heartbeatsEmit: replication.heartbeatsEmit,
-          replicationPolicyClass: replication.replicationPolicyClass,
-          enabled: replication.enabled,
-        },
+        replication,
       )
       .then(({ data }) => data);
   }
@@ -681,17 +671,7 @@ export default class DatabaseService {
     return this.$http
       .put(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/replication/${replication.id}`,
-        {
-          sourceService: replication.sourceService.id,
-          targetService: replication.targetService.id,
-          topics: replication.topics,
-          topicExcludeList: replication.topicExcludeList,
-          syncInterval: replication.syncInterval,
-          syncGroupOffsets: replication.syncGroupOffsets,
-          heartbeatsEmit: replication.heartbeatsEmit,
-          replicationPolicyClass: replication.replicationPolicyClass,
-          enabled: replication.enabled,
-        },
+        replication,
       )
       .then(({ data }) => data);
   }
