@@ -18,7 +18,7 @@ function Shell() {
 
   useEffect(() => {
     shell = shellApi.initShell(iframeRef.current);
-    shell.registerPlugin('i18n', plugin.i18n(environment));
+    shell.registerPlugin('i18n', plugin.i18n(shell, environment));
   }, []);
 
   useEffect(() => {
