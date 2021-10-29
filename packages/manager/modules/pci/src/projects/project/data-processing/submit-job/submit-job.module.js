@@ -15,6 +15,7 @@ const moduleName = 'ovhManagerPciProjectDataProcessingSubmitJob';
 angular
   .module(moduleName, [
     'ui.router',
+    'ovhManagerPciComponents',
     angularTranslate,
     regionSelector,
     jobTypeSelector,
