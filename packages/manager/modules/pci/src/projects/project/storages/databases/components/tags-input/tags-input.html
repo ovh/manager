@@ -4,8 +4,8 @@
             <input
                 class="oui-input"
                 type="text"
-                id="tagInput"
-                name="tagInput"
+                id="{{'tagInput-' + $ctrl.id}}"
+                name="{{'tagInput-' + $ctrl.id}}"
                 placeholder="{{$ctrl.placeholder}}"
                 ng-model="$ctrl.tag"
                 ng-minlength="$ctrl.min"
