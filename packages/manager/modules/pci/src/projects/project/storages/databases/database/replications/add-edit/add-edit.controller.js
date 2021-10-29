@@ -68,13 +68,13 @@ export default class {
   prepareModel() {
     return {
       id: this.model.id,
-      sourceService: this.model.sourceService.id,
-      targetService: this.model.targetService.id,
+      sourceIntegration: this.model.sourceIntegration.id,
+      targetIntegration: this.model.targetIntegration.id,
       topics: this.model.topics,
       topicExcludeList: this.model.topicExcludeList,
       syncInterval: this.model.syncInterval,
       syncGroupOffsets: this.model.syncGroupOffsets,
-      heartbeatsEmit: this.model.heartbeatsEmit,
+      emitHeartbeats: this.model.emitHeartbeats,
       replicationPolicyClass: this.model.replicationPolicyClass,
       enabled: this.model.enabled,
     };
