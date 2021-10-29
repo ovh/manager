@@ -5,6 +5,7 @@ import cucCurrency from './currency';
 import project from './project';
 import runabove from './runabove';
 import writeRightRequired from './writeRightRequired';
+import ovhManagerPciOrderCommand from './pci-order-command';
 
 const moduleName = 'ovhManagerPciComponents';
 
@@ -14,6 +15,7 @@ angular.module(moduleName, [
   project,
   runabove,
   writeRightRequired,
+  ovhManagerPciOrderCommand,
 ]);
 
 export default moduleName;

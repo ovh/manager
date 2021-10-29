@@ -1,0 +1,15 @@
+{
+  "pci_order_command_title": "Comando equivalente",
+  "pci_order_command_description": "Questo comando permette di creare il database via",
+  "pci_order_command_api_link": "API",
+  "pci_order_command_parameters": "Parametri:",
+  "pci_order_command_parameters_info": "Per maggiori informazioni sui parametri disponibili:",
+  "pci_order_command_parameters_info_description": "Nome del servizio",
+  "pci_order_command_parameters_info_networkId": "ID rete privata OpenStack ",
+  "pci_order_command_parameters_info_subnetId": "ID sottorete",
+  "pci_order_command_parameters_info_nodesPattern_flavor": "Caratteristiche selezionate",
+  "pci_order_command_parameters_info_nodesPattern_number": "Numero di nodi",
+  "pci_order_command_parameters_info_nodesPattern_region": "Localizzazione selezionata",
+  "pci_order_command_parameters_info_plan": "Offerta selezionata",
+  "pci_order_command_parameters_info_version": "Versione database"
+}
