@@ -17,10 +17,14 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountManageCont
   OvhApiPackXdslVoipLine,
   TucToast,
   TucToastError,
+  newSupportTicketLink,
 ) {
   const self = this;
 
   const contactAttributes = ['contactAdmin', 'contactBilling', 'contactTech'];
+
+  self.hasAnyLimitedModifications = true;
+  self.newSupportTicketLink = newSupportTicketLink;
 
   function getGroupContacts() {
     return OvhApiTelephony.v6()
