@@ -40,8 +40,8 @@ export default class {
       replicationPolicyClass: this.isUpdate
         ? this.replication.replicationPolicyClass
         : null,
-      heartbeatsEmit: this.isUpdate
-        ? this.replication.heartbeatsEmit
+      emitHeartbeats: this.isUpdate
+        ? this.replication.emitHeartbeats
         : DEFAULT_VALUES.heartbeat,
       enabled: this.isUpdate ? this.replication.enabled : DEFAULT_VALUES.status,
     };

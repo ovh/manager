@@ -9,7 +9,7 @@ export default class ServiceIntegration {
     topicExcludeList,
     syncGroupOffsets,
     syncInterval,
-    heartbeatsEmit,
+    emitHeartbeats,
     replicationPolicyClass,
     enabled,
   }) {
@@ -21,7 +21,7 @@ export default class ServiceIntegration {
       topicExcludeList,
       syncGroupOffsets,
       syncInterval,
-      heartbeatsEmit,
+      emitHeartbeats,
       replicationPolicyClass,
       enabled,
     });
@@ -44,7 +44,7 @@ export default class ServiceIntegration {
     topicExcludeList,
     syncGroupOffsets,
     syncInterval,
-    heartbeatsEmit,
+    emitHeartbeats,
     replicationPolicyClass,
     enabled,
   }) {
@@ -56,7 +56,7 @@ export default class ServiceIntegration {
       topicExcludeList,
       syncGroupOffsets,
       syncInterval,
-      heartbeatsEmit,
+      emitHeartbeats,
       replicationPolicyClass,
       enabled,
     });
