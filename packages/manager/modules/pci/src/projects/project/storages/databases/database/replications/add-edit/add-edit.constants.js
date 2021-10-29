@@ -1,11 +1,12 @@
+const topicsPattern = /^[A-Za-z0-9-_.*?]+$/;
 export const FORM_RULES = {
   topics: {
-    pattern: /^[A-Za-z0-9-_.*?]+$/,
+    pattern: topicsPattern,
     min: 1,
     max: 1024,
   },
   blacklistedTopics: {
-    pattern: /^[A-Za-z0-9-_.*?]+$/,
+    pattern: topicsPattern,
     min: 1,
     max: 1024,
   },
