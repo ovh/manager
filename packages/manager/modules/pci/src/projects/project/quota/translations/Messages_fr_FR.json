@@ -1,8 +1,9 @@
 {
   "pci_projects_project_quota": "Quotas",
   "pci_projects_project_quota_protect_explain": "Pour maîtriser votre consommation Cloud, votre projet est limité en ressources.",
-  "pci_projects_project_quota_protect_more": "Si vous avez besoin de plus de ressources, vous pouvez les demander à notre équipe en cliquant sur le bouton ci-dessous.",
+  "pci_projects_project_quota_protect_more": "Si vous avez besoin de plus de ressources, vous pouvez commander du crédit cloud ou les demander à notre équipe en cliquant sur les boutons ci-dessous.",
   "pci_projects_project_quota_protect_more_btn": "Augmenter mes quotas",
+  "pci_projects_project_quota_protect_contact_support": "Contacter le support",
   "pci_projects_project_quota_current_limit": "Limitations actuelles",
   "pci_projects_project_quota_instance_unlimited": "Illimité",
   "pci_projects_project_quota_loading_error": "Oups, nous n'arrivons pas à récupérer la liste des quotas.",

@@ -38,6 +38,7 @@ import workflow from './workflow';
 import pciAnnouncementBanner from '../../components/pci-announcement-banner';
 
 import projectComponent from './project.component';
+import service from './project.service';
 
 import './project.less';
 
@@ -81,6 +82,7 @@ angular
   ])
   .config(routing)
   .component('pciProject', projectComponent)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .service('PciProject', service);
 
 export default moduleName;

@@ -10,17 +10,26 @@
         data-loading="$ctrl.isLoading"
     >
         <p
-            data-ng-if="$ctrl.serviceOptions.length > 0"
+            data-ng-if="$ctrl.mode === $ctrl.QUOTA_INCREASE_MODES.BUY_CREDITS"
             data-translate="pci_projects_project_quota_increase_buy_credits"
         ></p>
 
+        <oui-message
+            type="warning"
+            data-ng-if="$ctrl.mode === $ctrl.QUOTA_INCREASE_MODES.BUY_CREDITS"
+        >
+            <span
+                data-translate="pci_projects_project_quota_increase_payment_info"
+            ></span>
+        </oui-message>
+
         <p
             data-translate="pci_projects_project_quota_increase_content"
-            data-translate-values="{ 'projectId': $ctrl.projectId }"
+            data-translate-values="{ 'projectInfo': '<strong>' + $ctrl.projectName + ' ' + $ctrl.projectId + '</strong>' }"
         ></p>
 
         <oui-select
-            data-ng-if="$ctrl.serviceOptions.length > 0"
+            data-ng-if="$ctrl.mode === $ctrl.QUOTA_INCREASE_MODES.BUY_CREDITS"
             data-required
             data-name="serviceOptions"
             data-model="$ctrl.serviceOption"
@@ -43,7 +52,7 @@
         <oui-field
             label="{{ $ctrl.issueTypeFieldsStr }}"
             size="xl"
-            ng-if="$ctrl.serviceOptions.length === 0"
+            ng-if="$ctrl.mode === $ctrl.QUOTA_INCREASE_MODES.CONTACT_SUPPORT"
         >
             <textarea
                 class="oui-textarea"
