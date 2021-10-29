@@ -1,4 +1,6 @@
 import { find } from 'lodash';
+import { API_GUIDES } from '../../project.constants';
+import { SUBMIT_JOB_API_GUIDES } from '../data-processing.constants';
 
 export default class {
   /* @ngInject */
@@ -33,6 +35,13 @@ export default class {
     this.badRequestErrorMessage = '';
     this.isConfigureStepValid = false;
     this.currentIndex = 0;
+  }
+
+  $onInit() {
+    this.apiGuideUrl =
+      API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
+    this.submitJobGuideUrl =
+      SUBMIT_JOB_API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
   }
 
   /**
@@ -112,9 +121,7 @@ export default class {
       .replace(/\./g, '_');
   }
 
-  onSubmitJobHandler() {
-    const lastIndex = this.currentIndex;
-    this.isSubmitting = true;
+  prepareJobPayload() {
     let args = '';
     if (this.state.jobConfig.currentArgument.length > 0) {
       this.state.jobConfig.arguments.push({
@@ -181,8 +188,17 @@ export default class {
         value: this.state.jobConfig.mainClass,
       });
     }
+
+    this.orderData = payload;
+    this.orderAPIUrl = `POST /cloud/project/${this.projectId}/dataProcessing/jobs`;
+  }
+
+  onSubmitJobHandler() {
+    const lastIndex = this.currentIndex;
+    this.isSubmitting = true;
+
     this.dataProcessingService
-      .submitJob(this.projectId, payload)
+      .submitJob(this.projectId, this.orderData)
       .then(() => {
         this.atInternet.trackClick({
           name:
