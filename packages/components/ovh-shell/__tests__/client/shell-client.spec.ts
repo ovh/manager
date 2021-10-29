@@ -1,7 +1,8 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import DirectClientMessageBus from '../../src/message-bus/direct-client';
 import Shell from '../../src/shell/shell';
-import ShellClient, { IPluginInvocation } from '../../src/client/shell-client';
+import ShellClient from '../../src/client/shell-client';
+import { IShellPluginMethodCall } from '../../src/common';
 
 const feature = loadFeature('../../features/client/shell-client.feature', {
   loadRelativePath: true,
@@ -31,7 +32,7 @@ defineFeature(feature, (test) => {
     );
 
     when('I invoke a method from my plugin', () => {
-      const pluginInvokation: IPluginInvocation = {
+      const pluginInvokation: IShellPluginMethodCall = {
         plugin: pluginName,
         method: 'callback',
         args: ['param'],

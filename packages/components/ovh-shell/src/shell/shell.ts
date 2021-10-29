@@ -1,11 +1,10 @@
 import PluginManager from './plugin-manager';
 import IMessageBus from '../message-bus/IMessageBus';
-
-export interface IPluginMessage {
-  uid: string;
-  plugin: string;
-  method: string;
-}
+import {
+  IShellMessage,
+  IShellPluginInvocation,
+  ShellMessageType,
+} from '../common';
 
 export default class Shell {
   pluginEventHandler: (event: MessageEvent) => void;
@@ -16,9 +15,11 @@ export default class Shell {
 
   constructor(bus: IMessageBus) {
     this.messageBus = bus;
-    this.messageBus.onReceive((data: IPluginMessage) =>
-      this.handleMessage(data),
-    );
+    this.messageBus.onReceive((data: IShellMessage<unknown>) => {
+      if (data.type === ShellMessageType.PLUGIN_INVOCATION) {
+        this.handlePluginMessage(data.message as IShellPluginInvocation);
+      }
+    });
     this.pluginManager = new PluginManager();
     this.pluginEventHandler = null;
   }
@@ -27,23 +28,39 @@ export default class Shell {
     return this.pluginManager;
   }
 
-  handleMessage(data: IPluginMessage) {
+  emitEvent(eventId: string, data: unknown) {
+    this.messageBus.send({
+      type: ShellMessageType.EVENT,
+      message: {
+        eventId,
+        data,
+      },
+    });
+  }
+
+  handlePluginMessage(data: IShellPluginInvocation) {
     const onError = (error: Error) =>
       this.messageBus &&
       this.messageBus.send({
-        uid: data.uid,
-        error,
+        type: ShellMessageType.PLUGIN_RESULT,
+        message: {
+          uid: data.uid,
+          error,
+        },
       });
 
     const onSuccess = (success: unknown) =>
       this.messageBus &&
       this.messageBus.send({
-        uid: data.uid,
-        success,
+        type: ShellMessageType.PLUGIN_RESULT,
+        message: {
+          uid: data.uid,
+          success,
+        },
       });
 
     this.pluginManager
-      .invokePluginMethod(data)
+      .invokePluginMethod(data as IShellPluginInvocation)
       .then(onSuccess)
       .catch(onError);
   }

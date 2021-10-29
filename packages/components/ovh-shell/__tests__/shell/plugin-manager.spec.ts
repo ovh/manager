@@ -1,4 +1,4 @@
-import { IPluginInvocation } from '../../src/client/shell-client';
+import { IShellPluginMethodCall } from '../../src/common';
 import PluginManager, { IPluginEntry } from '../../src/shell/plugin-manager';
 
 describe('Plugin registration', () => {
@@ -72,7 +72,7 @@ describe('Plugin Invokation', () => {
     pluginManager.registerPlugin('1', {
       testCall: jest.fn(testFunction),
     });
-    const callInvocationSignature: IPluginInvocation = {
+    const callInvocationSignature: IShellPluginMethodCall = {
       plugin: '1',
       method: 'testCall',
     };
