@@ -25,9 +25,7 @@ export default class HostingCdnSharedConfirmController {
   }
 
   onConfirm() {
-    this.trackClick(
-      'web::hosting::cdn::configure::apply-configuration::confirm',
-    );
+    this.trackClick('apply-configuration::confirm');
 
     this.loading = true;
     const settings = HostingCdnSharedConfirmController.getSettingsToValidate(
