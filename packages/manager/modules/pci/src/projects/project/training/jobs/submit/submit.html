@@ -445,9 +445,9 @@
                                         <textarea
                                             type="textarea"
                                             class="oui-input"
-                                            placeholder="{{:: $ctrl.PLACEHOLDER_SSH_KEY }}"
+                                            placeholder="{{:: $ctrl.JOB_SSH_KEYS_CONSTANTS.PLACEHOLDER }}"
                                             name="sshPublicKey"
-                                            rows="5"
+                                            rows="{{:: $ctrl.JOB_SSH_KEYS_CONSTANTS.NB_ROWS }}"
                                             data-ng-model="$ctrl.addedSshKeys[$index].model"
                                             data-ng-required
                                             data-ng-disabled="$ctrl.addedSshKeys[$index].disabled"
@@ -485,7 +485,7 @@
                 <div class="oui-field__control pt-2 pb-2">
                     <span
                         data-translate="pci_projects_project_training_jobs_submit_select_ssh_quantity"
-                        data-translate-values="{ numberOfSshKeys: $ctrl.getAllSshKeys().length, maxSshKeys: $ctrl.JOB_MAX_SSH_KEYS}"
+                        data-translate-values="{ numberOfSshKeys: $ctrl.getAllSshKeys().length, maxSshKeys: $ctrl.JOB_SSH_KEYS_CONSTANTS.MAX}"
                     ></span>
                 </div>
             </div>

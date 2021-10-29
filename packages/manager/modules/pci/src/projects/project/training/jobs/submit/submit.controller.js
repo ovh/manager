@@ -7,11 +7,8 @@ import { nameGenerator } from '../../../data-processing/data-processing.utils';
 import {
   DISCORD_URL,
   DOC_DOCKER_BUILD_URL,
-  JOB_MAX_SSH_KEYS,
+  JOB_SSH_KEYS_CONSTANTS,
 } from '../../training.constants';
-
-export const CUSTOM_SELECT = '-';
-export const PLACEHOLDER_SSH_KEY = 'ssh-rsa AAAAB3...';
 
 export default class PciTrainingJobsSubmitController {
   /* @ngInject */
@@ -24,8 +21,7 @@ export default class PciTrainingJobsSubmitController {
     atInternet,
     coreConfig,
   ) {
-    this.JOB_MAX_SSH_KEYS = JOB_MAX_SSH_KEYS;
-    this.PLACEHOLDER_SSH_KEY = PLACEHOLDER_SSH_KEY;
+    this.JOB_SSH_KEYS_CONSTANTS = JOB_SSH_KEYS_CONSTANTS;
     this.coreConfig = coreConfig;
     this.$translate = $translate;
     this.PciProjectTrainingService = PciProjectTrainingService;
@@ -306,7 +302,7 @@ export default class PciTrainingJobsSubmitController {
     const allSshKeys = this.getAllSshKeys();
     return (
       allSshKeys.length === this.addedSshKeys.length &&
-      allSshKeys.length <= this.JOB_MAX_SSH_KEYS
+      allSshKeys.length <= this.JOB_SSH_KEYS_CONSTANTS.MAX
     );
   }
 
@@ -314,7 +310,7 @@ export default class PciTrainingJobsSubmitController {
     this.addedSshKeys.push({
       disabled: false,
       model: null,
-      keyName: CUSTOM_SELECT,
+      keyName: this.JOB_SSH_KEYS_CONSTANTS.CUSTOM_SELECT,
     });
   }
 
@@ -345,7 +341,7 @@ export default class PciTrainingJobsSubmitController {
     // Get the select key name from the index
     const newSshKeyName = this.addedSshKeys[index].keyName;
     // Find the selected key by name
-    if (newSshKeyName === CUSTOM_SELECT) {
+    if (newSshKeyName === this.JOB_SSH_KEYS_CONSTANTS.CUSTOM_SELECT) {
       this.addedSshKeys[index].model = null;
       this.addedSshKeys[index].disabled = false;
     } else {
@@ -364,7 +360,7 @@ export default class PciTrainingJobsSubmitController {
       })
       .$promise.then((keys) => {
         this.savedKeys = keys;
-        this.allKeyNames = [CUSTOM_SELECT].concat(
+        this.allKeyNames = [this.JOB_SSH_KEYS_CONSTANTS.CUSTOM_SELECT].concat(
           this.savedKeys.map((x) => x.name),
         );
       });
