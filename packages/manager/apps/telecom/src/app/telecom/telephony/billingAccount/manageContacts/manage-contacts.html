@@ -17,6 +17,28 @@
             class="mb-5"
             data-translate="telephony_group_manage_contacts_change_info"
         ></p>
+        <div
+            class="alert alert-info mb-5"
+            role="alert"
+            data-ng-if="ManageContactsCtrl.hasAnyLimitedModifications"
+        >
+            <p
+                data-translate="telephony_group_manage_contacts_change_support"
+            ></p>
+            <a
+                class="oui-link_icon"
+                href="{{ ManageContactsCtrl.newSupportTicketLink }}"
+                target="new"
+            >
+                <span
+                    data-translate="telephony_group_manage_contacts_change_support_link"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-arrow-right"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </div>
         <div class="table-responsive">
             <table class="table table-hover table-striped">
                 <thead>
