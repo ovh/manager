@@ -635,7 +635,8 @@ export default class DatabaseService {
       .post(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/integration`,
         {
-          serviceId: service.id,
+          sourceServiceId: databaseId,
+          destinationServiceId: service.id,
         },
       )
       .then(({ data }) => data);

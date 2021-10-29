@@ -24,7 +24,7 @@
                     model="$ctrl.model.sourceIntegration"
                     name="source"
                     items="$ctrl.readyServiceIntegrationList"
-                    match="serviceName"
+                    match="destinationServiceName"
                     on-change="$ctrl.checkTargetAndSourceValidity()"
                     disabled="$ctrl.isUpdate"
                     required
@@ -41,7 +41,7 @@
                     model="$ctrl.model.targetIntegration"
                     name="target"
                     items="$ctrl.readyServiceIntegrationList"
-                    match="serviceName"
+                    match="destinationServiceName"
                     on-change="$ctrl.checkTargetAndSourceValidity()"
                     disabled="$ctrl.isUpdate"
                     required

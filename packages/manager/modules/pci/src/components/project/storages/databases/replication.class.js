@@ -30,10 +30,10 @@ export default class ServiceIntegration {
   setServicesNames(replications) {
     this.integrationNameSource = find(replications, {
       id: this.sourceIntegration,
-    })?.serviceName;
+    })?.destinationServiceName;
     this.integrationNameTarget = find(replications, {
       id: this.targetIntegration,
-    })?.serviceName;
+    })?.destinationServiceName;
   }
 
   updateData({
