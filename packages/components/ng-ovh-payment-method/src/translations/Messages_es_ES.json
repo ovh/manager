@@ -1,5 +1,5 @@
 {
-  "ovh_payment_type_bank_account": "Cuenta bancaria",
+  "ovh_payment_type_bank_account": "Adeudo SEPA",
   "ovh_payment_type_paypal": "PayPal",
   "ovh_payment_type_credit_card": "Tarjeta bancaria",
   "ovh_payment_type_deferred_payment_account": "Cuenta de pago diferido",
