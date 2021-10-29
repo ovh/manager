@@ -1,4 +1,5 @@
 import { CDN_ADVANCED } from './hosting-shared-add-edit-cache-rule.constants';
+import { SETTING_BASE_TRACKING_HIT } from '../hosting-cdn-shared-settings.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const resolve = {
@@ -42,7 +43,7 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve,
     atInternet: {
-      rename: 'web::hosting::cdn::configure::create-rule',
+      rename: `${SETTING_BASE_TRACKING_HIT}::create-rule`,
     },
   });
 

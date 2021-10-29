@@ -292,7 +292,7 @@ export default class CdnSharedSettingsController {
   }
 
   removeRule(rule, status) {
-    this.trackClick('web::hosting::cdn::configure::delete_cdn_rule');
+    this.trackClick('delete_cdn_rule');
     CdnSharedSettingsController.activateDeactivateStatus(status, true);
     return this.HostingCdnSharedService.deleteCDNDomainOption(
       this.serviceName,
@@ -436,52 +436,48 @@ export default class CdnSharedSettingsController {
   }
 
   onAdvancedFlushOptionChange(option) {
-    this.trackClick(`web::hosting::cdn::configure::activate_${option.name}`);
+    this.trackClick(`activate_${option.name}`);
 
     this.displayChangeCdnOfferModal(this.model);
   }
 
   onPrewarmOptionClick() {
-    this.trackClick('web::hosting::cdn::configure::prewarm::edit_urls');
+    this.trackClick('prewarm::edit_urls');
 
     this.displayPrewarmEditUrlsModal(this.model);
   }
 
   onPrewarmOptionChange(prewarmStatus) {
-    this.trackClick(
-      `web::hosting::cdn::configure::${
-        prewarmStatus ? 'activate' : 'deactivate'
-      }_prewarm`,
-    );
+    this.trackClick(`${prewarmStatus ? 'activate' : 'deactivate'}_prewarm`);
   }
 
   onQueryStringOptionChange(queryStringStatus) {
     this.trackClick(
-      `web::hosting::cdn::configure::${
-        queryStringStatus ? 'activate' : 'deactivate'
-      }_query_string`,
+      `${queryStringStatus ? 'activate' : 'deactivate'}_query_string`,
     );
   }
 
   onQueryStringParamChange() {
     this.trackClick(
-      `web::hosting::cdn::configure::query_string::${this.model.options.cache.querystring.api.config.queryParameters}_parameter`,
+      `query_string::${this.model.options.cache.querystring.api.config.queryParameters}_parameter`,
     );
   }
 
   onGeoLocationOptionChange(geoLocationStatus) {
     this.trackClick(
-      `web::hosting::cdn::configure::${
+      `${
         geoLocationStatus ? 'activate' : 'deactivate'
       }_geolocation_http_header`,
     );
   }
 
   onPrefetchOptionChange(prefetchStatus) {
+    this.trackClick(`${prefetchStatus ? 'activate' : 'deactivate'}_prefetch`);
+  }
+
+  onMobileRedirectOptionChange(mobileRedirectStatus) {
     this.trackClick(
-      `web::hosting::cdn::configure::${
-        prefetchStatus ? 'activate' : 'deactivate'
-      }_prefetch`,
+      `${mobileRedirectStatus ? 'activate' : 'deactivate'}_mobile_redirect`,
     );
   }
 
@@ -490,9 +486,7 @@ export default class CdnSharedSettingsController {
     api.config.followUri =
       selected === SHARED_CDN_OPTIONS.MOBILE_REDIRECT.STILL_URL;
 
-    this.trackClick(
-      `web::hosting::cdn::configure::mobile_redirect::redirect_${selected}_url`,
-    );
+    this.trackClick(`mobile_redirect::redirect_${selected}_url`);
   }
 
   openConfirmModal() {
@@ -502,7 +496,7 @@ export default class CdnSharedSettingsController {
       model,
       oldModel: this.copyModel,
     });
-    this.trackClick('web::hosting::cdn::configure::apply-configuration');
+    this.trackClick('apply-configuration');
   }
 
   onCancel() {

@@ -4,7 +4,6 @@ export default class HostingCdnSharedEditUrlsController {
   $onInit() {
     this.MAX_URL_ENTRIES = MAX_URL_ENTRIES;
     this.TRACKING = {
-      BASE: 'web::hosting::cdn::configure::prewarm',
       CONFIRM: 'edit_urls_confirm',
       CANCEL: 'edit_urls_cancel',
     };
@@ -79,7 +78,7 @@ export default class HostingCdnSharedEditUrlsController {
   }
 
   onEditUrlsCancelOrConfirm(trackingActionName) {
-    this.trackClick(`${this.TRACKING.BASE}::${trackingActionName}`);
+    this.trackClick(`prewarm::${trackingActionName}`);
 
     return this.goBack();
   }
