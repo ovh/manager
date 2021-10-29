@@ -170,20 +170,16 @@
                                         data-ng-if="!contact.editing && !ManageContactsCtrl.isEditing"
                                         data-ng-click="ManageContactsCtrl.editContact(contact)"
                                         data-ng-disabled="!contact.isModifiable"
-                                        data-translate="modify"
-                                    ></button>
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-pen"
+                                            title="{{ 'modify' | translate }}"
+                                        ></span>
+                                    </button>
                                 </div>
                                 <button
                                     type="button"
                                     class="btn btn-default no-transition"
-                                    data-ng-if="contact.editing"
-                                    data-ng-click="ManageContactsCtrl.cancelEdition(contact)"
-                                    data-ng-disabled="contact.submiting"
-                                    data-translate="cancel"
-                                ></button>
-                                <button
-                                    type="button"
-                                    class="btn btn-primary no-transition"
                                     data-ng-if="contact.editing"
                                     data-ng-disabled="contact.submiting || !ManageContactsCtrl.hasChanges(contact) || !ManageContactsCtrl.isContactValid(contact)"
                                     data-ng-click="ManageContactsCtrl.submitChanges(contact)"
@@ -194,7 +190,23 @@
                                         data-size="s"
                                     >
                                     </oui-spinner>
-                                    <span data-translate="submit"></span>
+                                    <span
+                                        data-ng-if="!contact.submiting"
+                                        class="oui-icon oui-icon-check"
+                                        title="{{ 'submit' | translate }}"
+                                    ></span>
+                                </button>
+                                <button
+                                    type="button"
+                                    class="btn btn-default no-transition"
+                                    data-ng-if="contact.editing"
+                                    data-ng-click="ManageContactsCtrl.cancelEdition(contact)"
+                                    data-ng-disabled="contact.submiting"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-close"
+                                        title="{{ 'close' | translate }}"
+                                    ></span>
                                 </button>
                             </div>
                         </td>
