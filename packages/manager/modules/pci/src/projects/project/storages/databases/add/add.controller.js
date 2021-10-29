@@ -3,6 +3,7 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
+import { API_GUIDES } from '../../../project.constants';
 
 import { NAME_PATTERN, MAX_NAME_LENGTH } from './add.constants';
 
@@ -49,6 +50,8 @@ export default class {
       id: '',
       name: this.$translate.instant('pci_database_common_none'),
     };
+    this.apiGuideUrl =
+      API_GUIDES[this.user.ovhSubsidiary] || API_GUIDES.DEFAULT;
     this.trackDatabases('configuration', 'page');
   }
 
@@ -169,6 +172,8 @@ export default class {
       plan: this.model.plan.name,
       version: this.model.engine.selectedVersion.version,
     };
+
+    this.orderAPIUrl = `POST /cloud/project/${this.projectId}/database/${this.model.engine.name}`;
   }
 
   createDatabase() {

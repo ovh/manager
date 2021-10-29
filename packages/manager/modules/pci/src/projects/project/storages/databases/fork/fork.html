@@ -173,12 +173,11 @@
         data-version="$ctrl.model.engine.selectedVersion.version"
     >
     </database-order-review>
-    <database-order-command
-        data-engine="$ctrl.model.engine.name"
-        data-project-id="$ctrl.projectId"
+    <pci-order-command
         data-order-data="$ctrl.orderData"
+        data-order-api-url="$ctrl.getOrderAPIUrl()"
         data-user="$ctrl.user"
-    ></database-order-command>
+    ></pci-order-command>
     <div class="mb-3">
         <pci-project-lab-agreements
             data-lab="$ctrl.lab"

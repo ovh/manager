@@ -9,7 +9,6 @@ import enginesList from '../components/engines-list';
 import flavorBilling from '../../../../../components/project/flavor-billing';
 import flavorsList from '../components/flavors-list';
 import labs from '../../../../../components/project/labs';
-import orderCommand from '../components/order-command';
 import orderReview from '../components/order-review';
 import plansList from '../components/plans-list';
 import regionsList from '../../../../../components/project/regions-list';
@@ -22,11 +21,11 @@ angular
     'ngOvhCloudUniverseComponents',
     'ngOvhSwimmingPoll',
     'oui',
+    'ovhManagerPciComponents',
     enginesList,
     flavorBilling,
     flavorsList,
     labs,
-    orderCommand,
     orderReview,
     plansList,
     regionsList,

@@ -250,12 +250,28 @@
             data-user="$ctrl.user"
             data-version="$ctrl.model.engine.selectedVersion.version"
         ></database-order-review>
-        <database-order-command
-            data-engine="$ctrl.model.engine.name"
-            data-project-id="$ctrl.projectId"
+        <pci-order-command
+            data-ng-if="$ctrl.currentStep >= 5"
+            data-order-api-url="$ctrl.orderAPIUrl"
             data-order-data="$ctrl.orderData"
             data-user="$ctrl.user"
-        ></database-order-command>
+        >
+            <p data-translate="pci_database_add_command_description"></p>
+            <a
+                class="oui-link_icon"
+                data-ng-href="{{:: $ctrl.apiGuideUrl }}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="pci_database_add_command_documentation_link"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </pci-order-command>
         <div
             class="mb-3"
             data-ng-if="$ctrl.model.engine.selectedVersion.status === 'BETA'"

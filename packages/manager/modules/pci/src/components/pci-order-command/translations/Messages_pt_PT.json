@@ -1,0 +1,15 @@
+{
+  "pci_order_command_title": "Encomenda equivalente",
+  "pci_order_command_description": "O comando seguinte permite-lhe criar o seu serviço graças a",
+  "pci_order_command_api_link": "nossa API",
+  "pci_order_command_parameters": "Parâmetros:",
+  "pci_order_command_parameters_info": "Mais informações sobre os parâmetros disponíveis:",
+  "pci_order_command_parameters_info_description": "Nome do serviço",
+  "pci_order_command_parameters_info_networkId": "Rede privada openstack id",
+  "pci_order_command_parameters_info_subnetId": "Sub-rede id",
+  "pci_order_command_parameters_info_nodesPattern_flavor": "Características selecionadas",
+  "pci_order_command_parameters_info_nodesPattern_number": "Número de nós",
+  "pci_order_command_parameters_info_nodesPattern_region": "Localização selecionada",
+  "pci_order_command_parameters_info_plan": "Oferta selecionada",
+  "pci_order_command_parameters_info_version": "Versão da base de dados"
+}

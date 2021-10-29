@@ -201,6 +201,10 @@ export default class {
     }
   }
 
+  getOrderAPIUrl() {
+    return `POST /cloud/project/${this.projectId}/database/${this.model.engine.name}`;
+  }
+
   createDatabase() {
     this.processingOrder = true;
     this.CucCloudMessage.flushMessages(this.messageContainer);
