@@ -1,4 +1,5 @@
 import has from 'lodash/has';
+import { SETTING_BASE_TRACKING_HIT } from '../hosting-cdn-shared-settings.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting.dashboard.cdn.shared.edit-urls', {
@@ -27,7 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
     },
     atInternet: {
-      rename: 'web::hosting::cdn::configure::cdn-change-offer',
+      rename: `${SETTING_BASE_TRACKING_HIT}::cdn-change-offer`,
     },
   });
 };
