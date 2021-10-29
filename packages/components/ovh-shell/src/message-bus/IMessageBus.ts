@@ -1,4 +1,6 @@
+import { IShellMessage } from '../common';
+
 export default interface IMessageBus {
-  send: (data: unknown) => void;
-  onReceive: (callback: CallableFunction) => void;
+  send: <T>(data: IShellMessage<T>) => void;
+  onReceive: <T>(callback: (message: T) => void) => void;
 }

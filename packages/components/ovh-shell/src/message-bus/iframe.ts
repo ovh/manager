@@ -1,3 +1,4 @@
+import { IShellMessage } from '../common';
 import IMessageBus from './IMessageBus';
 
 const IFRAME_MESSAGE_TYPE = 'ovh-shell-iframe-message';
@@ -20,14 +21,14 @@ export default class IFrameMessageBus implements IMessageBus {
     });
   }
 
-  send(message: unknown) {
+  send<T>(message: IShellMessage<T>): void {
     if (this.iframe) {
       this.iframe.contentWindow.postMessage(
         {
           type: IFRAME_MESSAGE_TYPE,
           message,
         },
-        '*',
+        window.location.origin,
       );
     } else {
       window.parent.postMessage(
@@ -35,12 +36,12 @@ export default class IFrameMessageBus implements IMessageBus {
           type: IFRAME_MESSAGE_TYPE,
           message,
         },
-        '*',
+        window.location.origin,
       );
     }
   }
 
-  onReceive(callback: CallableFunction) {
+  onReceive<T>(callback: (message: T) => void): void {
     this.listeners.push(callback);
   }
 }

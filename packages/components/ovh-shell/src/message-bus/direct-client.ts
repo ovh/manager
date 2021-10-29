@@ -1,3 +1,4 @@
+import { IShellMessage } from '../common';
 import IMessageBus from './IMessageBus';
 
 export default class DirectClientMessageBus implements IMessageBus {
@@ -14,7 +15,7 @@ export default class DirectClientMessageBus implements IMessageBus {
     this.peers.push(peer);
   }
 
-  send(data: unknown): void {
+  send<T>(data: IShellMessage<T>): void {
     this.peers.forEach((peer) => {
       peer.listeners.forEach((listener) => {
         listener(data);
@@ -22,7 +23,7 @@ export default class DirectClientMessageBus implements IMessageBus {
     });
   }
 
-  onReceive(callback: CallableFunction): void {
+  onReceive<T>(callback: (message: T) => void): void {
     this.listeners.push(callback);
   }
 }

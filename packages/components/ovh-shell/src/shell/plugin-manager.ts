@@ -1,4 +1,4 @@
-import { IPluginInvocation } from '../client/shell-client';
+import { IShellPluginMethodCall } from '../common';
 
 export interface IPluginEntry {
   id: string;
@@ -31,7 +31,7 @@ export default class PluginManager {
     plugin,
     method,
     args = [],
-  }: IPluginInvocation): Promise<unknown> {
+  }: IShellPluginMethodCall): Promise<unknown> {
     if (!Object.keys(this.plugins).includes(plugin)) {
       throw new Error(`Plugin '${plugin}' is not available`);
     }
