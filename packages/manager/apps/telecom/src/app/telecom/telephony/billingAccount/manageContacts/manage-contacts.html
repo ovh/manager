@@ -101,12 +101,12 @@
                             data-title="{{:: 'telephony_group_manage_contacts_nic_admin' | translate }}"
                         >
                             <span
-                                data-ng-if="!contact.editing || sectionId !== 'group'"
+                                data-ng-if="!contact.editing || contact.isModificationLimited || sectionId !== 'group'"
                                 data-ng-bind="contact.value.contactAdmin"
                             >
                             </span>
                             <div
-                                data-ng-if="contact.editing && sectionId === 'group'"
+                                data-ng-if="contact.editing && !contact.isModificationLimited && sectionId === 'group'"
                             >
                                 <input
                                     type="text"
@@ -135,12 +135,12 @@
                             data-title="{{:: 'telephony_group_manage_contacts_nic_billing' | translate }}"
                         >
                             <span
-                                data-ng-if="!contact.editing || sectionId !== 'group'"
+                                data-ng-if="!contact.editing || contact.isModificationLimited || sectionId !== 'group'"
                                 data-ng-bind="contact.value.contactBilling"
                             >
                             </span>
                             <div
-                                data-ng-if="contact.editing && sectionId === 'group'"
+                                data-ng-if="contact.editing && sectionId === 'group' && !contact.isModificationLimited"
                             >
                                 <input
                                     type="text"
