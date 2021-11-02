@@ -23,6 +23,10 @@ export default class ServicesActionsCtrl {
   }
 
   $onInit() {
+    this.user = this.coreConfig.getUser();
+    this.disableServiceActions = this.$attrs.disableServiceActions
+      ? this.disableServiceActions
+      : false;
     this.withEngagement =
       this.withEngagement || this.$attrs.withEngagement === '';
     this.withContactManagement = this.$attrs.withContactManagement

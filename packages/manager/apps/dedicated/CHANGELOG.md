@@ -1,3 +1,78 @@
+# [17.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.4.2...@ovh-ux/manager-dedicated@17.5.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* **account.dashboard:** catch if `/me/bill` fails ([#5813](https://github.com/ovh/manager/issues/5813)) ([b21b8b6](https://github.com/ovh/manager/commit/b21b8b60a99aefdb46a227392ea83c1ba786ddbd))
+
+
+### Features
+
+* **server:** use upgrade system instead of range name ([#5841](https://github.com/ovh/manager/issues/5841)) ([c6c161a](https://github.com/ovh/manager/commit/c6c161af198fafaea50d4488e2cc3236cacaf2bb))
+
+
+### Reverts
+
+* Revert "fix(server.dashboard): restore mrtg tile (#5504)" (#5858) ([bf7f89e](https://github.com/ovh/manager/commit/bf7f89eed4b122cb9ec4752253444195dbb6fe9a)), closes [#5504](https://github.com/ovh/manager/issues/5504) [#5858](https://github.com/ovh/manager/issues/5858)
+
+
+
+## [17.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.4.1...@ovh-ux/manager-dedicated@17.4.2) (2021-10-28)
+
+
+### Bug Fixes
+
+* ip reverse delete ([#5848](https://github.com/ovh/manager/issues/5848)) ([0b08abb](https://github.com/ovh/manager/commit/0b08abb9039d5f3e16831c42b8a8dfd2f68f34a5))
+
+
+
+## [17.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.4.0...@ovh-ux/manager-dedicated@17.4.1) (2021-10-28)
+
+
+### Bug Fixes
+
+* update range for @ovh-ux/manager-billing ([#5851](https://github.com/ovh/manager/issues/5851)) ([130b87b](https://github.com/ovh/manager/commit/130b87b021ca5641863626a08da4bb412cec29e3))
+
+
+
+# [17.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.3.0...@ovh-ux/manager-dedicated@17.4.0) (2021-10-28)
+
+
+### Features
+
+* **navbar.marketplace:** add marketplace to top navbar ([#5828](https://github.com/ovh/manager/issues/5828)) ([815c49f](https://github.com/ovh/manager/commit/815c49f4f3cf7a598aee79d99798033ac5952bba))
+
+
+
+# [17.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.2.0...@ovh-ux/manager-dedicated@17.3.0) (2021-10-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1214] ([f96763a](https://github.com/ovh/manager/commit/f96763a289143bc296d89f15137b6d33fe4898fd))
+
+
+### Features
+
+* **hpc:** enable range migration ([3feb2dd](https://github.com/ovh/manager/commit/3feb2dd09ebd8fe0e883dd55ced1a83f3c3737c6))
+
+
+
+# [17.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.1.3...@ovh-ux/manager-dedicated@17.2.0) (2021-10-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1239] ([51239cf](https://github.com/ovh/manager/commit/51239cfb10e50f2d78aa4b42ae07d8e6a2021bc7))
+* add corresponding translations for netapp product ([f6b7039](https://github.com/ovh/manager/commit/f6b70399ae82b7c8a091a18a8d71d387c3043674))
+
+
+### Features
+
+* add `@ovh-ux/manager-netapp` module ([b544301](https://github.com/ovh/manager/commit/b544301a11aa39cecce6abff10c376911a792ab1))
+
+
+
 ## [17.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.1.2...@ovh-ux/manager-dedicated@17.1.3) (2021-10-26)
 
 

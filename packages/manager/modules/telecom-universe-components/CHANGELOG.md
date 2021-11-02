@@ -1,3 +1,12 @@
+# [7.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.4.1...@ovh-ux/ng-ovh-telecom-universe-components@7.5.0) (2021-10-28)
+
+
+### Features
+
+* **navbar.marketplace:** add marketplace to top navbar ([#5828](https://github.com/ovh/manager/issues/5828)) ([815c49f](https://github.com/ovh/manager/commit/815c49f4f3cf7a598aee79d99798033ac5952bba))
+
+
+
 ## [7.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.4.0...@ovh-ux/ng-ovh-telecom-universe-components@7.4.1) (2021-10-26)
 
 

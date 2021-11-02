@@ -19,7 +19,7 @@
         id="commercialRange"
         name="commercialRange"
         data-ng-model="$ctrl.commercialRange.model"
-        data-ng-options="commercialRangeType as ($ctrl.COMMERCIAL_RANGE_ENUM[commercialRangeType] || commercialRangeType) for commercialRangeType in $ctrl.commercialRange.list"
+        data-ng-options="commercialRangeType as ($ctrl.COMMERCIAL_RANGE_ENUM[commercialRangeType.name] || commercialRangeType.name) for commercialRangeType in $ctrl.commercialRange.list"
     >
         <option
             value=""

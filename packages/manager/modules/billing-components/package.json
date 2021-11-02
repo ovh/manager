@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-billing-components",
-  "version": "3.3.1",
+  "version": "3.4.0",
   "private": true,
   "description": "OVHcloud manager billing components",
   "repository": {
@@ -12,7 +12,6 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-models": "^1.4.3",
     "lodash-es": "^4.17.15"
   },

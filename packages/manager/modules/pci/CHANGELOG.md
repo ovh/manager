@@ -1,3 +1,17 @@
+## [5.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.47.0...@ovh-ux/manager-pci@5.47.1) (2021-11-02)
+
+
+### Bug Fixes
+
+* **pci:** linux image distribution update ([#5847](https://github.com/ovh/manager/issues/5847)) ([015350d](https://github.com/ovh/manager/commit/015350d53a34915ef4463ea12827b576a927cf43))
+* **pci.instance.shelve:** improve shelve message ([#5773](https://github.com/ovh/manager/issues/5773)) ([1ac2b55](https://github.com/ovh/manager/commit/1ac2b55678d74cccbb30b8696c6b7969d77e7b00))
+* **storage.databases:** add new ssl mode to match backend ([#5792](https://github.com/ovh/manager/issues/5792)) ([f0d1da9](https://github.com/ovh/manager/commit/f0d1da9b06fe541e5fcd72f1ec3716f97bb6151a))
+* **storage.databases:** add trackdashboard to informations modal ([#5789](https://github.com/ovh/manager/issues/5789)) ([359a8d2](https://github.com/ovh/manager/commit/359a8d23295673e7f26a30d2089501cd49d86423))
+* **storage.databases:** remove replicate uri feature ([#5790](https://github.com/ovh/manager/issues/5790)) ([dd80b55](https://github.com/ovh/manager/commit/dd80b5579d8c64c32a5f6049d8d3e035a126999d))
+* **storage.databases:** update pattern for redis user inputs ([#5793](https://github.com/ovh/manager/issues/5793)) ([fd52319](https://github.com/ovh/manager/commit/fd52319735e12b9c27be366157022828388e57fe))
+
+
+
 # [5.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.46.2...@ovh-ux/manager-pci@5.47.0) (2021-10-26)
 
 

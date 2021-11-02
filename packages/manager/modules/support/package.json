@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-support",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "private": true,
   "description": "Support component to manage tickets.",
   "repository": {

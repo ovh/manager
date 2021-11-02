@@ -1,3 +1,12 @@
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.5.0...@ovh-ux/manager-catalog-price@1.6.0) (2021-10-27)
+
+
+### Features
+
+* allow to display unit ([800ecb5](https://github.com/ovh/manager/commit/800ecb5d68d6dc2f6af66d727dadc78b4873894e))
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.4.1...@ovh-ux/manager-catalog-price@1.5.0) (2021-09-28)
 
 

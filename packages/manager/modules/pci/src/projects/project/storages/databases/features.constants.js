@@ -8,7 +8,6 @@ const features = {
     DATABASE_TYPES.POSTGRESQL,
     DATABASE_TYPES.KAFKA,
   ],
-  replicateURI: [DATABASE_TYPES.MONGO_DB],
   usersTab: [
     DATABASE_TYPES.MONGO_DB,
     DATABASE_TYPES.MYSQL,

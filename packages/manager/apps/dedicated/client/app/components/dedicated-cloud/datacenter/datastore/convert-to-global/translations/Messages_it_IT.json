@@ -1,0 +1,9 @@
+{
+  "dedicatedCloud_datacenter_delete_confirmation": "Vuoi davvero eliminare il datacenter {{t0}}?",
+  "dedicatedCloud_datacenter_delete_success": "Il datacenter {{t0}} sta per essere eliminato.",
+  "dedicatedCloud_datacenter_delete_error": "Si è verificato un errore durante l'eliminazione del datacenter {{t0}}.",
+  "dedicatedCloud_datacenter_convert_to_global": "Converti il datastore in globale",
+  "dedicatedCloud_datacenter_convert_to_global_confirmation": "Vuoi davvero convertire il datastore {{t0}} in globale?",
+  "dedicatedCloud_datacenter_convert_to_global_success": "Il datastore {{t0}} sarà convertito in globale entro pochi minuti.",
+  "dedicatedCloud_datacenter_convert_to_global_error": "Si è verificato un errore durante la conversione del datastore {{t0}} in globale."
+}

@@ -12,4 +12,13 @@ export default class {
       },
     );
   }
+
+  convertToGlobal(serviceName, datacenterId, filerId) {
+    return this.OvhHttp.post(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/filer/${filerId}/convertToGlobal`,
+      {
+        rootPath: 'apiv6',
+      },
+    );
+  }
 }

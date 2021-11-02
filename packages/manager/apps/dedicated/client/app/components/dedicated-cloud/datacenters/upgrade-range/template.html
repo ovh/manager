@@ -1,0 +1,164 @@
+<div class="dedicatedCloud-upgrade-range">
+    <oui-back-button data-on-click=":: $ctrl.goBack()"> </oui-back-button>
+
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.loading.init">
+        <oui-stepper on-finish="$ctrl.onValidate(forms)">
+            <oui-step-form
+                name="step1"
+                header="{{:: 'dedicatedCloud_datacenters_upgrade_range_title_' + $ctrl.range | translate }}"
+                description="{{:: 'dedicatedCloud_datacenters_upgrade_range_description_' + $ctrl.range | translate }}"
+            >
+                <div class="row mb-3">
+                    <oui-select-picker
+                        disabled="$ctrl.disabled"
+                        name="ouiSelectPicker1"
+                        match="name"
+                        model="$ctrl.model"
+                        label="{{:: 'dedicatedCloud_datacenters_upgrade_range_card_title_' + $ctrl.range | translate }}"
+                        class="col-md-4"
+                    >
+                        <oui-select-picker-section>
+                            <strong
+                                data-translate="dedicatedCloud_datacenters_upgrade_range_card_host_title"
+                            ></strong>
+                            <p
+                                data-translate="{{:: 'dedicatedCloud_datacenters_upgrade_range_card_host_description_' + $ctrl.range}}"
+                            ></p>
+                        </oui-select-picker-section>
+
+                        <oui-select-picker-section>
+                            <strong
+                                data-translate="dedicatedCloud_datacenters_upgrade_range_card_datastore_title"
+                            ></strong>
+                            <p
+                                data-translate="{{:: 'dedicatedCloud_datacenters_upgrade_range_card_datastore_description_' + $ctrl.range}}"
+                            ></p>
+                        </oui-select-picker-section>
+
+                        <oui-select-picker-section
+                            data-ng-if="$ctrl.range === 'essentials'"
+                        >
+                            <strong
+                                data-translate="dedicatedCloud_datacenters_upgrade_range_card_vrops_title"
+                            ></strong>
+                            <p
+                                data-translate="dedicatedCloud_datacenters_upgrade_range_card_vrops_description"
+                            ></p>
+                        </oui-select-picker-section>
+
+                        <oui-select-picker-section
+                            data-ng-if="$ctrl.range === 'premier'"
+                        >
+                            <strong
+                                data-translate="dedicatedCloud_datacenters_upgrade_range_card_bandwidth_title"
+                            ></strong>
+                            <p
+                                data-translate="dedicatedCloud_datacenters_upgrade_range_card_bandwidth_description"
+                            ></p>
+                        </oui-select-picker-section>
+
+                        <oui-select-picker-footer>
+                            <strong
+                                class="d-block text-right"
+                                data-ng-bind="$ctrl.upgradePlan.order.prices.withTax.text"
+                            ></strong>
+                        </oui-select-picker-footer>
+                    </oui-select-picker>
+                </div>
+            </oui-step-form>
+
+            <oui-step-form
+                name="step2"
+                header="{{:: 'dedicatedCloud_datacenters_upgrade_range_contracts_title' | translate}}"
+            >
+                <div class="mb-3">
+                    <oui-collapsible
+                        data-ng-repeat="contract in $ctrl.upgradePlan.order.contracts track by $index"
+                        heading="{{:: contract.name }}"
+                        group="contracts"
+                    >
+                        <a
+                            data-ng-href="{{ contract.url }}"
+                            target="_blank"
+                            rel="noopener"
+                            data-translate="dedicatedCloud_datacenters_upgrade_range_contracts_see_pdf"
+                        >
+                        </a>
+                        <pre data-ng-bind="contract.content"></pre>
+                    </oui-collapsible>
+                </div>
+
+                <oui-checkbox
+                    class="mb-3"
+                    data-model="$ctrl.model.contracts"
+                    name="contractAccept"
+                    data-required
+                >
+                    <span
+                        data-translate="{{ $ctrl.order.contracts.length === 1 ? 'contract_agree' : 'contracts_agree' }}"
+                    ></span>
+                </oui-checkbox>
+            </oui-step-form>
+
+            <oui-step-form
+                name="step3"
+                header="{{:: 'dedicatedCloud_datacenters_upgrade_range_summary' | translate}}"
+                submit-text="{{:: 'dedicatedCloud_datacenters_upgrade_range_migrate' | translate}}"
+            >
+                <div class="mb-3">
+                    <dl>
+                        <!-- Selected model -->
+                        <dt
+                            data-translate="dedicatedCloud_datacenters_upgrade_range_selected_model"
+                        ></dt>
+                        <dd data-ng-bind="$ctrl.range"></dd>
+                        <!-- End of Selected model -->
+
+                        <!-- HT Price -->
+                        <dt
+                            data-translate="dedicatedCloud_datacenters_upgrade_range_price_ht"
+                        ></dt>
+                        <dd
+                            data-ng-bind="$ctrl.upgradePlan.order.prices.withoutTax.text"
+                        ></dd>
+                        <!-- End of HT Price -->
+
+                        <!-- TTC Price -->
+                        <dt
+                            data-translate="dedicatedCloud_datacenters_upgrade_range_price_ttc"
+                        ></dt>
+                        <dd
+                            data-ng-bind="$ctrl.upgradePlan.order.prices.withTax.text"
+                        ></dd>
+                        <!-- End of TTC Price -->
+                    </dl>
+
+                    <p
+                        data-translate="dedicatedCloud_datacenters_upgrade_range_resume_explain1"
+                    ></p>
+                    <ul>
+                        <li
+                            data-translate="dedicatedCloud_datacenters_upgrade_range_resume_explain2"
+                        ></li>
+                        <li
+                            data-translate="dedicatedCloud_datacenters_upgrade_range_resume_explain3"
+                        ></li>
+                        <li
+                            data-translate="dedicatedCloud_datacenters_upgrade_range_resume_explain4"
+                        ></li>
+                        <li
+                            data-translate="dedicatedCloud_datacenters_upgrade_range_resume_explain5"
+                        ></li>
+                    </ul>
+                    <p
+                        data-translate="dedicatedCloud_datacenters_upgrade_range_resume_explain6"
+                    ></p>
+                </div>
+            </oui-step-form>
+        </oui-stepper>
+    </div>
+</div>

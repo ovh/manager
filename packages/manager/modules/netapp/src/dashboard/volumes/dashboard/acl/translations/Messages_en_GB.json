@@ -1,0 +1,22 @@
+{
+  "netapp_volumes_acl": "Manage access control list",
+  "netapp_volumes_acl_breadcrumb": "ACL",
+  "netapp_volumes_acl_title": "Access control list",
+  "netapp_volumes_acl_title_abbr": "ACL",
+  "netapp_volumes_acl_description": "Add IP addresses or ranges that are authorised to access this volume. By default, no IP addresses or ranges are authorised.",
+  "netapp_volumes_acl_add": "Add a new access",
+  "netapp_volumes_acl_access_type": "Type",
+  "netapp_volumes_acl_access_type_certificat": "Certificate",
+  "netapp_volumes_acl_access_type_ip": "IP",
+  "netapp_volumes_acl_access_type_user": "User",
+  "netapp_volumes_acl_access_to": "Access to",
+  "netapp_volumes_acl_access_to_add": "Add access to",
+  "netapp_volumes_acl_access_level": "Access permissions",
+  "netapp_volumes_acl_access_level_rw": "Read and write",
+  "netapp_volumes_acl_access_level_ro": "Read-only",
+  "netapp_volumes_acl_update": "Confirm",
+  "netapp_volumes_acl_cancel": "Cancel",
+  "netapp_volumes_acl_delete": "Delete",
+  "netapp_volumes_acl_add_success": "Your access control list (ACL) has been created",
+  "netapp_volumes_acl_add_error": "Your access control list (ACL) could not be created. Please try again"
+}

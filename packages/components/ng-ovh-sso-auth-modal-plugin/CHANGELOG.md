@@ -1,3 +1,12 @@
+## [4.0.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth-modal-plugin@4.0.5...@ovh-ux/ng-ovh-sso-auth-modal-plugin@4.0.6) (2021-10-27)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `^11.0.0` ([7cbdd08](https://github.com/ovh/manager/commit/7cbdd08ffaf8d7d05f0165bdf0d30d19ed9e428f))
+
+
+
 ## [4.0.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth-modal-plugin@4.0.4...@ovh-ux/ng-ovh-sso-auth-modal-plugin@4.0.5) (2021-10-26)
 
 

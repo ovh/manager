@@ -3039,10 +3039,15 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
+"@ovh-ux/ui-kit@^4.7.0":
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.7.0.tgz#898e57526c6c815103e5ce3b6889e18cfc439028"
+  integrity sha512-879lV+UnjaWyp4F7dPwJiv1jEUeeRmCdaKM5VtjjGO2OZhj+SAyup20mLEQxFVkakhkjAL07BT/z9ReM+9rPOQ==
+
 "@ovh-ux/ui-kit@^5.1.2":
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-5.1.2.tgz#fe77a85212943401d10651122d5789e304835a44"
-  integrity sha512-L+uN0a131b3cPdLDVawTHrI2M8ghuQt9x6ZjOPDQGD4pfmP2fRVfBiIUx63PwDbpxsCm3CKnOqD23hsKtQ1pTg==
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-5.2.0.tgz#a2c74c0b4fde2109153b6b6a878d5df14f02c32a"
+  integrity sha512-SAh0HbJdQ8B2PkIXfObZSr05n0SxTA3iYhE3zH20MeUfmz6BEH3f0KfgKsVOmTDMpMuZzk1/9Ywnom4Jea1gog==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -13037,7 +13042,7 @@ lodash-es@^4.17.11, lodash-es@^4.17.15:
 
 lodash-es@^4.17.21:
   version "4.17.21"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  resolved "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
   integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
 lodash._reinterpolate@^3.0.0:
@@ -14841,6 +14846,13 @@ osenv@0, osenv@^0.1.4, osenv@^0.1.5:
   dependencies:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
+
+ovh-api-services@^11.2.0:
+  version "11.2.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-11.2.0.tgz#42583c9fe11e216beaa56cfabe535c36e3b5ca75"
+  integrity sha512-zwUANwCyRR+bqJgBgn8CbA6tV6zjB9koSfLb8ZkRXLgO/Y2t9Ra/tKyQeQxCyHL91UcNSN2Z1Mvcym9ehrDcMQ==
+  dependencies:
+    lodash "^4.17.20"
 
 ovh-api-services@^13.0.0:
   version "13.0.0"

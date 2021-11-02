@@ -44,7 +44,7 @@ export default class IpReverse {
     return this.OvhApiIp.Reverse()
       .v6()
       .delete({
-        ip: window.encodeURIComponent(ipBlock),
+        ip: ipBlock,
         ipReverse: ip,
       }).$promise;
   }

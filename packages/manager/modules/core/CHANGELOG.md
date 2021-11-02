@@ -1,3 +1,12 @@
+# [12.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.5.1...@ovh-ux/manager-core@12.6.0) (2021-10-27)
+
+
+### Features
+
+* add global guides ([381dbfd](https://github.com/ovh/manager/commit/381dbfdb61b03fe489dc66712c8ff4258fa63c4a))
+
+
+
 ## [12.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.5.0...@ovh-ux/manager-core@12.5.1) (2021-10-26)
 
 

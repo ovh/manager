@@ -255,21 +255,6 @@
                         </oui-tile-description>
                     </oui-tile-description>
                 </oui-tile-definition>
-
-                <oui-tile-definition
-                    data-term="{{:: 'pci_databases_general_information_replicate_URI_label' | translate }}"
-                    data-ng-if="$ctrl.isFeatureActivated('replicateURI')"
-                >
-                    <oui-tile-description>
-                        <oui-tile-description>
-                            <oui-clipboard
-                                data-model="$ctrl.connectionInformation.application"
-                                data-id="connection-application"
-                                data-name="connection-application"
-                            ></oui-clipboard>
-                        </oui-tile-description>
-                    </oui-tile-description>
-                </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_database_host' | translate }}"
                     data-description="{{:: $ctrl.database.domain }}"

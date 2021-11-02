@@ -21,5 +21,7 @@
   "dedicatedCloud_tab_datastores_status_ERROR": "Error",
   "dedicatedCloud_tab_datastores_status_REMOVING": "Eliminando...",
   "dedicatedCloud_tab_datastores_status_UNKNOWN": "Desconocido",
-  "dedicatedCloud_tab_datastores_empty": "No hay datastores."
+  "dedicatedCloud_tab_datastores_empty": "No hay datastores.",
+  "dedicatedCloud_convert_datastore_to_global": "Convertir el datastore en global",
+  "dedicatedCloud_tab_datastores_global_information": "Un datastore global es un datastore montado en todos los clusters o datacenters virtuales de una infraestructura VMware, es decir, compartido entre varios vDC. Algunos datastores pueden no ser compatibles, en cuyo caso puede contratar nuevos datastores y utilizar VMware Storage vMotion. Para más información, consulte nuestras guías sobre <a href=\"{{ billingGuideUrl }}\" target=\"_blank\">la facturación de Private Cloud</a> y <a href=\"{{ vMotionGuideUrl }}\" target=\"_blank\">VMware Storage vMotion</a>."
 }

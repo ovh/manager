@@ -1,3 +1,13 @@
+## [3.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.1.2...@ovh-ux/manager-exchange@3.1.3) (2021-11-02)
+
+
+### Bug Fixes
+
+* **domain.mx-autoconfig:** get region based constants ([#5820](https://github.com/ovh/manager/issues/5820)) ([b8bba8f](https://github.com/ovh/manager/commit/b8bba8f3ad49a1aea7919dfc4aa54c5799c63db8))
+* **security:** move template content into translation file ([#5758](https://github.com/ovh/manager/issues/5758)) ([346bdac](https://github.com/ovh/manager/commit/346bdac8ae38fc8ce040a0bfab81675b788a1051))
+
+
+
 ## [3.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.1.1...@ovh-ux/manager-exchange@3.1.2) (2021-10-26)
 
 

@@ -1,3 +1,13 @@
+## [3.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.2.1...@ovh-ux/manager-hub@3.2.2) (2021-10-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1239] ([51239cf](https://github.com/ovh/manager/commit/51239cfb10e50f2d78aa4b42ae07d8e6a2021bc7))
+* add corresponding translations for netapp product ([f6b7039](https://github.com/ovh/manager/commit/f6b70399ae82b7c8a091a18a8d71d387c3043674))
+
+
+
 ## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.2.0...@ovh-ux/manager-hub@3.2.1) (2021-10-25)
 
 
