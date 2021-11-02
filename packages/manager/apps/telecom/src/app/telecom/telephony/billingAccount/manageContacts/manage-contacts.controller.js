@@ -6,7 +6,6 @@ import pick from 'lodash/pick';
 import set from 'lodash/set';
 import startsWith from 'lodash/startsWith';
 import values from 'lodash/values';
-import some from 'lodash/some';
 
 export default /* @ngInject */ function TelecomTelephonyBillingAccountManageContactsCtrl(
   $stateParams,
@@ -188,8 +187,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountManageCont
         }
       });
 
-      self.hasAnyLimitedModifications = some(
-        services,
+      self.hasAnyLimitedModifications = services.some(
         (service) => service.isModificationLimited,
       );
     });
