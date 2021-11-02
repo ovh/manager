@@ -234,7 +234,7 @@ export default /* @ngInject */ ($stateProvider) => {
                     DatabaseService.getDatabaseDetails(
                       projectId,
                       DATABASE_TYPES.KAFKA_MIRROR_MAKER,
-                      i.serviceId,
+                      i.sourceServiceId,
                     ).then((mm) => ({
                       ...i,
                       serviceName: mm.description,
