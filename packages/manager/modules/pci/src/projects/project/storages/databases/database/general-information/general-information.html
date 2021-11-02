@@ -15,7 +15,7 @@
     </oui-message>
 
     <oui-message
-        data-ng-if="$ctrl.users.length === 0 && $ctrl.allowedIps.length > 0"
+        data-ng-if="$ctrl.users.length === 0 && $ctrl.isFeatureActivated('usersTab') && $ctrl.allowedIps.length > 0"
         data-type="warning"
         data-dismissable
     >
@@ -30,7 +30,7 @@
     </oui-message>
 
     <oui-message
-        data-ng-if="$ctrl.allowedIps.length === 0 && $ctrl.users.length > 0"
+        data-ng-if="$ctrl.allowedIps.length === 0 && ($ctrl.users.length > 0 || !$ctrl.isFeatureActivated('usersTab'))"
         data-type="warning"
         data-dismissable
     >
@@ -38,7 +38,7 @@
     </oui-message>
 
     <oui-message
-        data-ng-if="$ctrl.allowedIps.length === 0 && $ctrl.users.length === 0"
+        data-ng-if="$ctrl.allowedIps.length === 0 && $ctrl.users.length === 0 && $ctrl.isFeatureActivated('usersTab')"
         data-type="warning"
         data-dismissable
     >
@@ -351,7 +351,32 @@
         </div>
         <div class="col-md-4">
             <oui-tile
-                class="form-group"
+                data-ng-if="$ctrl.isFeatureActivated('showServiceIntegration')"
+                class="mb-3"
+                data-heading="{{:: 'pci_databases_general_information_service_integration_title' | translate }}"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information__kafka_mirror_maker_label' | translate }}"
+                >
+                    <oui-tile-description>
+                        <p
+                            data-ng-if="$ctrl.serviceIntegration.length === 0"
+                            data-translate="pci_databases_general_information__kafka_mirror_maker_none"
+                        ></p>
+                        <p
+                            data-ng-repeat="integration in $ctrl.serviceIntegration track by $index"
+                        >
+                            <span
+                                class="oui-badge_success oui-badge"
+                                data-ng-bind="integration.serviceName"
+                            >
+                            </span>
+                        </p>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+            <oui-tile
+                class="mb-3"
                 data-heading="{{:: 'pci_databases_general_information_configuration_title' | translate }}"
             >
                 <oui-tile-definition

@@ -1,6 +1,8 @@
 import find from 'lodash/find';
+import map from 'lodash/map';
 import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
-import { NODES_PER_ROW } from '../../databases.constants';
+import { INTEGRATION_TYPE } from '../../../../../../components/project/storages/databases/serviceIntegration.constants';
+import { DATABASE_TYPES, NODES_PER_ROW } from '../../databases.constants';
 import isFeatureActivated from '../../features.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -211,6 +213,36 @@ export default /* @ngInject */ ($stateProvider) => {
           }
         });
       },
+      serviceIntegration: /* @ngInject */ (
+        $q,
+        DatabaseService,
+        database,
+        projectId,
+      ) =>
+        isFeatureActivated('showServiceIntegration', database.engine)
+          ? DatabaseService.getIntegrations(
+              projectId,
+              database.engine,
+              database.id,
+            ).then((integrations) =>
+              $q.all(
+                map(
+                  integrations.filter(
+                    (i) => i.type === INTEGRATION_TYPE.MIRROR_MAKER,
+                  ),
+                  (i) =>
+                    DatabaseService.getDatabaseDetails(
+                      projectId,
+                      DATABASE_TYPES.KAFKA_MIRROR_MAKER,
+                      i.sourceServiceId,
+                    ).then((mm) => ({
+                      ...i,
+                      serviceName: mm.description,
+                    })),
+                ),
+              ),
+            )
+          : [],
       users: /* @ngInject */ (DatabaseService, database, projectId) =>
         isFeatureActivated('usersTab', database.engine)
           ? DatabaseService.getUsers(projectId, database.engine, database.id)
