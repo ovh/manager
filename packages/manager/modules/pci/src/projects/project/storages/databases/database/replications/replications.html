@@ -54,7 +54,10 @@
                 <br
                     data-ng-if="$row.topics.length > $ctrl.MAX_TOPIC_PER_LINE && $index % $ctrl.MAX_TOPIC_PER_LINE === 0"
                 />
-                <span class="oui-badge oui-badge_info">{{topic}}</span>
+                <span
+                    class="oui-badge oui-badge_info"
+                    data-ng-bind="topic"
+                ></span>
             </div>
         </oui-datagrid-column>
         <oui-datagrid-column
@@ -72,7 +75,10 @@
                 <br
                     data-ng-if="$row.topicExcludeList.length > $ctrl.MAX_TOPIC_PER_LINE && $index % $ctrl.MAX_TOPIC_PER_LINE === 0"
                 />
-                <span class="oui-badge oui-badge_info">{{topic}}</span>
+                <span
+                    class="oui-badge oui-badge_info"
+                    data-ng-bind="topic"
+                ></span>
             </div>
         </oui-datagrid-column>
         <oui-datagrid-column
