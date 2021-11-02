@@ -1,6 +1,6 @@
 {
   "dedicatedCloud_move_ip_title": "Attach this IP block to another service",
-  "dedicatedCloud_move_ip_description": "You can reassign an IP block that you have already ordered to another compatible service. These services are filtered according to their relevance, geolocation and datacentres.",
+  "dedicatedCloud_move_ip_description": "You can reassign an IP block that you have already ordered to another compatible service. These services are filtered according to their relevance, geolocation and datacenters.",
   "dedicatedCloud_move_ip_select_ip": "Choose the IP block to move:",
   "dedicatedCloud_move_ip_select_target": "Choose the service your IP block will be migrated to:",
   "dedicatedCloud_move_ip_select_next_hop": "Choose the next hop for your target service:",

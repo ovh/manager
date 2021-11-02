@@ -4,7 +4,7 @@
   "enterprise_cloud_database_create_choose_db": "Select a DBMS",
   "enterprise_cloud_database_create_choose_db_desc": "A cluster is configured to use a DBMS, which can be used to create multiple databases.",
   "enterprise_cloud_database_create_choose_dc": "Choose a region",
-  "enterprise_cloud_database_create_choose_dc_desc": "As a general rule, you will need to choose the region closest to your infrastructure. The exact composition of datacentres and associated SLAs is detailed in the official documentation.",
+  "enterprise_cloud_database_create_choose_dc_desc": "As a general rule, you will need to choose the region closest to your infrastructure. The exact composition of datacenters and associated SLAs is detailed in the official documentation.",
   "enterprise_cloud_database_create_choose_cluster": "Select a configuration for your cluster",
   "enterprise_cloud_database_create_choose_cluster_desc": "You can also add or delete nodes after you have created your cluster.",
   "enterprise_cloud_database_create_choose_cluster_info": "{{ numDefaultNodes }} dedicated nodes are included by default",

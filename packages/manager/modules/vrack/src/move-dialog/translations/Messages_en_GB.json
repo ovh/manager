@@ -1,10 +1,10 @@
 {
-  "vrack_move_dialog_title_dedicatedCloudDatacenter": "Moving a Private Cloud datacentre",
-  "vrack_move_dialog_intro_dedicatedCloudDatacenter": "You have selected a Private Cloud datacentre service. This service cannot be standalone, and will need to be transferred to another vRack.",
+  "vrack_move_dialog_title_dedicatedCloudDatacenter": "Moving a Private Cloud datacenter",
+  "vrack_move_dialog_intro_dedicatedCloudDatacenter": "You have selected a Private Cloud datacenter service. This service cannot be standalone, and will need to be transferred to another vRack.",
   "vrack_move_dialog_warning_notice": "This operation will result in around 5 minutes of downtime.",
   "vrack_move_dialog_choose_vrack_label": "Destination vRack:",
   "vrack_move_dialog_choose_vrack_default_option": "Select a vRack",
-  "vrack_move_dialog_request_error": "Oops... the datacentre migration has failed.",
-  "vrack_move_dialog_title_managedBareMetalDatacenter": "Move a Managed Bare Metal datacentre",
-  "vrack_move_dialog_intro_managedBareMetalDatacenter": "You have selected a Managed Bare Metal datacentre service. This service cannot be standalone, and will need to be transferred to another vRack."
+  "vrack_move_dialog_request_error": "Oops... the datacenter migration has failed.",
+  "vrack_move_dialog_title_managedBareMetalDatacenter": "Move a Managed Bare Metal datacenter",
+  "vrack_move_dialog_intro_managedBareMetalDatacenter": "You have selected a Managed Bare Metal datacenter service. This service cannot be standalone, and will need to be transferred to another vRack."
 }
