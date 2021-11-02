@@ -486,7 +486,7 @@
   "privateDatabase_tabs_list_extensions_enable_error": "Beim Einrichten der Erweiterung ist ein Fehler aufgetreten.",
   "privateDatabase_tabs_list_extensions_disable_success": "Die Erweiterung wurde erfolgreich deaktiviert.",
   "privateDatabase_tabs_list_extensions_disable_error": "Bei der Deaktivierung der Erweiterung ist ein Fehler aufgetreten.",
-  "privateDatabase_quota_refresh": "Quota Ihrer Datenbank aktualisieren.",
+  "privateDatabase_quota_refresh": "Quota Ihrer Datenbank aktualisieren",
   "privateDatabase_quota_refresh_success": "Die Anfrage zur Quota-Aktualisierung wird in wenigen Augenblicken durchgeführt.",
   "privateDatabase_quota_refresh_fail": "Bei der Anfrage zur Quota-Aktualisierung ist ein Fehler aufgetreten."
 }
