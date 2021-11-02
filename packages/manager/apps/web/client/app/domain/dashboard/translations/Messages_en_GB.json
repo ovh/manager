@@ -828,5 +828,6 @@
   "domain_dashboard_recommended_hosting_discover": "Explore our solutions",
   "domain_tab_ZONE_no_zone_order_btn": "Order a DNS zone",
   "domain_tab_emails": "Emails and mailing lists",
-  "domain_configuration_protection_auth_info_registry_LT": "To transfer your domain name away from OVH, please contact our customer service."
+  "domain_configuration_protection_auth_info_registry_LT": "To transfer your domain name away from OVH, please contact our customer service.",
+  "domain_configuration_dns_entry_edit_step3_alert": "The modification will be applied immediately on the DNS zone, but please note that the change may take up to 24 hours to propagate."
 }

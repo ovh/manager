@@ -829,5 +829,6 @@
   "domain_dashboard_recommended_hosting_discover": "Sprawdź rozwiązania",
   "domain_tab_ZONE_no_zone_order_btn": "Zamów strefę DNS",
   "domain_tab_emails": "E-maile i listy mailingowe",
-  "domain_configuration_protection_auth_info_registry_LT": "Aby przenieść domenę z OVHcloud do innego operatora, skontaktuj się z naszym działem obsługi klienta."
+  "domain_configuration_protection_auth_info_registry_LT": "Aby przenieść domenę z OVHcloud do innego operatora, skontaktuj się z naszym działem obsługi klienta.",
+  "domain_configuration_dns_entry_edit_step3_alert": "Propagacja zmian w strefie DNS trwa około 24 godziny."
 }
