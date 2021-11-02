@@ -73,6 +73,26 @@
                         ></span>
                     </tuc-col-sort>
                 </th>
+                <th scope="col">
+                    <tuc-col-sort
+                        data-field-name="allowIncident"
+                        data-title="{{:: 'table_sort' | translate}}"
+                    >
+                        <span
+                            data-ng-bind=":: 'components_notification_allowIncident' | translate"
+                        ></span>
+                    </tuc-col-sort>
+                </th>
+                <th scope="col">
+                    <tuc-col-sort
+                        data-field-name="downThreshold"
+                        data-title="{{:: 'table_sort' | translate}}"
+                    >
+                        <span
+                            data-ng-bind=":: 'components_notification_downThreshold' | translate"
+                        ></span>
+                    </tuc-col-sort>
+                </th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -93,6 +113,9 @@
                     data-ng-if="!element.editMode"
                     data-title="{{ 'components_notification_type' | translate }}"
                 >
+                    <em
+                        data-ng-class="{'fa fa-mobile': element.type === 'sms', 'fa fa-envelope-o': element.type === 'mail'}"
+                    ></em>
                     <span
                         data-ng-bind="'components_notification_' + element.type | translate"
                     ></span>
@@ -103,7 +126,10 @@
                     data-ng-if="!element.editMode"
                     data-title="{{ 'components_notification_account' | translate }}"
                 >
-                    <span data-ng-bind=":: element.smsAccount"></span>
+                    <span
+                        data-ng-bind=":: element.smsAccount"
+                        data-ng-if="element.type === 'sms' "
+                    ></span>
                 </td>
                 <!-- Contact -->
                 <td
@@ -123,6 +149,25 @@
                         data-ng-bind="'components_notification_' + element.frequency |
                         translate"
                     ></span>
+                </td>
+                <!-- allowIncident -->
+                <td
+                    class="form-group"
+                    data-ng-if="!element.editMode"
+                    data-title="{{ 'components_notification_allowIncident' | translate }}"
+                >
+                    <span
+                        data-ng-bind="'components_notification_' + element.allowIncident |
+                        translate"
+                    ></span>
+                </td>
+                <!-- downThreshold -->
+                <td
+                    class="form-group"
+                    data-ng-if="!element.editMode"
+                    data-title="{{ 'components_notification_downThreshold' | translate }}"
+                >
+                    <span data-ng-bind="element.downThreshold"></span>
                 </td>
                 <!-- Buttons -->
                 <td
@@ -228,6 +273,36 @@
                             >{{fre.label | translate}}</option
                         >
                     </select>
+                </td>
+                <!-- allowIncident (edit mode)-->
+                <td
+                    data-title="{{ 'components_notification_allowIncident' | translate }}"
+                    data-ng-if="element.editMode"
+                    class="form-group"
+                >
+                    <select
+                        class="form-control"
+                        data-ng-model="element.allowIncident"
+                    >
+                        <option
+                            data-ng-repeat="fre in NotificationListCtrl.allowIncident"
+                            value="{{fre.name}}"
+                            >{{fre.label | translate}}</option
+                        >
+                    </select>
+                </td>
+                <!-- downThreshold (edit mode)-->
+                <td
+                    data-title="{{ 'components_notification_downThreshold' | translate }}"
+                    data-ng-if="element.editMode"
+                    class="form-group"
+                >
+                    <oui-numeric
+                        min="NotificationListCtrl.downThreshold.min"
+                        max="NotificationListCtrl.downThreshold.max"
+                        model="element.downThreshold"
+                    >
+                    </oui-numeric>
                 </td>
 
                 <!-- Buttons (edit mode)-->

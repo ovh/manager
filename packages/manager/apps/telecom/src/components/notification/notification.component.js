@@ -34,6 +34,8 @@ angular.module('managerApp').component('notificationList', {
         {
           frequency: self.frequencies[0].name,
           type: self.types[0].name,
+          allowIncident: self.allowIncident[0].name,
+          downThreshold: self.downThreshold.model * 60,
           xdslService: self.xdslService,
           smsAccount: self.accounts.length === 1 ? self.accounts[0] : null,
           id: new Date().getTime(),
@@ -210,6 +212,15 @@ angular.module('managerApp').component('notificationList', {
         { name: '1h', label: 'components_notification_1h' },
         { name: '6h', label: 'components_notification_6h' },
       ];
+
+      // allowIncident choices
+      self.allowIncident = [
+        { name: 'true', label: 'components_notification_true' },
+        { name: 'false', label: 'components_notification_false' },
+      ];
+
+      // downThreshold choices
+      self.downThreshold = { min: 2, max: 35791394, model: 15 };
 
       // get the SMS accounts and the SMS remaining credits by accounts
       iceberg('/sms')
