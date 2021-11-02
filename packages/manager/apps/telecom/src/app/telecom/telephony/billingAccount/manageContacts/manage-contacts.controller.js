@@ -25,7 +25,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountManageCont
 
   const contactAttributes = ['contactAdmin', 'contactBilling', 'contactTech'];
 
-  self.hasAnyLimitedModifications = true;
+  self.hasAnyLimitedModifications = false;
   self.newSupportTicketLink = newSupportTicketLink;
 
   function getGroupContacts() {
