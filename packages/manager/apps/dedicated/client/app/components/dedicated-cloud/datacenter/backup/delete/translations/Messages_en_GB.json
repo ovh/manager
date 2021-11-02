@@ -1,6 +1,6 @@
 {
   "dedicatedCloud_datacenter_backup_delete_title": "Disable backup",
-  "dedicatedCloud_datacenter_backup_delete_description_1": "Do you want to disable backups for the {{datacenter}} datacentre? You will need to check that backups are disabled for each virtual machine in vSphere.",
+  "dedicatedCloud_datacenter_backup_delete_description_1": "Do you want to disable backups for the {{datacenter}} datacenter? You will need to check that backups are disabled for each virtual machine in vSphere.",
   "dedicatedCloud_datacenter_backup_delete_description_2": "Warning: this action will permanently delete all of your backups.",
   "dedicatedCloud_datacenter_backup_delete_cancel": "Cancel",
   "dedicatedCloud_datacenter_backup_delete_confirm": "Disable backup",

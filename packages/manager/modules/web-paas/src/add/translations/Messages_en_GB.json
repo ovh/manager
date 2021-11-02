@@ -26,7 +26,7 @@
   "web_paas_add_project_environment": "{{count}} environment",
   "web_paas_add_project_license": "{{count}} user licence",
   "web_paas_add_project_options_description": "Add storage, environment, and user licence options.",
-  "web_paas_add_project_region_description": "Select the location of your datacentre.",
+  "web_paas_add_project_region_description": "Select the location of your datacenter.",
   "web_paas_add_project_summary_title": "Order summary ",
   "web_paas_add_project_create": "Create a project"
 }

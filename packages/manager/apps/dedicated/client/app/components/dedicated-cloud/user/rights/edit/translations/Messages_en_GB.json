@@ -1,6 +1,6 @@
 {
   "dedicatedCloud_USER_right_title": "Editing rights",
-  "dedicatedCloud_USER_right_datacenter_title": "Datacentre: <b>{{t0}}</b>",
+  "dedicatedCloud_USER_right_datacenter_title": "Datacenter: <b>{{t0}}</b>",
   "dedicatedCloud_USER_right_vsphere": "vSphere access",
   "dedicatedCloud_USER_right_vsphere_help": "Global user rights on vSphere",
   "dedicatedCloud_USER_right_vsphere_ADMIN": "Reserved for OVHcloud, for administrators only",
@@ -47,6 +47,6 @@
   "dedicatedCloud_USER_right_vlan_manager": "Allows port groups to be managed on the virtual switch (creation, modification, deletion). For SDDC and Hosted Private Cloud Premier packs only.",
   "dedicatedCloud_USER_right_resources": "Add resources",
   "dedicatedCloud_USER_right_resources_help": "Right to add additional resources through the OVHcloud plugin in the vSphere client.",
-  "dedicatedCloud_USER_right_set_success": "The modification of {{t0}} rights for the {{t1}} datacentre has been confirmed",
-  "dedicatedCloud_USER_right_set_fail": "An error has occurred modifying {{t0}} rights for the {{t1}} datacentre"
+  "dedicatedCloud_USER_right_set_success": "The modification of {{t0}} rights for the {{t1}} datacenter has been confirmed",
+  "dedicatedCloud_USER_right_set_fail": "An error has occurred modifying {{t0}} rights for the {{t1}} datacenter"
 }
