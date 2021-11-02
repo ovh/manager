@@ -1,3 +1,22 @@
+# [17.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.4.2...@ovh-ux/manager-dedicated@17.5.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* **account.dashboard:** catch if `/me/bill` fails ([#5813](https://github.com/ovh/manager/issues/5813)) ([b21b8b6](https://github.com/ovh/manager/commit/b21b8b60a99aefdb46a227392ea83c1ba786ddbd))
+
+
+### Features
+
+* **server:** use upgrade system instead of range name ([#5841](https://github.com/ovh/manager/issues/5841)) ([c6c161a](https://github.com/ovh/manager/commit/c6c161af198fafaea50d4488e2cc3236cacaf2bb))
+
+
+### Reverts
+
+* Revert "fix(server.dashboard): restore mrtg tile (#5504)" (#5858) ([bf7f89e](https://github.com/ovh/manager/commit/bf7f89eed4b122cb9ec4752253444195dbb6fe9a)), closes [#5504](https://github.com/ovh/manager/issues/5504) [#5858](https://github.com/ovh/manager/issues/5858)
+
+
+
 ## [17.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.4.1...@ovh-ux/manager-dedicated@17.4.2) (2021-10-28)
 
 

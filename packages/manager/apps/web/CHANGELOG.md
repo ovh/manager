@@ -1,3 +1,12 @@
+## [15.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.33.0...@ovh-ux/manager-web@15.33.1) (2021-11-02)
+
+
+### Bug Fixes
+
+* **private-database:** remove period on quota action ([#5861](https://github.com/ovh/manager/issues/5861)) ([b3a88f9](https://github.com/ovh/manager/commit/b3a88f95eb5c88b1e19660db824638516ef5db69))
+
+
+
 # [15.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.32.0...@ovh-ux/manager-web@15.33.0) (2021-10-28)
 
 
