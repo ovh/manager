@@ -130,5 +130,8 @@
   "ovhManagerSupport_new_serviceType_webpaas": "Web PaaS",
   "ovhManagerSupport_new_serviceType_anthos": "Anthos",
   "ovhManagerSupport_new_serviceType_mongodb": "Public Cloud Databases for MongoDB",
-  "ovhManagerSupport_new_serviceType_netapp": "NetApp"
+  "ovhManagerSupport_new_serviceType_netapp": "NetApp",
+  "ovhManagerSupport_new_serviceType_managed_mongodb": "Public Cloud Databases for MongoDB",
+  "ovhManagerSupport_new_serviceType_nutanix": "Nutanix",
+  "ovhManagerSupport_new_serviceType_storage_netapp": "Enterprise File Storage"
 }
