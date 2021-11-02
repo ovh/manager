@@ -19,22 +19,25 @@ export default /* @ngInject */ ($stateProvider) => {
             projectId,
             database.engine,
             database.id,
-          ).then((users) => {
-            const mappedUsers = map(users, (u) => new User(u));
-            mappedUsers.forEach((u) => {
-              if (u.isProcessing()) {
+          ).then((users) =>
+            map(users, (u) => {
+              const user = new User(u);
+              if (user.isProcessing()) {
                 DatabaseService.pollUserStatus(
                   projectId,
                   database.engine,
                   database.id,
-                  u.id,
+                  user.id,
                 ).then((userInfos) => {
-                  u.updateData({ ...userInfos, rolesArray: userInfos.roles });
+                  user.updateData({
+                    ...userInfos,
+                    rolesArray: userInfos.roles,
+                  });
                 });
               }
-            });
-            return mappedUsers;
-          }),
+              return user;
+            }),
+          ),
         addUser: /* @ngInject */ (
           $state,
           database,
@@ -193,8 +196,8 @@ export default /* @ngInject */ ($stateProvider) => {
         guideUrl: () => null,
         hideRolesMatrix: () => true,
         onDestroy: /* @ngInject */ (DatabaseService, users, database) => () =>
-          users.forEach((u) =>
-            DatabaseService.stopPollingUserStatus(database.id, u.id),
+          users.forEach((user) =>
+            DatabaseService.stopPollingUserStatus(database.id, user.id),
           ),
       },
     },
