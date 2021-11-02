@@ -21,10 +21,10 @@
                 ng-class="{'oui-field_error': $ctrl.invalidTargetSource}"
             >
                 <oui-select
-                    model="$ctrl.model.sourceService"
+                    model="$ctrl.model.sourceIntegration"
                     name="source"
                     items="$ctrl.readyServiceIntegrationList"
-                    match="serviceName"
+                    match="destinationServiceName"
                     on-change="$ctrl.checkTargetAndSourceValidity()"
                     disabled="$ctrl.isUpdate"
                     required
@@ -38,10 +38,10 @@
                 ng-class="{'oui-field_error': $ctrl.invalidTargetSource}"
             >
                 <oui-select
-                    model="$ctrl.model.targetService"
+                    model="$ctrl.model.targetIntegration"
                     name="target"
                     items="$ctrl.readyServiceIntegrationList"
-                    match="serviceName"
+                    match="destinationServiceName"
                     on-change="$ctrl.checkTargetAndSourceValidity()"
                     disabled="$ctrl.isUpdate"
                     required
@@ -141,11 +141,11 @@
                 class="d-inline-block"
                 size="m"
             >
-                <oui-switch model="$ctrl.model.heartbeatsEmit" name="heartbeat">
+                <oui-switch model="$ctrl.model.emitHeartbeats" name="heartbeat">
                 </oui-switch>
                 <strong
                     >{{'pci_databases_replications_add_edit_heartbeat_' +
-                    $ctrl.model.heartbeatsEmit | translate }}</strong
+                    $ctrl.model.emitHeartbeats | translate }}</strong
                 >
             </oui-field>
             <oui-field

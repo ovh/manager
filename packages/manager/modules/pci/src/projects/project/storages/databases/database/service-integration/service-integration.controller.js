@@ -26,8 +26,8 @@ export default class ServiceIntegrationCtrl {
   isServiceIntegrationDeletable(integration) {
     return (
       integration.statusGroup !== STATUS.READY ||
-      find(this.replicationsList, { sourceService: integration.id }) ||
-      find(this.replicationsList, { targetService: integration.id })
+      find(this.replicationsList, { sourceIntegration: integration.id }) ||
+      find(this.replicationsList, { targetIntegration: integration.id })
     );
   }
 

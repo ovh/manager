@@ -19,14 +19,14 @@ export default class {
     this.invalidTargetSource = false;
     this.model = {
       id: this.isUpdate ? this.replication.id : null,
-      sourceService: this.isUpdate
+      sourceIntegration: this.isUpdate
         ? find(this.readyServiceIntegrationList, {
-            id: this.replication.sourceService,
+            id: this.replication.sourceIntegration,
           })
         : null,
-      targetService: this.isUpdate
+      targetIntegration: this.isUpdate
         ? find(this.readyServiceIntegrationList, {
-            id: this.replication.targetService,
+            id: this.replication.targetIntegration,
           })
         : null,
       topics: this.isUpdate ? this.replication.topics : [],
@@ -40,8 +40,8 @@ export default class {
       replicationPolicyClass: this.isUpdate
         ? this.replication.replicationPolicyClass
         : null,
-      heartbeatsEmit: this.isUpdate
-        ? this.replication.heartbeatsEmit
+      emitHeartbeats: this.isUpdate
+        ? this.replication.emitHeartbeats
         : DEFAULT_VALUES.heartbeat,
       enabled: this.isUpdate ? this.replication.enabled : DEFAULT_VALUES.status,
     };
@@ -60,21 +60,21 @@ export default class {
 
   checkTargetAndSourceValidity() {
     this.invalidTargetSource =
-      this.model.targetService &&
-      this.model.sourceService &&
-      this.model.targetService.id === this.model.sourceService.id;
+      this.model.targetIntegration &&
+      this.model.sourceIntegration &&
+      this.model.targetIntegration.id === this.model.sourceIntegration.id;
   }
 
   prepareModel() {
     return {
       id: this.model.id,
-      sourceService: this.model.sourceService.id,
-      targetService: this.model.targetService.id,
+      sourceIntegration: this.model.sourceIntegration.id,
+      targetIntegration: this.model.targetIntegration.id,
       topics: this.model.topics,
       topicExcludeList: this.model.topicExcludeList,
       syncInterval: this.model.syncInterval,
       syncGroupOffsets: this.model.syncGroupOffsets,
-      heartbeatsEmit: this.model.heartbeatsEmit,
+      emitHeartbeats: this.model.emitHeartbeats,
       replicationPolicyClass: this.model.replicationPolicyClass,
       enabled: this.model.enabled,
     };
