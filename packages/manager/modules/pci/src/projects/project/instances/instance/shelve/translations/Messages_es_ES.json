@@ -2,8 +2,9 @@
   "pci_projects_project_instances_instance_shelve_title": "Suspensión de su instancia",
   "pci_projects_project_instances_instance_shelve_submit_label": "Confirmar",
   "pci_projects_project_instances_instance_shelve_cancel_label": "Cancelar",
-  "pci_projects_project_instances_instance_shelve_content": "Va a suspender su instancia {{ instance }}. Los recursos dedicados a la instancia de Public Cloud se liberarán, pero la IP se conservará. Los datos de su disco local se almacenarán y solo se facturará el almacenamiento utilizado para este fin. La duración de la operación dependerá del tamaño del disco local. Podrá reactivar su instancia en cualquier momento.",
+  "pci_projects_project_instances_instance_shelve_content": "Va a suspender su instancia {{ instance }}. Los recursos dedicados a la instancia de Public Cloud se liberarán, pero la IP se conservará. Los datos de su disco local se almacenarán y solo se facturará el almacenamiento utilizado para este fin (1). La duración de la operación dependerá del tamaño del disco local. Podrá reactivar su instancia en cualquier momento.",
   "pci_projects_project_instances_instance_shelve_success_inprogress_message": "La instancia {{ instance }} se está suspendiendo.",
   "pci_projects_project_instances_instance_shelve_success_message": "La instancia {{ instance }} se ha suspendido.",
-  "pci_projects_project_instances_instance_shelve_error_message": "Se ha producido un error al suspender la instancia {{ instance }}: {{ message }}."
+  "pci_projects_project_instances_instance_shelve_error_message": "Se ha producido un error al suspender la instancia {{ instance }}: {{ message }}.",
+  "pci_projects_project_instances_instance_shelve_content_asterisk_1": "(1) Atención: En el caso de las instancias con facturación mensual, la facturación clásica seguirá aplicándose independientemente del estado del servicio."
 }

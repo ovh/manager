@@ -55,5 +55,6 @@
   "pci_databases_general_information_certificate_label": "Certyfikat CA",
   "pci_databases_general_information_certificate_link": "Wyświetl",
   "pci_databases_general_information_certificate_download": "Pobierz",
-  "pci_databases_general_information_certificate_tooltip": "Twój certyfikat: <code>{{certificate}}</code>"
+  "pci_databases_general_information_certificate_tooltip": "Twój certyfikat: <code>{{certificate}}</code>",
+  "pci_databases_general_information_SSL_TLS": "SSL/TLS"
 }
