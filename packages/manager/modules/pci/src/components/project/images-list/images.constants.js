@@ -55,6 +55,10 @@ export const IMAGES_REGEX = {
       name: 'dokku',
       regex: /^Dokku/i,
     },
+    {
+      name: 'linux',
+      regex: /^(Alma|Rocky)/i,
+    },
   ],
   windows: [
     {
@@ -165,6 +169,7 @@ export const IMAGE_ASSETS = {
     dokku: ASSET_OS_DOKKU,
     fedora: ASSET_OS_FEDORA,
     freebsd: ASSET_OS_FREEBSD,
+    linux: ASSET_OS_LINUX_OTHER,
     linux_other: ASSET_OS_LINUX_OTHER,
     ubuntu: ASSET_OS_UBUNTU,
     windows_other: ASSET_OS_WINDOWS_OTHER,
