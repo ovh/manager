@@ -18,7 +18,7 @@ angular
   ])
   .config(routing)
   .component(
-    'ovhManagerPciProjectDatabaseReplicationsAddEdit',
+    'ovhManagerPciProjectDatabaseReplicationsAddEditComponent',
     addEditReplicationComponent,
   )
   .run(/* @ngTranslationsInject:json ./translations */);

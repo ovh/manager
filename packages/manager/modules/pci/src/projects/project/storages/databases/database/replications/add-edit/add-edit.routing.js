@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
       'pci.projects.project.storages.databases.dashboard.replications.add',
       {
         url: '/add',
-        component: 'ovhManagerPciProjectDatabaseReplicationsAddEdit',
+        component: 'ovhManagerPciProjectDatabaseReplicationsAddEditComponent',
         resolve: {
           breadcrumb: () => null, // Hide breadcrumb
           goBack: /* @ngInject */ (goBackToReplications) =>
@@ -20,7 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
       'pci.projects.project.storages.databases.dashboard.replications.edit',
       {
         url: '/edit',
-        component: 'ovhManagerPciProjectDatabaseReplicationsAddEdit',
+        component: 'ovhManagerPciProjectDatabaseReplicationsAddEditComponent',
         params: {
           replication: null,
         },
