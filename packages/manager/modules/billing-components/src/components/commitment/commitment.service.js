@@ -56,14 +56,19 @@ export default class CommitmentService {
         const currentPlan = plans.find(
           ({ planCode }) => planCode === service.planCode,
         );
-
         if (currentPlan) {
-          const price = minBy(
-            currentPlan.pricings
-              .map((pricing) => new CatalogPricing(pricing))
-              .filter((pricing) => pricing.includesRenew()),
-            'duration',
+          const renewPricings = currentPlan.pricings
+            .map((pricing) => new CatalogPricing(pricing))
+            .filter((pricing) => pricing.includesRenew());
+          const defaultMonthlyPrice = renewPricings.find(
+            (pricing) =>
+              pricing.mode === 'default' && pricing.intervalUnit === 'month',
           );
+          // return null if server does not have default monthly price
+          if (!defaultMonthlyPrice) {
+            return null;
+          }
+          const price = minBy(renewPricings, 'duration');
           const optionsPrices = service.options
             .map((option) =>
               addons.find(({ planCode }) => option.planCode === planCode),
