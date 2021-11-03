@@ -81,9 +81,10 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceIntegrationList,
         ) =>
           kafkaServicesList.filter(
-            (k) =>
+            (kafkaService) =>
               !serviceIntegrationList.find(
-                (i) => i.destinationServiceId === k.id,
+                (integration) =>
+                  integration.destinationServiceId === kafkaService.id,
               ),
           ),
         replicationsList: /* @ngInject */ (
