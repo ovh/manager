@@ -6,13 +6,16 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   $q,
   $translate,
   $stateParams,
+  $http,
   abbreviatedNumbersLink,
   administrationLink,
+  billingAccount,
   billingLink,
   billingAccountLink,
   currentActiveLink,
   guidesLink,
   manageContactsLink,
+  repaymentsLink,
   orderAliasLink,
   phonebookLink,
   servicesLink,
@@ -36,6 +39,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   self.currentActiveLink = currentActiveLink;
   self.guidesLink = guidesLink;
   self.manageContactsLink = manageContactsLink;
+  self.repaymentsLink = repaymentsLink;
   self.orderAliasLink = orderAliasLink;
   self.phonebookLink = phonebookLink;
   self.servicesLink = servicesLink;
@@ -43,6 +47,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   self.group = null;
   self.links = null;
   self.terminationTask = null;
+  self.hasSpecialNumbers = false;
 
   /*= ==============================
   =            ACTIONS            =
@@ -152,9 +157,14 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
             allowedBillingAccounts.indexOf($stateParams.billingAccount) > -1;
           return self.canOrderAlias;
         }),
-    ]).finally(() => {
-      self.loading.init = false;
-    });
+      $http.get(`/telephony/${billingAccount}/hasSpecialNumbers`),
+    ])
+      .then(([, , hasSpecialNumbers]) => {
+        self.hasSpecialNumbers = hasSpecialNumbers;
+      })
+      .finally(() => {
+        self.loading.init = false;
+      });
   }
 
   /* -----  End of INITIALIZATION  ------*/

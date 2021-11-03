@@ -77,6 +77,15 @@
                     ></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
+                    data-href="{{:: BillingAccountCtrl.repaymentsLink }}"
+                    data-disabled="BillingAccountCtrl.loading.init"
+                    data-ng-if="BillingAccountCtrl.hasSpecialNumbers"
+                    data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.repaymentsLink"
+                    ><span
+                        data-translate="telephony_group_tab_repayments"
+                    ></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
                     data-href="{{:: BillingAccountCtrl.guidesLink }}"
                     data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.guidesLink"
                     ><span data-translate="telephony_group_tab_guides"></span>

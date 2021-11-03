@@ -8,6 +8,7 @@
   "telephony_group_tab_contacts_book": "Carnet de contacts",
   "telephony_group_tab_short_numbers": "Numéros abrégés",
   "telephony_group_tab_contacts_manage": "Gestion des contacts",
+  "telephony_group_tab_repayments": "Reversements",
   "telephony_group_tab_guides": "Guides",
   "telephony_group_loading_error": "Impossible de charger les informations relatives à votre compte de facturation ({{billingAccount}}).",
   "telephony_group_rename_error": "Impossible de renommer votre compte de facturation {{billingAccount}}.",

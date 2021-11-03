@@ -92,6 +92,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('telecom.telephony.billingAccount.manageContacts', {
           billingAccount: billingAccountId,
         }),
+      repaymentsLink: /* @ngInject */ ($state, billingAccountId) =>
+        $state.href('telecom.telephony.billingAccount.repayments', {
+          billingAccount: billingAccountId,
+        }),
       guidesLink: /* @ngInject */ ($state, billingAccountId) =>
         $state.href('telecom.telephony.billingAccount.guides', {
           billingAccount: billingAccountId,
