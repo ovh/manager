@@ -24,6 +24,11 @@ export default class ServiceIntegrationCtrl {
     this.messages = this.messageHandler.getMessages();
   }
 
+  refresh() {
+    this.refreshing = true;
+    this.refreshServiceIntegration();
+  }
+
   trackAndAddServiceIntegration() {
     this.trackDashboard('service_integration::add_kafka');
     this.goToAddServiceIntegration();
