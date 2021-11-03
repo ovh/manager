@@ -759,7 +759,7 @@ export default class {
         this.Alerter.error(err);
       })
       .then(() => this.handlePrivateDatabases())
-      .then(() => this.simulateUpgradeAvailability())
+      .then(() => this.isCDNUpgradeAvailable())
       .finally(() => {
         this.$scope.loadingHostingInformations = false;
       });
@@ -771,14 +771,14 @@ export default class {
     });
   }
 
-  simulateUpgradeAvailability() {
+  isCDNUpgradeAvailable() {
     const { serviceName } = this.$scope.hosting;
-    return this.HostingCdnSharedService.simulateUpgrade(
+    return this.HostingCdnSharedService.hasAvailableUpgrades(
       serviceName,
       this.$scope.hosting.serviceInfos.serviceId,
     )
-      .then(() => {
-        this.$scope.isUpgradable = true;
+      .then((isUpgradeAvailable) => {
+        this.$scope.isUpgradable = isUpgradeAvailable;
       })
       .catch(() => {
         this.$scope.isUpgradable = false;
