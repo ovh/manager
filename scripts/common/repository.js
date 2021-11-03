@@ -76,6 +76,47 @@ class MonoRepository {
       );
   }
 
+  static updateSonarProjectVersion(newVersion) {
+    const sonarcloudPropertiesFile = '.sonarcloud.properties';
+    return new Promise((resolve, reject) => {
+      return fs.readFile(
+        sonarcloudPropertiesFile,
+        'utf-8',
+        (readError, fileContent) => {
+          if (readError) {
+            return reject(
+              new Error(`read .sonarcloud.properties file: ${readError}`),
+            );
+          }
+
+          const [, currentVersion] = fileContent.match(
+            /sonar\.projectVersion=(([a-z]+-[a-z]+-\d+)|([a-z]+-[a-z]+))/,
+          );
+          const updatedContent = fileContent.replace(
+            currentVersion,
+            newVersion,
+          );
+
+          return fs.writeFile(
+            sonarcloudPropertiesFile,
+            updatedContent,
+            (writeError, updatedFile) => {
+              if (writeError) {
+                return reject(
+                  new Error(
+                    `update .sonarcloud.properties file: ${writeError}`,
+                  ),
+                );
+              }
+
+              return resolve(updatedFile);
+            },
+          );
+        },
+      );
+    });
+  }
+
   static writeChangelog(file, repos) {
     return new Promise((resolve, reject) => {
       fs.writeFileSync(file, repos.map((r) => r.changelog).join(''), (err) => {
