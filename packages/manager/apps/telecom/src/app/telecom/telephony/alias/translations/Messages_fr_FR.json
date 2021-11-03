@@ -82,6 +82,7 @@
   "telephony_alias_consumption_outgoing_out_plan": "Hors forfait",
   "telephony_alias_consumption_outgoing_out_plan_detail": "{{ price }} € HT",
   "telephony_alias_consumption_details": "Voir le détail",
+  "telephony_alias_consumption_repayments": "Gérer mes reversements",
   "telephony_alias_special_repayments": "Reversements et coûts",
   "telephony_alias_special_number_rsva": "Tarification du numéro",
   "telephony_alias_config_feature_type_contactCenterSolutionExpert": "Avec le mode expert de Contact Center Solution, vous pouvez gérer le flux de vos appels de bout en bout. En fonction des numéros appelants ou des plages horaires, choisissez vous-même votre stratégie. Jouez des sons d'accueils, personnalisez votre musique d'attente, faites sonner les postes de vos différents services.",

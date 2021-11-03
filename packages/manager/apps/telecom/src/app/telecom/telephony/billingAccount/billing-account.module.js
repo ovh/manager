@@ -20,6 +20,7 @@ import manageContacts from './manageContacts';
 import orderAlias from './orderAlias';
 import phonebook from './phonebook';
 import services from './services';
+import repayments from './repayments';
 
 import routing from './billingAccount.routing';
 
@@ -48,6 +49,7 @@ angular
     orderAlias,
     phonebook,
     services,
+    repayments,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

@@ -203,6 +203,14 @@
                         data-translate="telephony_alias_consumption_details"
                     ></span>
                 </oui-tile-button>
+                <oui-tile-button
+                    data-on-click="$ctrl.$state.go('telecom.telephony.billingAccount.repayments')"
+                    data-disabled="$ctrl.isFeatureTypeObsolete()"
+                >
+                    <span
+                        data-translate="telephony_alias_consumption_repayments"
+                    ></span>
+                </oui-tile-button>
             </oui-tile>
         </div>
     </div>
