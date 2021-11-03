@@ -20,15 +20,13 @@
         data-dismissable
     >
         <span data-translate="{{$ctrl.getWarningMessage().message}}"></span>
-        <a
+        <button
+            class="oui-link"
+            type="button"
             data-ng-if="$ctrl.getWarningMessage().userLink"
-            href=""
             data-ng-click="$ctrl.manageUsers()"
-        >
-            <span
-                data-translate="{{$ctrl.getWarningMessage().linkMessage}}"
-            ></span>
-        </a>
+            data-translate="{{$ctrl.getWarningMessage().linkMessage}}"
+        ></button>
     </oui-message>
 
     <div class="row py-4">
