@@ -58,6 +58,6 @@
   "pci_databases_general_information_certificate_link": "Voir",
   "pci_databases_general_information_certificate_download": "Télécharger",
   "pci_databases_general_information_service_integration_title": "Intégration de services",
-  "pci_databases_general_information__kafka_mirror_maker_label": "Kafka Mirror Maker",
-  "pci_databases_general_information__kafka_mirror_maker_none": "Aucun"
+  "pci_databases_general_information_kafka_mirror_maker_label": "Kafka Mirror Maker",
+  "pci_databases_general_information_kafka_mirror_maker_none": "Aucun"
 }
