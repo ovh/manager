@@ -27,7 +27,7 @@
   "telephony_order_confirm": "Commandez ({{total}} TTC)",
   "telephony_order_identity_first_name": "Prénom",
   "telephony_order_identity_name": "Nom",
-  "telephony_order_identity_email": "Courriel",
+  "telephony_order_identity_email": "Email",
   "telephony_order_identity_phone": "Téléphone",
   "telephony_order_identity_mendatory": "Les champs notés avec une étoile sont obligatoires.",
   "telephony_order_identity_organisation": "Entreprise",

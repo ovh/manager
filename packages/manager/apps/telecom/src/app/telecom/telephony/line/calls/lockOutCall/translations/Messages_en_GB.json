@@ -1,15 +1,15 @@
 {
-  "telephony_line_actions_line_calls_lock_out_call_title": "Verrouillage des appels sortants",
-  "telephony_line_actions_line_calls_out_lock_call_pin_label": "Code à 4 chiffres :",
-  "telephony_line_actions_line_calls_out_lock_call_pin_same": "Le code est identique à celui déjà renseigné.",
-  "telephony_line_actions_line_calls_out_lock_call_pin_error": "Le code n'est pas conforme.",
-  "telephony_line_actions_line_calls_out_lock_call_load_error": "Erreur lors de la lecture de la configuration.",
-  "telephony_line_actions_line_calls_out_lock_call_checkbox_label": "Activer le verrouillage",
-  "telephony_line_actions_line_calls_out_lock_call_save_error": "Impossible de sauvegarder la configuration. Veuillez réessayer ultérieurement.",
-  "telephony_line_actions_line_calls_out_lock_call_save_success": "Votre configuration a été mise à jour.",
-  "telephony_line_actions_line_calls_out_lock_call_explain": "Vous avez ici la possibilité de verrouiller ou déverrouiller votre téléphone afin d'en restreindre son utilisation et n'autoriser que les appels entrants.",
-  "telephony_line_actions_line_calls_out_lock_call_bulk_all_success": "Le verrouillage des appels sortants a bien été appliqué aux services sélectionnés.",
-  "telephony_line_actions_line_calls_out_lock_call_bulk_some_success": "Le verrouillage des appels sortants a bien été appliqué à {{ count }} des services sélectionnés.",
-  "telephony_line_actions_line_calls_out_lock_call_bulk_error": "Le verrouillage des appels sortants n'a pas pu être appliqué au(x) service(s) suivant(s) :",
-  "telephony_line_actions_line_calls_out_lock_call_bulk_on_error": "Oups ! Une erreur est survenue lors de l'application du verrouillage des appels sortants."
+  "telephony_line_actions_line_calls_lock_out_call_title": "Lock outgoing calls",
+  "telephony_line_actions_line_calls_out_lock_call_pin_label": "4-digit code:",
+  "telephony_line_actions_line_calls_out_lock_call_pin_same": "Code is identical to the current code.",
+  "telephony_line_actions_line_calls_out_lock_call_pin_error": "Invalid code.",
+  "telephony_line_actions_line_calls_out_lock_call_load_error": "Error while reading the settings.",
+  "telephony_line_actions_line_calls_out_lock_call_checkbox_label": "Activate lock",
+  "telephony_line_actions_line_calls_out_lock_call_save_error": "Unable to save settings. Please try again later.",
+  "telephony_line_actions_line_calls_out_lock_call_save_success": "Your settings have been updated.",
+  "telephony_line_actions_line_calls_out_lock_call_explain": "You have the option to lock or unlock your phone to restrict its use and only authorise incoming calls.",
+  "telephony_line_actions_line_calls_out_lock_call_bulk_all_success": "Outgoing call locking has been applied to the selected services.",
+  "telephony_line_actions_line_calls_out_lock_call_bulk_some_success": "Outgoing call locking has been applied to {{ count }} of the selected services.",
+  "telephony_line_actions_line_calls_out_lock_call_bulk_error": "Outgoing call locking could not be applied to the following service(s):",
+  "telephony_line_actions_line_calls_out_lock_call_bulk_on_error": "Oops! An error occurred while applying the outgoing call locking."
 }

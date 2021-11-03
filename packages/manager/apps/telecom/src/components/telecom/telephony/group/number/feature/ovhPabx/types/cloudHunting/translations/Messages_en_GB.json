@@ -1,13 +1,13 @@
 {
-  "telephony_number_feature_ovh_pabx_dialplan": "File d'appel (mode expert) :",
-  "telephony_number_feature_ovh_pabx_dialplan_edit": "Options de la file d'appel",
-  "telephony_number_feature_ovh_pabx_dialplan_new_name": "Ma file d appel",
-  "telephony_number_feature_ovh_pabx_dialplan_action_edit": "Modifier les options de la file d'appel",
-  "telephony_number_feature_ovh_pabx_dialplan_action_delete": "Supprimer la configuration de la file d'appel",
-  "telephony_number_feature_ovh_pabx_dialplan_save_error": "Oups ! Une erreur est survenue lors de la modification de votre file d'appel.",
-  "telephony_number_feature_ovh_pabx_dialplan_create_error": "Oups ! Une erreur est survenue lors de la création de votre file d'appel.",
-  "telephony_number_feature_ovh_pabx_dialplan_delete_error": "Oups ! Une erreur est survenue lors de la suppression de la configuration de votre file d'appel.",
-  "telephony_number_feature_ovh_pabx_dialplan_name_required": "Veuillez donner un nom à votre file d'appel.",
-  "telephony_number_feature_ovh_pabx_dialplan_transfer_timeout_explain": "Lorsque la file d'appel comporte un transfert vers une ligne externe, si cette ligne ne décroche pas avant la durée configurée, l'appel passera à l'étape suivante.",
-  "telephony_number_feature_ovh_pabx_dialplan_name_explain": "Ce nom sera présent sur le téléphone appelé lors d'un appel entrant."
+  "telephony_number_feature_ovh_pabx_dialplan": "Call queue (expert mode):",
+  "telephony_number_feature_ovh_pabx_dialplan_edit": "Call queue options",
+  "telephony_number_feature_ovh_pabx_dialplan_new_name": "My call queue",
+  "telephony_number_feature_ovh_pabx_dialplan_action_edit": "Edit call queue options",
+  "telephony_number_feature_ovh_pabx_dialplan_action_delete": "Cancel call queue configuration",
+  "telephony_number_feature_ovh_pabx_dialplan_save_error": "Oops! An error occurred while modifying your call queue.",
+  "telephony_number_feature_ovh_pabx_dialplan_create_error": "Oops! An error occurred while creating your call queue.",
+  "telephony_number_feature_ovh_pabx_dialplan_delete_error": "Oops! An error occurred while deleting your call queue configuration.",
+  "telephony_number_feature_ovh_pabx_dialplan_name_required": "Please name your call queue.",
+  "telephony_number_feature_ovh_pabx_dialplan_transfer_timeout_explain": "When the call queue includes a transfer to an external line, if this call is not picked up before the set time, the call will move onto the next step.",
+  "telephony_number_feature_ovh_pabx_dialplan_name_explain": "This name will be present on the called phone during an incoming call."
 }

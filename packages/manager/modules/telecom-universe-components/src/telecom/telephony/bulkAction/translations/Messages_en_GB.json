@@ -15,12 +15,12 @@
   "telephony_bulk_action_modal_service_updated": "service modified",
   "telephony_bulk_action_cancel": "Cancel",
   "telephony_bulk_action_submit": "Confirm",
-  "telephony_bulk_action_service_type_alias": "Phone number",
+  "telephony_bulk_action_service_type_alias": "Number",
   "telephony_bulk_action_service_feature_type_sip": "SIP line",
   "telephony_bulk_action_service_feature_type_mgcp": "SIP line",
   "telephony_bulk_action_service_feature_type_fax": "Fax",
   "telephony_bulk_action_service_feature_type_freefax": "FreeFax",
   "telephony_bulk_action_service_feature_type_trunk": "Trunk",
-  "telephony_bulk_action_service_feature_type_plugAndFax": "Plug & Fax",
+  "telephony_bulk_action_service_feature_type_plugAndFax": "Plug &amp; Fax",
   "telephony_bulk_action_service_feature_type_voicefax": "Fax"
 }

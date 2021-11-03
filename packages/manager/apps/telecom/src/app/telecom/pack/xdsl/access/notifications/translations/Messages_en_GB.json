@@ -1,4 +1,4 @@
 {
-  "notification_explanation": "Les notifications d'un accès {{ access }} servent à indiquer lorsqu'un accès ne répond plus ainsi que le moment où il remonte.",
+  "notification_explanation": "The notifications for {{ access }} access indicate when an access is no longer responding and when it returns.",
   "notification_breadcrumb": "Alerts"
 }

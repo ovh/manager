@@ -1,10 +1,10 @@
 {
-  "xdsl_modem_bridge_mode_status": "Mode bridge activé",
-  "xdsl_modem_bridge_mode_description": "Enabling Bridge mode is for advanced use only. This mode can be useful if you want to use your own router connected behind the OVHcloud modem. If you do not have a router, only one device can obtain the public IP address of the access, and have internet access. Enabling this mode will disable many modem features, including WiFi and port redirections.",
-  "xdsl_modem_bridge_mode_warning": "Attention, une fois le mode bridge activé, le seul moyen de faire repasser le modem en mode routeur est de réaliser une restauration manuelle des paramètres d'usine (reset).",
-  "xdsl_modem_bridge_mode_success_validation_on": "Activation du mode bridge en cours",
-  "xdsl_modem_bridge_mode_success_validation_off": "Désactivation du mode bridge: Réinitialisez manuellement votre modem pour valider l'action.",
-  "xdsl_modem_bridge_mode_an_error_ocurred": "[Mode bridge] Une erreur est survenue !",
-  "xdsl_modem_bridge_really_on": "Êtes-vous sûr(e) de vouloir activer le mode Bridge ?",
-  "xdsl_modem_bridge_really_off": "Êtes-vous sûr(e) de vouloir désactiver le mode Bridge ?"
+  "xdsl_modem_bridge_mode_status": "Bridge mode activated",
+  "xdsl_modem_bridge_mode_description": "Enabling Bridge mode is for advanced use only. This mode can be useful if you want to use your own router connected behind the OVHcloud modem. If you do not have a router, only one device can obtain the public IP address of the access, and have internet access. Enabling this mode will disable many modem features, including WiFi and port forwarding.",
+  "xdsl_modem_bridge_mode_warning": "Warning: once bridge mode is activated, the only way to administer the modem in router mode is to carry out a manual reset to factory settings.",
+  "xdsl_modem_bridge_mode_success_validation_on": "Activating bridge mode...",
+  "xdsl_modem_bridge_mode_success_validation_off": "Deactivating bridge mode: Restart your modem manually to complete this action.",
+  "xdsl_modem_bridge_mode_an_error_ocurred": "[Bridge mode] An error occurred.",
+  "xdsl_modem_bridge_really_on": "Are you sure you want to activate Bridge mode?",
+  "xdsl_modem_bridge_really_off": "Are you sure you want to deactivate Bridge mode?"
 }

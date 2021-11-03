@@ -4,8 +4,9 @@
   "telephony_service_choice_filter_by_type": "Types",
   "telephony_service_choice_filter_by_group": "Groupes",
   "telephony_service_choice_filter_type_sip": "Lignes SIP",
+  "telephony_service_choice_filter_type_plugAndFax": "Lignes SIP (plug&fax)",
   "telephony_service_choice_filter_type_trunk": "Lignes Trunk",
-  "telephony_service_choice_filter_type_fax": "Télécopieur",
+  "telephony_service_choice_filter_type_fax": "Fax",
   "telephony_service_choice_filter_type_number": "Numéro",
   "telephony_service_choice_destination": "Choisissez un service"
 }

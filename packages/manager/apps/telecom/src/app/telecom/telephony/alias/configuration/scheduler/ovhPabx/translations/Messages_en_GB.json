@@ -1,6 +1,6 @@
 {
-  "telephony_alias_config_contactCenterSolution_scheduler_category_title": "Catégories",
-  "telephony_alias_config_contactCenterSolution_scheduler_closing_days_title": "Planification des jours de fermeture",
-  "telephony_alias_config_contactCenterSolution_scheduler_closing_days_subtitle": "Planifiez des créneaux récurrents ou ponctuels durant lesquels vos correspondants seront redirigés vers un répondeur ou un autre numéro.",
+  "telephony_alias_config_contactCenterSolution_scheduler_category_title": "Categories",
+  "telephony_alias_config_contactCenterSolution_scheduler_closing_days_title": "Schedule closure days",
+  "telephony_alias_config_contactCenterSolution_scheduler_closing_days_subtitle": "Schedule recurring or one-off days where your callers will be redirected to voicemail or to another number.",
   "telephony_alias_config_contactCenterSolution_scheduler_breadcrumb": "Manage exceptional closures"
 }

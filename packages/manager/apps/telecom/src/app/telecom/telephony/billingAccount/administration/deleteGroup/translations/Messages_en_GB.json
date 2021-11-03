@@ -1,10 +1,10 @@
 {
   "telephony_delete_group_title": "Delete the group",
-  "telephony_delete_group_warning": "La suppression d'un groupe téléphonie entraînera la résiliation des lignes et numéros associés.",
-  "telephony_delete_group_infos": "La demande de suppression d'un groupe est planifiée à la date de votre prochaine facturation. Jusqu'à cette date, celle-ci peut être annulée.",
-  "telephony_delete_group_pending": "Suppression du groupe {{group}} planifiée le :",
+  "telephony_delete_group_warning": "Deleting a telephony group will result in the related lines and numbers being deleted.",
+  "telephony_delete_group_infos": "The group deletion request is scheduled for your next billing date. The request may be cancelled before that date.",
+  "telephony_delete_group_pending": "Deletion of {{group}} group scheduled for:",
   "telephony_delete_group_cancel": "Cancel deletion",
-  "telephony_delete_group_cancel_success": "La suppression du groupe {{group}} a été annulée avec succés.",
-  "telephony_delete_group_delete": "Supprimer {{group}}",
-  "telephony_delete_group_delete_success": "La suppression du groupe {{group}} a été planifiée avec succés."
+  "telephony_delete_group_cancel_success": "The {{group}} group has been successfully deleted.",
+  "telephony_delete_group_delete": "Delete {{group}}",
+  "telephony_delete_group_delete_success": "The deletion of the {{group}} group has been scheduled."
 }

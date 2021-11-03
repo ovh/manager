@@ -6,7 +6,7 @@
   "telephony_service_consumption_calling_unknown": "Anonyme",
   "telephony_service_consumption_dialed": "Numéro appelé",
   "telephony_service_consumption_duration": "Durée",
-  "telephony_service_consumption_price_ht": "Prix excl. taxes",
+  "telephony_service_consumption_price_ht": "Prix HT",
   "telephony_service_consumption_destination": "Destination",
   "telephony_service_consumption_destination_any": "Toute destination",
   "telephony_service_consumption_destination_landline": "Fixe",
