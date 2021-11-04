@@ -38,20 +38,6 @@ export default class {
     });
   }
 
-  showCertificate() {
-    this.CucCloudMessage.info(
-      {
-        textHtml: this.$translate.instant(
-          'pci_databases_general_information_certificate_tooltip',
-          {
-            certificate: this.database.certificate.ca,
-          },
-        ),
-      },
-      this.messageContainer,
-    );
-  }
-
   addNode() {
     this.trackDashboard('general_information::add_node');
     this.goToAddNode();

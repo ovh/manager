@@ -35,6 +35,7 @@ export default {
     trackDashboard: '<',
     nodesPerRow: '<',
     isFeatureActivated: '<',
+    serviceIntegration: '<',
   },
   controller,
   template,
