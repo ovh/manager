@@ -1,3 +1,12 @@
+## [3.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.1.3...@ovh-ux/manager-exchange@3.1.4) (2021-11-04)
+
+
+### Bug Fixes
+
+* **dashboard:** add dot to CA spam target ([#5875](https://github.com/ovh/manager/issues/5875)) ([d92ed98](https://github.com/ovh/manager/commit/d92ed98cb0b384bac4f3d6c1aa6424894cff5cbf))
+
+
+
 ## [3.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.1.2...@ovh-ux/manager-exchange@3.1.3) (2021-11-02)
 
 
