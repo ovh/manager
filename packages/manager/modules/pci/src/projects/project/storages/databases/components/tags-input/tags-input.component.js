@@ -8,6 +8,7 @@ export default {
     min: '<?',
     max: '<?',
     pattern: '<?',
+    placeholder: '@',
     buttonLabel: '@',
   },
   controller,

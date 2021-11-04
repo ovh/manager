@@ -15,49 +15,22 @@
     </oui-message>
 
     <oui-message
-        data-ng-if="$ctrl.users.length === 0 && $ctrl.allowedIps.length > 0"
+        data-ng-if="$ctrl.getWarningMessage()"
         data-type="warning"
         data-dismissable
     >
-        <span
-            data-translate="pci_databases_general_information_no_users"
-        ></span>
-        <a href data-ng-click="$ctrl.manageUsers()">
-            <span
-                data-translate="pci_databases_general_information_manage_users"
-            ></span>
-        </a>
-    </oui-message>
-
-    <oui-message
-        data-ng-if="$ctrl.allowedIps.length === 0 && $ctrl.users.length > 0"
-        data-type="warning"
-        data-dismissable
-    >
-        <span data-translate="pci_databases_general_information_no_ip"></span>
-    </oui-message>
-
-    <oui-message
-        data-ng-if="$ctrl.allowedIps.length === 0 && $ctrl.users.length === 0"
-        data-type="warning"
-        data-dismissable
-    >
-        <span
-            data-translate="pci_databases_general_information_no_ip_no_users"
-        ></span>
-        <a href data-ng-click="$ctrl.manageUsers()">
-            <span
-                data-translate="pci_databases_general_information_manage_users"
-            ></span>
-            <span
-                class="oui-icon oui-icon-arrow-right ml-1"
-                aria-hidden="true"
-            ></span>
-        </a>
+        <span data-translate="{{$ctrl.getWarningMessage().message}}"></span>
+        <button
+            class="oui-link"
+            type="button"
+            data-ng-if="$ctrl.getWarningMessage().userLink"
+            data-ng-click="$ctrl.manageUsers()"
+            data-translate="{{$ctrl.getWarningMessage().linkMessage}}"
+        ></button>
     </oui-message>
 
     <div class="row py-4">
-        <div class="col-md-4">
+        <div class="col-md">
             <oui-tile
                 data-heading="{{:: 'pci_databases_general_information_info_title' | translate }}"
             >
@@ -238,12 +211,16 @@
                 </oui-tile-definition>
             </oui-tile>
         </div>
-        <div class="col-md-4">
+        <div
+            class="col-md"
+            data-ng-if="!$ctrl.isFeatureActivated('hideMiddleColumn')"
+        >
             <oui-tile
                 data-heading="{{:: 'pci_databases_general_information_connection_information' | translate }}"
             >
                 <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_service_URI_label' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('serviceURI')"
                 >
                     <oui-tile-description>
                         <oui-tile-description>
@@ -257,11 +234,13 @@
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_database_host' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('host')"
                     data-description="{{:: $ctrl.database.domain }}"
                 >
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_database_port' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('port')"
                     data-description="{{:: $ctrl.database.port }}"
                 >
                 </oui-tile-definition>
@@ -349,9 +328,34 @@
                 </oui-tile-definition>
             </oui-tile>
         </div>
-        <div class="col-md-4">
+        <div class="col-md">
             <oui-tile
-                class="form-group"
+                data-ng-if="$ctrl.isFeatureActivated('showServiceIntegration')"
+                class="mb-3"
+                data-heading="{{:: 'pci_databases_general_information_service_integration_title' | translate }}"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_kafka_mirror_maker_label' | translate }}"
+                >
+                    <oui-tile-description>
+                        <p
+                            data-ng-if="$ctrl.serviceIntegration.length === 0"
+                            data-translate="pci_databases_general_information_kafka_mirror_maker_none"
+                        ></p>
+                        <p
+                            data-ng-repeat="integration in $ctrl.serviceIntegration track by $index"
+                        >
+                            <span
+                                class="oui-badge_success oui-badge"
+                                data-ng-bind="integration.serviceName"
+                            >
+                            </span>
+                        </p>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+            <oui-tile
+                class="mb-3"
                 data-heading="{{:: 'pci_databases_general_information_configuration_title' | translate }}"
             >
                 <oui-tile-definition
@@ -426,6 +430,7 @@
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_allowed_ips_label' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('allowedIpsTab')"
                 >
                     <oui-tile-description>
                         <span

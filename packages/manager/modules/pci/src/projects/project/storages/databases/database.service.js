@@ -646,7 +646,8 @@ export default class DatabaseService {
       .post(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/integration`,
         {
-          serviceId: service.id,
+          sourceServiceId: databaseId,
+          destinationServiceId: service.id,
         },
       )
       .then(({ data }) => data);
@@ -656,6 +657,41 @@ export default class DatabaseService {
     return this.$http
       .delete(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/integration/${integration.id}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getReplications(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/replication`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  addReplication(projectId, engine, databaseId, replication) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/replication`,
+        replication,
+      )
+      .then(({ data }) => data);
+  }
+
+  updateReplication(projectId, engine, databaseId, replication) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/replication/${replication.id}`,
+        replication,
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteReplication(projectId, engine, databaseId, replication) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/replication/${replication.id}`,
       )
       .then(({ data }) => data);
   }

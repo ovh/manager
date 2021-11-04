@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
+
 export default class ServiceIntegrationCtrl {
   /* @ngInject */
   constructor($translate, CucCloudMessage) {
@@ -17,6 +20,14 @@ export default class ServiceIntegrationCtrl {
     this.messageHandler = this.CucCloudMessage.subscribe(
       this.messageContainer,
       { onMessage: () => this.refreshMessages() },
+    );
+  }
+
+  isServiceIntegrationDeletable(integration) {
+    return (
+      integration.statusGroup !== STATUS.READY ||
+      find(this.replicationsList, { sourceIntegration: integration.id }) ||
+      find(this.replicationsList, { targetIntegration: integration.id })
     );
   }
 
