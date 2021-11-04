@@ -59,6 +59,11 @@ angular
 
             goToSvaWallet: /* @ngInject */ ($state) => () =>
               $state.go('telecom.telephony.billingAccount.svaWallet'),
+            meSchema: /* @ngInject */ ($http) =>
+              $http.get('/me.json').then(({ data: schema }) => schema),
+
+            countryEnum: /* @ngInject */ (meSchema) =>
+              meSchema.models['nichandle.CountryEnum'].enum,
           },
         })
         .state('telecom.telephony.index.**', {

@@ -1,7 +1,7 @@
-export const buildEnumList = (list, translataionPrefix, $translate) =>
+export const buildEnumList = (list, translationPrefix, $translate) =>
   list
     .map((value) => ({
-      name: $translate.instant(`${translataionPrefix}${value}`),
+      name: $translate.instant(`${translationPrefix}${value}`),
       value,
     }))
     .sort((a, b) => a.name.localeCompare(b.name));

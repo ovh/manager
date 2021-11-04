@@ -6,6 +6,7 @@ import 'oclazyload';
 import service from './sva-wallet.service';
 import profileTile from './profileTile';
 import statusBanner from './statusBanner';
+import readonlyIdentity from './kyc/readonlyIdentity';
 
 const moduleName = 'ovhManagerTelecomTelephonySvaWalletLazyLoading';
 
@@ -16,6 +17,7 @@ angular
     'ngOvhFeatureFlipping',
     profileTile,
     statusBanner,
+    readonlyIdentity,
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {

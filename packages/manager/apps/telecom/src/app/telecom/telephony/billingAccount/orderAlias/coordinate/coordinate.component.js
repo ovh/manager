@@ -9,5 +9,6 @@ export default {
     ngDisabled: '=?',
     regionCode: '@',
     hideChoice: '=?',
+    wallet: '<',
   },
 };
