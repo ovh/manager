@@ -23,12 +23,6 @@ export default /* @ngInject */ ($stateProvider) => {
       companyKinds: /* @ngInject */ (TelephonySvaWalletService) =>
         TelephonySvaWalletService.getCompanyKinds(),
 
-      meSchema: /* @ngInject */ ($http) =>
-        $http.get('/me.json').then(({ data: schema }) => schema),
-
-      countryEnum: /* @ngInject */ (meSchema) =>
-        meSchema.models['nichandle.CountryEnum'].enum,
-
       documentTypeEnum: /* @ngInject */ (meSchema) =>
         meSchema.models['me.sva.document.TypeEnum'].enum,
 

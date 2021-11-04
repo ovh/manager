@@ -3,7 +3,6 @@ import find from 'lodash/find';
 import forEach from 'lodash/forEach';
 import head from 'lodash/head';
 import map from 'lodash/map';
-import pick from 'lodash/pick';
 
 import { TELEPHONY_NUMBER_OFFER } from '../order-alias.constant';
 
@@ -16,6 +15,8 @@ export default /* @ngInject */ function TelecomTelephonyAliasOrderSpecialCtrl(
   TelecomTelephonyBillingAccountOrderAliasService,
   TucToast,
   TucToastError,
+  svaWallet,
+  countryEnum,
 ) {
   const self = this;
 
@@ -167,34 +168,36 @@ export default /* @ngInject */ function TelecomTelephonyAliasOrderSpecialCtrl(
    */
   this.order = function order() {
     this.loading.order = true;
-    const fields = [
-      'city',
-      'displayUniversalDirectory',
-      'email',
-      'firstname',
-      'legalform',
-      'name',
-      'phone',
-      'pool',
-      'retractation',
-      'streetName',
-      'zip',
-      'zone',
-      'typology',
-      'range',
-      'ape',
-      'organisation',
-      'siret',
-      'socialNomination',
-    ];
-    const form = pick(this.form, fields);
-    form.country = self.user.country;
+
+    const wallet = { ...self.wallet };
+    const form = {
+      firstname: wallet.representative.firstname,
+      email: wallet.representative.email,
+      socialNomination: wallet.company.name,
+      legalform: 'corporation',
+      siret: wallet.company.identificationNumber,
+      streetName: wallet.representative.addressOfResidence.streetName,
+      streetType: wallet.representative.addressOfResidence.streetType,
+      zip: wallet.representative.postcodeOfResidence,
+      cedex: wallet.representative.addressOfResidence.cedex,
+      range: this.form.range,
+      typology: this.form.typology,
+      country: wallet.representative.countryOfResidence.toLowerCase(),
+      city: wallet.representative.addressOfResidence.cityOfResidence,
+      addressExtra: wallet.representative.addressOfResidence.addressExtra,
+      retractation: this.form.retractation,
+      displayUniversalDirectory: this.form.displayUniversalDirectory,
+      pool: this.form.pool,
+      description: this.form.description,
+    };
+
     if (form.pool === 1) {
       delete form.pool;
     }
     if (!form.pool) {
       form.specificNumber = this.form[this.form.numberType];
     }
+
     OvhApiOrder.Telephony()
       .v6()
       .orderNumberSpecial(
@@ -258,6 +261,9 @@ export default /* @ngInject */ function TelecomTelephonyAliasOrderSpecialCtrl(
    * Controller initialization
    */
   function init() {
+    self.wallet = svaWallet;
+    self.countryEnum = countryEnum;
+
     self.billingAccount = $stateParams.billingAccount;
     self.loading = {
       init: true,
