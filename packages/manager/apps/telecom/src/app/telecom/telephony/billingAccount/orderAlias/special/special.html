@@ -117,13 +117,11 @@
                             class="widget-presentation-title"
                             data-translate="telephony_order_address_title"
                         ></h2>
-                        <telecom-telephony-billing-account-order-alias-coordinate
-                            data-ng-disabled="AliasOrderSpecialCtrl.loading.init || AliasOrderSpecialCtrl.loading.order"
-                            data-region-code="{{AliasOrderSpecialCtrl.user.country}}"
+                        <telecom-sva-readonly-identity-form
+                            data-wallet="AliasOrderSpecialCtrl.wallet"
+                            data-country-enum="AliasOrderSpecialCtrl.countryEnum"
                             data-ng-model="AliasOrderSpecialCtrl.form"
-                            data-hide-choice="true"
-                        >
-                        </telecom-telephony-billing-account-order-alias-coordinate>
+                        ></telecom-sva-readonly-identity-form>
                     </div>
 
                     <!-- Retractation -->
