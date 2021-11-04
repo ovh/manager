@@ -1,3 +1,13 @@
+## [3.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.4.1...@ovh-ux/manager-billing-components@3.4.2) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+* **billing.autorenew:** track service type on resiliation ([#5798](https://github.com/ovh/manager/issues/5798)) ([c77eb21](https://github.com/ovh/manager/commit/c77eb212b8f99035a2f95a7af434599b7445738a))
+
+
+
 ## [3.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.4.0...@ovh-ux/manager-billing-components@3.4.1) (2021-11-04)
 
 

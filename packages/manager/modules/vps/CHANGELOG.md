@@ -1,3 +1,12 @@
+## [2.17.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.17.5...@ovh-ux/manager-vps@2.17.6) (2021-11-04)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** track service type ([#5797](https://github.com/ovh/manager/issues/5797)) ([3abe911](https://github.com/ovh/manager/commit/3abe91191e0c13b23825ab42fed7ee9b3c2e5084))
+
+
+
 ## [2.17.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.17.4...@ovh-ux/manager-vps@2.17.5) (2021-10-26)
 
 

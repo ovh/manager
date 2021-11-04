@@ -1,3 +1,12 @@
+## [7.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.3.2...@ovh-ux/manager-freefax@7.3.3) (2021-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1258] ([c44bea0](https://github.com/ovh/manager/commit/c44bea0874e0c711f9a8dafe31cffc258f21c51c))
+
+
+
 ## [7.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.3.1...@ovh-ux/manager-freefax@7.3.2) (2021-10-26)
 
 
