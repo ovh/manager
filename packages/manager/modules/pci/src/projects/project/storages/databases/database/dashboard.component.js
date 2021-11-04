@@ -18,6 +18,7 @@ export default {
     topicsLink: '<',
     indexesLink: '<',
     serviceIntegrationLink: '<',
+    replicationsLink: '<',
     trackDashboard: '<',
     trackDatabases: '<',
     isFeatureActivated: '<',

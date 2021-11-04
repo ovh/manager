@@ -6,6 +6,7 @@ import ASSET_MYSQL from './assets/mysql.png';
 import ASSET_POSTGRE_SQL from './assets/postgresql.png';
 import ASSET_REDIS from './assets/redis.png';
 import ASSET_OPEN_SEARCH from './assets/opensearch.png';
+import ASSET_KAFKA_MIRROR_MAKER from './assets/Kafka_MirrorMaker.png';
 
 export const ENGINE_LOGOS = {
   mongodb: ASSET_MONGO_DB,
@@ -14,7 +15,7 @@ export const ENGINE_LOGOS = {
   postgresql: ASSET_POSTGRE_SQL,
   redis: ASSET_REDIS,
   opensearch: ASSET_OPEN_SEARCH,
-  kafkaMirrorMaker: ASSET_KAFKA,
+  kafkaMirrorMaker: ASSET_KAFKA_MIRROR_MAKER,
 };
 
 export const DATABASES_GUIDES_URL =

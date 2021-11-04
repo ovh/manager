@@ -46,7 +46,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ).then((integrations) => {
             const serviceIntegrations = map(integrations, (i) => {
               const serviceIntegration = new ServiceIntegration(i);
-              serviceIntegration.setServiceName(kafkaServicesList);
+              serviceIntegration.setDestinationServiceName(kafkaServicesList);
               return serviceIntegration;
             });
             serviceIntegrations.forEach((i) => {
@@ -81,7 +81,21 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceIntegrationList,
         ) =>
           kafkaServicesList.filter(
-            (k) => !serviceIntegrationList.find((i) => i.serviceId === k.id),
+            (kafkaService) =>
+              !serviceIntegrationList.find(
+                (integration) =>
+                  integration.destinationServiceId === kafkaService.id,
+              ),
+          ),
+        replicationsList: /* @ngInject */ (
+          DatabaseService,
+          database,
+          projectId,
+        ) =>
+          DatabaseService.getReplications(
+            projectId,
+            database.engine,
+            database.id,
           ),
         goToAddServiceIntegration: /* @ngInject */ (
           $state,
