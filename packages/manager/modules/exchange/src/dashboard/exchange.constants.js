@@ -9,10 +9,10 @@ export const EXCHANGE_MX_CONFIG = {
   },
   CA: {
     spam: [
-      { fieldType: 'MX', target: 'mx1.mail.ovh.ca', priority: 1 },
-      { fieldType: 'MX', target: 'mx2.mail.ovh.ca', priority: 5 },
-      { fieldType: 'MX', target: 'mx3.mail.ovh.ca', priority: 50 },
-      { fieldType: 'MX', target: 'mx4.mail.ovh.ca', priority: 100 },
+      { fieldType: 'MX', target: 'mx1.mail.ovh.ca.', priority: 1 },
+      { fieldType: 'MX', target: 'mx2.mail.ovh.ca.', priority: 5 },
+      { fieldType: 'MX', target: 'mx3.mail.ovh.ca.', priority: 50 },
+      { fieldType: 'MX', target: 'mx4.mail.ovh.ca.', priority: 100 },
     ],
   },
 };
