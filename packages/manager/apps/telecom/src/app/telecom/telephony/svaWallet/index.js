@@ -4,11 +4,19 @@ import '@uirouter/angularjs';
 import 'oclazyload';
 
 import service from './sva-wallet.service';
+import profileTile from './profileTile';
+import statusBanner from './statusBanner';
 
 const moduleName = 'ovhManagerTelecomTelephonySvaWalletLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad', 'ngOvhFeatureFlipping'])
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+    'ngOvhFeatureFlipping',
+    profileTile,
+    statusBanner,
+  ])
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('telecom.telephony.billingAccount.svaWallet.**', {

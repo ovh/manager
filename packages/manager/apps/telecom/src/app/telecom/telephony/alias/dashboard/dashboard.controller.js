@@ -30,6 +30,8 @@ export default class TelecomTelephonyAliasHomeController {
     tucVoipService,
     tucVoipServiceAlias,
     URLS,
+    isSvaWalletFeatureAvailable,
+    svaWallet,
   ) {
     this.$q = $q;
     this.$state = $state;
@@ -44,12 +46,17 @@ export default class TelecomTelephonyAliasHomeController {
 
     this.URLS = URLS;
 
+    this.isSvaWalletFeatureAvailable = isSvaWalletFeatureAvailable;
+    this.svaWallet = svaWallet;
+
     this.billingAccount = $stateParams.billingAccount;
     this.serviceName =
       $stateParams.serviceName !== 'default' ? $stateParams.serviceName : null;
   }
 
   $onInit() {
+    this.showSvaProfile = false;
+
     this.alias = null;
     this.consumption = {
       incoming: {},
@@ -59,7 +66,17 @@ export default class TelecomTelephonyAliasHomeController {
       ),
     };
 
-    this.fetchService();
+    return this.fetchService().then(() => {
+      if (this.isSvaWalletFeatureAvailable && this.svaWallet) {
+        this.tucVoipServiceAlias
+          .isSpecialNumber(this.alias)
+          .then((isSpecial) => {
+            if (isSpecial) {
+              this.showSvaProfile = true;
+            }
+          });
+      }
+    });
   }
 
   fetchService() {
