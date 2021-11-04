@@ -1,3 +1,12 @@
+## [3.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.4.0...@ovh-ux/manager-billing-components@3.4.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* **billing:** commitment discount amount ([#5874](https://github.com/ovh/manager/issues/5874)) ([908aaa8](https://github.com/ovh/manager/commit/908aaa854b3216c3f6bdda0c05dbfc85580887ef))
+
+
+
 # [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.3.1...@ovh-ux/manager-billing-components@3.4.0) (2021-10-27)
 
 
