@@ -1,3 +1,12 @@
+## [3.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.4.3...@ovh-ux/manager-billing-components@3.4.4) (2021-11-04)
+
+
+### Bug Fixes
+
+* add missing translations ([#5892](https://github.com/ovh/manager/issues/5892)) ([3589fd9](https://github.com/ovh/manager/commit/3589fd9a15d23813b0c2c15892bff06440571bfe))
+
+
+
 ## [3.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.4.2...@ovh-ux/manager-billing-components@3.4.3) (2021-11-04)
 
 
