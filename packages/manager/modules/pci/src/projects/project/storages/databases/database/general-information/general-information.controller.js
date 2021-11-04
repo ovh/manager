@@ -3,6 +3,7 @@ import {
   MAX_IPS_DISPLAY,
   CERTIFICATE_FILENAME,
 } from '../../databases.constants';
+import { WARNING_MESSAGES } from './general-information.constants';
 
 export default class {
   /* @ngInject */
@@ -26,6 +27,7 @@ export default class {
     this.loadMessages();
     this.pollDatabaseStatus();
     this.maxAllowedIpsToShow = MAX_IPS_DISPLAY;
+    this.warningMessages = WARNING_MESSAGES;
   }
 
   downloadCertificate() {
@@ -58,6 +60,23 @@ export default class {
   deleteNode() {
     this.trackDashboard('general_information::remove_node');
     this.goToDeleteNode();
+  }
+
+  getWarningMessage() {
+    const noIp =
+      this.isFeatureActivated('allowedIpsTab') && this.allowedIps.length === 0;
+    const noUsers =
+      this.isFeatureActivated('usersTab') && this.users.length === 0;
+    if (noIp && noUsers) {
+      return this.warningMessages.noIpNoUserMessage;
+    }
+    if (noIp) {
+      return this.warningMessages.noIpMessage;
+    }
+    if (noUsers) {
+      return this.warningMessages.noUserMessage;
+    }
+    return null;
   }
 
   manageUsers() {
