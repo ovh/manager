@@ -1,5 +1,7 @@
 import find from 'lodash/find';
 
+const SERVICE_TYPE = 'WEB_PAAS';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('web-paas.dashboard', {
     url: '/projects/:projectId',
@@ -17,7 +19,10 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       projectName: /* @ngInject */ (project) => project.projectName,
       serviceInfo: /* @ngInject */ (projectId, WebPaas) =>
-        WebPaas.getServiceInfos(projectId),
+        WebPaas.getServiceInfos(projectId).then((serviceInfo) => ({
+          ...serviceInfo,
+          serviceType: SERVICE_TYPE,
+        })),
       serviceLink: /* @ngInject */ ($state, projectId) =>
         $state.href('web-paas.dashboard.service', {
           projectId,

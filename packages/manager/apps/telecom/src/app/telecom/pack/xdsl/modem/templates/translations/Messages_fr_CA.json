@@ -2,12 +2,13 @@
   "xdsl_modem_template_title": "Sauvegarde ou importation de la configuration du modem",
   "xdsl_modem_template_create_title": "Créer un template à partir de la configuration de ce modem",
   "xdsl_modem_template_name": "Nom du nouveau template",
-  "xdsl_modem_template_create": "Créer un gabarit",
+  "xdsl_modem_template_create": "Créer un template",
   "xdsl_modem_template_select_config": "Appliquer une configuration sur ce modem",
   "xdsl_modem_template_apply": "Appliquer",
   "xdsl_modem_template_manage_config": "Administrer les templates",
   "xdsl_modem_template_apply_doing": "Chargement de la configuration du modem en cours",
   "xdsl_modem_template_creation_doing": "Enregistrement de la configuration du modem en cours",
   "xdsl_modem_template_an_error_ocurred": "TEMPLATE : Une erreur est survenue !",
-  "xdsl_modem_template_name_already_exist": "{{templateName}} existe déjà dans votre liste de templates. Veuillez utiliser un autre nom."
+  "xdsl_modem_template_name_already_exist": "{{templateName}} existe déjà dans votre liste de templates. Veuillez utiliser un autre nom.",
+  "xdsl_modem_template_invalid_name": "Le nom de template ({{templateName}}) est invalide. Veuillez utiliser un autre nom."
 }

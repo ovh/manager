@@ -5,5 +5,6 @@
   "xdsl_meeting_programmed_meeting": "A time slot is selected on {{day}} between {{start}} and {{end}}.",
   "xdsl_meeting_confirm": "Confirm selection",
   "xdsl_meeting_order_succeed": "The time slot scheduled for {{day}} between {{start}} and {{end}} has been saved.",
-  "xdsl_meeting_order_error": "The scheduled time slot on {{day}} between {{start}} and {{end}} could not be saved: {{error}}"
+  "xdsl_meeting_order_error": "The scheduled time slot on {{day}} between {{start}} and {{end}} could not be saved: {{error}}",
+  "xdsl_meeting_no_meetings": "There are no time slots available for this service."
 }

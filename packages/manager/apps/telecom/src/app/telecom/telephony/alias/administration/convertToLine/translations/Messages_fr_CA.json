@@ -4,7 +4,7 @@
   "telephony_alias_administration_convert_info_subtitle": "Informations",
   "telephony_alias_administration_convert_info": "Les demandes de conversion seront prises en compte lors de votre prochaine facturation. Jusqu'à cette date, l'annulation des demandes restera possible.",
   "telephony_alias_administration_convert_offers": "Offres disponibles",
-  "telephony_alias_administration_convert_monthly_price_tax_free": "{{ price }} /mois",
+  "telephony_alias_administration_convert_monthly_price_tax_free": "{{ price }} HT/mois",
   "telephony_alias_administration_convert_submit": "Convertir le numéro",
   "telephony_alias_administration_convert_success": "Convertion planifiée avec succès.",
   "telephony_alias_administration_convert_task": "Le numéro {{ number }} sera converti en ligne le {{ date }}.",

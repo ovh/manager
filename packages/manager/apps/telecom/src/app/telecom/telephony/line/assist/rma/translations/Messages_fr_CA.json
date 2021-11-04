@@ -31,6 +31,6 @@
   "telephony_line_assist_rma_step_name_parcelValidation": "Validation du colis",
   "telephony_line_assist_rma_step_name_validation": "Validation du changement de téléphone",
   "telephony_line_assist_rma_step_status_todo": "En attente",
-  "telephony_line_assist_rma_step_status_done": "Validée",
+  "telephony_line_assist_rma_step_status_done": "Validé",
   "telephony_line_assist_rma_pdf_download": "Télécharger le bon de retour"
 }

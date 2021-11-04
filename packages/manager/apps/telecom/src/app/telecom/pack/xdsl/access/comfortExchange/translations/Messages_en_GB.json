@@ -6,10 +6,10 @@
   "xdsl_access_comfort_exchange_error_ERR011": "An error has occurred attempting to retrieve information on internet access.",
   "xdsl_access_comfort_exchange_error_ERR012": "An error has occurred attempting to retrieve information linked to the internet contract.",
   "xdsl_access_comfort_exchange_error_ERR050": "An error has occurred determining the latest modem model.",
-  "xdsl_access_comfort_exchange_error_ERR051": "An error has occurred retrieving information on the delivery address.",
-  "xdsl_access_comfort_exchange_error_ERR052": "An error has occurred retrieving information on the delivery address.",
+  "xdsl_access_comfort_exchange_error_ERR051": "An error occurred while retrieving information on the delivery address.",
+  "xdsl_access_comfort_exchange_error_ERR052": "An error occurred while retrieving information on the delivery address.",
   "xdsl_access_comfort_exchange_error_ERR053": "An error has occurred requesting a comfort exchange.",
-  "xdsl_access_comfort_exchange_error_ERR054": "An error has occurred retrieving the purchase order.",
+  "xdsl_access_comfort_exchange_error_ERR054": "An error occurred while retrieving the purchase order.",
   "xdsl_access_comfort_exchange_error_ERR001": "You already have the latest modem model.",
   "xdsl_access_comfort_exchange_error_ERR002": "A return or exchange refund is already being processed for this modem.",
   "xdsl_access_comfort_exchange_error_ERR003": "The NIC handle entered for delivery seems not to exist, or is not associated with the customer account.",
@@ -31,6 +31,6 @@
   "xdsl_access_comfort_exchange_error_ERR004": "Modem replacement is not authorised for SDSL access.",
   "xdsl_access_comfort_exchange_warning_part1": "We are getting in touch to offer you a more recent modem, if the features of your current modem are no longer suited to your needs.",
   "xdsl_access_comfort_exchange_warning_part2": "If any issues occur on your current modem, please do not initiate an exchange via this tool. Please contact the support team.",
-  "xdsl_access_comfort_exchange_shipping_addresses_error": "Oops! An error has occurred loading your delivery addresses.",
+  "xdsl_access_comfort_exchange_shipping_addresses_error": "Oops! An error occurred while loading your delivery addresses.",
   "xdsl_access_comfort_exchange_shipping_contact": "Delivery address for the new modem"
 }

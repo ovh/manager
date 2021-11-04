@@ -1,4 +1,4 @@
 {
-  "telecom_retractation_retract_true": "You would like to have the ability to exercise your right of retraction, and accept that for this reason, the service will only become available when this period of time has passed. <strong>The service will be available within 14 days</strong>.",
-  "telecom_retractation_retract_false": "You are requesting <strong>for your service to be provided immediately</strong>, and acknowledge that as a result, you will only be able to exercise your right of retraction in accordance with the terms of article 121-20-2 of consumer code."
+  "telecom_retractation_retract_true": "You want the ability to exercise your right of withdrawal, and accept that for this reason, the service will not begin until this time period has passed. <strong>Service provided within 14 days</strong>.",
+  "telecom_retractation_retract_false": "You would like <strong>the service to be provided immediately</strong>, and acknowledge that as a result, you will not be able to exercise your right of withdrawal, in compliance with Article 121-20-2 of the French consumer code."
 }

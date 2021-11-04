@@ -1,6 +1,6 @@
 {
   "shipping_mode_selection_mode_mondial_relay": "Free delivery by Mondial Relay within 48 hours (after sending)",
-  "shipping_mode_selection_mode_mondial_relay_not_free": "Free delivery by Mondial Relay (+ <span class=\"text-price\">€{{ price }}</span> <span class=\"text-infos\">ex. VAT</span>) within 48 hours (after sending)",
-  "shipping_mode_selection_mode_transporter": "Delivery by transporter (+ <span class=\"text-price\">€{{ price }}</span> <span class=\"text-infos\">ex. VAT</span>) within 48 hours (after sending)",
+  "shipping_mode_selection_mode_mondial_relay_not_free": "Delivery by Mondial Relay within 48 hours (after sending): + €<span class=\"text-price\">{{ price }} </span><span class=\"text-infos\">ex. VAT</span>",
+  "shipping_mode_selection_mode_transporter": "Delivery by carrier within 24 hours (after sending): + €<span class=\"text-price\">{{ price }} </span><span class=\"text-infos\">ex. VAT</span>",
   "shipping_mode_selection_mode_transporter_free": "Free delivery by transporter within 24 hours (after sending)"
 }

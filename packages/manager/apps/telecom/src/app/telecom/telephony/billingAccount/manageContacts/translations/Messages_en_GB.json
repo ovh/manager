@@ -1,14 +1,14 @@
 {
-  "telephony_group_manage_contacts_nic_admin": "NIC administrateur",
-  "telephony_group_manage_contacts_nic_tech": "NIC technique",
-  "telephony_group_manage_contacts_nic_billing": "NIC facturation",
+  "telephony_group_manage_contacts_nic_admin": "Administrator NIC",
+  "telephony_group_manage_contacts_nic_tech": "Technical NIC",
+  "telephony_group_manage_contacts_nic_billing": "Billing NIC",
   "telephony_group_manage_contacts_group": "Group",
   "telephony_group_manage_contacts_lines": "Line",
   "telephony_group_manage_contacts_alias": "Number",
-  "telephony_group_manage_contacts_title": "Manage contacts",
-  "telephony_group_manage_contacts_pending_task": "Demande en attente de validation",
-  "telephony_group_manage_contacts_change_success": "Votre demande de changement de contact a bien été envoyée.",
-  "telephony_group_manage_contacts_change_info": "Avec la gestion des contacts, vous pouvez attribuer des droits à d'autres personnes et leur confier la gestion d'une ligne, d'un alias ou d'un groupe.<br/>Selon le type de contact choisi, les droits ne sont pas les mêmes :<br/><br/><strong>Contact administrateur :</strong> le contact désigné peut gérer les aspects techniques d'une ligne et attribuer les droits de \"contact technique\" à une autre personne.<br/><strong>Contact technique :</strong> le contact désigné gère uniquement les aspects techniques d'une ligne, d'un alias ou d'un groupe.<br/><strong>Contact facturation :</strong> le contact désigné gère uniquement la facturation. (paiement des factures etc...)",
-  "telephony_group_manage_contacts_disabled": "Indisponible pour ce service",
+  "telephony_group_manage_contacts_title": "Contact management",
+  "telephony_group_manage_contacts_pending_task": "Request awaiting confirmation",
+  "telephony_group_manage_contacts_change_success": "Your change of contact request has been sent.",
+  "telephony_group_manage_contacts_change_info": "With contact management, you can assign rights to other people and entrust them with the management of a line, alias or group.<br/>The permissions vary depending on the contact type chosen:<br/><br/><strong>Administrator contact:</strong> the designated administrator contact can manage the technical aspects of a line and assign “technical contact” permissions to another person.<br/><strong>Technical contact:</strong> the designated technical contact only manages the technical aspects of a line, alias or group.<br/><strong>Billing contact:</strong> the designated billing contact only manages billing (bill payment, etc.).",
+  "telephony_group_manage_contacts_disabled": "Unavailable for this service",
   "telephony_group_manage_contacts_breadcrumb": "Contact management"
 }

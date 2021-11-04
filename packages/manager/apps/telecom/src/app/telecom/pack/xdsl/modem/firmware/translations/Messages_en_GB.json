@@ -1,8 +1,8 @@
 {
-  "xdsl_modem_firmware_description": "La modification de la valeur du firmware est réservée à un usage avancé.",
-  "xdsl_modem_firmware_value": "Version du firmware à installer",
-  "xdsl_modem_firmware_an_error_ocurred": "FIRMWARE : Une erreur est survenue !",
-  "xdsl_modem_firmware_error": "Oups ! Nous n'avons pas pu récupérer la version du firmware.",
-  "xdsl_modem_firmware_doing": "Modification de la version du firmware en cours",
+  "xdsl_modem_firmware_description": "Modifying the firmware value is reserved for advanced users.",
+  "xdsl_modem_firmware_value": "Firmware version to install",
+  "xdsl_modem_firmware_an_error_ocurred": "FIRMWARE: An error occurred.",
+  "xdsl_modem_firmware_error": "Oops! Unable to retrieve the firmware version.",
+  "xdsl_modem_firmware_doing": "Modifying firmware version...",
   "xdsl_modem_fimware_submit": "Confirm"
 }

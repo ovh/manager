@@ -1,8 +1,8 @@
 {
-  "telephony_line_management_actions_line_consumption_incoming_calls": "Appels reçus",
+  "telephony_line_management_actions_line_consumption_incoming_calls": "Calls received",
   "telephony_line_management_actions_line_consumption_outgoing_calls": "Calls made",
-  "telephony_line_management_actions_line_consumption_incoming_fax": "Fax reçus",
-  "telephony_line_management_actions_line_consumption_outgoing_fax": "Fax émis",
-  "telephony_line_consumption_back_link": "Retour vers la gestion de votre consommation",
+  "telephony_line_management_actions_line_consumption_incoming_fax": "Faxes received",
+  "telephony_line_management_actions_line_consumption_outgoing_fax": "Faxes sent",
+  "telephony_line_consumption_back_link": "Back to consumption management",
   "telephony_line_management_actions_line_consumption_breadcrumb": "Usage"
 }

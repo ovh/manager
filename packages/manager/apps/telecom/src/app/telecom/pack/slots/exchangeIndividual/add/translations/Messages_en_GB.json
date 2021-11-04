@@ -1,11 +1,11 @@
 {
   "exchange_individual_add_an_account": "Add an Exchange account (Individual)",
-  "account_informations": "Informations sur le compte",
+  "account_informations": "Account information",
   "account_last_name": "Name",
   "account_first_name": "First name",
   "account_display_name": "Display name",
-  "antispam_option": "Je souhaite bénéficier des protections antivirus et antispam",
-  "all_fields_are_required": "All fields are mandatory ",
-  "success_validation": "Votre demande a bien été prise en compte",
-  "an_error_ocurred": "Une erreur est survenue lors de la création de votre compte"
+  "antispam_option": "I want anti-virus and anti-spam protection",
+  "all_fields_are_required": "All fields are mandatory",
+  "success_validation": "Your request has been processed",
+  "an_error_ocurred": "An error occurred while creating your account"
 }

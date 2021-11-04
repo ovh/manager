@@ -1,9 +1,9 @@
 {
-  "telephony_line_phone_attach_title": "Attach line to current hardware",
-  "telephony_line_phone_attach_subtitle": "You want to attach a line to current hardware",
+  "telephony_line_phone_attach_title": "Attach line to current device",
+  "telephony_line_phone_attach_subtitle": "You want to attach a line to a current device",
   "telephony_line_phone_detach_title": "Detach a telephone line",
-  "telephony_line_phone_detach_info1": "This line is currently attached to a Plug&Phone: {{phoneName}} ({{phoneMacAddress}}).",
-  "telephony_line_phone_detach_info2": "To detach it, enter the public IP address for the Plug&Phone, then click <strong>Detach</strong>.",
+  "telephony_line_phone_detach_info1": "This line is currently attached to a Plug&amp;Phone: {{phoneName}} ({{phoneMacAddress}}).",
+  "telephony_line_phone_detach_info2": "To detach it, enter the public IP address of the Plug&amp;Phone and click <strong>Detach</strong>.",
   "telephony_line_phone_detach_device": "Public IP address",
   "telephony_line_phone_detach_device_action": "Detach",
   "telephony_line_phone_detach_device_success": "The line has been detached",

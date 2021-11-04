@@ -1,14 +1,14 @@
 {
-  "common_tabs_more": "Autres catégories",
-  "common_newtab": "(nouvel onglet)",
-  "common_window": "(new window)",
-  "common_vip": "Statut VIP",
+  "common_tabs_more": "Other categories",
+  "common_newtab": "(new tab)",
+  "common_window": "(New window)",
+  "common_vip": "VIP status",
   "common_table_header_type": "Type",
-  "common_table_edit": ": éditer",
-  "common_table_delete": ": supprimer",
-  "common_table_validate_entry": ": ajouter cette entrée",
-  "common_table_cancel_entry": ": annuler l'ajout",
-  "common_table_validate_modifications": ": valider les modifications",
-  "common_table_cancel_modifications": ": annuler les modifications",
-  "common_required_fields": "Fields marked with an asterix are mandatory. "
+  "common_table_edit": ": edit",
+  "common_table_delete": ": delete",
+  "common_table_validate_entry": ": add this entry",
+  "common_table_cancel_entry": ": cancel this entry",
+  "common_table_validate_modifications": ": confirm changes",
+  "common_table_cancel_modifications": ": cancel changes",
+  "common_required_fields": "Fields marked with an asterisk are mandatory."
 }

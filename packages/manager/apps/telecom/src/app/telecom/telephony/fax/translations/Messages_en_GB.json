@@ -1,15 +1,15 @@
 {
-  "telephony_fax_page_title": "Fax \"{{name}}\"",
-  "telephony_fax_loading_error": "Oups ! Une erreur est survenue lors du chargement.",
+  "telephony_fax_page_title": "\"{{name}}\" fax service",
+  "telephony_fax_loading_error": "Oops! An error occurred while loading.",
   "telephony_fax_tab_manage": "Management",
   "telephony_fax_tab_consumption": "Usage",
-  "telephony_fax_tab_voicemail": "Answering machine",
+  "telephony_fax_tab_voicemail": "Voicemail",
   "telephony_fax_tab_fax": "Fax",
-  "telephony_fax_tab_contact": "Contacts",
+  "telephony_fax_tab_contact": "Contact details",
   "telephony_fax_tab_assist": "Help ",
   "telephony_fax_section_back_link": "Fax management",
-  "telephony_fax_rename_error": "Impossible de renommer votre fax {{serviceName}}.",
-  "telephony_fax_termination_warning": "La ligne sera résiliée le <strong>{{ date }}</strong>.",
-  "telephony_fax_termination_warning_cancel": "Vous pouvez annuler en cliquant ici.",
+  "telephony_fax_rename_error": "Unable to rename your fax service {{serviceName}}.",
+  "telephony_fax_termination_warning": "The line will be terminated on <strong>{{ date }}</strong>.",
+  "telephony_fax_termination_warning_cancel": "You can cancel by clicking here.",
   "telephony_fax_breadcrumb": "Fax"
 }

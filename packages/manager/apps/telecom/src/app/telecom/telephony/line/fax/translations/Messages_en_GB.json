@@ -1,10 +1,10 @@
 {
-  "telephony_line_fax_section_back_link": "Retour à la gestion du fax",
-  "telephony_line_fax_action_line_password": "Mot de passe fax",
-  "telephony_line_fax_action_line_settings": "Configuration du fax",
-  "telephony_line_fax_action_line_white_label_domains": "Domaines Ecofax Marque Blanche",
-  "telephony_line_fax_action_line_filtering": "Filtrage des fax",
-  "telephony_line_fax_action_line_campaigns": "Campagnes de Fax",
-  "telephony_line_fax_action_line_convert_to_voicefax": "Convertir un Ecofax perso",
+  "telephony_line_fax_section_back_link": "Back to fax management",
+  "telephony_line_fax_action_line_password": "Fax password",
+  "telephony_line_fax_action_line_settings": "Fax configuration",
+  "telephony_line_fax_action_line_white_label_domains": "Ecofax White-Label Domains",
+  "telephony_line_fax_action_line_filtering": "Fax filtering",
+  "telephony_line_fax_action_line_campaigns": "Fax campaigns",
+  "telephony_line_fax_action_line_convert_to_voicefax": "Convert a Personal Ecofax",
   "telephony_line_fax_breadcrumb": "Fax"
 }

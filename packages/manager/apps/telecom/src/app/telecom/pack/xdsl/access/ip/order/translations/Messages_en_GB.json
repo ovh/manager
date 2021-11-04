@@ -1,14 +1,14 @@
 {
-  "pack_xdsl_access_ip_order_operation_title": "Êtes-vous sûr(e) de vouloir effectuer l'opération suivante :",
-  "pack_xdsl_access_ip_order_operation": "Commande d'un bloc de {{amountIp}} adresses IP",
+  "pack_xdsl_access_ip_order_operation_title": "Are you sure you want to carry out the following operation:",
+  "pack_xdsl_access_ip_order_operation": "Order a block of {{amountIp}} IP addresses",
   "pack_xdsl_access_ip_order_title": "Order an IP block",
-  "pack_xdsl_access_ip_order_service_title": "sur le service suivant :",
-  "pack_xdsl_access_ip_order_disclaim": "Ces adresses IP seront activées sous {{hoursBeforeActivation}} heure. Vous serez prélevé de {{price}} HT sous {{hoursBeforeCollected}}h. Ce service est soumis à un engagement initial de {{engagementMinimumMonths}} mois",
-  "pack_xdsl_access_ip_order_are_you_sure_title": "Êtes-vous sûr(e) de vouloir effectuer l'opération suivante:",
+  "pack_xdsl_access_ip_order_service_title": "on the following service:",
+  "pack_xdsl_access_ip_order_disclaim": "These IP addresses will be activated within {{hoursBeforeActivation}} hours. You will be charged {{price}} ex. VAT within {{hoursBeforeCollected}} hours. This service is subject to an initial commitment of {{engagementMinimumMonths}} months",
+  "pack_xdsl_access_ip_order_are_you_sure_title": "Are you sure you want to confirm the following:",
   "pack_xdsl_access_ip_order_immediate_execution": "I accept that OVHcloud will set up the service immediately on validating my order, and I therefore explicitly renounce my right of retraction under the provisions of Article L.121-21-8 of the French consumer code.",
-  "pack_xdsl_access_ip_order_accept_conditions": "J'ai lu et j'accepte les conditions liées au service d'adresses IP supplémentaires",
-  "pack_xdsl_access_ip_order_accept_conditions_contract": "Voir le contrat",
+  "pack_xdsl_access_ip_order_accept_conditions": "I have read and accepted the conditions relating to the additional IP address service",
+  "pack_xdsl_access_ip_order_accept_conditions_contract": "View contract",
   "pack_xdsl_access_ip_order_no": "Cancel",
   "pack_xdsl_access_ip_order_yes": "Order",
-  "pack_xdsl_access_ip_order_validation": "La commande du bloc d'IP a bien été prise en compte."
+  "pack_xdsl_access_ip_order_validation": "The IP block order has been submitted."
 }

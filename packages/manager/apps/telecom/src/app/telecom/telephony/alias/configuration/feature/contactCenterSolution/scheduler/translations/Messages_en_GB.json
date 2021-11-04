@@ -1,7 +1,7 @@
 {
-  "telephony_alias_config_contactCenterSolution_scheduler_title": "Fermetures exceptionnelles",
-  "telephony_alias_config_contactCenterSolution_scheduler_subtitle": "Ce calendrier vous permet de définir des créneaux exceptionnels pour, par exemple, paramétrer des actions spécifiques lors des jours de fermeture de votre entreprise.",
-  "telephony_alias_config_contactCenterSolution_scheduler_category_title": "Catégories",
-  "telephony_alias_config_contactCenterSolution_scheduler_closing_days_title": "Planification des jours de fermeture",
-  "telephony_alias_config_contactCenterSolution_scheduler_closing_days_subtitle": "Planifiez des créneaux récurrents ou ponctuels durant lesquels vos correspondants seront redirigés vers un répondeur ou un autre numéro."
+  "telephony_alias_config_contactCenterSolution_scheduler_title": "Exceptional closures",
+  "telephony_alias_config_contactCenterSolution_scheduler_subtitle": "This schedule allows you to set exceptional time slots in order to set specific actions on your company’s closing days.",
+  "telephony_alias_config_contactCenterSolution_scheduler_category_title": "Categories",
+  "telephony_alias_config_contactCenterSolution_scheduler_closing_days_title": "Schedule closure days",
+  "telephony_alias_config_contactCenterSolution_scheduler_closing_days_subtitle": "Schedule recurring or one-off days where your callers will be redirected to voicemail or to another number."
 }

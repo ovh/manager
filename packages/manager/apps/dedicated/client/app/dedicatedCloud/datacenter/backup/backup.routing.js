@@ -107,11 +107,13 @@ export default /* @ngInject */ ($stateProvider) => {
         productId,
         datacenterId,
         currentUser,
+        backup,
       ) =>
         dedicatedCloudDatacenterBackupService.getBackupOffers(
           productId,
           datacenterId,
           currentUser.ovhSubsidiary,
+          backup,
         ),
       backupConditionsUrl: /* @ngInject */ (currentUser) =>
         get(

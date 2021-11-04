@@ -1,8 +1,8 @@
 {
-  "telephony_service_consumption_outgoing_all": "Tous les appels émis",
-  "telephony_service_consumption_outgoing_empty": "Aucun appel émis.",
-  "telephony_service_consumption_outgoing_not_found": "Aucun appel ne correspond à ce filtre.",
-  "telephony_service_consumption_outgoing_period": "Période du <strong>{{ start }}</strong> au <strong>{{ end }}</strong>",
-  "telephony_service_consumption_outgoing_priceplan": "Forfait : appel(s) : <strong>{{ calls }}</strong>, durée : <strong>{{ duration }}</strong>",
-  "telephony_service_consumption_outgoing_outplan": "Hors forfait : appel(s) : <strong>{{ calls }}</strong>, durée : <strong>{{ duration }}</strong>, prix : <strong>{{ price }}</strong> HT"
+  "telephony_service_consumption_outgoing_all": "All outgoing calls",
+  "telephony_service_consumption_outgoing_empty": "No outgoing calls.",
+  "telephony_service_consumption_outgoing_not_found": "No calls found under this filter.",
+  "telephony_service_consumption_outgoing_period": "Period from <strong>{{ start }}</strong> to <strong>{{ end }}</strong>",
+  "telephony_service_consumption_outgoing_priceplan": "Package: call(s): <strong>{{ calls }}</strong>, duration: <strong>{{ duration }}</strong>",
+  "telephony_service_consumption_outgoing_outplan": "Off-plan: call(s): <strong>{{ calls }}</strong>, duration: <strong>{{ duration }}</strong>, price: <strong>{{ price }}</strong> ex. VAT"
 }

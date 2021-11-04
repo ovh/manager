@@ -1,13 +1,13 @@
 {
-  "telephony_line_answer_voicemail_directories_main_title": "Ecoute et gestion des messages",
-  "telephony_line_answer_voicemail_directories_title": "Gestion des messages du répondeur",
-  "telephony_line_answer_voicemail_directories_delete_message": "Supprimer le message",
-  "telephony_line_answer_voicemail_directories_delete_message_plural": "Supprimer les {{ count }} messages",
-  "telephony_line_answer_voicemail_directories_listen_message": "Écouter",
+  "telephony_line_answer_voicemail_directories_main_title": "Listen to and manage messages",
+  "telephony_line_answer_voicemail_directories_title": "Voicemail management",
+  "telephony_line_answer_voicemail_directories_delete_message": "Delete message",
+  "telephony_line_answer_voicemail_directories_delete_message_plural": "Delete {{ count }} messages",
+  "telephony_line_answer_voicemail_directories_listen_message": "Listen",
   "telephony_line_answer_voicemail_directories_download_message": "Download",
   "telephony_line_answer_voicemail_directories_refresh_message": "Refresh",
   "telephony_line_answer_voicemail_directories_empty": "You have no messages.",
-  "telephony_line_answer_voicemail_directories_caller": "Caller ",
+  "telephony_line_answer_voicemail_directories_caller": "Caller",
   "telephony_line_answer_voicemail_directories_date": "Date",
   "telephony_line_answer_voicemail_directories_duration": "Duration"
 }

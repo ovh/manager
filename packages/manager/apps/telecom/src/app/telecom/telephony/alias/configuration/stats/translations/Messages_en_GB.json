@@ -1,6 +1,6 @@
 {
-  "telephony_alias_configuration_stats_back_link": "Retour à la configuration",
+  "telephony_alias_configuration_stats_back_link": "Back to configuration",
   "telephony_alias_configuration_stats_title": "Dashboard",
-  "telephony_alias_configuration_stats_title_all": "Statistiques de votre centre d'appels",
-  "telephony_alias_configuration_stats_queue": "Queue "
+  "telephony_alias_configuration_stats_title_all": "Your call centre statistics",
+  "telephony_alias_configuration_stats_queue": "Queue"
 }

@@ -45,7 +45,7 @@ export default class ServicesActionsCtrl {
 
     const resiliationByEndRuleLink =
       (this.getResiliationLink && this.getResiliationLink()) ||
-      `${this.autorenewLink}/resiliation?serviceId=${this.service.id}&serviceName=${this.service.serviceId}`;
+      `${this.autorenewLink}/resiliation?serviceId=${this.service.id}&serviceName=${this.service.serviceId}${serviceTypeParam}`;
 
     switch (this.service.serviceType) {
       case SERVICE_TYPE.EXCHANGE:

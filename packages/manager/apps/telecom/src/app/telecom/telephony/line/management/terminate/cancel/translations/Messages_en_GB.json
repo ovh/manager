@@ -1,11 +1,11 @@
 {
-  "telephony_group_line_cancel_terminate_title": "Cancel the closure of the \"{{ line }}\" line",
+  "telephony_group_line_cancel_terminate_title": "Cancel the termination of the \"{{ line }}\" line",
   "telephony_group_line_cancel_terminate_info_title": "Information",
-  "telephony_group_line_cancel_terminate_info_1": "Cette page vous permet d'annuler votre demande de résiliation de votre ligne.",
-  "telephony_group_line_cancel_terminate_action_title": "Annuler la résiliation de la ligne",
-  "telephony_group_line_cancel_terminate_terminate": "Cancel termination ",
-  "telephony_group_line_cancel_terminating_ok": "La résiliation a été annulée.",
-  "telephony_group_line_cancel_terminating_ko": "Une erreur est survenue lors de la demande d'annulation<br/>{{error}}",
-  "telephony_group_line_cancel_terminate_action_label": "Vous avez une demande de résiliation en cours sur la ligne.<br/>Cette résiliation est programmée le <b class=\"text-danger\">{{executionDate}}</b>.<br/>En cliquant sur le bouton «Annuler la résiliation», vous procédez à l'annulation immédiate de la résiliation.",
-  "telephony_group_line_cancel_terminate": "Cancel closure "
+  "telephony_group_line_cancel_terminate_info_1": "This page allows you to cancel your request to terminate your line.",
+  "telephony_group_line_cancel_terminate_action_title": "Cancel line termination",
+  "telephony_group_line_cancel_terminate_terminate": "Cancel termination",
+  "telephony_group_line_cancel_terminating_ok": "The termination has been cancelled.",
+  "telephony_group_line_cancel_terminating_ko": "An error occurred while requesting the cancellation<br/>{{error}}",
+  "telephony_group_line_cancel_terminate_action_label": "You have a pending termination request for the line.<br/>This termination is scheduled for <b class=\"text-danger\">{{executionDate}}</b>.<br/>By clicking the “Cancel termination” button, you will immediately cancel the termination.",
+  "telephony_group_line_cancel_terminate": "Cancel termination"
 }

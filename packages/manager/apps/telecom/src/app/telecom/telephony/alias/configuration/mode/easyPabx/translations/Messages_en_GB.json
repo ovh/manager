@@ -1,10 +1,10 @@
 {
-  "telephony_alias_configuration_mode_easy_pabx_no_reply_timer": "Délai sur non réponse",
-  "telephony_alias_configuration_mode_easy_pabx_no_reply_timer_info": "<strong>Délai sur non réponse</strong> : durée maximale avant que l'appelant ne sorte de la file d'attente.",
-  "telephony_alias_configuration_mode_easy_pabx_voicemail": "Answering machine",
-  "telephony_alias_configuration_mode_easy_pabx_voicemail_info": "<strong>Répondeur</strong> : répondeur sur lequel renvoyer en cas de non-réponse.",
+  "telephony_alias_configuration_mode_easy_pabx_no_reply_timer": "No answer time limit",
+  "telephony_alias_configuration_mode_easy_pabx_no_reply_timer_info": "<strong>No answer time limit</strong>: maximum time before caller exits queue.",
+  "telephony_alias_configuration_mode_easy_pabx_voicemail": "Voicemail",
+  "telephony_alias_configuration_mode_easy_pabx_voicemail_info": "<strong>Voicemail</strong>: answering machine to forward to in the event of no answer.",
   "telephony_alias_configuration_mode_easy_pabx_no_voicemail": "None",
-  "telephony_alias_configuration_mode_easy_pabx_loading_error": "Une erreur est survenue lors du chargement des options de votre easyPabx.",
-  "telephony_alias_configuration_mode_easy_pabx_save_success": "Les modifications apportées à votre easyPabx ont été appliquées avec succès.",
-  "telephony_alias_configuration_mode_easy_pabx_save_error": "Oups ! Une erreur est survenue lors de la modification des options de votre easyPabx."
+  "telephony_alias_configuration_mode_easy_pabx_loading_error": "An error occurred while loading your easyPABX settings.",
+  "telephony_alias_configuration_mode_easy_pabx_save_success": "Your easyPABX settings have been successfully changed.",
+  "telephony_alias_configuration_mode_easy_pabx_save_error": "Oops! An error occurred while changing your easyPABX settings."
 }

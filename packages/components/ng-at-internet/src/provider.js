@@ -350,7 +350,10 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
         if (isAtInternetTagAvailable()) {
           updateData(pageData);
           if (pageData.name) {
-            pageData.customVars = getCustomVarsWithDefaults(pageDataParam);
+            pageData.customVars = getCustomVarsWithDefaults({
+              pageUrl: encodeURIComponent(window.location.href),
+              ...pageDataParam,
+            });
             atinternetTag.page.send(pageData);
             logDebugInfos('atinternet.trackpage: ', pageData);
           } else {

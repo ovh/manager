@@ -1,10 +1,10 @@
 {
-  "telephony_alias_ovh_pabx_menus_list_info1": "Ici, vous pouvez gérer les menus interactifs disponibles.",
-  "telephony_alias_ovh_pabx_menus_list_info2": "Une fois vos menus paramétrés, il vous faut les ajouter dans la configuration de votre serveur vocal pour les utiliser.",
-  "telephony_alias_ovh_pabx_menus_list_title": "Liste des menus interactifs",
-  "telephony_alias_ovh_pabx_menus_add_menu": "Ajouter un menu interactif",
-  "telephony_alias_ovh_pabx_menus_new_menu": "Nouveau menu interactif",
-  "telephony_alias_ovh_pabx_menus_new_menu_name": "Mon menu interactif {{ index }}",
-  "telephony_alias_ovh_pabx_menus_edit_menu": "Édition du menu interactif {{ name }}",
+  "telephony_alias_ovh_pabx_menus_list_info1": "Manage your available interactive menus here.",
+  "telephony_alias_ovh_pabx_menus_list_info2": "Once your menus are set up, add them to your voice response configuration in order to use them.",
+  "telephony_alias_ovh_pabx_menus_list_title": "Interactive menus list",
+  "telephony_alias_ovh_pabx_menus_add_menu": "Add an interactive menu",
+  "telephony_alias_ovh_pabx_menus_new_menu": "New interactive menu",
+  "telephony_alias_ovh_pabx_menus_new_menu_name": "My interactive menu {{index}}",
+  "telephony_alias_ovh_pabx_menus_edit_menu": "Edit interactive menu {{ name }}",
   "telephony_alias_ovh_pabx_menus_breadcrumb": "Manage interactive menus"
 }

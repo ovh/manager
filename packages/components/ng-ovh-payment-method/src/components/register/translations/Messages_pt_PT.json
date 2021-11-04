@@ -1,4 +1,7 @@
 {
   "ovh_payment_method_register_force_as_default": "Este método de pagamento será utilizado para o pagamento automático do seu produto. Pode alterá-lo a qualquer momento na sua secção de métodos de pagamento. Receberá uma notificação por e-mail antes de cada prazo de pagamento.",
-  "ovh_payment_method_register_set_as_default_choice": "Pretendo selecionar este método de pagamento predefinido após a sua validação."
+  "ovh_payment_method_register_set_as_default_choice": "Pretendo selecionar este método de pagamento predefinido após a sua validação.",
+  "ovh_payment_method_register_set_as_default_choice_information_no_default_payment_method_ovh_sas": "By ticking this box, you authorize OVH S.A.S to save this means of payment as a default payment method for the purpose of facilitating further online transactions.",
+  "ovh_payment_method_register_set_as_default_choice_information_has_default_payment_method": "By ticking this box, you designate this means of payment as your default payment method.",
+  "ovh_payment_method_register_set_as_default_choice_information": "It will be automatically used for payments of your services with automatic renewal and pay-as-you-go.  You can add, delete or modify payment method at any time via the OVHcloud Control Panel."
 }

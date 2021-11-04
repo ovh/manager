@@ -1,14 +1,14 @@
 {
-  "telephony_group_billing_credit_threshold_title": "Modifier votre limite de dépôt de garantie",
+  "telephony_group_billing_credit_threshold_title": "Change your security deposit limit",
   "telephony_group_billing_credit_threshold_info_subtitle": "Information",
-  "telephony_group_billing_credit_threshold_credit_threshold": "Votre limite actuelle est de :",
-  "telephony_group_billing_credit_threshold_allowed_out_plan": "Votre hors forfait autorisé actuel est de :",
-  "telephony_group_billing_credit_threshold_current_out_plan": "Votre hors forfait global actuel est de :",
-  "telephony_group_billing_credit_threshold_credits_label": "Modification du crédit :",
-  "telephony_group_billing_credit_threshold_new_credit": "Après validation, votre limite sera de :",
-  "telephony_group_billing_credit_threshold_without_tax": "",
+  "telephony_group_billing_credit_threshold_credit_threshold": "Your current limit is:",
+  "telephony_group_billing_credit_threshold_allowed_out_plan": "Your current authorised off-plan limit is:",
+  "telephony_group_billing_credit_threshold_current_out_plan": "Your current overall off-plan limit is:",
+  "telephony_group_billing_credit_threshold_credits_label": "Change credit:",
+  "telephony_group_billing_credit_threshold_new_credit": "After confirming, your limit will be:",
+  "telephony_group_billing_credit_threshold_without_tax": "ex. VAT",
   "telephony_group_billing_credit_threshold_contracts_subtitle": "Acceptance of the contract",
   "telephony_group_billing_credit_threshold_contracts": "You will need to accept OVHcloud contracts before validating the security deposit request.",
   "telephony_group_billing_credit_threshold_submit": "Edit",
-  "telephony_group_billing_credit_threshold_success": "La demande de modification de la limite a été enregistrée avec succès !"
+  "telephony_group_billing_credit_threshold_success": "The request to change the limit has been submitted."
 }

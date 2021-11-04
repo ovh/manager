@@ -1,3 +1,11 @@
 {
-  "telephony_line_answer_default_voicemail_search": "Search for a service"
+  "telephony_line_answer_default_voicemail_search": "Search for a service",
+  "telephony_line_answer_default_voicemail_title": "Default email",
+  "telephony_line_answer_default_voicemail_config": "Current configuration",
+  "telephony_line_answer_default_voicemail_change": "Apply",
+  "telephony_line_answer_default_voicemail_label": "Use voicemail from:",
+  "telephony_line_answer_default_voicemail_bulk_all_success": "The default voicemail has been applied to the selected services.",
+  "telephony_line_answer_default_voicemail_bulk_some_success": "The default voicemail has been applied to {{ count }} of the selected services.",
+  "telephony_line_answer_default_voicemail_bulk_error": "The default voicemail could not be assigned to the following service(s):",
+  "telephony_line_answer_default_voicemail_bulk_on_error": "Oops! An error occurred while applying the default voicemail."
 }

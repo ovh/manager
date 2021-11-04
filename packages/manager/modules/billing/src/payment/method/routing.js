@@ -14,6 +14,8 @@ export default /* @ngInject */ (
   $urlRouterProvider,
 ) => {
   const name = 'app.account.billing.payment.method';
+  const allowDefaultChoiceForFirstPaymentMethodFeatureName =
+    'billing:allowDefaultChoiceForFirstPaymentMethod';
 
   $stateProvider.state(name, {
     url: '/method',
@@ -78,6 +80,18 @@ export default /* @ngInject */ (
           });
         }
       },
+      hasAllowDefaultChoiceForFirstPaymentMethod: /* @ngInject */ (
+        ovhFeatureFlipping,
+      ) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(
+            allowDefaultChoiceForFirstPaymentMethodFeatureName,
+          )
+          .then((feature) =>
+            feature.isFeatureAvailable(
+              allowDefaultChoiceForFirstPaymentMethodFeatureName,
+            ),
+          ),
       isSplitPaymentAvailable: /* @ngInject */ (
         $http,
         currentUser,

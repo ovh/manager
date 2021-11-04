@@ -1,14 +1,14 @@
 {
-  "xdsl_resiliation_title": "Service cancellation ",
-  "xdsl_resiliation_service_forbidden": "This service cannot be cancelled on its own because it is linked to its pack. ",
-  "xdsl_resiliation_engaged": "End of commitment date ",
-  "xdsl_resiliation_not_engaged": "You are no-longer commited. ",
-  "xdsl_resiliation_resiliation_date": "Cancellation on ",
-  "xdsl_resiliation_due": "Left to pay ",
-  "xdsl_resiliation_type_name": "the service ",
-  "xdsl_resiliation_cancel": "Cancel my termination ",
-  "xdsl_resiliation_cancel_really": "Vous êtes sur le point d'annuler la résiliation de «{{description}}». Voulez-vous continuer ?",
+  "xdsl_resiliation_title": "Service termination",
+  "xdsl_resiliation_service_forbidden": "This service cannot be cancelled on its own because it is linked to its pack.",
+  "xdsl_resiliation_engaged": "End of subscription date",
+  "xdsl_resiliation_not_engaged": "You are no longer subscribed.",
+  "xdsl_resiliation_resiliation_date": "Termination on",
+  "xdsl_resiliation_due": "Left to pay",
+  "xdsl_resiliation_type_name": "the service",
+  "xdsl_resiliation_cancel": "Cancel my termination",
+  "xdsl_resiliation_cancel_really": "You are about to cancel the termination for “{{description}}”. Do you wish to continue?",
   "xdsl_resiliation_service_date_format": "dd/mm/yyyy",
-  "xdsl_resiliation_mail": "Un e-mail de confirmation va vous être envoyé. Cet e-mail contient le bon de retour à joindre dans le colis de retour du modem.",
-  "xdsl_resiliation_terminate_info_1": "Vous avez une demande de résiliation en cours. <br/> Cette résiliation est programmée le {{date}}. En cliquant sur le bouton «Annuler ma résiliation», vous procédez à l'annulation immédiate de la résiliation."
+  "xdsl_resiliation_mail": "You will be sent a confirmation email. This email contains the returns form to be attached to the modem’s return package.",
+  "xdsl_resiliation_terminate_info_1": "You have a termination request in progress. <br/> This termination is scheduled for {{date}}. By clicking the “Cancel my termination” button, you will immediately cancel the termination."
 }

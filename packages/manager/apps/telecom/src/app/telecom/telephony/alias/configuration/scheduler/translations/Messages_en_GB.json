@@ -1,5 +1,5 @@
 {
-  "telephony_alias_configuration_scheduler_title": "Gérer les fermetures exceptionnelles",
-  "telephony_alias_configuration_scheduler_info": "Le calendrier vous permet de définir des créneaux exceptionnels pour, par exemple, paramétrer des actions spécifiques lors des jours de fermeture de votre entreprise.",
-  "telephony_alias_configuration_scheduler_load_error": "Oups ! Une erreur est survenue lors du chargement de vos fermetures exceptionnelles."
+  "telephony_alias_configuration_scheduler_title": "Manage exceptional closures",
+  "telephony_alias_configuration_scheduler_info": "The schedule allows you to set exceptional time slots in order to set specific actions on your company’s closing days.",
+  "telephony_alias_configuration_scheduler_load_error": "Oops! An error occurred while loading your exceptional closures."
 }

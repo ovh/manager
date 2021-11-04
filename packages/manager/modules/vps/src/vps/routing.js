@@ -83,6 +83,7 @@ export default /* @ngInject */ ($stateProvider) => {
             ? 'FORCED_MANUAL'
             : serviceInfo.status,
           statusHelp: resiliationCapability?.billingInformation,
+          serviceType: PRODUCT_NAME,
         })),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,

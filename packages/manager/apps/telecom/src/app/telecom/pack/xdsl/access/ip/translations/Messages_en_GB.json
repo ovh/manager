@@ -2,6 +2,6 @@
   "pack_xdsl_access_ip_title": "Reverse DNS",
   "pack_xdsl_access_ip_ip": "IP",
   "pack_xdsl_access_ip_dns": "DNS",
-  "pack_xdsl_access_ip_add_entry": "Ajouter une adresse IP",
-  "pack_xdsl_access_ip_delete_really": "Voulez-vous vraiment effacer le reverse DNS sur {{ipReverse}} ?"
+  "pack_xdsl_access_ip_add_entry": "Add an IP address",
+  "pack_xdsl_access_ip_delete_really": "Are you sure you want to delete the reverse DNS on {{ipReverse}} ?"
 }

@@ -17,5 +17,7 @@
   "billing_payment_method_table_action_description_edit": "Edit description",
   "billing_payment_method_table_action_set_default": "Make this the default payment method",
   "billing_payment_method_table_action_delete": "Delete this payment method",
-  "billing_payment_method_credit_card_disclaimer": "You are required to register a payment method if you use automatic renewal. You can modify it at any time. If you do not use automatic renewal and would like to delete your payment method, please contact our support team by creating a ticket."
+  "billing_payment_method_credit_card_disclaimer": "You are required to register a payment method if you use automatic renewal. You can modify it at any time. If you do not use automatic renewal and would like to delete your payment method, please contact our support team by creating a ticket.",
+  "billing_payment_method_information_add_ovh_sas": "When you register a means of payment, you authorize OVH S.A.S to store this method for the purpose of facilitating further online payment.",
+  "billing_payment_method_information_add_default": "The means of payment registered as the “default” payment method is used automatically at each expiry date to pay for your services with automatic renewal and pay-as-you-go. You will be notified before each new payment date. You can change, delete or add payment methods at any time using the interface below. To use services with automatic renewal or pay-as-you-go, you need to have at least one valid payment method registered."
 }

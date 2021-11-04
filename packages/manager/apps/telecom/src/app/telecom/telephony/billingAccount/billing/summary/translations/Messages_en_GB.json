@@ -1,14 +1,14 @@
 {
-  "telephony_group_billing_summary_title": "Consommation générale",
+  "telephony_group_billing_summary_title": "General usage",
   "telephony_group_billing_summary_consumption_total_label": "Total",
-  "telephony_group_billing_summary_consumption_incoming_label": "Entrants",
-  "telephony_group_billing_summary_consumption_outgoing_label": "Sortants",
-  "telephony_group_billing_summary_consumption_transfer_label": "Transferred",
-  "telephony_group_billing_summary_consumption_summary_title": "Résumé du groupe",
-  "telephony_group_billing_summary_consumption_details_title": "Détail des services (en nombre d'appels)",
+  "telephony_group_billing_summary_consumption_incoming_label": "Incoming",
+  "telephony_group_billing_summary_consumption_outgoing_label": "Outgoing",
+  "telephony_group_billing_summary_consumption_transfer_label": "Forwarded",
+  "telephony_group_billing_summary_consumption_summary_title": "Group summary",
+  "telephony_group_billing_summary_consumption_details_title": "Service details (number of calls)",
   "telephony_group_billing_summary_consumption_service_label": "Service",
-  "telephony_group_billing_summary_consumptioninit_error": "Erreur lors de la récupération de la consommation",
-  "telephony_group_billing_summary_consumptioninit_no_results": "Aucune consommation",
-  "telephony_group_billing_summary_calls_number_single": "{{ count }} appel",
-  "telephony_group_billing_summary_calls_number": "{{ count }} appels"
+  "telephony_group_billing_summary_consumptioninit_error": "Error while retrieving usage information",
+  "telephony_group_billing_summary_consumptioninit_no_results": "No usage",
+  "telephony_group_billing_summary_calls_number_single": "{{ count }} call",
+  "telephony_group_billing_summary_calls_number": "{{ count }} calls"
 }

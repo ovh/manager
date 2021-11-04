@@ -1,10 +1,10 @@
 {
-  "telephony_group_line_calls_click2call_changePassword_back": "Annuler la modification de l'utilisateur",
-  "telephony_group_line_calls_click2call_changePassword_title": "Modifier le mot de passe de l'utilisateur {{name}}",
+  "telephony_group_line_calls_click2call_changePassword_back": "Cancel user changes",
+  "telephony_group_line_calls_click2call_changePassword_title": "Change password for user {{name}}",
   "telephony_group_line_calls_click2call_changePassword_password_placeholder": "Password",
-  "telephony_group_line_calls_click2call_changePassword_success": "Utilisateur <strong>{{name}}</strong> modifié ! ",
-  "telephony_group_line_calls_click2call_changePassword_fail": "Oups ! Nous n'avons pas pu changer le mot de passe de l'utilisateur <strong>{{name}}</strong>.",
-  "telephony_group_line_calls_click2call_changePassword_rule_size": "Doit contenir entre 8 et 20 caractères",
-  "telephony_group_line_calls_click2call_changePassword_rule_special": "Doit contenir des chiffres, lettres sans accent ou {{list}}",
+  "telephony_group_line_calls_click2call_changePassword_success": "User <strong>{{name}}</strong> changed. ",
+  "telephony_group_line_calls_click2call_changePassword_fail": "Oops! Unable to change the password for <strong>{{name}}</strong>.",
+  "telephony_group_line_calls_click2call_changePassword_rule_size": "Must contain between 8 and 20 characters",
+  "telephony_group_line_calls_click2call_changePassword_rule_special": "Must contain numbers, unaccented letters or {{list}}",
   "telephony_group_line_calls_click2call_changePassword": "Modify password"
 }

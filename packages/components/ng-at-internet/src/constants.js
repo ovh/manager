@@ -25,6 +25,17 @@ export const AT_INTERNET_CUSTOM_VARS = {
   },
 
   /**
+   * Url for the tracking hit
+   */
+  pageUrl: {
+    path: {
+      default: 'site.11',
+      US: 'site.10',
+    },
+    format: '[%s]',
+  },
+
+  /**
    * Referrer site
    */
 

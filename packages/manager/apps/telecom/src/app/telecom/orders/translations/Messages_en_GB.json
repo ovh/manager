@@ -1,7 +1,7 @@
 {
   "telecom_order_page_title": "Order",
-  "telecom_orders_follow_up_title": "Track orders ",
-  "telecom_orders_follow_up_intro": "Your internet orders ",
+  "telecom_orders_follow_up_title": "Track orders",
+  "telecom_orders_follow_up_intro": "My internet orders",
   "telecom_orders_follow_up_type_xdsl": "xDSL access",
   "telecom_orders_follow_up_type_vdsl": "VDSL access",
   "telecom_orders_follow_up_type_sdsl": "SDSL access",
@@ -10,7 +10,7 @@
   "telecom_orders_follow_up_header_service": "Service ID",
   "telecom_orders_follow_up_header_status": "Status",
   "telecom_orders_follow_up_header_step": "Step",
-  "telecom_orders_follow_up_header_state": "Status",
-  "telecom_orders_follow_up_items_per_view": "Items per page ",
-  "telecom_orders_follow_up_no_orders": "Actuellement vous n'avez pas de commandes en cours."
+  "telecom_orders_follow_up_header_state": "Status ",
+  "telecom_orders_follow_up_items_per_view": "Items per page",
+  "telecom_orders_follow_up_no_orders": "You currently have no pending orders."
 }

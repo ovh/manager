@@ -1,9 +1,9 @@
 {
-  "xdsl_access_lns_ratelimit_title": "Optimisation de l'accès internet",
-  "xdsl_access_lns_ratelimit_activate": "Supprimer la limite du débit de la ligne",
+  "xdsl_access_lns_ratelimit_title": "Internet access optimisation",
+  "xdsl_access_lns_ratelimit_activate": "Delete the line’s bandwidth limit",
   "xdsl_access_lns_ratelimit_description": "Available only for France Telecom collections. Adjust the line’s high speed limit for OVHcloud hardware. This adjustment can make navigation easier, in some rare cases of packet loss.",
-  "xdsl_access_lns_ratelimit_warning": "Cette opération peut prendre jusqu’à 10 minutes et votre connexion sera interrompue quelques instants.",
-  "xdsl_access_lns_ratelimit_really_on": "Êtes-vous sûr(e) de vouloir activer la limite du débit de la ligne ?",
-  "xdsl_access_lns_ratelimit_really_off": "Êtes-vous sûr(e) de vouloir désactiver la limite du débit de la ligne ?",
-  "xdsl_access_lns_ratelimit_doing": "Changement de la limite de débit de la ligne"
+  "xdsl_access_lns_ratelimit_warning": "This operation can take up to 10 minutes and your connection will be interrupted for a few moments.",
+  "xdsl_access_lns_ratelimit_really_on": "Are you sure you want to activate the line bandwidth limit?",
+  "xdsl_access_lns_ratelimit_really_off": "Are you sure you want to deactivate the line bandwidth limit?",
+  "xdsl_access_lns_ratelimit_doing": "Changing the line bandwidth limit..."
 }

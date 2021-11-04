@@ -10,9 +10,9 @@
   "telephony_line_mgcp_ip_restriction_error_pattern": "IP address invalid.",
   "telephony_line_mgcp_ip_restriction_submit": "Add the IP address",
   "telephony_line_mgcp_ip_restriction_edit_success": "The modification has been processed, and will be effective in around 5 minutes.",
-  "telephony_line_mgcp_ip_restriction_edit_error": "Oops! An error has occurred when modifying the authorised IP address.",
+  "telephony_line_mgcp_ip_restriction_edit_error": "Oops! An error occurred while modifying the authorised IP address.",
   "telephony_line_mgcp_ip_restriction_bulk_all_success": "The modification to the MGCP line restriction has been applied to the selected services.",
   "telephony_line_mgcp_ip_restriction_bulk_some_success": "The modification to the MGCP line restriction has been applied to {{ count }} of the selected services.",
   "telephony_line_mgcp_ip_restriction_bulk_error": "The modification to the MGCP line restriction could not be applied to the following services:",
-  "telephony_line_mgcp_ip_restriction_bulk_on_error": "Oops! An error has occurred when modifying the the MGCP line restriction."
+  "telephony_line_mgcp_ip_restriction_bulk_on_error": "Oops! An error occurred while modifying the MGCP line restriction."
 }

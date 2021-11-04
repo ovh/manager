@@ -1,12 +1,12 @@
 {
-  "xdsl_missing-rio_title": "Portabilité de numéro",
-  "xdsl_missing-rio_leave-number_label": "S'affranchir de votre numéro : {{num}}",
-  "xdsl_missing-rio_port-number_label": "Conservez votre numéro de téléphone : {{num}}",
-  "xdsl_missing-rio_label": "Veuillez entrer le code RIO afin de porter votre numéro.",
-  "xdsl_missing-rio_label_tooltip": "Comment obtenir un code RIO (Relevé d'identité Opérateur) ? Rien de plus simple. Appelez gratuitement le 3179 depuis votre ligne fixe : {{num}}. Ce numéro est accessible 24 h/24, 7 jours sur 7. Le RIO est un identifiant unique comprenant 12 caractères.",
-  "xdsl_missing-rio_required": "Le champ est obligatoire",
-  "xdsl_missing-rio_init_error": "Votre cas ne semble pas concerné par une erreur de RIO, ou bien vous nous avez déjà communiqué cette information.",
+  "xdsl_missing-rio_title": "Number portability",
+  "xdsl_missing-rio_leave-number_label": "Lose number: {{num}}",
+  "xdsl_missing-rio_port-number_label": "Keep phone number: {{num}}",
+  "xdsl_missing-rio_label": "Please enter the PAC code to port your number.",
+  "xdsl_missing-rio_label_tooltip": "How do I get a PAC code (Porting Authorisation Code)? It is a very simple process. Call 3179 for free from your landline: {{num}} This line is open 24/7. The PAC is a unique identifier that is 12 digits long.",
+  "xdsl_missing-rio_required": "This field is mandatory",
+  "xdsl_missing-rio_init_error": "Your case does not seem to be related to a PAC error, or you have not yet sent this information.",
   "xdsl_missing-rio_send": "Confirm",
-  "xdsl_missing-rio_sent": "Votre portabilité a été envoyée avec succès.",
-  "xdsl_missing-rio_error": "Une erreur est survenue pendant le chargement."
+  "xdsl_missing-rio_sent": "Your portability has been sent.",
+  "xdsl_missing-rio_error": "An error occurred while loading."
 }
