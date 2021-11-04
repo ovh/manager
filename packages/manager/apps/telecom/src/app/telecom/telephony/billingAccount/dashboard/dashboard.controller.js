@@ -20,8 +20,15 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
   TucToastError,
   TelephonyGroupLinePhone,
   billingAccountId,
+  isSvaWalletFeatureAvailable,
+  svaWallet,
 ) {
   const self = this;
+
+  self.svaWallet = svaWallet;
+
+  self.isSvaWalletFeatureAvailable = isSvaWalletFeatureAvailable;
+  self.showSvaProfile = false;
 
   self.billingAccountId = billingAccountId;
 
@@ -329,7 +336,13 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
         },
       ];
 
-      return $q.all([getPortability(), getBill(), getConsumption()]);
+      return $q
+        .all([getPortability(), getBill(), getConsumption()])
+        .then(() => {
+          if (isSvaWalletFeatureAvailable && this.svaWallet) {
+            this.showSvaProfile = true;
+          }
+        });
     });
   };
 
