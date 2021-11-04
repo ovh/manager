@@ -14,7 +14,7 @@
   "dependencies": {
     "lodash": "^4.17.15",
     "punycode": "^1.4.1",
-    "validator": "^11.1.0"
+    "validator": "^13.7.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",

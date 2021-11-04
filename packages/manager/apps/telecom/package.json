@@ -142,7 +142,7 @@
     "regenerator-runtime": "^0.13.7",
     "ui-select": "^0.19.8",
     "urijs": "^1.18.0",
-    "validator": "^11.1.0",
+    "validator": "^13.7.0",
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {

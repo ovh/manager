@@ -128,7 +128,7 @@
     "request": "^2.51.0",
     "ui-select": "^0.19.8",
     "urijs": "^1.19.1",
-    "validator": "^11.1.0",
+    "validator": "^13.7.0",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
