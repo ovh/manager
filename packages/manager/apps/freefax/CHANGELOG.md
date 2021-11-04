@@ -1,3 +1,12 @@
+## [7.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@7.1.0...@ovh-ux/manager-freefax-app@7.1.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+
+
+
 # [7.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@7.0.1...@ovh-ux/manager-freefax-app@7.1.0) (2021-10-06)
 
 

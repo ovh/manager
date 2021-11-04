@@ -1,3 +1,13 @@
+## [15.33.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.33.1...@ovh-ux/manager-web@15.33.2) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+* **web.hosting.cdn:** remove simulate call to check for cdn upgrades ([#5814](https://github.com/ovh/manager/issues/5814)) ([b22cf96](https://github.com/ovh/manager/commit/b22cf9688d3219c25c3988d8558a94d985612480))
+
+
+
 ## [15.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.33.0...@ovh-ux/manager-web@15.33.1) (2021-11-02)
 
 

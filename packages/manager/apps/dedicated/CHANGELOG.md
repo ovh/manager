@@ -1,3 +1,16 @@
+## [17.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.5.0...@ovh-ux/manager-dedicated@17.5.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+* **billing.autorenew:** track service type ([#5797](https://github.com/ovh/manager/issues/5797)) ([3abe911](https://github.com/ovh/manager/commit/3abe91191e0c13b23825ab42fed7ee9b3c2e5084))
+* **zerto:** fix order issue ([#5791](https://github.com/ovh/manager/issues/5791)) ([08b4738](https://github.com/ovh/manager/commit/08b473870e85b55dee747699d743d34b0915f51a))
+* remove unused translations [CDS] ([6e28d1a](https://github.com/ovh/manager/commit/6e28d1aba936ed70282ad64717b9435106db86c4))
+* **veeam:** veeam backup plan ([#5819](https://github.com/ovh/manager/issues/5819)) ([247df46](https://github.com/ovh/manager/commit/247df46a5b9385d7aa027c0ece293422d2a3c194)), closes [#DTRSD-36848](https://github.com/ovh/manager/issues/DTRSD-36848)
+
+
+
 # [17.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.4.2...@ovh-ux/manager-dedicated@17.5.0) (2021-11-02)
 
 

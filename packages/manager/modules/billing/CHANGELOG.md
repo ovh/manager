@@ -1,3 +1,19 @@
+# [0.5.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.4.0-alpha.0...@ovh-ux/manager-billing@0.5.0-alpha.0) (2021-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1246] ([489b27b](https://github.com/ovh/manager/commit/489b27bfd714edd65595b833780da751b9169899))
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+* **billing.autorenew:** track service type on resiliation ([#5798](https://github.com/ovh/manager/issues/5798)) ([c77eb21](https://github.com/ovh/manager/commit/c77eb212b8f99035a2f95a7af434599b7445738a))
+
+
+### Features
+
+* **billing.payment:** use feature flipping for set as default choice ([4c597ce](https://github.com/ovh/manager/commit/4c597ce796072ba1eef8481688bef57d3ff40504))
+
+
+
 # [0.4.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.3.0-alpha.2...@ovh-ux/manager-billing@0.4.0-alpha.0) (2021-10-28)
 
 

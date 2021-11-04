@@ -1,3 +1,13 @@
+## [13.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.27.0...@ovh-ux/manager-telecom@13.27.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+* **i18n:** add missing translations [CDS 1258] ([c44bea0](https://github.com/ovh/manager/commit/c44bea0874e0c711f9a8dafe31cffc258f21c51c))
+
+
+
 # [13.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.26.3...@ovh-ux/manager-telecom@13.27.0) (2021-10-28)
 
 

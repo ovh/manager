@@ -1,3 +1,12 @@
+## [5.47.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.47.1...@ovh-ux/manager-pci@5.47.2) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+
+
+
 ## [5.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.47.0...@ovh-ux/manager-pci@5.47.1) (2021-11-02)
 
 

@@ -1,3 +1,12 @@
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.1.3...@ovh-ux/ng-at-internet-ui-router-plugin@3.2.0) (2021-11-04)
+
+
+### Features
+
+* add `pageUrl` ([#5811](https://github.com/ovh/manager/issues/5811)) ([fc0aa8e](https://github.com/ovh/manager/commit/fc0aa8e3eee7baf8d7bece9d015018f193312a03))
+
+
+
 ## [3.1.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.1.2...@ovh-ux/ng-at-internet-ui-router-plugin@3.1.3) (2021-10-26)
 
 

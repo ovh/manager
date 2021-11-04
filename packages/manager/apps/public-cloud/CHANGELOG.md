@@ -1,3 +1,12 @@
+## [4.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.17.0...@ovh-ux/manager-public-cloud@4.17.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+
+
+
 # [4.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.16.0...@ovh-ux/manager-public-cloud@4.17.0) (2021-10-06)
 
 

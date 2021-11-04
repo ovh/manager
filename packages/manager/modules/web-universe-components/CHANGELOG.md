@@ -1,3 +1,12 @@
+## [9.3.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.3.0...@ovh-ux/ng-ovh-web-universe-components@9.3.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+
+
+
 # [9.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.2.1...@ovh-ux/ng-ovh-web-universe-components@9.3.0) (2021-10-28)
 
 

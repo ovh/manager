@@ -1,3 +1,12 @@
+## [3.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.2.2...@ovh-ux/manager-hub@3.2.3) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+
+
+
 ## [3.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.2.1...@ovh-ux/manager-hub@3.2.2) (2021-10-27)
 
 

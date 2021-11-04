@@ -1,3 +1,12 @@
+# [5.8.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.7.1...@ovh-ux/ng-at-internet@5.8.0) (2021-11-04)
+
+
+### Features
+
+* add `pageUrl` ([#5811](https://github.com/ovh/manager/issues/5811)) ([fc0aa8e](https://github.com/ovh/manager/commit/fc0aa8e3eee7baf8d7bece9d015018f193312a03))
+
+
+
 ## [5.7.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.7.0...@ovh-ux/ng-at-internet@5.7.1) (2021-10-26)
 
 

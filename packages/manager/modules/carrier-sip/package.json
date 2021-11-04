@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-carrier-sip",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "private": true,
   "description": "Carrier SIP Trunk product.",
   "repository": {
