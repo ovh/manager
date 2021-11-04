@@ -1,6 +1,6 @@
 import { convertLanguageFromOVHToBCP47 } from '@ovh-ux/manager-config';
 
-export default class {
+export default class CommitmentPricingModeCtrl {
   /* @ngInject */
   constructor($attrs, BillingService, coreConfig) {
     this.$attrs = $attrs;
@@ -12,6 +12,11 @@ export default class {
     this.getDiscount();
   }
 
+  static roundToTwo(num) {
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
+    return Number.parseFloat(num).toFixed(2);
+  }
+
   getDiscount() {
     const upfront = this.pricingModes.find((commitment) =>
       commitment.isUpfront(),
@@ -21,8 +26,9 @@ export default class {
     );
 
     if (upfront && periodic) {
-      this.discount = Math.floor(
-        (periodic.totalPrice.value / upfront.totalPrice.value - 1) * 100,
+      this.discount = CommitmentPricingModeCtrl.roundToTwo(
+        ((periodic.totalPrice.value - upfront.totalPrice.value) * 100) /
+          periodic.totalPrice.value,
       );
       this.savings = periodic.getPriceDiff(upfront);
       let totalSavings = this.savings.value;
