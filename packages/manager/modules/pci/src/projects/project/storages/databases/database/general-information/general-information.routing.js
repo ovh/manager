@@ -228,16 +228,17 @@ export default /* @ngInject */ ($stateProvider) => {
               $q.all(
                 map(
                   integrations.filter(
-                    (i) => i.type === INTEGRATION_TYPE.MIRROR_MAKER,
+                    (integration) =>
+                      integration.type === INTEGRATION_TYPE.MIRROR_MAKER,
                   ),
-                  (i) =>
+                  (mirrorMakerIntegration) =>
                     DatabaseService.getDatabaseDetails(
                       projectId,
                       DATABASE_TYPES.KAFKA_MIRROR_MAKER,
-                      i.sourceServiceId,
-                    ).then((mm) => ({
-                      ...i,
-                      serviceName: mm.description,
+                      mirrorMakerIntegration.sourceServiceId,
+                    ).then((mirormakerService) => ({
+                      ...mirrorMakerIntegration,
+                      serviceName: mirormakerService.description,
                     })),
                 ),
               ),
