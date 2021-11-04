@@ -1,3 +1,12 @@
+## [17.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.5.1...@ovh-ux/manager-dedicated@17.5.2) (2021-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1239] ([#5890](https://github.com/ovh/manager/issues/5890)) ([aa6da29](https://github.com/ovh/manager/commit/aa6da29a4acbbd8f8c1ef4fb781a9aed41e44149))
+
+
+
 ## [17.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.5.0...@ovh-ux/manager-dedicated@17.5.1) (2021-11-04)
 
 
