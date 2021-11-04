@@ -66,7 +66,7 @@ export default class TelecomTelephonyAliasHomeController {
       ),
     };
 
-    this.fetchService().then(() => {
+    return this.fetchService().then(() => {
       if (this.isSvaWalletFeatureAvailable && this.svaWallet) {
         this.tucVoipServiceAlias
           .isSpecialNumber(this.alias)
