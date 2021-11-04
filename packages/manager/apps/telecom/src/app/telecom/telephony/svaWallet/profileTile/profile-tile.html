@@ -1,0 +1,33 @@
+<oui-tile
+    data-heading="{{:: 'telephony_billingAccount_svaWallet_profile_title' | translate }}"
+    data-loading="$ctrl.loading"
+>
+    <oui-tile-definition
+        data-term="{{:: 'telephony_billingAccount_svaWallet_profile_status_title' | translate}}"
+    >
+        <oui-tile-description>
+            <span
+                class="oui-badge"
+                data-ng-class="{
+                    'oui-badge_error': $ctrl.svaWalletStatus.error,
+                    'oui-badge_success': $ctrl.svaWalletStatus.valid,
+                    'oui-badge_warning': $ctrl.svaWalletStatus.pending,
+                }"
+                data-translate="{{ 'telephony_billingAccount_svaWallet_profile_status_' + $ctrl.svaWallet.kycStatus }}"
+            ></span>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-button data-ui-sref="telecom.telephony.billingAccount.svaWallet">
+        <span
+            data-translate="telephony_billingAccount_svaWallet_profile_see_profile"
+        ></span>
+    </oui-tile-button>
+    <oui-tile-button
+        data-ui-sref="telecom.telephony.billingAccount.billing.groupRepayments"
+        data-ng-if=":: $ctrl.showRepaymentLink"
+    >
+        <span
+            data-translate="telephony_billingAccount_svaWallet_profile_see_repayment"
+        ></span>
+    </oui-tile-button>
+</oui-tile>

@@ -16,6 +16,14 @@ export const getEnumItemValue = (item) =>
 
 export const isKYCValid = (wallet) => wallet.kycStatus === 'VALID';
 export const isKYCUnderReview = (wallet) => wallet.kycStatus === 'UNDER_REVIEW';
+export const isKYCWaitingDocument = (wallet) =>
+  wallet.kycStatus === 'WAITING_FOR_DOCUMENT';
+export const isKYCPending = (wallet) =>
+  ['IN_PROGRESS', 'UNDER_REVIEW', 'WAITING_FOR_DOCUMENT'].includes(
+    wallet.kycStatus,
+  );
+export const isKYCInError = (wallet) =>
+  ['BLOCKED', 'EXPIRED'].includes(wallet.kycStatus);
 
 export default {
   buildEnumList,
