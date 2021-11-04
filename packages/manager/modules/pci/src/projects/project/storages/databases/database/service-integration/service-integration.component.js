@@ -13,6 +13,7 @@ export default {
     kafkaServicesList: '<',
     addableServicesList: '<',
     stopPollingIntegrationsStatus: '<',
+    replicationsList: '<',
   },
   controller,
   template,

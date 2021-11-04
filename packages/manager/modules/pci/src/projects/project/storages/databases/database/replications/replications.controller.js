@@ -33,11 +33,11 @@ export default class ReplicationsCtrl {
     this.goToAddReplication();
   }
 
-  trackAndEditReplication() {
+  trackAndEditReplication(replication) {
     this.trackDashboard(
       'replication_flows::actions_menu::modify_replication_flow',
     );
-    this.goToEditReplication();
+    this.goToEditReplication(replication);
   }
 
   trackAndDeleteReplication(replication) {

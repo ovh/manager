@@ -62,13 +62,13 @@ export default /* @ngInject */ ($stateProvider) => {
           ).then((integrations) =>
             map(integrations, (i) => {
               const serviceIntegration = new ServiceIntegration(i);
-              serviceIntegration.setServiceName(kafkaServicesList);
+              serviceIntegration.setDestinationServiceName(kafkaServicesList);
               return serviceIntegration;
             }),
           ),
         readyServiceIntegrationList: /* @ngInject */ (serviceIntegrationList) =>
           serviceIntegrationList.filter((s) => s.statusGroup === STATUS.READY),
-        goToAddReplications: /* @ngInject */ (
+        goToAddReplication: /* @ngInject */ (
           $state,
           databaseId,
           projectId,
@@ -80,13 +80,13 @@ export default /* @ngInject */ ($stateProvider) => {
               databaseId,
             },
           ),
-        goToEditReplications: /* @ngInject */ (
+        goToEditReplication: /* @ngInject */ (
           $state,
           databaseId,
           projectId,
         ) => (replication) =>
           $state.go(
-            'pci.projects.project.storages.databases.dashboard.replications.add',
+            'pci.projects.project.storages.databases.dashboard.replications.edit',
             {
               projectId,
               databaseId,
@@ -107,11 +107,11 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return promise;
         },
-        goToDeleteReplications: /* @ngInject */ ($state) => (user) =>
+        goToDeleteReplication: /* @ngInject */ ($state) => (replication) =>
           $state.go(
-            'pci.projects.project.storages.databases.dashboard.replications.delete',
+            'pci.projects.project.storages.databases.dashboard.replications.delete-replication',
             {
-              user,
+              replication,
             },
           ),
       },

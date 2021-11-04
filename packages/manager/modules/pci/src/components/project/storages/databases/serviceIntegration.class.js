@@ -2,21 +2,36 @@ import find from 'lodash/find';
 import Base from './base.class';
 
 export default class ServiceIntegration extends Base {
-  constructor({ id, serviceId, status, type }) {
+  constructor({ id, sourceServiceId, destinationServiceId, status, type }) {
     super();
     this.updateData({
       id,
-      serviceId,
+      sourceServiceId,
+      destinationServiceId,
       status,
       type,
     });
   }
 
-  setServiceName(serviceList) {
-    this.serviceName = find(serviceList, { id: this.serviceId })?.description;
+  setSourceServiceName(serviceList) {
+    this.sourceServiceName = find(serviceList, {
+      id: this.sourceServiceId,
+    })?.description;
   }
 
-  updateData({ id, serviceId, status, type }) {
-    Object.assign(this, { id, serviceId, status, type });
+  setDestinationServiceName(serviceList) {
+    this.destinationServiceName = find(serviceList, {
+      id: this.destinationServiceId,
+    })?.description;
+  }
+
+  updateData({ id, sourceServiceId, destinationServiceId, status, type }) {
+    Object.assign(this, {
+      id,
+      sourceServiceId,
+      destinationServiceId,
+      status,
+      type,
+    });
   }
 }
