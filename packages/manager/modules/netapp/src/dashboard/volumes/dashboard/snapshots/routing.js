@@ -86,6 +86,26 @@ export default /* @ngInject */ ($stateProvider) => {
               )
               .then((snapshots) => snapshots.reduce((a, b) => a + b, 0)),
           ),
+
+      snapshotPolicies: /* @ngInject */ (getSnapshotPolicies) =>
+        getSnapshotPolicies().catch(() => []),
+      currentPolicy: /* @ngInject */ ($http, serviceName, volumeId) =>
+        $http
+          .get(
+            `/storage/netapp/${serviceName}/share/${volumeId}/snapshotPolicy`,
+          )
+          .then(({ data }) => data)
+          .catch(() => ({})),
+
+      applyPolicy: /* @ngInject */ ($http, serviceName, volumeId) => (
+        snapshotPolicyID,
+      ) =>
+        $http.put(
+          `/storage/netapp/${serviceName}/share/${volumeId}/snapshotPolicy`,
+          {
+            snapshotPolicyID,
+          },
+        ),
     },
   });
 };
