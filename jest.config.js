@@ -26,4 +26,9 @@ module.exports = {
     'jest-watch-typeahead/testname',
   ],
   resetMocks: true,
+  globals: {
+    'ts-jest': {
+      isolatedModules: true,
+    },
+  },
 };
