@@ -1,5 +1,6 @@
 import NetApp from './Netapp.class';
 import Share from './Share.class';
+import SnapshotPolicy from './SnapshotPolicy.class';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.dashboard', {
@@ -47,6 +48,27 @@ export default /* @ngInject */ ($stateProvider) => {
       isSnapshotPoliciesAvailable: /* @ngInject */ (features) =>
         features.isFeatureAvailable('netapp:snapshot-policies'),
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+      getSnapshotPolicies: /* @ngInject */ ($http, $q, serviceName) => () =>
+        $http
+          .get(`/storage/netapp/${serviceName}/snapshotPolicy`)
+          .then(({ data: snapshotPolicyIds }) =>
+            $q
+              .all(
+                snapshotPolicyIds.map(({ id }) =>
+                  $http
+                    .get(`/storage/netapp/${serviceName}/snapshotPolicy/${id}`)
+                    .then(
+                      ({ data: snapshotPolicy }) =>
+                        new SnapshotPolicy(snapshotPolicy),
+                    ),
+                ),
+              )
+              .then((snapshotPolicies) =>
+                snapshotPolicies.filter(
+                  (snapshotPolicy) => !snapshotPolicy.isDeleting(),
+                ),
+              ),
+          ),
     },
   });
 };
