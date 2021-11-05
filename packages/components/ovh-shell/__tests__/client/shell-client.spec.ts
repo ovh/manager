@@ -44,4 +44,38 @@ defineFeature(feature, (test) => {
       expect(callback).toHaveBeenCalledWith('param');
     });
   });
+
+  test('Plugin event listener', ({ given, when, and, then }) => {
+    const shellClientMessageBus = new DirectClientMessageBus();
+    const shellMessageBus = new DirectClientMessageBus();
+    const shell = new Shell(shellMessageBus);
+    const shellClient = new ShellClient(shellClientMessageBus);
+    const callback = jest.fn((param: string) => param);
+    const callback2 = jest.fn((param: string) => param);
+
+    given(
+      'My shell and shell client are configured with a direct message bus',
+      () => {
+        shellClientMessageBus.addPeer(shellMessageBus);
+        shellMessageBus.addPeer(shellClientMessageBus);
+      },
+    );
+
+    and('I add an event listener on the shell client', () => {
+      shellClient.addEventListener('foo', callback);
+      shellClient.addEventListener('bar', callback2);
+    });
+
+    when('The shell emits an event', () => {
+      shell.emitEvent('foo', 'param');
+    });
+
+    then(
+      'The event emitted from the shell should be received by the client',
+      () => {
+        expect(callback).toHaveBeenCalledWith('param');
+        expect(callback2).not.toHaveBeenCalled();
+      },
+    );
+  });
 });

@@ -34,7 +34,7 @@
     "release": "scripts/release.js",
     "split": "scripts/split.js",
     "start": "node -r esm scripts/start-application.js",
-    "test:jest": "jest",
+    "test:jest": "jest --runInBand",
     "test": "yarn lint",
     "test:e2e:chromium": "rimraf ./reports && testcafe chromium",
     "test:e2e:chromium:headless": "rimraf ./reports && testcafe chromium:headless",
