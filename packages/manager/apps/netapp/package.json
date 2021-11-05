@@ -35,7 +35,7 @@
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.4",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.4",
     "@ovh-ux/ng-ovh-http": "^5.0.3",
-    "@ovh-ux/ng-ovh-payment-method": "^8.3.6",
+    "@ovh-ux/ng-ovh-payment-method": "^9.0.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.5.2",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.4",
