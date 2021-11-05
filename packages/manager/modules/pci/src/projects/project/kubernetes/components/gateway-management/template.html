@@ -1,0 +1,27 @@
+<div class="oui-box oui-box_light border-0 pl-0 pt-0"
+     data-ng-init="gateway = $ctrl.network.gateway">
+
+    <h2 class="oui-field__label" data-translate="kubernetes_add_private_network_gateway_management_label"></h2>
+    <p data-translate="kubernetes_add_private_network_gateway_management_description"></p>
+
+    <!--Gateway switch-->
+    <oui-switch data-model="gateway.enabled"></oui-switch>
+    <strong
+        data-ng-bind="('kubernetes_add_private_network_gateway_management_gateway_' + gateway.enabled ) | translate"
+    ></strong>
+
+    <!--Gateway IP address-->
+    <div class="mt-3" data-ng-if="gateway.enabled">
+        <input
+            class="oui-input"
+            id="networkGatewayIp"
+            name="networkGatewayIp"
+            type="text"
+            placeholder="{{:: 'kubernetes_add_private_network_gateway_management_gateway_vrack_field_ip_placeholder' | translate}}"
+            data-ng-model="gateway.ip"
+            data-ng-pattern="$ctrl.GATEWAY_IP_REGEX"
+        />
+        <p data-translate="kubernetes_add_private_network_gateway_management_gateway_vrack_description"></p>
+    </div>
+
+</div>
