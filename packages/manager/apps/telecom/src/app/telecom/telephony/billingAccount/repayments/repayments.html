@@ -4,10 +4,128 @@
     </div>
 
     <section class="widget-presentation" data-ng-hide="RepaymentsCtrl.loading">
-        <h2
-            class="widget-presentation-title"
-            data-translate="telephony_repayments_title"
-        ></h2>
+        <h2 data-translate="telephony_repayments_title"></h2>
+        <p data-translate="telephony_repayments_subtitle"></p>
+
+        <tuc-toast-message></tuc-toast-message>
+
+        <div class="row">
+            <div class="col-md-6">
+                <dl>
+                    <dt data-translate="telephony_repayments_total"></dt>
+                    <dd data-ng-bind="RepaymentsCtrl.total | currency"></dd>
+                    <dt
+                        data-ng-if-start="RepaymentsCtrl.nextRepaymentDate"
+                        data-translate="telephony_repayments_next"
+                    ></dt>
+                    <dd
+                        data-ng-if-end
+                        data-ng-bind="RepaymentsCtrl.nextRepaymentDate | date:'dd-MM-yyyy'"
+                    ></dd>
+                </dl>
+            </div>
+        </div>
+
+        <oui-datagrid
+            class="my-5"
+            data-rows="RepaymentsCtrl.repayments"
+            data-page-size="25"
+            data-on-page-change="RepaymentsCtrl.onPageChanged($pagination)"
+            data-on-sort-change="RepaymentsCtrl.onSortChanged($sort)"
+        >
+            <!--
+            <oui-datagrid-column
+                data-title="::'telephony_repayments_grid_billing_group' | translate"
+                data-property="creationDatetime"
+                data-type="string"
+                data-searchable
+                data-sortable
+                data-filterable
+            >
+                <span
+                    data-ng-bind="::$row.creationDatetime | date:'dd-MM-yyyy HH:mm:ss'"
+                ></span>
+            </oui-datagrid-column>
+
+            -->
+            <!-- {
+                "0": {
+                    "anonymous": false,
+                    "buyAmount": {
+                        "currencyCode": "EUR",
+                        "text": "0.02 €",
+                        "value": 0.02
+                    },
+                    "calledNumber": "0033892490003",
+                    "callingNumber": "0033671143017",
+                    "creationDate": "2021-11-05T10:15:56.000Z",
+                    "currencyCode": "EUR",
+                    "customerCode": "os5216-ovh",
+                    "duration": "PT15S",
+                    "id": 18788,
+                    "lastUpdate": "2021-11-05T10:15:56.000Z",
+                    "phoneOperatorName": "SFR",
+                    "startDate": "2021-01-14T09:07:26.000Z",
+                    "status": "CREATED"
+                }
+            } -->
+            <oui-datagrid-column
+                data-title="::'telephony_repayments_grid_date' | translate"
+                data-property="startDate"
+                data-type="date"
+                data-sortable="desc"
+            >
+                <span
+                    data-ng-bind="::$row.startDate | date:'dd-MM-yyyy HH:mm:ss'"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="::'telephony_repayments_grid_called_number' | translate"
+                data-property="calledNumber"
+                data-type="string"
+                data-sortable
+                data-searchable
+                data-filterable
+            >
+                <span
+                    data-ng-bind="::$row.calledNumber | tucPhoneNumber"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="::'telephony_repayments_grid_calling_number' | translate"
+                data-property="callingNumber"
+                data-type="string"
+                data-sortable
+                data-searchable
+                data-filterable
+            >
+                <span
+                    data-ng-bind="::$row.callingNumber | tucPhoneNumber"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="::'telephony_repayments_grid_operator' | translate"
+                data-property="phoneOperatorName"
+                data-type="string"
+                data-sortable
+                data-searchable
+                data-filterable
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="::'telephony_repayments_grid_duration' | translate"
+                data-property="duration"
+                data-type="number"
+                data-sortable
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="::'telephony_repayments_grid_repayment' | translate"
+                data-property="buyAmount.value"
+                data-type="number"
+                data-sortable
+            >
+                <span data-ng-bind="::$row.buyAmount.value | currency"></span>
+            </oui-datagrid-column>
+        </oui-datagrid>
     </section>
 </section>
 <!-- /.telephony-group-line-repayments. -->
