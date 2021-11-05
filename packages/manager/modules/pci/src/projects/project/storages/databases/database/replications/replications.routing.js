@@ -62,7 +62,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ).then((integrations) =>
             map(integrations, (i) => {
               const serviceIntegration = new ServiceIntegration(i);
-              serviceIntegration.setDestinationServiceName(kafkaServicesList);
+              serviceIntegration.setSourceServiceName(kafkaServicesList);
               return serviceIntegration;
             }),
           ),

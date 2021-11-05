@@ -24,7 +24,7 @@
                     model="$ctrl.model.sourceIntegration"
                     name="source"
                     items="$ctrl.readyServiceIntegrationList"
-                    match="destinationServiceName"
+                    match="sourceServiceName"
                     on-change="$ctrl.checkTargetAndSourceValidity()"
                     disabled="$ctrl.isUpdate"
                     required
@@ -41,7 +41,7 @@
                     model="$ctrl.model.targetIntegration"
                     name="target"
                     items="$ctrl.readyServiceIntegrationList"
-                    match="destinationServiceName"
+                    match="sourceServiceName"
                     on-change="$ctrl.checkTargetAndSourceValidity()"
                     disabled="$ctrl.isUpdate"
                     required
@@ -177,7 +177,7 @@
             size="l"
             variant="primary"
             icon-right="oui-icon-arrow-right"
-            disabled="$ctrl.addOrEditReplicationForm.$invalid || $ctrl.invalidTargetSource"
+            disabled="$ctrl.addOrEditReplicationForm.$invalid || $ctrl.invalidTargetSource || $ctrl.processing"
         >
             <span
                 ng-if="$ctrl.isUpdate"

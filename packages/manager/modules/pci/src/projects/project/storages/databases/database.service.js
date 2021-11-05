@@ -646,8 +646,8 @@ export default class DatabaseService {
       .post(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/integration`,
         {
-          sourceServiceId: databaseId,
-          destinationServiceId: service.id,
+          sourceServiceId: service.id,
+          destinationServiceId: databaseId,
         },
       )
       .then(({ data }) => data);
@@ -674,7 +674,17 @@ export default class DatabaseService {
     return this.$http
       .post(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/replication`,
-        replication,
+        {
+          sourceIntegration: replication.sourceIntegration,
+          targetIntegration: replication.targetIntegration,
+          emitHeartbeats: replication.emitHeartbeats,
+          enabled: replication.enabled,
+          replicationPolicyClass: replication.replicationPolicyClass,
+          syncGroupOffsets: replication.syncGroupOffsets,
+          syncInterval: replication.syncInterval,
+          topicExcludeList: replication.topicExcludeList,
+          topics: replication.topics,
+        },
       )
       .then(({ data }) => data);
   }
@@ -683,7 +693,15 @@ export default class DatabaseService {
     return this.$http
       .put(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/replication/${replication.id}`,
-        replication,
+        {
+          emitHeartbeats: replication.emitHeartbeats,
+          enabled: replication.enabled,
+          replicationPolicyClass: replication.replicationPolicyClass,
+          syncGroupOffsets: replication.syncGroupOffsets,
+          syncInterval: replication.syncInterval,
+          topicExcludeList: replication.topicExcludeList,
+          topics: replication.topics,
+        },
       )
       .then(({ data }) => data);
   }
