@@ -23,4 +23,8 @@ export default class Snapshot {
   isPending() {
     return STATUS.PENDING.includes(this.status);
   }
+
+  isBeingDeleted() {
+    return this.status === 'deleting';
+  }
 }
