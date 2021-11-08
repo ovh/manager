@@ -9,5 +9,6 @@
   "pci_database_plans_list_spec_backup": "Manual and automatic backups",
   "pci_database_plans_list_spec_ram_unique": "{{ram}} RAM",
   "pci_database_plans_list_spec_core_unique": "{{core}} VCores",
-  "pci_database_plans_list_spec_storage_unique": "{{storage}} SSD"
+  "pci_database_plans_list_spec_storage_unique": "{{storage}} SSD",
+  "pci_database_plans_list_current_offer": "Current solution"
 }
