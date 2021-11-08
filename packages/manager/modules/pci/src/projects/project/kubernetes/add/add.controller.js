@@ -33,7 +33,13 @@ export default class {
       region: null,
       version: null,
       name: null,
-      privateNetwork: this.defaultPrivateNetwork,
+      network: {
+        private: this.defaultPrivateNetwork,
+        gateway: {
+          enabled: false, // false -> OVHcloud gateway, true -> vRack gateway
+          ip: '',
+        },
+      },
       nodePool: {
         antiAffinity: false,
         flavor: null,
@@ -79,7 +85,8 @@ export default class {
       this.cluster.name,
       this.cluster.region.name,
       this.cluster.version,
-      this.cluster.privateNetwork.clusterRegion?.openstackId,
+      this.cluster.network.private.clusterRegion?.openstackId,
+      this.cluster.network.gateway,
       options,
     )
       .then((response) =>
@@ -155,7 +162,7 @@ export default class {
     ];
     if (
       !some(this.availablePrivateNetworks, {
-        id: this.cluster.privateNetwork?.id,
+        id: this.cluster.network.private?.id,
       })
     ) {
       this.cluster.privateNetwork = this.defaultPrivateNetwork;
@@ -168,6 +175,13 @@ export default class {
       enabled: isRegionEnabled || this.cluster.region.enabled,
       quota: find(this.quotas, { region: this.cluster.region.name }),
     });
+  }
+
+  isValidNetworkConfig(networkGatewayIp) {
+    const { private: privateNetwork } = this.cluster.network;
+    const isPrivateNetwork = !!privateNetwork?.id;
+
+    return !isPrivateNetwork || networkGatewayIp?.$valid;
   }
 
   onRegionSubmit() {
