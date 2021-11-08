@@ -61,24 +61,20 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName: $transition$.params().serviceName,
           volumeId: volume.id,
         }),
-      getVolumeCreateSnapshotHref: /* @ngInject */ ($state, $transition$) => (
-        volume,
-      ) =>
-        $state.href('netapp.dashboard.volumes.volume.createSnapshot', {
-          serviceName: $transition$.params().serviceName,
-          volume,
+      goToCreateSnapshot: /* @ngInject */ ($state, serviceName) => (volume) =>
+        $state.go('netapp.dashboard.volumes.dashboard.snapshots.add', {
+          serviceName,
+          volumeId: volume.id,
         }),
-      getVolumeSnapshotsHref: /* @ngInject */ ($state, $transition$) => (
-        volume,
-      ) =>
-        $state.href('netapp.dashboard.volumes.volume.snapshots', {
-          serviceName: $transition$.params().serviceName,
-          volume,
+      goToSnapshots: /* @ngInject */ ($state, serviceName) => (volume) =>
+        $state.go('netapp.dashboard.volumes.dashboard.snapshots', {
+          serviceName,
+          volumeId: volume.id,
         }),
-      getVolumeAclHref: /* @ngInject */ ($state, $transition$) => (volume) =>
-        $state.href('netapp.dashboard.volumes.volume.acl', {
-          serviceName: $transition$.params().serviceName,
-          volume,
+      goToAcls: /* @ngInject */ ($state, serviceName) => (volume) =>
+        $state.go('netapp.dashboard.volumes.dashboard.acl', {
+          serviceName,
+          volumeId: volume.id,
         }),
       getVolumeDeleteHref: /* @ngInject */ ($state, $transition$) => (volume) =>
         $state.href('netapp.dashboard.volumes.delete', {
