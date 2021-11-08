@@ -15,9 +15,15 @@ export default /* @ngInject */ ($stateProvider) => {
         successMessage,
       ) =>
         $state
-          .go('netapp.dashboard.volumes.volume.dashboard', {
-            volumeId,
-          })
+          .go(
+            'netapp.dashboard.volumes.dashboard',
+            {
+              volumeId,
+            },
+            {
+              reload: true,
+            },
+          )
           .then(() => {
             Alerter.success(successMessage);
           }),
