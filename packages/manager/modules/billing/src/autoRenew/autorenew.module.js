@@ -28,6 +28,7 @@ import terminateEnterpriseCloudDatabase from './actions/terminate-enterprise-clo
 import terminateHostingWeb from './actions/terminateHostingWeb/hosting-web.module';
 import terminatePrivateDatabase from './actions/terminatePrivateDatabase/private-database.module';
 import terminateWebCoach from './actions/terminate-webcoach/terminate-webcoach.module';
+import terminateAllDOm from './actions/terminate-all-dom/module';
 import update from './actions/update/update.module';
 import warnNicBilling from './actions/warnNicBilling/warnNicBilling.module';
 import warnPendingDebt from './actions/warnPendingDebt/pending-debt.module';
@@ -67,6 +68,7 @@ angular
     terminateHostingWeb,
     terminatePrivateDatabase,
     terminateWebCoach,
+    terminateAllDOm,
     uiRouter,
     update,
     warnNicBilling,
