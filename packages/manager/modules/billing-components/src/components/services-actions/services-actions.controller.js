@@ -70,6 +70,11 @@ export default class ServicesActionsCtrl {
           { serviceName: this.service.serviceId },
         );
         break;
+      case SERVICE_TYPE.ALL_DOM:
+        this.resiliateLink = this.service.canResiliateByEndRule()
+          ? resiliationByEndRuleLink
+          : `${this.autorenewLink}/delete-all-dom?serviceId=${this.service.serviceId}&serviceType=${this.service.serviceType}`;
+        break;
       default:
         this.resiliateLink = this.service.canResiliateByEndRule()
           ? resiliationByEndRuleLink

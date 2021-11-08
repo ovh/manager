@@ -4,5 +4,6 @@
   "pci_database_flavors_list_spec_storage": "{{storage}} SSD storage",
   "pci_database_flavors_list_spec_bandwidth": "{{bandwidth}}Mbit/s",
   "pci_database_flavors_list_price_hourly": "{{price}} ex. VAT/hour",
-  "pci_database_flavors_list_price_monthly": "From {{price}} ex. VAT/month"
+  "pci_database_flavors_list_price_monthly": "From {{price}} ex. VAT/month",
+  "pci_database_flavors_list_current_offer": "Current solution"
 }
