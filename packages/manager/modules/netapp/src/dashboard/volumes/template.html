@@ -69,17 +69,13 @@
             >
                 <span data-translate="netapp_volumes_edit_volume"></span>
             </oui-action-menu-item>
-            <oui-action-menu-item
-                href="{{:: $ctrl.getVolumeCreateSnapshotHref($row )}}"
-            >
+            <oui-action-menu-item on-click="$ctrl.goToCreateSnapshot($row)">
                 <span data-translate="netapp_volumes_create_snapshot"></span>
             </oui-action-menu-item>
-            <oui-action-menu-item
-                href="{{:: $ctrl.getVolumeSnapshotsHref($row) }}"
-            >
+            <oui-action-menu-item on-click="$ctrl.goToSnapshots($row)">
                 <span data-translate="netapp_volumes_manage_snapshots"></span>
             </oui-action-menu-item>
-            <oui-action-menu-item href="{{:: $ctrl.getVolumeAclHref($row) }}">
+            <oui-action-menu-item on-click="$ctrl.goToAcls($row)">
                 <span data-translate="netapp_volumes_manage_acl"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
