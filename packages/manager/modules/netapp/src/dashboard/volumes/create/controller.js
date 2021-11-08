@@ -45,7 +45,7 @@ export default class VolumeCreateCtrl {
       .catch((error) =>
         this.goBack(
           this.$translate.instant('netapp_volume_create_error', {
-            message: error.data?.message,
+            message: error.message,
           }),
           'error',
         ),
