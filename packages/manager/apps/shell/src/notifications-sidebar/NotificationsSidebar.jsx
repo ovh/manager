@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { groupBy } from 'lodash-es';
 
-import useNotifications from '../core/notifications';
-import useDate from '../helpers/useDate';
+import useNotifications from '@/core/notifications';
+import useDate from '@/helpers/useDate';
 
 import Notifications from './Notifications/Notifications.jsx';
 import { MAX_NOTIFICATIONS } from './constants';
