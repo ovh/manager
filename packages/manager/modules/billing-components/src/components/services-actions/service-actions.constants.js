@@ -7,6 +7,7 @@ export const SERVICE_TYPE = {
   OVH_CLOUD_CONNECT: 'OVH_CLOUD_CONNECT',
   SMS: 'SMS',
   WEBCOACH: 'WEBCOACH',
+  ALL_DOM: 'ALL_DOM',
 };
 
 export const RENEW_URL = {

@@ -8,6 +8,7 @@ export default {
     flavors: '<',
     selectedFlavor: '=',
     user: '<',
+    allowLowerSelection: '<?',
   },
   controller,
   template,
