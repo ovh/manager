@@ -1,3 +1,12 @@
+## [17.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.5.2...@ovh-ux/manager-dedicated@17.5.3) (2021-11-08)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/manager-billing` to `^0.6.0-alpha.0` ([50a7339](https://github.com/ovh/manager/commit/50a7339a91e792bd1d2028f7567fae93ba6df0f7))
+
+
+
 ## [17.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.5.1...@ovh-ux/manager-dedicated@17.5.2) (2021-11-04)
 
 

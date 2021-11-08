@@ -1,3 +1,12 @@
+## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp-app@0.1.0...@ovh-ux/manager-netapp-app@0.1.1) (2021-11-08)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ng-ovh-payment-method` to `v9.0.0` ([07c4f1c](https://github.com/ovh/manager/commit/07c4f1c0727d67a0c8374969129280e008be93bb))
+
+
+
 # [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp-app@0.0.0...@ovh-ux/manager-netapp-app@0.1.0) (2021-10-27)
 
 
