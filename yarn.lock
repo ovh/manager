@@ -3044,7 +3044,7 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.7.0.tgz#898e57526c6c815103e5ce3b6889e18cfc439028"
   integrity sha512-879lV+UnjaWyp4F7dPwJiv1jEUeeRmCdaKM5VtjjGO2OZhj+SAyup20mLEQxFVkakhkjAL07BT/z9ReM+9rPOQ==
 
-"@ovh-ux/ui-kit@^5.1.2":
+"@ovh-ux/ui-kit@^5.1.0", "@ovh-ux/ui-kit@^5.1.2":
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-5.2.0.tgz#a2c74c0b4fde2109153b6b6a878d5df14f02c32a"
   integrity sha512-SAh0HbJdQ8B2PkIXfObZSr05n0SxTA3iYhE3zH20MeUfmz6BEH3f0KfgKsVOmTDMpMuZzk1/9Ywnom4Jea1gog==
