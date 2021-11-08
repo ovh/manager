@@ -83,6 +83,7 @@
             <oui-action-menu
                 text="{{:: 'netapp_volumes_snapshots_actions' | translate }}"
                 compact
+                disabled="$row.isBeingDeleted()"
             >
                 <oui-action-menu-item on-click="$ctrl.editSnapshot($row.id)">
                     <span
