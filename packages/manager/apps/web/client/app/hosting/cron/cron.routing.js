@@ -5,6 +5,8 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/cron',
     template,
     controller: 'HostingCronsCtrl',
+    controllerAs: '$ctrl',
+
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('hosting_cron'),

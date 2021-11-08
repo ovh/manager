@@ -362,6 +362,24 @@ import union from 'lodash/union';
       }
 
       /**
+       * Get task ids
+       * @param {string} serviceName
+       * @param {string} fn
+       */
+      getTaskIds(serviceName, fn) {
+        return this.$http
+          .get(`/hosting/web/${serviceName}/tasks`, {
+            rootPath: 'apiv6',
+            params: {
+              function: fn,
+            },
+          })
+          .then((response) => {
+            return response.data;
+          });
+      }
+
+      /**
        * Flush Cdn
        * @param {string} serviceName
        */

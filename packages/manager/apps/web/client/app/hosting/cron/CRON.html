@@ -1,154 +1,153 @@
-<div data-ng-controller="HostingCronsCtrl as $ctrl">
-    <div class="row">
-        <div class="col-md-9">
-            <div data-ovh-alert="{{alerts.main}}"></div>
+<div class="row">
+    <div class="col-md-9">
+        <div data-ovh-alert="{{alerts.main}}"></div>
 
-            <div
-                class="alert alert-info"
-                role="alert"
-                data-ng-if="!displayTabs.cron"
-            >
-                <div>
-                    <p
-                        class="mb-3"
-                        data-translate="hosting_change_offer_for_service"
-                    ></p>
-                    <button
-                        class="btn btn-info"
-                        type="button"
-                        data-translate="hosting_dashboard_service_change_offer"
-                        data-ui-sref="app.hosting.dashboard.upgrade({ productId: hosting.serviceName })"
-                    ></button>
-                </div>
-            </div>
-
-            <div
-                class="alert alert-info"
-                role="alert"
-                data-ng-if="displayTabs.cron && hosting.offer === 'START_10_M'"
-            >
-                <div>
-                    <p
-                        class="mb-3"
-                        data-translate="hosting_change_offer_for_service_start10m"
-                    ></p>
-                    <button
-                        class="btn btn-info"
-                        type="button"
-                        data-translate="hosting_dashboard_service_change_offer"
-                        data-ui-sref="app.hosting.dashboard.upgrade({ productId: hosting.serviceName })"
-                    ></button>
-                </div>
-            </div>
-
-            <div
-                data-ng-if="displayTabs.cron && hosting.offer !== 'START_10_M'"
-            >
-                <h2 data-translate="hosting_tab_menu_crons"></h2>
-
-                <div class="mb-4" data-ng-if="$ctrl.guide">
-                    <span
-                        class="fa fa-life-ring mr-2"
-                        aria-hidden="true"
-                    ></span>
-                    <span data-translate="hosting_tab_CRON_guide_help"></span>
-                    <a
-                        data-ng-href="{{:: $ctrl.guide}}"
-                        target="_blank"
-                        title="{{hosting_guide_help}} {{ 'common_newtab' | translate }}"
-                    >
-                        <span data-translate="hosting_guide_help"></span>
-                        <span
-                            class="fa fa-external-link"
-                            aria-hidden="true"
-                        ></span>
-                    </a>
-                </div>
-
-                <oui-datagrid
-                    data-rows-loader="$ctrl.getCrons($config)"
-                    data-row-loader="$ctrl.getCron($row)"
-                    data-empty-placeholder="{{:: 'hosting_tab_CRON_table_empty' | translate }}"
-                >
-                    <oui-datagrid-column
-                        data-title=":: 'hosting_tab_CRON_table_header_command' | translate"
-                        data-property="command"
-                        data-type="string"
-                        data-searchable
-                    >
-                    </oui-datagrid-column>
-                    <oui-datagrid-column
-                        data-title=":: 'hosting_tab_CRON_table_header_description' | translate"
-                        data-property="description"
-                        data-type="string"
-                        data-searchable
-                    >
-                    </oui-datagrid-column>
-                    <oui-datagrid-column
-                        data-title=":: 'hosting_tab_CRON_table_header_frequency' | translate"
-                        data-property="frequency"
-                    >
-                    </oui-datagrid-column>
-                    <oui-datagrid-column
-                        data-title=":: 'hosting_tab_CRON_table_header_language' | translate"
-                        data-property="displayedLanguage"
-                    >
-                    </oui-datagrid-column>
-                    <oui-datagrid-column
-                        data-title=":: 'hosting_tab_CRON_table_header_status' | translate"
-                        data-property="status"
-                    >
-                        <span
-                            class="oui-badge"
-                            data-ng-class="{
-                                'oui-badge_success': $row.status === 'enabled',
-                                'oui-badge_error': $row.status === 'disabled',
-                                'oui-badge_warning': $row.status === 'suspended'
-                            }"
-                            data-ng-bind=":: 'hosting_tab_CRON_table_status_' + $row.status | translate"
-                        >
-                        </span>
-                    </oui-datagrid-column>
-                    <oui-datagrid-column
-                        data-title=":: 'hosting_tab_CRON_table_header_email' | translate"
-                        data-property="email"
-                        data-type="string"
-                        data-searchable
-                    >
-                        <span
-                            data-translate="{{:: 'hosting_tab_CRON_email_' +  $row.email }}"
-                        ></span>
-                    </oui-datagrid-column>
-                    <oui-action-menu data-compact data-placement="end">
-                        <oui-action-menu-item
-                            data-on-click="$ctrl.modifyCron($row)"
-                        >
-                            <span
-                                data-translate="hosting_tab_CRON_edit_task"
-                            ></span>
-                        </oui-action-menu-item>
-                        <oui-action-menu-item
-                            data-on-click="$ctrl.deleteCron($row)"
-                        >
-                            <span
-                                data-translate="hosting_tab_CRON_delete_task"
-                            ></span>
-                        </oui-action-menu-item>
-                    </oui-action-menu>
-                </oui-datagrid>
+        <div
+            class="alert alert-info"
+            role="alert"
+            data-ng-if="!displayTabs.cron"
+        >
+            <div>
+                <p
+                    class="mb-3"
+                    data-translate="hosting_change_offer_for_service"
+                ></p>
+                <button
+                    class="btn btn-info"
+                    type="button"
+                    data-translate="hosting_dashboard_service_change_offer"
+                    data-ui-sref="app.hosting.dashboard.upgrade({ productId: hosting.serviceName })"
+                ></button>
             </div>
         </div>
 
         <div
-            class="col-md-3 mt-5 mt-lg-0"
-            data-ng-if="displayTabs.cron && hosting.offer !== 'START_10_M'"
+            class="alert alert-info"
+            role="alert"
+            data-ng-if="displayTabs.cron && hosting.offer === 'START_10_M'"
         >
-            <button
-                class="btn btn-block btn-default"
-                type="button"
-                data-translate="hosting_tab_CRON_configuration_create_title_button"
-                data-ng-click="setAction('cron/add-or-edit/hosting-cron-add-or-edit',{})"
-            ></button>
+            <div>
+                <p
+                    class="mb-3"
+                    data-translate="hosting_change_offer_for_service_start10m"
+                ></p>
+                <button
+                    class="btn btn-info"
+                    type="button"
+                    data-translate="hosting_dashboard_service_change_offer"
+                    data-ui-sref="app.hosting.dashboard.upgrade({ productId: hosting.serviceName })"
+                ></button>
+            </div>
         </div>
+
+        <div data-ng-if="displayTabs.cron && hosting.offer !== 'START_10_M'">
+            <h2 data-translate="hosting_tab_menu_crons"></h2>
+
+            <div class="mb-4" data-ng-if="$ctrl.guide">
+                <span class="fa fa-life-ring mr-2" aria-hidden="true"></span>
+                <span data-translate="hosting_tab_CRON_guide_help"></span>
+                <a
+                    data-ng-href="{{:: $ctrl.guide}}"
+                    target="_blank"
+                    title="{{hosting_guide_help}} {{ 'common_newtab' | translate }}"
+                >
+                    <span data-translate="hosting_guide_help"></span>
+                    <span class="fa fa-external-link" aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <oui-datagrid
+                data-rows="$ctrl.crons"
+                data-row-loader="$ctrl.getCron($row)"
+                data-empty-placeholder="{{:: 'hosting_tab_CRON_table_empty' | translate }}"
+            >
+                <oui-datagrid-column
+                    data-title=":: 'hosting_tab_CRON_table_header_command' | translate"
+                    data-property="command"
+                    data-type="string"
+                    data-searchable
+                >
+                    <span data-ng-bind="$value"></span>
+                    <oui-spinner
+                        data-size="s"
+                        data-ng-if="!isCronStatusCreated($row.state)"
+                    ></oui-spinner>
+                </oui-datagrid-column>
+                <oui-datagrid-column
+                    data-title=":: 'hosting_tab_CRON_table_header_description' | translate"
+                    data-property="description"
+                    data-type="string"
+                    data-searchable
+                >
+                </oui-datagrid-column>
+                <oui-datagrid-column
+                    data-title=":: 'hosting_tab_CRON_table_header_frequency' | translate"
+                    data-property="frequency"
+                >
+                </oui-datagrid-column>
+                <oui-datagrid-column
+                    data-title=":: 'hosting_tab_CRON_table_header_language' | translate"
+                    data-property="displayedLanguage"
+                >
+                </oui-datagrid-column>
+                <oui-datagrid-column
+                    data-title=":: 'hosting_tab_CRON_table_header_status' | translate"
+                    data-property="status"
+                >
+                    <span
+                        class="oui-badge"
+                        data-ng-class="{
+                                'oui-badge_success': $row.status === 'enabled',
+                                'oui-badge_error': $row.status === 'disabled',
+                                'oui-badge_warning': $row.status === 'suspended'
+                            }"
+                        data-ng-bind=":: 'hosting_tab_CRON_table_status_' + $row.status | translate"
+                    >
+                    </span>
+                </oui-datagrid-column>
+                <oui-datagrid-column
+                    data-title=":: 'hosting_tab_CRON_table_header_email' | translate"
+                    data-property="email"
+                    data-type="string"
+                    data-searchable
+                >
+                    <span
+                        data-translate="{{:: 'hosting_tab_CRON_email_' +  $row.email }}"
+                    ></span>
+                </oui-datagrid-column>
+                <oui-action-menu
+                    disabled="!isCronStatusCreated($row.state)"
+                    data-compact
+                    data-placement="end"
+                >
+                    <oui-action-menu-item
+                        data-on-click="$ctrl.modifyCron($row)"
+                    >
+                        <span
+                            data-translate="hosting_tab_CRON_edit_task"
+                        ></span>
+                    </oui-action-menu-item>
+                    <oui-action-menu-item
+                        data-on-click="$ctrl.deleteCron($row)"
+                    >
+                        <span
+                            data-translate="hosting_tab_CRON_delete_task"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-datagrid>
+        </div>
+    </div>
+
+    <div
+        class="col-md-3 mt-5 mt-lg-0"
+        data-ng-if="displayTabs.cron && hosting.offer !== 'START_10_M'"
+    >
+        <button
+            class="btn btn-block btn-default"
+            type="button"
+            data-translate="hosting_tab_CRON_configuration_create_title_button"
+            data-ng-click="setAction('cron/add-or-edit/hosting-cron-add-or-edit',{})"
+        ></button>
     </div>
 </div>
