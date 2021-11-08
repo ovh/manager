@@ -64,6 +64,7 @@ export default class OvhManagerNetAppOrderCtrl {
         price,
       };
     });
+    [this.selectedLicense] = this.licenses;
   }
 
   onRegionStepFocus() {
