@@ -1,3 +1,12 @@
+## [3.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.5.0...@ovh-ux/manager-billing-components@3.5.1) (2021-11-08)
+
+
+### Bug Fixes
+
+* **commitment:** fix total price display ([#5924](https://github.com/ovh/manager/issues/5924)) ([6a3d218](https://github.com/ovh/manager/commit/6a3d218a452fb0d3e40267d324d486679c0af4a2))
+
+
+
 # [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.4.4...@ovh-ux/manager-billing-components@3.5.0) (2021-11-08)
 
 

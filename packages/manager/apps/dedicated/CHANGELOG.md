@@ -1,3 +1,12 @@
+## [17.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.5.3...@ovh-ux/manager-dedicated@17.5.4) (2021-11-08)
+
+
+### Bug Fixes
+
+* **server:** fix price display for bandwidth order ([#5880](https://github.com/ovh/manager/issues/5880)) ([112f57f](https://github.com/ovh/manager/commit/112f57f0f85e026de27e171224a58603e7b9f3e4))
+
+
+
 ## [17.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.5.2...@ovh-ux/manager-dedicated@17.5.3) (2021-11-08)
 
 
