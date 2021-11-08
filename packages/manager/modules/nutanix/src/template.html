@@ -1,0 +1,82 @@
+<oui-header data-heading="{{ ::'nutanix_title' | translate }}">
+    <oui-guide-menu data-text="{{ ::'nutanix_guides' | translate }}">
+        <oui-guide-menu-item data-href="{{:: $ctrl.guideUrl }}" data-external
+            ><span data-translate="nutanix_guides_main"></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
+</oui-header>
+<oui-datagrid rows="$ctrl.clusters" data-page-size="25" class="mt-5">
+    <oui-datagrid-topbar>
+        <oui-spinner data-ng-if="ctrl.delete.loading"></oui-spinner>
+    </oui-datagrid-topbar>
+    <oui-datagrid-column
+        title=":: 'nutanix_cluster_list_name' | translate"
+        property="serviceName"
+        data-sortable
+        data-searchable
+        data-filterable
+    >
+        <a
+            class="oui-link"
+            ng-href="{{:: $ctrl.getClusterDetailsState($row.serviceName) }}"
+            data-ng-bind=":: $row.serviceName"
+        >
+        </a>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title=":: 'nutanix_cluster_list_number_of_nodes' | translate"
+    >
+        <span data-ng-bind="$row.getNumberOfNodes()"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title=":: 'nutanix_cluster_list_licence' | translate"
+        data-property="targetSpec.license"
+        data-sortable
+        data-searchable
+        data-filterable
+    >
+        <span class="text-capitalize" data-ng-bind="$row.getLicense()"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title=":: 'nutanix_cluster_list_status' | translate"
+        property="status"
+        data-sortable
+        data-searchable
+        data-filterable
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="{
+                'oui-badge_success': $row.status === $ctrl.CLUSTER_STATUS.ACTIVE,
+                'oui-badge_warning': $row.status === $ctrl.CLUSTER_STATUS.DEPLOYING,
+                'oui-badge_error': $row.status === $ctrl.CLUSTER_STATUS.ERROR
+                }"
+            data-ng-bind="('nutanix_cluster_list_status_' + $row.status) | translate"
+        >
+        </span>
+    </oui-datagrid-column>
+    <!--TODO : Use region service from manager components to fetch accurate region-->
+    <oui-datagrid-column
+        title="'nutanix_cluster_list_localisation' | translate"
+    >
+        <span
+            data-translate="{{:: $ctrl.nodeDetails.datacenter + ' (' + $ctrl.nodeDetails.rack + ')'}}"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column>
+        <a
+            target="_blank"
+            class="oui-link_icon"
+            rel="noopener"
+            data-ng-href="{{:: $row.targetSpec.controlPanelURL }}"
+        >
+            <span
+                data-translate="nutanix_cluster_list_prism_central_url"
+            ></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </oui-datagrid-column>
+</oui-datagrid>

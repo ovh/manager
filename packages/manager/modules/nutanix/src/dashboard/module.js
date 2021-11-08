@@ -11,8 +11,6 @@ import generalInfo from './general-info';
 
 import nutanixNetworkTile from './component/network-tile/network-tile.module';
 
-import service from './service';
-
 const moduleName = 'ovhManagerNutanixDashboard';
 
 angular
@@ -27,7 +25,6 @@ angular
   ])
   .config(routing)
   .component('nutanixDashboard', component)
-  .service('NutanixService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -5,6 +5,7 @@ export default class Cluster {
       targetSpec,
       status,
     });
+    this.status = this.status.toLowerCase();
   }
 
   getNodes() {
@@ -17,5 +18,13 @@ export default class Cluster {
 
   isRackAwareness() {
     return this.targetSpec.rackAwareness;
+  }
+
+  getNumberOfNodes() {
+    return this.targetSpec?.nodes?.length || 0;
+  }
+
+  getLicense() {
+    return this.targetSpec?.license;
   }
 }

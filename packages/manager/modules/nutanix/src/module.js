@@ -12,6 +12,8 @@ import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import routing from './routing';
+import component from './component';
+import service from './service';
 
 const moduleName = 'ovhManagerNutanix';
 
@@ -27,6 +29,8 @@ angular
     ngUiRouterBreadcrumb,
     ListLayoutHelper.moduleName,
   ])
+  .component('clusterComponent', component)
+  .service('NutanixService', service)
   .config(routing)
 
   .run(/* @ngTranslationsInject:json ./translations */);

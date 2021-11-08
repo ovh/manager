@@ -1,13 +1,24 @@
 import map from 'lodash/map';
 import { BillingService, DedicatedServer } from '@ovh-ux/manager-models';
 import { NOT_SUBSCRIBED, SERVER_OPTIONS } from './constants';
-import Cluster from '../cluster.class';
+import Cluster from './cluster.class';
 
 export default class NutanixService {
   /* @ngInject */
-  constructor($q, $http) {
+  constructor($q, $http, iceberg) {
     this.$q = $q;
     this.$http = $http;
+    this.iceberg = iceberg;
+  }
+
+  getClusters() {
+    return this.iceberg('/nutanix')
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute({}, true)
+      .$promise.then(({ data }) => {
+        return data.map((cluster) => new Cluster(cluster));
+      });
   }
 
   getCluster(serviceName) {

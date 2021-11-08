@@ -1,14 +1,11 @@
-import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.index', {
-    url: `?${ListLayoutHelper.urlQueryParams}`,
-    component: 'managerListLayout',
-    params: ListLayoutHelper.stateParams,
+    url: '',
+    component: 'clusterComponent',
     redirectTo: (transition) =>
       transition
         .injector()
-        .getAsync('resources')
+        .getAsync('clusters')
         .then((services) =>
           services.length === 0
             ? {
@@ -17,16 +14,12 @@ export default /* @ngInject */ ($stateProvider) => {
             : false,
         ),
     resolve: {
-      ...ListLayoutHelper.stateResolves,
-      apiPath: () => '/nutanix',
-      schema: /* @ngInject */ ($http) =>
-        $http.get('/nutanix.json').then(({ data }) => data),
-      dataModel: () => 'nutanix.cluster',
-      defaultFilterColumn: () => 'serviceName',
-      header: () => 'nutanix',
-      customizableColumns: () => true,
-      getServiceNameLink: /* @ngInject */ ($state) => ({ serviceName }) =>
-        $state.href('nutanix.dashboard', {
+      clusters: /* @ngInject */ (NutanixService) =>
+        NutanixService.getClusters(),
+      nodeDetails: /* @ngInject */ (clusters, NutanixService) =>
+        NutanixService.getServer(clusters[0].getFirstNode()),
+      getClusterDetailsState: /* @ngInject */ ($state) => (serviceName) =>
+        $state.href('nutanix.dashboard.general-info', {
           serviceName,
         }),
       hideBreadcrumb: () => true,
