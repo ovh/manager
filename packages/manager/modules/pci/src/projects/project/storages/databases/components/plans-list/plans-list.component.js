@@ -8,6 +8,7 @@ export default {
     plans: '<',
     selectedPlan: '=',
     user: '<',
+    allowLowerSelection: '<?',
   },
   controller,
   template,
