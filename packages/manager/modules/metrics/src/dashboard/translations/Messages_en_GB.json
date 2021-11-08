@@ -8,7 +8,7 @@
   "metrics_tiles_configuration_name": "Name",
   "metrics_tiles_configuration_retention": "Retention",
   "metrics_tiles_configuration_retention_month": "month",
-  "metrics_tiles_configuration_datacenter": "Datacentre",
+  "metrics_tiles_configuration_datacenter": "Datacenter",
   "metrics_tiles_subscription_title": "Subscription",
   "metrics_tiles_subscription_offer": "Solution ",
   "metrics_tiles_subscription_priceplan_free_trial": "Free Trial",

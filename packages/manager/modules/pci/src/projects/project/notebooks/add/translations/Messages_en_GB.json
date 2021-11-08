@@ -13,7 +13,7 @@
   "pci_notebook_add_privacy_settings_title_selected": "Privacy selected: {{privacy}}",
   "pci_notebook_add_privacy_settings_item_selected_restricted": "Restricted access",
   "pci_notebook_add_privacy_settings_item_selected_public": "Public access",
-  "pci_notebook_add_privacy_datacenter_location_title": "Datacentre location",
+  "pci_notebook_add_privacy_datacenter_location_title": "Datacenter location",
   "pci_notebook_add_privacy_datacenter_location_title_selected": "Location selected: {{region}}",
   "pci_notebook_add_privacy_datacenter_location_description": "Select a region",
   "pci_notebook_add_resources_title": "Resources",

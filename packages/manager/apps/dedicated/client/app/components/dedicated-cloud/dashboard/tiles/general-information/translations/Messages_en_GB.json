@@ -13,7 +13,7 @@
   "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_FILTERED": "Restricted",
   "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_OPEN": "Open",
   "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_NOT_CONFIGURED": "Not yet configured",
-  "ovhManagerPccDashboardGeneralInformation_numberOfDatacenters_term": "Number of datacentres",
+  "ovhManagerPccDashboardGeneralInformation_numberOfDatacenters_term": "Number of datacenters",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_term": "Number of IP blocks",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_definition_ripe": "RIPE",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_definition_arin": "ARIN",

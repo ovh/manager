@@ -1,0 +1,13 @@
+{
+  "analytics_data_platform_tile_heading_cluster_info": "Informations sur le cluster",
+  "analytics_data_platform_tile_heading_billing": "Paiement",
+  "analytics_data_platform_tile_heading_cluster_mgmt": "Gestion du cluster",
+  "analytics_data_platform_tile_desc_datacenter": "Datacentre",
+  "analytics_data_platform_tile_desc_solution": "Solution",
+  "analytics_data_platform_tile_desc_creation_date": "Date de création",
+  "analytics_data_platform_tile_menu_billing_console": "Console de paiement",
+  "analytics_data_platform_tile_link_manage_users": "Gérer les utilisateurs (Free IPA)",
+  "analytics_data_platform_tile_link_manage_cluster": "Gérer le cluster (Ambari)",
+  "analytics_data_platform_tile_link_manage_security": "Gérer la sécurité des données (Ranger)",
+  "analytics_data_platform_service_terminate": "Supprimer le service"
+}

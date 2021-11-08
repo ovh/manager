@@ -1,7 +1,7 @@
 {
-  "dedicatedCloud_USER_rights_management_by_datacenter": "<b>{{t0}}</b> rights management by datacentre",
+  "dedicatedCloud_USER_rights_management_by_datacenter": "Rights management for <b>{{t0}}</b> by datacenter",
   "dedicatedCloud_USER_warning_line": "Confirm or cancel the changes you have made to the user rights",
-  "dedicatedCloud_datacenter_count": "Datacentre",
+  "dedicatedCloud_datacenter_count": "Datacenter",
   "dedicatedCloud_USER_access_vsphere": "vSphere access",
   "dedicatedCloud_USER_right_modify": "Modify rights",
   "dedicatedCloud_USER_right_valid": "Confirm changes",
@@ -19,7 +19,7 @@
   "dedicatedCloud_USER_right_MANAGER": "Administrator",
   "dedicatedCloud_USER_right_manager": "Administrator",
   "dedicatedCloud_USER_right_title": "Editing rights",
-  "dedicatedCloud_USER_right_datacenter_title": "Datacentre: <b>{{t0}}</b>",
+  "dedicatedCloud_USER_right_datacenter_title": "Datacenter: <b>{{t0}}</b>",
   "dedicatedCloud_USER_right_vsphere": "vSphere access",
   "dedicatedCloud_USER_right_vsphere_help": "Global user rights on vSphere",
   "dedicatedCloud_USER_right_vsphere_ADMIN": "Reserved for OVHcloud, for administrators only",
