@@ -1,3 +1,12 @@
+# [5.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.47.2...@ovh-ux/manager-pci@5.48.0) (2021-11-08)
+
+
+### Features
+
+* **storage.databases:** display current offer for plans and flavors ([#5801](https://github.com/ovh/manager/issues/5801)) ([9d0054f](https://github.com/ovh/manager/commit/9d0054ff30de5f5dbed81515860c1cd750532ef9))
+
+
+
 ## [5.47.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.47.1...@ovh-ux/manager-pci@5.47.2) (2021-11-04)
 
 

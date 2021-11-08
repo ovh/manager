@@ -1,3 +1,17 @@
+# [0.6.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.5.0-alpha.1...@ovh-ux/manager-billing@0.6.0-alpha.0) (2021-11-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1261] ([#5899](https://github.com/ovh/manager/issues/5899)) ([e35d431](https://github.com/ovh/manager/commit/e35d431d4955805e87c081fe2028a80a37dbdb7a))
+
+
+### Features
+
+* all dom termination enhancement ([#5574](https://github.com/ovh/manager/issues/5574)) ([7a2a4bd](https://github.com/ovh/manager/commit/7a2a4bdb084ceedcbb2307b9d22c8bf7ac81ca90))
+
+
+
 # [0.5.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.5.0-alpha.0...@ovh-ux/manager-billing@0.5.0-alpha.1) (2021-11-04)
 
 
