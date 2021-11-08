@@ -87,7 +87,7 @@
                     renewDate: $ctrl.formattedStartingDate,
                     engagementEndDate: $ctrl.model.engagement.getEndDate($ctrl.startingDate),
                     monthlyPrice: $ctrl.model.engagement.pricing.monthlyPrice.text,
-                    upfrontPrice: $ctrl.upfrontSavings.amountToPay,
+                    upfrontPrice: $ctrl.model.engagement.totalPrice.text,
                     paymentMethodName: $ctrl.paymentMethod.description
                 }"
             ></p>
