@@ -40,7 +40,7 @@
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
     "@ovh-ux/ng-at-internet": "^5.8.0",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.2",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.9",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.5",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.4",
