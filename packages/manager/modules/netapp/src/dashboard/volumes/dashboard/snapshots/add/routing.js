@@ -9,7 +9,10 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: /* @ngInject */ () => null,
-      goBack: /* @ngInject */ (goToSnapshots) => goToSnapshots,
+      goBack: /* @ngInject */ (goToSnapshots, trackClick) => {
+        trackClick('create::cancel');
+        return goToSnapshots;
+      },
     },
   });
 };

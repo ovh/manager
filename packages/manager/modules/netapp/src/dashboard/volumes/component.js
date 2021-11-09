@@ -16,6 +16,7 @@ export default {
     isCountAvailable: '<',
     canEditVolumes: '<',
     isDashboardAvailable: '<',
+    trackClick: '<',
   },
   template,
 };

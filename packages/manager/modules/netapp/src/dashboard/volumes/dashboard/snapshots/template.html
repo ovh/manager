@@ -22,6 +22,7 @@
                         aria-label="{{:: 'netapp_volumes_snapshots_actions_create_label' | translate }}"
                         href="{{:: $ctrl.addSnapshotLink }}"
                         disabled="$ctrl.totalSnapshots >= $ctrl.MAXIMUM_SNAPSHOT_ALLOWED"
+                        on-click="$ctrl.trackClick('create')"
                     >
                         <span
                             data-translate="netapp_volumes_snapshots_actions_create"
@@ -90,11 +91,7 @@
                         data-translate="netapp_volumes_snapshots_actions_edit"
                     ></span>
                 </oui-action-menu-item>
-                <oui-action-menu-item on-click="$ctrl.deleteSnapshot($row.id)">
-                    <span
-                        data-translate="netapp_volumes_snapshots_actions_delete"
-                    ></span>
-                </oui-action-menu-item>
+                <oui-action-menu-item on-click="$ctrl.deleteSnapshot($row.id)"></oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>
     </div>

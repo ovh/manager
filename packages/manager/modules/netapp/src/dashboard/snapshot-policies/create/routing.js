@@ -19,5 +19,8 @@ export default /* @ngInject */ ($stateProvider) => {
           }),
       breadcrumb: () => null,
     },
+    atInternet: {
+      rename: 'netapp::dashboard::snapshot-policy::create',
+    },
   });
 };

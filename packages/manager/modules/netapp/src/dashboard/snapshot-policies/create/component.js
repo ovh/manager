@@ -5,6 +5,7 @@ export default {
   bindings: {
     goBackToSnapshotPolicies: '<',
     serviceName: '<',
+    trackClick: '<',
   },
   controller,
   template,

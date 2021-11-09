@@ -11,12 +11,20 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
+      trackingPrefix: () => 'netapp::dashboard',
+      trackClick: /* @ngInjetc */ (atInternet, trackingPrefix) => (tracker) =>
+        atInternet.trackClick({
+          type: 'action',
+          name: `${trackingPrefix}::${tracker}`,
+        }),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       dashboardLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('netapp.dashboard', $transition$.params()),
-      goToCreateVolume: /* @ngInject */ ($state) => () =>
-        $state.go('netapp.dashboard.volumes.create'),
+      goToCreateVolume: /* @ngInject */ ($state, trackClick) => () => {
+        trackClick('create-volume');
+        return $state.go('netapp.dashboard.volumes.create');
+      },
       volumes: /* @ngInject */ ($http, serviceName) =>
         $http
           .get(`/storage/netapp/${serviceName}/share?detail=true`)
