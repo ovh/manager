@@ -19,7 +19,9 @@ export default /* @ngInject */ function BillingOvhAccountCreateAlertController(
     })
       .then(() => {
         $scope.$emit(ALERT);
-        $scope.loadOvhAccount();
+        $scope.loadOvhAccount({
+          offset: 1,
+        });
         Alerter.success($translate.instant('ovhAccount_create_alert_success'));
       })
       .catch((err) =>
