@@ -50,7 +50,7 @@
                 data-ng-if="$ctrl.currentEditedRow === $rowIndex"
                 class="oui-input oui-input_m"
                 data-ng-class="{
-                    'oui-input_error': !$ctrl.isIPValid() && $ctrl.currentAcl.to
+                    'oui-input_error': (!$ctrl.isIPValid() || $ctrl.isIPDuplicate($rowIndex)) && $ctrl.currentAcl.accessTo
                 }"
                 id="{{:: 'access-to-' + $rowIndex }}"
                 type="text"
@@ -79,7 +79,7 @@
                     data-ng-if="$ctrl.currentEditedRow === $rowIndex"
                     size="s"
                     variant="secondary"
-                    disabled="$ctrl.isLoading || !$ctrl.isValid()"
+                    disabled="$ctrl.isLoading || !$ctrl.isValid($rowIndex)"
                     on-click="$ctrl.saveAcl($rowIndex)"
                 >
                     <span
