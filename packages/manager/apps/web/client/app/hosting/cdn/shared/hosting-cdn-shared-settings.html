@@ -103,7 +103,18 @@
              data-ng-init="prefetch = $ctrl.getOption($ctrl.model.optionTypes.PERF, $ctrl.cdnOptionTypeEnum.PREFETCH).api">
 
             <h4 class="oui-box__heading" data-translate="hosting_cdn_shared_option_prefetch_title"></h4>
-            <p data-translate="hosting_cdn_shared_option_prefetch_info"></p>
+            <p class="m-0" data-translate="hosting_cdn_shared_option_prefetch_info"></p>
+            <a class="d-block mb-2"
+               target="_blank"
+               rel="noopener"
+               data-ng-href="{{:: $ctrl.getPrefetchOptionInfoLink()}}">
+                <span
+                    data-translate="hosting_cdn_shared_option_prefetch_info_link"></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
 
             <oui-switch
                 disabled="!prefetch"
@@ -170,11 +181,7 @@
                         data-ng-model="mobileRedirect.api.config.destination"
                     />
                 </div>
-
-
             </div>
-
-
         </div>
 
 
@@ -200,7 +207,12 @@
              data-ng-init="advancedPurge = $ctrl.model.options.cache.advanced_purge">
 
             <h4 class="oui-box__heading" data-translate="hosting_cdn_shared_option_advanced_flush_title"></h4>
-            <p data-translate="hosting_cdn_shared_option_advanced_flush_info"></p>
+            <p data-ng-if="$ctrl.cdnRange !== $ctrl.SHARED_CDN_RANGE.ADVANCED"
+               data-translate="hosting_cdn_shared_option_advanced_flush_info_for_basic_and_security">
+            </p>
+            <p data-ng-if="$ctrl.cdnRange === $ctrl.SHARED_CDN_RANGE.ADVANCED"
+               data-translate="hosting_cdn_shared_option_advanced_flush_info">
+            </p>
 
             <oui-switch
                 disabled="advancedPurge.operate"
@@ -286,11 +298,16 @@
                 <div class="mt-3">
                     <p class="mb-0"><strong data-translate="hosting_cdn_shared_option_prewarm_quota"></strong></p>
                     <p data-ng-bind="$ctrl.getPrewarmQuotaUsage()"></p>
-                    <progress
-                        class="w-25 oui-progress oui-progress_info"
-                        value="prewarm.extra.usage"
-                        max="prewarm.extra.quota">
-                    </progress>
+                    <div class="oui-input-group oui-input-group_l">
+                        <oui-progress>
+                            <oui-progress-bar
+                                data-type="info"
+                                data-value="(((prewarm.extra.usage || 0) / prewarm.extra.quota) * 100)"
+                            >
+                                <span></span>
+                            </oui-progress-bar>
+                        </oui-progress>
+                    </div>
 
                     <oui-button
                         variant="primary"
