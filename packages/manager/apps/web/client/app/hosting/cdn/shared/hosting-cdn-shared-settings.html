@@ -198,6 +198,7 @@
         <!--Advanced flush-->
         <div class="oui-box oui-box_light border-0 pl-0 pt-0"
              data-ng-init="advancedPurge = $ctrl.model.options.cache.advanced_purge">
+
             <h4 class="oui-box__heading" data-translate="hosting_cdn_shared_option_advanced_flush_title"></h4>
             <p data-translate="hosting_cdn_shared_option_advanced_flush_info"></p>
 
@@ -218,7 +219,12 @@
              data-ng-init="queryString = $ctrl.getOption($ctrl.model.optionTypes.CACHE, $ctrl.cdnOptionTypeEnum.QUERYSTRING)">
 
             <h4 class="oui-box__heading" data-translate="hosting_cdn_shared_option_query_string_title"></h4>
-            <p data-translate="hosting_cdn_shared_option_query_string_info"></p>
+            <p class="mb-1" data-translate="hosting_cdn_shared_option_query_string_info"></p>
+            <div class="pl-3 mb-1">
+                <p class="mb-0" data-translate="hosting_cdn_shared_option_query_string_sort_ignored"></p>
+                <p class="mb-0" data-translate="hosting_cdn_shared_option_query_string_sort_true"></p>
+                <p class="mb-0" data-translate="hosting_cdn_shared_option_query_string_sort_false"></p>
+            </div>
 
             <!--query string option-->
             <div>
@@ -229,38 +235,31 @@
                 >
                 </oui-switch>
                 <strong
-                    data-ng-bind="$ctrl.getSwitchBtnStatusText(queryString.enabled)"
+                    data-ng-bind="$ctrl.getSwitchBtnStatusText(queryString.api.enabled)"
                 ></strong>
-                <div>
-                    <p class="mb-0" data-translate="hosting_cdn_shared_option_query_string_sort_ignored"></p>
-                    <p class="mb-0" data-translate="hosting_cdn_shared_option_query_string_sort_true"></p>
-                    <p class="mb-0" data-translate="hosting_cdn_shared_option_query_string_sort_false"></p>
-                </div>
 
-                <oui-field class="mb-0" data-size="m">
-                    <label class="mt-2 oui-select">
-                        <select
-                            class="oui-select__input"
-                            data-ng-init="queryStringOption = 'queryStringOption'"
-                            data-ng-attr-name="{{queryStringOption}}"
-                            data-ng-attr-id="{{queryStringOption}}"
-                            data-ng-model="queryString.api.config.queryParameters"
-                            data-ng-change="$ctrl.onQueryStringParamChange()"
-                            required
+                <label class="mt-2 oui-select oui-select_l">
+                    <select
+                        class="oui-select__input"
+                        data-ng-init="queryStringOption = 'queryStringOption'"
+                        data-ng-attr-name="{{queryStringOption}}"
+                        data-ng-attr-id="{{queryStringOption}}"
+                        data-ng-model="queryString.api.config.queryParameters"
+                        data-ng-change="$ctrl.onQueryStringParamChange()"
+                        required
+                    >
+                        <option
+                            ng-repeat="sortOption in queryString.sortOptions track by $index"
+                            data-ng-bind=":: ('hosting_cdn_shared_option_query_string_list_' + sortOption) | translate"
+                            value="{{sortOption}}"
                         >
-                            <option
-                                ng-repeat="sortOption in queryString.sortOptions track by $index"
-                                data-ng-bind=":: ('hosting_cdn_shared_option_query_string_list_' + sortOption) | translate"
-                                value="{{sortOption}}"
-                            >
-                            </option>
-                        </select>
-                        <span
-                            class="oui-icon oui-icon-chevron-down"
-                            aria-hidden="true"
-                        ></span>
-                    </label>
-                </oui-field>
+                        </option>
+                    </select>
+                    <span
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></span>
+                </label>
             </div>
         </div>
 
