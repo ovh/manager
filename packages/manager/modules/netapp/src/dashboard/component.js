@@ -14,6 +14,7 @@ export default {
     canManageSubscription: '<',
     canCreateVolume: '<',
     isSnapshotPoliciesAvailable: '<',
+    trackClick: '<',
   },
   controller,
   template,

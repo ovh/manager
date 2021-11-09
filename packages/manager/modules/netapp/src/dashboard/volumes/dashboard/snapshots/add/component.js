@@ -7,6 +7,7 @@ export default {
     serviceName: '<',
     volumeId: '<',
     volume: '<',
+    trackClick: '<',
   },
   controller,
   template,

@@ -9,10 +9,17 @@ export default /* @ngInject */ ($stateProvider) => {
           .then(({ data }) => data),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('netapp_volumes_acl_breadcrumb'),
-      createAcl: /* @ngInject */ ($http, serviceName, volumeId) => (aclRule) =>
-        $http.post(`/storage/netapp/${serviceName}/share/${volumeId}/acl`, {
-          ...aclRule,
-        }),
+      createAcl: /* @ngInject */ ($http, serviceName, trackClick, volumeId) => (
+        aclRule,
+      ) => {
+        trackClick('acl::add');
+        return $http.post(
+          `/storage/netapp/${serviceName}/share/${volumeId}/acl`,
+          {
+            ...aclRule,
+          },
+        );
+      },
       deleteAcl: /* @ngInject */ ($http, serviceName, volumeId) => (
         aclRuleId,
       ) =>

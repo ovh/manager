@@ -6,6 +6,7 @@ export default {
     goBack: '<',
     storage: '<',
     volumeId: '<',
+    trackClick: '<',
   },
   controller,
   template,
