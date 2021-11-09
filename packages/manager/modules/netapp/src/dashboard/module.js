@@ -4,6 +4,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ng-ovh-utils';
 import '@ovh-ux/ng-ovh-feature-flipping';
+import '@ovh-ux/ng-at-internet';
 
 import '@ovh-ux/manager-advices';
 import '@ovh-ux/manager-billing-components';
@@ -21,6 +22,7 @@ angular
     'ovhManagerBilling',
     'ovhManagerCore',
     'ovhManagerAdvices',
+    'ngAtInternet',
     'pascalprecht.translate',
     'ui.router',
     'ngOvhUtils',

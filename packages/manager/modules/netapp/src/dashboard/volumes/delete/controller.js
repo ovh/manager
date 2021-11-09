@@ -10,6 +10,7 @@ export default class OvhManagerNetAppVolumeDeleteCtrl {
 
   deleteVolume() {
     this.isLoading = true;
+    this.trackClick('delete::confirm');
     return this.$http
       .delete(`/storage/netapp/${this.storage.id}/share/${this.volumeId} `)
       .then(() =>

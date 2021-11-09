@@ -3,6 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/volumes',
     component: 'ovhManagerNetAppVolumes',
     resolve: {
+      trackingPrefix: () => 'netapp::dashboard::volumes',
       loadVolumeDetail: /* @ngInject */ ($http, $q, serviceName) => (volume) =>
         $q
           .all({
@@ -52,8 +53,10 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      goToCreateVolume: /* @ngInject */ ($state) => () =>
-        $state.go('netapp.dashboard.volumes.create'),
+      goToCreateVolume: /* @ngInject */ ($state, trackClick) => () => {
+        trackClick('create-volume');
+        return $state.go('netapp.dashboard.volumes.create');
+      },
       getVolumeDetailsHref: /* @ngInject */ ($state, $transition$) => (
         volume,
       ) =>
