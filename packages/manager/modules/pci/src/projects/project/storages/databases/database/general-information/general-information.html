@@ -175,11 +175,22 @@
                     <oui-tile-description>
                         <oui-tile-description>
                             <span
+                                ng-if="$ctrl.getCurrentFlavor().minDiskSize === $ctrl.getCurrentFlavor().maxDiskSize"
                                 data-translate="pci_databases_general_information_node_type"
                                 data-translate-values="{
                                 coreNumber: $ctrl.getCurrentFlavor().core,
                                 memorySize: $ctrl.getCurrentFlavor().memory,
-                                storageSize: $ctrl.getCurrentFlavor().storage
+                                storageSize: $ctrl.getCurrentFlavor().minDiskSize
+                            }"
+                            ></span>
+                            <span
+                                ng-if="$ctrl.getCurrentFlavor().minDiskSize !== $ctrl.getCurrentFlavor().maxDiskSize"
+                                data-translate="pci_databases_general_information_node_type_disk_range"
+                                data-translate-values="{
+                                coreNumber: $ctrl.getCurrentFlavor().core,
+                                memorySize: $ctrl.getCurrentFlavor().memory,
+                                storageMinSize: $ctrl.getCurrentFlavor().minDiskSize,
+                                storageMaxSize: $ctrl.getCurrentFlavor().maxDiskSize,
                             }"
                             ></span>
                             <button
