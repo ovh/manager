@@ -9,13 +9,13 @@ import map from 'lodash/map';
 import clone from 'lodash/clone';
 
 import {
+  SHARED_CDN_OPTIONS,
+  SHARED_CDN_RANGE,
   SHARED_CDN_SETTINGS_RULE_FACTOR_DAY,
   SHARED_CDN_SETTINGS_RULE_FACTOR_HOUR,
   SHARED_CDN_SETTINGS_RULE_FACTOR_MINUTE,
   SHARED_CDN_SETTINGS_RULE_FACTOR_MONTH,
   SHARED_CDN_SETTINGS_RULE_FACTOR_SECOND,
-  SHARED_CDN_RANGE,
-  SHARED_CDN_OPTIONS,
 } from './hosting-cdn-shared-settings.constants';
 
 export default class CdnSharedSettingsController {
@@ -28,6 +28,10 @@ export default class CdnSharedSettingsController {
   }
 
   $onInit() {
+    const mobileRedirectOption = CdnSharedSettingsController.getCdnSettingsOption(
+      this.cdnOptionTypeEnum.MOBILE_REDIRECT,
+      this.domainOptions,
+    );
     this.model = {
       rules: filter(this.domainOptions, {
         type: this.cdnOptionTypeEnum.CACHE_RULE,
@@ -67,15 +71,15 @@ export default class CdnSharedSettingsController {
             ),
           },
           mobile_redirect: {
-            selected: SHARED_CDN_OPTIONS.MOBILE_REDIRECT.KEEP_URL,
+            selected:
+              SHARED_CDN_OPTIONS.MOBILE_REDIRECT[
+                mobileRedirectOption.config.followUri ? 'KEEP_URL' : 'STILL_URL'
+              ],
             redirectOptions: [
               SHARED_CDN_OPTIONS.MOBILE_REDIRECT.STILL_URL,
               SHARED_CDN_OPTIONS.MOBILE_REDIRECT.KEEP_URL,
             ],
-            api: CdnSharedSettingsController.getCdnSettingsOption(
-              this.cdnOptionTypeEnum.MOBILE_REDIRECT,
-              this.domainOptions,
-            ),
+            api: mobileRedirectOption,
           },
         },
         cache: {
@@ -484,7 +488,7 @@ export default class CdnSharedSettingsController {
   onMobileRedirectStrategyChange() {
     const { selected, api } = this.model.options.perf.mobile_redirect;
     api.config.followUri =
-      selected === SHARED_CDN_OPTIONS.MOBILE_REDIRECT.STILL_URL;
+      selected === SHARED_CDN_OPTIONS.MOBILE_REDIRECT.KEEP_URL;
 
     this.trackClick(`mobile_redirect::redirect_${selected}_url`);
   }
