@@ -84,11 +84,19 @@ export default class NetAppVolumesDashboardAclController {
       });
   }
 
-  isValid() {
+  isValid(aclIndex) {
     return (
       this.currentAcl.accessLevel?.value &&
       this.currentAcl.accessType?.value &&
+      !this.isIPDuplicate(aclIndex) &&
       this.isIPValid()
+    );
+  }
+
+  isIPDuplicate(aclIndex) {
+    const existingAcls = this.acls.slice(0, aclIndex);
+    return existingAcls.some(
+      ({ accessTo }) => accessTo === this.currentAcl.accessTo,
     );
   }
 
