@@ -3,12 +3,11 @@ import head from 'lodash/head';
 import some from 'lodash/some';
 
 export default class Flavor {
-  constructor({ name, core, memory, storage }, availability) {
+  constructor({ name, core, memory }, availability) {
     Object.assign(this, {
       name,
       core,
       memory,
-      storage,
       availability,
     });
     this.isDefault = some(availability, 'default');
@@ -16,6 +15,14 @@ export default class Flavor {
 
   isNetworkSupported(networkName) {
     return some(this.availability, { network: networkName });
+  }
+
+  get minDiskSize() {
+    return get(head(this.availability), 'minDiskSize');
+  }
+
+  get maxDiskSize() {
+    return get(head(this.availability), 'maxDiskSize');
   }
 
   get nodesCount() {

@@ -90,12 +90,23 @@
             data-filterable
         >
             <span
+                ng-if="$ctrl.getCurrentFlavor($row).minDiskSize === $ctrl.getCurrentFlavor($row).maxDiskSize"
                 data-translate="pci_database_node_type"
                 data-translate-values="{
                     coreNumber: $ctrl.getCurrentFlavor($row).core,
                     memorySize: $ctrl.getCurrentFlavor($row).memory,
-                    storageSize: $ctrl.getCurrentFlavor($row).storage
+                    storageSize: $ctrl.getCurrentFlavor($row).minDiskSize
                 }"
+            ></span>
+            <span
+                ng-if="$ctrl.getCurrentFlavor($row).minDiskSize !== $ctrl.getCurrentFlavor($row).maxDiskSize"
+                data-translate="pci_database_node_type_range"
+                data-translate-values="{
+                coreNumber: $ctrl.getCurrentFlavor($row).core,
+                memorySize: $ctrl.getCurrentFlavor($row).memory,
+                storageMinSize: $ctrl.getCurrentFlavor($row).minDiskSize,
+                storageMaxSize: $ctrl.getCurrentFlavor($row).maxDiskSize
+            }"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
