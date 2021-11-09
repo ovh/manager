@@ -26,5 +26,6 @@
   "pci_database_list_upgrade_plan_database": "Upgrade offre",
   "pci_database_list_upgrade_node_database": "Upgrade modèle de nœud",
   "pci_database_node_type": "{{coreNumber}} CPU / {{memorySize}} GB RAM / {{storageSize}} GB Stockage SSD",
+  "pci_database_node_type_range": "{{coreNumber}} CPU / {{memorySize}} GB RAM / de {{storageMinSize}} à {{storageMaxSize}} GB Stockage SSD",
   "pci_database_node_type_label": "Modèle de nœud"
 }
