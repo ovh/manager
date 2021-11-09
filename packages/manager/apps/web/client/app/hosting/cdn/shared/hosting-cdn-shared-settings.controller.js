@@ -198,6 +198,11 @@ export default class CdnSharedSettingsController {
     this.tasks = { toUpdate: [] };
   }
 
+  getPrefetchOptionInfoLink() {
+    const { LINKS } = SHARED_CDN_OPTIONS.PREFETCH;
+    return LINKS[this.user.ovhSubsidiary] || LINKS.DEFAULT;
+  }
+
   static getCdnSettingsOption(optionName, options) {
     return options.find(({ type }) => type === optionName);
   }
