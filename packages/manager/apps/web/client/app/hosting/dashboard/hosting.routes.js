@@ -205,12 +205,26 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.hosting.dashboard.detachEmail'),
       goToDetachPrivateDB: /* @ngInject */ ($state) => () =>
         $state.go('app.hosting.dashboard.database.detachPrivate'),
-      goToHosting: /* @ngInject */ ($state, $timeout, Alerter) => (
+
+      goToMultisite: /* @ngInject */ (goToState) => (
         message = false,
         type = 'success',
         target = 'app.alerts.main',
+      ) => goToState('app.hosting.dashboard.multisite', message, type, target),
+
+      goToHosting: /* @ngInject */ (goToState) => (
+        message = false,
+        type = 'success',
+        target = 'app.alerts.main',
+      ) => goToState('app.hosting.dashboard', message, type, target),
+
+      goToState: /* @ngInject */ ($state, $timeout, Alerter) => (
+        stateToGo,
+        message,
+        type,
+        target,
       ) => {
-        const promise = $state.go('app.hosting.dashboard', {});
+        const promise = $state.go(stateToGo, {});
 
         if (message) {
           promise.then(() =>
@@ -220,6 +234,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+
       navigationInformations: /* @ngInject */ (Navigator, $rootScope) => {
         // eslint-disable-next-line no-param-reassign
         $rootScope.currentSectionInformation = 'hosting';

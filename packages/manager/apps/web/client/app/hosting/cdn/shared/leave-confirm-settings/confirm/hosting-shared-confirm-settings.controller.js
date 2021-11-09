@@ -35,7 +35,7 @@ export default class HostingCdnSharedConfirmController {
     return this.applyChanges(settings)
       .then(() => this.refresh())
       .then(() =>
-        this.goToHosting(
+        this.goToMultisite(
           this.$translate.instant(
             'hosting_cdn_shared_modal_confirm_btn_validate_success',
           ),
