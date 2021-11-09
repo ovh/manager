@@ -208,6 +208,7 @@
   "domain_tab_ZONE_no_zone": "There is no DNS zone attached to this domain.",
   "domain_tab_ZONE_delete_doing": "You will be able to re-enable your DNS zone in about an hour. ",
   "domain_tab_ZONE_no_zone_activate_btn": "Enabling the DNS zone",
+  "domain_tab_ZONE_no_zone_order_btn": "Order a DNS zone",
   "domain_tab_ZONE_no_defaut_dns_used": "You currently use the following DNS servers: ",
   "domain_tab_ZONE_set_defaut_dns": "Please use the following DNS servers, so that your DNS zone is registered:",
   "domain_tab_ZONE_title": "Here you can see the configuration of various domain name records. ",
@@ -255,6 +256,7 @@
   "domain_configuration_protection_desactivate_step1_info": "When the protection is disabled, you will be able to access the AUTH/INFO code which means you can transfer domains by clicking on the relevant button.",
   "domain_configuration_protection_desactivate_step1_dnssec": "Your domain uses DNSSEC. Please check that your new service provider can manage it properly. Otherwise, disable the option before transferring your domain.",
   "domain_configuration_protection_auth_info_registry": "To transfer your domain name away from OVHcloud, you must contact the registry to get the auth-info code. You can do this via the following link: <a href=\"{{t0}}\" target=\"_blank\">{{t0}}</a>",
+  "domain_configuration_protection_auth_info_registry_LT": "To transfer your domain name away from OVH, please contact our customer service.",
   "domain_configuration_protection_desactivate_step1_helpwizard_title": "Domain protection",
   "domain_configuration_protection_desactivate_step1_helpwizard_desc": "Activating Domain Protection enables you to protect yourself against theft by forbidding all transfers.",
   "domain_configuration_protection_desactivate_step1_helpwizard_question1": "What is domain theft?",
@@ -585,7 +587,6 @@
   "domain_configuration_dns_entry_edit_title": "Modify a DNS zone record ",
   "domain_configuration_dns_entry_relative_warning_title": "Real target:",
   "domain_configuration_dns_entry_relative_warning_tooltip": "If you want to use the full target, please add a full stop at the end of the target field (or click on this icon to do it automatically).",
-  "domain_configuration_dns_entry_add_step3_warning": "Important: Attention: The target uses a relative notation and points to \"<strong>{{t0}}</strong>\" as a result. Please consider adding a full stop to the target field if you want to use absolute notation.",
   "domain_configuration_dns_entry_modify_success": "The modification will be applied immediately on the DNS zone, but please note that the change may take up to 24 hours to propagate.",
   "domain_configuration_dns_entry_modify_fail": "An error has occurred requesting to modify the record in the DNS zone.",
   "domain_configuration_dns_entry_add_ttl_default_hint": "Refers to the default value.",
@@ -826,7 +827,5 @@
   "domain_dashboard_recommended_hosting_title_Perso": "Hosting your blog or website",
   "domain_dashboard_recommended_hosting_label": "{{ reduction }} off on your {{ type }} hosting plan for Black Friday.",
   "domain_dashboard_recommended_hosting_discover": "Explore our solutions",
-  "domain_tab_ZONE_no_zone_order_btn": "Order a DNS zone",
-  "domain_tab_emails": "Emails and mailing lists",
-  "domain_configuration_protection_auth_info_registry_LT": "To transfer your domain name away from OVH, please contact our customer service."
+  "domain_tab_emails": "Emails and mailing lists"
 }
