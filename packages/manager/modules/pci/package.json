@@ -22,7 +22,7 @@
     "lodash": "^4.17.15",
     "tweetnacl-util": "^0.15.0",
     "urijs": "^1.19.1",
-    "validator": "^10.11.0",
+    "validator": "^13.7.0",
     "xterm": "^3.14.5"
   },
   "peerDependencies": {

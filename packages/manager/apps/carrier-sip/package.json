@@ -69,7 +69,7 @@
     "punycode": "^1.4.1",
     "regenerator-runtime": "^0.13.7",
     "ui-select": "^0.19.8",
-    "validator": "^11.1.0",
+    "validator": "^13.7.0",
     "validator-js": "^0.2.1",
     "whatwg-fetch": "^3.5.0"
   },

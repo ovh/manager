@@ -38,7 +38,7 @@
     "ovh-api-services": "^11.2.0",
     "ovh-ngstrap": "^4.0.2",
     "punycode": "^1.4.1",
-    "validator": "^11.1.0",
+    "validator": "^13.7.0",
     "validator-js": "^0.2.1"
   }
 }
