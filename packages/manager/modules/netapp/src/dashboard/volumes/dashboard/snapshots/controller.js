@@ -13,6 +13,7 @@ export default class NetAppVolumesDashboardSnapshotsController {
   }
 
   changePolicy() {
+    this.trackClick('apply-policy');
     return this.applyPolicy(this.policyId)
       .then(() =>
         this.Alerter.success(

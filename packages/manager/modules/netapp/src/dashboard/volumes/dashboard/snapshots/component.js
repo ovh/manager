@@ -13,6 +13,7 @@ export default {
     snapshotPolicies: '<',
     currentPolicy: '<',
     applyPolicy: '<',
+    trackClick: '<',
   },
   controller,
   template,

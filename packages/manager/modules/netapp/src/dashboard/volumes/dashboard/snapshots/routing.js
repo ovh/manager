@@ -5,6 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/snapshots',
     component: 'ovhManagerNetAppVolumesDashboardSnapshots',
     resolve: {
+      trackingPrefix: () => 'netapp::dashboad::volumes::dashboad::snapshots',
       addSnapshotLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
           'netapp.dashboard.volumes.dashboard.snapshots.add',

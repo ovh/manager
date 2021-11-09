@@ -29,7 +29,7 @@ export default class VolumeCreateCtrl {
 
   onCreateVolume() {
     this.isCreating = true;
-    this.trackClick();
+    this.trackClick('create::confirm');
 
     return this.$http
       .post(`/storage/netapp/${this.storage.id}/share`, {

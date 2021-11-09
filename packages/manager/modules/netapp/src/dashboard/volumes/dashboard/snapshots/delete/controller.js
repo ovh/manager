@@ -11,6 +11,7 @@ export default class NetAppVolumesDashboardSnapshotsDeleteController {
 
   deleteSnapshot() {
     this.isDeleting = true;
+    this.trackClick('delete::confirm');
     return this.$http
       .delete(
         `/storage/netapp/${this.serviceName}/share/${this.volumeId}/snapshot/${this.snapshot.id}`,
