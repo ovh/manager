@@ -138,7 +138,7 @@
 
                 <!--Redirect ui-->
                 <div data-ng-if="mobileRedirect.api.enabled">
-                    <label class="mt-2 oui-select">
+                    <label class="mt-2 oui-select oui-select_l">
                         <select
                             class="oui-select__input"
                             data-ng-init="mobileRedirectName = 'mobileRedirectName'"
@@ -163,8 +163,7 @@
 
                     <input
                         type="text"
-                        class="mt-2 oui-input"
-                        data-ng-if="mobileRedirect.api.config.followUri"
+                        class="mt-2 oui-input oui-input_l"
                         data-ng-init="labelKeyId = 'followUriKey'"
                         data-ng-attr-name="{{labelKeyId}}"
                         data-ng-attr-id="{{labelKeyId}}"
