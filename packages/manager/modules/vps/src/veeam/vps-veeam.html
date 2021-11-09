@@ -7,10 +7,8 @@
     </div>
 
     <div data-ng-if="!$ctrl.veeam.loading">
-
         <!--Backup Schedule section-->
         <div class="mb-3" data-ng-if="$ctrl.isAutomatedBackupAvailable">
-
             <!--Schedule automate backup-->
             <div
                 class="row align-items-center"
@@ -44,12 +42,14 @@
             </div>
 
             <!--Banner info message-->
-            <oui-message type="info" ng-if="!$ctrl.vpsDetails.isValidVersionToRescheduleAutomatedBackup">
+            <oui-message
+                type="info"
+                ng-if="!$ctrl.vpsDetails.isValidVersionToRescheduleAutomatedBackup"
+            >
                 <span
                     data-translate="vps_tab_VEEAM_schedule_backup_schedule_banner_info"
                 ></span>
             </oui-message>
-
         </div>
 
         <div data-ng-if="$ctrl.veeam.data.state !== 'disabled'">
@@ -135,8 +135,9 @@
                 <p data-translate="vps_tab_VEEAM_dashboard_not_activated"></p>
                 <button
                     class="oui-button oui-button_primary"
+                    type="button"
                     data-translate="vps_configuration_veeam_order_title_button"
-                    data-ui-sref="vps.detail.veeam.order"
+                    data-ng-click="$ctrl.goToVeeamOrderPage()"
                 ></button>
             </div>
             <p

@@ -50,6 +50,13 @@ export default /* @ngInject */ ($stateProvider) => {
             automatedBackupFeature.isFeatureAvailable(automatedBackupId),
           );
       },
+      goToVeeamOrderPage: /* @ngInject */ ($state, atInternet) => () => {
+        atInternet.trackClick({
+          name: 'vps::detail::veeam::activate',
+          type: 'action',
+        });
+        $state.go('vps.detail.veeam.order');
+      },
     },
   });
 };

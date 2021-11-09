@@ -9,6 +9,7 @@ export default class VpsVeeamOrderCtrl {
     $q,
     $translate,
     $window,
+    atInternet,
     coreConfig,
     CucCloudMessage,
     connectedUser,
@@ -19,6 +20,7 @@ export default class VpsVeeamOrderCtrl {
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.coreConfig = coreConfig;
     this.CucCloudMessage = CucCloudMessage;
     this.connectedUser = connectedUser;
@@ -54,6 +56,10 @@ export default class VpsVeeamOrderCtrl {
   ============================== */
 
   onVeeamOrderStepperFinish() {
+    this.atInternet.trackClick({
+      name: 'vps::detail::veeam::order::confirm',
+      type: 'action',
+    });
     let expressOrderUrl = get(ORDER_EXPRESS_BASE_URL, [
       this.coreConfig.getRegion(),
       this.connectedUser.ovhSubsidiary,
