@@ -588,7 +588,7 @@ export default class {
       // We have to check if the current operation was completed or not
       const operationIsFinished = operations.all.some(({ id, status }) => {
         return (
-          id === operation.id &&
+          id === operation?.id &&
           status === this.$scope.HOSTING_OPERATION_STATUS.DONE
         );
       });
