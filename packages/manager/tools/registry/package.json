@@ -25,7 +25,7 @@
     "manager-registry-static-sync": "bin/manager-registry-static-sync.js"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "commander": "^4.0.0",
     "express": "^4.17.1",
     "fs-extra": "^9.0.1",
