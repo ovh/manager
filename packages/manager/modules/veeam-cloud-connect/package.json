@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-cloud-connect",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "private": true,
   "description": "Veeam Cloud Connect product.",
   "repository": {
