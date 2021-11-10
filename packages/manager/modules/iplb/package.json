@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-iplb",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "private": true,
   "description": "IP Load Balancer product.",
   "repository": {
@@ -19,7 +19,7 @@
     "@ovh-ux/manager-components": "^1.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
-    "@ovh-ux/ng-at-internet": "^5.7.1",
+    "@ovh-ux/ng-at-internet": "^5.8.0",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.10",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.0",
     "@ovh-ux/ng-ovh-doc-url": "^2.0.3",
