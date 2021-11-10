@@ -36,7 +36,7 @@ export default {
       SN: `${helpRoot}/fr-sn`,
       TN: `${helpRoot}/fr-tn`,
     },
-    tasks: 'http://travaux.ovh.net/',
+    tasks: 'https://www.status-ovhcloud.com/',
   },
   CA: {
     guides: {
@@ -59,7 +59,7 @@ export default {
       WE: `${helpRoot}/en`,
       WS: `${helpRoot}/es`,
     },
-    tasks: 'http://travaux.ovh.net/',
+    tasks: 'https://www.status-ovhcloud.com/',
   },
   US: {
     guides: {
