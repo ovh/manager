@@ -59,8 +59,8 @@
                                 ng-if="volume.privateSwift"
                             >
                                 <oui-field
-                                    data-label="{{:: 'pci_projects_project_training_jobs_submit_data_prefix' | translate  }}"
-                                    data-label-popover="{{:: 'pci_projects_project_training_jobs_submit_data_prefix_help' | translate }}"
+                                    data-label="{{:: 'pci_notebook_add_attach_container_data_prefix' | translate  }}"
+                                    data-label-popover="{{:: 'pci_notebook_add_attach_container_data_prefix_help' | translate }}"
                                 >
                                     <input
                                         type="text"
@@ -113,8 +113,8 @@
                             </div>
                             <div class="oui-inline-adder__field">
                                 <oui-field
-                                    data-label="{{:: 'pci_projects_project_training_jobs_submit_data_permission' | translate  }}"
-                                    data-label-popover="{{:: 'pci_projects_project_training_jobs_submit_data_permission_help' | translate }}"
+                                    data-label="{{:: 'pci_notebook_data_permission' | translate  }}"
+                                    data-label-popover="{{:: 'pci_notebook_add_attach_container_permission_help' | translate }}"
                                 >
                                     <label class="oui-select">
                                         <select
@@ -126,13 +126,13 @@
                                             required
                                         >
                                             <option
-                                                data-ng-bind="'pci_projects_project_training_jobs_submit_data_permission_select' | translate"
+                                                data-ng-bind="'pci_notebook_add_attach_container_permission_select' | translate"
                                                 selected
                                             ></option>
                                             <option
                                                 ng-repeat="permission in $ctrl.permissions"
                                                 value="{{permission}}"
-                                                data-ng-bind="::'pci_projects_project_training_jobs_submit_data_permission_' + permission  | translate"
+                                                data-ng-bind="::'pci_notebook_permission_' + permission  | translate"
                                             >
                                             </option>
                                         </select>
@@ -145,8 +145,8 @@
                             </div>
                             <div class="oui-inline-adder__field">
                                 <oui-field
-                                    data-label="{{:: 'pci_projects_project_training_jobs_submit_data_cache' | translate  }}"
-                                    data-label-popover="{{:: 'pci_projects_project_training_jobs_submit_data_cache_help' | translate }}"
+                                    data-label="{{:: 'pci_notebook_data_cache' | translate  }}"
+                                    data-label-popover="{{:: 'pci_notebook_add_attach_container_data_cache_help' | translate }}"
                                     size="auto"
                                 >
                                     <oui-checkbox

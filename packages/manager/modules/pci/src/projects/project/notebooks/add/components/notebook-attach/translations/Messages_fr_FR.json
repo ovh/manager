@@ -9,5 +9,11 @@
   "pci_notebook_add_attach_container_storage_container_select": "Conteneur de stockage",
   "pci_notebook_add_attach_container_mount_path": "Répertoire de montage",
   "pci_notebook_add_attach_container_mount_path_error_key_already_exist": "Ce répertoire existe déjà",
-  "pci_notebook_add_attach_container_volumes_quantity": "{{ numberOfVolumes }} / {{ maxVolumes }} volumes"
+  "pci_notebook_add_attach_container_volumes_quantity": "{{ numberOfVolumes }} / {{ maxVolumes }} volumes",
+  "pci_notebook_add_attach_container_data_prefix": "Filtrer par préfixe",
+  "pci_notebook_add_attach_container_data_prefix_help": "Seuls les objets correspondants au préfixe sont chargés dans le système de fichier",
+  "pci_notebook_add_attach_container_permission_select": "Permission",
+  "pci_notebook_add_attach_container_permission_help": "En `Lecture Seule` aucune synchronisation n'est lancée en fin de job. Le job se finalise ainsi plus rapidement.",
+  "pci_notebook_add_attach_container_data_cache": "Cache",
+  "pci_notebook_add_attach_container_data_cache_help": "Les conteneurs en cache peuvent être réutilisés par d'autres jobs sans synchronisation additionnelle. Les conteneurs sont retirés du cache après une période d'inactivité."
 }
