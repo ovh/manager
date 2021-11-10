@@ -153,6 +153,7 @@ export default class CdnSharedSettingsController {
     };
     this.copyModel = angular.copy(this.model);
 
+    this.SHARED_CDN_RANGE = SHARED_CDN_RANGE;
     this.redirections = [
       {
         key: this.$translate.instant(
