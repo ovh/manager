@@ -5,8 +5,8 @@
   "hosting_cdn_shared_modal_confirm_btn_cancel": "Annuler",
   "hosting_cdn_shared_modal_confirm_btn_validate_success": "La modification des paramètres de votre CDN a bien été prise en compte.",
   "hosting_cdn_shared_modal_confirm_btn_validate_error": "Une erreur est survenue lors de la modification des paramètres de votre CDN.",
-  "hosting_cdn_shared_modal_leave_title": "Configuration du CDN Basic modifiée",
-  "hosting_cdn_shared_modal_leave_info": "Si vous changez de page, vos modifications de la configuration de votre CDN Basic seront perdues.",
+  "hosting_cdn_shared_modal_leave_title": "Configuration du CDN modifiée",
+  "hosting_cdn_shared_modal_leave_info": "Si vous changez de page, vos modifications de la configuration de votre CDN seront perdues.",
   "hosting_cdn_shared_modal_leave_btn_validate": "Quitter",
   "hosting_cdn_shared_modal_leave_btn_cancel": "Annuler"
 }
