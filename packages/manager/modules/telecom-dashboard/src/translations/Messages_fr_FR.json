@@ -38,5 +38,7 @@
   "telecom_dashboard_express_lite_title": "OVH lance une nouvelle offre de connexion ADSL et VDSL incluant l'essentiel.",
   "telecom_dashboard_discover": "Découvrir l'offre",
   "telecom_dashboard_common_vip": "Statut VIP",
-  "telecom_dashboard_common_newtab": "(nouvel onglet)"
+  "telecom_dashboard_common_newtab": "(nouvel onglet)",
+  "telecom_dashboard_identityCheck_info": "Obligatoire : Pensez à valider votre identifiant pour la téléphonie dès maintenant.",
+  "telecom_dashboard_identityCheck_link": "Lien vers le formulaire"
 }
