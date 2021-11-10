@@ -1,8 +1,16 @@
 import { useContext } from 'react';
 import ApplicationContext from './application.context';
 
-export const useApplicationContext = (Context = ApplicationContext) => {
-  return useContext(Context);
+export const useApplication = () => {
+  return useContext(ApplicationContext);
 };
 
-export default useApplicationContext;
+export const useShell = () => {
+  const { shell } = useContext(ApplicationContext);
+  return shell;
+};
+
+export default {
+  useApplication,
+  useShell,
+};

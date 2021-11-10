@@ -12,11 +12,13 @@ import LanguageMenu from './language.jsx';
 import { fetchUniverses, getBrandURL } from './service';
 import style from './navbar.module.scss';
 import { MESSAGES } from './constants';
+import { useShell } from '@/context';
 
 function Navbar({ environment, ux }) {
+  const shell = useShell();
   const user = environment.getUser();
   const universe = environment.getUniverse();
-  const userLocale = environment.getUserLocale();
+  const [userLocale, setUserLocale] = useState(shell.i18n().getLocale());
 
   const [universes, setUniverses] = useState([]);
   const [searchURL, setSearchURL] = useState();
@@ -44,7 +46,10 @@ function Navbar({ environment, ux }) {
           </div>
         )}
         <div className="oui-navbar-list__item">
-          <LanguageMenu userLocale={userLocale}></LanguageMenu>
+          <LanguageMenu
+            setUserLocale={setUserLocale}
+            userLocale={userLocale}
+          ></LanguageMenu>
         </div>
         <div className="oui-navbar-list__item">
           <Notifications ux={ux} />
