@@ -4,9 +4,10 @@ import { setupServer } from 'msw/node';
 
 import { render, screen, waitFor } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
+import { plugin, shell as shellApi } from '@ovh-ux/shell';
 import i18n from '../config/i18nTestConfig';
 import Shell from '../../shell';
-import ApplicationContext from '../../context';
+import { ApplicationProvider } from '../../context';
 
 // TODO: improve mocks to render shell with both sidebars
 const server = setupServer(
@@ -53,20 +54,7 @@ describe('Renders shell header', () => {
       supportLevel: 1,
     };
     const universe = 'web';
-    const ux = {
-      registerSidebar: jest.fn(),
-      isSidebarOpen: jest.fn(() => false),
-      setNavbarNotificationCount: jest.fn(),
-      getNavbarNotificationCount: jest.fn(() => 0),
-      sidebars: {
-        account: {
-          isOpen: false,
-        },
-        notifications: {
-          isOpen: false,
-        },
-      },
-    };
+
     const environment = {
       getUser: () => user,
       getUniverse: () => universe,
@@ -74,12 +62,15 @@ describe('Renders shell header', () => {
       getRegion: () => 'EU',
     };
 
+    const shell = shellApi.initShell();
+    shell.registerPlugin('i18n', plugin.i18n(shell, environment));
+
     // Act
     render(
       <I18nextProvider i18n={i18n}>
-        <ApplicationContext.Provider value={{ environment, ux }}>
+        <ApplicationProvider environment={environment} shell={shell}>
           <Shell />
-        </ApplicationContext.Provider>
+        </ApplicationProvider>
       </I18nextProvider>,
     );
 

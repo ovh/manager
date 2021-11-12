@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { plugin } from '@ovh-ux/shell';
 
-import ApplicationContext from '@/context';
+import ApplicationContext from '../context';
 import ShellHeader from './header';
 import style from './shell.module.scss';
 

@@ -12,7 +12,7 @@ import LanguageMenu from './language.jsx';
 import { fetchUniverses, getBrandURL } from './service';
 import style from './navbar.module.scss';
 import { MESSAGES } from './constants';
-import { useShell } from '@/context';
+import { useShell } from '../context';
 
 function Navbar({ environment, ux }) {
   const shell = useShell();
