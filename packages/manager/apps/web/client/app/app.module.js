@@ -110,11 +110,11 @@ import wucExpiration from './components/expiration';
 import wucOvhFileReader from './components/ovhFileReader';
 import wucProgressBarElementCounter from './components/progressBarElementCounter';
 import wucServiceStatus from './components/service-status';
-
 import './css/source.less';
 import './css/source.scss';
 
 import { TRACKING } from './at-internet.constants';
+import { SANITIZATION } from './constants';
 
 export default (containerEl, environment) => {
   const config = getConfig(environment.getRegion());
@@ -285,6 +285,7 @@ export default (containerEl, environment) => {
         set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
       },
     ])
+
     .config([
       '$compileProvider',
       '$logProvider',
@@ -292,6 +293,7 @@ export default (containerEl, environment) => {
       ($compileProvider, $logProvider, constants) => {
         // Debug mode and logs are disabled in production
         $compileProvider.debugInfoEnabled(!constants.prodMode);
+        $compileProvider.aHrefSanitizationWhitelist(SANITIZATION.regex);
         $logProvider.debugEnabled(!constants.prodMode);
       },
     ])
