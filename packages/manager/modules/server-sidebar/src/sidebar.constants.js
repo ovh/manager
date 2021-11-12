@@ -426,7 +426,8 @@ export const STORAGE_BACKUP_CONFIG = {
     {
       id: 'enterprise_file_storage',
       feature: 'netapp',
-      loadOnState: 'netapp',
+      loadOnState: ['netapp'],
+      state: 'netapp',
       types: [
         {
           path: '/storage/netapp',
