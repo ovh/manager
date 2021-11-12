@@ -91,7 +91,11 @@
                         data-translate="netapp_volumes_snapshots_actions_edit"
                     ></span>
                 </oui-action-menu-item>
-                <oui-action-menu-item on-click="$ctrl.deleteSnapshot($row.id)"></oui-action-menu-item>
+                <oui-action-menu-item on-click="$ctrl.deleteSnapshot($row.id)">
+                    <span
+                        data-translate="netapp_volumes_snapshots_actions_delete"
+                    ></span>
+                </oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>
     </div>
