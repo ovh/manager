@@ -38,7 +38,7 @@ export default class IndexesCtrl {
   }
 
   trackAndCreatePattern() {
-    this.trackDashboard('indexes::add_pattern');
+    this.trackDashboard('indexes::create_pattern');
     this.addPattern();
   }
 
