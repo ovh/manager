@@ -21,12 +21,12 @@ import './telecom-dashboard.less';
 import dashboardCtrl from './telecom-dashboard.controller';
 import billsCtrl from './bills/telecom-dashboard-bills.controller';
 import guidesCtrl from './guides/telecom-dashboard-guides.controller';
-import identityCheckCtrl from './identity-check/telecom-dashboard-identity-check.controller';
+import IdentityCheckMessageCtrl from './identity-check/message/telecom-dashboard-identity-check-message.controller';
 
 import template from './telecom-dashboard.html';
 import billsTemplate from './bills/telecom-dashboard-bills.html';
 import guidesTemplate from './guides/telecom-dashboard-guides.html';
-import identityCheckTemplate from './identity-check/telecom-dashboard-identity-check.html';
+import identityCheckMessageTemplate from './identity-check/message/telecom-dashboard-identity-check-message.html';
 
 import billsService from './bills/telecom-dashboard-bills.service';
 import identityCheckService from './identity-check/telecom-dashboard-identity-check.service';
@@ -67,9 +67,9 @@ angular
             controllerAs: 'GuidesCtrl',
           },
           'identityCheckView@telecom-dashboard': {
-            template: identityCheckTemplate,
-            controller: identityCheckCtrl,
-            controllerAs: 'IdentityCheckCtrl',
+            template: identityCheckMessageTemplate,
+            controller: IdentityCheckMessageCtrl,
+            controllerAs: 'IdentityCheckMessageCtrl',
           },
         },
         translations: {
