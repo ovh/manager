@@ -198,7 +198,7 @@
                                 ></span>
                                 <oui-spinner
                                     data-size="s"
-                                    data-ng-if="hosting.isCloudWeb && domain.status === HOSTING_STATUS.UPDATING"
+                                    data-ng-if="domain.status === HOSTING_STATUS.UPDATING"
                                 ></oui-spinner>
                             </td>
                             <td data-ng-bind="domain.path"></td>
@@ -266,6 +266,7 @@
                                     data-linkedpopover-remote="true"
                                     data-linkedpopover-title="{{ 'common_actions' | translate }}"
                                     data-domain-index="{{$index}}"
+                                    data-ng-disabled="domain.status === HOSTING_STATUS.UPDATING"
                                 >
                                     <span
                                         class="oui-icon oui-icon-ellipsis"
