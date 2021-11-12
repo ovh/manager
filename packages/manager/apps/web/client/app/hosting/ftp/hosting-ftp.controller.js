@@ -152,7 +152,9 @@ angular.module('App').controller(
             user.ssh = user.serviceManagementCredentials.ssh;
             user.sshUrl = `ssh://${user.serviceManagementCredentials.ssh.user}@${user.serviceManagementCredentials.ssh.url}:${user.serviceManagementCredentials.ssh.port}/`;
 
-            this.primaryUser = user.isPrimaryAccount ? user : null;
+            if (user.isPrimaryAccount) {
+              this.primaryUser = user;
+            }
           });
           /* eslint-enable no-param-reassign */
 
