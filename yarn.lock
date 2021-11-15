@@ -3017,12 +3017,12 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@ovh-ux/ng-ovh-api-wrappers@^4.0.4", "@ovh-ux/ng-ovh-api-wrappers@^4.0.8":
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.8.tgz#f95c8ce909f7baa59f8fd85949801e7d74bf6dbd"
-  integrity sha512-V1x01nBs+bmTKD8PV69StlHU9v4CeA4lqLIB/oom2PmQIcsSRhhaiwFE5JCui7fDi0+A8sZSg4EUDMie/M3QQg==
+"@ovh-ux/ng-ovh-api-wrappers@^4.0.9":
+  version "4.0.9"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.9.tgz#062b50f039d3e6b820d1b1a5dd279654b148b845"
+  integrity sha512-+v1NZx4xMged64VCxBs3tQzCimScSfIicColVoP6MIByEw9g8Lt6DHtnpJk1M2RnGQVxhJbE5KpDVADadhnBhA==
   dependencies:
-    lodash "^4.17.20"
+    lodash "^4.17.21"
 
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.5"

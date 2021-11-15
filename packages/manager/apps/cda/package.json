@@ -26,7 +26,7 @@
     "@ovh-ux/ng-at-internet": "^5.7.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.1.2",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.9",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.8",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.9",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-doc-url": "^2.0.2",
     "@ovh-ux/ng-ovh-http": "^5.0.2",
