@@ -1,3 +1,12 @@
+## [5.48.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.48.1...@ovh-ux/manager-pci@5.48.2) (2021-11-15)
+
+
+### Bug Fixes
+
+* **storages.databases.components.plan-list:** update badge type ([#5927](https://github.com/ovh/manager/issues/5927)) ([d3f7c52](https://github.com/ovh/manager/commit/d3f7c52ea82155fea46a9d60cf522c0fd3597c32))
+
+
+
 ## [5.48.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.48.0...@ovh-ux/manager-pci@5.48.1) (2021-11-10)
 
 

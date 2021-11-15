@@ -1,3 +1,12 @@
+## [17.5.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.5.5...@ovh-ux/manager-dedicated@17.5.6) (2021-11-15)
+
+
+### Bug Fixes
+
+* **server.details:** enable bandwidth option for new range ([#5907](https://github.com/ovh/manager/issues/5907)) ([2a5a137](https://github.com/ovh/manager/commit/2a5a13798ccdc7ba5bf54ef17cc0b10148a9bb82))
+
+
+
 ## [17.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.5.4...@ovh-ux/manager-dedicated@17.5.5) (2021-11-10)
 
 
