@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-import head from 'lodash/head';
 import some from 'lodash/some';
 
 export default class Flavor {
@@ -18,23 +16,23 @@ export default class Flavor {
   }
 
   get minDiskSize() {
-    return get(head(this.availability), 'minDiskSize');
+    return (this.availability || [])[0]?.minDiskSize;
   }
 
   get maxDiskSize() {
-    return get(head(this.availability), 'maxDiskSize');
+    return (this.availability || [])[0]?.maxDiskSize;
   }
 
   get nodesCount() {
-    return get(head(this.availability), 'minNodeNumber');
+    return (this.availability || [])[0]?.minNodeNumber;
   }
 
   get nodeHourlyPrice() {
-    return get(head(this.availability), 'hourlyPrice');
+    return (this.availability || [])[0]?.hourlyPrice;
   }
 
   get nodeMonthlyPrice() {
-    return get(head(this.availability), 'monthlyPrice');
+    return (this.availability || [])[0]?.monthlyPrice;
   }
 
   get hourlyPrice() {

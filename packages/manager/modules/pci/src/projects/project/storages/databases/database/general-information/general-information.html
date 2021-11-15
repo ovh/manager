@@ -179,8 +179,8 @@
                                 data-translate="pci_databases_general_information_node_type"
                                 data-translate-values="{
                                 coreNumber: $ctrl.getCurrentFlavor().core,
-                                memorySize: $ctrl.getCurrentFlavor().memory,
-                                storageSize: $ctrl.getCurrentFlavor().minDiskSize
+                                memorySize: ($ctrl.getCurrentFlavor().memory | cucBytes:2:false:'GB'),
+                                storageSize: ($ctrl.getCurrentFlavor().minDiskSize | cucBytes:2:false:'GB')
                             }"
                             ></span>
                             <span
@@ -188,9 +188,9 @@
                                 data-translate="pci_databases_general_information_node_type_disk_range"
                                 data-translate-values="{
                                 coreNumber: $ctrl.getCurrentFlavor().core,
-                                memorySize: $ctrl.getCurrentFlavor().memory,
-                                storageMinSize: $ctrl.getCurrentFlavor().minDiskSize,
-                                storageMaxSize: $ctrl.getCurrentFlavor().maxDiskSize,
+                                memorySize: ($ctrl.getCurrentFlavor().memory | cucBytes:2:false:'GB'),
+                                storageMinSize: ($ctrl.getCurrentFlavor().minDiskSize | cucBytes:2:false:'GB'),
+                                storageMaxSize: ($ctrl.getCurrentFlavor().maxDiskSize | cucBytes:2:false:'GB'),
                             }"
                             ></span>
                             <button

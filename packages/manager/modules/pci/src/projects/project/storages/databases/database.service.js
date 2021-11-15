@@ -203,7 +203,9 @@ export default class DatabaseService {
       })
       .then(({ availability, capabilities, prices }) => {
         availability.forEach((plan) => {
-          let prefix = `databases.${plan.engine}-${plan.plan}-${plan.flavor}`;
+          let prefix = `databases.${plan.engine.toLowercase()}-${plan.plan}-${
+            plan.flavor
+          }`;
           if (plan.status === ENGINES_STATUS.BETA) {
             if (
               prices[`${prefix}-${ENGINES_PRICE_SUFFIX.BETA}.hour.consumption`]
