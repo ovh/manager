@@ -94,8 +94,8 @@
                 data-translate="pci_database_node_type"
                 data-translate-values="{
                     coreNumber: $ctrl.getCurrentFlavor($row).core,
-                    memorySize: $ctrl.getCurrentFlavor($row).memory,
-                    storageSize: $ctrl.getCurrentFlavor($row).minDiskSize
+                    memorySize: ($ctrl.getCurrentFlavor($row).memory | cucBytes:2:false:'GB'),
+                    storageSize: ($ctrl.getCurrentFlavor($row).minDiskSize | cucBytes:2:false:'GB')
                 }"
             ></span>
             <span
@@ -103,9 +103,9 @@
                 data-translate="pci_database_node_type_range"
                 data-translate-values="{
                 coreNumber: $ctrl.getCurrentFlavor($row).core,
-                memorySize: $ctrl.getCurrentFlavor($row).memory,
-                storageMinSize: $ctrl.getCurrentFlavor($row).minDiskSize,
-                storageMaxSize: $ctrl.getCurrentFlavor($row).maxDiskSize
+                memorySize: ($ctrl.getCurrentFlavor($row).memory | cucBytes:2:false:'GB'),
+                storageMinSize: ($ctrl.getCurrentFlavor($row).minDiskSize | cucBytes:2:false:'GB'),
+                storageMaxSize: ($ctrl.getCurrentFlavor($row).maxDiskSize | cucBytes:2:false:'GB')
             }"
             ></span>
         </oui-datagrid-column>
