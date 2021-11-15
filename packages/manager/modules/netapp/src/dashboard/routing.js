@@ -1,6 +1,7 @@
 import NetApp from './Netapp.class';
 import Share from './Share.class';
 import SnapshotPolicy from './SnapshotPolicy.class';
+import { MINIMUM_VOLUME_SIZE } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.dashboard', {
@@ -29,8 +30,21 @@ export default /* @ngInject */ ($stateProvider) => {
         $http
           .get(`/storage/netapp/${serviceName}/share?detail=true`)
           .then(({ data }) => data.map((volume) => new Share(volume))),
-      isCreateVolumeAvailable: /* @ngInject */ (storage, volumes) =>
-        volumes.length < storage.maximumVolumesLimit,
+      availableVolumeSize: /* @ngInject */ (storage, volumes) => {
+        const storageVolumesSize = volumes.reduce(
+          (allSizes, volume) => allSizes + volume.size,
+          0,
+        );
+
+        return storage.quota - storageVolumesSize;
+      },
+      isCreateVolumeAvailable: /* @ngInject */ (
+        availableVolumeSize,
+        storage,
+        volumes,
+      ) =>
+        volumes.length < storage.maximumVolumesLimit &&
+        availableVolumeSize >= MINIMUM_VOLUME_SIZE,
       snapshotPoliciesLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('netapp.dashboard.snapshotPolicies', $transition$.params()),
       volumesLink: /* @ngInject */ ($state, $transition$) =>

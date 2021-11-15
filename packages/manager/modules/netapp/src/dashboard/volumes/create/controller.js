@@ -1,4 +1,4 @@
-const MINIMUM_VOLUME_SIZE = 100;
+import { MINIMUM_VOLUME_SIZE } from '../../constants';
 
 export default class VolumeCreateCtrl {
   /* @ngInject */
@@ -16,15 +16,6 @@ export default class VolumeCreateCtrl {
     [this.newVolumeProtocol] = this.protocolList;
     this.minimumVolumeSize = MINIMUM_VOLUME_SIZE;
     this.availableVolumeSize = this.getAvailableSize();
-  }
-
-  getAvailableSize() {
-    const storageVolumesSize = this.volumes.reduce(
-      (allSizes, volume) => allSizes + volume.size,
-      0,
-    );
-
-    return this.storage.quota - storageVolumesSize;
   }
 
   onCreateVolume() {
