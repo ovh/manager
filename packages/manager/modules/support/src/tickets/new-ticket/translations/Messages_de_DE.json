@@ -131,5 +131,6 @@
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Sie wünschen Beratung zu einem Projekt?",
   "ovhManagerSupport_new_business_2": "Bitte senden Sie uns eine E-Mail mit ausführlichen Informationen an die Adresse",
-  "ovhManagerSupport_new_business_3": "Support-Anfragen, die an diese Adresse versendet werden, werden nicht bearbeitet."
+  "ovhManagerSupport_new_business_3": "Support-Anfragen, die an diese Adresse versendet werden, werden nicht bearbeitet.",
+  "ovhManagerSupport_new_serviceType_dedicated_anthos": "Anthos"
 }

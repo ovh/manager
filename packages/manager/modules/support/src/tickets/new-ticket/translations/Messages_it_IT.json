@@ -131,5 +131,6 @@
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Hai un progetto da analizzare?",
   "ovhManagerSupport_new_business_2": "Descrivi in modo dettagliato le tue esigenze inviandoci un’email all’indirizzo:",
-  "ovhManagerSupport_new_business_3": "Le richieste di supporto ricevute a questo indirizzo non verranno prese in carico."
+  "ovhManagerSupport_new_business_3": "Le richieste di supporto ricevute a questo indirizzo non verranno prese in carico.",
+  "ovhManagerSupport_new_serviceType_dedicated_anthos": "Anthos"
 }
