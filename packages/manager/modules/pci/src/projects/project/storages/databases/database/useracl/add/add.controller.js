@@ -21,6 +21,7 @@ export default class {
   }
 
   onAdd(form) {
+    this.trackDashboard('acl_user::create_rule');
     this.rules.push({
       permission: form.permission.$modelValue,
       pattern: form.pattern.$modelValue,
@@ -28,6 +29,7 @@ export default class {
   }
 
   onRemove(form) {
+    this.trackDashboard('acl_user::delete_rule');
     remove(
       this.rules,
       (r) =>

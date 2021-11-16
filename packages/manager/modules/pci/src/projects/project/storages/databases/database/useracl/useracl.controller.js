@@ -29,13 +29,18 @@ export default class AclCtrl {
     return this.usersList.length === 0 || !this.database.aclsEnabled;
   }
 
+  trackAndSetAclState(state) {
+    this.trackDashboard(state ? 'acl::enable_acl' : 'acl::disable_acl');
+    this.setAclState(state);
+  }
+
   trackAndAddAcl() {
     this.trackDashboard('acl::create_acl_user');
     this.goToAddUserAcl();
   }
 
   trackAndDeleteAcl(acl) {
-    this.trackDashboard('acl_user::delete_rule');
+    this.trackDashboard('acl_user::delete_acl_user');
     this.goToDeleteUserAcl(acl);
   }
 }
