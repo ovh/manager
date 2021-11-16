@@ -23,6 +23,9 @@ export default /* @ngInject */ ($stateProvider) => {
             : false;
         }),
     resolve: {
+      domainName: /* @ngInject */ ($transition$) =>
+        $transition$.params().domainName,
+
       model: /* @ngInject */ ($transition$) => $transition$.params().model,
 
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
