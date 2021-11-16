@@ -5,7 +5,7 @@
         ></cui-message-container>
     </div>
     <oui-message
-        data-ng-if="$ctrl.newDatabases[$ctrl.database.id]"
+        data-ng-if="$ctrl.isFeatureActivated('usersTab') && $ctrl.newDatabases[$ctrl.database.id]"
         data-type="info"
         data-dismissable
     >
