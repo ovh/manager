@@ -500,6 +500,12 @@ angular
           .then(({ data }) => data);
       };
 
+      $scope.getCdnProperties = function getCdnProperties() {
+        return HostingCdnSharedService.getCDNProperties(
+          $scope.hosting.serviceName,
+        ).then(({ data }) => data);
+      };
+
       startPolling();
     },
   );

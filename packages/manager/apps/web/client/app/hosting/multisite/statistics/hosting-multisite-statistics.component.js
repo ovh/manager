@@ -7,6 +7,7 @@ export default {
     domains: '<',
     getStatistics: '<',
     periods: '<',
+    getCdnProperties: '<',
   },
   controller,
   template,
