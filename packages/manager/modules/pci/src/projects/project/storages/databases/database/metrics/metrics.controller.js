@@ -19,7 +19,6 @@ export default class MetricsCtrl {
     this.timeRanges = METRICS_TIME_RANGES;
     this.metricsData = {};
     this.autoRefresh = false;
-    MetricsCtrl.setMomentLocale($translate.use());
   }
 
   $onInit() {
@@ -138,15 +137,5 @@ export default class MetricsCtrl {
         this.getMetrics();
       }, CHART_METRICS_REFRESH_INTERVAL);
     }
-  }
-
-  static setMomentLocale(lang) {
-    let language;
-    if (['en_GB', 'es_US', 'fr_CA'].includes(lang)) {
-      language = lang.toLowerCase().replace('_', '-');
-    } else {
-      [language] = lang.split('_');
-    }
-    moment.locale(language);
   }
 }
