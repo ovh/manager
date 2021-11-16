@@ -1,4 +1,4 @@
-import { HTTP_PROTOCOLS, MAX_URL_ENTRIES, REGEX } from './edit-urls.constants';
+import { HTTP_PROTOCOLS, MAX_URL_ENTRIES } from './edit-urls.constants';
 
 export default class HostingCdnSharedEditUrlsController {
   $onInit() {
@@ -14,71 +14,61 @@ export default class HostingCdnSharedEditUrlsController {
         list: [HTTP_PROTOCOLS.HTTP, HTTP_PROTOCOLS.HTTPS],
       },
       newUrl: {
-        url: '',
-        urlLabelId: 'url',
-        validityInvalidFormatKey: 'invalidInputFormat',
-        validityLimitReachedKey: 'limitUrlReached',
+        resource: '',
       },
       preloadedUrls: {
-        selected: null,
-        list: [],
+        selected: [],
+        list: this.model.options.cache.prewarm.api.config.resources.slice(),
       },
     };
   }
 
-  onAddUrlClick(form) {
-    const { config } = this.model.options.cache.prewarm.api;
-    const { newUrl } = this.editUrlsModel;
+  buildPrewarmUrl() {
+    const { protocol, newUrl } = this.editUrlsModel;
 
-    // Reset errors form
-    [
-      newUrl.validityInvalidFormatKey,
-      newUrl.validityLimitReachedKey,
-    ].forEach((validityKey) =>
-      form[newUrl.urlLabelId].$setValidity(validityKey, true),
-    );
+    return `${protocol.selected.toLowerCase()}://${this.domainName}/${
+      newUrl.resource
+    }`;
+  }
 
-    // Add new URL entry
-    if (newUrl.url.match(REGEX.URL)) {
-      config.resources.push(newUrl.url);
-      config.resources = Array.from(new Set(config.resources));
-      this.editUrlsModel.newUrl.url = '';
+  onAddUrlClick() {
+    const { preloadedUrls } = this.editUrlsModel;
 
-      return;
-    }
-
-    // Limit reached
-    if (config.resources.length > MAX_URL_ENTRIES) {
-      form[newUrl.urlLabelId].$setValidity(
-        newUrl.validityInvalidFormatKey,
-        false,
-      );
-
-      return;
-    }
-
-    // Display invalid url format
-    form[newUrl.urlLabelId].$setValidity(
-      newUrl.validityInvalidFormatKey,
-      false,
-    );
+    preloadedUrls.list.push(this.buildPrewarmUrl());
+    preloadedUrls.list = Array.from(new Set(preloadedUrls.list));
+    this.editUrlsModel.newUrl.resource = '';
   }
 
   onRemoveUrlClick() {
-    const { selected, list } = this.editUrlsModel.preloadedUrls;
-
+    const { preloadedUrls } = this.editUrlsModel;
     const urlIndexes = [];
-    list.forEach((url, index) => {
-      selected.forEach((selectedUrl) => {
+
+    preloadedUrls.list.forEach((url, index) => {
+      preloadedUrls.selected.forEach((selectedUrl) => {
         if (selectedUrl === url) urlIndexes.push(index);
       });
     });
 
-    urlIndexes.forEach((indexUrlToRemove) => list.splice(indexUrlToRemove, 1));
+    urlIndexes
+      .reverse()
+      .forEach((indexUrlToRemove) =>
+        preloadedUrls.list.splice(indexUrlToRemove, 1),
+      );
   }
 
-  onEditUrlsCancelOrConfirm(trackingActionName) {
-    this.trackClick(`prewarm::${trackingActionName}`);
+  onEditUrlsConfirm() {
+    this.trackClick(`prewarm::${this.TRACKING.CONFIRM}`);
+
+    const { config } = this.model.options.cache.prewarm.api;
+    const { preloadedUrls } = this.editUrlsModel;
+
+    config.resources = preloadedUrls.list;
+
+    return this.goBack();
+  }
+
+  onEditUrlsCancel() {
+    this.trackClick(`prewarm::${this.TRACKING.CANCEL}`);
 
     return this.goBack();
   }
