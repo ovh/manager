@@ -26,16 +26,17 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     params: ListLayoutHelper.stateParams,
     redirectTo: (transition) =>
-      transition
-        .injector()
-        .getAsync('resources')
-        .then((services) =>
-          services.data.length === 0
-            ? {
-                state: 'netapp.onboarding',
-              }
-            : false,
-        ),
+      Promise.all([
+        transition.injector().getAsync('resources'),
+        transition.injector().getAsync('features'),
+      ]).then(([services, features]) =>
+        services.data.length === 0 &&
+        features.isFeatureAvailable('netapp:order')
+          ? {
+              state: 'netapp.onboarding',
+            }
+          : false,
+      ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/storage/netapp',
