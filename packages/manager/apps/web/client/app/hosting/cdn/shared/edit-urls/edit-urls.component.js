@@ -5,6 +5,7 @@ export default {
   controller,
   template,
   bindings: {
+    domainName: '<',
     model: '<',
     trackClick: '<',
     goBack: '<',
