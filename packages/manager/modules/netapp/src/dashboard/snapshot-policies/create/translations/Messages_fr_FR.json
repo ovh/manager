@@ -23,7 +23,7 @@
   "netapp_snapshot_policies_create_empty": "vide",
   "netapp_snapshot_policies_create_rules": "Règles (UTC Time Zone): {{ count }}",
   "netapp_snapshot_policies_create_add_rule": "Ajouter une nouvelle règle",
-  "netapp_snapshot_policies_create_submit": "Créer nouvelle Snapshot policy",
+  "netapp_snapshot_policies_create_submit": "Créer une nouvelle Snapshot policy",
   "netapp_snapshot_policies_create_select_placeholder": "Choisissez…",
   "netapp_snapshot_policies_create_selected_days": "{{ days }} jour(s)",
   "netapp_snapshot_policies_create_selected_months": "{{ months }} mois",
