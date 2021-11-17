@@ -24,7 +24,7 @@
   "pci_databases_replications_add_edit_heartbeat_true": "Activée",
   "pci_databases_replications_add_edit_heartbeat_false": "Désactivée",
   "pci_databases_replications_add_edit_status_true": "Activé",
-  "pci_databases_replications_add_edit_status_false": "Désactivée",
+  "pci_databases_replications_add_edit_status_false": "Désactivé",
   "pci_databases_replications_add_edit_cancel": "Annuler",
   "pci_databases_replications_edit_validate": "Modifier",
   "pci_databases_replications_add_validate": "Créer",
