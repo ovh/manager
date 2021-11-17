@@ -28,6 +28,7 @@ import redirectionService from './redirection/redirection.service';
 import managerCoreUrlBuilder from './url-builder';
 
 import { registerConfigModule } from './config';
+import sanitizeUrl from './sanitize-url/sanitize-url';
 
 import { URLS } from './manager-core.constants';
 
@@ -270,7 +271,8 @@ export const registerCoreModule = (environment) => {
       /* @ngInject */ ($transitions, $translate) => {
         $transitions.onBefore({}, () => $translate.refresh());
       },
-    );
+    )
+    .run(sanitizeUrl);
 
   return moduleName;
 };
