@@ -12,7 +12,7 @@ export default class SelectCheckboxesCtrl {
 
   $onInit() {
     this.showList = false;
-    this.totalItems = [];
+    this.totalItems = this.items.filter(({ checked }) => checked);
   }
 
   focusOnItems(event) {

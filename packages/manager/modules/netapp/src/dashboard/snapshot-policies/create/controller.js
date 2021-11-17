@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { capitalize, range } from 'lodash-es';
+import { capitalize, cloneDeep, range } from 'lodash-es';
 import { detectUserLocale } from '@ovh-ux/manager-config';
 
 const DATE_CONSTANTS = {
@@ -24,7 +24,6 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
       rules: [],
     };
 
-    this.resetNewRule();
     this.buildListItems();
   }
 
@@ -49,8 +48,33 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
     }));
   }
 
+  editRule(ruleIndex) {
+    const ruleToEdit = this.newSnapshotPolicy.rules[ruleIndex];
+    this.ruleCopy = cloneDeep(ruleToEdit);
+    this.newRule = {
+      isInEdition: true,
+      ...ruleToEdit,
+    };
+    this.minutes = this.newRule.schedule.minutes.join(', ');
+    this.hours = this.newRule.schedule.hours.join(', ');
+    this.days = this.newRule.schedule.days.join(', ');
+
+    this.months = this.months.map((month) => ({
+      ...month,
+      checked: this.newRule.schedule.months.includes(month.value),
+    }));
+
+    this.weekdays = this.weekdays.map((month) => ({
+      ...month,
+      checked: this.newRule.schedule.weekdays.includes(month.value),
+    }));
+
+    this.newSnapshotPolicy.rules.splice(ruleIndex, 1, this.newRule);
+  }
+
   addSnapshotPolicyRule() {
     this.newRule = {
+      isInEdition: true,
       prefix: undefined,
       copies: 1,
       schedule: {
@@ -61,6 +85,8 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
         weekdays: [],
       },
     };
+
+    this.newSnapshotPolicy.rules.push(this.newRule);
   }
 
   onMonthsSelect(items) {
@@ -71,11 +97,9 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
     this.newRule.schedule.weekdays = items.map(({ value }) => value);
   }
 
-  validateSnapshotPolicyRule() {
-    this.newSnapshotPolicy.rules = [
-      ...this.newSnapshotPolicy.rules,
-      this.newRule,
-    ];
+  validateSnapshotPolicyRule(ruleIndex) {
+    const { isInEdition, ...ruleToValidate } = this.newRule;
+    this.newSnapshotPolicy.rules[ruleIndex] = ruleToValidate;
     this.resetNewRule();
   }
 
@@ -122,10 +146,19 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
     this.buildListItems();
   }
 
+  cancelNewRule($rowIndex) {
+    if (this.ruleCopy) {
+      this.newSnapshotPolicy.rules.splice($rowIndex, 1, this.ruleCopy);
+    } else {
+      this.newSnapshotPolicy.rules.splice($rowIndex, 1);
+    }
+    this.resetNewRule();
+  }
+
   isRulePrefixAllowed() {
-    return !this.newSnapshotPolicy.rules.find(
-      (rule) => rule.prefix === this.newRule.prefix,
-    );
+    return !this.newSnapshotPolicy.rules
+      .filter(({ isInEdition }) => !isInEdition)
+      .find((rule) => rule.prefix === this.newRule.prefix);
   }
 
   getValueLabel(valueToGet, listName) {

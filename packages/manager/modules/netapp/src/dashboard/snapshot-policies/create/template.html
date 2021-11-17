@@ -129,7 +129,7 @@
         <oui-button
             class="my-3"
             data-on-click="$ctrl.addSnapshotPolicyRule()"
-            data-disabled="$ctrl.newRule !== null || $ctrl.isCreating"
+            data-disabled="$ctrl.newRule != null || $ctrl.isCreating"
         >
             <span class="oui-icon oui-icon-plus" aria-hidden="true"></span>
             <span
@@ -208,47 +208,101 @@
             </thead>
 
             <tbody>
-                <tr class="oui-table__row" data-ng-if="$ctrl.newRule !== null">
+                <tr
+                    class="oui-table__row"
+                    data-ng-repeat="rule in $ctrl.newSnapshotPolicy.rules track by rule.prefix"
+                >
                     <td class="oui-table__cell">
+                        <span
+                            data-ng-bind="::rule.prefix"
+                            data-ng-if="!rule.isInEdition"
+                        ></span>
                         <input
                             type="text"
                             name="prefix"
                             class="oui-input"
                             data-ng-model="$ctrl.newRule.prefix"
-                            data-ng-pattern="/^(\w(\d)?(-)?)+$/"
+                            data-ng-pattern="/^(\w([\W\d])?(-)?)+$/"
+                            data-ng-if="rule.isInEdition"
                             required
                         />
                     </td>
                     <td class="oui-table__cell">
+                        <span
+                            data-ng-repeat="minute in rule.schedule.minutes track by $index"
+                            data-ng-if="!rule.isInEdition"
+                        >
+                            <span data-ng-bind="::minute"></span>
+                            <span
+                                data-ng-if="!$last && rule.schedule.minutes.length > 1"
+                                >,
+                            </span>
+                        </span>
                         <input
                             type="text"
                             name="minutes"
                             class="oui-input w-75"
+                            data-ng-if="rule.isInEdition"
                             data-ng-model="$ctrl.minutes"
                             data-ng-change="$ctrl.addArrayValuesTo('minutes')"
                             required
                         />
                     </td>
                     <td class="oui-table__cell">
+                        <span
+                            data-ng-if="!rule.isInEdition"
+                            data-ng-repeat="hour in rule.schedule.hours track by $index"
+                        >
+                            <span data-ng-bind="::hour"></span>
+                            <span
+                                data-ng-if="!$last && rule.schedule.hours.length > 1"
+                                >,
+                            </span>
+                        </span>
                         <input
                             type="text"
                             name="hours"
                             class="oui-input w-75"
+                            data-ng-if="rule.isInEdition"
                             data-ng-model="$ctrl.hours"
                             data-ng-change="$ctrl.addArrayValuesTo('hours')"
                         />
                     </td>
                     <td class="oui-table__cell">
+                        <span
+                            data-ng-if="!rule.isInEdition"
+                            data-ng-repeat="day in rule.schedule.days track by $index"
+                        >
+                            <span data-ng-bind="::day"></span>
+                            <span
+                                data-ng-if="!$last && rule.schedule.days.length > 1"
+                                >,
+                            </span>
+                        </span>
                         <input
                             type="text"
                             name="days"
                             class="oui-input w-75"
+                            data-ng-if="rule.isInEdition"
                             data-ng-model="$ctrl.days"
                             data-ng-change="$ctrl.addArrayValuesTo('days')"
                         />
                     </td>
                     <td class="oui-table__cell">
+                        <span
+                            data-ng-if="!rule.isInEdition"
+                            data-ng-repeat="month in rule.schedule.months track by $index"
+                        >
+                            <span
+                                data-ng-bind="::$ctrl.getValueLabel(month, 'months')"
+                            ></span>
+                            <span
+                                data-ng-if="!$last && rule.schedule.months.length > 1"
+                                >,
+                            </span>
+                        </span>
                         <select-checkboxes
+                            data-ng-if="rule.isInEdition"
                             items="$ctrl.months"
                             on-select="$ctrl.onMonthsSelect(items)"
                             placeholder="{{ $ctrl.newRule.schedule.months.length === 0 ? ('netapp_snapshot_policies_create_select_placeholder' | translate ) : ('netapp_snapshot_policies_create_selected_months' | translate:{ 'months': $ctrl.newRule.schedule.months.length }) }}"
@@ -257,7 +311,20 @@
                         </select-checkboxes>
                     </td>
                     <td class="oui-table__cell">
+                        <span
+                            data-ng-if="!rule.isInEdition"
+                            data-ng-repeat="weekday in rule.schedule.weekdays track by $index"
+                        >
+                            <span
+                                data-ng-bind="::$ctrl.getValueLabel(weekday, 'weekdays')"
+                            ></span>
+                            <span
+                                data-ng-if="!$last && rule.schedule.weekdays.length > 1"
+                                >,
+                            </span>
+                        </span>
                         <select-checkboxes
+                            data-ng-if="rule.isInEdition"
                             items="$ctrl.weekdays"
                             on-select="$ctrl.onWeekdaysSelect(items)"
                             placeholder="{{ $ctrl.newRule.schedule.weekdays.length === 0 ? ('netapp_snapshot_policies_create_select_placeholder' | translate ) : ('netapp_snapshot_policies_create_selected_days' | translate:{ 'days': $ctrl.newRule.schedule.weekdays.length }) }}"
@@ -266,12 +333,49 @@
                         </select-checkboxes>
                     </td>
                     <td class="oui-table__cell">
-                        <oui-numeric model="$ctrl.newRule.copies" min="1">
+                        <span
+                            data-ng-bind="::rule.copies"
+                            data-ng-if="!rule.isInEdition"
+                        ></span>
+                        <oui-numeric
+                            data-ng-if="rule.isInEdition"
+                            model="$ctrl.newRule.copies"
+                            min="1"
+                        >
                         </oui-numeric>
                     </td>
                     <td class="oui-table__cell">
                         <oui-button
-                            on-click="$ctrl.validateSnapshotPolicyRule()"
+                            data-ng-if="!rule.isInEdition"
+                            on-click="$ctrl.editRule($index)"
+                            disabled="$ctrl.newRule"
+                        >
+                            <span
+                                class="oui-icon oui-icon-pen"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="sr-only"
+                                data-translate="netapp_snapshot_policies_create_rule_edit"
+                            ></span>
+                        </oui-button>
+                        <oui-button
+                            data-ng-if="!rule.isInEdition"
+                            on-click="$ctrl.removeRule(rule)"
+                        >
+                            <span
+                                class="oui-icon oui-icon-bin"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="sr-only"
+                                data-translate="netapp_snapshot_policies_create_rule_delete"
+                            ></span>
+                        </oui-button>
+
+                        <oui-button
+                            data-ng-if="rule.isInEdition"
+                            on-click="$ctrl.validateSnapshotPolicyRule($index)"
                             disabled="!$ctrl.isNewRuleValid() || !$ctrl.isRulePrefixAllowed()"
                         >
                             <span
@@ -284,7 +388,10 @@
                             ></span>
                         </oui-button>
 
-                        <oui-button on-click="$ctrl.resetNewRule()">
+                        <oui-button
+                            on-click="$ctrl.cancelNewRule($index)"
+                            data-ng-if="rule.isInEdition"
+                        >
                             <span
                                 class="oui-icon oui-icon-close"
                                 aria-hidden="true"
@@ -292,88 +399,6 @@
                             <span
                                 class="sr-only"
                                 data-translate="netapp_snapshot_policies_create_add_rule_cancel"
-                            ></span>
-                        </oui-button>
-                    </td>
-                </tr>
-                <tr
-                    class="oui-table__row"
-                    data-ng-repeat="rule in $ctrl.newSnapshotPolicy.rules track by rule.prefix"
-                >
-                    <td class="oui-table__cell">
-                        <span data-ng-bind="::rule.prefix"></span>
-                    </td>
-                    <td class="oui-table__cell">
-                        <span
-                            data-ng-repeat="minute in rule.schedule.minutes track by $index"
-                        >
-                            <span data-ng-bind="::minute"></span>
-                            <span
-                                data-ng-if="!$last && rule.schedule.minutes.length > 1"
-                                >,
-                            </span>
-                        </span>
-                    </td>
-                    <td class="oui-table__cell">
-                        <span
-                            data-ng-repeat="hour in rule.schedule.hours track by $index"
-                        >
-                            <span data-ng-bind="::hour"></span>
-                            <span
-                                data-ng-if="!$last && rule.schedule.hours.length > 1"
-                                >,
-                            </span>
-                        </span>
-                    </td>
-                    <td class="oui-table__cell">
-                        <span
-                            data-ng-repeat="day in rule.schedule.days track by $index"
-                        >
-                            <span data-ng-bind="::day"></span>
-                            <span
-                                data-ng-if="!$last && rule.schedule.days.length > 1"
-                                >,
-                            </span>
-                        </span>
-                    </td>
-                    <td class="oui-table__cell">
-                        <span
-                            data-ng-repeat="month in rule.schedule.months track by $index"
-                        >
-                            <span
-                                data-ng-bind="::$ctrl.getValueLabel(month, 'months')"
-                            ></span>
-                            <span
-                                data-ng-if="!$last && rule.schedule.months.length > 1"
-                                >,
-                            </span>
-                        </span>
-                    </td>
-                    <td class="oui-table__cell">
-                        <span
-                            data-ng-repeat="weekday in rule.schedule.weekdays track by $index"
-                        >
-                            <span
-                                data-ng-bind="::$ctrl.getValueLabel(weekday, 'weekdays')"
-                            ></span>
-                            <span
-                                data-ng-if="!$last && rule.schedule.weekdays.length > 1"
-                                >,
-                            </span>
-                        </span>
-                    </td>
-                    <td class="oui-table__cell">
-                        <span data-ng-bind="::rule.copies"></span>
-                    </td>
-                    <td class="oui-table__cell">
-                        <oui-button on-click="$ctrl.removeRule(rule)">
-                            <span
-                                class="oui-icon oui-icon-bin"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="sr-only"
-                                data-translate="netapp_snapshot_policies_create_rule_delete"
                             ></span>
                         </oui-button>
                     </td>
