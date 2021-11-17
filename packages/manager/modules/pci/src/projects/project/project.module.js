@@ -22,7 +22,7 @@ import instances from './instances';
 import kubernetes from './kubernetes';
 import loadBalancer from './load-balancer';
 import notebooks from './notebooks';
-import apps from './ai/apps';
+import ai from './ai';
 import sshKeys from './ssh-keys';
 import privateNetworks from './private-networks';
 import quota from './quota';
@@ -60,7 +60,7 @@ angular
     instances,
     loadBalancer,
     notebooks,
-    apps,
+    ai,
     kubernetes,
     privateNetworks,
     quota,
