@@ -1,0 +1,102 @@
+<section>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label
+                for="graphType"
+                class="col-xs-3 col-md-2 control-label text-left"
+                data-translate="cloud_connect_stats_type"
+            ></label>
+            <div class="col-xs-9 col-md-4 clearfix">
+                <select
+                    id="graphType"
+                    name="graphType"
+                    class="form-control"
+                    data-ng-disabled="$ctrl.isGraphLoading"
+                    data-ng-change="$ctrl.loadGraphs()"
+                    data-ng-model="$ctrl.graphType"
+                    data-ng-options="'cloud_connect_stats_type_' + type | translate for type in $ctrl.typeOptions"
+                ></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label
+                for="graphPeriod"
+                class="col-xs-3 col-md-2 control-label text-left"
+                data-translate="cloud_connect_stats_period"
+            ></label>
+            <div class="col-xs-9 col-md-4 clearfix">
+                <select
+                    id="graphPeriod"
+                    name="graphPeriod"
+                    class="form-control"
+                    data-ng-disabled="$ctrl.isGraphLoading"
+                    data-ng-change="$ctrl.loadGraphs()"
+                    data-ng-model="$ctrl.graphPeriod"
+                    data-ng-options="'cloud_connect_stats_period_' + period | translate for period in $ctrl.periodOptions"
+                ></select>
+            </div>
+        </div>
+    </form>
+    <div class="cui-panel">
+        <div class="cui-panel__header">
+            <h2
+                data-translate="cloud_connect_stats_type_traffic"
+                data-ng-if="$ctrl.displayedGraph === $ctrl.TYPE.TRAFFIC"
+            ></h2>
+            <h2
+                data-translate="cloud_connect_stats_type_error"
+                data-ng-if="$ctrl.displayedGraph === $ctrl.TYPE.ERROR"
+            ></h2>
+            <h2
+                data-translate="cloud_connect_stats_type_light"
+                data-ng-if="$ctrl.displayedGraph === $ctrl.TYPE.LIGHT"
+            ></h2>
+        </div>
+
+        <oui-tile-definition data-ng-if="$ctrl.isLoading">
+            <oui-tile-description>
+                <oui-skeleton data-randomized></oui-skeleton>
+                <oui-skeleton data-randomized></oui-skeleton>
+                <oui-skeleton data-randomized></oui-skeleton>
+                <oui-skeleton data-randomized></oui-skeleton>
+                <oui-skeleton data-randomized></oui-skeleton>
+                <oui-skeleton data-randomized></oui-skeleton>
+                <oui-skeleton data-randomized></oui-skeleton>
+            </oui-tile-description>
+        </oui-tile-definition>
+
+        <div data-ng-if="!$ctrl.isLoading">
+            <div
+                class="cui-panel__body"
+                data-ng-if="$ctrl.data.length > 0"
+                style="height: 230px;"
+            >
+                <canvas
+                    id="line"
+                    class="chart chart-line"
+                    data-chart-series="$ctrl.series"
+                    data-chart-colors="$ctrl.colors"
+                    data-chart-data="$ctrl.data"
+                    data-chart-labels="$ctrl.labels"
+                    data-chart-options="$ctrl.options"
+                    data-ng-if="$ctrl.displayedGraph === $ctrl.TYPE.TRAFFIC || $ctrl.displayedGraph === $ctrl.TYPE.ERROR"
+                >
+                </canvas>
+                <canvas
+                    id="line"
+                    class="chart chart-line"
+                    data-chart-series="$ctrl.series"
+                    data-chart-colors="$ctrl.colors"
+                    data-chart-data="$ctrl.data"
+                    data-chart-labels="$ctrl.labels"
+                    data-chart-options="$ctrl.lightOptions"
+                    data-ng-if="$ctrl.displayedGraph === $ctrl.TYPE.LIGHT"
+                >
+                </canvas>
+            </div>
+            <div class="cui-panel__body" data-ng-if="$ctrl.data.length == 0">
+                <span data-translate="cloud_connect_stats_no_data"></span>
+            </div>
+        </div>
+    </div>
+</section>

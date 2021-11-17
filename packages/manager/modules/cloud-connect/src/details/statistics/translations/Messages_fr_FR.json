@@ -1,0 +1,21 @@
+{
+  "cloud_connect_stats_title": "Statistiques",
+  "cloud_connect_stats_type": "Type",
+  "cloud_connect_stats_type_light": "Lumière",
+  "cloud_connect_stats_type_traffic": "Traffic",
+  "cloud_connect_stats_type_error": "Erreur",
+  "cloud_connect_stats_period": "Périodicité",
+  "cloud_connect_stats_period_hourly": "Toutes les heures",
+  "cloud_connect_stats_period_daily": "Journalier",
+  "cloud_connect_stats_period_weekly": "Hebdomadaire",
+  "cloud_connect_stats_traffic_download": "ID port {{ interfaceId }} - download",
+  "cloud_connect_stats_traffic_upload": "ID port {{ interfaceId }} - upload",
+  "cloud_connect_stats_error_download": "ID port {{ interfaceId }} - download",
+  "cloud_connect_stats_error_upload": "ID port {{ interfaceId }} - upload",
+  "cloud_connect_stats_light_in": "ID port {{ interfaceId }} - in",
+  "cloud_connect_stats_light_out": "ID port {{ interfaceId }} - out",
+  "cloud_connect_stats_no_data": "Aucune donnée trouvée",
+  "cloud_connect_stats_traffic_unit": "bytes/s",
+  "cloud_connect_stats_light_unit": "dbm",
+  "cloud_connect_stats_error_unit": "error/s"
+}
