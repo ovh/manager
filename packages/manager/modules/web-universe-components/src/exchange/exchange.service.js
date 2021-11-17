@@ -686,22 +686,6 @@ export default class Exchange {
     });
   }
 
-  /**
-   * Get order list
-   */
-  getOrderList(organization, serviceName) {
-    return this.services.OvhHttp.get(
-      '/sws/exchange/{organization}/{exchange}/accounts/orders',
-      {
-        rootPath: '2api',
-        urlParams: {
-          organization,
-          exchange: serviceName,
-        },
-      },
-    );
-  }
-
   updateRenew(organization, serviceName, accounts) {
     return this.services.OvhHttp.put(
       '/sws/exchange/{organization}/{exchange}/accounts/renew',
