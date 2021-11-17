@@ -5,7 +5,7 @@ import App from './App.class';
 import { APP_STATUS } from './app.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.ai-apps', {
+  $stateProvider.state('pci.projects.project.ai.apps', {
     url: '/apps',
     component: 'ovhManagerPciProjectApps',
     redirectTo: (transition) =>
@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
         transition.injector().getAsync('isAuthorized'),
       ]).then(([apps, isAuthorized]) =>
         apps.length === 0 || !isAuthorized
-          ? { state: 'pci.projects.project.ai-apps.onboarding' }
+          ? { state: 'pci.projects.project.ai.apps.onboarding' }
           : false,
       ),
     resolve: {
@@ -22,7 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
         AppService.isAuthorized(projectId),
 
       goToAddApp: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.ai-apps.add', { projectId }),
+        $state.go('pci.projects.project.ai.apps.add', { projectId }),
 
       apps: /* @ngInject */ (
         AppService,
@@ -75,7 +75,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => {
         const reload = message && type === 'success';
         const stateName =
-          'pci.projects.project.ai-apps.dashboard.general-information';
+          'pci.projects.project.ai.apps.dashboard.general-information';
 
         const promise = $state.go(
           stateName,
@@ -96,13 +96,13 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       goToDeleteApp: /* @ngInject */ ($state, projectId) => (app) =>
-        $state.go('pci.projects.project.ai-apps.delete', {
+        $state.go('pci.projects.project.ai.apps.delete', {
           projectId,
           app,
         }),
 
       goToAttachData: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.ai-apps.dashboard.attach-data', {
+        $state.go('pci.projects.project.ai.apps.dashboard.attach-data', {
           projectId,
         }),
 
@@ -111,7 +111,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       appLink: /* @ngInject */ ($state, projectId) => (app) =>
-        $state.href('pci.projects.project.ai-apps.dashboard', {
+        $state.href('pci.projects.project.ai.apps.dashboard', {
           projectId,
           appId: app.id,
         }),

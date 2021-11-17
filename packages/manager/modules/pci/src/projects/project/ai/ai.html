@@ -1,0 +1,43 @@
+<div data-ui-view="content">
+    <oui-header
+        class="mb-3"
+        data-heading="{{:: 'pci_projects_project_ai_title' | translate }}"
+    >
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.appsLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.appsLink"
+            >
+                <span
+                    data-translate="pci_projects_project_ai_apps_title"
+                ></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.tokensLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.tokensLink"
+            >
+                <span
+                    data-translate="pci_projects_project_ai_tokens_title"
+                ></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+
+        <oui-guide-menu
+            data-text="{{:: 'pci_project_guides_header' | translate }}"
+        >
+            <oui-guide-menu-item data-href="{{ $ctrl.guideUrl }}" data-external>
+                <span
+                    data-translate="pci_project_guides_header_all_guides"
+                ></span>
+            </oui-guide-menu-item>
+            <oui-guide-menu-item
+                data-href="{{ $ctrl.communityUrl }}"
+                data-external
+            >
+                <span data-translate="pci_projects_project_ai_community"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+
+    <div class="container-fluid" data-ui-view></div>
+</div>
