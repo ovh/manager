@@ -1,5 +1,6 @@
 import { ApplicationId } from '@ovh-ux/manager-config/types/application';
 import ShellClient from './shell-client';
+import { clientAuth } from '../plugin/auth';
 
 export default function exposeApi(shellClient: ShellClient) {
   return {
@@ -48,5 +49,6 @@ export default function exposeApi(shellClient: ShellClient) {
           }
         }),
     },
+    auth: clientAuth(shellClient),
   };
 }
