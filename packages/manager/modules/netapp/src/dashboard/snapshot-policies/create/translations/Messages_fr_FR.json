@@ -30,6 +30,7 @@
   "netapp_snapshot_policies_create_add_rule_validate": "Valider",
   "netapp_snapshot_policies_create_add_rule_cancel": "Annuler",
   "netapp_snapshot_policies_create_rule_delete": "Supprimer la règle",
+  "netapp_snapshot_policies_create_rule_edit": "Editer la règle",
   "netapp_snapshot_policies_create_error": "Une erreur est survenue lors de la création de la Snapshot policy.",
   "netapp_snapshot_policies_create_success": "La Snapshot policy {{ snapshotPolicyName }} a été créée avec succès !"
 }
