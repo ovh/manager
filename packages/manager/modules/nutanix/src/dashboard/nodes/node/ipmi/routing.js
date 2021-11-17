@@ -7,5 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ () => 'IPMI',
     },
+    atInternet: {
+      rename: 'hpc::nutanix::cluster::node::ipmi',
+    },
   });
 };

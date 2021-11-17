@@ -7,6 +7,7 @@ export default {
     serviceName: '<',
     nodeId: '<',
     node: '<',
+    trackingPrefix: '<',
   },
   controller,
   template,

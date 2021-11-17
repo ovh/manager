@@ -2,8 +2,9 @@ import { TRAVAUX_LINK } from './constants';
 
 export default class NutanixGeneralInfoCtrl {
   /* @ngInject */
-  constructor($translate, ovhManagerRegionService, NutanixService) {
+  constructor($translate, atInternet, ovhManagerRegionService, NutanixService) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.TRAVAUX_LINK = TRAVAUX_LINK;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.NutanixService = NutanixService;
@@ -22,5 +23,12 @@ export default class NutanixGeneralInfoCtrl {
       .finally(() => {
         this.loadingServicesDetails = false;
       });
+  }
+
+  trackClick(trackText) {
+    return this.atInternet.trackClick({
+      name: `${this.trackingPrefix}::${trackText}`,
+      type: 'action',
+    });
   }
 }

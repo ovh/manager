@@ -22,8 +22,8 @@ export default /* @ngInject */ ($stateProvider) => {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('nutanix_node_server_install_image_title'),
 
-        dedicatedApiSchema: /* @ngInject */ (dedicatedServerInstall) =>
-          dedicatedServerInstall.getDedicatedInstallTemplateApiSchema(),
+        dedicatedApiSchema: /* @ngInject */ (NutanixService) =>
+          NutanixService.getDedicatedInstallTemplateApiSchema(),
 
         imageTypeEnum: /* @ngInject */ (dedicatedApiSchema) =>
           get(dedicatedApiSchema, 'models["dedicated.ImageTypesEnum"].enum'),

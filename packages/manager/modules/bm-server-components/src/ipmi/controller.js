@@ -14,6 +14,7 @@ export default class BmServerComponentsIpmiController {
     $sce,
     $translate,
     $window,
+    atInternet,
     coreConfig,
     IpmiService,
     Polling,
@@ -23,6 +24,7 @@ export default class BmServerComponentsIpmiController {
     this.$sce = $sce;
     this.$translate = $translate;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.coreConfig = coreConfig;
     this.IpmiService = IpmiService;
     this.Polling = Polling;
@@ -432,6 +434,7 @@ export default class BmServerComponentsIpmiController {
   // ------------Start IPMI------------
   // NAVIGATION
   startIpmiNavigation() {
+    this.trackClick('ipmi::access-sol');
     this.loader.navigationLoading = true;
     this.loader.buttonStart = true;
     this.loader.navigationReady = null;
@@ -496,6 +499,7 @@ export default class BmServerComponentsIpmiController {
 
   // ------------Start KVM URL------------
   getIpmiKvmUrl() {
+    this.trackClick('ipmi::access-kvm-browser');
     this.loader.buttonStart = true;
     this.loader.kvmhtmlLoading = true;
     return this.IpmiService.ipmiStartConnection({
@@ -576,6 +580,7 @@ export default class BmServerComponentsIpmiController {
   }
 
   startIpmiJava() {
+    this.trackClick('ipmi::access-kvm-java');
     this.javaState.setState(STATE_ENUM.LOADING);
     this.loader.buttonStart = true;
     const withGeolocation =
@@ -609,6 +614,7 @@ export default class BmServerComponentsIpmiController {
 
   // ------------Test IPMI------------
   startIpmiTest() {
+    this.trackClick('ipmi::test-ipmi');
     this.setHttpState(STATE_ENUM.NONE);
     this.setPasswordState(STATE_ENUM.NONE);
     this.setPingState(STATE_ENUM.NONE);
@@ -719,6 +725,7 @@ export default class BmServerComponentsIpmiController {
   }
 
   restartIpmi() {
+    this.trackClick('ipmi::reboot::confirm');
     this.loading = true;
     return this.IpmiService.ipmiRestart(this.serviceName)
       .then(({ taskId }) => {
@@ -764,16 +771,27 @@ export default class BmServerComponentsIpmiController {
   }
 
   onShowIpmiRestartConf() {
+    this.trackClick('ipmi::reboot');
     this.showIpmiRestartConf = true;
   }
 
   onIpmiRestartCancel() {
+    this.trackClick('ipmi::reboot::cancel');
     this.showIpmiRestartConf = false;
   }
 
   orderKvm() {
     if (isFunction(this.onKvmOrder)) {
       this.onKvmOrder();
+    }
+  }
+
+  trackClick(trackText) {
+    if (this.trackingPrefix) {
+      this.atInternet.trackClick({
+        name: `${this.trackingPrefix}::${trackText}`,
+        type: 'action',
+      });
     }
   }
 }

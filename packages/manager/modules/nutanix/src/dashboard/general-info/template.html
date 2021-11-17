@@ -49,6 +49,7 @@
             </oui-tile-definition>
             <oui-tile-button
                 data-ng-href="{{:: $ctrl.cluster.targetSpec.controlPanelURL }}"
+                data-on-click="$ctrl.trackClick('go-to-prism-central')"
                 external
             >
                 <span
@@ -139,6 +140,7 @@
             go-to-resiliation="$ctrl.goToResiliation()"
             service-infos="$ctrl.serviceInfo"
             user="$ctrl.user"
+            tracking-prefix="$ctrl.trackingPrefix"
         >
         </billing-subscription-tile>
     </div>
@@ -166,6 +168,7 @@
         <server-support
             service-name="{{$ctrl.serviceName}}"
             travaux-url="{{$ctrl.TRAVAUX_LINK}}"
+            tracking-prefix="$ctrl.trackingPrefix"
         ></server-support>
     </div>
 </div>

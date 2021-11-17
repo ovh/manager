@@ -8,5 +8,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('nutanix_node_interventions'),
     },
+    atInternet: {
+      rename: 'hpc::nutanix::cluster::node::intervention',
+    },
   });
 };
