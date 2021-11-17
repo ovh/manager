@@ -92,7 +92,7 @@
 
     <form
         novalidate
-        name="$ctrl.newSnapshotPolicyForm"
+        name="$ctrl.snapshotPolicyForm"
         data-ng-submit="$ctrl.addNewSnapshotPolicy()"
     >
         <oui-field
@@ -226,6 +226,7 @@
                             class="oui-input w-75"
                             data-ng-model="$ctrl.minutes"
                             data-ng-change="$ctrl.addArrayValuesTo('minutes')"
+                            required
                         />
                     </td>
                     <td class="oui-table__cell">
@@ -271,7 +272,7 @@
                     <td class="oui-table__cell">
                         <oui-button
                             on-click="$ctrl.validateSnapshotPolicyRule()"
-                            disabled="!$ctrl.isNewRuleValid() || !$ctrl.newSnapshotPolicyForm.$valid || !$ctrl.isRulePrefixAllowed()"
+                            disabled="!$ctrl.isNewRuleValid() || !$ctrl.isRulePrefixAllowed()"
                         >
                             <span
                                 class="oui-icon oui-icon-check"

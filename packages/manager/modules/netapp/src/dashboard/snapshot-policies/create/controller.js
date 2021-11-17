@@ -2,8 +2,13 @@ import moment from 'moment';
 import { capitalize, range } from 'lodash-es';
 import { detectUserLocale } from '@ovh-ux/manager-config';
 
-const MONTHS = range(1, 13);
-const WEEKDAYS = range(1, 8);
+const DATE_CONSTANTS = {
+  MINUTES: range(1, 60),
+  HOURS: range(0, 24),
+  DAYS: range(1, 32),
+  MONTHS: range(1, 13),
+  WEEKDAYS: range(1, 8),
+};
 
 export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
   /* @ngInject */
@@ -24,7 +29,7 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
   }
 
   buildListItems() {
-    this.months = MONTHS.map((month) => ({
+    this.months = DATE_CONSTANTS.MONTHS.map((month) => ({
       id: month,
       label: capitalize(
         moment()
@@ -33,7 +38,7 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
       ),
       value: month,
     }));
-    this.weekdays = WEEKDAYS.map((weekday) => ({
+    this.weekdays = DATE_CONSTANTS.WEEKDAYS.map((weekday) => ({
       id: weekday,
       label: capitalize(
         moment()
@@ -78,7 +83,10 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
     return (
       this.newRule.prefix != null &&
       this.newRule.prefix !== '' &&
-      this.newRule.schedule.minutes.length > 0
+      this.newRule.schedule.minutes.length > 0 &&
+      !this.snapshotPolicyForm.minutes.$invalid &&
+      !this.snapshotPolicyForm.hours.$invalid &&
+      !this.snapshotPolicyForm.days.$invalid
     );
   }
 
@@ -86,12 +94,23 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
     const propertyModel = this[property];
 
     if (propertyModel) {
-      const valuesToSet = propertyModel.match(/\d+/g);
-      if (valuesToSet) {
-        this.newRule.schedule[property] = valuesToSet.map((value) =>
-          parseInt(value, 10),
-        );
+      const validInput = OvhManagerNetAppSnapshotPoliciesCreateCtrl.isInputValid(
+        propertyModel,
+      );
+      const areInputsInRange = OvhManagerNetAppSnapshotPoliciesCreateCtrl.checkInputsRange(
+        propertyModel,
+        DATE_CONSTANTS[property.toUpperCase()],
+      );
+      this.snapshotPolicyForm[property].$invalid =
+        !validInput || !areInputsInRange;
+      if (validInput && areInputsInRange) {
+        this.newRule.schedule[property] = propertyModel
+          .split(',')
+          .filter((value) => !Number.isNaN(parseInt(value, 10)))
+          .map((value) => parseInt(value, 10));
       }
+    } else {
+      this.newRule.schedule[property] = [];
     }
   }
 
@@ -150,5 +169,14 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
       .finally(() => {
         this.isCreating = false;
       });
+  }
+
+  static checkInputsRange(modelValue, rangeValues) {
+    const inputs = modelValue.match(/\d+/g);
+    return inputs.every((input) => rangeValues.includes(parseInt(input, 10)));
+  }
+
+  static isInputValid(input) {
+    return input.match(/^([^\D]?[0-9, ]+)$/g);
   }
 }
