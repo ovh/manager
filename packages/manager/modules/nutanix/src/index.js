@@ -15,9 +15,6 @@ angular
         resolve: {
           breadcrumb: () => 'nutanix',
         },
-      });
-      $stateProvider.state('nutanix.index.**', {
-        url: '',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 

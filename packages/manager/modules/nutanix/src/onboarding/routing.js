@@ -5,7 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: (transition) =>
       transition
         .injector()
-        .getAsync('resources')
+        .getAsync('clusters')
         .then((services) =>
           services.length !== 0
             ? {
