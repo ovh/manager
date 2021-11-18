@@ -117,7 +117,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
 
       breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('pci_app_list_title'),
+        $translate.instant('pci_ai_app_list_title'),
 
       messageContainer: () => 'pci.projects.project-ai.apps',
 
@@ -138,7 +138,7 @@ export default /* @ngInject */ ($stateProvider) => {
           },
           (error) => {
             CucCloudMessage.error(
-              $translate.instant('pci_app_list_start_error', {
+              $translate.instant('pci_ai_app_list_start_error', {
                 appName: app.name,
                 message: get(error, 'data.message'),
               }),
@@ -165,7 +165,7 @@ export default /* @ngInject */ ($stateProvider) => {
           },
           (error) => {
             CucCloudMessage.error(
-              $translate.instant('pci_app_list_stop_error', {
+              $translate.instant('pci_ai_app_list_stop_error', {
                 appName: app.name,
                 message: get(error, 'data.message'),
               }),
