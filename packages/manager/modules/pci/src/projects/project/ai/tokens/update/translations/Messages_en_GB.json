@@ -1,0 +1,8 @@
+{
+  "pci_ai_tokens_update_success": "Your token has been regenerated successfully, please save it",
+  "pci_ai_tokens_update_error": "An error has occurred regenerating the token: {{ message }}",
+  "pci_ai_tokens_update": "Token regeneration",
+  "pci_ai_tokens_update_common_update": "Regenerate ",
+  "pci_ai_tokens_update_common_cancel": "Cancel",
+  "pci_ai_tokens_update_warning": "Are you sure you want to regenerate {{ tokenId }}? Your previous token will no longer be valid."
+}
