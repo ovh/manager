@@ -98,7 +98,7 @@
     "testcafe-reporter-html": "^1.4.6"
   },
   "engines": {
-    "node": "^12 || ^14",
+    "node": "^14 || ^16",
     "yarn": ">=1.21.1"
   }
 }
