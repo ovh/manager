@@ -7,6 +7,7 @@ const legacy = require('@vitejs/plugin-legacy');
 const { proxy, sso: Sso } = require('@ovh-ux/manager-dev-server-config');
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const { env } = require('process');
 
 function viteOvhDevServerPlugin() {
   const region = process.env.REGION || 'EU';
@@ -15,10 +16,7 @@ function viteOvhDevServerPlugin() {
     configureServer(server) {
       const sso = new Sso(region);
       const app = express();
-      app.get('/auth', sso.auth.bind(sso));
-      app.get('/auth/check', sso.checkAuth.bind(sso));
-      const v6Proxy = proxy.v6(region);
-      app.use(createProxyMiddleware(v6Proxy.context, v6Proxy));
+
       const appDistPath = path.join(
         __dirname,
         '../',
@@ -33,6 +31,17 @@ function viteOvhDevServerPlugin() {
       } else {
         app.use('/app', express.static(appDistPath));
       }
+
+      app.get('/auth', sso.auth.bind(sso));
+      app.get('/auth/check', sso.checkAuth.bind(sso));
+
+      if (env.local2API) {
+        app.use(proxy.aapi.context, createProxyMiddleware(proxy.aapi));
+      }
+
+      const v6Proxy = proxy.v6(region);
+      app.use(createProxyMiddleware(v6Proxy.context, v6Proxy));
+
       server.middlewares.use(app);
     },
   };
