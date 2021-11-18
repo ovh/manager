@@ -1,12 +1,7 @@
 import angular from 'angular';
 import isNil from 'lodash/isNil';
 
-import {
-  PRODUCT_IMAGES,
-  ACTIONS,
-  LINKS,
-  COMMUNITY_LINKS,
-} from './project.constants';
+import { COMMUNITY_LINKS, PRODUCT_IMAGES } from './project.constants';
 
 export default class ProjectController {
   /* @ngInject */
@@ -60,12 +55,28 @@ export default class ProjectController {
     this.ovhFeatureFlipping
       .checkFeatureAvailability(featuresName)
       .then((features) => {
-        const isItemAvailable = (regions, feature) =>
-          (isNil(regions) || this.coreConfig.isRegion(regions)) &&
-          (!feature || features.isFeatureAvailable(feature));
-        this.actions = ACTIONS.filter(({ regions, feature }) =>
-          isItemAvailable(regions, feature),
-        );
+        const isItemAvailable = ({
+          regions,
+          feature,
+          availableForTrustedZone,
+        }) => {
+          const isValidRegion =
+            isNil(regions) || this.coreConfig.isRegion(regions);
+          const isValidFeature =
+            !feature || features.isFeatureAvailable(feature);
+
+          return (
+            (!this.isTrustedZone && isValidRegion && isValidFeature) ||
+            (this.isTrustedZone &&
+              availableForTrustedZone &&
+              isValidRegion &&
+              isValidFeature)
+          );
+        };
+
+        this.actions = ACTIONS.filter((action) => {
+          return isItemAvailable(action);
+        });
       });
     this.PciProject.setProjectInfo(this.project);
   }
