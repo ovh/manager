@@ -1,0 +1,63 @@
+<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+<oui-clipboard
+    data-ng-if="$ctrl.bearerToken"
+    data-model="$ctrl.bearerToken"
+></oui-clipboard>
+<div>
+    <p class="mb-3" data-translate="pci_ai_tokens_description_1"></p>
+    <oui-datagrid
+        data-rows="$ctrl.tokens"
+        data-row-loader="$ctrl.loadRow($row)"
+    >
+        <oui-datagrid-column
+            data-title=":: 'pci_ai_tokens_name' | translate"
+            data-property="name"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_ai_tokens_label_selector' | translate"
+            data-property="labelSelector"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_ai_tokens_region' | translate"
+            data-property="translatedRegion"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_ai_tokens_role' | translate"
+            data-property="role"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+            <span data-translate="pci_ai_tokens_role_name_{{ ::$row.role }}"
+                >tes</span
+            >
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item data-on-click="$ctrl.deleteToken($row.id)">
+                <span data-translate="pci_ai_tokens_delete"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item data-on-click="$ctrl.updateToken($row.id)">
+                <span data-translate="pci_ai_tokens_update"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+        <oui-datagrid-topbar>
+            <oui-button
+                data-aria-label="{{:: 'pci_ai_tokens_add_token' | translate }}"
+                data-on-click="$ctrl.addToken()"
+                ><span data-translate="pci_ai_tokens_add_token"></span>
+            </oui-button>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+</div>
