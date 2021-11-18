@@ -63,7 +63,7 @@
             ></p>
             <p
                 class="mb-0"
-                data-ng-if="plan.minStorage === plan.maxStorage"
+                data-ng-if="plan.maxStorage > 0 && plan.minStorage === plan.maxStorage"
                 data-translate="pci_database_plans_list_spec_storage_unique"
                 data-translate-values="{ 
                     storage: (plan.minStorage | cucBytes:2:false:'GB')

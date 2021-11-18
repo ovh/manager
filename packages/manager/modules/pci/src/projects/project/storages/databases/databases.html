@@ -91,20 +91,23 @@
             data-filterable
         >
             <span
-                ng-if="$ctrl.getCurrentFlavor($row).minDiskSize === $ctrl.getCurrentFlavor($row).maxDiskSize"
-                data-translate="pci_database_node_type"
+                data-translate="pci_database_node_type_cpu_memory"
                 data-translate-values="{
                     coreNumber: $ctrl.getCurrentFlavor($row).core,
-                    memorySize: ($ctrl.getCurrentFlavor($row).memory | cucBytes:2:false:'GB'),
+                    memorySize: ($ctrl.getCurrentFlavor($row).memory | cucBytes:2:false:'GB')
+                }"
+            ></span>
+            <span
+                ng-if="$ctrl.getCurrentFlavor($row).maxDiskSize > 0 && $ctrl.getCurrentFlavor($row).minDiskSize === $ctrl.getCurrentFlavor($row).maxDiskSize"
+                data-translate="pci_database_node_type_storage"
+                data-translate-values="{
                     storageSize: ($ctrl.getCurrentFlavor($row).minDiskSize | cucBytes:2:false:'GB')
                 }"
             ></span>
             <span
                 ng-if="$ctrl.getCurrentFlavor($row).minDiskSize !== $ctrl.getCurrentFlavor($row).maxDiskSize"
-                data-translate="pci_database_node_type_range"
+                data-translate="pci_database_node_type_storage_range"
                 data-translate-values="{
-                coreNumber: $ctrl.getCurrentFlavor($row).core,
-                memorySize: ($ctrl.getCurrentFlavor($row).memory | cucBytes:2:false:'GB'),
                 storageMinSize: ($ctrl.getCurrentFlavor($row).minDiskSize | cucBytes:2:false:'GB'),
                 storageMaxSize: ($ctrl.getCurrentFlavor($row).maxDiskSize | cucBytes:2:false:'GB')
             }"

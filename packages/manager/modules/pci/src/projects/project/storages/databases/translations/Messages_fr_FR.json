@@ -25,7 +25,8 @@
   "pci_database_list_upgrade_version_database": "Modifier la version",
   "pci_database_list_upgrade_plan_database": "Upgrade offre",
   "pci_database_list_upgrade_node_database": "Upgrade modèle de nœud",
-  "pci_database_node_type": "{{coreNumber}} CPU / {{memorySize}} RAM / {{storageSize}} Stockage SSD",
-  "pci_database_node_type_range": "{{coreNumber}} CPU / {{memorySize}} RAM / de {{storageMinSize}} à {{storageMaxSize}} Stockage SSD",
+  "pci_database_node_type_cpu_memory": "{{coreNumber}} CPU / {{memorySize}} RAM",
+  "pci_database_node_type_storage": " / {{storageSize}} de stockage SSD",
+  "pci_database_node_type_storage_range": " / de {{storageMinSize}} à {{storageMaxSize}} de stockage SSD",
   "pci_database_node_type_label": "Modèle de nœud"
 }
