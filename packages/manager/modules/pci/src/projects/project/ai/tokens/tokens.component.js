@@ -6,6 +6,8 @@ export default {
     tokens: '<',
     addToken: '<',
     bearerToken: '<',
+    deleteToken: '<',
+    updateToken: '<',
   },
   template,
   controller,

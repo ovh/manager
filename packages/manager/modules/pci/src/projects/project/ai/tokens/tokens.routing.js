@@ -19,6 +19,18 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
+      deleteToken: /* @ngInject */ ($state, projectId) => (tokenId) =>
+        $state.go('pci.projects.project.ai.tokens.delete', {
+          projectId,
+          tokenId,
+        }),
+
+      updateToken: /* @ngInject */ ($state, projectId) => (tokenId) =>
+        $state.go('pci.projects.project.ai.tokens.update', {
+          projectId,
+          tokenId,
+        }),
+
       goToTokens: ($state, CucCloudMessage, projectId) => (
         message = false,
         type = 'success',

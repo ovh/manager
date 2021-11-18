@@ -41,4 +41,16 @@ export default class AiTokenService {
       .post(`/cloud/project/${serviceName}/ai/token`, token)
       .then(({ data }) => data);
   }
+
+  deleteToken(serviceName, tokenId) {
+    return this.$http
+      .delete(`/cloud/project/${serviceName}/ai/token/${tokenId}`)
+      .then(({ data }) => data);
+  }
+
+  renewToken(serviceName, tokenId) {
+    return this.$http
+      .post(`/cloud/project/${serviceName}/ai/token/${tokenId}/renew`)
+      .then(({ data }) => data);
+  }
 }

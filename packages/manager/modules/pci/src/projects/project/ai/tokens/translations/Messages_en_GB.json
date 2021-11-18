@@ -2,7 +2,7 @@
   "pci_ai_title": "AI Apps",
   "pci_ai_apps_title": "Apps",
   "pci_ai_tokens_title": "Tokens",
-  "pci_ai_tokens_list_title": "All my AI Tokens",
+  "pci_ai_tokens_list_title": "My AI Tokens",
   "pci_ai_tokens_description_1": "Tokens are unique bearer in order to access to your deployed Apps / Notebook or Jobs",
   "pci_ai_tokens_name": "Name",
   "pci_ai_tokens_label_selector": "Label Selector",
