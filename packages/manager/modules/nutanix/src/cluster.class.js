@@ -1,15 +1,30 @@
+import { CLUSTER_STATUS } from './constants';
+
 export default class Cluster {
-  constructor({ serviceName, targetSpec, status }) {
+  constructor({ serviceName, targetSpec, status, nodeDetails }) {
     Object.assign(this, {
       serviceName,
       targetSpec,
       status,
+      nodeDetails,
     });
     this.status = this.status.toLowerCase();
   }
 
   getNodes() {
     return this.targetSpec?.nodes || [];
+  }
+
+  isActive() {
+    return this.status === CLUSTER_STATUS.ACTIVE;
+  }
+
+  isError() {
+    return this.status === CLUSTER_STATUS.ERROR;
+  }
+
+  isDeploying() {
+    return this.status === CLUSTER_STATUS.DEPLOYING;
   }
 
   getFirstNode() {
@@ -26,5 +41,9 @@ export default class Cluster {
 
   getLicense() {
     return this.targetSpec?.license;
+  }
+
+  setNodeDetails(nodeDetails) {
+    this.nodeDetails = nodeDetails;
   }
 }
