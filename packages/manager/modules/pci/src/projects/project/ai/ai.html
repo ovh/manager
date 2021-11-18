@@ -1,24 +1,17 @@
 <div data-ui-view="content">
-    <oui-header
-        class="mb-3"
-        data-heading="{{:: 'pci_projects_project_ai_title' | translate }}"
-    >
+    <oui-header class="mb-3" data-heading="{{:: 'pci_ai_title' | translate }}">
         <oui-header-tabs>
             <oui-header-tabs-item
                 data-href="{{:: $ctrl.appsLink }}"
                 data-active="$ctrl.currentActiveLink() === $ctrl.appsLink"
             >
-                <span
-                    data-translate="pci_projects_project_ai_apps_title"
-                ></span>
+                <span data-translate="pci_ai_apps_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-href="{{:: $ctrl.tokensLink }}"
                 data-active="$ctrl.currentActiveLink() === $ctrl.tokensLink"
             >
-                <span
-                    data-translate="pci_projects_project_ai_tokens_title"
-                ></span>
+                <span data-translate="pci_ai_tokens_title"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
 

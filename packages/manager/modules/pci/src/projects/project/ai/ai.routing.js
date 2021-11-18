@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('pci_projects_project_ai_title'),
+        $translate.instant('pci_ai_title'),
       isAuthorized: /* @ngInject */ (PciProjectAiService, projectId) =>
         PciProjectAiService.isAuthorized(projectId),
       appsLink: /* @ngInject */ ($state, projectId) =>

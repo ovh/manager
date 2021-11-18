@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 export default class PciProjectAiService {
   /* @ngInject */
   constructor(
@@ -50,6 +52,23 @@ export default class PciProjectAiService {
           );
           return aiRole !== undefined;
         });
+      });
+  }
+
+  getRegions(serviceName) {
+    return this.OvhApiCloudProjectAi.Capabilities()
+      .Training()
+      .Region()
+      .v6()
+      .query({
+        serviceName,
+      })
+      .$promise.then((regions) => {
+        return map(regions, (region) => ({
+          ...region,
+          name: region.id,
+          hasEnoughQuota: () => true,
+        }));
       });
   }
 }

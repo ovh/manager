@@ -8,6 +8,7 @@ import 'ovh-api-services';
 
 import labs from '../../../components/project/labs';
 import apps from './apps';
+import tokens from './tokens';
 
 import component from './ai.component';
 import routing from './ai.routing';
@@ -26,6 +27,7 @@ angular
     'ui.router',
     labs,
     apps,
+    tokens,
   ])
   .config(routing)
   .component('pciProjectAi', component)

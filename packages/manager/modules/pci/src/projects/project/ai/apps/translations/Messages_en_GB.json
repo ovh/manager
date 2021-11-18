@@ -1,4 +1,7 @@
 {
+  "pci_ai_title": "AI Apps",
+  "pci_ai_apps_title": "Apps",
+  "pci_ai_tokens_title": "Tokens",
   "pci_app_list_title": "All my apps",
   "pci_app_list_name": "Name",
   "pci_app_list_region": "Region",
@@ -23,8 +26,5 @@
   "pci_app_list_start_error": "An error has occurred attempting to start the {{appName}} app: {{message}}",
   "pci_app_list_stop_error": "An error has occurred attempting to stop the {{appName}} app: {{message}}",
   "pci_app_list_status_FAILED": "Error",
-  "pci_app_list_creator": "User",
-  "pci_projects_project_ai_title": "AI Apps",
-  "pci_projects_project_ai_apps_title": "Apps",
-  "pci_projects_project_ai_tokens_title": "Tokens"
+  "pci_app_list_creator": "User"
 }
