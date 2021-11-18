@@ -19,6 +19,16 @@
         <div class="overSelect"></div>
     </div>
     <div class="checkbox_list" data-ng-if="$ctrl.showList">
+        <div class="checkbox_container">
+            <oui-checkbox
+                on-change="$ctrl.onSelectAll(modelValue)"
+                model="$ctrl.selectAll"
+            >
+                <span
+                    data-translate="{{ $ctrl.selectAll ? 'select_checkboxes_unselect_all' : 'select_checkboxes_select_all' }}"
+                ></span>
+            </oui-checkbox>
+        </div>
         <div
             class="checkbox_container"
             data-ng-repeat="$item in $ctrl.items track by $index"
