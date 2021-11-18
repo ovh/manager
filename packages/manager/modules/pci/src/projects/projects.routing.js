@@ -1,6 +1,7 @@
 import { SupportLevel } from '@ovh-ux/manager-models';
 
 import Offer from '../components/project/offer/offer.class';
+import { PCI_FEATURES } from './projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects', {
@@ -54,11 +55,8 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
-      isHdsAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
-        const hdsId = 'public-cloud:hds';
-        return ovhFeatureFlipping
-          .checkFeatureAvailability(hdsId)
-          .then((hdsFeature) => hdsFeature.isFeatureAvailable(hdsId));
+      isHdsAvailable: /* @ngInject */ (pciFeatures) => {
+        return pciFeatures.isFeatureAvailable(PCI_FEATURES.OTHERS.HDS);
       },
 
       isValidHdsSupportLevel: /* @ngInject */ (coreConfig) => {
@@ -87,6 +85,54 @@ export default /* @ngInject */ ($stateProvider) => {
       terminateProject: /* @ngInject */ (OvhApiCloudProject) => (project) =>
         OvhApiCloudProject.v6().delete({ serviceName: project.serviceName })
           .$promise,
+
+      user: /* @ngInject */ (SessionService) => SessionService.getUser(),
+
+      /**
+       * Indicate if customer is trusted zone program
+       * @param pciFeatures {OvhFeatureFlipping} : ovhFeatureFlipping instance
+       * @returns {*|boolean}: true if customer is trusted, otherwise false
+       */
+      isTrustedZone: /* @ngInject */ (pciFeatures) => {
+        return pciFeatures.isFeatureAvailable(PCI_FEATURES.OTHERS.TRUSTED_ZONE);
+      },
+
+      /**
+       * This function can be used to know if feature is accessible or not
+       * @param pciFeatures { ovhFeatureFlipping }: feature flipping instance
+       * @param projects { Array }: projects instance list
+       * @returns {(function(*=): (string|boolean))|*}: state where the redirection is going, or false which mean no redirection required
+       */
+      pciFeatureRedirect: /* @ngInject */ (pciFeatures, projects) => (
+        feature,
+      ) => {
+        if (pciFeatures.isFeatureAvailable(feature)) {
+          return projects.length ? 'pci.projects' : 'pci.projects.onboarding';
+        }
+
+        return false;
+      },
+
+      /**
+       * Use this to know if PCI feature is available
+       * eg: pciFeatures.isFeatureAvailable('kubernetes') for a product
+       * eg: pciFeatures.isFeatureAvailable('public-cloud:users') for a settings
+       * for more info about feature list, take a look at projects.constant.js file
+       */
+      pciFeatures: /* @ngInject */ (ovhFeatureFlipping) => {
+        const featuresKeys = Object.keys(PCI_FEATURES);
+        const pciFeaturesList = featuresKeys.reduce(
+          (features, featCategory) => {
+            const categoryFeatures = Object.values(PCI_FEATURES[featCategory]);
+            return features.concat(categoryFeatures);
+          },
+          [],
+        );
+
+        return ovhFeatureFlipping
+          .checkFeatureAvailability(pciFeaturesList)
+          .then((features) => features);
+      },
 
       projectsTrackPrefix: () => 'PublicCloud::pci::projects',
 
