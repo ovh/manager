@@ -7,6 +7,7 @@ export default {
     quotas: '<',
     project: '<',
     user: '<',
+    isTrustedZone: '<',
     getQuotaUrl: '<',
     getStateName: '<',
     steins: '<',

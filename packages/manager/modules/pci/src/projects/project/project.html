@@ -19,6 +19,13 @@
                 class="pci-project-content w-100 h-100 pt-4 px-3 px-md-5"
                 style="overflow: auto;"
             >
+                <!--Trusted zone badge-->
+                <div class="text-center">
+                    <ovh-manager-trusted-nic-label
+                        data-ng-if="$ctrl.isTrustedZone"
+                    ></ovh-manager-trusted-nic-label>
+                </div>
+
                 <account-migration-notification></account-migration-notification>
                 <ui-router-breadcrumb></ui-router-breadcrumb>
                 <div class="pci-project-view mt-3 pb-4" data-ui-view>
