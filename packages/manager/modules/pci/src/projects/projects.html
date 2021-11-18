@@ -2,6 +2,14 @@
 <div class="pci-projects w-100 h-100 overflow-auto" data-ui-view>
     <account-migration-notification></account-migration-notification>
     <div class="container px-3 py-5">
+
+        <!--Trusted zone badge-->
+        <div class="text-center">
+            <ovh-manager-trusted-nic-label
+                data-ng-if="$ctrl.isTrustedZone"
+            ></ovh-manager-trusted-nic-label>
+        </div>
+
         <h1 data-translate="pci_projects"></h1>
         <cui-message-container
             data-messages="$ctrl.messages"
