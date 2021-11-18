@@ -4,7 +4,7 @@
     ></cui-message-container>
     <oui-datagrid id="publicCloudAppsDatagrid" data-rows="$ctrl.apps">
         <oui-datagrid-column
-            title=":: 'pci_app_list_name' | translate"
+            title=":: 'pci_ai_app_list_name' | translate"
             data-property="name"
             data-type="string"
             data-searchable
@@ -17,7 +17,7 @@
             ></a>
         </oui-datagrid-column>
         <oui-datagrid-column
-            data-title=":: 'pci_app_list_region' | translate"
+            data-title=":: 'pci_ai_app_list_region' | translate"
             data-property="region"
             data-type="string"
             data-searchable
@@ -29,7 +29,7 @@
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
-            data-title=":: 'pci_app_list_cpu' | translate"
+            data-title=":: 'pci_ai_app_list_cpu' | translate"
             data-property="cpu"
             data-type="number"
             data-sortable
@@ -37,7 +37,7 @@
         >
         </oui-datagrid-column>
         <oui-datagrid-column
-            data-title=":: 'pci_app_list_gpu' | translate"
+            data-title=":: 'pci_ai_app_list_gpu' | translate"
             data-property="gpu"
             data-type="number"
             data-sortable
@@ -45,18 +45,18 @@
         >
         </oui-datagrid-column>
         <oui-datagrid-column
-            data-title=":: 'pci_app_list_privacy' | translate"
+            data-title=":: 'pci_ai_app_list_privacy' | translate"
             data-property="unsecureHttp"
             data-type="boolean"
             data-sortable
             data-filterable
         >
             <span
-                data-translate="{{:: $row.unsecureHttp ? 'pci_app_list_privacy_public' : 'pci_app_list_privacy_private' }}"
+                data-translate="{{:: $row.unsecureHttp ? 'pci_ai_app_list_privacy_public' : 'pci_ai_app_list_privacy_private' }}"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
-            data-title=":: 'pci_app_list_running_time' | translate"
+            data-title=":: 'pci_ai_app_list_running_time' | translate"
             data-property="duration"
             data-type="number"
             data-sortable
@@ -64,7 +64,7 @@
             <span data-ng-bind=":: $row.durationString"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
-            data-title=":: 'pci_app_list_creator' | translate"
+            data-title=":: 'pci_ai_app_list_creator' | translate"
             data-property="user"
             data-type="string"
             data-searchable
@@ -73,7 +73,7 @@
         >
         </oui-datagrid-column>
         <oui-datagrid-column
-            data-title=":: 'pci_app_list_status' | translate"
+            data-title=":: 'pci_ai_app_list_status' | translate"
             data-property="state"
             data-sortable
         >
@@ -86,12 +86,12 @@
                 }"
             >
                 <span
-                    data-ng-bind="('pci_app_list_status_' + $row.state) | translate"
+                    data-ng-bind="('pci_ai_app_list_status_' + $row.state) | translate"
                 ></span>
             </span>
         </oui-datagrid-column>
         <oui-datagrid-column
-            data-title=":: 'pci_app_list_access' | translate"
+            data-title=":: 'pci_ai_app_list_access' | translate"
             data-property="accessUrl"
             data-type="string"
         >
@@ -120,25 +120,25 @@
         </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="left-start">
             <oui-action-menu-item data-on-click="$ctrl.goToAppDetails($row)">
-                <span data-translate="pci_app_list_details"></span>
+                <span data-translate="pci_ai_app_list_details"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-on-click="$ctrl.onAppStartClick($row.id)"
                 data-disabled="!$row.isTerminal()"
             >
-                <span data-translate="pci_app_list_start_app"></span>
+                <span data-translate="pci_ai_app_list_start_app"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-on-click="$ctrl.onAppStopClick($row.id)"
                 data-disabled="!$row.isRunning()"
             >
-                <span data-translate="pci_app_list_stop_app"></span>
+                <span data-translate="pci_ai_app_list_stop_app"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-on-click="$ctrl.deleteApp($row)"
                 data-disabled="!$row.isTerminal()"
             >
-                <span data-translate="pci_app_list_delete_app"></span>
+                <span data-translate="pci_ai_app_list_delete_app"></span>
             </oui-action-menu-item>
         </oui-action-menu>
         <oui-datagrid-topbar>
@@ -148,7 +148,7 @@
                 data-ng-click="$ctrl.createApp()"
             >
                 <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
-                <span data-translate="pci_app_list_create_app"></span>
+                <span data-translate="pci_ai_app_list_create_app"></span>
             </button>
         </oui-datagrid-topbar>
     </oui-datagrid>
