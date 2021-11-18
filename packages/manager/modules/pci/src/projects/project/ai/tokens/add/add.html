@@ -1,0 +1,103 @@
+<form
+    id="addToken"
+    name="addToken"
+    data-ng-submit="addToken.$valid && $ctrl.addToken()"
+    validate
+>
+    <oui-modal
+        data-heading="{{:: 'pci_ai_tokens_add' | translate }}"
+        data-primary-label="{{:: 'pci_ai_tokens_common_add' | translate }}"
+        data-secondary-label="{{:: 'pci_ai_tokens_common_cancel' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-primary-disabled="!addToken.$valid"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isAdding"
+    >
+        <oui-field
+            data-label="{{:: 'pci_ai_tokens_name' | translate }}"
+            data-size="auto"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="name"
+                name="name"
+                required
+                maxlength="100"
+                data-ng-model="$ctrl.token.name"
+                data-ng-pattern="/^[\w]+/"
+            />
+        </oui-field>
+
+        <span data-translate="pci_ai_tokens_add_info"></span>
+
+        <oui-field
+            data-label="{{:: 'pci_ai_tokens_label_selector' | translate }}"
+            data-error-messages="{ pattern: ('pci_ai_tokens_label_selector_validation_error' | translate) }"
+            data-size="auto"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="labelSelector"
+                name="labelSelector"
+                required
+                maxlength="100"
+                data-ng-model="$ctrl.token.labelSelector"
+                data-ng-pattern="/^[\w]+=[\w]+$/"
+            />
+        </oui-field>
+
+        <oui-field
+            data-label="{{:: 'pci_ai_tokens_role' | translate  }}"
+            data-label-popover="{{:: 'pci_ai_tokens_role_help' | translate }}"
+            size="auto"
+        >
+            <label class="oui-select">
+                <select
+                    name="role"
+                    data-ng-model="$ctrl.token.role"
+                    class="oui-select__input"
+                    data-ng-required="true"
+                >
+                    <option
+                        ng-repeat="role in $ctrl.ROLES"
+                        value="{{role}}"
+                        data-ng-bind="::'pci_ai_tokens_role_name_'+ role | translate"
+                    >
+                    </option>
+                </select>
+                <span
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></span>
+            </label>
+        </oui-field>
+
+        <oui-field
+            data-label="{{:: 'pci_ai_tokens_region' | translate  }}"
+            data-label-popover="{{:: 'pci_ai_tokens_region_help' | translate }}"
+            size="auto"
+        >
+            <label class="oui-select">
+                <select
+                    name="region"
+                    data-ng-model="$ctrl.token.region"
+                    class="oui-select__input"
+                    data-ng-required="true"
+                >
+                    <option
+                        ng-repeat="region in $ctrl.regions"
+                        value="{{region.id}}"
+                        data-ng-bind="::region.id"
+                    >
+                    </option>
+                </select>
+                <span
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></span>
+            </label>
+        </oui-field>
+    </oui-modal>
+</form>
