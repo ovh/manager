@@ -22,44 +22,49 @@ export const ACTIONS = [
   {
     translation: 'pci_projects_project_create_an_instance',
     state: 'pci.projects.project.instances.add',
+    feature: PCI_FEATURES.PRODUCTS.INSTANCE,
     name: 'instances',
   },
   {
     translation: 'pci_projects_project_create_cluster_kubernetes',
-    state: 'pci.projects.project.kubernetes.add',
-    feature: 'kubernetes',
+    state: 'pci.projects.project.kubernetes',
+    feature: PCI_FEATURES.PRODUCTS.KUBERNETES,
     name: 'kubernetes',
   },
   {
     translation: 'pci_projects_project_create_a_container',
     state: 'pci.projects.project.storages.object-storage.add',
+    feature: PCI_FEATURES.PRODUCTS.OBJECT_STORAGE,
     name: 'objectstorage',
   },
   {
     translation: 'pci_projects_project_create_a_volume',
     state: 'pci.projects.project.storages.blocks.add',
+    feature: PCI_FEATURES.PRODUCTS.BLOCK_STORAGE,
     name: 'blockstorage',
   },
   {
     translation: 'pci_projects_project_create_cluster_database',
     state: 'pci.projects.project.storages.databases.add',
-    feature: 'databases',
+    feature: PCI_FEATURES.PRODUCTS.DATABASES,
     name: 'databases',
   },
   {
     translation: 'pci_projects_project_create_ai_notebook',
     state: 'pci.projects.project.notebooks',
-    feature: 'notebooks',
+    feature: PCI_FEATURES.PRODUCTS.NOTEBOOKS,
     name: 'ainotebook',
   },
   {
     translation: 'pci_projects_project_activate_private_networks',
     state: 'pci.projects.project.privateNetwork',
+    feature: PCI_FEATURES.PRODUCTS.PRIVATE_NETWORK,
     name: 'privatenetwork',
   },
   {
     translation: 'pci_projects_project_buy_ip_failover',
     state: 'pci.projects.project.failover-ips',
+    feature: PCI_FEATURES.PRODUCTS.FAILOVER_IP,
     name: 'ipfailover',
   },
 ];
@@ -67,28 +72,30 @@ export const ACTIONS = [
 export const LINKS = [
   {
     translation:
-      'pci_projects_project_documentation_public_cloud_essential_information',
+      'pci_projects_project_documentation_create_user_access_to_horizon',
     href:
-      'https://docs.ovh.com/gb/en/public-cloud/public-cloud-essential-information/',
-    regions: ['EU', 'CA'],
-  },
-  {
-    translation: 'pci_projects_project_documentation_public_cloud_interface',
-    href: 'https://docs.ovh.com/gb/en/public-cloud/public-cloud-interface/',
+      'https://docs.ovh.com/gb/en/public-cloud/configure_user_access_to_horizon/',
     regions: ['EU', 'CA'],
   },
   {
     translation:
-      'pci_projects_project_documentation_get_started_with_a_public_cloud_instance',
+      'pci_projects_project_documentation_boot_your_first_cloud_server_in_3_minutes',
     href:
-      'https://docs.ovh.com/gb/en/public-cloud/get-started-with-a-public-cloud-instance/',
+      'https://docs.ovh.com/gb/en/public-cloud/create_an_instance_in_your_ovh_customer_account',
     regions: ['EU', 'CA'],
   },
   {
     translation:
-      'pci_projects_project_documentation_information_on_cloud_billing_options',
+      'pci_projects_project_documentation_prepare_the_environment_for_using_the_open_stack_api',
     href:
-      'https://docs.ovh.com/gb/en/public-cloud/information-on-cloud-billing-options/',
+      'https://docs.ovh.com/gb/en/public-cloud/prepare_the_environment_for_using_the_openstack_api/',
+    regions: ['EU', 'CA'],
+  },
+  {
+    translation:
+      'pci_projects_project_documentation_create_and_configure_and_additional_disk_on_an_instance',
+    href:
+      'https://docs.ovh.com/gb/en/public-cloud/create-an-additional-volume-and-attach-it-to-an-instance/',
     regions: ['EU', 'CA'],
   },
   {
