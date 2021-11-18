@@ -5,6 +5,8 @@ import component from './tokens.component';
 import routing from './tokens.routing';
 
 import add from './add';
+import deleteModule from './delete';
+import update from './update';
 
 const moduleName = 'ovhManagerPciAiTokens';
 
@@ -15,6 +17,8 @@ angular
     'pascalprecht.translate',
     'ui.router',
     add,
+    deleteModule,
+    update,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)

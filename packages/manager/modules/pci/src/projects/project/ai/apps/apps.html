@@ -1,22 +1,4 @@
 <div data-ui-view>
-    <oui-header
-        data-heading="{{:: 'pci_app_list_title' | translate }}"
-        class="mb-3"
-    >
-        <oui-guide-menu
-            data-text="{{:: 'pci_project_guides_header' | translate }}"
-        >
-            <oui-guide-menu-item
-                data-href="{{ $ctrl.guideUrl }}"
-                data-on-click="$ctrl.onGuideLinkClick('all')"
-                data-external
-            >
-                <span
-                    data-translate="pci_project_guides_header_all_guides"
-                ></span>
-            </oui-guide-menu-item>
-        </oui-guide-menu>
-    </oui-header>
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
