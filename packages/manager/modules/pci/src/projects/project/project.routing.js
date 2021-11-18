@@ -57,8 +57,6 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ (project) =>
         project.status !== 'creating' ? project.description : null,
 
-      user: /* @ngInject */ (SessionService) => SessionService.getUser(),
-
       getQuotaUrl: /* @ngInject */ ($state) => () =>
         $state.href('pci.projects.project.quota'),
 

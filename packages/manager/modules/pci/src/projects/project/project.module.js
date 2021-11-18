@@ -7,6 +7,7 @@ import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 import '@ovh-ux/manager-incident-banner';
 import ovhManagerAdvices from '@ovh-ux/manager-advices';
+import trustedNic from '@ovh-ux/manager-trusted-nic';
 
 import analyticsDataPlatform from './analytics-data-platform';
 import baremetal from './baremetal';
@@ -49,6 +50,7 @@ const moduleName = 'ovhManagerPciProject';
 angular
   .module(moduleName, [
     ovhManagerAdvices,
+    trustedNic,
     analyticsDataPlatform,
     baremetal,
     billing,
