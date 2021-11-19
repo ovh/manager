@@ -18,6 +18,7 @@ angular.module('App').controller(
       Alerter,
       Hosting,
       HostingUser,
+      WucUser,
     ) {
       this.$q = $q;
       this.$scope = $scope;
@@ -28,11 +29,13 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.Hosting = Hosting;
       this.HostingUser = HostingUser;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
       this.atInternet.trackPage({ name: 'web::hosting::ftp' });
 
+      this.guide = null;
       this.primaryUser = null;
       this.allowUpdateState = true;
       this.displayFtpExplorer = true;
@@ -51,6 +54,8 @@ angular.module('App').controller(
       this.search = {
         value: null,
       };
+
+      this.getGuides();
 
       this.$scope.loadFtpInformations = (count, offset) =>
         this.loadFtpInformations(count, offset);
@@ -101,6 +106,14 @@ angular.module('App').controller(
         .then(({ capabilities }) => {
           this.displayFtpExplorer = get(capabilities, 'filesBrowser', false);
         });
+    }
+
+    getGuides() {
+      return this.WucUser.getUrlOf('guides').then((guides) => {
+        if (guides && guides.hostingFtp) {
+          this.guide = guides.hostingFtp;
+        }
+      });
     }
 
     resetSearch() {

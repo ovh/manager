@@ -10,6 +10,20 @@
 
             <p data-translate="hosting_tab_FTP_dashboard_information"></p>
 
+            <div class="mb-4">
+                <span class="fa fa-life-ring mr-2" aria-hidden="true"></span>
+                <span data-translate="hosting_tab_FTP_guide_help"></span>
+                <a
+                    data-ng-href="{{:: ctrlHostingTabFTP.guide}}"
+                    target="_blank"
+                    title="{{hosting_guide_help}} {{ 'common_newtab' | translate }}"
+                    rel="noopener"
+                >
+                    <span data-translate="hosting_guide_help"></span>
+                    <span class="fa fa-external-link" aria-hidden="true"></span>
+                </a>
+            </div>
+
             <!-- PERSO  -->
             <div
                 data-ng-if="ctrlHostingTabFTP.ftpInformations.hasMultiFtp === false"

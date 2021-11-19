@@ -791,6 +791,7 @@
   "hosting_tab_FTP_configuration_change_password_step1_error": "Les mots de passe entrés ne sont pas identiques.",
   "hosting_tab_FTP_configuration_change_password_fail": "Une erreur est survenue lors de la demande de changement du mot de passe de l'utilisateur {{t0}}.",
   "hosting_tab_FTP_configuration_change_password_success": "Le mot de passe va être modifié.",
+  "hosting_tab_FTP_guide_help": "Besoin d'aide pour accéder à l’espace de stockage de votre hébergement web ?",
   "hosting_configuration_tab_sql_add_base": "Ajouter une base",
   "hosting_configuration_tab_sql_php_my_admin": "PHP MyAdmin",
   "hosting_configuration_tab_sql_data_base": "Base de données",
