@@ -1,3 +1,5 @@
+import { PCI_FEATURES } from '../projects.constant';
+
 import ASSET_INSTANCES from './assets/instances.png';
 import ASSET_DATABASES from './assets/databases.png';
 import ASSET_KUBERNETES from './assets/kubernetes.png';
@@ -72,61 +74,59 @@ export const ACTIONS = [
 export const LINKS = [
   {
     translation:
-      'pci_projects_project_documentation_create_user_access_to_horizon',
+      'pci_projects_project_documentation_public_cloud_essential_information',
     href:
-      'https://docs.ovh.com/gb/en/public-cloud/configure_user_access_to_horizon/',
-    regions: ['EU', 'CA'],
+      'https://docs.ovh.com/gb/en/public-cloud/public-cloud-essential-information/',
+    feature: PCI_FEATURES.LINKS.CLOUD_ESSENTIAL_INFORMATION,
+  },
+  {
+    translation: 'pci_projects_project_documentation_public_cloud_interface',
+    href: 'https://docs.ovh.com/gb/en/public-cloud/public-cloud-interface/',
+    feature: PCI_FEATURES.LINKS.PUBLIC_CLOUD_INTERFACE,
   },
   {
     translation:
-      'pci_projects_project_documentation_boot_your_first_cloud_server_in_3_minutes',
+      'pci_projects_project_documentation_get_started_with_a_public_cloud_instance',
     href:
-      'https://docs.ovh.com/gb/en/public-cloud/create_an_instance_in_your_ovh_customer_account',
-    regions: ['EU', 'CA'],
+      'https://docs.ovh.com/gb/en/public-cloud/get-started-with-a-public-cloud-instance/',
+    feature: PCI_FEATURES.LINKS.START_PCI_INSTANCE,
   },
   {
     translation:
-      'pci_projects_project_documentation_prepare_the_environment_for_using_the_open_stack_api',
+      'pci_projects_project_documentation_information_on_cloud_billing_options',
     href:
-      'https://docs.ovh.com/gb/en/public-cloud/prepare_the_environment_for_using_the_openstack_api/',
-    regions: ['EU', 'CA'],
-  },
-  {
-    translation:
-      'pci_projects_project_documentation_create_and_configure_and_additional_disk_on_an_instance',
-    href:
-      'https://docs.ovh.com/gb/en/public-cloud/create-an-additional-volume-and-attach-it-to-an-instance/',
-    regions: ['EU', 'CA'],
+      'https://docs.ovh.com/gb/en/public-cloud/information-on-cloud-billing-options/',
+    feature: PCI_FEATURES.LINKS.CLOUD_BILLING_OPTIONS,
   },
   {
     translation:
       'pci_projects_project_documentation_see_all_public_cloud_guides',
     href: 'https://docs.ovh.com/gb/en/',
-    regions: ['EU', 'CA'],
+    feature: PCI_FEATURES.LINKS.ALL_GUIDES,
   },
   {
     translation:
       'pci_projects_project_documentation_how_to_create_a_horizon_user',
     href: 'https://support.us.ovhcloud.com/hc/en-us/articles/360008644539',
-    regions: ['US'],
+    feature: PCI_FEATURES.LINKS.CREATE_HORIZON_USER,
   },
   {
     translation:
       'pci_projects_project_documentation_how_to_deploy_a_public_cloud_instance',
     href: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002245164',
-    regions: ['US'],
+    feature: PCI_FEATURES.LINKS.DEPLOY_A_PUBLIC_CLOUD_INSTANCE,
   },
   {
     translation:
       'pci_projects_project_documentation_getting_started_with_block_storage',
     href: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002157044',
-    regions: ['US'],
+    feature: PCI_FEATURES.LINKS.START_WITH_BLOCK_STORAGE,
   },
   {
     translation:
       'pci_projects_project_documentation_see_all_public_cloud_guides',
     href: 'https://support.us.ovhcloud.com/hc/en-us/categories/115000515130',
-    regions: ['US'],
+    feature: PCI_FEATURES.LINKS.ALL_GUIDES_US,
   },
 ];
 
