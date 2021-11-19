@@ -43,7 +43,7 @@ export default class VolumeCreateCtrl {
         ),
       )
       .catch((error) =>
-        this.goBack(
+        this.goToVolumes(
           this.$translate.instant('netapp_volume_create_error', {
             message: error.message,
           }),
@@ -53,5 +53,10 @@ export default class VolumeCreateCtrl {
       .finally(() => {
         this.isCreating = false;
       });
+  }
+
+  goBack() {
+    this.trackClick('create::cancel');
+    return this.goToVolumes();
   }
 }
