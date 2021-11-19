@@ -1,5 +1,5 @@
 import { GUIDES_URL } from '../../components/project/guides-header/guides-header.constants';
-import { LEGACY_PLAN_CODES } from './project.constants';
+import { ACTIONS, LEGACY_PLAN_CODES, LINKS } from './project.constants';
 
 const isLegacy = (planCode) => LEGACY_PLAN_CODES.includes(planCode);
 
@@ -88,6 +88,20 @@ export default /* @ngInject */ ($stateProvider) => {
               (stein1, stein2) => new Date(stein1.date) - new Date(stein2.date),
             ),
           ),
+
+      /**
+       * Available links
+       */
+      links: /* @ngInject */ (pciFeatures) =>
+        LINKS.filter(({ feature }) => pciFeatures.isFeatureAvailable(feature)),
+
+      /**
+       * Available actions
+       */
+      actions: /* @ngInject */ (pciFeatures) =>
+        ACTIONS.filter(({ feature }) =>
+          pciFeatures.isFeatureAvailable(feature),
+        ),
 
       customerRegions: /* @ngInject */ (PciProject, projectId) =>
         PciProject.getCustomerRegions(projectId),
