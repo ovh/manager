@@ -298,64 +298,35 @@
                         </dd>
 
                         <dt
-                            data-translate="hosting_tab_FTP_dashboard_server_link"
+                            data-translate="hosting_tab_FTP_SSH_dashboard_server"
                         ></dt>
                         <dd class="mb-3">
-                            <a
-                                data-ng-href="ftp://{{ftp.url}}:{{ftp.port}}/"
-                                target="_blank"
-                                title="{{ 'hosting_dashboard_service_home_ftp_newtab' | translate }}"
-                            >
-                                <span data-ng-bind="ftpUrl"></span>
-                                <span
-                                    class="fa fa-external-link"
-                                    aria-hidden="true"
-                                ></span>
-                            </a>
+                            <oui-clipboard
+                                class="w-75"
+                                data-model="ssh.url"
+                            ></oui-clipboard>
                         </dd>
 
-                        <dt
-                            data-translate="hosting_tab_FTP_dashboard_clusterip"
-                        ></dt>
-                        <dd
-                            class="mb-3"
-                            data-ng-bind="ctrlHostingTabFTP.ftpInformations.hostingIp"
-                        ></dd>
-
-                        <dt
-                            data-translate="hosting_dashboard_service_home_ssh"
-                        ></dt>
-                        <dd class="mb-3">
-                            <a
-                                data-ng-href="ssh://{{ssh.url}}:{{ssh.port}}/"
-                                target="_blank"
-                                title="{{ 'hosting_dashboard_service_home_ssh_newtab' | translate }}"
-                            >
-                                <span data-ng-bind="sshUrl"></span>
-                                <span
-                                    class="fa fa-external-link"
-                                    aria-hidden="true"
-                                ></span>
-                            </a>
-                        </dd>
+                        <dl
+                            class="w-50 oui-description oui-description_horizontal"
+                        >
+                            <dt data-translate="hosting_tab_FTP_FTP_port"></dt>
+                            <dd data-ng-bind="ftp.port"></dd>
+                            <dt data-translate="hosting_tab_FTP_SFTP_port"></dt>
+                            <dd data-ng-bind="ssh.port"></dd>
+                            <dt data-translate="hosting_tab_FTP_SSH_port"></dt>
+                            <dd data-ng-bind="ssh.port"></dd>
+                        </dl>
                     </dl>
                 </div>
                 <div class="col-md-6">
                     <dl>
                         <dt
-                            data-translate="hosting_tab_FTP_dashboard_primary_ftp_login"
+                            data-translate="hosting_tab_FTP_dashboard_login"
                         ></dt>
                         <dd
                             class="mb-3"
                             data-ng-bind="ctrlHostingTabFTP.primaryUser.ftp.user"
-                        ></dd>
-
-                        <dt
-                            data-translate="hosting_tab_FTP_dashboard_primary_ssh_login"
-                        ></dt>
-                        <dd
-                            class="mb-3"
-                            data-ng-bind="ctrlHostingTabFTP.primaryUser.ssh.user"
                         ></dd>
 
                         <dt
