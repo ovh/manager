@@ -1,9 +1,9 @@
 import get from 'lodash/get';
 import {
   NAME_PATTERN,
-  MIN_LENGTH,
-  MAX_LENGTH,
-} from '../../databases/create-database/create-database.constants';
+  MIN_NAME_LENGTH,
+  MAX_NAME_LENGTH,
+} from '../../../add/add.constants';
 
 export default class {
   /* @ngInject */
@@ -17,8 +17,8 @@ export default class {
     this.name = this.database.description;
     this.trackDashboard('general_information::modify_name', 'page');
     this.pattern = NAME_PATTERN;
-    this.minNameLength = MIN_LENGTH;
-    this.maxNameLength = MAX_LENGTH;
+    this.minNameLength = MIN_NAME_LENGTH;
+    this.maxNameLength = MAX_NAME_LENGTH;
   }
 
   edit() {
