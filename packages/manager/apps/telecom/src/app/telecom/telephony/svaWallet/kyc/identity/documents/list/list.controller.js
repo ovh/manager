@@ -34,13 +34,6 @@ export default class DocumentsListController {
       'telephony_billingAccount_svaWallet_kyc_documents_nature_',
       this.$translate,
     );
-
-    // this.onDocumentChange({
-    //   document: {
-    //     ...this.documents[0],
-    //     status: 'INIT',
-    //   },
-    // });
   }
 
   upload(documentId) {

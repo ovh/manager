@@ -25,10 +25,7 @@ export default class BeneficiariesController {
       this.editable = true;
     }
 
-    this.canAddBeneficiaries = this.editable
-      ? this.beneficiaries.length + (this.representativeIsBeneficiary ? 1 : 0) <
-        MAX_BENEFICIARIES
-      : false;
+    this.canAddBeneficiaries = this.checkBeneficiaries();
 
     if (this.editable && this.countryEnum) {
       this.countriesValues = buildEnumList(
@@ -37,6 +34,13 @@ export default class BeneficiariesController {
         this.$translate,
       );
     }
+  }
+
+  checkBeneficiaries() {
+    return this.editable
+      ? this.beneficiaries.length + (this.representativeIsBeneficiary ? 1 : 0) <
+          MAX_BENEFICIARIES
+      : false;
   }
 
   displaySuccessMessage(type) {
@@ -75,6 +79,7 @@ export default class BeneficiariesController {
   addBeneficiary() {
     this.openBeneficiaryForm({}, 'add', (beneficiary) => {
       this.beneficiaries = [...this.beneficiaries, beneficiary];
+      this.canAddBeneficiaries = this.checkBeneficiaries();
     });
   }
 
@@ -103,6 +108,7 @@ export default class BeneficiariesController {
     modalInstance.result
       .then(() => {
         this.beneficiaries.splice(this.beneficiaries.indexOf(beneficiary), 1);
+        this.canAddBeneficiaries = this.checkBeneficiaries();
         this.displaySuccessMessage('delete');
       })
       .catch(() => {

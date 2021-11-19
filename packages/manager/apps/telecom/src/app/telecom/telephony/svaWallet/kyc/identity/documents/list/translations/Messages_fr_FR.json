@@ -32,5 +32,6 @@
   "telephony_billingAccount_svaWallet_kyc_documents_status_PENDING": "En cours de validation",
   "telephony_billingAccount_svaWallet_kyc_documents_status_REJECTED": "Invalide",
   "telephony_billingAccount_svaWallet_kyc_documents_status_UP_TO_DATE": "Valide",
-  "telephony_billingAccount_svaWallet_kyc_documents_status_WAITING_FOR_UPLOAD": "En attente d'envoi"
+  "telephony_billingAccount_svaWallet_kyc_documents_status_WAITING_FOR_UPLOAD": "En attente d'envoi",
+  "telephony_billingAccount_svaWallet_kyc_documents_maxsize_warning": "jpeg,jpg,png,pdf.(Taille max: 10Mo)"
 }
