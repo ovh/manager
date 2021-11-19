@@ -130,11 +130,13 @@ export default class OvhManagerNetAppOrderCtrl {
           commitment === this.duration.commitment.durationInMonths,
       ),
     );
+    [this.pricingMode] = this.pricingModes;
   }
 
   goToOrderUrl() {
+    const pricingMode = this.pricingMode.pricingMode.replace(/[0-9]+/, '');
     this.atInternet.trackClick({
-      name: `netapp::order::confirm::${this.selectedRegion}_${this.selectedLicense}_${this.selectedSize}TB_${this.duration}_${this.pricingMode.pricingMode}`,
+      name: `netapp::order::confirm::${this.selectedRegion}_${this.selectedLicense.name}_${this.selectedSize}TB_${this.duration.duration}_${pricingMode}`,
       type: 'action',
     });
     const order = {

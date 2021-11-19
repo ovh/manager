@@ -11,11 +11,10 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      trackingPrefix: () => 'netapp::dashboard',
-      trackClick: /* @ngInjetc */ (atInternet, trackingPrefix) => (tracker) =>
+      trackClick: /* @ngInject */ (atInternet) => (tracker) =>
         atInternet.trackClick({
           type: 'action',
-          name: `${trackingPrefix}::${tracker}`,
+          name: `netapp::dashboard::${tracker}`,
         }),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
