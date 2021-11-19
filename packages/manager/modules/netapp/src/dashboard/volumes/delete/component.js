@@ -3,10 +3,10 @@ import template from './template.html';
 
 export default {
   bindings: {
-    goBack: '<',
     storage: '<',
     volumeId: '<',
     trackClick: '<',
+    goToVolumes: '<',
   },
   controller,
   template,
