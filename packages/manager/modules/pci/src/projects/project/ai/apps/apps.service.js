@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import App from './App.class';
 
 export default class AppService {
@@ -16,11 +17,28 @@ export default class AppService {
   }
 
   /* @ngInject */
-  constructor($http, Poller, OvhApiCloudProjectAi, OvhApiCloudProjectStorage) {
+  constructor(
+    $http,
+    Poller,
+    OvhApiCloudProjectAi,
+    OvhApiCloudProjectStorage,
+    $q,
+    coreConfig,
+  ) {
     this.$http = $http;
     this.Poller = Poller;
     this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;
     this.OvhApiCloudProjectStorage = OvhApiCloudProjectStorage;
+    this.$q = $q;
+
+    this.PriceFormatter = new Intl.NumberFormat(
+      coreConfig.getUserLocale().replace('_', '-'),
+      {
+        style: 'currency',
+        currency: coreConfig.getUser().currency.code,
+        maximumFractionDigits: 2,
+      },
+    );
   }
 
   pollAppStatus(serviceName, appId) {
@@ -90,33 +108,6 @@ export default class AppService {
       .then(({ data }) => data);
   }
 
-  getAppLogs(serviceName, appId) {
-    return this.$http
-      .get(
-        `/cloud/project/${serviceName}/ai/app/${appId}/log`,
-        AppService.getIcebergHeaders(),
-      )
-      .then(({ data }) => data);
-  }
-
-  getEditors(serviceName) {
-    return this.$http
-      .get(
-        `/cloud/project/${serviceName}/ai/app/capabilities/editor`,
-        AppService.getIcebergHeaders(),
-      )
-      .then(({ data }) => data);
-  }
-
-  getFrameworks(serviceName) {
-    return this.$http
-      .get(
-        `/cloud/project/${serviceName}/ai/app/capabilities/framework`,
-        AppService.getIcebergHeaders(),
-      )
-      .then(({ data }) => data);
-  }
-
   getRegions(serviceName) {
     return this.$http
       .get(
@@ -133,6 +124,61 @@ export default class AppService {
         AppService.getIcebergHeaders(),
       )
       .then(({ data }) => data);
+  }
+
+  getPresets() {
+    // return this.$http
+    //   .get(
+    //     `/cloud/project/${serviceName}/ai/capabilities/region/${region}/presets`,
+    //     AppService.getIcebergHeaders(),
+    //   )
+    //   .then(({ data }) => data);
+    const defer = this.$q.defer();
+    defer.resolve([
+      {
+        id: 'huggingface/translate-en-fr-infinity',
+        description: 'Powered by Hugging Face Infinity',
+        name: 'Translate EN-FR',
+        type: 'app',
+        capabilities: {
+          volume: true,
+          exec: false,
+          log: true,
+          ssh: false,
+        },
+        partner: {
+          id: 'huggingface',
+          name: 'Hugging Face',
+          flavor: 'huggingface-infinity',
+        },
+        flavorTypes: ['cpu', 'gpu'],
+        docUrl: 'https://hub.docker.com/r/ovhcom/ai-training-transformers',
+        logoUrl:
+          'https://storage.gra.cloud.ovh.net/v1/AUTH_811aaa421cdf4cf1b3507d4d2143f461/logo/huggingface.svg',
+      },
+      {
+        id: 'huggingface/translate-fr-en-infinity',
+        description: 'Powered by Hugging Face Infinity',
+        name: 'Translate FR-EN',
+        type: 'app',
+        capabilities: {
+          volume: false,
+          exec: false,
+          log: true,
+          ssh: false,
+        },
+        partner: {
+          id: 'huggingface',
+          flavor: 'infinity',
+          name: 'Hugging Face',
+        },
+        flavorTypes: ['cpu'],
+        docUrl: 'https://hub.docker.com/r/ovhcom/ai-training-transformers',
+        logoUrl:
+          'https://storage.gra.cloud.ovh.net/v1/AUTH_811aaa421cdf4cf1b3507d4d2143f461/logo/huggingface.svg',
+      },
+    ]);
+    return defer.promise;
   }
 
   getStorages(serviceName, archive = false, withObjects = false) {
@@ -157,5 +203,53 @@ export default class AppService {
     return this.$http
       .post(`/cloud/project/${serviceName}/ai/authorization`)
       .then(({ data }) => data);
+  }
+
+  static getPriceIndex(flavorId) {
+    return `ai-notebook.${flavorId}.minute.consumption`;
+  }
+
+  static getPricePartnerIndex(partnerId, flavorId, type) {
+    return `ai-app.${partnerId}-${flavorId}-${type}`;
+  }
+
+  getPriceForHour(prices, flavorId) {
+    if (flavorId) {
+      return this.getPrice(prices, flavorId).price.value * 60;
+    }
+
+    return 0;
+  }
+
+  getPrice(prices, flavorId) {
+    const priceIndex = this.constructor.getPriceIndex(flavorId);
+    return get(prices, priceIndex, {
+      price: { value: 0 },
+      priceInUcents: 0,
+      tax: 0,
+    });
+  }
+
+  getPartnerPrice(prices, partnerId, flavorId, type) {
+    const priceIndex = this.constructor.getPricePartnerIndex(
+      partnerId,
+      flavorId,
+      type,
+    );
+    return get(prices, priceIndex, {
+      price: { value: 0 },
+      priceInUcents: 0,
+      tax: 0,
+    });
+  }
+
+  formatPriceForHour(prices, flavorId) {
+    return this.PriceFormatter.format(this.getPriceForHour(prices, flavorId));
+  }
+
+  computeTotalPrice(prices, flavorId, nb) {
+    return flavorId
+      ? this.PriceFormatter.format(this.getPriceForHour(prices, flavorId) * nb)
+      : '';
   }
 }
