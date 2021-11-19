@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import indexOf from 'lodash/indexOf';
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
+import { SSH_STATE, USER_STATE } from './hosting-ftp-constants';
 
 angular.module('App').controller(
   'HostingTabFTPCtrl',
@@ -59,6 +60,20 @@ angular.module('App').controller(
 
       this.$scope.loadFtpInformations = (count, offset) =>
         this.loadFtpInformations(count, offset);
+
+      this.$scope.isSftpActive = (element) => {
+        return (
+          element.sshState !== SSH_STATE.NONE &&
+          element.state !== USER_STATE.OFF
+        );
+      };
+
+      this.$scope.isSshActive = (element) => {
+        return (
+          element.sshState === SSH_STATE.ACTIVE &&
+          element.state !== USER_STATE.OFF
+        );
+      };
 
       this.$scope.$on(this.Hosting.events.tabFtpRefresh, () => {
         if (get(this.ftpInformations, 'hasMultiFtp', false)) {
