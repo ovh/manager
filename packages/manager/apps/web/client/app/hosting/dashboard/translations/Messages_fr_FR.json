@@ -20,7 +20,6 @@
   "hosting_state_info_BLOQUED": "infos sur l'état bloqué",
   "hosting_state_info_title": "Accéder aux guides (nouvelle fenêtre)",
   "hosting_dashboard_service_home": "Accès au cluster",
-  "hosting_dashboard_service_home_ftp": "Accès FTP au cluster",
   "hosting_dashboard_service_home_ftp_newtab": "Accès FTP au cluster (nouvel onglet)",
   "hosting_dashboard_service_home_http": "Accès HTTP au cluster",
   "hosting_dashboard_service_home_http_newtab": "Accès HTTP au cluster (nouvel onglet)",
