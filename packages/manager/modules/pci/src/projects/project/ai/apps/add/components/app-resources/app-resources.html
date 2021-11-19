@@ -1,0 +1,172 @@
+<!--App resources usage case-->
+<div>
+    <!--Header-->
+    <p class="oui-heading_5 mb-2">
+        <strong data-translate="pci_app_add_resources_usecase"></strong>
+    </p>
+
+    <!--Use cases-->
+    <div class="row">
+        <oui-select-picker
+            class="d-inline-block col-md-6 col-xl-3 my-3"
+            data-name="appResources"
+            data-ng-repeat="flavorType in $ctrl.flavorTypes | filter:$ctrl.filterType() track by $index"
+            data-label="{{:: 'pci_app_add_resources_usecase_item_' + flavorType | translate}}"
+            data-model="$ctrl.appModel.resource.usage"
+            data-values="[flavorType]"
+            data-on-change="$ctrl.onUsecaseChange(flavorType)"
+        >
+        </oui-select-picker>
+    </div>
+</div>
+
+<!--App resources flavors to choose-->
+<div class="mb-4">
+    <!--Resource title-->
+    <p class="oui-heading_5 mb-2">
+        <strong data-translate="pci_app_add_resources_proposed_title"></strong>
+    </p>
+
+    <!--Description-->
+    <p
+        data-ng-bind="'pci_app_add_resources_proposed_type_' + $ctrl.appModel.resource.flavorType + '_description' | translate"
+    ></p>
+
+    <!--App flavors-->
+    <div class="row">
+        <oui-select-picker
+            class="d-inline-block col-md-6 col-xl-3 my-3"
+            data-ng-repeat="flavor in $ctrl.flavors | filter: { type: $ctrl.appModel.resource.flavorType } track by flavor.id"
+            data-name="{{:: flavor.name }}"
+            data-description="{{:: flavor.description}}"
+            data-model="$ctrl.appModel.resource.flavor"
+            data-values="[flavor]"
+            data-variant="light"
+            data-on-change="$ctrl.onFlavorChange(modelValue)"
+            data-required
+        >
+            <oui-select-picker-label>
+                <strong data-ng-bind=":: flavor.id | uppercase"></strong>
+            </oui-select-picker-label>
+
+            <oui-select-picker-section>
+                <div class="d-flex">
+                    <span
+                        data-translate="pci_app_add_resources_proposed_ram"
+                        data-translate-values="{ ram: (flavor.resourcesPerUnit.memory * $ctrl.appModel.resource.nbResources | cucBytes:0:true:'B') }"
+                    ></span>
+                    <span
+                        data-translate="pci_app_add_resources_proposed_type_cpu"
+                    ></span>
+                </div>
+                <div
+                    class="d-flex"
+                    data-ng-if="flavor.gpuInformation.gpuMemory"
+                >
+                    <span>
+                        {{ $ctrl.appModel.resource.nbResources }} *
+                    </span>
+                    <span
+                        data-translate="pci_app_add_resources_proposed_ram"
+                        data-translate-values="{ ram: (flavor.gpuInformation.gpuMemory | cucBytes:0:true:'B') }"
+                    ></span>
+                    <span
+                        data-translate="pci_app_add_resources_proposed_type_gpu"
+                    ></span>
+                </div>
+                <div class="d-flex">
+                    <span
+                        data-translate="pci_project_flavors_spec_core_details"
+                        data-translate-values="{ vcores: flavor.resourcesPerUnit.cpu * $ctrl.appModel.resource.nbResources }"
+                    ></span>
+                </div>
+                <div class="d-flex">
+                    <span
+                        data-translate="pci_app_add_resources_proposed_storage"
+                        data-translate-values="{ memory: (flavor.resourcesPerUnit.ephemeralStorage * $ctrl.appModel.resource.nbResources | cucBytes:0:true:'B') }"
+                    ></span>
+                </div>
+                <div class="d-flex">
+                    <span
+                        data-translate="pci_app_add_resources_proposed_bandwidth"
+                        data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.publicNetwork * $ctrl.appModel.resource.nbResources | cucBytes:0:false:'B') }"
+                    ></span>
+                </div>
+                <div
+                    class="d-flex"
+                    data-ng-if="flavor.resourcesPerUnit.privateNetwork"
+                >
+                    <span
+                        data-translate="pci_app_add_resources_proposed_bandwidth"
+                        data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.privateNetwork * $ctrl.appModel.resource.nbResources | cucBytes:2:false:'B') }"
+                    ></span>
+                </div>
+            </oui-select-picker-section>
+            <oui-select-picker-section>
+                <span
+                    data-translate="pci_app_add_resources_resource_price"
+                ></span>
+                <ovh-manager-catalog-price
+                    data-price="$ctrl.resourcePriceInUcents * $ctrl.appModel.resource.nbResources"
+                    data-tax="$ctrl.resourcePriceTax * $ctrl.appModel.resource.nbResources"
+                    data-user="$ctrl.user"
+                    data-show-zero-price="true"
+                    data-interval="'hour'"
+                >
+                </ovh-manager-catalog-price>
+
+                <p ng-if="$ctrl.appModel.preset.partner">
+                    <span
+                        data-translate="pci_app_add_resources_partner_price"
+                    ></span>
+                    <ovh-manager-catalog-price
+                        data-price="$ctrl.partnerPriceInUcents * $ctrl.appModel.resource.nbResources"
+                        data-tax="$ctrl.partnerPriceTax * $ctrl.appModel.resource.nbResources"
+                        data-user="$ctrl.user"
+                        data-show-zero-price="true"
+                        data-interval="'hour'"
+                    >
+                    </ovh-manager-catalog-price>
+                </p>
+            </oui-select-picker-section>
+        </oui-select-picker>
+    </div>
+
+    <!--Number of resources title-->
+
+    <oui-field
+        class="mt-2"
+        data-label="{{:: 'pci_app_add_resources_flavor_count' | translate}}"
+    >
+        <oui-numeric
+            name="nbResources"
+            data-disabled="!$ctrl.appModel.resource.flavor"
+            data-model="$ctrl.appModel.resource.nbResources"
+            data-min="$ctrl.RESOURCES_SCALE_MIN_FLAVOR"
+            data-max="$ctrl.appModel.resource.flavor.max"
+        ></oui-numeric>
+    </oui-field>
+
+    <oui-field
+        class="mt-2"
+        data-label="{{:: 'pci_app_add_resources_replicas' | translate}}"
+        data-help-text="{{:: 'pci_app_add_resources_replicas_help_text' | translate}}"
+    >
+        <oui-numeric
+            name="replicas"
+            data-model="$ctrl.appModel.replicas"
+            data-min="1"
+            data-max="$ctrl.RESOURCES_REPLICAS_MAX_FLAVOR"
+        ></oui-numeric>
+    </oui-field>
+
+    <p data-translate="pci_app_add_resources_total"></p>
+    <ovh-manager-catalog-price
+        data-price="$ctrl.resourcePriceInUcents * $ctrl.appModel.resource.nbResources * $ctrl.appModel.replicas"
+        data-tax="$ctrl.resourcePriceTax * $ctrl.appModel.resource.nbResources * $ctrl.appModel.replicas"
+        data-user="$ctrl.user"
+        data-show-zero-price="true"
+        data-interval="'hour'"
+    >
+    </ovh-manager-catalog-price>
+</div>

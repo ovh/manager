@@ -1,0 +1,98 @@
+<div class="container-fluid px-0">
+    <div class="row">
+        <div
+            class="col-md-6 col-xl-4 my-3"
+            data-ng-repeat="preset in $ctrl.presets | filter:{type: $ctrl.type} track by preset.id "
+        >
+            <oui-select-picker
+                data-name="{{:: preset.id }}"
+                data-description="{{:: preset.description }}"
+                data-model="$ctrl.selected"
+                data-on-change="$ctrl.onPresetSelect(preset)"
+                data-picture="{{:: preset.logoUrl }}"
+                data-label="{{:: preset.name }}"
+                data-variant="light"
+                data-values="[preset]"
+            >
+                <oui-select-picker-section class="oui-select-picker__section">
+                    <a
+                        target="_blank"
+                        class="oui-button oui-button_ghost"
+                        rel="noopener"
+                        data-ng-href="{{:: preset.docUrl }}"
+                    >
+                        <span
+                            data-translate="pci_app_submit_select_image_preset_info"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-external-link"
+                            aria-hidden="true"
+                        ></span>
+                    </a>
+                </oui-select-picker-section>
+                <oui-select-picker-section>
+                    <span
+                        data-ng-if="preset.priceInUcents > 0"
+                        data-translate="pci_app_submit_select_start_from"
+                    ></span>
+                    <ovh-manager-catalog-price
+                        data-price="preset.priceInUcents * 60"
+                        data-tax="preset.tax * 60"
+                        data-user="$ctrl.user"
+                        data-show-zero-price="true"
+                        data-interval="'hour'"
+                    >
+                    </ovh-manager-catalog-price>
+                </oui-select-picker-section>
+            </oui-select-picker>
+        </div>
+    </div>
+</div>
+<button
+    class="oui-button sizing__advanced-button oui-button_ghost mb-3"
+    oui-tooltip="{{:: 'pci_app_submit_select_image_advanced_tips' | translate  }}"
+    oui-tooltip-placement="top"
+    type="button"
+    data-ng-click="$ctrl.onClickAdvancedImage()"
+>
+    <span data-translate="pci_app_submit_select_image_advanced"></span>
+</button>
+
+<oui-field
+    data-size="xl"
+    data-help-text="{{:: 'pci_app_submit_select_image_tips' | translate  }}"
+    data-label="{{:: 'pci_app_submit_select_image_name' | translate }}"
+    data-ng-if="$ctrl.showAdvancedImage"
+>
+    <input
+        class="oui-input"
+        type="text"
+        id="image"
+        name="image"
+        data-ng-model="$ctrl.image"
+    />
+    <button
+        type="button"
+        class="oui-popover-button"
+        data-oui-popover="{{:: 'pci_app_submit_select_image_tips_help' | translate }}"
+    ></button>
+    <a
+        target="_blank"
+        class="oui-button oui-button_ghost"
+        rel="noopener"
+        data-ng-href="{{ $ctrl.docDockerBuildUrl }}"
+    >
+        <span data-translate="pci_app_submit_select_image_custom_doc"></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+    </a>
+</oui-field>
+<div data-ng-if="$ctrl.showAdvancedImage" class="mb-4">
+    <ovh-manager-catalog-price
+        data-price="$ctrl.defaultPrice.priceInUcents * 60"
+        data-tax="$ctrl.defaultPrice.tax * 60"
+        data-user="$ctrl.user"
+        data-show-zero-price="true"
+        data-interval="'hour'"
+    >
+    </ovh-manager-catalog-price>
+</div>
