@@ -13,62 +13,36 @@
             <div class="col-md-6">
                 <dl>
                     <dt data-translate="telephony_repayments_total"></dt>
-                    <dd data-ng-bind="RepaymentsCtrl.total | currency"></dd>
+                    <dd
+                        data-ng-bind="RepaymentsCtrl.svaWallet.balance.availableAmount.text"
+                    ></dd>
                     <dt
                         data-ng-if-start="RepaymentsCtrl.nextRepaymentDate"
                         data-translate="telephony_repayments_next"
                     ></dt>
                     <dd
                         data-ng-if-end
-                        data-ng-bind="RepaymentsCtrl.nextRepaymentDate | date:'dd-MM-yyyy'"
+                        data-ng-bind="RepaymentsCtrl.svaWallet.balance.pendingAmount.text"
+                    ></dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <dl>
+                    <dt data-translate="telephony_repayments_costs_title"></dt>
+                    <dd
+                        data-ng-bind="RepaymentsCtrl.svaWallet.balance.costsAmount.text"
                     ></dd>
                 </dl>
             </div>
         </div>
 
         <oui-datagrid
-            class="my-5"
+            class="my-5 text-wrap"
             data-rows="RepaymentsCtrl.repayments"
             data-page-size="25"
             data-on-page-change="RepaymentsCtrl.onPageChanged($pagination)"
             data-on-sort-change="RepaymentsCtrl.onSortChanged($sort)"
         >
-            <!--
-            <oui-datagrid-column
-                data-title="::'telephony_repayments_grid_billing_group' | translate"
-                data-property="creationDatetime"
-                data-type="string"
-                data-searchable
-                data-sortable
-                data-filterable
-            >
-                <span
-                    data-ng-bind="::$row.creationDatetime | date:'dd-MM-yyyy HH:mm:ss'"
-                ></span>
-            </oui-datagrid-column>
-
-            -->
-            <!-- {
-                "0": {
-                    "anonymous": false,
-                    "buyAmount": {
-                        "currencyCode": "EUR",
-                        "text": "0.02 €",
-                        "value": 0.02
-                    },
-                    "calledNumber": "0033892490003",
-                    "callingNumber": "0033671143017",
-                    "creationDate": "2021-11-05T10:15:56.000Z",
-                    "currencyCode": "EUR",
-                    "customerCode": "os5216-ovh",
-                    "duration": "PT15S",
-                    "id": 18788,
-                    "lastUpdate": "2021-11-05T10:15:56.000Z",
-                    "phoneOperatorName": "SFR",
-                    "startDate": "2021-01-14T09:07:26.000Z",
-                    "status": "CREATED"
-                }
-            } -->
             <oui-datagrid-column
                 data-title="::'telephony_repayments_grid_date' | translate"
                 data-property="startDate"
@@ -124,6 +98,17 @@
                 data-sortable
             >
                 <span data-ng-bind="::$row.buyAmount.value | currency"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="::'telephony_repayments_grid_status' | translate"
+                data-property="status"
+            >
+                <span
+                    class="oui-badge"
+                    data-ng-class="::'oui-badge_' + RepaymentsCtrl.statusBadge($row.status)"
+                    data-translate="{{'telephony_repayments_grid_status_' + RepaymentsCtrl.statusBadge($row.status)}}"
+                >
+                </span>
             </oui-datagrid-column>
         </oui-datagrid>
     </section>

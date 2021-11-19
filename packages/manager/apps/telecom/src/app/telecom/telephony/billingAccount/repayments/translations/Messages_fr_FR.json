@@ -7,8 +7,13 @@
   "telephony_repayments_grid_duration": "Durée (sec.)",
   "telephony_repayments_grid_operator": "Opérateur",
   "telephony_repayments_grid_repayment": "Reversement",
+  "telephony_repayments_grid_status": "Statut",
+  "telephony_repayments_grid_status_error": "En attente de reversement",
+  "telephony_repayments_grid_status_success": "Payé",
   "telephony_repayments_next": "Prochain reversement",
   "telephony_repayments_subtitle": "Vous retrouverez ci-dessous tous les reversements liés aux appels reçus sur vos numéros spéciaux.",
   "telephony_repayments_title": "Reversements",
+  "telephony_repayments_costs_title": "Coûts",
+  "telephony_repayments_costs_pending_total": "Coûts à verser",
   "telephony_repayments_total": "Total des reversements"
 }

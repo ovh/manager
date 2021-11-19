@@ -2,11 +2,12 @@ import { REPAYMENT_AMOUNT_THRESHOLD } from './repayments.constants';
 import {
   calculateTotalRepayments,
   formatRepayments,
+  statusBadge,
 } from './repayments.helpers';
 
 export default class TelecomTelephonyRepaymentsCtrl {
   /* @ngInject  */
-  constructor($http, $q, $stateParams, $translate, TucToast) {
+  constructor($http, $q, $stateParams, $translate, TucToast, svaWallet) {
     this.$http = $http;
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -18,6 +19,8 @@ export default class TelecomTelephonyRepaymentsCtrl {
     this.loading = false;
     this.nextRepaymentDate = new Date();
     this.repayments = [];
+    this.svaWallet = svaWallet;
+    this.statusBadge = statusBadge;
   }
 
   $onInit() {
