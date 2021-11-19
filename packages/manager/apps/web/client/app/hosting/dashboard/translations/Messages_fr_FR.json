@@ -734,8 +734,6 @@
   "hosting_tab_FTP_dashboard_homez": "Chemin du répertoire home :",
   "hosting_tab_FTP_dashboard_clusterip": "Adresse IP du cluster :",
   "hosting_tab_FTP_multiftp_table_header_login": "Login",
-  "hosting_tab_FTP_multiftp_table_header_ftp_login": "Login FTP",
-  "hosting_tab_FTP_multiftp_table_header_ssh_login": "Login SSH",
   "hosting_tab_FTP_multiftp_table_header_home": "Répertoire cible",
   "hosting_tab_FTP_multiftp_table_header_iisRemoteRights": "iisRemoteRights",
   "hosting_tab_FTP_multiftp_table_header_state": "Etat",

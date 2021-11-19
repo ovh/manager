@@ -470,11 +470,7 @@
                                 <tr>
                                     <th
                                         scope="col"
-                                        data-translate="hosting_tab_FTP_multiftp_table_header_ftp_login"
-                                    ></th>
-                                    <th
-                                        scope="col"
-                                        data-translate="hosting_tab_FTP_multiftp_table_header_ssh_login"
+                                        data-translate="hosting_tab_FTP_multiftp_table_header_login"
                                     ></th>
                                     <th
                                         scope="col"
@@ -483,6 +479,10 @@
                                     <th
                                         scope="col"
                                         data-translate="hosting_tab_FTP_multiftp_table_header_ftp_state"
+                                    ></th>
+                                    <th
+                                        scope="col"
+                                        data-translate="hosting_tab_FTP_multiftp_table_header_sftp_state"
                                     ></th>
                                     <th
                                         scope="col"
@@ -539,10 +539,6 @@
                                         scope="row"
                                         data-ng-bind="element.ftp.user"
                                     ></th>
-                                    <th
-                                        scope="row"
-                                        data-ng-bind="element.ssh.user"
-                                    ></th>
                                     <td data-ng-bind="element.home"></td>
                                     <td>
                                         <span
@@ -568,15 +564,22 @@
                                     <td>
                                         <span
                                             class="oui-badge"
-                                            data-ng-class="{'oui-badge_success': element.sshState === 'sftponly', 'oui-badge_error': element.sshState === 'none'}"
-                                            data-ng-bind="(('hosting_tab_FTP_multiftp_table_ssh_state_' + element.sshState | translate) == 'hosting_tab_FTP_multiftp_table_ssh_state_' + element.sshState)? element.sshState: ('hosting_tab_FTP_multiftp_table_ssh_state_' + element.sshState | translate)"
-                                            data-ng-if="element.sshState !== 'active'"
+                                            data-ng-class="{'oui-badge_success': isSftpActive(element), 'oui-badge_error': !isSftpActive(element)}"
+                                            data-ng-bind="isSftpActive(element) ? ('hosting_tab_FTP_multiftp_table_ssh_state_ACTIVE' | translate): ('hosting_tab_FTP_multiftp_table_ssh_state_NONE' | translate)"
+                                        ></span>
+                                    </td>
+
+                                    <td>
+                                        <span
+                                            class="oui-badge oui-badge_error"
+                                            data-ng-bind="('hosting_tab_FTP_multiftp_table_ssh_state_NONE' | translate)"
+                                            data-ng-if="!isSshActive(element)"
                                         ></span>
                                         <a
                                             data-ng-href="ssh://{{element.ssh.user}}@{{element.ssh.url}}:{{element.ssh.port}}/"
                                             class="d-block word-break"
                                             target="_blank"
-                                            data-ng-if="element.sshState === 'active'"
+                                            data-ng-if="isSshActive(element)"
                                         >
                                             <span
                                                 data-ng-bind="element.sshUrl"
