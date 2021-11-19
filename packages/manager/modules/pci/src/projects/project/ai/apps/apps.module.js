@@ -10,6 +10,8 @@ import component from './apps.component';
 import routing from './apps.routing';
 import service from './apps.service';
 
+import add from './add';
+
 import './index.scss';
 
 const moduleName = 'ovhManagerPciApps';
@@ -22,6 +24,7 @@ angular
     'ngOvhCloudUniverseComponents',
     'oui',
     'ui.router',
+    add,
   ])
   .config(routing)
   .component('ovhManagerPciProjectApps', component)

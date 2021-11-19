@@ -134,15 +134,6 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
   {
     subitems: [
       {
-        id: 'apps',
-        beta: true,
-        options: {
-          state: 'pci.projects.project.ai',
-        },
-        title: 'AI Ecosystem',
-        regions: ['CA', 'EU'],
-      },
-      {
         id: 'notebooks',
         beta: true,
         options: {
@@ -153,7 +144,6 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
       },
       {
         id: 'training',
-        new: true,
         options: {
           state: 'pci.projects.project.training',
         },
@@ -162,8 +152,16 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         feature: 'ai-training',
       },
       {
+        id: 'apps',
+        alpha: true,
+        options: {
+          state: 'pci.projects.project.ai',
+        },
+        title: 'AI Apps',
+        regions: ['CA', 'EU'],
+      },
+      {
         id: 'serving',
-        new: true,
         options: {
           state: 'pci.projects.project.serving',
         },
