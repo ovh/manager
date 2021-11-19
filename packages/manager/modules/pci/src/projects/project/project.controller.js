@@ -34,7 +34,6 @@ export default class ProjectController {
         ({ regions }) => isNil(regions) || coreConfig.isRegion(regions),
       );
 
-    this.links = filterByRegion(LINKS);
     this.communityLinks = filterByRegion(COMMUNITY_LINKS);
   }
 
@@ -51,38 +50,17 @@ export default class ProjectController {
       (quota) => quota.quotaAboveThreshold,
     );
 
-    const featuresName = ProjectController.findFeatureToCheck(ACTIONS);
-    this.ovhFeatureFlipping
-      .checkFeatureAvailability(featuresName)
-      .then((features) => {
-        const isItemAvailable = ({
-          regions,
-          feature,
-          availableForTrustedZone,
-        }) => {
-          const isValidRegion =
-            isNil(regions) || this.coreConfig.isRegion(regions);
-          const isValidFeature =
-            !feature || features.isFeatureAvailable(feature);
-
-          return (
-            (!this.isTrustedZone && isValidRegion && isValidFeature) ||
-            (this.isTrustedZone &&
-              availableForTrustedZone &&
-              isValidRegion &&
-              isValidFeature)
-          );
-        };
-
-        this.actions = ACTIONS.filter((action) => {
-          return isItemAvailable(action);
-        });
-      });
     this.PciProject.setProjectInfo(this.project);
   }
 
   closeSidebar() {
     this.isSidebarOpen = false;
+  }
+
+  isDisplayableLink({ availableForTrustedZone }) {
+    const { isTrustedZone } = this;
+
+    return !isTrustedZone || (isTrustedZone && availableForTrustedZone);
   }
 
   /**
