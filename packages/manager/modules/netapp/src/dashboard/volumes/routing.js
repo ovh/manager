@@ -3,7 +3,11 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/volumes',
     component: 'ovhManagerNetAppVolumes',
     resolve: {
-      trackingPrefix: () => 'netapp::dashboard::volumes',
+      trackClick: /* @ngInject */ (atInternet) => (tracker) =>
+        atInternet.trackClick({
+          type: 'action',
+          name: `netapp::dashboard::volumes::${tracker}`,
+        }),
       loadVolumeDetail: /* @ngInject */ ($http, $q, serviceName) => (volume) =>
         $q
           .all({

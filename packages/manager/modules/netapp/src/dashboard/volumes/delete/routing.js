@@ -8,10 +8,6 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ (goToVolumes, trackClick) => {
-        trackClick('delete::cancel');
-        return goToVolumes;
-      },
       volumeId: /* @ngInject */ ($transition$) =>
         $transition$.params().volumeId,
       breadcrumb: () => null,

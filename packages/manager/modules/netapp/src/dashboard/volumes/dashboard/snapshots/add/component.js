@@ -3,11 +3,11 @@ import template from './template.html';
 
 export default {
   bindings: {
-    goBack: '<',
     serviceName: '<',
     volumeId: '<',
     volume: '<',
     trackClick: '<',
+    goToSnapshots: '<',
   },
   controller,
   template,
