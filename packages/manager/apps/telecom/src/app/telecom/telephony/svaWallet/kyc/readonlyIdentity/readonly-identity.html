@@ -41,7 +41,10 @@
         ></label>
         <p data-ng-bind="$ctrl.wallet.company.identificationNumber"></p>
     </div>
-    <div class="form-group">
+    <div
+        data-ng-if="$ctrl.wallet.representative.addressOfResidence.streetType"
+        class="form-group"
+    >
         <label
             data-translate="telephony_order_address_street_type"
             for="street-type"
@@ -61,7 +64,10 @@
             data-ng-bind="$ctrl.wallet.representative.addressOfResidence.streetName"
         ></p>
     </div>
-    <div class="form-group">
+    <div
+        data-ng-if="$ctrl.wallet.representative.addressOfResidence.addressExtra"
+        class="form-group"
+    >
         <label
             data-translate="telephony_order_address_addressextra"
             for="adressextra"
@@ -81,7 +87,10 @@
             data-ng-bind="$ctrl.wallet.representative.postcodeOfResidence"
         ></p>
     </div>
-    <div class="form-group">
+    <div
+        data-ng-if="$ctrl.wallet.representative.addressOfResidence.cedex"
+        class="form-group"
+    >
         <label
             data-translate="telephony_order_identity_cedex"
             for="cedex"
@@ -91,7 +100,10 @@
             data-ng-bind="$ctrl.wallet.representative.addressOfResidence.cedex"
         ></p>
     </div>
-    <div class="form-group">
+    <div
+        data-ng-if="$ctrl.wallet.representative.addressOfResidence.cityOfResidence"
+        class="form-group"
+    >
         <label data-translate="telephony_order_address_city" for="city"></label>
         <p
             name="city"
