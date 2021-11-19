@@ -9,10 +9,6 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: /* @ngInject */ () => null,
-      goBack: /* @ngInject */ (goToSnapshots, trackClick) => {
-        trackClick('delete::cancel');
-        return goToSnapshots;
-      },
       snapshotId: /* @ngInject */ ($transition$) =>
         $transition$.params().snapshotId,
       snapshot: /* @ngInject */ (snapshots, snapshotId) =>

@@ -5,7 +5,11 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/snapshots',
     component: 'ovhManagerNetAppVolumesDashboardSnapshots',
     resolve: {
-      trackingPrefix: () => 'netapp::dashboad::volumes::dashboad::snapshots',
+      trackClick: /* @ngInject */ (atInternet) => (tracker) =>
+        atInternet.trackClick({
+          type: 'action',
+          name: `netapp::dashboard::volumes::dashboad::snapshots::${tracker}`,
+        }),
       addSnapshotLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
           'netapp.dashboard.volumes.dashboard.snapshots.add',
