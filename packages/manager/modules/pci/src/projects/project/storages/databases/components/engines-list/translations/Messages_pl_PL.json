@@ -6,5 +6,6 @@
   "pci_database_engines_list_description_postgresql": "System zarządzania relacyjnymi i obiektowymi bazami danych",
   "pci_database_engines_list_description_kafka": "Rozproszony system streamingu o wysokiej wydajności",
   "pci_database_engines_list_description_redis": "System przechowywania danych klucz-wartość w pamięci",
-  "pci_database_engines_list_description_mongodb": "System zarządzania bazami danych zorientowanymi na dokumenty"
+  "pci_database_engines_list_description_mongodb": "System zarządzania bazami danych zorientowanymi na dokumenty",
+  "pci_database_engines_list_description_opensearch": "Rozproszona wyszukiwarka i narzędzie analityczne. Fork Elasticsearch 7.10.2 i Kibana 7.10.2"
 }

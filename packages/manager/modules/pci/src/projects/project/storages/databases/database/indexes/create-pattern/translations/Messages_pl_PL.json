@@ -1,0 +1,17 @@
+{
+  "pci_databases_indexes_create_pattern_confirm": "Utwórz",
+  "pci_databases_indexes_create_pattern_cancel": "Anuluj",
+  "pci_databases_indexes_create_pattern": "Dodaj model",
+  "pci_databases_indexes_create_pattern_pattern_placeholder": "Logs_*",
+  "pci_databases_indexes_create_pattern_description_1": "Tutaj możesz użyć modelu typu „glob”, np.  „logs_foo” dla najstarszych indeksów, które chcesz usunąć, gdy liczba indeksów przekracza ustalony próg. Pamiętaj, że podanie wartości 0 oznacza, że model zostanie zignorowany.",
+  "pci_databases_indexes_create_pattern_description_2": "Jest to przydatne na przykład gdy OpenSearch jest używany do przechowywania logów, a indeks jest tworzony raz dziennie.  Takie zastosowanie pozwala określić, ile dni logów chcesz zachować.",
+  "pci_databases_indexes_create_pattern_description_example": "Przykłady:",
+  "pci_databases_indexes_create_pattern_description_example_1": "Model <b>\"logi\"</b> będzie pasował do indeksu <b>\"logi\"</b>, ale nie do <b>\"logsfoo\"</b> czy <b>„foologs”</b>",
+  "pci_databases_indexes_create_pattern_description_example_2": "Model <b>\"logi*\"</b> będzie pasował do indeksów <b>\"logsfoo\"</b> i <b>\"logs_foo_bar\"</b>, ale nie do<b>\"foologs\"</b>",
+  "pci_databases_indexes_create_pattern_description_example_3": "Model <b>\"*_logs_*\"</b> będzie pasował do indeksów <b>\"foo_logs_bar\"</b>, ale nie <b>\"foologsbar\"</b>",
+  "pci_databases_indexes_create_pattern_description_example_4": "Model <b>\"logi?\"</b> będzie pasował do indeksu <b>\"logs.1\"</b>, ale nie <b>\"logs.11\"</b>",
+  "pci_databases_indexes_create_pattern_label": "Model:",
+  "pci_databases_indexes_create_pattern_max_index": "Maksymalna liczba indeksów:",
+  "pci_databases_indexes_create_pattern_success_message": "Nowy model został dodany",
+  "pci_databases_indexes_create_pattern_error_message": "Wystąpił błąd podczas tworzenia modelu:{{message}}."
+}
