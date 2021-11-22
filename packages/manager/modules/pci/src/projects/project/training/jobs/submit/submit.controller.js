@@ -7,7 +7,7 @@ import { nameGenerator } from '../../../data-processing/data-processing.utils';
 import {
   DISCORD_URL,
   DOC_DOCKER_BUILD_URL,
-  JOB_SSH_KEYS_CONSTANTS,
+  JOB_SSH_KEYS,
 } from '../../training.constants';
 
 export default class PciTrainingJobsSubmitController {
@@ -21,7 +21,7 @@ export default class PciTrainingJobsSubmitController {
     atInternet,
     coreConfig,
   ) {
-    this.JOB_SSH_KEYS_CONSTANTS = JOB_SSH_KEYS_CONSTANTS;
+    this.JOB_SSH_KEYS_CONSTANTS = JOB_SSH_KEYS;
     this.coreConfig = coreConfig;
     this.$translate = $translate;
     this.PciProjectTrainingService = PciProjectTrainingService;
