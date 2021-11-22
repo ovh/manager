@@ -53,5 +53,27 @@ export default function exposeApi(shellClient: ShellClient) {
         }),
     },
     auth: clientAuth(shellClient),
+    ux: {
+      onSidebarRegister: (callback: CallableFunction) =>
+        shellClient.addEventListener('ux:sidebar-register', callback),
+      showSidebar: (sidebarName: string) =>
+        shellClient.invokePluginMethod({
+          plugin: 'ux',
+          method: 'showSidebar',
+          args: [sidebarName],
+        }),
+      hideSidebar: (sidebarName: string) =>
+        shellClient.invokePluginMethod({
+          plugin: 'ux',
+          method: 'hideSidebar',
+          args: [sidebarName],
+        }),
+      toggleSidebarVisibility: (sidebarName: string) =>
+        shellClient.invokePluginMethod({
+          plugin: 'ux',
+          method: 'toggleSidebarVisibility',
+          args: [sidebarName],
+        }),
+    },
   };
 }
