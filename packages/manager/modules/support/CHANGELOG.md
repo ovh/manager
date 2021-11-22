@@ -1,3 +1,13 @@
+## [1.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.6.5...@ovh-ux/manager-support@1.6.6) (2021-11-22)
+
+
+### Bug Fixes
+
+* **tickets.new-ticket:** add anthos translation ([#5913](https://github.com/ovh/manager/issues/5913)) ([842989c](https://github.com/ovh/manager/commit/842989c7b45a158c067a5ad9e39c0d1b9b81990f))
+* remove unused translations [CDS] ([6e32d4a](https://github.com/ovh/manager/commit/6e32d4a33b4598c51cf422a3fb4a52f0dd88c1c3))
+
+
+
 ## [1.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.6.4...@ovh-ux/manager-support@1.6.5) (2021-11-04)
 
 
