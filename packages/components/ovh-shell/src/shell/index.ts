@@ -48,6 +48,7 @@ export function initShell(): Promise<IShell> {
       setIframeMessageBus: (iframe: HTMLIFrameElement) =>
         shell.setMessageBus(new IFrameMessageBus(iframe)),
       i18n: () => shell.getPluginManager().getPlugin('i18n'),
+      ux: () => shell.getPluginManager().getPlugin('ux'),
     };
   });
 }
