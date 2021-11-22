@@ -1,0 +1,293 @@
+<div class="email-domain">
+    <div data-ovh-alert="{{alerts.page}}"></div>
+
+    <oui-header heading="{{:: ctrlEmailDelegate.domain }}"> </oui-header>
+
+    <div ui-view>
+        <div class="row">
+            <div class="col-md-9">
+                <div data-ovh-alert="{{alerts.main}}"></div>
+
+                <div class="mb-3">
+                    <form
+                        class="form-inline d-md-flex justify-content-md-end"
+                        name="searchEmailDelegateForm"
+                    >
+                        <div class="form-group">
+                            <label
+                                class="sr-only"
+                                for="searchEmailDelegate"
+                            ></label>
+                            <div class="input-group">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="searchEmailDelegate"
+                                    name="searchEmailDelegate"
+                                    placeholder="{{:: 'navigation_left_search' | translate }}"
+                                    data-ng-change="ctrlEmailDelegate.goSearch()"
+                                    data-ng-disabled="ctrlEmailDelegate.loading.accounts"
+                                    data-ng-model="ctrlEmailDelegate.search.accounts"
+                                    data-ng-model-options="{ debounce: 800 }"
+                                />
+                                <div
+                                    class="input-group-btn"
+                                    data-ng-if="ctrlEmailDelegate.search.accounts"
+                                >
+                                    <button
+                                        class="btn btn-default"
+                                        type="button"
+                                        aria-label="{{ 'common_cancel' | translate }}"
+                                        data-ng-click="ctrlEmailDelegate.emptySearch()"
+                                        data-ng-disabled="ctrlEmailDelegate.loading.accounts"
+                                    >
+                                        <span
+                                            class="fa fa-times"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </button>
+                                </div>
+                                <span
+                                    class="input-group-addon"
+                                    data-ng-if="!ctrlEmailDelegate.search.accounts"
+                                >
+                                    <span
+                                        class="fa fa-search"
+                                        aria-hidden="true"
+                                    ></span>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th
+                                    scope="col"
+                                    data-translate="email_tab_table_header_account_name"
+                                ></th>
+                                <th
+                                    scope="col"
+                                    data-translate="email_tab_table_header_account_description"
+                                ></th>
+                                <th
+                                    class="text-center"
+                                    scope="col"
+                                    style="min-width:200px"
+                                    data-translate="email_tab_table_header_account_size"
+                                ></th>
+                                <th
+                                    class="text-center"
+                                    scope="col"
+                                    data-translate="email_tab_table_header_account_bloqued"
+                                ></th>
+                                <th
+                                    class="min-width text-center"
+                                    scope="col"
+                                    data-translate="email_tab_table_header_filters"
+                                ></th>
+                                <th class="min-width text-right" scope="col">
+                                    <button
+                                        class="btn btn-icon"
+                                        type="button"
+                                        title="{{:: 'email_tab_table_header_refresh' | translate }}"
+                                        data-ng-click="ctrlEmailDelegate.loadEmails()"
+                                    >
+                                        <span
+                                            class="fa fa-refresh"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <!-- loading -->
+                        <tbody data-ng-if="ctrlEmailDelegate.loading.accounts">
+                            <tr>
+                                <td class="text-center" colspan="6">
+                                    <oui-spinner></oui-spinner>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                        <!-- no accounts -->
+                        <tbody
+                            data-ng-if="!ctrlEmailDelegate.loading.accounts && !ctrlEmailDelegate.emails.length"
+                        >
+                            <tr>
+                                <td
+                                    class="text-center"
+                                    colspan="6"
+                                    data-translate="email_tab_table_emails_empty"
+                                ></td>
+                            </tr>
+                        </tbody>
+
+                        <!-- accounts -->
+                        <tbody
+                            data-ng-if="!ctrlEmailDelegate.loading.accounts && ctrlEmailDelegate.emails.length > 0"
+                        >
+                            <tr
+                                data-ng-repeat="email in ctrlEmailDelegate.emailsDetails track by $index"
+                            >
+                                <td data-ng-bind="email.accountName"></td>
+                                <td data-ng-bind="email.description"></td>
+                                <td
+                                    class="text-center"
+                                    data-ng-if="email.quota === undefined"
+                                >
+                                    <span>-</span>
+                                </td>
+                                <td data-ng-if="email.quota !== undefined">
+                                    <div class="col-xs-11 p-0">
+                                        <div
+                                            class="oui-progress m-0"
+                                            data-ng-class="{
+                                                'oui-progress_success': email.percentUse < 51,
+                                                'oui-progress_warning': email.percentUse > 50 && email.percentUse < 81,
+                                                'oui-progress_error': email.percentUse > 80
+                                            }"
+                                        >
+                                            <div
+                                                class="oui-progress__bar oui-progress__bar_text-left"
+                                                role="progressbar"
+                                                aria-valuemin="0"
+                                                aria-valuemax="100"
+                                                aria-valuenow="{{email.percentUse}}"
+                                                data-ng-class="{
+                                                'oui-progress__bar_success': email.percentUse < 51,
+                                                'oui-progress__bar_warning': email.percentUse > 50 && email.percentUse < 81,
+                                                'oui-progress__bar_error': email.percentUse > 80
+                                            }"
+                                                data-ng-style="{'width': email.percentUse + '%'}"
+                                            >
+                                                <span
+                                                    class="oui-progress__label"
+                                                    data-ng-bind="(email.quota | humanReadableSize: {base: 10}) + ' / ' + (email.size | humanReadableSize: {base: 10})"
+                                                ></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button
+                                        class="btn btn-icon col-xs-1"
+                                        type="button"
+                                        data-ng-click="ctrlEmailDelegate.updateUsage(email)"
+                                    >
+                                        <span
+                                            class="fa fa-refresh"
+                                            aria-hidden="true"
+                                            data-ng-class="{'fa-spin': ctrlEmailDelegate.loading.usage}"
+                                        ></span>
+                                    </button>
+                                </td>
+                                <td class="text-center">
+                                    <span
+                                        class="oui-badge oui-badge_error"
+                                        data-translate="email_tab_table_emails_block_true"
+                                        data-ng-if="email.isBlocked"
+                                    ></span>
+                                    <span
+                                        class="oui-badge oui-badge_success"
+                                        data-translate="email_tab_table_emails_block_false"
+                                        data-ng-if="!email.isBlocked"
+                                    ></span>
+                                </td>
+                                <td class="text-center">
+                                    <button
+                                        class="btn btn-icon"
+                                        type="button"
+                                        title="{{:: 'email_tab_filters_management_heading' | translate }}"
+                                        data-ng-click="ctrlEmailDelegate.goToFilters(email, ctrlEmailDelegate.emails)"
+                                    >
+                                        <span
+                                            class="fa fa-filter"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <oui-action-menu
+                                        data-compact
+                                        data-ng-disabled="email.taskDoing"
+                                        data-placement="end"
+                                    >
+                                        <oui-action-menu-item
+                                            data-on-click="setAction('email-domain/email/account/update/email-domain-email-account-update', { account: email, delegate: true })"
+                                        >
+                                            <span
+                                                data-translate="email_tab_popover_update_account"
+                                            ></span>
+                                        </oui-action-menu-item>
+                                        <oui-action-menu-item
+                                            data-on-click="setAction('email-domain/email/account/change-password/email-domain-email-account-change-password', { account: email, delegate: true })"
+                                        >
+                                            <span
+                                                data-translate="email_tab_popover_change_password_account"
+                                            ></span>
+                                        </oui-action-menu-item>
+                                        <oui-action-menu-item
+                                            data-on-click="setAction('email-domain/email/account/unlock/email-domain-email-account-unlock', email)"
+                                            data-ng-if="email.isBlocked"
+                                        >
+                                            <span
+                                                data-translate="email_tab_table_emails_unlock_action"
+                                            ></span>
+                                        </oui-action-menu-item>
+                                    </oui-action-menu>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="clearfix" data-ng-if="ctrlEmailDelegate.emails">
+                    <div
+                        data-pagination-front
+                        data-items="ctrlEmailDelegate.emails"
+                        data-paginated-items="ctrlEmailDelegate.emailsDetails"
+                        data-current-page="currentPageEmails"
+                        data-nb-pages="nbPages"
+                        data-items-per-page="itemsPerPage"
+                        data-transform-item="ctrlEmailDelegate.transformItem(item)"
+                        data-on-transform-item-done="ctrlEmailDelegate.onTransformItemDone()"
+                        data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPageEmails, last: nbPages } }}"
+                        data-item-per-page-placeholder="{{ 'pagination_display'| translate }}"
+                        data-ng-show="!ctrlEmailDelegate.loading.accounts && ctrlEmailDelegate.emailsDetails.length > 0"
+                    ></div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mt-5 mt-lg-0">
+                <button
+                    class="btn btn-block btn-default"
+                    type="button"
+                    data-translate="email_tab_responders_management_heading"
+                    data-ng-click="ctrlEmailDelegate.goToResponder()"
+                    data-ng-disabled="ctrlEmailDelegate.loading.search"
+                ></button>
+                <button
+                    class="btn btn-block btn-default"
+                    type="button"
+                    data-translate="email_tab_export_accounts_csv_title"
+                    data-ng-click="setAction('email-domain/email/account/export-csv/email-domain-email-account-export-csv', {delegate: true})"
+                    data-ng-disabled="ctrlEmailDelegate.loading.search"
+                ></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade currentAction" id="currentAction" role="dialog">
+        <div class="modal-dialog">
+            <div
+                class="modal-content"
+                id="modal-container"
+                data-ng-include="ctrlEmailDelegate.stepPath"
+            ></div>
+            <div class="help4wizards" id="modal-help"></div>
+        </div>
+    </div>
+</div>

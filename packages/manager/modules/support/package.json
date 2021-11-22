@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-support",
-  "version": "1.6.5",
+  "version": "1.6.6",
   "private": true,
   "description": "Support component to manage tickets.",
   "repository": {
@@ -19,7 +19,7 @@
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/ng-at-internet": "^5.8.0",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.5",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.9",
     "@ovh-ux/ng-translate-async-loader": "^2.1.3",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.5",
     "@ovh-ux/ui-kit": "^5.0.0",

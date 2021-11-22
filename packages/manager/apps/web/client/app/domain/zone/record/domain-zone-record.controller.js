@@ -293,17 +293,6 @@ angular.module('App').controller(
       }${this.domain.displayName}.`;
     }
 
-    getResumeTargetAlert() {
-      if (
-        this.model.target &&
-        /[^.]$/.test(this.model.target.value) &&
-        ['NS', 'CNAME', 'SRV', 'MX'].indexOf(this.model.fieldType) !== -1
-      ) {
-        return `${this.model.target.target}.${this.domain.displayName}.`;
-      }
-      return false;
-    }
-
     loadEditModel(fieldType) {
       this.model.subDomainToDisplay = get(this.edit, 'subDomainToDisplay');
 
@@ -613,8 +602,8 @@ angular.module('App').controller(
         }
         case 'cname':
         case 'ns':
-          this.model.target.value = punycode.toASCII(
-            this.model.target.target || '',
+          this.model.target.value = this.DomainValidator.constructor.appendDotToTarget(
+            this.model.target,
           );
           break;
         case 'dkim':

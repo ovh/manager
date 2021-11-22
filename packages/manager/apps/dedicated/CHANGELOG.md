@@ -1,3 +1,32 @@
+## [17.5.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.5.6...@ovh-ux/manager-dedicated@17.5.7) (2021-11-22)
+
+
+### Bug Fixes
+
+* **dedicated:** fix message horizontal scroll ([18b402a](https://github.com/ovh/manager/commit/18b402a0f6fffd1521846690795d346db11324c3)), closes [#DTRSD-50951](https://github.com/ovh/manager/issues/DTRSD-50951)
+* **deps:** bump validator from 11.1.0 to 13.7.0 range ([#5903](https://github.com/ovh/manager/issues/5903)) ([a5a74e5](https://github.com/ovh/manager/commit/a5a74e58db1859812eca5bc82c2847165e9ad6dd))
+* **i18n:** add missing translations [CDS 1253] ([3c25560](https://github.com/ovh/manager/commit/3c25560870b866815b00c341c6c055896103a73f))
+
+
+
+## [17.5.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.5.5...@ovh-ux/manager-dedicated@17.5.6) (2021-11-15)
+
+
+### Bug Fixes
+
+* **server.details:** enable bandwidth option for new range ([#5907](https://github.com/ovh/manager/issues/5907)) ([2a5a137](https://github.com/ovh/manager/commit/2a5a13798ccdc7ba5bf54ef17cc0b10148a9bb82))
+
+
+
+## [17.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.5.4...@ovh-ux/manager-dedicated@17.5.5) (2021-11-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1253] ([d659951](https://github.com/ovh/manager/commit/d6599513a8a7978bb217d8d3391d5a72d8d5d3c9))
+
+
+
 ## [17.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.5.3...@ovh-ux/manager-dedicated@17.5.4) (2021-11-08)
 
 

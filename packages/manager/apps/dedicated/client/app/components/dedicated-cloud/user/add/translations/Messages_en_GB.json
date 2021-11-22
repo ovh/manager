@@ -14,7 +14,7 @@
   "dedicatedCloud_USER_add_user_cant_set_password": "You can then change your password using your certified web interface. ",
   "dedicatedCloud_USER_add_user_password_length": "The password must be between {{t0}} and {{t1}} characters.",
   "dedicatedCloud_USER_add_user_which_rights": "What rights do you want to apply to {{t0}}?",
-  "dedicatedCloud_USER_add_user_which_rights_rw": "Administrator (read/write access to all datacentres)",
+  "dedicatedCloud_USER_add_user_which_rights_rw": "Administrator (read/write access to all datacenters)",
   "dedicatedCloud_USER_add_user_which_rights_ro": "Read-only (read-only access to vSphere)",
   "dedicatedCloud_USER_add_user_which_rights_none": "None (customise after creating the user)",
   "dedicatedCloud_USER_add_user_step3_question1": "Do you want to add <b>{{t0}}</b> with the following information:",

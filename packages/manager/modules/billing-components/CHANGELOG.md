@@ -1,3 +1,21 @@
+## [3.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.5.2...@ovh-ux/manager-billing-components@3.5.3) (2021-11-22)
+
+
+### Bug Fixes
+
+* **subscription-tile:** fix contact management ([#5916](https://github.com/ovh/manager/issues/5916)) ([21274cf](https://github.com/ovh/manager/commit/21274cf1c7ce0572f689f6611730ca087c7e9894))
+
+
+
+## [3.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.5.1...@ovh-ux/manager-billing-components@3.5.2) (2021-11-15)
+
+
+### Bug Fixes
+
+* **commitment:** fix issue with upfront price ([#5947](https://github.com/ovh/manager/issues/5947)) ([373289e](https://github.com/ovh/manager/commit/373289ed4f82fb59c56908702403fa99ba2c9f11))
+
+
+
 ## [3.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.5.0...@ovh-ux/manager-billing-components@3.5.1) (2021-11-08)
 
 

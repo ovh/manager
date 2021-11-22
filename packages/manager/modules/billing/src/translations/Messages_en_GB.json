@@ -180,7 +180,7 @@
   "ovhAccount_create_alert": "Set up an alert",
   "ovhAccount_create_alert_resume": "You will be alerted by e-mail when your account balance falls below the alert threshold.",
   "ovhAccount_delete_alert": "Disable balance alerts on your account:",
-  "ovhAccount_create_alert_amount": "Altert threshold amount ",
+  "ovhAccount_create_alert_amount": "Alert threshold amount ",
   "ovhAccount_create_alert_wizard_button": "Set threshold ",
   "ovhAccount_create_alert_success": "Your alert has been registered. ",
   "ovhAccount_create_alert_error": "Your alert could not be registered due to a problem.",

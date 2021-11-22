@@ -25,7 +25,7 @@
     "@ovh-ux/manager-overthebox": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-preloader": "^1.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.8",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.9",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.0.2",
     "@ovh-ux/ng-ovh-contracts": "^4.0.4",
     "@ovh-ux/ng-ovh-http": "^5.0.2",

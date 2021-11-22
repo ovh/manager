@@ -183,7 +183,7 @@
   "hosting_dashboard_service_order_db": "Order SQL",
   "hosting_dashboard_service_filer": "Filer",
   "hosting_dashboard_service_urchin": "Statistics and logs",
-  "hosting_dashboard_service_datacenter": "Datacentre",
+  "hosting_dashboard_service_datacenter": "Datacenter",
   "hosting_dashboard_service_datacenter_p19": "Paris",
   "hosting_dashboard_service_datacenter_gra1": "Gravelines",
   "hosting_dashboard_service_default_runtime": "Default runtime software",

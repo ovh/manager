@@ -1,0 +1,117 @@
+<div class="email-domain">
+    <oui-header
+        data-heading="{{:: 'mxPlan_order_title' | translate }}"
+        class="mb-2"
+    ></oui-header>
+
+    <div data-ovh-alert></div>
+    <oui-message data-type="success" data-ng-if="$ctrl.orderTrackingLink">
+        <span data-translate="mxPlan_order_generated_success"></span>
+        <a
+            data-ng-href="{{ $ctrl.orderTrackingLink }}"
+            data-translate="mxPlan_order_generated_success_tracking"
+        ></a>
+    </oui-message>
+
+    <oui-stepper
+        data-current-index="$ctrl.currentIndex"
+        data-on-finish="$ctrl.validateCheckout(forms)"
+    >
+        <oui-step-form
+            data-header="{{:: 'mxPlan_order_domain' | translate }}"
+            data-valid="$ctrl.model.selectedDomain"
+            data-loading="$ctrl.loading.domain"
+            data-editable="!$ctrl.loading.checkout"
+        >
+            <oui-select
+                class="oui-select_m"
+                data-items="$ctrl.domains"
+                data-model="$ctrl.model.selectedDomain"
+                data-on-change="$ctrl.onDomainChange()"
+                data-placeholder="{{:: 'mxPlan_order_domain_pick' | translate }}"
+            >
+            </oui-select>
+        </oui-step-form>
+        <oui-step-form
+            data-header="{{:: 'mxPlan_order_offer' | translate }}"
+            data-on-focus="$ctrl.displaySelectedOffer = false"
+            data-on-submit="$ctrl.displaySelectedOffer = true"
+            data-editable="!$ctrl.loading.checkout"
+        >
+            <p data-translate="mxPlan_order_offer_description_domain"></p>
+            <div class="row">
+                <oui-select-picker
+                    data-ng-if="$ctrl.displaySelectedOffer"
+                    class="mb-3 col-md-4"
+                    data-label="{{ $ctrl.model.product.displayName }}"
+                    name="{{:: $ctrl.model.product.planCode }}"
+                    data-model="$ctrl.model.product"
+                    data-values="[$ctrl.model.product]"
+                    data-variant="light"
+                >
+                    <oui-select-picker-footer>
+                        <ovh-manager-catalog-price
+                            data-user="$ctrl.user"
+                            data-price="$ctrl.model.product.getPrice('installation')"
+                            data-tax="$ctrl.getProductTaxAmount($ctrl.model.product)"
+                        >
+                        </ovh-manager-catalog-price>
+                    </oui-select-picker-footer>
+                </oui-select-picker>
+
+                <oui-select-picker
+                    data-ng-if="!$ctrl.displaySelectedOffer"
+                    class="mb-3 col-md-4"
+                    data-ng-repeat="product in $ctrl.products track by product.planCode"
+                    data-label="{{ product.displayName }}"
+                    name="{{:: product.planCode }}"
+                    data-model="$ctrl.model.product"
+                    data-values="[product]"
+                    data-variant="light"
+                >
+                    <oui-select-picker-footer>
+                        <ovh-manager-catalog-price
+                            data-user="$ctrl.user"
+                            data-price="product.getPrice('installation')"
+                            data-tax="$ctrl.getProductTaxAmount(product)"
+                        >
+                        </ovh-manager-catalog-price>
+                    </oui-select-picker-footer>
+                </oui-select-picker>
+            </div>
+        </oui-step-form>
+        <oui-step-form
+            data-header="{{:: 'mxPlan_order_contracts' | translate }}"
+            data-on-focus="$ctrl.loadValidation()"
+            data-loading="$ctrl.loading.checkout"
+            data-editable="!$ctrl.loading.checkout"
+            data-valid="($ctrl.checkout.contracts.length === 0 || $ctrl.model.contractsAccepted)"
+            data-submit-text="{{ ($ctrl.checkout.prices.withTax.value === 0 ? 'mxPlan_order_activate' : 'mxPlan_order_action') | translate }}"
+        >
+            <div class="row mb-2">
+                <dl
+                    class="oui-description oui-description_horizontal oui-heading_underline col-md-2"
+                >
+                    <dt data-translate="mxPlan_price_without_tax"></dt>
+                    <dd
+                        data-ng-bind="$ctrl.checkout.prices.withoutTax.text"
+                    ></dd>
+                    <dt data-translate="mxPlan_price_with_tax"></dt>
+                    <dd data-ng-bind="$ctrl.checkout.prices.withTax.text"></dd>
+                </dl>
+            </div>
+            <ovh-payment-method-choice
+                class="mb-1"
+                data-model="$ctrl.model.defaultPaymentMethod"
+                data-error-callback="$ctrl.onPaymentError()"
+            >
+            </ovh-payment-method-choice>
+            <ovh-contracts-summary
+                data-name="agreeContracts"
+                data-items="$ctrl.checkout.contracts"
+                data-model="$ctrl.model.contractsAccepted"
+            >
+            </ovh-contracts-summary>
+        </oui-step-form>
+    </oui-stepper>
+</div>

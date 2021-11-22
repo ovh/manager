@@ -454,59 +454,6 @@ export default /* @ngInject */ function VpsService(
   };
 
   /*
-   * Get content of ips tabs
-   */
-  this.getTabIps = function getTabIps(serviceName) {
-    let vpsName = null;
-    return this.getSelectedVps(serviceName)
-      .then((vps) => {
-        if (vps && vps.name) {
-          vpsName = vps.name;
-          const tabSummary = vpsCache.get(`tabIps_${vpsName}`);
-          if (!tabSummary) {
-            vpsCache.put(`tabIps_${vps.name}`, true);
-            return $http
-              .get([aapiRootPath, vps.name, 'tabips'].join('/'), {
-                serviceType: 'aapi',
-              })
-              .then((response) => {
-                if (response.status < 300) {
-                  vpsCache.put(`tabIps_${vpsName}`, response.data);
-                  return vpsCache.get(`tabIps_${vpsName}`);
-                }
-                return $q.reject(response);
-              });
-          }
-          return tabSummary;
-        }
-        return $q.reject(vps);
-      })
-      .then(
-        () => {
-          const result = vpsCache.get(`tabIps_${vpsName}`);
-          if (
-            result &&
-            (!result.messages ||
-              (angular.isArray(result.messages) &&
-                result.messages.length === 0))
-          ) {
-            return result;
-          }
-          if (result && result.messages.length !== 0) {
-            return $q.reject(result.messages);
-          }
-          return $q.reject(result);
-        },
-        (reason) => {
-          if (reason && reason.data !== undefined) {
-            return $q.reject(reason.data);
-          }
-          return $q.reject(reason);
-        },
-      );
-  };
-
-  /*
    * Get content of secondary DNS tab
    */
   this.getTabSecondaryDns = function getTabSecondaryDns(
