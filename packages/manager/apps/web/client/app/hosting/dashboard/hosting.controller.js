@@ -645,17 +645,30 @@ export default class {
     return this.Hosting.getSelected(this.$stateParams.productId, true)
       .then((hosting) => {
         this.$scope.hosting = hosting;
+        this.$scope.autorenew = {};
         this.$scope.hosting.displayName =
           hosting.displayName || hosting.serviceDisplayName;
         this.$scope.isAdminPvtDb = false;
 
         if (!hosting.isExpired && hosting.messages.length > 0) {
-          this.Alerter.error(
-            this.$translate.instant('hosting_dashboard_loading_error'),
-            this.$scope.alerts.page,
-          );
-          if (!hosting.name) {
-            return this.$q.reject();
+          if (some(hosting.messages, { code: 460 })) {
+            this.$scope.autorenew.url = this.coreURLBuilder.buildURL(
+              'dedicated',
+              '#/billing/autoRenew',
+              {
+                selectedType: 'HOSTING_WEB',
+                searchText: hosting.serviceName,
+              },
+            );
+            this.$scope.serviceError = true;
+          } else {
+            this.Alerter.error(
+              this.$translate.instant('hosting_dashboard_loaing_error'),
+              this.$scope.alerts.page,
+            );
+            if (!hosting.name) {
+              return this.$q.reject();
+            }
           }
         }
 
