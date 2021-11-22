@@ -28,7 +28,7 @@
 
         <dt><strong>Brotli</strong></dt>
         <dd
-            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.options.perf.api.enabled ? 'enable' : 'disabled') }}"
+            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.options.perf.brotli.api.enabled ? 'enable' : 'disabled') }}"
         ></dd>
 
         <div data-ng-if="$ctrl.model.options.perf.geo_headers.api">
@@ -97,28 +97,28 @@
         <div data-ng-if="$ctrl.model.options.security.https_redirect.api">
             <dt><strong>HTTPS-Redirect</strong></dt>
             <dd
-                data-ng-bind="$ctrl.model.options.security.https_redirect.api.enabled ? $ctrl.model.options.security.https_redirect.api.config.statusCode : ('hosting_cdn_shared_state_disabled' | translate )"
+                data-ng-bind=":: 'hosting_cdn_shared_state_' + ($ctrl.model.options.security.https_redirect.api.enabled ? 'enable' : 'disabled') | translate"
             ></dd>
         </div>
 
         <div data-ng-if="$ctrl.model.options.security.hsts.api">
             <dt><strong>HSTS</strong></dt>
             <dd
-                data-ng-bind="$ctrl.model.options.security.hsts.api.enabled ? $ctrl.model.options.security.hsts.api.ttl : ('hosting_cdn_shared_state_disabled' | translate )"
+                data-ng-bind=":: 'hosting_cdn_shared_state_' + ($ctrl.model.options.security.hsts.api.enabled ? 'enable' : 'disabled') | translate"
             ></dd>
         </div>
 
         <div data-ng-if="$ctrl.model.options.security.mixed_content.api">
             <dt><strong>Mixed Content</strong></dt>
             <dd
-                data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.options.security.mixed_content.api.enabled ? 'enable' : 'disabled') }}"
+                data-ng-bind=":: 'hosting_cdn_shared_state_' + ($ctrl.model.options.security.mixed_content.api.enabled ? 'enable' : 'disabled') | translate"
             ></dd>
         </div>
 
         <div data-ng-if="$ctrl.model.options.security.waf.api">
             <dt><strong>WAF</strong></dt>
             <dd
-                data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.options.security.waf.api.enabled ? 'enable' : 'disabled') }}"
+                data-ng-bind=":: 'hosting_cdn_shared_state_' + ($ctrl.model.options.security.waf.api.enabled ? 'enable' : 'disabled') | translate"
             ></dd>
         </div>
 
