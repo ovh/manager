@@ -152,9 +152,13 @@
         role="alert"
         data-ng-if="ctrlDomain.domain.isExpired"
     >
-        <div
-            data-ng-bind-html="'common_service_expired' | translate: { t0: '<strong>' + ctrlDomain.domain.displayName + '</strong>' }"
-        ></div>
+        <span
+            data-translate="common_service_expired_1"
+            data-translate-values="{ t0: '<strong>' + ctrlDomain.domain.displayName + '</strong>' }"
+        ></span>
+        <a href="{{::ctrlDomain.autorenewUrl}}"
+            ><span data-translate="common_service_expired_2"></span
+        ></a>
     </div>
 
     <div data-ng-if="!ctrlDomain.domain.isExpired">

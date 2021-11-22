@@ -30,7 +30,11 @@ export default /* @ngInject */ ($stateProvider) => {
       tab: null,
     },
     resolve: {
-      cdnProperties: /* @ngInject */ (HostingCdnSharedService, serviceName) =>
+      cdnProperties: /* @ngInject */ (
+        $q,
+        HostingCdnSharedService,
+        serviceName,
+      ) =>
         HostingCdnSharedService.getCDNProperties(serviceName)
           .then(({ data }) => data)
           .catch(() => null),
@@ -99,7 +103,7 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName,
         ).catch(() => []),
       emailOptionIds: /* @ngInject */ (hostingEmailService, serviceName) =>
-        hostingEmailService.getEmailOptionList(serviceName),
+        hostingEmailService.getEmailOptionList(serviceName).catch(() => null),
       emailOptionDetachInformation: /* @ngInject */ (
         $q,
         emailOptionServiceInfos,
@@ -185,15 +189,17 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
       logs: /* @ngInject */ (HostingStatistics, serviceName, userLogsToken) =>
-        HostingStatistics.getLogs(serviceName).then((logs) => ({
-          ...logs,
-          statsUrl: userLogsToken
-            ? `${logs.stats}?token=${userLogsToken}`
-            : logs.stats,
-          logsUrl: userLogsToken
-            ? `${logs.logs}?token=${userLogsToken}`
-            : logs.logs,
-        })),
+        HostingStatistics.getLogs(serviceName)
+          .then((logs) => ({
+            ...logs,
+            statsUrl: userLogsToken
+              ? `${logs.stats}?token=${userLogsToken}`
+              : logs.stats,
+            logsUrl: userLogsToken
+              ? `${logs.logs}?token=${userLogsToken}`
+              : logs.logs,
+          }))
+          .catch(() => null),
       userLogsToken: /* @ngInject */ (Hosting, serviceName) =>
         Hosting.getUserLogsToken(serviceName, {
           params: {
