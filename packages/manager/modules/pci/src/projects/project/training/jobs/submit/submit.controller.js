@@ -17,7 +17,6 @@ export default class PciTrainingJobsSubmitController {
     PciProjectTrainingService,
     PciProjectTrainingJobService,
     PciProjectStorageContainersService,
-    OvhApiCloudProjectSshKey,
     atInternet,
     coreConfig,
   ) {
@@ -27,7 +26,6 @@ export default class PciTrainingJobsSubmitController {
     this.PciProjectTrainingService = PciProjectTrainingService;
     this.PciProjectTrainingJobService = PciProjectTrainingJobService;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
-    this.OvhApiCloudProjectSshKey = OvhApiCloudProjectSshKey;
     this.atInternet = atInternet;
   }
 
@@ -354,15 +352,14 @@ export default class PciTrainingJobsSubmitController {
   }
 
   populateSavedSshKeys() {
-    this.OvhApiCloudProjectSshKey.v6()
-      .query({
-        serviceName: this.projectId,
-      })
-      .$promise.then((keys) => {
+    this.PciProjectTrainingService.getSavedSshKeys(this.projectId).then(
+      ({ data: keys }) => {
+        console.log(keys);
         this.savedKeys = keys;
         this.allKeyNames = [this.JOB_SSH_KEYS_CONSTANTS.CUSTOM_SELECT].concat(
           this.savedKeys.map((x) => x.name),
         );
-      });
+      },
+    );
   }
 }
