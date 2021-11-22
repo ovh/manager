@@ -1,3 +1,12 @@
+## [3.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.18.2...@ovh-ux/manager-hub-app@3.18.3) (2021-11-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1253] ([3c25560](https://github.com/ovh/manager/commit/3c25560870b866815b00c341c6c055896103a73f))
+
+
+
 ## [3.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.18.1...@ovh-ux/manager-hub-app@3.18.2) (2021-11-10)
 
 
