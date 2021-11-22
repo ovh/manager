@@ -45,7 +45,7 @@ export default class PciProjectQuotaIncreaseController {
       }),
     );
     this.QUOTA_INCREASE_MODES = QUOTA_INCREASE_MODES;
-    this.projectName = this.PciProject.getProjectInfo().projectName;
+    this.projectDescription = this.PciProject.getProjectInfo().description;
   }
 
   increaseQuota() {
