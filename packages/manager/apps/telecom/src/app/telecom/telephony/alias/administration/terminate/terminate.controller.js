@@ -27,7 +27,7 @@ export default /* @ngInject */ class TerminateController {
     this.isLoading = true;
     this.$q
       .all({
-        reason: this.getTerminationReasons(),
+        reasons: this.getTerminationReasons(),
         task: this.getTerminationTask(),
         number: this.getNumber(),
         isSpecialNumber: this.tucVoipServiceAlias.isSpecialNumber({
@@ -35,8 +35,8 @@ export default /* @ngInject */ class TerminateController {
           serviceName: this.serviceName,
         }),
       })
-      .then(({ reason, task, number, isSpecialNumber }) => {
-        this.reasonEnum = reason;
+      .then(({ reasons, task, number, isSpecialNumber }) => {
+        this.reasonEnum = reasons;
         this.task = task;
         this.number = number;
         this.isSpecialNumber = isSpecialNumber;
