@@ -5,9 +5,10 @@ import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 import { fetchConfiguration } from '@ovh-ux/manager-config';
+import { plugin, shell as shellApi } from '@ovh-ux/shell';
 
 import { initSso } from '@/core/sso';
-import { ApplicationProvider } from './context';
+import { ApplicationProvider } from '@/context';
 import Shell from '@/shell';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -33,9 +34,13 @@ fetchConfiguration('shell')
     return environment;
   })
   .then((environment) => {
+    // init the Shell
+    const shell = shellApi.initShell();
+    shell.registerPlugin('i18n', plugin.i18n(shell, environment));
+
     ReactDOM.render(
       <React.StrictMode>
-        <ApplicationProvider environment={environment}>
+        <ApplicationProvider environment={environment} shell={shell}>
           <Shell />
         </ApplicationProvider>
       </React.StrictMode>,

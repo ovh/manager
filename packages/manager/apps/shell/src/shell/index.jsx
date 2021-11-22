@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 
-import { plugin, shell as shellApi } from '@ovh-ux/shell';
+import { plugin } from '@ovh-ux/shell';
 
 import ApplicationContext from '../context';
 import ShellHeader from './header';
@@ -10,19 +10,14 @@ function Shell() {
   const iframeRef = useRef(null);
   const [iframe, setIframe] = useState(null);
   const [router, setRouter] = useState(null);
-  const { environment, ux } = useContext(ApplicationContext);
-  let shell = null;
+  const { ux, shell } = useContext(ApplicationContext);
 
   ux.registerSidebar('account', { isOpen: true });
   ux.registerSidebar('notifications', { isOpen: false });
 
   useEffect(() => {
-    shell = shellApi.initShell(iframeRef.current);
-    shell.registerPlugin('i18n', plugin.i18n(shell, environment));
-  }, []);
-
-  useEffect(() => {
     setIframe(iframeRef.current);
+    shell.setIframeMessageBus(iframeRef.current);
   }, [iframeRef]);
 
   useEffect(() => {
