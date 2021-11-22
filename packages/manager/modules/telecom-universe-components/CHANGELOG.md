@@ -1,3 +1,12 @@
+## [7.5.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.5.1...@ovh-ux/ng-ovh-telecom-universe-components@7.5.2) (2021-11-22)
+
+
+### Bug Fixes
+
+* **deps:** bump validator from 11.1.0 to 13.7.0 range ([#5903](https://github.com/ovh/manager/issues/5903)) ([a5a74e5](https://github.com/ovh/manager/commit/a5a74e58db1859812eca5bc82c2847165e9ad6dd))
+
+
+
 ## [7.5.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.5.0...@ovh-ux/ng-ovh-telecom-universe-components@7.5.1) (2021-11-04)
 
 
