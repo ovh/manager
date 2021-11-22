@@ -227,6 +227,16 @@ export default class CdnSharedSettingsController {
     return !angular.equals(model, copyModel);
   }
 
+  static getFormattedHstsNumber(hstsMaxAgeValue) {
+    const [number, decimal] = `${hstsMaxAgeValue}`.split('.');
+    const { FIXED_NUMBER } = SHARED_CDN_OPTIONS.HSTS;
+
+    if (hstsMaxAgeValue % 1 !== 0) {
+      return `${number}.${decimal.substring(0, FIXED_NUMBER)}`;
+    }
+    return Math.round(hstsMaxAgeValue);
+  }
+
   getOption(type, optionName) {
     return this.model.options[type][optionName];
   }
@@ -415,13 +425,25 @@ export default class CdnSharedSettingsController {
   }
 
   setHstsMaxAge() {
-    this.model.options.security.hsts.api.config.ttl =
-      this.hstsMaxAgeValue * this.hstsMaxAgeUnit.value;
+    const { api } = this.model.options.security.hsts;
+    const { hstsMaxAgeValue, hstsMaxAgeUnit } = this;
+    const [number, decimal] = `${hstsMaxAgeValue}`.split('.');
+
+    if (number && decimal) {
+      this.hstsMaxAgeValue = CdnSharedSettingsController.getFormattedHstsNumber(
+        hstsMaxAgeValue,
+      );
+    }
+
+    api.config.ttl = this.hstsMaxAgeValue * hstsMaxAgeUnit.value;
   }
 
   handleHSTSUnit(unit) {
-    this.hstsMaxAgeValue =
-      this.model.options.security.hsts?.api.config.ttl || 0 / unit.value;
+    const { api } = this.model.options.security.hsts;
+
+    this.hstsMaxAgeValue = CdnSharedSettingsController.getFormattedHstsNumber(
+      (api?.config.ttl || 0) / unit.value,
+    );
   }
 
   hasSecurityOptions(config) {
