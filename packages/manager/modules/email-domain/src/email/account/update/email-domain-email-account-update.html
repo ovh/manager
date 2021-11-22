@@ -1,0 +1,96 @@
+<div data-ng-controller="EmailsUpdateAccountCtrl as ctrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="updateAccount"
+        data-wizard-title="'email_tab_modal_emails_update_account' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="ctrl.updateAccountForm.$valid"
+        >
+            <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
+
+            <div data-ng-if="!ctrl.loading">
+                <p
+                    class="font-weight-bold"
+                    data-translate="email_tab_modal_update_account_title"
+                    data-translate-values="{ t0: ctrl.currentAccount.name }"
+                ></p>
+                <p data-translate="email_tab_modal_update_account_heading"></p>
+
+                <form name="ctrl.updateAccountForm">
+                    <div
+                        class="form-group"
+                        data-ng-class="{'has-error': ctrl.updateAccountForm.accountDescription.$dirty && ctrl.updateAccountForm.accountDescription.$invalid}"
+                    >
+                        <label
+                            class="control-label"
+                            for="txt-account-description"
+                            data-translate="email_tab_modal_create_account_account_description"
+                        ></label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="txt-account-description"
+                            maxlength="{{ctrl.constants.descMaxLength}}"
+                            name="accountDescription"
+                            data-ng-change="ctrl.accountDescriptionCheck(ctrl.updateAccountForm.accountDescription)"
+                            data-ng-maxlength="ctrl.constants.descMaxLength"
+                            data-ng-model="ctrl.account.description"
+                            data-ng-pattern="ctrl.constants.descRegexPattern"
+                        />
+                        <small
+                            class="help-block"
+                            data-ng-bind-html="'emails_common_account_description_conditions' | translate: { t0: ctrl.constants.descMaxLength }"
+                            data-ng-if="ctrl.updateAccountForm.accountDescription.$dirty && ctrl.updateAccountForm.accountDescription.$invalid"
+                        ></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label
+                            class="control-label"
+                            for="select-account-size"
+                            data-translate="email_tab_modal_create_account_account_size"
+                        ></label>
+                        <div class="oui-select">
+                            <select
+                                class="oui-select__input"
+                                id="select-account-size"
+                                name="accountSize"
+                                data-ng-model="ctrl.account.size"
+                                data-ng-options="(size | humanReadableSize: {base: 10}) for size in ctrl.accountSize track by size"
+                            >
+                                <option
+                                    value=""
+                                    disabled
+                                    data-translate="emails_select_placeholder"
+                                ></option>
+                            </select>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
+                        </div>
+                    </div>
+                </form>
+
+                <div
+                    class="alert alert-info"
+                    data-ng-if="ctrl.exchangeOrderUrl || ctrl.guideMigrate"
+                >
+                    <div>
+                        <p
+                            data-ng-bind-html="'emails_common_account_over_quota' | translate: { t0: ctrl.exchangeOrderUrl }"
+                            data-ng-if="ctrl.exchangeOrderUrl"
+                        ></p>
+                        <p
+                            data-ng-bind-html="'emails_guide_migration_exchange_help' | translate: { t0: ctrl.guideMigrate }"
+                            data-ng-if="ctrl.guideMigrate"
+                        ></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

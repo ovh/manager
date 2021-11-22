@@ -208,6 +208,7 @@
   "domain_tab_ZONE_no_zone": "No hay una zona DNS asociada al dominio.",
   "domain_tab_ZONE_delete_doing": "La reactivación de su zona DNS estará disponible en una hora aproximadamente.",
   "domain_tab_ZONE_no_zone_activate_btn": "Activar la zona DNS",
+  "domain_tab_ZONE_no_zone_order_btn": "Contratar una zona DNS",
   "domain_tab_ZONE_no_defaut_dns_used": "Actualmente utiliza los siguientes servidores DNS:",
   "domain_tab_ZONE_set_defaut_dns": "Para que se aplique la zona DNS de abajo, utilice los siguientes servidores DNS:",
   "domain_tab_ZONE_title": "Aquí puede ver la configuración de los distintos registros de su dominio.",
@@ -255,6 +256,7 @@
   "domain_configuration_protection_desactivate_step1_info": "Cuando la protección esté desactivada, podrá ver el código Auth-Info que permite transferir el dominio al hacer clic en el botón correspondiente.",
   "domain_configuration_protection_desactivate_step1_dnssec": "Su dominio utiliza DNSSEC. Compruebe que su nuevo proveedor permite gestionar este servicio. En caso contrario, desactive la opción antes de transferir el dominio.",
   "domain_configuration_protection_auth_info_registry": "Para transferir su dominio fuera de OVH, debe contactar con el Registro para obtener el código Auth-Info. Puede hacerlo desde el siguiente enlace: <a href=\"{{t0}}\" target=\"_blank\">{{t0}}</a>",
+  "domain_configuration_protection_auth_info_registry_LT": "Para transferir su dominio fuera de OVHcloud, contacte con nuestro equipo de soporte.",
   "domain_configuration_protection_desactivate_step1_helpwizard_title": "Protección del dominio",
   "domain_configuration_protection_desactivate_step1_helpwizard_desc": "Activar la protección del dominio le permite protegerse del robo de dominios, impidiendo cualquier transferencia.",
   "domain_configuration_protection_desactivate_step1_helpwizard_question1": "¿Qué es el robo de dominios?",
@@ -585,7 +587,6 @@
   "domain_configuration_dns_entry_edit_title": "Editar un registro de la zona DNS",
   "domain_configuration_dns_entry_relative_warning_title": "Destino real:",
   "domain_configuration_dns_entry_relative_warning_tooltip": "No olvide añadir un punto final al campo de destino si quiere utilizar la notación absoluta (o haga clic en el icono para hacerlo automáticamente).",
-  "domain_configuration_dns_entry_add_step3_warning": "Atención: El destino utiliza la notación relativa, por lo que apunta a «<strong>{{t0}}</strong>». Añada un punto final al campo de destino si quiere utilizar la notación absoluta.",
   "domain_configuration_dns_entry_modify_success": "El cambio será inmediato en la zona DNS, pero tenga en cuenta que es necesario un tiempo de propagación (máximo 24 horas).",
   "domain_configuration_dns_entry_modify_fail": "Se ha producido un error al intentar modificar el registro de la zona DNS.",
   "domain_configuration_dns_entry_add_ttl_default_hint": "Corresponde al valor por defecto.",
@@ -827,7 +828,5 @@
   "domain_dashboard_recommended_hosting_title_Perso": "Alojamiento de su blog o sitio web",
   "domain_dashboard_recommended_hosting_label": "- {{ reduction }} en su alojamiento {{ type }} durante el Black Friday.",
   "domain_dashboard_recommended_hosting_discover": "Descubrir las soluciones",
-  "domain_tab_ZONE_no_zone_order_btn": "Contratar una zona DNS",
-  "domain_tab_emails": "Correo electrónico y listas de correo",
-  "domain_configuration_protection_auth_info_registry_LT": "Para transferir su dominio fuera de OVHcloud, contacte con nuestro equipo de soporte."
+  "domain_tab_emails": "Correo electrónico y listas de correo"
 }

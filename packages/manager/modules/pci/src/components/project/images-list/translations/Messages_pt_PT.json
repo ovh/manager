@@ -2,7 +2,7 @@
   "pci_project_instances_display_nonavailable": "Mostrar as imagens indisponíveis",
   "pci_project_instances_os_linux": "Distribuições Unix",
   "pci_project_instances_os_windows": "Distribuições Windows",
-  "pci_project_instances_os_baremetal-linux": "Baremetal distributions",
+  "pci_project_instances_os_baremetal-linux": "Distribuições Bare Metal",
   "pci_project_instances_apps": "Distribuições + Apps",
   "pci_project_instances_shapshots": "Backups",
   "pci_project_instances_licence": "A utilização de uma imagem está sujeita à aceitação prévia do Contrato de Licença do Utilizador do fornecedor.",
@@ -17,5 +17,6 @@
   "pci_project_instances_distribution_windows_server_2012": "Windows Server 2012",
   "pci_project_instances_distribution_windows_server_2016": "Windows Server 2016",
   "pci_project_instances_distribution_windows_other": "Outras distribuições Windows",
-  "pci_project_instances_distribution_version": "Versão"
+  "pci_project_instances_distribution_version": "Versão",
+  "pci_project_instances_distribution_unknown": "Distribuições Bare Metal"
 }

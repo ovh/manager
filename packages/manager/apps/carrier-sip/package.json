@@ -25,7 +25,7 @@
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-preloader": "^1.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.8",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.9",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.0.2",
     "@ovh-ux/ng-ovh-http": "^5.0.2",
     "@ovh-ux/ng-ovh-mondial-relay": "^8.1.0",
@@ -69,7 +69,7 @@
     "punycode": "^1.4.1",
     "regenerator-runtime": "^0.13.7",
     "ui-select": "^0.19.8",
-    "validator": "^11.1.0",
+    "validator": "^13.7.0",
     "validator-js": "^0.2.1",
     "whatwg-fetch": "^3.5.0"
   },

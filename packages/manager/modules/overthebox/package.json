@@ -22,7 +22,7 @@
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.6",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.9",
     "@ovh-ux/ng-ovh-contracts": "^4.0.5",
     "@ovh-ux/ng-ovh-mondial-relay": "^8.1.1",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^6.0.0 || ^7.0.0",

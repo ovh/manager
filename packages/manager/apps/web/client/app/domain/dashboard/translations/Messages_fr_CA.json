@@ -588,7 +588,6 @@
   "domain_configuration_dns_entry_edit_title": "Modifier une entrée de la zone DNS",
   "domain_configuration_dns_entry_relative_warning_title": "Cible réelle :",
   "domain_configuration_dns_entry_relative_warning_tooltip": "Pensez à ajouter un point final à votre champ cible si vous souhaitez utiliser la notation absolue (ou cliquez sur cette icône pour le faire automatiquement).",
-  "domain_configuration_dns_entry_add_step3_warning": "Attention : La cible utilise la notation relative, et pointe donc vers \"<strong>{{t0}}</strong>\". Pensez à ajouter un point final à votre champ cible si vous souhaitez utiliser la notation absolue.",
   "domain_configuration_dns_entry_modify_success": "La modification sera immédiate dans la zone DNS, mais veuillez prendre en compte le temps de propagation (maximum 24h).",
   "domain_configuration_dns_entry_modify_fail": "Une erreur est survenue lors de la demande de modification de l'entrée dans la zone DNS.",
   "domain_configuration_dns_entry_add_ttl_default_hint": "Correspond à la valeur par défaut.",

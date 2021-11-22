@@ -62,7 +62,7 @@
     "@ovh-ux/ng-at-internet": "^5.8.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.0",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.10",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.8",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.9",
     "@ovh-ux/ng-ovh-browser-alert": "^2.0.3",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-contacts": "^4.0.6",
@@ -153,7 +153,7 @@
     "u2f-api-polyfill": "^0.4.3",
     "ui-select": "^0.19.8",
     "urijs": "^1.19.1",
-    "validator": "^3.39.0",
+    "validator": "^13.7.0",
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
