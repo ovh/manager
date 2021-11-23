@@ -11,7 +11,7 @@ pay attention to a few things:
 
 # Coding and documentation Style
 
-- Code must be formated with `yarn run format`
+- Code must be formatted with `yarn run format`
 - Code must pass `yarn run test`
 
 # Translations
