@@ -111,7 +111,7 @@
                     data-ng-if="$ctrl.currentEditedRow !== $rowIndex"
                     size="s"
                     variant="secondary"
-                    disabled="$ctrl.isLoading"
+                    disabled="$ctrl.isLoading || $ctrl.currentEditedRow !== $ctrl.acls.length"
                     on-click="$ctrl.deleteAclRule($row, $rowIndex)"
                 >
                     <span
