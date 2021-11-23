@@ -135,4 +135,8 @@ export default class NutanixService {
         return this.$q.reject(error);
       });
   }
+
+  getDedicatedInstallTemplateApiSchema() {
+    return this.$http.get('/dedicated/server.json').then(({ data }) => data);
+  }
 }

@@ -4,6 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: 'nutanix.dashboard.general-info',
     component: 'nutanixDashboard',
     resolve: {
+      trackingPrefix: /* @ngInject */ () => 'hpc::nutanix::cluster',
       user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
       cluster: /* @ngInject */ (NutanixService, serviceName) =>
         NutanixService.getCluster(serviceName),

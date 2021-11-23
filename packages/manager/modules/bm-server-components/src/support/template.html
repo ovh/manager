@@ -24,7 +24,11 @@
     >
         <span data-ng-bind="$ctrl.numberOfTickets"></span>
     </oui-tile-button>
-    <oui-tile-button class="ml-1" data-href="{{:: $ctrl.createNewTicketUrl }}">
+    <oui-tile-button
+        class="ml-1"
+        data-href="{{:: $ctrl.createNewTicketUrl }}"
+        data-on-click="$ctrl.trackClick('go-to-create-ticket')"
+    >
         <span data-translate="server_support_create_ticket"></span>
     </oui-tile-button>
     <!-- interventions -->
@@ -47,6 +51,7 @@
         <oui-tile-button
             class="ml-1"
             data-href="{{:: $ctrl.travauxUrl }}"
+            data-on-click="$ctrl.trackClick('go-to-ovhcloud-status')"
             external
         >
             <span data-translate="server_consult_travaux"></span>

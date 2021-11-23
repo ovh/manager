@@ -4,6 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '',
     component: 'nutanixGeneralInfo',
     resolve: {
+      trackingPrefix: /* @ngInject */ () => 'hpc::nutanix::cluster::dashboard',
       nodeId: /* @ngInject */ (cluster) => cluster.getFirstNode(),
       technicalDetails: /* @ngInject */ (NutanixService, nodeId) => {
         return NutanixService.getNodeHardwareInfo(nodeId);
@@ -42,6 +43,9 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('nutanix_dashboard_general_info'),
+    },
+    atInternet: {
+      rename: 'hpc::nutanix::cluster::dashboard',
     },
   });
 };

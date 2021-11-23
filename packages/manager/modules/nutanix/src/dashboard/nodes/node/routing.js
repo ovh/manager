@@ -13,6 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
         NutanixService.getServer(nodeId),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
+      trackingPrefix: /* @ngInject */ () => 'hpc::nutanix::cluster::node',
       breadcrumb: /* @ngInject */ (nodeId) => nodeId,
     },
   });

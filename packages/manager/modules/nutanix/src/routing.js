@@ -75,5 +75,8 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       hideBreadcrumb: () => true,
     },
+    atInternet: {
+      rename: 'hpc::nutanix::clusters',
+    },
   });
 };
