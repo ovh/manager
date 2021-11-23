@@ -354,7 +354,6 @@ export default class PciTrainingJobsSubmitController {
   populateSavedSshKeys() {
     this.PciProjectTrainingService.getSavedSshKeys(this.projectId).then(
       ({ data: keys }) => {
-        console.log(keys);
         this.savedKeys = keys;
         this.allKeyNames = [this.JOB_SSH_KEYS_CONSTANTS.CUSTOM_SELECT].concat(
           this.savedKeys.map((x) => x.name),
