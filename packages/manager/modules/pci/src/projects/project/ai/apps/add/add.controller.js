@@ -119,7 +119,7 @@ export default class AppAddController {
   }
 
   $onInit() {
-    this.messageContainer = 'pci.projects.project.apps.add';
+    this.messageContainer = 'pci.projects.project.ai.apps.add';
     this.loadMessages();
     if (this.storages.length === 0) {
       this.appModel.volumes = [];

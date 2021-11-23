@@ -4,33 +4,26 @@ import 'angular-translate';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ui-kit';
-import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
 
-import component from './apps.component';
-import routing from './apps.routing';
-import service from './apps.service';
+import component from './dashboard.component';
+import generalInformation from './general-information';
+import attachData from './attach-data';
+import routing from './dashboard.routing';
 
-import add from './add';
-import dashboard from './dashboard';
-
-import './index.scss';
-
-const moduleName = 'ovhManagerPciApps';
+const moduleName = 'ovhManagerPciAppsDashboard';
 
 angular
   .module(moduleName, [
-    ngOvhSwimmingPoll,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ngOvhCloudUniverseComponents',
     'oui',
     'ui.router',
-    add,
-    dashboard,
+    generalInformation,
+    attachData,
   ])
   .config(routing)
-  .component('ovhManagerPciProjectApps', component)
-  .service('AppService', service)
+  .component('ovhManagerPciProjectAppsDashboard', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

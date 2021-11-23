@@ -1,0 +1,119 @@
+<div data-ui-view>
+    <!--Banner messages-->
+    <div class="mt-4">
+        <cui-message-container
+            data-messages="$ctrl.messages"
+        ></cui-message-container>
+    </div>
+
+    <!--Attach data section-->
+    <div>
+        <!--Title and description-->
+        <div class="oui-box oui-box_light mb-4 p-0 border-0">
+            <h4
+                class="oui-box__heading"
+                data-translate="pci_apps_tab_attach_data_page_title"
+            ></h4>
+            <span
+                data-translate="pci_apps_tab_attach_data_page_description"
+            ></span>
+            <a
+                data-ng-href="{{::$ctrl.app.attachDataInfoLink}}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="pci_apps_tab_attach_data_page_description_link"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </div>
+
+        <!--Table-->
+        <oui-datagrid
+            rows="$ctrl.privateSwiftVolumes"
+            page-size="::$ctrl.DATAGRID_MAX_ITEMS_PER_PAGE"
+        >
+            <oui-datagrid-column
+                title=":: 'pci_apps_tab_attach_data_page_volumes_column_type_swift' | translate"
+                sortable="true"
+            >
+                <span data-ng-bind="$row.privateSwift.container"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_apps_tab_attach_data_page_volumes_column_prefix' | translate"
+                sortable="true"
+            >
+                <span data-ng-bind="$row.privateSwift.prefix"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_apps_tab_attach_data_page_volumes_column_region' | translate"
+                sortable="true"
+            >
+                <span data-ng-bind="$row.privateSwift.region"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_apps_tab_attach_data_page_volumes_column_mount_path' | translate"
+            >
+                <oui-clipboard model="$row.mountPath"></oui-clipboard>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_app_data_permission' | translate"
+                sortable="true"
+                property="permission"
+            >
+                <span
+                    data-ng-bind=":: 'pci_app_permission_' + $row.permission | translate"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_app_data_cache' | translate"
+                sortable="true"
+            >
+                <span data-ng-bind="$row.cache"></span>
+            </oui-datagrid-column>
+        </oui-datagrid>
+
+        <!--Title and description-->
+        <h4
+            class="oui-box__heading"
+            data-translate="pci_apps_tab_attach_data_page_title_git"
+        ></h4>
+        <!--Table-->
+        <oui-datagrid
+            rows="$ctrl.publicGitVolumes"
+            empty-placeholder="{{:: 'pci_apps_tab_attach_data_page_volumes_git_none' | translate }}"
+            page-size="::$ctrl.DATAGRID_MAX_ITEMS_PER_PAGE"
+        >
+            <oui-datagrid-column
+                title=":: 'pci_apps_tab_attach_data_page_volumes_column_git_url' | translate"
+                sortable="true"
+            >
+                <span data-ng-bind="$row.publicGit.url"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_apps_tab_attach_data_page_volumes_column_mount_path' | translate"
+            >
+                <oui-clipboard model="$row.mountPath"></oui-clipboard>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_app_data_permission' | translate"
+                sortable="true"
+                property="permission"
+            >
+                <span
+                    data-ng-bind=":: 'pci_app_permission_' + $row.permission | translate"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_app_data_cache' | translate"
+                sortable="true"
+            >
+                <span data-ng-bind="$row.cache"></span>
+            </oui-datagrid-column>
+        </oui-datagrid>
+    </div>
+</div>

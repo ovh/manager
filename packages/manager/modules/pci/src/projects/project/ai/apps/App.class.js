@@ -38,13 +38,6 @@ export default class App {
     this.spec.labels = Object.keys(this.labels).map((labelKey) =>
       App.generateLabel(labelKey, this.labels[labelKey]),
     );
-
-    // Build a history actions
-    this.historyActions = [
-      { index: 1, action: 'create', date: this.createdAt },
-      { index: 2, action: 'restart', date: this.status.lastStartedAt },
-      { index: 3, action: 'stopped', date: this.status.lastStoppedAt },
-    ];
   }
 
   /**
@@ -69,49 +62,20 @@ export default class App {
     return APP_VOLUME_TYPE[volumeTypeKey];
   }
 
-  static appCommandModel(app) {
-    const { spec, volumes } = app;
-    const { editor, framework, ...env } = spec.env;
-    const specCopy = { ...spec };
-    specCopy.env = env;
-
-    return {
-      ...specCopy,
-      labels: app.convertLabels(),
-      volumes,
-    };
-  }
-
   isStarting() {
-    return this.status?.state === APP_STATUS.STARTING;
+    return this.status?.state === APP_STATUS.QUEUED;
   }
 
   isRunning() {
     return this.status?.state === APP_STATUS.RUNNING;
   }
 
-  isStopped() {
-    return this.status?.state === APP_STATUS.STOPPED;
-  }
-
-  isStopping() {
-    return this.status?.state === APP_STATUS.STOPPING;
+  isScaling() {
+    return this.status?.state === APP_STATUS.SCALING;
   }
 
   isPending() {
-    return this.isStarting() || this.isStopping();
-  }
-
-  isFailed() {
-    return this.status?.state === APP_STATUS.FAILED;
-  }
-
-  isInError() {
-    return this.status?.state === APP_STATUS.ERROR;
-  }
-
-  isTerminal() {
-    return this.isStopped() || this.isFailed() || this.isInError();
+    return this.isStarting() || this.isScaling();
   }
 
   getLabelIndex(label) {
@@ -208,22 +172,6 @@ export default class App {
 
   get accessUrl() {
     return this.status?.url;
-  }
-
-  get editor() {
-    return this.spec?.env?.editor;
-  }
-
-  get framework() {
-    return this.spec?.env?.framework;
-  }
-
-  get frameworkVersion() {
-    return this.spec?.env?.frameworkVersion;
-  }
-
-  get environment() {
-    return `${this.spec.env.frameworkId} - ${this.spec.env.frameworkVersion}`;
   }
 
   get stateInfo() {
