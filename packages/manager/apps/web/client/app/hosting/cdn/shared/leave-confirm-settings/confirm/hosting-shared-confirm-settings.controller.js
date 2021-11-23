@@ -24,6 +24,17 @@ export default class HostingCdnSharedConfirmController {
     });
   }
 
+  static getCorsOriginsList(origins) {
+    return (origins || '').split(',');
+  }
+
+  static getOptionStatusKey(option) {
+    const { enabled, api } = option;
+    const isEnabled = 'enabled' in option ? enabled : api.enabled;
+
+    return `hosting_cdn_shared_state_${isEnabled ? 'enable' : 'disabled'}`;
+  }
+
   onConfirm() {
     this.trackClick('apply-configuration::confirm');
 
@@ -54,9 +65,5 @@ export default class HostingCdnSharedConfirmController {
       .finally(() => {
         this.loading = false;
       });
-  }
-
-  static getCorsOriginsList(origins) {
-    return (origins || '').split(',');
   }
 }
