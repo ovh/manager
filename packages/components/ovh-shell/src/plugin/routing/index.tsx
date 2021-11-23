@@ -2,8 +2,9 @@ import React from 'react';
 import Router, { hashChangeEvent } from './router';
 import Application from './application';
 import RoutingConfiguration from './configuration';
+import ShellClient from '../../client/shell-client';
 
-function initRoutingConfiguration(routing: RoutingConfiguration) {
+export function initRoutingConfiguration(routing: RoutingConfiguration) {
   if (window.location.hostname === 'localhost') {
     routing.addConfiguration({
       id: 'manager',
@@ -21,7 +22,7 @@ function initRoutingConfiguration(routing: RoutingConfiguration) {
   }
 }
 
-function initRouting(iframe: HTMLIFrameElement) {
+export function initRouting(iframe: HTMLIFrameElement) {
   const routingConfig = new RoutingConfiguration();
   const application = new Application(iframe, routingConfig);
   const router = <Router application={application} routing={routingConfig} />;
@@ -36,4 +37,22 @@ function initRouting(iframe: HTMLIFrameElement) {
   };
 }
 
-export default { initRouting, initRoutingConfiguration };
+export function routingClientApi(shellClient: ShellClient) {
+  return {
+    init: () =>
+      window.addEventListener('hashchange', () => {
+        if (window.parent !== window.self) {
+          shellClient.invokePluginMethod({
+            plugin: 'routing',
+            method: 'onHashChange',
+            args: [
+              {
+                hash: window.location.hash,
+                path: window.location.pathname,
+              },
+            ],
+          });
+        }
+      }),
+  };
+}

@@ -2,7 +2,7 @@ import { useReket } from '@ovh-ux/ovh-reket';
 
 import ShellClient from './shell-client';
 import IFrameMessageBus from '../message-bus/iframe';
-import exposeApi from './api';
+import { getPublicPluginApi } from '../plugin';
 
 interface ApplicationConfiguration {
   universe: string;
@@ -44,6 +44,6 @@ function standaloneApplicationCheck() {
 
 export default function init() {
   standaloneApplicationCheck();
-  const shell = new ShellClient(new IFrameMessageBus());
-  return exposeApi(shell);
+  const shellClient = new ShellClient(new IFrameMessageBus());
+  return getPublicPluginApi(shellClient);
 }

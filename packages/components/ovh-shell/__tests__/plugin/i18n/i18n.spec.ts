@@ -2,7 +2,7 @@ import { loadFeature, defineFeature, DefineStepFunction } from 'jest-cucumber';
 import { Environment } from '@ovh-ux/manager-config';
 import { KeyPairName } from '@ovh-ux/manager-config/types/locale';
 
-import i18n from '../../../src/plugin/i18n';
+import { i18n } from '../../../src/plugin/i18n';
 import DirectClientMessageBus from '../../../src/message-bus/direct-client';
 import Shell from '../../../src/shell/shell';
 
@@ -11,7 +11,7 @@ const feature = loadFeature('../../../features/plugin/i18n/i18n.feature', {
 });
 
 defineFeature(feature, (test) => {
-  let i18nPlugin: CallableFunction;
+  let i18nPlugin;
 
   const shellMessageBus = new DirectClientMessageBus();
   const shell = new Shell(shellMessageBus);
@@ -24,8 +24,12 @@ defineFeature(feature, (test) => {
     });
   };
 
-  test('Retrieving locale when nothing has changed', ({ given, when, then }) => {
-    let locale: String;
+  test('Retrieving locale when nothing has changed', ({
+    given,
+    when,
+    then,
+  }) => {
+    let locale: string;
 
     givenI18nPluginInstanciated(given);
 
