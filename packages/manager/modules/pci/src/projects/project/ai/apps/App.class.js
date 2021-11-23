@@ -35,11 +35,6 @@ export default class App {
     this.ovhSubsidiary = ovhSubsidiary;
     this.regionInfo = regionInfo;
 
-    /* TODO:: currently the api return the labels as an object ({lab: "val1", lab1: "val2", txt: "test" ...})
-     * TODO:: instead of return a list of object ([{id: "lab", title: "val1"}, ...])
-     * TODO:: to be able to use the chips component i made a copy of labels into tags and convert labels to array of object
-     * TODO:: if API provide labels as a list of object remove the two next assignation lines
-     */
     this.spec.labels = Object.keys(this.labels).map((labelKey) =>
       App.generateLabel(labelKey, this.labels[labelKey]),
     );
