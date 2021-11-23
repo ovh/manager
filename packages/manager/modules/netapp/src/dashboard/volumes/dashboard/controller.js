@@ -1,4 +1,9 @@
-import { REDHAT_COMMAND, UBUNTU_COMMAND, FOLDER_CREATION } from './constants';
+import {
+  REDHAT_COMMAND,
+  UBUNTU_COMMAND,
+  FOLDER_CREATION,
+  PATTERN,
+} from './constants';
 import { getFileSystemMountPath, saveMountPath } from './utils';
 
 export default class {
@@ -8,6 +13,7 @@ export default class {
     this.REDHAT = REDHAT_COMMAND;
     this.UBUNTU = UBUNTU_COMMAND;
     this.FOLDER_CREATION = FOLDER_CREATION;
+    this.PATTERN = PATTERN;
   }
 
   $onInit() {
