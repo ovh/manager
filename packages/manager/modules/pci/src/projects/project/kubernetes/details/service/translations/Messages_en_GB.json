@@ -64,5 +64,11 @@
   "kube_service_restrictions_one": "1 IP range",
   "kube_service_restrictions_edit": "Modify limitations",
   "kube_service_cluster_network_public": "Public",
-  "kube_service_cluster_network_attached": "Attached network"
+  "kube_service_cluster_network_attached": "Attached network",
+  "kube_service_access_security_oidc_title": "OIDC provider",
+  "kube_service_access_security_oidc_no_provider": "No OIDC provider configured",
+  "kube_service_access_security_oidc_menu_action_sr_only": "Actions",
+  "kube_service_access_security_oidc_menu_action_add_provider": "Configure an OIDC provider",
+  "kube_service_access_security_oidc_menu_action_set_provider": "Edit OIDC Provider",
+  "kube_service_access_security_oidc_menu_action_remove_provider": "Delete the OIDC provider"
 }

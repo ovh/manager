@@ -1,0 +1,12 @@
+{
+  "pci_projects_project_kubernetes_details_service_add_oidc_provider_title": "Configurar el proveedor OIDC",
+  "pci_projects_project_kubernetes_details_service_add_oidc_provider_description": "Puede utilizar la mayoría de proveedores OpenID Connect como Dex, Keycloack o un proveedor SaaS, siempre que sean compatibles con la funcionalidad OpenID Connect Discovery, el TLS y un certificado CA firmado.",
+  "pci_projects_project_kubernetes_details_service_add_oidc_provider_action_add": "Añadir",
+  "pci_projects_project_kubernetes_details_service_add_oidc_provider_action_cancel": "Cancelar",
+  "pci_projects_project_kubernetes_details_service_add_oidc_provider_field_url": "URL del proveedor",
+  "pci_projects_project_kubernetes_details_service_add_oidc_provider_field_url_extra": "Introduzca aquí la URL de Discovery de su proveedor, sin «path». La URL debe apuntar al nivel anterior .well-known/openid-configuration. Debe utilizar una URL que comience por https://",
+  "pci_projects_project_kubernetes_details_service_add_oidc_provider_field_client_id": "ID del cliente",
+  "pci_projects_project_kubernetes_details_service_add_oidc_provider_field_client_id_extra": "Introduzca aquí el identificador del cluster Kubernetes con su proveedor OIDC, por ejemplo, «cluster-kubernetes-production». Se trata de la cadena de caracteres elegida por usted (tenga en cuenta que algunos proveedores OIDC pueden ser más restrictivos).",
+  "pci_projects_project_kubernetes_details_service_add_oidc_provider_request_success": "La configuración OIDC se ha registrado correctamente. Se aplicará tras el despliegue de su APIserver (normalmente en 30 segundos).",
+  "pci_projects_project_kubernetes_details_service_add_oidc_provider_request_error": "Se ha producido un error al crear el proveedor OIDC: {{ message }}."
+}
