@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.0.0...@ovh-ux/manager-email-domain@1.0.1) (2021-11-23)
+
+
+### Bug Fixes
+
+* declare mxplan order in lazyloading ([#6004](https://github.com/ovh/manager/issues/6004)) ([31ae8de](https://github.com/ovh/manager/commit/31ae8de1e09b9731a0aee93a5ce2c51cdba9ffe4))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@0.0.0...@ovh-ux/manager-email-domain@1.0.0) (2021-11-22)
 
 
