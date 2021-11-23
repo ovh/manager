@@ -2,7 +2,7 @@ import capitalize from 'lodash/capitalize';
 import { getCriteria } from '../../project.utils';
 import { ENGINE_LOGOS } from './databases.constants';
 
-const optionsMenuTrackPrefix = 'table::options_menu:';
+const optionsMenuTrackPrefix = 'table::options_menu::';
 
 export default class {
   /* @ngInject */

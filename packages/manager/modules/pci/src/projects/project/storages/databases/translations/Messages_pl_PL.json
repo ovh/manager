@@ -25,6 +25,7 @@
   "pci_database_list_upgrade_version_database": "Zmień wersję",
   "pci_database_list_upgrade_plan_database": "Upgrade oferty",
   "pci_database_list_upgrade_node_database": "Upgrade modelu węzła",
-  "pci_database_node_type": "{{coreNumber}} CPU / {{memorySize}} GB RAM / {{storageSize}} GB Storage SSD",
-  "pci_database_node_type_label": "Model węzła"
+  "pci_database_node_type": "{{coreNumber}} CPU / {{memorySize}} RAM / {{storageSize}} Storage SSD",
+  "pci_database_node_type_label": "Model węzła",
+  "pci_database_node_type_range": "{{coreNumber}} CPU / {{memorySize}} RAM / od {{storageMinSize}} do {{storageMaxSize}} Storage SSD"
 }

@@ -81,6 +81,17 @@ angular
         },
       });
 
+      $stateProvider.state('app.mx-plan.**', {
+        url: '/configuration/mx_plan?domain',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./email.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+
       $urlRouterProvider.when(
         /^\/configuration\/email-delegate/,
         /* @ngInject */ ($location) => {

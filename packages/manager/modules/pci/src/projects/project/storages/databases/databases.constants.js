@@ -5,6 +5,7 @@ import ASSET_KAFKA from './assets/kafka.png';
 import ASSET_MYSQL from './assets/mysql.png';
 import ASSET_POSTGRE_SQL from './assets/postgresql.png';
 import ASSET_REDIS from './assets/redis.png';
+import ASSET_OPEN_SEARCH from './assets/opensearch.png';
 
 export const ENGINE_LOGOS = {
   mongodb: ASSET_MONGO_DB,
@@ -12,6 +13,7 @@ export const ENGINE_LOGOS = {
   mysql: ASSET_MYSQL,
   postgresql: ASSET_POSTGRE_SQL,
   redis: ASSET_REDIS,
+  opensearch: ASSET_OPEN_SEARCH,
 };
 
 export const DATABASES_GUIDES_URL =
@@ -23,6 +25,7 @@ export const DATABASE_TYPES = {
   POSTGRESQL: 'postgresql',
   REDIS: 'redis',
   KAFKA: 'kafka',
+  OPEN_SEARCH: 'opensearch',
 };
 
 export const SHELL_NAMES = {
@@ -31,6 +34,7 @@ export const SHELL_NAMES = {
   postgresql: 'postgresql',
   redis: 'redis',
   kafka: 'kafka',
+  opensearch: 'opensearch',
 };
 
 export const SECRET_TYPE = {

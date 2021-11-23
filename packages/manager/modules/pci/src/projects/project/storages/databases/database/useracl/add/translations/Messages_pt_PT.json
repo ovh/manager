@@ -1,0 +1,13 @@
+{
+  "pci_databases_useracl_create_confirm": "Adicionar uma ACL",
+  "pci_databases_useracl_create_cancel": "Cancelar",
+  "pci_databases_useracl_create": "Adicionar uma ACL",
+  "pci_databases_useracl_create_description": "Os modelos de índices utilizam o sistema de correspondência padrão, também conhecido como glob pattern (“*” funciona para qualquer número de caracteres e “?” para qualquer caráter). Por exemplo, o modelo “logs_200?” funcionará para a correspondência do índice “logs_200904”, mas não para “logs_201904”.",
+  "pci_databases_useracl_create_username": "Nome do utilizador",
+  "pci_databases_useracl_create_username_placeholder": "Selecione um utilizador",
+  "pci_databases_useracl_create_permission": "Permissão",
+  "pci_databases_useracl_create_pattern": "Modelo de índice",
+  "pci_databases_useracl_create_pattern_placeholder": "logs_*",
+  "pci_databases_useracl_create_success_message": "A ACL do utilizador {{username}} foi adicionada com êxito.",
+  "pci_databases_useracl_create_error_message": "Ocorreu um erro aquando da adição das ACL ao utilizador: {{message}}"
+}
