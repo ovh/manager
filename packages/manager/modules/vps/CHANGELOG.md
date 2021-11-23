@@ -1,3 +1,12 @@
+## [2.17.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.17.8...@ovh-ux/manager-vps@2.17.9) (2021-11-23)
+
+
+### Bug Fixes
+
+* **upgrade:** fix injections in exit hook ([#6001](https://github.com/ovh/manager/issues/6001)) ([7ca5fbd](https://github.com/ovh/manager/commit/7ca5fbddb4e2df09caf78fafdf72e074cf0e4375))
+
+
+
 ## [2.17.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.17.7...@ovh-ux/manager-vps@2.17.8) (2021-11-22)
 
 
