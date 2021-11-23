@@ -52,14 +52,4 @@ export default class {
   onGuideLinkClick(guideName) {
     this.trackApps(`'table::guide::${guideName}`);
   }
-
-  onAppStartClick(appId) {
-    this.trackApps('table::options_menu::start_app');
-    return this.startApp(appId);
-  }
-
-  onAppStopClick(appId) {
-    this.trackApps('table::options_menu::pause_app');
-    return this.stopApp(appId);
-  }
 }

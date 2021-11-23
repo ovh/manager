@@ -49,7 +49,7 @@ export default /* @ngInject */ ($stateProvider) => {
         type = 'success',
       ) => {
         const reload = message && type === 'success';
-        const state = 'pci.projects.project.ai-apps';
+        const state = 'pci.projects.project.ai.apps';
 
         const promise = $state.go(
           state,

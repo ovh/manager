@@ -1,0 +1,252 @@
+<div data-ui-view>
+    <div class="mt-4">
+        <cui-message-container
+            data-messages="$ctrl.messages"
+        ></cui-message-container>
+    </div>
+
+    <div class="row py-4">
+        <div class="col-md-4">
+            <oui-tile
+                data-heading="{{:: 'pci_apps_general_information_info_title' | translate }}"
+            >
+                <!--Name-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_apps_general_information_info_app_name' | translate }}"
+                    data-description="{{:: $ctrl.app.name }}"
+                ></oui-tile-definition>
+
+                <oui-tile-definition
+                    data-term="{{:: 'pci_apps_general_information_info_app_url' | translate }}"
+                    data-description="{{:: $ctrl.app.accessUrl }}"
+                >
+                    <oui-tile-description>
+                        <oui-clipboard
+                            data-ng-if="$ctrl.app.accessUrl"
+                            data-model="::$ctrl.app.accessUrl"
+                        ></oui-clipboard>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <!--Container-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_apps_general_information_info_app_container' | translate }}"
+                >
+                    <!--Nb total container-->
+                    <oui-tile-description>
+                        <span
+                            data-translate="pci_apps_general_information_info_app_container_total"
+                            data-translate-values="{ xContainer: $ctrl.app.volumes.length }"
+                        ></span>
+                    </oui-tile-description>
+
+                    <!--Go to attach data-->
+                    <oui-tile-description>
+                        <oui-button
+                            size="m"
+                            variant="link"
+                            icon-right="oui-icon-arrow-right"
+                            data-on-click="$ctrl.goToAttachData()"
+                        >
+                            <span
+                                data-translate="pci_apps_general_information_info_app_container_attach_data"
+                            ></span>
+                        </oui-button>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <!--Confidentiality-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_apps_general_information_info_app_env_confidentiality' | translate }}"
+                    data-description="{{:: 'pci_apps_general_information_info_app_env_confidentiality_' + $ctrl.app.spec.unsecureHttp | translate }}"
+                ></oui-tile-definition>
+
+                <!--Region-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_apps_general_information_info_app_env_region' | translate }}"
+                    data-description="{{:: $ctrl.app.extraRegionInfo }}"
+                ></oui-tile-definition>
+            </oui-tile>
+        </div>
+
+        <div class="col-md-4">
+            <oui-tile
+                data-heading="{{:: 'pci_apps_general_information_life_cycle_title' | translate }}"
+            >
+                <!--Status-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_apps_general_information_life_cycle_status' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="{
+                                                      'oui-badge_success': $ctrl.app.stateInfo.stateGroup.success,
+                                                      'oui-badge_warning': $ctrl.app.stateInfo.stateGroup.warning,
+                                                      'oui-badge_error': $ctrl.app.stateInfo.stateGroup.error}"
+                        >
+                            <span
+                                data-ng-bind="'pci_apps_general_information_life_cycle_status_' + $ctrl.app.stateInfo.state | translate"
+                            ></span>
+                        </span>
+                    </oui-tile-description>
+
+                    <oui-action-menu
+                        aria-label="Actions"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.onDeleteAppClick()"
+                        >
+                            <span
+                                data-translate="pci_apps_general_information_life_cycle_action_delete"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+
+                <!--Running duration-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_apps_general_information_life_cycle_running_duration_time' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="block"
+                            data-ng-bind=":: $ctrl.app.formattedRunningDuration"
+                        ></span>
+                        <a
+                            data-ng-href="{{:: $ctrl.billingUrl }}"
+                            class="oui-link_icon"
+                        >
+                            <span
+                                data-translate="pci_apps_general_information_life_cycle_running_billing"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <!--Creation date and delete a app-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_apps_general_information_life_cycle_create_date' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="block"
+                            data-ng-bind=":: $ctrl.app.formattedCreationDate"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <!--Timeline-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_apps_general_information_life_cycle_timeline' | translate }}"
+                    data-description="{{:: $ctrl.app.name }}"
+                >
+                    <oui-tile-description>
+                        <div
+                            class="oui-progress-tracker oui-progress-tracker_vertical mt-3"
+                        >
+                            <ol class="oui-progress-tracker__steps">
+                                <!--App creation date-->
+                                <li
+                                    data-ng-repeat="history in ($ctrl.app.status.history | orderBy: ['date']) track by $index"
+                                    data-ng-if="history.date"
+                                    class="oui-progress-tracker__step oui-progress-tracker__step_complete"
+                                >
+                                    <span class="oui-progress-tracker__status">
+                                        <span
+                                            class="oui-progress-tracker__label"
+                                            data-ng-bind="'pci_apps_general_information_life_cycle_status_' + history.state | translate"
+                                            data-translate=""
+                                        ></span>
+                                        <span
+                                            data-ng-bind="history.date | date:'medium'"
+                                        ></span>
+                                    </span>
+                                </li>
+                            </ol>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+
+        <div class="col-md-4">
+            <oui-tile
+                data-heading="{{:: 'pci_apps_general_information_resources_title' | translate }}"
+                data-loading="$ctrl.loading.instance"
+            >
+                <!--Resource quantity-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_apps_general_information_resources_quantity' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-ng-if="$ctrl.flavor.gpuInformation"
+                            data-ng-bind=":: $ctrl.app.gpu + $ctrl.APP_MULTIPLY_SIGN +  ($ctrl.app.flavor | uppercase)"
+                        ></span>
+                        <span
+                            data-ng-if="!$ctrl.flavor.gpuInformation"
+                            data-ng-bind=":: $ctrl.app.cpu + $ctrl.APP_MULTIPLY_SIGN +  ($ctrl.app.flavor | uppercase)"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <!--CPU/GPU/RAM per resource-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_apps_general_information_resources_info' | translate}}"
+                >
+                    <oui-tile-description>
+                        <p
+                            class="mb-1"
+                            data-ng-bind=":: ($ctrl.app.cpu / $ctrl.flavor.resourcesPerUnit.cpu) + $ctrl.APP_MULTIPLY_SIGN + ($ctrl.flavor.description | uppercase)"
+                        ></p>
+                        <p
+                            class="mb-1"
+                            data-ng-bind=":: $ctrl.getCpuRamInfo()"
+                        ></p>
+                        <p
+                            class="mb-1"
+                            data-ng-bind=":: $ctrl.getGpuRamInfo()"
+                        ></p>
+                    </oui-tile-description>
+                    ></oui-tile-definition
+                >
+
+                <!--Local storage-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_apps_general_information_resources_local_storage' | translate}}"
+                    data-description="{{:: $ctrl.flavor.resourcesPerUnit.ephemeralStorage | cucBytes:0:false:'B'  }}"
+                ></oui-tile-definition>
+
+                <!--Life consumption-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_apps_general_information_resources_monitoring' | translate}}"
+                >
+                    <oui-tile-description>
+                        <a
+                            class="oui-button oui-button_secondary"
+                            data-ng-href="{{:: $ctrl.app.status.monitoringUrl}}"
+                            data-ng-click="$ctrl.onGraphDashboardClick()"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <span
+                                data-translate="pci_apps_general_information_resources_monitoring_access_to_graph"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-external-link"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+    </div>
+</div>

@@ -73,54 +73,11 @@
                 ></span>
             </span>
         </oui-datagrid-column>
-        <oui-datagrid-column
-            data-title=":: 'pci_ai_app_list_access' | translate"
-            data-property="accessUrl"
-            data-type="string"
-        >
-            <div>
-                <!--Active link-->
-                <a
-                    class="oui-link_icon"
-                    rel="noopener"
-                    target="_blank"
-                    data-ng-if="$row.isRunning()"
-                    data-ng-href="{{ $row.accessUrl }}"
-                >
-                    <span data-ng-bind=":: $row.editor.name"></span>
-                    <span
-                        class="oui-icon oui-icon-external-link"
-                        aria-hidden="true"
-                    ></span>
-                </a>
-
-                <!--Inactive link-->
-                <span
-                    data-ng-if="!$row.isRunning()"
-                    data-ng-bind=":: $row.editor.name"
-                ></span>
-            </div>
-        </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="left-start">
             <oui-action-menu-item data-on-click="$ctrl.goToAppDetails($row)">
                 <span data-translate="pci_ai_app_list_details"></span>
             </oui-action-menu-item>
-            <oui-action-menu-item
-                data-on-click="$ctrl.onAppStartClick($row.id)"
-                data-disabled="!$row.isTerminal()"
-            >
-                <span data-translate="pci_ai_app_list_start_app"></span>
-            </oui-action-menu-item>
-            <oui-action-menu-item
-                data-on-click="$ctrl.onAppStopClick($row.id)"
-                data-disabled="!$row.isRunning()"
-            >
-                <span data-translate="pci_ai_app_list_stop_app"></span>
-            </oui-action-menu-item>
-            <oui-action-menu-item
-                data-on-click="$ctrl.deleteApp($row)"
-                data-disabled="!$row.isTerminal()"
-            >
+            <oui-action-menu-item data-on-click="$ctrl.deleteApp($row)">
                 <span data-translate="pci_ai_app_list_delete_app"></span>
             </oui-action-menu-item>
         </oui-action-menu>
