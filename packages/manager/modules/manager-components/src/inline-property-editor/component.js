@@ -6,6 +6,7 @@ export default {
     model: '=',
     property: '@',
     onSubmit: '&',
+    pattern: '<?',
   },
   controller,
   template,
