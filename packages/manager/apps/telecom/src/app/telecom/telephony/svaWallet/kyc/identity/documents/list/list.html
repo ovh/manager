@@ -70,7 +70,11 @@
                 class="oui-datagrid__cell "
                 data-title="{{::'telephony_billingAccount_svaWallet_kyc_documents_actions_title' | translate }}"
             >
-                <oui-action-menu aria-label="Actions" compact>
+                <oui-action-menu
+                    aria-label="Actions"
+                    data-placement="left"
+                    compact
+                >
                     <oui-action-menu-item
                         on-click="$ctrl.upload(document.id)"
                         disabled="!document.canUpload || (document.availableTypes.length > 1 && !document.selectedType)"
