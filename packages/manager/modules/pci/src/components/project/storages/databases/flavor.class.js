@@ -1,14 +1,11 @@
-import get from 'lodash/get';
-import head from 'lodash/head';
 import some from 'lodash/some';
 
 export default class Flavor {
-  constructor({ name, core, memory, storage }, availability) {
+  constructor({ name, core, memory }, availability) {
     Object.assign(this, {
       name,
       core,
       memory,
-      storage,
       availability,
     });
     this.isDefault = some(availability, 'default');
@@ -18,16 +15,24 @@ export default class Flavor {
     return some(this.availability, { network: networkName });
   }
 
+  get minDiskSize() {
+    return (this.availability || [])[0]?.minDiskSize;
+  }
+
+  get maxDiskSize() {
+    return (this.availability || [])[0]?.maxDiskSize;
+  }
+
   get nodesCount() {
-    return get(head(this.availability), 'minNodeNumber');
+    return (this.availability || [])[0]?.minNodeNumber;
   }
 
   get nodeHourlyPrice() {
-    return get(head(this.availability), 'hourlyPrice');
+    return (this.availability || [])[0]?.hourlyPrice;
   }
 
   get nodeMonthlyPrice() {
-    return get(head(this.availability), 'monthlyPrice');
+    return (this.availability || [])[0]?.monthlyPrice;
   }
 
   get hourlyPrice() {

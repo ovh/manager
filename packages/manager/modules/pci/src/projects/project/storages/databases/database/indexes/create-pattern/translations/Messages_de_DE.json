@@ -1,0 +1,17 @@
+{
+  "pci_databases_indexes_create_pattern_confirm": "Erstellen",
+  "pci_databases_indexes_create_pattern_cancel": "Abbrechen",
+  "pci_databases_indexes_create_pattern": "Modell hinzufügen",
+  "pci_databases_indexes_create_pattern_pattern_placeholder": "Logs_*",
+  "pci_databases_indexes_create_pattern_description_1": "Hier können Sie ein umfassendes Abgleichsmodell verwenden: logs_foo für die ältesten Indizes, die Sie löschen möchten, sobald die Anzahl der Indizes diesen Grenzwert übersteigt. Bitte beachten Sie: Ist dieser Wert „0“, wird dieses Modell nicht bewertet.",
+  "pci_databases_indexes_create_pattern_description_2": "Dieses System ist zum Beispiel dann sehr nützlich, wenn Sie Logs mit OpenSearch speichern und täglich ein Index erstellt wird. Sie legen also fest, die Logs wie vieler Tage Sie behalten möchten.",
+  "pci_databases_indexes_create_pattern_description_example": "Zum Beispiel:",
+  "pci_databases_indexes_create_pattern_description_example_1": "<b>„logs“</b> entspricht dem Index <b>„logs“</b>, aber nicht für <b>„logsfoo“</b> oder <b>„foologs“</b>.",
+  "pci_databases_indexes_create_pattern_description_example_2": "<b>„logs*“</b> entspricht den Indizes <b>„logsfoo“</b> und <b>„logs_foo_bar“ </b>, jedoch nicht <b>„foologs“</b>",
+  "pci_databases_indexes_create_pattern_description_example_3": "<b>„*_logs_*“</b> entspricht den Indizes <b>„foo_logs_bar“</b>, aber nicht den Indizes <b>„foologsbar“</b>.",
+  "pci_databases_indexes_create_pattern_description_example_4": "<b>„Logs?“</b> entspricht dem Index <b>„logs.1“</b>, aber nicht <b>„logs.11“</b>",
+  "pci_databases_indexes_create_pattern_label": "Modell:",
+  "pci_databases_indexes_create_pattern_max_index": "Maximale Anzahl an Indizes:",
+  "pci_databases_indexes_create_pattern_success_message": "Ihr neues Modell wurde hinzugefügt",
+  "pci_databases_indexes_create_pattern_error_message": "Bei der Erstellung Ihres Modells ist ein Fehler aufgetreten: {{ message }}"
+}

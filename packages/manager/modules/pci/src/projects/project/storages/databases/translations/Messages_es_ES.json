@@ -2,7 +2,7 @@
   "pci_database_list_title": "Servicios",
   "pci_database_list_region": "Localización",
   "pci_database_list_engine": "Motor",
-  "pci_database_list_plan": "Producto",
+  "pci_database_list_plan": "Solución",
   "pci_database_list_nodes": "Nodos",
   "pci_database_common_creation_date": "Fecha de creación",
   "pci_database_common_name": "Nombre/ID",
@@ -24,7 +24,8 @@
   "pci_database_list_rename_database": "Renombrar la base de datos",
   "pci_database_list_upgrade_version_database": "Cambiar la versión",
   "pci_database_list_upgrade_plan_database": "Upgrade de la solución",
-  "pci_database_list_upgrade_node_database": "Upgrade de la plantilla de nodos",
-  "pci_database_node_type": "{{coreNumber}} CPU / {{memorySize}} GB RAM / {{storageSize}} GB almacenamiento SSD",
-  "pci_database_node_type_label": "Plantilla de nodo"
+  "pci_database_list_upgrade_node_database": "Upgrade del modelo de nodos",
+  "pci_database_node_type": "{{coreNumber}} CPU/{{memorySize}} RAM/{{storageSize}} almacenamiento SSD",
+  "pci_database_node_type_label": "Modelo de nodo",
+  "pci_database_node_type_range": "{{coreNumber}} CPU/{{memorySize}} RAM/de {{storageMinSize}} a {{storageMaxSize}} almacenamiento SSD"
 }
