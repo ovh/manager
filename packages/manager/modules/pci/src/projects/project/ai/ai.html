@@ -1,5 +1,6 @@
 <div data-ui-view="content">
-    <oui-header class="mb-3" data-heading="{{:: 'pci_ai_title' | translate }}">
+    <oui-header class="mb-3" data-heading="{{:: 'pci_ai_title' | translate }}"
+                data-ng-if="$ctrl.currentActiveLink() === $ctrl.appsLink || $ctrl.currentActiveLink() === $ctrl.tokensLink">
         <oui-header-tabs>
             <oui-header-tabs-item
                 data-href="{{:: $ctrl.appsLink }}"

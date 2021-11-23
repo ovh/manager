@@ -11,6 +11,7 @@ import routing from './apps.routing';
 import service from './apps.service';
 
 import add from './add';
+import onboarding from './onboarding';
 import dashboard from './dashboard';
 
 import './index.scss';
@@ -27,6 +28,7 @@ angular
     'ui.router',
     add,
     dashboard,
+    onboarding,
   ])
   .config(routing)
   .component('ovhManagerPciProjectApps', component)
