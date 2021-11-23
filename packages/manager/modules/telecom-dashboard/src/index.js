@@ -1,4 +1,5 @@
 import angular from 'angular';
+
 import '@uirouter/angularjs';
 import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-at-internet-ui-router-plugin';
@@ -17,6 +18,8 @@ import 'ovh-manager-webfont/dist/css/ovh-font.css';
 
 import './telecom-dashboard.scss';
 import './telecom-dashboard.less';
+
+import IdentityCheckForm from './identity-check/form';
 
 import dashboardCtrl from './telecom-dashboard.controller';
 import billsCtrl from './bills/telecom-dashboard-bills.controller';
@@ -45,6 +48,7 @@ angular
     'pascalprecht.translate',
     'ngOvhTelecomUniverseComponents',
     'ui.router',
+    IdentityCheckForm,
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {
