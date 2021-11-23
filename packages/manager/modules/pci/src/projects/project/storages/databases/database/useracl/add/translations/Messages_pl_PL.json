@@ -1,0 +1,13 @@
+{
+  "pci_databases_useracl_create_confirm": "Dodaj ACL",
+  "pci_databases_useracl_create_cancel": "Anuluj",
+  "pci_databases_useracl_create": "Dodaj ACL",
+  "pci_databases_useracl_create_description": "Modele indeksu wykorzystują standard „glob pattern” ('*' działa dla dowolnej liczby znaków oraz '?' dla każdego znaku). Na przykład model 'logs_200?' będzie działać w przypadku dopasowania indeksu 'logs_200904', ale nie 'logs_201904'.",
+  "pci_databases_useracl_create_username": "Nazwa użytkownika",
+  "pci_databases_useracl_create_username_placeholder": "Wybierz użytkownika",
+  "pci_databases_useracl_create_permission": "Uprawnienie",
+  "pci_databases_useracl_create_pattern": "Model indeksu",
+  "pci_databases_useracl_create_pattern_placeholder": "logs_*",
+  "pci_databases_useracl_create_success_message": "ACL użytkownika {{username}} został dodany.",
+  "pci_databases_useracl_create_error_message": "Wystąpił błąd podczas dodawania ACL do użytkownika: {{message}}"
+}

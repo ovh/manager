@@ -5,5 +5,6 @@
   "pci_database_flavors_list_spec_bandwidth": "{{ bandwidth }} Mbps",
   "pci_database_flavors_list_price_hourly": "{{price}} /hora + IVA",
   "pci_database_flavors_list_price_monthly": "A partir de {{price}} /mês + IVA",
-  "pci_database_flavors_list_current_offer": "Oferta atual"
+  "pci_database_flavors_list_current_offer": "Oferta atual",
+  "pci_database_flavors_list_spec_storage_range": "{{minStorage}} a {{maxStorage}} de armazenamento SSD"
 }

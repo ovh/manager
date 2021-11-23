@@ -1,0 +1,36 @@
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-disabled="$ctrl.aclToDelete.length === 0"
+    data-primary-label="{{:: 'pci_databases_useracl_delete_confirm' | translate}}"
+    data-primary-action="$ctrl.deleteUserAcl()"
+    data-secondary-action="$ctrl.cancel()"
+    data-secondary-label="{{:: 'pci_databases_useracl_delete_cancel' | translate}}"
+    data-loading="$ctrl.processing"
+    data-heading="{{:: 'pci_databases_useracl_delete' | translate}}"
+>
+    <oui-datagrid
+        page-size="10"
+        rows="$ctrl.user.acls"
+        on-row-select="$ctrl.onRowSelect($row, $rows)"
+        selectable-rows
+    >
+        <oui-datagrid-topbar>
+            <span
+                data-translate="pci_databases_useracl_delete_selected_rows"
+                data-translate-values="{ n: $selectedRows.length}"
+            ></span>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            title=":: 'pci_databases_useracl_delete_permission' | translate"
+            property="permission"
+        >
+            <span
+                data-translate="pci_databases_useracl_permission_{{$row.permission}}"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'pci_databases_useracl_delete_pattern' | translate"
+            property="pattern"
+        ></oui-datagrid-column>
+    </oui-datagrid>
+</oui-modal>
