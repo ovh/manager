@@ -18,6 +18,7 @@ angular.module('services').service(
   class Domain {
     /**
      * Constructor
+     * @param $http
      * @param $rootScope
      * @param $q
      * @param Domains
@@ -27,6 +28,7 @@ angular.module('services').service(
      * @param Poller
      */
     constructor(
+      $http,
       $rootScope,
       $q,
       Domains,
@@ -37,6 +39,7 @@ angular.module('services').service(
       Poll,
       Poller,
     ) {
+      this.$http = $http;
       this.$rootScope = $rootScope;
       this.$q = $q;
       this.Domains = Domains;
@@ -1560,9 +1563,9 @@ angular.module('services').service(
      * @param {string} zoneName
      */
     getZoneHistory(zoneName) {
-      return this.OvhHttp.get(`/domain/zone/${zoneName}/history`, {
-        rootPath: 'apiv6',
-      });
+      return this.$http
+        .get(`/domain/zone/${zoneName}/history`)
+        .then(({ data }) => data);
     }
   },
 );
