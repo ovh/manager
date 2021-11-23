@@ -1,0 +1,187 @@
+<div>
+    <div data-ovh-alert="{{alerts.main}}"></div>
+    <div class="row d-md-flex">
+        <div class="col-sm-4 mb-5">
+            <oui-tile
+                data-heading="{{ ::'email_dashboard_general_informations' | translate }}"
+                data-loading="ctrlTabGeneralInformations.loading.domain"
+                class="h-100"
+            >
+                <oui-tile-definition
+                    data-term="{{ ::'email_tab_domain_status' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="{'oui-badge_success': ctrlTabGeneralInformations.domain.status === 'ok', 'oui-badge_error': ctrlTabGeneralInformations.domain.status !== 'ok'}"
+                            data-ng-bind="'email_tab_domain_status_' + ctrlTabGeneralInformations.domain.status | translate"
+                            data-ng-if="ctrlTabGeneralInformations.domain.status"
+                        ></span>
+                        <span
+                            data-ng-if="!ctrlTabGeneralInformations.domain.status"
+                            >-</span
+                        >
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'email_tab_domain_filer' | translate }}"
+                    data-description="{{ ctrlTabGeneralInformations.domain.filerz || '-' }}"
+                ></oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'email_tab_domain_dns_filter' | translate }}"
+                    data-description="{{ 'email_tab_domain_dns_filter_' + (ctrlTabGeneralInformations.dnsFilter || 'NO_FILTERING') | translate }}"
+                >
+                    <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu-item
+                            data-on-click="setAction('email-domain/email/filter/edit-dns/email-domain-email-filter-edit-dns', ctrlTabGeneralInformations.dnsFilter)"
+                        >
+                            <span
+                                data-translate="email_tab_domain_dns_filter_edit"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'email_tab_domain_dns_mx_records' | translate }}"
+                >
+                    <oui-tile-description>
+                        <ul
+                            data-ng-if="ctrlTabGeneralInformations.mxRecords.length > 0"
+                        >
+                            <li
+                                data-ng-repeat="mxRecord in ctrlTabGeneralInformations.mxRecords track by $index"
+                                data-ng-bind="mxRecord"
+                            ></li>
+                        </ul>
+                        <span
+                            data-ng-if="!ctrlTabGeneralInformations.mxRecords.length"
+                            >-</span
+                        >
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+        <div class="col-sm-4 mb-5">
+            <oui-tile
+                data-heading="{{ ::'email_dashboard_quotas' | translate }}"
+                data-loading="ctrlTabGeneralInformations.loading.quotas"
+                class="h-100"
+            >
+                <oui-tile-definition
+                    data-term="{{ ::'email_tab_accounts_quota' | translate }}"
+                    data-term-popover="{{ ctrlTabGeneralInformations.domain.offer !== 'redirect'? ('email_tab_accounts_quota_info' | translate): '' }}"
+                    data-description="{{ (ctrlTabGeneralInformations.summary.account || '0') + ' / ' + (ctrlTabGeneralInformations.quotas.account || '0') }}"
+                ></oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'email_tab_responders_quota' | translate }}"
+                    data-description="{{ (ctrlTabGeneralInformations.summary.responder || '0') + ' / ' + (ctrlTabGeneralInformations.quotas.responder || '0') }}"
+                ></oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'email_tab_redirections_quota' | translate }}"
+                    data-description="{{ (ctrlTabGeneralInformations.summary.redirection || '0') + ' / ' + ((ctrlTabGeneralInformations.quotas.redirection + ctrlTabGeneralInformations.quotas.alias) || '0') }}"
+                ></oui-tile-definition>
+            </oui-tile>
+        </div>
+        <div class="col-sm-4 mb-5">
+            <oui-tile
+                data-heading="{{ ::'emails_common_plan' | translate }}"
+                data-loading="ctrlTabGeneralInformations.loading.domain || ctrlTabGeneralInformations.loading.serviceInfos || ctrlTabGeneralInformations.loading.urls || ctrlTabGeneralInformations.loading.serviceDetails"
+                class="h-100"
+            >
+                <oui-tile-definition
+                    data-term="{{ ::'email_tab_domain_offer' | translate }}"
+                    data-description="{{ ::ctrlTabGeneralInformations.domain.offer || '-' }}"
+                >
+                    <oui-action-menu
+                        data-compact
+                        data-placement="end"
+                        data-ng-if="!ctrlTabGeneralInformations.serviceDetails.parentServiceId"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="ctrlTabGeneralInformations.goToUpgrade()"
+                        >
+                            <span
+                                data-translate="emails_common_upgrade_account"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'emails_contacts_management'|translate }}"
+                >
+                    <oui-tile-description>
+                        <p class="mb-0">
+                            <span
+                                data-ng-bind="ctrlTabGeneralInformations.serviceInfos.contactAdmin"
+                            ></span
+                            >:
+                            <span
+                                class="small"
+                                data-translate="global_admin"
+                            ></span>
+                        </p>
+                        <p class="mb-0">
+                            <span
+                                data-ng-bind="ctrlTabGeneralInformations.serviceInfos.contactTech"
+                            ></span
+                            >:
+                            <span
+                                class="small"
+                                data-translate="global_technical"
+                            ></span>
+                        </p>
+                        <p class="mb-0">
+                            <span
+                                data-ng-bind="ctrlTabGeneralInformations.serviceInfos.contactBilling"
+                            ></span
+                            >:
+                            <span
+                                class="small"
+                                data-translate="global_billing"
+                            ></span>
+                        </p>
+                    </oui-tile-description>
+                    <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu-item
+                            data-href="{{ ::ctrlTabGeneralInformations.urls.manageContacts }}"
+                        >
+                            <span
+                                data-translate="emails_common_manage_contacts"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-href="{{ ::ctrlTabGeneralInformations.urls.changeOwner }}"
+                            data-external
+                        >
+                            <span
+                                data-translate="emails_core_change_owner"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'emails_common_creation_date' | translate }}"
+                    data-description="{{ ::ctrlTabGeneralInformations.domain.creationDate | date : 'mediumDate' }}"
+                >
+                    <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu-item
+                            data-href="{{ ::ctrlTabGeneralInformations.urls.delete }}"
+                        >
+                            <span data-translate="emails_common_delete"></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-8 col-sm-12">
+            <div
+                data-wuc-guides
+                data-wuc-guides-title="'emails_guide_subtitle' | translate"
+                data-wuc-guides-list="'emailsInfos'"
+                data-tr="tr"
+            ></div>
+        </div>
+    </div>
+</div>

@@ -697,6 +697,20 @@ angular.module('services').service(
     }
 
     /**
+     * append full stop to target value
+     * @param {object} target
+     * @returns {string}
+     */
+    static appendDotToTarget({ target }) {
+      if (target) {
+        return /\.$/.test(target)
+          ? punycode.toASCII(target)
+          : `${punycode.toASCII(target)}.`;
+      }
+      return '';
+    }
+
+    /**
      * Transform DKIM target to expected value
      * @param {object} target
      * @returns {string}
@@ -772,7 +786,7 @@ angular.module('services').service(
     static transformMXTarget(target) {
       return [
         target.priority != null ? target.priority.toString() : '',
-        get(target, 'target', false) ? punycode.toASCII(target.target) : '',
+        DomainValidator.appendDotToTarget(target),
       ]
         .join(' ')
         .replace(/\s{2,}/g, ' ')
@@ -866,19 +880,11 @@ angular.module('services').service(
      * @returns {string}
      */
     static transformSRVTarget(target) {
-      let lastItem = '.';
-
-      if (target.target) {
-        lastItem = /\.$/.test(target.target)
-          ? punycode.toASCII(target.target)
-          : `${punycode.toASCII(target.target)}.`;
-      }
-
       return [
         target.priority != null ? target.priority.toString() : '',
         target.weight != null ? target.weight.toString() : '',
         target.port != null ? target.port.toString() : '',
-        lastItem,
+        DomainValidator.appendDotToTarget(target),
       ]
         .join(' ')
         .replace(/\s{2,}/g, ' ')

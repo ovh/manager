@@ -28,7 +28,7 @@
   "pci_databases_general_information_generate_password": "Para poder utilizar o seu cluster de dados, deve regenerar a sua palavra-passe admin.",
   "pci_databases_general_information_delete_nodes": "Eliminar um nó",
   "pci_databases_general_information_node_type_label": "Modelo de nó",
-  "pci_databases_general_information_node_type": "{{coreNumber}} CPU / {{memorySize}} GB RAM / {{storageSize}} GB de armazenamento SSD",
+  "pci_databases_general_information_node_type": "{{coreNumber}} CPU/{{memorySize}} RAM/{{storageSize}} de armazenamento SSD",
   "pci_databases_general_information_upgrade_node": "Melhorar o seu modelo de nó",
   "pci_databases_general_information_service_URI_label": "URI do serviço",
   "pci_databases_general_information_replicate_URI_label": "URI replica",
@@ -56,5 +56,7 @@
   "pci_databases_general_information_certificate_link": "Ver",
   "pci_databases_general_information_certificate_download": "Transferir",
   "pci_databases_general_information_certificate_tooltip": "O seu certificado: <code>{{certificate}}</code>",
-  "pci_databases_general_information_SSL_TLS": "SSL/TLS"
+  "pci_databases_general_information_SSL_TLS": "SSL/TLS",
+  "pci_databases_general_information_node_type_disk_range": "{{coreNumber}} CPU/{{memorySize}} RAM/ {{storageMinSize}} a {{storageMaxSize}} de armazenamento SSD",
+  "pci_databases_general_information_service_URI_kibana_label": "URI do serviço Kibana"
 }

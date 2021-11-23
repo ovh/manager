@@ -1,3 +1,44 @@
+# [5.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.48.3...@ovh-ux/manager-pci@5.49.0) (2021-11-23)
+
+
+### Features
+
+* **storage.databases:** add new engine ([#5605](https://github.com/ovh/manager/issues/5605)) ([e53b01d](https://github.com/ovh/manager/commit/e53b01d9bd92fedf8ef5878b125ee13d871d1dfb))
+
+
+
+## [5.48.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.48.2...@ovh-ux/manager-pci@5.48.3) (2021-11-22)
+
+
+### Bug Fixes
+
+* **deps:** bump validator from 11.1.0 to 13.7.0 range ([#5903](https://github.com/ovh/manager/issues/5903)) ([a5a74e5](https://github.com/ovh/manager/commit/a5a74e58db1859812eca5bc82c2847165e9ad6dd))
+* **i18n:** add missing translations [CDS 1253] ([3c25560](https://github.com/ovh/manager/commit/3c25560870b866815b00c341c6c055896103a73f))
+* **i18n:** add missing translations [CDS 1280] ([cc08b39](https://github.com/ovh/manager/commit/cc08b39585c05c838d4599a4a4665fda15945eb1))
+* **pci.image:** add missing translations ([7e11afc](https://github.com/ovh/manager/commit/7e11afcfc4ffbbff38b1c88551c1037ede69effd))
+* **pci.instance:** allow resize to non flex flavor ([#5961](https://github.com/ovh/manager/issues/5961)) ([973c8a6](https://github.com/ovh/manager/commit/973c8a6b93c4166d97c8b431190dfe557618292b))
+* remove unused translations [CDS] ([6e32d4a](https://github.com/ovh/manager/commit/6e32d4a33b4598c51cf422a3fb4a52f0dd88c1c3))
+
+
+
+## [5.48.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.48.1...@ovh-ux/manager-pci@5.48.2) (2021-11-15)
+
+
+### Bug Fixes
+
+* **storages.databases.components.plan-list:** update badge type ([#5927](https://github.com/ovh/manager/issues/5927)) ([d3f7c52](https://github.com/ovh/manager/commit/d3f7c52ea82155fea46a9d60cf522c0fd3597c32))
+
+
+
+## [5.48.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.48.0...@ovh-ux/manager-pci@5.48.1) (2021-11-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1253] ([d659951](https://github.com/ovh/manager/commit/d6599513a8a7978bb217d8d3391d5a72d8d5d3c9))
+
+
+
 # [5.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.47.2...@ovh-ux/manager-pci@5.48.0) (2021-11-08)
 
 

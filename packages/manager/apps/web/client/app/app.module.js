@@ -83,6 +83,7 @@ import ovhManagerProductOffers from '@ovh-ux/manager-product-offers';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
+import emailDomain from '@ovh-ux/manager-email-domain';
 import emailpro from '@ovh-ux/manager-emailpro';
 import exchange from '@ovh-ux/manager-exchange';
 import office from '@ovh-ux/manager-office';
@@ -93,14 +94,11 @@ import WebPaas from '@ovh-ux/manager-web-paas';
 import getConfig from './config/config';
 import domain from './domain';
 import domainDnsZone from './dns-zone';
-import emailDomain from './email-domain';
-import emailDomainOrder from './email-domain/order';
 import errorPage from './error-page/error-page.module';
 import hosting from './hosting';
 import privateDatabase from './private-database';
 import zone from './domain/zone/zone.module';
 
-import emailDomainUpgradeModule from './email-domain/upgrade';
 import hostingEmail from './hosting/email';
 import hostingEmailActivateModule from './hosting/email/activate';
 
@@ -184,12 +182,10 @@ export default (containerEl, environment) => {
         domain,
         domainDnsZone,
         emailDomain,
-        emailDomainOrder,
         errorPage,
         hosting,
         privateDatabase,
         zone,
-        emailDomainUpgradeModule,
         hostingEmail,
         hostingEmailActivateModule,
         WebPaas,

@@ -8,5 +8,6 @@
   "pci_databases_dashboard_database_processing_state": "Vous pourrez réaliser des opérations sur votre cluster lorsque son déploiement sera finalisé.",
   "pci_databases_dashboard_databases_tab_title": "Databases",
   "pci_databases_dashboard_acl_tab_title": "ACL",
-  "pci_databases_dashboard_topics_tab_title": "Topics"
+  "pci_databases_dashboard_topics_tab_title": "Topics",
+  "pci_databases_dashboard_indexes_tab_title": "Indexes"
 }

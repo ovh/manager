@@ -64,7 +64,7 @@
             loading="$ctrl.isPaymentStepLoading"
         >
             <billing-commitment-pricing-mode
-                ng-if="$ctrl.pricingModes"
+                ng-if="$ctrl.pricingModes && !$ctrl.isPaymentStepLoading"
                 pricing-mode="$ctrl.model.engagement"
                 pricing-modes="$ctrl.pricingModes"
                 duration="$ctrl.model.duration"

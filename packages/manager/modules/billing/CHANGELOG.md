@@ -1,3 +1,23 @@
+# [0.6.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.6.0-alpha.1...@ovh-ux/manager-billing@0.6.0-alpha.2) (2021-11-22)
+
+
+### Bug Fixes
+
+* **accounts:** fix accounts alert issue ([811469a](https://github.com/ovh/manager/commit/811469ae2f384491a2519453b2843b23c7a65a0f)), closes [#DTRSD-50951](https://github.com/ovh/manager/issues/DTRSD-50951)
+* **billing:** history orderId number filtering ([2e72382](https://github.com/ovh/manager/commit/2e723827ec5022ba4c9c00c0347ec32b672dd9fa))
+* **i18n:** add missing translations [CDS 1253] ([3c25560](https://github.com/ovh/manager/commit/3c25560870b866815b00c341c6c055896103a73f))
+
+
+
+# [0.6.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.6.0-alpha.0...@ovh-ux/manager-billing@0.6.0-alpha.1) (2021-11-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1253] ([d659951](https://github.com/ovh/manager/commit/d6599513a8a7978bb217d8d3391d5a72d8d5d3c9))
+
+
+
 # [0.6.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.5.0-alpha.1...@ovh-ux/manager-billing@0.6.0-alpha.0) (2021-11-08)
 
 

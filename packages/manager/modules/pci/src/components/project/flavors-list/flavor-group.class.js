@@ -62,11 +62,13 @@ export default class FlavorGroup {
   }
 
   getFlavorId(osType, region, isFlex = false) {
-    const flavor = this.getFlavorByOsType(osType, isFlex);
-    if (flavor) {
-      return flavor.getIdByRegion(region);
+    let flavor = this.getFlavorByOsType(osType, isFlex);
+    if (!flavor && isFlex) {
+      // If source instance is flex and no equivalent flavor is found
+      // then use default non-flex flavor equivalent
+      flavor = this.getFlavorByOsType(osType, false);
     }
-    return false;
+    return flavor ? flavor.getIdByRegion(region) : false;
   }
 
   getFlavor(flavorId) {

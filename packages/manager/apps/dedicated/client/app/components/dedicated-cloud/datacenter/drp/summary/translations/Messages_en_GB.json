@@ -7,11 +7,11 @@
   "dedicatedCloud_datacenter_drp_confirm_create_error": "An error has occurred enabling your DRP.",
   "dedicatedCloud_datacenter_drp_confirm_summary_title": "DRP configuration summary",
   "dedicatedCloud_datacenter_drp_confirm_summary_drp_type": "Disaster Recovery Plan type",
-  "dedicatedCloud_datacenter_drp_confirm_summary_first_ovh_datacenter": "Primary datacentre",
+  "dedicatedCloud_datacenter_drp_confirm_summary_first_ovh_datacenter": "Primary datacenter",
   "dedicatedCloud_datacenter_drp_confirm_summary_first_ovh_pcc_EPCC": "Primary Private Cloud",
-  "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_datacenter": "OVHcloud datacentre",
+  "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_datacenter": "OVHcloud datacenter",
   "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_pcc_EPCC": "OVHcloud Private Cloud",
-  "dedicatedCloud_datacenter_drp_confirm_summary_secondary_datacenter": "Secondary datacentre",
+  "dedicatedCloud_datacenter_drp_confirm_summary_secondary_datacenter": "Secondary datacenter",
   "dedicatedCloud_datacenter_drp_confirm_summary_secondary_pcc_EPCC": "Secondary Private Cloud",
   "dedicatedCloud_datacenter_drp_confirm_delete_drp_title": "Permanently delete DRP",
   "dedicatedCloud_datacenter_drp_confirm_delete_drp_action_text": "Delete Zerto DRP",
@@ -34,6 +34,6 @@
   "dedicatedCloud_datacenter_drp_confirm_summary_first_ovh_pcc_MBM": "Primary Essentials product",
   "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_pcc_MBM": "OVHcloud Managed Bare Metal",
   "dedicatedCloud_datacenter_drp_confirm_summary_secondary_pcc_MBM": "Secondary Essentials product",
-  "dedicatedCloud_datacenter_drp_vpn_remoteVraNetwork": "VRA Datacentre on premises network",
+  "dedicatedCloud_datacenter_drp_vpn_remoteVraNetwork": "VRA datacenter on premises network",
   "dedicatedCloud_datacenter_drp_vpn_ip_block_invalid": "Please enter a valid IPv4Block (e.g. 192.168.0.1/10)"
 }

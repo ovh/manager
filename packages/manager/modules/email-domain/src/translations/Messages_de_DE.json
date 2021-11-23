@@ -1,0 +1,16 @@
+{
+  "emails_domain_title": "E-Mails",
+  "emails_domain_delegate_title": "Delegieren der Verwaltung von E-Mails",
+  "emails_contacts_management": "Kontakte",
+  "emails_common_plan": "Abonnement",
+  "emails_common_manage_contacts": "Die Kontakte verwalten",
+  "emails_common_creation_date": "Erstellungsdatum",
+  "emails_core_change_owner": "Inhaber ändern",
+  "emails_common_delete": "Löschen",
+  "emails_guide_subtitle": "Anleitungen",
+  "emails_navigation_left_search": "Suche...",
+  "emails_common_back": "Zurück",
+  "emails_common_upgrade_account": "Zu einem anderen Angebot wechseln",
+  "emails_select_placeholder": "Auswahl...",
+  "emails_required_fields": "Die Felder mit Asterisk sind Pflichtfelder."
+}

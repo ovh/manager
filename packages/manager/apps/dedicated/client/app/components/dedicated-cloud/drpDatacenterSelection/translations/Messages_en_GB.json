@@ -1,5 +1,5 @@
 {
-  "dedicatedCloud_drp_datacenter_selection_title": "Select a datacentre",
-  "dedicatedCloud_drp_datacenter_selection_label": "To configure your Disaster Recovery Plan, please select a datacentre",
+  "dedicatedCloud_drp_datacenter_selection_title": "Select a datacenter",
+  "dedicatedCloud_drp_datacenter_selection_label": "To configure your Disaster Recovery Plan, please select a datacenter",
   "dedicatedCloud_drp_datacenter_selection_action": "Select"
 }

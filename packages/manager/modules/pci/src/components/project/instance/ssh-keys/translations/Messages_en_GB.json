@@ -7,6 +7,6 @@
   "pci_project_instance_ssh_key_query_error": "An error has occurred retrieving your SSH keys: {{message}}.",
   "pci_project_instance_ssh_key_add_error": "An error has occurred adding the SSH key: {{message}}",
   "pci_project_instance_ssh_key_help_required": "SSH keys are required to connect to your service. Please refer to our <a target='_blank' rel='noopener' href='{{guideUrl}}'>guide</a> to find out more.",
-  "pci_project_instance_ssh_key_help_availability": "Your SSH key will be available for all regions and OVH datacentres.",
+  "pci_project_instance_ssh_key_help_availability": "Your SSH key will be available for all regions and OVHcloud datacenters.",
   "pci_project_instance_ssh_key_infos": "Only RSA and ECDSA SSH keys are accepted. You cannot use ED25519 SSH keys."
 }

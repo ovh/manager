@@ -208,6 +208,7 @@
   "domain_tab_ZONE_no_zone": "Nie masz strefy DNS przypisanej do tej domeny.",
   "domain_tab_ZONE_delete_doing": "Opcja ponownego włączenia strefy DNS będzie dostępna za około godzinę.",
   "domain_tab_ZONE_no_zone_activate_btn": "Włącz strefę DNS",
+  "domain_tab_ZONE_no_zone_order_btn": "Zamów strefę DNS",
   "domain_tab_ZONE_no_defaut_dns_used": "Aktualnie korzystasz z następujących serwerów DNS:",
   "domain_tab_ZONE_set_defaut_dns": "Aby poniższa strefa DNS działała, zmień serwery DNS na:",
   "domain_tab_ZONE_title": "W tej części możesz sprawdzić konfigurację poszczególnych wpisów dla swojej domeny.",
@@ -255,6 +256,7 @@
   "domain_configuration_protection_desactivate_step1_info": "Po wyłączeniu ochrony uzyskasz dostęp do kodu AUTH/INFO pozwalającego na wykonanie transferu. ",
   "domain_configuration_protection_desactivate_step1_dnssec": "Twoja domena korzysta z DNSSEC. Sprawdź, czy Twój nowy dostawca obsługuje tę funkcję.  W przeciwnym razie wyłącz tę opcję przed przeniesieniem domeny.",
   "domain_configuration_protection_auth_info_registry": "Aby przenieść domenę od OVHcloud do innego operatora, skontaktuj się z Registry w celu uzyskania kodu AUTH/INFO.  W tym celu przejdź na stronę: <a href=\"{{t0}}\" target=\"_blank\">{{t0}}</a>",
+  "domain_configuration_protection_auth_info_registry_LT": "Aby przenieść domenę z OVHcloud do innego operatora, skontaktuj się z naszym działem obsługi klienta.",
   "domain_configuration_protection_desactivate_step1_helpwizard_title": "Blokada domeny",
   "domain_configuration_protection_desactivate_step1_helpwizard_desc": "Włączenie opcji blokady domeny pozwala na ochronę domeny przed kradzieżą poprzez wykluczenie transferu domeny.",
   "domain_configuration_protection_desactivate_step1_helpwizard_question1": "Czym jest kradzież domeny?",
@@ -585,7 +587,6 @@
   "domain_configuration_dns_entry_edit_title": "Zmień wpis w strefie DNS",
   "domain_configuration_dns_entry_relative_warning_title": "Rzeczywisty adres docelowy:",
   "domain_configuration_dns_entry_relative_warning_tooltip": "Dodaj punkt docelowy do swojego pola docelowego, jeśli chcesz korzystać z określenia absolutnego (lub kliknij na tę ikonę, jeśli ma to zostać wykonane automatycznie).",
-  "domain_configuration_dns_entry_add_step3_warning": "Uwaga: Uwaga: Adres docelowy używa oznaczenia względnego i wskazuje na <strong>{{t0}}</strong>\".  Warto dodać kropkę na końcu pola docelowego, jeśli chcesz używać pełnego znakowania.",
   "domain_configuration_dns_entry_modify_success": "Propagacja zmian w strefie DNS trwa około 24 godziny.",
   "domain_configuration_dns_entry_modify_fail": "Wystąpił błąd w trakcie zmiany wpisu w strefie DNS.",
   "domain_configuration_dns_entry_add_ttl_default_hint": "Odnosi się do domyślnej wartości.",
@@ -827,7 +828,5 @@
   "domain_dashboard_recommended_hosting_title_Perso": "Hosting bloga lub strony WWW",
   "domain_dashboard_recommended_hosting_label": "- {{reduction}} na hosting {{type}} z okazji Black Friday.",
   "domain_dashboard_recommended_hosting_discover": "Sprawdź rozwiązania",
-  "domain_tab_ZONE_no_zone_order_btn": "Zamów strefę DNS",
-  "domain_tab_emails": "E-maile i listy mailingowe",
-  "domain_configuration_protection_auth_info_registry_LT": "Aby przenieść domenę z OVHcloud do innego operatora, skontaktuj się z naszym działem obsługi klienta."
+  "domain_tab_emails": "E-maile i listy mailingowe"
 }
