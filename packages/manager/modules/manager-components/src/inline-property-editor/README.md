@@ -12,11 +12,12 @@ angular.module('myModule', [inlinePropertyEditor]);
 
 ## Attributes
 
-| Attribute         | Type            | Binding | One-time binding | Values                    | Default    | Description
-| ----              | ----            | ----    | ----             | ----                      | ----       | ----
-| `property`        | string          | @       | yes              | n/a                       | n/a        | Name of the property
-| `model`           | any             | =       | no               | n/a                       | n/a        | Property value to edit
-| `on-submit`       | callback        | &       | no               | n/a                       | n/a        | Action triggered when editing is submitted 
+| Attribute         | Type            | Binding | One-time binding | Values                    | Default        | Description
+| ----              | ----            | ----    | ----             | ----                      | ----           | ----
+| `property`        | string          | @       | yes              | n/a                       | n/a            | Name of the property
+| `model`           | any             | =       | no               | n/a                       | n/a            | Property value to edit
+| `on-submit`       | callback        | &       | no               | n/a                       | n/a            | Action triggered when editing is submitted 
+| `pattern`         | string          | @?      | yes              | n/a                       | .*             | Pattern acccepted by editor
 
 ## Basic Usage
 Below is the simplest form of using this component, where all the attributes are supplied

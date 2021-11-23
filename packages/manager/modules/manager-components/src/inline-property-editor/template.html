@@ -9,34 +9,49 @@
             <span class="oui-icon oui-icon-pen" aria-hidden="true"></span>
         </oui-button>
     </div>
-    <div
-        data-ng-if="$ctrl.isEditing"
-        class="oui-input-group oui-input-group_inline"
-    >
-        <label
-            for="{{ $ctrl.property }}"
-            data-ng-bind="$ctrl.property"
-            class="sr-only"
-        ></label>
-        <input
-            class="oui-input"
-            id="{{$ctrl.property }}"
-            name="{{$ctrl.property }}"
-            data-ng-model="$ctrl.model"
-        />
-        <oui-button size="s" on-click="$ctrl.onSubmit({model: $ctrl.model})">
-            <span
-                class="sr-only"
-                data-translate="manager_components_inline_property_editor_confirm"
-            ></span>
-            <span class="oui-icon oui-icon-ok" aria-hidden="true"></span>
-        </oui-button>
-        <oui-button size="s" on-click="$ctrl.toggleEditing()">
-            <span
-                class="sr-only"
-                data-translate="manager_components_inline_property_editor_cancel"
-            ></span>
-            <span class="oui-icon oui-icon-close" aria-hidden="true"></span>
-        </oui-button>
-    </div>
+    <form data-ng-if="$ctrl.isEditing" name="$ctrl.propertyEditionForm">
+        <oui-field>
+            <div
+                data-ng-if="$ctrl.isEditing"
+                class="oui-input-group oui-input-group_inline"
+            >
+                <label
+                    for="{{ $ctrl.property }}"
+                    data-ng-bind="$ctrl.property"
+                    class="sr-only"
+                ></label>
+                <input
+                    class="oui-input"
+                    id="{{$ctrl.property}}"
+                    name="{{$ctrl.property}}"
+                    data-ng-model="$ctrl.model"
+                    data-ng-pattern="$ctrl.PATTERN"
+                />
+                <oui-button
+                    size="s"
+                    on-click="$ctrl.onSubmit({model: $ctrl.model})"
+                    disabled="!$ctrl.propertyEditionForm.$valid"
+                >
+                    <span
+                        class="sr-only"
+                        data-translate="manager_components_inline_property_editor_confirm"
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-ok"
+                        aria-hidden="true"
+                    ></span>
+                </oui-button>
+                <oui-button size="s" on-click="$ctrl.toggleEditing()">
+                    <span
+                        class="sr-only"
+                        data-translate="manager_components_inline_property_editor_cancel"
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-close"
+                        aria-hidden="true"
+                    ></span>
+                </oui-button>
+            </div>
+        </oui-field>
+    </form>
 </div>
