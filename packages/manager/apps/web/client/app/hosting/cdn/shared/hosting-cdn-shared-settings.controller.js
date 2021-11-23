@@ -109,6 +109,7 @@ export default class CdnSharedSettingsController {
             name: 'advanced_purge',
             operate: this.cdnRange === SHARED_CDN_RANGE.ADVANCED,
             enabled: this.cdnRange === SHARED_CDN_RANGE.ADVANCED,
+            isDisplayableStatus: false,
             api: null,
           },
         },
