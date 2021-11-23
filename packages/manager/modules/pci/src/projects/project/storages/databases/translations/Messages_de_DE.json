@@ -25,6 +25,7 @@
   "pci_database_list_upgrade_version_database": "Version ändern",
   "pci_database_list_upgrade_plan_database": "Angebotsupgrade",
   "pci_database_list_upgrade_node_database": "Node-Modell-Upgrade",
-  "pci_database_node_type": "{{coreNumber}} CPU / {{memorySize}} GB RAM / {{storageSize}} GB SSD-Storage",
-  "pci_database_node_type_label": "Node-Modell"
+  "pci_database_node_type": "{{coreNumber}} CPU / {{memorySize}} RAM / {{storageSize}} SSD Storage",
+  "pci_database_node_type_label": "Node-Modell",
+  "pci_database_node_type_range": "{{coreNumber}} CPU / {{memorySize}} RAM / {{storageMinSize}} bis {{storageMaxSize}} SSD Storage"
 }

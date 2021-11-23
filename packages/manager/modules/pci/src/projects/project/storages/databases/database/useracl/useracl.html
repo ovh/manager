@@ -1,0 +1,91 @@
+<div class="container-fluid px-0 mt-3">
+    <!-- error messages -->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <h2 data-translate="pci_databases_useracl_tab_title"></h2>
+
+    <oui-message
+        data-ng-if="$ctrl.usersList.length === 0"
+        data-type="warning"
+        data-dismissable
+    >
+        <span data-translate="pci_databases_useracl_tab_no_user"></span>
+        <a href="" data-ng-click="$ctrl.goToManagerUsers()">
+            <span data-translate="pci_databases_useracl_tab_user_link"></span>
+        </a>
+    </oui-message>
+    <oui-field
+        data-label="{{ ::'pci_databases_useracl_tab_activate_acl' | translate }}"
+    >
+        <oui-switch
+            model="$ctrl.database.aclsEnabled"
+            name="oui-switch"
+            on-change="$ctrl.trackAndSetAclState(modelValue)"
+        >
+        </oui-switch>
+    </oui-field>
+    <oui-datagrid class="mt-5" data-page-size="10" data-rows="$ctrl.aclList">
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_useracl_tab_username' | translate"
+            data-property="username"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_useracl_tab_permission' | translate"
+        >
+            <span
+                class="d-block"
+                data-ng-repeat="acl in $row.acls track by $index"
+                data-translate="pci_databases_useracl_permission_{{acl.permission}}"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_useracl_tab_pattern' | translate"
+        >
+            <span
+                class="d-block"
+                data-ng-repeat="acl in $row.acls track by $index"
+                data-ng-bind="acl.pattern"
+            ></span>
+        </oui-datagrid-column>
+        <oui-action-menu
+            data-compact
+            data-placement="end"
+            data-disabled="$ctrl.isDisabled()"
+        >
+            <oui-action-menu-item data-on-click="$ctrl.trackAndDeleteAcl($row)">
+                <span data-translate="pci_databases_useracl_tab_delete"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+        <oui-datagrid-topbar>
+            <oui-button
+                data-on-click="$ctrl.trackAndAddAcl()"
+                data-disabled="$ctrl.isDisabled()"
+            >
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
+                <span data-translate="pci_databases_useracl_tab_add"></span>
+            </oui-button>
+            <button
+                data-ng-if="$ctrl.aclList.length > 0"
+                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
+                type="button"
+                data-title="{{:: 'pci_databases_common_refresh' | translate }}"
+                data-ng-click="$ctrl.refreshing=true; $ctrl.refreshUserAcl()"
+                data-ng-disabled="$ctrl.refreshing || $ctrl.isDisabled()"
+            >
+                <span
+                    class="oui-icon oui-icon-refresh"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+</div>

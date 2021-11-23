@@ -51,15 +51,10 @@ export default /* @ngInject */ ($stateProvider) => {
           return null;
         });
     },
-    onExit: (transition) => {
-      const configurationTilePromise = transition
-        .injector()
-        .getAsync('configurationTile');
-
-      return configurationTilePromise.then((configurationTile) => {
-        set(configurationTile.model, 'memory', configurationTile.currentPlan);
-        set(configurationTile.model, 'storage', configurationTile.currentPlan);
-      });
+    onExit: /* @ngInject */ (configurationTile) => {
+      set(configurationTile.model, 'memory', configurationTile.currentPlan);
+      set(configurationTile.model, 'storage', configurationTile.currentPlan);
+      return configurationTile;
     },
     component: component.name,
     resolve: {
@@ -189,7 +184,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => () => {
         if (upgradeSuccess) {
           return $window.location.replace(
-            coreURLBuilder.buildURL('dedicated', '#/billing/order/:orderId', {
+            coreURLBuilder.buildURL('dedicated', '#/billing/orders/:orderId', {
               orderId: upgradeOrderId,
             }),
           );

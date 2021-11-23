@@ -79,11 +79,11 @@ export default class Plan {
   }
 
   get minStorage() {
-    return minBy(this.availability, 'flavor.storage').flavor.storage;
+    return minBy(this.availability, 'minDiskSize').minDiskSize;
   }
 
   get maxStorage() {
-    return maxBy(this.availability, 'flavor.storage').flavor.storage;
+    return maxBy(this.availability, 'maxDiskSize').maxDiskSize;
   }
 
   compare(plan) {

@@ -1,0 +1,8 @@
+{
+  "pci_databases_indexes_delete_pattern_confirm": "Confirm",
+  "pci_databases_indexes_delete_pattern_cancel": "Cancel",
+  "pci_databases_indexes_delete_index": "Delete a model",
+  "pci_databases_indexes_delete_pattern_description": "Are you sure you want to delete this model?",
+  "pci_databases_indexes_delete_pattern_success_message": "Model deleted.",
+  "pci_databases_indexes_delete_pattern_error_message": "An error has occurred deleting your model: {{message}}"
+}

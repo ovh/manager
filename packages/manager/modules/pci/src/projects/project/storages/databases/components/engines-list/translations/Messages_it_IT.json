@@ -6,5 +6,6 @@
   "pci_database_engines_list_description_postgresql": "Sistema di gestione database relazionale e ad oggetti",
   "pci_database_engines_list_description_kafka": "Sistema di streaming distribuito e high performance",
   "pci_database_engines_list_description_redis": "Sistema di storage di dati chiave-valore in memoria",
-  "pci_database_engines_list_description_mongodb": "Sistema di gestione di database orientato ai documenti"
+  "pci_database_engines_list_description_mongodb": "Sistema di gestione di database orientato ai documenti",
+  "pci_database_engines_list_description_opensearch": "Motore di ricerca e analisi distribuito Fork di Elasticsearch 7.10.2 e Kibana 7.10.2"
 }

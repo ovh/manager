@@ -8,5 +8,6 @@
   "pci_databases_dashboard_metrics_tab_title": "Metriche",
   "pci_databases_dashboard_databases_tab_title": "Database",
   "pci_databases_dashboard_acl_tab_title": "ACL",
-  "pci_databases_dashboard_topics_tab_title": "Topics"
+  "pci_databases_dashboard_topics_tab_title": "Topics",
+  "pci_databases_dashboard_indexes_tab_title": "Indici"
 }
