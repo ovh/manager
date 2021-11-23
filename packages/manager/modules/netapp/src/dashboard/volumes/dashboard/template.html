@@ -37,12 +37,14 @@
             >
                 <oui-tile-definition
                     term="{{:: 'netapp_volumes_dashboard_information_name' | translate }}"
+                    term-popover="{{:: 'netapp_volumes_dashboard_volume_pattern' | translate}}"
                 >
                     <oui-tile-description>
                         <ovh-manager-inline-property-editor
                             property="name"
                             model="$ctrl.volume.name"
                             on-submit="$ctrl.update()"
+                            pattern="$ctrl.PATTERN"
                         ></ovh-manager-inline-property-editor>
                     </oui-tile-description>
                 </oui-tile-definition>
