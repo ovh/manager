@@ -53,4 +53,9 @@ export default class PluginManager {
     }
     pluginEntry.isAvailable = available;
   }
+
+  getPlugin(pluginId: string): Record<string, CallableFunction> {
+    const plugin = this.plugins[pluginId];
+    return plugin ? plugin.instance : null;
+  }
 }

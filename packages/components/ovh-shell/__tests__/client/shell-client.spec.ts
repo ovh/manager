@@ -12,8 +12,8 @@ defineFeature(feature, (test) => {
   test('Plugin method invokation', ({ given, when, and, then }) => {
     const shellClientMessageBus = new DirectClientMessageBus();
     const shellMessageBus = new DirectClientMessageBus();
-    const shell = new Shell(shellMessageBus);
-    const shellClient = new ShellClient(shellClientMessageBus);
+    const shell = new Shell();
+    const shellClient = new ShellClient();
     const callback = jest.fn((param: string) => param);
     const pluginName = 'test';
 
@@ -26,6 +26,8 @@ defineFeature(feature, (test) => {
     and(
       'My shell and shell client are configured with a direct message bus',
       () => {
+        shell.setMessageBus(shellMessageBus);
+        shellClient.setMessageBus(shellClientMessageBus);
         shellClientMessageBus.addPeer(shellMessageBus);
         shellMessageBus.addPeer(shellClientMessageBus);
       },
@@ -48,14 +50,16 @@ defineFeature(feature, (test) => {
   test('Plugin event listener', ({ given, when, and, then }) => {
     const shellClientMessageBus = new DirectClientMessageBus();
     const shellMessageBus = new DirectClientMessageBus();
-    const shell = new Shell(shellMessageBus);
-    const shellClient = new ShellClient(shellClientMessageBus);
+    const shell = new Shell();
+    const shellClient = new ShellClient();
     const callback = jest.fn((param: string) => param);
     const callback2 = jest.fn((param: string) => param);
 
     given(
       'My shell and shell client are configured with a direct message bus',
       () => {
+        shell.setMessageBus(shellMessageBus);
+        shellClient.setMessageBus(shellClientMessageBus);
         shellClientMessageBus.addPeer(shellMessageBus);
         shellMessageBus.addPeer(shellClientMessageBus);
       },

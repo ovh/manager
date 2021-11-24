@@ -13,10 +13,10 @@ export default class Shell {
 
   messageBus: IMessageBus;
 
-  constructor(bus: IMessageBus) {
-    this.setMessageBus(bus);
+  constructor() {
     this.pluginManager = new PluginManager();
     this.pluginEventHandler = null;
+    this.messageBus = null;
   }
 
   setMessageBus(bus: IMessageBus) {
@@ -33,13 +33,15 @@ export default class Shell {
   }
 
   emitEvent(eventId: string, data: unknown) {
-    this.messageBus.send({
-      type: ShellMessageType.EVENT,
-      message: {
-        eventId,
-        data,
-      },
-    });
+    if (this.messageBus) {
+      this.messageBus.send({
+        type: ShellMessageType.EVENT,
+        message: {
+          eventId,
+          data,
+        },
+      });
+    }
   }
 
   handlePluginMessage(data: IShellPluginInvocation) {

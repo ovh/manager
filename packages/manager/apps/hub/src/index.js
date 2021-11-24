@@ -19,15 +19,17 @@ import { BILLING_REDIRECTIONS } from './constants';
 
 attachPreloader(findAvailableLocale(detectUserLocale()));
 
+useShellClient('hub').then((shellClient) => {
+  // @TODO fetch environment here and remove fetchConfiguration
+  console.log(shellClient);
+});
+
 fetchConfiguration('hub').then((environment) => {
   environment.setVersion(__VERSION__);
 
   if (environment.getMessage()) {
     displayMessage(environment.getMessage(), environment.getUserLanguage());
   }
-
-  const shellClient = useShellClient();
-  shellClient.routing.init();
 
   BILLING_REDIRECTIONS.forEach((redirectionRegex) => {
     const hash = window.location.hash.replace('#', '');

@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import exposeApi from './api';
 import IMessageBus from '../message-bus/IMessageBus';
 import {
   IShellEvent,
@@ -20,9 +21,14 @@ export default class ShellClient {
 
   messageBus: IMessageBus;
 
-  constructor(bus: IMessageBus) {
+  applicationId: string;
+
+  constructor() {
     this.deferredResponse = {};
     this.eventListeners = {};
+  }
+
+  setMessageBus(bus: IMessageBus) {
     this.messageBus = bus;
     this.messageBus.onReceive((data: IShellMessage<unknown>) => {
       if (data.type === ShellMessageType.EVENT) {
@@ -33,6 +39,14 @@ export default class ShellClient {
         this.handlePluginResult(data.message as IShellPluginResult);
       }
     });
+  }
+
+  setApplicationId(id: string) {
+    this.applicationId = id;
+  }
+
+  getApplicationId(): string {
+    return this.applicationId;
   }
 
   getUniqueResponseId(): string {
@@ -63,6 +77,9 @@ export default class ShellClient {
     args = [],
   }: IShellPluginMethodCall): PromiseLike<unknown> {
     const uid = this.getUniqueResponseId();
+    if (!this.messageBus) {
+      return Promise.reject(new Error('Message bus is not defined'));
+    }
     this.messageBus.send({
       type: ShellMessageType.PLUGIN_INVOCATION,
       message: {
@@ -75,5 +92,9 @@ export default class ShellClient {
     return new Promise((resolve, reject) => {
       this.deferredResponse[uid] = { resolve, reject };
     });
+  }
+
+  getApi() {
+    return exposeApi(this);
   }
 }
