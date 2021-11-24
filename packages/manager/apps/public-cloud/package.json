@@ -103,5 +103,10 @@
     "glob": "^7.1.4",
     "webpack": "^4.44.2",
     "webpack-merge": "^4.2.2"
-  }
+  },
+  "regions": [
+    "CA",
+    "EU",
+    "US"
+  ]
 }
