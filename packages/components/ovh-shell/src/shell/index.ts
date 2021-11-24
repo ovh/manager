@@ -6,6 +6,7 @@ import DirectClientMessageBus from '../message-bus/direct-client';
 
 interface IShell {
   getEnvironment: () => Environment;
+  getShell: () => Shell;
   emitEvent: (eventId: string, data: unknown) => void;
   registerPlugin: (
     pluginId: string,
@@ -13,14 +14,16 @@ interface IShell {
   ) => void;
   setPluginAvailability: (pluginId: string, availability: boolean) => void;
   setIframeMessageBus: (iframe: HTMLIFrameElement) => void;
-  i18n: () => unknown;
+  i18n: () => Record<string, CallableFunction>;
 }
 
-export function initShell(shellInstance?: Shell): Promise<IShell> {
+export function initShell(): Promise<IShell> {
   return fetchConfiguration('shell').then((environment: Environment) => {
-    const shell = shellInstance || new Shell(new DirectClientMessageBus());
+    const shell = new Shell();
+    shell.setMessageBus(new DirectClientMessageBus());
     return {
       getEnvironment: () => environment,
+      getShell: () => shell,
       emitEvent: (eventId: string, data: unknown): void =>
         shell.emitEvent(eventId, data),
       registerPlugin: (
@@ -31,7 +34,7 @@ export function initShell(shellInstance?: Shell): Promise<IShell> {
         shell.getPluginManager().setPluginAvailability(pluginId, availability),
       setIframeMessageBus: (iframe: HTMLIFrameElement) =>
         shell.setMessageBus(new IFrameMessageBus(iframe)),
-      i18n: () => shell.getPluginManager().plugins.i18n.instance,
+      i18n: () => shell.getPluginManager().getPlugin('i18n'),
     };
   });
 }
