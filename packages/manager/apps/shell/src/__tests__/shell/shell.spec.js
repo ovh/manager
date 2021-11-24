@@ -17,6 +17,9 @@ const server = setupServer(
   rest.get('/engine/2api/universes', (req, res, ctx) => {
     return res(ctx.json([]));
   }),
+  rest.get('/engine/2api/configuration', (req, res, ctx) => {
+    return res(ctx.json([]));
+  }),
 );
 
 jest.mock('../../account-sidebar/AccountSidebar.jsx');
@@ -55,24 +58,22 @@ describe('Renders shell header', () => {
     };
     const universe = 'web';
 
-    const environment = {
-      getUser: () => user,
-      getUniverse: () => universe,
-      getUserLocale: () => 'fr_FR',
-      getRegion: () => 'EU',
-    };
-
-    const shell = shellApi.initShell();
-    shell.registerPlugin('i18n', plugin.i18n(shell, environment));
-
-    // Act
-    render(
-      <I18nextProvider i18n={i18n}>
-        <ApplicationProvider environment={environment} shell={shell}>
-          <Shell />
-        </ApplicationProvider>
-      </I18nextProvider>,
-    );
+    shellApi.initShell().then((shell) => {
+      const environment = shell.getEnvironment();
+      environment.setUser(user);
+      environment.setUniverse(universe);
+      environment.setUserLocale('fr_FR');
+      environment.setRegion('EU');
+      shell.registerPlugin('i18n', plugin.i18n(shell, shell.getEnvironment()));
+      // Act
+      render(
+        <I18nextProvider i18n={i18n}>
+          <ApplicationProvider environment={environment} shell={shell}>
+            <Shell />
+          </ApplicationProvider>
+        </I18nextProvider>,
+      );
+    });
 
     // Assert
     // If the header contains the navbar
