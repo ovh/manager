@@ -8,6 +8,7 @@ export default {
     goToApp: '<',
     goToAttachData: '<',
     goToDeleteApp: '<',
+    goToCreateToken: '<',
     isAuthorized: '<',
     reloadState: '<',
     guideUrl: '<',

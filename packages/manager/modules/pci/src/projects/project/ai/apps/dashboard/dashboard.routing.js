@@ -29,9 +29,10 @@ export default /* @ngInject */ ($stateProvider) => {
           appId,
         }),
 
-      userAndRolesLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.users.add', {
+      goToGenerateToken: /* @ngInject */ ($state, projectId, appId) => () =>
+        $state.go('pci.projects.project.ai.tokens.add', {
           projectId,
+          labelSelector: `id=${appId}`,
         }),
     },
     redirectTo: 'pci.projects.project.ai.apps.dashboard.general-information',

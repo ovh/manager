@@ -27,6 +27,7 @@
   "pci_ai_app_list_create_app": "Créer une app",
   "pci_ai_app_list_details": "Details",
   "pci_ai_app_list_start_app": "Start",
+  "pci_ai_app_list_generate_token": "Générer token",
   "pci_ai_app_list_stop_app": "Stop",
   "pci_ai_app_list_delete_app": "Delete",
   "pci_ai_app_list_start_error": "An error has occurred attempting to start the {{appName}} app: {{message}}",

@@ -18,6 +18,7 @@
   "pci_apps_general_information_info_app_env_region": "Région",
   "pci_apps_general_information_life_cycle_title": "Cycle de vie",
   "pci_apps_general_information_life_cycle_status": "Statut",
+  "pci_apps_general_information_life_cycle_action_generate": "Générer un token",
 
   "pci_apps_general_information_life_cycle_status_QUEUED": "En attente",
   "pci_apps_general_information_life_cycle_status_INITIALIZING": "Initialisation",
