@@ -39,9 +39,7 @@ export default class {
   createProcedure(data) {
     return this.$http
       .post('/telephony/procedure', data)
-      .then(({ data: procedure }) => {
-        return procedure;
-      });
+      .then(({ data: procedure }) => procedure);
   }
 
   cancelProcedure(id) {
