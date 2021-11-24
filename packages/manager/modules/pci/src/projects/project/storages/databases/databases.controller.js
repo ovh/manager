@@ -1,17 +1,24 @@
+import find from 'lodash/find';
 import capitalize from 'lodash/capitalize';
 import { getCriteria } from '../../project.utils';
-import { ENGINE_LOGOS } from './databases.constants';
+import { ENGINE_LOGOS, DATABASE_TYPES } from './databases.constants';
 
 const optionsMenuTrackPrefix = 'table::options_menu::';
 
 export default class {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, ovhManagerRegionService) {
+  constructor(
+    $translate,
+    CucCloudMessage,
+    ovhManagerRegionService,
+    DatabaseService,
+  ) {
     this.$translate = $translate;
     this.capitalize = capitalize;
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.ENGINE_LOGOS = ENGINE_LOGOS;
+    this.DatabaseService = DatabaseService;
   }
 
   $onInit() {
@@ -40,7 +47,28 @@ export default class {
 
   deleteDatabase(database) {
     this.trackDatabases(`${optionsMenuTrackPrefix}delete_database`);
-    this.goToDeleteDatabase(database);
+    if (
+      [DATABASE_TYPES.KAFKA, DATABASE_TYPES.KAFKA_MIRROR_MAKER].includes(
+        database.engine,
+      )
+    ) {
+      return this.DatabaseService.getIntegrations(
+        this.projectId,
+        database.engine,
+        database.id,
+      ).then((integrations) => {
+        const linkedServices = integrations.map((integration) =>
+          database.engine === DATABASE_TYPES.KAFKA
+            ? find(this.databases, { id: integration.destinationServiceId })
+            : find(this.databases, { id: integration.sourceServiceId }),
+        );
+        if (linkedServices.length > 0) {
+          return this.goToConfirmDeleteDatabase(database, linkedServices);
+        }
+        return this.goToDeleteDatabase(database);
+      });
+    }
+    return this.goToDeleteDatabase(database);
   }
 
   renameDatabase(database) {
