@@ -67,18 +67,34 @@
                 class="oui-heading_5"
                 data-translate="telecom_dashboard_identity_check_form_you"
             ></p>
-            <oui-field
-                label="{{ 'telecom_dashboard_identity_check_form_ownerName' | translate }}"
-            >
-                <input
-                    class="oui-input"
-                    name="ownerName"
-                    placeholder="{{ 'telecom_dashboard_identity_check_form_ownerName' | translate }}"
-                    type="text"
-                    data-ng-model="$ctrl.model.ownerName"
-                    required
-                />
-            </oui-field>
+            <div class="row">
+                <oui-field
+                    class="col-md-6 col-sm-12"
+                    label="{{ 'telecom_dashboard_identity_check_form_ownerLastName' | translate }}"
+                >
+                    <input
+                        class="oui-input"
+                        name="ownerLastName"
+                        placeholder="{{ 'telecom_dashboard_identity_check_form_ownerLastName' | translate }}"
+                        type="text"
+                        data-ng-model="$ctrl.model.ownerLastName"
+                        required
+                    />
+                </oui-field>
+                <oui-field
+                    class="col-md-6 col-sm-12"
+                    label="{{ 'telecom_dashboard_identity_check_form_ownerFirstName' | translate }}"
+                >
+                    <input
+                        class="oui-input"
+                        name="ownerFirstName"
+                        placeholder="{{ 'telecom_dashboard_identity_check_form_ownerFirstName' | translate }}"
+                        type="text"
+                        data-ng-model="$ctrl.model.ownerFirstName"
+                        required
+                    />
+                </oui-field>
+            </div>
             <oui-field
                 label="{{ 'telecom_dashboard_identity_check_form_ownerAddress' | translate }}"
             >

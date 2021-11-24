@@ -25,7 +25,8 @@ export default class IdentityCheckFormCtrl {
       bic: '',
       iban: '',
       ownerAddress: '',
-      ownerName: '',
+      ownerFirstName: '',
+      ownerLastName: '',
     };
   }
 
@@ -33,7 +34,8 @@ export default class IdentityCheckFormCtrl {
     const { name, firstname, address } = this.user;
 
     this.model.ownerAddress = address;
-    this.model.ownerName = `${firstname} ${name}`;
+    this.model.ownerFirstName = firstname;
+    this.model.ownerLastName = name;
 
     this.IdentityCheckService.getLastInProgressProcedure()
       .then((procedure) => {
@@ -52,8 +54,12 @@ export default class IdentityCheckFormCtrl {
   createProcedure() {
     if (!this.canCreateProcedure()) return;
 
+    const { ownerFirstName, ownerLastName, ...data } = this.model;
+
+    data.ownerName = `${ownerFirstName} ${ownerLastName}`;
     this.isCreating = true;
-    this.IdentityCheckService.createProcedure(this.model)
+
+    this.IdentityCheckService.createProcedure(data)
       .then((procedure) => {
         this.procedure = procedure;
       })
