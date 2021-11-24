@@ -1,6 +1,8 @@
 import { useReket } from '@ovh-ux/ovh-reket';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
 import ShellClient from './shell-client';
+import StandaloneShellClient from './standalone-shell-client';
 import IFrameMessageBus from '../message-bus/iframe';
 import exposeApi from './api';
 
@@ -24,26 +26,45 @@ function fetchApplications(): Promise<
   });
 }
 
-function shellRedirection(
+interface StandaloneApplicationResult {
+  isStandalone: boolean;
+  redirectionURL: string | null;
+}
+
+function isApplicationStandalone(
   apps: Record<string, ApplicationConfiguration>,
-): void {
-  Object.entries(apps).forEach(([, appConfig]) => {
-    const urlWithoutHash = new URL(window.location.href);
-    urlWithoutHash.hash = '';
-    if (!appConfig.standalone && urlWithoutHash.href === appConfig.url) {
-      const redirection = new URL(window.location.href);
-      redirection.pathname = appConfig.shellPath;
-      window.location.href = redirection.href;
-    }
+): Promise<StandaloneApplicationResult> {
+  return new Promise<StandaloneApplicationResult>((resolve) => {
+    Object.entries(apps).forEach(([, appConfig]) => {
+      const urlWithoutHash = new URL(window.location.href);
+      urlWithoutHash.hash = '';
+      if (!appConfig.standalone && urlWithoutHash.href === appConfig.url) {
+        const redirection = new URL(window.location.href);
+        redirection.pathname = appConfig.shellPath;
+        resolve({ isStandalone: false, redirectionURL: redirection.href });
+      }
+    });
+    resolve({ isStandalone: true, redirectionURL: null });
   });
 }
 
-function standaloneApplicationCheck() {
-  return fetchApplications().then(shellRedirection);
-}
-
-export default function init() {
-  standaloneApplicationCheck();
-  const shell = new ShellClient(new IFrameMessageBus());
-  return exposeApi(shell);
+export default function init(applicationId: string) {
+  if (isTopLevelApplication()) {
+    return fetchApplications()
+      .then(isApplicationStandalone)
+      .then(({ isStandalone, redirectionURL }) => {
+        if (!isStandalone) {
+          window.location.href = redirectionURL;
+        }
+        return new StandaloneShellClient(applicationId)
+          .init()
+          .then((shellClient) => {
+            return exposeApi(shellClient);
+          });
+      });
+  }
+  const shellClient = new ShellClient(new IFrameMessageBus());
+  const shellClientApi = exposeApi(shellClient);
+  shellClientApi.routing.init();
+  return Promise.resolve(shellClientApi);
 }
