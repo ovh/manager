@@ -23,8 +23,6 @@ export default class {
     this.messageContainer =
       'pci.projects.project.ai.apps.dashboard.general-information';
     this.loadMessages();
-
-    this.appActionsHistory = [];
   }
 
   loadMessages() {
@@ -61,11 +59,6 @@ export default class {
       : null;
   }
 
-  onOpenLiveCodeEditorClick(editorId) {
-    this.trackApps(`dashboard::open_${editorId}`);
-    this.openLiveCodeEditor();
-  }
-
   onGraphDashboardClick() {
     this.trackApps('dashboard::access_graph_dashboard');
   }
@@ -73,5 +66,10 @@ export default class {
   onDeleteAppClick() {
     this.trackApps('dashboard::delete_app');
     return this.goToDeleteApp();
+  }
+
+  onGenerateTokenClick() {
+    this.trackApps('dashboard::generate_token');
+    return this.goToGenerateToken();
   }
 }

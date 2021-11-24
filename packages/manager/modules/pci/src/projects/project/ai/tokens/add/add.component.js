@@ -4,7 +4,7 @@ import template from './add.html';
 export default {
   bindings: {
     goBack: '<',
-    resource: '<',
+    labelSelector: '<',
     projectId: '<',
     regions: '<',
   },

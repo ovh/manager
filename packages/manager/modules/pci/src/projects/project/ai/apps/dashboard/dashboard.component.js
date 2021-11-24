@@ -11,7 +11,7 @@ export default {
     currentActiveLink: '<',
     generalInformationLink: '<',
     attachDataLink: '<',
-    userAndRolesLink: '<',
+    goToGenerateToken: '<',
     trackApps: '<',
   },
   template,

@@ -57,7 +57,6 @@ export default class AppAttachController {
   }
 
   addVolume(volume) {
-    console.log(volume);
     this.volumes.push(volume);
   }
 

@@ -1,8 +1,8 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.ai.tokens.add', {
-    url: '/add?resource',
+    url: '/add?labelSelector',
     params: {
-      resource: null,
+      labelSelector: null,
     },
     views: {
       modal: {
@@ -12,7 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       goBack: /* @ngInject */ (goToTokens) => goToTokens,
-      resource: /* @ngInject */ ($stateParams) => $stateParams.resource,
+      labelSelector: /* @ngInject */ ($stateParams) =>
+        $stateParams.labelSelector,
       regions: /* @ngInject */ (PciProjectAiService, projectId) =>
         PciProjectAiService.getRegions(projectId),
       breadcrumb: () => null,

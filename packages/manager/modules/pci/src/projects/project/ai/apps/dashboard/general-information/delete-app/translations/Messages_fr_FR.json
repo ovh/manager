@@ -1,8 +1,8 @@
 {
-  "pci_apps_general_information_info_delete_app_title": "Suppression du app",
-  "pci_apps_general_information_info_delete_app_description": "Etes-vous sur de vouloir supprimer le app {{ name }} ?",
+  "pci_apps_general_information_info_delete_app_title": "Suppression de l'app",
+  "pci_apps_general_information_info_delete_app_description": "Etes-vous sur de vouloir supprimer l'app {{ name }} ?",
   "pci_apps_general_information_info_delete_app_action_delete": "Confirmer",
   "pci_apps_general_information_info_delete_app_action_cancel": "Annuler",
-  "pci_apps_general_information_info_delete_app_action_delete_success": "Votre app a bien été supprimé",
-  "pci_apps_general_information_info_delete_app_action_delete_fail": "Une erreur est survenue lors de la suppression du app {{ name }} : {{ message }}."
+  "pci_apps_general_information_info_delete_app_action_delete_success": "Votre app a bien été supprimée",
+  "pci_apps_general_information_info_delete_app_action_delete_fail": "Une erreur est survenue lors de la suppression de l'app {{ name }} : {{ message }}."
 }

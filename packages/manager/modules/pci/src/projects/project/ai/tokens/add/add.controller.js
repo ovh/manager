@@ -14,7 +14,7 @@ export default class {
     this.isAdding = false;
     this.token = {
       name: null,
-      labelSelector: null,
+      labelSelector: this.labelSelector || null,
       role: ROLES[0],
       region: this.regions[0].id,
     };
