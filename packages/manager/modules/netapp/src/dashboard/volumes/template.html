@@ -1,18 +1,5 @@
 <div>
     <p class="oui-heading_3" data-translate="netapp_volumes_details"></p>
-    <div data-ng-if="$ctrl.isCountAvailable">
-        <p
-            class="oui-field__label"
-            data-translate="netapp_volumes_number_description"
-        ></p>
-        <p
-            data-translate="netapp_volumes_number"
-            data-translate-values="{
-          'volumesNumber': $ctrl.volumes.length,
-          'volumesLimit': $ctrl.storage.maximumVolumesLimit,
-        }"
-        ></p>
-    </div>
     <oui-button
         ng-if="$ctrl.canCreateVolume"
         aria-label="{{:: 'netapp_volumes_create' | translate }}"
