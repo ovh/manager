@@ -177,6 +177,7 @@
                         data-service-name="{{:: $ctrl.projectId }}"
                         data-selected-flavor="$ctrl.model.flavorGroup"
                         data-default-flavor="$ctrl.instance.flavor"
+                        data-exclude-categories="$ctrl.excludeCategories"
                         data-on-change="$ctrl.onFlavorChange(flavor)"
                         data-display-selected-flavor="false"
                         data-single-flavor-warning="{{ ::'pci_projects_project_instances_instance_edit_flavor_single_available' | translate }}"
