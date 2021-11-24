@@ -1,4 +1,6 @@
 import Datacenter from '../../../../../components/project/regions-list/datacenter.class';
+import { FLAVORS_FEATURES_FLIPPING_MAP } from '../../instances.constants';
+import { EXCLUDE_FLAVOR_CATEGORIES } from '../../add/add.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances.instance.edit', {
@@ -9,13 +11,20 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant(
+          'pci_projects_project_instances_instance_edit_title',
+        ),
+
       instanceId: /* @ngInject */ ($transition$) =>
         $transition$.params().instanceId,
+
       instance: /* @ngInject */ (
         PciProjectsProjectInstanceService,
         projectId,
         instanceId,
       ) => PciProjectsProjectInstanceService.get(projectId, instanceId),
+
       region: /* @ngInject */ ($http, $q, instance, projectId) =>
         $q
           .all({
@@ -28,7 +37,6 @@ export default /* @ngInject */ ($stateProvider) => {
               )
               .then(({ data }) => data),
           })
-
           .then(
             ({ region, quota }) =>
               new Datacenter({
@@ -36,11 +44,19 @@ export default /* @ngInject */ ($stateProvider) => {
                 quota,
               }),
           ),
+
+      excludeCategories: /* @ngInject */ (pciFeatures) => {
+        const flavorCategories = Object.keys(FLAVORS_FEATURES_FLIPPING_MAP);
+        const toExclude = flavorCategories.filter((flavor) => {
+          return !pciFeatures.isFeatureAvailable(
+            FLAVORS_FEATURES_FLIPPING_MAP[flavor],
+          );
+        });
+
+        return EXCLUDE_FLAVOR_CATEGORIES.concat(toExclude);
+      },
+
       goBack: /* @ngInject */ (goToInstance) => goToInstance,
-      breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant(
-          'pci_projects_project_instances_instance_edit_title',
-        ),
     },
   });
 };

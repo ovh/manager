@@ -3,6 +3,7 @@ import template from './add.html';
 
 export default {
   bindings: {
+    pciFeatures: '<',
     addInstanceSuccessMessage: '<',
     addInstancesSuccessMessage: '<',
     disablePrivateNetworks: '<',
