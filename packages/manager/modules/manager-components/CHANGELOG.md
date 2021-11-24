@@ -62,8 +62,3 @@
 ### BREAKING CHANGES
 
 * add manager-components module
-
-Signed-off-by: Ganesh Kumar <ganesh.kumar@ovhcloud.com>
-
-
-

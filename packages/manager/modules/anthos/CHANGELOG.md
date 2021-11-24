@@ -87,9 +87,3 @@
 ### BREAKING CHANGES
 
 * add anthos module
-
-Signed-off-by: Ganesh Kumar <ganesh.kumar@ovhcloud.com>
-Signed-off-by: mohammed-zahaf <mohammed.zahaf.ext@ovhcloud.com>
-
-
-
