@@ -18,6 +18,15 @@ export default class VolumeCreateCtrl {
     this.availableVolumeSize = this.getAvailableSize();
   }
 
+  getAvailableSize() {
+    const storageVolumesSize = this.volumes.reduce(
+      (allSizes, volume) => allSizes + volume.size,
+      0,
+    );
+
+    return this.storage.quota - storageVolumesSize;
+  }
+
   onCreateVolume() {
     this.isCreating = true;
     this.trackClick('create::confirm');
