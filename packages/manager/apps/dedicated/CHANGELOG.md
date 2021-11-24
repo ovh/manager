@@ -212,9 +212,6 @@
 
 * add anthos module
 
-Signed-off-by: Ganesh Kumar <ganesh.kumar@ovhcloud.com>
-Signed-off-by: mohammed-zahaf <mohammed.zahaf.ext@ovhcloud.com>
-
 
 
 # [16.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.37.4...@ovh-ux/manager-dedicated@16.38.0) (2021-10-06)
@@ -6359,6 +6356,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 <a name="9.0.0"></a>
 # 9.0.0 (2018-03-07)
-
-
-
