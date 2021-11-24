@@ -3,19 +3,19 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
 import startsWith from 'lodash/startsWith';
+import { swsProxyRootPath } from '../config/config';
 
 export default /* @ngInject */ function cdnF(
   $cacheFactory,
   $http,
   $q,
-  constants,
   $rootScope,
   Poll,
   OvhHttp,
 ) {
   const self = this;
-  const swsCdnProxyPath = `${constants.swsProxyRootPath}cdn/dedicated`;
-  const swsOrderProxyPath = `${constants.swsProxyRootPath}order/cdn/dedicated`;
+  const swsCdnProxyPath = `${swsProxyRootPath}cdn/dedicated`;
+  const swsOrderProxyPath = `${swsProxyRootPath}order/cdn/dedicated`;
   const aapiRootPath = '/sws/dedicated/cdn';
   const cdnCache = $cacheFactory('UNIVERS_DEDICATED_CDN');
   const requests = {

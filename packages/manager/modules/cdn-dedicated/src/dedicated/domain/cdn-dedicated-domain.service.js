@@ -2,16 +2,16 @@ import camelCase from 'lodash/camelCase';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import snakeCase from 'lodash/snakeCase';
+import { swsProxyRootPath } from '../../config/config';
 
 export default /* @ngInject */ function CdnDomain(
   $http,
   $q,
-  constants,
   $cacheFactory,
   $rootScope,
 ) {
   const aapiRootPath = '/sws/dedicated/cdn';
-  const swsCdnProxyPath = `${constants.swsProxyRootPath}cdn/dedicated`;
+  const swsCdnProxyPath = `${swsProxyRootPath}cdn/dedicated`;
   const cdnCache = $cacheFactory('UNIVERS_DEDICATED_CDN_DOMAIN');
   const requests = {
     cdnDomains: {},

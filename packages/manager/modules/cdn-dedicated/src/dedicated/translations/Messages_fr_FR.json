@@ -1,5 +1,25 @@
 {
+  "unit_size_B": "B",
+  "unit_size_KB": "KB",
+  "unit_size_MB": "MB",
+  "unit_size_GB": "GB",
+  "unit_size_TB": "TB",
+  "unit_size_PB": "PB",
+  "unit_size_EB": "EB",
+  "unit_size_ZB": "ZB",
+  "unit_size_YB": "YB",
   "cdn_dashboard_loading_error": "Une erreur est survenue lors du chargement des informations de votre service.",
-
-  "cdn_domain_configuration_update_fail": "Une erreur est survenue lors de la modification du bypass du domaine {{t0}}"
+  "cdn_domain_configuration_update_fail": "Une erreur est survenue lors de la modification du bypass du domaine {{t0}}",
+  "wizard_cancel": "Annuler",
+  "wizard_close": "Fermer",
+  "wizard_confirm": "Valider",
+  "wizard_modify": "Modifier",
+  "wizard_delete": "Supprimer",
+  "wizard_yes": "Oui",
+  "wizard_no": "Non",
+  "wizard_order": "Commander",
+  "wizard_pay": "Régler",
+  "wizard_renew": "Renouveler",
+  "wizard_next": "Suivant",
+  "wizard_previous": "Précédent"
 }
