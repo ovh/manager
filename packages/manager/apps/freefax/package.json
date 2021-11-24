@@ -82,5 +82,8 @@
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.8 || ^4.0.0",
     "webpack-merge": "^4.2.2"
-  }
+  },
+  "regions": [
+    "EU"
+  ]
 }

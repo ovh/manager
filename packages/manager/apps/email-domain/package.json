@@ -68,5 +68,9 @@
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"
-  }
+  },
+  "regions": [
+    "CA",
+    "EU"
+  ]
 }

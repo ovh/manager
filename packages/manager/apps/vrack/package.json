@@ -67,5 +67,10 @@
     "@ovh-ux/manager-webpack-config": "^3.0.8 || ^4.0.0",
     "lodash-es": "^4.17.15",
     "webpack-merge": "^4.2.2"
-  }
+  },
+  "regions": [
+    "CA",
+    "EU",
+    "US"
+  ]
 }
