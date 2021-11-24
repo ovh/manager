@@ -57,12 +57,6 @@ export default class AppService {
     this.Poller.kill({ namespace: `apps_${serviceName}_${appId}` });
   }
 
-  getAppConfigurationCommand(serviceName, appSpecs) {
-    return this.$http
-      .post(`/cloud/project/${serviceName}/ai/app/command`, appSpecs)
-      .then(({ data }) => data.command);
-  }
-
   getApps() {
     const defer = this.$q.defer();
     defer.resolve([
@@ -148,10 +142,90 @@ export default class AppService {
     //   .then(({ data }) => data);
   }
 
-  getApp(serviceName, appId) {
-    return this.$http
-      .get(AppService.buildGetAppUrl(serviceName, appId))
-      .then(({ data }) => data);
+  getApp() {
+    const defer = this.$q.defer();
+    defer.resolve({
+      id: 'c56b0cd3-e97d-4add-9283-93e99fb0f0f8',
+      createdAt: '2021-11-19T09:46:47.745348Z',
+      updatedAt: '2021-11-19T09:46:52.658246Z',
+      user: 'user-MGTy7Tydaqa6',
+      spec: {
+        image:
+          'priv-registry.gra.training.ai.cloud.ovh.net/public/infrastructureascode/hello-world:latest',
+        command: [],
+        env: [],
+        region: 'GRA',
+        defaultHttpPort: 8080,
+        unsecureHttp: false,
+        resources: {
+          gpu: 1,
+          cpu: 13,
+          memory: 42949672960,
+          publicNetwork: 1500000000,
+          privateNetwork: 0,
+          ephemeralStorage: 805306368000,
+          gpuModel: 'Tesla-V100S',
+          gpuBrand: 'NVIDIA',
+          gpuMemory: 34359738368,
+          flavor: 'ai1-1-gpu',
+        },
+        volumes: [
+          {
+            privateSwift: {
+              container: 'test',
+              region: 'WAW',
+              prefix: '',
+            },
+            mountPath: '/mount_data',
+            permission: 'RO',
+            cache: false,
+          },
+        ],
+        name: 'hello-world-unruffled',
+        labels: {},
+        scalingStrategy: {
+          fixed: {
+            replicas: 1,
+          },
+        },
+      },
+      status: {
+        state: 'SCALING',
+        availableReplicas: 0,
+        url:
+          'http://c56b0cd3-e97d-4add-9283-93e99fb0f0f8.app.cds-apps.console.dev.training.ai.cloud.ovh.net',
+        infoUrl:
+          'http://ui.cds-apps.console.dev.training.ai.cloud.ovh.net/app/c56b0cd3-e97d-4add-9283-93e99fb0f0f8',
+        monitoringUrl:
+          'http://monitoring.cds-apps.console.dev.training.ai.cloud.ovh.net/d/gpu?var-app=c56b0cd3-e97d-4add-9283-93e99fb0f0f8&from=1637315147745',
+        history: [
+          {
+            state: 'QUEUED',
+            date: '2021-11-19T09:46:47.745194Z',
+          },
+          {
+            state: 'INITIALIZING',
+            date: '2021-11-19T09:46:47.827671Z',
+          },
+          {
+            state: 'SCALING',
+            date: '2021-11-19T09:46:52.656937Z',
+          },
+        ],
+      },
+    });
+
+    return defer.promise;
+
+    // return this.$http
+    //   .get(
+    //     `/cloud/project/${serviceName}/ai/notebook`,
+    //     AppService.getIcebergHeaders(),
+    //   )
+    //   .then(({ data }) => data);
+    // return this.$http
+    //   .get(AppService.buildGetAppUrl(serviceName, appId))
+    //   .then(({ data }) => data);
   }
 
   addApp(serviceName, app) {
@@ -160,27 +234,9 @@ export default class AppService {
       .then(({ data }) => data);
   }
 
-  updateApp(serviceName, appId, app) {
-    return this.$http
-      .put(`/cloud/project/${serviceName}/ai/app/${appId}`, app)
-      .then(({ data }) => data);
-  }
-
   removeApp(serviceName, appId) {
     return this.$http
       .delete(`/cloud/project/${serviceName}/ai/app/${appId}`)
-      .then(({ data }) => data);
-  }
-
-  startApp(serviceName, appId) {
-    return this.$http
-      .put(`/cloud/project/${serviceName}/ai/app/${appId}/start`)
-      .then(({ data }) => data);
-  }
-
-  stopApp(serviceName, appId) {
-    return this.$http
-      .put(`/cloud/project/${serviceName}/ai/app/${appId}/stop`)
       .then(({ data }) => data);
   }
 

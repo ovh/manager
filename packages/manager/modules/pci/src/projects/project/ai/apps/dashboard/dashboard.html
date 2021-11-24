@@ -26,10 +26,9 @@
     <span data-translate="pci_apps_dashboard_banner_user_and_roles_info"></span>
     <p class="m-0">
         <a
-            target="_blank"
             rel="noopener"
             data-translate="pci_apps_dashboard_banner_user_and_roles_info_link"
-            data-ng-href="{{:: $ctrl.userAndRolesLink }}"
+            data-ng-click="$ctrl.goToGenerateToken()"
         ></a>
     </p>
 </oui-message>
