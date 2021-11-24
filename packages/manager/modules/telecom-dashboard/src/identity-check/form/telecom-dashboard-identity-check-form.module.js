@@ -5,7 +5,6 @@ import '@ovh-ux/ng-ui-router-title';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
-import '@ovh-ux/ng-ui-router-breadcrumb';
 import 'angular-translate';
 import 'angular-ui-validate';
 
@@ -16,15 +15,14 @@ import 'ovh-manager-webfont/dist/css/ovh-font.css';
 import '../../telecom-dashboard.scss';
 import '../../telecom-dashboard.less';
 
-import IdentityCheckService from '../telecom-dashboard-identity-check.service';
-import IdentityCheckFormCtrl from './telecom-dashboard-identity-check-form.controller';
-import identityCheckFormTemplate from './telecom-dashboard-identity-check-form.html';
+import component from './telecom-dashboard-identity-check-form.component';
+import routing from './telecom-dashboard-identity-check-form.routing';
+import service from '../telecom-dashboard-identity-check.service';
 
 const moduleName = 'ovhManagerTelecomDashboardIdentityCheckForm';
 
 angular
   .module(moduleName, [
-    'ngUiRouterBreadcrumb',
     'ngUiRouterTitle',
     'ovhManagerCore',
     'pascalprecht.translate',
@@ -32,30 +30,9 @@ angular
     'ui.router',
     'ui.validate',
   ])
-  .config(
-    /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('identity-check', {
-        url: '/identity-check',
-        views: {
-          '': {
-            template: identityCheckFormTemplate,
-            controller: IdentityCheckFormCtrl,
-            controllerAs: 'IdentityCheckFormCtrl',
-          },
-        },
-        translations: {
-          value: ['../../'],
-          format: 'json',
-        },
-        resolve: {
-          $title(translations, $translate) {
-            return $translate('telecom_dashboard_identityCheck_form_title');
-          },
-          hideBreadcrumb: () => true,
-        },
-      });
-    },
-  )
-  .service('IdentityCheckService', IdentityCheckService);
+  .config(routing)
+  .component('identityCheckForm', component)
+  .service('IdentityCheckService', service)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

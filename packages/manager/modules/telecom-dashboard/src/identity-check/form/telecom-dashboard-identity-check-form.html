@@ -1,42 +1,39 @@
 <section class="telecom-legacy">
     <tuc-toast-message></tuc-toast-message>
-    <div class="text-center" data-ng-if="IdentityCheckFormCtrl.isLoading">
+    <div class="text-center" data-ng-if="$ctrl.isLoading">
         <oui-spinner></oui-spinner>
     </div>
-    <div data-ng-if="!IdentityCheckFormCtrl.isLoading">
+    <div data-ng-if="!$ctrl.isLoading">
         <div class="telecom-dashboard">
             <header class="oui-header mb-4">
                 <div class="oui-header__container">
                     <div class="oui-header__content">
                         <h1
                             class="oui-header__title"
-                            data-ng-bind="::IdentityCheckFormCtrl.$title"
+                            data-translate="telecom_dashboard_identity_check_form_title"
                         ></h1>
                         <h2
                             class="oui-header__description"
-                            data-translate="telecom_dashboard_identityCheck_form_description"
-                            data-ng-if="!IdentityCheckFormCtrl.procedure"
+                            data-translate="telecom_dashboard_identity_check_form_description"
+                            data-ng-if="!$ctrl.procedure"
                         ></h2>
                     </div>
                 </div>
             </header>
         </div>
-        <oui-message
-            data-type="info"
-            data-ng-if="IdentityCheckFormCtrl.procedure"
-        >
+        <oui-message data-type="info" data-ng-if="$ctrl.procedure">
             <p
-                data-translate="telecom_dashboard_identityCheck_procedure_info"
+                data-translate="telecom_dashboard_identity_check_form_procedure_info"
             ></p>
             <p>
                 <a
                     class="oui-link_icon"
-                    href="{{ IdentityCheckFormCtrl.procedure.pdfUrl }}"
+                    href="{{ $ctrl.procedure.pdfUrl }}"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
                     <span
-                        data-translate="telecom_dashboard_identityCheck_download_pdf"
+                        data-translate="telecom_dashboard_identity_check_form_download_pdf"
                     ></span>
                     <span class="oui-icon oui-icon-arrow-right"></span>
                 </a>
@@ -44,98 +41,94 @@
             <p>
                 <a
                     class="oui-link_icon"
-                    data-ng-click="IdentityCheckFormCtrl.cancelProcedure()"
+                    data-ng-click="$ctrl.cancelProcedure()"
                     href
                 >
                     <span
-                        data-translate="telecom_dashboard_identityCheck_cancel_procedure"
+                        data-translate="telecom_dashboard_identity_check_form_cancel_procedure"
                     ></span>
                     <span
                         class="oui-icon oui-icon-arrow-right"
-                        data-ng-if="!IdentityCheckFormCtrl.isCancelling"
+                        data-ng-if="!$ctrl.isCancelling"
                     ></span>
                     <oui-spinner
                         data-size="s"
-                        data-ng-if="IdentityCheckFormCtrl.isCancelling"
-                    />
+                        data-ng-if="$ctrl.isCancelling"
+                    ></oui-spinner>
                 </a>
             </p>
         </oui-message>
-        <form
-            data-ng-if="!IdentityCheckFormCtrl.procedure"
-            name="IdentityCheckFormCtrl.form"
-            novalidate
-        >
+        <form data-ng-if="!$ctrl.procedure" name="$ctrl.form" novalidate>
             <p
                 class="oui-heading_4"
-                data-translate="telecom_dashboard_identityCheck_form_bank_account"
+                data-translate="telecom_dashboard_identity_check_form_bank_account"
             ></p>
             <p
                 class="oui-heading_5"
-                data-translate="telecom_dashboard_identityCheck_form_you"
+                data-translate="telecom_dashboard_identity_check_form_you"
             ></p>
             <oui-field
-                label="{{ 'telecom_dashboard_identityCheck_form_ownerName' | translate }}"
+                label="{{ 'telecom_dashboard_identity_check_form_ownerName' | translate }}"
             >
                 <input
                     class="oui-input"
                     name="ownerName"
-                    placeholder="{{ 'telecom_dashboard_identityCheck_form_ownerName' | translate }}"
+                    placeholder="{{ 'telecom_dashboard_identity_check_form_ownerName' | translate }}"
                     type="text"
-                    data-ng-model="IdentityCheckFormCtrl.model.ownerName"
+                    data-ng-model="$ctrl.model.ownerName"
                     required
                 />
             </oui-field>
             <oui-field
-                label="{{ 'telecom_dashboard_identityCheck_form_ownerAddress' | translate }}"
+                label="{{ 'telecom_dashboard_identity_check_form_ownerAddress' | translate }}"
             >
                 <input
                     class="oui-input"
                     name="ownerAddress"
-                    placeholder="{{ 'telecom_dashboard_identityCheck_form_ownerAddress' | translate }}"
+                    placeholder="{{ 'telecom_dashboard_identity_check_form_ownerAddress' | translate }}"
                     type="text"
-                    data-ng-model="IdentityCheckFormCtrl.model.ownerAddress"
+                    data-ng-model="$ctrl.model.ownerAddress"
                     required
                 />
             </oui-field>
             <p
                 class="oui-heading_5"
-                data-translate="telecom_dashboard_identityCheck_form_bank_account"
+                data-translate="telecom_dashboard_identity_check_form_bank_account"
             ></p>
             <oui-field
                 label="IBAN"
-                data-help-text="{{ 'telecom_dashboard_identityCheck_form_iban_info' | translate }}"
-                data-error-messages="{ iban: ('telecom_dashboard_identityCheck_form_iban_error' | translate) }"
+                data-help-text="{{ 'telecom_dashboard_identity_check_form_iban_info' | translate }}"
+                data-error-messages="{ iban: ('telecom_dashboard_identity_check_form_iban_error' | translate) }"
             >
                 <input
                     class="oui-input"
                     name="iban"
                     type="text"
-                    data-ng-model="IdentityCheckFormCtrl.model.iban"
-                    data-ui-validate="{ iban: 'IdentityCheckFormCtrl.isValidIban($value)' }"
+                    data-ng-model="$ctrl.model.iban"
+                    data-ui-validate="{ iban: '$ctrl.isValidIban($value)' }"
                     required
                 />
             </oui-field>
             <oui-field
                 label="BIC"
-                data-help-text="{{ 'telecom_dashboard_identityCheck_form_bic_info' | translate }}"
-                data-error-messages="{ bic: ('telecom_dashboard_identityCheck_form_bic_error' | translate) }"
+                data-help-text="{{ 'telecom_dashboard_identity_check_form_bic_info' | translate }}"
+                data-error-messages="{ bic: ('telecom_dashboard_identity_check_form_bic_error' | translate) }"
             >
                 <input
                     class="oui-input"
                     name="bic"
                     type="text"
-                    data-ng-model="IdentityCheckFormCtrl.model.bic"
-                    data-ui-validate="{ bic: 'IdentityCheckFormCtrl.isValidBic($value)' }"
+                    data-ng-model="$ctrl.model.bic"
+                    data-ui-validate="{ bic: '$ctrl.isValidBic($value)' }"
                     required
                 />
             </oui-field>
             <oui-form-actions
-                data-disabled="!IdentityCheckFormCtrl.canCreateProcedure()"
-                data-submit-text="{{ 'telecom_dashboard_identityCheck_form_generate_pdf' | translate }}"
-                data-on-submit="IdentityCheckFormCtrl.createProcedure()"
-                data-href="{{ IdentityCheckFormCtrl.telecomLink }}"
-            />
+                data-disabled="!$ctrl.canCreateProcedure()"
+                data-submit-text="{{ 'telecom_dashboard_identity_check_form_generate_pdf' | translate }}"
+                data-on-submit="$ctrl.createProcedure()"
+                data-href="{{ $ctrl.telecomLink }}"
+            ></oui-form-actions>
         </form>
     </div>
 </section>

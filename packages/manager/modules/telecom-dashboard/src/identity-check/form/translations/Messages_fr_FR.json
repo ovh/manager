@@ -1,0 +1,16 @@
+{
+  "telecom_dashboard_identity_check_form_title": "Procéder à la validation du compte téléphonie",
+  "telecom_dashboard_identity_check_form_description": "Veuillez remplir ou vérifier vos informations bancaires ci-dessous, puis cliquer sur le bouton valider afin de télécharger les documents nécessaires à la validation de votre compte.",
+  "telecom_dashboard_identity_check_form_bank_account": "Coordonnées bancaires",
+  "telecom_dashboard_identity_check_form_you": "Vous",
+  "telecom_dashboard_identity_check_form_ownerName": "Nom complet",
+  "telecom_dashboard_identity_check_form_ownerAddress": "Adresse du titulaire",
+  "telecom_dashboard_identity_check_form_iban_info": "Votre IBAN, sans espace ni tiret.",
+  "telecom_dashboard_identity_check_form_iban_error": "Le format de votre IBAN n'est pas correct.",
+  "telecom_dashboard_identity_check_form_bic_info": "Votre BIC, sans espace ni tiret.",
+  "telecom_dashboard_identity_check_form_bic_error": "Le format de votre BIC n'est pas correct.",
+  "telecom_dashboard_identity_check_form_generate_pdf": "Générer le PDF",
+  "telecom_dashboard_identity_check_form_procedure_info": "Votre compte de téléphonie est en cours de validation",
+  "telecom_dashboard_identity_check_form_download_pdf": "Télécharger le PDF en cours",
+  "telecom_dashboard_identity_check_form_cancel_procedure": "Annuler la validation en cours et recommencer la demande"
+}

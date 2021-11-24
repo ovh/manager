@@ -1,7 +1,6 @@
 export default class IdentityCheckFormCtrl {
   /* @ngInject */
   constructor(
-    $title,
     coreConfig,
     coreURLBuilder,
     ovhPaymentMethodHelper,
@@ -10,7 +9,6 @@ export default class IdentityCheckFormCtrl {
   ) {
     const { isValidIban, isValidBic } = ovhPaymentMethodHelper;
 
-    this.$title = $title;
     this.user = coreConfig.getUser();
     this.isValidIban = isValidIban;
     this.isValidBic = isValidBic;
@@ -33,10 +31,9 @@ export default class IdentityCheckFormCtrl {
 
   $onInit() {
     const { name, firstname, address } = this.user;
-    Object.assign(this.model, {
-      ownerAddress: address,
-      ownerName: `${firstname} ${name}`,
-    });
+
+    this.model.ownerAddress = address;
+    this.model.ownerName = `${firstname} ${name}`;
 
     this.IdentityCheckService.getLastInProgressProcedure()
       .then((procedure) => {
@@ -67,7 +64,7 @@ export default class IdentityCheckFormCtrl {
   }
 
   cancelProcedure() {
-    if (this.isCancelling) return;
+    if (!this.procedure || this.isCancelling) return;
 
     const { id } = this.procedure;
 
