@@ -57,6 +57,14 @@ export default class Flavor {
     return this.isNetworkSupported('public');
   }
 
+  get hasStorage() {
+    return this.maxDiskSize > 0;
+  }
+
+  get isStorageRange() {
+    return this.minDiskSize !== this.maxDiskSize;
+  }
+
   compare(flavor) {
     // greater than 0 if current flavor is the lower one
     // less than 0 if current flavor is the higher one

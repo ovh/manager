@@ -176,23 +176,28 @@
                     <oui-tile-description>
                         <oui-tile-description>
                             <span
-                                ng-if="$ctrl.getCurrentFlavor().minDiskSize === $ctrl.getCurrentFlavor().maxDiskSize"
-                                data-translate="pci_databases_general_information_node_type"
+                                data-translate="pci_databases_general_information_node_type_cpu"
                                 data-translate-values="{
-                                coreNumber: $ctrl.getCurrentFlavor().core,
-                                memorySize: ($ctrl.getCurrentFlavor().memory | cucBytes:2:false:'GB'),
-                                storageSize: ($ctrl.getCurrentFlavor().minDiskSize | cucBytes:2:false:'GB')
+                                coreNumber: $ctrl.getCurrentFlavor().core
                             }"
                             ></span>
                             <span
-                                ng-if="$ctrl.getCurrentFlavor().minDiskSize !== $ctrl.getCurrentFlavor().maxDiskSize"
-                                data-translate="pci_databases_general_information_node_type_disk_range"
-                                data-translate-values="{
-                                coreNumber: $ctrl.getCurrentFlavor().core,
-                                memorySize: ($ctrl.getCurrentFlavor().memory | cucBytes:2:false:'GB'),
-                                storageMinSize: ($ctrl.getCurrentFlavor().minDiskSize | cucBytes:2:false:'GB'),
-                                storageMaxSize: ($ctrl.getCurrentFlavor().maxDiskSize | cucBytes:2:false:'GB'),
-                            }"
+                                data-ng-bind="' / ' + ( 'pci_databases_general_information_node_type_memory' | translate:{ 
+                                    memorySize: ($ctrl.getCurrentFlavor().memory | cucBytes:2:false:'GB')
+                                })"
+                            ></span>
+                            <span
+                                ng-if="$ctrl.getCurrentFlavor().hasStorage && !$ctrl.getCurrentFlavor().isStorageRange"
+                                data-ng-bind="' / ' + ( 'pci_databases_general_information_node_type_storage' | translate:{ 
+                                    storageSize: ($ctrl.getCurrentFlavor().minDiskSize | cucBytes:2:false:'GB')
+                                })"
+                            ></span>
+                            <span
+                                ng-if="$ctrl.getCurrentFlavor().hasStorage && $ctrl.getCurrentFlavor().isStorageRange"
+                                data-ng-bind="' / ' + ( 'pci_databases_general_information_node_type_storage_range' | translate:{ 
+                                    storageMinSize: ($ctrl.getCurrentFlavor().minDiskSize | cucBytes:2:false:'GB'), 
+                                    storageMaxSize: ($ctrl.getCurrentFlavor().maxDiskSize | cucBytes:2:false:'GB')
+                                })"
                             ></span>
                             <button
                                 class="oui-tile__button oui-button oui-button_ghost oui-button_block"
