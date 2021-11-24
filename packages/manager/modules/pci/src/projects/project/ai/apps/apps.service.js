@@ -213,8 +213,11 @@ export default class AppService {
     defer.resolve([
       {
         id: 'huggingface/translate-en-fr-infinity',
-        description: 'Powered by Hugging Face Infinity',
-        name: 'Translate EN-FR',
+        description: [
+          'Powered by Hugging Face Infinity',
+          'A French sentiment analysis model, based on CamemBERT, and finetuned on a large-scale dataset scraped from Allociné.fr user reviews.',
+        ],
+        name: 'French Sentiment Analysis',
         type: 'app',
         capabilities: {
           volume: true,
@@ -228,14 +231,26 @@ export default class AppService {
           flavor: 'huggingface-infinity',
         },
         flavorTypes: ['cpu', 'gpu'],
-        docUrl: 'https://hub.docker.com/r/ovhcom/ai-training-transformers',
+        docUrl: [
+          {
+            name: 'Model URL',
+            link: 'https://huggingface.co/philschmid/pt-tblard-tf-allocine',
+          },
+          {
+            name: 'Documentation URL',
+            link: 'https://huggingface.co/infinity',
+          },
+        ],
         logoUrl:
           'https://storage.gra.cloud.ovh.net/v1/AUTH_811aaa421cdf4cf1b3507d4d2143f461/logo/huggingface.svg',
       },
       {
         id: 'huggingface/translate-fr-en-infinity',
-        description: 'Powered by Hugging Face Infinity',
-        name: 'Translate FR-EN',
+        description: [
+          'Powered by Hugging Face Infinity',
+          'A English sentiment analysis model, based on MiniLM, and finetuned on the Stanford Sentiment Treebank v2 (sst2) dataset',
+        ],
+        name: 'English Sentiment Analysis',
         type: 'app',
         capabilities: {
           volume: false,
@@ -249,7 +264,17 @@ export default class AppService {
           name: 'Hugging Face',
         },
         flavorTypes: ['cpu'],
-        docUrl: 'https://hub.docker.com/r/ovhcom/ai-training-transformers',
+        docUrl: [
+          {
+            name: 'Model URL',
+            url:
+              'https://huggingface.co/philschmid/MiniLM-L6-H384-uncased-sst2',
+          },
+          {
+            name: 'Documentation URL',
+            url: 'https://huggingface.co/infinity',
+          },
+        ],
         logoUrl:
           'https://storage.gra.cloud.ovh.net/v1/AUTH_811aaa421cdf4cf1b3507d4d2143f461/logo/huggingface.svg',
       },
