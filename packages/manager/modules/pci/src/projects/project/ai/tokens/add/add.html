@@ -29,7 +29,9 @@
             />
         </oui-field>
 
-        <span data-translate="pci_ai_tokens_add_info"></span>
+        <p data-translate="pci_ai_tokens_add_info_1"></p>
+        <p data-translate="pci_ai_tokens_add_info_2"></p>
+        <p data-translate="pci_ai_tokens_add_info_3"></p>
 
         <oui-field
             data-label="{{:: 'pci_ai_tokens_label_selector' | translate }}"
@@ -41,10 +43,9 @@
                 type="text"
                 id="labelSelector"
                 name="labelSelector"
-                required
                 maxlength="100"
                 data-ng-model="$ctrl.token.labelSelector"
-                data-ng-pattern="/^[\w]+=[\w]+$/"
+                data-ng-pattern="/(^[\w]+=[\w]+$)*/"
             />
         </oui-field>
 
