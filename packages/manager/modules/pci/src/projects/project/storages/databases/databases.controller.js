@@ -52,7 +52,7 @@ export default class {
         database.engine,
       )
     ) {
-      this.DatabaseService.getIntegrations(
+      return this.DatabaseService.getIntegrations(
         this.projectId,
         database.engine,
         database.id,
@@ -63,14 +63,12 @@ export default class {
             : find(this.databases, { id: integration.sourceServiceId }),
         );
         if (linkedServices.length > 0) {
-          this.goToConfirmDeleteDatabase(database, linkedServices);
-        } else {
-          this.goToDeleteDatabase(database);
+          return this.goToConfirmDeleteDatabase(database, linkedServices);
         }
+        return this.goToDeleteDatabase(database);
       });
-    } else {
-      this.goToDeleteDatabase(database);
     }
+    return this.goToDeleteDatabase(database);
   }
 
   renameDatabase(database) {

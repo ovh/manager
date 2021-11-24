@@ -14,7 +14,7 @@
             data-translate-values="{serviceName: $ctrl.database.description}"
         ></p>
         <ul>
-            <li ng-repeat="service in $ctrl.linkedServices">
+            <li ng-repeat="service in $ctrl.linkedServices track by $index">
                 {{service.description}}
             </li>
         </ul>
