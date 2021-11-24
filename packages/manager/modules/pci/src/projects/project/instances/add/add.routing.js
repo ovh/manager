@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import { EXCLUDE_FLAVOR_CATEGORIES } from './add.constants';
+import { FLAVORS_FEATURES_FLIPPING_MAP } from '../instances.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances.add', {
@@ -68,7 +69,16 @@ export default /* @ngInject */ ($stateProvider) => {
         project,
       ) => PciProjectsProjectInstanceService.getExtraBandwidthCost(project, me),
 
-      excludeCategories: () => EXCLUDE_FLAVOR_CATEGORIES,
+      excludeCategories: /* @ngInject */ (pciFeatures) => {
+        const flavorCategories = Object.keys(FLAVORS_FEATURES_FLIPPING_MAP);
+        const toExclude = flavorCategories.filter((flavor) => {
+          return !pciFeatures.isFeatureAvailable(
+            FLAVORS_FEATURES_FLIPPING_MAP[flavor],
+          );
+        });
+
+        return EXCLUDE_FLAVOR_CATEGORIES.concat(toExclude);
+      },
     },
   });
 };
