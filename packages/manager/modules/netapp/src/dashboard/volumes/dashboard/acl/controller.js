@@ -20,8 +20,8 @@ export default class NetAppVolumesDashboardAclController {
 
   cancelAcl() {
     this.isAdding = false;
-    this.selectRow(this.acls.length);
     this.acls.pop();
+    this.selectRow(this.acls.length);
   }
 
   addAcl() {
