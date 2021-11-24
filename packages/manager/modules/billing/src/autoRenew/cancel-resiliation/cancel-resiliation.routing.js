@@ -42,11 +42,12 @@ export default /* @ngInject */ ($stateProvider) => {
         (service.canHaveEngagement()
           ? $http
               .get(`/services/${service.id}`)
-              .then(
-                ({ data }) =>
-                  new EngagementConfiguration(
-                    data.billing?.pricing?.engagementConfiguration,
-                  ),
+              .then(({ data }) =>
+                data.billing?.pricing?.engagementConfiguration
+                  ? new EngagementConfiguration(
+                      data.billing?.pricing?.engagementConfiguration,
+                    )
+                  : { engagement: null },
               )
               .catch({ engagement: null })
           : Promise.resolve({ engagement: null })
