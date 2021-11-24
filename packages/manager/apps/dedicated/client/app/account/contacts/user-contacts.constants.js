@@ -10,6 +10,7 @@ export const AVAILABLE_SERVICES = [
   'KUBE',
   'NAS',
   'NASHA',
+  'NETAPP',
   'OVER_THE_BOX',
   'OVH_CLOUD_CONNECT',
   'PRIVATE_CLOUD',
