@@ -1,4 +1,0 @@
-{
-  "cdn_dashboard_loading_error": "Beim Laden der Informationen Ihres Dienstes ist ein Fehler aufgetreten.",
-  "cdn_domain_configuration_update_fail": "Bei der Änderung der Bypass-Einstellung für die Domain {{t0}} ist ein Fehler aufgetreten"
-}

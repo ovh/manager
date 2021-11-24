@@ -102,6 +102,7 @@ import moduleExchange from '@ovh-ux/manager-exchange';
 import ovhManagerFilters from '@ovh-ux/manager-filters';
 import ovhManagerMetrics from '@ovh-ux/manager-metrics';
 import ovhManagerCda from '@ovh-ux/manager-cda';
+import ovhManagerCdnDedicated from '@ovh-ux/manager-cdn-dedicated';
 import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
 import ovhManagerVeeamCloudConnect from '@ovh-ux/manager-veeam-cloud-connect';
 import ovhManagerVps from '@ovh-ux/manager-vps';
@@ -114,7 +115,6 @@ import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ovhManagerNutanix from '@ovh-ux/manager-nutanix';
 import { pollingService } from '@ovh-ux/manager-bm-server-components';
 import account from './account';
-import cdn from './cdn';
 import moduleLicense from './license';
 import config, { getConstants } from './config/config';
 import dedicatedCloud from './dedicatedCloud';
@@ -151,7 +151,7 @@ export default (containerEl, environment) => {
         ovhManagerCookiePolicy,
         chartjs,
         'controllers',
-        cdn,
+        ovhManagerCdnDedicated,
         dedicatedCloud,
         dedicatedHousing,
         dedicatedNas,

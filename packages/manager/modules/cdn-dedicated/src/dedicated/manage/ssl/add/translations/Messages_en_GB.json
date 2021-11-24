@@ -1,0 +1,14 @@
+{
+  "cdn_dedicated_ssl_add": "Add my certificate ",
+  "cdn_dedicated_ssl_add_explain": "Please enter the certificate information:",
+  "cdn_dedicated_ssl_add_name": "Name of certificate",
+  "cdn_dedicated_ssl_add_name_pattern": "The certificate name cannot contain any spaces.",
+  "cdn_dedicated_ssl_add_certificate": "Certificate",
+  "cdn_dedicated_ssl_add_key": "Key",
+  "cdn_dedicated_ssl_add_chain": "Chain",
+  "cdn_dedicated_ssl_add_lets_encrypt_explain": "Leave empty for automatic generation by Let’s Encrypt.",
+  "cdn_dedicated_ssl_add_success": "The SSL certificate will be activated shortly.",
+  "cdn_dedicated_ssl_add_load_error": "An error has occurred loading information regarding your SSL certificate.",
+  "cdn_dedicated_ssl_add_error": "Une erreur est survenue lors de l'ajout du certificat SSL.",
+  "cdn_dedicated_ssl_add_warning": "You can no longer add an SSL certificate to your CDN, as an SSL certificate has already been added."
+}

@@ -1,0 +1,9 @@
+{
+  "cdn_dedicated_ssl_update": "Sostituisci con il tuo certificato",
+  "cdn_dedicated_ssl_update_load_error": "Si è verificato un errore durante il caricamento delle informazioni relative al certificato SSL.",
+  "cdn_dedicated_ssl_update_no_ssl_warning": "Non è possibile sostituire certificati SSL sulla tua CDN perché non ne hai ancora aggiunto uno.",
+  "cdn_dedicated_ssl_update_operation_warning": "Non è possibile sostituire il certificato SSL sulla tua CDN perchè è già in corso un'operazione SSL.",
+  "cdn_dedicated_ssl_update_explain": "Ti preghiamo di inserire le informazioni relative al certificato:",
+  "cdn_dedicated_ssl_update_success": "Modifica del certificato SSL in corso...",
+  "cdn_dedicated_ssl_update_error": "Si è verificato un errore durante la modifica del certificato SSL"
+}

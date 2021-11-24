@@ -1,9 +1,0 @@
-{
-  "cdn_dedicated_ssl_update": "Substituir pelo meu certificado",
-  "cdn_dedicated_ssl_update_load_error": "Ocorreu um erro ao carregar informações sobre seu certificado SSL.",
-  "cdn_dedicated_ssl_update_no_ssl_warning": "Você não pode substituir um certificado SSL no seu CDN porque nenhum certificado SSL foi adicionado ao seu CDN.",
-  "cdn_dedicated_ssl_update_operation_warning": "Você não pode substituir seu certificado SSL em seu CDN, pois há uma operação SSL em andamento.",
-  "cdn_dedicated_ssl_update_explain": "Queira introduzir as informações relativas ao certificado:",
-  "cdn_dedicated_ssl_update_success": "O certificado SSL será modificado em breve.",
-  "cdn_dedicated_ssl_update_error": "Ocorreu um erro ao modificar o seu certificado SSL"
-}

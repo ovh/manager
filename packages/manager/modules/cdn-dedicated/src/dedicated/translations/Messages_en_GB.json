@@ -1,0 +1,4 @@
+{
+  "cdn_dashboard_loading_error": "An error has occurred loading your service information.",
+  "cdn_domain_configuration_update_fail": "An error occurred on modifying the bypass of the domain {{t0}}"
+}

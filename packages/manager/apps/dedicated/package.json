@@ -31,6 +31,7 @@
     "@ovh-ux/manager-bm-server-components": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-catalog-price": "^1.0.1",
     "@ovh-ux/manager-cda": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/manager-cdn-dedicated": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-cloud-connect": "^1.0.0",
     "@ovh-ux/manager-cloud-styles": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-components": "^1.0.0",
