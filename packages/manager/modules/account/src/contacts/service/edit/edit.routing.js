@@ -12,6 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
+      currentUser: /* @ngInject */ (user) => user,
       billLink: /* @ngInject */ ($state) =>
         $state.href('app.account.billing.main.history.pay-debt', {
           debtId: DEBT_ALL,

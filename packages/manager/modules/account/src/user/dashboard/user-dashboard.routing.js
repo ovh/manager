@@ -11,7 +11,6 @@ export default /* @ngInject */ ($stateProvider) => {
       value: ['./', '../support-level'],
     },
     resolve: {
-      user: /* @ngInject */ (currentUser) => currentUser,
       lastBill: /* @ngInject */ (OvhApiMeBillIceberg) =>
         OvhApiMeBillIceberg.query()
           .expand('CachedObjectList-Pages')
@@ -20,11 +19,11 @@ export default /* @ngInject */ ($stateProvider) => {
           .execute(null, true)
           .$promise.then((lastBill) => head(lastBill.data))
           .catch(() => ({})),
-      shortcuts: /* @ngInject */ ($state, coreConfig, currentUser) =>
+      shortcuts: /* @ngInject */ ($state, coreConfig, user) =>
         USER_DASHBOARD_SHORTCUTS.filter(
           ({ regions, isAvailable }) =>
             (!regions || coreConfig.isRegion(regions)) &&
-            (!isAvailable || isAvailable(currentUser)),
+            (!isAvailable || isAvailable(user)),
         ).map((shortcut) => ({
           ...shortcut,
           href: shortcut.state ? $state.href(shortcut.state) : shortcut.href,
