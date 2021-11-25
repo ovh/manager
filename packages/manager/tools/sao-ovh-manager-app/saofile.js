@@ -24,6 +24,13 @@ module.exports = {
           return `OVHcloud ${camelcase(name, { pascalCase: true })} app`;
         },
       },
+      {
+        type: 'checkbox',
+        choices: ['CA', 'EU', 'US'],
+        name: 'regions',
+        message: 'In which region this product will be available',
+        default: ['EU'],
+      },
     ];
   },
   actions() {

@@ -1,4 +1,4 @@
-module.exports = ({ name, description }) => ({
+module.exports = ({ name, description, regions }) => ({
   name: `@ovh-ux/manager-${name}-app`,
   version: '0.0.0',
   private: true,
@@ -59,4 +59,5 @@ module.exports = ({ name, description }) => ({
     glob: '^7.1.6',
     'webpack-merge': '^4.2.2',
   },
+  regions,
 });
