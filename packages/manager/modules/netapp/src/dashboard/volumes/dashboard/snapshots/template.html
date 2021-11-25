@@ -1,18 +1,6 @@
 <div>
     <div>
         <h2 data-translate="netapp_volumes_snapshots"></h2>
-        <dl class="oui-description">
-            <dt data-translate="netapp_volumes_snapshots_total_label"></dt>
-            <dd>
-                <span
-                    data-translate="netapp_volumes_snapshots_total"
-                    data-translate-values="{
-                        total: $ctrl.totalSnapshots,
-                        max: $ctrl.MAXIMUM_SNAPSHOT_ALLOWED
-                    }"
-                ></span>
-            </dd>
-        </dl>
         <oui-datagrid rows="$ctrl.snapshots" page-size="10">
             <oui-datagrid-topbar>
                 <oui-action-menu
