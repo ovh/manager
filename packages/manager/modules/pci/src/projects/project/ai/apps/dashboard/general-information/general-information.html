@@ -8,6 +8,7 @@
     <div class="row py-4">
         <div class="col-md-4">
             <oui-tile
+                class="full-height"
                 data-heading="{{:: 'pci_apps_general_information_info_title' | translate }}"
             >
                 <!--Name-->
@@ -71,6 +72,7 @@
 
         <div class="col-md-4">
             <oui-tile
+                class="full-height"
                 data-heading="{{:: 'pci_apps_general_information_life_cycle_title' | translate }}"
             >
                 <!--Status-->
@@ -185,6 +187,7 @@
 
         <div class="col-md-4">
             <oui-tile
+                class="full-height"
                 data-heading="{{:: 'pci_apps_general_information_resources_title' | translate }}"
                 data-loading="$ctrl.loading.instance"
             >
@@ -255,5 +258,15 @@
                 </oui-tile-definition>
             </oui-tile>
         </div>
+    </div>
+    <div>
+        <oui-tile
+            class="full-height"
+            data-heading="{{:: 'pci_apps_general_information_snippet_title' | translate }}"
+            data-loading="$ctrl.loading.instance"
+        >
+            <ng-bind-html data-ng-bind-html="$ctrl.preset.snippet">
+            </ng-bind-html>
+        </oui-tile>
     </div>
 </div>
