@@ -36,7 +36,7 @@
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.0.0",
     "@ovh-ux/ng-ui-router-line-progress": "^1.2.2",
     "@ovh-ux/ufrontend": "^1.1.1 || ^2.0.0",
-    "@ovh-ux/ui-kit": "^4.4.3",
+    "@ovh-ux/ui-kit": "^5.1.2",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.8",
@@ -56,7 +56,7 @@
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^11.0.0",
+    "ovh-api-services": "^13.0.0",
     "ovh-ui-kit-bs": "^4.2.0",
     "whatwg-fetch": "^3.5.0"
   },
