@@ -23,6 +23,10 @@ export default /* @ngInject */ ($stateProvider) => {
           appId: app.id,
         }),
 
+      preset: /* @ngInject */ (AppService) => {
+        return AppService.getPreset();
+      },
+
       goToGenerateToken: /* @ngInject */ ($state, projectId, app) => () =>
         $state.go('pci.projects.project.ai.tokens.add', {
           projectId,

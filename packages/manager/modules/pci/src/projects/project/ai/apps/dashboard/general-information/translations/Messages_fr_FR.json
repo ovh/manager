@@ -43,5 +43,6 @@
   "pci_apps_general_information_resources_info": "GPU/CPU/RAM par ressource",
   "pci_apps_general_information_resources_local_storage": "Stockage local par ressource",
   "pci_apps_general_information_resources_monitoring": "Suivi de la consommation",
-  "pci_apps_general_information_resources_monitoring_access_to_graph": "Accéder à Graph Dashboard"
+  "pci_apps_general_information_resources_monitoring_access_to_graph": "Accéder à Graph Dashboard",
+  "pci_apps_general_information_snippet_title": "Documentation"
 }
