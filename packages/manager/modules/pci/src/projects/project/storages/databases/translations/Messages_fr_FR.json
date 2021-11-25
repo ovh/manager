@@ -8,7 +8,7 @@
   "pci_database_common_name": "Nom / ID",
   "pci_database_common_id": "ID",
   "pci_database_common_status": "Statut",
-  "pci_database_common_status_READY": "Déployé",
+  "pci_database_common_status_READY": "Disponible",
   "pci_database_common_status_DELETING": "Suppression",
   "pci_database_common_status_ERROR": "En erreur",
   "pci_database_common_status_ERROR_INCONSISTENT_SPEC": "En erreur",
