@@ -28,15 +28,13 @@ angular.module('App').controller(
     $onInit() {
       this.productId = this.$stateParams.productId;
 
-      if (this.$scope.isDBaaS()) {
-        this.checkAuthorizedIp().then((hasAuthorizedIp) => {
-          // if there are no ip configured,
-          // we check the box to suggest the user to add an ip
-          this.model.addIp = !hasAuthorizedIp;
+      this.checkAuthorizedIp().then((hasAuthorizedIp) => {
+        // if there are no ip configured,
+        // we check the box to suggest the user to add an ip
+        this.model.addIp = !hasAuthorizedIp;
 
-          this.hasAuthorizedIp = hasAuthorizedIp;
-        });
-      }
+        this.hasAuthorizedIp = hasAuthorizedIp;
+      });
 
       this.model = {
         addUser: false,
