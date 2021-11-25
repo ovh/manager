@@ -1,8 +1,7 @@
 {
   "pci_apps_general_information_info_title": "Informations générales",
-  "pci_apps_general_information_info_app_url": "URL d'access",
-  "pci_apps_general_information_info_app_name": "Nom du app",
-  "pci_apps_general_information_info_app_editor_code": "Live-code editor",
+  "pci_apps_general_information_info_app_url": "URL d'accès",
+  "pci_apps_general_information_info_app_name": "Nom de l'AI App",
   "pci_apps_general_information_info_app_container": "Conteneurs attachés",
   "pci_apps_general_information_info_app_container_total": "{{ xContainer }} conteneur(s)",
   "pci_apps_general_information_info_app_container_swift_total": "{{ xContainer }} conteneur(s) Swift",
@@ -13,8 +12,8 @@
   "pci_apps_general_information_info_app_tags_tag_remove_fail": "Une erreur est survenue lors de la suppression du label : {{ message }}.",
   "pci_apps_general_information_info_app_env": "Environnement",
   "pci_apps_general_information_info_app_env_confidentiality": "Confidentialité",
-  "pci_apps_general_information_info_app_env_confidentiality_true": "Public",
-  "pci_apps_general_information_info_app_env_confidentiality_false": "Privé",
+  "pci_apps_general_information_info_app_env_confidentiality_true": "Publique",
+  "pci_apps_general_information_info_app_env_confidentiality_false": "Privée",
   "pci_apps_general_information_info_app_env_region": "Région",
   "pci_apps_general_information_life_cycle_title": "Cycle de vie",
   "pci_apps_general_information_life_cycle_status": "Statut",
@@ -22,10 +21,10 @@
 
   "pci_apps_general_information_life_cycle_status_QUEUED": "En attente",
   "pci_apps_general_information_life_cycle_status_INITIALIZING": "Initialisation",
-  "pci_apps_general_information_life_cycle_status_SCALING": "Scaling",
+  "pci_apps_general_information_life_cycle_status_SCALING": "Mise à l'échelle",
   "pci_apps_general_information_life_cycle_status_RUNNING": "Déployé",
   "pci_apps_general_information_life_cycle_status_STOPPED": "Arreté",
-  "pci_apps_general_information_life_cycle_status_DELETING": "Supression",
+  "pci_apps_general_information_life_cycle_status_DELETING": "En cours de suppression",
   "pci_apps_general_information_life_cycle_status_DELETED": "Supprimé",
   "pci_apps_general_information_life_cycle_status_FAILED": "Echoué",
   "pci_apps_general_information_life_cycle_status_ERROR": "Erreur",
@@ -42,7 +41,7 @@
   "pci_apps_general_information_resources_quantity": "Ressources",
   "pci_apps_general_information_resources_info": "GPU/CPU/RAM par ressource",
   "pci_apps_general_information_resources_local_storage": "Stockage local par ressource",
-  "pci_apps_general_information_resources_monitoring": "Suivi de la consommation",
-  "pci_apps_general_information_resources_monitoring_access_to_graph": "Accéder à Graph Dashboard",
-  "pci_apps_general_information_snippet_title": "Documentation"
+  "pci_apps_general_information_resources_monitoring": "Monitoring temps réel de l'AI App",
+  "pci_apps_general_information_resources_monitoring_access_to_graph": "Accéder aux dashboards",
+  "pci_apps_general_information_snippet_title": "Utilisation de votre AI App"
 }

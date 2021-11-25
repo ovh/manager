@@ -1,7 +1,7 @@
 {
-  "pci_app_add_configuration_name": "Nom de app",
+  "pci_app_add_configuration_name": "Nom de votre AI App",
   "pci_app_add_configuration_label": "Labels",
-  "pci_app_add_configuration_label_description": "Vous pouvez ajouter des labels à votre app.",
+  "pci_app_add_configuration_label_description": "Vous pouvez ajouter des labels à votre AI App. Utile pour le filtrage ou la securisation par token sur un label précis",
   "pci_app_add_configuration_label_field_key": "Clé",
   "pci_app_add_configuration_label_field_key_error_key_already_exist": "Cette clé existe déjà",
   "pci_app_add_configuration_label_field_value": "Valeur",
@@ -9,11 +9,11 @@
   "pci_app_add_configuration_label_btn_remove": "Supprimer le label",
   "pci_app_add_configuration_label_quantity": "{{ numberOfLabels }} / {{ maxLabels }} label·s",
   "pci_app_add_privacy_settings_item_restricted": "Accès restreint",
-  "pci_app_add_privacy_settings_item_restricted_description": "L’accès à votre app est restreint par une authentication.",
+  "pci_app_add_privacy_settings_item_restricted_description": "L’accès à votre AI App est restreint par une authentification.",
   "pci_app_add_privacy_settings_item_public": "Accès public",
-  "pci_app_add_privacy_settings_item_public_description": "Votre app est accessible à tout le monde grâce à votre URL. N’importe qui peut accéder à votre application et aux données qui y sont attachées.",
+  "pci_app_add_privacy_settings_item_public_description": "Votre AI App est accessible à tout le monde grâce à votre URL ou API. N’importe qui peut accéder à votre application et aux données qui y sont attachées.",
   "pci_app_add_privacy_settings_item_public_warning": "Soyez prudent·e avec les données sensibles.",
-  "pci_app_add_privacy_title": "Règle d'access a l'app",
+  "pci_app_add_privacy_title": "Règle d'accès à votre AI App",
   "pci_app_add_settings_port": "Port HTTP",
-  "pci_app_add_settings_port_help": "Port HTTP sur lequel votre app est liée."
+  "pci_app_add_settings_port_help": "Port HTTP sur lequel votre AI App est liée."
 }
