@@ -336,11 +336,11 @@ export default class AppService {
         docUrl: [
           {
             name: 'Model URL',
-            link: 'https://huggingface.co/philschmid/pt-tblard-tf-allocine',
+            url: 'https://huggingface.co/philschmid/pt-tblard-tf-allocine',
           },
           {
             name: 'Documentation URL',
-            link: 'https://huggingface.co/infinity',
+            url: 'https://huggingface.co/infinity',
           },
         ],
         logoUrl:
