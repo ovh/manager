@@ -118,15 +118,17 @@ export default class {
       this.database.id,
       this.prepareModel(),
     )
-      .then(() =>
-        this.goBack({
+      .then(() => {
+        this.trackDashboard('replication_flows::create_validated', 'page');
+        return this.goBack({
           textHtml: this.$translate.instant(
             'pci_databases_replications_add_success_message',
           ),
-        }),
-      )
-      .catch((err) =>
-        this.goBack(
+        });
+      })
+      .catch((err) => {
+        this.trackDashboard('replication_flows::create_error', 'page');
+        return this.goBack(
           this.$translate.instant(
             'pci_databases_replications_add_error_message',
             {
@@ -134,7 +136,7 @@ export default class {
             },
           ),
           'error',
-        ),
-      );
+        );
+      });
   }
 }
