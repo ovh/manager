@@ -23,7 +23,7 @@
   "telephony_billingAccount_svaWallet_kyc_identity_company_description": "Description de l'activité",
 
   "telephony_billingAccount_svaWallet_kyc_identity_company_address_street_number": "Numéro de voie",
-  "telephony_billingAccount_svaWallet_kyc_identity_company_address_street_number_extra": "Complément",
+  "telephony_billingAccount_svaWallet_kyc_identity_company_address_street_number_extra": "Complément (Optionnel)",
   "telephony_billingAccount_svaWallet_kyc_identity_company_address_street_type": "Type de voie",
   "telephony_billingAccount_svaWallet_kyc_identity_company_address_street_name": "Nom de rue",
   "telephony_billingAccount_svaWallet_kyc_identity_company_address_address_extra": "Complément (Optionnel)",

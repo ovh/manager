@@ -15,7 +15,6 @@
   "telephony_billingAccount_svaWallet_kyc_documents_nature_PROOF_OF_IDENTITY": "Une pièce d’identité (carte d’identité recto verso, passeport) en cours de validité",
   "telephony_billingAccount_svaWallet_kyc_documents_nature_SECONDARY_PROOF_OF_IDENTITY": "Une seconde pièce d’identité (passeport, Carte Nationale d’Identité, permis de conduire recto-verso, dernier avis d’imposition, titre de séjour, livret de famille, le récépissé de l'enregistrement de la déclaration conjointe des partenaire du pacte civile de solidarité ou carte vitale) en cours de validité",
   "telephony_billingAccount_svaWallet_kyc_documents_nature_RESELLER_PROOF": "Le document d'enregistrement à l'ARCEP",
-
   "telephony_billingAccount_svaWallet_kyc_documents_description": "Un ensemble de documents légaux est exigé pour valider votre compte.",
   "telephony_billingAccount_svaWallet_kyc_documents_alert": "Veillez à la conformité et la lisibilité de vos documents avant de finaliser votre demande. Un document non conforme entrainera un délai supplémentaire dans la validation de votre identité.",
   "telephony_billingAccount_svaWallet_kyc_documents_alert_required": "Tous les documents sont obligatoires.",
