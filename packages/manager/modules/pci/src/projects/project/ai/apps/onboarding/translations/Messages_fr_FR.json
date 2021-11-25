@@ -1,17 +1,17 @@
 {
   "pci_app_title": "AI Apps",
-  "pci_app_onboarding_content1": "Vos apps opérationnels et entièrement gérés en quelques secondes.",
-  "pci_app_onboarding_content2": "Accélérez le démarrage de vos projets et modèles avec des apps.",
-  "pci_app_onboarding_content3": "Vous êtes data scientist ou développeur et souhaitez lancer un app en quelques minutes? Accédez rapidement à Jupyter ou VSCode et démarrez-le instantanément avec les ressources nécessaires, grâce à notre solution AI Apps. Pour développer votre activité, vous bénéficiez également d’un accès utilisateur sécurisé, de l’utilisation simplifiée de vos données et des plus grands frameworks d’intelligence artificielle (TensorFlow, PyTorch, Hugging Face ou encore Scikit-learn).",
-  "pci_app_onboarding_action_label": "Créer un App",
+  "pci_app_onboarding_content1": "Vos applications AI opérationnelless et entièrement gérése en quelques secondes.",
+  "pci_app_onboarding_content2": "Accélérez le déploiement de vos projets AI et modèles avec nos AI apps.",
+  "pci_app_onboarding_content3": "Vous êtes data scientist ou développeur et souhaitez déployer une application ou un modèle d'intelligence artificielle en quelques minutes ? Sélectionnez parmi un catalogue d'AI Apps ou déployez votre propre application containerisée. OVHcloud s'occupe de son déploiment en haute disponibilité et de sa sécurisation. Disposez de ressources CPU ou GPU, d'outils de suivis en temps réel, et d'une tarification simple et à l'usage.",
+  "pci_app_onboarding_action_label": "Déployer une AI App",
   "pci_app_guides_documentation_title": "Documentation complète AI Apps",
   "pci_app_guides_documentation_description": "Retrouvez toute la documentation d'AI Apps.",
   "pci_app_guides_definition_title": "Définition AI Apps",
   "pci_app_guides_definition_description": "Découvrez ce qu'est un AI App chez OVHcloud.",
   "pci_app_guides_start_title": "Démarrer avec AI Apps",
   "pci_app_guides_start_description": "Apprenez comment démarrer votre App rapidement dans votre espace client.",
-  "pci_app_guides_share_title": "Partager un App",
-  "pci_app_guides_share_description": "Apprenez comment partager un App avec d'autres développeurs.",
+  "pci_app_guides_share_title": "Partager une AI App",
+  "pci_app_guides_share_description": "Apprenez comment partager un AI App avec d'autres développeurs.",
   "pci_app_guides_object_storage_access_title": "Accéder à vos datas depuis votre object storage",
   "pci_app_guides_object_storage_access_description": "Découvrez comment accéder à vos datas de App avec votre object storage."
 }
