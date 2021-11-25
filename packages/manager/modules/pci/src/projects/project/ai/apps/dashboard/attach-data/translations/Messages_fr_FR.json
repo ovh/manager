@@ -2,7 +2,7 @@
   "pci_apps_tab_attach_data_title": "Associer des données",
   "pci_apps_tab_attach_data_page_title": "Attacher des conteneurs de données",
   "pci_apps_tab_attach_data_page_title_git": "Attacher des dépôts Git public",
-  "pci_apps_tab_attach_data_page_description": "Si nécessaire, vous pouvez attacher des conteneurs Object Storage OVHcloud à votre app. Une fois attachés, ceux-ci seront temporairement chargés et mis en cache près de votre instance afin de réduire la latence et d’améliorer les performances. La bonne pratique est d’attacher un conteneur avec vos données entrantes et un autre avec vos données sortantes.",
+  "pci_apps_tab_attach_data_page_description": "Si nécessaire, vous pouvez attacher des conteneurs Object Storage OVHcloud à votre AI App. Une fois attachés, ceux-ci seront temporairement chargés et mis en cache près de votre instance afin de réduire la latence et d’améliorer les performances. La bonne pratique est d’attacher un conteneur avec vos données entrantes et un autre avec vos données sortantes.",
   "pci_apps_tab_attach_data_page_description_link": "En savoir plus sur le stockage de données.",
   "pci_apps_tab_attach_data_page_volumes_column_name": "Nom",
   "pci_apps_tab_attach_data_page_volumes_column_type": "Type",
@@ -12,7 +12,8 @@
   "pci_apps_tab_attach_data_page_volumes_column_mount_path": "Répertoire de montage",
   "pci_apps_tab_attach_data_page_volumes_column_git_url": "URL du dépôt Git",
   "pci_apps_tab_attach_data_page_volumes_git_none": "Pas de dépôt Git associé",
-  "pci_apps_tab_attach_data_page_volumes_column_prefix": "Prefix",
+  "pci_apps_tab_attach_data_page_volumes_column_prefix": "Préfixe",
+  "pci_app_data_permission": "Permission",
   "pci_app_permission_RO": "Lecture seule",
   "pci_app_permission_RW": "Lecture - écriture",
   "pci_app_data_cache": "Cache"
