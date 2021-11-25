@@ -173,25 +173,25 @@ export default /* @ngInject */ function TelecomTelephonyAliasOrderSpecialCtrl(
     const legalForm = () => {
       if (
         ['UE_UNLISTED_COMPANY', 'UNLISTED_COMPANY'].includes(
-          wallet.kind.toUpperCase(),
+          wallet.company.kind.toUpperCase(),
         )
       ) {
         return 'corporation';
       }
 
-      if (wallet.kind.toUpperCase() === 'MICRO_ENTERPRISE') {
+      if (wallet.company.kind.toUpperCase() === 'MICRO_ENTERPRISE') {
         return 'individual';
       }
 
       if (
         ['CRAFTSMAN', 'CSE', 'EARL', 'FCP', 'FI', 'FOUNDATION'].includes(
-          wallet.kind.toUpperCase(),
+          wallet.company.kind.toUpperCase(),
         )
       ) {
         return 'other';
       }
 
-      return wallet.kind.toLowerCase();
+      return wallet.company.kind.toLowerCase();
     };
     const form = {
       firstname: wallet.representative.firstname,
