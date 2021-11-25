@@ -1,7 +1,7 @@
 import confirmTemplate from './confirm/confirm.html';
 import controller from './confirm/confirm.controller';
 
-export default /* @ngInject */ class TerminateController {
+export default class TerminateController {
   /* @ngInject */
   constructor(
     $q,
