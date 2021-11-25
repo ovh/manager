@@ -73,7 +73,9 @@ export default class CdnSharedSettingsController {
           mobile_redirect: {
             selected:
               SHARED_CDN_OPTIONS.MOBILE_REDIRECT[
-                mobileRedirectOption.config.followUri ? 'KEEP_URL' : 'STILL_URL'
+                mobileRedirectOption?.config.followUri
+                  ? 'KEEP_URL'
+                  : 'STILL_URL'
               ],
             redirectOptions: [
               SHARED_CDN_OPTIONS.MOBILE_REDIRECT.STILL_URL,
@@ -239,7 +241,7 @@ export default class CdnSharedSettingsController {
   }
 
   getOption(type, optionName) {
-    return this.model.options[type][optionName];
+    return get(this.model?.options, `${type}.${optionName}`, null);
   }
 
   getSwitchBtnStatusText(switchBtn) {
@@ -454,7 +456,7 @@ export default class CdnSharedSettingsController {
       this.cdnOptionTypeEnum.HSTS,
       this.cdnOptionTypeEnum.MIXED_CONTENT,
       this.cdnOptionTypeEnum.WAF,
-    ].some((key) => config.options.security[key].api);
+    ].some((key) => config?.options.security[key].api);
   }
 
   getPrewarmQuotaUsage() {
