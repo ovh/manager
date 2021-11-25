@@ -23,6 +23,14 @@ export default class {
     this.messageContainer =
       'pci.projects.project.ai.apps.dashboard.general-information';
     this.loadMessages();
+
+    console.log(this.preset);
+    if (this.preset) {
+      this.preset.snippet = this.preset.snippet.replaceAll(
+        '$URL',
+        this.app.accessUrl,
+      );
+    }
   }
 
   loadMessages() {

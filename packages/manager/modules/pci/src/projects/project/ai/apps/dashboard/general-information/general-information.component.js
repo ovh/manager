@@ -13,6 +13,7 @@ export default {
     goToAttachData: '<',
     goToDeleteApp: '<',
     goToGenerateToken: '<',
+    preset: '<',
   },
   controller,
   template,

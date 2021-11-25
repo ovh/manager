@@ -109,11 +109,11 @@ export default class AppService {
           state: 'SCALING',
           availableReplicas: 0,
           url:
-            'http://c56b0cd3-e97d-4add-9283-93e99fb0f0f8.app.cds-apps.console.dev.training.ai.cloud.ovh.net',
+            'http://c56b0cd3-e97d-4add-9283-93e99fb0f0f8.app.cds-apps.gra.training.ai.cloud.ovh.net',
           infoUrl:
-            'http://ui.cds-apps.console.dev.training.ai.cloud.ovh.net/app/c56b0cd3-e97d-4add-9283-93e99fb0f0f8',
+            'http://ui.cds-apps.gra.training.ai.cloud.ovh.net/app/c56b0cd3-e97d-4add-9283-93e99fb0f0f8',
           monitoringUrl:
-            'http://monitoring.cds-apps.console.dev.training.ai.cloud.ovh.net/d/gpu?var-app=c56b0cd3-e97d-4add-9283-93e99fb0f0f8&from=1637315147745',
+            'http://monitoring.cds-apps.gra.training.ai.cloud.ovh.net/d/gpu?var-app=c56b0cd3-e97d-4add-9283-93e99fb0f0f8&from=1637315147745',
           history: [
             {
               state: 'QUEUED',
@@ -193,11 +193,11 @@ export default class AppService {
         state: 'SCALING',
         availableReplicas: 0,
         url:
-          'http://c56b0cd3-e97d-4add-9283-93e99fb0f0f8.app.cds-apps.console.dev.training.ai.cloud.ovh.net',
+          'http://c56b0cd3-e97d-4add-9283-93e99fb0f0f8.app.cds-apps.gra.training.ai.cloud.ovh.net',
         infoUrl:
-          'http://ui.cds-apps.console.dev.training.ai.cloud.ovh.net/app/c56b0cd3-e97d-4add-9283-93e99fb0f0f8',
+          'http://ui.cds-apps.gra.training.ai.cloud.ovh.net/app/c56b0cd3-e97d-4add-9283-93e99fb0f0f8',
         monitoringUrl:
-          'http://monitoring.cds-apps.console.dev.training.ai.cloud.ovh.net/d/gpu?var-app=c56b0cd3-e97d-4add-9283-93e99fb0f0f8&from=1637315147745',
+          'http://monitoring.cds-apps.gra.training.ai.cloud.ovh.net/d/gpu?var-app=c56b0cd3-e97d-4add-9283-93e99fb0f0f8&from=1637315147745',
         history: [
           {
             state: 'QUEUED',
@@ -258,6 +258,52 @@ export default class AppService {
       .then(({ data }) => data);
   }
 
+  getPreset() {
+    // return this.$http
+    //   .get(
+    //     `/cloud/project/${serviceName}/ai/capabilities/region/${region}/presets`,
+    //     AppService.getIcebergHeaders(),
+    //   )
+    //   .then(({ data }) => data);
+    const defer = this.$q.defer();
+    defer.resolve({
+      id: 'hf-sentiment-analysis-fr',
+      description: [
+        'Powered by Hugging Face Infinity',
+        'A French sentiment analysis model, based on CamemBERT, and finetuned on a large-scale dataset scraped from Allociné.fr user reviews.',
+      ],
+      snippet:
+        '<b>Request with Single input</b>\n<pre>\ncurl --request POST \\\n    --url $URL/predict \\\n    --header \'Content-Type: application/json\' \\\n    --data \'{\n        "Inputs": "This support sucks, I will switch."\n    }\'\n</pre>    \n<b>Request with Batch input</b>\n<pre>\ncurl --request POST \\\n     --url $URL/predict \\\n     --header \'Content-Type: application/json\' \\\n     --data \'{\n     "Inputs": [\n        "This support sucks, I will switch.",\n        "The process was very smooth and helped me a lot."\n     ] }\'\n</pre>\n\n<b>Response (vector has been stripped)</b>\n<pre>\n{\n    "probabilities":[\n        0.99902344,\n        0.00073957443\n    ],\n    "was_input_truncated":false,\n    "num_tokens":10\n}\n</pre>\n        ',
+      name: 'French Sentiment Analysis',
+      type: 'app',
+      capabilities: {
+        volume: true,
+        exec: false,
+        log: true,
+        ssh: false,
+      },
+      partner: {
+        id: 'huggingface',
+        name: 'Hugging Face',
+        flavor: 'huggingface-infinity',
+      },
+      flavorTypes: ['cpu', 'gpu'],
+      docUrl: [
+        {
+          name: 'Model URL',
+          link: 'https://huggingface.co/philschmid/pt-tblard-tf-allocine',
+        },
+        {
+          name: 'Documentation URL',
+          link: 'https://huggingface.co/infinity',
+        },
+      ],
+      logoUrl:
+        'https://storage.gra.cloud.ovh.net/v1/AUTH_811aaa421cdf4cf1b3507d4d2143f461/logo/huggingface.svg',
+    });
+    return defer.promise;
+  }
+
   getPresets() {
     // return this.$http
     //   .get(
@@ -268,7 +314,7 @@ export default class AppService {
     const defer = this.$q.defer();
     defer.resolve([
       {
-        id: 'huggingface/translate-en-fr-infinity',
+        id: 'hf-infinity-sentiment-analysis-fr',
         description: [
           'Powered by Hugging Face Infinity',
           'A French sentiment analysis model, based on CamemBERT, and finetuned on a large-scale dataset scraped from Allociné.fr user reviews.',
@@ -276,7 +322,7 @@ export default class AppService {
         name: 'French Sentiment Analysis',
         type: 'app',
         capabilities: {
-          volume: true,
+          volume: false,
           exec: false,
           log: true,
           ssh: false,
@@ -284,7 +330,7 @@ export default class AppService {
         partner: {
           id: 'huggingface',
           name: 'Hugging Face',
-          flavor: 'huggingface-infinity',
+          flavor: 'infinity',
         },
         flavorTypes: ['cpu', 'gpu'],
         docUrl: [
@@ -301,7 +347,7 @@ export default class AppService {
           'https://storage.gra.cloud.ovh.net/v1/AUTH_811aaa421cdf4cf1b3507d4d2143f461/logo/huggingface.svg',
       },
       {
-        id: 'huggingface/translate-fr-en-infinity',
+        id: 'hf-infinity-sentiment-analysis-en',
         description: [
           'Powered by Hugging Face Infinity',
           'A English sentiment analysis model, based on MiniLM, and finetuned on the Stanford Sentiment Treebank v2 (sst2) dataset',
@@ -319,7 +365,7 @@ export default class AppService {
           flavor: 'infinity',
           name: 'Hugging Face',
         },
-        flavorTypes: ['cpu'],
+        flavorTypes: ['cpu', 'gpu'],
         docUrl: [
           {
             name: 'Model URL',
