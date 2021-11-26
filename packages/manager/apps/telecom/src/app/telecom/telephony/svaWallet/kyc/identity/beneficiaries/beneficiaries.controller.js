@@ -11,10 +11,11 @@ import { buildEnumList } from '../../../sva-wallet.constants';
 
 export default class BeneficiariesController {
   /* @ngInject */
-  constructor($translate, $attrs, $uibModal) {
+  constructor($translate, $attrs, $uibModal, $scope) {
     this.$translate = $translate;
     this.$attrs = $attrs;
     this.$uibModal = $uibModal;
+    this.$scope = $scope;
   }
 
   $onInit() {
@@ -34,6 +35,13 @@ export default class BeneficiariesController {
         this.$translate,
       );
     }
+
+    this.$scope.$watch(
+      () => this.representativeIsBeneficiary,
+      () => {
+        this.canAddBeneficiaries = this.checkBeneficiaries();
+      },
+    );
   }
 
   checkBeneficiaries() {
