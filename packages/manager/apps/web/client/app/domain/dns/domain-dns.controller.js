@@ -100,6 +100,7 @@ export default class DomainDnsCtrl {
           isUsed: true,
           toDelete: false,
         }).length;
+        this.displayPropogationInfo(tabDns.dns);
         return this.$q.all(
           map(tabDns.dns, (nameServer) =>
             this.Domain.getNameServerStatus(
@@ -217,12 +218,6 @@ export default class DomainDnsCtrl {
             dns,
           );
         })
-        .then(() =>
-          this.Alerter.success(
-            this.$translate.instant('domain_tab_DNS_update_success'),
-            this.$scope.alerts.main,
-          ),
-        )
         .catch((err) => {
           set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
@@ -242,5 +237,16 @@ export default class DomainDnsCtrl {
       (currentDNS) => currentDNS.host || currentDNS.ip,
     );
     this.editMode = false;
+  }
+
+  displayPropogationInfo(dnsServers) {
+    if (dnsServers.some((server) => server.toDelete || !server.isUsed)) {
+      this.Alerter.success(
+        this.$translate.instant('domain_tab_DNS_update_success'),
+        this.$scope.alerts.main,
+      );
+    } else {
+      this.Alerter.resetMessage(this.$scope.alerts.main);
+    }
   }
 }

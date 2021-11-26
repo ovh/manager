@@ -18,6 +18,7 @@ angular.module('services').service(
   class Domain {
     /**
      * Constructor
+     * @param $http
      * @param $rootScope
      * @param $q
      * @param Domains
@@ -27,6 +28,7 @@ angular.module('services').service(
      * @param Poller
      */
     constructor(
+      $http,
       $rootScope,
       $q,
       Domains,
@@ -37,6 +39,7 @@ angular.module('services').service(
       Poll,
       Poller,
     ) {
+      this.$http = $http;
       this.$rootScope = $rootScope;
       this.$q = $q;
       this.Domains = Domains;
@@ -1553,6 +1556,16 @@ angular.module('services').service(
           return data;
         })
         .catch(catchErrorAndGoOn);
+    }
+
+    /**
+     * Get DNS Zone history
+     * @param {string} zoneName
+     */
+    getZoneHistory(zoneName) {
+      return this.$http
+        .get(`/domain/zone/${zoneName}/history`)
+        .then(({ data }) => data);
     }
   },
 );
