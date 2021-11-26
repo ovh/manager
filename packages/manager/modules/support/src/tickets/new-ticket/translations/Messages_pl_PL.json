@@ -132,5 +132,6 @@
   "ovhManagerSupport_new_business_1": "Masz projekt, który chcesz przeanalizować?",
   "ovhManagerSupport_new_business_2": "Prosimy szczegółowo opisać potrzeby dotyczące projektu i wysłać do nas wiadomość na adres:",
   "ovhManagerSupport_new_business_3": "Zgłoszenia wysłane na ten adres nie będą przetwarzane.",
-  "ovhManagerSupport_new_serviceType_dedicated_anthos": "Anthos"
+  "ovhManagerSupport_new_serviceType_dedicated_anthos": "Anthos",
+  "ovhManagerSupport_new_serviceType_netapp": "NetApp"
 }

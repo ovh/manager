@@ -1,0 +1,16 @@
+{
+  "netapp_volume_create_title": "Utwórz wolumen",
+  "netapp_volume_create_cancel": "Anuluj",
+  "netapp_volume_create_name": "Nazwa wolumenu (opcjonalnie)",
+  "netapp_volume_create_description": "Opis (opcjonalnie)",
+  "netapp_volume_create_protocol": "Protokół",
+  "netapp_volume_create_protocol_NFS": "NFSv3",
+  "netapp_volume_create_size": "Rozmiar wolumenu",
+  "netapp_volume_create_size_help": "Rozmiar wolumenu plasuje się między {{minSize}} GB a {{maxSize}} GB.",
+  "netapp_volume_create_size_required": "Wpisz rozmiar wolumenu.",
+  "netapp_volume_create_size_invalid_number_error": "Wprowadź poprawną liczbę.",
+  "netapp_volume_create_size_minimum_error": "Minimalny wymagany rozmiar: {{minSize}} GB.",
+  "netapp_volume_create_size_maximum_error": "Maksymalny dozwolony rozmiar: {{maxSize}} GB.",
+  "netapp_volume_create_success": "Wolumen został utworzony. Będziesz mógł się z nim połączyć po skonfigurowaniu reguł kontroli dostępu.",
+  "netapp_volume_create_error": "Wystąpił błąd podczas tworzenia projektu: {{message}}"
+}

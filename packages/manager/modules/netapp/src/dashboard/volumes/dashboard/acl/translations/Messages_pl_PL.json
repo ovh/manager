@@ -1,0 +1,22 @@
+{
+  "netapp_volumes_acl": "Zarządzanie listą kontroli dostępu",
+  "netapp_volumes_acl_breadcrumb": "ACL",
+  "netapp_volumes_acl_title": "Access control list",
+  "netapp_volumes_acl_title_abbr": "ACL",
+  "netapp_volumes_acl_description": "Dodaj adresy lub zakresy adresów IP, które mogą uzyskać dostęp do tego wolumenu. Domyślnie żaden adres lub zakres IP nie ma zezwolenia na dostęp.",
+  "netapp_volumes_acl_add": "Dodaj nowy dostęp",
+  "netapp_volumes_acl_access_type": "Typ",
+  "netapp_volumes_acl_access_type_certificat": "Certyfikat",
+  "netapp_volumes_acl_access_type_ip": "Adres IP",
+  "netapp_volumes_acl_access_type_user": "Użytkownik",
+  "netapp_volumes_acl_access_to": "Dostęp do ",
+  "netapp_volumes_acl_access_to_add": "Dodaj dostęp do",
+  "netapp_volumes_acl_access_level": "Zezwolenia na dostęp",
+  "netapp_volumes_acl_access_level_rw": "Odczyt i zapis",
+  "netapp_volumes_acl_access_level_ro": "Do odczytu",
+  "netapp_volumes_acl_update": "Zatwierdź",
+  "netapp_volumes_acl_cancel": "Anuluj",
+  "netapp_volumes_acl_delete": "Usuń",
+  "netapp_volumes_acl_add_success": "Reguła dostępu (ACL) została utworzona.",
+  "netapp_volumes_acl_add_error": "Reguła dostępu (ACL) nie mogła zostać utworzona. Spróbuj ponownie."
+}

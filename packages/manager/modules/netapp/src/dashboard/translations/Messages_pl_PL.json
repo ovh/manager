@@ -1,0 +1,22 @@
+{
+  "netapp_dashboard_general_information": "Informacje ogólne",
+  "netapp_dashboard_information": "Informacje",
+  "netapp_dashboard_information_name": "Nazwa",
+  "netapp_dashboard_information_id": "ID",
+  "netapp_dashboard_information_region": "Lokalizacja centrum danych",
+  "netapp_dashboard_information_performance_level": "Poziom wydajności",
+  "netapp_dashboard_information_quota": "Rozmiar przestrzeni dyskowej",
+  "netapp_dashboard_information_quota_formatted": "{{quota}}",
+  "netapp_dashboard_configuration": "Konfiguracja",
+  "netapp_dashboard_configuration_status": "Status",
+  "netapp_dashboard_configuration_status_creating": "Trwa tworzenie",
+  "netapp_dashboard_configuration_status_running": "Wdrożone",
+  "netapp_dashboard_configuration_status_reopening": "Trwa odblokowywanie",
+  "netapp_dashboard_configuration_status_suspending": "Trwa zawieszanie",
+  "netapp_dashboard_configuration_status_suspended": "Zawieszony",
+  "netapp_dashboard_configuration_status_deleting": "Trwa usuwanie",
+  "netapp_dashboard_configuration_status_deleted": "Usunięty",
+  "netapp_dashboard_configuration_create_volume": "Utwórz wolumen",
+  "netapp_dashboard_volumes": "Wolumeny",
+  "netapp_dashboard_snapshot_policies": "Reguły dotyczące snapshotów"
+}

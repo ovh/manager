@@ -1,0 +1,22 @@
+{
+  "netapp_volumes_acl": "Zugangskontrollliste verwalten",
+  "netapp_volumes_acl_breadcrumb": "ACL",
+  "netapp_volumes_acl_title": "Access Control List",
+  "netapp_volumes_acl_title_abbr": "ACL",
+  "netapp_volumes_acl_description": "Fügen Sie IP-Adressen oder -Bereiche hinzu, die Zugang zu diesem Volume erhalten sollen. Werksseitig haben keine IP-Adressen oder IP-Bereiche Zugang.",
+  "netapp_volumes_acl_add": "Einen neuen Zugang hinzufügen",
+  "netapp_volumes_acl_access_type": "Typ",
+  "netapp_volumes_acl_access_type_certificat": "Zertifikat",
+  "netapp_volumes_acl_access_type_ip": "IP",
+  "netapp_volumes_acl_access_type_user": "Benutzer",
+  "netapp_volumes_acl_access_to": "Zugang zu",
+  "netapp_volumes_acl_access_to_add": "Zugang hinzufügen zu",
+  "netapp_volumes_acl_access_level": "Zugangsberechtigungen",
+  "netapp_volumes_acl_access_level_rw": "Lesen und Schreiben",
+  "netapp_volumes_acl_access_level_ro": "Nur Lesen",
+  "netapp_volumes_acl_update": "Bestätigen",
+  "netapp_volumes_acl_cancel": "Abbrechen",
+  "netapp_volumes_acl_delete": "Löschen",
+  "netapp_volumes_acl_add_success": "Ihre Zugangsregel (ACL) wurde erstellt",
+  "netapp_volumes_acl_add_error": "Ihre Zugangsregel (ACL) konnte nicht erstellt werden, bitte versuchen Sie es erneut"
+}

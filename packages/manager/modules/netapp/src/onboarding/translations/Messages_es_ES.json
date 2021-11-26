@@ -1,0 +1,18 @@
+{
+  "netapp_onboarding_breadcrumb": "Acompañamiento inicial",
+  "netapp_onboarding_title": "Enterprise File Storage",
+  "netapp_onboarding_description": "Enterprise File Storage, powered by NetApp Conecte todas sus soluciones de OVHcloud a un servicio de almacenamiento de archivos de alto rendimiento para sus aplicaciones profesionales más críticas.",
+  "netapp_onboarding_recommendation_1": "Le recomendamos que, como mínimo, contrate el nivel de soporte Premium.",
+  "netapp_onboarding_recommendation_2": "Para las aplicaciones estratégicas que requieren asistencia las 24 horas del día y los 7 días de la semana, deberá disponer de un servicio de soporte adaptado.",
+  "netapp_onboarding_order": "Contratar Enterprise File Storage",
+  "netapp_onboarding_manager_start_title": "Inicio rápido a través del área de cliente de OVHcloud",
+  "netapp_onboarding_manager_start_description": "Lance el almacenamiento de sus archivos con Enterprise File Storage desde el área de cliente de OVHcloud.",
+  "netapp_onboarding_api_start_title": "Inicio rápido a través de la API de OVHcloud",
+  "netapp_onboarding_api_start_description": "Lance el almacenamiento de sus archivos con Enterprise File Storage a través de la API de OVHcloud.",
+  "netapp_onboarding_volumes_title": "Gestión de los volúmenes",
+  "netapp_onboarding_volumes_description": "Esta guía explica cómo gestionar los volúmenes de la solución Enterprise File Storage.",
+  "netapp_onboarding_volumes_guides": "Guías",
+  "netapp_onboarding_storage_title": "Almacenamiento y backup",
+  "netapp_onboarding_volume_acl_title": "Gestión de ACL",
+  "netapp_onboarding_volume_snapshots_title": "Gestión de los snapshots"
+}

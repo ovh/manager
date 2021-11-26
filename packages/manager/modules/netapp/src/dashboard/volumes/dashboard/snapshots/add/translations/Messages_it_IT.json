@@ -1,0 +1,10 @@
+{
+  "netapp_volumes_snapshots_add_title": "Crea uno Snapshot",
+  "netapp_volumes_snapshots_add_description": "Stai per creare uno Snapshot manuale per {{ volumeName }}.",
+  "netapp_volumes_snapshots_add_name_label": "Nome dello Snapshot (facoltativo)",
+  "netapp_volumes_snapshots_add_description_label": "Descrizione (facoltativo)",
+  "netapp_volumes_snapshots_add_confirm": "Crea uno Snapshot",
+  "netapp_volumes_snapshots_add_cancel": "Annulla",
+  "netapp_volumes_snapshots_add_success": "Il tuo Snapshot è stato creato correttamente.",
+  "netapp_volumes_snapshots_add_error": "Non è stato possibile creare lo Snapshot, ti preghiamo di riprovare: {{message}}"
+}

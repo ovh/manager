@@ -1,0 +1,22 @@
+{
+  "netapp_dashboard_general_information": "Información general",
+  "netapp_dashboard_information": "Información",
+  "netapp_dashboard_information_name": "Nombre",
+  "netapp_dashboard_information_id": "ID",
+  "netapp_dashboard_information_region": "Localización del datacenter",
+  "netapp_dashboard_information_performance_level": "Nivel de rendimiento",
+  "netapp_dashboard_information_quota": "Tamaño de almacenamiento",
+  "netapp_dashboard_information_quota_formatted": "{{ quota }} GB",
+  "netapp_dashboard_configuration": "Configuración",
+  "netapp_dashboard_configuration_status": "Estado",
+  "netapp_dashboard_configuration_status_creating": "Creando...",
+  "netapp_dashboard_configuration_status_running": "Desplegado",
+  "netapp_dashboard_configuration_status_reopening": "Abriendo",
+  "netapp_dashboard_configuration_status_suspending": "Suspendiendo...",
+  "netapp_dashboard_configuration_status_suspended": "Suspendido",
+  "netapp_dashboard_configuration_status_deleting": "Eliminando...",
+  "netapp_dashboard_configuration_status_deleted": "Eliminado",
+  "netapp_dashboard_configuration_create_volume": "Crear un volumen",
+  "netapp_dashboard_volumes": "Volúmenes",
+  "netapp_dashboard_snapshot_policies": "Políticas de snapshots"
+}

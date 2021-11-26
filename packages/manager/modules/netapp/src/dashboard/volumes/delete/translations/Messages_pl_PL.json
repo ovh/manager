@@ -1,0 +1,10 @@
+{
+  "netapp_volumes_delete": "Usuń wolumen",
+  "netapp_volumes_delete_description": "Czy na pewno chcesz usunąć wolumen {{volumeId}} ?",
+  "netapp_volumes_delete_warning": "Usunięcie klastra spowoduje trwałe usunięcie wszystkich powiązanych z nim danych. Usunięcie usługi nie stanowi podstawy do zwrotu środków.",
+  "netapp_volumes_delete_enter_confirmation": "Aby potwierdzić, wprowadź \"DELETE\" w poniższym polu",
+  "netapp_volumes_delete_cancel": "Anuluj",
+  "netapp_volumes_delete_confirm": "Zatwierdź",
+  "netapp_volumes_delete_success": "Wolumen {{volumeId}} został usunięty.",
+  "netapp_volumes_delete_error": "Wystąpił błąd podczas usuwania wolumenu {{volume}}. {{message}}"
+}

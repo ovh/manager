@@ -39,5 +39,6 @@
   "account_contacts_service_category_OVH_CLOUD_CONNECT": "OVHcloud Connect",
   "account_contacts_service_category_ESSENTIALS": "Essentials",
   "account_contacts_service_category_LOGS": "Logs Data Platform",
-  "account_contacts_service_category_ANTHOS": "Anthos"
+  "account_contacts_service_category_ANTHOS": "Anthos",
+  "account_contacts_service_category_NETAPP": "NetApp"
 }
