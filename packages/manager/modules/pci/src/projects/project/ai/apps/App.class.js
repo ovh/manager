@@ -214,10 +214,6 @@ export default class App {
     return this.spec.resources.ephemeralStorage;
   }
 
-  get formattedRunningDuration() {
-    return moment.duration(this.status.duration, 'seconds').humanize();
-  }
-
   get formattedCreationDate() {
     return moment(this.createdAt).format('LLL');
   }

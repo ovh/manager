@@ -23,8 +23,15 @@ export default /* @ngInject */ ($stateProvider) => {
           appId: app.id,
         }),
 
-      preset: /* @ngInject */ (AppService) => {
-        return AppService.getPreset();
+      preset: /* @ngInject */ (projectId, AppService, app) => {
+        if (app.spec.partnerId) {
+          return AppService.getPreset(
+            projectId,
+            app.spec?.region,
+            app.spec?.image,
+          );
+        }
+        return null;
       },
 
       goToGenerateToken: /* @ngInject */ ($state, projectId, app) => () =>

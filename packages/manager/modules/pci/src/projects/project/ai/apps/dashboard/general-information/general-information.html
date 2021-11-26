@@ -115,30 +115,6 @@
                     </oui-action-menu>
                 </oui-tile-definition>
 
-                <!--Running duration-->
-                <oui-tile-definition
-                    data-term="{{:: 'pci_apps_general_information_life_cycle_running_duration_time' | translate }}"
-                >
-                    <oui-tile-description>
-                        <span
-                            class="block"
-                            data-ng-bind=":: $ctrl.app.formattedRunningDuration"
-                        ></span>
-                        <a
-                            data-ng-href="{{:: $ctrl.billingUrl }}"
-                            class="oui-link_icon"
-                        >
-                            <span
-                                data-translate="pci_apps_general_information_life_cycle_running_billing"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-arrow-right"
-                                aria-hidden="true"
-                            ></span>
-                        </a>
-                    </oui-tile-description>
-                </oui-tile-definition>
-
                 <!--Creation date and delete a app-->
                 <oui-tile-definition
                     data-term="{{:: 'pci_apps_general_information_life_cycle_create_date' | translate }}"
@@ -259,7 +235,7 @@
             </oui-tile>
         </div>
     </div>
-    <div>
+    <div data-ng-if="$ctrl.app.spec.partnerId">
         <oui-tile
             class="full-height"
             data-heading="{{:: 'pci_apps_general_information_snippet_title' | translate }}"

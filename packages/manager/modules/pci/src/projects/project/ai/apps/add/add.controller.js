@@ -92,6 +92,7 @@ export default class AppAddController {
       name,
       labels,
       volumes,
+      image,
       region,
       resource,
       privacy,
@@ -102,12 +103,13 @@ export default class AppAddController {
     return {
       labels: AppAddController.convertLabels(labels),
       name,
+      image,
       region: region.name,
       resources: AppAddController.buildResourceBody(
         resource.flavor,
         resource.nbResources,
       ),
-      partner: preset.partner,
+      partnerId: preset?.partner?.id,
       volumes: AppAddController.buildVolumesBody(volumes),
       unsecureHttp: APP_PRIVACY_SETTINGS.PUBLIC === privacy,
       scalingStrategy: {
@@ -274,6 +276,8 @@ export default class AppAddController {
         ).then(() => this.trackApps(`config_create_app_validated`)),
       )
       .catch((error) => {
+        this.stepper.appReview.display = true;
+        this.isAdding = false;
         this.trackApps(`config_create_app_error`);
         this.CucCloudMessage.error(
           this.$translate.instant('pci_app_add_app_create_error', {

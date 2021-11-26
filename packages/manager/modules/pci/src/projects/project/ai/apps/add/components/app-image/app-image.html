@@ -15,8 +15,9 @@
                 data-values="[preset]"
             >
                 <oui-select-picker-section
-                    data-ng-repeat="desc in preset.description track by $index"
-                    class="oui-select-picker__section">
+                    data-ng-repeat="desc in preset.descriptions track by $index"
+                    class="oui-select-picker__section"
+                >
                     {{ ::desc }}
                 </oui-select-picker-section>
                 <oui-select-picker-section class="oui-select-picker__section">

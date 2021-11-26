@@ -15,7 +15,7 @@ export const APP_STATUS = {
 };
 
 export const APP_POLLER_NAMESPACES = {
-  CHANGING: 'cloud.project.notebook.state.changing',
+  CHANGING: 'cloud.project.app.state.changing',
 };
 
 export const APP_STATES = {
