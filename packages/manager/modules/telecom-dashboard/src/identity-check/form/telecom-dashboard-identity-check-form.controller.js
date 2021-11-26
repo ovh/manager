@@ -52,8 +52,6 @@ export default class IdentityCheckFormCtrl {
   }
 
   createProcedure() {
-    if (!this.canCreateProcedure()) return;
-
     const { ownerFirstName, ownerLastName, ...data } = this.model;
 
     data.ownerName = `${ownerFirstName} ${ownerLastName}`;
@@ -69,12 +67,15 @@ export default class IdentityCheckFormCtrl {
       });
   }
 
-  cancelProcedure() {
-    if (!this.procedure || this.isCancelling) return;
+  canCancelProcedure() {
+    return !!this.procedure && !this.isCancelling;
+  }
 
-    const { id } = this.procedure;
+  cancelProcedure() {
+    const { id } = this.procedure ?? {};
 
     this.isCancelling = true;
+
     this.IdentityCheckService.cancelProcedure(id)
       .then(() => {
         this.procedure = null;
@@ -83,5 +84,10 @@ export default class IdentityCheckFormCtrl {
       .finally(() => {
         this.isCancelling = false;
       });
+  }
+
+  openProcedure() {
+    const { pdfUrl } = this.procedure ?? {};
+    window.open(pdfUrl);
   }
 }

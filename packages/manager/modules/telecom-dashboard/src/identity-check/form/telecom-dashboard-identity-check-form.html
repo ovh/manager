@@ -25,24 +25,22 @@
             <p
                 data-translate="telecom_dashboard_identity_check_form_procedure_info"
             ></p>
-            <p>
-                <a
-                    class="oui-link_icon"
-                    href="{{ $ctrl.procedure.pdfUrl }}"
-                    target="_blank"
-                    rel="noopener noreferrer"
+            <div>
+                <oui-button
+                    data-variant="link"
+                    data-ng-click="$ctrl.openProcedure()"
                 >
                     <span
                         data-translate="telecom_dashboard_identity_check_form_download_pdf"
                     ></span>
                     <span class="oui-icon oui-icon-arrow-right"></span>
-                </a>
-            </p>
-            <p>
-                <a
-                    class="oui-link_icon"
+                </oui-button>
+            </div>
+            <div>
+                <oui-button
+                    data-variant="link"
+                    data-disabled="!$ctrl.canCancelProcedure()"
                     data-ng-click="$ctrl.cancelProcedure()"
-                    href
                 >
                     <span
                         data-translate="telecom_dashboard_identity_check_form_cancel_procedure"
@@ -55,8 +53,8 @@
                         data-size="s"
                         data-ng-if="$ctrl.isCancelling"
                     ></oui-spinner>
-                </a>
-            </p>
+                </oui-button>
+            </div>
         </oui-message>
         <form data-ng-if="!$ctrl.procedure" name="$ctrl.form" novalidate>
             <p
