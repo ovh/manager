@@ -1,3 +1,20 @@
 {
-  "netapp_volumes_number_description": "Numero di volumi"
+  "netapp_volumes_breadcrumb": "Volumi",
+  "netapp_volumes_details": "Dettaglio dei volumi",
+  "netapp_volumes_number": "{{ volumesNumber }}/{{ volumesLimit }} (massimo)",
+  "netapp_volumes_id": "ID",
+  "netapp_volumes_name": "Nome",
+  "netapp_volumes_description": "Descrizione",
+  "netapp_volumes_protocol": "Protocollo",
+  "netapp_volumes_allocated_quota": "Quota assegnata",
+  "netapp_volumes_quota_formatted": "{{ shareQuota }} GB/{{ storageQuota }} GB ({{ percentage }}%)",
+  "netapp_volumes_mount_path": "Mount Path",
+  "netapp_volumes_snapshot_policy": "Politica di Snapshot",
+  "netapp_volumes_status": "Stato",
+  "netapp_volumes_create_volume": "Crea un volume",
+  "netapp_volumes_edit_volume": "Modifica il volume",
+  "netapp_volumes_create_snapshot": "Crea uno Snapshot",
+  "netapp_volumes_manage_snapshots": "Gestisci gli Snapshot",
+  "netapp_volumes_manage_acl": "Gestisci IP Access (ACL)",
+  "netapp_volumes_delete_volume": "Elimina il volume"
 }

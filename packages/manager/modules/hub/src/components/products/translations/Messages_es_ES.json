@@ -60,5 +60,6 @@
   "manager_hub_products_OVH_CLOUD_CONNECT": "OVHcloud Connect",
   "manager_hub_products_ESSENTIALS": "Managed Bare Metal",
   "manager_hub_products_WEB_PAA_S_SUBSCRIPTION": "Web PaaS",
-  "manager_hub_products_ALL_DOM": "Pack AllDom"
+  "manager_hub_products_ALL_DOM": "Pack AllDom",
+  "manager_hub_products_NETAPP": "NetApp"
 }

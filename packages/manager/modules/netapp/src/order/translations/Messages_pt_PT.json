@@ -1,0 +1,20 @@
+{
+  "netapp_order": "Instalar o Enterprise File Storage",
+  "netapp_order_datacenter": "Localização do datacenter",
+  "netapp_order_performance_level": "Nível de desempenho",
+  "netapp_order_performance_level_description": "Escolha o nível de desempenho do serviço em função das suas necessidades",
+  "netapp_order_performance_level_type_Premium": "Licença Premium",
+  "netapp_order_performance_level_type_Premium_description": "Equilíbrio entre preço e desempenho.",
+  "netapp_order_performance_level_type_Standard": "Licença standard",
+  "netapp_order_performance_level_type_Standard_description": "Para os seus casos de uso de armazenamento",
+  "netapp_order_performance_level_type_Extreme": "Licença Ultra",
+  "netapp_order_performance_level_type_Extreme_description": "Para atividades que requerem uma grande largura de banda",
+  "netapp_order_size": "Capacidade de armazenamento",
+  "netapp_order_size_description": "Indique a capacidade total de armazenamento pretendida do seu serviço Enterprise File Storage.",
+  "netapp_order_size_label": "{{ size }} TB",
+  "netapp_order_size_custom": "Armazenamento personalizado (TB)",
+  "netapp_order_commitment_duration": "Duração do compromisso",
+  "netapp_order_commitment_duration_description": "Receba um desconto ao contratar o serviço com compromisso.",
+  "netapp_order_commitment_payment": "Modalidades de pagamento",
+  "netapp_order_confirm": "Validar"
+}
