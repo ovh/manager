@@ -7,5 +7,11 @@
   "private_database_guide_add_hosting_private_database_dbaas_beginPostgre": "Demarrez avec PostgreSQL",
   "private_database_pagination_page": "Page {{current}} / {{last}}",
   "private_database_pagination_display": "Afficher",
-  "private_database_back": "Retour"
+  "private_database_back": "Retour",
+  "wizard_help": "Aide",
+  "wizard_action_question": "Quelle action voulez-vous effectuer ?",
+  "price_ht_label": "{{price}} HT",
+  "price_ttc_label": "{{price}} TTC",
+  "price_free": "Inclus",
+  "price_label_yearly": "/an"
 }
