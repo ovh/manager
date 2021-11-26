@@ -1,0 +1,5 @@
+{
+  "select_checkboxes_placeholder_default": "Seleccione una opción",
+  "select_checkboxes_one_item": "1 item",
+  "select_checkboxes_many_items": "{{ count }} items"
+}
