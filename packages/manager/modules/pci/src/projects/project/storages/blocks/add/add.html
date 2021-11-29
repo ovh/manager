@@ -112,6 +112,10 @@
                 data-translate="pci_projects_project_storages_blocks_add_submit_price_text"
                 data-translate-values="{ price: $ctrl.estimatedPrice.monthly.text }"
             ></div>
+
+            <pci-trusted-zone-banner
+                data-ng-if="$ctrl.isTrustedZone">
+            </pci-trusted-zone-banner>
         </oui-step-form>
     </oui-stepper>
 </div>
