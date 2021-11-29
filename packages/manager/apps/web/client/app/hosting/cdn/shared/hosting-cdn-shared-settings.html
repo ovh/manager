@@ -362,7 +362,11 @@
                             ></th>
                             <th
                                 class="oui-table__header"
-                                data-translate="hosting_cdn_shared_option_cache_rule_table_header_uri"
+                                data-translate="hosting_cdn_shared_option_cache_rule_table_header_type"
+                            ></th>
+                            <th
+                                class="oui-table__header"
+                                data-translate="hosting_cdn_shared_option_cache_rule_table_header_resource"
                             ></th>
                             <th
                                 class="oui-table__header"
@@ -391,6 +395,11 @@
                             </td>
                             <td class="oui-table__cell">
                                 <span data-ng-bind="::rule.name"></span>
+                            </td>
+                            <td class="oui-table__cell">
+                                <span
+                                    data-ng-bind=":: ('hosting_cdn_shared_option_cache_rule_table_items_type_' + rule.config.patternType) | translate">
+                                </span>
                             </td>
                             <td class="oui-table__cell">
                                 <span data-ng-bind="::rule.pattern"></span>
