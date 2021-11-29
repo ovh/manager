@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-registry@1.0.0...@ovh-ux/manager-registry@2.0.0) (2021-11-29)
+
+
+### Build System
+
+* require Node.js 14 ([f1ec93e](https://github.com/ovh/manager/commit/f1ec93ef1156184dda02762eb62c0d838be495b6))
+
+
+### BREAKING CHANGES
+
+* require Node.js 14
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-registry@0.0.0...@ovh-ux/manager-registry@1.0.0) (2020-11-16)
 
 

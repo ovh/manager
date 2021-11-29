@@ -1,3 +1,17 @@
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server-config@2.0.0...@ovh-ux/manager-dev-server-config@3.0.0) (2021-11-29)
+
+
+### Build System
+
+* require Node.js 14 ([f1ec93e](https://github.com/ovh/manager/commit/f1ec93ef1156184dda02762eb62c0d838be495b6))
+
+
+### BREAKING CHANGES
+
+* require Node.js 14
+
+
+
 # [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server-config@1.1.1...@ovh-ux/manager-dev-server-config@2.0.0) (2021-01-13)
 
 

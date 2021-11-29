@@ -1,3 +1,12 @@
+## [11.0.1](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@11.0.0...@ovh-ux/component-rollup-config@11.0.1) (2021-11-29)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `node-sass` to `v6.0.1` ([47a826d](https://github.com/ovh/manager/commit/47a826dc74c69426223a9625df16a48e4aee8007))
+
+
+
 # [11.0.0](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@10.0.2...@ovh-ux/component-rollup-config@11.0.0) (2021-10-26)
 
 
