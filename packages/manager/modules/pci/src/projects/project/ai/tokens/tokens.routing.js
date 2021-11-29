@@ -34,7 +34,7 @@ export default /* @ngInject */ ($stateProvider) => {
       goToTokens: ($state, CucCloudMessage, projectId) => (
         message = false,
         type = 'success',
-        bearerToken,
+        bearerToken = null,
       ) => {
         const reload = message && type === 'success';
         const promise = $state.go(

@@ -177,7 +177,7 @@ export default class AppAddController {
 
   getImageHeader(display) {
     if (display === false) {
-      if (this.appModel.preset.partner) {
+      if (this.appModel.preset?.partner) {
         return this.$translate.instant('pci_app_add_image_partner_header', {
           partner: this.appModel.preset.partner.name,
           image: this.appModel.image,

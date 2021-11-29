@@ -7,5 +7,5 @@
   "pci_app_add_review_price_resource_free": "Ressource·s offerte·s par OVHcloud pendant l'alpha",
   "pci_app_add_review_price_total": "Prix total",
   "pci_app_add_review_price_info": "{{ price }} HT /heure",
-  "pci_app_add_review_resources": "Modèle et nombre d'instance(s) choisi"
+  "pci_app_add_review_resources": "Modèle et nombre d'instance(s) choisis"
 }

@@ -1,8 +1,8 @@
 {
   "pci_app_title": "AI Apps",
-  "pci_app_onboarding_content1": "Vos applications AI opérationnelless et entièrement gérése en quelques secondes.",
-  "pci_app_onboarding_content2": "Accélérez le déploiement de vos projets AI et modèles avec nos AI apps.",
-  "pci_app_onboarding_content3": "Vous êtes data scientist ou développeur et souhaitez déployer une application ou un modèle d'intelligence artificielle en quelques minutes ? Sélectionnez parmi un catalogue d'AI Apps ou déployez votre propre application containerisée. OVHcloud s'occupe de son déploiment en haute disponibilité et de sa sécurisation. Disposez de ressources CPU ou GPU, d'outils de suivis en temps réel, et d'une tarification simple et à l'usage.",
+  "pci_app_onboarding_content1": "Vos applications et modèles AI déployés en haute disponibilité.",
+  "pci_app_onboarding_content2": "Choisissez parmi un catalogue ou déployez vos propres images Docker.",
+  "pci_app_onboarding_content3": "Vous êtes data scientist ou développeur et souhaitez déployer une application ou un modèle d'intelligence artificielle en quelques minutes ? Sélectionnez parmi un catalogue d'AI Apps ou importez votre propre application containerisée. OVHcloud s'occupe de son déploiement en haute disponibilité et de sa sécurisation. Disposez de ressources CPU ou GPU, d'outils de suivi en temps réel, et d'une tarification simple, facturée à l'usage. Libre à vous ensuite de vous y connecter par API ou via une interface Web HTTP.",
   "pci_app_onboarding_action_label": "Déployer une AI App",
   "pci_app_guides_documentation_title": "Documentation complète AI Apps",
   "pci_app_guides_documentation_description": "Retrouvez toute la documentation d'AI Apps.",

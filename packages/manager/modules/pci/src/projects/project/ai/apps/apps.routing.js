@@ -209,7 +209,11 @@ export default /* @ngInject */ ($stateProvider) => {
         type = 'action',
         prefix = true,
       ) => {
-        const name = `${prefix ? `${appsTrackPrefix}::` : ''}${complement}`;
+        let name = complement;
+        if (prefix) {
+          name = `${appsTrackPrefix}::${complement}`;
+        }
+
         switch (type) {
           case 'action':
           case 'navigation':

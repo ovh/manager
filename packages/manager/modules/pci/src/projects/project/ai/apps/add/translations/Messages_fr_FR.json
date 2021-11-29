@@ -1,8 +1,8 @@
 {
   "pci_app_add_title": "Déployer une AI App",
   "pci_app_add_description": "Démarrez vos AI Apps dans le cloud, rapidement et simplement.",
-  "pci_app_add_banner_token_description": "Veuillez noter que si vous souhaitez acceder à votre AI App, la création d'un token est nécessaire.",
-  "pci_app_add_banner_token_description_link": "Créer un token",
+  "pci_app_add_banner_token_description": "Veuillez noter que si vous souhaitez acceder à votre AI App, la création d'un token sera nécessaire.",
+  "pci_app_add_banner_token_description_link": "Créer un token tout de suite",
   "pci_app_add_configuration_title": "Configurez votre AI App",
   "pci_app_add_configuration_title_selected": "Nom de l'AI App : {{ app }} ({{ labelsLength }} label·s) / Région : {{region}} / Access : {{ privacy }}",
   "pci_app_add_privacy_settings_title": "Paramètres de confidentialité",
@@ -20,7 +20,7 @@
   "pci_app_add_app_create_success": "Votre app a été créé avec succès.",
   "pci_app_add_app_create_error": "Erreur lors de la création de l'AI App : {{ message }}.",
   "pci_app_add_privacy_datacenter_location_title_selected": "Localisation choisie : {{ region }}",
-  "pci_app_add_privacy_datacenter_location_title": "Localisation du déploiement",
+  "pci_app_add_privacy_datacenter_location_title": "Localisation",
   "pci_app_add_image_partner_header": "Partenaire : {{ partner }} / Image : {{ image }}",
   "pci_app_add_image_header": "Image : {{ image }}"
 }

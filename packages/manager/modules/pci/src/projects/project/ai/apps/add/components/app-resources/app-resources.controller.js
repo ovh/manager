@@ -40,7 +40,7 @@ export default class AppResourcesController {
     this.resourcePriceTax = resourcePrice.tax * 60;
     this.resourcePriceInUcents = resourcePrice.priceInUcents * 60;
 
-    if (this.appModel.preset.partner) {
+    if (this.appModel.preset?.partner) {
       const partnerPrice = this.AppService.getPartnerPrice(
         this.prices,
         this.appModel.preset.partner.id,

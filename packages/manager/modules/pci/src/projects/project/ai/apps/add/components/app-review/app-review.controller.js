@@ -20,7 +20,7 @@ export default class AppReviewController {
     this.resourcePriceTax = resourcePrice.tax * multiplier;
     this.resourcePriceInUcents = resourcePrice.priceInUcents * multiplier;
 
-    if (this.appModel.preset.partner) {
+    if (this.appModel.preset?.partner) {
       const partnerPrice = this.AppService.getPartnerPrice(
         this.prices,
         this.appModel.preset.partner.id,
