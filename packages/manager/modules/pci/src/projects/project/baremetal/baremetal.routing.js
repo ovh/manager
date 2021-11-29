@@ -2,6 +2,7 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 
+import { PCI_FEATURES } from '../../projects.constant';
 import { BAREMETAL_PATTERN } from './baremetal.constants';
 import Instance from '../../../components/project/instance/instance.class';
 
@@ -9,6 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.baremetal', {
     url: '/baremetal?help&id',
     component: 'pciProjectsProjectInstances',
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.BAREMETAL);
+    },
     redirectTo: (transition) =>
       transition
         .injector()

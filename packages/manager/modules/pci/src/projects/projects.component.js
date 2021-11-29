@@ -15,6 +15,7 @@ export default {
     user: '<',
     isTrustedZone: '<',
     pciFeatures: '<',
+    pciFeatureRedirect: '<',
     trackPage: '<',
     sendTrack: '<',
   },

@@ -1,7 +1,12 @@
+import { PCI_FEATURES } from '../../projects.constant';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.training', {
     url: '/training',
     component: 'pciProjectTraining',
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.TRAINING);
+    },
     redirectTo: (transition) =>
       Promise.all([
         transition.injector().getAsync('lab'),

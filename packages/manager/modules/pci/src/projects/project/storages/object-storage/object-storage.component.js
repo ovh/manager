@@ -2,6 +2,7 @@ import template from './object-storage.html';
 
 export default {
   bindings: {
+    pciFeatureRedirect: '<',
     guideUrl: '<',
     isUserTabActive: '<',
     containers: '<',

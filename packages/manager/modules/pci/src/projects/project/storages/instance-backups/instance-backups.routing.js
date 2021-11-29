@@ -1,3 +1,5 @@
+import { PCI_FEATURES } from '../../../projects.constant';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.instance-backups', {
     url: '/instance-backups?id',
@@ -11,6 +13,9 @@ export default /* @ngInject */ ($stateProvider) => {
         dynamic: true,
         type: 'string',
       },
+    },
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.INSTANCE_BACKUP);
     },
     redirectTo: (transition) =>
       transition

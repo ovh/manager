@@ -1,8 +1,13 @@
+import { PCI_FEATURES } from '../../projects.constant';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.analytics-data-platform', {
     cache: false,
     url: '/analytics-data-platform?id',
     component: 'analyticsDataPlatformComponent',
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.ANALYTICS_DATA_PLATFORM);
+    },
     redirectTo: (transition) =>
       transition
         .injector()

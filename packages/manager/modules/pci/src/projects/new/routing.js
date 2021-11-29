@@ -8,6 +8,7 @@ import PciEligibility from './classes/eligibility.class';
 import PciVoucher from './components/voucher/voucher.class';
 import PciPaymentMethodChallenge from './payment/components/challenge/challenge.class';
 
+import { PCI_FEATURES } from '../projects.constant';
 import {
   ELIGIBILITY_ACTION_ENUM,
   ELIGIBILITY_ERROR_IMAGES_SRC,
@@ -16,6 +17,9 @@ import {
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.new', {
     url: '/new?cartId&voucher',
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.OTHERS.CREATE_PROJECT);
+    },
     redirectTo: (transition) => {
       const injector = transition.injector();
 
@@ -25,8 +29,6 @@ export default /* @ngInject */ ($stateProvider) => {
       const cartPromise = injector.getAsync('cart');
       const eligibilityPromise = injector.getAsync('eligibility');
       const newSupportTicketLink = injector.getAsync('newSupportTicketLink');
-      const isTrustedZonePromise = injector.getAsync('isTrustedZone');
-      const projectsPromise = injector.getAsync('projects');
 
       return Promise.all([
         translatePromise,
@@ -34,77 +36,55 @@ export default /* @ngInject */ ($stateProvider) => {
         cartPromise,
         eligibilityPromise,
         coreURLBuilderPromise,
-        isTrustedZonePromise,
-        projectsPromise,
-      ]).then(
-        ([
-          $translate,
-          $window,
-          cart,
-          eligibility,
-          coreURLBuilder,
-          isTrustedZone,
-          projects,
-        ]) => {
-          let redirectState = 'pci.projects.new.config';
-          let redirectParams = transition.params();
-          const redirectOptions = {
-            location: false,
+      ]).then(([$translate, $window, cart, eligibility, coreURLBuilder]) => {
+        let redirectState = 'pci.projects.new.config';
+        let redirectParams = transition.params();
+        const redirectOptions = {
+          location: false,
+        };
+
+        if (eligibility.isAskIncreaseProjectsQuotaRequired()) {
+          redirectState = 'pci.projects.project.error';
+          redirectParams = {
+            message: $translate.instant(
+              'pci_project_new_error_ask_increase_projects_quota',
+            ),
+            code: ELIGIBILITY_ACTION_ENUM.ASK_INCREASE_PROJECTS_QUOTA,
+            image: ELIGIBILITY_ERROR_IMAGES_SRC.ASK_INCREASE_PROJECTS_QUOTA,
+            projectId: get(transition.params('from'), 'projectId'),
+            submitLabel: $translate.instant(
+              'pci_project_new_error_contact_support',
+            ),
+            submitLink: newSupportTicketLink,
           };
-
-          if (isTrustedZone) {
-            return {
-              state: projects.length
-                ? 'pci.projects'
-                : 'pci.projects.onboarding',
-            };
-          }
-          if (eligibility.isAskIncreaseProjectsQuotaRequired()) {
-            redirectState = 'pci.projects.project.error';
-            redirectParams = {
-              message: $translate.instant(
-                'pci_project_new_error_ask_increase_projects_quota',
+        } else if (eligibility.isVerifyPaypalRequired()) {
+          redirectState = 'pci.error';
+          redirectParams = {
+            message: $translate.instant('pci_project_new_error_verify_paypal', {
+              href: coreURLBuilder.buildURL(
+                'dedicated',
+                '#/billing/payment/method',
               ),
-              code: ELIGIBILITY_ACTION_ENUM.ASK_INCREASE_PROJECTS_QUOTA,
-              image: ELIGIBILITY_ERROR_IMAGES_SRC.ASK_INCREASE_PROJECTS_QUOTA,
-              projectId: get(transition.params('from'), 'projectId'),
-              submitLabel: $translate.instant(
-                'pci_project_new_error_contact_support',
-              ),
-              submitLink: newSupportTicketLink,
-            };
-          } else if (eligibility.isVerifyPaypalRequired()) {
-            redirectState = 'pci.error';
-            redirectParams = {
-              message: $translate.instant(
-                'pci_project_new_error_verify_paypal',
-                {
-                  href: coreURLBuilder.buildURL(
-                    'dedicated',
-                    '#/billing/payment/method',
-                  ),
-                },
-              ),
-              code: ELIGIBILITY_ACTION_ENUM.VERIFY_PAYPAL,
-              image: ELIGIBILITY_ERROR_IMAGES_SRC.VERIFY_PAYPAL,
-              submitLabel: null,
-            };
-          } else if (cart.cartId !== transition.params().cartId) {
-            $window.location.replace(
-              transition.router.stateService.href('pci.projects.new', {
-                cartId: cart.cartId,
-              }),
-            );
-            return null;
-          }
-
-          return transition.router.stateService.target(
-            redirectState,
-            redirectParams,
-            redirectOptions,
+            }),
+            code: ELIGIBILITY_ACTION_ENUM.VERIFY_PAYPAL,
+            image: ELIGIBILITY_ERROR_IMAGES_SRC.VERIFY_PAYPAL,
+            submitLabel: null,
+          };
+        } else if (cart.cartId !== transition.params().cartId) {
+          $window.location.replace(
+            transition.router.stateService.href('pci.projects.new', {
+              cartId: cart.cartId,
+            }),
           );
-        },
-      );
+          return null;
+        }
+
+        return transition.router.stateService.target(
+          redirectState,
+          redirectParams,
+          redirectOptions,
+        );
+      });
     },
     views: {
       '@pci': component.name,

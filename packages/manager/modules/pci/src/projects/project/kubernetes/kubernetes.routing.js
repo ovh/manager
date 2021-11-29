@@ -7,11 +7,15 @@ import {
   SCALE_DEFAULT_VALUES,
   VERSION_ENUM_KEY,
 } from './kubernetes.constants';
+import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.kubernetes', {
     url: '/kubernetes?id',
     component: 'ovhManagerPciProjectKubernetes',
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.KUBERNETES);
+    },
     redirectTo: (transition) =>
       transition
         .injector()
