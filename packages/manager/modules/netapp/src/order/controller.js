@@ -110,6 +110,10 @@ export default class OvhManagerNetAppOrderCtrl {
     );
   }
 
+  onPlanChange(modelValue) {
+    this.selectedSize = modelValue.size;
+  }
+
   onCustomSizeChange(modelValue) {
     this.plan = this.plans.find(({ size }) => size === modelValue);
   }
