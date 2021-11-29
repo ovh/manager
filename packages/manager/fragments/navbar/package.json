@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-fragment-navbar",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "private": true,
   "description": "OVHcloud navbar fragment",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/fragments/navbar#readme",
