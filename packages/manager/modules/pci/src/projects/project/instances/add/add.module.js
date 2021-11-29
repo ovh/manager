@@ -12,6 +12,7 @@ import flavorsList from '../../../../components/project/flavors-list';
 import imagesList from '../../../../components/project/images-list';
 import regionsList from './regions-list';
 import sshKeys from '../../../../components/project/instance/ssh-keys';
+import trustedZoneBanner from '../../../../components/trusted-zone-banner';
 
 import component from './add.component';
 import routing from './add.routing';
@@ -30,6 +31,7 @@ angular
     imagesList,
     regionsList,
     sshKeys,
+    trustedZoneBanner,
   ])
   .config(routing)
   .component('ovhManagerPciInstancesAdd', component)
