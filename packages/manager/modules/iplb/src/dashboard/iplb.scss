@@ -1,6 +1,6 @@
-.iplb {
-  $flag-icon-css-path: '~flag-icon-css/flags';
+$flag-icon-css-path: '~flag-icon-css/flags';
 
+.iplb {
   @import 'flag-icon-css/sass/flag-icon';
   @import 'bootstrap4/scss/_functions.scss';
   @import 'bootstrap4/scss/_variables.scss';
