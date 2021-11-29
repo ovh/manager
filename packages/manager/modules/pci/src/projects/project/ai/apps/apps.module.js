@@ -13,6 +13,7 @@ import service from './apps.service';
 import add from './add';
 import onboarding from './onboarding';
 import dashboard from './dashboard';
+import deleteApp from './delete-app';
 
 import './index.scss';
 
@@ -29,6 +30,7 @@ angular
     add,
     dashboard,
     onboarding,
+    deleteApp,
   ])
   .config(routing)
   .component('ovhManagerPciProjectApps', component)

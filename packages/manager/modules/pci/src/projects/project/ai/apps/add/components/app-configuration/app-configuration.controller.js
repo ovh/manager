@@ -9,11 +9,6 @@ export default class AppConfigurationController {
   constructor() {
     this.APP_LABELS = APP_LABELS;
     this.APP_PRIVACY_SETTINGS = APP_PRIVACY_SETTINGS;
-
-    this.myLabels = [
-      AppConfigurationController.createLabel(),
-      AppConfigurationController.createLabel(),
-    ];
   }
 
   $onInit() {

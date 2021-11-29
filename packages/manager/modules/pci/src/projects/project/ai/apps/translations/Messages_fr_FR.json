@@ -9,6 +9,7 @@
   "pci_ai_app_list_cpu": "CPU",
   "pci_ai_app_list_gpu": "GPU",
   "pci_ai_app_list_privacy": "Confidentialité",
+  "pci_ai_app_list_replicas": "Réplicas",
   "pci_ai_app_list_privacy_private": "Privée",
   "pci_ai_app_list_privacy_public": "Publique",
   "pci_ai_app_list_status": "Statut",

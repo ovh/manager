@@ -56,6 +56,14 @@
                     </oui-tile-description>
                 </oui-tile-definition>
 
+                <!--Tags-->
+                <oui-tile-definition data-term="Tags">
+                    <oui-tile-description>
+                        <!--Tags-->
+                        <oui-chips data-items="$ctrl.app.labels"> </oui-chips>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
                 <!--Confidentiality-->
                 <oui-tile-definition
                     data-term="{{:: 'pci_apps_general_information_info_app_env_confidentiality' | translate }}"
@@ -167,6 +175,13 @@
                 data-heading="{{:: 'pci_apps_general_information_resources_title' | translate }}"
                 data-loading="$ctrl.loading.instance"
             >
+                <oui-tile-definition
+                    data-term="{{:: 'pci_apps_general_information_replicas' | translate }}"
+                >
+                    <oui-tile-description>
+                        {{ :: $ctrl.app.replicas }}
+                    </oui-tile-description>
+                </oui-tile-definition>
                 <!--Resource quantity-->
                 <oui-tile-definition
                     data-term="{{:: 'pci_apps_general_information_resources_quantity' | translate }}"

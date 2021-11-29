@@ -1,0 +1,8 @@
+{
+  "pci_app_delete_app_title": "Suppression du app",
+  "pci_app_delete_app_submit_label": "Confirmer",
+  "pci_app_delete_app_cancel_label": "Annuler",
+  "pci_app_delete_app_content": "Êtes-vous sûr·e de vouloir supprimer l'app {{ appName }} ?",
+  "pci_app_delete_app_success": "Votre app a bien été supprimé.",
+  "pci_app_delete_app_error": "Une erreur est survenue lors de la suppression de votre app {{ appName }} : {{ message }}."
+}

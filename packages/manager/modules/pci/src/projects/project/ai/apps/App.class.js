@@ -1,15 +1,12 @@
-import has from 'lodash/has';
 import merge from 'lodash/merge';
 import set from 'lodash/set';
 import 'moment';
 
 import {
-  APP_AUTOMATION_INFO,
   APP_STATES,
   APP_STATUS,
   APP_STORAGE_INFO,
   APP_TAGS,
-  APP_VOLUME_TYPE,
 } from './app.constants';
 
 export default class App {
@@ -42,24 +39,9 @@ export default class App {
 
   /**
    * Generate a label
-   * @param id {String|Number|null}: label id
-   * @param title {String|Number|null}: label value
-   * @returns {{id: null, title: null}}
    */
   static generateLabel(id = null, title = null) {
-    return { id, title };
-  }
-
-  /**
-   * Return volume type
-   * @param volume {Object}: volume object
-   * @returns {String}: can be SWIFT|GIT
-   */
-  static getVolumeType(volume) {
-    const volumeTypeKey = Object.keys(APP_VOLUME_TYPE).find((type) =>
-      has(volume, type.toLowerCase()),
-    );
-    return APP_VOLUME_TYPE[volumeTypeKey];
+    return { title: `${id}=${title}` };
   }
 
   isStarting() {
@@ -108,18 +90,6 @@ export default class App {
     this.labels.push(label);
   }
 
-  simulateAddLabel(label) {
-    const labels = [...this.labels];
-    const labelIndex = this.getLabelIndex(label);
-    if (labelIndex >= 0) {
-      labels[labelIndex].title = label.title;
-    } else {
-      labels.push(label);
-    }
-
-    return labels;
-  }
-
   convertLabels(labels = null) {
     return (labels || this.labels).reduce(
       (accumulator, label) => ({ ...accumulator, [label.id]: label.title }),
@@ -147,27 +117,12 @@ export default class App {
     return this.spec?.unsecureHttp;
   }
 
-  get duration() {
-    return this.status?.duration;
+  get replicas() {
+    return this.spec?.scalingStrategy?.fixed?.replicas;
   }
 
-  get durationString() {
-    const duration = moment.duration(this.duration, 'seconds');
-    let durationString = duration.years() ? `${duration.years()}y` : '';
-    durationString =
-      duration.months() || durationString
-        ? `${durationString} ${duration.months()}m`
-        : durationString;
-    durationString =
-      duration.days() || durationString
-        ? `${durationString} ${duration.days()}d`
-        : durationString;
-    durationString =
-      duration.hours() || durationString
-        ? `${durationString} ${duration.hours()}h`
-        : durationString;
-    durationString = `${durationString} ${duration.minutes()}mn`;
-    return durationString;
+  get duration() {
+    return this.status?.duration;
   }
 
   get accessUrl() {
@@ -216,12 +171,6 @@ export default class App {
 
   get formattedCreationDate() {
     return moment(this.createdAt).format('LLL');
-  }
-
-  get automationInfoLink() {
-    return (
-      APP_AUTOMATION_INFO[this.ovhSubsidiary] || APP_AUTOMATION_INFO.DEFAULT
-    );
   }
 
   get attachDataInfoLink() {
