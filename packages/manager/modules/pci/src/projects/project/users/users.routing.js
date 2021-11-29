@@ -1,9 +1,13 @@
 import { HORIZON_LINK } from './users.constants';
+import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.users', {
     url: '/users',
     component: 'pciProjectsProjectUsers',
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.SETTINGS.USERS);
+    },
     redirectTo: (transition) =>
       transition
         .injector()

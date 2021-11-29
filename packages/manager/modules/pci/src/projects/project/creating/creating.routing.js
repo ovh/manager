@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 
 import { GUIDE_URLS } from './creating.constants';
+import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.creating', {
@@ -10,6 +11,9 @@ export default /* @ngInject */ ($stateProvider) => {
         componentProvider: /* @ngInject */ (projectOrder) =>
           projectOrder ? 'pciProjectCreatingNotPaid' : 'pciProjectCreating',
       },
+    },
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.OTHERS.CREATE_PROJECT);
     },
     resolve: {
       breadcrumb: () => null,

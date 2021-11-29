@@ -1,5 +1,6 @@
 import { GUIDES_URL } from '../../components/project/guides-header/guides-header.constants';
 import { ACTIONS, LEGACY_PLAN_CODES, LINKS } from './project.constants';
+import { PCI_FEATURES } from '../projects.constant';
 
 const isLegacy = (planCode) => LEGACY_PLAN_CODES.includes(planCode);
 
@@ -8,6 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/{projectId:[0-9a-zA-Z]{32}}',
     views: {
       '@pci': 'pciProject',
+    },
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.SETTINGS.PROJECT);
     },
     redirectTo: (transition) => {
       const projectPromise = transition.injector().getAsync('project');

@@ -3,11 +3,15 @@ import flatten from 'lodash/flatten';
 import map from 'lodash/map';
 
 import Workflow from './Workflow.class';
+import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.workflow', {
     url: '/workflow?id',
     component: 'ovhManagerPciProjectsProjectWorkflow',
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.WORKFLOW_MANAGEMENT);
+    },
     redirectTo: (transition) =>
       transition
         .injector()

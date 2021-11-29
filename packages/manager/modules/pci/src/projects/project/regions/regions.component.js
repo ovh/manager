@@ -3,6 +3,7 @@ import template from './regions.html';
 
 export default {
   bindings: {
+    pciFeatureRedirect: '<',
     availableRegions: '<',
     guideUrl: '<',
     projectId: '<',

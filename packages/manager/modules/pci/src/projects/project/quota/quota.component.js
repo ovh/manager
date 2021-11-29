@@ -3,6 +3,7 @@ import template from './quota.html';
 
 export default {
   bindings: {
+    pciFeatureRedirect: '<',
     hasDefaultPaymentMethod: '<',
     guideUrl: '<',
     project: '<',

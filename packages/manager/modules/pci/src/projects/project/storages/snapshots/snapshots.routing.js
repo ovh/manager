@@ -1,7 +1,12 @@
+import { PCI_FEATURES } from '../../../projects.constant';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.snapshots', {
     url: '/volume-snapshots?id',
     component: 'pciProjectStoragesSnapshots',
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.SNAPSHOT);
+    },
     redirectTo: (transition) =>
       transition
         .injector()

@@ -8,6 +8,7 @@ import {
   TYPES_TO_EXCLUDE,
 } from './instances.constants';
 import Instance from '../../../components/project/instance/instance.class';
+import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances', {
@@ -18,6 +19,9 @@ export default /* @ngInject */ ($stateProvider) => {
         dynamic: true,
         type: 'string',
       },
+    },
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.INSTANCE);
     },
     redirectTo: (transition) =>
       transition

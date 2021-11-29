@@ -3,6 +3,7 @@ import template from './edit.html';
 
 export default {
   bindings: {
+    pciFeatureRedirect: '<',
     cart: '<',
     checkout: '<',
     defaultProject: '<',

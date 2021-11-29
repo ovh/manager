@@ -3,6 +3,7 @@ import template from './workflow.html';
 
 export default {
   bindings: {
+    pciFeatureRedirect: '<',
     add: '<',
     goToDeleteWorkflowPage: '<',
     goToExecutionsPage: '<',
