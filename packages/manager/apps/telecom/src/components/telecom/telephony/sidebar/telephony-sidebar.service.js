@@ -5,6 +5,7 @@ angular
   .module('managerApp')
   .service('TelephonySidebar', function TelephonySidebar(
     $q,
+    $http,
     $translate,
     SidebarMenu,
     tucTelecomVoip,
@@ -42,10 +43,7 @@ angular
       });
     }
 
-    /*
-     * Telephony sidebar initilization
-     */
-    self.initTelephonySubsection = function initTelephonySubsection() {
+    function initBillingAccountSubsections() {
       return tucTelecomVoip.fetchAll().then((billingAccounts) => {
         // first sort by getDisplayedName
         const sortedBillingAccounts = billingAccounts.sort((first, second) =>
@@ -182,6 +180,42 @@ angular
           }
         });
       });
+    }
+
+    function initRepaymentSubsection() {
+      return $http
+        .get('/me/sva/cdr', {
+          headers: {
+            'X-Pagination-Mode': 'CachedObjectList-Pages',
+            'X-Pagination-Size': 1,
+          },
+        })
+        .then((response) => {
+          if (response.headers('x-pagination-elements') === '0') return;
+
+          SidebarMenu.addMenuItem(
+            {
+              title: $translate.instant(
+                'telecom_sidebar_section_telephony_repayment',
+              ),
+              id: 'telecom-telephony-repayment-section',
+              category: 'telephony',
+              allowSubItems: false,
+              state: 'telecom.telephony.repayments',
+            },
+            self.mainSectionItem,
+          );
+        });
+    }
+
+    /*
+     * Telephony sidebar initilization
+     */
+    self.initTelephonySubsection = function initTelephonySubsection() {
+      return $q.all([
+        initBillingAccountSubsections(),
+        initRepaymentSubsection(),
+      ]);
     };
 
     self.init = function init(expand) {

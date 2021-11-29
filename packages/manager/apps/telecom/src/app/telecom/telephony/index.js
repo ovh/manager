@@ -4,6 +4,7 @@ import 'oclazyload';
 
 import svaWalletModule from './svaWallet';
 import billingAccount from './billingAccount';
+import repaymentsModule from './repayments';
 
 import './telecom-telephony.less';
 
@@ -15,6 +16,7 @@ angular
     'oc.lazyLoad',
     billingAccount,
     svaWalletModule,
+    repaymentsModule,
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {

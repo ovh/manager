@@ -1,0 +1,116 @@
+<section class="telephony-group-line-repayments">
+    <div class="text-center" data-ng-if="$ctrl.loading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <section class="widget-presentation" data-ng-hide="$ctrl.loading">
+        <h2 data-translate="telephony_repayments_title"></h2>
+        <p data-translate="telephony_repayments_subtitle"></p>
+
+        <tuc-toast-message></tuc-toast-message>
+
+        <div class="row">
+            <div class="col-md-6">
+                <dl>
+                    <dt data-translate="telephony_repayments_total"></dt>
+                    <dd
+                        data-ng-bind="$ctrl.svaWallet.balance.availableAmount.text"
+                    ></dd>
+                    <dt
+                        data-ng-if-start="$ctrl.nextRepaymentDate"
+                        data-translate="telephony_repayments_next"
+                    ></dt>
+                    <dd
+                        data-ng-if-end
+                        data-ng-bind="$ctrl.svaWallet.balance.pendingAmount.text"
+                    ></dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <dl>
+                    <dt data-translate="telephony_repayments_costs_title"></dt>
+                    <dd
+                        data-ng-bind="$ctrl.svaWallet.balance.costsAmount.text"
+                    ></dd>
+                </dl>
+            </div>
+        </div>
+
+        <oui-datagrid
+            class="my-5 text-wrap"
+            data-rows="$ctrl.repayments"
+            data-page-size="10"
+            data-on-page-change="$ctrl.onPageChanged($pagination)"
+            data-on-sort-change="$ctrl.onSortChanged($sort)"
+        >
+            <oui-datagrid-column
+                data-title="::'telephony_repayments_grid_called_number' | translate"
+                data-property="calledNumber"
+                data-type="string"
+                data-sortable
+                data-searchable
+                data-filterable
+            >
+                <span
+                    data-ng-bind="::$row.calledNumber | tucPhoneNumber"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="::'telephony_repayments_grid_calling_number' | translate"
+                data-property="callingNumber"
+                data-type="string"
+                data-sortable
+                data-searchable
+                data-filterable
+            >
+                <span
+                    data-ng-bind="::$row.callingNumber | tucPhoneNumber"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="::'telephony_repayments_grid_date' | translate"
+                data-property="startDate"
+                data-type="date"
+                data-sortable="desc"
+            >
+                <span
+                    data-ng-bind="::$row.startDate | date:'dd-MM-yyyy HH:mm:ss'"
+                ></span>
+            </oui-datagrid-column>
+            <!-- <oui-datagrid-column
+                data-title="::'telephony_repayments_grid_operator' | translate"
+                data-property="phoneOperatorName"
+                data-type="string"
+                data-sortable
+                data-searchable
+                data-filterable
+            ></oui-datagrid-column> -->
+            <oui-datagrid-column
+                data-title="::'telephony_repayments_grid_duration' | translate"
+                data-property="duration"
+                data-type="number"
+                data-sortable
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="::'telephony_repayments_grid_repayment' | translate"
+                data-property="buyAmount.value"
+                data-type="number"
+                data-sortable
+            >
+                <span data-ng-bind="::$row.buyAmount.value | currency"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="::'telephony_repayments_grid_status' | translate"
+                data-property="status"
+            >
+                <span
+                    class="oui-badge"
+                    data-ng-class="::'oui-badge_' + $ctrl.statusBadge($row.status)"
+                    data-translate="{{'telephony_repayments_grid_status_' + $ctrl.statusBadge($row.status)}}"
+                >
+                </span>
+            </oui-datagrid-column>
+        </oui-datagrid>
+    </section>
+</section>
+<!-- /.telephony-group-line-repayments. -->
