@@ -435,7 +435,7 @@
                                 ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-ng-if="hosting.hasCdn && cdnProperties.version === 'cdn-hosting'"
+                                data-ng-if="hosting.hasCdn"
                                 data-on-click="$ctrl.goToMultisite()"
                                 data-href="{{ $ctrl.multisiteLink }}"
                             >
@@ -457,14 +457,6 @@
                             >
                                 <span
                                     data-ng-bind=":: (isCdnFree ? 'hosting_dashboard_service_activate_cdn_option' : 'hosting_dashboard_service_order_cdn') | translate"
-                                ></span>
-                            </oui-action-menu-item>
-                            <oui-action-menu-item
-                                data-ng-if="hosting.hasCdn && cdnProperties.version === '2013v1' && flushCdnState === 'ok'"
-                                data-href="{{ $ctrl.flushCDNLink }}"
-                            >
-                                <span
-                                    data-translate="hosting_dashboard_service_flush_cdn"
                                 ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
