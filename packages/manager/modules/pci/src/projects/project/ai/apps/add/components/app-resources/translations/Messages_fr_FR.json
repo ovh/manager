@@ -1,5 +1,5 @@
 {
-  "pci_app_add_resources_usecase": "Type de d'instances",
+  "pci_app_add_resources_usecase": "Type d'instances",
   "pci_app_add_resources_usecase_item_cpu": "CPU",
   "pci_app_add_resources_usecase_item_gpu": "GPU",
   "pci_app_add_resources_proposed_title": "Gammes des instances disponibles",
