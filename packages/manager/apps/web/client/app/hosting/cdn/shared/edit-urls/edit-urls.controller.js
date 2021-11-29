@@ -21,6 +21,7 @@ export default class HostingCdnSharedEditUrlsController {
         list: this.model.options.cache.prewarm.api.config.resources.slice(),
       },
     };
+    this.editUrlsModelCopy = angular.copy(this.editUrlsModel);
   }
 
   buildPrewarmUrl() {
@@ -29,6 +30,15 @@ export default class HostingCdnSharedEditUrlsController {
     return `${protocol.selected.toLowerCase()}://${this.domainName}/${
       newUrl.resource
     }`;
+  }
+
+  isUrlListChanged() {
+    const { editUrlsModel, editUrlsModelCopy } = this;
+
+    return !angular.equals(
+      editUrlsModel.preloadedUrls.list,
+      editUrlsModelCopy.preloadedUrls.list,
+    );
   }
 
   onAddUrlClick() {
