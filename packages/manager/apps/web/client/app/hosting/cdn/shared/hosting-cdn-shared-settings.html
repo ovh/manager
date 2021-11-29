@@ -250,7 +250,8 @@
                     data-ng-bind="$ctrl.getSwitchBtnStatusText(queryString.api.enabled)"
                 ></strong>
 
-                <label class="mt-2 oui-select oui-select_l">
+                <label class="mt-2 oui-select oui-select_l"
+                       data-ng-if="queryString.api.enabled">
                     <select
                         class="oui-select__input"
                         data-ng-init="queryStringOption = 'queryStringOption'"
