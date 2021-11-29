@@ -10,5 +10,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ () => null,
     },
+    atInternet: {
+      rename: 'netapp::dashboard::volumes::dashboard::snapshots::create',
+    },
   });
 };
