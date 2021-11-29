@@ -544,6 +544,7 @@ export default class {
 
     // No CDN subscribed
     if (!cdnProperties) {
+      this.$scope.flushCdnState = this.$scope.HOSTING_FLUSH_STATE.OK;
       return angular.noop();
     }
 
