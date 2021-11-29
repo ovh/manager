@@ -20,12 +20,12 @@
 <div class="oui-field oui-field_auto">
     <div class="oui-field__control">
         <span
-            data-ng-if="$ctrl.svaWallet.company.reseller"
+            data-ng-if="!$ctrl.svaWallet.company.reseller"
             data-translate="telephony_billingAccount_svaWallet_kyc_identity_type_pro"
         ></span>
 
         <span
-            data-ng-if="!$ctrl.svaWallet.company.reseller"
+            data-ng-if="$ctrl.svaWallet.company.reseller"
             data-translate="telephony_billingAccount_svaWallet_kyc_identity_type_reseller"
         ></span>
     </div>
