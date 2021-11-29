@@ -45,7 +45,7 @@
   "hosting_cdn_shared_option_cache_rule_btn_add_rule": "Ajouter une règle",
   "hosting_cdn_shared_option_cache_rule_add_rule_max_rules": "L'offre CDN {{range}} vous permet d'ajouter jusqu'à {{maxItems}} règles maximum.",
   "hosting_cdn_shared_option_cache_rule_table_header_order_by": "Classement",
-  "hosting_cdn_shared_option_cache_rule_table_header_rule_name": "Nom de règle",
+  "hosting_cdn_shared_option_cache_rule_table_header_rule_name": "Nom de la règle",
   "hosting_cdn_shared_option_cache_rule_table_header_type": "Type",
   "hosting_cdn_shared_option_cache_rule_table_header_resource": "Ressource",
   "hosting_cdn_shared_option_cache_rule_table_header_options": "Options",

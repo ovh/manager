@@ -16,6 +16,7 @@ import {
   SHARED_CDN_SETTINGS_RULE_FACTOR_MINUTE,
   SHARED_CDN_SETTINGS_RULE_FACTOR_MONTH,
   SHARED_CDN_SETTINGS_RULE_FACTOR_SECOND,
+  SHARED_CDN_SETTINGS_RULES_NB_RULES_BY_PAGE,
 } from './hosting-cdn-shared-settings.constants';
 
 export default class CdnSharedSettingsController {
@@ -25,6 +26,9 @@ export default class CdnSharedSettingsController {
     this.$q = $q;
     this.$translate = $translate;
     this.HostingCdnSharedService = HostingCdnSharedService;
+
+    this.SHARED_CDN_RANGE = SHARED_CDN_RANGE;
+    this.SHARED_CDN_SETTINGS_RULES_NB_RULES_BY_PAGE = SHARED_CDN_SETTINGS_RULES_NB_RULES_BY_PAGE;
   }
 
   $onInit() {
@@ -156,7 +160,6 @@ export default class CdnSharedSettingsController {
     };
     this.copyModel = angular.copy(this.model);
 
-    this.SHARED_CDN_RANGE = SHARED_CDN_RANGE;
     this.redirections = [
       {
         key: this.$translate.instant(

@@ -326,130 +326,116 @@
 
         <!--CACHE RULES TABLE-->
         <div class="mb-4">
-            <p class="oui-heading_5 mb-1">
+            <p class="mb-1 oui-heading_5">
                 <strong data-translate="hosting_cdn_shared_option_cache_rule_title"></strong>
             </p>
-            <oui-button
-                class="mb-1"
-                variant="secondary"
-                icon-left="oui-icon-plus"
-                disabled="status.inProgress || ($ctrl.model.rules.length >= $ctrl.model.maxItems)"
-                data-ng-init="status = {inProgress: false}"
-                on-click="$ctrl.openCreateCacheRuleModal(status)"
-            >
-                <span
-                    data-translate="hosting_cdn_shared_option_cache_rule_btn_add_rule"
-                ></span>
-            </oui-button>
-            <div class="oui-field__helper">
-                <p
-                    data-translate="hosting_cdn_shared_option_cache_rule_add_rule_max_rules"
-                    data-translate-values="{ 'range': $ctrl.cdnRange, 'maxItems': $ctrl.model.maxItems }"
-                ></p>
-            </div>
-            <div>
-                <table class="oui-table">
-                    <thead class="oui-table__headers">
-                        <tr>
-                            <th
-                                class="oui-table__header oui-table__header_sortable"
-                                tabindex="0"
-                                data-translate="hosting_cdn_shared_option_cache_rule_table_header_order_by"
-                            ></th>
-                            <th
-                                class="oui-table__header"
-                                data-translate="hosting_cdn_shared_option_cache_rule_table_header_rule_name"
-                            ></th>
-                            <th
-                                class="oui-table__header"
-                                data-translate="hosting_cdn_shared_option_cache_rule_table_header_type"
-                            ></th>
-                            <th
-                                class="oui-table__header"
-                                data-translate="hosting_cdn_shared_option_cache_rule_table_header_resource"
-                            ></th>
-                            <th
-                                class="oui-table__header"
-                                data-translate="hosting_cdn_shared_option_cache_rule_table_time_to_live"
-                            ></th>
-                            <th
-                                class="oui-table__header"
-                                data-translate="hosting_cdn_shared_option_cache_rule_table_status"
-                            ></th>
-                            <th
-                                class="oui-table__header"
-                                data-translate="hosting_cdn_shared_option_cache_rule_table_header_options"
-                            ></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr
-                            class="oui-table__row"
-                            data-ng-repeat="rule in $ctrl.model.rules | orderBy:'config.priority'"
-                            data-ng-init="status = {inProgress: false}"
+            <p class="mb-3 oui-field__helper"
+               data-translate="hosting_cdn_shared_option_cache_rule_add_rule_max_rules"
+               data-translate-values="{ 'range': $ctrl.cdnRange, 'maxItems': $ctrl.model.maxItems }"
+            ></p>
+
+            <oui-datagrid data-page-size="{{$ctrl.SHARED_CDN_SETTINGS_RULES_NB_RULES_BY_PAGE}}"
+                          data-rows="$ctrl.model.rules">
+                <oui-datagrid-topbar>
+                    <oui-button
+                        class="mb-1"
+                        variant="secondary"
+                        icon-left="oui-icon-plus"
+                        disabled="status.inProgress || ($ctrl.model.rules.length >= $ctrl.model.maxItems)"
+                        data-ng-init="status = {inProgress: false}"
+                        on-click="$ctrl.openCreateCacheRuleModal(status)"
+                    >
+                        <span
+                            data-translate="hosting_cdn_shared_option_cache_rule_btn_add_rule"
+                        ></span>
+                    </oui-button>
+                </oui-datagrid-topbar>
+                <oui-datagrid-column
+                    data-title="'hosting_cdn_shared_option_cache_rule_table_header_order_by' | translate"
+                    data-property="config.priority"
+                    data-type="number"
+                    data-searchable
+                    data-sortable="asc"
+                    data-filterable
+                ></oui-datagrid-column>
+                <oui-datagrid-column
+                    data-title="'hosting_cdn_shared_option_cache_rule_table_header_rule_name' | translate"
+                    data-property="name"
+                    data-type="string"
+                    data-searchable
+                    data-sortable
+                    data-filterable
+                ></oui-datagrid-column>
+                <oui-datagrid-column
+                    data-title="'hosting_cdn_shared_option_cache_rule_table_header_type' | translate"
+                    data-property="config.patternType"
+                    data-type="string"
+                    data-searchable
+                    data-sortable
+                    data-filterable
+                >
+                    <span
+                        data-ng-bind=":: ('hosting_cdn_shared_option_cache_rule_table_items_type_' + $row.config.patternType) | translate">
+                    </span>
+                </oui-datagrid-column>
+                <oui-datagrid-column
+                    data-title="'hosting_cdn_shared_option_cache_rule_table_header_resource' | translate"
+                    data-property="pattern"
+                    data-type="string"
+                    data-searchable
+                    data-sortable
+                    data-filterable
+                >
+                </oui-datagrid-column>
+                <oui-datagrid-column
+                    data-title="'hosting_cdn_shared_option_cache_rule_table_time_to_live' | translate"
+                    data-property="config.ttl"
+                    data-type="string"
+                    data-searchable
+                    data-sortable
+                    data-filterable
+                >
+                    <span
+                        data-ng-bind="$ctrl.convertToUnitTime($row.config.ttl)"
+                    ></span>
+                </oui-datagrid-column>
+                <oui-datagrid-column
+                    data-title="'hosting_cdn_shared_option_cache_rule_table_status' | translate"
+                    data-property="name"
+                    data-type="boolean"
+                    data-searchable
+                    data-sortable
+                    data-filterable
+                >
+                    <div data-ng-init="status = {inProgress: false}">
+                        <oui-switch
+                            disabled="status.inProgress"
+                            data-model="$row.enabled"
+                            data-on-change="$ctrl.updateSwitchRule($row, modelValue, status)"
                         >
-                            <td class="oui-table__cell">
-                                <span
-                                    data-ng-bind="rule.config.priority"
-                                ></span>
-                            </td>
-                            <td class="oui-table__cell">
-                                <span data-ng-bind="::rule.name"></span>
-                            </td>
-                            <td class="oui-table__cell">
-                                <span
-                                    data-ng-bind=":: ('hosting_cdn_shared_option_cache_rule_table_items_type_' + rule.config.patternType) | translate">
-                                </span>
-                            </td>
-                            <td class="oui-table__cell">
-                                <span data-ng-bind="::rule.pattern"></span>
-                            </td>
-                            <td class="oui-table__cell">
-                                <span
-                                    data-ng-bind="$ctrl.convertToUnitTime(rule.config.ttl)"
-                                ></span>
-                            </td>
-                            <td class="oui-table__cell">
-                                <oui-switch
-                                    disabled="status.inProgress"
-                                    model="rule.enabled"
-                                    on-change="$ctrl.updateSwitchRule(rule, modelValue, status)"
-                                >
-                                </oui-switch>
-                                <span
-                                    ><strong
-                                        data-ng-bind="$ctrl.getSwitchBtnStatusText(rule.enabled)"
-                                    ></strong
-                                ></span>
-                            </td>
-                            <td class="oui-table__cell">
-                                <oui-action-menu
-                                    aria-label="Actions"
-                                    compact
-                                    disabled="$ctrl.disabled"
-                                >
-                                    <oui-action-menu-item
-                                        data-on-click="$ctrl.openUpdateCacheRuleModal(rule)"
-                                    >
-                                        <span
-                                            data-translate="hosting_cdn_shared_option_cache_rule_table_items_option_set_rule"
-                                        ></span>
-                                    </oui-action-menu-item>
-                                    <oui-action-menu-item
-                                        disabled="status.inProgress"
-                                        data-ng-init="status = {inProgress: false}"
-                                        on-click="$ctrl.removeRule(rule, status)"
-                                    >
-                                        <span
-                                            data-translate="hosting_cdn_shared_option_cache_rule_table_items_option_delete_rule"
-                                        ></span>
-                                    </oui-action-menu-item>
-                                </oui-action-menu>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                        </oui-switch>
+                        <span>
+                            <strong data-ng-bind="$ctrl.getSwitchBtnStatusText($row.enabled)"></strong>
+                        </span>
+                    </div>
+                </oui-datagrid-column>
+                <oui-action-menu data-placement="end"
+                                 data-compact
+                                 aria-label="{{:: 'hosting_cdn_shared_option_cache_rule_table_header_options' | translate}}">
+                    <oui-action-menu-item data-on-click="$ctrl.openUpdateCacheRuleModal($row)">
+                        <span
+                            data-translate="hosting_cdn_shared_option_cache_rule_table_items_option_set_rule"
+                        ></span>
+                    </oui-action-menu-item>
+                    <oui-action-menu-item data-ng-init="status = {inProgress: false}"
+                                          disabled="status.inProgress"
+                                          on-click="$ctrl.removeRule($row, status)">
+                        <span
+                            data-translate="hosting_cdn_shared_option_cache_rule_table_items_option_delete_rule"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-datagrid>
         </div>
 
         <!--SECURITY OPTIONS-->
