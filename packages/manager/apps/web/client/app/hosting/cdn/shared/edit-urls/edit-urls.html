@@ -3,7 +3,7 @@
         heading="{{:: 'hosting_cdn_shared_change_edit_urls_modal_title' | translate }}"
         primary-action="$ctrl.onEditUrlsConfirm()"
         primary-label="{{:: 'hosting_cdn_shared_change_edit_urls_modal_action_validate' | translate }}"
-        primary-disabled="$ctrl.editUrlsForm.$dirty"
+        primary-disabled="!$ctrl.isUrlListChanged()"
         secondary-action="$ctrl.onEditUrlsCancel()"
         secondary-label="{{:: 'hosting_cdn_shared_change_edit_urls_modal_action_cancel' | translate }}"
         on-dismiss="$ctrl.goBack()"
