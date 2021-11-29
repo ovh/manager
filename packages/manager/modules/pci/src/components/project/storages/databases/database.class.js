@@ -87,10 +87,7 @@ export default class Database extends Base {
   }
 
   setNodes(nodes) {
-    nodes.forEach((node) => {
-      const nodeObj = this.getNode(node.id);
-      return nodeObj ? nodeObj.updateData(node) : this.addNode(node);
-    });
+    this.nodes = nodes;
   }
 
   getEngineFromList(engines) {
