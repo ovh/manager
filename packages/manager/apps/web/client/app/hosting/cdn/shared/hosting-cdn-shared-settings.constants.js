@@ -5,6 +5,8 @@ export const SHARED_CDN_SETTINGS_RULE_FACTOR_MINUTE = 60;
 export const SHARED_CDN_SETTINGS_RULE_FACTOR_MONTH = 24 * 3600 * 30;
 export const SHARED_CDN_SETTINGS_RULE_FACTOR_SECOND = 1;
 
+export const SHARED_CDN_SETTINGS_RULES_NB_RULES_BY_PAGE = 5;
+
 export const SHARED_CDN_GET_MORE_INFO = {
   FR: 'https://www.ovh.com/fr/hebergement-web/cdn.xml',
   DE: 'https://www.ovh.de/hosting/cdn.xml',
