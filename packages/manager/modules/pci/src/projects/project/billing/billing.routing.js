@@ -1,11 +1,15 @@
 import { groupBy, sortBy, sumBy } from 'lodash';
 import { formatBillingDetails, formatPrice, getURL } from './billing.utils';
+import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.billing', {
     url: '/billing',
     componentProvider: /* @ngInject */ (isLegacyProject) =>
       isLegacyProject ? 'pciProjectBillingLegacy' : 'pciProjectBilling',
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.SETTINGS.BILLING);
+    },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('cpbc_billing_control'),

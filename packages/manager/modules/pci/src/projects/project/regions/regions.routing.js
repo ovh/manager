@@ -1,9 +1,13 @@
 import map from 'lodash/map';
+import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.regions', {
     url: '/regions',
     component: 'pciProjectRegions',
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.SETTINGS.REGION);
+    },
     resolve: {
       availableRegions: /* @ngInject */ (
         ovhManagerRegionService,

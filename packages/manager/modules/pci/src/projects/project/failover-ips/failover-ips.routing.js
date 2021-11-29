@@ -1,6 +1,7 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import map from 'lodash/map';
+import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.failover-ips', {
@@ -15,6 +16,9 @@ export default /* @ngInject */ ($stateProvider) => {
         dynamic: true,
         type: 'string',
       },
+    },
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.FAILOVER_IP);
     },
     redirectTo: (transition) =>
       transition

@@ -3,6 +3,7 @@ import template from './billing.html';
 
 export default {
   bindings: {
+    pciFeatureRedirect: '<',
     billingLink: '<',
     consumption: '<',
     consumptionDetails: '<',

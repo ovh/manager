@@ -1,4 +1,5 @@
 import map from 'lodash/map';
+import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.loadbalancer', {
@@ -9,6 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
         dynamic: true,
         type: 'string',
       },
+    },
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.LOAD_BALANCER);
     },
     redirectTo: (transition) =>
       transition

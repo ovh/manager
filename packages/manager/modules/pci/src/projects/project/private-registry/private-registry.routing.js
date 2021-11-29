@@ -1,5 +1,6 @@
 import map from 'lodash/map';
 import PrivateRegistry from './PrivateRegistry.class';
+import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.private-registry', {
@@ -10,6 +11,9 @@ export default /* @ngInject */ ($stateProvider) => {
         dynamic: true,
         type: 'string',
       },
+    },
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.PRIVATE_REGISTRY);
     },
     redirectTo: (transition) =>
       transition
