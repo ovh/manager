@@ -405,6 +405,10 @@
             data-offer="$ctrl.offer"
         >
         </pci-project-flavor-billing>
+
+        <pci-trusted-zone-banner
+            data-ng-if="$ctrl.isTrustedZone">
+        </pci-trusted-zone-banner>
     </oui-step-form>
 </oui-stepper>
 
