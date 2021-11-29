@@ -4,6 +4,8 @@ import { AxiosReketClient } from '@ovhcloud/reket-axios-client';
 import { DEFAULT_REQUEST_TYPES } from './constants';
 import { redirectToLoginPage, redirectToLogoutPage } from './redirections';
 
+export { redirectToLoginPage, redirectToLogoutPage } from './redirections';
+
 export const ssoAuthHookFn = (error) => {
   const rejectedError = error;
 
@@ -66,9 +68,4 @@ export const useReket = (enableSsoAuth = true, requestTypes = 'default') => {
   reketInstance.config.requestTypes.add(requestTypesConfig);
 
   return reketInstance;
-};
-
-export default {
-  useReket,
-  ssoAuthHookFn,
 };
