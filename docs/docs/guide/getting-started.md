@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - [Git](https://git-scm.com)
-- [Node.js](https://nodejs.org/en/) >= 12.13
+- [Node.js](https://nodejs.org/en/) >= 14.16
 - [Yarn](https://yarnpkg.com/lang/en/) >= 1.21.1
 - Supported OS: GNU/Linux, macOS and Windows
 
