@@ -62,7 +62,7 @@
     <oui-button
         data-variant="link"
         class="d-block"
-        data-ng-if="domain.cdn === CDN_STATUS.ACTIVE && cdnProperties.version === CDN_VERSION.CDN_HOSTING"
+        data-ng-if="domain.cdn === CDN_STATUS.ACTIVE"
         data-disabled="domain.status !== HOSTING_STATUS.CREATED"
         data-on-click="goToFlushCdn(domain)"
     >
