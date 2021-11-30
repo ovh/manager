@@ -6,6 +6,7 @@ export default {
   bindings: {
     automatedBackupOption: '<',
     goToVeeamMount: '<',
+    goToVeeamOrderPage: '<',
     goToVeeamRestore: '<',
     goToVeeamScheduleBackup: '<',
     goToVpsUpgrade: '<',
