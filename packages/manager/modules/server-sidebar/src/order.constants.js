@@ -424,7 +424,10 @@ export const ORDER_URLS = {
       US: 'https://us.ovhcloud.com/cloud/cloud-disk-array/',
     },
     veeam: {},
-    veeam_enterprise: {},
+    veeam_enterprise: {
+      US:
+        'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/veeam-enterprise/',
+    },
     vrack: {
       US:
         "https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
@@ -439,7 +442,7 @@ export const ORDER_URLS = {
       US: 'https://us.ovhcloud.com/manager/cloud/#/iaas/pci/offer',
     },
     publicCloudProjectOrder: {
-      FR: 'https://us.ovhcloud.com/manager/public-cloud/#!/pci/projects/new',
+      US: 'https://us.ovhcloud.com/manager/public-cloud/#/pci/projects/new',
     },
     publicCloudKubernetes: {},
     express_review_base: {
