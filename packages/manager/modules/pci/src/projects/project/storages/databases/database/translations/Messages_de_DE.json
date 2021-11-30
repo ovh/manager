@@ -9,5 +9,7 @@
   "pci_databases_dashboard_databases_tab_title": "Datenbanken",
   "pci_databases_dashboard_acl_tab_title": "ACL",
   "pci_databases_dashboard_topics_tab_title": "Topics",
-  "pci_databases_dashboard_indexes_tab_title": "Indizes"
+  "pci_databases_dashboard_indexes_tab_title": "Indizes",
+  "pci_databases_dashboard_service_integration_tab_title": "Integration von Diensten",
+  "pci_databases_dashboard_replications_tab_title": "Replikationsfluss"
 }

@@ -6,7 +6,7 @@
   "pci_database_add_step1_title": "Select your database type",
   "pci_database_add_step1_description": "Select a database type to suit your needs",
   "pci_database_add_step2_title": "Select a solution",
-  "pci_database_add_step3_title": "Select a location",
+  "pci_database_add_step3_title": "Select a region",
   "pci_database_add_step4_title": "Features",
   "pci_database_add_nodes_count": "Number of nodes",
   "pci_database_add_nodes_count_tooltip": "The number of nodes depends on the solution you have chosen. In the beta test version, this number cannot be changed at the creation step.",

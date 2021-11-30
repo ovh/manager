@@ -39,7 +39,7 @@
   "pci_databases_general_information_users": "{{userNumber}} utilizadores",
   "pci_databases_general_information_users_no_users": "Nenhum utilizador parametrizado",
   "pci_databases_general_information_manage_users": "Gerir utilizadores",
-  "pci_databases_general_information_ssl_mode": "SSL mode",
+  "pci_databases_general_information_ssl_mode": "Modo SSL",
   "pci_databases_general_information_required": "Obrigatório",
   "pci_databases_general_information_public_network_link": "Rede pública",
   "pci_databases_general_information_private_network_link": "Rede privada: vRack n.°{{vRackId}}",
@@ -58,5 +58,12 @@
   "pci_databases_general_information_certificate_tooltip": "O seu certificado: <code>{{certificate}}</code>",
   "pci_databases_general_information_SSL_TLS": "SSL/TLS",
   "pci_databases_general_information_node_type_disk_range": "{{coreNumber}} CPU/{{memorySize}} RAM/ {{storageMinSize}} a {{storageMaxSize}} de armazenamento SSD",
-  "pci_databases_general_information_service_URI_kibana_label": "URI do serviço Kibana"
+  "pci_databases_general_information_service_URI_kibana_label": "URI do serviço Kibana",
+  "pci_databases_general_information_node_type_cpu": "{{coreNumber}} CPU",
+  "pci_databases_general_information_node_type_memory": "{{memorySize}} RAM",
+  "pci_databases_general_information_node_type_storage": "{{storageSize}} de armazenamento SSD",
+  "pci_databases_general_information_node_type_storage_range": "{{storageMinSize}} a {{storageMaxSize}} de armazenamento SSD",
+  "pci_databases_general_information_service_integration_title": "Integração de serviços",
+  "pci_databases_general_information_kafka_mirror_maker_label": "Kafka MirrorMaker",
+  "pci_databases_general_information_kafka_mirror_maker_none": "Nenhum"
 }

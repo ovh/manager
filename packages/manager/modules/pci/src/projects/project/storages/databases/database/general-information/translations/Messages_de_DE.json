@@ -58,5 +58,12 @@
   "pci_databases_general_information_certificate_tooltip": "Ihr Zertifikat: <code>{{certificate}}</code>",
   "pci_databases_general_information_SSL_TLS": "SSL/TLS",
   "pci_databases_general_information_node_type_disk_range": "{{coreNumber}} CPU / {{memorySize}} RAM / {{storageMinSize}} bis {{storageMaxSize}} SSD Storage",
-  "pci_databases_general_information_service_URI_kibana_label": "URI des Dienstes Kibana"
+  "pci_databases_general_information_service_URI_kibana_label": "URI des Dienstes Kibana",
+  "pci_databases_general_information_node_type_cpu": "{{coreNumber}} CPU",
+  "pci_databases_general_information_node_type_memory": "{{memorySize}} RAM",
+  "pci_databases_general_information_node_type_storage": "{{storageSize}} SSD Storage",
+  "pci_databases_general_information_node_type_storage_range": "{{storageMinSize}} bis {{storageMaxSize}} SSD Storage",
+  "pci_databases_general_information_service_integration_title": "Integration von Diensten",
+  "pci_databases_general_information_kafka_mirror_maker_label": "Kafka MirrorMaker",
+  "pci_databases_general_information_kafka_mirror_maker_none": "Keiner"
 }

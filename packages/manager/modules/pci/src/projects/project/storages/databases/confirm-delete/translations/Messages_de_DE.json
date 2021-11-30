@@ -1,0 +1,10 @@
+{
+  "pci_database_confirm_delete_confirm": "Bestätigen",
+  "pci_database_confirm_delete_cancel": "Abbrechen",
+  "pci_database_confirm_delete": "Dienst löschen",
+  "pci_database_confirm_delete_description_1": "Folgende Dienste sind mit dem Dienst {{serviceName}} verbunden, den Sie löschen möchten:",
+  "pci_database_confirm_delete_description_2": "Sind Sie sicher, dass Sie den Dienst {{serviceName}} löschen möchten?",
+  "pci_database_confirm_delete_description_3": "Die Verbindung zu den genannten Diensten wird dann ebenfalls gelöscht (Replikation oder Integration).",
+  "pci_database_confirm_delete_success_message": "Ihr Dienst wurde gelöscht.",
+  "pci_database_confirm_delete_error_message": "Beim Löschen Ihres Dienstes ist ein Fehler aufgetreten: {{message}}"
+}

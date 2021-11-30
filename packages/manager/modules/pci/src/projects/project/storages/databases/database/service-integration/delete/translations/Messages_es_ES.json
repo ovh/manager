@@ -1,0 +1,8 @@
+{
+  "pci_databases_service_integration_delete_confirm": "Confirmar",
+  "pci_databases_service_integration_delete_cancel": "Cancelar",
+  "pci_databases_service_integration_delete": "Eliminar un servicio",
+  "pci_databases_service_integration_delete_description": "Va a eliminar el servicio Kafka. ¿Seguro que quiere continuar?",
+  "pci_databases_service_integration_delete_success_message": "El servicio Kafka {{service}} se ha eliminado correctamente.",
+  "pci_databases_service_integration_delete_error_message": "Se ha producido un error al eliminar su servicio: {{message}}"
+}
