@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip@2.1.0...@ovh-ux/manager-carrier-sip@2.1.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1258] ([c44bea0](https://github.com/ovh/manager/commit/c44bea0874e0c711f9a8dafe31cffc258f21c51c))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip@2.0.6...@ovh-ux/manager-carrier-sip@2.1.0) (2021-08-25)
 
 

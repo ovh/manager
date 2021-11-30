@@ -29,7 +29,7 @@
   "dedicatedCloud_OPERATIONS_error": "An error has occurred:",
   "dedicatedCloud_OPERATIONS_related_userId": "User: {{t0}}",
   "dedicatedCloud_OPERATIONS_related_orderId": "Order: {{t0}}",
-  "dedicatedCloud_OPERATIONS_related_datacenterId": "Datacentre: {{t0}}",
+  "dedicatedCloud_OPERATIONS_related_datacenterId": "Datacenter: {{t0}}",
   "dedicatedCloud_OPERATIONS_related_hostId": "Host: {{t0}}",
   "dedicatedCloud_OPERATIONS_related_filerId": "Datastore: {{t0}}",
   "dedicatedCloud_OPERATIONS_related_networkAccessId": "Network: {{t0}}",

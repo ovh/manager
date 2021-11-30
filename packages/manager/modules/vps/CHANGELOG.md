@@ -1,3 +1,39 @@
+## [2.17.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.17.8...@ovh-ux/manager-vps@2.17.9) (2021-11-23)
+
+
+### Bug Fixes
+
+* **upgrade:** fix injections in exit hook ([#6001](https://github.com/ovh/manager/issues/6001)) ([7ca5fbd](https://github.com/ovh/manager/commit/7ca5fbddb4e2df09caf78fafdf72e074cf0e4375))
+
+
+
+## [2.17.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.17.7...@ovh-ux/manager-vps@2.17.8) (2021-11-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1253] ([3c25560](https://github.com/ovh/manager/commit/3c25560870b866815b00c341c6c055896103a73f))
+
+
+
+## [2.17.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.17.6...@ovh-ux/manager-vps@2.17.7) (2021-11-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1253] ([d659951](https://github.com/ovh/manager/commit/d6599513a8a7978bb217d8d3391d5a72d8d5d3c9))
+
+
+
+## [2.17.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.17.5...@ovh-ux/manager-vps@2.17.6) (2021-11-04)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** track service type ([#5797](https://github.com/ovh/manager/issues/5797)) ([3abe911](https://github.com/ovh/manager/commit/3abe91191e0c13b23825ab42fed7ee9b3c2e5084))
+
+
+
 ## [2.17.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.17.4...@ovh-ux/manager-vps@2.17.5) (2021-10-26)
 
 

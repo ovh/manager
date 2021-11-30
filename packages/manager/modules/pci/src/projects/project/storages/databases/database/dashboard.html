@@ -1,7 +1,7 @@
 <oui-header data-heading="{{ $ctrl.database.description }}">
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-href="{{ $ctrl.generalInformationLink }}"
+            data-href="{{:: $ctrl.generalInformationLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.generalInformationLink"
             ><span
                 data-translate="pci_databases_dashboard_info_tab_title"
@@ -9,7 +9,7 @@
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-ng-if="$ctrl.isFeatureActivated('usersTab')"
-            data-href="{{ $ctrl.usersLink }}"
+            data-href="{{:: $ctrl.usersLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.usersLink"
             ><span
                 data-translate="pci_databases_dashboard_users_tab_title"
@@ -17,15 +17,31 @@
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-ng-if="$ctrl.isFeatureActivated('aclTab')"
-            data-href="{{ $ctrl.aclLink }}"
+            data-href="{{:: $ctrl.aclLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.aclLink"
             ><span
                 data-translate="pci_databases_dashboard_acl_tab_title"
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('userAclTab')"
+            data-href="{{:: $ctrl.userAclLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.userAclLink"
+            ><span
+                data-translate="pci_databases_dashboard_acl_tab_title"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('indexesTab')"
+            data-href="{{:: $ctrl.indexesLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.indexesLink"
+            ><span
+                data-translate="pci_databases_dashboard_indexes_tab_title"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
             data-ng-if="$ctrl.isFeatureActivated('databaseTab')"
-            data-href="{{ $ctrl.databasesLink }}"
+            data-href="{{:: $ctrl.databasesLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.databasesLink"
             ><span
                 data-translate="pci_databases_dashboard_databases_tab_title"
@@ -33,28 +49,28 @@
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-ng-if="$ctrl.isFeatureActivated('backupTab')"
-            data-href="{{ $ctrl.backupsLink }}"
+            data-href="{{:: $ctrl.backupsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.backupsLink"
             ><span
                 data-translate="pci_databases_dashboard_backup_tab_title"
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-href="{{ $ctrl.allowedIpsLink }}"
+            data-href="{{:: $ctrl.allowedIpsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.allowedIpsLink"
             ><span
                 data-translate="pci_databases_dashboard_allowed_ips_tab_title"
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-href="{{ $ctrl.logsLink }}"
+            data-href="{{:: $ctrl.logsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.logsLink"
             ><span
                 data-translate="pci_databases_dashboard_logs_tab_title"
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-href="{{ $ctrl.metricsLink }}"
+            data-href="{{:: $ctrl.metricsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.metricsLink"
             ><span
                 data-translate="pci_databases_dashboard_metrics_tab_title"
@@ -62,7 +78,7 @@
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-ng-if="$ctrl.isFeatureActivated('topicsTab')"
-            data-href="{{ $ctrl.topicsLink }}"
+            data-href="{{:: $ctrl.topicsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.topicsLink"
             ><span
                 data-translate="pci_databases_dashboard_topics_tab_title"

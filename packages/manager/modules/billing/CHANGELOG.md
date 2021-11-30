@@ -1,3 +1,81 @@
+# [0.6.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.6.0-alpha.1...@ovh-ux/manager-billing@0.6.0-alpha.2) (2021-11-22)
+
+
+### Bug Fixes
+
+* **accounts:** fix accounts alert issue ([811469a](https://github.com/ovh/manager/commit/811469ae2f384491a2519453b2843b23c7a65a0f)), closes [#DTRSD-50951](https://github.com/ovh/manager/issues/DTRSD-50951)
+* **billing:** history orderId number filtering ([2e72382](https://github.com/ovh/manager/commit/2e723827ec5022ba4c9c00c0347ec32b672dd9fa))
+* **i18n:** add missing translations [CDS 1253] ([3c25560](https://github.com/ovh/manager/commit/3c25560870b866815b00c341c6c055896103a73f))
+
+
+
+# [0.6.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.6.0-alpha.0...@ovh-ux/manager-billing@0.6.0-alpha.1) (2021-11-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1253] ([d659951](https://github.com/ovh/manager/commit/d6599513a8a7978bb217d8d3391d5a72d8d5d3c9))
+
+
+
+# [0.6.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.5.0-alpha.1...@ovh-ux/manager-billing@0.6.0-alpha.0) (2021-11-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1261] ([#5899](https://github.com/ovh/manager/issues/5899)) ([e35d431](https://github.com/ovh/manager/commit/e35d431d4955805e87c081fe2028a80a37dbdb7a))
+
+
+### Features
+
+* all dom termination enhancement ([#5574](https://github.com/ovh/manager/issues/5574)) ([7a2a4bd](https://github.com/ovh/manager/commit/7a2a4bdb084ceedcbb2307b9d22c8bf7ac81ca90))
+
+
+
+# [0.5.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.5.0-alpha.0...@ovh-ux/manager-billing@0.5.0-alpha.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1239] ([#5890](https://github.com/ovh/manager/issues/5890)) ([aa6da29](https://github.com/ovh/manager/commit/aa6da29a4acbbd8f8c1ef4fb781a9aed41e44149))
+
+
+
+# [0.5.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.4.0-alpha.0...@ovh-ux/manager-billing@0.5.0-alpha.0) (2021-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1246] ([489b27b](https://github.com/ovh/manager/commit/489b27bfd714edd65595b833780da751b9169899))
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+* **billing.autorenew:** track service type on resiliation ([#5798](https://github.com/ovh/manager/issues/5798)) ([c77eb21](https://github.com/ovh/manager/commit/c77eb212b8f99035a2f95a7af434599b7445738a))
+
+
+### Features
+
+* **billing.payment:** use feature flipping for set as default choice ([4c597ce](https://github.com/ovh/manager/commit/4c597ce796072ba1eef8481688bef57d3ff40504))
+
+
+
+# [0.4.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.3.0-alpha.2...@ovh-ux/manager-billing@0.4.0-alpha.0) (2021-10-28)
+
+
+### Features
+
+* **navbar.marketplace:** add marketplace to top navbar ([#5828](https://github.com/ovh/manager/issues/5828)) ([815c49f](https://github.com/ovh/manager/commit/815c49f4f3cf7a598aee79d99798033ac5952bba))
+
+
+
+# [0.3.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.3.0-alpha.1...@ovh-ux/manager-billing@0.3.0-alpha.2) (2021-10-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1239] ([51239cf](https://github.com/ovh/manager/commit/51239cfb10e50f2d78aa4b42ae07d8e6a2021bc7))
+* add corresponding translations for netapp product ([f6b7039](https://github.com/ovh/manager/commit/f6b70399ae82b7c8a091a18a8d71d387c3043674))
+
+
+
 # [0.3.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.3.0-alpha.0...@ovh-ux/manager-billing@0.3.0-alpha.1) (2021-10-26)
 
 

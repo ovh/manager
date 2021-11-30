@@ -10,7 +10,7 @@
   "dedicatedCloud_vmware_orderopt_load_prices_error": "An error has occurred retrieving the prices of this option:",
   "dedicatedCloud_vmware_orderopt_activate_success": "Option activation in progress",
   "dedicatedCloud_vmware_orderopt_activate_error": "An error has occurred activating the option:",
-  "dedicatedCloud_vmware_orderopt_datacenter_name": "Datacentre",
+  "dedicatedCloud_vmware_orderopt_datacenter_name": "Datacenter",
   "dedicatedCloud_vmware_orderopt_current_price": "Current billing month",
   "dedicatedCloud_vmware_orderopt_next_price": "Next billing month*"
 }

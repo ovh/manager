@@ -45,7 +45,7 @@ export default class ServicesActionsCtrl {
 
     const resiliationByEndRuleLink =
       (this.getResiliationLink && this.getResiliationLink()) ||
-      `${this.autorenewLink}/resiliation?serviceId=${this.service.id}&serviceName=${this.service.serviceId}`;
+      `${this.autorenewLink}/resiliation?serviceId=${this.service.id}&serviceName=${this.service.serviceId}${serviceTypeParam}`;
 
     switch (this.service.serviceType) {
       case SERVICE_TYPE.EXCHANGE:
@@ -69,6 +69,11 @@ export default class ServicesActionsCtrl {
           '#/sms/:serviceName/options/recredit',
           { serviceName: this.service.serviceId },
         );
+        break;
+      case SERVICE_TYPE.ALL_DOM:
+        this.resiliateLink = this.service.canResiliateByEndRule()
+          ? resiliationByEndRuleLink
+          : `${this.autorenewLink}/delete-all-dom?serviceId=${this.service.serviceId}&serviceType=${this.service.serviceType}`;
         break;
       default:
         this.resiliateLink = this.service.canResiliateByEndRule()

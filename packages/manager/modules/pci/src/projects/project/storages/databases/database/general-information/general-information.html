@@ -202,11 +202,22 @@
                     <oui-tile-description>
                         <oui-tile-description>
                             <span
+                                ng-if="$ctrl.getCurrentFlavor().minDiskSize === $ctrl.getCurrentFlavor().maxDiskSize"
                                 data-translate="pci_databases_general_information_node_type"
                                 data-translate-values="{
                                 coreNumber: $ctrl.getCurrentFlavor().core,
-                                memorySize: $ctrl.getCurrentFlavor().memory,
-                                storageSize: $ctrl.getCurrentFlavor().storage
+                                memorySize: ($ctrl.getCurrentFlavor().memory | cucBytes:2:false:'GB'),
+                                storageSize: ($ctrl.getCurrentFlavor().minDiskSize | cucBytes:2:false:'GB')
+                            }"
+                            ></span>
+                            <span
+                                ng-if="$ctrl.getCurrentFlavor().minDiskSize !== $ctrl.getCurrentFlavor().maxDiskSize"
+                                data-translate="pci_databases_general_information_node_type_disk_range"
+                                data-translate-values="{
+                                coreNumber: $ctrl.getCurrentFlavor().core,
+                                memorySize: ($ctrl.getCurrentFlavor().memory | cucBytes:2:false:'GB'),
+                                storageMinSize: ($ctrl.getCurrentFlavor().minDiskSize | cucBytes:2:false:'GB'),
+                                storageMaxSize: ($ctrl.getCurrentFlavor().maxDiskSize | cucBytes:2:false:'GB'),
                             }"
                             ></span>
                             <button
@@ -251,21 +262,6 @@
                                 data-model="$ctrl.database.uri"
                                 data-id="connection-mongo-shell"
                                 data-name="connection-mongo-shell"
-                            ></oui-clipboard>
-                        </oui-tile-description>
-                    </oui-tile-description>
-                </oui-tile-definition>
-
-                <oui-tile-definition
-                    data-term="{{:: 'pci_databases_general_information_replicate_URI_label' | translate }}"
-                    data-ng-if="$ctrl.isFeatureActivated('replicateURI')"
-                >
-                    <oui-tile-description>
-                        <oui-tile-description>
-                            <oui-clipboard
-                                data-model="$ctrl.connectionInformation.application"
-                                data-id="connection-application"
-                                data-name="connection-application"
                             ></oui-clipboard>
                         </oui-tile-description>
                     </oui-tile-description>
@@ -317,8 +313,23 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_service_URI_kibana_label' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('showKibanaURI')"
+                >
+                    <oui-tile-description>
+                        <oui-tile-description>
+                            <oui-clipboard
+                                data-model="$ctrl.database.additionalUris.kibana"
+                                data-id="connection-kibana-shell"
+                                data-name="connection-kibana-shell"
+                            ></oui-clipboard>
+                        </oui-tile-description>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_ssl_mode' | translate }}"
                     data-description="{{:: $ctrl.database.sslMode }}"
+                    data-ng-if="$ctrl.isFeatureActivated('showSSL')"
                 >
                     <oui-tile-description>
                         <span

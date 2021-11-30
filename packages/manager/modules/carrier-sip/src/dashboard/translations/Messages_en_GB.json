@@ -7,7 +7,7 @@
   "carrier_sip_dashboard_general_information_description": "Description",
   "carrier_sip_dashboard_general_information_max_calls_second": "Max number of calls/second",
   "carrier_sip_dashboard_general_information_max_concurrent_calls": "Number of concurrent calls",
-  "carrier_sip_dashboard_renewal": "Plan",
+  "carrier_sip_dashboard_renewal": "Subscription",
   "carrier_sip_dashboard_renewal_date": "Renewal date",
   "carrier_sip_dashboard_renewal_renew": "Manage my services ",
   "carrier_sip_dashboard_renewal_creation_date": "Creation date",

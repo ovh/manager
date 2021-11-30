@@ -72,7 +72,7 @@ class DedicatedCloudService {
                 serviceName: pccId,
               })
               .$promise.catch((error) =>
-                error.status === UNAVAILABLE_PCC_CODE
+                UNAVAILABLE_PCC_CODE.includes(error.status)
                   ? undefined
                   : this.$q.reject(error),
               ),
@@ -268,7 +268,7 @@ class DedicatedCloudService {
     );
   }
 
-  getComplianceRangeList(serviceName) {
+  getCommercialRangeCompliance(serviceName) {
     return this.OvhHttp.get(
       '/dedicatedCloud/{serviceName}/commercialRange/compliance',
       {
@@ -820,6 +820,18 @@ class DedicatedCloudService {
     });
   }
 
+  modifyPolicyAccess(serviceName, accessPolicy) {
+    return this.OvhHttp.put('/dedicatedCloud/{serviceName}', {
+      rootPath: 'apiv6',
+      urlParams: {
+        serviceName,
+      },
+      data: {
+        userAccessPolicy: camelCase(accessPolicy),
+      },
+    });
+  }
+
   modifyPolicyLogout(serviceName, logoutPolicy) {
     return this.OvhHttp.put('/dedicatedCloud/{serviceName}', {
       rootPath: 'apiv6',
@@ -1348,6 +1360,32 @@ class DedicatedCloudService {
     );
   }
 
+  /* ------- Management Fees -------*/
+  getManagementFee(serviceName, planCode, quantity) {
+    return this.OvhHttp.get(
+      `/order/upgrade/privateCloudManagementFee/${serviceName}%2Fmanagementfee/${planCode}`,
+      {
+        rootPath: 'apiv6',
+        params: {
+          quantity,
+        },
+      },
+    );
+  }
+
+  orderManagementFee(serviceName, planCode, quantity) {
+    return this.OvhHttp.post(
+      `/order/upgrade/privateCloudManagementFee/${serviceName}%2Fmanagementfee/${planCode}`,
+      {
+        rootPath: 'apiv6',
+        data: {
+          quantity,
+          autoPayWithPreferredPaymentMethod: true,
+        },
+      },
+    );
+  }
+
   /* ------- Operations -------*/
   getOperations(serviceName, opts) {
     return this.OvhHttp.get('/dedicatedCloud/{serviceName}/task', {
@@ -1486,6 +1524,15 @@ class DedicatedCloudService {
         taskId,
       },
     });
+  }
+
+  convertToGlobal(serviceName, filerId) {
+    return this.OvhHttp.post(
+      `/dedicatedCloud/${serviceName}/filer/${filerId}/convertToGlobal`,
+      {
+        rootPath: 'apiv6',
+      },
+    );
   }
 
   pollUserTasks(serviceName, opts) {

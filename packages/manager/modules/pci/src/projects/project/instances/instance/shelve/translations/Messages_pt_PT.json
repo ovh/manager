@@ -2,8 +2,9 @@
   "pci_projects_project_instances_instance_shelve_title": "Suspensão da sua instância",
   "pci_projects_project_instances_instance_shelve_submit_label": "Confirmar",
   "pci_projects_project_instances_instance_shelve_cancel_label": "Cancelar",
-  "pci_projects_project_instances_instance_shelve_content": "A sua instância {{ instance }} vai ser suspensa. Os recursos dedicados à sua instância Public Cloud serão libertados, mas o seu IP será conservado. Os dados do seu disco local serão armazenados e apenas o armazenamento utilizado será faturado. A duração da operação depende do tamanho do seu disco local. Poderá reativar a sua instância a qualquer momento.",
+  "pci_projects_project_instances_instance_shelve_content": "A sua instância {{ instance }} vai ser suspensa. Os recursos dedicados à sua instância Public Cloud serão libertados, mas o seu IP será conservado. Os dados do seu disco local serão armazenados, e apenas será faturado o armazenamento utilizado (1). A duração da operação depende do tamanho do seu disco local. Poderá reativar a sua instância a qualquer momento.",
   "pci_projects_project_instances_instance_shelve_success_inprogress_message": "A instância {{ instance }} está a ser suspensa.",
   "pci_projects_project_instances_instance_shelve_success_message": "A instância {{ instance }} foi suspensa.",
-  "pci_projects_project_instances_instance_shelve_error_message": "Ocorreu um erro ao suspender a instância {{ instance }}: {{ message }}."
+  "pci_projects_project_instances_instance_shelve_error_message": "Ocorreu um erro ao suspender a instância {{ instance }}: {{ message }}.",
+  "pci_projects_project_instances_instance_shelve_content_asterisk_1": "(1) Atenção: Para as instâncias com faturação mensal, a faturação clássica continuará a ser aplicada independentemente do estado do serviço."
 }

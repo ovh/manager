@@ -1,13 +1,13 @@
 {
-  "xdsl_tasks_list": "Task list ",
+  "xdsl_tasks_list": "Task list",
   "xdsl_tasks_name": "Name",
   "xdsl_tasks_id": "ID",
   "xdsl_tasks_status": "Status",
   "xdsl_tasks_status_todo": "To do",
-  "xdsl_tasks_status_doing": "In progress",
-  "xdsl_tasks_status_done": "Terminated",
+  "xdsl_tasks_status_doing": "Running",
+  "xdsl_tasks_status_done": "Closed",
   "xdsl_tasks_status_error": "Error",
   "xdsl_tasks_status_problem": "Issue",
-  "xdsl_no_task": "No task",
+  "xdsl_no_task": "No tasks",
   "xdsl_tasks_update_date": "Date of update"
 }

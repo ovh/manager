@@ -1,3 +1,22 @@
+## [1.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.4.1...@ovh-ux/manager-web-paas@1.4.2) (2021-11-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1253] ([d659951](https://github.com/ovh/manager/commit/d6599513a8a7978bb217d8d3391d5a72d8d5d3c9))
+
+
+
+## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.4.0...@ovh-ux/manager-web-paas@1.4.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+* **billing.autorenew:** track service type ([#5797](https://github.com/ovh/manager/issues/5797)) ([3abe911](https://github.com/ovh/manager/commit/3abe91191e0c13b23825ab42fed7ee9b3c2e5084))
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.3.1...@ovh-ux/manager-web-paas@1.4.0) (2021-10-06)
 
 

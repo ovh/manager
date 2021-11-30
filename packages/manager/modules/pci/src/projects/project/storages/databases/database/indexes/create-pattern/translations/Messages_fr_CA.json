@@ -1,0 +1,17 @@
+{
+  "pci_databases_indexes_create_pattern_confirm": "Créer",
+  "pci_databases_indexes_create_pattern_cancel": "Annuler",
+  "pci_databases_indexes_create_pattern": "Ajouter un modèle",
+  "pci_databases_indexes_create_pattern_pattern_placeholder": "Logs_*",
+  "pci_databases_indexes_create_pattern_description_1": "Vous pouvez utiliser ici un modèle de correspondance englobant, en d'autres mots logs_foo pour les index les plus anciens que vous voulez supprimer dès que le nombre d'index dépasse ce seuil. Notez que donner la valeur 0 induit que ce modèle ne sera pas évalué.",
+  "pci_databases_indexes_create_pattern_description_2": "Ce système peut être très utile quand par exemple OpenSearch est utilisé pour stocker des logs et qu'un index est créé une fois par jour. Cet usage vous permet alors de définir combien de jours de logs vous voulez garder.",
+  "pci_databases_indexes_create_pattern_description_example": "Exemples :",
+  "pci_databases_indexes_create_pattern_description_example_1": "<b>\"logs\"</b> correspondra avec l'index <b>\"logs\"</b> mais pas pour <b>\"logsfoo\"</b> ni <b>\"foologs\"</b>",
+  "pci_databases_indexes_create_pattern_description_example_2": "<b>\"logs*\"</b> correspondra avec les index <b>\"logsfoo\"</b> et <b>\"logs_foo_bar\"</b> mais pas pour <b>\"foologs\"</b>",
+  "pci_databases_indexes_create_pattern_description_example_3": "<b>\"*_logs_*\"</b> correspondra avec les index <b>\"foo_logs_bar\"</b> mais pas <b>\"foologsbar\"</b>",
+  "pci_databases_indexes_create_pattern_description_example_4": "<b>\"logs.?\"</b> correspondra avec l'index <b>\"logs.1\"</b> mais pas <b>\"logs.11\"</b>",
+  "pci_databases_indexes_create_pattern_label": "Modèle :",
+  "pci_databases_indexes_create_pattern_max_index": "Nombre maximal d'index :",
+  "pci_databases_indexes_create_pattern_success_message": "Votre nouveau modèle a été ajouté",
+  "pci_databases_indexes_create_pattern_error_message": "Une erreur est survenue lors de la création de votre modèle : {{message}}"
+}

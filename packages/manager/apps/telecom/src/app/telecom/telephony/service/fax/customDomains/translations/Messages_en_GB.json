@@ -1,16 +1,16 @@
 {
   "telephony_service_fax_custom_domains_informations": "Information",
-  "telephony_service_fax_custom_domains_informations_alert_info1": "Les domaines Ecofax Marque Blanche vous permettent d'envoyer des Fax en utilisant le service Ecofax via votre propre nom de domaine.<br/>Vous pourrez, ainsi, envoyer un fax en utilisant une adresse email du type <strong>0102030405@masociete.com</strong>.",
-  "telephony_service_fax_custom_domains_informations_alert_info2": "Le domaine que vous renseignez doit avoir un enregistrement MX 1 vers <strong>mail.ecofax.fr</strong>.",
-  "telephony_service_fax_custom_domains_configuration": "Domaines configurés",
+  "telephony_service_fax_custom_domains_informations_alert_info1": "The Ecofax White-Label domains allow you to send faxes using the Ecofax service via your own domain name.<br/>You can send a fax using an email address such as <strong>0102030405@mycompany.com</strong>.",
+  "telephony_service_fax_custom_domains_informations_alert_info2": "The domain you enter must have an MX 1 record to <strong>mail.ecofax.fr</strong>.",
+  "telephony_service_fax_custom_domains_configuration": "Configured domains",
   "telephony_service_fax_custom_domains_configuration_table_column_domain": "Domain",
   "telephony_service_fax_custom_domains_configuration_table_column_action": "Actions",
-  "telephony_service_fax_custom_domains_configuration_table_action_delete": "Supprimer le domaine {{ domain }} Ecofax Marque Blanche",
-  "telephony_service_fax_custom_domains_configuration_table_empty": "Aucun domaine n'est actuellement configuré.",
+  "telephony_service_fax_custom_domains_configuration_table_action_delete": "Delete Ecofax White-Label domain {{ domain }}",
+  "telephony_service_fax_custom_domains_configuration_table_empty": "No domain is currently configured.",
   "telephony_service_fax_custom_domains_configuration_form_add_label": "Add a domain",
-  "telephony_service_fax_custom_domains_configuration_form_add_success": "Votre domaine a bien été ajouté.",
-  "telephony_service_fax_custom_domains_configuration_form_add_error": "Oups ! Une erreur est survenue lors de l'ajout de votre domaine.",
-  "telephony_service_fax_custom_domains_configuration_form_remove_success": "Votre domaine a bien été supprimé.",
-  "telephony_service_fax_custom_domains_configuration_form_remove_error": "Oups ! Une erreur est survenue lors de la suppression de votre domaine.",
-  "telephony_service_fax_custom_domains_error_loading": "Oups ! Une erreur est survenue lors du chargement de vos domaines ecofax marque blanche."
+  "telephony_service_fax_custom_domains_configuration_form_add_success": "Your domain has been added.",
+  "telephony_service_fax_custom_domains_configuration_form_add_error": "Oops! An error occurred while adding your domain.",
+  "telephony_service_fax_custom_domains_configuration_form_remove_success": "Your domain has been deleted.",
+  "telephony_service_fax_custom_domains_configuration_form_remove_error": "Oops! An error occurred while deleting your domain.",
+  "telephony_service_fax_custom_domains_error_loading": "Oops! An error occurred while loading your Ecofax White-Label domains."
 }

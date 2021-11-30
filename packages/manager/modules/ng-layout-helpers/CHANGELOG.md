@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.2.1...@ovh-ux/manager-ng-layout-helpers@2.3.0) (2021-11-22)
+
+
+### Features
+
+* **list:** add column number filtering ([566d5a2](https://github.com/ovh/manager/commit/566d5a245a2ceeeb106ee93b1e64cb8b6bae8597))
+
+
+
 ## [2.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.2.0...@ovh-ux/manager-ng-layout-helpers@2.2.1) (2021-10-26)
 
 

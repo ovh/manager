@@ -5,7 +5,7 @@
   "telephony_line_tones_info3": "<strong>La musique d'attente</strong> : musique diffusée lorsque l'appelant est en attente. La musique d'attente sera diffusée si vous mettez en attente un interlocuteur lors d'une conversation téléphonique.",
   "telephony_line_tones_info4": "<strong>L'annonce sur ligne occupée</strong> : annonce diffusée lorsque la ligne est occupée. L'annonce sera diffusée lors d'un appel direct (sans passer par un easyPabx ou un miniPabx au préalable), aucune mise en relation avec l'appelé ne sera établie.",
   "telephony_line_tones_ringback": "Sonnerie de pré-décroché",
-  "telephony_line_tones_onhold": "Musique d’attente",
+  "telephony_line_tones_onhold": "Musique d'attente",
   "telephony_line_tones_callwaiting": "Annonce sur ligne occupée",
   "telephony_line_tones_type_custom_sound": "Personnalisée",
   "telephony_line_tones_type_none": "Par défaut",

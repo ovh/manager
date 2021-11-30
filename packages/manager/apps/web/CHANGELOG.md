@@ -1,3 +1,65 @@
+# [16.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.33.3...@ovh-ux/manager-web@16.0.0) (2021-11-22)
+
+
+### Bug Fixes
+
+* **deps:** bump validator from 11.1.0 to 13.7.0 range ([#5903](https://github.com/ovh/manager/issues/5903)) ([a5a74e5](https://github.com/ovh/manager/commit/a5a74e58db1859812eca5bc82c2847165e9ad6dd))
+* **hosting.multisite:** block some actions ([#5884](https://github.com/ovh/manager/issues/5884)) ([3cf3ac5](https://github.com/ovh/manager/commit/3cf3ac5ea25f30748fdc8d748c45cdf235357cc8))
+* remove unused translations [CDS] ([6e32d4a](https://github.com/ovh/manager/commit/6e32d4a33b4598c51cf422a3fb4a52f0dd88c1c3))
+* **i18n:** add missing translations [CDS 1253] ([3c25560](https://github.com/ovh/manager/commit/3c25560870b866815b00c341c6c055896103a73f))
+* **i18n:** add missing translations [CDS 1262] ([e58f8bd](https://github.com/ovh/manager/commit/e58f8bda871b4505a524bebda8dc43bfe7dcc1bc))
+
+
+### Features
+
+* **domain:** removal of relative notion ([#5704](https://github.com/ovh/manager/issues/5704)) ([c10d725](https://github.com/ovh/manager/commit/c10d72556241c77bb0af160cc02c1d0799914407))
+* **email-domain:** module initial import ([3a2f122](https://github.com/ovh/manager/commit/3a2f122be15f1b236e4da765206eefc8d14e62dd))
+* **web:** import email-domain module ([a4a6a3b](https://github.com/ovh/manager/commit/a4a6a3b0be069340929b87eacb6e6b9736bee826))
+
+
+### BREAKING CHANGES
+
+* **email-domain:** move email domain section to email-domain module
+
+
+
+## [15.33.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.33.2...@ovh-ux/manager-web@15.33.3) (2021-11-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1253] ([d659951](https://github.com/ovh/manager/commit/d6599513a8a7978bb217d8d3391d5a72d8d5d3c9))
+
+
+
+## [15.33.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.33.1...@ovh-ux/manager-web@15.33.2) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+* **web.hosting.cdn:** remove simulate call to check for cdn upgrades ([#5814](https://github.com/ovh/manager/issues/5814)) ([b22cf96](https://github.com/ovh/manager/commit/b22cf9688d3219c25c3988d8558a94d985612480))
+
+
+
+## [15.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.33.0...@ovh-ux/manager-web@15.33.1) (2021-11-02)
+
+
+### Bug Fixes
+
+* **private-database:** remove period on quota action ([#5861](https://github.com/ovh/manager/issues/5861)) ([b3a88f9](https://github.com/ovh/manager/commit/b3a88f95eb5c88b1e19660db824638516ef5db69))
+
+
+
+# [15.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.32.0...@ovh-ux/manager-web@15.33.0) (2021-10-28)
+
+
+### Features
+
+* **navbar.marketplace:** add marketplace to top navbar ([#5828](https://github.com/ovh/manager/issues/5828)) ([815c49f](https://github.com/ovh/manager/commit/815c49f4f3cf7a598aee79d99798033ac5952bba))
+
+
+
 # [15.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.31.2...@ovh-ux/manager-web@15.32.0) (2021-10-26)
 
 

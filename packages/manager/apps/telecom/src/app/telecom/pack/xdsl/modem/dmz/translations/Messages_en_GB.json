@@ -1,13 +1,13 @@
 {
   "xdsl_modem_dmz_status": "DMZ",
   "xdsl_modem_dmz_description": "The DMZ section (or demilitarised zone) on OVHcloud modems allows you to make a machine fully accessible from outside your local network. Warning: To make the DMZ effective, the firewall will have to be disabled, and the machine will have to manage its own protection.",
-  "xdsl_modem_dmz_warning": "Attention, tout changement ultérieur dans la configuration de votre DMZ (modification/suppression) entraînera une indisponibilité de votre connexion durant quelques minutes.",
-  "xdsl_modem_dmz_dmz_address": "Adresse IP de la DMZ",
-  "xdsl_modem_dmz_modem_address": "Adresse IP du modem",
+  "xdsl_modem_dmz_warning": "Warning: any subsequent change to your DMZ configuration (modification/deletion) will result in your connection being unavailable for a few minutes.",
+  "xdsl_modem_dmz_dmz_address": "DMZ IP address",
+  "xdsl_modem_dmz_modem_address": "Modem IP address",
   "xdsl_modem_dmz_mask_address": "Subnet Mask",
   "xdsl_modem_dmz_none": "None",
-  "xdsl_modem_dmz_unknown": "Inconnue",
-  "xdsl_modem_dmz_an_error_ocurred": "[DMZ] Une erreur est survenue !",
-  "xdsl_modem_dmz_doing": "Modification de l'IP DMZ en cours",
-  "xdsl_modem_dmz_delete_really": "Etes-vous sûr(e) de vouloir supprimer la DMZ ?"
+  "xdsl_modem_dmz_unknown": "Unknown",
+  "xdsl_modem_dmz_an_error_ocurred": "[DMZ] An error occurred.",
+  "xdsl_modem_dmz_doing": "Modifying DMZ IP address...",
+  "xdsl_modem_dmz_delete_really": "Are you sure you want to delete the DMZ?"
 }

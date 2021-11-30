@@ -1,3 +1,12 @@
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database-app@1.5.0...@ovh-ux/manager-enterprise-cloud-database-app@1.5.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database-app@1.4.0...@ovh-ux/manager-enterprise-cloud-database-app@1.5.0) (2021-10-06)
 
 

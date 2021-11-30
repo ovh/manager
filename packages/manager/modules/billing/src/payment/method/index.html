@@ -21,6 +21,15 @@
         ></span>
     </oui-message>
 
+    <oui-message
+        class="mb-4"
+        data-type="error"
+        data-dismissable
+        data-ng-if="$ctrl.errors.load"
+    >
+        <span data-translate="billing_payment_method_load_error"></span>
+    </oui-message>
+
     <oui-message class="mb-5" data-type="info" data-ng-if="$ctrl.guide">
         <span
             data-translate="billing_payment_method_autorenew_guide_help"
@@ -54,6 +63,15 @@
     </div>
 
     <h2 data-translate="billing_payment_method_title"></h2>
+
+    <p data-ng-if="$ctrl.hasAllowDefaultChoiceForFirstPaymentMethod">
+        <span
+            data-translate="billing_payment_method_information_add_ovh_sas"
+        ></span>
+        <span
+            data-translate="billing_payment_method_information_add_default"
+        ></span>
+    </p>
 
     <oui-datagrid data-rows="$ctrl.paymentMethods">
         <oui-datagrid-column

@@ -1,3 +1,21 @@
+# [12.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.6.0...@ovh-ux/manager-core@12.7.0) (2021-11-30)
+
+
+### Features
+
+* change of url to status-ovhcloud ([#5958](https://github.com/ovh/manager/issues/5958)) ([cf8051d](https://github.com/ovh/manager/commit/cf8051d1aae60356d3f43218b459a2b3532a959b))
+
+
+
+# [12.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.5.1...@ovh-ux/manager-core@12.6.0) (2021-10-27)
+
+
+### Features
+
+* add global guides ([381dbfd](https://github.com/ovh/manager/commit/381dbfdb61b03fe489dc66712c8ff4258fa63c4a))
+
+
+
 ## [12.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.5.0...@ovh-ux/manager-core@12.5.1) (2021-10-26)
 
 

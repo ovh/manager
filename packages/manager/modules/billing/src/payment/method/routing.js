@@ -14,6 +14,8 @@ export default /* @ngInject */ (
   $urlRouterProvider,
 ) => {
   const name = 'app.account.billing.payment.method';
+  const allowDefaultChoiceForFirstPaymentMethodFeatureName =
+    'billing:allowDefaultChoiceForFirstPaymentMethod';
 
   $stateProvider.state(name, {
     url: '/method',
@@ -25,6 +27,10 @@ export default /* @ngInject */ (
         }
         return $state.href(`${name}.${action}`, params);
       },
+
+      errors: () => ({
+        load: false,
+      }),
 
       goToSplitPaymentAction: /* @ngInject */ ($state, splitPayment) => () =>
         splitPayment.canBeDeactivated
@@ -39,6 +45,7 @@ export default /* @ngInject */ (
         OVH_PAYMENT_MEAN_STATUS,
         OVH_PAYMENT_METHOD_TYPE,
         ovhPaymentMethod,
+        errors,
       ) =>
         ovhPaymentMethod
           .getAllPaymentMethods({
@@ -51,7 +58,13 @@ export default /* @ngInject */ (
               }
               return status !== OVH_PAYMENT_MEAN_STATUS.BLOCKED_FOR_INCIDENTS;
             }),
-          ),
+          )
+          .catch(() => {
+            Object.assign(errors, {
+              load: true,
+            });
+            return [];
+          }),
 
       goPaymentList: /* @ngInject */ ($timeout, Alerter, $state) => (
         message = null,
@@ -78,6 +91,18 @@ export default /* @ngInject */ (
           });
         }
       },
+      hasAllowDefaultChoiceForFirstPaymentMethod: /* @ngInject */ (
+        ovhFeatureFlipping,
+      ) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(
+            allowDefaultChoiceForFirstPaymentMethodFeatureName,
+          )
+          .then((feature) =>
+            feature.isFeatureAvailable(
+              allowDefaultChoiceForFirstPaymentMethodFeatureName,
+            ),
+          ),
       isSplitPaymentAvailable: /* @ngInject */ (
         $http,
         currentUser,

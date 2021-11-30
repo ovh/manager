@@ -1,3 +1,12 @@
+## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip-app@2.4.0...@ovh-ux/manager-carrier-sip-app@2.4.1) (2021-11-22)
+
+
+### Bug Fixes
+
+* **deps:** bump validator from 11.1.0 to 13.7.0 range ([#5903](https://github.com/ovh/manager/issues/5903)) ([a5a74e5](https://github.com/ovh/manager/commit/a5a74e58db1859812eca5bc82c2847165e9ad6dd))
+
+
+
 # [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip-app@2.3.0...@ovh-ux/manager-carrier-sip-app@2.4.0) (2021-10-06)
 
 

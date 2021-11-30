@@ -1,0 +1,9 @@
+{
+  "netapp_snapshot_policies_breadcrumb": "Snapshot policies",
+  "netapp_snapshot_policies_title": "Manage snapshot policies",
+  "netapp_snapshot_policies_information": "Easily create and manage your snapshot policies, in terms of frequency and retention periods. You can then apply them to specific volumes. Snapshots use the storage capacity of your Enterprise File Storage solution.",
+  "netapp_snapshot_policies_create": "Create a new snapshot policy",
+  "netapp_snapshot_policies_delete_success": "The {{snapshotPolicyName}} snapshot policy has been deleted.",
+  "netapp_snapshot_policies_delete_error": "An error has occurred deleting the snapshot policy.",
+  "netapp_snapshot_policies_fetch_error": "An error has occurred retrieving your snapshot policies."
+}

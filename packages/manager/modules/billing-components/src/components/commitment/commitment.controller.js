@@ -1,7 +1,4 @@
-import { groupBy, map, sortBy } from 'lodash-es';
 import { EngagementConfiguration } from '@ovh-ux/manager-models';
-import { convertLanguageFromOVHToBCP47 } from '@ovh-ux/manager-config';
-import CommitmentDuration from './CommitmentDuration.class';
 
 export default class {
   /* @ngInject */
@@ -43,6 +40,7 @@ export default class {
       .then(({ service, options }) => {
         this.service = service;
         this.service.addOptions(options);
+        this.trackPage();
         return this.BillingCommitmentService.getCatalogPrice(
           this.service,
           this.user,
@@ -60,30 +58,21 @@ export default class {
       });
   }
 
+  trackPage() {
+    this.atInternet.trackPage({
+      name: `${
+        this.pageTrackingPrefix ? this.pageTrackingPrefix : this.trackingPrefix
+      }::${this.service.isEngaged() ? 'recommitment' : 'commitment'}`,
+      type: 'navigation',
+    });
+  }
+
   getAvailableEngagements() {
     return this.BillingCommitmentService.getServiceAvailableEngagements(
       this.service,
     )
       .then((availableEngagements) => {
-        this.availableEngagements = groupBy(
-          availableEngagements,
-          'configuration.duration',
-        );
-        this.availableDurations = sortBy(
-          map(
-            this.availableEngagements,
-            (commitment, duration) =>
-              new CommitmentDuration(duration, commitment, this.defaultPrice),
-          ),
-          'monthlyDuration',
-        );
-        this.model.duration =
-          this.availableDurations.find(
-            (duration) => duration.duration === this.duration,
-          ) || this.availableDurations[0];
-        [this.model.engagement] = this.availableEngagements[
-          this.model.duration.duration
-        ];
+        this.availableEngagements = availableEngagements;
       })
       .catch((error) => {
         this.error = error.data?.message || error.message;
@@ -91,43 +80,10 @@ export default class {
   }
 
   onDurationChange(duration) {
-    const commitments = this.availableEngagements[duration.duration];
-    [this.model.engagement] = commitments;
-  }
-
-  getDiscount() {
-    const commitments = this.availableEngagements[this.model.duration.duration];
-    const upfront = commitments.find((commitment) => commitment.isUpfront());
-    const periodic = commitments.find((commitment) => commitment.isPeriodic());
-
-    if (upfront && periodic) {
-      this.discount = Math.floor(
-        (periodic.totalPrice.value / upfront.totalPrice.value - 1) * 100,
-      );
-      this.savings = periodic.getPriceDiff(upfront);
-      let totalSavings = this.savings.value;
-      totalSavings += this.model.duration.savings
-        ? this.model.duration.savings.value
-        : 0;
-      this.upfrontSavings = {
-        amountSaved: this.getPriceAsText(
-          totalSavings,
-          upfront.pricing.price.currencyCode,
-        ),
-        amountToPay: upfront.totalPrice.text,
-      };
-    }
-  }
-
-  getPriceAsText(price, currencyCode) {
-    return Intl.NumberFormat(
-      convertLanguageFromOVHToBCP47(this.coreConfig.getUserLocale()),
-      {
-        style: 'currency',
-        currency: currencyCode,
-        currencyDisplay: 'narrowSymbol',
-      },
-    ).format(price);
+    this.pricingModes = this.availableEngagements.filter(
+      (commitment) => commitment.durationInMonths === duration.monthlyDuration,
+    );
+    [this.model.engagement] = this.pricingModes;
   }
 
   getStartingDate() {
@@ -152,7 +108,6 @@ export default class {
 
   onPaymentStepFocus() {
     this.isPaymentStepLoading = true;
-    this.getDiscount();
     return this.ovhPaymentMethod
       .getDefaultPaymentMethod()
       .then((paymentMethod) => {
@@ -168,9 +123,9 @@ export default class {
 
   commit() {
     this.atInternet.trackClick({
-      name: `${
-        this.trackingPrefix
-      }::commit::confirm_${this.model.duration.duration.toLowerCase()}_${
+      name: `${this.trackingPrefix}::${
+        this.service.isEngaged() ? 'recommit' : 'commit'
+      }::confirm_${this.model.duration.duration.toLowerCase()}_${
         this.model.engagement.commitmentType
       }`,
       type: 'action',

@@ -1,10 +1,10 @@
 {
   "telephony_alias_sva_generator_config": "Configuration",
   "telephony_alias_sva_generator": "Infobox generator",
-  "telephony_alias_sva_generator_fill": "Couleur de cartouche",
-  "telephony_alias_sva_generator_fill_gradient": "Dégradé couleur",
-  "telephony_alias_sva_generator_fill_simple": "Couleur sans dégradé",
-  "telephony_alias_sva_generator_fill_black": "Aplat noir",
-  "telephony_alias_sva_generator_format": "Affichage du numéro",
-  "telephony_alias_sva_generator_unsupported": "Le cartouche n'est disponible que pour les numéros spéciaux."
+  "telephony_alias_sva_generator_fill": "Infobox colour",
+  "telephony_alias_sva_generator_fill_gradient": "Colour gradient",
+  "telephony_alias_sva_generator_fill_simple": "Block colour",
+  "telephony_alias_sva_generator_fill_black": "Fill black",
+  "telephony_alias_sva_generator_format": "Display number",
+  "telephony_alias_sva_generator_unsupported": "The label is only available for special numbers."
 }

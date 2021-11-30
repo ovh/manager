@@ -1,5 +1,5 @@
 import { DedicatedServer } from '@ovh-ux/manager-models';
-import { NEW_RANGE } from './server.constants';
+import { SERVICE_TYPE } from './server.constants';
 
 import Ola from '../interfaces/ola.class';
 
@@ -19,8 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .catch(() => null),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
-      isLegacy: /* @ngInject */ (server) =>
-        !NEW_RANGE.PATTERN.test(server.commercialRange),
+      isLegacy: /* @ngInject */ (server) => server.newUpgradeSystem === false,
       interfaces: /* @ngInject */ (
         serverName,
         DedicatedServerInterfacesService,
@@ -61,6 +60,7 @@ export default /* @ngInject */ ($stateProvider) => {
               ? 'FORCED_MANUAL'
               : serviceInfo.status,
           statusHelp: resiliationCapability?.billingInformation || null,
+          serviceType: SERVICE_TYPE,
         })),
       specifications: /* @ngInject */ (serverName, Server) =>
         Server.getBandwidth(serverName),

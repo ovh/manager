@@ -1,5 +1,5 @@
 {
-  "pci_databases_general_information_info_title": "Szczegóły klastra",
+  "pci_databases_general_information_info_title": "Informacje dotyczące klastra",
   "pci_databases_general_information_name": "Nazwa",
   "pci_databases_general_information_cluster_id": "ID klastra",
   "pci_databases_general_information_status_label": "Status",
@@ -28,11 +28,11 @@
   "pci_databases_general_information_generate_password": "Aby móc korzystać z klastra danych, wygeneruj ponownie hasło administratora.",
   "pci_databases_general_information_delete_nodes": "Usuń węzeł",
   "pci_databases_general_information_node_type_label": "Model węzła",
-  "pci_databases_general_information_node_type": "{{coreNumber}} CPU / {{memorySize}} GB RAM / {{storageSize}} GB Storage SSD",
+  "pci_databases_general_information_node_type": "{{coreNumber}} CPU / {{memorySize}} RAM / {{storageSize}} Storage SSD",
   "pci_databases_general_information_upgrade_node": "Ulepsz model węzła",
   "pci_databases_general_information_service_URI_label": "URI usługi",
   "pci_databases_general_information_replicate_URI_label": "URI replica",
-  "pci_databases_general_information_database_name": "Database Name",
+  "pci_databases_general_information_database_name": "Nazwa bazy danych",
   "pci_databases_general_information_database_host": "Host",
   "pci_databases_general_information_database_port": "Port",
   "pci_databases_general_information_user": "1 użytkownik",
@@ -55,5 +55,8 @@
   "pci_databases_general_information_certificate_label": "Certyfikat CA",
   "pci_databases_general_information_certificate_link": "Wyświetl",
   "pci_databases_general_information_certificate_download": "Pobierz",
-  "pci_databases_general_information_certificate_tooltip": "Twój certyfikat: <code>{{certificate}}</code>"
+  "pci_databases_general_information_certificate_tooltip": "Twój certyfikat: <code>{{certificate}}</code>",
+  "pci_databases_general_information_SSL_TLS": "SSL/TLS",
+  "pci_databases_general_information_node_type_disk_range": "{{coreNumber}} CPU / {{memorySize}} RAM / od {{storageMinSize}} do {{storageMaxSize}} Storage SSD",
+  "pci_databases_general_information_service_URI_kibana_label": "URI usługi Kibana"
 }

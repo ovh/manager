@@ -20,7 +20,7 @@
   "dedicatedCloud_options_user_phonenumber": "Mobile",
   "dedicatedCloud_options_info": "The price of the hosts will increase when they are next renewed: ",
   "dedicatedCloud_options_order_host_name": "Name",
-  "dedicatedCloud_options_order_datacenter_name": "Datacentre",
+  "dedicatedCloud_options_order_datacenter_name": "Datacenter",
   "dedicatedCloud_options_order_current_price": "Current billing month",
   "dedicatedCloud_options_order_next_price": "Next month's billing ",
   "dedicatedCloud_options_order_price_hourly": "{{t0}}/hour",

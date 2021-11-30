@@ -13,7 +13,7 @@
   "pci_database_common_status_ERROR_INCONSISTENT_SPEC": "Error",
   "pci_database_common_status_PENDING": "Queued",
   "pci_database_common_status_CREATING": "Creating...",
-  "pci_database_common_status_UPDATING": "Updated",
+  "pci_database_common_status_UPDATING": "Updating",
   "pci_database_common_delete_database": "Delete",
   "pci_database_common_price_starts_from": "From",
   "pci_database_common_price": "Price",
@@ -25,6 +25,7 @@
   "pci_database_list_upgrade_version_database": "Upgrade version",
   "pci_database_list_upgrade_plan_database": "Solution upgrade",
   "pci_database_list_upgrade_node_database": "Node template upgrade",
-  "pci_database_node_type": "{{coreNumber}} CPU / {{memorySize}}GB RAM / {{storageSize}}GB SSD storage",
-  "pci_database_node_type_label": "Node template"
+  "pci_database_node_type": "{{coreNumber}} CPU / {{memorySize}} RAM / {{storageSize}} SSD storage",
+  "pci_database_node_type_label": "Node template",
+  "pci_database_node_type_range": "{{coreNumber}} CPU / {{memorySize}} RAM / from {{storageMinSize}} to {{storageMaxSize}} SSD storage"
 }

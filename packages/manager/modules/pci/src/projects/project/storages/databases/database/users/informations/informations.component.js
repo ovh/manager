@@ -7,6 +7,7 @@ const component = {
     database: '<',
     goBack: '<',
     projectId: '<',
+    trackDashboard: '<',
     user: '<',
   },
   controller,

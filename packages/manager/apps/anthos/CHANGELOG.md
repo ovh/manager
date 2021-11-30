@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos-app@1.0.2...@ovh-ux/manager-anthos-app@1.0.3) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+
+
+
 ## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos-app@1.0.1...@ovh-ux/manager-anthos-app@1.0.2) (2021-10-11)
 
 
@@ -29,9 +38,3 @@
 ### BREAKING CHANGES
 
 * add anthos module
-
-Signed-off-by: Ganesh Kumar <ganesh.kumar@ovhcloud.com>
-Signed-off-by: mohammed-zahaf <mohammed.zahaf.ext@ovhcloud.com>
-
-
-

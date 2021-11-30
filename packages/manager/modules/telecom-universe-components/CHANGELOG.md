@@ -1,3 +1,30 @@
+## [7.5.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.5.1...@ovh-ux/ng-ovh-telecom-universe-components@7.5.2) (2021-11-22)
+
+
+### Bug Fixes
+
+* **deps:** bump validator from 11.1.0 to 13.7.0 range ([#5903](https://github.com/ovh/manager/issues/5903)) ([a5a74e5](https://github.com/ovh/manager/commit/a5a74e58db1859812eca5bc82c2847165e9ad6dd))
+
+
+
+## [7.5.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.5.0...@ovh-ux/ng-ovh-telecom-universe-components@7.5.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1258] ([c44bea0](https://github.com/ovh/manager/commit/c44bea0874e0c711f9a8dafe31cffc258f21c51c))
+
+
+
+# [7.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.4.1...@ovh-ux/ng-ovh-telecom-universe-components@7.5.0) (2021-10-28)
+
+
+### Features
+
+* **navbar.marketplace:** add marketplace to top navbar ([#5828](https://github.com/ovh/manager/issues/5828)) ([815c49f](https://github.com/ovh/manager/commit/815c49f4f3cf7a598aee79d99798033ac5952bba))
+
+
+
 ## [7.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.4.0...@ovh-ux/ng-ovh-telecom-universe-components@7.4.1) (2021-10-26)
 
 

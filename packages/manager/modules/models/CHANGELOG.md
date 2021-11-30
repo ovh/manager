@@ -1,3 +1,12 @@
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.12.1...@ovh-ux/manager-models@1.13.0) (2021-10-27)
+
+
+### Features
+
+* add engagement component ([79f603c](https://github.com/ovh/manager/commit/79f603c4d811b60a4416e1a9cf499ffc4365d250))
+
+
+
 ## [1.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.12.0...@ovh-ux/manager-models@1.12.1) (2021-10-26)
 
 

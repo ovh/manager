@@ -17,9 +17,11 @@
   "dedicatedCloud_tab_datastores_hourly_usage_update": "As of {{t0}}",
   "dedicatedCloud_tab_datastores_status": "Status",
   "dedicatedCloud_tab_datastores_status_ADDING": "Adding...",
-  "dedicatedCloud_tab_datastores_status_DELIVERED": "Active",
+  "dedicatedCloud_tab_datastores_status_DELIVERED": "Enabled",
   "dedicatedCloud_tab_datastores_status_ERROR": "Error",
   "dedicatedCloud_tab_datastores_status_REMOVING": "Deleting...",
   "dedicatedCloud_tab_datastores_status_UNKNOWN": "Unknown",
-  "dedicatedCloud_tab_datastores_empty": "No datastore"
+  "dedicatedCloud_tab_datastores_empty": "No datastore",
+  "dedicatedCloud_convert_datastore_to_global": "Convert datastore to global",
+  "dedicatedCloud_tab_datastores_global_information": "A global datastore is a datastore mounted on all virtual clusters/datacentres of a VMware infrastructure, i.e. shared between multiple vDCs. Some datastores may not be compatible, in which case you can order new datastores and use VMware vMotion Storage. To do this, please refer to our guides for <a href=\"{{ billingGuideUrl }}\" target=\"_blank\">information on Private Cloud</a> and <a href=\"{{ vMotionGuideUrl }}\" target=\"_blank\">VMware vMotion Storage</a> billing."
 }

@@ -1,3 +1,26 @@
+# [3.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.14.0...@ovh-ux/manager-server-sidebar@3.15.0) (2021-10-28)
+
+
+### Features
+
+* **navbar.marketplace:** add marketplace to top navbar ([#5828](https://github.com/ovh/manager/issues/5828)) ([815c49f](https://github.com/ovh/manager/commit/815c49f4f3cf7a598aee79d99798033ac5952bba))
+
+
+
+# [3.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.13.4...@ovh-ux/manager-server-sidebar@3.14.0) (2021-10-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1239] ([51239cf](https://github.com/ovh/manager/commit/51239cfb10e50f2d78aa4b42ae07d8e6a2021bc7))
+
+
+### Features
+
+* add storage and backup config ([e4a3fc2](https://github.com/ovh/manager/commit/e4a3fc263ac3c64d4cbc7f02c5b0ac265f24ed82))
+
+
+
 ## [3.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.13.3...@ovh-ux/manager-server-sidebar@3.13.4) (2021-10-26)
 
 

@@ -28,7 +28,7 @@
   "pci_databases_general_information_generate_password": "Sie müssen Ihr Admin-Passwort neu erstellen, um Ihren Datencluster zu verwenden.",
   "pci_databases_general_information_delete_nodes": "Node löschen",
   "pci_databases_general_information_node_type_label": "Node-Modell",
-  "pci_databases_general_information_node_type": "{{coreNumber}} CPU / {{memorySize}} GB RAM / {{storageSize}} GB SSD-Storage",
+  "pci_databases_general_information_node_type": "{{coreNumber}} CPU / {{memorySize}} RAM / {{storageSize}} SSD Storage",
   "pci_databases_general_information_upgrade_node": "Node-Modell upgraden",
   "pci_databases_general_information_service_URI_label": "Dienst-URI",
   "pci_databases_general_information_replicate_URI_label": "Replica-URI",
@@ -55,5 +55,8 @@
   "pci_databases_general_information_certificate_label": "CA-Zertifikat",
   "pci_databases_general_information_certificate_link": "Anzeigen",
   "pci_databases_general_information_certificate_download": "Herunterladen",
-  "pci_databases_general_information_certificate_tooltip": "Ihr Zertifikat: <code>{{certificate}}</code>"
+  "pci_databases_general_information_certificate_tooltip": "Ihr Zertifikat: <code>{{certificate}}</code>",
+  "pci_databases_general_information_SSL_TLS": "SSL/TLS",
+  "pci_databases_general_information_node_type_disk_range": "{{coreNumber}} CPU / {{memorySize}} RAM / {{storageMinSize}} bis {{storageMaxSize}} SSD Storage",
+  "pci_databases_general_information_service_URI_kibana_label": "URI des Dienstes Kibana"
 }

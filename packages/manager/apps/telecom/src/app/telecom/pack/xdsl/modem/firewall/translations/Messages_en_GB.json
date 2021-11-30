@@ -1,11 +1,11 @@
 {
-  "xdsl_modem_firewall_title": "Niveau du Pare-feu",
-  "xdsl_modem_firewall_description": "Protège votre réseau local de connexions externes indésirables.",
-  "xdsl_modem_firewall_level_blockall": "Imperméable",
+  "xdsl_modem_firewall_title": "Firewall level",
+  "xdsl_modem_firewall_description": "Protect your local network from unwanted external connections.",
+  "xdsl_modem_firewall_level_blockall": "Block all",
   "xdsl_modem_firewall_level_disabled": "Disabled",
   "xdsl_modem_firewall_level_normal": "Normal",
-  "xdsl_modem_firewall_change": "Niveau",
-  "xdsl_modem_firewall_doing": "Modification du pare-feu en cours",
+  "xdsl_modem_firewall_change": "Level",
+  "xdsl_modem_firewall_doing": "Modifying firewall...",
   "xdsl_modem_firewall_submit": "Confirm",
-  "xdsl_modem_firewall_an_error_ocurred": "FIREWALLj: Une erreur est survenue !"
+  "xdsl_modem_firewall_an_error_ocurred": "FIREWALL: An error occurred."
 }

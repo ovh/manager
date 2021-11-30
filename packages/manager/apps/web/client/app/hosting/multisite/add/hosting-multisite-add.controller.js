@@ -77,7 +77,7 @@ angular
         countryIp: null,
         firewall: 'NONE',
         ownLog: null,
-        ssl: false,
+        ssl: true,
         runtime: null,
       };
 

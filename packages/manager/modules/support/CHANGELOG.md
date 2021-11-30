@@ -1,3 +1,32 @@
+## [1.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.6.5...@ovh-ux/manager-support@1.6.6) (2021-11-22)
+
+
+### Bug Fixes
+
+* **tickets.new-ticket:** add anthos translation ([#5913](https://github.com/ovh/manager/issues/5913)) ([842989c](https://github.com/ovh/manager/commit/842989c7b45a158c067a5ad9e39c0d1b9b81990f))
+* remove unused translations [CDS] ([6e32d4a](https://github.com/ovh/manager/commit/6e32d4a33b4598c51cf422a3fb4a52f0dd88c1c3))
+
+
+
+## [1.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.6.4...@ovh-ux/manager-support@1.6.5) (2021-11-04)
+
+
+### Bug Fixes
+
+* **support.tickets.new:** add missing services type content ([#5856](https://github.com/ovh/manager/issues/5856)) ([0556c43](https://github.com/ovh/manager/commit/0556c43170f57fcd78ef6c3ef8312204ede8e56a))
+
+
+
+## [1.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.6.3...@ovh-ux/manager-support@1.6.4) (2021-10-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1239] ([51239cf](https://github.com/ovh/manager/commit/51239cfb10e50f2d78aa4b42ae07d8e6a2021bc7))
+* add corresponding translations for netapp product ([f6b7039](https://github.com/ovh/manager/commit/f6b70399ae82b7c8a091a18a8d71d387c3043674))
+
+
+
 ## [1.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.6.2...@ovh-ux/manager-support@1.6.3) (2021-10-26)
 
 

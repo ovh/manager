@@ -4,7 +4,7 @@
   "nasha_dashboard_update_success_disabled": "Usage notification has been disabled.",
   "nasha_dashboard_update_error": "An error has occurred modifying HA-NAS details.",
   "nasha_dashboard_ip": "IP",
-  "nasha_dashboard_datacenter": "Datacentre",
+  "nasha_dashboard_datacenter": "Datacenter",
   "nasha_dashboard_capacity": "Total capacity",
   "nasha_dashboard_capacity_delay_text": "Storage information is not updated in real-time.",
   "nasha_dashboard_creation_date": "Creation date",

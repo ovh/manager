@@ -1,12 +1,12 @@
 {
-  "telephony_group_billing_repayment_history_title": "History of repayments",
-  "telephony_group_billing_repayment_history_init_error": "Oups ! Une erreur est survenue lors de l'initialisation de l'historique des reversements.",
-  "telephony_group_billing_repayment_history_download_error": "Oups ! Une erreur est survenue lors du téléchargement du détail du reversement.",
-  "telephony_group_billing_repayment_history_informations": "Cette section concerne les reversements des appels reçus sur les numéros spéciaux de votre groupe. Pour accéder aux coûts générés par les appels entrants,",
-  "telephony_group_billing_repayment_history_informations_link": "accédez aux coûts SVA de votre groupe.",
-  "telephony_group_billing_repayment_history_list_title": "Reversements du groupe {{ groupName }}",
+  "telephony_group_billing_repayment_history_title": "Repayment history",
+  "telephony_group_billing_repayment_history_init_error": "Oops! An error occurred while initialising the repayment history.",
+  "telephony_group_billing_repayment_history_download_error": "Oops! An error occurred while downloading the repayment details.",
+  "telephony_group_billing_repayment_history_informations": "This section contains the repayments of calls received on special numbers in your group. To access the costs incurred by incoming calls,",
+  "telephony_group_billing_repayment_history_informations_link": "access the SVA costs of your group.",
+  "telephony_group_billing_repayment_history_list_title": "Repayments for {{ groupName }} group",
   "telephony_group_billing_repayment_history_list_date": "Request date",
   "telephony_group_billing_repayment_history_list_price": "Amount",
-  "telephony_group_billing_repayment_history_list_no_results": "Aucun reversement trouvé",
-  "telephony_group_billing_repayment_history_list_download_csv": "Détails du reversement au format CSV"
+  "telephony_group_billing_repayment_history_list_no_results": "No repayment found",
+  "telephony_group_billing_repayment_history_list_download_csv": "Repayment details (.CSV)"
 }

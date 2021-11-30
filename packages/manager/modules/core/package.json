@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core",
-  "version": "12.5.1",
+  "version": "12.7.0",
   "private": true,
   "description": "Core functionalities shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/core#readme",
@@ -40,7 +40,7 @@
     "@ovh-ux/manager-models": "^1.0.0",
     "@ovh-ux/ng-ovh-http": "^5.0.3",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.5.1",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.5.2",
     "@ovh-ux/ui-kit": "^5.0.0",
     "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.7.5",

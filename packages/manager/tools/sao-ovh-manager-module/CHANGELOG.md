@@ -1,3 +1,12 @@
+## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-module@1.2.2...@ovh-ux/sao-ovh-manager-module@1.2.3) (2021-10-27)
+
+
+### Bug Fixes
+
+* **template.listing:** update lazyloading template ([dc7f435](https://github.com/ovh/manager/commit/dc7f435fbb0b84c3dc89cd18394e85ed907894d0))
+
+
+
 ## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-module@1.2.1...@ovh-ux/sao-ovh-manager-module@1.2.2) (2021-08-25)
 
 

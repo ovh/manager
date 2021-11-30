@@ -486,7 +486,7 @@
   "privateDatabase_tabs_list_extensions_enable_error": "Erro ao processar ativação da extensão",
   "privateDatabase_tabs_list_extensions_disable_success": "Extensão desativada",
   "privateDatabase_tabs_list_extensions_disable_error": "Erro ao processar desativação da extensão",
-  "privateDatabase_quota_refresh": "Atualizar o limite da sua base de dados.",
+  "privateDatabase_quota_refresh": "Atualizar o limite da sua base de dados",
   "privateDatabase_quota_refresh_success": "O pedido de atualização do seu limite será tido em conta dentro de alguns instantes.",
   "privateDatabase_quota_refresh_fail": "Ocorreu um erro aquando do pedido de atualização do seu limite."
 }

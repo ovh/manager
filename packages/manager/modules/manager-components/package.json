@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-components",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "private": true,
   "description": "A set of reusable UI components, to be used across the OVH Manager",
   "repository": {
@@ -18,7 +18,7 @@
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
-    "@ovh-ux/ng-translate-async-loader": "^2.1.2",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.3",
     "@ovh-ux/ui-kit": "^5.0.0",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.4"

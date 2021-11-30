@@ -1,0 +1,7 @@
+{
+  "billing_commitment_payment_description": "Uzyskaj dodatkowy rabat {{discount}}% na wybrany serwer, płacąc całą kwotę z góry.",
+  "billing_commitment_payment_periodic": "Kwota miesięczna",
+  "billing_commitment_payment_upfront": "Kwota całkowita",
+  "billing_commitment_payment_upfront_savings": "Oszczędź dodatkowe {{price}}",
+  "billing_commitment_payment_monthly": "{{ price }}/m-c przez {{duration}} miesiący(e)"
+}

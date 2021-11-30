@@ -36,7 +36,23 @@ export default {
       SN: `${helpRoot}/fr-sn`,
       TN: `${helpRoot}/fr-tn`,
     },
-    tasks: 'http://travaux.ovh.net/',
+    tasks: 'https://www.status-ovhcloud.com/',
+    expressOrder: {
+      DE: 'https://www.ovh.de/order/express/#/new/express/resume',
+      EN: 'https://www.ovh.co.uk/order/express/',
+      ES: 'https://www.ovh.es/order/express/',
+      FR: 'https://www.ovh.com/fr/order/express/#/new/express/resume',
+      GB: 'https://www.ovh.co.uk/order/express/',
+      IE: 'https://www.ovh.ie/order/express/',
+      IT: 'https://www.ovh.it/order/express/',
+      MA: 'https://www.ovh.com/ma/order/express/',
+      NL: 'https://www.ovh.nl/order/express/',
+      PL: 'https://www.ovh.pl/order/express/',
+      PT: 'https://www.ovh.pt/order/express/',
+      RU: 'https://www.ovh.ie/order/express/',
+      SN: 'https://www.ovh.sn/order/express/',
+      TN: 'https://www.ovh.com/tn/order/express/',
+    },
   },
   CA: {
     guides: {
@@ -59,7 +75,16 @@ export default {
       WE: `${helpRoot}/en`,
       WS: `${helpRoot}/es`,
     },
-    tasks: 'http://travaux.ovh.net/',
+    tasks: 'https://www.status-ovhcloud.com/',
+    expressOrder: {
+      ASIA: 'https://ca.ovh.com/asia/order/express/',
+      AU: 'https://ca.ovh.com/au/order/express/',
+      CA: 'https://ca.ovh.com/en/order/express/',
+      QC: 'https://ca.ovh.com/fr/order/express/',
+      SG: 'https://ca.ovh.com/sg/order/express/',
+      WE: 'https://us.ovh.com/us/order/express/',
+      WS: 'https://us.ovh.com/us/es/order/express/',
+    },
   },
   US: {
     guides: {
@@ -71,5 +96,6 @@ export default {
       US: 'https://us.ovhcloud.com/support',
     },
     tasks: '',
+    expressOrder: 'https://us.ovhcloud.com/order/express/#/express/',
   },
 };

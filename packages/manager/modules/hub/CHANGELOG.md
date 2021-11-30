@@ -1,3 +1,22 @@
+## [3.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.2.2...@ovh-ux/manager-hub@3.2.3) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+
+
+
+## [3.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.2.1...@ovh-ux/manager-hub@3.2.2) (2021-10-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1239] ([51239cf](https://github.com/ovh/manager/commit/51239cfb10e50f2d78aa4b42ae07d8e6a2021bc7))
+* add corresponding translations for netapp product ([f6b7039](https://github.com/ovh/manager/commit/f6b70399ae82b7c8a091a18a8d71d387c3043674))
+
+
+
 ## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.2.0...@ovh-ux/manager-hub@3.2.1) (2021-10-25)
 
 

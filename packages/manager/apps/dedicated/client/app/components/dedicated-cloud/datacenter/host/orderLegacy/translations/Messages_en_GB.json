@@ -16,5 +16,5 @@
   "dedicatedCloud_configuration_order_hosts_quantity_info": "You need to have at least three vSAN hosts in your infrastructure for vSAN to work.",
   "dedicatedCloud_configuration_order_hosts_billing_quantity": "Number of hosts to order:",
   "dedicatedCloud_configuration_order_hosts_finish_success": "The host order number <a href='{{t0}}' target='_blank'>{{t1}}</a> has been registered.",
-  "dedicatedCloud_configuration_order_hosts_finish_fail": "An error has occurred ordering a host on the datacentre {{t0}}"
+  "dedicatedCloud_configuration_order_hosts_finish_fail": "An error has occurred ordering a host on the datacenter {{t0}}"
 }

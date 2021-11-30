@@ -1,0 +1,39 @@
+<oui-modal
+    data-heading="{{:: 'autorenew_all_dom_terminate_title' | translate }}"
+    data-primary-action="$ctrl.cancelServices()"
+    data-primary-label="{{:: 'autorenew_all_dom_terminate_confirm' | translate }}"
+    data-primary-disabled="$ctrl.domainsSelected.length > 0"
+    data-secondary-label="{{:: 'autorenew_all_dom_terminate_cancel' | translate }}"
+    data-secondary-action="$ctrl.goBack()"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading"
+>
+    <oui-message class="mb-3" data-type="info">
+        <span data-translate="autorenew_all_dom_terminate_info"></span>
+    </oui-message>
+    <p data-translate="autorenew_all_dom_terminate_choose_option"></p>
+    <oui-checkbox name="all_dom_case" data-model="$ctrl.cancelAllDom">
+        <span
+            data-translate="autorenew_all_dom_terminate_select_all_dom"
+        ></span>
+    </oui-checkbox>
+    <div class="ml-3 all-dom-line-separator">
+        <oui-checkbox
+            name="all_dom_case"
+            data-model="$ctrl.allDomainsSelected"
+            on-change="$ctrl.toggleSelectAllDomains(modelValue)"
+        >
+            <span
+                data-translate="autorenew_all_dom_terminate_select_all_domains"
+            ></span>
+        </oui-checkbox>
+        <oui-checkbox
+            data-ng-repeat="domain in $ctrl.domains track by domain.name"
+            name="{{ 'domain-' + domain.name }}"
+            model="domain.selected"
+            on-change="$ctrl.toggleSelectDomain(modelValue)"
+        >
+            <span data-ng-bind="domain.name"></span>
+        </oui-checkbox>
+    </div>
+</oui-modal>

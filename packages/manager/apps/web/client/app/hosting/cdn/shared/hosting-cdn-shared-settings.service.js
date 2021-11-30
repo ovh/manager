@@ -213,7 +213,7 @@ export default class HostingCdnSharedService {
    * @param {string} serviceName: product name
    * @returns {*}
    */
-  simulateUpgrade(serviceName, parentServiceId) {
+  hasAvailableUpgrades(serviceName, parentServiceId) {
     const data = { serviceId: null };
     return this.ovhManagerProductOffersActionService
       .getAvailableOptions(parentServiceId)
@@ -227,22 +227,9 @@ export default class HostingCdnSharedService {
           serviceId,
         );
       })
-      .then((upgrades) => {
-        data.addonPlan = find(
-          upgrades,
-          ({ planCode }) => !planCode.includes('business'),
-        );
-        return this.simulateCartForUpgrade(
-          serviceName,
-          data.addonPlan,
-          data.serviceId,
-        );
-      })
-      .then((simulate) => ({
-        cart: simulate.order,
-        addonPlan: data.addonPlan,
-        serviceId: data.serviceId,
-      }));
+      .then((upgrades) =>
+        upgrades.some(({ planCode }) => !planCode.includes('business')),
+      );
   }
 
   /**

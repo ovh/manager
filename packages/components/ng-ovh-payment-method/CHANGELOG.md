@@ -1,3 +1,22 @@
+# [9.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.3.6...@ovh-ux/ng-ovh-payment-method@9.0.0) (2021-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1246] ([489b27b](https://github.com/ovh/manager/commit/489b27bfd714edd65595b833780da751b9169899))
+
+
+### Features
+
+* **ng-ovh-payment-method:** add flag for automatic default payment ([760989c](https://github.com/ovh/manager/commit/760989cc364601a94024b405ce132b32cd46629c))
+
+
+### BREAKING CHANGES
+
+* **ng-ovh-payment-method:** the component ovh-payment-method-register now has a flag to determine if the first payment method to register will be set by default. If the flag is set to false, the choice will be possible even if no default payment method exists.
+
+
+
 ## [8.3.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.3.5...@ovh-ux/ng-ovh-payment-method@8.3.6) (2021-10-26)
 
 

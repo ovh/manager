@@ -1,3 +1,85 @@
+## [5.49.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.49.0...@ovh-ux/manager-pci@5.49.1) (2021-11-30)
+
+
+### Bug Fixes
+
+* **storage.databases:** fix nodes polling ([#6018](https://github.com/ovh/manager/issues/6018)) ([97f525f](https://github.com/ovh/manager/commit/97f525f92f476dc5992ef9377cfcc3ec2b84bfe5))
+
+
+
+# [5.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.48.3...@ovh-ux/manager-pci@5.49.0) (2021-11-23)
+
+
+### Features
+
+* **storage.databases:** add new engine ([#5605](https://github.com/ovh/manager/issues/5605)) ([e53b01d](https://github.com/ovh/manager/commit/e53b01d9bd92fedf8ef5878b125ee13d871d1dfb))
+
+
+
+## [5.48.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.48.2...@ovh-ux/manager-pci@5.48.3) (2021-11-22)
+
+
+### Bug Fixes
+
+* **deps:** bump validator from 11.1.0 to 13.7.0 range ([#5903](https://github.com/ovh/manager/issues/5903)) ([a5a74e5](https://github.com/ovh/manager/commit/a5a74e58db1859812eca5bc82c2847165e9ad6dd))
+* **i18n:** add missing translations [CDS 1253] ([3c25560](https://github.com/ovh/manager/commit/3c25560870b866815b00c341c6c055896103a73f))
+* **i18n:** add missing translations [CDS 1280] ([cc08b39](https://github.com/ovh/manager/commit/cc08b39585c05c838d4599a4a4665fda15945eb1))
+* **pci.image:** add missing translations ([7e11afc](https://github.com/ovh/manager/commit/7e11afcfc4ffbbff38b1c88551c1037ede69effd))
+* **pci.instance:** allow resize to non flex flavor ([#5961](https://github.com/ovh/manager/issues/5961)) ([973c8a6](https://github.com/ovh/manager/commit/973c8a6b93c4166d97c8b431190dfe557618292b))
+* remove unused translations [CDS] ([6e32d4a](https://github.com/ovh/manager/commit/6e32d4a33b4598c51cf422a3fb4a52f0dd88c1c3))
+
+
+
+## [5.48.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.48.1...@ovh-ux/manager-pci@5.48.2) (2021-11-15)
+
+
+### Bug Fixes
+
+* **storages.databases.components.plan-list:** update badge type ([#5927](https://github.com/ovh/manager/issues/5927)) ([d3f7c52](https://github.com/ovh/manager/commit/d3f7c52ea82155fea46a9d60cf522c0fd3597c32))
+
+
+
+## [5.48.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.48.0...@ovh-ux/manager-pci@5.48.1) (2021-11-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1253] ([d659951](https://github.com/ovh/manager/commit/d6599513a8a7978bb217d8d3391d5a72d8d5d3c9))
+
+
+
+# [5.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.47.2...@ovh-ux/manager-pci@5.48.0) (2021-11-08)
+
+
+### Features
+
+* **storage.databases:** display current offer for plans and flavors ([#5801](https://github.com/ovh/manager/issues/5801)) ([9d0054f](https://github.com/ovh/manager/commit/9d0054ff30de5f5dbed81515860c1cd750532ef9))
+
+
+
+## [5.47.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.47.1...@ovh-ux/manager-pci@5.47.2) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+
+
+
+## [5.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.47.0...@ovh-ux/manager-pci@5.47.1) (2021-11-02)
+
+
+### Bug Fixes
+
+* **pci:** linux image distribution update ([#5847](https://github.com/ovh/manager/issues/5847)) ([015350d](https://github.com/ovh/manager/commit/015350d53a34915ef4463ea12827b576a927cf43))
+* **pci.instance.shelve:** improve shelve message ([#5773](https://github.com/ovh/manager/issues/5773)) ([1ac2b55](https://github.com/ovh/manager/commit/1ac2b55678d74cccbb30b8696c6b7969d77e7b00))
+* **storage.databases:** add new ssl mode to match backend ([#5792](https://github.com/ovh/manager/issues/5792)) ([f0d1da9](https://github.com/ovh/manager/commit/f0d1da9b06fe541e5fcd72f1ec3716f97bb6151a))
+* **storage.databases:** add trackdashboard to informations modal ([#5789](https://github.com/ovh/manager/issues/5789)) ([359a8d2](https://github.com/ovh/manager/commit/359a8d23295673e7f26a30d2089501cd49d86423))
+* **storage.databases:** remove replicate uri feature ([#5790](https://github.com/ovh/manager/issues/5790)) ([dd80b55](https://github.com/ovh/manager/commit/dd80b5579d8c64c32a5f6049d8d3e035a126999d))
+* **storage.databases:** update pattern for redis user inputs ([#5793](https://github.com/ovh/manager/issues/5793)) ([fd52319](https://github.com/ovh/manager/commit/fd52319735e12b9c27be366157022828388e57fe))
+
+
+
 # [5.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.46.2...@ovh-ux/manager-pci@5.47.0) (2021-10-26)
 
 

@@ -1,0 +1,13 @@
+{
+  "pci_databases_useracl_create_confirm": "ACL hinzufügen",
+  "pci_databases_useracl_create_cancel": "Abbrechen",
+  "pci_databases_useracl_create": "ACL hinzufügen",
+  "pci_databases_useracl_create_description": "Die Indexmodelle verwenden das Standardabgleichssystem, auch „Standard Glob Pattern“ genannt. Dabei kann * für jede Anzahl von Zeichen eingesetzt werden, ? für jedes Zeichen. Das Modell „logs_200?“ ermöglicht beispielsweise den Abgleich mit dem Index „logs_200904“, jedoch nicht mit „logs_201904“.",
+  "pci_databases_useracl_create_username": "Benutzername",
+  "pci_databases_useracl_create_username_placeholder": "Wählen Sie einen Nutzer",
+  "pci_databases_useracl_create_permission": "Berechtigung",
+  "pci_databases_useracl_create_pattern": "Indexmodell",
+  "pci_databases_useracl_create_pattern_placeholder": "logs_*",
+  "pci_databases_useracl_create_success_message": "Die ACL des Nutzers {{username}} wurde hinzugefügt.",
+  "pci_databases_useracl_create_error_message": "Beim Hinzufügen der ACL zum Nutzer ist ein Fehler aufgetreten: {{message}}"
+}

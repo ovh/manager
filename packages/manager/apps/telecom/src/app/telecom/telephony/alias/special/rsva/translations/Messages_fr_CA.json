@@ -12,7 +12,7 @@
   "telephony_alias_special_rsva_tariff_bearing_changed_checkbox": "Je reconnais avoir été informé que, passée la première modification tarifaire, cette opération me sera facturée {{price}}€ HT.",
   "telephony_alias_special_rsva_infos_title": "Renseignements du numéro à l’attention du consommateur",
   "telephony_alias_special_rsva_infos_siret_label": "Numéro Siret",
-  "telephony_alias_special_rsva_infos_email_label": "Courriel",
+  "telephony_alias_special_rsva_infos_email_label": "E-mail",
   "telephony_alias_special_rsva_infos_typology_label": "Typologie",
   "telephony_alias_special_rsva_infos_typology_label_help": "La déclaration d’une typologie du service permettra de faciliter l’identification du service par le consommateur et une application simplifiée des règles déontologiques présentées par typologie de service. Réglementation ARCEP 12-0856",
   "telephony_alias_special_rsva_title_back_link": "Retour à la gestion des reversements",

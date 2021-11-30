@@ -2,7 +2,7 @@
     <oui-select-picker
         class="d-inline-block col-md-6 col-xl-4 my-3"
         data-ng-repeat="plan in $ctrl.plans track by plan.name"
-        data-disabled="$ctrl.currentPlan && $ctrl.currentPlan.compare(plan) < 0"
+        data-disabled="!$ctrl.allowLowerSelection && $ctrl.currentPlan && $ctrl.currentPlan.compare(plan) <= 0"
         data-name="{{:: plan.name }}"
         data-model="$ctrl.selectedPlan"
         data-label="{{:: $ctrl.capitalize(plan.name) }}"
@@ -11,12 +11,18 @@
         data-on-change="$ctrl.onChange({ selectedPlan: modelValue })"
         data-required
     >
+        <oui-select-picker-picture data-ng-if="$ctrl.currentPlan === plan">
+            <span
+                class="oui-badge oui-badge_s oui-badge_success"
+                data-translate="pci_database_plans_list_current_offer"
+            ></span>
+        </oui-select-picker-picture>
         <oui-select-picker-section>
             <p
                 class="mb-0"
                 data-ng-if="plan.minMemory !== plan.maxMemory"
                 data-translate="pci_database_plans_list_spec_ram"
-                data-translate-values="{ 
+                data-translate-values="{
                     min: (plan.minMemory | cucBytes:0:false:'GB'),
                     max: (plan.maxMemory | cucBytes:0:false:'GB')
                 }"
@@ -25,7 +31,7 @@
                 class="mb-0"
                 data-ng-if="plan.minMemory === plan.maxMemory"
                 data-translate="pci_database_plans_list_spec_ram_unique"
-                data-translate-values="{ 
+                data-translate-values="{
                     ram: (plan.minMemory | cucBytes:0:false:'GB')
                 }"
             ></p>
@@ -50,7 +56,7 @@
                 class="mb-0"
                 data-ng-if="plan.minStorage !== plan.maxStorage"
                 data-translate="pci_database_plans_list_spec_storage"
-                data-translate-values="{ 
+                data-translate-values="{
                 min: (plan.minStorage | cucBytes:2:false:'GB'),
                 max: (plan.maxStorage | cucBytes:2:false:'GB')
             }"
@@ -59,7 +65,7 @@
                 class="mb-0"
                 data-ng-if="plan.minStorage === plan.maxStorage"
                 data-translate="pci_database_plans_list_spec_storage_unique"
-                data-translate-values="{ 
+                data-translate-values="{
                     storage: (plan.minStorage | cucBytes:2:false:'GB')
             }"
             ></p>

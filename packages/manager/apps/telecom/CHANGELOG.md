@@ -1,3 +1,31 @@
+## [13.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.27.1...@ovh-ux/manager-telecom@13.27.2) (2021-11-22)
+
+
+### Bug Fixes
+
+* **deps:** bump validator from 11.1.0 to 13.7.0 range ([#5903](https://github.com/ovh/manager/issues/5903)) ([a5a74e5](https://github.com/ovh/manager/commit/a5a74e58db1859812eca5bc82c2847165e9ad6dd))
+
+
+
+## [13.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.27.0...@ovh-ux/manager-telecom@13.27.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+* **i18n:** add missing translations [CDS 1258] ([c44bea0](https://github.com/ovh/manager/commit/c44bea0874e0c711f9a8dafe31cffc258f21c51c))
+
+
+
+# [13.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.26.3...@ovh-ux/manager-telecom@13.27.0) (2021-10-28)
+
+
+### Features
+
+* **navbar.marketplace:** add marketplace to top navbar ([#5828](https://github.com/ovh/manager/issues/5828)) ([815c49f](https://github.com/ovh/manager/commit/815c49f4f3cf7a598aee79d99798033ac5952bba))
+
+
+
 ## [13.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.26.2...@ovh-ux/manager-telecom@13.26.3) (2021-10-26)
 
 

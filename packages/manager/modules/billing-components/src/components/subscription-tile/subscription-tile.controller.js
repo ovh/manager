@@ -6,6 +6,7 @@ export default class ServicesActionsCtrl {
     $attrs,
     $q,
     $translate,
+    $window,
     atInternet,
     coreConfig,
     coreURLBuilder,
@@ -15,6 +16,7 @@ export default class ServicesActionsCtrl {
     this.$attrs = $attrs;
     this.$q = $q;
     this.$translate = $translate;
+    this.$window = $window;
     this.atInternet = atInternet;
     this.BillingService = BillingService;
     this.coreConfig = coreConfig;
@@ -23,6 +25,10 @@ export default class ServicesActionsCtrl {
   }
 
   $onInit() {
+    this.user = this.coreConfig.getUser();
+    this.disableServiceActions = this.$attrs.disableServiceActions
+      ? this.disableServiceActions
+      : false;
     this.withEngagement =
       this.withEngagement || this.$attrs.withEngagement === '';
     this.withContactManagement = this.$attrs.withContactManagement
@@ -139,5 +145,10 @@ export default class ServicesActionsCtrl {
       !serviceInfos.hasPendingEngagement &&
       (!isEngaged || highlightEngagement)
     );
+  }
+
+  manageContacts() {
+    this.trackClick('manage-contacts');
+    this.$window.location.assign(this.contactManagementUrl);
   }
 }

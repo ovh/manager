@@ -1,3 +1,95 @@
+## [3.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.5.2...@ovh-ux/manager-billing-components@3.5.3) (2021-11-22)
+
+
+### Bug Fixes
+
+* **subscription-tile:** fix contact management ([#5916](https://github.com/ovh/manager/issues/5916)) ([21274cf](https://github.com/ovh/manager/commit/21274cf1c7ce0572f689f6611730ca087c7e9894))
+
+
+
+## [3.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.5.1...@ovh-ux/manager-billing-components@3.5.2) (2021-11-15)
+
+
+### Bug Fixes
+
+* **commitment:** fix issue with upfront price ([#5947](https://github.com/ovh/manager/issues/5947)) ([373289e](https://github.com/ovh/manager/commit/373289ed4f82fb59c56908702403fa99ba2c9f11))
+
+
+
+## [3.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.5.0...@ovh-ux/manager-billing-components@3.5.1) (2021-11-08)
+
+
+### Bug Fixes
+
+* **commitment:** fix total price display ([#5924](https://github.com/ovh/manager/issues/5924)) ([6a3d218](https://github.com/ovh/manager/commit/6a3d218a452fb0d3e40267d324d486679c0af4a2))
+
+
+
+# [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.4.4...@ovh-ux/manager-billing-components@3.5.0) (2021-11-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1261] ([#5899](https://github.com/ovh/manager/issues/5899)) ([e35d431](https://github.com/ovh/manager/commit/e35d431d4955805e87c081fe2028a80a37dbdb7a))
+
+
+### Features
+
+* all dom termination enhancement ([#5574](https://github.com/ovh/manager/issues/5574)) ([7a2a4bd](https://github.com/ovh/manager/commit/7a2a4bdb084ceedcbb2307b9d22c8bf7ac81ca90))
+
+
+
+## [3.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.4.3...@ovh-ux/manager-billing-components@3.4.4) (2021-11-04)
+
+
+### Bug Fixes
+
+* add missing translations ([#5892](https://github.com/ovh/manager/issues/5892)) ([3589fd9](https://github.com/ovh/manager/commit/3589fd9a15d23813b0c2c15892bff06440571bfe))
+
+
+
+## [3.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.4.2...@ovh-ux/manager-billing-components@3.4.3) (2021-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1239] ([#5890](https://github.com/ovh/manager/issues/5890)) ([aa6da29](https://github.com/ovh/manager/commit/aa6da29a4acbbd8f8c1ef4fb781a9aed41e44149))
+
+
+
+## [3.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.4.1...@ovh-ux/manager-billing-components@3.4.2) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+* **billing.autorenew:** track service type on resiliation ([#5798](https://github.com/ovh/manager/issues/5798)) ([c77eb21](https://github.com/ovh/manager/commit/c77eb212b8f99035a2f95a7af434599b7445738a))
+
+
+
+## [3.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.4.0...@ovh-ux/manager-billing-components@3.4.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* **billing:** commitment discount amount ([#5874](https://github.com/ovh/manager/issues/5874)) ([908aaa8](https://github.com/ovh/manager/commit/908aaa854b3216c3f6bdda0c05dbfc85580887ef))
+
+
+
+# [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.3.1...@ovh-ux/manager-billing-components@3.4.0) (2021-10-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1239] ([51239cf](https://github.com/ovh/manager/commit/51239cfb10e50f2d78aa4b42ae07d8e6a2021bc7))
+
+
+### Features
+
+* add engagement component ([79f603c](https://github.com/ovh/manager/commit/79f603c4d811b60a4416e1a9cf499ffc4365d250))
+
+
+
 ## [3.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.3.0...@ovh-ux/manager-billing-components@3.3.1) (2021-10-26)
 
 

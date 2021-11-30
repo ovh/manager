@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import map from 'lodash/map';
 
-import { STRING_COLUMN_OPTIONS } from './constants';
+import { NUMBER_COLUMN_OPTIONS, STRING_COLUMN_OPTIONS } from './constants';
 
 export default class ListLayoutCtrl {
   /* @ngInject */
@@ -23,6 +23,10 @@ export default class ListLayoutCtrl {
 
     this.stringColumnOptions = {
       operators: STRING_COLUMN_OPTIONS,
+    };
+
+    this.numberColumnOptions = {
+      operators: NUMBER_COLUMN_OPTIONS,
     };
   }
 

@@ -1,3 +1,30 @@
+## [1.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database@1.2.4...@ovh-ux/manager-enterprise-cloud-database@1.2.5) (2021-11-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1253] ([d659951](https://github.com/ovh/manager/commit/d6599513a8a7978bb217d8d3391d5a72d8d5d3c9))
+
+
+
+## [1.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database@1.2.3...@ovh-ux/manager-enterprise-cloud-database@1.2.4) (2021-11-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1260] ([#5898](https://github.com/ovh/manager/issues/5898)) ([6f8aafb](https://github.com/ovh/manager/commit/6f8aafb6becca4ecf9d1e158121bd4a091e34ab9))
+
+
+
+## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database@1.2.2...@ovh-ux/manager-enterprise-cloud-database@1.2.3) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+
+
+
 ## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database@1.2.1...@ovh-ux/manager-enterprise-cloud-database@1.2.2) (2021-10-26)
 
 

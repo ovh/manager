@@ -1,0 +1,46 @@
+<div>
+    <span
+        data-ng-if="$ctrl.discount"
+        data-translate="billing_commitment_payment_description"
+        data-translate-values="{ discount: $ctrl.discount }"
+    ></span>
+    <div class="row my-2">
+        <div
+            class="col-md-4"
+            data-ng-repeat="engagement in $ctrl.pricingModes track by engagement.commitmentType"
+        >
+            <oui-select-picker
+                name="{{:: 'engagement-' + engagement.commitmentType }}"
+                model="$ctrl.pricingMode"
+                label="{{:: ('billing_commitment_payment_' + engagement.commitmentType) | translate }}"
+                values="[engagement]"
+            >
+                <oui-select-picker-description
+                    data-ng-if="engagement.isUpfront()"
+                >
+                    <p
+                        data-translate="billing_commitment_payment_upfront_pay_now"
+                        data-translate-values="{ price: $ctrl.upfrontSavings.amountToPay }"
+                    ></p>
+                    <p
+                        data-translate="billing_commitment_savings"
+                        data-translate-values="{ price: $ctrl.upfrontSavings.amountSaved }"
+                    ></p>
+                </oui-select-picker-description>
+                <oui-select-picker-description
+                    data-ng-if="!engagement.isUpfront()"
+                >
+                    <p
+                        data-translate="billing_commitment_payment_monthly"
+                        data-translate-values="{ price: engagement.pricing.monthlyPrice.text,  duration: engagement.durationInMonths}"
+                    ></p>
+                    <p
+                        data-ng-if="$ctrl.defaultPrice && $ctrl.duration.savings && $ctrl.duration.savings.value > 0"
+                        data-translate="billing_commitment_savings"
+                        data-translate-values="{ price: $ctrl.duration.savings.text }"
+                    ></p>
+                </oui-select-picker-description>
+            </oui-select-picker>
+        </div>
+    </div>
+</div>

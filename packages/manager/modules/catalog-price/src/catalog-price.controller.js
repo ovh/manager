@@ -15,6 +15,8 @@ export default class {
     this.$attrs = $attrs;
     this.coreConfig = coreConfig;
     this.isUndefined = isUndefined;
+
+    this.user = coreConfig.getUser();
   }
 
   $onInit() {

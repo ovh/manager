@@ -1,3 +1,48 @@
+## [3.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.18.2...@ovh-ux/manager-hub-app@3.18.3) (2021-11-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1253] ([3c25560](https://github.com/ovh/manager/commit/3c25560870b866815b00c341c6c055896103a73f))
+
+
+
+## [3.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.18.1...@ovh-ux/manager-hub-app@3.18.2) (2021-11-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1253] ([d659951](https://github.com/ovh/manager/commit/d6599513a8a7978bb217d8d3391d5a72d8d5d3c9))
+
+
+
+## [3.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.18.0...@ovh-ux/manager-hub-app@3.18.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* bump ng-ovh-payment-method to next major ([687f1e4](https://github.com/ovh/manager/commit/687f1e47daefb5c19563c5c434fa281a70be9049))
+
+
+
+# [3.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.17.4...@ovh-ux/manager-hub-app@3.18.0) (2021-10-28)
+
+
+### Features
+
+* **navbar.marketplace:** add marketplace to top navbar ([#5828](https://github.com/ovh/manager/issues/5828)) ([815c49f](https://github.com/ovh/manager/commit/815c49f4f3cf7a598aee79d99798033ac5952bba))
+
+
+
+## [3.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.17.3...@ovh-ux/manager-hub-app@3.17.4) (2021-10-27)
+
+
+### Bug Fixes
+
+* update check for lastorder ([#5833](https://github.com/ovh/manager/issues/5833)) ([c159c9b](https://github.com/ovh/manager/commit/c159c9b7124fd2f338b69e0e7544ba388b41e8f7))
+
+
+
 ## [3.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.17.2...@ovh-ux/manager-hub-app@3.17.3) (2021-10-26)
 
 
