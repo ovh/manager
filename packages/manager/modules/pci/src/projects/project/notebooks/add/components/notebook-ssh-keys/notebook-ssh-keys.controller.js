@@ -1,10 +1,9 @@
-import { NOTEBOOK_ATTACH_SSH_KEYS } from '../../notebook.constants';
-
-export const CUSTOM_SELECT = '-';
+import { NOTEBOOK_SSH_KEYS } from '../../notebook.constants';
 
 export default class NotebookSshKeysController {
   /* @ngInject */
   constructor(coreConfig, NotebookService) {
+    this.NOTEBOOK_SSH_KEYS_CONSTANTS = NOTEBOOK_SSH_KEYS;
     this.NotebookService = NotebookService;
 
     this.coreConfig = coreConfig;
@@ -16,8 +15,6 @@ export default class NotebookSshKeysController {
     this.savedKeys = [];
     // All available names for saved ssh keys
     this.allKeyNames = [];
-    // Maximum number of ssh keys that user can attach
-    this.MAX_SSH_KEYS = NOTEBOOK_ATTACH_SSH_KEYS.MAX;
   }
 
   $onInit() {
@@ -28,16 +25,15 @@ export default class NotebookSshKeysController {
     const allSshKeys = this.getAllSshKeys();
     return (
       allSshKeys.length === this.addedSshKeys.length &&
-      allSshKeys.length <= this.MAX_SSH_KEYS
+      allSshKeys.length <= this.NOTEBOOK_SSH_KEYS_CONSTANTS.MAX
     );
   }
 
   addNewSshPublicKey() {
     this.addedSshKeys.push({
       disabled: false,
-      placeHolder: 'ssh-rsa AAAAB3...',
       model: null,
-      keyName: CUSTOM_SELECT,
+      keyName: this.NOTEBOOK_SSH_KEYS_CONSTANTS.CUSTOM_SELECT,
     });
   }
 
@@ -57,15 +53,18 @@ export default class NotebookSshKeysController {
   // Return all non empty ssh keys
   getAllSshKeys() {
     return this.addedSshKeys
-      .map((x) => x.model)
-      .filter((x) => x && x.length !== 0 && x.trim());
+      .map((sshKey) => sshKey.model)
+      .filter(
+        (sshKeyModel) =>
+          sshKeyModel && sshKeyModel.length > 0 && sshKeyModel.trim(),
+      );
   }
 
   changeSavedSshKey(index) {
     // Get the select key name from the index
     const newSshKeyName = this.addedSshKeys[index].keyName;
     // Find the selected key by name
-    if (newSshKeyName === CUSTOM_SELECT) {
+    if (newSshKeyName === this.NOTEBOOK_SSH_KEYS_CONSTANTS.CUSTOM_SELECT) {
       this.addedSshKeys[index].model = null;
       this.addedSshKeys[index].disabled = false;
     } else {
@@ -79,10 +78,14 @@ export default class NotebookSshKeysController {
   }
 
   populateSavedSshKeys() {
-    this.NotebookService.getSavedSshKeys(this.projectId).then((keys) => {
-      this.savedKeys = keys;
-      this.allKeyNames = [CUSTOM_SELECT].concat(keys.map((x) => x.name));
-    });
+    this.NotebookService.getSavedSshKeys(this.projectId).then(
+      ({ data: keys }) => {
+        this.savedKeys = keys;
+        this.allKeyNames = [
+          this.NOTEBOOK_SSH_KEYS_CONSTANTS.CUSTOM_SELECT,
+        ].concat(this.savedKeys.map((x) => x.name));
+      },
+    );
   }
 
   textareaChanged() {

@@ -16,18 +16,11 @@ export default class NotebookService {
   }
 
   /* @ngInject */
-  constructor(
-    $http,
-    Poller,
-    OvhApiCloudProjectAi,
-    OvhApiCloudProjectStorage,
-    OvhApiCloudProjectSshKey,
-  ) {
+  constructor($http, Poller, OvhApiCloudProjectAi, OvhApiCloudProjectStorage) {
     this.$http = $http;
     this.Poller = Poller;
     this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;
     this.OvhApiCloudProjectStorage = OvhApiCloudProjectStorage;
-    this.OvhApiCloudProjectSshKey = OvhApiCloudProjectSshKey;
   }
 
   pollNotebookStatus(serviceName, notebookId) {
@@ -167,8 +160,6 @@ export default class NotebookService {
   }
 
   getSavedSshKeys(serviceName) {
-    return this.OvhApiCloudProjectSshKey.v6().query({
-      serviceName,
-    }).$promise;
+    return this.$http.get(`/cloud/project/${serviceName}/sshkey`);
   }
 }

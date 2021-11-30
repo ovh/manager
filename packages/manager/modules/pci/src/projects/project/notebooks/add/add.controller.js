@@ -38,6 +38,7 @@ export default class NotebookAddController {
       mountPath: '',
       nbResources: NOTEBOOK_RESOURCES.NB_RESOURCES,
       volumes: [],
+      sshPublicKeys: [],
       selected: {
         editor: null,
         framework: {

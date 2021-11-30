@@ -23,10 +23,13 @@
                 data-ng-repeat="sshKey in $ctrl.addedSshKeys track by $index"
             >
                 <fieldset class="oui-inline-adder__fieldset">
+                    <legend
+                        data-ng-bind=":: 'pci_projects_project_training_notebook_add_select_ssh_legend' | translate"
+                    ></legend>
                     <div class="oui-inline-adder__row">
                         <div class="oui-inline-adder__field">
                             <oui-field
-                                data-size="l"
+                                data-size="m"
                                 data-label="{{:: 'pci_projects_project_training_notebook_add_select_ssh_name_tips' | translate  }}"
                                 data-ng-if="$ctrl.allKeyNames.length > 0"
                             >
@@ -45,9 +48,9 @@
                                 <textarea
                                     type="textarea"
                                     class="oui-input"
-                                    placeholder="{{:: $ctrl.addedSshKeys[$index].placeHolder }}"
+                                    placeholder="{{:: $ctrl.NOTEBOOK_SSH_KEYS_CONSTANTS.PLACEHOLDER }}"
                                     name="sshPublicKey"
-                                    rows="5"
+                                    rows="{{:: $ctrl.NOTEBOOK_SSH_KEYS_CONSTANTS.NB_ROWS }}"
                                     data-ng-model="$ctrl.addedSshKeys[$index].model"
                                     data-ng-required
                                     data-ng-disabled="$ctrl.addedSshKeys[$index].disabled"
@@ -63,7 +66,7 @@
                         class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
                         data-translate-attr="{title: 'dedicated_server_install_image_config_http_header_delete'}"
                         data-ng-click="$ctrl.onSshPublickeysDeleteBtnClick($index)"
-                        data-ng-disabled="$ctrl.addedSshKeys.length == 1"
+                        data-ng-disabled="$ctrl.addedSshKeys.length === 1"
                     >
                         <span
                             class="oui-icon oui-icon-trash"
@@ -83,10 +86,10 @@
                 data-translate="pci_projects_project_training_notebook_add_select_ssh_add"
             ></span>
         </oui-button>
-        <div class="oui-field__control pt-2 pb-2">
+        <div class="oui-field__control py-2">
             <span
                 data-translate="pci_projects_project_training_notebook_add_select_ssh_quantity"
-                data-translate-values="{ numberOfSshKeys: $ctrl.getAllSshKeys().length, maxSshKeys: $ctrl.MAX_SSH_KEYS}"
+                data-translate-values="{ numberOfSshKeys: $ctrl.getAllSshKeys().length, maxSshKeys: $ctrl.NOTEBOOK_SSH_KEYS_CONSTANTS.MAX}"
             ></span>
         </div>
     </div>
