@@ -452,8 +452,6 @@
   "core_change_owner": "Changer le propriétaire",
   "contacts_management": "Gérer les contacts",
   "customized": "Personnalisé",
-  "dedicated_server_dashboard_ovhTasks_header": "Un problème sur vos produits ?",
-  "dedicated_server_dashboard_ovhTasks_description": "Consulter nos tâches travaux",
   "core_top_guides_header": "Pour obtenir de l'information plus détaillée, veuillez consulter <a href=\"{{t0}}\" target=\"_blank\">nos guides</a>.",
   "core_top_guides_header_fr": "Pour obtenir une assistance ou des informations détaillées sur vos services et l’état de vos services, rendez-vous sur la page :",
   "core_type_of_guide_vps": "Serveurs privés virtuels",

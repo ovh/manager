@@ -241,7 +241,7 @@ export default (containerEl, environment) => {
       UNIVERS: configConstants.UNIVERS,
       TOP_GUIDES: configConstants.TOP_GUIDES,
       vmsUrl: configConstants.vmsUrl,
-      travauxUrl: configConstants.travauxUrl,
+      statusUrl: configConstants.statusUrl,
       aapiHeaderName: 'X-Ovh-Session',
       vrackUrl: configConstants.vrackUrl,
       REDIRECT_URLS: configConstants.REDIRECT_URLS,

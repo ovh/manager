@@ -45,7 +45,7 @@ export default class DedicatedServerDashboard {
     this.servicesStateLinks = {
       weathermap: WEATHERMAP_URL[this.user.country],
       vms: this.constants.vmsUrl,
-      travaux: this.constants.travauxUrl,
+      status: this.constants.statusUrl,
     };
 
     this.infoServer = {

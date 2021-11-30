@@ -159,8 +159,8 @@ export default /* @ngInject */ ($stateProvider) => {
             projectId,
             database.engine,
             database.id,
-          )
-            .then((databaseInfo) => {
+          ).then(
+            (databaseInfo) => {
               CucCloudMessage.flushMessages(`${stateName}-${databaseInfo.id}`);
               CucCloudMessage.success(
                 $translate.instant(
@@ -172,11 +172,19 @@ export default /* @ngInject */ ($stateProvider) => {
               return getNodes(database).then((nodes) =>
                 database.setNodes(nodes),
               );
-            })
-            .finally(() => {
-              return pollNodesStatus();
-            });
+            },
+            null,
+            () => {
+              getNodes(database).then((nodes) => {
+                database.setNodes(nodes);
+              });
+            },
+          );
         }
+        getNodes(database).then((nodes) => {
+          database.setNodes(nodes);
+          pollNodesStatus();
+        });
       },
       pollNodesStatus: /* @ngInject */ (
         $translate,

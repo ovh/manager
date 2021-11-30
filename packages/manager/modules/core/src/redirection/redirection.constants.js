@@ -36,7 +36,7 @@ export default {
       SN: `${helpRoot}/fr-sn`,
       TN: `${helpRoot}/fr-tn`,
     },
-    tasks: 'http://travaux.ovh.net/',
+    tasks: 'https://www.status-ovhcloud.com/',
     expressOrder: {
       DE: 'https://www.ovh.de/order/express/#/new/express/resume',
       EN: 'https://www.ovh.co.uk/order/express/',
@@ -75,7 +75,7 @@ export default {
       WE: `${helpRoot}/en`,
       WS: `${helpRoot}/es`,
     },
-    tasks: 'http://travaux.ovh.net/',
+    tasks: 'https://www.status-ovhcloud.com/',
     expressOrder: {
       ASIA: 'https://ca.ovh.com/asia/order/express/',
       AU: 'https://ca.ovh.com/au/order/express/',

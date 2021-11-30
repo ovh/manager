@@ -473,7 +473,7 @@
                                 <li class="oui-list__item">
                                     <a
                                         class="oui-list__link oui-button_ghost"
-                                        href="{{:: $ctrl.servicesStateLinks.travaux }}"
+                                        href="{{:: $ctrl.servicesStateLinks.status }}"
                                         target="_blank"
                                         rel="noopener"
                                     >
@@ -489,25 +489,6 @@
                                             data-translate="core_new_window"
                                         ></span>
                                     </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </oui-tile-description>
-                </oui-tile-definition>
-                <!-- View status task -->
-                <oui-tile-definition
-                    data-term="{{ ::'dedicated_server_dashboard_ovhTasks_header' | translate }}"
-                    data-ng-if="$ctrl.worldPart !== 'US'"
-                >
-                    <oui-tile-description>
-                        <div class="oui-list">
-                            <ul class="oui-list__items">
-                                <li class="oui-list__item">
-                                    <a
-                                        class="oui-list__link oui-button_ghost"
-                                        data-ui-sref="app.dedicated-server.server.dashboard.ovh-tasks"
-                                        data-translate="dedicated_server_dashboard_ovhTasks_description"
-                                    ></a>
                                 </li>
                             </ul>
                         </div>
