@@ -1,7 +1,21 @@
+import { ApplicationId } from '@ovh-ux/manager-config/types/application';
 import ShellClient from './shell-client';
 
 export default function exposeApi(shellClient: ShellClient) {
   return {
+    environment: {
+      getEnvironment: () =>
+        shellClient.invokePluginMethod({
+          plugin: 'environment',
+          method: 'getEnvironment',
+        }),
+      setUniverse: (applicationId: ApplicationId) =>
+        shellClient.invokePluginMethod({
+          plugin: 'environment',
+          method: 'setUniverse',
+          args: [applicationId],
+        }),
+    },
     i18n: {
       getLocale: () =>
         shellClient.invokePluginMethod({
@@ -14,9 +28,7 @@ export default function exposeApi(shellClient: ShellClient) {
         shellClient.invokePluginMethod({
           plugin: 'i18n',
           method: 'setLocale',
-          args: [
-            locale,
-          ],
+          args: [locale],
         }),
     },
     routing: {

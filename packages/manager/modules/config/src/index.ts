@@ -47,6 +47,7 @@ export const fetchConfiguration = async (applicationName: string) => {
       environment.setApplicationURLs(config.applicationURLs);
       environment.setUniverse(config.universe);
       environment.setMessage(config.message);
+      environment.setApplications(config.applications);
       return environment;
     })
     .catch((err) => {

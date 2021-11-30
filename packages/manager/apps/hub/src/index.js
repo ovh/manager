@@ -10,43 +10,38 @@ import {
 } from '@ovh-ux/manager-preloader';
 
 import { buildURL } from '@ovh-ux/ufrontend';
-import {
-  fetchConfiguration,
-  findAvailableLocale,
-  detectUserLocale,
-} from '@ovh-ux/manager-config';
+import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
 import { BILLING_REDIRECTIONS } from './constants';
 
 attachPreloader(findAvailableLocale(detectUserLocale()));
 
-useShellClient('hub').then((shellClient) => {
-  // @TODO fetch environment here and remove fetchConfiguration
-  console.log(shellClient);
-});
+useShellClient('hub')
+  .then((shellClient) => {
+    return shellClient.environment.getEnvironment();
+  })
+  .then((environment) => {
+    environment.setVersion(__VERSION__);
 
-fetchConfiguration('hub').then((environment) => {
-  environment.setVersion(__VERSION__);
-
-  if (environment.getMessage()) {
-    displayMessage(environment.getMessage(), environment.getUserLanguage());
-  }
-
-  BILLING_REDIRECTIONS.forEach((redirectionRegex) => {
-    const hash = window.location.hash.replace('#', '');
-    if (redirectionRegex.test(hash)) {
-      window.location.assign(
-        buildURL(
-          environment.getApplicationURL('dedicated'),
-          window.location.hash,
-        ),
-      );
+    if (environment.getMessage()) {
+      displayMessage(environment.getMessage(), environment.getUserLanguage());
     }
-  });
 
-  import(`./config-${environment.getRegion()}`)
-    .catch(() => {})
-    .then(() => import('./app.module'))
-    .then(({ default: startApplication }) => {
-      startApplication(document.body, environment);
+    BILLING_REDIRECTIONS.forEach((redirectionRegex) => {
+      const hash = window.location.hash.replace('#', '');
+      if (redirectionRegex.test(hash)) {
+        window.location.assign(
+          buildURL(
+            environment.getApplicationURL('dedicated'),
+            window.location.hash,
+          ),
+        );
+      }
     });
-});
+
+    import(`./config-${environment.getRegion()}`)
+      .catch(() => {})
+      .then(() => import('./app.module'))
+      .then(({ default: startApplication }) => {
+        startApplication(document.body, environment);
+      });
+  });

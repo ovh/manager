@@ -1,4 +1,6 @@
 import { nanoid } from 'nanoid';
+import { ApplicationId } from '@ovh-ux/manager-config/types/application';
+
 import exposeApi from './api';
 import IMessageBus from '../message-bus/IMessageBus';
 import {
@@ -21,7 +23,7 @@ export default class ShellClient {
 
   messageBus: IMessageBus;
 
-  applicationId: string;
+  applicationId: ApplicationId;
 
   constructor() {
     this.deferredResponse = {};
@@ -41,11 +43,11 @@ export default class ShellClient {
     });
   }
 
-  setApplicationId(id: string) {
+  setApplicationId(id: ApplicationId) {
     this.applicationId = id;
   }
 
-  getApplicationId(): string {
+  getApplicationId(): ApplicationId {
     return this.applicationId;
   }
 

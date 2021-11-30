@@ -1,5 +1,6 @@
 import { useReket } from '@ovh-ux/ovh-reket';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
+import { ApplicationId } from '@ovh-ux/manager-config/types/application';
 
 import ShellClient from './shell-client';
 import StandaloneShellClient from './standalone-shell-client';
@@ -26,7 +27,7 @@ function fetchApplications(): Promise<
   });
 }
 
-function initIFrameClientApi(appId: string) {
+function initIFrameClientApi(appId: ApplicationId) {
   const client = new ShellClient();
   const clientApi = client.getApi();
   client.setApplicationId(appId);
@@ -35,7 +36,7 @@ function initIFrameClientApi(appId: string) {
   return Promise.resolve(clientApi);
 }
 
-function initStandaloneClientApi(appId: string) {
+function initStandaloneClientApi(appId: ApplicationId) {
   return fetchApplications()
     .then((apps) => {
       const appConfig = apps[appId];
@@ -53,9 +54,16 @@ function initStandaloneClientApi(appId: string) {
     });
 }
 
-export default function init(applicationId: string) {
+export default function init(applicationId: ApplicationId) {
+  let initPromise;
+
   if (isTopLevelApplication()) {
-    return initStandaloneClientApi(applicationId);
+    initPromise = initStandaloneClientApi(applicationId);
+  } else {
+    initPromise = initIFrameClientApi(applicationId);
   }
-  return initIFrameClientApi(applicationId);
+
+  return initPromise.then((shellApi) => {
+    return shellApi.environment.setUniverse(applicationId).then(() => shellApi);
+  });
 }
