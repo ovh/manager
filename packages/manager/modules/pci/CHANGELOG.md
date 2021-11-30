@@ -1,3 +1,12 @@
+## [5.49.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.49.0...@ovh-ux/manager-pci@5.49.1) (2021-11-30)
+
+
+### Bug Fixes
+
+* **storage.databases:** fix nodes polling ([#6018](https://github.com/ovh/manager/issues/6018)) ([97f525f](https://github.com/ovh/manager/commit/97f525f92f476dc5992ef9377cfcc3ec2b84bfe5))
+
+
+
 # [5.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.48.3...@ovh-ux/manager-pci@5.49.0) (2021-11-23)
 
 
