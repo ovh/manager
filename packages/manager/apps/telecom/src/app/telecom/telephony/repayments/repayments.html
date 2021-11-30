@@ -36,7 +36,9 @@
             </div>
         </div>
 
-        <oui-datagrid
+        <div data-ui-view="listView"></div>
+
+        <!--<oui-datagrid
             class="my-5 text-wrap"
             data-rows="$ctrl.repayments"
             data-page-size="10"
@@ -77,14 +79,14 @@
                     data-ng-bind="::$row.startDate | date:'dd-MM-yyyy HH:mm:ss'"
                 ></span>
             </oui-datagrid-column>
-            <!-- <oui-datagrid-column
+            <oui-datagrid-column
                 data-title="::'telephony_repayments_grid_operator' | translate"
                 data-property="phoneOperatorName"
                 data-type="string"
                 data-sortable
                 data-searchable
                 data-filterable
-            ></oui-datagrid-column> -->
+            ></oui-datagrid-column>
             <oui-datagrid-column
                 data-title="::'telephony_repayments_grid_duration' | translate"
                 data-property="duration"
@@ -110,7 +112,7 @@
                 >
                 </span>
             </oui-datagrid-column>
-        </oui-datagrid>
+        </oui-datagrid>-->
     </section>
 </section>
 <!-- /.telephony-group-line-repayments. -->

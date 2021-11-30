@@ -188,6 +188,7 @@ angular
           headers: {
             'X-Pagination-Mode': 'CachedObjectList-Pages',
             'X-Pagination-Size': 1,
+            'X-Pagination-Filter': 'status:in=CREATED,PAID',
           },
         })
         .then((response) => {
@@ -196,12 +197,12 @@ angular
           SidebarMenu.addMenuItem(
             {
               title: $translate.instant(
-                'telecom_sidebar_section_telephony_repayment',
+                'telecom_sidebar_section_telephony_repayments',
               ),
-              id: 'telecom-telephony-repayment-section',
+              id: 'telecom-telephony-repayments-section',
               category: 'telephony',
               allowSubItems: false,
-              state: 'telecom.telephony.repayments',
+              state: 'telecom.telephony.repayments.index',
             },
             self.mainSectionItem,
           );

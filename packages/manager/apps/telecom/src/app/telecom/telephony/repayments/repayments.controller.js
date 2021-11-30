@@ -1,13 +1,6 @@
-import { REPAYMENT_AMOUNT_THRESHOLD } from './repayments.constants';
-import {
-  calculateTotalRepayments,
-  formatRepayments,
-  statusBadge,
-} from './repayments.helpers';
-
 export default class TelecomTelephonyRepaymentsCtrl {
   /* @ngInject  */
-  constructor($http, $q, $stateParams, $translate, TucToast, svaWallet) {
+  constructor($http, $q, $stateParams, $translate, TucToast) {
     this.$http = $http;
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -17,35 +10,5 @@ export default class TelecomTelephonyRepaymentsCtrl {
 
     this.hasReachedRepaymentAmountThreshold = false;
     this.loading = false;
-    this.nextRepaymentDate = new Date();
-    this.repayments = [];
-    this.svaWallet = svaWallet;
-    this.statusBadge = statusBadge;
-  }
-
-  $onInit() {
-    this.loading = true;
-    this.fetchRepayments()
-      .then((repayments) => {
-        const totalRepayments = calculateTotalRepayments(repayments);
-        const formatedRepayments = formatRepayments(repayments);
-
-        this.hasReachedRepaymentAmountThreshold =
-          totalRepayments >= REPAYMENT_AMOUNT_THRESHOLD;
-        this.repayments = formatedRepayments;
-      })
-      .catch((error) => {
-        const base = this.$translate.instant('telephony_repayments_error');
-        const message = error.data?.message || error.message;
-        const reason = message ? ` (${message})` : '';
-        this.TucToast.error(base + reason);
-      })
-      .finally(() => {
-        this.loading = false;
-      });
-  }
-
-  fetchRepayments() {
-    return this.$http.get('/me/sva/cdr').then(({ data }) => data);
   }
 }

@@ -4,6 +4,7 @@ import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import routing from './repayments.routing';
 
@@ -16,6 +17,7 @@ angular
     'pascalprecht.translate',
     'ovh-api-services',
     'ui.router',
+    ListLayoutHelper.moduleName,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
