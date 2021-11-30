@@ -9,7 +9,6 @@ import {
   findAvailableLocale,
   detectUserLocale,
 } from '@ovh-ux/manager-config';
-import { useShellClient } from '@ovh-ux/shell';
 
 attachPreloader(findAvailableLocale(detectUserLocale()));
 
@@ -19,9 +18,6 @@ fetchConfiguration('dedicated').then((environment) => {
   if (environment.getMessage()) {
     displayMessage(environment.getMessage(), environment.getUserLanguage());
   }
-
-  const shellClient = useShellClient();
-  shellClient.routing.init();
 
   import(`./config-${environment.getRegion()}`)
     .catch(() => {})
