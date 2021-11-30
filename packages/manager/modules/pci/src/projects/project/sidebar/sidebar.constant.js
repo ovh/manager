@@ -159,6 +159,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         },
         title: 'AI Apps',
         regions: ['CA', 'EU'],
+        feature: 'ai-apps',
       },
       {
         id: 'serving',
