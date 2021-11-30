@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.0.1...@ovh-ux/manager-email-domain@1.0.2) (2021-11-30)
+
+
+### Bug Fixes
+
+* **email-domain:** display errors message ([#6026](https://github.com/ovh/manager/issues/6026)) ([5606678](https://github.com/ovh/manager/commit/560667892000e91a3d7a9aefd882f46462517169))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.0.0...@ovh-ux/manager-email-domain@1.0.1) (2021-11-23)
 
 
