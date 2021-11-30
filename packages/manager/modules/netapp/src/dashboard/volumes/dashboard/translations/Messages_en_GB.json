@@ -27,6 +27,7 @@
   "netapp_volumes_dashboard_mount_file_system_save": "To keep the mount on reboot, add to the /etc/fstab file",
   "netapp_volumes_dashboard_update_success": "The volume information has been updated.",
   "netapp_volumes_dashboard_update_error": "An error has occurred updating the volume information.",
-  "netapp_volumes_dashboard_acl": "ACL",
-  "netapp_volumes_dashboard_snapshots": "Backups"
+  "netapp_volumes_dashboard_acl": "Access Control List (ACL)",
+  "netapp_volumes_dashboard_snapshots": "Backups",
+  "netapp_volumes_dashboard_volume_pattern": "May only contain numbers, letters, underscores, dashes or full stops, and a maximum of 256 characters."
 }

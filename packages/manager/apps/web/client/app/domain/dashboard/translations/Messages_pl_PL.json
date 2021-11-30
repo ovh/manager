@@ -603,7 +603,7 @@
   "domain_configuration_zonedns_reset_propagation_info": "Reset nastąpi w trybie natychmiastowym w strefie DNS, jednak należy dodatkowo uwzględnić czas propagacji (maksymalnie 24 godziny).",
   "domain_configuration_zonedns_reset_minimized_yes": "Tak, chcę zresetować strefę DNS i aktywować minimalne wpisy.",
   "domain_configuration_zonedns_reset_minimized_no": "Nie, ale chcę zresetować strefę DNS.",
-  "domain_configuration_zonedns_reset_success": "Reset jest natychmiastowy w strefie DNS. Uwzględnij czas propagacji (maksymalnie 24 godziny).",
+  "domain_configuration_zonedns_reset_success": "Reset w strefie DNS jest natychmiastowy. Uwzględnij czas propagacji (maksymalnie 24 godziny).",
   "domain_configuration_zonedns_reset_error": "Wystąpił błąd podczas resetowania strefy DNS.",
   "domain_configuration_zonedns_reset_type_REDIRECTION": "Przekierowywanie",
   "domain_configuration_zonedns_reset_type_HOSTING_WEB": "Hosting WWW OVHcloud",
