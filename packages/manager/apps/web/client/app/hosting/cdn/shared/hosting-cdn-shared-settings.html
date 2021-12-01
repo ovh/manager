@@ -333,7 +333,8 @@
                data-translate-values="{ 'range': $ctrl.cdnRange, 'maxItems': $ctrl.model.maxItems }"
             ></p>
 
-            <oui-datagrid data-page-size="{{$ctrl.SHARED_CDN_SETTINGS_RULES_NB_RULES_BY_PAGE}}"
+            <oui-datagrid data-id="$ctrl.datagridRulesId"
+                          data-page-size="{{$ctrl.SHARED_CDN_SETTINGS_RULES_NB_RULES_BY_PAGE}}"
                           data-rows="$ctrl.model.rules">
                 <oui-datagrid-topbar>
                     <oui-button
@@ -418,17 +419,18 @@
                         </span>
                     </div>
                 </oui-datagrid-column>
-                <oui-action-menu data-placement="end"
-                                 data-compact
+                <oui-action-menu data-placement="end" data-compact
                                  aria-label="{{:: 'hosting_cdn_shared_option_cache_rule_table_header_options' | translate}}">
-                    <oui-action-menu-item data-on-click="$ctrl.openUpdateCacheRuleModal($row)">
+                    <oui-action-menu-item data-ng-init="status = {inProgress: false}"
+                                          disabled="status.inProgress"
+                                          data-on-click="$ctrl.openUpdateCacheRuleModal($row, status)">
                         <span
                             data-translate="hosting_cdn_shared_option_cache_rule_table_items_option_set_rule"
                         ></span>
                     </oui-action-menu-item>
                     <oui-action-menu-item data-ng-init="status = {inProgress: false}"
                                           disabled="status.inProgress"
-                                          on-click="$ctrl.removeRule($row, status)">
+                                          data-on-click="$ctrl.removeRule($row, status)">
                         <span
                             data-translate="hosting_cdn_shared_option_cache_rule_table_items_option_delete_rule"
                         ></span>
