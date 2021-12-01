@@ -6,7 +6,14 @@ export const RESOURCE_REGEX = {
   regex: '',
   uri: '',
 };
+export const RESOURCE_TYPES_PLACEHOLDER = {
+  FOLDER: '/folder/',
+  URI: '/folder/file.jpg',
+  EXTENSION: 'jpg',
+  REGEX: '.*/file.jpg$',
+};
 
 export default {
   CDN_ADVANCED,
+  RESOURCE_TYPES_PLACEHOLDER,
 };
