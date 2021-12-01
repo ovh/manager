@@ -225,7 +225,7 @@
             ></strong>
         </div>
 
-        <!--Query string-->
+        <!--Query String-->
         <div class="oui-box oui-box_light border-0 pl-0 pt-0"
              data-ng-if="$ctrl.getOption($ctrl.model.optionTypes.CACHE, $ctrl.cdnOptionTypeEnum.QUERYSTRING).api"
              data-ng-init="queryString = $ctrl.getOption($ctrl.model.optionTypes.CACHE, $ctrl.cdnOptionTypeEnum.QUERYSTRING)">
@@ -238,7 +238,7 @@
                 <p class="mb-0" data-translate="hosting_cdn_shared_option_query_string_sort_false"></p>
             </div>
 
-            <!--query string option-->
+            <!--Query String option-->
             <div>
                 <oui-switch
                     disabled="!queryString.api"
@@ -559,12 +559,12 @@
                 </oui-field>
             </div>
 
-            <!-- Mixed content -->
+            <!-- Mixed-Content -->
             <div class="mb-4"
                  data-ng-init="mixedContent = $ctrl.getOption($ctrl.model.optionTypes.SECURITY, $ctrl.cdnOptionTypeEnum.MIXED_CONTENT).api">
 
                 <p class="oui-heading_5 mb-1">
-                    <strong>Mixed content</strong>
+                    <strong>Mixed-Content</strong>
                 </p>
                 <div
                     class="oui-paragraph"
