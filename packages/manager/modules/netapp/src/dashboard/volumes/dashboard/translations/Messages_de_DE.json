@@ -1,0 +1,4 @@
+{
+  "netapp_volumes_dashboard_acl": "Zugriffskontrolle (ACL)",
+  "netapp_volumes_dashboard_volume_pattern": "Höchstens 256 Zeichen: ausschließlich Zahlen, Buchstaben, Unterstriche, Bindestriche und Punkte."
+}

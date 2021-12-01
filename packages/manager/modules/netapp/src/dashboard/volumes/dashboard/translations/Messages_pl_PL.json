@@ -1,0 +1,4 @@
+{
+  "netapp_volumes_dashboard_acl": "Kontrola dostępu (ACL)",
+  "netapp_volumes_dashboard_volume_pattern": "Może zawierać jedynie cyfry, litery, podkreślenia, myślniki lub kropki i maksymalnie 256 znaków."
+}

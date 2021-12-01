@@ -1,0 +1,8 @@
+{
+  "netapp_snapshot_policies_title": "Gerir as políticas de snapshots",
+  "netapp_snapshot_policies_information": "Crie e gira facilmente as suas regras de snapshots definindo a periodicidade ou a duração de retenção. A seguir, poderá aplicá-las em volumes específicos. As snapshots utilizam a capacidade de armazenamento da sua solução Enterprise File Storage.",
+  "netapp_snapshot_policies_create": "Criar uma nova política de snapshots",
+  "netapp_snapshot_policies_delete_success": "A política de snapshots {{snapshotPolicyName}} foi eliminada com sucesso!",
+  "netapp_snapshot_policies_delete_error": "Ocorreu um erro aquando da eliminação da política de snapshots.",
+  "netapp_snapshot_policies_fetch_error": "Ocorreu um erro aquando da recuperação das suas políticas de snapshots."
+}

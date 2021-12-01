@@ -1,0 +1,4 @@
+{
+  "netapp_volumes_dashboard_acl": "Controlo de acesso (ACL)",
+  "netapp_volumes_dashboard_volume_pattern": "Deve conter apenas números, letras, underscores, traços ou pontos e um máximo de 256 caracteres."
+}
