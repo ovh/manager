@@ -22,6 +22,7 @@ import serviceIntegration from './service-integration';
 import replications from './replications';
 import currentQueries from './current-queries';
 import pools from './pools';
+import queryStatistics from './query-statistics';
 
 const moduleName = 'ovhManagerPciStoragesDatabase';
 
@@ -35,6 +36,7 @@ angular
     allowedIps,
     backups,
     generalInformation,
+    queryStatistics,
     users,
     logs,
     metrics,

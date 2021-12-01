@@ -10,6 +10,7 @@ import {
   ENGINES_STATUS,
   ENGINES_PRICE_SUFFIX,
 } from '../../../../components/project/storages/databases/engines.constants';
+import { DATABASE_TYPES } from './databases.constants';
 
 import Backup from '../../../../components/project/storages/databases/backup.class';
 import Database from '../../../../components/project/storages/databases/database.class';
@@ -19,6 +20,7 @@ import Node from '../../../../components/project/storages/databases/node.class';
 import ServiceIntegration from '../../../../components/project/storages/databases/serviceIntegration.class';
 import User from '../../../../components/project/storages/databases/user.class';
 import Pool from '../../../../components/project/storages/databases/pool.class';
+import QueryStatistics from '../../../../components/project/storages/databases/queryStatistics.class';
 
 export default class DatabaseService {
   /* @ngInject */
@@ -26,6 +28,7 @@ export default class DatabaseService {
     $http,
     $q,
     $translate,
+    iceberg,
     CucPriceHelper,
     PciProjectLabsService,
     Poller,
@@ -33,6 +36,7 @@ export default class DatabaseService {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
+    this.iceberg = iceberg;
     this.CucPriceHelper = CucPriceHelper;
     this.PciProjectLabsService = PciProjectLabsService;
     this.Poller = Poller;
@@ -751,5 +755,63 @@ export default class DatabaseService {
         DatabaseService.getIcebergHeaders(),
       )
       .then(({ data: pools }) => pools.map((pool) => new Pool(pool)));
+  }
+
+  /**
+   *
+   * @param {*} projectId
+   * @param {*} engine
+   * @param {*} databaseId
+   * @param {*} pageSize
+   * @param {*} page
+   * @returns [QueryStatistics,.....N]
+   */
+  // TBD: pagesize and page to be enabled when the API supports pagination
+  getQueryStatistics(
+    projectId,
+    engine,
+    databaseId,
+    // pageSize,
+    // page
+  ) {
+    return this.iceberg(
+      `/cloud/project/${projectId}/database/${engine}/${databaseId}/queryStatistics`,
+    )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute() // { limit: pageSize, offset: page }
+      .$promise.then(({ data: stats }) =>
+        stats[0].map((query) => {
+          return engine === DATABASE_TYPES.POSTGRESQL
+            ? new QueryStatistics(
+                query.query,
+                query.rows,
+                query.calls,
+                query.minTime,
+                query.maxTime,
+                query.meanTime,
+                query.stddevTime,
+                query.totalTime,
+              )
+            : new QueryStatistics(
+                query.digestText,
+                query.sumRowsSent,
+                query.countStar,
+                query.minTimerWait,
+                query.maxTimerWait,
+                query.avgTimerWait,
+                0,
+                query.sumTimerWait,
+              );
+        }),
+      );
+  }
+
+  resetQueryStatistics(projectId, engine, databaseId) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/queryStatistics`,
+      )
+      .then(({ data }) => data.queries);
   }
 }
