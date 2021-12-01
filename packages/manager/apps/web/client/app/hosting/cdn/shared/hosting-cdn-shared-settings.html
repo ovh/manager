@@ -296,7 +296,7 @@
                     data-ng-bind="$ctrl.getSwitchBtnStatusText(prewarm.enabled)"
                 ></strong>
 
-                <div class="mt-3">
+                <div class="mt-3" data-ng-if="prewarm.enabled">
                     <p class="mb-0"><strong data-translate="hosting_cdn_shared_option_prewarm_quota"></strong></p>
                     <p data-ng-bind="$ctrl.getPrewarmQuotaUsage()"></p>
                     <div class="oui-input-group oui-input-group_l">
@@ -318,7 +318,6 @@
                         <span data-translate="hosting_cdn_shared_option_prewarm_btn_edit_urls"></span>
                     </oui-button>
                 </div>
-
             </div>
         </div>
 
@@ -459,11 +458,13 @@
                 <strong
                     data-ng-bind="$ctrl.getSwitchBtnStatusText(cors.enabled)"
                 ></strong>
+
                 <oui-button
                     class="d-block mt-1"
-                    variant="primary"
-                    on-click="$ctrl.openCorsList(cors)"
-                    disabled="!cors.enabled"
+                    data-ng-if="cors.enabled"
+                    data-variant="primary"
+                    data-on-click="$ctrl.openCorsList(cors)"
+                    data-disabled="!cors.enabled"
                 >
                     <span
                         data-translate="hosting_cdn_shared_option_cors_edit"
@@ -490,12 +491,14 @@
                         data-translate="hosting_cdn_ssl_required_warning"
                     ></span>
                 </oui-message>
+
                 <oui-switch model="httpsRedirect.enabled"></oui-switch>
                 <strong
                     data-ng-bind="$ctrl.getSwitchBtnStatusText(httpsRedirect.enabled)"
                 ></strong>
 
                 <oui-select
+                    data-ng-if="httpsRedirect.enabled"
                     class="w-25 mt-1"
                     name="https_redirect"
                     match="key"
@@ -525,6 +528,7 @@
                         data-translate="hosting_cdn_ssl_required_warning"
                     ></span>
                 </oui-message>
+
                 <oui-switch model="hsts.enabled"></oui-switch>
                 <strong
                     data-ng-bind="$ctrl.getSwitchBtnStatusText(hsts.enabled)"
@@ -532,8 +536,9 @@
 
                 <oui-field
                     class="ml-1 mt-2"
-                    label="{{:: 'hosting_cdn_shared_option_hsts_max_age' | translate }}"
-                    size="m"
+                    data-ng-if="hsts.enabled"
+                    data-label="{{:: 'hosting_cdn_shared_option_hsts_max_age' | translate }}"
+                    data-size="m"
                 >
                     <div class="oui-input-group oui-input-group_inline">
                         <input
