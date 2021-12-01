@@ -1,7 +1,9 @@
+import find from 'lodash/find';
 import capitalize from 'lodash/capitalize';
 import {
   MAX_IPS_DISPLAY,
   CERTIFICATE_FILENAME,
+  DATABASE_TYPES,
 } from '../../databases.constants';
 import { WARNING_MESSAGES } from './general-information.constants';
 
@@ -117,7 +119,29 @@ export default class {
 
   deleteDatabase() {
     this.trackDashboard('general_information::delete_database');
-    this.goToDeleteDatabase();
+
+    if (
+      [DATABASE_TYPES.KAFKA, DATABASE_TYPES.KAFKA_MIRROR_MAKER].includes(
+        this.database.engine,
+      )
+    ) {
+      return this.DatabaseService.getIntegrations(
+        this.projectId,
+        this.database.engine,
+        this.database.id,
+      ).then((integrations) => {
+        const linkedServices = integrations.map((integration) =>
+          this.database.engine === DATABASE_TYPES.KAFKA
+            ? find(this.databases, { id: integration.destinationServiceId })
+            : find(this.databases, { id: integration.sourceServiceId }),
+        );
+        if (linkedServices.length > 0) {
+          return this.goToConfirmDeleteDatabase(linkedServices);
+        }
+        return this.goToDeleteDatabase();
+      });
+    }
+    return this.goToDeleteDatabase();
   }
 
   $onDestroy() {

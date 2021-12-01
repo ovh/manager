@@ -9,6 +9,7 @@ import addNode from './add-node';
 import deleteNode from './delete-node';
 import component from './general-information.component';
 import deleteDatabase from './delete-database';
+import confirmDeleteDatabase from './confirm-delete-database';
 import editName from './edit-name';
 import node from '../../components/node';
 import routing from './general-information.routing';
@@ -28,6 +29,7 @@ angular
     addNode,
     deleteNode,
     deleteDatabase,
+    confirmDeleteDatabase,
     editName,
     node,
     upgradePlan,

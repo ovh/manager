@@ -48,6 +48,16 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           databaseId,
         }),
+      goToConfirmDeleteDatabase: /* @ngInject */ ($state, database) => (
+        linkedServices,
+      ) =>
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.general-information.confirm-delete',
+          {
+            database,
+            linkedServices,
+          },
+        ),
       goToDeleteDatabase: /* @ngInject */ ($state, database, projectId) => () =>
         $state.go(
           'pci.projects.project.storages.databases.dashboard.general-information.delete',
