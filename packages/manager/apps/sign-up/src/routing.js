@@ -12,7 +12,11 @@ export const state = {
     getRedirectLocation: /* @ngInject */ ($location) => (nic) => {
       const { callback, onsuccess } = $location.search();
 
-      if (callback && !SANITIZATION.regex.test(callback)) {
+      if (
+        callback &&
+        SANITIZATION.regex.test(window.location.href) &&
+        !SANITIZATION.regex.test(callback)
+      ) {
         return null;
       }
 
@@ -26,7 +30,11 @@ export const state = {
       }
 
       // redirect to login page on success
-      if (onsuccess && SANITIZATION.regex.test(onsuccess)) {
+      if (
+        onsuccess &&
+        (!SANITIZATION.regex.test(window.location.href) ||
+          SANITIZATION.regex.test(onsuccess))
+      ) {
         return `${onsuccess}${
           /\?/.test(onsuccess) ? '&' : '?'
         }ovhSessionSuccess=true`;

@@ -98,8 +98,10 @@ angular
     /* @ngInject */ ($compileProvider) => {
       // SECURITY: authorise only trusted hostname in href and img
       // @see https://docs.angularjs.org/api/ng/provider/$compileProvider#aHrefSanitizationWhitelist
-      $compileProvider.aHrefSanitizationWhitelist(SANITIZATION.regex);
-      $compileProvider.imgSrcSanitizationWhitelist(SANITIZATION.regex);
+      if (SANITIZATION.regex.test(window.location.href)) {
+        $compileProvider.aHrefSanitizationWhitelist(SANITIZATION.regex);
+        $compileProvider.imgSrcSanitizationWhitelist(SANITIZATION.regex);
+      }
     },
   )
   .config(
