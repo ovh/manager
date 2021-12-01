@@ -4,8 +4,7 @@ import { BillingService } from '@ovh-ux/manager-models';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.billing.autorenew.delete', {
     url: '/delete?serviceId&serviceType',
-    componentProvider: /* @ngInject */ (engagement) =>
-      engagement ? 'billingAutorenewDelete' : 'billingConfirmTermination',
+    component: 'billingConfirmTermination',
     resolve: {
       cancelResiliationUrl: /* @ngInject */ ($state, serviceId) =>
         $state.href('app.account.billing.autorenew.cancelResiliation', {

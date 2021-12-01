@@ -62,6 +62,7 @@ export default class DomainTabZoneDnsCtrl {
 
     this.checkAllowModification(this.domain.name);
     this.getZoneDns(this.domain.name);
+    this.displayPropagationInfo(this.domain.name);
   }
 
   // Searching --------------------------------------------------------------
@@ -267,5 +268,32 @@ export default class DomainTabZoneDnsCtrl {
     this.selectedRecords = xor(this.selectedRecords, [record]);
     this.atLeastOneSelected = this.selectedRecords.length > 0;
     this.applySelection();
+  }
+
+  displayPropagationInfo(domainName) {
+    this.Domain.getZoneHistory(domainName)
+      .then((updateHistory) => {
+        if (
+          updateHistory.length > 0 &&
+          moment(updateHistory[0]).isBetween(
+            moment().subtract(24, 'hours'),
+            moment(),
+          )
+        ) {
+          this.Alerter.set(
+            'alert-info',
+            this.$translate.instant('domain_tab_ZONE_propagation_info'),
+            null,
+            this.$scope.alerts.main,
+          );
+        }
+      })
+      .catch((err) => {
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('domain_tab_ZONE_default_ttl_error'),
+          err,
+          this.$scope.alerts.main,
+        );
+      });
   }
 }

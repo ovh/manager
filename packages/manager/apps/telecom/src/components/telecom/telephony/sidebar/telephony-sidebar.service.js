@@ -16,7 +16,7 @@ angular
 
     function addServiceMenuItems(services, options, billingAccountSubSection) {
       services.forEach((service) => {
-        SidebarMenu.addMenuItem(
+        const item = SidebarMenu.addMenuItem(
           {
             id: service.serviceName,
             title: service.getDisplayedName(),
@@ -32,6 +32,13 @@ angular
           },
           billingAccountSubSection,
         );
+
+        const { associatedDeviceMac } = service;
+
+        if (associatedDeviceMac) {
+          item.addSearchKey(associatedDeviceMac);
+          item.addSearchKey(service.getRawAssociatedDeviceMac());
+        }
       });
     }
 
