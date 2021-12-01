@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
     params: { app: null },
     views: {
       modal: {
-        component: 'ovhManagerPciProjectAppsDeleteapp',
+        component: 'ovhManagerPciProjectAppsDeleteApp',
       },
     },
     layout: 'modal',

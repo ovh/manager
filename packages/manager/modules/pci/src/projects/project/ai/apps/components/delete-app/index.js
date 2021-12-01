@@ -6,7 +6,7 @@ import '@ovh-ux/ui-kit';
 
 import component from './delete-app.component';
 
-const moduleName = 'ovhManagerPciAppsDeleteapp';
+const moduleName = 'ovhManagerPciAppsDeleteApp';
 
 angular
   .module(moduleName, [
