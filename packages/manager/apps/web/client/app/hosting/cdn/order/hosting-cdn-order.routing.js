@@ -67,6 +67,7 @@ export default /* @ngInject */ ($stateProvider) => {
       const newPlanIndex = availablePlans.findIndex(
         (plan) => plan.planCode === newPlanCode,
       );
+
       return oldPlanIndex < newPlanIndex
         ? HOSTING_CDN_CHANGE_TYPE.UPGRADE
         : HOSTING_CDN_CHANGE_TYPE.DOWNGRADE;
@@ -77,8 +78,9 @@ export default /* @ngInject */ ($stateProvider) => {
       getChangeType,
       workflowOptions,
     ) => () => {
-      const oldPlanCode = cdnProperties.type;
+      const { type: oldPlanCode } = cdnProperties || {};
       const newPlanCode = workflowOptions.getPlanCode();
+
       return {
         changeType: getChangeType(oldPlanCode, newPlanCode),
         oldPlanCode,
@@ -155,6 +157,7 @@ export default /* @ngInject */ ($stateProvider) => {
         : $translate.instant('hosting_dashboard_cdn_v2_order_success', {
             t0: checkout.url,
           });
+
       const changeDetails = getChangeDetails();
       atInternet.trackPage({
         name: `web_hosting_cdn_order::${changeDetails.changeType}_validate::${changeDetails.oldPlanCode}::${changeDetails.newPlanCode}`,
@@ -168,7 +171,6 @@ export default /* @ngInject */ ($stateProvider) => {
     workflowOptions: /* @ngInject */ (
       catalog,
       cdnProperties,
-      getChangeType,
       serviceName,
       trackClick,
     ) => ({
@@ -178,15 +180,10 @@ export default /* @ngInject */ ($stateProvider) => {
         trackClick('web::hosting::cdn::order::next');
       },
       onValidateSubmit() {
-        const oldPlanCode = cdnProperties.type;
         const newPlanCode = this.getPlanCode();
+
         trackClick('web::hosting::cdn::order::confirm');
-        trackClick(
-          `web_hosting_cdn_order::${getChangeType(
-            oldPlanCode,
-            newPlanCode,
-          )}::${oldPlanCode}::${newPlanCode}`,
-        );
+        trackClick(`web_hosting_cdn_order::order::${newPlanCode}`);
       },
       productName: HOSTING_PRODUCT_NAME,
       serviceNameToAddProduct: serviceName,
@@ -251,8 +248,9 @@ export default /* @ngInject */ ($stateProvider) => {
               trackClick('web::hosting::cdn::order::next');
             },
             onValidateSubmit() {
-              const oldPlanCode = cdnProperties.type;
+              const { type: oldPlanCode } = cdnProperties || {};
               const newPlanCode = this.getPlanCode();
+
               trackClick('web::hosting::cdn::order::confirm');
               trackClick(
                 `web_hosting_cdn_order::${getChangeType(
