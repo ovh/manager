@@ -152,6 +152,8 @@ export default class NotebookService {
   }
 
   getSavedSshKeys(serviceName) {
-    return this.$http.get(`/cloud/project/${serviceName}/sshkey`);
+    return this.$http
+      .get(`/cloud/project/${serviceName}/sshkey`)
+      .then(({ data }) => data);
   }
 }

@@ -78,18 +78,15 @@ export default class NotebookSshKeysController {
   }
 
   populateSavedSshKeys() {
-    this.NotebookService.getSavedSshKeys(this.projectId).then(
-      ({ data: keys }) => {
-        this.savedKeys = keys;
-        this.allKeyNames = [
-          this.NOTEBOOK_SSH_KEYS_CONSTANTS.CUSTOM_SELECT,
-        ].concat(this.savedKeys.map((x) => x.name));
-      },
-    );
+    this.NotebookService.getSavedSshKeys(this.projectId).then((keys) => {
+      this.savedKeys = keys;
+      this.allKeyNames = [
+        this.NOTEBOOK_SSH_KEYS_CONSTANTS.CUSTOM_SELECT,
+      ].concat(this.savedKeys.map((x) => x.name));
+    });
   }
 
   textareaChanged() {
     this.notebookModel.sshPublicKeys = this.getAllSshKeys();
-    console.log(this.notebookModel);
   }
 }
