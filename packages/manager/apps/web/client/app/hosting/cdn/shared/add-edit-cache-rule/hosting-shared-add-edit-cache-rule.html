@@ -95,6 +95,7 @@
                 id="rule_pattern"
                 name="rule_pattern"
                 type="text"
+                placeholder="{{$ctrl.RESOURCE_TYPES_PLACEHOLDER[$ctrl.ruleModel.patternType.toUpperCase()]}}"
                 data-ng-disabled="$ctrl.rule"
                 data-ng-model="$ctrl.ruleModel.pattern"
                 data-ng-change="$ctrl.isValidRulePattern($ctrl.ruleModel)"
