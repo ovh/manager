@@ -3,8 +3,6 @@
   "vps_configuration_veeam_order_back_btn_title": "Retour à la liste des backups automatisés",
   "vps_configuration_veeam_order_step1_loading_error": "Une erreur est survenue lors du chargement des informations",
   "vps_configuration_veeam_order_step1_info": "Pour le premier paiement, vous serez facturé au prorata du nombre de jours restant avant la date de renouvellement de votre VPS.",
-  "vps_configuration_veeam_order_backup_info": "La fonction auto-backup vous permet de restaurer votre VPS à tout moment. Vous disposez, sur votre tableau de bord, de <strong>7 sauvegardes de votre VPS</strong> (hors disques additionnels) <strong>correspondant aux 7 derniers jours d’utilisation.</strong>",
-  "vps_configuration_veeam_order_schedule_info": "N’hésitez pas à planifiez vos sauvegardes aux heures qui vous conviennent le mieux.",
   "vps_configuration_veeam_order_step1_info2": "Ensuite, le service sera facturé mensuellement au prix de <strong>{{ price }} HT</strong>/{{duration}}.",
   "vps_configuration_veeam_order_step1_info2_P1M": "mois",
   "vps_configuration_veeam_order_step1_info2_P1Y": "an",
@@ -21,5 +19,6 @@
   "vps_configuration_veeam_order_fail": "Une erreur est survenue lors de la demande de souscription à l'option Backups automatiques.",
   "vps_configuration_veeam_order_success": "Afin de finaliser votre commande, veuillez suivre les instructions décrites dans le nouvel onglet qui s'est ouvert. Si aucun nouvel onglet ne s'est ouvert, veuillez cliquer sur <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">ce lien</a>.",
   "vps_configuration_veeam_order_load_error": "Une erreur est survenue lors du chargement des informations de la commande de backup automatisé.",
-  "vps_configuration_veeam_order_load_error_none": "Aucune commande de backup automatisé n'a été trouvée pour ce VPS."
+  "vps_configuration_veeam_order_load_error_none": "Aucune commande de backup automatisé n'a été trouvée pour ce VPS.",
+  "vps_configuration_veeam_order_explain": "En cliquant sur le bouton \"Commander\", un nouvel onglet s'ouvrira et vous serez automatiquement redirigé(e) vers l'interface de paiement."
 }

@@ -20,7 +20,5 @@
   "vps_configuration_veeam_order_load_error_none": "Brak zamówień na zautomatyzowane kopie zapasowe dla tego VPS.",
   "vps_configuration_veeam_order_explain": "Po kliknięciu przycisku „Zamów” otworzy się nowa zakładka i zostaniesz przekierowany do interfejsu zamówienia.",
   "vps_configuration_veeam_order_step1_info2_P1M": "miesiąc",
-  "vps_configuration_veeam_order_step1_info2_P1Y": "rok",
-  "vps_configuration_veeam_order_backup_info": "Funkcja auto-backup umożliwia przywrócenie serwera VPS w każdej chwili. Na dashboardzie znajdziesz <strong>7 kopii zapasowych serwera VPS</strong> (bez dysków dodatkowych) <strong>odpowiadających ostatnim 7 dniom użytkowania.</strong>",
-  "vps_configuration_veeam_order_schedule_info": "Zaprogramuj tworzenie kopii zapasowych w najbardziej dogodnych dla Ciebie godzinach."
+  "vps_configuration_veeam_order_step1_info2_P1Y": "rok"
 }
