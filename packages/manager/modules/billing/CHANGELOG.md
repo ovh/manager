@@ -1,3 +1,13 @@
+# [0.7.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.6.0-alpha.2...@ovh-ux/manager-billing@0.7.0-alpha.0) (2021-12-01)
+
+
+### Features
+
+* **payment-method:** catch error on payment methods load ([80dc337](https://github.com/ovh/manager/commit/80dc337192635134f445aeb1e9035c14321d1e33))
+* cancel a service with commitment ([#5677](https://github.com/ovh/manager/issues/5677)) ([f7dc6ab](https://github.com/ovh/manager/commit/f7dc6ab24db5a01b1d8521fc072def4da5aa5633))
+
+
+
 # [0.6.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.6.0-alpha.1...@ovh-ux/manager-billing@0.6.0-alpha.2) (2021-11-22)
 
 

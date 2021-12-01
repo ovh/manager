@@ -1,3 +1,19 @@
+# [17.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.6.0...@ovh-ux/manager-dedicated@17.7.0) (2021-12-01)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/manager-billing` semver range ([15b277f](https://github.com/ovh/manager/commit/15b277f34db3349a2f233a603cbde18b355c4a41))
+
+
+### Features
+
+* **payment-method:** catch error on payment methods load ([80dc337](https://github.com/ovh/manager/commit/80dc337192635134f445aeb1e9035c14321d1e33))
+* cancel a service with commitment ([#5677](https://github.com/ovh/manager/issues/5677)) ([f7dc6ab](https://github.com/ovh/manager/commit/f7dc6ab24db5a01b1d8521fc072def4da5aa5633))
+* track changes for recommitment ([#5955](https://github.com/ovh/manager/issues/5955)) ([ffffe48](https://github.com/ovh/manager/commit/ffffe486c3e7d997f894a34bdd306be60e4922d1))
+
+
+
 # [17.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.5.7...@ovh-ux/manager-dedicated@17.6.0) (2021-11-30)
 
 
