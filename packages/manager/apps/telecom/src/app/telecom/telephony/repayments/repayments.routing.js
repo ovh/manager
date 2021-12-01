@@ -1,8 +1,10 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+
 import controller from './repayments.controller';
 import template from './repayments.html';
-import { COLUMNS } from './repayments.constants';
-import { transformRepayments } from './repayments.helpers';
+
+const { stateParams } = ListLayoutHelper;
+const { sortOrder } = stateParams;
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
@@ -24,34 +26,24 @@ export default /* @ngInject */ ($stateProvider) => {
       url: `?${ListLayoutHelper.urlQueryParams}`,
       views: {
         listView: {
-          component: 'managerListLayout',
+          component: 'telecomTelephonyRepaymentsList',
         },
       },
-      params: ListLayoutHelper.stateParams,
+      params: {
+        ...stateParams,
+        sortOrder: {
+          ...sortOrder,
+          value: 'DESC',
+        },
+      },
       resolve: {
         ...ListLayoutHelper.stateResolves,
-        resources: /* @ngInject */ ($http) =>
-          $http
-            .get('/me/sva/cdr', {
-              headers: {
-                'X-Pagination-Mode': 'CachedObjectList-Pages',
-                'X-Pagination-Filter': 'status:in=CREATED,PAID',
-              },
-            })
-            .then(({ data }) => transformRepayments(data)),
         apiPath: () => '/me/sva/cdr',
         dataModel: () => 'me.sva.Cdr',
-        columns: /* @ngInject */ ($translate) =>
-          COLUMNS.map((column) => ({
-            ...column,
-            title: $translate.instant(
-              `telephony_repayments_grid_${column.property}`,
-            ),
-          })),
+        defaultFilterColumn: () => 'startDate',
         schema: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().schema().$promise,
-        staticResources: () => true,
-        defaultFilterColumn: () => 'calledNumber',
-        customizableColumns: () => true,
+        statusEnum: /* @ngInject */ (schema) =>
+          schema.models['me.sva.cdr.StatusEnum'].enum,
         hideBreadcrumb: () => true,
       },
     });

@@ -1,0 +1,76 @@
+<oui-datagrid
+    id="{{ $ctrl.id }}"
+    data-page-size="{{ $ctrl.paginationSize }}"
+    data-rows-loader="$ctrl.loadPage()"
+    data-row-loader="$ctrl.loadResource($row)"
+    data-criteria="$ctrl.criteria"
+    data-on-page-change="$ctrl.onPageChange($pagination)"
+    data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+    data-on-sort-change="$ctrl.onSortChange($sort)"
+    data-columns="$ctrl.columnsConfig"
+    data-customizable="$ctrl.customizableColumns"
+    data-on-columns-parameters-change="$ctrl.onColumnChange(id, columns)"
+    data-page="{{ $ctrl.paginationNumber }}"
+>
+    <oui-datagrid-column
+        data-title="::'telephony_repayments_grid_calledNumber' | translate"
+        data-property="calledNumber"
+        data-type="string"
+        data-sortable
+        data-searchable
+        data-filterable
+    >
+        <span data-ng-bind="::$row.calledNumber | tucPhoneNumber"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'telephony_repayments_grid_callingNumber' | translate"
+        data-property="callingNumber"
+        data-type="string"
+        data-sortable
+        data-searchable
+        data-filterable
+    >
+        <span data-ng-bind="::$row.callingNumber | tucPhoneNumber"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'telephony_repayments_grid_startDate' | translate"
+        data-property="startDate"
+        data-type="date"
+        data-sortable
+        data-filterable
+    >
+        <span
+            data-ng-bind="::$row.startDate | date:'dd-MM-yyyy HH:mm:ss'"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'telephony_repayments_grid_duration' | translate"
+        data-property="duration"
+    >
+        <span data-ng-bind="$ctrl.formatDuration($row.duration)"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'telephony_repayments_grid_buyAmount.value' | translate"
+        data-property="buyAmount.value"
+        data-type="number"
+        data-sortable
+        data-filterable
+    >
+        <span data-ng-bind="::$row.buyAmount.value | currency"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'telephony_repayments_grid_status' | translate"
+        data-property="status"
+        data-type="options"
+        data-type-options="$ctrl.statusColumnOptions"
+        data-sortable
+        data-filterable
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="::'oui-badge_' + ($row.status === 'PAID' ? 'success' : 'error')"
+            data-translate="{{'telephony_repayments_grid_status_' + $row.status }}"
+        >
+        </span>
+    </oui-datagrid-column>
+</oui-datagrid>

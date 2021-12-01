@@ -7,6 +7,7 @@ import 'ovh-api-services';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import routing from './repayments.routing';
+import component from './list/repayments-list.component';
 
 const moduleName = 'ovhManagerTelecomTelephonyRepayments';
 
@@ -20,6 +21,7 @@ angular
     ListLayoutHelper.moduleName,
   ])
   .config(routing)
+  .component('telecomTelephonyRepaymentsList', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
