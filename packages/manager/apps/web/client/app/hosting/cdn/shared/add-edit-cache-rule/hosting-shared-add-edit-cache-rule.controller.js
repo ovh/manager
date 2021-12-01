@@ -1,6 +1,6 @@
 import find from 'lodash/find';
 import set from 'lodash/set';
-
+import clone from 'lodash/clone';
 import {
   SHARED_CDN_SETTINGS_RULE_FACTOR_DAY,
   SHARED_CDN_SETTINGS_RULE_FACTOR_HOUR,
@@ -108,38 +108,59 @@ export default class {
 
   createRule() {
     const { name, pattern, ttl, priority, patternType } = this.ruleModel;
-    return {
-      type: this.cdnOptionTypeEnum.CACHE_RULE,
-      name,
-      pattern,
-      enabled: true,
-      config: {
-        ttl: ttl.value * ttl.selected.factor,
-        priority: priority.value,
-        patternType,
+
+    return this.HostingCdnSharedService.addNewOptionToDomain(
+      this.serviceName,
+      this.domainName,
+      {
+        type: this.cdnOptionTypeEnum.CACHE_RULE,
+        name,
+        pattern,
+        enabled: true,
+        config: {
+          ttl: ttl.value * ttl.selected.factor,
+          priority: priority.value,
+          patternType,
+        },
       },
-    };
+    );
   }
 
   updateRule(rule) {
+    this.trackClick(`create-rule::${this.ruleModel.patternType}::confirm`);
+
     const { name, pattern, ttl, priority, patternType } = this.ruleModel;
-    set(rule, 'name', name);
-    set(rule, 'pattern', pattern);
-    set(rule, 'config.ttl', ttl.value * ttl.selected.factor);
-    set(rule, 'config.priority', priority.value);
-    set(rule, 'config.patternType', patternType);
-    return rule;
+    const cRule = clone(rule);
+
+    set(cRule, 'pattern', pattern);
+    set(cRule, 'config.ttl', ttl.value * ttl.selected.factor);
+    set(cRule, 'config.priority', priority.value);
+    set(cRule, 'config.patternType', patternType);
+    delete cRule.name;
+
+    return this.HostingCdnSharedService.updateCDNDomainOption(
+      this.serviceName,
+      this.domainName,
+      name,
+      cRule,
+    );
   }
 
   validateRule() {
     if (this.addCacheRuleForm.$valid) {
-      if (!this.rule) {
-        this.trackClick(`create-rule::${this.ruleModel.patternType}::confirm`);
-        this.callbacks.success(this.createRule());
-      } else {
-        this.callbacks.success(this.updateRule(this.rule));
-      }
-      this.goBack();
+      this.isPending = true;
+      const requestPromise = this.rule
+        ? this.updateRule(this.rule)
+        : this.createRule();
+
+      requestPromise
+        .then(({ data: rule }) => {
+          this.callbacks.success(rule);
+          this.goBack();
+        })
+        .finally(() => {
+          this.isPending = false;
+        });
     }
   }
 

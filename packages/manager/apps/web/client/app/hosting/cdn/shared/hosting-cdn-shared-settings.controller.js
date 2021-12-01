@@ -27,6 +27,7 @@ export default class CdnSharedSettingsController {
     this.$translate = $translate;
     this.HostingCdnSharedService = HostingCdnSharedService;
 
+    this.datagridRulesId = 'rulesDatagrid';
     this.SHARED_CDN_RANGE = SHARED_CDN_RANGE;
     this.SHARED_CDN_SETTINGS_RULES_NB_RULES_BY_PAGE = SHARED_CDN_SETTINGS_RULES_NB_RULES_BY_PAGE;
   }
@@ -297,14 +298,6 @@ export default class CdnSharedSettingsController {
     }
   }
 
-  createRule(rule) {
-    return this.HostingCdnSharedService.addNewOptionToDomain(
-      this.serviceName,
-      this.domainName,
-      rule,
-    );
-  }
-
   updateRule(rule, modelValue) {
     const cRule = clone(rule);
     delete cRule.name;
@@ -319,6 +312,7 @@ export default class CdnSharedSettingsController {
 
   removeRule(rule, status) {
     this.trackClick('delete_cdn_rule');
+
     CdnSharedSettingsController.activateDeactivateStatus(status, true);
     return this.HostingCdnSharedService.deleteCDNDomainOption(
       this.serviceName,
@@ -326,8 +320,11 @@ export default class CdnSharedSettingsController {
       rule.name,
     )
       .then((res) => {
-        const index = this.model.rules.indexOf(rule);
-        if (index >= 0) this.model.rules.splice(index, 1);
+        const ruleIndex = this.model.rules.findIndex(
+          ({ name }) => name === rule.name,
+        );
+        if (ruleIndex >= 0) this.model.rules.splice(ruleIndex, 1);
+
         return res;
       })
       .finally(() =>
@@ -369,6 +366,16 @@ export default class CdnSharedSettingsController {
     this.tasks.toUpdate.push(rule);
   }
 
+  refreshDatagridRule(rule) {
+    const { model } = this;
+
+    model.rules.forEach(({ name }, index) => {
+      if (name === rule.name) {
+        model.rules[index] = { ...rule };
+      }
+    });
+  }
+
   openCreateCacheRuleModal(status) {
     const priority = {
       max: this.getMaxPriority() + 1,
@@ -378,7 +385,6 @@ export default class CdnSharedSettingsController {
       success: (rule) => {
         this.setRulesPriority(rule);
         this.updateChangedRules(this.tasks.toUpdate, status)
-          .then(() => this.createRule(rule))
           .then(() => {
             this.model.rules.push(rule);
           })
@@ -396,6 +402,7 @@ export default class CdnSharedSettingsController {
       priority,
       callbacks,
     };
+
     this.displayCreateCacheRuleModal(params);
   }
 
@@ -407,7 +414,7 @@ export default class CdnSharedSettingsController {
       success: (uRule) => {
         this.setRulesPriority(uRule);
         this.updateChangedRules(this.tasks.toUpdate, status)
-          .then(() => this.updateRule(uRule))
+          .then(() => this.refreshDatagridRule(rule))
           .finally(() => {
             this.tasks.toUpdate = [];
             CdnSharedSettingsController.activateDeactivateStatus(status, false);
@@ -422,6 +429,7 @@ export default class CdnSharedSettingsController {
       priority,
       callbacks,
     };
+
     this.displayUpdateCacheRuleModal(params);
   }
 
