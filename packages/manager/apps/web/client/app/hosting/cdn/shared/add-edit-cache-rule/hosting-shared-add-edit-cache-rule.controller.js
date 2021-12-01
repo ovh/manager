@@ -10,6 +10,7 @@ import {
 import {
   RESOURCE_REGEX,
   RESOURCE_TYPE_EXTENSION,
+  RESOURCE_TYPES_PLACEHOLDER,
 } from './hosting-shared-add-edit-cache-rule.constants';
 
 export default class {
@@ -19,6 +20,7 @@ export default class {
     this.HostingCdnSharedService = HostingCdnSharedService;
     this.RESOURCE_REGEX = RESOURCE_REGEX;
     this.RESOURCE_TYPE_EXTENSION = RESOURCE_TYPE_EXTENSION;
+    this.RESOURCE_TYPES_PLACEHOLDER = RESOURCE_TYPES_PLACEHOLDER;
 
     this.ruleModel = {
       name: null,
