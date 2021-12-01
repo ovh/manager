@@ -3017,10 +3017,10 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@ovh-ux/ng-ovh-api-wrappers@^4.0.9":
-  version "4.0.9"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.9.tgz#062b50f039d3e6b820d1b1a5dd279654b148b845"
-  integrity sha512-+v1NZx4xMged64VCxBs3tQzCimScSfIicColVoP6MIByEw9g8Lt6DHtnpJk1M2RnGQVxhJbE5KpDVADadhnBhA==
+"@ovh-ux/ng-ovh-api-wrappers@^4.0.10":
+  version "4.0.10"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.10.tgz#a71f49a916254780840eeeda9a0aacb1d83f2d28"
+  integrity sha512-CLCDglm0BpGSTMSA3J3zWo4KNZ/HRt6YYVtzYCmFItc+DRlAZPKAZ2GOGKIBwoKU90KdIlmL+Bvdw1iwb1C7+g==
   dependencies:
     lodash "^4.17.21"
 
