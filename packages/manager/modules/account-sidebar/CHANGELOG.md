@@ -1,3 +1,12 @@
+## [3.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.5.4...@ovh-ux/manager-account-sidebar@3.5.5) (2021-12-01)
+
+
+### Bug Fixes
+
+* **shortcuts:** update services label ([#5979](https://github.com/ovh/manager/issues/5979)) ([49c496a](https://github.com/ovh/manager/commit/49c496ac432cc1775097d786d9aaf903fed46d38))
+
+
+
 ## [3.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.5.3...@ovh-ux/manager-account-sidebar@3.5.4) (2021-11-04)
 
 

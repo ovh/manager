@@ -1,3 +1,17 @@
+# [5.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.49.1...@ovh-ux/manager-pci@5.50.0) (2021-12-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1301] ([d108ea2](https://github.com/ovh/manager/commit/d108ea2e6f99a4007589c12ca1810944f2787376))
+
+
+### Features
+
+* **storage.databases:** auto-update user tab ([#5804](https://github.com/ovh/manager/issues/5804)) ([fcb9424](https://github.com/ovh/manager/commit/fcb9424cd971445d0e8df130687683b1f00a2c14))
+
+
+
 ## [5.49.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.49.0...@ovh-ux/manager-pci@5.49.1) (2021-11-30)
 
 
