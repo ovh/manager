@@ -1,3 +1,12 @@
+# [7.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.5.2...@ovh-ux/ng-ovh-telecom-universe-components@7.6.0) (2021-12-01)
+
+
+### Features
+
+* **sidebar:** tucVoipService's mac is searchable ([5e43b48](https://github.com/ovh/manager/commit/5e43b4814c16e00964b3bf2c1a7ca20df15eb223))
+
+
+
 ## [7.5.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.5.1...@ovh-ux/ng-ovh-telecom-universe-components@7.5.2) (2021-11-22)
 
 

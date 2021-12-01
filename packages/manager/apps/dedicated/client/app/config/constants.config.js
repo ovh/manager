@@ -5,7 +5,7 @@ const constants = {
     RENEW_URL:
       'https://eu.ovh.com/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
     vmsUrl: 'http://travaux.ovh.net/vms/',
-    travauxUrl: 'http://travaux.ovh.net/',
+    statusUrl: 'https://www.status-ovhcloud.com/',
     UNIVERS: 'dedicated',
     SECTIONS_UNIVERSE_MAP: {
       sd: ['server'],
@@ -747,7 +747,7 @@ const constants = {
     RENEW_URL:
       'https://ca.ovh.com/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
     vmsUrl: 'http://status.ovh.net/vms/',
-    travauxUrl: 'http://status.ovh.net/',
+    statusUrl: 'https://www.status-ovhcloud.com/',
     UNIVERS: 'dedicated',
     SECTIONS_UNIVERSE_MAP: {
       sd: ['server'],
@@ -1110,7 +1110,7 @@ const constants = {
   },
   US: {
     RENEW_URL: '/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-    travauxUrl: 'https://status.us.ovhcloud.com/',
+    statusUrl: 'https://status.us.ovhcloud.com/',
     vrackUrl: 'https://us.ovhcloud.com/manager/cloud/index.html#/vrack',
     UNIVERS: 'dedicated',
     SECTIONS_UNIVERSE_MAP: {

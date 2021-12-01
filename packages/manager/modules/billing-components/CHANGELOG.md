@@ -1,3 +1,13 @@
+# [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.5.3...@ovh-ux/manager-billing-components@3.6.0) (2021-12-01)
+
+
+### Features
+
+* cancel a service with commitment ([#5677](https://github.com/ovh/manager/issues/5677)) ([f7dc6ab](https://github.com/ovh/manager/commit/f7dc6ab24db5a01b1d8521fc072def4da5aa5633))
+* track changes for recommitment ([#5955](https://github.com/ovh/manager/issues/5955)) ([ffffe48](https://github.com/ovh/manager/commit/ffffe486c3e7d997f894a34bdd306be60e4922d1))
+
+
+
 ## [3.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.5.2...@ovh-ux/manager-billing-components@3.5.3) (2021-11-22)
 
 

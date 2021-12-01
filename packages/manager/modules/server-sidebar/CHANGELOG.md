@@ -1,3 +1,12 @@
+# [3.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.15.0...@ovh-ux/manager-server-sidebar@3.16.0) (2021-12-01)
+
+
+### Features
+
+* enable veeam enterprise order for US ([#5284](https://github.com/ovh/manager/issues/5284)) ([439ab43](https://github.com/ovh/manager/commit/439ab43d88052105bb1a8c3698cc9a5aa190c924))
+
+
+
 # [3.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.14.0...@ovh-ux/manager-server-sidebar@3.15.0) (2021-10-28)
 
 

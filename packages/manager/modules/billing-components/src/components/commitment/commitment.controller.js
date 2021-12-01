@@ -40,6 +40,7 @@ export default class {
       .then(({ service, options }) => {
         this.service = service;
         this.service.addOptions(options);
+        this.trackPage();
         return this.BillingCommitmentService.getCatalogPrice(
           this.service,
           this.user,
@@ -55,6 +56,15 @@ export default class {
       .finally(() => {
         this.isLoadingService = false;
       });
+  }
+
+  trackPage() {
+    this.atInternet.trackPage({
+      name: `${
+        this.pageTrackingPrefix ? this.pageTrackingPrefix : this.trackingPrefix
+      }::${this.service.isEngaged() ? 'recommitment' : 'commitment'}`,
+      type: 'navigation',
+    });
   }
 
   getAvailableEngagements() {
@@ -113,9 +123,9 @@ export default class {
 
   commit() {
     this.atInternet.trackClick({
-      name: `${
-        this.trackingPrefix
-      }::commit::confirm_${this.model.duration.duration.toLowerCase()}_${
+      name: `${this.trackingPrefix}::${
+        this.service.isEngaged() ? 'recommit' : 'commit'
+      }::confirm_${this.model.duration.duration.toLowerCase()}_${
         this.model.engagement.commitmentType
       }`,
       type: 'action',

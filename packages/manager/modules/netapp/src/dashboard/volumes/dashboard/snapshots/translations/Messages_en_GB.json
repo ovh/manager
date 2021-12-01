@@ -24,5 +24,10 @@
   "netapp_volumes_snapshots_status_manage_error": "Available",
   "netapp_volumes_snapshots_status_unmanage_starting": "Available",
   "netapp_volumes_snapshots_status_unmanage_error": "Available",
-  "netapp_volumes_snapshots_status_restoring": "Restoring"
+  "netapp_volumes_snapshots_status_restoring": "Restoring",
+  "netapp_volumes_snapshots_policies": "Manage the snapshot policy",
+  "netapp_volumes_snapshots_policies_description": "You can apply a snapshot policy to your volume.",
+  "netapp_volumes_snapshots_policies_apply": "Apply the policy",
+  "netapp_volumes_snapshots_policies_apply_success": "Policy applied successfully.",
+  "netapp_volumes_snapshots_policies_apply_error": "The policy could not be applied. Please try again later."
 }

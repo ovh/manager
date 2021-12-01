@@ -17,6 +17,7 @@ import Engine from '../../../../components/project/storages/databases/engine.cla
 import Lab from '../../../../components/project/labs/lab.class';
 import Node from '../../../../components/project/storages/databases/node.class';
 import ServiceIntegration from '../../../../components/project/storages/databases/serviceIntegration.class';
+import User from '../../../../components/project/storages/databases/user.class';
 
 export default class DatabaseService {
   /* @ngInject */
@@ -334,6 +335,23 @@ export default class DatabaseService {
         DatabaseService.getIcebergHeaders(),
       )
       .then(({ data }) => data);
+  }
+
+  pollUserStatus(projectId, engine, databaseId, userId) {
+    return this.Poller.poll(
+      `/cloud/project/${projectId}/database/${engine}/${databaseId}/user/${userId}`,
+      {},
+      {
+        namespace: `databases_${databaseId}_user_${userId}`,
+        interval: 2000,
+        method: 'get',
+        successRule: (user) => !new User(user).isProcessing(),
+      },
+    );
+  }
+
+  stopPollingUserStatus(databaseId, userId) {
+    this.Poller.kill({ namespace: `databases_${databaseId}_user_${userId}` });
   }
 
   addUser(projectId, engine, databaseId, user) {

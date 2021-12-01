@@ -1,3 +1,19 @@
+# [16.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.0.0...@ovh-ux/manager-web@16.1.0) (2021-12-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1301] ([d108ea2](https://github.com/ovh/manager/commit/d108ea2e6f99a4007589c12ca1810944f2787376))
+* remove unused translations [CDS] ([d628a75](https://github.com/ovh/manager/commit/d628a75c4b4d6480138590cf1e0b1f01dfc8e2be))
+
+
+### Features
+
+* **domain:** display propagation message in dns zone and server tab ([#5753](https://github.com/ovh/manager/issues/5753)) ([4acda47](https://github.com/ovh/manager/commit/4acda474620dc9019f8a4415252dd6d85a69eeae))
+* ssl selected by default when creating multisite ([#5809](https://github.com/ovh/manager/issues/5809)) ([10bb41e](https://github.com/ovh/manager/commit/10bb41ed97c94907ac17351b5e23b3e9865182ac))
+
+
+
 # [16.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.33.3...@ovh-ux/manager-web@16.0.0) (2021-11-22)
 
 

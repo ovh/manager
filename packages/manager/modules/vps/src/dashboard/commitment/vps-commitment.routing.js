@@ -12,5 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('vps_commitment'),
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };

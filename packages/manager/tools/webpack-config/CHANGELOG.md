@@ -1,3 +1,12 @@
+## [4.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@4.0.4...@ovh-ux/manager-webpack-config@4.0.5) (2021-11-29)
+
+
+### Bug Fixes
+
+* **deps:** upgrade some dependencies ([8463f75](https://github.com/ovh/manager/commit/8463f7587c2246a18b963d46351131d030600ae0))
+
+
+
 ## [4.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@4.0.3...@ovh-ux/manager-webpack-config@4.0.4) (2021-10-27)
 
 

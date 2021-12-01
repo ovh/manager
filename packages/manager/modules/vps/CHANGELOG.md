@@ -1,3 +1,18 @@
+# [2.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.17.9...@ovh-ux/manager-vps@2.18.0) (2021-12-01)
+
+
+### Features
+
+* **veeam.order:** modifications in auto-backup screen ([#5935](https://github.com/ovh/manager/issues/5935)) ([0dd288e](https://github.com/ovh/manager/commit/0dd288e8bcb7d88ee173cbc3ac49365ad22b3e77))
+* track changes for recommitment ([#5955](https://github.com/ovh/manager/issues/5955)) ([ffffe48](https://github.com/ovh/manager/commit/ffffe486c3e7d997f894a34bdd306be60e4922d1))
+
+
+### Reverts
+
+* **veeam.order:** modifications in auto-backup screen ([#5935](https://github.com/ovh/manager/issues/5935)) ([b5bf409](https://github.com/ovh/manager/commit/b5bf409bd540e5d54be5c5f5a16378c28ae4f409))
+
+
+
 ## [2.17.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.17.8...@ovh-ux/manager-vps@2.17.9) (2021-11-23)
 
 

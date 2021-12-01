@@ -1,3 +1,34 @@
+# [17.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.6.0...@ovh-ux/manager-dedicated@17.7.0) (2021-12-01)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/manager-billing` semver range ([15b277f](https://github.com/ovh/manager/commit/15b277f34db3349a2f233a603cbde18b355c4a41))
+
+
+### Features
+
+* **payment-method:** catch error on payment methods load ([80dc337](https://github.com/ovh/manager/commit/80dc337192635134f445aeb1e9035c14321d1e33))
+* cancel a service with commitment ([#5677](https://github.com/ovh/manager/issues/5677)) ([f7dc6ab](https://github.com/ovh/manager/commit/f7dc6ab24db5a01b1d8521fc072def4da5aa5633))
+* track changes for recommitment ([#5955](https://github.com/ovh/manager/issues/5955)) ([ffffe48](https://github.com/ovh/manager/commit/ffffe486c3e7d997f894a34bdd306be60e4922d1))
+
+
+
+# [17.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.5.7...@ovh-ux/manager-dedicated@17.6.0) (2021-11-30)
+
+
+### Bug Fixes
+
+* **dedicated.server:** redirect from ovh-task page to dashboard ([932239a](https://github.com/ovh/manager/commit/932239a710a05e3c8682798e9a89d852a5667ce4))
+
+
+### Features
+
+* **dedicated:** removal of status page ([2567d38](https://github.com/ovh/manager/commit/2567d38b15344ea38567b2dd156e1ad4c62225a8))
+* change of url to status-ovhcloud ([#5958](https://github.com/ovh/manager/issues/5958)) ([cf8051d](https://github.com/ovh/manager/commit/cf8051d1aae60356d3f43218b459a2b3532a959b))
+
+
+
 ## [17.5.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.5.6...@ovh-ux/manager-dedicated@17.5.7) (2021-11-22)
 
 
@@ -211,9 +242,6 @@
 ### BREAKING CHANGES
 
 * add anthos module
-
-Signed-off-by: Ganesh Kumar <ganesh.kumar@ovhcloud.com>
-Signed-off-by: mohammed-zahaf <mohammed.zahaf.ext@ovhcloud.com>
 
 
 
@@ -6359,6 +6387,3 @@ Signed-off-by: Axel Peter <axel.peter@live.com>
 
 <a name="9.0.0"></a>
 # 9.0.0 (2018-03-07)
-
-
-

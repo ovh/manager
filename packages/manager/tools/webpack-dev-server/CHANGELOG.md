@@ -1,3 +1,12 @@
+## [2.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-dev-server@2.8.2...@ovh-ux/manager-webpack-dev-server@2.8.3) (2021-11-29)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-ux/manager-dev-server-config` to `v3.0.0` ([#6045](https://github.com/ovh/manager/issues/6045)) ([93d9d3a](https://github.com/ovh/manager/commit/93d9d3ae1e836432f86d825866526cbe2a3293ba))
+
+
+
 ## [2.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-dev-server@2.8.1...@ovh-ux/manager-webpack-dev-server@2.8.2) (2021-06-16)
 
 

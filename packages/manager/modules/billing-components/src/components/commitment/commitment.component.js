@@ -9,6 +9,7 @@ export default {
     duration: '<?',
     me: '<',
     trackingPrefix: '@?',
+    pageTrackingPrefix: '@?',
   },
   controller,
   template,

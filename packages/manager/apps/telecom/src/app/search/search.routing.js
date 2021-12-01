@@ -9,7 +9,15 @@ import template from './search.html';
 
 const filterResults = (results, query, properties) =>
   filter(results, (result) =>
-    some(properties, (property) => includes(get(result, property), query)),
+    some(properties, (property) => {
+      if (typeof property === 'string')
+        return includes(get(result, property), query);
+
+      const { path, verify } = property;
+      const value = get(result, path);
+
+      return value && verify(value);
+    }),
   );
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -39,6 +47,12 @@ export default /* @ngInject */ ($stateProvider) => {
                 const filteredResults = filterResults(results, query, [
                   'value.serviceName',
                   'value.description',
+                  {
+                    path: 'value.associatedDeviceMac',
+                    verify: (mac) =>
+                      mac.replace(/:/g, '').toLowerCase() ===
+                      query.replace(/:/g, '').toLowerCase(),
+                  },
                 ]);
                 return map(filteredResults, (result) => ({
                   ...result,
