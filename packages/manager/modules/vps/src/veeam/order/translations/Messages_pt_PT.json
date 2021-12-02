@@ -20,5 +20,7 @@
   "vps_configuration_veeam_order_success": "Para finalizar a sua encomenda, siga as instruções descritas no novo separador. Se não aparecer nenhum separador novo, clique <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">nesta ligação</a>.",
   "vps_configuration_veeam_order_load_error": "Ocorreu um erro no carregamento das informações da encomenda de backup automatizado.",
   "vps_configuration_veeam_order_load_error_none": "Não foi encontrada nenhuma encomenda de backup automatizado para este VPS.",
-  "vps_configuration_veeam_order_explain": "Ao clicar em “Encomendar”, irá visualizar um novo separador e será automaticamente reencaminhado para a página de pagamento."
+  "vps_configuration_veeam_order_explain": "Ao clicar em “Encomendar”, irá visualizar um novo separador e será automaticamente reencaminhado para a página de pagamento.",
+  "vps_configuration_veeam_order_backup_info": "A função de Backup automático permite-lhe restaurar o seu VPS a qualquer momento. No painel de controlo, dispõe de <strong>7 backups do seu VPS</strong> (exceto discos adicionais) <strong>correspondentes aos últimos 7 dias de utilização.</strong>",
+  "vps_configuration_veeam_order_schedule_info": "Não hesite em planear os seus backups nas horas mais apropriadas para si."
 }

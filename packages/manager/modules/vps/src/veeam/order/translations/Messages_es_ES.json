@@ -20,5 +20,7 @@
   "vps_configuration_veeam_order_success": "Siga las instrucciones que se indican en la nueva pestaña para finalizar el pedido. Si no aparece ninguna pestaña, haga clic en este <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">enlace</a>.",
   "vps_configuration_veeam_order_load_error": "Se ha producido un error al cargar la información del pedido del backup automatizado.",
   "vps_configuration_veeam_order_load_error_none": "No se ha encontrado ningún pedido de la opción de backup automatizado en su VPS.",
-  "vps_configuration_veeam_order_explain": "Al hacer clic en «Contratar», se abrirá una nueva pestaña y el sistema le redirigirá automáticamente a la interfaz de pago."
+  "vps_configuration_veeam_order_explain": "Al hacer clic en «Contratar», se abrirá una nueva pestaña y el sistema le redirigirá automáticamente a la interfaz de pago.",
+  "vps_configuration_veeam_order_backup_info": "La función de backup automático le permite restaurar su VPS en cualquier momento. En el panel de control, dispondrá de <strong>7 copias de seguridad de su VPS</strong> (exceptuando los discos adicionales) <strong>correspondientes a los últimos 7 días de uso.</strong>",
+  "vps_configuration_veeam_order_schedule_info": "Recuerde que puede planificar sus copias de seguridad en las horas que mejor le convengan."
 }
