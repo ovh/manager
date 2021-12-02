@@ -15,6 +15,7 @@ export default class StandaloneShellClient extends ShellClient {
       clientMessageBus.addPeer(shellMessageBus);
       shellMessageBus.addPeer(clientMessageBus);
 
+      this.setMessageBus(clientMessageBus);
       this.shell.setMessageBus(shellMessageBus);
     });
   }
