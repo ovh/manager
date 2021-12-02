@@ -28,7 +28,6 @@ import 'script-loader!angular-dynamic-locale/dist/tmhDynamicLocale.js';
 import 'punycode';
 import 'script-loader!urijs/src/URI.min.js';
 import 'script-loader!ipaddr.js/ipaddr.min.js';
-import 'script-loader!validator/validator.min.js';
 import 'script-loader!angular-ui-utils/ui-utils.min.js';
 import 'script-loader!angular-ui-validate/dist/validate.min.js';
 import 'script-loader!randexp/build/randexp.min';

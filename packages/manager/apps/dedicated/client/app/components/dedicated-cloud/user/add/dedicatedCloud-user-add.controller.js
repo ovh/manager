@@ -1,3 +1,5 @@
+import validator from 'validator';
+
 export default class {
   /* @ngInject */
   constructor($translate, DedicatedCloud) {
