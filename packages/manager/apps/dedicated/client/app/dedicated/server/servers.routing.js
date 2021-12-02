@@ -75,11 +75,11 @@ export default /* @ngInject */ ($stateProvider) => {
             reference.map((val) => {
               switch (comparator.toUpperCase()) {
                 case 'CONTAINS':
-                  return `%25${val}%25`;
+                  return `%${val}%`;
                 case 'STARTSWITH':
-                  return `${val}%25`;
+                  return `${val}%`;
                 case 'ENDSWITH':
-                  return `%25${val}`;
+                  return `%${val}`;
                 default:
                   return val;
               }

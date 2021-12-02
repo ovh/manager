@@ -28,7 +28,7 @@
     "@ovh-ux/manager-ng-layout-helpers": "^1.0.1 || ^2.0.0",
     "@ovh-ux/ng-at-internet": "^5.8.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.0",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.9",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.10",
     "@ovh-ux/ng-ovh-contacts": "^4.0.6",
     "@ovh-ux/ng-ovh-export-csv": "^2.0.3",
     "@ovh-ux/ng-ovh-order-tracking": "^1.1.1 || ^2.0.0",

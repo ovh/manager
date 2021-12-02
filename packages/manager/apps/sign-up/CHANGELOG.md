@@ -1,3 +1,12 @@
+## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.4.0...@ovh-ux/sign-up-app@2.4.1) (2021-12-02)
+
+
+### Bug Fixes
+
+* redirect sanitize strategy ([#6067](https://github.com/ovh/manager/issues/6067)) ([1dd44f8](https://github.com/ovh/manager/commit/1dd44f8f41eb66d59ab8e7202794f6c4fc1e6c94))
+
+
+
 # [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.3.4...@ovh-ux/sign-up-app@2.4.0) (2021-08-25)
 
 

@@ -1,6 +1,7 @@
 import omit from 'lodash/omit';
 import uniq from 'lodash/uniq';
 import without from 'lodash/without';
+import validator from 'validator';
 
 angular
   .module('App')

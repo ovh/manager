@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "17.7.1",
+  "version": "17.7.2",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -62,7 +62,7 @@
     "@ovh-ux/ng-at-internet": "^5.8.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.0",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.10",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.9",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.10",
     "@ovh-ux/ng-ovh-browser-alert": "^2.0.3",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-contacts": "^4.0.6",

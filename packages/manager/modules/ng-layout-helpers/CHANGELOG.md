@@ -1,3 +1,12 @@
+## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.3.0...@ovh-ux/manager-ng-layout-helpers@2.3.1) (2021-12-02)
+
+
+### Bug Fixes
+
+* **filter:** avoid double url encoding with iceberg filters ([#6035](https://github.com/ovh/manager/issues/6035)) ([773416b](https://github.com/ovh/manager/commit/773416b1604c8d205d57ced34b62b5ebaa419b9b))
+
+
+
 # [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.2.1...@ovh-ux/manager-ng-layout-helpers@2.3.0) (2021-11-22)
 
 

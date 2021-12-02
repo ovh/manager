@@ -20,7 +20,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.9",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.10",
     "@ovh-ux/ng-ovh-http": "^5.0.3",
     "@ovh-ux/ng-ovh-payment-method": "^9.0.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.4",
