@@ -1,3 +1,14 @@
+## [17.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.7.1...@ovh-ux/manager-dedicated@17.7.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* import validator dep ([#6071](https://github.com/ovh/manager/issues/6071)) ([ef7a4db](https://github.com/ovh/manager/commit/ef7a4dbd7f4195f37aa1171117aedebcfd9a045d))
+* **filter:** avoid double url encoding with iceberg filters ([#6035](https://github.com/ovh/manager/issues/6035)) ([773416b](https://github.com/ovh/manager/commit/773416b1604c8d205d57ced34b62b5ebaa419b9b))
+* **partition:** fix links to action ([#6072](https://github.com/ovh/manager/issues/6072)) ([86dd3c4](https://github.com/ovh/manager/commit/86dd3c40fefee3a65451b48e4a2622ac24d3b82c))
+
+
+
 ## [17.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.7.0...@ovh-ux/manager-dedicated@17.7.1) (2021-12-02)
 
 
