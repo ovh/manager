@@ -149,8 +149,6 @@
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg": "Opcja Shared CDN powiązana z hostingiem stale się rozwija! Dostępne są nowe funkcje.",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg_link_upgrade": "Migracja CDN",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_badge_new": "Nowość",
-  "hosting_dashboard_service_cdn_customer_has_no_cdn_banner_msg": "Opcja Shared CDN umożliwia zwiększenie wydajności strony WWW i zapewnia większą elastyczność użytkowania.",
-  "hosting_dashboard_service_cdn_customer_has_no_cdn_banner_msg_link": "Dowiedz się więcej",
   "hosting_dashboard_service_web": "Strony WWW",
   "hosting_dashboard_service_privatesql": "Prywatna baza danych",
   "hosting_dashboard_service_privatesql_more": "Wyświetl listę",
