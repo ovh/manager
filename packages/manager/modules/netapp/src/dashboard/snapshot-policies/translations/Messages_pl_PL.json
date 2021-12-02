@@ -1,3 +1,9 @@
 {
-  "netapp_snapshot_policies_breadcrumb": "Reguły dotyczące snapshotów"
+  "netapp_snapshot_policies_breadcrumb": "Reguły dotyczące snapshotów",
+  "netapp_snapshot_policies_title": "Zarządzaj politykami wykonywania snapshotów",
+  "netapp_snapshot_policies_information": "Twórz reguły snapshotów dotyczące częstotliwości ich wykonywania i czasu retencji i zarządzaj nimi w prosty sposób. Zastosuj je następnie w wybranych wolumenach. Snapshoty wykorzystują przestrzeń dyskową rozwiązania Enterprise File Storage.",
+  "netapp_snapshot_policies_create": "Utwórz nową politykę wykonywania snapshotów",
+  "netapp_snapshot_policies_delete_success": "Polityka wykonywania snapshotów {{snapshotPolicyName}} została usunięta!",
+  "netapp_snapshot_policies_delete_error": "Wystąpił błąd podczas usuwania polityki wykonywania snapshotów.",
+  "netapp_snapshot_policies_fetch_error": "Wystąpił błąd podczas pobierania polityki wykonywania snapshotów."
 }
