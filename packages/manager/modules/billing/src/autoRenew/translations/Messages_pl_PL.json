@@ -124,5 +124,6 @@
   "billing_autorenew_service_type_OVH_CLOUD_CONNECT": "OVHCloud Connect",
   "billing_autorenew_service_type_ESSENTIALS": "Managed Bare Metal",
   "billing_autorenew_service_type_WEB_PAAS": "Web PaaS",
-  "billing_autorenew_service_type_DEDICATED_ANTHOS": "Anthos"
+  "billing_autorenew_service_type_DEDICATED_ANTHOS": "Anthos",
+  "billing_autorenew_service_type_NETAPP": "NetApp"
 }

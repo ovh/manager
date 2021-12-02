@@ -1,3 +1,13 @@
+# [0.7.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.7.0-alpha.0...@ovh-ux/manager-billing@0.7.0-alpha.1) (2021-12-02)
+
+
+### Bug Fixes
+
+* **cancel-resiliation:** allow resiliation if service is not commited ([#6014](https://github.com/ovh/manager/issues/6014)) ([7879e86](https://github.com/ovh/manager/commit/7879e861dfbe4873e8f686c7d44f7ecd555dcee5))
+* **i18n:** add missing translations [CDS 1295] ([4d3cace](https://github.com/ovh/manager/commit/4d3caceb4fbb837f4b4ecd677d9b9e47af8acc0b))
+
+
+
 # [0.7.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.6.0-alpha.2...@ovh-ux/manager-billing@0.7.0-alpha.0) (2021-12-01)
 
 

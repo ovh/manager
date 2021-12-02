@@ -1,4 +1,4 @@
-const MINIMUM_VOLUME_SIZE = 100;
+import { MINIMUM_VOLUME_SIZE } from '../../constants';
 
 export default class VolumeCreateCtrl {
   /* @ngInject */
@@ -29,7 +29,7 @@ export default class VolumeCreateCtrl {
 
   onCreateVolume() {
     this.isCreating = true;
-    this.trackClick();
+    this.trackClick('create::confirm');
 
     return this.$http
       .post(`/storage/netapp/${this.storage.id}/share`, {
@@ -43,9 +43,9 @@ export default class VolumeCreateCtrl {
         ),
       )
       .catch((error) =>
-        this.goBack(
+        this.goToVolumes(
           this.$translate.instant('netapp_volume_create_error', {
-            message: error.data?.message,
+            message: error.message,
           }),
           'error',
         ),
@@ -53,5 +53,10 @@ export default class VolumeCreateCtrl {
       .finally(() => {
         this.isCreating = false;
       });
+  }
+
+  goBack() {
+    this.trackClick('create::cancel');
+    return this.goToVolumes();
   }
 }

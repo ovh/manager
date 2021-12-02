@@ -1,3 +1,12 @@
+## [3.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.16.0...@ovh-ux/manager-server-sidebar@3.16.1) (2021-12-02)
+
+
+### Bug Fixes
+
+* add state to enterprise file storage entry ([#5954](https://github.com/ovh/manager/issues/5954)) ([b51ffe0](https://github.com/ovh/manager/commit/b51ffe00840ea3f21aa62790d56d9ffae3094f9b))
+
+
+
 # [3.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.15.0...@ovh-ux/manager-server-sidebar@3.16.0) (2021-12-01)
 
 

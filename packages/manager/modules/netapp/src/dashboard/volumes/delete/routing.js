@@ -8,7 +8,6 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ (goToVolumes) => goToVolumes,
       volumeId: /* @ngInject */ ($transition$) =>
         $transition$.params().volumeId,
       breadcrumb: () => null,

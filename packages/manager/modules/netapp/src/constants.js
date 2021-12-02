@@ -4,7 +4,6 @@ export const FEATURES = [
   'volumes:create-volume',
   'volumes:dashboard',
   'volumes:actions',
-  'volumes:count',
   'snapshot-policies',
 ];
 

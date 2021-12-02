@@ -14,11 +14,11 @@ export default class OvhManagerNetAppOnboardingCtrl {
     const { ovhSubsidiary } = this.coreConfig.getUser();
     this.illustration = illustration;
     this.storageGuide = {
-      hitName: 'storage',
+      hitName: 'documentation::storage',
       link: URLS.guides.storage[ovhSubsidiary] || URLS.guides.storage.default,
     };
     this.supportLevel = {
-      hitName: 'go-to-subscribe-support-levels',
+      hitName: 'documentation::go-to-subscribe-support-levels',
       link: URLS.support_level[ovhSubsidiary] || URLS.support_level.default,
     };
     const guides = GUIDES.reduce(
@@ -26,6 +26,7 @@ export default class OvhManagerNetAppOnboardingCtrl {
         ...guideList,
         {
           ...guide,
+          hitSuffix: `documentation::${guide.hitSuffix}`,
           description: this.$translate.instant(
             `netapp_onboarding_${guide.id}_description`,
           ),

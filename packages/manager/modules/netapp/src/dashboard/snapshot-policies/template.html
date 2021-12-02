@@ -1,20 +1,20 @@
-<div class="row">
-    <div class="col-md-2">
-        <select-checkboxes
-            items="$ctrl.options"
-            on-select="$ctrl.onSelected(items)"
-            placeholder="{{ $ctrl.optionList.length === 0 ? 'Choisissez une date' : $ctrl.optionList.length + ' date(s)' }}"
-        >
-            <span data-ng-bind="$item.label"></span>
-        </select-checkboxes>
-    </div>
+<section>
+    <h1
+        class="oui-header__title mb-3"
+        data-translate="netapp_snapshot_policies_title"
+    ></h1>
+    <p data-translate="netapp_snapshot_policies_information"></p>
 
-    <div class="col-md-2">
-        <oui-select
-            data-items="['a', 'b', 'c']"
-            data-model="$ctrl.model"
-            name="letter"
-        >
-        </oui-select>
-    </div>
-</div>
+    <oui-button
+        class="float-left oui-button_icon-left"
+        icon-left="oui-icon-plus"
+        variant="secondary"
+        on-click="$ctrl.goToCreateSnapshotPolicies()"
+    >
+        <span data-translate="netapp_snapshot_policies_create"></span>
+    </oui-button>
+    <snapshot-policies
+        policies="$ctrl.snapshotPolicies"
+        on-delete="$ctrl.onDelete(snapshotPolicy)"
+    ></snapshot-policies>
+</section>

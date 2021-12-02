@@ -1,3 +1,18 @@
+# [3.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.6.0...@ovh-ux/manager-billing-components@3.7.0) (2021-12-02)
+
+
+### Bug Fixes
+
+* **commitment:** add `netapp` catalog ([#5957](https://github.com/ovh/manager/issues/5957)) ([bf7c8ec](https://github.com/ovh/manager/commit/bf7c8eca990af32b4550033e118a03d0d3f2349b))
+* **i18n:** add missing translations [CDS 1295] ([4d3cace](https://github.com/ovh/manager/commit/4d3caceb4fbb837f4b4ecd677d9b9e47af8acc0b))
+
+
+### Features
+
+* **subscription-tile:** add default url for commit action ([#6015](https://github.com/ovh/manager/issues/6015)) ([e9c310c](https://github.com/ovh/manager/commit/e9c310ce3afbb18269feb2906b27237ddff39453))
+
+
+
 # [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.5.3...@ovh-ux/manager-billing-components@3.6.0) (2021-12-01)
 
 

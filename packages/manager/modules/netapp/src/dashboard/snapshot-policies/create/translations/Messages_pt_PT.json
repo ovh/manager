@@ -1,4 +1,6 @@
 {
+  "netapp_snapshot_policies_create_submit": "Criar uma nova política de snapshots",
+  "netapp_snapshot_policies_create_rule_edit": "Editar a regra",
   "netapp_snapshot_policies_create": "Criar uma nova política de snapshots",
   "netapp_snapshot_policies_create_information": "Para criar regras de planificação, deverá especificar um prefixo (utilizado para dar um nome às snapshots criadas). Deve ter entre 1 e 255 caracteres sem acentos, bem como uma duração (em minutos). Pode também especificar as horas e dias da semana ou do mês. Introduza uma lista de valores separados por uma vírgula (ex.: 1, 2, 14) ou deixe o campo vazio para selecionar todos os valores disponíveis.",
   "netapp_snapshot_policies_create_exemple": "Exemplo",
@@ -23,14 +25,12 @@
   "netapp_snapshot_policies_create_empty": "vazio",
   "netapp_snapshot_policies_create_rules": "Regras (UTC Time Zone): {{ count }}",
   "netapp_snapshot_policies_create_add_rule": "Adicionar uma nova regra",
-  "netapp_snapshot_policies_create_submit": "Criar uma nova política de snapshots",
   "netapp_snapshot_policies_create_select_placeholder": "Selecione...",
   "netapp_snapshot_policies_create_selected_days": "{{ days }} dia(s)",
   "netapp_snapshot_policies_create_selected_months": "{{ months }} mês/meses",
   "netapp_snapshot_policies_create_add_rule_validate": "Validar",
   "netapp_snapshot_policies_create_add_rule_cancel": "Cancelar",
   "netapp_snapshot_policies_create_rule_delete": "Eliminar a regra",
-  "netapp_snapshot_policies_create_rule_edit": "Editar a regra",
   "netapp_snapshot_policies_create_error": "Ocorreu um erro aquando da criação da política de snapshots.",
   "netapp_snapshot_policies_create_success": "A política de snapshots {{ snapshotPolicyName }} foi criada com sucesso!"
 }

@@ -6,6 +6,7 @@ import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
+import snapshotPolicies from '../../../../components/snapshot-policies';
 import component from './component';
 import routing from './routing';
 
@@ -26,6 +27,7 @@ angular
     addModule,
     editModule,
     deleteModule,
+    snapshotPolicies,
   ])
   .config(routing)
   .component('ovhManagerNetAppVolumesDashboardSnapshots', component)

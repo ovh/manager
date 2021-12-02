@@ -1,4 +1,5 @@
 {
+  "netapp_snapshot_policies_breadcrumb": "Regeln für Snapshots",
   "netapp_snapshot_policies_title": "Die Snapshots-Regeln verwalten",
   "netapp_snapshot_policies_information": "Erstellen und verwalten Sie unkompliziert Ihre Snapshot-Regeln zu Häufigkeit oder Aufbewahrungsdauer. Wenden Sie diese Regeln dann für bestimmte Volumes an. Snapshots verwenden die Speicherkapazität Ihrer Enterprise File Storage-Lösung.",
   "netapp_snapshot_policies_create": "Eine neue Regel für Snapshots erstellen",

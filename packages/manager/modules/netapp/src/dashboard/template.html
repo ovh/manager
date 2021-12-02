@@ -32,36 +32,38 @@
     <div data-ovh-alert></div>
     <div ui-view>
         <div class="row">
-            <oui-tile
-                class="col-md-4"
-                heading="{{:: 'netapp_dashboard_information' | translate }}"
-            >
-                <oui-tile-definition
-                    term="{{:: 'netapp_dashboard_information_name' | translate }}"
-                    description="{{ $ctrl.storage.name }}"
+            <div class="col-md-4">
+                <oui-tile
+                    class="mb-3"
+                    heading="{{:: 'netapp_dashboard_information' | translate }}"
                 >
-                </oui-tile-definition>
-                <oui-tile-definition
-                    term="{{:: 'netapp_dashboard_information_id' | translate }}"
-                    description="{{ $ctrl.storage.id }}"
-                >
-                </oui-tile-definition>
-                <oui-tile-definition
-                    term="{{:: 'netapp_dashboard_information_region' | translate }}"
-                    description="{{ $ctrl.storage.region }}"
-                >
-                </oui-tile-definition>
-                <oui-tile-definition
-                    term="{{:: 'netapp_dashboard_information_performance_level' | translate }}"
-                    description="{{ $ctrl.storage.performanceLevel }}"
-                >
-                </oui-tile-definition>
-                <oui-tile-definition
-                    term="{{:: 'netapp_dashboard_information_quota' | translate }}"
-                    description="{{ 'netapp_dashboard_information_quota_formatted' | translate:{quota: $ctrl.storage.quota } }}"
-                >
-                </oui-tile-definition>
-            </oui-tile>
+                    <oui-tile-definition
+                        term="{{:: 'netapp_dashboard_information_name' | translate }}"
+                        description="{{ $ctrl.storage.name }}"
+                    >
+                    </oui-tile-definition>
+                    <oui-tile-definition
+                        term="{{:: 'netapp_dashboard_information_id' | translate }}"
+                        description="{{ $ctrl.storage.id }}"
+                    >
+                    </oui-tile-definition>
+                    <oui-tile-definition
+                        term="{{:: 'netapp_dashboard_information_region' | translate }}"
+                        description="{{ $ctrl.storage.region }}"
+                    >
+                    </oui-tile-definition>
+                    <oui-tile-definition
+                        term="{{:: 'netapp_dashboard_information_performance_level' | translate }}"
+                        description="{{ $ctrl.storage.performanceLevel }}"
+                    >
+                    </oui-tile-definition>
+                    <oui-tile-definition
+                        term="{{:: 'netapp_dashboard_information_quota' | translate }}"
+                        description="{{ 'netapp_dashboard_information_quota_formatted' | translate:{quota: $ctrl.storage.quota } }}"
+                    >
+                    </oui-tile-definition>
+                </oui-tile>
+            </div>
             <div class="col-md-4">
                 <oui-tile
                     class="mb-3"

@@ -1,3 +1,17 @@
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.4.0...@ovh-ux/manager-components@1.5.0) (2021-12-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1295] ([4d3cace](https://github.com/ovh/manager/commit/4d3caceb4fbb837f4b4ecd677d9b9e47af8acc0b))
+
+
+### Features
+
+* **inline-editor:** allow to define pattern ([f709836](https://github.com/ovh/manager/commit/f709836ecacc3859e0fdc59c994da897d1d2f529))
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.3.0...@ovh-ux/manager-components@1.4.0) (2021-10-27)
 
 

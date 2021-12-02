@@ -1,4 +1,5 @@
 {
+  "netapp_snapshot_policies_breadcrumb": "Politiche di Snapshot",
   "netapp_snapshot_policies_title": "Gestisci le politiche di Snapshot",
   "netapp_snapshot_policies_information": "Crea e gestisci facilmente le regole di Snapshot in termini di periodicità e durata di conservazione. In seguito sarà possibile applicarle a volumi specifici. Gli Snapshot utilizzano la capacità di storage della soluzione Enterprise File Storage.",
   "netapp_snapshot_policies_create": "Crea una nuova politica di Snapshot",

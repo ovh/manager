@@ -6,6 +6,7 @@ import { region } from '@ovh-ux/manager-components';
 import '@ovh-ux/manager-catalog-price';
 import '@ovh-ux/manager-billing-components';
 import '@ovh-ux/ng-ovh-feature-flipping';
+import '@ovh-ux/ng-at-internet';
 
 import component from './component';
 import routing from './routing';
@@ -18,6 +19,7 @@ angular
     'ovhManagerBilling',
     'ovhManagerCore',
     'ovhManagerCatalogPrice',
+    'ngAtInternet',
     'pascalprecht.translate',
     'ui.router',
     region,
