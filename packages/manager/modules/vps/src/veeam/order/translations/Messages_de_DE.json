@@ -18,7 +18,7 @@
   "vps_configuration_veeam_order_success": "Um Ihre Bestellung abzuschließen, folgen Sie bitte den Anweisungen im neu geöffneten Tab. Wenn sich kein neuer Tab geöffnet hat, klicken Sie auf <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">diesen Link</a>.",
   "vps_configuration_veeam_order_load_error": "Beim Laden der Informationen zur Bestellung der automatischen Backup-Option ist ein Fehler aufgetreten.",
   "vps_configuration_veeam_order_load_error_none": "Es konnte keine Bestellung automatischer Backups für Ihren VPS gefunden werden.",
-  "vps_configuration_veeam_order_explain": "Wenn Sie auf den Button „Bestellen“ klicken, öffnet sich ein neuer Browser-Tab und Sie werden auf das Zahlungsinterface weitergeleitet.",
+  "vps_configuration_veeam_order_explain": "Wenn Sie auf den Button „Bestellen“ klicken, öffnet sich ein neuer Browser-Tab und Sie werden automatisch auf das Zahlungsinterface weitergeleitet.",
   "vps_configuration_veeam_order_step1_info2_P1M": "Monat",
   "vps_configuration_veeam_order_step1_info2_P1Y": "Jahr",
   "vps_configuration_veeam_order_backup_info": "Mit der Funktion Automatisches Backup können Sie Ihren VPS jederzeit wiederherstellen. Auf Ihrem Dashboard stehen Ihnen <strong>7 Backups Ihres VPS</strong> zur Verfügung, ausgenommen zusätzliche Festplatten. Sie decken die <strong>letzten 7 Tage</strong> der Nutzung des VPS ab.",
