@@ -20,6 +20,14 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('telephony_repayments_title'),
+        svaWalletLink: /* @ngInject */ (coreURLBuilder) =>
+          coreURLBuilder.buildURL('telecom', '#/telephony/sva-wallet'),
+        hasSvaWallet: /* @ngInject */ ($q, $state, svaWallet) => {
+          if (svaWallet && svaWallet.status === 'VALID') return true;
+          return $q.reject().catch(() => {
+            $state.go('telecom.telephony');
+          });
+        },
       },
     })
     .state('telecom.telephony.repayments.index', {

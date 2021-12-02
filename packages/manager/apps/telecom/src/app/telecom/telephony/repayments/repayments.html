@@ -1,118 +1,71 @@
 <section class="telephony-group-line-repayments">
-    <div class="text-center" data-ng-if="$ctrl.loading">
-        <oui-spinner></oui-spinner>
-    </div>
-
-    <section class="widget-presentation" data-ng-hide="$ctrl.loading">
-        <h2 data-translate="telephony_repayments_title"></h2>
-        <p data-translate="telephony_repayments_subtitle"></p>
-
+    <section class="widget-presentation">
         <tuc-toast-message></tuc-toast-message>
 
         <div class="row">
             <div class="col-md-6">
+                <h4 data-translate="telephony_repayments_repayments"></h4>
                 <dl>
-                    <dt data-translate="telephony_repayments_total"></dt>
-                    <dd
-                        data-ng-bind="$ctrl.svaWallet.balance.availableAmount.text"
-                    ></dd>
                     <dt
-                        data-ng-if-start="$ctrl.nextRepaymentDate"
-                        data-translate="telephony_repayments_next"
+                        data-translate="telephony_repayments_pending_title"
                     ></dt>
-                    <dd
-                        data-ng-if-end
-                        data-ng-bind="$ctrl.svaWallet.balance.pendingAmount.text"
-                    ></dd>
+                    <dd data-ng-bind="$ctrl.pendingAmountText"></dd>
+                    <dt
+                        data-translate="telephony_repayments_available_title"
+                    ></dt>
+                    <dd data-ng-bind="$ctrl.availableAmountText"></dd>
                 </dl>
             </div>
             <div class="col-md-6">
+                <h4 data-translate="telephony_repayments_costs"></h4>
                 <dl>
                     <dt data-translate="telephony_repayments_costs_title"></dt>
-                    <dd
-                        data-ng-bind="$ctrl.svaWallet.balance.costsAmount.text"
-                    ></dd>
+                    <dd data-ng-bind="$ctrl.costsAmountText"></dd>
                 </dl>
             </div>
         </div>
 
-        <div data-ui-view="listView"></div>
-
-        <!--<oui-datagrid
-            class="my-5 text-wrap"
-            data-rows="$ctrl.repayments"
-            data-page-size="10"
-            data-on-page-change="$ctrl.onPageChanged($pagination)"
-            data-on-sort-change="$ctrl.onSortChanged($sort)"
+        <oui-message
+            type="info"
+            class="mt-3"
+            style="display: inline-block !important"
         >
-            <oui-datagrid-column
-                data-title="::'telephony_repayments_grid_called_number' | translate"
-                data-property="calledNumber"
-                data-type="string"
-                data-sortable
-                data-searchable
-                data-filterable
-            >
+            <span
+                data-ng-if="$ctrl.hasReachedRepaymentAmountThreshold"
+                data-translate="telephony_repayments_message_above_threshold"
+                data-translate-values="{ amount: $ctrl.availableAmountText }"
+            ></span>
+            <span
+                data-ng-if="!$ctrl.hasReachedRepaymentAmountThreshold"
+                data-translate="telephony_repayments_message_under_threshold"
+                data-translate-values="{ amount: $ctrl.repaymentAmountThresholdText }"
+            ></span>
+        </oui-message>
+
+        <div data-ng-if="$ctrl.isLoadingIban">
+            <oui-spinner size="s"></oui-spinner>
+        </div>
+        <div
+            data-ng-if="$ctrl.iban"
+            class="d-flex flex-column align-items-start mt-2 mb-3"
+        >
+            <h3 data-translate="telephony_repayments_message_bank_account"></h3>
+            <label class="oui-field__label">IBAN</label>
+            <div
+                class="oui-box oui-box_light mb-2"
+                style="padding: .5rem;"
+                data-ng-bind="$ctrl.iban"
+            ></div>
+            <a class="oui-link_icon" href="{{ $ctrl.svaWalletLink }}">
+                <span data-translate="telephony_repayments_iban_link"></span>
                 <span
-                    data-ng-bind="::$row.calledNumber | tucPhoneNumber"
+                    class="oui-icon oui-icon-arrow-right"
+                    aria-hidden="true"
                 ></span>
-            </oui-datagrid-column>
-            <oui-datagrid-column
-                data-title="::'telephony_repayments_grid_calling_number' | translate"
-                data-property="callingNumber"
-                data-type="string"
-                data-sortable
-                data-searchable
-                data-filterable
-            >
-                <span
-                    data-ng-bind="::$row.callingNumber | tucPhoneNumber"
-                ></span>
-            </oui-datagrid-column>
-            <oui-datagrid-column
-                data-title="::'telephony_repayments_grid_date' | translate"
-                data-property="startDate"
-                data-type="date"
-                data-sortable="desc"
-            >
-                <span
-                    data-ng-bind="::$row.startDate | date:'dd-MM-yyyy HH:mm:ss'"
-                ></span>
-            </oui-datagrid-column>
-            <oui-datagrid-column
-                data-title="::'telephony_repayments_grid_operator' | translate"
-                data-property="phoneOperatorName"
-                data-type="string"
-                data-sortable
-                data-searchable
-                data-filterable
-            ></oui-datagrid-column>
-            <oui-datagrid-column
-                data-title="::'telephony_repayments_grid_duration' | translate"
-                data-property="duration"
-                data-type="number"
-                data-sortable
-            ></oui-datagrid-column>
-            <oui-datagrid-column
-                data-title="::'telephony_repayments_grid_repayment' | translate"
-                data-property="buyAmount.value"
-                data-type="number"
-                data-sortable
-            >
-                <span data-ng-bind="::$row.buyAmount.value | currency"></span>
-            </oui-datagrid-column>
-            <oui-datagrid-column
-                data-title="::'telephony_repayments_grid_status' | translate"
-                data-property="status"
-            >
-                <span
-                    class="oui-badge"
-                    data-ng-class="::'oui-badge_' + $ctrl.statusBadge($row.status)"
-                    data-translate="{{'telephony_repayments_grid_status_' + $ctrl.statusBadge($row.status)}}"
-                >
-                </span>
-            </oui-datagrid-column>
-        </oui-datagrid>-->
+            </a>
+        </div>
+
+        <div data-ui-view="listView"></div>
     </section>
 </section>
 <!-- /.telephony-group-line-repayments. -->

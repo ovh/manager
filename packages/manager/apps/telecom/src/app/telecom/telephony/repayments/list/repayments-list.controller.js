@@ -1,5 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import { formatDuration, formatStatus } from '../repayments.utils';
+import { formatDuration } from '../repayments.utils';
 
 export default class TelecomTelephonyRepaymentsListCtrl extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
@@ -16,7 +16,6 @@ export default class TelecomTelephonyRepaymentsListCtrl extends ListLayoutHelper
     super.$onInit();
 
     this.formatDuration = formatDuration;
-    this.formatStatus = formatStatus;
 
     this.statusColumnOptions = {
       hideOperators: true,
