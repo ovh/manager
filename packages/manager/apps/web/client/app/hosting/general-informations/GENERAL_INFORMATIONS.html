@@ -16,35 +16,7 @@
         <oui-message
             type="info"
             aria-close-button-label="{{:: 'close' | translate }}"
-            on-dismiss="$ctrl.onDismiss()"
-            data-ng-if="::(hosting.offer !== 'START_10_M' && !cdnProperties) || (cdnProperties.version === '2013v1' && isUpgradable)"
-            dismissable
-        >
-            <span
-                data-translate="{{::$ctrl.getCDNBannerKeyToTranslate()}}"
-            ></span>
-            <a
-                data-ng-if="!hosting.hasCdn"
-                data-ng-href="{{::$ctrl.getCDNMoreInfoLink()}}"
-                data-ng-click="$ctrl.onMoreInfoLinkClicked()"
-                target="_blank"
-            >
-                <span
-                    data-translate="hosting_dashboard_service_cdn_customer_has_no_cdn_banner_msg_link"
-                ></span>
-            </a>
-            <button
-                data-ng-if="hosting.hasCdn"
-                class="oui-link"
-                data-translate="hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg_link_upgrade"
-                data-ng-click="$ctrl.goToOrderOrUpgrade()"
-            ></button>
-        </oui-message>
-
-        <oui-message
-            type="info"
-            aria-close-button-label="{{:: 'close' | translate }}"
-            data-ng-if=":: $ctrl.canOrderOrEditCdn() && cdnProperties.type !== $ctrl.CDN_ADVANCED && cdnProperties.version !== $ctrl.CDN_VERSION_V1"
+            data-ng-if=":: $ctrl.canOrderOrEditCdn() && cdnProperties.type !== $ctrl.CDN_ADVANCED"
             dismissable
         >
             <span

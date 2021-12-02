@@ -149,8 +149,6 @@
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg": "A opção Shared CDN para os seus alojamentos evoluiu! Estão disponíveis novas funcionalidades.",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg_link_upgrade": "Migrar a sua CDN",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_badge_new": "Novo",
-  "hosting_dashboard_service_cdn_customer_has_no_cdn_banner_msg": "A opção Shared CDN permite melhorar o desempenho do seu site, ao mesmo tempo que lhe oferece uma maior flexibilidade de utilização.",
-  "hosting_dashboard_service_cdn_customer_has_no_cdn_banner_msg_link": "Mais informações",
   "hosting_dashboard_service_web": "Sites",
   "hosting_dashboard_service_privatesql": "Base de dados privada",
   "hosting_dashboard_service_privatesql_more": "Ver lista",
