@@ -24,5 +24,10 @@
   "netapp_volumes_snapshots_status_manage_error": "Dostępny",
   "netapp_volumes_snapshots_status_unmanage_starting": "Dostępny",
   "netapp_volumes_snapshots_status_unmanage_error": "Dostępny",
-  "netapp_volumes_snapshots_status_restoring": "W trakcie przywracania"
+  "netapp_volumes_snapshots_status_restoring": "W trakcie przywracania",
+  "netapp_volumes_snapshots_policies": "Zarządzanie polityką wykonywania snapshotów",
+  "netapp_volumes_snapshots_policies_description": "Możesz zastosować regułę snapshota do Twojego wolumenu.",
+  "netapp_volumes_snapshots_policies_apply": "Zastosuj politykę",
+  "netapp_volumes_snapshots_policies_apply_success": "Reguła została zastosowana.",
+  "netapp_volumes_snapshots_policies_apply_error": "Reguła nie mogła zostać zastosowana. Spróbuj później."
 }
