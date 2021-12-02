@@ -28,5 +28,6 @@
   "netapp_volumes_dashboard_update_success": "Die Angaben des Volumes wurden aktualisiert.",
   "netapp_volumes_dashboard_update_error": "Bei der Aktualisierung der Angaben zum Volumes ist ein Fehler aufgetreten.",
   "netapp_volumes_dashboard_acl": "Zugriffskontrolle (ACL)",
-  "netapp_volumes_dashboard_snapshots": "Snapshots"
+  "netapp_volumes_dashboard_snapshots": "Snapshots",
+  "netapp_volumes_dashboard_volume_pattern": "Darf höchstens 256 Zeichen enthalten, und zwar ausschließlich Zahlen, Buchstaben, Unterstriche, Bindestriche und Punkte."
 }

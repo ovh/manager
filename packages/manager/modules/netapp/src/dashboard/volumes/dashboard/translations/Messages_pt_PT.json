@@ -28,5 +28,6 @@
   "netapp_volumes_dashboard_update_success": "As informações do volume foram atualizadas com sucesso.",
   "netapp_volumes_dashboard_update_error": "Ocorreu um erro aquando da atualização das informações do volume.",
   "netapp_volumes_dashboard_acl": "Controlo de acesso (ACL)",
-  "netapp_volumes_dashboard_snapshots": "Snapshots"
+  "netapp_volumes_dashboard_snapshots": "Snapshots",
+  "netapp_volumes_dashboard_volume_pattern": "Deve conter apenas números, letras, underscores, traços ou pontos e um máximo de 256 caracteres."
 }
