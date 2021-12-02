@@ -8,5 +8,5 @@
 
   "pci_projects_project_storages_containers_container_delete_success_message": "Le conteneur {{ container }} a été supprimé.",
   "pci_projects_project_storages_containers_container_delete_error_delete": "Une erreur est survenue lors de la suppression du conteneur {{ container }} : {{ message }}.",
-  "pci_projects_project_storages_containers_container_delete_warning": "Si vous souhaitez définitivement supprimer votre conteneur, vous devez d'abord supprimer tous les objets qui lui sont rattachés."
+  "pci_projects_project_storages_containers_container_delete_warning": "Si vous souhaitez définitivement supprimer votre conteneur {{ container }}, vous devez d'abord supprimer tous les objets qui lui sont rattachés."
 }

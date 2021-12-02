@@ -7,5 +7,5 @@
   "pci_projects_project_storages_containers_container_delete_object_erase_message": "Todos los datos que contenga el contenedor de objetos se perderán.",
   "pci_projects_project_storages_containers_container_delete_success_message": "Se ha eliminado el contenedor {{ container }}.",
   "pci_projects_project_storages_containers_container_delete_error_delete": "Se ha producido un error al eliminar el contenedor {{ container }}: {{ message }}.",
-  "pci_projects_project_storages_containers_container_delete_warning": "Para eliminar de forma definitiva el contenedor, deberá eliminar primero todos los objetos asociados a él."
+  "pci_projects_project_storages_containers_container_delete_warning": "Para eliminar de forma definitiva el contenedor {{ container }}, deberá eliminar previamente todos los objetos asociados."
 }
