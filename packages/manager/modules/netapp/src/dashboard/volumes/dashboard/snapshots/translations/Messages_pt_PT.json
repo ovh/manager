@@ -24,5 +24,10 @@
   "netapp_volumes_snapshots_status_manage_error": "Disponível",
   "netapp_volumes_snapshots_status_unmanage_starting": "Disponível",
   "netapp_volumes_snapshots_status_unmanage_error": "Disponível",
-  "netapp_volumes_snapshots_status_restoring": "Restauro em curso"
+  "netapp_volumes_snapshots_status_restoring": "Restauro em curso",
+  "netapp_volumes_snapshots_policies": "Gerir a política de snapshots",
+  "netapp_volumes_snapshots_policies_description": "Pode aplicar uma regra de snapshot ao seu volume.",
+  "netapp_volumes_snapshots_policies_apply": "Aplicar a política",
+  "netapp_volumes_snapshots_policies_apply_success": "A regra foi aplicada com sucesso.",
+  "netapp_volumes_snapshots_policies_apply_error": "Não foi possível aplicar a regra. Tente novamente mais tarde."
 }
