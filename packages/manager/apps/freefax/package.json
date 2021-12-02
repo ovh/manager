@@ -29,7 +29,7 @@
     "@ovh-ux/manager-preloader": "^1.2.1",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
     "@ovh-ux/ng-at-internet": "^5.8.0",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.9",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.10",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.0.3",
     "@ovh-ux/ng-ovh-contracts": "^4.0.5",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.4",
