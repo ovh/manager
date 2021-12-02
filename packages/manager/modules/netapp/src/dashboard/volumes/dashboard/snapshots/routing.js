@@ -5,6 +5,11 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/snapshots',
     component: 'ovhManagerNetAppVolumesDashboardSnapshots',
     resolve: {
+      trackClick: /* @ngInject */ (atInternet) => (tracker) =>
+        atInternet.trackClick({
+          type: 'action',
+          name: `netapp::dashboard::volumes::dashboad::snapshots::${tracker}`,
+        }),
       addSnapshotLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
           'netapp.dashboard.volumes.dashboard.snapshots.add',
@@ -86,6 +91,26 @@ export default /* @ngInject */ ($stateProvider) => {
               )
               .then((snapshots) => snapshots.reduce((a, b) => a + b, 0)),
           ),
+
+      snapshotPolicies: /* @ngInject */ (getSnapshotPolicies) =>
+        getSnapshotPolicies().catch(() => []),
+      currentPolicy: /* @ngInject */ ($http, serviceName, volumeId) =>
+        $http
+          .get(
+            `/storage/netapp/${serviceName}/share/${volumeId}/snapshotPolicy`,
+          )
+          .then(({ data }) => data)
+          .catch(() => ({})),
+
+      applyPolicy: /* @ngInject */ ($http, serviceName, volumeId) => (
+        snapshotPolicyID,
+      ) =>
+        $http.put(
+          `/storage/netapp/${serviceName}/share/${volumeId}/snapshotPolicy`,
+          {
+            snapshotPolicyID,
+          },
+        ),
     },
   });
 };

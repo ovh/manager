@@ -1,5 +1,3 @@
-const hitName = 'netapp::detail::volumes::volume::create';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.dashboard.volumes.create', {
     url: '/create',
@@ -15,28 +13,23 @@ export default /* @ngInject */ ($stateProvider) => {
         successMessage,
       ) =>
         $state
-          .go('netapp.dashboard.volumes.volume.dashboard', {
-            volumeId,
-          })
+          .go(
+            'netapp.dashboard.volumes.dashboard',
+            {
+              volumeId,
+            },
+            {
+              reload: true,
+            },
+          )
           .then(() => {
             Alerter.success(successMessage);
           }),
-      goBack: /* @ngInject */ (goToVolumes) => goToVolumes,
       protocolEnum: /* @ngInject */ (schema) =>
         schema.models['storage.ProtocolEnum'].enum,
       schema: /* @ngInject */ ($http) =>
         $http.get('/storage.json').then(({ data }) => data),
-      trackClick: /* @ngInject */ (atInternet) => () => {
-        atInternet.trackClick({
-          name: `${hitName}::confirm`,
-          type: 'action',
-        });
-      },
-
       breadcrumb: () => null,
-    },
-    atInternet: {
-      rename: hitName,
     },
   });
 };

@@ -3,5 +3,6 @@
   "billing_commitment_payment_periodic": "Kwota miesięczna",
   "billing_commitment_payment_upfront": "Kwota całkowita",
   "billing_commitment_payment_upfront_savings": "Oszczędź dodatkowe {{price}}",
-  "billing_commitment_payment_monthly": "{{ price }}/m-c przez {{duration}} miesiący(e)"
+  "billing_commitment_payment_monthly": "{{ price }}/m-c przez {{duration}} miesiący(e)",
+  "billing_commitment_pricing_price_month": "{{ price }}/m-c"
 }

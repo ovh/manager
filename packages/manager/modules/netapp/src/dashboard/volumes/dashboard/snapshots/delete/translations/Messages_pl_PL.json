@@ -1,0 +1,11 @@
+{
+  "netapp_volumes_snapshots_delete_title": "Usuń snapshot",
+  "netapp_volumes_snapshots_delete_description": "Czy na pewno chcesz usunąć następujący snapshot?",
+  "netapp_volumes_snapshots_delete_confirm": "Usuń snapshot",
+  "netapp_volumes_snapshots_delete_cancel": "Anuluj",
+  "netapp_volumes_snapshots_delete_success": "Snapshot został usunięty.",
+  "netapp_volumes_snapshots_delete_error": "Snapshot nie mógł zostać usunięty. Spróbuj ponownie: {{message}}",
+  "netapp_volumes_snapshots_delete_property_id": "ID snapshota",
+  "netapp_volumes_snapshots_delete_property_name": "Nazwa",
+  "netapp_volumes_snapshots_delete_property_description": "Opis"
+}

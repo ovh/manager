@@ -1,0 +1,15 @@
+{
+  "netapp_snapshot_policies_id": "ID",
+  "netapp_snapshot_policies_name": "Nome",
+  "netapp_snapshot_policies_description": "Descrizione:",
+  "netapp_snapshot_policies_rule_prefix": "Prefisso:",
+  "netapp_snapshot_policies_rule_copies_to_keep": "Copie da conservare:",
+  "netapp_snapshot_policies_rule_schedule": "Pianificazione:",
+  "netapp_snapshot_policies_rule_days": "Giorno/i:",
+  "netapp_snapshot_policies_rule_minutes": "Minuto/i:",
+  "netapp_snapshot_policies_rule_hours": "Ora/e:",
+  "netapp_snapshot_policies_rule_months": "Mese/i:",
+  "netapp_snapshot_policies_rule_weekdays": "Giorno/i della settimana:",
+  "netapp_snapshot_policies_delete": "Elimina",
+  "netapp_snapshot_policies_default": "Regole predefinite"
+}

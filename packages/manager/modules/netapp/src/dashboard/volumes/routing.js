@@ -3,6 +3,11 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/volumes',
     component: 'ovhManagerNetAppVolumes',
     resolve: {
+      trackClick: /* @ngInject */ (atInternet) => (tracker) =>
+        atInternet.trackClick({
+          type: 'action',
+          name: `netapp::dashboard::volumes::${tracker}`,
+        }),
       loadVolumeDetail: /* @ngInject */ ($http, $q, serviceName) => (volume) =>
         $q
           .all({
@@ -52,8 +57,10 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      goToCreateVolume: /* @ngInject */ ($state) => () =>
-        $state.go('netapp.dashboard.volumes.create'),
+      goToCreateVolume: /* @ngInject */ ($state, trackClick) => () => {
+        trackClick('create-volume');
+        return $state.go('netapp.dashboard.volumes.create');
+      },
       getVolumeDetailsHref: /* @ngInject */ ($state, $transition$) => (
         volume,
       ) =>
@@ -61,32 +68,26 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName: $transition$.params().serviceName,
           volumeId: volume.id,
         }),
-      getVolumeCreateSnapshotHref: /* @ngInject */ ($state, $transition$) => (
-        volume,
-      ) =>
-        $state.href('netapp.dashboard.volumes.volume.createSnapshot', {
-          serviceName: $transition$.params().serviceName,
-          volume,
+      goToCreateSnapshot: /* @ngInject */ ($state, serviceName) => (volume) =>
+        $state.go('netapp.dashboard.volumes.dashboard.snapshots.add', {
+          serviceName,
+          volumeId: volume.id,
         }),
-      getVolumeSnapshotsHref: /* @ngInject */ ($state, $transition$) => (
-        volume,
-      ) =>
-        $state.href('netapp.dashboard.volumes.volume.snapshots', {
-          serviceName: $transition$.params().serviceName,
-          volume,
+      goToSnapshots: /* @ngInject */ ($state, serviceName) => (volume) =>
+        $state.go('netapp.dashboard.volumes.dashboard.snapshots', {
+          serviceName,
+          volumeId: volume.id,
         }),
-      getVolumeAclHref: /* @ngInject */ ($state, $transition$) => (volume) =>
-        $state.href('netapp.dashboard.volumes.volume.acl', {
-          serviceName: $transition$.params().serviceName,
-          volume,
+      goToAcls: /* @ngInject */ ($state, serviceName) => (volume) =>
+        $state.go('netapp.dashboard.volumes.dashboard.acl', {
+          serviceName,
+          volumeId: volume.id,
         }),
       getVolumeDeleteHref: /* @ngInject */ ($state, $transition$) => (volume) =>
         $state.href('netapp.dashboard.volumes.delete', {
           serviceName: $transition$.params().serviceName,
           volumeId: volume.id,
         }),
-      isCountAvailable: /* @ngInject */ (features) =>
-        features.isFeatureAvailable('netapp:volumes:count'),
       canEditVolumes: /* @ngInject */ (features) =>
         features.isFeatureAvailable('netapp:volumes:actions'),
       isDashboardAvailable: /* @ngInject */ (features) =>

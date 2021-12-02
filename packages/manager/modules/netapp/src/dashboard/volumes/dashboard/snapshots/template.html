@@ -1,98 +1,103 @@
 <div>
-    <h2 data-translate="netapp_volumes_snapshots"></h2>
-    <dl class="oui-description">
-        <dt data-translate="netapp_volumes_snapshots_total_label"></dt>
-        <dd>
-            <span
-                data-translate="netapp_volumes_snapshots_total"
-                data-translate-values="{
-                    total: $ctrl.totalSnapshots,
-                    max: $ctrl.MAXIMUM_SNAPSHOT_ALLOWED
-                }"
-            ></span>
-        </dd>
-    </dl>
-    <oui-datagrid rows="$ctrl.snapshots" page-size="10">
-        <oui-datagrid-topbar>
+    <div>
+        <h2 data-translate="netapp_volumes_snapshots"></h2>
+        <oui-datagrid rows="$ctrl.snapshots" page-size="10">
+            <oui-datagrid-topbar>
+                <oui-action-menu
+                    text="{{:: 'netapp_volumes_snapshots_actions' | translate }}"
+                >
+                    <oui-action-menu-item
+                        aria-label="{{:: 'netapp_volumes_snapshots_actions_create_label' | translate }}"
+                        href="{{:: $ctrl.addSnapshotLink }}"
+                        disabled="$ctrl.totalSnapshots >= $ctrl.MAXIMUM_SNAPSHOT_ALLOWED"
+                        on-click="$ctrl.trackClick('create')"
+                    >
+                        <span
+                            data-translate="netapp_volumes_snapshots_actions_create"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-datagrid-topbar>
+            <oui-datagrid-column
+                title=":: 'netapp_volumes_snapshots_id' | translate"
+                property="id"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'netapp_volumes_snapshots_name' | translate"
+                property="name"
+                sortable
+                searchable
+                filterable
+            >
+                <span data-ng-bind=":: $row.name || '-'"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'netapp_volumes_snapshots_description' | translate"
+                property="description"
+            >
+                <span data-ng-bind=":: $row.description || '-'"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'netapp_volumes_snapshots_created_at' | translate"
+                property="createdAt"
+                sortable
+                searchable
+                filterable
+            >
+                <span data-ng-bind=":: $row.createdAt | date:'medium'"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'netapp_volumes_snapshots_type' | translate"
+                property="type"
+            >
+                <span
+                    data-translate="{{:: 'netapp_volumes_snapshots_type_' + $row.type }}"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'netapp_volumes_snapshots_status' | translate"
+                property="status"
+            >
+                <span
+                    class="oui-badge"
+                    data-ng-class="{
+                        'oui-badge_warning': $row.isPending(),
+                        'oui-badge_success': $row.isActive(),
+                        'oui-badge_error': $row.isInactive()
+                    }"
+                    data-translate="{{:: 'netapp_volumes_snapshots_status_' + $row.status }}"
+                ></span>
+            </oui-datagrid-column>
             <oui-action-menu
                 text="{{:: 'netapp_volumes_snapshots_actions' | translate }}"
+                compact
+                disabled="$row.isBeingDeleted()"
             >
-                <oui-action-menu-item
-                    aria-label="{{:: 'netapp_volumes_snapshots_actions_create_label' | translate }}"
-                    href="{{:: $ctrl.addSnapshotLink }}"
-                    disabled="$ctrl.totalSnapshots >= $ctrl.MAXIMUM_SNAPSHOT_ALLOWED"
-                >
+                <oui-action-menu-item on-click="$ctrl.editSnapshot($row.id)">
                     <span
-                        data-translate="netapp_volumes_snapshots_actions_create"
+                        data-translate="netapp_volumes_snapshots_actions_edit"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item on-click="$ctrl.deleteSnapshot($row.id)">
+                    <span
+                        data-translate="netapp_volumes_snapshots_actions_delete"
                     ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
-        </oui-datagrid-topbar>
-        <oui-datagrid-column
-            title=":: 'netapp_volumes_snapshots_id' | translate"
-            property="id"
-        >
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            title=":: 'netapp_volumes_snapshots_name' | translate"
-            property="name"
-            sortable
-            searchable
-            filterable
-        >
-            <span data-ng-bind=":: $row.name || '-'"></span>
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            title=":: 'netapp_volumes_snapshots_description' | translate"
-            property="description"
-        >
-            <span data-ng-bind=":: $row.description || '-'"></span>
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            title=":: 'netapp_volumes_snapshots_created_at' | translate"
-            property="createdAt"
-            sortable
-            searchable
-            filterable
-        >
-            <span data-ng-bind=":: $row.createdAt | date:'medium'"></span>
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            title=":: 'netapp_volumes_snapshots_type' | translate"
-            property="type"
-        >
+        </oui-datagrid>
+    </div>
+    <div>
+        <h2 data-translate="netapp_volumes_snapshots_policies"></h2>
+        <p data-translate="netapp_volumes_snapshots_policies_description"></p>
+        <snapshot-policies
+            policies="$ctrl.snapshotPolicies"
+            selected="$ctrl.policyId"
+        ></snapshot-policies>
+        <oui-button variant="primary" on-click="$ctrl.changePolicy()">
             <span
-                data-translate="{{:: 'netapp_volumes_snapshots_type_' + $row.type }}"
+                data-translate="netapp_volumes_snapshots_policies_apply"
             ></span>
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            title=":: 'netapp_volumes_snapshots_status' | translate"
-            property="status"
-        >
-            <span
-                class="oui-badge"
-                data-ng-class="{
-                    'oui-badge_warning': $row.isPending(),
-                    'oui-badge_success': $row.isActive(),
-                    'oui-badge_error': $row.isInactive()
-                }"
-                data-translate="{{:: 'netapp_volumes_snapshots_status_' + $row.status }}"
-            ></span>
-        </oui-datagrid-column>
-        <oui-action-menu
-            text="{{:: 'netapp_volumes_snapshots_actions' | translate }}"
-            compact
-        >
-            <oui-action-menu-item on-click="$ctrl.editSnapshot($row.id)">
-                <span
-                    data-translate="netapp_volumes_snapshots_actions_edit"
-                ></span>
-            </oui-action-menu-item>
-            <oui-action-menu-item on-click="$ctrl.deleteSnapshot($row.id)">
-                <span
-                    data-translate="netapp_volumes_snapshots_actions_delete"
-                ></span>
-            </oui-action-menu-item>
-        </oui-action-menu>
-    </oui-datagrid>
+        </oui-button>
+    </div>
 </div>

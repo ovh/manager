@@ -29,11 +29,13 @@ export default class OvhManagerNetAppOrderCtrl {
   constructor(
     $translate,
     $window,
+    atInternet,
     BillingService,
     coreConfig,
     RedirectionService,
   ) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.BillingService = BillingService;
     this.$window = $window;
     this.coreConfig = coreConfig;
@@ -64,6 +66,7 @@ export default class OvhManagerNetAppOrderCtrl {
         price,
       };
     });
+    [this.selectedLicense] = this.licenses;
   }
 
   onRegionStepFocus() {
@@ -107,6 +110,10 @@ export default class OvhManagerNetAppOrderCtrl {
     );
   }
 
+  onPlanChange(modelValue) {
+    this.selectedSize = modelValue.size;
+  }
+
   onCustomSizeChange(modelValue) {
     this.plan = this.plans.find(({ size }) => size === modelValue);
   }
@@ -127,9 +134,15 @@ export default class OvhManagerNetAppOrderCtrl {
           commitment === this.duration.commitment.durationInMonths,
       ),
     );
+    [this.pricingMode] = this.pricingModes;
   }
 
   goToOrderUrl() {
+    const pricingMode = this.pricingMode.pricingMode.replace(/[0-9]+/, '');
+    this.atInternet.trackClick({
+      name: `netapp::order::confirm::${this.selectedRegion}_${this.selectedLicense.name}_${this.selectedSize}TB_${this.duration.duration}_${pricingMode}`,
+      type: 'action',
+    });
     const order = {
       planCode: this.plan.planCode,
       productId: 'netapp',

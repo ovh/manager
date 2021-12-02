@@ -12,7 +12,11 @@ export default class SelectCheckboxesCtrl {
 
   $onInit() {
     this.showList = false;
-    this.totalItems = [];
+    this.totalItems = this.items.filter(({ checked }) => checked);
+    this.selectAll = this.items.reduce(
+      (all, item) => all && item.checked,
+      true,
+    );
   }
 
   focusOnItems(event) {
@@ -53,6 +57,25 @@ export default class SelectCheckboxesCtrl {
 
   toggleList() {
     this.showList = !this.showList;
+
+    if (this.showList) {
+      this.$timeout(() => {
+        this.resizeDropdown();
+      });
+    }
+  }
+
+  resizeDropdown() {
+    const [selectCheckbox] = this.$element.find('label.oui-select');
+    const [checkboxList] = this.$element.find('div.checkbox_list');
+    checkboxList.style.width = `${selectCheckbox.offsetWidth}px`;
+  }
+
+  onSelectAll(checked) {
+    this.items.forEach((item) => {
+      this.onItemSelect(item, checked);
+      Object.assign(item, { checked });
+    });
   }
 
   onItemSelect(item, checked) {

@@ -82,6 +82,12 @@ export default class ServicesActionsCtrl {
           engagementDetails: service.billing.engagement,
           hasPendingEngagement,
         });
+        this.commitmentLink =
+          this.goToCommit() ||
+          this.coreURLBuilder.buildURL(
+            'dedicated',
+            `#/billing/autorenew/${serviceInfos.serviceId}/commitment`,
+          );
         if (
           this.withEngagement &&
           ServicesActionsCtrl.showCommit(

@@ -9,7 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: /* @ngInject */ () => null,
-      goBack: /* @ngInject */ (goToSnapshots) => goToSnapshots,
+    },
+    atInternet: {
+      rename: 'netapp::dashboard::volumes::dashboard::snapshots::create',
     },
   });
 };

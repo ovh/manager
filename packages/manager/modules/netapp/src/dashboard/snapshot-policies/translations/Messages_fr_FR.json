@@ -1,3 +1,9 @@
 {
-  "netapp_snapshot_policies_breadcrumb": "Snapshot policies"
+  "netapp_snapshot_policies_breadcrumb": "Snapshot policies",
+  "netapp_snapshot_policies_title": "Gérer les Snapshot policies",
+  "netapp_snapshot_policies_information": "Créez et gérez facilement vos règles de snapshots, en matière de périodicité ou de durée de rétention. Vous pourrez ensuite les appliquer sur des volumes spécifiques. Les snapshots utilisent la capacité de stockage de votre solution Enterprise File Storage.",
+  "netapp_snapshot_policies_create": "Créer une nouvelle Snapshot policy",
+  "netapp_snapshot_policies_delete_success": "La Snapshot policy {{snapshotPolicyName}} a été supprimée avec succès !",
+  "netapp_snapshot_policies_delete_error": "Une erreur est survenue lors de la suppression de la Snapshot policy.",
+  "netapp_snapshot_policies_fetch_error": "Une erreur est survenue lors de la récupération de vos Snapshot policies."
 }

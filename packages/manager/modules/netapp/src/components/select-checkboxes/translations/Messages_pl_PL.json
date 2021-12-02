@@ -1,0 +1,7 @@
+{
+  "select_checkboxes_placeholder_default": "Wybierz opcję",
+  "select_checkboxes_one_item": "1 pozycja",
+  "select_checkboxes_many_items": "Liczba pozycji: {{count}}",
+  "select_checkboxes_select_all": "Zaznacz wszystko",
+  "select_checkboxes_unselect_all": "Usuń wszystkie zaznaczenia"
+}

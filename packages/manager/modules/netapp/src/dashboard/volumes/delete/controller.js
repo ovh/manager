@@ -10,13 +10,16 @@ export default class OvhManagerNetAppVolumeDeleteCtrl {
 
   deleteVolume() {
     this.isLoading = true;
+    this.trackClick('delete::confirm');
     return this.$http
       .delete(`/storage/netapp/${this.storage.id}/share/${this.volumeId} `)
       .then(() =>
-        this.goBack(this.$translate.instant('netapp_volumes_delete_success')),
+        this.goToVolumes(
+          this.$translate.instant('netapp_volumes_delete_success'),
+        ),
       )
       .catch((error) =>
-        this.goBack(
+        this.goToVolumes(
           this.$translate.instant('netapp_volumes_delete_error', {
             message: error.data?.message,
           }),
@@ -26,5 +29,10 @@ export default class OvhManagerNetAppVolumeDeleteCtrl {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  goBack() {
+    this.trackClick('delete::cancel');
+    return this.goToVolumes();
   }
 }
