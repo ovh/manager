@@ -1,3 +1,13 @@
+## [17.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.7.0...@ovh-ux/manager-dedicated@17.7.1) (2021-12-02)
+
+
+### Bug Fixes
+
+* **contacts:** add Netapp to available services ([#6013](https://github.com/ovh/manager/issues/6013)) ([60a27ee](https://github.com/ovh/manager/commit/60a27eeb3f6898a0c533c51c5225966ccf53157a))
+* **i18n:** add missing translations [CDS 1295] ([4d3cace](https://github.com/ovh/manager/commit/4d3caceb4fbb837f4b4ecd677d9b9e47af8acc0b))
+
+
+
 # [17.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.6.0...@ovh-ux/manager-dedicated@17.7.0) (2021-12-01)
 
 
