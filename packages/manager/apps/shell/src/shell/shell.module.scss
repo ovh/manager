@@ -1,0 +1,23 @@
+.managerShell {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+
+  &_header {
+    flex: 0 1 auto;
+  }
+
+  &_content {
+    flex: 1 1 auto;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  }
+
+  &_footer {
+    flex: 0 1 auto;
+  }
+}
