@@ -2,8 +2,8 @@
   "sms_section_back_link": "Powrót do opcji",
   "sms_options_recredit_title": "Automatyczne doładowanie",
   "sms_options_recredit_information_title": "Informacje",
-  "sms_options_recredit_information_text": "Możesz automatycznie doładować konto SMS, gdy saldo przekroczy określony próg.<br/>Opłata za automatyczne doładowanie zostanie pobrana z Twojego konta klienta OVHcloud.",
-  "sms_options_recredit_information_note": "Doładowanie jest możliwe tylko wtedy, gdy saldo na koncie klienta OVHcloud jest dodatnie lub wynosi 0. Konto klienta możesz zasilić w Panelu klienta, w sekcji Płatności.",
+  "sms_options_recredit_information_text": "Możesz automatycznie doładować konto SMS, jeśli saldo przekroczy określony próg.",
+  "sms_options_recredit_information_note": "Opcja automatycznego doładowania może zostać włączona dopiero po 2 miesiącach od uruchomienia usługi. Na Twoim koncie OVHcloud musi być również dostępny ważny sposób płatności.",
   "sms_options_recredit_manage_title": "Zarządzanie opcjami",
   "sms_options_recredit_manage_threshold_label": "Minimalny próg:",
   "sms_options_recredit_manage_threshold_text": "{{creditThresholdForAutomaticRecredit | number:2}} kredytów",
@@ -20,5 +20,6 @@
   "sms_options_recredit_update_quantity_option": "{{amount}}",
   "sms_options_recredit_updating": "Konfiguracja automatycznego doładowania…",
   "sms_options_recredit_updated": "Konfiguracja automatycznego doładowania została zakończona",
-  "sms_options_recredit_update_ko": "Nie można zaktualizować konfiguracji automatycznego doładowania.<br/>{{error}}"
+  "sms_options_recredit_update_ko": "Nie można zaktualizować konfiguracji automatycznego doładowania.<br/>{{error}}",
+  "sms_options_recredit_information_note2": "Doładowanie zostanie zrealizowane automatycznie, a Twoje konto klienta OVHcloud zostanie obciążone odpowiednią należnością."
 }
