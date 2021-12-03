@@ -1,0 +1,19 @@
+.navbar {
+  padding-right: 2rem;
+}
+
+.hamburgerOpen {
+  visibility: visible !important;
+  transform: translateX(0) !important;
+}
+
+.languageTitle {
+  color: #00185e;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.43;
+}
+
+.navbarLink:disabled {
+  opacity: 0.5;
+}
