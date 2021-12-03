@@ -1,0 +1,8 @@
+{
+  "notifications_mark_as_read": "Marquer comme lu",
+  "notifications_mark_as_unread": "Marquer comme non lu",
+  "notification_read": "Lu",
+  "notification_unread": "Non lu",
+  "no_notifications_title": "Vous êtes à jour !",
+  "no_notifications_description": "Vous n'avez aucune notification."
+}
