@@ -11,6 +11,7 @@ import quotaRegionHeader from './quota-region-header';
 import regionsList from './regions-list';
 import rights from './rights';
 import sshKeys from './instance/ssh-keys';
+import storages from './storages';
 
 const moduleName = 'ovhManagerPciComponentsProject';
 
@@ -25,6 +26,7 @@ angular.module(moduleName, [
   regionsList,
   rights,
   sshKeys,
+  storages,
 ]);
 
 export default moduleName;
