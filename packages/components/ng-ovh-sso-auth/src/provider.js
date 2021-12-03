@@ -1,3 +1,4 @@
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import { NIC_STATE_ENUM } from './constants';
 
 /**
@@ -451,7 +452,14 @@ export default function() {
               logoutUrl.indexOf('?') > -1 ? '&' : '?'
             }ovhSubsidiary=${this.user.ovhSubsidiary}`;
           }
-          $window.location.assign(logoutUrl);
+          if (isTopLevelApplication()) {
+            $window.location.assign(logoutUrl);
+          } else {
+            window.parent.postMessage({
+              id: 'ovh-auth-redirect',
+              url: logoutUrl,
+            });
+          }
         });
       }
       return deferredObj.logout.promise;
