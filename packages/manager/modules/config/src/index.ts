@@ -18,9 +18,9 @@ export {
 
 export { LANGUAGES } from './locale/locale.constants';
 
-export const fetchConfiguration = async (
-  applicationName: string,
-): Promise<Environment> => {
+export const isTopLevelApplication = () => window.top === window.self;
+
+export const fetchConfiguration = async (applicationName: string): Promise<Environment> => {
   const environment = new Environment();
   const configRequestOptions = {
     requestType: 'aapi',
@@ -47,9 +47,18 @@ export const fetchConfiguration = async (
       environment.setApplicationURLs(config.applicationURLs);
       environment.setUniverse(config.universe);
       environment.setMessage(config.message);
+      environment.setApplications(config.applications);
       return environment;
     })
-    .catch(() => {
+    .catch((err) => {
+      if (err && err.status === 401 && !isTopLevelApplication()) {
+        window.parent.postMessage({
+          id: 'ovh-auth-redirect',
+          url: `/auth?action=disconnect&onsuccess=${encodeURIComponent(
+            window.location.href,
+          )}`,
+        });
+      }
       environment.setRegion(HOSTNAME_REGIONS[window.location.hostname]);
       return environment;
     });
