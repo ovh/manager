@@ -36,14 +36,22 @@
             data-navbar-options="$ctrl.navbarOptions"
             data-sidebar-expand="true"
             data-sidebar-links="{}"
+            data-ng-if="$ctrl.isTopLevelApplication"
         >
         </ovh-manager-navbar>
-        <ovh-manager-account-sidebar expand="true" me="$ctrl.me">
+        <ovh-manager-account-sidebar
+            expand="true"
+            me="$ctrl.me"
+            data-ng-if="$ctrl.isTopLevelApplication"
+        >
         </ovh-manager-account-sidebar>
         <ovh-manager-notifications-sidebar> </ovh-manager-notifications-sidebar>
         <div class="position-relative w-100 h-100 overflow-auto ng-cloak">
             <div
-                class="position-absolute hub-main-view_sidebar_expanded w-100 h-100"
+                class="position-absolute hub-main w-100 h-100"
+                data-ng-class="{
+                    'hub-main-view_sidebar_expanded': $ctrl.isTopLevelApplication,
+                }"
             >
                 <oui-message
                     class="incident-banner"
