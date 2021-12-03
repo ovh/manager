@@ -1,31 +1,30 @@
 import angular from 'angular';
-import '@uirouter/angularjs';
-import '@ovh-ux/ng-translate-async-loader';
-import 'angular-translate';
 
+import '@ovh-ux/ng-ovh-cloud-universe-components';
+import '@ovh-ux/ui-kit';
+
+import component from './users.component';
+import routing from './users.routing';
 import addUser from './add';
 import deleteUser from './delete';
+import informations from './informations';
 import modifyPassword from './modify-password';
 import showSecret from './show-secret';
-import informations from './informations';
-import routing from './users.routing';
-import users from '../../../../../../components/project/users';
 
-const moduleName = 'ovhManagerPciStoragesDatabaseUsers';
+const moduleName = 'ovhManagerPciStoragesDatabasesUsers';
 
 angular
   .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-    'ovh-api-services',
-    'ui.router',
+    'ngOvhCloudUniverseComponents',
+    'oui',
     addUser,
     deleteUser,
-    modifyPassword,
-    users,
-    showSecret,
     informations,
+    modifyPassword,
+    showSecret,
   ])
-  .config(routing);
+  .config(routing)
+  .component('ovhManagerPciStoragesDatabaseUsersComponent', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

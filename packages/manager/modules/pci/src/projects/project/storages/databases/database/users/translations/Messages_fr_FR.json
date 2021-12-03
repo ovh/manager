@@ -1,0 +1,28 @@
+{
+  "pci_databases_users_title": "Users & Roles",
+  "pci_databases_users_username_label": "Nom d'utilisateur",
+  "pci_databases_users_description_label": "Description",
+  "pci_databases_users_role_label": "Rôles",
+  "pci_databases_users_createdAt_label": "Date de création",
+  "pci_databases_users_status_label": "Status",
+  "pci_databases_users_status_creating": "Création en cours",
+  "pci_databases_users_status_ok": "Activé",
+  "pci_databases_users_status_deleting": "Suppression en cours",
+  "pci_databases_users_status_deleted": "Supprimé",
+  "pci_databases_users_status_updating": "Mise à jour en cours",
+  "pci_databases_users_status_ready": "Activé",
+  "pci_databases_users_status_error": "En erreur",
+  "pci_databases_users_status_error_inconsistent_spec": "En erreur",
+  "pci_databases_users_status_pending": "En attente",
+
+  "pci_databases_users_modify_password_action_label": "Régénérer le mot de passe",
+  "pci_databases_users_show_key_action_label": "Afficher la clé d'accès",
+  "pci_databases_users_show_cert_action_label": "Afficher le certificat",
+  "pci_databases_users_show_user_informations_action_label": "Afficher les informations",
+
+  "pci_databases_users_password_message_infos": "Le nouveau mot de passe de l'utilisateur {{ user }} est <code>{{ password }}</code>.",
+  "pci_databases_users_password_message_success": "Le mot de passe de l'utilisateur {{ user }} a été regénéré.",
+  "pci_databases_users_password_message_error": "Une erreur est survenue lors de la génération du mot de passe de l'utilisateur {{ user }} : {{ message }}.",
+  "pci_databases_users_delete_action_label": "Supprimer",
+  "pci_databases_users_add_action_label": "Ajouter un utilisateur"
+}

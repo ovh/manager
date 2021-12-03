@@ -1,0 +1,118 @@
+<div class="container-fluid px-0 mt-3" data-ui-view>
+    <!-- error messages -->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <h2 data-translate="pci_databases_users_title"></h2>
+
+    <oui-datagrid
+        data-rows="$ctrl.users"
+        data-columns-parameters="[
+        {
+            name: 'roles',
+            hidden: !$ctrl.isRolesAvailable
+        }]"
+    >
+        <oui-datagrid-column
+            title=":: 'pci_databases_users_username_label' | translate"
+            data-property="username"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable="asc"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_users_role_label' | translate"
+            data-property="roles"
+        >
+            <span
+                class="d-block"
+                data-ng-repeat="role in $row.roles track by role.id"
+                data-ng-bind="::role.description || role.name"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_users_createdAt_label' | translate"
+            data-property="createdAt"
+            data-sortable
+        >
+            <span data-ng-bind="$row.createdAt | date: 'medium'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_users_status_label' | translate"
+            data-property="status"
+        >
+            <span
+                class="oui-badge"
+                data-ng-class="{
+                    'oui-badge_success': !$row.isProcessing(),
+                    'oui-badge_warning': $row.isProcessing(),
+                }"
+            >
+                <span
+                    data-ng-bind=":: 'pci_databases_users_status_' + $row.status.toLowerCase() | translate"
+                ></span>
+            </span>
+        </oui-datagrid-column>
+
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item
+                data-ng-if="$ctrl.showUserInformationOption"
+                data-disabled="$ctrl.isDisabledOrPending($row)"
+                data-on-click="$ctrl.trackAndShowUserInformations($row)"
+            >
+                <span
+                    data-translate="pci_databases_users_show_user_informations_action_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$ctrl.showCertOption"
+                data-disabled="$ctrl.isDisabledOrPending($row)"
+                data-on-click="$ctrl.trackAndShowCert($row)"
+            >
+                <span
+                    data-translate="pci_databases_users_show_cert_action_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$ctrl.showKeyOption"
+                data-disabled="$ctrl.isDisabledOrPending($row)"
+                data-on-click="$ctrl.trackAndShowKey($row)"
+            >
+                <span
+                    data-translate="pci_databases_users_show_key_action_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.trackAndModifyPassword($row)"
+                data-disabled="$ctrl.isDisabledOrPending($row)"
+            >
+                <span
+                    data-translate="pci_databases_users_modify_password_action_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.trackAndDeleteUser($row)"
+                data-disabled="$ctrl.isDisabledOrPending($row)"
+            >
+                <span
+                    data-translate="pci_databases_users_delete_action_label"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+
+        <oui-datagrid-topbar>
+            <oui-button
+                data-disabled="$ctrl.database.isProcessing()"
+                data-on-click="$ctrl.trackAndAddUser()"
+            >
+                <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i>
+                <span
+                    data-translate="pci_databases_users_add_action_label"
+                ></span>
+            </oui-button>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+</div>

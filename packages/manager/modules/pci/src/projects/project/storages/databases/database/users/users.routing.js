@@ -1,7 +1,7 @@
 import map from 'lodash/map';
 import User from '../../../../../../components/project/storages/databases/user.class';
-import isFeatureActivated from '../../features.constants';
 import { SECRET_TYPE } from '../../databases.constants';
+import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -9,19 +9,29 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       url: '/users',
       views: {
-        databaseView: 'pciProjectsProjectUsers',
+        databaseView: 'ovhManagerPciStoragesDatabaseUsersComponent',
       },
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
-          $translate.instant('pci_projects_project_users_title'),
-        users: /* @ngInject */ (DatabaseService, database, projectId) =>
-          DatabaseService.getUsers(
+          $translate.instant('pci_databases_users_title'),
+        users: /* @ngInject */ (DatabaseService, database, projectId) => {
+          // Poll the database status
+          if (database.isProcessing()) {
+            DatabaseService.pollDatabaseStatus(
+              projectId,
+              database.engine,
+              database.id,
+            ).then((databaseInfo) => database.updateData(databaseInfo));
+          }
+          // Get and return the users
+          return DatabaseService.getUsers(
             projectId,
             database.engine,
             database.id,
-          ).then((users) =>
-            map(users, (u) => {
-              const user = new User(u);
+          ).then((usersResponse) => {
+            const users = map(usersResponse, (u) => new User(u));
+            // Poll every processing user status
+            users.forEach((user) => {
               if (user.isProcessing()) {
                 DatabaseService.pollUserStatus(
                   projectId,
@@ -29,117 +39,22 @@ export default /* @ngInject */ ($stateProvider) => {
                   database.id,
                   user.id,
                 ).then((userInfos) => {
-                  user.updateData({
-                    ...userInfos,
-                    rolesArray: userInfos.roles,
-                  });
+                  // If the user is deleted, remove it from the array
+                  // else, update data
+                  if (userInfos.status === STATUS.DELETING) {
+                    users.splice(users.indexOf(user), 1);
+                  } else {
+                    user.updateData({
+                      ...userInfos,
+                      rolesArray: userInfos.roles,
+                    });
+                  }
                 });
               }
-              return user;
-            }),
-          ),
-        addUser: /* @ngInject */ (
-          $state,
-          database,
-          projectId,
-          trackDashboard,
-        ) => () => {
-          trackDashboard('users::add_a_user');
-          return $state.go(
-            'pci.projects.project.storages.databases.dashboard.users.add',
-            {
-              projectId,
-              databaseId: database.id,
-            },
-          );
+            });
+            return users;
+          });
         },
-        deleteUser: /* @ngInject */ (
-          $state,
-          database,
-          projectId,
-          trackDashboard,
-        ) => (user) => {
-          trackDashboard('users::options_menu::delete_user');
-          return $state.go(
-            'pci.projects.project.storages.databases.dashboard.users.delete',
-            {
-              projectId,
-              databaseId: database.id,
-              userId: user.id,
-            },
-          );
-        },
-
-        showKey: /* @ngInject */ (
-          $state,
-          database,
-          projectId,
-          trackDashboard,
-        ) => {
-          if (isFeatureActivated('showKey', database.engine)) {
-            return (user) => {
-              trackDashboard('users::options_menu::show_key');
-              return $state.go(
-                'pci.projects.project.storages.databases.dashboard.users.show-secret',
-                {
-                  projectId,
-                  databaseId: database.id,
-                  user,
-                  type: SECRET_TYPE.key,
-                },
-              );
-            };
-          }
-          return null;
-        },
-        showUserInformations: /* @ngInject */ (
-          $state,
-          database,
-          projectId,
-          trackDashboard,
-        ) => {
-          if (isFeatureActivated('showUserInformations', database.engine)) {
-            return (user) => {
-              trackDashboard('users::options_menu::show_informations');
-              return $state.go(
-                'pci.projects.project.storages.databases.dashboard.users.informations',
-                {
-                  projectId,
-                  databaseId: database.id,
-                  user,
-                },
-              );
-            };
-          }
-          return null;
-        },
-
-        showCert: /* @ngInject */ (
-          $state,
-          database,
-          projectId,
-          trackDashboard,
-        ) => {
-          if (isFeatureActivated('showCert', database.engine)) {
-            return (user) => {
-              trackDashboard('dashboard::users::options_menu::show_cert');
-              return $state.go(
-                'pci.projects.project.storages.databases.dashboard.users.show-secret',
-                {
-                  projectId,
-                  databaseId: database.id,
-                  user,
-                  type: SECRET_TYPE.cert,
-                },
-              );
-            };
-          }
-          return null;
-        },
-
-        isActionDisabled: /* @ngInject */ (database) => () =>
-          !database.isActive(),
-
         roles: /* @ngInject */ (DatabaseService, database, projectId) =>
           DatabaseService.getRoles(
             projectId,
@@ -153,52 +68,82 @@ export default /* @ngInject */ ($stateProvider) => {
               };
             }),
           ),
-        goToUsers: /* @ngInject */ (CucCloudMessage, $state, projectId) => (
-          message = false,
-          type = 'success',
-        ) => {
-          const reload = message && type === 'success';
-
-          const promise = $state.go(
-            'pci.projects.project.storages.databases.dashboard.users',
+        goToAddUser: /* @ngInject */ ($state, database, projectId) => () =>
+          $state.go(
+            'pci.projects.project.storages.databases.dashboard.users.add',
             {
               projectId,
+              databaseId: database.id,
             },
+          ),
+        goToDeleteUser: /* @ngInject */ ($state, database, projectId) => (
+          user,
+        ) =>
+          $state.go(
+            'pci.projects.project.storages.databases.dashboard.users.delete',
             {
-              reload,
+              projectId,
+              databaseId: database.id,
+              userId: user.id,
             },
-          );
-
-          if (message) {
-            promise.then(() =>
-              CucCloudMessage[type](message, 'pci.projects.project.users'),
-            );
-          }
-
-          return promise;
-        },
-
-        goToModifyPassword: /* @ngInject */ (
-          $state,
-          projectId,
-          trackDashboard,
-        ) => (user) => {
-          trackDashboard('users::options_menu::modify_password');
-          return $state.go(
+          ),
+        goToModifyPassword: /* @ngInject */ ($state, projectId) => (user) =>
+          $state.go(
             'pci.projects.project.storages.databases.dashboard.users.modify-password',
             {
               projectId,
               user,
             },
-          );
-        },
-
-        guideUrl: () => null,
-        hideRolesMatrix: () => true,
-        onDestroy: /* @ngInject */ (DatabaseService, users, database) => () =>
-          users.forEach((user) =>
-            DatabaseService.stopPollingUserStatus(database.id, user.id),
           ),
+        goToShowKey: /* @ngInject */ ($state, database, projectId) => (user) =>
+          $state.go(
+            'pci.projects.project.storages.databases.dashboard.users.show-secret',
+            {
+              projectId,
+              databaseId: database.id,
+              user,
+              type: SECRET_TYPE.key,
+            },
+          ),
+        goToUserInformations: /* @ngInject */ ($state, database, projectId) => (
+          user,
+        ) =>
+          $state.go(
+            'pci.projects.project.storages.databases.dashboard.users.informations',
+            {
+              projectId,
+              databaseId: database.id,
+              user,
+            },
+          ),
+        goToShowCert: /* @ngInject */ ($state, database, projectId) => (user) =>
+          $state.go(
+            'pci.projects.project.storages.databases.dashboard.users.show-secret',
+            {
+              projectId,
+              databaseId: database.id,
+              user,
+              type: SECRET_TYPE.cert,
+            },
+          ),
+        goToUsers: /* @ngInject */ ($state, CucCloudMessage) => (
+          message = false,
+          type = 'success',
+        ) => {
+          const reload = message && type === 'success';
+          const state =
+            'pci.projects.project.storages.databases.dashboard.users';
+          const promise = $state.go(state, {}, { reload });
+          if (message) {
+            promise.then(() => {
+              CucCloudMessage[type](message, state);
+            });
+          }
+          return promise;
+        },
+      },
+      atInternet: {
+        ignore: true,
       },
     },
   );
