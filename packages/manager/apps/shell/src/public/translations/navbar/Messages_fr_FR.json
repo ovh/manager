@@ -1,0 +1,15 @@
+{
+  "navbar_universe_sunrise": "Sunrise",
+  "navbar_universe_hub": "Tableau de bord",
+  "navbar_universe_partners": "Partenaires",
+  "navbar_universe_public-cloud": "Public Cloud",
+  "navbar_universe_server": "Bare Metal Cloud",
+  "navbar_universe_telecom": "Télécom",
+  "navbar_universe_web": "Web Cloud",
+  "navbar_universe_hpc": "Hosted Private Cloud",
+  "navbar_loading_universes": "Chargement des univers…",
+  "navbar_notifications": "Notifications",
+  "navbar_language_change": "Changer la langue de l'interface",
+  "navbar_account": "Mon compte",
+  "navbar_search": "Rechercher"
+}
