@@ -23,7 +23,6 @@ export default class HubController {
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.isTopLevelApplication = isTopLevelApplication();
     this.shell = getShellClient();
-    this.isAccountSidebarVisible = false;
   }
 
   async $onInit() {
