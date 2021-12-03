@@ -16,7 +16,15 @@ export type ApplicationId =
   | 'user'
   | 'web';
 
+export interface Container {
+  enabled: boolean;
+  isDefault: boolean;
+  path: string;
+  containerURL: string;
+}
+
 export interface Application {
   universe: string;
   url: string;
+  container?: Container; // @TODO: remove nullable when 2API applications will be prodded
 }
