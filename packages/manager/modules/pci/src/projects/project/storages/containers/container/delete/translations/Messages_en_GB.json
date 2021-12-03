@@ -1,11 +1,11 @@
 {
- "pci_projects_project_storages_containers_container_delete_archive_title": "Delete an archive container",
- "pci_projects_project_storages_containers_container_delete_object_title": "Delete an object container",
- "pci_projects_project_storages_containers_container_delete_submit_label": "Confirm",
- "pci_projects_project_storages_containers_container_delete_cancel_label": "Cancel",
- "pci_projects_project_storages_containers_container_delete_content": "Permanently delete {{ container }}",
- "pci_projects_project_storages_containers_container_delete_archive_erase_message": "All of the data on this archive container will be lost.",
- "pci_projects_project_storages_containers_container_delete_object_erase_message": "All of the data on this object container will be lost.",
- "pci_projects_project_storages_containers_container_delete_success_message": "The {{ container }} container has been deleted.",
- "pci_projects_project_storages_containers_container_delete_error_delete": "An error has occurred deleting your {{ container }} container: {{message}}"
+  "pci_projects_project_storages_containers_container_delete_archive_title": "Delete an archive container",
+  "pci_projects_project_storages_containers_container_delete_object_title": "Delete an object container",
+  "pci_projects_project_storages_containers_container_delete_submit_label": "Confirm",
+  "pci_projects_project_storages_containers_container_delete_cancel_label": "Cancel",
+  "pci_projects_project_storages_containers_container_delete_archive_erase_message": "All of the data on this archive container will be lost.",
+  "pci_projects_project_storages_containers_container_delete_object_erase_message": "All of the data on this object container will be lost.",
+  "pci_projects_project_storages_containers_container_delete_success_message": "The {{ container }} container has been deleted.",
+  "pci_projects_project_storages_containers_container_delete_error_delete": "An error has occurred deleting your {{ container }} container: {{message}}",
+  "pci_projects_project_storages_containers_container_delete_warning": "If you want to permanently delete your container, you must first delete all objects attached to it."
 }

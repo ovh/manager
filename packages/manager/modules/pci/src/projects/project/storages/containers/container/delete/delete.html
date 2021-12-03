@@ -9,10 +9,6 @@
     data-loading="$ctrl.isLoading"
 >
     <div data-ng-if="$ctrl.container">
-        <p
-            data-translate="pci_projects_project_storages_containers_container_delete_content"
-            data-translate-values="{ container: $ctrl.container.name }"
-        ></p>
         <oui-message data-type="warning">
             <span
                 data-translate="pci_projects_project_storages_containers_container_delete_archive_erase_message"
@@ -20,7 +16,12 @@
             ></span>
             <span
                 data-translate="pci_projects_project_storages_containers_container_delete_object_erase_message"
-                data-ng-if="!$ctrl.archive"
+                data-ng-if="!$ctrl.archive && !$ctrl.container.isHighPerfStorage"
+            ></span>
+            <span
+                data-translate="pci_projects_project_storages_containers_container_delete_warning"
+                data-translate-values="{ container: $ctrl.container.name }"
+                data-ng-if="$ctrl.container.isHighPerfStorage"
             ></span>
         </oui-message>
     </div>
