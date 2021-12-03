@@ -31,6 +31,7 @@ export default class HubController {
   async $onInit() {
     this.navbarOptions = {
       universe: this.coreConfig.getUniverse(),
+      version: 'beta',
       toggle: {
         event: 'sidebar:loaded',
       },
