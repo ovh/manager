@@ -63,10 +63,13 @@
 
         <!--Resource Type-->
         <div class="mb-4">
-            <label
-                class="oui-field__label"
-                data-translate="hosting_cdn_shared_modal_add_rule_field_resource_type"
-            ></label>
+            <label class="oui-field__label"
+                   data-translate="hosting_cdn_shared_modal_add_rule_field_resource_type">
+            </label>
+            <div
+                class="oui-paragraph mb-0"
+                data-translate="hosting_cdn_shared_modal_add_rule_field_resource_type_info"
+            ></div>
             <oui-radio
                 data-ng-repeat="resourceType in $ctrl.resourceTypes track by resourceType"
                 data-name="resourceType"
@@ -74,9 +77,9 @@
                 data-model="$ctrl.ruleModel.patternType"
                 data-disabled="$ctrl.rule || ($ctrl.enableOnlyExtension && resourceType !== $ctrl.RESOURCE_TYPE_EXTENSION)"
             >
-                <span
-                    data-translate="{{ 'hosting_cdn_shared_modal_add_rule_field_resource_' + resourceType }}"
-                ></span>
+                <oui-radio-label
+                    data-ng-bind=":: 'hosting_cdn_shared_modal_add_rule_field_resource_' + resourceType |  translate">
+                </oui-radio-label>
             </oui-radio>
         </div>
 
@@ -89,7 +92,7 @@
             ></label>
             <div
                 class="oui-paragraph mb-0"
-                data-translate="hosting_cdn_shared_modal_add_rule_field_resource_info"
+                data-ng-bind="'hosting_cdn_shared_modal_add_rule_field_resource_' + $ctrl.ruleModel.patternType + '_info' | translate"
             ></div>
             <input
                 class="oui-input"
