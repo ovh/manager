@@ -1,0 +1,22 @@
+.notificationsSidebar {
+  @import '@ovh-ux/ui-kit/dist/scss/_tokens';
+
+  position: fixed;
+  top: 2.75rem;
+  bottom: 0;
+  right: 0;
+  background-color: $p-075;
+  width: 19.375rem;
+  transform: translateX(19.375rem);
+  z-index: $base-z-index-panel;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  box-shadow: 0 0.875rem 0.938rem 0 rgba(51, 62, 77, 0.25);
+  transition: transform 0.1s ease-out;
+
+  &_toggle {
+    transform: translateX(0);
+  }
+}
