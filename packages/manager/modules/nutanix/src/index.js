@@ -13,6 +13,8 @@ angular
         template: '<div data-ui-view></div>',
         redirectTo: 'nutanix.index',
         resolve: {
+          clusters: /* @ngInject */ (NutanixService) =>
+            NutanixService.getClusters(),
           breadcrumb: () => 'nutanix',
         },
         lazyLoad: ($transition$) => {

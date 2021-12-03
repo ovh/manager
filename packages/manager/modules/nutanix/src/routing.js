@@ -22,8 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       ...ListLayoutHelper.stateResolves,
       staticResources: () => true,
-      resources: /* @ngInject */ (NutanixService) =>
-        NutanixService.getClusters(),
+      resources: /* @ngInject */ (clusters) => clusters,
       nodeDetails: /* @ngInject */ (resources, NutanixService) =>
         NutanixService.getServer(resources[0].getFirstNode()).then((data) => {
           resources[0].setNodeDetails(data);

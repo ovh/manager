@@ -1,9 +1,11 @@
 import reduce from 'lodash/reduce';
-import { GUIDES } from './constants';
+import { GUIDES, CONTACT_US_PAGE_URL } from './constants';
 import illustration from './assets/Nutanix.png';
 
 export default class NutanixOnboardingCtrl {
-  constructor() {
+  constructor($window, coreConfig) {
+    this.$window = $window;
+    this.coreConfig = coreConfig;
     this.GUIDES = GUIDES;
   }
 
@@ -19,5 +21,15 @@ export default class NutanixOnboardingCtrl {
       [],
     );
     this.illustration = illustration;
+    this.user = this.coreConfig.getUser();
+  }
+
+  onContactUs() {
+    this.$window.open(
+      CONTACT_US_PAGE_URL[this.user.ovhSubsidiary] ||
+        CONTACT_US_PAGE_URL.DEFAULT,
+      '_blank',
+      'noopener',
+    );
   }
 }
