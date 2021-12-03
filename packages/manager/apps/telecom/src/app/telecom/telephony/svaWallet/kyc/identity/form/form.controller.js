@@ -106,7 +106,7 @@ export default class KycIdentityFormController {
       ),
       addressOfResidence: {
         ...this.wallet.representative.addressOfResidence,
-        streetNumberExtra: this.representativeModel.streetNumberExtra.toLowerCase(),
+        streetNumberExtra: this.representativeModel.streetNumberExtra?.toLowerCase(),
       },
     };
 
