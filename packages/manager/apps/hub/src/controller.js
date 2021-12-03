@@ -30,6 +30,7 @@ export default class HubController {
     this.servicesImpactedWithIncident = [];
     this.navbarOptions = {
       universe: this.coreConfig.getUniverse(),
+      version: 'beta',
       toggle: {
         event: 'sidebar:loaded',
       },
