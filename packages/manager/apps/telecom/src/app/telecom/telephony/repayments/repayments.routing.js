@@ -22,12 +22,8 @@ export default /* @ngInject */ ($stateProvider) => {
           $translate.instant('telephony_repayments_title'),
         svaWalletLink: /* @ngInject */ (coreURLBuilder) =>
           coreURLBuilder.buildURL('telecom', '#/telephony/sva-wallet'),
-        hasSvaWallet: /* @ngInject */ ($q, $state, svaWallet) => {
-          if (svaWallet && svaWallet.status === 'VALID') return true;
-          return $q.reject().catch(() => {
-            $state.go('telecom.telephony');
-          });
-        },
+        hasSvaWallet: /* @ngInject */ ($state, svaWallet) =>
+          !!svaWallet || $state.go('telecom.telephony'),
       },
     })
     .state('telecom.telephony.repayments.index', {

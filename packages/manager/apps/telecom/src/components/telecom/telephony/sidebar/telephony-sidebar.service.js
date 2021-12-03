@@ -188,7 +188,6 @@ angular
           headers: {
             'X-Pagination-Mode': 'CachedObjectList-Pages',
             'X-Pagination-Size': 1,
-            'X-Pagination-Filter': 'status:in=CREATED,PAID',
           },
         })
         .then((response) => {

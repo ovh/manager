@@ -14,16 +14,16 @@ export default class TelecomTelephonyRepaymentsCtrl {
     this.availableAmountText = '-';
     this.costsAmountText = '-';
     this.iban = '';
-    this.isLoadingIban = true;
+    this.isLoadingIban = false;
   }
 
   $onInit() {
     const {
-      user: {
-        currency: { symbol },
-      },
       svaWallet: {
         balance: { availableAmount, costsAmount, pendingAmount },
+      },
+      user: {
+        currency: { symbol },
       },
     } = this;
 
@@ -33,6 +33,7 @@ export default class TelecomTelephonyRepaymentsCtrl {
     this.pendingAmountText = pendingAmount?.text || '-';
     this.availableAmountText = availableAmount?.text || '-';
     this.costsAmountText = costsAmount?.text || '-';
+    this.isLoadingIban = true;
 
     this.TelephonySvaWalletService.getBankAccount()
       .then(({ iban }) => {

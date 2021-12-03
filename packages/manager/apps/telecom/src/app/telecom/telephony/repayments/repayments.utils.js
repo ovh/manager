@@ -7,15 +7,6 @@ export function formatDuration(duration) {
   return moment.duration(duration).asSeconds();
 }
 
-/**
- * @param {string} status CREATED or PAID
- * @returns {string} error or success
- */
-export function formatStatus(status) {
-  return status === 'CREATED' ? 'success' : 'error';
-}
-
 export default {
   formatDuration,
-  formatStatus,
 };

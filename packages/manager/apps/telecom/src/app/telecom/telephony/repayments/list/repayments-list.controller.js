@@ -3,11 +3,9 @@ import { formatDuration } from '../repayments.utils';
 
 export default class TelecomTelephonyRepaymentsListCtrl extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
-  constructor($q, $translate, $stateParams, ouiDatagridService, iceberg) {
+  constructor($q, $translate, ouiDatagridService) {
     super($q, ouiDatagridService);
     this.$translate = $translate;
-    this.$stateParams = $stateParams;
-    this.iceberg = iceberg;
   }
 
   $onInit() {
