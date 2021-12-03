@@ -2,8 +2,8 @@
   "sms_section_back_link": "Volver a las opciones",
   "sms_options_recredit_title": "Recarga automática",
   "sms_options_recredit_information_title": "Información",
-  "sms_options_recredit_information_text": "Existe la posibilidad de recargar automáticamente una cuenta de SMS cuando el saldo alcance un umbral determinado.<br/>Esta recarga automática se cargará a su cuenta de cliente OVHcloud.",
-  "sms_options_recredit_information_note": "Tenga en cuenta que la recarga solo será posible si el saldo de su cuenta de cliente OVHcloud es positivo o cero. Puede recargar su cuenta de cliente desde el área de cliente, en la sección «Facturación».",
+  "sms_options_recredit_information_text": "Es posible recargar automáticamente la cuenta SMS una vez que el saldo haya alcanzado un determinado límite.",
+  "sms_options_recredit_information_note": "La opción de recarga automática solo puede activarse a partir de los 2 meses de antigüedad del servicio. Deberá disponer de una forma de pago válida en su cuenta de cliente de OVHcloud.",
   "sms_options_recredit_manage_title": "Administrar las opciones",
   "sms_options_recredit_manage_threshold_label": "Umbral mínimo:",
   "sms_options_recredit_manage_threshold_text": "{{ creditThresholdForAutomaticRecredit | number:2 }} créditos",
@@ -20,5 +20,6 @@
   "sms_options_recredit_update_quantity_option": "{{ amount }} créditos",
   "sms_options_recredit_updating": "Configurando la recarga automática…",
   "sms_options_recredit_updated": "Se ha configurado la recarga automática.",
-  "sms_options_recredit_update_ko": "No se ha podido actualizar la configuración de la recarga automática.<br/>{{error}}"
+  "sms_options_recredit_update_ko": "No se ha podido actualizar la configuración de la recarga automática.<br/>{{error}}",
+  "sms_options_recredit_information_note2": "La recarga se realizará de forma automática y se cargará en su cuenta de cliente de OVHcloud."
 }
