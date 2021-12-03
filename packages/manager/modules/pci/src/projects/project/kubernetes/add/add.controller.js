@@ -14,6 +14,7 @@ export default class {
     Kubernetes,
     OvhApiCloudProjectKube,
     Poller,
+    coreURLBuilder,
   ) {
     this.$translate = $translate;
     this.$q = $q;
@@ -21,6 +22,7 @@ export default class {
     this.Kubernetes = Kubernetes;
     this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
     this.Poller = Poller;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
@@ -89,11 +91,29 @@ export default class {
         this.goBack(this.$translate.instant('kubernetes_add_success')),
       )
       .catch((error) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant('kubernetes_add_error', {
-            message: get(error, 'data.message'),
-          }),
-        );
+        if (get(error, 'data.status') === 412) {
+          // If error code is 412
+          this.CucCloudMessage.error({
+            textHtml: this.$translate.instant(
+              `kubernetes_add_error_${get(error, 'data.message').slice(
+                get(error, 'data.message').indexOf('[') + 1,
+                get(error, 'data.message').indexOf(']'),
+              )}`,
+              {
+                quotaUrl: this.coreURLBuilder.buildURL(
+                  'public-cloud',
+                  `#/pci/projects/${this.projectId}/quota`,
+                ),
+              },
+            ),
+          });
+        } else {
+          this.CucCloudMessage.error(
+            this.$translate.instant('kubernetes_add_error', {
+              message: get(error, 'data.message'),
+            }),
+          );
+        }
       })
       .finally(() => {
         this.isAdding = false;
