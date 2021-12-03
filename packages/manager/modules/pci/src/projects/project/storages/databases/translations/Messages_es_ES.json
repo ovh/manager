@@ -7,7 +7,7 @@
   "pci_database_common_creation_date": "Fecha de creación",
   "pci_database_common_name": "Nombre/ID",
   "pci_database_common_status": "Estado",
-  "pci_database_common_status_READY": "Desplegado",
+  "pci_database_common_status_READY": "Disponible",
   "pci_database_common_status_DELETING": "Eliminación",
   "pci_database_common_status_ERROR": "En error",
   "pci_database_common_status_ERROR_INCONSISTENT_SPEC": "En error",

@@ -7,7 +7,7 @@
   "pci_database_add_step1_description": "Sélectionner le type de base de données correspondant à vos besoins",
   "pci_database_add_step2_title": "Sélectionner une offre",
   "pci_database_add_step3_title": "Sélectionner une localisation",
-  "pci_database_add_step4_title": "Caractéristiques",
+  "pci_database_add_step4_title": "Dimensionnement des nœuds",
   "pci_database_add_nodes_count": "Nombre de nœuds",
   "pci_database_add_nodes_count_tooltip": "Le nombre de nœuds varie en fonction de l’offre de service choisie. Pendant la béta, ce nombre ne peut pas être modifié à la création.",
   "pci_database_add_select_flavor": "Sélectionner le modèle des nœuds",

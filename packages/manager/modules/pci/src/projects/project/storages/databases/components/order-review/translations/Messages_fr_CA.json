@@ -2,7 +2,7 @@
   "pci_database_order_review_title": "Votre commande",
   "pci_database_order_review_selected_database": "Base de données sélectionnée",
   "pci_database_order_review_selected_plan": "Offre sélectionnée",
-  "pci_database_order_review_selected_flavor": "Caractéristiques sélectionnées",
+  "pci_database_order_review_selected_flavor": "Dimensionnement selectionné",
   "pci_database_order_review_nodes_single": "nœud",
   "pci_database_order_review_nodes_multi": "nœuds"
 }
