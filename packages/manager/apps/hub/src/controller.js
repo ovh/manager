@@ -1,6 +1,9 @@
 import { isString } from 'lodash-es';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
+<<<<<<< HEAD
 import { getShellClient } from './shell';
+=======
+>>>>>>> feat(hub): use ovh-shell
 
 export default class HubController {
   /* @ngInject */
