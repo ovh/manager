@@ -1,4 +1,5 @@
 import { isString } from 'lodash-es';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
 export default class HubController {
   /* @ngInject */
@@ -19,6 +20,7 @@ export default class HubController {
     this.chatbotEnabled = false;
     this.coreConfig = coreConfig;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
+    this.isTopLevelApplication = isTopLevelApplication();
   }
 
   $onInit() {
