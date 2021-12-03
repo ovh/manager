@@ -7,5 +7,6 @@
   "hosting_multisite_statistics_period_week": "Semana",
   "hosting_multisite_statistics_period_month": "Mês",
   "hosting_multisite_statistics_period_year": "Ano",
-  "hosting_multisite_statistics_loading_error": "Ocorreu um erro aquando da recuperação das estatísticas"
+  "hosting_multisite_statistics_loading_error": "Ocorreu um erro aquando da recuperação das estatísticas",
+  "hosting_multisite_statistics_upgrade_info": "Atualize a sua opção CDN para consultar as estatísticas da sua CDN"
 }
