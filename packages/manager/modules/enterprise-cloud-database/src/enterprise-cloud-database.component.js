@@ -5,7 +5,6 @@ export default {
   bindings: {
     capabilities: '<',
     clusters: '<',
-    createCluster: '<',
     getClusterDetails: '<',
     goToMyServices: '<',
     gettingStarted: '<',
