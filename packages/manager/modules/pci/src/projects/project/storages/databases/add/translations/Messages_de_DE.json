@@ -7,7 +7,7 @@
   "pci_database_add_step1_description": "Wählen Sie den Datenbanktyp aus, der Ihren Anforderungen entspricht",
   "pci_database_add_step2_title": "Angebot auswählen",
   "pci_database_add_step3_title": "Standort auswählen",
-  "pci_database_add_step4_title": "Eigenschaften",
+  "pci_database_add_step4_title": "Dimensionierung der Nodes",
   "pci_database_add_nodes_count": "Anzahl an Nodes",
   "pci_database_add_nodes_count_tooltip": "Die Anzahl der Nodes variiert je nach gewähltem Dienst. Während der Beta-Phase ist es nicht möglich, diese Zahl bei der Erstellung zu ändern.",
   "pci_database_add_select_flavor": "Node-Modell auswählen",
