@@ -289,7 +289,7 @@
   "useraccount_contacts_task_waiting_for_other": "Waiting for the response from the <strong>{{t0}}</strong> contact ",
   "useraccount_contacts_task_info_security": "<p>For security reasons, you have to confirm this request.</p><p><strong>How?</strong></p><p>Click on the link in the email which was sent to<strong>{{t0}}</strong>.</p><p>You will then be redirected to your customer account where you can confirm or cancel your request.</p><strong class=\"text-warning\">Please note: it might be a few minutes before the email is sent</strong>",
   "useraccount_contacts_service_all_categories": "All categories",
-  "useraccount_contacts_task_state_done": "Terminate",
+  "useraccount_contacts_task_state_done": "Done",
   "useraccount_contacts_task_state_error": "Error",
   "useraccount_contacts_task_state_aborted": "Cancelled",
   "useraccount_contacts_task_state_doing": "In progress",
