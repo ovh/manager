@@ -3,6 +3,7 @@ import template from './tickets.html';
 
 export default {
   bindings: {
+    archived: '<',
     filters: '<',
     goToTicket: '<',
     goToTicketCreation: '<',
