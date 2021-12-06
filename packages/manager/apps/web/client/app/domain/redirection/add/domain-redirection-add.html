@@ -290,7 +290,7 @@
                 <!-- to web address -->
                 <div data-ng-if="ctrl.newRedirection.step2 === ctrl.choice.web">
                     <p
-                        data-ng-bind-html="'domain_tab_REDIRECTION_add_step4_web' | translate"
+                        data-ng-bind="'domain_tab_REDIRECTION_add_step4_web' | translate"
                     ></p>
 
                     <div
@@ -440,7 +440,7 @@
                         data-ng-if="ctrl.newRedirection.step3 === ctrl.choice.invisible && ctrl.newRedirection.step4 === ctrl.choice.iframe"
                     >
                         <p
-                            data-ng-bind-html="'domain_tab_REDIRECTION_add_step4_web_option' | translate"
+                            data-ng-bind="'domain_tab_REDIRECTION_add_step4_web_option' | translate"
                         ></p>
 
                         <div
@@ -535,7 +535,7 @@
                         data-ng-if="ctrl.newRedirection.step3 === ctrl.choice.ip"
                     >
                         <p
-                            data-ng-bind-html="'domain_tab_REDIRECTION_add_step4_server_ip' | translate"
+                            data-ng-bind="'domain_tab_REDIRECTION_add_step4_server_ip' | translate"
                         ></p>
 
                         <div
@@ -567,7 +567,7 @@
                         <div
                             class="alert alert-info mt-5"
                             role="alert"
-                            data-ng-bind-html="'domain_tab_REDIRECTION_ip_version_info' | translate"
+                            data-ng-bind="'domain_tab_REDIRECTION_ip_version_info' | translate"
                         ></div>
                     </div>
 
@@ -577,7 +577,7 @@
                     >
                         <p
                             class="font-weight-bold"
-                            data-ng-bind-html="'domain_tab_REDIRECTION_add_step4_server_cname' | translate"
+                            data-ng-bind="'domain_tab_REDIRECTION_add_step4_server_cname' | translate"
                         ></p>
 
                         <div

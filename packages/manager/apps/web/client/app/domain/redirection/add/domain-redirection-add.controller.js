@@ -119,7 +119,8 @@ angular.module('controllers').controller(
       ) {
         redirectionTarget += `.${this.newRedirection.domain.name}`;
       }
-      return redirectionTarget;
+
+      return redirectionTarget ? redirectionTarget.replace(/[<>]/g, '') : '';
     }
 
     static getDisplayOption(value) {
