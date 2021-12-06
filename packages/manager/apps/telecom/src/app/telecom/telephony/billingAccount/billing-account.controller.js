@@ -10,11 +10,13 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   administrationLink,
   billingLink,
   billingAccountLink,
+  coreConfig,
   currentActiveLink,
   guidesLink,
   manageContactsLink,
   orderAliasLink,
   phonebookLink,
+  serviceInformation,
   servicesLink,
   SidebarMenu,
   TelephonyMediator,
@@ -38,11 +40,12 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   self.manageContactsLink = manageContactsLink;
   self.orderAliasLink = orderAliasLink;
   self.phonebookLink = phonebookLink;
+  self.serviceInformation = serviceInformation;
   self.servicesLink = servicesLink;
-
   self.group = null;
   self.links = null;
   self.terminationTask = null;
+  self.user = coreConfig.getUser();
 
   /*= ==============================
   =            ACTIONS            =
@@ -156,6 +159,10 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
       self.loading.init = false;
     });
   }
+
+  self.isBillingContact = function isBillingContact() {
+    return self.serviceInformation.contactBilling === self.user.nichandle;
+  };
 
   /* -----  End of INITIALIZATION  ------*/
 
