@@ -14,7 +14,8 @@ import map from 'lodash/map';
  */
 export default class {
   /* @ngInject */
-  constructor(OvhApiTelephony, TucVoipBillingAccount) {
+  constructor($http, OvhApiTelephony, TucVoipBillingAccount) {
+    this.$http = $http;
     this.OvhApiTelephony = OvhApiTelephony;
     this.TucVoipBillingAccount = TucVoipBillingAccount;
   }
@@ -55,5 +56,22 @@ export default class {
           },
         ),
       );
+  }
+
+  /**
+   *  @ngdoc method
+   *  @name managerApp.service:tucVoipBillingAccount#fetchServiceInfo
+   *  @methodOf managerApp.service:tucVoipBillingAccount
+   *
+   *  @description
+   *  Get billing account service information.
+   *
+   *
+   *  @return {Promise} That return an billing account service information.
+   */
+  fetchServiceInfo(billingAccount) {
+    return this.$http
+      .get(`/telephony/${billingAccount}/serviceInfos`)
+      .then(({ data }) => data);
   }
 }
