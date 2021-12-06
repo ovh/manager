@@ -1,10 +1,9 @@
 {
- "analytics_data_platform_onboarding_content1": "Einen Big Data Cluster einzurichten ist ein langwieriger und komplexer Vorgang. OVH Analytics Data Platform macht Ihnen die Arbeit leichter. In weniger als einer Stunde liefern wir Ihnen einen vorkonfigurierten und einsatzbereiten Apache-Hadoop-Stack.",
- "analytics_data_platform_onboarding_content2": "Basierend auf einem Open Source Hadoop-Betriebssystemstandard sind alle für die Datenverarbeitung notwendigen Dienste von uns vorkonfiguriert und schützen Ihre Datenströme im öffentlichen Netz sowie zu Ihren Benutzern.",
- "analytics_data_platform_onboarding_content3": "Richten Sie OVH Data Analytics Platform für verschiedene Verwendungszwecke ein: Marktanalysen, Business Intelligence, IoT oder Predictive Maintenance. Jetzt sind Sie an der Reihe!",
- "analytics_data_platform_onboarding_action_label": "Data Analytics Platform Cluster einrichten",
- "analytics_data_platform_onboarding_guides_overview_title": "Allgemeine Informationen",
- "analytics_data_platform_onboarding_guides_retrieve_credentials_title": "Login-Daten generieren",
- "analytics_data_platform_onboarding_guides_setup_data_pipeline_title": "Erste Datenpipeline generieren",
- "analytics_data_platform_onboarding_guides_manage_users_title": "Benutzer verwalten"
+  "analytics_data_platform_onboarding_content1": "Einen Big Data Cluster einzurichten ist ein langwieriger und komplexer Vorgang. OVH Analytics Data Platform macht Ihnen die Arbeit leichter. In weniger als einer Stunde liefern wir Ihnen einen vorkonfigurierten und einsatzbereiten Apache-Hadoop-Stack.",
+  "analytics_data_platform_onboarding_content2": "Basierend auf einem Open Source Hadoop-Betriebssystemstandard sind alle für die Datenverarbeitung notwendigen Dienste von uns vorkonfiguriert und schützen Ihre Datenströme im öffentlichen Netz sowie zu Ihren Benutzern.",
+  "analytics_data_platform_onboarding_content3": "Richten Sie OVH Data Analytics Platform für verschiedene Verwendungszwecke ein: Marktanalysen, Business Intelligence, IoT oder Predictive Maintenance. Jetzt sind Sie an der Reihe!",
+  "analytics_data_platform_onboarding_guides_overview_title": "Allgemeine Informationen",
+  "analytics_data_platform_onboarding_guides_retrieve_credentials_title": "Login-Daten generieren",
+  "analytics_data_platform_onboarding_guides_setup_data_pipeline_title": "Erste Datenpipeline generieren",
+  "analytics_data_platform_onboarding_guides_manage_users_title": "Benutzer verwalten"
 }

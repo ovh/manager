@@ -1,10 +1,9 @@
 {
- "analytics_data_platform_onboarding_content1": "Il processo per creare un cluster Big Data è lungo e impegnativo. OVH Data Analytics Platform rende tutto più semplice: in meno di un’ora hai a disposizione uno stack Apache Hadoop preconfigurato e pronto all’uso.",
- "analytics_data_platform_onboarding_content2": "Grazie all'utilizzo di uno standard di distribuzione Hadoop open source, siamo in grado di preconfigurare tutti i servizi necessari all’elaborazione dei dati e proteggere il traffico dal mondo esterno.",
- "analytics_data_platform_onboarding_content3": "OVH Data Analytics Platform è la soluzione ideale per una molteplicità di utilizzi: analisi di mercato, business intelligence, IoT e manutenzioni preventive. A te la scelta!",
- "analytics_data_platform_onboarding_action_label": "Crea un cluster Data Analytics Platform",
- "analytics_data_platform_onboarding_guides_overview_title": "Informazioni generali",
- "analytics_data_platform_onboarding_guides_retrieve_credentials_title": "Genera identificativi",
- "analytics_data_platform_onboarding_guides_setup_data_pipeline_title": "Crea la tua prima pipeline dati",
- "analytics_data_platform_onboarding_guides_manage_users_title": "Gestisci gli utenti"
+  "analytics_data_platform_onboarding_content1": "Il processo per creare un cluster Big Data è lungo e impegnativo. OVH Data Analytics Platform rende tutto più semplice: in meno di un’ora hai a disposizione uno stack Apache Hadoop preconfigurato e pronto all’uso.",
+  "analytics_data_platform_onboarding_content2": "Grazie all'utilizzo di uno standard di distribuzione Hadoop open source, siamo in grado di preconfigurare tutti i servizi necessari all’elaborazione dei dati e proteggere il traffico dal mondo esterno.",
+  "analytics_data_platform_onboarding_content3": "OVH Data Analytics Platform è la soluzione ideale per una molteplicità di utilizzi: analisi di mercato, business intelligence, IoT e manutenzioni preventive. A te la scelta!",
+  "analytics_data_platform_onboarding_guides_overview_title": "Informazioni generali",
+  "analytics_data_platform_onboarding_guides_retrieve_credentials_title": "Genera identificativi",
+  "analytics_data_platform_onboarding_guides_setup_data_pipeline_title": "Crea la tua prima pipeline dati",
+  "analytics_data_platform_onboarding_guides_manage_users_title": "Gestisci gli utenti"
 }

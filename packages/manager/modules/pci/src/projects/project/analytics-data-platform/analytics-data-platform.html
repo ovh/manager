@@ -14,7 +14,6 @@
         </oui-guide-menu>
     </oui-header>
     <div>
-
         <pci-maintenance-banner
             data-steins="$ctrl.steins"
             data-customer-regions="$ctrl.customerRegions"
@@ -25,7 +24,7 @@
         <cui-message-container
             data-messages="$ctrl.messages"
         ></cui-message-container>
-        
+
         <oui-datagrid
             class="mt-3"
             data-rows="$ctrl.clusters"
@@ -94,28 +93,14 @@
                 </oui-action-menu-item>
             </oui-action-menu>
             <oui-datagrid-topbar>
-                <div class="row">
-                    <div class="col-auto mr-auto">
-                        <oui-button data-on-click="$ctrl.deployCluster()">
-                            <span
-                                data-translate="analytics_data_platform_list_create_button_label"
-                            ></span>
-                        </oui-button>
-                    </div>
-                    <div class="col-auto">
-                        <button
-                            type="button"
-                            class="oui-button oui-button_secondary oui-button_icon-only oui-button_s"
-                            aria-label="{{:: 'analytics_data_platform_list_table_refresh' | translate }}"
-                            data-ng-click="$ctrl.refresh()"
-                        >
-                            <span
-                                class="fa fa-refresh"
-                                aria-hidden="true"
-                            ></span>
-                        </button>
-                    </div>
-                </div>
+                <button
+                    type="button"
+                    class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
+                    aria-label="{{:: 'analytics_data_platform_list_table_refresh' | translate }}"
+                    data-ng-click="$ctrl.refresh()"
+                >
+                    <span class="fa fa-refresh" aria-hidden="true"></span>
+                </button>
             </oui-datagrid-topbar>
         </oui-datagrid>
     </div>
