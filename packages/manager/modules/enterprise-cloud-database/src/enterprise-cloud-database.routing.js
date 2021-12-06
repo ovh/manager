@@ -51,8 +51,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('enterprise-cloud-database.service.details.overview', {
           clusterId,
         }),
-      createCluster: /* @ngInject */ ($state) => () =>
-        $state.go('enterprise-cloud-database.create'),
       goToMyServices: /* @ngInject */ ($window, coreURLBuilder) => (
         serviceName,
         serviceType,

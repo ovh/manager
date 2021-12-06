@@ -1,7 +1,6 @@
 {
   "enterprise_cloud_database_title": "Enterprise Cloud Databases",
   "enterprise_cloud_database_description": "High-availability managed databases, based on a dedicated, scalable hardware infrastructure. Our database clusters are replicated across different geographical regions, and have automatic failover and daily backup mechanisms. Each cluster has its own dedicated hardware resources, so that it can harness the power of our next-generation hardware. Offer your users optimal performance for your applications.",
-  "enterprise_cloud_database_order_new_database": "Order a cluster",
   "enterprise_cloud_database_list_service_name": "Service name",
   "enterprise_cloud_database_list_endpoint": "Termination points",
   "enterprise_cloud_database_list_database_engine": "DBMS",
