@@ -618,16 +618,6 @@ export const SIDEBAR_ORDER_CONFIG = [
     tracker: 'dedicated::orders::logs::order',
   },
   {
-    id: 'order-enterprise-cloud-database',
-    title: 'enterprise_cloud_database',
-    feature: 'enterprise-cloud-database',
-    icon: 'ovh-font ovh-font-database',
-    linkId: 'DEDICATED',
-    linkPart: '#/enterprise-cloud-database/create',
-    app: [DEDICATED],
-    tracker: 'dedicated::orders::cloud-db-enterprise::order',
-  },
-  {
     id: 'order-ovh-cloud-connect',
     feature: 'cloud-connect',
     title: 'ovh_cloud_connect',
