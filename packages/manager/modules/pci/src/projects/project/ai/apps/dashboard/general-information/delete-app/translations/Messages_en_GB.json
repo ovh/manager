@@ -1,0 +1,8 @@
+{
+  "pci_apps_general_information_info_delete_app_title": "Delete the AI App",
+  "pci_apps_general_information_info_delete_app_description": "Are you sure you want to delete the AI App {{name}}?",
+  "pci_apps_general_information_info_delete_app_action_delete": "Confirm",
+  "pci_apps_general_information_info_delete_app_action_cancel": "Cancel",
+  "pci_apps_general_information_info_delete_app_action_delete_success": "Your AI App has been deleted",
+  "pci_apps_general_information_info_delete_app_action_delete_fail": "An error has occurred deleting the {{name}} AI App: {{message}}"
+}

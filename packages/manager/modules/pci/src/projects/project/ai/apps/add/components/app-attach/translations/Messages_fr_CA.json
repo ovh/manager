@@ -1,0 +1,22 @@
+{
+  "pci_app_add_attach_container_description": "Si nécessaire, vous pouvez attacher des conteneurs Object Storage OVHcloud à votre apps. Une fois attachés, ceux-ci seront temporairement chargés et mis en cache près de votre instance afin de réduire la latence et d’améliorer les performances. La bonne pratique est d’attacher un conteneur avec vos données entrantes et un autre avec vos données sortantes.",
+  "pci_app_add_attach_container_description_link": "En savoir plus sur le stockage de données.",
+  "pci_app_add_attach_container_btn_attach_storage_add": "Attacher un conteneur Object Storage",
+  "pci_app_add_attach_container_btn_attach_repo_git_add": "Attacher un dépôt Git public",
+  "pci_app_add_attach_container_btn_attach_storage_remove": "Supprimer un conteneur Object Storage",
+  "pci_app_add_attach_container_storage_container": "Conteneur de stockage",
+  "pci_app_add_attach_container_git_url": "URL du dépôt Git",
+  "pci_app_add_attach_container_storage_container_select": "Conteneur de stockage",
+  "pci_app_add_attach_container_mount_path": "Répertoire de montage",
+  "pci_app_add_attach_container_mount_path_error_key_already_exist": "Ce répertoire existe déjà",
+  "pci_app_add_attach_container_volumes_quantity": "{{ numberOfVolumes }} / {{ maxVolumes }} volumes",
+  "pci_app_add_attach_container_data_prefix": "Filtrer par préfixe",
+  "pci_app_add_attach_container_data_prefix_help": "Seuls les objets correspondants au préfixe sont chargés dans le système de fichier",
+  "pci_app_add_attach_container_permission_select": "Permission",
+  "pci_app_add_attach_container_permission_help": "En `Lecture Seule` aucune synchronisation n'est lancée en fin de job. Le job se finalise ainsi plus rapidement.",
+  "pci_app_data_cache": "Cache",
+  "pci_app_data_permission": "Autorisation",
+  "pci_app_add_attach_container_permission_RO": "Lecture seule",
+  "pci_app_add_attach_container_permission_RW": "Lecture - écriture",
+  "pci_app_add_attach_container_data_cache_help": "Les conteneurs en cache peuvent être réutilisés par d'autres jobs sans synchronisation additionnelle. Les conteneurs sont retirés du cache après une période d'inactivité."
+}
