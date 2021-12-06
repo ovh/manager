@@ -65,7 +65,7 @@ export class Environment implements IEnvironment {
 
   applications: Applications;
 
-  constructor() {
+  constructor(config: Environment = null) {
     this.region = DEFAULT_REGION as Region;
     this.userLocale = findAvailableLocale(detectUserLocale(), this.region);
     this.version = null;
@@ -75,6 +75,7 @@ export class Environment implements IEnvironment {
     this.applicationURLs = {};
     this.message = {} as EnvMessage;
     this.applications = {} as Applications;
+    Object.assign(this, config);
   }
 
   setRegion(region = DEFAULT_REGION): void {
