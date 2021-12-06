@@ -18,7 +18,7 @@ function Navbar({ environment, ux }) {
   const shell = useShell();
   const user = environment.getUser();
   const universe = environment.getUniverse();
-  const [userLocale, setUserLocale] = useState(shell.i18n().getLocale());
+  const [userLocale, setUserLocale] = useState(shell.getPlugin('i18n').getLocale());
 
   const [universes, setUniverses] = useState([]);
   const [searchURL, setSearchURL] = useState();
