@@ -7,8 +7,8 @@ export default class StandaloneShellClient extends ShellClient {
   private shell: Shell;
 
   init(): Promise<void> {
-    return initShell().then((shellApi) => {
-      this.shell = shellApi.getShell();
+    return initShell().then((shell) => {
+      this.shell = shell;
       const clientMessageBus = new DirectClientMessageBus();
       const shellMessageBus = new DirectClientMessageBus();
 
