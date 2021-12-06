@@ -32,6 +32,24 @@ export default class Shell {
     return this.pluginManager;
   }
 
+  getPlugin(pluginId: string) {
+    return this.getPluginManager().getPlugin(pluginId);
+  }
+
+  registerPlugin(
+    pluginId: string,
+    pluginApi: Record<string, CallableFunction>,
+  ) {
+    return this.getPluginManager().registerPlugin(pluginId, pluginApi);
+  }
+
+  setPluginAvailability(pluginId: string, availability: boolean) {
+    return this.getPluginManager().setPluginAvailability(
+      pluginId,
+      availability,
+    );
+  }
+
   emitEvent(eventId: string, data: unknown) {
     if (this.messageBus) {
       this.messageBus.send({
