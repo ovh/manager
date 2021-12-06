@@ -18,7 +18,7 @@ function LanguageMenu({ userLocale, setUserLocale }) {
   const [availableLanguages, setAvailableLanguages] = useState([]);
 
   const onLocaleChange = (locale) => {
-    shell.i18n().setLocale(locale);
+    shell.getPlugin('i18n').setLocale(locale);
     setShow(false);
     setUserLocale(locale);
   };
@@ -26,14 +26,14 @@ function LanguageMenu({ userLocale, setUserLocale }) {
   useEffect(() => {
     setCurrentLanguage(
       shell
-        .i18n()
+        .getPlugin('i18n')
         .getAvailableLocales()
         .find(({ key }) => key === userLocale),
     );
 
     setAvailableLanguages(
       shell
-        .i18n()
+        .getPlugin('i18n')
         .getAvailableLocales()
         .filter(({ key }) => key !== userLocale),
     );
