@@ -59,12 +59,15 @@ describe('Renders shell header', () => {
     const universe = 'web';
 
     shellApi.initShell().then((shell) => {
-      const environment = shell.getEnvironment();
+      const environment = shell.getPlugin('environment').getEnvironment();
       environment.setUser(user);
       environment.setUniverse(universe);
       environment.setUserLocale('fr_FR');
       environment.setRegion('EU');
-      shell.registerPlugin('i18n', plugin.i18n(shell, shell.getEnvironment()));
+      shell.registerPlugin(
+        'i18n',
+        plugin.i18n(shell, shell.getPlugin('environment').getEnvironment()),
+      );
       // Act
       render(
         <I18nextProvider i18n={i18n}>
