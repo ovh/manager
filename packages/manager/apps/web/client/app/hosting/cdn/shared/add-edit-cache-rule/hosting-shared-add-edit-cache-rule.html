@@ -63,8 +63,10 @@
 
         <!--Resource Type-->
         <div class="mb-4">
-            <label class="oui-field__label"
-                   data-translate="hosting_cdn_shared_modal_add_rule_field_resource_type">
+            <label
+                class="oui-field__label"
+                data-translate="hosting_cdn_shared_modal_add_rule_field_resource_type"
+            >
             </label>
             <div
                 class="oui-paragraph mb-0"
@@ -78,7 +80,8 @@
                 data-disabled="$ctrl.rule || ($ctrl.enableOnlyExtension && resourceType !== $ctrl.RESOURCE_TYPE_EXTENSION)"
             >
                 <oui-radio-label
-                    data-ng-bind=":: 'hosting_cdn_shared_modal_add_rule_field_resource_' + resourceType |  translate">
+                    data-ng-bind=":: 'hosting_cdn_shared_modal_add_rule_field_resource_' + resourceType |  translate"
+                >
                 </oui-radio-label>
             </oui-radio>
         </div>

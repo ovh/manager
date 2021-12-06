@@ -13,26 +13,40 @@
     ></div>
 
     <dl class="oui-description oui-description_horizontal">
-
         <!--PERF OPTIONS-->
         <p class="mt-3 mb-0">Options de perf</p>
-        <div class="ml-2" data-ng-repeat="(perfKey, perfOption) in $ctrl.model.options.perf track by $index">
-            <dt><strong
-                data-ng-bind=":: ('hosting_cdn_shared_modal_confirm_option_' + perfKey) | translate">
-            </strong></dt>
-            <dd data-ng-bind=":: $ctrl.constructor.getOptionStatusKey(perfOption) | translate"></dd>
+        <div
+            class="ml-2"
+            data-ng-repeat="(perfKey, perfOption) in $ctrl.model.options.perf track by $index"
+        >
+            <dt>
+                <strong
+                    data-ng-bind=":: ('hosting_cdn_shared_modal_confirm_option_' + perfKey) | translate"
+                >
+                </strong>
+            </dt>
+            <dd
+                data-ng-bind=":: $ctrl.constructor.getOptionStatusKey(perfOption) | translate"
+            ></dd>
         </div>
 
         <!--CACHE OPTIONS-->
         <p class="mt-3 mb-0">Options de cache</p>
-        <div class="ml-2" data-ng-repeat="(cacheKey, cacheOption) in $ctrl.model.options.cache track by $index"
-             data-ng-if="cacheOption.isDisplayableStatus !== false">
-            <dt><strong
-                data-ng-bind=":: ('hosting_cdn_shared_modal_confirm_option_' + cacheKey) | translate">
-            </strong></dt>
-            <dd data-ng-bind=":: $ctrl.constructor.getOptionStatusKey(cacheOption) | translate"></dd>
+        <div
+            class="ml-2"
+            data-ng-repeat="(cacheKey, cacheOption) in $ctrl.model.options.cache track by $index"
+            data-ng-if="cacheOption.isDisplayableStatus !== false"
+        >
+            <dt>
+                <strong
+                    data-ng-bind=":: ('hosting_cdn_shared_modal_confirm_option_' + cacheKey) | translate"
+                >
+                </strong>
+            </dt>
+            <dd
+                data-ng-bind=":: $ctrl.constructor.getOptionStatusKey(cacheOption) | translate"
+            ></dd>
         </div>
-
 
         <!--SECURITY OPTIONS-->
         <p class="mt-3 mb-0">Options de securité</p>
@@ -52,13 +66,20 @@
                 </span>
             </dd>
         </div>
-        <div class="ml-2" data-ng-repeat="(securityKey, securityOption) in $ctrl.model.options.security track by $index"
-             data-ng-if="securityKey !== 'cors'">
-            <dt><strong
-                data-ng-bind=":: ('hosting_cdn_shared_modal_confirm_option_' + securityKey) | translate">
-            </strong></dt>
-            <dd data-ng-bind=":: $ctrl.constructor.getOptionStatusKey(securityOption) | translate"></dd>
+        <div
+            class="ml-2"
+            data-ng-repeat="(securityKey, securityOption) in $ctrl.model.options.security track by $index"
+            data-ng-if="securityKey !== 'cors'"
+        >
+            <dt>
+                <strong
+                    data-ng-bind=":: ('hosting_cdn_shared_modal_confirm_option_' + securityKey) | translate"
+                >
+                </strong>
+            </dt>
+            <dd
+                data-ng-bind=":: $ctrl.constructor.getOptionStatusKey(securityOption) | translate"
+            ></dd>
         </div>
-
     </dl>
 </oui-modal>
