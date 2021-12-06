@@ -15,12 +15,13 @@
         ></p>
 
         <div class="oui-input-group oui-input-group_inline">
-
             <!--Choose URL protocol-->
             <div class="oui-field mb-2">
-                <label for="httpProtocols"
-                       class="oui-field__label oui-label"
-                       data-translate="hosting_cdn_shared_change_edit_urls_modal_protocol_label">
+                <label
+                    for="httpProtocols"
+                    class="oui-field__label oui-label"
+                    data-translate="hosting_cdn_shared_change_edit_urls_modal_protocol_label"
+                >
                 </label>
                 <div class="oui-field__content">
                     <div class="oui-select">
@@ -49,39 +50,46 @@
 
             <!--URL domain name-->
             <div class="oui-field mb-2">
-                <label for="urlLabelId"
-                       class="oui-field__label oui-label"
-                       data-translate="hosting_cdn_shared_change_edit_urls_modal_domain_label">
+                <label
+                    for="urlLabelId"
+                    class="oui-field__label oui-label"
+                    data-translate="hosting_cdn_shared_change_edit_urls_modal_domain_label"
+                >
                 </label>
                 <div class="oui-field__content">
                     <div class="oui-field-control">
-                        <input type="text"
-                               class="oui-input"
-                               id="urlLabelId"
-                               name="urlLabelId"
-                               data-ng-model="$ctrl.domainName"
-                               disabled/>
+                        <input
+                            type="text"
+                            class="oui-input"
+                            id="urlLabelId"
+                            name="urlLabelId"
+                            data-ng-model="$ctrl.domainName"
+                            disabled
+                        />
                     </div>
                 </div>
             </div>
 
             <!--Enter URL resource endpoint-->
             <div class="oui-field mb-2">
-                <label for="urlResourceLabelId"
-                       class="oui-field__label oui-label"
-                       data-translate="hosting_cdn_shared_change_edit_urls_modal_resource_label">
+                <label
+                    for="urlResourceLabelId"
+                    class="oui-field__label oui-label"
+                    data-translate="hosting_cdn_shared_change_edit_urls_modal_resource_label"
+                >
                 </label>
                 <div class="oui-field__content">
                     <div class="oui-field-control">
-                        <input type="text"
-                               class="oui-input"
-                               id="urlResourceLabelId"
-                               name="urlResourceLabelId"
-                               data-ng-model="$ctrl.editUrlsModel.newUrl.resource"/>
+                        <input
+                            type="text"
+                            class="oui-input"
+                            id="urlResourceLabelId"
+                            name="urlResourceLabelId"
+                            data-ng-model="$ctrl.editUrlsModel.newUrl.resource"
+                        />
                     </div>
                 </div>
             </div>
-
         </div>
 
         <!--Full url-->
@@ -92,21 +100,29 @@
             <oui-button
                 variant="primary"
                 data-on-click="$ctrl.onAddUrlClick(editUrlsForm)"
-                data-disabled="$ctrl.editUrlsModel.newUrl.resource.length === 0">
+                data-disabled="$ctrl.editUrlsModel.newUrl.resource.length === 0"
+            >
                 <span
-                    data-translate="hosting_cdn_shared_change_edit_urls_modal_url_cta_add">
+                    data-translate="hosting_cdn_shared_change_edit_urls_modal_url_cta_add"
+                >
                 </span>
             </oui-button>
         </div>
 
         <!--List of added URLs-->
-        <div class="mt-5" data-ng-init="preloadedUrls = $ctrl.editUrlsModel.preloadedUrls">
+        <div
+            class="mt-5"
+            data-ng-init="preloadedUrls = $ctrl.editUrlsModel.preloadedUrls"
+        >
             <label class="mb-2 oui-select">
-                <span data-translate="hosting_cdn_shared_change_edit_urls_modal_url_to_preload_label"></span>
-                <p class="m-0"
-                   data-translate="hosting_cdn_shared_change_edit_urls_modal_url_to_preload_info"
-                   data-translate-values="{ numberOfUrls: preloadedUrls.list.length, maxUrls: $ctrl.MAX_URL_ENTRIES}">
-                </p>
+                <span
+                    data-translate="hosting_cdn_shared_change_edit_urls_modal_url_to_preload_label"
+                ></span>
+                <p
+                    class="m-0"
+                    data-translate="hosting_cdn_shared_change_edit_urls_modal_url_to_preload_info"
+                    data-translate-values="{ numberOfUrls: preloadedUrls.list.length, maxUrls: $ctrl.MAX_URL_ENTRIES}"
+                ></p>
                 <select
                     name="preloadedUrls"
                     class="oui-select__input"
@@ -120,17 +136,22 @@
                         value="{{url}}"
                     ></option>
                 </select>
-                <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                <span
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></span>
             </label>
 
             <oui-button
                 variant="primary"
                 size="m"
                 data-on-click="$ctrl.onRemoveUrlClick()"
-                data-disabled="preloadedUrls.selected.length === 0">
-                <span data-translate="hosting_cdn_shared_change_edit_urls_modal_url_to_preload_cta_remove"></span>
+                data-disabled="preloadedUrls.selected.length === 0"
+            >
+                <span
+                    data-translate="hosting_cdn_shared_change_edit_urls_modal_url_to_preload_cta_remove"
+                ></span>
             </oui-button>
         </div>
-
     </oui-modal>
 </form>
