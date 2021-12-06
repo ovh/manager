@@ -16,7 +16,7 @@ import './index.scss';
 initSso();
 
 shellApi.initShell().then((shell) => {
-  const environment = shell.getEnvironment();
+  const environment = shell.getPlugin('environment').getEnvironment();
   const locale = environment.getUserLocale();
   i18n
     .use(initReactI18next)
