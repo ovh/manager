@@ -272,6 +272,16 @@ export default class DedicatedServerDashboard {
     );
   }
 
+  canInstallOs() {
+    if (get(this.dedicatedServer, '$scope.disable.installationInProgress')) {
+      return false;
+    }
+    if (this.ola && this.ola.isConfigured()) {
+      return !this.server.os;
+    }
+    return true;
+  }
+
   removeHack() {
     return this.Server.removeHack(this.$stateParams.productId)
       .then(() => {
