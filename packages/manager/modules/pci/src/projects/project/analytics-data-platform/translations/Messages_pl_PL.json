@@ -36,7 +36,6 @@
   "analytics_data_platform_common_public_cloud_project": "Projekt Public Cloud",
   "analytics_data_platform_common_private_network": "Prywatna sieć (vRack)",
   "analytics_data_platform_common_cluster_name": "Nazwa klastra",
-  "analytics_data_platform_list_create_button_label": "Utwórz klaster Data Analytics Platform",
   "analytics_data_platform_list_table_button_manage_cluster": "Zarządzaj klastrem",
   "analytics_data_platform_list_table_refresh": "Odśwież klastry",
   "analytics_data_platform_get_cluster_error": "Nie można pobrać klastrów Data Analytics Platform: {{message}}",
