@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 
-import { plugin } from '@ovh-ux/shell';
+import { plugin, IFrameMessageBus } from '@ovh-ux/shell';
 
 import ApplicationContext from '../context';
 import ShellHeader from './header';
@@ -17,7 +17,7 @@ function Shell() {
 
   useEffect(() => {
     setIframe(iframeRef.current);
-    shell.setIframeMessageBus(iframeRef.current);
+    shell.setMessageBus(new IFrameMessageBus(iframeRef.current));
   }, [iframeRef]);
 
   useEffect(() => {
