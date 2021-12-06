@@ -1,14 +1,17 @@
 import { ApplicationId } from '@ovh-ux/manager-config/types/application';
+import { Environment } from '@ovh-ux/manager-config';
 import ShellClient from './shell-client';
 
 export default function exposeApi(shellClient: ShellClient) {
   return {
     environment: {
       getEnvironment: () =>
-        shellClient.invokePluginMethod({
-          plugin: 'environment',
-          method: 'getEnvironment',
-        }),
+        shellClient
+          .invokePluginMethod({
+            plugin: 'environment',
+            method: 'getEnvironment',
+          })
+          .then((environment) => new Environment(environment as Environment)),
       setUniverse: (applicationId: ApplicationId) =>
         shellClient.invokePluginMethod({
           plugin: 'environment',
