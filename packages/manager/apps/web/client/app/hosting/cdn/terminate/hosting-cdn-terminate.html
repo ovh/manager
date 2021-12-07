@@ -1,14 +1,14 @@
-<div data-ng-controller="HostingTerminateCdnCtrl">
-    <div
-        data-wizard
-        data-wizard-on-cancel="resetAction"
-        data-wizard-on-finish="terminateCdn"
-        data-wizard-title="'hosting_dashboard_service_terminate_cdn_title' | translate"
-    >
-        <div data-wizard-step>
-            <p
-                data-translate="hosting_dashboard_service_terminate_cdn_question"
-            ></p>
-        </div>
-    </div>
-</div>
+<oui-modal
+    data-heading="{{:: 'hosting_cdn_terminate_title' | translate }}"
+    data-primary-action="$ctrl.onTerminateCdn()"
+    data-primary-label="{{:: 'hosting_cdn_terminate_action_delete' | translate }}"
+    data-secondary-action="$ctrl.onTerminationCancel()"
+    data-secondary-label="{{:: 'hosting_cdn_terminate_action_cancel' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isBeingTerminated"
+>
+    <!--Description-->
+    <p
+        data-translate="hosting_cdn_terminate_question"
+    ></p>
+</oui-modal>
