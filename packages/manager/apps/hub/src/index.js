@@ -17,9 +17,12 @@ attachPreloader(findAvailableLocale(detectUserLocale()));
 
 useShellClient('hub')
   .then((shellClient) => {
-    return shellClient.environment.getEnvironment();
+    return shellClient.environment.getEnvironment().then((environment) => ({
+      environment,
+      shellClient,
+    }));
   })
-  .then((environment) => {
+  .then(({ environment, shellClient }) => {
     environment.setVersion(__VERSION__);
 
     if (environment.getMessage()) {
@@ -42,6 +45,6 @@ useShellClient('hub')
       .catch(() => {})
       .then(() => import('./app.module'))
       .then(({ default: startApplication }) => {
-        startApplication(document.body, environment);
+        startApplication(document.body, environment, shellClient);
       });
   });
