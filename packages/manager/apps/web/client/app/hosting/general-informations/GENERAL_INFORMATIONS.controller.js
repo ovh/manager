@@ -294,9 +294,13 @@ export default class HostingGeneralInformationsCtrl {
     this.$state.go('app.hosting.dashboard.cdn.upgrade');
   }
 
-  terminateCdn(action) {
-    this.sendTrackClick('web::hosting::terminate-cdn');
-    this.$scope.setAction(action);
+  terminateCdn() {
+    this.sendTrackClick('web::hosting::cdn::terminate');
+
+    this.$state.go('app.hosting.dashboard.general-informations.cdn-terminate', {
+      alerts: this.$scope.alerts,
+      cdnServiceInfo: this.$scope.cdnServiceInfo,
+    });
   }
 
   flushCdn(action) {
