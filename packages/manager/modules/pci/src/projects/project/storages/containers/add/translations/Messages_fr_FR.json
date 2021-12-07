@@ -1,5 +1,7 @@
 {
   "pci_projects_project_storages_containers_add_title": "Créer un conteneur d'objets",
+  "pci_projects_project_storages_containers_add_description": "Hébergez votre catalogue de données dans notre solution Object Storage. Vous pouvez administrer ces données depuis votre application grâce aux API S3.",
+  "pci_projects_project_storages_containers_add_description_link": "Consulter les prix",
   "pci_projects_project_storages_containers_add_archive_title": "Créer un conteneur d'archive",
   "pci_projects_project_storages_containers_add_offer_title": "Sélectionnez votre offre",
   "pci_projects_project_storages_containers_add_offer_label_beta": "Bêta",

@@ -58,6 +58,9 @@ export const STORAGE_GATEWAY = {
   US: 'gateways.storage.REGION.cloud.ovh.us',
 };
 
+export const STORAGE_PRICES_LINK =
+  'https://www.ovhcloud.com/fr/public-cloud/prices/#storage';
+
 export const X_CONTAINER_HEADERS_REGEX = /^(X-Container|X-Storage)/i;
 
 export const X_AUTH_TOKEN = 'X-Auth-Token';
@@ -96,6 +99,7 @@ export default {
   PUBLIC_CLOUD_PRODUCT_NAME,
 
   STORAGE_GATEWAY,
+  STORAGE_PRICES_LINK,
 
   X_AUTH_TOKEN,
   X_CONTAINER_HEADERS_REGEX,
