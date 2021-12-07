@@ -3,11 +3,7 @@ import { KeyPairName } from '@ovh-ux/manager-config/types/locale';
 
 import Shell from '../../shell/shell';
 
-export interface I18nPlugin {
-  getLocale: () => string;
-  setLocale: (locale: string) => void;
-  getAvailableLocales: () => Array<KeyPairName>;
-}
+export type I18nPlugin = Record<string, CallableFunction>;
 
 export function i18n(shell: Shell, environment: Environment): I18nPlugin {
   return {
