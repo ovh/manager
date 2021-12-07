@@ -35,8 +35,27 @@ import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 import './index.less';
 import './index.scss';
 
-export default (containerEl, environment, shellClient) => {
+const getEnvironment = (shellClient) => {
+  return shellClient.environment.getEnvironment();
+};
+
+const getLocale = (shellClient) => {
+  return shellClient.i18n.getLocale();
+};
+
+export default async (containerEl, shellClient) => {
   const moduleName = 'managerHubApp';
+
+  const [environment, locale] = await Promise.all([
+    getEnvironment(shellClient),
+    getLocale(shellClient),
+  ]);
+
+  const coreCallbacks = {
+    onLocaleChange: (lang) => {
+      shellClient.i18n.setLocale(lang);
+    },
+  };
 
   angular
     .module(
@@ -52,7 +71,7 @@ export default (containerEl, environment, shellClient) => {
         ngUiRouterBreadcrumb,
         'oui',
         ovhManagerAccountSidebar,
-        registerCoreModule(environment),
+        registerCoreModule(environment, coreCallbacks),
         ovhManagerHub,
         ovhManagerNavbar,
         ovhManagerOrderTracking,
@@ -85,7 +104,7 @@ export default (containerEl, environment, shellClient) => {
     .config(routing)
     .config(
       /* @ngInject */ (ovhPaymentMethodProvider) => {
-        ovhPaymentMethodProvider.setUserLocale(environment.getUserLocale());
+        ovhPaymentMethodProvider.setUserLocale(locale);
       },
     )
     .config(
