@@ -31,7 +31,6 @@ shellApi.initShell().then((shell) => {
       },
     });
   shell.registerPlugin('i18n', plugin.i18n(shell, environment));
-  shell.registerPlugin('auth', plugin.auth());
   ReactDOM.render(
     <React.StrictMode>
       <ApplicationProvider environment={environment} shell={shell}>
