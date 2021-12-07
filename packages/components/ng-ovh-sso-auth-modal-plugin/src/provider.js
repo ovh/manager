@@ -13,6 +13,17 @@ import template from './template.html';
 export default function ssoAuthModalPluginFct() {
   let deferredObj;
 
+  let onLogoutCallback;
+  let onReloadCallback;
+
+  this.setOnLogout = (callback) => {
+    onLogoutCallback = callback;
+  };
+
+  this.setOnReload = (callback) => {
+    onReloadCallback = callback;
+  };
+
   this.$get = /* @ngInject */ function $get($injector) {
     return {
       handleSwitchSession(ssoAuthentication) {
@@ -35,6 +46,8 @@ export default function ssoAuthModalPluginFct() {
               headers: ssoAuthentication.getHeaders(),
             },
             logoutUrl: ssoAuthentication.getLogoutUrl(),
+            onLogoutCallback,
+            onReloadCallback,
           };
 
           if (ssoAuthentication.userId && !currentUserId) {
