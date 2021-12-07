@@ -2,9 +2,10 @@ import get from 'lodash/get';
 
 export default class KubernetesNodePoolsScaleCtrl {
   /* @ngInject */
-  constructor($translate, Kubernetes) {
+  constructor($translate, Kubernetes, coreURLBuilder) {
     this.$translate = $translate;
     this.Kubernetes = Kubernetes;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
@@ -42,14 +43,35 @@ export default class KubernetesNodePoolsScaleCtrl {
           this.$translate.instant('kube_node_pool_autoscaling_scale_success'),
         ),
       )
-      .catch((error) =>
-        this.goBack(
-          this.$translate.instant('kube_node_pool_autoscaling_scale_error', {
-            message: get(error, 'data.message'),
-          }),
-          'error',
-        ),
-      );
+      .catch((error) => {
+        if (get(error, 'data.status') === 412) {
+          this.goBack({
+            textHtml: this.$translate.instant(
+              `kube_node_pool_autoscaling_scale_error_${get(
+                error,
+                'data.message',
+              ).slice(
+                get(error, 'data.message').indexOf('[') + 1,
+                get(error, 'data.message').indexOf(']'),
+              )}`,
+              {
+                quotaUrl: this.coreURLBuilder.buildURL(
+                  'public-cloud',
+                  `#/pci/projects/${this.projectId}/quota`,
+                ),
+              },
+            ),
+            type: 'error',
+          });
+        } else {
+          this.goBack(
+            this.$translate.instant('kube_node_pool_autoscaling_scale_error', {
+              message: get(error, 'data.message'),
+            }),
+            'error',
+          );
+        }
+      });
   }
 
   onNodePoolScaleModalCancel() {
