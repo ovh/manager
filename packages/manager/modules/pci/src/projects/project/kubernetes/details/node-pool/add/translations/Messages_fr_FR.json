@@ -4,6 +4,10 @@
   "kube_add_node_pool_creating": "Création d'un pool de nœuds",
   "kube_add_node_pool_success": "Le pool de nœuds '{{nodePoolName}}' a été créé avec succès",
   "kube_add_node_pool_error": "Impossible de créer le pool de nœuds '{{ nodePoolName }}': {{ message }}",
+  "kube_add_node_pool_error_InsufficientVCPUsQuota": "Impossible d'effectuer l'opération : le quota actuel de vCPUs est insuffisant pour l'opération demandée. Veuillez augmenter votre quota <a class=\"oui-link_icon\" href=\"{{ quotaUrl }}\">ici<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"false\"></span></a> ou demander moins de ressources.",
+  "kube_add_node_pool_error_InsufficientRAMQuota": "Impossible d'effectuer l'opération : le quota de RAM actuel est insuffisant pour l'opération demandée. Veuillez augmenter votre quota <a class=\"oui-link_icon\" href=\"{{ quotaUrl }}\">ici<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"false\"></span></a> ou demander moins de ressources.",
+  "kube_add_node_pool_error_InsufficientPortsQuota": "Impossible d'effectuer l'opération : le quota actuel de ports est insuffisant pour l'opération demandée. Veuillez augmenter votre quota <a class=\"oui-link_icon\" href=\"{{ quotaUrl }}\">ici<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"false\"></span></a> ou demander moins de ressources.",
+  "kube_add_node_pool_error_InsufficientInstancesQuota": "Impossible d'effectuer l'opération : le quota des instances actuelles est insuffisant pour l'opération demandée. Veuillez augmenter votre quota <a class=\"oui-link_icon\" href=\"{{ quotaUrl }}\">ici<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"false\"></span></a> ou demander moins de ressources.",
   "kube_add_billing_type_description": "Tous les nœuds futurs de ce pool de nœuds se verront appliquer ce mode de facturation. Vous pourrez ultérieurement passer chacun de vos nœuds individuellement de la facturation horaire à mensuelle.",
   "kube_add_billing_type_payment_method": "Vous serez facturé sur votre mode de paiement par défaut",
   "kube_add_billing_anti_affinity_title": "Facturation et anti-affinité"

@@ -4,10 +4,11 @@ import { NODE_POOL_NAME_REGEX } from './add.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, Kubernetes) {
+  constructor($translate, CucCloudMessage, Kubernetes, coreURLBuilder) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.Kubernetes = Kubernetes;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
@@ -61,12 +62,30 @@ export default class {
         ),
       )
       .catch((error) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant('kube_add_node_pool_error', {
-            nodePoolName: this.nodePool.name,
-            message: get(error, 'data.message', error.message),
-          }),
-        );
+        if (get(error, 'data.status') === 412) {
+          // If error code is 412
+          this.CucCloudMessage.error({
+            textHtml: this.$translate.instant(
+              `kube_add_node_pool_error_${get(error, 'data.message').slice(
+                get(error, 'data.message').indexOf('[') + 1,
+                get(error, 'data.message').indexOf(']'),
+              )}`,
+              {
+                quotaUrl: this.coreURLBuilder.buildURL(
+                  'public-cloud',
+                  `#/pci/projects/${this.projectId}/quota`,
+                ),
+              },
+            ),
+          });
+        } else {
+          this.CucCloudMessage.error(
+            this.$translate.instant('kube_add_node_pool_error', {
+              nodePoolName: this.nodePool.name,
+              message: get(error, 'data.message', error.message),
+            }),
+          );
+        }
       })
       .finally(() => {
         this.isAdding = false;
