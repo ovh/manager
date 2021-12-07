@@ -10,7 +10,7 @@
   "telecom_dashboard_identity_check_form_iban_error": "Le format de votre IBAN n'est pas correct.",
   "telecom_dashboard_identity_check_form_bic_info": "Votre BIC, sans espace ni tiret.",
   "telecom_dashboard_identity_check_form_bic_error": "Le format de votre BIC n'est pas correct.",
-  "telecom_dashboard_identity_check_form_generate_pdf": "Générer le PDF",
+  "telecom_dashboard_identity_check_form_validate": "Valider",
   "telecom_dashboard_identity_check_form_cancel": "Annuler",
   "telecom_dashboard_identity_check_form_procedure_info": "Votre compte de téléphonie est en cours de validation",
   "telecom_dashboard_identity_check_form_download_pdf": "Télécharger le PDF en cours",
