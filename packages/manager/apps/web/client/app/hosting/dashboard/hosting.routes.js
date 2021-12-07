@@ -39,6 +39,9 @@ export default /* @ngInject */ ($stateProvider) => {
           .then(({ data }) => data)
           .catch(() => null),
 
+      cdnServiceInfo: /* @ngInject */ (serviceName, Hosting) =>
+        Hosting.getCdnServiceInfo(serviceName).catch(() => null),
+
       cdnRange: /* @ngInject */ ($transition$, cdnProperties) => {
         if (!cdnProperties) {
           return '';

@@ -387,6 +387,29 @@ import union from 'lodash/union';
       }
 
       /**
+       * Allow to update CDN service, like CDN termination to be effective on expiration date
+       * @param serviceName {String}: hosting for which the termination is required
+       * @param renew {Object}: renew parameter
+       * @returns {Promise}: CDN termination promise
+       */
+      updateServiceInfo(serviceName, renew) {
+        return this.$http
+          .post(`/hosting/web/${serviceName}/cdn/serviceInfosUpdate`, { renew })
+          .then(({ data }) => data);
+      }
+
+      /**
+       * Get CDN service info
+       * @param serviceName {String}: hosting for which service info is required
+       * @returns {Promise}: CDN service info termination promise
+       */
+      getCdnServiceInfo(serviceName) {
+        return this.$http
+          .get(`/hosting/web/${serviceName}/cdn/serviceInfos`)
+          .then(({ data }) => data);
+      }
+
+      /**
        * Retrieve e-mail options
        * @param {string} serviceName
        */

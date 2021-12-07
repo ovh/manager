@@ -30,6 +30,7 @@ export default class {
     constants,
     availableOptions,
     cdnProperties,
+    cdnServiceInfo,
     cdnRange,
     coreURLBuilder,
     cronLink,
@@ -77,6 +78,7 @@ export default class {
     this.$http = $http;
     this.$scope = $scope;
     this.$scope.cdnProperties = cdnProperties;
+    this.$scope.cdnServiceInfo = cdnServiceInfo;
     this.$scope.cdnRange = cdnRange;
     this.$scope.HOSTING_STATUS = HOSTING_STATUS;
     this.$scope.HOSTING_OPERATION_STATUS = HOSTING_OPERATION_STATUS;
