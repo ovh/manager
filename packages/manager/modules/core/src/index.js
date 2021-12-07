@@ -38,7 +38,14 @@ export default moduleName;
 
 export { URLS };
 
-export const registerCoreModule = (environment) => {
+/**
+ * Register core module
+ * @param  {Environment}              environment                 The environment instance that will be setted to core.
+ * @param  {Object<string, function>} [callbacks={}]              Callbacks that can be configured.
+ * @param  {function}                 [callbacks.onLocaleChange]  Function called when the locale change.
+ * @return {string}                   The name of the angularJS core module registered.
+ */
+export const registerCoreModule = (environment, { onLocaleChange } = {}) => {
   const managerCoreConfig = registerConfigModule(environment);
 
   angular
@@ -159,8 +166,12 @@ export const registerCoreModule = (environment) => {
     .run(
       /* @ngInject */ ($rootScope, coreConfig) => {
         $rootScope.$on('lang.onChange', (event, { lang }) => {
-          coreConfig.setUserLocale(lang);
-          window.location.reload();
+          if (onLocaleChange) {
+            onLocaleChange(lang);
+          } else {
+            coreConfig.setUserLocale(lang);
+            window.location.reload();
+          }
         });
       },
     )

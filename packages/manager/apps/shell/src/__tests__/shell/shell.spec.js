@@ -4,7 +4,7 @@ import { setupServer } from 'msw/node';
 
 import { render, screen, waitFor } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
-import { plugin, shell as shellApi } from '@ovh-ux/shell';
+import { shell as shellApi } from '@ovh-ux/shell';
 import i18n from '../config/i18nTestConfig';
 import Shell from '../../shell';
 import { ApplicationProvider } from '../../context';
@@ -64,10 +64,6 @@ describe('Renders shell header', () => {
       environment.setUniverse(universe);
       environment.setUserLocale('fr_FR');
       environment.setRegion('EU');
-      shell.registerPlugin(
-        'i18n',
-        plugin.i18n(shell, shell.getPlugin('environment').getEnvironment()),
-      );
       // Act
       render(
         <I18nextProvider i18n={i18n}>

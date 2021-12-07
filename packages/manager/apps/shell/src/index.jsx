@@ -30,7 +30,7 @@ shellApi.initShell().then((shell) => {
         loadPath: './translations/{{ns}}/Messages_{{lng}}.json',
       },
     });
-  shell.registerPlugin('i18n', plugin.i18n(shell, environment));
+
   ReactDOM.render(
     <React.StrictMode>
       <ApplicationProvider environment={environment} shell={shell}>
