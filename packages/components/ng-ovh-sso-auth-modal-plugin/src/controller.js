@@ -27,14 +27,22 @@ export default /* @ngInject */ function SsoAuthModalController(
 
   self.reload = function reload() {
     self.loaders.action = true;
-    $window.location.replace(
-      $window.location.href.replace($window.location.hash, ''),
-    );
+    if (angular.isFunction(self.data.onReloadCallback)) {
+      self.data.onReloadCallback();
+    } else {
+      $window.location.replace(
+        $window.location.href.replace($window.location.hash, ''),
+      );
+    }
   };
 
   self.logout = function logout() {
     self.loaders.action = true;
-    $window.location.replace(self.data.logoutUrl);
+    if (angular.isFunction(self.data.onLogoutCallback)) {
+      self.data.onLogoutCallback();
+    } else {
+      $window.location.replace(self.data.logoutUrl);
+    }
   };
 
   function getUser() {
