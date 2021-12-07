@@ -35,7 +35,7 @@ import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 import './index.less';
 import './index.scss';
 
-export default (containerEl, environment) => {
+export default (containerEl, environment, shellClient) => {
   const moduleName = 'managerHubApp';
 
   angular
@@ -86,6 +86,27 @@ export default (containerEl, environment) => {
     .config(
       /* @ngInject */ (ovhPaymentMethodProvider) => {
         ovhPaymentMethodProvider.setUserLocale(environment.getUserLocale());
+      },
+    )
+    .config(
+      /* @ngInject */ (ssoAuthModalPluginFctProvider) => {
+        ssoAuthModalPluginFctProvider.setOnLogout(() => {
+          shellClient.auth.logout();
+        });
+        ssoAuthModalPluginFctProvider.setOnReload(() => {
+          // @TODO use shell plugin
+          window.top.location.reload();
+        });
+      },
+    )
+    .config(
+      /* @ngInject */ (ssoAuthenticationProvider) => {
+        ssoAuthenticationProvider.setOnLogin(() => {
+          shellClient.auth.login();
+        });
+        ssoAuthenticationProvider.setOnLogout(() => {
+          shellClient.auth.logout();
+        });
       },
     )
     .run(
