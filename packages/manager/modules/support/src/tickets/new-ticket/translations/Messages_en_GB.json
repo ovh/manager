@@ -100,6 +100,7 @@
   "ovhManagerSupport_new_serviceType_other": "Other request",
   "ovhManagerSupport_new_serviceType_ai_training_job": "AI Training",
   "ovhManagerSupport_new_serviceType_webpaas": "Web PaaS",
+  "ovhManagerSupport_new_serviceType_dedicated_anthos": "Anthos",
   "ovhManagerSupport_new_service": "Service concerned",
   "ovhManagerSupport_new_service_unknown": "This service is not listed and/or I do not have this service yet",
   "ovhManagerSupport_new_issue": "Question",
@@ -131,7 +132,5 @@
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Want to get your project reviewed?",
   "ovhManagerSupport_new_business_2": "Please detail your requirements by sending an email to the following email address:",
-  "ovhManagerSupport_new_business_3": "Support tickets sent to this email address will not be processed.",
-  "ovhManagerSupport_new_serviceType_dedicated_anthos": "Anthos",
-  "ovhManagerSupport_new_serviceType_netapp": "NetApp"
+  "ovhManagerSupport_new_business_3": "Support tickets sent to this email address will not be processed."
 }

@@ -451,8 +451,6 @@
   "core_change_owner": "Den Inhaber ändern",
   "contacts_management": "Die Kontakte verwalten",
   "customized": "Personalisiert",
-  "dedicated_server_dashboard_ovhTasks_header": "Es gibt ein Problem mit Ihren Produkten?",
-  "dedicated_server_dashboard_ovhTasks_description": "Status Tasks anzeigen",
   "core_top_guides_header": "Für weitere Informationen lesen Sie bitte <a href=\"{{t0}}\" target=\"_blank\">unsere Anleitungen</a>. ",
   "core_top_guides_header_fr": "Wenn Sie Hilfe oder genauere Informationen zu Ihren Diensten benötigen, gehen Sie bitte auf folgende Seite:",
   "core_type_of_guide_vps": "Virtual Private Server",
@@ -519,6 +517,7 @@
   "core_service_renew_button": "Verlängern",
   "core_user_enterprise_retail_prices": "Hinweis: Die angezeigten Preise sind Standardlistenpreise und stimmen möglicherweise nicht mit den vereinbarten Bedingungen überein. Für eine detailliertere Preisangabe rufen Sie bitte Ihre monatliche Abrechnung auf.",
   "core_user_enterprise_retail_prices_hpc": "Hinweis: Die angezeigten Preise sind eine Schätzung auf Basis der anteiligen Berechnung dieses Moduls, um die Abrechnung an den Abrechnungszeitraum Ihres aktuellen Vertrags anzupassen. Für eine detailliertere Preisangabe rufen Sie bitte Ihre monatliche Abrechnung auf.",
+  "core_user_trusted_retail_prices": "Hinweis: Der angezeigte Preis entspricht dem Preis der Dienstleistung. Der Aufpreis für die Vertrauenswürdige Zone wird der monatlichen Gesamtabrechnung hinzugefügt.",
   "browser_alert_not_supported": "Ihr Browser wird nicht unterstützt.",
   "browser_alert_deprecated": "Ihr Browser ist nicht aktuell und könnte Sicherheitslücken enthalten oder Kompatibilitätsprobleme verursachen.",
   "browser_alert_update": "Wir empfehlen Ihnen, <a href=\"http://outdatedbrowser.com/de\" class=\"alert-link\" target=\"_blank\">Ihren Browser zu aktualisieren<span class=\"fa fa-external-link\" aria-hidden=\"true\"></span></a>, damit alle Funktionen optimal funktionieren.",
@@ -544,6 +543,5 @@
   "common_subscription_contacts_billing": "Abrechnung",
   "common_subscription_contacts_tech": "Technisch",
   "common_unavailable_information": "Information nicht verfügbar",
-  "common_resiliate_contact_support": "Um diesen Dienst zu kündigen, kontaktieren Sie bitte unseren Support unter <strong>+49 (0) 681 906730</strong>. Vielen Dank für Ihr Verständnis.",
-  "core_user_trusted_retail_prices": "Hinweis: Der angezeigte Preis entspricht dem Preis der Dienstleistung. Der Aufpreis für die Vertrauenswürdige Zone wird der monatlichen Gesamtabrechnung hinzugefügt."
+  "common_resiliate_contact_support": "Um diesen Dienst zu kündigen, kontaktieren Sie bitte unseren Support unter <strong>+49 (0) 681 906730</strong>. Vielen Dank für Ihr Verständnis."
 }

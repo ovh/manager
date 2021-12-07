@@ -100,6 +100,7 @@
   "ovhManagerSupport_new_serviceType_other": "Outro pedido",
   "ovhManagerSupport_new_serviceType_ai_training_job": "AI Training",
   "ovhManagerSupport_new_serviceType_webpaas": "Web PaaS",
+  "ovhManagerSupport_new_serviceType_dedicated_anthos": "Anthos",
   "ovhManagerSupport_new_service": "Serviço afetado",
   "ovhManagerSupport_new_service_unknown": "O meu serviço não aparece na lista ou ainda não disponho deste serviço.",
   "ovhManagerSupport_new_issue": "Pergunta",
@@ -131,7 +132,5 @@
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Quer iniciar um projeto?",
   "ovhManagerSupport_new_business_2": "Explique-nos aquilo de que precisa através do seguinte endereço:",
-  "ovhManagerSupport_new_business_3": "Os pedidos de assistência recebidos neste endereço não serão tratados.",
-  "ovhManagerSupport_new_serviceType_dedicated_anthos": "Anthos",
-  "ovhManagerSupport_new_serviceType_netapp": "NetApp"
+  "ovhManagerSupport_new_business_3": "Os pedidos de assistência recebidos neste endereço não serão tratados."
 }

@@ -100,6 +100,7 @@
   "ovhManagerSupport_new_serviceType_other": "Altra richiesta",
   "ovhManagerSupport_new_serviceType_ai_training_job": "AI Training",
   "ovhManagerSupport_new_serviceType_webpaas": "Web PaaS",
+  "ovhManagerSupport_new_serviceType_dedicated_anthos": "Anthos",
   "ovhManagerSupport_new_service": "Servizio",
   "ovhManagerSupport_new_service_unknown": "Il tuo servizio non è nella lista/non disponi ancora di un servizio",
   "ovhManagerSupport_new_issue": "Domande",
@@ -131,7 +132,5 @@
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Hai un progetto da analizzare?",
   "ovhManagerSupport_new_business_2": "Descrivi in modo dettagliato le tue esigenze inviandoci un’email all’indirizzo:",
-  "ovhManagerSupport_new_business_3": "Le richieste di supporto ricevute a questo indirizzo non verranno prese in carico.",
-  "ovhManagerSupport_new_serviceType_dedicated_anthos": "Anthos",
-  "ovhManagerSupport_new_serviceType_netapp": "NetApp"
+  "ovhManagerSupport_new_business_3": "Le richieste di supporto ricevute a questo indirizzo non verranno prese in carico."
 }

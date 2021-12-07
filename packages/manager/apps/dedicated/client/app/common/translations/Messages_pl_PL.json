@@ -452,8 +452,6 @@
   "core_change_owner": "Zmiana właściciela",
   "contacts_management": "Zarządzanie kontaktami",
   "customized": "Spersonalizowany",
-  "dedicated_server_dashboard_ovhTasks_header": "Pojawił się problem z Twoimi produktami?",
-  "dedicated_server_dashboard_ovhTasks_description": "Sprawdź \"Prace OVH\"",
   "core_top_guides_header": "Aby uzyskać więcej informacji, sprawdź <a href=\"{{t0}}\" target=\"_blank\">nasze przewodniki</a>.",
   "core_top_guides_header_fr": "Aby uzyskać wsparcie lub szczegółowe informacje dotyczące Twoich usług, wejdź na stronę:",
   "core_type_of_guide_vps": "Prywatne serwery wirtualne",
@@ -520,6 +518,7 @@
   "core_service_renew_button": "Odnów",
   "core_user_enterprise_retail_prices": "Uwaga: podane ceny są standardowymi cenami katalogowymi, które mogą nie odzwierciedlać wynegocjowanych warunków. Aby uzyskać szczegółowe informacje, zapoznaj się z Twoją miesięczną fakturą.",
   "core_user_enterprise_retail_prices_hpc": "Uwaga: podane ceny są cenami szacunkowymi opartymi o wyliczenie prorata dla tego modułu celem dostosowania do okresu rozliczeniowego wynikającego z aktualnej umowy. Aby uzyskać szczegółowe informacje, zapoznaj się z Twoją miesięczną fakturą.",
+  "core_user_trusted_retail_prices": "Uwaga: Podana cena odpowiada cenie usługi. Dopłata za opcję Trusted Zone jest doliczana do kwoty miesięcznej faktury.",
   "browser_alert_not_supported": "Twoja przeglądarka nie jest obsługiwana.",
   "browser_alert_deprecated": "Wersja Twojej przeglądarki jest nieaktualna i może zawierać luki związane z bezpieczeństwem lub kompatybilnością.",
   "browser_alert_update": "Zalecamy <a href=\"http://outdatedbrowser.com/pl\" class=\"alert-link\" target=\"_blank\">zaktualizowanie przeglądarki <span class=\"fa fa-external-link\" aria-hidden=\"true\"></span></a>.",
@@ -545,6 +544,5 @@
   "common_subscription_contacts_billing": "Płatności",
   "common_subscription_contacts_tech": "Kontakt techniczny",
   "common_unavailable_information": "Informacja niedostępna",
-  "common_resiliate_contact_support": "Aby zrezygnować z tej usługi, skontaktuj się z Pomocą techniczną. Zadzwoń na numer: <strong>71 750 02 00</strong> i <strong>wybierz 3.</strong> Dziękujemy za wyrozumiałość.",
-  "core_user_trusted_retail_prices": "Uwaga: Podana cena odpowiada cenie usługi. Dopłata za opcję Trusted Zone jest doliczana do kwoty miesięcznej faktury."
+  "common_resiliate_contact_support": "Aby zrezygnować z tej usługi, skontaktuj się z Pomocą techniczną. Zadzwoń na numer: <strong>71 750 02 00</strong> i <strong>wybierz 3.</strong> Dziękujemy za wyrozumiałość."
 }

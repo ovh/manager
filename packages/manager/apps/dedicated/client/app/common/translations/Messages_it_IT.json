@@ -452,8 +452,6 @@
   "core_change_owner": "Cambia il proprietario",
   "contacts_management": "Gestisci i contatti",
   "customized": "Personalizzato",
-  "dedicated_server_dashboard_ovhTasks_header": "Problemi con i tuoi prodotti?",
-  "dedicated_server_dashboard_ovhTasks_description": "Consulta i task travaux",
   "core_top_guides_header": "Per maggiori informazioni, consulta le nostre <a href=\"{{t0}}\" target=\"_blank\">guide</a>.",
   "core_top_guides_header_fr": "Se hai bisogno di assistenza o maggiori informazioni sui tuoi servizi, accedi alla pagina:",
   "core_type_of_guide_vps": "Server Privati Virtuali",
@@ -520,6 +518,7 @@
   "core_service_renew_button": "Rinnova",
   "core_user_enterprise_retail_prices": "I prezzi indicati sono quelli di listino e potrebbero non corrispondere ai termini negoziati. Consulta la tua fattura mensile per ulteriori dettagli.",
   "core_user_enterprise_retail_prices_hpc": "I prezzi indicati sono una stima basata sul calcolo proporzionale di questo modulo per allinearsi al periodo di fatturazione del tuo contratto attuale. Consulta la tua fattura mensile per ulteriori dettagli.",
+  "core_user_trusted_retail_prices": "Attenzione: il prezzo visualizzato corrisponde al prezzo del servizio. Il costo supplementare per la Trusted Zone viene aggiunto alla fatturazione mensile totale.",
   "browser_alert_not_supported": "Il tuo browser non è supportato",
   "browser_alert_deprecated": "Il tuo browser non è aggiornato e potrebbe contenere bug di sicurezza o di compatibilità.",
   "browser_alert_update": "Per usufruire di un'esperienza ottimale, ti consigliamo di <a href=\"http://outdatedbrowser.com/it\" class=\"alert-link\" target=\"_blank\">aggiornare il tuo browser <span class=\"fa fa-external-link\" aria-hidden=\"true\"></span></a>.",
@@ -545,6 +544,5 @@
   "common_subscription_contacts_billing": "Fatturazione",
   "common_subscription_contacts_tech": "Tecnico",
   "common_unavailable_information": "Informazione non disponibile",
-  "common_resiliate_contact_support": "Per disattivare questo servizio, contatta il nostro supporto tecnico al numero <strong>02 5560 0423</strong> o apri un ticket.",
-  "core_user_trusted_retail_prices": "Attenzione: il prezzo visualizzato corrisponde al prezzo del servizio. Il costo supplementare per la Trusted Zone viene aggiunto alla fatturazione mensile totale."
+  "common_resiliate_contact_support": "Per disattivare questo servizio, contatta il nostro supporto tecnico al numero <strong>02 5560 0423</strong> o apri un ticket."
 }
