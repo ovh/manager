@@ -215,8 +215,16 @@
         ></span>
     </oui-button>
 
+    <div data-ng-if-start="$ctrl.showRolesMatrix" class="mt-2">
+        <oui-message data-type="info" style="display: inline-block">
+            <span
+                data-translate="pci_projects_project_users_high_perf_info"
+            ></span>
+        </oui-message>
+    </div>
+
     <pci-projects-project-users-matrix
         data-roles="$ctrl.roles"
-        data-ng-if="$ctrl.showRolesMatrix"
+        data-ng-if-end
     ></pci-projects-project-users-matrix>
 </div>
