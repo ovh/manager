@@ -3811,22 +3811,6 @@
   dependencies:
     lodash-es "^4.17.21"
 
-"@ovh-ux/ovh-reket@^0.0.0":
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-reket/-/ovh-reket-0.0.0.tgz#68b1e3d4ca89c04f392bca71b1102b4f0a6ea2d3"
-  integrity sha512-xxFRqHIIWxyfkP1vx5DakxVUzEcCnPb9H1wdtrqrTqpxack20OSLdQzdY95klzNsLIQw+Qwlr4cm6hxJXblyDg==
-  dependencies:
-    "@ovhcloud/reket-axios-client" "^0.2.1"
-    "@ovhcloud/reket-core" "^0.2.1"
-
-"@ovh-ux/ovh-reket@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-reket/-/ovh-reket-0.0.1.tgz#2a0c6416d8bddedbe951bf9bb790ce9d872c68e1"
-  integrity sha512-mp6vEqHCyUN84yiZIfasOdFiD4za5pbMsdZhPx0if117888lO9RsfbtEfTrruRAE84QPXsTJk4bHe9Yk1iKiDw==
-  dependencies:
-    "@ovhcloud/reket-axios-client" "^0.2.1"
-    "@ovhcloud/reket-core" "^0.2.1"
-
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.5.tgz#02285367219f72056faf06deeacaeb357f16633c"
