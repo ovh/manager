@@ -6,9 +6,9 @@ interface AuthPluginParameters {
   goToLogout?: CallableFunction;
 }
 
-export function auth(params: AuthPluginParameters) {
+export function auth(params: AuthPluginParameters = {}) {
   const goToLogin = params.goToLogin || redirectToLoginPage;
-  const goToLogout = params.goToLogout || redirectToLogoutPage;
+  const goToLogout = params.goToLogout || redirectToLogoutPage;
   return {
     login: (): void => goToLogin(),
     logout: (): void => goToLogout(),
