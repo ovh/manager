@@ -205,7 +205,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasOrderSpecialCtrl(
       cedex: wallet.representative.addressOfResidence.cedex,
       range: this.form.range,
       typology: this.form.typology,
-      country: wallet.representative.countryOfResidence.toLowerCase(),
+      country: 'fr',
       city: wallet.representative.addressOfResidence.cityOfResidence,
       addressExtra: wallet.representative.addressOfResidence.addressExtra,
       retractation: this.form.retractation,
