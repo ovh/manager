@@ -122,6 +122,19 @@ export default /* @ngInject */ (
     return self.description || self.serviceName;
   };
 
+  TelephonyGroupLine.prototype.getFullDisplayedName = function getFullDisplayedName() {
+    const { description = '', serviceName = '' } = this;
+    const formattedDescription =
+      description && !this.isDescriptionSameAsServiceName()
+        ? ` (${description})`
+        : '';
+    return serviceName + formattedDescription;
+  };
+
+  TelephonyGroupLine.prototype.isDescriptionSameAsServiceName = function isDescriptionSameAsServiceName() {
+    return this.description === this.serviceName;
+  };
+
   TelephonyGroupLine.prototype.getOffers = function getOffers(params) {
     return OvhApiTelephony.Line()
       .Offers()
