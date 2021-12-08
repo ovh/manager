@@ -10,7 +10,9 @@ export default class HostingTerminateCdnCtrl {
     this.trackClick('confirm');
 
     this.isBeingTerminated = true;
-    this.Hosting.terminateCdn(this.serviceName)
+    this.Hosting.updateServiceInfo(this.serviceName, {
+      deleteAtExpiration: true,
+    })
       .then(() => this.goBack())
       .then(() => {
         return this.Alerter.success(

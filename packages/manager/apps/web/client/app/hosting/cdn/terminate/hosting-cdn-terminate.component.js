@@ -6,6 +6,7 @@ export default {
   template,
   bindings: {
     serviceName: '<',
+    hosting: '<',
     alerts: '<',
     goBack: '<',
     trackClick: '<',

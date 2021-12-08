@@ -12,10 +12,22 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       params: {
+        hosting: null,
         alerts: null,
       },
+      redirectTo: (transition) =>
+        Promise.all([transition.injector().getAsync('hosting')]).then(
+          ([hosting]) => {
+            return !hosting
+              ? 'app.hosting.dashboard.general-informations'
+              : false;
+          },
+        ),
       resolve: {
         breadcrumb: () => null,
+
+        hosting: /* @ngInject */ ($transition$) =>
+          $transition$.params().hosting,
 
         alerts: /* @ngInject */ ($transition$) => $transition$.params().alerts,
 
