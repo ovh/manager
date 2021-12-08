@@ -12,15 +12,43 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       params: {
+        cdnServiceInfo: null,
         alerts: null,
       },
+      redirectTo: (transition) =>
+        Promise.all([transition.injector().getAsync('cdnServiceInfo')]).then(
+          ([cdnServiceInfo]) => {
+            return !cdnServiceInfo ||
+              cdnServiceInfo.renew.mode === 'deleteAtExpiration'
+              ? 'app.hosting.dashboard.general-informations'
+              : false;
+          },
+        ),
       resolve: {
         breadcrumb: () => null,
 
+        cdnServiceInfo: /* @ngInject */ ($transition$) =>
+          $transition$.params().cdnServiceInfo,
+
         alerts: /* @ngInject */ ($transition$) => $transition$.params().alerts,
 
-        goBack: /* @ngInject */ ($state) => () =>
-          $state.go('app.hosting.dashboard.general-informations'),
+        goBack: /* @ngInject */ ($state, alerts, Alerter) => (
+          message = '',
+          type = 'success',
+          where = alerts.main,
+        ) => {
+          const reload = message && type === 'success';
+
+          const promise = $state.go('^', null, {
+            reload,
+          });
+
+          if (message) {
+            promise.then(() => Alerter[type](message, where));
+          }
+
+          return promise;
+        },
 
         trackClick: /* @ngInject */ (atInternet) => (hitPrefix) => {
           atInternet.trackClick({
