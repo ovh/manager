@@ -302,6 +302,18 @@ export default class HostingGeneralInformationsCtrl {
     });
   }
 
+  onCancelTerminateCdn() {
+    this.sendTrackClick('web::hosting::cdn::cancel-terminate');
+
+    return this.$state.go(
+      'app.hosting.dashboard.general-informations.cdn-cancel-terminate',
+      {
+        alerts: this.$scope.alerts,
+        hosting: this.$scope.hosting,
+      },
+    );
+  }
+
   flushCdn(action) {
     this.sendTrackClick('web::hosting::empty-cdn-cache');
     this.$scope.setAction(action);

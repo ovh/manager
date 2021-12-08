@@ -392,6 +392,22 @@
                                 data-translate="hosting_dashboard_service_flush_cdn_doing"
                                 data-ng-if="flushCdnState === 'doing'"
                             ></span>
+
+                            <div data-ng-if="hosting.hasCdn && hosting.serviceInfos.renew.deleteAtExpiration">
+                                <p class="m-0">
+                                    <small data-translate="hosting_dashboard_config_tile_options_cdn_cancel_terminate"
+                                           data-translate-values="{ endEngagementDate: '<b>' + (hosting.expiration | date) + '</b>' }">
+                                    </small>
+                                </p>
+                                <button
+                                    type="button"
+                                    class="oui-button oui-button_s oui-button_ghost oui-button_icon-right"
+                                    data-ng-click="$ctrl.onCancelTerminateCdn()">
+                                    <span
+                                        data-translate="hosting_dashboard_config_tile_options_cdn_cancel_terminate_link"></span>
+                                    <span class="oui-icon oui-icon-arrow-right" aria-hidden="true"></span>
+                                </button>
+                            </div>
                         </oui-tile-description>
                         <oui-action-menu
                             data-compact
