@@ -18,6 +18,7 @@ import Lab from '../../../../components/project/labs/lab.class';
 import Node from '../../../../components/project/storages/databases/node.class';
 import ServiceIntegration from '../../../../components/project/storages/databases/serviceIntegration.class';
 import User from '../../../../components/project/storages/databases/user.class';
+import Pool from '../../../../components/project/storages/databases/pool.class';
 
 export default class DatabaseService {
   /* @ngInject */
@@ -741,5 +742,14 @@ export default class DatabaseService {
         DatabaseService.getIcebergHeaders(),
       )
       .then(({ data }) => data);
+  }
+
+  getPools(projectId, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/postgresql/${databaseId}/connectionPool`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data: pools }) => pools.map((pool) => new Pool(pool)));
   }
 }
