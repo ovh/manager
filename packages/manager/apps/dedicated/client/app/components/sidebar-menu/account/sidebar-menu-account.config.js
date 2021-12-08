@@ -3,7 +3,15 @@ angular
   .run(/* @ngTranslationsInject:json ./translations */)
   .run(
     /* @ngInject */
-    ($q, $rootScope, $translate, coreConfig, SidebarMenu, User) => {
+    (
+      $q,
+      $rootScope,
+      $translate,
+      coreConfig,
+      SidebarMenu,
+      User,
+      coreURLBuilder,
+    ) => {
       function buildMyAccountMenu() {
         SidebarMenu.addMenuItem({
           name: 'userAccountMenu',
@@ -81,7 +89,8 @@ angular
             SidebarMenu.addMenuItem({
               name: 'billingBack',
               title: $translate.instant('menu_back'),
-              state: 'app.configuration',
+              url: coreURLBuilder.buildURL('hub', ''),
+              target: '_top',
               namespace: 'account',
             });
 
