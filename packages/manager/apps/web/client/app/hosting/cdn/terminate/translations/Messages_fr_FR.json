@@ -1,7 +1,9 @@
 {
   "hosting_cdn_terminate_title": "Résiliation du service CDN",
-  "hosting_cdn_terminate_question": "Êtes-vous sûr de vouloir résilier le service CDN ?",
-  "hosting_cdn_terminate_success": "Votre demande de résiliation de CDN a été prise en compte. Un e-mail contenant la procédure de fermeture vous sera envoyé.",
+  "hosting_cdn_terminate_question_part_1": "Souhaitez-vous résilier le service CDN à la fin de votre abonnement :",
+  "hosting_cdn_terminate_question_part_2": "Le {{ endEngagementDate }}",
+  "hosting_cdn_terminate_success": "Votre service CDN sera résilié le {{ endEngagementDate }}.",
+  "hosting_cdn_terminate_success_link": "Annuller l'operation.",
   "hosting_cdn_terminate_error": "Une erreur est survenue lors de la résiliation du CDN.",
   "hosting_cdn_terminate_action_delete": "Résilier",
   "hosting_cdn_terminate_action_cancel": "Annuler"

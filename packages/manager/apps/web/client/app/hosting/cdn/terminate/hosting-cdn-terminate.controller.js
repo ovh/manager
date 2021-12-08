@@ -1,6 +1,7 @@
 export default class HostingTerminateCdnCtrl {
   /* @ngInject */
-  constructor($translate, Hosting, Alerter) {
+  constructor($filter, $translate, Hosting, Alerter) {
+    this.$filter = $filter;
     this.$translate = $translate;
     this.Hosting = Hosting;
     this.Alerter = Alerter;
@@ -10,19 +11,28 @@ export default class HostingTerminateCdnCtrl {
     this.trackClick('confirm');
 
     this.isBeingTerminated = true;
-    this.Hosting.terminateCdn(this.serviceName)
-      .then(() => this.goBack())
-      .then(() => {
-        return this.Alerter.success(
-          this.$translate.instant('hosting_cdn_terminate_success'),
-          this.alerts.main,
-        );
-      })
+    return this.Hosting.updateServiceInfo(this.serviceName, {
+      deleteAtExpiration: true,
+      automatic: true,
+      forced: false,
+    })
+      .then(() =>
+        this.goBack(
+          this.$translate.instant('hosting_cdn_terminate_success', {
+            endEngagementDate: this.$filter('date')(
+              this.cdnServiceInfo.expirationDate,
+            ),
+          }),
+        ),
+      )
       .catch((error) => {
-        this.Alerter.alertFromSWS(
-          this.$translate.instant('hosting_cdn_terminate_error'),
-          error.data?.message || error,
-          this.alerts.main,
+        return this.goBack().then(() =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('hosting_cdn_terminate_error', {
+              message: error.data?.message || error,
+            }),
+            this.alerts.main,
+          ),
         );
       })
       .finally(() => {
@@ -32,6 +42,7 @@ export default class HostingTerminateCdnCtrl {
 
   onTerminationCancel() {
     this.trackClick('cancel');
-    this.goBack();
+
+    return this.goBack();
   }
 }
