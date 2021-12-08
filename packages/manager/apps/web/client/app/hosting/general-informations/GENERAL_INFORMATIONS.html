@@ -392,6 +392,22 @@
                                 data-translate="hosting_dashboard_service_flush_cdn_doing"
                                 data-ng-if="flushCdnState === 'doing'"
                             ></span>
+
+                            <div data-ng-if="hosting.hasCdn && $ctrl.isCdnInDeleteAtExpiration">
+                                <p class="m-0">
+                                    <small data-translate="hosting_dashboard_config_tile_options_cdn_cancel_terminate"
+                                           data-translate-values="{ endEngagementDate: '<b>' + (cdnServiceInfo.expirationDate | date) + '</b>' }">
+                                    </small>
+                                </p>
+                                <button
+                                    type="button"
+                                    class="oui-button oui-button_s oui-button_ghost oui-button_icon-right"
+                                    data-ng-click="$ctrl.onCancelTerminateCdn()">
+                                    <span
+                                        data-translate="hosting_dashboard_config_tile_options_cdn_cancel_terminate_link"></span>
+                                    <span class="oui-icon oui-icon-arrow-right" aria-hidden="true"></span>
+                                </button>
+                            </div>
                         </oui-tile-description>
                         <oui-action-menu
                             data-compact
@@ -400,6 +416,7 @@
                         >
                             <oui-action-menu-item
                                 data-ng-if="isUpgradable && hosting.hasCdn"
+                                data-disabled="$ctrl.isCdnInDeleteAtExpiration"
                                 data-on-click="$ctrl.upgradeCdn()"
                             >
                                 <span
@@ -417,6 +434,7 @@
                             </oui-action-menu-item>
                             <oui-action-menu-item
                                 data-ng-if="hosting.hasCdn && (cdnProperties.version === '2013v1' || cdnProperties.version === 'cdn-hosting')"
+                                data-disabled="$ctrl.isCdnInDeleteAtExpiration"
                                 data-on-click="$ctrl.terminateCdn()"
                             >
                                 <span
