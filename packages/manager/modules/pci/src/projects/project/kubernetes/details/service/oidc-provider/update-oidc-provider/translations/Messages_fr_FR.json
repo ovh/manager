@@ -1,6 +1,6 @@
 {
   "pci_projects_project_kubernetes_details_service_update_oidc_provider_title": "Modifier le fournisseur OIDC",
-  "pci_projects_project_kubernetes_details_service_update_oidc_provider_description": "Vous pouvez utiliser la plupart des fournisseurs OpenID Connect comme Dex, Keycloack ou un fournisseur SaaS, à la condition que soient supportés la fonctionnalité \"OpenID Connect discovery\", le TLS et un certificat CA signé.",
+  "pci_projects_project_kubernetes_details_service_update_oidc_provider_description": "Vous pouvez utiliser la plupart des fournisseurs OIDC comme Dex, Keycloak ou un fournisseur SaaS, à la condition qu'ils exposent la fonctionnalité \"OpenID Connect discovery\". Le fournisseur OIDC doit être accessible depuis une URL en HTTPS et un certificat CA signé est obligatoire.",
   "pci_projects_project_kubernetes_details_service_update_oidc_provider_action_update": "Modifier",
   "pci_projects_project_kubernetes_details_service_update_oidc_provider_action_cancel": "Annuler",
   "pci_projects_project_kubernetes_details_service_update_oidc_provider_field_url": "URL du fournisseur",
