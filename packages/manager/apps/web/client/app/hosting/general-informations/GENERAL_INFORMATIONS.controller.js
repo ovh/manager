@@ -64,6 +64,8 @@ export default class HostingGeneralInformationsCtrl {
     this.atInternet.trackPage({ name: 'web::hosting' });
 
     this.serviceName = this.$stateParams.productId;
+    this.isCdnInDeleteAtExpiration =
+      this.$scope.cdnServiceInfo?.renew.mode === 'deleteAtExpiration';
     this.defaultRuntime = null;
     this.availableOffers = [];
     this.contactManagementLink = this.coreConfig.isRegion('EU')
@@ -301,6 +303,18 @@ export default class HostingGeneralInformationsCtrl {
       alerts: this.$scope.alerts,
       cdnServiceInfo: this.$scope.cdnServiceInfo,
     });
+  }
+
+  onCancelTerminateCdn() {
+    this.sendTrackClick('web::hosting::cdn::cancel-terminate');
+
+    return this.$state.go(
+      'app.hosting.dashboard.general-informations.cdn-cancel-terminate',
+      {
+        alerts: this.$scope.alerts,
+        cdnServiceInfo: this.$scope.cdnServiceInfo,
+      },
+    );
   }
 
   flushCdn(action) {
