@@ -6,7 +6,6 @@ import Container from '../container.class';
 import {
   OBJECT_CONTAINER_NAME_PATTERN,
   OBJECT_CONTAINER_OFFERS,
-  OBJECT_CONTAINER_OFFERS_LABELS,
   OBJECT_CONTAINER_TYPE_OFFERS,
   OBJECT_CONTAINER_TYPES,
 } from '../containers.constants';
@@ -27,7 +26,6 @@ export default class PciStoragesContainersAddController {
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
     this.OBJECT_CONTAINER_NAME_PATTERN = OBJECT_CONTAINER_NAME_PATTERN;
     this.OBJECT_CONTAINER_OFFERS = OBJECT_CONTAINER_OFFERS;
-    this.OBJECT_CONTAINER_OFFERS_LABELS = OBJECT_CONTAINER_OFFERS_LABELS;
     this.OBJECT_CONTAINER_TYPE_OFFERS = OBJECT_CONTAINER_TYPE_OFFERS;
   }
 

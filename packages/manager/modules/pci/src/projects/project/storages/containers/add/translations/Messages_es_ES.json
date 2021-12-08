@@ -18,7 +18,6 @@
   "pci_projects_project_storages_containers_add_archive_title": "Crear un contenedor de archivos",
   "pci_projects_project_storages_containers_add_type_price": "{{price}}/mes + IVA por GB",
   "pci_projects_project_storages_containers_add_offer_title": "Seleccione su solución",
-  "pci_projects_project_storages_containers_add_offer_label_beta": "Beta",
   "pci_projects_project_storages_containers_add_offer_storage": "Standard (Swift)",
   "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf": "High Performance",
   "pci_projects_project_storages_containers_add_offer_storage_description": "Un espacio accesible por HTTPS a través de la API OpenStack Swift o la API S3",
