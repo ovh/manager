@@ -6,7 +6,7 @@ export const setShellClient = (client) => {
   // set callbacks
   // set on locale change
   shellClient.i18n.onLocaleChange(() => {
-    window.location.reload();
+    window.top.location.reload();
   });
 
   return shellClient;
