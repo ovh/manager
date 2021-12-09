@@ -1,0 +1,27 @@
+<oui-modal
+    data-type="warning"
+    data-on-dismiss="$ctrl.cancel()"
+    data-primary-label="{{:: 'pci_database_confirm_delete_confirm' | translate}}"
+    data-primary-action="$ctrl.deleteService()"
+    data-secondary-action="$ctrl.cancel()"
+    data-secondary-label="{{:: 'pci_database_confirm_delete_cancel' | translate}}"
+    data-loading="$ctrl.processing"
+    data-heading="{{:: 'pci_database_confirm_delete' | translate}}"
+>
+    <oui-message type="warning">
+        <p
+            data-translate="pci_database_confirm_delete_description_1"
+            data-translate-values="{serviceName: $ctrl.database.description}"
+        ></p>
+        <ul>
+            <li ng-repeat="service in $ctrl.linkedServices track by $index">
+                {{service.description}}
+            </li>
+        </ul>
+    </oui-message>
+    <p
+        data-translate="pci_database_confirm_delete_description_2"
+        data-translate-values="{serviceName: $ctrl.database.description}"
+    ></p>
+    <strong data-translate="pci_database_confirm_delete_description_3"></strong>
+</oui-modal>

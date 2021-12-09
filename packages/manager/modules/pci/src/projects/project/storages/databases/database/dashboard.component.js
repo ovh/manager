@@ -17,6 +17,8 @@ export default {
     userAclLink: '<',
     topicsLink: '<',
     indexesLink: '<',
+    serviceIntegrationLink: '<',
+    replicationsLink: '<',
     trackDashboard: '<',
     trackDatabases: '<',
     isFeatureActivated: '<',

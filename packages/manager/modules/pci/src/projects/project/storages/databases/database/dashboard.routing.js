@@ -15,11 +15,13 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         ),
       allowedIps: /* @ngInject */ (DatabaseService, database, projectId) =>
-        DatabaseService.getIpRestrictions(
-          projectId,
-          database.engine,
-          database.id,
-        ),
+        isFeatureActivated('allowedIpsTab', database.engine)
+          ? DatabaseService.getIpRestrictions(
+              projectId,
+              database.engine,
+              database.id,
+            )
+          : [],
       backupsLink: /* @ngInject */ ($state, databaseId, projectId) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.backups',
@@ -127,6 +129,22 @@ export default /* @ngInject */ ($stateProvider) => {
       indexesLink: /* @ngInject */ ($state, databaseId, projectId) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.indexes',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
+      serviceIntegrationLink: /* @ngInject */ ($state, databaseId, projectId) =>
+        $state.href(
+          'pci.projects.project.storages.databases.dashboard.service-integration',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
+      replicationsLink: /* @ngInject */ ($state, databaseId, projectId) =>
+        $state.href(
+          'pci.projects.project.storages.databases.dashboard.replications',
           {
             projectId,
             databaseId,

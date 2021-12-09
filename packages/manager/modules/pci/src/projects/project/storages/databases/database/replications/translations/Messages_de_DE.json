@@ -1,0 +1,19 @@
+{
+  "pci_databases_replications_tab_title": "Replikationsfluss",
+  "pci_databases_replications_tab_description": "Replikationsflüsse ermöglichen das automatische Kopieren von Datentopics und der Konfiguration von einem Kafka-Cluster auf einen zweiten. Ein Dienst vom Typ MirrorMaker kann mehrere Replikationsflüsse ausführen.",
+  "pci_databases_replications_tab_source": "Quelle",
+  "pci_databases_replications_tab_target": "Ziel",
+  "pci_databases_replications_tab_topics": "Topics",
+  "pci_databases_replications_tab_topics_blacklist": "Liste der ausgeschlossenen Topics",
+  "pci_databases_replications_tab_sync_group_offsets": "Die Offsets der Gruppen synchronisieren",
+  "pci_databases_replications_tab_sync_interval": "Intervall der Synchronisierung (in Sekunden)",
+  "pci_databases_replications_tab_status": "Status",
+  "pci_databases_replications_tab_edit": "Replikationsfluss bearbeiten",
+  "pci_databases_replications_tab_delete": "Replikationsfluss löschen",
+  "pci_databases_replications_tab_add": "Replikationsfluss erstellen",
+  "pci_databases_replications_tab_no_integration": "Bevor Sie einen Replikationsfluss erstellen, überprüfen Sie bitte, dass Sie mindestens 2 Kafka-Dienste konfiguriert haben.",
+  "pci_databases_replications_tab_sync_group_offsets_true": "Ja",
+  "pci_databases_replications_tab_sync_group_offsets_false": "Nein",
+  "pci_databases_replications_tab_status_true": "Aktiviert",
+  "pci_databases_replications_tab_status_false": "Deaktiviert"
+}

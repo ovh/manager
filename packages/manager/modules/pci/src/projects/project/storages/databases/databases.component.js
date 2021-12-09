@@ -8,6 +8,7 @@ export default {
     databaseLink: '<',
     goToDatabase: '<',
     goToDeleteDatabase: '<',
+    goToConfirmDeleteDatabase: '<',
     goToEditName: '<',
     goToUpgradePlan: '<',
     goToUpgradeVersion: '<',

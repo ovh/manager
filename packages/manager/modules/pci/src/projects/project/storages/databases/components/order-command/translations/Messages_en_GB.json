@@ -9,7 +9,7 @@
   "pci_database_order_command_parameters_info_subnetId": "Subnet ID",
   "pci_database_order_command_parameters_info_nodesPattern_flavor": "Selected features",
   "pci_database_order_command_parameters_info_nodesPattern_number": "Number of nodes",
-  "pci_database_order_command_parameters_info_nodesPattern_region": "Selected locations",
+  "pci_database_order_command_parameters_info_nodesPattern_region": "Selected location",
   "pci_database_order_command_parameters_info_plan": "Selected solution",
   "pci_database_order_command_parameters_info_version": "Database version"
 }
