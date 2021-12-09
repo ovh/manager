@@ -53,8 +53,13 @@ export const ANTHOS_READ_MORE_GUIDE = {
 
 export const ANTHOS_TENANT_ALERTER = 'anthos_tenant_alerter';
 
+export const TENANT_STATUS = {
+  UPGRADING: 'TENANT_STATUS_UPGRADING',
+};
+
 export default {
   GUIDES,
   ANTHOS_READ_MORE_GUIDE,
   ANTHOS_TENANT_ALERTER,
+  TENANT_STATUS,
 };

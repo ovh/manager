@@ -29,6 +29,9 @@ export default /* @ngInject */ ($stateProvider) => {
       privateIPs: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getTenantPrivateIPs(serviceName),
 
+      availableVersions: /* @ngInject */ (serviceName, AnthosTenantsService) =>
+        AnthosTenantsService.getAvailableVersions(serviceName),
+
       goToState: ($state, Alerter) => (
         state,
         stateParams = {},

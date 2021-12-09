@@ -5,7 +5,10 @@
 
   "anthos_tenant_dashboard_general_information_tile_information_title": "Informations générales",
   "anthos_tenant_dashboard_general_information_tile_information_software": "Solution Logicielle",
-  "anthos_tenant_dashboard_general_information_tile_information_software_status_upcoming": "Mise à jour bientôt disponible",
+  "anthos_tenant_dashboard_general_information_tile_information_software_is_updatable": "Mise à jour disponible",
+  "anthos_tenant_dashboard_general_information_tile_information_software_is_not_updatable": "Aucune mise à jour disponible",
+  "anthos_tenant_dashboard_general_information_tile_information_software_is_updating": "Mise à jour en cours",
+  "anthos_tenant_dashboard_general_information_tile_information_software_update_link": "Consulter les mises à jour disponibles",
   "anthos_tenant_dashboard_general_information_tile_information_location": "Localisation",
   "anthos_tenant_dashboard_general_information_tile_information_name": "Nom",
   "anthos_tenant_dashboard_general_information_tile_information_description_action_rename": "Modifier",

@@ -70,6 +70,12 @@ export default class AnthosTenantsService {
     });
   }
 
+  getAvailableVersions(serviceName) {
+    return this.fetch(
+      `/dedicated/anthos/tenants/${serviceName}/availableVersions`,
+    );
+  }
+
   addTenantPrivateIP(serviceName, range) {
     return this.$http
       .post(`/dedicated/anthos/tenants/${serviceName}/ips/private`, range)

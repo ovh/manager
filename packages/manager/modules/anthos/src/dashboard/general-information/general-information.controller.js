@@ -1,4 +1,5 @@
 import { CHANGE_OWNER_URL } from './general-information.constants';
+import { TENANT_STATUS } from '../../anthos.constants';
 
 export default class {
   /* @ngInject */
@@ -7,11 +8,19 @@ export default class {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.AnthosTenantsService = AnthosTenantsService;
+    this.isSoftwareUpdatable = false;
+    this.isSoftwareUpdating = false;
   }
 
   $onInit() {
     this.changeOwnerUrl =
       CHANGE_OWNER_URL[this.user.ovhSubsidiary] || CHANGE_OWNER_URL.FR;
+    const {
+      availableVersions,
+      tenant: { status },
+    } = this;
+    this.isSoftwareUpdatable = availableVersions.length > 0;
+    this.isSoftwareUpdating = status === TENANT_STATUS.UPGRADING;
   }
 
   onGoToOrderHost() {
