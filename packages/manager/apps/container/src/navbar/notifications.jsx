@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import useNotifications from '../core/notifications';
@@ -6,14 +7,14 @@ import useNotifications from '../core/notifications';
 import style from './navbar.module.scss';
 import { TRANSLATE_NAMESPACE } from './constants';
 
-function NavbarNotifications(props) {
+export default function NavbarNotifications(props) {
   const { ux } = props;
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
-
-  const { getNavbarNotificationCount, toggleSidebar, isSidebarOpen } = ux;
+  // getNavbarNotificationCount
+  const { toggleSidebar, isSidebarOpen } = ux;
   const { readAllNotifications } = useNotifications();
 
-  const notificationCount = getNavbarNotificationCount();
+  const notificationCount = 0;
 
   function onClick() {
     const openState = isSidebarOpen('notifications');
@@ -41,4 +42,6 @@ function NavbarNotifications(props) {
   );
 }
 
-export default NavbarNotifications;
+NavbarNotifications.propTypes = {
+  ux: PropTypes.object.isRequired,
+};
