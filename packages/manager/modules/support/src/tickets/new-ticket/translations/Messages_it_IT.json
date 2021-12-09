@@ -133,5 +133,11 @@
   "ovhManagerSupport_new_business_2": "Descrivi in modo dettagliato le tue esigenze inviandoci un’email all’indirizzo:",
   "ovhManagerSupport_new_business_3": "Le richieste di supporto ricevute a questo indirizzo non verranno prese in carico.",
   "ovhManagerSupport_new_serviceType_dedicated_anthos": "Anthos",
-  "ovhManagerSupport_new_serviceType_netapp": "NetApp"
+  "ovhManagerSupport_new_serviceType_netapp": "NetApp",
+  "ovhManagerSupport_new_serviceType_managed_mysql": "Public Cloud Databases for MySQL",
+  "ovhManagerSupport_new_serviceType_managed_postgresql": "Public Cloud Databases for PostgreSQL",
+  "ovhManagerSupport_new_serviceType_managed_redis": "Public Cloud Databases for Redis",
+  "ovhManagerSupport_new_serviceType_managed_kafka": "Public Cloud Databases for Kafka",
+  "ovhManagerSupport_new_serviceType_managed_opensearch": "Public Cloud Databases for OpenSearch",
+  "ovhManagerSupport_new_serviceType_managed_kafkamirrormaker": "Public Cloud Databases for Kafka MirrorMaker"
 }
