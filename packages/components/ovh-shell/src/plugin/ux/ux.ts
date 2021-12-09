@@ -1,73 +1,63 @@
-import Sidebar, { ISidebar } from './components/sidebar';
+import Sidebar from './components/sidebar';
 import Navbar, { INavbar } from './components/navbar';
 
 export interface ISidebars {
-  [name: string]: ISidebar;
+  [name: string]: Sidebar;
 }
 
-export interface IShellUx {
-  registerSidebar: CallableFunction;
-  isSidebarVisible: CallableFunction;
-  toggleSidebarVisibility: CallableFunction;
-  showSidebar: CallableFunction;
-  hideSidebar: CallableFunction;
-  registerNavbar: CallableFunction;
-  getNavbar: CallableFunction;
+interface IShellUx {
+  registerSidebar: (name: string) => void;
+  isSidebarVisible: (name: string) => boolean;
+  toggleSidebarVisibility: (name: string) => void;
+  showSidebar: (name: string) => void;
+  hideSidebar: (name: string) => void;
+  registerNavbar: () => void;
+  getNavbar: () => INavbar;
+  getSidebars: () => ISidebars;
 }
 
-const shellUx = (): IShellUx => {
-  const sidebars: ISidebars = {};
-  let navbar: INavbar;
+export class ShellUX implements IShellUx {
+  private navbar: INavbar;
 
-  const registerSidebar = (name: string) => {
-    sidebars[name] = Sidebar();
-  };
+  private sidebars: ISidebars = {};
 
-  const isSidebarVisible = (name: string): boolean => {
-    return sidebars[name]?.getVisibility() || false;
-  };
+  registerSidebar(name: string): void {
+    this.sidebars[name] = new Sidebar();
+  }
 
-  const toggleSidebarVisibility = (name: string) => {
-    const registeredSidebar = sidebars[name];
+  isSidebarVisible(name: string): boolean {
+    return this.sidebars[name]?.getVisibility() || false;
+  }
 
-    if (registeredSidebar) {
+  getSidebars(): ISidebars {
+    return this.sidebars;
+  }
+
+  toggleSidebarVisibility(name: string): void {
+    const registeredSidebar = this.sidebars[name];
+
+    if (registeredSidebar?.isToggleAllowed()) {
       registeredSidebar.toggleVisibility();
     }
-  };
+  }
 
-  const showSidebar = (name: string) => {
-    const registeredSidebar = sidebars[name];
+  showSidebar(name: string): void {
+    const registeredSidebar = this.sidebars[name];
 
-    if (registeredSidebar) {
-      registeredSidebar.show();
-    }
-  };
+    registeredSidebar?.show();
+  }
 
-  const hideSidebar = (name: string) => {
-    const registeredSidebar = sidebars[name];
+  hideSidebar(name: string): void {
+    const registeredSidebar = this.sidebars[name];
 
-    if (registeredSidebar) {
-      registeredSidebar.hide();
-    }
-  };
+    registeredSidebar?.hide();
+  }
 
-  const registerNavbar = () => {
-    navbar = Navbar();
-  };
+  registerNavbar(): void {
+    this.navbar = Navbar();
+  }
 
-  const getNavbar = (): INavbar => {
-    return navbar;
-  };
-
-  return {
-    registerSidebar,
-    isSidebarVisible,
-    toggleSidebarVisibility,
-    showSidebar,
-    hideSidebar,
-    registerNavbar,
-    getNavbar,
-  };
-};
-
-export default shellUx;
+  getNavbar(): INavbar {
+    return this.navbar;
+  }
+}
