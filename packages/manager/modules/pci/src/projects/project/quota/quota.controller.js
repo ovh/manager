@@ -3,6 +3,7 @@ import {
   RESTRICTED_RAM,
   RESTRICTED_INSTANCES,
 } from './quota.constants';
+import { QUOTA_INCREASE_MODES } from './increase-request/increase.constants';
 
 export default class {
   /* @ngInject */
@@ -13,6 +14,7 @@ export default class {
     CucCloudMessage,
     ovhManagerRegionService,
     OvhApiCloudProject,
+    PciProjectQuota,
   ) {
     this.$state = $state;
     this.$translate = $translate;
@@ -20,6 +22,7 @@ export default class {
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.OvhApiCloudProject = OvhApiCloudProject;
+    this.PciProjectQuota = PciProjectQuota;
   }
 
   $onInit() {
@@ -38,6 +41,15 @@ export default class {
 
     this.loaders = {
       autoScaling: false,
+    };
+    this.PciProjectQuota.setServiceOptions(this.serviceOptions);
+    this.increaseQuotaUrls = {
+      contactSupport: `${this.$state.href(this.$state.$current)}/increase/${
+        QUOTA_INCREASE_MODES.CONTACT_SUPPORT
+      }`,
+      buyCredits: `${this.$state.href(this.$state.$current)}/increase/${
+        QUOTA_INCREASE_MODES.BUY_CREDITS
+      }`,
     };
   }
 

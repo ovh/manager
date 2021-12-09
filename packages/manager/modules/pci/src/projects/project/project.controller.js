@@ -15,6 +15,7 @@ export default class ProjectController {
     coreConfig,
     OvhApiCloudProject,
     ovhFeatureFlipping,
+    PciProject,
   ) {
     this.$scope = $scope;
     this.$state = $state;
@@ -26,6 +27,7 @@ export default class ProjectController {
     this.region = coreConfig.getRegion();
     this.coreConfig = coreConfig;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
+    this.PciProject = PciProject;
 
     const filterByRegion = (list) =>
       list.filter(
@@ -58,6 +60,7 @@ export default class ProjectController {
           isItemAvailable(regions, feature),
         );
       });
+    this.PciProject.setProjectInfo(this.project);
   }
 
   closeSidebar() {

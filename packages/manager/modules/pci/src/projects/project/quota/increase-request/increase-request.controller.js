@@ -1,7 +1,7 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 import isNil from 'lodash/isNil';
-import { ISSUE_TYPE_IDS } from './increase.constants';
+import { ISSUE_TYPE_IDS, QUOTA_INCREASE_MODES } from './increase.constants';
 
 export default class PciProjectQuotaIncreaseController {
   /* @ngInject */
@@ -11,12 +11,16 @@ export default class PciProjectQuotaIncreaseController {
     coreURLBuilder,
     pciProjectQuotaIncrease,
     OvhApiSupport,
+    PciProjectQuota,
+    PciProject,
   ) {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
     this.pciProjectQuotaIncrease = pciProjectQuotaIncrease;
     this.OvhApiSupport = OvhApiSupport;
+    this.PciProjectQuota = PciProjectQuota;
+    this.PciProject = PciProject;
   }
 
   $onInit() {
@@ -32,16 +36,20 @@ export default class PciProjectQuotaIncreaseController {
       'dedicated',
       '#/billing/history',
     );
-    this.serviceOptions = this.serviceOptions.map((serviceOption) => ({
-      ...serviceOption,
-      formattedName: `${this.$translate.instant(
-        `pci_projects_project_quota_increase_select_volume_${serviceOption.planCode}`,
-      )} - ${serviceOption.prices[0].price.text}`,
-    }));
+    this.serviceOptions = this.PciProjectQuota.getServiceOptions().map(
+      (serviceOption) => ({
+        ...serviceOption,
+        formattedName: `${this.$translate.instant(
+          `pci_projects_project_quota_increase_select_volume_${serviceOption.planCode}`,
+        )} - ${serviceOption.prices[0]?.price.text}`,
+      }),
+    );
+    this.QUOTA_INCREASE_MODES = QUOTA_INCREASE_MODES;
+    this.projectDescription = this.PciProject.getProjectInfo().description;
   }
 
   increaseQuota() {
-    if (this.serviceOptions.length > 0) {
+    if (this.mode === QUOTA_INCREASE_MODES.BUY_CREDITS) {
       return this.increaseQuotaByCredits();
     }
 

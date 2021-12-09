@@ -1,7 +1,7 @@
 {
   "pci_projects_project_quota": "Limity",
   "pci_projects_project_quota_protect_explain": "Abyś mógł kontrolować wykorzystanie zasobów w ramach usługi Cloud, Twój projekt ma ograniczone zasoby.",
-  "pci_projects_project_quota_protect_more": "Jeśli potrzebujesz więcej zasobów, możesz zwiększyć limit, klikając poniższy przycisk i kontaktując się z pomocą techniczną.",
+  "pci_projects_project_quota_protect_more": "Jeśli potrzebujesz więcej zasobów, możesz zamówić zasilenie do Twojego projektu cloud lub zwrócić się do naszego zespołu, klikając poniższe przyciski.",
   "pci_projects_project_quota_protect_more_btn": "Zwiększ limity",
   "pci_projects_project_quota_current_limit": "Aktualne ograniczenia",
   "pci_projects_project_quota_instance_unlimited": "Nieograniczone",

@@ -1,3 +1,5 @@
+import { RX_PLAN_CODE_PATTERN } from './quota.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.quota', {
     url: '/quota',
@@ -10,11 +12,20 @@ export default /* @ngInject */ ($stateProvider) => {
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_quota'),
-
-      increaseQuotaLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.quota.increase', {
-          projectId,
-        }),
+      serviceOptions: /* @ngInject */ ($http, projectId) => {
+        return $http
+          .get(`/order/cartServiceOption/cloud/${projectId}`)
+          .then(({ data }) => {
+            return data
+              .filter((option) => option.family === 'quota')
+              .sort((a, b) => {
+                return (
+                  parseInt(RX_PLAN_CODE_PATTERN.exec(a.planCode)[1], 10) -
+                  parseInt(RX_PLAN_CODE_PATTERN.exec(b.planCode)[1], 10)
+                );
+              });
+          });
+      },
     },
   });
 };
