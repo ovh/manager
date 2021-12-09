@@ -5,6 +5,7 @@ import DirectClientMessageBus from '../message-bus/direct-client';
 import authenticationPlugin from '../plugin/auth';
 import environmentPlugin from '../plugin/environment';
 import { i18n as i18nPlugin } from '../plugin/i18n';
+import { UXPlugin, UXPluginType } from '../plugin/ux';
 
 export function initShell(): Promise<Shell> {
   return fetchConfiguration('shell').then((environment: Environment) => {
@@ -25,6 +26,11 @@ export function initShell(): Promise<Shell> {
     shell
       .getPluginManager()
       .registerPlugin('i18n', i18nPlugin(shell, environment));
+
+    const uxPlugin = new UXPlugin(shell);
+    shell
+      .getPluginManager()
+      .registerPlugin('ux', uxPlugin as UXPluginType<UXPlugin>);
 
     return shell;
   });
