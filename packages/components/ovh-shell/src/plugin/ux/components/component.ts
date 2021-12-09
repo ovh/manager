@@ -3,41 +3,36 @@ export interface IUxComponentOptions {
 }
 
 export interface IUxComponent {
-  toggleVisibility: CallableFunction;
-  show: CallableFunction;
-  hide: CallableFunction;
-  getVisibility: CallableFunction;
+  toggleVisibility: () => void;
+  show: () => void;
+  hide: () => void;
+  getVisibility: () => boolean;
 }
 
-const uxComponent = (options: IUxComponentOptions = {}): IUxComponent => {
-  let visible = options.visible || false;
+export class UXComponent implements IUxComponent {
+  private visible: boolean;
 
-  const setVisibility = (visibility: boolean) => {
-    visible = visibility;
+  constructor(options: IUxComponentOptions = {}) {
+    this.visible = options.visible || false;
+  }
+
+  public setVisibility = (visibility: boolean) => {
+    this.visible = visibility;
   };
 
-  const toggleVisibility = () => {
-    setVisibility(!visible);
-  };
+  public toggleVisibility(): void {
+    this.setVisibility(!this.visible);
+  }
 
-  const show = () => {
-    setVisibility(true);
-  };
+  public show(): void {
+    this.setVisibility(true);
+  }
 
-  const hide = () => {
-    setVisibility(false);
-  };
+  public hide(): void {
+    this.setVisibility(false);
+  }
 
-  const getVisibility = (): boolean => {
-    return visible;
-  };
-
-  return {
-    toggleVisibility,
-    show,
-    hide,
-    getVisibility,
-  };
-};
-
-export default uxComponent;
+  public getVisibility(): boolean {
+    return this.visible;
+  }
+}

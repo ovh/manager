@@ -1,11 +1,11 @@
-import uxComponent, { IUxComponent } from './component';
+import { UXComponent, IUxComponent } from './component';
 
 export interface INavbar extends IUxComponent {
   selectedUniverse?: string;
 }
 
 const Navbar = (): INavbar => {
-  return uxComponent({ visible: true });
+  return new UXComponent({ visible: true });
 };
 
 export default Navbar;
