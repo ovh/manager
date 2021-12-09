@@ -1,3 +1,12 @@
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.6.7...@ovh-ux/manager-support@1.7.0) (2021-12-09)
+
+
+### Features
+
+* add public cloud database services support names ([#6032](https://github.com/ovh/manager/issues/6032)) ([58e2b64](https://github.com/ovh/manager/commit/58e2b64b474771d422c8dfeeeb11ff59fd28a723))
+
+
+
 ## [1.6.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.6.6...@ovh-ux/manager-support@1.6.7) (2021-12-02)
 
 
