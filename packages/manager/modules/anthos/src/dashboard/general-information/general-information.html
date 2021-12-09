@@ -43,9 +43,37 @@
                             class="mb-0"
                             data-ng-bind=":: $ctrl.tenant.version"
                         ></p>
+                        <div
+                            data-ng-if="$ctrl.isSoftwareUpdatable && !$ctrl.isSoftwareUpdating"
+                        >
+                            <p>
+                                <span
+                                    class="oui-badge oui-badge_warning"
+                                    data-translate="anthos_tenant_dashboard_general_information_tile_information_software_is_updatable"
+                                ></span>
+                            </p>
+                            <button
+                                class="oui-button oui-button_s oui-button_ghost"
+                                data-ng-click="$ctrl.goToSoftwareUpdate()"
+                            >
+                                <span
+                                    data-translate="anthos_tenant_dashboard_general_information_tile_information_software_update_link"
+                                ></span>
+                                <span
+                                    class="oui-icon oui-icon-arrow-right"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                        </div>
                         <p
+                            data-ng-if="$ctrl.isSoftwareUpdating"
                             class="oui-badge oui-badge_warning"
-                            data-translate="anthos_tenant_dashboard_general_information_tile_information_software_status_upcoming"
+                            data-translate="anthos_tenant_dashboard_general_information_tile_information_software_is_updating"
+                        ></p>
+                        <p
+                            data-ng-if="!$ctrl.isSoftwareUpdatable"
+                            class="oui-badge oui-badge_info"
+                            data-translate="anthos_tenant_dashboard_general_information_tile_information_software_is_not_updatable"
                         ></p>
                     </oui-tile-description>
                 </oui-tile-definition>
