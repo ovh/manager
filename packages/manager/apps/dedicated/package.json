@@ -28,11 +28,12 @@
     "@ovh-ux/manager-beta-preference": "^1.0.0",
     "@ovh-ux/manager-billing": "^0.6.0-alpha.0 || ^0.7.0-alpha",
     "@ovh-ux/manager-billing-components": "^2.0.0 || ^3.0.0",
+    "@ovh-ux/manager-bm-server-components": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-catalog-price": "^1.0.1",
     "@ovh-ux/manager-cda": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-cloud-connect": "^1.0.0",
     "@ovh-ux/manager-cloud-styles": "^0.4.0 || ^1.0.0",
-    "@ovh-ux/manager-components": "^1.0.0",
+    "@ovh-ux/manager-components": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-cookie-policy": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
@@ -154,8 +155,7 @@
     "ui-select": "^0.19.8",
     "urijs": "^1.19.1",
     "validator": "^13.7.0",
-    "whatwg-fetch": "^3.5.0",
-    "@ovh-ux/manager-bm-server-components": "^0.0.0 || ^1.0.0"
+    "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.1.1 || ^4.0.0",
