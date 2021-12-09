@@ -1,0 +1,8 @@
+{
+  "pci_databases_service_integration_add_confirm": "Bestätigen",
+  "pci_databases_service_integration_add_cancel": "Abbrechen",
+  "pci_databases_service_integration_add": "Einen Kafka-Dienst hinzufügen",
+  "pci_databases_service_integration_add_service_label": "Wählen Sie einen Kafka-Dienst",
+  "pci_databases_service_integration_add_success_message": "Ihr Kafka-Dienst wurde hinzugefügt.",
+  "pci_databases_service_integration_add_error_message": "Beim Hinzufügen Ihres Kafka-Diensts ist ein Fehler aufgetreten: {{ errorMessage }}"
+}

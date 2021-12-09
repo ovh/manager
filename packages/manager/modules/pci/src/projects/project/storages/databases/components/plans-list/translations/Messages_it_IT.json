@@ -1,7 +1,7 @@
 {
   "pci_database_plans_list_spec_ram": "Da {{ min }} a {{ max }} RAM",
   "pci_database_plans_list_spec_core": "Da {{min}} a {{max}} vCore",
-  "pci_database_plans_list_spec_storage": "Da {{ min }} a {{ max }} SSD",
+  "pci_database_plans_list_spec_storage": "Da {{min}} a {{max}} di storage SSD",
   "pci_database_plans_list_spec_nodes": "{{min}} nodi",
   "pci_database_plans_list_spec_nodes_single": "{{min}} nodo",
   "pci_database_plans_list_spec_nodes_range": "{{min}} nodi inclusi, fino a {{max}} nodi",
@@ -9,6 +9,6 @@
   "pci_database_plans_list_spec_backup": "Backup manuali e automatici",
   "pci_database_plans_list_spec_ram_unique": "{{ram}} RAM",
   "pci_database_plans_list_spec_core_unique": "{{core}} vCore",
-  "pci_database_plans_list_spec_storage_unique": "{{storage}} SSD",
+  "pci_database_plans_list_spec_storage_unique": "{{storage}} di storage SSD",
   "pci_database_plans_list_current_offer": "Soluzione corrente"
 }

@@ -1,0 +1,8 @@
+{
+  "pci_databases_replications_delete_replication_confirm": "Confirm",
+  "pci_databases_replications_delete_replication_cancel": "Cancel",
+  "pci_databases_replications_delete_replication": "Delete a replication",
+  "pci_databases_replications_delete_replication_description": "Are you sure that you want to delete this replication?",
+  "pci_databases_replications_delete_replication_success_message": "The replication has been deleted.",
+  "pci_databases_replications_delete_replication_error_message": "An error occurred while deleting your replication: {{message}}"
+}

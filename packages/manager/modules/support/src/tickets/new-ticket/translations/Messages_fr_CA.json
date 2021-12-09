@@ -105,6 +105,12 @@
   "ovhManagerSupport_new_serviceType_ai_training_job": "AI Training",
   "ovhManagerSupport_new_serviceType_webpaas": "Web PaaS",
   "ovhManagerSupport_new_serviceType_dedicated_anthos": "Anthos",
+  "ovhManagerSupport_new_serviceType_managed_mysql": "Public Cloud databases for MySQL",
+  "ovhManagerSupport_new_serviceType_managed_postgresql": "Public Cloud databases for PostgreSQL",
+  "ovhManagerSupport_new_serviceType_managed_redis": "Public Cloud databases for Redis",
+  "ovhManagerSupport_new_serviceType_managed_kafka": "Public Cloud databases for Kafka",
+  "ovhManagerSupport_new_serviceType_managed_opensearch": "Public Cloud databases for Opensearch",
+  "ovhManagerSupport_new_serviceType_managed_kafkamirrormaker": "Public Cloud databases for Kafka MirrorMaker",
 
   "ovhManagerSupport_new_service": "Service concerné",
   "ovhManagerSupport_new_service_unknown": "Mon service n'est pas listé et/ou je ne dispose pas encore de ce service",

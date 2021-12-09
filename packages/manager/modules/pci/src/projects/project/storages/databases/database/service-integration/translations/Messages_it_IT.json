@@ -1,0 +1,9 @@
+{
+  "pci_databases_service_integration_tab_title": "Integrazione dei servizi",
+  "pci_databases_service_integration_tab_descritpion": "L'integrazione dei servizi permette di connettere diverse soluzioni Kafka.",
+  "pci_databases_service_integration_tab_kafka_service": "Servizio Kafka",
+  "pci_databases_service_integration_tab_add_kafka": "Aggiungi un cluster Kafka",
+  "pci_databases_service_integration_tab_no_kafka_service": "Non è possibile aggiungere un cluster Kafka perché sono terminati o non sono più presenti i servizi Kafka da connettere disponibili.",
+  "pci_databases_service_integration_tab_unknown_service": "Servizio non trovato",
+  "pci_databases_service_integration_tab_service_ready": "L'integrazione del servizio Kafka è pronta"
+}

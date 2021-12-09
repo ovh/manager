@@ -56,6 +56,7 @@
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('allowedIpsTab')"
             data-href="{{:: $ctrl.allowedIpsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.allowedIpsLink"
             ><span
@@ -82,6 +83,22 @@
             data-active="$ctrl.currentActiveLink() === $ctrl.topicsLink"
             ><span
                 data-translate="pci_databases_dashboard_topics_tab_title"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('serviceIntegrationTab')"
+            data-href="{{ $ctrl.serviceIntegrationLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.serviceIntegrationLink"
+            ><span
+                data-translate="pci_databases_dashboard_service_integration_tab_title"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('replicationsTab')"
+            data-href="{{ $ctrl.replicationsLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.replicationsLink"
+            ><span
+                data-translate="pci_databases_dashboard_replications_tab_title"
             ></span>
         </oui-header-tabs-item>
     </oui-header-tabs>

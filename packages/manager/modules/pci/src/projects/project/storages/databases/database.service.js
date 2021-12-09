@@ -16,6 +16,7 @@ import Database from '../../../../components/project/storages/databases/database
 import Engine from '../../../../components/project/storages/databases/engine.class';
 import Lab from '../../../../components/project/labs/lab.class';
 import Node from '../../../../components/project/storages/databases/node.class';
+import ServiceIntegration from '../../../../components/project/storages/databases/serviceIntegration.class';
 import User from '../../../../components/project/storages/databases/user.class';
 
 export default class DatabaseService {
@@ -203,7 +204,9 @@ export default class DatabaseService {
       })
       .then(({ availability, capabilities, prices }) => {
         availability.forEach((plan) => {
-          let prefix = `databases.${plan.engine}-${plan.plan}-${plan.flavor}`;
+          let prefix = `databases.${plan.engine.toLowerCase()}-${plan.plan}-${
+            plan.flavor
+          }`;
           if (plan.status === ENGINES_STATUS.BETA) {
             if (
               prices[`${prefix}-${ENGINES_PRICE_SUFFIX.BETA}.hour.consumption`]
@@ -626,6 +629,107 @@ export default class DatabaseService {
     return this.$http
       .delete(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/pattern/${patternId}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getIntegrations(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/integration`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  pollIntegrationStatus(projectId, engine, databaseId, integrationId) {
+    return this.Poller.poll(
+      `/cloud/project/${projectId}/database/${engine}/${databaseId}/integration/${integrationId}`,
+      {},
+      {
+        namespace: `databases_${databaseId}_integration_${integrationId}`,
+        method: 'get',
+        successRule: (integration) =>
+          !new ServiceIntegration(integration).isProcessing(),
+      },
+    );
+  }
+
+  stopPollingIntegrationStatus(databaseId, integrationId) {
+    this.Poller.kill({
+      namespace: `databases_${databaseId}_integration_${integrationId}`,
+    });
+  }
+
+  addIntegration(projectId, engine, databaseId, service) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/integration`,
+        {
+          sourceServiceId: service.id,
+          destinationServiceId: databaseId,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteIntegration(projectId, engine, databaseId, integration) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/integration/${integration.id}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getReplications(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/replication`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  addReplication(projectId, engine, databaseId, replication) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/replication`,
+        {
+          sourceIntegration: replication.sourceIntegration,
+          targetIntegration: replication.targetIntegration,
+          emitHeartbeats: replication.emitHeartbeats,
+          enabled: replication.enabled,
+          replicationPolicyClass: replication.replicationPolicyClass,
+          syncGroupOffsets: replication.syncGroupOffsets,
+          syncInterval: replication.syncInterval,
+          topicExcludeList: replication.topicExcludeList,
+          topics: replication.topics,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  updateReplication(projectId, engine, databaseId, replication) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/replication/${replication.id}`,
+        {
+          emitHeartbeats: replication.emitHeartbeats,
+          enabled: replication.enabled,
+          replicationPolicyClass: replication.replicationPolicyClass,
+          syncGroupOffsets: replication.syncGroupOffsets,
+          syncInterval: replication.syncInterval,
+          topicExcludeList: replication.topicExcludeList,
+          topics: replication.topics,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteReplication(projectId, engine, databaseId, replication) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/replication/${replication.id}`,
       )
       .then(({ data }) => data);
   }

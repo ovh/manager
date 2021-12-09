@@ -1,5 +1,6 @@
 import remove from 'lodash/remove';
 import pull from 'lodash/pull';
+import uniqueId from 'lodash/uniqueId';
 import {
   DEFAULT_MIN_LENGTH,
   DEFAULT_MAX_LENGTH,
@@ -16,6 +17,7 @@ export default class PciTagsInputController {
     this.min = this.min || DEFAULT_MIN_LENGTH;
     this.max = this.max || DEFAULT_MAX_LENGTH;
     this.pattern = this.pattern || DEFAULT_PATTERN;
+    this.id = uniqueId();
   }
 
   addTag() {

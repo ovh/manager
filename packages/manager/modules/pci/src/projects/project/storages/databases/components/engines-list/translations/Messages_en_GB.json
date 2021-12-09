@@ -7,5 +7,6 @@
   "pci_database_engines_list_description_kafka": "High-performance distributed streaming system",
   "pci_database_engines_list_description_redis": "In-memory key-value data storage system",
   "pci_database_engines_list_description_mongodb": "Document-orientated database management system",
-  "pci_database_engines_list_description_opensearch": "Distributed search and analysis engine. Fork of Elasticsearch 7.10.2 and Kibana 7.10.2"
+  "pci_database_engines_list_description_opensearch": "Distributed search and analysis engine. Fork of Elasticsearch 7.10.2 and Kibana 7.10.2",
+  "pci_database_engines_list_description_kafkaMirrorMaker": "Data replication system between two Kafka clusters"
 }
