@@ -15,7 +15,8 @@
 
             <div data-ng-if="!loadingData">
                 <strong
-                    data-ng-bind-html="'emailpro_ACTION_update_disclaimer_info' | translate: { t0: data.domain.displayName }"
+                    data-translate="emailpro_ACTION_update_disclaimer_info"
+                    data-translate-values="{ t0: data.domain.displayName }"
                 ></strong>
                 <form class="form-inline my-3">
                     <div class="oui-field">
@@ -76,11 +77,11 @@
                     data-translate="emailpro_ACTION_add_disclaimer_helpwizard_title"
                 ></h3>
                 <p
-                    data-ng-bind-html="'emailpro_ACTION_add_disclaimer_helpwizard_details1' | translate"
+                    data-translate="emailpro_ACTION_add_disclaimer_helpwizard_details1"
                 ></p>
                 <p>
                     <span
-                        data-ng-bind-html="'emailpro_ACTION_add_disclaimer_helpwizard_details2' | translate"
+                        data-translate="emailpro_ACTION_add_disclaimer_helpwizard_details2"
                     ></span>
                     <br />
                     <span
@@ -88,10 +89,10 @@
                     ></span>
                 </p>
                 <p
-                    data-ng-bind-html="'emailpro_ACTION_add_disclaimer_helpwizard_details4' | translate"
+                    data-translate="emailpro_ACTION_add_disclaimer_helpwizard_details4"
                 ></p>
                 <p
-                    data-ng-bind-html="'emailpro_ACTION_add_disclaimer_helpwizard_details5' | translate"
+                    data-translate="emailpro_ACTION_add_disclaimer_helpwizard_details5"
                 ></p>
             </div>
         </div>
