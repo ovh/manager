@@ -11,9 +11,9 @@ function ShellHeader() {
       {({ environment, ux }) => (
         <Suspense fallback="">
           <NotificationsProvider environment={environment}>
-            <Navbar environment={environment} ux={ux} />
-            <AccountSidebar environment={environment} ux={ux} />
-            <NotificationsSidebar environment={environment} ux={ux} />
+            <Navbar environment={environment} />
+            <AccountSidebar environment={environment} />
+            <NotificationsSidebar environment={environment} />
           </NotificationsProvider>
         </Suspense>
       )}

@@ -1,6 +1,6 @@
 import { loadFeature, defineFeature, DefineStepFunction } from 'jest-cucumber';
 
-import ux from '../../../src/plugin/ux';
+import { IUXPlugin, UXPlugin, UXPluginType } from '../../../src/plugin/ux';
 import DirectClientMessageBus from '../../../src/message-bus/direct-client';
 import Shell from '../../../src/shell/shell';
 
@@ -9,22 +9,21 @@ const feature = loadFeature('../../../features/plugin/ux/ux.feature', {
 });
 
 defineFeature(feature, (test) => {
-  let uxPlugin: CallableFunction;
+  let uxPlugin: UXPlugin;
 
   const shellMessageBus = new DirectClientMessageBus();
-  const shell = new Shell(shellMessageBus);
+  const shell = new Shell();
+  shell.setMessageBus(shellMessageBus);
 
   // define ux instanciation
   const givenUxPluginInstanciated = (given: DefineStepFunction) => {
     given('I have a ux plugin instanciated with a registered sidebar', () => {
-      uxPlugin = ux(shell);
+      uxPlugin = new UXPlugin(shell);
       uxPlugin.registerSidebar('foo');
     });
   };
 
   test('Toggle the visibility of a ux component', ({ given, when, then }) => {
-    let locale: string;
-
     givenUxPluginInstanciated(given);
 
     when('I toggle the visibility of the sidebar', () => {

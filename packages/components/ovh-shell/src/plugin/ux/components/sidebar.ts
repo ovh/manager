@@ -1,9 +1,28 @@
-import uxComponent, { IUxComponent } from './component';
+import { UXComponent, IUxComponent } from './component';
 
-export type ISidebar = IUxComponent;
+interface ISidebar extends IUxComponent {
+  enableToggle: () => void;
+  disableToggle: () => void;
+  isToggleAllowed: () => boolean;
+}
 
-const Sidebar = (): ISidebar => {
-  return uxComponent({ visible: false });
-};
+export default class Sidebar extends UXComponent implements ISidebar {
+  private allowToggle?: boolean;
 
-export default Sidebar;
+  constructor() {
+    super({ visible: false });
+    this.allowToggle = true;
+  }
+
+  public isToggleAllowed(): boolean {
+    return this.allowToggle;
+  }
+
+  public enableToggle(): void {
+    this.allowToggle = true;
+  }
+
+  public disableToggle(): void {
+    this.allowToggle = false;
+  }
+}
