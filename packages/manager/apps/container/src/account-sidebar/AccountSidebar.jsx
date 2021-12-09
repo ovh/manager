@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import UserInfos from './UserInfos';
 import PaymentMethod from './PaymentMethod/PaymentMethod.jsx';
 import Shortcuts from './Shortcuts';
 import UsefulLinks from './UsefulLinks';
+import ApplicationContext from '../context/application.context.js';
 
-const AccountSidebar = ({ environment, ux }) => {
+const AccountSidebar = ({ environment }) => {
+  const { shell } = useContext(ApplicationContext);
+  const ux = shell.ux();
+  console.log(ux);
   return (
     <div
       className="manager-account-sidebar-wrapper"
-      aria-expanded={ux.sidebars.account.isOpen}
+      aria-expanded={ux.getSidebars().account.visible}
     >
       <div className="manager-account-sidebar">
         <UserInfos environment={environment} />

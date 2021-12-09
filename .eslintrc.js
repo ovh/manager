@@ -43,6 +43,8 @@ module.exports = {
         'import/extensions': 'off',
         'no-use-before-define': 'off',
         'no-shadow': 'off',
+        'no-unused-expressions': 'off',
+        '@typescript-eslint/no-unused-expressions': ['error'],
         '@typescript-eslint/no-use-before-define': ['error'],
         '@typescript-eslint/no-shadow': ['error'],
       },
