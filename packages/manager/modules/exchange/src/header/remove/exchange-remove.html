@@ -10,8 +10,11 @@
         <div data-wizard-step>
             <div data-ng-if="!ctrl.exchange.renewType.deleteAtExpiration">
                 <p
-                    data-ng-bind-html="'exchange_resilitation_action_intro' | translate:{ t0: ctrl.exchange.displayName }"
+                    data-translate="exchange_resilitation_action_intro_1"
+                    data-translate-values="{ 't0': ctrl.exchange.displayName }"
                 ></p>
+                <p data-translate="exchange_resilitation_action_intro_2"></p>
+                <p data-translate="exchange_resilitation_action_intro_3"></p>
 
                 <dl
                     class="dl-horizontal dl-lg"
@@ -35,7 +38,11 @@
 
             <div data-ng-if="ctrl.exchange.renewType.deleteAtExpiration">
                 <p
-                    data-ng-bind-html="'exchange_resilitation_cancel_action_intro' | translate: { t0: '<strong>' + ctrl.exchange.displayName + '</strong>' }"
+                    data-translate="exchange_resilitation_cancel_action_intro_1"
+                    data-translate-values="{ 't0': ctrl.exchange.displayName }"
+                ></p>
+                <p
+                    data-translate="exchange_resilitation_cancel_action_intro_2"
                 ></p>
 
                 <dl
@@ -54,7 +61,10 @@
                     data-ng-if="ctrl.service.exchangeServiceInfrastructure.isHosted()"
                 >
                     <p
-                        data-ng-bind-html="'exchange_update_billing_periode_intro' | translate"
+                        data-translate="exchange_update_billing_periode_intro_1"
+                    ></p>
+                    <p
+                        data-translate="exchange_update_billing_periode_intro_2"
                     ></p>
                     <form>
                         <label
@@ -112,20 +122,42 @@
 
         <div data-wizard-step>
             <div data-ng-if="!ctrl.exchange.renewType.deleteAtExpiration">
-                <p
-                    data-ng-bind-html="'exchange_resilitation_action_confirmation' | translate: { t0: '<strong>' + ctrl.exchange.displayName + '</strong>', t1: '<strong>' + ctrl.exchange.accountsNumber + '</strong>' }"
-                    data-ng-if="!ctrl.exchange.deleteAtExpiration"
-                ></p>
-                <p
-                    data-ng-bind-html="'exchange_resilitation_cancel_action_confirmation' | translate: { t0: '<strong>' + ctrl.exchange.displayName + '</strong>', t1: '<strong>' + ctrl.exchange.accountsNumber + '</strong>' }"
-                    data-ng-if="ctrl.exchange.deleteAtExpiration"
-                ></p>
+                <div data-ng-if="!ctrl.exchange.deleteAtExpiration">
+                    <p
+                        data-translate="exchange_resilitation_action_confirmation_1"
+                        data-translate-values="{ t0: '<strong>' + ctrl.exchange.displayName + '</strong>', t1: '<strong>' + ctrl.exchange.accountsNumber + '</strong>' }"
+                    ></p>
+                    <p
+                        data-translate="exchange_resilitation_action_confirmation_2"
+                    ></p>
+                </div>
+                <div data-ng-if="ctrl.exchange.deleteAtExpiration">
+                    <p
+                        data-translate="exchange_resilitation_cancel_action_confirmation_1"
+                        data-translate-values="{ t0: '<strong>' + ctrl.exchange.displayName + '</strong>' }"
+                    ></p>
+
+                    <p
+                        data-translate="exchange_resilitation_cancel_action_confirmation_2"
+                    ></p>
+                    <p
+                        data-translate="exchange_resilitation_cancel_action_confirmation_3"
+                    ></p>
+                </div>
             </div>
 
-            <p
-                data-ng-bind-html="'exchange_resilitation_cancel_action_confirmation' | translate: { t0: '<strong>' + ctrl.exchange.displayName + '</strong>' }"
-                data-ng-if="ctrl.exchange.renewType.deleteAtExpiration"
-            ></p>
+            <div data-ng-if="ctrl.exchange.renewType.deleteAtExpiration">
+                <p
+                    data-translate="exchange_resilitation_cancel_action_confirmation_1"
+                    data-translate-values="{ t0: '<strong>' + ctrl.exchange.displayName + '</strong>' }"
+                ></p>
+                <p
+                    data-translate="exchange_resilitation_cancel_action_confirmation_2"
+                ></p>
+                <p
+                    data-translate="exchange_resilitation_cancel_action_confirmation_3"
+                ></p>
+            </div>
         </div>
     </div>
 </div>
