@@ -3,18 +3,21 @@ import Navbar from '@/navbar/navbar.jsx';
 import AccountSidebar from '@/account-sidebar';
 import NotificationsSidebar from '@/notifications-sidebar';
 import { NotificationsProvider } from '@/core/notifications';
+import { HeaderProvider } from '@/core/header';
 import ApplicationContext from '@/context';
 
 function ShellHeader() {
   return (
     <ApplicationContext.Consumer>
-      {({ environment, ux }) => (
+      {({ environment }) => (
         <Suspense fallback="">
-          <NotificationsProvider environment={environment}>
-            <Navbar environment={environment} />
-            <AccountSidebar environment={environment} />
-            <NotificationsSidebar environment={environment} />
-          </NotificationsProvider>
+          <HeaderProvider>
+            <NotificationsProvider environment={environment}>
+              <Navbar environment={environment} />
+              <AccountSidebar environment={environment} />
+              <NotificationsSidebar environment={environment} />
+            </NotificationsProvider>
+          </HeaderProvider>
         </Suspense>
       )}
     </ApplicationContext.Consumer>

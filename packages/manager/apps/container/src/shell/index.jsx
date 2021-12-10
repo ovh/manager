@@ -11,9 +11,9 @@ function Shell() {
   const [iframe, setIframe] = useState(null);
   const [router, setRouter] = useState(null);
   const { shell } = useContext(ApplicationContext);
-  shell.ux().registerSidebar('account', { visible: true });
-  shell.ux().registerSidebar('notifications', { visible: false });
-  shell.ux().registerNavbar();
+  // shell.ux().registerSidebar('account', { visible: true });
+  // shell.ux().registerSidebar('notifications', { visible: false });
+  // shell.ux().registerNavbar();
 
   useEffect(() => {
     setIframe(iframeRef.current);
