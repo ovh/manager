@@ -1,0 +1,12 @@
+{
+  "anthos_tenant_dashboard_general_information_software_update_success": "success",
+  "anthos_tenant_dashboard_general_information_software_update_error": "error",
+  "anthos_tenant_dashboard_general_information_software_update_title": "Mise à jour logicielle",
+  "anthos_tenant_dashboard_general_information_software_update_description": "Les versions suivantes de Anthos on Baremetal in private mode sont disponibles pour votre Hosted Private Cloud. Vous pouvez choisir la version de votre choix et consulter cette page pour connaitre les changements apportés à chaque version.",
+  "anthos_tenant_dashboard_general_information_software_update_version": "Version",
+  "anthos_tenant_dashboard_general_information_software_update_change_log_link": "Consulter le changelog",
+  "anthos_tenant_dashboard_general_information_software_update_info_1": "La durée typique d'une montée de version est d'environ 1 heure. Différents composants de votre control plane (Anthos Management Center) sont mis à jour via une procédure de Rolling update et restent disponibles pendant la mise à jour (sauf mention contraire dans la page mentionnée ci-dessus).",
+  "anthos_tenant_dashboard_general_information_software_update_info_2": "Vos « user clusters » (c'est à dire les clusters créés via Anthos, en dehors de celui hébergeant votre control plane) ne sont pas impactés. Vous pourrez suivre les étapes de mise à jour via votre espace client OVHcloud.",
+  "anthos_tenant_dashboard_general_information_software_update_info_3": "A l'issue de la mise à jour de votre control plane, de nouvelles mises à jour peuvent être applicables via la section « Solution Logicielle » du Dashboard de votre console Anthos. Vous pourrez les appliquer à chacun des « user clusters » au rythme de votre choix.",
+  "anthos_tenant_dashboard_general_information_software_update_submit": "Mise à jour"
+}
