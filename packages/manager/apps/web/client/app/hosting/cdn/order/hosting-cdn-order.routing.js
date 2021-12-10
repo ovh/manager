@@ -264,8 +264,10 @@ export default /* @ngInject */ ($stateProvider) => {
         });
     },
 
-    breadcrumb: /* @ngInject */ ($translate) =>
-      $translate.instant('hosting_cdn_upgrade_breadcrumb'),
+    planToPreselect: /* @ngInject */ /* @ngInject */ ($transition$) =>
+      $transition$.params().planToPreselect,
+
+    alerts: /* @ngInject */ ($transition$) => $transition$.params().alerts,
   };
   const atInternet = {
     rename: 'web::hosting::cdn::order',
@@ -281,6 +283,9 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting.dashboard.cdn.upgrade', {
     url: '/upgrade',
     component: 'hostingCdnOrder',
+    params: {
+      planToPreselect: '',
+    },
     resolve: { ...resolve, ...resolveUpgrade },
     atInternet,
   });
