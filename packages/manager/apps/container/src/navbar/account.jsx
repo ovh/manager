@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { capitalize, truncate } from 'lodash-es';
 import style from './navbar.module.scss';
 import { TRANSLATE_NAMESPACE } from './constants';
+import useHeader from '@/core/header';
 
 function NavbarAccount({ user, ux }) {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
@@ -12,6 +13,8 @@ function NavbarAccount({ user, ux }) {
     length: 10,
   });
 
+  const { isAccountSidebarVisible, setIsAccountSidebarVisible } = useHeader();
+
   return (
     <button
       role="button"
@@ -19,7 +22,7 @@ function NavbarAccount({ user, ux }) {
       className={`oui-navbar-link oui-navbar-link_icon oui-navbar-link_tertiary ${style.navbarLink}`}
       aria-label={t('navbar_account')}
       onClick={() => {
-        ux.toggleSidebar('account');
+        setIsAccountSidebarVisible(!isAccountSidebarVisible);
       }}
     >
       <span className="oui-navbar-link__wrapper oui-navbar-link__wrapper_border">

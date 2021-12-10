@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { groupBy } from 'lodash-es';
 
 import useNotifications from '@/core/notifications';
@@ -8,23 +8,20 @@ import Notifications from './Notifications/Notifications.jsx';
 import { MAX_NOTIFICATIONS } from './constants';
 
 import style from './notifications-sidebar.module.scss';
-import ApplicationContext from '../context/application.context.js';
+import useHeader from '@/core/header';
 
 const NotificationsSidebar = ({ environment }) => {
   const locale = environment.getUserLocale();
-  const { shell } = useContext(ApplicationContext);
-  const ux = shell.ux();
   const { fromNow } = useDate();
 
   const [isLoading, setIsLoading] = useState(false);
   const [groupedNotifications, setGroupedNotifications] = useState([]);
-  console.log(ux);
-  const { isSidebarVisible } = ux;
-  const isNotificationsSidebarOpen = isSidebarVisible('notifications');
 
+  const { isNotificationsSidebarVisible } = useHeader();
   const {
     notifications,
     loadNotifications,
+    setNotificationsCount,
     getActiveNotifications,
   } = useNotifications();
 
@@ -45,16 +42,15 @@ const NotificationsSidebar = ({ environment }) => {
         ? notifications.slice(0, MAX_NOTIFICATIONS)
         : notifications;
 
-    // setNavbarNotificationCount(
-    //   getActiveNotifications(notificationToDisplay).length,
-    // );
+    setNotificationsCount(getActiveNotifications(notificationToDisplay).length);
     setGroupedNotifications(getGroupedNotifications(notificationToDisplay));
   }, [notifications]);
 
   return (
     <div
-      className={`${style.notificationsSidebar} ${isNotificationsSidebarOpen &&
-        style.notificationsSidebar_toggle}`}
+      className={`${
+        style.notificationsSidebar
+      } ${isNotificationsSidebarVisible && style.notificationsSidebar_toggle}`}
       role="menu"
     >
       <Notifications>

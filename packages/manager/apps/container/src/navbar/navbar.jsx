@@ -14,7 +14,7 @@ import style from './navbar.module.scss';
 import { MESSAGES } from './constants';
 import { useShell } from '../context';
 
-function Navbar({ environment, ux }) {
+function Navbar({ environment }) {
   const shell = useShell();
   const user = environment.getUser();
   const universe = environment.getUniverse();
@@ -52,10 +52,10 @@ function Navbar({ environment, ux }) {
           ></LanguageMenu>
         </div>
         <div className="oui-navbar-list__item">
-          <Notifications ux={ux} />
+          <Notifications />
         </div>
         <div className="oui-navbar-list__item">
-          <Account user={user} ux={ux} />
+          <Account user={user} />
         </div>
       </div>
     </div>
@@ -64,7 +64,6 @@ function Navbar({ environment, ux }) {
 
 Navbar.propTypes = {
   environment: PropTypes.object.isRequired,
-  ux: PropTypes.object.isRequired,
 };
 
 export default Navbar;
