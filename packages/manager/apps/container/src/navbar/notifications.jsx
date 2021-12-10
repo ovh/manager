@@ -1,25 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import useNotifications from '../core/notifications';
 
 import style from './navbar.module.scss';
 import { TRANSLATE_NAMESPACE } from './constants';
+import useHeader from '@/core/header';
 
 export default function NavbarNotifications(props) {
-  const { ux } = props;
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   // getNavbarNotificationCount
-  const { toggleSidebar, isSidebarOpen } = ux;
-  const { readAllNotifications } = useNotifications();
+  const { readAllNotifications, notificationsCount } = useNotifications();
 
-  const notificationCount = 0;
+  const {
+    isNotificationsSidebarVisible,
+    setIsNotificationsSidebarVisible,
+  } = useHeader();
 
   function onClick() {
-    const openState = isSidebarOpen('notifications');
-    toggleSidebar('notifications');
-    if (openState) {
+    const initialVisibilityState = isNotificationsSidebarVisible;
+    setIsNotificationsSidebarVisible(!isNotificationsSidebarVisible);
+    if (initialVisibilityState) {
       readAllNotifications();
     }
   }
@@ -34,14 +35,10 @@ export default function NavbarNotifications(props) {
       onClick={onClick}
     >
       <span className="oui-icon oui-icon-bell" aria-hidden="true">
-        {notificationCount > 0 && (
-          <span className="oui-icon__badge">{notificationCount}</span>
+        {notificationsCount > 0 && (
+          <span className="oui-icon__badge">{notificationsCount}</span>
         )}
       </span>
     </button>
   );
 }
-
-NavbarNotifications.propTypes = {
-  ux: PropTypes.object.isRequired,
-};
