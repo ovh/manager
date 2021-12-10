@@ -18,6 +18,18 @@ export default class Base {
     }
   }
 
+  isStatusGroupReady() {
+    return this.statusGroup === STATUS.READY;
+  }
+
+  isStatusGroupPending() {
+    return this.statusGroup === STATUS.PENDING;
+  }
+
+  isStatusGroupError() {
+    return this.statusGroup === STATUS.ERROR;
+  }
+
   isActive() {
     return this.status === STATUS.READY;
   }

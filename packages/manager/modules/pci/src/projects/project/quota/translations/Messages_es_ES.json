@@ -1,7 +1,7 @@
 {
   "pci_projects_project_quota": "Cuotas",
   "pci_projects_project_quota_protect_explain": "Para ayudarle a controlar el consumo de cloud, su proyecto tiene recursos limitados.",
-  "pci_projects_project_quota_protect_more": "Si necesita más recursos, puede solicitarlos haciendo clic en el siguiente botón.",
+  "pci_projects_project_quota_protect_more": "Si necesita más recursos, puede contratar crédito cloud o ponerse en contacto con nuestro equipo haciendo clic a continuación.",
   "pci_projects_project_quota_protect_more_btn": "Aumentar los límites de mi cuota",
   "pci_projects_project_quota_current_limit": "Límites de su cuota actuales",
   "pci_projects_project_quota_instance_unlimited": "Ilimitado",

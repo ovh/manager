@@ -7,8 +7,10 @@
   "pci_databases_general_information_add_nodes": "Ajouter un nœud",
   "pci_databases_general_information_delete_nodes": "Supprimer un nœud",
   "pci_databases_general_information_node_type_label": "Modèle de nœud",
-  "pci_databases_general_information_node_type": "{{coreNumber}} CPU / {{memorySize}} RAM / {{storageSize}} Stockage SSD",
-  "pci_databases_general_information_node_type_disk_range": "{{coreNumber}} CPU / {{memorySize}} RAM / de {{storageMinSize}} à {{storageMaxSize}} Stockage SSD",
+  "pci_databases_general_information_node_type_cpu": "{{coreNumber}} CPU",
+  "pci_databases_general_information_node_type_memory": "{{memorySize}} RAM",
+  "pci_databases_general_information_node_type_storage": "{{storageSize}} de stockage SSD",
+  "pci_databases_general_information_node_type_storage_range": "de {{storageMinSize}} à {{storageMaxSize}} de stockage SSD",
   "pci_databases_general_information_upgrade_node": "Améliorer votre modèle de nœud",
   "pci_databases_general_information_service_label": "Service",
   "pci_databases_general_information_service_URI_label": "URI du service",
@@ -58,5 +60,7 @@
   "pci_databases_general_information_certificate_label": "Certificat CA",
   "pci_databases_general_information_certificate_link": "Voir",
   "pci_databases_general_information_certificate_download": "Télécharger",
-  "pci_databases_general_information_certificate_tooltip": "Votre certificat: <code>{{certificate}}</code>"
+  "pci_databases_general_information_service_integration_title": "Intégration de services",
+  "pci_databases_general_information_kafka_mirror_maker_label": "Kafka Mirror Maker",
+  "pci_databases_general_information_kafka_mirror_maker_none": "Aucun"
 }

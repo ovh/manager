@@ -1,0 +1,8 @@
+{
+  "pci_databases_replications_delete_replication_confirm": "Bestätigen",
+  "pci_databases_replications_delete_replication_cancel": "Abbrechen",
+  "pci_databases_replications_delete_replication": "Replikation löschen",
+  "pci_databases_replications_delete_replication_description": "Sind Sie sicher, dass Sie diese Replikation löschen möchten?",
+  "pci_databases_replications_delete_replication_success_message": "Die Replikation wurde gelöscht.",
+  "pci_databases_replications_delete_replication_error_message": "Beim Löschen Ihrer Replikation ist ein Fehler aufgetreten: {{ message }}"
+}

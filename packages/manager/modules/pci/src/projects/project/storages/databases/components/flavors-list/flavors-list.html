@@ -42,7 +42,7 @@
                 }"
                 ></span>
                 <span
-                    ng-if="flavor.minDiskSize === flavor.maxDiskSize"
+                    ng-if="flavor.maxDiskSize > 0 && flavor.minDiskSize === flavor.maxDiskSize"
                     data-translate="pci_database_flavors_list_spec_storage"
                     data-translate-values="{ 
                     storage: (flavor.minDiskSize | cucBytes:2:false:'GB'),

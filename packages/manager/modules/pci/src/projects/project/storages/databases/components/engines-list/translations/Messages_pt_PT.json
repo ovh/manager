@@ -1,11 +1,12 @@
 {
   "pci_database_engines_list_version_new": "Novo",
-  "pci_database_engines_list_version_getting_deprecated": "Em breve depreciado",
+  "pci_database_engines_list_version_getting_deprecated": "Obsoleto em breve",
   "pci_database_engines_list_beta": "Beta",
   "pci_database_engines_list_description_mysql": "Sistema de gestão de base de dados relacional",
   "pci_database_engines_list_description_postgresql": "Sistema de gestão de base de dados relacional e de objetos",
   "pci_database_engines_list_description_kafka": "Sistema de streaming distribuído e de alto desempenho",
   "pci_database_engines_list_description_redis": "Sistema de armazenamento de dados chave-valor em memória",
   "pci_database_engines_list_description_mongodb": "Sistema de gestão de base de dados orientado para documentos",
-  "pci_database_engines_list_description_opensearch": "Motor de pesquisa e de análise distribuída. Fork Elasticsearch 7.10.2 e Kibana 7.10.2"
+  "pci_database_engines_list_description_opensearch": "Motor de pesquisa e de análise distribuída. Fork Elasticsearch 7.10.2 e Kibana 7.10.2",
+  "pci_database_engines_list_description_kafkaMirrorMaker": "Sistema de replicação de dados entre dois clusters Kafka"
 }

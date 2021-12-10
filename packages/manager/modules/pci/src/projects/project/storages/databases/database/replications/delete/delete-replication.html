@@ -1,0 +1,13 @@
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-label="{{:: 'pci_databases_replications_delete_replication_confirm' | translate}}"
+    data-primary-action="$ctrl.deleteReplication()"
+    data-secondary-action="$ctrl.cancel()"
+    data-secondary-label="{{:: 'pci_databases_replications_delete_replication_cancel' | translate}}"
+    data-loading="$ctrl.processing"
+    data-heading="{{:: 'pci_databases_replications_delete_replication' | translate}}"
+>
+    <p
+        data-translate="pci_databases_replications_delete_replication_description"
+    ></p>
+</oui-modal>

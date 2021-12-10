@@ -19,6 +19,9 @@
                 name="databaseName"
                 class="oui-input"
                 data-ng-model="$ctrl.name"
+                data-ng-minlength="$ctrl.minNameLength"
+                data-ng-maxlength="$ctrl.maxNameLength"
+                data-ng-pattern="$ctrl.pattern"
                 required
                 autofocus
             />

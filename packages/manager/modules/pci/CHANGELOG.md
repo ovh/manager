@@ -1,3 +1,21 @@
+# [5.52.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.51.0...@ovh-ux/manager-pci@5.52.0) (2021-12-09)
+
+
+### Features
+
+* **public-cloud.project.quota:** changes in increasing the quota ([#5862](https://github.com/ovh/manager/issues/5862)) ([d60d0c9](https://github.com/ovh/manager/commit/d60d0c993af332e2fa239d2c68e7397d29b70676))
+
+
+
+# [5.51.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.50.0...@ovh-ux/manager-pci@5.51.0) (2021-12-09)
+
+
+### Features
+
+* **storage.databases:** add new engine ([#5747](https://github.com/ovh/manager/issues/5747)) ([69e437c](https://github.com/ovh/manager/commit/69e437c568e85796c3c8a64dc5d625feba4b4253))
+
+
+
 # [5.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.49.1...@ovh-ux/manager-pci@5.50.0) (2021-12-01)
 
 

@@ -13,6 +13,7 @@ export const ENGINES_NAMES = {
   kafka: 'Kafka',
   redis: 'Redis',
   opensearch: 'OpenSearch',
+  kafkaMirrorMaker: 'Kafka MirrorMaker',
 };
 
 export default {

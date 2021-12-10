@@ -58,7 +58,17 @@
             <a
                 class="oui-button oui-button_primary oui-link_icon"
                 data-ng-if=":: $ctrl.quotas.length > 0"
-                data-ng-href="{{ $ctrl.increaseQuotaLink }}"
+                data-ng-href="{{ :: $ctrl.increaseQuotaUrls.contactSupport }}"
+            >
+                <span
+                    data-translate="pci_projects_project_quota_protect_contact_support"
+                ></span>
+            </a>
+
+            <a
+                class="oui-button oui-button_primary oui-link_icon"
+                data-ng-if=":: $ctrl.quotas.length > 0 && $ctrl.serviceOptions.length > 0"
+                data-ng-href="{{ :: $ctrl.increaseQuotaUrls.buyCredits }}"
             >
                 <span
                     data-translate="pci_projects_project_quota_protect_more_btn"

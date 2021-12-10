@@ -1,0 +1,19 @@
+{
+  "pci_databases_replications_tab_title": "Replication flows",
+  "pci_databases_replications_tab_description": "Replication flows allow automatic copying of data topics and configurations between two Kafka clusters. A MirrorMaker service can run multiple replication flows.",
+  "pci_databases_replications_tab_source": "Source",
+  "pci_databases_replications_tab_target": "Target",
+  "pci_databases_replications_tab_topics": "Topics",
+  "pci_databases_replications_tab_topics_blacklist": "Topics blacklists",
+  "pci_databases_replications_tab_sync_group_offsets": "Sync group offsets",
+  "pci_databases_replications_tab_sync_interval": "Sync interval(s)",
+  "pci_databases_replications_tab_status": "Status",
+  "pci_databases_replications_tab_edit": "Modify replication flow",
+  "pci_databases_replications_tab_delete": "Delete replication flow",
+  "pci_databases_replications_tab_add": "Create a replication flow",
+  "pci_databases_replications_tab_no_integration": "Before you create a replication flow, please ensure that you have configured at least 2 Kafka.",
+  "pci_databases_replications_tab_sync_group_offsets_true": "Yes",
+  "pci_databases_replications_tab_sync_group_offsets_false": "No",
+  "pci_databases_replications_tab_status_true": "Enabled",
+  "pci_databases_replications_tab_status_false": "Disabled"
+}
