@@ -27,6 +27,7 @@ export function initShell(): Promise<Shell> {
       .getPluginManager()
       .registerPlugin('i18n', i18nPlugin(shell, environment));
 
+    // register ux plugin
     const uxPlugin = new UXPlugin(shell);
     shell
       .getPluginManager()

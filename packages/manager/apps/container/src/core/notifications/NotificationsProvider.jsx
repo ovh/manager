@@ -12,6 +12,7 @@ export const NotificationsProvider = ({ children, environment }) => {
   let notificationsContext = useContext(NotificationsContext);
 
   const [notifications, setNotifications] = useState([]);
+  const [notificationsCount, setNotificationsCount] = useState([]);
 
   /**
    * Call 2API notifications to get notifications that needs to be displayed.
@@ -106,7 +107,8 @@ export const NotificationsProvider = ({ children, environment }) => {
         notificationToUpdate,
         NOTIFICATION_STATUS_ENUM.ACKNOWLEDGED,
       );
-    } else if (
+    }
+    if (
       !notificationToUpdate.isActive() &&
       !notificationToUpdate.updating &&
       !linkClicked
@@ -127,6 +129,8 @@ export const NotificationsProvider = ({ children, environment }) => {
     loadNotifications,
     readAllNotifications,
     toggleNotificationReadStatus,
+    notificationsCount,
+    setNotificationsCount,
   };
 
   return (
