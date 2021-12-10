@@ -12,6 +12,7 @@ import orderHost from './order-host';
 import addStorage from './add-storage';
 import orderPublicIp from './order-public-ip';
 import assignPrivateIp from './assign-private-ip';
+import softwareUpdate from './software-update';
 
 const moduleName = 'ovhManagerAnthosDashboardGeneralInformation';
 
@@ -26,6 +27,7 @@ angular
     orderPublicIp,
     assignPrivateIp,
     storageUsage,
+    softwareUpdate,
   ])
   .config(routing)
   .component('anthosDashboardGeneralInformation', component)
