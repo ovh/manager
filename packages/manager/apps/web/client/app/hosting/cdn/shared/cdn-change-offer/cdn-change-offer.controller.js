@@ -1,6 +1,6 @@
 export default class HostingCdnSharedChangeOfferController {
   onCdnChangeOfferConfirm() {
-    this.trackClick('activate_advanced_purge::upgrade_confirm');
+    this.trackClick('activate_advanced_purge::confirm');
 
     this.loading = true;
     return this.goToCdnChangeOffer().finally(() => {
@@ -9,7 +9,7 @@ export default class HostingCdnSharedChangeOfferController {
   }
 
   onCdnChangeOfferCancel() {
-    this.trackClick('activate_advanced_purge::upgrade_error');
+    this.trackClick('activate_advanced_purge::cancel');
 
     this.model.options.cache.advanced_purge.enabled = false;
     return this.goBack();
