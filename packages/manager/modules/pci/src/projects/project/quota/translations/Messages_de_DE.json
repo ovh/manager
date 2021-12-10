@@ -1,7 +1,7 @@
 {
   "pci_projects_project_quota": "Quotas",
   "pci_projects_project_quota_protect_explain": "Um den Verbrauch an Cloud-Ressourcen zu begrenzen, wurden diese für Ihr Projekt limitiert.",
-  "pci_projects_project_quota_protect_more": "Wenn Sie mehr Ressourcen benötigen, können Sie diese bei unserem Team anfordern, indem Sie unten auf den Button klicken.",
+  "pci_projects_project_quota_protect_more": "Benötigen Sie zusätzliche Ressourcen? Bestellen Sie Cloud-Guthaben oder kontaktieren Sie unser Team. Bitte klicken Sie dazu auf die unten stehenden Buttons.",
   "pci_projects_project_quota_protect_more_btn": "Quota erhöhen",
   "pci_projects_project_quota_current_limit": "Derzeitige Begrenzungen",
   "pci_projects_project_quota_instance_unlimited": "Unbegrenzt",

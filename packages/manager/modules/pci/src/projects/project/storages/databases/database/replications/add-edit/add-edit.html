@@ -1,0 +1,192 @@
+<oui-back-button
+    data-previous-page="{{:: 'pci_databases_replications_add_edit_back' | translate }}"
+    data-on-click="$ctrl.goBack()"
+></oui-back-button>
+<h2
+    ng-if="!$ctrl.isUpdate"
+    data-translate="pci_databases_replications_add_title"
+></h2>
+<h2
+    ng-if="$ctrl.isUpdate"
+    data-translate="pci_databases_replications_edit_title"
+></h2>
+<form
+    name="$ctrl.addOrEditReplicationForm"
+    ng-submit="$ctrl.addOrEditReplication()"
+>
+    <div class="row">
+        <div class="col">
+            <oui-field
+                data-label="{{:: 'pci_databases_replications_add_edit_source' | translate }}"
+                ng-class="{'oui-field_error': $ctrl.invalidTargetSource}"
+            >
+                <oui-select
+                    model="$ctrl.model.sourceIntegration"
+                    name="source"
+                    items="$ctrl.readyServiceIntegrationList"
+                    match="sourceServiceName"
+                    on-change="$ctrl.checkTargetAndSourceValidity()"
+                    disabled="$ctrl.isUpdate"
+                    required
+                >
+                </oui-select>
+            </oui-field>
+        </div>
+        <div class="col">
+            <oui-field
+                data-label="{{:: 'pci_databases_replications_add_edit_target' | translate }}"
+                ng-class="{'oui-field_error': $ctrl.invalidTargetSource}"
+            >
+                <oui-select
+                    model="$ctrl.model.targetIntegration"
+                    name="target"
+                    items="$ctrl.readyServiceIntegrationList"
+                    match="sourceServiceName"
+                    on-change="$ctrl.checkTargetAndSourceValidity()"
+                    disabled="$ctrl.isUpdate"
+                    required
+                >
+                </oui-select>
+            </oui-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <tags-input
+                name="topics"
+                data-placeholder="{{:: 'pci_databases_replications_add_edit_topics_placeholder' | translate }}"
+                data-model="$ctrl.model.topics"
+                data-min="$ctrl.FORM_RULES.topics.min"
+                data-max="$ctrl.FORM_RULES.topics.max"
+                data-pattern="$ctrl.FORM_RULES.topics.pattern"
+                data-label="{{:: 'pci_databases_replications_add_edit_topics' | translate }}"
+                data-button-label="{{:: 'pci_databases_replications_add_edit_topics_add' | translate }}"
+            ></tags-input>
+        </div>
+        <div class="col">
+            <tags-input
+                name="blacklisted-topics"
+                data-placeholder="{{:: 'pci_databases_replications_add_edit_blacklisted_topics_placeholder' | translate }}"
+                data-model="$ctrl.model.topicExcludeList"
+                data-min="$ctrl.FORM_RULES.blacklistedTopics.min"
+                data-max="$ctrl.FORM_RULES.blacklistedTopics.max"
+                data-pattern="$ctrl.FORM_RULES.blacklistedTopics.pattern"
+                data-label="{{:: 'pci_databases_replications_add_edit_blacklisted_topics' | translate }}"
+                data-button-label="{{:: 'pci_databases_replications_add_edit_blacklisted_topics_add' | translate }}"
+            ></tags-input>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <oui-field
+                data-label="{{ ::'pci_databases_replications_add_edit_sync_group_offset' | translate }}"
+            >
+                <oui-switch
+                    model="$ctrl.model.syncGroupOffsets"
+                    name="sync-group-offset"
+                >
+                </oui-switch>
+                <strong
+                    data-translate="{{'pci_databases_replications_add_edit_syncGroupOffset_' +
+                    $ctrl.model.syncGroupOffsets | translate }}"
+                >
+                </strong>
+            </oui-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <oui-field
+                data-label="{{:: 'pci_databases_replications_add_edit_sync_interval' | translate }}"
+            >
+                <input
+                    data-ng-model="$ctrl.model.syncInterval"
+                    class="oui-input"
+                    name="sync-interval"
+                    type="number"
+                    ng-min="$ctrl.FORM_RULES.editSyncInterval.min"
+                    ng-max="$ctrl.FORM_RULES.editSyncInterval.max"
+                    required
+                />
+            </oui-field>
+        </div>
+        <div class="col">
+            <oui-field
+                data-label="{{:: 'pci_databases_replications_add_edit_policy' | translate }}"
+                data-label-popover="{{::
+                                ('pci_databases_replications_add_edit_policy_tooltip_1' | translate)
+                                +'\r\n\r\n' + ('pci_databases_replications_add_edit_policy_tooltip_2' | translate : { defaultPolicy: $ctrl.POLICIES[0] })
+                                +'\r\n\r\n' + ('pci_databases_replications_add_edit_policy_tooltip_3' | translate)
+                                +'\r\n\r\n' + ('pci_databases_replications_add_edit_policy_tooltip_4' | translate : {identificationPolicy: $ctrl.POLICIES[1]})
+                                }}"
+            >
+                <oui-select
+                    model="$ctrl.model.replicationPolicyClass"
+                    name="policy"
+                    items="$ctrl.POLICIES"
+                    required
+                >
+                </oui-select>
+            </oui-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <oui-field
+                data-label="{{ ::'pci_databases_replications_add_edit_heartbeat' | translate }}"
+                class="d-inline-block"
+                size="m"
+            >
+                <oui-switch model="$ctrl.model.emitHeartbeats" name="heartbeat">
+                </oui-switch>
+                <strong
+                    >{{'pci_databases_replications_add_edit_heartbeat_' +
+                    $ctrl.model.emitHeartbeats | translate }}</strong
+                >
+            </oui-field>
+            <oui-field
+                data-label="{{ ::'pci_databases_replications_add_edit_status' | translate }}"
+                class="d-inline-block"
+                size="s"
+            >
+                <oui-switch model="$ctrl.model.enabled" name="status">
+                </oui-switch>
+                <strong
+                    >{{ 'pci_databases_replications_add_edit_status_' +
+                    $ctrl.model.enabled | translate }}</strong
+                >
+            </oui-field>
+        </div>
+    </div>
+    <div class="text-right">
+        <oui-button
+            size="l"
+            disabled="$ctrl.processing"
+            ng-click="$ctrl.cancel()"
+        >
+            <span
+                data-translate="pci_databases_replications_add_edit_cancel"
+            ></span>
+        </oui-button>
+        <oui-button
+            type="submit"
+            size="l"
+            variant="primary"
+            icon-right="oui-icon-arrow-right"
+            disabled="$ctrl.addOrEditReplicationForm.$invalid || $ctrl.invalidTargetSource || $ctrl.processing"
+        >
+            <span
+                ng-if="$ctrl.isUpdate"
+                data-translate="pci_databases_replications_edit_validate"
+            ></span>
+            <span
+                ng-if="!$ctrl.isUpdate"
+                data-translate="pci_databases_replications_add_validate"
+            ></span>
+        </oui-button>
+    </div>
+</form>

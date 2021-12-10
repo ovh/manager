@@ -1,8 +1,11 @@
+import find from 'lodash/find';
 import capitalize from 'lodash/capitalize';
 import {
   MAX_IPS_DISPLAY,
   CERTIFICATE_FILENAME,
+  DATABASE_TYPES,
 } from '../../databases.constants';
+import { WARNING_MESSAGES } from './general-information.constants';
 
 export default class {
   /* @ngInject */
@@ -26,6 +29,7 @@ export default class {
     this.loadMessages();
     this.pollDatabaseStatus();
     this.maxAllowedIpsToShow = MAX_IPS_DISPLAY;
+    this.warningMessages = WARNING_MESSAGES;
   }
 
   downloadCertificate() {
@@ -36,20 +40,6 @@ export default class {
     });
   }
 
-  showCertificate() {
-    this.CucCloudMessage.info(
-      {
-        textHtml: this.$translate.instant(
-          'pci_databases_general_information_certificate_tooltip',
-          {
-            certificate: this.database.certificate.ca,
-          },
-        ),
-      },
-      this.messageContainer,
-    );
-  }
-
   addNode() {
     this.trackDashboard('general_information::add_node');
     this.goToAddNode();
@@ -58,6 +48,23 @@ export default class {
   deleteNode() {
     this.trackDashboard('general_information::remove_node');
     this.goToDeleteNode();
+  }
+
+  getWarningMessage() {
+    const noIp =
+      this.isFeatureActivated('allowedIpsTab') && this.allowedIps.length === 0;
+    const noUsers =
+      this.isFeatureActivated('usersTab') && this.users.length === 0;
+    if (noIp && noUsers) {
+      return this.warningMessages.noIpNoUserMessage;
+    }
+    if (noIp) {
+      return this.warningMessages.noIpMessage;
+    }
+    if (noUsers) {
+      return this.warningMessages.noUserMessage;
+    }
+    return null;
   }
 
   manageUsers() {
@@ -112,7 +119,29 @@ export default class {
 
   deleteDatabase() {
     this.trackDashboard('general_information::delete_database');
-    this.goToDeleteDatabase();
+
+    if (
+      [DATABASE_TYPES.KAFKA, DATABASE_TYPES.KAFKA_MIRROR_MAKER].includes(
+        this.database.engine,
+      )
+    ) {
+      return this.DatabaseService.getIntegrations(
+        this.projectId,
+        this.database.engine,
+        this.database.id,
+      ).then((integrations) => {
+        const linkedServices = integrations.map((integration) =>
+          this.database.engine === DATABASE_TYPES.KAFKA
+            ? find(this.databases, { id: integration.destinationServiceId })
+            : find(this.databases, { id: integration.sourceServiceId }),
+        );
+        if (linkedServices.length > 0) {
+          return this.goToConfirmDeleteDatabase(linkedServices);
+        }
+        return this.goToDeleteDatabase();
+      });
+    }
+    return this.goToDeleteDatabase();
   }
 
   $onDestroy() {

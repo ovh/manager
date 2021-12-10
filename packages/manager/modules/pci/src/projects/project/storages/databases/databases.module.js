@@ -17,6 +17,7 @@ import node from './components/node';
 import onboarding from './onboarding';
 import routing from './databases.routing';
 import service from './database.service';
+import confirmDelete from './confirm-delete';
 
 import './index.scss';
 
@@ -33,6 +34,7 @@ angular
     ngOvhSwimmingPoll,
     node,
     onboarding,
+    confirmDelete,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ngOvhCloudUniverseComponents',

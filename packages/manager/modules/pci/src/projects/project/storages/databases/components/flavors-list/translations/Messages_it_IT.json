@@ -1,5 +1,5 @@
 {
-  "pci_database_flavors_list_spec_ram": "{{ram}} di RAM",
+  "pci_database_flavors_list_spec_ram": "{{ram}} RAM",
   "pci_database_flavors_list_spec_core": "{{cores}} vCore",
   "pci_database_flavors_list_spec_storage": "{{storage}} di storage SSD",
   "pci_database_flavors_list_spec_bandwidth": "{{ bandwidth }} Mbps",

@@ -1,0 +1,8 @@
+{
+  "pci_databases_replications_delete_replication_confirm": "Zatwierdź",
+  "pci_databases_replications_delete_replication_cancel": "Anuluj",
+  "pci_databases_replications_delete_replication": "Usuń replikację",
+  "pci_databases_replications_delete_replication_description": "Czy na pewno chcesz usunąć tę replikację?",
+  "pci_databases_replications_delete_replication_success_message": "Replikacja została usunięta.",
+  "pci_databases_replications_delete_replication_error_message": "Wystąpił błąd podczas usuwania replikacji: {{message}}."
+}

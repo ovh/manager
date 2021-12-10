@@ -27,5 +27,9 @@
   "pci_database_list_upgrade_node_database": "Node-Modell-Upgrade",
   "pci_database_node_type": "{{coreNumber}} CPU / {{memorySize}} RAM / {{storageSize}} SSD Storage",
   "pci_database_node_type_label": "Node-Modell",
-  "pci_database_node_type_range": "{{coreNumber}} CPU / {{memorySize}} RAM / {{storageMinSize}} bis {{storageMaxSize}} SSD Storage"
+  "pci_database_node_type_range": "{{coreNumber}} CPU / {{memorySize}} RAM / {{storageMinSize}} bis {{storageMaxSize}} SSD Storage",
+  "pci_database_node_type_cpu": "{{coreNumber}} CPU",
+  "pci_database_node_type_memory": "{{memorySize}} RAM",
+  "pci_database_node_type_storage": "{{storageSize}} SSD Storage",
+  "pci_database_node_type_storage_range": "{{storageMinSize}} bis {{storageMaxSize}} SSD Storage"
 }

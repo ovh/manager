@@ -2,7 +2,7 @@
   "pci_projects_project_quota_increase_title": "Aumentar os meus limites",
   "pci_projects_project_quota_increase_submit_label": "Confirmar",
   "pci_projects_project_quota_increase_cancel_label": "Cancelar",
-  "pci_projects_project_quota_increase_content": "Tem a certeza de que pretende aumentar os limites do seu projeto <strong>{{ projectId }}</strong>?",
+  "pci_projects_project_quota_increase_content": "Tem a certeza de que pretende aumentar os limites do seu projeto {{ projectInfo }}?",
   "pci_projects_project_quota_increase_success_message": "O seu pedido de aumento de quota foi corretamente tomado em conta. <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{ ticketUrl }}\">Clique aqui para seguir o seu progresso. <span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>",
   "pci_projects_project_quota_increase_error_message": "Ocorreu um erro aquando do pedido de aumento dos seus limites: {{ message }}.",
   "pci_projects_project_quota_increase_buy_success_message": "A nota de encomenda para adicionar créditos ao seu projeto está disponível <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{ billingUrl }}\">aqui<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>",
@@ -11,5 +11,6 @@
   "pci_projects_project_quota_increase_select_volume_quota-50vms": "50 VM",
   "pci_projects_project_quota_increase_select_volume_quota-100vms": "100 VM",
   "pci_projects_project_quota_increase_select_volume_quota-200vms": "200 VM",
-  "pci_projects_project_quota_increase_buy_credits": "Pode adicionar crédito ao seu projeto Public Cloud para ter acesso a um nível superior de quotas."
+  "pci_projects_project_quota_increase_buy_credits": "Pode adicionar crédito ao seu projeto Public Cloud para ter acesso a um nível superior de quotas.",
+  "pci_projects_project_quota_increase_payment_info": "Depois de validar a adição de quotas, este crédito será debitado do seu método de pagamento registado e não poderá voltar a ser devolvido. Será então utilizado automaticamente para a faturação do seu projeto."
 }

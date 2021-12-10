@@ -1,11 +1,12 @@
 <form ng-submit="$ctrl.addTag()">
-    <oui-field data-label="{{ $ctrl.label }}" data-size="xl">
-        <div class="oui-input-group oui-input-group_xl">
+    <oui-field data-label="{{ $ctrl.label }}">
+        <div class="oui-input-group">
             <input
                 class="oui-input"
                 type="text"
-                id="tagInput"
-                name="tagInput"
+                id="{{'tagInput-' + $ctrl.id}}"
+                name="{{'tagInput-' + $ctrl.id}}"
+                placeholder="{{$ctrl.placeholder}}"
                 ng-model="$ctrl.tag"
                 ng-minlength="$ctrl.min"
                 ng-maxlength="$ctrl.max"

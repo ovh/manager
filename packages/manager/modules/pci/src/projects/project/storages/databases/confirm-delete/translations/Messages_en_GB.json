@@ -1,0 +1,10 @@
+{
+  "pci_database_confirm_delete_confirm": "Confirm",
+  "pci_database_confirm_delete_cancel": "Cancel",
+  "pci_database_confirm_delete": "Delete your service",
+  "pci_database_confirm_delete_description_1": "The following service(s) are linked to the {{serviceName}} service you want to delete:",
+  "pci_database_confirm_delete_description_2": "Are you sure you want to delete the {{serviceName}} service?",
+  "pci_database_confirm_delete_description_3": "This will also delete the link (replication or integration).",
+  "pci_database_confirm_delete_success_message": "Your service has been deleted.",
+  "pci_database_confirm_delete_error_message": "An error occurred while deleting your service: {{message}}"
+}
