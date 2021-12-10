@@ -59,6 +59,7 @@ const constants = {
             'https://www.ovh.de/g1271.anleitung_zur_nutzung_der_automatischen_verlangerung_bei_ovh',
           ipv6Vps: 'https://www.ovh.de/g2365.vps-ipv6',
           billing: 'https://docs.ovh.com/de/billing/',
+          purchaseOrders: 'https://docs.ovh.com/de/billing/purchase-order/',
           vrack:
             'https://docs.ovh.com/de/dedicated/mehrere-dedizierte-server-im-vrack-konfigurieren/',
         },
@@ -96,6 +97,7 @@ const constants = {
           autoRenew: 'https://www.ovh.es/g1271.renovacion_automatica_en_ovh',
           ipv6Vps: 'https://www.ovh.es/g2365.vps-ipv6',
           billing: 'https://docs.ovh.com/es/billing/',
+          purchaseOrders: 'https://docs.ovh.com/es/billing/purchase-order/',
           vrack:
             'https://docs.ovh.com/es/dedicated/configurar-vrack-en-servidor-dedicado/',
         },
@@ -185,6 +187,7 @@ const constants = {
             'http://docs.ovh.com/fr/fr/cloud/dedicated/find-disk-serial-number/',
           vmEncryption: 'https://docs.ovh.com/fr/private-cloud/vm-encrypt/',
           billing: 'https://docs.ovh.com/fr/billing/',
+          purchaseOrders: 'https://docs.ovh.com/fr/billing/purchase-order/',
           vrack:
             'https://docs.ovh.com/fr/dedicated/configurer-plusieurs-serveurs-dedies-dans-le-vrack/',
         },
@@ -238,6 +241,7 @@ const constants = {
           ipv6Vps: 'https://www.ovh.co.uk/g2365.vps-ipv6',
           vmEncryption: 'https://docs.ovh.com/gb/en/private-cloud/vm-encrypt/',
           billing: 'https://docs.ovh.com/gb/en/billing/',
+          purchaseOrders: 'https://docs.ovh.com/gb/en/billing/purchase-order/',
           vrack:
             'https://docs.ovh.com/gb/en/dedicated/configuring-vrack-on-dedicated-servers/',
         },
@@ -277,6 +281,7 @@ const constants = {
             'https://www.ovh.it/g2366.modifica_la_password_di_root_su_un_vps_linux',
           ipv6Vps: 'https://www.ovh.it/g2365.vps-ipv6',
           billing: 'https://docs.ovh.com/it/billing/',
+          purchaseOrders: 'https://docs.ovh.com/it/billing/purchase-order/',
           vrack:
             'https://docs.ovh.com/it/dedicated/configurare-server-dedicati-vrack/',
         },
@@ -394,6 +399,7 @@ const constants = {
             'https://www.ovh.pl/g2366.Zmiana_hasla_root_na_serwerze_vps_linux',
           ipv6Vps: 'https://www.ovh.pl/g2365.vps-ipv6',
           billing: 'https://docs.ovh.com/pl/billing/',
+          purchaseOrders: 'https://docs.ovh.com/pl/billing/purchase-order/',
           vrack:
             'https://docs.ovh.com/pl/dedicated/konfiguracja-kilku-serwerow-dedykowanych-vrack/',
         },
@@ -434,6 +440,7 @@ const constants = {
             'https://www.ovh.pt/g2366.alterar_a_password_root_num_servidor_vps_linux',
           ipv6Vps: 'https://www.ovh.pt/g2365.vps-ipv6',
           billing: 'https://docs.ovh.com/pt/billing/',
+          purchaseOrders: 'https://docs.ovh.com/pt/billing/purchase-order/',
           vrack:
             'https://docs.ovh.com/pt/dedicated/configurar-varios-servidores-dedicados-no-vrack/',
         },
@@ -474,6 +481,7 @@ const constants = {
           nsx: 'https://www.ovh.ie/private-cloud/options/nsx.xml',
           vrops: 'https://www.ovh.ie/private-cloud/options/vrops.xml',
           billing: 'https://docs.ovh.com/ie/en/billing/',
+          purchaseOrders: 'https://docs.ovh.com/ie/en/billing/purchase-order/',
           vrack:
             'https://docs.ovh.com/ie/en/dedicated/configuring-vrack-on-dedicated-servers/',
         },
@@ -778,6 +786,8 @@ const constants = {
           reinitPassword:
             'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/us/g2365.vps-ipv6',
+          purchaseOrders:
+            'https://docs.ovh.com/asia/en/billing/purchase-order/',
         },
         presentations: {
           home: 'https://www.ovh.com/asia/private-cloud/',
@@ -815,6 +825,7 @@ const constants = {
             'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/us/g2365.vps-ipv6',
           billing: 'https://docs.ovh.com/au/en/billing/',
+          purchaseOrders: 'https://docs.ovh.com/au/en/billing/purchase-order/',
         },
         presentations: {
           home: 'https://www.ovh.com.au/private-cloud/',
@@ -853,6 +864,7 @@ const constants = {
             'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/ca/en/g2365.vps-ipv6',
           billing: 'https://docs.ovh.com/ca/en/billing/',
+          purchaseOrders: 'https://docs.ovh.com/ca/fr/billing/purchase-order/',
         },
         presentations: {
           home: 'https://www.ovh.com/ca/en/private-cloud/',
@@ -891,6 +903,7 @@ const constants = {
             'http://docs.ovh.ca/fr/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/ca/fr/g2365.vps-ipv6',
           billing: 'https://docs.ovh.com/ca/fr/billing/',
+          purchaseOrders: 'https://docs.ovh.com/ca/en/billing/purchase-order/',
         },
         presentations: {
           home: 'https://www.ovh.com/ca/fr/private-cloud/',
@@ -927,6 +940,7 @@ const constants = {
           reinitPassword:
             'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/us/g2365.vps-ipv6',
+          purchaseOrders: 'https://docs.ovh.com/sg/en/billing/purchase-order/',
         },
         presentations: {
           home: 'https://www.ovh.com/sg/private-cloud/',
@@ -963,6 +977,7 @@ const constants = {
           reinitPassword:
             'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
           ipv6Vps: 'https://www.ovh.com/us/g2365.vps-ipv6',
+          purchaseOrders: 'https://docs.ovh.com/us/en/billing/purchase-order/',
         },
         presentations: {
           home: 'https://www.ovh.com/world/private-cloud/',
@@ -999,6 +1014,7 @@ const constants = {
           privateCloudHome: 'https://docs.ovh.com/ca/en/private-cloud/',
           reinitPassword:
             'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
+          purchaseOrders: 'https://docs.ovh.com/us/es/billing/purchase-order/',
         },
         presentations: {
           home: 'https://www.ovh.com/world/es/private-cloud/',

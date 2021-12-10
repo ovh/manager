@@ -34,10 +34,6 @@ export default class BillingOrdersCtrl {
     this.goToOrder = goToOrder;
     this.goToOrderRetractation = goToOrderRetractation;
     this.updateFilterParam = updateFilterParam;
-    this.billingGuideUrl = get(
-      constants.urls[currentUser.ovhSubsidiary],
-      'guides.billing',
-    );
     this.allowOrderTracking = billingFeatureAvailability.allowOrderTracking();
   }
 

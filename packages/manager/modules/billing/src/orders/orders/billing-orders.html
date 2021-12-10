@@ -1,17 +1,4 @@
 <div data-ui-view class="billing-orders">
-    <oui-header data-heading="{{ :: 'orders_page_title' | translate }}">
-        <oui-guide-menu
-            data-text="{{:: 'orders_guides' | translate }}"
-            data-ng-if="$ctrl.billingGuideUrl"
-        >
-            <oui-guide-menu-item
-                data-ng-href="{{ $ctrl.billingGuideUrl }}"
-                data-external="true"
-            >
-                <span data-translate="orders_billing"></span>
-            </oui-guide-menu-item>
-        </oui-guide-menu>
-    </oui-header>
     <oui-datagrid
         data-page-size="10"
         data-rows="$ctrl.orders"
