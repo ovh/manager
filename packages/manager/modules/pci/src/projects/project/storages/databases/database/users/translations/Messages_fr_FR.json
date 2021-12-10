@@ -4,7 +4,7 @@
   "pci_databases_users_description_label": "Description",
   "pci_databases_users_role_label": "Rôles",
   "pci_databases_users_createdAt_label": "Date de création",
-  "pci_databases_users_status_label": "Status",
+  "pci_databases_users_status_label": "Statut",
   "pci_databases_users_status_creating": "Création en cours",
   "pci_databases_users_status_ok": "Activé",
   "pci_databases_users_status_deleting": "Suppression en cours",
