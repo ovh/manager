@@ -23,5 +23,6 @@
   "pci_projects_project_quota_autoscaling_on": "Aktiviert",
   "pci_projects_project_quota_autoscaling_off": "Deaktiviert",
   "pci_projects_project_quota_autoscaling_error": "Bei der Aktualisierung des Quotas ist ein Fehler aufgetreten",
-  "pci_projects_project_quota_autoscaling_help": "Ihr Quota wird automatisch entsprechend Ihrer Nutzung und nach bestimmten Kriterien angepasst."
+  "pci_projects_project_quota_autoscaling_help": "Ihr Quota wird automatisch entsprechend Ihrer Nutzung und nach bestimmten Kriterien angepasst.",
+  "pci_projects_project_quota_protect_contact_support": "Kundendienst kontaktieren"
 }
