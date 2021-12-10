@@ -209,4 +209,12 @@ export default class AnthosTenantsService {
       .get(`/order/catalog/public/anthos?ovhSubsidiary=${ovhSubsidiary}`)
       .then(({ data }) => data);
   }
+
+  updateSoftware(serviceName, version) {
+    return this.$http
+      .post(`/dedicated/anthos/tenants/${serviceName}/actions/upgrade`, {
+        version,
+      })
+      .then(({ data }) => data);
+  }
 }

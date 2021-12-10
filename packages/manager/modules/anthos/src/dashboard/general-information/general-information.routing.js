@@ -35,7 +35,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('anthos.dashboard.general-information.assign-private-ip'),
 
       goToSoftwareUpdate: /* @ngInject */ ($state) => () =>
-        $state.go('anthos.dashboard'),
+        $state.go('anthos.dashboard.general-information.software-update'),
 
       generalInfoHitTracking: () => {
         return 'general-information';
