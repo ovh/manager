@@ -7,7 +7,7 @@
   "pci_database_add_step1_description": "Wybierz rodzaj bazy danych odpowiadający Twoim potrzebom",
   "pci_database_add_step2_title": "Wybierz ofertę",
   "pci_database_add_step3_title": "Wybierz lokalizację",
-  "pci_database_add_step4_title": "Konfiguracja węzłów",
+  "pci_database_add_step4_title": "Specyfikacja",
   "pci_database_add_nodes_count": "Liczba węzłów",
   "pci_database_add_nodes_count_tooltip": "Liczba węzłów zmienia się w zależności od wybranej oferty. W fazie beta liczba ta nie może być zmieniona na etapie tworzenia. ",
   "pci_database_add_select_flavor": "Wybierz model węzłów",

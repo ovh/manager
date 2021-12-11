@@ -7,7 +7,7 @@
   "pci_database_add_step1_description": "Seleziona il tipo di database più adatto alle tue esigenze",
   "pci_database_add_step2_title": "Seleziona una soluzione",
   "pci_database_add_step3_title": "Seleziona una localizzazione",
-  "pci_database_add_step4_title": "Dimensionamento dei nodi",
+  "pci_database_add_step4_title": "Caratteristiche",
   "pci_database_add_nodes_count": "Numero di nodi",
   "pci_database_add_nodes_count_tooltip": "Il numero di nodi varia in base al servizio scelto. Durante la fase beta, questo numero non può essere modificato al momento della creazione.",
   "pci_database_add_select_flavor": "Seleziona il modello dei nodi",
