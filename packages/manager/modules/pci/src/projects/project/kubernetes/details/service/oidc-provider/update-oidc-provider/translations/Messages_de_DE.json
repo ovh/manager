@@ -1,0 +1,12 @@
+{
+  "pci_projects_project_kubernetes_details_service_update_oidc_provider_title": "OIDC-Anbieter bearbeiten",
+  "pci_projects_project_kubernetes_details_service_update_oidc_provider_description": "Sie können die meisten OpenID Connect-Anbieter nutzen, wie Dex, Keycloack oder auch einen SaaS-Anbieter. Unterstützt werden müssen dafür die Funktion „OpenID Connect discovery“, das TLS und ein unterzeichnetes CA-Zertifikat.",
+  "pci_projects_project_kubernetes_details_service_update_oidc_provider_action_update": "Bearbeiten",
+  "pci_projects_project_kubernetes_details_service_update_oidc_provider_action_cancel": "Abbrechen",
+  "pci_projects_project_kubernetes_details_service_update_oidc_provider_field_url": "URL des Anbieters",
+  "pci_projects_project_kubernetes_details_service_update_oidc_provider_field_url_extra": "Tragen Sie hier die Discovery-URL Ihres Anbieters ohne Pfad ein. Die URL muss auf den vorherigen Level zeigen: .well-known/openid-konfiguration. Die URL muss mit https:// beginnen.",
+  "pci_projects_project_kubernetes_details_service_update_oidc_provider_field_client_id": "Client-ID",
+  "pci_projects_project_kubernetes_details_service_update_oidc_provider_field_client_id_extra": "Geben Sie hier die Kennung des Kubernetes-Clusters bei Ihrem OIDC-Anbieter ein, zum Beispiel „Kubernetes-Cluster-Produktion“. Wählen Sie dafür eine Reihe von beliebigen Zeichen. Bitte beachten Sie, dass manche OIDC-Anbieter Vorgaben dazu machen.",
+  "pci_projects_project_kubernetes_details_service_update_oidc_provider_request_success": "Die OIDC-Parameter wurden eingehalten. Sie werden bei erneuter Bereitstellung Ihres API-Servers aktiv. In der Regel erfolgt dies binnen 30 Sekunden.",
+  "pci_projects_project_kubernetes_details_service_update_oidc_provider_request_error": "Bei der Aktualisierung des OIDC-Anbieters ist ein Fehler aufgetreten. {{ message }}"
+}

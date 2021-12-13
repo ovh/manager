@@ -41,6 +41,55 @@ export default class Kubernetes {
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
   }
 
+  static isProcessing(status) {
+    return PROCESSING_STATUS.includes(status);
+  }
+
+  static isError(status) {
+    return ERROR_STATUS.includes(status);
+  }
+
+  static getPrivateNetwork(privateNetworks, openstackId) {
+    return find(privateNetworks, (network) =>
+      some(network.regions, (region) => region.openstackId === openstackId),
+    );
+  }
+
+  static getPrivateNetworkName(privateNetworks, privateNetworkId) {
+    if (!privateNetworkId) {
+      return privateNetworkId;
+    }
+    const network = Kubernetes.getPrivateNetwork(
+      privateNetworks,
+      privateNetworkId,
+    );
+    return network ? network.name : privateNetworkId;
+  }
+
+  static getAvailablePrivateNetworks(privateNetworks, regionName) {
+    return sortBy(
+      map(
+        filter(privateNetworks, (network) => {
+          return find(network.regions, {
+            region: regionName,
+            status: 'ACTIVE',
+          });
+        }),
+        (privateNetwork) => ({
+          ...privateNetwork,
+          name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${
+            privateNetwork.name
+          }`,
+          clusterRegion: find(privateNetwork.regions, {
+            region: regionName,
+            status: 'ACTIVE',
+          }),
+        }),
+      ),
+      ['name'],
+    );
+  }
+
   isLegacyCluster(serviceName) {
     return this.OvhApiKube.v6()
       .getServiceInfos({
@@ -48,14 +97,6 @@ export default class Kubernetes {
       })
       .$promise.then(() => true)
       .catch((error) => (error.status === 404 ? false : Promise.reject(error)));
-  }
-
-  static isProcessing(status) {
-    return PROCESSING_STATUS.includes(status);
-  }
-
-  static isError(status) {
-    return ERROR_STATUS.includes(status);
   }
 
   formatFlavor(flavor) {
@@ -237,44 +278,54 @@ export default class Kubernetes {
     return this.$http.post(`/cloud/project/${serviceName}/region`, { region });
   }
 
-  static getPrivateNetwork(privateNetworks, openstackId) {
-    return find(privateNetworks, (network) =>
-      some(network.regions, (region) => region.openstackId === openstackId),
-    );
+  /**
+   * Get OIDC integration parameters
+   * @param serviceName {string}: project id
+   * @param kubeId {string}: kubernetes id
+   * @returns {Promise}: http request response
+   */
+  getOidcProvider(serviceName, kubeId) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/kube/${kubeId}/openIdConnect`)
+      .then(({ data }) => data);
   }
 
-  static getPrivateNetworkName(privateNetworks, privateNetworkId) {
-    if (!privateNetworkId) {
-      return privateNetworkId;
-    }
-    const network = Kubernetes.getPrivateNetwork(
-      privateNetworks,
-      privateNetworkId,
-    );
-    return network ? network.name : privateNetworkId;
+  /**
+   * Configure APIServer for OpenIdConnect
+   * @param serviceName {string}: project id
+   * @param kubeId {string}: kubernetes id
+   * @param oidc {Object}: openid provider data
+   * @returns {Promise}: http request response
+   */
+  addOidcProvider(serviceName, kubeId, oidc) {
+    return this.$http
+      .post(`/cloud/project/${serviceName}/kube/${kubeId}/openIdConnect`, oidc)
+      .then(({ data }) => data);
   }
 
-  static getAvailablePrivateNetworks(privateNetworks, regionName) {
-    return sortBy(
-      map(
-        filter(privateNetworks, (network) => {
-          return find(network.regions, {
-            region: regionName,
-            status: 'ACTIVE',
-          });
-        }),
-        (privateNetwork) => ({
-          ...privateNetwork,
-          name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${
-            privateNetwork.name
-          }`,
-          clusterRegion: find(privateNetwork.regions, {
-            region: regionName,
-            status: 'ACTIVE',
-          }),
-        }),
-      ),
-      ['name'],
-    );
+  /**
+   * Update parameters and reconfigure APIServer
+   * @param serviceName {string}: project id
+   * @param kubeId {string}: kubernetes id
+   * @param kubeId {Object}: kubernetes id
+   * @param oidc {Object}: openid provider data
+   * @returns {Promise}: http request response
+   */
+  updateOidcProvider(serviceName, kubeId, oidc) {
+    return this.$http
+      .put(`/cloud/project/${serviceName}/kube/${kubeId}/openIdConnect`, oidc)
+      .then(({ data }) => data);
+  }
+
+  /**
+   * Remove OpenIdConnect integration from APIServer
+   * @param serviceName {string}: project id
+   * @param kubeId {string}: kubernetes id
+   * @returns {Promise}: http request response
+   */
+  removeOidcProvider(serviceName, kubeId) {
+    return this.$http
+      .delete(`/cloud/project/${serviceName}/kube/${kubeId}/openIdConnect`)
+      .then(({ data }) => data);
   }
 }

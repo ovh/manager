@@ -123,7 +123,7 @@
                                     'oui-badge_warning' : $ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status),
                                     'oui-badge_error' : $ctrl.Kubernetes.constructor.isError($ctrl.cluster.status),
                                     }"
-                        data-translate="{{ 'kube_service_cluster_status_' + $ctrl.cluster.status }}"
+                        data-ng-bind=":: ('kube_service_cluster_status_' + $ctrl.cluster.status) | translate"
                     >
                     </span>
                 </oui-tile-description>
@@ -168,17 +168,51 @@
     </div>
     <div class="col-md-4">
         <oui-tile heading="{{:: 'kube_service_access_security' | translate }}">
-            <!-- upgrade policy -->
+
+            <!--Kube API URL-->
             <oui-tile-definition
-                data-term="{{ ::'kube_service_upgrade_policy' | translate }}"
+                data-term="{{:: 'kube_service_cluster_api_url' | translate }}"
             >
                 <oui-tile-description>
-                    <span
-                        data-translate="{{ 'kube_service_upgrade_policy_' + $ctrl.cluster.updatePolicy }}"
-                    ></span>
+                    <oui-clipboard
+                        data-model="$ctrl.cluster.url"
+                    ></oui-clipboard>
                 </oui-tile-description>
             </oui-tile-definition>
-            <!-- end of upgrade policy -->
+
+            <!--Limit access to APIServer-->
+            <oui-tile-definition
+                term="{{:: 'kube_service_restrictions' | translate }}"
+            >
+                <oui-tile-description data-ng-if="$ctrl.loadingRestrictions">
+                    <oui-skeleton size="m"></oui-skeleton>
+                </oui-tile-description>
+                <oui-tile-description data-ng-if="!$ctrl.loadingRestrictions">
+                    <span
+                        data-ng-pluralize
+                        data-count="$ctrl.restrictions.length"
+                        data-when="{
+                            '0': ('kube_service_restrictions_no_count' | translate),
+                            '1': ('kube_service_restrictions_one' | translate),
+                            'other': ('kube_service_restrictions_count' | translate:{ count: $ctrl.restrictions.length }),
+                        }"
+                    ></span>
+                    <a
+                        class="oui-link oui-link_icon d-block"
+                        data-ng-href="{{:: $ctrl.restrictionsLink }}"
+                    >
+                        <span
+                            data-translate="kube_service_restrictions_edit"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-arrow-right"
+                            aria-hidden="true"
+                        ></span>
+                    </a>
+                </oui-tile-description>
+            </oui-tile-definition>
+
+            <!-- end of upgrade policy - kube config file-->
             <div class="oui-tile__item">
                 <dl class="oui-tile__definition">
                     <dt class="oui-tile__term">
@@ -229,45 +263,66 @@
                     </dd>
                 </dl>
             </div>
+
+            <!--OIDC-->
             <oui-tile-definition
-                data-term="{{:: 'kube_service_cluster_api_url' | translate }}"
+                data-term="{{:: 'kube_service_access_security_oidc_title' | translate }}"
             >
                 <oui-tile-description>
-                    <oui-clipboard
-                        data-model="$ctrl.cluster.url"
-                    ></oui-clipboard>
-                </oui-tile-description>
-            </oui-tile-definition>
-            <oui-tile-definition
-                term="{{:: 'kube_service_restrictions' | translate }}"
-            >
-                <oui-tile-description data-ng-if="$ctrl.loadingRestrictions">
-                    <oui-skeleton size="m"></oui-skeleton>
-                </oui-tile-description>
-                <oui-tile-description data-ng-if="!$ctrl.loadingRestrictions">
+
+                    <!--No OIDC provider-->
                     <span
-                        data-ng-pluralize
-                        data-count="$ctrl.restrictions.length"
-                        data-when="{
-                            '0': ('kube_service_restrictions_no_count' | translate),
-                            '1': ('kube_service_restrictions_one' | translate),
-                            'other': ('kube_service_restrictions_count' | translate:{ count: $ctrl.restrictions.length }),
-                        }"
+                        data-ng-if="!$ctrl.oidcProvider.isDefined()"
+                        data-translate="kube_service_access_security_oidc_no_provider"
                     ></span>
-                    <a
-                        class="oui-link oui-link_icon d-block"
-                        data-ng-href="{{:: $ctrl.restrictionsLink }}"
-                    >
-                        <span
-                            data-translate="kube_service_restrictions_edit"
-                        ></span>
-                        <span
-                            class="oui-icon oui-icon-arrow-right"
-                            aria-hidden="true"
-                        ></span>
-                    </a>
+
+                    <!--OIDC Provider-->
+                    <div data-ng-if="$ctrl.oidcProvider.isDefined()">
+                        <oui-clipboard
+                            data-model="$ctrl.oidcProvider.issuerUrl"
+                        ></oui-clipboard>
+
+                        <span data-ng-bind=":: $ctrl.oidcProvider.clientId"></span>
+                    </div>
+
+                </oui-tile-description>
+                <oui-action-menu
+                    aria-label="{{:: 'kube_service_access_security_oidc_menu_action_sr_only' | translate }}"
+                    compact>
+
+                    <!--Add OIDC provider-->
+                    <oui-action-menu-item disabled="$ctrl.oidcProvider.isDefined()"
+                                          data-on-click="$ctrl.addOidcProvider()">
+                        <span data-translate="kube_service_access_security_oidc_menu_action_add_provider"></span>
+                    </oui-action-menu-item>
+
+                    <!--Set OIDC provider info-->
+                    <oui-action-menu-item disabled="!$ctrl.oidcProvider.isDefined()"
+                                          data-on-click="$ctrl.updateOidcProvider()">
+                        <span data-translate="kube_service_access_security_oidc_menu_action_set_provider"></span>
+                    </oui-action-menu-item>
+
+                    <!--Remove OIDC provider-->
+                    <oui-action-menu-item disabled="!$ctrl.oidcProvider.isDefined()"
+                                          data-on-click="$ctrl.removeOidcProvider()">
+                        <span data-translate="kube_service_access_security_oidc_menu_action_remove_provider"></span>
+                    </oui-action-menu-item>
+
+                </oui-action-menu>
+
+            </oui-tile-definition>
+
+            <!-- upgrade policy -->
+            <oui-tile-definition
+                data-term="{{ ::'kube_service_upgrade_policy' | translate }}"
+            >
+                <oui-tile-description>
+                    <span
+                        data-ng-bind=":: ('kube_service_upgrade_policy_' + $ctrl.cluster.updatePolicy) | translate"
+                    ></span>
                 </oui-tile-description>
             </oui-tile-definition>
+
         </oui-tile>
     </div>
 </div>
