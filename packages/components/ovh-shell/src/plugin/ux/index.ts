@@ -26,6 +26,7 @@ export class UXPlugin implements IUXPlugin {
     this.shellUX.registerSidebar('account');
     this.shellUX.registerSidebar('notifications');
     this.shellUX.registerNavbar();
+    console.log(this);
   }
 
   /* ----------- AccountSidebar methods -----------*/
@@ -34,8 +35,8 @@ export class UXPlugin implements IUXPlugin {
     return this.shellUX.isSidebarVisible('account');
   }
 
-  showAccountSidebar(): void {
-    return this.shellUX.showSidebar('account');
+  showAccountSidebar(disableToggle = false): void {
+    return this.shellUX.showSidebar('account', disableToggle);
   }
 
   hideAccountSidebar(): void {
