@@ -31,5 +31,6 @@
   "pci_projects_project_training_jobs_kill": "Arresta",
   "pci_projects_project_training_jobs_price": "Prezzo",
   "pci_projects_project_training_jobs_price_estimate": "Stima del tempo di esecuzione del job",
-  "pci_projects_project_training_jobs_state_TIMEOUT": "Timeout"
+  "pci_projects_project_training_jobs_state_TIMEOUT": "Timeout",
+  "pci_projects_project_training_discord": "OVHcloud AI Community on Discord"
 }
