@@ -101,6 +101,12 @@ export default /* @ngInject */ ($stateProvider) => {
           app,
         }),
 
+      goToDeleteApp: /* @ngInject */ ($state, projectId) => (app) =>
+        $state.go('pci.projects.project.ai.apps.delete', {
+          projectId,
+          app,
+        }),
+
       goToCreateToken: /* @ngInject */ ($state, projectId) => (app) => {
         return $state.go('pci.projects.project.ai.tokens.add', {
           projectId,

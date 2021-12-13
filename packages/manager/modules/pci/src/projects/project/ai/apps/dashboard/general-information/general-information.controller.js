@@ -75,6 +75,11 @@ export default class {
     return this.goToStopApp();
   }
 
+  onDeleteAppClick() {
+    this.trackApps('dashboard::delete_app');
+    return this.goToDeleteApp();
+  }
+
   onGenerateTokenClick() {
     this.trackApps('dashboard::generate_token');
     return this.goToGenerateToken();

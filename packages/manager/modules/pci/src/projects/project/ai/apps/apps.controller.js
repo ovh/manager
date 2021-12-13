@@ -49,6 +49,11 @@ export default class {
     this.goToStopApp(app);
   }
 
+  deleteApp(app) {
+    this.trackApps('table::options_menu::stop_app');
+    this.goToDeleteApp(app);
+  }
+
   onGuideLinkClick(guideName) {
     this.trackApps(`'table::guide::${guideName}`);
   }

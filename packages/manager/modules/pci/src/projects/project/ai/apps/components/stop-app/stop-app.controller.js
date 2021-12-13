@@ -14,7 +14,7 @@ export default class {
   stopApp() {
     this.trackApps(`${this.trackingPrefix}::stop_app_confirm`);
     this.isStopping = true;
-    return this.AppService.removeApp(this.projectId, this.app.id)
+    return this.AppService.stopApp(this.projectId, this.app.id)
       .then(() =>
         this.goBack(this.$translate.instant('pci_app_stop_app_success')),
       )
