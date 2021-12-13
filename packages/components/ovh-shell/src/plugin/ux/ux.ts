@@ -48,11 +48,14 @@ export class ShellUX implements IShellUx {
     }
   }
 
-  showSidebar(sidebarName: string): void {
+  showSidebar(sidebarName: string, disableToggle = false): void {
     const registeredSidebar = this.sidebars[sidebarName];
 
     if (registeredSidebar) {
-      registeredSidebar.show();
+      registeredSidebar.show(disableToggle);
+      if (disableToggle) {
+        registeredSidebar.disableToggle();
+      }
       this.shell.emitEvent('ux:sidebar-show', { sidebarName });
     }
   }
