@@ -521,5 +521,10 @@
   "vps_language_pt": "Portugalski",
   "vps_new_range_available_introduction": "Gama serwerów VPS zmienia się, podobnie jak Panel klienta.",
   "vps_new_range_available_call_to_upgrade_1": "Aby skorzystać z nowych funkcji, <a href=\"{{href}}\">zamów nowy model VPS&lt;/a></a> w Panelu klienta, przenieś dane, a następnie zrezygnuj ze starego serwera.",
-  "vps_new_range_available_call_to_upgrade_2": "W tym celu wymień Twoją maszynę <a href=\"{{href}}\">za pomocą kilku kliknięć.</a>"
+  "vps_new_range_available_call_to_upgrade_2": "W tym celu wymień Twoją maszynę <a href=\"{{href}}\">za pomocą kilku kliknięć.</a>",
+  "vps_database_version_mariadb_103": "MariaDB 10.3",
+  "vps_database_version_mariadb_104": "MariaDB 10.4",
+  "vps_database_version_mariadb_105": "MariaDB 10.5",
+  "vps_database_version_mysql_80": "MySQL 8.0",
+  "vps_database_version_redis_60": "Redis 6.0"
 }
