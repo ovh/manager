@@ -17,6 +17,7 @@
   "pci_ai_app_list_status_INITIALIZING": "Initializing",
   "pci_ai_app_list_status_SCALING": "Scaling",
   "pci_ai_app_list_status_RUNNING": "Running",
+  "pci_ai_app_list_status_STOPPING": "Stopping",
   "pci_ai_app_list_status_STOPPED": "Stopped",
   "pci_ai_app_list_status_DELETING": "Deleting...",
   "pci_ai_app_list_status_DELETED": "Deleted",

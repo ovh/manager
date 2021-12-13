@@ -2,12 +2,12 @@ import App from '../../../App.class';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'pci.projects.project.ai.apps.dashboard.general-information.delete-app',
+    'pci.projects.project.ai.apps.dashboard.general-information.stop-app',
     {
-      url: '/delete-app',
+      url: '/stop-app',
       views: {
         modal: {
-          component: 'pciAppsAppDashboardAppDelete',
+          component: 'pciAppsAppDashboardAppStop',
         },
       },
       layout: 'modal',

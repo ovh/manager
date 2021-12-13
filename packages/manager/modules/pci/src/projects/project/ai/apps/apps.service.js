@@ -78,6 +78,12 @@ export default class AppService {
       .then(({ data }) => data);
   }
 
+  stopApp(serviceName, appId) {
+    return this.$http
+      .put(`/cloud/project/${serviceName}/ai/app/${appId}/stop`)
+      .then(({ data }) => data);
+  }
+
   removeApp(serviceName, appId) {
     return this.$http
       .delete(`/cloud/project/${serviceName}/ai/app/${appId}`)

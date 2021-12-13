@@ -7,7 +7,7 @@ export default {
     goToAddApp: '<',
     goToApp: '<',
     goToAttachData: '<',
-    goToDeleteApp: '<',
+    goToStopApp: '<',
     goToCreateToken: '<',
     isAuthorized: '<',
     reloadState: '<',

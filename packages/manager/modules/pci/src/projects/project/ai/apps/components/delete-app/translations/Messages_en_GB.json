@@ -1,8 +1,0 @@
-{
-  "pci_app_delete_app_title": "Delete the AI App",
-  "pci_app_delete_app_submit_label": "Confirm",
-  "pci_app_delete_app_cancel_label": "Cancel",
-  "pci_app_delete_app_content": "Are you sure you want to delete the {{appName}} app?",
-  "pci_app_delete_app_success": "Your App has been deleted.",
-  "pci_app_delete_app_error": "An error has occurred deleting your {{appName}} app: {{message}}."
-}

@@ -8,19 +8,19 @@ export default class {
   }
 
   $onInit() {
-    this.isDeleting = false;
+    this.isStopping = false;
   }
 
-  deletAapp() {
-    this.trackApps(`${this.trackingPrefix}::delete_app_confirm`);
-    this.isDeleting = true;
+  stopApp() {
+    this.trackApps(`${this.trackingPrefix}::stop_app_confirm`);
+    this.isStopping = true;
     return this.AppService.removeApp(this.projectId, this.app.id)
       .then(() =>
-        this.goBack(this.$translate.instant('pci_app_delete_app_success')),
+        this.goBack(this.$translate.instant('pci_app_stop_app_success')),
       )
       .catch((error) =>
         this.goBack(
-          this.$translate.instant('pci_app_delete_app_error', {
+          this.$translate.instant('pci_app_stop_app_error', {
             appName: this.app.name,
             message: get(error, 'data.message'),
           }),
@@ -30,7 +30,7 @@ export default class {
   }
 
   cancel() {
-    this.trackApps(`${this.trackingPrefix}::delete_app_cancel`);
+    this.trackApps(`${this.trackingPrefix}::stop_app_cancel`);
     this.goBack();
   }
 }

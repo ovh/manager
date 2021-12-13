@@ -70,9 +70,9 @@ export default class {
     this.trackApps('dashboard::access_graph_dashboard');
   }
 
-  onDeleteAppClick() {
-    this.trackApps('dashboard::delete_app');
-    return this.goToDeleteApp();
+  onStopAppClick() {
+    this.trackApps('dashboard::stop_app');
+    return this.goToStopApp();
   }
 
   onGenerateTokenClick() {

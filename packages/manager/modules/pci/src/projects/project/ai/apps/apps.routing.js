@@ -95,8 +95,8 @@ export default /* @ngInject */ ($stateProvider) => {
           : promise;
       },
 
-      goToDeleteApp: /* @ngInject */ ($state, projectId) => (app) =>
-        $state.go('pci.projects.project.ai.apps.delete', {
+      goToStopApp: /* @ngInject */ ($state, projectId) => (app) =>
+        $state.go('pci.projects.project.ai.apps.stop', {
           projectId,
           app,
         }),
