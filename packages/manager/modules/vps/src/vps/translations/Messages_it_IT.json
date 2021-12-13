@@ -521,5 +521,10 @@
   "vps_language_pt": "Portoghese",
   "vps_new_range_available_introduction": "Le nostre gamme di VPS si evolvono insieme allo Spazio Cliente",
   "vps_new_range_available_call_to_upgrade_1": "Per approfittare delle novità disponibili, <a href=\"{{href}}\">ordina un nuovo modello </a> dallo Spazio Cliente e trasferisci tutti i tuoi dati prima di disattivare il server precedente.",
-  "vps_new_range_available_call_to_upgrade_2": "Per approfittarne, effettua un upgrade della tua macchina <a href=\"{{href}}\"> in pochi click </a>."
+  "vps_new_range_available_call_to_upgrade_2": "Per approfittarne, effettua un upgrade della tua macchina <a href=\"{{href}}\"> in pochi click </a>.",
+  "vps_database_version_mariadb_103": "MariaDB 10.3",
+  "vps_database_version_mariadb_104": "MariaDB 10.4",
+  "vps_database_version_mariadb_105": "MariaDB 10.5",
+  "vps_database_version_mysql_80": "MySQL 8.0",
+  "vps_database_version_redis_60": "Redis 6.0"
 }
