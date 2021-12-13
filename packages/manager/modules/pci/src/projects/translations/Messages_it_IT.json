@@ -10,5 +10,6 @@
   "pci_projects_status_pendingDebt": "Fattura da pagare",
   "pci_projects_project_pay_bill": "Paga la tua fattura",
   "pci_projects_project_view": "Visualizza il progetto",
-  "pci_projects_create_project": "Crea un nuovo progetto"
+  "pci_projects_create_project": "Crea un nuovo progetto",
+  "pci_projects_project_delete": "Elimina"
 }

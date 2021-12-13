@@ -10,5 +10,6 @@
   "pci_projects_status_pendingDebt": "Bill to pay",
   "pci_projects_project_pay_bill": "Pay my bill",
   "pci_projects_project_view": "View project",
-  "pci_projects_create_project": "Create a new project"
+  "pci_projects_create_project": "Create a new project",
+  "pci_projects_project_delete": "Delete"
 }
