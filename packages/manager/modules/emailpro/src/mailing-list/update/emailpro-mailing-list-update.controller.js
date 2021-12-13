@@ -33,7 +33,13 @@ export default class EmailProMXPlanMailingListsUpdateCtrl {
       REPLY_TO_EMAIL: 'replyToEmail',
     };
     this.loading = false;
-    this.replyToSelector = this.mailingList.replyTo;
+
+    this.replyToSelector = [
+      this.constants.MAILING_LIST,
+      this.constants.LAST_USER,
+    ].includes(this.mailingList.replyTo)
+      ? this.mailingList.replyTo
+      : this.constants.REPLY_TO_EMAIL;
 
     this.$scope.updateMailingList = () => this.updateMailingList();
 
