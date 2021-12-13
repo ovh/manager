@@ -23,5 +23,10 @@
   "pci_notebook_list_start_error": "Ocorreu um erro durante a tentativa de lançamento do notebook {{notebookName}}: {{message}}",
   "pci_notebook_list_stop_error": "Ocorreu um erro durante a tentativa de interrupção do notebook {{notebookName}}: {{message}}",
   "pci_notebook_list_status_FAILED": "Erro",
-  "pci_notebook_list_creator": "Utilizador"
+  "pci_notebook_list_creator": "Utilizador",
+  "pci_notebook_data_permission": "Permissão",
+  "pci_notebook_permission_RO": "Apenas leitura",
+  "pci_notebook_permission_RW": "Leitura/Escrita",
+  "pci_notebook_permission_RWD": "Leitura, escrita e eliminação",
+  "pci_notebook_data_cache": "Cache"
 }

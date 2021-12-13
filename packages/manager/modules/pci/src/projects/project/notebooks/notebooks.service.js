@@ -135,14 +135,6 @@ export default class NotebookService {
       .then(({ data }) => data);
   }
 
-  getStorages(serviceName, archive = false, withObjects = false) {
-    return this.OvhApiCloudProjectStorage.Aapi().query({
-      serviceName,
-      archive,
-      withObjects,
-    }).$promise;
-  }
-
   isAuthorized(serviceName) {
     return this.OvhApiCloudProjectAi.Training()
       .Authorization()

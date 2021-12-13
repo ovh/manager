@@ -33,10 +33,13 @@ export default class NotebookAttachController {
 
   canAddNewVolume() {
     return (
-      this.canAttachStorages() &&
-      (this.notebookModel.volumes.length === 0 ||
-        !(this.maxVolumesIsReached() || this.notebookAttachForm.$invalid))
+      this.notebookModel.volumes.length === 0 ||
+      !(this.maxVolumesIsReached() || this.notebookAttachForm.$invalid)
     );
+  }
+
+  canAddNewStorageVolume() {
+    return this.canAttachStorages() && this.canAddNewVolume();
   }
 
   volumeMountPathExist(volume) {
@@ -62,7 +65,14 @@ export default class NotebookAttachController {
 
   onAddVolumeClick() {
     if (!this.maxVolumesIsReached()) {
+      this.filterStorages();
       this.addVolume(Volume.createVolumeModel());
+    }
+  }
+
+  onAddVolumeGitClick() {
+    if (!this.maxVolumesIsReached()) {
+      this.addVolume(Volume.createVolumeGitModel());
     }
   }
 
@@ -82,5 +92,23 @@ export default class NotebookAttachController {
       'duplicateVolumeMountPath',
       true,
     );
+  }
+
+  filterStorages() {
+    this.filteredStorages = this.storages
+      // Remove containers that are already on volume list
+      .filter(({ name, region }) => {
+        return !this.notebookModel.volumes
+          .filter(({ privateSwift }) => privateSwift)
+          .map(({ container }) => `${container.name}-${container.region}`)
+          .includes(`${name}-${region}`);
+      })
+      .map(({ name, region }) => {
+        return {
+          name,
+          region,
+          description: `${name} - ${region}`,
+        };
+      });
   }
 }

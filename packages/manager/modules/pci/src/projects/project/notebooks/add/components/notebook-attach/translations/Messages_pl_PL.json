@@ -7,9 +7,13 @@
   "pci_notebook_add_attach_container_storage_container_select": "Kontener do przechowywania danych",
   "pci_notebook_add_attach_container_mount_path": "Katalog montowania",
   "pci_notebook_add_attach_container_mount_path_error_key_already_exist": "Ten katalog już istnieje",
-  "pci_notebook_add_attach_container_permission": "Autoryzacja",
-  "pci_notebook_add_attach_container_permission_select": "Autoryzacja",
-  "pci_notebook_add_attach_container_permission_RO": "Do odczytu",
-  "pci_notebook_add_attach_container_permission_RW": "Odczyt - zapis",
-  "pci_notebook_add_attach_container_volumes_quantity": "{{ numberOfVolumes }} / {{ maxVolumes }} objętości"
+  "pci_notebook_add_attach_container_volumes_quantity": "{{ numberOfVolumes }} / {{ maxVolumes }} objętości",
+  "pci_notebook_add_attach_container_btn_attach_repo_git_add": "Przypisz publiczne repozytorium Git",
+  "pci_notebook_add_attach_container_git_url": "URL repozytorium Git",
+  "pci_notebook_add_attach_container_data_prefix": "Filtruj według prefiksu",
+  "pci_notebook_add_attach_container_data_prefix_help": "Tylko obiekty pasujące do prefiksu ładowane są do systemu plików",
+  "pci_notebook_add_attach_container_permission_select": "Uprawnienie",
+  "pci_notebook_add_attach_container_permission_help": "Przy włączonym trybie „Tylko do odczytu” nie jest uruchamiana synchronizacja na końcu zadania. Zadanie kończy się zatem szybciej.",
+  "pci_notebook_add_attach_container_data_cache": "Cache",
+  "pci_notebook_add_attach_container_data_cache_help": "Kontenery zapisane w pamięci cache mogą być ponownie wykorzystywane przez inne zadania bez dodatkowej synchronizacji. Kontenery są usuwane z pamięci cache po okresie nieaktywności."
 }

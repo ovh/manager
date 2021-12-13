@@ -9,7 +9,8 @@
   "pci_notebooks_tab_attach_data_page_volumes_column_type_git": "Repozytorium",
   "pci_notebooks_tab_attach_data_page_volumes_column_type_swift": "Kontener danych",
   "pci_notebooks_tab_attach_data_page_volumes_column_mount_path": "Katalog montowania",
-  "pci_notebooks_tab_attach_data_page_volumes_column_permission": "Autoryzacja",
-  "pci_notebooks_tab_attach_data_page_volumes_column_permission_RO": "Do odczytu",
-  "pci_notebooks_tab_attach_data_page_volumes_column_permission_RW": "Odczyt - zapis"
+  "pci_notebooks_tab_attach_data_page_title_git": "Przypisz publiczne repozytoria Git",
+  "pci_notebooks_tab_attach_data_page_volumes_column_git_url": "URL repozytorium Git",
+  "pci_notebooks_tab_attach_data_page_volumes_git_none": "Brak przypisanego repozytorium Git",
+  "pci_notebooks_tab_attach_data_page_volumes_column_prefix": "Prefiks"
 }

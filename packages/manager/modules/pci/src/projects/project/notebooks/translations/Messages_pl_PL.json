@@ -23,5 +23,10 @@
   "pci_notebook_list_start_error": "Wystąpił błąd podczas próby uruchomienia notebooka {{notebookName}}: {{message}}",
   "pci_notebook_list_stop_error": "Wystąpił błąd podczas próby wyłączenia notebooka {{notebookName}}: {{message}}",
   "pci_notebook_list_status_FAILED": "Błąd",
-  "pci_notebook_list_creator": "Użytkownik"
+  "pci_notebook_list_creator": "Użytkownik",
+  "pci_notebook_data_permission": "Uprawnienie",
+  "pci_notebook_permission_RO": "Tylko odczyt",
+  "pci_notebook_permission_RW": "Odczyt i Zapis",
+  "pci_notebook_permission_RWD": "Odczyt, Zapis oraz Usuwanie",
+  "pci_notebook_data_cache": "Cache"
 }
