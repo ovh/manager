@@ -8,7 +8,7 @@ import '@ovh-ux/ui-kit';
 import component from './general-information.component';
 import routing from './general-information.routing';
 
-import deleteApp from './delete-app';
+import stopApp from './stop-app';
 
 const moduleName = 'ovhManagerPciAppGeneralInformation';
 
@@ -19,7 +19,7 @@ angular
     'pascalprecht.translate',
     'oui',
     'ui.router',
-    deleteApp,
+    stopApp,
   ])
   .config(routing)
   .component('ovhManagerPciProjectAppGeneralInformation', component)

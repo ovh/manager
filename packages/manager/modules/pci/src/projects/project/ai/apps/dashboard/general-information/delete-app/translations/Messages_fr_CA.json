@@ -1,8 +1,0 @@
-{
-  "pci_apps_general_information_info_delete_app_title": "Suppression de l'AI App",
-  "pci_apps_general_information_info_delete_app_description": "Êtes-vous sur de vouloir supprimer l'AI App {{ name }} ?",
-  "pci_apps_general_information_info_delete_app_action_delete": "Confirmer",
-  "pci_apps_general_information_info_delete_app_action_cancel": "Annuler",
-  "pci_apps_general_information_info_delete_app_action_delete_success": "Votre AI App a bien été supprimée",
-  "pci_apps_general_information_info_delete_app_action_delete_fail": "Une erreur est survenue lors de la suppression de l'AI App {{ name }} : {{ message }}."
-}

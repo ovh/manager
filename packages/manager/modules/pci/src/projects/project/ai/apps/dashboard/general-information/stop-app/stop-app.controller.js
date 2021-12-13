@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-export default class PciAppAppDeleteAddController {
+export default class PciAppAppStopAddController {
   /* @ngInject */
   constructor($translate, AppService) {
     this.$translate = $translate;
@@ -11,22 +11,22 @@ export default class PciAppAppDeleteAddController {
     this.isLoading = false;
   }
 
-  onDeleteAppConfirmClick() {
-    this.trackApps('dashboard::delete_app_confirm');
+  onStopAppConfirmClick() {
+    this.trackApps('dashboard::stop_app_confirm');
 
     this.isLoading = true;
-    return this.AppService.removeApp(this.projectId, this.app.id)
+    return this.AppService.stopApp(this.projectId, this.app.id)
       .then(() => {
         return this.goToApps(
           this.$translate.instant(
-            'pci_apps_general_information_info_delete_app_action_delete_success',
+            'pci_apps_general_information_info_stop_app_action_stop_success',
           ),
         );
       })
       .catch((error) => {
         return this.goBack(
           this.$translate.instant(
-            'pci_apps_general_information_info_delete_app_action_delete_fail',
+            'pci_apps_general_information_info_stop_app_action_stop_fail',
             {
               name: this.app.name,
               message: get(error, 'data.message'),
@@ -40,8 +40,8 @@ export default class PciAppAppDeleteAddController {
       });
   }
 
-  onDeleteAppCancelClick() {
-    this.trackApps('dashboard::delete_app_cancel');
+  onStopAppCancelClick() {
+    this.trackApps('dashboard::stop_app_cancel');
     return this.goBack();
   }
 }

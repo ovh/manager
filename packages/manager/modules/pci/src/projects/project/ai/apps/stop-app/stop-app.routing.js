@@ -1,10 +1,10 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.ai.apps.delete', {
-    url: '/delete',
+  $stateProvider.state('pci.projects.project.ai.apps.stop', {
+    url: '/stop',
     params: { app: null },
     views: {
       modal: {
-        component: 'ovhManagerPciProjectAppsDeleteApp',
+        component: 'ovhManagerPciProjectAppsStopApp',
       },
     },
     layout: 'modal',

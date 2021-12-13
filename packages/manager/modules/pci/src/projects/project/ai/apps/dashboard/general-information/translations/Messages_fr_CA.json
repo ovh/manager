@@ -23,6 +23,7 @@
   "pci_apps_general_information_life_cycle_status_INITIALIZING": "Initialisation",
   "pci_apps_general_information_life_cycle_status_SCALING": "Mise à l'échelle",
   "pci_apps_general_information_life_cycle_status_RUNNING": "Déployé",
+  "pci_apps_general_information_life_cycle_status_STOPPING": "Arrêt en cours",
   "pci_apps_general_information_life_cycle_status_STOPPED": "Arreté",
   "pci_apps_general_information_life_cycle_status_DELETING": "En cours de suppression",
   "pci_apps_general_information_life_cycle_status_DELETED": "Supprimé",
@@ -30,7 +31,7 @@
   "pci_apps_general_information_life_cycle_status_ERROR": "Erreur",
 
   "pci_apps_general_information_replicas": "Réplicas",
-  "pci_apps_general_information_life_cycle_action_delete": "Supprimer",
+  "pci_apps_general_information_life_cycle_action_stop": "Supprimer",
   "pci_apps_general_information_life_cycle_running_duration_time": "Durée d'exécution",
   "pci_apps_general_information_life_cycle_running_billing": "Voir la facturation",
   "pci_apps_general_information_life_cycle_create_date": "Date de création",

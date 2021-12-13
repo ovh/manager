@@ -11,7 +11,7 @@ export default {
     startApp: '<',
     stopApp: '<',
     goToAttachData: '<',
-    goToDeleteApp: '<',
+    goToStopApp: '<',
     goToGenerateToken: '<',
     preset: '<',
   },

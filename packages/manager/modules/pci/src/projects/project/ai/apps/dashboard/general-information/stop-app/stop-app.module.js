@@ -4,10 +4,10 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import component from './delete-app.component';
-import routing from './delete-app.routing';
+import component from './stop-app.component';
+import routing from './stop-app.routing';
 
-const moduleName = 'ovhManagerPciAppsAppDashboardAppDelete';
+const moduleName = 'ovhManagerPciAppsAppDashboardAppStop';
 
 angular
   .module(moduleName, [
@@ -17,7 +17,7 @@ angular
     'pascalprecht.translate',
   ])
   .config(routing)
-  .component('pciAppsAppDashboardAppDelete', component)
+  .component('pciAppsAppDashboardAppStop', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

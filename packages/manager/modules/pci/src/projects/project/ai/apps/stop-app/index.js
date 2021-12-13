@@ -2,16 +2,16 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerPciAppsDeleteLazyLoading';
+const moduleName = 'ovhManagerPciAppsStopLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('pci.projects.project.ai.apps.delete.**', {
-      url: '/delete',
+    $stateProvider.state('pci.projects.project.ai.apps.stop.**', {
+      url: '/stop',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./delete-app.module').then((mod) =>
+        return import('./stop-app.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },

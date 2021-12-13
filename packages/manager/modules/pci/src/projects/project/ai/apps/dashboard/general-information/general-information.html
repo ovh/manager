@@ -107,10 +107,10 @@
                         data-placement="end"
                     >
                         <oui-action-menu-item
-                            data-on-click="$ctrl.onDeleteAppClick()"
+                            data-on-click="$ctrl.onStopAppClick()"
                         >
                             <span
-                                data-translate="pci_apps_general_information_life_cycle_action_delete"
+                                data-translate="pci_apps_general_information_life_cycle_action_stop"
                             ></span>
                         </oui-action-menu-item>
                         <oui-action-menu-item
@@ -123,7 +123,7 @@
                     </oui-action-menu>
                 </oui-tile-definition>
 
-                <!--Creation date and delete a app-->
+                <!--Creation date-->
                 <oui-tile-definition
                     data-term="{{:: 'pci_apps_general_information_life_cycle_create_date' | translate }}"
                 >

@@ -1,0 +1,8 @@
+{
+  "pci_apps_general_information_info_stop_app_title": "Stop the AI App",
+  "pci_apps_general_information_info_stop_app_description": "Are you sure you want to stop the AI App {{name}}?",
+  "pci_apps_general_information_info_stop_app_action_stop": "Confirm",
+  "pci_apps_general_information_info_stop_app_action_cancel": "Cancel",
+  "pci_apps_general_information_info_stop_app_action_stop_success": "Your AI App has been stopped",
+  "pci_apps_general_information_info_stop_app_action_stop_fail": "An error has occurred stopping the {{name}} AI App: {{message}}"
+}

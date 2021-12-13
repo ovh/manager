@@ -40,14 +40,9 @@ export default /* @ngInject */ ($stateProvider) => {
           labelSelector: `id=${app.id}`,
         }),
 
-      goToDeleteApp: /* @ngInject */ (
-        $state,
-        projectId,
-        app,
-        trackApps,
-      ) => () =>
+      goToStopApp: /* @ngInject */ ($state, projectId, app, trackApps) => () =>
         $state.go(
-          'pci.projects.project.ai.apps.dashboard.general-information.delete-app',
+          'pci.projects.project.ai.apps.dashboard.general-information.stop-app',
           {
             projectId,
             appId: app.id,
