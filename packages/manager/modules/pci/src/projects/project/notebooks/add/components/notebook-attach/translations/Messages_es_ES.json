@@ -7,5 +7,13 @@
   "pci_notebook_add_attach_container_storage_container_select": "Contenedor de almacenamiento",
   "pci_notebook_add_attach_container_mount_path": "Directorio de montaje",
   "pci_notebook_add_attach_container_mount_path_error_key_already_exist": "Este directorio ya existe.",
-  "pci_notebook_add_attach_container_volumes_quantity": "{{ numberOfVolumes }} / {{ maxVolumes }} volúmenes"
+  "pci_notebook_add_attach_container_volumes_quantity": "{{ numberOfVolumes }} / {{ maxVolumes }} volúmenes",
+  "pci_notebook_add_attach_container_btn_attach_repo_git_add": "Asociar un repositorio Git público",
+  "pci_notebook_add_attach_container_git_url": "URL del repositorio Git",
+  "pci_notebook_add_attach_container_data_prefix": "Filtrar por prefijo",
+  "pci_notebook_add_attach_container_data_prefix_help": "Solo se cargarán en el sistema de archivos los objetos que correspondan al prefijo.",
+  "pci_notebook_add_attach_container_permission_select": "Permiso",
+  "pci_notebook_add_attach_container_permission_help": "En «Solo lectura» no se lanzará ninguna sincronización al final del job. De este modo, el job terminará antes.",
+  "pci_notebook_add_attach_container_data_cache": "Caché",
+  "pci_notebook_add_attach_container_data_cache_help": "Los contenedores en caché pueden ser reutilizados por otros jobs sin sincronización adicional. Los contenedores se eliminan de la caché tras un período de inactividad."
 }

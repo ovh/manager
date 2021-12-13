@@ -7,5 +7,13 @@
   "pci_notebook_add_attach_container_storage_container_select": "Container de armazenamento",
   "pci_notebook_add_attach_container_mount_path": "Diretório de montagem",
   "pci_notebook_add_attach_container_mount_path_error_key_already_exist": "Este diretório já existe",
-  "pci_notebook_add_attach_container_volumes_quantity": "{{ numberOfVolumes }} / {{ maxVolumes }} volumes"
+  "pci_notebook_add_attach_container_volumes_quantity": "{{ numberOfVolumes }} / {{ maxVolumes }} volumes",
+  "pci_notebook_add_attach_container_btn_attach_repo_git_add": "Associar um repositório Git público",
+  "pci_notebook_add_attach_container_git_url": "URL do repositório Git",
+  "pci_notebook_add_attach_container_data_prefix": "Filtrar por prefixo",
+  "pci_notebook_add_attach_container_data_prefix_help": "Apenas os objetos correspondentes ao prefixo são carregados no sistema de ficheiros",
+  "pci_notebook_add_attach_container_permission_select": "Permissão",
+  "pci_notebook_add_attach_container_permission_help": "Em “Apenas leitura”, não foi iniciada nenhuma sincronização no final do job. Assim, o job é finalizado mais rápido.",
+  "pci_notebook_add_attach_container_data_cache": "Cache",
+  "pci_notebook_add_attach_container_data_cache_help": "Os containers em cache podem ser reutilizados por outros jobs sem sincronização adicional. Os containers são removidos da cache após um período de inatividade."
 }

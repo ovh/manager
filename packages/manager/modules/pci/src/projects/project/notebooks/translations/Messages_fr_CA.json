@@ -22,6 +22,11 @@
   "pci_notebook_list_start_notebook": "Démarrer",
   "pci_notebook_list_stop_notebook": "Arrêter",
   "pci_notebook_list_delete_notebook": "Supprimer",
-  "pci_notebook_list_start_error": "Une erreur est survenue lors de la tentative de démarrage du notebook {{notebookName}}: {{message}}",
-  "pci_notebook_list_stop_error": "Une erreur est survenue lors de la tentative d'arrêt du notebook {{notebookName}}: {{message}}"
+  "pci_notebook_list_start_error": "Une erreur est survenue lors de la tentative de démarrage du notebook {{notebookName}} : {{message}}",
+  "pci_notebook_list_stop_error": "Une erreur est survenue lors de la tentative d'arrêt du notebook {{notebookName}} : {{message}}",
+  "pci_notebook_data_permission": "Permission",
+  "pci_notebook_permission_RO": "Lecture Seule",
+  "pci_notebook_permission_RW": "Lecture & Ecriture",
+  "pci_notebook_permission_RWD": "Lecture & Ecriture & Suppression",
+  "pci_notebook_data_cache": "Cache"
 }

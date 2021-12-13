@@ -66,5 +66,6 @@
   "pci_projects_project_training_jobs_submitresources_proposed_resource_price_by_ressource": "{{ price }} por unidad /hora + IVA",
   "pci_projects_project_training_jobs_submitresources_proposed_type_gpu": " (GPU)",
   "pci_projects_project_training_jobs_submitresources_proposed_type_cpu": " (CPU)",
-  "pci_projects_project_training_jobs_submit_select_image_custom_doc": "Crear una imagen personalizada"
+  "pci_projects_project_training_jobs_submit_select_image_custom_doc": "Crear una imagen personalizada",
+  "pci_projects_project_training_jobs_submit_data_permission_RWD": "Lectura, escritura y eliminación"
 }
