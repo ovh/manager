@@ -30,7 +30,6 @@ shellApi.initShell().then((shell) => {
         loadPath: './translations/{{ns}}/Messages_{{lng}}.json',
       },
     });
-
   ReactDOM.render(
     <React.StrictMode>
       <ApplicationProvider environment={environment} shell={shell}>
