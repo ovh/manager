@@ -5,7 +5,7 @@ import { useShell } from '@/context';
 
 export const HeaderProvider = ({ children }) => {
   let headerContext = useContext(HeaderContext);
-  const uxPlugin = useShell().ux();
+  const uxPlugin = useShell().getPlugin('ux');
 
   /* ----------- Account sidebar -----------*/
 
