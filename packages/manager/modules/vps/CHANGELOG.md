@@ -1,3 +1,15 @@
+## [2.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.18.0...@ovh-ux/manager-vps@2.18.1) (2021-12-14)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** addition of keys for cloud db ([#6102](https://github.com/ovh/manager/issues/6102)) ([a7e1586](https://github.com/ovh/manager/commit/a7e15860d730aa75b932ca832288ed4b2f7303b4))
+* remove unused translations [CDS] ([972b143](https://github.com/ovh/manager/commit/972b143b1b29fd4bde0fddee8369220ae058ffa0))
+* **i18n:** add missing translations [CDS 1304] ([e013283](https://github.com/ovh/manager/commit/e01328307c5ec1df4aae71c6ae529d70cc49da14))
+* **i18n:** add missing translations [CDS 1310] ([a300307](https://github.com/ovh/manager/commit/a30030751e9ad8a1795d7f1dea6779350cb7411a))
+
+
+
 # [2.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.17.9...@ovh-ux/manager-vps@2.18.0) (2021-12-01)
 
 

@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.0.2...@ovh-ux/manager-email-domain@1.0.3) (2021-12-14)
+
+
+### Bug Fixes
+
+* **account.export:** use iceberg to fetch accounts ([#6125](https://github.com/ovh/manager/issues/6125)) ([f489a43](https://github.com/ovh/manager/commit/f489a43777b800c6b55f982c66f7fdca093bb994))
+
+
+
 ## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.0.1...@ovh-ux/manager-email-domain@1.0.2) (2021-11-30)
 
 

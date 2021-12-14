@@ -1,3 +1,12 @@
+# [7.7.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.6.0...@ovh-ux/ng-ovh-telecom-universe-components@7.7.0) (2021-12-14)
+
+
+### Features
+
+* **telecom-universe-components:** add fetch billing account information ([7cdd1fe](https://github.com/ovh/manager/commit/7cdd1fe20f295074f86be73290aa1caf1f01e3c2))
+
+
+
 # [7.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.5.2...@ovh-ux/ng-ovh-telecom-universe-components@7.6.0) (2021-12-01)
 
 

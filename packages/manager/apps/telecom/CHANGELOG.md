@@ -1,3 +1,12 @@
+## [13.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.28.0...@ovh-ux/manager-telecom@13.28.1) (2021-12-14)
+
+
+### Bug Fixes
+
+* **telecom.billing-account:** restrict billing tab to billing contact ([3cf10b0](https://github.com/ovh/manager/commit/3cf10b0170155d87a3d5c9d1b190ac7d93dd6916))
+
+
+
 # [13.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.27.2...@ovh-ux/manager-telecom@13.28.0) (2021-12-01)
 
 

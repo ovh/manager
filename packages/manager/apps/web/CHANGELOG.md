@@ -1,3 +1,14 @@
+## [16.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.1.0...@ovh-ux/manager-web@16.1.1) (2021-12-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1313] ([18e25ca](https://github.com/ovh/manager/commit/18e25cac26c26d6dbf4c01d01bc41554f7ce6e00))
+* **i18n:** add missing translations [CDS 1335] ([0b534f2](https://github.com/ovh/manager/commit/0b534f2669deca82713943c3ca83bb2e46d1b0b4))
+* **web.hosting:** fix error message ([0904d4a](https://github.com/ovh/manager/commit/0904d4a0a505a58f7a03417acc4cd6fe93a4a5af)), closes [#MANAGER-6622](https://github.com/ovh/manager/issues/MANAGER-6622)
+
+
+
 # [16.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.0.0...@ovh-ux/manager-web@16.1.0) (2021-12-01)
 
 
