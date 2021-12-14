@@ -3,7 +3,7 @@
   "cpbh_next_month": "Following month ",
   "cpbh_previous_month": "Previous month ",
   "cpbhd_monthly_header": "Monthly subscriptions for {{month}} {{year}}",
-  "cpbhd_hourly_header": "On-demand usage for {{month}} {{year}}",
+  "cpbhd_hourly_header": "On-demand usage for {{lastMonth}} {{year}}",
   "cpbhd_bill_link": "See all invoices ",
   "cpbhd_bill_pdf_tooltip": "Download PDF invoice ",
   "cpbhd_bill_pdf_link": "{{month}} {{year}} invoice ",
