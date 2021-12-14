@@ -3,6 +3,8 @@ import template from './account-add.html';
 
 export default {
   bindings: {
+    countries: '<',
+    phoneCountries: '<',
     goToAccounts: '<',
   },
   controller,
