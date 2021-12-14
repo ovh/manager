@@ -3,7 +3,7 @@
   "cpbh_next_month": "folgender Monat",
   "cpbh_previous_month": "Monat zurück ",
   "cpbhd_monthly_header": "Monatspauschalen im {{month}} {{year}} ",
-  "cpbhd_hourly_header": "Verbrauch on demand im {{month}} {{year}} ",
+  "cpbhd_hourly_header": "Verbrauch on demand im {{lastMonth}} {{year}}",
   "cpbhd_bill_link": "Alle Rechnungen ",
   "cpbhd_bill_pdf_tooltip": "Rechnung als PDF ",
   "cpbhd_bill_pdf_link": "Rechnung {{month}} {{year}} ",
