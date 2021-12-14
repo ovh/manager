@@ -1,3 +1,12 @@
+# [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.5.0...@ovh-ux/sao-ovh-manager-app@2.6.0) (2021-12-14)
+
+
+### Features
+
+* **sao.app:** add regions meta prompts ([7179e12](https://github.com/ovh/manager/commit/7179e129e19865db88b4bfc8dc2339d0f6d7ba63))
+
+
+
 # [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.4.2...@ovh-ux/sao-ovh-manager-app@2.5.0) (2021-10-06)
 
 

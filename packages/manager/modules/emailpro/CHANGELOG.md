@@ -1,3 +1,12 @@
+## [3.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.1.3...@ovh-ux/manager-emailpro@3.1.4) (2021-12-14)
+
+
+### Bug Fixes
+
+* **mailing-list.update:** display value when replyToEmail is selected ([#6126](https://github.com/ovh/manager/issues/6126)) ([106a280](https://github.com/ovh/manager/commit/106a28009018b3aee241a16919bcb80e7c19b308))
+
+
+
 ## [3.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.1.2...@ovh-ux/manager-emailpro@3.1.3) (2021-11-22)
 
 

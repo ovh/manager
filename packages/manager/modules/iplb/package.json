@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-iplb",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "private": true,
   "description": "IP Load Balancer product.",
   "repository": {

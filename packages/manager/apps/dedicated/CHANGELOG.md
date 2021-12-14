@@ -1,3 +1,20 @@
+# [17.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.7.2...@ovh-ux/manager-dedicated@17.8.0) (2021-12-14)
+
+
+### Bug Fixes
+
+* **dedicated:** remove previous query escape params ([285b57f](https://github.com/ovh/manager/commit/285b57f9f3263863384ea8eefaf480b2cdd986c7))
+* **i18n:** add missing translations [CDS 1319] ([#6092](https://github.com/ovh/manager/issues/6092)) ([bc89350](https://github.com/ovh/manager/commit/bc893500d4ed5866a4dba554d76f2f1084a8a198))
+* remove unused translations [CDS] ([972b143](https://github.com/ovh/manager/commit/972b143b1b29fd4bde0fddee8369220ae058ffa0))
+* **server:** avoid duplicate os install action ([#6078](https://github.com/ovh/manager/issues/6078)) ([1e2cd19](https://github.com/ovh/manager/commit/1e2cd19b9c4947e4d1ac6da54c0c633ce1f7dfed))
+
+
+### Features
+
+* **sidebar-menu:** change URL back to home ([#6085](https://github.com/ovh/manager/issues/6085)) ([35c76e7](https://github.com/ovh/manager/commit/35c76e74f2e2d0dfeff7120340dc7568b052dd8d))
+
+
+
 ## [17.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.7.1...@ovh-ux/manager-dedicated@17.7.2) (2021-12-02)
 
 

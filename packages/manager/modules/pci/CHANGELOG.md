@@ -1,3 +1,28 @@
+# [5.53.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.52.1...@ovh-ux/manager-pci@5.53.0) (2021-12-14)
+
+
+### Bug Fixes
+
+* **high.perf.storage:** fix translations ([#5577](https://github.com/ovh/manager/issues/5577)) ([2ea0e22](https://github.com/ovh/manager/commit/2ea0e220b5c79e27f63eca9c6df002b282d2cd90))
+* **i18n:** add missing translations [CDS 1320] ([b1673a8](https://github.com/ovh/manager/commit/b1673a8411b377ba6d89c4f4e7f5b79edef32b75))
+* **i18n:** add missing translations [CDS 1334] ([d6312a9](https://github.com/ovh/manager/commit/d6312a982048c0e30348a378e8045c3447afdea9))
+* **pci.billing:** fix error title ([74a3554](https://github.com/ovh/manager/commit/74a35542a06f774e7d8f3300884e3965babb301e)), closes [#DTRSD-57045](https://github.com/ovh/manager/issues/DTRSD-57045)
+* remove unused translations [CDS] ([4f443ea](https://github.com/ovh/manager/commit/4f443ea992001b5df3c7d3085fda9db7794e9e70))
+* **i18n:** add missing translations [CDS 1325] ([#6119](https://github.com/ovh/manager/issues/6119)) ([9a959b5](https://github.com/ovh/manager/commit/9a959b5ddd215fb57082ccedfe7c56d74534dbf3))
+* **i18n:** add missing translations [CDS 1328] ([ffe1cb5](https://github.com/ovh/manager/commit/ffe1cb5806aa696c2ce2547dbe1fc8695b939772))
+* **i18n:** add missing translations [CDS 1331] ([2f19987](https://github.com/ovh/manager/commit/2f19987b8c25f4e5a2812af7b15abe6776b85505))
+* **i18n:** add missing translations [CDS 1332] ([dcdfbfe](https://github.com/ovh/manager/commit/dcdfbfed761c9e1384f3c474124c85018c0e6786))
+* **storage.databases:** update some wording ([#6022](https://github.com/ovh/manager/issues/6022)) ([665340d](https://github.com/ovh/manager/commit/665340d410c5eaeccb3dc7403077507e062a31e6))
+
+
+### Features
+
+* **ai.notebook:** GitHub volume ([#5803](https://github.com/ovh/manager/issues/5803)) ([13c33ec](https://github.com/ovh/manager/commit/13c33ecde0b63f8da6188546edbb4c477444bba2))
+* **ai.training:** replace community URL by Discord URL ([7b98472](https://github.com/ovh/manager/commit/7b984729265d08e134e56858cb712c1c34be0985))
+* **kube.details.service:** add OIDC provider feature ([#5860](https://github.com/ovh/manager/issues/5860)) ([99555a8](https://github.com/ovh/manager/commit/99555a8c31228bfbf2ae93d05d60443017136ade))
+
+
+
 ## [5.52.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.52.0...@ovh-ux/manager-pci@5.52.1) (2021-12-10)
 
 

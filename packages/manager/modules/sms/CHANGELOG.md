@@ -1,3 +1,12 @@
+## [8.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.6.0...@ovh-ux/manager-sms@8.6.1) (2021-12-14)
+
+
+### Bug Fixes
+
+* **options.recredit:** update recredit info message ([#5966](https://github.com/ovh/manager/issues/5966)) ([14e2575](https://github.com/ovh/manager/commit/14e2575c28f713c27477b268d914c32fdde36ff6))
+
+
+
 # [8.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.5.4...@ovh-ux/manager-sms@8.6.0) (2021-10-28)
 
 

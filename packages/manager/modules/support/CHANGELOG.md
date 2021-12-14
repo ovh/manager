@@ -1,3 +1,13 @@
+## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.7.0...@ovh-ux/manager-support@1.7.1) (2021-12-14)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([4f443ea](https://github.com/ovh/manager/commit/4f443ea992001b5df3c7d3085fda9db7794e9e70))
+* remove unused translations [CDS] ([972b143](https://github.com/ovh/manager/commit/972b143b1b29fd4bde0fddee8369220ae058ffa0))
+
+
+
 # [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.6.7...@ovh-ux/manager-support@1.7.0) (2021-12-09)
 
 

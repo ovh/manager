@@ -1,3 +1,12 @@
+# [12.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.7.0...@ovh-ux/manager-core@12.8.0) (2021-12-14)
+
+
+### Features
+
+* **core:** prevent html injection into url ([882eac2](https://github.com/ovh/manager/commit/882eac2d036d6e8ea348595f57a5817f1cc68cd7))
+
+
+
 # [12.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.6.0...@ovh-ux/manager-core@12.7.0) (2021-11-30)
 
 
