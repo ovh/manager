@@ -608,5 +608,7 @@
   "common_manage_contacts": "Die Kontakte verwalten",
   "common_plan": "Abo",
   "common_upgrade_account": "Upgraden",
-  "common_automatic_renewal": "Automatische Verlängerung"
+  "common_automatic_renewal": "Automatische Verlängerung",
+  "common_service_expired_1": "Dieser Dienst {{t0}} ist ausgesetzt.",
+  "common_service_expired_2": "Um ihn wieder zu aktivieren, gehen Sie bitte in den Bereich „Meine Dienstleistungen“."
 }
