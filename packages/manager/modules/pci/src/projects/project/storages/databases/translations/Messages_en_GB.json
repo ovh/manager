@@ -6,6 +6,7 @@
   "pci_database_list_nodes": "Nodes",
   "pci_database_common_creation_date": "Creation date",
   "pci_database_common_name": "Name/ID",
+  "pci_database_common_id": "ID",
   "pci_database_common_status": "Status",
   "pci_database_common_status_READY": "Ready",
   "pci_database_common_status_DELETING": "Deleting",
@@ -20,16 +21,13 @@
   "pci_database_common_none": "None",
   "pci_database_list_create_database": "Create a service",
   "pci_database_list_manage_database": "Manage database",
-  "pci_database_common_id": "ID",
   "pci_database_list_rename_database": "Rename database",
   "pci_database_list_upgrade_version_database": "Upgrade version",
   "pci_database_list_upgrade_plan_database": "Solution upgrade",
   "pci_database_list_upgrade_node_database": "Node template upgrade",
-  "pci_database_node_type": "{{coreNumber}} CPU / {{memorySize}} RAM / {{storageSize}} SSD storage",
-  "pci_database_node_type_label": "Node template",
-  "pci_database_node_type_range": "{{coreNumber}} CPU / {{memorySize}} RAM / from {{storageMinSize}} to {{storageMaxSize}} SSD storage",
   "pci_database_node_type_cpu": "{{coreNumber}} CPU",
   "pci_database_node_type_memory": "{{memorySize}} RAM",
   "pci_database_node_type_storage": "{{storageSize}} SSD storage",
-  "pci_database_node_type_storage_range": "{{storageMinSize}} to {{storageMaxSize}} SSD storage"
+  "pci_database_node_type_storage_range": "{{storageMinSize}} to {{storageMaxSize}} SSD storage",
+  "pci_database_node_type_label": "Node template"
 }
