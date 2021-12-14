@@ -1,7 +1,12 @@
 import angular from 'angular';
 import isNil from 'lodash/isNil';
 
-import { ACTIONS, LINKS } from './project.constants';
+import {
+  PRODUCT_IMAGES,
+  ACTIONS,
+  LINKS,
+  COMMUNITY_LINKS,
+} from './project.constants';
 
 export default class ProjectController {
   /* @ngInject */
@@ -33,9 +38,11 @@ export default class ProjectController {
       );
 
     this.links = filterByRegion(LINKS);
+    this.communityLinks = filterByRegion(COMMUNITY_LINKS);
   }
 
   $onInit() {
+    this.productImages = PRODUCT_IMAGES;
     this.isSidebarOpen = false;
 
     this.$scope.$on('sidebar:open', () => {
