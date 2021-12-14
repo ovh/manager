@@ -10,6 +10,7 @@ export default class ExchangeAccountAddController {
   constructor(
     $scope,
     $timeout,
+    $translate,
     exchangeAccountTypes,
     wucExchange,
     exchangeAccount,
@@ -17,10 +18,10 @@ export default class ExchangeAccountAddController {
     wucExchangePassword,
     exchangeVersion,
     messaging,
-    $translate,
   ) {
     this.$scope = $scope;
     this.$timeout = $timeout;
+    this.$translate = $translate;
 
     this.exchangeAccountTypes = exchangeAccountTypes;
     this.wucExchange = wucExchange;
@@ -29,13 +30,17 @@ export default class ExchangeAccountAddController {
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
     this.exchangeVersion = exchangeVersion;
     this.messaging = messaging;
-    this.$translate = $translate;
   }
 
   $onInit() {
     this.$routerParams = this.wucExchange.getParams();
 
     this.isFetchingCreationOptions = true;
+    this.telephonyModel = {
+      phone: { selected: '', number: '' },
+      mobile: { selected: '', number: '' },
+      fax: { selected: '', number: '' },
+    };
     this.newAccount = {};
     this.shouldDisplayPasswordInput = true;
     this.isSendingNewAccount = false;
@@ -169,33 +174,35 @@ export default class ExchangeAccountAddController {
     });
   }
 
-  onPasswordConfirmationChange() {
-    if (this.newAccountForm.passwordConfirmation.$error.required) {
-      this.newAccountForm.passwordConfirmation.$setValidity(
-        'isDifferentToPassword',
-        true,
-      );
-    } else {
-      this.newAccountForm.passwordConfirmation.$setValidity(
-        'isDifferentToPassword',
-        this.newAccount.password === this.newAccount.passwordConfirmation,
-      );
-    }
-  }
-
   sendingNewAccount() {
     this.isSendingNewAccount = true;
 
     const formattedAccount = {
       SAMAccountName: this.newAccount.samAccountName,
-      company: this.newAccount.company,
-      displayName: this.newAccount.displayName,
+      login: this.newAccount.login,
       domain: this.newAccount.domain.name,
       firstName: this.newAccount.firstName,
       lastName: this.newAccount.lastName,
-      license: this.newAccount.accountType.name.toLowerCase(),
-      login: this.newAccount.login,
+      displayName: this.newAccount.displayName,
+      initials: this.newAccount.initials,
+      description: this.newAccount.description,
+      forwardingEmail: this.newAccount.forwardingEmail,
+      storeCopyOfEmail: this.newAccount.storeCopyOfEmail,
       password: this.newAccount.password,
+      company: this.newAccount.company,
+      jobDepartment: this.newAccount.jobDepartment,
+      jobTitle: this.newAccount.jobTitle,
+      office: this.newAccount.office,
+      postalCode: this.newAccount.postalCode,
+      city: this.newAccount.city,
+      ...(this.newAccount.countryCode && {
+        countryCode: this.newAccount.countryCode.code,
+      }),
+      region: this.newAccount.region,
+      phone: this.newAccount.phone,
+      mobile: this.newAccount.mobile,
+      fax: this.newAccount.fax,
+      license: this.newAccount.accountType.name.toLowerCase(),
       spamAndVirusConfiguration: {
         checkDKIM: false,
         putInJunk: false,
@@ -223,12 +230,32 @@ export default class ExchangeAccountAddController {
       })
       .catch((error) => {
         this.messaging.writeError(
-          this.$translate.instant('exchange_ACTION_add_account_error_message'),
+          this.$translate.instant('exchange_ACTION_add_account_error_message', {
+            message: error.message || error.data?.message,
+          }),
           error,
         );
       })
       .finally(() => {
         this.hide();
       });
+  }
+
+  onPasswordConfirmationChange() {
+    if (this.newAccountForm.passwordConfirmation.$error.required) {
+      this.newAccountForm.passwordConfirmation.$setValidity(
+        'isDifferentToPassword',
+        true,
+      );
+    } else {
+      this.newAccountForm.passwordConfirmation.$setValidity(
+        'isDifferentToPassword',
+        this.newAccount.password === this.newAccount.passwordConfirmation,
+      );
+    }
+  }
+
+  onCountryPhoneCodeChange(type) {
+    this.newAccount[type] = this.telephonyModel[type].number;
   }
 }
