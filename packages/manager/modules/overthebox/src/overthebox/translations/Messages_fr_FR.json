@@ -7,5 +7,6 @@
   "overTheBox_tabs_tasks": "Tâches",
   "overTheBox_tabs_logs": "Logs",
   "overTheBox_no_device_found": "Aucune OverTheBox n'est branchée. Vous ne pourrez pas créer d'accès à distance, ni utiliser les accès créés. Pour vous aider lors de la configuration de votre OverTheBox, veuillez trouver le guide d'installation <a href=\"{{url}}\" target=\"_blank\" title=\"Nouvelle fenêtre\">ici</a>.",
-  "overTheBox_tabs_actions": "Actions"
+  "overTheBox_tabs_actions": "Actions",
+  "overTheBox_tabs_autoconfigure": "Configuration"
 }
