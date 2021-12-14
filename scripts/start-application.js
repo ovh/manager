@@ -3,30 +3,6 @@ import execa from 'execa';
 import inquirer from 'inquirer';
 
 /**
- * Set of applications that doesn't rely on multiple regions.
- * @type {Set}
- */
-const applicationWithoutRegions = new Set([
-  '@ovh-ux/manager-carrier-sip-app',
-  '@ovh-ux/manager-freefax-app',
-  '@ovh-ux/manager-overthebox-app',
-  '@ovh-ux/manager-sms-app',
-  '@ovh-ux/manager-telecom',
-  '@ovh-ux/manager-telecom-dashboard-app',
-  '@ovh-ux/manager-telecom-task-app',
-]);
-
-/**
- * Regions where applications can be available.
- * @type {Array}
- */
-const availableRegions = [
-  { name: 'Europe', value: 'EU' },
-  { name: 'Canada', value: 'CA' },
-  { name: 'United States', value: 'US' },
-];
-
-/**
  * Workspace location for all applications.
  * @type {string}
  */
@@ -36,7 +12,7 @@ const applicationsWorkspace = 'packages/manager/apps';
  * List all applications available for a given workspace.
  * @return {Array} Applications' list.
  */
-const choices = () =>
+const getApplications = () =>
   readdirSync(applicationsWorkspace, { withFileTypes: true })
     .filter((dirent) => dirent.isDirectory())
     .map(({ name: application }) => {
@@ -44,7 +20,7 @@ const choices = () =>
         `${applicationsWorkspace}/${application}/package.json`,
         'utf8',
       );
-      const { name } = JSON.parse(data);
+      const { name, regions } = JSON.parse(data);
       // Skip scoped package name.
       // `@ovh-ux/foo` => `foo`.
       const [, formatedName] = name.split('/');
@@ -52,6 +28,7 @@ const choices = () =>
       return {
         name: formatedName,
         value: name,
+        regions,
       };
     });
 
@@ -63,22 +40,17 @@ const questions = [
     type: 'list',
     name: 'packageName',
     message: 'Which application do you want to start?',
-    choices,
+    choices: getApplications,
   },
   {
     type: 'list',
     name: 'region',
     message: 'Please specify the region:',
     choices({ packageName }) {
-      // Trick to remove US from the regions list (non-available).
-      if (packageName === '@ovh-ux/manager-web') {
-        availableRegions.pop();
-      }
-
-      return availableRegions;
-    },
-    when({ packageName }) {
-      return !applicationWithoutRegions.has(packageName);
+      const { regions } = getApplications().find(
+        ({ value }) => value === packageName,
+      );
+      return regions;
     },
   },
 ];
