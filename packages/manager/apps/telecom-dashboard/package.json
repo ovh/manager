@@ -68,5 +68,8 @@
     "@ovh-ux/manager-webpack-config": "^3.0.8 || ^4.0.0",
     "glob": "^7.1.6",
     "webpack-merge": "^4.2.2"
-  }
+  },
+  "regions": [
+    "EU"
+  ]
 }

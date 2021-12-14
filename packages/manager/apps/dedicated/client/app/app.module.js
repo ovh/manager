@@ -55,7 +55,6 @@ import './css/source.scss';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import set from 'lodash/set';
-import values from 'lodash/values';
 import isString from 'lodash/isString';
 import trustedNic from '@ovh-ux/manager-trusted-nic';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
@@ -301,29 +300,13 @@ export default (containerEl, environment) => {
       ROUTABLE_BLOCK_OR_IP: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(\d|[1-2]\d|3[0-2]))?$/,
     })
     .run(
-      /* @ngInject */ (
-        $location,
-        $rootScope,
-        $state,
-        $transitions,
-        coreConfig,
-      ) => {
+      /* @ngInject */ ($rootScope, $state, $transitions, coreConfig) => {
         $rootScope.$on('$locationChangeStart', () => {
           // eslint-disable-next-line no-param-reassign
           delete $rootScope.isLeftMenuVisible;
         });
 
-        // if query params contains unescaped '<' value then
-        // clear query params to avoid html injection
         $transitions.onBefore({}, (transition) => {
-          let invalidParams = false;
-          values($location.search()).forEach((param) => {
-            invalidParams = invalidParams || /</.test(param);
-          });
-          if (invalidParams) {
-            $location.search('');
-          }
-
           const HPC_STATES = [
             'anthos',
             'app.hpc',

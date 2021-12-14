@@ -174,10 +174,12 @@ export default class {
   }
 
   getBillingDateInfo() {
-    if (this.data.monthBilling.isValid()) {
+    const date = this.data.monthBilling.clone();
+    if (date.isValid()) {
       return {
-        month: this.data.monthBilling.format('MMMM'),
-        year: this.data.monthBilling.year(),
+        month: date.format('MMMM'),
+        lastMonth: date.subtract(1, 'month').format('MMMM'),
+        year: date.year(),
       };
     }
     return null;

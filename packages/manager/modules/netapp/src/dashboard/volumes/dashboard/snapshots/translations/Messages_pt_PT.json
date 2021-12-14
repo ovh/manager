@@ -1,8 +1,6 @@
 {
   "netapp_volumes_snapshots": "Snapshots",
   "netapp_volumes_snapshots_breadcrumb": "Snapshots",
-  "netapp_volumes_snapshots_total_label": "Número de snapshots",
-  "netapp_volumes_snapshots_total": "{{ total }}/{{ max }} (máximo)",
   "netapp_volumes_snapshots_actions": "Ações",
   "netapp_volumes_snapshots_actions_create": "Criar uma snapshot",
   "netapp_volumes_snapshots_actions_create_label": "Snapshot: Criar uma snapshot",

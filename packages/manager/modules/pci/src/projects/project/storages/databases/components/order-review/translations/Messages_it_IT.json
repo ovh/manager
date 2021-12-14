@@ -1,8 +1,8 @@
 {
   "pci_database_order_review_title": "Il tuo ordine",
   "pci_database_order_review_selected_database": "Database selezionato",
-  "pci_database_order_review_selected_plan": "Offerta selezionata",
-  "pci_database_order_review_selected_flavor": "Caratteristiche selezionate",
+  "pci_database_order_review_selected_plan": "Soluzione selezionata",
+  "pci_database_order_review_selected_flavor": "Dimensionamento selezionato",
   "pci_database_order_review_nodes_single": "nodo",
   "pci_database_order_review_nodes_multi": "Nodi"
 }

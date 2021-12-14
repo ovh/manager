@@ -15,6 +15,8 @@ export const NOTEBOOK_RESOURCES = {
 };
 export const NOTEBOOK_ATTACH_STORAGE = {
   MOUNT_PATH_REGEX: '^\\/(\\S)*$',
+  PREFIX_REGEX: '(\\S)*$',
+  GIT_URL_REGEX: 'http(s)?://([\\w\\.\\:/\\-~]+)(\\.git)(/)?',
   PERMISSION_READ_ONLY: 'RO',
   PERMISSION_READ_WRITE: 'RW',
   MAX_VOLUMES: 10,

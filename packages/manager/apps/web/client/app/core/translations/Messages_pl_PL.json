@@ -608,5 +608,7 @@
   "common_manage_contacts": "Zarządzanie kontaktami",
   "common_plan": "Abonament",
   "common_upgrade_account": "Zmień ofertę",
-  "common_automatic_renewal": "Odnowienie automatyczne"
+  "common_automatic_renewal": "Odnowienie automatyczne",
+  "common_service_expired_1": "Ta usługa {{t0}} jest zawieszona.",
+  "common_service_expired_2": "Przejdź do sekcji „Moje usługi”, aby ją ponownie włączyć."
 }

@@ -1,3 +1,5 @@
+import OidcProvider from './OidcProvider.class';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.kubernetes.details.service', {
     url: '/service',
@@ -5,6 +7,11 @@ export default /* @ngInject */ ($stateProvider) => {
       kubernetesView: 'ovhManagerPciProjectKubernetesServiceComponent',
     },
     resolve: {
+      oidcProvider: /* @ngInject */ (Kubernetes, projectId, kubeId) =>
+        Kubernetes.getOidcProvider(projectId, kubeId).then(
+          (oidcProvider) => new OidcProvider(oidcProvider),
+        ),
+
       getKubeConfig: /* @ngInject */ (Kubernetes, kubeId, projectId) => () =>
         Kubernetes.getKubeConfig(projectId, kubeId),
 
@@ -58,6 +65,24 @@ export default /* @ngInject */ ($stateProvider) => {
       updatePolicy: /* @ngInject */ ($state, kubeId, projectId) => () =>
         $state.go(
           'pci.projects.project.kubernetes.details.service.upgradePolicy',
+          { kubeId, projectId },
+        ),
+
+      addOidcProvider: /* @ngInject */ ($state, kubeId, projectId) => () =>
+        $state.go(
+          'pci.projects.project.kubernetes.details.service.add-oidc-provider',
+          { kubeId, projectId },
+        ),
+
+      updateOidcProvider: /* @ngInject */ ($state, kubeId, projectId) => () =>
+        $state.go(
+          'pci.projects.project.kubernetes.details.service.update-oidc-provider',
+          { kubeId, projectId },
+        ),
+
+      removeOidcProvider: /* @ngInject */ ($state, kubeId, projectId) => () =>
+        $state.go(
+          'pci.projects.project.kubernetes.details.service.remove-oidc-provider',
           { kubeId, projectId },
         ),
 

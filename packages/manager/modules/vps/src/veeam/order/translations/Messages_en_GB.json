@@ -4,6 +4,8 @@
   "vps_configuration_veeam_order_step1_loading_error": "An error has occurred loading the information.",
   "vps_configuration_veeam_order_step1_info": "For the first payment, you will be invoiced pro rata for the number of days remaining from your VPS renewal date.",
   "vps_configuration_veeam_order_step1_info2": "The service will then be billed monthly, at a price of <strong>{{price}} ex. VAT</strong>/{{duration}}.",
+  "vps_configuration_veeam_order_step1_info2_P1M": "month",
+  "vps_configuration_veeam_order_step1_info2_P1Y": "year",
   "vps_configuration_veeam_order_step1_question": "Order Automated Backup option for the {{ serviceName }} VPS?",
   "vps_configuration_veeam_order_step1_id": "To confirm your request, please accept the terms and conditions and click \"Next\" below.",
   "vps_configuration_veeam_order_step1_totalHT": "Price ex. VAT:",
@@ -18,7 +20,5 @@
   "vps_configuration_veeam_order_success": "To complete your order, please follow the instructions listed in the new tab that has opened. If no new tab has appeared, please click <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">here</a>.",
   "vps_configuration_veeam_order_load_error": "An error has occurred loading the Automated Backup order information.",
   "vps_configuration_veeam_order_load_error_none": "No Automated Backup orders have been found for this VPS.",
-  "vps_configuration_veeam_order_explain": "When you click the ‘Order’ button, a new tab will open and you will be automatically redirected to the payment interface.",
-  "vps_configuration_veeam_order_step1_info2_P1M": "month",
-  "vps_configuration_veeam_order_step1_info2_P1Y": "year"
+  "vps_configuration_veeam_order_explain": "When you click the ‘Order’ button, a new tab will open and you will be automatically redirected to the payment interface."
 }

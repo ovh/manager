@@ -113,12 +113,6 @@ angular
     // ---------------INFO-------------------
 
     // SWS
-    self.getNas = function getNas() {
-      return OvhHttp.get('/sws/dedicated/nastype', {
-        rootPath: '2api',
-      });
-    };
-
     self.getUrlRenew = function getUrlRenew(nasId) {
       return URI.expand(constants.renew, {
         serviceName: self.getNasId(nasId),
@@ -449,12 +443,6 @@ angular
     };
 
     // ---------------ORDER SWS-------------------
-
-    self.getOrderList = function getOrderList() {
-      return OvhHttp.get('/sws/dedicated/nastype/order', {
-        rootPath: '2api',
-      });
-    };
 
     const NasHAZoneEnum = {
       BHS: 'bhs',

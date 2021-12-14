@@ -4,6 +4,8 @@
   "vps_configuration_veeam_order_step1_loading_error": "Ocorreu um erro ao carregar as informações",
   "vps_configuration_veeam_order_step1_info": "Para o primeiro pagamento, a OVH fatura o número de dias restantes antes da data de renovação do VPS.",
   "vps_configuration_veeam_order_step1_info2": "A seguir, o serviço será faturado mensalmente ao preço de <strong>{{ price }} + IVA</strong>/{{duration}}.",
+  "vps_configuration_veeam_order_step1_info2_P1M": "mês",
+  "vps_configuration_veeam_order_step1_info2_P1Y": "ano",
   "vps_configuration_veeam_order_step1_question": "Encomendar a opção de backups automatizados no VPS {{ serviceName }}?",
   "vps_configuration_veeam_order_step1_id": "Para confirmar o pedido, leia e aceite as condições de utilização, e clique no botão “Seguinte”.",
   "vps_configuration_veeam_order_step1_totalHT": "Preço s/ IVA:",
@@ -18,7 +20,5 @@
   "vps_configuration_veeam_order_success": "Para finalizar a sua encomenda, siga as instruções descritas no novo separador. Se não aparecer nenhum separador novo, clique <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">nesta ligação</a>.",
   "vps_configuration_veeam_order_load_error": "Ocorreu um erro no carregamento das informações da encomenda de backup automatizado.",
   "vps_configuration_veeam_order_load_error_none": "Não foi encontrada nenhuma encomenda de backup automatizado para este VPS.",
-  "vps_configuration_veeam_order_explain": "Ao clicar em “Encomendar”, irá visualizar um novo separador e será automaticamente reencaminhado para a página de pagamento.",
-  "vps_configuration_veeam_order_step1_info2_P1M": "mês",
-  "vps_configuration_veeam_order_step1_info2_P1Y": "ano"
+  "vps_configuration_veeam_order_explain": "Ao clicar em “Encomendar”, irá visualizar um novo separador e será automaticamente reencaminhado para a página de pagamento."
 }

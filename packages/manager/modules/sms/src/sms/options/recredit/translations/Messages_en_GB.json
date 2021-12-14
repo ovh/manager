@@ -2,8 +2,8 @@
   "sms_section_back_link": "Back to options",
   "sms_options_recredit_title": "Automatic top-up",
   "sms_options_recredit_information_title": "Information",
-  "sms_options_recredit_information_text": "You can top up your account automatically if your balance exceeds a certain threshold.<br/>This top-up process takes place automatically, and is charged to your OVHcloud customer account.",
-  "sms_options_recredit_information_note": "Please note that automatic top-ups will only work if the balance of your OVHcloud customer account is positive or zero. You can top up your customer account in the Telecom Control Panel, in the Billing section.",
+  "sms_options_recredit_information_text": "You can automatically re-credit your SMS account when your balance exceeds a certain threshold.",
+  "sms_options_recredit_information_note": "The automatic re-crediting option can only be activated after you have had your service for 2 months. A SEPA direct debit payment method must also be present and valid on your OVHcloud account.",
   "sms_options_recredit_manage_title": "Manage options",
   "sms_options_recredit_manage_threshold_label": "Minimum threshold:",
   "sms_options_recredit_manage_threshold_text": "{{ creditThresholdForAutomaticRecredit | number:2 }} credits",
@@ -20,5 +20,6 @@
   "sms_options_recredit_update_quantity_option": "{{ amount }} credits",
   "sms_options_recredit_updating": "Configuring automatic top-up…",
   "sms_options_recredit_updated": "Automatic top-up configuration complete",
-  "sms_options_recredit_update_ko": "Unable to update automatic top-up configuration.<br/>{{error}}"
+  "sms_options_recredit_update_ko": "Unable to update automatic top-up configuration.<br/>{{error}}",
+  "sms_options_recredit_information_note2": "This re-credit is carried out automatically, and will be charged to your OVHcloud customer account."
 }

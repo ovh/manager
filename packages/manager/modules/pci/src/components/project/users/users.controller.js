@@ -97,12 +97,14 @@ export default class CloudProjectUsersCtrl {
       type: 'action',
     });
     return this.generateS3Credentials(user)
-      .then(() =>
+      .then(({ access, secret }) =>
         this.CucCloudMessage.success(
           this.$translate.instant(
             'pci_projects_project_users_generate_s3_credentials_success',
             {
               user: user.username,
+              access,
+              secret,
             },
           ),
           this.messageChannel,

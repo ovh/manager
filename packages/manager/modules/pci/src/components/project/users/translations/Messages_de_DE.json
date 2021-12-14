@@ -28,7 +28,7 @@
   "pci_projects_project_users_matrix_show": "Rollenmatrix anzeigen",
   "pci_projects_project_users_matrix_hide": "Rollenmatrix verbergen",
   "pci_projects_project_users_generate_s3_credentials": "S3-Zertifikate generieren",
-  "pci_projects_project_users_generate_s3_credentials_success": "Die S3-Login-Daten für den Nutzer {{user}} wurden neu generiert.",
+  "pci_projects_project_users_generate_s3_credentials_success": "Die S3-Identifizierungsdaten für den Nutzer {{user}} wurden neu generiert. Ihr Zugangsschlüssel lautet {{access}}, der geheime Schlüssel lautet {{secret}}.",
   "pci_projects_project_users_generate_s3_credentials_error": "Beim Generieren der Login-Daten des Nutzers {{ user }} ist ein Fehler aufgetreten: {{ message }}.",
   "pci_projects_project_users_createdAt_label": "Erstellungsdatum",
   "pci_projects_project_users_show_key_label": "Zugriffsschlüssel anzeigen",

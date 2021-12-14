@@ -607,5 +607,7 @@
   "common_manage_contacts": "Manage contacts",
   "common_plan": "Plan",
   "common_upgrade_account": "Change solution",
-  "common_automatic_renewal": "Automatic renewal"
+  "common_automatic_renewal": "Automatic renewal",
+  "common_service_expired_1": "The {{t0}} service has been suspended.",
+  "common_service_expired_2": "Go to the ‘My services’ section to reactivate it."
 }

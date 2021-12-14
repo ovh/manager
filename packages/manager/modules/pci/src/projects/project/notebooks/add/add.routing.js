@@ -13,6 +13,14 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
+      storages: /* @ngInject */ (
+        PciProjectStorageContainersService,
+        projectId,
+      ) =>
+        PciProjectStorageContainersService.getAll(projectId).then((storages) =>
+          storages.filter(({ archive }) => !archive),
+        ),
+
       onNotebookAdd: /* @ngInject */ (goToNotebook) => (
         notebookInfo,
         message,

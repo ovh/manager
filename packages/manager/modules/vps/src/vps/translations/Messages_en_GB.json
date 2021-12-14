@@ -521,5 +521,10 @@
   "vps_language_pt": "Portuguese",
   "vps_new_range_available_introduction": "Our VPS ranges are changing, and so is the OVHcloud Control Panel.",
   "vps_new_range_available_call_to_upgrade_1": "To get the very latest updates, <a href=\"{{href}}\">order a new model</a> via the OVHcloud Control Panel, transfer your data, then cancel your old server.",
-  "vps_new_range_available_call_to_upgrade_2": "To get the most out of our technology, upgrade your machine <a href=\"{{href}}\">in just a few clicks.</a>"
+  "vps_new_range_available_call_to_upgrade_2": "To get the most out of our technology, upgrade your machine <a href=\"{{href}}\">in just a few clicks.</a>",
+  "vps_database_version_mariadb_103": "MariaDB 10.3",
+  "vps_database_version_mariadb_104": "MariaDB 10.4",
+  "vps_database_version_mariadb_105": "MariaDB 10.5",
+  "vps_database_version_mysql_80": "MySQL 8.0",
+  "vps_database_version_redis_60": "Redis 6.0"
 }

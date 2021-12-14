@@ -452,8 +452,6 @@
   "core_change_owner": "Change the owner",
   "contacts_management": "Manage contacts",
   "customized": "Personalised",
-  "dedicated_server_dashboard_ovhTasks_header": "Do you have a problem with your products?",
-  "dedicated_server_dashboard_ovhTasks_description": "View status tasks",
   "core_top_guides_header": "For more detailed information, please read <a href=\"{{t0}}\" target=\"_blank\">our guides</a>.",
   "core_top_guides_header_fr": "For assistance, or detailed information about your services and their current status, go to the page:",
   "core_type_of_guide_vps": "Virtual private servers",
@@ -520,6 +518,7 @@
   "core_service_renew_button": "Renew",
   "core_user_enterprise_retail_prices": "Please note: The prices displayed are the standard catalogue prices, and may not reflect the pricing conditions. Please check your monthly invoice for more detailed information about pricing.",
   "core_user_enterprise_retail_prices_hpc": "Please note: The prices displayed are an estimation based on the pro rata calculation for this module, to align it with the billing period for your current contract. Please check your monthly invoice for more detailed information about pricing.",
+  "core_user_trusted_retail_prices": "Note: The price displayed corresponds to the price of the service. The trust zone surcharge is added to the overall monthly bill.",
   "browser_alert_not_supported": "Your browser is not supported. ",
   "browser_alert_deprecated": "Your browser is not up to date and may contain security vulnerabilities or compatibility issues. ",
   "browser_alert_update": "We recommend that you <a href=\"http://outdatedbrowser.com\" class=\"alert-link\" target=\"_blank\">update your browser <span class=\"fa fa-external-link\" aria-hidden=\"true\"></span></a> to get the best experience.  ",
@@ -545,6 +544,5 @@
   "common_subscription_contacts_billing": "Billing",
   "common_subscription_contacts_tech": "Technical",
   "common_unavailable_information": "Information unavailable",
-  "common_resiliate_contact_support": "To cancel this service, please call our support team on: <strong>0333 370 0425</strong>. Thank you for choosing OVH.",
-  "core_user_trusted_retail_prices": "Note: The price displayed corresponds to the price of the service. The trust zone surcharge is added to the overall monthly bill."
+  "common_resiliate_contact_support": "To cancel this service, please call our support team on: <strong>0333 370 0425</strong>. Thank you for choosing OVH."
 }

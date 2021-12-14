@@ -452,8 +452,6 @@
   "core_change_owner": "Alterar titular",
   "contacts_management": "Gerir os contactos",
   "customized": "Personalizado",
-  "dedicated_server_dashboard_ovhTasks_header": "Tem um problema com um dos seus produtos?",
-  "dedicated_server_dashboard_ovhTasks_description": "Consultar as tarefas em curso",
   "core_top_guides_header": "Para mais informação, consulte <a href=\"{{t0}}\" target=\"_blank\">os nossos guias</a>.",
   "core_top_guides_header_fr": "Se precisar de ajuda ou de mais informações sobre os seus serviços, aceda à seguinte página:",
   "core_type_of_guide_vps": "Servidores privados virtuais",
@@ -520,6 +518,7 @@
   "core_service_renew_button": "Renovar",
   "core_user_enterprise_retail_prices": "Nota: Os preços apresentados são preços de catálogo padrão e podem não refletir os termos negociados. Verifique sua fatura mensal para obter um detalhamento melhor dos preços.",
   "core_user_enterprise_retail_prices_hpc": "Nota: Os preços apresentados são uma estimativa baseada no cálculo proporcional deste módulo para alinhar com o período de faturação do seu contrato atual. Verifique sua fatura mensal para obter um detalhamento melhor dos preços.",
+  "core_user_trusted_retail_prices": "Nota: o preço indicado corresponde ao preço do serviço. O custo adicional relativo ao Trusted Zone é adicionado à faturação mensal global.",
   "browser_alert_not_supported": "O seu browser não é compatível",
   "browser_alert_deprecated": "O seu browser não está atualizado e pode ter falhas de segurança ou problemas de compatibilidade.",
   "browser_alert_update": "Para melhorar a experiência de navegação, recomendamos que <a href=\"http://outdatedbrowser.com/pt\" class=\"alert-link\" target=\"_blank\">atualize o seu browser <span class=\"fa fa-external-link\" aria-hidden=\"true\"></span></a>.",
@@ -545,6 +544,5 @@
   "common_subscription_contacts_billing": "Faturação",
   "common_subscription_contacts_tech": "Técnico ",
   "common_unavailable_information": "Informação indisponível",
-  "common_resiliate_contact_support": "Para cancelar este serviço, contacte o nosso apoio ao cliente através do <strong>+351 213 155 642</strong>. Obrigado pela sua compreensão.",
-  "core_user_trusted_retail_prices": "Nota: o preço indicado corresponde ao preço do serviço. O custo adicional relativo ao Trusted Zone é adicionado à faturação mensal global."
+  "common_resiliate_contact_support": "Para cancelar este serviço, contacte o nosso apoio ao cliente através do <strong>+351 213 155 642</strong>. Obrigado pela sua compreensão."
 }

@@ -161,17 +161,8 @@
                                 </oui-action-menu-item>
                                 <oui-action-menu-item
                                     data-on-click="$ctrl.openOsInstallation('choice')"
-                                    data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask || $ctrl.ola.isConfigured()"
-                                    data-ng-if="!$ctrl.dedicatedServer.$scope.disable.installationInProgress && !$ctrl.ola.isConfigured()"
-                                >
-                                    <span
-                                        data-translate="server_configuration_installation_button"
-                                    ></span>
-                                </oui-action-menu-item>
-                                <oui-action-menu-item
-                                    data-on-click="$ctrl.openOsInstallation('choice')"
                                     data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask"
-                                    data-ng-if="!$ctrl.server.os && !$ctrl.dedicatedServer.$scope.disable.installationInProgress && $ctrl.ola.isConfigured()"
+                                    data-ng-if="$ctrl.canInstallOs()"
                                 >
                                     <span
                                         data-translate="server_configuration_installation_button"

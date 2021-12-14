@@ -40,6 +40,7 @@
                     ><span data-translate="telephony_group_tab_admin"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
+                    data-ng-if="::BillingAccountCtrl.isBillingContact()"
                     data-href="{{:: BillingAccountCtrl.billingLink }}"
                     data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.billingLink"
                     ><span data-translate="telephony_group_tab_billing"></span>

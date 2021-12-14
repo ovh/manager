@@ -254,13 +254,18 @@
     </oui-header-tabs>
 </div>
 
-<div class="p-5" data-ng-if="!loadingHostingInformations && hosting.isExpired">
-    <div
-        class="alert alert-warning"
-        role="alert"
-        data-translate="common_service_expired"
-        data-translate-values="{ t0: hosting.serviceDisplayName }"
-    ></div>
+<div
+    data-ng-if="!loadingHostingInformations && hosting.isExpired || serviceError"
+>
+    <oui-message data-type="warning">
+        <span
+            data-translate="common_service_expired_1"
+            data-translate-values="{ t0: '<strong>' + hosting.serviceDisplayName + '</strong>'}"
+        ></span>
+        <a href="{{::autorenew.url}}"
+            ><span data-translate="common_service_expired_2"></span
+        ></a>
+    </oui-message>
 </div>
 
 <div

@@ -28,7 +28,7 @@
   "pci_projects_project_users_matrix_show": "Show role matrix",
   "pci_projects_project_users_matrix_hide": "Hide role matrix",
   "pci_projects_project_users_generate_s3_credentials": "Generate S3 certificates",
-  "pci_projects_project_users_generate_s3_credentials_success": "S3 credentials for the user {{user}} have been regenerated.",
+  "pci_projects_project_users_generate_s3_credentials_success": "S3 credentials for the user {{user}} have been regenerated. Your access key is {{access}} and the secret key is {{secret}}.",
   "pci_projects_project_users_generate_s3_credentials_error": "An error has occurred generating credentials for the user {{user}}: {{message}}",
   "pci_projects_project_users_createdAt_label": "Creation date",
   "pci_projects_project_users_show_key_label": "Show access key",

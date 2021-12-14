@@ -1,7 +1,6 @@
 {
   "netapp_volumes_breadcrumb": "Volumes",
   "netapp_volumes_details": "Details der Volumes",
-  "netapp_volumes_number": "{{ volumesNumber }} / {{ volumesLimit }} (maximum)",
   "netapp_volumes_id": "ID",
   "netapp_volumes_name": "Name",
   "netapp_volumes_description": "Beschreibung",

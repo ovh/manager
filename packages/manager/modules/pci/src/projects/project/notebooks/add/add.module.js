@@ -14,6 +14,7 @@ import notebookPrivacySettings from './components/notebook-privacy-settings';
 import notebookResources from './components/notebook-resources';
 import notebookAttach from './components/notebook-attach';
 import notebookReview from './components/notebook-review';
+import ovhManagerPciStoragesContainers from '../../storages/containers';
 
 const moduleName = 'ovhManagerPciNotebooksAdd';
 
@@ -29,6 +30,7 @@ angular
     notebookResources,
     notebookAttach,
     notebookReview,
+    ovhManagerPciStoragesContainers,
   ])
   .config(routing)
   .component('pciProjectNotebooksAdd', component)

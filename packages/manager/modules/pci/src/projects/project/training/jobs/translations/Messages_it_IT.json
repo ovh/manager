@@ -36,6 +36,7 @@
   "pci_projects_project_training_jobs_submit_data_container": "Container",
   "pci_projects_project_training_jobs_submit_data_mount_path": "Directory di mount",
   "pci_projects_project_training_jobs_submit_data_permission": "Permesso",
+  "pci_projects_project_training_jobs_submit_data_permission_select": "Permesso",
   "pci_projects_project_training_jobs_submit_data_permission_RO": "Sola lettura",
   "pci_projects_project_training_jobs_submit_data_permission_RW": "Lettura e scrittura",
   "pci_projects_project_training_jobs_submit_ovhai_info": "Il seguente comando ti permette di avviare lo stesso job con la nostra CLI ovhai:",
@@ -65,5 +66,6 @@
   "pci_projects_project_training_jobs_submitresources_proposed_resource_price_by_ressource": "{{ price }}/unità IVA esclusa/ora",
   "pci_projects_project_training_jobs_submitresources_proposed_type_gpu": " (GPU)",
   "pci_projects_project_training_jobs_submitresources_proposed_type_cpu": " (CPU)",
-  "pci_projects_project_training_jobs_submit_select_image_custom_doc": "Creare un'immagine personalizzata"
+  "pci_projects_project_training_jobs_submit_select_image_custom_doc": "Creare un'immagine personalizzata",
+  "pci_projects_project_training_jobs_submit_data_permission_RWD": "Lettura, scrittura ed eliminazione"
 }

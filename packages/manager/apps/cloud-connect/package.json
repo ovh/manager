@@ -66,5 +66,9 @@
     "bootstrap": "^4.3.1",
     "glob": "^7.1.6",
     "webpack-merge": "^4.2.2"
-  }
+  },
+  "regions": [
+    "CA",
+    "EU"
+  ]
 }

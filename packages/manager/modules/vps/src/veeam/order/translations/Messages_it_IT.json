@@ -4,6 +4,8 @@
   "vps_configuration_veeam_order_step1_loading_error": "Si è verificato un errore durante il caricamento delle informazioni",
   "vps_configuration_veeam_order_step1_info": "Per il primo pagamento, verrà fatturato il pro rata corrispondente al numero dei giorni restanti alla data di rinnovo del tuo VPS.",
   "vps_configuration_veeam_order_step1_info2": "In seguito, il servizio verrà fatturato mensilmente alla tariffa di <strong>{{ price }} +IVA</strong>/{{duration}}.",
+  "vps_configuration_veeam_order_step1_info2_P1M": "mese",
+  "vps_configuration_veeam_order_step1_info2_P1Y": "anno",
   "vps_configuration_veeam_order_step1_question": "Vuoi attivare l'opzione di Backup automatico sul VPS {{ serviceName }}?",
   "vps_configuration_veeam_order_step1_id": "Per confermare la tua richiesta, accetta le condizioni di utilizzo e clicca su \"Avanti\".",
   "vps_configuration_veeam_order_step1_totalHT": "Prezzo IVA esclusa:",
@@ -18,7 +20,5 @@
   "vps_configuration_veeam_order_success": "Per completare l’ordine, segui le indicazioni riportate nella nuova finestra oppure clicca su <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">questo link</a>.",
   "vps_configuration_veeam_order_load_error": "Si è verificato un errore durante il caricamento delle informazioni relative all'ordine dell’opzione di Backup automatico.",
   "vps_configuration_veeam_order_load_error_none": "Non abbiamo trovato richieste di attivazione dell’opzione di Backup automatico per questo VPS.",
-  "vps_configuration_veeam_order_explain": "Cliccando su “Ordina” verrai reindirizzato automaticamente all’interfaccia di pagamento.",
-  "vps_configuration_veeam_order_step1_info2_P1M": "mese",
-  "vps_configuration_veeam_order_step1_info2_P1Y": "anno"
+  "vps_configuration_veeam_order_explain": "Cliccando su “Ordina” verrai reindirizzato automaticamente all’interfaccia di pagamento."
 }
