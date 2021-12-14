@@ -11,10 +11,6 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       server: /* @ngInject */ (nodeId, NutanixService) =>
         NutanixService.getServer(nodeId),
-      specifications: /* @ngInject */ (nodeId, NutanixService) =>
-        NutanixService.getBandwidth(nodeId),
-      bandwidthInformations: /* @ngInject */ (nodeId, NutanixService) =>
-        NutanixService.getBandwidthOptions(nodeId),
       goToEditName: /* @ngInject */ ($state) => (displayName) =>
         $state.go('nutanix.dashboard.general-info.edit-display-name', {
           displayName,
@@ -41,6 +37,11 @@ export default /* @ngInject */ ($stateProvider) => {
         });
         return promise;
       },
+      handleError: /* @ngInject */ (Alerter) => (error) =>
+        Alerter.error(
+          error.message || error.data?.message,
+          'nutanix_dashboard_alert',
+        ),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('nutanix_dashboard_general_info'),
     },

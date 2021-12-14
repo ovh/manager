@@ -2,6 +2,8 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import service from './service';
+
 const moduleName = 'ovhManagerNutanixLazyLoading';
 
 angular
@@ -17,6 +19,9 @@ angular
             NutanixService.getClusters(),
           breadcrumb: () => 'nutanix',
         },
+      });
+      $stateProvider.state('nutanix.index.**', {
+        url: '',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -47,6 +52,7 @@ angular
       });
     },
   )
+  .service('NutanixService', service)
   .run(
     /* @ngInject */ ($translate, $transitions) => {
       $transitions.onBefore({ to: 'nutanix.**' }, () => $translate.refresh());

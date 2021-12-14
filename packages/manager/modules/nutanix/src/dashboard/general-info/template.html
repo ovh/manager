@@ -1,6 +1,6 @@
 <div class="row d-md-flex mb-5">
     <!-- General info -->
-    <div class="col-md-4">
+    <div class="col-md-6 col-lg-4 mb-3">
         <oui-tile
             class="h-100"
             heading="{{:: 'nutanix_dashboard_general_info' | translate }}"
@@ -60,8 +60,14 @@
             <!-- license -->
             <oui-tile-definition
                 term="{{:: 'nutanix_dashboard_cluster_licence' | translate }}"
-                description="{{:: $ctrl.cluster.targetSpec.license }}"
             >
+                <oui-tile-description>
+                    <span
+                        class="text-capitalize"
+                        data-ng-bind=":: $ctrl.cluster.targetSpec.license"
+                    >
+                    </span>
+                </oui-tile-description>
             </oui-tile-definition>
 
             <!-- deployment mode -->
@@ -104,11 +110,13 @@
                 term="{{:: 'nutanix_dashboard_cluster_datacenter' | translate }}"
             >
                 <oui-tile-description>
-                    <div class="oui-tile__description">
-                        <span
-                            data-ng-bind=":: $ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.server.datacenter)"
-                        ></span>
-                    </div>
+                    <div
+                        class="oui-tile__description"
+                        data-translate="{{'server_datacenter_' + $ctrl.server.datacenter.split('_')[0]}}"
+                        data-translate-values="{
+                            number: $ctrl.server.datacenter.split('_')[1]
+                            }"
+                    ></div>
                 </oui-tile-description>
             </oui-tile-definition>
 
@@ -130,8 +138,17 @@
         </oui-tile>
     </div>
 
+    <!-- Network -->
+    <div class="col-md-6 col-lg-4 mb-3" data-ng-if="!$ctrl.server.isExpired">
+        <nutanix-network-tile
+            cluster="$ctrl.cluster"
+            on-error="$ctrl.handleError(error)"
+        >
+        </nutanix-network-tile>
+    </div>
+
     <!-- Subscription details -->
-    <div class="col-md-4">
+    <div class="col-md-6 col-lg-4 mb-3">
         <billing-subscription-tile
             on-error="$ctrl.onBillingInformationError(error)"
             go-to-commit="$ctrl.goToCommit()"
@@ -145,30 +162,20 @@
         </billing-subscription-tile>
     </div>
 
-    <!-- TECHNICAL DETAILS -->
-    <div class="col-md-4" data-ng-if="$ctrl.technicalDetails">
-        <server-technical-details
-            technical-details="$ctrl.technicalDetails"
-            go-to-manual-upgrade="$ctrl.goToManualUpgrade"
-        ></server-technical-details>
-    </div>
-
-    <!-- Network -->
-    <div class="col-md-4" data-ng-if="!$ctrl.server.isExpired">
-        <nutanix-network-tile
-            bandwidth-informations="$ctrl.bandwidthInformations"
-            server="$ctrl.server"
-            specifications="$ctrl.specifications"
-        >
-        </nutanix-network-tile>
-    </div>
-
     <!-- SUPPORT TICKET -->
-    <div class="col-md-4">
+    <div class="col-md-6 col-lg-4 mb-3">
         <server-support
             service-name="{{$ctrl.serviceName}}"
             travaux-url="{{$ctrl.TRAVAUX_LINK}}"
             tracking-prefix="$ctrl.trackingPrefix"
         ></server-support>
+    </div>
+
+    <!-- TECHNICAL DETAILS -->
+    <div class="col-md-6 col-lg-4 mb-3" data-ng-if="$ctrl.technicalDetails">
+        <server-technical-details
+            technical-details="$ctrl.technicalDetails"
+            go-to-manual-upgrade="$ctrl.goToManualUpgrade"
+        ></server-technical-details>
     </div>
 </div>

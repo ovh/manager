@@ -1,30 +1,97 @@
-<server-network
-    server="$ctrl.server"
-    bandwidth="$ctrl.bandwidthInformations.bandwidth"
+<oui-tile
+    class="h-100"
+    data-heading="{{:: 'nutanix_cluster_network_title' | translate }}"
+    data-loading="$ctrl.loadingVrack || $ctrl.loadingIpLb ||
+        $ctrl.loadingBandwidth || $ctrl.loadingBandwidthOptions"
 >
-    <div data-ng-if="$ctrl.bandwidthInformations.bandwidth">
-        <!-- Reverse -->
-        <oui-tile-definition
-            term="{{:: 'server_configuration_reverse' | translate }}"
-        >
-            <oui-tile-description>
-                <oui-clipboard
-                    class="ip-clipboard"
-                    data-model="$ctrl.server.reverse || ('server_configuration_reverse_not_configured' | translate)"
-                >
-                </oui-clipboard>
-            </oui-tile-description>
-        </oui-tile-definition>
+    <!-- Private Bandwidth -->
+    <oui-tile-definition
+        data-ng-if="$ctrl.specifications.vrack.bandwidth"
+        data-term="{{:: 'nutanix_cluster_bandwidth_private' | translate }}"
+    >
+        <oui-tile-description>
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Outgoing Bandwidth -->
+                    <span
+                        class="oui-icon oui-icon-arrow-up font-inherit"
+                    ></span>
+                    <span
+                        data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
+                    ></span>
+                    <span
+                        data-translate="nutanix_cluster_bandwidth_outgoing"
+                    ></span>
+                    <small
+                        class="oui-tile__extra"
+                        data-ng-if="$ctrl.bandwidthInformations.bandwidthVrackOption === 'released'"
+                        data-translate="nutanix_cluster_bandwidth_vrack_option_released"
+                    ></small>
+                </div>
+                <div class="col-md-6">
+                    <!-- Incoming Bandwidth -->
+                    <span
+                        class="oui-icon oui-icon-arrow-down font-inherit"
+                    ></span>
+                    <span
+                        data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
+                    ></span>
+                    <span
+                        data-translate="nutanix_cluster_bandwidth_incoming"
+                    ></span>
+                </div>
+            </div>
+        </oui-tile-description>
+    </oui-tile-definition>
 
-        <server-bandwidth-dashboard
-            data-bandwidth-option="$ctrl.bandwidthInformations.bandwidthOption"
-            data-bandwidth-vrack-option="$ctrl.bandwidthInformations.bandwidthVrackOptions"
-            data-bandwidth-vrack-order-option="$ctrl.bandwidthInformations.bandwidthVrackOrderOptions"
-            data-order-private-link="$ctrl.orderPrivateBandwidthLink"
-            data-order-public-link="$ctrl.orderPublicBandwidthLink"
-            data-server="$ctrl.server"
-            data-specifications="$ctrl.specifications"
-        >
-        </server-bandwidth-dashboard>
-    </div>
-</server-network>
+    <!-- IPFO -->
+    <oui-tile-definition term="IPFO">
+        <oui-tile-description>
+            <oui-clipboard
+                class="ip-clipboard"
+                data-model="$ctrl.cluster.targetSpec.ipfo"
+            >
+            </oui-clipboard>
+        </oui-tile-description>
+    </oui-tile-definition>
+
+    <!-- vRack -->
+    <oui-tile-definition data-term="{{:: 'nutanix_cluster_vrack' | translate}}">
+        <oui-tile-description>
+            <span
+                data-ng-if="!$ctrl.cluster.targetSpec.vrack"
+                data-translate="nutanix_cluster_vrack_none"
+            >
+            </span>
+            <a
+                data-ng-if="$ctrl.cluster.targetSpec.vrack"
+                class="oui-link oui-link_icon"
+                href="{{ ::$ctrl.getVrackUrl($ctrl.cluster.targetSpec.vrack) }}"
+            >
+                <span
+                    data-ng-bind="$ctrl.vrack.name || $ctrl.cluster.targetSpec.vrack"
+                ></span>
+            </a>
+        </oui-tile-description>
+    </oui-tile-definition>
+
+    <!-- Load Balancer -->
+    <oui-tile-definition data-term="Load Balancer">
+        <oui-tile-description>
+            <span
+                data-ng-if="!$ctrl.cluster.targetSpec.iplb"
+                data-translate="nutanix_cluster_iplb_none"
+            >
+            </span>
+            <a
+                data-ng-if="$ctrl.cluster.targetSpec.iplb"
+                class="oui-link oui-link_icon"
+                href="{{ ::$ctrl.getIpLbUrl($ctrl.cluster.targetSpec.iplb) }}"
+            >
+                <span
+                    data-ng-bind="$ctrl.iplb.displayName || $ctrl.cluster.targetSpec.iplb"
+                ></span>
+            </a>
+        </oui-tile-description>
+    </oui-tile-definition>
+</oui-tile>

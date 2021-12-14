@@ -47,7 +47,8 @@
         property="datacenter"
     >
         <span
-            data-ng-bind=":: $ctrl.ovhManagerRegionService.getTranslatedMicroRegion($row.datacenter)"
+            data-translate="nutanix_dashboard_nodes_list_localisation_value"
+            data-translate-values="{ dcName: $row.datacenter, rackName: $row.rack }"
         ></span>
     </oui-datagrid-column>
 </oui-datagrid>

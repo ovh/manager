@@ -10,5 +10,7 @@
   "nutanix_cluster_list_status_active": "Actif",
   "nutanix_cluster_list_status_deploying": "Déploiement",
   "nutanix_cluster_list_status_error": "Erreur",
-  "nutanix_cluster_list_prism_central_url": "URL Prism Central"
+  "nutanix_cluster_list_prism_central_url": "URL Prism Central",
+  "nutanix_cluster_admin_interface": "Interface d’administration",
+  "nutanix_cluster_list_localisation_value": "{{dcName}} (Baie {{rackName}})"
 }

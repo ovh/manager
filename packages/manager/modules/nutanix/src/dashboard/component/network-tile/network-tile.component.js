@@ -1,10 +1,11 @@
+import controller from './network-tile.controller';
 import template from './template.html';
 
 export default {
   bindings: {
-    server: '<',
-    bandwidthInformations: '<',
-    specifications: '<',
+    cluster: '<',
+    onError: '&?',
   },
+  controller,
   template,
 };

@@ -445,16 +445,11 @@ export const STORAGE_BACKUP_CONFIG = {
 
 export const NUTANIX_CONFIG = {
   id: 'nutanix',
-  loadOnState: 'nutanix.index',
-  icon: 'oui-icon oui-icon-nutanix_concept',
-  app: [DEDICATED],
-  namespace: HPC_NAMESPACE,
-  feature: 'nutanix',
   children: [
     {
       id: 'nutanix_clusters_all',
       state: 'nutanix.index',
-      stateUrl: '#/nutanix',
+      icon: 'oui-icon oui-icon-nutanix_concept',
       app: [DEDICATED],
       namespace: HPC_NAMESPACE,
     },
@@ -478,6 +473,11 @@ export const NUTANIX_CONFIG = {
       ],
     },
   ],
+  loadOnState: 'nutanix',
+  icon: 'oui-icon oui-icon-nutanix_concept',
+  app: [DEDICATED],
+  feature: 'nutanix',
+  namespace: HPC_NAMESPACE,
 };
 
 export const SIDEBAR_CONFIG = [

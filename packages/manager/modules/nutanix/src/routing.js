@@ -2,6 +2,7 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import statusTemplate from './templates/status.html';
 import prismUrl from './templates/prismUrl.html';
 import serviceLink from './templates/serviceLink.html';
+import localizationTemplate from './templates/localization.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.index', {
@@ -32,7 +33,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $http.get('/nutanix.json').then(({ data }) => data),
       dataModel: () => 'nutanix.cluster',
       defaultFilterColumn: () => 'serviceName',
-      header: () => 'nutanix',
+      header: /* @ngInject */ ($translate) =>
+        $translate.instant('nutanix_title'),
       customizableColumns: () => true,
       columns: /* @ngInject */ ($translate) => {
         return [
@@ -47,6 +49,7 @@ export default /* @ngInject */ ($stateProvider) => {
           {
             title: $translate.instant('nutanix_cluster_list_number_of_nodes'),
             template: '{{::$row.getNumberOfNodes()}}',
+            property: 'targetSpec.nodes',
           },
           {
             title: $translate.instant('nutanix_cluster_list_licence'),
@@ -60,11 +63,13 @@ export default /* @ngInject */ ($stateProvider) => {
           },
           {
             title: $translate.instant('nutanix_cluster_list_localisation'),
-            template:
-              "{{:: $row.nodeDetails.datacenter + ' (' + $row.nodeDetails.rack + ')'}}",
+            property: 'nodeDetails.datacenter',
+            template: localizationTemplate,
           },
           {
             template: prismUrl,
+            title: $translate.instant('nutanix_cluster_admin_interface'),
+            property: 'targetSpec.controlPanelURL',
           },
         ];
       },

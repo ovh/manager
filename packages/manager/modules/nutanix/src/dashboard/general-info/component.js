@@ -3,17 +3,16 @@ import template from './template.html';
 
 export default {
   bindings: {
-    bandwidthInformations: '<',
     cluster: '<',
     goToEditName: '<',
     server: '<',
     serviceDetails: '<',
     serviceInfo: '<',
     serviceName: '<',
-    specifications: '<',
     technicalDetails: '<',
     trackingPrefix: '<',
     user: '<',
+    handleError: '<',
   },
   controller,
   template,
