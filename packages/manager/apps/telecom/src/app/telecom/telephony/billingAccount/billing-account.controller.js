@@ -13,6 +13,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   coreConfig,
   currentActiveLink,
   guidesLink,
+  isBillingContact,
   manageContactsLink,
   orderAliasLink,
   phonebookLink,
@@ -45,7 +46,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   self.group = null;
   self.links = null;
   self.terminationTask = null;
-  self.user = coreConfig.getUser();
+  self.isBillingContact = isBillingContact;
 
   /*= ==============================
   =            ACTIONS            =
@@ -159,11 +160,6 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
       self.loading.init = false;
     });
   }
-
-  self.isBillingContact = function isBillingContact() {
-    return self.serviceInformation.contactBilling === self.user.nichandle;
-  };
-
   /* -----  End of INITIALIZATION  ------*/
 
   init();

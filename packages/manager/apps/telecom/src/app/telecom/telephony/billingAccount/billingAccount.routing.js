@@ -104,6 +104,8 @@ export default /* @ngInject */ ($stateProvider) => {
         billingAccountId,
         tucVoipBillingAccount,
       ) => tucVoipBillingAccount.fetchServiceInfo(billingAccountId),
+      isBillingContact: /* @ngInject */ (coreConfig, serviceInformation) =>
+        serviceInformation.contactBilling === coreConfig.getUser().nichandle,
       breadcrumb: /* @ngInject */ (billingAccount) => billingAccount,
     },
     translations: { value: ['..', '.', './dashboard'], format: 'json' },
