@@ -1,0 +1,17 @@
+<div
+    class="text-accordion"
+    data-ng-class="{'text-wrap' : textAccordionCtrl.expanded }"
+>
+    <span
+        type="button"
+        data-ng-if="textAccordionCtrl.hasLenghtyQuery"
+        class="oui-icon vertical-align-middle"
+        data-ng-class="textAccordionCtrl.expanded ? 'oui-icon-chevron-down' : 'oui-icon-chevron-right'"
+        data-ng-click="textAccordionCtrl.expanded = !textAccordionCtrl.expanded"
+    >
+    </span>
+    <span
+        class="display-inline-block vertical-align-middle"
+        data-ng-bind="textAccordionCtrl.value"
+    ></span>
+</div>

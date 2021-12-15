@@ -19,6 +19,7 @@ export default {
     indexesLink: '<',
     serviceIntegrationLink: '<',
     replicationsLink: '<',
+    currentQueriesLink: '<',
     trackDashboard: '<',
     trackDatabases: '<',
     isFeatureActivated: '<',

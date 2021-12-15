@@ -62,6 +62,7 @@ export const METRICS_TIME_RANGES = [
 
 export const CHART_METRICS_REFRESH_INTERVAL = 60000;
 export const LOGS_REFRESH_INTERVAL = 30000;
+export const CURRENT_QUERIES_INTERVAL = 20000;
 
 export const CHART_METRICS_OPTIONS = {
   chart: {

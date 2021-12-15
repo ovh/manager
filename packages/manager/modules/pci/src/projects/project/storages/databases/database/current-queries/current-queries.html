@@ -1,0 +1,127 @@
+<div class="current-queries" data-ui-view>
+    <!-- error messages -->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <h2 data-translate="pci_databases_current_queries_title"></h2>
+
+    <p data-translate="pci_databases_current_queries_intro"></p>
+
+    <div class="row">
+        <section class="col-sm-12 col-md-3">
+            <h6
+                class="my-0"
+                data-translate="pci_databases_current_queries_idle_connections_label"
+            ></h6>
+            <oui-field>
+                <oui-switch
+                    class="d-inline-block"
+                    name="idle-connections-switch"
+                    model="$ctrl.showIdleConnections"
+                    on-change="$ctrl.onShowIdleConnectionsChange(modelValue)"
+                >
+                </oui-switch>
+                <label
+                    class="d-inline-block mx-2"
+                    data-ng-bind="($ctrl.showIdleConnections ? 'pci_databases_current_queries_switch_enable' : 'pci_databases_current_queries_switch_disable') | translate"
+                >
+                </label>
+            </oui-field>
+        </section>
+        <section class="col-sm-12 col-md-3">
+            <h6
+                class="my-0"
+                data-translate="pci_databases_current_queries_active_connections_label"
+            ></h6>
+            <oui-field>
+                <oui-switch
+                    class="d-inline-block"
+                    name="idle-connections-switch"
+                    model="$ctrl.showActiveConnections"
+                    on-change="$ctrl.onShowActiveConnectionsChange(modelValue)"
+                >
+                </oui-switch>
+                <label
+                    class="d-inline-block mx-2"
+                    data-ng-bind="($ctrl.showActiveConnections ? 'pci_databases_current_queries_switch_enable' : 'pci_databases_current_queries_switch_disable') | translate"
+                >
+                </label>
+            </oui-field>
+        </section>
+        <section class="col-sm-12 col-md-3">
+            <h6
+                class="my-0"
+                data-translate="pci_databases_current_queries_refresh_label"
+            ></h6>
+            <oui-field>
+                <oui-switch
+                    class="d-inline-block"
+                    name="idle-connections-switch"
+                    model="$ctrl.autorefreshPage"
+                    on-change="$ctrl.onPageAutoRefreshChange(modelValue)"
+                >
+                </oui-switch>
+                <label
+                    class="d-inline-block mx-2"
+                    data-ng-bind="($ctrl.autorefreshPage ? 'pci_databases_current_queries_switch_enable' : 'pci_databases_current_queries_switch_disable') | translate"
+                >
+                </label>
+            </oui-field>
+        </section>
+    </div>
+    <oui-datagrid
+        id="currentQueriesDataGrid"
+        class="current-queries-grid"
+        rows="$ctrl.displayQueries"
+        empty-placeholder="{{:: 'pci_databases_current_queries_datagrid_empty_placeholder' | translate }}"
+    >
+        <oui-datagrid-column
+            data-title="::'pci_databases_current_queries_datagrid_column_query' | translate"
+            property="query"
+            type="string"
+            data-sortable
+            data-searchable
+        >
+            <text-accordion
+                class="query-column"
+                value="$value"
+            ></text-accordion>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'pci_databases_current_queries_datagrid_column_pid' | translate"
+            property="pid"
+            type="number"
+            data-sortable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'pci_databases_current_queries_datagrid_column_duration' | translate"
+            property="queryDuration"
+            type="number"
+        >
+            <span data-ng-bind="$value  | number : 2"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'pci_databases_current_queries_datagrid_column_database' | translate"
+            property="databaseName"
+            data-sortable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'pci_databases_current_queries_datagrid_column_client_address' | translate"
+            property="clientIp"
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'pci_databases_current_queries_datagrid_column_application_name' | translate"
+            property="applicationName"
+            data-sortable
+            data-filterable
+        >
+            <span data-ng-bind="$value ? $value : '-'"></span>
+        </oui-datagrid-column>
+    </oui-datagrid>
+</div>
