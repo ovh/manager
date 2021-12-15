@@ -368,20 +368,28 @@
                         data-term="{{:: 'hosting_dashboard_service_cdn' | translate }}"
                     >
                         <oui-tile-description>
-                            <div
-                                data-ng-if="isUpgradable && cdnProperties.version === '2013v1'"
+                            <span
+                                data-ng-if=""
                             >
                                 <span
                                     class="oui-badge oui-badge_s oui-badge_new"
                                     data-translate="hosting_dashboard_service_cdn_customer_has_cdn_v1_badge_new"
                                 ></span
-                                ><br />
-                            </div>
+                                ><br/>
+                            </span>
                             <span
                                 data-ng-bind="::hosting.hasCdn ? ('common_yes' | translate) : ('common_no' | translate)"
                             ></span>
                             <span data-ng-if="hosting.hasCdn">
                                 - <span data-ng-bind="::cdnRange"></span>
+                                <span
+                                    data-ng-if="isUpgradable && cdnProperties.version === '2013v1'"
+                                >
+                                    <span> - </span>
+                                    <span class="fa fa-exclamation-triangle text-warning"
+                                          aria-hidden="true"
+                                          data-oui-tooltip="{{:: 'hosting_dashboard_service_cdn_customer_has_cdn_v1_new_offers' | translate }}"></span>
+                                </span>
                             </span>
                             <oui-spinner
                                 data-size="s"
