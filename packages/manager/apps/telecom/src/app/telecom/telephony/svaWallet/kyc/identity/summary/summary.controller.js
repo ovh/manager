@@ -1,6 +1,5 @@
 import updateBankAccountTemplate from './updateBankAccount/update-bank-account.html';
 import updateBankAccountController from './updateBankAccount/update-bank-account.controller';
-import { canEditBankAccount } from './summary.constants';
 import { formatDocuments } from '../documents/documents.constants';
 import { buildEnumList } from '../../../sva-wallet.constants';
 
@@ -16,7 +15,6 @@ export default class KycIdentitySummaryController {
   $onInit() {
     this.showDocumentSuccessMessage = false;
     this.showIBANSuccessMessage = false;
-    this.isBankAccountEditable = canEditBankAccount(this.bankAccount);
 
     this.prepareDocuments(this.svaWallet.documents);
   }
