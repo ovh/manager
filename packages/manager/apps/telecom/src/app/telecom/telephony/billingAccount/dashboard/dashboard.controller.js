@@ -15,6 +15,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
   $window,
   $timeout,
   billingDepositLink,
+  isBillingContact,
   TelephonyMediator,
   OvhApiTelephony,
   TucToastError,
@@ -24,6 +25,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
   const self = this;
 
   self.billingAccountId = billingAccountId;
+  self.isBillingContact = isBillingContact;
 
   function isExpired() {
     return self.group ? self.group.status === 'expired' : false;
@@ -312,22 +314,27 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
             'telephony_group_billing_dashboard_actions_group_order',
           ),
         },
-        {
+      ];
+
+      if (self.isBillingContact) {
+        self.actions.push({
           name: 'telephony_group_admin_actions_bill',
           sref: 'telecom.telephony.billingAccount.billing.bill',
+          disabled: !self.isBillingContact,
           text: $translate.instant(
             'telephony_group_billing_dashboard_go_to_my_bills',
           ),
-        },
-        {
-          name: 'telephony_group_admin_actions_delete',
-          sref: 'telecom.telephony.billingAccount.administration.deleteGroup',
-          disabled: isExpired(),
-          text: $translate.instant(
-            'telephony_group_billing_dashboard_actions_group_delete',
-          ),
-        },
-      ];
+        });
+      }
+
+      self.actions.push({
+        name: 'telephony_group_admin_actions_delete',
+        sref: 'telecom.telephony.billingAccount.administration.deleteGroup',
+        disabled: isExpired(),
+        text: $translate.instant(
+          'telephony_group_billing_dashboard_actions_group_delete',
+        ),
+      });
 
       return $q.all([getPortability(), getBill(), getConsumption()]);
     });

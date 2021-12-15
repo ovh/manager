@@ -15,5 +15,12 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('telephony_group_billing_breadcrumb'),
     },
+    onEnter: /* @ngInject */ ($state, isBillingContact) => {
+      if (!isBillingContact) {
+        return $state.go('telecom.telephony.billingAccount');
+      }
+
+      return null;
+    },
   });
 };
