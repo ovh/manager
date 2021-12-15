@@ -189,7 +189,10 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-md-4">
+        <div
+            class="col-xs-12 col-md-4"
+            data-ng-if="DashboardCtrl.isBillingContact"
+        >
             <div class="oui-tile h-100 mb-5">
                 <h3
                     class="oui-tile__title oui-heading_3"
@@ -310,7 +313,7 @@
         </div>
     </div>
 
-    <div class="oui-tile mb-5">
+    <div class="oui-tile mb-5" data-ng-if="DashboardCtrl.isBillingContact">
         <h3
             class="oui-tile__title oui-heading_3"
             data-translate="telephony_group_billing_dashboard_bill_title"
