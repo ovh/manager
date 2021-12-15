@@ -733,4 +733,13 @@ export default class DatabaseService {
       )
       .then(({ data }) => data);
   }
+
+  getCurrentQueries(serviceName, databaseId, databaseEngine) {
+    return this.$http
+      .get(
+        `/cloud/project/${serviceName}/database/${databaseEngine}/${databaseId}/currentQueries`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
 }
