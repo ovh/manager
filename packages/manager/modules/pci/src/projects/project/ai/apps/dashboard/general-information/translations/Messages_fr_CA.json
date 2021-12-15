@@ -31,7 +31,8 @@
   "pci_apps_general_information_life_cycle_status_ERROR": "Erreur",
 
   "pci_apps_general_information_replicas": "Réplicas",
-  "pci_apps_general_information_life_cycle_action_stop": "Supprimer",
+  "pci_apps_general_information_life_cycle_action_stop": "Stopper",
+  "pci_apps_general_information_life_cycle_action_delete": "Supprimer",
   "pci_apps_general_information_life_cycle_running_duration_time": "Durée d'exécution",
   "pci_apps_general_information_life_cycle_running_billing": "Voir la facturation",
   "pci_apps_general_information_life_cycle_create_date": "Date de création",

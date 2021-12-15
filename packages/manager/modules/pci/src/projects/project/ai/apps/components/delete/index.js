@@ -4,9 +4,9 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import component from './stop-app.component';
+import component from './delete.component';
 
-const moduleName = 'ovhManagerPciAppsStopApp';
+const moduleName = 'ovhManagerPciAppsDeleteAppComponent';
 
 angular
   .module(moduleName, [
@@ -14,7 +14,7 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .component('ovhManagerPciProjectAppsStopApp', component)
+  .component('ovhManagerPciProjectAppsDeleteApp', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

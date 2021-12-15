@@ -60,6 +60,20 @@ export default class App {
     return this.isStarting() || this.isScaling();
   }
 
+  isStopped() {
+    return this.status?.state === APP_STATUS.STOPPED;
+  }
+
+  isStoppable() {
+    console.log('IS STOPPABLE', this.status?.state);
+    return [
+      APP_STATUS.QUEUED,
+      APP_STATUS.INITIALIZING,
+      APP_STATUS.SCALING,
+      APP_STATUS.RUNNING,
+    ].includes(this.status?.state);
+  }
+
   getLabelIndex(label) {
     return this.labels.findIndex((l) => l.id === label.id);
   }

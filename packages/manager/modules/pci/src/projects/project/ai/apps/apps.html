@@ -88,11 +88,17 @@
             <oui-action-menu-item data-on-click="$ctrl.goToCreateToken($row)">
                 <span data-translate="pci_ai_app_list_generate_token"></span>
             </oui-action-menu-item>
-            <oui-action-menu-item data-on-click="$ctrl.stopApp($row)">
+            <oui-action-menu-item
+                data-on-click="$ctrl.onStopAppClick($row)"
+                data-disabled="!$row.isStoppable()"
+            >
                 <span data-translate="pci_ai_app_list_stop_app"></span>
             </oui-action-menu-item>
-            <oui-action-menu-item data-on-click="$ctrl.deleteApp($row.id)">
-                <span data-translate="pci_ai_apps_delete"></span>
+            <oui-action-menu-item
+                data-on-click="$ctrl.onDeleteAppClick($row)"
+                data-disabled="!$row.isStopped()"
+            >
+                <span data-translate="pci_ai_app_list_delete_app"></span>
             </oui-action-menu-item>
         </oui-action-menu>
         <oui-datagrid-topbar>

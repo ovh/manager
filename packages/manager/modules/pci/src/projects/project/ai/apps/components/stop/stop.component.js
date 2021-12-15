@@ -1,5 +1,5 @@
-import controller from './stop-app.controller';
-import template from './stop-app.html';
+import controller from './stop.controller';
+import template from './stop.html';
 
 export default {
   controller,

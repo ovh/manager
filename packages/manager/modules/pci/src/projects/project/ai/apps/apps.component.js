@@ -16,8 +16,6 @@ export default {
     appLink: '<',
     apps: '<',
     startApp: '<',
-    stopApp: '<',
-    deleteApp: '<',
     pollAppStatus: '<',
     stopPollingAppStatus: '<',
     trackApps: '<',

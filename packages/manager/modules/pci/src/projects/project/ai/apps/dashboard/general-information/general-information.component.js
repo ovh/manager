@@ -8,8 +8,6 @@ export default {
     flavors: '<',
     projectId: '<',
     trackApps: '<',
-    startApp: '<',
-    stopApp: '<',
     goToAttachData: '<',
     goToStopApp: '<',
     goToDeleteApp: '<',

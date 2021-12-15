@@ -1,8 +1,0 @@
-{
-  "pci_apps_general_information_info_stop_app_title": "Arrêt de l'AI App",
-  "pci_apps_general_information_info_stop_app_description": "Êtes-vous sur de vouloir arrêter l'AI App {{ name }} ?",
-  "pci_apps_general_information_info_stop_app_action_stop": "Confirmer",
-  "pci_apps_general_information_info_stop_app_action_cancel": "Annuler",
-  "pci_apps_general_information_info_stop_app_action_stop_success": "Votre AI App a bien été arrêtée",
-  "pci_apps_general_information_info_stop_app_action_stop_fail": "Une erreur est survenue lors de l'arrêt de l'AI App {{ name }} : {{ message }}."
-}

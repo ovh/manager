@@ -8,18 +8,20 @@ export default class {
   }
 
   $onInit() {
-    this.isDeleting = false;
+    this.isStopping = false;
   }
 
-  deleteApp() {
+  deleteComponentApp() {
+    this.trackApps(`${this.trackingPrefix}::delete_app_confirm`);
     this.isDeleting = true;
-    return this.AppService.removeApp(this.projectId, this.appId)
+    return this.AppService.deleteApp(this.projectId, this.app.id)
       .then(() =>
         this.goBack(this.$translate.instant('pci_ai_apps_delete_success')),
       )
       .catch((error) =>
         this.goBack(
           this.$translate.instant('pci_ai_apps_delete_error', {
+            appName: this.app.name,
             message: get(error, 'data.message'),
           }),
           'error',
