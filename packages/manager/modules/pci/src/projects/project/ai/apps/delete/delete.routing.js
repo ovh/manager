@@ -1,19 +1,18 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.ai.apps.delete', {
-    url: '/delete?appId',
+    url: '/delete',
+    params: { app: null },
     views: {
       modal: {
-        component: 'ovhManagerPciAiAppsDelete',
+        component: 'ovhManagerPciProjectAppsDeleteApp',
       },
     },
     layout: 'modal',
-    params: {
-      appId: null,
-    },
     resolve: {
+      app: /* @ngInject */ ($transition$) => $transition$.params().app,
       goBack: /* @ngInject */ (goToApps) => goToApps,
-      appId: /* @ngInject */ ($stateParams) => $stateParams.appId,
       breadcrumb: () => null,
+      trackingPrefix: () => 'table::options_menu',
     },
   });
 };

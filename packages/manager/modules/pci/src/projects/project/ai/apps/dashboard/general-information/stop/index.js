@@ -7,13 +7,13 @@ const moduleName = 'ovhManagerPciAppsAppDashboardAppStopLazyLoading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'pci.projects.project.ai.apps.dashboard.general-information.stop-app.**',
+      'pci.projects.project.ai.apps.dashboard.general-information.stop.**',
       {
-        url: '/stop-app',
+        url: '/stop',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./stop-app.module').then((mod) =>
+          return import('./stop.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },

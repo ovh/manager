@@ -11,7 +11,7 @@ export default class {
     this.isStopping = false;
   }
 
-  stopApp() {
+  stopComponentApp() {
     this.trackApps(`${this.trackingPrefix}::stop_app_confirm`);
     this.isStopping = true;
     return this.AppService.stopApp(this.projectId, this.app.id)

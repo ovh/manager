@@ -1,0 +1,14 @@
+<oui-modal
+    data-heading="{{:: 'pci_ai_apps_delete' | translate }}"
+    data-primary-action="$ctrl.deleteComponentApp()"
+    data-primary-label="{{:: 'pci_ai_apps_delete_common_delete' | translate }}"
+    data-secondary-label="{{:: 'pci_ai_apps_delete_common_cancel' | translate }}"
+    data-secondary-action="$ctrl.goBack()"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isDeleting"
+>
+    <p
+        data-translate="pci_ai_apps_delete_warning"
+        data-translate-values="{ appId: $ctrl.app.name }"
+    ></p>
+</oui-modal>

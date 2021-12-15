@@ -11,6 +11,7 @@ export default class {
   }
 
   $onInit() {
+    this.messageContainer = 'pci.projects.project.ai.apps';
     this.loadMessages();
     this.trackApps('table', 'page');
     this.pollAppStatus();
@@ -44,13 +45,13 @@ export default class {
     this.goToApp(app);
   }
 
-  stopApp(app) {
+  onStopAppClick(app) {
     this.trackApps('table::options_menu::stop_app');
     this.goToStopApp(app);
   }
 
-  deleteApp(app) {
-    this.trackApps('table::options_menu::stop_app');
+  onDeleteAppClick(app) {
+    this.trackApps('table::options_menu::delete_app');
     this.goToDeleteApp(app);
   }
 

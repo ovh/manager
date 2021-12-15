@@ -9,8 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: () => false,
 
-      goBack: /* @ngInject */ (app, goToApp) => (message, type) =>
-        goToApp(app, message, type),
+      goBack: /* @ngInject */ (app, goToApp) => (message, type) => {
+        return goToApp(app, message, type);
+      },
 
       flavors: /* @ngInject */ (projectId, app, AppService) =>
         AppService.getFlavors(projectId, app.region),
@@ -40,13 +41,21 @@ export default /* @ngInject */ ($stateProvider) => {
           labelSelector: `id=${app.id}`,
         }),
 
-      goToStopApp: /* @ngInject */ ($state, projectId, app, trackApps) => () =>
+      goToStopApp: /* @ngInject */ ($state, projectId, app) => () =>
         $state.go(
-          'pci.projects.project.ai.apps.dashboard.general-information.stop-app',
+          'pci.projects.project.ai.apps.dashboard.general-information.stop',
           {
             projectId,
-            appId: app.id,
-            trackApps,
+            app,
+          },
+        ),
+
+      goToDeleteApp: /* @ngInject */ ($state, projectId, app) => () =>
+        $state.go(
+          'pci.projects.project.ai.apps.dashboard.general-information.delete',
+          {
+            projectId,
+            app,
           },
         ),
     },

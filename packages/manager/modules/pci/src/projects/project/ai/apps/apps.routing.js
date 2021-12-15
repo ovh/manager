@@ -1,8 +1,4 @@
-import find from 'lodash/find';
-
-import get from 'lodash/get';
 import App from './App.class';
-import { APP_STATUS } from './app.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.ai.apps', {
@@ -101,11 +97,12 @@ export default /* @ngInject */ ($stateProvider) => {
           app,
         }),
 
-      goToDeleteApp: /* @ngInject */ ($state, projectId) => (app) =>
-        $state.go('pci.projects.project.ai.apps.delete', {
+      goToDeleteApp: /* @ngInject */ ($state, projectId) => (app) => {
+        return $state.go('pci.projects.project.ai.apps.delete', {
           projectId,
           app,
-        }),
+        });
+      },
 
       goToCreateToken: /* @ngInject */ ($state, projectId) => (app) => {
         return $state.go('pci.projects.project.ai.tokens.add', {
@@ -133,60 +130,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('pci_ai_app_list_title'),
 
       messageContainer: () => 'pci.projects.project-ai.apps',
-
-      startApp: /* @ngInject */ (
-        $translate,
-        projectId,
-        apps,
-        pollAppStatus,
-        messageContainer,
-        AppService,
-        CucCloudMessage,
-      ) => (appId) => {
-        const app = find(apps, { id: appId });
-        AppService.startApp(projectId, appId).then(
-          () => {
-            app.setState(APP_STATUS.STARTING);
-            pollAppStatus();
-          },
-          (error) => {
-            CucCloudMessage.error(
-              $translate.instant('pci_ai_app_list_start_error', {
-                appName: app.name,
-                message: get(error, 'data.message'),
-              }),
-              messageContainer,
-            );
-          },
-        );
-      },
-
-      stopApp: /* @ngInject */ (
-        $translate,
-        projectId,
-        apps,
-        pollAppStatus,
-        messageContainer,
-        AppService,
-        CucCloudMessage,
-      ) => (appId) => {
-        const app = find(apps, { id: appId });
-        AppService.stopApp(projectId, appId).then(
-          () => {
-            app.setState(APP_STATUS.STOPPING);
-            pollAppStatus();
-          },
-          (error) => {
-            CucCloudMessage.error(
-              $translate.instant('pci_ai_app_list_stop_error', {
-                appName: app.name,
-                message: get(error, 'data.message'),
-              }),
-              messageContainer,
-            );
-          },
-        );
-      },
 
       pollAppStatus: /* @ngInject */ (AppService, apps, projectId) => () => {
         apps.forEach((app) => {

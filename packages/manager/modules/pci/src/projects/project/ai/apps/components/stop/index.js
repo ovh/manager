@@ -4,20 +4,17 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import component from './stop-app.component';
-import routing from './stop-app.routing';
+import component from './stop.component';
 
-const moduleName = 'ovhManagerPciAppsAppDashboardAppStop';
+const moduleName = 'ovhManagerPciAppsStopApp';
 
 angular
   .module(moduleName, [
-    'ui.router',
     'oui',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .config(routing)
-  .component('pciAppsAppDashboardAppStop', component)
+  .component('ovhManagerPciProjectAppsStopApp', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
