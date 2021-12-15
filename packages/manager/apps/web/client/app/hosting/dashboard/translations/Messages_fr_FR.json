@@ -149,6 +149,7 @@
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg": "L’option Shared CDN pour vos hébergements évolue ! De nouvelles fonctionnalités sont disponibles.",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg_link_upgrade": "Migrer votre CDN",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_badge_new": "Nouveau",
+  "hosting_dashboard_service_cdn_customer_has_cdn_v1_new_offers": "OVHcloud vous recommande les nouvelles offres CDN",
   "hosting_dashboard_service_web": "Sites web",
   "hosting_dashboard_service_privatesql": "Base de données privée",
   "hosting_dashboard_service_privatesql_more": "Voir la liste",
