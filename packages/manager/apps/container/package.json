@@ -1,8 +1,8 @@
 {
-  "name": "@ovh-ux/manager-shell-app",
+  "name": "@ovh-ux/manager-container-app",
   "version": "0.0.0",
   "private": true,
-  "description": "OVHcloud Manager Shell.",
+  "description": "OVHcloud Manager Container.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
@@ -19,7 +19,7 @@
     "dev:web": "APP=web vite",
     "lint": "eslint ./src",
     "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-shell-app' --include-dependencies -- yarn run build"
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-container-app' --include-dependencies -- yarn run build"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
