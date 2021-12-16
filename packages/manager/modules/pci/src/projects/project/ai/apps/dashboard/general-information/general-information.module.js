@@ -10,6 +10,7 @@ import routing from './general-information.routing';
 
 import stopModule from './stop';
 import deleteModule from './delete';
+import startModule from './start';
 
 const moduleName = 'ovhManagerPciAppGeneralInformation';
 
@@ -22,6 +23,7 @@ angular
     'ui.router',
     stopModule,
     deleteModule,
+    startModule,
   ])
   .config(routing)
   .component('ovhManagerPciProjectAppGeneralInformation', component)

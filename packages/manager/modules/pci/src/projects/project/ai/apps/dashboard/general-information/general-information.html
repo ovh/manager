@@ -107,6 +107,14 @@
                         data-placement="end"
                     >
                         <oui-action-menu-item
+                            data-on-click="$ctrl.onStartAppClick()"
+                            data-disabled="!$ctrl.app.isStopped()"
+                        >
+                            <span
+                                data-translate="pci_apps_general_information_life_cycle_action_start"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
                             data-on-click="$ctrl.onStopAppClick()"
                             data-disabled="!$ctrl.app.isStoppable()"
                         >

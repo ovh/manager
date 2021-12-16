@@ -9,6 +9,7 @@ export default {
     projectId: '<',
     trackApps: '<',
     goToAttachData: '<',
+    goToStartApp: '<',
     goToStopApp: '<',
     goToDeleteApp: '<',
     goToGenerateToken: '<',
