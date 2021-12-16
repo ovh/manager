@@ -4,16 +4,25 @@ import { useTranslation } from 'react-i18next';
 import { capitalize, truncate } from 'lodash-es';
 import style from './navbar.module.scss';
 import { TRANSLATE_NAMESPACE } from './constants';
-import useHeader from '@/core/header';
+import { useHeader } from '@/context/header';
+import { useShell } from '@/context';
 
-function NavbarAccount({ user, ux }) {
+function NavbarAccount({ user }) {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
+  const shell = useShell();
+  const uxPlugin = shell.getPlugin('ux');
   const firstName = capitalize(user.firstname);
   const lastName = truncate(capitalize(user.name), {
     length: 10,
   });
 
-  const { isAccountSidebarVisible, setIsAccountSidebarVisible } = useHeader();
+  const { setIsAccountSidebarVisible } = useHeader();
+
+  const toggleSidebar = () => {
+    uxPlugin.toggleAccountSidebarVisibility();
+
+    setIsAccountSidebarVisible(uxPlugin?.isAccountSidebarVisible());
+  };
 
   return (
     <button
@@ -22,7 +31,7 @@ function NavbarAccount({ user, ux }) {
       className={`oui-navbar-link oui-navbar-link_icon oui-navbar-link_tertiary ${style.navbarLink}`}
       aria-label={t('navbar_account')}
       onClick={() => {
-        setIsAccountSidebarVisible(!isAccountSidebarVisible);
+        toggleSidebar();
       }}
     >
       <span className="oui-navbar-link__wrapper oui-navbar-link__wrapper_border">

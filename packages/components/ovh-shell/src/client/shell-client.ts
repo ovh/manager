@@ -82,6 +82,7 @@ export default class ShellClient {
     if (!this.messageBus) {
       return Promise.reject(new Error('Message bus is not defined'));
     }
+
     this.messageBus.send({
       type: ShellMessageType.PLUGIN_INVOCATION,
       message: {

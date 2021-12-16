@@ -25,4 +25,8 @@ export default class Sidebar extends UXComponent implements ISidebar {
   public disableToggle(): void {
     this.allowToggle = false;
   }
+
+  public onSidebarVisibilityChange(callback: CallableFunction): void {
+    this.listeners.push(callback);
+  }
 }

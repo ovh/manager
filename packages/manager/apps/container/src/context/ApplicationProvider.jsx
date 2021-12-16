@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import ApplicationContext from './application.context';
+import { HeaderProvider } from './header';
 
 export const ApplicationProvider = ({ children, environment, shell }) => {
   let applicationContext = useContext(ApplicationContext);
@@ -12,7 +13,7 @@ export const ApplicationProvider = ({ children, environment, shell }) => {
 
   return (
     <ApplicationContext.Provider value={applicationContext}>
-      {children}
+      <HeaderProvider>{children}</HeaderProvider>
     </ApplicationContext.Provider>
   );
 };
