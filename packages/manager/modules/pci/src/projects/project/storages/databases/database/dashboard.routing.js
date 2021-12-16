@@ -35,6 +35,14 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           databaseId,
         }),
+      queryStatisticsLink: /* @ngInject */ ($state, databaseId, projectId) =>
+        $state.href(
+          'pci.projects.project.storages.databases.dashboard.query-statistics',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       databaseId: /* @ngInject */ ($transition$) =>

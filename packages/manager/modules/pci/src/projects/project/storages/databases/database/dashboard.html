@@ -56,14 +56,6 @@
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-ng-if="$ctrl.isFeatureActivated('currentQueriesTab')"
-            data-href="{{ $ctrl.currentQueriesLink }}"
-            data-active="$ctrl.currentActiveLink() === $ctrl.currentQueriesLink"
-            ><span
-                data-translate="pci_databases_dashboard_current_queries_tab_title"
-            ></span>
-        </oui-header-tabs-item>
-        <oui-header-tabs-item
             data-ng-if="$ctrl.isFeatureActivated('allowedIpsTab')"
             data-href="{{:: $ctrl.allowedIpsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.allowedIpsLink"
@@ -72,12 +64,27 @@
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('queryStatisticsTab')"
+            data-href="{{ $ctrl.queryStatisticsLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.queryStatisticsLink"
+            ><span
+                data-translate="pci_databases_dashboard_query_statistics_tab_title"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('currentQueriesTab')"
+            data-href="{{ $ctrl.currentQueriesLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.currentQueriesLink"
+            ><span
+                data-translate="pci_databases_dashboard_current_queries_tab_title"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
             data-ng-if="$ctrl.isFeatureActivated('poolsTab')"
             data-href="{{ $ctrl.poolsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.poolsLink"
             ><span
-                data-translate="pci_databases_dashboard_pools_tab_title"
-            ></span>
+                data-translate="pci_databases_dashboard_pools_tab_title"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.logsLink }}"
