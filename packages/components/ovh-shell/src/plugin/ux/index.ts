@@ -3,17 +3,20 @@ import { ShellUX } from './ux';
 
 export interface IUXPlugin {
   isAccountSidebarVisible(sidebarName: string): boolean;
-  showAccountSidebar(sidebarName: string): void;
-  hideAccountSidebar(sidebarName: string): void;
-  toggleAccountSidebarVisibility(sidebarName: string): void;
-  isNotificationsSidebarVisible(sidebarName: string): boolean;
-  showNotificationsSidebar(sidebarName: string): void;
-  hideNotificationsSidebar(sidebarName: string): void;
-  toggleNotificationsSidebarVisibility(sidebarName: string): void;
+  showAccountSidebar(disableToggle: boolean): void;
+  hideAccountSidebar(): void;
+  toggleAccountSidebarVisibility(): void;
+  isNotificationsSidebarVisible(): boolean;
+  showNotificationsSidebar(): void;
+  hideNotificationsSidebar(): void;
+  enableAccountSidebarVisibilityToggle(): void;
+  disableAccountSidebarVisibilityToggle(): void;
+  toggleNotificationsSidebarVisibility(): void;
+  toggleAccountSidebarVisibility(): void;
 }
 
 // TODO: remove this once we have a more generic Plugin class
-export type UXPluginType<T extends IUXPlugin> = {
+export type UXPluginType<T extends UXPlugin> = {
   [key in keyof T]?: T[key];
 };
 
@@ -22,11 +25,9 @@ export class UXPlugin implements IUXPlugin {
 
   constructor(shell: Shell) {
     this.shellUX = new ShellUX(shell);
-
     this.shellUX.registerSidebar('account');
     this.shellUX.registerSidebar('notifications');
     this.shellUX.registerNavbar();
-    console.log(this);
   }
 
   /* ----------- AccountSidebar methods -----------*/
@@ -43,8 +44,21 @@ export class UXPlugin implements IUXPlugin {
     return this.shellUX.hideSidebar('account');
   }
 
+  enableAccountSidebarVisibilityToggle(): void {
+    this.shellUX.enableSidebarToggle('account');
+  }
+
+  disableAccountSidebarVisibilityToggle(): void {
+    this.shellUX.disableSidebarToggle('account');
+  }
+
   toggleAccountSidebarVisibility(): void {
     this.shellUX.toggleSidebarVisibility('account');
+  }
+
+
+  onAccountSidebarVisibilityChange(callback: CallableFunction): void {
+    this.shellUX.onSidebarVisibilityChange('account', callback);
   }
 
   /* ----------- NotificationsSidebar methods -----------*/
@@ -64,4 +78,5 @@ export class UXPlugin implements IUXPlugin {
   toggleNotificationsSidebarVisibility(): void {
     this.shellUX.toggleSidebarVisibility('notifications');
   }
+
 }

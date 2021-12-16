@@ -43,7 +43,8 @@ export default class PluginManager {
     if (!pluginMethod) {
       throw new Error(`Method '${method}' not exposed by plugin '${plugin}'`);
     }
-    return Promise.resolve(pluginMethod.call(instance, ...args));
+    const classPlugin = pluginMethod.bind(instance);
+    return Promise.resolve(classPlugin(...args));
   }
 
   setPluginAvailability(plugin: string, available: boolean): void {
