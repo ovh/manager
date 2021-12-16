@@ -12,12 +12,15 @@ export interface IUxComponent {
 export class UXComponent implements IUxComponent {
   private visible: boolean;
 
+  protected listeners: CallableFunction[] = [];
+
   constructor(options: IUxComponentOptions = {}) {
     this.visible = options.visible || false;
   }
 
   public setVisibility = (visibility: boolean) => {
     this.visible = visibility;
+    this.triggerListeners();
   };
 
   public toggleVisibility(): void {
@@ -34,5 +37,11 @@ export class UXComponent implements IUxComponent {
 
   public getVisibility(): boolean {
     return this.visible;
+  }
+
+  private triggerListeners() {
+    this.listeners.forEach((listener) => {
+      listener();
+    });
   }
 }
