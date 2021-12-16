@@ -3,7 +3,6 @@ import Navbar from '@/navbar/navbar.jsx';
 import AccountSidebar from '@/account-sidebar';
 import NotificationsSidebar from '@/notifications-sidebar';
 import { NotificationsProvider } from '@/core/notifications';
-import { HeaderProvider } from '@/core/header';
 import ApplicationContext from '@/context';
 
 function ShellHeader() {
@@ -11,13 +10,11 @@ function ShellHeader() {
     <ApplicationContext.Consumer>
       {({ environment }) => (
         <Suspense fallback="">
-          <HeaderProvider>
-            <NotificationsProvider environment={environment}>
-              <Navbar environment={environment} />
-              <AccountSidebar environment={environment} />
-              <NotificationsSidebar environment={environment} />
-            </NotificationsProvider>
-          </HeaderProvider>
+          <NotificationsProvider environment={environment}>
+            <Navbar environment={environment} />
+            <AccountSidebar environment={environment} />
+            <NotificationsSidebar environment={environment} />
+          </NotificationsProvider>
         </Suspense>
       )}
     </ApplicationContext.Consumer>
