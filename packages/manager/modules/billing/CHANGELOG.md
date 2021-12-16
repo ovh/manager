@@ -1,3 +1,12 @@
+# [0.7.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.7.0-alpha.1...@ovh-ux/manager-billing@0.7.0-alpha.2) (2021-12-16)
+
+
+### Bug Fixes
+
+* update to remove legacy bank account ([#6144](https://github.com/ovh/manager/issues/6144)) ([d771b98](https://github.com/ovh/manager/commit/d771b98d28e40b878391c605ec6bf331392ae86b))
+
+
+
 # [0.7.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.7.0-alpha.0...@ovh-ux/manager-billing@0.7.0-alpha.1) (2021-12-02)
 
 
