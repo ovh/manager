@@ -6,7 +6,7 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 
 import component from './component';
 
-const moduleName = 'ovhBillingPaymentMethodAddLegacyBankAccountView';
+const moduleName = 'ovhBillingPaymentMethodAddBankAccountView';
 
 angular
   .module(moduleName, [angularTranslate, 'oui', ngTranslateAsyncLoader])

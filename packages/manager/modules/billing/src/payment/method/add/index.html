@@ -116,13 +116,13 @@
                 <oui-step-form
                     data-header="{{ :: 'billing_payment_method_add_bank_account_informations' | translate }}"
                     data-submit-text="{{ :: 'common_next' | translate }}"
-                    data-position="{{ $ctrl.addSteps.legacyBankAccount.position }}"
+                    data-position="{{ $ctrl.addSteps.bankAccount.position }}"
                     data-on-focus="$ctrl.integrationSubmitFunction = null"
-                    data-ng-if="$ctrl.isStepVisible('legacyBankAccount')"
+                    data-ng-if="$ctrl.isStepVisible('bankAccount')"
                 >
                     <div class="row">
                         <div class="col-md-6">
-                            <div data-ui-view="legacyBankAccount"></div>
+                            <div data-ui-view="bankAccount"></div>
                         </div>
                     </div>
                 </oui-step-form>
@@ -132,12 +132,12 @@
                 <oui-step-form
                     data-header="{{ :: 'billing_payment_method_add_bank_account_address' | translate }}"
                     data-submit-text="{{ :: 'common_add' | translate }}"
-                    data-position="{{ $ctrl.addSteps.legacyBankAccountOwner.position }}"
-                    data-ng-if="$ctrl.isStepVisible('legacyBankAccountOwner')"
+                    data-position="{{ $ctrl.addSteps.bankAccountOwner.position }}"
+                    data-ng-if="$ctrl.isStepVisible('bankAccountOwner')"
                 >
                     <div class="row">
                         <div class="col-md-6">
-                            <div data-ui-view="legacyBankAccountOwner"></div>
+                            <div data-ui-view="bankAccountOwner"></div>
                         </div>
                     </div>
                 </oui-step-form>

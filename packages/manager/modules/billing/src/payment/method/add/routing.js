@@ -10,10 +10,10 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       '@app.account.billing.payment': {
         component: component.name,
       },
-      'legacyBankAccount@app.account.billing.payment.method.add': {
-        component: 'paymentMethodAddLegacyBankAccountView',
+      'bankAccount@app.account.billing.payment.method.add': {
+        component: 'paymentMethodAddBankAccountView',
       },
-      'legacyBankAccountOwner@app.account.billing.payment.method.add': {
+      'bankAccountOwner@app.account.billing.payment.method.add': {
         component: 'paymentMethodAddLegacyBillingAddressView',
       },
       'billingContact@app.account.billing.payment.method.add': {
@@ -39,22 +39,20 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
             ].includes(paymentMethodType.integration);
           },
         },
-        legacyBankAccount: {
-          name: 'legacyBankAccount',
+        bankAccount: {
+          name: 'bankAccount',
           position: 1,
           isVisible: () =>
-            model.selectedPaymentMethodType.isLegacy() &&
             model.selectedPaymentMethodType.paymentType ===
-              OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT,
+            OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT,
           isLastStep: () => false,
         },
-        legacyBankAccountOwner: {
-          name: 'legacyBankAccountOwner',
+        bankAccountOwner: {
+          name: 'bankAccountOwner',
           position: 2,
           isVisible: () =>
-            model.selectedPaymentMethodType.isLegacy() &&
             model.selectedPaymentMethodType.paymentType ===
-              OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT,
+            OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT,
           isLastStep: () => true,
         },
         billingContact: {

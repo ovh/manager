@@ -9,15 +9,19 @@ export default class BillingPaymentMethodAddCtrl {
   constructor(
     $translate,
     Alerter,
+    coreURLBuilder,
     ovhContacts,
     ovhPaymentMethod,
+    ovhPaymentMethodHelper,
     OVH_PAYMENT_METHOD_TYPE,
     OVH_PAYMENT_METHOD_INTEGRATION_TYPE,
   ) {
     this.$translate = $translate;
     this.Alerter = Alerter;
+    this.coreURLBuilder = coreURLBuilder;
     this.ovhContacts = ovhContacts;
     this.ovhPaymentMethod = ovhPaymentMethod;
+    this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
     this.OVH_PAYMENT_METHOD_TYPE = OVH_PAYMENT_METHOD_TYPE;
     this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
 
@@ -121,14 +125,33 @@ export default class BillingPaymentMethodAddCtrl {
       return this.integrationSubmitFunction();
     }
 
-    if (this.addSteps.legacyBankAccount.isVisible()) {
+    if (this.addSteps.bankAccount.isVisible()) {
+      const callback = this.coreURLBuilder.buildURL(
+        'dedicated',
+        '#/billing/payment/method',
+      );
       return this.ovhPaymentMethod
         .addPaymentMethod(this.model.selectedPaymentMethodType, {
-          bic: this.model.bankAccount.bic,
-          iban: this.model.bankAccount.iban,
-          ownerAddress: this.model.billingAddress.ownerAddress,
-          ownerName: this.model.billingAddress.ownerName,
+          formData: window.btoa(
+            JSON.stringify({
+              bic: this.model.bankAccount.bic,
+              iban: this.model.bankAccount.iban,
+              ownerAddress: this.model.billingAddress.ownerAddress,
+              ownerName: this.model.billingAddress.ownerName,
+            }),
+          ),
+          callbackUrl: {
+            success: callback,
+            pending: callback,
+            error: callback,
+            cancel: callback,
+            failure: callback,
+          },
           default: this.model.setAsDefault,
+          register: true,
+          description: this.ovhPaymentMethodHelper.getPaymentMethodTypeText(
+            this.model.selectedPaymentMethodType,
+          ),
         })
         .then((paymentMethod) =>
           this.onPaymentMethodIntegrationSuccess(paymentMethod),
