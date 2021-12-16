@@ -72,6 +72,14 @@
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
+            data-ng-if="$ctrl.isFeatureActivated('poolsTab')"
+            data-href="{{ $ctrl.poolsLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.poolsLink"
+            ><span
+                data-translate="pci_databases_dashboard_pools_tab_title"
+            ></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
             data-href="{{:: $ctrl.logsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.logsLink"
             ><span
