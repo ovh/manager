@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { plugin, IFrameMessageBus } from '@ovh-ux/shell';
 
 import ApplicationContext from '../context';
+
 import ShellHeader from './header';
 import style from './shell.module.scss';
 
@@ -11,9 +12,6 @@ function Shell() {
   const [iframe, setIframe] = useState(null);
   const [router, setRouter] = useState(null);
   const { shell } = useContext(ApplicationContext);
-  // shell.ux().registerSidebar('account', { visible: true });
-  // shell.ux().registerSidebar('notifications', { visible: false });
-  // shell.ux().registerNavbar();
 
   useEffect(() => {
     setIframe(iframeRef.current);
