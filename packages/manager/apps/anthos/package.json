@@ -60,7 +60,7 @@
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^13.0.0",
+    "ovh-api-services": "^14.0.0",
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
