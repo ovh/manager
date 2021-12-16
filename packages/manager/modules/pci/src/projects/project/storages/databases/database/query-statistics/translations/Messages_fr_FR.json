@@ -1,0 +1,16 @@
+{
+  "pci_databases_query_statistics_title": "Statistiques de requêtes",
+  "pci_databases_query_statistics_retrieve_error": "Aucune requête n'a été éxécutée.",
+  "pci_databases_query_statistics_description": "Les statistiques de requêtes rassemblent les statistiques collectées dans les schémas de performance. Elles permettent de monitorer les évènements serveurs (par exemple, la synchronisation, les tables temporaires, les index, les jointures,...)",
+  "pci_databases_query_statistics_datagrid_query": "Requête",
+  "pci_databases_query_statistics_datagrid_rows": "Nb de lignes",
+  "pci_databases_query_statistics_datagrid_calls": "Nb d'appels",
+  "pci_databases_query_statistics_datagrid_min": "Min (ms)",
+  "pci_databases_query_statistics_datagrid_max": "Max (ms)",
+  "pci_databases_query_statistics_datagrid_mean": "Moyenne (ms)",
+  "pci_databases_query_statistics_datagrid_stddev": "Stddev (ms)",
+  "pci_databases_query_statistics_datagrid_total": "Total (ms)",
+  "pci_databases_query_statistics_datagrid_reset_button_text": "Réinitialiser",
+  "pci_databases_query_statistics_reset_error": "Une erreur s'est produite lors de la réinitialisation des statistiques de requête. Merci d'essayer ultérieurement.",
+  "pci_databases_query_statistics_reset_success": "Les statistiques de requête ont bien été réinitialisés."
+}

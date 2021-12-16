@@ -65,6 +65,7 @@ const features = {
   ],
   poolsTab: [DATABASE_TYPES.POSTGRESQL],
   showKibanaURI: [DATABASE_TYPES.OPEN_SEARCH],
+  queryStatisticsTab: [DATABASE_TYPES.MYSQL, DATABASE_TYPES.POSTGRESQL],
   restoreFromBackup: [DATABASE_TYPES.MONGO_DB],
   aclTab: [DATABASE_TYPES.KAFKA],
   userAclTab: [DATABASE_TYPES.OPEN_SEARCH],
