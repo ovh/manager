@@ -4,7 +4,7 @@ import UserInfos from './UserInfos';
 import PaymentMethod from './PaymentMethod/PaymentMethod.jsx';
 import Shortcuts from './Shortcuts';
 import UsefulLinks from './UsefulLinks';
-import useHeader from '@/core/header';
+import { useHeader } from '@/context/header';
 
 const AccountSidebar = ({ environment }) => {
   const { isAccountSidebarVisible } = useHeader();
