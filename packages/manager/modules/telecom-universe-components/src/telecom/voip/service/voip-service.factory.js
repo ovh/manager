@@ -72,6 +72,26 @@ export default () => {
 
     /**
      *  @ngdoc method
+     *  @name managerApp.object:TucVoipService#getFullDisplayedName
+     *  @propertyOf managerApp.object:TucVoipService
+     *
+     *  @description
+     *  Get the full displayed name of the service.
+     *
+     *  @return {String} The full displayed name of the service (the service name plus
+     *                   the description if provided. e.g. "0033712345678 (some description)").
+     */
+    getFullDisplayedName() {
+      const { description = '', serviceName = '' } = this;
+      const formattedDescription =
+        description && !this.isDescriptionSameAsServiceName()
+          ? ` (${description})`
+          : '';
+      return serviceName + formattedDescription;
+    }
+
+    /**
+     *  @ngdoc method
      *  @name managerApp.object:TucVoipService#isDescriptionSameAsServiceName
      *  @propertyOf managerApp.object:TucVoipService
      *

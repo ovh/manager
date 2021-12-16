@@ -52,7 +52,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
         self.line.stopEdition();
         SidebarMenu.updateItemDisplay(
           {
-            title: self.line.getDisplayedName(),
+            title: self.line.getFullDisplayedName(),
           },
           self.line.serviceName,
           'telecom-telephony-section',
