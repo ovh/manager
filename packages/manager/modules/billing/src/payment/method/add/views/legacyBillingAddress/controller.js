@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-class LegacyBankAccountModel {
+class BankAccountModel {
   constructor(country) {
     this.country = country;
 
@@ -29,7 +29,7 @@ class LegacyBankAccountModel {
 
 export default class PaymentMethodAddLegacyBillingAddressCtrl {
   $onInit() {
-    this.model.billingAddress = new LegacyBankAccountModel(
+    this.model.billingAddress = new BankAccountModel(
       this.currentUser.billingCountry,
     );
   }

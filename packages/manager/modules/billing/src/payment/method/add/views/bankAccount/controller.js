@@ -1,4 +1,4 @@
-export default class PaymentMethodAddLegacyBankAccountCtrl {
+export default class PaymentMethodAddBankAccountCtrl {
   /* @ngInject */
   constructor(ovhPaymentMethodHelper) {
     // other attributes
