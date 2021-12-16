@@ -30,6 +30,11 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      poolsLink: /* @ngInject */ ($state, databaseId, projectId) =>
+        $state.href('pci.projects.project.storages.databases.dashboard.pools', {
+          projectId,
+          databaseId,
+        }),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       databaseId: /* @ngInject */ ($transition$) =>
