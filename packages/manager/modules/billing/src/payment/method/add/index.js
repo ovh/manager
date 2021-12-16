@@ -10,7 +10,7 @@ import routing from './routing';
 import component from './component';
 
 import billingContactViewModule from './views/billingContact';
-import legacyBankAccountViewModule from './views/legacyBankAccount';
+import bankAccountViewModule from './views/bankAccount';
 import legacyBillingAddressViewModule from './views/legacyBillingAddress';
 
 const moduleName = 'ovhBillingPaymentMethodAdd';
@@ -23,7 +23,7 @@ angular
     ngOvhPaymentMethod,
     ovhManagerCore,
     billingContactViewModule,
-    legacyBankAccountViewModule,
+    bankAccountViewModule,
     legacyBillingAddressViewModule,
   ])
   .config(routing)
