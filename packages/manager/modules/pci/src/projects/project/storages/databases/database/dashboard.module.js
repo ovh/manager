@@ -21,6 +21,7 @@ import indexes from './indexes';
 import serviceIntegration from './service-integration';
 import replications from './replications';
 import currentQueries from './current-queries';
+import pools from './pools';
 
 const moduleName = 'ovhManagerPciStoragesDatabase';
 
@@ -37,6 +38,7 @@ angular
     users,
     logs,
     metrics,
+    pools,
     databases,
     acl,
     userAcl,

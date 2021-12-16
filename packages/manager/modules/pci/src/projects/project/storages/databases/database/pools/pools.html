@@ -1,0 +1,87 @@
+<div class="container-fluid px-0 mt-3">
+    <!-- error messages -->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <h2 data-translate="pci_databases_pools_title"></h2>
+    <p data-translate="pci_databases_pools_description"></p>
+
+    <oui-datagrid
+        data-rows="$ctrl.pools"
+        data-empty-placeholder="{{:: 'pci_databases_pools_retrieve_error' | translate }}"
+    >
+        <oui-datagrid-topbar>
+            <button
+                type="button"
+                class="oui-button oui-button_secondary oui-button_icon-left"
+                data-ng-click="$ctrl.addPool()"
+            >
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    data-translate="pci_projects_project_instances_add_label"
+                ></span>
+            </button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_pools_datagrid_pool_name' | translate"
+            data-property="name"
+            data-type="string"
+            data-sortable
+            data-filterable
+            data-searchable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_pools_datagrid_database' | translate"
+            data-property="databaseName"
+            data-type="string"
+            data-sortable
+            data-filterable
+            data-searchable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_pools_datagrid_pool_mode' | translate"
+            data-property="mode"
+            data-type="string"
+            data-sortable
+            data-filterable
+            data-searchable
+        >
+            <span class="text-capitalize" data-ng-bind="$row.mode"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_pools_datagrid_pool_size' | translate"
+            data-property="size"
+            data-type="number"
+            data-sortable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_pools_datagrid_user_name' | translate"
+            data-property="userName"
+            data-type="string"
+            data-sortable
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item>
+                <span
+                    data-translate="pci_databases_pools_datagrid_information"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item>
+                <span
+                    data-translate="pci_databases_pools_datagrid_modify"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item>
+                <span
+                    data-translate="pci_databases_pools_datagrid_delete"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</div>
