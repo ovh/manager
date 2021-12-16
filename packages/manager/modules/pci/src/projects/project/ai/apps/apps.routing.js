@@ -91,6 +91,12 @@ export default /* @ngInject */ ($stateProvider) => {
           : promise;
       },
 
+      goToStartApp: /* @ngInject */ ($state, projectId) => (app) =>
+        $state.go('pci.projects.project.ai.apps.start', {
+          projectId,
+          app,
+        }),
+
       goToStopApp: /* @ngInject */ ($state, projectId) => (app) =>
         $state.go('pci.projects.project.ai.apps.stop', {
           projectId,

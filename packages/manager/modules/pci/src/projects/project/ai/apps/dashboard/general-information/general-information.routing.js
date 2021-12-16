@@ -41,6 +41,15 @@ export default /* @ngInject */ ($stateProvider) => {
           labelSelector: `id=${app.id}`,
         }),
 
+      goToStartApp: /* @ngInject */ ($state, projectId, app) => () =>
+        $state.go(
+          'pci.projects.project.ai.apps.dashboard.general-information.start',
+          {
+            projectId,
+            app,
+          },
+        ),
+
       goToStopApp: /* @ngInject */ ($state, projectId, app) => () =>
         $state.go(
           'pci.projects.project.ai.apps.dashboard.general-information.stop',

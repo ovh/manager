@@ -45,6 +45,11 @@ export default class {
     this.goToApp(app);
   }
 
+  onStartAppClick(app) {
+    this.trackApps('table::options_menu::start_app');
+    this.goToStartApp(app);
+  }
+
   onStopAppClick(app) {
     this.trackApps('table::options_menu::stop_app');
     this.goToStopApp(app);

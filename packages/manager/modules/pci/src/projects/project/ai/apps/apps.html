@@ -89,6 +89,12 @@
                 <span data-translate="pci_ai_app_list_generate_token"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
+                data-on-click="$ctrl.onStartAppClick($row)"
+                data-disabled="!$ctrl.app.isStopped()"
+            >
+                <span data-translate="pci_ai_app_list_start_app"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
                 data-on-click="$ctrl.onStopAppClick($row)"
                 data-disabled="!$row.isStoppable()"
             >

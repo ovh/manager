@@ -65,7 +65,6 @@ export default class App {
   }
 
   isStoppable() {
-    console.log('IS STOPPABLE', this.status?.state);
     return [
       APP_STATUS.QUEUED,
       APP_STATUS.INITIALIZING,

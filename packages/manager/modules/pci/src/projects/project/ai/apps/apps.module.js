@@ -15,6 +15,7 @@ import onboarding from './onboarding';
 import dashboard from './dashboard';
 import stopModule from './stop';
 import deleteModule from './delete';
+import startModule from './start';
 
 import './index.scss';
 
@@ -33,6 +34,7 @@ angular
     onboarding,
     stopModule,
     deleteModule,
+    startModule,
   ])
   .config(routing)
   .component('ovhManagerPciProjectApps', component)

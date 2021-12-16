@@ -70,6 +70,11 @@ export default class {
     this.trackApps('dashboard::access_graph_dashboard');
   }
 
+  onStartAppClick() {
+    this.trackApps('dashboard::start_app');
+    return this.goToStartApp();
+  }
+
   onStopAppClick() {
     this.trackApps('dashboard::stop_app');
     return this.goToStopApp();
