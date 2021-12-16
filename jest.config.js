@@ -1,6 +1,6 @@
 module.exports = {
   roots: ['<rootDir>/packages/components', '<rootDir>/packages/manager'],
-  projects: ['<rootDir>/packages/manager/apps/shell/jest.config.js'],
+  projects: ['<rootDir>/packages/manager/apps/container/jest.config.js'],
   setupFilesAfterEnv: ['<rootDir>/jest/mocks/jest.setup.js'],
   collectCoverageFrom: ['packages/**/*.{js,jsx,ts,tsx}', '!packages/**/*.d.ts'],
   testMatch: [
