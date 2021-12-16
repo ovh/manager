@@ -60,6 +60,23 @@ export default function exposeApi(shellClient: ShellClient) {
           method: 'showAccountSidebar',
           args: [disableToggle],
         }),
+      disableAccountSidebarToggle: () => {
+        shellClient.invokePluginMethod({
+          plugin: 'ux',
+          method: 'disableAccountSidebarVisibilityToggle',
+        });
+      },
+      enableAccountSidebarToggle: () => {
+        shellClient.invokePluginMethod({
+          plugin: 'ux',
+          method: 'enableAccountSidebarVisibilityToggle',
+        });
+      },
+      isAccountSidebarVisible: () =>
+        shellClient.invokePluginMethod({
+          plugin: 'ux',
+          method: 'isAccountSidebarVisible',
+        }),
     },
   };
 }

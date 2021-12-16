@@ -5,7 +5,7 @@ import useNotifications from '../core/notifications';
 
 import style from './navbar.module.scss';
 import { TRANSLATE_NAMESPACE } from './constants';
-import useHeader from '@/core/header';
+import { useHeader } from '@/context/header';
 
 export default function NavbarNotifications(props) {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);

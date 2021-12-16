@@ -8,7 +8,7 @@ import Notifications from './Notifications/Notifications.jsx';
 import { MAX_NOTIFICATIONS } from './constants';
 
 import style from './notifications-sidebar.module.scss';
-import useHeader from '@/core/header';
+import { useHeader } from '@/context/header';
 
 const NotificationsSidebar = ({ environment }) => {
   const locale = environment.getUserLocale();
