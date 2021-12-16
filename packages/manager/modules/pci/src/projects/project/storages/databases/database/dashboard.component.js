@@ -24,6 +24,7 @@ export default {
     trackDashboard: '<',
     trackDatabases: '<',
     isFeatureActivated: '<',
+    queryStatisticsLink: '<',
   },
   template,
 };
