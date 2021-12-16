@@ -20,6 +20,7 @@ attachPreloader(findAvailableLocale(detectUserLocale()));
 useShellClient('hub')
   .then((client) => {
     setShellClient(client);
+    client.ux.showAccountSidebar(true);
     return client.environment.getEnvironment();
   })
   .then((environment) => {
