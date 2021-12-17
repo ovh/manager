@@ -28,5 +28,4 @@ export enum ShellMessageType {
   PLUGIN_INVOCATION = 'plugin-invocation',
   PLUGIN_RESULT = 'plugin-result',
   EVENT = 'event',
-  SIDEBAR_EVENT = 'ux:sidebar-show',
 }
