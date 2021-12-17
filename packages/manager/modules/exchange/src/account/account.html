@@ -147,7 +147,7 @@
         </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="bottom-end">
             <oui-action-menu-item
-                data-on-click="$ctrl.displayDialog('exchange/account/update/account-update', $row)"
+                data-on-click="$ctrl.displayAccountUpdateView($row)"
                 data-disabled="!$ctrl.exchangeAccount.isEditable($row) || !$ctrl.atLeastOneDomainIsAssociatedToCurrentExchangeService"
             >
                 <span data-translate="exchange_tab_ACCOUNTS_menu_edit"></span>
