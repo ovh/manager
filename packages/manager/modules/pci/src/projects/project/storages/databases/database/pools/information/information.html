@@ -1,0 +1,86 @@
+<oui-modal
+    data-heading="{{:: 'pci_databases_pools_information_title' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <div class="mb-3 information">
+        <dl>
+            <div class="row my-2 py-2">
+                <dt
+                    class="col-sm-3 font-weight-bold"
+                    data-translate="pci_databases_pools_information_database"
+                ></dt>
+                <dd
+                    class="col-sm-9 my-auto"
+                    data-ng-bind="$ctrl.pool.databaseName"
+                ></dd>
+            </div>
+            <div class="row my-2 py-2 border-top">
+                <dt
+                    class="col-sm-3 font-weight-bold"
+                    data-translate="pci_databases_pools_information_port"
+                ></dt>
+                <dd
+                    class="col-sm-9 my-auto"
+                    data-ng-bind="$ctrl.database.port"
+                ></dd>
+            </div>
+            <div class="row my-2 py-2 border-top">
+                <dt
+                    class="col-sm-3 font-weight-bold"
+                    data-translate="pci_databases_pools_information_ssl_mode"
+                ></dt>
+                <dd
+                    class="col-sm-9 my-auto text-capitalize"
+                    data-ng-bind="$ctrl.database.sslMode"
+                ></dd>
+            </div>
+            <div class="row my-2 py-2 border-top">
+                <div class="font-weight-bold copy-clipboard ml-3">
+                    <span
+                        data-translate="pci_databases_pools_information_certificate_ca"
+                    ></span>
+                    <span
+                        ng-click="$ctrl.downloadCertificate(database)"
+                        class="oui-icon oui-icon-download_concept"
+                        aria-hidden="true"
+                    ></span>
+                    <oui-clipboard
+                        class="w-75"
+                        model="$ctrl.database.certificate.ca"
+                    ></oui-clipboard>
+                </div>
+            </div>
+            <div class="row my-2 py-2 border-top">
+                <div class="font-weight-bold copy-clipboard ml-3">
+                    <p
+                        data-translate="pci_databases_pools_information_service_uri"
+                    ></p>
+                    <oui-clipboard
+                        class="w-75"
+                        model="$ctrl.pool.uri"
+                    ></oui-clipboard>
+                </div>
+            </div>
+            <div class="row my-2 py-2 border-top">
+                <dt
+                    class="col-sm-3 font-weight-bold"
+                    data-translate="pci_databases_pools_information_pool_mode"
+                ></dt>
+                <dd
+                    class="col-sm-9 my-auto text-capitalize"
+                    data-ng-bind="$ctrl.pool.mode"
+                ></dd>
+            </div>
+            <div class="row my-2 py-2 border-top">
+                <dt
+                    class="col-sm-3 font-weight-bold"
+                    data-translate="pci_databases_pools_information_pool_size"
+                ></dt>
+                <dd
+                    class="col-sm-9 my-auto"
+                    data-ng-bind="$ctrl.pool.size"
+                ></dd>
+            </div>
+        </dl>
+    </div>
+</oui-modal>
