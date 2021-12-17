@@ -54,11 +54,10 @@ export default function exposeApi(shellClient: ShellClient) {
     },
     auth: clientAuth(shellClient),
     ux: {
-      showAccountSidebar: (disableToggle = false) =>
+      showAccountSidebar: () =>
         shellClient.invokePluginMethod({
           plugin: 'ux',
           method: 'showAccountSidebar',
-          args: [disableToggle],
         }),
       disableAccountSidebarToggle: () => {
         shellClient.invokePluginMethod({
