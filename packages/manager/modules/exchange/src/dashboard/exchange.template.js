@@ -53,7 +53,6 @@ import accountAliasRemoveTemplate from '../account/alias/remove/account-alias-re
 import accountAliasTemplate from '../account/alias/account-alias.html';
 import accountAliasAddTemplate from '../account/alias/add/account-alias-add.html';
 import accountRemoveTemplate from '../account/remove/account-remove.html';
-import accountUpdateTemplate from '../account/update/account-update.html';
 import accountTemplate from '../account/account.html';
 import accountDelegationTemplate from '../account/delegation/account-delegation.html';
 import accountExportAsCsvTemplate from '../account/export-as-csv/account-export-as-csv.html';
@@ -295,10 +294,6 @@ export default /* @ngInject */ ($templateCache) => {
   $templateCache.put(
     'exchange/account/remove/account-remove.html',
     accountRemoveTemplate,
-  );
-  $templateCache.put(
-    'exchange/account/update/account-update.html',
-    accountUpdateTemplate,
   );
   $templateCache.put('exchange/account/account.html', accountTemplate);
   $templateCache.put(

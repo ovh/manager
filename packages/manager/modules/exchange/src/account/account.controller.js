@@ -62,7 +62,6 @@ export default class ExchangeAccountHomeController {
   }
 
   $onInit() {
-    console.log('ZM:: phonesList', this.countryCodes);
     this.hostname = this.Exchange.value.hostname;
     this.webUrl = this.Exchange.value.webUrl;
 
@@ -466,6 +465,11 @@ export default class ExchangeAccountHomeController {
   displayAccountAddingView() {
     this.messaging.resetMessages();
     this.goToAddAccount();
+  }
+
+  displayAccountUpdateView(emailAccount) {
+    this.messaging.resetMessages();
+    this.goToUpdateAccount(emailAccount);
   }
 
   openAccountOrderingDialog() {
