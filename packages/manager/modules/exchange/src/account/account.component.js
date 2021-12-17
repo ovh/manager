@@ -9,6 +9,7 @@ export default {
     countries: '<',
     phoneCountries: '<',
     goToAddAccount: '<',
+    goToUpdateAccount: '<',
     goToAliasManagement: '<',
   },
   controller,

@@ -46,7 +46,6 @@ import ExchangeAddOutlookCtrl from '../account/outlook/add/account-outlook-add.c
 import exchangeAccountOutlookDeactivate from '../account/outlook/deactivate/account-outlook-deactivate.controller';
 import exchangeAccountOutlookDelete from '../account/outlook/delete/account-outlook-delete.controller';
 import ExchangeRemoveAccountCtrl from '../account/remove/account-remove.controller';
-import ExchangeUpdateAccountCtrl from '../account/update/account-update.controller';
 import ExchangeUpgrade300GCtrl from '../account/upgrade-300g/account-upgrade-300g.controller';
 import ExchangeUpdateRenewCtrl from '../billing/account-renew/renew.controller';
 import ExchangeAccountMfaCtrl from '../account/mfa/account-mfa.controller';
@@ -157,7 +156,6 @@ angular
   )
   .controller('exchangeAccountOutlookDelete', exchangeAccountOutlookDelete)
   .controller('ExchangeRemoveAccountCtrl', ExchangeRemoveAccountCtrl)
-  .controller('ExchangeUpdateAccountCtrl', ExchangeUpdateAccountCtrl)
   .controller('ExchangeUpgrade300GCtrl', ExchangeUpgrade300GCtrl)
   .controller('ExchangeUpdateRenewCtrl', ExchangeUpdateRenewCtrl)
   .controller('ExchangeAccountMfaCtrl', ExchangeAccountMfaCtrl)
