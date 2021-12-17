@@ -58,8 +58,19 @@ export const STORAGE_GATEWAY = {
   US: 'gateways.storage.REGION.cloud.ovh.us',
 };
 
-export const STORAGE_PRICES_LINK =
-  'https://www.ovhcloud.com/fr/public-cloud/prices/#storage';
+export const STORAGE_PRICES_LINK = {
+  DE: 'https://www.ovhcloud.com/de/public-cloud/prices/#storage',
+  ES: 'https://www.ovhcloud.com/es-es/public-cloud/prices/#storage',
+  FR: 'https://www.ovhcloud.com/fr/public-cloud/prices/#storage',
+  IR: 'https://www.ovhcloud.com/en-ie/public-cloud/prices/#storage',
+  IT: 'https://www.ovhcloud.com/it/public-cloud/prices/#storage',
+  ND: 'https://www.ovhcloud.com/nl/public-cloud/prices/#storage',
+  PL: 'https://www.ovhcloud.com/pl/public-cloud/prices/#storage',
+  PT: 'https://www.ovhcloud.com/pt/public-cloud/prices/#armazenamento',
+  UK: 'https://www.ovhcloud.com/en-gb/public-cloud/prices/#storage',
+  WS: 'https://www.ovhcloud.com/en/public-cloud/prices/#storage',
+  WE: 'https://www.ovhcloud.com/en-ie/public-cloud/prices/#storage',
+};
 
 export const X_CONTAINER_HEADERS_REGEX = /^(X-Container|X-Storage)/i;
 
