@@ -1,0 +1,37 @@
+<form
+    id="poolTerminate"
+    name="poolTerminate"
+    data-ng-submit="poolTerminate.$valid && $ctrl.terminate()"
+    novalidate
+>
+    <oui-modal
+        data-primary-label="{{ ::'pci_databases_pools_terminate_confirm' | translate }}"
+        data-primary-disabled="!$ctrl.terminateConfirmation"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{ ::'pci_databases_pools_terminate_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isDeleting"
+        data-type="warning"
+        data-heading="{{ ::'pci_databases_pools_terminate_title' | translate }}"
+    >
+        <p
+            data-translate="pci_databases_pools_terminate_description"
+            data-translate-values="{ name: $ctrl.pool.name }"
+        ></p>
+        <oui-message data-type="warning">
+            <span data-translate="pci_databases_pools_terminate_warning"></span>
+        </oui-message>
+        <oui-field
+            data-label="{{:: 'pci_databases_pools_terminate_label' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                name="poolTerminateConfirm"
+                data-ng-model="$ctrl.terminateConfirmation"
+                data-ng-pattern="$ctrl.TERMINATE_INPUT"
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>

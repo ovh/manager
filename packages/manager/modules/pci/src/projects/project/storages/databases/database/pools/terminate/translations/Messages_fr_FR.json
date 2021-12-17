@@ -1,0 +1,10 @@
+{
+  "pci_databases_pools_terminate_title": "Supprimer le Pool de connexion",
+  "pci_databases_pools_terminate_description": "Vous êtes sur le point de supprimer définitivement le Pool de connexion {{name}}",
+  "pci_databases_pools_terminate_warning": "Cette action est irréversible.",
+  "pci_databases_pools_terminate_label": "Saisir \"TERMINATE\" pour confirmer votre choix.",
+  "pci_databases_pools_terminate_cancel": "Annuler",
+  "pci_databases_pools_terminate_confirm": "Confirmer",
+  "pci_databases_pools_terminate_success": "Votre Pool {{name}} a été supprimé avec succès.",
+  "pci_databases_pools_terminate_error": "Un erreur est survenue lors de la suppression de votre pool {{name}: {{message}}}"
+}

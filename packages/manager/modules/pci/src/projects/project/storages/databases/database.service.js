@@ -832,4 +832,12 @@ export default class DatabaseService {
       )
       .then(({ data }) => data);
   }
+
+  terminateConnectionPool(projectId, databaseId, connectionPoolId) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/postgresql/${databaseId}/connectionPool/${connectionPoolId}`,
+      )
+      .then(({ data }) => data);
+  }
 }

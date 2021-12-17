@@ -8,6 +8,7 @@ import poolsComponent from './pools.component';
 import routing from './pools.routing';
 import addEdit from './add-edit';
 import information from './information';
+import terminate from './terminate';
 
 const moduleName = 'ovhManagerPciStoragesDatabasePools';
 
@@ -19,6 +20,7 @@ angular
     'ui.router',
     addEdit,
     information,
+    terminate,
   ])
   .config(routing)
   .component('ovhManagerPciStoragesDatabasePoolsComponent', poolsComponent)

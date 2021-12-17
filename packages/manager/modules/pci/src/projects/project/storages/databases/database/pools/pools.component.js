@@ -14,6 +14,7 @@ export default {
     goToAddPool: '<',
     goToInformation: '<',
     goToModify: '<',
+    goToTerminate: '<',
   },
   controller,
   template,

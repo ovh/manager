@@ -51,6 +51,11 @@ export default /* @ngInject */ ($stateProvider) => {
             'pci.projects.project.storages.databases.dashboard.pools.edit',
             { poolId: pool.id },
           ),
+        goToTerminate: /* @ngInject */ ($state) => (pool) =>
+          $state.go(
+            'pci.projects.project.storages.databases.dashboard.pools.terminate',
+            { poolId: pool.id },
+          ),
         goBackToPools: /* @ngInject */ ($state, CucCloudMessage) => (
           message = false,
           type = 'success',
