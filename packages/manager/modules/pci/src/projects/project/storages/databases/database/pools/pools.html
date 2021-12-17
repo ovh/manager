@@ -1,4 +1,4 @@
-<div class="container-fluid px-0 mt-3">
+<div class="container-fluid px-0 mt-3" data-ui-view>
     <!-- error messages -->
     <cui-message-container
         data-messages="$ctrl.messages"
@@ -15,7 +15,7 @@
             <button
                 type="button"
                 class="oui-button oui-button_secondary oui-button_icon-left"
-                data-ng-click="$ctrl.addPool()"
+                data-ng-click="$ctrl.goToAddPool()"
             >
                 <span
                     class="oui-icon oui-icon-add pr-1"
@@ -37,7 +37,7 @@
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_pools_datagrid_database' | translate"
-            data-property="databaseName"
+            data-property="database.name"
             data-type="string"
             data-sortable
             data-filterable
@@ -61,18 +61,18 @@
         ></oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_pools_datagrid_user_name' | translate"
-            data-property="userName"
+            data-property="user.username"
             data-type="string"
             data-sortable
             data-filterable
         ></oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">
-            <oui-action-menu-item>
+            <oui-action-menu-item data-on-click="$ctrl.goToInformation($row)">
                 <span
                     data-translate="pci_databases_pools_datagrid_information"
                 ></span>
             </oui-action-menu-item>
-            <oui-action-menu-item>
+            <oui-action-menu-item data-on-click="$ctrl.goToModify($row)">
                 <span
                     data-translate="pci_databases_pools_datagrid_modify"
                 ></span>

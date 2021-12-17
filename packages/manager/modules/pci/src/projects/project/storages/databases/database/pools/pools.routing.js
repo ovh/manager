@@ -37,6 +37,20 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           );
         },
+        goToAddPool: /* @ngInject */ ($state) => () =>
+          $state.go(
+            'pci.projects.project.storages.databases.dashboard.pools.add',
+          ),
+        goToInformation: /* @ngInject */ ($state) => (pool) =>
+          $state.go(
+            'pci.projects.project.storages.databases.dashboard.pools.information',
+            { poolId: pool.id },
+          ),
+        goToModify: /* @ngInject */ ($state) => (pool) =>
+          $state.go(
+            'pci.projects.project.storages.databases.dashboard.pools.edit',
+            { poolId: pool.id },
+          ),
         goBackToPools: /* @ngInject */ ($state, CucCloudMessage) => (
           message = false,
           type = 'success',

@@ -814,4 +814,22 @@ export default class DatabaseService {
       )
       .then(({ data }) => data);
   }
+
+  createConnectionPool(projectId, databaseId, payload) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/postgresql/${databaseId}/connectionPool`,
+        payload,
+      )
+      .then(({ data }) => data);
+  }
+
+  updateConnectionPool(projectId, databaseId, connectionPoolId, payload) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/database/postgresql/${databaseId}/connectionPool/${connectionPoolId}`,
+        payload,
+      )
+      .then(({ data }) => data);
+  }
 }
