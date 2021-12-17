@@ -5,7 +5,6 @@ export interface IUXPlugin {
   isAccountSidebarVisible(sidebarName: string): boolean;
   showAccountSidebar(disableToggle: boolean): void;
   hideAccountSidebar(): void;
-  toggleAccountSidebarVisibility(): void;
   isNotificationsSidebarVisible(): boolean;
   showNotificationsSidebar(): void;
   hideNotificationsSidebar(): void;
@@ -36,8 +35,8 @@ export class UXPlugin implements IUXPlugin {
     return this.shellUX.isSidebarVisible('account');
   }
 
-  showAccountSidebar(disableToggle = false): void {
-    return this.shellUX.showSidebar('account', disableToggle);
+  showAccountSidebar(): void {
+    return this.shellUX.showSidebar('account');
   }
 
   hideAccountSidebar(): void {
@@ -55,7 +54,6 @@ export class UXPlugin implements IUXPlugin {
   toggleAccountSidebarVisibility(): void {
     this.shellUX.toggleSidebarVisibility('account');
   }
-
 
   onAccountSidebarVisibilityChange(callback: CallableFunction): void {
     this.shellUX.onSidebarVisibilityChange('account', callback);
