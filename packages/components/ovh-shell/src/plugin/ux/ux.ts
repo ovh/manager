@@ -13,7 +13,10 @@ interface IShellUx {
   showSidebar: (sidebarName: string) => void;
   hideSidebar: (sidebarName: string) => void;
   registerNavbar: () => void;
-  onSidebarVisibilityChange(sidebarName: string, callback: CallableFunction): void;
+  onSidebarVisibilityChange(
+    sidebarName: string,
+    callback: CallableFunction,
+  ): void;
 }
 
 export class ShellUX implements IShellUx {
@@ -61,18 +64,18 @@ export class ShellUX implements IShellUx {
     registeredSidebar?.disableToggle();
   }
 
-  onSidebarVisibilityChange(sidebarName: string, callback: CallableFunction): void {
+  onSidebarVisibilityChange(
+    sidebarName: string,
+    callback: CallableFunction,
+  ): void {
     this.sidebars[sidebarName]?.onSidebarVisibilityChange(callback);
   }
 
-  showSidebar(sidebarName: string, disableToggle = false): void {
+  showSidebar(sidebarName: string): void {
     const registeredSidebar = this.sidebars[sidebarName];
 
     if (registeredSidebar) {
       registeredSidebar.show();
-      if (disableToggle) {
-        registeredSidebar.disableToggle();
-      }
       this.shell.emitEvent('ux:sidebar-show', { sidebarName });
     }
   }

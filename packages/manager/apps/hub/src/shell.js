@@ -9,9 +9,6 @@ export const setShellClient = (client) => {
     window.top.location.reload();
   });
 
-  // by default show the account sidebar and disable toggle visibility
-  shellClient.ux.showAccountSidebar(true);
-
   return shellClient;
 };
 
