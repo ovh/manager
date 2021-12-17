@@ -19,6 +19,10 @@ import zipObject from 'lodash/zipObject';
 import { SIDEBAR_CONFIG } from './sidebar.constants';
 import { ORDER_URLS, SIDEBAR_ORDER_CONFIG } from './order.constants';
 import { WEB_SIDEBAR_CONFIG, WEB_ORDER_SIDEBAR_CONFIG } from './web.constants';
+import {
+  TELECOM_SIDEBAR_CONFIG,
+  TELECOM_ORDER_SIDEBAR_CONFIG,
+} from './telecom.constants';
 
 // we should avoid require, but JSURL don't provide an es6 export
 const { stringify } = require('jsurl');
@@ -88,6 +92,9 @@ export default class OvhManagerServerSidebarController {
     if (this.universe === 'WEB') {
       this.SIDEBAR_CONFIG = WEB_SIDEBAR_CONFIG;
       this.SIDEBAR_ORDER_CONFIG = WEB_ORDER_SIDEBAR_CONFIG;
+    } else if (this.universe === 'TELECOM') {
+      this.SIDEBAR_CONFIG = TELECOM_SIDEBAR_CONFIG;
+      this.SIDEBAR_ORDER_CONFIG = TELECOM_ORDER_SIDEBAR_CONFIG;
     }
 
     // set initialization promise
@@ -170,66 +177,75 @@ export default class OvhManagerServerSidebarController {
     return link;
   }
 
+  buildOrderMenuItems(items, ovhSubsidiary) {
+    return map(items, (orderItemConfig) => {
+      if (
+        !has(orderItemConfig, 'featureType') ||
+        this.CucFeatureAvailabilityService.hasFeature(
+          orderItemConfig.featureType,
+          'sidebarOrder',
+          ovhSubsidiary,
+        )
+      ) {
+        const isExternal = !includes(orderItemConfig.app, this.universe);
+
+        let link = null;
+        if (
+          (isExternal || !has(orderItemConfig, 'state')) &&
+          (has(orderItemConfig, 'linkId') || has(orderItemConfig, 'linkPart'))
+        ) {
+          link = this.buildUrl(orderItemConfig, ovhSubsidiary);
+        }
+
+        let subActions = [];
+        if (has(orderItemConfig, 'children')) {
+          subActions = this.buildOrderMenuItems(
+            orderItemConfig.children,
+            ovhSubsidiary,
+          );
+        }
+
+        if (!isExternal || link || subActions.length > 0) {
+          return {
+            id: orderItemConfig.id,
+            title: this.$translate.instant(
+              `server_sidebar_order_item_${orderItemConfig.title}_title`,
+            ),
+            icon: orderItemConfig.icon,
+            href: link,
+            state: isExternal ? null : orderItemConfig.state,
+            target: get(
+              orderItemConfig,
+              'target',
+              isExternal ? '_blank' : null,
+            ),
+            external: get(orderItemConfig, 'external', false),
+            onClick: () => {
+              this.atInternet.trackClick({
+                type: 'action',
+                name: get(orderItemConfig, 'tracker'),
+              });
+            },
+            subActions,
+          };
+        }
+      }
+
+      return null;
+    });
+  }
+
   buildOrderMenu() {
     this.SidebarMenu.actionsMenuOptions = [];
     return this.SessionService.getUser().then(
       ({ ovhSubsidiary, isTrusted }) => {
         const actionsMenuOptions = isTrusted
           ? []
-          : map(
+          : this.buildOrderMenuItems(
               this.filterFeatures(
                 this.filterRegions(this.SIDEBAR_ORDER_CONFIG),
               ),
-              (orderItemConfig) => {
-                if (
-                  !has(orderItemConfig, 'featureType') ||
-                  this.CucFeatureAvailabilityService.hasFeature(
-                    orderItemConfig.featureType,
-                    'sidebarOrder',
-                    ovhSubsidiary,
-                  )
-                ) {
-                  const isExternal = !includes(
-                    orderItemConfig.app,
-                    this.universe,
-                  );
-
-                  let link = null;
-                  if (
-                    (isExternal || !has(orderItemConfig, 'state')) &&
-                    (has(orderItemConfig, 'linkId') ||
-                      has(orderItemConfig, 'linkPart'))
-                  ) {
-                    link = this.buildUrl(orderItemConfig, ovhSubsidiary);
-                  }
-
-                  if (!isExternal || link) {
-                    return {
-                      id: orderItemConfig.id,
-                      title: this.$translate.instant(
-                        `server_sidebar_order_item_${orderItemConfig.title}_title`,
-                      ),
-                      icon: orderItemConfig.icon,
-                      href: link,
-                      state: isExternal ? null : orderItemConfig.state,
-                      target: get(
-                        orderItemConfig,
-                        'target',
-                        isExternal ? '_blank' : null,
-                      ),
-                      external: get(orderItemConfig, 'external', false),
-                      onClick: () => {
-                        this.atInternet.trackClick({
-                          type: 'action',
-                          name: get(orderItemConfig, 'tracker'),
-                        });
-                      },
-                    };
-                  }
-                }
-
-                return null;
-              },
+              ovhSubsidiary,
             );
 
         return this.SidebarMenu.addActionsMenuOptions(
@@ -377,13 +393,38 @@ export default class OvhManagerServerSidebarController {
               if (isExternal) {
                 link = service.url;
               } else {
-                state = get(typeServices.type, 'state');
+                state = get(typeServices.type, 'state', '');
                 if (
                   has(typeServices.type, 'getState') &&
                   isFunction(typeServices.type.getState)
                 ) {
                   state = typeServices.type.getState(service.extraParams);
                 }
+              }
+
+              const prefixTranslationPart = get(typeServices.type, 'prefix');
+              let prefix;
+              if (prefixTranslationPart) {
+                prefix = this.$translate.instant(
+                  `server_sidebar_item_${prefixTranslationPart}_prefix`,
+                );
+              }
+
+              if (
+                has(typeServices.type, 'getPrefix') &&
+                isFunction(typeServices.type.getPrefix)
+              ) {
+                prefix = this.$translate.instant(
+                  typeServices.type.getPrefix(service.extraParams),
+                );
+              }
+
+              let icon = get(typeServices.type, 'icon');
+              if (
+                has(typeServices.type, 'getIcon') &&
+                isFunction(typeServices.type.getIcon)
+              ) {
+                icon = typeServices.type.getIcon(service.extraParams);
               }
 
               const menuItem = this.SidebarMenu.addMenuItem(
@@ -397,10 +438,11 @@ export default class OvhManagerServerSidebarController {
                   stateParams,
                   url: link,
                   target: isExternal ? '_self' : null,
-                  icon: get(typeServices.type, 'icon'),
+                  icon,
                   loadOnState: get(typeServices.type, 'loadOnState'),
                   loadOnStateParams,
                   namespace: typeServices.type.namespace,
+                  prefix,
                 },
                 parent,
               );

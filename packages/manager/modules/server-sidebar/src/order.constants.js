@@ -275,6 +275,56 @@ export const ORDER_URLS = {
     dbaas_logs: {
       EU: 'https://www.ovh.com/manager/dedicated/#/dbaas/logs/welcome',
     },
+    faxOrder: {
+      FR: 'https://www.ovhtelecom.fr/fax/',
+    },
+    smsHlr: {
+      FR: 'https://www.ovhtelecom.fr/sms/home-location-register/',
+    },
+    office365_business: {
+      ES: 'https://www.ovh.es/office-365/',
+      FR: 'https://www.ovhtelecom.fr/office-365-business/',
+    },
+    office365_sharepoint: {
+      ES: 'https://www.ovh.es/sharepoint/?range=mail',
+      FR: 'https://www.ovhtelecom.fr/sharepoint/?range=mail',
+    },
+    email_exchange: {
+      ES: 'https://www.ovh.es/emails/hosted-exchange/',
+      FR: 'https://www.ovh.com/fr/emails/hosted-exchange/',
+    },
+    email_sharepoint: {
+      ES: 'https://www.ovh.es/sharepoint/?range=mail',
+      FR: 'https://www.ovhtelecom.fr/sharepoint/?range=mail',
+    },
+    telephony_voip: {
+      FR: 'https://www.ovhtelecom.fr/telephonie/voip/',
+    },
+    telephony_siptrunk: {
+      FR: 'https://www.ovhtelecom.fr/telephonie/sip-trunk/',
+    },
+    telephony_siptrunkCall: {
+      FR: 'https://www.ovhtelecom.fr/telephonie/sip-trunk-forfait-inclus/',
+    },
+    internet_xdsl: {
+      FR: 'https://www.ovhtelecom.fr/adsl/',
+    },
+    internet_fiber: {
+      FR: 'https://www.ovhtelecom.fr/fibre/',
+    },
+    internet_sdsl: {
+      FR: 'https://www.ovhtelecom.fr/sdsl/',
+    },
+    internet_adsl_creation: {
+      FR: 'https://www.ovhtelecom.fr/adsl/ouvrir-une-ligne.xml',
+    },
+    internet_otb: {
+      FR: 'https://www.ovhtelecom.fr/overthebox/tarifs.xml',
+    },
+    domain: {
+      ES: 'https://www.ovh.es/dominios/',
+      FR: 'https://www.ovh.com/fr/domaines/tarifs/',
+    },
   },
   CA: {
     DEDICATED: {

@@ -109,6 +109,7 @@ import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
+import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import TelecomAppCtrl from './app.controller';
@@ -187,6 +188,7 @@ export default (containerEl, environment) => {
         ovhManagerIncidentBanner,
         ovhManagerNavbar,
         ovhManagerOverTheBox,
+        ovhManagerServerSidebar,
         ovhManagerSms,
         ovhManagerTelecomTask,
         ovhNotificationsSidebar,
