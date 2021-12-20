@@ -1,19 +1,28 @@
+import confirmController from './confirm/confirm.controller';
+import confirmTemplate from './confirm/confirm.html';
+
 export default class IdentityCheckFormCtrl {
   /* @ngInject */
   constructor(
+    $uibModal,
+    $translate,
     coreConfig,
     coreURLBuilder,
     ovhPaymentMethodHelper,
     IdentityCheckService,
-    TucToastError,
+    TucToast,
   ) {
     const { isValidIban, isValidBic } = ovhPaymentMethodHelper;
     const { name, firstname, address } = coreConfig.getUser();
 
+    this.$uibModal = $uibModal;
+    this.$translate = $translate;
+    this.user = coreConfig.getUser();
+
     this.isValidIban = isValidIban;
     this.isValidBic = isValidBic;
     this.IdentityCheckService = IdentityCheckService;
-    this.TucToastError = TucToastError;
+    this.TucToast = TucToast;
 
     this.isLoading = true;
     this.isCreating = false;
@@ -35,7 +44,9 @@ export default class IdentityCheckFormCtrl {
       .then((procedure) => {
         this.procedure = procedure;
       })
-      .catch((error) => new this.TucToastError(error))
+      .catch((error) =>
+        this.TucToast.error(error.data?.message || error.message),
+      )
       .finally(() => {
         this.isLoading = false;
       });
@@ -55,7 +66,9 @@ export default class IdentityCheckFormCtrl {
       .then((procedure) => {
         this.procedure = procedure;
       })
-      .catch((error) => new this.TucToastError(error))
+      .catch((error) =>
+        this.TucToast.error(error.data?.message || error.message),
+      )
       .finally(() => {
         this.isCreating = false;
       });
@@ -73,11 +86,37 @@ export default class IdentityCheckFormCtrl {
     this.IdentityCheckService.cancelProcedure(id)
       .then(() => {
         this.procedure = null;
+        this.TucToast.success(
+          this.$translate.instant(
+            'telecom_dashboard_identity_check_form_cancel_success',
+          ),
+        );
       })
-      .catch((error) => new this.TucToastError(error))
+      .catch(({ status }) => {
+        this.TucToast.error(
+          this.$translate.instant(
+            `telecom_dashboard_identity_check_form_cancel_error${
+              status === 409 ? '_ongoing' : ''
+            }`,
+          ),
+        );
+      })
       .finally(() => {
         this.isCancelling = false;
       });
+  }
+
+  confirmCancelProcedure() {
+    this.$uibModal
+      .open({
+        template: confirmTemplate,
+        controller: confirmController,
+        controllerAs: '$ctrl',
+      })
+      .result.then(() => {
+        this.cancelProcedure();
+      })
+      .catch(() => {});
   }
 
   openProcedure() {
