@@ -17,9 +17,17 @@
             </oui-guide-menu-item>
         </oui-guide-menu>
     </oui-header>
+
+    <pci-maintenance-banner
+        data-steins="$ctrl.steins"
+        data-customer-regions="$ctrl.customerRegions"
+        data-product-regions="$ctrl.notebooksRegions"
+    ></pci-maintenance-banner>
+
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
+
     <oui-datagrid id="publicCloudNotebooksDatagrid" data-rows="$ctrl.notebooks">
         <oui-datagrid-column
             title=":: 'pci_notebook_list_name' | translate"

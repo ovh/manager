@@ -23,6 +23,10 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectStorageSnapshotsService,
         projectId,
       ) => PciProjectStorageSnapshotsService.getAll(projectId),
+
+      snapshotsRegions: /* @ngInject */ (snapshots) =>
+        Array.from(new Set(snapshots.map(({ region }) => region))),
+
       createVolume: /* @ngInject */ ($state, projectId) => (snapshot) =>
         $state.go(
           'pci.projects.project.storages.snapshots.snapshot.create-volume',

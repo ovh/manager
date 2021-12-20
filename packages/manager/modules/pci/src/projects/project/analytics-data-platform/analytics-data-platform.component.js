@@ -11,6 +11,9 @@ export default {
     manageCluster: '<',
     projectId: '<',
     clusterId: '<',
+    steins: '<',
+    customerRegions: '<',
+    clustersRegions: '<',
     onListParamChange: '<',
   },
 };

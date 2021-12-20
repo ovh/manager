@@ -22,11 +22,16 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_serving_title'),
+
       lab: /* @ngInject */ (PciProjectLabsService, projectId) =>
         PciProjectLabsService.getLabByName(projectId, 'serving'),
 
       namespaces: /* @ngInject */ (PciProjectServingService, projectId) =>
         PciProjectServingService.getAll(projectId),
+
+      namespacesRegions: /* @ngInject */ (namespaces) =>
+        Array.from(new Set(namespaces.map(({ region }) => region))),
+
       viewNamespace: /* @ngInject */ ($state, projectId) => (namespace) =>
         $state.go('pci.projects.project.serving.namespace', {
           projectId,
