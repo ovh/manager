@@ -1,3 +1,12 @@
+## [5.53.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.53.0...@ovh-ux/manager-pci@5.53.1) (2021-12-20)
+
+
+### Bug Fixes
+
+* **notebook:** remove cache option github volume ([#6153](https://github.com/ovh/manager/issues/6153)) ([afd767d](https://github.com/ovh/manager/commit/afd767de7a28b87610e8bf2a4a2dfd54d2895f2f))
+
+
+
 # [5.53.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.52.1...@ovh-ux/manager-pci@5.53.0) (2021-12-14)
 
 
