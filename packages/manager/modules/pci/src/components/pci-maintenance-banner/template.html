@@ -1,0 +1,12 @@
+<oui-message data-ng-if="$ctrl.isDisplayableBanner()" data-type="warning" dismissable>
+    <span data-translate="pci_projects_maintenance_banner_info"></span>
+    <p class="m-0">
+        <a
+            target="_blank"
+            rel="noopener"
+            data-translate="pci_projects_maintenance_banner_info_link"
+            data-ng-href="{{:: $ctrl.steins[0].travaux }}"
+            data-ng-click="$ctrl.onMaintenanceLinkClick()">
+            ></a>
+    </p>
+</oui-message>
