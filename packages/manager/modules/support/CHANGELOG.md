@@ -1,3 +1,12 @@
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.7.1...@ovh-ux/manager-support@1.8.0) (2021-12-20)
+
+
+### Features
+
+* **support:** display archived tickets ([#6093](https://github.com/ovh/manager/issues/6093)) ([ca40dae](https://github.com/ovh/manager/commit/ca40daee84ccef641ea03b0b3257d99e87400f9e))
+
+
+
 ## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.7.0...@ovh-ux/manager-support@1.7.1) (2021-12-14)
 
 
