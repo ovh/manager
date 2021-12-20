@@ -1,0 +1,41 @@
+{
+  "name": "@ovh-ux/ovh-at-internet",
+  "version": "0.0.0",
+  "description": "ATInternet tracking library for OVHcloud.",
+  "keywords": [
+    "at-internet",
+    "tracking"
+  ],
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/components/ovh-at-internet#readme",
+  "bugs": {
+    "url": "https://github.com/ovh/manager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/components/ovh-at-internet"
+  },
+  "license": "BSD-3-Clause",
+  "sideEffects": false,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "./types",
+  "files": [
+    "dist",
+    "types"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc",
+    "dev:watch": "tsc --watch",
+    "prepare": "yarn run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev:watch"
+  },
+  "dependencies": {
+    "@types/lodash-es": "^4.17.5",
+    "lodash-es": "^4.17.15"
+  },
+  "devDependencies": {}
+}
