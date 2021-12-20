@@ -37,21 +37,19 @@
             </div>
         </div>
     </form>
-    <div class="cui-panel">
-        <div class="cui-panel__header">
-            <h2
-                data-translate="cloud_connect_stats_type_traffic"
-                data-ng-if="$ctrl.displayedGraph === $ctrl.TYPE.TRAFFIC"
-            ></h2>
-            <h2
-                data-translate="cloud_connect_stats_type_error"
-                data-ng-if="$ctrl.displayedGraph === $ctrl.TYPE.ERROR"
-            ></h2>
-            <h2
-                data-translate="cloud_connect_stats_type_light"
-                data-ng-if="$ctrl.displayedGraph === $ctrl.TYPE.LIGHT"
-            ></h2>
-        </div>
+    <div>
+        <oui-header
+            data-heading="{{::'cloud_connect_stats_type_traffic' | translate}}"
+            data-ng-if="$ctrl.displayedGraph === $ctrl.TYPE.TRAFFIC"
+        ></oui-header>
+        <oui-header
+            data-heading="{{::'cloud_connect_stats_type_error' | translate}}"
+            data-ng-if="$ctrl.displayedGraph === $ctrl.TYPE.ERROR"
+        ></oui-header>
+        <oui-header
+            data-heading="{{::'cloud_connect_stats_type_light' | translate}}"
+            data-ng-if="$ctrl.displayedGraph === $ctrl.TYPE.LIGHT"
+        ></oui-header>
 
         <oui-tile-definition data-ng-if="$ctrl.isLoading">
             <oui-tile-description>
@@ -66,11 +64,7 @@
         </oui-tile-definition>
 
         <div data-ng-if="!$ctrl.isLoading">
-            <div
-                class="cui-panel__body"
-                data-ng-if="$ctrl.data.length > 0"
-                style="height: 230px;"
-            >
+            <div data-ng-if="$ctrl.data.length > 0" style="height: 230px;">
                 <canvas
                     id="line"
                     class="chart chart-line"
@@ -94,7 +88,7 @@
                 >
                 </canvas>
             </div>
-            <div class="cui-panel__body" data-ng-if="$ctrl.data.length == 0">
+            <div data-ng-if="$ctrl.data.length == 0">
                 <span data-translate="cloud_connect_stats_no_data"></span>
             </div>
         </div>

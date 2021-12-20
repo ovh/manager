@@ -27,10 +27,8 @@ export const TYPE_LABELS = {
   error_upload: 'cloud_connect_stats_error_upload',
   light_in: 'cloud_connect_stats_light_in',
   light_out: 'cloud_connect_stats_light_out',
-  download: 'download',
-  upload: 'upload',
-  in: 'in',
-  out: 'out',
+  down: 'down',
+  up: 'up',
 };
 
 export const STATISTICS = {

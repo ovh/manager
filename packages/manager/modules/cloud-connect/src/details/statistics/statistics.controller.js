@@ -37,15 +37,16 @@ export default class CloudConnectStatisticsCtrl {
 
     this.displayedGraph = this.TYPE.TRAFFIC;
     this.colors = this.STATISTICS.colors;
-    this.options = { ...this.STATISTICS.options };
+    this.options = {
+      ...this.STATISTICS.options,
+    };
     this.options.scales.yAxes[0].ticks = {
       beginAtZero: true,
     };
 
-    this.lightOptions = { ...this.STATISTICS.options };
-    this.lightOptions.scales.yAxes[0].scaleLabel.labelString = this.$translate.instant(
-      'cloud_connect_stats_light_unit',
-    );
+    this.lightOptions = {
+      ...this.STATISTICS.options,
+    };
 
     this.isLoading = false;
     this.loadGraphs();
@@ -54,8 +55,8 @@ export default class CloudConnectStatisticsCtrl {
   loadGraphs() {
     switch (this.graphType) {
       case this.TYPE.LIGHT:
-        this.loadLightGraph();
         this.displayedGraph = this.TYPE.LIGHT;
+        this.loadLightGraph();
         break;
       case this.TYPE.ERROR:
         this.loadErrorGraph();
@@ -66,6 +67,49 @@ export default class CloudConnectStatisticsCtrl {
         this.displayedGraph = this.TYPE.TRAFFIC;
         break;
     }
+  }
+
+  loadInterfacesStatistics(type) {
+    let propDown = '';
+    let propUp = '';
+    switch (type) {
+      case this.TYPE.LIGHT:
+        propDown = this.TYPE.LIGHT_IN;
+        propUp = this.TYPE.LIGHT_OUT;
+        break;
+      case this.TYPE.ERROR:
+        propDown = this.TYPE.ERROR_DOWN;
+        propUp = this.TYPE.ERROR_UP;
+        break;
+      default:
+        propDown = this.TYPE.TRAFFIC_DOWN;
+        propUp = this.TYPE.TRAFFIC_UP;
+        break;
+    }
+
+    this.cloudConnect.interfaceList.forEach((interfaceId) => {
+      return this.$q
+        .all({
+          down: this.loadStatistics(
+            this.cloudConnect.id,
+            interfaceId,
+            propDown,
+            this.graphPeriod,
+          ),
+          up: this.loadStatistics(
+            this.cloudConnect.id,
+            interfaceId,
+            propUp,
+            this.graphPeriod,
+          ),
+        })
+        .then((stats) => {
+          if (stats.down.length > 0 || stats.up.length > 0) {
+            this.updateStats(type, interfaceId, stats);
+            this.isLoading = false;
+          }
+        });
+    });
   }
 
   // Load error statistics
@@ -79,29 +123,7 @@ export default class CloudConnectStatisticsCtrl {
       'cloud_connect_stats_error_unit',
     );
 
-    this.cloudConnect.interfaceList.forEach((interfaceId) => {
-      return this.$q
-        .all({
-          download: this.loadStatistics(
-            this.cloudConnect.id,
-            interfaceId,
-            this.TYPE.ERROR_DOWN,
-            this.graphPeriod,
-          ),
-          upload: this.loadStatistics(
-            this.cloudConnect.id,
-            interfaceId,
-            this.TYPE.ERROR_UP,
-            this.graphPeriod,
-          ),
-        })
-        .then((stats) => {
-          if (stats.download.length > 0 || stats.upload.length > 0) {
-            this.updateStats(this.TYPE.ERROR, interfaceId, stats);
-            this.isLoading = false;
-          }
-        });
-    });
+    this.loadInterfacesStatistics(this.TYPE.ERROR);
   }
 
   // Load light statistics
@@ -110,29 +132,12 @@ export default class CloudConnectStatisticsCtrl {
     this.data = [];
     this.isLoading = true;
 
-    this.cloudConnect.interfaceList.forEach((interfaceId) => {
-      return this.$q
-        .all({
-          in: this.loadStatistics(
-            this.cloudConnect.id,
-            interfaceId,
-            this.TYPE.LIGHT_IN,
-            this.graphPeriod,
-          ),
-          out: this.loadStatistics(
-            this.cloudConnect.id,
-            interfaceId,
-            this.TYPE.LIGHT_OUT,
-            this.graphPeriod,
-          ),
-        })
-        .then((stats) => {
-          if (stats.in.length > 0 || stats.out.length > 0) {
-            this.updateStats(this.TYPE.LIGHT, interfaceId, stats);
-            this.isLoading = false;
-          }
-        });
-    });
+    // Update options
+    this.lightOptions.scales.yAxes[0].scaleLabel.labelString = this.$translate.instant(
+      'cloud_connect_stats_light_unit',
+    );
+
+    this.loadInterfacesStatistics(this.TYPE.LIGHT);
   }
 
   // Load traffic statistics
@@ -146,57 +151,36 @@ export default class CloudConnectStatisticsCtrl {
       'cloud_connect_stats_traffic_unit',
     );
 
-    this.cloudConnect.interfaceList.forEach((interfaceId) => {
-      return this.$q
-        .all({
-          download: this.loadStatistics(
-            this.cloudConnect.id,
-            interfaceId,
-            this.TYPE.TRAFFIC_DOWN,
-            this.graphPeriod,
-          ),
-          upload: this.loadStatistics(
-            this.cloudConnect.id,
-            interfaceId,
-            this.TYPE.TRAFFIC_UP,
-            this.graphPeriod,
-          ),
-        })
-        .then((stats) => {
-          if (stats.download.length > 0 || stats.upload.length > 0) {
-            this.updateStats(this.TYPE.TRAFFIC, interfaceId, stats);
-            this.isLoading = false;
-          }
-        });
-    });
+    this.loadInterfacesStatistics(this.TYPE.TRAFFIC);
   }
 
   updateStats(type, interfaceId, stats) {
     let serieLabels = null;
-    let dataProperties = null;
+    const dataProperties = [this.TYPE_LABELS.down, this.TYPE_LABELS.up];
     switch (type) {
       case this.TYPE.LIGHT:
         serieLabels = [this.TYPE_LABELS.light_in, this.TYPE_LABELS.light_out];
-        dataProperties = [this.TYPE_LABELS.in, this.TYPE_LABELS.out];
+        break;
+      case this.TYPE.ERROR:
+        serieLabels = [
+          this.TYPE_LABELS.error_download,
+          this.TYPE_LABELS.error_upload,
+        ];
         break;
       default:
-        if (type === this.TYPE.ERROR) {
-          serieLabels = [
-            this.TYPE_LABELS.error_download,
-            this.TYPE_LABELS.error_upload,
-          ];
-        } else {
-          serieLabels = [
-            this.TYPE_LABELS.traffic_download,
-            this.TYPE_LABELS.traffic_upload,
-          ];
-        }
-        dataProperties = [this.TYPE_LABELS.download, this.TYPE_LABELS.upload];
+        serieLabels = [
+          this.TYPE_LABELS.traffic_download,
+          this.TYPE_LABELS.traffic_upload,
+        ];
         break;
     }
 
     serieLabels.forEach((label) => {
-      this.series.push(this.$translate.instant(label, { interfaceId }));
+      this.series.push(
+        this.$translate.instant(label, {
+          interfaceId,
+        }),
+      );
     });
 
     this.labels = map(get(stats, dataProperties[0]), (value) => value[0]);
