@@ -45,10 +45,18 @@
                             <ovh-manager-incident-banner
                                 service-name="$ctrl.project.project_id"
                             ></ovh-manager-incident-banner>
+
                             <pci-announcement-banner
                                 data-get-state-name="$ctrl.getStateName()"
                                 data-on-go-to-region="$ctrl.goToRegion()"
                             ></pci-announcement-banner>
+
+                            <pci-maintenance-banner
+                                data-is-project-page="true"
+                                data-steins="$ctrl.steins"
+                                data-customer-regions="$ctrl.customerRegions"
+                            ></pci-maintenance-banner>
+
                             <oui-message
                                 data-type="warning"
                                 data-ng-if="$ctrl.projectQuotaAboveThreshold"

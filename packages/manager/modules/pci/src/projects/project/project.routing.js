@@ -29,12 +29,6 @@ export default /* @ngInject */ ($stateProvider) => {
       });
     },
     resolve: {
-      goToProjectInactive: ($state, projectId) => (project) =>
-        $state.go('pci.projects.project.inactive', {
-          project,
-          projectId,
-        }),
-
       projectId: /* @ngInject */ ($transition$) =>
         $transition$.params().projectId,
 
@@ -42,19 +36,24 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiCloudProject.v6().get({
           serviceName: projectId,
         }).$promise,
+
       quotas: /* @ngInject */ (loadQuotas) => loadQuotas(),
+
       loadQuotas: /* @ngInject */ (PciProjectsService, projectId) => () =>
         PciProjectsService.getQuotas(projectId),
+
       serviceInfos: /* @ngInject */ ($http, projectId) =>
         $http
           .get(`/cloud/project/${projectId}/serviceInfos`)
           .then(({ data }) => data)
           .catch(() => ({})),
+
       service: /* @ngInject */ ($http, serviceInfos) =>
         $http
           .get(`/services/${serviceInfos.serviceId}`)
           .then(({ data }) => data)
           .catch(() => null),
+
       isLegacyProject: /* @ngInject */ (service) =>
         isLegacy(service?.billing?.plan?.code),
 
@@ -82,6 +81,27 @@ export default /* @ngInject */ ($stateProvider) => {
       getStateName: /* @ngInject */ ($state) => () => {
         return $state.current.name;
       },
+
+      /**
+       * contains all planed Pci Maintenance
+       */
+      steins: /* @ngInject */ ($http) =>
+        $http
+          .get('/cloud/migrationStein')
+          .then(({ data: steins }) =>
+            steins.sort(
+              (stein1, stein2) => new Date(stein1.date) - new Date(stein2.date),
+            ),
+          ),
+
+      customerRegions: /* @ngInject */ (PciProject, projectId) =>
+        PciProject.getCustomerRegions(projectId),
+
+      goToProjectInactive: /* @ngInject */ ($state, projectId) => (project) =>
+        $state.go('pci.projects.project.inactive', {
+          project,
+          projectId,
+        }),
 
       goToRegion: /* @ngInject */ ($state, projectId) => () => {
         return $state.go('pci.projects.project.regions', {
