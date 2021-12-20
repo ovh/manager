@@ -85,7 +85,7 @@
 
     <oui-datagrid-topbar>
         <button
-            class="oui-button oui-button_secondary oui-button_icon-left"
+            class="oui-button oui-button_secondary oui-button_icon-left "
             type="button"
             data-ng-click="$ctrl.goToTicketCreation()"
         >
@@ -94,5 +94,15 @@
                 data-translate="ovhManagerSupport_tickets_grid_top_createTicket"
             ></span>
         </button>
+
+        <oui-checkbox
+            class="mt-2"
+            model="$ctrl.displayArchived"
+            on-change="$ctrl.onDisplayArchiveChange(modelValue)"
+        >
+            <oui-checkbox-label
+                data-translate="ovhManagerSupport_tickets_grid_top_archived"
+            ></oui-checkbox-label>
+        </oui-checkbox>
     </oui-datagrid-topbar>
 </oui-datagrid>
