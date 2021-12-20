@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "moduleResolution": "Node",
+    "lib": ["dom"],
+    "module": "ES2015",
+    "removeComments": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "declaration": true,
+    "declarationDir": "types"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "types"]
+}

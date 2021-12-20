@@ -1,3 +1,14 @@
+export interface IAtInternetCustomVar {
+  path: Record<string, string>;
+  format: string;
+}
+
+export type AtInternetCustomVar = string;
+
+export type AtInternetCustomVars = {
+  [key in AtInternetCustomVar]: IAtInternetCustomVar;
+};
+
 /**
  * This is custom OVHcloud At-Internet configuration of order's customVars attribute.
  */
@@ -95,7 +106,7 @@ export const AT_INTERNET_CUSTOM_VARS = {
     },
     format: '[%s]',
   },
-};
+} as AtInternetCustomVars;
 
 export default {
   AT_INTERNET_CUSTOM_VARS,

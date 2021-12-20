@@ -34,6 +34,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-at-internet' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
+    "@ovh-ux/ovh-at-internet": "^0.0.0 || ^1.0.0",
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {
