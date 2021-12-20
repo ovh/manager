@@ -26,7 +26,7 @@
   "pci_notebook_list_creator": "User",
   "pci_notebook_data_permission": "Permission",
   "pci_notebook_permission_RO": "Read-only",
-  "pci_notebook_permission_RW": "Read &amp; Write",
-  "pci_notebook_permission_RWD": "Read &amp; Write &amp; Delete",
+  "pci_notebook_permission_RW": "Read & Write",
+  "pci_notebook_permission_RWD": "Read & Write & Delete",
   "pci_notebook_data_cache": "Cache"
 }

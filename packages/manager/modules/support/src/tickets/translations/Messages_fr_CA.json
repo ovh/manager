@@ -8,6 +8,7 @@
   "ovhManagerSupport_tickets_grid_column_updateDate_header": "Date de dernière mise à jour",
 
   "ovhManagerSupport_tickets_grid_top_createTicket": "Créer une demande d'assistance",
+  "ovhManagerSupport_tickets_grid_top_archived": "Afficher les tickets archivés",
 
   "ovhManagerSupport_tickets_grid_action_goToTicket": "Voir le détail",
 

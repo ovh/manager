@@ -143,7 +143,10 @@
                                     </label>
                                 </oui-field>
                             </div>
-                            <div class="oui-inline-adder__field">
+                            <div
+                                class="oui-inline-adder__field"
+                                ng-if="volume.privateSwift"
+                            >
                                 <oui-field
                                     data-label="{{:: 'pci_notebook_data_cache' | translate  }}"
                                     data-label-popover="{{:: 'pci_notebook_add_attach_container_data_cache_help' | translate }}"

@@ -17,5 +17,6 @@
   "ovhManagerSupport_ticket_lastMessageFrom_customer": "Usted",
   "ovhManagerSupport_ticket_lastMessageFrom_support": "Soporte de OVHcloud",
   "ovhManagerSupport_ticket_message_from_customer": "Usted",
-  "ovhManagerSupport_ticket_message_from_support": "Soporte de OVHcloud"
+  "ovhManagerSupport_ticket_message_from_support": "Soporte de OVHcloud",
+  "ovhManagerSupport_tickets_grid_top_archived": "Ver los tíquets archivados"
 }
