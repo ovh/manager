@@ -31,7 +31,7 @@ export default class SupportController {
 
   $onInit() {
     this.ticketNumberTypeOptions = { operators: ['is'] };
-
+    this.displayArchived = this.archived;
     this.criteria = map(this.filters, (criterion) => {
       const propertyName = head(split(criterion.property, '.'));
 
@@ -186,6 +186,13 @@ export default class SupportController {
       sortBy: name,
       sortOrder: order,
       tickets: this.tickets,
+    });
+  }
+
+  onDisplayArchiveChange(displayArchived) {
+    this.onGridParamsChange({
+      archived: displayArchived,
+      pageNumber: 1,
     });
   }
 }
