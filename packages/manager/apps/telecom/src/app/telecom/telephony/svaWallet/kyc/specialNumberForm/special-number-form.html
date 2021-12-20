@@ -1,0 +1,160 @@
+<label
+    for="readonly-wallet-form"
+    data-translate="telephony_billingAccount_svaWallet_kyc_identity_title"
+></label>
+<div name="readonly-wallet-form" class="readonly-wallet-form">
+    <div class="form-group">
+        <label
+            for="firstName"
+            data-translate="telephony_order_identity_first_name"
+        ></label>
+        <input
+            type="text"
+            class="oui-input"
+            name="firstName"
+            id="firstName"
+            data-ng-model="$ctrl.ngModel.firstname"
+            data-required
+        />
+    </div>
+    <div class="form-group">
+        <label
+            for="lastName"
+            data-translate="telephony_order_identity_name"
+        ></label>
+        <input
+            type="text"
+            class="oui-input"
+            name="lastName"
+            id="lastName"
+            data-ng-model="$ctrl.ngModel.name"
+            data-required
+        />
+    </div>
+    <div class="form-group">
+        <label
+            for="email"
+            data-translate="telephony_order_identity_email"
+        ></label>
+        <input
+            type="text"
+            class="oui-input"
+            name="lastName"
+            id="lastName"
+            data-ng-model="$ctrl.ngModel.email"
+            data-required
+        />
+    </div>
+    <div class="form-group">
+        <label
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_kind"
+            for="companyKind"
+        ></label>
+        <oui-select
+            items="$ctrl.companyKindsValues"
+            match="name"
+            name="companyKind"
+            model="$ctrl.companyKind"
+            on-change="$ctrl.onCompanyKindChange(modelValue)"
+            searchable
+            required
+        >
+        </oui-select>
+    </div>
+
+    <div class="form-group">
+        <label
+            data-translate="telephony_order_identity_siret"
+            for="siret"
+        ></label>
+        <input
+            type="text"
+            class="oui-input"
+            name="siret"
+            data-ng-model="$ctrl.ngModel.siret"
+            data-required
+        />
+    </div>
+    <div class="form-group">
+        <label
+            data-translate="telephony_order_address_street_type"
+            for="street-type"
+        ></label>
+        <input
+            name="street-type"
+            class="oui-input"
+            data-ng-model="$ctrl.ngModel.streetType"
+        />
+    </div>
+    <div class="form-group">
+        <label
+            data-translate="telephony_order_address_street_name"
+            for="street-name"
+        ></label>
+        <input
+            name="street-name"
+            class="oui-input"
+            data-ng-model="$ctrl.ngModel.streetName"
+        />
+    </div>
+    <div class="form-group">
+        <label
+            data-translate="telephony_order_address_addressextra"
+            for="adressextra"
+        ></label>
+        <input
+            name="addressextra"
+            class="oui-input"
+            data-ng-model="$ctrl.ngModel.addressExtra"
+        />
+    </div>
+    <div class="form-group">
+        <label
+            data-translate="telephony_order_address_zipcode"
+            for="zipcode"
+        ></label>
+        <input
+            name="zipcode"
+            class="oui-input"
+            data-ng-model="$ctrl.ngModel.zip"
+        />
+    </div>
+    <div class="form-group">
+        <label
+            data-translate="telephony_order_identity_cedex"
+            for="cedex"
+        ></label>
+        <input
+            class="oui-input"
+            name="cedex"
+            data-ng-model="$ctrl.ngModel.cedex"
+        />
+    </div>
+    <div class="form-group">
+        <label data-translate="telephony_order_address_city" for="city"></label>
+        <input
+            class="oui-input"
+            name="city"
+            data-ng-model="$ctrl.ngModel.city"
+        />
+    </div>
+    <div class="form-group">
+        <label
+            for="display-directory"
+            data-translate="telephony_order_contact_universal_directory_publish"
+        ></label>
+        <oui-switch
+            class="d-block"
+            name="display-directory"
+            model="$ctrl.ngModel.displayUniversalDirectory"
+        ></oui-switch>
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <oui-textarea
+            name="description"
+            model="$ctrl.ngModel.description"
+            data-maxlength="200"
+        ></oui-textarea>
+    </div>
+</div>
