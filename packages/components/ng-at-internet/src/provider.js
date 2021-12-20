@@ -1,15 +1,6 @@
+import OvhAtInternet from '@ovh-ux/ovh-at-internet';
+
 import angular from 'angular';
-import {
-  isEmpty,
-  slice,
-  map,
-  forOwn,
-  has,
-  each,
-  indexOf,
-  isUndefined,
-  isNumber,
-} from 'lodash-es';
 
 /**
  * @ngdoc service
@@ -27,18 +18,8 @@ import {
  * @description
  * Provider allowing configuration for atInternet service.
  */
-export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
-  const config = {
-    enabled: false, // enable or disable tracking
-    debug: false, // enable or disable logging tracking in JS console
-    defaults: {}, // default data to be sent with each hit
-    region: 'EU', // region used to get custom vars
-  };
-
-  let defaultsPromise; // to be sure that defaults are setted after a promise resoltion
-
-  // reference to ATInternet Tag object from their JS library
-  let atinternetTag = null;
+export default /* @ngInject */ function() {
+  const ovhAtInternetInstance = new OvhAtInternet();
 
   /**
    * @ngdoc function
@@ -48,7 +29,7 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
    * Check if default data has been set.
    */
   this.isDefaultSet = function isDefaultSet() {
-    return !isEmpty(config.defaults);
+    return ovhAtInternetInstance.config.isDefaultSet();
   };
 
   /**
@@ -60,7 +41,7 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
    * Configure default data to be sent with each tracking data.
    */
   this.setDefaults = function setDefaults(def) {
-    config.defaults = def;
+    ovhAtInternetInstance.config.setDefaults(def);
   };
 
   /**
@@ -71,7 +52,7 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
    * Retrieve default data to be sent with each tracking data.
    */
   this.getDefaults = function getDefaults() {
-    return angular.copy(config.defaults);
+    return angular.copy(ovhAtInternetInstance.config.getDefaults);
   };
 
   /**
@@ -82,7 +63,7 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
    * Retrieve the default promise setted by atInternet.setDefaultsPromise method.
    */
   this.getDefaultsPromise = function getDefaultsPromise() {
-    return defaultsPromise;
+    return ovhAtInternetInstance.config.getDefaultsPromise();
   };
 
   /**
@@ -94,7 +75,7 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
    * Enable or disable tracking.
    */
   this.setEnabled = function setEnabled(state) {
-    config.enabled = state;
+    ovhAtInternetInstance.config.setEnabled(state);
   };
 
   /**
@@ -106,7 +87,7 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
    * Enable or disable logging of tracking data in the Javascript console.
    */
   this.setDebug = function setDebug(state) {
-    config.debug = state;
+    ovhAtInternetInstance.config.setDebug(state);
   };
 
   /**
@@ -118,125 +99,14 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
    * Set the region in order to get right default custom vars.
    */
   this.setRegion = function setRegion(region) {
-    config.region = region;
+    ovhAtInternetInstance.config.setRegion(region);
   };
 
-  this.$get = /* @ngInject */ function $get($window, $log) {
-    const trackQueue = [];
-
-    // Reference to ATInternet JS lib
-    if ($window.ATInternet && config.enabled) {
-      try {
-        this.initTag();
-      } catch (err) {
-        atinternetTag = null;
-        $log.error('atinternet tag initialization failed', err);
-      }
-    }
-
-    /**
-     * Check if the service is enabled and if the ATInternet js lib is loaded
-     */
-    function isAtInternetTagAvailable() {
-      let available = config.enabled;
-      if (available && !atinternetTag) {
-        available = false;
-        $log.error('atinternet missing smarttag.js dependency');
-      }
-      return available;
-    }
-
-    /**
-     * Log arguments if debug is enabled
-     */
-    function logDebugInfos() {
-      if (config.debug) {
-        $log.info.apply(null, slice(arguments, 0)); // eslint-disable-line prefer-rest-params
-      }
-    }
-
-    /**
-     * Returns a randomized string of length "len"
-     */
-    function getRandomString(len) {
-      const alphabet =
-        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-      return map(new Array(len), () =>
-        alphabet.charAt(Math.floor(Math.random() * alphabet.length)),
-      ).join('');
-    }
-
-    /**
-     * Returns an unique ID (used by orders and carts)
-     * To ensure that the ID is unique, we generate it from current milliseconds
-     * and concat a random string to avoid any collisions.
-     */
-    function getUniqueId() {
-      // unique key : current milliseconds in base 36 concatenated with 8 random chars
-      return new Date().valueOf().toString(36) + getRandomString(8);
-    }
-
-    /**
-     * Returns updated given data with defaults config and level2
-     */
-    function updateData(dataParam) {
-      const data = dataParam;
-      angular.extend(data || {}, config.defaults);
-
-      // Allow user to set identifiedVisitor id
-      if (!isEmpty(data.visitorId)) {
-        atinternetTag.identifiedVisitor.set({ id: data.visitorId });
-      }
-
-      // no level2 ? use default and warn
-      if (angular.isUndefined(data.level2)) {
-        data.level2 = 0;
-        $log.warn(
-          'atinternet level2 attribute undefined: use default unclassified level2 "0". Please fix it!',
-        );
-      }
-    }
-
-    function getCustomVarConfigPath(conf) {
-      return conf.path[config.region] || conf.path.default;
-    }
-
-    function updateCustomVars(data, conf, attr, customVars) {
-      // if data has custom attribute
-      if (has(data, attr)) {
-        const keys = getCustomVarConfigPath(conf).split('.');
-        let tmp = customVars;
-
-        /*
-         * Populate attribute into customVars
-         * example :
-         *   myAttr : { path : "a.b.c", format : "[%s]" }
-         * will result in :
-         *   customVars : {
-         *     a { b { c : [value] }}}
-         */
-        each(keys, (key, idx) => {
-          if (idx === keys.length - 1 && conf.format) {
-            tmp[key] = conf.format.replace('%s', data[attr]);
-          } else {
-            tmp[key] = tmp[key] || {};
-            tmp = tmp[key];
-          }
-        });
-      }
-    }
-
-    function getCustomVarsWithDefaults(event) {
-      const customVars = {};
-      forOwn(AT_INTERNET_CUSTOM_VARS, (conf, attr) => {
-        updateCustomVars(config.defaults, conf, attr, customVars);
-        updateCustomVars(event, conf, attr, customVars);
-      });
-      return customVars;
-    }
+  this.$get = /* @ngInject */ function $get() {
+    ovhAtInternetInstance.init();
 
     return {
-      isTagAvailable: isAtInternetTagAvailable,
+      ...ovhAtInternetInstance,
 
       /**
        * @ngdoc function
@@ -247,7 +117,7 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
        * Configure default data to be sent with each tracking data.
        */
       setDefaults(def) {
-        config.defaults = def;
+        ovhAtInternetInstance.config.setDefaults(def);
       },
 
       /**
@@ -260,11 +130,7 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
        * that defaults are setted).
        */
       setDefaultsPromise(promise) {
-        const self = this;
-
-        defaultsPromise = promise.then((defaults) => {
-          self.setDefaults(defaults);
-        });
+        ovhAtInternetInstance.config.setDefaultsPromise(promise);
       },
 
       /**
@@ -276,36 +142,7 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
        * Enable or disable tracking.
        */
       setEnabled(state) {
-        config.enabled = state;
-      },
-
-      clearTrackQueue() {
-        trackQueue.splice(0, trackQueue.length);
-      },
-
-      processTrackQueue() {
-        const self = this;
-        while (trackQueue.length) {
-          const { type, data } = trackQueue.shift();
-          self[type](data);
-        }
-      },
-
-      initTag() {
-        atinternetTag = new $window.ATInternet.Tracker.Tag({
-          ClientSideUserId: { clientSideMode: 'always' },
-          secure: true, // force HTTPS,
-          disableCookie: !config.enabled,
-        });
-        const self = this;
-        self.processTrackQueue();
-      },
-
-      getTag() {
-        if (!atinternetTag) {
-          this.initTag();
-        }
-        return atinternetTag;
+        ovhAtInternetInstance.config.setEnabled(state);
       },
 
       /**
@@ -317,351 +154,7 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
        * Returns current atInternet's provider configuration.
        */
       getConfig() {
-        return angular.copy(config);
-      },
-
-      /**
-       * @ngdoc function
-       * @name trackPage
-       * @methodOf atInternet
-       * @param {Object} pageData Page data to be sent.
-       * @description
-       *
-       * Send a page hit to ATInternet tracking service.
-       * Page data is the following data-structure :
-       *
-       * ```
-       * pageData {
-       *   name: "your-page"    // the page identifier (required)
-       *   level2: "1"          // the project id (required)
-       *   chapter1: "..."      // section id (optional)
-       *   chapter2: "..."      // sub-section id (optional)
-       *   chapter3: "..."      // sub-sub-section id (optional)
-       *   visitorId: "1234"    // identified visitor id (optional)
-       *   customObject: {}     // custom javascript data (optional)
-       * }
-       * ```
-       *
-       * More informations here :
-       * http://developers.atinternet-solutions.com/javascript-fr/contenus/pages-javascript/
-       */
-      trackPage(pageDataParam) {
-        const pageData = pageDataParam;
-        if (isAtInternetTagAvailable()) {
-          updateData(pageData);
-          if (pageData.name) {
-            pageData.customVars = getCustomVarsWithDefaults({
-              pageUrl: encodeURIComponent(window.location.href),
-              ...pageDataParam,
-            });
-            atinternetTag.page.send(pageData);
-            logDebugInfos('atinternet.trackpage: ', pageData);
-          } else {
-            $log.error(
-              'atinternet.trackPage invalid data: missing name attribute',
-              pageData,
-            );
-          }
-        } else {
-          trackQueue.push({ type: 'trackPage', data: pageDataParam });
-        }
-      },
-
-      /**
-       * @ngdoc
-       * @name trackClick
-       * @methodOf atInternet
-       * @param {Object} clickData Click data to be sent.
-       * @description
-       *
-       * Send a click hit to ATInternet tracking service.
-       * Click data is the following data-structure :
-       *
-       * ```
-       * clickData {
-       *   name: "your-action"  // the action identifier (required)
-       *   level2: "1"          // the project id (required)
-       *   type: "action"       // type of click : action || navigation || download
-       *                           || exit (required)
-       *   visitorId: "1234"    // identified visitor id (optional)
-       *   chapter1: "..."      // section id (optional)
-       *   chapter2: "..."      // sub-section id (optional)
-       *   chapter3: "..."      // sub-sub-section id (optional)
-       *   customObject: {}     // custom javascript data (optional)
-       * }
-       * ```
-       *
-       * More informations here :
-       * http://developers.atinternet-solutions.com/javascript-fr/contenus/clics/
-       */
-      trackClick(clickData) {
-        if (isAtInternetTagAvailable()) {
-          updateData(clickData);
-          if (
-            indexOf(
-              ['action', 'navigation', 'download', 'exit'],
-              clickData.type,
-            ) >= 0
-          ) {
-            atinternetTag.click.send(clickData);
-            logDebugInfos('atinternet.trackclick: ', clickData);
-          } else {
-            $log.error(
-              "atinternet.trackClick invalid or missing 'type' attribute for data",
-              clickData,
-            );
-          }
-        } else {
-          trackQueue.push({ type: 'trackClick', data: clickData });
-        }
-      },
-
-      /**
-       * @ngdoc
-       * @name trackOrder
-       * @methodOf atInternet
-       * @param {Object} productData Product data to be sent.
-       * @description
-       *
-       * Simplified tracking of product order.
-       * Product data is the following data-structure :
-       *
-       * ```
-       * productData {
-       *   name: "your-product"  // the product identifier (required)
-       *   page: "your-page"     // page associated with the order (required)
-       *                         //   WARNING: the page must be configured in ATInternet manager
-       *                         //   to be a main objective page.
-       *   level2: "1"           // the project id (required)
-       *   price: 42             // price of product tax included (required only if priceTaxFree
-       *                            not supplied)
-       *   priceTaxFree: 42      // price of product tax free (required only if price is not
-       *                            supplied)
-       *   orderId: 1            // unique order ID, you can provide it or it will be automatically
-       *                            enerated
-       *   quantity: 1           // amount of product (default is 1)
-       *   status: 3             // status of the order (default is 3 : validated)
-       *
-       *   visitorId: "1234"    // identified visitor id (optional)
-       *   countryCode: "EU"     // country code identifier of the customer (optional)
-       *   currencyCode: "EU"    // currency of order (optional)
-       * }
-       * ```
-       *
-       * More informations here :
-       * http://developers.atinternet-solutions.com/javascript-fr/
-       */
-      trackOrder(productData) {
-        if (isAtInternetTagAvailable()) {
-          updateData(productData);
-
-          // Check if product data has all required attributes
-          if (!productData.page) {
-            $log.error(
-              'atinternet.trackProduct missing page attribute: ',
-              productData,
-            );
-            return;
-          }
-          if (!productData.name) {
-            $log.error(
-              'atinternet.trackProduct missing name attribute: ',
-              productData,
-            );
-            return;
-          }
-          if (
-            isUndefined(productData.price) &&
-            isUndefined(productData.priceTaxFree)
-          ) {
-            $log.error(
-              'atinternet.trackProduct missing price attribute: ',
-              productData,
-            );
-            return;
-          }
-
-          const orderId = productData.orderId || getUniqueId();
-          const cartId = `cart-${orderId}`;
-
-          // set the current page (page must be configured as "main objective" in ATInternet
-          // manager!)
-          atinternetTag.page.set({
-            name: productData.page,
-            level2: productData.level2,
-          });
-
-          // create the cart
-          atinternetTag.cart.set({
-            cardId: cartId,
-          });
-
-          const product = {
-            productId: productData.name,
-            quantity: productData.quantity || 1,
-          };
-
-          const amount = {};
-          let turnover = 0;
-
-          const status = productData.status || 3;
-
-          if (isNumber(productData.price)) {
-            product.unitPriceTaxIncluded = productData.price;
-            amount.amountTaxIncluded = productData.price * product.quantity;
-            turnover = productData.price * product.quantity;
-          }
-
-          if (isNumber(productData.priceTaxFree)) {
-            product.unitPriceTaxFree = productData.priceTaxFree;
-            amount.amountTaxFree = productData.priceTaxFree * product.quantity;
-            turnover = productData.priceTaxFree * product.quantity;
-          }
-
-          // add the product to the cart
-          atinternetTag.cart.add({ product });
-
-          // create a valid order
-          atinternetTag.order.set({
-            orderId, // must be unique
-            status,
-            amount,
-            turnover,
-          });
-
-          atinternetTag.customVars.set(getCustomVarsWithDefaults(productData));
-
-          atinternetTag.dispatch();
-          logDebugInfos('atinternet.trackOrder: ', productData);
-        } else {
-          trackQueue.push({ type: 'trackOrder', data: productData });
-        }
-      },
-
-      /**
-       * @ngdoc
-       * @name trackEvent
-       * @methodOf atInternet
-       * @param {Object} eventData Event data to be sent.
-       * @description
-       *
-       * Simplified tracking of events.
-       */
-      trackEvent(eventData) {
-        if (isAtInternetTagAvailable()) {
-          updateData(eventData);
-          if (!eventData.page) {
-            $log.error(
-              'atinternet.trackEvent missing page attribute: ',
-              eventData,
-            );
-            return;
-          }
-          if (!eventData.event) {
-            $log.error(
-              'atinternet.trackEvent missing eventData attribute: ',
-              eventData,
-            );
-            return;
-          }
-          atinternetTag.page.set({
-            name: eventData.page,
-            level2: eventData.level2,
-          });
-          atinternetTag.customVars.set(getCustomVarsWithDefaults(eventData));
-          atinternetTag.dispatch();
-          logDebugInfos('atinternet.trackEvent: ', eventData);
-        } else {
-          trackQueue.push({ type: 'trackEvent', data: eventData });
-        }
-      },
-      /**
-       * @ngdoc
-       * @name trackImpression
-       * @methodOf atInternet
-       * @param {Object} impressionData Impression data to be sent.
-       * @description
-       *
-       * Simplified tracking of impression.
-       * https://developers.atinternet-solutions.com/javascript-en/campaigns-javascript-en/on-site-ads-javascript-en/
-       *
-       * ```
-       * Impression Data {
-       *   impression: {
-       *     campaignId: 'id[label]',
-       *     creation: 'id[label]',
-       *     variant: 'id[label]',
-       *     format: '[120x40]',
-       *     generalPlacement: '[label]',
-       *     detailedPlacement: 'id[label]',
-       *     advertiserId: 'id[label]',
-       *     url: '[urlEncoded]'
-       *   }
-       * }
-       * ```
-       */
-      trackImpression(impressionData) {
-        if (isAtInternetTagAvailable()) {
-          updateData(impressionData);
-          if (!impressionData.campaignId) {
-            $log.error(
-              'atinternet.trackImpression missing impressionData attribute: ',
-              impressionData,
-            );
-            return;
-          }
-          atinternetTag.publisher.set({
-            impression: impressionData,
-          });
-          atinternetTag.dispatch();
-          logDebugInfos('atinternet.trackImpression: ', impressionData);
-        } else {
-          trackQueue.push({ type: 'trackImpression', data: impressionData });
-        }
-      },
-      /**
-       * @ngdoc
-       * @name trackClickImpression
-       * @methodOf atInternet
-       * @param {Object} impressionData Click impression data to be sent.
-       * @description
-       *
-       * Simplified tracking of impression click event.
-       * https://developers.atinternet-solutions.com/javascript-en/campaigns-javascript-en/on-site-ads-javascript-en/
-       *
-       * ```
-       * Impression Data {
-       *   impression: {
-       *     campaignId: 'id[label]',
-       *     creation: 'id[label]',
-       *     variant: 'id[label]',
-       *     format: '[120x40]',
-       *     generalPlacement: '[label]',
-       *     detailedPlacement: 'id[label]',
-       *     advertiserId: 'id[label]',
-       *     url: '[urlEncoded]'
-       *   }
-       * }
-       * ```
-       */
-      trackClickImpression(impressionData) {
-        if (isAtInternetTagAvailable()) {
-          updateData(impressionData);
-          if (!impressionData.click) {
-            $log.error(
-              'atinternet.trackClickImpression missing impressionData attribute: ',
-              impressionData,
-            );
-            return;
-          }
-          atinternetTag.publisher.send(impressionData);
-          logDebugInfos('atinternet.trackClickImpression: ', impressionData);
-        } else {
-          trackQueue.push({
-            type: 'trackClickImpression',
-            data: impressionData,
-          });
-        }
+        return angular.copy(ovhAtInternetInstance.config);
       },
     };
   };
