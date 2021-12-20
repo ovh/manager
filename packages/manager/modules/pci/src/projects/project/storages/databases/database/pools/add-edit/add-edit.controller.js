@@ -2,10 +2,11 @@ import { POOL_MODES, POOL_VALIDATION } from './add-edit.constants';
 
 export default class {
   /* @ngInject */
-  constructor(DatabaseService, $translate) {
+  constructor(atInternet, DatabaseService, $translate) {
     this.poolData = {};
     this.modes = POOL_MODES;
     this.POOL_VALIDATION = POOL_VALIDATION;
+    this.atInternet = atInternet;
     this.DatabaseService = DatabaseService;
     this.$translate = $translate;
     this.isLoading = false;
@@ -32,6 +33,11 @@ export default class {
   }
 
   createPool(payload) {
+    this.trackDashboard('pools::add_pool_confirm', 'action');
+    this.atInternet.trackClick({
+      name: `PublicCloud_databases_add_pools::${payload.mode}::${payload.size}`,
+      type: 'action',
+    });
     return this.DatabaseService.createConnectionPool(
       this.projectId,
       this.databaseId,
@@ -41,6 +47,7 @@ export default class {
 
   modifyPool(payload) {
     const { name, ...data } = payload; // Remove name from the payload
+    this.trackDashboard('pools::entry_menu::modify_confirm', 'action');
     return this.DatabaseService.updateConnectionPool(
       this.projectId,
       this.databaseId,
@@ -60,13 +67,13 @@ export default class {
     }
 
     return promise
-      .then(() => {
+      .then((data) => {
         return this.goBack(
           this.$translate.instant(
             this.updatePool
               ? 'pci_databases_pools_modify_pool_success'
               : 'pci_databases_pools_add_pool_success',
-            { name: this.pool?.name },
+            { name: data.name },
           ),
           'success',
         );
@@ -88,5 +95,15 @@ export default class {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  cancelAddOrEditPool() {
+    this.trackDashboard(
+      this.isUpdate
+        ? 'pools::entry_menu::modify_cancel'
+        : 'pools::add_pool_cancel',
+      'action',
+    );
+    this.goBack();
   }
 }

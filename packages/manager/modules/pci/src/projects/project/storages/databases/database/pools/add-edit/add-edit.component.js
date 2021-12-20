@@ -9,6 +9,7 @@ export default {
     postgresDatabases: '<',
     users: '<',
     goBack: '<',
+    trackDashboard: '<',
   },
   controller,
   template,

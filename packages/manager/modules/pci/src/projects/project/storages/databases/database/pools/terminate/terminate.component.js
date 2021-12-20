@@ -7,6 +7,7 @@ const component = {
     databaseId: '<',
     pool: '<',
     goBack: '<',
+    trackDashboard: '<',
   },
   template,
   controller,

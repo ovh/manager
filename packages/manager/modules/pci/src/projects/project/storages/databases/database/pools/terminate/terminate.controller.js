@@ -14,6 +14,7 @@ export default class {
 
   terminate() {
     this.isDeleting = true;
+    this.trackDashboard('pools::entry_menu::delete_confirm', 'action');
     return this.DatabaseService.terminateConnectionPool(
       this.projectId,
       this.databaseId,
@@ -35,5 +36,10 @@ export default class {
           'error',
         ),
       );
+  }
+
+  cancelTerminate() {
+    this.trackDashboard('pools::entry_menu::delete_cancel', 'action');
+    this.goBack();
   }
 }

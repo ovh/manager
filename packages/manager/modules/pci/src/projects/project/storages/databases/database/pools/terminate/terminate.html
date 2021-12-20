@@ -7,7 +7,7 @@
     <oui-modal
         data-primary-label="{{ ::'pci_databases_pools_terminate_confirm' | translate }}"
         data-primary-disabled="!$ctrl.terminateConfirmation"
-        data-secondary-action="$ctrl.goBack()"
+        data-secondary-action="$ctrl.cancelTerminate()"
         data-secondary-label="{{ ::'pci_databases_pools_terminate_cancel' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
         data-loading="$ctrl.isDeleting"

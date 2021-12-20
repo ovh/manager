@@ -2,7 +2,7 @@
     <oui-modal
         data-primary-label="{{ ::'pci_databases_pools_add_pool_confirm' | translate }}"
         data-primary-disabled="!addEditPool.$valid"
-        data-secondary-action="$ctrl.goBack()"
+        data-secondary-action="$ctrl.cancelAddOrEditPool()"
         data-secondary-label="{{ ::'pci_databases_pools_add_pool_cancel' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
         data-heading="{{:: ($ctrl.updatePool ? 'pci_databases_pools_modify_pool_title' : 'pci_databases_pools_add_pool_title') | translate}}"

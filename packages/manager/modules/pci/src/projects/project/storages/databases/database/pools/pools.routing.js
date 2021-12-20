@@ -37,25 +37,33 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           );
         },
-        goToAddPool: /* @ngInject */ ($state) => () =>
+        goToAddPool: /* @ngInject */ ($state, trackDashboard) => () => {
+          trackDashboard('pools::add_pool', 'action');
           $state.go(
             'pci.projects.project.storages.databases.dashboard.pools.add',
-          ),
-        goToInformation: /* @ngInject */ ($state) => (pool) =>
+          );
+        },
+        goToInformation: /* @ngInject */ ($state, trackDashboard) => (pool) => {
+          trackDashboard('pools::entry_menu::information', 'action');
           $state.go(
             'pci.projects.project.storages.databases.dashboard.pools.information',
             { poolId: pool.id },
-          ),
-        goToModify: /* @ngInject */ ($state) => (pool) =>
+          );
+        },
+        goToModify: /* @ngInject */ ($state, trackDashboard) => (pool) => {
+          trackDashboard('pools::entry_menu::modify', 'action');
           $state.go(
             'pci.projects.project.storages.databases.dashboard.pools.edit',
             { poolId: pool.id },
-          ),
-        goToTerminate: /* @ngInject */ ($state) => (pool) =>
+          );
+        },
+        goToTerminate: /* @ngInject */ ($state, trackDashboard) => (pool) => {
+          trackDashboard('pools::entry_menu::delete', 'action');
           $state.go(
             'pci.projects.project.storages.databases.dashboard.pools.terminate',
             { poolId: pool.id },
-          ),
+          );
+        },
         goBackToPools: /* @ngInject */ ($state, CucCloudMessage) => (
           message = false,
           type = 'success',
