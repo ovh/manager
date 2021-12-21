@@ -39,8 +39,8 @@
         <input
             type="text"
             class="oui-input"
-            name="lastName"
-            id="lastName"
+            name="email"
+            id="email"
             data-ng-model="$ctrl.ngModel.email"
             data-required
         />
@@ -54,6 +54,7 @@
             items="$ctrl.companyKindsValues"
             match="name"
             name="companyKind"
+            id="companyKind"
             model="$ctrl.companyKind"
             on-change="$ctrl.onCompanyKindChange(modelValue)"
             searchable
@@ -71,6 +72,7 @@
             type="text"
             class="oui-input"
             name="siret"
+            id="siret"
             data-ng-model="$ctrl.ngModel.siret"
             data-required
         />
@@ -83,6 +85,7 @@
         <input
             name="street-type"
             class="oui-input"
+            id="street-type"
             data-ng-model="$ctrl.ngModel.streetType"
         />
     </div>
@@ -93,6 +96,7 @@
         ></label>
         <input
             name="street-name"
+            id="street-name"
             class="oui-input"
             data-ng-model="$ctrl.ngModel.streetName"
         />
@@ -104,6 +108,7 @@
         ></label>
         <input
             name="addressextra"
+            id="addressextra"
             class="oui-input"
             data-ng-model="$ctrl.ngModel.addressExtra"
         />
@@ -115,6 +120,7 @@
         ></label>
         <input
             name="zipcode"
+            id="zipcode"
             class="oui-input"
             data-ng-model="$ctrl.ngModel.zip"
         />
@@ -126,6 +132,7 @@
         ></label>
         <input
             class="oui-input"
+            id="cedex"
             name="cedex"
             data-ng-model="$ctrl.ngModel.cedex"
         />
@@ -135,6 +142,7 @@
         <input
             class="oui-input"
             name="city"
+            id="city"
             data-ng-model="$ctrl.ngModel.city"
         />
     </div>
@@ -146,6 +154,7 @@
         <oui-switch
             class="d-block"
             name="display-directory"
+            id="display-directory"
             model="$ctrl.ngModel.displayUniversalDirectory"
         ></oui-switch>
     </div>
@@ -153,6 +162,7 @@
         <label for="description">Description</label>
         <oui-textarea
             name="description"
+            id="description"
             model="$ctrl.ngModel.description"
             data-maxlength="200"
         ></oui-textarea>
