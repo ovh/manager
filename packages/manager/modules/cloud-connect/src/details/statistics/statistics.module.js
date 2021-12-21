@@ -3,6 +3,8 @@ import angular from 'angular';
 import component from './statistics.component';
 import routing from './statistics.routing';
 
+import '../../style.scss';
+
 const moduleName = 'ovhCloudConnectDetailsStatistics';
 
 angular
