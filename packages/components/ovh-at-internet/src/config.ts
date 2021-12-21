@@ -4,27 +4,27 @@ export class OvhAtInternetConfig {
   /**
    * Default data to be sent with each hit.
    */
-  private defaults: object = {};
+  protected defaults: object = {};
 
   /**
    * Promise that make sure that defaults are setted after a promise resoltion.
    */
-  private defaultsPromise: Promise<object>;
+  protected defaultsPromise: Promise<object>;
 
   /**
    * Enable or disable tracking.
    */
-  private enabled = false;
+  protected enabled = false;
 
   /**
    * Enable or disable logging tracking in JS console.
    */
-  private debug = false;
+  protected debug = false;
 
   /**
    * Region used to get custom vars.
    */
-  private region = 'EU';
+  protected region = 'EU';
 
   /**
    * Check if default data has been set.

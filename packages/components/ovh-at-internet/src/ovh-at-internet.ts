@@ -4,12 +4,7 @@ import { OvhAtInternetConfig } from './config';
 import { IOvhAtInternetTrack } from './track';
 import { AT_INTERNET_CUSTOM_VARS, AtInternetCustomVar } from './constants';
 
-export default class OvhAtInternet {
-  /**
-   * OVHAtInternet configuration object.
-   */
-  config: OvhAtInternetConfig;
-
+export default class OvhAtInternet extends OvhAtInternetConfig {
   /**
    * Reference to ATInternet Tag object from their JS library.
    */
@@ -17,15 +12,11 @@ export default class OvhAtInternet {
 
   private trackQueue: Array<IOvhAtInternetTrack> = [];
 
-  constructor() {
-    this.config = new OvhAtInternetConfig();
-  }
-
   /**
    * Log arguments if debug is enabled
    */
   private logDebugInfos(log: string, logData: any): void {
-    if (this.config.isDebugActive()) {
+    if (this.debug) {
       console.info(log, logData);
     }
   }
@@ -36,7 +27,7 @@ export default class OvhAtInternet {
   private updateData(trackData: any): any {
     const data = {
       ...trackData,
-      ...this.config.getDefaults(),
+      ...this.defaults,
     };
 
     // Allow user to set identifiedVisitor id
@@ -63,8 +54,7 @@ export default class OvhAtInternet {
   ) {
     // if data has custom attribute
     if (has(data, varKey)) {
-      const valuePath =
-        varValue.path[this.config.getRegion()] || varValue.path.default;
+      const valuePath = varValue.path[this.region] || varValue.path.default;
       const keys = valuePath.split('.');
       let tmp = customVars;
 
@@ -92,7 +82,7 @@ export default class OvhAtInternet {
     Object.keys(AT_INTERNET_CUSTOM_VARS).forEach((customVarKey: string) => {
       const customVarVal = AT_INTERNET_CUSTOM_VARS[customVarKey];
       this.updateCustomVars(
-        this.config.getDefaults(),
+        this.defaults,
         customVarVal,
         customVarKey,
         customVars,
@@ -127,7 +117,7 @@ export default class OvhAtInternet {
    * Check if the service is enabled and if the ATInternet js lib is loaded.
    */
   isTagAvailable(): boolean {
-    const isEnabled = this.config.isEnabled();
+    const isEnabled = this.enabled;
 
     if (isEnabled && !this.atinternetTag) {
       console.error('atinternet missing smarttag.js dependency');
@@ -152,7 +142,7 @@ export default class OvhAtInternet {
     this.atinternetTag = new window.ATInternet.Tracker.Tag({
       ClientSideUserId: { clientSideMode: 'always' },
       secure: true, // force HTTPS,
-      disableCookie: !this.config.isEnabled(),
+      disableCookie: !this.enabled,
     });
     this.processTrackQueue();
   }
@@ -166,7 +156,7 @@ export default class OvhAtInternet {
 
   init() {
     // Reference to ATInternet JS lib
-    if (window.ATInternet && this.config.isEnabled()) {
+    if (window.ATInternet && this.enabled) {
       try {
         this.initTag();
       } catch (err) {
