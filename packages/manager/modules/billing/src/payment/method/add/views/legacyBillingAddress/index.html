@@ -1,103 +1,116 @@
 <div class="billing-payment-method-add-legacy-bank-account-owner">
-    <!-- Owner Name -->
-    <oui-field
-        data-label="{{ :: 'billing_payment_method_add_bank_account_owner_name' | translate }}"
-    >
-        <input
-            type="text"
-            class="oui-input"
-            id="ownerName"
-            name="ownerName"
-            data-ng-model="$ctrl.model.billingAddress.ownerName"
-            data-required
-            data-ng-minlength="5"
-            data-ng-maxlength="255"
-        />
-    </oui-field>
-    <!-- End of Owner Name -->
-
-    <div data-ng-if="$ctrl.currentUser.billingCountry === 'FR'">
-        <!-- Address Number -->
+    <div class="w-50">
+        <!-- Owner Name -->
         <oui-field
-            data-label="{{ :: 'billing_payment_method_add_bank_account_address_number' | translate }}"
+            data-label="{{ :: 'billing_payment_method_add_bank_account_owner_name' | translate }}"
         >
             <input
                 type="text"
                 class="oui-input"
-                id="addressNumber"
-                name="addressNumber"
-                data-ng-model="$ctrl.model.billingAddress.addressNumber"
+                id="ownerName"
+                name="ownerName"
+                data-ng-model="$ctrl.model.billingAddress.ownerName"
+                data-required
+                data-ng-minlength="5"
                 data-ng-maxlength="255"
             />
         </oui-field>
-        <!-- End of Address Number -->
+        <!-- End of Owner Name -->
 
-        <!-- Address Street -->
-        <oui-field
-            data-label="{{ :: 'billing_payment_method_add_bank_account_address_street' | translate }}"
-        >
-            <input
-                type="text"
-                class="oui-input"
-                id="addressStreet"
-                name="addressStreet"
-                data-ng-model="$ctrl.model.billingAddress.addressStreet"
-                data-required
-                data-ng-maxlength="255"
-            />
-        </oui-field>
-        <!-- End of Address Street -->
+        <div data-ng-if="$ctrl.currentUser.billingCountry === 'FR'">
+            <!-- Address Number -->
+            <oui-field
+                data-label="{{ :: 'billing_payment_method_add_bank_account_address_number' | translate }}"
+            >
+                <input
+                    type="text"
+                    class="oui-input"
+                    id="addressNumber"
+                    name="addressNumber"
+                    data-ng-model="$ctrl.model.billingAddress.addressNumber"
+                    data-ng-maxlength="255"
+                />
+            </oui-field>
+            <!-- End of Address Number -->
 
-        <!-- Address Zip -->
-        <oui-field
-            data-label="{{ :: 'billing_payment_method_add_bank_account_address_zip' | translate }}"
-        >
-            <input
-                type="text"
-                class="oui-input"
-                id="addressZip"
-                name="addressZip"
-                data-ng-model="$ctrl.model.billingAddress.addressZip"
-                data-required
-                data-ng-pattern="/^\d{5}$/"
-                min="01000"
-                max="99999"
-            />
-        </oui-field>
-        <!-- End of Address Zip -->
+            <!-- Address Street -->
+            <oui-field
+                data-label="{{ :: 'billing_payment_method_add_bank_account_address_street' | translate }}"
+            >
+                <input
+                    type="text"
+                    class="oui-input"
+                    id="addressStreet"
+                    name="addressStreet"
+                    data-ng-model="$ctrl.model.billingAddress.addressStreet"
+                    data-required
+                    data-ng-maxlength="255"
+                />
+            </oui-field>
+            <!-- End of Address Street -->
 
-        <!-- Address City -->
-        <oui-field
-            data-label="{{ :: 'billing_payment_method_add_bank_account_address_city' | translate }}"
-        >
-            <input
-                type="text"
-                class="oui-input"
-                id="addressCity"
-                name="addressCity"
-                data-ng-model="$ctrl.model.billingAddress.addressCity"
-                data-required
-                data-ng-maxlength="255"
-            />
-        </oui-field>
-        <!-- End of Address City -->
+            <!-- Address Zip -->
+            <oui-field
+                data-label="{{ :: 'billing_payment_method_add_bank_account_address_zip' | translate }}"
+            >
+                <input
+                    type="text"
+                    class="oui-input"
+                    id="addressZip"
+                    name="addressZip"
+                    data-ng-model="$ctrl.model.billingAddress.addressZip"
+                    data-required
+                    data-ng-pattern="/^\d{5}$/"
+                    min="01000"
+                    max="99999"
+                />
+            </oui-field>
+            <!-- End of Address Zip -->
+
+            <!-- Address City -->
+            <oui-field
+                data-label="{{ :: 'billing_payment_method_add_bank_account_address_city' | translate }}"
+            >
+                <input
+                    type="text"
+                    class="oui-input"
+                    id="addressCity"
+                    name="addressCity"
+                    data-ng-model="$ctrl.model.billingAddress.addressCity"
+                    data-required
+                    data-ng-maxlength="255"
+                />
+            </oui-field>
+            <!-- End of Address City -->
+        </div>
+
+        <div data-ng-if="$ctrl.currentUser.billingCountry !== 'FR'">
+            <!-- Full address -->
+            <oui-field
+                data-label="{{ :: 'billing_payment_method_add_bank_account_owner_address' | translate }}"
+            >
+                <input
+                    type="text"
+                    class="oui-input"
+                    id="fullAddress"
+                    name="fullAddress"
+                    data-ng-model="$ctrl.model.billingAddress.fullAddress"
+                    data-required
+                    data-ng-maxlength="255"
+                />
+            </oui-field>
+            <!-- End of Full address -->
+        </div>
     </div>
-
-    <div data-ng-if="$ctrl.currentUser.billingCountry !== 'FR'">
-        <!-- Full address -->
-        <oui-field
-            data-label="{{ :: 'billing_payment_method_add_bank_account_owner_address' | translate }}"
-        >
-            <input
-                type="text"
-                class="oui-input"
-                id="fullAddress"
-                name="fullAddress"
-                data-ng-model="$ctrl.model.billingAddress.fullAddress"
-                data-required
-                data-ng-maxlength="255"
-            />
-        </oui-field>
-        <!-- End of Full address -->
-    </div>
+    <oui-message type="info" class="mb-2">
+        <p
+            data-translate="billing_payment_method_add_bank_account_owner_notification_info"
+        ></p>
+        <p
+            data-translate="billing_payment_method_add_bank_account_owner_info"
+        ></p>
+        <p
+            data-translate="billing_payment_method_add_bank_account_owner_confirmation_info"
+        ></p>
+    </oui-message>
 </div>

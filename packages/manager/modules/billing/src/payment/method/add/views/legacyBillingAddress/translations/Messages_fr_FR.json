@@ -4,5 +4,8 @@
   "billing_payment_method_add_bank_account_address_zip": "Code postal",
   "billing_payment_method_add_bank_account_address_city": "Ville",
   "billing_payment_method_add_bank_account_owner_name": "Nom et prénom du propriétaire ou nom de l'organisation propriétaire",
-  "billing_payment_method_add_bank_account_owner_address": "Adresse du propriétaire du compte"
+  "billing_payment_method_add_bank_account_owner_address": "Adresse du propriétaire du compte",
+  "billing_payment_method_add_bank_account_owner_notification_info": "Vous allez recevoir dans les 24 à 48h sur l’adresse mail de votre compte OVHcloud, un e-mail comportant un lien de signature électronique de votre mandat de prélèvement.",
+  "billing_payment_method_add_bank_account_owner_info": "Attention, le propriétaire du compte bancaire doit être identique au propriétaire du compte OVHcloud.",
+  "billing_payment_method_add_bank_account_owner_confirmation_info": "Une fois réceptionné par nos services, si votre mandat est approuvé, vous pourrez alors utiliser ce nouveau moyen de paiement."
 }
