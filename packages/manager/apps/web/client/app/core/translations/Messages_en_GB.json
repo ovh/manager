@@ -121,7 +121,8 @@
   "common_ipv4": "IPv4",
   "common_ipv6": "IPv6",
   "common_bitFormat": "bits",
-  "common_service_expired": "The {{t0}} service has not been renewed. This could be due to your own decision or a late payment.",
+  "common_service_expired_1": "The {{t0}} service has been suspended.",
+  "common_service_expired_2": "Go to the ‘My services’ section to reactivate it.",
   "common_serviceinfos_error": "Information about the {{t0}} service has not been found.",
   "common_reset_zoom": "Reset zoom",
   "common_alerts_message_see_more": "View error details",
@@ -607,7 +608,5 @@
   "common_manage_contacts": "Manage contacts",
   "common_plan": "Plan",
   "common_upgrade_account": "Change solution",
-  "common_automatic_renewal": "Automatic renewal",
-  "common_service_expired_1": "The {{t0}} service has been suspended.",
-  "common_service_expired_2": "Go to the ‘My services’ section to reactivate it."
+  "common_automatic_renewal": "Automatic renewal"
 }

@@ -1,14 +1,12 @@
 {
- "pci_projects_project_storages_blocks_block_volume-edit_region_label": "Localizzazione",
- "pci_projects_project_storages_blocks_block_volume-edit_type_label": "Tipo di volume",
- "pci_projects_project_storages_blocks_block_volume-edit_type_high-speed": "High performance",
- "pci_projects_project_storages_blocks_block_volume-edit_type_classic": "Classico",
- "pci_projects_project_storages_blocks_block_volume-edit_name_label": "Nome del volume",
- "pci_projects_project_storages_blocks_block_volume-edit_size_label": "Capacità del volume",
- "pci_projects_project_storages_blocks_block_volume-edit_size_help": "La dimensione massima dipende dalla quota disponibile.",
- "pci_projects_project_storages_blocks_block_volume-edit_size_unit": "GB",
- "pci_projects_project_storages_blocks_block_volume-edit_price_text": "Importo stimato: {{ price }} +IVA/mese",
- "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Boot",
- "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "Definire un volume come “boot” permette di utilizzare questo disco all’avvio della tua istanza.",
- "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Annulla"
+  "pci_projects_project_storages_blocks_block_volume-edit_region_label": "Localizzazione",
+  "pci_projects_project_storages_blocks_block_volume-edit_type_label": "Tipo di volume",
+  "pci_projects_project_storages_blocks_block_volume-edit_name_label": "Nome del volume",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_label": "Capacità del volume",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_help": "La dimensione massima dipende dalla quota disponibile.",
+  "pci_projects_project_storages_blocks_block_volume-edit_size_unit": "GB",
+  "pci_projects_project_storages_blocks_block_volume-edit_price_text": "Importo stimato: {{ price }} +IVA/mese",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Boot",
+  "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "Definire un volume come “boot” permette di utilizzare questo disco all’avvio della tua istanza.",
+  "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Annulla"
 }

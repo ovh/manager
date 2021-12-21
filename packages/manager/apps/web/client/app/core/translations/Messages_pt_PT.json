@@ -122,7 +122,8 @@
   "common_ipv4": "IPv4",
   "common_ipv6": "IPv6",
   "common_bitFormat": "bits",
-  "common_service_expired": "O serviço {{t0}} não foi renovado. Possíveis motivos: decisão sua ou atraso no pagamento.",
+  "common_service_expired_1": "Este serviço {{t0}} está suspenso.",
+  "common_service_expired_2": "Aceda à secção Serviços para o reativar.",
   "common_serviceinfos_error": "As informações relativas ao serviço {{t0}} não foram encontradas.",
   "common_reset_zoom": "Reiniciar o zoom",
   "common_alerts_message_see_more": "Ver detalhes dos erros",
@@ -608,7 +609,5 @@
   "common_manage_contacts": "Gerir os contactos",
   "common_plan": "Subscrição",
   "common_upgrade_account": "Mudar de oferta",
-  "common_automatic_renewal": "Renovação automática",
-  "common_service_expired_1": "Este serviço {{t0}} está suspenso.",
-  "common_service_expired_2": "Aceda à secção Serviços para o reativar."
+  "common_automatic_renewal": "Renovação automática"
 }

@@ -122,7 +122,8 @@
   "common_ipv4": "IPv4",
   "common_ipv6": "IPv6",
   "common_bitFormat": "Bit",
-  "common_service_expired": "Der Dienst {{t0}} wurde nicht verlängert. Dies kann aufgrund Ihrer Entscheidung oder eines Zahlungsverzugs auf Ihrer Seite erfolgt sein.",
+  "common_service_expired_1": "Dieser Dienst {{t0}} ist ausgesetzt.",
+  "common_service_expired_2": "Um ihn wieder zu aktivieren, gehen Sie bitte in den Bereich „Meine Dienstleistungen“.",
   "common_serviceinfos_error": "Die Informationen zum Dienst {{t0}} konnten nicht gefunden werden.",
   "common_reset_zoom": "Den Zoom zurücksetzen",
   "common_alerts_message_see_more": "Die Fehlerdetails anzeigen",
@@ -608,7 +609,5 @@
   "common_manage_contacts": "Die Kontakte verwalten",
   "common_plan": "Abo",
   "common_upgrade_account": "Upgraden",
-  "common_automatic_renewal": "Automatische Verlängerung",
-  "common_service_expired_1": "Dieser Dienst {{t0}} ist ausgesetzt.",
-  "common_service_expired_2": "Um ihn wieder zu aktivieren, gehen Sie bitte in den Bereich „Meine Dienstleistungen“."
+  "common_automatic_renewal": "Automatische Verlängerung"
 }
