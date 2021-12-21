@@ -1,6 +1,8 @@
 import isEmpty from 'lodash/isEmpty';
 import template from './GENERAL_INFORMATIONS.html';
 
+import './general-information.styles.scss';
+
 const commonResolves = {
   availableOptions: /* @ngInject */ (
     $q,

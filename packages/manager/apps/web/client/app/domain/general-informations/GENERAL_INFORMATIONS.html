@@ -1,4 +1,4 @@
-<div ui-view>
+<div ui-view class="general-information">
     <div data-ovh-alert="{{alerts.main}}"></div>
     <oui-message
         type="warning"
@@ -49,7 +49,7 @@
                             >
                                 <span data-ng-bind="::allDomDomain.name"></span>
                                 <span
-                                    class="oui-badge {{::!allDomDomain.isTerminated ? 'oui-badge_success' : 'oui-badge_error'}}"
+                                    class="oui-badge domain-status-tag {{::!allDomDomain.isTerminated ? 'oui-badge_success' : 'oui-badge_error'}}"
                                     data-ng-bind="::(!allDomDomain.isTerminated ? 'domain_dashboard_general_information_domain_automatic_renewal' : 'domain_dashboard_general_information_domain_terminated') | translate"
                                 ></span>
                             </li>
