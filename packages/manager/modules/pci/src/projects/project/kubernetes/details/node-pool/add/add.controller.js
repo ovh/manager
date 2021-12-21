@@ -64,19 +64,21 @@ export default class {
       .catch((error) => {
         if (get(error, 'data.status') === 412) {
           // If error code is 412
+          const errorMessage = get(error, 'data.message');
+          const errorId = errorMessage.slice(
+            errorMessage.indexOf('[') + 1,
+            errorMessage.indexOf(']'),
+          );
+          const quotaUrl = this.coreURLBuilder.buildURL(
+            'public-cloud',
+            `#/pci/projects/${this.projectId}/quota`,
+          );
           this.CucCloudMessage.error({
-            textHtml: this.$translate.instant(
-              `kube_add_node_pool_error_${get(error, 'data.message').slice(
-                get(error, 'data.message').indexOf('[') + 1,
-                get(error, 'data.message').indexOf(']'),
-              )}`,
-              {
-                quotaUrl: this.coreURLBuilder.buildURL(
-                  'public-cloud',
-                  `#/pci/projects/${this.projectId}/quota`,
-                ),
-              },
-            ),
+            textHtml: `${this.$translate.instant(
+              `kube_add_node_pool_error_${errorId}`,
+            )} <a class="oui-link_icon" href="${quotaUrl}">${this.$translate.instant(
+              `kube_add_node_pool_error_quota_link`,
+            )} <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span></a>`,
           });
         } else {
           this.CucCloudMessage.error(

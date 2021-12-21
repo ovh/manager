@@ -45,22 +45,21 @@ export default class KubernetesNodePoolsScaleCtrl {
       )
       .catch((error) => {
         if (get(error, 'data.status') === 412) {
+          const errorMessage = get(error, 'data.message');
+          const errorId = errorMessage.slice(
+            errorMessage.indexOf('[') + 1,
+            errorMessage.indexOf(']'),
+          );
+          const quotaUrl = this.coreURLBuilder.buildURL(
+            'public-cloud',
+            `#/pci/projects/${this.projectId}/quota`,
+          );
           this.goBack({
-            textHtml: this.$translate.instant(
-              `kube_node_pool_autoscaling_scale_error_${get(
-                error,
-                'data.message',
-              ).slice(
-                get(error, 'data.message').indexOf('[') + 1,
-                get(error, 'data.message').indexOf(']'),
-              )}`,
-              {
-                quotaUrl: this.coreURLBuilder.buildURL(
-                  'public-cloud',
-                  `#/pci/projects/${this.projectId}/quota`,
-                ),
-              },
-            ),
+            textHtml: `${this.$translate.instant(
+              `kube_node_pool_autoscaling_scale_error_${errorId}`,
+            )} <a class="oui-link_icon" href="${quotaUrl}">${this.$translate.instant(
+              `kube_node_pool_autoscaling_scale_error_quota_link`,
+            )} <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span></a>`,
             type: 'error',
           });
         } else {
