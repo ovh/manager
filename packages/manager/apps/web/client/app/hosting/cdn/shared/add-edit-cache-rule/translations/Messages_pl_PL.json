@@ -21,5 +21,15 @@
   "hosting_cdn_shared_modal_add_rule_field_order_by_info": "Reguły cache są wykonywane zgodnie z kolejnością ich klasyfikacji. Jeśli przypiszesz regule numer 1, reguła zostanie wykonana w pierwszej kolejności, itd.",
   "hosting_cdn_shared_modal_add_rule_btn_validate_rule": "Utwórz regułę",
   "hosting_cdn_shared_modal_add_rule_btn_set_rule": "Zmień regułę",
-  "hosting_cdn_shared_modal_add_rule_btn_cancel": "Anuluj"
+  "hosting_cdn_shared_modal_add_rule_btn_cancel": "Anuluj",
+  "hosting_cdn_shared_modal_add_rule_field_resource_type": "Rodzaj zasobów",
+  "hosting_cdn_shared_modal_add_rule_field_resource_extension": "Rozszerzenie",
+  "hosting_cdn_shared_modal_add_rule_field_resource_extension_info": "Wprowadź poprawne rozszerzenie plików, bez kropki, na przykład: css",
+  "hosting_cdn_shared_modal_add_rule_field_resource_folder": "Katalog",
+  "hosting_cdn_shared_modal_add_rule_field_resource_folder_info": "Wprowadź prawidłową ścieżkę do jednego z folderów w katalogu głównym Twojej strony, na przykład: /css/",
+  "hosting_cdn_shared_modal_add_rule_field_resource_regex": "Spersonalizowane wyrażenie regularne",
+  "hosting_cdn_shared_modal_add_rule_field_resource_regex_info": "Wpisz poprawne wyrażenie regularne, na przykład: .*.css",
+  "hosting_cdn_shared_modal_add_rule_field_resource_uri": "URI",
+  "hosting_cdn_shared_modal_add_rule_field_resource_uri_info": "Wprowadź poprawny identyfikator URI dla strony WWW: /product/howto.pdf",
+  "hosting_cdn_shared_modal_add_rule_field_resource": "Zasoby"
 }

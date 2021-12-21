@@ -1,0 +1,17 @@
+{
+  "hosting_multisite_cdn_flush_title": "Clear cache",
+  "hosting_multisite_cdn_flush_question_true": "Are you sure you want to clear your CDN cache for this domain name?",
+  "hosting_multisite_cdn_flush_question_false": "Are you sure you want to clear your CDN cache?",
+  "hosting_multisite_cdn_flush_success": "Your CDN cache will be cleared in a few moments.",
+  "hosting_multisite_cdn_flush_done_success": "Your CDN cache has been cleared.",
+  "hosting_multisite_cdn_flush_error": "An error has occurred processing your request to clear the CDN cache.",
+  "hosting_multisite_cdn_flush_domain": "Domain name:",
+  "hosting_multisite_cdn_flush_purge_option_all": "Entire website",
+  "hosting_multisite_cdn_flush_purge_option_folder": "Folder",
+  "hosting_multisite_cdn_flush_purge_option_uri": "URI",
+  "hosting_multisite_cdn_flush_purge_option_extension": "Extension",
+  "hosting_multisite_cdn_flush_purge_option_regex": "Custom regular expression",
+  "hosting_multisite_cdn_flush_purge_field_value": "Value",
+  "hosting_multisite_cdn_flush_cancel": "Cancel",
+  "hosting_multisite_cdn_flush_validate": "Confirm"
+}

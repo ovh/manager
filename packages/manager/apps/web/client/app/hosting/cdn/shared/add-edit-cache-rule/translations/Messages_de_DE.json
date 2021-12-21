@@ -21,5 +21,15 @@
   "hosting_cdn_shared_modal_add_rule_field_order_by_info": "Ihre Cache-Regeln werden der Rangfolge nach ausgeführt. Wenn Sie einer Regel die Nummer 1 zuweisen, wird sie als erste ausgeführt, usw.",
   "hosting_cdn_shared_modal_add_rule_btn_validate_rule": "Regel erstellen",
   "hosting_cdn_shared_modal_add_rule_btn_set_rule": "Regel ändern",
-  "hosting_cdn_shared_modal_add_rule_btn_cancel": "Abbrechen"
+  "hosting_cdn_shared_modal_add_rule_btn_cancel": "Abbrechen",
+  "hosting_cdn_shared_modal_add_rule_field_resource_type": "Ressourcen-Typ",
+  "hosting_cdn_shared_modal_add_rule_field_resource_extension": "Endung",
+  "hosting_cdn_shared_modal_add_rule_field_resource_extension_info": "Bitte geben Sie eine gültige Dateiendung ohne Punkt an, zum Beispiel: css",
+  "hosting_cdn_shared_modal_add_rule_field_resource_folder": "Ordner",
+  "hosting_cdn_shared_modal_add_rule_field_resource_folder_info": "Bitte geben Sie den gültigen Pfad eines Ordners im Root-Verzeichnis Ihre Website an, zum Beispiel: /css/",
+  "hosting_cdn_shared_modal_add_rule_field_resource_regex": "Regulärer personalisierter Ausdruck",
+  "hosting_cdn_shared_modal_add_rule_field_resource_regex_info": "Bitte geben Sie einen gültigen regulären Ausdruck an, zum Beispiel: .*.css",
+  "hosting_cdn_shared_modal_add_rule_field_resource_uri": "URI",
+  "hosting_cdn_shared_modal_add_rule_field_resource_uri_info": "Bitte geben Sie einen gültigen URI für Ihre Website an, zum Beispiel: /product/howto.pdf",
+  "hosting_cdn_shared_modal_add_rule_field_resource": "Ressource"
 }

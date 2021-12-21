@@ -1,0 +1,8 @@
+{
+  "hosting_cdn_cancel_terminate_title": "Kündigung des CDN stornieren",
+  "hosting_cdn_cancel_terminate_question": "Möchten Sie die Kündigung des CDN-Dienstes stornieren?",
+  "hosting_cdn_cancel_terminate_success": "Die Anfrage zur Stornierung der Kündigung wurde registriert.",
+  "hosting_cdn_cancel_terminate_error": "Bei der Stornierung der Kündigung des CDN ist ein Fehler aufgetreten: {{ message }}",
+  "hosting_cdn_cancel_terminate_action_validate": "Bestätigen",
+  "hosting_cdn_cancel_terminate_action_cancel": "Abbrechen"
+}

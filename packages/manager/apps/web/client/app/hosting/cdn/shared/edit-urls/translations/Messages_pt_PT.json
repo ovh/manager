@@ -1,0 +1,18 @@
+{
+  "hosting_cdn_shared_change_edit_urls_modal_title": "Prewarm",
+  "hosting_cdn_shared_change_edit_urls_modal_info": "Defina a lista dos URL que deve atualizar sistematicamente na cache.",
+  "hosting_cdn_shared_change_edit_urls_modal_protocol_label": "Protocolo",
+  "hosting_cdn_shared_change_edit_urls_modal_domain_label": "Domínio",
+  "hosting_cdn_shared_change_edit_urls_modal_resource_label": "Caminho do recurso",
+  "hosting_cdn_shared_change_edit_urls_modal_url_placeholder": "www.exemplo.pt",
+  "hosting_cdn_shared_change_edit_urls_modal_url_error_invalid_format": "Introduza um URL válido",
+  "hosting_cdn_shared_change_edit_urls_modal_url_error_limit_reached": "Ultrapassou o limite de URL: máximo de {{maxUrls}}",
+  "hosting_cdn_shared_change_edit_urls_modal_url_cta_add": "Adicionar",
+  "hosting_cdn_shared_change_edit_urls_modal_url_to_preload_label": "Lista de URL para pré-carregar",
+  "hosting_cdn_shared_change_edit_urls_modal_url_to_preload_info": "Adicionou {{numberOfUrls}} URL. ({{maxUrls}} máx.)",
+  "hosting_cdn_shared_change_edit_urls_modal_url_to_preload_cta_remove": "Remover",
+  "hosting_cdn_shared_change_edit_urls_modal_propdown_protocol_HTTP": "HTTP",
+  "hosting_cdn_shared_change_edit_urls_modal_propdown_protocol_HTTPS": "HTTPS",
+  "hosting_cdn_shared_change_edit_urls_modal_action_validate": "Modificar a regra",
+  "hosting_cdn_shared_change_edit_urls_modal_action_cancel": "Cancelar"
+}
