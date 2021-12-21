@@ -21,5 +21,15 @@
   "hosting_cdn_shared_modal_add_rule_field_order_by_info": "As suas regras de cache são executadas pela ordem da sua classificação. Ao atribuir o número 1, a sua regra será executada primeiro e assim por diante.",
   "hosting_cdn_shared_modal_add_rule_btn_validate_rule": "Criar regra",
   "hosting_cdn_shared_modal_add_rule_btn_set_rule": "Modificar a regra",
-  "hosting_cdn_shared_modal_add_rule_btn_cancel": "Cancelar"
+  "hosting_cdn_shared_modal_add_rule_btn_cancel": "Cancelar",
+  "hosting_cdn_shared_modal_add_rule_field_resource_type": "Tipo de recurso",
+  "hosting_cdn_shared_modal_add_rule_field_resource_extension": "Extensão",
+  "hosting_cdn_shared_modal_add_rule_field_resource_extension_info": "Introduza uma extensão de ficheiro válida sem pontos. Por exemplo: css",
+  "hosting_cdn_shared_modal_add_rule_field_resource_folder": "Pasta",
+  "hosting_cdn_shared_modal_add_rule_field_resource_folder_info": "Introduza um caminho válido para uma das pastas presentes no diretório raiz do seu website. Por exemplo: /css/",
+  "hosting_cdn_shared_modal_add_rule_field_resource_regex": "Expressão regular personalizada",
+  "hosting_cdn_shared_modal_add_rule_field_resource_regex_info": "Introduza uma expressão regular válida. Por exemplo: .*.css",
+  "hosting_cdn_shared_modal_add_rule_field_resource_uri": "URI",
+  "hosting_cdn_shared_modal_add_rule_field_resource_uri_info": "Introduza um URI válido para o seu website. Por exemplo: /product/howto.pdf",
+  "hosting_cdn_shared_modal_add_rule_field_resource": "Recurso"
 }

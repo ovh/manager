@@ -1375,5 +1375,6 @@
   "hosting_dashboard_service_common_inactive": "Disattivo",
   "hosting_dashboard_email_offer_get_error": "Impossibile recuperare l’indirizzo email",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Più"
+  "hosting_dashboard_tabs_dropdown": "Più",
+  "hosting_dashboard_service_cdn_customer_has_cdn_v1_new_offers": "OVHcloud consiglia le nuove soluzioni CDN"
 }

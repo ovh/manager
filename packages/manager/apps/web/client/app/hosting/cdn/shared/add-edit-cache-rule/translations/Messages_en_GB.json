@@ -21,5 +21,15 @@
   "hosting_cdn_shared_modal_add_rule_field_order_by_info": "Your cache rules are run in the order that they are listed in. By assigning the number 1 to a rule, it will be executed first, and so on.",
   "hosting_cdn_shared_modal_add_rule_btn_validate_rule": "Create the rule",
   "hosting_cdn_shared_modal_add_rule_btn_set_rule": "Modify the rule ",
-  "hosting_cdn_shared_modal_add_rule_btn_cancel": "Cancel"
+  "hosting_cdn_shared_modal_add_rule_btn_cancel": "Cancel",
+  "hosting_cdn_shared_modal_add_rule_field_resource_type": "Resource type",
+  "hosting_cdn_shared_modal_add_rule_field_resource_extension": "Extension",
+  "hosting_cdn_shared_modal_add_rule_field_resource_extension_info": "Please enter a valid file extension without adding a full stop, e.g.: css",
+  "hosting_cdn_shared_modal_add_rule_field_resource_folder": "Folder",
+  "hosting_cdn_shared_modal_add_rule_field_resource_folder_info": "Please enter a valid path for one of the folders in your website’s root directory, e.g.: /css",
+  "hosting_cdn_shared_modal_add_rule_field_resource_regex": "Custom regular expression",
+  "hosting_cdn_shared_modal_add_rule_field_resource_regex_info": "Please enter a valid regular expression, e.g.: .*.css",
+  "hosting_cdn_shared_modal_add_rule_field_resource_uri": "URI",
+  "hosting_cdn_shared_modal_add_rule_field_resource_uri_info": "Please enter a valid URI for your website, e.g.: /product/howto.pdf",
+  "hosting_cdn_shared_modal_add_rule_field_resource": "Resource"
 }
