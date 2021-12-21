@@ -102,10 +102,11 @@ export default class {
             'public-cloud',
             `#/pci/projects/${this.projectId}/quota`,
           );
+          const translateMessage = this.$translate.instant(
+            `kubernetes_add_error_${errorId}`,
+          );
           this.CucCloudMessage.error({
-            textHtml: `${this.$translate.instant(
-              `kubernetes_add_error_${errorId}`,
-            )} <a class="oui-link_icon" href="${quotaUrl}">${this.$translate.instant(
+            textHtml: `${translateMessage} <a class="oui-link_icon" href="${quotaUrl}">${this.$translate.instant(
               'kubernetes_add_error_quota_link',
             )} <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span></a>`,
           });
