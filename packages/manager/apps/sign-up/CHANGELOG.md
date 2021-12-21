@@ -1,3 +1,12 @@
+## [2.4.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.4.1...@ovh-ux/sign-up-app@2.4.2) (2021-12-21)
+
+
+### Bug Fixes
+
+* **form:** replace `update` action by `create` ([#6165](https://github.com/ovh/manager/issues/6165)) ([779ee72](https://github.com/ovh/manager/commit/779ee72430695bee31abacd10b303b17153b9712))
+
+
+
 ## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.4.0...@ovh-ux/sign-up-app@2.4.1) (2021-12-02)
 
 
