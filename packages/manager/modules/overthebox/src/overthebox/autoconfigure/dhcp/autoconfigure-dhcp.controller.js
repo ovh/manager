@@ -1,9 +1,8 @@
 export default class OverTheBoxAutoconfigureDhcp {
   /* @ngInject */
-  constructor($http, $q, $state, $translate) {
+  constructor($http, $q, $translate) {
     this.$http = $http;
     this.$q = $q;
-    this.$state = $state;
     this.$translate = $translate;
   }
 
