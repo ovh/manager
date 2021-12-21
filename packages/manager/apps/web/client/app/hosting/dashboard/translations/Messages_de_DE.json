@@ -1374,5 +1374,6 @@
   "hosting_dashboard_service_common_inactive": "Inaktiv",
   "hosting_dashboard_email_offer_get_error": "Es ist unmöglich, die E-Mail-Adresse wiederherzustellen.",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Mehr"
+  "hosting_dashboard_tabs_dropdown": "Mehr",
+  "hosting_dashboard_service_cdn_customer_has_cdn_v1_new_offers": "OVHcloud empfiehlt: die neuen Angebote für CDN"
 }
