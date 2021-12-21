@@ -77,7 +77,7 @@ export default class {
             textHtml: `${this.$translate.instant(
               `kube_add_node_pool_error_${errorId}`,
             )} <a class="oui-link_icon" href="${quotaUrl}">${this.$translate.instant(
-              `kube_add_node_pool_error_quota_link`,
+              'kube_add_node_pool_error_quota_link',
             )} <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span></a>`,
           });
         } else {

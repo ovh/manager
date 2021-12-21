@@ -58,7 +58,7 @@ export default class KubernetesNodePoolsScaleCtrl {
             textHtml: `${this.$translate.instant(
               `kube_node_pool_autoscaling_scale_error_${errorId}`,
             )} <a class="oui-link_icon" href="${quotaUrl}">${this.$translate.instant(
-              `kube_node_pool_autoscaling_scale_error_quota_link`,
+              'kube_node_pool_autoscaling_scale_error_quota_link',
             )} <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span></a>`,
             type: 'error',
           });
