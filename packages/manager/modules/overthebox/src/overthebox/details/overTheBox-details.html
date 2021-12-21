@@ -138,6 +138,21 @@
                     <div class="oui-tile__item">
                         <div class="oui-tile__definition">
                             <strong
+                                class="oui-tile__term d-block"
+                                data-translate="overTheBox_serviceId"
+                            ></strong>
+                            <div class="oui-tile__description">
+                                <span
+                                    class="d-block mb-2"
+                                    data-ng-bind="$ctrl.serviceName"
+                                >
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oui-tile__item">
+                        <div class="oui-tile__definition">
+                            <strong
                                 class="oui-tile__term"
                                 data-ng-class="{ 'text-warning': !$ctrl.device.deviceId }"
                             >
@@ -367,10 +382,18 @@
                     </div>
                     <div class="oui-tile__definition">
                         <div class="oui-tile__definition">
-                            <strong class="oui-tile__term d-block" data-translate="overthebox_detail_links">
+                            <strong
+                                class="oui-tile__term d-block"
+                                data-translate="overthebox_detail_links"
+                            >
                             </strong>
-                            <oui-tile-button data-ng-href="{{:: $ctrl.guidesLink }}" external>
-                                <span data-translate="overTheBox_detail_link_guide"></span>
+                            <oui-tile-button
+                                data-ng-href="{{:: $ctrl.guidesLink }}"
+                                external
+                            >
+                                <span
+                                    data-translate="overTheBox_detail_link_guide"
+                                ></span>
                             </oui-tile-button>
                         </div>
                     </div>
