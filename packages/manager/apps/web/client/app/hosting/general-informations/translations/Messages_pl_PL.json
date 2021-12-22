@@ -1,4 +1,8 @@
 {
   "hosting_dashboard_useful_links": "Przydatne linki",
-  "hosting_dashboard_useful_links_user_logs": "OVHcloud Web Statistics"
+  "hosting_dashboard_useful_links_user_logs": "OVHcloud Web Statistics",
+  "hosting_dashboard_general_informations_cdn_banner": "Opcja Shared CDN powiązana z hostingiem stale się rozwija! Dostępne są nowe funkcje.",
+  "hosting_dashboard_general_informations_cdn_banner_cta": "Migracja CDN",
+  "hosting_dashboard_config_tile_options_cdn_cancel_terminate": "Rezygnacja przewidziana na {{endEngagementDate}}",
+  "hosting_dashboard_config_tile_options_cdn_cancel_terminate_link": "Anuluj rezygnację"
 }

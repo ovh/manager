@@ -1,0 +1,71 @@
+<div
+    data-wizard
+    data-wizard-bread-crumb
+    data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
+    data-wizard-on-finish="$ctrl.flushCdn.bind($ctrl)"
+    data-wizard-title="'hosting_multisite_cdn_flush_title' | translate"
+>
+    <!--Description-->
+    <div class="modal-body pt-0">
+        <p
+            class="mb-0"
+            data-translate="{{:: 'hosting_multisite_cdn_flush_question_' + $ctrl.isAdvancedCdnType}}"
+        ></p>
+
+        <oui-spinner size="m" data-ng-if="$ctrl.isFlushing"></oui-spinner>
+    </div>
+
+    <div data-ng-show="!$ctrl.isFlushing">
+        <!--Step 1:: choose purge option-->
+        <div
+            data-wizard-step
+            data-wizard-step-valid="$ctrl.cdnFlushModel.selectedOption"
+        >
+            <div class="modal-body p-0 pb-3">
+                <h5
+                    class="m-0"
+                    data-translate="hosting_multisite_cdn_flush_domain"
+                ></h5>
+                <p class="m-0" data-ng-bind="$ctrl.domain"></p>
+            </div>
+
+            <oui-radio-group
+                data-name="purge"
+                data-model="$ctrl.cdnFlushModel.selectedOption"
+            >
+                <oui-radio
+                    data-ng-repeat="option in $ctrl.cdnFlushModel.options"
+                    data-disabled="option.disabled"
+                    data-value="option"
+                >
+                    <span
+                        data-translate="{{:: 'hosting_multisite_cdn_flush_purge_option_' + option.patternType}}"
+                    ></span>
+                </oui-radio>
+            </oui-radio-group>
+
+            <div
+                class="pt-3"
+                data-ng-if="$ctrl.cdnFlushModel.selectedOption.patternType !== $ctrl.PURGE_TYPE_ENUM.ALL"
+            >
+                <oui-field
+                    data-label="{{:: 'hosting_multisite_cdn_flush_purge_field_value' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="purgeOptionValue"
+                        type="text"
+                        placeholder="{{ $ctrl.cdnFlushModel.selectedOption.hint }}"
+                        data-ng-model="$ctrl.cdnFlushModel.selectedOption.pattern"
+                    />
+                </oui-field>
+            </div>
+        </div>
+
+        <!--Step 2:: confirm the purge-->
+        <div
+            data-wizard-step
+            data-wizard-step-valid="$ctrl.cdnFlushModel.selectedOption"
+        ></div>
+    </div>
+</div>

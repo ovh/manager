@@ -1,0 +1,16 @@
+<oui-modal
+    data-heading="{{:: 'hosting_cdn_cancel_terminate_title' | translate }}"
+    data-primary-action="$ctrl.onCancelTerminateCdn()"
+    data-primary-label="{{:: 'hosting_cdn_cancel_terminate_action_validate' | translate }}"
+    data-secondary-action="$ctrl.onTerminationCancel()"
+    data-secondary-label="{{:: 'hosting_cdn_cancel_terminate_action_cancel' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isBeingCancelTerminated"
+>
+    <!--End Date Engagement description-->
+    <div>
+        <p class="m-0"
+           data-translate="hosting_cdn_cancel_terminate_question"
+        ></p>
+    </div>
+</oui-modal>

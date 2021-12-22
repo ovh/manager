@@ -9,64 +9,157 @@ import map from 'lodash/map';
 import clone from 'lodash/clone';
 
 import {
+  SHARED_CDN_OPTIONS,
+  SHARED_CDN_RANGE,
   SHARED_CDN_SETTINGS_RULE_FACTOR_DAY,
   SHARED_CDN_SETTINGS_RULE_FACTOR_HOUR,
   SHARED_CDN_SETTINGS_RULE_FACTOR_MINUTE,
   SHARED_CDN_SETTINGS_RULE_FACTOR_MONTH,
   SHARED_CDN_SETTINGS_RULE_FACTOR_SECOND,
+  SHARED_CDN_SETTINGS_RULES_NB_RULES_BY_PAGE,
 } from './hosting-cdn-shared-settings.constants';
 
 export default class CdnSharedSettingsController {
   /* @ngInject */
-  constructor($q, $translate, HostingCdnSharedService) {
+  constructor($filter, $q, $translate, HostingCdnSharedService) {
+    this.$filter = $filter;
     this.$q = $q;
     this.$translate = $translate;
     this.HostingCdnSharedService = HostingCdnSharedService;
+
+    this.datagridRulesId = 'rulesDatagrid';
+    this.SHARED_CDN_RANGE = SHARED_CDN_RANGE;
+    this.SHARED_CDN_SETTINGS_RULES_NB_RULES_BY_PAGE = SHARED_CDN_SETTINGS_RULES_NB_RULES_BY_PAGE;
   }
 
   $onInit() {
+    const mobileRedirectOption = CdnSharedSettingsController.getCdnSettingsOption(
+      this.cdnOptionTypeEnum.MOBILE_REDIRECT,
+      this.domainOptions,
+    );
     this.model = {
-      alwaysOnline: {
-        enabled: true,
-      },
-      http: {
-        enabled: true,
-      },
       rules: filter(this.domainOptions, {
         type: this.cdnOptionTypeEnum.CACHE_RULE,
       }),
       maxItems: find(this.availableOptions, {
         type: this.cdnOptionTypeEnum.CACHE_RULE,
       }).maxItems,
-      ...CdnSharedSettingsController.getCdnSettingsOption(
-        this.cdnOptionTypeEnum.DEVMODE,
-        this.domainOptions,
-      ),
-      ...CdnSharedSettingsController.getCdnSettingsOption(
-        this.cdnOptionTypeEnum.BROTLI,
-        this.domainOptions,
-      ),
-      ...CdnSharedSettingsController.getCdnSettingsOption(
-        this.cdnOptionTypeEnum.CORS,
-        this.domainOptions,
-      ),
-      ...CdnSharedSettingsController.getCdnSettingsOption(
-        this.cdnOptionTypeEnum.HTTPS_REDIRECT,
-        this.domainOptions,
-      ),
-      ...CdnSharedSettingsController.getCdnSettingsOption(
-        this.cdnOptionTypeEnum.HSTS,
-        this.domainOptions,
-      ),
-      ...CdnSharedSettingsController.getCdnSettingsOption(
-        this.cdnOptionTypeEnum.MIXED_CONTENT,
-        this.domainOptions,
-      ),
-      ...CdnSharedSettingsController.getCdnSettingsOption(
-        this.cdnOptionTypeEnum.WAF,
-        this.domainOptions,
-      ),
+      /* Use api property to get api option */
+      options: {
+        perf: {
+          always_online: {
+            operate: false,
+            enabled: true,
+            api: null,
+          },
+          http: {
+            operate: false,
+            enabled: true,
+            api: null,
+          },
+          brotli: {
+            api: CdnSharedSettingsController.getCdnSettingsOption(
+              this.cdnOptionTypeEnum.BROTLI,
+              this.domainOptions,
+            ),
+          },
+          geo_headers: {
+            api: CdnSharedSettingsController.getCdnSettingsOption(
+              this.cdnOptionTypeEnum.GEO_HEADERS,
+              this.domainOptions,
+            ),
+          },
+          prefetch: {
+            api: CdnSharedSettingsController.getCdnSettingsOption(
+              this.cdnOptionTypeEnum.PREFETCH,
+              this.domainOptions,
+            ),
+          },
+          mobile_redirect: {
+            selected:
+              SHARED_CDN_OPTIONS.MOBILE_REDIRECT[
+                mobileRedirectOption?.config.followUri
+                  ? 'KEEP_URL'
+                  : 'STILL_URL'
+              ],
+            redirectOptions: [
+              SHARED_CDN_OPTIONS.MOBILE_REDIRECT.STILL_URL,
+              SHARED_CDN_OPTIONS.MOBILE_REDIRECT.KEEP_URL,
+            ],
+            api: mobileRedirectOption,
+          },
+        },
+        cache: {
+          devmode: {
+            api: CdnSharedSettingsController.getCdnSettingsOption(
+              this.cdnOptionTypeEnum.DEVMODE,
+              this.domainOptions,
+            ),
+          },
+          querystring: {
+            sortOptions: [
+              SHARED_CDN_OPTIONS.QUERY_STRING.SORT_PARAMS.SORT,
+              SHARED_CDN_OPTIONS.QUERY_STRING.SORT_PARAMS.IGNORED,
+            ],
+            api: CdnSharedSettingsController.getCdnSettingsOption(
+              this.cdnOptionTypeEnum.QUERYSTRING,
+              this.domainOptions,
+            ),
+          },
+          prewarm: {
+            api: CdnSharedSettingsController.getCdnSettingsOption(
+              this.cdnOptionTypeEnum.PREWARM,
+              this.domainOptions,
+            ),
+          },
+          advanced_purge: {
+            name: 'advanced_purge',
+            operate: this.cdnRange === SHARED_CDN_RANGE.ADVANCED,
+            enabled: this.cdnRange === SHARED_CDN_RANGE.ADVANCED,
+            isDisplayableStatus: false,
+            api: null,
+          },
+        },
+        security: {
+          cors: {
+            api: CdnSharedSettingsController.getCdnSettingsOption(
+              this.cdnOptionTypeEnum.CORS,
+              this.domainOptions,
+            ),
+          },
+          https_redirect: {
+            api: CdnSharedSettingsController.getCdnSettingsOption(
+              this.cdnOptionTypeEnum.HTTPS_REDIRECT,
+              this.domainOptions,
+            ),
+          },
+          hsts: {
+            api: CdnSharedSettingsController.getCdnSettingsOption(
+              this.cdnOptionTypeEnum.HSTS,
+              this.domainOptions,
+            ),
+          },
+          mixed_content: {
+            api: CdnSharedSettingsController.getCdnSettingsOption(
+              this.cdnOptionTypeEnum.MIXED_CONTENT,
+              this.domainOptions,
+            ),
+          },
+          waf: {
+            api: CdnSharedSettingsController.getCdnSettingsOption(
+              this.cdnOptionTypeEnum.WAF,
+              this.domainOptions,
+            ),
+          },
+        },
+      },
+      optionTypes: {
+        PERF: 'perf',
+        CACHE: 'cache',
+        SECURITY: 'security',
+      },
     };
+    this.copyModel = angular.copy(this.model);
 
     this.redirections = [
       {
@@ -102,20 +195,57 @@ export default class CdnSharedSettingsController {
         value: SHARED_CDN_SETTINGS_RULE_FACTOR_MONTH,
       },
     ];
-    this.hstsMaxAgeValue = this.model.hsts?.config.ttl;
+    this.hstsMaxAgeValue = this.model.options.security.hsts.api?.config.ttl;
     this.hstsMaxAgeUnit = maxBy(this.hstsMaxAgeUnits, 'value'); // Max age is expressed in months by default
     this.handleHSTSUnit(this.hstsMaxAgeUnit);
     this.redirection = this.redirections.find(
-      ({ value }) => value === this.model.https_redirect?.config?.statusCode,
+      ({ value }) =>
+        value ===
+        this.model.options.security.https_redirect.api?.config?.statusCode,
     );
     this.tasks = { toUpdate: [] };
-    this.copyModel = angular.copy(this.model);
+  }
+
+  getPrefetchOptionInfoLink() {
+    const { LINKS } = SHARED_CDN_OPTIONS.PREFETCH;
+    return LINKS[this.user.ovhSubsidiary] || LINKS.DEFAULT;
   }
 
   static getCdnSettingsOption(optionName, options) {
-    return {
-      [optionName]: options.find(({ type }) => type === optionName),
-    };
+    return options.find(({ type }) => type === optionName);
+  }
+
+  static activateDeactivateStatus(status, state) {
+    set(status, 'inProgress', state);
+  }
+
+  static getChangedSwitches(model) {
+    const { always_online: alwaysOnline, http, devmode, brotli } = model;
+    const switchesTasks = [alwaysOnline, http, devmode, brotli];
+    return filter(switchesTasks, (s) => s && s.changed);
+  }
+
+  static getChangedRules(tasks) {
+    const { toAdd, toUpdate, toRemove } = tasks;
+    return concat(toAdd, toRemove, toUpdate);
+  }
+
+  static hasModelChange(model, copyModel) {
+    return !angular.equals(model, copyModel);
+  }
+
+  static getFormattedHstsNumber(hstsMaxAgeValue) {
+    const [number, decimal] = `${hstsMaxAgeValue}`.split('.');
+    const { FIXED_NUMBER } = SHARED_CDN_OPTIONS.HSTS;
+
+    if (hstsMaxAgeValue % 1 !== 0) {
+      return `${number}.${decimal.substring(0, FIXED_NUMBER)}`;
+    }
+    return Math.round(hstsMaxAgeValue);
+  }
+
+  getOption(type, optionName) {
+    return get(this.model?.options, `${type}.${optionName}`, null);
   }
 
   getSwitchBtnStatusText(switchBtn) {
@@ -168,18 +298,6 @@ export default class CdnSharedSettingsController {
     }
   }
 
-  static activateDeactivateStatus(status, state) {
-    set(status, 'inProgress', state);
-  }
-
-  createRule(rule) {
-    return this.HostingCdnSharedService.addNewOptionToDomain(
-      this.serviceName,
-      this.domainName,
-      rule,
-    );
-  }
-
   updateRule(rule, modelValue) {
     const cRule = clone(rule);
     delete cRule.name;
@@ -193,6 +311,8 @@ export default class CdnSharedSettingsController {
   }
 
   removeRule(rule, status) {
+    this.trackClick('delete_cdn_rule');
+
     CdnSharedSettingsController.activateDeactivateStatus(status, true);
     return this.HostingCdnSharedService.deleteCDNDomainOption(
       this.serviceName,
@@ -200,8 +320,11 @@ export default class CdnSharedSettingsController {
       rule.name,
     )
       .then((res) => {
-        const index = this.model.rules.indexOf(rule);
-        if (index >= 0) this.model.rules.splice(index, 1);
+        const ruleIndex = this.model.rules.findIndex(
+          ({ name }) => name === rule.name,
+        );
+        if (ruleIndex >= 0) this.model.rules.splice(ruleIndex, 1);
+
         return res;
       })
       .finally(() =>
@@ -243,6 +366,16 @@ export default class CdnSharedSettingsController {
     this.tasks.toUpdate.push(rule);
   }
 
+  refreshDatagridRule(rule) {
+    const { model } = this;
+
+    model.rules.forEach(({ name }, index) => {
+      if (name === rule.name) {
+        model.rules[index] = { ...rule };
+      }
+    });
+  }
+
   openCreateCacheRuleModal(status) {
     const priority = {
       max: this.getMaxPriority() + 1,
@@ -252,7 +385,6 @@ export default class CdnSharedSettingsController {
       success: (rule) => {
         this.setRulesPriority(rule);
         this.updateChangedRules(this.tasks.toUpdate, status)
-          .then(() => this.createRule(rule))
           .then(() => {
             this.model.rules.push(rule);
           })
@@ -270,6 +402,7 @@ export default class CdnSharedSettingsController {
       priority,
       callbacks,
     };
+
     this.displayCreateCacheRuleModal(params);
   }
 
@@ -281,7 +414,7 @@ export default class CdnSharedSettingsController {
       success: (uRule) => {
         this.setRulesPriority(uRule);
         this.updateChangedRules(this.tasks.toUpdate, status)
-          .then(() => this.updateRule(uRule))
+          .then(() => this.refreshDatagridRule(rule))
           .finally(() => {
             this.tasks.toUpdate = [];
             CdnSharedSettingsController.activateDeactivateStatus(status, false);
@@ -296,45 +429,35 @@ export default class CdnSharedSettingsController {
       priority,
       callbacks,
     };
+
     this.displayUpdateCacheRuleModal(params);
   }
 
-  openConfirmModal() {
-    const { rules, ...model } = this.model;
-    this.displayConfirmSettingsModal({
-      rules,
-      model,
-      oldModel: this.copyModel,
-    });
-    this.trackClick('web::hosting::cdn::configure::apply-configuration');
-  }
-
-  static getChangedSwitches(model) {
-    const { alwaysOnline, http, devmode, brotli } = model;
-    const switchesTasks = [alwaysOnline, http, devmode, brotli];
-    return filter(switchesTasks, (s) => s && s.changed);
-  }
-
-  static getChangedRules(tasks) {
-    const { toAdd, toUpdate, toRemove } = tasks;
-    return concat(toAdd, toRemove, toUpdate);
-  }
-
-  static hasModelChange(model, copyModel) {
-    return !angular.equals(model, copyModel);
-  }
-
   setRedirection(redirection) {
-    this.model.https_redirect.config.statusCode = redirection.value;
+    this.model.options.security.https_redirect.api.config.statusCode =
+      redirection.value;
   }
 
   setHstsMaxAge() {
-    this.model.hsts.config.ttl =
-      this.hstsMaxAgeValue * this.hstsMaxAgeUnit.value;
+    const { api } = this.model.options.security.hsts;
+    const { hstsMaxAgeValue, hstsMaxAgeUnit } = this;
+    const [number, decimal] = `${hstsMaxAgeValue}`.split('.');
+
+    if (number && decimal) {
+      this.hstsMaxAgeValue = CdnSharedSettingsController.getFormattedHstsNumber(
+        hstsMaxAgeValue,
+      );
+    }
+
+    api.config.ttl = this.hstsMaxAgeValue * hstsMaxAgeUnit.value;
   }
 
   handleHSTSUnit(unit) {
-    this.hstsMaxAgeValue = this.model.hsts?.config.ttl || 0 / unit.value;
+    const { api } = this.model.options.security.hsts;
+
+    this.hstsMaxAgeValue = CdnSharedSettingsController.getFormattedHstsNumber(
+      (api?.config.ttl || 0) / unit.value,
+    );
   }
 
   hasSecurityOptions(config) {
@@ -344,7 +467,82 @@ export default class CdnSharedSettingsController {
       this.cdnOptionTypeEnum.HSTS,
       this.cdnOptionTypeEnum.MIXED_CONTENT,
       this.cdnOptionTypeEnum.WAF,
-    ].some((key) => config[key]);
+    ].some((key) => config?.options.security[key].api);
+  }
+
+  getPrewarmQuotaUsage() {
+    const cucBytes = this.$filter('cucBytes');
+    const { usage, quota } = this.model.options.cache.prewarm.api.extra;
+
+    const convertUsage = cucBytes(usage || 0, undefined, false, 'B');
+    const convertQuota = cucBytes(quota, undefined, false, 'B');
+    const totalUsage = (((usage || 0) / quota) * 100).toFixed(2);
+
+    return `${convertUsage} / ${convertQuota} (${totalUsage}%)`;
+  }
+
+  onAdvancedFlushOptionChange(option) {
+    this.trackClick(`activate_${option.name}`);
+
+    this.displayChangeCdnOfferModal(this.model);
+  }
+
+  onPrewarmOptionClick() {
+    this.trackClick('prewarm::edit_urls');
+
+    this.displayPrewarmEditUrlsModal(this.model);
+  }
+
+  onPrewarmOptionChange(prewarmStatus) {
+    this.trackClick(`${prewarmStatus ? 'activate' : 'deactivate'}_prewarm`);
+  }
+
+  onQueryStringOptionChange(queryStringStatus) {
+    this.trackClick(
+      `${queryStringStatus ? 'activate' : 'deactivate'}_query_string`,
+    );
+  }
+
+  onQueryStringParamChange() {
+    this.trackClick(
+      `query_string::${this.model.options.cache.querystring.api.config.queryParameters}_parameter`,
+    );
+  }
+
+  onGeoLocationOptionChange(geoLocationStatus) {
+    this.trackClick(
+      `${
+        geoLocationStatus ? 'activate' : 'deactivate'
+      }_geolocation_http_header`,
+    );
+  }
+
+  onPrefetchOptionChange(prefetchStatus) {
+    this.trackClick(`${prefetchStatus ? 'activate' : 'deactivate'}_prefetch`);
+  }
+
+  onMobileRedirectOptionChange(mobileRedirectStatus) {
+    this.trackClick(
+      `${mobileRedirectStatus ? 'activate' : 'deactivate'}_mobile_redirect`,
+    );
+  }
+
+  onMobileRedirectStrategyChange() {
+    const { selected, api } = this.model.options.perf.mobile_redirect;
+    api.config.followUri =
+      selected === SHARED_CDN_OPTIONS.MOBILE_REDIRECT.KEEP_URL;
+
+    this.trackClick(`mobile_redirect::redirect_${selected}_url`);
+  }
+
+  openConfirmModal() {
+    const { rules, ...model } = this.model;
+    this.displayConfirmSettingsModal({
+      rules,
+      model,
+      oldModel: this.copyModel,
+    });
+    this.trackClick('apply-configuration');
   }
 
   onCancel() {

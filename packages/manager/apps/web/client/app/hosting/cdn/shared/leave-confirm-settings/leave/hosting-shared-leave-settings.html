@@ -36,7 +36,7 @@
             data-ng-bind="::rule.name"
         ></dd>
         <div data-ng-if="$ctrl.model.cors">
-            <dt><strong>CORS</strong></dt>
+            <dt><strong>Cross-Origin Resource Sharing (CORS)</strong></dt>
             <dd>
                 <span
                     data-ng-if="!$ctrl.model.cors.enabled"
@@ -58,20 +58,20 @@
             ></dd>
         </div>
         <div data-ng-if="$ctrl.model.hsts">
-            <dt><strong>HSTS</strong></dt>
+            <dt><strong>HTTP Strict Transport Security (HSTS)</strong></dt>
             <dd
                 data-ng-bind="$ctrl.model.hsts.enabled ? $ctrl.model.hsts.config.ttl : ('hosting_cdn_shared_state_disabled' | translate )"
             ></dd>
         </div>
         <div data-ng-if="$ctrl.model.mixed_content">
-            <dt><strong>Mixed Content</strong></dt>
+            <dt><strong>Mixed-Content</strong></dt>
             <dd
                 data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.mixed_content.enabled ? 'enable' : 'disabled') }}"
             ></dd>
         </div>
 
         <div data-ng-if="$ctrl.model.waf">
-            <dt><strong>WAF</strong></dt>
+            <dt><strong>Web Application Firewall (WAF)</strong></dt>
             <dd
                 data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.waf.enabled ? 'enable' : 'disabled') }}"
             ></dd>

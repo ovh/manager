@@ -5,6 +5,7 @@ export default {
   controller,
   template,
   bindings: {
+    user: '<',
     domainOptions: '<',
     cdnRange: '<',
     cdnDetails: '<',
@@ -18,6 +19,8 @@ export default {
     displayUpdateCacheRuleModal: '<',
     displayConfirmSettingsModal: '<',
     displayLeaveSettingsModal: '<',
+    displayChangeCdnOfferModal: '<',
+    displayPrewarmEditUrlsModal: '<',
     guideLinkHref: '<',
     hasSslForDomain: '<',
     openCorsList: '<',

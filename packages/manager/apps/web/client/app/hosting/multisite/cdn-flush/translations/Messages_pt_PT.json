@@ -1,0 +1,17 @@
+{
+  "hosting_multisite_cdn_flush_title": "Limpar a cache",
+  "hosting_multisite_cdn_flush_question_true": "Tem a certeza de que deseja limpar a cache da sua CDN para este domínio?",
+  "hosting_multisite_cdn_flush_question_false": "Tem a certeza de que deseja limpar a cache da sua CDN?",
+  "hosting_multisite_cdn_flush_success": "A sua cache CDN será eliminada dentro de alguns instantes.",
+  "hosting_multisite_cdn_flush_done_success": "A sua cache CDN foi limpa com sucesso.",
+  "hosting_multisite_cdn_flush_error": "Ocorreu um erro aquando do pedido de limpeza da cache CDN.",
+  "hosting_multisite_cdn_flush_domain": "Nome de domínio:",
+  "hosting_multisite_cdn_flush_purge_option_all": "Todo o site",
+  "hosting_multisite_cdn_flush_purge_option_folder": "Pasta",
+  "hosting_multisite_cdn_flush_purge_option_uri": "URI",
+  "hosting_multisite_cdn_flush_purge_option_extension": "Extensão",
+  "hosting_multisite_cdn_flush_purge_option_regex": "Expressão regular personalizada",
+  "hosting_multisite_cdn_flush_purge_field_value": "Valor",
+  "hosting_multisite_cdn_flush_cancel": "Cancelar",
+  "hosting_multisite_cdn_flush_validate": "Validar"
+}

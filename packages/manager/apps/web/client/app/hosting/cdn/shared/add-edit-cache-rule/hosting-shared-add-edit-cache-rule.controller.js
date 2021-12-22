@@ -1,18 +1,26 @@
 import find from 'lodash/find';
 import set from 'lodash/set';
-
+import clone from 'lodash/clone';
 import {
   SHARED_CDN_SETTINGS_RULE_FACTOR_DAY,
   SHARED_CDN_SETTINGS_RULE_FACTOR_HOUR,
   SHARED_CDN_SETTINGS_RULE_FACTOR_MINUTE,
-  SHARED_CDN_SETTINGS_RULE_CACHE_RULE_PATTERN_EXTENSION,
 } from '../hosting-cdn-shared-settings.constants';
+
+import {
+  RESOURCE_REGEX,
+  RESOURCE_TYPE_EXTENSION,
+  RESOURCE_TYPES_PLACEHOLDER,
+} from './hosting-shared-add-edit-cache-rule.constants';
 
 export default class {
   /* @ngInject */
   constructor($translate, HostingCdnSharedService) {
     this.$translate = $translate;
     this.HostingCdnSharedService = HostingCdnSharedService;
+    this.RESOURCE_REGEX = RESOURCE_REGEX;
+    this.RESOURCE_TYPE_EXTENSION = RESOURCE_TYPE_EXTENSION;
+    this.RESOURCE_TYPES_PLACEHOLDER = RESOURCE_TYPES_PLACEHOLDER;
 
     this.ruleModel = {
       name: null,
@@ -64,12 +72,14 @@ export default class {
     this.ruleModel.priority.min = 0;
     this.ruleModel.priority.max = this.priority.max;
     this.ruleModel.priority.value = this.priority.value;
+    this.ruleModel.patternType = this.RESOURCE_TYPE_EXTENSION;
     set(this.ruleModel, 'ttl.selected', this.ruleModel.ttl.units[0]);
   }
 
   initUpdateRuleModel() {
     this.ruleModel.name = this.rule.name;
     this.ruleModel.pattern = this.rule.pattern;
+    this.ruleModel.patternType = this.rule.config.patternType;
     this.ruleModel.ttl.selected = this.getSelectedTimeUnit(
       this.rule.config.ttl,
     );
@@ -97,38 +107,60 @@ export default class {
   }
 
   createRule() {
-    const { name, pattern, ttl, priority } = this.ruleModel;
-    return {
-      type: this.cdnOptionTypeEnum.CACHE_RULE,
-      name,
-      pattern,
-      enabled: true,
-      config: {
-        ttl: ttl.value * ttl.selected.factor,
-        priority: priority.value,
-        patternType: SHARED_CDN_SETTINGS_RULE_CACHE_RULE_PATTERN_EXTENSION,
+    const { name, pattern, ttl, priority, patternType } = this.ruleModel;
+
+    return this.HostingCdnSharedService.addNewOptionToDomain(
+      this.serviceName,
+      this.domainName,
+      {
+        type: this.cdnOptionTypeEnum.CACHE_RULE,
+        name,
+        pattern,
+        enabled: true,
+        config: {
+          ttl: ttl.value * ttl.selected.factor,
+          priority: priority.value,
+          patternType,
+        },
       },
-    };
+    );
   }
 
   updateRule(rule) {
-    const { name, pattern, ttl, priority } = this.ruleModel;
-    set(rule, 'name', name);
-    set(rule, 'pattern', pattern);
-    set(rule, 'config.ttl', ttl.value * ttl.selected.factor);
-    set(rule, 'config.priority', priority.value);
-    return rule;
+    this.trackClick(`create-rule::${this.ruleModel.patternType}::confirm`);
+
+    const { name, pattern, ttl, priority, patternType } = this.ruleModel;
+    const cRule = clone(rule);
+
+    set(cRule, 'pattern', pattern);
+    set(cRule, 'config.ttl', ttl.value * ttl.selected.factor);
+    set(cRule, 'config.priority', priority.value);
+    set(cRule, 'config.patternType', patternType);
+    delete cRule.name;
+
+    return this.HostingCdnSharedService.updateCDNDomainOption(
+      this.serviceName,
+      this.domainName,
+      name,
+      cRule,
+    );
   }
 
   validateRule() {
     if (this.addCacheRuleForm.$valid) {
-      if (!this.rule) {
-        this.trackClick('web::hosting::cdn::configure::create-rule::confirm');
-        this.callbacks.success(this.createRule());
-      } else {
-        this.callbacks.success(this.updateRule(this.rule));
-      }
-      this.goBack();
+      this.isPending = true;
+      const requestPromise = this.rule
+        ? this.updateRule(this.rule)
+        : this.createRule();
+
+      requestPromise
+        .then(({ data: rule }) => {
+          this.callbacks.success(rule);
+          this.goBack();
+        })
+        .finally(() => {
+          this.isPending = false;
+        });
     }
   }
 

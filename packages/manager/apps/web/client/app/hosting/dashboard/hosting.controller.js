@@ -7,6 +7,7 @@ import merge from 'lodash/merge';
 import set from 'lodash/set';
 import some from 'lodash/some';
 import union from 'lodash/union';
+import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
 
 export default class {
   /* @ngInject */
@@ -29,6 +30,7 @@ export default class {
     constants,
     availableOptions,
     cdnProperties,
+    cdnServiceInfo,
     cdnRange,
     coreURLBuilder,
     cronLink,
@@ -70,12 +72,17 @@ export default class {
     userLogsLink,
     HOSTING_STATUS,
     OVH_ORDER_URLS,
+    HOSTING_OPERATION_STATUS,
+    HOSTING_FLUSH_STATE,
   ) {
     this.$http = $http;
     this.$scope = $scope;
     this.$scope.cdnProperties = cdnProperties;
+    this.$scope.cdnServiceInfo = cdnServiceInfo;
     this.$scope.cdnRange = cdnRange;
     this.$scope.HOSTING_STATUS = HOSTING_STATUS;
+    this.$scope.HOSTING_OPERATION_STATUS = HOSTING_OPERATION_STATUS;
+    this.$scope.HOSTING_FLUSH_STATE = HOSTING_FLUSH_STATE;
     this.$scope.logs = logs;
     this.$rootScope = $rootScope;
     this.$location = $location;
@@ -291,8 +298,8 @@ export default class {
       }
     };
 
-    this.$scope.$on('hosting.cdn.flush.refresh', () => {
-      this.checkFlushCdnState();
+    this.$scope.$on('hosting.cdn.flush.refresh', (params, operation) => {
+      this.checkFlushCdnState(operation);
     });
 
     this.$scope.$on('$destroy', () => {
@@ -527,32 +534,94 @@ export default class {
     );
   }
 
-  // FLUSH CDN
-  checkFlushCdnState() {
-    this.$scope.flushCdnState = 'check';
-    this.Hosting.checkTaskUnique(
+  /**
+   * call this to execute right check function
+   * @param operation {Object}: operation object, like a task
+   * @returns {Promise}: task or operation promise
+   */
+  checkFlushCdnState(operation) {
+    const { cdnProperties } = this.$scope;
+    const { version } = cdnProperties || {};
+    const isV1Cdn = version === HOSTING_CDN_ORDER_CDN_VERSION_V1;
+
+    // No CDN subscribed
+    if (!cdnProperties) {
+      this.$scope.flushCdnState = this.$scope.HOSTING_FLUSH_STATE.OK;
+      return angular.noop();
+    }
+
+    // CDN v1 subscribed
+    if (isV1Cdn) {
+      return this.checkCdnV1Flush();
+    }
+
+    // CDN advanced(V2) subscribed
+    return this.checkCdnV2Flush(operation);
+  }
+
+  checkCdnV1Flush() {
+    this.$scope.flushCdnState = this.$scope.HOSTING_FLUSH_STATE.CHECK;
+
+    return this.Hosting.checkTaskUnique(
       this.$stateParams.productId,
-      'web/flushCache',
+      'cdn/flush',
     ).then((taskIds) => {
       if (taskIds && taskIds.length) {
-        this.$scope.flushCdnState = 'doing';
+        this.$scope.flushCdnState = this.$scope.HOSTING_FLUSH_STATE.DOING;
         this.$rootScope.$broadcast(this.Hosting.events.tasksChanged);
         this.Hosting.pollFlushCdn(this.$stateParams.productId, taskIds).then(
           () => {
-            this.$rootScope.$broadcast(this.Hosting.events.tasksChanged);
-            this.$scope.flushCdnState = 'ok';
-            this.Alerter.success(
-              this.$translate.instant(
-                'hosting_dashboard_cdn_flush_done_success',
-              ),
-              this.$scope.alerts.main,
-            );
+            this.displaySuccessFlushMessage();
           },
         );
       } else {
-        this.$scope.flushCdnState = 'ok';
+        this.$scope.flushCdnState = this.$scope.HOSTING_FLUSH_STATE.OK;
       }
     });
+  }
+
+  checkCdnV2Flush(operation) {
+    this.$scope.flushCdnState = this.$scope.HOSTING_FLUSH_STATE.CHECK;
+
+    return this.Hosting.checkSharedCdnOperations(
+      this.$stateParams.productId,
+      'domain_purge',
+    ).then((operations) => {
+      // To cover case where the cache is very low (quickly flushed)
+      // We have to check if the current operation was completed or not
+      const operationIsFinished = operations.all.some(({ id, status }) => {
+        return (
+          id === operation?.id &&
+          status === this.$scope.HOSTING_OPERATION_STATUS.DONE
+        );
+      });
+      if (operationIsFinished) this.displaySuccessFlushMessage();
+
+      // To cover active operations(inprogress) that are taken more time
+      if (operations.active.length) {
+        this.$scope.flushCdnState = this.$scope.HOSTING_FLUSH_STATE.DOING;
+        this.$rootScope.$broadcast(this.Hosting.events.tasksChanged);
+
+        this.Hosting.pollSharedFlushCdn(
+          this.$stateParams.productId,
+          operations.active.map(({ id }) => id),
+        ).then(() => {
+          this.$rootScope.$broadcast(this.Hosting.events.tasksChanged);
+          this.displaySuccessFlushMessage();
+        });
+      } else {
+        this.$scope.flushCdnState = this.$scope.HOSTING_FLUSH_STATE.OK;
+      }
+    });
+  }
+
+  displaySuccessFlushMessage() {
+    this.$rootScope.$broadcast(this.Hosting.events.tasksChanged);
+    this.$scope.flushCdnState = this.$scope.HOSTING_FLUSH_STATE.OK;
+    this.Alerter.success(
+      this.$translate.instant('hosting_dashboard_cdn_flush_done_success'),
+      this.$scope.alerts.main,
+    );
   }
 
   checkSqlPriveState() {
@@ -772,7 +841,7 @@ export default class {
         this.Alerter.error(err);
       })
       .then(() => this.handlePrivateDatabases())
-      .then(() => this.isCDNUpgradeAvailable())
+      .then(() => this.simulateUpgradeAvailability())
       .finally(() => {
         this.$scope.loadingHostingInformations = false;
       });
@@ -784,14 +853,14 @@ export default class {
     });
   }
 
-  isCDNUpgradeAvailable() {
+  simulateUpgradeAvailability() {
     const { serviceName } = this.$scope.hosting;
-    return this.HostingCdnSharedService.hasAvailableUpgrades(
+    return this.HostingCdnSharedService.simulateUpgrade(
       serviceName,
       this.$scope.hosting.serviceInfos.serviceId,
     )
-      .then((isUpgradeAvailable) => {
-        this.$scope.isUpgradable = isUpgradeAvailable;
+      .then(() => {
+        this.$scope.isUpgradable = true;
       })
       .catch(() => {
         this.$scope.isUpgradable = false;
