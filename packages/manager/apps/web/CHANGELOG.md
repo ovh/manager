@@ -1,3 +1,12 @@
+## [16.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.1.1...@ovh-ux/manager-web@16.1.2) (2021-12-22)
+
+
+### Bug Fixes
+
+* **hosting.multisite:** display cdn upgrade info ([#5962](https://github.com/ovh/manager/issues/5962)) ([bb77a01](https://github.com/ovh/manager/commit/bb77a015e795263e51313bdbc3c49cd4db670c68))
+
+
+
 ## [16.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.1.0...@ovh-ux/manager-web@16.1.1) (2021-12-14)
 
 
