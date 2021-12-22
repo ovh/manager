@@ -1,6 +1,6 @@
 import { buildEnumList } from '../../sva-wallet.constants';
 
-export default class ReadonlyIdentityController {
+export default class SpecialNumberFormController {
   /* @ngInject */
   constructor($translate, $http) {
     this.$translate = $translate;
