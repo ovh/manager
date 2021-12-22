@@ -138,5 +138,6 @@
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Quer iniciar um projeto?",
   "ovhManagerSupport_new_business_2": "Explique-nos aquilo de que precisa através do seguinte endereço:",
-  "ovhManagerSupport_new_business_3": "Os pedidos de assistência recebidos neste endereço não serão tratados."
+  "ovhManagerSupport_new_business_3": "Os pedidos de assistência recebidos neste endereço não serão tratados.",
+  "ovhManagerSupport_new_serviceType_managed_kafka_mirror_maker": "Public Cloud Databases for Kafka MirrorMaker"
 }
