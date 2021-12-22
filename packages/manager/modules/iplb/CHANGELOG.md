@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.2.6...@ovh-ux/manager-iplb@1.3.0) (2021-12-22)
+
+
+### Features
+
+* **hosting:** add new cdn advanced options ([#6175](https://github.com/ovh/manager/issues/6175)) ([2f080f1](https://github.com/ovh/manager/commit/2f080f175c23fefeaa79e690fbfa1c2a6f59c3ae))
+
+
+
 ## [1.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.2.5...@ovh-ux/manager-iplb@1.2.6) (2021-12-14)
 
 
