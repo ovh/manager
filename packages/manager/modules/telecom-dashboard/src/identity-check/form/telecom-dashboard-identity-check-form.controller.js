@@ -6,12 +6,16 @@ export default class IdentityCheckFormCtrl {
   constructor(
     $uibModal,
     $translate,
+    $state,
+    atInternet,
     coreConfig,
-    coreURLBuilder,
     ovhPaymentMethodHelper,
     IdentityCheckService,
     TucToast,
   ) {
+    this.$state = $state;
+    this.atInternet = atInternet;
+
     const { isValidIban, isValidBic } = ovhPaymentMethodHelper;
     const { name, firstname, address } = coreConfig.getUser();
 
@@ -29,7 +33,6 @@ export default class IdentityCheckFormCtrl {
     this.isCancelling = false;
     this.form = null;
     this.procedure = null;
-    this.telecomLink = coreURLBuilder.buildURL('telecom', '#/');
     this.model = {
       bic: '',
       iban: '',
@@ -40,6 +43,10 @@ export default class IdentityCheckFormCtrl {
   }
 
   $onInit() {
+    this.atInternet.trackPage({
+      name: 'telecom::telephony::account-validation',
+    });
+
     this.IdentityCheckService.getLastInProgressProcedure()
       .then((procedure) => {
         this.procedure = procedure;
@@ -57,6 +64,8 @@ export default class IdentityCheckFormCtrl {
   }
 
   createProcedure() {
+    this.trackClick('confirm');
+
     const { ownerFirstName, ownerLastName, ...data } = this.model;
 
     data.ownerName = `${ownerFirstName} ${ownerLastName}`;
@@ -79,6 +88,8 @@ export default class IdentityCheckFormCtrl {
   }
 
   cancelProcedure() {
+    this.trackClick('cancel-current-validation');
+
     const { id } = this.procedure ?? {};
 
     this.isCancelling = true;
@@ -119,8 +130,21 @@ export default class IdentityCheckFormCtrl {
       .catch(() => {});
   }
 
+  onCancelCreateProcedureForm() {
+    this.trackClick('cancel');
+    this.$state.go('telecom-dashboard');
+  }
+
   openProcedure() {
+    this.trackClick('download-pdf');
     const { pdfUrl } = this.procedure ?? {};
     window.open(pdfUrl);
+  }
+
+  trackClick(nameClick) {
+    this.atInternet.trackClick({
+      name: `telecom::telephony::account-validation::${nameClick}`,
+      type: 'action',
+    });
   }
 }
