@@ -16,8 +16,10 @@
   "telecom_dashboard_identity_check_form_download_pdf": "Télécharger le PDF en cours",
   "telecom_dashboard_identity_check_form_cancel_procedure": "Annuler la validation en cours et recommencer la demande",
   "telecom_dashboard_identity_check_form_confirm_title": "Confirmation de l’annulation",
-  "telecom_dashboard_identity_check_form_confirm_text": "Êtes-vous sûr de vouloir annuler la validation du compte de téléphonie en cours ?",
-  "telecom_dashboard_identity_check_form_cancel_success": "Votre demande d’annulation a bien été pris en compte. Veuillez procéder à une nouvelle demande de validation du compte téléphonie en complétant le formulaire ci-dessous.",
+  "telecom_dashboard_identity_check_form_confirm_text": "Êtes-vous sûr(e) de vouloir annuler la validation du compte de téléphonie en cours ?",
+  "telecom_dashboard_identity_check_form_confirm_validate": "Confirmer",
+  "telecom_dashboard_identity_check_form_confirm_cancel": "Annuler",
+  "telecom_dashboard_identity_check_form_cancel_success": "Votre demande d’annulation a bien été prise en compte. Veuillez procéder à une nouvelle demande de validation du compte téléphonie en complétant le formulaire ci-dessous.",
   "telecom_dashboard_identity_check_form_cancel_error": "Votre demande d’annulation n'a pas pu être prise en compte. Merci d'essayer ultérieurement.",
   "telecom_dashboard_identity_check_form_cancel_error_ongoing": "Un bon de commande est en cours, veuillez contacter le support pour toute demande de modification de votre procédure."
 }
