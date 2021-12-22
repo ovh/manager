@@ -1,3 +1,12 @@
+# [16.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.1.2...@ovh-ux/manager-web@16.2.0) (2021-12-22)
+
+
+### Features
+
+* **hosting:** add new cdn advanced options ([#6175](https://github.com/ovh/manager/issues/6175)) ([2f080f1](https://github.com/ovh/manager/commit/2f080f175c23fefeaa79e690fbfa1c2a6f59c3ae))
+
+
+
 ## [16.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.1.1...@ovh-ux/manager-web@16.1.2) (2021-12-22)
 
 
