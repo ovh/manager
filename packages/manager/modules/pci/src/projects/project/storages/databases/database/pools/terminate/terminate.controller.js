@@ -1,6 +1,6 @@
 import { TERMINATE_INPUT } from './terminate.constants';
 
-export default class {
+export default class PoolsTerminateController {
   /* @ngInject */
   constructor($translate, DatabaseService) {
     this.$translate = $translate;
@@ -17,6 +17,7 @@ export default class {
     this.trackDashboard('pools::entry_menu::delete_confirm', 'action');
     return this.DatabaseService.terminateConnectionPool(
       this.projectId,
+      this.database.engine,
       this.databaseId,
       this.pool.id,
     )

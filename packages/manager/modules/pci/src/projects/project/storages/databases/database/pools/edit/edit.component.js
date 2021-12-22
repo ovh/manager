@@ -1,17 +1,17 @@
-import controller from './terminate.controller';
-import template from './terminate.html';
+import template from './edit.html';
+import controller from './edit.controller';
 
-const component = {
+export default {
   bindings: {
     projectId: '<',
     database: '<',
     databaseId: '<',
     pool: '<',
+    postgresDatabases: '<',
+    users: '<',
     goBack: '<',
     trackDashboard: '<',
   },
-  template,
   controller,
+  template,
 };
-
-export default component;

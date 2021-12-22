@@ -11,7 +11,7 @@
                 ></dt>
                 <dd
                     class="col-sm-9 my-auto"
-                    data-ng-bind="$ctrl.pool.database?.name"
+                    data-ng-bind="$ctrl.pool.database.name"
                 ></dd>
             </div>
             <div class="row my-2 py-2 border-top">
@@ -34,32 +34,38 @@
                     data-ng-bind="$ctrl.database.sslMode"
                 ></dd>
             </div>
-            <div class="row my-2 py-2 border-top">
-                <div class="font-weight-bold copy-clipboard ml-3">
+            <div class="my-2 py-2 border-top">
+                <dt>
                     <span
+                        class="d-inline-block align-middle font-weight-bold"
                         data-translate="pci_databases_pools_information_certificate_ca"
                     ></span>
-                    <span
-                        ng-click="$ctrl.downloadCertificate(database)"
-                        class="oui-icon oui-icon-download_concept"
-                        aria-hidden="true"
-                    ></span>
+                    <button
+                        type="button"
+                        class="oui-button float-right"
+                        aria-label="{{:: 'pci_databases_pools_information_certificate_ca_download' | translate }}"
+                        data-ng-click="$ctrl.downloadCertificate($ctrl.database)"
+                    >
+                        <span
+                            class="oui-icon oui-icon-download_concept font-weight-bold"
+                            aria-hidden="true"
+                        ></span>
+                    </button>
+                </dt>
+                <dd class="mt-2">
                     <oui-clipboard
-                        class="w-75"
                         model="$ctrl.database.certificate.ca"
                     ></oui-clipboard>
-                </div>
+                </dd>
             </div>
-            <div class="row my-2 py-2 border-top">
-                <div class="font-weight-bold copy-clipboard ml-3">
-                    <p
-                        data-translate="pci_databases_pools_information_service_uri"
-                    ></p>
-                    <oui-clipboard
-                        class="w-75"
-                        model="$ctrl.pool.uri"
-                    ></oui-clipboard>
-                </div>
+            <div class="my-2 py-2 border-top">
+                <dt
+                    class="font-weight-bold"
+                    data-translate="pci_databases_pools_information_service_uri"
+                ></dt>
+                <dd class="mt-2">
+                    <oui-clipboard model="$ctrl.pool.uri"></oui-clipboard>
+                </dd>
             </div>
             <div class="row my-2 py-2 border-top">
                 <dt

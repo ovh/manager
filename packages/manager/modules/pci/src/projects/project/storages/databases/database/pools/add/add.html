@@ -1,15 +1,19 @@
-<form name="addEditPool" ng-submit="$ctrl.addOrEditPool()">
+<form name="addPool" ng-submit="$ctrl.addPool()">
     <oui-modal
         data-primary-label="{{ ::'pci_databases_pools_add_pool_confirm' | translate }}"
-        data-primary-disabled="!addEditPool.$valid"
-        data-secondary-action="$ctrl.cancelAddOrEditPool()"
+        data-primary-disabled="!addPool.$valid"
+        data-secondary-action="$ctrl.cancelAddPool()"
         data-secondary-label="{{ ::'pci_databases_pools_add_pool_cancel' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
-        data-heading="{{:: ($ctrl.updatePool ? 'pci_databases_pools_modify_pool_title' : 'pci_databases_pools_add_pool_title') | translate}}"
+        data-heading="{{:: 'pci_databases_pools_add_pool_title' | translate}}"
         data-loading="$ctrl.isLoading"
     >
         <oui-field
             data-label="{{:: 'pci_databases_pools_add_pool_name' | translate }}"
+            data-error-messages="{
+                required: ('pci_databases_pools_add_pool_name_required_error' | translate),
+                pattern: ('pci_databases_pools_add_pool_name_pattern_error' | translate)
+            }"
         >
             <input
                 class="oui-input"
@@ -18,7 +22,6 @@
                 data-ng-model="$ctrl.poolData.name"
                 data-ng-pattern="$ctrl.POOL_VALIDATION.NAME_PATTERN"
                 required
-                datang-disabled="$ctrl.updatePool"
             />
         </oui-field>
         <oui-field

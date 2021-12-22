@@ -6,5 +6,5 @@
   "pci_databases_pools_terminate_cancel": "Annuler",
   "pci_databases_pools_terminate_confirm": "Confirmer",
   "pci_databases_pools_terminate_success": "Votre Pool {{name}} a été supprimé avec succès.",
-  "pci_databases_pools_terminate_error": "Un erreur est survenue lors de la suppression de votre pool {{name}: {{message}}}"
+  "pci_databases_pools_terminate_error": "Une erreur est survenue lors de la suppression de votre pool {{name}} : {{message}}"
 }

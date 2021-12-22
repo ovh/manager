@@ -7,8 +7,6 @@ import '@ovh-ux/ui-kit';
 import informationComponent from './information.component';
 import routing from './information.routing';
 
-import './index.scss';
-
 const moduleName = 'ovhManagerPciStoragesDatabasePoolsInformation';
 
 angular

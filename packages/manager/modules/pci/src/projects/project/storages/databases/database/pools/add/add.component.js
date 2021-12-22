@@ -1,11 +1,11 @@
-import template from './add-edit.html';
-import controller from './add-edit.controller';
+import template from './add.html';
+import controller from './add.controller';
 
 export default {
   bindings: {
     projectId: '<',
+    database: '<',
     databaseId: '<',
-    pool: '<',
     postgresDatabases: '<',
     users: '<',
     goBack: '<',

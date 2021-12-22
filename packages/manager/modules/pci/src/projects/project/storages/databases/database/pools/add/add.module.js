@@ -4,10 +4,10 @@ import 'angular-translate';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
 
-import addEditComponent from './add-edit.component';
-import routing from './add-edit.routing';
+import addComponent from './add.component';
+import routing from './add.routing';
 
-const moduleName = 'ovhManagerPciStoragesDatabasePoolsAddEdit';
+const moduleName = 'ovhManagerPciStoragesDatabasePoolsAdd';
 
 angular
   .module(moduleName, [
@@ -17,10 +17,7 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component(
-    'ovhManagerPciStoragesDatabasePoolsAddEditComponent',
-    addEditComponent,
-  )
+  .component('ovhManagerPciStoragesDatabasePoolsAddComponent', addComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
