@@ -7,5 +7,6 @@
   "hosting_multisite_statistics_period_week": "Tydzień",
   "hosting_multisite_statistics_period_month": "Miesiąc",
   "hosting_multisite_statistics_period_year": "Rok",
-  "hosting_multisite_statistics_loading_error": "Wystąpił błąd podczas pobierania statystyk."
+  "hosting_multisite_statistics_loading_error": "Wystąpił błąd podczas pobierania statystyk.",
+  "hosting_multisite_statistics_upgrade_info": "Zaktualizuj opcję CDN, aby wyświetlać statystyki usługi CDN"
 }

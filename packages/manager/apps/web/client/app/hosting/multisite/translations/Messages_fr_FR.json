@@ -8,5 +8,6 @@
   "hosting_multisite_statistics_period_week": "Semaine",
   "hosting_multisite_statistics_period_month": "Mois",
   "hosting_multisite_statistics_period_year": "Année",
-  "hosting_multisite_statistics_loading_error": "Une erreur est survenue lors de la récupération des statistiques"
+  "hosting_multisite_statistics_loading_error": "Une erreur est survenue lors de la récupération des statistiques",
+  "hosting_multisite_statistics_upgrade_info": "Mettez à jour votre option CDN pour voir les statistiques de votre CDN"
 }
