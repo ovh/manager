@@ -85,10 +85,16 @@
                                     >
                                     </span>
                                 </p>
-                                <p
-                                    data-ng-switch-when="PAYPAL"
-                                    data-translate="billing_payment_method_add_selected_paypal_redirect"
-                                ></p>
+                                <p data-ng-switch-when="PAYPAL">
+                                    <span
+                                        data-ng-if="$ctrl.coreConfig.isRegion('US')"
+                                        data-translate="billing_payment_method_add_selected_paypal_redirect_US"
+                                    ></span>
+                                    <span
+                                        data-ng-if="!$ctrl.coreConfig.isRegion('US')"
+                                        data-translate="billing_payment_method_add_selected_paypal_redirect"
+                                    ></span>
+                                </p>
                             </div>
                         </ovh-payment-method-register-explanation-text>
                     </ovh-payment-method-register>

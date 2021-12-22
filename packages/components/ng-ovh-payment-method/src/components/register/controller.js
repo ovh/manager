@@ -16,14 +16,15 @@ import {
   DEFAULT_ORDERED_PAYMENT_METHOD_TYPES,
   DEFAULT_SELECTED_PAYMENT_METHOD_TYPE,
   FALLBACK_IMAGES,
+  PAYPAL_PAYMENT_METHOD,
 } from './constants';
 
 export default class OvhPaymentMethodRegisterCtrl {
   /* @ngInject */
-  constructor(ovhPaymentMethod, ovhPaymentMethodHelper) {
+  constructor(ovhPaymentMethod, ovhPaymentMethodHelper, coreConfig) {
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
-
+    this.coreConfig = coreConfig;
     // other attributes used in view
     this.loading = {
       init: false,
@@ -33,6 +34,7 @@ export default class OvhPaymentMethodRegisterCtrl {
       list: null,
       chunks: null,
     };
+    this.PAYPAL_PAYMENT_METHOD = PAYPAL_PAYMENT_METHOD;
   }
 
   /* =====================================
