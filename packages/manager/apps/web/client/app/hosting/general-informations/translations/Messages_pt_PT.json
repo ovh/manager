@@ -1,4 +1,8 @@
 {
   "hosting_dashboard_useful_links": "Ligações úteis",
-  "hosting_dashboard_useful_links_user_logs": "Website Statistics"
+  "hosting_dashboard_useful_links_user_logs": "Website Statistics",
+  "hosting_dashboard_general_informations_cdn_banner": "A opção Shared CDN para os seus alojamentos evolui! Estão disponíveis novas funcionalidades.",
+  "hosting_dashboard_general_informations_cdn_banner_cta": "Migrar a sua CDN",
+  "hosting_dashboard_config_tile_options_cdn_cancel_terminate": "Rescisão prevista a {{ endEngagementDate }}",
+  "hosting_dashboard_config_tile_options_cdn_cancel_terminate_link": "Anular rescisão"
 }

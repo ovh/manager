@@ -1,0 +1,8 @@
+{
+  "hosting_cdn_cancel_terminate_title": "Annulla la disattivazione del servizio CDN",
+  "hosting_cdn_cancel_terminate_question": "Vuoi annullare la disattivazione del servizio CDN?",
+  "hosting_cdn_cancel_terminate_success": "La richiesta di annullamento della disattivazione è stata presa in carico.",
+  "hosting_cdn_cancel_terminate_error": "Si è verificato un errore durante l'annullamento della disattivazione della CDN: {{ message }}",
+  "hosting_cdn_cancel_terminate_action_validate": "Conferma",
+  "hosting_cdn_cancel_terminate_action_cancel": "Annulla"
+}

@@ -1,3 +1,5 @@
+import { SETTING_BASE_TRACKING_HIT } from '../../hosting-cdn-shared-settings.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting.dashboard.cdn.shared.confirmSettings', {
     url: '',
@@ -28,6 +30,7 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
           ),
         ),
+
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
 
       model: /* @ngInject */ ($transition$) => $transition$.params().model,
@@ -44,7 +47,7 @@ export default /* @ngInject */ ($stateProvider) => {
       rules: /* @ngInject */ ($transition$) => $transition$.params().rules,
     },
     atInternet: {
-      rename: 'web::hosting::cdn::configure::apply-configuration',
+      rename: `${SETTING_BASE_TRACKING_HIT}::apply-configuration`,
     },
   });
 };

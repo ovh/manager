@@ -1,0 +1,10 @@
+{
+  "hosting_cdn_terminate_title": "Kündigung des CDN-Dienstes",
+  "hosting_cdn_terminate_question_part_1": "Möchten Sie den CDN-Dienst bei Auslaufen Ihres Abonnements kündigen?",
+  "hosting_cdn_terminate_question_part_2": "{{ endEngagementDate }}",
+  "hosting_cdn_terminate_success": "Ihr CDN-Dienst wird am {{ endEngagementDate }} gekündigt.",
+  "hosting_cdn_terminate_success_link": "Den Vorgang abbrechen.",
+  "hosting_cdn_terminate_error": "Bei der Kündigung des CDN ist ein Fehler aufgetreten.",
+  "hosting_cdn_terminate_action_delete": "Kündigen",
+  "hosting_cdn_terminate_action_cancel": "Abbrechen"
+}

@@ -1,0 +1,8 @@
+{
+  "hosting_cdn_cancel_terminate_title": "Undo the CDN service cancellation",
+  "hosting_cdn_cancel_terminate_question": "Do you want to undo the CDN service cancellation?",
+  "hosting_cdn_cancel_terminate_success": "The cancellation undo request has been processed.",
+  "hosting_cdn_cancel_terminate_error": "An error has occurred undoing the CDN cancellation: {{message}}",
+  "hosting_cdn_cancel_terminate_action_validate": "Confirm",
+  "hosting_cdn_cancel_terminate_action_cancel": "Cancel"
+}

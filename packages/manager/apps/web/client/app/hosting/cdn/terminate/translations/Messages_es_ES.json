@@ -1,0 +1,10 @@
+{
+  "hosting_cdn_terminate_title": "Baja del servicio CDN",
+  "hosting_cdn_terminate_question_part_1": "¿Seguro que quiere dar de baja el servicio CDN al finalizar la suscripción?",
+  "hosting_cdn_terminate_question_part_2": "Fin de la suscripción: {{ endEngagementDate }}",
+  "hosting_cdn_terminate_success": "Su servicio CDN se dará de baja el {{ endEngagementDate }}.",
+  "hosting_cdn_terminate_success_link": "Cancelar la operación.",
+  "hosting_cdn_terminate_error": "Se ha producido un error al dar de baja el servicio CDN.",
+  "hosting_cdn_terminate_action_delete": "Dar de baja",
+  "hosting_cdn_terminate_action_cancel": "Cancelar"
+}

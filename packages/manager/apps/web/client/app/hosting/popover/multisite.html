@@ -44,7 +44,7 @@
         class="d-block"
         data-on-click="settingCdnDomain(domain)"
         data-disabled="domain.status !== HOSTING_STATUS.CREATED"
-        data-ng-if="domain.cdn === 'ACTIVE' && cdnProperties.version === 'cdn-hosting'"
+        data-ng-if="domain.cdn === CDN_STATUS.ACTIVE && cdnProperties.version === CDN_VERSION.CDN_HOSTING"
     >
         <span
             data-translate="hosting_tab_DOMAINS_table_popover_modify_cdn"
@@ -58,5 +58,14 @@
         data-on-click="restartDomain(domain)"
     >
         <span data-translate="hosting_tab_DOMAINS_table_popover_restart"></span>
+    </oui-button>
+    <oui-button
+        data-variant="link"
+        class="d-block"
+        data-ng-if="domain.cdn === CDN_STATUS.ACTIVE"
+        data-disabled="domain.status !== HOSTING_STATUS.CREATED"
+        data-on-click="goToFlushCdn(domain)"
+    >
+        <span data-translate="hosting_tab_DOMAINS_table_popover_purge"></span>
     </oui-button>
 </div>

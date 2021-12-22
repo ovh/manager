@@ -149,8 +149,7 @@
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg": "L’option Shared CDN pour vos hébergements évolue ! De nouvelles fonctionnalités sont disponibles.",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg_link_upgrade": "Migrer votre CDN",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_badge_new": "Nouveau",
-  "hosting_dashboard_service_cdn_customer_has_no_cdn_banner_msg": "L’option Shared CDN permet d’améliorer les performances de votre site tout en vous apportant plus de souplesse d’utilisation.",
-  "hosting_dashboard_service_cdn_customer_has_no_cdn_banner_msg_link": "En savoir plus",
+  "hosting_dashboard_service_cdn_customer_has_cdn_v1_new_offers": "OVHcloud vous recommande les nouvelles offres CDN",
   "hosting_dashboard_service_web": "Sites web",
   "hosting_dashboard_service_privatesql": "Base de données privée",
   "hosting_dashboard_service_privatesql_more": "Voir la liste",
@@ -238,10 +237,6 @@
   "hosting_dashboard_cdn_flush_done_success": "Votre cache CDN a été vidé avec succès.",
   "hosting_dashboard_cdn_flush_error": "Une erreur est survenue lors de la demande du nettoyage du cache CDN.",
   "hosting_dashboard_service_flush_cdn_doing": "Nettoyage en cours...",
-  "hosting_dashboard_service_terminate_cdn_question": "Êtes-vous sûr de vouloir résilier le service CDN ?",
-  "hosting_dashboard_service_terminate_cdn_title": "Résiliation du service CDN",
-  "hosting_dashboard_service_terminate_cdn_success": "Votre demande de résiliation de CDN a été prise en compte. Un e-mail contenant la procédure de fermeture vous sera envoyé.",
-  "hosting_dashboard_service_terminate_cdn_error": "Une erreur est survenue lors de la résiliation du CDN.",
   "hosting_dashboard_service_terminate_email_title": "Résiliation de l'option e-mail",
   "hosting_dashboard_service_terminate_email_question": "Êtes-vous sûr de vouloir résilier l'option e-mail ?",
   "hosting_dashboard_service_terminate_email_question_domain": "Êtes-vous sûr de vouloir résilier l'option e-mail associée au domaine <strong>{{ domain }}</strong> ?",
@@ -1377,8 +1372,5 @@
   "hosting_dashboard_service_common_inactive": "Inactif",
   "hosting_dashboard_email_offer_get_error": "Impossible de récupérer l'adresse e-mail",
   "hosting_dashboard_stats_status": "Bêta",
-  "hosting_dashboard_service_setting_cdn": "Paramétrer le CDN",
-  "hosting_dashboard_tabs_dropdown": "Plus",
-  "hosting_dashboard_service_cdn_customer_has_no_cdn_banner_msg": "L’option Shared CDN permet d’améliorer les performances de votre site tout en vous apportant plus de souplesse d’utilisation.",
-  "hosting_dashboard_service_cdn_customer_has_no_cdn_banner_msg_link": "En savoir plus"
+  "hosting_dashboard_tabs_dropdown": "Plus"
 }

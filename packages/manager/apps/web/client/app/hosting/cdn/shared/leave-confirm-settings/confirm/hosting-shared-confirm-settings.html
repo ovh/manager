@@ -4,7 +4,6 @@
     primary-label="{{:: 'hosting_cdn_shared_modal_confirm_btn_validate' | translate }}"
     secondary-action="$ctrl.goBack()"
     secondary-label="{{:: 'hosting_cdn_shared_modal_confirm_btn_cancel' | translate }}"
-    type="info"
     on-dismiss="$ctrl.goBack()"
     loading="$ctrl.loading"
 >
@@ -14,61 +13,72 @@
     ></div>
 
     <dl class="oui-description oui-description_horizontal">
-        <dt><strong>Always online</strong></dt>
-        <dd
-            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.alwaysOnline.enabled ? 'enable' : 'disabled') }}"
-        ></dd>
-        <dt><strong>HTTP/2</strong></dt>
-        <dd
-            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.http.enabled ? 'enable' : 'disabled') }}"
-        ></dd>
-        <dt><strong>Devmode</strong></dt>
-        <dd
-            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.devmode.enabled ? 'enable' : 'disabled') }}"
-        ></dd>
-        <dt><strong>Brotli</strong></dt>
-        <dd
-            data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.brotli.enabled ? 'enable' : 'disabled') }}"
-        ></dd>
-        <div data-ng-if="$ctrl.model.cors">
-            <dt><strong>CORS</strong></dt>
+        <!--PERF OPTIONS-->
+        <p class="mt-3 mb-0">Options de perf</p>
+        <div
+            class="ml-2"
+            data-ng-repeat="(perfKey, perfOption) in $ctrl.model.options.perf track by $index"
+        >
+            <dt>
+                <strong
+                    data-ng-bind=":: ('hosting_cdn_shared_modal_confirm_option_' + perfKey) | translate"
+                >
+                </strong>
+            </dt>
+            <dd
+                data-ng-bind=":: $ctrl.constructor.getOptionStatusKey(perfOption) | translate"
+            ></dd>
+        </div>
+
+        <!--CACHE OPTIONS-->
+        <p class="mt-3 mb-0">Options de cache</p>
+        <div
+            class="ml-2"
+            data-ng-repeat="(cacheKey, cacheOption) in $ctrl.model.options.cache track by $index"
+            data-ng-if="cacheOption.isDisplayableStatus !== false"
+        >
+            <dt>
+                <strong
+                    data-ng-bind=":: ('hosting_cdn_shared_modal_confirm_option_' + cacheKey) | translate"
+                >
+                </strong>
+            </dt>
+            <dd
+                data-ng-bind=":: $ctrl.constructor.getOptionStatusKey(cacheOption) | translate"
+            ></dd>
+        </div>
+
+        <!--SECURITY OPTIONS-->
+        <p class="mt-3 mb-0">Options de securité</p>
+        <div class="ml-2" data-ng-if="$ctrl.model.options.security.cors.api">
+            <dt><strong>Cross-Origin Resource Sharing (CORS)</strong></dt>
             <dd>
                 <span
-                    data-ng-if="!$ctrl.model.cors.enabled"
+                    data-ng-if="!$ctrl.model.options.security.cors.api.enabled"
                     data-translate="hosting_cdn_shared_state_disabled"
                 ></span>
                 <span
-                    data-ng-if="$ctrl.model.cors.enabled"
-                    data-ng-repeat="origin in ::$ctrl.constructor.getCorsOriginsList($ctrl.model.cors.config.origins) track by origin"
+                    data-ng-if="$ctrl.model.options.security.cors.api.enabled"
+                    data-ng-repeat="origin in ::$ctrl.constructor.getCorsOriginsList($ctrl.model.options.security.cors.api.config.origins) track by origin"
                 >
                     <span data-ng-bind="::origin"></span>
                     <span data-ng-if="!$last">, </span>
                 </span>
             </dd>
         </div>
-        <div data-ng-if="$ctrl.model.https_redirect">
-            <dt><strong>HTTPS-Redirect</strong></dt>
+        <div
+            class="ml-2"
+            data-ng-repeat="(securityKey, securityOption) in $ctrl.model.options.security track by $index"
+            data-ng-if="securityKey !== 'cors'"
+        >
+            <dt>
+                <strong
+                    data-ng-bind=":: ('hosting_cdn_shared_modal_confirm_option_' + securityKey) | translate"
+                >
+                </strong>
+            </dt>
             <dd
-                data-ng-bind="$ctrl.model.https_redirect.enabled ? $ctrl.model.https_redirect.config.statusCode : ('hosting_cdn_shared_state_disabled' | translate )"
-            ></dd>
-        </div>
-        <div data-ng-if="$ctrl.model.hsts">
-            <dt><strong>HSTS</strong></dt>
-            <dd
-                data-ng-bind="$ctrl.model.hsts.enabled ? $ctrl.model.hsts.config.ttl : ('hosting_cdn_shared_state_disabled' | translate )"
-            ></dd>
-        </div>
-        <div data-ng-if="$ctrl.model.mixed_content">
-            <dt><strong>Mixed Content</strong></dt>
-            <dd
-                data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.mixed_content.enabled ? 'enable' : 'disabled') }}"
-            ></dd>
-        </div>
-
-        <div data-ng-if="$ctrl.model.waf">
-            <dt><strong>WAF</strong></dt>
-            <dd
-                data-translate="{{:: 'hosting_cdn_shared_state_' + ($ctrl.model.waf.enabled ? 'enable' : 'disabled') }}"
+                data-ng-bind=":: $ctrl.constructor.getOptionStatusKey(securityOption) | translate"
             ></dd>
         </div>
     </dl>

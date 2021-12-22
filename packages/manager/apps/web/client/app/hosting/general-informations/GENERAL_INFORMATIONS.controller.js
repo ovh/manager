@@ -1,11 +1,12 @@
 import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
-import get from 'lodash/get';
 
-import { QUOTA_DECIMAL_PRECISION } from './general-informations.constants';
+import {
+  CDN_ADVANCED,
+  QUOTA_DECIMAL_PRECISION,
+} from './general-informations.constants';
 import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
-import { SHARED_CDN_GET_MORE_INFO } from '../cdn/shared/hosting-cdn-shared-settings.constants';
 
 export default class HostingGeneralInformationsCtrl {
   /* @ngInject */
@@ -54,12 +55,17 @@ export default class HostingGeneralInformationsCtrl {
     this.hostingSSLCertificate = hostingSSLCertificate;
     this.OvhApiScreenshot = OvhApiScreenshot;
     this.user = user;
+
+    this.CDN_ADVANCED = CDN_ADVANCED;
+    this.CDN_VERSION_V1 = HOSTING_CDN_ORDER_CDN_VERSION_V1;
   }
 
   $onInit() {
     this.atInternet.trackPage({ name: 'web::hosting' });
 
     this.serviceName = this.$stateParams.productId;
+    this.isCdnInDeleteAtExpiration =
+      this.$scope.cdnServiceInfo?.renew.mode === 'deleteAtExpiration';
     this.defaultRuntime = null;
     this.availableOffers = [];
     this.contactManagementLink = this.coreConfig.isRegion('EU')
@@ -263,25 +269,6 @@ export default class HostingGeneralInformationsCtrl {
     });
   }
 
-  getCDNBannerKeyToTranslate() {
-    if (
-      get(this.$scope.cdnProperties, 'version') ===
-      HOSTING_CDN_ORDER_CDN_VERSION_V1
-    ) {
-      return 'hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg';
-    }
-
-    if (get(this.$scope.hosting, 'hasCdn') === false) {
-      return 'hosting_dashboard_service_cdn_customer_has_no_cdn_banner_msg';
-    }
-
-    return null;
-  }
-
-  getCDNMoreInfoLink() {
-    return SHARED_CDN_GET_MORE_INFO[this.$scope.ovhSubsidiary];
-  }
-
   goToOrderOrUpgrade() {
     this.sendTrackClick('web::hosting::alert::order-cdn');
     return this.$state.go(
@@ -309,9 +296,25 @@ export default class HostingGeneralInformationsCtrl {
     this.$state.go('app.hosting.dashboard.cdn.upgrade');
   }
 
-  terminateCdn(action) {
-    this.sendTrackClick('web::hosting::terminate-cdn');
-    this.$scope.setAction(action);
+  terminateCdn() {
+    this.sendTrackClick('web::hosting::cdn::terminate');
+
+    this.$state.go('app.hosting.dashboard.general-informations.cdn-terminate', {
+      alerts: this.$scope.alerts,
+      cdnServiceInfo: this.$scope.cdnServiceInfo,
+    });
+  }
+
+  onCancelTerminateCdn() {
+    this.sendTrackClick('web::hosting::cdn::cancel-terminate');
+
+    return this.$state.go(
+      'app.hosting.dashboard.general-informations.cdn-cancel-terminate',
+      {
+        alerts: this.$scope.alerts,
+        cdnServiceInfo: this.$scope.cdnServiceInfo,
+      },
+    );
   }
 
   flushCdn(action) {
@@ -344,10 +347,6 @@ export default class HostingGeneralInformationsCtrl {
     const { nichandle } = this.user;
 
     return [contactAdmin, contactBilling].includes(nichandle);
-  }
-
-  onMoreInfoLinkClicked() {
-    this.sendTrackClick('web::hosting::alert::cdn-more-info');
   }
 
   sendTrackClick(hit) {

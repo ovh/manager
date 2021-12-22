@@ -7,7 +7,7 @@ export default {
   bindings: {
     applyChanges: '<',
     goBack: '<',
-    goToHosting: '<',
+    goToMultisite: '<',
     model: '<',
     oldModel: '<',
     refresh: '<',

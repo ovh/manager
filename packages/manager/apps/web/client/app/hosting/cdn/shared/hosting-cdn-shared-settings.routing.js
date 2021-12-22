@@ -1,3 +1,5 @@
+import { SETTING_BASE_TRACKING_HIT } from './hosting-cdn-shared-settings.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting.dashboard.cdn.shared', {
     url: '/shared/settings/:domainName',
@@ -67,6 +69,16 @@ export default /* @ngInject */ ($stateProvider) => {
           model: params,
         }),
 
+      displayChangeCdnOfferModal: /* @ngInject */ ($state) => (model) =>
+        $state.go('app.hosting.dashboard.cdn.shared.cdn-change-offer', {
+          model,
+        }),
+
+      displayPrewarmEditUrlsModal: /* @ngInject */ ($state) => (model) =>
+        $state.go('app.hosting.dashboard.cdn.shared.edit-urls', {
+          model,
+        }),
+
       openCorsList: /* @ngInject */ ($state) => (cors) =>
         $state.go('app.hosting.dashboard.cdn.shared.cors', {
           cors,
@@ -99,9 +111,9 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
           ),
 
-      trackClick: /* @ngInject */ (atInternet) => (hit) => {
+      trackClick: /* @ngInject */ (atInternet) => (hitPrefix) => {
         atInternet.trackClick({
-          name: hit,
+          name: `${SETTING_BASE_TRACKING_HIT}::${hitPrefix}`,
           type: 'action',
         });
       },
@@ -110,7 +122,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('hosting_cdn_shared_breadcrumb'),
     },
     atInternet: {
-      rename: 'web::hosting::cdn::configure',
+      rename: SETTING_BASE_TRACKING_HIT,
     },
   });
 };

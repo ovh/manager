@@ -1,6 +1,9 @@
 export default class HostingCdnOrderCtrl {
   $onInit() {
     this.workflowOptions.getPlanCode = () => this.getPlanCode();
+
+    // Preselect CDN Advanced
+    this.cdnPlanCode = this.planToPreselect;
   }
 
   getPlanCode() {

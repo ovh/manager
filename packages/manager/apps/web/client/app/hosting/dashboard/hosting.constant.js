@@ -11,6 +11,13 @@ angular
       START_10_M: 'START_10_M',
     },
   })
+  .constant('HOSTING_OPERATION_STATUS', {
+    TODO: 'todo',
+    DOING: 'doing',
+    DONE: 'done',
+    ERROR: 'error',
+    CANCELLED: 'cancelled',
+  })
   .constant('HOSTING_RUNTIME', {
     NODE: 'nodejs',
     PHP: 'phpfpm',
@@ -34,4 +41,9 @@ angular
     'PERSO',
     'PRO',
     'START',
-  ]);
+  ])
+  .constant('HOSTING_FLUSH_STATE', {
+    OK: 'ok',
+    CHECK: 'check',
+    DOING: 'doing',
+  });

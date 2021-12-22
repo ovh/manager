@@ -134,11 +134,12 @@ export default class HostingCdnSharedService {
    * Flush cache content on CDN for a domain
    * @param {string} serviceName: The internal name of your hosting
    * @param {string} domainName: Domain for which the details is required
+   * @param {string} queryParams: purge query params
    * @returns {*}
    */
-  flushCDNDomainCache(serviceName, domainName) {
+  flushCDNDomainCache(serviceName, domainName, queryParams) {
     return this.$http.post(
-      `/hosting/web/${serviceName}/cdn/domain/${domainName}/purge`,
+      `/hosting/web/${serviceName}/cdn/domain/${domainName}/purge?${queryParams}`,
     );
   }
 
@@ -213,7 +214,7 @@ export default class HostingCdnSharedService {
    * @param {string} serviceName: product name
    * @returns {*}
    */
-  hasAvailableUpgrades(serviceName, parentServiceId) {
+  simulateUpgrade(serviceName, parentServiceId) {
     const data = { serviceId: null };
     return this.ovhManagerProductOffersActionService
       .getAvailableOptions(parentServiceId)
@@ -227,9 +228,23 @@ export default class HostingCdnSharedService {
           serviceId,
         );
       })
-      .then((upgrades) =>
-        upgrades.some(({ planCode }) => !planCode.includes('business')),
-      );
+      .then((upgrades) => {
+        data.addonPlan = find(
+          upgrades,
+          ({ planCode }) =>
+            !planCode.includes('business') && !planCode.includes('advanced'),
+        );
+        return this.simulateCartForUpgrade(
+          serviceName,
+          data.addonPlan,
+          data.serviceId,
+        );
+      })
+      .then((simulate) => ({
+        cart: simulate.order,
+        addonPlan: data.addonPlan,
+        serviceId: data.serviceId,
+      }));
   }
 
   /**

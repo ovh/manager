@@ -10,7 +10,6 @@ import './domain/general-informations/activateZone/activate.module';
 import './domain/zone/activate/activate.module';
 import './domain/zone/zone.module';
 import './error-page/error-page.module';
-import './hosting/cdn/flush/hosting-cdn-flush.module';
 import './hosting/cdn/order/hosting-cdn-order.module';
 import './hosting/cdn/terminate/hosting-cdn-terminate.module';
 import './hosting/email/activate/activate.module';

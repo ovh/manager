@@ -16,27 +16,16 @@
         <oui-message
             type="info"
             aria-close-button-label="{{:: 'close' | translate }}"
-            on-dismiss="$ctrl.onDismiss()"
-            data-ng-if="::(hosting.offer !== 'START_10_M' && !cdnProperties) || (cdnProperties.version === '2013v1' && isUpgradable)"
+            data-ng-if=":: $ctrl.canOrderOrEditCdn() && cdnProperties.type !== $ctrl.CDN_ADVANCED"
             dismissable
         >
             <span
-                data-translate="{{::$ctrl.getCDNBannerKeyToTranslate()}}"
+                data-translate="hosting_dashboard_general_informations_cdn_banner"
             ></span>
-            <a
-                data-ng-if="!hosting.hasCdn"
-                data-ng-href="{{::$ctrl.getCDNMoreInfoLink()}}"
-                data-ng-click="$ctrl.onMoreInfoLinkClicked()"
-                target="_blank"
-            >
-                <span
-                    data-translate="hosting_dashboard_service_cdn_customer_has_no_cdn_banner_msg_link"
-                ></span>
-            </a>
             <button
-                data-ng-if="hosting.hasCdn"
                 class="oui-link"
-                data-translate="hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg_link_upgrade"
+                type="button"
+                data-translate="hosting_dashboard_general_informations_cdn_banner_cta"
                 data-ng-click="$ctrl.goToOrderOrUpgrade()"
             ></button>
         </oui-message>
@@ -379,20 +368,28 @@
                         data-term="{{:: 'hosting_dashboard_service_cdn' | translate }}"
                     >
                         <oui-tile-description>
-                            <div
-                                data-ng-if="isUpgradable && cdnProperties.version === '2013v1'"
+                            <span
+                                data-ng-if=""
                             >
                                 <span
                                     class="oui-badge oui-badge_s oui-badge_new"
                                     data-translate="hosting_dashboard_service_cdn_customer_has_cdn_v1_badge_new"
                                 ></span
-                                ><br />
-                            </div>
+                                ><br/>
+                            </span>
                             <span
                                 data-ng-bind="::hosting.hasCdn ? ('common_yes' | translate) : ('common_no' | translate)"
                             ></span>
                             <span data-ng-if="hosting.hasCdn">
                                 - <span data-ng-bind="::cdnRange"></span>
+                                <span
+                                    data-ng-if="isUpgradable && cdnProperties.version === '2013v1'"
+                                >
+                                    <span> - </span>
+                                    <span class="fa fa-exclamation-triangle text-warning"
+                                          aria-hidden="true"
+                                          data-oui-tooltip="{{:: 'hosting_dashboard_service_cdn_customer_has_cdn_v1_new_offers' | translate }}"></span>
+                                </span>
                             </span>
                             <oui-spinner
                                 data-size="s"
@@ -403,6 +400,22 @@
                                 data-translate="hosting_dashboard_service_flush_cdn_doing"
                                 data-ng-if="flushCdnState === 'doing'"
                             ></span>
+
+                            <div data-ng-if="hosting.hasCdn && $ctrl.isCdnInDeleteAtExpiration">
+                                <p class="m-0">
+                                    <small data-translate="hosting_dashboard_config_tile_options_cdn_cancel_terminate"
+                                           data-translate-values="{ endEngagementDate: '<b>' + (cdnServiceInfo.expirationDate | date) + '</b>' }">
+                                    </small>
+                                </p>
+                                <button
+                                    type="button"
+                                    class="oui-button oui-button_s oui-button_ghost oui-button_icon-right"
+                                    data-ng-click="$ctrl.onCancelTerminateCdn()">
+                                    <span
+                                        data-translate="hosting_dashboard_config_tile_options_cdn_cancel_terminate_link"></span>
+                                    <span class="oui-icon oui-icon-arrow-right" aria-hidden="true"></span>
+                                </button>
+                            </div>
                         </oui-tile-description>
                         <oui-action-menu
                             data-compact
@@ -411,6 +424,7 @@
                         >
                             <oui-action-menu-item
                                 data-ng-if="isUpgradable && hosting.hasCdn"
+                                data-disabled="$ctrl.isCdnInDeleteAtExpiration"
                                 data-on-click="$ctrl.upgradeCdn()"
                             >
                                 <span
@@ -418,7 +432,7 @@
                                 ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-ng-if="hosting.hasCdn && cdnProperties.version === 'cdn-hosting'"
+                                data-ng-if="hosting.hasCdn"
                                 data-on-click="$ctrl.goToMultisite()"
                                 data-href="{{ $ctrl.multisiteLink }}"
                             >
@@ -428,7 +442,8 @@
                             </oui-action-menu-item>
                             <oui-action-menu-item
                                 data-ng-if="hosting.hasCdn && (cdnProperties.version === '2013v1' || cdnProperties.version === 'cdn-hosting')"
-                                data-on-click="$ctrl.terminateCdn('cdn/terminate/hosting-cdn-terminate')"
+                                data-disabled="$ctrl.isCdnInDeleteAtExpiration"
+                                data-on-click="$ctrl.terminateCdn()"
                             >
                                 <span
                                     data-translate="hosting_dashboard_service_terminate_cdn"
@@ -440,14 +455,6 @@
                             >
                                 <span
                                     data-ng-bind=":: (isCdnFree ? 'hosting_dashboard_service_activate_cdn_option' : 'hosting_dashboard_service_order_cdn') | translate"
-                                ></span>
-                            </oui-action-menu-item>
-                            <oui-action-menu-item
-                                data-ng-if="hosting.hasCdn && cdnProperties.version === '2013v1' && flushCdnState === 'ok'"
-                                data-href="{{ $ctrl.flushCDNLink }}"
-                            >
-                                <span
-                                    data-translate="hosting_dashboard_service_flush_cdn"
                                 ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>

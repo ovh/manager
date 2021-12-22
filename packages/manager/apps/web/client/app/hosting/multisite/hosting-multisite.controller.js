@@ -9,7 +9,7 @@ import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import union from 'lodash/union';
 
-import { CDN_ACTIVE } from './hosting-multisite.constants';
+import { CDN_STATUS, CDN_VERSION } from './hosting-multisite.constants';
 
 const CDN_STATISTICS_PERIOD = {
   DAY: 'day',
@@ -54,6 +54,8 @@ angular
       $scope.sslLinked = [];
       $scope.HOSTING = HOSTING;
       $scope.HOSTING_STATUS = HOSTING_STATUS;
+      $scope.CDN_STATUS = CDN_STATUS;
+      $scope.CDN_VERSION = CDN_VERSION;
       $scope.showGuidesStatus = false;
       $scope.search = {
         text: null,
@@ -108,7 +110,7 @@ angular
           .then(({ domains, sharedDomains }) => {
             $scope.domains = domains;
             $scope.activeDomains = $scope.domains.list.results.filter(
-              (domain) => domain.cdn === CDN_ACTIVE,
+              (domain) => domain.cdn === CDN_STATUS.ACTIVE,
             );
             $scope.sharedDomains = sharedDomains;
             $scope.hasResult = !isEmpty($scope.domains);
@@ -148,7 +150,7 @@ angular
           .then(() => Hosting.getSelected($stateParams.productId))
           .then((hosting) => {
             $scope.hosting = hosting;
-            $scope.numberOfColumns = 5 + hosting.isCloudWeb + hosting.hasCdn;
+            $scope.numberOfColumns = 6 + hosting.isCloudWeb + hosting.hasCdn;
 
             if (hosting.isCloudWeb) {
               const promises = map(
@@ -202,7 +204,7 @@ angular
 
       $scope.canEditCdn = function canEditCdn(domain) {
         return (
-          domain.cdn === CDN_ACTIVE &&
+          domain.cdn === CDN_STATUS.ACTIVE &&
           domain.status !== HOSTING_STATUS.CREATING &&
           $scope.cdnProperties.version === 'cdn-hosting'
         );
@@ -267,6 +269,14 @@ angular
         $state.go('app.hosting.dashboard.cdn.shared', {
           domain,
           domainName: domain.domain,
+        });
+      };
+
+      $scope.goToFlushCdn = function goToFlushCdn(domain) {
+        sendTrackClick('web::hosting::multisites::purge-cdn');
+
+        $state.go('app.hosting.dashboard.multisite.cdn-flush', {
+          domain: domain.name,
         });
       };
 

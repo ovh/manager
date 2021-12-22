@@ -69,7 +69,7 @@
   "iplb_frontend_preview_restrict_ip_access": "Restringi l'accesso ad alcuni IP",
   "iplb_frontend_preview_http_redirection": "Reindirizzamento HTTP",
   "iplb_frontend_preview_http_header": "Header HTTP",
-  "iplb_frontend_preview_hsts": "HSTS",
+  "iplb_frontend_preview_hsts": "HTTP Strict Transport Security (HSTS)",
   "iplb_frontend_preview_active": "Attivo",
   "iplb_frontend_preview_id": "Identificativo",
   "iplb_frontend_toggle_success": "Il front end è stato modificato correttamente.",
