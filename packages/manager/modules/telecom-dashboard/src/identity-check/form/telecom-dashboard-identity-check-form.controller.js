@@ -43,9 +43,7 @@ export default class IdentityCheckFormCtrl {
   }
 
   $onInit() {
-    this.atInternet.trackPage({
-      name: 'telecom::telephony::account-validation',
-    });
+    this.trackPage('account-validation');
 
     this.IdentityCheckService.getLastInProgressProcedure()
       .then((procedure) => {
@@ -88,14 +86,13 @@ export default class IdentityCheckFormCtrl {
   }
 
   cancelProcedure() {
-    this.trackClick('cancel-current-validation');
-
     const { id } = this.procedure ?? {};
 
     this.isCancelling = true;
 
     this.IdentityCheckService.cancelProcedure(id)
       .then(() => {
+        this.trackPage('cancel-account-validation::success');
         this.procedure = null;
         this.TucToast.success(
           this.$translate.instant(
@@ -104,6 +101,9 @@ export default class IdentityCheckFormCtrl {
         );
       })
       .catch(({ status }) => {
+        this.trackPage(
+          `cancel-account-validation::error${status === 409 ? '-order' : ''}`,
+        );
         this.TucToast.error(
           this.$translate.instant(
             `telecom_dashboard_identity_check_form_cancel_error${
@@ -118,6 +118,7 @@ export default class IdentityCheckFormCtrl {
   }
 
   confirmCancelProcedure() {
+    this.trackPage('account-validation::cancel-validation-popup');
     this.$uibModal
       .open({
         template: confirmTemplate,
@@ -145,6 +146,12 @@ export default class IdentityCheckFormCtrl {
     this.atInternet.trackClick({
       name: `telecom::telephony::account-validation::${nameClick}`,
       type: 'action',
+    });
+  }
+
+  trackPage(namePage) {
+    this.atInternet.trackPage({
+      name: `telecom::telephony::${namePage}`,
     });
   }
 }
