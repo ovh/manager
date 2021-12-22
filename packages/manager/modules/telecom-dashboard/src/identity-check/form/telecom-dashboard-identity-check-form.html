@@ -142,7 +142,7 @@
                 data-submit-text="{{ 'telecom_dashboard_identity_check_form_validate' | translate }}"
                 data-cancel-text="{{ 'telecom_dashboard_identity_check_form_cancel' | translate }}"
                 data-on-submit="$ctrl.createProcedure()"
-                data-href="{{ $ctrl.telecomLink }}"
+                data-on-cancel="$ctrl.onCancelCreateProcedureForm()"
             ></oui-form-actions>
         </form>
     </div>
