@@ -8,6 +8,14 @@
 >
     <span data-translate="hosting_multisite_statistics_loading_error"></span>
 </oui-message>
+<oui-message
+    data-ng-if="$ctrl.isCdnUpgradeRequired"
+    type="info"
+    dismissable="true"
+    on-dismiss="$ctrl.isCdnUpgradeRequired = false"
+>
+    <span data-translate="hosting_multisite_statistics_upgrade_info"></span>
+</oui-message>
 
 <div class="oui-box row mx-1">
     <div class="col-md-3">

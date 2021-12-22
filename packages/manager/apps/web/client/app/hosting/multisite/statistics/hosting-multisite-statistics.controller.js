@@ -1,13 +1,7 @@
-const CDN_SERIES = {
-  NAME: {
-    HIT: 'hit',
-    MISS: 'miss',
-  },
-  COLORS: {
-    RED: 'red',
-    TURQUOISE: 'turquoise',
-  },
-};
+import {
+  CDN_TYPE_BUSINESS,
+  CDN_SERIES,
+} from './hosting-multisite-statistics.constants';
 
 export default class HostingMultisiteStatistisController {
   $onInit() {
@@ -51,13 +45,22 @@ export default class HostingMultisiteStatistisController {
 
     this.isLoadingStatistics = true;
     this.hasLoadingError = false;
-
+    this.isCdnUpgradeRequired = false;
     return this.getStatistics(domain, period?.value)
       .then((statistics) => {
         this.fillChart(statistics, period?.value);
       })
-      .catch(() => {
-        this.hasLoadingError = true;
+      .catch(async (error) => {
+        try {
+          const { type: cdnType } = await this.getCdnProperties();
+          if (error.status === 404 && cdnType === CDN_TYPE_BUSINESS) {
+            this.isCdnUpgradeRequired = true;
+          } else {
+            this.hasLoadingError = true;
+          }
+        } catch (err) {
+          this.hasLoadingError = true;
+        }
       })
       .finally(() => {
         this.isLoadingStatistics = false;

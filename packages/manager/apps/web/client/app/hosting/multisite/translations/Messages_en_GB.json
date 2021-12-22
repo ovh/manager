@@ -8,5 +8,6 @@
   "hosting_multisite_statistics_period_week": "Week",
   "hosting_multisite_statistics_period_month": "Month",
   "hosting_multisite_statistics_period_year": "Year",
-  "hosting_multisite_statistics_loading_error": "An error has occurred retrieving the statistics"
+  "hosting_multisite_statistics_loading_error": "An error has occurred retrieving the statistics",
+  "hosting_multisite_statistics_upgrade_info": "Update your CDN option to view your CDN statistics"
 }
