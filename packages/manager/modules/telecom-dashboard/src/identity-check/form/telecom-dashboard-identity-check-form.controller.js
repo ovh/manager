@@ -1,24 +1,31 @@
+import confirmController from './confirm/confirm.controller';
+import confirmTemplate from './confirm/confirm.html';
+
 export default class IdentityCheckFormCtrl {
   /* @ngInject */
   constructor(
     $state,
     atInternet,
+    $uibModal,
+    $translate,
     coreConfig,
     coreURLBuilder,
     ovhPaymentMethodHelper,
     IdentityCheckService,
-    TucToastError,
+    TucToast,
   ) {
     this.$state = $state;
     this.atInternet = atInternet;
 
     const { isValidIban, isValidBic } = ovhPaymentMethodHelper;
 
+    this.$uibModal = $uibModal;
+    this.$translate = $translate;
     this.user = coreConfig.getUser();
     this.isValidIban = isValidIban;
     this.isValidBic = isValidBic;
     this.IdentityCheckService = IdentityCheckService;
-    this.TucToastError = TucToastError;
+    this.TucToast = TucToast;
 
     this.isLoading = true;
     this.isCreating = false;
@@ -35,9 +42,7 @@ export default class IdentityCheckFormCtrl {
   }
 
   $onInit() {
-    this.atInternet.trackPage({
-      name: 'telecom::telephony::account-validation',
-    });
+    this.trackPage('account-validation');
 
     const { name, firstname, address } = this.user;
 
@@ -49,7 +54,9 @@ export default class IdentityCheckFormCtrl {
       .then((procedure) => {
         this.procedure = procedure;
       })
-      .catch((error) => new this.TucToastError(error))
+      .catch((error) =>
+        this.TucToast.error(error.data?.message || error.message),
+      )
       .finally(() => {
         this.isLoading = false;
       });
@@ -71,7 +78,9 @@ export default class IdentityCheckFormCtrl {
       .then((procedure) => {
         this.procedure = procedure;
       })
-      .catch((error) => new this.TucToastError(error))
+      .catch((error) =>
+        this.TucToast.error(error.data?.message || error.message),
+      )
       .finally(() => {
         this.isCreating = false;
       });
@@ -82,17 +91,32 @@ export default class IdentityCheckFormCtrl {
   }
 
   cancelProcedure() {
-    this.trackClick('cancel-current-validation');
-
     const { id } = this.procedure ?? {};
 
     this.isCancelling = true;
 
     this.IdentityCheckService.cancelProcedure(id)
       .then(() => {
+        this.trackPage('cancel-account-validation::success');
         this.procedure = null;
+        this.TucToast.success(
+          this.$translate.instant(
+            'telecom_dashboard_identity_check_form_cancel_success',
+          ),
+        );
       })
-      .catch((error) => new this.TucToastError(error))
+      .catch(({ status }) => {
+        this.trackPage(
+          `cancel-account-validation::error${status === 409 ? '-order' : ''}`,
+        );
+        this.TucToast.error(
+          this.$translate.instant(
+            `telecom_dashboard_identity_check_form_cancel_error${
+              status === 409 ? '_ongoing' : ''
+            }`,
+          ),
+        );
+      })
       .finally(() => {
         this.isCancelling = false;
       });
@@ -101,6 +125,20 @@ export default class IdentityCheckFormCtrl {
   onCancelCreateProcedureForm() {
     this.trackClick('cancel');
     this.$state.go('telecom-dashboard');
+  }
+
+  confirmCancelProcedure() {
+    this.trackPage('account-validation::cancel-validation-popup');
+    this.$uibModal
+      .open({
+        template: confirmTemplate,
+        controller: confirmController,
+        controllerAs: '$ctrl',
+      })
+      .result.then(() => {
+        this.cancelProcedure();
+      })
+      .catch(() => {});
   }
 
   openProcedure() {
@@ -113,6 +151,12 @@ export default class IdentityCheckFormCtrl {
     this.atInternet.trackClick({
       name: `telecom::telephony::account-validation::${nameClick}`,
       type: 'action',
+    });
+  }
+
+  trackPage(namePage) {
+    this.atInternet.trackPage({
+      name: `telecom::telephony::${namePage}`,
     });
   }
 }
