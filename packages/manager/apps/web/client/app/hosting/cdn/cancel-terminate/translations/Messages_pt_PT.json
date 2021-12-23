@@ -4,5 +4,5 @@
   "hosting_cdn_cancel_terminate_success": "O pedido de anulação da rescisão foi registado com êxito.",
   "hosting_cdn_cancel_terminate_error": "Ocorreu um erro aquando da anulação da rescisão da CDN: {{ message }}",
   "hosting_cdn_cancel_terminate_action_validate": "Confirmar",
-  "hosting_cdn_cancel_terminate_action_cancel": "Cancelar"
+  "hosting_cdn_cancel_terminate_action_cancel": "Anular"
 }

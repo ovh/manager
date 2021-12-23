@@ -67,5 +67,10 @@
   "hosting_cdn_shared_option_cache_rule_table_items_type_extension": "Extensão",
   "hosting_cdn_shared_option_cache_rule_table_items_type_folder": "Pasta",
   "hosting_cdn_shared_option_cache_rule_table_items_type_uri": "URI",
-  "hosting_cdn_shared_option_cache_rule_table_items_type_regex": "Expressão regular"
+  "hosting_cdn_shared_option_cache_rule_table_items_type_regex": "Expressão regular",
+  "hosting_cdn_shared_option_always_online_title": "Always online",
+  "hosting_cdn_shared_option_http_https_title": "HTTP/2",
+  "hosting_cdn_shared_option_brotli_title": "Brotli",
+  "hosting_cdn_shared_option_advanced_flush_title": "Limpeza de cache avançada",
+  "hosting_cdn_shared_option_advanced_flush_info": "Personalizar a limpeza de cache selecionando os elementos da cache a esvaziar: Todo o site, pasta, URI, extensão de ficheiros ou através de uma expressão personalizada e regular. Acessível diretamente a partir do separador Multisite na lista de ações."
 }

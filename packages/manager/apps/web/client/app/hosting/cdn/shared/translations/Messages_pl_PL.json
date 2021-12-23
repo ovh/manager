@@ -54,7 +54,7 @@
   "hosting_cdn_shared_option_http_geolocation_title": "Header HTTP z geolokalizacją",
   "hosting_cdn_shared_option_http_geolocation_info": "Określ kraj odwiedzającego, aby spersonalizować doświadczenie. Kod kraju jest automatycznie dodawany w nagłówku każdego żądania, które ma być obsługiwane przez Twój serwer źródłowy.",
   "hosting_cdn_shared_option_prefetch_title": "Prefetch",
-  "hosting_cdn_shared_option_prefetch_info": "Pobieranie z wyprzedzeniem kolejnego zasobu (prefetch). Wstępne automatyczne ładowanie zasobu do pamięci cache przy użyciu „header link”. Musi on być zawarty w nagłówku każdej podstrony witryny, która wymaga prefetch.",
+  "hosting_cdn_shared_option_prefetch_info": "Pobieranie z wyprzedzeniem kolejnego zasobu. Wstępne automatyczne ładowanie zasobu do pamięci cache przy użyciu „header link”. Musi on być zawarty w nagłówku każdej podstrony witryny, która wymaga prefetch.",
   "hosting_cdn_shared_option_prefetch_info_link": "Zapoznaj się z przewodnikiem.",
   "hosting_cdn_shared_option_mobile_redirect_title": "Mobile redirect",
   "hosting_cdn_shared_option_mobile_redirect_info": "Automatycznie przekierowuj odwiedzających na zoptymalizowaną stronę. Możesz wybrać jedną z dwóch opcji: systematyczne przekierowywanie do katalogu głównego innej strony WWW lub zachowanie adresu URL poprzez zastąpienie jedynie domeny (lub subdomeny).",
@@ -67,5 +67,10 @@
   "hosting_cdn_shared_option_cache_rule_table_items_type_extension": "Rozszerzenie",
   "hosting_cdn_shared_option_cache_rule_table_items_type_folder": "Katalog",
   "hosting_cdn_shared_option_cache_rule_table_items_type_uri": "URI",
-  "hosting_cdn_shared_option_cache_rule_table_items_type_regex": "Wyrażenie regularne"
+  "hosting_cdn_shared_option_cache_rule_table_items_type_regex": "Wyrażenie regularne",
+  "hosting_cdn_shared_option_always_online_title": "Always online",
+  "hosting_cdn_shared_option_http_https_title": "HTTP/2",
+  "hosting_cdn_shared_option_brotli_title": "Brotli",
+  "hosting_cdn_shared_option_advanced_flush_title": "Czyszczenie zaawansowane",
+  "hosting_cdn_shared_option_advanced_flush_info": "Spersonalizuj czyszczenie, wybierając elementy pamięci podręcznej, które mają zostać usunięte: cała strona, folder, URI, rozszerzenie plików lub za pomocą spersonalizowanego wyrażenia regularnego. Opcja dostępna bezpośrednio w zakładce MultiSite na liście operacji."
 }

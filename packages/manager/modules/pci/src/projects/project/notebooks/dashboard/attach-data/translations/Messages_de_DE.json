@@ -8,5 +8,9 @@
   "pci_notebooks_tab_attach_data_page_volumes_column_region": "Standort",
   "pci_notebooks_tab_attach_data_page_volumes_column_type_git": "Repository",
   "pci_notebooks_tab_attach_data_page_volumes_column_type_swift": "Datencontainer",
-  "pci_notebooks_tab_attach_data_page_volumes_column_mount_path": "Mountverzeichnis"
+  "pci_notebooks_tab_attach_data_page_volumes_column_mount_path": "Mountverzeichnis",
+  "pci_notebooks_tab_attach_data_page_title_git": "Öffentliche Git-Repositorys anhängen",
+  "pci_notebooks_tab_attach_data_page_volumes_column_git_url": "URL des Git-Repositorys",
+  "pci_notebooks_tab_attach_data_page_volumes_git_none": "Es sind keine Git-Repositorys angehängt",
+  "pci_notebooks_tab_attach_data_page_volumes_column_prefix": "Präfix"
 }

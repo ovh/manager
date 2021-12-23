@@ -7,5 +7,13 @@
   "pci_notebook_add_attach_container_storage_container_select": "Storage Container",
   "pci_notebook_add_attach_container_mount_path": "Mountverzeichnis",
   "pci_notebook_add_attach_container_mount_path_error_key_already_exist": "Dieses Verzeichnis besteht bereits",
-  "pci_notebook_add_attach_container_volumes_quantity": "{{ numberOfVolumes }} / {{ maxVolumes }} Volumes"
+  "pci_notebook_add_attach_container_volumes_quantity": "{{ numberOfVolumes }} / {{ maxVolumes }} Volumes",
+  "pci_notebook_add_attach_container_btn_attach_repo_git_add": "Ein öffentliches Git-Repository anhängen",
+  "pci_notebook_add_attach_container_git_url": "URL des Git-Repositorys",
+  "pci_notebook_add_attach_container_data_prefix": "Nach Präfix filtern",
+  "pci_notebook_add_attach_container_data_prefix_help": "Nur Objekte mit dem entsprechenden Präfix werden in das Dateisystem geladen.",
+  "pci_notebook_add_attach_container_permission_select": "Berechtigung",
+  "pci_notebook_add_attach_container_permission_help": "Im „Nur-Lese-Modus“ wird am Ende des Auftrags keine Synchronisierung gestartet. Der Auftrag wird dadurch schneller abgeschlossen.",
+  "pci_notebook_add_attach_container_data_cache": "Cache",
+  "pci_notebook_add_attach_container_data_cache_help": "Container im Cache können ohne zusätzliche Synchronisierung durch andere Aufträge wiederverwendet werden. Wenn sie über einen bestimmten Zeitraum nicht verwendet werden, werden die Container aus dem Cache entfernt."
 }
