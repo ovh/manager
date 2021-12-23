@@ -29,21 +29,6 @@ angular.module('App').controller(
       this.NB_DAY_OOM = 7;
       this.NB_MAX_OOM = 100;
 
-      this.displayType = {
-        classic: {
-          key: 'premium',
-          value: this.$translate.instant(
-            'privateDatabase_order_sql_type_premium_label',
-          ),
-        },
-        public: {
-          key: 'dbaas',
-          value: this.$translate.instant(
-            'privateDatabase_order_sql_type_dbaas_label',
-          ),
-        },
-      };
-
       this.database = this.$scope.currentActionData.database;
 
       this.$scope.orderMoreRam = () => this.orderMoreRam();
