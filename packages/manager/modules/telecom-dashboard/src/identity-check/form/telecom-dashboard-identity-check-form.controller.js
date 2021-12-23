@@ -4,7 +4,6 @@ import confirmTemplate from './confirm/confirm.html';
 export default class IdentityCheckFormCtrl {
   /* @ngInject */
   constructor(
-    $state,
     atInternet,
     $uibModal,
     $translate,
@@ -14,7 +13,6 @@ export default class IdentityCheckFormCtrl {
     IdentityCheckService,
     TucToast,
   ) {
-    this.$state = $state;
     this.atInternet = atInternet;
 
     const { isValidIban, isValidBic } = ovhPaymentMethodHelper;
@@ -124,7 +122,7 @@ export default class IdentityCheckFormCtrl {
 
   onCancelCreateProcedureForm() {
     this.trackClick('cancel');
-    this.$state.go('telecom-dashboard');
+    this.goToDashboard();
   }
 
   confirmCancelProcedure() {
