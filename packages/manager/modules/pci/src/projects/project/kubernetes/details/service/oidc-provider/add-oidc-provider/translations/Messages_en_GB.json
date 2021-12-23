@@ -1,6 +1,6 @@
 {
   "pci_projects_project_kubernetes_details_service_add_oidc_provider_title": "Configure the OIDC provider",
-  "pci_projects_project_kubernetes_details_service_add_oidc_provider_description": "You can use most OpenID Connect providers like Dex, Keycloack or a SaaS provider, provided that the “OpenID Connect discovery” feature, TLS and a signed CA certificate are supported.",
+  "pci_projects_project_kubernetes_details_service_add_oidc_provider_description": "You can use most OIDC providers like Dex, Keycloak or a SaaS provider, provided that they expose the “OpenID Connect discovery” feature. The OIDC provider must be accessible from a HTTPS URL, and a signed CA certificate is mandatory.",
   "pci_projects_project_kubernetes_details_service_add_oidc_provider_action_add": "Add",
   "pci_projects_project_kubernetes_details_service_add_oidc_provider_action_cancel": "Cancel",
   "pci_projects_project_kubernetes_details_service_add_oidc_provider_field_url": "Provider URL",
