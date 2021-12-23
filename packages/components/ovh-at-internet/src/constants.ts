@@ -3,7 +3,16 @@ export interface IAtInternetCustomVar {
   format: string;
 }
 
-export type AtInternetCustomVar = string;
+export type AtInternetCustomVar =
+  | 'countryCode'
+  | 'currencyCode'
+  | 'pageUrl'
+  | 'referrerSite'
+  | 'event'
+  | 'siteName'
+  | 'projectId'
+  | 'voucherCode'
+  | 'orderStatus';
 
 export type AtInternetCustomVars = {
   [key in AtInternetCustomVar]: IAtInternetCustomVar;
@@ -12,7 +21,7 @@ export type AtInternetCustomVars = {
 /**
  * This is custom OVHcloud At-Internet configuration of order's customVars attribute.
  */
-export const AT_INTERNET_CUSTOM_VARS = {
+export const AT_INTERNET_CUSTOM_VARS: AtInternetCustomVars = {
   /**
    * Country code of the customer making the order
    */
@@ -106,7 +115,7 @@ export const AT_INTERNET_CUSTOM_VARS = {
     },
     format: '[%s]',
   },
-} as AtInternetCustomVars;
+};
 
 export default {
   AT_INTERNET_CUSTOM_VARS,

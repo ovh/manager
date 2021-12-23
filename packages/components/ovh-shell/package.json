@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
+    "@ovh-ux/ovh-at-internet": "^0.0.0",
     "@ovh-ux/ovh-reket": "^0.0.2",
     "@types/react": "^17.0.24",
     "@types/react-router-dom": "^5.3.0",

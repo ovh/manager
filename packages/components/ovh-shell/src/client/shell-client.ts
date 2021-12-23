@@ -73,11 +73,11 @@ export default class ShellClient {
     this.eventListeners[eventId].push(callback);
   }
 
-  invokePluginMethod({
+  invokePluginMethod<T>({
     plugin,
     method,
     args = [],
-  }: IShellPluginMethodCall): PromiseLike<unknown> {
+  }: IShellPluginMethodCall): PromiseLike<T> {
     const uid = this.getUniqueResponseId();
     if (!this.messageBus) {
       return Promise.reject(new Error('Message bus is not defined'));
@@ -92,7 +92,7 @@ export default class ShellClient {
         args,
       },
     });
-    return new Promise((resolve, reject) => {
+    return new Promise<T>((resolve, reject) => {
       this.deferredResponse[uid] = { resolve, reject };
     });
   }

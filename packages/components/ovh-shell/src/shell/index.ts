@@ -6,6 +6,10 @@ import authenticationPlugin from '../plugin/auth';
 import environmentPlugin from '../plugin/environment';
 import { i18n as i18nPlugin } from '../plugin/i18n';
 import { UXPlugin, UXPluginType } from '../plugin/ux';
+import {
+  TrackingPlugin,
+  TrackingPluginType,
+} from '../plugin/tracking/tracking';
 
 export function initShell(): Promise<Shell> {
   return fetchConfiguration('shell').then((environment: Environment) => {
@@ -32,6 +36,15 @@ export function initShell(): Promise<Shell> {
     shell
       .getPluginManager()
       .registerPlugin('ux', uxPlugin as UXPluginType<UXPlugin>);
+
+    // Register Tracking plugin
+    const trackingPlugin = new TrackingPlugin();
+    shell
+      .getPluginManager()
+      .registerPlugin(
+        'tracking',
+        trackingPlugin as TrackingPluginType<TrackingPlugin>,
+      );
 
     return shell;
   });
