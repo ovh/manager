@@ -1,8 +1,27 @@
 import { has, isNumber } from 'lodash-es';
-
-import { OvhAtInternetConfig } from './config';
+import {
+  OvhAtInternetConfig,
+  PageData,
+  OrderData,
+  ClickData,
+  ImpressionData,
+  ImpressionDataClick,
+  EventData,
+} from './config';
 import { IOvhAtInternetTrack } from './track';
-import { AT_INTERNET_CUSTOM_VARS, AtInternetCustomVar } from './constants';
+import { getUniqueId } from './utils';
+import {
+  AT_INTERNET_CUSTOM_VARS,
+  AtInternetCustomVar,
+  IAtInternetCustomVar,
+} from './constants';
+
+interface Product {
+  productId: string;
+  quantity: number;
+  unitPriceTaxIncluded?: number;
+  amountTaxIncluded?: number;
+}
 
 export default class OvhAtInternet extends OvhAtInternetConfig {
   /**
@@ -12,10 +31,11 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
 
   private trackQueue: Array<IOvhAtInternetTrack> = [];
 
+  // protected defaults;
   /**
    * Log arguments if debug is enabled
    */
-  private logDebugInfos(log: string, logData: any): void {
+  private logDebugInfos(log: string, logData: unknown): void {
     if (this.debug) {
       console.info(log, logData);
     }
@@ -24,7 +44,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   /**
    * Returns updated given data with defaults config and level2
    */
-  private updateData(trackData: any): any {
+  private updateData(trackData: PageData): PageData {
     const data = {
       ...trackData,
       ...this.defaults,
@@ -47,10 +67,10 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   }
 
   private updateCustomVars(
-    data: any,
-    varValue: any,
+    data: unknown,
+    varValue: IAtInternetCustomVar,
     varKey: string,
-    customVars: any,
+    customVars: Record<string, string | Record<string, never>>,
   ) {
     // if data has custom attribute
     if (has(data, varKey)) {
@@ -68,49 +88,38 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
        */
       keys.forEach((key: AtInternetCustomVar, idx: number) => {
         if (idx === keys.length - 1 && varValue.format) {
-          tmp[key] = varValue.format.replace('%s', data[varKey]);
+          tmp[key] = varValue.format.replace(
+            '%s',
+            data[varKey as keyof typeof data] as string,
+          );
         } else {
           tmp[key] = tmp[key] || {};
-          tmp = tmp[key];
+          tmp = tmp[key] as Record<string, never>;
         }
       });
     }
   }
 
-  private getCustomVarsWithDefaults(trackData: any) {
+  private getCustomVarsWithDefaults(trackData: unknown) {
     const customVars = {};
-    Object.keys(AT_INTERNET_CUSTOM_VARS).forEach((customVarKey: string) => {
-      const customVarVal = AT_INTERNET_CUSTOM_VARS[customVarKey];
-      this.updateCustomVars(
-        this.defaults,
-        customVarVal,
-        customVarKey,
-        customVars,
-      );
-      this.updateCustomVars(trackData, customVarVal, customVarKey, customVars);
-    });
+    Object.keys(AT_INTERNET_CUSTOM_VARS).forEach(
+      (customVarKey: AtInternetCustomVar) => {
+        const customVarVal = AT_INTERNET_CUSTOM_VARS[customVarKey];
+        this.updateCustomVars(
+          this.defaults,
+          customVarVal,
+          customVarKey,
+          customVars,
+        );
+        this.updateCustomVars(
+          trackData,
+          customVarVal,
+          customVarKey,
+          customVars,
+        );
+      },
+    );
     return customVars;
-  }
-
-  /**
-   * Returns a randomized string of length "len"
-   */
-  private getRandomString(len: number): string {
-    const alphabet =
-      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    return new Array(len)
-      .map(() => alphabet.charAt(Math.floor(Math.random() * alphabet.length)))
-      .join('');
-  }
-
-  /**
-   * Returns an unique ID (used by orders and carts)
-   * To ensure that the ID is unique, we generate it from current milliseconds
-   * and concat a random string to avoid any collisions.
-   */
-  private getUniqueId(): string {
-    // unique key : current milliseconds in base 36 concatenated with 8 random chars
-    return new Date().valueOf().toString(36) + this.getRandomString(8);
   }
 
   /**
@@ -147,7 +156,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     this.processTrackQueue();
   }
 
-  getTag(): object {
+  getTag(): unknown {
     if (!this.atinternetTag) {
       this.initTag();
     }
@@ -166,28 +175,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     }
   }
 
-  /**
-   * Send a page hit to ATInternet tracking service.
-   * Page data is the following data-structure :
-   *
-   * ```
-   * pageData {
-   *   name: "your-page"    // the page identifier (required)
-   *   level2: "1"          // the project id (required)
-   *   chapter1: "..."      // section id (optional)
-   *   chapter2: "..."      // sub-section id (optional)
-   *   chapter3: "..."      // sub-sub-section id (optional)
-   *   visitorId: "1234"    // identified visitor id (optional)
-   *   customObject: {}     // custom javascript data (optional)
-   * }
-   * ```
-   *
-   * More informations here :
-   * http://developers.atinternet-solutions.com/javascript-fr/contenus/pages-javascript/
-   *
-   * @param pageDataParam  Page data to be send.
-   */
-  trackPage(pageDataParam: any): void {
+  trackPage(pageDataParam: PageData): void {
     let pageData = pageDataParam;
     if (this.isTagAvailable()) {
       pageData = this.updateData(pageData);
@@ -212,33 +200,10 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     }
   }
 
-  /**
-   * Send a click hit to ATInternet tracking service.
-   * Click data is the following data-structure :
-   *
-   * ```
-   * clickData {
-   *   name: "your-action"  // the action identifier (required)
-   *   level2: "1"          // the project id (required)
-   *   type: "action"       // type of click : action || navigation || download
-   *                           || exit (required)
-   *   visitorId: "1234"    // identified visitor id (optional)
-   *   chapter1: "..."      // section id (optional)
-   *   chapter2: "..."      // sub-section id (optional)
-   *   chapter3: "..."      // sub-sub-section id (optional)
-   *   customObject: {}     // custom javascript data (optional)
-   * }
-   * ```
-   *
-   * More informations here :
-   * http://developers.atinternet-solutions.com/javascript-fr/contenus/clics/
-   *
-   * @param clickData Click data to be sent.
-   */
-  trackClick(clickDataParam: any): void {
+  trackClick(clickDataParam: ClickData): void {
     let clickData = clickDataParam;
     if (this.isTagAvailable()) {
-      clickData = this.updateData(clickData);
+      clickData = this.updateData(clickData) as ClickData;
       if (
         ['action', 'navigation', 'download', 'exit'].includes(clickData.type)
       ) {
@@ -255,41 +220,10 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     }
   }
 
-  /**
-   * Simplified tracking of product order.
-   * Product data is the following data-structure :
-   *
-   * ```
-   * productData {
-   *   name: "your-product"  // the product identifier (required)
-   *   page: "your-page"     // page associated with the order (required)
-   *                         //   WARNING: the page must be configured in ATInternet manager
-   *                         //   to be a main objective page.
-   *   level2: "1"           // the project id (required)
-   *   price: 42             // price of product tax included (required only if priceTaxFree
-   *                            not supplied)
-   *   priceTaxFree: 42      // price of product tax free (required only if price is not
-   *                            supplied)
-   *   orderId: 1            // unique order ID, you can provide it or it will be automatically
-   *                            enerated
-   *   quantity: 1           // amount of product (default is 1)
-   *   status: 3             // status of the order (default is 3 : validated)
-   *
-   *   visitorId: "1234"    // identified visitor id (optional)
-   *   countryCode: "EU"     // country code identifier of the customer (optional)
-   *   currencyCode: "EU"    // currency of order (optional)
-   * }
-   * ```
-   *
-   * More informations here :
-   * http://developers.atinternet-solutions.com/javascript-fr/
-   *
-   * @param orderDataParam  Product data to be sent.
-   */
-  trackOrder(orderDataParam: any): void {
+  trackOrder(orderDataParam: OrderData): void {
     let orderData = orderDataParam;
     if (this.isTagAvailable()) {
-      orderData = this.updateData(orderData);
+      orderData = this.updateData(orderData) as OrderData;
 
       // Check if product data has all required attributes
       if (!orderData.page) {
@@ -317,7 +251,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         return;
       }
 
-      const orderId = orderData.orderId || this.getUniqueId();
+      const orderId = orderData.orderId || getUniqueId();
       const cartId = `cart-${orderId}`;
 
       // set the current page (page must be configured as "main objective" in ATInternet
@@ -332,10 +266,10 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         cardId: cartId,
       });
 
-      let product = {
+      let product: Product = {
         productId: orderData.name,
         quantity: orderData.quantity || 1,
-      } as any;
+      };
 
       const amount = {};
       let turnover = 0;
@@ -356,7 +290,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
           ...product,
           unitPriceTaxFree: orderData.priceTaxFree,
           amountTaxFree: orderData.priceTaxFree * product.quantity,
-        };
+        } as Product;
         turnover = orderData.priceTaxFree * product.quantity;
       }
 
@@ -382,11 +316,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     }
   }
 
-  /**
-   * implified tracking of events.
-   * @param eventDataParam  Event data to be sent.
-   */
-  trackEvent(eventDataParam: any): void {
+  trackEvent(eventDataParam: EventData): void {
     const eventData = eventDataParam;
     if (this.isTagAvailable()) {
       if (!eventData.page) {
@@ -417,28 +347,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     }
   }
 
-  /**
-   * Simplified tracking of impression.
-   * https://developers.atinternet-solutions.com/javascript-en/campaigns-javascript-en/on-site-ads-javascript-en/
-   *
-   * ```
-   * Impression Data {
-   *   impression: {
-   *     campaignId: 'id[label]',
-   *     creation: 'id[label]',
-   *     variant: 'id[label]',
-   *     format: '[120x40]',
-   *     generalPlacement: '[label]',
-   *     detailedPlacement: 'id[label]',
-   *     advertiserId: 'id[label]',
-   *     url: '[urlEncoded]'
-   *   }
-   * }
-   * ```
-   *
-   * @param impressionData  Impression data to be sent.
-   */
-  trackImpression(impressionDataParam: any): void {
+  trackImpression(impressionDataParam: ImpressionData): void {
     const impressionData = impressionDataParam;
     if (this.isTagAvailable()) {
       this.updateData(impressionData);
@@ -459,28 +368,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     }
   }
 
-  /**
-   * Simplified tracking of impression click event.
-   * https://developers.atinternet-solutions.com/javascript-en/campaigns-javascript-en/on-site-ads-javascript-en/
-   *
-   * ```
-   * Impression Data {
-   *   impression: {
-   *     campaignId: 'id[label]',
-   *     creation: 'id[label]',
-   *     variant: 'id[label]',
-   *     format: '[120x40]',
-   *     generalPlacement: '[label]',
-   *     detailedPlacement: 'id[label]',
-   *     advertiserId: 'id[label]',
-   *     url: '[urlEncoded]'
-   *   }
-   * }
-   * ```
-   *
-   * @param impressionDataParam  Click impression data to be sent.
-   */
-  trackClickImpression(impressionDataParam: any): void {
+  trackClickImpression(impressionDataParam: ImpressionDataClick): void {
     const impressionData = impressionDataParam;
     if (this.isTagAvailable()) {
       this.updateData(impressionData);
