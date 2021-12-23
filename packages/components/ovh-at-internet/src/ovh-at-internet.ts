@@ -159,7 +159,11 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     this.processTrackQueue();
   }
 
+<<<<<<< HEAD
   getTag(): ATInternetTagOptions {
+=======
+  getTag(): unknown {
+>>>>>>> feat(plugin): add tracking plugin
     if (!this.atinternetTag) {
       this.initTag();
     }
