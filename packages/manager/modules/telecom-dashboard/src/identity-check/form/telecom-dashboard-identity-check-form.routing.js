@@ -6,6 +6,8 @@ export default /* @ngInject */ ($stateProvider) => {
       $title: ($translate) =>
         $translate('telecom_dashboard_identity_check_form_title'),
       hideBreadcrumb: () => true,
+      goToDashboard: /* @ngInject */ ($state) => () =>
+        $state.go('telecom-dashboard'),
     },
   });
 };

@@ -6,14 +6,12 @@ export default class IdentityCheckFormCtrl {
   constructor(
     $uibModal,
     $translate,
-    $state,
     atInternet,
     coreConfig,
     ovhPaymentMethodHelper,
     IdentityCheckService,
     TucToast,
   ) {
-    this.$state = $state;
     this.atInternet = atInternet;
 
     const { isValidIban, isValidBic } = ovhPaymentMethodHelper;
@@ -133,7 +131,7 @@ export default class IdentityCheckFormCtrl {
 
   onCancelCreateProcedureForm() {
     this.trackClick('cancel');
-    this.$state.go('telecom-dashboard');
+    this.goToDashboard();
   }
 
   openProcedure() {
