@@ -42,5 +42,8 @@
   "pci_apps_general_information_resources_local_storage": "Local storage per resource",
   "pci_apps_general_information_resources_monitoring": "AI App real-time monitoring",
   "pci_apps_general_information_resources_monitoring_access_to_graph": "Access dashboards",
-  "pci_apps_general_information_snippet_title": "Using your AI App"
+  "pci_apps_general_information_snippet_title": "Using your AI App",
+  "pci_apps_general_information_life_cycle_status_STOPPING": "Stopping",
+  "pci_apps_general_information_life_cycle_action_start": "Start",
+  "pci_apps_general_information_life_cycle_action_stop": "Stop"
 }

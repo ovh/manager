@@ -31,5 +31,6 @@
   "pci_ai_app_list_delete_app": "Delete",
   "pci_ai_app_list_start_error": "An error has occurred attempting to start the AI App {{appName}}: {{message}}",
   "pci_ai_app_list_stop_error": "An error has occurred attempting to stop the AI App {{appName}}: {{message}}",
-  "pci_ai_app_list_creator": "User"
+  "pci_ai_app_list_creator": "User",
+  "pci_ai_app_list_status_STOPPING": "Stopping"
 }
