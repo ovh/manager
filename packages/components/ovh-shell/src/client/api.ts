@@ -3,6 +3,7 @@ import { Environment } from '@ovh-ux/manager-config';
 import ShellClient from './shell-client';
 import { clientAuth } from '../plugin/auth';
 import { clientNavigation } from '../plugin/navigation';
+import { exposeTrackingAPI } from '../plugin/tracking';
 
 export default function exposeApi(shellClient: ShellClient) {
   return {
@@ -79,5 +80,6 @@ export default function exposeApi(shellClient: ShellClient) {
         }),
     },
     navigation: clientNavigation(shellClient),
+    tracking: exposeTrackingAPI(shellClient),
   };
 }
