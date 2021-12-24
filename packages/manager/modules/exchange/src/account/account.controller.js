@@ -62,6 +62,7 @@ export default class ExchangeAccountHomeController {
   }
 
   $onInit() {
+    console.log('ZM:: phonesList', this.countryCodes);
     this.hostname = this.Exchange.value.hostname;
     this.webUrl = this.Exchange.value.webUrl;
 
