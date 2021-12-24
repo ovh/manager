@@ -3,6 +3,7 @@
 @import 'bootstrap4/scss/_mixins.scss';
 @import 'bootstrap4/scss/_utilities.scss';
 @import 'bootstrap4/scss/_grid.scss';
+@import 'bootstrap4/scss/_modal.scss';
 
 html,
 body,
@@ -10,4 +11,41 @@ body,
   width: 100%;
   height: 100%;
   margin: 0;
+}
+
+.modal-backdrop.fade {
+  opacity: 0.5;
+}
+
+.manager-cookie-policy-banner .modal-dialog {
+  max-height: 0;
+}
+
+$buttons-width: 15rem;
+$buttons-margin: 0.2rem;
+$buttons-wrapper-margin-top: 1rem;
+$img-width: 10rem;
+$img-wrapper-margin-bottom: 1rem;
+$modal-margin: 0;
+
+.manager-cookie-policy-banner {
+  .img-wrapper {
+    margin-bottom: $img-wrapper-margin-bottom;
+
+    img {
+      width: $img-width;
+    }
+  }
+
+  .oui-modal__header {
+    display: none;
+  }
+
+  .banner-buttons {
+    margin-top: $buttons-wrapper-margin-top;
+    .oui-button {
+      width: $buttons-width;
+      margin: $buttons-margin;
+    }
+  }
 }
