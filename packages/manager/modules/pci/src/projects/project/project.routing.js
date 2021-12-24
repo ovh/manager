@@ -42,11 +42,8 @@ export default /* @ngInject */ ($stateProvider) => {
       loadQuotas: /* @ngInject */ (PciProjectsService, projectId) => () =>
         PciProjectsService.getQuotas(projectId),
 
-      serviceInfos: /* @ngInject */ ($http, projectId) =>
-        $http
-          .get(`/cloud/project/${projectId}/serviceInfos`)
-          .then(({ data }) => data)
-          .catch(() => ({})),
+      serviceInfos: /* @ngInject */ (PciProject, projectId) =>
+        PciProject.getServiceInfo(projectId),
 
       service: /* @ngInject */ ($http, serviceInfos) =>
         $http

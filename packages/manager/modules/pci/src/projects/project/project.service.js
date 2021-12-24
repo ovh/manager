@@ -13,6 +13,13 @@ export default class {
     this.project = project;
   }
 
+  getServiceInfo(serviceName) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/serviceInfos`)
+      .then(({ data }) => data)
+      .catch(() => ({}));
+  }
+
   getCustomerRegions(serviceName) {
     return this.$http
       .get(`/cloud/project/${serviceName}/region`)
