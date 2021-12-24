@@ -4,6 +4,7 @@ import isString from 'lodash/isString';
 export default class ExchangeAccount {
   /* @ngInject */
   constructor(
+    $http,
     wucExchange,
     exchangeAccountTypes,
     exchangeServiceInfrastructure,
@@ -13,6 +14,8 @@ export default class ExchangeAccount {
     OvhHttp,
     OvhApiMsServices,
   ) {
+    this.$http = $http;
+
     this.wucExchange = wucExchange;
     this.exchangeAccountTypes = exchangeAccountTypes;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
@@ -254,5 +257,16 @@ export default class ExchangeAccount {
       account.domain.toUpperCase() ===
       this.PLACEHOLDER_DOMAIN_NAME.toUpperCase()
     );
+  }
+
+  /**
+   * Get account rules field.
+   * Can be used to build a country codes list
+   * @returns {Promise} rules: fields rules info
+   */
+  getAccountRules() {
+    return this.$http
+      .post('/newAccount/rules')
+      .then(({ data: rules }) => rules);
   }
 }
