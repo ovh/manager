@@ -141,6 +141,21 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return promise;
         },
+        stopPollingUsersStatus: /* @ngInject */ (
+          DatabaseService,
+          databaseId,
+          users,
+        ) => () => {
+          users.forEach((user) =>
+            DatabaseService.stopPollingUserStatus(databaseId, user.id),
+          );
+        },
+        stopPollingDatabaseStatus: /* @ngInject */ (
+          DatabaseService,
+          databaseId,
+        ) => () => {
+          DatabaseService.stopPollingDatabaseStatus(databaseId);
+        },
       },
       atInternet: {
         ignore: true,

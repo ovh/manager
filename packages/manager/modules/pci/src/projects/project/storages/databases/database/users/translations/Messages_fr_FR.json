@@ -19,10 +19,6 @@
   "pci_databases_users_show_key_action_label": "Afficher la clé d'accès",
   "pci_databases_users_show_cert_action_label": "Afficher le certificat",
   "pci_databases_users_show_user_informations_action_label": "Afficher les informations",
-
-  "pci_databases_users_password_message_infos": "Le nouveau mot de passe de l'utilisateur {{ user }} est <code>{{ password }}</code>.",
-  "pci_databases_users_password_message_success": "Le mot de passe de l'utilisateur {{ user }} a été regénéré.",
-  "pci_databases_users_password_message_error": "Une erreur est survenue lors de la génération du mot de passe de l'utilisateur {{ user }} : {{ message }}.",
   "pci_databases_users_delete_action_label": "Supprimer",
   "pci_databases_users_add_action_label": "Ajouter un utilisateur"
 }

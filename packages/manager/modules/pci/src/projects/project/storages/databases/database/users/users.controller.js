@@ -67,4 +67,9 @@ export default class UsersCtrl {
   isDisabledOrPending($row) {
     return $row.isProcessing() || this.database.isProcessing();
   }
+
+  $onDestroy() {
+    this.stopPollingUsersStatus();
+    this.stopPollingDatabaseStatus();
+  }
 }

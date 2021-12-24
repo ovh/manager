@@ -13,6 +13,8 @@ export default {
     goToShowKey: '<',
     goToShowCert: '<',
     users: '<',
+    stopPollingUsersStatus: '<',
+    stopPollingDatabaseStatus: '<',
   },
   controller,
   template,
