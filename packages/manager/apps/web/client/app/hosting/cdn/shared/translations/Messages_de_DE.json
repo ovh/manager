@@ -48,7 +48,7 @@
   "hosting_cdn_shared_option_query_string_list_sorted": "Einstellungen sortieren",
   "hosting_cdn_shared_option_query_string_list_ignored": "Einstellungen ignorieren",
   "hosting_cdn_shared_option_prewarm_title": "Prewarm",
-  "hosting_cdn_shared_option_prewarm_info": "Bewirken Sie das permanente Caching Ihrer wichtigsten Ressourcen. Das CDN antizipiert und aktualisiert den Cache automatisch, ohne eine Anfrage des Nutzers.",
+  "hosting_cdn_shared_option_prewarm_info": "Erwirken Sie das permanente Caching Ihrer wichtigsten Ressourcen. Das CDN antizipiert und aktualisiert den Cache automatisch, ohne eine Anfrage des Nutzers.",
   "hosting_cdn_shared_option_prewarm_quota": "Letzte Berechnung des Quotas",
   "hosting_cdn_shared_option_prewarm_btn_edit_urls": "Liste der URL bearbeiten",
   "hosting_cdn_shared_option_http_geolocation_title": "HTTP-Header für Geolokalisierung",
@@ -67,5 +67,10 @@
   "hosting_cdn_shared_option_cache_rule_table_items_type_extension": "Endung",
   "hosting_cdn_shared_option_cache_rule_table_items_type_folder": "Ordner",
   "hosting_cdn_shared_option_cache_rule_table_items_type_uri": "URI",
-  "hosting_cdn_shared_option_cache_rule_table_items_type_regex": "Regulärer Ausdruck"
+  "hosting_cdn_shared_option_cache_rule_table_items_type_regex": "Regulärer Ausdruck",
+  "hosting_cdn_shared_option_always_online_title": "Always online",
+  "hosting_cdn_shared_option_http_https_title": "HTTP/2",
+  "hosting_cdn_shared_option_brotli_title": "Brotli",
+  "hosting_cdn_shared_option_advanced_flush_title": "Erweiterte Cache-Bereinigung",
+  "hosting_cdn_shared_option_advanced_flush_info": "Personalisieren Sie die Bereinigung und wählen Sie aus, welche Elemente des Cache geleert werden sollen: Die gesamte Website, ein Ordner, ein URI, eine Dateierweiterung oder ein regulärer personalisierter Ausdruck. Direkt über den Tab „Multisite“ in der Liste der Aktionen verfügbar."
 }
