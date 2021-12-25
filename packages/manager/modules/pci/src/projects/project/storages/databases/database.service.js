@@ -774,13 +774,12 @@ export default class DatabaseService {
     // pageSize,
     // page
   ) {
-    return this.iceberg(
-      `/cloud/project/${projectId}/database/${engine}/${databaseId}/queryStatistics`,
-    )
-      .query()
-      .expand('CachedObjectList-Pages')
-      .execute() // { limit: pageSize, offset: page }
-      .$promise.then(({ data: stats }) =>
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/queryStatistics`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data: stats }) =>
         stats[0].map((query) => {
           return engine === DATABASE_TYPES.POSTGRESQL
             ? new QueryStatistics(
