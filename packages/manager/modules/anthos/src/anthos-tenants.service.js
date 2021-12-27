@@ -46,6 +46,34 @@ export default class AnthosTenantsService {
     );
   }
 
+  getAccessRestrictions(serviceName) {
+    return this.$http.get(
+      `/dedicated/anthos/tenants/${serviceName}/ipRestrictions`,
+    );
+  }
+
+  createAccessRestriction(serviceName, ipBlock) {
+    return this.$http.post(
+      `/dedicated/anthos/tenants/${serviceName}/ipRestrictions`,
+      {
+        ips: [ipBlock],
+      },
+    );
+  }
+
+  updateAccessRestriction(serviceName, oldIpBlock, newIpBlock) {
+    return this.deleteAccessRestriction(serviceName, oldIpBlock).then(() =>
+      this.createAccessRestriction(serviceName, newIpBlock),
+    );
+  }
+
+  deleteAccessRestriction(serviceName, ipBlock) {
+    const encodedIpBlock = encodeURIComponent(ipBlock);
+    return this.$http.delete(
+      `/dedicated/anthos/tenants/${serviceName}/ipRestrictions/${encodedIpBlock}`,
+    );
+  }
+
   getTenantStorageUsage(serviceName) {
     return this.fetch(
       `/dedicated/anthos/tenants/${serviceName}/storage/netapp/usage`,
