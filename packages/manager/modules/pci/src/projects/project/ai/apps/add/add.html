@@ -1,0 +1,146 @@
+<div>
+    <p data-translate="pci_app_add_description"></p>
+</div>
+
+<!--Banner messages-->
+<div class="mt-4" id="addMessages">
+    <!--Banner for User and Roles-->
+    <oui-message data-type="info">
+        <span data-translate="pci_app_add_banner_token_description"></span>
+        <button
+            type="button"
+            class="oui-link"
+            data-ng-click="$ctrl.createToken()"
+        >
+            <span
+                data-translate="pci_app_add_banner_token_description_link"
+            ></span>
+        </button>
+    </oui-message>
+
+    <!--Dynamic banner message-->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+</div>
+
+<!--App stepper-->
+<oui-stepper data-on-finish="$ctrl.onAppSubmit()">
+    <!--App Region -->
+    <oui-step-form
+        data-ng-init="stepRegion = $ctrl.stepper.appRegion"
+        data-name="{{:: stepRegion.name}}"
+        data-header="{{ $ctrl.getRegionHeader(stepRegion.display) }}"
+        data-on-focus="stepRegion.display = true"
+        data-on-submit="stepRegion.display = false"
+        data-prevent-next="true"
+    >
+        <div class="mb-4" data-ng-if="stepRegion.display">
+            <div class="row">
+                <div class="col-md-12">
+                    <pci-project-regions-list
+                        data-regions="$ctrl.regions"
+                        data-selected-region="$ctrl.appModel.region"
+                        data-display-selected-region="$ctrl.displaySelectedRegion"
+                        data-on-change="$ctrl.onRegionChange(region)"
+                    ></pci-project-regions-list>
+                </div>
+            </div>
+        </div>
+    </oui-step-form>
+
+    <oui-step-form
+        data-ng-init="stepImage = $ctrl.stepper.appImage"
+        data-name="{{:: stepImage.name }}"
+        data-header="{{ $ctrl.getImageHeader(stepImage.display) }}"
+        data-loading="$ctrl.loadingRegionDeps"
+        data-on-focus="stepImage.display = true"
+        data-on-submit="stepImage.display = false"
+        data-prevent-next="true"
+        data-valid="$ctrl.appModel.image"
+    >
+        <app-image
+            data-ng-if="stepImage.display"
+            data-image="$ctrl.appModel.image"
+            data-preset="$ctrl.appModel.preset"
+            data-flavors="$ctrl.flavors"
+            data-presets="$ctrl.presets"
+            data-prices="$ctrl.prices"
+            data-default-price="$ctrl.defaultPrice"
+            data-type="'app'"
+        ></app-image>
+    </oui-step-form>
+
+    <!--App Resources-->
+    <oui-step-form
+        data-ng-init="stepResources = $ctrl.stepper.appResources"
+        data-name="{{:: stepResources.name}}"
+        data-header="{{ $ctrl.getResourceHeader(stepResources.display) }}"
+        data-loading="$ctrl.loadingRegionDeps"
+        data-on-focus="stepResources.display = true"
+        data-on-submit="stepResources.display = false"
+        data-valid="$ctrl.appModel.resource.usage && $ctrl.appModel.resource.flavor"
+        data-prevent-next="true"
+    >
+        <app-resources
+            data-ng-if="stepResources.display"
+            data-app-model="$ctrl.appModel"
+            data-flavors="$ctrl.flavors"
+            data-prices="$ctrl.prices"
+        ></app-resources>
+    </oui-step-form>
+
+    <!--App Attach Container and Repository-->
+    <oui-step-form
+        data-ng-init="stepVolumes = $ctrl.stepper.appAttach"
+        data-name="{{:: stepVolumes.name}}"
+        data-header="{{ $ctrl.getAttachContainerHeader(stepVolumes.display) }}"
+        data-on-focus="stepVolumes.display = true"
+        data-on-submit="stepVolumes.display = false"
+        data-loading="$ctrl.loadingRegionDeps"
+        data-ng-if="!$ctrl.appModel.preset || $ctrl.appModel.preset.capabilities.volume"
+        data-prevent-next="true"
+    >
+        <app-attach
+            data-ng-if="stepVolumes.display"
+            data-volumes="$ctrl.appModel.volumes"
+            data-storages="$ctrl.storages"
+        ></app-attach>
+    </oui-step-form>
+
+    <!--App Configuration-->
+    <oui-step-form
+        data-ng-init="stepConfig = $ctrl.stepper.appSettings"
+        data-name="{{:: stepConfig.name}}"
+        data-header="{{ $ctrl.getConfigHeader(stepConfig.display) }}"
+        data-on-focus="stepConfig.display = true"
+        data-on-submit="stepConfig.display = false"
+        data-prevent-next="true"
+    >
+        <app-configuration
+            data-ng-if="stepConfig.display"
+            data-app-model="$ctrl.appModel"
+            data-regions="$ctrl.regions"
+        ></app-configuration>
+    </oui-step-form>
+
+    <!--App Review-->
+    <oui-step-form
+        data-ng-init="stepReview = $ctrl.stepper.appReview"
+        data-name="{{:: stepReview.name}}"
+        data-header="{{:: 'pci_app_add_review_title' | translate }}"
+        data-submit-text="{{:: 'pci_app_add_app_create' | translate }}"
+        data-loading-text="{{:: 'pci_app_add_app_create_pending' | translate }}"
+        data-on-focus="stepReview.display = true"
+        data-on-submit="stepReview.display = false"
+        data-editable="!$ctrl.isAdding"
+        data-loading="$ctrl.isAdding"
+    >
+        <app-review
+            data-ng-if="stepReview.display && !$ctrl.stepper.appAttach.display"
+            data-project-id="$ctrl.projectId"
+            data-app-model="$ctrl.appModel"
+            data-prices="$ctrl.prices"
+        ></app-review>
+    </oui-step-form>
+</oui-stepper>

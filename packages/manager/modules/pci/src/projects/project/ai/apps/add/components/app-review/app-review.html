@@ -1,0 +1,81 @@
+<div>
+    <!--App review configuration-->
+    <div class="mb-4">
+        <oui-tile
+            data-heading="{{:: 'pci_app_add_review' | translate}}"
+            data-ng-if="$ctrl.appModel.resource.flavor"
+        >
+            <oui-tile-definition
+                data-term="{{:: 'pci_app_add_review_region' | translate}}"
+            >
+                <oui-tile-description
+                    data-ng-bind="$ctrl.getRegionInfo()"
+                ></oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-definition
+                data-term="{{:: 'pci_app_add_review_price_resource' | translate}}"
+            >
+                <oui-tile-description>
+                    <ovh-manager-catalog-price
+                        data-ng-if="$ctrl.resourcePriceInUcents > 0"
+                        data-price="$ctrl.resourcePriceInUcents"
+                        data-tax="$ctrl.resourcePriceTax"
+                        data-user="$ctrl.user"
+                        data-show-zero-price="true"
+                        data-interval="'hour'"
+                    >
+                    </ovh-manager-catalog-price>
+                    <p ng-if="$ctrl.resourcePriceInUcents == 0">
+                        <span
+                            data-translate="pci_app_add_review_price_resource_free"
+                        ></span>
+                    </p>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-definition
+                data-ng-if="$ctrl.appModel.preset.partner"
+                data-term="{{:: $ctrl.getLicencePartner() }}"
+            >
+                <oui-tile-description>
+                    <ovh-manager-catalog-price
+                        data-ng-if="$ctrl.partnerPriceInUcents > 0"
+                        data-price="$ctrl.partnerPriceInUcents"
+                        data-tax="$ctrl.partnerPriceTax"
+                        data-user="$ctrl.user"
+                        data-show-zero-price="true"
+                        data-interval="'hour'"
+                    >
+                    </ovh-manager-catalog-price>
+                    <p ng-if="$ctrl.partnerPriceInUcents == 0">
+                        <span
+                            data-translate="pci_app_add_review_price_partner_free"
+                            data-translate-values="{ partner: $ctrl.appModel.preset.partner.name }"
+                        ></span>
+                    </p>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-definition
+                data-ng-if="$ctrl.appModel.preset.partner"
+                data-term="{{:: 'pci_app_add_review_price_total' | translate}}"
+            >
+                <oui-tile-description>
+                    <ovh-manager-catalog-price
+                        data-price="$ctrl.partnerPriceInUcents + $ctrl.resourcePriceInUcents"
+                        data-tax="$ctrl.partnerPriceTax + $ctrl.resourcePriceTax"
+                        data-user="$ctrl.user"
+                        data-show-zero-price="true"
+                        data-interval="'hour'"
+                    >
+                    </ovh-manager-catalog-price>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-definition
+                data-term="{{:: 'pci_app_add_review_resources' | translate}}"
+            >
+                <oui-tile-description
+                    data-ng-bind="$ctrl.getResourceInfo()"
+                ></oui-tile-description>
+            </oui-tile-definition>
+        </oui-tile>
+    </div>
+</div>

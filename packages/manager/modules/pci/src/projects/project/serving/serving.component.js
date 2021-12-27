@@ -14,6 +14,9 @@ export default {
     viewNamespace: '<',
     deleteNamespace: '<',
     namespaceId: '<',
+    steins: '<',
+    customerRegions: '<',
+    namespacesRegions: '<',
     onListParamChange: '<',
   },
 };

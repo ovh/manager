@@ -1,0 +1,16 @@
+{
+  "pci_ai_title": "AI Apps",
+  "pci_ai_apps_title": "AI Apps",
+  "pci_ai_tokens_title": "Tokens",
+  "pci_ai_tokens_list_title": "Mes tokens AI",
+  "pci_ai_tokens_description_1": "Les tokens sont des jetons uniques d'authentification nécessaires pour accéder à vos AI Apps, AI Notebooks et AI Jobs.",
+  "pci_ai_tokens_name": "Nom",
+  "pci_ai_tokens_label_selector": "Sélecteur de labels",
+  "pci_ai_tokens_region": "Région",
+  "pci_ai_tokens_role": "Rôle",
+  "pci_ai_tokens_add_token": "Nouveau token",
+  "pci_ai_tokens_delete": "Supprimer",
+  "pci_ai_tokens_update": "Regénerer",
+  "pci_ai_tokens_role_name_ai_training_operator": "AI Platform - Opérateur",
+  "pci_ai_tokens_role_name_ai_training_read": "AI Platform - Lecture seule"
+}

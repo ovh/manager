@@ -59,6 +59,9 @@ export default /* @ngInject */ ($stateProvider) => {
             })),
           ),
 
+      failoverIpsRegions: /* @ngInject */ (failoverIps) =>
+        Array.from(new Set(failoverIps.map(({ geoloc }) => geoloc))),
+
       goToFailoverIps: ($state, CucCloudMessage, projectId) => (
         message = false,
         type = 'success',

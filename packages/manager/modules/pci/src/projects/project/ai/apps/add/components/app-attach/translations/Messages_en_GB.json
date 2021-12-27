@@ -1,0 +1,22 @@
+{
+  "pci_app_add_attach_container_description": "If necessary, you can attach OVHcloud Object Storage containers to your apps. Once they are attached, they will be temporarily loaded and cached near your instance, to minimise latency and improve performance. The best practice is to attach one container with your incoming data, and another with your outgoing data.",
+  "pci_app_add_attach_container_description_link": "Learn more about data storage.",
+  "pci_app_add_attach_container_btn_attach_storage_add": "Attach an Object Storage container",
+  "pci_app_add_attach_container_btn_attach_repo_git_add": "Attach a public Git repository",
+  "pci_app_add_attach_container_btn_attach_storage_remove": "Delete an Object Storage container",
+  "pci_app_add_attach_container_storage_container": "Storage container",
+  "pci_app_add_attach_container_git_url": "Git repository URL",
+  "pci_app_add_attach_container_storage_container_select": "Storage container",
+  "pci_app_add_attach_container_mount_path": "Mount directory",
+  "pci_app_add_attach_container_mount_path_error_key_already_exist": "This directory already exists",
+  "pci_app_add_attach_container_volumes_quantity": "{{numberOfVolumes}}/{{maxVolumes}} volumes",
+  "pci_app_add_attach_container_data_prefix": "Filter by prefix",
+  "pci_app_add_attach_container_data_prefix_help": "Only objects matching the prefix are uploaded to the file system",
+  "pci_app_add_attach_container_permission_select": "Permission",
+  "pci_app_add_attach_container_permission_help": "In ‘Read Only’ mode, no sync is launched at the end of the job. This way, the job finishes quicker.",
+  "pci_app_data_cache": "Cache",
+  "pci_app_data_permission": "Authorisation",
+  "pci_app_add_attach_container_permission_RO": "Read-only",
+  "pci_app_add_attach_container_permission_RW": "Read/Write",
+  "pci_app_add_attach_container_data_cache_help": "Cached containers can be reused by other jobs without additional syncing. Containers are removed from the cache after a period of inactivity."
+}

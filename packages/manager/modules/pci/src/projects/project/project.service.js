@@ -1,7 +1,8 @@
 export default class {
   /* @ngInject */
-  constructor() {
+  constructor($http) {
     this.project = {};
+    this.$http = $http;
   }
 
   getProjectInfo() {
@@ -10,5 +11,18 @@ export default class {
 
   setProjectInfo(project = {}) {
     this.project = project;
+  }
+
+  getServiceInfo(serviceName) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/serviceInfos`)
+      .then(({ data }) => data)
+      .catch(() => ({}));
+  }
+
+  getCustomerRegions(serviceName) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/region`)
+      .then(({ data: regions }) => regions);
   }
 }

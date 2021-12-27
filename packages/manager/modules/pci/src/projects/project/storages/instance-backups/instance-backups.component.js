@@ -14,6 +14,9 @@ export default {
     onListParamChange: '<',
     projectId: '<',
     getStateName: '<',
+    steins: '<',
+    customerRegions: '<',
+    instanceBackupsRegions: '<',
     goToRegion: '<',
   },
 };

@@ -22,6 +22,7 @@ import instances from './instances';
 import kubernetes from './kubernetes';
 import loadBalancer from './load-balancer';
 import notebooks from './notebooks';
+import ai from './ai';
 import sshKeys from './ssh-keys';
 import privateNetworks from './private-networks';
 import quota from './quota';
@@ -36,6 +37,7 @@ import serving from './serving';
 import training from './training';
 import workflow from './workflow';
 import pciAnnouncementBanner from '../../components/pci-announcement-banner';
+import pciMaintenanceBanner from '../../components/pci-maintenance-banner';
 
 import projectComponent from './project.component';
 import service from './project.service';
@@ -60,6 +62,7 @@ angular
     instances,
     loadBalancer,
     notebooks,
+    ai,
     kubernetes,
     privateNetworks,
     quota,
@@ -79,6 +82,7 @@ angular
     serving,
     training,
     pciAnnouncementBanner,
+    pciMaintenanceBanner,
   ])
   .config(routing)
   .component('pciProject', projectComponent)

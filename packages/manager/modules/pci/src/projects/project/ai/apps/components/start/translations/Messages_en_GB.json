@@ -1,0 +1,8 @@
+{
+  "pci_app_start_app_title": "Start AI app",
+  "pci_app_start_app_submit_label": "Confirm",
+  "pci_app_start_app_cancel_label": "Cancel",
+  "pci_app_start_app_content": "Are you sure you want to start the {{appName}} app?",
+  "pci_app_start_app_success": "Your app has been started.",
+  "pci_app_start_app_error": "An error has occurred starting your {{appName}} app: {{message}}"
+}

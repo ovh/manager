@@ -9,6 +9,8 @@ export default {
     user: '<',
     getQuotaUrl: '<',
     getStateName: '<',
+    steins: '<',
+    customerRegions: '<',
     goToProject: '<',
     goToProjects: '<',
     goToProjectInactive: '<',
