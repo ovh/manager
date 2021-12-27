@@ -6,7 +6,7 @@
     <oui-header-tabs>
         <oui-header-tabs-item
             href="{{:: $ctrl.generalInformationLink }}"
-            active="$ctrl.currentActiveLink() === $ctrl.generalInformationLink"
+            active="$ctrl.isGeneralInformationTabActive()"
         >
             <span
                 data-translate="anthos_dashboard_header_general_information"
@@ -14,20 +14,20 @@
         </oui-header-tabs-item>
         <oui-header-tabs-item
             href="{{:: $ctrl.hostLink }}"
-            active="$ctrl.currentActiveLink() === $ctrl.hostLink"
+            active="$ctrl.isHostTabActive()"
         >
             <span data-translate="anthos_dashboard_header_host"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-ng-if="$ctrl.storageUsage"
             href="{{:: $ctrl.storageLink }}"
-            active="$ctrl.currentActiveLink() === $ctrl.storageLink"
+            active="$ctrl.isStorageTabActive()"
         >
             <span data-translate="anthos_dashboard_header_storage"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             href="{{:: $ctrl.ipsLink }}"
-            active="$ctrl.currentActiveLink() === $ctrl.ipsLink"
+            active="$ctrl.isIpsTabActive()"
         >
             <span data-translate="anthos_dashboard_header_ips"></span>
         </oui-header-tabs-item>

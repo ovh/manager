@@ -54,8 +54,17 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
-      currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
-        $state.href($state.current.name, $transition$.params()),
+      isGeneralInformationTabActive: /* @ngInject */ ($state) => () =>
+        $state.includes('anthos.dashboard.general-information'),
+
+      isHostTabActive: /* @ngInject */ ($state) => () =>
+        $state.includes('anthos.dashboard.host'),
+
+      isStorageTabActive: /* @ngInject */ ($state) => () =>
+        $state.includes('anthos.dashboard.storage'),
+
+      isIpsTabActive: /* @ngInject */ ($state) => () =>
+        $state.includes('anthos.dashboard.ips'),
 
       dashboardLink: /* @ngInject */ ($state, serviceName) =>
         $state.href('anthos.dashboard', { serviceName }),
@@ -64,6 +73,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('anthos.dashboard.general-information', {
           serviceName,
         }),
+
       hostLink: /* @ngInject */ ($state, serviceName) =>
         $state.href('anthos.dashboard.host', { serviceName }),
 
