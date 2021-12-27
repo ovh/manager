@@ -1,0 +1,145 @@
+<oui-spinner data-ng-if="$ctrl.isLoading"></oui-spinner>
+<div
+    class="anthos-dashboard-access-restriction-table"
+    data-ng-if="!$ctrl.isLoading"
+>
+    <oui-button
+        class="mb-3"
+        data-ng-click="$ctrl.newAccessRestriction()"
+        data-variant="secondary"
+        data-icon-left="oui-icon-add"
+        data-disabled="!$ctrl.canAddAccessRestriction"
+    >
+        <span
+            data-translate="anthos_dashboard_access_restriction_table_add"
+        ></span>
+    </oui-button>
+    <div class="oui-datagrid-responsive">
+        <table class="oui-datagrid">
+            <thead>
+                <tr>
+                    <th class="oui-datagrid__header">
+                        <span
+                            class="oui-tile__term"
+                            data-translate="anthos_dashboard_access_restriction_table_header"
+                        ></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    class="oui-datagrid__row"
+                    data-ng-repeat="row in $ctrl.rows track by $index"
+                >
+                    <td class="oui-datagrid__cell">
+                        <div
+                            class="d-flex justify-content-between"
+                            data-ng-if="!row.isEditing"
+                        >
+                            <span
+                                class="pt-1 pl-1"
+                                data-ng-bind="row.text"
+                            ></span>
+                            <div>
+                                <oui-button
+                                    data-size="s"
+                                    data-variant="secondary"
+                                    data-disabled="row.isLoading"
+                                    data-on-click="$ctrl.startAccessRestrictionEdition(row)"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-pen"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="sr-only"
+                                        data-translate="anthos_dashboard_access_restriction_table_edit"
+                                    ></span>
+                                </oui-button>
+                                <oui-button
+                                    data-size="s"
+                                    data-variant="secondary"
+                                    data-disabled="row.isLoading"
+                                    data-on-click="$ctrl.deleteAccessRestriction(row)"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-bin"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="sr-only"
+                                        data-translate="anthos_dashboard_access_restriction_table_delete"
+                                    ></span>
+                                </oui-button>
+                            </div>
+                        </div>
+                        <form
+                            data-ng-if="row.isEditing"
+                            data-ng-submit="$ctrl.saveAccessRestriction(row)"
+                            class="d-flex justify-content-between my-1"
+                        >
+                            <div class="d-flex">
+                                <input
+                                    name="{{ row.id }}"
+                                    class="oui-input oui-input-ip"
+                                    data-ng-class="{ 'oui-input_error': row.ip && !row.isIpValid }"
+                                    type="text"
+                                    data-ng-model="row.ip"
+                                />
+                                <span class="px-2 pt-1">/</span>
+                                <input
+                                    name="block"
+                                    class="oui-input oui-input-block text-center"
+                                    data-ng-class="{ 'oui-input_error': row.block && !row.isBlockValid }"
+                                    type="text"
+                                    data-ng-model="row.block"
+                                />
+                            </div>
+                            <div>
+                                <oui-button
+                                    data-type="submit"
+                                    data-size="s"
+                                    data-variant="secondary"
+                                    data-disabled="row.isLoading || !row.canSave"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-success"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="sr-only"
+                                        data-translate="anthos_dashboard_access_restriction_table_save"
+                                    ></span>
+                                </oui-button>
+                                <oui-button
+                                    data-size="s"
+                                    data-variant="secondary"
+                                    data-disabled="row.isLoading"
+                                    data-on-click="$ctrl.cancelAccessRestrictionEdition(row)"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-close"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="sr-only"
+                                        data-translate="anthos_dashboard_access_restriction_table_delete"
+                                    ></span>
+                                </oui-button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                <tr class="oui-datagrid__row" data-ng-if="!$ctrl.rows.length">
+                    <td class="oui-datagrid__cell">
+                        <div class="text-center pa-5">
+                            <strong
+                                data-translate="anthos_dashboard_access_restriction_table_empty"
+                            ></strong>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

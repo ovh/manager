@@ -3,6 +3,7 @@ import template from './template.html';
 
 export default {
   bindings: {
+    accessRestrictionLink: '<',
     alertId: '<',
     dashboardLink: '<',
     displayAlerterMessage: '<',
@@ -12,6 +13,7 @@ export default {
     hostLink: '<',
     hosts: '<',
     ipsLink: '<',
+    isAccessRestrictionTabActive: '<',
     isGeneralInformationTabActive: '<',
     isHostTabActive: '<',
     isIpsTabActive: '<',

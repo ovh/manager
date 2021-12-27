@@ -1,0 +1,12 @@
+<div>
+    <oui-header
+        data-heading="{{:: ('anthos_dashboard_access_restriction_title' | translate) }}"
+    ></oui-header>
+    <p data-translate="anthos_dashboard_access_restriction_p1"></p>
+    <p data-translate="anthos_dashboard_access_restriction_p2"></p>
+    <p data-translate="anthos_dashboard_access_restriction_p3" class="mb-5"></p>
+    <anthos-access-restriction-table
+        data-service-name="$ctrl.serviceName"
+        data-display-alerter-message="$ctrl.displayAlerterMessage"
+    ></anthos-access-restriction-table>
+</div>
