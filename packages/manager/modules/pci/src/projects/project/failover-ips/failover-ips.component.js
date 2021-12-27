@@ -12,6 +12,9 @@ export default {
     failoverIp: '<',
     onListParamChange: '<',
     getStateName: '<',
+    steins: '<',
+    customerRegions: '<',
+    failoverIpsRegions: '<',
     goToRegion: '<',
   },
 };

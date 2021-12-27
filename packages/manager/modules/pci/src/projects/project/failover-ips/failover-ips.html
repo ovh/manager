@@ -14,13 +14,21 @@
         </oui-guide-menu>
     </oui-header>
     <div>
+        <pci-maintenance-banner
+            data-steins="$ctrl.steins"
+            data-customer-regions="$ctrl.customerRegions"
+            data-product-regions="$ctrl.failoverIpsRegions"
+        ></pci-maintenance-banner>
+
         <pci-announcement-banner
             data-get-state-name="$ctrl.getStateName()"
             data-on-go-to-region="$ctrl.goToRegion()"
         ></pci-announcement-banner>
+
         <cui-message-container
             data-messages="$ctrl.messages"
         ></cui-message-container>
+
         <oui-datagrid
             data-rows="$ctrl.failoverIps"
             criteria="$ctrl.criteria"

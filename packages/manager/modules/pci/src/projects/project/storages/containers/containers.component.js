@@ -18,6 +18,9 @@ export default {
     projectId: '<',
     viewContainer: '<',
     getStateName: '<',
+    steins: '<',
+    customerRegions: '<',
+    containersRegions: '<',
     goToRegion: '<',
   },
 };

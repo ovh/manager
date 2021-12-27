@@ -57,8 +57,12 @@ export default /* @ngInject */ ($stateProvider) => {
           instanceId,
         }),
       storageId: /* @ngInject */ ($transition$) => $transition$.params().id,
+
       storages: /* @ngInject */ (PciProjectStorageBlockService, projectId) =>
         PciProjectStorageBlockService.getAll(projectId),
+
+      storagesRegions: /* @ngInject */ (storages) =>
+        Array.from(new Set(storages.map(({ region }) => region))),
 
       goToBlockStorage: /* @ngInject */ (
         CucCloudMessage,

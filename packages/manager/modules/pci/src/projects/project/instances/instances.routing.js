@@ -68,6 +68,10 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
           ),
       instanceId: /* @ngInject */ ($transition$) => $transition$.params().id,
+
+      instancesRegions: /* @ngInject */ (instances) =>
+        Array.from(new Set(instances.map(({ region }) => region))),
+
       addInstance: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.instances.add', {
           projectId,

@@ -14,10 +14,18 @@
         </oui-guide-menu>
     </oui-header>
     <div>
+
+        <pci-maintenance-banner
+            data-steins="$ctrl.steins"
+            data-customer-regions="$ctrl.customerRegions"
+            data-product-regions="$ctrl.clustersRegions"
+        ></pci-maintenance-banner>
+
         <!-- error messages -->
         <cui-message-container
             data-messages="$ctrl.messages"
         ></cui-message-container>
+        
         <oui-datagrid
             class="mt-3"
             data-rows="$ctrl.clusters"

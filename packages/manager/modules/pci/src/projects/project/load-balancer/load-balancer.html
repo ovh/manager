@@ -19,6 +19,13 @@
         </oui-guide-menu>
     </oui-header>
     <div class="container-fluid px-0">
+
+        <pci-maintenance-banner
+            data-steins="$ctrl.steins"
+            data-customer-regions="$ctrl.customerRegions"
+            data-product-regions="$ctrl.loadBalancersRegions"
+        ></pci-maintenance-banner>
+
         <pci-announcement-banner
             data-get-state-name="$ctrl.getStateName()"
             data-on-go-to-region="$ctrl.goToRegion()"

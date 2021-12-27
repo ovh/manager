@@ -23,12 +23,16 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       clusterId: /* @ngInject */ ($transition$) => $transition$.params().id,
+
       clusters: /* @ngInject */ (analyticsDataPlatformService, projectId) => {
         analyticsDataPlatformService.clearPlatformAllCache();
         return analyticsDataPlatformService.getAnalyticsDataPlatforms(
           projectId,
         );
       },
+
+      clustersRegions: /* @ngInject */ (clusters) =>
+        Array.from(new Set(clusters.map(({ osRegion }) => osRegion))),
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('analytics_data_platform_title'),
