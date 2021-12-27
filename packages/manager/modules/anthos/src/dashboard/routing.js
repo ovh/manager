@@ -77,6 +77,9 @@ export default /* @ngInject */ ($stateProvider) => {
       hostLink: /* @ngInject */ ($state, serviceName) =>
         $state.href('anthos.dashboard.host', { serviceName }),
 
+      isHostLinkActive: /* @ngInject */ ($state) => () =>
+        $state.includes('anthos.dashboard.host'),
+
       storageLink: /* @ngInject */ ($state, serviceName) =>
         $state.href('anthos.dashboard.storage', { serviceName }),
 
@@ -103,6 +106,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+
+      goToOrderHost: /* @ngInject */ ($state, serviceName) => () =>
+        $state.go('anthos.dashboard.host.order', { serviceName }),
+
+      goBack: /* @ngInject */ ($state, goToTenant) => (message, type) =>
+        goToTenant(message, type, $state.$current.parent.name),
 
       displayAlerterMessage: /* @ngInject */ (Alerter) => (type, message) =>
         Alerter[type](message, ANTHOS_TENANT_ALERTER),

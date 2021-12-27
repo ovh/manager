@@ -20,16 +20,10 @@ export default /* @ngInject */ ($stateProvider) => {
           )
           .catch(() => false),
 
-      goBack: /* @ngInject */ ($state, goToTenant) => (message, type) =>
-        goToTenant(message, type, $state.$current.parent.name),
-
       goToRenameService: /* @ngInject */ ($state, serviceName) => () =>
         $state.go('anthos.dashboard.general-information.rename-service', {
           serviceName,
         }),
-
-      goToOrderHost: /* @ngInject */ ($state) => () =>
-        $state.go('anthos.dashboard.general-information.order-host'),
 
       goToOrderStorage: /* @ngInject */ ($state) => () =>
         $state.go('anthos.dashboard.general-information.add-storage'),

@@ -1,0 +1,17 @@
+{
+  "anthos_dashboard_host_order_init_error": "Une erreur s'est produite lors du chargement de cette page",
+  "anthos_dashboard_host_order_header_heading": "Commander un hôte",
+  "anthos_dashboard_host_order_header_description": "Vous pouvez personnaliser votre déploiement Anthos en y ajoutant des hôtes. Vous serez redirigé vers une nouvelle page où vous pourrez confirmer votre commande. Le prix affiché est valable pour une période d’un mois. En vous engageant sur une plus longue durée, vous bénéficiez de tarifs dégressifs.",
+  "anthos_dashboard_host_order_grid_header_quantity": "Quantité",
+  "anthos_dashboard_host_order_grid_header_host": "Hôte",
+  "anthos_dashboard_host_order_grid_header_cpu": "Processeur",
+  "anthos_dashboard_host_order_grid_header_ram": "Mémoire",
+  "anthos_dashboard_host_order_grid_header_storage": "Stockage",
+  "anthos_dashboard_host_order_grid_header_network": "Réseau",
+  "anthos_dashboard_host_order_grid_header_price": "Prix",
+  "anthos_dashboard_host_order_grid_row_cpu_cores": "{{ amount }} cores",
+  "anthos_dashboard_host_order_grid_row_cpu_threads": "{{ amount }} threads",
+  "anthos_dashboard_host_order_grid_row_cpu_frequency": "@ {{ amount }}GHz",
+  "anthos_dashboard_host_order_grid_row_price": "HT/Mois",
+  "anthos_dashboard_host_order_action": "Initier la commande"
+}
