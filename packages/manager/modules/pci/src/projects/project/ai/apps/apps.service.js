@@ -96,6 +96,12 @@ export default class AppService {
       .then(({ data }) => data);
   }
 
+  getAppCommand(serviceName, appSpec) {
+    return this.$http
+      .post(`/cloud/project/${serviceName}/ai/app/command`, appSpec)
+      .then(({ data }) => data.command);
+  }
+
   getRegions(serviceName) {
     return this.$http
       .get(

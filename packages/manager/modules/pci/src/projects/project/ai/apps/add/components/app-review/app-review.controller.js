@@ -33,6 +33,8 @@ export default class AppReviewController {
       this.partnerPriceTax = 0;
       this.partnerPriceInUcents = 0;
     }
+
+    this.appSpecs = this.convertModelToSpecs(this.appModel);
   }
 
   getLicencePartner() {

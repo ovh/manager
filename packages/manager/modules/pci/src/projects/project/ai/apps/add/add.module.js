@@ -11,6 +11,7 @@ import appResources from './components/app-resources';
 import appAttach from './components/app-attach';
 import appReview from './components/app-review';
 import appImage from './components/app-image';
+import appCommand from './components/app-command';
 import ovhManagerPciStoragesContainers from '../../../storages/containers';
 
 const moduleName = 'ovhManagerPciAiAppsAdd';
@@ -25,6 +26,7 @@ angular
     appReview,
     appImage,
     ovhManagerPciStoragesContainers,
+    appCommand,
   ])
   .config(routing)
   .component(moduleName, component)

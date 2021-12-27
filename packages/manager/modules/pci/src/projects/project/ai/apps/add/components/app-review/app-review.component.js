@@ -6,6 +6,7 @@ export default {
     projectId: '<',
     appModel: '<',
     prices: '<',
+    convertModelToSpecs: '<',
   },
   controller,
   template,
