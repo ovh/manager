@@ -1,3 +1,13 @@
+# [5.54.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.53.1...@ovh-ux/manager-pci@5.54.0) (2021-12-27)
+
+
+### Features
+
+* add maintenance banner ([#6163](https://github.com/ovh/manager/issues/6163)) ([ad1d6ae](https://github.com/ovh/manager/commit/ad1d6aec4b12d48d707d209bdc7b341a95d8ae74))
+* **ai:** add ai apps ([#6040](https://github.com/ovh/manager/issues/6040)) ([d6577d1](https://github.com/ovh/manager/commit/d6577d106326085cd4308b5f932997799e4256cd))
+
+
+
 ## [5.53.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.53.0...@ovh-ux/manager-pci@5.53.1) (2021-12-20)
 
 
