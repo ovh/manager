@@ -66,6 +66,9 @@ export default /* @ngInject */ ($stateProvider) => {
       isIpsTabActive: /* @ngInject */ ($state) => () =>
         $state.includes('anthos.dashboard.ips'),
 
+      isAccessRestrictionTabActive: /* @ngInject */ ($state) => () =>
+        $state.includes('anthos.dashboard.access-restriction'),
+
       dashboardLink: /* @ngInject */ ($state, serviceName) =>
         $state.href('anthos.dashboard', { serviceName }),
 
@@ -82,6 +85,9 @@ export default /* @ngInject */ ($stateProvider) => {
 
       ipsLink: /* @ngInject */ ($state, serviceName) =>
         $state.href('anthos.dashboard.ips', { serviceName }),
+
+      accessRestrictionLink: /* @ngInject */ ($state, serviceName) =>
+        $state.href('anthos.dashboard.access-restriction', { serviceName }),
 
       serviceInfo: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getServiceInfo(serviceName),
