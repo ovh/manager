@@ -12,9 +12,9 @@ export default class IdentityCheckMessageCtrl {
   }
 
   $onInit() {
-    this.IdentityCheckService.isIdentityChecked()
-      .then((isIdentityChecked) => {
-        this.isMessageShown = !isIdentityChecked;
+    this.IdentityCheckService.isProcedureRequired()
+      .then((isProcedureRequired) => {
+        this.isMessageShown = isProcedureRequired;
       })
       .catch((error) => {
         this.TucToastError(error.data?.message || error.message);
