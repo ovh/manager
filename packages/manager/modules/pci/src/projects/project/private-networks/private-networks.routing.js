@@ -14,9 +14,10 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      createNetwork: ($state, projectId) => () =>
+      createNetwork: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.privateNetwork.add', { projectId }),
-      deleteNetwork: ($state, projectId) => (networkId) =>
+
+      deleteNetwork: /* @ngInject */ ($state, projectId) => (networkId) =>
         $state.go('pci.projects.project.privateNetwork.delete', {
           projectId,
           networkId,
@@ -26,6 +27,17 @@ export default /* @ngInject */ ($stateProvider) => {
 
       privateNetworks: /* @ngInject */ (PciPrivateNetworks, projectId) =>
         PciPrivateNetworks.getPrivateNetworks(projectId),
+
+      privateNetworksRegions: /* @ngInject */ (privateNetworks) =>
+        Array.from(
+          new Set(
+            privateNetworks.reduce(
+              (acc, { regions }) =>
+                acc.concat(regions.map(({ region }) => region)),
+              [],
+            ),
+          ),
+        ),
 
       vrack: /* @ngInject */ (PciPrivateNetworks, projectId) =>
         PciPrivateNetworks.getVrack(projectId),

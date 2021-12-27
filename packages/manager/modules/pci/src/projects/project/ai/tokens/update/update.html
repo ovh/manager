@@ -1,0 +1,20 @@
+<form
+    id="updateToken"
+    name="updateToken"
+    data-ng-submit="$ctrl.updateToken()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'pci_ai_tokens_update' | translate }}"
+        data-primary-label="{{:: 'pci_ai_tokens_update_common_update' | translate }}"
+        data-secondary-label="{{:: 'pci_ai_tokens_update_common_cancel' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isUpdating"
+    >
+        <p
+            data-translate="pci_ai_tokens_update_warning"
+            data-translate-values="{ tokenId: $ctrl.tokenId }"
+        ></p>
+    </oui-modal>
+</form>

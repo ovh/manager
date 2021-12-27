@@ -58,6 +58,9 @@ export default /* @ngInject */ ($stateProvider) => {
             )
           : [],
 
+      notebooksRegions: /* @ngInject */ (notebooks) =>
+        Array.from(new Set(notebooks.map(({ spec }) => spec.region))),
+
       editors: /* @ngInject */ (NotebookService, projectId) =>
         NotebookService.getEditors(projectId),
 

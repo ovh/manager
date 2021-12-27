@@ -1,0 +1,200 @@
+<!--App attach object storage-->
+<div class="mb-2">
+    <!--Description-->
+    <span>
+        <span
+            class="mb-0"
+            data-translate="pci_app_add_attach_container_description"
+        ></span>
+        <a
+            data-ng-href="{{:: $ctrl.getStorageInfoLink() }}"
+            target="_blank"
+            rel="noopener"
+        >
+            <span
+                data-translate="pci_app_add_attach_container_description_link"
+            ></span>
+            <span class="oui-icon oui-icon-target" aria-hidden="true"></span>
+        </a>
+    </span>
+</div>
+
+<!--App storage labels-->
+<div class="mb-4">
+    <div class="oui-box oui-box_light pl-0 pb-2 border-0">
+        <!--Manage labels-->
+        <div class="oui-inline-adder mb-2">
+            <div
+                class="oui-inline-adder__form"
+                data-ng-repeat="volume in $ctrl.volumes track by $index"
+            >
+                <fieldset class="oui-inline-adder__fieldset">
+                    <div class="oui-inline-adder__row">
+                        <div
+                            class="oui-inline-adder__field"
+                            ng-if="volume.privateSwift"
+                        >
+                            <oui-field
+                                label="{{:: 'pci_app_add_attach_container_storage_container' | translate}}"
+                            >
+                                <label class="oui-select">
+                                    <oui-select
+                                        name="container"
+                                        data-model="volume.container"
+                                        data-items="$ctrl.filteredStorages"
+                                        data-match="description"
+                                        data-searchable
+                                        data-required="volume.container"
+                                    >
+                                    </oui-select>
+                                </label>
+                            </oui-field>
+                        </div>
+                        <div
+                            class="oui-inline-adder__field"
+                            ng-if="volume.privateSwift"
+                        >
+                            <oui-field
+                                data-label="{{:: 'pci_app_add_attach_container_data_prefix' | translate  }}"
+                                data-label-popover="{{:: 'pci_app_add_attach_container_data_prefix_help' | translate }}"
+                            >
+                                <input
+                                    type="text"
+                                    class="oui-input"
+                                    data-ng-init="volumePrefixId = 'volumePrefix-' + $index"
+                                    data-ng-attr-name="{{volumePrefixId}}"
+                                    data-ng-attr-id="{{volumePrefixId}}"
+                                    data-ng-model="volume.prefix"
+                                    data-ng-pattern="$ctrl.APP_ATTACH_STORAGE.PREFIX_REGEX"
+                                />
+                            </oui-field>
+                        </div>
+                        <div
+                            class="oui-inline-adder__field"
+                            ng-if="volume.publicGit"
+                        >
+                            <oui-field
+                                label="{{:: 'pci_app_add_attach_container_git_url' | translate}}"
+                            >
+                                <input
+                                    type="text"
+                                    class="oui-input"
+                                    data-ng-init="volumeGitUrlId = 'volumeGitUrl-' + $index"
+                                    data-ng-attr-name="{{volumeGitUrlId}}"
+                                    data-ng-attr-id="{{volumeGitUrlId}}"
+                                    data-ng-model="volume.gitUrl"
+                                    data-ng-pattern="$ctrl.APP_ATTACH_STORAGE.GIT_URL_REGEX"
+                                    required
+                                />
+                            </oui-field>
+                        </div>
+                        <div class="oui-inline-adder__field">
+                            <oui-field
+                                data-label="{{:: 'pci_app_add_attach_container_mount_path' | translate}}"
+                                data-error-messages="{ duplicateVolumeMountPath: ('pci_app_add_attach_container_mount_path_error_key_already_exist' | translate) }"
+                            >
+                                <input
+                                    type="text"
+                                    class="oui-input"
+                                    placeholder="/workspace/demo"
+                                    data-ng-init="volumeMountPathId = 'volumeMountPath-' + $index"
+                                    data-ng-attr-name="{{volumeMountPathId}}"
+                                    data-ng-attr-id="{{volumeMountPathId}}"
+                                    data-ng-change="$ctrl.onVolumeMountPathEdit(volume, volumeMountPathId)"
+                                    data-ng-model="volume.mountPath"
+                                    data-ng-pattern="$ctrl.APP_ATTACH_STORAGE.MOUNT_PATH_REGEX"
+                                    required
+                                />
+                            </oui-field>
+                        </div>
+                        <div class="oui-inline-adder__field">
+                            <oui-field
+                                data-label="{{:: 'pci_app_data_permission' | translate  }}"
+                                data-label-popover="{{:: 'pci_app_add_attach_container_permission_help' | translate }}"
+                            >
+                                <label class="oui-select">
+                                    <select
+                                        class="oui-select__input"
+                                        data-ng-init="volumePermissionId = 'volumePermission-' + $index"
+                                        data-ng-attr-name="{{volumePermissionId}}"
+                                        data-ng-attr-id="{{volumePermissionId}}"
+                                        data-ng-model="volume.permission"
+                                        required
+                                    >
+                                        <option
+                                            data-ng-bind="'pci_app_add_attach_container_permission_select' | translate"
+                                            selected
+                                        ></option>
+                                        <option
+                                            ng-repeat="permission in $ctrl.permissions"
+                                            value="{{permission}}"
+                                            data-ng-bind="::'pci_app_add_attach_container_permission_' + permission  | translate"
+                                        >
+                                        </option>
+                                    </select>
+                                    <span
+                                        class="oui-icon oui-icon-chevron-down"
+                                        aria-hidden="true"
+                                    ></span>
+                                </label>
+                            </oui-field>
+                        </div>
+                        <div class="oui-inline-adder__field">
+                            <oui-field
+                                data-label="{{:: 'pci_app_data_cache' | translate  }}"
+                                data-label-popover="{{:: 'pci_app_add_attach_container_data_cache_help' | translate }}"
+                                size="auto"
+                            >
+                                <oui-checkbox
+                                    class="oui-checkbox"
+                                    name="cache"
+                                    data-ng-init="volumeCacheId = 'volumeCache-' + $index"
+                                    data-ng-attr-name="{{volumeCacheId}}"
+                                    data-ng-attr-id="{{volumeCacheId}}"
+                                    data-model="volume.cache"
+                                ></oui-checkbox>
+                            </oui-field>
+                        </div>
+                    </div>
+                </fieldset>
+                <footer class="oui-inline-adder__footer">
+                    <button
+                        type="button"
+                        class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
+                        data-translate-attr="{title: 'pci_app_add_attach_container_btn_attach_storage_remove'}"
+                        data-ng-click="$ctrl.onRemoveVolumeClick(volume)"
+                    >
+                        <span class="oui-icon oui-icon-trash"></span>
+                    </button>
+                </footer>
+            </div>
+        </div>
+
+        <!--Add label-->
+        <oui-button
+            data-icon-left="oui-icon-plus"
+            data-variant="secondary"
+            data-disabled="!$ctrl.canAddNewStorageVolume()"
+            data-on-click="$ctrl.onAddVolumeClick()"
+        >
+            <span
+                data-translate="pci_app_add_attach_container_btn_attach_storage_add"
+            ></span>
+        </oui-button>
+        <!--Add label-->
+        <oui-button
+            data-icon-left="oui-icon-plus"
+            data-variant="secondary"
+            data-disabled="!$ctrl.canAddNewVolume()"
+            data-on-click="$ctrl.onAddVolumeGitClick()"
+        >
+            <span
+                data-translate="pci_app_add_attach_container_btn_attach_repo_git_add"
+            ></span>
+        </oui-button>
+    </div>
+    <span
+        data-translate="pci_app_add_attach_container_volumes_quantity"
+        data-translate-values="{ numberOfVolumes: $ctrl.volumes.length, maxVolumes: $ctrl.APP_ATTACH_STORAGE.MAX_VOLUMES}"
+    ></span>
+</div>

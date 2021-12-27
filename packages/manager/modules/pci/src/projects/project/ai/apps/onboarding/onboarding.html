@@ -1,0 +1,23 @@
+<manager-on-boarding-layout
+    data-guides="$ctrl.guides"
+    data-image-source="$ctrl.illustration"
+    data-on-guide-click="$ctrl.onDocumentationClick(guide)"
+>
+    <h1 data-translate="pci_app_title"></h1>
+    <p><strong data-translate="pci_app_onboarding_content1"></strong></p>
+    <p><strong data-translate="pci_app_onboarding_content2"></strong></p>
+    <p data-translate="pci_app_onboarding_content3"></p>
+
+    <oui-message type="error" data-ng-if="$ctrl.error">
+        {{ $ctrl.error }}
+    </oui-message>
+
+    <oui-button
+        data-ng-if="!$ctrl.loading"
+        data-variant="primary"
+        data-on-click="$ctrl.onAddAppClick()"
+    >
+        <span data-translate="pci_app_onboarding_action_label"></span>
+        <oui-spinner data-ng-if="$ctrl.loading" data-size="s"></oui-spinner>
+    </oui-button>
+</manager-on-boarding-layout>

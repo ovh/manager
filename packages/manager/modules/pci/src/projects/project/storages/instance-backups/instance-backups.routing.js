@@ -26,10 +26,14 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       backupId: /* @ngInject */ ($transition$) => $transition$.params().id,
+
       instanceBackups: /* @ngInject */ (
         PciProjectStorageInstanceBackupService,
         projectId,
       ) => PciProjectStorageInstanceBackupService.getAll(projectId),
+
+      instanceBackupsRegions: /* @ngInject */ (instanceBackups) =>
+        Array.from(new Set(instanceBackups.map(({ region }) => region))),
 
       goToInstanceBackups: /* @ngInject */ (
         $state,

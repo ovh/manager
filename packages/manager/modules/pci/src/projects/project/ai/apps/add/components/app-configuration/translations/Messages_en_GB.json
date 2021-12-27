@@ -1,0 +1,19 @@
+{
+  "pci_app_add_configuration_name": "Name of your AI App",
+  "pci_app_add_configuration_label": "Labels",
+  "pci_app_add_configuration_label_description": "You can add labels to your AI App. Useful for filtering or securing by token on a specific label",
+  "pci_app_add_configuration_label_field_key": "Key",
+  "pci_app_add_configuration_label_field_key_error_key_already_exist": "This key already exists",
+  "pci_app_add_configuration_label_field_value": "Value",
+  "pci_app_add_configuration_label_btn_add": "Add a label",
+  "pci_app_add_configuration_label_btn_remove": "Delete label",
+  "pci_app_add_configuration_label_quantity": "{{numberOfLabels}}/{{maxLabels}} labels",
+  "pci_app_add_privacy_settings_item_restricted": "Restricted access",
+  "pci_app_add_privacy_settings_item_restricted_description": "Access to your AI App is restricted by authentication.",
+  "pci_app_add_privacy_settings_item_public": "Public access",
+  "pci_app_add_privacy_settings_item_public_description": "Your AI App is accessible to everyone through your URL or API. Anyone can access your application and the data attached to it.",
+  "pci_app_add_privacy_settings_item_public_warning": "Please ensure that you take great care with sensitive data.",
+  "pci_app_add_privacy_title": "Access rule to your AI App",
+  "pci_app_add_settings_port": "HTTP port",
+  "pci_app_add_settings_port_help": "The HTTP port your AI App is linked to."
+}

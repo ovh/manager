@@ -1,0 +1,17 @@
+{
+  "pci_ai_tokens_label_selector": "Label selector",
+  "pci_ai_tokens_name": "Name",
+  "pci_ai_tokens_label_selector_validation_error": "The label selector must be in the following form: <code>label=value</code>",
+  "pci_ai_tokens_role": "Role",
+  "pci_ai_tokens_role_help": "Choose an Administrator or Operator role (easy to use)",
+  "pci_ai_tokens_region": "Region",
+  "pci_ai_tokens_region_help": "Region for which the token will be active",
+  "pci_ai_tokens_add_error": "An error has occurred creating the token: {{message}}",
+  "pci_ai_tokens_add_success": "Your token has been generated, please save it",
+  "pci_ai_tokens_add": "Generate a token",
+  "pci_ai_tokens_common_add": "Generate",
+  "pci_ai_tokens_common_cancel": "Cancel",
+  "pci_ai_tokens_add_info_1": "Tokens can be assigned to a specific resource (AI Notebook, Job and App) using label selectors — or if you leave the field empty, they can be assigned to all your resources. You can also specify token privileges to include administrative or read-only rights.",
+  "pci_ai_tokens_add_info_2": "Selector examples: <code>label=value</code><code>id=uuid</code><code>type=app</code>",
+  "pci_ai_tokens_add_info_3": "By default, your applications will have the following labels: <code>id</code> and <code>type</code>"
+}

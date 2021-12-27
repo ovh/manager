@@ -22,6 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       loadBalancerId: /* @ngInject */ ($transition$) =>
         $transition$.params().id,
+
       goToLoadBalancers: ($state, CucCloudMessage, projectId) => (
         message = false,
         type = 'success',
@@ -47,6 +48,9 @@ export default /* @ngInject */ ($stateProvider) => {
         PciLoadBalancerService.getLoadBalancers(projectId).then((lbs) =>
           map(lbs, (id) => ({ id })),
         ),
+
+      loadBalancersRegions: /* @ngInject */ (loadBalancers) =>
+        Array.from(new Set(loadBalancers.map(({ region }) => region))),
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_load_balancer_list_title'),
