@@ -2,40 +2,14 @@ const inProgressStatuses = ['doing', 'todo', 'waiting_for_customer'];
 
 export default class {
   /* @ngInject */
-  constructor($http, $q) {
+  constructor($http) {
     this.$http = $http;
-    this.$q = $q;
   }
 
-  isIdentityChecked() {
-    return this.$q
-      .all([this.hasBillingAccounts(), this.hasUntrustedBillingAccounts()])
-      .then(([has, hasUntrusted]) => has === true && hasUntrusted === false);
-  }
-
-  hasBillingAccounts() {
+  isProcedureRequired() {
     return this.$http
-      .get('/telephony', {
-        headers: {
-          'X-Pagination-Mode': 'CachedObjectList-Pages',
-          'X-Pagination-Size': 1,
-        },
-      })
-      .then((response) => response.headers('x-pagination-elements') !== '0')
-      .catch(() => null);
-  }
-
-  hasUntrustedBillingAccounts() {
-    return this.$http
-      .get('/telephony', {
-        headers: {
-          'X-Pagination-Mode': 'CachedObjectList-Pages',
-          'X-Pagination-Filter': 'trusted:eq=false',
-          'X-Pagination-Size': 1,
-        },
-      })
-      .then((response) => response.headers('x-pagination-elements') !== '0')
-      .catch(() => null);
+      .get('/telephony/procedure/required')
+      .then(({ data: required }) => required);
   }
 
   getLastInProgressProcedure() {
