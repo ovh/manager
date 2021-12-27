@@ -1,0 +1,20 @@
+<form
+    id="deleteToken"
+    name="deleteToken"
+    data-ng-submit="$ctrl.deleteToken()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'pci_ai_tokens_delete' | translate }}"
+        data-primary-label="{{:: 'pci_ai_tokens_delete_common_delete' | translate }}"
+        data-secondary-label="{{:: 'pci_ai_tokens_delete_common_cancel' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isDeleting"
+    >
+        <p
+            data-translate="pci_ai_tokens_delete_warning"
+            data-translate-values="{ tokenId: $ctrl.tokenId }"
+        ></p>
+    </oui-modal>
+</form>

@@ -1,0 +1,17 @@
+{
+  "pci_app_title": "AI Apps",
+  "pci_app_onboarding_content1": "Deploy your AI applications and models with high availability.",
+  "pci_app_onboarding_content2": "Choose from a catalogue or deploy your own Docker images.",
+  "pci_app_onboarding_content3": "Are you a data scientist or developer, looking to deploy an AI application or model in just a few minutes? Select from an AI Apps catalogue, or import your own containerised application. OVHcloud manages its high-availability deployment, and its security. Get CPU or GPU resources, real-time tracking tools, and simple, pay-as-you-go pricing. You can then log in via the API, or via an HTTP web interface.",
+  "pci_app_onboarding_action_label": "Deploy an AI App",
+  "pci_app_guides_documentation_title": "Full AI Apps documentation",
+  "pci_app_guides_documentation_description": "Browse all the documentation for AI Apps.",
+  "pci_app_guides_definition_title": "AI Apps definition",
+  "pci_app_guides_definition_description": "Find out what an AI App is at OVHcloud.",
+  "pci_app_guides_start_title": "Getting started with AI Apps",
+  "pci_app_guides_start_description": "Find out how to get started quickly with your App via the OVHcloud Control Panel.",
+  "pci_app_guides_share_title": "Share an AI App",
+  "pci_app_guides_share_description": "Learn how to share an AI App with other developers.",
+  "pci_app_guides_object_storage_access_title": "Access your data from your object storage",
+  "pci_app_guides_object_storage_access_description": "Find out how to access your data from your AI App with your object storage."
+}

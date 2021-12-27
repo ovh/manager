@@ -1,0 +1,168 @@
+<!--App name-->
+<div class="mb-4">
+    <!--Title-->
+    <p class="oui-heading_5 mb-2">
+        <strong data-translate="pci_app_add_configuration_name"></strong>
+    </p>
+
+    <!--Name-->
+    <oui-field size="l">
+        <input
+            class="oui-input"
+            type="text"
+            id="configurationAppName"
+            name="configurationAppName"
+            data-ng-model="$ctrl.appModel.name"
+            required
+        />
+    </oui-field>
+</div>
+
+<!--labels-->
+<div class="mb-4">
+    <!-- Title and description -->
+    <div class="oui-box oui-box_light pl-0 pb-2 border-0">
+        <h4
+            class="oui-box__heading mb-2"
+            data-translate="pci_app_add_configuration_label"
+        ></h4>
+        <p data-translate="pci_app_add_configuration_label_description"></p>
+
+        <!--Manage labels-->
+        <div class="oui-inline-adder mb-2">
+            <div
+                class="oui-inline-adder__form"
+                data-ng-repeat="label in $ctrl.appModel.labels track by $index"
+            >
+                <fieldset class="oui-inline-adder__fieldset">
+                    <div class="oui-inline-adder__row">
+                        <div class="oui-inline-adder__field">
+                            <oui-field
+                                class="mb-2"
+                                data-error-messages="{ duplicateLabelKey: ('pci_app_add_configuration_label_field_key_error_key_already_exist' | translate) }"
+                                data-label="{{:: 'pci_app_add_configuration_label_field_key' | translate}}"
+                            >
+                                <input
+                                    type="text"
+                                    class="oui-input"
+                                    data-ng-init="labelKeyId = 'configurationLabelKey-' + $index"
+                                    data-ng-attr-name="{{labelKeyId}}"
+                                    data-ng-attr-id="{{labelKeyId}}"
+                                    data-ng-model="label.key"
+                                    data-ng-change="$ctrl.onKeyLabelEdit(label, labelKeyId)"
+                                    data-ng-maxlength="$ctrl.APP_LABELS.MAX_CHARS"
+                                    required
+                                />
+                            </oui-field>
+                        </div>
+                        <div class="oui-inline-adder__field">
+                            <oui-field
+                                class="mb-2"
+                                data-label="{{:: 'pci_app_add_configuration_label_field_value' | translate}}"
+                            >
+                                <input
+                                    type="text"
+                                    class="oui-input"
+                                    data-ng-init="labelValueId = 'configurationLabelValue-' + $index"
+                                    data-ng-attr-name="{{labelValueId}}"
+                                    data-ng-attr-id="{{labelValueId}}"
+                                    data-ng-model="label.value"
+                                    data-ng-maxlength="$ctrl.APP_LABELS.MAX_CHARS"
+                                    required
+                                />
+                            </oui-field>
+                        </div>
+                    </div>
+                </fieldset>
+                <footer class="oui-inline-adder__footer">
+                    <button
+                        type="button"
+                        class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
+                        data-translate-attr="{title: 'pci_app_add_configuration_label_btn_remove'}"
+                        data-ng-click="$ctrl.onRemoveLabelClick(label)"
+                    >
+                        <span class="oui-icon oui-icon-trash"></span>
+                    </button>
+                </footer>
+            </div>
+        </div>
+
+        <!--Add empty label entry-->
+        <oui-button
+            data-icon-left="oui-icon-plus"
+            data-variant="secondary"
+            data-disabled="!$ctrl.canAddNewLabel()"
+            data-on-click="$ctrl.onAddLabelClick()"
+        >
+            <span
+                data-translate="pci_app_add_configuration_label_btn_add"
+            ></span>
+        </oui-button>
+    </div>
+    <span
+        data-translate="pci_app_add_configuration_label_quantity"
+        data-translate-values="{ numberOfLabels: $ctrl.appModel.labels.length, maxLabels: $ctrl.APP_LABELS.MAX_ITEMS}"
+    ></span>
+</div>
+
+<div class="mb-4" ng-if="!$ctrl.appModel.preset.partner">
+    <oui-field
+        data-label="{{:: 'pci_app_add_settings_port' | translate}}"
+        data-help-text="{{:: 'pci_app_add_settings_port_help' | translate}}"
+    >
+        <input
+            class="oui-input"
+            type="number"
+            id="port"
+            name="port"
+            data-ng-model="$ctrl.appModel.port"
+            required
+            min="1024"
+            max="65535"
+        />
+    </oui-field>
+</div>
+
+<div class="mb-4">
+    <!--Title-->
+    <p class="oui-heading_5 mb-2">
+        <strong data-translate="pci_app_add_privacy_title"></strong>
+    </p>
+    <div class="row">
+        <!--Settings restricted-->
+        <oui-select-picker
+            class="d-inline-block col-md-6 col-xl-3 my-3"
+            data-name="appPrivacyNetwork"
+            data-label="{{:: 'pci_app_add_privacy_settings_item_restricted' | translate}}"
+            data-model="$ctrl.appModel.privacy"
+            data-values="[$ctrl.APP_PRIVACY_SETTINGS.RESTRICTED]"
+        >
+            <oui-select-picker-section>
+                <span
+                    data-translate="pci_app_add_privacy_settings_item_restricted_description"
+                ></span>
+            </oui-select-picker-section>
+        </oui-select-picker>
+
+        <!--Settings public-->
+        <oui-select-picker
+            class="d-inline-block col-md-6 col-xl-3 my-3"
+            data-name="appPrivacyNetwork"
+            data-label="{{:: 'pci_app_add_privacy_settings_item_public' | translate}}"
+            data-model="$ctrl.appModel.privacy"
+            data-values="[$ctrl.APP_PRIVACY_SETTINGS.PUBLIC]"
+        >
+            <oui-select-picker-section>
+                <span
+                    data-translate="pci_app_add_privacy_settings_item_public_description"
+                ></span>
+            </oui-select-picker-section>
+            <oui-select-picker-section class="text-danger">
+                <span class="oui-icon oui-icon-warning"></span>
+                <span
+                    data-translate="pci_app_add_privacy_settings_item_public_warning"
+                ></span>
+            </oui-select-picker-section>
+        </oui-select-picker>
+    </div>
+</div>

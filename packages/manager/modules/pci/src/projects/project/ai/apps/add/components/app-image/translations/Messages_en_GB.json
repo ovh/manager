@@ -1,0 +1,10 @@
+{
+  "pci_app_submit_select_image_preset_info": "Description",
+  "pci_app_submit_select_image_advanced_tips": "Deploy your own application",
+  "pci_app_submit_select_image_advanced": "Deploy your own application (Docker image)",
+  "pci_app_submit_select_image_tips": "Enter the path to your Docker image. This can be a public (GitHub, Gitlab, DockerHub, etc.) or private registry",
+  "pci_app_submit_select_image_name": "Your Docker image path",
+  "pci_app_submit_select_image_tips_help": "Images hosted on a private or public registry are accepted (GitHub, GitLab, DockerHub, etc.)",
+  "pci_app_submit_select_image_custom_doc": "Find out how to create a custom Docker image",
+  "pci_app_submit_select_start_from": "From"
+}
