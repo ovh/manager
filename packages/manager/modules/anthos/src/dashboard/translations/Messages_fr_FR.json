@@ -2,5 +2,6 @@
   "anthos_dashboard_header_general_information": "Informations générales",
   "anthos_dashboard_header_host": "Hôte",
   "anthos_dashboard_header_storage": "Stockage",
-  "anthos_dashboard_header_ips": "IPs"
+  "anthos_dashboard_header_ips": "IPs",
+  "anthos_dashboard_header_access_retriction": "Restrictions d'accès"
 }
