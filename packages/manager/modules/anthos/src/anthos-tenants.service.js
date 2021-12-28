@@ -2,10 +2,11 @@ import { GUIDES } from './anthos.constants';
 
 export default class AnthosTenantsService {
   /* @ngInject */
-  constructor($http, $translate, ovhDocUrl) {
+  constructor($http, $translate, ovhDocUrl, coreConfig) {
     this.$http = $http;
     this.$translate = $translate;
     this.ovhDocUrl = ovhDocUrl;
+    this.user = coreConfig.getUser();
   }
 
   fetch(endPoint, headers) {
@@ -191,6 +192,15 @@ export default class AnthosTenantsService {
       .post(`/services/${serviceId}/terminate`, {
         acknowledgePotentialFees: true,
       })
+      .then(({ data }) => data);
+  }
+
+  getAnthosCatalog() {
+    const {
+      user: { ovhSubsidiary },
+    } = this;
+    return this.$http
+      .get(`/order/catalog/public/anthos?ovhSubsidiary=${ovhSubsidiary}`)
       .then(({ data }) => data);
   }
 }
