@@ -68,7 +68,7 @@ export default class {
         .catch((err) =>
           this.goBack(
             this.$translate.instant('pci_databases_users_add_error_save', {
-              message: get(err, 'data.message', null),
+              message: get(err, 'data.message', null).replace(/"/g, ''),
             }),
             'error',
           ),
