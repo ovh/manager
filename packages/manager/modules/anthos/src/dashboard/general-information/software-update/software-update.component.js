@@ -5,7 +5,6 @@ export default {
   bindings: {
     availableVersions: '<',
     displayAlerterMessage: '<',
-    generalInformationLink: '<',
     goBack: '<',
     serviceName: '<',
   },
