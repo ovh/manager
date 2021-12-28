@@ -40,9 +40,10 @@ export default class AnthosDashboardHostOrderController {
         this.expressOrderUrl = expressOrderUrl;
       })
       .catch(() => {
-        const i18nError = 'anthos_dashboard_host_order_init_error';
-        const message = this.$translate.instant(i18nError);
-        this.displayAlerterMessage('error', message);
+        this.displayAlerterMessage(
+          'error',
+          this.$translate.instant('anthos_dashboard_host_order_init_error'),
+        );
       })
       .finally(() => {
         this.isLoading = false;
