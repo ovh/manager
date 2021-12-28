@@ -241,7 +241,7 @@ export default class CloudProjectBillingService {
   initResourceUsage(resourceType, resourceName) {
     const resources = flatten(
       map(
-        filter(this.data.hourlyBilling.resourcesUsage, {
+        filter(this.data.hourlyBilling?.resourcesUsage, {
           type: resourceType,
         }),
         'resources',

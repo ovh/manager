@@ -178,8 +178,8 @@ export default class {
     if (date.isValid()) {
       return {
         month: date.format('MMMM'),
-        lastMonth: date.subtract(1, 'month').format('MMMM'),
         year: date.year(),
+        lastMonth: date.subtract(1, 'month').format('MMMM'),
       };
     }
     return null;
