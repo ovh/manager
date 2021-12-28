@@ -1,7 +1,68 @@
-export default class {
-  onOrderPublicCancel() {
-    this.trackClick(`${this.orderPublicIpHitTracking}::cancel`);
+import { MAX_QUANTITY, PRODUCT_ID, PRICING_DURATION } from './constants';
+import { extractPublicIpsAddonFromAnthosCatalog } from './utils';
 
-    return this.goBack();
+export default class {
+  /* @ngInject */
+  constructor($q, $translate, AnthosTenantsService, User) {
+    this.$q = $q;
+    this.$translate = $translate;
+    this.AnthosTenantsService = AnthosTenantsService;
+    this.User = User;
+
+    this.addon = null;
+    this.expressOrderUrl = '';
+    this.quantity = 1;
+    this.step = 1;
+    this.isLoading = true;
+    this.MAX_QUANTITY = MAX_QUANTITY;
+  }
+
+  $onInit() {
+    this.$q
+      .all({
+        anthosCatalog: this.AnthosTenantsService.getAnthosCatalog(),
+        expressOrderUrl: this.User.getUrlOf('express_order'),
+      })
+      .then(({ anthosCatalog, expressOrderUrl }) => {
+        this.addon = extractPublicIpsAddonFromAnthosCatalog(anthosCatalog);
+        this.expressOrderUrl = expressOrderUrl;
+        if (!this.addon) throw new Error('missingAddon');
+      })
+      .catch(() => {
+        const i18nError = 'anthos_dashboard_order_public_ip_init_error';
+        this.displayAlerterMessage('error', this.$translate.instant(i18nError));
+        this.goBack();
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
+  }
+
+  nextStep() {
+    this.step += 1;
+  }
+
+  previousStep() {
+    this.step -= 1;
+  }
+
+  order() {
+    const products = [
+      {
+        productId: PRODUCT_ID,
+        serviceName: this.serviceName,
+        planCode: this.addon.planCode,
+        duration: PRICING_DURATION,
+        pricingMode: this.addon.price.mode,
+        quantity: this.quantity,
+        configuration: [],
+      },
+    ];
+
+    window.open(
+      `${this.expressOrderUrl}review?products=${JSURL.stringify(products)}`,
+    );
+
+    this.goBack();
   }
 }
