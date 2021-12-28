@@ -1,66 +1,61 @@
 <div>
-    <oui-back-button
-        href="{{:: $ctrl.generalInformationLink }}"
-        aria-label="Aria label for heading"
-    ></oui-back-button>
+    <oui-back-button data-on-click="$ctrl.goBack()"></oui-back-button>
     <oui-header
         class="mb-0"
         data-heading="{{:: 'anthos_tenant_dashboard_general_information_software_update_title' | translate}}"
         data-description="{{:: 'anthos_tenant_dashboard_general_information_software_update_description' | translate}}"
     ></oui-header>
     <form name="softwareUpdateForm" data-ng-submit="$ctrl.updateSoftware()">
-        <div class="oui-tile__body">
-            <div class="oui-datagrid-responsive">
-                <table class="oui-datagrid">
-                    <thead>
-                        <tr>
-                            <th class="oui-datagrid__header">
-                                <span
-                                    class="oui-tile__term"
-                                    data-translate="anthos_tenant_dashboard_general_information_software_update_version"
-                                ></span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr
-                            class="oui-datagrid__row"
-                            data-ng-repeat="item in $ctrl.availableVersions track by item.version"
+        <table
+            class="oui-datagrid"
+            aria-label="{{:: 'anthos_tenant_dashboard_general_information_software_update_version' | translate}}"
+        >
+            <thead>
+                <tr>
+                    <th class="oui-datagrid__header" scope="col">
+                        <span
+                            class="oui-tile__term"
+                            data-translate="anthos_tenant_dashboard_general_information_software_update_version"
+                        ></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    class="oui-datagrid__row"
+                    data-ng-repeat="item in $ctrl.availableVersions track by item.version"
+                >
+                    <td
+                        class="oui-datagrid__cell d-flex p-2 align-items-center justify-content-between"
+                    >
+                        <oui-radio
+                            model="$ctrl.selectedVersion"
+                            name="version-{{ item.version }}"
+                            value="item"
                         >
-                            <td
-                                class="oui-datagrid__cell d-flex p-2 align-items-center"
-                            >
-                                <oui-radio
-                                    model="$ctrl.selectedVersion"
-                                    name="version-{{ item.version }}"
-                                    value="item"
-                                >
-                                    <span
-                                        data-translate="anthos_tenant_dashboard_general_information_software_update_version"
-                                    ></span>
-                                    <span data-ng-bind="item.version"></span>
-                                </oui-radio>
-                                <span class="w-100"></span>
-                                <a
-                                    class="oui-link_icon"
-                                    href="{{ item.changelogLink }}"
-                                    rel="noreferrer"
-                                    target="_blank"
-                                >
-                                    <span
-                                        data-translate="anthos_tenant_dashboard_general_information_software_update_change_log_link"
-                                    ></span>
-                                    <span
-                                        class="oui-icon oui-icon-external-link"
-                                        aria-hidden="true"
-                                    ></span>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                            <span
+                                data-translate="anthos_tenant_dashboard_general_information_software_update_version"
+                            ></span>
+                            <span data-ng-bind="item.version"></span>
+                        </oui-radio>
+                        <a
+                            class="oui-link_icon"
+                            href="{{ item.changelogLink }}"
+                            rel="noreferrer"
+                            target="_blank"
+                        >
+                            <span
+                                data-translate="anthos_tenant_dashboard_general_information_software_update_change_log_link"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-external-link"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <p
             data-translate="anthos_tenant_dashboard_general_information_software_update_info_1"
         ></p>
@@ -70,14 +65,13 @@
         <p
             data-translate="anthos_tenant_dashboard_general_information_software_update_info_3"
         ></p>
-        <div class="d-flex align-items-baseline">
-            <button
-                type="submit"
-                class="oui-button oui-button_l oui-button_primary mt-3 mr-3"
-                data-ng-disabled="$ctrl.isUpdating || !$ctrl.selectedVersion"
-                data-translate="anthos_tenant_dashboard_general_information_software_update_submit"
-            ></button>
+        <div class="d-flex align-items-center">
+            <oui-form-actions
+                submit-text="{{:: ('anthos_tenant_dashboard_general_information_software_update_submit' | translate) }}"
+                disabled="$ctrl.isUpdating || !$ctrl.selectedVersion"
+            ></oui-form-actions>
             <oui-spinner
+                class="ml-3"
                 data-ng-if="$ctrl.isUpdating"
                 data-size="s"
             ></oui-spinner>
