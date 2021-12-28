@@ -163,15 +163,6 @@ export default class AnthosTenantsService {
       );
   }
 
-  getAnthosCatalog() {
-    const {
-      user: { ovhSubsidiary },
-    } = this;
-    return this.$http
-      .get(`/order/catalog/public/anthos?ovhSubsidiary=${ovhSubsidiary}`)
-      .then(({ data }) => data);
-  }
-
   restartHost(serviceName, hostId) {
     return this.$http
       .post(
