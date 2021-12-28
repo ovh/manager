@@ -149,6 +149,7 @@
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg": "Die Option „Shared CDN“ für Ihr Hosting wird weiterentwickelt! Es sind neue Funktionen verfügbar.",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg_link_upgrade": "Ihr CDN migrieren",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_badge_new": "Neu",
+  "hosting_dashboard_service_cdn_customer_has_cdn_v1_new_offers": "OVHcloud empfiehlt: die neuen Angebote für CDN",
   "hosting_dashboard_service_web": "Websites",
   "hosting_dashboard_service_privatesql": "Private Datenbank",
   "hosting_dashboard_service_privatesql_more": "Liste anzeigen",
@@ -235,10 +236,6 @@
   "hosting_dashboard_cdn_flush_done_success": "Ihr CDN Cache wurde erfolgreich geleert.",
   "hosting_dashboard_cdn_flush_error": "Bei der Anfrage zur Bereinigung des CDN Caches ist ein Fehler aufgetreten.",
   "hosting_dashboard_service_flush_cdn_doing": "Bereinigung wird durchgeführt...",
-  "hosting_dashboard_service_terminate_cdn_question": "Sind Sie sicher, dass Sie den CDN-Dienst kündigen möchten?",
-  "hosting_dashboard_service_terminate_cdn_title": "Kündigung des CDN-Dienstes",
-  "hosting_dashboard_service_terminate_cdn_success": "Ihre Anfrage zur Kündigung des CDN ist bei uns eingegangen. Sie erhalten in Kürze eine E-Mail mit der Vorgehensweise zur Beendigung des Dienstes.",
-  "hosting_dashboard_service_terminate_cdn_error": "Bei der Kündigung des CDN ist ein Fehler aufgetreten.",
   "hosting_dashboard_service_terminate_email_title": "Kündigung der Option „E-Mail“",
   "hosting_dashboard_service_terminate_email_question": "Sind Sie sicher, dass Sie die Option „E-Mail“ kündigen möchten?",
   "hosting_dashboard_service_terminate_email_question_domain": "Sind Sie sicher, dass Sie die Option „E-Mail“ für diese Domain kündigen möchten <strong>{{ domain }}</strong> ?",
@@ -1374,6 +1371,5 @@
   "hosting_dashboard_service_common_inactive": "Inaktiv",
   "hosting_dashboard_email_offer_get_error": "Es ist unmöglich, die E-Mail-Adresse wiederherzustellen.",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Mehr",
-  "hosting_dashboard_service_cdn_customer_has_cdn_v1_new_offers": "OVHcloud empfiehlt: die neuen Angebote für CDN"
+  "hosting_dashboard_tabs_dropdown": "Mehr"
 }

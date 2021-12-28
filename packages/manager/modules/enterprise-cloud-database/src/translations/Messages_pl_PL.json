@@ -1,7 +1,6 @@
 {
   "enterprise_cloud_database_title": "Enterprise Cloud Databases",
   "enterprise_cloud_database_description": "Zarządzane bazy danych o wysokiej dostępności oparte na dedykowanej i skalowalnej infrastrukturze sprzętowej. Klastry baz danych są replikowane w kilku strefach geograficznych. Posiadają mechanizmy automatycznego przełączania awaryjnego (failover) i objęte są codzienną kopią zapasową. Każdy klaster posiada własne dedykowane zasoby fizyczne, co pozwala na pełne wykorzystanie mocy naszego sprzętu najnowszej generacji. Zaoferuj Twoim użytkownikom aplikacje o optymalnej wydajności.",
-  "enterprise_cloud_database_order_new_database": "Zamów klaster",
   "enterprise_cloud_database_list_service_name": "Nazwa usługi",
   "enterprise_cloud_database_list_endpoint": "Punkty końcowe (endpoints)",
   "enterprise_cloud_database_list_database_engine": "System zarządzania bazami danych",

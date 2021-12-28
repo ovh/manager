@@ -1,7 +1,6 @@
 {
   "enterprise_cloud_database_title": "Enterprise Cloud Databases",
   "enterprise_cloud_database_description": "Des bases de données managées hautement disponibles, reposant sur une infrastructure matérielle dédiée et scalable. Nos clusters de bases de données sont répliqués sur différentes zones géographiques et disposent de mécanismes automatiques de fail-over et de sauvegardes (backups) journalières. Chaque cluster dispose de ses propres ressources physiques dédiées, afin de tirer parti de la puissance de notre matériel de dernière génération. Offrez à vos utilisateurs des applications aux performances optimales.",
-  "enterprise_cloud_database_order_new_database": "Commander un cluster",
   "enterprise_cloud_database_list_service_name": "Nom du service",
   "enterprise_cloud_database_list_endpoint": "Points de terminaison",
   "enterprise_cloud_database_list_database_engine": "SGBD",
@@ -35,7 +34,7 @@
   "enterprise_cloud_database_common_status_rebooted": "Redémarré",
   "enterprise_cloud_database_common_status_rebooting": "Redémarrage",
   "enterprise_cloud_database_common_status_reinstalling": "Réinstallation",
-  "enterprise_cloud_database_common_status_reopening":"Réouverture",
+  "enterprise_cloud_database_common_status_reopening": "Réouverture",
   "enterprise_cloud_database_common_status_restarting": "Redémarrage",
   "enterprise_cloud_database_common_status_scaling": "Scaling",
   "enterprise_cloud_database_common_status_suspended": "Suspendu",

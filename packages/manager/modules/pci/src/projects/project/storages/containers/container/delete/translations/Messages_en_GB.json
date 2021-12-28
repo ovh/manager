@@ -7,5 +7,5 @@
   "pci_projects_project_storages_containers_container_delete_object_erase_message": "All of the data on this object container will be lost.",
   "pci_projects_project_storages_containers_container_delete_success_message": "The {{ container }} container has been deleted.",
   "pci_projects_project_storages_containers_container_delete_error_delete": "An error has occurred deleting your {{ container }} container: {{message}}",
-  "pci_projects_project_storages_containers_container_delete_warning": "If you want to permanently delete your container, you must first delete all objects attached to it."
+  "pci_projects_project_storages_containers_container_delete_warning": "If you want to permanently delete your {{container}} container, you must first delete all of the objects attached to it."
 }

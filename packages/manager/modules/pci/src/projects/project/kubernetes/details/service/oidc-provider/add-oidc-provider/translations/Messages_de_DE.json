@@ -1,6 +1,6 @@
 {
   "pci_projects_project_kubernetes_details_service_add_oidc_provider_title": "OIDC-Anbieter konfigurieren",
-  "pci_projects_project_kubernetes_details_service_add_oidc_provider_description": "Sie können die meisten OpenID Connect-Anbieter nutzen, wie Dex, Keycloack oder auch einen SaaS-Anbieter. Unterstützt werden müssen dafür die Funktion „OpenID Connect discovery“, das TLS und ein unterzeichnetes CA-Zertifikat.",
+  "pci_projects_project_kubernetes_details_service_add_oidc_provider_description": "Die meisten OIDC-Anbieter wie Dex und Keycloak eignen sich, sowie auch SaaS-Anbieter. Sie müssen jedoch über die Funktion „OpenID Connect Discovery“ verfügen. Der OIDC-Anbieter muss über eine URL mit HTTPS erreichbar sein. Ein unterzeichnetes Zertifikat einer Zertifizierungsstelle ist zwingend erforderlich.",
   "pci_projects_project_kubernetes_details_service_add_oidc_provider_action_add": "Hinzufügen",
   "pci_projects_project_kubernetes_details_service_add_oidc_provider_action_cancel": "Abbrechen",
   "pci_projects_project_kubernetes_details_service_add_oidc_provider_field_url": "URL des Anbieters",

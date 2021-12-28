@@ -114,8 +114,6 @@ export default class PrivateDatabaseCtrl {
         .getExtensions(this.productId, this.$scope.database.databaseName)
         .then((res) => !isEmpty(res));
 
-    this.$scope.isDBaaS = () => this.$scope.database.offer === 'public';
-
     this.$scope.isRenew = () =>
       this.$scope.database.serviceInfos.renew &&
       (this.$scope.database.serviceInfos.renew.forced ||

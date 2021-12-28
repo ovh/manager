@@ -2,7 +2,6 @@
   "analytics_data_platform_onboarding_content1": "Déployer un cluster big data est un processus long et contraignant. OVH Analytics Data Platform vous simplifie votre métier. En moins d’une heure, nous vous livrons une stack Apache Hadoop, préconfigurée et prête à l’usage.",
   "analytics_data_platform_onboarding_content2": "En nous basant sur un standard de distribution Hadoop open source, nous préconfigurons tous les services nécessaires à vos traitements de données et sécurisons vos flux avec le monde externe ainsi que vos utilisateurs.",
   "analytics_data_platform_onboarding_content3": "Déployez OVH Analytics Data Platform pour de nombreux usages : l'analyse des marchés, l'informatique décisionnelle, l’IoT ou encore la maintenance prévisionnelle. À vous de jouer !",
-  "analytics_data_platform_onboarding_action_label": "Créer un cluster Analytics Data Platform",
 
   "analytics_data_platform_onboarding_guides_overview_title": "Informations générales",
   "analytics_data_platform_onboarding_guides_retrieve_credentials_title": "Générer ses identifiants",

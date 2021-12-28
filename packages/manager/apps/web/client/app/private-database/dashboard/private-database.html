@@ -11,11 +11,6 @@
                 <div class="oui-header__content row">
                     <div class="col-md-9">
                         <strong
-                            data-ng-if="database.offer === 'classic'"
-                            data-translate="privateDatabase_order_sql_type_premium_label"
-                        ></strong>
-                        <strong
-                            data-ng-if="database.offer === 'public'"
                             data-translate="privateDatabase_order_sql_type_dbaas_label"
                         ></strong>
                         <div class="mb-3" data-ng-show="!ctrl.editMode">
@@ -218,7 +213,7 @@
                     <span data-translate="privateDatabase_tab_DATABASE"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
-                    data-ng-if="database.serviceInfos.status !== 'expired' && isDBaaS()"
+                    data-ng-if="database.serviceInfos.status !== 'expired'"
                     href="{{ ctrl.allowedIPsLink }}"
                     active="ctrl.currentActiveLink() === ctrl.allowedIPsLink"
                 >

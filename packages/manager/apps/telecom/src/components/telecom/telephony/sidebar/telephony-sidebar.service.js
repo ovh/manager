@@ -19,7 +19,7 @@ angular
         const item = SidebarMenu.addMenuItem(
           {
             id: service.serviceName,
-            title: service.getDisplayedName(),
+            title: service.getFullDisplayedName(),
             state: options.state,
             stateParams: {
               billingAccount: service.billingAccount,

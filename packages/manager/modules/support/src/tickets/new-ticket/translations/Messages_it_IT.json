@@ -106,7 +106,7 @@
   "ovhManagerSupport_new_serviceType_managed_redis": "Public Cloud Databases for Redis",
   "ovhManagerSupport_new_serviceType_managed_kafka": "Public Cloud Databases for Kafka",
   "ovhManagerSupport_new_serviceType_managed_opensearch": "Public Cloud Databases for OpenSearch",
-  "ovhManagerSupport_new_serviceType_managed_kafkamirrormaker": "Public Cloud Databases for Kafka MirrorMaker",
+  "ovhManagerSupport_new_serviceType_managed_kafka_mirror_maker": "Public Cloud Databases for Kafka MirrorMaker",
   "ovhManagerSupport_new_service": "Servizio",
   "ovhManagerSupport_new_service_unknown": "Il tuo servizio non è nella lista/non disponi ancora di un servizio",
   "ovhManagerSupport_new_issue": "Domande",

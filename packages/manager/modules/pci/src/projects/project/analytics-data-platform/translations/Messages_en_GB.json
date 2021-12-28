@@ -36,7 +36,6 @@
   "analytics_data_platform_common_public_cloud_project": "Public Cloud project",
   "analytics_data_platform_common_private_network": "Private network (vRack)",
   "analytics_data_platform_common_cluster_name": "Cluster name",
-  "analytics_data_platform_list_create_button_label": "Create a Data Analytics Platform cluster",
   "analytics_data_platform_list_table_button_manage_cluster": "Manage cluster",
   "analytics_data_platform_list_table_refresh": "Refresh the clusters",
   "analytics_data_platform_get_cluster_error": "Unable to retrieve Data Analytics Platform clusters: {{message}}",

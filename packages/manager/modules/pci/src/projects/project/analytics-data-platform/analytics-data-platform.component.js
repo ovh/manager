@@ -6,7 +6,6 @@ export default {
   controller,
   bindings: {
     clusters: '<',
-    deployCluster: '<',
     guideUrl: '<',
     manageCluster: '<',
     projectId: '<',

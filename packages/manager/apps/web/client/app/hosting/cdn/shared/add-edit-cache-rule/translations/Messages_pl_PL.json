@@ -31,5 +31,6 @@
   "hosting_cdn_shared_modal_add_rule_field_resource_regex_info": "Wpisz poprawne wyrażenie regularne, na przykład: .*.css",
   "hosting_cdn_shared_modal_add_rule_field_resource_uri": "URI",
   "hosting_cdn_shared_modal_add_rule_field_resource_uri_info": "Wprowadź poprawny identyfikator URI dla strony WWW: /product/howto.pdf",
-  "hosting_cdn_shared_modal_add_rule_field_resource": "Zasoby"
+  "hosting_cdn_shared_modal_add_rule_field_resource": "Zasób",
+  "hosting_cdn_shared_modal_add_rule_field_resource_type_info": "W przypadku oferty CDN Basic i CDN Security możesz wprowadzić tylko rozszerzenie pliku."
 }

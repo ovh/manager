@@ -40,7 +40,7 @@ export default /* @ngInject */ ($stateProvider) => {
         const validMonth = month - 1;
         const period = moment({
           year,
-          month,
+          month: validMonth,
         });
         if (
           !period.isValid() ||

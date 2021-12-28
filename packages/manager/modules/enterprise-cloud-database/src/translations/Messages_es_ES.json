@@ -1,7 +1,6 @@
 {
   "enterprise_cloud_database_title": "Enterprise Cloud Databases",
   "enterprise_cloud_database_description": "Bases de datos administradas de alta disponibilidad, basadas en una infraestructura de hardware dedicada y escalable. Nuestros clusters de bases de datos están replicados en diferentes zonas geográficas y disponen de mecanismos automáticos de failover y de copias de seguridad (backup) diarias. Cada cluster dispone de sus propios recursos físicos dedicados para sacar el máximo partido a nuestro hardware de última generación. Ofrezca aplicaciones con un rendimiento óptimo a sus usuarios.",
-  "enterprise_cloud_database_order_new_database": "Contratar un cluster",
   "enterprise_cloud_database_list_service_name": "Nombre del servicio",
   "enterprise_cloud_database_list_endpoint": "Endpoints",
   "enterprise_cloud_database_list_database_engine": "SGBD",

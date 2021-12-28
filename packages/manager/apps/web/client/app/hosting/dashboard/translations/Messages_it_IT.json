@@ -149,6 +149,7 @@
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg": "L'opzione Shared CDN per i tuoi hosting si evolve! Sono disponibili nuove funzionalità.",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg_link_upgrade": "Migra la tua CDN",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_badge_new": "Nuovo",
+  "hosting_dashboard_service_cdn_customer_has_cdn_v1_new_offers": "OVHcloud consiglia le nuove soluzioni CDN",
   "hosting_dashboard_service_web": "Siti Web",
   "hosting_dashboard_service_privatesql": "Database privato",
   "hosting_dashboard_service_privatesql_more": "Visualizza la lista",
@@ -236,10 +237,6 @@
   "hosting_dashboard_cdn_flush_done_success": "Cache CDN cancellata correttamente.",
   "hosting_dashboard_cdn_flush_error": "Si è verificato un errore nella pulizia della cache CDN",
   "hosting_dashboard_service_flush_cdn_doing": "Pulizia in corso... ",
-  "hosting_dashboard_service_terminate_cdn_question": "Vuoi davvero disattivare il servizio CDN?",
-  "hosting_dashboard_service_terminate_cdn_title": "Disattiva il servizio CDN",
-  "hosting_dashboard_service_terminate_cdn_success": "La tua richiesta di disattivazione della CDN è stata presa in carico. Riceverai un'email con la procedura da seguire per effettuare l'operazione.",
-  "hosting_dashboard_service_terminate_cdn_error": "Si è verificato un errore durante la disattivazione della CDN.",
   "hosting_dashboard_service_terminate_email_title": "Disattivazione dell'opzione email",
   "hosting_dashboard_service_terminate_email_question": "Vuoi davvero disattivare l'opzione email?",
   "hosting_dashboard_service_terminate_email_question_domain": "Vuoi davvero disattivare l'opzione email associata al dominio <strong>{{ domain }}</strong>?",
@@ -1375,6 +1372,5 @@
   "hosting_dashboard_service_common_inactive": "Disattivo",
   "hosting_dashboard_email_offer_get_error": "Impossibile recuperare l’indirizzo email",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Più",
-  "hosting_dashboard_service_cdn_customer_has_cdn_v1_new_offers": "OVHcloud consiglia le nuove soluzioni CDN"
+  "hosting_dashboard_tabs_dropdown": "Più"
 }
