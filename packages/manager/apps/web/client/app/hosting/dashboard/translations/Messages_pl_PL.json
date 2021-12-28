@@ -149,6 +149,7 @@
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg": "Opcja Shared CDN powiązana z hostingiem stale się rozwija! Dostępne są nowe funkcje.",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg_link_upgrade": "Migracja CDN",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_badge_new": "Nowość",
+  "hosting_dashboard_service_cdn_customer_has_cdn_v1_new_offers": "OVHcloud poleca nowe oferty CDN",
   "hosting_dashboard_service_web": "Strony WWW",
   "hosting_dashboard_service_privatesql": "Prywatna baza danych",
   "hosting_dashboard_service_privatesql_more": "Wyświetl listę",
@@ -235,10 +236,6 @@
   "hosting_dashboard_cdn_flush_done_success": "Pamięć cache CDN została wyczyszczona.",
   "hosting_dashboard_cdn_flush_error": "Wystąpił błąd podczas czyszczenia pamięci cache CDN.",
   "hosting_dashboard_service_flush_cdn_doing": "Trwa czyszczenie...",
-  "hosting_dashboard_service_terminate_cdn_question": "Czy chcesz zrezygnować z usługi CDN?",
-  "hosting_dashboard_service_terminate_cdn_title": "Rezygnacja z usługi CDN",
-  "hosting_dashboard_service_terminate_cdn_success": "Zarejestrowaliśmy zlecenie rezygnacji z usługi CDN. Otrzymasz e-mail z procedurą zamknięcia tej usługi.",
-  "hosting_dashboard_service_terminate_cdn_error": "Wystąpił błąd podczas rezygnacji z usługi CDN.",
   "hosting_dashboard_service_terminate_email_title": "Rezygnacja z opcji e-mail",
   "hosting_dashboard_service_terminate_email_question": "Czy na pewno chcesz zrezygnować z opcji e-mail?",
   "hosting_dashboard_service_terminate_email_question_domain": "Czy na pewno chcesz zrezygnować z opcji e-mail powiązanej z domeną <strong>{{domain}}</strong>?",
@@ -347,6 +344,7 @@
   "hosting_tab_DATABASES_table_header_state": "Stan",
   "hosting_tab_DATABASES_table_header_server": "Typ",
   "hosting_tab_DATABASES_table_header_server_address": "Adres serwera",
+  "hosting_tab_DATABASES_table_header_server_address_tooltip": "Do połączenia z Twoją instancją użyj dostarczonej nazwy hosta, ponieważ przypisany do instancji adres IP może się z czasem zmienić.",
   "hosting_tab_DATABASES_table_header_backup": "Kopie zapasowe",
   "hosting_tab_DATABASES_table_empty": "Lista jest pusta.",
   "hosting_tab_DATABASES_table_popover_update_password": "Zmień hasło",
@@ -1372,7 +1370,5 @@
   "hosting_dashboard_service_common_inactive": "Nieaktywny",
   "hosting_dashboard_email_offer_get_error": "Nie można pobrać adresu e-mail",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Więcej",
-  "hosting_tab_DATABASES_table_header_server_address_tooltip": "Do połączenia z Twoją instancją użyj dostarczonej nazwy hosta, ponieważ przypisany do instancji adres IP może się z czasem zmienić.",
-  "hosting_dashboard_service_cdn_customer_has_cdn_v1_new_offers": "OVHcloud poleca nowe oferty CDN"
+  "hosting_dashboard_tabs_dropdown": "Więcej"
 }

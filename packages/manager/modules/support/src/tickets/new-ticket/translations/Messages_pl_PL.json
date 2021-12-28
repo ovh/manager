@@ -106,7 +106,7 @@
   "ovhManagerSupport_new_serviceType_managed_redis": "Public Cloud Databases for Redis",
   "ovhManagerSupport_new_serviceType_managed_kafka": "Public Cloud Databases for Kafka",
   "ovhManagerSupport_new_serviceType_managed_opensearch": "Public Cloud Databases for OpenSearch",
-  "ovhManagerSupport_new_serviceType_managed_kafkamirrormaker": "Public Cloud Databases for Kafka MirrorMaker",
+  "ovhManagerSupport_new_serviceType_managed_kafka_mirror_maker": "Public Cloud Databases for Kafka MirrorMaker",
   "ovhManagerSupport_new_service": "Usługa",
   "ovhManagerSupport_new_service_unknown": "Moja usługa nie jest wyszczególniona i/lub nie posiadam jeszcze tej usługi",
   "ovhManagerSupport_new_issue": "Pytanie",
@@ -138,6 +138,5 @@
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Masz projekt, który chcesz przeanalizować?",
   "ovhManagerSupport_new_business_2": "Prosimy szczegółowo opisać potrzeby dotyczące projektu i wysłać do nas wiadomość na adres:",
-  "ovhManagerSupport_new_business_3": "Zgłoszenia wysłane na ten adres nie będą przetwarzane.",
-  "ovhManagerSupport_new_serviceType_managed_kafka_mirror_maker": "Public Cloud Databases for Kafka MirrorMaker"
+  "ovhManagerSupport_new_business_3": "Zgłoszenia wysłane na ten adres nie będą przetwarzane."
 }
