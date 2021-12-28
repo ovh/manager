@@ -76,6 +76,7 @@ export default class SignUpFormCtrl {
     const ruleParams = merge(
       {
         action: this.action,
+        ovhSubsidiary: SignUpFormCtrl.getOvhSubsidiaryFromUrl(),
       },
       this.model,
     );
@@ -133,6 +134,23 @@ export default class SignUpFormCtrl {
 
         return error;
       });
+  }
+
+  /**
+   * Get ovhSubsidiary value from which account must be created, from signup url
+   * @return {String} ovhSubsidiary
+   */
+  static getOvhSubsidiaryFromUrl() {
+    const ovhSubsidiaryUrlParameter = window.location.hash
+      ?.substring(1)
+      .split('&')
+      .find((parameter) => {
+        const [key] = parameter.split('=');
+
+        return key === 'ovhSubsidiary';
+      });
+
+    return ovhSubsidiaryUrlParameter?.split('=')[1];
   }
 
   /**
