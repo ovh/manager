@@ -2,120 +2,120 @@
     <oui-back-button data-on-click="::$ctrl.goBack()"></oui-back-button>
     <oui-header
         class="mb-0"
-        data-heading="{{:: 'anthos_dashboard_host_order_header_heading' | translate}}"
-        data-description="{{:: 'anthos_dashboard_host_order_header_description' | translate}}"
+        data-heading="{{:: 'anthos_dashboard_host_order_header_heading' | translate }}"
+        data-description="{{:: 'anthos_dashboard_host_order_header_description' | translate }}"
     ></oui-header>
     <oui-spinner data-ng-if="$ctrl.isLoading"></oui-spinner>
     <div data-ng-if="!$ctrl.isLoading">
-        <div class="oui-tile__body">
-            <div class="oui-datagrid-responsive">
-                <table class="oui-datagrid">
-                    <thead>
-                        <tr>
-                            <th class="oui-datagrid__header">
-                                <span
-                                    class="oui-tile__term"
-                                    data-translate="anthos_dashboard_host_order_grid_header_quantity"
-                                ></span>
-                            </th>
-                            <th class="oui-datagrid__header">
-                                <span
-                                    class="oui-tile__term"
-                                    data-translate="anthos_dashboard_host_order_grid_header_host"
-                                ></span>
-                            </th>
-                            <th class="oui-datagrid__header">
-                                <span
-                                    class="oui-tile__term"
-                                    data-translate="anthos_dashboard_host_order_grid_header_cpu"
-                                ></span>
-                            </th>
-                            <th class="oui-datagrid__header">
-                                <span
-                                    class="oui-tile__term"
-                                    data-translate="anthos_dashboard_host_order_grid_header_ram"
-                                ></span>
-                            </th>
-                            <th class="oui-datagrid__header">
-                                <span
-                                    class="oui-tile__term"
-                                    data-translate="anthos_dashboard_host_order_grid_header_storage"
-                                ></span>
-                            </th>
-                            <th class="oui-datagrid__header">
-                                <span
-                                    class="oui-tile__term"
-                                    data-translate="anthos_dashboard_host_order_grid_header_network"
-                                ></span>
-                            </th>
-                            <th class="oui-datagrid__header">
-                                <span
-                                    class="oui-tile__term"
-                                    data-translate="anthos_dashboard_host_order_grid_header_price"
-                                ></span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr
-                            class="oui-datagrid__row"
-                            data-ng-repeat="addon in $ctrl.addons track by addon.id"
-                        >
-                            <td class="oui-datagrid__cell">
-                                <oui-numeric
-                                    data-model="addon.quantity"
-                                    data-max="addon.$max"
-                                    data-on-change="$ctrl.onAddonQuantityChanged()"
-                                ></oui-numeric>
-                            </td>
-                            <td
-                                class="oui-datagrid__cell"
-                                data-ng-bind="addon.host"
-                            ></td>
-                            <td class="oui-datagrid__cell">
-                                <span
-                                    data-translate="anthos_dashboard_host_order_grid_row_cpu_cores"
-                                    data-translate-values="{ amount: addon.cpu.cores }"
-                                ></span>
-                                <span
-                                    data-translate="anthos_dashboard_host_order_grid_row_cpu_threads"
-                                    data-translate-values="{ amount: addon.cpu.threads }"
-                                ></span>
-                                <span
-                                    data-translate="anthos_dashboard_host_order_grid_row_cpu_frequency"
-                                    data-translate-values="{ amount: addon.cpu.frequency }"
-                                ></span>
-                            </td>
-                            <td class="oui-datagrid__cell">
-                                <span data-ng-bind="addon.memory.size"></span>
-                                <span
-                                    data-ng-bind="addon.memory.sizeUnit"
-                                ></span>
-                            </td>
-                            <td class="oui-datagrid__cell">
-                                <div
-                                    data-ng-repeat="storage in addon.storages track by $index"
-                                    data-ng-bind="storage"
-                                ></div>
-                                <div data-ng-if="!addon.storages.length">-</div>
-                            </td>
-                            <td class="oui-datagrid__cell">
-                                <div
-                                    data-ng-repeat="network in addon.networks track by $index"
-                                    data-ng-bind="network"
-                                ></div>
-                                <div data-ng-if="!addon.networks.length">-</div>
-                            </td>
-                            <td class="oui-datagrid__cell">
-                                {{ addon.price }}{{ $ctrl.currencySymbol }}
-                                <span
-                                    data-translate="anthos_dashboard_host_order_grid_row_price"
-                                ></span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="oui-datagrid-responsive">
+            <table
+                class="oui-datagrid"
+                aria-label="{{:: 'anthos_dashboard_host_order_header_heading' | translate }}"
+            >
+                <thead>
+                    <tr>
+                        <th class="oui-datagrid__header" scope="col">
+                            <span
+                                class="oui-tile__term"
+                                data-translate="anthos_dashboard_host_order_grid_header_quantity"
+                            ></span>
+                        </th>
+                        <th class="oui-datagrid__header" scope="col">
+                            <span
+                                class="oui-tile__term"
+                                data-translate="anthos_dashboard_host_order_grid_header_host"
+                            ></span>
+                        </th>
+                        <th class="oui-datagrid__header" scope="col">
+                            <span
+                                class="oui-tile__term"
+                                data-translate="anthos_dashboard_host_order_grid_header_cpu"
+                            ></span>
+                        </th>
+                        <th class="oui-datagrid__header" scope="col">
+                            <span
+                                class="oui-tile__term"
+                                data-translate="anthos_dashboard_host_order_grid_header_ram"
+                            ></span>
+                        </th>
+                        <th class="oui-datagrid__header" scope="col">
+                            <span
+                                class="oui-tile__term"
+                                data-translate="anthos_dashboard_host_order_grid_header_storage"
+                            ></span>
+                        </th>
+                        <th class="oui-datagrid__header" scope="col">
+                            <span
+                                class="oui-tile__term"
+                                data-translate="anthos_dashboard_host_order_grid_header_network"
+                            ></span>
+                        </th>
+                        <th class="oui-datagrid__header" scope="col">
+                            <span
+                                class="oui-tile__term"
+                                data-translate="anthos_dashboard_host_order_grid_header_price"
+                            ></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        class="oui-datagrid__row"
+                        data-ng-repeat="addon in $ctrl.addons track by addon.id"
+                    >
+                        <td class="oui-datagrid__cell">
+                            <oui-numeric
+                                data-model="addon.quantity"
+                                data-max="addon.$max"
+                                data-on-change="$ctrl.onAddonQuantityChanged()"
+                            ></oui-numeric>
+                        </td>
+                        <td
+                            class="oui-datagrid__cell"
+                            data-ng-bind="addon.host"
+                        ></td>
+                        <td class="oui-datagrid__cell">
+                            <span
+                                data-translate="anthos_dashboard_host_order_grid_row_cpu_cores"
+                                data-translate-values="{ amount: addon.cpu.cores }"
+                            ></span>
+                            <span
+                                data-translate="anthos_dashboard_host_order_grid_row_cpu_threads"
+                                data-translate-values="{ amount: addon.cpu.threads }"
+                            ></span>
+                            <span
+                                data-translate="anthos_dashboard_host_order_grid_row_cpu_frequency"
+                                data-translate-values="{ amount: addon.cpu.frequency }"
+                            ></span>
+                        </td>
+                        <td class="oui-datagrid__cell">
+                            <span data-ng-bind="addon.memory.size"></span>
+                            <span data-ng-bind="addon.memory.sizeUnit"></span>
+                        </td>
+                        <td class="oui-datagrid__cell">
+                            <div
+                                data-ng-repeat="storage in addon.storages track by $index"
+                                data-ng-bind="storage"
+                            ></div>
+                            <div data-ng-if="!addon.storages.length">-</div>
+                        </td>
+                        <td class="oui-datagrid__cell">
+                            <div
+                                data-ng-repeat="network in addon.networks track by $index"
+                                data-ng-bind="network"
+                            ></div>
+                            <div data-ng-if="!addon.networks.length">-</div>
+                        </td>
+                        <td class="oui-datagrid__cell">
+                            <span data-ng-bind="addon.price"></span
+                            ><span data-ng-bind="$ctrl.currencySymbol"></span>
+                            <span
+                                data-translate="anthos_dashboard_host_order_grid_row_price"
+                            ></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <oui-button
             data-size="l"
