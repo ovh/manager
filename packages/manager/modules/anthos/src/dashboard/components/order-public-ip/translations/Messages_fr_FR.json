@@ -1,5 +1,19 @@
 {
-  "anthos_tenant_dashboard_component_order_public_ip_modal_title": "Commander une IP Publique",
-  "anthos_tenant_dashboard_component_order_public_ip_modal_description": "Pour commander une IP publique supplémentaire, veuillez contacter votre conseiller commercial",
-  "anthos_tenant_dashboard_component_order_public_ip_modal_action_cancel": "Annuler"
+  "anthos_dashboard_order_public_ip_init_error": "Une erreur s'est produite lors du chargement de cette fonctionalité",
+
+  "anthos_dashboard_order_public_ip_modal_title": "Commander des IP publiques additionnelles",
+  "anthos_dashboard_order_public_ip_modal_quantity": "Quantité",
+  "anthos_dashboard_order_public_ip_modal_step": "Étape",
+
+  "anthos_dashboard_order_public_ip_modal_one_description_p1": "Vous pouvez commander un ou plusieurs blocs de 64 Ipv4 publiques. Pour chaque bloc, 61 adresses seront utilisables au sein d’Anthos.",
+  "anthos_dashboard_order_public_ip_modal_one_description_p2": "NB : Ces IP seront localisées en France. Si vous avez besoin d’un bloc d’IP déclaré dans un autre pays, merci de contacter notre service commercial.",
+
+  "anthos_dashboard_order_public_ip_modal_two_title": "Hello",
+  "anthos_dashboard_order_public_ip_modal_two_info": "Cliquez sur « confirmer » pour valider votre commande",
+  "anthos_dashboard_order_public_ip_modal_two_hint": "Un nouvel onglet va s'ouvrir et vous serez automatiquement redirigé vers l'interface de paiement",
+
+  "anthos_dashboard_order_public_ip_modal_action_cancel": "Annuler",
+  "anthos_dashboard_order_public_ip_modal_action_confirm": "Confirmer",
+  "anthos_dashboard_order_public_ip_modal_action_next": "Suivant",
+  "anthos_dashboard_order_public_ip_modal_action_previous": "Précédent"
 }

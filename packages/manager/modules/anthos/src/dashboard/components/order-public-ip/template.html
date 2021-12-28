@@ -1,11 +1,66 @@
 <oui-modal
-    data-heading="{{:: 'anthos_tenant_dashboard_component_order_public_ip_modal_title' | translate }}"
-    data-secondary-action="$ctrl.onOrderPublicCancel()"
-    data-secondary-label="{{:: 'anthos_tenant_dashboard_component_order_public_ip_modal_action_cancel' | translate }}"
+    class="anthos-dashboard-order-public-ip"
+    data-ng-if="$ctrl.step === 1"
+    data-heading="{{ 'anthos_dashboard_order_public_ip_modal_title' | translate }}"
+    data-primary-action="$ctrl.step = 2"
+    data-primary-label="{{ 'anthos_dashboard_order_public_ip_modal_action_next' | translate }}"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{ 'anthos_dashboard_order_public_ip_modal_action_cancel' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data_loading="$ctrl.isLoading"
+>
+    <div class="step">
+        <span
+            data-translate="anthos_dashboard_order_public_ip_modal_step"
+        ></span>
+        1/2
+    </div>
+    <p
+        data-translate="anthos_dashboard_order_public_ip_modal_one_description_p1"
+    ></p>
+    <p
+        data-translate="anthos_dashboard_order_public_ip_modal_one_description_p2"
+    ></p>
+    <oui-field
+        class="mt-3"
+        label="{{ 'anthos_dashboard_order_public_ip_modal_quantity' | translate }}"
+    >
+        <oui-numeric
+            name="quantity"
+            data-model="$ctrl.quantity"
+            data-min="1"
+            data-max="$ctrl.MAX_QUANTITY"
+        ></oui-numeric>
+    </oui-field>
+</oui-modal>
+<oui-modal
+    class="anthos-dashboard-order-public-ip"
+    data-ng-if="$ctrl.step === 2"
+    data-heading="{{ 'anthos_dashboard_order_public_ip_modal_title' | translate }}"
+    data-primary-action="$ctrl.order()"
+    data-primary-label="{{ 'anthos_dashboard_order_public_ip_modal_action_confirm' | translate }}"
+    data-secondary-action="$ctrl.step = 1"
+    data-secondary-label="{{ 'anthos_dashboard_order_public_ip_modal_action_previous' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
 >
-    <p
-        class="oui-paragraph"
-        data-translate="anthos_tenant_dashboard_component_order_public_ip_modal_description"
-    ></p>
+    <div class="step">
+        <span
+            data-translate="anthos_dashboard_order_public_ip_modal_step"
+        ></span>
+        2/2
+    </div>
+    <p>
+        <span
+            data-translate="anthos_dashboard_order_public_ip_modal_quantity"
+        ></span
+        >:
+        <strong data-ng-bind="$ctrl.quantity"></strong>
+    </p>
+    <oui-message class="mb-3" data-type="info">
+        <span
+            data-translate="anthos_dashboard_order_public_ip_modal_two_info"
+            data-translate-values="{ amount: $ctrl.quantity }"
+        ></span>
+    </oui-message>
+    <p data-translate="anthos_dashboard_order_public_ip_modal_two_hint"></p>
 </oui-modal>
