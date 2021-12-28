@@ -16,7 +16,7 @@
   "hosting_cdn_shared_option_dev_mode_info": "Modo desarrollador para forzar a la CDN a recuperar sistemáticamente los valores en el servidor de origen.",
   "hosting_cdn_shared_option_advanced_flush_info_for_basic_and_security": "Personalizar la limpieza seleccionando los elementos de la caché que desea vaciar: todo el sitio web, una carpeta, una URI, una extensión de archivos o mediante una expresión regular personalizada. La limpieza avanzada está disponible con la opción CDN Advanced. ¿Quiere cambiar de solución?",
   "hosting_cdn_shared_option_query_string_title": "Query String",
-  "hosting_cdn_shared_option_query_string_info": "Gestionar el almacenamiento en caché del contenido basado en los parámetros de la consulta URL, también llamada «query string». En función de su configuración, la CDN distribuirá el siguiente recurso:",
+  "hosting_cdn_shared_option_query_string_info": "Gestionar el almacenamiento en caché del contenido basado en los parámetros de la consulta URL, también llamada «Query String». En función de su configuración, la CDN distribuirá el siguiente recurso:",
   "hosting_cdn_shared_option_query_string_sort_ignored": "Desactivado = El recurso se almacena en caché clasificando sus parámetros.",
   "hosting_cdn_shared_option_query_string_sort_true": "Activado - Ordenar los parámetros = El recurso se almacena en caché clasificando sus parámetros.",
   "hosting_cdn_shared_option_query_string_sort_false": "Activado - Ignorar los parámetros = El recurso se almacena en caché sin ningún parámetro.",
@@ -66,5 +66,10 @@
   "hosting_cdn_shared_option_hsts_max_age_months": "Mes",
   "hosting_cdn_ssl_required_warning": "Atención: La opción que ha activado requiere que el SSL esté activo en el subdominio. Compruebe la configuración del SSL en el subdominio.",
   "hosting_cdn_shared_option_mixed_content_description": "Cargue todo el contenido de sus páginas web de forma segura, garantizando así una experiencia de usuario óptima. Todos los recursos del sitio web, tanto internos como externos, deben estar disponibles en HTTPS.",
-  "hosting_cdn_shared_option_waf_description": "Proteja su sitio web con nuestro firewall frente ataques fraudulentos como las inyecciones, las peticiones ilegítimas o el robo de datos. Protéjase frente a los principales fallos de la red filtrando las peticiones y los paquetes transmitidos (OVHcloud administra y actualiza regularmente la lista de vulnerabilidades)."
+  "hosting_cdn_shared_option_waf_description": "Proteja su sitio web con nuestro firewall frente ataques fraudulentos como las inyecciones, las peticiones ilegítimas o el robo de datos. Protéjase frente a los principales fallos de la red filtrando las peticiones y los paquetes transmitidos (OVHcloud administra y actualiza regularmente la lista de vulnerabilidades).",
+  "hosting_cdn_shared_option_always_online_title": "Always online",
+  "hosting_cdn_shared_option_http_https_title": "HTTP/2",
+  "hosting_cdn_shared_option_brotli_title": "Brotli",
+  "hosting_cdn_shared_option_advanced_flush_title": "Limpieza avanzada",
+  "hosting_cdn_shared_option_advanced_flush_info": "Personalizar la limpieza seleccionando los elementos de la caché que desea vaciar: todo el sitio web, una carpeta, una URI, una extensión de archivos o mediante una expresión regular personalizada. Es posible acceder directamente desde la pestaña «Multisitio» en la lista de acciones."
 }

@@ -31,5 +31,6 @@
   "hosting_cdn_shared_modal_add_rule_field_resource_regex_info": "Por favor, introduzca una expresión regular válida, por ejemplo: .*.css",
   "hosting_cdn_shared_modal_add_rule_field_resource_uri": "URI",
   "hosting_cdn_shared_modal_add_rule_field_resource_uri_info": "Por favor, introduzca una URI válida para su sitio web, por ejemplo: /product/howto.pdf",
-  "hosting_cdn_shared_modal_add_rule_field_resource": "Recurso"
+  "hosting_cdn_shared_modal_add_rule_field_resource": "Recurso",
+  "hosting_cdn_shared_modal_add_rule_field_resource_type_info": "Para las soluciones CDN Basic y Security, solo es posible introducir una extensión de archivo."
 }
