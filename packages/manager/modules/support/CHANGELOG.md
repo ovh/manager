@@ -1,3 +1,13 @@
+## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.8.0...@ovh-ux/manager-support@1.8.1) (2021-12-28)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([4c425e1](https://github.com/ovh/manager/commit/4c425e1212dddda5eef63e2a9499ac80a3141eb4))
+* **tickets:** fix kafka mirror maker translation ([#6171](https://github.com/ovh/manager/issues/6171)) ([a8dc8bd](https://github.com/ovh/manager/commit/a8dc8bd47dd566de052edb464c8e0a2235bf46f4))
+
+
+
 # [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.7.1...@ovh-ux/manager-support@1.8.0) (2021-12-20)
 
 

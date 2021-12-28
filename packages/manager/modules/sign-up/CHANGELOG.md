@@ -1,3 +1,12 @@
+## [2.2.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.2.2...@ovh-ux/sign-up@2.2.3) (2021-12-28)
+
+
+### Bug Fixes
+
+* **sign-up:** send ovh subsidiary on first call on /rules ([#6190](https://github.com/ovh/manager/issues/6190)) ([062b5c3](https://github.com/ovh/manager/commit/062b5c385f6a4bb91e20246734bc0f056a7c16ea))
+
+
+
 ## [2.2.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.2.1...@ovh-ux/sign-up@2.2.2) (2021-10-26)
 
 

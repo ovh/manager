@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database@1.2.5...@ovh-ux/manager-enterprise-cloud-database@1.3.0) (2021-12-28)
+
+
+### Features
+
+* delete cluster creation buttons ([e1d9d98](https://github.com/ovh/manager/commit/e1d9d980d9875333035127b513c01be7dbd5580d))
+
+
+
 ## [1.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database@1.2.4...@ovh-ux/manager-enterprise-cloud-database@1.2.5) (2021-11-10)
 
 

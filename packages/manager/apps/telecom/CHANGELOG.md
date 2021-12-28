@@ -1,3 +1,17 @@
+# [13.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.28.2...@ovh-ux/manager-telecom@13.29.0) (2021-12-28)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.0` ([#6148](https://github.com/ovh/manager/issues/6148)) ([b6fedbb](https://github.com/ovh/manager/commit/b6fedbbd5e1ad6b2f303c8e8125c2d24208b589b))
+
+
+### Features
+
+* display the full voip service name ([#5940](https://github.com/ovh/manager/issues/5940)) ([8a78eb3](https://github.com/ovh/manager/commit/8a78eb327ee4e794683ef6c93d0cea78a6d5e203))
+
+
+
 ## [13.28.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.28.1...@ovh-ux/manager-telecom@13.28.2) (2021-12-15)
 
 

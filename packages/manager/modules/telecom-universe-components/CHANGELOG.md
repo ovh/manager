@@ -1,3 +1,12 @@
+# [7.8.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.7.0...@ovh-ux/ng-ovh-telecom-universe-components@7.8.0) (2021-12-28)
+
+
+### Features
+
+* display the full voip service name ([#5940](https://github.com/ovh/manager/issues/5940)) ([8a78eb3](https://github.com/ovh/manager/commit/8a78eb327ee4e794683ef6c93d0cea78a6d5e203))
+
+
+
 # [7.7.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.6.0...@ovh-ux/ng-ovh-telecom-universe-components@7.7.0) (2021-12-14)
 
 

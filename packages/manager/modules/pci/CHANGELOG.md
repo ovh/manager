@@ -1,3 +1,25 @@
+# [5.55.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.54.0...@ovh-ux/manager-pci@5.55.0) (2021-12-28)
+
+
+### Bug Fixes
+
+* **billing:** browse back in billing history ([#6204](https://github.com/ovh/manager/issues/6204)) ([2941959](https://github.com/ovh/manager/commit/2941959b9aa960d97759eb2ae5924c788f0f744a))
+* **databases.users.add:** fix error message output ([#6200](https://github.com/ovh/manager/issues/6200)) ([1f6269c](https://github.com/ovh/manager/commit/1f6269ce88cf0393df7f5a76374df6462d003ad8))
+* **i18n:** add missing translations [CDS 1339] ([79048ae](https://github.com/ovh/manager/commit/79048ae986ef82e25bce229c6682cf354b5d4b8b))
+* **i18n:** add missing translations [CDS 1342] ([#6155](https://github.com/ovh/manager/issues/6155)) ([2e2de57](https://github.com/ovh/manager/commit/2e2de57d0fb6eb2ea6f60515ce71ec0ac0da6126))
+* **i18n:** add missing translations [CDS 1352] ([8902378](https://github.com/ovh/manager/commit/89023781d52693d70e316c2358ac6905eb2bb0db))
+* **i18n:** add missing translations [CDS 1360] ([#6209](https://github.com/ovh/manager/issues/6209)) ([941639f](https://github.com/ovh/manager/commit/941639f77667606c013c2e99332a043baa9551fa))
+* **kube.oidc:** update translation files ([#6112](https://github.com/ovh/manager/issues/6112)) ([1265b54](https://github.com/ovh/manager/commit/1265b5479ccb767f7df2968c4cc8c3d4d509b509))
+* remove unused translations [CDS] ([55e4d05](https://github.com/ovh/manager/commit/55e4d05f8125d5a762f97210373d51e7f7f335f1))
+* **volumes:** display right plan code ([#6128](https://github.com/ovh/manager/issues/6128)) ([8e2e80a](https://github.com/ovh/manager/commit/8e2e80a7576dbb92707351a956def191728bdbac))
+
+
+### Features
+
+* **analytics-data-platform:** delete cluster creation buttons ([87993a9](https://github.com/ovh/manager/commit/87993a93245cbdda54ffcbd3eae111b5a58916b2))
+
+
+
 # [5.54.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.53.1...@ovh-ux/manager-pci@5.54.0) (2021-12-27)
 
 
