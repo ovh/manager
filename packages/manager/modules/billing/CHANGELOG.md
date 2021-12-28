@@ -1,3 +1,12 @@
+# [0.7.0-alpha.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.7.0-alpha.2...@ovh-ux/manager-billing@0.7.0-alpha.3) (2021-12-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1338] ([c495f0f](https://github.com/ovh/manager/commit/c495f0f5d0ed9b1bb84123a32e0ca74890449469))
+
+
+
 # [0.7.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.7.0-alpha.1...@ovh-ux/manager-billing@0.7.0-alpha.2) (2021-12-16)
 
 

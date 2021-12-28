@@ -1,3 +1,12 @@
+# [3.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.16.1...@ovh-ux/manager-server-sidebar@3.17.0) (2021-12-28)
+
+
+### Features
+
+* **order.constants:** delete enterprise cloud database ([f5d7875](https://github.com/ovh/manager/commit/f5d7875b93ad74a4f40cab9e3849ad258a128b17))
+
+
+
 ## [3.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.16.0...@ovh-ux/manager-server-sidebar@3.16.1) (2021-12-02)
 
 

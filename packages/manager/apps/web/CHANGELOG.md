@@ -1,3 +1,23 @@
+# [16.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.2.0...@ovh-ux/manager-web@16.3.0) (2021-12-28)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.0` ([#6148](https://github.com/ovh/manager/issues/6148)) ([b6fedbb](https://github.com/ovh/manager/commit/b6fedbbd5e1ad6b2f303c8e8125c2d24208b589b))
+* **domain.zone:** change of tooltip placement ([#6210](https://github.com/ovh/manager/issues/6210)) ([83f8868](https://github.com/ovh/manager/commit/83f8868872858f9c32dc26c4489cb986d468512f))
+* **i18n:** add missing translations [CDS 1359] ([227acbb](https://github.com/ovh/manager/commit/227acbbc88f372b294c8dbe480c71b18e1edb812))
+* remove unused translations [CDS] ([4c425e1](https://github.com/ovh/manager/commit/4c425e1212dddda5eef63e2a9499ac80a3141eb4))
+* **i18n:** add missing translations [CDS 1352] ([8902378](https://github.com/ovh/manager/commit/89023781d52693d70e316c2358ac6905eb2bb0db))
+* **i18n:** add missing translations [CDS 1354] ([f431ef4](https://github.com/ovh/manager/commit/f431ef4e27e2c59ded4ec97af2d0a946ba331c09))
+* remove unused translations [CDS] ([55e4d05](https://github.com/ovh/manager/commit/55e4d05f8125d5a762f97210373d51e7f7f335f1))
+
+
+### Features
+
+* **private-database:** add whitelist for PrivateSQL ([#6027](https://github.com/ovh/manager/issues/6027)) ([a74e257](https://github.com/ovh/manager/commit/a74e25744e63534c25441245468bfd1214df3ebd))
+
+
+
 # [16.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.1.2...@ovh-ux/manager-web@16.2.0) (2021-12-22)
 
 

@@ -1,3 +1,12 @@
+## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.0.3...@ovh-ux/manager-email-domain@1.0.4) (2021-12-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1347] ([#6174](https://github.com/ovh/manager/issues/6174)) ([d6cd864](https://github.com/ovh/manager/commit/d6cd864b872135a3fcc9141e564d06ca772a5c94))
+
+
+
 ## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.0.2...@ovh-ux/manager-email-domain@1.0.3) (2021-12-14)
 
 

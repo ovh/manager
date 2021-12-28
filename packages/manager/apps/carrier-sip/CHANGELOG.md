@@ -1,3 +1,12 @@
+## [2.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip-app@2.4.1...@ovh-ux/manager-carrier-sip-app@2.4.2) (2021-12-28)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.0` ([#6148](https://github.com/ovh/manager/issues/6148)) ([b6fedbb](https://github.com/ovh/manager/commit/b6fedbbd5e1ad6b2f303c8e8125c2d24208b589b))
+
+
+
 ## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip-app@2.4.0...@ovh-ux/manager-carrier-sip-app@2.4.1) (2021-11-22)
 
 
