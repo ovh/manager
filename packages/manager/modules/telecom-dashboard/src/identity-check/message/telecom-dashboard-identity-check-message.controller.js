@@ -13,9 +13,9 @@ export default class IdentityCheckMessageCtrl {
   }
 
   $onInit() {
-    this.IdentityCheckService.isIdentityChecked()
-      .then((isIdentityChecked) => {
-        this.isMessageShown = !isIdentityChecked;
+    this.IdentityCheckService.isProcedureRequired()
+      .then((isProcedureRequired) => {
+        this.isMessageShown = isProcedureRequired;
         // tracking impression message
         if (this.isMessageShown) {
           this.atInternet.trackImpression({

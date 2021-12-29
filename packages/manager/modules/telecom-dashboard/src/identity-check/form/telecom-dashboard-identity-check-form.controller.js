@@ -16,10 +16,12 @@ export default class IdentityCheckFormCtrl {
     this.atInternet = atInternet;
 
     const { isValidIban, isValidBic } = ovhPaymentMethodHelper;
+    const { name, firstname, address } = coreConfig.getUser();
 
     this.$uibModal = $uibModal;
     this.$translate = $translate;
     this.user = coreConfig.getUser();
+
     this.isValidIban = isValidIban;
     this.isValidBic = isValidBic;
     this.IdentityCheckService = IdentityCheckService;
@@ -33,9 +35,9 @@ export default class IdentityCheckFormCtrl {
     this.model = {
       bic: '',
       iban: '',
-      ownerAddress: '',
-      ownerFirstName: '',
-      ownerLastName: '',
+      ownerAddress: address,
+      ownerFirstName: firstname,
+      ownerLastName: name,
     };
   }
 
