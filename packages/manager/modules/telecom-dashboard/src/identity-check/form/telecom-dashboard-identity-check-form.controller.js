@@ -13,10 +13,12 @@ export default class IdentityCheckFormCtrl {
     TucToast,
   ) {
     const { isValidIban, isValidBic } = ovhPaymentMethodHelper;
+    const { name, firstname, address } = coreConfig.getUser();
 
     this.$uibModal = $uibModal;
     this.$translate = $translate;
     this.user = coreConfig.getUser();
+
     this.isValidIban = isValidIban;
     this.isValidBic = isValidBic;
     this.IdentityCheckService = IdentityCheckService;
@@ -31,19 +33,13 @@ export default class IdentityCheckFormCtrl {
     this.model = {
       bic: '',
       iban: '',
-      ownerAddress: '',
-      ownerFirstName: '',
-      ownerLastName: '',
+      ownerAddress: address,
+      ownerFirstName: firstname,
+      ownerLastName: name,
     };
   }
 
   $onInit() {
-    const { name, firstname, address } = this.user;
-
-    this.model.ownerAddress = address;
-    this.model.ownerFirstName = firstname;
-    this.model.ownerLastName = name;
-
     this.IdentityCheckService.getLastInProgressProcedure()
       .then((procedure) => {
         this.procedure = procedure;
