@@ -1,0 +1,84 @@
+<form name="addPool" ng-submit="$ctrl.addPool()">
+    <oui-modal
+        data-primary-label="{{ ::'pci_databases_pools_add_pool_confirm' | translate }}"
+        data-primary-disabled="!addPool.$valid"
+        data-secondary-action="$ctrl.cancelAddPool()"
+        data-secondary-label="{{ ::'pci_databases_pools_add_pool_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-heading="{{:: 'pci_databases_pools_add_pool_title' | translate}}"
+        data-loading="$ctrl.isLoading"
+    >
+        <oui-field
+            data-label="{{:: 'pci_databases_pools_add_pool_name' | translate }}"
+            data-error-messages="{
+                required: ('pci_databases_pools_add_pool_name_required_error' | translate),
+                pattern: ('pci_databases_pools_add_pool_name_pattern_error' | translate)
+            }"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                name="poolName"
+                data-ng-model="$ctrl.poolData.name"
+                data-ng-pattern="$ctrl.POOL_VALIDATION.NAME_PATTERN"
+                required
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{:: 'pci_databases_pools_add_database' | translate }}"
+        >
+            <oui-select
+                name="database"
+                data-title="{{ ::'pci_databases_pools_add_database' | translate }}"
+                placeholder="{{ ::'pci_databases_pools_add_database' | translate }}"
+                data-model="$ctrl.poolData.database"
+                data-match="name"
+                data-items="$ctrl.postgresDatabases"
+                required
+            >
+                <span data-ng-bind="$item.name"></span>
+            </oui-select>
+        </oui-field>
+        <oui-field
+            data-label="{{:: 'pci_databases_pools_add_pool_mode' | translate }}"
+        >
+            <oui-select
+                name="mode"
+                data-title="{{ ::'pci_databases_pools_add_pool_mode' | translate }}"
+                placeholder="{{ ::'pci_databases_pools_add_pool_mode' | translate }}"
+                data-model="$ctrl.poolData.mode"
+                data-items="$ctrl.modes"
+                required
+            >
+                <span data-ng-bind="$item"></span>
+            </oui-select>
+        </oui-field>
+        <oui-field
+            data-label="{{:: 'pci_databases_pools_add_pool_size' | translate }}"
+        >
+            <oui-numeric
+                id="poolSize"
+                data-name="poolSize"
+                data-min="$ctrl.POOL_VALIDATION.MIN_SIZE"
+                data-max="$ctrl.POOL_VALIDATION.MAX_SIZE"
+                data-model="$ctrl.poolData.size"
+                required
+            >
+            </oui-numeric>
+        </oui-field>
+        <oui-field
+            data-label="{{:: 'pci_databases_pools_add_pool_user' | translate }}"
+        >
+            <oui-select
+                name="userId"
+                data-title="{{ ::'pci_databases_pools_add_pool_user' | translate }}"
+                placeholder="{{ ::'pci_databases_pools_add_pool_user' | translate }}"
+                data-model="$ctrl.poolData.user"
+                data-match="username"
+                data-items="$ctrl.users"
+            >
+                <span data-ng-bind="$item.username"></span>
+            </oui-select>
+        </oui-field>
+    </oui-modal>
+</form>

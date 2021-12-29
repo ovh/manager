@@ -814,4 +814,36 @@ export default class DatabaseService {
       )
       .then(({ data }) => data);
   }
+
+  createConnectionPool(projectId, engine, databaseId, payload) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/connectionPool`,
+        payload,
+      )
+      .then(({ data }) => data);
+  }
+
+  updateConnectionPool(
+    projectId,
+    engine,
+    databaseId,
+    connectionPoolId,
+    payload,
+  ) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/connectionPool/${connectionPoolId}`,
+        payload,
+      )
+      .then(({ data }) => data);
+  }
+
+  terminateConnectionPool(projectId, engine, databaseId, connectionPoolId) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/connectionPool/${connectionPoolId}`,
+      )
+      .then(({ data }) => data);
+  }
 }

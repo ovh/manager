@@ -2,6 +2,8 @@ export default class Pool {
   constructor({
     databaseId,
     databaseName,
+    database,
+    user,
     id,
     mode,
     name,
@@ -13,6 +15,8 @@ export default class Pool {
     Object.assign(this, {
       databaseId,
       databaseName,
+      database,
+      user,
       id,
       mode,
       name,
@@ -25,9 +29,11 @@ export default class Pool {
 
   setUserName(user) {
     this.userName = user?.username;
+    this.user = user;
   }
 
   setDatabaseName(database) {
     this.databaseName = database?.name;
+    this.database = database;
   }
 }
