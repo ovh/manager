@@ -15,6 +15,7 @@ import {
   AtInternetCustomVar,
   IAtInternetCustomVar,
 } from './constants';
+import { ATInternetTagOptions } from '.';
 
 interface Product {
   productId: string;
@@ -27,9 +28,9 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   /**
    * Reference to ATInternet Tag object from their JS library.
    */
-  private atinternetTag: any = null;
+  private atinternetTag: ATInternetTagOptions = null;
 
-  private trackQueue: Array<IOvhAtInternetTrack> = [];
+  private trackQueue: Array<IOvhAtInternetTrack<PageData>> = [];
 
   // protected defaults;
   /**
@@ -143,7 +144,8 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   processTrackQueue(): void {
     while (this.trackQueue.length) {
       const { type, data } = this.trackQueue.shift();
-      this[type](data);
+      const trackFunction = this[type] as CallableFunction;
+      trackFunction(data);
     }
   }
 
@@ -156,7 +158,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     this.processTrackQueue();
   }
 
-  getTag(): unknown {
+  getTag(): ATInternetTagOptions {
     if (!this.atinternetTag) {
       this.initTag();
     }

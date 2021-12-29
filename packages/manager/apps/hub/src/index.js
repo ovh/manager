@@ -47,10 +47,6 @@ useShellClient('hub')
       .catch(() => {})
       .then(() => import('./app.module'))
       .then(({ default: startApplication }) => {
-<<<<<<< HEAD
         startApplication(document.body, getShellClient());
-=======
-        startApplication(document.body, environment);
->>>>>>> feat(hub): use ovh-shell
       });
   });

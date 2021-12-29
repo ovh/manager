@@ -1,3 +1,5 @@
+import { PageData } from './config';
+
 export type TrackType =
   | 'trackPage'
   | 'trackClick'
@@ -6,7 +8,7 @@ export type TrackType =
   | 'trackImpression'
   | 'trackClickImpression';
 
-export interface IOvhAtInternetTrack {
+export interface IOvhAtInternetTrack<T extends PageData> {
   type: TrackType;
-  data: any;
+  data: T;
 }
