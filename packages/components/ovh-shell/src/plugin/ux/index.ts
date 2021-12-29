@@ -76,5 +76,4 @@ export class UXPlugin implements IUXPlugin {
   toggleNotificationsSidebarVisibility(): void {
     this.shellUX.toggleSidebarVisibility('notifications');
   }
-
 }
