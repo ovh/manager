@@ -14817,10 +14817,10 @@ osenv@^0.1.4, osenv@^0.1.5:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-ovh-api-services@^14.0.0:
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-14.0.0.tgz#af394e2a2efbed7a7166160bb76ec801e9a2df3e"
-  integrity sha512-Lqpj7vGxtyf+7VZvEJZCppNkxZBCejWIcJPeQLe6ApOUd9FS4zsLQFhl6ek0QNE8u7umGyVy0cRB0QwnTHjDiQ==
+ovh-api-services@^14.0.1:
+  version "14.0.1"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-14.0.1.tgz#6ac7ea5dba57a54964ada29122e4f732793e6678"
+  integrity sha512-9qcaTu3vdmIEGiLR2CXmkOQ5qEKRBag5WU5o1X2PSyX8Ym1nQ9SJMvxK+VtY88RByjjRv9Fz4n99u9G+97lqYA==
   dependencies:
     lodash "^4.17.21"
 
