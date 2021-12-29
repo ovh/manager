@@ -15,10 +15,13 @@
         ></span>
     </oui-button>
     <div class="oui-datagrid-responsive">
-        <table class="oui-datagrid">
+        <table
+            class="oui-datagrid"
+            aria-label="{{:: ('anthos_dashboard_access_restriction_table_header' | translate ) }}"
+        >
             <thead>
                 <tr>
-                    <th class="oui-datagrid__header">
+                    <th class="oui-datagrid__header" scope="col">
                         <span
                             class="oui-tile__term"
                             data-translate="anthos_dashboard_access_restriction_table_header"
