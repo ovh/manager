@@ -19,6 +19,9 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
       breadcrumb: () => false,
+      goBacktoGeneralInformation: /* @ngInject */ ($state) => () => {
+        $state.go(stateName, {}, { reload: true });
+      },
       goToAddNode: /* @ngInject */ ($state, databaseId, projectId) => () =>
         $state.go(
           'pci.projects.project.storages.databases.dashboard.general-information.add-node',
