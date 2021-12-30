@@ -49,6 +49,7 @@ export const ACTIONS = [
   {
     translation: 'pci_projects_project_create_ai_notebook',
     state: 'pci.projects.project.notebooks',
+    feature: 'notebooks',
     name: 'ainotebook',
   },
   {

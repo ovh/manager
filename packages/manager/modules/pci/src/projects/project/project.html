@@ -99,7 +99,10 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="col-sm-6 mb-4">
+                                    <div
+                                        class="col-sm-6 mb-4"
+                                        data-ng-if="$ctrl.coreConfig.getRegion() !== 'US'"
+                                    >
                                         <h2
                                             data-translate="pci_projects_project_community"
                                         ></h2>
