@@ -79,6 +79,7 @@ const features = {
   serviceIntegrationTab: [DATABASE_TYPES.KAFKA_MIRROR_MAKER],
   replicationsTab: [DATABASE_TYPES.KAFKA_MIRROR_MAKER],
   showServiceIntegration: [DATABASE_TYPES.KAFKA],
+  restApi: [DATABASE_TYPES.KAFKA],
 };
 
 export default function isFeatureActivated(feature, databaseType) {

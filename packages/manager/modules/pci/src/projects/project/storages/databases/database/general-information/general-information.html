@@ -344,6 +344,47 @@
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_kafka_rest_api_label' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('restApi')"
+                >
+                    <oui-tile-description>
+                        <p
+                            data-translate="pci_databases_general_information_kafka_rest_api_content"
+                            data-translate-values="{
+                                projectLink: '<a href=&quot' + $ctrl.KARAPACE_URL + '&quot>Karapace</a>'
+                            }"
+                        ></p>
+                        <div class="mb-3">
+                            <oui-switch
+                                class="d-inline-block"
+                                name="rest-api-switch"
+                                model="$ctrl.enableRestApi"
+                                on-change="$ctrl.onRestApiStatusChange(modelValue)"
+                                data-disabled="$ctrl.loading.restApi"
+                            >
+                            </oui-switch>
+                            <span
+                                class="d-inline-block mx-2"
+                                data-ng-bind="($ctrl.enableRestApi ? 'pci_databases_general_information_kafka_rest_api_enable' : 'pci_databases_general_information_kafka_rest_api_disable') | translate"
+                            >
+                            </span>
+                        </div>
+                        <oui-field
+                            data-ng-if="$ctrl.enableRestApi && $ctrl.restApiServiceUri"
+                        >
+                            <label
+                                data-translate="pci_databases_general_information_kafka_rest_service_uri_label"
+                            ></label>
+                            <oui-clipboard
+                                data-model="$ctrl.restApiServiceUri"
+                                data-id="rest-api-service-uri"
+                                data-name="rest-api-service-uri"
+                                data-ng-click="$ctrl.onRestApiServiceUriCopy($event)"
+                            ></oui-clipboard>
+                        </oui-field>
+                    </oui-tile-description>
+                </oui-tile-definition>
             </oui-tile>
         </div>
         <div class="col-md">

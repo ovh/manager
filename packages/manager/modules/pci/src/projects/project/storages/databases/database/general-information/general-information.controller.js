@@ -5,7 +5,10 @@ import {
   CERTIFICATE_FILENAME,
   DATABASE_TYPES,
 } from '../../databases.constants';
-import { WARNING_MESSAGES } from './general-information.constants';
+import {
+  WARNING_MESSAGES,
+  KARAPACE_URL,
+} from './general-information.constants';
 
 export default class {
   /* @ngInject */
@@ -30,6 +33,16 @@ export default class {
     this.pollDatabaseStatus();
     this.maxAllowedIpsToShow = MAX_IPS_DISPLAY;
     this.warningMessages = WARNING_MESSAGES;
+    this.loading = {
+      restApi: false,
+    };
+    if (this.isFeatureActivated('restApi')) {
+      this.enableRestApi = this.database.restApi ?? false;
+      this.restApiServiceUri = this.database.endpoints?.find(
+        (endPoint) => endPoint.component === `${this.database.engine}RestApi`,
+      )?.uri;
+      this.KARAPACE_URL = KARAPACE_URL;
+    }
   }
 
   downloadCertificate() {
@@ -142,6 +155,53 @@ export default class {
       });
     }
     return this.goToDeleteDatabase();
+  }
+
+  onRestApiStatusChange(enableRestApi) {
+    this.trackDashboard(
+      enableRestApi
+        ? 'general-information::kafka_rest_api_enable'
+        : 'general-information::kafka_rest_api_disable',
+      'click',
+    );
+    this.loading.restApi = true;
+    return this.DatabaseService.editDatabase(
+      this.projectId,
+      this.database.engine,
+      this.database.id,
+      this.database.description,
+      this.database.plan,
+      this.database.version,
+      this.database.flavor,
+      enableRestApi,
+    )
+      .then(() => {
+        return this.goBacktoGeneralInformation();
+      })
+      .catch(() => {
+        this.enableRestApi = !enableRestApi;
+        return this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_databases_general_information_kafka_rest_api_enable_disable_error',
+          ),
+          this.messageContainer,
+        );
+      })
+      .finally(() => {
+        this.loading.restApi = false;
+      });
+  }
+
+  onRestApiServiceUriCopy(event) {
+    // Clipboard has 2 elements input & button. Input event handler triggers click on button.
+    // So click event-handler on oui-clipboard will be triggered twice.
+    // For the expected behavior, considering only the click event on input element.
+    if (event.target.tagName === 'INPUT') {
+      this.trackDashboard(
+        'general-information::kafka_rest_uri_copy_paste',
+        'click',
+      );
+    }
   }
 
   $onDestroy() {

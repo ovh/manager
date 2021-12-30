@@ -38,6 +38,7 @@ export default {
     nodesPerRow: '<',
     isFeatureActivated: '<',
     serviceIntegration: '<',
+    goBacktoGeneralInformation: '<',
   },
   controller,
   template,
