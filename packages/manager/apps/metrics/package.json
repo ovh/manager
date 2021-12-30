@@ -62,7 +62,7 @@
     "moment": "^2.19",
     "moment-duration-format": "^1.3",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^14.0.0",
+    "ovh-api-services": "^14.0.1",
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {

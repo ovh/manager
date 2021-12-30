@@ -53,7 +53,7 @@
     "lodash-es": "^4.17.15",
     "messenger": "HubSpot/messenger#~1.4.1",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^14.0.0",
+    "ovh-api-services": "^14.0.1",
     "ovh-manager-webfont": "^1.2.0",
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.7",

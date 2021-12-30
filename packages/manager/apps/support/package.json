@@ -46,7 +46,7 @@
     "lodash": "^4.17.15",
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
-    "ovh-api-services": "^14.0.0",
+    "ovh-api-services": "^14.0.1",
     "ovh-ui-kit-bs": "^4.2.0",
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.7",
