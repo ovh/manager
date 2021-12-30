@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-freefax-app",
-  "version": "7.1.2",
+  "version": "7.1.3",
   "private": true,
   "description": "Freefax standalone application.",
   "repository": {

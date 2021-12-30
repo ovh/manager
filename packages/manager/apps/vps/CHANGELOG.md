@@ -1,3 +1,12 @@
+## [1.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.7.2...@ovh-ux/manager-vps-app@1.7.3) (2021-12-30)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `ovh-api-services` to `v14.0.1` ([#6217](https://github.com/ovh/manager/issues/6217)) ([ccfbacb](https://github.com/ovh/manager/commit/ccfbacb9f96d2252f29d347125494d2d1ef9c974))
+
+
+
 ## [1.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.7.1...@ovh-ux/manager-vps-app@1.7.2) (2021-12-28)
 
 

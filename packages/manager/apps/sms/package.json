@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sms-app",
-  "version": "7.6.1",
+  "version": "7.6.2",
   "private": true,
   "description": "SMS standalone application.",
   "repository": {
