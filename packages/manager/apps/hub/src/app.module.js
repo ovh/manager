@@ -45,6 +45,8 @@ const getLocale = (shellClient) => {
   return shellClient.i18n.getLocale();
 };
 
+const atInternet = getShellClient().tracking;
+
 export default async (containerEl, shellClient) => {
   const moduleName = 'managerHubApp';
 
