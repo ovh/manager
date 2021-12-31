@@ -24,10 +24,10 @@ import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 
-import atInternet from './components/at-internet';
 import errorPage from './components/error-page';
 import dashboard from './dashboard';
 import liveChatService from './livechat-service';
+import { getShellClient } from './shell';
 
 import controller from './controller';
 import routing from './routing';
@@ -43,6 +43,8 @@ const getEnvironment = (shellClient) => {
 const getLocale = (shellClient) => {
   return shellClient.i18n.getLocale();
 };
+
+const atInternet = getShellClient().tracking;
 
 export default async (containerEl, shellClient) => {
   const moduleName = 'managerHubApp';
