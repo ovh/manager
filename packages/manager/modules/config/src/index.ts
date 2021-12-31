@@ -20,7 +20,9 @@ export { LANGUAGES } from './locale/locale.constants';
 
 export const isTopLevelApplication = () => window.top === window.self;
 
-export const fetchConfiguration = async (applicationName: string): Promise<Environment> => {
+export const fetchConfiguration = async (
+  applicationName: string,
+): Promise<Environment> => {
   const environment = new Environment();
   const configRequestOptions = {
     requestType: 'aapi',
