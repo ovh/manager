@@ -67,7 +67,13 @@ export default /* @ngInject */ ($stateProvider) => {
         me,
         PciProjectsProjectInstanceService,
         project,
-      ) => PciProjectsProjectInstanceService.getExtraBandwidthCost(project, me),
+        catalogEndpoint,
+      ) =>
+        PciProjectsProjectInstanceService.getExtraBandwidthCost(
+          catalogEndpoint,
+          project,
+          me,
+        ),
 
       excludeCategories: /* @ngInject */ (pciFeatures) => {
         const flavorCategories = Object.keys(FLAVORS_FEATURES_FLIPPING_MAP);

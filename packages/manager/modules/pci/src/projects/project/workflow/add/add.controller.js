@@ -65,6 +65,7 @@ export default class {
     return this.PciProjectsProjectInstanceService.getSnapshotMonthlyPrice(
       this.projectId,
       this.workflow.resource,
+      this.catalogEndpoint,
     )
       .then((price) => {
         this.price = price;

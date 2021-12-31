@@ -8,6 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       instanceId: /* @ngInject */ ($transition$) =>
         $transition$.params().instanceId,
+
       instance: /* @ngInject */ (
         PciProjectsProjectInstanceService,
         projectId,
@@ -18,8 +19,13 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectsProjectInstanceService,
         projectId,
         instance,
+        catalogEndpoint,
       ) =>
-        PciProjectsProjectInstanceService.getInstancePrice(projectId, instance),
+        PciProjectsProjectInstanceService.getInstancePrice(
+          projectId,
+          instance,
+          catalogEndpoint,
+        ),
 
       reverseDnsLink: /* @ngInject */ (coreURLBuilder) =>
         coreURLBuilder.buildURL('dedicated', '#/configuration/ip'),

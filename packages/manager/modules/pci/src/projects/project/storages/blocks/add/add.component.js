@@ -7,6 +7,7 @@ export default {
   bindings: {
     projectId: '<',
     isTrustedZone: '<',
+    catalogEndpoint: '<',
     goBack: '<',
     cancelLink: '<',
     quotaUrl: '<',
