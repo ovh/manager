@@ -68,6 +68,7 @@ export default class FlavorsListController {
       flavorsPromise = this.PciProjectFlavors.getFlavors(
         this.serviceName,
         get(this.region, 'name'),
+        this.catalogEndpoint,
       );
     }
     return flavorsPromise.then((flavors) => {

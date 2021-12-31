@@ -44,7 +44,13 @@ export default /* @ngInject */ ($stateProvider) => {
         me,
         PciProjectsProjectInstanceService,
         project,
-      ) => PciProjectsProjectInstanceService.getExtraBandwidthCost(project, me),
+        catalogEndpoint,
+      ) =>
+        PciProjectsProjectInstanceService.getExtraBandwidthCost(
+          catalogEndpoint,
+          project,
+          me,
+        ),
 
       selectedCategory: () => BAREMETAL_CATEGORY,
 

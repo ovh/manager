@@ -4,6 +4,7 @@ import template from './add.html';
 export default {
   bindings: {
     pciFeatures: '<',
+    catalogEndpoint: '<',
     addInstanceSuccessMessage: '<',
     addInstancesSuccessMessage: '<',
     disablePrivateNetworks: '<',

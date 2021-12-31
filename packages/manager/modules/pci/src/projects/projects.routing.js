@@ -86,6 +86,17 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiCloudProject.v6().delete({ serviceName: project.serviceName })
           .$promise,
 
+      /**
+       * Use this to reach the right catalog
+       * @param isTrustedZone {boolean} : true if customer is trusted, otherwise false
+       * @returns {string}: catalog endpoint
+       */
+      catalogEndpoint: /* @ngInject */ (isTrustedZone) => {
+        return `/order/catalog/${
+          isTrustedZone ? 'private/trustedZoneCloud' : 'public/cloud'
+        }`;
+      },
+
       user: /* @ngInject */ (SessionService) => SessionService.getUser(),
 
       /**

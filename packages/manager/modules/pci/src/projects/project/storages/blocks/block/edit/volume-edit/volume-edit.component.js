@@ -10,6 +10,7 @@ export default {
     title: '<',
     sizeEditable: '<?',
     displayBootable: '<?',
+    catalogEndpoint: '<?',
     submitLabel: '<',
     onSubmit: '&',
     onCancel: '&',

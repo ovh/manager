@@ -27,8 +27,13 @@ export default /* @ngInject */ ($stateProvider) => {
           addonFamily: VOLUME_ADDON_FAMILY,
         }),
 
-      catalog: /* @ngInject */ (coreConfig, PciProjectStorageBlockService) =>
+      catalog: /* @ngInject */ (
+        catalogEndpoint,
+        coreConfig,
+        PciProjectStorageBlockService,
+      ) =>
         PciProjectStorageBlockService.getCatalog(
+          catalogEndpoint,
           coreConfig.getUser().ovhSubsidiary,
         ),
 

@@ -12,8 +12,9 @@ import Flavor from './flavor.class';
 import FlavorGroup from './flavor-group.class';
 
 import {
-  CPU_FREQUENCY,
   CATEGORIES,
+  CPU_FREQUENCY,
+  DEFAULT_CATALOG_ENDPOINT,
   LEGACY_FLAVORS,
 } from './flavors-list.constants';
 
@@ -21,30 +22,47 @@ export default class FlavorsList {
   /* @ngInject */
   constructor(
     $q,
+    $http,
     coreConfig,
     CucPriceHelper,
     OvhApiCloudProjectFlavor,
     OvhApiOrderCatalogPublic,
   ) {
     this.$q = $q;
+    this.$http = $http;
     this.coreConfig = coreConfig;
     this.CucPriceHelper = CucPriceHelper;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
   }
 
-  getFlavors(serviceName, currentRegion) {
+  getCatalog(endpoint, ovhSubsidiary) {
+    return this.$http
+      .get(endpoint, {
+        params: {
+          productName: 'cloud',
+          ovhSubsidiary,
+        },
+      })
+      .then(({ data: catalog }) => catalog);
+  }
+
+  getFlavors(
+    serviceName,
+    currentRegion,
+    catalogEndpoint = DEFAULT_CATALOG_ENDPOINT,
+  ) {
     return this.$q
       .all({
         flavors: this.OvhApiCloudProjectFlavor.v6().query({
           serviceName,
           region: currentRegion,
         }).$promise,
-        prices: this.CucPriceHelper.getPrices(serviceName),
-        catalog: this.OvhApiOrderCatalogPublic.v6().get({
-          productName: 'cloud',
-          ovhSubsidiary: this.coreConfig.getUser().ovhSubsidiary,
-        }).$promise,
+        prices: this.CucPriceHelper.getPrices(serviceName, catalogEndpoint),
+        catalog: this.getCatalog(
+          catalogEndpoint,
+          this.coreConfig.getUser().ovhSubsidiary,
+        ),
       })
       .then(({ flavors, prices, catalog }) =>
         map(
