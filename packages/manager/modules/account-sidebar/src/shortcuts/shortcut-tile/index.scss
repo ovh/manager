@@ -40,6 +40,8 @@ ovh-manager-hub-shortcut-tile {
       line-height: 1.25;
       font-size: 0.8rem;
       font-weight: 600;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     .oui-icon {
