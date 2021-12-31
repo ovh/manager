@@ -833,5 +833,10 @@
   "domain_dashboard_recommended_hosting_title_Perso": "Hosting your blog or website",
   "domain_dashboard_recommended_hosting_label": "{{ reduction }} off on your {{ type }} hosting plan for Black Friday.",
   "domain_dashboard_recommended_hosting_discover": "Explore our solutions",
-  "domain_tab_emails": "Emails and mailing lists"
+  "domain_tab_emails": "Emails and mailing lists",
+  "domain_dashboard_general_information_domain_terminated": "Cancellation requested",
+  "domain_dashboard_general_information_domain_automatic_renewal": "Automatic renewal",
+  "domain_dashboard_general_information_alldom_termination_info": "Your pack will expire on {{expirationDate}}. The non-cancelled domains included in this pack will be <strong>renewed for free until your pack expires permanently.</strong> After this date, your non-cancelled domains will be billed individually.",
+  "domain_dashboard_general_information_alldom_renewal_link": "Undo pack cancellation",
+  "domain_dashboard_general_information_alldom_termination_warning_close": "Close"
 }
