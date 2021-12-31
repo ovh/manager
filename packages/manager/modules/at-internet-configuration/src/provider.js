@@ -3,10 +3,19 @@ export default class atInternetConfigurationProvider {
     this.stateRules = [];
     this.extraConfig = {};
     this.config = {};
+    this.trackingPlugin = null;
   }
 
   setConfig(config) {
     this.config = config;
+  }
+
+  setTracking(trackingPlugin) {
+    this.trackingPlugin = trackingPlugin;
+  }
+
+  getTrackingPlugin() {
+    return this.trackingPlugin;
   }
 
   setReplacementRules(rules) {

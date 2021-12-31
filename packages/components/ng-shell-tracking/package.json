@@ -1,0 +1,47 @@
+{
+  "name": "@ovh-ux/ng-shell-tracking",
+  "version": "0.0.0",
+  "description": "ATInternet tracking library wrapper for AngularJS",
+  "keywords": [
+    "angularjs",
+    "at-internet",
+    "tracking",
+    "shell-tracking"
+  ],
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/components/ng-shell-tracking#readme",
+  "bugs": {
+    "url": "https://github.com/ovh/manager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/components/ng-shell-tracking"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/ng-shell-tracking.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
+    "prepare": "yarn run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/ng-shell-tracking' --include-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-shell-tracking' --include-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-shell-tracking' --include-dependencies -- yarn run dev:watch"
+  },
+  "dependencies": {
+    "@ovh-ux/ovh-at-internet": "^0.0.0 || ^1.0.0",
+    "lodash-es": "^4.17.15"
+  },
+  "devDependencies": {
+    "@ovh-ux/component-rollup-config": "^10.0.0 || ^11.0.0"
+  },
+  "peerDependencies": {
+    "angular": "~1.6"
+  }
+}

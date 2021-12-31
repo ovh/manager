@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 import '@ovh-ux/manager-core';
-import '@ovh-ux/ng-at-internet';
+import ngShellTracking from '@ovh-ux/ng-shell-tracking';
 import '@ovh-ux/ng-at-internet-ui-router-plugin';
 
 import provider from './provider';
@@ -13,7 +13,7 @@ const trackingEnabled = __NODE_ENV__ === 'production';
 
 angular
   .module(moduleName, [
-    'ngAtInternet',
+    ngShellTracking,
     'ngAtInternetUiRouterPlugin',
     'ovhManagerCore',
   ])
@@ -40,6 +40,11 @@ angular
           ? `${atInternetConfigurationProvider.prefix}::${route}`
           : route;
       });
+    },
+  )
+  .config(
+    /* @ngInject */ (atInternet, atInternetProvider) => {
+      atInternet.setTrackingPlugin(atInternetProvider.getTrackingPlugin());
     },
   )
   .run(
