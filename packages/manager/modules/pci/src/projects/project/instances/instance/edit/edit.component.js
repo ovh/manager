@@ -10,6 +10,7 @@ export default {
     instanceId: '<',
     instance: '<',
     region: '<',
+    catalogEndpoint: '<',
     excludeCategories: '<',
     imageEditMessage: '<',
     imageEditSuccessMessage: '<',

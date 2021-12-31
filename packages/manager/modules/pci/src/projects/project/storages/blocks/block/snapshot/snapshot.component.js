@@ -9,6 +9,7 @@ export default {
     storageId: '<',
     storage: '<',
     priceEstimation: '<',
+    catalogEndpoint: '<',
     goBack: '<',
   },
 };

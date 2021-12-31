@@ -65,6 +65,8 @@ export const CPU_FREQUENCY = {
   'ovh.iops': 2,
 };
 
+export const DEFAULT_CATALOG_ENDPOINT = '/order/catalog/public/cloud';
+
 export default {
   CATEGORIES,
   CPU_FREQUENCY,
@@ -72,4 +74,5 @@ export default {
   FLEX_TYPE,
   LEGACY_FLAVORS,
   SSD_DISK_TYPES,
+  DEFAULT_CATALOG_ENDPOINT,
 };

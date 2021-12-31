@@ -7,6 +7,8 @@ export default class OvhCloudPriceHelper {
   /* @ngInject */
   constructor(
     $q,
+    $http,
+    coreConfig,
     CucCurrencyService,
     cucUcentsToCurrencyFilter,
     OvhApiCloudProject,
@@ -14,6 +16,8 @@ export default class OvhCloudPriceHelper {
     OvhApiOrderCatalogPublic,
   ) {
     this.$q = $q;
+    this.$http = $http;
+    this.coreConfig = coreConfig;
     this.CucCurrencyService = CucCurrencyService;
     this.cucUcentsToCurrencyFilter = cucUcentsToCurrencyFilter;
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
@@ -21,18 +25,27 @@ export default class OvhCloudPriceHelper {
     this.OvhApiMe = OvhApiMe;
   }
 
-  getPrices(serviceName) {
+  getCatalog(endpoint, me) {
+    return this.$http
+      .get(endpoint, {
+        params: {
+          productName: 'cloud',
+          ovhSubsidiary: me.ovhSubsidiary,
+        },
+      })
+      .then(({ data: catalog }) => catalog);
+  }
+
+  /**
+   * Get product prices
+   * @param {string} serviceName : service for which we need info
+   * @param {string} [catalogEndpoint = /order/catalog/public/cloud] : catalog endpoint where we got product info
+   * @returns {Promise}: return prices promise
+   */
+  getPrices(serviceName, catalogEndpoint = '/order/catalog/public/cloud') {
     return this.$q
       .all({
-        catalog: this.OvhApiMe.v6()
-          .get()
-          .$promise.then(
-            (me) =>
-              this.OvhApiOrderCatalogPublic.v6().get({
-                productName: 'cloud',
-                ovhSubsidiary: me.ovhSubsidiary,
-              }).$promise,
-          ),
+        catalog: this.getCatalog(catalogEndpoint, this.coreConfig.getUser()),
         project: this.OvhApiCloudProject.v6().get({ serviceName }).$promise,
       })
       .then(({ catalog, project }) => {

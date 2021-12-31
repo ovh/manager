@@ -62,6 +62,7 @@ export default class PciProjectStorageVolumeEditController {
         this.PciProjectStorageBlockService.getVolumePriceEstimation(
           this.projectId,
           this.storage,
+          this.catalogEndpoint,
         ),
       )
       .then((estimatedPrice) => {
