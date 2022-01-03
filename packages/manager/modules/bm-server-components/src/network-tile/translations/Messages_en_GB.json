@@ -1,0 +1,6 @@
+{
+  "server_network_title": "Network",
+  "server_network_manage": "Manage",
+  "server_network_vrack": "Private network (vRack)",
+  "server_network_vrack_none": "No vRacks attached"
+}

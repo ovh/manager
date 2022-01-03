@@ -19,5 +19,7 @@
   "dedicated_server_dashboard_technical_details_system_disk_upgrade": "Increase system storage",
   "dedicated_server_dashboard_technical_details_data_disk_upgrade": "Increase data storage",
   "dedicated_server_dashboard_technical_details_cache_disk_upgrade": "Increase cache storage",
-  "dedicated_server_dashboard_technical_details_disk_none": "None"
+  "dedicated_server_dashboard_technical_details_disk_none": "None",
+  "dedicated_server_dashboard_technical_details_ram_size_unit_tb": "TB",
+  "dedicated_server_dashboard_technical_details_ram_size_unit_gb": "GB"
 }
