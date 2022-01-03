@@ -44,8 +44,12 @@ export default class KubernetesNodePoolsScaleCtrl {
         ),
       )
       .catch((error) => {
-        if (get(error, 'data.status') === 412) {
-          const errorMessage = get(error, 'data.message');
+        let errorMessage = get(error, 'data.message');
+        if (
+          get(error, 'data.status') === 412 &&
+          errorMessage.indexOf('[') !== -1 &&
+          errorMessage.indexOf(']') !== -1
+        ) {
           const errorId = errorMessage.slice(
             errorMessage.indexOf('[') + 1,
             errorMessage.indexOf(']'),
@@ -57,20 +61,20 @@ export default class KubernetesNodePoolsScaleCtrl {
           const translateMessage = this.$translate.instant(
             `kube_node_pool_autoscaling_scale_error_${errorId}`,
           );
-          this.goBack({
+          errorMessage = {
             textHtml: `${translateMessage} <a class="oui-link_icon" href="${quotaUrl}">${this.$translate.instant(
               'kube_node_pool_autoscaling_scale_error_quota_link',
             )} <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span></a>`,
-            type: 'error',
-          });
+          };
         } else {
-          this.goBack(
-            this.$translate.instant('kube_node_pool_autoscaling_scale_error', {
-              message: get(error, 'data.message'),
-            }),
-            'error',
+          errorMessage = this.$translate.instant(
+            'kube_node_pool_autoscaling_scale_error',
+            {
+              message: errorMessage,
+            },
           );
         }
+        this.CucCloudMessage.error(errorMessage);
       });
   }
 

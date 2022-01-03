@@ -91,9 +91,12 @@ export default class {
         this.goBack(this.$translate.instant('kubernetes_add_success')),
       )
       .catch((error) => {
-        if (get(error, 'data.status') === 412) {
-          // If error code is 412
-          const errorMessage = get(error, 'data.message');
+        let errorMessage = get(error, 'data.message');
+        if (
+          get(error, 'data.status') === 412 &&
+          errorMessage.indexOf('[') !== -1 &&
+          errorMessage.indexOf(']') !== -1
+        ) {
           const errorId = errorMessage.slice(
             errorMessage.indexOf('[') + 1,
             errorMessage.indexOf(']'),
@@ -105,18 +108,17 @@ export default class {
           const translateMessage = this.$translate.instant(
             `kubernetes_add_error_${errorId}`,
           );
-          this.CucCloudMessage.error({
+          errorMessage = {
             textHtml: `${translateMessage} <a class="oui-link_icon" href="${quotaUrl}">${this.$translate.instant(
               'kubernetes_add_error_quota_link',
             )} <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span></a>`,
-          });
+          };
         } else {
-          this.CucCloudMessage.error(
-            this.$translate.instant('kubernetes_add_error', {
-              message: get(error, 'data.message'),
-            }),
-          );
+          errorMessage = this.$translate.instant('kubernetes_add_error', {
+            message: errorMessage,
+          });
         }
+        this.CucCloudMessage.error(errorMessage);
       })
       .finally(() => {
         this.isAdding = false;
