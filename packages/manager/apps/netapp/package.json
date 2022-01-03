@@ -45,7 +45,7 @@
     "@ovh-ux/ng-ui-router-layout": "^4.0.4",
     "@ovh-ux/ng-ui-router-line-progress": "^1.2.6",
     "@ovh-ux/ufrontend": "^1.1.1 || ^2.0.0",
-    "@ovh-ux/ui-kit": "^5.3.0",
+    "@ovh-ux/ui-kit": "^5.3.1",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.8",
