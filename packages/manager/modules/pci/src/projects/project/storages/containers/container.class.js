@@ -18,6 +18,7 @@ export default class Container {
     isHighPerfStorage,
     publicUrl,
     state,
+    storageGateway,
   }) {
     Object.assign(this, {
       name,
@@ -35,6 +36,7 @@ export default class Container {
       isHighPerfStorage,
       publicUrl,
       state,
+      storageGateway,
     });
     this.storedObjects = this.storedObjects || this.objectsCount;
     this.storedBytes = this.storedBytes || this.objectsSize;
