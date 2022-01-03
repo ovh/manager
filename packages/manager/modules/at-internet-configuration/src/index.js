@@ -44,7 +44,7 @@ angular
   )
   .config(
     /* @ngInject */ (atInternet, atInternetProvider) => {
-      atInternet.setTrackingPlugin(atInternetProvider.getTrackingPlugin());
+      atInternet.setTracking(atInternetProvider.getTrackingPlugin());
     },
   )
   .run(

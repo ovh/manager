@@ -10,7 +10,7 @@ export default class atInternetConfigurationProvider {
     this.config = config;
   }
 
-  setTracking(trackingPlugin) {
+  setTrackingPlugin(trackingPlugin) {
     this.trackingPlugin = trackingPlugin;
   }
 
