@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^10.0.0 || ^11.0.0",
-    "@ovh-ux/ui-kit": "^5.1.2",
+    "@ovh-ux/ui-kit": "^5.3.1",
     "bootstrap": "~3.3.7",
     "font-awesome": "^4.0.0",
     "ovh-common-style": "^3.2.2",

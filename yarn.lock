@@ -3039,20 +3039,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^5.1.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-5.2.0.tgz#a2c74c0b4fde2109153b6b6a878d5df14f02c32a"
-  integrity sha512-SAh0HbJdQ8B2PkIXfObZSr05n0SxTA3iYhE3zH20MeUfmz6BEH3f0KfgKsVOmTDMpMuZzk1/9Ywnom4Jea1gog==
-
-"@ovh-ux/ui-kit@^5.1.2":
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-5.1.2.tgz#fe77a85212943401d10651122d5789e304835a44"
-  integrity sha512-L+uN0a131b3cPdLDVawTHrI2M8ghuQt9x6ZjOPDQGD4pfmP2fRVfBiIUx63PwDbpxsCm3CKnOqD23hsKtQ1pTg==
-
-"@ovh-ux/ui-kit@^5.3.0":
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-5.3.0.tgz#dd808a95bc3d20c0f29f7359ac337ca2dcc47020"
-  integrity sha512-0NIdoMYucJx+kRWuaQjd+5QLDVcfbJxUyg83dW7uTTGYGqcwxjfx80m3Gb2/hVOLuRy0aFwB8W/0v/JlSMTpRg==
+"@ovh-ux/ui-kit@^5.3.1":
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-5.3.1.tgz#39228fb038c4c3668fc3504bac50914f829ee1b6"
+  integrity sha512-BlzeEdhDsClo9H4znUYGa4OTxWJXLVHxGXX5D1wkXCZZ+lWaAWBh/YXkPnplQvO2tZ9pHE7HufbiNTZBxEMdIQ==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
