@@ -3,6 +3,7 @@
   "overTheBox_autoconfigure_dhcp_config": "Configurations",
   "overTheBox_autoconfigure_dhcp_config_add": "Ajouter une configuration",
   "overTheBox_autoconfigure_dhcp_interface": "Interface",
+  "overTheBox_autoconfigure_dhcp_interface_optional": "Interface (optionnel)",
   "overTheBox_autoconfigure_dhcp_offset": "Offset",
   "overTheBox_autoconfigure_dhcp_pool_size": "Taille du pool DHCP",
   "overTheBox_autoconfigure_dhcp_lease_duration": "Durée des baux (secondes)",
@@ -27,5 +28,6 @@
   "overTheBox_autoconfigure_no_values": "Il n'y a pas de valeurs définies pour cette section.",
   "overTheBox_autoconfigure_loading_failed": "Une erreur s'est produite lors de la récupération des données : {{errorMessage}}.",
   "overTheBox_autoconfigure_create_failed": "Une erreur s'est produite lors de la création : {{errorMessage}}.",
-  "overTheBox_autoconfigure_remove_failed": "Une erreur s'est produite lors de la suppression : {{errorMessage}}."
+  "overTheBox_autoconfigure_remove_failed": "Une erreur s'est produite lors de la suppression : {{errorMessage}}.",
+  "overTheBox_autoconfigure_mandatory": "Ce champs est obligatoire"
 }
