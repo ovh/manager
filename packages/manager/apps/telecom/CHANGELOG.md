@@ -1,3 +1,17 @@
+# [13.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.29.1...@ovh-ux/manager-telecom@13.30.0) (2022-01-03)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.1` ([defea82](https://github.com/ovh/manager/commit/defea8213431605013ebc69646267fe568adaccb))
+
+
+### Features
+
+* **sva:** add sva module ([b69604b](https://github.com/ovh/manager/commit/b69604bb691a473cbbd9833f7ea419ec229b68f8))
+
+
+
 ## [13.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.29.0...@ovh-ux/manager-telecom@13.29.1) (2021-12-30)
 
 

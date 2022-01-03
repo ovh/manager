@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-emaildomain-app@1.0.2...@ovh-ux/manager-emaildomain-app@1.0.3) (2022-01-03)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.1` ([defea82](https://github.com/ovh/manager/commit/defea8213431605013ebc69646267fe568adaccb))
+
+
+
 ## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emaildomain-app@1.0.1...@ovh-ux/manager-emaildomain-app@1.0.2) (2021-12-30)
 
 

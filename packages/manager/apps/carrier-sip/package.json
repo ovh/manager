@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-carrier-sip-app",
-  "version": "2.4.3",
+  "version": "2.4.4",
   "private": true,
   "description": "Carrier SIP Trunk standalone application.",
   "repository": {
@@ -28,7 +28,7 @@
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.10",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.0.3",
     "@ovh-ux/ng-ovh-http": "^5.0.3",
-    "@ovh-ux/ng-ovh-mondial-relay": "^8.2.0",
+    "@ovh-ux/ng-ovh-mondial-relay": "^8.2.1",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.5.2",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.4",

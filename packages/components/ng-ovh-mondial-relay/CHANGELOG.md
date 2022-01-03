@@ -1,3 +1,12 @@
+## [8.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-mondial-relay@8.2.0...@ovh-ux/ng-ovh-mondial-relay@8.2.1) (2022-01-03)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.1` ([defea82](https://github.com/ovh/manager/commit/defea8213431605013ebc69646267fe568adaccb))
+
+
+
 # [8.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-mondial-relay@8.1.1...@ovh-ux/ng-ovh-mondial-relay@8.2.0) (2021-10-28)
 
 

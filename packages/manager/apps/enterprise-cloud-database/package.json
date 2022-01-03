@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-enterprise-cloud-database-app",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "private": true,
   "description": "Enterprise Cloud Databases standalone application.",
   "repository": {
