@@ -10,14 +10,12 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   administrationLink,
   billingLink,
   billingAccountLink,
-  coreConfig,
   currentActiveLink,
   guidesLink,
   isBillingContact,
   manageContactsLink,
   orderAliasLink,
   phonebookLink,
-  serviceInformation,
   servicesLink,
   SidebarMenu,
   TelephonyMediator,
@@ -41,8 +39,8 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   self.manageContactsLink = manageContactsLink;
   self.orderAliasLink = orderAliasLink;
   self.phonebookLink = phonebookLink;
-  self.serviceInformation = serviceInformation;
   self.servicesLink = servicesLink;
+
   self.group = null;
   self.links = null;
   self.terminationTask = null;
