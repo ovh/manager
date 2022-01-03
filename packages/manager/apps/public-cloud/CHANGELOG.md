@@ -1,3 +1,12 @@
+## [4.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.17.3...@ovh-ux/manager-public-cloud@4.17.4) (2022-01-03)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.1` ([defea82](https://github.com/ovh/manager/commit/defea8213431605013ebc69646267fe568adaccb))
+
+
+
 ## [4.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.17.2...@ovh-ux/manager-public-cloud@4.17.3) (2021-12-30)
 
 

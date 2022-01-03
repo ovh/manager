@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dbaas-logs-app",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "private": true,
   "description": "Cloud Databases standalone application.",
   "repository": {
