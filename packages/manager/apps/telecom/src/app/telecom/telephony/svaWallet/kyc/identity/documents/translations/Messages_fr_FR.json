@@ -1,0 +1,23 @@
+{
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_ADMINISTRATION_MANDATE": "Un mandat donné par l’administration titulaire du compte de paiement à la personne physique agissant en son nom",
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_BODACC_DOCUMENT": "Une copie de l'insertion de l'avis au Bulletin Officiel des Annonces Civiles et Commerciales (BODACC)",
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_BUSINESS_REGISTER_CERTIFICATE": "Un Certificat du Registre des Métiers de moins de trois mois de l’artisan titulaire du compte de paiement",
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_COMMERCIAL_CORPORATE_REGISTER_CERTIFICATE": "Un Certificat d'immatriculation au Registre du Commerce et des Sociétés de l'EARL titulaire du compte de paiement",
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_COMPANY_STATUTES": "Les statuts signés",
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_FOUND_RULES": "Règlement de gestion du fonds",
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_FOUNDATION_IDENTITY_PROOF": "Un document officiel attestant que la personne physique identifiée est bien habilitée à représenter la fondation et à gérer le compte de paiement concerné",
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_GENERAL_ASSEMBLY_DOCUMENT": "Copie de la dernière Assemblée Générale avec la composition du bureau",
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_IBAN": "IBAN",
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_JOAFE_DOCUMENT": "La parution au JOAFE (Journal Officiel des Associations & Fondations d'Entreprise)",
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_KBIS": "KBIS",
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_LAST_GENERAL_MEETING_REPORT": "Une copie (moins d'un an) du compte-rendu de la dernière assemblée générale de l’association titulaire du compte de paiement",
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_MICRO_ENTERPRISE_DOCUMENT": "Le document d’enregistrement INSEE de moins de trois mois du titulaire du compte de paiement ou le document attestant de l'enregistrement auprès de la Chambre de Commerce (pour les auto-entrepreneurs exerçant une activité commerciale)",
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_PROOF_OF_IDENTITY": "Une pièce d’identité (carte d’identité recto verso, passeport) en cours de validité",
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_SECONDARY_PROOF_OF_IDENTITY": "Une seconde pièce d’identité (passeport, Carte Nationale d’Identité, permis de conduire recto-verso, dernier avis d’imposition, titre de séjour, livret de famille, le récépissé de l'enregistrement de la déclaration conjointe des partenaire du pacte civile de solidarité ou carte vitale) en cours de validité",
+  "telephony_billingAccount_svaWallet_kyc_documents_nature_RESELLER_PROOF": "Le document d'enregistrement à l'ARCEP",
+  "telephony_billingAccount_svaWallet_kyc_documents_description": "Un ensemble de documents légaux est exigé pour valider votre compte.",
+  "telephony_billingAccount_svaWallet_kyc_documents_alert": "Veillez à la conformité et la lisibilité de vos documents avant de finaliser votre demande. Un document non conforme entrainera un délai supplémentaire dans la validation de votre identité.",
+  "telephony_billingAccount_svaWallet_kyc_documents_alert_required": "Tous les documents sont obligatoires.",
+  "telephony_billingAccount_svaWallet_kyc_documents_title": "Pièces à fournir",
+  "telephony_billingAccount_svaWallet_kyc_documents_back_to_dashboard": "Retourner au dashboard"
+}

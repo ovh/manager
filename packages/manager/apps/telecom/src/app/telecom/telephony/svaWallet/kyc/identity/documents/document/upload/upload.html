@@ -1,0 +1,43 @@
+<form novalidate name="$ctrl.form" data-ng-submit="$ctrl.confirm()">
+    <oui-modal
+        heading="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_document_document_upload_title' | translate }}"
+        primary-label="{{::'telephony_billingAccount_svaWallet_kyc_identity_document_document_upload_submit_label' | translate}}"
+        secondary-action="$ctrl.cancel()"
+        secondary-label="{{::'telephony_billingAccount_svaWallet_kyc_identity_document_document_upload_cancel_label' | translate}}"
+        on-dismiss="$ctrl.cancel()"
+        loading="$ctrl.isLoading"
+    >
+        <oui-message type="error" data-ng-if="$ctrl.errorMessage">
+            <span
+                data-translate="telephony_billingAccount_svaWallet_kyc_identity_document_document_upload_error"
+                data-translate-values="{ errorMessage: $ctrl.errorMessage }"
+            ></span>
+        </oui-message>
+
+        <p>
+            <span
+                data-translate="{{:: 'telephony_billingAccount_svaWallet_kyc_documents_type_' + $ctrl.document.type }}"
+            ></span>
+
+            <span data-ng-if="$ctrl.document.beneficiary">
+                - {{ $ctrl.document.beneficiary.lastname}} {{
+                $ctrl.document.beneficiary.firstname}}
+            </span>
+        </p>
+
+        <oui-field
+            label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_document_document_upload_label' | translate : { confirmationCode: $ctrl.confirmationCode} }}"
+            size="auto"
+            help-text="{{:: 'telephony_billingAccount_svaWallet_kyc_documents_maxsize_warning' | translate }}"
+        >
+            <oui-file
+                disabled="$ctrl.disabled"
+                maxsize="10485760"
+                model="$ctrl.file"
+                accept=".png, .jpg, .jpeg, .pdf"
+                required
+            >
+            </oui-file>
+        </oui-field>
+    </oui-modal>
+</form>

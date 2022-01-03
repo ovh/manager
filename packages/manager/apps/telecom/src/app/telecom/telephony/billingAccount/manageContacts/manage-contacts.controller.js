@@ -11,28 +11,43 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountManageCont
   $stateParams,
   $q,
   $translate,
+  $http,
   OvhApiTelephony,
   OvhApiMe,
   TelephonyMediator,
   OvhApiPackXdslVoipLine,
   TucToast,
   TucToastError,
+  newSupportTicketLink,
 ) {
   const self = this;
 
   const contactAttributes = ['contactAdmin', 'contactBilling', 'contactTech'];
 
+  self.hasAnyLimitedModifications = false;
+  self.newSupportTicketLink = newSupportTicketLink;
+
   function getGroupContacts() {
-    return OvhApiTelephony.v6()
-      .getServiceInfos({
-        billingAccount: $stateParams.billingAccount,
-      })
-      .$promise.then((result) => [
+    const { billingAccount } = $stateParams;
+
+    const hasSpecialNumbersEndpoint = `/telephony/${billingAccount}/hasSpecialNumbers`;
+    const hasSpecialNumbersPromise = $http.get(hasSpecialNumbersEndpoint);
+
+    const serviceInfoPromise = OvhApiTelephony.v6()
+      .getServiceInfos({ billingAccount })
+      .$promise.then((result) => ({
+        value: pick(result, contactAttributes),
+        modified: pick(result, contactAttributes),
+        serviceName: billingAccount,
+        serviceType: 'group',
+      }));
+
+    return $q
+      .all([hasSpecialNumbersPromise, serviceInfoPromise])
+      .then(([hasSpecialNumbersResponse, serviceInfos]) => [
         {
-          value: pick(result, contactAttributes),
-          modified: pick(result, contactAttributes),
-          serviceName: $stateParams.billingAccount,
-          serviceType: 'group',
+          ...serviceInfos,
+          hasSpecialNumbers: hasSpecialNumbersResponse.data === true,
         },
       ]);
   }
@@ -159,20 +174,22 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountManageCont
   function checkModifiableServices(services) {
     return getPackXdslServiceIds().then((idsToFilter) => {
       forEach(services, (service) => {
-        if (
-          service.serviceType === 'group' &&
-          startsWith(service.serviceName, 'ovhtel-')
-        ) {
+        const { serviceType, serviceName, hasSpecialNumbers } = service;
+        const isGroupType = serviceType === 'group';
+
+        if (isGroupType && startsWith(serviceName, 'ovhtel-')) {
           set(service, 'isModifiable', false);
-        } else if (
-          service.serviceType !== 'group' &&
-          idsToFilter.indexOf(service.serviceName) >= 0
-        ) {
+        } else if (!isGroupType && idsToFilter.indexOf(serviceName) >= 0) {
           set(service, 'isModifiable', false);
         } else {
           set(service, 'isModifiable', true);
+          set(service, 'isModificationLimited', hasSpecialNumbers);
         }
       });
+
+      self.hasAnyLimitedModifications = services.some(
+        (service) => service.isModificationLimited,
+      );
     });
   }
 

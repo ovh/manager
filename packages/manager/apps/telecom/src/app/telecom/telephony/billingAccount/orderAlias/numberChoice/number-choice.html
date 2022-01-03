@@ -1,23 +1,43 @@
-<telecom-telephony-billing-account-order-alias-number-choice-type
-    data-radio-model="$ctrl.ngModel.numberType"
-    data-radio-value="{{$ctrl.prices.common.range}}"
-    data-title="{{ $ctrl.prices.common.title }}"
-    data-price="{{$ctrl.prices.common.withoutTax.text}}"
-    data-choices="$ctrl.choices.common"
-    data-ng-disabled="$ctrl.ngDisabled || $ctrl.loading"
-    name="choice_{{$ctrl.name}}"
-    data-number-model="$ctrl.ngModel.common"
->
-</telecom-telephony-billing-account-order-alias-number-choice-type>
-<telecom-telephony-billing-account-order-alias-number-choice-type
-    data-ng-if="$ctrl.choices.premium.length"
-    data-radio-model="$ctrl.ngModel.numberType"
-    data-radio-value="{{$ctrl.prices.premium.range}}"
-    data-title="{{ $ctrl.prices.premium.title }}"
-    data-price="{{$ctrl.prices.premium.withoutTax.text}}"
-    data-choices="$ctrl.choices.premium"
-    data-ng-disabled="$ctrl.ngDisabled || $ctrl.loading"
-    name="choice_{{$ctrl.name}}"
-    data-number-model="$ctrl.ngModel.premium"
->
-</telecom-telephony-billing-account-order-alias-number-choice-type>
+<div class="row">
+    <div class="col-md-6">
+        <oui-select-picker
+            disabled="$ctrl.loading || $ctrl.ngDisabled"
+            name="choice_{{$ctrl.name}}"
+            match="name"
+            label="{{ $ctrl.prices.common.title }}"
+            on-change="$ctrl.onCommonChange(modelValue)"
+            values="$ctrl.commonChoices"
+            model="$ctrl.selectedCommonNumber"
+        >
+            <oui-select-picker-footer>
+                <span
+                    data-translate="telephony_order_without_tax"
+                    data-translate-values="{ ht: $ctrl.prices.common.withoutTax.text }"
+                >
+                </span>
+                <span data-translate="telephony_order_per_period"></span>
+            </oui-select-picker-footer>
+        </oui-select-picker>
+    </div>
+    <div class="col-md-6">
+        <oui-select-picker
+            data-ng-if="$ctrl.hasPremium"
+            disabled="$ctrl.loading || $ctrl.ngDisabled"
+            name="choice_{{$ctrl.name}}"
+            match="name"
+            label="{{ $ctrl.prices.premium.title }}"
+            on-change="$ctrl.onPremiumChange(modelValue)"
+            values="$ctrl.premiumChoices"
+            model="$ctrl.selectedPremiumNumber"
+        >
+            <oui-select-picker-footer>
+                <span
+                    data-translate="telephony_order_without_tax"
+                    data-translate-values="{ ht: $ctrl.prices.premium.withoutTax.text }"
+                >
+                </span>
+                <span data-translate="telephony_order_per_period"></span>
+            </oui-select-picker-footer>
+        </oui-select-picker>
+    </div>
+</div>

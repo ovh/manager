@@ -9,149 +9,154 @@
         </oui-back-button>
     </header>
 
-    <div class="text-center" data-ng-if="AliasTerminateCtrl.isLoading">
+    <div class="text-center" data-ng-if="$ctrl.isLoading">
         <oui-spinner></oui-spinner>
     </div>
 
-    <div data-ng-if="!AliasTerminateCtrl.isLoading">
+    <div data-ng-if="!$ctrl.isLoading">
         <tuc-toast-message></tuc-toast-message>
 
-        <div class="row">
-            <div class="col-md-6 widget-presentation">
-                <header class="widget-presentation-header">
-                    <h2
-                        class="widget-presentation-title"
-                        data-translate="telephony_alias_administration_terminate_info_subtitle"
-                    ></h2>
-                </header>
-                <p
-                    data-translate="telephony_alias_administration_terminate_info1"
-                ></p>
-                <p
-                    data-translate="telephony_alias_administration_terminate_info2"
-                ></p>
-                <p
-                    data-translate="telephony_alias_administration_terminate_info3"
-                ></p>
-            </div>
-            <!-- /.widget-presentation -->
+        <h3
+            data-translate="telephony_alias_administration_terminate_info_subtitle"
+        ></h3>
+        <oui-message type="info">
+            <p
+                data-translate="telephony_alias_administration_terminate_info1"
+            ></p>
+            <p
+                data-translate="telephony_alias_administration_terminate_info2"
+            ></p>
+            <p
+                data-translate="telephony_alias_administration_terminate_info3"
+            ></p>
+        </oui-message>
 
-            <div class="col-md-6 widget-presentation">
-                <header class="widget-presentation-header">
-                    <h2
-                        class="widget-presentation-title"
-                        data-translate="telephony_alias_administration_terminate_subtitle"
-                    ></h2>
-                </header>
-                <div data-ng-if="AliasTerminateCtrl.task">
-                    <p class="text-danger">
-                        <i
-                            class="ovh-font ovh-font-warning mr-1"
-                            aria-hidden="true"
-                        ></i>
-                        <span
-                            data-translate="telephony_alias_administration_terminate_warning"
-                            data-translate-values="{
-                                  number: (AliasTerminateCtrl.number.serviceName | tucPhoneNumber),
-                                  date: (AliasTerminateCtrl.task.executionDate | date)
-                              }"
-                        >
-                        </span>
-                    </p>
-                    <button
-                        type="button"
-                        class="btn btn-default"
-                        data-ng-disabled="AliasTerminateCtrl.isCancelling"
-                        data-ng-click="AliasTerminateCtrl.cancelTermination()"
-                    >
-                        <oui-spinner
-                            class="mr-2"
-                            data-ng-if="AliasTerminateCtrl.isCancelling"
-                            data-size="s"
-                        >
-                        </oui-spinner>
-                        <span
-                            data-translate="telephony_alias_administration_cancel_termination"
-                        ></span>
-                    </button>
-                </div>
-                <form data-ng-if="!AliasTerminateCtrl.task">
-                    <span
-                        data-translate="telephony_alias_administration_terminate_info5"
-                    ></span>
-                    <strong
-                        data-ng-if="AliasTerminateCtrl.number.partOfPool"
-                        data-ng-bind="AliasTerminateCtrl.number.partOfPool"
-                    >
-                    </strong>
-                    <div
-                        class="text-danger"
-                        data-ng-if="AliasTerminateCtrl.number.partOfPool"
-                    >
-                        <i
-                            class="ovh-font ovh-font-warning mr-1"
-                            aria-hidden="true"
-                        ></i>
-                        <span
-                            data-translate="telephony_alias_administration_terminate_pool_warning"
-                        ></span>
-                    </div>
-                    <strong
-                        data-ng-if="!AliasTerminateCtrl.number.partOfPool"
-                        data-ng-bind="AliasTerminateCtrl.number.serviceName | tucPhoneNumber"
-                    >
-                    </strong>
-                    <p
-                        data-translate="telephony_alias_administration_terminate_info4"
-                    ></p>
-                    <div class="form-group">
-                        <select
-                            class="form-control"
-                            required
-                            data-ng-model="AliasTerminateCtrl.reason"
-                            data-ng-disabled="AliasTerminateCtrl.isTerminating"
-                            data-ng-options="('telephony_alias_administration_terminate_reason_' + reason | translate) for reason in AliasTerminateCtrl.reasonEnum"
-                        >
-                            <option
-                                value=""
-                                data-translate="telephony_alias_administration_terminate_reason"
-                                disabled
-                            ></option>
-                        </select>
-                    </div>
-                    <div
-                        class="form-group"
-                        data-ng-if="AliasTerminateCtrl.reason === 'missingOptions' || AliasTerminateCtrl.reason === 'other'"
-                    >
-                        <textarea
-                            class="form-control"
-                            rows="5"
-                            data-ng-disabled="AliasTerminateCtrl.isTerminating"
-                            data-ng-model="AliasTerminateCtrl.details"
-                            data-translate-attr="{ 'placeholder': 'telephony_alias_administration_terminate_details' }"
-                        >
-                        </textarea>
-                    </div>
-                    <button
-                        type="button"
-                        class="btn btn-default"
-                        data-ng-disabled="!AliasTerminateCtrl.hasValidReason() || AliasTerminateCtrl.isTerminating"
-                        data-ng-click="AliasTerminateCtrl.terminate()"
-                    >
-                        <oui-spinner
-                            class="mr-2"
-                            data-ng-if="AliasTerminateCtrl.isTerminating"
-                            data-size="s"
-                        >
-                        </oui-spinner>
-                        <span
-                            data-translate="telephony_alias_administration_terminate"
-                        ></span>
-                    </button>
-                </form>
-            </div>
-            <!-- /.widget-presentation -->
+        <oui-message data-type="warning">
+            <p
+                data-translate="telephony_alias_administration_terminate_sva_warning"
+            ></p>
+            <p
+                data-translate="telephony_alias_administration_terminate_sva_warning_guarantee"
+            ></p>
+
+            <a class="oui-link_icon" data-ng-href="{{$ctrl.svaWalletLink}}">
+                <span
+                    data-translate="telephony_alias_administration_terminate_sva_warning_link"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-arrow-right"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </oui-message>
+
+        <h3
+            data-translate="telephony_alias_administration_terminate_subtitle"
+        ></h3>
+
+        <div data-ng-if="$ctrl.task">
+            <p class="text-danger">
+                <i
+                    class="ovh-font ovh-font-warning mr-1"
+                    aria-hidden="true"
+                ></i>
+                <span
+                    data-translate="telephony_alias_administration_terminate_warning"
+                    data-translate-values="{
+                        number: ($ctrl.number.serviceName | tucPhoneNumber),
+                        date: ($ctrl.task.executionDate | date)
+                    }"
+                >
+                </span>
+            </p>
+            <button
+                type="button"
+                class="btn btn-default"
+                data-ng-disabled="$ctrl.isCancelling"
+                data-ng-click="$ctrl.cancelTermination()"
+            >
+                <oui-spinner
+                    class="mr-2"
+                    data-ng-if="$ctrl.isCancelling"
+                    data-size="s"
+                >
+                </oui-spinner>
+                <span
+                    data-translate="telephony_alias_administration_cancel_termination"
+                ></span>
+            </button>
         </div>
+        <form data-ng-if="!$ctrl.task">
+            <span
+                data-translate="telephony_alias_administration_terminate_info5"
+            ></span>
+            <strong
+                data-ng-if="$ctrl.number.partOfPool"
+                data-ng-bind="$ctrl.number.partOfPool"
+            >
+            </strong>
+            <div class="text-danger" data-ng-if="$ctrl.number.partOfPool">
+                <i
+                    class="ovh-font ovh-font-warning mr-1"
+                    aria-hidden="true"
+                ></i>
+                <span
+                    data-translate="telephony_alias_administration_terminate_pool_warning"
+                ></span>
+            </div>
+            <strong
+                data-ng-if="!$ctrl.number.partOfPool"
+                data-ng-bind="$ctrl.number.serviceName | tucPhoneNumber"
+            >
+            </strong>
+            <p
+                data-translate="telephony_alias_administration_terminate_info4"
+            ></p>
+            <div class="form-group">
+                <select
+                    class="form-control"
+                    required
+                    data-ng-model="$ctrl.reason"
+                    data-ng-disabled="$ctrl.isTerminating"
+                    data-ng-options="('telephony_alias_administration_terminate_reason_' + reason | translate) for reason in $ctrl.reasonEnum"
+                >
+                    <option
+                        value=""
+                        data-translate="telephony_alias_administration_terminate_reason"
+                        disabled
+                    ></option>
+                </select>
+            </div>
+            <div
+                class="form-group"
+                data-ng-if="$ctrl.reason === 'missingOptions' || $ctrl.reason === 'other'"
+            >
+                <textarea
+                    class="form-control"
+                    rows="5"
+                    data-ng-disabled="$ctrl.isTerminating"
+                    data-ng-model="$ctrl.details"
+                    data-translate-attr="{ 'placeholder': 'telephony_alias_administration_terminate_details' }"
+                >
+                </textarea>
+            </div>
+            <button
+                type="button"
+                class="btn btn-default"
+                data-ng-disabled="!$ctrl.hasValidReason() || $ctrl.isTerminating"
+                data-ng-click="$ctrl.terminate()"
+            >
+                <oui-spinner
+                    class="mr-2"
+                    data-ng-if="$ctrl.isTerminating"
+                    data-size="s"
+                >
+                </oui-spinner>
+                <span
+                    data-translate="telephony_alias_administration_terminate"
+                ></span>
+            </button>
+        </form>
     </div>
 </section>
 <!-- /.telephony-group-alias-redirect -->

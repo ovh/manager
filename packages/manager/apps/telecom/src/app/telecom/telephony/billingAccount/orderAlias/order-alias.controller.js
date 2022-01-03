@@ -1,39 +1,36 @@
-export default /* @ngInject */ function TelecomTelephonyBillingAccountOrderAliasCtrl(
-  $q,
-  $state,
-  $stateParams,
-  atInternet,
-  TelephonyMediator,
-  TelecomTelephonyBillingAccountOrderAliasService,
-) {
-  this.state = $state.parent;
+export default class TelecomTelephonyBillingAccountOrderAliasCtrl {
+  /* @ngInject */
+  constructor(
+    $q,
+    $state,
+    $stateParams,
+    atInternet,
+    TelecomTelephonyBillingAccountOrderAliasService,
+  ) {
+    this.$q = $q;
+    this.$state = $state;
+    this.$stateParams = $stateParams;
+    this.atInternet = atInternet;
+    this.TelecomTelephonyBillingAccountOrderAliasService = TelecomTelephonyBillingAccountOrderAliasService;
+  }
 
-  const self = this;
+  $onInit() {
+    this.loading = { init: true };
 
-  self.loading = {
-    init: false,
-  };
+    let canOrderSpecialPromise = this.$q.when(true);
+    if (this.isSvaWalletFeatureAvailable) {
+      canOrderSpecialPromise = this.$q.when(this.isSvaWalletValid);
+    }
 
-  function loadOffers() {
-    $q.when()
-      .then(() => TelecomTelephonyBillingAccountOrderAliasService.getUser())
-      .then((user) =>
-        TelecomTelephonyBillingAccountOrderAliasService.getOffers(
-          $stateParams.billingAccount,
-          user.ovhSubsidiary.toLowerCase(),
-          {
-            range: 'common',
-          },
-        ),
-      )
-      .then((offerDetails) => {
-        self.offers = offerDetails;
-        return offerDetails;
+    return this.$q
+      .all([canOrderSpecialPromise, this.loadOffers()])
+      .then(([canOrderSpecial, offers]) => {
+        this.canOrderSpecial = canOrderSpecial;
+        this.offers = offers;
       })
       .finally(() => {
-        self.loading.init = false;
-
-        atInternet.trackPage({
+        this.loading.init = false;
+        this.atInternet.trackPage({
           name: 'orders-PhoneNumb',
           type: 'navigation',
           level2: 'Telecom',
@@ -42,11 +39,16 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountOrderAlias
       });
   }
 
-  function init() {
-    self.loading.init = true;
-
-    loadOffers();
+  loadOffers() {
+    return this.TelecomTelephonyBillingAccountOrderAliasService.getUser().then(
+      (user) =>
+        this.TelecomTelephonyBillingAccountOrderAliasService.getOffers(
+          this.$stateParams.billingAccount,
+          user.ovhSubsidiary.toLowerCase(),
+          {
+            range: 'common',
+          },
+        ),
+    );
   }
-
-  init();
 }
