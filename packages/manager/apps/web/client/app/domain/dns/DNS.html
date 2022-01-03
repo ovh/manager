@@ -7,6 +7,12 @@
         <div class="col-md-9">
             <div data-ovh-alert="{{alerts.main}}"></div>
 
+            <oui-message
+                type="success"
+                data-ng-if="$ctrl.displayPropagationInfo"
+            >
+                <span data-translate="domain_tab_DNS_update_success"></span>
+            </oui-message>
             <div
                 class="alert alert-danger"
                 role="alert"
