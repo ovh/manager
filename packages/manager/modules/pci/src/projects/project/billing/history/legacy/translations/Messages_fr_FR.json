@@ -3,7 +3,7 @@
   "cpbh_next_month": "Mois suivant",
   "cpbh_previous_month": "Mois précédent",
   "cpbhd_monthly_header": "Forfaits mensuels de {{month}} {{year}}",
-  "cpbhd_hourly_header": "Consommations à la demande de {{lastMonth}} {{year}}",
+  "cpbhd_hourly_header": "Consommations à la demande de {{lastMonth}} {{previousYear}}",
   "cpbhd_bill_link": "Voir toutes les factures",
   "cpbhd_bill_pdf_tooltip": "Voir la facture PDF",
   "cpbhd_bill_pdf_link": "Facture {{month}} {{year}}",

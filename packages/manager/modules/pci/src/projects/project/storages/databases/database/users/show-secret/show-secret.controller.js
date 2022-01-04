@@ -14,7 +14,7 @@ export default class {
   downloadSecret() {
     this.trackDashboard(`users::show_secret::download_${this.type.label}`);
     this.CucControllerHelper.constructor.downloadContent({
-      fileContent: this.secretKeyAndAccess[this.type],
+      fileContent: this.secretKeyAndAccess[this.type.label],
       fileName: this.type.filename,
     });
   }
