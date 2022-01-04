@@ -39,19 +39,14 @@
                     data-term="{{:: 'anthos_tenant_dashboard_general_information_tile_information_software' | translate }}"
                 >
                     <oui-tile-description>
-                        <p
-                            class="mb-0"
-                            data-ng-bind=":: $ctrl.tenant.version"
-                        ></p>
+                        <p data-ng-bind=":: $ctrl.tenant.version"></p>
                         <div
                             data-ng-if="$ctrl.isSoftwareUpdatable && !$ctrl.isSoftwareUpdating"
                         >
-                            <p>
-                                <span
-                                    class="oui-badge oui-badge_warning"
-                                    data-translate="anthos_tenant_dashboard_general_information_tile_information_software_is_updatable"
-                                ></span>
-                            </p>
+                            <p
+                                class="oui-badge oui-badge_warning ml-0"
+                                data-translate="anthos_tenant_dashboard_general_information_tile_information_software_is_updatable"
+                            ></p>
                             <button
                                 type="button"
                                 class="oui-button oui-button_s oui-button_ghost"

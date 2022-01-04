@@ -1,10 +1,10 @@
 <div>
-    <oui-back-button data-on-click="$ctrl.goBack()"></oui-back-button>
     <oui-header
-        class="mb-0"
         data-heading="{{:: 'anthos_tenant_dashboard_general_information_software_update_title' | translate}}"
         data-description="{{:: 'anthos_tenant_dashboard_general_information_software_update_description' | translate}}"
-    ></oui-header>
+    >
+        <oui-back-button data-on-click="$ctrl.goBack()"></oui-back-button>
+    </oui-header>
     <form name="softwareUpdateForm" data-ng-submit="$ctrl.updateSoftware()">
         <table
             class="oui-datagrid"
@@ -14,7 +14,6 @@
                 <tr>
                     <th class="oui-datagrid__header" scope="col">
                         <span
-                            class="oui-tile__term"
                             data-translate="anthos_tenant_dashboard_general_information_software_update_version"
                         ></span>
                     </th>
