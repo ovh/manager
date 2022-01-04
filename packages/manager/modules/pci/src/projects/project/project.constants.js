@@ -1,60 +1,100 @@
+import ASSET_INSTANCES from './assets/instances.png';
+import ASSET_DATABASES from './assets/databases.png';
+import ASSET_KUBERNETES from './assets/kubernetes.png';
+import ASSET_AINOTEBOOK from './assets/ainotebook.png';
+import ASSET_OBJECTSTORAGE from './assets/objectstorage.png';
+import ASSET_BLOCKSTORAGE from './assets/blockstorage.png';
+import ASSET_IPFAILOVER from './assets/ipfailover.png';
+import ASSET_PRIVATENETWORK from './assets/privatenetwork.png';
+
+export const PRODUCT_IMAGES = {
+  instances: ASSET_INSTANCES,
+  databases: ASSET_DATABASES,
+  kubernetes: ASSET_KUBERNETES,
+  ainotebook: ASSET_AINOTEBOOK,
+  objectstorage: ASSET_OBJECTSTORAGE,
+  blockstorage: ASSET_BLOCKSTORAGE,
+  ipfailover: ASSET_IPFAILOVER,
+  privatenetwork: ASSET_PRIVATENETWORK,
+};
+
 export const ACTIONS = [
   {
     translation: 'pci_projects_project_create_an_instance',
     state: 'pci.projects.project.instances.add',
+    name: 'instances',
   },
   {
-    translation: 'pci_projects_project_create_a_volume',
-    state: 'pci.projects.project.storages.blocks.add',
+    translation: 'pci_projects_project_create_cluster_kubernetes',
+    state: 'pci.projects.project.kubernetes.add',
+    feature: 'kubernetes',
+    name: 'kubernetes',
   },
   {
     translation: 'pci_projects_project_create_a_container',
     state: 'pci.projects.project.storages.object-storage.add',
+    name: 'objectstorage',
+  },
+  {
+    translation: 'pci_projects_project_create_a_volume',
+    state: 'pci.projects.project.storages.blocks.add',
+    name: 'blockstorage',
+  },
+  {
+    translation: 'pci_projects_project_create_cluster_database',
+    state: 'pci.projects.project.storages.databases.add',
+    feature: 'databases',
+    name: 'databases',
+  },
+  {
+    translation: 'pci_projects_project_create_ai_notebook',
+    state: 'pci.projects.project.notebooks',
+    feature: 'notebooks',
+    name: 'ainotebook',
   },
   {
     translation: 'pci_projects_project_activate_private_networks',
     state: 'pci.projects.project.privateNetwork',
+    name: 'privatenetwork',
   },
   {
-    translation: 'pci_projects_project_create_cluster_kubernetes',
-    state: 'pci.projects.project.kubernetes',
-    feature: 'kubernetes',
+    translation: 'pci_projects_project_buy_ip_failover',
+    state: 'pci.projects.project.failover-ips',
+    name: 'ipfailover',
   },
 ];
 
 export const LINKS = [
   {
     translation:
-      'pci_projects_project_documentation_create_user_access_to_horizon',
+      'pci_projects_project_documentation_public_cloud_essential_information',
     href:
-      'https://docs.ovh.com/gb/en/public-cloud/configure_user_access_to_horizon/',
+      'https://docs.ovh.com/gb/en/public-cloud/public-cloud-essential-information/',
+    regions: ['EU', 'CA'],
+  },
+  {
+    translation: 'pci_projects_project_documentation_public_cloud_interface',
+    href: 'https://docs.ovh.com/gb/en/public-cloud/public-cloud-interface/',
     regions: ['EU', 'CA'],
   },
   {
     translation:
-      'pci_projects_project_documentation_boot_your_first_cloud_server_in_3_minutes',
+      'pci_projects_project_documentation_get_started_with_a_public_cloud_instance',
     href:
-      'https://docs.ovh.com/gb/en/public-cloud/create_an_instance_in_your_ovh_customer_account',
+      'https://docs.ovh.com/gb/en/public-cloud/get-started-with-a-public-cloud-instance/',
     regions: ['EU', 'CA'],
   },
   {
     translation:
-      'pci_projects_project_documentation_prepare_the_environment_for_using_the_open_stack_api',
+      'pci_projects_project_documentation_information_on_cloud_billing_options',
     href:
-      'https://docs.ovh.com/gb/en/public-cloud/prepare_the_environment_for_using_the_openstack_api/',
-    regions: ['EU', 'CA'],
-  },
-  {
-    translation:
-      'pci_projects_project_documentation_create_and_configure_and_additional_disk_on_an_instance',
-    href:
-      'https://docs.ovh.com/gb/en/public-cloud/create-an-additional-volume-and-attach-it-to-an-instance/',
+      'https://docs.ovh.com/gb/en/public-cloud/information-on-cloud-billing-options/',
     regions: ['EU', 'CA'],
   },
   {
     translation:
       'pci_projects_project_documentation_see_all_public_cloud_guides',
-    href: 'https://docs.ovh.com/gb/en/public-cloud',
+    href: 'https://docs.ovh.com/gb/en/',
     regions: ['EU', 'CA'],
   },
   {
@@ -83,6 +123,19 @@ export const LINKS = [
   },
 ];
 
+export const COMMUNITY_LINKS = [
+  {
+    translation: 'pci_projects_project_community_roadmap',
+    href: 'https://github.com/ovh/public-cloud-roadmap/projects',
+    regions: ['EU', 'CA'],
+  },
+  {
+    translation: 'pci_projects_project_community_discord',
+    href: 'https://discord.com/invite/C9VVJZxxd6',
+    regions: ['EU', 'CA'],
+  },
+];
+
 export const PCI_HDS_ADDON = {
   productName: 'cloud',
   family: 'certification-hds',
@@ -95,8 +148,10 @@ export const PCI_HDS_ADDON = {
 export const LEGACY_PLAN_CODES = ['project.legacy', 'project.2018'];
 
 export default {
+  PRODUCT_IMAGES,
   ACTIONS,
   LINKS,
+  COMMUNITY_LINKS,
   PCI_HDS_ADDON,
   LEGACY_PLAN_CODES,
 };
