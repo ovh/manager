@@ -1,11 +1,14 @@
 {
   "autorenew_all_dom_terminate_title": "Vous avez demandé la résiliation de votre pack alldom",
-  "autorenew_all_dom_terminate_info": "Attention, la résiliation de ce pack n'entraîne pas la résiliation des domaines qui y sont attachés.",
+  "autorenew_all_dom_terminate_effect_on_domains": "Attention, la résiliation de ce pack n'entraîne pas la résiliation des domaines qui y sont attachés.",
+  "autorenew_all_dom_terminate_domain_renewal_info": "Les domaines non résiliés inclus dans votre pack seront renouvelés gratuitment jusqu'a l'expiration definitive de votre pack. Au-delà de cette date, vos domaines non résiliés seront facturés individuellement.",
   "autorenew_all_dom_terminate_choose_option": "Veuillez sélectionner les noms de domaines que vous souhaitez résilier ci-dessous :",
   "autorenew_all_dom_terminate_select_all_dom": "Pack Alldom",
   "autorenew_all_dom_terminate_select_all_domains": "Tout sélectionner",
   "autorenew_all_dom_terminate_confirm": "Confirmer",
   "autorenew_all_dom_terminate_cancel": "Annuler",
   "autorenew_all_dom_terminate_success": "Votre demande de résiliation a bien été prise en compte",
-  "autorenew_all_dom_terminate_error": "Votre demande de résiliation n'a pas pu être prise en compte pour un ou plusieurs domaines. Merci d’essayer ultérieurement."
+  "autorenew_all_dom_terminate_error": "Votre demande de résiliation n'a pas pu être prise en compte pour un ou plusieurs domaines. Merci d’essayer ultérieurement.",
+  "autorenew_all_dom_domain_free_if_renewed": "Renouvellement gratuit uniquement si le pack Allldom {{ allDom }} est renouvelé avant le {{ allDomExpiration }}",
+  "autorenew_all_dom_domain_free": "Renouvellement gratuit car inclus dans le pack Alldom"
 }

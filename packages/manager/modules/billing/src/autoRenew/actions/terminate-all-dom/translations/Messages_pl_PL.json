@@ -7,5 +7,9 @@
   "autorenew_all_dom_terminate_confirm": "Zatwierdź",
   "autorenew_all_dom_terminate_cancel": "Anuluj",
   "autorenew_all_dom_terminate_success": "Rezygnacja została zarejestrowana.",
-  "autorenew_all_dom_terminate_error": "Rezygnacja nie mogła zostać zarejestrowana dla jednej lub kilku domen. Spróbuj później."
+  "autorenew_all_dom_terminate_error": "Rezygnacja nie mogła zostać zarejestrowana dla jednej lub kilku domen. Spróbuj później.",
+  "autorenew_all_dom_terminate_effect_on_domains": "Uwaga: rezygnacja z tego pakietu nie powoduje rezygnacji z przypisanych do niego domen.",
+  "autorenew_all_dom_terminate_domain_renewal_info": "Nierozwiązane umowy o usługi domen w nim zawarte zostaną odnowione za darmo do ostatecznego wygaśnięcia Twojego pakietu. Po tej dacie Twoje nierozwiązane umowy o usługi domen będą rozliczane indywidualnie.",
+  "autorenew_all_dom_domain_free_if_renewed": "Bezpłatne odnowienie tylko w przypadku odnowienia pakietu Allldom {{ allDom }} przed dn. {{ allDomExpiration }}",
+  "autorenew_all_dom_domain_free": "Odnowienie jest bezpłatne, ponieważ zawarte jest w pakiecie Alldom"
 }
