@@ -29,5 +29,5 @@
   "overTheBox_autoconfigure_loading_failed": "Une erreur s'est produite lors de la récupération des données : {{errorMessage}}.",
   "overTheBox_autoconfigure_create_failed": "Une erreur s'est produite lors de la création : {{errorMessage}}.",
   "overTheBox_autoconfigure_remove_failed": "Une erreur s'est produite lors de la suppression : {{errorMessage}}.",
-  "overTheBox_autoconfigure_mandatory": "Ce champs est obligatoire"
+  "overTheBox_autoconfigure_mandatory": "Ce champ est obligatoire"
 }
