@@ -1,10 +1,10 @@
 <div>
-    <oui-back-button data-on-click="::$ctrl.goBack()"></oui-back-button>
     <oui-header
-        class="mb-0"
         data-heading="{{:: 'anthos_dashboard_host_order_header_heading' | translate }}"
         data-description="{{:: 'anthos_dashboard_host_order_header_description' | translate }}"
-    ></oui-header>
+    >
+        <oui-back-button data-on-click="::$ctrl.goBack()"></oui-back-button>
+    </oui-header>
     <oui-spinner data-ng-if="$ctrl.isLoading"></oui-spinner>
     <div data-ng-if="!$ctrl.isLoading">
         <div class="oui-datagrid-responsive">
