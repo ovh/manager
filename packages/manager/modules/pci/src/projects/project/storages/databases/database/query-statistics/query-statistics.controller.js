@@ -1,6 +1,7 @@
 export default class {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, DatabaseService) {
+  constructor($timeout, $translate, CucCloudMessage, DatabaseService) {
+    this.$timeout = $timeout;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
@@ -36,12 +37,16 @@ export default class {
       this.database.id,
     )
       .then(() => {
-        return this.goBackToQueryStatistics(
-          this.$translate.instant(
-            'pci_databases_query_statistics_reset_success',
-          ),
-          'success',
-        );
+        // added timeout as a work-around to avoid the aiven bug
+        // there needs to be a delay while executing PUT and GET request to get updated data
+        return this.$timeout(() => {
+          this.goBackToQueryStatistics(
+            this.$translate.instant(
+              'pci_databases_query_statistics_reset_success',
+            ),
+            'success',
+          );
+        }, 100);
       })
       .catch((error) => {
         return this.CucCloudMessage.error(
