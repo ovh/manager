@@ -31,5 +31,6 @@
   "hosting_cdn_shared_modal_add_rule_field_resource_regex_info": "Please enter a valid regular expression, e.g.: .*.css",
   "hosting_cdn_shared_modal_add_rule_field_resource_uri": "URI",
   "hosting_cdn_shared_modal_add_rule_field_resource_uri_info": "Please enter a valid URI for your website, e.g.: /product/howto.pdf",
-  "hosting_cdn_shared_modal_add_rule_field_resource": "Resource"
+  "hosting_cdn_shared_modal_add_rule_field_resource": "Resource",
+  "hosting_cdn_shared_modal_add_rule_field_resource_type_info": "For the CDN Basic and CDN Security solutions, you can only enter a file extension."
 }

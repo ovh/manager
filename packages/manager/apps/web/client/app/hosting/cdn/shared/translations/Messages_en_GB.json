@@ -66,5 +66,10 @@
   "hosting_cdn_shared_option_hsts_max_age_months": "Month",
   "hosting_cdn_ssl_required_warning": "Warning: the option you have enabled requires SSL to be active on the subdomain. Please check the SSL configuration on the subdomain.",
   "hosting_cdn_shared_option_mixed_content_description": "Ensure that all content from your web pages loads securely, to deliver the best user experience. All of your website’s internal and external resources must be available in HTTPS.",
-  "hosting_cdn_shared_option_waf_description": "Use our firewall to protect your website against fraudulent attacks like injections, illegitimate requests, and data theft. Protect yourself from the most common vulnerabilities on the web by filtering requests and packets transmitted (the vulnerability list is managed and regularly updated by OVHcloud)."
+  "hosting_cdn_shared_option_waf_description": "Use our firewall to protect your website against fraudulent attacks like injections, illegitimate requests, and data theft. Protect yourself from the most common vulnerabilities on the web by filtering requests and packets transmitted (the vulnerability list is managed and regularly updated by OVHcloud).",
+  "hosting_cdn_shared_option_always_online_title": "Always online",
+  "hosting_cdn_shared_option_http_https_title": "HTTP/2",
+  "hosting_cdn_shared_option_brotli_title": "Brotli",
+  "hosting_cdn_shared_option_advanced_flush_title": "Advanced purge",
+  "hosting_cdn_shared_option_advanced_flush_info": "Customise your purge by choosing which elements of the cache to clear: The entire website, a folder, a URI, a file extension, or using a custom regular expression. Available directly from the Multisite tab in the action list."
 }

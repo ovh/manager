@@ -2,5 +2,5 @@
   "hosting_cdn_shared_change_offer_modal_title": "Advanced purge",
   "hosting_cdn_shared_change_offer_modal_info": "Advanced purge is available via the CDN Advanced option. Do you want to change options?",
   "hosting_cdn_shared_change_offer_modal_action_validate": "Confirm",
-  "hosting_cdn_shared_change_offer_modal_action_cancel": "Cancel"
+  "hosting_cdn_shared_change_offer_modal_action_cancel": "Undo"
 }

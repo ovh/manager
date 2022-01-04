@@ -12,6 +12,6 @@
   "hosting_multisite_cdn_flush_purge_option_extension": "Extension",
   "hosting_multisite_cdn_flush_purge_option_regex": "Custom regular expression",
   "hosting_multisite_cdn_flush_purge_field_value": "Value",
-  "hosting_multisite_cdn_flush_cancel": "Cancel",
+  "hosting_multisite_cdn_flush_cancel": "Undo",
   "hosting_multisite_cdn_flush_validate": "Confirm"
 }
