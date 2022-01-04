@@ -1,3 +1,14 @@
+## [5.55.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.55.0...@ovh-ux/manager-pci@5.55.1) (2022-01-04)
+
+
+### Bug Fixes
+
+* **billing.history:** handle previous year ([#6224](https://github.com/ovh/manager/issues/6224)) ([bc9c4bd](https://github.com/ovh/manager/commit/bc9c4bdfb6461cf5b9d12896e858a914c84f4532))
+* **databases.users.show-secrer:** correctly download certificate and key ([#6129](https://github.com/ovh/manager/issues/6129)) ([40976f3](https://github.com/ovh/manager/commit/40976f3298378f34009b812aca7a6ec17bdddd07))
+* **project.containers:** display pca gateway url ([#6228](https://github.com/ovh/manager/issues/6228)) ([5ed7022](https://github.com/ovh/manager/commit/5ed7022af58c1bc65eaebdc5773bdbf2e5f8ee23))
+
+
+
 # [5.55.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.54.0...@ovh-ux/manager-pci@5.55.0) (2021-12-28)
 
 
