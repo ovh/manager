@@ -5,6 +5,7 @@ export default {
   bindings: {
     goBack: '<',
     goUpgradeRange: '<',
+    onBasicOptionsUpgrade: '<',
     serviceName: '<',
   },
   controller,

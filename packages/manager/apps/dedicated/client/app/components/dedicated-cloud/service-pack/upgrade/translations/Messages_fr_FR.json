@@ -1,5 +1,6 @@
 {
-   "dedicatedCloud_servicePack_basic_header": "Modifier les options",
-   "dedicatedCloud_servicePack_certification_header": "Activation d’une certification pour votre Private Cloud",
-   "dedicatedCloud_servicePack_confirmation_order_failure": "L’activation a échoué"
+  "dedicatedCloud_servicePack_basic_header": "Modifier les options",
+  "dedicatedCloud_servicePack_certification_header": "Activation d’une certification pour votre Private Cloud",
+  "dedicatedCloud_servicePack_confirmation_order_failure": "L’activation a échoué",
+  "dedicatedCloud_servicePack_nsx_required": "Vous devez activer l'option NSX avant de créer votre Datacenter Premier"
 }

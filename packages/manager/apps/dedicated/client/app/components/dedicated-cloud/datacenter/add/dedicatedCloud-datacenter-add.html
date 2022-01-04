@@ -1,7 +1,7 @@
 <oui-modal
     data-heading="{{:: 'dedicatedCloud_configuration_add_datacenter_title' | translate }}"
-    data-primary-action="$ctrl.addDatacenter()"
-    data-primary-label="{{:: 'wizard_confirm' | translate }}"
+    data-primary-action="$ctrl.nsxStatus !== 'enabled' && $ctrl.commercialRange.model.name === 'premier' ? $ctrl.addOptionNSX() : $ctrl.addDatacenter()"
+    data-primary-label="{{ $ctrl.nsxStatus !== 'enabled' && $ctrl.commercialRange.model.name === 'premier' ? 'dedicatedCloud_configuration_add_datacenter_option':'wizard_confirm' | translate }}"
     data-primary-disabled="!$ctrl.commercialRange.model"
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'wizard_cancel' | translate }}"
@@ -27,4 +27,10 @@
             data-translate="dedicatedCloud_datacenters_adding_select"
         ></option>
     </select>
+
+    <div
+        class="oui-paragraph"
+        data-ng-if="$ctrl.nsxStatus !== 'enabled' && $ctrl.commercialRange.model.name === 'premier'"
+        data-translate="dedicatedCloud_configuration_add_datacenter_description_no_nsx"
+    ></div>
 </oui-modal>

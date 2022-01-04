@@ -19,6 +19,10 @@ export default class {
     };
 
     this.load();
+
+    this.DedicatedCloud.getOptionState('nsx', this.serviceName).then((data) => {
+      this.nsxStatus = data;
+    });
   }
 
   load() {
@@ -68,5 +72,9 @@ export default class {
         );
       },
     );
+  }
+
+  addOptionNSX() {
+    return this.onBasicOptionsUpgrade({ isPremier: true });
   }
 }

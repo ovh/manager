@@ -5,6 +5,8 @@ export default {
   bindings: {
     backButtonText: '<',
     goBack: '<',
+    isPremier: '<',
+    serviceName: '<',
     steps: '<',
   },
   controller,

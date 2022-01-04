@@ -5,12 +5,13 @@ import { RejectType } from '@uirouter/angularjs';
 
 export default class {
   /* @ngInject */
-  constructor($q, $state, $transitions, $translate, Alerter) {
+  constructor($q, $state, $transitions, $translate, Alerter, DedicatedCloud) {
     this.$q = $q;
     this.$state = $state;
     this.$transitions = $transitions;
     this.$translate = $translate;
     this.Alerter = Alerter;
+    this.DedicatedCloud = DedicatedCloud;
   }
 
   $onInit() {
@@ -23,6 +24,9 @@ export default class {
               this.displayErrorMessage(transition.error()),
             ),
     );
+    this.DedicatedCloud.getOptionState('nsx', this.serviceName).then((data) => {
+      this.nsxStatus = data;
+    });
   }
 
   displayErrorMessage(error) {

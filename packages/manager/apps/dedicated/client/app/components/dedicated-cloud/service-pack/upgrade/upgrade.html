@@ -1,7 +1,14 @@
 <oui-back-button data-on-click=":: $ctrl.goBack()">
     <span data-ng-bind=":: $ctrl.backButtonText"></span>
 </oui-back-button>
-
+<oui-message
+    data-ng-if="$ctrl.isPremier && $ctrl.nsxStatus !== 'enabled'"
+    type="info"
+    aria-close-button-label="Close"
+    dismissable
+>
+    {{ 'dedicatedCloud_servicePack_nsx_required' | translate }}
+</oui-message>
 <ovh-manager-component-stepper
     data-steps="$ctrl.steps"
 ></ovh-manager-component-stepper>
