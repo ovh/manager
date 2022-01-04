@@ -15,7 +15,7 @@ export default class SoftwareUpdateController {
 
     this.isUpdating = true;
 
-    this.AnthosTenantsService.updateSoftware(serviceName, version)
+    return this.AnthosTenantsService.updateSoftware(serviceName, version)
       .then(() => {
         const successVerbatim = this.$translate.instant(
           'anthos_tenant_dashboard_general_information_software_update_success',
