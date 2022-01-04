@@ -12,7 +12,6 @@ export default class {
     this.addon = null;
     this.expressOrderUrl = '';
     this.quantity = 1;
-    this.step = 1;
     this.isLoading = true;
     this.MAX_QUANTITY = MAX_QUANTITY;
   }
@@ -29,21 +28,17 @@ export default class {
         if (!this.addon) throw new Error('missingAddon');
       })
       .catch(() => {
-        const i18nError = 'anthos_dashboard_order_public_ip_init_error';
-        this.displayAlerterMessage('error', this.$translate.instant(i18nError));
+        this.displayAlerterMessage(
+          'error',
+          this.$translate.instant(
+            'anthos_dashboard_order_public_ip_init_error',
+          ),
+        );
         this.goBack();
       })
       .finally(() => {
         this.isLoading = false;
       });
-  }
-
-  nextStep() {
-    this.step += 1;
-  }
-
-  previousStep() {
-    this.step -= 1;
   }
 
   order() {
@@ -61,6 +56,7 @@ export default class {
 
     window.open(
       `${this.expressOrderUrl}review?products=${JSURL.stringify(products)}`,
+      '_blank',
     );
 
     this.goBack();
