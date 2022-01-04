@@ -15,8 +15,8 @@ export default class {
 
   $onInit() {
     this.trackDashboard(TRACKING_INFO.CURRENT_QUERIES, 'page');
-    this.showIdleConnections = false;
-    this.showActiveConnections = false;
+    this.showIdleConnections = true;
+    this.showActiveConnections = true;
     this.autorefreshPage = false;
     this.loading = {
       queries: false,
