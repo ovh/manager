@@ -8,6 +8,7 @@ export default class {
     this.$translate = $translate;
     this.DatabaseService = DatabaseService;
     this.inputRules = ADD_USER_FORM_RULES;
+    this.regexp = new RegExp(this.inputRules.name.pattern);
   }
 
   $onInit() {
@@ -26,6 +27,10 @@ export default class {
     if (this.isRolesReadOnly) {
       this.model.selectedRoles = [];
     }
+  }
+
+  checkPattern(value) {
+    return this.regexp.test(value);
   }
 
   getUserFromModel() {

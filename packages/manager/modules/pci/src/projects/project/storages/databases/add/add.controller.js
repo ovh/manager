@@ -4,7 +4,11 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
 
-import { NAME_PATTERN, MAX_NAME_LENGTH } from './add.constants';
+import {
+  NAME_PATTERN,
+  MAX_NAME_LENGTH,
+  MIN_NAME_LENGTH,
+} from './add.constants';
 
 export default class {
   /* @ngInject */
@@ -23,7 +27,9 @@ export default class {
     this.DatabaseService = DatabaseService;
     this.Poller = Poller;
     this.NAME_PATTERN = NAME_PATTERN;
+    this.MIN_NAME_LENGTH = MIN_NAME_LENGTH;
     this.MAX_NAME_LENGTH = MAX_NAME_LENGTH;
+    this.regexp = new RegExp(this.NAME_PATTERN);
   }
 
   $onInit() {
@@ -50,6 +56,10 @@ export default class {
       name: this.$translate.instant('pci_database_common_none'),
     };
     this.trackDatabases('configuration', 'page');
+  }
+
+  checkPattern(value) {
+    return this.regexp.test(value);
   }
 
   acceptLab(accepted) {

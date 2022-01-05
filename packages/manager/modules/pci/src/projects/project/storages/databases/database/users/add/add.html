@@ -3,7 +3,7 @@
     data-on-click="$ctrl.goBack()"
 ></oui-back-button>
 
-<form novalidate>
+<form name="addUserForm" novalidate>
     <h2 data-translate="pci_databases_users_add"></h2>
     <oui-field
         data-label="{{:: 'pci_databases_users_add_username_label' | translate }}"
@@ -16,9 +16,24 @@
             name="username"
             ng-model="$ctrl.model.username"
             data-ng-pattern="$ctrl.inputRules.name.pattern"
+            data-ng-minlength="$ctrl.inputRules.name.min"
             data-ng-maxlength="$ctrl.inputRules.name.max"
             required
         />
+        <div class="oui-password__rules" id="username-rules">
+            <input-rule
+                valid="addUserForm.username.$viewValue.length >= $ctrl.inputRules.name.min"
+                data-label="{{:: 'pci_databases_users_add_username_min_rule' | translate: {min: $ctrl.inputRules.name.min} }}"
+            ></input-rule>
+            <input-rule
+                valid="addUserForm.username.$viewValue.length < $ctrl.inputRules.name.max"
+                data-label="{{:: 'pci_databases_users_add_username_max_rule' | translate: {max: $ctrl.inputRules.name.max} }}"
+            ></input-rule>
+            <input-rule
+                valid="$ctrl.checkPattern(addUserForm.username.$viewValue)"
+                data-label="{{:: 'pci_databases_users_add_username_pattern_rule' | translate }}"
+            ></input-rule>
+        </div>
     </oui-field>
 
     <div ng-if="!$ctrl.isRolesReadOnly">

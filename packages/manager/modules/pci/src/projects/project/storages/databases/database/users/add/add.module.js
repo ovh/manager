@@ -6,6 +6,7 @@ import 'angular-translate';
 import addUserComponent from './add.component';
 import password from '../../../components/password';
 import tagsInput from '../../../components/tags-input';
+import inputRule from '../../../components/input-rule';
 import routing from './add.routing';
 
 const moduleName = 'ovhManagerPciStoragesDatabaseUsersAdd';
@@ -17,6 +18,7 @@ angular
     'ui.router',
     password,
     tagsInput,
+    inputRule,
   ])
   .config(routing)
   .component('ovhManagerPciProjectDatabaseUsersAdd', addUserComponent)

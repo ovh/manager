@@ -19,6 +19,11 @@ export default class {
     this.pattern = NAME_PATTERN;
     this.minNameLength = MIN_NAME_LENGTH;
     this.maxNameLength = MAX_NAME_LENGTH;
+    this.regexp = new RegExp(this.pattern);
+  }
+
+  checkPattern(value) {
+    return this.regexp.test(value);
   }
 
   edit() {

@@ -5,7 +5,11 @@ import map from 'lodash/map';
 import clone from 'lodash/clone';
 import sortBy from 'lodash/sortBy';
 
-import { NAME_PATTERN, MAX_NAME_LENGTH } from './fork.constants';
+import {
+  NAME_PATTERN,
+  MIN_NAME_LENGTH,
+  MAX_NAME_LENGTH,
+} from '../add/add.constants';
 
 export default class {
   /* @ngInject */
@@ -26,7 +30,9 @@ export default class {
     this.DatabaseService = DatabaseService;
     this.Poller = Poller;
     this.NAME_PATTERN = NAME_PATTERN;
+    this.MIN_NAME_LENGTH = MIN_NAME_LENGTH;
     this.MAX_NAME_LENGTH = MAX_NAME_LENGTH;
+    this.regexp = new RegExp(this.NAME_PATTERN);
   }
 
   $onInit() {
@@ -71,6 +77,10 @@ export default class {
     this.orderData = null;
     this.prepareOrderData();
     this.trackDatabases('configuration_fork', 'page');
+  }
+
+  checkPattern(value) {
+    return this.regexp.test(value);
   }
 
   getAvailableNetworks(region) {
