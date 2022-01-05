@@ -12,6 +12,7 @@ const component = {
     projectId: '<',
     sendKubeTrack: '<',
     getKubeApiErrorId: '<',
+    getQuotaBuildUrl: '<',
   },
   controller,
   template,

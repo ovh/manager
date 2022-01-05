@@ -69,6 +69,13 @@ export default /* @ngInject */ ($stateProvider) => {
         }
       },
 
+      getQuotaBuildUrl: /* @ngInject */ (coreURLBuilder, projectId) => () => {
+        return coreURLBuilder.buildURL(
+          'public-cloud',
+          `#/pci/projects/${projectId}/quota`,
+        );
+      },
+
       clusterId: /* @ngInject */ ($transition$) => $transition$.params().id,
       kubernetes: /* @ngInject */ (OvhApiCloudProjectKube, projectId) =>
         OvhApiCloudProjectKube.v6()

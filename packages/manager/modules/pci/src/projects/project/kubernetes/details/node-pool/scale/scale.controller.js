@@ -2,10 +2,9 @@ import get from 'lodash/get';
 
 export default class KubernetesNodePoolsScaleCtrl {
   /* @ngInject */
-  constructor($translate, Kubernetes, coreURLBuilder) {
+  constructor($translate, Kubernetes) {
     this.$translate = $translate;
     this.Kubernetes = Kubernetes;
-    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
@@ -52,15 +51,11 @@ export default class KubernetesNodePoolsScaleCtrl {
           },
         );
         if (errorId) {
-          const quotaUrl = this.coreURLBuilder.buildURL(
-            'public-cloud',
-            `#/pci/projects/${this.projectId}/quota`,
-          );
           const translateMessage = this.$translate.instant(
             `kube_node_pool_autoscaling_scale_error_${errorId}`,
           );
           errorMessage = {
-            textHtml: `${translateMessage} <a class="oui-link_icon" href="${quotaUrl}">${this.$translate.instant(
+            textHtml: `${translateMessage} <a class="oui-link_icon" href="${this.getQuotaBuildUrl()}">${this.$translate.instant(
               'kube_node_pool_autoscaling_scale_error_quota_link',
             )} <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span></a>`,
           };

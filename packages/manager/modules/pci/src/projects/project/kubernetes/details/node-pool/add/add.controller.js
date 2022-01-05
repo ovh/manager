@@ -4,11 +4,10 @@ import { NODE_POOL_NAME_REGEX } from './add.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, Kubernetes, coreURLBuilder) {
+  constructor($translate, CucCloudMessage, Kubernetes) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.Kubernetes = Kubernetes;
-    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
@@ -65,17 +64,14 @@ export default class {
         const errorId = this.getKubeApiErrorId(error);
         let errorMessage = this.$translate.instant('kube_add_node_pool_error', {
           message: get(error, 'data.message'),
+          nodePoolName: this.nodePool.name,
         });
         if (errorId) {
-          const quotaUrl = this.coreURLBuilder.buildURL(
-            'public-cloud',
-            `#/pci/projects/${this.projectId}/quota`,
-          );
           const translateMessage = this.$translate.instant(
             `kube_add_node_pool_error_${errorId}`,
           );
           errorMessage = {
-            textHtml: `${translateMessage} <a class="oui-link_icon" href="${quotaUrl}">${this.$translate.instant(
+            textHtml: `${translateMessage} <a class="oui-link_icon" href="${this.getQuotaBuildUrl()}">${this.$translate.instant(
               'kube_add_node_pool_error_quota_link',
             )} <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span></a>`,
           };

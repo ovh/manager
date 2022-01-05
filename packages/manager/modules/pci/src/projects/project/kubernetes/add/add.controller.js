@@ -14,7 +14,6 @@ export default class {
     Kubernetes,
     OvhApiCloudProjectKube,
     Poller,
-    coreURLBuilder,
   ) {
     this.$translate = $translate;
     this.$q = $q;
@@ -22,7 +21,6 @@ export default class {
     this.Kubernetes = Kubernetes;
     this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
     this.Poller = Poller;
-    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
@@ -96,15 +94,11 @@ export default class {
           message: get(error, 'data.message'),
         });
         if (errorId) {
-          const quotaUrl = this.coreURLBuilder.buildURL(
-            'public-cloud',
-            `#/pci/projects/${this.projectId}/quota`,
-          );
           const translateMessage = this.$translate.instant(
             `kubernetes_add_error_${errorId}`,
           );
           errorMessage = {
-            textHtml: `${translateMessage} <a class="oui-link_icon" href="${quotaUrl}">${this.$translate.instant(
+            textHtml: `${translateMessage} <a class="oui-link_icon" href="${this.getQuotaBuildUrl()}">${this.$translate.instant(
               'kubernetes_add_error_quota_link',
             )} <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span></a>`,
           };
