@@ -10,13 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
         pools: /* @ngInject */ (DatabaseService, projectId, databaseId) => {
           return DatabaseService.getPools(projectId, databaseId);
         },
-        users: /* @ngInject */ (
-          pools,
-          DatabaseService,
-          database,
-          projectId,
-        ) => {
-          if (pools.length === 0) return [];
+        users: /* @ngInject */ (DatabaseService, database, projectId) => {
           return DatabaseService.getUsers(
             projectId,
             database.engine,
@@ -27,10 +21,8 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           databaseId,
           database,
-          pools,
           DatabaseService,
         ) => {
-          if (pools.length === 0) return [];
           return DatabaseService.getServiceDatabases(
             projectId,
             database.engine,

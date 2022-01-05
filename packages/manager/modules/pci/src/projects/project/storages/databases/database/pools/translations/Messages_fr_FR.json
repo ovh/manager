@@ -10,5 +10,5 @@
   "pci_databases_pools_datagrid_information": "Informations",
   "pci_databases_pools_datagrid_modify": "Modifier",
   "pci_databases_pools_datagrid_delete": "Supprimer",
-  "pci_databases_pools_retrieve_error": "Une erreur s'est produite lors de la récupération des pools."
+  "pci_databases_pools_no_entries": "Aucun résultat"
 }
