@@ -8,6 +8,7 @@ export default class AnthosHostTableCtrl {
     this.$timeout = $timeout;
     this.service = AnthosTenantsService;
     this.rows = [];
+    this.focus = {};
     this.canAddAccessRestriction = true;
     this.isLoading = true;
   }
@@ -33,16 +34,12 @@ export default class AnthosHostTableCtrl {
 
   startAccessRestrictionEdition(ipBlock) {
     ipBlock.startEdition();
-    this.$timeout(() => {
-      this.$element
-        .find(`input[name="${ipBlock.id}"]`)
-        .select()
-        .focus();
-    });
+    this.focus[ipBlock.id] = true;
   }
 
   cancelAccessRestrictionEdition(ipBlock) {
     ipBlock.cancelEdition();
+    this.focus[ipBlock.id] = false;
     if (ipBlock.isNew) {
       const { rows } = this;
       this.canAddAccessRestriction = true;

@@ -19,6 +19,7 @@ import '@ovh-ux/ng-translate-async-loader';
 
 import alerter from './alerter/alerter';
 import contracts from './contracts/contracts';
+import hasFocus from './hasFocus/hasFocus';
 import humanReadableSize from './humanReadableSize/humanReadableSize';
 import navigator from './navigator/navigator';
 import paginationServerSide from './paginationServerSide/paginationServerSide';
@@ -36,6 +37,7 @@ const moduleName = 'ngOvhUtils';
 angular.module(moduleName, [
   alerter,
   contracts,
+  hasFocus,
   humanReadableSize,
   navigator,
   'ngTranslateAsyncLoader',
