@@ -29,8 +29,17 @@
     </select>
 
     <div
-        class="oui-paragraph"
+        class="mt-4"
         data-ng-if="$ctrl.nsxStatus !== 'enabled' && $ctrl.commercialRange.model.name === 'premier'"
-        data-translate="dedicatedCloud_configuration_add_datacenter_description_no_nsx"
-    ></div>
+    >
+        <p
+            data-translate="dedicatedCloud_configuration_add_datacenter_description_no_nsx_part1"
+        ></p>
+        <p
+            data-translate="dedicatedCloud_configuration_add_datacenter_description_no_nsx_part2"
+        ></p>
+        <p
+            data-translate="dedicatedCloud_configuration_add_datacenter_description_no_nsx_part3"
+        ></p>
+    </div>
 </oui-modal>
