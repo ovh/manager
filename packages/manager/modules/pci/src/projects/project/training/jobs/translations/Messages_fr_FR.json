@@ -37,6 +37,7 @@
   "pci_projects_project_training_jobs_submit_select_command_tile_title": "Commande spécifique",
   "pci_projects_project_training_jobs_submit_select_command_tile_command": "Arguments",
   "pci_projects_project_training_jobs_access_url_help": "L'accès HTTP permet d'être redirigé depuis votre navigateur vers le port 80 du conteneur si celui-ci est toujours en cours d'exécution. Pour accéder à l'interface web vous aurez besoin de vous identifier.",
+  "pci_projects_project_training_jobs_ssh_url_help": "L'accès SSH permet de se connecter sur le job depuis n'importe quel client SSH via les clés publiques fournies au lancement du job.",
   "pci_projects_project_training_jobs_submit_select_image_tips_help": "Les images hébergées sur une registry privé ou public sont acceptées (GitHub, GitLab, DockerHub, ...)",
   "pci_projects_project_training_jobs_submit_select_image_custom_doc": "Créer une image personnalisée",
   "pci_projects_project_training_jobs_submit_data_container": "Conteneur",
