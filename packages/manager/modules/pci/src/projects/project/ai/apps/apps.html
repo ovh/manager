@@ -90,7 +90,7 @@
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-on-click="$ctrl.onStartAppClick($row)"
-                data-disabled="!$ctrl.app.isStopped()"
+                data-disabled="!$row.isStopped()"
             >
                 <span data-translate="pci_ai_app_list_start_app"></span>
             </oui-action-menu-item>

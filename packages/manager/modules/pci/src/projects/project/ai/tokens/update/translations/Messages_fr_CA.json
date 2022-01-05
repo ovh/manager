@@ -4,5 +4,5 @@
   "pci_ai_tokens_update": "Regénération du token",
   "pci_ai_tokens_update_common_update": "Regénérer",
   "pci_ai_tokens_update_common_cancel": "Annuler",
-  "pci_ai_tokens_update_warning": "Êtes-vous sûr(e) de vouloir regénérer {{ tokenId }} ? Votre ancien token ne sera plus valide."
+  "pci_ai_tokens_update_warning": "Êtes-vous sûr·e de vouloir regénérer {{ tokenId }} ? Votre ancien token ne sera plus valide."
 }

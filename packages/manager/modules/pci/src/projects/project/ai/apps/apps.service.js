@@ -92,7 +92,7 @@ export default class AppService {
 
   deleteApp(serviceName, appId) {
     return this.$http
-      .delete(`/cloud/project/${serviceName}/ai/app/${appId}/delete`)
+      .delete(`/cloud/project/${serviceName}/ai/app/${appId}`)
       .then(({ data }) => data);
   }
 
