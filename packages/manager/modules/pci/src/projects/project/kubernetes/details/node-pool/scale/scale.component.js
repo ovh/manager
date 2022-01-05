@@ -11,6 +11,7 @@ const component = {
     nodePoolName: '<',
     projectId: '<',
     sendKubeTrack: '<',
+    getKubeApiErrorId: '<',
   },
   controller,
   template,

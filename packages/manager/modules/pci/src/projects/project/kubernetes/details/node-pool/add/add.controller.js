@@ -62,16 +62,11 @@ export default class {
         ),
       )
       .catch((error) => {
-        let errorMessage = get(error, 'data.message');
-        if (
-          get(error, 'data.status') === 412 &&
-          errorMessage.indexOf('[') !== -1 &&
-          errorMessage.indexOf(']') !== -1
-        ) {
-          const errorId = errorMessage.slice(
-            errorMessage.indexOf('[') + 1,
-            errorMessage.indexOf(']'),
-          );
+        const errorId = this.getKubeApiErrorId(error);
+        let errorMessage = this.$translate.instant('kube_add_node_pool_error', {
+          message: get(error, 'data.message'),
+        });
+        if (errorId) {
           const quotaUrl = this.coreURLBuilder.buildURL(
             'public-cloud',
             `#/pci/projects/${this.projectId}/quota`,
@@ -84,10 +79,6 @@ export default class {
               'kube_add_node_pool_error_quota_link',
             )} <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span></a>`,
           };
-        } else {
-          errorMessage = this.$translate.instant('kube_add_node_pool_error', {
-            message: errorMessage,
-          });
         }
         this.CucCloudMessage.error(errorMessage);
       })

@@ -15,6 +15,7 @@ export default {
     regions: '<',
     versions: '<',
     sendKubeTrack: '<',
+    getKubeApiErrorId: '<',
   },
   controller,
   template,

@@ -53,6 +53,22 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
+      getKubeApiErrorId: /* @ngInject */ () => (error) => {
+        try {
+          const errorMessage = get(error, 'data.message');
+          const errorStatus = get(error, 'data.status');
+          if (errorStatus === 412) {
+            return errorMessage.slice(
+              errorMessage.indexOf('[') + 1,
+              errorMessage.indexOf(']'),
+            );
+          }
+          return null;
+        } catch (e) {
+          return null;
+        }
+      },
+
       clusterId: /* @ngInject */ ($transition$) => $transition$.params().id,
       kubernetes: /* @ngInject */ (OvhApiCloudProjectKube, projectId) =>
         OvhApiCloudProjectKube.v6()
