@@ -103,6 +103,14 @@
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-topbar>
+            <oui-button
+                class="float-right"
+                variant="secondary"
+                icon-left="oui-icon-refresh"
+                on-click="$ctrl.refreshOperations(status)"
+            >
+                <span data-translate="common_refresh"></span>
+            </oui-button>
             <label class="oui-select oui-select_m">
                 <select
                     class="oui-select__input"
