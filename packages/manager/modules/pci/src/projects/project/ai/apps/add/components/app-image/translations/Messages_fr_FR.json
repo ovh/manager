@@ -2,7 +2,7 @@
   "pci_app_submit_select_image_preset_info": "Description",
   "pci_app_submit_select_image_advanced_tips": "Déployer votre propre application",
   "pci_app_submit_select_image_advanced": "Déployer votre propre application (image Docker)",
-  "pci_app_submit_select_image_tips": "Renseigner le chemin d'accès de votre image docker. Cela peut être un registre public (GitHub, Gitlab, DockerHub, ...) ou privée",
+  "pci_app_submit_select_image_tips": "Renseigner le chemin d'accès de votre image Docker. Cela peut être un registre public (GitHub, Gitlab, DockerHub, ...) ou privée",
   "pci_app_submit_select_image_name": "Chemin d'accès de votre image Docker",
   "pci_app_submit_select_image_tips_help": "Les images hébergées sur une registre privé ou public sont acceptées (GitHub, GitLab, DockerHub, ...)",
   "pci_app_submit_select_image_custom_doc": "Découvrez comment créer une image Docker personnalisée",
