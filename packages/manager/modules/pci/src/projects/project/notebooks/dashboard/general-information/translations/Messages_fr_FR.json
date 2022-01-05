@@ -2,6 +2,7 @@
   "pci_notebooks_general_information_info_title": "Informations générales",
   "pci_notebooks_general_information_info_notebook_name": "Nom du notebook",
   "pci_notebooks_general_information_info_notebook_editor_code": "Live-code editor",
+  "pci_notebooks_general_information_info_notebook_ssh_url": "Accès SSH",
   "pci_notebooks_general_information_info_notebook_container": "Conteneurs attachés",
   "pci_notebooks_general_information_info_notebook_container_total": "{{ xContainer }} conteneur(s)",
   "pci_notebooks_general_information_info_notebook_container_swift_total": "{{ xContainer }} conteneur(s) Swift",
