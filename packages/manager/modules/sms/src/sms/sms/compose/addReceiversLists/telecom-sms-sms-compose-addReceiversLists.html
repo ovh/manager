@@ -34,13 +34,21 @@
                 name="receiver{{ receiver.slotId }}"
                 value="receiver.isSelected"
             >
+                <span data-ng-bind="receiver.description"></span>
+                (<span
+                    class="text-small"
+                    data-ng-bind="receiver.records"
+                ></span>
                 <span
-                    data-ng-bind-html="(receiver.records > 1 ? 'sms_sms_compose_add_receivers_label_plural' : 'sms_sms_compose_add_receivers_label') | translate:{
-                          description: receiver.description,
-                          records: (receiver.records | number:0)
-                      }"
-                >
-                </span>
+                    class="text-small"
+                    data-ng-pluralize
+                    data-when="{
+                      '1': ('sms_sms_compose_add_receivers_label' | translate),
+                      'other': ('sms_sms_compose_add_receivers_label_plural' | translate),
+                    }"
+                    data-count="receiver.records"
+                ></span
+                >)
             </oui-checkbox>
         </div>
     </div>
