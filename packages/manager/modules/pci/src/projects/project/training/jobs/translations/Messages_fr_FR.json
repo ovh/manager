@@ -70,7 +70,7 @@
   "pci_projects_project_training_jobs_submitresources_proposed_type_gpu": " (GPU)",
   "pci_projects_project_training_jobs_submitresources_proposed_type_cpu": " (CPU)",
   "pci_projects_project_training_jobs_submit_select_ssh": "Attacher des clés publiques SSH (optionnel)",
-  "pci_projects_project_training_jobs_submit_select_ssh_tips_1": "Attacher une clé publique SSH vous permet par la suite d'accéder à distance au notebook via le protocole SSH ou SCP",
+  "pci_projects_project_training_jobs_submit_select_ssh_tips_1": "Attacher une clé publique SSH vous permet par la suite d'accéder à distance au job via le protocole SSH ou SCP",
   "pci_projects_project_training_jobs_submit_select_ssh_default_select": "Renseigner la clé publique SSH à utiliser (optionnel)",
   "pci_projects_project_training_jobs_submit_select_ssh_name_tips": "Choisir le nom de la clé parmis celles enregistrées",
   "pci_projects_project_training_jobs_submit_select_ssh_input_tips": "Contenu de la clé publique SSH",
