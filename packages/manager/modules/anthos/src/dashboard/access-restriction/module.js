@@ -7,6 +7,7 @@ import 'angular-translate';
 import component from './component';
 import table from './table';
 import routing from './routing';
+import hasFocus from '../components/has-focus';
 
 const moduleName = 'ovhManagerAnthosDashboardAccessRestriction';
 
@@ -17,6 +18,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     table,
+    hasFocus,
   ])
   .component('anthosAccessRestriction', component)
   .config(routing)
