@@ -94,7 +94,8 @@
             policies="$ctrl.snapshotPolicies"
             selected="$ctrl.policyId"
         ></snapshot-policies>
-        <oui-button variant="primary" on-click="$ctrl.changePolicy()">
+        <oui-button data-disabled="$ctrl.snapshotPolicies.length === 1" variant="primary"
+                    on-click="$ctrl.changePolicy()">
             <span
                 data-translate="netapp_volumes_snapshots_policies_apply"
             ></span>
