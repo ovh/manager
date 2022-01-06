@@ -6,6 +6,7 @@
     >
         <oui-modal
             data-primary-label="{{ :: 'common_change' | translate }}"
+            data-primary-disabled="updateNameForm.$invalid"
             data-secondary-label="{{ :: 'common_cancel' | translate }}"
             data-secondary-action="$ctrl.$uibModalInstance.dismiss()"
             data-on-dismiss="$ctrl.$uibModalInstance.dismiss()"
@@ -19,6 +20,7 @@
                     name="name"
                     id="change-name"
                     data-ng-model="$ctrl.newValue"
+                    data-ng-pattern="/^[^<|>]+$/"
                     data-required
                 />
             </oui-field>
