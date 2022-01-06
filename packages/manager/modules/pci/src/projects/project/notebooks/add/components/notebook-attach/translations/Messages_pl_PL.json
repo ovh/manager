@@ -1,5 +1,5 @@
 {
-  "pci_notebook_add_attach_container_description": "W razie potrzeby możesz przypisać do Twojego notebooka kontenery Object Storage OVHcloud. Po przypisaniu zostaną one tymczasowo załadowane i umieszczone w pamięci cache w pobliżu Twojej instancji, aby skrócić czas odpowiedzi i zwiększyć wydajność. Dobrym rozwiązaniem jest powiązanie jednego kontenera z danymi wejściowymi, a drugiego z danymi wyjściowymi.",
+  "pci_notebook_add_attach_container_description": "W razie potrzeby możesz przypisać do Twojego notebooka kontenery Object Storage OVHcloud lub repozytorium Git. Po przypisaniu zostaną one tymczasowo załadowane i umieszczone w pamięci cache w pobliżu Twojej instancji, aby skrócić czas odpowiedzi i zwiększyć wydajność. Dobrym rozwiązaniem jest powiązanie jednego kontenera z danymi wejściowymi, a drugiego z danymi wyjściowymi.",
   "pci_notebook_add_attach_container_description_link": "Więcej informacji o przechowywaniu danych.",
   "pci_notebook_add_attach_container_btn_attach_storage_add": "Przypisz kontener Object Storage",
   "pci_notebook_add_attach_container_btn_attach_storage_remove": "Usuń kontener Object Storage",

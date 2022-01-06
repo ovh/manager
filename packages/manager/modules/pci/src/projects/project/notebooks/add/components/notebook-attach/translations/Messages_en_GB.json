@@ -1,5 +1,5 @@
 {
-  "pci_notebook_add_attach_container_description": "If necessary, you can attach OVHcloud Object Storage containers to your notebook. Once they are attached, they will be temporarily loaded and cached near your instance, to minimise latency and improve performance. The best practice is to attach one container with your incoming data, and another with your outgoing data.",
+  "pci_notebook_add_attach_container_description": "If necessary, you can attach OVHcloud Object Storage containers or a Git repository to your notebook. Once they are attached, they will be temporarily loaded and cached near your instance, to minimise latency and improve performance. A best practice is to attach one container with your incoming data, and another with your outgoing data.",
   "pci_notebook_add_attach_container_description_link": "Learn more about data storage.",
   "pci_notebook_add_attach_container_btn_attach_storage_add": "Attach an Object Storage container",
   "pci_notebook_add_attach_container_btn_attach_storage_remove": "Delete an Object Storage container",

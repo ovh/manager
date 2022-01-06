@@ -18,7 +18,7 @@
   "pci_notebook_add_privacy_datacenter_location_description": "Wybierz lokalizację",
   "pci_notebook_add_resources_title": "Zasoby",
   "pci_notebook_add_resources_title_selected": "Wybrane zasoby: {{ flavor }} - x{{ quantity }}",
-  "pci_notebook_add_attach_title": "Przypisz kontener",
+  "pci_notebook_add_attach_title": "Przypisz kontener lub repozytorium Git",
   "pci_notebook_add_attach_title_selected": "Przypisany(-e) kontener(y): {{ quantity }} przypisana pojemność",
   "pci_notebook_add_review_title": "Podsumowanie",
   "pci_notebook_add_notebook_create": "Stwórz notebook",
