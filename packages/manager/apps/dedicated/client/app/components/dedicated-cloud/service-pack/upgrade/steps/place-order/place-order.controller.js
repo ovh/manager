@@ -43,6 +43,7 @@ export default class {
         resolve: {
           hasDefaultMeansOfPayment: () => this.hasDefaultMeansOfPayment,
           itemName: () => this.servicePackToOrder.displayName,
+          itemRef: () => this.servicePackToOrder.name,
           itemType: () => this.activationType,
           prices: () => this.servicePackToOrder.prices,
         },

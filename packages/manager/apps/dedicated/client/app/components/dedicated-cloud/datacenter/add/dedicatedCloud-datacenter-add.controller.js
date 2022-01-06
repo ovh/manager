@@ -23,6 +23,8 @@ export default class {
     this.DedicatedCloud.getOptionState('nsx', this.serviceName).then((data) => {
       this.nsxStatus = data;
     });
+
+    this.trackPage('datacenter::add-datacenter');
   }
 
   load() {
@@ -54,6 +56,9 @@ export default class {
       );
     }
 
+    this.trackClick(
+      `datacenter::add-datacenter::confirm_${this.commercialRange.model.name}`,
+    );
     return this.DedicatedCloud.addDatacenter(
       this.serviceName,
       this.commercialRange.model.name,
@@ -75,6 +80,7 @@ export default class {
   }
 
   addOptionNSX() {
+    this.trackClick('datacenter::add-datacenter::activate-nsx');
     return this.onBasicOptionsUpgrade({ isPremier: true });
   }
 }

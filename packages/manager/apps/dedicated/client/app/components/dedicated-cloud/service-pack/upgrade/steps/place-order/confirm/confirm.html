@@ -1,8 +1,8 @@
 <oui-modal
     data-on-dismiss="$ctrl.$uibModalInstance.dismiss()"
-    data-primary-action="$ctrl.$uibModalInstance.close()"
+    data-primary-action="$ctrl.onValide()"
     data-primary-label="{{:: 'confirm_order_confirm' | translate }}"
-    data-secondary-action="$ctrl.$uibModalInstance.dismiss()"
+    data-secondary-action="$ctrl.onCancel()"
     data-secondary-label="{{:: 'confirm_order_cancel' | translate }}"
     data-heading="{{:: 'confirm_order_' + $ctrl.itemType + '_title' | translate }}"
 >

@@ -17,6 +17,7 @@ export default class {
   }
 
   $onInit() {
+    this.trackPage('datacenter::details::datastores::resourceUpgrade');
     this.bindings = {
       isLoading: false,
     };
@@ -155,6 +156,9 @@ export default class {
   }
 
   placeOrder() {
+    this.trackClick(
+      'datacenter::details::datastores::resourceUpgrade::confirm',
+    );
     if (!this.plan) {
       return this.goBack(
         this.$translate.instant('ovhManagerPccResourceUpgrade_plan_not_found', {
@@ -189,6 +193,11 @@ export default class {
     window.location = `${this.expressURL}review?products=${stringifiedExpressParameters}`;
     window.target = '_blank';
 
+    return this.goBack();
+  }
+
+  onCancel() {
+    this.trackClick('datacenter::details::datastores::resourceUpgrade::cancel');
     return this.goBack();
   }
 }
