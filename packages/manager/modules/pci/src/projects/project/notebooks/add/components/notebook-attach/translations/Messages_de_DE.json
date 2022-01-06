@@ -1,5 +1,5 @@
 {
-  "pci_notebook_add_attach_container_description": "Verbinden Sie bei Bedarf Object Storage Container von OVHcloud mit Ihrem Notebook. Wenn die Verbindung mit den Containern hergestellt ist, werden sie vorübergehend geladen und nahe an Ihrer Instanz im Cache abgelegt. Das reduziert die Latenz und verbessert die Leistung. Es hat sich bewährt, das Notebook mit einem Container für Ihre eingehenden Daten und einem weiteren für Ihre ausgehenden Daten zu verbinden.",
+  "pci_notebook_add_attach_container_description": "Verbinden Sie bei Bedarf Object Storage Container von OVHcloud oder ein Git Repository mit Ihrem Notebook. Wenn die Verbindung mit den Containern hergestellt ist, werden sie vorübergehend geladen und nahe an Ihrer Instanz im Cache abgelegt. Das reduziert die Latenz und verbessert die Leistung. Es hat sich bewährt, das Notebook mit einem Container für Ihre eingehenden Daten und einem weiteren für Ihre ausgehenden Daten zu verbinden.",
   "pci_notebook_add_attach_container_description_link": "Mehr Informationen zum Speichern von Daten",
   "pci_notebook_add_attach_container_btn_attach_storage_add": "Verbindung mit einem Object Storage Container herstellen",
   "pci_notebook_add_attach_container_btn_attach_storage_remove": "Object Storage Container löschen",

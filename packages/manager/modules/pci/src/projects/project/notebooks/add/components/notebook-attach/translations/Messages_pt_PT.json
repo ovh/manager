@@ -1,5 +1,5 @@
 {
-  "pci_notebook_add_attach_container_description": "Se necessário, pode associar containers do Object Storage da OVHcloud ao seu notebook. Uma vez associados os containers, estes serão temporariamente carregados e colocados em cache perto da sua instância, de forma a reduzir a latência e melhorar o desempenho. A boa prática é associar um container aos seus dados de entrada e outro aos seus dados de saída.",
+  "pci_notebook_add_attach_container_description": "Se necessário, pode associar containers Object Storage da OVHcloud ou um repositório Git ao seu notebook. Uma vez associados os containers, estes serão temporariamente carregados e colocados em cache perto da sua instância, de forma a reduzir a latência e melhorar o desempenho. Uma boa prática é associar um container aos seus dados de entrada e outro aos seus dados de saída.",
   "pci_notebook_add_attach_container_description_link": "Saber mais sobre o armazenamento de dados.",
   "pci_notebook_add_attach_container_btn_attach_storage_add": "Associar um container Object Storage",
   "pci_notebook_add_attach_container_btn_attach_storage_remove": "Eliminar um container Object Storage",
