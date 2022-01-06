@@ -1,3 +1,12 @@
+## [8.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.6.2...@ovh-ux/manager-sms@8.6.3) (2022-01-06)
+
+
+### Bug Fixes
+
+* **sms.sms.compose:** fix remaining char counter ([#6246](https://github.com/ovh/manager/issues/6246)) ([0d9af16](https://github.com/ovh/manager/commit/0d9af16bf224be2ac85e310a7bcce865d04f6ee9))
+
+
+
 ## [8.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.6.1...@ovh-ux/manager-sms@8.6.2) (2022-01-03)
 
 
