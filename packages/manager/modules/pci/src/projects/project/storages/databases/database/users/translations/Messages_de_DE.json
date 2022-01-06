@@ -1,0 +1,23 @@
+{
+  "pci_databases_users_title": "Benutzer und Rollen",
+  "pci_databases_users_username_label": "Benutzername",
+  "pci_databases_users_description_label": "Beschreibung",
+  "pci_databases_users_role_label": "Rollen",
+  "pci_databases_users_createdAt_label": "Erstellungsdatum",
+  "pci_databases_users_status_label": "Status",
+  "pci_databases_users_status_creating": "Wird erstellt",
+  "pci_databases_users_status_ok": "Aktiviert",
+  "pci_databases_users_status_deleting": "Wird gelöscht",
+  "pci_databases_users_status_deleted": "Gelöscht",
+  "pci_databases_users_status_updating": "Wird aktualisiert",
+  "pci_databases_users_status_ready": "Aktiviert",
+  "pci_databases_users_status_error": "Fehler",
+  "pci_databases_users_status_error_inconsistent_spec": "Fehler",
+  "pci_databases_users_status_pending": "Ausstehend",
+  "pci_databases_users_modify_password_action_label": "Passwort neu generieren",
+  "pci_databases_users_show_key_action_label": "Zugriffsschlüssel anzeigen",
+  "pci_databases_users_show_cert_action_label": "Zertifikat anzeigen",
+  "pci_databases_users_show_user_informations_action_label": "Details anzeigen",
+  "pci_databases_users_delete_action_label": "Löschen",
+  "pci_databases_users_add_action_label": "Benutzer hinzufügen"
+}
