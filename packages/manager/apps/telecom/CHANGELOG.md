@@ -1,3 +1,12 @@
+## [13.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.30.1...@ovh-ux/manager-telecom@13.30.2) (2022-01-06)
+
+
+### Bug Fixes
+
+* **telecom:** restrict all billing actions to billing account ([#6240](https://github.com/ovh/manager/issues/6240)) ([807ded0](https://github.com/ovh/manager/commit/807ded0c667166388b539e5167d763a45311117a)), closes [#6139](https://github.com/ovh/manager/issues/6139)
+
+
+
 ## [13.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.30.0...@ovh-ux/manager-telecom@13.30.1) (2022-01-04)
 
 
