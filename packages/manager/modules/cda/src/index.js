@@ -48,7 +48,7 @@ angular
           },
         });
 
-      $urlRouterProvider.when('/paas/cda', () => {
+      $urlRouterProvider.when(/^\/paas\/cda/, () => {
         window.location.href = window.location.href.replace(
           '/paas/cda',
           '/cda',
