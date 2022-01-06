@@ -5,6 +5,7 @@
 
   "billing_payment_method_add_selected_common_redirect": "Vous allez être redirigé·e vers l’interface sécurisée de notre prestataire pour enregistrer une nouvelle carte bancaire.",
   "billing_payment_method_add_selected_paypal_redirect": "En cliquant sur le bouton \"Paypal\", une fenêtre contextuelle s'ouvrira afin de finaliser l'ajout du moyen de paiement.",
+  "billing_payment_method_add_selected_paypal_redirect_US": "Pour terminer l'ajout de votre compte PayPal et de votre mode de paiement, cliquez sur le bouton PayPal ci-dessous. Une fenêtre pop-up, vous redirigeant vers le serveur sécurisé PayPal, s'ouvrira vous permettant de saisir les informations requises.",
   "billing_payment_method_add_selected_original_credit_card_redirect": "En cliquant sur le bouton \"Ajouter\", un document sera téléchargé. Veuillez suivre la procédure décrite dans le document pour valider le moyen de paiement.",
   "billing_payment_method_add_credit_card_selected": "Votre carte bancaire sera activée immédiatement.",
   "billing_payment_method_add_credit_card_selected_explain_generic": "Pour enregistrer une nouvelle carte bancaire, une empreinte financière est faite auprès de votre organisme bancaire afin de valider la saisie et la validité de votre carte. Aucun montant ne sera prélevé.",
