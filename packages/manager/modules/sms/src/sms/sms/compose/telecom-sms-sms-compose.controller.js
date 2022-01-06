@@ -36,6 +36,7 @@ export default class {
     $filter,
     $http,
     $uibModal,
+    $timeout,
     OvhApiSms,
     TucSmsMediator,
     OvhApiMe,
@@ -49,6 +50,7 @@ export default class {
     this.$filter = $filter;
     this.$http = $http;
     this.$uibModal = $uibModal;
+    this.$timeout = $timeout;
     this.TucSmsMediator = TucSmsMediator;
     this.api = {
       sms: {
@@ -282,27 +284,29 @@ export default class {
     const currentSender = this.senders.raw.find(
       ({ sender }) => sender === this.sms.sender,
     );
-    return this.$http
-      .post(`/sms/estimate`, {
-        message: this.sms.message,
-        noStopClause: this.sms.noStopClause,
-        senderType: this.isShortNumber() ? 'shortcode' : currentSender.type,
-      })
-      .then(({ data }) => {
-        smsInfoText.remainingCharacters =
-          data.maxCharactersPerPart - data.characters;
-        smsInfoText.defaultSize = data.maxCharactersPerPart;
-        smsInfoText.equivalence = data.parts;
-        // TODO: Align both Enum `sms.EncodingEnum` and `sms.CodingEnum`.
-        // Since `charactersClass` could be `7bits` or `unicode`, we manually
-        // set the expected `coding`.
-        smsInfoText.coding = data.charactersClass === '7bits' ? '7bit' : '8bit';
 
-        return assign(this.message, smsInfoText);
-      })
-      .catch(() => {
-        return assign(this.message, smsInfoText);
-      });
+    return this.$timeout(() => {
+      return this.$http
+        .post(`/sms/estimate`, {
+          message: this.sms.message,
+          noStopClause: this.sms.noStopClause,
+          senderType: this.isShortNumber() ? 'shortcode' : currentSender.type,
+        })
+        .then(({ data }) => {
+          smsInfoText.remainingCharacters =
+            data.maxCharactersPerPart - data.characters;
+          smsInfoText.defaultSize = data.maxCharactersPerPart;
+          smsInfoText.equivalence = data.parts;
+          // TODO: Align both Enum `sms.EncodingEnum` and `sms.CodingEnum`.
+          // Since `charactersClass` could be `7bits` or `unicode`, we manually
+          // set the expected `coding`.
+          smsInfoText.coding =
+            data.charactersClass === '7bits' ? '7bit' : '8bit';
+
+          return assign(this.message, smsInfoText);
+        })
+        .catch(() => assign(this.message, smsInfoText));
+    }, 100);
   }
 
   /**
