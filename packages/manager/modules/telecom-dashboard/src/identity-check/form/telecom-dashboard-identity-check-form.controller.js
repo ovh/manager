@@ -41,8 +41,6 @@ export default class IdentityCheckFormCtrl {
   }
 
   $onInit() {
-    this.trackPage('account-validation');
-
     this.IdentityCheckService.getLastInProgressProcedure()
       .then((procedure) => {
         this.procedure = procedure;
@@ -84,6 +82,8 @@ export default class IdentityCheckFormCtrl {
   }
 
   cancelProcedure() {
+    this.trackClick('cancel-current-validation');
+
     const { id } = this.procedure ?? {};
 
     this.isCancelling = true;
