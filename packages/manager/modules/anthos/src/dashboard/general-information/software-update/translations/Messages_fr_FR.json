@@ -1,7 +1,7 @@
 {
   "anthos_tenant_dashboard_general_information_software_update_back": "Retour aux informations générales",
-  "anthos_tenant_dashboard_general_information_software_update_success": "success",
-  "anthos_tenant_dashboard_general_information_software_update_error": "error",
+  "anthos_tenant_dashboard_general_information_software_update_success": "La montée de version a été lancée avec succès. Sa durée est d'environ 1 heure. De nouvelles mises à jour peuvent ensuite être applicables dans la section « Solution Logicielle » de votre console Anthos.",
+  "anthos_tenant_dashboard_general_information_software_update_error": "Une erreur est survenue. Nous vous invitons à contacter nos équipes support si l'erreur persiste",
   "anthos_tenant_dashboard_general_information_software_update_title": "Mise à jour logicielle",
   "anthos_tenant_dashboard_general_information_software_update_description": "Les versions suivantes de Anthos on Baremetal in private mode sont disponibles pour votre Hosted Private Cloud. Vous pouvez choisir la version de votre choix et consulter cette page pour connaitre les changements apportés à chaque version.",
   "anthos_tenant_dashboard_general_information_software_update_version": "Version",
