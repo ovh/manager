@@ -12,7 +12,6 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   billingAccountLink,
   currentActiveLink,
   guidesLink,
-  isBillingContact,
   manageContactsLink,
   orderAliasLink,
   phonebookLink,
@@ -44,7 +43,6 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   self.group = null;
   self.links = null;
   self.terminationTask = null;
-  self.isBillingContact = isBillingContact;
 
   /*= ==============================
   =            ACTIONS            =
@@ -158,6 +156,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
       self.loading.init = false;
     });
   }
+
   /* -----  End of INITIALIZATION  ------*/
 
   init();
