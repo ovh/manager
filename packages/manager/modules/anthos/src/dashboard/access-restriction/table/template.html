@@ -88,6 +88,8 @@
                                     data-ng-class="{ 'oui-input_error': row.ip && !row.isIpValid }"
                                     type="text"
                                     data-ng-model="row.ip"
+                                    data-has-focus="$ctrl.focus[row.id]"
+                                    data-has-focus-select
                                 />
                                 <span class="px-2 pt-1">/</span>
                                 <input
