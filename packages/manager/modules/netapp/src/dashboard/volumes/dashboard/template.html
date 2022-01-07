@@ -43,7 +43,7 @@
                         <ovh-manager-inline-property-editor
                             property="name"
                             model="$ctrl.volume.name"
-                            on-submit="$ctrl.update()"
+                            on-submit="$ctrl.update('name')"
                             pattern="$ctrl.PATTERN"
                         ></ovh-manager-inline-property-editor>
                     </oui-tile-description>
@@ -55,7 +55,7 @@
                         <ovh-manager-inline-property-editor
                             property="description"
                             model="$ctrl.volume.description"
-                            on-submit="$ctrl.update()"
+                            on-submit="$ctrl.update('description')"
                         ></ovh-manager-inline-property-editor>
                     </oui-tile-description>
                 </oui-tile-definition>

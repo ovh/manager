@@ -1,8 +1,8 @@
 import {
-  REDHAT_COMMAND,
-  UBUNTU_COMMAND,
   FOLDER_CREATION,
   PATTERN,
+  REDHAT_COMMAND,
+  UBUNTU_COMMAND,
 } from './constants';
 import { getFileSystemMountPath, saveMountPath } from './utils';
 
@@ -34,19 +34,21 @@ export default class {
     this.isEditing.description = !this.isEditing.description;
   }
 
-  update() {
+  update(property) {
     this.isEditing.name = false;
     this.isEditing.description = false;
     return this.updateVolume(this.volume)
       .then(() =>
         this.goToVolumeDashboard(
-          this.$translate.instant('netapp_volumes_dashboard_update_success'),
+          this.$translate.instant(
+            `netapp_volumes_dashboard_volume_${property}_update_success`,
+          ),
         ),
       )
       .catch((error) =>
         this.goToVolumeDashboard(
           `${this.$translate.instant(
-            'netapp_volumes_dashboard_update_error',
+            `netapp_volumes_dashboard_volume_${property}_update_error`,
           )} ${error.data?.message}`,
           'error',
         ),
