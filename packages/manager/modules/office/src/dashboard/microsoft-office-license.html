@@ -42,10 +42,10 @@
 
                 <form
                     class="my-4"
-                    name="form-license-group-name"
+                    name="formLicenseGroupName"
                     novalidate
                     data-ng-show="MicrosoftOfficeLicenseCtrl.editMode"
-                    data-ng-submit="MicrosoftOfficeLicenseCtrl.saveDisplayName(currentLicense, MicrosoftOfficeLicenseCtrl.license.tenant)"
+                    data-ng-submit="!formLicenseGroupName.$invalid && MicrosoftOfficeLicenseCtrl.saveDisplayName(currentLicense, MicrosoftOfficeLicenseCtrl.license.tenant)"
                 >
                     <div class="oui-input-group">
                         <input
@@ -53,12 +53,13 @@
                             class="oui-input"
                             id="license-group-name"
                             data-ng-model="MicrosoftOfficeLicenseCtrl.newDisplayName.value"
+                            data-ng-pattern="/^[^<>]+$/"
                         />
                         <button
                             class="oui-button oui-button_s"
                             type="submit"
                             aria-label="{{ 'microsoft_office_license_edit_save' | translate }}"
-                            data-ng-disabled="form-license-group-name.$invalid"
+                            data-ng-disabled="formLicenseGroupName.$invalid"
                         >
                             <span class="fa fa-check" aria-hidden="true"></span>
                         </button>
