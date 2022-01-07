@@ -1,27 +1,33 @@
-<oui-header heading="{{:: 'module_ip_dashboard_title' | translate }}">
-    <oui-header-tabs>
-        <oui-header-tabs-item
-            href="{{ $ctrl.dashboardLink }}"
-            active="$ctrl.dashboardLink === $ctrl.currentActiveLink()"
-        >
-            <span data-translate="ip_ip"></span>
-        </oui-header-tabs-item>
-    </oui-header-tabs>
-</oui-header>
+<div data-ui-view="byoip">
+    <oui-header heading="{{:: 'module_ip_dashboard_title' | translate }}">
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                href="{{ $ctrl.dashboardLink }}"
+                active="$ctrl.dashboardLink === $ctrl.currentActiveLink()"
+            >
+                <span data-translate="ip_ip"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-header>
 
-<div>
-    <div data-ovh-alert></div>
-    <div data-ovh-alert="polling_action"></div>
-    <div data-ovh-alert="otrs_alert"></div>
-    <div ui-view></div>
-    <div id="currentAction" class="modal fade currentAction" data-role="dialog">
-        <div class="modal-dialog">
-            <div
-                id="modal-container"
-                class="modal-content"
-                data-ng-include="stepPath"
-            ></div>
-            <div id="modal-help" class="help4wizards"></div>
+    <div>
+        <div data-ovh-alert></div>
+        <div data-ovh-alert="polling_action"></div>
+        <div data-ovh-alert="otrs_alert"></div>
+        <div ui-view></div>
+        <div
+            id="currentAction"
+            class="modal fade currentAction"
+            data-role="dialog"
+        >
+            <div class="modal-dialog">
+                <div
+                    id="modal-container"
+                    class="modal-content"
+                    data-ng-include="stepPath"
+                ></div>
+                <div id="modal-help" class="help4wizards"></div>
+            </div>
         </div>
     </div>
 </div>
