@@ -115,10 +115,23 @@ import './css/source.scss';
 import { TRACKING } from './at-internet.constants';
 import { SANITIZATION } from './constants';
 
-export default (containerEl, environment) => {
-  const config = getConfig(environment.getRegion());
+const getEnvironment = (shellClient) => {
+  return shellClient.environment.getEnvironment();
+};
 
+const getLocale = (shellClient) => {
+  return shellClient.i18n.getLocale();
+};
+
+export default async (containerEl, shellClient) => {
   const moduleName = 'App';
+
+  const [environment, locale] = await Promise.all([
+    getEnvironment(shellClient),
+    getLocale(shellClient),
+  ]);
+
+  const config = getConfig(environment.getRegion());
 
   angular
     .module(
@@ -258,7 +271,7 @@ export default (containerEl, environment) => {
             '#/billing/payment/method',
           ),
         );
-        ovhPaymentMethodProvider.setUserLocale(environment.getUserLocale());
+        ovhPaymentMethodProvider.setUserLocale(locale);
       },
     )
     .config(
@@ -522,7 +535,7 @@ export default (containerEl, environment) => {
 
     .config(
       /* @ngInject */ (ouiCalendarConfigurationProvider) => {
-        const lang = environment.getUserLanguage();
+        const lang = locale;
         return import(`flatpickr/dist/l10n/${lang}.js`)
           .then((module) => {
             ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
