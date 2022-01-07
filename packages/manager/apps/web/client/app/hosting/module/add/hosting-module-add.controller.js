@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
+import validator from 'validator';
 
 angular
   .module('App')
