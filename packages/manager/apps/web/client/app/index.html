@@ -17,6 +17,7 @@
         data-ng-controller="WebAppCtrl as $ctrl"
         class="h-100 ovh-manager-web-app"
         style="overflow: hidden;"
+        data-ng-class="{'in-container': !$ctrl.isTopLevelApplication}"
     >
         <div class="h-100 d-flex flex-column overflow-hidden ng-cloak">
             <!-- Skip to main content -->
@@ -34,10 +35,16 @@
                 <ovh-manager-navbar
                     data-navbar-options="$ctrl.navbarOptions"
                     data-universe-click="$ctrl.openSidebar()"
+                    data-ng-if="$ctrl.isTopLevelApplication"
                 >
                 </ovh-manager-navbar>
-                <ovh-manager-account-sidebar> </ovh-manager-account-sidebar>
-                <ovh-manager-notifications-sidebar>
+                <ovh-manager-account-sidebar
+                    data-ng-if="$ctrl.isTopLevelApplication"
+                >
+                </ovh-manager-account-sidebar>
+                <ovh-manager-notifications-sidebar
+                    data-ng-if="$ctrl.isTopLevelApplication"
+                >
                 </ovh-manager-notifications-sidebar>
                 <button
                     type="button"
