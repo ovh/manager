@@ -6,6 +6,7 @@
     >
         <oui-modal
             data-primary-label="{{($ctrl.actionEnabled ? 'common_change' : 'global_OK') | translate }}"
+            data-primary-disabled="updateDisplayNameForm.$invalid"
             data-secondary-label="{{$ctrl.actionEnabled ? ('common_cancel' | translate) : '' }}"
             data-secondary-action="$ctrl.$state.go('^')"
             data-on-dismiss="$ctrl.$state.go('^')"
@@ -24,6 +25,7 @@
                         name="display-name"
                         id="update-display-name"
                         data-ng-model="$ctrl.displayName"
+                        data-ng-pattern="/^[^<>]+$/"
                         required
                     />
                 </oui-field>
