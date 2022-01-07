@@ -14,6 +14,15 @@ const templates = {
   backdrop: '<div class="modal-backdrop"></div>',
 };
 
+const buildTemplate = (html: string): HTMLElement => {
+  const template = document.createElement('template');
+  template.innerHTML = html;
+
+  return <HTMLElement>(
+    document.importNode(template.content, true).firstElementChild
+  );
+};
+
 export interface IModalElements {
   container?: HTMLElement;
   dialog?: HTMLElement;
@@ -56,20 +65,11 @@ export class UxModal {
     this.render();
   }
 
-  private buildTemplate(html: string): HTMLElement {
-    const template = document.createElement('template');
-    template.innerHTML = html;
-
-    return <HTMLElement>(
-      document.importNode(template.content, true).firstElementChild
-    );
-  }
-
   private render(): void {
-    this.elements.container = this.buildTemplate(templates.container);
-    this.elements.dialog = this.buildTemplate(templates.dialog);
-    this.elements.content = this.buildTemplate(templates.content);
-    this.elements.body = this.buildTemplate(templates.body);
+    this.elements.container = buildTemplate(templates.container);
+    this.elements.dialog = buildTemplate(templates.dialog);
+    this.elements.content = buildTemplate(templates.content);
+    this.elements.body = buildTemplate(templates.body);
 
     this.elements.content.appendChild(this.elements.body);
     this.elements.dialog.appendChild(this.elements.content);
@@ -86,7 +86,7 @@ export class UxModal {
     this.elements.container.style.display = 'block';
     this.elements.appendTo.appendChild(this.elements.container);
 
-    this.elements.backdrop = this.buildTemplate(templates.backdrop);
+    this.elements.backdrop = buildTemplate(templates.backdrop);
     this.elements.appendTo.appendChild(this.elements.backdrop);
 
     if (this.options.className) {
