@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-
 export default class KubernetesNodePoolsScaleCtrl {
   /* @ngInject */
   constructor($translate, Kubernetes) {
@@ -47,7 +45,7 @@ export default class KubernetesNodePoolsScaleCtrl {
         let errorMessage = this.$translate.instant(
           'kube_node_pool_autoscaling_scale_error',
           {
-            message: get(error, 'data.message'),
+            message: error.data?.message,
           },
         );
         if (errorId) {

@@ -91,7 +91,7 @@ export default class {
       .catch((error) => {
         const errorId = this.getKubeApiErrorId(error);
         let errorMessage = this.$translate.instant('kubernetes_add_error', {
-          message: get(error, 'data.message'),
+          message: error.data?.message,
         });
         if (errorId) {
           const translateMessage = this.$translate.instant(

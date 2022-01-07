@@ -63,7 +63,7 @@ export default class {
       .catch((error) => {
         const errorId = this.getKubeApiErrorId(error);
         let errorMessage = this.$translate.instant('kube_add_node_pool_error', {
-          message: get(error, 'data.message'),
+          message: error.data?.message,
           nodePoolName: this.nodePool.name,
         });
         if (errorId) {

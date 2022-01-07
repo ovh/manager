@@ -55,8 +55,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
       getKubeApiErrorId: /* @ngInject */ () => (error) => {
         try {
-          const errorMessage = get(error, 'data.message');
-          const errorStatus = get(error, 'data.status');
+          const errorMessage = error.data?.message;
+          const errorStatus = error.data?.status;
           if (errorStatus === 412) {
             return errorMessage.slice(
               errorMessage.indexOf('[') + 1,
