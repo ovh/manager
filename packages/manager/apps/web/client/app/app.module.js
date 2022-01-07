@@ -26,7 +26,6 @@ import 'punycode';
 import 'script-loader!urijs/src/URI.min.js';
 import 'script-loader!filesize/lib/filesize.js';
 import 'angularjs-scroll-glue';
-import 'script-loader!validator/validator.min.js';
 import 'angular-xeditable';
 import 'script-loader!jsurl/lib/jsurl.js';
 import 'angular-translate';
