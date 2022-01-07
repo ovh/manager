@@ -15,6 +15,7 @@
     "dev": "vite",
     "dev:dedicated": "APP=dedicated vite",
     "dev:hub": "APP=hub vite",
+    "dev:public-cloud": "APP=public-cloud vite",
     "dev:telecom": "APP=telecom vite",
     "dev:web": "APP=web vite",
     "lint": "eslint ./src",
