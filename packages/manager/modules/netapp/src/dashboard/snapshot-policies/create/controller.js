@@ -3,7 +3,7 @@ import { capitalize, cloneDeep, range } from 'lodash-es';
 import { detectUserLocale } from '@ovh-ux/manager-config';
 
 const DATE_CONSTANTS = {
-  MINUTES: range(1, 60),
+  MINUTES: range(0, 60),
   HOURS: range(0, 24),
   DAYS: range(1, 32),
   MONTHS: range(1, 13),
