@@ -1,3 +1,12 @@
+## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.2.2...@ovh-ux/manager-cda@1.2.3) (2022-01-07)
+
+
+### Bug Fixes
+
+* handle redirection properly ([#6254](https://github.com/ovh/manager/issues/6254)) ([83d88c6](https://github.com/ovh/manager/commit/83d88c65aa7a71c79035e4f21a141c50fead32c9))
+
+
+
 ## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.2.1...@ovh-ux/manager-cda@1.2.2) (2021-10-26)
 
 

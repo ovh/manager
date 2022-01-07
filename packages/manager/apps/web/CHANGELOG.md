@@ -1,3 +1,12 @@
+## [16.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.3.2...@ovh-ux/manager-web@16.3.3) (2022-01-07)
+
+
+### Bug Fixes
+
+* add missing `validator` import ([#6255](https://github.com/ovh/manager/issues/6255)) ([a4c034a](https://github.com/ovh/manager/commit/a4c034a67cf8ffa2ead3068c04ffedcde8a7d682))
+
+
+
 ## [16.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.3.1...@ovh-ux/manager-web@16.3.2) (2022-01-03)
 
 
