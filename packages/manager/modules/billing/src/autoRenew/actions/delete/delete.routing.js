@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import kebabCase from 'lodash/kebabCase';
 import { BillingService } from '@ovh-ux/manager-models';
 
@@ -35,7 +36,10 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceType: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceType,
       service: /* @ngInject */ (BillingAutoRenew, serviceId, serviceType) =>
-        BillingAutoRenew.getService(serviceId, serviceType).then(
+        BillingAutoRenew.findService({
+          resourceName: serviceId,
+          serviceType,
+        }).then(
           (service) =>
             new BillingService({
               ...service,
@@ -61,6 +65,7 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceId: service.domain,
           serviceType: service.serviceType,
           renew: service.renew,
+          route: get(service, 'route.url'),
         });
       },
       questions: /* @ngInject */ (BillingTerminate, service) =>

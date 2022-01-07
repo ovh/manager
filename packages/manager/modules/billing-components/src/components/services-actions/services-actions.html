@@ -23,7 +23,7 @@
     </oui-action-menu-item>
 
     <div
-        data-ng-if="$ctrl.autorenewLink && !$ctrl.service.hasParticularRenew() && !$ctrl.service.hasPendingResiliation() && !$ctrl.service.hasDebt()"
+        data-ng-if=":: $ctrl.autorenewLink && !$ctrl.service.hasParticularRenew() && !$ctrl.service.hasPendingResiliation() && !$ctrl.service.hasDebt()"
     >
         <!-- Service in autorenew -->
         <oui-action-menu-item
@@ -108,7 +108,7 @@
         data-ng-if="(!$ctrl.service.shouldDeleteAtExpiration() || !$ctrl.service.isResiliated()) && !$ctrl.service.hasDebt() && !$ctrl.service.hasPendingResiliation()"
     >
         <oui-action-menu-item
-            ng-if="$ctrl.resiliateLink && ($ctrl.service.canBeResiliated($ctrl.user.nichandle) || (!$ctrl.service.hasPendingEngagement && !$ctrl.service.canCancelResiliationByEndRule() || $ctrl.service.canResiliateByEndRule()))"
+            ng-if="$ctrl.resiliateLink && $ctrl.service.canBeResiliated($ctrl.user.nichandle)"
             href="{{:: $ctrl.resiliateLink }}"
             on-click="$ctrl.trackAction('go-to-resiliate')"
             data-navi-id="go-to-resiliate"

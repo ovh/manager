@@ -67,7 +67,7 @@
 
     <form novalidate>
         <oui-field
-            data-ng-if="$ctrl.nicRenew.isMandatory && $ctrl.defaultPaymentMean"
+            data-ng-if="$ctrl.nicRenew.isMandatory && $ctrl.defaultPaymentMean && $ctrl.nicRenew.active"
             data-label="{{::'autorenew_service_autorenew_day' | translate}}"
             data-label-popover="{{::'autorenew_service_autorenew_day_tooltip' | translate}}"
             data-size="l"
@@ -84,7 +84,7 @@
                 >
                     <option
                         value
-                        data-translate="autorenew_service_autorenew_contact_filter_all"
+                        data-translate="billing_autorenew_service_autorenew_contact_filter_all"
                     >
                     </option>
                 </select>
@@ -184,13 +184,21 @@
                 class="oui-link"
                 data-ng-if="$row.url"
                 data-ng-href="{{:: $row.url }}"
-                data-ng-bind=":: $row.alternativeId"
+                data-ng-bind=":: $row.serviceId | limitTo:80"
+                title="{{:: $row.serviceId }}"
             >
             </a>
             <span
                 data-ng-if="!$row.url"
-                data-ng-bind="::$row.alternativeId"
+                data-ng-bind="::$row.serviceId | limitTo:80"
             ></span>
+            <small
+                class="d-block"
+                data-ng-if="$row.alternativeId !== $row.serviceId"
+                data-ng-bind="$row.alternativeId"
+            >
+            </small>
+            <span data-ng-if="$row.serviceId.length > 80">…</span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-property="serviceType"
@@ -215,10 +223,10 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                        'oui-badge_success': !$row.isSuspended(),
-                        'oui-badge_error': $row.isSuspended()
+                        'oui-badge_success': $row.availability === 'UP',
+                        'oui-badge_error': $row.availability !== 'UP',
                     }"
-                data-translate="{{ 'billing_autorenew_service_state_' + $row.state | translate }}"
+                data-translate="{{ 'billing_autorenew_service_state_' + $row.availability | translate }}"
             >
             </span>
         </oui-datagrid-column>
@@ -241,34 +249,8 @@
             data-sortable
         >
             <span
-                data-ng-if="$row.hasDebt() && !$row.isBillingSuspended()"
-                data-translate="billing_autorenew_service_date_now"
+                data-ng-bind-html=":: $ctrl.getDisplayedDateOfEffect($row)"
             ></span>
-            <span
-                data-ng-if="$row.isOneShot() && !$row.isResiliated() && !$row.hasPendingResiliation() || $row.isBillingSuspended()"
-                >-</span
-            >
-            <span
-                data-ng-if="$row.hasManualRenew() && !$row.isResiliated() && !$row.hasDebt() && !$row.isBillingSuspended()"
-                data-translate="billing_autorenew_service_date_before"
-                data-translate-values="{
-                        date: $row.formattedExpiration
-                    }"
-            >
-            </span>
-            <span
-                data-ng-if="$row.isResiliated() || $row.hasPendingResiliation() && !$row.isBillingSuspended()"
-                data-translate="billing_autorenew_service_date_renew"
-                data-translate-values="{
-                        date: $row.formattedExpiration
-                    }"
-            >
-            </span>
-            <span
-                data-ng-if="$row.hasAutomaticRenewal() && !$row.isOneShot() && !$row.hasDebt() && !$row.isResiliated() && !$row.hasPendingResiliation() && !$row.isBillingSuspended()"
-                data-ng-bind="$ctrl.getAutomaticExpirationDate($row)"
-            >
-            </span>
         </oui-datagrid-column>
         <!-- /Columns -->
 

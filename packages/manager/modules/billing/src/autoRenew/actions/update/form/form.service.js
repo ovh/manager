@@ -1,21 +1,28 @@
+import get from 'lodash/get';
 import map from 'lodash/map';
 import values from 'lodash/values';
 import { RENEWAL_TYPES } from './form.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate) {
+  constructor($http, $translate) {
+    this.$http = $http;
     this.$translate = $translate;
   }
 
   getAvailableRenewPeriods(service) {
-    return map(service.possibleRenewPeriod, (period) => ({
-      period,
-      label: this.$translate.instant(
-        'billing_autorenew_service_update_service_period_value',
-        { month: period },
-      ),
-    }));
+    return this.$http
+      .get(`${get(service, 'route.url')}/serviceInfos`)
+      .then(({ data }) => get(data, 'possibleRenewPeriod'))
+      .then((possibleRenewPeriod) => {
+        return map(possibleRenewPeriod, (period) => ({
+          period,
+          label: this.$translate.instant(
+            'billing_autorenew_service_update_service_period_value',
+            { month: period },
+          ),
+        }));
+      });
   }
 
   getRenewalTypes() {
