@@ -14,7 +14,11 @@
             }
         </style>
     </head>
-    <body class="h-100 ovh-manager-telecom-app" style="overflow: hidden;">
+    <body
+        class="h-100 ovh-manager-telecom-app"
+        style="overflow: hidden;"
+        data-ng-class="{'in-container': !$ctrl.isTopLevelApplication}"
+    >
         <div
             class="h-100 d-flex flex-column overflow-hidden"
             data-ng-controller="TelecomAppCtrl as $ctrl"
@@ -43,12 +47,18 @@
                         data-navbar-options="$ctrl.navbarOptions"
                         data-universe-click="$ctrl.openSidebar()"
                         data-global-search-link="{{ $ctrl.globalSearchLink }}"
+                        data-ng-if="$ctrl.isTopLevelApplication"
                     >
                     </ovh-manager-navbar>
-                    <ovh-manager-notifications-sidebar>
+                    <ovh-manager-notifications-sidebar
+                        data-ng-if="$ctrl.isTopLevelApplication"
+                    >
                     </ovh-manager-notifications-sidebar>
                 </div>
-                <ovh-manager-account-sidebar me="$ctrl.user">
+                <ovh-manager-account-sidebar
+                    me="$ctrl.user"
+                    data-ng-if="$ctrl.isTopLevelApplication"
+                >
                 </ovh-manager-account-sidebar>
             </div>
             <div class="d-flex w-100 h-100 position-relative">

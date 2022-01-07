@@ -129,8 +129,27 @@ import './app.less';
 
 import { TRACKING } from './at-internet.constants';
 
-export default (containerEl, environment) => {
+const getEnvironment = (shellClient) => {
+  return shellClient.environment.getEnvironment();
+};
+
+const getLocale = (shellClient) => {
+  return shellClient.i18n.getLocale();
+};
+
+export default async (containerEl, shellClient) => {
   const moduleName = 'managerApp';
+
+  const [environment, locale] = await Promise.all([
+    getEnvironment(shellClient),
+    getLocale(shellClient),
+  ]);
+
+  const coreCallbacks = {
+    onLocaleChange: (lang) => {
+      shellClient.i18n.setLocale(lang);
+    },
+  };
 
   angular
     .module(
@@ -180,7 +199,7 @@ export default (containerEl, environment) => {
         ovhManagerAtInternetConfiguration,
         ovhManagerAccountMigration,
         ovhManagerBetaPreference,
-        registerCoreModule(environment),
+        registerCoreModule(environment, coreCallbacks),
         ovhManagerCookiePolicy,
         ovhManagerDashboard,
         ovhManagerFreefax,
@@ -243,7 +262,7 @@ export default (containerEl, environment) => {
     })
     .config(
       /* @ngInject */ (ovhPaymentMethodProvider) => {
-        ovhPaymentMethodProvider.setUserLocale(environment.getUserLocale());
+        ovhPaymentMethodProvider.setUserLocale(locale);
       },
     )
     .run(
@@ -263,7 +282,7 @@ export default (containerEl, environment) => {
     )
     .config(
       /* @ngInject */ (ouiCalendarConfigurationProvider) => {
-        const lang = environment.getUserLanguage();
+        const lang = locale;
         return import(`flatpickr/dist/l10n/${lang}.js`)
           .then((module) => {
             ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
