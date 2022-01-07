@@ -19,16 +19,10 @@ export default class {
     this.$transitions = $transitions;
     this.$translate = $translate;
     this.Alerter = Alerter;
-    this.atInternet = atInternet;
     this.DedicatedCloud = DedicatedCloud;
   }
 
   $onInit() {
-    this.atInternet.trackPage({
-      name:
-        'dedicated::dedicatedCloud::details::servicePackUpgrade::basicOptions',
-      type: 'navigation',
-    });
     this.$transitions.onError(
       { to: `${this.$state.$current.parent.name}.**` },
       (transition) =>

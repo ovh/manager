@@ -8,7 +8,6 @@ export default {
     onBasicOptionsUpgrade: '<',
     serviceName: '<',
     trackClick: '<',
-    trackPage: '<',
   },
   controller,
   template,

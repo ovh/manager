@@ -23,8 +23,6 @@ export default class {
     this.DedicatedCloud.getOptionState('nsx', this.serviceName).then((data) => {
       this.nsxStatus = data;
     });
-
-    this.trackPage('datacenter::add-datacenter');
   }
 
   load() {

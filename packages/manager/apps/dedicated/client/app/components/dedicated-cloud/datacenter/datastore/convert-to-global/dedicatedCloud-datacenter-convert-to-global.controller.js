@@ -12,7 +12,6 @@ export default class {
 
   $onInit() {
     this.loading = false;
-    this.trackPage('datacenter::details::datastores::convertToGlobal');
   }
 
   convertToGlobal() {

@@ -6,8 +6,6 @@ export default class {
   }
 
   $onInit() {
-    this.trackPage('datacenter::upgrade-private-cloud');
-
     this.loading = {
       init: true,
     };

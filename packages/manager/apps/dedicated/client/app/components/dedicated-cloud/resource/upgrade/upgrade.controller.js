@@ -17,7 +17,6 @@ export default class {
   }
 
   $onInit() {
-    this.trackPage('datacenter::details::datastores::resourceUpgrade');
     this.bindings = {
       isLoading: false,
     };

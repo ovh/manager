@@ -21,11 +21,6 @@ export default class {
   }
 
   $onInit() {
-    this.atInternet.trackPage({
-      name:
-        'dedicated::dedicatedCloud::details::servicePackUpgrade::basicOptions::selection::placeOrder',
-      type: 'navigation',
-    });
     if (
       (this.prices.hourly.exists && this.prices.hourly.value === 0) ||
       (this.prices.monthly.exists && this.prices.monthly.value === 0)

@@ -16,12 +16,6 @@ export default /* @ngInject */ ($stateProvider) => {
           type: 'action',
         });
       },
-      trackPage: /* @ngInject */ (atInternet) => (page) => {
-        atInternet.trackPage({
-          name: `dedicated::dedicatedCloud::details::${page}`,
-          type: 'navigation',
-        });
-      },
     },
   });
 };
