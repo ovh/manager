@@ -1,4 +1,5 @@
 import { TRACKING_PREFIX } from '../../constants';
+import { TRACKING_CHUNK } from './order-public-ip.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('anthos.dashboard.ips.order-public-ip', {
@@ -11,13 +12,9 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: () => null,
-
-      orderPublicIpHitTracking: () => {
-        return 'order-public-ip';
-      },
     },
     atInternet: {
-      rename: `${TRACKING_PREFIX}::order-public-ip`,
+      rename: `${TRACKING_PREFIX}::${TRACKING_CHUNK}`,
     },
   });
 };
