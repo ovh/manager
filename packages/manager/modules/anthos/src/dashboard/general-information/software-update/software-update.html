@@ -37,11 +37,10 @@
                             ></span>
                             <span data-ng-bind="item.version"></span>
                         </oui-radio>
-                        <a
-                            class="oui-link_icon"
-                            href="{{ item.changelogLink }}"
-                            rel="noreferrer"
-                            target="_blank"
+                        <button
+                            type="button"
+                            class="oui-button oui-button_s oui-button_ghost"
+                            data-ng-click="$ctrl.onGoToChangelog(item)"
                         >
                             <span
                                 data-translate="anthos_tenant_dashboard_general_information_software_update_change_log_link"
@@ -50,7 +49,7 @@
                                 class="oui-icon oui-icon-external-link"
                                 aria-hidden="true"
                             ></span>
-                        </a>
+                        </button>
                     </td>
                 </tr>
             </tbody>

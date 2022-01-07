@@ -7,6 +7,7 @@ export default {
     displayAlerterMessage: '<',
     goBack: '<',
     serviceName: '<',
+    tenant: '<',
   },
   controller,
   template,

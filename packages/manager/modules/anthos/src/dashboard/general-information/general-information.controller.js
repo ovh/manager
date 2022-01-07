@@ -47,6 +47,12 @@ export default class {
     return this.goToAssignPrivateIp();
   }
 
+  onGoToSoftwareUpdate() {
+    this.trackClick(`${this.generalInfoHitTracking}::check-updates`);
+
+    return this.goToSoftwareUpdate();
+  }
+
   onAnthosConsoleStart() {
     return this.trackClick(
       `${this.generalInfoHitTracking}::launch-anthos-console`,

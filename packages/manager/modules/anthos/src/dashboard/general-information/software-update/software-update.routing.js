@@ -1,3 +1,6 @@
+import { TRACKING_PREFIX } from '../../constants';
+import { TRACKING_CHUNK } from './software-update.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('anthos.dashboard.general-information.software-update', {
     url: '/software-update',
@@ -6,6 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       breadcrumb: () => null,
+    },
+    atInternet: {
+      rename: `${TRACKING_PREFIX}::${TRACKING_CHUNK}`,
     },
   });
 };
