@@ -1,0 +1,158 @@
+<div>
+    <oui-header
+        class="mb-3"
+        data-heading="{{ :: 'ip_byoip_heading' | translate }}"
+        data-description="{{:: 'ip_byoip_description' | translate }}"
+    >
+    </oui-header>
+    <div data-ovh-alert="{{$ctrl.alerts.list}}"></div>
+
+    <oui-stepper data-on-finish="$ctrl.orderByoip()">
+        <!-- Enter rir -->
+        <oui-step-form
+            data-header="{{:: 'ip_byoip_select_rir_title' | translate }}"
+            data-submit-text="{{:: 'ip_byoip_submit_text' | translate }}"
+            data-description="{{:: 'ip_byoip_select_rir_description' | translate }}"
+            data-prevent-next="true"
+            data-valid="$ctrl.byoip.ipRir"
+            data-navigation="$ctrl.byoip.ipRir"
+            data-loading="$ctrl.loader.loadingRir"
+        >
+            <div
+                class="col-md-4 p-0 mb-3 float-none"
+                data-ng-repeat="value in $ctrl.ipRir track by $index"
+            >
+                <oui-select-picker
+                    name="rir"
+                    data-model="$ctrl.byoip.ipRir"
+                    data-label="{{ value }}"
+                    data-variant="light"
+                    data-on-change="$ctrl.onRirSelect(modelValue)"
+                    data-values="[value]"
+                >
+                </oui-select-picker>
+            </div>
+        </oui-step-form>
+        <!-- Region -->
+        <oui-step-form
+            data-header="{{:: 'ip_byoip_region_title' | translate }}"
+            data-submit-text="{{:: 'ip_byoip_submit_text' | translate }}"
+            data-valid="$ctrl.byoip.campus"
+            data-description="{{:: 'ip_byoip_region_description' | translate}}"
+            data-navigation="$ctrl.byoip.campus"
+            data-prevent-next="true"
+        >
+            <div class="row mb-3">
+                <oui-select-picker
+                    disabled="$ctrl.byoip.campus && $ctrl.regions.length === 1"
+                    data-ng-repeat="region in $ctrl.regions track by $index"
+                    class="col-md-4 mb-3"
+                    data-model="$ctrl.byoip.campus"
+                    values="[region]"
+                    data-label="{{:: 'ip_byoip_region_' + region | translate }}"
+                    data-variant="light"
+                    data-on-change="$ctrl.onRegionSelect(modelValue)"
+                >
+                    <oui-select-picker-section class="text-uppercase"
+                        ><span data-ng-bind="region"></span
+                    ></oui-select-picker-section>
+                </oui-select-picker>
+            </div>
+            <div class="row mb-3">
+                <h3 data-translate="ip_byoip_region_token_title"></h3>
+                <p data-translate="ip_byoip_region_token_description"></p>
+                <p data-translate="ip_byoip_region_token_description_1"></p>
+                <p
+                    data-translate="ip_byoip_region_token_description_2"
+                    class="mb-3"
+                ></p>
+
+                <oui-clipboard
+                    data-model="$ctrl.token"
+                    class="col-md-6"
+                ></oui-clipboard>
+            </div>
+        </oui-step-form>
+        <!-- IP range -->
+        <oui-step-form
+            data-header="{{:: 'ip_byoip_select_ip_range_title' | translate }}"
+            data-submit-text="{{:: 'ip_byoip_submit_text' | translate }}"
+            data-valid="$ctrl.byoip.ip"
+            data-description="{{:: 'ip_byoip_select_ip_range_description' | translate}}"
+            data-navigation="$ctrl.byoip.ip"
+            data-prevent-next="true"
+        >
+            <div class="row">
+                <oui-field
+                    class="col-md-6"
+                    label="{{::'ip_byoip_select_ip_range_input_label' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="field"
+                        placeholder="192.168.22.42/24"
+                        data-type="text"
+                        data-ng-pattern="$ctrl.IPV4_BLOCK_PATTERN"
+                        data-ng-model="$ctrl.byoip.ip"
+                        data-required
+                    />
+                </oui-field>
+            </div>
+        </oui-step-form>
+        <!-- Choose autonomous system -->
+        <oui-step-form
+            data-header="{{:: 'ip_byoip_as_system_title' | translate }}"
+            data-submit-text="{{:: 'ip_byoip_submit_text' | translate }}"
+            data-valid="$ctrl.asType"
+            data-description="{{:: 'ip_byoip_as_system_description' | translate}}"
+            data-navigation="$ctrl.asType"
+            data-prevent-next="true"
+        >
+            <div
+                class="col-md-4 mb-3 float-none p-0"
+                data-ng-repeat="value in $ctrl.AS_OPTIONS track by $index"
+            >
+                <oui-select-picker
+                    name="asType"
+                    data-model="$ctrl.asType"
+                    data-label="{{ 'ip_byoip_as_type_' + value | translate }}"
+                    data-variant="light"
+                    data-on-change="$ctrl.onAsSelect(modelValue)"
+                    data-values="[value]"
+                >
+                </oui-select-picker>
+            </div>
+
+            <div data-ng-if="$ctrl.asType === 'own'">
+                <p data-translate="ip_byoip_as_rir_title"></p>
+                <div class="col-md-3 float-none mb-3 p-0">
+                    <div
+                        class="mb-3"
+                        data-ng-repeat="value in $ctrl.ipRir track by $index"
+                    >
+                        <oui-select-picker
+                            name="asRir"
+                            data-model="$ctrl.byoip.asRir"
+                            data-label="{{ value }}"
+                            data-variant="light"
+                            data-on-change="$ctrl.onAsSelect(modelValue)"
+                            data-values="[value]"
+                        >
+                        </oui-select-picker>
+                    </div>
+                    <oui-field
+                        data-label="{{:: 'ip_byoip_as_number_label' | translate }}"
+                    >
+                        <input
+                            class="oui-input"
+                            name="field"
+                            data-type="number"
+                            data-ng-model="$ctrl.byoip.asNumber"
+                            data-required
+                        />
+                    </oui-field>
+                </div>
+            </div>
+        </oui-step-form>
+    </oui-stepper>
+</div>
