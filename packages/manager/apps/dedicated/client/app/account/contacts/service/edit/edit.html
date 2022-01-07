@@ -6,6 +6,7 @@
     <oui-modal
         data-heading="{{:: 'account_contacts_service_edit' | translate }}"
         data-primary-label="{{:: 'account_contacts_service_edit_confirm' | translate }}"
+        data-primary-disabled="$ctrl.contactsEditForm.$invalid"
         data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{:: 'account_contacts_service_edit_cancel' | translate }}"
         data-loading="$ctrl.isUpdating"
@@ -52,6 +53,7 @@
                 id="contactAdmin"
                 name="contactAdmin"
                 data-ng-model="$ctrl.editedService.contactAdmin"
+                data-ng-pattern="/^[^<>]+$/"
                 required
             />
         </oui-field>
@@ -64,6 +66,7 @@
                 id="contactTech"
                 name="contactTech"
                 data-ng-model="$ctrl.editedService.contactTech"
+                data-ng-pattern="/^[^<>]+$/"
                 required
             />
         </oui-field>
@@ -77,6 +80,7 @@
                 name="contactBilling"
                 data-ng-model="$ctrl.editedService.contactBilling"
                 data-ng-disabled="$ctrl.service.hasDebt()"
+                data-ng-pattern="/^[^<>]+$/"
                 required
             />
         </oui-field>
