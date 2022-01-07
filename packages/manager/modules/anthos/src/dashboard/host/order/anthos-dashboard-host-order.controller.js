@@ -1,6 +1,7 @@
 import {
   MAX_ADDONS,
   PRICE_DURATION,
+  TRACKING_CHUNK,
 } from './anthos-dashboard-host-order.constants';
 import { extractHostAddonsFromAnthosCatalog } from './anthos-dashboard-host-order.utils';
 
@@ -66,6 +67,8 @@ export default class AnthosDashboardHostOrderController {
   }
 
   openExpressOrder() {
+    this.trackClick(`${TRACKING_CHUNK}::confirm`);
+
     const products = this.addons
       .filter(({ quantity }) => quantity > 0)
       .map(({ quantity, $raw: addon }) => ({
