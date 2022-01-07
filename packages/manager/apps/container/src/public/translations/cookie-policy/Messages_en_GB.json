@@ -1,0 +1,10 @@
+{
+  "cookie_policy_accept": "Accept",
+  "cookie_policy_refuse": "Continue without accepting",
+  "cookie_policy_title": "Protecting your data is our priority",
+  "cookie_policy_description_1": "Our website and partner companies use cookies. Some of these cookies are required for the OVHcloud Group websites to work properly, and cannot be refused. OVHcloud uses other cookies that are optional. <a href='{{ url }}' target='_blank' class='oui-link'> More information</a>:",
+  "cookie_policy_description_2": "If you click ‘Accept’, this category will be enabled. The purpose of these cookies is to improve how our website works, provide value-added services, and secure our website. Please note that if you choose to opt out, your browsing experience may be limited.",
+  "cookie_policy_description_3": "Site performance and customisation cookies",
+  "cookie_policy_description_4": "OVHcloud will save your choice for 13 months.",
+  "cookie_policy_description_5": "You can change your mind at any time by clicking <a href='{{ url }}' target='_blank' class='oui-link'>here</a>."
+}

@@ -9,6 +9,7 @@ import {
 import ShellClient from '../../client/shell-client';
 
 export interface TrackingAPI {
+  init(): PromiseLike<void>;
   isTagAvailable(): PromiseLike<boolean>;
   trackClick(data: ClickData): PromiseLike<void>;
   trackPage(data: PageData): PromiseLike<void>;
@@ -20,6 +21,11 @@ export interface TrackingAPI {
 
 export function exposeTrackingAPI(shellClient: ShellClient): TrackingAPI {
   return {
+    init: () =>
+      shellClient.invokePluginMethod<void>({
+        plugin: 'trackin',
+        method: 'init',
+      }),
     isTagAvailable: () =>
       shellClient.invokePluginMethod<boolean>({
         plugin: 'tracking',
