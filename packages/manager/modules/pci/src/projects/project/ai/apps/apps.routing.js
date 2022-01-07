@@ -14,6 +14,9 @@ export default /* @ngInject */ ($stateProvider) => {
           : false,
       ),
     resolve: {
+      betaWarning: /* @ngInject */ ($translate) =>
+        $translate.instant('pci_ai_app_beta_warning'),
+
       isAuthorized: /* @ngInject */ (AppService, projectId) =>
         AppService.isAuthorized(projectId),
 
