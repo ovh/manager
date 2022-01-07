@@ -8,10 +8,15 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ ($state, $timeout, productId, setMessage) => (
-        message = false,
-        type = 'success',
-      ) => {
+      goBack: /* @ngInject */ (
+        $state,
+        $timeout,
+        productId,
+        setMessage,
+        trackClick,
+      ) => (message = false, type = 'success') => {
+        trackClick('datacenter::add-datacenter::cancel');
+
         const reload = message && type === 'success';
 
         const promise = $state.go(

@@ -8,6 +8,8 @@ export default {
     productId: '<',
     range: '<',
     upgradeCode: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
   controller,
   template,

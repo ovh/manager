@@ -6,6 +6,8 @@ export default class {
   }
 
   $onInit() {
+    this.trackPage('datacenter::upgrade-private-cloud');
+
     this.loading = {
       init: true,
     };
@@ -32,6 +34,9 @@ export default class {
   }
 
   onValidate() {
+    this.trackClick(
+      `datacenter::upgrade-private-cloud::confirm_${this.upgradeCode}`,
+    );
     this.loading.init = true;
 
     return this.DedicatedCloud.orderManagementFee(
@@ -57,5 +62,10 @@ export default class {
       .finally(() => {
         this.loading.init = false;
       });
+  }
+
+  onCancel() {
+    this.trackClick('datacenter::upgrade-private-cloud::cancel');
+    return this.goBack();
   }
 }

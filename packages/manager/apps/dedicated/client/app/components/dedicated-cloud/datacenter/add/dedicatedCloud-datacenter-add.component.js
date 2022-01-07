@@ -7,6 +7,8 @@ export default {
     goUpgradeRange: '<',
     onBasicOptionsUpgrade: '<',
     serviceName: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
   controller,
   template,

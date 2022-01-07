@@ -10,6 +10,8 @@ export default {
     id: '<',
     productId: '<',
     type: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
   name: 'ovhManagerPccResourceUpgrade',
 };

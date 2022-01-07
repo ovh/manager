@@ -5,16 +5,30 @@ import { RejectType } from '@uirouter/angularjs';
 
 export default class {
   /* @ngInject */
-  constructor($q, $state, $transitions, $translate, Alerter, DedicatedCloud) {
+  constructor(
+    $q,
+    $state,
+    $transitions,
+    $translate,
+    Alerter,
+    atInternet,
+    DedicatedCloud,
+  ) {
     this.$q = $q;
     this.$state = $state;
     this.$transitions = $transitions;
     this.$translate = $translate;
     this.Alerter = Alerter;
+    this.atInternet = atInternet;
     this.DedicatedCloud = DedicatedCloud;
   }
 
   $onInit() {
+    this.atInternet.trackPage({
+      name:
+        'dedicated::dedicatedCloud::details::servicePackUpgrade::basicOptions',
+      type: 'navigation',
+    });
     this.$transitions.onError(
       { to: `${this.$state.$current.parent.name}.**` },
       (transition) =>
