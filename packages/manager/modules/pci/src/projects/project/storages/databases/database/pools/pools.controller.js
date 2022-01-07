@@ -14,14 +14,19 @@ export default class {
   }
 
   /**
-   * Function to map and add database name and user name to pool class
+   * Function to map and add database and user to pool class
+   * Also adds username and database name
    */
   initData() {
     this.pools.forEach((pool) => {
-      pool.setDatabaseName(
-        this.postgresDatabases.find((db) => db.id === pool.databaseId),
+      const database = this.postgresDatabases.find(
+        (db) => db.id === pool.databaseId,
       );
-      pool.setUserName(this.users.find((user) => user.id === pool.userId));
+      const user = this.users.find((obj) => obj.id === pool.userId);
+      pool.setDatabase(database);
+      pool.setUser(user);
+      pool.setUserName(user?.username);
+      pool.setDatabaseName(database?.name);
     });
   }
 
