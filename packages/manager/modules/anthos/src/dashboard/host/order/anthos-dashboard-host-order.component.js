@@ -7,6 +7,7 @@ export default {
     goBack: '<',
     hostLink: '<',
     serviceName: '<',
+    trackClick: '<',
   },
   template,
   controller,
