@@ -2,3 +2,9 @@
 @import 'bootstrap4/scss/_variables';
 @import 'bootstrap4/scss/_mixins';
 @import 'bootstrap4/scss/_utilities';
+
+.ovh-manager-telecom-app {
+  &.in-container #sidebar-menu {
+    top: -2px !important;
+  }
+}
