@@ -1,3 +1,11 @@
+<oui-message
+    data-ng-if="$ctrl.betaWarning"
+    data-type="warning"
+    data-dismissable
+>
+    <span data-ng-bind="$ctrl.betaWarning"></span>
+</oui-message>
+
 <div data-ui-view>
     <cui-message-container
         data-messages="$ctrl.messages"

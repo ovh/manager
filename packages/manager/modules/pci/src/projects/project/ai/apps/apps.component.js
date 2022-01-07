@@ -4,6 +4,7 @@ import template from './apps.html';
 export default {
   bindings: {
     projectId: '<',
+    betaWarning: '<',
     goToAddApp: '<',
     goToApp: '<',
     goToAttachData: '<',
