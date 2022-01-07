@@ -16,18 +16,22 @@ import { useShell } from '../context';
 
 function Navbar({ environment }) {
   const shell = useShell();
+  const environmentPlugin = shell.getPlugin('environment');
   const user = environment.getUser();
-  const universe = environment.getUniverse();
-  const [userLocale, setUserLocale] = useState(shell.getPlugin('i18n').getLocale());
+  // const universe = environment.getUniverse();
+  const [userLocale, setUserLocale] = useState(
+    shell.getPlugin('i18n').getLocale(),
+  );
 
   const [universes, setUniverses] = useState([]);
   const [searchURL, setSearchURL] = useState();
-  const [currentUniverse, setCurrentUniverse] = useState(universe);
+  const [currentUniverse, setCurrentUniverse] = useState();
 
   useEffect(() => {
-    listen(MESSAGES.navbarSetUniverse, ({ universe: universeParam }) => {
-      setCurrentUniverse(universeParam);
+    environmentPlugin.onUniverseChange(() => {
+      setCurrentUniverse(environment.getUniverse());
     });
+
     listen(MESSAGES.navbarSearch, ({ url }) => {
       setSearchURL(url);
     });
