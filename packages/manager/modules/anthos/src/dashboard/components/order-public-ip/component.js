@@ -5,7 +5,6 @@ export default {
   bindings: {
     displayAlerterMessage: '<',
     goBack: '<',
-    orderPublicIpHitTracking: '<',
     serviceName: '<',
     trackClick: '<',
     trackingPrefix: '<',

@@ -1,4 +1,5 @@
 import { MAX_QUANTITY, PRODUCT_ID, PRICING_DURATION } from './constants';
+import { TRACKING_CHUNK } from '../../ips/order-public-ip/order-public-ip.constants';
 import { extractPublicIpsAddonFromAnthosCatalog } from './utils';
 
 export default class {
@@ -42,6 +43,8 @@ export default class {
   }
 
   order() {
+    this.trackClick(`${TRACKING_CHUNK}::confirm_${this.quantity}`);
+
     const products = [
       {
         productId: PRODUCT_ID,
@@ -60,5 +63,10 @@ export default class {
     );
 
     this.goBack();
+  }
+
+  onGoBack() {
+    this.trackClick(`${TRACKING_CHUNK}::cancel`);
+    return this.goBack();
   }
 }
