@@ -15,7 +15,11 @@
             }
         </style>
     </head>
-    <body class="ovh-public-cloud-app h-100" style="overflow: hidden;">
+    <body
+        class="ovh-public-cloud-app h-100"
+        style="overflow: hidden;"
+        data-ng-class="{'in-container': !$ctrl.isTopLevelApplication}"
+    >
         <div
             class="h-100 d-flex flex-column overflow-hidden"
             data-ng-controller="PublicCloudController as $ctrl"
@@ -24,11 +28,17 @@
                 <ovh-manager-navbar
                     data-navbar-options="$ctrl.navbarOptions"
                     data-universe-click="$ctrl.openSidebar()"
+                    data-ng-if="$ctrl.isTopLevelApplication"
                 >
                 </ovh-manager-navbar>
-                <ovh-manager-account-sidebar me="$ctrl.user">
+                <ovh-manager-account-sidebar
+                    me="$ctrl.user"
+                    data-ng-if="$ctrl.isTopLevelApplication"
+                >
                 </ovh-manager-account-sidebar>
-                <ovh-manager-notifications-sidebar>
+                <ovh-manager-notifications-sidebar
+                    data-ng-if="$ctrl.isTopLevelApplication"
+                >
                 </ovh-manager-notifications-sidebar>
             </div>
             <div class="d-flex w-100 h-100 position-relative">
