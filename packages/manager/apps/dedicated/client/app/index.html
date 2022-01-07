@@ -45,7 +45,9 @@
                 data-ng-if="$ctrl.isTopLevelApplication"
             >
             </ovh-manager-account-sidebar>
-            <ovh-manager-notifications-sidebar>
+            <ovh-manager-notifications-sidebar
+                data-ng-if="$ctrl.isTopLevelApplication"
+            >
             </ovh-manager-notifications-sidebar>
 
             <button
