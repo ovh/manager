@@ -1,5 +1,5 @@
 angular.module('App').config(
-  /* @ngInject */ ($stateProvider) => {
+  /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     $stateProvider.state('app', {
       abstract: true,
       resolve: {
@@ -50,6 +50,13 @@ angular.module('App').config(
     $stateProvider.state('app.microsoft', {
       abstract: true,
       template: '<ui-view />',
+    });
+
+    $urlRouterProvider.when(/^\/enterprise-cloud-database\/service/, () => {
+      window.location.href = window.location.href.replace(
+        '/enterprise-cloud-database/service',
+        '/enterprise-cloud-database',
+      );
     });
   },
 );
