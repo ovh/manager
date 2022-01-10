@@ -10,6 +10,7 @@
   "netapp_volumes_acl_access_type_ip": "IP",
   "netapp_volumes_acl_access_type_user": "Utilisateur",
   "netapp_volumes_acl_access_to": "Accès à",
+  "netapp_volumes_acl_access_to_ip_format": "Format IPv4 ou IPblock",
   "netapp_volumes_acl_access_to_add": "Ajouter un accès à",
   "netapp_volumes_acl_access_level": "Autorisations d’accès",
   "netapp_volumes_acl_access_level_rw": "Lecture et écriture",
