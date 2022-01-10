@@ -31,13 +31,20 @@
             data-searchable
             data-filterable
         ></oui-datagrid-column>
-        <oui-action-menu data-compact data-placement="end">
+        <oui-action-menu
+            data-compact
+            data-placement="end"
+            data-disabled="!$ctrl.database.isActive()"
+        >
             <oui-action-menu-item data-on-click="$ctrl.delete($row)">
                 <span data-translate="pci_databases_acl_tab_delete"></span>
             </oui-action-menu-item>
         </oui-action-menu>
         <oui-datagrid-topbar>
-            <oui-button data-on-click="$ctrl.goToAddAcl()">
+            <oui-button
+                data-disabled="!$ctrl.database.isActive()"
+                data-on-click="$ctrl.goToAddAcl()"
+            >
                 <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i>
                 <span data-translate="pci_databases_acl_tab_add"></span>
             </oui-button>

@@ -24,14 +24,20 @@
             data-placement="end"
             ng-if="!$row.default"
         >
-            <oui-action-menu-item data-on-click="$ctrl.deleteDatabase($row)">
+            <oui-action-menu-item
+                data-on-click="$ctrl.deleteDatabase($row)"
+                data-disabled="!$ctrl.database.isActive()"
+            >
                 <span
                     data-translate="pci_databases_databases_tab_delete_link"
                 ></span>
             </oui-action-menu-item>
         </oui-action-menu>
         <oui-datagrid-topbar>
-            <oui-button data-on-click="$ctrl.addDatabase()">
+            <oui-button
+                data-on-click="$ctrl.addDatabase()"
+                data-disabled="!$ctrl.database.isActive()"
+            >
                 <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i>
                 <span data-translate="pci_databases_databases_tab_add"></span>
             </oui-button>
