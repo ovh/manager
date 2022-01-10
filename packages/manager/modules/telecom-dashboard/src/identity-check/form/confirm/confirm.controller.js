@@ -5,10 +5,6 @@ export default class IdentityCheckFormConfirmCtrl {
     this.atInternet = atInternet;
   }
 
-  $onInit() {
-    this.trackClick('cancel-current-validation');
-  }
-
   confirm() {
     this.trackClick('cancel-validation-popup::confirm');
     this.$uibModalInstance.close();
