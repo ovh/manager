@@ -1,3 +1,13 @@
+## [17.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.8.3...@ovh-ux/manager-dedicated@17.8.4) (2022-01-10)
+
+
+### Bug Fixes
+
+* handle redirection properly for `cloud-connect` routes ([#6279](https://github.com/ovh/manager/issues/6279)) ([4e7852a](https://github.com/ovh/manager/commit/4e7852ab8ab61a80060040f5fb6d8ec085345541))
+* handle redirection properly for `entreprise-cloud-database` routes ([#6274](https://github.com/ovh/manager/issues/6274)) ([1342e19](https://github.com/ovh/manager/commit/1342e19166bbfe383c3875f88f5bb6c61c0856e4))
+
+
+
 ## [17.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.8.2...@ovh-ux/manager-dedicated@17.8.3) (2022-01-03)
 
 
