@@ -82,8 +82,6 @@ export default class IdentityCheckFormCtrl {
   }
 
   cancelProcedure() {
-    this.trackClick('cancel-current-validation');
-
     const { id } = this.procedure ?? {};
 
     this.isCancelling = true;
