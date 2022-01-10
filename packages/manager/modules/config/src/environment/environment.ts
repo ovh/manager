@@ -127,8 +127,9 @@ export class Environment implements IEnvironment {
     this.universe = universe;
   }
 
-  setUniverseFromApplicationId(applicationId: ApplicationId): void {
+  setUniverseFromApplicationId(applicationId: ApplicationId): string {
     this.universe = this.applications[applicationId].universe;
+    return this.universe;
   }
 
   getUniverse(): string {
