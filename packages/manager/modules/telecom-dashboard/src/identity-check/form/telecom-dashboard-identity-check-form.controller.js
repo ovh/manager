@@ -82,8 +82,6 @@ export default class IdentityCheckFormCtrl {
   }
 
   cancelProcedure() {
-    this.trackClick('cancel-current-validation');
-
     const { id } = this.procedure ?? {};
 
     this.isCancelling = true;
@@ -117,6 +115,7 @@ export default class IdentityCheckFormCtrl {
 
   confirmCancelProcedure() {
     this.trackPage('account-validation::cancel-validation-popup');
+    this.trackClick('cancel-current-validation');
     this.$uibModal
       .open({
         template: confirmTemplate,
@@ -130,7 +129,6 @@ export default class IdentityCheckFormCtrl {
   }
 
   onCancelCreateProcedureForm() {
-    this.trackClick('cancel');
     this.goToDashboard();
   }
 

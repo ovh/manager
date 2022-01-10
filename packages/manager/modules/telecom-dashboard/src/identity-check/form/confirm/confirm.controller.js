@@ -6,18 +6,18 @@ export default class IdentityCheckFormConfirmCtrl {
   }
 
   confirm() {
-    this.trackClick('confirm');
+    this.trackClick('cancel-validation-popup::confirm');
     this.$uibModalInstance.close();
   }
 
   cancel() {
-    this.trackClick('cancel');
+    this.trackClick('cancel-validation-popup::cancel');
     this.$uibModalInstance.dismiss();
   }
 
   trackClick(nameClick) {
     this.atInternet.trackClick({
-      name: `telecom::telephony::account-validation::cancel-validation-popup::${nameClick}`,
+      name: `telecom::telephony::account-validation::${nameClick}`,
       type: 'action',
     });
   }
