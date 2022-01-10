@@ -53,6 +53,12 @@ export default class {
     return this.goToSoftwareUpdate();
   }
 
+  onGoToAccessRestriction() {
+    this.trackClick(`${this.generalInfoHitTracking}::manage-access`);
+
+    return this.goToAccessRestriction();
+  }
+
   onAnthosConsoleStart() {
     return this.trackClick(
       `${this.generalInfoHitTracking}::launch-anthos-console`,

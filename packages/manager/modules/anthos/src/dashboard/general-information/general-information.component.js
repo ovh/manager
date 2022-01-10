@@ -22,6 +22,7 @@ export default {
     goToOrderPublicIp: '<',
     goToRenameService: '<',
     goToSoftwareUpdate: '<',
+    goToAccessRestriction: '<',
     generalInfoHitTracking: '<',
     trackClick: '<',
     trackingPrefix: '<',

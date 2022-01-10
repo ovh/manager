@@ -37,6 +37,9 @@ export default /* @ngInject */ ($stateProvider) => {
       goToSoftwareUpdate: /* @ngInject */ ($state) => () =>
         $state.go('anthos.dashboard.general-information.software-update'),
 
+      goToAccessRestriction: /* @ngInject */ ($state) => () =>
+        $state.go('anthos.dashboard.general-information.access-restriction'),
+
       generalInfoHitTracking: () => {
         return 'general-information';
       },
