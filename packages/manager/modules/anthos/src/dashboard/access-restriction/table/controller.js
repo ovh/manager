@@ -1,4 +1,5 @@
 import IpBlock from './ipblock.class';
+import { TRACKING_CHUNK } from '../constants';
 
 export default class AnthosHostTableCtrl {
   /* @ngInject */
@@ -33,8 +34,11 @@ export default class AnthosHostTableCtrl {
   }
 
   startAccessRestrictionEdition(ipBlock) {
+    const { id, isNew } = ipBlock;
+    const trackingAction = isNew ? 'add-restriction' : 'edit-restriction';
+    this.trackClick(`${TRACKING_CHUNK}::${trackingAction}`);
+    this.focus[id] = true;
     ipBlock.startEdition();
-    this.focus[ipBlock.id] = true;
   }
 
   cancelAccessRestrictionEdition(ipBlock) {
@@ -42,8 +46,11 @@ export default class AnthosHostTableCtrl {
     this.focus[ipBlock.id] = false;
     if (ipBlock.isNew) {
       const { rows } = this;
+      this.trackClick(`${TRACKING_CHUNK}::add-restriction-cancel`);
       this.canAddAccessRestriction = true;
       rows.splice(rows.indexOf(ipBlock), 1);
+    } else {
+      this.trackClick(`${TRACKING_CHUNK}::edit-restriction-cancel`);
     }
   }
 
@@ -53,12 +60,18 @@ export default class AnthosHostTableCtrl {
     const promise = isNew
       ? this.service.createAccessRestriction(serviceName, value)
       : this.service.updateAccessRestriction(serviceName, oldValue, value);
+    const trackingAction = isNew
+      ? 'add-restriction-confirm'
+      : 'edit-restriction-confirm';
+
+    this.trackClick(`${TRACKING_CHUNK}::${trackingAction}`);
 
     ipBlock.startLoading();
 
     promise
       .then(() => {
-        this.canAddAccessRestriction = isNew;
+        const hasNew = this.rows.find(({ id }) => id === 'new');
+        this.canAddAccessRestriction = isNew || !hasNew;
         ipBlock.cancelEdition().update(value);
         this.showSuccess('save');
       })
@@ -69,6 +82,7 @@ export default class AnthosHostTableCtrl {
   }
 
   deleteAccessRestriction(ipBlock) {
+    this.trackClick(`${TRACKING_CHUNK}::delete-restriction`);
     ipBlock.startLoading();
     this.service
       .deleteAccessRestriction(this.serviceName, ipBlock.value)
