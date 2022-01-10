@@ -27,13 +27,19 @@ export default class Pool {
     });
   }
 
-  setUserName(user) {
-    this.userName = user?.username;
+  setUser(user) {
     this.user = user;
   }
 
-  setDatabaseName(database) {
-    this.databaseName = database?.name;
+  setUserName(name) {
+    this.userName = name;
+  }
+
+  setDatabaseName(name) {
+    this.databaseName = name;
+  }
+
+  setDatabase(database) {
     this.database = database;
   }
 }
