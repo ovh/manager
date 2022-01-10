@@ -1,4 +1,4 @@
-angular.module('App').config(($stateProvider) => {
+angular.module('App').config(($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app', {
     abstract: true,
     url: '',
@@ -36,5 +36,12 @@ angular.module('App').config(($stateProvider) => {
   $stateProvider.state('app.microsoft', {
     abstract: true,
     template: '<div ui-view></div>',
+  });
+
+  $urlRouterProvider.when(/^\/configuration\/email_domain/, () => {
+    window.location.href = window.location.href.replace(
+      '/configuration/email_domain',
+      '/email_domain',
+    );
   });
 });
