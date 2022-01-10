@@ -4,17 +4,17 @@ import { ApplicationId } from '@ovh-ux/manager-config/types/application';
 export function environment(environment: Environment) {
   const listeners: CallableFunction[] = [];
 
-  const triggerListeners = (applicationId: string) => {
+  const triggerListeners = (...params: any[]) => {
     listeners.forEach((listener) => {
-      listener(applicationId);
+      listener.bind(null)(...params);
     });
   };
 
   return {
     getEnvironment: (): Environment => environment,
     setUniverse: (applicationId: ApplicationId) => {
-      environment.setUniverseFromApplicationId(applicationId);
-      triggerListeners(applicationId);
+      const universe = environment.setUniverseFromApplicationId(applicationId);
+      triggerListeners(universe);
     },
     onUniverseChange: (callback: CallableFunction) => {
       listeners.push(callback);
