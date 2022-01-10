@@ -5,6 +5,7 @@ export default {
   bindings: {
     serviceName: '<',
     displayAlerterMessage: '<',
+    trackClick: '<',
   },
   controller,
   template,
