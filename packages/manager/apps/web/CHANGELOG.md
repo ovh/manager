@@ -1,3 +1,12 @@
+## [16.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.3.3...@ovh-ux/manager-web@16.3.4) (2022-01-10)
+
+
+### Bug Fixes
+
+* handle redirection properly for `email_domain` routes ([#6271](https://github.com/ovh/manager/issues/6271)) ([588743e](https://github.com/ovh/manager/commit/588743e612865a068a96b38f4cd6ffeedf1ee02c))
+
+
+
 ## [16.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.3.2...@ovh-ux/manager-web@16.3.3) (2022-01-07)
 
 
