@@ -1,3 +1,12 @@
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.5.0...@ovh-ux/manager-components@1.5.1) (2022-01-11)
+
+
+### Bug Fixes
+
+* **storage.databases:** use current language for date format in metrics ([#5810](https://github.com/ovh/manager/issues/5810)) ([422712f](https://github.com/ovh/manager/commit/422712fe0fca6644bae36fc67b580154430d16e8))
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.4.0...@ovh-ux/manager-components@1.5.0) (2021-12-02)
 
 

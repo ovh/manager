@@ -1,3 +1,17 @@
+# [2.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.18.1...@ovh-ux/manager-vps@2.19.0) (2022-01-11)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([77ad6e5](https://github.com/ovh/manager/commit/77ad6e5353d5262f33298ce7cfe11bba38fdc8ba))
+
+
+### Features
+
+* **veeam.order:** modifications in auto-backup screen ([#6082](https://github.com/ovh/manager/issues/6082)) ([3e6d00d](https://github.com/ovh/manager/commit/3e6d00d9133eb61c33971f84801f54518091f419)), closes [#5935](https://github.com/ovh/manager/issues/5935)
+
+
+
 ## [2.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.18.0...@ovh-ux/manager-vps@2.18.1) (2021-12-14)
 
 

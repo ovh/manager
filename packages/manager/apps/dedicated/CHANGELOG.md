@@ -1,3 +1,18 @@
+# [17.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.8.5...@ovh-ux/manager-dedicated@17.9.0) (2022-01-11)
+
+
+### Bug Fixes
+
+* **veeam:** enable backup report veeam ([#6135](https://github.com/ovh/manager/issues/6135)) ([70c1f15](https://github.com/ovh/manager/commit/70c1f1597e0353002f9d6c65f688659b7bc73eb8))
+
+
+### Features
+
+* **dedicated-cloud.operation:** add refresh button ([#6236](https://github.com/ovh/manager/issues/6236)) ([78df483](https://github.com/ovh/manager/commit/78df48342d87acd359dda456b7e3ad267a6d25d2))
+* **dedicated,web:** all-dom termination enhancements ([#6061](https://github.com/ovh/manager/issues/6061)) ([2e47dff](https://github.com/ovh/manager/commit/2e47dffa32e543dc0b48402c34341d158f3c82de)), closes [#6120](https://github.com/ovh/manager/issues/6120) [#6131](https://github.com/ovh/manager/issues/6131)
+
+
+
 ## [17.8.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.8.4...@ovh-ux/manager-dedicated@17.8.5) (2022-01-11)
 
 

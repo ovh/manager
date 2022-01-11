@@ -1,3 +1,19 @@
+## [5.55.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.55.1...@ovh-ux/manager-pci@5.55.2) (2022-01-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1372] ([#6238](https://github.com/ovh/manager/issues/6238)) ([84ec4c0](https://github.com/ovh/manager/commit/84ec4c0c9d18dd72133be48b1d3384acdde104a1))
+* **i18n:** add missing translations [CDS 1375] ([23e9fcd](https://github.com/ovh/manager/commit/23e9fcdb286743844e2d32b921aa18212c3a1921))
+* **i18n:** add missing translations [CDS 1382] ([d910811](https://github.com/ovh/manager/commit/d910811bad11a863f3b72b0df667d82d0a927838))
+* **i18n:** add missing translations [CDS 1383] ([4028f12](https://github.com/ovh/manager/commit/4028f120da1d772b24213172805b712ee9fe42d4))
+* **notebooks.add:** fix content ([#6179](https://github.com/ovh/manager/issues/6179)) ([738a8e5](https://github.com/ovh/manager/commit/738a8e55f37b65986a10e50fffe7bde82a2b580a))
+* **storage.databases:** fix polling of users status ([#6090](https://github.com/ovh/manager/issues/6090)) ([26fe734](https://github.com/ovh/manager/commit/26fe73463793ec38a6f0eb02bc35d3e26cc4f96e))
+* **storage.databases:** translate metrics titles ([#6186](https://github.com/ovh/manager/issues/6186)) ([328a809](https://github.com/ovh/manager/commit/328a809b37e8f12b57f125f8a53a2f12bd5651ff))
+* **storage.databases:** use current language for date format in metrics ([#5810](https://github.com/ovh/manager/issues/5810)) ([422712f](https://github.com/ovh/manager/commit/422712fe0fca6644bae36fc67b580154430d16e8))
+
+
+
 ## [5.55.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.55.0...@ovh-ux/manager-pci@5.55.1) (2022-01-04)
 
 

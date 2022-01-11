@@ -1,3 +1,13 @@
+## [3.5.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.5.5...@ovh-ux/manager-account-sidebar@3.5.6) (2022-01-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1371] ([#6233](https://github.com/ovh/manager/issues/6233)) ([5426859](https://github.com/ovh/manager/commit/54268594a45d62788e946f297d05ba8a20ed4bc1))
+* **shortcuts:** fix label display ([#6222](https://github.com/ovh/manager/issues/6222)) ([fda2954](https://github.com/ovh/manager/commit/fda2954b014b76ef724172c76f031426e258d403)), closes [#6068](https://github.com/ovh/manager/issues/6068)
+
+
+
 ## [3.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.5.4...@ovh-ux/manager-account-sidebar@3.5.5) (2021-12-01)
 
 
