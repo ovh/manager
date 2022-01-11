@@ -8,5 +8,11 @@
   "pci_databases_metrics_range_label_1W": "1W",
   "pci_databases_metrics_range_label_1M": "1 m",
   "pci_databases_metrics_range_label_1Y": "1 a",
-  "pci_databases_metrics_description": "Per monitorare e gestire l'istanza database, consulta le principali metriche e statistiche disponibili qui sotto. Il loro periodo di conservazione dipende dal tuo piano di servizio."
+  "pci_databases_metrics_description": "Per monitorare e gestire l'istanza database, consulta le principali metriche e statistiche disponibili qui sotto. Il loro periodo di conservazione dipende dal tuo piano di servizio.",
+  "pci_databases_metrics_title_cpu_usage_percent": "CPU utilizzata (%)",
+  "pci_databases_metrics_title_disk_usage_percent": "Spazio disco utilizzato (%)",
+  "pci_databases_metrics_title_diskio_read": "N° di IOPS (lettura)",
+  "pci_databases_metrics_title_diskio_writes": "N° di IOPS (scrittura)",
+  "pci_databases_metrics_title_net_receive": "Ricezione di rete (byte/s)",
+  "pci_databases_metrics_title_net_send": "Trasmissione di rete (byte/s)"
 }

@@ -8,5 +8,11 @@
   "pci_databases_metrics_range_label_1W": "1W",
   "pci_databases_metrics_range_label_1M": "1M",
   "pci_databases_metrics_range_label_1Y": "1Y",
-  "pci_databases_metrics_description": "Pour vous aider à suivre et piloter votre instance de base de données, vous trouverez ses principales métriques et statistiques ci-dessous. Leur durée de rétention dépend de votre offre de service."
+  "pci_databases_metrics_description": "Pour vous aider à suivre et piloter votre instance de base de données, vous trouverez ses principales métriques et statistiques ci-dessous. Leur durée de rétention dépend de votre offre de service.",
+  "pci_databases_metrics_title_cpu_usage_percent": "CPU utilisé (%)",
+  "pci_databases_metrics_title_disk_usage_percent": "Espace disque utilisé (%)",
+  "pci_databases_metrics_title_diskio_read": "Nb d'IOPS (lecture)",
+  "pci_databases_metrics_title_diskio_writes": "Nb d'IOPS (écriture)",
+  "pci_databases_metrics_title_net_receive": "Réception réseau (octets/s)",
+  "pci_databases_metrics_title_net_send": "Transmission réseau (octets/s)"
 }

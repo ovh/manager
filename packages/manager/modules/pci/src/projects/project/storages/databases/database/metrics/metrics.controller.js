@@ -74,7 +74,9 @@ export default class MetricsCtrl {
         chart: new this.PciChartjsFactory(angular.copy(chartOptions)),
       };
 
-      this.metricsData[metric].chart.setTitle(metric);
+      this.metricsData[metric].chart.setTitle(
+        this.$translate.instant(`pci_databases_metrics_title_${metric}`),
+      );
 
       this.metricsData[metric].chart.setTooltipCallback('label', (item) =>
         parseFloat(item.value, 10).toFixed(2),
