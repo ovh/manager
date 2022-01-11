@@ -207,6 +207,14 @@ export default /* @ngInject */ ($stateProvider) => {
           $location.hash('dedicatedCloud_datacenter_backup_header');
           $anchorScroll();
         },
+        canOrderBackup: /* @ngInject */ (ovhFeatureFlipping) =>
+          ovhFeatureFlipping
+            .checkFeatureAvailability('dedicated-cloud:canOrderBackup')
+            .then((featureAvailability) =>
+              featureAvailability.isFeatureAvailable(
+                'dedicated-cloud:canOrderBackup',
+              ),
+            ),
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('managed_baremetal_datacenters_datacenter_backup'),
       },

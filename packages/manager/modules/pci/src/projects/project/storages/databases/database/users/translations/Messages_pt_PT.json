@@ -1,0 +1,23 @@
+{
+  "pci_databases_users_title": "Utilizadores e funções",
+  "pci_databases_users_username_label": "Nome do utilizador",
+  "pci_databases_users_description_label": "Descrição",
+  "pci_databases_users_role_label": "Funções",
+  "pci_databases_users_createdAt_label": "Data de criação",
+  "pci_databases_users_status_label": "Estado",
+  "pci_databases_users_status_creating": "Criação em curso",
+  "pci_databases_users_status_ok": "Ativado",
+  "pci_databases_users_status_deleting": "Eliminação em curso",
+  "pci_databases_users_status_deleted": "Eliminado",
+  "pci_databases_users_status_updating": "Atualização em curso",
+  "pci_databases_users_status_ready": "Ativado",
+  "pci_databases_users_status_error": "Erro",
+  "pci_databases_users_status_error_inconsistent_spec": "Erro",
+  "pci_databases_users_status_pending": "Em espera",
+  "pci_databases_users_modify_password_action_label": "Gerar nova palavra-passe",
+  "pci_databases_users_show_key_action_label": "Mostrar a chave de acesso",
+  "pci_databases_users_show_cert_action_label": "Mostrar o certificado",
+  "pci_databases_users_show_user_informations_action_label": "Apresentar as informações",
+  "pci_databases_users_delete_action_label": "Eliminar",
+  "pci_databases_users_add_action_label": "Adicionar um utilizador"
+}

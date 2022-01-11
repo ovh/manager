@@ -9,7 +9,7 @@
   "pci_databases_users_add_error_save": "Wystąpił błąd podczas tworzenia użytkownika {{user}}: {{message}}.",
   "pci_databases_users_add_cancel": "Anuluj",
   "pci_databases_users_add_categories_label": "Kategorie",
-  "pci_databases_users_add_commands_label": "Polecenia",
+  "pci_databases_users_add_commands_label": "Komendy",
   "pci_databases_users_add_channels_label": "Kanały",
   "pci_databases_users_add_keys_label": "Klucze",
   "pci_databases_users_add_keys_button_label": "Dodaj klucz",

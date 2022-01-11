@@ -1,6 +1,7 @@
 import set from 'lodash/set';
 import uniqueId from 'lodash/uniqueId';
-import Chart from 'chart.js';
+import moment from 'moment';
+import Chart from 'chart.js/dist/Chart';
 
 import template from './chartjs.html';
 
@@ -19,7 +20,15 @@ export default /* @ngInject */ () => ({
     canvas.id = uniqueId('pciChartjs');
     set(controller, 'ctx', canvas.getContext('2d'));
   },
-  controller: /* @ngInject */ function directiveController($scope) {
+  controller: /* @ngInject */ function directiveController($scope, $translate) {
+    const lang = $translate.use();
+    let language;
+    if (['en_GB', 'es_US', 'fr_CA'].includes(lang)) {
+      language = lang.toLowerCase().replace('_', '-');
+    } else {
+      [language] = lang.split('_');
+    }
+    moment.locale(language);
     this.createChart = function createChart(data) {
       if (this.chartInstance) {
         this.chartInstance.destroy();

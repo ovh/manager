@@ -18,7 +18,7 @@
   "pci_notebook_add_privacy_datacenter_location_description": "Seleziona una localizzazione",
   "pci_notebook_add_resources_title": "Risorse",
   "pci_notebook_add_resources_title_selected": "Risorsa scelta: {{ flavor }} - x{{ quantity }}",
-  "pci_notebook_add_attach_title": "Associa un container",
+  "pci_notebook_add_attach_title": "Associa un container o un repository Git",
   "pci_notebook_add_attach_title_selected": "Container associati: {{ quantity }} volumi associati",
   "pci_notebook_add_review_title": "Riepilogo",
   "pci_notebook_add_notebook_create": "Crea un notebook",

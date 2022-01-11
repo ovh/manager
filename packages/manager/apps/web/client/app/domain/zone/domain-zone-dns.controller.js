@@ -62,7 +62,9 @@ export default class DomainTabZoneDnsCtrl {
 
     this.checkAllowModification(this.domain.name);
     this.getZoneDns(this.domain.name);
-    this.displayPropagationInfo(this.domain.name);
+    if (!this.domain.isExpired) {
+      this.displayPropagationInfo(this.domain.name);
+    }
   }
 
   // Searching --------------------------------------------------------------

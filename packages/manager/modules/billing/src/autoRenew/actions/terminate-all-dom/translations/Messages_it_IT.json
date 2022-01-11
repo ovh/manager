@@ -1,11 +1,14 @@
 {
   "autorenew_all_dom_terminate_title": "Hai chiesto la disattivazione del tuo pack alldom",
-  "autorenew_all_dom_terminate_info": "Attenzione: la disattivazione di questo pack non comporta anche la dismissione dei domini ad esso associati.",
+  "autorenew_all_dom_terminate_effect_on_domains": "Attenzione: la disattivazione di questo pack non comporta anche la dismissione dei domini ad esso associati.",
+  "autorenew_all_dom_terminate_domain_renewal_info": "I domini non disattivati inclusi nel pack saranno rinnovati gratuitamente fino alla scadenza definitiva del pacchetto. A partire da questa data, i domini non disattivati saranno fatturati individualmente.",
   "autorenew_all_dom_terminate_choose_option": "Seleziona qui sotto i domini che vuoi disattivare:",
   "autorenew_all_dom_terminate_select_all_dom": "Pack AllDom",
   "autorenew_all_dom_terminate_select_all_domains": "Seleziona tutto",
   "autorenew_all_dom_terminate_confirm": "Conferma",
   "autorenew_all_dom_terminate_cancel": "Annulla",
   "autorenew_all_dom_terminate_success": "La tua richiesta di disattivazione è stata presa in carico.",
-  "autorenew_all_dom_terminate_error": "Non è stato possibile prendere in carico la richiesta di disattivazione per uno o più domini. Ti preghiamo di riprovare."
+  "autorenew_all_dom_terminate_error": "Non è stato possibile prendere in carico la richiesta di disattivazione per uno o più domini. Ti preghiamo di riprovare.",
+  "autorenew_all_dom_domain_free_if_renewed": "Rinnovo gratuito solo se il pack Alldom {{ allDom }} viene rinnovato prima del {{ allDomExpiration }}",
+  "autorenew_all_dom_domain_free": "Rinnovo gratuito perché incluso nel pack Alldom"
 }

@@ -1,0 +1,23 @@
+{
+  "pci_databases_users_title": "Użytkownicy &amp; Role",
+  "pci_databases_users_username_label": "Nazwa użytkownika",
+  "pci_databases_users_description_label": "Opis",
+  "pci_databases_users_role_label": "Role",
+  "pci_databases_users_createdAt_label": "Data utworzenia",
+  "pci_databases_users_status_label": "Status",
+  "pci_databases_users_status_creating": "Trwa tworzenie",
+  "pci_databases_users_status_ok": "Aktywny",
+  "pci_databases_users_status_deleting": "Trwa usuwanie",
+  "pci_databases_users_status_deleted": "Usunięty",
+  "pci_databases_users_status_updating": "Trwa aktualizacja",
+  "pci_databases_users_status_ready": "Aktywny",
+  "pci_databases_users_status_error": "Błąd",
+  "pci_databases_users_status_error_inconsistent_spec": "Błąd",
+  "pci_databases_users_status_pending": "Oczekujące",
+  "pci_databases_users_modify_password_action_label": "Wygeneruj ponownie hasło",
+  "pci_databases_users_show_key_action_label": "Wyświetl klucz dostępu",
+  "pci_databases_users_show_cert_action_label": "Wyświetl certyfikat",
+  "pci_databases_users_show_user_informations_action_label": "Wyświetl informacje",
+  "pci_databases_users_delete_action_label": "Usuń",
+  "pci_databases_users_add_action_label": "Dodaj użytkownika"
+}

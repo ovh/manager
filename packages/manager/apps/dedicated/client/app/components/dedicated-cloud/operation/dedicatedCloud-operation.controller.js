@@ -48,6 +48,10 @@ export default class {
       });
   }
 
+  refreshOperations() {
+    this.ouiDatagridService.refresh('operationsDatagrid', true);
+  }
+
   progressionFilterChanged() {
     this.ouiDatagridService.refresh('operationsDatagrid', true);
   }

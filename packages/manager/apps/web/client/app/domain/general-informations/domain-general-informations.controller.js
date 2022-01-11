@@ -272,13 +272,16 @@ export default class DomainTabGeneralInformationsCtrl {
         this.allDom = allDom;
         this.$q
           .all({
-            allDomDomains: this.WucAllDom.getDomains(serviceName),
+            allDomDomains: this.WucAllDom.getDomainsWithServiceInfo(
+              serviceName,
+            ),
             domains: this.Domain.getDomains(),
           })
           .then(({ allDomDomains, domains }) => {
             this.allDomDomains = map(allDomDomains, (domain) => ({
-              name: domain,
+              name: domain.name,
               isIncluded: domains.indexOf(domain) !== -1,
+              isTerminated: domain?.serviceInfo.renew.deleteAtExpiration,
             }));
           })
           .catch((err) =>

@@ -9,7 +9,7 @@
   "pci_databases_users_add_error_save": "Ocorreu um erro ao criar o utilizador {{ user }}: {{ message }}.",
   "pci_databases_users_add_cancel": "Cancelar",
   "pci_databases_users_add_categories_label": "Categorias",
-  "pci_databases_users_add_commands_label": "Comandos",
+  "pci_databases_users_add_commands_label": "Commands",
   "pci_databases_users_add_channels_label": "Canais",
   "pci_databases_users_add_keys_label": "Chaves",
   "pci_databases_users_add_keys_button_label": "Adicionar uma chave",

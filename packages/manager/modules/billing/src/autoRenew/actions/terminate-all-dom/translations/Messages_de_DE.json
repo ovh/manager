@@ -1,11 +1,14 @@
 {
   "autorenew_all_dom_terminate_title": "Sie haben die Kündigung Ihres AllDom Pakets beantragt",
-  "autorenew_all_dom_terminate_info": "Achtung: Die Kündigung dieses Pakets hat nicht die Kündigung der damit verbundenen Domains zur Folge.",
+  "autorenew_all_dom_terminate_effect_on_domains": "Bitte beachten Sie: Mit der Kündigung dieses Pakets werden nicht die damit verbundenen Domains gekündigt.",
+  "autorenew_all_dom_terminate_domain_renewal_info": "Die darin enthaltenen nicht gekündigten Domains werden bis zum endgültigen Ablauf Ihres Pakets kostenlos verlängert. Nach diesem Datum werden Ihre nicht gekündigten Domains einzeln abgerechnet.",
   "autorenew_all_dom_terminate_choose_option": "Bitte wählen Sie die Domains aus, die Sie kündigen möchten:",
   "autorenew_all_dom_terminate_select_all_dom": "AllDom Paket",
   "autorenew_all_dom_terminate_select_all_domains": "Alles auswählen",
   "autorenew_all_dom_terminate_confirm": "Bestätigen",
   "autorenew_all_dom_terminate_cancel": "Abbrechen",
   "autorenew_all_dom_terminate_success": "Ihre Kündigungsanfrage wurde erfolgreich durchgeführt.",
-  "autorenew_all_dom_terminate_error": "Ihre Kündigungsanfrage konnte für eine oder mehrere Domains nicht durchgeführt werden. Bitte versuchen Sie es später erneut."
+  "autorenew_all_dom_terminate_error": "Ihre Kündigungsanfrage konnte für eine oder mehrere Domains nicht durchgeführt werden. Bitte versuchen Sie es später erneut.",
+  "autorenew_all_dom_domain_free_if_renewed": "Eine kostenlose Verlängerung erfolgt nur, wenn das Paket AllDom {{ allDom }} vor dem {{ allDomExpiration }} verlängert wird.",
+  "autorenew_all_dom_domain_free": "Die Verlängerung ist kostenlos, da im Paket AllDom inklusive"
 }

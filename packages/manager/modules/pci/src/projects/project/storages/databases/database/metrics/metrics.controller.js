@@ -1,12 +1,13 @@
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
+import moment from 'moment';
 import {
   METRICS_TIME_RANGES,
   CHART_METRICS_OPTIONS,
   CHART_METRICS_REFRESH_INTERVAL,
 } from '../../databases.constants';
 
-export default class {
+export default class MetricsCtrl {
   /* @ngInject */
   constructor($translate, CucCloudMessage, DatabaseService, PciChartjsFactory) {
     this.$translate = $translate;
@@ -56,13 +57,26 @@ export default class {
 
   initMetrics() {
     this.availableMetrics.forEach((metric) => {
+      const chartOptions = CHART_METRICS_OPTIONS.chart;
+      chartOptions.options.scales.xAxes[0].ticks = {
+        callback: (value, index, values) => {
+          return moment(values[index].value).format('L LT');
+        },
+      };
+      chartOptions.options.tooltips.callbacks = {
+        title(tooltipItem, data) {
+          return data.datasets[tooltipItem[0].datasetIndex].data[
+            tooltipItem[0].index
+          ].x.format('L LT');
+        },
+      };
       this.metricsData[metric] = {
-        chart: new this.PciChartjsFactory(
-          angular.copy(CHART_METRICS_OPTIONS.chart),
-        ),
+        chart: new this.PciChartjsFactory(angular.copy(chartOptions)),
       };
 
-      this.metricsData[metric].chart.setTitle(metric);
+      this.metricsData[metric].chart.setTitle(
+        this.$translate.instant(`pci_databases_metrics_title_${metric}`),
+      );
 
       this.metricsData[metric].chart.setTooltipCallback('label', (item) =>
         parseFloat(item.value, 10).toFixed(2),

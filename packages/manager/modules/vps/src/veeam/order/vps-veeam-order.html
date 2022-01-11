@@ -11,28 +11,31 @@
 
     <div class="row" data-ng-if="!$ctrl.loading.init && !$ctrl.hasInitError">
         <div class="col-lg-8">
-            <oui-stepper data-on-finish="$ctrl.onVeeamOrderStepperFinish()">
-                <oui-step-form
-                    data-header="{{ :: 'vps_common_order' | translate }}"
-                    data-submit-text="{{ :: 'vps_common_order' | translate }}"
-                >
-                    <p
-                        data-translate="vps_configuration_veeam_order_step1_info"
-                    ></p>
+            <p data-translate="vps_configuration_veeam_order_backup_info"></p>
+            <p
+                class="pb-3 border-bottom"
+                data-translate="vps_configuration_veeam_order_schedule_info"
+            ></p>
+            <p data-translate="vps_configuration_veeam_order_step1_info"></p>
 
-                    <p
-                        data-translate="vps_configuration_veeam_order_step1_info2"
-                        data-translate-values="{
-                            price: $ctrl.getVeeamMonthlyPrice($ctrl.veeamOption).text,
-                            duration: ('vps_configuration_veeam_order_step1_info2_' + $ctrl.constructor.getVeeamDuration($ctrl.veeamOption)| translate)
-                        }"
-                    ></p>
-
-                    <p
-                        data-translate="vps_configuration_veeam_order_explain"
-                    ></p>
-                </oui-step-form>
-            </oui-stepper>
+            <p
+                data-translate="vps_configuration_veeam_order_step1_info2"
+                data-translate-values="{
+                    price: $ctrl.getVeeamMonthlyPrice($ctrl.veeamOption).text,
+                    duration: ('vps_configuration_veeam_order_step1_info2_' + $ctrl.constructor.getVeeamDuration($ctrl.veeamOption)| translate)
+                }"
+            ></p>
+            <button
+                type="button"
+                data-ng-click="$ctrl.onVeeamOrderStepperFinish()"
+                class="oui-button oui-button_primary"
+            >
+                <span data-translate="vps_common_order"></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </button>
         </div>
     </div>
 </section>
