@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-import head from 'lodash/head';
 import ASSET_MONGO_DB from './assets/mongodb.png';
 import ASSET_KAFKA from './assets/kafka.png';
 import ASSET_MYSQL from './assets/mysql.png';
@@ -84,12 +82,6 @@ export const CHART_METRICS_OPTIONS = {
       tooltips: {
         mode: 'label',
         intersect: false,
-        callbacks: {
-          title(data) {
-            const timestamp = moment(get(head(data), 'xLabel'));
-            return timestamp.format('L LT');
-          },
-        },
       },
       scales: {
         yAxes: [
