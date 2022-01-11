@@ -21,6 +21,7 @@ import template from './new-account-form-component.html';
 
 export default {
   bindings: {
+    action: '@',
     model: '<',
     readonly: '<',
     onSubmit: '&', // on create callback
@@ -101,6 +102,7 @@ export default {
         params = omit(params, 'customerCode');
         params = omit(params, 'commercialCommunicationsApproval');
         params = omit(params, 'managerLanguage');
+        params.action = this.action;
 
         this.isLoading = true;
 
