@@ -32,5 +32,5 @@
   "hosting_cdn_shared_modal_add_rule_field_resource_uri": "URI",
   "hosting_cdn_shared_modal_add_rule_field_resource_uri_info": "Bitte geben Sie einen gültigen URI für Ihre Website an, zum Beispiel: /product/howto.pdf",
   "hosting_cdn_shared_modal_add_rule_field_resource": "Ressource",
-  "hosting_cdn_shared_modal_add_rule_field_resource_type_info": "Das Angebot CDN Basic lässt nur eine Dateierweiterung zu."
+  "hosting_cdn_shared_modal_add_rule_field_resource_type_info": "CDN Basic und CDN Security lassen nur eine Dateierweiterung zu."
 }
