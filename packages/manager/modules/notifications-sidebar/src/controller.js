@@ -26,7 +26,9 @@ export default class NotificationsCtrl {
     this.isOpen = false;
     this.NavbarNotifications = NavbarNotifications;
     this.translations = ouiNavbarConfiguration.translations;
-
+    this.$translate.refresh().then(() => {
+      this.translations = ouiNavbarConfiguration.translations;
+    });
     this.REGION = this.coreConfig.getRegion();
   }
 
