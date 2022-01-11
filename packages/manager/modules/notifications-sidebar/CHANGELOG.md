@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-notifications-sidebar@1.3.0...@ovh-ux/manager-notifications-sidebar@1.3.1) (2022-01-11)
+
+
+### Bug Fixes
+
+* **notification:** fix no notification translation ([#6287](https://github.com/ovh/manager/issues/6287)) ([bf1fd55](https://github.com/ovh/manager/commit/bf1fd55fd6d95a643cd2c3fb1fc0097cc23747fa))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-notifications-sidebar@1.2.1...@ovh-ux/manager-notifications-sidebar@1.3.0) (2021-08-25)
 
 

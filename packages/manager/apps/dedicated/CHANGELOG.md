@@ -1,3 +1,12 @@
+## [17.8.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.8.4...@ovh-ux/manager-dedicated@17.8.5) (2022-01-11)
+
+
+### Bug Fixes
+
+* **account.user:** add param `action` for account edition ([#6285](https://github.com/ovh/manager/issues/6285)) ([45b6f41](https://github.com/ovh/manager/commit/45b6f4100576abdc16fbe9247f01001d7f686f8e))
+
+
+
 ## [17.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.8.3...@ovh-ux/manager-dedicated@17.8.4) (2022-01-10)
 
 
