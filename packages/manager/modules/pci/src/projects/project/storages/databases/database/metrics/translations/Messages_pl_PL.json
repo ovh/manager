@@ -8,5 +8,11 @@
   "pci_databases_metrics_range_label_1W": "1 W",
   "pci_databases_metrics_range_label_1M": "1 M",
   "pci_databases_metrics_range_label_1Y": "1 Y",
-  "pci_databases_metrics_description": "Aby ułatwić Ci monitorowanie i zarządzanie instancją bazy danych, poniżej znajdziesz jej najważniejsze metryki i statystyki. Czas ich retencji zależy od Twojej oferty usługi."
+  "pci_databases_metrics_description": "Aby ułatwić Ci monitorowanie i zarządzanie instancją bazy danych, poniżej znajdziesz jej najważniejsze metryki i statystyki. Czas ich retencji zależy od Twojej oferty usługi.",
+  "pci_databases_metrics_title_cpu_usage_percent": "Poziom wykorzystania procesora (%)",
+  "pci_databases_metrics_title_disk_usage_percent": "Poziom wykorzystania przestrzeni dyskowej (%)",
+  "pci_databases_metrics_title_diskio_read": "Liczba IOPS (odczyt)",
+  "pci_databases_metrics_title_diskio_writes": "Liczba IOPS (zapis)",
+  "pci_databases_metrics_title_net_receive": "Odbiór danych w sieci (bajty/s)",
+  "pci_databases_metrics_title_net_send": "Transmisja danych w sieci (bajty/s)"
 }
