@@ -1,3 +1,22 @@
+# [16.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.3.4...@ovh-ux/manager-web@16.4.0) (2022-01-11)
+
+
+### Bug Fixes
+
+* **domain:** display propagation info on non-dismissable banner ([#6151](https://github.com/ovh/manager/issues/6151)) ([924483f](https://github.com/ovh/manager/commit/924483f744ff8171654ca58a4b956d1c72eec8ff))
+* **domain:** removal of unnecessary error message ([#6150](https://github.com/ovh/manager/issues/6150)) ([27cee21](https://github.com/ovh/manager/commit/27cee21197d660444487513c762a9434d7abaa48))
+* **i18n:** add missing translations [CDS 1369] ([3d37bfa](https://github.com/ovh/manager/commit/3d37bfa133115b1ce1cd083d0d996af9ac18b9cc))
+* **i18n:** add missing translations [CDS 1381] ([#6276](https://github.com/ovh/manager/issues/6276)) ([506d240](https://github.com/ovh/manager/commit/506d24014be42a108f3bdecb5dce2a347d0fe59e))
+* **private-database.whitelist.add:** fix checkbox icon position ([#6215](https://github.com/ovh/manager/issues/6215)) ([13713cd](https://github.com/ovh/manager/commit/13713cd67396204897fcdbba5076896c6e6b2f93))
+* **webhosting.ftp:** primary login null when multiple users ([#5949](https://github.com/ovh/manager/issues/5949)) ([2a0d05e](https://github.com/ovh/manager/commit/2a0d05e0878c4c1dedfe0bfde666950af7d2f8e2))
+
+
+### Features
+
+* **dedicated,web:** all-dom termination enhancements ([#6061](https://github.com/ovh/manager/issues/6061)) ([2e47dff](https://github.com/ovh/manager/commit/2e47dffa32e543dc0b48402c34341d158f3c82de)), closes [#6120](https://github.com/ovh/manager/issues/6120) [#6131](https://github.com/ovh/manager/issues/6131)
+
+
+
 ## [16.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.3.3...@ovh-ux/manager-web@16.3.4) (2022-01-10)
 
 

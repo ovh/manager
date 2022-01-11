@@ -1,3 +1,17 @@
+# [0.8.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.7.0-alpha.4...@ovh-ux/manager-billing@0.8.0-alpha.0) (2022-01-11)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([77ad6e5](https://github.com/ovh/manager/commit/77ad6e5353d5262f33298ce7cfe11bba38fdc8ba))
+
+
+### Features
+
+* **dedicated,web:** all-dom termination enhancements ([#6061](https://github.com/ovh/manager/issues/6061)) ([2e47dff](https://github.com/ovh/manager/commit/2e47dffa32e543dc0b48402c34341d158f3c82de)), closes [#6120](https://github.com/ovh/manager/issues/6120) [#6131](https://github.com/ovh/manager/issues/6131)
+
+
+
 # [0.7.0-alpha.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.7.0-alpha.3...@ovh-ux/manager-billing@0.7.0-alpha.4) (2022-01-03)
 
 
