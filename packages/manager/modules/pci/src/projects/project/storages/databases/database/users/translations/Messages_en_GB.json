@@ -1,0 +1,23 @@
+{
+  "pci_databases_users_title": "Users &amp; Roles",
+  "pci_databases_users_username_label": "Username",
+  "pci_databases_users_description_label": "Description",
+  "pci_databases_users_role_label": "Roles",
+  "pci_databases_users_createdAt_label": "Creation date",
+  "pci_databases_users_status_label": "Status",
+  "pci_databases_users_status_creating": "Creating...",
+  "pci_databases_users_status_ok": "Enabled",
+  "pci_databases_users_status_deleting": "Deleting...",
+  "pci_databases_users_status_deleted": "Deleted",
+  "pci_databases_users_status_updating": "Updating...",
+  "pci_databases_users_status_ready": "Enabled",
+  "pci_databases_users_status_error": "Error",
+  "pci_databases_users_status_error_inconsistent_spec": "Error",
+  "pci_databases_users_status_pending": "Queued",
+  "pci_databases_users_modify_password_action_label": "Reset the password",
+  "pci_databases_users_show_key_action_label": "Show access key",
+  "pci_databases_users_show_cert_action_label": "View certificate",
+  "pci_databases_users_show_user_informations_action_label": "View details",
+  "pci_databases_users_delete_action_label": "Delete",
+  "pci_databases_users_add_action_label": "Add user"
+}
