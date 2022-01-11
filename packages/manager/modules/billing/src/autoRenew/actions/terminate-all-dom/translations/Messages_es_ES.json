@@ -1,6 +1,7 @@
 {
   "autorenew_all_dom_terminate_title": "Ha solicitado la baja de su pack AllDom.",
-  "autorenew_all_dom_terminate_info": "Atención: la baja de este pack no conlleva la baja de los dominios asociados.",
+  "autorenew_all_dom_terminate_effect_on_domains": "Atención: la baja de este pack no conlleva la baja de los dominios asociados.",
+  "autorenew_all_dom_terminate_domain_renewal_info": "Los dominios incluidos el pack que no hayan sido dados de baja se renovarán de forma gratuita hasta la expiración definitiva del pack. A partir de esa fecha, los dominios que no hayan sido dados de baja se facturarán por separado.",
   "autorenew_all_dom_terminate_choose_option": "Seleccione los dominios que quiere dar de baja:",
   "autorenew_all_dom_terminate_select_all_dom": "Pack AllDom",
   "autorenew_all_dom_terminate_select_all_domains": "Seleccionar todo",
@@ -8,8 +9,6 @@
   "autorenew_all_dom_terminate_cancel": "Cancelar",
   "autorenew_all_dom_terminate_success": "La solicitud de baja se ha enviado correctamente.",
   "autorenew_all_dom_terminate_error": "La solicitud de baja no se ha podido enviar para uno o varios dominios. Por favor, vuelva a intentarlo más adelante.",
-  "autorenew_all_dom_terminate_effect_on_domains": "Atención: la baja de este pack no conlleva la baja de los dominios asociados.",
-  "autorenew_all_dom_terminate_domain_renewal_info": "Los dominios incluidos el pack que no hayan sido dados de baja se renovarán de forma gratuita hasta la expiración definitiva del pack. A partir de esa fecha, los dominios que no hayan sido dados de baja se facturarán por separado.",
   "autorenew_all_dom_domain_free_if_renewed": "Renovación gratuita solo si el pack AllDom {{ allDom }} se renueva antes del {{ allDomExpiration }}.",
   "autorenew_all_dom_domain_free": "Renovación gratuita por estar incluido en el pack AllDom."
 }
