@@ -41,8 +41,6 @@ export default class IdentityCheckFormCtrl {
   }
 
   $onInit() {
-    this.trackPage('account-validation');
-
     this.IdentityCheckService.getLastInProgressProcedure()
       .then((procedure) => {
         this.procedure = procedure;
@@ -117,6 +115,7 @@ export default class IdentityCheckFormCtrl {
 
   confirmCancelProcedure() {
     this.trackPage('account-validation::cancel-validation-popup');
+    this.trackClick('cancel-current-validation');
     this.$uibModal
       .open({
         template: confirmTemplate,
@@ -130,7 +129,6 @@ export default class IdentityCheckFormCtrl {
   }
 
   onCancelCreateProcedureForm() {
-    this.trackClick('cancel');
     this.goToDashboard();
   }
 

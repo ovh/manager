@@ -16,7 +16,6 @@ export default class IdentityCheckMessageCtrl {
     this.IdentityCheckService.isProcedureRequired()
       .then((isProcedureRequired) => {
         this.isMessageShown = isProcedureRequired;
-        // tracking impression message
         if (this.isMessageShown) {
           this.atInternet.trackImpression({
             campaignId: '[telecom-manager-migration]',
@@ -32,9 +31,11 @@ export default class IdentityCheckMessageCtrl {
 
   trackingImpressionClick() {
     this.atInternet.trackClickImpression({
-      campaignId: '[telecom-manager-migration]',
-      creation: '[identity-check]',
-      detailedPlacement: '[telecom::dashboard]',
+      click: {
+        campaignId: '[telecom-manager-migration]',
+        creation: '[identity-check]',
+        detailedPlacement: '[telecom::dashboard]',
+      },
     });
   }
 }
