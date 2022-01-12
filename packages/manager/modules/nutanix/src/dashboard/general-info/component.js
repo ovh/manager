@@ -5,6 +5,7 @@ export default {
   bindings: {
     cluster: '<',
     goToEditName: '<',
+    goToRedeploy: '<',
     server: '<',
     serviceDetails: '<',
     serviceInfo: '<',

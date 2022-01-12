@@ -1,4 +1,5 @@
 import { TRAVAUX_LINK } from './constants';
+import { CLUSTER_STATUS } from '../../constants';
 
 export default class NutanixGeneralInfoCtrl {
   /* @ngInject */
@@ -13,6 +14,7 @@ export default class NutanixGeneralInfoCtrl {
   $onInit() {
     this.loadServcesDetails();
     this.technicalDetails = this.getTechnicalDetails();
+    this.clusterRedeploying = this.cluster.status === CLUSTER_STATUS.DEPLOYING;
   }
 
   loadServcesDetails() {
