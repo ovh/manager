@@ -21,6 +21,7 @@ export default {
     projectId: '<',
     trackDatabases: '<',
     nodesPerRow: '<',
+    showPaymentWarning: '<',
   },
   controller,
   template,
