@@ -70,7 +70,7 @@ export default class OverTheBoxAutoconfigureDhcp {
       !this.config.poolSize &&
       !this.config.priority
     ) {
-      return null;
+      return this.$q.resolve(null);
     }
 
     const params = {
@@ -182,7 +182,7 @@ export default class OverTheBoxAutoconfigureDhcp {
       !this.staticLease.mac &&
       !this.staticLease.priority
     ) {
-      return null;
+      return this.$q.resolve(null);
     }
 
     const params = {
