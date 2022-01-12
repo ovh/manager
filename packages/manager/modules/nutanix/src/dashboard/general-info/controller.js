@@ -1,4 +1,5 @@
 import { TRAVAUX_LINK, PRIVATE_BANDWIDTH_SERVICE_PREFIX } from './constants';
+import { CLUSTER_STATUS } from '../../constants';
 
 export default class NutanixGeneralInfoCtrl {
   /* @ngInject */
@@ -14,6 +15,7 @@ export default class NutanixGeneralInfoCtrl {
     this.loadServcesDetails();
     this.technicalDetails = this.getTechnicalDetails();
     this.setPrivateBandwidthServiceId();
+    this.clusterRedeploying = this.cluster.status === CLUSTER_STATUS.DEPLOYING;
   }
 
   loadServcesDetails() {
