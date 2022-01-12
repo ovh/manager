@@ -3,8 +3,16 @@ import { buildURL } from '@ovh-ux/ufrontend';
 import { ParamValueType } from '@ovh-ux/ufrontend/dist/types/url-builder';
 import { ApplicationId } from '@ovh-ux/manager-config/types/application';
 
-export interface navigateToOptions {
+import ShellClient from '../../client/shell-client';
+
+export interface navigationOptions {
   isTop?: boolean;
+}
+
+export interface ClientNavigationApi {
+  getURL: CallableFunction;
+  navigateTo: CallableFunction;
+  reload: CallableFunction;
 }
 
 export function navigation(environment: Environment) {
@@ -39,15 +47,49 @@ export function navigation(environment: Environment) {
       application: ApplicationId,
       path: string,
       params: Record<string, ParamValueType>,
-      options: navigateToOptions,
+      options: navigationOptions,
     ): void => {
       const windowToRefresh = getWindow(options.isTop);
       windowToRefresh.location.assign(getURL(application, path, params));
     },
-    reload: (isTop = true): void => {
-      const windowToReload = getWindow(isTop);
+    reload: (options: navigationOptions): void => {
+      const windowToReload = getWindow(options.isTop);
       windowToReload.location.reload();
     },
+  };
+}
+
+export function clientNavigation(
+  shellClient: ShellClient,
+): ClientNavigationApi {
+  return {
+    getURL: (
+      application: ApplicationId,
+      path: string,
+      params: Record<string, ParamValueType>,
+    ) =>
+      shellClient.invokePluginMethod({
+        plugin: 'navigation',
+        method: 'getURL',
+        args: [application, path, params],
+      }),
+    navigateTo: (
+      application: ApplicationId,
+      path: string,
+      params: Record<string, ParamValueType>,
+      options: navigationOptions,
+    ) =>
+      shellClient.invokePluginMethod({
+        plugin: 'navigation',
+        method: 'navigateTo',
+        args: [application, path, params, options],
+      }),
+    reload: (options: navigationOptions) =>
+      shellClient.invokePluginMethod({
+        plugin: 'navigation',
+        method: 'reload',
+        args: [options],
+      }),
   };
 }
 

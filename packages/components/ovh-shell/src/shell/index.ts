@@ -4,6 +4,7 @@ import Shell from './shell';
 import DirectClientMessageBus from '../message-bus/direct-client';
 import authenticationPlugin from '../plugin/auth';
 import environmentPlugin from '../plugin/environment';
+import navigationPlugin from '../plugin/navigation';
 import { i18n as i18nPlugin } from '../plugin/i18n';
 import { UXPlugin, UXPluginType } from '../plugin/ux';
 
@@ -32,6 +33,11 @@ export function initShell(): Promise<Shell> {
     shell
       .getPluginManager()
       .registerPlugin('ux', uxPlugin as UXPluginType<UXPlugin>);
+
+    // register navigation plugin
+    shell
+      .getPluginManager()
+      .registerPlugin('navigation', navigationPlugin(environment));
 
     return shell;
   });
