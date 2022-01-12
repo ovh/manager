@@ -1,0 +1,35 @@
+<form
+    id="nutanixRedeployConfirm"
+    name="nutanixRedeployConfirm"
+    data-ng-submit="nutanixRedeployConfirm.$valid && $ctrl.redeployCluster()"
+    novalidate
+>
+    <oui-modal
+        data-primary-label="{{ ::'nutanix_redeploy_confirm_primary_button_label' | translate }}"
+        data-primary-disabled="!$ctrl.redeploy"
+        data-secondary-action="$ctrl.cancelRedeploy()"
+        data-secondary-label="{{ ::'nutanix_redeploy_confirm_secondary_button_label' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isRedeploying"
+        data-type="warning"
+        data-heading="{{ ::'nutanix_redeploy_confirm_title' | translate }}"
+    >
+        <p data-translate="nutanix_redeploy_confirm_description"></p>
+        <oui-message data-type="warning">
+            <span data-translate="nutanix_redeploy_confirm_warning"></span>
+        </oui-message>
+        <oui-field
+            class="mt-2"
+            data-label="{{:: 'nutanix_redeploy_confirm_redeploy_label' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                name="redeploy"
+                data-ng-model="$ctrl.redeploy"
+                data-ng-pattern="$ctrl.REDEPLOY_INPUT"
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>

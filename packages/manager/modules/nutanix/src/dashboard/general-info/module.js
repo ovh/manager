@@ -13,6 +13,7 @@ import nutanixNetworkTile from '../component/network-tile/network-tile.module';
 import routing from './routing';
 import component from './component';
 import editName from './edit-display-name';
+import redeploy from './redeploy';
 
 const moduleName = 'ovhManagerNutanixGeneralInfo';
 
@@ -27,6 +28,7 @@ angular
     nutanixNetworkTile,
     region,
     editName,
+    redeploy,
   ])
   .config(routing)
   .component('nutanixGeneralInfo', component)

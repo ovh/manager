@@ -1,3 +1,6 @@
+<oui-message data-ng-if="$ctrl.clusterRedeploying" class="mb-3" type="warning">
+    <span data-translate="nutanix_dashboard_cluster_deploying_info"></span>
+</oui-message>
 <div class="row d-md-flex mb-5">
     <!-- General info -->
     <div class="col-md-6 col-lg-4 mb-3">
@@ -39,6 +42,32 @@
                         data-ng-bind="$ctrl.servicesDetails.billing.plan.invoiceName"
                     >
                     </span>
+                </oui-tile-description>
+            </oui-tile-definition>
+
+            <!-- redeploy -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_redeploy' | translate }}"
+            >
+                <oui-tile-description>
+                    <button
+                        class="oui-link"
+                        data-ng-class="{'disabled': $ctrl.clusterRedeploying}"
+                        data-ng-click="$ctrl.goToRedeploy()"
+                        data-ng-disabled="$ctrl.clusterRedeploying"
+                        data-track-on="click"
+                        data-track-type="action"
+                        data-track-name="hpc::nutanix::cluster::redeploy-cluster"
+                    >
+                        <span
+                            class="align-middle"
+                            data-translate="nutanix_dashboard_cluster_redeploy_link"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-arrow-right align-middle d-inline-block"
+                            aria-hidden="true"
+                        ></span>
+                    </button>
                 </oui-tile-description>
             </oui-tile-definition>
 

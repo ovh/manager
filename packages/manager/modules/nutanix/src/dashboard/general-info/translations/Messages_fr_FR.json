@@ -28,5 +28,8 @@
   "server_datacenter_VIN": "Vint Hill (VIN{{number}}) - États-Unis",
   "server_datacenter_WAW": "Varsovie (WAW{{number}}) - Pologne",
   "server_datacenter_RBX_HZ": "Roubaix (RBXHZ) - France",
-  "server_datacenter_GSW": "(GSW) - France"
+  "server_datacenter_GSW": "(GSW) - France",
+  "nutanix_dashboard_cluster_redeploy": "Redéploiement du cluster",
+  "nutanix_dashboard_cluster_redeploy_link": "Redéployer mon cluster",
+  "nutanix_dashboard_cluster_deploying_info": "Le redéploiement de votre cluster est en cours"
 }

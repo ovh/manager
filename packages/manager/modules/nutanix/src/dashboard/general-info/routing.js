@@ -39,6 +39,8 @@ export default /* @ngInject */ ($stateProvider) => {
           error.message || error.data?.message,
           'nutanix_dashboard_alert',
         ),
+      goToRedeploy: /* @ngInject */ ($state) => () =>
+        $state.go('nutanix.dashboard.general-info.redeploy'),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('nutanix_dashboard_general_info'),
     },
