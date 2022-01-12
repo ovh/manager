@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerPciStoragesDatabasesInputRule';
 
 angular
   .module(moduleName, ['oui'])
-  .component('inputRule', component)
+  .component('pciStorageDatabaseInputRule', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

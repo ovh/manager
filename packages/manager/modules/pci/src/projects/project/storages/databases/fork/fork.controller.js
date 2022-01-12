@@ -32,7 +32,6 @@ export default class {
     this.NAME_PATTERN = NAME_PATTERN;
     this.MIN_NAME_LENGTH = MIN_NAME_LENGTH;
     this.MAX_NAME_LENGTH = MAX_NAME_LENGTH;
-    this.regexp = new RegExp(this.NAME_PATTERN);
   }
 
   $onInit() {
@@ -80,7 +79,7 @@ export default class {
   }
 
   checkPattern(value) {
-    return this.regexp.test(value);
+    return this.NAME_PATTERN.test(value);
   }
 
   getAvailableNetworks(region) {

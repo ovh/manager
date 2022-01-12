@@ -26,18 +26,18 @@
                 autofocus
             />
             <div class="oui-password__rules" id="databasename-rules">
-                <input-rule
+                <pci-storage-database-input-rule
                     valid="editName.databaseName.$viewValue.length >= $ctrl.minNameLength"
                     data-label="{{:: 'pci_databases_edit_name_min_rule' | translate: {min: $ctrl.minNameLength} }}"
-                ></input-rule>
-                <input-rule
+                ></pci-storage-database-input-rule>
+                <pci-storage-database-input-rule
                     valid="editName.databaseName.$viewValue.length < $ctrl.maxNameLength"
                     data-label="{{:: 'pci_databases_edit_name_max_rule' | translate: {max: $ctrl.maxNameLength} }}"
-                ></input-rule>
-                <input-rule
+                ></pci-storage-database-input-rule>
+                <pci-storage-database-input-rule
                     valid="$ctrl.checkPattern(editName.databaseName.$viewValue)"
                     data-label="{{:: 'pci_databases_edit_name_pattern_rule' | translate }}"
-                ></input-rule>
+                ></pci-storage-database-input-rule>
             </div>
         </oui-field>
     </oui-modal>

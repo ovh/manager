@@ -101,18 +101,18 @@
             required
         />
         <div class="oui-password__rules" id="database-fork-name-rules">
-            <input-rule
+            <pci-storage-database-input-rule
                 valid="$ctrl.model.name.length >= $ctrl.MIN_NAME_LENGTH"
                 data-label="{{:: 'pci_database_fork_name_min_rule' | translate: {min: $ctrl.MIN_NAME_LENGTH} }}"
-            ></input-rule>
-            <input-rule
+            ></pci-storage-database-input-rule>
+            <pci-storage-database-input-rule
                 valid="$ctrl.model.name.length < $ctrl.MAX_NAME_LENGTH"
                 data-label="{{:: 'pci_database_fork_name_max_rule' | translate: {max: $ctrl.MAX_NAME_LENGTH} }}"
-            ></input-rule>
-            <input-rule
+            ></pci-storage-database-input-rule>
+            <pci-storage-database-input-rule
                 valid="$ctrl.checkPattern($ctrl.model.name)"
                 data-label="{{:: 'pci_database_fork_name_pattern_rule' | translate }}"
-            ></input-rule>
+            ></pci-storage-database-input-rule>
         </div>
     </oui-field>
 

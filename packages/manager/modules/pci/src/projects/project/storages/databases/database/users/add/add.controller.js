@@ -8,7 +8,6 @@ export default class {
     this.$translate = $translate;
     this.DatabaseService = DatabaseService;
     this.inputRules = ADD_USER_FORM_RULES;
-    this.regexp = new RegExp(this.inputRules.name.pattern);
   }
 
   $onInit() {
@@ -30,7 +29,7 @@ export default class {
   }
 
   checkPattern(value) {
-    return this.regexp.test(value);
+    return this.inputRules.name.pattern.test(value);
   }
 
   getUserFromModel() {

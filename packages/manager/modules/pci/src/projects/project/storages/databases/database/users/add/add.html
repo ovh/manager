@@ -21,18 +21,18 @@
             required
         />
         <div class="oui-password__rules" id="username-rules">
-            <input-rule
+            <pci-storage-database-input-rule
                 valid="addUserForm.username.$viewValue.length >= $ctrl.inputRules.name.min"
                 data-label="{{:: 'pci_databases_users_add_username_min_rule' | translate: {min: $ctrl.inputRules.name.min} }}"
-            ></input-rule>
-            <input-rule
+            ></pci-storage-database-input-rule>
+            <pci-storage-database-input-rule
                 valid="addUserForm.username.$viewValue.length < $ctrl.inputRules.name.max"
                 data-label="{{:: 'pci_databases_users_add_username_max_rule' | translate: {max: $ctrl.inputRules.name.max} }}"
-            ></input-rule>
-            <input-rule
+            ></pci-storage-database-input-rule>
+            <pci-storage-database-input-rule
                 valid="$ctrl.checkPattern(addUserForm.username.$viewValue)"
                 data-label="{{:: 'pci_databases_users_add_username_pattern_rule' | translate }}"
-            ></input-rule>
+            ></pci-storage-database-input-rule>
         </div>
     </oui-field>
 

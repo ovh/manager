@@ -1,4 +1,3 @@
-import controller from './input-rule.controller';
 import template from './input-rule.html';
 
 export default {
@@ -6,6 +5,5 @@ export default {
     valid: '<',
     label: '@',
   },
-  controller,
   template,
 };
