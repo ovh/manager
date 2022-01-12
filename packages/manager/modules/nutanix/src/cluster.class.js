@@ -1,12 +1,21 @@
 import { CLUSTER_STATUS } from './constants';
 
 export default class Cluster {
-  constructor({ serviceName, targetSpec, status, nodeDetails }) {
+  constructor({
+    serviceName,
+    targetSpec,
+    status,
+    nodeDetails,
+    availableVersions,
+    allowedRedundancyFactor,
+  }) {
     Object.assign(this, {
       serviceName,
       targetSpec,
       status,
       nodeDetails,
+      availableVersions,
+      allowedRedundancyFactor,
     });
     this.status = this.status.toLowerCase();
   }

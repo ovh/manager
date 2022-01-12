@@ -15,6 +15,7 @@ import routing from './routing';
 import component from './component';
 import editName from './edit-display-name';
 import licenceTile from '../component/licence-tile/module';
+import redeploy from './redeploy';
 
 const moduleName = 'ovhManagerNutanixGeneralInfo';
 
@@ -31,6 +32,7 @@ angular
     region,
     editName,
     licenceTile,
+    redeploy,
   ])
   .config(routing)
   .component('nutanixGeneralInfo', component)

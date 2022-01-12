@@ -27,6 +27,15 @@ export default class NutanixService {
       .then(({ data }) => new Cluster(data));
   }
 
+  updateCluster(serviceName, redeploycluster = false, cluster) {
+    return this.$http
+      .put(
+        `/nutanix/${serviceName}?redeploycluster=${redeploycluster}`,
+        cluster,
+      )
+      .then(({ data }) => data);
+  }
+
   getServiceInfo(serviceName) {
     return this.$http
       .get(`/nutanix/${serviceName}/serviceInfos`)

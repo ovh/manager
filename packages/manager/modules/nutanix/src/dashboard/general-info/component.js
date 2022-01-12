@@ -7,6 +7,7 @@ export default {
     clusterAddOns: '<',
     goToEditName: '<',
     goToUpgradePrivateBandwidth: '<',
+    goToRedeploy: '<',
     server: '<',
     serviceDetails: '<',
     serviceInfo: '<',
