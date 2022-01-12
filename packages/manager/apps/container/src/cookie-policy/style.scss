@@ -1,0 +1,26 @@
+@import '@ovh-ux/ui-kit/dist/scss/_tokens.scss';
+
+$buttons-width: 15rem;
+$buttons-margin: 0.2rem;
+$buttons-wrapper-margin-top: 1rem;
+$img-width: 10rem;
+$img-wrapper-margin-bottom: 1rem;
+
+.cookie-policy-modal {
+  .img-wrapper {
+    margin-bottom: $img-wrapper-margin-bottom;
+
+    img {
+      width: $img-width;
+    }
+  }
+
+  .banner-buttons {
+    margin-top: $buttons-wrapper-margin-top;
+
+    button {
+      width: $buttons-width;
+      margin: $buttons-margin;
+    }
+  }
+}
