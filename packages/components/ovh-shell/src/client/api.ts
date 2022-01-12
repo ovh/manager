@@ -2,6 +2,7 @@ import { ApplicationId } from '@ovh-ux/manager-config/types/application';
 import { Environment } from '@ovh-ux/manager-config';
 import ShellClient from './shell-client';
 import { clientAuth } from '../plugin/auth';
+import { clientNavigation } from '../plugin/navigation';
 
 export default function exposeApi(shellClient: ShellClient) {
   return {
@@ -77,5 +78,6 @@ export default function exposeApi(shellClient: ShellClient) {
           method: 'isAccountSidebarVisible',
         }),
     },
+    navigation: clientNavigation(shellClient),
   };
 }
