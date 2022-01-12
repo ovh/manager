@@ -49,10 +49,8 @@ export default class SoftwareUpdateController {
   }
 
   trackClick(...chunks) {
-    chunks.unshift(TRACKING_PREFIX);
-    const name = chunks.join('::');
     this.atInternet.trackClick({
-      name,
+      name: `${TRACKING_PREFIX}::${chunks.join('::')}`,
       type: 'action',
     });
   }
