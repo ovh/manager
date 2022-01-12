@@ -23,7 +23,7 @@ export function exposeTrackingAPI(shellClient: ShellClient): TrackingAPI {
   return {
     init: () =>
       shellClient.invokePluginMethod<void>({
-        plugin: 'trackin',
+        plugin: 'tracking',
         method: 'init',
       }),
     isTagAvailable: () =>
