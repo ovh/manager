@@ -1,5 +1,5 @@
 import IpBlock from './ipblock.class';
-import { TRACKING_CHUNK } from '../constants';
+import { TRACKING_CHUNK } from './constants';
 
 export default class AnthosHostTableCtrl {
   /* @ngInject */

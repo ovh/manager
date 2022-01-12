@@ -1,5 +1,9 @@
-import { MAX_QUANTITY, PRODUCT_ID, PRICING_DURATION } from './constants';
-import { TRACKING_CHUNK } from '../../ips/order-public-ip/order-public-ip.constants';
+import {
+  MAX_QUANTITY,
+  PRODUCT_ID,
+  PRICING_DURATION,
+  TRACKING_CHUNK,
+} from './constants';
 import { extractPublicIpsAddonFromAnthosCatalog } from './utils';
 
 export default class {
