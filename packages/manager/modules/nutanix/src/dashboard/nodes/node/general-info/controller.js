@@ -10,7 +10,6 @@ export default class NutanixNodeGeneralInfoCtrl {
   $onInit() {
     this.TRAVAUX_LINK = TRAVAUX_LINK;
     this.loadServer();
-    console.log(this.server);
   }
 
   loadServer() {

@@ -4,8 +4,12 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 
 import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
-import { serverSupport } from '@ovh-ux/manager-bm-server-components';
+import {
+  serverSupport,
+  serverTechnicalDetails,
+} from '@ovh-ux/manager-bm-server-components';
 import { region } from '@ovh-ux/manager-components';
+import nutanixNetworkTile from '../component/network-tile/network-tile.module';
 import routing from './routing';
 import component from './component';
 import editName from './edit-display-name';
@@ -19,6 +23,8 @@ angular
     'ui.router',
     ovhManagerBillingComponents,
     serverSupport,
+    serverTechnicalDetails,
+    nutanixNetworkTile,
     region,
     editName,
   ])

@@ -12,6 +12,7 @@ export default class NutanixGeneralInfoCtrl {
 
   $onInit() {
     this.loadServcesDetails();
+    this.technicalDetails = this.getTechnicalDetails();
   }
 
   loadServcesDetails() {
@@ -23,6 +24,13 @@ export default class NutanixGeneralInfoCtrl {
       .finally(() => {
         this.loadingServicesDetails = false;
       });
+  }
+
+  getTechnicalDetails() {
+    return this.NutanixService.getClusterHardwareInfo(
+      this.serviceInfo.serviceId,
+      this.server.serviceId,
+    );
   }
 
   trackClick(trackText) {

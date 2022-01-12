@@ -1,7 +1,7 @@
 <oui-tile
     class="h-100"
     heading="{{:: 'dedicated_server_dashboard_technical_details_heading' | translate }}"
-    loading="$ctrl.loading"
+    loading="$ctrl.loading || $ctrl.loadingTechnicalDetails"
 >
     <oui-tile-definition
         term="{{:: 'dedicated_server_dashboard_technical_details_cpu' | translate }}"

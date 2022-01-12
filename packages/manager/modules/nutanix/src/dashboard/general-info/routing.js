@@ -6,9 +6,6 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       trackingPrefix: /* @ngInject */ () => 'hpc::nutanix::cluster::dashboard',
       nodeId: /* @ngInject */ (cluster) => cluster.getFirstNode(),
-      technicalDetails: /* @ngInject */ (NutanixService, nodeId) => {
-        return NutanixService.getNodeHardwareInfo(nodeId);
-      },
       server: /* @ngInject */ (nodeId, NutanixService) =>
         NutanixService.getServer(nodeId),
       goToEditName: /* @ngInject */ ($state) => (displayName) =>

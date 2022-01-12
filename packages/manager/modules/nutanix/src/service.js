@@ -52,6 +52,75 @@ export default class NutanixService {
       .catch(() => null);
   }
 
+  getClusterHardwareInfo(serviceId, nodeServiceId) {
+    return this.getClusterOptions(serviceId)
+      .then((options) => {
+        const allOptions = [
+          ...options,
+          {
+            serviceId: nodeServiceId,
+          },
+        ];
+        return this.$q.all(
+          allOptions.map((option) => {
+            return this.getHardwareInfo(option.serviceId).then(
+              (hardwareInfo) => {
+                return {
+                  ...hardwareInfo,
+                  serviceId: option.serviceId,
+                };
+              },
+            );
+          }),
+        );
+      })
+      .then((optionsHardwareInfo) =>
+        NutanixService.transformHardwareInfo(optionsHardwareInfo),
+      );
+  }
+
+  /**
+   * extract hardware info from all options
+   * @param {*} optionsHardwareInfo
+   */
+  static transformHardwareInfo(optionsHardwareInfo) {
+    const baremetalServers = {};
+    optionsHardwareInfo.forEach((hardwareInfo) => {
+      if (hardwareInfo.baremetalServers) {
+        const keys = Object.keys(hardwareInfo.baremetalServers);
+        keys.forEach((key) => {
+          if (hardwareInfo.baremetalServers[key]) {
+            const value = hardwareInfo.baremetalServers[key];
+            if (key === 'storage' && baremetalServers[key]) {
+              baremetalServers[key].disks = [
+                ...baremetalServers[key].disks,
+                ...value.disks,
+              ];
+            } else {
+              baremetalServers[key] = {
+                ...value,
+                serviceId: hardwareInfo.serviceId,
+              };
+            }
+          }
+        });
+      }
+    });
+    return baremetalServers;
+  }
+
+  getClusterOptions(serviceId) {
+    return this.$http
+      .get(`/services/${serviceId}/options`)
+      .then(({ data }) => data);
+  }
+
+  getHardwareInfo(serviceId) {
+    return this.$http
+      .get(`/services/${serviceId}/technicalDetails`)
+      .then(({ data }) => data);
+  }
+
   getServer(nodeId) {
     return this.$http
       .get(`/sws/dedicated/server/${nodeId}`, {

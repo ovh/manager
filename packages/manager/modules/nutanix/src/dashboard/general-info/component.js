@@ -9,7 +9,6 @@ export default {
     serviceDetails: '<',
     serviceInfo: '<',
     serviceName: '<',
-    technicalDetails: '<',
     trackingPrefix: '<',
     user: '<',
     handleError: '<',
