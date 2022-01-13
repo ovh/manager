@@ -204,7 +204,7 @@
                                 data-placement="end"
                             >
                                 <oui-action-menu-item
-                                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('netboot/dedicated-server-netboot')"
+                                    data-on-click="$ctrl.goToNetboot()"
                                     data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask || $ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED' || ($ctrl.dedicatedServer.$scope.disable.installationInProgress
                                                && !$ctrl.dedicatedServer.$scope.disable.installationInProgressError)"
                                 >
@@ -261,15 +261,13 @@
 
         <!-- TECHNICAL DETAILS -->
         <div class="col-md-4" data-ng-if="$ctrl.technicalDetails">
-            <dedicated-server-dashboard-technical-details
+            <server-technical-details
                 technical-details="$ctrl.technicalDetails"
                 go-to-manual-upgrade="$ctrl.goToManualUpgrade"
-                upgrade-with-ticket-available="$ctrl.upgradeWithTicketAvailable"
-                is-ram-upgradable="$ctrl.isRamUpgradable"
-                is-data-disk-upgradable="$ctrl.isDataDiskUpgradable"
-            ></dedicated-server-dashboard-technical-details>
+            ></server-technical-details>
         </div>
 
+        <!-- Service status -->
         <div
             class="col-md-4"
             data-ng-if="$ctrl.server.commercialRange !== 'housing'"
@@ -606,7 +604,7 @@
                         </oui-action-menu>
                     </oui-tile-definition>
 
-                    <dedicated-server-bandwidth-dashboard
+                    <server-bandwidth-dashboard
                         data-bandwidth-option="$ctrl.bandwidthInformations.bandwidthOption"
                         data-bandwidth-vrack-option="$ctrl.bandwidthInformations.bandwidthVrackOptions"
                         data-bandwidth-vrack-order-option="$ctrl.bandwidthInformations.bandwidthVrackOrderOptions"
@@ -615,7 +613,7 @@
                         data-server="$ctrl.server"
                         data-specifications="$ctrl.specifications"
                     >
-                    </dedicated-server-bandwidth-dashboard>
+                    </server-bandwidth-dashboard>
 
                     <!-- Traffic -->
                     <oui-tile-definition
