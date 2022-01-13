@@ -1,8 +1,8 @@
 import JSURL from 'jsurl';
-import { minBy, maxBy, uniq } from 'lodash-es';
+import { maxBy, minBy, uniq } from 'lodash-es';
 import { CatalogPricing } from '@ovh-ux/manager-models';
 
-import { SIZE_FACTOR, SIZE_MULTIPLE, REGION_LABEL } from './constants';
+import { REGION_LABEL, SIZE_FACTOR, SIZE_MULTIPLE } from './constants';
 
 const findRegionConfiguration = (configurations) =>
   configurations.find(({ name }) => name === 'region')?.values;
@@ -80,6 +80,8 @@ export default class OvhManagerNetAppOrderCtrl {
           configurations.find(({ name }) => name === 'region').values,
       ),
     );
+
+    [this.selectedRegion] = this.regions;
   }
 
   onSizeStepFocus() {
