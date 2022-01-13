@@ -6,6 +6,7 @@ export default {
     server: '<',
     bandwidth: '<',
     onError: '&?',
+    trackingPrefix: '<',
   },
   controller,
   template,
