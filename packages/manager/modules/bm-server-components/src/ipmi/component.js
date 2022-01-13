@@ -5,6 +5,7 @@ export default {
   bindings: {
     user: '<',
     server: '<',
+    trackingPrefix: '<',
     onIpmiRestart: '&?',
     onKvmOrder: '&?',
     onError: '&?',

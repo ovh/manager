@@ -23,6 +23,7 @@ export const AVAILABLE_SERVICES = [
   'PACK_SIP_TRUNK',
   'LOAD_BALANCER',
   'LOGS',
+  'NUTANIX',
 ];
 
 export default {
