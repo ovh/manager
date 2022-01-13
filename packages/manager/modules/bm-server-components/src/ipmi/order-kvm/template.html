@@ -1,0 +1,82 @@
+<div class="container-fluid">
+    <oui-back-button on-click="$ctrl.goBack()">
+        <span data-translate="server_configuration_impi_order_kvm"></span>
+    </oui-back-button>
+
+    <oui-stepper>
+        <!-- Get Durations -->
+        <oui-step-form
+            name="serverOrderKvmChooseDurations"
+            data-header="{{:: 'server_configuration_kvm_order_step1_title' | translate }}"
+            data-editable="!$ctrl.isAdding"
+            data-valid="$ctrl.order.durationSelected"
+            data-navigation="$ctrl.order.durationSelected"
+            data-loading="$ctrl.loaders.details"
+        >
+            <div
+                class="radio"
+                data-ng-if="$ctrl.order.details"
+                data-ng-repeat="option in $ctrl.order.details track by $index"
+            >
+                <oui-field>
+                    <input
+                        type="radio"
+                        name="durationSelected"
+                        value="{{ option.duration }}"
+                        data-ng-model="$ctrl.order.durationSelected"
+                    />
+                    <span
+                        data-ng-bind="option.duration | wucDuration:'longDate' "
+                    ></span>
+                    <strong
+                        class="text-danger float-right"
+                        data-ng-bind-html="option.prices | ducPrice:$ctrl.user.ovhSubsidiary"
+                    >
+                    </strong>
+                </oui-field>
+            </div>
+        </oui-step-form>
+        <!-- Order details -->
+        <oui-step-form
+            name="serverOrderKvmConfirm"
+            data-header="{{:: 'server_configuration_kvm_order_step2_title' | translate }}"
+            data-editable="!$ctrl.isAdding"
+            data-on-submit="$ctrl.orderKvm()"
+            data-on-cancel="$ctrl.cancelOrder()"
+        >
+            <p
+                data-translate="server_configuration_kvm_order_step2_title"
+                data-translate-values="{ serverName: $ctrl.serviceName }"
+            ></p>
+            <dl>
+                <dt
+                    data-translate="server_configuration_kvm_order_step2_duration"
+                ></dt>
+                <dd
+                    data-ng-bind="$ctrl.order.durationSelected | wucDuration:'mediumDate'"
+                ></dd>
+                <dt
+                    data-translate="server_configuration_kvm_order_step2_details"
+                ></dt>
+                <dd>
+                    <ul>
+                        <li
+                            data-ng-repeat="detail in $ctrl.orderDetail.details track by $index"
+                            data-ng-bind="detail.description"
+                        ></li>
+                    </ul>
+                </dd>
+                <dt
+                    data-translate="server_configuration_kvm_order_step2_price"
+                ></dt>
+                <dd
+                    class="text-danger"
+                    data-ng-bind-html="$ctrl.orderDetail.prices | ducPrice:$ctrl.user.ovhSubsidiary"
+                ></dd>
+            </dl>
+            <p
+                data-ng-bind-html="'server_order_bandwidth_resume' | translate"
+            ></p>
+        </oui-step-form>
+    </oui-stepper>
+</div>
