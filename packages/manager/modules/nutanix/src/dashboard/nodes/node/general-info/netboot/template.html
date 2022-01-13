@@ -1,0 +1,11 @@
+<div
+    class="alert-server mt-3 mb-3"
+    data-ovh-alert="server_dashboard_alert"
+></div>
+<server-netboot
+    server="$ctrl.server"
+    service-name="{{ $ctrl.server.name }}"
+    on-go-back="$ctrl.goBack(message)"
+    on-error="$ctrl.handleError(error)"
+    on-success="$ctrl.handleSuccess(message)"
+></server-netboot>

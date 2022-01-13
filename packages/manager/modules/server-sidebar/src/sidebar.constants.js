@@ -449,7 +449,7 @@ export const NUTANIX_CONFIG = {
     {
       id: 'nutanix_clusters_all',
       state: 'nutanix.index',
-      icon: 'oui-icon oui-icon-nutanix_concept',
+      icon: 'oui-icon oui-icon-nutanix_concept nutanix-icon_small',
       app: [DEDICATED],
       namespace: HPC_NAMESPACE,
     },
@@ -459,7 +459,7 @@ export const NUTANIX_CONFIG = {
       path: '/nutanix',
       state: 'nutanix.dashboard',
       stateParams: ['serviceName'],
-      icon: 'oui-icon oui-icon-nutanix_concept',
+      icon: 'oui-icon oui-icon-nutanix_concept nutanix-icon_small',
       app: [DEDICATED],
       namespace: HPC_NAMESPACE,
       types: [
@@ -474,7 +474,7 @@ export const NUTANIX_CONFIG = {
     },
   ],
   loadOnState: 'nutanix',
-  icon: 'oui-icon oui-icon-nutanix_concept',
+  icon: 'oui-icon oui-icon-nutanix_concept nutanix-icon_small',
   app: [DEDICATED],
   feature: 'nutanix',
   namespace: HPC_NAMESPACE,

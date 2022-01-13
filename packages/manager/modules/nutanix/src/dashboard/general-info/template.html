@@ -1,0 +1,180 @@
+<div class="row d-md-flex mb-5">
+    <!-- General info -->
+    <div class="col-md-6 col-lg-4 mb-3">
+        <oui-tile
+            class="h-100"
+            heading="{{:: 'nutanix_dashboard_general_info' | translate }}"
+        >
+            <!-- name -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_name' | translate }}"
+            >
+                <oui-tile-description>
+                    <span
+                        data-ng-bind="$ctrl.serviceDetails.resource.displayName"
+                    ></span>
+                </oui-tile-description>
+                <oui-action-menu data-compact data-placement="end">
+                    <oui-action-menu-item
+                        on-click="$ctrl.goToEditName($ctrl.serviceDetails.resource.displayName)"
+                    >
+                        <span
+                            data-translate="nutanix_dashboard_cluster_edit_button"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-tile-definition>
+
+            <!-- commercial name -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_commercial_name' | translate }}"
+            >
+                <oui-tile-description>
+                    <oui-spinner
+                        data-ng-if="$ctrl.loadingServicesDetails"
+                        data-size="s"
+                    ></oui-spinner>
+                    <span
+                        data-ng-if="!$ctrl.loadingServicesDetails"
+                        data-ng-bind="$ctrl.servicesDetails.billing.plan.invoiceName"
+                    >
+                    </span>
+                </oui-tile-description>
+            </oui-tile-definition>
+
+            <!-- administration interface -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_admin_interface' | translate }}"
+            >
+            </oui-tile-definition>
+            <oui-tile-button
+                data-ng-href="{{:: $ctrl.cluster.targetSpec.controlPanelURL }}"
+                data-on-click="$ctrl.trackClick('go-to-prism-central')"
+                external
+            >
+                <span
+                    data-translate="nutanix_dashboard_cluster_access_admin_interface"
+                ></span>
+            </oui-tile-button>
+
+            <!-- license -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_licence' | translate }}"
+            >
+                <oui-tile-description>
+                    <span
+                        class="text-capitalize"
+                        data-ng-bind=":: $ctrl.cluster.targetSpec.license"
+                    >
+                    </span>
+                </oui-tile-description>
+            </oui-tile-definition>
+
+            <!-- deployment mode -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_deployment_mode' | translate }}"
+            >
+                <oui-tile-description>
+                    <div class="oui-tile__description">
+                        <div data-ng-if="$ctrl.cluster.isRackAwareness()">
+                            <span>Rack awareness</span>
+                            <button
+                                type="button"
+                                class="oui-popover-button"
+                                oui-popover="{{:: 'nutanix_dashboard_cluster_rack_awareness_info' | translate }}"
+                                oui-popover-placement="right"
+                            ></button>
+                        </div>
+                        <div data-ng-if="!$ctrl.cluster.isRackAwareness()">
+                            <span>Node awareness</span>
+                            <button
+                                type="button"
+                                class="oui-popover-button"
+                                oui-popover="{{:: 'nutanix_dashboard_cluster_node_awareness_info' | translate }}"
+                                oui-popover-placement="right"
+                            ></button>
+                        </div>
+                    </div>
+                </oui-tile-description>
+            </oui-tile-definition>
+
+            <!-- replication factor -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_replication_factor' | translate }}"
+                description="{{:: $ctrl.cluster.targetSpec.redundancyFactor }}"
+            >
+            </oui-tile-definition>
+
+            <!-- datacenter -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_datacenter' | translate }}"
+            >
+                <oui-tile-description>
+                    <div
+                        class="oui-tile__description"
+                        data-translate="{{'server_datacenter_' + $ctrl.server.datacenter.split('_')[0]}}"
+                        data-translate-values="{
+                            number: $ctrl.server.datacenter.split('_')[1]
+                            }"
+                    ></div>
+                </oui-tile-description>
+            </oui-tile-definition>
+
+            <!-- rack -->
+            <oui-tile-definition
+                term="{{:: 'nutanix_dashboard_cluster_rack' | translate }}"
+            >
+                <oui-tile-description
+                    data-ng-if="!$ctrl.cluster.isRackAwareness()"
+                >
+                    <span data-ng-bind="$ctrl.server.rack || '-'"></span>
+                </oui-tile-description>
+                <oui-tile-description
+                    data-ng-if="$ctrl.cluster.isRackAwareness()"
+                >
+                    <span data-ng-bind=":: $ctrl.getNodeRacks() || '-'"></span>
+                </oui-tile-description>
+            </oui-tile-definition>
+        </oui-tile>
+    </div>
+
+    <!-- Network -->
+    <div class="col-md-6 col-lg-4 mb-3" data-ng-if="!$ctrl.server.isExpired">
+        <nutanix-network-tile
+            cluster="$ctrl.cluster"
+            on-error="$ctrl.handleError(error)"
+        >
+        </nutanix-network-tile>
+    </div>
+
+    <!-- Subscription details -->
+    <div class="col-md-6 col-lg-4 mb-3">
+        <billing-subscription-tile
+            on-error="$ctrl.onBillingInformationError(error)"
+            go-to-commit="$ctrl.goToCommit()"
+            go-to-cancel-commit="$ctrl.goToCancelCommit()"
+            go-to-cancel-resiliation="$ctrl.goToCancelResiliation()"
+            go-to-resiliation="$ctrl.goToResiliation()"
+            service-infos="$ctrl.serviceInfo"
+            user="$ctrl.user"
+            tracking-prefix="$ctrl.trackingPrefix"
+        >
+        </billing-subscription-tile>
+    </div>
+
+    <!-- SUPPORT TICKET -->
+    <div class="col-md-6 col-lg-4 mb-3">
+        <server-support
+            service-name="{{$ctrl.serviceName}}"
+            travaux-url="{{$ctrl.TRAVAUX_LINK}}"
+            tracking-prefix="$ctrl.trackingPrefix"
+        ></server-support>
+    </div>
+
+    <!-- TECHNICAL DETAILS -->
+    <div class="col-md-6 col-lg-4 mb-3">
+        <server-technical-details
+            technical-details="$ctrl.technicalDetails"
+        ></server-technical-details>
+    </div>
+</div>
