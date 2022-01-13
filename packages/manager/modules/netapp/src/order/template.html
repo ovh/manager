@@ -20,12 +20,6 @@
                         values="[license]"
                         description="{{:: ('netapp_order_performance_level_type_' + license.name + '_description') | translate }}"
                     >
-                        <oui-select-picker-footer>
-                            <ovh-manager-catalog-price
-                                data-price="license.price.price"
-                                interval-unit="{{license.price.intervalUnit}}"
-                            ></ovh-manager-catalog-price>
-                        </oui-select-picker-footer>
                     </oui-select-picker>
                 </div>
             </div>
