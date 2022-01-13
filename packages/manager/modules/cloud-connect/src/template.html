@@ -21,16 +21,23 @@
                     >
                     </a>
                 </span>
-                <oui-action-menu
-                    compact
+                <oui-tile-actions
                     data-ng-if="order.provider === $ctrl.PROVIDER_OVH_CLOUD"
                 >
-                    <oui-action-menu-item data-href="{{ order.loa }}" external>
-                        <span
-                            data-translate="cloud_connect_order_follow_up_documentation"
-                        ></span>
-                    </oui-action-menu-item>
-                </oui-action-menu>
+                    <oui-dropdown placement="end">
+                        <oui-dropdown-trigger
+                            text="{{ :: 'cloud_connect_order_follow_up_documentation_title' | translate }}"
+                        >
+                        </oui-dropdown-trigger>
+                        <oui-dropdown-content>
+                            <oui-dropdown-item data-href="{{ order.loa }}">
+                                <span
+                                    data-translate="cloud_connect_order_follow_up_documentation_link"
+                                ></span>
+                            </oui-dropdown-item>
+                        </oui-dropdown-content>
+                    </oui-dropdown>
+                </oui-tile-actions>
             </div>
             <ol class="ml-5 oui-progress-tracker__steps">
                 <span
@@ -45,7 +52,7 @@
                             'oui-progress-tracker__step_active' : (step.status === $ctrl.status.DOING),
                         }"
                         data-oui-tooltip="{{ 'cloud_connect_order_follow_up_description_' + step.name | translate}}"
-                        data-oui-tooltip-placement="left"
+                        data-oui-tooltip-placement="center"
                     >
                         <span class="oui-progress-tracker__status">
                             <span
