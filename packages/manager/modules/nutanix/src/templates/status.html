@@ -1,0 +1,10 @@
+<span
+    class="oui-badge"
+    data-ng-class="{
+                'oui-badge_success': $row.isActive(),
+                'oui-badge_warning': $row.isDeploying(),
+                'oui-badge_error': $row.isError()
+                }"
+    data-ng-bind="('nutanix_cluster_list_status_' + $row.status) | translate"
+>
+</span>
