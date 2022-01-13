@@ -1,0 +1,339 @@
+<div class="w-75">
+    <h2 data-translate="nutanix_redeploy_title"></h2>
+    <oui-back-button on-click="$ctrl.goToPreviousPage()"> </oui-back-button>
+    <oui-message class="mb-2" type="warning" dismissable>
+        <div data-translate="nutanix_redeploy_warning_info_1"></div>
+        <div data-translate="nutanix_redeploy_warning_info_2"></div>
+        <div data-translate="nutanix_redeploy_warning_info_3"></div>
+        <div data-translate="nutanix_redeploy_warning_info_4"></div>
+        <div data-translate="nutanix_redeploy_warning_info_5"></div>
+        <div data-translate="nutanix_redeploy_warning_info_6"></div>
+    </oui-message>
+    <oui-stepper
+        current-index="$ctrl.activeStep"
+        data-on-finish="$ctrl.onRedeploy(form)"
+    >
+        <oui-step-form
+            data-name="method"
+            data-header="{{:: 'nutanix_redeploy_step1_title' | translate}}"
+            data-valid="$ctrl.redeployMethod"
+            data-prevent-next="true"
+            data-on-submit="$ctrl.onRedeployMethodSubmit(form)"
+        >
+            <oui-select-picker
+                data-name="redeployInitialConfiguration"
+                data-model="$ctrl.redeployMethod"
+                data-label="{{:: 'nutanix_redeploy_initial_configuration' | translate}}"
+                data-values="$ctrl.redeployMethods.initialConfig"
+            >
+            </oui-select-picker>
+            <oui-select-picker
+                class="mb-2"
+                name="redeployCustomConfiguration"
+                data-model="$ctrl.redeployMethod"
+                data-label="{{:: 'nutanix_redeploy_custom_configuration' | translate}}"
+                data-values="$ctrl.redeployMethods.customConfig"
+            >
+            </oui-select-picker>
+        </oui-step-form>
+
+        <oui-step-form
+            data-ng-if="$ctrl.redeployMethod === $ctrl.REDEPLOY_CONFIG_OPTIONS.INITIAL"
+            data-name="initalConfig"
+            data-header="{{:: 'nutanix_redeploy_step2_title_initial_configuration' | translate}}"
+            data-position="1"
+            data-submit-text="{{:: 'nutanix_redeploy_button' | translate}}"
+        >
+            <ul class="list-unstyled">
+                <li>
+                    <span
+                        data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL + ' :'"
+                    ></span>
+                    <ul>
+                        <li class="align-bottom">
+                            <span
+                                data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_TYPE + ' :'"
+                            ></span>
+                            <span
+                                class="font-weight-bold text-capitalize"
+                                data-ng-bind="$ctrl.initalConfig.prismCentral.type"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-info ml-1"
+                                data-oui-popover="{{:: 'nutanix_redeploy_prism_central_type_description' | translate}}"
+                                data-oui-popover-placement="right"
+                            ></span>
+                        </li>
+                        <li class="align-bottom">
+                            <span
+                                data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_VIP + ' :'"
+                            ></span>
+                            <span
+                                class="font-weight-bold"
+                                data-ng-bind="$ctrl.initalConfig.prismCentral.vip"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-info ml-1"
+                                data-oui-popover="{{:: 'nutanix_redeploy_prism_central_virtual_ip_description' | translate}}"
+                                data-oui-popover-placement="right"
+                            ></span>
+                        </li>
+                        <li class="align-bottom">
+                            <span
+                                data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_IP + ' :'"
+                            ></span>
+                            <span
+                                data-ng-if="$ctrl.initalConfig.prismCentral.ips.length > 0"
+                                class="font-weight-bold"
+                                data-ng-bind="$ctrl.displayPrismCentralIps"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-info ml-1"
+                                data-oui-popover="{{:: 'nutanix_redeploy_prism_central_ip_description' | translate}}"
+                                data-oui-popover-placement="right"
+                            ></span>
+                        </li>
+                    </ul>
+                </li>
+                <li class="align-bottom">
+                    <span
+                        data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_ELEMENT_VIP + ' :'"
+                    ></span>
+                    <span
+                        class="font-weight-bold"
+                        ng-bind="$ctrl.initalConfig.prismElementVip"
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-info ml-1"
+                        data-oui-popover="{{:: 'nutanix_redeploy_prism_element_vip_description' | translate}}"
+                        data-oui-popover-placement="right"
+                    ></span>
+                </li>
+                <li class="align-bottom">
+                    <span
+                        data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.GATEWAY_CIDR + ' :'"
+                    ></span>
+                    <span
+                        class="font-weight-bold"
+                        ng-bind="$ctrl.initalConfig.gatewayCidr"
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-info ml-1"
+                        data-oui-popover="{{:: 'nutanix_redeploy_prism_element_gateway_cidr_description' | translate}}"
+                        data-oui-popover-placement="right"
+                    ></span>
+                </li>
+                <li class="align-bottom">
+                    <span
+                        data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.REPLICATION_FACTOR + ' :'"
+                    ></span>
+                    <span
+                        class="font-weight-bold"
+                        ng-bind="$ctrl.initalConfig.redundancyFactor"
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-info ml-1"
+                        data-oui-popover="{{:: 'nutanix_redeploy_replication_description' | translate}}"
+                        data-oui-popover-placement="right"
+                    ></span>
+                </li>
+                <li class="align-bottom">
+                    <span
+                        data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.ERASURE_CODING + ' :'"
+                    ></span>
+                    <span
+                        class="font-weight-bold"
+                        ng-bind="$ctrl.initalConfig.erasureCoding ? 'nutanix_redeploy_erasure_coding_enabled' : 'nutanix_redeploy_erasure_coding_disabled' | translate"
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-info ml-1"
+                        data-oui-popover="{{:: 'nutanix_redeploy_erasure_coding_description' | translate}}"
+                        data-oui-popover-placement="right"
+                    ></span>
+                </li>
+                <li class="align-bottom">
+                    <span
+                        data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.AOS + ' :'"
+                    ></span>
+                    <span
+                        class="font-weight-bold"
+                        ng-bind="$ctrl.initalConfig.version"
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-info ml-1"
+                        data-oui-popover="{{:: 'nutanix_redeploy_prism_element_aos_description' | translate}}"
+                        data-oui-popover-placement="right"
+                    ></span>
+                </li>
+            </ul>
+        </oui-step-form>
+
+        <oui-step-form
+            data-ng-if="$ctrl.redeployMethod === $ctrl.REDEPLOY_CONFIG_OPTIONS.CUSTOM"
+            data-name="customConfig"
+            data-header="{{:: 'nutanix_redeploy_step2_title_custom_configuration' | translate}}"
+            data-position="1"
+            data-submit-text="{{:: 'nutanix_redeploy_button' | translate}}"
+            data-prevent-next="true"
+        >
+            <div class="mb-3">
+                <h5
+                    data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.REPLICATION_FACTOR"
+                ></h5>
+                <p
+                    data-translate="nutanix_redeploy_replication_description"
+                ></p>
+                <oui-select-picker
+                    data-ng-repeat="replicationFactor in $ctrl.replicationFactors"
+                    data-name="replicationFactor.name"
+                    data-model="$ctrl.redundancyFactorValue"
+                    data-label="{{:: ('nutanix_redeploy_custom_configuration_replication_rf' | translate : {value: replicationFactor.factor}) }}"
+                    data-values="replicationFactor.values"
+                    data-on-change="$ctrl.setRedundancyFactor(modelValue)"
+                ></oui-select-picker>
+            </div>
+            <div class="mb-3">
+                <h5
+                    data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.ERASURE_CODING"
+                ></h5>
+                <p
+                    data-translate="nutanix_redeploy_erasure_coding_description"
+                ></p>
+                <div class="row ml-1">
+                    <oui-switch
+                        class="d-inline-block pr-1"
+                        data-name="erasure-coding"
+                        data-model="$ctrl.config.erasureCoding"
+                    ></oui-switch>
+                </div>
+            </div>
+            <div class="mb-3">
+                <h5
+                    data-translate="nutanix_redeploy_custom_configuration_prism_central"
+                ></h5>
+                <p
+                    data-translate="nutanix_redeploy_prism_central_description"
+                ></p>
+                <oui-field
+                    data-label="{{:: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_TYPE}}"
+                    data-label-popover="{{:: 'nutanix_redeploy_prism_central_type_description' | translate}}"
+                >
+                    <oui-select
+                        class="w-50 mt-1"
+                        data-name="prismCentralType"
+                        data-title="{{:: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_TYPE }}"
+                        data-placeholder="{{::$ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_TYPE }}"
+                        data-model="$ctrl.config.prismCentral.type"
+                        data-items="$ctrl.prismCentralTypes"
+                    ></oui-select>
+                </oui-field>
+                <oui-field
+                    data-label="{{:: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_VIP}}"
+                    data-label-popover="{{:: 'nutanix_redeploy_prism_central_virtual_ip_description' | translate}}"
+                >
+                    <input
+                        class="oui-input w-50 mt-1"
+                        type="text"
+                        name="prismCentralVip"
+                        data-ng-model="$ctrl.config.prismCentral.vip"
+                        data-ng-pattern="$ctrl.IPV4_REGEX"
+                    />
+                </oui-field>
+                <div>
+                    <div class="row ml-1 mb-2">
+                        <label
+                            class="oui-field__label"
+                            data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_IP"
+                        ></label>
+                        <button
+                            type="button"
+                            class="oui-popover-button ml-2"
+                            data-oui-popover="{{:: 'nutanix_redeploy_prism_central_ip_description' | translate}}"
+                        ></button>
+                    </div>
+                    <oui-button
+                        class="ml-1"
+                        data-size="s"
+                        data-variant="primary"
+                        data-on-click="$ctrl.addPrismCentralIp()"
+                    >
+                        <span
+                            data-translate="nutanix_redeploy_custom_configuration_add_prism_central_ip"
+                        ></span>
+                    </oui-button>
+                    <div
+                        class="row ml-1 mt-2"
+                        data-ng-repeat="item in $ctrl.config.prismCentral.ips track by $index"
+                    >
+                        <input
+                            type="text"
+                            class="oui-input w-50"
+                            name="prismCentralIps{{$index}}"
+                            data-ng-model="$ctrl.config.prismCentral.ips[$index]"
+                            required
+                            data-ng-pattern="$ctrl.IPV4_REGEX"
+                        />
+                        <oui-button
+                            class="ml-2"
+                            data-size="s"
+                            data-variant="secondary"
+                            data-on-click="$ctrl.removePrismCentralIp($index)"
+                        >
+                            <span class="oui-icon oui-icon-bin"></span>
+                        </oui-button>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <h5
+                    data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.PRISM_ELEMENT_VIP"
+                ></h5>
+                <p
+                    data-translate="nutanix_redeploy_prism_element_vip_description"
+                ></p>
+                <oui-field>
+                    <input
+                        type="text"
+                        class="oui-input w-50"
+                        name="prismElementVip"
+                        data-ng-model="$ctrl.config.prismElementVip"
+                        data-ng-pattern="$ctrl.IPV4_REGEX"
+                    />
+                </oui-field>
+            </div>
+            <div class="mb-3">
+                <h5
+                    data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.GATEWAY_CIDR"
+                ></h5>
+                <p
+                    data-translate="nutanix_redeploy_prism_element_gateway_cidr_description"
+                ></p>
+                <oui-field>
+                    <input
+                        type="text"
+                        class="oui-input w-50"
+                        name="gatewayCidr"
+                        data-ng-model="$ctrl.config.gatewayCidr"
+                        data-ng-pattern="$ctrl.IPV4_BLOCK_REGEX"
+                    />
+                </oui-field>
+            </div>
+            <div class="mb-3">
+                <h5 data-ng-bind=":: $ctrl.CLUSTER_CONFIG_TERMS.AOS"></h5>
+                <p
+                    data-translate="nutanix_redeploy_prism_element_aos_description"
+                ></p>
+                <oui-input>
+                    <oui-select
+                        class="w-50 mt-1"
+                        name="aos"
+                        data-title="{{ ::'nutanix_redeploy_prism_element_aos' | translate }}"
+                        data-placeholder="{{ ::'nutanix_redeploy_prism_element_aos' | translate }}"
+                        data-model="$ctrl.config.version"
+                        data-items="$ctrl.cluster.availableVersions"
+                    ></oui-select>
+                </oui-input>
+            </div>
+        </oui-step-form>
+    </oui-stepper>
+</div>

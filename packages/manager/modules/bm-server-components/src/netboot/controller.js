@@ -118,6 +118,8 @@ export default class BmServerComponentsNetbootCtrl {
       this.server.rootDevice;
     const netbootType = this.currentNetboot.type;
 
+    this.trackClick(`confirm_${netbootType}`);
+
     this.loading.setNetboot = true;
 
     const promiseList = [
@@ -206,6 +208,7 @@ export default class BmServerComponentsNetbootCtrl {
   }
 
   goBack(message = false) {
+    this.trackClick('cancel');
     if (isFunction(this.onGoBack)) {
       this.onGoBack({ message });
     }
@@ -231,5 +234,14 @@ export default class BmServerComponentsNetbootCtrl {
   scrollToTop() {
     this.$location.hash(this.scrollTopId);
     this.$anchorScroll();
+  }
+
+  trackClick(trackText) {
+    if (this.trackingPrefix) {
+      this.atInternet.trackClick({
+        name: `${this.trackingPrefix}::${trackText}`,
+        type: 'action',
+      });
+    }
   }
 }

@@ -51,6 +51,7 @@
     "@ovh-ux/manager-netapp": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^1.0.1 || ^2.0.0",
     "@ovh-ux/manager-notifications-sidebar": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/manager-nutanix": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-preloader": "^1.0.0",
     "@ovh-ux/manager-server-sidebar": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-support": "^0.6.0 || ^0.7.0 || ^1.0.0",
@@ -154,7 +155,7 @@
     "u2f-api-polyfill": "^0.4.3",
     "ui-select": "^0.19.8",
     "urijs": "^1.19.1",
-    "validator": "^13.7.0",
+    "validator": "^3.39.0",
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
