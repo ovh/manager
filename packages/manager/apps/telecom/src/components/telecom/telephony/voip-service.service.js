@@ -7,6 +7,7 @@ export default /* @ngInject */ function TelephonyVoipService(
   TelephonyGroupLine,
   TelephonyGroupNumber,
   TelephonyGroupFax,
+  iceberg,
 ) {
   const self = this;
 
@@ -16,19 +17,19 @@ export default /* @ngInject */ function TelephonyVoipService(
   self.fetchAll = function fetchAll() {
     const groups = {}; // indexed by billing accounts
     // fetch all billing accounts
-    return OvhApiTelephony.v7()
+
+    return iceberg('/telephony')
       .query()
-      .expand()
-      .execute()
-      .$promise.then((result) => {
+      .expand('CachedObjectList-Pages')
+      .execute(null, true)
+      .$promise.then(({ data: result }) => {
         forEach(result, (item) => {
-          if (!item.error && item.value.billingAccount) {
+          if (item && item.billingAccount) {
             // how should we handle errors ?
-            const telephonyGroup = new TelephonyGroup(item.value);
+            const telephonyGroup = new TelephonyGroup(item);
             groups[telephonyGroup.billingAccount] = telephonyGroup;
           }
         });
-
         // fetch all services
         return OvhApiTelephony.Service()
           .v7()
@@ -36,9 +37,9 @@ export default /* @ngInject */ function TelephonyVoipService(
           .aggregate('billingAccount')
           .expand()
           .execute()
-          .$promise.then((aggragateResult) => {
+          .$promise.then((aggregateResult) => {
             // associate and create service to billing account
-            forEach(aggragateResult, (item) => {
+            forEach(aggregateResult, (item) => {
               // extract billing account from path
               const pathParts = item.path.split('/');
               if (pathParts.length >= 2) {

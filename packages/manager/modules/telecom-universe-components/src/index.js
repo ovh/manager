@@ -22,8 +22,6 @@ import tucShippingModeSelection from './shippingModeSelection';
 import tucSlider from './slider';
 import tucSuccessDrawingCheck from './successDrawingCheck';
 import tucTableSort from './table-sort';
-import tucTelecomFax from './telecom/fax';
-import tucTelecomOtb from './telecom/otb';
 import tucTelecomPack from './telecom/pack';
 import tucTelecomRetractation from './telecom/retractation';
 import tucTelecomSms from './telecom/sms';
@@ -63,8 +61,6 @@ angular.module(moduleName, [
   tucSlider,
   tucSuccessDrawingCheck,
   tucTableSort,
-  tucTelecomFax,
-  tucTelecomOtb,
   tucTelecomPack,
   tucTelecomRetractation,
   tucTelecomSms,
