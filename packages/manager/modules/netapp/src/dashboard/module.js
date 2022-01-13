@@ -1,5 +1,6 @@
 import angular from 'angular';
 import '@ovh-ux/manager-core';
+import '@ovh-ux/manager-filters';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ng-ovh-utils';
@@ -21,6 +22,7 @@ angular
     'ngOvhFeatureFlipping',
     'ovhManagerBilling',
     'ovhManagerCore',
+    'ovhManagerFilters',
     'ovhManagerAdvices',
     'ngAtInternet',
     'pascalprecht.translate',
