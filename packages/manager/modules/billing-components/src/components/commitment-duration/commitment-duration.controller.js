@@ -7,6 +7,11 @@ export default class {
     this.$attrs = $attrs;
     this.BillingService = BillingService;
     this.coreConfig = coreConfig;
+
+    this.COMMITMENT_DURATION = {
+      DEFAULT: 'default',
+      P12M: 'P12M',
+    };
   }
 
   $onInit() {
@@ -23,6 +28,20 @@ export default class {
       ),
       'monthlyDuration',
     );
+
+    this.preselectDefaultDuration();
+  }
+
+  preselectDefaultDuration() {
+    if (this.preselectDefault) {
+      const { DEFAULT, P12M } = this.COMMITMENT_DURATION;
+      const durations = this.availableDurations;
+
+      this.duration =
+        durations.find(
+          ({ commitment }) => commitment.pricingMode === DEFAULT,
+        ) || durations.find(({ duration }) => duration === P12M);
+    }
   }
 
   onChange(duration) {
