@@ -1,0 +1,144 @@
+<oui-header
+    data-heading="{{ :: 'cloud_connect_title' | translate }}"
+></oui-header>
+
+<oui-tile
+    data-heading="{{:: 'cloud_connect_order_follow_up_title' | translate}}"
+    data-ng-if="$ctrl.orders.length > 0"
+>
+    <oui-tile-definition data-ng-repeat="order in $ctrl.orders track by $index">
+        <oui-tile-description class="oui-progress-tracker">
+            <div class="d-flex justify-content-between">
+                <span>
+                    <strong
+                        data-translate="cloud_connect_order_follow_up_order_id"
+                    ></strong>
+                    <a
+                        data-ng-href="{{ order.orderBillingUrl }}"
+                        target="_blank"
+                        rel="noopener"
+                        data-ng-bind="{{ order.orderId }}"
+                    >
+                    </a>
+                </span>
+                <oui-action-menu
+                    compact
+                    data-ng-if="order.provider === $ctrl.PROVIDER_OVH_CLOUD"
+                >
+                    <oui-action-menu-item data-href="{{ order.loa }}" external>
+                        <span
+                            data-translate="cloud_connect_order_follow_up_documentation"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </div>
+            <ol class="ml-5 oui-progress-tracker__steps">
+                <span
+                    class="oui-progress-tracker__step"
+                    data-ng-repeat="step in order.steps track by $index"
+                >
+                    <span
+                        class="oui-progress-tracker__step"
+                        data-ng-class="{
+                            'oui-progress-tracker__step_complete' : (step.status === $ctrl.status.DONE),
+                            'oui-progress-tracker__step_error': (step.status === $ctrl.status.ERROR),
+                            'oui-progress-tracker__step_active' : (step.status === $ctrl.status.DOING),
+                        }"
+                        data-oui-tooltip="{{ 'cloud_connect_order_follow_up_description_' + step.name | translate}}"
+                        data-oui-tooltip-placement="left"
+                    >
+                        <span class="oui-progress-tracker__status">
+                            <span
+                                class="oui-progress-tracker__label"
+                                data-ng-bind="'cloud_connect_order_follow_up_label_' + step.name | translate"
+                            >
+                            </span>
+                            <span
+                                class="oui-progress-tracker__label"
+                                data-ng-if="step.date"
+                                >{{$ctrl.constructor.formatDate(step.date)}}</span
+                            >
+                        </span>
+                    </span>
+                </span>
+            </ol>
+        </oui-tile-description>
+    </oui-tile-definition>
+</oui-tile>
+
+<oui-tile
+    class="mt-3"
+    data-heading="{{:: 'cloud_connect_services_up' | translate}}"
+>
+    <div class="container-fluid my-3">
+        <oui-datagrid
+            id="{{:: $ctrl.datagridId }}"
+            data-page-size="{{ $ctrl.paginationSize }}"
+            data-rows-loader="$ctrl.loadPage()"
+            data-criteria="$ctrl.criteria"
+            data-on-page-change="$ctrl.onPageChange($pagination)"
+            data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+            data-on-sort-change="$ctrl.onSortChange($sort)"
+            data-columns="$ctrl.columnsConfig"
+        >
+            <oui-datagrid-column
+                data-title=":: 'cloud_connect_uuid_label' | translate"
+                data-property="uuid"
+                data-searchable
+                data-filterable
+                data-sortable
+                data-type="string"
+            >
+                <a
+                    data-ng-href="{{ $ctrl.getServiceNameLink($row) }}"
+                    data-ng-bind="$value"
+                ></a>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'cloud_connect_description_label' | translate"
+                data-property="description"
+                data-type="string"
+                data-filterable
+                data-sortable
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'cloud_connect_pop_label' | translate"
+                data-property="pop"
+                data-type="string"
+                data-filterable
+                data-sortable
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'cloud_connect_vrack_label' | translate"
+                data-property="vrack"
+                data-type="string"
+                data-filterable
+                data-sortable
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'cloud_connect_status_label' | translate"
+                data-property="status"
+                data-sortable
+                data-filterable
+            >
+                <span
+                    class="oui-badge"
+                    data-ng-class="{
+                        'oui-badge_success': ($value === 'active'),
+                        'oui-badge_warning': (['creating', 'toCreate', 'toDelete'].includes($value)),
+                        'oui-badge_error': (['deleted', 'suspended'].include($value)),
+                    }"
+                    data-ng-bind="'cloud_connect_status_label_' + $value | translate"
+                ></span>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="left-start">
+                <oui-action-menu-item data-on-click="$ctrl.viewDetail($row)"
+                    ><span data-translate="cloud_connect_view_label"></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid>
+    </div>
+</oui-tile>
