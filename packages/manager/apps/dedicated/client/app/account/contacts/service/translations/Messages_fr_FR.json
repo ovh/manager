@@ -34,6 +34,7 @@
   "account_contacts_service_category_OVH_CLOUD_CONNECT": "OVHcloud Connect",
   "account_contacts_service_category_FAILOVER": "IP failover",
   "account_contacts_service_category_PACK_XDSL": "Packs XDSL",
+  "account_contacts_service_category_NUTANIX": "Nutanix",
   "account_contacts_service_category_PACK_SIP_TRUNK": "Packs SIP Trunk",
   "account_contacts_service_contact_admin": "Contact administrateur",
   "account_contacts_service_contact_tech": "Contact technique",
