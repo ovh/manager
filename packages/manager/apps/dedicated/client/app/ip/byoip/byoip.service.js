@@ -8,11 +8,11 @@ export default class ByoipService {
   }
 
   getCatalog() {
-    this.user = this.coreConfig.getUser();
+    const user = this.coreConfig.getUser();
     return this.$http
       .get('/order/catalog/formatted/bringYourOwnIp', {
         params: {
-          ovhSubsidiary: this.user.ovhSubsidiary,
+          ovhSubsidiary: user.ovhSubsidiary,
         },
       })
       .then(({ data }) => {
@@ -36,7 +36,7 @@ export default class ByoipService {
    * @param {Object} plan [detials of the plan]
    * @param {config} array [configuration of the plan like name, region and others]
    */
-  gotToExpressOrder(plan, config) {
+  getExpressOrder(plan, config) {
     const params = [
       {
         planCode: plan.planCode,
@@ -47,10 +47,10 @@ export default class ByoipService {
       },
     ];
 
-    return this.goToExpressOrderUrl(params);
+    return this.getExpressOrderUrl(params);
   }
 
-  goToExpressOrderUrl(payload) {
+  getExpressOrderUrl(payload) {
     return this.User.getUrlOf('express_order').then((url) => {
       return `${url}review?products=${JSURL.stringify(payload)}`;
     });

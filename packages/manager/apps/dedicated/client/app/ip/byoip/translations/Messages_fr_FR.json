@@ -6,7 +6,7 @@
   "ip_byoip_select_rir_description": "Sélectionnez le RIR qui gère vos adresses IP publiques.",
   "ip_byoip_submit_text": "Suivant",
   "ip_byoip_region_title": "Séléctionnez votre campus",
-  "ip_byoip_region_description": "Un campus est l'ensemble de datacentres sur lesquels vous pourrez déplacer vos adresses IP. La liste des datacentres composant un campus est affichée ci dessous. Vous devez sélectionner le campus ou seront situés vos services.",
+  "ip_byoip_region_description": "Un campus est l'ensemble de datacentres sur lesquels vous pourrez déplacer vos adresses IP. La liste des datacentres composant un campus est affichée ci-dessous. Vous devez sélectionner le campus ou seront situés vos services.",
   "ip_byoip_region_token_title": "Token",
   "ip_byoip_region_token_description": "Pour valider que vous êtes bien le propriétaire de la plage d'adresses IP que vous voulez importer, vous devez mettre à jour l'entrée whois de votre plage en utilisant le jeton ci-dessous. Le jeton doit apparaître dans un champ spécifique de l'object whois (voir plus bas), sur une ligne dédiée. Le jeton doit être ajouté avant de faire la commande, et doit rester en place jusqu'à ce que le service soit livré.",
   "ip_byoip_region_token_description_1": "Pour RIPE, éditez le champs \"descr\" de l'objet \"inetnum\" de l'adresse IP.",
