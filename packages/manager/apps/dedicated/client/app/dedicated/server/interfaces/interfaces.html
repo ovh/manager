@@ -134,7 +134,7 @@
                     data-translate="dedicated_server_interfaces_bandwith_ola_warning"
                 ></span>
             </oui-message>
-            <dedicated-server-bandwidth-dashboard
+            <server-bandwidth-dashboard
                 data-bandwidth-option="$ctrl.bandwidthOption"
                 data-bandwidth-vrack-option="$ctrl.bandwidthVrackOptions"
                 data-bandwidth-vrack-order-option="$ctrl.bandwidthVrackOrderOptions"
@@ -143,7 +143,7 @@
                 data-server="$ctrl.server"
                 data-specifications="$ctrl.specifications"
             >
-            </dedicated-server-bandwidth-dashboard>
+            </server-bandwidth-dashboard>
         </oui-tile>
     </div>
 </div>
@@ -177,13 +177,13 @@
         <div data-ng-if="$row.isPublic()">
             <span class="oui-icon oui-icon-arrow-up font-inherit"></span>
             <span
-                data-ng-bind="$ctrl.specifications.bandwidth.OvhToInternet | ducBandwidth"
+                data-ng-bind="$ctrl.specifications.bandwidth.OvhToInternet | serverBandwidth"
             ></span>
         </div>
         <div data-ng-if="!$row.isPublic()">
             <span class="oui-icon oui-icon-arrow-up font-inherit"></span>
             <span
-                data-ng-bind="$ctrl.specifications.vrack.bandwidth | ducBandwidth"
+                data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
             ></span>
             <span
                 class="font-weight-bold"
@@ -198,13 +198,13 @@
         <div data-ng-if="$row.isPublic()">
             <span class="oui-icon oui-icon-arrow-down font-inherit"></span>
             <span
-                data-ng-bind="$ctrl.specifications.connection | ducBandwidth"
+                data-ng-bind="$ctrl.specifications.connection | serverBandwidth"
             ></span>
         </div>
         <div data-ng-if="!$row.isPublic()">
             <span class="oui-icon oui-icon-arrow-down font-inherit"></span>
             <span
-                data-ng-bind="$ctrl.specifications.vrack.bandwidth | ducBandwidth"
+                data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
             ></span>
             <span
                 class="font-weight-bold"
