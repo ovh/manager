@@ -10,9 +10,18 @@ export interface navigationOptions {
 }
 
 export interface ClientNavigationApi {
-  getURL: CallableFunction;
-  navigateTo: CallableFunction;
-  reload: CallableFunction;
+  getURL: (
+    application: ApplicationId,
+    path: string,
+    params: Record<string, ParamValueType>,
+  ) => PromiseLike<unknown>;
+  navigateTo: (
+    application: ApplicationId,
+    path: string,
+    params: Record<string, ParamValueType>,
+    options: navigationOptions,
+  ) => PromiseLike<unknown>;
+  reload: (options: navigationOptions) => PromiseLike<unknown>;
 }
 
 export function navigation(environment: Environment) {
