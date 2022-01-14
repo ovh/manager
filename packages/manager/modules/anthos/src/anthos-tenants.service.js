@@ -2,8 +2,9 @@ import { GUIDES } from './anthos.constants';
 
 export default class AnthosTenantsService {
   /* @ngInject */
-  constructor($http, $translate, ovhDocUrl, coreConfig) {
+  constructor($http, $q, $translate, ovhDocUrl, coreConfig) {
     this.$http = $http;
+    this.$q = $q;
     this.$translate = $translate;
     this.ovhDocUrl = ovhDocUrl;
     this.user = coreConfig.getUser();
@@ -244,5 +245,34 @@ export default class AnthosTenantsService {
         version,
       })
       .then(({ data }) => data);
+  }
+
+  getPackInfo(serviceInfo) {
+    const { serviceId } = serviceInfo;
+    return this.$q
+      .all({
+        catalog: this.getAnthosCatalog(),
+        current: this.$http.get(`/services/${serviceId}`).then(({ data }) => {
+          const {
+            billing: {
+              plan: { code, ...plan },
+            },
+          } = data;
+          plan.planCode = code;
+          return plan;
+        }),
+        upgrades: this.$http
+          .get(`/services/${serviceId}/upgrade`)
+          .then(({ data }) => data),
+      })
+      .then(({ catalog, current, upgrades }) => ({
+        current,
+        upgrades: upgrades.map((pack) => ({
+          ...pack,
+          invoiceName:
+            catalog.plans.find(({ planCode }) => planCode === pack.planCode)
+              ?.invoiceName || '',
+        })),
+      }));
   }
 }

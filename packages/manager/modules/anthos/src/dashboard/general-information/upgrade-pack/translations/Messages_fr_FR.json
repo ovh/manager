@@ -1,0 +1,13 @@
+{
+  "anthos_tenant_dashboard_general_information_upgrade_pack_title": "Vous allez changer votre pack de base",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_description": "En passant sur le pack Stateful ou Stateless, vous bénéficiez d’un niveau de service plus adapté à la production et de plus de hosts inclus. Le pack Stateful intègre également un stockage persistant dédié. Tout changement de pack est définitif, vos éventuelles ressources additionnelles existantes sont préservées et aucune donnée ne sera perdue.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_title": "Sélectionnez le pack désiré",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_current": "Pack actuel",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-small": "Idéal pour tester et accompagner votre transition vers le cloud native et/ou lors de la phase de création de nouveaux projets. Non adapté à la production. 5 Nœuds esclaves (60 vCPU, 320 Go de RAM, 5 TB NVMe)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-standard": "Idéal pour la production stateless. 15 Nœuds esclaves (180 vCPU, 960 Go de RAM, 15 TB NVMe)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-standard-netapp": "Idéal pour la production stateless et stateful avec stockage persistant NetApp. 15 Nœuds esclaves (180 vCPU, 960 Go de RAM, 15 TB NVMe)Stockage NetApp permanent utilisable 55 TB (réplication active x2)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_auto": "Votre demande de changement de pack a été enregistrée. Elle sera effective sous 24 heures",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_order": "Votre demande de changement de pack a été enregistrée. Une fois votre bon de commande validé, elle sera effective sous 24 heures.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_order_link": "Cliquez ici pour valider votre bon de commande",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_error": "Une erreur est survenue lors du changement de votre pack: {{ error }}"
+}
