@@ -11,6 +11,7 @@
   "netapp_volumes_snapshot_policy": "Snapshot policy",
   "netapp_volumes_status": "Statut",
   "netapp_volumes_create_volume": "Créer un volume",
+  "netapp_volumes_create_volume_quantity_info": "Stockage utilisé : {{quantity}}/{{max}}",
   "netapp_volumes_edit_volume": "Modifier le volume",
   "netapp_volumes_create_snapshot": "Créer un snapshot",
   "netapp_volumes_manage_snapshots": "Gérer les snapshots",
