@@ -1,12 +1,17 @@
 <div>
     <p class="oui-heading_3" data-translate="netapp_volumes_details"></p>
+
+    <p data-translate="netapp_volumes_create_volume_quantity_info"
+       data-translate-values="{quantity: ($ctrl.totalVolumesStorage | bytes:0:false:'GB'), max: ($ctrl.storage.quota | bytes:0:false:'GB')}"></p>
+
     <oui-button
         ng-if="$ctrl.canCreateVolume"
         aria-label="{{:: 'netapp_volumes_create' | translate }}"
         on-click="$ctrl.goToCreateVolume()"
         disabled="!$ctrl.isCreateVolumeAvailable"
-        ><span data-translate="netapp_volumes_create_volume"></span
-    ></oui-button>
+    >
+        <span data-translate="netapp_volumes_create_volume"></span>
+    </oui-button>
 
     <oui-datagrid
         class="mt-2"
