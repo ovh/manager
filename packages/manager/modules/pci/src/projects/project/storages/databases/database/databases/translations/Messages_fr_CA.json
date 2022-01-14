@@ -2,5 +2,6 @@
   "pci_databases_databases_tab_title": "Bases de données",
   "pci_databases_databases_tab_name": "Nom",
   "pci_databases_databases_tab_add": "Créer une base de données",
-  "pci_databases_databases_tab_delete_link": "Supprimer"
+  "pci_databases_databases_tab_delete_link": "Supprimer",
+  "pci_databases_databases_tab_delete_defaultdb": "Vous ne pouvez pas supprimer la base de données par défaut."
 }

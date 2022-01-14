@@ -2,5 +2,6 @@
   "pci_databases_databases_tab_title": "Datenbanken",
   "pci_databases_databases_tab_name": "Name",
   "pci_databases_databases_tab_add": "Datenbank erstellen",
-  "pci_databases_databases_tab_delete_link": "Löschen"
+  "pci_databases_databases_tab_delete_link": "Löschen",
+  "pci_databases_databases_tab_delete_defaultdb": "Die Standarddatenbank kann nicht gelöscht werden."
 }
