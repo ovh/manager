@@ -94,6 +94,9 @@ export default /* @ngInject */ ($stateProvider) => {
         features.isFeatureAvailable('netapp:volumes:dashboard'),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('netapp_volumes_breadcrumb'),
+
+      totalVolumesStorage: /* @ngInject */ (volumes) =>
+        volumes.reduce((sum, { size }) => sum + size, 0),
     },
   });
 };
