@@ -1,4 +1,7 @@
-import { CHANGE_OWNER_URL } from './general-information.constants';
+import {
+  CHANGE_OWNER_URL,
+  UPGRADE_PACK_TAG,
+} from './general-information.constants';
 import { TENANT_STATUS } from '../../anthos.constants';
 
 export default class {
@@ -57,6 +60,15 @@ export default class {
     this.trackClick(`${this.generalInfoHitTracking}::manage-access`);
 
     return this.goToAccessRestriction();
+  }
+
+  onGoToUpgradePack(pack) {
+    const { planCode } = pack;
+    this.trackClick(
+      `${this.generalInfoHitTracking}::${UPGRADE_PACK_TAG[planCode]}`,
+    );
+
+    return this.goToUpgradePack(pack);
   }
 
   onAnthosConsoleStart() {

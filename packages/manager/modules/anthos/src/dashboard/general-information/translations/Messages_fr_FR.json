@@ -42,5 +42,7 @@
   "anthos_tenant_dashboard_general_information_tile_resources_ips_menu_add_public_ip": "Commander une IP Publique",
   "anthos_tenant_dashboard_general_information_tile_resources_ips_menu_add_private_ip": "Assigner une IP Privée",
   "anthos_tenant_dashboard_general_information_tile_resources_private_network": "Réseau privé (vRack)",
-  "anthos_tenant_dashboard_general_information_tile_resources_private_network_cta_attach_vrack": "Attacher un réseau vRack"
+  "anthos_tenant_dashboard_general_information_tile_resources_private_network_cta_attach_vrack": "Attacher un réseau vRack",
+  "anthos_tenant_dashboard_general_information_tile_resources_pack": "Pack",
+  "anthos_tenant_dashboard_general_information_tile_resources_pack_menu_upgrade": "Passer au {{ pack }}"
 }

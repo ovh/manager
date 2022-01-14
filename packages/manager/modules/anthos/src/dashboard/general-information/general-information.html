@@ -165,6 +165,34 @@
             <oui-tile
                 data-heading="{{:: 'anthos_tenant_dashboard_general_information_tile_resources_title' | translate }}"
             >
+                <!-- Pack info -->
+                <oui-tile-definition
+                    data-term="{{:: ('anthos_tenant_dashboard_general_information_tile_resources_pack' | translate) }}"
+                >
+                    <oui-action-menu
+                        data-ng-if="$ctrl.packInfo.upgrades.length"
+                        aria-label="{{:: ('anthos_tenant_dashboard_general_information_actions' | translate) }}"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-ng-repeat="pack in $ctrl.packInfo.upgrades track by $index"
+                            data-on-click="$ctrl.onGoToUpgradePack(pack)"
+                        >
+                            <span
+                                data-translate="anthos_tenant_dashboard_general_information_tile_resources_pack_menu_upgrade"
+                                data-translate-values="{ pack: pack.invoiceName }"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+
+                    <oui-tile-description>
+                        <span
+                            data-ng-bind="$ctrl.packInfo.current.invoiceName"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
                 <!--Hosts-->
                 <oui-tile-definition
                     data-term="{{:: 'anthos_tenant_dashboard_general_information_tile_resources_hosts' | translate }}"
