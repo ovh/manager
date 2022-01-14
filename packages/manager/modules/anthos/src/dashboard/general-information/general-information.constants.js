@@ -24,6 +24,12 @@ export const CHANGE_OWNER_URL = {
   US: 'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
 };
 
+export const UPGRADE_PACK_TAG = {
+  'plan-standard': 'switch-to-stateless-pack',
+  'plan-standard-netapp': 'switch-to-stateful-pack',
+};
+
 export default {
   CHANGE_OWNER_URL,
+  UPGRADE_PACK_TAG,
 };

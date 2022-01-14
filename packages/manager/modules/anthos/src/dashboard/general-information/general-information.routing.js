@@ -20,6 +20,12 @@ export default /* @ngInject */ ($stateProvider) => {
           )
           .catch(() => false),
 
+      packInfo: /* @ngInject */ (AnthosTenantsService, serviceInfo) =>
+        AnthosTenantsService.getPackInfo(serviceInfo),
+
+      goBack: /* @ngInject */ ($state, goToTenant) => (message, type) =>
+        goToTenant(message, type, $state.$current.parent.name),
+
       goToRenameService: /* @ngInject */ ($state, serviceName) => () =>
         $state.go('anthos.dashboard.general-information.rename-service', {
           serviceName,
@@ -39,6 +45,11 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goToAccessRestriction: /* @ngInject */ ($state) => () =>
         $state.go('anthos.dashboard.access-restriction'),
+
+      goToUpgradePack: /* @ngInject */ ($state) => (pack) =>
+        $state.go('anthos.dashboard.general-information.upgrade-pack', {
+          pack,
+        }),
 
       generalInfoHitTracking: () => {
         return 'general-information';

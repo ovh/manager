@@ -98,7 +98,7 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceInfo: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getServiceInfo(serviceName),
 
-      goToTenant: ($state, tenant, displayAlerterMessage) => (
+      goToTenant: ($state, tenant, displayAlerterMessage, $document) => (
         message = false,
         type = 'success',
         stateToGo = 'anthos.dashboard',
@@ -110,7 +110,11 @@ export default /* @ngInject */ ($stateProvider) => {
         });
 
         if (message) {
-          promise.then(() => displayAlerterMessage(type, message));
+          promise.then(() => {
+            displayAlerterMessage(type, message);
+            // eslint-disable-next-line no-param-reassign, no-multi-assign
+            $document[0].body.scrollTop = $document[0].documentElement.scrollTop = 0;
+          });
         }
 
         return promise;
