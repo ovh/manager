@@ -59,7 +59,7 @@
                     </oui-tile-definition>
                     <oui-tile-definition
                         term="{{:: 'netapp_dashboard_information_quota' | translate }}"
-                        description="{{ $ctrl.storage.quota | bytes:'GB':false:0 }}"
+                        description="{{ $ctrl.storage.quota | bytes:0:false:'GB' }}"
                     >
                     </oui-tile-definition>
                 </oui-tile>
