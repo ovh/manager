@@ -28,7 +28,7 @@ export default class LogsHomeCtrl {
     this.$stateParams = $stateParams;
     this.serviceName = this.$stateParams.serviceName;
     this.$translate = $translate;
-    this.cucBytes = $filter('cucBytes');
+    this.bytes = $filter('bytes');
     this.CucControllerHelper = CucControllerHelper;
     this.LogsAliasesService = LogsAliasesService;
     this.LogsHomeService = LogsHomeService;
@@ -148,8 +148,7 @@ export default class LogsHomeCtrl {
     updatedChart.options.scales.yAxes[0].ticks = {
       suggestedMin: 0,
       suggestedMax: max(chart.data[0]) * 1.3 || 5,
-      callback: (value) =>
-        value % 1 === 0 ? this.cucBytes(value, 2, true) : '',
+      callback: (value) => (value % 1 === 0 ? this.bytes(value, 2, true) : ''),
     };
     updatedChart.options.tooltips.callbacks = {
       label: (tooltipItem, data) => {
@@ -160,7 +159,7 @@ export default class LogsHomeCtrl {
         if (newLabel) {
           newLabel += ': ';
         }
-        newLabel += this.cucBytes(tooltipItem.yLabel, 2, true);
+        newLabel += this.bytes(tooltipItem.yLabel, 2, true);
         return newLabel;
       },
     };
