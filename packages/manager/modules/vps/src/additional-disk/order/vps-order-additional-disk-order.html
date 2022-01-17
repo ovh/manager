@@ -30,7 +30,7 @@
                             <oui-select-picker
                                 data-name="diskChoice"
                                 data-model="$ctrl.model.disk"
-                                data-label="{{ :: 'vps_order_additionnal_disk_label' | translate:{ size: (disk.capacity.value | cucBytes:2:false:'GB') } }}"
+                                data-label="{{ :: 'vps_order_additionnal_disk_label' | translate:{ size: (disk.capacity.value | bytes:2:false:'GB') } }}"
                                 data-variant="light"
                                 data-values="[disk]"
                                 data-required
