@@ -23,8 +23,8 @@
                 data-ng-if="plan.minMemory !== plan.maxMemory"
                 data-translate="pci_database_plans_list_spec_ram"
                 data-translate-values="{
-                    min: (plan.minMemory | cucBytes:0:false:'GB'),
-                    max: (plan.maxMemory | cucBytes:0:false:'GB')
+                    min: (plan.minMemory | bytes:0:false:'GB'),
+                    max: (plan.maxMemory | bytes:0:false:'GB')
                 }"
             ></p>
             <p
@@ -32,7 +32,7 @@
                 data-ng-if="plan.minMemory === plan.maxMemory"
                 data-translate="pci_database_plans_list_spec_ram_unique"
                 data-translate-values="{
-                    ram: (plan.minMemory | cucBytes:0:false:'GB')
+                    ram: (plan.minMemory | bytes:0:false:'GB')
                 }"
             ></p>
             <p
@@ -57,8 +57,8 @@
                 data-ng-if="plan.minStorage !== plan.maxStorage"
                 data-translate="pci_database_plans_list_spec_storage"
                 data-translate-values="{
-                min: (plan.minStorage | cucBytes:2:false:'GB'),
-                max: (plan.maxStorage | cucBytes:2:false:'GB')
+                min: (plan.minStorage | bytes:2:false:'GB'),
+                max: (plan.maxStorage | bytes:2:false:'GB')
             }"
             ></p>
             <p
@@ -66,7 +66,7 @@
                 data-ng-if="plan.maxStorage > 0 && plan.minStorage === plan.maxStorage"
                 data-translate="pci_database_plans_list_spec_storage_unique"
                 data-translate-values="{
-                    storage: (plan.minStorage | cucBytes:2:false:'GB')
+                    storage: (plan.minStorage | bytes:2:false:'GB')
             }"
             ></p>
             <p

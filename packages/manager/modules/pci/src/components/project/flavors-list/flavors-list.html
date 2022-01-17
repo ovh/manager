@@ -44,7 +44,7 @@
                             <div class="d-flex">
                                 <span
                                     data-translate="pci_project_flavors_spec_ram"
-                                    data-translate-values="{ ram: (flavor.ram | cucBytes:0:false:'MB') }"
+                                    data-translate-values="{ ram: (flavor.ram | bytes:0:false:'MB') }"
                                 ></span>
                             </div>
                             <div class="d-flex">
@@ -65,7 +65,7 @@
                                     ? 'pci_project_flavors_spec_nvme_multiple'
                                     : 'pci_project_flavors_spec_nvme') | translate: {
                                         count: flavor.getNvmeCount(),
-                                        capacity: (flavor.getNvmeCapacity() | cucBytes:2:false:'GB')
+                                        capacity: (flavor.getNvmeCapacity() | bytes:2:false:'GB')
                                     }"
                                 ></span>
                             </div>

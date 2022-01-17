@@ -97,21 +97,21 @@
                 }"
             ></span>
             <span
-                data-ng-bind="' / ' + ( 'pci_database_node_type_memory' | translate:{ 
-                    memorySize: ($ctrl.getCurrentFlavor($row).memory | cucBytes:2:false:'GB')
+                data-ng-bind="' / ' + ( 'pci_database_node_type_memory' | translate:{
+                    memorySize: ($ctrl.getCurrentFlavor($row).memory | bytes:2:false:'GB')
                 })"
             ></span>
             <span
                 ng-if="$ctrl.getCurrentFlavor($row).hasStorage && !$ctrl.getCurrentFlavor($row).isStorageRange"
-                data-ng-bind="' / ' + ( 'pci_database_node_type_storage' | translate:{ 
-                    storageSize: ($ctrl.getCurrentFlavor($row).minDiskSize | cucBytes:2:false:'GB')
+                data-ng-bind="' / ' + ( 'pci_database_node_type_storage' | translate:{
+                    storageSize: ($ctrl.getCurrentFlavor($row).minDiskSize | bytes:2:false:'GB')
                 })"
             ></span>
             <span
                 ng-if="$ctrl.getCurrentFlavor($row).hasStorage && $ctrl.getCurrentFlavor($row).isStorageRange"
-                data-ng-bind="' / ' + ( 'pci_database_node_type_storage_range' | translate:{ 
-                    storageMinSize: ($ctrl.getCurrentFlavor($row).minDiskSize | cucBytes:2:false:'GB'),
-                    storageMaxSize: ($ctrl.getCurrentFlavor($row).maxDiskSize | cucBytes:2:false:'GB')
+                data-ng-bind="' / ' + ( 'pci_database_node_type_storage_range' | translate:{
+                    storageMinSize: ($ctrl.getCurrentFlavor($row).minDiskSize | bytes:2:false:'GB'),
+                    storageMaxSize: ($ctrl.getCurrentFlavor($row).maxDiskSize | bytes:2:false:'GB')
                 })"
             ></span>
         </oui-datagrid-column>

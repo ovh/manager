@@ -209,7 +209,7 @@
                         ></dt>
                         <dd class="oui-tile__description">
                             <span
-                                data-ng-bind="$ctrl.instance.flavor.ram * 1000 * 1000 | cucBytes"
+                                data-ng-bind="$ctrl.instance.flavor.ram * 1000 * 1000 | bytes"
                             ></span>
                         </dd>
                         <dt class="oui-tile__term">
@@ -229,7 +229,7 @@
                         ></dt>
                         <dd class="oui-tile__description">
                             <span
-                                data-ng-bind="$ctrl.instance.flavor.disk * 1024 * 1024 * 1024 | cucBytes:2:'true'"
+                                data-ng-bind="$ctrl.instance.flavor.disk * 1024 * 1024 * 1024 | bytes:2:'true'"
                             ></span>
                         </dd>
                         <dt
@@ -285,7 +285,7 @@
                     >
                         <span data-ng-bind="volume.name"></span>
                         <span
-                            data-ng-bind="volume.size * 1024 * 1024 * 1024 | cucBytes:2:'true'"
+                            data-ng-bind="volume.size * 1024 * 1024 * 1024 | bytes:2:'true'"
                         ></span>
                     </oui-tile-description>
                     <oui-tile-description

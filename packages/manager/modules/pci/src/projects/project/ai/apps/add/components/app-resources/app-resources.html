@@ -53,7 +53,7 @@
                 <div class="d-flex">
                     <span
                         data-translate="pci_app_add_resources_proposed_ram"
-                        data-translate-values="{ ram: (flavor.resourcesPerUnit.memory * $ctrl.appModel.resource.nbResources | cucBytes:0:true:'B') }"
+                        data-translate-values="{ ram: (flavor.resourcesPerUnit.memory * $ctrl.appModel.resource.nbResources | bytes:0:true:'B') }"
                     ></span>
                     <span
                         data-translate="pci_app_add_resources_proposed_type_cpu"
@@ -68,7 +68,7 @@
                     </span>
                     <span
                         data-translate="pci_app_add_resources_proposed_ram"
-                        data-translate-values="{ ram: (flavor.gpuInformation.gpuMemory | cucBytes:0:true:'B') }"
+                        data-translate-values="{ ram: (flavor.gpuInformation.gpuMemory | bytes:0:true:'B') }"
                     ></span>
                     <span
                         data-translate="pci_app_add_resources_proposed_type_gpu"
@@ -83,13 +83,13 @@
                 <div class="d-flex">
                     <span
                         data-translate="pci_app_add_resources_proposed_storage"
-                        data-translate-values="{ memory: (flavor.resourcesPerUnit.ephemeralStorage * $ctrl.appModel.resource.nbResources | cucBytes:0:true:'B') }"
+                        data-translate-values="{ memory: (flavor.resourcesPerUnit.ephemeralStorage * $ctrl.appModel.resource.nbResources | bytes:0:true:'B') }"
                     ></span>
                 </div>
                 <div class="d-flex">
                     <span
                         data-translate="pci_app_add_resources_proposed_bandwidth"
-                        data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.publicNetwork * $ctrl.appModel.resource.nbResources | cucBytes:0:false:'B') }"
+                        data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.publicNetwork * $ctrl.appModel.resource.nbResources | bytes:0:false:'B') }"
                     ></span>
                 </div>
                 <div
@@ -98,7 +98,7 @@
                 >
                     <span
                         data-translate="pci_app_add_resources_proposed_bandwidth"
-                        data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.privateNetwork * $ctrl.appModel.resource.nbResources | cucBytes:2:false:'B') }"
+                        data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.privateNetwork * $ctrl.appModel.resource.nbResources | bytes:2:false:'B') }"
                     ></span>
                 </div>
             </oui-select-picker-section>

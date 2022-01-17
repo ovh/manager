@@ -147,7 +147,7 @@
                     <oui-action-menu
                         data-compact
                         data-placement="end"
-                        ng-if="$ctrl.database.nodes.length < $ctrl.getCurrentPlan().maxNodes 
+                        ng-if="$ctrl.database.nodes.length < $ctrl.getCurrentPlan().maxNodes
                         || $ctrl.database.nodes.length > $ctrl.getCurrentPlan().minNodes"
                     >
                         <oui-action-menu-item
@@ -182,21 +182,21 @@
                             }"
                             ></span>
                             <span
-                                data-ng-bind="' / ' + ( 'pci_databases_general_information_node_type_memory' | translate:{ 
-                                    memorySize: ($ctrl.getCurrentFlavor().memory | cucBytes:2:false:'GB')
+                                data-ng-bind="' / ' + ( 'pci_databases_general_information_node_type_memory' | translate:{
+                                    memorySize: ($ctrl.getCurrentFlavor().memory | bytes:2:false:'GB')
                                 })"
                             ></span>
                             <span
                                 ng-if="$ctrl.getCurrentFlavor().hasStorage && !$ctrl.getCurrentFlavor().isStorageRange"
-                                data-ng-bind="' / ' + ( 'pci_databases_general_information_node_type_storage' | translate:{ 
-                                    storageSize: ($ctrl.getCurrentFlavor().minDiskSize | cucBytes:2:false:'GB')
+                                data-ng-bind="' / ' + ( 'pci_databases_general_information_node_type_storage' | translate:{
+                                    storageSize: ($ctrl.getCurrentFlavor().minDiskSize | bytes:2:false:'GB')
                                 })"
                             ></span>
                             <span
                                 ng-if="$ctrl.getCurrentFlavor().hasStorage && $ctrl.getCurrentFlavor().isStorageRange"
-                                data-ng-bind="' / ' + ( 'pci_databases_general_information_node_type_storage_range' | translate:{ 
-                                    storageMinSize: ($ctrl.getCurrentFlavor().minDiskSize | cucBytes:2:false:'GB'), 
-                                    storageMaxSize: ($ctrl.getCurrentFlavor().maxDiskSize | cucBytes:2:false:'GB')
+                                data-ng-bind="' / ' + ( 'pci_databases_general_information_node_type_storage_range' | translate:{
+                                    storageMinSize: ($ctrl.getCurrentFlavor().minDiskSize | bytes:2:false:'GB'),
+                                    storageMaxSize: ($ctrl.getCurrentFlavor().maxDiskSize | bytes:2:false:'GB')
                                 })"
                             ></span>
                             <button

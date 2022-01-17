@@ -239,7 +239,7 @@
                 <!--Local storage-->
                 <oui-tile-definition
                     data-term="{{:: 'pci_apps_general_information_resources_local_storage' | translate}}"
-                    data-description="{{:: $ctrl.flavor.resourcesPerUnit.ephemeralStorage | cucBytes:0:false:'B'  }}"
+                    data-description="{{:: $ctrl.flavor.resourcesPerUnit.ephemeralStorage | bytes:0:false:'B'  }}"
                 ></oui-tile-definition>
 
                 <!--Life consumption-->
