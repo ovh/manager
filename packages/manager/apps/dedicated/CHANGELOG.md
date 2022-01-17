@@ -1,3 +1,17 @@
+## [17.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.9.0...@ovh-ux/manager-dedicated@17.9.1) (2022-01-17)
+
+
+### Bug Fixes
+
+* **ip:** force order ip through new order system ([#6304](https://github.com/ovh/manager/issues/6304)) ([5ec3737](https://github.com/ovh/manager/commit/5ec3737ac51506aef3ceb0d4cf156518c13f3e61))
+
+
+### Reverts
+
+* all-dom termination enhancements ([#6061](https://github.com/ovh/manager/issues/6061)) ([d1daabc](https://github.com/ovh/manager/commit/d1daabce6425caf691f562fd6ccd6c041b1cbbdb))
+
+
+
 # [17.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.8.5...@ovh-ux/manager-dedicated@17.9.0) (2022-01-11)
 
 
