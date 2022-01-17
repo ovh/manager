@@ -40,9 +40,5 @@ export default /* @ngInject */ (
           $translate.instant('billing_payment_ovhaccount'),
       },
     });
-
-    $urlRouterProvider.when(/^\/billing\/ovhaccount/, ($location, $state) =>
-      $state.go(name),
-    );
   }
 };

@@ -834,10 +834,5 @@
   "domain_dashboard_recommended_hosting_title_Perso": "Hosting für Ihren Blog oder Ihre Website",
   "domain_dashboard_recommended_hosting_label": "- {{ reduction }} auf Ihr Hosting {{ type }} zum Black Friday.",
   "domain_dashboard_recommended_hosting_discover": "Zu den Lösungen",
-  "domain_tab_emails": "E-Mails und Mailinglisten",
-  "domain_dashboard_general_information_domain_terminated": "Kündigung angefordert",
-  "domain_dashboard_general_information_domain_automatic_renewal": "Automatische Verlängerung",
-  "domain_dashboard_general_information_alldom_termination_info": "Ihr Paket läuft am {{ expirationDate }} ab. Die darin enthaltenen nicht gekündigten Domains <strong>werden bis zum endgültigen Ablauf Ihres Pakets kostenlos verlängert.</strong> Nach diesem Datum werden Ihre nicht gekündigten Domains einzeln abgerechnet.",
-  "domain_dashboard_general_information_alldom_renewal_link": "Kündigung des Pakets stornieren",
-  "domain_dashboard_general_information_alldom_termination_warning_close": "Schließen"
+  "domain_tab_emails": "E-Mails und Mailinglisten"
 }
