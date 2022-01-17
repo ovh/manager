@@ -1,3 +1,17 @@
+# [0.8.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.8.0-alpha.0...@ovh-ux/manager-billing@0.8.0-alpha.1) (2022-01-17)
+
+
+### Bug Fixes
+
+* **billing:** retrieve payment subroute when directly targeted ([#6317](https://github.com/ovh/manager/issues/6317)) ([deb01b8](https://github.com/ovh/manager/commit/deb01b805ca8edab2031fd5b40134df15891d812))
+
+
+### Reverts
+
+* all-dom termination enhancements ([#6061](https://github.com/ovh/manager/issues/6061)) ([d1daabc](https://github.com/ovh/manager/commit/d1daabce6425caf691f562fd6ccd6c041b1cbbdb))
+
+
+
 # [0.8.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.7.0-alpha.4...@ovh-ux/manager-billing@0.8.0-alpha.0) (2022-01-11)
 
 
