@@ -50,7 +50,7 @@ export default class {
   }
 
   getCpuRamInfo() {
-    return `${this.$filter('cucBytes')(
+    return `${this.$filter('bytes')(
       this.flavor.resourcesPerUnit.memory,
       0,
       false,
@@ -60,7 +60,7 @@ export default class {
 
   getGpuRamInfo() {
     return this.flavor.gpuInformation
-      ? `${this.$filter('cucBytes')(
+      ? `${this.$filter('bytes')(
           this.flavor.gpuInformation.gpuMemory,
           0,
           false,

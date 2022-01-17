@@ -153,6 +153,6 @@ export default class FlavorsListController {
   }
 
   formatStorage(capacity) {
-    return this.$filter('cucBytes')(capacity, 2, false, 'GB');
+    return this.$filter('bytes')(capacity, 2, false, 'GB');
   }
 }

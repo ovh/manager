@@ -445,7 +445,7 @@
                                 <div class="d-flex">
                                     <span
                                         data-translate="pci_projects_project_training_jobs_submitresources_proposed_ram"
-                                        data-translate-values="{ ram: (flavor.resourcesPerUnit.memory | cucBytes:2:true:'B') }"
+                                        data-translate-values="{ ram: (flavor.resourcesPerUnit.memory | bytes:2:true:'B') }"
                                     ></span>
                                     <span
                                         data-translate="pci_projects_project_training_jobs_submitresources_proposed_type_cpu"
@@ -457,7 +457,7 @@
                                 >
                                     <span
                                         data-translate="pci_projects_project_training_jobs_submitresources_proposed_ram"
-                                        data-translate-values="{ ram: (flavor.gpuInformation.gpuMemory | cucBytes:2:true:'B') }"
+                                        data-translate-values="{ ram: (flavor.gpuInformation.gpuMemory | bytes:2:true:'B') }"
                                     ></span>
                                     <span
                                         data-translate="pci_projects_project_training_jobs_submitresources_proposed_type_gpu"
@@ -472,13 +472,13 @@
                                 <div class="d-flex">
                                     <span
                                         data-translate="pci_projects_project_training_jobs_submitresources_proposed_storage"
-                                        data-translate-values="{ memory: (flavor.resourcesPerUnit.ephemeralStorage | cucBytes:2:true:'B') }"
+                                        data-translate-values="{ memory: (flavor.resourcesPerUnit.ephemeralStorage | bytes:2:true:'B') }"
                                     ></span>
                                 </div>
                                 <div class="d-flex">
                                     <span
                                         data-translate="pci_projects_project_training_jobs_submitresources_proposed_public_bandwidth"
-                                        data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.publicNetwork | cucBytes:2:false:'B') }"
+                                        data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.publicNetwork | bytes:2:false:'B') }"
                                     ></span>
                                 </div>
                                 <div
@@ -487,7 +487,7 @@
                                 >
                                     <span
                                         data-translate="pci_projects_project_training_jobs_submitresources_proposed_private_bandwidth"
-                                        data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.privateNetwork | cucBytes:2:false:'B') }"
+                                        data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.privateNetwork | bytes:2:false:'B') }"
                                     ></span>
                                 </div>
                             </oui-select-picker-section>
@@ -603,7 +603,7 @@
                                     <span>
                                         {{$ctrl.resourceN *
                                         $ctrl.flavorSelected.resourcesPerUnit.memory
-                                        | cucBytes:2:true:'B' }}
+                                        | bytes:2:true:'B' }}
                                     </span>
                                 </oui-tile-description>
                             </oui-tile-definition>

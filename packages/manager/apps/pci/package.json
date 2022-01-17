@@ -34,6 +34,7 @@
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.10",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
+    "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
     "@ovh-ux/ng-ovh-contacts": "^4.0.6",
     "@ovh-ux/ng-ovh-contracts": "^4.0.5",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.4",

@@ -201,8 +201,7 @@
                     data-term="{{ 'pci_projects_project_training_jobs_ram' | translate  }}"
                 >
                     <oui-tile-description>
-                        {{ $ctrl.job.spec.resources.memory |
-                        cucBytes:2:true:'B'}}
+                        {{ $ctrl.job.spec.resources.memory | bytes:2:true:'B'}}
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition

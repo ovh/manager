@@ -21,8 +21,8 @@
             <div class="d-flex">
                 <span
                     data-translate="pci_database_flavors_list_spec_ram"
-                    data-translate-values="{ 
-                        ram: (flavor.memory | cucBytes:0:false:'GB')
+                    data-translate-values="{
+                        ram: (flavor.memory | bytes:0:false:'GB')
                     }"
                 ></span>
             </div>
@@ -36,16 +36,16 @@
                 <span
                     ng-if="flavor.minDiskSize !== flavor.maxDiskSize"
                     data-translate="pci_database_flavors_list_spec_storage_range"
-                    data-translate-values="{ 
-                    minStorage: (flavor.minDiskSize | cucBytes:2:false:'GB'),
-                    maxStorage: (flavor.maxDiskSize | cucBytes:2:false:'GB'),
+                    data-translate-values="{
+                    minStorage: (flavor.minDiskSize | bytes:2:false:'GB'),
+                    maxStorage: (flavor.maxDiskSize | bytes:2:false:'GB'),
                 }"
                 ></span>
                 <span
                     ng-if="flavor.maxDiskSize > 0 && flavor.minDiskSize === flavor.maxDiskSize"
                     data-translate="pci_database_flavors_list_spec_storage"
-                    data-translate-values="{ 
-                    storage: (flavor.minDiskSize | cucBytes:2:false:'GB'),
+                    data-translate-values="{
+                    storage: (flavor.minDiskSize | bytes:2:false:'GB'),
                 }"
                 ></span>
             </div>

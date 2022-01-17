@@ -2,6 +2,7 @@ import angular from 'angular';
 import 'angular-translate';
 
 import '@ovh-ux/manager-core';
+import '@ovh-ux/manager-filters';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
 import '@ovh-ux/ng-translate-async-loader';
@@ -26,6 +27,7 @@ angular
     'ngTranslateAsyncLoader',
     'oui',
     'ovhManagerCore',
+    'ovhManagerFilters',
     'ovh-api-services',
     'pascalprecht.translate',
     'ngOvhPaymentMethod',
