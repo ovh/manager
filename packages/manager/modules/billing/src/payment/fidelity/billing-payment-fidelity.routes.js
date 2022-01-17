@@ -18,9 +18,5 @@ export default /* @ngInject */ (
           $translate.instant('billing_payment_fidelity'),
       },
     });
-
-    $urlRouterProvider.when(/^\/billing\/fidelity/, ($location, $state) =>
-      $state.go(name),
-    );
   }
 };
