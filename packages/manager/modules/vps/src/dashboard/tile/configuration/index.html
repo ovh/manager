@@ -48,7 +48,7 @@
                     data-disabled="$ctrl.vpsUpgradeTask && !$ctrl.isInRescueMode"
                 >
                     <span
-                        data-ng-bind=":: ($ctrl.stateVps.model.memory / 1024) | cucBytes:0:false:'GB'"
+                        data-ng-bind=":: ($ctrl.stateVps.model.memory / 1024) | bytes:0:false:'GB'"
                     ></span>
                 </oui-radio>
                 <oui-radio
@@ -56,7 +56,7 @@
                     data-disabled="$ctrl.vpsUpgradeTask && !$ctrl.isInRescueMode"
                 >
                     <span
-                        data-ng-bind=":: ($ctrl.stateVps.model.memory * 2 / 1024) | cucBytes:0:false:'GB'"
+                        data-ng-bind=":: ($ctrl.stateVps.model.memory * 2 / 1024) | bytes:0:false:'GB'"
                     ></span>
                 </oui-radio>
             </oui-radio-toggle-group>
@@ -71,7 +71,7 @@
             data-ng-if="!$ctrl.configurationTile.upgrades.memory.plan || $ctrl.isVpsStarter"
         >
             <span
-                data-ng-bind=":: ($ctrl.stateVps.model.memory / 1024) | cucBytes:0:false:'GB'"
+                data-ng-bind=":: ($ctrl.stateVps.model.memory / 1024) | bytes:0:false:'GB'"
             ></span>
             <p
                 class="p-0"
@@ -106,7 +106,7 @@
                     data-disabled="$ctrl.isMigrating || ($ctrl.vpsUpgradeTask && !$ctrl.isInRescueMode)"
                 >
                     <span
-                        data-ng-bind=":: $ctrl.stateVps.model.disk | cucBytes:0:false:'GB'"
+                        data-ng-bind=":: $ctrl.stateVps.model.disk | bytes:0:false:'GB'"
                     ></span>
                 </oui-radio>
                 <oui-radio
@@ -114,7 +114,7 @@
                     data-disabled="$ctrl.isMigrating || ($ctrl.vpsUpgradeTask && !$ctrl.isInRescueMode)"
                 >
                     <span
-                        data-ng-bind=":: ($ctrl.stateVps.model.disk * 2) | cucBytes:0:false:'GB'"
+                        data-ng-bind=":: ($ctrl.stateVps.model.disk * 2) | bytes:0:false:'GB'"
                     ></span>
                 </oui-radio>
             </oui-radio-toggle-group>
@@ -129,7 +129,7 @@
             data-ng-if="!$ctrl.configurationTile.upgrades.storage.plan || $ctrl.isVpsStarter"
         >
             <span
-                data-ng-bind=":: $ctrl.stateVps.model.disk | cucBytes:0:false:'GB'"
+                data-ng-bind=":: $ctrl.stateVps.model.disk | bytes:0:false:'GB'"
             ></span>
             <p
                 class="p-0"

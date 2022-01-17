@@ -20,7 +20,7 @@
                     ></dt>
                     <dd
                         class="vps-item-horizontal"
-                        data-ng-bind=":: $ctrl.formatMemory($ctrl.stateVps.model.memory) | cucBytes:0:false:'GB'"
+                        data-ng-bind=":: $ctrl.formatMemory($ctrl.stateVps.model.memory) | bytes:0:false:'GB'"
                     ></dd>
                     <dt
                         class="vps-item-horizontal text-bold"
@@ -28,7 +28,7 @@
                     ></dt>
                     <dd
                         class="vps-item-horizontal"
-                        data-ng-bind=":: $ctrl.stateVps.model.disk | cucBytes:0:false:'GB'"
+                        data-ng-bind=":: $ctrl.stateVps.model.disk | bytes:0:false:'GB'"
                     ></dd>
                 </dl>
             </div>
@@ -87,7 +87,7 @@
             ></dt>
             <dd
                 class="vps-item-horizontal"
-                data-ng-bind=":: ($ctrl.newPlan.configuration.memory.size) | cucBytes:0:false:'GB'"
+                data-ng-bind=":: ($ctrl.newPlan.configuration.memory.size) | bytes:0:false:'GB'"
             ></dd>
             <dt
                 class="vps-item-horizontal text-bold"
@@ -95,7 +95,7 @@
             ></dt>
             <dd
                 class="vps-item-horizontal"
-                data-ng-bind=":: $ctrl.getStorageCapacity() | cucBytes:0:false:'GB'"
+                data-ng-bind=":: $ctrl.getStorageCapacity() | bytes:0:false:'GB'"
             ></dd>
         </dl>
     </oui-select-picker-section>

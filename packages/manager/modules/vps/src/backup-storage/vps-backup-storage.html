@@ -64,11 +64,11 @@
                     >
                         <span class="oui-progress__label">
                             <span
-                                data-ng-bind="($ctrl.info.data.usage.value * $ctrl.info.data.quota.value / 100) | cucBytes:2:false:$ctrl.info.data.quota.unit"
+                                data-ng-bind="($ctrl.info.data.usage.value * $ctrl.info.data.quota.value / 100) | bytes:2:false:$ctrl.info.data.quota.unit"
                             ></span
                             >/
                             <span
-                                data-ng-bind="$ctrl.info.data.quota.value | cucBytes:2:false:$ctrl.info.data.quota.unit"
+                                data-ng-bind="$ctrl.info.data.quota.value | bytes:2:false:$ctrl.info.data.quota.unit"
                             ></span>
                         </span>
                     </div>

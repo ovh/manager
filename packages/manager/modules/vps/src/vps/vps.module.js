@@ -7,6 +7,7 @@ import '@ovh-ux/ui-kit';
 import 'angular-ui-bootstrap';
 import 'angular-chart.js';
 
+import '@ovh-ux/manager-filters';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
@@ -51,6 +52,7 @@ angular
     'ovh-api-services',
     'oui',
     'ui.bootstrap',
+    'ovhManagerFilters',
     ngAtInternet,
     ngOvhDocUrl,
     ngOvhCloudUniverseComponents,
