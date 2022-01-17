@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import '@ovh-ux/manager-core';
+import '@ovh-ux/manager-filters';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ui-router-layout';
 import '@uirouter/angularjs';
@@ -27,6 +28,7 @@ const moduleName = 'ovhManagerVeeamCloudConnectDashboard';
 angular
   .module(moduleName, [
     'ovhManagerCore',
+    'ovhManagerFilters',
     'pascalprecht.translate',
     'ui.router',
     'ngOvhCloudUniverseComponents',
