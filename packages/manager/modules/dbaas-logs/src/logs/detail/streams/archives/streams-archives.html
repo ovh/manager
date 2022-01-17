@@ -34,7 +34,7 @@
             data-title="::'streams_archives_size' | translate"
             data-property="size"
         >
-            {{$row.size | cucBytes: 1:true:"B"}}
+            {{$row.size | bytes: 1:true:"B"}}
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title="::'streams_archives_signatures' | translate"

@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import '@ovh-ux/manager-core';
+import '@ovh-ux/manager-filters';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@uirouter/angularjs';
 import 'angular-translate';
@@ -34,6 +35,7 @@ angular
     'ngOvhCloudUniverseComponents',
     'oui',
     'ovhManagerCore',
+    'ovhManagerFilters',
     'ovh-api-services',
     'pascalprecht.translate',
     'ui.router',

@@ -64,7 +64,7 @@
             <span
                 class="oui-badge oui-badge_info"
                 data-ng-if="$row.info.isEditable"
-                data-ng-bind="($row.info.currentStorage | cucBytes:2:true)"
+                data-ng-bind="($row.info.currentStorage | bytes:2:true)"
             ></span>
             <span data-ng-if="!$row.info.isEditable"> - </span>
         </oui-datagrid-column>

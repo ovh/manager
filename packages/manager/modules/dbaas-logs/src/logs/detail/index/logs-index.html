@@ -52,7 +52,7 @@
                 class="oui-badge"
                 data-ng-if="$row.info.isEditable"
                 data-ng-class="ctrl.storageColor($row.info)"
-                data-ng-bind="($row.info.currentStorage | cucBytes:2:true) + '/' + ($row.info.maxSize | cucBytes:2:true)"
+                data-ng-bind="($row.info.currentStorage | bytes:2:true) + '/' + ($row.info.maxSize | bytes:2:true)"
             ></span>
             <span data-ng-if="!$row.info.isEditable"> - </span>
         </oui-datagrid-column>
