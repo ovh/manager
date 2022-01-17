@@ -46,23 +46,18 @@ export default class CloudConnectCtrl extends ListLayoutHelper.ListLayoutCtrl {
   }
 
   getOrderFollowUp() {
-    return this.$http.get('/ovhCloudConnect/order').then((res) => {
-      map(res.data, (orderName) => {
-        this.getOrderDetail(orderName).then((result) => {
-          const order = result;
-          const orderBillingUrl = this.buildOrderBillingUrl(order.orderId);
-          order.orderBillingUrl = orderBillingUrl;
-          this.orders.push(order);
-          return result;
+    return this.iceberg('/ovhCloudConnect/order')
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute(null, true)
+      .$promise.then(({ data: result }) => {
+        this.orders = map(result, (res) => {
+          const orderBillingUrl = this.buildOrderBillingUrl(res.orderId);
+          res.orderBillingUrl = orderBillingUrl;
+          return res;
         });
+        return result;
       });
-    });
-  }
-
-  getOrderDetail(orderName) {
-    return this.$http
-      .get(`/ovhCloudConnect/order/${orderName}`)
-      .then(({ data }) => data);
   }
 
   static formatDate(dateTime) {
