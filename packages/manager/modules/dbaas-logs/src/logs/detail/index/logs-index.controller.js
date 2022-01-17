@@ -17,7 +17,7 @@ export default class LogsIndexCtrl {
     this.LogsIndexService = LogsIndexService;
     this.LogsConstants = LogsConstants;
     this.suffixPattern = this.LogsConstants.suffixPattern;
-    this.cucBytes = $filter('cucBytes');
+    this.bytes = $filter('bytes');
     this.initLoaders();
   }
 
