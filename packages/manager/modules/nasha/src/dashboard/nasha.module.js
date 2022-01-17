@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import '@ovh-ux/manager-core';
+import '@ovh-ux/manager-filters';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ovh-doc-url';
 import '@ovh-ux/ng-ovh-responsive-popover';
@@ -33,6 +34,7 @@ const moduleName = 'ovhManagerNasha';
 angular
   .module(moduleName, [
     'ovhManagerCore',
+    'ovhManagerFilters',
     'pascalprecht.translate',
     'ui.router',
     'ovh-api-services',

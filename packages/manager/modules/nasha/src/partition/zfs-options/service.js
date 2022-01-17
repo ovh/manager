@@ -19,7 +19,7 @@ export default class NashaPartitionZFSOptionsService {
                 const int = parseInt(size, 10);
                 return {
                   size: int,
-                  label: $filter('cucBytes')(int, true),
+                  label: $filter('bytes')(int, true),
                   isDefault: int === NASHA_ZFS_OPTIONS_DEFAULT.recordsize,
                 };
               },
