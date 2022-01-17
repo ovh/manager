@@ -2,7 +2,6 @@ import angular from 'angular';
 
 import cucAdvancedOptions from './cui/advanced-options';
 import cucAutofocus from './autofocus';
-import cucBytes from './bytes';
 import cucConfig from './config';
 import cucFeatureAvailability from './featureAvailability';
 import cucHelper from './helper';
@@ -21,7 +20,6 @@ angular.module(moduleName, [
   cui,
   cucAdvancedOptions,
   cucAutofocus,
-  cucBytes,
   cucConfig,
   cucFeatureAvailability,
   cucHelper,
