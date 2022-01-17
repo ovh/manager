@@ -8,7 +8,5 @@
   "autorenew_all_dom_terminate_confirm": "Confirm",
   "autorenew_all_dom_terminate_cancel": "Cancel",
   "autorenew_all_dom_terminate_success": "Your cancellation request has been processed.",
-  "autorenew_all_dom_terminate_error": "Your cancellation request could not be processed for one or more domains. Please try again later.",
-  "autorenew_all_dom_domain_free_if_renewed": "Free renewal only if the {{allDom}} Alldom pack is renewed before {{allDomExpiration}}",
-  "autorenew_all_dom_domain_free": "Free renewal as it is included in the Alldom pack"
+  "autorenew_all_dom_terminate_error": "Your cancellation request could not be processed for one or more domains. Please try again later."
 }

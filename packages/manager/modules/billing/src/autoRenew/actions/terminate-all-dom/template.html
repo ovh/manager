@@ -8,13 +8,8 @@
     data-on-dismiss="$ctrl.goBack()"
     data-loading="$ctrl.isLoading"
 >
-    <oui-message class="mb-3" data-type="warning">
-        <span
-            data-translate="autorenew_all_dom_terminate_effect_on_domains"
-        ></span>
-        <strong
-            data-translate="autorenew_all_dom_terminate_domain_renewal_info"
-        ></strong>
+    <oui-message class="mb-3" data-type="info">
+        <span data-translate="autorenew_all_dom_terminate_info"></span>
     </oui-message>
     <p data-translate="autorenew_all_dom_terminate_choose_option"></p>
     <oui-checkbox name="all_dom_case" data-model="$ctrl.cancelAllDom">
@@ -38,13 +33,7 @@
             model="domain.selected"
             on-change="$ctrl.toggleSelectDomain(modelValue)"
         >
-            <span data-ng-bind="domain.name" class="align-middle"></span>
-            <span
-                class="oui-icon oui-icon-info align-middle"
-                data-oui-tooltip="{{ domain.tooltip }}"
-                data-oui-tooltip-placement="right"
-                aria-hidden="true"
-            ></span>
+            <span data-ng-bind="domain.name"></span>
         </oui-checkbox>
     </div>
 </oui-modal>

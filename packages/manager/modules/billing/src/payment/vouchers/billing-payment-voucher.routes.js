@@ -1,7 +1,7 @@
 import controller from './billing-vouchers.controller';
 import template from './billing-vouchers.html';
 
-export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   const name = 'app.account.billing.payment.vouchers';
 
   $stateProvider.state(name, {
@@ -13,8 +13,4 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         $translate.instant('billing_payment_vouchers'),
     },
   });
-
-  $urlRouterProvider.when(/^\/billing\/vouchers/, ($location, $state) =>
-    $state.go(name),
-  );
 };

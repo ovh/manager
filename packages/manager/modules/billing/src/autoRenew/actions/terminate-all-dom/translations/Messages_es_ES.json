@@ -8,7 +8,5 @@
   "autorenew_all_dom_terminate_confirm": "Confirmar",
   "autorenew_all_dom_terminate_cancel": "Cancelar",
   "autorenew_all_dom_terminate_success": "La solicitud de baja se ha enviado correctamente.",
-  "autorenew_all_dom_terminate_error": "La solicitud de baja no se ha podido enviar para uno o varios dominios. Por favor, vuelva a intentarlo más adelante.",
-  "autorenew_all_dom_domain_free_if_renewed": "Renovación gratuita solo si el pack AllDom {{ allDom }} se renueva antes del {{ allDomExpiration }}.",
-  "autorenew_all_dom_domain_free": "Renovación gratuita por estar incluido en el pack AllDom."
+  "autorenew_all_dom_terminate_error": "La solicitud de baja no se ha podido enviar para uno o varios dominios. Por favor, vuelva a intentarlo más adelante."
 }

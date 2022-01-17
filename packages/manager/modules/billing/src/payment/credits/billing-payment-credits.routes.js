@@ -1,7 +1,7 @@
 import controller from './billing-credits.controller';
 import template from './billing-credits.html';
 
-export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   const name = 'app.account.billing.payment.credits';
   $stateProvider.state(name, {
     url: '/credits',
@@ -42,8 +42,4 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         $translate.instant('billing_payment_credits'),
     },
   });
-
-  $urlRouterProvider.when(/^\/billing\/credits/, ($location, $state) =>
-    $state.go(name),
-  );
 };

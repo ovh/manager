@@ -8,7 +8,5 @@
   "autorenew_all_dom_terminate_confirm": "Zatwierdź",
   "autorenew_all_dom_terminate_cancel": "Anuluj",
   "autorenew_all_dom_terminate_success": "Rezygnacja została zarejestrowana.",
-  "autorenew_all_dom_terminate_error": "Rezygnacja nie mogła zostać zarejestrowana dla jednej lub kilku domen. Spróbuj później.",
-  "autorenew_all_dom_domain_free_if_renewed": "Bezpłatne odnowienie tylko w przypadku odnowienia pakietu Allldom {{ allDom }} przed dn. {{ allDomExpiration }}",
-  "autorenew_all_dom_domain_free": "Odnowienie jest bezpłatne, ponieważ zawarte jest w pakiecie Alldom"
+  "autorenew_all_dom_terminate_error": "Rezygnacja nie mogła zostać zarejestrowana dla jednej lub kilku domen. Spróbuj później."
 }
