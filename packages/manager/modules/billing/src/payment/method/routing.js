@@ -8,11 +8,7 @@ import {
 
 import component from './component';
 
-export default /* @ngInject */ (
-  $stateProvider,
-  $transitionsProvider,
-  $urlRouterProvider,
-) => {
+export default /* @ngInject */ ($stateProvider) => {
   const name = 'app.account.billing.payment.method';
   const allowDefaultChoiceForFirstPaymentMethodFeatureName =
     'billing:allowDefaultChoiceForFirstPaymentMethod';
@@ -180,8 +176,4 @@ export default /* @ngInject */ (
       breadcrumb: /* @ngInject */ (paymentMethod) => paymentMethod.name,
     },
   });
-
-  $urlRouterProvider.when(/^\/billing\/mean$/, ($location, $state) =>
-    $state.go(name),
-  );
 };
