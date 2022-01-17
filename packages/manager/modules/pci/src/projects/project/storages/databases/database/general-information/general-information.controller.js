@@ -204,6 +204,15 @@ export default class {
     }
   }
 
+  trackKarapace(event) {
+    if (event.target.tagName?.toLowerCase() === 'a') {
+      this.trackDashboard(
+        'general-information::karapace-documentation-website',
+        'click',
+      );
+    }
+  }
+
   $onDestroy() {
     this.stopPollingDatabaseStatus();
     this.stopPollingNodesStatus();
