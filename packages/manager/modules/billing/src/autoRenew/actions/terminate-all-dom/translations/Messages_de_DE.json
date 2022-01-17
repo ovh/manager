@@ -8,7 +8,5 @@
   "autorenew_all_dom_terminate_confirm": "Bestätigen",
   "autorenew_all_dom_terminate_cancel": "Abbrechen",
   "autorenew_all_dom_terminate_success": "Ihre Kündigungsanfrage wurde erfolgreich durchgeführt.",
-  "autorenew_all_dom_terminate_error": "Ihre Kündigungsanfrage konnte für eine oder mehrere Domains nicht durchgeführt werden. Bitte versuchen Sie es später erneut.",
-  "autorenew_all_dom_domain_free_if_renewed": "Eine kostenlose Verlängerung erfolgt nur, wenn das Paket AllDom {{ allDom }} vor dem {{ allDomExpiration }} verlängert wird.",
-  "autorenew_all_dom_domain_free": "Die Verlängerung ist kostenlos, da im Paket AllDom inklusive"
+  "autorenew_all_dom_terminate_error": "Ihre Kündigungsanfrage konnte für eine oder mehrere Domains nicht durchgeführt werden. Bitte versuchen Sie es später erneut."
 }

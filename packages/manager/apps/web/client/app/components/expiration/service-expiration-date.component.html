@@ -13,7 +13,7 @@
                     data-ng-if="::$ctrl.getCancelTerminationUrl()"
                     data-ng-href="{{::$ctrl.getCancelTerminationUrl()}}"
                     data-track-on="click"
-                    data-track-name="web::all_dom::domain::cancel-resiliation"
+                    data-track-name="renew-{{::$ctrl.serviceType.toLowerCase()}}"
                     data-track-click="action"
                 >
                     <span
