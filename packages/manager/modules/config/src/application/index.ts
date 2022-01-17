@@ -26,5 +26,5 @@ export interface Container {
 export interface Application {
   universe: string;
   url: string;
-  container?: Container; // @TODO: remove nullable when 2API applications will be prodded
+  container: Container;
 }
