@@ -2,8 +2,6 @@
   "pci_projects_project_training_job_logs_text_1": "Les dernières 100 lignes de logs sont visibles dans cet onglet",
   "pci_projects_project_training_job_logs_text_2": "Pour accéder à l'integralité des logs du job via la ligne de commande, lancer la commande suivante :",
   "pci_projects_project_training_job_logs_text_3": "Le job vient de se terminer. Quand la synchronisation avec l'object storage sera finalisée vous pourrez télécharger vos logs via le container \"ai-training-logs\" dans la region choisie pour lancer le job.",
-  "pci_projects_project_training_job_logs_text_5": "Le job est terminé, vous pouvez télécharger vos logs via l'object storage, dans le container \"ai-training-logs\" dans la region choisie pour lancer le job.",
-  "pci_projects_project_training_job_logs_text_4": "Vous pouvez également utiliser la commande suivante pour les télécharger directement :",
   "pci_projects_project_training_job_info": "Job: ",
   "pci_projects_project_training_job_info_header": "Job informations",
   "pci_projects_project_training_job_logs_header": "Logs",
