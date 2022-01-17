@@ -1,9 +1,10 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'angular-translate';
-import 'ovh-api-services';
 import 'angular-ui-bootstrap';
+import 'ovh-api-services';
 import '@ovh-ux/ng-ovh-sidebar-menu';
+import '@ovh-ux/manager-filters';
 
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
@@ -30,6 +31,7 @@ angular
     'oui',
     'ui.bootstrap',
     'ngOvhSidebarMenu',
+    'ovhManagerFilters',
     ovhManagerCore,
     ngAtInternet,
     ngOvhDocUrl,
