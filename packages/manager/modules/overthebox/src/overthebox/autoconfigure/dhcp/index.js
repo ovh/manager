@@ -4,6 +4,6 @@ const moduleName = 'ovhManagerOtbAutoconfigureDhcp';
 
 angular
   .module(moduleName, ['ui.router'])
-  .component('otbAutoconfigureDhcp', component);
+  .component('overTheBoxAutoconfigureDhcp', component);
 
 export default moduleName;

@@ -25,96 +25,94 @@
         <div data-ng-if="$ctrl.configList.length === 0" class="mb-2">
             <em data-translate="overTheBox_autoconfigure_no_values"></em>
         </div>
-        <div data-ng-if="$ctrl.showAddConfig">
-            <form novalidate name="formAddConf">
-                <div class="oui-input-group oui-input-group_inline">
-                    <oui-field
-                        label="{{:: 'overTheBox_autoconfigure_dhcp_interface_optional' | translate}}"
-                        label-popover="{{:: 'overTheBox_autoconfigure_dhcp_interface_description' | translate}}"
-                    >
-                        <input
-                            class="oui-input"
-                            name="interface"
-                            type="text"
-                            ng-model="$ctrl.config.interface"
-                        />
-                    </oui-field>
-                    <oui-field
-                        class="ml-2"
-                        label="{{:: 'overTheBox_autoconfigure_dhcp_lease_duration' | translate}}"
-                    >
-                        <input
-                            class="oui-input"
-                            name="leaseDuration"
-                            type="number"
-                            required
-                            ng-model="$ctrl.config.leaseDuration"
-                        />
-                    </oui-field>
-                    <oui-field
-                        class="ml-2"
-                        label="{{:: 'overTheBox_autoconfigure_dhcp_offset' | translate}}"
-                        label-popover="{{:: 'overTheBox_autoconfigure_dhcp_offset_description' | translate}}"
-                    >
-                        <input
-                            class="oui-input"
-                            name="offset"
-                            type="number"
-                            required
-                            ng-model="$ctrl.config.offset"
-                        />
-                    </oui-field>
-                    <oui-field
-                        class="ml-2"
-                        label="{{:: 'overTheBox_autoconfigure_dhcp_pool_size' | translate}}"
-                    >
-                        <input
-                            class="oui-input"
-                            name="poolSize"
-                            type="number"
-                            required
-                            ng-model="$ctrl.config.poolSize"
-                        />
-                    </oui-field>
-                    <oui-field
-                        class="ml-2"
-                        label="{{:: 'overTheBox_autoconfigure_priority' | translate}}"
-                    >
-                        <input
-                            class="oui-input"
-                            name="priority"
-                            type="number"
-                            required
-                            ng-model="$ctrl.config.priority"
-                        />
-                    </oui-field>
-                    <oui-button
-                        class="ml-2 mb-2"
-                        variant="primary"
-                        type="submit"
-                        on-click="$ctrl.createConfig()"
-                    >
-                        <span
-                            data-translate="overTheBox_autoconfigure_submit"
-                        ></span>
-                    </oui-button>
-                    <oui-button
-                        class="ml-2 mb-2"
-                        variant="primary"
-                        on-click="$ctrl.cancelCreateConfig()"
-                    >
-                        <span
-                            data-translate="overTheBox_autoconfigure_cancel"
-                        ></span>
-                    </oui-button>
-                </div>
-            </form>
-        </div>
+        <form novalidate name="formAddConf" data-ng-if="$ctrl.showAddConfig">
+            <div class="oui-input-group oui-input-group_inline">
+                <oui-field
+                    label="{{:: 'overTheBox_autoconfigure_dhcp_interface_optional' | translate}}"
+                    label-popover="{{:: 'overTheBox_autoconfigure_dhcp_interface_description' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="interface"
+                        type="text"
+                        ng-model="$ctrl.config.interface"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_dhcp_lease_duration' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="leaseDuration"
+                        type="number"
+                        required
+                        ng-model="$ctrl.config.leaseDuration"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_dhcp_offset' | translate}}"
+                    label-popover="{{:: 'overTheBox_autoconfigure_dhcp_offset_description' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="offset"
+                        type="number"
+                        required
+                        ng-model="$ctrl.config.offset"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_dhcp_pool_size' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="poolSize"
+                        type="number"
+                        required
+                        ng-model="$ctrl.config.poolSize"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_priority' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="priority"
+                        type="number"
+                        required
+                        ng-model="$ctrl.config.priority"
+                    />
+                </oui-field>
+                <oui-button
+                    class="ml-2 mb-2"
+                    variant="primary"
+                    type="submit"
+                    on-click="$ctrl.createConfig()"
+                >
+                    <span
+                        data-translate="overTheBox_autoconfigure_submit"
+                    ></span>
+                </oui-button>
+                <oui-button
+                    class="ml-2 mb-2"
+                    variant="primary"
+                    on-click="$ctrl.cancelCreateConfig()"
+                >
+                    <span
+                        data-translate="overTheBox_autoconfigure_cancel"
+                    ></span>
+                </oui-button>
+            </div>
+        </form>
         <oui-button
             variant="primary"
             data-on-click="$ctrl.addConfig()"
             class="mb-2 d-flex justify-content-center"
-            data-ng-if="$ctrl.displayAddConfigButton"
+            data-ng-if="$ctrl.displayAddConfigButton && $ctr.configList.length === 0"
         >
             <span
                 data-translate="overTheBox_autoconfigure_dhcp_config_add"
@@ -125,6 +123,20 @@
             rows="$ctrl.configList"
             data-ng-if="$ctrl.configList.length > 0"
         >
+            <oui-datagrid-topbar>
+                <oui-action-menu
+                    text="{{::'overTheBox_autoconfigure_actions' | translate}}"
+                >
+                    <oui-action-menu-item
+                        aria-label="{{::'overTheBox_autoconfigure_dhcp_config_add' | translate }}"
+                        data-on-click="$ctrl.addConfig()"
+                    >
+                        <span
+                            data-translate="overTheBox_autoconfigure_dhcp_config_add"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-datagrid-topbar>
             <oui-datagrid-column
                 title="'overTheBox_autoconfigure_dhcp_interface' | translate"
                 property="configuration.interface"
@@ -247,7 +259,7 @@
             variant="primary"
             on-click="$ctrl.addStaticLease()"
             class="mb-2 d-flex justify-content-center"
-            data-ng-if="$ctrl.displayAddStaticLeaseButton"
+            data-ng-if="$ctrl.displayAddStaticLeaseButton && $ctrl.staticLeases.length === 0"
         >
             <span
                 data-translate="overTheBox_autoconfigure_dhcp_static_lease_add"
@@ -258,6 +270,20 @@
             rows="$ctrl.staticLeases"
             data-ng-if="$ctrl.staticLeases.length > 0"
         >
+            <oui-datagrid-topbar>
+                <oui-action-menu
+                    text="{{::'overTheBox_autoconfigure_actions' | translate}}"
+                >
+                    <oui-action-menu-item
+                        aria-label="{{::'overTheBox_autoconfigure_dhcp_static_lease_add' | translate }}"
+                        data-on-click="$ctrl.addStaticLease()"
+                    >
+                        <span
+                            data-translate="overTheBox_autoconfigure_dhcp_static_lease_add"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-datagrid-topbar>
             <oui-datagrid-column
                 title="'overTheBox_autoconfigure_hostname' | translate"
                 property="configuration.hostname"

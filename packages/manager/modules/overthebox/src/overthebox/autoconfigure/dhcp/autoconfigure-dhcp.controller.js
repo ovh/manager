@@ -35,9 +35,7 @@ export default class OverTheBoxAutoconfigureDhcp {
     return this.$http
       .get(`/overTheBox/${this.serviceName}/configuration/dhcp/config`)
       .then((response) => {
-        if (response.data) {
-          this.configList = response.data;
-        }
+        this.configList = response.data;
         return response.data;
       })
       .catch((error) => {
@@ -148,9 +146,7 @@ export default class OverTheBoxAutoconfigureDhcp {
     return this.$http
       .get(`/overTheBox/${this.serviceName}/configuration/dhcp/staticLease`)
       .then((response) => {
-        if (response.data) {
-          this.staticLeases = response.data;
-        }
+        this.staticLeases = response.data;
         return response.data;
       })
       .catch((error) => {
