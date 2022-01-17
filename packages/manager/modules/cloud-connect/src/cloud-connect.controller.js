@@ -1,14 +1,22 @@
-import { map } from 'lodash';
+import map from 'lodash/map';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import { STATUS } from './cloud-connect.constants';
 
 export default class CloudConnectCtrl extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
-  constructor($q, $http, $translate, ouiDatagridService, coreURLBuilder) {
+  constructor(
+    $q,
+    $http,
+    $translate,
+    coreURLBuilder,
+    iceberg,
+    ouiDatagridService,
+  ) {
     super($q, ouiDatagridService);
     this.$translate = $translate;
     this.$http = $http;
     this.coreURLBuilder = coreURLBuilder;
+    this.iceberg = iceberg;
   }
 
   $onInit() {
