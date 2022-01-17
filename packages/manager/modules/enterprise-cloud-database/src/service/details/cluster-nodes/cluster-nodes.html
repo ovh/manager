@@ -42,7 +42,7 @@
             data-property="ram"
             data-type="number"
         >
-            <span data-ng-bind="$row.ram | cucBytes:2:false:'GB'"></span>
+            <span data-ng-bind="$row.ram | bytes:2:false:'GB'"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_list_storage_title' | translate"
@@ -50,7 +50,7 @@
             data-type="number"
         >
             <span
-                data-ng-bind="$row.storage.usableSize | cucBytes:2:false:'GB'"
+                data-ng-bind="$row.storage.usableSize | bytes:2:false:'GB'"
             ></span>
             <span data-ng-bind="$row.storage.type"></span>
         </oui-datagrid-column>
