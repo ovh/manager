@@ -3,6 +3,7 @@ import 'angular-translate';
 import '@ovh-ux/ng-translate-async-loader';
 import 'font-awesome/css/font-awesome.css';
 
+import '@ovh-ux/manager-filters';
 import '@ovh-ux/ng-ui-router-layout';
 import '@ovh-ux/ng-ovh-payment-method';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
@@ -33,6 +34,7 @@ angular
     'ngUiRouterLayout',
     'ngOvhPaymentMethod',
     'ngOvhCloudUniverseComponents',
+    'ovhManagerFilters',
     paymentInfoComponent,
     create,
     priceComponent,

@@ -21,6 +21,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
     "@ovh-ux/manager-enterprise-cloud-database": "^0.2.0 || ^1.0.0",
     "@ovh-ux/manager-preloader": "^1.1.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.10",
