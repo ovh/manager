@@ -19,7 +19,7 @@
         data-customer-regions="$ctrl.customerRegions"
         data-product-regions="$ctrl.instanceBackupsRegions"
     ></pci-maintenance-banner>
-    
+
     <pci-announcement-banner
         data-get-state-name="$ctrl.getStateName()"
         data-on-go-to-region="$ctrl.goToRegion()"
@@ -67,7 +67,7 @@
             data-sortable
             data-filterable
         >
-            <span>{{ $value | cucBytes:2:true:'GiB'}}</span>
+            <span>{{ $value | bytes:2:true:'GiB'}}</span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_storages_containers_container_creationDate_label' | translate"
