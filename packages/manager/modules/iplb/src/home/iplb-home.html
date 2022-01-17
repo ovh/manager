@@ -82,13 +82,13 @@
                             </div>
                             <iplb-bullet-chart
                                 data-ng-if="quota.included"
-                                data-text="(quota.total | cucBytes:2:false) + ' / ' + (quota.included | cucBytes:2:false)"
+                                data-text="(quota.total | bytes:2:false) + ' / ' + (quota.included | bytes:2:false)"
                                 data-value="100 * quota.total / quota.included"
                                 data-limit="100 * quota.alert / quota.included"
                             ></iplb-bullet-chart>
                             <iplb-bullet-chart
                                 data-ng-if="!quota.included"
-                                data-text="(quota.total | cucBytes:2:false) + ' / ' + ('iplb_home_tile_configuration_quota_unlimited' | translate)"
+                                data-text="(quota.total | bytes:2:false) + ' / ' + ('iplb_home_tile_configuration_quota_unlimited' | translate)"
                                 data-value="(!quota.alert || quota.alert > quota.total) ? 0 : 100"
                                 data-limit="100 * quota.alert / quota.total"
                             ></iplb-bullet-chart>
