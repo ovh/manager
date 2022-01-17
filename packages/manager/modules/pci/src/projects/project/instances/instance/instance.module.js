@@ -1,6 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
+import '@ovh-ux/manager-filters';
 import 'angular-translate';
 import ovhManagerAdvices from '@ovh-ux/manager-advices';
 
@@ -33,6 +34,7 @@ angular
     'ui.router',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
+    'ovhManagerFilters',
     ovhManagerAdvices,
     activeMonthlyBilling,
     applicationAccess,

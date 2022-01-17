@@ -1,5 +1,6 @@
 import angular from 'angular';
 import '@ovh-ux/ui-kit';
+import '@ovh-ux/manager-filters';
 
 import blocks from './blocks';
 import cloudArchive from './cloud-archives';
@@ -17,10 +18,11 @@ angular
     cloudArchive,
     databases,
     instanceBackups,
-    'oui',
     snapshots,
     objectStorage,
+    'oui',
     'ui.router',
+    'ovhManagerFilters',
   ])
   .config(routing);
 
