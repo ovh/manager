@@ -1,6 +1,6 @@
 import angular from 'angular';
 import 'angular-translate';
-import ngAtInternet from '@ovh-ux/ng-at-internet';
+import ngAtInternet from '@ovh-ux/ng-shell-tracking';
 
 import ovhManagerHub from '@ovh-ux/manager-hub';
 import catalog from './catalog';
