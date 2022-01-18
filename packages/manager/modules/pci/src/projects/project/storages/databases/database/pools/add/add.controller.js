@@ -12,6 +12,11 @@ export default class PoolsAddController {
     this.isLoading = false;
   }
 
+  $onInit() {
+    this.users = angular.copy(this.users);
+    this.users.unshift({ id: null, username: '-' });
+  }
+
   preparePayload() {
     const { size, database, user, mode, name } = this.poolData;
     return {

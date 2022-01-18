@@ -14,6 +14,8 @@ export default class PoolsEditController {
 
   $onInit() {
     Object.assign(this.poolData, this.pool);
+    this.users = angular.copy(this.users);
+    this.users.unshift({ id: null, username: '-' });
   }
 
   preparePayload() {
