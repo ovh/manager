@@ -50,6 +50,29 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       schema: /* @ngInject */ ($http) =>
         $http.get('/storage.json').then(({ data }) => data),
+
+      topbarOptions: /* @ngInject */ ($translate, goToOrder) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('netapp_order_cta_label'),
+          value: $translate.instant('netapp_order_cta_value'),
+          onClick: () => {
+            goToOrder();
+          },
+        },
+      }),
+
+      goToOrder: /* @ngInject */ ($state, atInternet) => () => {
+        atInternet.trackClick({
+          type: 'action',
+          name: `netapp::create`,
+        });
+
+        return $state.go('netapp.order');
+      },
+
       hideBreadcrumb: () => true,
     },
   });
