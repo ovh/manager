@@ -51,6 +51,7 @@ export const ANTHOS_READ_MORE_GUIDE = {
   WS: 'https://ovhcloud.com/us-en/hosted-private-cloud/anthos',
 };
 
+export const ANTHOS_HEADER_ID = 'anthos_tenant_header';
 export const ANTHOS_TENANT_ALERTER = 'anthos_tenant_alerter';
 
 export const TENANT_STATUS = {
@@ -60,6 +61,7 @@ export const TENANT_STATUS = {
 export default {
   GUIDES,
   ANTHOS_READ_MORE_GUIDE,
+  ANTHOS_HEADER_ID,
   ANTHOS_TENANT_ALERTER,
   TENANT_STATUS,
 };

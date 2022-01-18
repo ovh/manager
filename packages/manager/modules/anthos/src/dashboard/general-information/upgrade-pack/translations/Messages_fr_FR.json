@@ -9,5 +9,5 @@
   "anthos_tenant_dashboard_general_information_upgrade_pack_success_auto": "Votre demande de changement de pack a été enregistrée. Elle sera effective sous 24 heures",
   "anthos_tenant_dashboard_general_information_upgrade_pack_success_order": "Votre demande de changement de pack a été enregistrée. Une fois votre bon de commande validé, elle sera effective sous 24 heures.",
   "anthos_tenant_dashboard_general_information_upgrade_pack_success_order_link": "Cliquez ici pour valider votre bon de commande",
-  "anthos_tenant_dashboard_general_information_upgrade_pack_error": "Une erreur est survenue lors du changement de votre pack: {{ error }}"
+  "anthos_tenant_dashboard_general_information_upgrade_pack_error": "Une erreur est survenue lors du changement de votre pack : {{ error }}"
 }
