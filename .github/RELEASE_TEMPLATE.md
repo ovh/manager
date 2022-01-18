@@ -1,18 +1,8 @@
 # 📦 New release
 
-Approximate release date: 📆 
+Approximate release date: 📆
 
 ## Dashboard
-
-### :sparkles: Features
-
-_to be defined_
-
-### :bug: Bug Fixes
-
-_to be defined_
-
-## Web Cloud
 
 ### :sparkles: Features
 
@@ -43,6 +33,16 @@ _to be defined_
 _to be defined_
 
 ## Public Cloud
+
+### :sparkles: Features
+
+_to be defined_
+
+### :bug: Bug Fixes
+
+_to be defined_
+
+## Web Cloud
 
 ### :sparkles: Features
 
