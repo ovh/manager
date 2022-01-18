@@ -22,6 +22,17 @@ export interface TrackingAPI {
   trackEvent(data: EventData): PromiseLike<void>;
   trackImpression(data: ImpressionData): PromiseLike<void>;
   trackClickImpression(data: ImpressionDataClick): PromiseLike<void>;
+  isEnabled(): PromiseLike<boolean>;
+  setEnabled(state: boolean): PromiseLike<void>;
+  setDebug(state: boolean): PromiseLike<void>;
+  isDebugActive(): PromiseLike<boolean>;
+  getRegion(): PromiseLike<string>;
+  setRegion(region: string): PromiseLike<void>;
+  setDefaultsPromise(promise: Promise<PageData>): PromiseLike<void>;
+  getDefaultsPromise(): PromiseLike<Promise<PageData>>;
+  getDefaults(): PromiseLike<PageData>;
+  setDefaults(def: PageData): PromiseLike<PageData>;
+  isDefaultSet(): PromiseLike<boolean>;
 }
 
 export function exposeTrackingAPI(shellClient: ShellClient): TrackingAPI {
@@ -91,6 +102,66 @@ export function exposeTrackingAPI(shellClient: ShellClient): TrackingAPI {
         plugin: 'tracking',
         method: 'trackClickImpression',
         args: [data],
+      }),
+    getDefaults: () =>
+      shellClient.invokePluginMethod<PageData>({
+        plugin: 'tracking',
+        method: 'getDefaults',
+      }),
+    setDefaults: (def: PageData) =>
+      shellClient.invokePluginMethod<PageData>({
+        plugin: 'tracking',
+        method: 'setDefaults',
+        args: [def],
+      }),
+    isDefaultSet: () =>
+      shellClient.invokePluginMethod<boolean>({
+        plugin: 'tracking',
+        method: 'isDefaultSet',
+      }),
+    getDefaultsPromise: () =>
+      shellClient.invokePluginMethod<Promise<PageData>>({
+        plugin: 'tracking',
+        method: 'getDefaultsPromise',
+      }),
+    setDefaultsPromise: (promise: Promise<PageData>) =>
+      shellClient.invokePluginMethod<void>({
+        plugin: 'tracking',
+        method: 'setDefaultsPromise',
+        args: [promise],
+      }),
+    getRegion: () =>
+      shellClient.invokePluginMethod<string>({
+        plugin: 'tracking',
+        method: 'getRegion',
+      }),
+    isDebugActive: () =>
+      shellClient.invokePluginMethod<boolean>({
+        plugin: 'tracking',
+        method: 'isDebugActive',
+      }),
+    isEnabled: () =>
+      shellClient.invokePluginMethod<boolean>({
+        plugin: 'tracking',
+        method: 'isEnabled',
+      }),
+    setEnabled: (state: boolean) =>
+      shellClient.invokePluginMethod<void>({
+        plugin: 'tracking',
+        method: 'setEnabled',
+        args: [state],
+      }),
+    setDebug: (state: boolean) =>
+      shellClient.invokePluginMethod<void>({
+        plugin: 'tracking',
+        method: 'setDebug',
+        args: [state],
+      }),
+    setRegion: (region: string) =>
+      shellClient.invokePluginMethod<void>({
+        plugin: 'tracking',
+        method: 'setRegion',
+        args: [region],
       }),
   };
 }
