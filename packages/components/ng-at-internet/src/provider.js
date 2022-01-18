@@ -18,8 +18,6 @@ import OvhAtInternet from '@ovh-ux/ovh-at-internet';
  */
 export default class NgAtInternet extends OvhAtInternet {
   $get() {
-    this.init();
-
     return this;
   }
 }

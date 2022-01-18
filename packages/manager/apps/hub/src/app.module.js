@@ -7,6 +7,7 @@ import 'angular-translate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import ngShellTracking from '@ovh-ux/ng-shell-tracking';
 
 import { isString, get, has } from 'lodash-es';
 
@@ -25,7 +26,6 @@ import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 
 import errorPage from './components/error-page';
 import dashboard from './dashboard';
-import { getShellClient } from './shell';
 
 import controller from './controller';
 import routing from './routing';
@@ -41,8 +41,6 @@ const getEnvironment = (shellClient) => {
 const getLocale = (shellClient) => {
   return shellClient.i18n.getLocale();
 };
-
-const atInternet = getShellClient().tracking;
 
 export default async (containerEl, shellClient) => {
   const moduleName = 'managerHubApp';
@@ -62,7 +60,7 @@ export default async (containerEl, shellClient) => {
     .module(
       moduleName,
       [
-        atInternet,
+        ngShellTracking,
         dashboard,
         errorPage,
         'ngAnimate',
@@ -126,6 +124,11 @@ export default async (containerEl, shellClient) => {
         ssoAuthenticationProvider.setOnLogout(() => {
           shellClient.auth.logout();
         });
+      },
+    )
+    .config(
+      /* @ngInject */ (atInternet) => {
+        atInternet.setTrackingPlugin(shellClient.tracking);
       },
     )
     .run(

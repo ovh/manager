@@ -4,7 +4,7 @@ export default class NgAtInternet {
   }
 
   $get() {
-    this.trackingPlugin.init();
+    console.log(this.trackingPlugin);
     return this.trackingPlugin;
   }
 
