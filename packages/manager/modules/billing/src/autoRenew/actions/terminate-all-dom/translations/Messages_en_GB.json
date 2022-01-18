@@ -6,5 +6,6 @@
   "autorenew_all_dom_terminate_confirm": "Confirm",
   "autorenew_all_dom_terminate_cancel": "Cancel",
   "autorenew_all_dom_terminate_success": "Your cancellation request has been processed.",
-  "autorenew_all_dom_terminate_error": "Your cancellation request could not be processed for one or more domains. Please try again later."
+  "autorenew_all_dom_terminate_error": "Your cancellation request could not be processed for one or more domains. Please try again later.",
+  "autorenew_all_dom_terminate_info": "Warning: Cancelling this pack does not also cancel the domains attached to it."
 }

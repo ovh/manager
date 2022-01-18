@@ -6,5 +6,6 @@
   "autorenew_all_dom_terminate_confirm": "Confirmar",
   "autorenew_all_dom_terminate_cancel": "Cancelar",
   "autorenew_all_dom_terminate_success": "La solicitud de baja se ha enviado correctamente.",
-  "autorenew_all_dom_terminate_error": "La solicitud de baja no se ha podido enviar para uno o varios dominios. Por favor, vuelva a intentarlo más adelante."
+  "autorenew_all_dom_terminate_error": "La solicitud de baja no se ha podido enviar para uno o varios dominios. Por favor, vuelva a intentarlo más adelante.",
+  "autorenew_all_dom_terminate_info": "Atención: la baja de este pack no conlleva la baja de los dominios asociados."
 }

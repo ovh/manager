@@ -6,5 +6,6 @@
   "autorenew_all_dom_terminate_confirm": "Confirmar",
   "autorenew_all_dom_terminate_cancel": "Cancelar",
   "autorenew_all_dom_terminate_success": "O seu pedido de rescisão foi registado com êxito.",
-  "autorenew_all_dom_terminate_error": "Não foi possível ter em conta o seu pedido de rescisão para um ou vários domínios. Tente mais tarde."
+  "autorenew_all_dom_terminate_error": "Não foi possível ter em conta o seu pedido de rescisão para um ou vários domínios. Tente mais tarde.",
+  "autorenew_all_dom_terminate_info": "Atenção: a rescisão deste pack não implica a rescisão dos domínios que lhe estão associados."
 }

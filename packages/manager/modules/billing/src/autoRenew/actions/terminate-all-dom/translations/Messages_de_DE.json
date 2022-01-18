@@ -6,5 +6,6 @@
   "autorenew_all_dom_terminate_confirm": "Bestätigen",
   "autorenew_all_dom_terminate_cancel": "Abbrechen",
   "autorenew_all_dom_terminate_success": "Ihre Kündigungsanfrage wurde erfolgreich durchgeführt.",
-  "autorenew_all_dom_terminate_error": "Ihre Kündigungsanfrage konnte für eine oder mehrere Domains nicht durchgeführt werden. Bitte versuchen Sie es später erneut."
+  "autorenew_all_dom_terminate_error": "Ihre Kündigungsanfrage konnte für eine oder mehrere Domains nicht durchgeführt werden. Bitte versuchen Sie es später erneut.",
+  "autorenew_all_dom_terminate_info": "Achtung: Die Kündigung dieses Pakets hat nicht die Kündigung der damit verbundenen Domains zur Folge."
 }
