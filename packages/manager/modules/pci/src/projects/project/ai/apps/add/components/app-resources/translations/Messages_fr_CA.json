@@ -16,7 +16,7 @@
   "pci_app_add_resources_number_of_resources_type_cpu": "Ressources CPU",
   "pci_app_add_resources_number_of_resources_type_gpu": "Ressources GPU",
   "pci_app_add_resources_number_of_resources_number_of_resource": "Nombre de CPU",
-  "pci_app_add_resources_replicas": "Nombre d'instances sur lesquelles seront déployées votre AI Apps",
+  "pci_app_add_resources_replicas": "Nombre d'instances sur lesquelles sera déployée votre AI App",
   "pci_app_add_resources_replicas_help_text": "Déployez sur un minimum de 2 instances pour disposer de haute-disponibilité",
   "pci_app_add_resources_flavor_count": "Taille de la resource",
   "pci_app_add_resources_total": "Prix total du déploiement",
