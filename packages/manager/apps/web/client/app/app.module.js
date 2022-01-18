@@ -41,7 +41,6 @@ import 'script-loader!clipboard/dist/clipboard.min.js';
 import 'ng-ckeditor';
 
 /* eslint-enable import/no-webpack-loader-syntax, import/no-unresolved, import/extensions */
-
 import filter from 'lodash/filter';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
@@ -90,6 +89,7 @@ import office from '@ovh-ux/manager-office';
 import sharepoint from '@ovh-ux/manager-sharepoint';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import WebPaas from '@ovh-ux/manager-web-paas';
+import '@ovh-ux/manager-filters';
 
 import getConfig from './config/config';
 import domain from './domain';
@@ -175,6 +175,7 @@ export default (containerEl, environment) => {
         ovhManagerProductOffers,
         ovhNotificationsSidebar,
         'oui',
+        'ovhManagerFilters',
         emailpro,
         exchange,
         office,

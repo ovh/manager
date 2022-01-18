@@ -46,7 +46,7 @@ export default class OrderPrivateDatabaseService {
       const [ramSize] = product.invoiceName.match(/\d+/g);
       return {
         ...product,
-        label: this.$filter('cucBytes')(ramSize, undefined, false, 'MB'),
+        label: this.$filter('bytes')(ramSize, undefined, false, 'MB'),
         ramSize: parseInt(ramSize, 10),
       };
     });
