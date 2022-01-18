@@ -10,11 +10,11 @@ yarn add @ovh-ux/manager-ng-layout-helpers
 
 ## Available layouts
 
-### List layout 
+### List layout
 
-Provides utilities to create a layout displaying a list of sortable and filterable elements  
+Provides utilities to create a layout displaying a list of sortable and filterable elements
 
-#### Usage 
+#### Usage
 
 ```js
 // module.routing.js
@@ -60,16 +60,61 @@ export default class ProductListCtrl extends ListLayoutHelper.ListLayoutCtrl {
     super.$onInit();
 
     this.columnsConfig = [
-      { name: 'name', sortable: this.getSorting('name') },
-      { name: 'description', sortable: this.getSorting('description') },
-      { name: 'status', sortable: this.getSorting('status') },
+      {name: 'name', sortable: this.getSorting('name')},
+      {name: 'description', sortable: this.getSorting('description')},
+      {name: 'status', sortable: this.getSorting('status')},
     ];
   }
 }
 
 ```
 
+#### Add Simple CTA
+
+You have to define into your routing file a `topbarOptions` object, like this:
+
+```JS
+topbarOptions: /* @ngInject */ ($translate, goToOrder) => ({
+  cta: {
+    type: 'button',
+    displayed: true,
+    disabled: false,
+    label: $translate.instant('netapp_order_cta_label'),
+    value: $translate.instant('netapp_order_cta_value'),
+    onClick: () => {
+      goToOrder();
+    },
+  },
+})
+```
+
+#### Add Actions Menu
+
+You have to define into your routing file a `topbarOptions` object, like this:
+
+```JS
+topbarOptions: /* @ngInject */ ($translate, myRoutingOnClickFunction) => ({
+  cta: {
+    type: 'actions',
+    displayed: true,
+    disabled: false,
+    menuText: $translate.instant('netapp_order_cta_menu'),
+    actions: [{
+      id: 'first-action-item',
+      displayed: true,
+      disabled: false,
+      label: $translate.instant('netapp_order_cta_label'),
+      value: $translate.instant('netapp_order_cta_value'),
+      onClick: () => {
+        myRoutingOnClickFunction();
+      },
+    },],
+  },
+})
+```
+
 ### Onboarding component
+
 [Click here for documentation](src/onboarding/README.md)
 
 ## Build

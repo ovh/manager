@@ -1,0 +1,27 @@
+<!--Simple CTA-->
+<oui-button
+    data-ng-if="$ctrl.isSingleCta()"
+    aria-label="{{:: $ctrl.options.cta.label }}"
+    data-disabled="$ctrl.options.cta.disabled"
+    data-on-click="$ctrl.options.cta.onClick()"
+>
+    <span
+        data-ng-bind=":: $ctrl.options.cta.value"
+    ></span>
+</oui-button>
+
+<!--Multi CTA (Actions)-->
+<oui-action-menu
+    data-ng-if="$ctrl.isMenuActionsCta()"
+    data-disabled="$ctrl.options.cta.disabled"
+    data-text="{{:: $ctrl.options.cta.menuText }}"
+>
+    <oui-action-menu-item
+        data-ng-repeat="action in $ctrl.options.cta.actions track by $index"
+        data-aria-label="{{:: action.label}}"
+        data-on-click="action.onClick(action.id)"
+        data-disabled="action.disabled"
+    >
+        <span data-ng-bind=":: action.value"></span>
+    </oui-action-menu-item>
+</oui-action-menu>

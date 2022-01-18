@@ -16,6 +16,7 @@ export default {
     getServiceNameLink: '<?',
     options: '<?',
     formatters: '<?',
+    topbarOptions: '<?',
   },
   controller,
   template,
