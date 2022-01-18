@@ -7,52 +7,56 @@ import {
   trackImpressionDirective,
   trackImpressionClickDirective,
 } from './directive';
-import provider from './provider';
+import NgAtInternet from './provider';
 
 const moduleName = 'ngAtInternet';
 
-angular
-  .module(moduleName, [])
-  .config(($provide, atInternetProvider) => {
-    $provide.decorator('atInternet', ($delegate) => {
-      const delegateTrackPage = $delegate.trackPage;
-      let trackPageRequestQueue = [];
-      const settings = {
-        queueLimit: 30,
-      };
+export const registerAtInternet = (trackingPlugin) => {
+  angular
+    .module(moduleName, [])
+    .config(($provide, atInternetProvider) => {
+      $provide.decorator('atInternet', ($delegate) => {
+        const delegateTrackPage = $delegate.trackPage;
+        let trackPageRequestQueue = [];
+        const settings = {
+          queueLimit: 30,
+        };
 
-      // Decorate trackPage to queue requests until At-internet default configuration is set
-      set($delegate, 'trackPage', function trackPage() {
-        const defaultsPromise = atInternetProvider.getDefaultsPromise();
-        const trackInfos = arguments; // eslint-disable-line
+        // Decorate trackPage to queue requests until At-internet default configuration is set
+        set($delegate, 'trackPage', function trackPage() {
+          const defaultsPromise = atInternetProvider.getDefaultsPromise();
+          const trackInfos = arguments; // eslint-disable-line
 
-        if (defaultsPromise && angular.isFunction(defaultsPromise.then)) {
-          defaultsPromise.then(() => {
+          if (defaultsPromise && angular.isFunction(defaultsPromise.then)) {
+            defaultsPromise.then(() => {
+              delegateTrackPage.apply($delegate, trackInfos);
+            });
+          } else if (atInternetProvider.isDefaultSet()) {
+            trackPageRequestQueue.forEach((trackPageArguments) => {
+              delegateTrackPage.apply($delegate, trackPageArguments);
+            });
+            trackPageRequestQueue = [];
             delegateTrackPage.apply($delegate, trackInfos);
-          });
-        } else if (atInternetProvider.isDefaultSet()) {
-          trackPageRequestQueue.forEach((trackPageArguments) => {
-            delegateTrackPage.apply($delegate, trackPageArguments);
-          });
-          trackPageRequestQueue = [];
-          delegateTrackPage.apply($delegate, trackInfos);
-        } else {
-          // Limit number of delegate track in queue.
-          if (trackPageRequestQueue.length > settings.queueLimit) {
-            throw new Error(
-              'atinternet too much requests are waiting in track page request queue',
-            );
+          } else {
+            // Limit number of delegate track in queue.
+            if (trackPageRequestQueue.length > settings.queueLimit) {
+              throw new Error(
+                'atinternet too much requests are waiting in track page request queue',
+              );
+            }
+            trackPageRequestQueue.push(trackInfos);
           }
-          trackPageRequestQueue.push(trackInfos);
-        }
+        });
+        return $delegate;
       });
-      return $delegate;
-    });
-  })
-  .directive('atInternetClick', atInternetClickDirective)
-  .directive('trackOn', trackOnDirective)
-  .directive('trackImpression', trackImpressionDirective)
-  .directive('trackImpressionClick', trackImpressionClickDirective)
-  .provider('atInternet', provider);
+    })
+    .directive('atInternetClick', atInternetClickDirective)
+    .directive('trackOn', trackOnDirective)
+    .directive('trackImpression', trackImpressionDirective)
+    .directive('trackImpressionClick', trackImpressionClickDirective)
+    .provider('atInternet', new NgAtInternet(trackingPlugin));
+
+  return moduleName;
+};
 
 export default moduleName;
