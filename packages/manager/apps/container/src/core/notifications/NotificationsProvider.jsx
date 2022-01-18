@@ -90,7 +90,7 @@ export const NotificationsProvider = ({ children, environment }) => {
   };
 
   /**
-   * Toggle the read status of a
+   * Toggle the read status of a notification
    * @param  {String}   notificationId  The notification id to toggle.
    * @param  {Boolean}  linkClicked     Flag that tell if the toggle comes from a click event or not.
    * @return {Promise}
