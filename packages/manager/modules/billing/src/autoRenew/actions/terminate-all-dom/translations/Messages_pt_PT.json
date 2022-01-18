@@ -1,7 +1,5 @@
 {
   "autorenew_all_dom_terminate_title": "Solicitou a rescisão do seu pack alldom",
-  "autorenew_all_dom_terminate_effect_on_domains": "Atenção: a rescisão deste pack não implica a rescisão dos domínios que lhe estão associados.",
-  "autorenew_all_dom_terminate_domain_renewal_info": "Os domínios incluídos que não tenham sido rescindidos serão renovados gratuitamente até à expiração definitiva do seu pack. Após essa data, os seus domínios não rescindidos serão faturados individualmente.",
   "autorenew_all_dom_terminate_choose_option": "Selecione os domínios que deseja rescindir a seguir:",
   "autorenew_all_dom_terminate_select_all_dom": "Pack Alldom",
   "autorenew_all_dom_terminate_select_all_domains": "Selecionar",

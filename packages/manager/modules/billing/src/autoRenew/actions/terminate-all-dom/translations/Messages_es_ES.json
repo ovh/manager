@@ -1,7 +1,5 @@
 {
   "autorenew_all_dom_terminate_title": "Ha solicitado la baja de su pack AllDom.",
-  "autorenew_all_dom_terminate_effect_on_domains": "Atención: la baja de este pack no conlleva la baja de los dominios asociados.",
-  "autorenew_all_dom_terminate_domain_renewal_info": "Los dominios incluidos el pack que no hayan sido dados de baja se renovarán de forma gratuita hasta la expiración definitiva del pack. A partir de esa fecha, los dominios que no hayan sido dados de baja se facturarán por separado.",
   "autorenew_all_dom_terminate_choose_option": "Seleccione los dominios que quiere dar de baja:",
   "autorenew_all_dom_terminate_select_all_dom": "Pack AllDom",
   "autorenew_all_dom_terminate_select_all_domains": "Seleccionar todo",

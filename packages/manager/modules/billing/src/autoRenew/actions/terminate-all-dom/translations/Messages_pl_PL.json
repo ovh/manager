@@ -1,7 +1,5 @@
 {
   "autorenew_all_dom_terminate_title": "Zgłosiłeś rezygnację z pakietu Alldom",
-  "autorenew_all_dom_terminate_effect_on_domains": "Uwaga: rezygnacja z tego pakietu nie powoduje rezygnacji z przypisanych do niego domen.",
-  "autorenew_all_dom_terminate_domain_renewal_info": "Nierozwiązane umowy o usługi domen w nim zawarte zostaną odnowione za darmo do ostatecznego wygaśnięcia Twojego pakietu. Po tej dacie Twoje nierozwiązane umowy o usługi domen będą rozliczane indywidualnie.",
   "autorenew_all_dom_terminate_choose_option": "Wybierz domeny, z których chcesz zrezygnować:",
   "autorenew_all_dom_terminate_select_all_dom": "Pakiet Alldom",
   "autorenew_all_dom_terminate_select_all_domains": "Zaznacz wszystko",
