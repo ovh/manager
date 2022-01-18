@@ -1,3 +1,5 @@
 {
-  "netapp_title": "Enterprise File Storage"
+  "netapp_title": "Enterprise File Storage",
+  "netapp_order_cta_value": "Commander",
+  "netapp_order_cta_label": "Commander"
 }
