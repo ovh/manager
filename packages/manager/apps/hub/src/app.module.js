@@ -131,11 +131,6 @@ export default async (containerEl, shellClient) => {
         });
       },
     )
-    .config(
-      /* @ngInject */ (atInternet) => {
-        atInternet.setTrackingPlugin(shellClient.tracking);
-      },
-    )
     .run(
       /* @ngInject */ ($anchorScroll, $rootScope, $translate, $transitions) => {
         $transitions.onSuccess({}, () => $anchorScroll('hub-scroll-top'));
