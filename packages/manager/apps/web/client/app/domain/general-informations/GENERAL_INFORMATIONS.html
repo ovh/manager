@@ -1,5 +1,31 @@
-<div ui-view>
+<div ui-view class="general-information">
     <div data-ovh-alert="{{alerts.main}}"></div>
+    <oui-message
+        type="warning"
+        aria-close-button-label="{{ :: 'domain_dashboard_general_information_alldom_termination_warning_close' | translate }}"
+        data-ng-if="$ctrl.isAllDom && $ctrl.allDom && $ctrl.allDomInfos.renew.deleteAtExpiration"
+        dismissable
+    >
+        <div
+            data-translate="domain_dashboard_general_information_alldom_termination_info"
+            data-translate-values="{'expirationDate': '<strong>' + ($ctrl.allDomInfos.expiration | date:'longDate') + '</strong>' }"
+        ></div>
+        <a
+            href="{{ ::$ctrl.actions.manageAlldom.href }}"
+            data-track-on="click"
+            data-track-name="web::all_dom::domain::cancel-resiliation-banner"
+            data-track-click="action"
+        >
+            <span
+                class="align-middle"
+                data-translate="domain_dashboard_general_information_alldom_renewal_link"
+            ></span>
+            <span
+                class="oui-icon oui-icon-arrow-right align-middle d-inline-block"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </oui-message>
     <div class="row d-lg-flex">
         <div class="col-md-4 mb-5">
             <oui-tile
@@ -12,12 +38,20 @@
                     data-term="{{ ::'domain_dashboard_type_alldom_' + $ctrl.constructor.parseType($ctrl.allDom.type) | translate }}"
                 >
                     <oui-tile-description>
+                        <span
+                            class="oui-badge {{::!$ctrl.allDomInfos.renew.deleteAtExpiration ? 'oui-badge_success' : 'oui-badge_error'}}"
+                            data-ng-bind="::(!$ctrl.allDomInfos.renew.deleteAtExpiration ? 'domain_dashboard_general_information_domain_automatic_renewal' : 'domain_dashboard_general_information_domain_terminated') | translate"
+                        ></span>
                         <ul class="list-unstyled">
                             <li
                                 data-ng-repeat="allDomDomain in $ctrl.allDomDomains track by $index"
                                 data-ng-class="{ 'disabled': !allDomDomain.isIncluded }"
                             >
                                 <span data-ng-bind="::allDomDomain.name"></span>
+                                <span
+                                    class="oui-badge domain-status-tag {{::!allDomDomain.isTerminated ? 'oui-badge_success' : 'oui-badge_error'}}"
+                                    data-ng-bind="::(!allDomDomain.isTerminated ? 'domain_dashboard_general_information_domain_automatic_renewal' : 'domain_dashboard_general_information_domain_terminated') | translate"
+                                ></span>
                             </li>
                         </ul>
                     </oui-tile-description>
