@@ -45,8 +45,6 @@ const getLocale = (shellClient) => {
   return shellClient.i18n.getLocale();
 };
 
-const atInternet = getShellClient().tracking;
-
 export default async (containerEl, shellClient) => {
   const moduleName = 'managerHubApp';
 
@@ -131,6 +129,11 @@ export default async (containerEl, shellClient) => {
         ssoAuthenticationProvider.setOnLogout(() => {
           shellClient.auth.logout();
         });
+      },
+    )
+    .config(
+      /* @ngInject */ (atInternet) => {
+        atInternet.setTrackingPlugin(shellClient.tracking);
       },
     )
     .run(
