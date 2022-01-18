@@ -7,7 +7,6 @@ import 'angular-translate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
-import ngShellTracking from '@ovh-ux/ng-shell-tracking';
 
 import { isString, get, has } from 'lodash-es';
 
@@ -24,6 +23,7 @@ import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 
+import { initHubAtInternet } from './components/at-internet';
 import errorPage from './components/error-page';
 import dashboard from './dashboard';
 
@@ -60,7 +60,7 @@ export default async (containerEl, shellClient) => {
     .module(
       moduleName,
       [
-        ngShellTracking,
+        initHubAtInternet(shellClient.tracking),
         dashboard,
         errorPage,
         'ngAnimate',
@@ -124,11 +124,6 @@ export default async (containerEl, shellClient) => {
         ssoAuthenticationProvider.setOnLogout(() => {
           shellClient.auth.logout();
         });
-      },
-    )
-    .config(
-      /* @ngInject */ (atInternet) => {
-        atInternet.setTrackingPlugin(shellClient.tracking);
       },
     )
     .run(
