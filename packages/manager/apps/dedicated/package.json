@@ -40,7 +40,7 @@
     "@ovh-ux/manager-enterprise-cloud-database": "^0.2.0 || ^1.0.0",
     "@ovh-ux/manager-error-page": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-exchange": "^2.0.0 || ^3.0.0",
-    "@ovh-ux/manager-filters": "^0.1.0 || ^1.0.0",
+    "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
     "@ovh-ux/manager-incident-banner": "^1.0.0",
     "@ovh-ux/manager-iplb": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-metrics": "^0.0.0 || ^1.0.0",
