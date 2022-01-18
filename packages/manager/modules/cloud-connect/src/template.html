@@ -63,8 +63,9 @@
                             <span
                                 class="oui-progress-tracker__label"
                                 data-ng-if="step.date"
-                                >{{$ctrl.constructor.formatDate(step.date)}}</span
+                                data-ng-bind="$ctrl.constructor.formatDate(step.date)"
                             >
+                            </span>
                         </span>
                     </span>
                 </span>
