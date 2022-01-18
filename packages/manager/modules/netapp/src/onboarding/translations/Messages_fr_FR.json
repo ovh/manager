@@ -12,7 +12,6 @@
   "netapp_onboarding_volumes_title": "Gestion des Volumes",
   "netapp_onboarding_volumes_description": "Dans ce guide, vous découvrirez la gestion des volumes de votre offre Enterprise File Storage.",
   "netapp_onboarding_volumes_guides": "Guides",
-  "netapp_onboarding_manager_start_title": "Démarrage rapide via l'espace client OVHcloud",
   "netapp_onboarding_storage_title": "Stockage et sauvegarde",
   "netapp_onboarding_volume_acl_title": "Gestion des ACL",
   "netapp_onboarding_volume_snapshots_title": "Gestion des Snapshots"
