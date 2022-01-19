@@ -10,9 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.dedicatedCloud.details.datacenter.add-datacenter'),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dedicated_cloud_datacenters'),
-      trackClick: /* @ngInject */ (atInternet) => (click) => {
+      trackClick: /* @ngInject */ (atInternet, trackingPrefix) => (click) => {
         atInternet.trackClick({
-          name: click,
+          name: `${trackingPrefix}::details::${click}`,
           type: 'action',
         });
       },

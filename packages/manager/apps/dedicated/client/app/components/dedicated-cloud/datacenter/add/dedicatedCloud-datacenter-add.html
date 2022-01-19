@@ -3,7 +3,7 @@
     data-primary-action="$ctrl.nsxStatus !== 'enabled' && $ctrl.commercialRange.model.name === 'premier' ? $ctrl.addOptionNSX() : $ctrl.addDatacenter()"
     data-primary-label="{{ $ctrl.nsxStatus !== 'enabled' && $ctrl.commercialRange.model.name === 'premier' ? 'dedicatedCloud_configuration_add_datacenter_option':'wizard_confirm' | translate }}"
     data-primary-disabled="!$ctrl.commercialRange.model"
-    data-secondary-action="$ctrl.goBack()"
+    data-secondary-action="$ctrl.onCancel()"
     data-secondary-label="{{:: 'wizard_cancel' | translate }}"
     data-loading="$ctrl.loader"
     data-on-dismiss="$ctrl.goBack()"

@@ -45,6 +45,10 @@ export default class {
   }
 
   addDatacenter() {
+    this.trackClick(
+      `datacenter::add-datacenter::confirm_${this.commercialRange.model.name}`,
+    );
+
     this.loader = true;
 
     if (get(this.commercialRange, 'model.upgradeRequired')) {
@@ -54,9 +58,6 @@ export default class {
       );
     }
 
-    this.trackClick(
-      `datacenter::add-datacenter::confirm_${this.commercialRange.model.name}`,
-    );
     return this.DedicatedCloud.addDatacenter(
       this.serviceName,
       this.commercialRange.model.name,
@@ -80,5 +81,10 @@ export default class {
   addOptionNSX() {
     this.trackClick('datacenter::add-datacenter::activate-nsx');
     return this.onBasicOptionsUpgrade({ isPremier: true });
+  }
+
+  onCancel() {
+    this.trackClick('datacenter::add-datacenter::cancel');
+    return this.goBack();
   }
 }
