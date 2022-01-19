@@ -30,7 +30,7 @@
   "server_configuration_netboot_step2_rescue": "Nome del Rescue:",
   "server_configuration_netboot_step2_rescue_mail": "Email di recupero:",
   "server_configuration_netboot_success": "Il netboot è stato aggiornato correttamente. Riavvia il server ",
-  "server_configuration_netboot_fail": "Si è verificato un errore durante l'aggiornamento del netboot sul server {{t0}}",
+  "server_configuration_netboot_fail": "Si è verificato un errore durante l'aggiornamento del netboot sul server {{t0}}: {{message}}",
   "server_configuration_netboot_next": "Continua",
   "server_configuration_netboot_cancel": "Annulla",
   "server_configuration_netboot_confirm": "Conferma",
