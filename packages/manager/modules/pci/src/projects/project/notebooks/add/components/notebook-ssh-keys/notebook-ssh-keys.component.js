@@ -7,7 +7,6 @@ export default {
     displayNotebookSshKeys: '<',
     projectId: '<',
   },
-  require: {},
   controller,
   template,
 };

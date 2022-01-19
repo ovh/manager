@@ -2,12 +2,11 @@ import { NOTEBOOK_SSH_KEYS } from '../../notebook.constants';
 
 export default class NotebookSshKeysController {
   /* @ngInject */
-  constructor(coreConfig, NotebookService) {
+  constructor(NotebookService) {
     this.NOTEBOOK_SSH_KEYS_CONSTANTS = NOTEBOOK_SSH_KEYS;
     this.NotebookService = NotebookService;
 
-    this.coreConfig = coreConfig;
-    // Option set by user indicating if he wants to add ssh keys
+    // Option indicating if the user wants to add ssh keys
     this.enabledSshPublicKey = false;
     // List of ssh keys added by user
     this.addedSshKeys = [];
