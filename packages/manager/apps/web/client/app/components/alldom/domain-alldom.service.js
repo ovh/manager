@@ -104,18 +104,24 @@ export default class {
    * Get domains of alldom pack and its serviceInfo
    * @param {string} serviceName
    */
-  async getDomainsWithServiceInfo(serviceName) {
-    const domains = await this.getDomains(serviceName);
-    const promises = domains.map((domain) =>
-      this.$http.get(`/domain/${domain}/serviceInfos`),
-    );
-    return this.$q.all(promises).then((serviceInfos) => {
-      return domains.map((domain, index) => {
-        return {
-          name: domain,
-          serviceInfo: serviceInfos[index].data,
-        };
-      });
-    });
+  getDomainsWithServiceInfo(serviceName) {
+    let domains = null;
+    return this.getDomains(serviceName)
+      .then((d) => {
+        domains = d;
+        return d.map((domain) =>
+          this.$http.get(`/domain/${domain}/serviceInfos`),
+        );
+      })
+      .then((promises) =>
+        this.$q.all(promises).then((serviceInfos) => {
+          return domains.map((domain, index) => {
+            return {
+              name: domain,
+              serviceInfo: serviceInfos[index].data,
+            };
+          });
+        }),
+      );
   }
 }

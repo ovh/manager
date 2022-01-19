@@ -39,8 +39,13 @@
                 >
                     <oui-tile-description>
                         <span
-                            class="oui-badge {{::!$ctrl.allDomInfos.renew.deleteAtExpiration ? 'oui-badge_success' : 'oui-badge_error'}}"
-                            data-ng-bind="::(!$ctrl.allDomInfos.renew.deleteAtExpiration ? 'domain_dashboard_general_information_domain_automatic_renewal' : 'domain_dashboard_general_information_domain_terminated') | translate"
+                            class="oui-badge"
+                            data-ng-class="::{
+                                'oui-badge_success': $ctrl.DOMAIN_STATE_TYPE.success.includes($ctrl.allDomPaymentState),
+                                'oui-badge_error': $ctrl.DOMAIN_STATE_TYPE.error.includes($ctrl.allDomPaymentState),
+                                'oui-badge_warning': $ctrl.DOMAIN_STATE_TYPE.warning.includes($ctrl.allDomPaymentState),
+                            }"
+                            data-ng-bind="::('domain_dashboard_general_information_domain_' + $ctrl.allDomPaymentState) | translate"
                         ></span>
                         <ul class="list-unstyled">
                             <li
@@ -49,8 +54,13 @@
                             >
                                 <span data-ng-bind="::allDomDomain.name"></span>
                                 <span
-                                    class="oui-badge domain-status-tag {{::!allDomDomain.isTerminated ? 'oui-badge_success' : 'oui-badge_error'}}"
-                                    data-ng-bind="::(!allDomDomain.isTerminated ? 'domain_dashboard_general_information_domain_automatic_renewal' : 'domain_dashboard_general_information_domain_terminated') | translate"
+                                    class="oui-badge domain-status-tag"
+                                    data-ng-class="::{
+                                        'oui-badge_success': $ctrl.DOMAIN_STATE_TYPE.success.includes(allDomDomain.state),
+                                        'oui-badge_error': $ctrl.DOMAIN_STATE_TYPE.error.includes(allDomDomain.state),
+                                        'oui-badge_warning': $ctrl.DOMAIN_STATE_TYPE.warning.includes(allDomDomain.state),
+                                    }"
+                                    data-ng-bind="::('domain_dashboard_general_information_domain_' + allDomDomain.state) | translate"
                                 ></span>
                             </li>
                         </ul>

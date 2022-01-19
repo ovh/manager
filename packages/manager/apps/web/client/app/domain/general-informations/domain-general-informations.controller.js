@@ -17,6 +17,8 @@ import {
   DNSSEC_STATUS,
   PRODUCT_TYPE,
   PROTECTION_TYPES,
+  DOMAIN_SERVICE_STATES,
+  DOMAIN_STATE_TYPE,
 } from './general-information.constants';
 
 export default class DomainTabGeneralInformationsCtrl {
@@ -71,6 +73,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.coreURLBuilder = coreURLBuilder;
     this.DOMAIN = DOMAIN;
     this.goToDnsAnycast = goToDnsAnycast;
+    this.DOMAIN_STATE_TYPE = DOMAIN_STATE_TYPE;
   }
 
   $onInit() {
@@ -78,6 +81,9 @@ export default class DomainTabGeneralInformationsCtrl {
     this.domainInfos = this.$scope.ctrlDomain.domainInfos;
     this.allDom = this.$scope.ctrlDomain.allDom;
     this.allDomInfos = this.$scope.ctrlDomain.allDomInfos;
+    this.allDomPaymentState = DomainTabGeneralInformationsCtrl.getDomainState(
+      this.allDomInfos,
+    );
     this.associatedHostings = this.$scope.ctrlDomain.associatedHostings;
     this.orderedHosting = this.$scope.ctrlDomain.orderedHosting;
     this.displayFreeHosting = false;
@@ -281,7 +287,9 @@ export default class DomainTabGeneralInformationsCtrl {
             this.allDomDomains = map(allDomDomains, (domain) => ({
               name: domain.name,
               isIncluded: domains.indexOf(domain) !== -1,
-              isTerminated: domain?.serviceInfo.renew.deleteAtExpiration,
+              state: DomainTabGeneralInformationsCtrl.getDomainState(
+                domain?.serviceInfo,
+              ),
             }));
           })
           .catch((err) =>
@@ -575,6 +583,32 @@ export default class DomainTabGeneralInformationsCtrl {
 
   static parseType(type) {
     return type.replace(/\+/g, '-');
+  }
+
+  static getDomainState(domainServiceInfo) {
+    const hasForcedRenew =
+      domainServiceInfo.renew.forced &&
+      !domainServiceInfo.renew.deleteAtExpiration &&
+      domainServiceInfo.this.status.toLowerCase() !== 'expired';
+    if (
+      domainServiceInfo.renew.manualPayment ||
+      domainServiceInfo.renewalType === 'manual'
+    ) {
+      return DOMAIN_SERVICE_STATES.manualPayment;
+    }
+    if (
+      domainServiceInfo.status.toLowerCase() === 'expired' ||
+      (moment().isAfter(domainServiceInfo.expirationDate) && !hasForcedRenew)
+    ) {
+      return DOMAIN_SERVICE_STATES.expired;
+    }
+    if (domainServiceInfo.renew.deleteAtExpiration) {
+      return DOMAIN_SERVICE_STATES.delete_at_expiration;
+    }
+    if (domainServiceInfo.renew.automatic || hasForcedRenew) {
+      return DOMAIN_SERVICE_STATES.automatic;
+    }
+    return DOMAIN_SERVICE_STATES.manualPayment;
   }
 }
 
