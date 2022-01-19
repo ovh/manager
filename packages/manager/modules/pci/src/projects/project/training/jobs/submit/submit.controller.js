@@ -103,7 +103,7 @@ export default class PciTrainingJobsSubmitController {
     this.emptyData = this.containers.length === 0;
     this.filterContainers();
 
-    // Option set by user indicating if he wants to add ssh keys
+    // Option indicating if the user wants to add ssh keys
     this.enabledSshPublicKey = false;
     // List of ssh keys added by user
     this.addedSshKeys = [];
@@ -352,7 +352,7 @@ export default class PciTrainingJobsSubmitController {
   }
 
   populateSavedSshKeys() {
-    this.PciProjectTrainingService.getSavedSshKeys(this.projectId).then(
+    return this.PciProjectTrainingService.getSavedSshKeys(this.projectId).then(
       ({ data: keys }) => {
         this.savedKeys = keys;
         this.allKeyNames = [this.JOB_SSH_KEYS_CONSTANTS.CUSTOM_SELECT].concat(

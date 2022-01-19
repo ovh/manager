@@ -421,7 +421,7 @@
                     >
                         <fieldset class="oui-inline-adder__fieldset">
                             <legend
-                                data-ng-bind=":: 'pci_projects_project_training_jobs_submit_select_ssh_legend' | translate"
+                                data-translate="pci_projects_project_training_jobs_submit_select_ssh_legend"
                             ></legend>
                             <div class="oui-inline-adder__row">
                                 <div class="oui-inline-adder__field">
@@ -431,7 +431,6 @@
                                         data-ng-if="$ctrl.allKeyNames.length > 0"
                                     >
                                         <oui-select
-                                            id="savedKeyName"
                                             name="savedKeyName"
                                             data-model="$ctrl.addedSshKeys[$index].keyName"
                                             data-items="$ctrl.allKeyNames"
@@ -460,7 +459,7 @@
                             <button
                                 type="button"
                                 class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
-                                data-translate-attr="{title: 'dedicated_server_install_image_config_http_header_delete'}"
+                                data-translate-attr="{title: 'pci_projects_project_training_jobs_submit_select_ssh_delete_message'}"
                                 data-ng-click="$ctrl.onSshPublickeysDeleteBtnClick($index)"
                                 data-ng-disabled="$ctrl.addedSshKeys.length === 1"
                             >
