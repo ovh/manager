@@ -51,6 +51,26 @@ export default /* @ngInject */ ($stateProvider) => {
       schema: /* @ngInject */ ($http) =>
         $http.get('/storage.json').then(({ data }) => data),
 
+      /**
+       * Used into ngLayoutHelper to customize datagrid columns name
+       */
+      customizeColumnsMap: ($translate, configuration) => {
+        return configuration.data.reduce(
+          (columnsMap, { property }) => ({
+            ...columnsMap,
+            [property]: {
+              title: $translate.instant(
+                `netapp_list_columns_header_${property}`,
+              ),
+            },
+          }),
+          {},
+        );
+      },
+
+      /**
+       * Used into ngLayoutHelper to define datagrid Topbar CTA
+       */
       topbarOptions: /* @ngInject */ ($translate, goToOrder) => ({
         cta: {
           type: 'button',
