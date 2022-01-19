@@ -1,3 +1,12 @@
+# [17.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.9.1...@ovh-ux/manager-dedicated@17.10.0) (2022-01-19)
+
+
+### Features
+
+* update PayPal content ([#6170](https://github.com/ovh/manager/issues/6170)) ([a8c1f05](https://github.com/ovh/manager/commit/a8c1f050822234f53523fa203d64a7cf4ae27a30))
+
+
+
 ## [17.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.9.0...@ovh-ux/manager-dedicated@17.9.1) (2022-01-17)
 
 

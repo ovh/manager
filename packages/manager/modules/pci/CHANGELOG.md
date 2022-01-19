@@ -1,3 +1,13 @@
+## [5.55.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.55.2...@ovh-ux/manager-pci@5.55.3) (2022-01-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([c076d4d](https://github.com/ovh/manager/commit/c076d4dc8de3f15c002175085b7a6ea5cea05cd4))
+* **storage.databases:** move polling to avoid cancelled request ([#6308](https://github.com/ovh/manager/issues/6308)) ([df7ae51](https://github.com/ovh/manager/commit/df7ae5114a3eecfcee317880e45dc168f1960cb6))
+
+
+
 ## [5.55.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.55.1...@ovh-ux/manager-pci@5.55.2) (2022-01-11)
 
 
