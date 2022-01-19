@@ -2,6 +2,7 @@ import {
   MAX_ADDONS,
   PRICE_DURATION,
   TRACKING_CHUNK,
+  TRACKING_PREFIX,
 } from './anthos-dashboard-host-order.constants';
 import { extractHostAddonsFromAnthosCatalog } from './anthos-dashboard-host-order.utils';
 
@@ -14,12 +15,14 @@ export default class AnthosDashboardHostOrderController {
     AnthosTenantsService,
     User,
     coreConfig,
+    atInternet,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.$timeout = $timeout;
     this.AnthosTenantsService = AnthosTenantsService;
     this.User = User;
+    this.atInternet = atInternet;
 
     this.addons = [];
     this.currencySymbol = coreConfig.getUser().currency.symbol;
@@ -67,19 +70,26 @@ export default class AnthosDashboardHostOrderController {
   }
 
   openExpressOrder() {
-    this.trackClick(`${TRACKING_CHUNK}::confirm`);
+    const selectedAddons = this.addons.filter(({ quantity }) => quantity > 0);
+    const trackingSuffix = selectedAddons
+      .map(({ $raw: { planCode }, quantity }) => `${planCode}-${quantity}`)
+      .join('_');
 
-    const products = this.addons
-      .filter(({ quantity }) => quantity > 0)
-      .map(({ quantity, $raw: addon }) => ({
-        productId: 'anthos',
-        serviceName: this.serviceName,
-        planCode: addon.planCode,
-        duration: PRICE_DURATION,
-        pricingMode: addon.pricings[0].mode,
-        quantity,
-        configuration: [],
-      }));
+    this.trackClick(`${TRACKING_CHUNK}::confirm`);
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::${trackingSuffix}`,
+      type: 'action',
+    });
+
+    const products = selectedAddons.map(({ quantity, $raw: addon }) => ({
+      productId: 'anthos',
+      serviceName: this.serviceName,
+      planCode: addon.planCode,
+      duration: PRICE_DURATION,
+      pricingMode: addon.pricings[0].mode,
+      quantity,
+      configuration: [],
+    }));
 
     window.open(
       `${this.expressOrderUrl}review?products=${JSURL.stringify(products)}`,
