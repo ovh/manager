@@ -39,7 +39,7 @@ export default {
     integrationCtrl.loading.init = true;
 
     // insert paypal checkout.js script if not yet loaded
-    if (!document.getElementById(PAYPAL_SCRIPT.id)) {
+    if (typeof paypal === 'undefined') {
       integrationCtrl.insertElement(
         'script',
         merge(
