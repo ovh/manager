@@ -1,4 +1,4 @@
-import { ANTHOS_TENANT_ALERTER, ANTHOS_HEADER_ID } from '../anthos.constants';
+import { ANTHOS_TENANT_ALERTER } from '../anthos.constants';
 import { TRACKING_PREFIX } from './constants';
 import Tenant from '../Tenant.class';
 
@@ -98,29 +98,17 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceInfo: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getServiceInfo(serviceName),
 
-      goToTenant: (
-        $state,
-        tenant,
-        displayAlerterMessage,
-        $location,
-        $anchorScroll,
-      ) => (
+      goToTenant: ($state, displayAlerterMessage) => (
         message = false,
         type = 'success',
         stateToGo = 'anthos.dashboard',
+        stateParams = {},
       ) => {
-        const reload = message && type === 'success';
-
-        const promise = $state.go(stateToGo, {
-          reload,
-        });
+        const options = { reload: message && type === 'success' };
+        const promise = $state.go(stateToGo, stateParams, options);
 
         if (message) {
-          promise.then(() => {
-            displayAlerterMessage(type, message);
-            $location.hash(ANTHOS_HEADER_ID);
-            $anchorScroll();
-          });
+          promise.then(() => displayAlerterMessage(type, message));
         }
 
         return promise;
