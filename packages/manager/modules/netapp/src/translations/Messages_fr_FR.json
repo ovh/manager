@@ -1,5 +1,12 @@
 {
   "netapp_title": "Enterprise File Storage",
   "netapp_order_cta_value": "Commander",
-  "netapp_order_cta_label": "Commander"
+  "netapp_order_cta_label": "Commander",
+  "netapp_list_columns_header_id": "Id",
+  "netapp_list_columns_header_name": "Nom",
+  "netapp_list_columns_header_performanceLevel": "Niveau de performance",
+  "netapp_list_columns_header_product": "Produit",
+  "netapp_list_columns_header_quota": "Quota",
+  "netapp_list_columns_header_region": "Région",
+  "netapp_list_columns_header_status": "Statut"
 }
