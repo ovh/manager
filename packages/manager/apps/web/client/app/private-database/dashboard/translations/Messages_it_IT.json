@@ -284,7 +284,7 @@
   "privateDatabase_add_authorized_ip": "Aggiungi un indirizzo IP autorizzato",
   "privateDatabase_add_authorized_ip_explanation": "Non sei ancora in possesso di indirizzi IP autorizzati ad accedere ai tuoi database. Inserisci qui l'indirizzo IP del server a cui vuoi garantire l'accesso ai tuoi database.",
   "privateDatabase_add_authorized_ip_description": "Accesso iniziale al database",
-  "privateDatabase_add_authorized_ip_title": "IP autorizzato ad accedere al database",
+  "privateDatabase_add_authorized_ip_title": "IP autorizzati ad accedere al database",
   "privateDatabase_restore_bdd_application": "Per prima cosa ricrealo nella scheda di gestione dei tuoi database.",
   "privateDatabase_restore_bdd_close": "Chiudi",
   "privateDatabase_restore_bdd_confirm": "Vuoi ripristinare il backup <strong>{{t0}}</strong> sul database <strong>{{t1}}</strong>?",
@@ -488,5 +488,8 @@
   "privateDatabase_tabs_list_extensions_disable_error": "Si è verificato un errore durante la disattivazione dell'estensione.",
   "privateDatabase_quota_refresh": "Aggiorna la quota del tuo database",
   "privateDatabase_quota_refresh_success": "La richiesta di aggiornamento della tua quota sarà presa in carico entro pochi minuti.",
-  "privateDatabase_quota_refresh_fail": "Si è verificato un errore durante la richiesta di aggiornamento della quota."
+  "privateDatabase_quota_refresh_fail": "Si è verificato un errore durante la richiesta di aggiornamento della quota.",
+  "privateDatabase_tabs_whitelist_webhosting_network_access_title": "Accesso agli hosting Web OVHcloud",
+  "private_database_tabs_whitelist_webhosting_network_access_description": "Autorizza gli hosting Web OVHcloud ad accedere al database",
+  "private_database_tabs_whitelist_webhosting_network_access_success": "La modifica delle autorizzazioni di accesso al database da parte degli hosting Web OVHcloud è stata presa in carico."
 }

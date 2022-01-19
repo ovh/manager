@@ -284,7 +284,7 @@
   "privateDatabase_add_authorized_ip": "Dodaj zatwierdzony adres IP",
   "privateDatabase_add_authorized_ip_explanation": "Nie masz jeszcze zatwierdzonego adresu IP, który pozwoliłby Ci łączyć się z Twoimi bazami danych. Wprowadź tutaj adres IP serwera, któremu chcesz zezwolić na łączenie się z bazami danych.",
   "privateDatabase_add_authorized_ip_description": "Dostęp do bazy danych",
-  "privateDatabase_add_authorized_ip_title": "Adres IP z uprawnieniami dostępu do bazy danych",
+  "privateDatabase_add_authorized_ip_title": "Adresy IP z uprawnieniami dostępu do bazy danych",
   "privateDatabase_restore_bdd_application": "W pierwszej kolejności odtwórz ją w zakładce zarządzania bazami danych.",
   "privateDatabase_restore_bdd_close": "Zamknij",
   "privateDatabase_restore_bdd_confirm": "Czy chcesz przywrócić kopię zapasową z <strong>{{t0}}</strong> na bazie danych <strong>{{t1}}</strong>?",
@@ -488,5 +488,8 @@
   "privateDatabase_tabs_list_extensions_disable_error": "Wystąpił błąd podczas aktywowania rozszerzenia.",
   "privateDatabase_quota_refresh": "Odśwież limit wielkości bazy danych",
   "privateDatabase_quota_refresh_success": "Dyspozycja odświeżania limitu zostanie zrealizowana w ciągu kilku minut.",
-  "privateDatabase_quota_refresh_fail": "Wystąpił błąd podczas odświeżania limitu."
+  "privateDatabase_quota_refresh_fail": "Wystąpił błąd podczas odświeżania limitu.",
+  "privateDatabase_tabs_whitelist_webhosting_network_access_title": "Dostęp do hostingu OVHcloud",
+  "private_database_tabs_whitelist_webhosting_network_access_description": "Zezwól hostingowi OVHcloud na dostęp do bazy danych",
+  "private_database_tabs_whitelist_webhosting_network_access_success": "Zmiana uprawnień dostępu hostingu OVHcloud do bazy danych została przyjęta."
 }

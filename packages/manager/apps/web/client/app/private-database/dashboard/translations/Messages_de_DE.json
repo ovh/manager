@@ -284,7 +284,7 @@
   "privateDatabase_add_authorized_ip": "Eine autorisierte IP-Adresse hinzufügen",
   "privateDatabase_add_authorized_ip_explanation": "Sie haben noch keine autorisierte IP-Adresse, die auf Ihre Datenbank zugreifen kann. Geben Sie hier die IP-Adresse des Servers an, dem Sie den Zugriff auf Ihre Datenbank erlauben möchten.",
   "privateDatabase_add_authorized_ip_description": "Erster Zugriff auf die Datenbank",
-  "privateDatabase_add_authorized_ip_title": "Autorisierte IP mit Zugriff auf die Datenbank",
+  "privateDatabase_add_authorized_ip_title": "IPs, die auf die Datenbank zugreifen dürfen",
   "privateDatabase_restore_bdd_application": "Bitte erstellen Sie diese zunächst erneut im Verwaltungstab Ihrer Datenbanken.",
   "privateDatabase_restore_bdd_close": "Schließen",
   "privateDatabase_restore_bdd_confirm": "Möchten Sie die Sicherung vom <strong>{{t0}}</strong> auf der Datenbank <strong>{{t1}}</strong> wiederherstellen?",
@@ -488,5 +488,8 @@
   "privateDatabase_tabs_list_extensions_disable_error": "Bei der Deaktivierung der Erweiterung ist ein Fehler aufgetreten.",
   "privateDatabase_quota_refresh": "Quota Ihrer Datenbank aktualisieren",
   "privateDatabase_quota_refresh_success": "Die Anfrage zur Quota-Aktualisierung wird in wenigen Augenblicken durchgeführt.",
-  "privateDatabase_quota_refresh_fail": "Bei der Anfrage zur Quota-Aktualisierung ist ein Fehler aufgetreten."
+  "privateDatabase_quota_refresh_fail": "Bei der Anfrage zur Quota-Aktualisierung ist ein Fehler aufgetreten.",
+  "privateDatabase_tabs_whitelist_webhosting_network_access_title": "Zugang zu den OVHcloud Webhostings",
+  "private_database_tabs_whitelist_webhosting_network_access_description": "Den OVHcloud Webhostings den Zugriff auf die Datenbank erlauben",
+  "private_database_tabs_whitelist_webhosting_network_access_success": "Die Berechtigung der OVHcloud Webhostings, auf die Datenbank zuzugreifen, wurde geändert."
 }

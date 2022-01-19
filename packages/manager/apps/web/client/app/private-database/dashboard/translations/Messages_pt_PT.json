@@ -284,7 +284,7 @@
   "privateDatabase_add_authorized_ip": "Adicionar endereço IP autorizado",
   "privateDatabase_add_authorized_ip_explanation": "Ainda não indicou um endereço IP autorizado para aceder à base de dados. Introduza o endereço IP do servidor que irá aceder à base de dados.",
   "privateDatabase_add_authorized_ip_description": "Acesso inicial à base de dados",
-  "privateDatabase_add_authorized_ip_title": "IP autorizado para aceder à base de dados",
+  "privateDatabase_add_authorized_ip_title": "IP autorizados a aceder à base de dados",
   "privateDatabase_restore_bdd_application": "Primeiro, deve recriar o utilizador partir do separador de gestão das bases de dados.",
   "privateDatabase_restore_bdd_close": "Encerrar",
   "privateDatabase_restore_bdd_confirm": "Deseja restaurar o backup do <strong>{{t0}}</strong> da base de dados <strong>{{t1}}</strong>?",
@@ -488,5 +488,8 @@
   "privateDatabase_tabs_list_extensions_disable_error": "Erro ao processar desativação da extensão",
   "privateDatabase_quota_refresh": "Atualizar o limite da sua base de dados",
   "privateDatabase_quota_refresh_success": "O pedido de atualização do seu limite será tido em conta dentro de alguns instantes.",
-  "privateDatabase_quota_refresh_fail": "Ocorreu um erro aquando do pedido de atualização do seu limite."
+  "privateDatabase_quota_refresh_fail": "Ocorreu um erro aquando do pedido de atualização do seu limite.",
+  "privateDatabase_tabs_whitelist_webhosting_network_access_title": "Acesso aos alojamentos web da OVHcloud",
+  "private_database_tabs_whitelist_webhosting_network_access_description": "Autorizar o acesso dos alojamentos web da OVHcloud à base de dados",
+  "private_database_tabs_whitelist_webhosting_network_access_success": "A alteração da autorização de acesso dos alojamentos web da OVHcloud à base de dados foi corretamente tomada em conta."
 }
