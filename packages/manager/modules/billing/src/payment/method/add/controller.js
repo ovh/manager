@@ -15,6 +15,7 @@ export default class BillingPaymentMethodAddCtrl {
     ovhPaymentMethodHelper,
     OVH_PAYMENT_METHOD_TYPE,
     OVH_PAYMENT_METHOD_INTEGRATION_TYPE,
+    coreConfig,
   ) {
     this.$translate = $translate;
     this.Alerter = Alerter;
@@ -24,6 +25,7 @@ export default class BillingPaymentMethodAddCtrl {
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
     this.OVH_PAYMENT_METHOD_TYPE = OVH_PAYMENT_METHOD_TYPE;
     this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
+    this.coreConfig = coreConfig;
 
     // other attributes used in view
     this.creditCardFootprintAmount = CREDITCARD_FOOTPRINT_AMOUNT;

@@ -41,7 +41,9 @@
     <div data-ng-transclude="explanationText"></div>
 
     <!-- set as default -->
-    <div data-ng-if="$ctrl.showSetAsDefaultChoice">
+    <div
+        data-ng-if="$ctrl.showSetAsDefaultChoice && !$ctrl.coreConfig.isRegion('US')"
+    >
         <p
             data-ng-if="$ctrl.registeredPaymentMethods.length === 0 && $ctrl.automaticDefault"
             data-translate="ovh_payment_method_register_force_as_default"
@@ -67,6 +69,42 @@
             ></span>
             <span
                 data-translate="ovh_payment_method_register_set_as_default_choice_information"
+            ></span>
+        </oui-message>
+    </div>
+    <div
+        data-ng-if="$ctrl.showSetAsDefaultChoice && $ctrl.coreConfig.isRegion('US')"
+    >
+        <p
+            data-ng-if="$ctrl.registeredPaymentMethods.length === 0 && $ctrl.automaticDefault"
+        >
+            <span
+                data-ng-if="$ctrl.model.selectedPaymentMethodType.type.paymentType === $ctrl.PAYPAL_PAYMENT_METHOD"
+                data-translate="ovh_payment_method_register_force_as_default_paypal_US"
+            ></span>
+            <span
+                data-ng-if="$ctrl.model.selectedPaymentMethodType.type.paymentType !== $ctrl.PAYPAL_PAYMENT_METHOD"
+                data-translate="ovh_payment_method_register_force_as_default"
+            ></span>
+        </p>
+
+        <oui-checkbox
+            class="mb-3"
+            data-model="$ctrl.model.setAsDefault"
+            data-ng-if="$ctrl.registeredPaymentMethods.length > 0 || !$ctrl.automaticDefault"
+        >
+            <span
+                data-translate="ovh_payment_method_register_set_as_default_choice"
+            ></span>
+        </oui-checkbox>
+
+        <oui-message
+            class="mb-3"
+            data-ng-if="$ctrl.model.setAsDefault && ($ctrl.registeredPaymentMethods.length > 0 || !$ctrl.automaticDefault)"
+            type="info"
+        >
+            <span
+                data-translate="ovh_payment_method_register_set_as_default_choice_information_US"
             ></span>
         </oui-message>
     </div>

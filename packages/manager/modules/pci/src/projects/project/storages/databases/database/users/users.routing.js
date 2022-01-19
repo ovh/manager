@@ -1,7 +1,6 @@
 import map from 'lodash/map';
 import User from '../../../../../../components/project/storages/databases/user.class';
 import { SECRET_TYPE } from '../../databases.constants';
-import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -14,47 +13,12 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('pci_databases_users_title'),
-        users: /* @ngInject */ (DatabaseService, database, projectId) => {
-          // Poll the database status
-          if (database.isProcessing()) {
-            DatabaseService.pollDatabaseStatus(
-              projectId,
-              database.engine,
-              database.id,
-            ).then((databaseInfo) => database.updateData(databaseInfo));
-          }
-          // Get and return the users
-          return DatabaseService.getUsers(
+        users: /* @ngInject */ (DatabaseService, database, projectId) =>
+          DatabaseService.getUsers(
             projectId,
             database.engine,
             database.id,
-          ).then((usersResponse) => {
-            const users = map(usersResponse, (u) => new User(u));
-            // Poll every processing user status
-            users.forEach((user) => {
-              if (user.isProcessing()) {
-                DatabaseService.pollUserStatus(
-                  projectId,
-                  database.engine,
-                  database.id,
-                  user.id,
-                ).then((userInfos) => {
-                  // If the user is deleted, remove it from the array
-                  // else, update data
-                  if (userInfos.status === STATUS.DELETING) {
-                    users.splice(users.indexOf(user), 1);
-                  } else {
-                    user.updateData({
-                      ...userInfos,
-                      rolesArray: userInfos.roles,
-                    });
-                  }
-                });
-              }
-            });
-            return users;
-          });
-        },
+          ).then((usersResponse) => map(usersResponse, (u) => new User(u))),
         roles: /* @ngInject */ (DatabaseService, database, projectId) =>
           DatabaseService.getRoles(
             projectId,
