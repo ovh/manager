@@ -17,6 +17,7 @@ export default {
     options: '<?',
     formatters: '<?',
     topbarOptions: '<?',
+    customizeColumnsMap: '<?',
   },
   controller,
   template,

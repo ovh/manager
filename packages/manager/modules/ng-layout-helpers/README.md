@@ -113,6 +113,26 @@ topbarOptions: /* @ngInject */ ($translate, myRoutingOnClickFunction) => ({
 })
 ```
 
+#### Customise columns name
+
+You have to define into your routing file a `customizeColumnsMap` object, like this:
+
+```JS
+customizeColumnsMap: /* @ngInject */ ($translate, configuration) => {
+  return configuration.data.reduce(
+    (columnsMap, {property}) => ({
+      ...columnsMap,
+      [property]: {
+        title: $translate.instant(
+          `netapp_list_columns_header_${property}`,
+        ),
+      },
+    }),
+    {},
+  );
+}
+```
+
 ### Onboarding component
 [Click here for documentation](src/onboarding/README.md)
 
