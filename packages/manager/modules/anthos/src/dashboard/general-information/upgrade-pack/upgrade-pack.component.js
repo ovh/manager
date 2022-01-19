@@ -7,6 +7,7 @@ export default {
     pack: '<',
     packInfo: '<',
     pricingType: '<',
+    trackChangePack: '<',
     workflowType: '<',
     workflowOptions: '<',
   },
