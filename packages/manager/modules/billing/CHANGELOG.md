@@ -1,3 +1,12 @@
+# [0.9.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.8.0-alpha.1...@ovh-ux/manager-billing@0.9.0-alpha.0) (2022-01-19)
+
+
+### Features
+
+* update PayPal content ([#6170](https://github.com/ovh/manager/issues/6170)) ([a8c1f05](https://github.com/ovh/manager/commit/a8c1f050822234f53523fa203d64a7cf4ae27a30))
+
+
+
 # [0.8.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.8.0-alpha.0...@ovh-ux/manager-billing@0.8.0-alpha.1) (2022-01-17)
 
 

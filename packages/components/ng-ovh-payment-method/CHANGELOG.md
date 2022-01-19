@@ -1,3 +1,12 @@
+# [9.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.0.0...@ovh-ux/ng-ovh-payment-method@9.1.0) (2022-01-19)
+
+
+### Features
+
+* update PayPal content ([#6170](https://github.com/ovh/manager/issues/6170)) ([a8c1f05](https://github.com/ovh/manager/commit/a8c1f050822234f53523fa203d64a7cf4ae27a30))
+
+
+
 # [9.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.3.6...@ovh-ux/ng-ovh-payment-method@9.0.0) (2021-11-04)
 
 

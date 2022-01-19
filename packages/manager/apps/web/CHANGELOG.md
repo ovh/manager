@@ -1,3 +1,12 @@
+## [16.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.4.0...@ovh-ux/manager-web@16.4.1) (2022-01-19)
+
+
+### Bug Fixes
+
+* **private-database:** fix phpMyAdmin URL ([#6303](https://github.com/ovh/manager/issues/6303)) ([5bc122c](https://github.com/ovh/manager/commit/5bc122cd00c44c6474db342ba317bdebfea15c2a))
+
+
+
 # [16.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.3.4...@ovh-ux/manager-web@16.4.0) (2022-01-11)
 
 
