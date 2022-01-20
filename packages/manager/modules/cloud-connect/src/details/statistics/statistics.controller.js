@@ -2,6 +2,7 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 
 import {
+  LABELS,
   PERIOD,
   PERIOD_ENUM,
   STATISTICS,
@@ -17,6 +18,7 @@ export default class CloudConnectStatisticsCtrl {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.cloudConnectService = cloudConnectService;
+    this.LABELS = LABELS;
     this.PERIOD = PERIOD;
     this.STATISTICS = STATISTICS;
     this.TYPE = TYPE;
@@ -119,9 +121,7 @@ export default class CloudConnectStatisticsCtrl {
     this.isLoading = true;
 
     // Update options
-    this.options.scales.yAxes[0].scaleLabel.labelString = this.$translate.instant(
-      'cloud_connect_stats_error_unit',
-    );
+    this.options.scales.yAxes[0].scaleLabel.labelString = this.LABELS.error_unit;
 
     this.loadInterfacesStatistics(this.TYPE.ERROR);
   }
@@ -133,9 +133,7 @@ export default class CloudConnectStatisticsCtrl {
     this.isLoading = true;
 
     // Update options
-    this.lightOptions.scales.yAxes[0].scaleLabel.labelString = this.$translate.instant(
-      'cloud_connect_stats_light_unit',
-    );
+    this.lightOptions.scales.yAxes[0].scaleLabel.labelString = this.LABELS.light_unit;
 
     this.loadInterfacesStatistics(this.TYPE.LIGHT);
   }
@@ -147,9 +145,7 @@ export default class CloudConnectStatisticsCtrl {
     this.isLoading = true;
 
     // Update options
-    this.options.scales.yAxes[0].scaleLabel.labelString = this.$translate.instant(
-      'cloud_connect_stats_traffic_unit',
-    );
+    this.options.scales.yAxes[0].scaleLabel.labelString = this.LABELS.traffic_unit;
 
     this.loadInterfacesStatistics(this.TYPE.TRAFFIC);
   }
@@ -159,28 +155,27 @@ export default class CloudConnectStatisticsCtrl {
     const dataProperties = [this.TYPE_LABELS.down, this.TYPE_LABELS.up];
     switch (type) {
       case this.TYPE.LIGHT:
-        serieLabels = [this.TYPE_LABELS.light_in, this.TYPE_LABELS.light_out];
+        serieLabels = [
+          `${this.LABELS.id_port} ${interfaceId} - ${this.LABELS.in}`,
+          `${this.LABELS.id_port} ${interfaceId} - ${this.LABELS.out}`,
+        ];
         break;
       case this.TYPE.ERROR:
         serieLabels = [
-          this.TYPE_LABELS.error_download,
-          this.TYPE_LABELS.error_upload,
+          `${this.LABELS.id_port} ${interfaceId} - ${this.LABELS.download}`,
+          `${this.LABELS.id_port} ${interfaceId} - ${this.LABELS.upload}`,
         ];
         break;
       default:
         serieLabels = [
-          this.TYPE_LABELS.traffic_download,
-          this.TYPE_LABELS.traffic_upload,
+          `${this.LABELS.id_port} ${interfaceId} - ${this.LABELS.download}`,
+          `${this.LABELS.id_port} ${interfaceId} - ${this.LABELS.upload}`,
         ];
         break;
     }
 
     serieLabels.forEach((label) => {
-      this.series.push(
-        this.$translate.instant(label, {
-          interfaceId,
-        }),
-      );
+      this.series.push(label);
     });
 
     this.labels = map(get(stats, dataProperties[0]), (value) => value[0]);

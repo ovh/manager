@@ -21,14 +21,19 @@ export const PERIOD_ENUM = ['hourly', 'daily', 'weekly'];
 export const TYPE_ENUM = ['error', 'light', 'traffic'];
 
 export const TYPE_LABELS = {
-  traffic_download: 'cloud_connect_stats_traffic_download',
-  traffic_upload: 'cloud_connect_stats_traffic_upload',
-  error_download: 'cloud_connect_stats_error_download',
-  error_upload: 'cloud_connect_stats_error_upload',
-  light_in: 'cloud_connect_stats_light_in',
-  light_out: 'cloud_connect_stats_light_out',
   down: 'down',
   up: 'up',
+};
+
+export const LABELS = {
+  traffic_unit: 'bytes/s',
+  light_unit: 'dbm',
+  error_unit: 'error/s',
+  id_port: 'ID Port',
+  download: 'download',
+  upload: 'upload',
+  in: 'in',
+  out: 'out',
 };
 
 export const STATISTICS = {
