@@ -1,4 +1,5 @@
-import { TRACKING_PREFIX } from './software-update.constants';
+import { TENANT_STATUS } from '../../../anthos.constants';
+import { TRACKING_PREFIX, UPDATE_KEY } from './software-update.constants';
 
 export default class SoftwareUpdateController {
   /* @ngInject */
@@ -30,21 +31,23 @@ export default class SoftwareUpdateController {
       serviceName,
       selectedVersion,
     )
-      .then(() => {
-        const successVerbatim = this.$translate.instant(
-          'anthos_tenant_dashboard_general_information_software_update_success',
-        );
-        this.goBack(successVerbatim, 'success');
-      })
+      .then(() =>
+        this.goBack(
+          this.$translate.instant(`${UPDATE_KEY}_success`),
+          'success',
+          'anthos.dashboard',
+          {
+            patchTenantStatus: TENANT_STATUS.UPGRADING,
+          },
+        ),
+      )
       .catch(() => {
-        const errorVerbatim = this.$translate.instant(
-          'anthos_tenant_dashboard_general_information_software_update_error',
-        );
-        this.displayAlerterMessage('error', errorVerbatim);
-      })
-      .finally(() => {
         this.isUpdating = false;
         this.selectedVersion = null;
+        this.displayAlerterMessage(
+          'error',
+          this.$translate.instant(`${UPDATE_KEY}_error`),
+        );
       });
   }
 

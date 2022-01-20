@@ -23,8 +23,12 @@ export default /* @ngInject */ ($stateProvider) => {
       packInfo: /* @ngInject */ (AnthosTenantsService, serviceInfo) =>
         AnthosTenantsService.getPackInfo(serviceInfo),
 
-      goBack: /* @ngInject */ ($state, goToTenant) => (message, type) =>
-        goToTenant(message, type, $state.$current.parent.name),
+      goBack: /* @ngInject */ ($state, goToTenant) => (
+        message,
+        type,
+        stateToGo = $state.$current.parent.name,
+        stateParams = {},
+      ) => goToTenant(message, type, stateToGo, stateParams),
 
       goToRenameService: /* @ngInject */ ($state, serviceName) => () =>
         $state.go('anthos.dashboard.general-information.rename-service', {
