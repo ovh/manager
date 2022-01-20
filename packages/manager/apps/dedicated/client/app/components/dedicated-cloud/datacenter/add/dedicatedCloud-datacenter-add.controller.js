@@ -44,10 +44,11 @@ export default class {
       });
   }
 
-  checkNsxRequired() {
-    this.nsxRequired =
+  isValidNsxConfig() {
+    return (
       this.nsxStatus !== 'enabled' &&
-      this.commercialRange.model.name === 'premier';
+      this.commercialRange.model?.name === 'premier'
+    );
   }
 
   addDatacenter() {
