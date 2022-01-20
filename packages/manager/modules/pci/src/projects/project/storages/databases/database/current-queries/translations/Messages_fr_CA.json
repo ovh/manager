@@ -1,0 +1,17 @@
+{
+  "pci_databases_current_queries_title": "Requêtes en cours",
+  "pci_databases_current_queries_intro": "Liste des requêtes en cours d'exécution",
+  "pci_databases_current_queries_idle_connections_label": "Afficher les connections inactives",
+  "pci_databases_current_queries_active_connections_label": "Afficher les connections actives",
+  "pci_databases_current_queries_refresh_label": "Rafraîchir automatiquement la page",
+  "pci_databases_current_queries_switch_enable": "Activé",
+  "pci_databases_current_queries_switch_disable": "Désactivé",
+  "pci_databases_current_queries_datagrid_empty_placeholder": "Aucune requête n'a été éxécutée",
+  "pci_databases_current_queries_datagrid_column_query": "Requête",
+  "pci_databases_current_queries_datagrid_column_pid": "PID",
+  "pci_databases_current_queries_datagrid_column_duration": "Durée",
+  "pci_databases_current_queries_datagrid_column_database": "Base de donnée",
+  "pci_databases_current_queries_datagrid_column_client_address": "Adresse client",
+  "pci_databases_current_queries_datagrid_column_application_name": "Nom d'application",
+  "pci_databases_current_queries_fetch_error": "Une erreur est survenue lors du chargement des requêtes en cours. Merci d'essayer ultérieurement."
+}

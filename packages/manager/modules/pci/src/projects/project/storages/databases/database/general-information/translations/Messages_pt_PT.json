@@ -62,5 +62,11 @@
   "pci_databases_general_information_certificate_download": "Transferir",
   "pci_databases_general_information_service_integration_title": "Integração de serviços",
   "pci_databases_general_information_kafka_mirror_maker_label": "Kafka MirrorMaker",
-  "pci_databases_general_information_kafka_mirror_maker_none": "Nenhum"
+  "pci_databases_general_information_kafka_mirror_maker_none": "Nenhum",
+  "pci_databases_general_information_kafka_rest_api_label": "Kafka API REST",
+  "pci_databases_general_information_kafka_rest_api_content": "Interface HTTP REST para um cluster Kafka (baseado no projeto {{ projectLink }}).",
+  "pci_databases_general_information_kafka_rest_api_enable": "Ativar",
+  "pci_databases_general_information_kafka_rest_api_disable": "Desativar",
+  "pci_databases_general_information_kafka_rest_service_uri_label": "URI do serviço REST Kafka",
+  "pci_databases_general_information_kafka_rest_api_enable_disable_error": "Ocorreu um erro aquando da ativação/desativação do Kafka REST API."
 }

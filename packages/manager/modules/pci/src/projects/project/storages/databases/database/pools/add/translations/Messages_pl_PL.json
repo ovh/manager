@@ -1,0 +1,15 @@
+{
+  "pci_databases_pools_add_pool_title": "Dodaj pulę",
+  "pci_databases_pools_add_pool_name": "Nazwa",
+  "pci_databases_pools_add_database": "Baza danych",
+  "pci_databases_pools_add_pool_mode": "Tryb",
+  "pci_databases_pools_add_pool_size": "Rozmiar",
+  "pci_databases_pools_add_pool_user_title": "Nazwa użytkownika (opcjonalnie)",
+  "pci_databases_pools_add_pool_user": "Nazwa użytkownika",
+  "pci_databases_pools_add_pool_cancel": "Anuluj",
+  "pci_databases_pools_add_pool_confirm": "Zatwierdź",
+  "pci_databases_pools_add_pool_success": "Twoja pula {{name}} została utworzona.",
+  "pci_databases_pools_add_pool_error": "Wystąpił błąd podczas tworzenia puli: {{message}}",
+  "pci_databases_pools_add_pool_name_required_error": "Wypełnij to pole.",
+  "pci_databases_pools_add_pool_name_pattern_error": "Użyj poprawnego formatu. Może zawierać jedynie cyfry, litery, podkreślenia lub myślniki, nie może rozpoczynać się od myślnika i nie może być puste. Maksymalnie 60 znaków."
+}

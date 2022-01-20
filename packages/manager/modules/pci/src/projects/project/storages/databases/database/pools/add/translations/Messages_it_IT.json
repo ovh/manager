@@ -1,0 +1,15 @@
+{
+  "pci_databases_pools_add_pool_title": "Aggiungi un pool",
+  "pci_databases_pools_add_pool_name": "Nome",
+  "pci_databases_pools_add_database": "Database",
+  "pci_databases_pools_add_pool_mode": "Modo",
+  "pci_databases_pools_add_pool_size": "Dimensione",
+  "pci_databases_pools_add_pool_user_title": "Nome utente (facoltativo)",
+  "pci_databases_pools_add_pool_user": "Nome utente",
+  "pci_databases_pools_add_pool_cancel": "Annulla",
+  "pci_databases_pools_add_pool_confirm": "Conferma",
+  "pci_databases_pools_add_pool_success": "Il pool {{name}} è stato creato correttamente.",
+  "pci_databases_pools_add_pool_error": "Si è verificato un errore durante la creazione del pool: {{message}}",
+  "pci_databases_pools_add_pool_name_required_error": "Completa questo campo",
+  "pci_databases_pools_add_pool_name_pattern_error": "Inserisci un formato valido Deve contenere soltanto numeri, lettere, underscore o trattini, non iniziare con un trattino e non essere vuoto. Massimo 60 caratteri."
+}

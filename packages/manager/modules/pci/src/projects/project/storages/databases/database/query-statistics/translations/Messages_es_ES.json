@@ -1,0 +1,16 @@
+{
+  "pci_databases_query_statistics_title": "Estadísticas de consultas",
+  "pci_databases_query_statistics_retrieve_error": "No se ha realizado ninguna consulta.",
+  "pci_databases_query_statistics_description": "Las estadísticas de consultas incluyen las estadísticas recopiladas en los patrones de rendimiento. Permiten monitorizar los eventos del servidor (por ejemplo, la sincronización, las tablas temporales, los índices, los «joins», etc.).",
+  "pci_databases_query_statistics_datagrid_query": "Consulta",
+  "pci_databases_query_statistics_datagrid_rows": "N.º de líneas",
+  "pci_databases_query_statistics_datagrid_calls": "Nº de llamadas",
+  "pci_databases_query_statistics_datagrid_min": "Mín. (ms)",
+  "pci_databases_query_statistics_datagrid_max": "Máx. (ms)",
+  "pci_databases_query_statistics_datagrid_mean": "Promedio (ms)",
+  "pci_databases_query_statistics_datagrid_stddev": "Stddev (ms)",
+  "pci_databases_query_statistics_datagrid_total": "Total (ms)",
+  "pci_databases_query_statistics_datagrid_reset_button_text": "Reiniciar",
+  "pci_databases_query_statistics_reset_error": "Se ha producido un error al restaurar las estadísticas de la consulta. Por favor, vuelva a intentarlo más adelante.",
+  "pci_databases_query_statistics_reset_success": "Las estadísticas de la consulta se han restaurado correctamente."
+}
