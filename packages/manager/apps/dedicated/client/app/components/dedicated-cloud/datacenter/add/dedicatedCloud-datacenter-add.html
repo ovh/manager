@@ -1,7 +1,7 @@
 <oui-modal
     data-heading="{{:: 'dedicatedCloud_configuration_add_datacenter_title' | translate }}"
-    data-primary-action="$ctrl.nsxStatus !== 'enabled' && $ctrl.commercialRange.model.name === 'premier' ? $ctrl.addOptionNSX() : $ctrl.addDatacenter()"
-    data-primary-label="{{ $ctrl.nsxStatus !== 'enabled' && $ctrl.commercialRange.model.name === 'premier' ? 'dedicatedCloud_configuration_add_datacenter_option':'wizard_confirm' | translate }}"
+    data-primary-action="$ctrl.nsxRequired ? $ctrl.addOptionNSX() : $ctrl.addDatacenter()"
+    data-primary-label="{{ $ctrl.nsxRequired ? 'dedicatedCloud_configuration_add_datacenter_option':'wizard_confirm' | translate }}"
     data-primary-disabled="!$ctrl.commercialRange.model"
     data-secondary-action="$ctrl.onCancel()"
     data-secondary-label="{{:: 'wizard_cancel' | translate }}"
@@ -18,6 +18,7 @@
         class="form-control"
         id="commercialRange"
         name="commercialRange"
+        data-ng-on-change="$ctrl.checkNsxRequired()"
         data-ng-model="$ctrl.commercialRange.model"
         data-ng-options="commercialRangeType as ($ctrl.COMMERCIAL_RANGE_ENUM[commercialRangeType.name] || commercialRangeType.name) for commercialRangeType in $ctrl.commercialRange.list"
     >
@@ -28,10 +29,7 @@
         ></option>
     </select>
 
-    <div
-        class="mt-4"
-        data-ng-if="$ctrl.nsxStatus !== 'enabled' && $ctrl.commercialRange.model.name === 'premier'"
-    >
+    <div class="mt-4" data-ng-if="$ctrl.nsxRequired">
         <p
             data-translate="dedicatedCloud_configuration_add_datacenter_description_no_nsx_part1"
         ></p>

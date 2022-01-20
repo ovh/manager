@@ -44,6 +44,12 @@ export default class {
       });
   }
 
+  checkNsxRequired() {
+    this.nsxRequired =
+      this.nsxStatus !== 'enabled' &&
+      this.commercialRange.model.name === 'premier';
+  }
+
   addDatacenter() {
     this.trackClick(
       `datacenter::add-datacenter::confirm_${this.commercialRange.model.name}`,
