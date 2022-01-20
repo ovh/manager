@@ -16,11 +16,7 @@
   "pack_resiliation_reason_title": "Raison de la résiliation",
   "pack_resiliation_reason": "Pour quelle raison voulez-vous résilier ?",
   "pack_resiliation_choice_addressMove": "Déménagement",
-  "pack_resiliation_choice_billingProblems": "Système de facturation non adapté",
   "pack_resiliation_choice_cessationOfActivity": "Cessation d'activité",
-  "pack_resiliation_choice_changeOfTerms": "Changement des conditions générales d'utilisation",
-  "pack_resiliation_choice_ftth": "Passage à la fibre (FTTH)",
-  "pack_resiliation_choice_goToCompetitor": "Passage à une offre concurrente",
   "pack_resiliation_choice_other": "Autre",
   "pack_resiliation_choice_technicalProblems": "Problèmes techniques",
   "pack_resiliation_cancel_title": "Annuler votre demande de résiliation",
@@ -68,5 +64,11 @@
   "pack_resiliation_delete_all_voipAlias": "Les alias suivants seront supprimés",
   "pack_resiliation_delete_all_siteBuilderFull": "Les comptes Site Builder (Full) suivants seront supprimés",
   "pack_resiliation_delete_all_siteBuilderStart": "Les comptes Site Builder suivants seront supprimés",
-  "pack_resiliation_mandatory_field": "Les champs marqués d’un astérisque sont obligatoires."
+  "pack_resiliation_mandatory_field": "Les champs marqués d’un astérisque sont obligatoires.",
+  "pack_resiliation_choice_eligibilityFtth": "Non éligible à la fibre (FTTH)",
+  "pack_resiliation_choice_price": "Tarif",
+  "pack_resiliation_choice_changeOperator": "Changement d'opérateur",
+  "pack_resiliation_susbsidiary_question_technicalProblems": "Quel est le problème rencontré ? (débit, navigation, autres)",
+  "pack_resiliation_susbsidiary_question_eligibilityFtth": "Indiquez si possible l'adresse non éligible (ville)",
+  "pack_resiliation_susbsidiary_question_changeOperator": "Opérateur concerné"
 }

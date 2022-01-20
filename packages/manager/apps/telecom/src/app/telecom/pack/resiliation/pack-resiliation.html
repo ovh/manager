@@ -130,9 +130,27 @@
                             data-ng-model="PackResiliation.model.reason"
                             data-ng-options="reason.label for reason in PackResiliation.resiliationTerms.data.resiliationReasons track by reason.value"
                             id="resiliationReasonElem"
+                            data-ng-change="PackResiliation.checkNeedSubsidiaryQuestion()"
                             required
                         >
                         </select>
+                    </div>
+
+                    <div
+                        class="form-group mt-3"
+                        data-ng-if="PackResiliation.isSubsidiaryQuestion"
+                    >
+                        <label
+                            class="control-label"
+                            data-ng-bind="'pack_resiliation_susbsidiary_question_'  + PackResiliation.model.reason.value | translate"
+                            for="resiliationSubsidiary"
+                        ></label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="resiliationSubsidiary"
+                            data-ng-model="PackResiliation.model.subsidiary"
+                        />
                     </div>
 
                     <div class="form-group mt-3">
@@ -372,7 +390,7 @@
                     <button
                         class="btn btn-primary mt-5"
                         data-ng-click="PackResiliation.openConfirmation()"
-                        data-ng-disabled="resiliationForm.expirationNativeDate.$error.date || !PackResiliation.model.reason || (PackResiliation.model.reason.value === 'other' && !PackResiliation.model.comment)"
+                        data-ng-disabled="resiliationForm.expirationNativeDate.$error.date || !PackResiliation.model.reason || (PackResiliation.model.reason.value === 'other' && !PackResiliation.model.comment) || (PackResiliation.isSubsidiaryQuestion && !PackResiliation.model.subsidiary)"
                         type="button"
                         data-translate="pack_resiliation_button"
                     ></button>
