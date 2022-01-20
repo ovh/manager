@@ -2,6 +2,14 @@
     class="h-100"
     heading="{{:: 'dedicated_server_dashboard_technical_details_heading' | translate }}"
 >
+    <oui-message
+        data-ng-if="$ctrl.upgradeTask && !$ctrl.upgradeTask.isTaskInitialized()"
+        type="warning"
+    >
+        <span
+            data-translate="dedicated_server_dashboard_technical_details_upgrade_in_todo"
+        ></span>
+    </oui-message>
     <oui-tile-definition
         term="{{:: 'dedicated_server_dashboard_technical_details_cpu' | translate }}"
     >
