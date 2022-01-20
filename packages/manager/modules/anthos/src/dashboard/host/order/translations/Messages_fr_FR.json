@@ -1,7 +1,7 @@
 {
   "anthos_dashboard_host_order_init_error": "Une erreur s'est produite lors du chargement de cette page",
   "anthos_dashboard_host_order_header_heading": "Commander un hôte",
-  "anthos_dashboard_host_order_header_description": "Vous pouvez personnaliser votre déploiement Anthos en y ajoutant des hôtes. Vous serez redirigé vers une nouvelle page où vous pourrez confirmer votre commande. Le prix affiché est valable pour une période d’un mois. En vous engageant sur une plus longue durée, vous bénéficiez de tarifs dégressifs.",
+  "anthos_dashboard_host_order_header_description": "Vous pouvez personnaliser votre déploiement Anthos en y ajoutant des hôtes. Vous serez redirigé(e) vers une nouvelle page où vous pourrez confirmer votre commande. Le prix affiché ci-dessous est valable pour un engagement mensuel, avec renouvellement automatique. Vous serez facturé(e) initialement au prorata du mois en cours. En vous engageant sur une plus longue durée, vous pouvez bénéficier de tarifs dégressifs. Pour cela, merci de consulter notre service commercial.",
   "anthos_dashboard_host_order_grid_header_quantity": "Quantité",
   "anthos_dashboard_host_order_grid_header_host": "Hôte",
   "anthos_dashboard_host_order_grid_header_cpu": "Processeur",
