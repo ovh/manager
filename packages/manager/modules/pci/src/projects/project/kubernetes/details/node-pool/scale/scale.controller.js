@@ -1,7 +1,8 @@
 export default class KubernetesNodePoolsScaleCtrl {
   /* @ngInject */
-  constructor($translate, Kubernetes) {
+  constructor($translate, CucCloudMessage, Kubernetes) {
     this.$translate = $translate;
+    this.CucCloudMessage = CucCloudMessage;
     this.Kubernetes = Kubernetes;
   }
 
@@ -58,7 +59,7 @@ export default class KubernetesNodePoolsScaleCtrl {
             )} <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span></a>`,
           };
         }
-        this.CucCloudMessage.error(errorMessage);
+        this.goBack(this.CucCloudMessage.error(errorMessage));
       });
   }
 
