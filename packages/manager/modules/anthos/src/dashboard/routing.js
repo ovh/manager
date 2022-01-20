@@ -6,17 +6,31 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('anthos.dashboard', {
     url: '/:serviceName',
     component: 'anthosDashboard',
+    params: {
+      patchTenantStatus: { value: '' },
+    },
     resolve: {
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
 
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
 
+      patchTenantStatus: /* @ngInject */ ($transition$) =>
+        $transition$.params().patchTenantStatus,
+
       alertId: () => 'anthos_dashboard',
 
-      tenant: /* @ngInject */ (serviceName, AnthosTenantsService) => {
+      tenant: /* @ngInject */ (
+        serviceName,
+        patchTenantStatus,
+        AnthosTenantsService,
+      ) => {
         return AnthosTenantsService.getTenantDetails(serviceName).then(
-          (tenant) => new Tenant(tenant),
+          (data) => {
+            const tenant = new Tenant(data);
+            if (patchTenantStatus) tenant.status = patchTenantStatus;
+            return tenant;
+          },
         );
       },
 
