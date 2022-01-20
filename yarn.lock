@@ -3039,10 +3039,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^5.3.1":
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-5.3.1.tgz#39228fb038c4c3668fc3504bac50914f829ee1b6"
-  integrity sha512-BlzeEdhDsClo9H4znUYGa4OTxWJXLVHxGXX5D1wkXCZZ+lWaAWBh/YXkPnplQvO2tZ9pHE7HufbiNTZBxEMdIQ==
+"@ovh-ux/ui-kit@^5.3.2":
+  version "5.3.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-5.3.2.tgz#be872857e40acb65c72ea17d28a63cdc4c8187b5"
+  integrity sha512-FOKHgiMEL+nxMMi4UGPCy4Bq13SzvP4fbUQU6plq3kjj7lnDAAxMvZ/uErZ/Tbx6o1Jg9GZOWMA9WpjMPSF0hw==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -10126,10 +10126,15 @@ flat-cache@^3.0.4:
     flatted "^3.1.0"
     rimraf "^3.0.2"
 
-flatpickr@4.6.9, flatpickr@^4.6.3, flatpickr@~4.5.2:
+flatpickr@^4.6.3:
   version "4.6.9"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
   integrity sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==
+
+flatpickr@~4.5.2:
+  version "4.5.7"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.7.tgz#6efc0d93c65547aa77294205c67830ebabe3565c"
+  integrity sha512-JqPfihUc9A/j9QAsh6otoARmMyUauPE17vRBEG+ThJwbl8zAq4ssGpxlPK3wWM/i8EFxkHg9UuVo0ds7XluKxw==
 
 flatted@^2.0.0:
   version "2.0.1"
