@@ -1,0 +1,4 @@
+{
+  "pci_database_payment_warning_title": "Bazy danych Public Cloud - koniec darmowego testu",
+  "pci_database_payment_warning_description": "Każda aktywna usługa utworzona jako beta test będzie płatna od {{creationDate}}. Jeśli nie chcesz ponosić kosztów, usuń usługi przed dniem {{lastDate}}."
+}
