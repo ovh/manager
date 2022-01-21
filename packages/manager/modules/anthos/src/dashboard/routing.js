@@ -7,7 +7,10 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/:serviceName',
     component: 'anthosDashboard',
     params: {
-      patchTenantStatus: { value: '' },
+      patchTenantStatus: {
+        value: '',
+        dynamic: true,
+      },
     },
     resolve: {
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
@@ -24,15 +27,14 @@ export default /* @ngInject */ ($stateProvider) => {
         serviceName,
         patchTenantStatus,
         AnthosTenantsService,
-      ) => {
-        return AnthosTenantsService.getTenantDetails(serviceName).then(
-          (data) => {
-            const tenant = new Tenant(data);
-            if (patchTenantStatus) tenant.status = patchTenantStatus;
-            return tenant;
-          },
-        );
-      },
+      ) =>
+        AnthosTenantsService.getTenantDetails(serviceName).then(
+          (data) =>
+            new Tenant({
+              ...data,
+              status: patchTenantStatus || data.status,
+            }),
+        ),
 
       hosts: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getHosts(serviceName).then(({ data }) => data),
@@ -122,7 +124,13 @@ export default /* @ngInject */ ($stateProvider) => {
         const promise = $state.go(stateToGo, stateParams, options);
 
         if (message) {
-          promise.then(() => displayAlerterMessage(type, message));
+          promise.then(() => {
+            displayAlerterMessage(type, message);
+            $state.go($state.current, {
+              ...stateParams,
+              patchTenantStatus: '',
+            });
+          });
         }
 
         return promise;
