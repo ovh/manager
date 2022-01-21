@@ -69,7 +69,7 @@
                             <div class="container-fluid px-0">
                                 <div class="row">
                                     <div
-                                        class="col-sm-6 col-lg-4 col-xl mb-4"
+                                        class="col-sm-6 col-md-4 col-lg-3 mb-4"
                                         data-ng-repeat="action in $ctrl.actions track by $index"
                                     >
                                         <a
@@ -77,10 +77,11 @@
                                             data-ui-state="action.state"
                                             data-ui-state-params="{projectId: $ctrl.project.project_id}"
                                         >
-                                            <span
-                                                class="oui-icon oui-icon-add"
-                                                aria-hidden="true"
-                                            ></span>
+                                            <img
+                                                data-ng-src="{{:: $ctrl.productImages[action.name] }}"
+                                                alt=""
+                                            />
+
                                             <div
                                                 class="mt-3 w-100 text-truncate"
                                                 data-ng-bind=":: action.translation | translate"
@@ -106,15 +107,25 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="col-sm-6 mb-4">
-                                        <!-- Advices -->
-                                        <ovh-advices
-                                            url="/cloud/:serviceName"
-                                            url-params="{
-                                                serviceName: $ctrl.projectId,
-                                            }"
-                                        >
-                                        </ovh-advices>
+                                    <div
+                                        class="col-sm-6 mb-4"
+                                        data-ng-if="$ctrl.coreConfig.getRegion() !== 'US'"
+                                    >
+                                        <h2
+                                            data-translate="pci_projects_project_community"
+                                        ></h2>
+                                        <ul>
+                                            <li
+                                                data-ng-repeat="communitylink in $ctrl.communityLinks track by $index"
+                                            >
+                                                <a
+                                                    data-ng-href="{{ ::communitylink.href }}"
+                                                    target="_blank"
+                                                    rel="noopener"
+                                                    data-translate="{{ ::communitylink.translation }}"
+                                                ></a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
