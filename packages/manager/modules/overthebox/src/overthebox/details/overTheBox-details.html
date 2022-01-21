@@ -8,7 +8,7 @@
             <oui-dropdown-content>
                 <oui-dropdown-item
                     data-disabled="!$ctrl.availableAction.sysupgrade"
-                    data-on-click="$ctrl.LaunchAction('sysupgrade')"
+                    data-on-click="$ctrl.launchAction('sysupgrade')"
                 >
                     <span
                         class="d-block mb-1"
@@ -23,7 +23,7 @@
         </oui-dropdown>
         <oui-button
             data-disabled="!$ctrl.availableAction.reboot"
-            data-on-click="$ctrl.LaunchAction('reboot')"
+            data-on-click="$ctrl.launchAction('reboot')"
         >
             <span data-translate="overTheBox_action_reboot_label"></span>
         </oui-button>

@@ -80,7 +80,6 @@ export default class OverTheBoxDetailsCtrl {
         }
         this.loaders.init = false;
         this.loadGraphData(this.graphType);
-        // this.getGraphData();
       });
     this.getAvailableReleaseChannels();
     this.getAvailableAction();
@@ -141,11 +140,7 @@ export default class OverTheBoxDetailsCtrl {
       Object.keys(series[0].dps).forEach((timeStmp) => {
         currentMax = 0;
         for (let i = 0; i < series.length; i += 1) {
-          if (series[i].unit === 'bps') {
-            currentMax += series[i].dps[timeStmp] / 1000000;
-          } else {
-            currentMax += series[i].dps[timeStmp];
-          }
+          currentMax += series[i].dps[timeStmp];
         }
         max = max > currentMax ? max : currentMax;
       });
@@ -215,166 +210,48 @@ export default class OverTheBoxDetailsCtrl {
     );
   }
 
-  loadGraphData(type) {
-    return this.loadStatistics(
-      this.service.serviceName,
-      type,
-      this.graphPeriod,
-    ).then((result) => {
-      const stats = result.map((stat) => {
-        const tags = stat.tags
-          .map((tag) => tag)
-          .reduce((obj, tag) => {
-            const myObj = obj;
-            myObj[tag.name] = tag.value;
-            return myObj;
-          }, {});
-        const dps = stat.points
-          .map((point) => point)
-          .reduce((obj, item) => {
-            const myObj = obj;
-            myObj[item.timestamp] = item.value;
-            return myObj;
-          }, {});
-        return {
-          name: stat.name,
-          points: stat.points,
-          tags,
-          unit: stat.unit,
-          dps,
-        };
-      });
-      const inStats = stats.filter((stat) => stat.tags.direction === 'in');
-      const outStats = stats.filter((stat) => stat.tags.direction === 'out');
-
-      const filteredDown = inStats.filter(
-        (d) => this.kpiInterfaces.indexOf(d.tags.interface) > -1,
-      );
-      forEach(filteredDown, this.constructor.makeGraphPositive);
-      this.download = this.constructor.computeSpeed(filteredDown);
-
-      const filteredUp = outStats.filter(
-        (d) => this.kpiInterfaces.indexOf(d.tags.interface) > -1,
-      );
-      forEach(filteredUp, this.constructor.makeGraphPositive);
-      this.upload = this.constructor.computeSpeed(filteredUp);
-
-      // Download chart
-      this.chartDown = new this.TucChartjsFactory(
-        angular.copy(this.OVERTHEBOX_DETAILS.chart),
-      );
-      this.chartDown.setYLabel(
-        this.$translate.instant('overTheBox_statistics_bits_per_sec_legend'),
-      );
-      this.chartDown.setAxisOptions('yAxes', {
-        ticks: {
-          callback: this.humanizeAxisDisplay.bind(this),
-        },
-      });
-      this.chartDown.setTooltipCallback('label', (item) =>
-        this.displayBitrate(item.yLabel),
-      );
-
-      const downSeries = sortBy(
-        map(filteredDown, (d) => ({
-          name: d.tags.interface,
-          data: Object.keys(d.dps).map((key) => ({
-            x: key * 1000,
-            y: d.unit === 'bps' ? (d.dps[key] / 1000000) * 8 : d.dps[key] * 8,
-          })),
-        })),
-        ['name'],
-      );
-
-      forEach(downSeries, (serie) => {
-        this.chartDown.addSerie(serie.name, serie.data, {
-          dataset: {
-            fill: true,
-            borderWidth: 1,
-          },
-        });
-      });
-      if (!downSeries.length) {
-        this.chartDown.options.scales.xAxes = [];
-      }
-
-      // Upload chart
-      this.chartUp = new this.TucChartjsFactory(
-        angular.copy(this.OVERTHEBOX_DETAILS.chart),
-      );
-      this.chartUp.setYLabel(
-        this.$translate.instant('overTheBox_statistics_bits_per_sec_legend'),
-      );
-      this.chartUp.setAxisOptions('yAxes', {
-        ticks: {
-          callback: this.humanizeAxisDisplay.bind(this),
-        },
-      });
-      this.chartUp.setTooltipCallback('label', (item) =>
-        this.displayBitrate(item.yLabel),
-      );
-
-      const upSeries = sortBy(
-        map(filteredUp, (d) => ({
-          name: d.tags.interface,
-          data: Object.keys(d.dps).map((key) => ({
-            x: key * 1000,
-            y: d.unit === 'bps' ? (d.dps[key] / 1000000) * 8 : d.dps[key] * 8,
-          })),
-        })),
-        ['name'],
-      );
-
-      forEach(upSeries, (serie) => {
-        this.chartUp.addSerie(serie.name, serie.data, {
-          dataset: {
-            fill: true,
-            borderWidth: 1,
-          },
-        });
-      });
-      if (!upSeries.length) {
-        this.chartUp.options.scales.xAxes = [];
-      }
-      this.isLoading = false;
-    });
-  }
-
   /**
    * Load graph data
    */
-  getGraphData() {
-    if (!this.service) {
-      return;
-    }
-
+  loadGraphData(type) {
     this.loaders.graph = true;
-    this.$q
-      .all([
-        this.OverTheBoxGraphService.getGraphData({
-          service: this.service,
-          downSample: this.OVER_THE_BOX.statistics.sampleRate,
-          direction: 'in',
-        }),
-        this.OverTheBoxGraphService.getGraphData({
-          service: this.service,
-          downSample: this.OVER_THE_BOX.statistics.sampleRate,
-          direction: 'out',
-        }),
-      ])
-      .then((data) => {
-        const inData = data[0] && data[0].data ? data[0].data : [];
-        const outData = data[1] && data[1].data ? data[1].data : [];
 
-        const filteredDown = inData.filter(
-          (d) => this.kpiInterfaces.indexOf(d.tags.iface) > -1,
+    return this.loadStatistics(this.service.serviceName, type, this.graphPeriod)
+      .then((result) => {
+        const stats = result.map((stat) => {
+          const tags = stat.tags
+            .map((tag) => tag)
+            .reduce((obj, tag) => {
+              const myObj = obj;
+              myObj[tag.name] = tag.value;
+              return myObj;
+            }, {});
+          const dps = stat.points
+            .map((point) => point)
+            .reduce((obj, item) => {
+              const myObj = obj;
+              myObj[item.timestamp] = item.value;
+              return myObj;
+            }, {});
+          return {
+            name: stat.name,
+            points: stat.points,
+            tags,
+            unit: stat.unit,
+            dps,
+          };
+        });
+        const inStats = stats.filter((stat) => stat.tags.direction === 'in');
+        const outStats = stats.filter((stat) => stat.tags.direction === 'out');
+
+        const filteredDown = inStats.filter(
+          (d) => this.kpiInterfaces.indexOf(d.tags.interface) > -1,
         );
-
         forEach(filteredDown, this.constructor.makeGraphPositive);
         this.download = this.constructor.computeSpeed(filteredDown);
 
-        const filteredUp = outData.filter(
-          (d) => this.kpiInterfaces.indexOf(d.tags.iface) > -1,
+        const filteredUp = outStats.filter(
+          (d) => this.kpiInterfaces.indexOf(d.tags.interface) > -1,
         );
         forEach(filteredUp, this.constructor.makeGraphPositive);
         this.upload = this.constructor.computeSpeed(filteredUp);
@@ -397,7 +274,7 @@ export default class OverTheBoxDetailsCtrl {
 
         const downSeries = sortBy(
           map(filteredDown, (d) => ({
-            name: d.tags.iface,
+            name: d.tags.interface,
             data: Object.keys(d.dps).map((key) => ({
               x: key * 1000,
               y: d.dps[key] * 8,
@@ -436,7 +313,7 @@ export default class OverTheBoxDetailsCtrl {
 
         const upSeries = sortBy(
           map(filteredUp, (d) => ({
-            name: d.tags.iface,
+            name: d.tags.interface,
             data: Object.keys(d.dps).map((key) => ({
               x: key * 1000,
               y: d.dps[key] * 8,
@@ -456,6 +333,7 @@ export default class OverTheBoxDetailsCtrl {
         if (!upSeries.length) {
           this.chartUp.options.scales.xAxes = [];
         }
+        this.isLoading = false;
       })
       .catch((err) => {
         this.TucToast.error(
@@ -503,7 +381,7 @@ export default class OverTheBoxDetailsCtrl {
    * @param {String} actionName Action to launch
    * @returns {Promise}
    */
-  LaunchAction(actionName) {
+  launchAction(actionName) {
     this.availableAction = {};
     return this.OvhApiOverTheBox.v6()
       .launchAction(
