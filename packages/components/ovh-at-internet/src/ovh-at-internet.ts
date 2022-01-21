@@ -145,7 +145,8 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     while (this.trackQueue.length) {
       const { type, data } = this.trackQueue.shift();
       const trackFunction = this[type] as CallableFunction;
-      trackFunction(data);
+      const boundFunction = trackFunction.bind(this);
+      boundFunction(data);
     }
   }
 
