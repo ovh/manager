@@ -42,7 +42,7 @@ export default /* @ngInject */ ($stateProvider) => {
       apiPath: () => '/storage/netapp',
       dataModel: () => 'storage.NetAppService',
       defaultFilterColumn: () => 'id',
-      header: () => 'NetApp',
+      header: () => 'Enterprise File Storage',
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ id }) =>
         $state.href('netapp.dashboard', {
