@@ -13,9 +13,8 @@ import {
 
 export default class CloudConnectStatisticsCtrl {
   /* @ngInject */
-  constructor($q, $translate, CucCloudMessage, cloudConnectService) {
+  constructor($q, CucCloudMessage, cloudConnectService) {
     this.$q = $q;
-    this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.cloudConnectService = cloudConnectService;
     this.LABELS = LABELS;
