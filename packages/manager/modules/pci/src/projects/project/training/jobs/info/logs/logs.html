@@ -8,17 +8,7 @@
     data-translate="pci_projects_project_training_job_logs_text_3"
 ></p>
 
-<div data-ng-if="$ctrl.currentJob.isTerminal()">
-    <p data-translate="pci_projects_project_training_job_logs_text_5"></p>
-    <p data-translate="pci_projects_project_training_job_logs_text_4"></p>
-    <code
-        >{{:: 'pci_projects_project_training_parter_cli_name' | translate }}
-        data download GRA ai-training-logs job-{{ $ctrl.currentJob.id
-        }}.log</code
-    >
-</div>
-
-<div data-ng-if="$ctrl.currentJob.isRunning()">
+<div data-ng-if="!$ctrl.currentJob.isPreRunning()">
     <p data-translate="pci_projects_project_training_job_logs_text_1"></p>
     <p>
         {{:: 'pci_projects_project_training_job_logs_text_2' | translate }}
