@@ -30,7 +30,7 @@
   "server_configuration_netboot_step2_rescue": "Rescue-Name:",
   "server_configuration_netboot_step2_rescue_mail": "E-Mail-Adresse für den Rescue-Modus:",
   "server_configuration_netboot_success": "Der Netboot-Modus wurde erfolgreich aktualisiert. Starten Sie Ihren Server neu.",
-  "server_configuration_netboot_fail": "Beim Update des Netboot-Modus für den Server {{t0}} ist ein Fehler aufgetreten",
+  "server_configuration_netboot_fail": "Beim Update des Netboot-Modus auf dem Server {{t0}} ist ein Fehler aufgetreten: {{message}}",
   "server_configuration_netboot_next": "Weiter",
   "server_configuration_netboot_cancel": "Abbrechen",
   "server_configuration_netboot_confirm": "Bestätigen",

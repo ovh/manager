@@ -70,5 +70,6 @@
   "overTheBox_statistics_bits_per_sec_legend": "bits/s",
   "overTheBox_expiration_warning_help": "La disattivazione può essere annullata prima della data di scadenza del servizio.",
   "overTheBox_detail_link_guide": "Guide",
-  "overthebox_detail_links": "Link"
+  "overthebox_detail_links": "Link",
+  "overTheBox_service_id": "Identificativo del servizio:"
 }
