@@ -18,6 +18,7 @@ import onboarding from './onboarding';
 import routing from './databases.routing';
 import service from './database.service';
 import confirmDelete from './confirm-delete';
+import databasesWarning from '../../../../components/project/warning-message';
 
 import './index.scss';
 
@@ -35,6 +36,7 @@ angular
     node,
     onboarding,
     confirmDelete,
+    databasesWarning,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ngOvhCloudUniverseComponents',

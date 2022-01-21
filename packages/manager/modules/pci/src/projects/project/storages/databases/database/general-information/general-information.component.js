@@ -39,6 +39,7 @@ export default {
     isFeatureActivated: '<',
     serviceIntegration: '<',
     goBacktoGeneralInformation: '<',
+    showPaymentWarning: '<',
   },
   controller,
   template,

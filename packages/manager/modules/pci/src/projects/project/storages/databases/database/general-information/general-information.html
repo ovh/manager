@@ -14,6 +14,10 @@
         ></span>
     </oui-message>
 
+    <pci-project-databases-warning
+        data-ng-if="$ctrl.showPaymentWarning([$ctrl.database])"
+    ></pci-project-databases-warning>
+
     <oui-message
         data-ng-if="$ctrl.getWarningMessage()"
         data-type="warning"

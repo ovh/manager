@@ -22,6 +22,11 @@
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
+
+    <pci-project-databases-warning
+        data-ng-if="$ctrl.showPaymentWarning($ctrl.databases)"
+    ></pci-project-databases-warning>
+
     <oui-datagrid
         id="publicCloudStorageDatabasesDatagrid"
         data-rows="$ctrl.databases"
