@@ -183,78 +183,80 @@
         <div data-ng-if="$ctrl.staticLeases.length === 0" class="mb-2">
             <em data-translate="overTheBox_autoconfigure_no_values"></em>
         </div>
-        <div data-ng-if="$ctrl.showAddStaticLease">
-            <form novalidate name="formStaticLease">
-                <div class="oui-input-group oui-input-group_inline">
-                    <oui-field
-                        label="{{:: 'overTheBox_autoconfigure_hostname' | translate}}"
-                    >
-                        <input
-                            class="oui-input"
-                            name="hostname"
-                            type="text"
-                            required
-                            ng-model="$ctrl.staticLease.hostname"
-                        />
-                    </oui-field>
-                    <oui-field
-                        class="ml-2"
-                        label="{{:: 'overTheBox_autoconfigure_mac' | translate}}"
-                    >
-                        <input
-                            class="oui-input"
-                            name="mac"
-                            type="text"
-                            required
-                            ng-model="$ctrl.staticLease.mac"
-                        />
-                    </oui-field>
-                    <oui-field
-                        class="ml-2"
-                        label="{{:: 'overTheBox_autoconfigure_ip' | translate}}"
-                    >
-                        <input
-                            class="oui-input"
-                            name="ip"
-                            type="text"
-                            required
-                            ng-model="$ctrl.staticLease.ip"
-                        />
-                    </oui-field>
-                    <oui-field
-                        class="ml-2"
-                        label="{{:: 'overTheBox_autoconfigure_priority' | translate}}"
-                    >
-                        <input
-                            class="oui-input"
-                            name="priority"
-                            type="number"
-                            required
-                            ng-model="$ctrl.staticLease.priority"
-                        />
-                    </oui-field>
-                    <oui-button
-                        class="ml-2 mb-2"
-                        variant="primary"
-                        type="submit"
-                        on-click="$ctrl.createStaticLease()"
-                    >
-                        <span
-                            data-translate="overTheBox_autoconfigure_submit"
-                        ></span>
-                    </oui-button>
-                    <oui-button
-                        class="ml-2 mb-2"
-                        variant="primary"
-                        on-click="$ctrl.cancelCreateStaticLease()"
-                    >
-                        <span
-                            data-translate="overTheBox_autoconfigure_cancel"
-                        ></span>
-                    </oui-button>
-                </div>
-            </form>
-        </div>
+        <form
+            novalidate
+            name="formStaticLease"
+            data-ng-if="$ctrl.showAddStaticLease"
+        >
+            <div class="oui-input-group oui-input-group_inline">
+                <oui-field
+                    label="{{:: 'overTheBox_autoconfigure_hostname' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="hostname"
+                        type="text"
+                        required
+                        ng-model="$ctrl.staticLease.hostname"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_mac' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="mac"
+                        type="text"
+                        required
+                        ng-model="$ctrl.staticLease.mac"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_ip' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="ip"
+                        type="text"
+                        required
+                        ng-model="$ctrl.staticLease.ip"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_priority' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="priority"
+                        type="number"
+                        required
+                        ng-model="$ctrl.staticLease.priority"
+                    />
+                </oui-field>
+                <oui-button
+                    class="ml-2 mb-2"
+                    variant="primary"
+                    type="submit"
+                    on-click="$ctrl.createStaticLease()"
+                >
+                    <span
+                        data-translate="overTheBox_autoconfigure_submit"
+                    ></span>
+                </oui-button>
+                <oui-button
+                    class="ml-2 mb-2"
+                    variant="primary"
+                    on-click="$ctrl.cancelCreateStaticLease()"
+                >
+                    <span
+                        data-translate="overTheBox_autoconfigure_cancel"
+                    ></span>
+                </oui-button>
+            </div>
+        </form>
         <oui-button
             variant="primary"
             on-click="$ctrl.addStaticLease()"
