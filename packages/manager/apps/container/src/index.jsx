@@ -18,24 +18,29 @@ initSso();
 shellApi.initShell().then((shell) => {
   const environment = shell.getPlugin('environment').getEnvironment();
   const locale = environment.getUserLocale();
-  i18n
-    .use(initReactI18next)
-    .use(Backend)
-    .init({
-      lng: locale,
-      fallbackLng: 'fr_FR',
-      ns: [], // namespaces to load by default
-      backend: {
-        // path construction for async load, ns: namespace, lng: locale
-        loadPath: './translations/{{ns}}/Messages_{{lng}}.json',
-      },
+
+  import(`./config-${environment.getRegion()}`)
+    .catch(() => {})
+    .then(() => {
+      i18n
+        .use(initReactI18next)
+        .use(Backend)
+        .init({
+          lng: locale,
+          fallbackLng: 'fr_FR',
+          ns: [], // namespaces to load by default
+          backend: {
+            // path construction for async load, ns: namespace, lng: locale
+            loadPath: './translations/{{ns}}/Messages_{{lng}}.json',
+          },
+        });
+      ReactDOM.render(
+        <React.StrictMode>
+          <ApplicationProvider environment={environment} shell={shell}>
+            <Shell />
+          </ApplicationProvider>
+        </React.StrictMode>,
+        document.querySelector('#app'),
+      );
     });
-  ReactDOM.render(
-    <React.StrictMode>
-      <ApplicationProvider environment={environment} shell={shell}>
-        <Shell />
-      </ApplicationProvider>
-    </React.StrictMode>,
-    document.querySelector('#app'),
-  );
 });
