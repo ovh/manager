@@ -28,7 +28,7 @@ $ git clone https://github.com/ovh/manager.git
 # Go to the project root
 $ cd manager
 
-# If you using nvm
+# If you are using nvm
 $ nvm use
 
 # Install
