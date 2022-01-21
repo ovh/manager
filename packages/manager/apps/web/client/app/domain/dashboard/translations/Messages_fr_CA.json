@@ -836,8 +836,10 @@
   "domain_dashboard_recommended_hosting_label": "-{{ reduction }} sur votre Hébergement {{ type }} pour le Black Friday.",
   "domain_dashboard_recommended_hosting_discover": "Découvrir les solutions",
   "domain_tab_emails": "E-mails et mailing-lists",
-  "domain_dashboard_general_information_domain_terminated": "Résiliation demandée",
-  "domain_dashboard_general_information_domain_automatic_renewal": "Renouvellement automatique",
+  "domain_dashboard_general_information_domain_delete_at_expiration": "Résiliation demandée",
+  "domain_dashboard_general_information_domain_expired": "Résilié",
+  "domain_dashboard_general_information_domain_manualPayment": "Renouvellement manuel",
+  "domain_dashboard_general_information_domain_automatic": "Renouvellement automatique",
   "domain_dashboard_general_information_alldom_termination_info": "Votre pack expirera le {{ expirationDate }}. Les domaines non résiliés inclus dans celui-ci seront <strong>renouvelés gratuitement jusqu’à l’expiration définitive de votre pack.</strong> Au-delà de cette date, vos domaines non résiliés seront facturés individuellement.",
   "domain_dashboard_general_information_alldom_renewal_link": "Annuler la résiliation du pack",
   "domain_dashboard_general_information_alldom_termination_warning_close": "fermer"
