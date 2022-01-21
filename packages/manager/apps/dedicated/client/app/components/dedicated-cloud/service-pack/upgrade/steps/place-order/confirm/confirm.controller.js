@@ -41,7 +41,7 @@ export default class {
       this.prices.monthly.exists && this.prices.monthly.display.substr(1);
   }
 
-  onValide() {
+  onValid() {
     this.atInternet.trackClick({
       name: `dedicated::dedicatedCloud::details::servicePackUpgrade::basicOptions::confirm_${this.itemRef}`,
       type: 'action',
