@@ -9,9 +9,7 @@
   "anthos_dashboard_host_order_grid_header_storage": "Stockage",
   "anthos_dashboard_host_order_grid_header_network": "Réseau",
   "anthos_dashboard_host_order_grid_header_price": "Prix",
-  "anthos_dashboard_host_order_grid_row_cpu_cores": "{{ amount }} cores",
-  "anthos_dashboard_host_order_grid_row_cpu_threads": "{{ amount }} threads",
-  "anthos_dashboard_host_order_grid_row_cpu_frequency": "@ {{ amount }}GHz",
+  "anthos_dashboard_host_order_grid_row_cpu": "{{ cores }} cores / {{ threads }} threads - {{ frequency }}GHz+",
   "anthos_dashboard_host_order_grid_row_price": "HT/Mois",
   "anthos_dashboard_host_order_action": "Initier la commande"
 }
