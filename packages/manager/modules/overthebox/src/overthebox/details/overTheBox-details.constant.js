@@ -60,6 +60,17 @@ export default {
     locked: 'locked',
     warning: 'warning',
   },
+  period: {
+    daily: 'daily',
+    hourly: 'hourly',
+    monthly: 'monthly',
+    weekly: 'weekly',
+  },
+  type: {
+    traffic: 'traffic',
+    memory_free: 'memory_free',
+    load: 'load',
+  },
   guidesUrl: {
     fr: 'https://docs.ovh.com/fr/overthebox/',
   },

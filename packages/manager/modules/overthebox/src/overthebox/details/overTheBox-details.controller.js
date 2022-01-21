@@ -53,6 +53,9 @@ export default class OverTheBoxDetailsCtrl {
     this.allDevices = [];
     this.device = null;
 
+    this.graphPeriod = this.OVERTHEBOX_DETAILS.period.daily;
+    this.graphType = this.OVERTHEBOX_DETAILS.type.traffic;
+
     this.guidesLink = this.OVERTHEBOX_DETAILS.guidesUrl.fr;
 
     this.$q
@@ -76,7 +79,8 @@ export default class OverTheBoxDetailsCtrl {
           this.deviceIdToLink = this.allDevices[0].deviceId;
         }
         this.loaders.init = false;
-        this.getGraphData();
+        this.loadGraphData(this.graphType);
+        // this.getGraphData();
       });
     this.getAvailableReleaseChannels();
     this.getAvailableAction();
@@ -137,7 +141,45 @@ export default class OverTheBoxDetailsCtrl {
       Object.keys(series[0].dps).forEach((timeStmp) => {
         currentMax = 0;
         for (let i = 0; i < series.length; i += 1) {
-          currentMax += series[i].dps[timeStmp];
+          if (series[i].unit === 'bps') {
+            currentMax += series[i].dps[timeStmp] / 1000000;
+          } else {
+            currentMax += series[i].dps[timeStmp];
+          }
+        }
+        max = max > currentMax ? max : currentMax;
+      });
+      rate = Math.round(currentMax / 104857.6) / 10;
+      if (!rate) {
+        rate = Math.round(currentMax / 102.4) / 10;
+        rateUnit = 'Kbps';
+      }
+    }
+
+    return {
+      max,
+      current: currentMax,
+      display: {
+        value: rate,
+        unit: rateUnit,
+      },
+    };
+  }
+
+  static getMaxSpeed(series) {
+    let max = 0;
+    let currentMax = 0;
+    let rateUnit = 'Mbps';
+    let rate = 0;
+    if (isArray(series) && series.length && series[0].points) {
+      series[0].points.forEach((point) => {
+        currentMax = 0;
+        for (let i = 0; i < series.length; i += 1) {
+          for (let j = 0; j < series[i].points.length; j += 1) {
+            if (series[i].points[j].timestamp === point.timestamp) {
+              currentMax += series[i].points[j].value;
+            }
+          }
         }
         max = max > currentMax ? max : currentMax;
       });
@@ -162,6 +204,139 @@ export default class OverTheBoxDetailsCtrl {
     forEach(Object.keys(graph.dps), (key) => {
       // eslint-disable-next-line no-param-reassign
       graph.dps[key] = graph.dps[key] < 0 ? 0 : graph.dps[key];
+    });
+  }
+
+  loadStatistics(serviceName, type, period) {
+    return this.OverTheBoxGraphService.loadStatistics(
+      serviceName,
+      type,
+      period,
+    );
+  }
+
+  loadGraphData(type) {
+    return this.loadStatistics(
+      this.service.serviceName,
+      type,
+      this.graphPeriod,
+    ).then((result) => {
+      const stats = result.map((stat) => {
+        const tags = stat.tags
+          .map((tag) => tag)
+          .reduce((obj, tag) => {
+            const myObj = obj;
+            myObj[tag.name] = tag.value;
+            return myObj;
+          }, {});
+        const dps = stat.points
+          .map((point) => point)
+          .reduce((obj, item) => {
+            const myObj = obj;
+            myObj[item.timestamp] = item.value;
+            return myObj;
+          }, {});
+        return {
+          name: stat.name,
+          points: stat.points,
+          tags,
+          unit: stat.unit,
+          dps,
+        };
+      });
+      const inStats = stats.filter((stat) => stat.tags.direction === 'in');
+      const outStats = stats.filter((stat) => stat.tags.direction === 'out');
+
+      const filteredDown = inStats.filter(
+        (d) => this.kpiInterfaces.indexOf(d.tags.interface) > -1,
+      );
+      forEach(filteredDown, this.constructor.makeGraphPositive);
+      this.download = this.constructor.computeSpeed(filteredDown);
+
+      const filteredUp = outStats.filter(
+        (d) => this.kpiInterfaces.indexOf(d.tags.interface) > -1,
+      );
+      forEach(filteredUp, this.constructor.makeGraphPositive);
+      this.upload = this.constructor.computeSpeed(filteredUp);
+
+      // Download chart
+      this.chartDown = new this.TucChartjsFactory(
+        angular.copy(this.OVERTHEBOX_DETAILS.chart),
+      );
+      this.chartDown.setYLabel(
+        this.$translate.instant('overTheBox_statistics_bits_per_sec_legend'),
+      );
+      this.chartDown.setAxisOptions('yAxes', {
+        ticks: {
+          callback: this.humanizeAxisDisplay.bind(this),
+        },
+      });
+      this.chartDown.setTooltipCallback('label', (item) =>
+        this.displayBitrate(item.yLabel),
+      );
+
+      const downSeries = sortBy(
+        map(filteredDown, (d) => ({
+          name: d.tags.interface,
+          data: Object.keys(d.dps).map((key) => ({
+            x: key * 1000,
+            y: d.unit === 'bps' ? (d.dps[key] / 1000000) * 8 : d.dps[key] * 8,
+          })),
+        })),
+        ['name'],
+      );
+
+      forEach(downSeries, (serie) => {
+        this.chartDown.addSerie(serie.name, serie.data, {
+          dataset: {
+            fill: true,
+            borderWidth: 1,
+          },
+        });
+      });
+      if (!downSeries.length) {
+        this.chartDown.options.scales.xAxes = [];
+      }
+
+      // Upload chart
+      this.chartUp = new this.TucChartjsFactory(
+        angular.copy(this.OVERTHEBOX_DETAILS.chart),
+      );
+      this.chartUp.setYLabel(
+        this.$translate.instant('overTheBox_statistics_bits_per_sec_legend'),
+      );
+      this.chartUp.setAxisOptions('yAxes', {
+        ticks: {
+          callback: this.humanizeAxisDisplay.bind(this),
+        },
+      });
+      this.chartUp.setTooltipCallback('label', (item) =>
+        this.displayBitrate(item.yLabel),
+      );
+
+      const upSeries = sortBy(
+        map(filteredUp, (d) => ({
+          name: d.tags.interface,
+          data: Object.keys(d.dps).map((key) => ({
+            x: key * 1000,
+            y: d.unit === 'bps' ? (d.dps[key] / 1000000) * 8 : d.dps[key] * 8,
+          })),
+        })),
+        ['name'],
+      );
+
+      forEach(upSeries, (serie) => {
+        this.chartUp.addSerie(serie.name, serie.data, {
+          dataset: {
+            fill: true,
+            borderWidth: 1,
+          },
+        });
+      });
+      if (!upSeries.length) {
+        this.chartUp.options.scales.xAxes = [];
+      }
+      this.isLoading = false;
     });
   }
 

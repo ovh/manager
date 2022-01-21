@@ -1,7 +1,27 @@
 import 'moment';
 
-export default /* @ngInject */ function($http) {
-  this.getGraphData = function getGraphData(opts) {
+export default class OverTheBoxDetailsService {
+  /* @ngInject */
+  constructor($http) {
+    this.$http = $http;
+  }
+
+  loadStatistics(serviceName, metricsType, period) {
+    const options = {
+      period,
+      metricsType,
+    };
+
+    return this.$http
+      .get(`/overTheBox/${serviceName}/statistics`, { params: options })
+      .then((statistics) => {
+        const stats = statistics.data || [];
+        return stats;
+      })
+      .catch(() => []);
+  }
+
+  getGraphData(opts) {
     const req = {
       method: 'POST',
       serviceType: 'opentsdb',
@@ -33,6 +53,6 @@ export default /* @ngInject */ function($http) {
         ],
       }),
     };
-    return $http(req);
-  };
+    return this.$http(req);
+  }
 }
