@@ -10,7 +10,6 @@ export const initHubAtInternet = (trackingPlugin) => {
     .module(moduleName, [registerAtInternetConfigModule(trackingPlugin)])
     .config(
       /* @ngInject */ (atInternetConfigurationProvider) => {
-        console.log('in init');
         atInternetConfigurationProvider.setTrackingPlugin(trackingPlugin);
         atInternetConfigurationProvider.setConfig(TRACKING);
         atInternetConfigurationProvider.setPrefix('hub');

@@ -7,6 +7,7 @@ import 'angular-translate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 
 import { isString, get, has } from 'lodash-es';
 
@@ -22,6 +23,7 @@ import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
 import { initHubAtInternet } from './components/at-internet';
 import errorPage from './components/error-page';
@@ -82,8 +84,9 @@ export default async (containerEl, shellClient) => {
         'pascalprecht.translate',
         'ui.bootstrap',
         uiRouter,
+        isTopLevelApplication() ? ovhManagerCookiePolicy : '',
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
-      ].filter(isString),
+      ].filter((module) => module && isString(module)),
     )
     .config(
       /* @ngInject */ (coreConfigProvider) => {
