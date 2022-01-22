@@ -30,7 +30,7 @@
   "server_configuration_netboot_step2_rescue": "Nazwa trybu Rescue:",
   "server_configuration_netboot_step2_rescue_mail": "E-maile dotyczące trybu Rescue:",
   "server_configuration_netboot_success": "Netboot został poprawnie zaktualizowany.  Należy zrestartować serwer.",
-  "server_configuration_netboot_fail": "Wystąpił błąd podczas aktualizacji netbootu dla serwera {{t0}}.",
+  "server_configuration_netboot_fail": "Wystąpił błąd podczas aktualizacji netbootu dla serwera {{t0}}: {{message}}",
   "server_configuration_netboot_next": "Dalej",
   "server_configuration_netboot_cancel": "Anuluj",
   "server_configuration_netboot_confirm": "Zatwierdź",

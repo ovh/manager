@@ -67,5 +67,5 @@
   "server_configuration_ssh_select": "Select an SSH key",
   "server_configuration_doing": "[In progress]",
   "server_common_confirm": "Confirm",
-  "server_common_cancel": "Undo"
+  "server_common_cancel": "Cancel"
 }
