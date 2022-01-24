@@ -272,7 +272,12 @@ export const registerCoreModule = (environment) => {
         $transitions.onBefore({}, () => $translate.refresh());
       },
     )
-    .run(sanitizeUrl);
+    .run(sanitizeUrl)
+    .run(
+      /* @ngInject */ (coreConfig) => {
+        coreConfig.sendSentryUserInformationEvent();
+      },
+    );
 
   return moduleName;
 };
