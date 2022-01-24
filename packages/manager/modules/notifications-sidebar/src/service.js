@@ -1,4 +1,3 @@
-import map from 'lodash/map';
 import set from 'lodash/set';
 
 import {
@@ -28,20 +27,22 @@ export default class Notifications {
     return this.OvhApiNotificationAapi.post(status).$promise;
   }
 
+  static updateStatus(notification, status) {
+    Object.assign(notification, {
+      status,
+      isActive: ACTIVE_STATUS === status,
+      isCompleted: COMPLETED_STATUS === status,
+      acknowledged: ACKNOWLEDGED_STATUS.includes(status),
+    });
+  }
+
   readNotifications(notification, status) {
     set(notification, 'updating', true);
 
     return this.updateNotifications({
       [status]: [notification.id],
     })
-      .then(() => {
-        Object.assign(notification, {
-          status,
-          isActive: ACTIVE_STATUS === status,
-          isCompleted: COMPLETED_STATUS === status,
-          acknowledged: ACKNOWLEDGED_STATUS.includes(status),
-        });
-      })
+      .then(() => Notifications.updateStatus(notification, status))
       .finally(() => {
         set(notification, 'updating', false);
         return notification;
@@ -49,15 +50,14 @@ export default class Notifications {
   }
 
   readAllNotifications(notifications) {
-    return this.$q.all(
-      map(notifications, (notification) => {
-        if (!notification.updating) {
-          return this.readNotifications(notification, 'acknowledged');
-        }
-
-        return this.$q.when();
-      }),
-    );
+    const updates = {
+      acknowledged: notifications.map(({ id }) => id),
+    };
+    return this.updateNotifications(updates).then(() => {
+      notifications.forEach((notification) =>
+        Notifications.updateStatus(notification, 'acknowledged'),
+      );
+    });
   }
 
   toggleSublinkAction(toUpdate, linkClicked) {
