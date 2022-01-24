@@ -49,6 +49,8 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
   }
 
   editRule(ruleIndex) {
+    this.trackClick('snapshot-policy::create::edit-rule');
+
     const ruleToEdit = this.newSnapshotPolicy.rules[ruleIndex];
     this.ruleCopy = cloneDeep(ruleToEdit);
     this.newRule = {
@@ -73,6 +75,8 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
   }
 
   addSnapshotPolicyRule() {
+    this.trackClick('snapshot-policy::create::add-rule');
+
     this.newRule = {
       isInEdition: true,
       prefix: undefined,
@@ -98,6 +102,8 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
   }
 
   validateSnapshotPolicyRule(ruleIndex) {
+    this.trackClick('snapshot-policy::create::confirm-add-rule');
+
     const { isInEdition, ...ruleToValidate } = this.newRule;
     this.newSnapshotPolicy.rules[ruleIndex] = ruleToValidate;
     this.resetNewRule();
@@ -147,6 +153,8 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
   }
 
   cancelNewRule($rowIndex) {
+    this.trackClick('snapshot-policy::create::cancel-add-rule');
+
     if (this.ruleCopy) {
       this.newSnapshotPolicy.rules.splice($rowIndex, 1, this.ruleCopy);
     } else {
@@ -174,6 +182,8 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
   }
 
   removeRule(rule) {
+    this.trackClick('snapshot-policy::create::delete-rule');
+
     this.newSnapshotPolicy.rules = this.newSnapshotPolicy.rules.filter(
       (r) => r.prefix !== rule.prefix,
     );
