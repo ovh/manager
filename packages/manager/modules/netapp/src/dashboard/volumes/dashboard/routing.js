@@ -7,6 +7,12 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
+      trackClick: /* @ngInject */ (atInternet) => (tracker) => {
+        return atInternet.trackClick({
+          type: 'action',
+          name: `netapp::dashboard::volumes::dashboard::${tracker}`,
+        });
+      },
       goToVolumeDashboard: /* @ngInject */ (
         $state,
         Alerter,

@@ -15,6 +15,8 @@ export default class NetAppVolumesDashboardAclController {
   }
 
   cancelAcl() {
+    this.trackClick('acl::delete');
+
     this.isAdding = false;
     this.acls.pop();
     this.selectRow(this.acls.length);
@@ -31,6 +33,8 @@ export default class NetAppVolumesDashboardAclController {
   }
 
   addAcl() {
+    this.trackClick('acl::add');
+
     this.isAdding = true;
 
     this.initAclModel();
@@ -60,6 +64,8 @@ export default class NetAppVolumesDashboardAclController {
   }
 
   saveAcl(index) {
+    this.trackClick('acl::add::confirm');
+
     this.isLoading = true;
     this.acls[index].accessTo = this.currentAcl.accessTo;
     this.acls[index].accessType = this.currentAcl.accessType.value;
