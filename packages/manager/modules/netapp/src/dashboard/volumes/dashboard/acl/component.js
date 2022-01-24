@@ -10,6 +10,7 @@ export default {
     shareACLPermissionEnum: '<',
     shareACLTypeEnum: '<',
     volumeId: '<',
+    trackClick: '<',
   },
   controller,
   template,

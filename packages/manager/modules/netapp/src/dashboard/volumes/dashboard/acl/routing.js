@@ -3,6 +3,12 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/acl',
     component: 'ovhManagerNetAppVolumesDashboardAcl',
     resolve: {
+      trackClick: /* @ngInject */ (atInternet) => (tracker) => {
+        return atInternet.trackClick({
+          type: 'action',
+          name: `netapp::dashboard::volumes::dashboard::acl::${tracker}`,
+        });
+      },
       acls: /* @ngInject */ ($http, serviceName, volumeId) =>
         $http
           .get(`/storage/netapp/${serviceName}/share/${volumeId}/acl`)
@@ -12,7 +18,6 @@ export default /* @ngInject */ ($stateProvider) => {
       createAcl: /* @ngInject */ ($http, serviceName, trackClick, volumeId) => (
         aclRule,
       ) => {
-        trackClick('acl::add');
         return $http.post(
           `/storage/netapp/${serviceName}/share/${volumeId}/acl`,
           {
