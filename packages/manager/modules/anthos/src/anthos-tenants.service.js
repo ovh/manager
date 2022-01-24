@@ -239,6 +239,12 @@ export default class AnthosTenantsService {
       .then(({ data }) => data);
   }
 
+  getAnthosServiceOption(serviceName) {
+    return this.$http
+      .get(`/order/cartServiceOption/anthos/${serviceName}`)
+      .then(({ data }) => data);
+  }
+
   updateSoftware(serviceName, version) {
     return this.$http
       .post(`/dedicated/anthos/tenants/${serviceName}/actions/upgrade`, {

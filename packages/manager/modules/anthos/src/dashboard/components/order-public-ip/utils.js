@@ -1,17 +1,12 @@
-import {
-  ADDON_PLAN_CODE,
-  PRICING_INTERVAL,
-  PRICING_INTERVAL_UNIT,
-} from './constants';
+import { ADDON_PLAN_CODE, PRICE_DURATION } from './constants';
 
-export function extractPublicIpsAddonFromAnthosCatalog(catalog) {
-  const addon = catalog.addons?.find?.(
+export function extractPublicIpsAddonFromAnthosCatalog(serviceOption) {
+  const addon = serviceOption.find?.(
     ({ planCode }) => planCode === ADDON_PLAN_CODE,
   );
   if (!addon) return null;
-  const price = addon.pricings?.find?.(
-    ({ interval, intervalUnit }) =>
-      interval === PRICING_INTERVAL && intervalUnit === PRICING_INTERVAL_UNIT,
+  const price = addon.prices?.find?.(
+    ({ duration }) => duration === PRICE_DURATION,
   );
   if (!price) return null;
   return {
