@@ -74,4 +74,6 @@ export default {
   guidesUrl: {
     fr: 'https://docs.ovh.com/fr/overthebox/',
   },
+  convertToMbps: 104857.6,
+  convertToKbps: 102.4,
 };

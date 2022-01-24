@@ -178,9 +178,11 @@ export default class OverTheBoxDetailsCtrl {
         }
         max = max > currentMax ? max : currentMax;
       });
-      rate = Math.round(currentMax / 104857.6) / 10;
+      rate =
+        Math.round(currentMax / this.OVERTHEBOX_DETAILS.convertToMbps) / 10;
       if (!rate) {
-        rate = Math.round(currentMax / 102.4) / 10;
+        rate =
+          Math.round(currentMax / this.OVERTHEBOX_DETAILS.convertToKbps) / 10;
         rateUnit = 'Kbps';
       }
     }
