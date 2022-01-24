@@ -74,6 +74,15 @@ export default class CoreConfig {
     return this.environment.getMessage();
   }
 
+  sendSentryUserInformationEvent() {
+    const user = this.environment.getUser();
+    window.dispatchEvent(
+      new CustomEvent('sentry::user-information', {
+        detail: { id: user.nichandle },
+      }),
+    );
+  }
+
   $get() {
     return {
       getRegion: () => this.getRegion(),
@@ -99,6 +108,9 @@ export default class CoreConfig {
 
       setMessage: (message) => this.setMessage(message),
       getMessage: () => this.getMessage(),
+
+      sendSentryUserInformationEvent: () =>
+        this.sendSentryUserInformationEvent(),
     };
   }
 }
