@@ -10,8 +10,8 @@ export default /* @ngInject */ ($stateProvider) => {
       plan: /* @ngInject */ (ByoipService) => ByoipService.getCatalog(),
       getToken: /* @ngInject */ (ByoipService) => (region) =>
         ByoipService.getToken(region),
-      goToDisclaimer: /* @ngInject */ ($state) => (expressOrderUrl) =>
-        $state.go('app.ip.byoip.disclaimer', { expressOrderUrl }),
+      goToDisclaimer: /* @ngInject */ ($state) => (payload) =>
+        $state.go('app.ip.byoip.disclaimer', { byoip: payload }),
       goToByoipConfiguration: /* @ngInject */ ($state, Alerter) => (
         message = false,
         type = 'success',
@@ -30,6 +30,9 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('ip_byoip'),
+    },
+    atInternet: {
+      rename: 'dedicated::ip::dashboard::bring-your-own-ip',
     },
   });
 };
