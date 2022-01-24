@@ -15,5 +15,8 @@
   "pci_databases_users_add_keys_button_label": "Ajouter une clé",
   "pci_databases_users_add_categories_button_label": "Ajouter une catégorie",
   "pci_databases_users_add_commands_button_label": "Ajouter une commande",
-  "pci_databases_users_add_channels_button_label": "Ajouter un channel"
+  "pci_databases_users_add_channels_button_label": "Ajouter un channel",
+  "pci_databases_users_add_username_min_rule": "Au moins {{min}} caractère",
+  "pci_databases_users_add_username_max_rule": "Maximum {{max}} caractères",
+  "pci_databases_users_add_username_pattern_rule": "Doit être composé de caractères alphanumériques, points (.), underscores (_) ou tirets ( - ), ne doit pas commencer par un tiret ( - ) ou un point (.)"
 }
