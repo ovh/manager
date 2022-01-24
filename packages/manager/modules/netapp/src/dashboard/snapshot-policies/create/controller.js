@@ -49,6 +49,8 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
   }
 
   editRule(ruleIndex) {
+    this.trackClick('create::edit-rule');
+
     const ruleToEdit = this.newSnapshotPolicy.rules[ruleIndex];
     this.ruleCopy = cloneDeep(ruleToEdit);
     this.newRule = {
@@ -73,6 +75,8 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
   }
 
   addSnapshotPolicyRule() {
+    this.trackClick('create::add-rule');
+
     this.newRule = {
       isInEdition: true,
       prefix: undefined,
@@ -99,6 +103,8 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
 
   validateSnapshotPolicyRule(ruleIndex) {
     const { isInEdition, ...ruleToValidate } = this.newRule;
+    this.trackClick(`create::confirm-${isInEdition ? 'edit' : 'add'}-rule`);
+
     this.newSnapshotPolicy.rules[ruleIndex] = ruleToValidate;
     this.resetNewRule();
   }
@@ -148,8 +154,10 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
 
   cancelNewRule($rowIndex) {
     if (this.ruleCopy) {
+      this.trackClick('create::cancel-edit-rule');
       this.newSnapshotPolicy.rules.splice($rowIndex, 1, this.ruleCopy);
     } else {
+      this.trackClick('create::cancel-add-rule');
       this.newSnapshotPolicy.rules.splice($rowIndex, 1);
     }
     this.resetNewRule();
@@ -174,6 +182,8 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
   }
 
   removeRule(rule) {
+    this.trackClick('create::delete-rule');
+
     this.newSnapshotPolicy.rules = this.newSnapshotPolicy.rules.filter(
       (r) => r.prefix !== rule.prefix,
     );
@@ -183,7 +193,7 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
     this.isCreating = true;
     this.error = null;
 
-    this.trackClick('snapshot-policy::create::confirm');
+    this.trackClick('create::confirm');
     return this.$http
       .post(
         `/storage/netapp/${this.serviceName}/snapshotPolicy`,
