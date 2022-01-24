@@ -1,8 +1,7 @@
 import {
-  ADDON_PRODUCT_NAME,
+  ADDON_PRODUCT_FAMILY,
   MAX_ADDONS,
-  PRICING_INTERVAL,
-  PRICING_INTERVAL_UNIT,
+  PRICE_DURATION,
 } from './anthos-dashboard-host-order.constants';
 
 export function formatAddon(addon) {
@@ -59,16 +58,16 @@ export function formatAddon(addon) {
   };
 }
 
-export function extractHostAddonsFromAnthosCatalog(catalog) {
-  return catalog.addons
-    .filter(({ product }) => product === ADDON_PRODUCT_NAME)
+export function extractHostAddonsFromAnthosCatalog(catalog, serviceOption) {
+  return serviceOption
+    .filter(({ family }) => family === ADDON_PRODUCT_FAMILY)
     .map((addon) =>
       formatAddon({
-        ...addon,
-        pricings: addon.pricings.filter(
-          ({ interval, intervalUnit }) =>
-            interval === PRICING_INTERVAL &&
-            intervalUnit === PRICING_INTERVAL_UNIT,
+        ...catalog.addons?.find?.(
+          ({ planCode }) => planCode === addon.planCode,
+        ),
+        pricings: addon.prices.filter(
+          ({ duration }) => duration === PRICE_DURATION,
         ),
       }),
     );
