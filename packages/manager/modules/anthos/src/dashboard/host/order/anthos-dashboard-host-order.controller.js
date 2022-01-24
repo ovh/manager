@@ -37,10 +37,16 @@ export default class AnthosDashboardHostOrderController {
     this.$q
       .all({
         anthosCatalog: this.AnthosTenantsService.getAnthosCatalog(),
+        anthosServiceOption: this.AnthosTenantsService.getAnthosServiceOption(
+          this.serviceName,
+        ),
         expressOrderUrl: this.User.getUrlOf('express_order'),
       })
-      .then(({ anthosCatalog, expressOrderUrl }) => {
-        this.addons = extractHostAddonsFromAnthosCatalog(anthosCatalog);
+      .then(({ anthosCatalog, anthosServiceOption, expressOrderUrl }) => {
+        this.addons = extractHostAddonsFromAnthosCatalog(
+          anthosCatalog,
+          anthosServiceOption,
+        );
         this.expressOrderUrl = expressOrderUrl;
       })
       .catch(() => {
@@ -86,7 +92,7 @@ export default class AnthosDashboardHostOrderController {
       serviceName: this.serviceName,
       planCode: addon.planCode,
       duration: PRICE_DURATION,
-      pricingMode: addon.pricings[0].mode,
+      pricingMode: addon.pricings[0].pricingMode,
       quantity,
       configuration: [],
     }));

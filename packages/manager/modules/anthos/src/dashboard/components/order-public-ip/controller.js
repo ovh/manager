@@ -1,7 +1,7 @@
 import {
   MAX_QUANTITY,
   PRODUCT_ID,
-  PRICING_DURATION,
+  PRICE_DURATION,
   TRACKING_CHUNK,
 } from './constants';
 import { extractPublicIpsAddonFromAnthosCatalog } from './utils';
@@ -24,11 +24,15 @@ export default class {
   $onInit() {
     this.$q
       .all({
-        anthosCatalog: this.AnthosTenantsService.getAnthosCatalog(),
+        anthosServiceOption: this.AnthosTenantsService.getAnthosServiceOption(
+          this.serviceName,
+        ),
         expressOrderUrl: this.User.getUrlOf('express_order'),
       })
-      .then(({ anthosCatalog, expressOrderUrl }) => {
-        this.addon = extractPublicIpsAddonFromAnthosCatalog(anthosCatalog);
+      .then(({ anthosServiceOption, expressOrderUrl }) => {
+        this.addon = extractPublicIpsAddonFromAnthosCatalog(
+          anthosServiceOption,
+        );
         this.expressOrderUrl = expressOrderUrl;
         if (!this.addon) throw new Error('missingAddon');
       })
@@ -54,8 +58,8 @@ export default class {
         productId: PRODUCT_ID,
         serviceName: this.serviceName,
         planCode: this.addon.planCode,
-        duration: PRICING_DURATION,
-        pricingMode: this.addon.price.mode,
+        duration: PRICE_DURATION,
+        pricingMode: this.addon.pricingMode,
         quantity: this.quantity,
         configuration: [],
       },
