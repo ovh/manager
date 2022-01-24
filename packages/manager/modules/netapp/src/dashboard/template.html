@@ -97,6 +97,7 @@
                 <ovh-advices
                     service-name="{{ ::$ctrl.storage.id }}"
                     service-type="netapp"
+                    on-advice-click="$ctrl.onAdviceClick(advice)"
                 >
                 </ovh-advices>
             </div>
