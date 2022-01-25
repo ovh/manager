@@ -1,3 +1,21 @@
+# [0.10.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.9.0-alpha.0...@ovh-ux/manager-billing@0.10.0-alpha.0) (2022-01-25)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.2` ([#6335](https://github.com/ovh/manager/issues/6335)) ([b91ce69](https://github.com/ovh/manager/commit/b91ce698bf1d230de112e1896626574e1553769b))
+* **i18n:** add missing translations [CDS 1393] ([f884dcc](https://github.com/ovh/manager/commit/f884dccdf1394182619028ceb08b076ffd9c0988))
+* **i18n:** add missing translations [CDS 1401] ([5e1924a](https://github.com/ovh/manager/commit/5e1924ade4fdffdce0f409c3d047cbbc1b909ede))
+* **i18n:** add missing translations [CDS 1403] ([1342265](https://github.com/ovh/manager/commit/134226570ecff4db92731a3586d60d3ee43a3cce))
+* remove unused translations [CDS] ([9f27214](https://github.com/ovh/manager/commit/9f2721450d0ebe16cfa14e52677bde8c729e3f96))
+
+
+### Features
+
+* all-dom termination enhancements ([7c1525f](https://github.com/ovh/manager/commit/7c1525fc0ba93d3a2c586e7b3d3d5bbc785e641f))
+
+
+
 # [0.9.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.8.0-alpha.1...@ovh-ux/manager-billing@0.9.0-alpha.0) (2022-01-19)
 
 

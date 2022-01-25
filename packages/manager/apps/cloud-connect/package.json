@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-connect-app",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "private": true,
   "description": "OVHcloud Connect standalone application.",
   "repository": {

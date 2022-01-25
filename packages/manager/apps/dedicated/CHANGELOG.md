@@ -1,3 +1,14 @@
+## [17.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.10.0...@ovh-ux/manager-dedicated@17.10.1) (2022-01-25)
+
+
+### Bug Fixes
+
+* update semver range ([ca3962a](https://github.com/ovh/manager/commit/ca3962a8690b4b78fa0c51cab481b5ab732f61eb))
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.2` ([#6335](https://github.com/ovh/manager/issues/6335)) ([b91ce69](https://github.com/ovh/manager/commit/b91ce698bf1d230de112e1896626574e1553769b))
+* **i18n:** add missing translations [CDS 1367] ([caa4e4d](https://github.com/ovh/manager/commit/caa4e4d4dab74b9f0d6abe94e98ef96432e7103b))
+
+
+
 # [17.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.9.1...@ovh-ux/manager-dedicated@17.10.0) (2022-01-19)
 
 
