@@ -1,0 +1,10 @@
+{
+  "pci_databases_pools_terminate_title": "Usuń pulę połączeń",
+  "pci_databases_pools_terminate_description": "Chcesz usunąć definitywnie pulę połączeń {{name}}.",
+  "pci_databases_pools_terminate_warning": "Operacja ta jest nieodwracalna.",
+  "pci_databases_pools_terminate_label": "Wpisz „TERMINATE”, aby potwierdzić wybór.",
+  "pci_databases_pools_terminate_cancel": "Anuluj",
+  "pci_databases_pools_terminate_confirm": "Zatwierdź",
+  "pci_databases_pools_terminate_success": "Twoja pula {{name}} została usunięta.",
+  "pci_databases_pools_terminate_error": "Wystąpił błąd podczas usuwania puli {{name}}: {{message}}"
+}

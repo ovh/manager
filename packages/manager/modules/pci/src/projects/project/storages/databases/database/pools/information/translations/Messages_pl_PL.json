@@ -1,0 +1,11 @@
+{
+  "pci_databases_pools_information_title": "Informacje o puli",
+  "pci_databases_pools_information_database": "Baza danych",
+  "pci_databases_pools_information_port": "Port",
+  "pci_databases_pools_information_ssl_mode": "Tryb SSL",
+  "pci_databases_pools_information_certificate_ca": "Certyfikat CA",
+  "pci_databases_pools_information_service_uri": "Usługa URI",
+  "pci_databases_pools_information_pool_mode": "Tryb",
+  "pci_databases_pools_information_pool_size": "Rozmiar",
+  "pci_databases_pools_information_certificate_ca_download": "Pobierz certyfikat CA"
+}

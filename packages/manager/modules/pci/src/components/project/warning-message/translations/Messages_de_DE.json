@@ -1,0 +1,4 @@
+{
+  "pci_database_payment_warning_title": "Public Cloud-Datenbanken: Ende der kostenlosen Testphase",
+  "pci_database_payment_warning_description": "Alle aktiven Dienste, die als Beta-Tester erstellt wurden, werden ab dem {{creationDate}} kostenpflichtig. Wenn Sie das Angebot nicht kostenpflichtig nutzen möchten, löschen Sie bitte Ihre Dienstleistungen bis zum {{lastDate}}."
+}

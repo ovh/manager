@@ -1,0 +1,17 @@
+{
+  "pci_databases_current_queries_title": "Zapytania w trakcie",
+  "pci_databases_current_queries_intro": "Lista zapytań w trakcie wykonywania",
+  "pci_databases_current_queries_idle_connections_label": "Wyświetl nieaktywne połączenia",
+  "pci_databases_current_queries_active_connections_label": "Wyświetl aktywne połączenia",
+  "pci_databases_current_queries_refresh_label": "Automatycznie odśwież stronę",
+  "pci_databases_current_queries_switch_enable": "Aktywny",
+  "pci_databases_current_queries_switch_disable": "Wyłączony",
+  "pci_databases_current_queries_datagrid_empty_placeholder": "Żadne zapytanie nie zostało wykonane",
+  "pci_databases_current_queries_datagrid_column_query": "Zapytanie",
+  "pci_databases_current_queries_datagrid_column_pid": "PID",
+  "pci_databases_current_queries_datagrid_column_duration": "Czas trwania",
+  "pci_databases_current_queries_datagrid_column_database": "Baza danych",
+  "pci_databases_current_queries_datagrid_column_client_address": "Adres klienta",
+  "pci_databases_current_queries_datagrid_column_application_name": "Nazwa aplikacji",
+  "pci_databases_current_queries_fetch_error": "Wystąpił błąd podczas pobierania zapytań w trakcie. Spróbuj później."
+}

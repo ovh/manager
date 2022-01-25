@@ -10,6 +10,7 @@ import {
   ENGINES_STATUS,
   ENGINES_PRICE_SUFFIX,
 } from '../../../../components/project/storages/databases/engines.constants';
+import { DATABASE_TYPES } from './databases.constants';
 
 import Backup from '../../../../components/project/storages/databases/backup.class';
 import Database from '../../../../components/project/storages/databases/database.class';
@@ -18,6 +19,8 @@ import Lab from '../../../../components/project/labs/lab.class';
 import Node from '../../../../components/project/storages/databases/node.class';
 import ServiceIntegration from '../../../../components/project/storages/databases/serviceIntegration.class';
 import User from '../../../../components/project/storages/databases/user.class';
+import Pool from '../../../../components/project/storages/databases/pool.class';
+import QueryStatistics from '../../../../components/project/storages/databases/queryStatistics.class';
 
 export default class DatabaseService {
   /* @ngInject */
@@ -25,6 +28,7 @@ export default class DatabaseService {
     $http,
     $q,
     $translate,
+    iceberg,
     CucPriceHelper,
     PciProjectLabsService,
     Poller,
@@ -32,6 +36,7 @@ export default class DatabaseService {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
+    this.iceberg = iceberg;
     this.CucPriceHelper = CucPriceHelper;
     this.PciProjectLabsService = PciProjectLabsService;
     this.Poller = Poller;
@@ -144,6 +149,7 @@ export default class DatabaseService {
     plan,
     version,
     flavor,
+    restApi = false,
   ) {
     return this.$http
       .put(`/cloud/project/${projectId}/database/${engine}/${databaseId}`, {
@@ -151,6 +157,7 @@ export default class DatabaseService {
         plan,
         version,
         flavor,
+        restApi,
       })
       .then(({ data }) => data);
   }
@@ -730,6 +737,113 @@ export default class DatabaseService {
     return this.$http
       .delete(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/replication/${replication.id}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getCurrentQueries(serviceName, databaseId, databaseEngine) {
+    return this.$http
+      .get(
+        `/cloud/project/${serviceName}/database/${databaseEngine}/${databaseId}/currentQueries`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  getPools(projectId, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/postgresql/${databaseId}/connectionPool`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data: pools }) => pools.map((pool) => new Pool(pool)));
+  }
+
+  /**
+   *
+   * @param {*} projectId
+   * @param {*} engine
+   * @param {*} databaseId
+   * @param {*} pageSize
+   * @param {*} page
+   * @returns [QueryStatistics,.....N]
+   */
+  // TBD: pagesize and page to be enabled when the API supports pagination
+  getQueryStatistics(
+    projectId,
+    engine,
+    databaseId,
+    // pageSize,
+    // page
+  ) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/queryStatistics`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data: stats }) =>
+        stats[0].map((query) => {
+          return engine === DATABASE_TYPES.POSTGRESQL
+            ? new QueryStatistics(
+                query.query,
+                query.rows,
+                query.calls,
+                query.minTime,
+                query.maxTime,
+                query.meanTime,
+                query.stddevTime,
+                query.totalTime,
+              )
+            : new QueryStatistics(
+                query.digestText,
+                query.sumRowsSent,
+                query.countStar,
+                query.minTimerWait,
+                query.maxTimerWait,
+                query.avgTimerWait,
+                0,
+                query.sumTimerWait,
+              );
+        }),
+      );
+  }
+
+  resetQueryStatistics(projectId, engine, databaseId) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/queryStatistics/reset`,
+      )
+      .then(({ data }) => data);
+  }
+
+  createConnectionPool(projectId, engine, databaseId, payload) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/connectionPool`,
+        payload,
+      )
+      .then(({ data }) => data);
+  }
+
+  updateConnectionPool(
+    projectId,
+    engine,
+    databaseId,
+    connectionPoolId,
+    payload,
+  ) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/connectionPool/${connectionPoolId}`,
+        payload,
+      )
+      .then(({ data }) => data);
+  }
+
+  terminateConnectionPool(projectId, engine, databaseId, connectionPoolId) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/connectionPool/${connectionPoolId}`,
       )
       .then(({ data }) => data);
   }

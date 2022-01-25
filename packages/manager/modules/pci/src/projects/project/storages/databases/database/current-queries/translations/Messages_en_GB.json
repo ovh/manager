@@ -1,0 +1,17 @@
+{
+  "pci_databases_current_queries_title": "Queries in progress",
+  "pci_databases_current_queries_intro": "List of queries currently running",
+  "pci_databases_current_queries_idle_connections_label": "Show idle connections",
+  "pci_databases_current_queries_active_connections_label": "Show active connections",
+  "pci_databases_current_queries_refresh_label": "Automatically refresh page",
+  "pci_databases_current_queries_switch_enable": "Enabled",
+  "pci_databases_current_queries_switch_disable": "Disabled",
+  "pci_databases_current_queries_datagrid_empty_placeholder": "No queries have been run",
+  "pci_databases_current_queries_datagrid_column_query": "Query",
+  "pci_databases_current_queries_datagrid_column_pid": "PID",
+  "pci_databases_current_queries_datagrid_column_duration": "Duration",
+  "pci_databases_current_queries_datagrid_column_database": "Database",
+  "pci_databases_current_queries_datagrid_column_client_address": "Client address",
+  "pci_databases_current_queries_datagrid_column_application_name": "Application name",
+  "pci_databases_current_queries_fetch_error": "An error has occurred loading the queries in progress. Please try again later."
+}

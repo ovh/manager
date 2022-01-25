@@ -1,0 +1,16 @@
+{
+  "pci_databases_query_statistics_title": "Statistiche delle richieste",
+  "pci_databases_query_statistics_retrieve_error": "Nessuna richiesta è stata eseguita",
+  "pci_databases_query_statistics_description": "Le statistiche delle richieste mostrano i dati raccolti negli schemi di performance. Permettono di monitorare gli eventi lato server (ad esempio sincronizzazione, tabelle temporanee, indici, join,...)",
+  "pci_databases_query_statistics_datagrid_query": "Richiesta",
+  "pci_databases_query_statistics_datagrid_rows": "N° di linee",
+  "pci_databases_query_statistics_datagrid_calls": "N°di chiamate",
+  "pci_databases_query_statistics_datagrid_min": "Min (ms)",
+  "pci_databases_query_statistics_datagrid_max": "Max (ms)",
+  "pci_databases_query_statistics_datagrid_mean": "Media (ms)",
+  "pci_databases_query_statistics_datagrid_stddev": "Stddev (ms)",
+  "pci_databases_query_statistics_datagrid_total": "Totale (ms)",
+  "pci_databases_query_statistics_datagrid_reset_button_text": "Reimposta",
+  "pci_databases_query_statistics_reset_error": "Si è verificato un errore durante la reinizializzazione delle statistiche della richiesta. Ti preghiamo di riprovare.",
+  "pci_databases_query_statistics_reset_success": "Le statistiche delle richieste sono state ripristinate correttamente."
+}

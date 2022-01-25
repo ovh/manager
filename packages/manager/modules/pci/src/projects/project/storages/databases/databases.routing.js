@@ -1,6 +1,11 @@
 import map from 'lodash/map';
 
-import { DATABASES_GUIDES_URL, NODES_PER_ROW } from './databases.constants';
+import {
+  DATABASES_GUIDES_URL,
+  NODES_PER_ROW,
+  SHELL_NAMES,
+} from './databases.constants';
+import { WARNING_DATE } from '../../../../components/project/warning-message/warning.constants';
 import Database from '../../../../components/project/storages/databases/database.class';
 import Node from '../../../../components/project/storages/databases/node.class';
 
@@ -37,6 +42,22 @@ export default /* @ngInject */ ($stateProvider) => {
         DatabaseService.getAllDatabases(projectId).then((databases) =>
           $q.all(map(databases, (database) => getDatabaseObject(database))),
         ),
+      showPaymentWarning: /* @ngInject */ () => (databases) => {
+        const oldDb = databases.some(
+          (db) =>
+            SHELL_NAMES[db.engine] &&
+            SHELL_NAMES[db.engine] !== 'mongo' &&
+            moment(db.createdAt).isBefore(
+              moment(WARNING_DATE.DB_CREATION_DATE, WARNING_DATE.DATE_FORMAT),
+            ),
+        );
+        return (
+          oldDb &&
+          moment().isBefore(
+            moment(WARNING_DATE.WARNING_END_DATE, WARNING_DATE.DATE_FORMAT),
+          )
+        );
+      },
 
       getDatabaseObject: /* @ngInject */ (getNodes) => (database) =>
         getNodes(database).then(

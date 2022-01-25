@@ -14,6 +14,10 @@ export const WARNING_MESSAGES = {
     linkMessage: 'pci_databases_general_information_manage_users',
   },
 };
+
+export const KARAPACE_URL = 'https://karapace.io/';
+
 export default {
   WARNING_MESSAGES,
+  KARAPACE_URL,
 };

@@ -1,0 +1,14 @@
+{
+  "pci_databases_pools_title": "Pools",
+  "pci_databases_pools_description": "Os Pools de ligações permitem gerir eficazmente um grande número de ligações de cliente PostgreSQL sem comprometer o desempenho geral.",
+  "pci_databases_pools_datagrid_pool_name": "Nome",
+  "pci_databases_pools_datagrid_database": "Base de dados",
+  "pci_databases_pools_datagrid_pool_mode": "Modo",
+  "pci_databases_pools_datagrid_pool_size": "Dimensão",
+  "pci_databases_pools_datagrid_user_name": "Nome do utilizador",
+  "pci_projects_project_instances_add_label": "Adicionar um Pool",
+  "pci_databases_pools_datagrid_information": "Informações",
+  "pci_databases_pools_datagrid_modify": "Alterar",
+  "pci_databases_pools_datagrid_delete": "Eliminar",
+  "pci_databases_pools_no_entries": "Nenhum resultado encontrado"
+}

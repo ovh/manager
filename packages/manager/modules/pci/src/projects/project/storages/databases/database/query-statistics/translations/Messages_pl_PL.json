@@ -1,0 +1,16 @@
+{
+  "pci_databases_query_statistics_title": "Statystyki zapytań",
+  "pci_databases_query_statistics_retrieve_error": "Żadne zapytanie nie zostało wykonane.",
+  "pci_databases_query_statistics_description": "Statystyki zapytań gromadzą statystyki zebrane w schematach wydajności. Umożliwiają monitorowanie zdarzeń na serwerach (np. synchronizacja, tymczasowe tabele, indeksy, scalenia, etc.)",
+  "pci_databases_query_statistics_datagrid_query": "Zapytanie",
+  "pci_databases_query_statistics_datagrid_rows": "Liczba wierszy",
+  "pci_databases_query_statistics_datagrid_calls": "Liczba połączeń",
+  "pci_databases_query_statistics_datagrid_min": "Min. (ms)",
+  "pci_databases_query_statistics_datagrid_max": "Maks. (ms)",
+  "pci_databases_query_statistics_datagrid_mean": "Średnia (ms)",
+  "pci_databases_query_statistics_datagrid_stddev": "Stddev (ms)",
+  "pci_databases_query_statistics_datagrid_total": "Razem (ms)",
+  "pci_databases_query_statistics_datagrid_reset_button_text": "Reset",
+  "pci_databases_query_statistics_reset_error": "Wystąpił błąd podczas resetowania statystyk zapytań. Spróbuj później.",
+  "pci_databases_query_statistics_reset_success": "Statystyki zapytań zostały zresetowane."
+}

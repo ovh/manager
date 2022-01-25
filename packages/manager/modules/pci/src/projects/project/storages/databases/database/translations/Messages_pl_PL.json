@@ -11,5 +11,8 @@
   "pci_databases_dashboard_topics_tab_title": "Topiki",
   "pci_databases_dashboard_indexes_tab_title": "Indeksy",
   "pci_databases_dashboard_service_integration_tab_title": "Integracja usług",
-  "pci_databases_dashboard_replications_tab_title": "Strumień replikacji"
+  "pci_databases_dashboard_replications_tab_title": "Strumień replikacji",
+  "pci_databases_dashboard_current_queries_tab_title": "Zapytania w trakcie",
+  "pci_databases_dashboard_pools_tab_title": "Pule",
+  "pci_databases_dashboard_query_statistics_tab_title": "Statystyki zapytań"
 }
