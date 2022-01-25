@@ -4,149 +4,167 @@
     </div>
 
     <div data-ng-if="!loading.init" ui-view>
-        <div class="row">
-            <div class="col-md-9">
-                <!-- Alerts -->
-                <div data-ng-if="!loading.alerts">
-                    <div
-                        class="alert alert-warning"
-                        data-ng-if="alertsCount()"
-                        role="alert"
+        <!-- Alerts -->
+        <div data-ng-if="!loading.alerts">
+            <div
+                class="alert alert-warning"
+                data-ng-if="alertsCount()"
+                role="alert"
+            >
+                <p>
+                    <span
+                        data-ng-if="!singleService()"
+                        data-ng-pluralize
+                        data-count="alertsCount()"
+                        data-when="{
+                                    '0': ('ip_alerts_none' | translate) + ' :',
+                                    'one': ('ip_alerts_1' | translate) + ' :',
+                                    'other': ('ip_alerts_other' | translate: { count: {} }) + ' :'
+                                }"
                     >
-                        <p>
-                            <span
-                                data-ng-if="!singleService()"
-                                data-ng-pluralize
-                                data-count="alertsCount()"
-                                data-when="{
-                                      '0': ('ip_alerts_none' | translate) + ' :',
-                                      'one': ('ip_alerts_1' | translate) + ' :',
-                                      'other': ('ip_alerts_other' | translate: { count: {} }) + ' :'
-                                  }"
-                            >
-                            </span>
-                            <span
-                                data-ng-if="singleService()"
-                                data-ng-pluralize
-                                data-count="alertsCount()"
-                                data-when="{
-                                      '0': ('ip_alerts_service_none' | translate) + ' :',
-                                      'one': ('ip_alerts_service_1' | translate) + ' :',
-                                      'other': ('ip_alerts_service_other' | translate: { count: {} }) + ' :'
-                                  }"
-                            >
-                            </span>
-                        </p>
-
-                        <p data-ng-if="alerts.spam.length">
-                            <span
-                                class="d-block"
-                                data-ng-pluralize
-                                data-count="alerts.spam.length"
-                                data-when="{
-                                      '0': ('ip_alerts_spam' | translate),
-                                      'one': ('ip_alerts_spam_1' | translate),
-                                      'other': ('ip_alerts_spam_other' | translate: { count: {} })
-                                  }"
-                            >
-                            </span>
-                            <button
-                                class="btn btn-link"
-                                type="button"
-                                data-ng-if="!singleService()"
-                                data-ng-repeat="ip in alerts.spam"
-                                data-ng-click="navigateToService(ip.ip.routedTo.serviceName)"
-                                data-ng-bind="ip.ip.routedTo.serviceName"
-                            ></button>
-                        </p>
-
-                        <p data-ng-if="alerts.antihack.length">
-                            <span
-                                class="d-block"
-                                data-ng-pluralize
-                                data-count="alerts.antihack.length"
-                                data-when="{
-                                      '0': ('ip_alerts_antihack' | translate),
-                                      'one': ('ip_alerts_antihack_1' | translate),
-                                      'other': ('ip_alerts_antihack_other' | translate: { count: {} })
-                                  }"
-                            >
-                            </span>
-                            <button
-                                class="btn btn-link"
-                                type="button"
-                                data-ng-if="!singleService()"
-                                data-ng-repeat="ip in alerts.antihack"
-                                data-ng-click="navigateToService(ip.ip.routedTo.serviceName)"
-                                data-ng-bind="ip.ip.routedTo.serviceName"
-                            ></button>
-                        </p>
-
-                        <p data-ng-if="alerts.arp.length">
-                            <span
-                                class="d-block"
-                                data-ng-pluralize
-                                data-count="alerts.arp.length"
-                                data-when="{
-                                      '0': ('ip_alerts_arp' | translate),
-                                      'one': ('ip_alerts_arp_1' | translate),
-                                      'other': ('ip_alerts_arp_other' | translate: { count: {} })
-                                  }"
-                            >
-                            </span>
-                            <button
-                                class="btn btn-link"
-                                type="button"
-                                data-ng-if="!singleService()"
-                                data-ng-repeat="ip in alerts.arp"
-                                data-ng-click="navigateToService(ip.ip.routedTo.serviceName)"
-                                data-ng-bind="ip.ip.routedTo.serviceName"
-                            ></button>
-                        </p>
-
-                        <p data-ng-if="alerts.mitigation.length">
-                            <span
-                                class="d-block"
-                                data-ng-pluralize
-                                data-count="alerts.mitigation.length"
-                                data-when="{
-                                      '0': ('ip_alerts_mitigation' | translate),
-                                      'one': ('ip_alerts_mitigation_1' | translate),
-                                      'other': ('ip_alerts_mitigation_other' | translate: { count: {} })
-                                  }"
-                            >
-                            </span>
-                            <button
-                                class="btn btn-link"
-                                type="button"
-                                data-ng-if="!singleService()"
-                                data-ng-repeat="ip in alerts.mitigation"
-                                data-ng-click="navigateToService(ip.ip.routedTo.serviceName)"
-                                data-ng-bind="ip.ip.routedTo.serviceName"
-                            ></button>
-                        </p>
-                    </div>
-
-                    <div
-                        class="alert alert-success"
-                        data-ng-if="!alertsCount()"
-                        role="alert"
+                    </span>
+                    <span
+                        data-ng-if="singleService()"
+                        data-ng-pluralize
+                        data-count="alertsCount()"
+                        data-when="{
+                                '0': ('ip_alerts_service_none' | translate) + ' :',
+                                'one': ('ip_alerts_service_1' | translate) + ' :',
+                                'other': ('ip_alerts_service_other' | translate: { count: {} }) + ' :'
+                            }"
                     >
-                        <span
-                            data-ng-if="!singleService()"
-                            data-translate="ip_alerts_none"
-                        >
-                        </span>
-                        <span
-                            data-ng-if="singleService()"
-                            data-translate="ip_alerts_service_none"
-                        >
-                        </span>
-                    </div>
-                </div>
+                    </span>
+                </p>
 
-                <oui-spinner data-ng-if="loading.alerts" size="s">
-                </oui-spinner>
+                <p data-ng-if="alerts.spam.length">
+                    <span
+                        class="d-block"
+                        data-ng-pluralize
+                        data-count="alerts.spam.length"
+                        data-when="{
+                                '0': ('ip_alerts_spam' | translate),
+                                'one': ('ip_alerts_spam_1' | translate),
+                                'other': ('ip_alerts_spam_other' | translate: { count: {} })
+                            }"
+                    >
+                    </span>
+                    <button
+                        class="btn btn-link"
+                        type="button"
+                        data-ng-if="!singleService()"
+                        data-ng-repeat="ip in alerts.spam"
+                        data-ng-click="navigateToService(ip.ip.routedTo.serviceName)"
+                        data-ng-bind="ip.ip.routedTo.serviceName"
+                    ></button>
+                </p>
+
+                <p data-ng-if="alerts.antihack.length">
+                    <span
+                        class="d-block"
+                        data-ng-pluralize
+                        data-count="alerts.antihack.length"
+                        data-when="{
+                                '0': ('ip_alerts_antihack' | translate),
+                                'one': ('ip_alerts_antihack_1' | translate),
+                                'other': ('ip_alerts_antihack_other' | translate: { count: {} })
+                            }"
+                    >
+                    </span>
+                    <button
+                        class="btn btn-link"
+                        type="button"
+                        data-ng-if="!singleService()"
+                        data-ng-repeat="ip in alerts.antihack"
+                        data-ng-click="navigateToService(ip.ip.routedTo.serviceName)"
+                        data-ng-bind="ip.ip.routedTo.serviceName"
+                    ></button>
+                </p>
+
+                <p data-ng-if="alerts.arp.length">
+                    <span
+                        class="d-block"
+                        data-ng-pluralize
+                        data-count="alerts.arp.length"
+                        data-when="{
+                                '0': ('ip_alerts_arp' | translate),
+                                'one': ('ip_alerts_arp_1' | translate),
+                                'other': ('ip_alerts_arp_other' | translate: { count: {} })
+                            }"
+                    >
+                    </span>
+                    <button
+                        class="btn btn-link"
+                        type="button"
+                        data-ng-if="!singleService()"
+                        data-ng-repeat="ip in alerts.arp"
+                        data-ng-click="navigateToService(ip.ip.routedTo.serviceName)"
+                        data-ng-bind="ip.ip.routedTo.serviceName"
+                    ></button>
+                </p>
+
+                <p data-ng-if="alerts.mitigation.length">
+                    <span
+                        class="d-block"
+                        data-ng-pluralize
+                        data-count="alerts.mitigation.length"
+                        data-when="{
+                                '0': ('ip_alerts_mitigation' | translate),
+                                'one': ('ip_alerts_mitigation_1' | translate),
+                                'other': ('ip_alerts_mitigation_other' | translate: { count: {} })
+                            }"
+                    >
+                    </span>
+                    <button
+                        class="btn btn-link"
+                        type="button"
+                        data-ng-if="!singleService()"
+                        data-ng-repeat="ip in alerts.mitigation"
+                        data-ng-click="navigateToService(ip.ip.routedTo.serviceName)"
+                        data-ng-bind="ip.ip.routedTo.serviceName"
+                    ></button>
+                </p>
+            </div>
+
+            <div
+                class="alert alert-success"
+                data-ng-if="!alertsCount()"
+                role="alert"
+            >
+                <span
+                    data-ng-if="!singleService()"
+                    data-translate="ip_alerts_none"
+                >
+                </span>
+                <span
+                    data-ng-if="singleService()"
+                    data-translate="ip_alerts_service_none"
+                >
+                </span>
+            </div>
+        </div>
+
+        <oui-spinner data-ng-if="loading.alerts" size="s"> </oui-spinner>
+
+        <!-- Buttons -->
+        <div class="row mb-3">
+            <div class="col-sm-12 col-md-4">
+                <oui-tile data-heading="{{:: 'ip_order_title' | translate }}">
+                    <oui-tile-button
+                        data-ng-if="canOrderIPFO()"
+                        data-on-click="setAction('ip/legacyOrder/ip-ip-legacyOrder')"
+                    >
+                        <span data-translate="ip_order_additional_ips"></span>
+                    </oui-tile-button>
+                    <oui-tile-button
+                        data-ng-if="canOrderAgoraIPFO()"
+                        data-on-click="goToAgoraOrder()"
+                    >
+                        <span data-translate="ip_order_additional_ips"></span>
+                    </oui-tile-button>
+                    <oui-tile-button data-on-click="goToByoipConfiguration()">
+                        <span data-ng-bind=":: BRING_YOUR_OWN_IP"></span>
+                    </oui-tile-button>
+                </oui-tile>
             </div>
 
             <!-- Buttons -->
@@ -179,8 +197,8 @@
                 ></button>
             </div>
         </div>
-
-        <div class="form-group w-50" data-ng-if="services.length">
+        <h4 data-translate="ip_addresses_grid_header"></h4>
+        <div class="form-group w-25" data-ng-if="services.length">
             <label
                 class="control-label"
                 for="serviceSelector"
@@ -220,6 +238,10 @@
                         ></th>
                         <th
                             scope="col"
+                            data-translate="ip_table_header_campus"
+                        ></th>
+                        <th
+                            scope="col"
                             data-translate="ip_table_header_country"
                         ></th>
                         <th
@@ -228,11 +250,11 @@
                         ></th>
                         <th
                             scope="col"
-                            data-translate="ip_table_header_reverse"
+                            data-translate="ip_table_header_virtual_mac"
                         ></th>
                         <th
                             scope="col"
-                            data-translate="ip_table_header_virtual_mac"
+                            data-translate="ip_table_header_reverse"
                         ></th>
                         <th
                             scope="col"
@@ -300,6 +322,11 @@
                         <td>
                             <span data-ng-bind="ipBlock.ipBlock"></span>
                             <span
+                                data-ng-if="ipBlock.bringYourOwnIp"
+                                data-ng-bind="'BYOIP'"
+                                class="oui-badge oui-badge_info"
+                            ></span>
+                            <span
                                 class="label label-info ml-2"
                                 data-ng-if="ipBlock.type == 'FAILOVER'"
                                 title="{{:: 'ip_failover' | translate }}"
@@ -315,6 +342,12 @@
                             </small>
                         </td>
 
+                        <!-- Campus -->
+                        <td
+                            class="text-center"
+                            data-ng-bind="ipBlock.campus ? ipBlock.campus : '-'"
+                        ></td>
+
                         <!-- Country -->
                         <td
                             class="text-center"
@@ -325,6 +358,9 @@
                         <td
                             data-ng-bind="ipBlock.routedTo.serviceName || '-'"
                         ></td>
+
+                        <!-- Virtual MAC -->
+                        <td></td>
 
                         <!-- Reverse -->
                         <td>
@@ -358,9 +394,6 @@
                                 </li>
                             </ul>
                         </td>
-
-                        <!-- Virtual MAC -->
-                        <td></td>
 
                         <!-- Mitigation -->
                         <td></td>
@@ -414,6 +447,11 @@
                                 data-ng-bind="ip.ip"
                             ></span>
                             <span
+                                data-ng-if="ip.bringYourOwnIp"
+                                data-ng-bind="'BYOIP'"
+                                class="oui-badge oui-badge_info"
+                            ></span>
+                            <span
                                 class="label label-info ml-2"
                                 data-ng-if="ipBlock.isUniq && ipBlock.type == 'FAILOVER'"
                                 title="{{:: 'ip_failover' | translate }}"
@@ -429,6 +467,12 @@
                             </small>
                         </td>
 
+                        <!-- Campus -->
+                        <td
+                            class="text-center"
+                            data-ng-bind="ipBlock.campus ? ipBlock.campus : '-'"
+                        ></td>
+
                         <!-- Country -->
                         <td
                             class="text-center"
@@ -439,6 +483,23 @@
                         <td
                             data-ng-bind="ipBlock.routedTo.serviceName || '-'"
                         ></td>
+
+                        <!-- VMAC -->
+                        <td>
+                            <span
+                                data-ng-if="ipBlock.virtualMac.status === 'OK'"
+                                data-ng-bind="ipBlock.virtualMac.virtualMacs[ip.ip] || '-'"
+                            >
+                            </span>
+                            <span
+                                class="oui-badge"
+                                data-ng-if="ipBlock.virtualMac.status === 'PENDING'"
+                                data-translate="ip_taskpending_label"
+                                data-oui-tooltip="{{:: 'ip_manage_task_pending' | translate }}"
+                                data-oui-tooltip-placement="top"
+                            >
+                            </span>
+                        </td>
 
                         <!-- Reverse -->
                         <td>
@@ -498,23 +559,6 @@
                                     </button>
                                 </span>
                             </div>
-                        </td>
-
-                        <!-- VMAC -->
-                        <td>
-                            <span
-                                data-ng-if="ipBlock.virtualMac.status === 'OK'"
-                                data-ng-bind="ipBlock.virtualMac.virtualMacs[ip.ip] || '-'"
-                            >
-                            </span>
-                            <span
-                                class="badge"
-                                data-ng-if="ipBlock.virtualMac.status === 'PENDING'"
-                                data-translate="ip_taskpending_label"
-                                data-oui-tooltip="{{:: 'ip_manage_task_pending' | translate }}"
-                                data-oui-tooltip-placement="top"
-                            >
-                            </span>
                         </td>
 
                         <!-- Mitigation -->

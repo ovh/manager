@@ -22,6 +22,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.ip.dashboard.ip.game-firewall', {
           ip: ip.ip,
         }),
+      goToAgoraOrder: /* @ngInject */ ($state) => () =>
+        $state.go('app.ip.dashboard.agora-order'),
+      goToByoipConfiguration: /* @ngInject */ ($state) => () =>
+        $state.go('app.ip.byoip'),
       breadcrumb: () => null,
       hideBreadcrumb: () => true,
       orderIpAvailable: /* @ngInject */ (coreConfig, ovhFeatureFlipping) => {

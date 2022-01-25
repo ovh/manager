@@ -6,7 +6,7 @@ import orderBy from 'lodash/orderBy';
 import set from 'lodash/set';
 import toInteger from 'lodash/toInteger';
 
-import { IP_TYPE } from './ip-ip.constant';
+import { IP_TYPE, BRING_YOUR_OWN_IP } from './ip-ip.constant';
 
 export default /* @ngInject */
 (
@@ -24,6 +24,8 @@ export default /* @ngInject */
   goToFirewall,
   goToGameFirewall,
   goToOrganisation,
+  goToAgoraOrder,
+  goToByoipConfiguration,
   Ip,
   ipFeatureAvailability,
   IpFirewall,
@@ -42,6 +44,7 @@ export default /* @ngInject */
     spam: [],
   };
   $scope.IP_TYPE = IP_TYPE;
+  $scope.BRING_YOUR_OWN_IP = BRING_YOUR_OWN_IP;
 
   // pagination
   $scope.pageNumber = toInteger($stateParams.page) || 1;
@@ -101,6 +104,8 @@ export default /* @ngInject */
     ipFeatureAvailability.allowIPFailoverOrder() && orderIpAvailable;
   $scope.canOrderAgoraIPFO = () =>
     ipFeatureAvailability.allowIPFailoverAgoraOrder() && orderIpAvailable;
+  $scope.goToAgoraOrder = goToAgoraOrder;
+  $scope.goToByoipConfiguration = goToByoipConfiguration;
 
   $scope.singleService = () =>
     $scope.serviceName !== '_ALL' && $scope.serviceName !== 'FAILOVER';
