@@ -4,5 +4,8 @@
   "billing_payment_method_add_bank_account_address_zip": "Codice postale",
   "billing_payment_method_add_bank_account_address_city": "Città",
   "billing_payment_method_add_bank_account_owner_name": "Nome e cognome del proprietario o nome della società proprietaria",
-  "billing_payment_method_add_bank_account_owner_address": "Indirizzo del proprietario dell'account"
+  "billing_payment_method_add_bank_account_owner_address": "Indirizzo del proprietario dell'account",
+  "billing_payment_method_add_bank_account_owner_notification_info": "Entro 24-48 ore riceverai sull'indirizzo di posta associato al tuo account OVHcloud un'email contenente il link per apporre la firma elettronica del mandato di prelievo.",
+  "billing_payment_method_add_bank_account_owner_info": "Attenzione: il proprietario del conto bancario deve essere identico al proprietario dell'account OVHcloud.",
+  "billing_payment_method_add_bank_account_owner_confirmation_info": "Se approvato, una volta che il mandato viene ricevuto dai nostri servizi è possibile utilizzare questo nuovo metodo di pagamento."
 }

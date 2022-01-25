@@ -4,5 +4,8 @@
   "billing_payment_method_add_bank_account_address_zip": "Kod pocztowy",
   "billing_payment_method_add_bank_account_address_city": "Miasto",
   "billing_payment_method_add_bank_account_owner_name": "Imię i nazwisko właściciela lub nazwa organizacji",
-  "billing_payment_method_add_bank_account_owner_address": "Adres siedziby/zamieszkania i pobytu właściciela konta"
+  "billing_payment_method_add_bank_account_owner_address": "Adres siedziby/zamieszkania i pobytu właściciela konta",
+  "billing_payment_method_add_bank_account_owner_notification_info": "W ciągu 24-48 godzin na adres e-mail przypisany do Twojego konta OVHcloud prześlemy wiadomość z linkiem do podpisu elektronicznego i autoryzacji obciążenia.",
+  "billing_payment_method_add_bank_account_owner_info": "Uwaga: właściciel konta bankowego oraz  właściciel konta OVHcloud muszą być identyczni.",
+  "billing_payment_method_add_bank_account_owner_confirmation_info": "Jeśli Twoja autoryzacja zostanie zatwierdzona, możesz skorzystać z nowego sposobu płatności. "
 }

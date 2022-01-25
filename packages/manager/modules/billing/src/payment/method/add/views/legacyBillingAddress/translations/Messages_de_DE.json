@@ -4,5 +4,8 @@
   "billing_payment_method_add_bank_account_address_zip": "Postleitzahl",
   "billing_payment_method_add_bank_account_address_city": "Stadt",
   "billing_payment_method_add_bank_account_owner_name": "Name und Vorname des Inhabers oder Name der Inhaber-Organisation",
-  "billing_payment_method_add_bank_account_owner_address": "Adresse des Kontoinhabers"
+  "billing_payment_method_add_bank_account_owner_address": "Adresse des Kontoinhabers",
+  "billing_payment_method_add_bank_account_owner_notification_info": "Sie erhalten in den nächsten 24 bis 48 Stunden einen elektronischen Signaturlink für Ihr Lastschriftmandat per Nachricht an die E-Mail-Adresse Ihres OVHcloud Accounts.",
+  "billing_payment_method_add_bank_account_owner_info": "Bitte beachten Sie: Der Inhaber des Bankkontos muss mit dem Inhaber des OVHcloud Accounts identisch sein.",
+  "billing_payment_method_add_bank_account_owner_confirmation_info": "Diese neue Zahlungsmittel steht Ihnen zur Verfügung, sobald unsere Mitarbeiter das unterzeichnete Lastschriftmandat erhalten und bestätigt haben."
 }
