@@ -50,10 +50,7 @@
                                 data-ng-bind="$ctrl.server.displayName"
                             ></dd>
                         </dl>
-                        <div
-                            class="oui-tile__actions"
-                            data-ng-if="$ctrl.worldPart !== 'US'"
-                        >
+                        <div class="oui-tile__actions">
                             <oui-action-menu
                                 aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_displayname' | translate) } }}"
                                 data-compact
