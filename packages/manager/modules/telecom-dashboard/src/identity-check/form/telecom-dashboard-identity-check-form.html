@@ -59,7 +59,7 @@
         <form data-ng-if="!$ctrl.procedure" name="$ctrl.form" novalidate>
             <p
                 class="oui-heading_4"
-                data-translate="telecom_dashboard_identity_check_form_bank_account"
+                data-translate="telecom_dashboard_identity_check_form_identity"
             ></p>
             <p
                 class="oui-heading_5"
@@ -105,6 +105,35 @@
                     required
                 />
             </oui-field>
+            <div class="row">
+                <oui-field
+                    label="{{ 'telecom_dashboard_identity_check_form_ownerZip' | translate }}"
+                    class="col-md-6 col-sm-12"
+                >
+                    <input
+                        class="oui-input"
+                        name="ownerZip"
+                        placeholder="{{ 'telecom_dashboard_identity_check_form_ownerZip' | translate }}"
+                        type="text"
+                        data-ng-model="$ctrl.model.ownerZip"
+                        data-ng-pattern="/^\d{5}$/"
+                        required
+                    />
+                </oui-field>
+                <oui-field
+                    label="{{ 'telecom_dashboard_identity_check_form_ownerCity' | translate }}"
+                    class="col-md-6 col-sm-12"
+                >
+                    <input
+                        class="oui-input"
+                        name="ownerCity"
+                        placeholder="{{ 'telecom_dashboard_identity_check_form_ownerCity' | translate }}"
+                        type="text"
+                        data-ng-model="$ctrl.model.ownerCity"
+                        required
+                    />
+                </oui-field>
+            </div>
             <p
                 class="oui-heading_5"
                 data-translate="telecom_dashboard_identity_check_form_bank_account"

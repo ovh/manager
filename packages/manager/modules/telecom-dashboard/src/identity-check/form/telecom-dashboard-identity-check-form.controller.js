@@ -15,7 +15,7 @@ export default class IdentityCheckFormCtrl {
     this.atInternet = atInternet;
 
     const { isValidIban, isValidBic } = ovhPaymentMethodHelper;
-    const { name, firstname, address } = coreConfig.getUser();
+    const { name, firstname, address, zip, city } = coreConfig.getUser();
 
     this.$uibModal = $uibModal;
     this.$translate = $translate;
@@ -35,6 +35,8 @@ export default class IdentityCheckFormCtrl {
       bic: '',
       iban: '',
       ownerAddress: address,
+      ownerZip: zip,
+      ownerCity: city,
       ownerFirstName: firstname,
       ownerLastName: name,
     };
@@ -60,9 +62,17 @@ export default class IdentityCheckFormCtrl {
   createProcedure() {
     this.trackClick('confirm');
 
-    const { ownerFirstName, ownerLastName, ...data } = this.model;
+    const {
+      ownerFirstName,
+      ownerLastName,
+      ownerAddress,
+      ownerZip,
+      ownerCity,
+      ...data
+    } = this.model;
 
     data.ownerName = `${ownerFirstName} ${ownerLastName}`;
+    data.ownerAddress = `${ownerAddress} ${ownerZip} ${ownerCity}`;
     this.isCreating = true;
 
     this.IdentityCheckService.createProcedure(data)
