@@ -10,6 +10,7 @@ import {
 } from '@ovh-ux/manager-bm-server-components';
 import { region } from '@ovh-ux/manager-components';
 import nutanixNetworkTile from '../component/network-tile/network-tile.module';
+import privateBandwidthUpgrade from './private-bandwidth-upgrade';
 import routing from './routing';
 import component from './component';
 import editName from './edit-display-name';
@@ -25,6 +26,7 @@ angular
     serverSupport,
     serverTechnicalDetails,
     nutanixNetworkTile,
+    privateBandwidthUpgrade,
     region,
     editName,
   ])

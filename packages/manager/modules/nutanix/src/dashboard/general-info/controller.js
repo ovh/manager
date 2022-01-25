@@ -1,4 +1,4 @@
-import { TRAVAUX_LINK } from './constants';
+import { TRAVAUX_LINK, PRIVATE_BANDWIDTH_SERVICE_PREFIX } from './constants';
 
 export default class NutanixGeneralInfoCtrl {
   /* @ngInject */
@@ -13,6 +13,7 @@ export default class NutanixGeneralInfoCtrl {
   $onInit() {
     this.loadServcesDetails();
     this.technicalDetails = this.getTechnicalDetails();
+    this.setPrivateBandwidthServiceId();
   }
 
   loadServcesDetails() {
@@ -31,6 +32,12 @@ export default class NutanixGeneralInfoCtrl {
       this.serviceInfo.serviceId,
       this.server.serviceId,
     );
+  }
+
+  setPrivateBandwidthServiceId() {
+    this.privateBandwidthServiceId = this.clusterAddOns.find((addOn) =>
+      addOn.billing?.plan?.code?.startsWith(PRIVATE_BANDWIDTH_SERVICE_PREFIX),
+    )?.serviceId;
   }
 
   trackClick(trackText) {

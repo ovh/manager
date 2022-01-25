@@ -1,4 +1,5 @@
 import isFunction from 'lodash/isFunction';
+import { IPFO } from './network-tile.constants';
 
 export default class NutanixNetworkTileController {
   /* @ngInject */
@@ -6,6 +7,7 @@ export default class NutanixNetworkTileController {
     this.$http = $http;
     this.coreURLBuilder = coreURLBuilder;
     this.NutanixService = NutanixService;
+    this.IPFO = IPFO;
   }
 
   $onInit() {
@@ -50,6 +52,14 @@ export default class NutanixNetworkTileController {
       })
       .finally(() => {
         this.loadingBandwidthOptions = false;
+      });
+    this.loadingUpgradeOptions = true;
+    this.NutanixService.getServiceUpgradeOptions(this.privateBandwidthServiceId)
+      .then((upgradeOptions) => {
+        this.privateBandwidthUpgradable = upgradeOptions?.length > 0;
+      })
+      .finally(() => {
+        this.loadingUpgradeOptions = false;
       });
   }
 

@@ -142,6 +142,8 @@
     <div class="col-md-6 col-lg-4 mb-3" data-ng-if="!$ctrl.server.isExpired">
         <nutanix-network-tile
             cluster="$ctrl.cluster"
+            go-to-upgrade-private-bandwidth="$ctrl.goToUpgradePrivateBandwidth"
+            private-bandwidth-service-id="$ctrl.privateBandwidthServiceId"
             on-error="$ctrl.handleError(error)"
         >
         </nutanix-network-tile>

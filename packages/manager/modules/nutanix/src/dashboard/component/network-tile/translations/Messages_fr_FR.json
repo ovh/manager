@@ -8,5 +8,6 @@
   "nutanix_cluster_bandwidth_private": "Bande passante privée",
   "nutanix_cluster_bandwidth_incoming": "entrant",
   "nutanix_cluster_bandwidth_outgoing": "sortant",
-  "nutanix_cluster_bandwidth_vrack_option_released": "(non renouvelé)"
+  "nutanix_cluster_bandwidth_vrack_option_released": "(non renouvelé)",
+  "nutanix_cluster_modify_private_bandwidth": "Modifier la bande passante privée"
 }
