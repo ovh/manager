@@ -1,0 +1,16 @@
+{
+  "pci_databases_query_statistics_title": "Query statistics",
+  "pci_databases_query_statistics_retrieve_error": "No queries have been run.",
+  "pci_databases_query_statistics_description": "Query statistics gather the statistics collected in performance schemas. They enable you to monitor server events (e.g. syncing, temporary tables, indexes, joins, etc.)",
+  "pci_databases_query_statistics_datagrid_query": "Query",
+  "pci_databases_query_statistics_datagrid_rows": "No. of rows",
+  "pci_databases_query_statistics_datagrid_calls": "No. of calls",
+  "pci_databases_query_statistics_datagrid_min": "Min (ms)",
+  "pci_databases_query_statistics_datagrid_max": "Max (ms)",
+  "pci_databases_query_statistics_datagrid_mean": "Average (ms)",
+  "pci_databases_query_statistics_datagrid_stddev": "Stddev (ms)",
+  "pci_databases_query_statistics_datagrid_total": "Total (ms)",
+  "pci_databases_query_statistics_datagrid_reset_button_text": "Reset",
+  "pci_databases_query_statistics_reset_error": "An error has occurred resetting query statistics. Please try again later.",
+  "pci_databases_query_statistics_reset_success": "The query statistics have been reset."
+}

@@ -8,7 +8,7 @@
   "pci_databases_users_status_creating": "Creando...",
   "pci_databases_users_status_ok": "Activado",
   "pci_databases_users_status_deleting": "Eliminando...",
-  "pci_databases_users_status_deleted": "Eliminado",
+  "pci_databases_users_status_deleted": "Eliminada",
   "pci_databases_users_status_updating": "Actualizando...",
   "pci_databases_users_status_ready": "Activado",
   "pci_databases_users_status_error": "En error",

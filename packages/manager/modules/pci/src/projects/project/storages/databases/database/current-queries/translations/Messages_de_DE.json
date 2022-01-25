@@ -1,0 +1,17 @@
+{
+  "pci_databases_current_queries_title": "Aktuelle Anfragen",
+  "pci_databases_current_queries_intro": "Liste der aktuellen Anfragen",
+  "pci_databases_current_queries_idle_connections_label": "Inaktive Verbindungen anzeigen",
+  "pci_databases_current_queries_active_connections_label": "Aktive Verbindungen anzeigen",
+  "pci_databases_current_queries_refresh_label": "Die Seite automatisch neu laden",
+  "pci_databases_current_queries_switch_enable": "Aktiviert",
+  "pci_databases_current_queries_switch_disable": "Deaktiviert",
+  "pci_databases_current_queries_datagrid_empty_placeholder": "Es wurde keine Anfrage ausgeführt.",
+  "pci_databases_current_queries_datagrid_column_query": "Anfrage",
+  "pci_databases_current_queries_datagrid_column_pid": "PID",
+  "pci_databases_current_queries_datagrid_column_duration": "Dauer",
+  "pci_databases_current_queries_datagrid_column_database": "Datenbank",
+  "pci_databases_current_queries_datagrid_column_client_address": "Client-Adresse",
+  "pci_databases_current_queries_datagrid_column_application_name": "Name der Anwendung",
+  "pci_databases_current_queries_fetch_error": "Beim Laden der aktuellen Anfragen ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut."
+}

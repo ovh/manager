@@ -1,0 +1,16 @@
+{
+  "pci_databases_query_statistics_title": "Statistiken der Anfragen",
+  "pci_databases_query_statistics_retrieve_error": "Es wurde keine Anfrage ausgeführt.",
+  "pci_databases_query_statistics_description": "Die Anfragestatistiken fassen die in den Performance-Schemata gesammelten Statistiken zusammen. Sie dienen der Überwachung der Server, wie ihrer Synchronisierung, temporärer Tabellen, Indizes und Verbindungen.",
+  "pci_databases_query_statistics_datagrid_query": "Anfrage",
+  "pci_databases_query_statistics_datagrid_rows": "Anzahl Leitungen",
+  "pci_databases_query_statistics_datagrid_calls": "Anzahl der Anrufe",
+  "pci_databases_query_statistics_datagrid_min": "Min. (ms)",
+  "pci_databases_query_statistics_datagrid_max": "Max. (ms)",
+  "pci_databases_query_statistics_datagrid_mean": "Durchschnitt (ms)",
+  "pci_databases_query_statistics_datagrid_stddev": "Stddev (ms)",
+  "pci_databases_query_statistics_datagrid_total": "Insgesamt (ms)",
+  "pci_databases_query_statistics_datagrid_reset_button_text": "Zurücksetzen",
+  "pci_databases_query_statistics_reset_error": "Beim Zurücksetzen der Anfragestatistiken ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
+  "pci_databases_query_statistics_reset_success": "Die Anfragestatistiken wurden zurückgesetzt."
+}

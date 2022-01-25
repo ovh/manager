@@ -4,5 +4,5 @@
   "pci_ai_tokens_delete": "Suppression du token",
   "pci_ai_tokens_delete_common_delete": "Supprimer",
   "pci_ai_tokens_delete_common_cancel": "Annuler",
-  "pci_ai_tokens_delete_warning": "Êtes-vous sûr(e) de vouloir supprimer le token {{ tokenId }} ?"
+  "pci_ai_tokens_delete_warning": "Êtes-vous sûr·e de vouloir supprimer le token {{ tokenId }} ?"
 }

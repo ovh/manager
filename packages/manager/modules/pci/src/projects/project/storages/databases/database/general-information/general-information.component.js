@@ -38,6 +38,8 @@ export default {
     nodesPerRow: '<',
     isFeatureActivated: '<',
     serviceIntegration: '<',
+    goBacktoGeneralInformation: '<',
+    showPaymentWarning: '<',
   },
   controller,
   template,

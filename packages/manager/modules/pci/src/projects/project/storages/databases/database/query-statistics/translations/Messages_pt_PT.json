@@ -1,0 +1,16 @@
+{
+  "pci_databases_query_statistics_title": "Estatísticas de pedidos",
+  "pci_databases_query_statistics_retrieve_error": "Não foi executado nenhum pedido.",
+  "pci_databases_query_statistics_description": "As estatísticas de pedidos reúnem as estatísticas recolhidas nos esquemas de desempenho. Permitem monitorizar os eventos de servidores (por exemplo, a sincronização, as tabelas temporárias, os índices, as ligações, etc.)",
+  "pci_databases_query_statistics_datagrid_query": "Pedido",
+  "pci_databases_query_statistics_datagrid_rows": "Nº de linhas",
+  "pci_databases_query_statistics_datagrid_calls": "Nº de chamadas",
+  "pci_databases_query_statistics_datagrid_min": "Mín (ms)",
+  "pci_databases_query_statistics_datagrid_max": "Máx (ms)",
+  "pci_databases_query_statistics_datagrid_mean": "Média (ms)",
+  "pci_databases_query_statistics_datagrid_stddev": "Stddev (ms)",
+  "pci_databases_query_statistics_datagrid_total": "Total (ms)",
+  "pci_databases_query_statistics_datagrid_reset_button_text": "Reiniciar",
+  "pci_databases_query_statistics_reset_error": "Ocorreu um erro aquando da reinicialização das estatísticas de pedidos. Tente novamente mais tarde.",
+  "pci_databases_query_statistics_reset_success": "As estatísticas de pedidos foram reinicializadas."
+}

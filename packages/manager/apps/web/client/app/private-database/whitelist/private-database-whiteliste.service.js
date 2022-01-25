@@ -189,5 +189,18 @@ angular.module('services').service(
     killPollWhitelistDelete() {
       this.pollService.kill({ namespace: 'privateDatabase.whitelist.delete' });
     }
+
+    /**
+     * Get status of webhosting access to database
+     * @param  {string} serviceName
+     * @return {string}
+     */
+    getWebhostingNetworkStatus(serviceName) {
+      return this.$http
+        .get(
+          `${this.rootPath}/${this.swsProxypassPath}/${serviceName}/webhostingNetwork`,
+        )
+        .then(({ data }) => data.status);
+    }
   },
 );

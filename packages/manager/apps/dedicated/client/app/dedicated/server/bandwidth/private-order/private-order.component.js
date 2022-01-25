@@ -1,8 +1,6 @@
-import controller from './private-order.controller';
-import template from './private-order.html';
+import template from './template.html';
 
 export default {
-  controller,
   template,
   bindings: {
     alertError: '<',
@@ -13,5 +11,7 @@ export default {
     specifications: '<',
     trackingPrefix: '<',
     user: '<',
+    handleError: '<',
+    handleSuccess: '<',
   },
 };

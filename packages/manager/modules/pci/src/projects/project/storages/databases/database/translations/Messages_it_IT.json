@@ -11,5 +11,8 @@
   "pci_databases_dashboard_topics_tab_title": "Topic",
   "pci_databases_dashboard_indexes_tab_title": "Indici",
   "pci_databases_dashboard_service_integration_tab_title": "Integrazione dei servizi",
-  "pci_databases_dashboard_replications_tab_title": "Fattore di replica"
+  "pci_databases_dashboard_replications_tab_title": "Fattore di replica",
+  "pci_databases_dashboard_current_queries_tab_title": "Richieste in corso",
+  "pci_databases_dashboard_pools_tab_title": "Pool",
+  "pci_databases_dashboard_query_statistics_tab_title": "Statistiche delle richieste"
 }

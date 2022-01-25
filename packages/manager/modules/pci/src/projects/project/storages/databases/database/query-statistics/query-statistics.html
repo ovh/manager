@@ -1,0 +1,89 @@
+<div class="container-fluid px-0 mt-3 query-statistics">
+    <!-- error messages -->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <h2 data-translate="pci_databases_query_statistics_title"></h2>
+
+    <p data-translate="pci_databases_query_statistics_description"></p>
+    <!-- TBD: Pagination to be enabled when API issue is fixed
+    data-page-size="$ctrl.paginationSize"
+    data-page="$ctrl.paginationNumber"
+    data-on-page-change="$ctrl.onPageChange($pagination)" -->
+    <oui-datagrid
+        class="query-statistics-grid"
+        data-rows="$ctrl.queryStatistics"
+        data-empty-placeholder="{{:: 'pci_databases_query_statistics_retrieve_error' | translate }}"
+    >
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_query_statistics_datagrid_query' | translate"
+            data-property="query"
+            data-type="string"
+            data-sortable
+            data-filterable
+        >
+            <text-accordion
+                class="query-column"
+                value="$value"
+            ></text-accordion>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_query_statistics_datagrid_rows' | translate"
+            data-property="rows"
+            data-type="number"
+            data-sortable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_query_statistics_datagrid_calls' | translate"
+            data-property="calls"
+            data-type="number"
+            data-sortable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_query_statistics_datagrid_min' | translate"
+            data-property="minTime"
+            data-type="number"
+            data-sortable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_query_statistics_datagrid_max' | translate"
+            data-property="maxTime"
+            data-type="number"
+            data-sortable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_query_statistics_datagrid_mean' | translate"
+            data-property="meanTime"
+            data-type="number"
+            data-sortable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_query_statistics_datagrid_stddev' | translate"
+            data-property="stddevTime"
+            data-type="number"
+            data-sortable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_query_statistics_datagrid_total' | translate"
+            data-property="totalTime"
+            data-type="number"
+            data-sortable
+        ></oui-datagrid-column>
+        <oui-datagrid-topbar>
+            <oui-button
+                class="float-right"
+                data-on-click="$ctrl.resetStatistics()"
+                disabled="$ctrl.resetLoading"
+            >
+                <span
+                    class="oui-icon oui-icon-refresh pr-1"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    data-translate="pci_databases_query_statistics_datagrid_reset_button_text"
+                ></span>
+            </oui-button>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+</div>

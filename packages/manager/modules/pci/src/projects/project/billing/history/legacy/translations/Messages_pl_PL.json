@@ -3,7 +3,7 @@
   "cpbh_next_month": "Kolejny miesiąc",
   "cpbh_previous_month": "Poprzedni miesiąc",
   "cpbhd_monthly_header": "Abonamenty miesięczne z {{month}} {{year}}",
-  "cpbhd_hourly_header": "Zużycie zasobów na żądanie z {{lastMonth}} {{year}}",
+  "cpbhd_hourly_header": "Zużycie zasobów na żądanie w {{lastMonth}} {{previousYear}}",
   "cpbhd_bill_link": "Wyświetl wszystkie faktury",
   "cpbhd_bill_pdf_tooltip": "Wyświetl fakturę w formacie PDF",
   "cpbhd_bill_pdf_link": "Faktura {{month}} {{year}}",

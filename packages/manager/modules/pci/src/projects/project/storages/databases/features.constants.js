@@ -63,11 +63,14 @@ const features = {
     DATABASE_TYPES.REDIS,
     DATABASE_TYPES.OPEN_SEARCH,
   ],
+  poolsTab: [DATABASE_TYPES.POSTGRESQL],
   showKibanaURI: [DATABASE_TYPES.OPEN_SEARCH],
+  queryStatisticsTab: [DATABASE_TYPES.MYSQL, DATABASE_TYPES.POSTGRESQL],
   restoreFromBackup: [DATABASE_TYPES.MONGO_DB],
   aclTab: [DATABASE_TYPES.KAFKA],
   userAclTab: [DATABASE_TYPES.OPEN_SEARCH],
   topicsTab: [DATABASE_TYPES.KAFKA],
+  currentQueriesTab: [DATABASE_TYPES.MYSQL, DATABASE_TYPES.POSTGRESQL],
   getRoles: [DATABASE_TYPES.MONGO_DB, DATABASE_TYPES.POSTGRESQL],
   showKey: [DATABASE_TYPES.KAFKA],
   showCert: [DATABASE_TYPES.KAFKA],
@@ -76,6 +79,7 @@ const features = {
   serviceIntegrationTab: [DATABASE_TYPES.KAFKA_MIRROR_MAKER],
   replicationsTab: [DATABASE_TYPES.KAFKA_MIRROR_MAKER],
   showServiceIntegration: [DATABASE_TYPES.KAFKA],
+  restApi: [DATABASE_TYPES.KAFKA],
 };
 
 export default function isFeatureActivated(feature, databaseType) {

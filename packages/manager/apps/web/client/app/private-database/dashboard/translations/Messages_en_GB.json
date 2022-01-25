@@ -282,7 +282,7 @@
   "privateDatabase_add_authorized_ip": "Add an authorised IP address",
   "privateDatabase_add_authorized_ip_explanation": "You do not yet have an IP address authorised to access your databases. Please enter the IP address of the server for which you would like to grant access to your databases.",
   "privateDatabase_add_authorized_ip_description": "Initial access to the database",
-  "privateDatabase_add_authorized_ip_title": "IP authorised to access the database",
+  "privateDatabase_add_authorized_ip_title": "IPs authorised to access the database",
   "privateDatabase_restore_bdd_application": "First recreate this in the database management tab. ",
   "privateDatabase_restore_bdd_close": "Close",
   "privateDatabase_restore_bdd_confirm": "Do you want to restore the <strong>{{t0}}</strong> backup for the <strong>{{t1}}</strong> database?",
@@ -485,5 +485,8 @@
   "privateDatabase_tabs_list_extensions_disable_error": "An error has occurred disabling the extension.",
   "privateDatabase_quota_refresh": "Refresh your database quota",
   "privateDatabase_quota_refresh_success": "Your request to refresh your quota will be processed in a few moments.",
-  "privateDatabase_quota_refresh_fail": "An error has occurred submitting the quota refresh request."
+  "privateDatabase_quota_refresh_fail": "An error has occurred submitting the quota refresh request.",
+  "privateDatabase_tabs_whitelist_webhosting_network_access_title": "Access to OVHcloud web hosting",
+  "private_database_tabs_whitelist_webhosting_network_access_description": "Authorise OVHcloud web hosting plans to access the database",
+  "private_database_tabs_whitelist_webhosting_network_access_success": "The change of authorisation for OVHcloud web hosting plans to access the database has been saved."
 }

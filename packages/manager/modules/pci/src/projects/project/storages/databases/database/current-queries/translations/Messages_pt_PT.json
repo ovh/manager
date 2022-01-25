@@ -1,0 +1,17 @@
+{
+  "pci_databases_current_queries_title": "Pedidos em curso",
+  "pci_databases_current_queries_intro": "Lista dos pedidos com execução em curso",
+  "pci_databases_current_queries_idle_connections_label": "Mostrar as ligações inativas",
+  "pci_databases_current_queries_active_connections_label": "Mostrar as ligações ativas",
+  "pci_databases_current_queries_refresh_label": "Atualizar automaticamente a página",
+  "pci_databases_current_queries_switch_enable": "Ativado",
+  "pci_databases_current_queries_switch_disable": "Desativado",
+  "pci_databases_current_queries_datagrid_empty_placeholder": "Não foi executado nenhum pedido",
+  "pci_databases_current_queries_datagrid_column_query": "Pedido",
+  "pci_databases_current_queries_datagrid_column_pid": "PID",
+  "pci_databases_current_queries_datagrid_column_duration": "Duração",
+  "pci_databases_current_queries_datagrid_column_database": "Base de dados",
+  "pci_databases_current_queries_datagrid_column_client_address": "Endereço do cliente",
+  "pci_databases_current_queries_datagrid_column_application_name": "Nome de aplicação",
+  "pci_databases_current_queries_fetch_error": "Ocorreu um erro aquando do carregamento dos pedidos em curso. Tente novamente mais tarde."
+}

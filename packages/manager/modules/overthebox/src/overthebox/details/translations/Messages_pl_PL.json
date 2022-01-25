@@ -70,5 +70,6 @@
   "overTheBox_statistics_bits_per_sec_legend": "bits/s",
   "overTheBox_expiration_warning_help": "Możesz anulować rezygnację przed datą wygaśnięcia.",
   "overTheBox_detail_link_guide": "Przewodniki",
-  "overthebox_detail_links": "Pomocne linki"
+  "overthebox_detail_links": "Pomocne linki",
+  "overTheBox_service_id": "Identyfikator usługi:"
 }

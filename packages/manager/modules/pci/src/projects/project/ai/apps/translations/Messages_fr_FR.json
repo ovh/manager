@@ -34,5 +34,6 @@
   "pci_ai_app_list_delete_app": "Supprimer",
   "pci_ai_app_list_start_error": "Une erreur est survenue en voulant démarrer l'AI App {{appName}} : {{message}}",
   "pci_ai_app_list_stop_error": "Une erreur est survenue en voulant arrêter l'AI App {{appName}} : {{message}}",
-  "pci_ai_app_list_creator": "Utilisateur"
+  "pci_ai_app_list_creator": "Utilisateur",
+  "pci_ai_app_beta_warning": "Pendant la phase d'alpha-test, la disponibilité de l'infrastructure et la pérennité des données ne sont pas garanties. N'utilisez pas ce service pour des applications en production tant que cette phase n'est pas terminée."
 }

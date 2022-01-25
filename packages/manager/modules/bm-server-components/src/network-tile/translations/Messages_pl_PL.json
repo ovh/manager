@@ -1,0 +1,6 @@
+{
+  "server_network_title": "Sieć",
+  "server_network_manage": "Zarządzaj",
+  "server_network_vrack": "Prywatna sieć (vRack)",
+  "server_network_vrack_none": "Brak przypisanej sieci vRack"
+}

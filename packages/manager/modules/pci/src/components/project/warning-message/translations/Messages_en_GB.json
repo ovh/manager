@@ -1,0 +1,4 @@
+{
+  "pci_database_payment_warning_title": "End of the free trial for Public Cloud Databases",
+  "pci_database_payment_warning_description": "As a beta tester, you will pay for all active services from {{creationDate}}. If you do not want to be charged, please delete your service(s) by {{lastDate}}."
+}

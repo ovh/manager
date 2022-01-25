@@ -32,5 +32,6 @@
   "pci_ai_app_list_start_error": "An error has occurred attempting to start the AI App {{appName}}: {{message}}",
   "pci_ai_app_list_stop_error": "An error has occurred attempting to stop the AI App {{appName}}: {{message}}",
   "pci_ai_app_list_creator": "User",
-  "pci_ai_app_list_status_STOPPING": "Stopping"
+  "pci_ai_app_list_status_STOPPING": "Stopping",
+  "pci_ai_app_beta_warning": "During the alpha-testing phase, the infrastructure’s availability and data longevity are not guaranteed. Please do not use this service for applications that are in production, as this phase is not complete."
 }

@@ -1,0 +1,17 @@
+{
+  "pci_databases_current_queries_title": "Consultas en curso",
+  "pci_databases_current_queries_intro": "Lista de consultas en curso de ejecución",
+  "pci_databases_current_queries_idle_connections_label": "Mostrar las conexiones inactivas",
+  "pci_databases_current_queries_active_connections_label": "Mostrar las conexiones activas",
+  "pci_databases_current_queries_refresh_label": "Actualizar la página automáticamente",
+  "pci_databases_current_queries_switch_enable": "Activado",
+  "pci_databases_current_queries_switch_disable": "Desactivado",
+  "pci_databases_current_queries_datagrid_empty_placeholder": "No se ha ejecutado ninguna consulta.",
+  "pci_databases_current_queries_datagrid_column_query": "Consulta",
+  "pci_databases_current_queries_datagrid_column_pid": "PID",
+  "pci_databases_current_queries_datagrid_column_duration": "Duración",
+  "pci_databases_current_queries_datagrid_column_database": "Base de datos",
+  "pci_databases_current_queries_datagrid_column_client_address": "Dirección del cliente",
+  "pci_databases_current_queries_datagrid_column_application_name": "Nombre de la aplicación",
+  "pci_databases_current_queries_fetch_error": "Se ha producido un error al cargar las consultas en curso. Por favor, vuelva a intentarlo más adelante."
+}

@@ -1,0 +1,63 @@
+<oui-tile
+    class="h-100"
+    data-heading="{{:: 'server_network_title' | translate }}"
+    data-loading="$ctrl.loading"
+>
+    <!-- IPv4 -->
+    <oui-tile-definition term="IPv4">
+        <oui-tile-description>
+            <oui-clipboard class="ip-clipboard" data-model="$ctrl.server.ip">
+            </oui-clipboard>
+        </oui-tile-description>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item data-href="{{ ::$ctrl.manageIpUrl }}">
+                <span data-translate="server_network_manage"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-tile-definition>
+
+    <!-- IPv6 -->
+    <oui-tile-definition term="IPv6">
+        <oui-tile-description>
+            <oui-clipboard class="ip-clipboard" data-model="$ctrl.server.ipv6">
+            </oui-clipboard>
+        </oui-tile-description>
+    </oui-tile-definition>
+
+    <!-- transclude content -->
+    <div data-ng-transclude></div>
+
+    <!-- vRack -->
+    <oui-tile-definition
+        data-ng-if="$ctrl.bandwidth && !!$ctrl.vrackInfos"
+        data-term="{{:: 'server_network_vrack' | translate}}"
+    >
+        <oui-tile-description>
+            <span
+                data-ng-if="!$ctrl.vrackInfos.length"
+                data-translate="server_network_vrack_none"
+            >
+            </span>
+            <div class="oui-list" data-ng-if="$ctrl.vrackInfos.length">
+                <ul class="oui-list__items">
+                    <li
+                        class="oui-list__item"
+                        data-ng-repeat="vrack in $ctrl.vrackInfos track by $index"
+                    >
+                        <a
+                            class="oui-link oui-link_icon"
+                            href="{{ ::$ctrl.getVrackUrl(vrack.serviceName) }}"
+                        >
+                            <span
+                                data-ng-bind="vrack.name || vrack.serviceName"
+                            ></span>
+                            <span data-ng-if="vrack.description">
+                                (<span data-ng-bind="vrack.description"></span>)
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </oui-tile-description>
+    </oui-tile-definition>
+</oui-tile>

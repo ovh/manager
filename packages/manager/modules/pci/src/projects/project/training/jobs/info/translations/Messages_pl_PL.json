@@ -1,6 +1,7 @@
 {
   "pci_projects_project_training_job_logs_text_1": "W tej zakładce widocznych jest 100 ostatnich linii logów",
   "pci_projects_project_training_job_logs_text_2": "Aby uzyskać dostęp do logów zadania za pomocą wiersza poleceń, wprowadź następujące polecenie:",
+  "pci_projects_project_training_job_logs_text_3": "Zadanie zostało zakończone. Po zakończeniu synchronizacji z Object Storage możesz pobrać logi za pośrednictwem kontenera „ai-training-logs” w wybranym regionie i uruchomić zadanie.",
   "pci_projects_project_training_job_info": "Zadanie: ",
   "pci_projects_project_training_job_info_header": "Informacje dotyczące zadania",
   "pci_projects_project_training_job_logs_header": "Logi",
@@ -22,12 +23,9 @@
   "pci_projects_project_training_jobs_info_title_2": "Kontener",
   "pci_projects_project_training_jobs_info_title_3": "Zasoby",
   "pci_projects_project_training_jobs_info_title_4": "Dane",
-  "pci_projects_project_training_jobs_info_title_actions": "Operacje",
-  "pci_projects_project_training_job_logs_text_3": "Zadanie zostało zakończone. Po zakończeniu synchronizacji z Object Storage możesz pobrać logi za pośrednictwem kontenera „ai-training-logs” w wybranym regionie i uruchomić zadanie.",
   "pci_projects_project_training_jobs_info_title_5": "Oś czasu",
-  "pci_projects_project_training_job_logs_text_5": "Zadanie zostało zakończone. Możesz pobrać logi za pośrednictwem kontenera „ai-training-logs” w wybranym regionie i uruchomić zadanie.",
-  "pci_projects_project_training_job_logs_text_4": "Możesz również użyć następującego polecenia, aby pobrać logi bezpośrednio:",
+  "pci_projects_project_training_jobs_info_title_6": "Informacje",
+  "pci_projects_project_training_jobs_info_title_actions": "Operacje",
   "pci_projects_project_training_job_logs_text_pre_running": "Zadanie oczekuje na uruchomienie... Zakładka odświeży się automatycznie po rozpoczęciu zadania.",
-  "pci_projects_project_training_jobs_resubmit": "Uruchom ponownie",
-  "pci_projects_project_training_jobs_info_title_6": "Informacje"
+  "pci_projects_project_training_jobs_resubmit": "Uruchom ponownie"
 }

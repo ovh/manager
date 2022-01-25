@@ -2,10 +2,12 @@ export default class {
   /* @ngInject */
   /**
    * Constructor
+   * @param $http
    * @param $q
    * @param OvhHttp
    */
-  constructor($q, OvhHttp) {
+  constructor($http, $q, OvhHttp) {
+    this.$http = $http;
     this.$q = $q;
     this.OvhHttp = OvhHttp;
 
@@ -96,5 +98,30 @@ export default class {
       rootPath: 'apiv6',
       data,
     });
+  }
+
+  /**
+   * Get domains of alldom pack and its serviceInfo
+   * @param {string} serviceName
+   */
+  getDomainsWithServiceInfo(serviceName) {
+    let domains = null;
+    return this.getDomains(serviceName)
+      .then((d) => {
+        domains = d;
+        return d.map((domain) =>
+          this.$http.get(`/domain/${domain}/serviceInfos`),
+        );
+      })
+      .then((promises) =>
+        this.$q.all(promises).then((serviceInfos) => {
+          return domains.map((domain, index) => {
+            return {
+              name: domain,
+              serviceInfo: serviceInfos[index].data,
+            };
+          });
+        }),
+      );
   }
 }

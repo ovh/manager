@@ -28,5 +28,6 @@
   "billing_payment_method_add_success": "Il metodo di pagamento è stato aggiunto correttamente.",
   "billing_payment_method_add_error": "Si è verificato un errore durante l'aggiunta del metodo di pagamento: {{ errorMessage }}",
   "billing_payment_method_add_alert_add_method": "In caso di problemi durante l’aggiunta di un nuovo metodo di pagamento, è possibile aggiungere un’eccezione all’ad-blocker per {{ hostname }} o aprire il browser in modalità incognito e riprovare. Nello Spazio Cliente non verranno mai mostrate pubblicità. Ti ricordiamo che l’ad-blocker potrebbe interferire con il nostro sistema di pagamento.",
-  "billing_payment_method_add_alert_first_payment_failure": "Nel caso in cui il primo pagamento non vada a buon fine, ti consigliamo di provare a inserire un nuovo metodo con la stessa carta appena utilizzata. Il nostro sistema addebiterà l’importo dovuto direttamente sulla nuova carta."
+  "billing_payment_method_add_alert_first_payment_failure": "Nel caso in cui il primo pagamento non vada a buon fine, ti consigliamo di provare a inserire un nuovo metodo con la stessa carta appena utilizzata. Il nostro sistema addebiterà l’importo dovuto direttamente sulla nuova carta.",
+  "billing_payment_method_add_selected_paypal_redirect_US": "Per completare l'aggiunta del tuo conto PayPal e del metodo di pagamento, clicca sul pulsante PayPal qui sotto. Si aprirà una finestra pop-up che ti reindirizzerà verso il server sicuro PayPal, in cui sarà possibile inserire le informazioni necessarie."
 }

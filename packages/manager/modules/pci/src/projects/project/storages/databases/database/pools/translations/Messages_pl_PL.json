@@ -1,0 +1,14 @@
+{
+  "pci_databases_pools_title": "Zakresy",
+  "pci_databases_pools_description": "Pule połączeń pozwalają na skuteczne zarządzanie dużą liczbą połączeń z klientem PostgreSQL bez utraty globalnej wydajności.",
+  "pci_databases_pools_datagrid_pool_name": "Nazwa",
+  "pci_databases_pools_datagrid_database": "Baza danych",
+  "pci_databases_pools_datagrid_pool_mode": "Tryb",
+  "pci_databases_pools_datagrid_pool_size": "Rozmiar",
+  "pci_databases_pools_datagrid_user_name": "Nazwa użytkownika",
+  "pci_projects_project_instances_add_label": "Dodaj pulę",
+  "pci_databases_pools_datagrid_information": "Informacje",
+  "pci_databases_pools_datagrid_modify": "Zmień",
+  "pci_databases_pools_datagrid_delete": "Usuń",
+  "pci_databases_pools_no_entries": "Brak wyników"
+}
