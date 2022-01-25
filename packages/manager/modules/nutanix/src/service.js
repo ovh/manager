@@ -121,6 +121,12 @@ export default class NutanixService {
       .then(({ data }) => data);
   }
 
+  getServiceUpgradeOptions(serviceId) {
+    return this.$http
+      .get(`/services/${serviceId}/upgrade`)
+      .then(({ data }) => data);
+  }
+
   getServer(nodeId) {
     return this.$http
       .get(`/sws/dedicated/server/${nodeId}`, {

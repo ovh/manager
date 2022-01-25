@@ -31,6 +31,10 @@ export default /* @ngInject */ ($stateProvider) => {
         });
         return promise;
       },
+      clusterAddOns: /* @ngInject */ (NutanixService, serviceInfo) =>
+        NutanixService.getClusterOptions(serviceInfo.serviceId),
+      goToUpgradePrivateBandwidth: /* @ngInject */ ($state) => () =>
+        $state.go('nutanix.dashboard.general-info.bandwidth-private-order'),
       handleError: /* @ngInject */ (Alerter) => (error) =>
         Alerter.error(
           error.message || error.data?.message,
