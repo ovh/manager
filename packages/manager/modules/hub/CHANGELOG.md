@@ -1,3 +1,12 @@
+## [3.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.2.5...@ovh-ux/manager-hub@3.2.6) (2022-01-25)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.2` ([#6335](https://github.com/ovh/manager/issues/6335)) ([b91ce69](https://github.com/ovh/manager/commit/b91ce698bf1d230de112e1896626574e1553769b))
+
+
+
 ## [3.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.2.4...@ovh-ux/manager-hub@3.2.5) (2022-01-03)
 
 

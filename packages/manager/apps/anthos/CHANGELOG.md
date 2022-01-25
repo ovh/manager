@@ -1,3 +1,12 @@
+## [1.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos-app@1.0.6...@ovh-ux/manager-anthos-app@1.0.7) (2022-01-25)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.2` ([#6335](https://github.com/ovh/manager/issues/6335)) ([b91ce69](https://github.com/ovh/manager/commit/b91ce698bf1d230de112e1896626574e1553769b))
+
+
+
 ## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos-app@1.0.5...@ovh-ux/manager-anthos-app@1.0.6) (2022-01-03)
 
 

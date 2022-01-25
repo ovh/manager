@@ -1,3 +1,12 @@
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-notifications-sidebar@1.3.1...@ovh-ux/manager-notifications-sidebar@1.3.2) (2022-01-25)
+
+
+### Bug Fixes
+
+* **service:** mark all as read at once ([#6345](https://github.com/ovh/manager/issues/6345)) ([a4c6b51](https://github.com/ovh/manager/commit/a4c6b5161eb02a36cbbf327e2b9b7fcc1ea6e485))
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-notifications-sidebar@1.3.0...@ovh-ux/manager-notifications-sidebar@1.3.1) (2022-01-11)
 
 

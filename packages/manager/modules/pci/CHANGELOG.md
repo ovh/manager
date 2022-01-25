@@ -1,3 +1,24 @@
+# [5.56.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.55.3...@ovh-ux/manager-pci@5.56.0) (2022-01-25)
+
+
+### Bug Fixes
+
+* **pci.apps:** submit review CLI command ([#6198](https://github.com/ovh/manager/issues/6198)) ([1e9629a](https://github.com/ovh/manager/commit/1e9629a59b210f64a89b40e7abd6e9ae6ff97253))
+* remove unused translations [CDS] ([d5f447b](https://github.com/ovh/manager/commit/d5f447b5d1e4b3c6e209002e49b32d0cd963adc9))
+* **i18n:** add missing translations [CDS 1387] ([112e027](https://github.com/ovh/manager/commit/112e0274863b9a25687272d030f887c2118e84ec))
+* **i18n:** add missing translations [CDS 1389] ([6b12a58](https://github.com/ovh/manager/commit/6b12a585dbc6923becbc877622ebcd5b5dd0adf4))
+* **i18n:** add missing translations [CDS 1390] ([8bb4fb7](https://github.com/ovh/manager/commit/8bb4fb7896c4bcb3285ced9f1d1a56b06bf5b71f))
+* **i18n:** add missing translations [CDS 1393] ([f884dcc](https://github.com/ovh/manager/commit/f884dccdf1394182619028ceb08b076ffd9c0988))
+
+
+### Features
+
+* **ai.training:** use new job logs ([#6265](https://github.com/ovh/manager/issues/6265)) ([938b929](https://github.com/ovh/manager/commit/938b929404e3143e8bf7fd7e66b2da32a4d333b3))
+* **dashboard:** add products and new links ([#6234](https://github.com/ovh/manager/issues/6234)) ([963c3a8](https://github.com/ovh/manager/commit/963c3a8dcc351e419454bd8914b33132ec2dda02))
+* **storage:** launch Aiven GA (batch 1) ([#6218](https://github.com/ovh/manager/issues/6218)) ([6e1fd4e](https://github.com/ovh/manager/commit/6e1fd4ef3e64e59f07c18f4e91edc710751b5248))
+
+
+
 ## [5.55.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.55.2...@ovh-ux/manager-pci@5.55.3) (2022-01-19)
 
 

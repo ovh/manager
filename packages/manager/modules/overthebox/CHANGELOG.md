@@ -1,3 +1,18 @@
+# [6.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.4.3...@ovh-ux/manager-overthebox@6.5.0) (2022-01-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1401] ([5e1924a](https://github.com/ovh/manager/commit/5e1924ade4fdffdce0f409c3d047cbbc1b909ede))
+* **i18n:** add missing translations [CDS 1403] ([1342265](https://github.com/ovh/manager/commit/134226570ecff4db92731a3586d60d3ee43a3cce))
+
+
+### Features
+
+* **overthebox.details:** display service id into infos ([#6166](https://github.com/ovh/manager/issues/6166)) ([7264b85](https://github.com/ovh/manager/commit/7264b85062b2ceda9e60c0a2680ff3485d2d5595))
+
+
+
 ## [6.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.4.2...@ovh-ux/manager-overthebox@6.4.3) (2021-10-26)
 
 

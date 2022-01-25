@@ -1,3 +1,21 @@
+# [16.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.4.1...@ovh-ux/manager-web@16.5.0) (2022-01-25)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.2` ([#6335](https://github.com/ovh/manager/issues/6335)) ([b91ce69](https://github.com/ovh/manager/commit/b91ce698bf1d230de112e1896626574e1553769b))
+* **i18n:** add missing translations [CDS 1402] ([a9aec57](https://github.com/ovh/manager/commit/a9aec57f15c9f62d68f1b25951e043b910000150))
+* **web:** display correct payment status ([53314c2](https://github.com/ovh/manager/commit/53314c2cf4117c3f092f76841b20be5dad1b3d8d))
+* **webhosting.ftp:** sanitize ssh link ([#5948](https://github.com/ovh/manager/issues/5948)) ([61c25ea](https://github.com/ovh/manager/commit/61c25eae35912520fa5a4c6648a168234c89bf21))
+
+
+### Features
+
+* all-dom termination enhancements ([7c1525f](https://github.com/ovh/manager/commit/7c1525fc0ba93d3a2c586e7b3d3d5bbc785e641f))
+* **private-database:** add WebHosting Network for CloudDB ([#6099](https://github.com/ovh/manager/issues/6099)) ([354f93e](https://github.com/ovh/manager/commit/354f93eaf4ea4403930c18967855b330e3a21361))
+
+
+
 ## [16.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.4.0...@ovh-ux/manager-web@16.4.1) (2022-01-19)
 
 

@@ -1,3 +1,13 @@
+## [13.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.30.2...@ovh-ux/manager-telecom@13.30.3) (2022-01-25)
+
+
+### Bug Fixes
+
+* **alias:** fix no external agent alert ([#5799](https://github.com/ovh/manager/issues/5799)) ([62df733](https://github.com/ovh/manager/commit/62df733d41782e557870cd2882595519b8e533e0)), closes [#5795](https://github.com/ovh/manager/issues/5795)
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.2` ([#6335](https://github.com/ovh/manager/issues/6335)) ([b91ce69](https://github.com/ovh/manager/commit/b91ce698bf1d230de112e1896626574e1553769b))
+
+
+
 ## [13.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.30.1...@ovh-ux/manager-telecom@13.30.2) (2022-01-06)
 
 
