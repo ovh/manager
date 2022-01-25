@@ -92,8 +92,14 @@ export default class AppService {
 
   deleteApp(serviceName, appId) {
     return this.$http
-      .delete(`/cloud/project/${serviceName}/ai/app/${appId}/delete`)
+      .delete(`/cloud/project/${serviceName}/ai/app/${appId}`)
       .then(({ data }) => data);
+  }
+
+  getAppCommand(serviceName, appSpec) {
+    return this.$http
+      .post(`/cloud/project/${serviceName}/ai/app/command`, appSpec)
+      .then(({ data }) => data.command);
   }
 
   getRegions(serviceName) {

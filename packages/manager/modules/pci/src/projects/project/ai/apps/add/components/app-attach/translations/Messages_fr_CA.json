@@ -1,5 +1,5 @@
 {
-  "pci_app_add_attach_container_description": "Si nécessaire, vous pouvez attacher des conteneurs Object Storage OVHcloud à votre apps. Une fois attachés, ceux-ci seront temporairement chargés et mis en cache près de votre instance afin de réduire la latence et d’améliorer les performances. La bonne pratique est d’attacher un conteneur avec vos données entrantes et un autre avec vos données sortantes.",
+  "pci_app_add_attach_container_description": "Si nécessaire, vous pouvez attacher des conteneurs Object Storage OVHcloud à votre AI app. Une fois attachés, ceux-ci seront temporairement chargés et mis en cache près de votre instance afin de réduire la latence et d’améliorer les performances. La bonne pratique est d’attacher un conteneur avec vos données entrantes et un autre avec vos données sortantes.",
   "pci_app_add_attach_container_description_link": "En savoir plus sur le stockage de données.",
   "pci_app_add_attach_container_btn_attach_storage_add": "Attacher un conteneur Object Storage",
   "pci_app_add_attach_container_btn_attach_repo_git_add": "Attacher un dépôt Git public",

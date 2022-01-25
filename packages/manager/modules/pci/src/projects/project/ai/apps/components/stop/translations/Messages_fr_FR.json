@@ -1,8 +1,8 @@
 {
-  "pci_app_stop_app_title": "Arrêt de l'AI app",
+  "pci_app_stop_app_title": "Arrêt de l'AI App",
   "pci_app_stop_app_submit_label": "Confirmer",
   "pci_app_stop_app_cancel_label": "Annuler",
-  "pci_app_stop_app_content": "Êtes-vous sûr·e de vouloir arrêter l'app {{ appName }} ?",
-  "pci_app_stop_app_success": "Votre app a bien été arrêtée.",
-  "pci_app_stop_app_error": "Une erreur est survenue lors de l'arrêt de votre app {{ appName }} : {{ message }}."
+  "pci_app_stop_app_content": "Êtes-vous sûr·e de vouloir arrêter l'AI App {{ appName }} ?",
+  "pci_app_stop_app_success": "Votre AI App a bien été arrêtée.",
+  "pci_app_stop_app_error": "Une erreur est survenue lors de l'arrêt de votre AI App {{ appName }} : {{ message }}."
 }
