@@ -4,7 +4,7 @@ import {
   PRICE_DURATION,
   TRACKING_CHUNK,
 } from './constants';
-import { extractPublicIpsAddonFromAnthosCatalog } from './utils';
+import { extractPublicIpsAddonFromAnthosServiceOption } from './utils';
 
 export default class {
   /* @ngInject */
@@ -30,7 +30,7 @@ export default class {
         expressOrderUrl: this.User.getUrlOf('express_order'),
       })
       .then(({ anthosServiceOption, expressOrderUrl }) => {
-        this.addon = extractPublicIpsAddonFromAnthosCatalog(
+        this.addon = extractPublicIpsAddonFromAnthosServiceOption(
           anthosServiceOption,
         );
         this.expressOrderUrl = expressOrderUrl;
