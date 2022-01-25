@@ -105,7 +105,8 @@
   "ip_table_header_ip_address": "Adresse IP",
   "ip_table_header_ip_address_invalid": "Veuillez saisir une IPv6 valide",
   "ip_table_header_country": "Pays",
-  "ip_table_header_reverse": "Reverse",
+  "ip_table_header_campus": "Campus",
+  "ip_table_header_reverse": "Reverse DNS",
   "ip_table_header_reverse_invalid": "Veuillez saisir un reverse valide",
   "ip_table_header_virtual_mac": "MAC virtuelle",
   "ip_table_header_antispam": "Antispam",
@@ -484,7 +485,6 @@
   "ip_order_finish_error": "Une erreur est survenue lors de la commande d'IPs additionnelles.",
   "ip_order_free_activation_fee": "Pour les serveurs dont l'abonnement des IPs additionnelles est offert, ces frais d'activation ne seront pas refacturés à l'issu du renouvellement du serveur.",
   "ip_organisation_title": "Gérer mes organisations",
-  "ip_organisation_button": "Mes organisations",
   "ip_organisation_table_organisation": "Organisation",
   "ip_organisation_table_type": "Type",
   "ip_organisation_table_lastname": "Nom",
@@ -673,5 +673,12 @@
   "ip_table_manage_delegation_ipv6block_delete_err": "Une erreur s'est produite lors de la suppression de la délégation de reverse DNS :",
   "ip_table_manage_delegation_ipv6block_resume": "Résumé de l'opération",
   "ip_table_manage_delegation_ipv6block_to_add": "Reverse(s) à ajouter",
-  "ip_table_manage_delegation_ipv6block_to_delete": "Reverse(s) à supprimer"
+  "ip_table_manage_delegation_ipv6block_to_delete": "Reverse(s) à supprimer",
+  "ip_order_title": "Commander",
+  "ip_order_additional_ips": "IP supplémentaires",
+  "ip_administration_title": "Administrer",
+  "ip_administration_export_to_csv": "Exporter mes adresses IP dans un fichier CSV",
+  "ip_administration_import": "Importer mes adresses IP de SYS vers OVHcloud",
+  "ip_administration_manager_organizations": "Gérer mes organisations",
+  "ip_addresses_grid_header": "Mes adresses IP publiques et services associés"
 }
