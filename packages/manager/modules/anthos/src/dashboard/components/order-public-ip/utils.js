@@ -1,6 +1,6 @@
 import { ADDON_PLAN_CODE, PRICE_DURATION } from './constants';
 
-export function extractPublicIpsAddonFromAnthosCatalog(serviceOption) {
+export function extractPublicIpsAddonFromAnthosServiceOption(serviceOption) {
   const addon = serviceOption.find?.(
     ({ planCode }) => planCode === ADDON_PLAN_CODE,
   );
@@ -16,5 +16,5 @@ export function extractPublicIpsAddonFromAnthosCatalog(serviceOption) {
 }
 
 export default {
-  extractPublicIpsAddonFromAnthosCatalog,
+  extractPublicIpsAddonFromAnthosServiceOption,
 };

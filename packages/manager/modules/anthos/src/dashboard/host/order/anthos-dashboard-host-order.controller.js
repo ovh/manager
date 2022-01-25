@@ -4,7 +4,7 @@ import {
   TRACKING_CHUNK,
   TRACKING_PREFIX,
 } from './anthos-dashboard-host-order.constants';
-import { extractHostAddonsFromAnthosCatalog } from './anthos-dashboard-host-order.utils';
+import { extractHostAddonsFromAnthosServiceOption } from './anthos-dashboard-host-order.utils';
 
 export default class AnthosDashboardHostOrderController {
   /* @ngInject */
@@ -43,9 +43,9 @@ export default class AnthosDashboardHostOrderController {
         expressOrderUrl: this.User.getUrlOf('express_order'),
       })
       .then(({ anthosCatalog, anthosServiceOption, expressOrderUrl }) => {
-        this.addons = extractHostAddonsFromAnthosCatalog(
-          anthosCatalog,
+        this.addons = extractHostAddonsFromAnthosServiceOption(
           anthosServiceOption,
+          anthosCatalog,
         );
         this.expressOrderUrl = expressOrderUrl;
       })

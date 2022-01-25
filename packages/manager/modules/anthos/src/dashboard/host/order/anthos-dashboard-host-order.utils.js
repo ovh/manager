@@ -58,7 +58,10 @@ export function formatAddon(addon) {
   };
 }
 
-export function extractHostAddonsFromAnthosCatalog(catalog, serviceOption) {
+export function extractHostAddonsFromAnthosServiceOption(
+  serviceOption,
+  catalog,
+) {
   return serviceOption
     .filter(({ family }) => family === ADDON_PRODUCT_FAMILY)
     .map((addon) =>
@@ -74,5 +77,5 @@ export function extractHostAddonsFromAnthosCatalog(catalog, serviceOption) {
 }
 
 export default {
-  extractHostAddonsFromAnthosCatalog,
+  extractHostAddonsFromAnthosServiceOption,
 };
