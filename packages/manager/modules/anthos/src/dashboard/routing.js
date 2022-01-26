@@ -1,5 +1,5 @@
 import { ANTHOS_TENANT_ALERTER } from '../anthos.constants';
-import { TRACKING_PREFIX } from './constants';
+import { TRACKING_PREFIX, SERVICE_TYPE } from './constants';
 import Tenant from '../Tenant.class';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -112,7 +112,13 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('anthos.dashboard.access-restriction', { serviceName }),
 
       serviceInfo: /* @ngInject */ (serviceName, AnthosTenantsService) =>
-        AnthosTenantsService.getServiceInfo(serviceName),
+        AnthosTenantsService.getServiceInfo(serviceName).then((data) => {
+          const serviceInfo = {
+            ...data,
+            serviceType: SERVICE_TYPE,
+          };
+          return serviceInfo;
+        }),
 
       goToTenant: ($state, displayAlerterMessage) => (
         message = false,
