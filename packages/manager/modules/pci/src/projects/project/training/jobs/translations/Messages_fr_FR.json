@@ -77,5 +77,5 @@
   "pci_projects_project_training_jobs_submit_select_ssh_add": "Ajouter une nouvelle clé publique SSH",
   "pci_projects_project_training_jobs_submit_select_ssh_quantity": "{{ numberOfSshKeys }} / {{ maxSshKeys }} clé(s) SSH",
   "pci_projects_project_training_jobs_submit_select_ssh_legend": "Clé publique SSH",
-  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Supprimer la clé ssh attachée"
+  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Supprimer la clé SSH attachée"
 }
