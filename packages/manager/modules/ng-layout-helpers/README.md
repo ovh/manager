@@ -60,9 +60,18 @@ export default class ProductListCtrl extends ListLayoutHelper.ListLayoutCtrl {
     super.$onInit();
 
     this.columnsConfig = [
-      {name: 'name', sortable: this.getSorting('name')},
-      {name: 'description', sortable: this.getSorting('description')},
-      {name: 'status', sortable: this.getSorting('status')},
+      {
+        name: 'name',
+        sortable: this.getSorting('name'),
+      },
+      {
+        name: 'description',
+        sortable: this.getSorting('description'),
+      },
+      {
+        name: 'status',
+        sortable: this.getSorting('status'),
+      },
     ];
   }
 }
@@ -73,64 +82,84 @@ export default class ProductListCtrl extends ListLayoutHelper.ListLayoutCtrl {
 
 You have to define into your routing file a `topbarOptions` object, like this:
 
-```JS
-topbarOptions: /* @ngInject */ ($translate, goToOrder) => ({
-  cta: {
-    type: 'button',
-    displayed: true,
-    disabled: false,
-    label: $translate.instant('netapp_order_cta_label'),
-    value: $translate.instant('netapp_order_cta_value'),
-    onClick: () => {
-      goToOrder();
+```js
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('netapp.index', {
+    resolve: {
+      topbarOptions: /* @ngInject */ ($translate, goToOrder) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('netapp_order_cta_label'),
+          value: $translate.instant('netapp_order_cta_value'),
+          onClick: () => {
+            goToOrder();
+          },
+        },
+      }),
     },
-  },
-})
+  });
+};
 ```
 
 #### Add Actions Menu
 
 You have to define into your routing file a `topbarOptions` object, like this:
 
-```JS
-topbarOptions: /* @ngInject */ ($translate, myRoutingOnClickFunction) => ({
-  cta: {
-    type: 'actions',
-    displayed: true,
-    disabled: false,
-    menuText: $translate.instant('netapp_order_cta_menu'),
-    actions: [{
-      id: 'first-action-item',
-      displayed: true,
-      disabled: false,
-      label: $translate.instant('netapp_order_cta_label'),
-      value: $translate.instant('netapp_order_cta_value'),
-      onClick: () => {
-        myRoutingOnClickFunction();
-      },
-    },],
-  },
-})
+```js
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('netapp.index', {
+    resolve: {
+      topbarOptions: /* @ngInject */ ($translate, goToOrder) => ({
+        cta: {
+          type: 'actions',
+          displayed: true,
+          disabled: false,
+          menuText: $translate.instant('netapp_order_cta_menu'),
+          actions: [
+            {
+              id: 'first-action-item',
+              displayed: true,
+              disabled: false,
+              label: $translate.instant('netapp_order_cta_label'),
+              value: $translate.instant('netapp_order_cta_value'),
+              onClick: () => {
+                myRoutingOnClickFunction();
+              },
+            },
+          ],
+        },
+      }),
+    },
+  });
+};
 ```
 
 #### Customise columns name
 
 You have to define into your routing file a `customizeColumnsMap` object, like this:
 
-```JS
-customizeColumnsMap: /* @ngInject */ ($translate, configuration) => {
-  return configuration.data.reduce(
-    (columnsMap, {property}) => ({
-      ...columnsMap,
-      [property]: {
-        title: $translate.instant(
-          `netapp_list_columns_header_${property}`,
-        ),
+```js
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('netapp.index', {
+    resolve: {
+      customizeColumnsMap: /* @ngInject */ ($translate, configuration) => {
+        return configuration.data.reduce(
+          (columnsMap, { property }) => ({
+            ...columnsMap,
+            [property]: {
+              title: $translate.instant(
+                `netapp_list_columns_header_${property}`,
+              ),
+            },
+          }),
+          {},
+        );
       },
-    }),
-    {},
-  );
-}
+    },
+  });
+};
 ```
 
 ### Onboarding component
@@ -146,7 +175,7 @@ yarn start
 
 ## Development
 
-If you want to contribute to the project, follow theses instructions:
+If you want to contribute to the project, follow these instructions:
 
 Foremost, you should launch a global installation at the root folder of this repository:
 
