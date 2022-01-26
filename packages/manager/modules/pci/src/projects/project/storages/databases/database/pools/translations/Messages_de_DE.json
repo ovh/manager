@@ -1,5 +1,5 @@
 {
-  "pci_databases_pools_title": "Pools ",
+  "pci_databases_pools_title": "Pools",
   "pci_databases_pools_description": "Die Verbindungs-Pools ermöglichen es, eine große Anzahl von Client-Verbindungen mit PostgreSQL effizient zu verwalten, ohne dass dabei die Gesamtleistung sinkt.",
   "pci_databases_pools_datagrid_pool_name": "Name",
   "pci_databases_pools_datagrid_database": "Datenbank",

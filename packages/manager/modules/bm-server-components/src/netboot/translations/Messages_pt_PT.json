@@ -30,7 +30,7 @@
   "server_configuration_netboot_step2_rescue": "Nome do rescue:",
   "server_configuration_netboot_step2_rescue_mail": "Endereço de email para envio dos dados de acesso ao modo rescue :",
   "server_configuration_netboot_success": "O netboot foi atualizado com êxito. Deve reiniciar o servidor.",
-  "server_configuration_netboot_fail": "Ocorreu um erro aquando da atualização do netboot no servidor {{t0}}",
+  "server_configuration_netboot_fail": "Ocorreu um erro aquando da atualização do netboot no servidor {{t0}}: {{message}}",
   "server_configuration_netboot_next": "Seguinte",
   "server_configuration_netboot_cancel": "Anular",
   "server_configuration_netboot_confirm": "Validar",

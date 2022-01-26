@@ -8,6 +8,8 @@
   "autorenew_all_dom_terminate_success": "Rezygnacja została zarejestrowana.",
   "autorenew_all_dom_terminate_error": "Rezygnacja nie mogła zostać zarejestrowana dla jednej lub kilku domen. Spróbuj później.",
   "autorenew_all_dom_terminate_info": "Uwaga: rezygnacja z tego pakietu nie powoduje rezygnacji z przypisanych do niego domen.",
-  "autorenew_all_dom_domain_free_if_renewed": "Bezpłatne odnowienie tylko w przypadku odnowienia pakietu Allldom {{ allDom }} przed dn. {{ allDomExpiration }}",
-  "autorenew_all_dom_domain_free": "Odnowienie jest bezpłatne, ponieważ zawarte jest w pakiecie Alldom"
+  "autorenew_all_dom_domain_free_if_renewed": "Odnowienie gratis tylko wtedy, gdy pakiet Allldom {{allDom}} zostanie odnowiony przed {{allDomExpiration}}.",
+  "autorenew_all_dom_domain_free": "Odnowienie gratis, ponieważ domena zawarta w pakiecie Alldom",
+  "autorenew_all_dom_terminate_effect_on_domains": "Uwaga: rezygnacja z tego pakietu nie powoduje rezygnacji z przypisanych do niego domen.",
+  "autorenew_all_dom_terminate_domain_renewal_info": "Zawarte w pakiecie domeny, z których nie zrezygnujesz, będą odnawiane bezpłatnie aż do ostatecznego wygaśnięcia pakietu. Po tym terminie, domeny, z których nie zrezygnowałeś, będą fakturowane indywidualnie."
 }
