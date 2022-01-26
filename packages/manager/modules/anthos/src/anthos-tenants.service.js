@@ -1,4 +1,4 @@
-import { GUIDES } from './anthos.constants';
+import { GUIDES, SERVICE_TYPE } from './anthos.constants';
 
 export default class AnthosTenantsService {
   /* @ngInject */
@@ -181,7 +181,10 @@ export default class AnthosTenantsService {
   getServiceInfo(serviceName) {
     return this.$http
       .get(`/dedicated/anthos/tenants/${serviceName}/serviceInfos`)
-      .then(({ data }) => data);
+      .then(({ data }) => ({
+        ...data,
+        serviceType: SERVICE_TYPE,
+      }));
   }
 
   getOptions(serviceId) {
