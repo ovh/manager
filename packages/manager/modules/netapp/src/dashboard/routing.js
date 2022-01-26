@@ -1,7 +1,7 @@
 import NetApp from './Netapp.class';
 import Share from './Share.class';
 import SnapshotPolicy from './SnapshotPolicy.class';
-import { MINIMUM_VOLUME_SIZE } from './constants';
+import { MINIMUM_VOLUME_SIZE, SERVICE_TYPE } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.dashboard', {
@@ -25,6 +25,12 @@ export default /* @ngInject */ ($stateProvider) => {
         trackClick('create-volume');
         return $state.go('netapp.dashboard.volumes.create');
       },
+      serviceInfos: /* @ngInject */ ($http, serviceName) =>
+        $http
+          .get(`/storage/netapp/${serviceName}/serviceInfos`)
+          .then(({ data }) => {
+            return { ...data, serviceType: SERVICE_TYPE };
+          }),
       volumes: /* @ngInject */ ($http, serviceName) =>
         $http
           .get(`/storage/netapp/${serviceName}/share?detail=true`)
