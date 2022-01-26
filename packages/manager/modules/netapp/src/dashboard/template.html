@@ -96,13 +96,14 @@
                 </oui-tile>
                 <ovh-advices
                     service-name="{{ ::$ctrl.storage.id }}"
-                    service-type="netapp"
+                    service-type="$ctrl.SERVICE_TYPE | lowercase"
                 >
                 </ovh-advices>
             </div>
             <billing-subscription-tile
                 ng-if="$ctrl.canManageSubscription"
                 class="col-md-4"
+                service-infos="$ctrl.serviceInfos"
                 on-error="$ctrl.onBillingInformationError(error)"
                 service-path="{{ ::'/storage/netapp/' + $ctrl.storage.id }}"
                 with-engagement="$ctrl.isCommitmentAvailable"
