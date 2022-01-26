@@ -160,11 +160,12 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
-  putRestApi(projectId, engine, databaseId, restApi) {
+  updateDatabaseEngineProperties(projectId, engine, databaseId, properties) {
     return this.$http
-      .put(`/cloud/project/${projectId}/database/${engine}/${databaseId}`, {
-        restApi,
-      })
+      .put(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}`,
+        properties,
+      )
       .then(({ data }) => data);
   }
 

@@ -165,11 +165,11 @@ export default class {
       'click',
     );
     this.loading.restApi = true;
-    return this.DatabaseService.putRestApi(
+    return this.DatabaseService.updateDatabaseEngineProperties(
       this.projectId,
       this.database.engine,
       this.database.id,
-      enableRestApi,
+      { restApi: enableRestApi },
     )
       .then(() => {
         return this.goBacktoGeneralInformation();
