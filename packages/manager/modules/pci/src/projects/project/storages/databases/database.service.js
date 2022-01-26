@@ -149,7 +149,6 @@ export default class DatabaseService {
     plan,
     version,
     flavor,
-    restApi = false,
   ) {
     return this.$http
       .put(`/cloud/project/${projectId}/database/${engine}/${databaseId}`, {
@@ -157,6 +156,13 @@ export default class DatabaseService {
         plan,
         version,
         flavor,
+      })
+      .then(({ data }) => data);
+  }
+
+  putRestApi(projectId, engine, databaseId, restApi) {
+    return this.$http
+      .put(`/cloud/project/${projectId}/database/${engine}/${databaseId}`, {
         restApi,
       })
       .then(({ data }) => data);
