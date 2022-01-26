@@ -149,7 +149,6 @@ export default class DatabaseService {
     plan,
     version,
     flavor,
-    restApi = false,
   ) {
     return this.$http
       .put(`/cloud/project/${projectId}/database/${engine}/${databaseId}`, {
@@ -157,8 +156,16 @@ export default class DatabaseService {
         plan,
         version,
         flavor,
-        restApi,
       })
+      .then(({ data }) => data);
+  }
+
+  updateDatabaseEngineProperties(projectId, engine, databaseId, properties) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}`,
+        properties,
+      )
       .then(({ data }) => data);
   }
 
