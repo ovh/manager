@@ -165,15 +165,11 @@ export default class {
       'click',
     );
     this.loading.restApi = true;
-    return this.DatabaseService.editDatabase(
+    return this.DatabaseService.updateDatabaseEngineProperties(
       this.projectId,
       this.database.engine,
       this.database.id,
-      this.database.description,
-      this.database.plan,
-      this.database.version,
-      this.database.flavor,
-      enableRestApi,
+      { restApi: enableRestApi },
     )
       .then(() => {
         return this.goBacktoGeneralInformation();
