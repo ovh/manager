@@ -1,3 +1,12 @@
+## [5.56.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.56.0...@ovh-ux/manager-pci@5.56.1) (2022-01-26)
+
+
+### Bug Fixes
+
+* avoid breaking update for other engines with restapi ([65ec3b9](https://github.com/ovh/manager/commit/65ec3b92b5650c436c7753bdef9075f43f9435d7))
+
+
+
 # [5.56.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.55.3...@ovh-ux/manager-pci@5.56.0) (2022-01-25)
 
 
