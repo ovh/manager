@@ -366,7 +366,7 @@
                                 name="rest-api-switch"
                                 model="$ctrl.enableRestApi"
                                 on-change="$ctrl.onRestApiStatusChange(modelValue)"
-                                data-disabled="$ctrl.loading.restApi"
+                                data-disabled="$ctrl.loading.restApi || !$ctrl.database.isActive()"
                             >
                             </oui-switch>
                             <span
