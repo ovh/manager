@@ -48,6 +48,9 @@ export default /* @ngInject */ ($stateProvider) => {
       availableVersions: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getAvailableVersions(serviceName),
 
+      availableOptions: /* @ngInject */ (serviceName, AnthosTenantsService) =>
+        AnthosTenantsService.getAnthosServiceOption(serviceName),
+
       goToState: ($state, Alerter) => (
         state,
         stateParams = {},
