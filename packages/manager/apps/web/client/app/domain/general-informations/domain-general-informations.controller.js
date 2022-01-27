@@ -81,9 +81,9 @@ export default class DomainTabGeneralInformationsCtrl {
     this.domainInfos = this.$scope.ctrlDomain.domainInfos;
     this.allDom = this.$scope.ctrlDomain.allDom;
     this.allDomInfos = this.$scope.ctrlDomain.allDomInfos;
-    this.allDomPaymentState = DomainTabGeneralInformationsCtrl.getDomainState(
-      this.allDomInfos,
-    );
+    this.allDomPaymentState =
+      this.allDom &&
+      DomainTabGeneralInformationsCtrl.getDomainState(this.allDomInfos);
     this.associatedHostings = this.$scope.ctrlDomain.associatedHostings;
     this.orderedHosting = this.$scope.ctrlDomain.orderedHosting;
     this.displayFreeHosting = false;
