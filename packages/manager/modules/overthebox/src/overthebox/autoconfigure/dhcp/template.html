@@ -49,6 +49,7 @@
                         type="number"
                         required
                         ng-model="$ctrl.config.leaseDuration"
+                        min="120"
                     />
                 </oui-field>
                 <oui-field
@@ -93,6 +94,7 @@
                     variant="primary"
                     type="submit"
                     on-click="$ctrl.createConfig()"
+                    data-disabled="!$ctrl.config.interface || !$ctrl.config.leaseDuration || !$ctrl.config.offset || !$ctrl.config.poolSize || !$ctrl.config.priority"
                 >
                     <span
                         data-translate="overTheBox_autoconfigure_submit"
@@ -242,6 +244,7 @@
                     variant="primary"
                     type="submit"
                     on-click="$ctrl.createStaticLease()"
+                    data-disabled="!$ctrl.staticLease.hostname || !$ctrl.staticLease.mac || !$ctrl.staticLease.ip || !$ctrl.staticLease.priority"
                 >
                     <span
                         data-translate="overTheBox_autoconfigure_submit"
