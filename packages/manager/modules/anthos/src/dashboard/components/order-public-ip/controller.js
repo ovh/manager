@@ -1,10 +1,5 @@
-import {
-  MAX_QUANTITY,
-  PRODUCT_ID,
-  PRICE_DURATION,
-  TRACKING_CHUNK,
-} from './constants';
-import { extractPublicIpsAddonFromAnthosServiceOption } from './utils';
+import { PRICE_DURATION } from '../../../anthos.constants';
+import { MAX_QUANTITY, PRODUCT_ID, TRACKING_CHUNK } from './constants';
 
 export default class {
   /* @ngInject */
@@ -22,44 +17,41 @@ export default class {
   }
 
   $onInit() {
-    this.$q
-      .all({
-        anthosServiceOption: this.AnthosTenantsService.getAnthosServiceOption(
-          this.serviceName,
-        ),
-        expressOrderUrl: this.User.getUrlOf('express_order'),
-      })
-      .then(({ anthosServiceOption, expressOrderUrl }) => {
-        this.addon = extractPublicIpsAddonFromAnthosServiceOption(
-          anthosServiceOption,
-        );
+    if (!this.availableOptions.publicIps) {
+      this.goBack(
+        this.$translate.instant('anthos_dashboard_order_public_ip_init_error'),
+        'error',
+      );
+    }
+
+    this.User.getUrlOf('express_order')
+      .then((expressOrderUrl) => {
         this.expressOrderUrl = expressOrderUrl;
-        if (!this.addon) throw new Error('missingAddon');
       })
-      .catch(() => {
-        this.displayAlerterMessage(
-          'error',
+      .catch(() =>
+        this.goBack(
           this.$translate.instant(
             'anthos_dashboard_order_public_ip_init_error',
           ),
-        );
-        this.goBack();
-      })
+          'error',
+        ),
+      )
       .finally(() => {
         this.isLoading = false;
       });
   }
 
   order() {
+    const addon = this.availableOptions.publicIps;
     this.trackClick(`${TRACKING_CHUNK}::confirm_${this.quantity}`);
 
     const products = [
       {
         productId: PRODUCT_ID,
         serviceName: this.serviceName,
-        planCode: this.addon.planCode,
+        planCode: addon.planCode,
         duration: PRICE_DURATION,
-        pricingMode: this.addon.pricingMode,
+        pricingMode: addon.pricingMode,
         quantity: this.quantity,
         configuration: [],
       },

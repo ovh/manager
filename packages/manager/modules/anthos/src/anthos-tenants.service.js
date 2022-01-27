@@ -1,4 +1,8 @@
 import { GUIDES, SERVICE_TYPE } from './anthos.constants';
+import {
+  extractPublicIpsAddonFromAnthosServiceOption,
+  extractHostAddonsFromAnthosServiceOption,
+} from './anthos.utils';
 
 export default class AnthosTenantsService {
   /* @ngInject */
@@ -243,9 +247,17 @@ export default class AnthosTenantsService {
   }
 
   getAnthosServiceOption(serviceName) {
-    return this.$http
-      .get(`/order/cartServiceOption/anthos/${serviceName}`)
-      .then(({ data }) => data);
+    return this.$q
+      .all({
+        catalog: this.getAnthosCatalog(),
+        options: this.$http.get(
+          `/order/cartServiceOption/anthos/${serviceName}`,
+        ),
+      })
+      .then(({ catalog, options: { data: options } }) => ({
+        hosts: extractHostAddonsFromAnthosServiceOption(options, catalog),
+        publicIps: extractPublicIpsAddonFromAnthosServiceOption(options),
+      }));
   }
 
   updateSoftware(serviceName, version) {

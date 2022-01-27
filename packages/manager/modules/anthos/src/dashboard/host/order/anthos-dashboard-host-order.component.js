@@ -3,6 +3,7 @@ import controller from './anthos-dashboard-host-order.controller';
 
 export default {
   bindings: {
+    availableOptions: '<',
     displayAlerterMessage: '<',
     goBack: '<',
     hostLink: '<',

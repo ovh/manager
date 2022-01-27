@@ -28,6 +28,7 @@ export default {
     trackClick: '<',
     trackingPrefix: '<',
     packInfo: '<',
+    availableOptions: '<',
   },
   controller,
   template,

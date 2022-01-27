@@ -58,8 +58,16 @@ export const TENANT_STATUS = {
 };
 
 export const SERVICE_TYPE = 'DEDICATED_ANTHOS';
+export const ADDON_PUBLIC_IP_PLAN_CODE = 'option-public-ips-64';
+export const ADDON_HOST_PRODUCT_FAMILY = 'option-additional-bm';
+export const MAX_HOST_ADDON = 10;
+export const PRICE_DURATION = 'P1M';
 
 export default {
+  ADDON_HOST_PRODUCT_FAMILY,
+  ADDON_PUBLIC_IP_PLAN_CODE,
+  MAX_HOST_ADDON,
+  PRICE_DURATION,
   GUIDES,
   ANTHOS_READ_MORE_GUIDE,
   ANTHOS_TENANT_ALERTER,

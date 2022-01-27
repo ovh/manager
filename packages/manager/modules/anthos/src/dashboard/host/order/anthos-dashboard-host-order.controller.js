@@ -1,10 +1,8 @@
+import { MAX_HOST_ADDON, PRICE_DURATION } from '../../../anthos.constants';
 import {
-  MAX_ADDONS,
-  PRICE_DURATION,
   TRACKING_CHUNK,
   TRACKING_PREFIX,
 } from './anthos-dashboard-host-order.constants';
-import { extractHostAddonsFromAnthosServiceOption } from './anthos-dashboard-host-order.utils';
 
 export default class AnthosDashboardHostOrderController {
   /* @ngInject */
@@ -32,21 +30,11 @@ export default class AnthosDashboardHostOrderController {
   }
 
   $onInit() {
+    this.addons = angular.copy(this.availableOptions.hosts);
     this.isLoading = true;
 
-    this.$q
-      .all({
-        anthosCatalog: this.AnthosTenantsService.getAnthosCatalog(),
-        anthosServiceOption: this.AnthosTenantsService.getAnthosServiceOption(
-          this.serviceName,
-        ),
-        expressOrderUrl: this.User.getUrlOf('express_order'),
-      })
-      .then(({ anthosCatalog, anthosServiceOption, expressOrderUrl }) => {
-        this.addons = extractHostAddonsFromAnthosServiceOption(
-          anthosServiceOption,
-          anthosCatalog,
-        );
+    this.User.getUrlOf('express_order')
+      .then((expressOrderUrl) => {
         this.expressOrderUrl = expressOrderUrl;
       })
       .catch(() => {
@@ -64,7 +52,7 @@ export default class AnthosDashboardHostOrderController {
     // Wait for the next tick since the addon's quantity is not changed yet
     this.$timeout(() => {
       const ads = this.addons.reduce((sum, { quantity }) => sum + quantity, 0);
-      const adsLeft = MAX_ADDONS - ads;
+      const adsLeft = MAX_HOST_ADDON - ads;
 
       this.addons.forEach((addon) => {
         // eslint-disable-next-line no-param-reassign
