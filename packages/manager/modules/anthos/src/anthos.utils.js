@@ -1,10 +1,11 @@
 import {
-  ADDON_PRODUCT_FAMILY,
-  MAX_ADDONS,
+  ADDON_HOST_PRODUCT_FAMILY,
+  ADDON_PUBLIC_IP_PLAN_CODE,
+  MAX_HOST_ADDON,
   PRICE_DURATION,
-} from './anthos-dashboard-host-order.constants';
+} from './anthos.constants';
 
-export function formatAddon(addon) {
+export function formatHostAddon(addon) {
   const {
     blobs: {
       commercial: { name: host },
@@ -45,7 +46,7 @@ export function formatAddon(addon) {
   );
 
   return {
-    $max: MAX_ADDONS,
+    $max: MAX_HOST_ADDON,
     $raw: addon,
     id,
     quantity: 0,
@@ -63,12 +64,10 @@ export function extractHostAddonsFromAnthosServiceOption(
   catalog,
 ) {
   return serviceOption
-    .filter(({ family }) => family === ADDON_PRODUCT_FAMILY)
+    .filter(({ family }) => family === ADDON_HOST_PRODUCT_FAMILY)
     .map((addon) =>
-      formatAddon({
-        ...catalog.addons?.find?.(
-          ({ planCode }) => planCode === addon.planCode,
-        ),
+      formatHostAddon({
+        ...catalog.addons?.find(({ planCode }) => planCode === addon.planCode),
         pricings: addon.prices.filter(
           ({ duration }) => duration === PRICE_DURATION,
         ),
@@ -76,6 +75,22 @@ export function extractHostAddonsFromAnthosServiceOption(
     );
 }
 
+export function extractPublicIpsAddonFromAnthosServiceOption(serviceOption) {
+  const addon = serviceOption.find(
+    ({ planCode }) => planCode === ADDON_PUBLIC_IP_PLAN_CODE,
+  );
+  if (!addon) return null;
+  const price = addon.prices?.find(
+    ({ duration }) => duration === PRICE_DURATION,
+  );
+  if (!price) return null;
+  return {
+    ...addon,
+    price,
+  };
+}
+
 export default {
   extractHostAddonsFromAnthosServiceOption,
+  extractPublicIpsAddonFromAnthosServiceOption,
 };

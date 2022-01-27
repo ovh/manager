@@ -204,6 +204,7 @@
                     >
                         <oui-action-menu-item
                             data-on-click="$ctrl.onGoToOrderHost()"
+                            disabled="$ctrl.availableOptions.hosts.length === 0"
                         >
                             <span
                                 data-translate="anthos_tenant_dashboard_general_information_tile_resources_hosts_menu_order_host"
@@ -258,6 +259,7 @@
                     >
                         <oui-action-menu-item
                             data-on-click="$ctrl.onGoToOrderPublicIp()"
+                            disabled="!$ctrl.availableOptions.publicIps"
                         >
                             <span
                                 data-translate="anthos_tenant_dashboard_general_information_tile_resources_ips_menu_add_public_ip"
