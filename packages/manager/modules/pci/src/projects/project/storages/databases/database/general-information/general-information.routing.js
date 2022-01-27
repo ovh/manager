@@ -266,7 +266,8 @@ export default /* @ngInject */ ($stateProvider) => {
             )
           : [],
       users: /* @ngInject */ (DatabaseService, database, projectId) =>
-        isFeatureActivated('usersTab', database.engine)
+        isFeatureActivated('usersTab', database.engine) ||
+        isFeatureActivated('resetAdminUserFromDashboard', database.engine)
           ? DatabaseService.getUsers(projectId, database.engine, database.id)
           : [],
       stopPollingDatabaseStatus: /* @ngInject */ (
