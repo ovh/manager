@@ -28,7 +28,7 @@
         <form novalidate name="formAddConf" data-ng-if="$ctrl.showAddConfig">
             <div class="oui-input-group oui-input-group_inline">
                 <oui-field
-                    label="{{:: 'overTheBox_autoconfigure_dhcp_interface_optional' | translate}}"
+                    label="{{:: 'overTheBox_autoconfigure_dhcp_interface' | translate}}"
                     label-popover="{{:: 'overTheBox_autoconfigure_dhcp_interface_description' | translate}}"
                 >
                     <input
@@ -36,6 +36,7 @@
                         name="interface"
                         type="text"
                         ng-model="$ctrl.config.interface"
+                        required
                     />
                 </oui-field>
                 <oui-field
@@ -143,6 +144,10 @@
             >
             </oui-datagrid-column>
             <oui-datagrid-column
+                title="'overTheBox_autoconfigure_dhcp_lease_duration' | translate"
+                property="configuration.leaseDuration"
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 title="'overTheBox_autoconfigure_dhcp_offset' | translate"
                 property="configuration.offset"
             >
@@ -152,10 +157,6 @@
                 property="configuration.poolSize"
             >
             </oui-datagrid-column>
-            <oui-datagrid-column
-                title="'overTheBox_autoconfigure_dhcp_lease_duration' | translate"
-                property="configuration.leaseDuration"
-            ></oui-datagrid-column>
             <oui-datagrid-column
                 title="'overTheBox_autoconfigure_priority' | translate"
                 property="priority"
@@ -299,6 +300,11 @@
             <oui-datagrid-column
                 title="'overTheBox_autoconfigure_ip' | translate"
                 property="configuration.ip"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title="'overTheBox_autoconfigure_priority' | translate"
+                property="priority"
             >
             </oui-datagrid-column>
             <oui-datagrid-column>
