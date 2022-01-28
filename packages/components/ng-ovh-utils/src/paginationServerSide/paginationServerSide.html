@@ -2,7 +2,11 @@
     <div class="ua-pagination d-flex">
         <ul class="pagination my-0">
             <li data-ng-class="getPaginationPreviousClasses()">
-                <a href="javascript:void(0)" data-ng-click="loadPage(1)">
+                <a
+                    href="javascript:void(0)"
+                    data-ng-click="loadPage(1)"
+                    target="_top"
+                >
                     <i class="fa fa-angle-double-left"></i>
                 </a>
             </li>
@@ -10,6 +14,7 @@
                 <a
                     href="javascript:void(0)"
                     data-ng-click="loadPage(currentPage - 1)"
+                    target="_top"
                 >
                     <i class="fa fa-angle-left"></i>
                 </a>
@@ -22,12 +27,14 @@
                     href="javascript:void(0)"
                     data-ng-bind="page"
                     data-ng-click="loadPage(page)"
+                    target="_top"
                 ></a>
             </li>
             <li data-ng-class="getPaginationNextClasses()">
                 <a
                     href="javascript:void(0)"
                     data-ng-click="loadPage(currentPage + 1)"
+                    target="_top"
                 >
                     <i class="fa fa-angle-right"></i>
                 </a>
@@ -36,6 +43,7 @@
                 <a
                     href="javascript:void(0)"
                     data-ng-click="loadPage(getLastPageNumber())"
+                    target="_top"
                 >
                     <i class="fa fa-angle-double-right"></i>
                 </a>
