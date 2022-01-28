@@ -89,6 +89,7 @@
                     data-ng-repeat="instance in $row.attachedTo track by instance.id"
                     data-ng-href="{{:: $ctrl.instanceLink(instance.id) }}"
                     data-ng-bind="instance.name"
+                    target="_top"
                 ></a>
             </oui-datagrid-column>
             <oui-datagrid-column
