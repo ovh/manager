@@ -20,7 +20,7 @@
             class="oui-link"
             data-ng-href="{{:: $ctrl.paymentMethodUrl }}"
             rel="noopener"
-            target="_self"
+            target="_top"
             data-translate="pci_project_new_payment_check_payment_method_status"
         ></a>
     </oui-message>
@@ -147,6 +147,7 @@
                         class="oui-button oui-button_primary oui-button_icon-right no-transition"
                         data-ng-if="$ctrl.model.paymentMethod.type.isBankAccount()"
                         data-ng-href="{{:: $ctrl.paymentMethodAddUrl }}"
+                        target="_top"
                     >
                         <span
                             data-translate="pci_project_new_payment_btn_continue_bank_account"
@@ -164,6 +165,7 @@
                 data-ng-if="!$ctrl.model.paymentMethod.isHandleByComponent() || !$ctrl.componentInitialParams"
                 data-ng-href="{{ $ctrl.getCancelHref() }}"
                 data-translate="pci_project_new_payment_btn_cancel"
+                target="_top"
             >
             </a>
         </div>
