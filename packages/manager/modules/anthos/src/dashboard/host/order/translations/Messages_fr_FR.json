@@ -11,5 +11,5 @@
   "anthos_dashboard_host_order_grid_header_price": "Prix",
   "anthos_dashboard_host_order_grid_row_cpu": "{{ cores }} cores / {{ threads }} threads - {{ frequency }}GHz+",
   "anthos_dashboard_host_order_grid_row_price": "HT/Mois",
-  "anthos_dashboard_host_order_action": "Initier la commande"
+  "anthos_dashboard_host_order_action": "Commander"
 }
