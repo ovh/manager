@@ -1,3 +1,12 @@
+# [0.11.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.10.0-alpha.1...@ovh-ux/manager-billing@0.11.0-alpha.0) (2022-01-28)
+
+
+### Features
+
+* **dedicated.payment:** add payment enhancements for sepa ([#6164](https://github.com/ovh/manager/issues/6164)) ([e01395c](https://github.com/ovh/manager/commit/e01395c7a990d855c1576829a0a58c09eba1126e))
+
+
+
 # [0.10.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.10.0-alpha.0...@ovh-ux/manager-billing@0.10.0-alpha.1) (2022-01-26)
 
 
