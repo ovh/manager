@@ -1,4 +1,5 @@
-const STATUS_DONE = 'DONE';
+import { NUTANIX_NODE_STATUS } from './constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.dashboard.nodes.node.general-info', {
     url: '',
@@ -12,6 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go(
           'nutanix.dashboard.nodes.node.general-info.edit-display-name',
         ),
+      goToReboot: /* @ngInject */ ($state) => () =>
+        $state.go('nutanix.dashboard.nodes.node.general-info.reboot'),
       technicalDetails: /* @ngInject */ (NutanixService, nodeId) =>
         NutanixService.getNodeHardwareInfo(nodeId),
       goToNetboot: /* @ngInject */ ($state, nodeId) => () =>
@@ -23,8 +26,13 @@ export default /* @ngInject */ ($stateProvider) => {
         Alerter,
         serviceName,
         nodeId,
-      ) => (message = false, type = STATUS_DONE) => {
-        const reload = message && type === STATUS_DONE;
+      ) => (
+        message = false,
+        type = NUTANIX_NODE_STATUS.DONE,
+        reloadRoute = true,
+      ) => {
+        const reload =
+          message && type === NUTANIX_NODE_STATUS.DONE && reloadRoute;
         const promise = $state.go(
           'nutanix.dashboard.nodes.node.general-info',
           {

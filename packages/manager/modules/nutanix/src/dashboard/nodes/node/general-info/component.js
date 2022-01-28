@@ -13,6 +13,7 @@ export default {
     goToNodeNameEdit: '<',
     goToNetboot: '<',
     goToNutanixNode: '<',
+    goToReboot: '<',
   },
   controller,
   template,
