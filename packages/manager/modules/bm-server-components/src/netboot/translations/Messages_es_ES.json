@@ -30,7 +30,7 @@
   "server_configuration_netboot_step2_rescue": "Nombre del rescue:",
   "server_configuration_netboot_step2_rescue_mail": "Correo del rescue:",
   "server_configuration_netboot_success": "El netbook se ha actualizado correctamente. Debe reiniciar el servidor.",
-  "server_configuration_netboot_fail": "Se ha producido un error al actualizar el netboot en el servidor {{t0}}.",
+  "server_configuration_netboot_fail": "Se ha producido un error al actualizar el netboot en el servidor {{t0}}: {{message}}",
   "server_configuration_netboot_next": "Siguiente",
   "server_configuration_netboot_cancel": "Cancelar",
   "server_configuration_netboot_confirm": "Confirmar",
