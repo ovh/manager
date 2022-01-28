@@ -21,7 +21,9 @@
             data-sortable
             data-type="string"
         >
-            <a data-ng-href="{{ $ctrl.getServerDashboardLink($row) }}"
+            <a
+                data-ng-href="{{ $ctrl.getServerDashboardLink($row) }}"
+                target="_top"
                 >{{$value}}</a
             >
         </oui-datagrid-column>

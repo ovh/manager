@@ -21,7 +21,9 @@
             data-sortable
             data-type="string"
         >
-            <a data-ng-href="{{ $ctrl.getPackLink($row) }}">{{ $value }}</a>
+            <a data-ng-href="{{ $ctrl.getPackLink($row) }}" target="_top"
+                >{{ $value }}</a
+            >
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'packs_description_label' | translate"
