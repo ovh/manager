@@ -23,5 +23,8 @@ export default {
     userLink: '<',
     getPrice: '<',
     getTax: '<',
+    steins: '<',
+    customerRegions: '<',
+    jobListRegions: '<',
   },
 };

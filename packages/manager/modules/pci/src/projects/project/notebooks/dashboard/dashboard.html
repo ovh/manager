@@ -21,16 +21,31 @@
         </oui-guide-menu-item>
     </oui-guide-menu>
 </oui-header>
-<oui-message data-type="info"
-             dismissable>
-    <span data-translate="pci_notebooks_dashboard_banner_user_and_roles_info"></span>
-    <p class="m-0">
-        <a
-            target="_blank"
-            rel="noopener"
-            data-translate="pci_notebooks_dashboard_banner_user_and_roles_info_link"
-            data-ng-href="{{:: $ctrl.userAndRolesLink }}"
-        ></a>
-    </p>
-</oui-message>
+
+<div class="mt-4">
+
+    <pci-maintenance-banner
+        data-steins="$ctrl.steins"
+        data-customer-regions="$ctrl.customerRegions"
+        data-product-regions="$ctrl.notebooksRegions"
+        data-is-dashboard-page="true"
+        data-product-service-name="$ctrl.notebook.spec.name"
+        data-product-region="$ctrl.notebook.spec.region"
+    ></pci-maintenance-banner>
+
+    <oui-message data-type="info"
+                 dismissable>
+        <span data-translate="pci_notebooks_dashboard_banner_user_and_roles_info"></span>
+        <p class="m-0">
+            <a
+                target="_blank"
+                rel="noopener"
+                data-translate="pci_notebooks_dashboard_banner_user_and_roles_info_link"
+                data-ng-href="{{:: $ctrl.userAndRolesLink }}"
+            ></a>
+        </p>
+    </oui-message>
+
+</div>
+
 <div class="container-fluid" data-ui-view="notebookView"></div>
