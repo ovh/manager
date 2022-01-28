@@ -1,4 +1,10 @@
 /* eslint-disable max-classes-per-file */
+
+import {
+  PERSONAL_DATA_PROTECTION_BY_OVH_LINK,
+  PERSONAL_DATA_PROTECTION_BY_YOUSIGN_LINK,
+} from './constants';
+
 class BankAccountModel {
   constructor(country) {
     this.country = country;
@@ -28,10 +34,26 @@ class BankAccountModel {
 }
 
 export default class PaymentMethodAddLegacyBillingAddressCtrl {
+  /* @ngInject */
+  constructor(coreConfig) {
+    this.coreConfig = coreConfig;
+  }
+
   $onInit() {
     this.model.billingAddress = new BankAccountModel(
       this.currentUser.billingCountry,
     );
+    this.setDataProtectionLinks();
+  }
+
+  setDataProtectionLinks() {
+    const currentLanguage = this.coreConfig.getUserLanguage();
+    this.dataProtectionOvhLink =
+      PERSONAL_DATA_PROTECTION_BY_OVH_LINK[currentLanguage] ||
+      PERSONAL_DATA_PROTECTION_BY_OVH_LINK.en;
+    this.dataProtectionYouSignLink =
+      PERSONAL_DATA_PROTECTION_BY_YOUSIGN_LINK[currentLanguage] ||
+      PERSONAL_DATA_PROTECTION_BY_YOUSIGN_LINK.en;
   }
 }
 /* eslint-enable max-classes-per-file */
