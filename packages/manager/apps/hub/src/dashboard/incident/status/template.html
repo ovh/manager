@@ -39,6 +39,7 @@
 <a
     data-ng-href="{{$ctrl.faqLink}}"
     data-translate="manager_hub_incident_status_faq"
+    target="_top"
 ></a>
 <oui-datagrid
     class="pb-5"
@@ -54,6 +55,7 @@
         <a
             data-ng-href="{{:: $row.url }}"
             data-ng-bind="::$row.serviceName"
+            target="_top"
         ></a>
     </oui-datagrid-column>
     <oui-datagrid-column
@@ -112,7 +114,7 @@
         title="::'manager_hub_incident_status_service_backup' | translate"
         property="backupUrl"
     >
-        <a data-ng-href="{{$value}}" download>
+        <a data-ng-href="{{$value}}" download target="_top">
             <span
                 class="oui-icon oui-icon-download_concept"
                 aria-hidden="true"
