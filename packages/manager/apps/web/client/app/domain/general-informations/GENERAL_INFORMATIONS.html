@@ -139,6 +139,7 @@
                             <a
                                 data-ng-href="{{:: $ctrl.zoneActivationLink }}"
                                 data-translate="domain_configuration_dnsanycast_how_to_activate_2"
+                                target="_top"
                             >
                             </a
                             >)
@@ -209,6 +210,7 @@
                             data-ng-if="::$ctrl.orderedHosting"
                             data-ng-bind="::$ctrl.orderedHosting"
                             data-ng-href="#/hosting/{{::$ctrl.orderedHosting}}?tab=GENERAL_INFORMATIONS"
+                            target="_top"
                         >
                         </a>
                         <span
@@ -244,6 +246,7 @@
                                 <a
                                     data-ng-bind="::hosting"
                                     data-ng-href="#/hosting/{{::hosting}}?tab=MULTISITE"
+                                    target="_top"
                                 >
                                 </a>
                             </li>
@@ -282,6 +285,7 @@
                                 <a
                                     data-ng-bind="::domain.name"
                                     data-ng-href="http://{{:: domain.name }}"
+                                    target="_top"
                                 ></a>
                             </li>
                             <li
@@ -291,6 +295,7 @@
                                 <a
                                     data-ng-bind="::domain.name"
                                     data-ng-href="http://{{:: domain.name }}"
+                                    target="_top"
                                 ></a>
                             </li>
                         </ul>
@@ -406,6 +411,7 @@
                             data-ng-href="{{ $ctrl.optinLink}}"
                             class="oui-button oui-button_secondary"
                             data-translate="domain_dashboard_whois_button"
+                            target="_top"
                         ></a>
                         <span
                             data-ng-if="!$ctrl.isWhoisOptinAllowed"
@@ -424,6 +430,7 @@
                             data-ng-href="{{ $ctrl.emailObfuscationLink }}"
                             class="oui-button oui-button_secondary"
                             data-translate="domain_dashboard_obfuscated_email_regenerate_button"
+                            target="_top"
                         ></a>
                     </oui-tile-description>
                 </oui-tile-definition>

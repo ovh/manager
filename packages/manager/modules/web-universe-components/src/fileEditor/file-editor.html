@@ -64,6 +64,7 @@
                 onbeforesave="checkAddItem($data)"
                 onaftersave="addItem($data)"
                 data-ng-bind="newItem.value"
+                target="_top"
             >
             </a>
         </p>
@@ -77,6 +78,7 @@
                 data-editable-text="ngModel[$index]"
                 data-ng-bind="item"
                 data-ng-show="wucFileEditorItemValidator(item)"
+                target="_top"
             >
             </a>
 
@@ -87,6 +89,7 @@
                 data-editable-text="ngModel[$index]"
                 data-ng-bind="item"
                 data-ng-show="!wucFileEditorItemValidator(item)"
+                target="_top"
             >
             </a>
 
