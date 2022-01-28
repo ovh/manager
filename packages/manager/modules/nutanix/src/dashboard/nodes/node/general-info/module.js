@@ -13,6 +13,7 @@ import {
 import component from './component';
 import routing from './routing';
 import netboot from './netboot';
+import reboot from './reboot';
 
 const moduleName = 'ovhManagerNutanixNodeGeneralInfo';
 
@@ -28,6 +29,7 @@ angular
     serverNetwork,
     serverSupport,
     serverBandwidthDashboard,
+    reboot,
   ])
   .config(routing)
   .component('nutanixNodeGeneralInfo', component)

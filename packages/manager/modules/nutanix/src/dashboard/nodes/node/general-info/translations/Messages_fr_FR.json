@@ -12,6 +12,7 @@
   "server_configuration_boot": "Boot",
   "server_configuration_netboot_unavailable": "Information indisponible",
   "server_configuration_netboot_title_button": "Modifier",
+  "server_configuration_reboot_button": "Redémarrer",
   "server_configuration_datacenter": "Datacentre",
   "server_configuration_rack": "Baie",
   "server_configuration_server_id": "Serveur ID",
@@ -38,5 +39,7 @@
   "nutanix_node_general_info_support_issue_link_text": "Consulter nos tâches travaux",
   "server_configuration_reverse": "Reverse",
   "server_configuration_reverse_not_configured": "Non configuré",
-  "server_configuration_reverse_edit_button": "Modifier"
+  "server_configuration_reverse_edit_button": "Modifier",
+  "server_configuration_reboot_successfull": "Votre serveur {{serverName}} a été redémarré.",
+  "server_configuration_reboot_fail_task": "Une erreur est survenue lors du redémarrage de votre serveur."
 }
