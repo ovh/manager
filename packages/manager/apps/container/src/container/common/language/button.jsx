@@ -2,16 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
-import { TRANSLATE_NAMESPACE } from '../constants';
-
 const LanguageButton = ({ children, show, onClick }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('language');
   return (
     <button
       aria-haspopup={show}
       aria-expanded={show}
-      aria-label={t('navbar_language_change')}
-      title={t('navbar_language_change')}
+      aria-label={t('language_change')}
+      title={t('language_change')}
       type="button"
       className="oui-navbar-link oui-navbar-link_dropdown"
       onClick={(e) => {

@@ -2,23 +2,25 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { listen } from '@ovh-ux/ufrontend';
 
+import Notifications from '@/container/common/notifications-sidebar/notifications-button';
+
+import Account from './account';
 import Brand from './brand.jsx';
 import Universes from './universes.jsx';
-import Notifications from './notifications.jsx';
-import Account from './account.jsx';
 import Search from './search.jsx';
 import Hamburger from './hamburger-menu.jsx';
-import LanguageMenu from './language.jsx';
+import LanguageMenu from '@/container/common/language';
 import { fetchUniverses, getBrandURL } from './service';
 import style from './navbar.module.scss';
 import { MESSAGES } from './constants';
-import { useShell } from '../context';
+import { useShell } from '@/context';
 
 function Navbar({ environment }) {
   const shell = useShell();
-  const user = environment.getUser();
   const universe = environment.getUniverse();
-  const [userLocale, setUserLocale] = useState(shell.getPlugin('i18n').getLocale());
+  const [userLocale, setUserLocale] = useState(
+    shell.getPlugin('i18n').getLocale(),
+  );
 
   const [universes, setUniverses] = useState([]);
   const [searchURL, setSearchURL] = useState();
@@ -54,9 +56,7 @@ function Navbar({ environment }) {
         <div className="oui-navbar-list__item">
           <Notifications />
         </div>
-        <div className="oui-navbar-list__item">
-          <Account user={user} />
-        </div>
+        <Account user={environment.getUser()} />
       </div>
     </div>
   );

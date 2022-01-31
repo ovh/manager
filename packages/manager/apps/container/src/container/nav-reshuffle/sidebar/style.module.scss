@@ -1,0 +1,96 @@
+.sidebar {
+  @import '@ovh-ux/manager-hub/src/variables.scss';
+  width: 20rem;
+  min-width: 20rem;
+  color: white;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  li {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    line-height: 2.5rem;
+    vertical-align: middle;
+
+    a {
+      color: white;
+      font-weight: 400;
+      display: inline-block;
+      width: 100%;
+      border-bottom: 1px solid #0050d7bf;
+    }
+
+    a:hover {
+      text-decoration: underline !important;
+    }
+  }
+
+  h2 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &_logo {
+    height: 5rem;
+  }
+
+  &_action {
+    margin: 1.5rem;
+    margin-top: 1rem;
+
+    a {
+      background-color: white;
+      display: inline-block;
+      width: 100%;
+      color: $p-500;
+      font-weight: 600;
+      text-align: center;
+      line-height: 2.5rem;
+      border-radius: 0.5rem;
+    }
+  }
+
+  &_action_icon {
+    font-size: 1.5rem;
+    vertical-align: bottom !important;
+    margin-right: 0.75rem;
+  }
+
+  &_chip {
+    float: right;
+    margin-top: 0.75rem !important;
+  }
+
+  &_arrow {
+    font-size: 1.5rem;
+    float: right;
+    vertical-align: bottom !important;
+    margin-right: -0.5rem;
+  }
+
+  &_back_btn {
+    padding-left: 1rem;
+    display: inline-block;
+    line-height: 1.5rem;
+    vertical-align: bottom;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+
+    span {
+      font-size: 1.5rem;
+      margin-right: 0.75rem;
+    }
+  }
+
+  &_external {
+    font-size: 0.75rem;
+  }
+}

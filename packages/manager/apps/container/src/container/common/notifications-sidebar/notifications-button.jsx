@@ -1,14 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import useNotifications from '../core/notifications';
+import useNotifications from '@/core/notifications';
 
-import style from './navbar.module.scss';
-import { TRANSLATE_NAMESPACE } from './constants';
+import style from './notifications-sidebar.module.scss';
 import { useHeader } from '@/context/header';
 
-export default function NavbarNotifications(props) {
-  const { t } = useTranslation(TRANSLATE_NAMESPACE);
+export default function NavbarNotifications() {
+  const { t } = useTranslation('navbar');
   // getNavbarNotificationCount
   const { readAllNotifications, notificationsCount } = useNotifications();
 

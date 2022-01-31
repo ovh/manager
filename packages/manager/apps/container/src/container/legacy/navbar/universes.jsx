@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import { fetchUniverses } from './service';
 
 import { TRANSLATE_NAMESPACE } from './constants';
 
-function NavbarUniverses({ universe, universes }) {
+function NavbarUniverses({ universe }) {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
+  const [universes, setUniverses] = useState([]);
+
+  useEffect(() => {
+    fetchUniverses().then(setUniverses);
+  }, []);
+
   return (
     <div className="oui-navbar-list">
       <div className="oui-navbar-list oui-navbar-list_main oui-navbar_desktop-only">

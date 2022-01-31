@@ -1,8 +1,6 @@
 import React from 'react';
 
-import useNotifications from '../../../core/notifications';
-
-import style from './notification.module.scss';
+import useNotifications from '@/core/notifications';
 
 const NotificationIcon = ({ children, url, notificationId }) => {
   const { toggleNotificationReadStatus } = useNotifications();
