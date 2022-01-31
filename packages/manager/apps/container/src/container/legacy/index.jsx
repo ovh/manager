@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { plugin, IFrameMessageBus } from '@ovh-ux/shell';
+import ApplicationContext from '@/context';
+import style from './template.module.scss';
 
-import ApplicationContext from '../context';
+import LegacyHeader from './header';
 
-import ShellHeader from './header';
-import style from './shell.module.scss';
-
-function Shell() {
+function LegacyContainer() {
   const iframeRef = useRef(null);
   const [iframe, setIframe] = useState(null);
   const [router, setRouter] = useState(null);
@@ -28,7 +27,7 @@ function Shell() {
     <div className={style.managerShell}>
       {router}
       <div className={style.managerShell_header}>
-        <ShellHeader />
+        <LegacyHeader />
       </div>
       <div className={style.managerShell_content}>
         <iframe
@@ -43,4 +42,4 @@ function Shell() {
   );
 }
 
-export default Shell;
+export default LegacyContainer;

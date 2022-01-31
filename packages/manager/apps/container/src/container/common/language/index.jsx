@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import useClickAway from 'react-use/lib/useClickAway';
 
-import { useShell } from '../context';
+import { useShell } from '@/context';
 
-import LanguageButton from './language/button.jsx';
-import LanguageList from './language/list.jsx';
+import LanguageButton from './button.jsx';
+import LanguageList from './list.jsx';
 
 function LanguageMenu({ userLocale, setUserLocale }) {
   const ref = useRef();

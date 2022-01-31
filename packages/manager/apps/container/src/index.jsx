@@ -8,7 +8,8 @@ import { shell as shellApi } from '@ovh-ux/shell';
 
 import { initSso } from '@/core/sso';
 import { ApplicationProvider } from '@/context';
-import Shell from '@/shell';
+import LegacyContainer from '@/container/legacy';
+import NavReshuffleContainer from '@/container/nav-reshuffle';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './index.scss';
@@ -18,6 +19,7 @@ initSso();
 shellApi.initShell().then((shell) => {
   const environment = shell.getPlugin('environment').getEnvironment();
   const locale = environment.getUserLocale();
+  const useNavReshuffle = true; // @TODO fetch from preferences
   i18n
     .use(initReactI18next)
     .use(Backend)
@@ -33,7 +35,7 @@ shellApi.initShell().then((shell) => {
   ReactDOM.render(
     <React.StrictMode>
       <ApplicationProvider environment={environment} shell={shell}>
-        <Shell />
+        {useNavReshuffle ? <NavReshuffleContainer /> : <LegacyContainer />}
       </ApplicationProvider>
     </React.StrictMode>,
     document.querySelector('#app'),

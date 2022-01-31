@@ -6,7 +6,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { shell as shellApi } from '@ovh-ux/shell';
 import i18n from '../config/i18nTestConfig';
-import Shell from '../../shell';
+import Shell from '@/container/legacy';
 import { ApplicationProvider } from '../../context';
 
 // TODO: improve mocks to render shell with both sidebars
@@ -22,8 +22,8 @@ const server = setupServer(
   }),
 );
 
-jest.mock('../../account-sidebar/AccountSidebar.jsx');
-jest.mock('../../notifications-sidebar/NotificationsSidebar.jsx');
+jest.mock('@/container/legacy/account-sidebar/AccountSidebar.jsx');
+jest.mock('@/container/common/notifications-sidebar/NotificationsSidebar.jsx');
 
 describe('Renders shell header', () => {
   // Given an environment with the user 'Tester testee'
