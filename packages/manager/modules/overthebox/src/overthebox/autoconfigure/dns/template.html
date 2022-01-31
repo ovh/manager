@@ -1,0 +1,249 @@
+<div>
+    <oui-message
+        data-ng-if="$ctrl.successMessage"
+        type="success"
+        aria-close-button-label="{{:: 'overTheBox_autoconfigure_close' | translate}}"
+        on-dismiss="$ctrl.onDismiss()"
+        dismissable
+    >
+        <span data-ng-bind="$ctrl.successMessage"></span>
+    </oui-message>
+    <oui-message
+        data-ng-if="$ctrl.errorMessage"
+        type="error"
+        aria-close-button-label="{{:: 'overTheBox_autoconfigure_close' | translate}}"
+        on-dismiss="$ctrl.onDismiss()"
+        dismissable
+    >
+        <span data-ng-bind="$ctrl.errorMessage"></span>
+    </oui-message>
+    <div class="oui-box oui-box_light">
+        <h4
+            class="oui-box__heading"
+            data-translate="overTheBox_autoconfigure_dns_server"
+        ></h4>
+        <div data-ng-if="$ctrl.nameServers.length === 0" class="mb-2">
+            <em data-translate="overTheBox_autoconfigure_no_values"></em>
+        </div>
+        <form novalidate name="formServer" data-ng-if="$ctrl.showAddServer">
+            <div class="oui-input-group oui-input-group_inline">
+                <oui-field
+                    label="{{:: 'overTheBox_autoconfigure_dns_server' | translate}}"
+                    label-popover="{{:: 'overTheBox_autoconfigure_dns_server_description' | translate }}"
+                >
+                    <input
+                        class="oui-input"
+                        name="serverName"
+                        required
+                        ng-model="$ctrl.nameserver.server"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_priority' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="serverPriority"
+                        type="number"
+                        required
+                        ng-model="$ctrl.nameserver.priority"
+                    />
+                </oui-field>
+                <oui-button
+                    class="ml-2 mb-2"
+                    variant="primary"
+                    type="submit"
+                    on-click="$ctrl.createNameServer()"
+                    data-disabled="!$ctrl.nameserver.server || !$ctrl.nameserver.priority"
+                >
+                    <span
+                        data-translate="overTheBox_autoconfigure_submit"
+                    ></span>
+                </oui-button>
+                <oui-button
+                    class="ml-2 mb-2"
+                    variant="primary"
+                    on-click="$ctrl.cancelCreateNameServer()"
+                >
+                    <span
+                        data-translate="overTheBox_autoconfigure_cancel"
+                    ></span>
+                </oui-button>
+            </div>
+        </form>
+        <oui-button
+            variant="primary"
+            on-click="$ctrl.addNameserver()"
+            class="mb-2 d-flex justify-content-center"
+            data-ng-if="$ctrl.displayAddServerButton && $ctrl.nameServers.length === 0"
+        >
+            <span
+                data-translate="overTheBox_autoconfigure_dns_server_add"
+            ></span>
+        </oui-button>
+        <oui-datagrid
+            page-size="5"
+            rows="$ctrl.nameServers"
+            data-ng-if="$ctrl.nameServers.length > 0"
+        >
+            <oui-datagrid-topbar>
+                <oui-action-menu
+                    text="{{::'overTheBox_autoconfigure_actions' | translate}}"
+                >
+                    <oui-action-menu-item
+                        aria-label="{{::'overTheBox_autoconfigure_dns_server_add' | translate }}"
+                        data-on-click="$ctrl.addNameserver()"
+                    >
+                        <span
+                            data-translate="overTheBox_autoconfigure_dns_server_add"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-datagrid-topbar>
+            <oui-datagrid-column
+                title="'overTheBox_autoconfigure_dns_server' | translate"
+                property="configuration.server"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title="'overTheBox_autoconfigure_priority' | translate"
+                property="priority"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column>
+                <oui-button
+                    variant="primary"
+                    size="s"
+                    on-click="$ctrl.removeNameserver($row)"
+                >
+                    <span class="oui-icon oui-icon-trash"></span>
+                </oui-button>
+            </oui-datagrid-column>
+        </oui-datagrid>
+    </div>
+    <div class="oui-box oui-box_light mt-2">
+        <h4
+            class="oui-box__heading"
+            data-translate="overTheBox_autoconfigure_dns_local_domain"
+        ></h4>
+        <div data-ng-if="$ctrl.localDomains.length === 0" class="mb-2">
+            <em data-translate="overTheBox_autoconfigure_no_values"></em>
+        </div>
+        <form
+            novalidate
+            name="formLocalDomain"
+            data-ng-if="$ctrl.showAddLocalDomain"
+        >
+            <div class="oui-input-group oui-input-group_inline">
+                <oui-field
+                    label="{{:: 'overTheBox_autoconfigure_hostname' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="hostname"
+                        required
+                        ng-model="$ctrl.localDomain.hostname"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_ip' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="ip"
+                        required
+                        ng-model="$ctrl.localDomain.ip"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_priority' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="localDomainPriority"
+                        type="number"
+                        required
+                        ng-model="$ctrl.localDomain.priority"
+                    />
+                </oui-field>
+                <oui-button
+                    class="ml-2 mb-2"
+                    variant="primary"
+                    type="submit"
+                    on-click="$ctrl.createLocalDomain()"
+                    data-disabled="!$ctrl.localDomain.hostname || !$ctrl.localDomain.ip || !$ctrl.localDomain.priority"
+                >
+                    <span
+                        data-translate="overTheBox_autoconfigure_submit"
+                    ></span>
+                </oui-button>
+                <oui-button
+                    class="ml-2 mb-2"
+                    variant="primary"
+                    on-click="$ctrl.cancelCreateLocalDomain()"
+                >
+                    <span
+                        data-translate="overTheBox_autoconfigure_cancel"
+                    ></span>
+                </oui-button>
+            </div>
+        </form>
+        <oui-button
+            variant="primary"
+            data-on-click="$ctrl.addLocalDomain()"
+            class="mb-2 d-flex justify-content-center"
+            data-ng-if="$ctrl.displayAddLocalDomainButton && $ctrl.localDomains.length === 0"
+        >
+            <span
+                data-translate="overTheBox_autoconfigure_dns_local_domain_add"
+            ></span>
+        </oui-button>
+        <oui-datagrid
+            page-size="5"
+            rows="$ctrl.localDomains"
+            data-ng-if="$ctrl.localDomains.length > 0"
+        >
+            <oui-datagrid-topbar>
+                <oui-action-menu
+                    text="{{::'overTheBox_autoconfigure_actions' | translate}}"
+                >
+                    <oui-action-menu-item
+                        aria-label="{{::'overTheBox_autoconfigure_dns_local_domain_add' | translate }}"
+                        data-on-click="$ctrl.addLocalDomain()"
+                    >
+                        <span
+                            data-translate="overTheBox_autoconfigure_dns_local_domain_add"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-datagrid-topbar>
+            <oui-datagrid-column
+                title="'overTheBox_autoconfigure_hostname' | translate"
+                property="configuration.hostname"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title="'overTheBox_autoconfigure_ip' | translate"
+                property="configuration.ip"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title="'overTheBox_autoconfigure_priority' | translate"
+                property="priority"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column>
+                <oui-button
+                    variant="primary"
+                    size="s"
+                    on-click="$ctrl.removeLocalDomain($row)"
+                >
+                    <span class="oui-icon oui-icon-trash"></span>
+                </oui-button>
+            </oui-datagrid-column>
+        </oui-datagrid>
+    </div>
+</div>

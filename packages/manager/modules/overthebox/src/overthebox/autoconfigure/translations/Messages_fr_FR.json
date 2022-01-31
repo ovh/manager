@@ -90,5 +90,16 @@
   "overTheBox_autoconfigure_multipath_interface_remove_succeed": "La suppression de l'interface a été effectuée avec succès.",
   "overTheBox_autoconfigure_interface_add": "Ajouter une interface",
   "overTheBox_autoconfigure_value_not_defined": "Valeur non définie",
-  "overTheBox_autoconfigure_multipath_select_value": "Sélectionnez une valeur..."
+  "overTheBox_autoconfigure_multipath_select_value": "Sélectionnez une valeur...",
+  "overTheBox_autoconfigure_dns_title": "DNS",
+  "overTheBox_autoconfigure_dns_local_domain": "Domaines locaux",
+  "overTheBox_autoconfigure_dns_servers": "Serveurs",
+  "overTheBox_autoconfigure_dns_server": "Serveur",
+  "overTheBox_autoconfigure_dns_server_add": "Ajouter un serveur",
+  "overTheBox_autoconfigure_dns_server_description": "Adresse IP du serveur DNS",
+  "overTheBox_autoconfigure_dns_server_create_succeed": "La création du serveur DNS a été effectuée avec succès.",
+  "overTheBox_autoconfigure_dns_server_remove_succeed": "La suppression du serveur DNS a été effectuée avec succès.",
+  "overTheBox_autoconfigure_dns_local_domain_add": "Ajouter un domaine local",
+  "overTheBox_autoconfigure_dns_local_domain_create_succeed": "La création du domaine local DNS a été effectuée avec succès.",
+  "overTheBox_autoconfigure_dns_local_domain_remove_succeed": "La suppression du domaine local DNS a été effectuée avec succès."
 }

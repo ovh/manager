@@ -3,6 +3,7 @@ import routing from './overTheBox-autoconfigure.routing';
 
 import dhcp from './dhcp';
 import firewall from './firewall';
+import dns from './dns';
 
 import multipath from './multipath';
 
@@ -15,6 +16,7 @@ angular
     dhcp,
     firewall,
     multipath,
+    dns,
   ])
   .component('overTheBoxAutoconfigure', component)
   .config(routing)
