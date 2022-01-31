@@ -1,6 +1,13 @@
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
+@import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
+
 .sidebar {
   @import '@ovh-ux/manager-hub/src/variables.scss';
   width: 20rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   min-width: 20rem;
   color: white;
 
@@ -39,7 +46,24 @@
   }
 
   &_logo {
-    height: 5rem;
+    font-size: 3rem;
+    font-weight: 300;
+    padding-left: 1.5rem;
+    margin-top: 1.5rem;
+    display: inline-block;
+    margin-bottom: 3rem;
+
+    img {
+      width: 4rem;
+      padding-bottom: 0.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+
+  @media (max-width: $device-breakpoint-tablet-max-width) {
+    &_logo {
+      margin-top: 4rem;
+    }
   }
 
   &_action {
@@ -55,6 +79,11 @@
       text-align: center;
       line-height: 2.5rem;
       border-radius: 0.5rem;
+    }
+
+    a:hover {
+      text-decoration: none;
+      background-color: $p-200;
     }
   }
 
@@ -92,5 +121,9 @@
 
   &_external {
     font-size: 0.75rem;
+  }
+
+  &_filler {
+    flex-grow: 1;
   }
 }
