@@ -326,7 +326,7 @@
   "exchange_resilitation_action_intro": "Czy chcesz zrezygnować z usługi Exchange \"{0}\"? <br />Operacja ta anuluje automatyczne odnowienie pod koniec abonamentu powodując zawieszenie usługi.<br /><br /> Do tej daty będziesz mógł korzystać z usługi.",
   "exchange_resilitation_action_expiration": "Data wygasania",
   "exchange_resilitation_action_hosted_warning": "Twoje konta zostaną zawieszone z dniem wygasania usługi.",
-  "exchange_resilitation_action_button": "Rezygnacja",
+  "exchange_resilitation_action_button": "Zatwierdź",
   "exchange_resilitation_action_button_cancel": "Anuluj rezygnację",
   "exchange_resilitation_action_confirmation": "Uwaga, chcesz zrezygnować z usługi \"{0}\" oraz z {1} kont Exchange, które są do niej przypisane. <br />Czy chcesz wykonać tę operację?",
   "exchange_resilitation_action_success": "Usługa Exchange zostanie usunięta w dniu zakończenia abonamentu.",
@@ -1601,5 +1601,6 @@
   "exchange_mfa_error": "Wystąpił błąd: {{error}}",
   "exchange_delete_mfa_success": "Weryfikacja dwuetapowa za pomocą wiadomości SMS została usunięta.",
   "exchange_delete_mfa_error": "Wystąpił błąd podczas usuwania weryfikacji dwuetapowej: {{error}}",
-  "exchange_ACTION_configure_services_label_security_account": "Bezpieczeństwo kont"
+  "exchange_ACTION_configure_services_label_security_account": "Bezpieczeństwo kont",
+  "exchange_resilitation_action_menu_terminate_button": "Zrezygnuj"
 }
