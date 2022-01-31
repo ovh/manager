@@ -14,6 +14,7 @@ import privateBandwidthUpgrade from './private-bandwidth-upgrade';
 import routing from './routing';
 import component from './component';
 import editName from './edit-display-name';
+import licenceTile from '../component/licence-tile/module';
 
 const moduleName = 'ovhManagerNutanixGeneralInfo';
 
@@ -29,6 +30,7 @@ angular
     privateBandwidthUpgrade,
     region,
     editName,
+    licenceTile,
   ])
   .config(routing)
   .component('nutanixGeneralInfo', component)
