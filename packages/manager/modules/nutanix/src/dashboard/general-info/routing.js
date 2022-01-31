@@ -13,8 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state,
         Alerter,
         serviceName,
-      ) => (message = false, type = STATUS_DONE) => {
-        const reload = message && type === STATUS_DONE;
+      ) => (message = false, type = STATUS_DONE, stateReload = false) => {
+        const reload = (message && type === STATUS_DONE) || stateReload;
         const promise = $state.go(
           'nutanix.dashboard.general-info',
           {
