@@ -35,7 +35,7 @@ export default class RedeployConfirmController {
     )
       .then(() => {
         this.isRedeploying = false;
-        return this.goToNutanixGeneralInfo();
+        return this.goToNutanixGeneralInfo(null, null, true);
       })
       .then(() => {
         return this.atInternet.trackPage({
