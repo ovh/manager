@@ -104,9 +104,9 @@ export default class BillingPaymentMethodAddCtrl {
     );
   }
 
-  onPaymentMethodIntegrationSuccess(paymentMethod) {
+  onPaymentMethodIntegrationSuccess(paymentMethod, selectedPaymentMethodType) {
     this.loading.redirecting = true;
-    this.onPaymentMethodAdded(paymentMethod);
+    this.onPaymentMethodAdded(paymentMethod, selectedPaymentMethodType);
   }
 
   /* ----------  OuiStepper callbacks  ---------- */
@@ -156,7 +156,10 @@ export default class BillingPaymentMethodAddCtrl {
           ),
         })
         .then((paymentMethod) =>
-          this.onPaymentMethodIntegrationSuccess(paymentMethod),
+          this.onPaymentMethodIntegrationSuccess(
+            paymentMethod,
+            this.model.selectedPaymentMethodType,
+          ),
         )
         .catch((error) => this.onPaymentMethodIntegrationSubmitError(error));
     }
