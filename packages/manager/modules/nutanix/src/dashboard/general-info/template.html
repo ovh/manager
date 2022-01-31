@@ -144,9 +144,19 @@
             cluster="$ctrl.cluster"
             go-to-upgrade-private-bandwidth="$ctrl.goToUpgradePrivateBandwidth"
             private-bandwidth-service-id="$ctrl.privateBandwidthServiceId"
-            on-error="$ctrl.handleError(error)"
         >
         </nutanix-network-tile>
+    </div>
+
+    <!-- Licence details -->
+    <div class="col-md-6 col-lg-4 mb-3">
+        <nutanix-licence-tile
+            service-name="$ctrl.serviceName"
+            service-id="$ctrl.serviceInfo.serviceId"
+            licence-name="$ctrl.cluster.targetSpec.license"
+            on-error="$ctrl.handleError(error)"
+        >
+        </nutanix-licence-tile>
     </div>
 
     <!-- Subscription details -->
@@ -171,6 +181,15 @@
             travaux-url="{{$ctrl.TRAVAUX_LINK}}"
             tracking-prefix="$ctrl.trackingPrefix"
         ></server-support>
+    </div>
+
+    <!-- Network -->
+    <div class="col-md-6 col-lg-4 mb-3" data-ng-if="!$ctrl.server.isExpired">
+        <nutanix-network-tile
+            cluster="$ctrl.cluster"
+            on-error="$ctrl.handleError(error)"
+        >
+        </nutanix-network-tile>
     </div>
 
     <!-- TECHNICAL DETAILS -->

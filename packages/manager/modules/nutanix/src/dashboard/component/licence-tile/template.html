@@ -1,0 +1,26 @@
+<oui-tile
+    class="h-100"
+    data-heading="{{:: 'nutanix_cluster_licence_title' | translate }}"
+    data-loading="$ctrl.loadingTechnicalDetails"
+>
+    <oui-tile-definition term="AOS">
+        <oui-tile-description>
+            <span class="text-capitalize" data-ng-bind="$ctrl.licenceName">
+            </span>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-definition
+        data-ng-repeat="licence in $ctrl.licences.getFeatures() track by licence.name"
+    >
+        <oui-tile-term
+            data-ng-bind=":: licence.getFormatedName()"
+        ></oui-tile-term>
+        <oui-tile-description>
+            <span
+                class="text-capitalize"
+                data-ng-bind=":: (licence.isEnabled() ? 'nutanix_cluster_licence_enabled' : 'nutanix_cluster_licence_disabled') | translate"
+            >
+            </span>
+        </oui-tile-description>
+    </oui-tile-definition>
+</oui-tile>
