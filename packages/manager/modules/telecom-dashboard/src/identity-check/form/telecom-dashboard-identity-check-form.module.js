@@ -12,17 +12,17 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
 
-import '../../telecom-dashboard.scss';
-import '../../telecom-dashboard.less';
-
 import component from './telecom-dashboard-identity-check-form.component';
 import routing from './telecom-dashboard-identity-check-form.routing';
 import service from '../telecom-dashboard-identity-check.service';
+
+import cancellation from './cancellation';
 
 const moduleName = 'ovhManagerTelecomDashboardIdentityCheckForm';
 
 angular
   .module(moduleName, [
+    cancellation,
     'ngUiRouterTitle',
     'ovhManagerCore',
     'pascalprecht.translate',

@@ -1,23 +1,15 @@
-import confirmController from './confirm/confirm.controller';
-import confirmTemplate from './confirm/confirm.html';
-
 export default class IdentityCheckFormCtrl {
   /* @ngInject */
   constructor(
-    $uibModal,
     $translate,
-    atInternet,
     coreConfig,
     ovhPaymentMethodHelper,
     IdentityCheckService,
     TucToast,
   ) {
-    this.atInternet = atInternet;
-
     const { isValidIban, isValidBic } = ovhPaymentMethodHelper;
     const { name, firstname, address, zip, city } = coreConfig.getUser();
 
-    this.$uibModal = $uibModal;
     this.$translate = $translate;
     this.user = coreConfig.getUser();
 
@@ -91,51 +83,10 @@ export default class IdentityCheckFormCtrl {
     return !!this.procedure && !this.isCancelling;
   }
 
-  cancelProcedure() {
-    const { id } = this.procedure ?? {};
-
-    this.isCancelling = true;
-
-    this.IdentityCheckService.cancelProcedure(id)
-      .then(() => {
-        this.trackPage('cancel-account-validation::success');
-        this.procedure = null;
-        this.TucToast.success(
-          this.$translate.instant(
-            'telecom_dashboard_identity_check_form_cancel_success',
-          ),
-        );
-      })
-      .catch(({ status }) => {
-        this.trackPage(
-          `cancel-account-validation::error${status === 409 ? '-order' : ''}`,
-        );
-        this.TucToast.error(
-          this.$translate.instant(
-            `telecom_dashboard_identity_check_form_cancel_error${
-              status === 409 ? '_ongoing' : ''
-            }`,
-          ),
-        );
-      })
-      .finally(() => {
-        this.isCancelling = false;
-      });
-  }
-
-  confirmCancelProcedure() {
-    this.trackPage('account-validation::cancel-validation-popup');
+  modalCancelProcedure() {
     this.trackClick('cancel-current-validation');
-    this.$uibModal
-      .open({
-        template: confirmTemplate,
-        controller: confirmController,
-        controllerAs: '$ctrl',
-      })
-      .result.then(() => {
-        this.cancelProcedure();
-      })
-      .catch(() => {});
+    const { id } = this.procedure ?? {};
+    this.goToModalCancelProcedure(id);
   }
 
   onCancelCreateProcedureForm() {
@@ -146,18 +97,5 @@ export default class IdentityCheckFormCtrl {
     this.trackClick('download-pdf');
     const { pdfUrl } = this.procedure ?? {};
     window.open(pdfUrl);
-  }
-
-  trackClick(nameClick) {
-    this.atInternet.trackClick({
-      name: `telecom::telephony::account-validation::${nameClick}`,
-      type: 'action',
-    });
-  }
-
-  trackPage(namePage) {
-    this.atInternet.trackPage({
-      name: `telecom::telephony::${namePage}`,
-    });
   }
 }
