@@ -2,286 +2,302 @@ export default {
   children: [
     {
       id: 'home',
-      label: 'Tableau de bord',
+      translation: 'sidebar_home',
       path: '/manager',
     },
     {
       id: 'services',
-      label: 'Mes services',
-      count: ({ reket }) =>
-        reket.get('/services').then((result) => result.length),
+      translation: 'sidebar_services',
       children: [
         {
           id: 'dedicated',
-          label: 'Serveurs dédiés et virtuels',
-          count: ({ reket }) =>
-            reket
-              .get('/services?routes=/dedicated/server,/vps')
-              .then((result) => result.length),
+          translation: 'sidebar_dedicated_vps',
           children: [
             {
               id: 'dedicated-servers',
-              label: 'Serveur dédiés',
-              count: ({ reket }) =>
-                reket
-                  .get('/services?routes=/dedicated/server')
-                  .then((result) => result.length),
+              translation: 'sidebar_dedicated',
+              serviceType: 'DEDICATED_SERVER',
             },
             {
               id: 'vps',
-              label: 'Serveur privés virtuels',
-              count: ({ reket }) =>
-                reket
-                  .get('/services?routes=/vps')
-                  .then((result) => result.length),
+              translation: 'sidebar_vps',
+              serviceType: 'VPS',
             },
             {
               id: 'managed-bare-metal',
-              label: 'Managed Bare Metal',
+              translation: 'sidebar_dedicated_cloud',
+              serviceType: 'DEDICATEDCLOUD',
             },
             {
               id: 'dedicated-licences',
-              label: 'Licences',
+              translation: 'sidebar_licences',
+              serviceType: [
+                'LICENSE_CLOUDLINUX',
+                'LICENSE_CPANEL',
+                'LICENSE_DIRECTADMIN',
+                'LICENSE_PLESK',
+                'LICENSE_SPLA',
+                'LICENSE_SQLSERVER',
+                'LICENSE_VIRTUOZZO',
+                'LICENSE_WINDOWS',
+                'LICENSE_WORKLIGHT',
+              ],
             },
           ],
         },
         {
           id: 'hosted-private-cloud',
-          label: 'Hosted Private Cloud',
-          count: ({ reket }) =>
-            reket
-              .get('/services?routes=/dedicatedCloud')
-              .then((result) => result.length),
+          translation: 'sidebar_hpc',
           children: [
             {
               id: 'vm-ware',
-              label: 'VMware',
+              translation: 'sidebar_vmware',
             },
             {
               id: 'anthos',
-              label: 'Anthos',
+              translation: 'sidebar_anthos',
+              serviceType: 'DEDICATED_ANTHOS_TENANTS',
             },
             {
               id: 'veeam-enterprise',
-              label: 'Veeam Enterprise',
+              translation: 'sidebar_veeam_enterprise',
+              serviceType: 'VEEAM_VEEAMENTERPRISE',
             },
           ],
         },
         {
           id: 'public-cloud',
-          label: 'Public Cloud',
-          count: ({ reket }) =>
-            reket
-              .get('/services?routes=/cloud/project/{serviceName}')
-              .then((result) => result.length),
+          translation: 'sidebar_pci',
           children: [
             {
               id: 'pci-compute',
-              label: 'Compute',
+              translation: 'sidebar_pci_compute',
               children: [
                 {
                   id: 'pci-instances',
-                  label: 'Instances',
+                  translation: 'sidebar_pci_instances',
                 },
                 {
                   id: 'pci-bare-metal',
-                  label: 'Bare Metal',
+                  translation: 'sidebar_pci_bare_metal',
                 },
               ],
             },
             {
               id: 'pci-storage',
-              label: 'Storage',
+              translation: 'sidebar_pci_storage',
             },
             {
               id: 'pci-network',
-              label: 'Network',
+              translation: 'sidebar_pci_network',
             },
             {
               id: 'pci-containers',
-              label: 'Containers & Orchestration',
+              translation: 'sidebar_pci_containers',
             },
             {
               id: 'pci-ai',
-              label: 'AI & Machine Learning',
+              translation: 'sidebar_pci_ai',
             },
             {
               id: 'pci-analytics',
-              label: 'Data & Analytics',
+              translation: 'sidebar_pci_analytics',
             },
             {
               id: 'pci-management-interface',
-              label: 'Management Interface',
+              translation: 'sidebar_pci_management',
             },
             {
               id: 'pci-projects',
-              label: 'Project Management',
+              translation: 'sidebar_pci_projects',
             },
           ],
         },
         {
           id: 'storage',
-          label: 'Services de stockage',
+          translation: 'sidebar_storage',
           children: [
             {
               id: 'nasha',
-              label: 'NasHA',
+              translation: 'sidebar_nasha',
+              serviceType: 'DEDICATED_NASHA',
             },
             {
               id: 'netapp',
-              label: 'NetApp',
+              translation: 'sidebar_netapp',
+              serviceType: 'STORAGE_NETAPP',
             },
             {
               id: 'cloud-disk-array',
-              label: 'Cloud Disk Array',
+              translation: 'sidebar_cda',
             },
             {
               id: 'veeam-cloud-connect',
-              label: 'Veeam Cloud Connect',
+              translation: 'sidebar_veeamcc',
+              serviceType: 'VEEAMCLOUDCONNECT',
             },
           ],
         },
         {
           id: 'databases',
-          label: 'Databases',
+          translation: 'sidebar_databases',
+          serviceType: 'HOSTING_PRIVATEDATABASE',
           children: [
             {
               id: 'enterprise-file-storage',
-              label: 'Enterprise file storage',
+              translation: 'sidebar_enterprise_file_storage',
             },
             {
               id: 'metrics-data-platform',
-              label: 'Metrics Data Platform',
+              translation: 'sidebar_metrics',
             },
             {
               id: 'logs-data-platform',
-              label: 'Logs Data Platform',
+              translation: 'sidebar_logs_db',
             },
             {
               id: 'enterprise-cloud-db',
-              label: 'Enterprise Cloud Databases',
+              translation: 'sidebar_enterprise_cloud_db',
             },
           ],
         },
         {
           id: 'network-security',
-          label: 'Réseau et sécurité',
+          translation: 'sidebar_network',
           children: [
             {
               id: 'vrack',
-              label: 'vRack',
+              translation: 'sidebar_vrack',
+              serviceType: 'VRACK',
             },
             {
               id: 'ovhcloud-connect',
-              label: 'OVHcloud connect',
+              translation: 'sidebar_cloud_connect',
+              serviceType: 'OVHCLOUDCONNECT',
             },
             {
               id: 'iplb',
-              label: 'IP Load Balancer',
+              translation: 'sidebar_iplb',
+              serviceType: 'IPLOADBALANCING',
             },
             {
               id: 'ip',
-              label: 'IP',
+              translation: 'sidebar_ip',
+              serviceType: 'IP_SERVICE',
             },
             {
               id: 'cdn',
-              label: 'CDN Infrastructure',
+              translation: 'sidebar_cdn',
+              serviceType: 'CDN_DEDICATED',
             },
           ],
         },
         {
           id: 'domain-dns',
-          label: 'Domaines et DNS',
+          translation: 'sidebar_domain_dns',
           children: [
             {
               id: 'domains',
-              label: 'Domains',
+              translation: 'sidebar_domain',
+              serviceType: 'DOMAIN',
             },
             {
               id: 'dns',
-              label: 'Zone DNS',
+              translation: 'sidebar_dns',
+              serviceType: 'DOMAIN_ZONE',
             },
           ],
         },
         {
           id: 'web-hosting',
-          label: 'Hébergement Web',
+          translation: 'sidebar_web_hosting',
           children: [
             {
               id: 'hosting',
-              label: 'Hébergements',
+              translation: 'sidebar_hosting',
+              serviceType: 'HOSTING_WEB',
             },
             {
               id: 'cloud-web',
-              label: 'Cloud Web',
+              translation: 'sidebar_cloud_web',
             },
             {
               id: 'plesk',
-              label: 'Plesk',
+              translation: 'sidebar_plesk',
             },
             {
               id: 'web-databases',
-              label: 'Base de données',
+              translation: 'sidebar_web_db',
+              serviceType: 'HOSTING_PRIVATEDATABASE',
             },
           ],
         },
         {
           id: 'web-paas',
-          label: 'Web PaaS',
+          translation: 'sidebar_web_paas',
           children: [
             {
               id: 'platform-sh',
-              label: 'Platform.sh',
+              translation: 'sidebar_platform_sh',
+              serviceType: 'WEBPAAS_SUBSCRIPTION',
             },
           ],
         },
         {
           id: 'emails',
-          label: 'Email Pro',
+          label: 'Emails',
+          translation: 'sidebar_emails',
           children: [
             {
               id: 'email-pro',
-              label: 'Email Pro',
+              translation: 'sidebar_email_pro',
+              serviceType: 'EMAIL_PRO',
             },
             {
               id: 'exchange',
-              label: 'Exchange',
+              translation: 'sidebar_exchange',
+              serviceType: 'EMAIL_EXCHANGE_SERVICE',
             },
             {
               id: 'mxplan',
-              label: 'MXPlan',
+              translation: 'sidebar_mxplan',
+              serviceType: 'EMAIL_DOMAIN',
             },
           ],
         },
         {
           id: 'tools',
-          label: 'Outils collaboratifs',
+          translation: 'sidebar_tools',
           children: [
             {
               id: 'office',
-              label: 'Office',
+              translation: 'sidebar_license_office',
+              serviceType: 'LICENSE_OFFICE',
             },
             {
               id: 'sharepoint',
-              label: 'Sharepoint',
+              translation: 'sidebar_sharepoint',
+              serviceType: 'MSSERVICES_SHAREPOINT',
             },
           ],
         },
         {
           id: 'internet',
-          label: 'Internet',
+          translation: 'sidebar_internet',
           children: [
             {
               id: 'packs',
-              label: 'Packs',
+              translation: 'sidebar_packs_xdsl',
+              serviceType: 'PACK_XDSL',
             },
             {
               id: 'line',
-              label: 'Ligne internet seule',
+              translation: 'sidebar_internet_line',
+              serviceType: 'TELEPHONY_LINES',
             },
             {
               id: 'otb',
-              label: 'Over The Box',
+              translation: 'sidebar_otb',
             },
           ],
         },
@@ -289,23 +305,23 @@ export default {
     },
     {
       id: 'account',
-      label: 'Mon compte',
+      translation: 'sidebar_account',
     },
     {
       id: 'billing',
-      label: 'Mes factures',
+      translation: 'sidebar_billing',
     },
     {
       id: 'orders',
-      label: 'Mes commandes',
+      translation: 'sidebar_orders',
     },
     {
       id: 'sunrise',
-      label: 'Sunrise',
+      translation: 'sidebar_sunrise',
     },
     {
       id: 'marketplace',
-      label: 'Marketplace',
+      translation: 'sidebar_marketplace',
     },
   ],
 };

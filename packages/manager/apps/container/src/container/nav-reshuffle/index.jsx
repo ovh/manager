@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState, Suspense } from 'react';
 import { plugin, IFrameMessageBus } from '@ovh-ux/shell';
 import ApplicationContext from '@/context';
 
@@ -29,7 +29,9 @@ function NavReshuffleContainer() {
     <div className={style.navReshuffle}>
       {router}
       <div className={`${style.sidebar} ${showSidebar ? style.hidden : ''}`}>
-        <Sidebar />
+        <Suspense fallback="">
+          <Sidebar />
+        </Suspense>
       </div>
       <div className={`${style.container}`}>
         <div className={style.navbar}>
