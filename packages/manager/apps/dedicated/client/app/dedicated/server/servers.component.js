@@ -6,6 +6,7 @@ export default {
     filter: '<',
     dedicatedServers: '<',
     isOrderAvailable: '<',
+    isEcoRangeOrderAvailable: '<',
     orderUrl: '<',
     orderEcoRangeUrl: '<',
     serverStateEnum: '<',
