@@ -72,9 +72,6 @@ export default class OverTheBoxAutoconfigureDns {
   createNameServer() {
     this.errorMessage = '';
     this.successMessage = '';
-    if (!this.nameserver.server && !this.nameserver.priority) {
-      return this.$q.resolve(null);
-    }
 
     const params = {
       configuration: {
@@ -88,17 +85,16 @@ export default class OverTheBoxAutoconfigureDns {
         `/overTheBox/${this.serviceName}/configuration/dns/nameserver`,
         params,
       )
-      .then((response) => {
+      .then(() => {
         // Display success message
         this.successMessage = this.$translate.instant(
           'overTheBox_autoconfigure_dns_server_create_succeed',
         );
 
         // Reload nameserver table
-        this.loadNameserver();
         this.showAddServer = false;
         this.displayAddServerButton = true;
-        return response;
+        return this.loadNameserver();
       })
       .catch((error) => {
         // Display error message
@@ -121,15 +117,14 @@ export default class OverTheBoxAutoconfigureDns {
       .delete(
         `/overTheBox/${this.serviceName}/configuration/dns/nameserver/${row.id}`,
       )
-      .then((response) => {
+      .then(() => {
         // Display success message
         this.successMessage = this.$translate.instant(
           'overTheBox_autoconfigure_dns_server_remove_succeed',
         );
 
         // Reload nameserver table
-        this.loadNameserver();
-        return response;
+        return this.loadNameserver();
       })
       .catch((error) => {
         // Display error message
@@ -151,13 +146,6 @@ export default class OverTheBoxAutoconfigureDns {
   createLocalDomain() {
     this.errorMessage = '';
     this.successMessage = '';
-    if (
-      !this.localDomain.hostname &&
-      !this.localDomain.ip &&
-      !this.localDomain.priority
-    ) {
-      return this.$q.resolve(null);
-    }
 
     const params = {
       configuration: {
@@ -172,17 +160,16 @@ export default class OverTheBoxAutoconfigureDns {
         `/overTheBox/${this.serviceName}/configuration/dns/localDomain`,
         params,
       )
-      .then((response) => {
+      .then(() => {
         // Display success message
         this.successMessage = this.$translate.instant(
           'overTheBox_autoconfigure_dns_local_domain_create_succeed',
         );
 
         // Reload local domain table
-        this.loadLocalDomain();
         this.showAddLocalDomain = false;
         this.displayAddLocalDomainButton = true;
-        return response;
+        return this.loadLocalDomain();
       })
       .catch((error) => {
         // Display error message
@@ -205,15 +192,14 @@ export default class OverTheBoxAutoconfigureDns {
       .delete(
         `/overTheBox/${this.serviceName}/configuration/dns/localDomain/${row.id}`,
       )
-      .then((response) => {
+      .then(() => {
         // Display success message
         this.successMessage = this.$translate.instant(
           'overTheBox_autoconfigure_dns_local_domain_remove_succeed',
         );
 
         // Reload local domain table
-        this.loadLocalDomain();
-        return response;
+        return this.loadLocalDomain();
       })
       .catch((error) => {
         // Display error message
