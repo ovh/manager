@@ -326,7 +326,7 @@
   "exchange_resilitation_action_intro": "Sind Sie sicher, dass Sie den Exchange Dienst „{0}\" kündigen möchten? <br />Diese Aktion unterbindet die weitere automatische Verlängerung der Dienstleistung zum Ende des Abrechnungszeitraums.<br /><br /> Die Dienstleistung kann bis zu deren Ablaufdatum normal genutzt werden.",
   "exchange_resilitation_action_expiration": "Ablaufdatum",
   "exchange_resilitation_action_hosted_warning": "Ihre Accounts werden zum Ablaufdatum geschlossen.",
-  "exchange_resilitation_action_button": "Kündigen",
+  "exchange_resilitation_action_button": "Bestätigen",
   "exchange_resilitation_action_button_cancel": "Kündigung zurücknehmen",
   "exchange_resilitation_action_confirmation": "Achtung, Sie sind im Begriff, den Dienst „{0}“ sowie die dazugehörigen Exchange Accounts {1} zu kündigen. <br />Sind Sie sicher, dass Sie fortfahren möchten?",
   "exchange_resilitation_action_success": "Die Exchange Dienstleistung wird zum Ablaufdatum gelöscht.",
@@ -1601,5 +1601,6 @@
   "exchange_mfa_error": "Es ist ein Fehler aufgetreten: {{error}}",
   "exchange_delete_mfa_success": "Die Zwei-Faktor-Authentifizierung wurde gelöscht.",
   "exchange_delete_mfa_error": "Bei der Löschung der Zwei-Faktor-Authentifizierung ist ein Fehler aufgetreten: {{error}}",
-  "exchange_ACTION_configure_services_label_security_account": "Sicherheit der Accounts"
+  "exchange_ACTION_configure_services_label_security_account": "Sicherheit der Accounts",
+  "exchange_resilitation_action_menu_terminate_button": "Kündigen"
 }

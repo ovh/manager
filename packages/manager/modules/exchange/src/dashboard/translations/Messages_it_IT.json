@@ -326,7 +326,7 @@
   "exchange_resilitation_action_intro": "Vuoi davvero chiudere il servizio Exchange \"{0}\"? <br />Questa azione annulla il rinnovo automatico alla scadenza del periodo di validità e comporta il blocco del servizio.<br /><br /> Puoi utilizzare normalmente il tuo servizio fino a quella data.",
   "exchange_resilitation_action_expiration": "Data di scadenza",
   "exchange_resilitation_action_hosted_warning": "I tuoi account saranno sospesi al momento della scadenza. ",
-  "exchange_resilitation_action_button": "Disattiva",
+  "exchange_resilitation_action_button": "Conferma",
   "exchange_resilitation_action_button_cancel": "Annulla l'eliminazione",
   "exchange_resilitation_action_confirmation": "Attenzione, stai per disattivare totalmente il servizio \"{0}\" e i {1} account Exchange associati. <br /> Vuoi davvero effettuare questa operazione?",
   "exchange_resilitation_action_success": "Il servizio Exchange sarà eliminato alla scadenza.",
@@ -1601,5 +1601,6 @@
   "exchange_mfa_error": "Si è verificato un errore: {{error}}",
   "exchange_delete_mfa_success": "L’autenticazione a due fattori è stata eliminata correttamente.",
   "exchange_delete_mfa_error": "Si è verificato un errore durante l’eliminazione della doppia autenticazione: {{error}}",
-  "exchange_ACTION_configure_services_label_security_account": "Sicurezza degli account"
+  "exchange_ACTION_configure_services_label_security_account": "Sicurezza degli account",
+  "exchange_resilitation_action_menu_terminate_button": "Disattiva"
 }

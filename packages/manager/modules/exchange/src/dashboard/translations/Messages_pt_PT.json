@@ -326,7 +326,7 @@
   "exchange_resilitation_action_intro": "Tem a certeza de que deseja eliminar o seu serviço Exchange \"{0}\"? <br />Esta ação anulará a renovação automática no final do período de expiração e levará ao bloqueio do serviço.<br /><br /> Poderá utilizar normalmente o serviço até essa data.",
   "exchange_resilitation_action_expiration": "Data de expiração",
   "exchange_resilitation_action_hosted_warning": "As suas contas serão suspensas na data de \"expiração\".",
-  "exchange_resilitation_action_button": "Cancelar",
+  "exchange_resilitation_action_button": "Confirmar",
   "exchange_resilitation_action_button_cancel": "Anular a eliminação",
   "exchange_resilitation_action_confirmation": "Atenção, está no ponto de encerrar integralmente o serviço \"{0}\" bem como as {1} contas Exchange que estão associadas. <br />Deseja realmente proceder a esta operação?",
   "exchange_resilitation_action_success": "O serviço Exchange vai ser eliminado à data de expiração.",
@@ -1601,5 +1601,6 @@
   "exchange_mfa_error": "Ocorreu um erro: {{error}}",
   "exchange_delete_mfa_success": "A dupla autenticação foi eliminada com êxito.",
   "exchange_delete_mfa_error": "Ocorreu um erro aquando da eliminação da dupla autenticação: {{error}}",
-  "exchange_ACTION_configure_services_label_security_account": "Segurança das contas"
+  "exchange_ACTION_configure_services_label_security_account": "Segurança das contas",
+  "exchange_resilitation_action_menu_terminate_button": "Rescindir"
 }

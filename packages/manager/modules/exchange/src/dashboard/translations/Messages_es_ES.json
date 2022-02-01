@@ -326,7 +326,7 @@
   "exchange_resilitation_action_intro": "¿Seguro que quiere dar de baja el servicio Exchange «{0}»? <br />Esta acción cancelará la renovación automática al finalizar el periodo de expiración, bloqueando el servicio.<br /><br /> Puede utilizar el servicio con normalidad hasta esa fecha.",
   "exchange_resilitation_action_expiration": "Fecha de expiración",
   "exchange_resilitation_action_hosted_warning": "Llegada la fecha, se suspenderán las cuentas.",
-  "exchange_resilitation_action_button": "Dar de baja",
+  "exchange_resilitation_action_button": "Confirmar",
   "exchange_resilitation_action_button_cancel": "Cancelar la baja",
   "exchange_resilitation_action_confirmation": "Atención: va a dar de baja todo el servicio «{0}», así como las {1} cuentas Exchange asociadas a él. <br />¿Seguro que quiere realizar esta operación?",
   "exchange_resilitation_action_success": "El servicio Exchange se eliminará cuando llegue a la fecha de expiración.",
@@ -1601,5 +1601,6 @@
   "exchange_mfa_error": "Se ha producido un error: {{error}}",
   "exchange_delete_mfa_success": "Se ha eliminado la doble autenticación.",
   "exchange_delete_mfa_error": "Se ha producido un error al eliminar la doble autenticación: {{error}}",
-  "exchange_ACTION_configure_services_label_security_account": "Seguridad de las cuentas"
+  "exchange_ACTION_configure_services_label_security_account": "Seguridad de las cuentas",
+  "exchange_resilitation_action_menu_terminate_button": "Dar de baja"
 }
