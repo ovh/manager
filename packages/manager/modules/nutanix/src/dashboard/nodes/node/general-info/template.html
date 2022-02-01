@@ -141,6 +141,7 @@
             <server-support
                 service-name="{{$ctrl.serviceName}}"
                 travaux-url="{{$ctrl.TRAVAUX_LINK}}"
+                tracking-prefix="$ctrl.trackingPrefix"
             ></server-support>
         </div>
 
@@ -149,6 +150,7 @@
             <server-network
                 server="$ctrl.server"
                 bandwidth="$ctrl.bandwidthInformations.bandwidth"
+                tracking-prefix="$ctrl.trackingPrefix"
             >
                 <div data-ng-if="$ctrl.bandwidthInformations.bandwidth">
                     <!-- Reverse -->

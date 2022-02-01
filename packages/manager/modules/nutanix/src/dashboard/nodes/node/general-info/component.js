@@ -10,6 +10,7 @@ export default {
     bandwidthInformations: '<',
     specifications: '<',
     technicalDetails: '<',
+    trackingPrefix: '<',
     goToNodeNameEdit: '<',
     goToNetboot: '<',
     goToNutanixNode: '<',

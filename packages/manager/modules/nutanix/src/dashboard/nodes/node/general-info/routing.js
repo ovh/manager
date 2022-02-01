@@ -9,6 +9,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       nodeId: /* @ngInject */ ($transition$) => $transition$.params().nodeId,
       server: /* @ngInject */ (node) => node,
+      trackingPrefix: /* @ngInject */ () =>
+        'hpc::nutanix::cluster::node::dashboard',
       goToNodeNameEdit: /* @ngInject */ ($state) => () =>
         $state.go(
           'nutanix.dashboard.nodes.node.general-info.edit-display-name',
