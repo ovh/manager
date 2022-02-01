@@ -7,6 +7,7 @@ export default {
     dedicatedServers: '<',
     isOrderAvailable: '<',
     orderUrl: '<',
+    orderEcoRangeUrl: '<',
     serverStateEnum: '<',
     datacenterEnum: '<',
     onListParamsChange: '<',

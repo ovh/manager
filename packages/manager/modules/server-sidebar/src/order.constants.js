@@ -129,6 +129,23 @@ export const ORDER_URLS = {
       PL: 'https://www.ovh.pl/serwery_dedykowane',
       PT: 'https://www.ovh.pt/servidores_dedicados',
     },
+    dedicatedEcoRangeOrder: {
+      CZ: 'https://eco.ovhcloud.com/en-ie/',
+      DE: 'https://eco.ovhcloud.com/de/',
+      ES: 'https://eco.ovhcloud.com/es-es/',
+      FI: 'https://eco.ovhcloud.com/en-ie/',
+      FR: 'https://eco.ovhcloud.com/fr/',
+      GB: 'https://eco.ovhcloud.com/en-gb/',
+      IE: 'https://eco.ovhcloud.com/en-ie/',
+      IT: 'https://eco.ovhcloud.com/it/',
+      LT: 'https://eco.ovhcloud.com/en-ie/',
+      NL: 'https://eco.ovhcloud.com/nl/',
+      PL: 'https://eco.ovhcloud.com/pl/',
+      PT: 'https://eco.ovhcloud.com/pt/',
+      MA: 'https://eco.ovhcloud.com/fr-ma/',
+      SN: 'https://eco.ovhcloud.com/fr-sn/',
+      TN: 'https://eco.ovhcloud.com/fr-tn/',
+    },
     express_review_base: {
       CZ: 'https://www.ovh.cz/order/express/#/express/review',
       DE: 'https://www.ovh.de/order/express/#/express/review',
@@ -372,6 +389,15 @@ export const ORDER_URLS = {
       WE: 'https://www.ovh.com/world/dedicated-servers',
       WS: 'https://www.ovh.com/world/dedicated-servers',
     },
+    dedicatedEcoRangeOrder: {
+      ASIA: 'https://eco.ovhcloud.com/asia/',
+      AU: 'https://eco.ovhcloud.com/en-au/',
+      CA: 'https://eco.ovhcloud.com/en-ca/',
+      QC: 'https://eco.ovhcloud.com/fr-ca/',
+      SG: 'https://eco.ovhcloud.com/en-sg/',
+      WE: 'https://eco.ovhcloud.com/en/',
+      WS: 'https://eco.ovhcloud.com/en/',
+    },
     cloudProjectOrder: {
       ASIA: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
       AU: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
@@ -437,6 +463,9 @@ export const ORDER_URLS = {
     },
     dedicatedOrder: {
       US: 'https://us.ovhcloud.com/bare-metal/prices/',
+    },
+    dedicatedEcoRangeOrder: {
+      US: 'https://eco.ovhcloud.com/en/',
     },
     cloudProjectOrder: {
       US: 'https://us.ovhcloud.com/manager/cloud/#/iaas/pci/offer',
@@ -627,6 +656,17 @@ export const SIDEBAR_ORDER_CONFIG = [
     external: true,
     app: [DEDICATED],
     tracker: 'dedicated::orders::ovh-cloud-connect::order',
+  },
+  {
+    id: 'order-dedicated-server-eco',
+    title: 'dedicated_server_eco',
+    feature: 'dedicated-server:order',
+    icon: 'ovh-font ovh-font-server',
+    linkId: 'dedicatedEcoRangeOrder',
+    target: '_blank',
+    external: true,
+    app: [DEDICATED],
+    tracker: 'dedicated::orders::dedicated-servers-eco::order',
   },
 ];
 
