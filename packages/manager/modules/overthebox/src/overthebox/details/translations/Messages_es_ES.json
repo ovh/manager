@@ -84,5 +84,6 @@
   "overTheBox_last_seen_minutes_ago": "Hace {{lastSeenDiff}} aproximadamente",
   "overTheBox_reverse_dns": "Registro DNS inverso",
   "overTheBox_detail_link_guide": "Guías",
-  "overthebox_detail_links": "Enlaces"
+  "overthebox_detail_links": "Enlaces",
+  "overTheBox_service_id": "Identificador del servicio:"
 }
