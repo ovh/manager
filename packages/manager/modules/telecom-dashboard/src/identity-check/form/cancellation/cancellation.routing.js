@@ -39,6 +39,9 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      atInternet: {
+        rename: 'account-validation::cancel-validation-popup',
+      },
     },
   });
 };

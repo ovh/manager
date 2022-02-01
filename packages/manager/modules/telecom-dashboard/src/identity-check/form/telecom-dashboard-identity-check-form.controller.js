@@ -90,6 +90,7 @@ export default class IdentityCheckFormCtrl {
   }
 
   onCancelCreateProcedureForm() {
+    this.trackClick('cancel');
     this.goToDashboard();
   }
 

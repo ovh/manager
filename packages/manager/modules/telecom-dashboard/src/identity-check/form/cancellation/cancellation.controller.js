@@ -6,10 +6,6 @@ export default class IdentityCheckFormCancellationCtrl {
     this.TucToast = TucToast;
   }
 
-  $onInit() {
-    this.trackPage('account-validation::cancel-validation-popup');
-  }
-
   confirm() {
     this.trackClick('cancel-validation-popup::confirm');
 
