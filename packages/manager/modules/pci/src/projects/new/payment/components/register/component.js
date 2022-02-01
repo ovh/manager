@@ -4,6 +4,7 @@ export default {
   name: 'pciProjectNewPaymentRegister',
   template,
   bindings: {
+    creditProvisioningPlan: '<',
     eligibility: '<',
     model: '<',
     registerablePaymentMethods: '<',

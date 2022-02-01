@@ -6,6 +6,7 @@ export default {
   controller,
   template,
   bindings: {
+    creditProvisioningPlan: '<',
     validPaymentMethods: '<',
     registerablePaymentMethods: '<',
     eligibility: '<',

@@ -7,6 +7,7 @@ export default {
   template,
   bindings: {
     eligibility: '<',
+    creditProvisioningPlan: '<',
     globalLoading: '<',
     model: '<',
     registerablePaymentMethods: '<',
