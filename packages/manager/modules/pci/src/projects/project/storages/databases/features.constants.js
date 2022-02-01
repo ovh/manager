@@ -85,6 +85,7 @@ const features = {
   replicationsTab: [DATABASE_TYPES.KAFKA_MIRROR_MAKER],
   showServiceIntegration: [DATABASE_TYPES.KAFKA],
   restApi: [DATABASE_TYPES.KAFKA],
+  usersGroup: [DATABASE_TYPES.M3DB],
 };
 
 export default function isFeatureActivated(feature, databaseType) {

@@ -22,6 +22,7 @@ export default class UsersCtrl {
       'showUserInformations',
       this.database.engine,
     );
+    this.showGroup = isFeatureActivated('usersGroup', this.database.engine);
 
     // Poll the database status
     if (this.database.isProcessing()) {

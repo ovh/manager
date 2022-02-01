@@ -23,6 +23,10 @@ export const ADD_USER_FORM_RULES = {
     min: 1,
     max: 254,
   },
+  group: {
+    pattern: /^\S{1,254}$/,
+    max: 254,
+  },
 };
 
 export default {
