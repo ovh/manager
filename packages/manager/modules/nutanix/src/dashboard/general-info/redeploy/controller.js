@@ -1,4 +1,4 @@
-import clone from 'lodash/clone';
+import cloneDeep from 'lodash/cloneDeep';
 import {
   REDEPLOY_CONFIG_OPTIONS,
   PRISM_CENTRAL_TYPES,
@@ -21,7 +21,7 @@ export default class NutanixGeneralInfoRedeployCtrl {
   }
 
   $onInit() {
-    this.initalConfig = clone(this.cluster.targetSpec);
+    this.initalConfig = cloneDeep(this.cluster.targetSpec);
     this.displayPrismCentralIps = this.initalConfig.prismCentral.ips.join(',');
     this.redeployMethod = REDEPLOY_CONFIG_OPTIONS.INITIAL;
     this.redeployMethods = {
@@ -76,7 +76,7 @@ export default class NutanixGeneralInfoRedeployCtrl {
         prismElementVip,
         gatewayCidr,
         version,
-      }))(clone(this.cluster.targetSpec));
+      }))(cloneDeep(this.cluster.targetSpec));
       if (this.cluster.allowedRedundancyFactor.length === 1) {
         this.redundancyFactorValue = `${this.cluster.allowedRedundancyFactor[0]}`;
         this.config.redundancyFactor = +this.redundancyFactorValue;
