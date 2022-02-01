@@ -85,16 +85,6 @@
                 </oui-field>
                 <oui-field
                     class="ml-2"
-                    data-label="{{:: 'overTheBox_autoconfigure_firewall_dest_zone_optional' | translate}}"
-                >
-                    <input
-                        class="oui-input"
-                        name="destZone"
-                        ng-model="$ctrl.rule.destZone"
-                    />
-                </oui-field>
-                <oui-field
-                    class="ml-2"
                     data-label="{{:: 'overTheBox_autoconfigure_firewall_family_optional' | translate}}"
                 >
                     <oui-select
@@ -104,6 +94,16 @@
                         data-placeholder="{{:: 'overTheBox_autoconfigure_firewall_select_value' | translate }}"
                     >
                     </oui-select>
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    data-label="{{:: 'overTheBox_autoconfigure_firewall_dest_zone_optional' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="destZone"
+                        ng-model="$ctrl.rule.destZone"
+                    />
                 </oui-field>
             </div>
             <div class="oui-input-group oui-input-group_inline d-flex">
@@ -256,19 +256,6 @@
                     </dl>
                     <dl class="oui-description">
                         <dt
-                            data-translate="overTheBox_autoconfigure_firewall_dest_zone"
-                        ></dt>
-                        <dd
-                            data-translate="overTheBox_autoconfigure_value_not_defined"
-                            data-ng-if="!$row.configuration.destinationZone"
-                        ></dd>
-                        <dd
-                            data-ng-bind="$row.configuration.destinationZone"
-                            data-ng-if="$row.configuration.destinationZone"
-                        ></dd>
-                    </dl>
-                    <dl class="oui-description">
-                        <dt
                             data-translate="overTheBox_autoconfigure_firewall_family"
                         ></dt>
                         <dd
@@ -278,6 +265,19 @@
                         <dd
                             data-ng-bind="$row.configuration.family"
                             data-ng-if="$row.configuration.family"
+                        ></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt
+                            data-translate="overTheBox_autoconfigure_firewall_dest_zone"
+                        ></dt>
+                        <dd
+                            data-translate="overTheBox_autoconfigure_value_not_defined"
+                            data-ng-if="!$row.configuration.destinationZone"
+                        ></dd>
+                        <dd
+                            data-ng-bind="$row.configuration.destinationZone"
+                            data-ng-if="$row.configuration.destinationZone"
                         ></dd>
                     </dl>
                     <dl class="oui-description">

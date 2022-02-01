@@ -48,9 +48,7 @@ export default class OverTheBoxAutoconfigureFirewall {
     return this.$http
       .get(`/overTheBox/${this.serviceName}/configuration/firewall/rule`)
       .then((response) => {
-        if (response.data) {
-          this.rules = response.data;
-        }
+        this.rules = response.data;
         return response.data;
       })
       .catch((error) => {
@@ -68,9 +66,7 @@ export default class OverTheBoxAutoconfigureFirewall {
     return this.$http
       .get(`/overTheBox/${this.serviceName}/configuration/firewall/redirect`)
       .then((response) => {
-        if (response.data) {
-          this.redirections = response.data;
-        }
+        this.redirections = response.data;
         return response.data;
       })
       .catch((error) => {
