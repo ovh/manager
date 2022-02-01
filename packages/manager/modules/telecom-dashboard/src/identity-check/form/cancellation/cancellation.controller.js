@@ -12,10 +12,10 @@ export default class IdentityCheckFormCancellationCtrl {
   confirm() {
     this.trackClick('cancel-validation-popup::confirm');
 
-    this.IdentityCheckService.cancelProcedure(this.procedureId)
+    return this.IdentityCheckService.cancelProcedure(this.procedureId)
       .then(() => {
         this.trackPage('cancel-account-validation::success');
-        this.goBack(
+        return this.goBack(
           this.$translate.instant(
             'telecom_dashboard_identity_check_form_cancel_success',
           ),
@@ -26,7 +26,7 @@ export default class IdentityCheckFormCancellationCtrl {
         this.trackPage(
           `cancel-account-validation::error${status === 409 ? '-order' : ''}`,
         );
-        this.goBack(
+        return this.goBack(
           this.$translate.instant(
             `telecom_dashboard_identity_check_form_cancel_error${
               status === 409 ? '_ongoing' : ''
@@ -39,6 +39,6 @@ export default class IdentityCheckFormCancellationCtrl {
 
   cancel() {
     this.trackClick('cancel-validation-popup::cancel');
-    this.goBack();
+    return this.goBack();
   }
 }

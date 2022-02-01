@@ -86,7 +86,7 @@ export default class IdentityCheckFormCtrl {
   modalCancelProcedure() {
     this.trackClick('cancel-current-validation');
     const { id } = this.procedure ?? {};
-    this.goToModalCancelProcedure(id);
+    return this.goToModalCancelProcedure(id);
   }
 
   onCancelCreateProcedureForm() {

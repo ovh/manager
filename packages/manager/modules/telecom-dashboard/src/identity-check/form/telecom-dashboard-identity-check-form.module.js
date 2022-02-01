@@ -8,10 +8,6 @@ import '@ovh-ux/manager-telecom-styles';
 import 'angular-translate';
 import 'angular-ui-validate';
 
-import '@ovh-ux/ui-kit/dist/css/oui.css';
-import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
-import 'ovh-manager-webfont/dist/css/ovh-font.css';
-
 import component from './telecom-dashboard-identity-check-form.component';
 import routing from './telecom-dashboard-identity-check-form.routing';
 import service from '../telecom-dashboard-identity-check.service';
