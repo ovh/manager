@@ -75,16 +75,6 @@
                 </oui-field>
                 <oui-field
                     class="ml-2"
-                    data-label="{{:: 'overTheBox_autoconfigure_firewall_dest_port_optional' | translate}}"
-                >
-                    <input
-                        class="oui-input"
-                        name="destPort"
-                        ng-model="$ctrl.rule.destPort"
-                    />
-                </oui-field>
-                <oui-field
-                    class="ml-2"
                     data-label="{{:: 'overTheBox_autoconfigure_firewall_family_optional' | translate}}"
                 >
                     <oui-select
@@ -97,12 +87,22 @@
                 </oui-field>
                 <oui-field
                     class="ml-2"
-                    data-label="{{:: 'overTheBox_autoconfigure_firewall_dest_zone_optional' | translate}}"
+                    data-label="{{:: 'overTheBox_autoconfigure_firewall_dest_port_optional' | translate}}"
                 >
                     <input
                         class="oui-input"
-                        name="destZone"
-                        ng-model="$ctrl.rule.destZone"
+                        name="destPort"
+                        ng-model="$ctrl.rule.destPort"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    data-label="{{:: 'overTheBox_autoconfigure_firewall_source_ip_optional' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="srcIp"
+                        ng-model="$ctrl.rule.srcIp"
                     />
                 </oui-field>
             </div>
@@ -131,12 +131,12 @@
                 </oui-field>
                 <oui-field
                     class="ml-2"
-                    data-label="{{:: 'overTheBox_autoconfigure_firewall_source_ip_optional' | translate}}"
+                    data-label="{{:: 'overTheBox_autoconfigure_firewall_dest_zone_optional' | translate}}"
                 >
                     <input
                         class="oui-input"
-                        name="srcIp"
-                        ng-model="$ctrl.rule.srcIp"
+                        name="destZone"
+                        ng-model="$ctrl.rule.destZone"
                     />
                 </oui-field>
                 <oui-field
@@ -243,19 +243,6 @@
                     </dl>
                     <dl class="oui-description">
                         <dt
-                            data-translate="overTheBox_autoconfigure_firewall_dest_port"
-                        ></dt>
-                        <dd
-                            data-translate="overTheBox_autoconfigure_value_not_defined"
-                            data-ng-if="!$row.configuration.destinationPort"
-                        ></dd>
-                        <dd
-                            data-ng-bind="$row.configuration.destinationPort"
-                            data-ng-if="$row.configuration.destinationPort"
-                        ></dd>
-                    </dl>
-                    <dl class="oui-description">
-                        <dt
                             data-translate="overTheBox_autoconfigure_firewall_family"
                         ></dt>
                         <dd
@@ -269,15 +256,28 @@
                     </dl>
                     <dl class="oui-description">
                         <dt
-                            data-translate="overTheBox_autoconfigure_firewall_dest_zone"
+                            data-translate="overTheBox_autoconfigure_firewall_dest_port"
                         ></dt>
                         <dd
                             data-translate="overTheBox_autoconfigure_value_not_defined"
-                            data-ng-if="!$row.configuration.destinationZone"
+                            data-ng-if="!$row.configuration.destinationPort"
                         ></dd>
                         <dd
-                            data-ng-bind="$row.configuration.destinationZone"
-                            data-ng-if="$row.configuration.destinationZone"
+                            data-ng-bind="$row.configuration.destinationPort"
+                            data-ng-if="$row.configuration.destinationPort"
+                        ></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt
+                            data-translate="overTheBox_autoconfigure_firewall_source_ip"
+                        ></dt>
+                        <dd
+                            data-translate="overTheBox_autoconfigure_value_not_defined"
+                            data-ng-if="!$row.configuration.sourceIp"
+                        ></dd>
+                        <dd
+                            data-ng-bind="$row.configuration.sourceIp"
+                            data-ng-if="$row.configuration.sourceIp"
                         ></dd>
                     </dl>
                     <dl class="oui-description">
@@ -308,15 +308,15 @@
                     </dl>
                     <dl class="oui-description">
                         <dt
-                            data-translate="overTheBox_autoconfigure_firewall_source_ip"
+                            data-translate="overTheBox_autoconfigure_firewall_dest_zone"
                         ></dt>
                         <dd
                             data-translate="overTheBox_autoconfigure_value_not_defined"
-                            data-ng-if="!$row.configuration.sourceIp"
+                            data-ng-if="!$row.configuration.destinationZone"
                         ></dd>
                         <dd
-                            data-ng-bind="$row.configuration.sourceIp"
-                            data-ng-if="$row.configuration.sourceIp"
+                            data-ng-bind="$row.configuration.destinationZone"
+                            data-ng-if="$row.configuration.destinationZone"
                         ></dd>
                     </dl>
                     <dl class="oui-description">
