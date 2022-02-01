@@ -9,8 +9,9 @@ import ApplicationContext, { useShell } from '@/context';
 import HamburgerMenu from './hamburger-menu';
 import NavReshuffleSwitchBack from '@/container/common/nav-reshuffle-switch-back';
 import modalStyle from '@/container/common/modal.module.scss';
+import UserAccountMenu from './user-account-menu';
 
-function Header({ isSidebarExpanded, onHamburgerMenuClick }) {
+function Header({ isSidebarExpanded, onHamburgerMenuClick, onUserAccountMenuToggle }) {
   const shell = useShell();
   const [userLocale, setUserLocale] = useState(
     shell.getPlugin('i18n').getLocale(),
@@ -50,6 +51,9 @@ function Header({ isSidebarExpanded, onHamburgerMenuClick }) {
                   <Notifications />
                 </NotificationsProvider>
               </div>
+              <div className="oui-navbar-list__item">
+                <UserAccountMenu onToggle={onUserAccountMenuToggle} />
+              </div>
             </div>
           </div>
         </Suspense>
@@ -61,11 +65,13 @@ function Header({ isSidebarExpanded, onHamburgerMenuClick }) {
 Header.propTypes = {
   isSidebarExpanded: PropTypes.bool,
   onHamburgerMenuClick: PropTypes.func,
+  onUserAccountMenuToggle: PropTypes.func,
 };
 
 Header.defaultProps = {
   isSidebarExpanded: false,
   onHamburgerMenuClick: () => {},
+  onUserAccountMenuToggle: () => {},
 };
 
 export default Header;
