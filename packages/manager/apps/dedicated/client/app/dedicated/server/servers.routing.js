@@ -40,6 +40,15 @@ export default /* @ngInject */ ($stateProvider) => {
             orderAvailability.isFeatureAvailable('dedicated-server:order'),
           )
           .catch(() => false),
+      isEcoRangeOrderAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(['dedicated-server:ecoRangeOrder'])
+          .then((orderAvailability) =>
+            orderAvailability.isFeatureAvailable(
+              'dedicated-server:ecoRangeOrder',
+            ),
+          )
+          .catch(() => false),
       getServerDashboardLink: /* @ngInject */ ($state) => (server) =>
         $state.href('app.dedicated-server.server', { productId: server.name }),
       dedicatedServers: /* @ngInject */ ($transition$, iceberg) => {
