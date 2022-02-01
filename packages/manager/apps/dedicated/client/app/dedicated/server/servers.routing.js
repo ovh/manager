@@ -31,6 +31,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
       orderUrl: /* @ngInject */ (User) => User.getUrlOf('dedicatedOrder'),
+      orderEcoRangeUrl: /* @ngInject */ (User) =>
+        User.getUrlOf('dedicatedEcoRangeOrder'),
       isOrderAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping
           .checkFeatureAvailability(['dedicated-server:order'])

@@ -43,6 +43,7 @@ const constants = {
         faq: 'https://www.ovh.cz/dedikovane_servery/faq.xml',
         faqVps: 'https://www.ovh.cz/vps/pomoc-faq.xml',
         dedicatedOrder: 'https://www.ovh.cz/dedikovane_servery',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-ie/',
         iplbOrder: 'https://www.ovh.cz/reseni/load-balancer/',
       },
       DE: {
@@ -80,6 +81,7 @@ const constants = {
         faq: 'https://www.ovh.de/dedicated_server/faq.xml',
         faqVps: 'https://www.ovh.de/virtual_server/faq-hilfe.xml',
         dedicatedOrder: 'https://www.ovh.de/dedicated_server',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/de/',
         iplbOrder: 'https://www.ovh.de/loesungen/load-balancer/',
       },
       ES: {
@@ -114,6 +116,7 @@ const constants = {
         faq: 'https://www.ovh.es/servidores_dedicados/faq.xml',
         faqVps: 'https://www.ovh.es/vps/ayuda-faq.xml',
         dedicatedOrder: 'https://www.ovh.es/servidores_dedicados',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/es-es/',
         iplbOrder: 'https://www.ovh.es/soluciones/load-balancer/',
       },
       FI: {
@@ -154,6 +157,7 @@ const constants = {
         faq: 'https://www.ovh-hosting.fi/dedikoidut_palvelimet/ukk.xml',
         faqVps: 'https://www.ovh-hosting.fi/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovh-hosting.fi/dedikoidut_palvelimet',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-ie/',
         iplbOrder: 'https://www.ovh-hosting.fi/ratkaisut/load-balancer/',
       },
       FR: {
@@ -207,6 +211,7 @@ const constants = {
         faqDedicatedCloud:
           'https://pccdocs.ovh.net/pages/viewpage.action?pageId=7766169',
         dedicatedOrder: 'https://www.ovh.com/fr/serveurs_dedies',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/fr/',
         cloudProjectOrder:
           'https://www.ovh.com/manager/cloud/#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/fr/solutions/load-balancer/',
@@ -254,6 +259,7 @@ const constants = {
         faq: 'https://www.ovh.co.uk/dedicated_servers/faq.xml',
         faqVps: 'https://www.ovh.co.uk/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovh.co.uk/dedicated_servers',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-gb/',
         iplbOrder: 'https://www.ovh.co.uk/solutions/load-balancer/',
       },
       IT: {
@@ -293,6 +299,7 @@ const constants = {
         faq: 'https://www.ovh.it/server_dedicati/faq.xml',
         faqVps: 'https://www.ovh.it/vps/aiuto-faq.xml',
         dedicatedOrder: 'https://www.ovh.it/server_dedicati',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/it/',
         iplbOrder: 'https://www.ovh.it/soluzioni/load-balancer/',
       },
       LT: {
@@ -332,6 +339,7 @@ const constants = {
         faq: 'https://www.ovh.lt/dedikuoti_serveriai/duk.xml',
         faqVps: 'https://www.ovh.lt/vps/pagalba-duk.xml',
         dedicatedOrder: 'https://www.ovh.lt/dedikuoti_serveriai',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-ie/',
         iplbOrder: 'https://www.ovh.lt/sprendimai/load-balancer/',
       },
       NL: {
@@ -368,6 +376,7 @@ const constants = {
         faq: 'https://www.ovh.nl/dedicated_servers/faq.xml',
         faqVps: 'https://www.ovh.nl/vps/hulp-faq.xml',
         dedicatedOrder: 'https://www.ovh.nl/dedicated_servers',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/nl/',
         iplbOrder: 'https://www.ovh.nl/oplossing/load-balancer/',
       },
       PL: {
@@ -407,6 +416,7 @@ const constants = {
         faq: 'https://www.ovh.pl/serwery_dedykowane/faq.xml',
         faqVps: 'https://www.ovh.pl/vps/pomoc-faq.xml',
         dedicatedOrder: 'https://www.ovh.pl/serwery_dedykowane',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/pl/',
         iplbOrder: 'https://www.ovh.pl/rozwiazania/ip-load-balancing/',
       },
       PT: {
@@ -446,6 +456,7 @@ const constants = {
         faq: 'https://www.ovh.pt/servidores_dedicados/faq.xml ',
         faqVps: 'https://www.ovh.pt/vps/vps-ssd.xml',
         dedicatedOrder: 'https://www.ovh.pt/servidores_dedicados',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-ie/',
         iplbOrder: 'https://www.ovh.pt/solucoes/load-balancer/',
       },
       IE: {
@@ -484,6 +495,7 @@ const constants = {
         faq: 'https://www.ovh.ie/dedicated_servers/faq.xml',
         faqVps: 'https://www.ovh.ie/vps/vps-ssd.xml',
         dedicatedOrder: 'https://www.ovh.ie/dedicated_servers',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-ie/',
         iplbOrder: 'https://www.ovh.ie/solutions/load-balancer/',
       },
     },
@@ -785,6 +797,7 @@ const constants = {
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovh.com/asia/dedicated-servers',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/asia/',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
@@ -821,6 +834,7 @@ const constants = {
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovh.com.au/dedicated-servers',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-au/',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
@@ -858,6 +872,7 @@ const constants = {
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/ca/en/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovh.com/ca/en/dedicated-servers',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-ca/',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/ca/en/solutions/load-balancer/',
@@ -895,6 +910,7 @@ const constants = {
         faq: 'https://www.ovh.com/ca/fr/serveurs-dedies/faq.xml',
         faqVps: 'https://www.ovh.com/ca/fr/vps/aide-faq.xml',
         dedicatedOrder: 'https://www.ovh.com/ca/fr/serveurs-dedies',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/fr-ca/',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/ca/fr/solutions/load-balancer/',
@@ -930,6 +946,7 @@ const constants = {
         faq: 'https://www.ovh.es/servidores_dedicados/faq.xml',
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovh.com/sg/dedicated-servers',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en-sg/',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
@@ -965,6 +982,7 @@ const constants = {
         faq: 'https://www.ovh.es/servidores_dedicados/faq.xml',
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovh.com/world/dedicated-servers',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en/',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
@@ -1000,6 +1018,7 @@ const constants = {
         faq: 'https://www.ovh.com/us/es/servidores-dedicados/faq.xml',
         faqVps: 'https://www.ovh.com/us/es/vps/ayuda-faq.xml',
         dedicatedOrder: 'https://www.ovh.com/world/dedicated-servers',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en/',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/es/soluciones/load-balancer/',
@@ -1159,6 +1178,7 @@ const constants = {
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/ca/en/vps/faq-help.xml',
         dedicatedOrder: 'https://us.ovhcloud.com/bare-metal/prices',
+        dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/en/',
         vrackOrder:
           "https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
         cloudProjectOrder:
