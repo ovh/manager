@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import style from './style.module.scss';
 
-const LanguageButton = ({ children, show, onClick }) => {
+const UserAccountMenuButton = ({ children, show, onClick }) => {
   const { t } = useTranslation('user-account-menu');
   return (
     <button
@@ -26,10 +26,10 @@ const LanguageButton = ({ children, show, onClick }) => {
   );
 };
 
-LanguageButton.propTypes = {
+UserAccountMenuButton.propTypes = {
   children: PropTypes.node,
   show: PropTypes.bool,
   onClick: PropTypes.func,
 };
 
-export default LanguageButton;
+export default UserAccountMenuButton;
