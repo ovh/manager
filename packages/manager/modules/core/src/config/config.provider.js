@@ -54,11 +54,8 @@ export default class CoreConfig {
 
   getApplicationBaseURL(id) {
     const applicationURL = this.environment.getApplications()[id]?.publicURL;
-    const currentAppPublicURL = this.environment.getApplications()[
-      this.environment.getApplicationName()
-    ]?.publicURL;
 
-    if (applicationURL === currentAppPublicURL) {
+    if (applicationURL === this.getCurrentApplicationURL()) {
       return `${window.location.origin}${window.location.pathname}`;
     }
 
@@ -66,9 +63,9 @@ export default class CoreConfig {
   }
 
   getCurrentApplicationURL() {
-    return this.environment.getApplicationURL(
-      this.environment.getApplicationName(),
-    );
+    return this.environment.getApplications()[
+      this.environment.getApplicationName()
+    ]?.publicURL;
   }
 
   setMessage(message) {
