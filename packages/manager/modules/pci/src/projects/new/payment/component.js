@@ -8,6 +8,7 @@ export default {
   bindings: {
     callback: '<',
     creditProvisioningPlan: '<',
+    isDisplayablePaypalChargeBanner: '<',
     cart: '<',
     reloadPayment: '<',
     getCancelHref: '<',

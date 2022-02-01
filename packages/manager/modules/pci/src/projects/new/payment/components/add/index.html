@@ -23,7 +23,7 @@
     <!--PAYPAL charged tax info banner-->
     <oui-message
         data-type="warning"
-        data-ng-if="$ctrl.model.paymentMethod.type.isPaypal()"
+        data-ng-if="$ctrl.isDisplayablePaypalChargeBanner && $ctrl.model.paymentMethod.type.isPaypal()"
     >
         <span
             data-translate="pci_project_new_payment_method_add_warning_paypal_account"

@@ -7,6 +7,7 @@ export default {
   template,
   bindings: {
     creditProvisioningPlan: '<',
+    isDisplayablePaypalChargeBanner: '<',
     validPaymentMethods: '<',
     registerablePaymentMethods: '<',
     eligibility: '<',
