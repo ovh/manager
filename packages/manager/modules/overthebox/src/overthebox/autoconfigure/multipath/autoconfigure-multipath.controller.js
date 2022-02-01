@@ -1,8 +1,9 @@
 export default class OverTheBoxAutoconfigMultipath {
   /* @ngInject */
-  constructor($http, $translate) {
+  constructor($http, $translate, OVERTHEBOX_MULTIPATH) {
     this.$http = $http;
     this.$translate = $translate;
+    this.OVERTHEBOX_MULTIPATH = OVERTHEBOX_MULTIPATH;
   }
 
   $onInit() {
@@ -19,6 +20,7 @@ export default class OverTheBoxAutoconfigMultipath {
       netmask: '',
       priority: '',
       protocol: '',
+      multipath: '',
       routingTable: '',
       type: '',
     };
@@ -76,7 +78,7 @@ export default class OverTheBoxAutoconfigMultipath {
       params.configuration.gateway = this.interface.gateway;
     }
     if (this.interface.ipAddr) {
-      params.configuration.ipAddr = this.interface.ipAddr;
+      params.configuration.ip = this.interface.ipAddr;
     }
     if (this.interface.isIPv6) {
       params.configuration.ipv6 = this.interface.isIPv6;
@@ -88,7 +90,10 @@ export default class OverTheBoxAutoconfigMultipath {
       params.configuration.netmask = this.interface.netmask;
     }
     if (this.interface.protocol) {
-      params.configuration.proto = this.interface.protocol;
+      params.configuration.protocol = this.interface.protocol;
+    }
+    if (this.interface.multipath) {
+      params.configuration.multipath = this.interface.multipath;
     }
     if (this.interface.routingTable) {
       params.configuration.routingTable = this.interface.routingTable;

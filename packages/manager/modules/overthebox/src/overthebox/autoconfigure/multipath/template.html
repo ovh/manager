@@ -106,16 +106,39 @@
                         ng-model="$ctrl.interface.netmask"
                     />
                 </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_interface_ipv6_optional' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="isIpv6"
+                        type="checkbox"
+                        ng-model="$ctrl.interface.isIPv6"
+                    />
+                </oui-field>
             </div>
             <div class="oui-input-group oui-input-group_inline d-flex">
                 <oui-field
                     label="{{:: 'overTheBox_autoconfigure_interface_protocol_optional' | translate}}"
                 >
-                    <input
-                        class="oui-input"
+                    <oui-select
                         name="protocol"
-                        ng-model="$ctrl.interface.protocol"
-                    />
+                        data-items="$ctrl.OVERTHEBOX_MULTIPATH.protocolEnum"
+                        data-model="$ctrl.interface.protocol"
+                        data-placeholder="{{:: 'overTheBox_autoconfigure_multipath_select_value' | translate }}"
+                    ></oui-select>
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_interface_multipath_optional' | translate}}"
+                >
+                    <oui-select
+                        name="protocol"
+                        data-items="$ctrl.OVERTHEBOX_MULTIPATH.multipathEnum"
+                        data-model="$ctrl.interface.multipath"
+                        data-placeholder="{{:: 'overTheBox_autoconfigure_multipath_select_value' | translate }}"
+                    ></oui-select>
                 </oui-field>
                 <oui-field
                     class="ml-2"
@@ -131,22 +154,12 @@
                     class="ml-2"
                     label="{{:: 'overTheBox_autoconfigure_interface_type_optional' | translate}}"
                 >
-                    <input
-                        class="oui-input"
-                        name="type"
-                        ng-model="$ctrl.interface.type"
-                    />
-                </oui-field>
-                <oui-field
-                    class="ml-2"
-                    label="{{:: 'overTheBox_autoconfigure_interface_ipv6_optional' | translate}}"
-                >
-                    <input
-                        class="oui-input"
-                        name="isIpv6"
-                        type="checkbox"
-                        ng-model="$ctrl.interface.isIPv6"
-                    />
+                    <oui-select
+                        name="protocol"
+                        data-items="$ctrl.OVERTHEBOX_MULTIPATH.typeEnum"
+                        data-model="$ctrl.interface.type"
+                        data-placeholder="{{:: 'overTheBox_autoconfigure_multipath_select_value' | translate }}"
+                    ></oui-select>
                 </oui-field>
                 <oui-button
                     class="ml-2 mb-2"
@@ -246,11 +259,11 @@
                         ></dt>
                         <dd
                             data-translate="overTheBox_autoconfigure_value_not_defined"
-                            data-ng-if="!$row.configuration.ipAddr"
+                            data-ng-if="!$row.configuration.ip"
                         ></dd>
                         <dd
-                            data-ng-bind="$row.configuration.ipAddr"
-                            data-ng-if="$row.configuration.ipAddr"
+                            data-ng-bind="$row.configuration.ip"
+                            data-ng-if="$row.configuration.ip"
                         ></dd>
                     </dl>
                     <dl class="oui-description">
@@ -279,15 +292,41 @@
                     </dl>
                     <dl class="oui-description">
                         <dt
+                            data-translate="overTheBox_autoconfigure_interface_ipv6"
+                        ></dt>
+                        <dd
+                            data-translate="overTheBox_autoconfigure_value_not_defined"
+                            data-ng-if="!$row.configuration.ipv6"
+                        ></dd>
+                        <dd
+                            data-ng-bind="$row.configuration.ipv6"
+                            data-ng-if="$row.configuration.ipv6"
+                        ></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt
                             data-translate="overTheBox_autoconfigure_interface_protocol"
                         ></dt>
                         <dd
                             data-translate="overTheBox_autoconfigure_value_not_defined"
-                            data-ng-if="!$row.configuration.proto"
+                            data-ng-if="!$row.configuration.protocol"
                         ></dd>
                         <dd
-                            data-ng-bind="$row.configuration.proto"
-                            data-ng-if="$row.configuration.proto"
+                            data-ng-bind="$row.configuration.protocol"
+                            data-ng-if="$row.configuration.protocol"
+                        ></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt
+                            data-translate="overTheBox_autoconfigure_interface_multipath"
+                        ></dt>
+                        <dd
+                            data-translate="overTheBox_autoconfigure_value_not_defined"
+                            data-ng-if="!$row.configuration.multipath"
+                        ></dd>
+                        <dd
+                            data-ng-bind="$row.configuration.multipath"
+                            data-ng-if="$row.configuration.multipath"
                         ></dd>
                     </dl>
                     <dl class="oui-description">
@@ -314,19 +353,6 @@
                         <dd
                             data-ng-bind="$row.configuration.type"
                             data-ng-if="$row.configuration.type"
-                        ></dd>
-                    </dl>
-                    <dl class="oui-description">
-                        <dt
-                            data-translate="overTheBox_autoconfigure_interface_ipv6"
-                        ></dt>
-                        <dd
-                            data-translate="overTheBox_autoconfigure_value_not_defined"
-                            data-ng-if="!$row.configuration.ipv6"
-                        ></dd>
-                        <dd
-                            data-ng-bind="$row.configuration.ipv6"
-                            data-ng-if="$row.configuration.ipv6"
                         ></dd>
                     </dl>
                 </div>

@@ -80,6 +80,8 @@
   "overTheBox_autoconfigure_interface_ipv6_optional": "Interface IPv6 ? (optionel)",
   "overTheBox_autoconfigure_interface_protocol": "Protocole",
   "overTheBox_autoconfigure_interface_protocol_optional": "Protocole (optionel)",
+  "overTheBox_autoconfigure_interface_multipath": "Multipath",
+  "overTheBox_autoconfigure_interface_multipath_optional": "Multipath (optionel)",
   "overTheBox_autoconfigure_interface_routing_table": "Table de routage",
   "overTheBox_autoconfigure_interface_routing_table_optional": "Table de routage (optionel)",
   "overTheBox_autoconfigure_interface_type": "Type d'interface",
@@ -87,5 +89,6 @@
   "overTheBox_autoconfigure_multipath_interface_create_succeed": "La création de l'interface a été effectuée avec succès.",
   "overTheBox_autoconfigure_multipath_interface_remove_succeed": "La suppression de l'interface a été effectuée avec succès.",
   "overTheBox_autoconfigure_interface_add": "Ajouter une interface",
-  "overTheBox_autoconfigure_value_not_defined": "Valeur non définie"
+  "overTheBox_autoconfigure_value_not_defined": "Valeur non définie",
+  "overTheBox_autoconfigure_multipath_select_value": "Sélectionnez une valeur..."
 }
