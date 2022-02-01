@@ -103,9 +103,6 @@ export default class OverTheBoxAutoconfigureFirewall {
   createRule() {
     this.errorMessage = '';
     this.successMessage = '';
-    if (!this.rule.srcZone && !this.rule.target && !this.rule.priority) {
-      return this.$q.resolve(null);
-    }
 
     const params = {
       priority: this.rule.priority,
@@ -145,16 +142,15 @@ export default class OverTheBoxAutoconfigureFirewall {
         `/overTheBox/${this.serviceName}/configuration/firewall/rule`,
         params,
       )
-      .then((response) => {
+      .then(() => {
         this.successMessage = this.$translate.instant(
           'overTheBox_autoconfigure_firewall_rule_create_succeed',
         );
 
         // Reload rule table
-        this.loadRules();
         this.showAddRule = false;
         this.displayAddRuleButton = true;
-        return response;
+        return this.loadRules();
       })
       .catch((error) => {
         // Display error message
@@ -180,15 +176,14 @@ export default class OverTheBoxAutoconfigureFirewall {
       .delete(
         `/overTheBox/${this.serviceName}/configuration/firewall/rule/${row.id}`,
       )
-      .then((response) => {
+      .then(() => {
         // Display success message
         this.successMessage = this.$translate.instant(
           'overTheBox_autoconfigure_firewall_rule_remove_succeed',
         );
 
         // Reload rules table
-        this.loadRules();
-        return response;
+        return this.loadRules();
       })
       .catch((error) => {
         // Display error message
@@ -221,9 +216,6 @@ export default class OverTheBoxAutoconfigureFirewall {
   createRedirect() {
     this.errorMessage = '';
     this.successMessage = '';
-    if (!this.redirect.name && !this.redirect.priority) {
-      return this.$q.resolve(null);
-    }
 
     const params = {
       configuration: {
@@ -268,16 +260,15 @@ export default class OverTheBoxAutoconfigureFirewall {
         `/overTheBox/${this.serviceName}/configuration/firewall/redirect`,
         params,
       )
-      .then((response) => {
+      .then(() => {
         this.successMessage = this.$translate.instant(
           'overTheBox_autoconfigure_firewall_redirect_create_succeed',
         );
 
         // Reload redirections table
-        this.loadRedirect();
         this.showAddRedirect = false;
         this.displayAddRedirectButton = true;
-        return response;
+        return this.loadRedirect();
       })
       .catch((error) => {
         const errorMessage = error.data.class
@@ -305,15 +296,14 @@ export default class OverTheBoxAutoconfigureFirewall {
       .delete(
         `/overTheBox/${this.serviceName}/configuration/firewall/redirect/${row.id}`,
       )
-      .then((response) => {
+      .then(() => {
         // Display success message
         this.successMessage = this.$translate.instant(
           'overTheBox_autoconfigure_firewall_redirect_remove_succeed',
         );
 
         // Reload redirections table
-        this.loadRedirect();
-        return response;
+        return this.loadRedirect();
       })
       .catch((error) => {
         // Display error message
