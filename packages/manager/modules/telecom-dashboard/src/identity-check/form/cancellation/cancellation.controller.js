@@ -1,4 +1,5 @@
 export default class IdentityCheckFormCancellationCtrl {
+  /* @ngInject */
   constructor($translate, IdentityCheckService, TucToast) {
     this.$translate = $translate;
     this.IdentityCheckService = IdentityCheckService;

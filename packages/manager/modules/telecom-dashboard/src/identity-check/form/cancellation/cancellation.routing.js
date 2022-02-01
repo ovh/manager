@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('identity-check.cancellation', {
-    url: '/identity-check/cancellation',
+    url: '/cancellation',
     params: {
       procedureId: null,
     },
