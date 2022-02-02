@@ -1,7 +1,7 @@
 <div data-ng-controller="IpOrganisationAddCtrl">
     <div
         data-wizard
-        data-wizard-on-cancel="resetAction"
+        data-wizard-on-cancel="cancelAddOrganisation"
         data-wizard-on-finish="addOrganisation"
         data-wizard-title="formOrganisation.edit && ('ip_organisation_edit_title' | translate) || ('ip_organisation_add_title' | translate)"
     >
@@ -295,7 +295,7 @@
             </div>
         </div>
 
-        <div data-wizard-step data-wizard-step-on-load="resetAlertOranisation">
+        <div data-wizard-step data-wizard-step-on-load="resetAlertOrganisation">
             <div data-ovh-alert="ip_organisation_addedit_alerter"></div>
             <div class="text-center" data-ng-show="load.loading">
                 <oui-spinner></oui-spinner>

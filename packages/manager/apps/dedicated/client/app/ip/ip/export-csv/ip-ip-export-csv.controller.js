@@ -1,6 +1,13 @@
 import keys from 'lodash/keys';
+import { TRACKING_PREFIX } from '../ip-ip.constant';
 
-export default /* @ngInject */ ($scope, $q, $translate, Alerter) => {
+export default /* @ngInject */ (
+  $scope,
+  $q,
+  $translate,
+  Alerter,
+  atInternet,
+) => {
   let timeoutObject = null;
 
   $scope.data = $scope.currentActionData.ipsList;
@@ -56,6 +63,10 @@ export default /* @ngInject */ ($scope, $q, $translate, Alerter) => {
   }
 
   $scope.exportAccounts = function exportAccounts() {
+    atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::export-csv::confirm`,
+      type: 'action',
+    });
     $scope.loading.exportCsv = true;
 
     // check timeout
@@ -85,6 +96,10 @@ export default /* @ngInject */ ($scope, $q, $translate, Alerter) => {
   };
 
   $scope.cancelExport = function cancelExport() {
+    atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::export-csv::cancel`,
+      type: 'action',
+    });
     timeoutObject = null;
     $scope.resetAction();
   };

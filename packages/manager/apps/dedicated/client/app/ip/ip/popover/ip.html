@@ -19,7 +19,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/block/description/edit/ip-ip-block-description-edit', { ipBlock: ipBlock })"
+                data-ng-click="goToEditDescription(ipBlock)"
                 data-ng-bind="ipBlock.description && ('ip_description_edit_title' | translate) || ('ip_description_new_title' | translate)"
             ></button>
         </li>
@@ -28,7 +28,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/reverse/update/ip-ip-reverse-update', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="goToUpdateReverse(ipBlock, ip)"
                 data-translate="ip_table_manage_reverse"
             ></button>
         </li>
@@ -57,7 +57,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/block/description/edit/ip-ip-block-description-edit', { ipBlock: ipBlock })"
+                data-ng-click="goToEditDescription(ipBlock)"
                 data-ng-bind="ipBlock.description && ('ip_description_edit_title' | translate) || ('ip_description_new_title' | translate)"
             ></button>
         </li>
@@ -67,7 +67,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/reverse/update/ip-ip-reverse-update', { ipBlock: ipBlock, ip: ip })"
+                data-ng-click="goToUpdateReverse(ipBlock, ip)"
                 data-translate="ip_table_manage_reverse"
             ></button>
         </li>

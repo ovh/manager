@@ -7,6 +7,7 @@
 >
     <div
         data-wizard-step
+        data-wizard-step-on-previous="trackPrevious"
         data-wizard-step-on-load="loadServices"
         data-wizard-step-valid="ctrl.model.selectedService"
     >
@@ -58,6 +59,7 @@
     <div
         data-wizard-step
         data-wizard-step-on-load="loadIpOffers"
+        data-wizard-step-on-previous="trackPrevious"
         data-wizard-step-valid="ctrl.isOfferFormValid()"
     >
         <form data-ng-show="!ctrl.loading.ipOffers">
@@ -195,7 +197,7 @@
         </div>
     </div>
 
-    <div data-wizard-step>
+    <div data-wizard-step data-wizard-step-on-previous="trackPrevious">
         <p
             class="alert alert-info"
             data-translate="ip_order_final_txt"

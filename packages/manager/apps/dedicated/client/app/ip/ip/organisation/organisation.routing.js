@@ -12,5 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('ip_organisation'),
     },
+    atInternet: {
+      rename: 'dedicated::ip::dashboard::organisation',
+    },
   });
 };

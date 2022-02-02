@@ -1,5 +1,7 @@
 import head from 'lodash/head';
 
+const TRACKING_PREFIX = 'dedicated::ip::dashboard::import-failover';
+
 export default /* @ngInject */ (
   $scope,
   $q,
@@ -7,6 +9,7 @@ export default /* @ngInject */ (
   IpLegacyOrder,
   User,
   Alerter,
+  atInternet,
   $rootScope,
   Validator,
 ) => {
@@ -40,6 +43,7 @@ export default /* @ngInject */ (
     ============================== */
 
   $scope.isValidIp = function isValidIp(ip) {
+    $scope.trackStep(1);
     if (ip != null) {
       const ipslash = ip.split('/');
       if (ipslash.length > 1) {
@@ -62,6 +66,7 @@ export default /* @ngInject */ (
     ============================== */
 
   $scope.getServices = function getServices() {
+    $scope.trackStep(2);
     const queue = [];
     $scope.loading.step2 = true;
     Alerter.resetMessage('otrs_alert_migration');
@@ -156,6 +161,7 @@ export default /* @ngInject */ (
     ============================== */
 
   $scope.getDurations = function getDurations() {
+    $scope.trackStep(3);
     const queue = [];
     $scope.loading.prices = true;
 
@@ -194,6 +200,7 @@ export default /* @ngInject */ (
     ============================== */
 
   $scope.loadContracts = function loadContracts() {
+    $scope.trackStep(4);
     $scope.agree.value = false;
     if (
       !$scope.durations.details[$scope.migrate.duration].contracts ||
@@ -204,6 +211,10 @@ export default /* @ngInject */ (
   };
 
   $scope.backToContracts = function backToContracts() {
+    atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::previous`,
+      type: 'action',
+    });
     if (
       !$scope.durations.details[$scope.migrate.duration].contracts ||
       !$scope.durations.details[$scope.migrate.duration].contracts.length
@@ -217,12 +228,17 @@ export default /* @ngInject */ (
     ============================== */
 
   $scope.getResumePrice = function getResumePrice(price) {
+    $scope.trackStep(5);
     return price.value === 0
       ? $translate.instant('price_free')
       : $translate.instant('price_ht_label', { t0: price.text });
   };
 
   $scope.migrateIp = function migrateIp() {
+    atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::confirm`,
+      type: 'action',
+    });
     $scope.loading.validation = true;
     IpLegacyOrder.postMigrateIpOrder($scope.migrate)
       .then(
@@ -247,5 +263,19 @@ export default /* @ngInject */ (
         $scope.loading.validation = false;
         $scope.resetAction();
       });
+  };
+  $scope.cancelMigrate = function cancelMigrate() {
+    atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::cancel`,
+      type: 'action',
+    });
+    $scope.resetAction();
+  };
+
+  $scope.trackStep = function trackStep(count) {
+    atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::next-step-${count}`,
+      type: 'action',
+    });
   };
 };
