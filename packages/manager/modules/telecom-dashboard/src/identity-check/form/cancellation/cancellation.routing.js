@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('identity-check.cancellation', {
-    url: '/cancellation',
+    url: '/cancel',
     params: {
       procedureId: null,
     },
@@ -39,9 +39,9 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      atInternet: {
-        rename: 'account-validation::cancel-validation-popup',
-      },
+    },
+    atInternet: {
+      rename: 'account-validation::cancel-validation-popup',
     },
   });
 };
