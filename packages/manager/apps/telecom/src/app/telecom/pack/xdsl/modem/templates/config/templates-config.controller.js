@@ -147,15 +147,17 @@ export default class XdslModemTemplateConfigCtrl {
 
   convertCapabilities(capabilities, paramsToIgnore, isParametersToIgnore) {
     const parametersToIgnore = {
-      mtuSize: capabilities.mtuSize ? !capabilities.mtuSize : '',
-      dmzIP: capabilities.dmzIP ? !capabilities.dmzIP : '',
-      LANandDHCP: capabilities.LANandDHCP ? !capabilities.LANandDHCP : '',
+      mtuSize: capabilities?.mtuSize ? !capabilities.mtuSize : '',
+      dmzIP: capabilities?.dmzIP ? !capabilities.dmzIP : '',
+      LANandDHCP: capabilities?.LANandDHCP ? !capabilities.LANandDHCP : '',
     };
-    this.isDisabled = {
-      mtuSize: !capabilities.mtuSize,
-      dmzIP: !capabilities.dmzIP,
-      LANandDHCP: !capabilities.LANandDHCP,
-    };
+    if (capabilities) {
+      this.isDisabled = {
+        mtuSize: !capabilities.mtuSize,
+        dmzIP: !capabilities.dmzIP,
+        LANandDHCP: !capabilities.LANandDHCP,
+      };
+    }
     if (isParametersToIgnore) {
       if (paramsToIgnore) {
         this.parametersToIgnore = paramsToIgnore;
