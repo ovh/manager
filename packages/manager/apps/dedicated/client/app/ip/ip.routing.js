@@ -9,6 +9,18 @@ export default /* @ngInject */ ($stateProvider) => {
     reloadOnSearch: false,
     redirectTo: 'app.ip.dashboard',
     resolve: {
+      trackingPrefix: () => 'dedicated::ip::dashboard',
+      trackPage: /* @ngInject */ (atInternet, trackingPrefix) => (hit) => {
+        atInternet.trackPage({
+          name: `${trackingPrefix}::${hit}`,
+        });
+      },
+      trackClick: /* @ngInject */ (atInternet, trackingPrefix) => (hit) => {
+        atInternet.trackClick({
+          name: `${trackingPrefix}::${hit}`,
+          type: 'action',
+        });
+      },
       dashboardLink: /* @ngInject */ ($transition$, $state) =>
         $state.href('app.ip.dashboard', $transition$.params()),
       ipLbLink: /* @ngInject */ ($transition$, $state) =>
@@ -18,6 +30,9 @@ export default /* @ngInject */ ($stateProvider) => {
       goToOrganisation: /* @ngInject */ ($state) => () =>
         $state.go('app.ip.dashboard.organisation'),
       breadcrumb: /* @ngInject */ ($translate) => $translate.instant('ip_ip'),
+    },
+    atInternet: {
+      rename: 'dedicated::ip::dashboard',
     },
   });
 };

@@ -6,31 +6,28 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: (transition) =>
       transition
         .injector()
-        .getAsync('expressOrderUrl')
-        .then((expressOrderUrl) =>
-          !expressOrderUrl ? { state: 'app.ip.byoip' } : false,
-        ),
+        .getAsync('byoip')
+        .then((byoip) => (!byoip ? { state: 'app.ip.byoip' } : false)),
     views: {
       modal: {
         component: disclaimerComponent.name,
       },
     },
     params: {
-      expressOrderUrl: null,
+      byoip: null,
     },
     layout: 'modal',
     resolve: {
-      expressOrderUrl: /* @ngInject */ ($transition$) =>
-        $transition$.params().expressOrderUrl,
+      byoip: /* @ngInject */ ($transition$) => $transition$.params().byoip,
       goBack: /* @ngInject */ (goToByoipConfiguration) =>
         goToByoipConfiguration,
-      goToExpressOrder: /* @ngInject */ ($window, expressOrderUrl) => () => {
-        return $window.open(expressOrderUrl, '_blank');
+      goToExpressOrder: /* @ngInject */ ($window) => (url) => {
+        return $window.open(url, '_blank');
       },
       breadcrumb: () => null,
     },
     atInternet: {
-      ignore: true,
+      ignore: 'dedicated::ip::dashboard::bring-your-own-ip::confirmation',
     },
   });
 };

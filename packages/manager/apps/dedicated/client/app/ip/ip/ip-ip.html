@@ -151,7 +151,7 @@
                 <oui-tile data-heading="{{:: 'ip_order_title' | translate }}">
                     <oui-tile-button
                         data-ng-if="canOrderIPFO()"
-                        data-on-click="setAction('ip/legacyOrder/ip-ip-legacyOrder')"
+                        data-on-click="orderIPFO()"
                     >
                         <span data-translate="ip_order_additional_ips"></span>
                     </oui-tile-button>
@@ -173,22 +173,22 @@
                     class="btn btn-block btn-default"
                     type="button"
                     data-ng-disabled="(state.loaded)!=state.total"
-                    data-ng-click="setAction('ip/export-csv/ip-ip-export-csv', {'ipsList':ipsList})"
+                    data-ng-click="exportCsv(ipsList)"
                     data-translate="ip_export"
                 ></button>
                 <button
                     class="btn btn-block btn-default"
                     type="button"
                     data-ng-if="canImportIPFO()"
-                    data-ng-click="setAction('ip/legacyOrder/migrate/ip-ip-legacyOrder-migrate')"
+                    data-ng-click="importIPFO()"
                     data-translate="ip_migration"
                 ></button>
-                <a
+                <button
                     class="btn btn-block btn-default"
-                    data-ui-sref="app.ip.dashboard.agora-order"
+                    type="button"
+                    data-ng-click="goToIpAdditionalOrder()"
                     data-translate="ip_additional_order"
-                >
-                </a>
+                ></button>
                 <button
                     class="btn btn-block btn-default"
                     type="button"
