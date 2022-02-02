@@ -35,6 +35,16 @@ export default class ManagerHubUserInfosCtrl {
     if (!EXCLUDED_ROLES.includes(this.me.auth.method)) {
       this.role = this.me.auth.method;
     }
+
+    if (this.role === 'provider') {
+      if (this.me.auth.user != null) {
+        this.me.email = this.me.auth.user;
+      }
+      if (this.me.auth.description != null) {
+        const authDescritpionSplitted = this.me.auth.description.split(' ');
+        [this.me.firstname, this.me.name] = authDescritpionSplitted;
+      }
+    }
   }
 
   getNameInitials() {

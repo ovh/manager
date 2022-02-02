@@ -8,6 +8,12 @@ export default class {
     const lastName = truncate(capitalize(this.user.name), {
       length: MAX_NAME_LENGTH,
     });
-    this.menuTitle = `${firstName} ${lastName}`;
+
+    const authMethod = this.user.auth.method;
+    const { organisation } = this.user;
+    this.menuTitle =
+      authMethod === 'provider'
+        ? `${organisation}`
+        : `${firstName} ${lastName}`;
   }
 }

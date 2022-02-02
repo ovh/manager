@@ -71,4 +71,35 @@ export default class UseraccountUsersService {
       broadcast: 'useraccount.security.users.refresh',
     });
   }
+
+  getIdentityProvider() {
+    return this.ovhHttp.get('/me/identity/provider', {
+      rootPath: 'apiv6',
+    });
+  }
+
+  addIdentityProvider(data) {
+    return this.ovhHttp.post('/me/identity/provider', {
+      rootPath: 'apiv6',
+      data,
+      broadcast: 'useraccount.security.users.refresh',
+    });
+  }
+
+  updateIdentityProvider(data) {
+    return this.ovhHttp.put('/me/identity/provider', {
+      rootPath: 'apiv6',
+      data: {
+        groupAttributeName: data.groupAttributeName,
+      },
+      broadcast: 'useraccount.security.users.refresh',
+    });
+  }
+
+  deleteIdentityProvider() {
+    return this.ovhHttp.delete('/me/identity/provider', {
+      rootPath: 'apiv6',
+      broadcast: 'useraccount.security.users.refresh',
+    });
+  }
 }

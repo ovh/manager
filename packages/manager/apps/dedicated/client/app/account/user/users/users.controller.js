@@ -23,6 +23,7 @@ export default class UserAccountUsersCtrl {
     this.userIds = [];
     this.users = [];
     this.usersLoading = true;
+    this.identityProvider = null;
 
     this.$scope.$on('useraccount.security.users.refresh', () => {
       this.$onInit();
@@ -33,6 +34,7 @@ export default class UserAccountUsersCtrl {
     this.userIds = [];
     this.users = [];
     this.usersLoading = true;
+    this.initIdentityProvider();
     return this.groupsService
       .getGroups()
       .then((groups) =>
@@ -74,5 +76,16 @@ export default class UserAccountUsersCtrl {
 
   onTransformItemDone() {
     this.usersLoading = false;
+  }
+
+  initIdentityProvider() {
+    this.usersService
+      .getIdentityProvider()
+      .then((identityProvider) => {
+        this.identityProvider = identityProvider;
+      })
+      .catch(() => {
+        this.identityProvider = null;
+      });
   }
 }
