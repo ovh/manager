@@ -4,10 +4,18 @@ export const CONFIG_NAME = {
   IPRIR: 'ipRir',
 };
 
+export const STEP_NAME = {
+  RIR: 'select-rir',
+  LOCATION: 'select-location',
+  IP_RANGE: 'select-ip-range',
+  AS: 'select-autonomous-system',
+};
+
 export const IPV4_BLOCK_PATTERN = /^(?:(?:25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)((\/([0-9]|[1-2][0-9]|3[0-2]))?)$/;
 
 export default {
   AS_OPTIONS,
   CONFIG_NAME,
   IPV4_BLOCK_PATTERN,
+  STEP_NAME,
 };

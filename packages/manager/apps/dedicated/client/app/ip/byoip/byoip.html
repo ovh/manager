@@ -14,6 +14,7 @@
             data-submit-text="{{:: 'ip_byoip_submit_text' | translate }}"
             data-description="{{:: 'ip_byoip_select_rir_description' | translate }}"
             data-prevent-next="true"
+            data-on-submit="$ctrl.trackStepSubmit($ctrl.STEP_NAME.RIR)"
             data-valid="$ctrl.byoip.ipRir"
             data-navigation="$ctrl.byoip.ipRir"
             data-loading="$ctrl.loader.loadingRir"
@@ -40,6 +41,7 @@
             data-valid="$ctrl.byoip.campus"
             data-description="{{:: 'ip_byoip_region_description' | translate}}"
             data-navigation="$ctrl.byoip.campus"
+            data-on-submit="$ctrl.trackStepSubmit($ctrl.STEP_NAME.LOCATION)"
             data-prevent-next="true"
         >
             <div class="row mb-3">
@@ -80,6 +82,7 @@
             data-valid="$ctrl.byoip.ip"
             data-description="{{:: 'ip_byoip_select_ip_range_description' | translate}}"
             data-navigation="$ctrl.byoip.ip"
+            data-on-submit="$ctrl.trackStepSubmit($ctrl.STEP_NAME.IP_RANGE)"
             data-prevent-next="true"
         >
             <div class="row">
@@ -106,6 +109,7 @@
             data-valid="$ctrl.asType"
             data-description="{{:: 'ip_byoip_as_system_description' | translate}}"
             data-navigation="$ctrl.asType"
+            data-on-submit="$ctrl.trackStepSubmit($ctrl.STEP_NAME.AS)"
             data-prevent-next="true"
         >
             <div
