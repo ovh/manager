@@ -1,15 +1,22 @@
 import get from 'lodash/get';
-import { AS_OPTIONS, IPV4_BLOCK_PATTERN, CONFIG_NAME } from './byoip.constants';
+import {
+  AS_OPTIONS,
+  IPV4_BLOCK_PATTERN,
+  CONFIG_NAME,
+  STEP_NAME,
+} from './byoip.constants';
+import { TRACKING_PREFIX } from '../ip/ip-ip.constant';
 
 export default class IpByoipConfiguration {
   /* @ngInject */
-  constructor($translate, Alerter, ByoipService) {
+  constructor($translate, Alerter, atInternet) {
     this.$translate = $translate;
     this.Alerter = Alerter;
-    this.ByoipService = ByoipService;
+    this.atInternet = atInternet;
 
     this.AS_OPTIONS = AS_OPTIONS;
     this.IPV4_BLOCK_PATTERN = IPV4_BLOCK_PATTERN;
+    this.STEP_NAME = STEP_NAME;
   }
 
   $onInit() {
@@ -41,16 +48,25 @@ export default class IpByoipConfiguration {
       );
   }
 
-  getPayload() {
-    const keys = Object.keys(this.byoip);
-    return keys.map((key) => ({ label: `${key}`, values: [this.byoip[key]] }));
+  onAsSelect(value) {
+    if (value === 'ovh_cloud') {
+      this.clearAsSelection();
+    }
+  }
+
+  clearAsSelection() {
+    delete this.byoip.asRir;
+    delete this.byoip.asNumber;
+  }
+
+  trackStepSubmit(stepType) {
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::bring-your-own-ip::${stepType}`,
+      type: 'action',
+    });
   }
 
   orderByoip() {
-    return this.ByoipService.getExpressOrder(this.plan, this.getPayload()).then(
-      (val) => {
-        return this.goToDisclaimer(val);
-      },
-    );
+    return this.goToDisclaimer(this.byoip);
   }
 }

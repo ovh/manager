@@ -5,7 +5,7 @@
     <button
         class="btn btn-default mb-4"
         type="button"
-        data-ng-click="setAction('ip/organisation/add-or-edit/ip-ip-organisation-add-or-edit')"
+        data-ng-click="$ctrl.goToAddOrganisation()"
         data-translate="ip_organisation_add"
     ></button>
     <div class="table-responsive">
@@ -80,7 +80,7 @@
                     <td>
                         <oui-action-menu data-compact data-placement="end">
                             <oui-action-menu-item
-                                data-on-click="setAction('ip/organisation/add-or-edit/ip-ip-organisation-add-or-edit', organisation)"
+                                data-on-click="$ctrl.goToUpdateOrganisation(organisation)"
                                 ><span
                                     data-translate="ip_organisation_edit"
                                 ></span>

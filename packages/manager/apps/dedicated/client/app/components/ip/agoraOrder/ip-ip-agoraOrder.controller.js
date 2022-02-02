@@ -14,6 +14,7 @@ import {
   IP_LOCATION_GROUPS,
   PRODUCT_TYPES,
   VPS_MAX_QUANTITY,
+  TRACKING_PREFIX,
 } from './ip-ip-agoraOrder.constant';
 
 export default class AgoraIpOrderCtrl {
@@ -29,6 +30,7 @@ export default class AgoraIpOrderCtrl {
     IpAgoraOrder,
     IpOrganisation,
     User,
+    atInternet,
   ) {
     this.$q = $q;
     this.$rootScope = $rootScope;
@@ -40,6 +42,7 @@ export default class AgoraIpOrderCtrl {
     this.IpAgoraOrder = IpAgoraOrder;
     this.IpOrganisation = IpOrganisation;
     this.User = User;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -57,11 +60,13 @@ export default class AgoraIpOrderCtrl {
     this.$scope.loadIpOffers = this.loadIpOffers.bind(this);
     this.$scope.redirectToPaymentPage = this.redirectToPaymentPage.bind(this);
     this.$scope.resumeOrder = this.resumeOrder.bind(this);
+    this.$scope.trackPrevious = this.trackPrevious.bind(this);
     this.$scope.stringLocaleSensitiveComparator =
       AgoraIpOrderCtrl.stringLocaleSensitiveComparator;
   }
 
   loadServices() {
+    this.trackStep(1);
     this.loading.services = true;
 
     return this.$q
@@ -170,6 +175,7 @@ export default class AgoraIpOrderCtrl {
   }
 
   manageLoadIpOffers() {
+    this.trackStep(2);
     this.loading.ipOffers = true;
     this.ipOffers = [];
 
@@ -318,6 +324,16 @@ export default class AgoraIpOrderCtrl {
   }
 
   redirectToPaymentPage() {
+    const { params } = this.model;
+    const serviceType = params.selectedService.type;
+    const offerPlanCode = params.selectedOffer.planCode;
+    const quantity = params.selectedQuantity || 1;
+    const countryCode = params.selectedCountry.code || null;
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}confirm_${serviceType}_${offerPlanCode}_${quantity}_${countryCode}`,
+      type: 'action',
+    });
+
     let productToOrder = null;
     if (this.isPrivateCloudOffer) {
       productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
@@ -358,10 +374,28 @@ export default class AgoraIpOrderCtrl {
   }
 
   resumeOrder() {
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}cancel`,
+      type: 'action',
+    });
     return this.$state.go('^');
   }
 
   static stringLocaleSensitiveComparator(v1, v2) {
     return v1.value.localeCompare(v2.value);
+  }
+
+  trackPrevious() {
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}previous`,
+      type: 'action',
+    });
+  }
+
+  trackStep(count) {
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}next-step-${count}`,
+      type: 'action',
+    });
   }
 }

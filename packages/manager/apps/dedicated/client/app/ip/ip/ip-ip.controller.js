@@ -35,6 +35,8 @@ export default /* @ngInject */
   IpVirtualMac,
   orderIpAvailable,
   Validator,
+  trackPage,
+  trackClick,
 ) => {
   $scope.currentView = 'table';
   $scope.alerts = {
@@ -366,6 +368,11 @@ export default /* @ngInject */
     $state.go('app.ip', { page: 1, serviceName }, { reload: true });
   };
 
+  $scope.goToIpAdditionalOrder = () => {
+    trackPage('order');
+    $state.go('app.ip.dashboard.agora-order');
+  };
+
   $scope.alertsCount = function alertsCount(ipBlock) {
     if (ipBlock) {
       return (
@@ -573,6 +580,34 @@ export default /* @ngInject */
   };
 
   init();
+
+  $scope.goToEditDescription = function goToEditDescription(ipBlock) {
+    trackPage('edit-description');
+    $scope.setAction('ip/block/description/edit/ip-ip-block-description-edit', {
+      ipBlock,
+    });
+  };
+
+  $scope.goToUpdateReverse = function goToUpdateReverse(ipBlock, ip) {
+    trackPage('update-reverse');
+    $scope.setAction('ip/reverse/update/ip-ip-reverse-update', { ipBlock, ip });
+  };
+
+  $scope.exportCsv = function exportCsv(ipsList) {
+    trackPage('export-csv');
+    $scope.setAction('ip/export-csv/ip-ip-export-csv', { ipsList });
+  };
+
+  $scope.importIPFO = function importIPFO() {
+    trackPage('import-failover');
+    trackClick('import');
+    $scope.setAction('ip/legacyOrder/migrate/ip-ip-legacyOrder-migrate');
+  };
+
+  $scope.orderIPFO = function orderIPFO() {
+    trackPage('order-additional-ip');
+    $scope.setAction('ip/legacyOrder/ip-ip-legacyOrder');
+  };
 
   if ($location.search().action === 'toggleFirewall' && $location.search().ip) {
     $timeout(() => {

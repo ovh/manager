@@ -1,13 +1,17 @@
+import { TRACKING_PREFIX } from '../../../ip-ip.constant';
+
 export default /* @ngInject */ (
   $scope,
   $rootScope,
   $translate,
   Ip,
   Alerter,
+  atInternet,
 ) => {
   $scope.data = $scope.currentActionData;
   $scope.model = { description: null };
   $scope.loading = false;
+  $scope.cancelExport = () => this.cancelExport();
 
   if ($scope.data && $scope.data.ipBlock && $scope.data.ipBlock.description) {
     $scope.model.description = angular.copy($scope.data.ipBlock.description);
@@ -20,6 +24,10 @@ export default /* @ngInject */ (
   /* Action */
 
   $scope.editIpDescription = function editIpDescription() {
+    atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::edit-description::confirm`,
+      type: 'action',
+    });
     $scope.loading = true;
     Ip.editIpDescription(
       $scope.data.ipBlock.ipBlock,
@@ -46,5 +54,13 @@ export default /* @ngInject */ (
       .finally(() => {
         $scope.resetAction();
       });
+  };
+
+  $scope.cancelDescription = function cancelDescription() {
+    atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::edit-description::cancel`,
+      type: 'action',
+    });
+    $scope.resetAction();
   };
 };
