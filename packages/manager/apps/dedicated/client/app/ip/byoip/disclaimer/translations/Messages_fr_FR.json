@@ -1,6 +1,9 @@
 {
   "ip_byoip_disclaimer_title": "Confirmation nécessaire",
-  "ip_byoip_disclaimer_description": "Être le propriétaire de la plage d'adresses IP renseignée. - Que la plage d'adresses IP renseignée n'est pas annoncée sur Internet - Avoir une réputation saine sur cette plage d'adresses IP",
+  "ip_byoip_disclaimer_description": "Je déclare : ",
+  "ip_byoip_disclaimer_description_point_1": " - Être le propriétaire de la plage d'adresses IP renseignée.",
+  "ip_byoip_disclaimer_description_point_2": " - Que la plage d'adresses IP renseignée n'est pas annoncée sur Internet",
+  "ip_byoip_disclaimer_description_point_3": " - Avoir une réputation saine sur cette plage d'adresses IP",
   "ip_byoip_disclaimer_confirm_text": "Valider",
   "ip_byoip_disclaimer_cancel_text": "Annuler"
 }
