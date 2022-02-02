@@ -304,11 +304,11 @@ export default class AgoraIpOrderCtrl {
   }
 
   redirectToPaymentPage() {
-    const { params } = this.model;
-    const serviceType = params.selectedService.type;
+    const { params, selectedService } = this.model;
+    const serviceType = selectedService.type;
     const offerPlanCode = params.selectedOffer.planCode;
     const quantity = params.selectedQuantity || 1;
-    const countryCode = params.selectedCountry.code || null;
+    const countryCode = params.selectedCountry?.code || null;
     this.atInternet.trackClick({
       name: `${TRACKING_PREFIX}confirm_${serviceType}_${offerPlanCode}_${quantity}_${countryCode}`,
       type: 'action',
