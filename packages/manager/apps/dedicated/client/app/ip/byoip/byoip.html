@@ -62,17 +62,17 @@
             </div>
             <div class="row mb-3">
                 <h3 data-translate="ip_byoip_region_token_title"></h3>
-                <p data-translate="ip_byoip_region_token_description"></p>
-                <p data-translate="ip_byoip_region_token_description_1"></p>
-                <p
-                    data-translate="ip_byoip_region_token_description_2"
-                    class="mb-3"
-                ></p>
-
-                <oui-clipboard
-                    data-model="$ctrl.token"
-                    class="col-md-6"
-                ></oui-clipboard>
+                <span data-translate="ip_byoip_region_token_description"></span>
+                <p class="my-3">
+                    <span
+                        data-translate="ip_byoip_region_token_description_1"
+                    ></span
+                    ><br />
+                    <span
+                        data-translate="ip_byoip_region_token_description_2"
+                    ></span>
+                </p>
+                <oui-clipboard data-model="$ctrl.token"></oui-clipboard>
             </div>
         </oui-step-form>
         <!-- IP range -->

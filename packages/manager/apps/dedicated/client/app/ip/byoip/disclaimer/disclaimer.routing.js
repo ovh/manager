@@ -27,7 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null,
     },
     atInternet: {
-      ignore: 'dedicated::ip::dashboard::bring-your-own-ip::confirmation',
+      rename: 'dedicated::ip::dashboard::bring-your-own-ip::confirmation',
     },
   });
 };
