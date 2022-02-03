@@ -661,7 +661,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     id: 'order-dedicated-server-eco',
     title: 'dedicated_server_eco',
     feature: 'dedicated-server:order',
-    icon: 'ovh-font ovh-font-server',
+    icon: 'oui-icon oui-icon-server_concept',
     linkId: 'dedicatedEcoRangeOrder',
     target: '_blank',
     external: true,
