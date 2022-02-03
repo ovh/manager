@@ -32,7 +32,7 @@ export default class NamespacesCtrl {
 
   trackAndDeleteNamespace(namespace) {
     this.trackDashboard('namespaces::delete_namespace');
-    this.goToDeletetNamespace(namespace);
+    this.goToDeleteNamespace(namespace);
   }
 
   trackAndAddNamespace() {
