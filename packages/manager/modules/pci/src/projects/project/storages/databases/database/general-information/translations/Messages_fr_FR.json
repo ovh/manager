@@ -70,5 +70,8 @@
   "pci_databases_general_information_kafka_rest_api_enable_disable_error": "Une erreur est survenue lors de l'activation/désactivation de Kafka REST API.",
   "pci_databases_general_information_endpoint_label": "Service",
   "pci_databases_general_information_scheme_label": "Protocole",
-  "pci_databases_general_information_path_label": "Path"
+  "pci_databases_general_information_path_label": "Path",
+  "pci_databases_general_information_reset_password": "Régénérer le mot de passe",
+  "pci_databases_general_information_reset_password_success": "Le mot de passe de l'utilisateur {{ user }} a été régénéré avec succès : <code>{{ password }}</code>. Veuillez le noter car il ne pourra pas être récupéré par la suite.",
+  "pci_databases_general_information_reset_password_error": "Une erreur est survenue lors de la modification du mot de passe de l'utilisateur {{ user }} : {{ message }}."
 }

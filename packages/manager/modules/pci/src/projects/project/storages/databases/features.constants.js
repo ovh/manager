@@ -22,6 +22,7 @@ const features = {
     DATABASE_TYPES.POSTGRESQL,
     DATABASE_TYPES.REDIS,
     DATABASE_TYPES.OPEN_SEARCH,
+    DATABASE_TYPES.GRAFANA,
   ],
   allowedIpsTab: [
     DATABASE_TYPES.MONGO_DB,
@@ -30,6 +31,7 @@ const features = {
     DATABASE_TYPES.KAFKA,
     DATABASE_TYPES.REDIS,
     DATABASE_TYPES.OPEN_SEARCH,
+    DATABASE_TYPES.GRAFANA,
   ],
   poolsTab: [DATABASE_TYPES.POSTGRESQL],
   queryStatisticsTab: [DATABASE_TYPES.MYSQL, DATABASE_TYPES.POSTGRESQL],
@@ -47,6 +49,7 @@ const features = {
   replicationsTab: [DATABASE_TYPES.KAFKA_MIRROR_MAKER],
   showServiceIntegration: [DATABASE_TYPES.KAFKA],
   restApi: [DATABASE_TYPES.KAFKA],
+  resetAdminUserFromDashboard: [DATABASE_TYPES.GRAFANA],
 };
 
 export default function isFeatureActivated(feature, databaseType) {

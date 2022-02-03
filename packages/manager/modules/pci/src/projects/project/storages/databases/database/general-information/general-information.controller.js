@@ -93,6 +93,42 @@ export default class {
     this.goToManagerUsers();
   }
 
+  resetPassword() {
+    this.DatabaseService.resetUserCredentials(
+      this.projectId,
+      this.database.engine,
+      this.database.id,
+      this.users[0].id,
+    )
+      .then((data) => {
+        this.CucCloudMessage.flushMessages(this.messageContainer);
+        this.CucCloudMessage.success(
+          {
+            textHtml: this.$translate.instant(
+              'pci_databases_general_information_reset_password_success',
+              {
+                user: this.users[0].username,
+                password: data.password,
+              },
+            ),
+          },
+          this.messageContainer,
+        );
+      })
+      .catch((error) =>
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_databases_general_information_reset_password_error',
+            {
+              user: this.users[0].username,
+              message: error.data?.message || null,
+            },
+          ),
+          this.messageContainer,
+        ),
+      );
+  }
+
   trackManageVRack() {
     this.trackDashboard('general_information::goto_vrack');
   }

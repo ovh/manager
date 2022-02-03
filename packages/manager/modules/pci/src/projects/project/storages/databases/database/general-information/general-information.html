@@ -342,6 +342,27 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_user_label' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('resetAdminUserFromDashboard')"
+                >
+                    <oui-tile-description>
+                        <span data-ng-bind="$ctrl.users[0].username"></span>
+                        <button
+                            type="button"
+                            class="oui-tile__button oui-button oui-button_ghost oui-button_block"
+                            data-ng-click="$ctrl.resetPassword()"
+                        >
+                            <span
+                                data-translate="pci_databases_general_information_reset_password"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right ml-1"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_certificate_label' | translate }}"
                     data-ng-if="$ctrl.isFeatureActivated('certificate')"
                 >
