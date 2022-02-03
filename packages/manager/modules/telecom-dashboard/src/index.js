@@ -19,19 +19,21 @@ import 'ovh-manager-webfont/dist/css/ovh-font.css';
 import './telecom-dashboard.scss';
 import './telecom-dashboard.less';
 
-import IdentityCheckForm from './identity-check/form';
+import billsCtrl from './bills/telecom-dashboard-bills.controller';
+import billsTemplate from './bills/telecom-dashboard-bills.html';
+import billsService from './bills/telecom-dashboard-bills.service';
 
 import dashboardCtrl from './telecom-dashboard.controller';
-import billsCtrl from './bills/telecom-dashboard-bills.controller';
-import guidesCtrl from './guides/telecom-dashboard-guides.controller';
-import IdentityCheckMessageCtrl from './identity-check/message/telecom-dashboard-identity-check-message.controller';
-
 import template from './telecom-dashboard.html';
-import billsTemplate from './bills/telecom-dashboard-bills.html';
+
+import guidesCtrl from './guides/telecom-dashboard-guides.controller';
 import guidesTemplate from './guides/telecom-dashboard-guides.html';
+
+import IdentityCheckMessageCtrl from './identity-check/message/telecom-dashboard-identity-check-message.controller';
 import identityCheckMessageTemplate from './identity-check/message/telecom-dashboard-identity-check-message.html';
 
-import billsService from './bills/telecom-dashboard-bills.service';
+import IdentityCheckForm from './identity-check/form';
+
 import identityCheckService from './identity-check/telecom-dashboard-identity-check.service';
 
 const moduleName = 'ovhManagerTelecomDashboard';
