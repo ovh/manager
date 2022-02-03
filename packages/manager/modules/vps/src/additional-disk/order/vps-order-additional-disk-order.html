@@ -35,22 +35,23 @@
                                 data-values="[disk]"
                                 data-required
                             >
-                                <oui-select-picker-section>
-                                    <strong
-                                        class="d-block text-right"
-                                        data-translate="vps_order_additional_disk_select_capacity_price_tax_free"
-                                        data-translate-values="{
-                                            price: $ctrl.getDiskMonthlyPrice(disk).text,
-                                            duration: ('vps_order_additional_disk_select_capacity_price_' + $ctrl.constructor.getDiskDuration(disk) | translate)
-                                        }"
-                                    >
+                                <oui-select-picker-label class="w-100">
+                                    <strong class="block text-center"
+                                            data-ng-bind=":: (disk.capacity.value | cucBytes:2:false:'GB')"
+                                    ></strong>
+                                    <strong class="block text-center"
+                                            data-ng-bind=":: $ctrl.getDiskMonthlyPrice(disk).text">
                                     </strong>
-                                </oui-select-picker-section>
+                                    <small class="block text-center"
+                                           data-translate="vps_order_additional_disk_select_capacity_price_tax_free"
+                                           data-translate-values="{duration: ('vps_order_additional_disk_select_capacity_price_' + $ctrl.constructor.getDiskDuration(disk) | translate)}">
+                                    </small>
+                                </oui-select-picker-label>
                             </oui-select-picker>
                         </div>
                     </div>
 
-                    <p data-translate="vps_order_additional_disk_explain"></p>
+                    <p data-translate=" vps_order_additional_disk_explain"></p>
                     <p data-translate="vps_order_additional_disk_step2"></p>
                 </oui-step-form>
             </oui-stepper>
