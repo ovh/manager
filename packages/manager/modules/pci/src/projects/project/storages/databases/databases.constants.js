@@ -5,7 +5,7 @@ import ASSET_POSTGRE_SQL from './assets/postgresql.png';
 import ASSET_REDIS from './assets/redis.png';
 import ASSET_OPEN_SEARCH from './assets/opensearch.png';
 import ASSET_KAFKA_MIRROR_MAKER from './assets/Kafka_MirrorMaker.png';
-import ASSET_M3DB from './assets/m3.svg';
+import ASSET_M3DB from './assets/m3.png';
 import ASSET_GRAFANA from './assets/grafana.png';
 
 export const ENGINE_LOGOS = {
