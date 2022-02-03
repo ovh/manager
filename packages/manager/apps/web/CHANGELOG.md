@@ -1,3 +1,12 @@
+## [16.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.5.0...@ovh-ux/manager-web@16.5.1) (2022-01-27)
+
+
+### Bug Fixes
+
+* **web.domain:** display domain dashboard ([#6367](https://github.com/ovh/manager/issues/6367)) ([e65a3e1](https://github.com/ovh/manager/commit/e65a3e1979a37e8cc023e638f363cc5646e1ae75))
+
+
+
 # [16.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.4.1...@ovh-ux/manager-web@16.5.0) (2022-01-25)
 
 

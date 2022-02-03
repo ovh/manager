@@ -25,6 +25,7 @@ const features = {
     DATABASE_TYPES.REDIS,
     DATABASE_TYPES.OPEN_SEARCH,
     DATABASE_TYPES.CASSANDRA,
+    DATABASE_TYPES.GRAFANA,
   ],
   showSSL: [
     DATABASE_TYPES.MONGO_DB,
@@ -41,6 +42,7 @@ const features = {
     DATABASE_TYPES.REDIS,
     DATABASE_TYPES.OPEN_SEARCH,
     DATABASE_TYPES.CASSANDRA,
+    DATABASE_TYPES.GRAFANA,
   ],
   host: [
     DATABASE_TYPES.MONGO_DB,
@@ -50,6 +52,7 @@ const features = {
     DATABASE_TYPES.REDIS,
     DATABASE_TYPES.OPEN_SEARCH,
     DATABASE_TYPES.CASSANDRA,
+    DATABASE_TYPES.GRAFANA,
   ],
   serviceURI: [
     DATABASE_TYPES.MONGO_DB,
@@ -59,6 +62,7 @@ const features = {
     DATABASE_TYPES.REDIS,
     DATABASE_TYPES.OPEN_SEARCH,
     DATABASE_TYPES.CASSANDRA,
+    DATABASE_TYPES.GRAFANA,
   ],
   hideMiddleColumn: [DATABASE_TYPES.KAFKA_MIRROR_MAKER],
   allowedIpsTab: [
@@ -69,6 +73,7 @@ const features = {
     DATABASE_TYPES.REDIS,
     DATABASE_TYPES.OPEN_SEARCH,
     DATABASE_TYPES.CASSANDRA,
+    DATABASE_TYPES.GRAFANA,
   ],
   poolsTab: [DATABASE_TYPES.POSTGRESQL],
   showKibanaURI: [DATABASE_TYPES.OPEN_SEARCH],
@@ -87,6 +92,7 @@ const features = {
   replicationsTab: [DATABASE_TYPES.KAFKA_MIRROR_MAKER],
   showServiceIntegration: [DATABASE_TYPES.KAFKA],
   restApi: [DATABASE_TYPES.KAFKA],
+  resetAdminUserFromDashboard: [DATABASE_TYPES.GRAFANA],
 };
 
 export default function isFeatureActivated(feature, databaseType) {

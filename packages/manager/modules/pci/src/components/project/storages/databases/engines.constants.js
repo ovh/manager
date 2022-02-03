@@ -15,6 +15,7 @@ export const ENGINES_NAMES = {
   opensearch: 'OpenSearch',
   kafkaMirrorMaker: 'Kafka MirrorMaker',
   cassandra: 'Cassandra',
+  grafana: 'Grafana',
 };
 
 export default {

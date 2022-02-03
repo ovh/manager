@@ -28,5 +28,6 @@
   "billing_payment_method_add_success": "O seu método de pagamento foi adicionado com êxito.",
   "billing_payment_method_add_error": "Ocorreu um erro ao adicionar o seu método de pagamento: {{ errorMessage }}",
   "billing_payment_method_add_alert_add_method": "Se tiver dificuldades em adicionar um novo método de pagamento, adicione uma exceção ao seu bloqueador de publicidades para {{ hostname }} ou ligue-se em modo privado do seu browser e tente novamente. Não voltaremos a apresentar publicidades na Área de Cliente. Tenha em conta que o seu bloqueador de publicidades pode interferir com o nosso sistema de pagamento.",
-  "billing_payment_method_add_alert_first_payment_failure": "Além disso, se não foi possível realizar o primeiro pagamento, tente criar um novo método de pagamento com o mesmo cartão de pagamento que acabou de utilizar. O nosso sistema cobrará automaticamente o montante no novo cartão de pagamento."
+  "billing_payment_method_add_alert_first_payment_failure": "Além disso, se não foi possível realizar o primeiro pagamento, tente criar um novo método de pagamento com o mesmo cartão de pagamento que acabou de utilizar. O nosso sistema cobrará automaticamente o montante no novo cartão de pagamento.",
+  "billing_payment_method_add_sepa_success": "O seu pedido de adição de uma conta bancária SEPA foi registado. O pedido está aguardar uma assinatura eletrónica (verifique a sua caixa de e-mail) ou está a ser tratado pelos nossos serviços."
 }

@@ -115,7 +115,8 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         $translate,
         goPaymentList,
         RedirectionService,
-      ) => () => {
+        OVH_PAYMENT_METHOD_TYPE,
+      ) => (paymentMethod, selectedPaymentMethodType) => {
         const { callbackUrl } = $transition$.params();
         if (callbackUrl && RedirectionService.validate(callbackUrl)) {
           window.location.href = callbackUrl;
@@ -125,7 +126,12 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         return goPaymentList(
           {
             type: 'success',
-            text: $translate.instant('billing_payment_method_add_success'),
+            text: $translate.instant(
+              selectedPaymentMethodType.paymentType ===
+                OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT
+                ? 'billing_payment_method_add_sepa_success'
+                : 'billing_payment_method_add_success',
+            ),
           },
           get($transition$.params(), 'from', null),
         );
