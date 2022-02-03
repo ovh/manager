@@ -33,17 +33,15 @@
         data-product-region="$ctrl.notebook.spec.region"
     ></pci-maintenance-banner>
 
-    <oui-message data-type="info"
-                 dismissable>
+    <oui-message data-type="info" dismissable>
         <span data-translate="pci_notebooks_dashboard_banner_user_and_roles_info"></span>
-        <p class="m-0">
-            <a
-                target="_blank"
-                rel="noopener"
-                data-translate="pci_notebooks_dashboard_banner_user_and_roles_info_link"
-                data-ng-href="{{:: $ctrl.userAndRolesLink }}"
-            ></a>
-        </p>
+        <a
+            class="block"
+            target="_blank"
+            rel="noopener"
+            data-translate="pci_notebooks_dashboard_banner_user_and_roles_info_link"
+            data-ng-href="{{:: $ctrl.userAndRolesLink }}"
+        ></a>
     </oui-message>
 
 </div>
