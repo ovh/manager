@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
             : false,
         ),
     resolve: {
-      breadcrumb: () => null,
+      hideBreadcrumb: () => true,
     },
   });
 };

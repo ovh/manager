@@ -17,7 +17,7 @@ angular
         resolve: {
           clusters: /* @ngInject */ (NutanixService) =>
             NutanixService.getClusters(),
-          breadcrumb: () => 'nutanix',
+          breadcrumb: () => 'Nutanix',
         },
       });
       $stateProvider.state('nutanix.index.**', {
