@@ -379,7 +379,7 @@
   "vps_zone": "Zone",
   "vps_cluster": "Cluster",
   "vps_tab_SUMMARY_additional_disk": "Disques additionnels",
-  "vps_additional_disk_add_button": "Commander un disque additionnel",
+  "vps_additional_disk_add_button": "Ajouter un disque",
   "vps_additional_disk_add_another_button": "Commander un autre disque additionnel",
   "vps_tab_additional_disk": "Disque additionnel",
   "vps_tab_additional_disk_not_available": "L'option d'ajout de disque additionnel n'est pas disponible sur cette gamme.",
