@@ -4,5 +4,10 @@
   "billing_payment_method_add_bank_account_address_zip": "Kod pocztowy",
   "billing_payment_method_add_bank_account_address_city": "Miasto",
   "billing_payment_method_add_bank_account_owner_name": "Imię i nazwisko właściciela lub nazwa organizacji",
-  "billing_payment_method_add_bank_account_owner_address": "Adres siedziby/zamieszkania i pobytu właściciela konta"
+  "billing_payment_method_add_bank_account_owner_address": "Adres siedziby/zamieszkania i pobytu właściciela konta",
+  "billing_payment_method_add_bank_account_owner_notification_info": "W ciągu 24-48 godzin na adres e-mail przypisany do Twojego konta OVHcloud prześlemy wiadomość z linkiem do podpisu elektronicznego i autoryzacji obciążenia.",
+  "billing_payment_method_add_bank_account_owner_info": "Uwaga: właściciel konta bankowego oraz  właściciel konta OVHcloud muszą być identyczni.",
+  "billing_payment_method_add_bank_account_owner_confirmation_info": "Jeśli Twoja autoryzacja zostanie zatwierdzona, możesz skorzystać z nowego sposobu płatności. ",
+  "billing_payment_method_add_bank_account_data_process_by_ovh_info": "The data provided via this form is processed by OVHcloud as a controller to create and manage your SEPA direct debit. <a href=\" {{ dataProtectionOvhLink }} \" target=\" _blank \">More about</a> how OVHcloud processes your data, and how to exercise your rights.",
+  "billing_payment_method_add_bank_account_data_process_by_yousign_info": "The creation of a SEPA direct debit requires to implement a SEPA mandate that we will ask you to execute by using an electronic signature solution provided by Yousign a service provider dully authorized in accordance with “eIDAS” Regulation No. 910/2014 of 23 July 2014. In this context, the aforementioned data are communicated to Yousign. <a href=\" {{ dataProtectionYouSignLink }} \" target=\" _blank \">More about</a> how Yousign processes your data."
 }
