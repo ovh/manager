@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useRef, useState, Suspense } from 'react';
+import React, {
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  Suspense,
+} from 'react';
 import { plugin, IFrameMessageBus } from '@ovh-ux/shell';
 import ApplicationContext from '@/context';
 
@@ -11,7 +17,7 @@ function NavReshuffleContainer() {
   const iframeRef = useRef(null);
   const [iframe, setIframe] = useState(null);
   const [router, setRouter] = useState(null);
-  const [showSidebar, setSidebarVisibility] = useState(true);
+  const [isSidebarExpanded, setSidebarExpanded] = useState(false);
   const { shell } = useContext(ApplicationContext);
 
   useEffect(() => {
@@ -28,19 +34,27 @@ function NavReshuffleContainer() {
   return (
     <div className={style.navReshuffle}>
       {router}
-      <div className={`${style.sidebar} ${showSidebar ? style.hidden : ''}`}>
+      <div
+        className={`${style.sidebar} ${isSidebarExpanded ? '' : style.hidden}`}
+      >
         <Suspense fallback="">
           <Sidebar />
         </Suspense>
       </div>
       <div className={`${style.container}`}>
         <div className={style.navbar}>
-          <Header onSidebarToggle={setSidebarVisibility} />
+          <Header
+            isSidebarExpanded={isSidebarExpanded}
+            onHamburgerMenuClick={() => setSidebarExpanded(!isSidebarExpanded)}
+          />
         </div>
-        <div className={style.iframeContainer}>
+        <div
+          className={style.iframeContainer}
+          onClick={() => setSidebarExpanded(false)}
+        >
           <div
             className={`${style.iframeOverlay} ${
-              showSidebar ? '' : style.iframeOverlay_visible
+              isSidebarExpanded ? style.iframeOverlay_visible : ''
             }`}
           ></div>
           <iframe

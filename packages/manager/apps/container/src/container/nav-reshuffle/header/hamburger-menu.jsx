@@ -1,22 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-function HamburgerMenu({ onToggle }) {
-  const [opened, setOpened] = useState(false);
-
-  function toggle() {
-    setOpened(!opened);
-    onToggle(opened);
-  }
-
+function HamburgerMenu({ isOpen, onClick }) {
   return (
     <div>
       <button
         role="button"
         type="button"
         className="oui-navbar-toggler oui-navbar-toggler_button"
-        onClick={toggle}
-        aria-expanded={opened}
+        onClick={onClick}
+        aria-expanded={isOpen}
       >
         <span className="oui-navbar-toggler__hamburger">
           <span></span>
@@ -30,11 +23,13 @@ function HamburgerMenu({ onToggle }) {
 }
 
 HamburgerMenu.propTypes = {
-  onToggle: PropTypes.func,
+  isOpen: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 HamburgerMenu.defaultProps = {
-  onToggle: () => {},
+  isOpen: false,
+  onClick: () => {},
 }
 
 export default HamburgerMenu;
