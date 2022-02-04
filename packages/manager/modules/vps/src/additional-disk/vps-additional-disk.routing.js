@@ -11,6 +11,9 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('vps_additional_disk'),
+
+      goToOrderAdditionalDisk: /* @ngInject */ ($state) => () =>
+        $state.go('vps.detail.additional-disk.order'),
     },
   });
 };
