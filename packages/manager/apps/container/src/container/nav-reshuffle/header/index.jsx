@@ -7,7 +7,7 @@ import { NotificationsProvider } from '@/core/notifications';
 import ApplicationContext, { useShell } from '@/context';
 import HamburgerMenu from './hamburger-menu';
 
-function Header({ onSidebarToggle }) {
+function Header({ isSidebarExpanded, onHamburgerMenuClick }) {
   const shell = useShell();
   const [userLocale, setUserLocale] = useState(
     shell.getPlugin('i18n').getLocale(),
@@ -18,7 +18,10 @@ function Header({ onSidebarToggle }) {
       {({ environment }) => (
         <Suspense fallback="">
           <div className="oui-navbar">
-            <HamburgerMenu onToggle={onSidebarToggle} />
+            <HamburgerMenu
+              isOpen={isSidebarExpanded}
+              onClick={onHamburgerMenuClick}
+            />
             <div className="oui-navbar-list oui-navbar-list_aside oui-navbar-list_end">
               <div className="oui-navbar-list__item">
                 <LanguageMenu
@@ -41,11 +44,13 @@ function Header({ onSidebarToggle }) {
 }
 
 Header.propTypes = {
-  onSidebarToggle: PropTypes.func,
+  isSidebarExpanded: PropTypes.bool,
+  onHamburgerMenuClick: PropTypes.func,
 };
 
 Header.defaultProps = {
-  onSidebarToggle: () => {},
+  isSidebarExpanded: false,
+  onHamburgerMenuClick: () => {},
 };
 
 export default Header;
