@@ -37,10 +37,33 @@
                 data-title="'vps_tab_additional_disk_header_state' | translate"
                 data-property="state"
             >
-                <span
-                    data-ng-bind="'vps_tab_additional_disk_state_' + $row.state | translate"
-                ></span>
+                <span class="oui-badge"
+                      data-ng-init="diskStateInfo = $ctrl.constructor.getDiskStateInfo($row)"
+                      data-ng-class="{
+                        'oui-badge_success': diskStateInfo.success,
+                        'oui-badge_warning': diskStateInfo.warning,
+                        'oui-badge_error': diskStateInfo.error,
+                    }"
+                >
+                    <span
+                        data-ng-bind="'vps_tab_additional_disk_state_' + $row.state | translate"
+                    ></span>
+                </span>
             </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
+
+                <!--Upgrade disk: increase capacity-->
+                <oui-action-menu-item data-disabled="!$ctrl.isVpsNewRange"
+                                      data-on-click="$ctrl.goToUpgradeDisk($row)">
+                    <span data-translate="vps_additional_disk_actions_increase_disk"></span>
+                </oui-action-menu-item>
+
+                <!--Terminate a disk-->
+                <oui-action-menu-item data-on-click="$ctrl.goToTerminateDisk($row)">
+                    <span data-translate="vps_additional_disk_actions_terminate"></span>
+                </oui-action-menu-item>
+
+            </oui-action-menu>
         </oui-datagrid>
     </div>
 </section>
