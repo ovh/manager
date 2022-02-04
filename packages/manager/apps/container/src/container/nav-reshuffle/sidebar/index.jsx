@@ -1,6 +1,7 @@
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useContext, useEffect, useState, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 // import { useReket } from '@ovh-ux/ovh-reket';
+import ApplicationContext from '@/context';
 import SidebarLink from './sidebar-link';
 import { countServices } from './utils';
 import Assistance from './assistance';
@@ -10,6 +11,11 @@ import logo from '@/assets/images/icon-logo-ovh.svg';
 
 function Sidebar() {
   const { t } = useTranslation('sidebar');
+  const { shell } = useContext(ApplicationContext);
+  const environment = shell
+    .getPluginManager()
+    .getPlugin('environment')
+    .getEnvironment();
   const [currentNavigationNode, setCurrentNavigationNode] = useState(
     navigation,
   );

@@ -3,11 +3,35 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import style from './style.module.scss';
 
-function SidebarLink(props) {
+function StaticLink({ node }) {
   const { t } = useTranslation('sidebar');
-  const { node } = props;
   return (
-    <a onClick={props.onClick}>
+    <a
+      href={node.url}
+      target={node.isExternal ? '_blank' : '_top'}
+      rel={node.isExternal ? 'noopener noreferrer' : ''}
+    >
+      {t(node.translation)}
+      {node.isExternal && (
+        <span
+          aria-hidden="true"
+          className={`${style.sidebar_external} oui-icon oui-icon-external-link`}
+        ></span>
+      )}
+    </a>
+  );
+}
+
+StaticLink.propTypes = {
+  node: PropTypes.any,
+};
+
+function SidebarLink({ count, node, onClick }) {
+  const { t } = useTranslation('sidebar');
+  return node.url ? (
+    <StaticLink node={node} />
+  ) : (
+    <a onClick={onClick}>
       {t(node.translation)}
       {node.children ? (
         <span
@@ -17,11 +41,11 @@ function SidebarLink(props) {
       ) : (
         ''
       )}
-      {props.count > 0 && (
+      {count > 0 && (
         <span
           className={`oui-badge oui-badge_s oui-badge_new ml-1 ${style.sidebar_chip}`}
         >
-          {props.count}
+          {count}
         </span>
       )}
     </a>
@@ -29,9 +53,9 @@ function SidebarLink(props) {
 }
 
 SidebarLink.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  node: PropTypes.any,
   count: PropTypes.number,
+  node: PropTypes.any,
+  onClick: PropTypes.func,
 };
 
 export default SidebarLink;
