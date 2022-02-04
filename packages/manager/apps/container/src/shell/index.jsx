@@ -10,6 +10,7 @@ import { plugin, IFrameMessageBus } from '@ovh-ux/shell';
 
 import useCookieModal from '../cookie-policy/useCookieModal';
 import CookiePolicy from '../cookie-policy/CookiePolicy';
+import SSOAuthModal from '../sso-auth-modal/SSOAuthModal';
 
 import ApplicationContext from '../context';
 
@@ -49,6 +50,9 @@ function Shell() {
           ref={iframeRef}
         ></iframe>
       </div>
+      <Suspense fallback="">
+        <SSOAuthModal />
+      </Suspense>
       <div className={style.managerShell_footer}></div>
       <Suspense fallback="...">
         <CookiePolicy shell={shell} ref={cookieModalRef} />
