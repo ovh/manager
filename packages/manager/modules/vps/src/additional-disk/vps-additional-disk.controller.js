@@ -14,7 +14,7 @@ export default class {
       init: false,
       disk: false,
     };
-    this.additionnalDisks = [];
+    this.additionalDisks = [];
   }
 
   $onInit() {
@@ -45,7 +45,7 @@ export default class {
           this.VpsService.getDiskInfo(this.serviceName, elem),
         );
         return this.$q.all(promises).then((diskInfos) => {
-          this.additionnalDisks = this.VpsService.showOnlyAdditionalDisk(
+          this.additionalDisks = this.VpsService.showOnlyAdditionalDisk(
             diskInfos,
           );
         });
@@ -62,6 +62,6 @@ export default class {
   }
 
   canOrder() {
-    return isEmpty(this.additionnalDisks);
+    return isEmpty(this.additionalDisks);
   }
 }
