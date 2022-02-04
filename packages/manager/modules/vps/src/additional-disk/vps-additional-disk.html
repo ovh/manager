@@ -12,22 +12,15 @@
         <span data-translate="vps_tab_additional_disk_not_available"></span>
     </div>
 
-    <div data-ng-if="$ctrl.hasAdditionalDiskOption && !$ctrl.loaders.disk">
-        <p
-            data-ng-if="$ctrl.canOrder()"
-            data-translate="vps_tab_additional_disk_count"
-        ></p>
-        <button
-            class="oui-button oui-button_primary"
-            data-translate="vps_additional_disk_add_button"
-            data-ng-if="$ctrl.canOrder()"
-            data-ui-sref="vps.detail.additional-disk.order"
-        ></button>
-
-        <oui-datagrid
-            data-ng-if="!$ctrl.canOrder()"
-            data-rows="$ctrl.additionnalDisks"
-        >
+    <div data-ng-if="!$ctrl.loaders.disk">
+        <oui-datagrid data-rows="$ctrl.additionalDisks">
+            <oui-datagrid-topbar>
+                <oui-button data-variant="secondary"
+                            data-disabled="!$ctrl.canOrder()"
+                            data-on-click="$ctrl.goToOrderAdditionalDisk()">
+                    <span data-translate="vps_additional_disk_add_button"></span>
+                </oui-button>
+            </oui-datagrid-topbar>
             <oui-datagrid-column
                 data-title="'vps_tab_additional_disk_header_id' | translate"
                 data-property="id"

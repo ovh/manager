@@ -7,11 +7,11 @@ import map from 'lodash/map';
 import 'moment';
 
 import {
-  DASHBOARD_FEATURES,
-  SERVICE_TYPE,
   COMMIT_IMPRESSION_TRACKING_DATA,
-  RECOMMIT_IMPRESSION_TRACKING_DATA,
+  DASHBOARD_FEATURES,
   MIGRATION_STATUS,
+  RECOMMIT_IMPRESSION_TRACKING_DATA,
+  SERVICE_TYPE,
 } from './vps-dashboard.constants';
 import { CHANGE_OWNER_URL, RENEW_URL } from '../vps/constants';
 
@@ -175,10 +175,10 @@ export default class {
           this.VpsService.getDiskInfo(this.serviceName, elem),
         );
         return this.$q.all(promises).then((diskInfos) => {
-          this.additionnalDisks = this.VpsService.showOnlyAdditionalDisk(
+          this.additionalDisks = this.VpsService.showOnlyAdditionalDisk(
             diskInfos,
           );
-          this.canOrderDisk = isEmpty(this.additionnalDisks);
+          this.canOrderDisk = isEmpty(this.additionalDisks);
         });
       })
       .catch((error) => {
