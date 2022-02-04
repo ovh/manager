@@ -11,7 +11,11 @@ import NavReshuffleSwitchBack from '@/container/common/nav-reshuffle-switch-back
 import modalStyle from '@/container/common/modal.module.scss';
 import UserAccountMenu from './user-account-menu';
 
-function Header({ isSidebarExpanded, onHamburgerMenuClick, onUserAccountMenuToggle }) {
+function Header({
+  isSidebarExpanded,
+  onHamburgerMenuClick,
+  onUserAccountMenuToggle,
+}) {
   const shell = useShell();
   const [userLocale, setUserLocale] = useState(
     shell.getPlugin('i18n').getLocale(),
