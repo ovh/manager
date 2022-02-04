@@ -14,6 +14,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goToOrderAdditionalDisk: /* @ngInject */ ($state) => () =>
         $state.go('vps.detail.additional-disk.order'),
+
+      goToUpgradeDisk: /* @ngInject */ ($state) => () =>
+        $state.go('vps.detail.additional-disk.upgrade'),
+
+      goToTerminateDisk: /* @ngInject */ ($state) => () =>
+        $state.go('vps.detail.additional-disk.terminate'),
     },
   });
 };
