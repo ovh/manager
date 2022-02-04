@@ -1,3 +1,5 @@
 {
-  "vps_additional_disk": "Disque additionel"
+  "vps_additional_disk": "Disque additionel",
+  "vps_additional_disk_actions_increase_disk": "Augmenter la taille du disque",
+  "vps_additional_disk_actions_terminate": "Résilier"
 }
