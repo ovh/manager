@@ -6,6 +6,7 @@ import { countServices } from './utils';
 import Assistance from './assistance';
 import style from './style.module.scss';
 import navigation from './navigation';
+import logo from '@/assets/images/icon-logo-ovh.svg';
 
 function Sidebar() {
   const { t } = useTranslation('sidebar');
@@ -40,7 +41,7 @@ function Sidebar() {
   return (
     <div className={style.sidebar}>
       <span className={style.sidebar_logo}>
-        <img src="assets/images/icon-logo-ovh.svg" aria-hidden="true" />
+        <img src={logo} aria-hidden="true" />
         OVHcloud
       </span>
       <ul>
