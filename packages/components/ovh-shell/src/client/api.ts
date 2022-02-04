@@ -81,6 +81,17 @@ export default function exposeApi(shellClient: ShellClient) {
           plugin: 'ux',
           method: 'isAccountSidebarVisible',
         }),
+      getSSOAuthModalMode: (oldUserCookie: string) =>
+        shellClient.invokePluginMethod<string>({
+          plugin: 'ux',
+          method: 'getSSOAuthModalMode',
+          args: [oldUserCookie],
+        }),
+      getUserIdCookie: () =>
+        shellClient.invokePluginMethod<string>({
+          plugin: 'ux',
+          method: 'getUserIdCookie',
+        }),
     },
     navigation: clientNavigation(shellClient),
     tracking: exposeTrackingAPI(shellClient),
