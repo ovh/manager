@@ -89,14 +89,22 @@ export default class PackResiliationCtrl {
           'pack_resiliation_type_name',
         );
         if (this.resiliationTerms.data.resiliationReasons) {
-          this.resiliationTerms.data.resiliationReasons = this.resiliationTerms.data.resiliationReasons.map(
-            (reason) => ({
+          this.resiliationTerms.data.resiliationReasons = this.resiliationTerms.data.resiliationReasons
+            .filter(
+              (reason) =>
+                [
+                  'billingProblems',
+                  'ftth',
+                  'changeOfTerms',
+                  'goToCompetitor',
+                ].indexOf(reason) === -1,
+            )
+            .map((reason) => ({
               value: reason,
               label: this.$translate.instant(
                 `pack_resiliation_choice_${reason}`,
               ),
-            }),
-          );
+            }));
         }
 
         if (this.resiliationTerms.name) {
@@ -328,9 +336,11 @@ export default class PackResiliationCtrl {
    * @param  {Object} survey Reason to resiliate
    * @param {Boolean} accept If true the resiliation must be done
    */
-  resiliatePack() {
-    this.loading = true;
-    return this.OvhApiPackXdslResiliation.v6()
+  resiliatePack(slf) {
+    const self = slf;
+    self.loading = true;
+
+    return self.OvhApiPackXdslResiliation.v6()
       .resiliate(
         {
           packName: this.$stateParams.packName,
@@ -394,6 +404,7 @@ export default class PackResiliationCtrl {
   }
 
   openConfirmation() {
+    const self = this;
     this.$uibModal
       .open({
         template: this.$templateCache.get('resiliation.modal.html'),
@@ -404,11 +415,21 @@ export default class PackResiliationCtrl {
         },
         resolve: {
           subject() {
-            return this.resiliationReason;
+            return self.resiliationReason;
           },
         },
       })
-      .result.then(this.resiliatePack);
+      .result.then((result) => {
+        switch (result) {
+          case 'cancel':
+            this.$uibModal.close();
+            break;
+          default:
+            this.resiliatePack(this);
+            break;
+        }
+        return result;
+      });
   }
 
   checkNeedSubsidiaryQuestion() {
