@@ -4,12 +4,17 @@ import '@uirouter/angularjs';
 import component from './vps-additional-disk.component';
 import routing from './vps-additional-disk.routing';
 
-import ovhManagerVpsAdditionnalDiskOrder from './order';
+import ovhManagerVpsAdditionalDiskOrder from './order';
+import ovhManagerVpsAdditionalDiskTerminate from './terminate';
 
-const moduleName = 'ovhManagerVpsAdditionnalDisk';
+const moduleName = 'ovhManagerVpsAdditionalDisk';
 
 angular
-  .module(moduleName, [ovhManagerVpsAdditionnalDiskOrder, 'ui.router'])
+  .module(moduleName, [
+    ovhManagerVpsAdditionalDiskOrder,
+    ovhManagerVpsAdditionalDiskTerminate,
+    'ui.router',
+  ])
   .component(component.name, component)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
