@@ -2,10 +2,7 @@ const MIN_TO_SEC = 60;
 const HOUR_TO_SEC = 3600;
 const DAY_TO_SEC = 86400;
 
-export const stringToDuration = function(
-  string,
-  pattern = /^[0-9]+[smhdSMHD]$/g,
-) {
+export const stringToDuration = function(string, pattern = /^\d+[smhdSMHD]$/g) {
   if (!string) return null;
   const match = string.match(pattern);
   if (!match) return null;
