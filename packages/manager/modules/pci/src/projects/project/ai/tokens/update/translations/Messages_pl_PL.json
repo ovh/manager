@@ -1,0 +1,3 @@
+{
+  "pci_ai_tokens_update_warning": "Czy na pewno chcesz ponownie wygenerować {{tokenId}} ? Twój poprzedni token nie będzie już ważny."
+}
