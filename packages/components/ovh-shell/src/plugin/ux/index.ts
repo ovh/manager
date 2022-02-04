@@ -12,6 +12,7 @@ export interface IUXPlugin {
   disableAccountSidebarVisibilityToggle(): void;
   toggleNotificationsSidebarVisibility(): void;
   toggleAccountSidebarVisibility(): void;
+  getUserIdCookie(): string;
 }
 
 // TODO: remove this once we have a more generic Plugin class
@@ -75,5 +76,41 @@ export class UXPlugin implements IUXPlugin {
 
   toggleNotificationsSidebarVisibility(): void {
     this.shellUX.toggleSidebarVisibility('notifications');
+  }
+
+  /* ----------- SSOAuthModal methods -----------*/
+
+  getUserIdCookie = () => {
+    const latestCookies = document.cookie;
+    const userIdCookie = latestCookies
+      .split(';')
+      .find((item) => item.includes('USERID'));
+
+    if (userIdCookie) {
+      return userIdCookie.split('=')[1];
+    }
+
+    return '';
+  };
+
+  getSSOAuthModalMode(oldUserID: string): string {
+    const latestUserIdCookie = this.getUserIdCookie();
+
+    if (oldUserID && !latestUserIdCookie) {
+      // from connected to disconnected
+      return 'CONNECTED_TO_DISCONNECTED';
+    }
+
+    if (!oldUserID && latestUserIdCookie) {
+      // from disconnected to connected
+      return 'DISCONNECTED_TO_CONNECTED';
+    }
+
+    if (oldUserID !== latestUserIdCookie) {
+      // from connected to connected with other
+      return 'CONNECTED_TO_OTHER';
+    }
+
+    return '';
   }
 }
