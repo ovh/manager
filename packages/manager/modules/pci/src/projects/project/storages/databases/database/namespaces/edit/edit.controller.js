@@ -1,3 +1,7 @@
+import {
+  stringToDuration,
+  durationStringToString,
+} from '../durationHelper.constants';
 import Namespace from '../../../../../../../components/project/storages/databases/namespace.class';
 import { FORM_RULES } from '../add/add.constants';
 
@@ -11,11 +15,61 @@ export default class {
 
   $onInit() {
     this.trackDashboard('namespace::modify', 'page');
-    this.model = this.namespace;
+    this.model = {
+      name: this.namespace.name,
+      resolution: durationStringToString(this.namespace.resolution),
+      retention: {
+        blockDataExpirationDuration: durationStringToString(
+          this.namespace.retention.blockDataExpirationDuration,
+        ),
+        blockSizeDuration: durationStringToString(
+          this.namespace.retention.blockSizeDuration,
+        ),
+        bufferFutureDuration: durationStringToString(
+          this.namespace.retention.bufferFutureDuration,
+        ),
+        bufferPastDuration: durationStringToString(
+          this.namespace.retention.bufferPastDuration,
+        ),
+        periodDuration: durationStringToString(
+          this.namespace.retention.periodDuration,
+        ),
+      },
+      snapshotEnabled: this.namespace.snapshotEnabled,
+      type: this.namespace.type,
+      writesToCommitLogEnabled: this.namespace.writesToCommitLogEnabled,
+    };
   }
 
   prepareModel() {
-    return new Namespace(this.model);
+    return new Namespace({
+      resolution:
+        this.namespace.type === 'unaggregated'
+          ? null
+          : stringToDuration(this.model.resolution),
+      retention: {
+        blockDataExpirationDuration: stringToDuration(
+          this.model.retention.blockDataExpirationDuration,
+        ),
+        blockSizeDuration: stringToDuration(
+          this.model.retention.blockSizeDuration,
+        ),
+        bufferFutureDuration: stringToDuration(
+          this.model.retention.bufferFutureDuration,
+        ),
+        bufferPastDuration: stringToDuration(
+          this.model.retention.bufferPastDuration,
+        ),
+        periodDuration: stringToDuration(this.model.retention.periodDuration),
+      },
+      snapshotEnabled: this.model.snapshotEnabled,
+      writesToCommitLogEnabled: this.model.writesToCommitLogEnabled,
+    });
+  }
+
+  cancel() {
+    this.trackDashboard('namespaces::actions_menu::modify_namespace_cancel');
+    this.goBack();
   }
 
   edit() {
@@ -25,6 +79,7 @@ export default class {
       this.projectId,
       this.database.engine,
       this.database.id,
+      this.namespace.id,
       this.prepareModel(),
     )
       .then(() => {

@@ -7,6 +7,8 @@
   "pci_databases_namespaces_add_type_label": "Type",
   "pci_databases_namespaces_add_type_info": "Il doit y avoir 1 seul namespace non agrégé. Le namespace par défaut peut être modifié ci-dessous.",
   "pci_databases_namespaces_add_type_popover": "",
+  "pci_databases_namespaces_add_type_aggregated": "Aggregated",
+  "pci_databases_namespaces_add_type_unaggregated": "Unaggregated",
   "pci_databases_namespaces_add_retention_perdiod_duration_label": "Durée de rétention",
   "pci_databases_namespaces_add_retention_perdiod_duration_placeholder": "Ex: 48h",
   "pci_databases_namespaces_add_retention_perdiod_duration_popover": "",

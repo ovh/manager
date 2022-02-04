@@ -57,12 +57,16 @@
                 ></button>
                 <p data-translate="pci_databases_namespaces_add_type_info"></p>
                 <oui-radio-group model="$ctrl.model.type">
-                    <oui-radio inline value="'aggregated'" disabled
-                        >Aggregated</oui-radio
-                    >
-                    <oui-radio inline value="'unaggregated'" disabled
-                        >Unaggregated</oui-radio
-                    >
+                    <oui-radio inline value="'aggregated'" disabled>
+                        <span
+                            data-translate="{{:: 'pci_databases_namespaces_add_type_aggregated' | translate }}"
+                        ></span>
+                    </oui-radio>
+                    <oui-radio inline value="'unaggregated'" disabled>
+                        <span
+                            data-translate="{{:: 'pci_databases_namespaces_add_type_unaggregated' | translate }}"
+                        ></span>
+                    </oui-radio>
                 </oui-radio-group>
             </oui-field>
         </div>
