@@ -7,7 +7,11 @@ export default {
   template,
   bindings: {
     serviceName: '<',
+    vps: '<',
+    isVpsNewRange: '<',
     tabSummary: '<',
     goToOrderAdditionalDisk: '<',
+    goToUpgradeDisk: '<',
+    goToTerminateDisk: '<',
   },
 };

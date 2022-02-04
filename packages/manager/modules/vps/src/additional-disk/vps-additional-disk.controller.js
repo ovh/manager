@@ -2,6 +2,8 @@ import isEmpty from 'lodash/isEmpty';
 import get from 'lodash/get';
 import map from 'lodash/map';
 
+import { VPS_DISK_STATES } from './vps-additional-disk.constants';
+
 export default class {
   /* @ngInject */
   constructor($q, $translate, CucCloudMessage, VpsService) {
@@ -24,6 +26,14 @@ export default class {
       false,
     );
     this.hasAdditionalDisk();
+  }
+
+  static getDiskStateInfo({ state }) {
+    return {
+      error: VPS_DISK_STATES.ERROR.includes(state),
+      warning: VPS_DISK_STATES.WARNING.includes(state),
+      success: VPS_DISK_STATES.SUCCESS.includes(state),
+    };
   }
 
   hasAdditionalDisk() {
