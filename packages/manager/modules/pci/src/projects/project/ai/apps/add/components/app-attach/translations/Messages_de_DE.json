@@ -1,0 +1,3 @@
+{
+  "pci_app_add_attach_container_description": "Verbinden Sie bei Bedarf Object Storage Container von OVHcloud mit Ihrer AI App. Wenn die Verbindung mit den Containern hergestellt ist, werden sie vorübergehend geladen und nahe an Ihrer Instanz im Cache abgelegt. Das reduziert die Latenz und verbessert die Leistung. Es hat sich bewährt, das Notebook mit einem Container für Ihre eingehenden Daten und einem weiteren für Ihre ausgehenden Daten zu verbinden."
+}

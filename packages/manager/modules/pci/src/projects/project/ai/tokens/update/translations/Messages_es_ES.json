@@ -1,0 +1,3 @@
+{
+  "pci_ai_tokens_update_warning": "¿Seguro que quiere regenerar el token {{ tokenId }}? Su antiguo token ya no será válido."
+}

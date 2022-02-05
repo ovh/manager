@@ -1,0 +1,6 @@
+{
+  "pci_app_stop_app_title": "Die AI App stoppen",
+  "pci_app_stop_app_content": "Sind Sie sicher, dass Sie die AI App {{ appName }} stoppen möchten?",
+  "pci_app_stop_app_success": "Ihre AI App wurde gestoppt.",
+  "pci_app_stop_app_error": "Beim Stoppen Ihrer AI App {{ appName }} ist ein Fehler aufgetreten: {{ message }}"
+}
