@@ -3,9 +3,13 @@ const HOUR_TO_SEC = 3600;
 const DAY_TO_SEC = 86400;
 
 export const stringToDuration = function(string, pattern = /^\d+[smhdSMHD]$/g) {
-  if (!string) return null;
+  if (!string) {
+    return null;
+  }
   const match = string.match(pattern);
-  if (!match) return null;
+  if (!match) {
+    return null;
+  }
   const value = parseInt(string.slice(0, -1), 10);
   const unit = string[string.length - 1];
   switch (unit.toLowerCase()) {
@@ -25,11 +29,18 @@ export const stringToDuration = function(string, pattern = /^\d+[smhdSMHD]$/g) {
 export const durationStringToString = function(durationSting) {
   const duration = moment.duration(durationSting);
   const seconds = duration.asSeconds();
-  if (seconds === 0) return null;
-
-  if (seconds % DAY_TO_SEC === 0) return `${seconds / DAY_TO_SEC}d`;
-  if (seconds % HOUR_TO_SEC === 0) return `${seconds / HOUR_TO_SEC}h`;
-  if (seconds % MIN_TO_SEC === 0) return `${seconds / MIN_TO_SEC}m`;
+  if (seconds === 0) {
+    return null;
+  }
+  if (seconds % DAY_TO_SEC === 0) {
+    return `${seconds / DAY_TO_SEC}d`;
+  }
+  if (seconds % HOUR_TO_SEC === 0) {
+    return `${seconds / HOUR_TO_SEC}h`;
+  }
+  if (seconds % MIN_TO_SEC === 0) {
+    return `${seconds / MIN_TO_SEC}m`;
+  }
   return `${seconds}s`;
 };
 
