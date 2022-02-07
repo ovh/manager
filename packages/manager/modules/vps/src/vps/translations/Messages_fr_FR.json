@@ -205,6 +205,7 @@
   "vps_configuration_snapshot_restore_fail": "Une erreur est survenue lors de la demande restauration du Snapshot.",
   "vps_configuration_activate_snapshot_title_button": "Activer l'option Snapshot",
   "vps_configuration_desactivate_option": "Résilier",
+  "vps_configuration_additional_disk_upgrade_option": "Augmenter la taille du disque",
   "vps_configuration_option_released": "Non renouvelé",
   "vps_configuration_activate_ftpbackup_title_button": "Activer le Backup storage",
   "vps_configuration_cancel_option_title_ftpbackup": "Résilier le Backup storage",
