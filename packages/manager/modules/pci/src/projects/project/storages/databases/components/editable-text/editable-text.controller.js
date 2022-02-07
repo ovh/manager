@@ -46,7 +46,11 @@ export default class {
   }
 
   handleKey($event) {
-    if ($event.keyCode === 13) this.emitChange();
-    if ($event.keyCode === 27) this.reset();
+    if ($event.keyCode === 13) {
+      this.emitChange();
+    }
+    if ($event.keyCode === 27) {
+      this.reset();
+    }
   }
 }
