@@ -10,6 +10,7 @@ import deleteUser from './delete';
 import informations from './informations';
 import modifyPassword from './modify-password';
 import showSecret from './show-secret';
+import editableText from '../../components/editable-text';
 
 const moduleName = 'ovhManagerPciStoragesDatabasesUsers';
 
@@ -22,6 +23,7 @@ angular
     informations,
     modifyPassword,
     showSecret,
+    editableText,
   ])
   .config(routing)
   .component('ovhManagerPciStoragesDatabaseUsersComponent', component)

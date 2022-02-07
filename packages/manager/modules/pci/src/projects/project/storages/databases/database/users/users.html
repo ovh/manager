@@ -45,6 +45,13 @@
             data-searchable
             data-filterable
         >
+            <editable-text
+                value="$row.group"
+                max="$ctrl.ADD_USER_FORM_RULES.group.max"
+                pattern="$ctrl.ADD_USER_FORM_RULES.group.pattern"
+                on-change="$ctrl.handleGroupChange(newValue, $row)"
+                pending="$row.pending"
+            ></editable-text>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_users_createdAt_label' | translate"
