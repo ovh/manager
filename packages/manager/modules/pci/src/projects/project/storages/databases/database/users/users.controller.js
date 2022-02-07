@@ -102,6 +102,10 @@ export default class UsersCtrl {
     this.goToUserInformations(user);
   }
 
+  isDisabledOrPending($row) {
+    return $row.isProcessing() || this.database.isProcessing();
+  }
+
   handleGroupChange(newValue, row) {
     set(row, 'pending', true);
     this.DatabaseService.editUser(

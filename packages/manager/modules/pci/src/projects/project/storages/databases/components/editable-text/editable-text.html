@@ -1,6 +1,7 @@
 <div class="d-flex align-items-center justify-content-between">
     <oui-skeleton ng-if="$ctrl.pending"></oui-skeleton>
     <span
+        class="w-100"
         ng-if="!$ctrl.showInput && !$ctrl.pending"
         data-ng-bind="$ctrl.inputValue"
     ></span>

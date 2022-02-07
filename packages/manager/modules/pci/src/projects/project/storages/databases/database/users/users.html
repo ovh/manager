@@ -45,7 +45,13 @@
             data-searchable
             data-filterable
         >
+            <span
+                ng-if="$ctrl.isDisabledOrPending($row)"
+                data-ng-bind="::$row.group"
+            >
+            </span>
             <editable-text
+                ng-if="!$ctrl.isDisabledOrPending($row)"
                 value="$row.group"
                 max="$ctrl.ADD_USER_FORM_RULES.group.max"
                 pattern="$ctrl.ADD_USER_FORM_RULES.group.pattern"
