@@ -3,8 +3,8 @@ import 'moment';
 
 import { EngagementConfiguration } from '@ovh-ux/manager-models';
 import {
-  NEW_RANGE_VERSION,
   MIGRATION_STATUS,
+  NEW_RANGE_VERSION,
 } from '../dashboard/vps-dashboard.constants';
 import { RANGES } from '../upscale/upscale.constants';
 import { FEATURE_CLOUDDATABASE, PRODUCT_NAME } from './constants';
@@ -115,6 +115,12 @@ export default /* @ngInject */ ($stateProvider) => {
           .catch(() => false),
       isMigrating: /* @ngInject */ (vpsMigration) =>
         vpsMigration?.status === MIGRATION_STATUS.ONGOING,
+
+      disks: /* @ngInject */ (serviceName, VpsService) =>
+        VpsService.getDisks(serviceName),
+
+      vpsLinkedDisk: /* @ngInject */ (serviceName, disks, VpsService) =>
+        VpsService.getDiskInfo(serviceName, disks[0]),
 
       goToUpgradeSuccess: /* @ngInject */ ($state) => (params, options) =>
         $state.go(
