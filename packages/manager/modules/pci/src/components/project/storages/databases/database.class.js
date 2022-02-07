@@ -31,6 +31,7 @@ export default class Database extends Base {
     port,
     uri,
     aclsEnabled,
+    endpoints,
   }) {
     super();
     this.updateData({
@@ -54,6 +55,7 @@ export default class Database extends Base {
       port,
       uri,
       aclsEnabled,
+      endpoints,
     });
   }
 

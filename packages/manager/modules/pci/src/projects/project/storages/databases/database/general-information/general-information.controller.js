@@ -45,6 +45,7 @@ export default class {
       )?.uri;
       this.KARAPACE_URL = KARAPACE_URL;
     }
+    [this.endpoint] = this.database.endpoints;
   }
 
   downloadCertificate() {
