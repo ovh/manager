@@ -29,6 +29,7 @@ import ovhManagerVpsDashboardSnapshotRestore from './modal/snapshot-restore';
 import ovhManagerVpsDashboardSnapshotTake from './modal/snapshot-take';
 import ovhManagerVpsDashboardTerminate from './terminate';
 import ovhManagerVpsDashboardAdditionalDiskTerminate from './additional-disk/terminate';
+import ovhManagerVpsDashboardAdditionalDiskUpgrade from './additional-disk/upgrade';
 import ovhManagerVpsDashboardTile from './tile';
 import vpsStateInfo from './components/vps-state-info';
 import vpsAnnouncementBanner from './components/vps-announcement-banner';
@@ -59,6 +60,7 @@ angular
     ovhManagerVpsDashboardSnapshotRestore,
     ovhManagerVpsDashboardSnapshotTake,
     ovhManagerVpsDashboardAdditionalDiskTerminate,
+    ovhManagerVpsDashboardAdditionalDiskUpgrade,
     ovhManagerVpsDashboardTile,
     vpsStateInfo,
     vpsAnnouncementBanner,
