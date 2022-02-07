@@ -14,6 +14,7 @@ export const ENGINES_NAMES = {
   redis: 'Redis™*',
   opensearch: 'OpenSearch',
   kafkaMirrorMaker: 'Kafka MirrorMaker',
+  m3db: 'M3DB',
   cassandra: 'Cassandra',
   grafana: 'Grafana',
 };

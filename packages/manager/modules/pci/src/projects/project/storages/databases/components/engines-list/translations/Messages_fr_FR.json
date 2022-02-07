@@ -9,6 +9,7 @@
   "pci_database_engines_list_description_mongodb": "Système de gestion de base de données orienté documents",
   "pci_database_engines_list_description_opensearch": "Moteur de recherche et d'analyse distribuée. Fork d'Elasticsearch 7.10.2 et de Kibana 7.10.2",
   "pci_database_engines_list_description_kafkaMirrorMaker": "Système de réplication de données entre deux Kafka",
+  "pci_database_engines_list_description_m3db": "Système de stockage de séries temporelles",
   "pci_database_engines_list_description_cassandra": "Système de stockage de données NoSQL distribué",
   "pci_database_engines_list_description_grafana": "Solution d'analyse et de monitoring"
 }
