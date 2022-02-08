@@ -250,9 +250,10 @@ export default /* @ngInject */ ($stateProvider) => {
                 database.engine === DATABASE_TYPES.KAFKA
                   ? INTEGRATION_TYPE.MIRROR_MAKER
                   : INTEGRATION_TYPE.M3_AGGREGATOR;
-              const integrationEngine = DATABASE_TYPES.KAFKA
-                ? DATABASE_TYPES.KAFKA_MIRROR_MAKER
-                : DATABASE_TYPES.M3AGGEGATOR;
+              const integrationEngine =
+                database.engine === DATABASE_TYPES.KAFKA
+                  ? DATABASE_TYPES.KAFKA_MIRROR_MAKER
+                  : DATABASE_TYPES.M3AGGEGATOR;
               return $q.all(
                 map(
                   integrations.filter(
@@ -261,7 +262,7 @@ export default /* @ngInject */ ($stateProvider) => {
                   (integration) =>
                     DatabaseService.getDatabaseDetails(
                       projectId,
-                      database.engine === integrationEngine,
+                      integrationEngine,
                       integration.destinationServiceId,
                     ).then((service) => ({
                       ...integration,
