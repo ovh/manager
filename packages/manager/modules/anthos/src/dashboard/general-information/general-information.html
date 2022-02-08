@@ -5,7 +5,11 @@
         data-description="{{:: 'anthos_tenant_dashboard_general_information_description' | translate}}"
     >
     </oui-header>
-
+    <oui-message type="warning" data-ng-if="$ctrl.packInfo.actionDoing">
+        <span
+            data-translate="anthos_tenant_dashboard_general_information_tile_resources_pack_action_doing"
+        ></span>
+    </oui-message>
     <div class="row py-4">
         <!--General information tile-->
         <div class="col-md-4">
@@ -174,6 +178,7 @@
                         aria-label="{{:: ('anthos_tenant_dashboard_general_information_actions' | translate) }}"
                         data-compact
                         data-placement="end"
+                        disabled="$ctrl.packInfo.actionDoing"
                     >
                         <oui-action-menu-item
                             data-ng-repeat="pack in $ctrl.packInfo.upgrades track by $index"

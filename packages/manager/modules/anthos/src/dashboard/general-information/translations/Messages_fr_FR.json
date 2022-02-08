@@ -44,5 +44,6 @@
   "anthos_tenant_dashboard_general_information_tile_resources_private_network": "Réseau privé (vRack)",
   "anthos_tenant_dashboard_general_information_tile_resources_private_network_cta_attach_vrack": "Attacher un réseau vRack",
   "anthos_tenant_dashboard_general_information_tile_resources_pack": "Pack",
-  "anthos_tenant_dashboard_general_information_tile_resources_pack_menu_upgrade": "Passer au {{ pack }}"
+  "anthos_tenant_dashboard_general_information_tile_resources_pack_menu_upgrade": "Passer au {{ pack }}",
+  "anthos_tenant_dashboard_general_information_tile_resources_pack_action_doing": "Une action est en cours sur votre service, certaines actions peuvent donc être indisponibles. Veuillez retenter plus tard."
 }
