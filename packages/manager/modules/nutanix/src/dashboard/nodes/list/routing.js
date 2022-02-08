@@ -7,5 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
         NutanixNode.getNodeDetails(cluster.getNodes()),
       breadcrumb: /* @ngInject */ () => null,
     },
+    atInternet: {
+      rename: 'hpc::nutanix::cluster::dashboard::nodes',
+    },
   });
 };

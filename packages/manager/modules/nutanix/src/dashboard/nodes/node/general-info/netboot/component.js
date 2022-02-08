@@ -7,6 +7,7 @@ export default {
     goBack: '<',
     handleError: '<',
     handleSuccess: '<',
+    trackingPrefix: '<',
   },
   template,
 };
