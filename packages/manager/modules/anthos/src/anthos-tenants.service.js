@@ -286,14 +286,35 @@ export default class AnthosTenantsService {
           .get(`/services/${serviceId}/upgrade`)
           .then(({ data }) => data),
       })
-      .then(({ catalog, current, upgrades }) => ({
-        current,
-        upgrades: upgrades.map((pack) => ({
-          ...pack,
-          invoiceName:
-            catalog.plans.find(({ planCode }) => planCode === pack.planCode)
-              ?.invoiceName || '',
-        })),
-      }));
+      .then(({ catalog, current, upgrades }) =>
+        this.$q.all({
+          current,
+          upgrades: upgrades.map((pack) => ({
+            ...pack,
+            invoiceName:
+              catalog.plans.find(({ planCode }) => planCode === pack.planCode)
+                ?.invoiceName || '',
+          })),
+          actionDoing: this.checkPackActionDoing(serviceId, upgrades),
+        }),
+      );
+  }
+
+  checkPackActionDoing(serviceId, upgrades) {
+    if (upgrades[0]?.planCode) {
+      return this.$http
+        .post(
+          `/services/${serviceId}/upgrade/${upgrades[0].planCode}/simulate`,
+          {
+            autoPayWithPreferredPaymentMethod: false,
+            duration: 'P1M',
+            pricingMode: 'default',
+            quantity: 1,
+          },
+        )
+        .then(() => false)
+        .catch(() => true);
+    }
+    return false;
   }
 }
