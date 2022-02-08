@@ -75,7 +75,7 @@
                 disabled
                 oui-tooltip
                 title="{{:: 'pci_databases_namespaces_tab_delete_default' | translate}}"
-                ng-if="$row.default"
+                ng-if="$row.isDefault()"
             >
                 <span
                     data-translate="pci_databases_namespaces_tab_delete_link"

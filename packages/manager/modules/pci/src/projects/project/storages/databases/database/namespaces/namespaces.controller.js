@@ -11,6 +11,11 @@ export default class NamespacesCtrl {
       'pci.projects.project.storages.databases.dashboard.namespaces';
     this.loadMessages();
     this.trackDashboard('namespaces', 'page');
+
+    moment.relativeTimeThreshold('s', 60);
+    moment.relativeTimeThreshold('ss', null);
+    moment.relativeTimeThreshold('m', 60);
+    moment.relativeTimeThreshold('h', 24);
   }
 
   loadMessages() {
