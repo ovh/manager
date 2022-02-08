@@ -30,5 +30,8 @@
   "pci_database_add_create_database_success": "Ihr Dienst wird zurzeit erstellt und ist in wenigen Minuten verfügbar.",
   "pci_database_add_create_database_error": "Bei der Erstellung Ihres Dienstes ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut: {{message}}",
   "pci_database_add_network_mode_public_incompatible": "Das gewählte Angebot ist nicht mit öffentlichen Netzwerken kompatibel.",
-  "pci_database_add_network_mode_private_incompatible": "Das gewählte Angebot ist nicht mit privaten Netzwerken kompatibel."
+  "pci_database_add_network_mode_private_incompatible": "Das gewählte Angebot ist nicht mit privaten Netzwerken kompatibel.",
+  "pci_database_add_name_min_rule": "Mindestens {{min}} Zeichen",
+  "pci_database_add_name_max_rule": "Höchstens {{max}} Zeichen",
+  "pci_database_add_name_pattern_rule": "Darf ausschließlich Zahlen, Buchstaben, Unterstriche, Gedankenstriche und Punkte enthalten."
 }

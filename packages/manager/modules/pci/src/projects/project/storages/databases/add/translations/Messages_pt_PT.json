@@ -30,5 +30,8 @@
   "pci_database_add_create_database_success": "O serviço está a ser criado e estará disponível dentro de alguns minutos.",
   "pci_database_add_create_database_error": "Ocorreu um erro aquando da criação do serviço. Tente novamente mais tarde: {{message}}",
   "pci_database_add_network_mode_public_incompatible": "A oferta selecionada não é compatível com as redes públicas.",
-  "pci_database_add_network_mode_private_incompatible": "A oferta selecionada não é compatível com as redes privadas."
+  "pci_database_add_network_mode_private_incompatible": "A oferta selecionada não é compatível com as redes privadas.",
+  "pci_database_add_name_min_rule": "Pelo menos {{min}} caracteres",
+  "pci_database_add_name_max_rule": "Máximo de {{max}} caracteres",
+  "pci_database_add_name_pattern_rule": "Deve apenas conter algarismos, letras, underscores, traços ou pontos."
 }
