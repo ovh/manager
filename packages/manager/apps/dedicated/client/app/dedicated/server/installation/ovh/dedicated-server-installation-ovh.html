@@ -232,7 +232,7 @@
                         <input
                             type="checkbox"
                             data-ng-model="installation.customInstall"
-                            data-ng-disabled="informations.gabaritName != null"
+                            data-ng-disabled="informations.gabaritName != null || installation.noPartitioning"
                         />
                         <span
                             data-translate="server_configuration_installation_ovh_step1_custom"
