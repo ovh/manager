@@ -77,14 +77,6 @@
                                         data-translate="billing_payment_method_add_selected_common_redirect"
                                     ></p>
                                 </div>
-                                <p data-ng-switch-when="BANK_ACCOUNT">
-                                    <span
-                                        class="d-block"
-                                        data-translate="billing_payment_method_add_bank_account_selected"
-                                        data-ng-if="!$ctrl.model.selectedPaymentMethodType.isLegacy()"
-                                    >
-                                    </span>
-                                </p>
                                 <p data-ng-switch-when="PAYPAL">
                                     <span
                                         data-ng-if="$ctrl.coreConfig.isRegion('US')"
