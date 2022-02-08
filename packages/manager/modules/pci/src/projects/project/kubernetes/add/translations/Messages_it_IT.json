@@ -10,5 +10,10 @@
   "kubernetes_add_billing_type_description": "Dopo il deploy del cluster è possibile modificare il pool di nodi per passare dalla fatturazione oraria al forfait mensile.",
   "kubernetes_add_region_info": "La Region selezionata non è ancora attiva sul tuo progetto. Questa aggiunta richiede pochi secondi e non ha alcun impatto sulla fatturazione.",
   "kubernetes_add_region_inprogress": "Aggiunta Region {{ name }} in corso...",
-  "kubernetes_add_region_failed": "Si è verificato un errore durante l’aggiunta della Region {{ name }}: {{ message }}"
+  "kubernetes_add_region_failed": "Si è verificato un errore durante l’aggiunta della Region {{ name }}: {{ message }}",
+  "kubernetes_add_error_InsufficientVCPUsQuota": "La quota di vCPU del tuo progetto non è sufficiente per eseguire l'operazione. Ti consigliamo di aumentare la quota disponibile o richiedere meno risorse.",
+  "kubernetes_add_error_InsufficientRAMQuota": "La quota di RAM del tuo progetto non è sufficiente per eseguire l'operazione. Ti consigliamo di aumentare la quota disponibile o richiedere meno risorse.",
+  "kubernetes_add_error_InsufficientPortsQuota": "La quota delle porte del tuo progetto non è sufficiente per eseguire l'operazione. Ti consigliamo di aumentare la quota disponibile o richiedere meno risorse.",
+  "kubernetes_add_error_InsufficientInstancesQuota": "La quota di istanze del tuo progetto non è sufficiente per eseguire l'operazione. Ti consigliamo di aumentare la quota disponibile o richiedere meno risorse.",
+  "kubernetes_add_error_quota_link": "Aumenta la tua quota"
 }

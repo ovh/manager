@@ -1,7 +1,7 @@
 {
   "kubernetes_add": "Create a Kubernetes cluster",
   "kubernetes_add_success": "Your cluster was successfully created",
-  "kubernetes_add_error": "An error has occurred creating your cluster: {{ message }}",
+  "kubernetes_add_error": "An error has occurred creating your cluster: {{message}}",
   "kubernetes_add_loading": "Cluster creation is in progress",
   "kubernetes_add_region_title": "Select a location",
   "kubernetes_add_version_title": "Select the minor version of Kubernetes you want",
@@ -12,5 +12,10 @@
   "kubernetes_add_billing_anti_affinity_title": "Billing and anti-affinity",
   "kubernetes_add_region_info": "The selected region is not yet active on your project. This addition takes a few seconds, and does not affect billing.",
   "kubernetes_add_region_inprogress": "Adding region {{name}}...",
-  "kubernetes_add_region_failed": "An error has occurred adding the {{name}} region: {{message}}"
+  "kubernetes_add_region_failed": "An error has occurred adding the {{name}} region: {{message}}",
+  "kubernetes_add_error_InsufficientVCPUsQuota": "Your project’s vCPU quota is too low to perform the operation. Please increase your quota, or request fewer resources.",
+  "kubernetes_add_error_InsufficientRAMQuota": "Your project’s RAM quota is too low to perform the operation. Please increase your quota, or request fewer resources.",
+  "kubernetes_add_error_InsufficientPortsQuota": "Your project’s port quota is too low to complete the operation. Please increase your quota, or request fewer resources.",
+  "kubernetes_add_error_InsufficientInstancesQuota": "Your project’s instance quota is too low to complete the operation. Please increase your quota, or request fewer resources.",
+  "kubernetes_add_error_quota_link": "Increase your quota."
 }

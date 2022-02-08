@@ -1,7 +1,7 @@
 {
   "kubernetes_add": "Criar um cluster Kubernetes",
   "kubernetes_add_success": "O seu cluster foi criado com êxito",
-  "kubernetes_add_error": "Ocorreu um erro ao criar o seu cluster: {{ message }}",
+  "kubernetes_add_error": "Ocorreu um erro aquando da criação do seu cluster: {{ message }}",
   "kubernetes_add_loading": "A criação do cluster está em curso",
   "kubernetes_add_region_title": "Selecione uma localização",
   "kubernetes_add_version_title": "Selecione a versão menor de Kubernetes que deseja",
@@ -12,5 +12,10 @@
   "kubernetes_add_billing_anti_affinity_title": "Faturação e anti-afinidade",
   "kubernetes_add_region_info": "A região selecionada ainda não está ativa para o seu projeto. Esta adição demorará alguns segundos e não terá qualquer impacto na faturação.",
   "kubernetes_add_region_inprogress": "A região {{ name }} está a ser adicionada...",
-  "kubernetes_add_region_failed": "Ocorreu um erro ao adicionar a região {{ name }}: {{ message }}"
+  "kubernetes_add_region_failed": "Ocorreu um erro ao adicionar a região {{ name }}: {{ message }}",
+  "kubernetes_add_error_InsufficientVCPUsQuota": "A quota de vCPU do seu projeto é insuficiente para realizar a operação. Aumente a sua quota ou solicite menos recursos.",
+  "kubernetes_add_error_InsufficientRAMQuota": "A quota de RAM do seu projeto é insuficiente para realizar a operação. Aumente a sua quota ou solicite menos recursos.",
+  "kubernetes_add_error_InsufficientPortsQuota": "A quota de portas do seu projeto é insuficiente para realizar a operação. Aumente a sua quota ou solicite menos recursos.",
+  "kubernetes_add_error_InsufficientInstancesQuota": "A quota de instâncias do seu projeto é insuficiente para realizar a operação. Aumente a sua quota ou solicite menos recursos.",
+  "kubernetes_add_error_quota_link": "Aumentar a minha quota."
 }

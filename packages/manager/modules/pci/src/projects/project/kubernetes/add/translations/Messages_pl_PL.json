@@ -1,7 +1,7 @@
 {
   "kubernetes_add": "Utwórz klaster Kubernetes",
   "kubernetes_add_success": "Klaster Kubernetes został utworzony.",
-  "kubernetes_add_error": "Wystąpił błąd podczas tworzenia klastra: {{message}}.",
+  "kubernetes_add_error": "Wystąpił błąd podczas tworzenia klastra: {{message}}",
   "kubernetes_add_loading": "Trwa tworzenie klastra",
   "kubernetes_add_region_title": "Wybierz lokalizację",
   "kubernetes_add_version_title": "Wybierz odpowiednią dla Ciebie pomocniczą wersję Kubernetesa",
@@ -12,5 +12,10 @@
   "kubernetes_add_billing_anti_affinity_title": "Płatności i ochrona przed koligacją (anti-affinity)",
   "kubernetes_add_region_info": "Wybrany region nie jest jeszcze aktywny dla Twojego projektu. Dodanie regionu zajmie kilka sekund i nie wpłynie na płatności.",
   "kubernetes_add_region_inprogress": "Trwa dodawanie regionu {{name}}...",
-  "kubernetes_add_region_failed": "Wystąpił błąd podczas dodawania regionu: {{name}}: {{message}}"
+  "kubernetes_add_region_failed": "Wystąpił błąd podczas dodawania regionu: {{name}}: {{message}}",
+  "kubernetes_add_error_InsufficientVCPUsQuota": "Limit vCPUs dla Twojego projektu jest niewystarczający, aby przeprowadzić operację. Zwiększ limit lub zmniejsz ilość zasobów.",
+  "kubernetes_add_error_InsufficientRAMQuota": "Limit RAM dla Twojego projektu jest niewystarczający, aby przeprowadzić operację. Zwiększ limit lub zmniejsz ilość zasobów.",
+  "kubernetes_add_error_InsufficientPortsQuota": "Limit portów dla Twojego projektu jest niewystarczający, aby przeprowadzić operację. Zwiększ limit lub zmniejsz ilość zasobów.",
+  "kubernetes_add_error_InsufficientInstancesQuota": "Limit instancji dla Twojego projektu jest niewystarczający, aby przeprowadzić operację. Zwiększ limit lub zmniejsz ilość zasobów.",
+  "kubernetes_add_error_quota_link": "Zwiększ limit."
 }

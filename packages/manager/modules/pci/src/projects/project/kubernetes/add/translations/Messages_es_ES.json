@@ -12,5 +12,10 @@
   "kubernetes_add_billing_anti_affinity_title": "Facturación y antiafinidad",
   "kubernetes_add_region_info": "La región seleccionada todavía no está activa en su proyecto. Esta adición tardará unos segundos y no afectará a la facturación.",
   "kubernetes_add_region_inprogress": "Se está añadiendo la región {{ name }}...",
-  "kubernetes_add_region_failed": "Se ha producido un error al añadir la región {{ name }}: {{ message }}"
+  "kubernetes_add_region_failed": "Se ha producido un error al añadir la región {{ name }}: {{ message }}",
+  "kubernetes_add_error_InsufficientVCPUsQuota": "El límite de vCPU de su proyecto es insuficiente para realizar esta operación. Por favor, aumente los límites de su cuota o solicite menos recursos.",
+  "kubernetes_add_error_InsufficientRAMQuota": "El límite de RAM de su proyecto es insuficiente para realizar esta operación. Por favor, aumente los límites de su cuota o solicite menos recursos.",
+  "kubernetes_add_error_InsufficientPortsQuota": "El límite de puertos de su proyecto es insuficiente para realizar esta operación. Por favor, aumente los límites de su cuota o solicite menos recursos.",
+  "kubernetes_add_error_InsufficientInstancesQuota": "El límite de instancias de su proyecto es insuficiente para realizar la operación. Por favor, aumente los límites de su cuota o solicite menos recursos.",
+  "kubernetes_add_error_quota_link": "Aumentar los límites de mi cuota"
 }
