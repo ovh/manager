@@ -245,25 +245,31 @@ export default /* @ngInject */ ($stateProvider) => {
               projectId,
               database.engine,
               database.id,
-            ).then((integrations) =>
-              $q.all(
+            ).then((integrations) => {
+              const integrationType =
+                database.engine === DATABASE_TYPES.KAFKA
+                  ? INTEGRATION_TYPE.MIRROR_MAKER
+                  : INTEGRATION_TYPE.M3_AGGREGATOR;
+              const integrationEngine = DATABASE_TYPES.KAFKA
+                ? DATABASE_TYPES.KAFKA_MIRROR_MAKER
+                : DATABASE_TYPES.M3AGGEGATOR;
+              return $q.all(
                 map(
                   integrations.filter(
-                    (integration) =>
-                      integration.type === INTEGRATION_TYPE.MIRROR_MAKER,
+                    (integration) => integration.type === integrationType,
                   ),
-                  (mirrorMakerIntegration) =>
+                  (integration) =>
                     DatabaseService.getDatabaseDetails(
                       projectId,
-                      DATABASE_TYPES.KAFKA_MIRROR_MAKER,
-                      mirrorMakerIntegration.destinationServiceId,
-                    ).then((mirormakerService) => ({
-                      ...mirrorMakerIntegration,
-                      serviceName: mirormakerService.description,
+                      database.engine === integrationEngine,
+                      integration.destinationServiceId,
+                    ).then((service) => ({
+                      ...integration,
+                      serviceName: service.description,
                     })),
                 ),
-              ),
-            )
+              );
+            })
           : [],
       users: /* @ngInject */ (DatabaseService, database, projectId) =>
         isFeatureActivated('usersTab', database.engine) ||

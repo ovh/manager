@@ -434,7 +434,8 @@
                 data-heading="{{:: 'pci_databases_general_information_service_integration_title' | translate }}"
             >
                 <oui-tile-definition
-                    data-term="{{:: 'pci_databases_general_information_kafka_mirror_maker_label' | translate }}"
+                    data-term="{{:: ($ctrl.database.engine === 'kafka' ? 'pci_databases_general_information_kafka_mirror_maker_label'
+                    :'pci_databases_general_information_m3_aggregator_label') | translate }}"
                 >
                     <oui-tile-description>
                         <p

@@ -6,16 +6,23 @@ export default class {
   }
 
   $onInit() {
-    this.trackDashboard('service_integration::delete_kafka', 'page');
+    this.trackDashboard(
+      `service_integration::delete_${this.engineName}`,
+      'page',
+    );
   }
 
   cancel() {
-    this.trackDashboard('service_integration::delete_kafka_cancel');
+    this.trackDashboard(
+      `service_integration::delete_${this.engineName}_cancel`,
+    );
     this.goBack();
   }
 
   deleteServiceIntegration() {
-    this.trackDashboard('service_integration::delete_kafka_confirm');
+    this.trackDashboard(
+      `service_integration::delete_${this.engineName}_confirm`,
+    );
     this.processing = true;
     return this.DatabaseService.deleteIntegration(
       this.projectId,
@@ -28,6 +35,7 @@ export default class {
           textHtml: this.$translate.instant(
             'pci_databases_service_integration_delete_success_message',
             {
+              engineName: this.engineName,
               integration: this.integration.serviceName,
             },
           ),
