@@ -15,5 +15,8 @@
   "pci_databases_users_add_keys_button_label": "Dodaj klucz",
   "pci_databases_users_add_categories_button_label": "Dodaj kategorię",
   "pci_databases_users_add_commands_button_label": "Dodaj polecenie",
-  "pci_databases_users_add_channels_button_label": "Dodaj kanał"
+  "pci_databases_users_add_channels_button_label": "Dodaj kanał",
+  "pci_databases_users_add_username_min_rule": "Minimum {{min}} znak",
+  "pci_databases_users_add_username_max_rule": "Maksimum {{max}} znaków",
+  "pci_databases_users_add_username_pattern_rule": "Może zawierać jedynie cyfry, litery, kropki (.), podkreślenia (_) lub myślniki (-) , nie może rozpoczynać się od myślnika (-) ani od kropki (.)."
 }
