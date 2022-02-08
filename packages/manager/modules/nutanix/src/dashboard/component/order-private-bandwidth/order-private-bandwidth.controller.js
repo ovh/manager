@@ -109,7 +109,7 @@ export default class NutanixClusterOrderPrivateBandwidthCtrl {
 
   cancel() {
     this.atInternet.trackClick({
-      name: `${this.trackingPrefix}cancel`,
+      name: `${this.trackingPrefix}::cancel`,
       type: 'action',
     });
     this.goBack();
@@ -119,7 +119,7 @@ export default class NutanixClusterOrderPrivateBandwidthCtrl {
     if (this.model.plan) {
       this.isLoading = true;
       this.atInternet.trackClick({
-        name: `${this.trackingPrefix}confirm`,
+        name: `${this.trackingPrefix}_${this.model.plan}::confirm`,
         type: 'action',
       });
       return this.NutanixClusterOrderPrivateBandwidthService.nutanixClusterPrivateBandwidthPlaceOrder(

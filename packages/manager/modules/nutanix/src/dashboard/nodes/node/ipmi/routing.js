@@ -1,3 +1,5 @@
+import { IPMI_TRACKING_PREFIX } from './constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.dashboard.nodes.node.ipmi', {
     url: '/ipmi',
@@ -5,10 +7,11 @@ export default /* @ngInject */ ($stateProvider) => {
       serverView: 'nutanixNodeIpmi',
     },
     resolve: {
+      trackingPrefix: /* @ngInject */ () => IPMI_TRACKING_PREFIX,
       breadcrumb: /* @ngInject */ () => 'IPMI',
     },
     atInternet: {
-      rename: 'hpc::nutanix::cluster::node::ipmi',
+      rename: IPMI_TRACKING_PREFIX,
     },
   });
 };

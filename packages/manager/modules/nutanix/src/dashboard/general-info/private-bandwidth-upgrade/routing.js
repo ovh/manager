@@ -23,9 +23,12 @@ export default /* @ngInject */ ($stateProvider) => {
           )?.serviceId,
         breadcrumb: () => null,
         trackingPrefix: /* @ngInject */ () =>
-          `hpc::nutanix::cluster::dashboard::bandwidth-private-order::`,
+          `hpc::nutanix::cluster::bandwidth-private-order`,
         hasDefaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
           ovhPaymentMethod.hasDefaultPaymentMethod(),
+      },
+      atInternet: {
+        rename: 'hpc::nutanix::cluster::bandwidth-private-order',
       },
     },
   );
