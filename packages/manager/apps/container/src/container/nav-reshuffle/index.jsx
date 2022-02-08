@@ -10,6 +10,7 @@ import ApplicationContext from '@/context';
 
 import Header from './header';
 import Sidebar from './sidebar';
+import NavReshuffleFeedbackWidget from './feedback';
 
 import style from './template.module.scss';
 
@@ -62,6 +63,9 @@ function NavReshuffleContainer() {
             src="about:blank"
             ref={iframeRef}
           ></iframe>
+          <Suspense fallback="">
+            <NavReshuffleFeedbackWidget />
+          </Suspense>
         </div>
       </div>
     </div>

@@ -57,7 +57,9 @@ export const UserAccountMenu = ({ onToggle }) => {
         <span
           className={`${style.userIcon} oui-icon navbar-oui-icon oui-icon-user align-middle mr-2`}
         ></span>
-        <span className="align-middle">{`${user.firstname} ${user.name}`}</span>
+        <span
+          className={`${style.userInfos} align-middle`}
+        >{`${user.firstname} ${user.name}`}</span>
       </UserAccountMenuButton>
       <UserAccountMenuContent
         defaultPaymentMethod={defaultPaymentMethod}
