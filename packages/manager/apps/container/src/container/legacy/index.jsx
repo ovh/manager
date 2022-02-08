@@ -1,7 +1,14 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  Suspense,
+} from 'react';
 
 import { plugin, IFrameMessageBus } from '@ovh-ux/shell';
 import ApplicationContext from '@/context';
+import NavReshuffleBetaAccessModal from '@/container/common/pnr-beta-modal';
 import style from './template.module.scss';
 
 import LegacyHeader from './header';
@@ -26,6 +33,9 @@ function LegacyContainer() {
   return (
     <div className={style.managerShell}>
       {router}
+      <Suspense fallback="">
+        <NavReshuffleBetaAccessModal />
+      </Suspense>
       <div className={style.managerShell_header}>
         <LegacyHeader />
       </div>
