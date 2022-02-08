@@ -7,6 +7,7 @@ import { useShell } from '@/context';
 
 import { UserDefaultPaymentMethod } from './default-payment-method.jsx';
 import style from './style.module.scss';
+import icon from './assets/give_feedback.png';
 
 const UserAccountMenu = ({ defaultPaymentMethod, isLoading }) => {
   const { t } = useTranslation('user-account-menu');
@@ -56,9 +57,22 @@ const UserAccountMenu = ({ defaultPaymentMethod, isLoading }) => {
           />
         )}
         <hr />
-        <a hre={'#'}>
-          <i aria-hidden="true"></i>
-          <span>{t('')}</span>
+        <a href={'#'} className={`${style.feedback} d-flex`}>
+          <span className="align-self-center">
+            <img src={icon} alt={t('user_account_menu_beta_feedback')} />
+          </span>
+          <span className="pl-2">
+            <span className={`${style.feedback_title} d-block oui-link_icon`}>
+              <span>{t('user_account_menu_beta_feedback')}</span>
+              <span
+                className="oui-icon oui-icon-arrow-right ml-2"
+                aria-hidden="true"
+              ></span>
+            </span>
+            <span className={`${style.feedback_text} d-block`}>
+              {t('user_account_menu_beta_feedback_text')}
+            </span>
+          </span>
         </a>
         <hr />
         <a
