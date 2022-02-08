@@ -10,12 +10,12 @@ const UserInfosFooter = ({ cssBaseClassName, translationBase }) => {
     <div className={`text-left ${cssBaseClassName}_links`}>
       <hr className="my-1" />
       <button
-          type="button"
-          role="button"
-          className="btn btn-link"
-          data-navi-id="logout"
+        type="button"
+        role="button"
+        className="btn btn-link"
+        data-navi-id="logout"
       >
-        { t(`${translationBase}_footer_logout`) }
+        {t(`${translationBase}_logout`)}
       </button>
     </div>
   );

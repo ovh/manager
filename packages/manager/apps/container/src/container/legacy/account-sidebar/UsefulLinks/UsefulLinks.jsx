@@ -10,7 +10,7 @@ const UsefulLinks = ({ environment }) => {
   const links = useUsefulLinks(environment).getUsefulLinks();
 
   const cssClassName = 'manager-account-sidebar-links';
-  const translationBase = 'useful_links';
+  const translationBase = 'user_account_menu_useful_links';
 
   return (
     links &&

@@ -55,6 +55,12 @@ const UserAccountMenu = ({ defaultPaymentMethod, isLoading }) => {
             isLoading={isLoading}
           />
         )}
+        <hr />
+        <a hre={'#'}>
+          <i aria-hidden="true"></i>
+          <span>{t('')}</span>
+        </a>
+        <hr />
         <a
           className="d-block oui-link_icon"
           aria-label={t('user_account_menu_profile')}

@@ -16,7 +16,7 @@ const UserInfos = ({ environment }) => {
   const user = environment.getUser();
 
   const cssBaseClassName = 'manager-account-sidebar-user-infos';
-  const translationBase = 'user_infos';
+  const translationBase = 'user_account_menu';
 
   return (
     <div className={`${cssBaseClassName} mb-3`}>
