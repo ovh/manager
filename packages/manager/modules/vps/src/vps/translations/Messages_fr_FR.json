@@ -382,6 +382,8 @@
   "vps_tab_SUMMARY_additional_disk": "Disques additionnels",
   "vps_additional_disk_add_button": "Ajouter un disque",
   "vps_additional_disk_add_another_button": "Commander un autre disque additionnel",
+  "vps_additional_disk_current_capacity": "Capacité du disque : {{vpsDiskCapacity}}",
+  "vps_additional_disk_cant_upgrade": "Si vous souhaitez faire évoluer votre disque additionnel, il vous faut d'abord migrer vers la nouvelle gamme VPS en cliquant sur \"Migrer mon VPS\" ci-dessus.",
   "vps_tab_additional_disk": "Disque additionnel",
   "vps_tab_additional_disk_not_available": "L'option d'ajout de disque additionnel n'est pas disponible sur cette gamme.",
   "vps_tab_additional_disk_count": "Vous n'avez pas de disque additionnel.",

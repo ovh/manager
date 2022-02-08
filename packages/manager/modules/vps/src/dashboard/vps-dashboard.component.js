@@ -40,6 +40,8 @@ export default {
     trackingPrefix: '<',
     vps: '<',
     vpsState: '<',
+    vpsLinkedDisk: '<',
+    upgradableDisks: '<',
     vpsMigration: '<',
     vpsMigrationTask: '<',
     vpsMigrationTaskInError: '<',
