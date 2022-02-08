@@ -1,0 +1,15 @@
+{
+  "anthos_dashboard_host_order_init_error": "An error has occurred loading this page",
+  "anthos_dashboard_host_order_header_heading": "Order a host",
+  "anthos_dashboard_host_order_header_description": "You can customise your Anthos deployment by adding hosts to it. You will be redirected to a new page where you can confirm your order. The price displayed below is valid for a monthly subscription, with automatic renewal. You will be billed initially on a pro rata basis for the current month. If you subscribe for a longer period, you can get lower prices. To do this, please consult our sales team.",
+  "anthos_dashboard_host_order_grid_header_quantity": "Quantity",
+  "anthos_dashboard_host_order_grid_header_host": "Host",
+  "anthos_dashboard_host_order_grid_header_cpu": "Processor",
+  "anthos_dashboard_host_order_grid_header_ram": "RAM",
+  "anthos_dashboard_host_order_grid_header_storage": "Storage",
+  "anthos_dashboard_host_order_grid_header_network": "Network",
+  "anthos_dashboard_host_order_grid_header_price": "Price",
+  "anthos_dashboard_host_order_grid_row_cpu": "{{cores}} cores/{{threads}} threads - {{frequency}}GHz+",
+  "anthos_dashboard_host_order_grid_row_price": "ex. VAT/month",
+  "anthos_dashboard_host_order_action": "Place order"
+}

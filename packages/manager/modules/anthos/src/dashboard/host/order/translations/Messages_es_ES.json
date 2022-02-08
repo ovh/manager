@@ -1,0 +1,15 @@
+{
+  "anthos_dashboard_host_order_init_error": "Se ha producido un error al cargar esta página.",
+  "anthos_dashboard_host_order_header_heading": "Contratar un host",
+  "anthos_dashboard_host_order_header_description": "Puede personalizar su despliegue Anthos añadiendo hosts. Será redirigido a una nueva página donde podrá confirmar su pedido. El precio que aparece a continuación corresponde a un compromiso mensual con renovación automática. Se facturará inicialmente la parte proporcional al período restante del mes en curso. Al contratar el servicio con un compromiso de permanencia más largo, disfrutará de un precio más bajo. Para más información, contacte con nuestro soporte comercial.",
+  "anthos_dashboard_host_order_grid_header_quantity": "Cantidad",
+  "anthos_dashboard_host_order_grid_header_host": "Host",
+  "anthos_dashboard_host_order_grid_header_cpu": "Procesador",
+  "anthos_dashboard_host_order_grid_header_ram": "Memoria",
+  "anthos_dashboard_host_order_grid_header_storage": "Almacenamiento",
+  "anthos_dashboard_host_order_grid_header_network": "Red",
+  "anthos_dashboard_host_order_grid_header_price": "Precio",
+  "anthos_dashboard_host_order_grid_row_cpu": "{{ cores }} cores / {{ threads }} threads - {{ frequency }} GHz+",
+  "anthos_dashboard_host_order_grid_row_price": "/mes + IVA",
+  "anthos_dashboard_host_order_action": "Iniciar el pedido"
+}

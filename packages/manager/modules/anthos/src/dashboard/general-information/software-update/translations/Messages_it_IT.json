@@ -1,0 +1,13 @@
+{
+  "anthos_tenant_dashboard_general_information_software_update_back": "Ritorna alle informazioni generali",
+  "anthos_tenant_dashboard_general_information_software_update_success": "L'upgrade di versione è stata avviata correttamente. La durata dell’operazione è di circa 1 ora. È possibile applicare nuovi aggiornamenti nella sezione \"Soluzione Software\" della console Anthos.",
+  "anthos_tenant_dashboard_general_information_software_update_error": "Si è verificato un errore. Se il problema persiste, contatta il nostro team di supporto.",
+  "anthos_tenant_dashboard_general_information_software_update_title": "Aggiornamento software",
+  "anthos_tenant_dashboard_general_information_software_update_description": "Sul tuo Hosted Private Cloud sono disponibili le seguenti versioni di Anthos su Bare Metal in modalità privata. È possibile scegliere la versione desiderata e consultare questa pagina per conoscere le modifiche apportate a ciascuna versione.",
+  "anthos_tenant_dashboard_general_information_software_update_version": "Versione",
+  "anthos_tenant_dashboard_general_information_software_update_change_log_link": "Consulta il changelog",
+  "anthos_tenant_dashboard_general_information_software_update_info_1": "Gli upgrade di versione hanno una durata media di circa 1 ora. Diversi componenti del control plane (Anthos Management Center) vengono aggiornati con una procedura di “rolling update” e restano disponibili durante l'aggiornamento (salvo diversa indicazione nella pagina di cui sopra).",
+  "anthos_tenant_dashboard_general_information_software_update_info_2": "L’operazione non interessa gli \"user clusters\" (cioè i cluster creati tramite Anthos, al di fuori di quello che ospita il control plane). Per monitorare lo stato di avanzamento dell’aggiornamento, accedi allo Spazio Cliente.",
+  "anthos_tenant_dashboard_general_information_software_update_info_3": "Una volta completato l’aggiornamento il control plane, è possibile effettuare nuovi aggiornamenti tramite la sezione \"Soluzione Software\" della dashboard della console Anthos. Potrai applicarli a tutti gli \"user clusters\" con la frequenza che preferisci.",
+  "anthos_tenant_dashboard_general_information_software_update_submit": "Aggiornamento"
+}

@@ -1,0 +1,11 @@
+{
+  "anthos_dashboard_access_restriction_table_header": "Clients autorisés",
+  "anthos_dashboard_access_restriction_table_empty": "Aucun client autorisé",
+  "anthos_dashboard_access_restriction_table_add": "Ajouter une nouvelle restriction",
+  "anthos_dashboard_access_restriction_table_new": "Nouvelle restriction",
+  "anthos_dashboard_access_restriction_table_save": "Enregistrer",
+  "anthos_dashboard_access_restriction_table_edit": "Éditer",
+  "anthos_dashboard_access_restriction_table_delete": "Supprimer",
+  "anthos_dashboard_access_restriction_table_save_success": "Restriction enregistrée",
+  "anthos_dashboard_access_restriction_table_delete_success": "Restriction supprimée"
+}

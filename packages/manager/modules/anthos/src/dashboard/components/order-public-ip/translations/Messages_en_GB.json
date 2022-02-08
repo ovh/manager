@@ -1,0 +1,11 @@
+{
+  "anthos_dashboard_order_public_ip_init_error": "An error has occurred loading this feature",
+  "anthos_dashboard_order_public_ip_title": "Order additional public IPs",
+  "anthos_dashboard_order_public_ip_action_confirm": "Confirm",
+  "anthos_dashboard_order_public_ip_action_cancel": "Cancel",
+  "anthos_dashboard_order_public_ip_description_p1": "You can order one or more blocks of 64 public IPv4s. For each block, 61 addresses can be used within Anthos.",
+  "anthos_dashboard_order_public_ip_description_p2": "NB: These IPs will be located in France. If you need an IP block declared in another country, please contact our sales team.",
+  "anthos_dashboard_order_public_ip_quantity": "Quantity",
+  "anthos_dashboard_order_public_ip_info": "Click ‘Confirm’ to confirm your order",
+  "anthos_dashboard_order_public_ip_hint": "A new tab will open, and you will be automatically redirected to the payment interface"
+}

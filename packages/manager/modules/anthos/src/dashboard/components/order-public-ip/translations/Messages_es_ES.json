@@ -1,0 +1,11 @@
+{
+  "anthos_dashboard_order_public_ip_init_error": "Se ha producido un error al cargar esta funcionalidad.",
+  "anthos_dashboard_order_public_ip_title": "Contratar IP públicas adicionales",
+  "anthos_dashboard_order_public_ip_action_confirm": "Confirmar",
+  "anthos_dashboard_order_public_ip_action_cancel": "Cancelar",
+  "anthos_dashboard_order_public_ip_description_p1": "Puede contratar uno o varios bloques de 64 Ipv4 públicas. Para cada bloque, podrá utilizar 61 direcciones en Anthos.",
+  "anthos_dashboard_order_public_ip_description_p2": "Importante: Estas IP estarán localizadas en Europa (Francia). Si necesita un bloque de IP declarado en otro país, puede ponerse en contacto con nuestro servicio comercial.",
+  "anthos_dashboard_order_public_ip_quantity": "Cantidad",
+  "anthos_dashboard_order_public_ip_info": "Haga clic en «Confirmar» para validar su pedido.",
+  "anthos_dashboard_order_public_ip_hint": "Se abrirá una nueva pestaña y el sistema le redirigirá automáticamente a la interfaz de pago de OVHcloud."
+}

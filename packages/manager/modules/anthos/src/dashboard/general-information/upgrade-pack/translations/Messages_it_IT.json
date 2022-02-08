@@ -1,0 +1,13 @@
+{
+  "anthos_tenant_dashboard_general_information_upgrade_pack_title": "Stai per modificare il tuo pack di base",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_description": "Migrando al pack Stateful o Stateless è possibile usufruire di un livello di servizio più adatto alla produzione e di un numero maggiore di host inclusi. Il pack Stateful include anche uno storage persistente dedicato. Qualsiasi modifica apportata al pack è definitiva. Le eventuali risorse aggiuntive esistenti verranno preservate senza perdite di dati.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_title": "Seleziona il pack scelto",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_current": "Pack corrente",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-small": "Ideale per testare e accompagnare la tua transizione verso il Cloud nativo e durante la fase di creazione di nuovi progetti. Non adatto alla produzione. 5 nodi slave (60 vCPU, 320 GB di RAM, 5 TB NVMe)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-standard": "Ideale per la produzione stateless. 15 nodi slave (180 vCPU, 960 GB di RAM, 15 TB NVMe)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-standard-netapp": "Ideale per la produzione stateless e stateful con storage persistente NetApp. 15 nodi slave (180 vCPU, 960 GB di RAM, 15 TB NVMe) Storage NetApp permanente utilizzabile da 55 TB (replica attiva x2)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_auto": "La tua richiesta di modifica del pack è stata registrata. Diventerà effettiva entro 24 ore.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_order": "La tua richiesta di modifica del pack è stata registrata. Una volta convalidato, il buono d'ordine diventerà effettivo entro 24 ore.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_order_link": "Clicca qui per convalidare l’ordine",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_error": "Si è verificato un errore durante la modifica del pack: {{ error }}"
+}

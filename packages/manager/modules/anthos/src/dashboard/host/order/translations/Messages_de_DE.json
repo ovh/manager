@@ -1,0 +1,15 @@
+{
+  "anthos_dashboard_host_order_init_error": "Beim Laden dieser Seite ist ein Fehler aufgetreten.",
+  "anthos_dashboard_host_order_header_heading": "Host bestellen",
+  "anthos_dashboard_host_order_header_description": "Sie können Ihr Anthos-Deployment mit zusätzlichen Hosts anpassen. Sie werden dann auf eine neue Seite weitergeleitet, damit Sie dort Ihre Bestellung bestätigen. Der unten angezeigte Preis gilt für eine Vertragslaufzeit von einem Monat mit automatischer Verlängerung. Die Abrechnung erfolgt zunächst anteilig für den laufenden Monat. Bei einer längeren Vertragslaufzeit profitieren Sie eventuell von noch günstigeren Preisen. Bitte beraten Sie sich hierzu mit unserem Support für den Vertrieb.",
+  "anthos_dashboard_host_order_grid_header_quantity": "Anzahl",
+  "anthos_dashboard_host_order_grid_header_host": "Host",
+  "anthos_dashboard_host_order_grid_header_cpu": "Prozessor",
+  "anthos_dashboard_host_order_grid_header_ram": "Arbeitsspeicher",
+  "anthos_dashboard_host_order_grid_header_storage": "Speicher",
+  "anthos_dashboard_host_order_grid_header_network": "Netzwerk",
+  "anthos_dashboard_host_order_grid_header_price": "Preis",
+  "anthos_dashboard_host_order_grid_row_cpu": "{{ cores }} Cores / {{ threads }} Threads - {{ frequency }} GHz+",
+  "anthos_dashboard_host_order_grid_row_price": "inkl. MwSt. / Monat",
+  "anthos_dashboard_host_order_action": "Bestellung beginnen"
+}

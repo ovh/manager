@@ -34,5 +34,12 @@
   "anthos_tenant_dashboard_general_information_tile_resources_ips_menu_add_public_ip": "Zamów publiczny adres IP",
   "anthos_tenant_dashboard_general_information_tile_resources_ips_menu_add_private_ip": "Przypisz prywatny adres IP",
   "anthos_tenant_dashboard_general_information_tile_resources_private_network": "Prywatna sieć (vRack)",
-  "anthos_tenant_dashboard_general_information_tile_resources_private_network_cta_attach_vrack": "Przypisz sieć vRack"
+  "anthos_tenant_dashboard_general_information_tile_resources_private_network_cta_attach_vrack": "Przypisz sieć vRack",
+  "anthos_tenant_dashboard_general_information_tile_information_software_is_updatable": "Dostępna aktualizacja",
+  "anthos_tenant_dashboard_general_information_tile_information_software_is_not_updatable": "Brak dostępnych aktualizacji",
+  "anthos_tenant_dashboard_general_information_tile_information_software_is_updating": "Trwa aktualizacja",
+  "anthos_tenant_dashboard_general_information_tile_information_software_update_link": "Sprawdź dostępne aktualizacje",
+  "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_access_restriction": "Ograniczenie dostępu do określonych adresów IP",
+  "anthos_tenant_dashboard_general_information_tile_resources_pack": "Pakiet",
+  "anthos_tenant_dashboard_general_information_tile_resources_pack_menu_upgrade": "Zmień pakiet na {{pack}}"
 }

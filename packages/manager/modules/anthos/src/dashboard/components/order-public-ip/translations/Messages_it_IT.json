@@ -1,0 +1,11 @@
+{
+  "anthos_dashboard_order_public_ip_init_error": "Si è verificato un errore durante il caricamento di questa funzionalità.",
+  "anthos_dashboard_order_public_ip_title": "Ordina IP pubblici aggiuntivi",
+  "anthos_dashboard_order_public_ip_action_confirm": "Conferma",
+  "anthos_dashboard_order_public_ip_action_cancel": "Annulla",
+  "anthos_dashboard_order_public_ip_description_p1": "È possibile ordinare uno o più blocchi da 64 IPv4 pubblici. Per ogni blocco, saranno disponibili 61 indirizzi all'interno di Anthos.",
+  "anthos_dashboard_order_public_ip_description_p2": "NB: Questi IP saranno localizzati in Francia. Se hai bisogno di un blocco di IP dichiarato in un altro Paese, contatta il nostro servizio commerciale.",
+  "anthos_dashboard_order_public_ip_quantity": "Quantità",
+  "anthos_dashboard_order_public_ip_info": "Clicca su \"Conferma\" per convalidare l’ordine.",
+  "anthos_dashboard_order_public_ip_hint": "Si aprirà una nuova scheda e verrai reindirizzato automaticamente all'interfaccia di pagamento."
+}
