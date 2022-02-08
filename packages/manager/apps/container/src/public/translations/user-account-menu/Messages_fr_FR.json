@@ -24,5 +24,18 @@
   "user_account_menu_payment_method_status_PAUSED": "En pause",
   "user_account_menu_payment_method_status_VALID": "Valide",
   "user_account_menu_payment_method_status_TOO_MANY_FAILURES": "Invalide",
-  "user_account_menu_payment_method_none": "Pas de moyen de paiement"
+  "user_account_menu_payment_method_none": "Pas de moyen de paiement",
+  "user_account_menu_shortcuts_title": "Raccourcis",
+  "user_account_menu_shortcuts_tile_services": "Produits et services",
+  "user_account_menu_shortcuts_tile_bills": "Factures",
+  "user_account_menu_shortcuts_tile_supportLevel": "Niveau de support",
+  "user_account_menu_shortcuts_tile_products": "Catalogue de produits",
+  "user_account_menu_shortcuts_tile_emails": "E-mails de service",
+  "user_account_menu_shortcuts_tile_contacts": "Gestion des contacts",
+  "user_account_menu_useful_links_title": "Liens utiles",
+  "user_account_menu_useful_links_helpCenter": "Centre d'aide",
+  "user_account_menu_useful_links_chatbot": "Live Chat",
+  "user_account_menu_useful_links_tasks": "État du réseau et incidents",
+  "user_account_menu_useful_links_tickets": "Mes demandes d'assistance",
+  "user_account_menu_useful_links_createTicket": "Créer un ticket"
 }

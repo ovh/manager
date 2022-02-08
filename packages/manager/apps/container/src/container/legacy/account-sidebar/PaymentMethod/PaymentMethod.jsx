@@ -11,10 +11,11 @@ const PaymentMehtod = ({ environment }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [defaultPaymentMethod, setDefaultPaymentMethod] = useState();
 
-  const { getDefaultPaymentMethod, isEnterpriseAccount } =
-    usePaymentMethod(environment);
+  const { getDefaultPaymentMethod, isEnterpriseAccount } = usePaymentMethod(
+    environment,
+  );
   const cssBaseClassName = 'manager-account-sidebar-payment-method';
-  const translationBase = 'payment_method';
+  const translationBase = 'user_account_menu_payment_method';
 
   useEffect(() => {
     setIsLoading(true);

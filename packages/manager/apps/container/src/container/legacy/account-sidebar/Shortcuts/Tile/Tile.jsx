@@ -7,26 +7,20 @@ const Tile = ({ shortcut }) => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
 
   const cssClassName = 'manager-account-sidebar-shortcuts-tile';
-  const translationBase = 'shortcuts_tile';
+  const translationBase = 'user_account_menu_shortcuts_tile';
 
   return (
-    <div
-      className={cssClassName}
-    >
-      <a
-        href={shortcut.url}
-      >
+    <div className={cssClassName}>
+      <a href={shortcut.url}>
         <span
           className={`${cssClassName}__icon oui-icon ${shortcut.icon}`}
           aria-hidden="true"
         ></span>
-        <span
-          className={`${cssClassName}__description`}
-        >
-          { t(`${translationBase}_${shortcut.id}`) }
+        <span className={`${cssClassName}__description`}>
+          {t(`${translationBase}_${shortcut.id}`)}
         </span>
       </a>
-  </div>
+    </div>
   );
 };
 
