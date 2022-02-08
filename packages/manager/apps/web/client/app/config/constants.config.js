@@ -247,6 +247,8 @@ module.exports = {
             'https://www.ovh.com/fr/g1271.guide_dutilisation_du_renouvellement_automatique_ovh',
           hostingCron:
             'https://www.ovh.com/fr/g1990.mutualise_taches_automatisees_cron',
+          hostingFtp:
+            'https://docs.ovh.com/fr/hosting/connexion-espace-stockage-ftp-hebergement-web/',
           hostingModule: 'https://docs.ovh.com/fr/hosting/modules-en-1-clic/',
           hostingScriptEmail:
             'https://www.ovh.com/fr/g1974.mutualise_suivi_des_emails_automatises',

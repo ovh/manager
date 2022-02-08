@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import indexOf from 'lodash/indexOf';
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
+import { SSH_STATE, USER_STATE } from './hosting-ftp-constants';
 
 angular.module('App').controller(
   'HostingTabFTPCtrl',
@@ -18,6 +19,7 @@ angular.module('App').controller(
       Alerter,
       Hosting,
       HostingUser,
+      WucUser,
     ) {
       this.$q = $q;
       this.$scope = $scope;
@@ -28,11 +30,13 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.Hosting = Hosting;
       this.HostingUser = HostingUser;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
       this.atInternet.trackPage({ name: 'web::hosting::ftp' });
 
+      this.guide = null;
       this.primaryUser = null;
       this.allowUpdateState = true;
       this.displayFtpExplorer = true;
@@ -52,8 +56,24 @@ angular.module('App').controller(
         value: null,
       };
 
+      this.getGuides();
+
       this.$scope.loadFtpInformations = (count, offset) =>
         this.loadFtpInformations(count, offset);
+
+      this.$scope.isSftpActive = (element) => {
+        return (
+          element.sshState !== SSH_STATE.NONE &&
+          element.state !== USER_STATE.OFF
+        );
+      };
+
+      this.$scope.isSshActive = (element) => {
+        return (
+          element.sshState === SSH_STATE.ACTIVE &&
+          element.state !== USER_STATE.OFF
+        );
+      };
 
       this.$scope.$on(this.Hosting.events.tabFtpRefresh, () => {
         if (get(this.ftpInformations, 'hasMultiFtp', false)) {
@@ -101,6 +121,14 @@ angular.module('App').controller(
         .then(({ capabilities }) => {
           this.displayFtpExplorer = get(capabilities, 'filesBrowser', false);
         });
+    }
+
+    getGuides() {
+      return this.WucUser.getUrlOf('guides').then((guides) => {
+        if (guides && guides.hostingFtp) {
+          this.guide = guides.hostingFtp;
+        }
+      });
     }
 
     resetSearch() {
