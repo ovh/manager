@@ -1,3 +1,22 @@
+## [5.56.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.56.1...@ovh-ux/manager-pci@5.56.2) (2022-02-09)
+
+
+### Bug Fixes
+
+* **ai.apps:** fix partner price retrieval and computation ([#6381](https://github.com/ovh/manager/issues/6381)) ([3060c51](https://github.com/ovh/manager/commit/3060c5186c80888dda8e0b7ad8cecf9a8c02eba7))
+* **ai.training:** fix job pricing calculation ([#5986](https://github.com/ovh/manager/issues/5986)) ([5256904](https://github.com/ovh/manager/commit/5256904a10efa25c5a4a8c7dcd52adbf480605ed))
+* **i18n:** add missing translations [CDS 1409] ([e303b25](https://github.com/ovh/manager/commit/e303b252f55b770f29ecabcbe43b94fa4daef295))
+* **i18n:** add missing translations [CDS 1412] ([1c6dc65](https://github.com/ovh/manager/commit/1c6dc6504965bdebe4c8118999f5793fb1dc3835))
+* **i18n:** add missing translations [CDS 1421] ([9c31ff9](https://github.com/ovh/manager/commit/9c31ff93098f0ed8d882de7731f095a5e9d39bbd))
+* **i18n:** add missing translations [CDS 1422] ([b3ecea8](https://github.com/ovh/manager/commit/b3ecea81cc637a671d31408d443a8946253e886b))
+* **i18n:** add missing translations [CDS 1428] ([eab4d70](https://github.com/ovh/manager/commit/eab4d703e3ab487ceff0cf2869cb74202fb900a0))
+* **storage.containers.object:** remove min length for prefix ([#6349](https://github.com/ovh/manager/issues/6349)) ([4c7acd8](https://github.com/ovh/manager/commit/4c7acd856d2a72375eb4d7fab889a1dad38eef40))
+* **storage.databases:** add tooltip for default db suppression action ([#6185](https://github.com/ovh/manager/issues/6185)) ([18b38c8](https://github.com/ovh/manager/commit/18b38c81923ae50bff847bf8982d107fe047e527))
+* **storage.databases:** fix connection pool port display ([#6415](https://github.com/ovh/manager/issues/6415)) ([844afce](https://github.com/ovh/manager/commit/844afced4bcdc1379968228c8f6b782a3bb29447))
+* **storages.containers:** avoid displaying error message twice ([#6347](https://github.com/ovh/manager/issues/6347)) ([8dbd816](https://github.com/ovh/manager/commit/8dbd816a8fa350bf6271a348a3e166c754eb1ef8))
+
+
+
 ## [5.56.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.56.0...@ovh-ux/manager-pci@5.56.1) (2022-01-26)
 
 

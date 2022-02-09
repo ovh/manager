@@ -1,3 +1,12 @@
+# [12.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.8.0...@ovh-ux/manager-core@12.9.0) (2022-02-09)
+
+
+### Features
+
+* **core:** send sentry user information event ([4a12c5d](https://github.com/ovh/manager/commit/4a12c5de1ba336274010ee19a9051da22a0f6046))
+
+
+
 # [12.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.7.0...@ovh-ux/manager-core@12.8.0) (2021-12-14)
 
 

@@ -1,3 +1,12 @@
+## [1.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.5.2...@ovh-ux/manager-components@1.5.3) (2022-02-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1412] ([1c6dc65](https://github.com/ovh/manager/commit/1c6dc6504965bdebe4c8118999f5793fb1dc3835))
+
+
+
 ## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.5.1...@ovh-ux/manager-components@1.5.2) (2022-01-25)
 
 

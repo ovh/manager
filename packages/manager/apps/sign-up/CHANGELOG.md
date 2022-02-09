@@ -1,3 +1,12 @@
+## [2.4.5](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.4.4...@ovh-ux/sign-up-app@2.4.5) (2022-02-09)
+
+
+### Bug Fixes
+
+* **sign-up.app:** store ovh subsidiary in local storage ([c4ebdec](https://github.com/ovh/manager/commit/c4ebdec42be1d6288b7d163dbe795f189fc49ae8))
+
+
+
 ## [2.4.4](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.4.3...@ovh-ux/sign-up-app@2.4.4) (2022-01-25)
 
 

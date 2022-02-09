@@ -1,3 +1,12 @@
+## [1.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.8.1...@ovh-ux/manager-support@1.8.2) (2022-02-09)
+
+
+### Bug Fixes
+
+* **ticket.message:** improve readability ([#6394](https://github.com/ovh/manager/issues/6394)) ([76b63ac](https://github.com/ovh/manager/commit/76b63ac1ef04e2fc80b9693043ee4a0805122e86))
+
+
+
 ## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.8.0...@ovh-ux/manager-support@1.8.1) (2021-12-28)
 
 

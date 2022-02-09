@@ -1,3 +1,21 @@
+# [6.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.5.0...@ovh-ux/manager-overthebox@6.6.0) (2022-02-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1409] ([e303b25](https://github.com/ovh/manager/commit/e303b252f55b770f29ecabcbe43b94fa4daef295))
+* **i18n:** add missing translations [CDS 1417] ([f9fb30b](https://github.com/ovh/manager/commit/f9fb30bdccf4aed9cf5b601b152b0da060bb1b41))
+* **i18n:** add missing translations [CDS 1421] ([9c31ff9](https://github.com/ovh/manager/commit/9c31ff93098f0ed8d882de7731f095a5e9d39bbd))
+* **i18n:** add missing translations [CDS 1422] ([b3ecea8](https://github.com/ovh/manager/commit/b3ecea81cc637a671d31408d443a8946253e886b))
+
+
+### Features
+
+* **details:** use the new endpoint for statistics ([#6342](https://github.com/ovh/manager/issues/6342)) ([867322a](https://github.com/ovh/manager/commit/867322a66a8fb48cf679bc02d018f3a387727af3))
+* **overthebox.autoconfigure:** add dhcp autoconfigure ([#6132](https://github.com/ovh/manager/issues/6132)) ([0df6047](https://github.com/ovh/manager/commit/0df60472c1c3627b5514fee04f608a60f5a509cc))
+
+
+
 # [6.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.4.3...@ovh-ux/manager-overthebox@6.5.0) (2022-01-25)
 
 

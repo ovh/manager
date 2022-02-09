@@ -1,3 +1,19 @@
+# [0.11.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.11.0-alpha.0...@ovh-ux/manager-billing@0.11.0-alpha.1) (2022-02-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1409] ([e303b25](https://github.com/ovh/manager/commit/e303b252f55b770f29ecabcbe43b94fa4daef295))
+* **i18n:** add missing translations [CDS 1412] ([1c6dc65](https://github.com/ovh/manager/commit/1c6dc6504965bdebe4c8118999f5793fb1dc3835))
+* **i18n:** add missing translations [CDS 1417] ([f9fb30b](https://github.com/ovh/manager/commit/f9fb30bdccf4aed9cf5b601b152b0da060bb1b41))
+* **i18n:** add missing translations [CDS 1422] ([b3ecea8](https://github.com/ovh/manager/commit/b3ecea81cc637a671d31408d443a8946253e886b))
+* **i18n:** add missing translations [CDS 1428] ([eab4d70](https://github.com/ovh/manager/commit/eab4d703e3ab487ceff0cf2869cb74202fb900a0))
+* **payment.method:** removal of unnecessary message ([#6423](https://github.com/ovh/manager/issues/6423)) ([a036aa0](https://github.com/ovh/manager/commit/a036aa06af716940a9087678c9f35b427c1b012a))
+* remove unused translations [CDS] ([22c7cef](https://github.com/ovh/manager/commit/22c7cef38976469d684d25efbf71761105fc0611))
+* **payment.method:** do not fallback guide ([#6350](https://github.com/ovh/manager/issues/6350)) ([ff5dc9d](https://github.com/ovh/manager/commit/ff5dc9de6058e6723f5460ebfdc67b2d1c86886f))
+
+
+
 # [0.11.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.10.0-alpha.1...@ovh-ux/manager-billing@0.11.0-alpha.0) (2022-01-28)
 
 
