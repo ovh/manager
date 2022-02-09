@@ -1,3 +1,12 @@
+## [2.2.4](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.2.3...@ovh-ux/sign-up@2.2.4) (2022-02-09)
+
+
+### Bug Fixes
+
+* **sign-up:** retrieve ovh sub from local storage if undefined ([bacca7e](https://github.com/ovh/manager/commit/bacca7ee193dadd91ddd53a6f78c601e9eabc8dd))
+
+
+
 ## [2.2.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.2.2...@ovh-ux/sign-up@2.2.3) (2021-12-28)
 
 

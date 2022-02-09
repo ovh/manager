@@ -1,3 +1,13 @@
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.0.0...@ovh-ux/manager-bm-server-components@1.0.1) (2022-02-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1409] ([e303b25](https://github.com/ovh/manager/commit/e303b252f55b770f29ecabcbe43b94fa4daef295))
+* **i18n:** add missing translations [CDS 1412] ([1c6dc65](https://github.com/ovh/manager/commit/1c6dc6504965bdebe4c8118999f5793fb1dc3835))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@0.0.0...@ovh-ux/manager-bm-server-components@1.0.0) (2022-01-25)
 
 

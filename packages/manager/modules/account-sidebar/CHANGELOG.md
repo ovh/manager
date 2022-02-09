@@ -1,3 +1,12 @@
+## [3.5.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.5.6...@ovh-ux/manager-account-sidebar@3.5.7) (2022-02-09)
+
+
+### Bug Fixes
+
+* **payment-mean:** wait for translations to be loaded ([#6419](https://github.com/ovh/manager/issues/6419)) ([eaa220c](https://github.com/ovh/manager/commit/eaa220cc0958af509d6cec9605475e9a4de3533d))
+
+
+
 ## [3.5.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.5.5...@ovh-ux/manager-account-sidebar@3.5.6) (2022-01-11)
 
 

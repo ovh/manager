@@ -1,3 +1,12 @@
+## [3.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.1.4...@ovh-ux/manager-exchange@3.1.5) (2022-02-09)
+
+
+### Bug Fixes
+
+* **dashboard:** update cancel label ([#6322](https://github.com/ovh/manager/issues/6322)) ([b9feb0d](https://github.com/ovh/manager/commit/b9feb0d78f42f9eb3ffc5441bb542c5673d60e0b))
+
+
+
 ## [3.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.1.3...@ovh-ux/manager-exchange@3.1.4) (2021-11-04)
 
 

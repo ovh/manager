@@ -1,3 +1,18 @@
+# [13.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.30.3...@ovh-ux/manager-telecom@13.31.0) (2022-02-09)
+
+
+### Bug Fixes
+
+* **modem.templates:** fix templates modem ([#6339](https://github.com/ovh/manager/issues/6339)) ([ad52838](https://github.com/ovh/manager/commit/ad528385676fb65d691bb70bcc0cf2bb96b34de0))
+* **telecom.alias.ccs:** modification regex internal or external agent ([#5751](https://github.com/ovh/manager/issues/5751)) ([f993ed2](https://github.com/ovh/manager/commit/f993ed2fa7e58e69cd48941611a41ce12ff24946))
+
+
+### Features
+
+* **telecom/xdsl/notif:** add allowIncident & downThreshold in notif ([#5886](https://github.com/ovh/manager/issues/5886)) ([a33bea1](https://github.com/ovh/manager/commit/a33bea1ca847ae24265b312deaef2794c41bd9db))
+
+
+
 ## [13.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.30.2...@ovh-ux/manager-telecom@13.30.3) (2022-01-25)
 
 

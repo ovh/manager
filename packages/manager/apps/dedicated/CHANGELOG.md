@@ -1,3 +1,12 @@
+## [17.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.11.0...@ovh-ux/manager-dedicated@17.11.1) (2022-02-09)
+
+
+### Bug Fixes
+
+* **server.installation:** prevent custom if partitioning not allowed ([#6059](https://github.com/ovh/manager/issues/6059)) ([40eb488](https://github.com/ovh/manager/commit/40eb488225aea1d8dfd1007c995e3bd84782a9e1)), closes [#5952](https://github.com/ovh/manager/issues/5952)
+
+
+
 # [17.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.10.1...@ovh-ux/manager-dedicated@17.11.0) (2022-01-28)
 
 

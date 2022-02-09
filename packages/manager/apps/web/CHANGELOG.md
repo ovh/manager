@@ -1,3 +1,21 @@
+# [16.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.5.1...@ovh-ux/manager-web@16.6.0) (2022-02-09)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([903ad5f](https://github.com/ovh/manager/commit/903ad5f1a576b60172d63746ecc8a2fff4ffea50))
+* remove unused translations [CDS] ([22c7cef](https://github.com/ovh/manager/commit/22c7cef38976469d684d25efbf71761105fc0611))
+* **i18n:** add missing translations [CDS 1409] ([e303b25](https://github.com/ovh/manager/commit/e303b252f55b770f29ecabcbe43b94fa4daef295))
+
+
+### Features
+
+* **hosting.ftp:** put forward SFTP information ([#5988](https://github.com/ovh/manager/issues/5988)) ([d14124c](https://github.com/ovh/manager/commit/d14124c614d4faf4624cee5f1b2bb79fb843a80f))
+* **privates-database:** remove database Type ([#6412](https://github.com/ovh/manager/issues/6412)) ([241789f](https://github.com/ovh/manager/commit/241789fe7dd9d87d006a4a969a9b5d879e93ddc5))
+* **privates-database:** remove Infrastructure ([#6407](https://github.com/ovh/manager/issues/6407)) ([03c4d7f](https://github.com/ovh/manager/commit/03c4d7f2191d837deb538ecb10393bde80869905))
+
+
+
 ## [16.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.5.0...@ovh-ux/manager-web@16.5.1) (2022-01-27)
 
 
