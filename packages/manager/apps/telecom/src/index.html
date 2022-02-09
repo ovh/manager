@@ -93,6 +93,25 @@
                                     <div
                                         class="container-fluid px-md-5 px-3 mt-3"
                                     >
+                                        <oui-message
+                                            data-ng-if="$ctrl.currentLanguage === 'en'"
+                                            type="info"
+                                            dismissable
+                                        >
+                                            <span
+                                                data-ng-bind="::$ctrl.SYSTRAN_FEEDBACK_INFO.part1"
+                                            ></span>
+                                            <a
+                                                href="{{:: $ctrl.SYSTRAN_FEEDBACK_LINK}}"
+                                                class="oui-link"
+                                                target="_blank"
+                                                rel="noopener"
+                                            >
+                                                <span
+                                                    data-ng-bind="::$ctrl.SYSTRAN_FEEDBACK_INFO.part2"
+                                                ></span>
+                                            </a>
+                                        </oui-message>
                                         <ui-router-breadcrumb></ui-router-breadcrumb>
                                         <div data-ui-view class="mt-3"></div>
                                     </div>
