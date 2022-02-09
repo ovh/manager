@@ -15,14 +15,6 @@
                     ></span>
                     <small class="text-danger">*</small>
                 </label>
-                <button
-                    type="button"
-                    class="oui-popover-button"
-                    aria-label="Help"
-                    oui-popover="{{:: 'pci_databases_namespaces_add_name_popover' | translate }}"
-                    oui-popover-id="popover-name"
-                    oui-popover-placement="right"
-                ></button>
                 <input
                     class="oui-input"
                     type="text"
@@ -55,7 +47,6 @@
                     oui-popover-id="popover-name"
                     oui-popover-placement="right"
                 ></button>
-                <p data-translate="pci_databases_namespaces_add_type_info"></p>
                 <oui-radio-group model="$ctrl.model.type">
                     <oui-radio inline value="'aggregated'" disabled>
                         <span
@@ -136,6 +127,7 @@
     <div class="row">
         <div class="col">
             <oui-collapsible
+                class="overflow-collapsible"
                 heading="{{:: 'pci_databases_namespaces_add_advanced_label' | translate }}"
             >
                 <div class="row">

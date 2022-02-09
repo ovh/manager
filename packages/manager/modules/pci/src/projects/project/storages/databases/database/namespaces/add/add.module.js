@@ -5,6 +5,7 @@ import 'angular-translate';
 
 import component from './add.component';
 import routing from './add.routing';
+import './add.styles.scss';
 
 const moduleName = 'ovhManagerPciStoragesDatabaseNamespacesAdd';
 

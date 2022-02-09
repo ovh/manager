@@ -87,6 +87,9 @@ export default class {
         return this.goBack({
           textHtml: this.$translate.instant(
             'pci_databases_namespaces_edit_success_message',
+            {
+              name: this.model.name,
+            },
           ),
         });
       })
@@ -96,6 +99,7 @@ export default class {
           this.$translate.instant(
             'pci_databases_namespaces_edit_error_message',
             {
+              name: this.model.name,
               message: err.data?.message || null,
             },
           ),
