@@ -457,7 +457,6 @@ export default class BmServerComponentsIpmiController {
   }
 
   getKvmUrl() {
-    this.trackClick('access-sol-console');
     return this.IpmiService.ipmiGetConnection(this.serviceName, 'kvmipHtml5URL')
       .then((kvmUrl) => {
         this.loader.kvmUrlReady = true;
@@ -582,6 +581,7 @@ export default class BmServerComponentsIpmiController {
   }
 
   startIpmiJava() {
+    this.trackClick('access-kvm-java');
     this.javaState.setState(STATE_ENUM.LOADING);
     this.loader.buttonStart = true;
     const withGeolocation =
@@ -608,10 +608,19 @@ export default class BmServerComponentsIpmiController {
   }
 
   downloadApplet() {
-    this.trackClick('access-kvm-java');
     this.$window.open(
       `data:application/x-java-jnlp-file,${this.appletToDownload}`,
     );
+  }
+
+  goToKvmConsole() {
+    this.trackClick('access-kvm-console');
+    this.$window.open(this.loader.kvmUrl, '_blank', 'noopener');
+  }
+
+  goToSolConsole() {
+    this.trackClick('access-sol-console');
+    this.$window.open(this.loader.navigationReady, '_blank', 'noopener');
   }
 
   // ------------Test IPMI------------

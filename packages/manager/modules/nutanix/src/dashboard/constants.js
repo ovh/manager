@@ -4,6 +4,8 @@ export const SERVER_OPTIONS = {
   BANDWIDTH_VRACK: 'BANDWIDTH_VRACK',
 };
 
+export const SERVICE_TYPE = 'NUTANIX';
+
 export const GUIDE_URL = {
   ALL_GUIDE: {
     FR: 'https://docs.ovh.com/fr/nutanix/',
@@ -15,4 +17,5 @@ export default {
   NOT_SUBSCRIBED,
   SERVER_OPTIONS,
   GUIDE_URL,
+  SERVICE_TYPE,
 };

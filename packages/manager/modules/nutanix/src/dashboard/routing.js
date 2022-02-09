@@ -1,3 +1,5 @@
+import { SERVICE_TYPE } from './constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.dashboard', {
     url: '/:serviceName',
@@ -14,7 +16,10 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       serviceInfo: /* @ngInject */ (NutanixService, serviceName) =>
-        NutanixService.getServiceInfo(serviceName),
+        NutanixService.getServiceInfo(serviceName).then((serviceInfo) => ({
+          ...serviceInfo,
+          serviceType: SERVICE_TYPE,
+        })),
       serviceDetails: /* @ngInject */ (NutanixService, serviceInfo) =>
         NutanixService.getServiceDetails(serviceInfo.serviceId),
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,

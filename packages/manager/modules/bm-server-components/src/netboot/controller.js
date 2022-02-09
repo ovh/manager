@@ -208,10 +208,14 @@ export default class BmServerComponentsNetbootCtrl {
   }
 
   goBack(message = false) {
-    this.trackClick('cancel');
     if (isFunction(this.onGoBack)) {
       this.onGoBack({ message });
     }
+  }
+
+  cancel() {
+    this.trackClick('cancel');
+    this.goBack();
   }
 
   handleError(error, message = null) {
