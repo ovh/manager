@@ -31,6 +31,8 @@ export default class ServiceIntegration extends Base {
     switch (this.type) {
       case INTEGRATION_TYPE.MIRROR_MAKER:
         return DATABASE_TYPES.KAFKA_MIRROR_MAKER;
+      case INTEGRATION_TYPE.KAFKA_CONNECT:
+        return DATABASE_TYPES.KAFKA_CONNECT;
       case INTEGRATION_TYPE.M3_AGGREGATOR:
         return DATABASE_TYPES.M3AGGEGATOR;
       default:

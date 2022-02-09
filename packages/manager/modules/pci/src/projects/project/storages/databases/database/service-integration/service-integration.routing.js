@@ -37,6 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => {
           switch (database.engine) {
             case DATABASE_TYPES.KAFKA_MIRROR_MAKER:
+            case DATABASE_TYPES.KAFKA_CONNECT:
               return DatabaseService.getDatabases(
                 projectId,
                 DATABASE_TYPES.KAFKA,
@@ -114,7 +115,7 @@ export default /* @ngInject */ ($stateProvider) => {
           database,
           projectId,
         ) =>
-          database.engine === DATABASE_TYPES.KAFKA_MIRROR_MAKER
+          [DATABASE_TYPES.KAFKA_MIRROR_MAKER].includes(database.engine)
             ? DatabaseService.getReplications(
                 projectId,
                 database.engine,
@@ -160,6 +161,7 @@ export default /* @ngInject */ ($stateProvider) => {
           switch (database.engine) {
             case DATABASE_TYPES.M3AGGEGATOR:
               return ENGINES_NAMES.m3db;
+            case DATABASE_TYPES.KAFKA_CONNECT:
             case DATABASE_TYPES.KAFKA_MIRROR_MAKER:
               return ENGINES_NAMES.kafka;
             default:
