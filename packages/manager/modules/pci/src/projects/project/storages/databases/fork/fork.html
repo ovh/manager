@@ -190,6 +190,16 @@
     </database-order-review>
     <pci-order-command
         data-order-data="$ctrl.orderData"
+        data-parameter-keys="[
+            'description',
+            'networkId',
+            'subnetId',
+            'nodesPattern.flavor',
+            'nodesPattern.number',
+            'nodesPattern.region',
+            'plan',
+            'version',
+        ]"
         data-order-api-url="$ctrl.getOrderAPIUrl()"
         data-user="$ctrl.user"
     ></pci-order-command>
