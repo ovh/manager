@@ -98,13 +98,8 @@
                     term="{{:: 'server_configuration_datacenter' | translate }}"
                 >
                     <oui-tile-description>
-                        <div
-                            class="oui-tile__description"
-                            data-translate="{{'server_datacenter_' + $ctrl.server.datacenter.split('_')[0]}}"
-                            data-translate-values="{
-                                number: $ctrl.server.datacenter.split('_')[1]
-                                }"
-                        ></div>
+                        <datacenter-name datacenter="$ctrl.server.datacenter">
+                        </datacenter-name>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <!-- rack -->
