@@ -13,6 +13,7 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import routing from './routing';
 import component from './component';
+import datacenterName from './dashboard/component/datacenter-name/module';
 
 const moduleName = 'ovhManagerNutanix';
 
@@ -27,6 +28,7 @@ angular
     ngOvhUtils,
     ngUiRouterBreadcrumb,
     ListLayoutHelper.moduleName,
+    datacenterName,
   ])
   .config(routing)
   .component('clusterComponent', component)

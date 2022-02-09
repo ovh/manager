@@ -43,9 +43,6 @@
         title="'nutanix_dashboard_nodes_list_localisation' | translate"
         property="datacenter"
     >
-        <span
-            data-translate="nutanix_dashboard_nodes_list_localisation_value"
-            data-translate-values="{ dcName: $row.datacenter, rackName: $row.rack }"
-        ></span>
+        <datacenter-name datacenter="$row.datacenter"> </datacenter-name>
     </oui-datagrid-column>
 </oui-datagrid>
