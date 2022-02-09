@@ -22,7 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ (goToByoipConfiguration) =>
         goToByoipConfiguration,
       goToExpressOrder: /* @ngInject */ ($window) => (url) => {
-        return $window.open(url, '_blank');
+        return $window.open(url, '_self');
       },
       breadcrumb: () => null,
     },
