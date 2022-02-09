@@ -19,6 +19,7 @@ const LanguageButton = ({ children, show, onClick }) => {
     >
       <span className="oui-navbar-link__wrapper">
         <span className="oui-navbar-link__text">{children}</span>
+        <span className="oui-icon oui-icon-chevron-down ml-2"></span>
       </span>
     </button>
   );
