@@ -9,6 +9,7 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementOfferChang
   $q,
   $stateParams,
   $translate,
+  atInternet,
   TelephonyMediator,
   TucToast,
   OvhApiTelephony,
@@ -32,6 +33,8 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementOfferChang
   };
 
   self.initError = null;
+  self.trackingPrefix =
+    'telecom::telephony::billingAccount::line::dashboard::offerChange';
 
   /* ==============================
     =            HELPERS            =
@@ -65,6 +68,30 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementOfferChang
       self.model.offer.name,
     );
   };
+
+  function toggleEditMode() {
+    self.model.isEditing = !self.model.isEditing;
+  }
+
+  function toggleCancelMode() {
+    self.model.isCanceling = !self.model.isCanceling;
+  }
+
+  function trackClick(label) {
+    atInternet.trackClick({
+      name: `${self.trackingPrefix}::${label}`,
+      type: 'action',
+    });
+  }
+
+  function trackPageForOfferChange(prefix, currentOffer = '', newOffer, type) {
+    const args = [prefix, type, newOffer.toUpperCase().replace(/\./g, '_')];
+    if (currentOffer)
+      args.splice(2, 0, currentOffer.toUpperCase().replace(/\./g, '_'));
+    atInternet.trackPage({
+      name: args.join('::'),
+    });
+  }
 
   /* -----  End of HELPERS  ------ */
 
@@ -129,17 +156,27 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementOfferChang
     ============================== */
 
   /**
-   * Toggle edit mode.
+   * Go to edit mode.
    */
-  self.toggleEditMode = function toggleEditMode() {
-    self.model.isEditing = !self.model.isEditing;
+  self.goToEditMode = function goToEditMode() {
+    trackClick('modify');
+    toggleEditMode();
+  };
+
+  /**
+   * Go to read-only mode.
+   */
+  self.goToReadOnlyMode = function goToReadOnlyMode() {
+    trackClick('cancel');
+    toggleEditMode();
   };
 
   /**
    * Toggle edit mode.
    */
-  self.toggleCancelMode = function toggleCancelMode() {
-    self.model.isCanceling = !self.model.isCanceling;
+  self.cancelOfferChange = function cancelOfferChange() {
+    trackClick('cancelOfferChange');
+    toggleCancelMode();
   };
 
   /**
@@ -147,13 +184,27 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementOfferChang
    * @return {Promise}
    */
   self.changeOffer = function changeOffer() {
+    const offerChangeTrackingPrefix = 'telephony-line-offer-change';
+    trackClick('confirm');
     self.loading.save = true;
     return self.line
       .changeOffer(self.model.offer)
       .then(() => {
-        self.toggleEditMode();
+        trackPageForOfferChange(
+          offerChangeTrackingPrefix,
+          self.line?.offerInformations?.name,
+          self.model.offer?.name,
+          'success',
+        );
+        toggleEditMode();
       })
       .catch((error) => {
+        trackPageForOfferChange(
+          offerChangeTrackingPrefix,
+          self.line?.offerInformations?.name,
+          self.model.offer?.name,
+          'error',
+        );
         TucToast.error(
           [
             $translate.instant(
@@ -173,8 +224,9 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementOfferChang
    * Cancel offer change.
    * @return {Promise}
    */
-  self.cancelOfferChange = function cancelOfferChange() {
+  self.confirmCancelOfferChange = function confirmCancelOfferChange() {
     self.loading.cancel = true;
+    trackClick('cancelOfferChange::confirm');
     return self.line
       .cancelOfferChange()
       .then(() => self.line.getCurrentOfferInformations())
@@ -192,6 +244,15 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementOfferChang
       .finally(() => {
         self.loading.cancel = false;
       });
+  };
+
+  /**
+   * Abort cancelling offer change.
+   * @return {Promise}
+   */
+  self.abortCancelOfferChange = function abortCancelOfferChange() {
+    trackClick('cancelOfferChange::cancel');
+    toggleCancelMode();
   };
 
   /* -----  End of EVENTS  ------ */
@@ -266,6 +327,12 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementOfferChang
   };
 
   self.onBulkSuccess = function onBulkSuccess(bulkResult) {
+    trackPageForOfferChange(
+      'telephony-line-bulk-offer-change',
+      '',
+      self.model.offer?.name,
+      bulkResult.error.length === 0 ? 'success' : 'partial',
+    );
     // display message of success or error
     tucTelephonyBulk
       .getTucToastInfos(bulkResult, {
@@ -288,7 +355,7 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementOfferChang
         });
       });
 
-    self.toggleEditMode();
+    toggleEditMode();
 
     // reset initial values to be able to modify again the options
     self.model.isCanceling = false;
@@ -296,6 +363,12 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementOfferChang
   };
 
   self.onBulkError = function onBulkError(error) {
+    trackPageForOfferChange(
+      'telephony-line-bulk-offer-change',
+      '',
+      self.model.offer?.name,
+      'error',
+    );
     TucToast.error(
       [
         $translate.instant(

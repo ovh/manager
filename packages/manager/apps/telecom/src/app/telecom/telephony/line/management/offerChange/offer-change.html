@@ -68,7 +68,7 @@
                             type="button"
                             class="btn btn-primary no-transition mt-3"
                             data-ng-if="!OfferChangeCtrl.line.pendingOfferChange && !OfferChangeCtrl.initError"
-                            data-ng-click="OfferChangeCtrl.toggleEditMode()"
+                            data-ng-click="OfferChangeCtrl.goToEditMode()"
                             data-translate="telephony_line_management_change_offer_change_button"
                         ></button>
                     </div>
@@ -133,6 +133,7 @@
                                 data-get-bulk-params="OfferChangeCtrl.getBulkParams"
                                 data-on-success="OfferChangeCtrl.onBulkSuccess"
                                 data-on-error="OfferChangeCtrl.onBulkError"
+                                data-tracking-prefix="{{:: OfferChangeCtrl.trackingPrefix + '-multiple-lines' }}"
                             >
                             </tuc-telephony-bulk-action>
                         </div>
@@ -147,7 +148,7 @@
                             <button
                                 type="button"
                                 class="btn btn-link"
-                                data-ng-click="OfferChangeCtrl.toggleEditMode()"
+                                data-ng-click="OfferChangeCtrl.goToReadOnlyMode()"
                                 data-translate="cancel"
                             ></button>
                         </div>
@@ -160,7 +161,7 @@
                             type="button"
                             class="btn btn-primary no-transition"
                             data-ng-if="!OfferChangeCtrl.model.isCanceling"
-                            data-ng-click="OfferChangeCtrl.toggleCancelMode()"
+                            data-ng-click="OfferChangeCtrl.cancelOfferChange()"
                             data-translate="telephony_line_management_change_offer_change_pending_cancel"
                         ></button>
 
@@ -172,12 +173,12 @@
                                 class="btn btn-primary"
                                 type="button"
                                 data-translate="submit"
-                                data-ng-click="OfferChangeCtrl.cancelOfferChange()"
+                                data-ng-click="OfferChangeCtrl.confirmCancelOfferChange()"
                             ></button>
                             <button
                                 class="btn btn-link"
                                 type="button"
-                                data-ng-click="OfferChangeCtrl.toggleCancelMode()"
+                                data-ng-click="OfferChangeCtrl.abortCancelOfferChange()"
                                 data-translate="cancel"
                             ></button>
                         </div>
