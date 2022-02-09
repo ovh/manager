@@ -15,6 +15,7 @@ export default class ManagerHubPaymentMeanCtrl {
 
   $onInit() {
     this.isLoading = true;
+    this.areTranslationsLoading = true;
     this.$scope.$watch(
       () => this.visible,
       () => {
@@ -23,7 +24,9 @@ export default class ManagerHubPaymentMeanCtrl {
         }
       },
     );
-    return this.$translate.refresh();
+    return this.$translate.refresh().finally(() => {
+      this.areTranslationsLoading = false;
+    });
   }
 
   fetchPaymentMethods() {

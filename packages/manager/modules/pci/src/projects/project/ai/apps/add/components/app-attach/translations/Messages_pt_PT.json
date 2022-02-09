@@ -1,0 +1,3 @@
+{
+  "pci_app_add_attach_container_description": "Se necessário, pode associar containers Object Storage da OVHcloud à sua AI app. Uma vez associados os containers, estes serão temporariamente carregados e colocados em cache perto da sua instância, de forma a reduzir a latência e melhorar o desempenho. A boa prática é associar um container aos seus dados de entrada e outro aos seus dados de saída."
+}

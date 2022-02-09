@@ -1,0 +1,3 @@
+{
+  "pci_ai_tokens_delete_warning": "¿Seguro que quiere eliminar el token {{ tokenId }}?"
+}

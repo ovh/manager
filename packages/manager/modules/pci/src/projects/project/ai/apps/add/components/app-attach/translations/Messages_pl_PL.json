@@ -1,0 +1,3 @@
+{
+  "pci_app_add_attach_container_description": "W razie potrzeby możesz przypisać do AI App kontenery Object Storage OVHcloud. Po przypisaniu zostaną one tymczasowo załadowane i umieszczone w pamięci cache w pobliżu Twojej instancji, aby skrócić czas odpowiedzi i zwiększyć wydajność. Dobrym rozwiązaniem jest powiązanie jednego kontenera z danymi wejściowymi, a drugiego z danymi wyjściowymi."
+}

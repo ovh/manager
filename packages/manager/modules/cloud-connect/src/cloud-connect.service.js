@@ -507,4 +507,22 @@ export default class CloudConnectService {
       CloudConnectService.clearCache(cacheName);
     });
   }
+
+  loadStatistics(cloudConnectId, interfaceId, type, period) {
+    const options = {
+      period,
+      type,
+    };
+
+    return this.$http
+      .get(
+        `/ovhCloudConnect/${cloudConnectId}/interface/${interfaceId}/statistics`,
+        { params: options },
+      )
+      .then((statistics) => {
+        const stats = statistics.data || [];
+        return stats.map(({ timestamp, value }) => [timestamp * 1000, value]);
+      })
+      .catch(() => []);
+  }
 }

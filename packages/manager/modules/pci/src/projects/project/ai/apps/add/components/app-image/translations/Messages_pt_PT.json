@@ -1,0 +1,3 @@
+{
+  "pci_app_submit_select_image_tips": "Introduza o caminho de acesso à sua imagem Docker. Pode ser um registo público (GitHub, Gitlab, DockerHub, etc.) ou privado"
+}

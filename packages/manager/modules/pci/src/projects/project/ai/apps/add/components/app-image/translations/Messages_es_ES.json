@@ -1,0 +1,3 @@
+{
+  "pci_app_submit_select_image_tips": "Introduzca la ruta de acceso a su imagen Docker. Puede ser un registro público (GitHub, Gitlab, DockerHub, etc.) o privado."
+}

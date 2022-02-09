@@ -326,7 +326,7 @@
   "exchange_resilitation_action_intro": "Are you sure you want to cancel the \"{0}\" Exchange service? <br />This action will cancel the automatic renewal at the end of the expiry period, causing the service to be blocked.<br /><br /> You should be able to use the service up until this date.",
   "exchange_resilitation_action_expiration": "Expiry date",
   "exchange_resilitation_action_hosted_warning": "Your accounts will be suspended on the expiry date.",
-  "exchange_resilitation_action_button": "Cancel",
+  "exchange_resilitation_action_button": "Confirm",
   "exchange_resilitation_action_button_cancel": "Cancel the termination",
   "exchange_resilitation_action_confirmation": "Warning: You are about to permanently terminate the \"{0}\" service, as well as the {1} Exchange accounts linked to it. <br />Are you sure you want to continue?",
   "exchange_resilitation_action_success": "The Exchange service will be deleted on the expiry date.",
@@ -1601,5 +1601,6 @@
   "exchange_mfa_error": "An error has occurred: {{error}}",
   "exchange_delete_mfa_success": "The two-factor authentication was successfully deleted.",
   "exchange_delete_mfa_error": "An error has occurred deleting the two-factor authentication: {{error}}",
-  "exchange_ACTION_configure_services_label_security_account": "Account security"
+  "exchange_ACTION_configure_services_label_security_account": "Account security",
+  "exchange_resilitation_action_menu_terminate_button": "Cancel"
 }

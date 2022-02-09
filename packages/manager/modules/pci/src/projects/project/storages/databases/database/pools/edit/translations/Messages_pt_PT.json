@@ -4,7 +4,7 @@
   "pci_databases_pools_modify_database": "Base de dados",
   "pci_databases_pools_modify_pool_mode": "Modo",
   "pci_databases_pools_modify_pool_size": "Dimensão",
-  "pci_databases_pools_modify_pool_user": "Nome do utilizador",
+  "pci_databases_pools_modify_pool_user": "Nome de utilizador",
   "pci_databases_pools_modify_pool_user_title": "Nome de utilizador (opcional)",
   "pci_databases_pools_modify_pool_cancel": "Anular",
   "pci_databases_pools_modify_pool_confirm": "Confirmar",

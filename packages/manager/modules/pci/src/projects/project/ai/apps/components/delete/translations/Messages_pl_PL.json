@@ -1,0 +1,6 @@
+{
+  "pci_ai_apps_delete_success": "AI App została usunięta.",
+  "pci_ai_apps_delete_error": "Wystąpił błąd podczas usuwania AI App: {{message}}",
+  "pci_ai_apps_delete": "Usuwanie AI App",
+  "pci_ai_apps_delete_warning": "Czy na pewno chcesz usunąć AI App {{appId}}?"
+}

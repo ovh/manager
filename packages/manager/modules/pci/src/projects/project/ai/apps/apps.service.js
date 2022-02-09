@@ -166,7 +166,7 @@ export default class AppService {
   }
 
   static getPricePartnerIndex(partnerId, flavorId, type) {
-    return `ai-app.${partnerId}-${flavorId}-${type}`;
+    return `ai-app.${partnerId}-${flavorId}-${type}.minute.consumption`;
   }
 
   getPriceForHour(prices, flavorId) {

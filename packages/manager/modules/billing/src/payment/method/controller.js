@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import set from 'lodash/set';
 import some from 'lodash/some';
 import uniq from 'lodash/uniq';
@@ -25,7 +24,7 @@ export default class BillingPaymentMethodCtrl {
     this.hasPendingValidationBankAccount = false;
 
     const { ovhSubsidiary } = coreConfig.getUser();
-    this.guide = get(AUTORENEW_GUIDES, ovhSubsidiary, AUTORENEW_GUIDES.FR);
+    this.guide = AUTORENEW_GUIDES[ovhSubsidiary];
   }
 
   /* =====================================

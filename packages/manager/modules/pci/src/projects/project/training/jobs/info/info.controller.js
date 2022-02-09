@@ -38,11 +38,12 @@ export default class PciTrainingJobsInfoController {
 
     const catalog = this.getCatalogEntryF(this.job.spec.resources.flavor);
 
+    // Price per minute
     this.unitPrice = catalog.priceInUcents * resourceN;
     this.unitTax = catalog.tax * resourceN;
-    const totalHour = this.job.status.duration / 3600;
-    this.price = this.unitPrice * totalHour;
-    this.tax = this.unitTax * totalHour;
+    const totalMinute = this.job.status.duration / 60;
+    this.price = this.unitPrice * totalMinute;
+    this.tax = this.unitTax * totalMinute;
 
     this.loadMessages();
 
@@ -63,14 +64,14 @@ export default class PciTrainingJobsInfoController {
     if (this.job.status.state === 'RUNNING') {
       this.start = moment();
       this.interval = this.$interval(() => {
-        let totalHourRecalculated = this.job.status.duration / 3600;
+        let totalMinuteRecalculated = this.job.status.duration / 60;
 
         if (this.start) {
-          totalHourRecalculated += moment().diff(this.start) / (1000 * 3600);
+          totalMinuteRecalculated += moment().diff(this.start) / (1000 * 60);
         }
 
-        this.price = this.unitPrice * totalHourRecalculated;
-        this.tax = this.unitTax * totalHourRecalculated;
+        this.price = this.unitPrice * totalMinuteRecalculated;
+        this.tax = this.unitTax * totalMinuteRecalculated;
       }, 1000);
     }
   }

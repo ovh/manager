@@ -15,5 +15,9 @@
   "components_notification_5m": "Toutes les 5 minutes",
   "components_notification_1h": "Toutes les heures",
   "components_notification_6h": "Toutes les 6 heures",
-  "components_notification_sms_detail_warning": "Attention, le compte {{smsAccount}} n'a plus de crédit pour l'envoi de nouveaux SMS."
+  "components_notification_sms_detail_warning": "Attention, le compte {{smsAccount}} n'a plus de crédit pour l'envoi de nouveaux SMS.",
+  "components_notification_allowIncident": "Notification des incidents",
+  "components_notification_downThreshold": "Délai avant notification (en minutes)",
+  "components_notification_true": "Oui",
+  "components_notification_false": "Non"
 }

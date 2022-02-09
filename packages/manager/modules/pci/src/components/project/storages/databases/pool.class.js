@@ -11,6 +11,7 @@ export default class Pool {
     uri,
     userId,
     userName,
+    port,
   }) {
     Object.assign(this, {
       databaseId,
@@ -24,6 +25,7 @@ export default class Pool {
       uri,
       userId,
       userName,
+      port,
     });
   }
 
