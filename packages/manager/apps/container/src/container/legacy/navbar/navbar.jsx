@@ -9,9 +9,11 @@ import Brand from './brand.jsx';
 import Universes from './universes.jsx';
 import Search from './search.jsx';
 import Hamburger from './hamburger-menu.jsx';
+import NavReshuffleSwitchBack from '@/container/common/nav-reshuffle-switch-back';
 import LanguageMenu from '@/container/common/language';
 import { fetchUniverses, getBrandURL } from './service';
 import style from './navbar.module.scss';
+import modalStyle from '@/container/common/modal.module.scss';
 import { MESSAGES } from './constants';
 import { useShell } from '@/context';
 
@@ -26,6 +28,7 @@ function Navbar({ environment }) {
   const [universes, setUniverses] = useState([]);
   const [searchURL, setSearchURL] = useState();
   const [currentUniverse, setCurrentUniverse] = useState();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     environmentPlugin.onUniverseChange(() => {
@@ -39,28 +42,41 @@ function Navbar({ environment }) {
   }, []);
 
   return (
-    <div className={`oui-navbar ${style.navbar}`}>
-      <Hamburger universe={currentUniverse} universes={universes} />
-      <Brand targetURL={getBrandURL(universes)} />
-      <Universes universe={currentUniverse} universes={universes} />
-      <div className="oui-navbar-list oui-navbar-list_aside oui-navbar-list_end">
-        {searchURL && (
+    <>
+      <div
+        className={`${modalStyle.popoverClickAway} ${
+          isDropdownOpen ? '' : modalStyle.hidden
+        }`}
+      ></div>
+      <div className={`oui-navbar ${style.navbar}`}>
+        <Hamburger universe={currentUniverse} universes={universes} />
+        <Brand targetURL={getBrandURL(universes)} />
+        <Universes universe={currentUniverse} universes={universes} />
+        <div className="oui-navbar-list oui-navbar-list_aside oui-navbar-list_end">
+          {searchURL && (
+            <div className="oui-navbar-list__item">
+              <Search targetURL={searchURL} />
+            </div>
+          )}
           <div className="oui-navbar-list__item">
-            <Search targetURL={searchURL} />
+            <NavReshuffleSwitchBack
+              onChange={({ show }) => setIsDropdownOpen(show)}
+            />
           </div>
-        )}
-        <div className="oui-navbar-list__item">
-          <LanguageMenu
-            setUserLocale={setUserLocale}
-            userLocale={userLocale}
-          ></LanguageMenu>
+          <div className="oui-navbar-list__item">
+            <LanguageMenu
+              setUserLocale={setUserLocale}
+              userLocale={userLocale}
+              onChange={({ show }) => setIsDropdownOpen(show)}
+            ></LanguageMenu>
+          </div>
+          <div className="oui-navbar-list__item">
+            <Notifications />
+          </div>
+          <Account user={environment.getUser()} />
         </div>
-        <div className="oui-navbar-list__item">
-          <Notifications />
-        </div>
-        <Account user={environment.getUser()} />
       </div>
-    </div>
+    </>
   );
 }
 
