@@ -41,5 +41,6 @@
   "anthos_tenant_dashboard_general_information_tile_information_software_update_link": "Verfügbare Updates einsehen",
   "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_access_restriction": "Zugriff auf bestimmte IP-Adressen begrenzen",
   "anthos_tenant_dashboard_general_information_tile_resources_pack": "Paket",
-  "anthos_tenant_dashboard_general_information_tile_resources_pack_menu_upgrade": "Zu {{ pack }} wechseln"
+  "anthos_tenant_dashboard_general_information_tile_resources_pack_menu_upgrade": "Zu {{ pack }} wechseln",
+  "anthos_tenant_dashboard_general_information_tile_resources_pack_action_doing": "Ein Vorgang läuft gerade auf Ihrem Dienst. Möglicherweise sind einige Aktionen daher nicht verfügbar. Bitte versuchen Sie es später noch einmal."
 }
