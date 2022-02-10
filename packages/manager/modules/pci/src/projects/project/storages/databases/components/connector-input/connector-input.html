@@ -1,0 +1,45 @@
+<oui-field ng-if="$ctrl.display">
+    <!--input label-->
+    <label class="oui-field__label">
+        <span ng-bind="$ctrl.data.displayName"></span>
+        <small ng-if="$ctrl.data.required" class="text-danger">*</small>
+    </label>
+    <!--popover-->
+    <button
+        ng-if="$ctrl.data.description"
+        type="button"
+        class="oui-popover-button"
+        aria-label="Help"
+        oui-popover="{{$ctrl.data.description}}"
+        oui-popover-id="popover-name"
+        oui-popover-placement="right"
+    ></button>
+
+    <!--type string -->
+    <input
+        class="oui-input"
+        ng-if="$ctrl.data.type === 'string'"
+        name="{{$ctrl.data.name}}"
+        type="text"
+        ng-required="{{$ctrl.data.required}}"
+        value="{{$ctrl.data.defaultValue}}"
+        ng-model="$ctrl.model"
+    />
+    <!--type int32 -->
+    <oui-numeric ng-if="$ctrl.data.type === 'int32'" model="$ctrl.model">
+    </oui-numeric>
+    <!-- type int64-->
+    <oui-numeric ng-if="$ctrl.data.type === 'int64'" model="$ctrl.model">
+    </oui-numeric>
+    <!-- type int16-->
+    <oui-numeric ng-if="$ctrl.data.type === 'int16'" model="$ctrl.model">
+    </oui-numeric>
+    <!-- type boolean-->
+    <oui-checkbox ng-if="$ctrl.data.type === 'boolean'" model="$ctrl.model">
+    </oui-checkbox>
+    <!-- type list-->
+</oui-field>
+
+<pre ng-if="!$ctrl.display">
+    {{$ctrl.data | json}}
+</pre>

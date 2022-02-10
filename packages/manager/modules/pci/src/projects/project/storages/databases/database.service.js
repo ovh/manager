@@ -904,6 +904,15 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
+  getAvailableConnector(projectId, engine, databaseId, connectorId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/capabilities/connector/${connectorId}`,
+        // DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
   getAvailableConnectorConfiguration(
     projectId,
     engine,

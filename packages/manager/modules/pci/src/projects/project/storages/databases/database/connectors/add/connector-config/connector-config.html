@@ -1,0 +1,19 @@
+<oui-tabs>
+    <oui-tabs-item
+        ng-repeat="(group, config) in $ctrl.connectorConfig.config"
+        heading="{{group}}"
+    >
+        <div class="row">
+            <div class="col-md-6">
+                <connector-input
+                    ng-repeat="field in config"
+                    data="field"
+                    model="$ctrl.model[field.name]"
+                ></connector-input>
+            </div>
+            <div class="col-md-6 d-none d-md-block">
+                <pre class="preview">{{$ctrl.model | json}}</pre>
+            </div>
+        </div>
+    </oui-tabs-item>
+</oui-tabs>

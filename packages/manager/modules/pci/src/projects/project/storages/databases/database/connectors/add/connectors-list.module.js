@@ -8,6 +8,8 @@ import '@ovh-ux/ui-kit';
 import component from './connectors-list.component';
 import routing from './connectors-list.routing';
 
+import connectorConfig from './connector-config';
+
 const moduleName = 'ovhManagerPciStoragesDatabaseConnectorsList';
 
 angular
@@ -17,6 +19,7 @@ angular
     'pascalprecht.translate',
     'oui',
     'ui.router',
+    connectorConfig,
   ])
   .config(routing)
   .component('ovhManagerPciProjectDatabaseConnectorsList', component)
