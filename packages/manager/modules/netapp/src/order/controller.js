@@ -145,6 +145,7 @@ export default class OvhManagerNetAppOrderCtrl {
       name: `netapp::order::confirm::${this.selectedRegion}_${this.selectedLicense.name}_${this.selectedSize}TB_${this.duration.duration}_${pricingMode}`,
       type: 'action',
     });
+
     const order = {
       planCode: this.plan.planCode,
       productId: 'netapp',
@@ -157,11 +158,9 @@ export default class OvhManagerNetAppOrderCtrl {
         },
       ],
     };
-    return this.$window.open(
-      `${this.RedirectionService.getURL(
-        'expressOrder',
-      )}?products=${JSURL.stringify([order])}`,
-      '_blank',
-    );
+    const expressOrderUrl = this.RedirectionService.getURL('expressOrder');
+    const queryParams = `?products=${JSURL.stringify([order])}`;
+
+    return this.$window.open(`${expressOrderUrl}${queryParams}`, '_blank');
   }
 }
