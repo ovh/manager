@@ -8,8 +8,9 @@ import { ORDER_URL } from './order.constants';
 
 export default class FailoverIpController {
   /* @ngInject */
-  constructor($window, OvhApiOrderCloudProjectIp) {
+  constructor($window, coreConfig, OvhApiOrderCloudProjectIp) {
     this.$window = $window;
+    this.coreConfig = coreConfig;
     this.OvhApiOrderCloudProjectIp = OvhApiOrderCloudProjectIp;
   }
 
@@ -40,6 +41,11 @@ export default class FailoverIpController {
     );
   }
 
+  onProductChange(product) {
+    const configurations = get(product, 'details.product.configurations');
+    this.REGIONS = get(find(configurations, { name: 'country' }), 'values');
+  }
+
   order() {
     const order = {
       planCode: this.ip.product.planCode,
@@ -61,7 +67,12 @@ export default class FailoverIpController {
         },
       ],
     };
-    this.$window.open(`${ORDER_URL}${JSURL.stringify([order])}`, '_blank');
+    this.$window.open(
+      `${get(ORDER_URL, this.coreConfig.getRegion())}${JSURL.stringify([
+        order,
+      ])}`,
+      '_blank',
+    );
     this.goBack();
   }
 }

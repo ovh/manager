@@ -4,7 +4,6 @@ import '@uirouter/angularjs';
 import '@ovh-ux/manager-core';
 
 import order from './order';
-import legacyOrder from './legacy';
 import routing from './order.routing';
 
 const moduleName = 'ovhManagerPciProjectFailoverIpsOrder';
@@ -15,7 +14,6 @@ angular
     'pascalprecht.translate',
     'ovhManagerCore',
     order,
-    legacyOrder,
   ])
   .config(routing);
 
