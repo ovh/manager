@@ -1,3 +1,4 @@
+import groupBy from 'lodash/groupBy';
 import find from 'lodash/find';
 import map from 'lodash/map';
 import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
@@ -246,30 +247,32 @@ export default /* @ngInject */ ($stateProvider) => {
               database.engine,
               database.id,
             ).then((integrations) => {
-              const integrationType =
+              // filter integrations
+              const filter =
                 database.engine === DATABASE_TYPES.KAFKA
-                  ? INTEGRATION_TYPE.MIRROR_MAKER
-                  : INTEGRATION_TYPE.M3_AGGREGATOR;
-              const integrationEngine =
-                database.engine === DATABASE_TYPES.KAFKA
-                  ? DATABASE_TYPES.KAFKA_MIRROR_MAKER
-                  : DATABASE_TYPES.M3AGGEGATOR;
-              return $q.all(
-                map(
-                  integrations.filter(
-                    (integration) => integration.type === integrationType,
-                  ),
-                  (integration) =>
-                    DatabaseService.getDatabaseDetails(
-                      projectId,
-                      integrationEngine,
-                      integration.destinationServiceId,
-                    ).then((service) => ({
-                      ...integration,
-                      serviceName: service.description,
-                    })),
-                ),
+                  ? [INTEGRATION_TYPE.MIRROR_MAKER]
+                  : [INTEGRATION_TYPE.M3_AGGREGATOR];
+              const filteredIntegrations = integrations.filter((integration) =>
+                filter.includes(integration.type),
               );
+              return $q
+                .all(
+                  // map servicename
+                  map(filteredIntegrations, (integration) => {
+                    return DatabaseService.getDatabaseDetails(
+                      projectId,
+                      integration.getTargetEngine(),
+                      integration.destinationServiceId,
+                    ).then((service) => {
+                      integration.setDestinationServiceName([service]);
+                      return integration;
+                    });
+                  }),
+                )
+                .then((aggregatedIntegrations) =>
+                  // group integrations by type
+                  groupBy(aggregatedIntegrations, 'type'),
+                );
             })
           : [],
       users: /* @ngInject */ (DatabaseService, database, projectId) =>

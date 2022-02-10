@@ -30,10 +30,26 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return promise;
         },
-        servicesList: /* @ngInject */ (DatabaseService, database, projectId) =>
-          database.engine === DATABASE_TYPES.KAFKA_MIRROR_MAKER
-            ? DatabaseService.getDatabases(projectId, DATABASE_TYPES.KAFKA)
-            : DatabaseService.getDatabases(projectId, DATABASE_TYPES.M3DB),
+        servicesList: /* @ngInject */ (
+          DatabaseService,
+          database,
+          projectId,
+        ) => {
+          switch (database.engine) {
+            case DATABASE_TYPES.KAFKA_MIRROR_MAKER:
+              return DatabaseService.getDatabases(
+                projectId,
+                DATABASE_TYPES.KAFKA,
+              );
+            case DATABASE_TYPES.M3AGGEGATOR:
+              return DatabaseService.getDatabases(
+                projectId,
+                DATABASE_TYPES.M3DB,
+              );
+            default:
+              return [];
+          }
+        },
         serviceIntegrationList: /* @ngInject */ (
           database,
           DatabaseService,

@@ -653,7 +653,9 @@ export default class DatabaseService {
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/integration`,
         DatabaseService.getIcebergHeaders(),
       )
-      .then(({ data }) => data);
+      .then(({ data: integrations }) =>
+        integrations.map((integration) => new ServiceIntegration(integration)),
+      );
   }
 
   pollIntegrationStatus(projectId, engine, databaseId, integrationId) {
