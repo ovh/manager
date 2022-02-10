@@ -79,8 +79,8 @@ export default {
     expressOrder: {
       ASIA: 'https://ca.ovh.com/asia/order/express/',
       AU: 'https://ca.ovh.com/au/order/express/',
-      CA: 'https://ca.ovh.com/en/order/express/',
-      QC: 'https://ca.ovh.com/fr/order/express/',
+      CA: 'https://ca.ovh.com/en/order/express/#/express/review',
+      QC: 'https://ca.ovh.com/fr/order/express/#/express/review',
       SG: 'https://ca.ovh.com/sg/order/express/',
       WE: 'https://us.ovh.com/us/order/express/',
       WS: 'https://us.ovh.com/us/es/order/express/',
