@@ -17,7 +17,7 @@ export const ENGINES_NAMES = {
   m3db: 'M3DB',
   cassandra: 'Cassandra',
   grafana: 'Grafana',
-  m3aggregator: 'M3Aggregator',
+  m3aggregator: 'M3 Aggregator',
 };
 
 export default {
