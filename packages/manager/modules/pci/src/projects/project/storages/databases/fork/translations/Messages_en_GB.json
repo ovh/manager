@@ -28,5 +28,8 @@
   "pci_database_fork_create_database": "Create a database service",
   "pci_database_fork_create_database_processing": "Creating service...",
   "pci_database_fork_create_database_success": "Your service is being created, and will be available in a few minutes.",
-  "pci_database_fork_create_database_error": "An error occurred while creating your service. Please try the operation again later: {{message}}"
+  "pci_database_fork_create_database_error": "An error occurred while creating your service. Please try the operation again later: {{message}}",
+  "pci_database_fork_name_min_rule": "Minimum {{min}} character",
+  "pci_database_fork_name_max_rule": "Maximum {{max}} characters",
+  "pci_database_fork_name_pattern_rule": "May contain numbers, letters, underscores, dashes and full stops only."
 }

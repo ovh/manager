@@ -20,6 +20,7 @@
         data-label="{{ ::'pci_databases_useracl_tab_activate_acl' | translate }}"
     >
         <oui-switch
+            data-disabled="!$ctrl.database.isActive()"
             model="$ctrl.database.aclsEnabled"
             name="oui-switch"
             on-change="$ctrl.trackAndSetAclState(modelValue)"

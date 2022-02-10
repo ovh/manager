@@ -16,8 +16,10 @@ export default class PciMaintenanceBannerComponentController {
 
   isDisplayableBanner() {
     return (
-      (this.isCustomerConcernedByMaintenance && this.isProjectPage) ||
-      (!this.isProjectPage && this.isProductConcernedByMaintenance)
+      (this.isProjectPage && this.isCustomerConcernedByMaintenance) ||
+      (this.isListPage && this.isProductConcernedByMaintenance) ||
+      (this.isDashboardPage &&
+        this.regionsMaintenance.includes(this.productRegion))
     );
   }
 }

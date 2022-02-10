@@ -21,6 +21,10 @@ export default class {
     this.maxNameLength = MAX_NAME_LENGTH;
   }
 
+  checkPattern(value) {
+    return this.pattern.test(value);
+  }
+
   edit() {
     this.trackDatabases('table::options_menu::rename_database_validate');
     this.isEditing = true;

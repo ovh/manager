@@ -23,6 +23,10 @@ export default /* @ngInject */ ($stateProvider) => {
         archive,
         projectId,
       ) => PciProjectStorageContainersService.getAll(projectId, archive),
+
+      containersRegions: /* @ngInject */ (containers) =>
+        Array.from(new Set(containers.map(({ region }) => region))),
+
       containersLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.storages.object-storage.objects', {
           projectId,

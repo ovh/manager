@@ -8,6 +8,9 @@ export default {
     projectId: '<',
     storageId: '<',
     storage: '<',
+    steins: '<',
+    customerRegions: '<',
+    storagesRegions: '<',
     goBack: '<',
   },
 };

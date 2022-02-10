@@ -134,8 +134,22 @@
         </oui-guide-menu-item>
     </oui-guide-menu>
 </oui-header>
-<oui-message data-ng-if="$ctrl.database.isProcessing()" data-type="info">
-    <span data-translate="pci_databases_dashboard_database_processing_state">
-    </span>
-</oui-message>
+
+<!--Banner section messages-->
+<section>
+
+    <pci-maintenance-banner
+        data-steins="$ctrl.steins"
+        data-customer-regions="$ctrl.customerRegions"
+        data-product-regions="$ctrl.databasesRegions"
+        data-is-dashboard-page="true"
+        data-product-service-name="$ctrl.database.description"
+        data-product-region="$ctrl.database.region"
+    ></pci-maintenance-banner>
+
+    <oui-message data-ng-if="$ctrl.database.isProcessing()" data-type="info">
+        <span data-translate="pci_databases_dashboard_database_processing_state"></span>
+    </oui-message>
+</section>
+
 <div class="container-fluid" data-ui-view="databaseView"></div>

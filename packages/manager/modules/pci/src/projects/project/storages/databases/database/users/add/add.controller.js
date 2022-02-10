@@ -28,6 +28,10 @@ export default class {
     }
   }
 
+  checkPattern(value) {
+    return this.inputRules.name.pattern.test(value);
+  }
+
   getUserFromModel() {
     const user = {
       name: this.model.username,
