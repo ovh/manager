@@ -1,3 +1,12 @@
+## [5.56.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.56.2...@ovh-ux/manager-pci@5.56.3) (2022-02-10)
+
+
+### Bug Fixes
+
+* **pci.ips:** use common order flow for pci ips ([#6371](https://github.com/ovh/manager/issues/6371)) ([61fc6fa](https://github.com/ovh/manager/commit/61fc6fa793320e90261234d0198b2e7a6b96946c))
+
+
+
 ## [5.56.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.56.1...@ovh-ux/manager-pci@5.56.2) (2022-02-09)
 
 

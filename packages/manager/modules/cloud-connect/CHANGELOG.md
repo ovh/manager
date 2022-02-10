@@ -1,3 +1,12 @@
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.4.0...@ovh-ux/manager-cloud-connect@1.5.0) (2022-02-10)
+
+
+### Features
+
+* **details:** add statistics ([b4ab598](https://github.com/ovh/manager/commit/b4ab59831847ec641461230a7b3dd53dbb24023d)), closes [#5970](https://github.com/ovh/manager/issues/5970)
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.3.1...@ovh-ux/manager-cloud-connect@1.4.0) (2022-02-09)
 
 
