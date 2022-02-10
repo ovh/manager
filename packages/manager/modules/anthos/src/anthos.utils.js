@@ -79,11 +79,15 @@ export function extractPublicIpsAddonFromAnthosServiceOption(serviceOption) {
   const addon = serviceOption.find(
     ({ planCode }) => planCode === ADDON_PUBLIC_IP_PLAN_CODE,
   );
-  if (!addon) return null;
+  if (!addon) {
+    return null;
+  }
   const price = addon.prices?.find(
     ({ duration }) => duration === PRICE_DURATION,
   );
-  if (!price) return null;
+  if (!price) {
+    return null;
+  }
   return {
     ...addon,
     price,

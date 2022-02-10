@@ -32,7 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
         packInfo,
         atInternet,
       ) => (type) => {
-        const changePack = `change-pack${type ? `-${type}` : ''}`;
+        const changePack = 'change-pack'.concat(type ? `-${type}` : '');
         const oldPlanCode = packInfo.current.planCode;
         const newPlanCode = workflowOptions.getPlanCode();
         atInternet.trackClick({

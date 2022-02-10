@@ -8,7 +8,9 @@ export default /* @ngInject */ function($timeout, $parse) {
         if (value === true) {
           $timeout(() => {
             element[0].focus();
-            if ('hasFocusSelect' in attrs) element[0].select();
+            if ('hasFocusSelect' in attrs) {
+              element[0].select();
+            }
           });
         }
       });
