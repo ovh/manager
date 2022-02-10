@@ -16,6 +16,9 @@ export default {
     guideUrl: '<',
     projectId: '<',
     refresh: '<',
+    steins: '<',
+    customerRegions: '<',
+    containersRegions: '<',
     trackingPrefix: '<',
   },
 };

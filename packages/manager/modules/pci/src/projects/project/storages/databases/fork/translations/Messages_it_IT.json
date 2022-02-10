@@ -28,5 +28,8 @@
   "pci_database_fork_create_database": "Crea un servizio di database",
   "pci_database_fork_create_database_processing": "Il servizio è in fase di creazione",
   "pci_database_fork_create_database_success": "La creazione del database è in corso e sarà disponibile tra pochi minuti.",
-  "pci_database_fork_create_database_error": "Si è verificato un errore durante la creazione del servizio. Riprova l'operazione in seguito: {{message}}"
+  "pci_database_fork_create_database_error": "Si è verificato un errore durante la creazione del servizio. Riprova l'operazione in seguito: {{message}}",
+  "pci_database_fork_name_min_rule": "Minimo {{min}} caratteri",
+  "pci_database_fork_name_max_rule": "Massimo {{max}} caratteri",
+  "pci_database_fork_name_pattern_rule": "Può contenere esclusivamente numeri, lettere, underscore, trattini o punti."
 }

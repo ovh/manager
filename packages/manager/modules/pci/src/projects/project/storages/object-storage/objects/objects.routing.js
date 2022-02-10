@@ -19,11 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       archive: () => false,
       containerId: /* @ngInject */ ($transition$) => $transition$.params().id,
-      containers: /* @ngInject */ (
-        PciProjectStorageContainersService,
-        archive,
-        projectId,
-      ) => PciProjectStorageContainersService.getAll(projectId, archive),
+
       addContainer: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.storages.object-storage.add', {
           projectId,

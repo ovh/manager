@@ -33,5 +33,15 @@
             </oui-guide-menu-item>
         </oui-guide-menu>
     </oui-header>
+
+    <pci-maintenance-banner
+        data-steins="$ctrl.steins"
+        data-customer-regions="$ctrl.customerRegions"
+        data-product-regions="$ctrl.namespacesRegions"
+        data-is-dashboard-page="true"
+        data-product-service-name="$ctrl.namespace.description"
+        data-product-region="$ctrl.namespace.region"
+    ></pci-maintenance-banner>
+
     <div class="container-fluid" data-ui-view></div>
 </div>

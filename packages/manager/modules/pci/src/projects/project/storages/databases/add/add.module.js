@@ -13,6 +13,7 @@ import orderCommand from '../components/order-command';
 import orderReview from '../components/order-review';
 import plansList from '../components/plans-list';
 import regionsList from '../../../../../components/project/regions-list';
+import inputRule from '../components/input-rule';
 import routing from './add.routing';
 
 const moduleName = 'ovhManagerPciStoragesDatabasesAdd';
@@ -30,6 +31,7 @@ angular
     orderReview,
     plansList,
     regionsList,
+    inputRule,
   ])
   .config(routing)
   .component('pciProjectStoragesDatabasesAdd', component)
