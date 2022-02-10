@@ -1,0 +1,13 @@
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-label="{{:: 'pci_databases_connectors_list_confirm' | translate}}"
+    data-primary-action="$ctrl.goToConnectorConfig()"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'pci_databases_connectors_list_cancel' | translate}}"
+    data-loading="$ctrl.processing"
+    data-heading="{{:: 'pci_databases_connectors_list_title' | translate}}"
+>
+    <pre>
+        {{$ctrl.availableConnectors | json}}
+    </pre>
+</oui-modal>

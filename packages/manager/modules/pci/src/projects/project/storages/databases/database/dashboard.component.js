@@ -26,6 +26,7 @@ export default {
     isFeatureActivated: '<',
     queryStatisticsLink: '<',
     namespacesLink: '<',
+    connectorsLink: '<',
   },
   template,
 };

@@ -173,7 +173,14 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       namespacesLink: /* @ngInject */ ($state, databaseId, projectId) =>
         $state.href(
-          'pci.projects.project.storages.databases.dashboard.namespaces',
+          'pci.projects.project.storages.databases.dashboard.namespaces',{
+            projectId,
+            databaseId,
+          },
+        ),
+      connectorsLink: /* @ngInject */ ($state, databaseId, projectId) =>
+        $state.href(
+          'pci.projects.project.storages.databases.dashboard.connectors',
           {
             projectId,
             databaseId,

@@ -894,4 +894,62 @@ export default class DatabaseService {
       )
       .then(({ data }) => data);
   }
+  
+  getAvailableConnectors(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/capabilities/connector`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  getAvailableConnectorConfiguration(
+    projectId,
+    engine,
+    databaseId,
+    connectorId,
+  ) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/capabilities/connector/${connectorId}/configuration`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  getConnectors(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  postConnector(projectId, engine, databaseId, connector) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector`,
+        connector,
+      )
+      .then(({ data }) => data);
+  }
+
+  putConnector(projectId, engine, databaseId, connectorId, connector) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector/${connectorId}`,
+        connector,
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteConnector(projectId, engine, databaseId, connectorId) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector/${connectorId}`,
+      )
+      .then(({ data }) => data);
+  }
 }
