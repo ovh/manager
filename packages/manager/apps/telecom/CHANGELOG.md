@@ -1,3 +1,12 @@
+## [13.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.31.0...@ovh-ux/manager-telecom@13.31.1) (2022-02-10)
+
+
+### Bug Fixes
+
+* **modem.templates:** fix templates modem ([ef09bba](https://github.com/ovh/manager/commit/ef09bbaee5181738fdabaa416c8003bf15f2d2b3)), closes [#6339](https://github.com/ovh/manager/issues/6339)
+
+
+
 # [13.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.30.3...@ovh-ux/manager-telecom@13.31.0) (2022-02-09)
 
 
