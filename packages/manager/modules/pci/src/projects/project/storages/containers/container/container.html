@@ -1,5 +1,5 @@
 <div data-ui-view>
-    <header class="mb-3 oui-header" data-ng-if="$ctrl.archive">
+    <header class="oui-header" data-ng-if="$ctrl.archive">
         <div class="oui-header__container">
             <div class="text-truncate oui-header__content">
                 <h1
@@ -18,9 +18,22 @@
             </oui-guide-menu>
         </div>
     </header>
-    <cui-message-container
-        data-messages="$ctrl.messages"
-    ></cui-message-container>
+
+    <!--Banner messages sections-->
+    <section>
+        <pci-maintenance-banner
+            data-steins="$ctrl.steins"
+            data-customer-regions="$ctrl.customerRegions"
+            data-product-regions="$ctrl.containersRegions"
+            data-is-dashboard-page="true"
+            data-product-service-name="$ctrl.container.name"
+            data-product-region="$ctrl.container.region"
+        ></pci-maintenance-banner>
+
+        <cui-message-container
+            data-messages="$ctrl.messages"
+        ></cui-message-container>
+    </section>
 
     <div data-ng-if="$ctrl.container">
         <div class="oui-box mb-4">
