@@ -1,3 +1,21 @@
+# [5.57.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.56.3...@ovh-ux/manager-pci@5.57.0) (2022-02-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1427] ([fd985b5](https://github.com/ovh/manager/commit/fd985b5bcc7c6379c454c9c17fb59e55f443225a))
+* add error message for minlength ([70cfd2c](https://github.com/ovh/manager/commit/70cfd2c849e26b5d7c7414326088fb4f3c0a21fd))
+* **storage.databases:** disable actions if cluster is not ready ([#6275](https://github.com/ovh/manager/issues/6275)) ([91e4d13](https://github.com/ovh/manager/commit/91e4d13fe535357cba34ba32c9bc736f4e2062d5))
+* **storages.databases.metrics:** change unit for minutes ([#6277](https://github.com/ovh/manager/issues/6277)) ([517df0b](https://github.com/ovh/manager/commit/517df0bd72e13208be5c8fcb2098e26bd4d56855))
+
+
+### Features
+
+* **pci.components:** improve maintenance banner message ([#6388](https://github.com/ovh/manager/issues/6388)) ([f992c71](https://github.com/ovh/manager/commit/f992c712bbc29758333b101bcf31e1fb31633fcf))
+* add input rules visualisation ([d595c47](https://github.com/ovh/manager/commit/d595c47e82ade937c6f3e6af5cb6aba902b17486))
+
+
+
 ## [5.56.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.56.2...@ovh-ux/manager-pci@5.56.3) (2022-02-10)
 
 
