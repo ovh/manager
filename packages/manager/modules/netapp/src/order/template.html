@@ -45,24 +45,23 @@
             valid="$ctrl.plan"
         >
             <div class="row mb-2">
-                <div class="col-md-3">
-                    <oui-select-picker
-                        data-ng-repeat="plan in $ctrl.highlightedPlans track by $index"
-                        name="size"
-                        model="$ctrl.plan"
-                        label="{{:: 'netapp_order_size_label' | translate:{'size': plan.size} }}"
-                        on-change="$ctrl.onPlanChange(modelValue)"
-                        values="[plan]"
-                    >
-                        <oui-select-picker-footer>
-                            <ovh-manager-catalog-price
-                                price="plan.defaultPrice.price"
-                                interval-unit="{{ plan.defaultPrice.intervalUnit }}"
-                            >
-                            </ovh-manager-catalog-price>
-                        </oui-select-picker-footer>
-                    </oui-select-picker>
-                </div>
+                <oui-select-picker
+                    class="col-md-4 col-lg-3 mb-3"
+                    data-ng-repeat="plan in $ctrl.highlightedPlans | orderBy: 'size' track by $index"
+                    name="size"
+                    model="$ctrl.plan"
+                    label="{{:: 'netapp_order_size_label' | translate:{'size': plan.size} }}"
+                    on-change="$ctrl.onPlanChange(modelValue)"
+                    values="[plan]"
+                >
+                    <oui-select-picker-footer>
+                        <ovh-manager-catalog-price
+                            price="plan.defaultPrice.price"
+                            interval-unit="{{ plan.defaultPrice.intervalUnit }}"
+                        >
+                        </ovh-manager-catalog-price>
+                    </oui-select-picker-footer>
+                </oui-select-picker>
             </div>
             <div class="row mb-2">
                 <div class="col-md-3">
