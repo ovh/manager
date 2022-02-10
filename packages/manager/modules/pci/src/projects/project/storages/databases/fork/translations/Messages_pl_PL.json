@@ -28,5 +28,8 @@
   "pci_database_fork_create_database": "Utwórz usługę bazy danych",
   "pci_database_fork_create_database_processing": "Trwa tworzenie usługi",
   "pci_database_fork_create_database_success": "Trwa tworzenie usługi. Będzie ona dostępna za kilka minut.",
-  "pci_database_fork_create_database_error": "Wystąpił błąd podczas tworzenia usługi. Spróbuj ponownie później: {{message}} "
+  "pci_database_fork_create_database_error": "Wystąpił błąd podczas tworzenia usługi. Spróbuj ponownie później: {{message}} ",
+  "pci_database_fork_name_min_rule": "Minimum {{min}} znak",
+  "pci_database_fork_name_max_rule": "Maksimum {{max}} znaków",
+  "pci_database_fork_name_pattern_rule": "Może zawierać jedynie cyfry, litery, podkreślenia, myślniki lub kropki."
 }

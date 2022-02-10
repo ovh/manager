@@ -13,7 +13,6 @@
   "pci_database_add_select_flavor": "Sélectionnez le modèle des nœuds",
   "pci_database_add_step5_title": "Configurez vos options",
   "pci_database_add_name": "Nommez votre service de base de données",
-  "pci_database_add_name_help_text": "Le nom doit comporter au moins 3 caractères",
   "pci_database_add_network_mode_label": "Type de réseau",
   "pci_database_add_network_mode_public": "Public",
   "pci_database_add_network_mode_private": "Privé",
@@ -30,5 +29,8 @@
   "pci_database_add_create_database": "Créer un service de base de données",
   "pci_database_add_create_database_processing": "Le service est en cours de création",
   "pci_database_add_create_database_success": "Votre service est en cours de création et sera disponible dans quelques minutes.",
-  "pci_database_add_create_database_error": "Une erreur est survenue lors de la création de votre service. Veuillez retenter l’opération ultérieurement : {{message}}"
+  "pci_database_add_create_database_error": "Une erreur est survenue lors de la création de votre service. Veuillez retenter l’opération ultérieurement : {{message}}",
+  "pci_database_add_name_min_rule": "Au moins {{min}} caractères",
+  "pci_database_add_name_max_rule": "Maximum {{max}} caractères",
+  "pci_database_add_name_pattern_rule": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points."
 }

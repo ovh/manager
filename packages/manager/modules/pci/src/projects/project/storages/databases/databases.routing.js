@@ -42,6 +42,17 @@ export default /* @ngInject */ ($stateProvider) => {
         DatabaseService.getAllDatabases(projectId).then((databases) =>
           $q.all(map(databases, (database) => getDatabaseObject(database))),
         ),
+
+      databasesRegions: /* @ngInject */ (databases) => {
+        return Array.from(
+          new Set(
+            databases
+              .reduce((regionsAcc, { nodes }) => regionsAcc.concat(nodes), [])
+              .map(({ region }) => region),
+          ),
+        );
+      },
+
       showPaymentWarning: /* @ngInject */ () => (databases) => {
         const oldDb = databases.some(
           (db) =>

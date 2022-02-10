@@ -30,5 +30,8 @@
   "pci_database_add_create_database_success": "Il servizio è in corso di creazione e sarà disponibile tra pochi minuti.",
   "pci_database_add_create_database_error": "Si è verificato un errore durante la creazione del servizio. Riprova l'operazione più tardi: {{message}}",
   "pci_database_add_network_mode_public_incompatible": "Il servizio selezionato non è compatibile con le reti pubbliche.",
-  "pci_database_add_network_mode_private_incompatible": "Il servizio selezionato non è compatibile con le reti private."
+  "pci_database_add_network_mode_private_incompatible": "Il servizio selezionato non è compatibile con le reti private.",
+  "pci_database_add_name_min_rule": "Minimo {{min}} caratteri",
+  "pci_database_add_name_max_rule": "Massimo {{max}} caratteri",
+  "pci_database_add_name_pattern_rule": "Può contenere esclusivamente numeri, lettere, underscore, trattini o punti."
 }

@@ -114,6 +114,10 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return PciProjectTrainingJobService.getAll(projectId);
       },
+
+      jobListRegions: /* @ngInject */ (jobList) =>
+        Array.from(new Set(jobList.map(({ spec }) => spec.region))),
+
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       allUsers: /* @ngInject */ (PciProjectTrainingService, projectId) => () =>

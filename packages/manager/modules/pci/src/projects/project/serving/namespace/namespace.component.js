@@ -13,5 +13,8 @@ export default {
     infosLink: '<',
     modelsLink: '<',
     tokensLink: '<',
+    steins: '<',
+    customerRegions: '<',
+    namespacesRegions: '<',
   },
 };

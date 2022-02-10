@@ -31,6 +31,7 @@
                 <button
                     class="oui-button oui-button_s oui-button_secondary"
                     data-ng-click="$ctrl.deletePattern($row)"
+                    data-disabled="!$ctrl.database.isActive()"
                 >
                     <span
                         class="oui-icon oui-icon-bin"
@@ -40,7 +41,10 @@
             </div>
         </oui-datagrid-column>
         <oui-datagrid-topbar>
-            <oui-button data-on-click="$ctrl.trackAndCreatePattern()">
+            <oui-button
+                data-on-click="$ctrl.trackAndCreatePattern()"
+                data-disabled="!$ctrl.database.isActive()"
+            >
                 <span
                     class="oui-icon oui-icon-add pr-1"
                     aria-hidden="true"

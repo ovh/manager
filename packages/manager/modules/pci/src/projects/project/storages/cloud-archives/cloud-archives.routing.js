@@ -25,6 +25,10 @@ export default /* @ngInject */ ($stateProvider) => {
         archive,
         projectId,
       ) => PciProjectStorageContainersService.getAll(projectId, archive),
+
+      containersRegions: /* @ngInject */ (containers) =>
+        Array.from(new Set(containers.map(({ region }) => region))),
+
       addContainer: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.storages.archives.add', {
           projectId,
