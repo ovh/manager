@@ -9,10 +9,11 @@ import { TRACKING_PREFIX } from '../ip/ip-ip.constant';
 
 export default class IpByoipConfiguration {
   /* @ngInject */
-  constructor($translate, Alerter, atInternet) {
+  constructor($translate, Alerter, atInternet, ByoipService) {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.atInternet = atInternet;
+    this.ByoipService = ByoipService;
 
     this.AS_OPTIONS = AS_OPTIONS;
     this.IPV4_BLOCK_PATTERN = IPV4_BLOCK_PATTERN;
@@ -24,12 +25,35 @@ export default class IpByoipConfiguration {
     this.ipRir = get(this.plan, 'details.product.configurations', []).find(
       (config) => config.name === CONFIG_NAME.IPRIR,
     ).values;
-    this.regions = get(this.plan, 'details.product.configurations', []).find(
+    this.allRegions = get(this.plan, 'details.product.configurations', []).find(
       (config) => config.name === CONFIG_NAME.CAMPUS,
     ).values;
     this.alerts = {
       list: 'ip_byoip_configuration',
     };
+  }
+
+  submitIpRir() {
+    this.trackStepSubmit(this.STEP_NAME.RIR);
+    this.loadCampuses(this.byoip.ipRir);
+  }
+
+  loadCampuses(ipRir) {
+    this.regions = null;
+    this.loadingCampus = true;
+    this.ByoipService.getIpCampuses(ipRir, this.allRegions)
+      .then((regions) => {
+        this.regions = regions;
+      })
+      .catch(() =>
+        this.Alerter.error(
+          this.$translate.instant('ip_byoip_campus_fetch_error'),
+          'ip_byoip_configuration',
+        ),
+      )
+      .finally(() => {
+        this.loadingCampus = false;
+      });
   }
 
   onRegionSelect(value) {

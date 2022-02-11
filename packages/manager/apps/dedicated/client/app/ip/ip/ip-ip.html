@@ -168,33 +168,26 @@
             </div>
 
             <!-- Buttons -->
-            <div class="col-md-3">
-                <button
-                    class="btn btn-block btn-default"
-                    type="button"
-                    data-ng-disabled="(state.loaded)!=state.total"
-                    data-ng-click="exportCsv(ipsList)"
-                    data-translate="ip_export"
-                ></button>
-                <button
-                    class="btn btn-block btn-default"
-                    type="button"
-                    data-ng-if="canImportIPFO()"
-                    data-ng-click="importIPFO()"
-                    data-translate="ip_migration"
-                ></button>
-                <button
-                    class="btn btn-block btn-default"
-                    type="button"
-                    data-ng-click="goToIpAdditionalOrder()"
-                    data-translate="ip_additional_order"
-                ></button>
-                <button
-                    class="btn btn-block btn-default"
-                    type="button"
-                    data-ng-click="displayOrganisation()"
-                    data-translate="ip_organisation_button"
-                ></button>
+            <div class="col-sm-12 col-md-4">
+                <oui-tile
+                    data-heading="{{:: 'ip_administration_title' | translate }}"
+                >
+                    <oui-tile-button
+                        data-disabled="(state.loaded)!=state.total"
+                        data-on-click="exportCsv(ipsList)"
+                    >
+                        <span data-translate="ip_export"></span>
+                    </oui-tile-button>
+                    <oui-tile-button
+                        data-ng-if="canImportIPFO()"
+                        data-on-click="importIPFO()"
+                    >
+                        <span data-translate="ip_migration"></span>
+                    </oui-tile-button>
+                    <oui-tile-button data-on-click="displayOrganisation()">
+                        <span data-translate="ip_organisation_button"></span>
+                    </oui-tile-button>
+                </oui-tile>
             </div>
         </div>
         <h4 data-translate="ip_addresses_grid_header"></h4>
