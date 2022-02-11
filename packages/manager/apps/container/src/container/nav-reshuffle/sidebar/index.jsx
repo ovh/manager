@@ -1,36 +1,62 @@
-import React, { useContext, useEffect, useState, Suspense } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-// import { useReket } from '@ovh-ux/ovh-reket';
-import ApplicationContext from '@/context';
+import { useReket } from '@ovh-ux/ovh-reket';
 import SidebarLink from './sidebar-link';
-import { countServices } from './utils';
+import { countServices, findNodeById } from './utils';
 import Assistance from './assistance';
 import style from './style.module.scss';
-import navigation from './navigation';
+import navigationRoot from './navigation-tree/root';
+import PciMenu from './pci';
 import logo from '@/assets/images/icon-logo-ovh.svg';
+import mock from './mock';
 
 function Sidebar() {
   const { t } = useTranslation('sidebar');
-  const { shell } = useContext(ApplicationContext);
-  const environment = shell
-    .getPluginManager()
-    .getPlugin('environment')
-    .getEnvironment();
+  const reketInstance = useReket();
   const [currentNavigationNode, setCurrentNavigationNode] = useState(
-    navigation,
+    navigationRoot,
   );
   const [navigationHistory, setNavigationHistory] = useState([]);
   const [servicesCount, setServicesCount] = useState(null);
-  // const reketInstance = useReket();
+  const [isPciMenu, setIsPciMenu] = useState(false);
+  const [pciProjects, setPciProjects] = useState(null);
+  const [selectedPciProject, setSelectedPciProject] = useState(null);
 
+  /**
+   * Fetch service count per service type
+   */
   useEffect(() => {
     // @TODO fetch from 2API
     setServicesCount(null);
-    // setServicesCount(servicesCountMock);
+    setServicesCount(mock);
   }, []);
 
+  /**
+   * Fetch public cloud projects when entering the 'services' menu
+   */
+  useEffect(() => {
+    if (currentNavigationNode.id === 'services' && !pciProjects) {
+      reketInstance
+        .get('/cloud/project', {
+          headers: {
+            'X-Pagination-Mode': 'CachedObjectList-Pages',
+            'X-Pagination-Size': 5000,
+          },
+        })
+        .then((result) => {
+          if (result && result.length) {
+            findNodeById(navigationRoot, 'public-cloud').count = result.length;
+            setPciProjects(result);
+            setSelectedPciProject(result[0]);
+          }
+        });
+    }
+  }, [currentNavigationNode]);
+
   const clickHandler = (node) => {
-    if (node.children) {
+    if (node.id === 'public-cloud') {
+      setIsPciMenu(true);
+    } else if (node.children) {
       setNavigationHistory([...navigationHistory, currentNavigationNode]);
       setCurrentNavigationNode(node);
     } else if (node.path) {
@@ -51,27 +77,36 @@ function Sidebar() {
         OVHcloud
       </span>
       <ul>
-        {navigationHistory.length > 0 && (
+        {navigationHistory.length > 0 && !isPciMenu && (
           <a className={style.sidebar_back_btn} onClick={goBackHandler}>
             <span
               className="oui-icon oui-icon-chevron-left"
               aria-hidden="true"
             ></span>
-            Back
+            {t('sidebar_back')}
           </a>
         )}
         <li>
           <h2>{currentNavigationNode.label}</h2>
         </li>
-        {currentNavigationNode.children?.map((node) => (
-          <li key={node.id}>
-            <SidebarLink
-              node={node}
-              count={countServices(servicesCount, node)}
-              onClick={() => clickHandler(node)}
-            />
-          </li>
-        ))}
+        {isPciMenu && (
+          <PciMenu
+            onExit={() => setIsPciMenu(false)}
+            projects={pciProjects}
+            selectedProject={selectedPciProject}
+            onSelectProject={(project) => setSelectedPciProject(project)}
+          />
+        )}
+        {!isPciMenu &&
+          currentNavigationNode.children?.map((node) => (
+            <li key={node.id}>
+              <SidebarLink
+                node={node}
+                count={countServices(servicesCount, node)}
+                onClick={() => clickHandler(node)}
+              />
+            </li>
+          ))}
       </ul>
       <div className={style.sidebar_action}>
         <a href="#">
