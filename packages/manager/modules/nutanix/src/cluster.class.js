@@ -17,6 +17,7 @@ export default class Cluster {
       availableVersions,
       allowedRedundancyFactor,
     });
+    this.loadingDatacenter = false;
     this.status = this.status.toLowerCase();
   }
 
@@ -54,5 +55,13 @@ export default class Cluster {
 
   setNodeDetails(nodeDetails) {
     this.nodeDetails = nodeDetails;
+  }
+
+  setLoadingDatacenter(loading) {
+    this.loadingDatacenter = loading;
+  }
+
+  setDatacenter(dcName) {
+    this.datacenter = dcName;
   }
 }

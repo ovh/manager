@@ -4,7 +4,6 @@ export default {
   bindings: {
     clusters: '<',
     getClusterDetailsState: '<',
-    nodeDetails: '<',
     serviceName: '<',
   },
   controller,

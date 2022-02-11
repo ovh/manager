@@ -23,11 +23,20 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       ...ListLayoutHelper.stateResolves,
       staticResources: () => true,
-      resources: /* @ngInject */ (clusters) => clusters,
-      nodeDetails: /* @ngInject */ (resources, NutanixService) =>
-        NutanixService.getServer(resources[0].getFirstNode()).then((data) => {
-          resources[0].setNodeDetails(data);
-        }),
+      resources: /* @ngInject */ (clusters, NutanixService) => {
+        return clusters.map((cluster) => {
+          cluster.setLoadingDatacenter(true);
+          NutanixService.getServer(cluster.getFirstNode())
+            .then((data) => {
+              cluster.setDatacenter(data.datacenter);
+              cluster.setNodeDetails(data);
+            })
+            .finally(() => {
+              cluster.setLoadingDatacenter(false);
+            });
+          return cluster;
+        });
+      },
       apiPath: () => '/nutanix',
       schema: /* @ngInject */ ($http) =>
         $http.get('/nutanix.json').then(({ data }) => data),
@@ -63,7 +72,7 @@ export default /* @ngInject */ ($stateProvider) => {
           },
           {
             title: $translate.instant('nutanix_cluster_list_localisation'),
-            property: 'nodeDetails.datacenter',
+            property: 'datacenter',
             template: localizationTemplate,
           },
           {
