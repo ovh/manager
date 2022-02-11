@@ -1,1 +1,6 @@
-<datacenter-name datacenter="$row.nodeDetails.datacenter"> </datacenter-name>
+<oui-spinner size="s" data-ng-if="$row.loadingDatacenter"> </oui-spinner>
+<datacenter-name
+    data-ng-if="!$row.loadingDatacenter"
+    datacenter="$row.datacenter"
+>
+</datacenter-name>
