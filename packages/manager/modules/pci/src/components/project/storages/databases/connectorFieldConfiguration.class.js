@@ -1,4 +1,4 @@
-export default class CapabilityConnectorConfiguration {
+export default class ConnectorFieldConfiguration {
   constructor({
     defaultValue,
     description,

@@ -8,7 +8,7 @@ export default {
     projectId: '<',
     trackDashboard: '<',
     goBack: '<',
-    connectorConfig: '<',
+    connector: '<',
   },
   controller,
   template,

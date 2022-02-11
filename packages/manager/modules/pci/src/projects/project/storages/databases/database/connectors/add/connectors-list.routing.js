@@ -24,6 +24,8 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           database.engine,
           database.id,
+        ).then((connectors) =>
+          connectors.sort((a, b) => a.name.localeCompare(b.name)),
         ),
       goToConnectorConfig: /* @ngInject */ ($state, trackDashboard) => (
         connectorId,

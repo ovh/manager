@@ -1,5 +1,3 @@
-import groupBy from 'lodash/groupBy';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'pci.projects.project.storages.databases.dashboard.connectors.config',
@@ -13,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
         breadcrumb: () => null,
         connectorId: /* @ngInject */ ($transition$) =>
           $transition$.params().connectorId,
-        connectorConfig: /* @ngInject */ (
+        connector: /* @ngInject */ (
           database,
           DatabaseService,
           projectId,
@@ -24,16 +22,16 @@ export default /* @ngInject */ ($stateProvider) => {
             database.engine,
             database.id,
             connectorId,
-          ).then((connectorInfo) =>
+          ).then((connector) =>
             DatabaseService.getAvailableConnectorConfiguration(
               projectId,
               database.engine,
               database.id,
               connectorId,
-            ).then((connectorConfig) => ({
-              ...connectorInfo,
-              config: groupBy(connectorConfig, 'group'),
-            })),
+            ).then((connectorConfig) => {
+              connector.setConfiguration(connectorConfig);
+              return connector;
+            }),
           ),
         goBack: /* @ngInject */ (goBackToConnectors) => goBackToConnectors,
       },

@@ -23,23 +23,41 @@
         type="text"
         ng-required="{{$ctrl.data.required}}"
         value="{{$ctrl.data.defaultValue}}"
+        placeholder="{{$ctrl.data.type}}"
         ng-model="$ctrl.model"
     />
     <!--type int32 -->
-    <oui-numeric ng-if="$ctrl.data.type === 'int32'" model="$ctrl.model">
-    </oui-numeric>
-    <!-- type int64-->
-    <oui-numeric ng-if="$ctrl.data.type === 'int64'" model="$ctrl.model">
-    </oui-numeric>
-    <!-- type int16-->
-    <oui-numeric ng-if="$ctrl.data.type === 'int16'" model="$ctrl.model">
-    </oui-numeric>
+    <input
+        class="oui-input"
+        ng-if="$ctrl.data.type === 'int16' || $ctrl.data.type === 'int32' || $ctrl.data.type === 'int64'"
+        name="{{$ctrl.data.name}}"
+        type="number"
+        ng-required="{{$ctrl.data.required}}"
+        value="{{$ctrl.data.defaultValue}}"
+        ng-model="$ctrl.model"
+        placeholder="{{$ctrl.data.type}}"
+    />
     <!-- type boolean-->
-    <oui-checkbox ng-if="$ctrl.data.type === 'boolean'" model="$ctrl.model">
-    </oui-checkbox>
+    <oui-radio-group
+        name="{{$ctrl.data.name}}"
+        ng-if="$ctrl.data.type === 'boolean'"
+        model="$ctrl.tempValue"
+        on-change="$ctrl.onRadioChange(modelValue)"
+    >
+        <oui-radio value="'default'">Default</oui-radio>
+        <oui-radio value="'true'">True</oui-radio>
+        <oui-radio value="'false'">False</oui-radio>
+    </oui-radio-group>
     <!-- type list-->
+    <input
+        class="oui-input"
+        ng-if="$ctrl.data.type === 'list'"
+        name="{{$ctrl.data.name}}"
+        type="text"
+        ng-required="{{$ctrl.data.required}}"
+        value="{{$ctrl.data.defaultValue}}"
+        ng-model="$ctrl.model"
+        placeholder="{{$ctrl.data.type}}"
+    />
 </oui-field>
-
-<pre ng-if="!$ctrl.display">
-    {{$ctrl.data | json}}
-</pre>
+<!-- <pre ng-if="!$ctrl.display">{{$ctrl.data | json}}</pre> -->

@@ -1,18 +1,40 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 ng-bind="$ctrl.connector.name" class="mb-0"></h2>
+        <span class="oui-paragraph">
+            Version: {{$ctrl.connector.version}} | Author:
+            {{$ctrl.connector.author}} |
+            <a ng-href="{{$ctrl.connector.documentationUrl}}" target="_blank"
+                >docs</a
+            >
+        </span>
+    </div>
+    <oui-button variant="primary" size="l">
+        Create new connector
+    </oui-button>
+</div>
+
 <oui-tabs>
     <oui-tabs-item
-        ng-repeat="(group, config) in $ctrl.connectorConfig.config"
-        heading="{{group}}"
+        ng-repeat="group in $ctrl.connector.configuration.getGroups()"
+        heading="{{group.name}}"
+        subheading="{{group.required ? 'required' : ''}}"
+        variant="promotion"
     >
         <div class="row">
             <div class="col-md-6">
-                <connector-input
-                    ng-repeat="field in config"
-                    data="field"
-                    model="$ctrl.model[field.name]"
-                ></connector-input>
+                <form name="connector-{{$index}}">
+                    <connector-input
+                        ng-repeat="field in $ctrl.connector.configuration.getFields(group.name)"
+                        data="field"
+                        model="$ctrl.model[field.name]"
+                    >
+                    </connector-input>
+                </form>
             </div>
             <div class="col-md-6 d-none d-md-block">
-                <pre class="preview">{{$ctrl.model | json}}</pre>
+                <h3>Connector configuration</h3>
+                <pre class="preview">{{$ctrl.getModelValue() | json}}</pre>
             </div>
         </div>
     </oui-tabs-item>

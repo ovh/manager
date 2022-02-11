@@ -22,6 +22,7 @@ import User from '../../../../components/project/storages/databases/user.class';
 import Pool from '../../../../components/project/storages/databases/pool.class';
 import QueryStatistics from '../../../../components/project/storages/databases/queryStatistics.class';
 import Namespace from '../../../../components/project/storages/databases/namespace.class';
+import AvailableConnector from '../../../../components/project/storages/databases/availableConnector.class';
 
 export default class DatabaseService {
   /* @ngInject */
@@ -910,7 +911,7 @@ export default class DatabaseService {
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/capabilities/connector/${connectorId}`,
         // DatabaseService.getIcebergHeaders(),
       )
-      .then(({ data }) => data);
+      .then(({ data: connector }) => new AvailableConnector(connector));
   }
 
   getAvailableConnectorConfiguration(

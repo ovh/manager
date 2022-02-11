@@ -14,6 +14,7 @@
         <oui-select
             name="connector"
             id="connector"
+            group-by="$ctrl.getType"
             match="name"
             data-model="$ctrl.connector"
             data-items="$ctrl.availableConnectors"
@@ -21,7 +22,4 @@
         >
         </oui-select>
     </oui-field>
-    <pre>
-        {{$ctrl.connector | json}}
-    </pre>
 </oui-modal>

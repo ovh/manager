@@ -9,6 +9,15 @@ export default class {
   $onInit() {
     this.trackDashboard('connector-config', 'page');
     this.model = {};
-    // init model with default values
+  }
+
+  getModelValue() {
+    const value = {};
+    Object.keys(this.model).forEach((field) => {
+      if (![null, undefined, ''].includes(this.model[field])) {
+        value[field] = `${this.model[field]}`;
+      }
+    });
+    return value;
   }
 }
