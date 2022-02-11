@@ -32,6 +32,32 @@ export default class ByoipService {
   }
 
   /**
+   *
+   * @param {*} ipRir [selected ip rir]
+   * @param {*} regions [all regions supported by plan]
+   * @returns [regions supported by either RIPE / ARIN]
+   */
+  getIpCampuses(ipRir, regions) {
+    const regionObj = Object.assign(
+      {},
+      ...regions.map((value) => ({
+        [value]: value,
+      })),
+    );
+    return this.$http.get('/ip/campus').then(({ data }) => {
+      return data.reduce((acc, val) => {
+        if (
+          val.bringYourOwnIpSupportedRirForIp?.includes(ipRir) &&
+          regionObj[val.name]
+        ) {
+          acc.push(val.name);
+        }
+        return acc;
+      }, []);
+    });
+  }
+
+  /**
    * Redirect to the express order page
    * @param {Object} plan [detials of the plan]
    * @param {config} array [configuration of the plan like name, region and others]
