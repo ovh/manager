@@ -14,7 +14,7 @@
             data-submit-text="{{:: 'ip_byoip_submit_text' | translate }}"
             data-description="{{:: 'ip_byoip_select_rir_description' | translate }}"
             data-prevent-next="true"
-            data-on-submit="$ctrl.trackStepSubmit($ctrl.STEP_NAME.RIR)"
+            data-on-submit="$ctrl.submitIpRir($ctrl.byoip.ipRir)"
             data-valid="$ctrl.byoip.ipRir"
             data-navigation="$ctrl.byoip.ipRir"
             data-loading="$ctrl.loader.loadingRir"
@@ -36,6 +36,7 @@
         </oui-step-form>
         <!-- Region -->
         <oui-step-form
+            data-loading="$ctrl.loadingCampus"
             data-header="{{:: 'ip_byoip_region_title' | translate }}"
             data-submit-text="{{:: 'ip_byoip_submit_text' | translate }}"
             data-valid="$ctrl.byoip.campus"
