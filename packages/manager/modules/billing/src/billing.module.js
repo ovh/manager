@@ -77,23 +77,6 @@ angular
   .service('BillingmessageParser', messageParser)
   .service('billingRenewHelper', renewHelper)
   .service('BillingUser', userService)
-  .service(
-    'BillingBill',
-    /* @ngInject */ ($resource) =>
-      $resource(
-        '/me/bill/:billId',
-        {
-          billId: '@billId',
-        },
-        {
-          getById: {
-            serviceType: 'apiv7',
-            method: 'GET',
-            isArray: true,
-          },
-        },
-      ),
-  )
   .directive('billingDateRange', dateRangeDirective)
   .directive('billingSortingFieldButton', sortingFieldButtonDirective)
   .component(renewDateComponent.name, renewDateComponent)
