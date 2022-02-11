@@ -1,19 +1,9 @@
-import controller from './onboarding.controller';
-import template from './onboarding.html';
+import { TRUSTED_ZONE_CALLBACK_PHONE_PAGES } from './onboarding.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.onboarding', {
     url: '/onboarding',
-    views: {
-      '@pci': {
-        controller,
-        controllerAs: '$ctrl',
-        template,
-      },
-    },
-    resolve: {
-      breadcrumb: () => null, // Hide breadcrumb
-    },
+    component: 'pciProjectsOnboarding',
     redirectTo: (transition) =>
       transition
         .injector()
@@ -29,5 +19,20 @@ export default /* @ngInject */ ($stateProvider) => {
               }
             : null,
         ),
+    resolve: {
+      breadcrumb: () => null, // Hide breadcrumb
+
+      openTrustedZoneCallbackPage: /* @ngInject */ (
+        $window,
+        coreConfig,
+      ) => () => {
+        const {
+          [coreConfig.getUser().ovhSubsidiary]: url,
+          DEFAULT,
+        } = TRUSTED_ZONE_CALLBACK_PHONE_PAGES;
+
+        return $window.open(url || DEFAULT, '_blank');
+      },
+    },
   });
 };
