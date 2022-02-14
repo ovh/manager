@@ -434,7 +434,7 @@
                 data-heading="{{:: 'pci_databases_general_information_service_integration_title' | translate }}"
             >
                 <oui-tile-definition
-                    ng-if="$ctrl.database.engine === 'kafka'"
+                    ng-if="$ctrl.database.engine === $ctrl.DATABASE_TYPES.KAFKA"
                     data-term="{{::'pci_databases_general_information_kafka_mirror_maker_label' | translate }}"
                 >
                     <oui-tile-description>
@@ -454,7 +454,7 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
-                    ng-if="$ctrl.database.engine === 'm3db'"
+                    ng-if="$ctrl.database.engine === $ctrl.DATABASE_TYPES.M3DB"
                     data-term="{{::'pci_databases_general_information_m3_aggregator_label' | translate }}"
                 >
                     <oui-tile-description>
