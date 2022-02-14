@@ -1,0 +1,13 @@
+{
+  "anthos_tenant_dashboard_general_information_software_update_back": "Powrót do informacji ogólnych",
+  "anthos_tenant_dashboard_general_information_software_update_success": "Zmiana wersji na wyższą została pomyślnie uruchomiona. Operacja potrwa około 1 godziny. Nowe aktualizacje mogą zostać następnie uruchomione w sekcji „Rozwiązanie software’owe” na konsoli Anthos.",
+  "anthos_tenant_dashboard_general_information_software_update_error": "Wystąpił błąd. Jeśli błąd się powtórzy, skontaktuj się z zespołem pomocy",
+  "anthos_tenant_dashboard_general_information_software_update_title": "Aktualizacja oprogramowania",
+  "anthos_tenant_dashboard_general_information_software_update_description": "Poniższe wersje Anthos on Baremetal in private mode są dostępne dla usługi Hosted Private Cloud. Możesz wybrać preferowaną wersję i odwiedzić tę stronę, aby poznać zmiany wprowadzone do każdej wersji. ",
+  "anthos_tenant_dashboard_general_information_software_update_version": "Wersja",
+  "anthos_tenant_dashboard_general_information_software_update_change_log_link": "Sprawdź changelog",
+  "anthos_tenant_dashboard_general_information_software_update_info_1": "Zmiana wersji na wyższą trwa zazwyczaj około 1 godziny. Różne komponenty control plane (Anthos Management Center) są aktualizowane zgodnie z procedurą rolling update i pozostają dostępne w trakcie aktualizacji (chyba że na wskazanej powyżej stronie podano inaczej).",
+  "anthos_tenant_dashboard_general_information_software_update_info_2": "Nie ma to wpływu na „user clusters” (czyli klastry utworzone przez Anthos, poza klastrem hostującym control plane). Kolejne etapy aktualizacji wykonasz w Panelu klienta OVHcloud.",
+  "anthos_tenant_dashboard_general_information_software_update_info_3": "Po aktualizacji control plane możesz uruchomić nowe aktualizacje w sekcji „Rozwiązanie software’owe” na dashboardzie konsoli Anthos. Możesz je zastosować w wybranym przez Ciebie tempie do każdego z „user clusters”.",
+  "anthos_tenant_dashboard_general_information_software_update_submit": "Aktualizacja"
+}

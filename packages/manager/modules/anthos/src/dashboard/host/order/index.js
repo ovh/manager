@@ -11,7 +11,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./module').then((mod) =>
+        return import('./anthos-dashboard-host-order.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },

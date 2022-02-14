@@ -1,4 +1,8 @@
-import { CHANGE_OWNER_URL } from './general-information.constants';
+import {
+  CHANGE_OWNER_URL,
+  UPGRADE_PACK_TAG,
+} from './general-information.constants';
+import { TENANT_STATUS } from '../../anthos.constants';
 
 export default class {
   /* @ngInject */
@@ -7,11 +11,19 @@ export default class {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.AnthosTenantsService = AnthosTenantsService;
+    this.isSoftwareUpdatable = false;
+    this.isSoftwareUpdating = false;
   }
 
   $onInit() {
     this.changeOwnerUrl =
       CHANGE_OWNER_URL[this.user.ovhSubsidiary] || CHANGE_OWNER_URL.FR;
+    const {
+      availableVersions,
+      tenant: { status },
+    } = this;
+    this.isSoftwareUpdatable = availableVersions.length > 0;
+    this.isSoftwareUpdating = status === TENANT_STATUS.UPGRADING;
   }
 
   onGoToOrderHost() {
@@ -36,6 +48,27 @@ export default class {
     this.trackClick(`${this.generalInfoHitTracking}::assign-private-ip`);
 
     return this.goToAssignPrivateIp();
+  }
+
+  onGoToSoftwareUpdate() {
+    this.trackClick(`${this.generalInfoHitTracking}::check-updates`);
+
+    return this.goToSoftwareUpdate();
+  }
+
+  onGoToAccessRestriction() {
+    this.trackClick(`${this.generalInfoHitTracking}::manage-access`);
+
+    return this.goToAccessRestriction();
+  }
+
+  onGoToUpgradePack(pack) {
+    const { planCode } = pack;
+    this.trackClick(
+      `${this.generalInfoHitTracking}::${UPGRADE_PACK_TAG[planCode]}`,
+    );
+
+    return this.goToUpgradePack(pack);
   }
 
   onAnthosConsoleStart() {

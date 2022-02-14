@@ -1,0 +1,15 @@
+{
+  "anthos_dashboard_host_order_init_error": "Wystąpił błąd podczas ładowania tej strony",
+  "anthos_dashboard_host_order_header_heading": "Zamów hosta",
+  "anthos_dashboard_host_order_header_description": "Możesz spersonalizować wdrożenie Anthos, dodając hosty. Zostaniesz przekierowany do nowej strony, na której potwierdzisz zamówienie. Podana cena dotyczy umowy miesięcznej z automatycznym odnowieniem. Na początku naliczymy proporcjonalną płatność za bieżący miesiąc. Jeśli wybierzesz rozwiązanie na dłuższy okres, skorzystasz z cen malejących. W tym celu skontaktuj się z naszym działem handlowym.",
+  "anthos_dashboard_host_order_grid_header_quantity": "Ilość",
+  "anthos_dashboard_host_order_grid_header_host": "Host",
+  "anthos_dashboard_host_order_grid_header_cpu": "Procesor",
+  "anthos_dashboard_host_order_grid_header_ram": "Pamięć",
+  "anthos_dashboard_host_order_grid_header_storage": "Przestrzeń dyskowa",
+  "anthos_dashboard_host_order_grid_header_network": "Sieć",
+  "anthos_dashboard_host_order_grid_header_price": "Cena",
+  "anthos_dashboard_host_order_grid_row_cpu": "{{cores}} rdzeni / {{threads}} wątków - {{frequency}} GHz+",
+  "anthos_dashboard_host_order_grid_row_price": "netto/m-c",
+  "anthos_dashboard_host_order_action": "Złóż zamówienie"
+}

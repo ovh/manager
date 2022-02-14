@@ -1,0 +1,54 @@
+<div>
+    <oui-header
+        data-heading="{{:: ('anthos_tenant_dashboard_general_information_upgrade_pack_title' | translate) }}"
+        data-description="{{:: ('anthos_tenant_dashboard_general_information_upgrade_pack_description' | translate) }}"
+    >
+        <oui-back-button data-on-click="$ctrl.goBack()"></oui-back-button>
+    </oui-header>
+    <ovh-manager-product-offers
+        data-workflow-type=":: $ctrl.workflowType"
+        data-workflow-options=":: $ctrl.workflowOptions"
+        data-pricing-type=":: $ctrl.pricingType"
+        data-on-error=":: $ctrl.onError(error)"
+        data-on-success=":: $ctrl.onSuccess(result)"
+        data-send-current-state="$ctrl.onSendCurrentState(state)"
+    >
+        <oui-step-form
+            header="{{:: ('anthos_tenant_dashboard_general_information_upgrade_pack_step1_title' | translate) }}"
+            prevent-next="true"
+            valid="$ctrl.planCode"
+            editable="!$ctrl.isStateLoading"
+        >
+            <div class="row w-100 d-md-flex">
+                <div
+                    class="col-lg-4 col-sm-12 mb-4"
+                    data-ng-repeat="pack in $ctrl.packs track by $index"
+                >
+                    <oui-select-picker
+                        class="h-100"
+                        name="{{:: pack.invoiceName }}"
+                        model="$ctrl.planCode"
+                        values="[ pack.planCode ]"
+                        disabled="pack === $ctrl.packInfo.current"
+                    >
+                        <oui-select-picker-label>
+                            <strong data-ng-bind=":: pack.invoiceName">
+                            </strong>
+                            <p data-ng-if="pack === $ctrl.packInfo.current">
+                                <span
+                                    class="oui-badge oui-badge_s oui-badge_info"
+                                    data-translate="anthos_tenant_dashboard_general_information_upgrade_pack_step1_current"
+                                ></span>
+                            </p>
+                        </oui-select-picker-label>
+                        <oui-select-picker-description>
+                            <p
+                                data-translate="{{:: ('anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_' + pack.planCode) }}"
+                            ></p>
+                        </oui-select-picker-description>
+                    </oui-select-picker>
+                </div>
+            </div>
+        </oui-step-form>
+    </ovh-manager-product-offers>
+</div>

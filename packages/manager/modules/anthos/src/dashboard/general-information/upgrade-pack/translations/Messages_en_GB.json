@@ -1,0 +1,13 @@
+{
+  "anthos_tenant_dashboard_general_information_upgrade_pack_title": "You are about to change your base pack",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_description": "By switching to the Stateful or Stateless pack, you get a level of service more suited to production, with more hosts included. The Stateful pack also includes dedicated persistent storage. Any pack changes are permanent, any additional resources you have will be preserved, and no data will be lost.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_title": "Select a pack",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_current": "Current pack",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-small": "Perfect for testing and supporting your transition to the native cloud, and/or during the creation phase of new projects. Not suitable for production. 5 slave nodes (60 vCPU, 320GB RAM, 5TB NVMe)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-standard": "Perfect for stateless production. 15 slave nodes (180 vCPU, 960GB RAM, 15TB NVMe)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-standard-netapp": "Perfect for stateless and stateful production with NetApp persistent storage. 15 slave nodes (180 vCPU, 960GB RAM, 15TB NVMe) 55TB usable permanent NetApp storage (active replication x2)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_auto": "Your pack change request has been processed. It will be effective within 24 hours",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_order": "Your pack change request has been processed. Once your purchase order has been validated, it will be effective within 24 hours.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_order_link": "Click here to confirm your order",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_error": "An error has occurred changing your pack: {{error}}"
+}

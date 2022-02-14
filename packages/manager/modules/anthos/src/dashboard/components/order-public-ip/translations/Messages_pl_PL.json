@@ -1,5 +1,11 @@
 {
-  "anthos_tenant_dashboard_component_order_public_ip_modal_title": "Zamów publiczny adres IP",
-  "anthos_tenant_dashboard_component_order_public_ip_modal_description": "Aby zamówić dodatkowy publiczny adres IP, skontaktuj się z doradcą handlowym.",
-  "anthos_tenant_dashboard_component_order_public_ip_modal_action_cancel": "Anuluj"
+  "anthos_dashboard_order_public_ip_init_error": "Wystąpił błąd podczas pobierania tej funkcji",
+  "anthos_dashboard_order_public_ip_title": "Zamów dodatkowe publiczne adresy IP",
+  "anthos_dashboard_order_public_ip_action_confirm": "Zatwierdź",
+  "anthos_dashboard_order_public_ip_action_cancel": "Anuluj",
+  "anthos_dashboard_order_public_ip_description_p1": "Możesz zamówić jeden lub więcej bloków 64 publicznych adresów IPv4.  W ramach każdego bloku możesz korzystać z 61 adresów.",
+  "anthos_dashboard_order_public_ip_description_p2": "Ważne: Adresy IP będą zlokalizowane we Francji. Jeśli potrzebujesz bloku IP w innym kraju, skontaktuj się z naszym działem handlowym.",
+  "anthos_dashboard_order_public_ip_quantity": "Ilość",
+  "anthos_dashboard_order_public_ip_info": "Aby zatwierdzić zamówienie, kliknij przycisk „Zatwierdź”.",
+  "anthos_dashboard_order_public_ip_hint": "Otworzy się wówczas nowa zakładka i zostaniesz automatycznie przekierowany do strony z płatnościami."
 }
