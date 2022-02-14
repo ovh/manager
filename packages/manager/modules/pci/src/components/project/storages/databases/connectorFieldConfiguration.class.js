@@ -39,7 +39,7 @@ export default class ConnectorFieldConfiguration {
       importance,
       name,
       required,
-      type,
+      type: displayName === 'Transforms' ? 'transform' : type,
     });
   }
 }

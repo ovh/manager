@@ -24,7 +24,7 @@
         ng-required="{{$ctrl.data.required}}"
         value="{{$ctrl.data.defaultValue}}"
         placeholder="{{$ctrl.data.type}}"
-        ng-model="$ctrl.model"
+        ng-model="$ctrl.model[$ctrl.data.name]"
     />
     <!--type int32 -->
     <input
@@ -34,7 +34,7 @@
         type="number"
         ng-required="{{$ctrl.data.required}}"
         value="{{$ctrl.data.defaultValue}}"
-        ng-model="$ctrl.model"
+        ng-model="$ctrl.model[$ctrl.data.name]"
         placeholder="{{$ctrl.data.type}}"
     />
     <!-- type boolean-->
@@ -56,8 +56,58 @@
         type="text"
         ng-required="{{$ctrl.data.required}}"
         value="{{$ctrl.data.defaultValue}}"
-        ng-model="$ctrl.model"
+        ng-model="$ctrl.model[$ctrl.data.name]"
         placeholder="{{$ctrl.data.type}}"
     />
+    <!-- type class-->
+    <label class="oui-select" ng-if="$ctrl.data.type === 'class'">
+        <select
+            name="type"
+            ng-model="$ctrl.model[$ctrl.data.name]"
+            class="oui-select__input"
+        >
+            <option ng-repeat="option in $ctrl.classes" value="{{option}}"
+                >{{option ? option : 'Default'}}</option
+            >
+        </select>
+        <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+    </label>
+
+    <!-- type transform-->
+    <connector-transform-input
+        ng-if="$ctrl.data.type === 'transform'"
+        data="$ctrl.data"
+        model="$ctrl.model"
+    ></connector-transform-input>
+
+    <!-- type map-->
+    <oui-inline-adder
+        ng-if="$ctrl.data.type === 'map'"
+        on-add="$ctrl.onMapAdd(form)"
+        on-remove="$ctrl.onMapRemove(form)"
+    >
+        <oui-inline-adder-row>
+            <oui-inline-adder-field>
+                <oui-field label="Configuration key">
+                    <input
+                        type="text"
+                        class="oui-input"
+                        name="key"
+                        ng-model="key"
+                    />
+                </oui-field>
+            </oui-inline-adder-field>
+            <oui-inline-adder-field>
+                <oui-field label="Value">
+                    <input
+                        type="text"
+                        class="oui-input"
+                        name="value"
+                        ng-model="value"
+                    />
+                </oui-field>
+            </oui-inline-adder-field>
+        </oui-inline-adder-row>
+    </oui-inline-adder>
 </oui-field>
 <!-- <pre ng-if="!$ctrl.display">{{$ctrl.data | json}}</pre> -->

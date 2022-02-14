@@ -26,6 +26,18 @@ export default class AvailableConnector {
   }
 
   setConfiguration(configuration) {
+    // add static tab to confuguration
+    configuration.push({
+      defaultValue: '',
+      description: 'Additional configuration',
+      displayName: 'Additional configuration',
+      group: 'Extra',
+      importance: 'low',
+      name: 'Additional configuration',
+      required: false,
+      type: 'map',
+    });
+
     this.configuration = new ConnectorConfiguration(configuration);
   }
 }

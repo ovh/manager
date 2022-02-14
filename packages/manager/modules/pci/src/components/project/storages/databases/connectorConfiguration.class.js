@@ -12,29 +12,19 @@ export default class ConnectorConfiguration {
     // save groups informations
     this.groupsData = [];
     configuration.forEach((field) => {
-      if (field.group) {
-        if (!this.groupsData.find((group) => group.name === field.group)) {
-          this.groupsData.push({
-            name: field.group,
-            required: false,
-          });
-        }
-        if (field.required) {
-          this.groupsData.find(
-            (group) => group.name === field.group,
-          ).required = true;
-        }
+      const groupNameInArray = field.group ? field.group : EMPTY_GROUP_NAME;
+      if (!this.groupsData.find((group) => group.name === groupNameInArray)) {
+        this.groupsData.push({
+          name: groupNameInArray,
+          required: false,
+        });
+      }
+      if (field.required) {
+        this.groupsData.find(
+          (group) => group.name === groupNameInArray,
+        ).required = true;
       }
     });
-    // group without name is "Other" group and should be placed at the end of the list
-    const otherGroupFields = configuration.filter((field) => !field.group);
-    if (otherGroupFields) {
-      this.groupsData.push({
-        name: EMPTY_GROUP_NAME,
-        required:
-          otherGroupFields.filter((field) => field.required).length !== 0,
-      });
-    }
   }
 
   getGroups() {

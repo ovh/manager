@@ -1,9 +1,11 @@
 ovh-manager-pci-storages-database-connector-config-component {
-  button.oui-tabs-tab {
+  button.oui-tabs-tab,
+  button.oui-tabs-tab[aria-selected='true'] {
     white-space: break-spaces;
     text-align: center;
     width: min-content;
     font-size: 0.875rem;
+    height: 4rem;
   }
 
   .preview {
@@ -12,6 +14,7 @@ ovh-manager-pci-storages-database-connector-config-component {
     font-family: monospace;
     padding: 10px;
     overflow-y: auto;
-    overflow-x: hidden;
+    font-size: 0.8rem;
+    overflow-x: auto;
   }
 }
