@@ -119,9 +119,8 @@ export default class UsersCtrl {
     )
       .then(() => {
         set(row, 'group', newValue);
-        set(row, 'pending', false);
       })
-      .catch(() => {
+      .finally(() => {
         set(row, 'pending', false);
       });
   }
