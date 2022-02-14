@@ -1,3 +1,12 @@
+## [13.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.31.1...@ovh-ux/manager-telecom@13.31.2) (2022-02-14)
+
+
+### Bug Fixes
+
+* **pack.xdsl.access.notifications:** change the moduleName ([#6461](https://github.com/ovh/manager/issues/6461)) ([e8a9193](https://github.com/ovh/manager/commit/e8a9193e7ecfd8c0dda5939a807bdbdf07bcdb54))
+
+
+
 ## [13.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.31.0...@ovh-ux/manager-telecom@13.31.1) (2022-02-10)
 
 
