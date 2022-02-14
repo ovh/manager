@@ -1,6 +1,6 @@
 import uniqueId from 'lodash/uniqueId';
 
-export default class {
+export default class PciEditableInputController {
   /* @ngInject */
   constructor($window) {
     this.$window = $window;
