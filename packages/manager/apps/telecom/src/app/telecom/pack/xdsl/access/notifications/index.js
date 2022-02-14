@@ -7,7 +7,7 @@ import 'ovh-api-services';
 
 import routing from './notifications.routing';
 
-const moduleName = 'ovhManagerTelecomPackXdslModemTemplateConfig';
+const moduleName = 'ovhManagerTelecomPackXdslAccessNotifications';
 
 angular
   .module(moduleName, [
