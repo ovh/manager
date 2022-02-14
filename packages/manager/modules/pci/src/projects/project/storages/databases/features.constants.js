@@ -52,9 +52,12 @@ const features = {
   showCert: [DATABASE_TYPES.KAFKA],
   showUserInformations: [DATABASE_TYPES.REDIS],
   indexesTab: [DATABASE_TYPES.OPEN_SEARCH],
-  serviceIntegrationTab: [DATABASE_TYPES.KAFKA_MIRROR_MAKER],
+  serviceIntegrationTab: [
+    DATABASE_TYPES.KAFKA_MIRROR_MAKER,
+    DATABASE_TYPES.M3AGGEGATOR,
+  ],
   replicationsTab: [DATABASE_TYPES.KAFKA_MIRROR_MAKER],
-  showServiceIntegration: [DATABASE_TYPES.KAFKA],
+  showServiceIntegration: [DATABASE_TYPES.KAFKA, DATABASE_TYPES.M3DB],
   restApi: [DATABASE_TYPES.KAFKA],
   resetAdminUserFromDashboard: [DATABASE_TYPES.GRAFANA],
 };

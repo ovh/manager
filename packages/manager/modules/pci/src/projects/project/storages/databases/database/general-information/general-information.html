@@ -434,19 +434,40 @@
                 data-heading="{{:: 'pci_databases_general_information_service_integration_title' | translate }}"
             >
                 <oui-tile-definition
-                    data-term="{{:: 'pci_databases_general_information_kafka_mirror_maker_label' | translate }}"
+                    ng-if="$ctrl.database.engine === $ctrl.DATABASE_TYPES.KAFKA"
+                    data-term="{{::'pci_databases_general_information_kafka_mirror_maker_label' | translate }}"
                 >
                     <oui-tile-description>
                         <p
-                            data-ng-if="$ctrl.serviceIntegration.length === 0"
-                            data-translate="pci_databases_general_information_kafka_mirror_maker_none"
+                            data-ng-if="$ctrl.serviceIntegration.kafkaMirrorMaker.length === 0"
+                            data-translate="pci_databases_general_information_integration_none"
                         ></p>
                         <p
-                            data-ng-repeat="integration in $ctrl.serviceIntegration track by $index"
+                            data-ng-repeat="integration in $ctrl.serviceIntegration.kafkaMirrorMaker track by $index"
                         >
                             <span
                                 class="oui-badge_success oui-badge"
-                                data-ng-bind="integration.serviceName"
+                                data-ng-bind="integration.destinationServiceName"
+                            >
+                            </span>
+                        </p>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    ng-if="$ctrl.database.engine === $ctrl.DATABASE_TYPES.M3DB"
+                    data-term="{{::'pci_databases_general_information_m3_aggregator_label' | translate }}"
+                >
+                    <oui-tile-description>
+                        <p
+                            data-ng-if="$ctrl.serviceIntegration.m3aggregator.length === 0"
+                            data-translate="pci_databases_general_information_integration_none"
+                        ></p>
+                        <p
+                            data-ng-repeat="integration in $ctrl.serviceIntegration.m3aggregator track by $index"
+                        >
+                            <span
+                                class="oui-badge_success oui-badge"
+                                data-ng-bind="integration.destinationServiceName"
                             >
                             </span>
                         </p>
