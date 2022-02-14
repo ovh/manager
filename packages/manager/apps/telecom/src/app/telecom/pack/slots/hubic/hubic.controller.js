@@ -1,10 +1,5 @@
-import assignIn from 'lodash/assignIn';
-import filter from 'lodash/filter';
-import get from 'lodash/get';
 import has from 'lodash/has';
-import includes from 'lodash/includes';
-import map from 'lodash/map';
-import times from 'lodash/times';
+import { HUBIC_LOGIN_URL, buildHubicVoucherURL } from './hubic.constants';
 
 export default class PackHubicCtrl {
   /* @ngInject */
@@ -12,16 +7,16 @@ export default class PackHubicCtrl {
     $q,
     $stateParams,
     $translate,
+    iceberg,
     OvhApiPackXdslHubic,
     TucToast,
-    URLS,
   ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.iceberg = iceberg;
     this.OvhApiPackXdslHubic = OvhApiPackXdslHubic;
     this.TucToast = TucToast;
-    this.URLS = URLS;
   }
 
   /**
@@ -40,68 +35,56 @@ export default class PackHubicCtrl {
    * @return {Promise}
    */
   loadHubics() {
+    const defaultEmail = this.$translate.instant(
+      'pack_xdsl_hubic_used_email_unavailable',
+    );
+
     this.loaders.services = true;
     this.services = [];
 
-    return this.OvhApiPackXdslHubic.v7()
+    return this.iceberg(
+      `/pack/xdsl/${this.$stateParams.packName}/hubic/services`,
+    )
       .query()
-      .aggregate('packName')
-      .expand()
-      .execute()
-      .$promise.then((services) => {
-        this.services = map(
-          filter(services, (service) =>
-            service.path.includes(this.$stateParams.packName),
-          ),
-          (service) => {
-            const voucherUrl = `${this.URLS.hubicVoucher}?token=${get(
-              service,
-              'value.voucher',
-            )}`;
-            return assignIn(service, {
-              url: get(service, 'value.voucher')
-                ? voucherUrl
-                : this.URLS.hubicLogin,
-            });
-          },
+      .expand('CachedObjectList-Pages')
+      .execute(null, true)
+      .$promise.then(({ data }) => data)
+      .then((services) => {
+        this.loaders.voucher = true;
+        return this.$q.all(
+          services.map((service) => {
+            return service.isUsed
+              ? this.getVoucherDetails(service.domain)
+                  .then((voucherDetails) => {
+                    let email = defaultEmail;
+                    if (
+                      ![400, 404].includes(voucherDetails.status) &&
+                      has(voucherDetails.result, 'email')
+                    ) {
+                      email = voucherDetails.result.email;
+                    }
+                    return {
+                      ...service,
+                      email,
+                      url: HUBIC_LOGIN_URL,
+                    };
+                  })
+                  .catch(() => ({
+                    ...service,
+                    email: defaultEmail,
+                    url: HUBIC_LOGIN_URL,
+                  }))
+              : this.$q.resolve({
+                  ...service,
+                  url: service.voucher
+                    ? buildHubicVoucherURL(service.voucher)
+                    : HUBIC_LOGIN_URL,
+                });
+          }),
         );
-
-        const servicesCodeUsed = filter(
-          this.services,
-          (service) => service.value.isUsed,
-        );
-
-        this.loaders.voucher = !!servicesCodeUsed.length;
-
-        this.$q
-          .allSettled(
-            map(servicesCodeUsed, (service) =>
-              this.getVoucherDetails(get(service, 'value.domain')),
-            ),
-          )
-          .then((result) => result)
-          .catch((result) => result)
-          .then((result) => {
-            times(result.length, (index) => {
-              if (
-                !includes([400, 404], get(result[index], 'status')) &&
-                has(result[index].result, 'email')
-              ) {
-                servicesCodeUsed[index].value.email =
-                  result[index].result.email;
-              } else {
-                servicesCodeUsed[index].value.email = this.$translate.instant(
-                  'pack_xdsl_hubic_used_email_unavailable',
-                );
-              }
-              servicesCodeUsed[index].url = this.URLS.hubicLogin;
-            });
-          })
-          .finally(() => {
-            this.loaders.voucher = false;
-          });
-
-        return this.services;
+      })
+      .then((services) => {
+        this.services = services;
       })
       .catch((err) => {
         this.TucToast.error(
@@ -112,6 +95,7 @@ export default class PackHubicCtrl {
         return this.$q.reject(err);
       })
       .finally(() => {
+        this.loaders.voucher = false;
         this.loaders.services = false;
       });
   }
