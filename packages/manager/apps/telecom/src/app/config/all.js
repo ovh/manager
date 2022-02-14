@@ -125,8 +125,6 @@ angular
     orderSms: 'https://www.ovhtelecom.fr/sms/',
     orderExpressLite: 'https://www.ovhtelecom.fr/adsl/express-lite/',
     orderBoost: 'https://www.ovhtelecom.fr/adsl/offres-de-connexion.xml',
-    hubicVoucher: 'https://hubic.com/home/gift/',
-    hubicLogin: 'https://hubic.com/home/',
     overTheBoxManager: 'http://overthebox.ovh',
     generalConditions: {
       packAdslPro2013:
