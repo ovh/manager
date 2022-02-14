@@ -1,0 +1,13 @@
+{
+  "anthos_tenant_dashboard_general_information_software_update_back": "Volver a la información general",
+  "anthos_tenant_dashboard_general_information_software_update_success": "La operación de subida de versión se ha iniciado correctamente. Esta operación tendrá una duración de aproximadamente una hora. A continuación, podrá aplicar nuevas actualizaciones en la sección «Solución de software» de su consola Anthos.",
+  "anthos_tenant_dashboard_general_information_software_update_error": "Se ha producido un error. Si el error persiste, contacte con nuestro equipo de soporte.",
+  "anthos_tenant_dashboard_general_information_software_update_title": "Actualización de software",
+  "anthos_tenant_dashboard_general_information_software_update_description": "Las siguientes versiones de Anthos en bare metal operado en modo privado están disponibles para su Hosted Private Cloud. Elija la versión que desee y consulte nuestra página para conocer los cambios incluidos en cada versión.",
+  "anthos_tenant_dashboard_general_information_software_update_version": "Versión",
+  "anthos_tenant_dashboard_general_information_software_update_change_log_link": "Consultar el «changelog»",
+  "anthos_tenant_dashboard_general_information_software_update_info_1": "Las operaciones de subida de versión suelen durar en torno a una hora. Los diferentes componentes de su plano de control (Anthos Management Center) se actualizan mediante un procedimiento de «rolling update» y permanecen disponibles durante la actualización (salvo que haya indicado lo contrario en la página anterior).",
+  "anthos_tenant_dashboard_general_information_software_update_info_2": "Sus «user clusters» (es decir, los clusters creados a través de Anthos, fuera del que aloja su plano de control) no se verán afectados. Siga los pasos de actualización a través de su área de cliente de OVHcloud.",
+  "anthos_tenant_dashboard_general_information_software_update_info_3": "Una vez que haya actualizado el plano de control, podrá aplicar nuevas actualizaciones a través de la sección «Solución de software» del dashboard de su consola Anthos. Podrá aplicarlos a cada uno de los «user clusters» al ritmo que usted elija.",
+  "anthos_tenant_dashboard_general_information_software_update_submit": "Actualizada"
+}

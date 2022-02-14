@@ -1,0 +1,13 @@
+{
+  "anthos_tenant_dashboard_general_information_upgrade_pack_title": "Chcesz zmienić pakiet podstawowy",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_description": "Zmieniając pakiet na Stateful lub Stateless, zyskujesz poziom usługi lepiej dostosowany do produkcji i obejmujący większą liczbę hostów.  Pakiet Stateful zawiera również trwałą dedykowaną przestrzeń dyskową. Każda zmiana pakietu jest definitywna, ewentualne dodatkowe zasoby zostają zachowane, nie utracone zostaną żadne dane.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_title": "Wybierz pakiet",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_current": "Aktualny pakiet",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-small": "Idealny do testowania, w przypadku migracji do chmury i/lub w fazie tworzenia nowych projektów. Nie przystosowany do produkcji. 5 węzłów slave (60 vCPU, 320 GB RAM, 5 TB NVMe)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-standard": "Idealny do produkcji stateless. 15 węzłów slave (180 vCPU, 960 GB RAM, 15 TB NVMe)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-standard-netapp": "Idealny do produkcji stateless i stateful z trwałą przestrzenią dyskową NetApp. 15 węzłów slave (180 vCPU, 960 GB RAM, 15 TB NVMe) Trwała użytkowa przestrzeń dyskowa NetApp 55 TB (aktywna replikacja x2)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_auto": "Dyspozycja zmiany pakietu została zarejestrowana. Zostanie ona wykonana w ciągu 24 godzin",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_order": "Dyspozycja zmiany pakietu została zarejestrowana. Po zatwierdzeniu zamówienia zostanie ono zrealizowane w ciągu 24 godzin.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_order_link": "Kliknij tutaj, aby zatwierdzić zamówienie",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_error": "Wystąpił błąd podczas zmiany pakietu: {{error}}"
+}

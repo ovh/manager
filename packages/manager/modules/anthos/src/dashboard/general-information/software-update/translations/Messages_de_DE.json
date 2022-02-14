@@ -1,0 +1,13 @@
+{
+  "anthos_tenant_dashboard_general_information_software_update_back": "Zurück zu den allgemeinen Informationen",
+  "anthos_tenant_dashboard_general_information_software_update_success": "Der Versions-Upgrade wurde gestartet. Es wird etwa 1 Stunde dauern. Neue Updates können dann im Bereich „Software-Lösung“ Ihrer Anthos-Konsole durchgeführt werden.",
+  "anthos_tenant_dashboard_general_information_software_update_error": "Ein Fehler ist aufgetreten. Wenn der Fehler dauerhaft erscheint, kontaktieren Sie bitte unsere Support-Teams.",
+  "anthos_tenant_dashboard_general_information_software_update_title": "Software-Update",
+  "anthos_tenant_dashboard_general_information_software_update_description": "Die folgenden Versionen von „Anthos auf Bare Metal im privaten Modus“ sind für Ihre Hosted Private Cloud verfügbar. Auf dieser Seite sehen Sie die Änderungen an jeder Version. Wählen Sie eine beliebige Version aus.",
+  "anthos_tenant_dashboard_general_information_software_update_version": "Version",
+  "anthos_tenant_dashboard_general_information_software_update_change_log_link": "Changelog einsehen",
+  "anthos_tenant_dashboard_general_information_software_update_info_1": "Ein Versions-Update dauert in der Regel etwa 1 Stunde. Verschiedene Komponenten Ihrer Steuerebene, dem Anthos Management Center, werden über ein Rolling Update-Verfahren aktualisiert. Sofern auf der oben genannten Seite nicht anders angegeben, bleiben sie auch während der Aktualisierung verfügbar.",
+  "anthos_tenant_dashboard_general_information_software_update_info_2": "Ihre „User Cluster“ sind nicht betroffen. Dies sind mit Anthos erstellte Cluster, die sich nicht auf dem Hosting Ihrer Steuerebene befinden. In Ihrem OVHcloud Kundencenter können Sie den Fortschritt des Updates verfolgen.",
+  "anthos_tenant_dashboard_general_information_software_update_info_3": "Nach dem Update Ihrer Steuerebene können neue Updates über das Dashboard Ihrer Anthos-Konsole durchgeführt werden, und zwar im Bereich „Software-Lösung“. Wenden Sie sie nach Belieben auf jeden der „User Cluster“ an.",
+  "anthos_tenant_dashboard_general_information_software_update_submit": "Update"
+}

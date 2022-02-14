@@ -5,7 +5,10 @@
 
   "anthos_tenant_dashboard_general_information_tile_information_title": "Informations générales",
   "anthos_tenant_dashboard_general_information_tile_information_software": "Solution Logicielle",
-  "anthos_tenant_dashboard_general_information_tile_information_software_status_upcoming": "Mise à jour bientôt disponible",
+  "anthos_tenant_dashboard_general_information_tile_information_software_is_updatable": "Mise à jour disponible",
+  "anthos_tenant_dashboard_general_information_tile_information_software_is_not_updatable": "Aucune mise à jour disponible",
+  "anthos_tenant_dashboard_general_information_tile_information_software_is_updating": "Mise à jour en cours",
+  "anthos_tenant_dashboard_general_information_tile_information_software_update_link": "Consulter les mises à jour disponibles",
   "anthos_tenant_dashboard_general_information_tile_information_location": "Localisation",
   "anthos_tenant_dashboard_general_information_tile_information_name": "Nom",
   "anthos_tenant_dashboard_general_information_tile_information_description_action_rename": "Modifier",
@@ -15,6 +18,7 @@
   "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd": "Réinitialiser l'accès",
   "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd_success": "L'accès administrateur a été modifié avec succès.",
   "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_regenerate_pwd_failed": "Une erreur est survenue lors de la modification de l'accès administrateur : {{message}}",
+  "anthos_tenant_dashboard_general_information_tile_security_center_access_anthos_menu_access_restriction": "Limiter l'accès à des IP spécifiques",
   "anthos_tenant_dashboard_general_information_tile_security_cta_start_console": "Lancer la console Anthos",
 
   "anthos_tenant_dashboard_general_information_tile_subscription_title": "Abonnement",
@@ -38,5 +42,8 @@
   "anthos_tenant_dashboard_general_information_tile_resources_ips_menu_add_public_ip": "Commander une IP Publique",
   "anthos_tenant_dashboard_general_information_tile_resources_ips_menu_add_private_ip": "Assigner une IP Privée",
   "anthos_tenant_dashboard_general_information_tile_resources_private_network": "Réseau privé (vRack)",
-  "anthos_tenant_dashboard_general_information_tile_resources_private_network_cta_attach_vrack": "Attacher un réseau vRack"
+  "anthos_tenant_dashboard_general_information_tile_resources_private_network_cta_attach_vrack": "Attacher un réseau vRack",
+  "anthos_tenant_dashboard_general_information_tile_resources_pack": "Pack",
+  "anthos_tenant_dashboard_general_information_tile_resources_pack_menu_upgrade": "Passer au {{ pack }}",
+  "anthos_tenant_dashboard_general_information_tile_resources_pack_action_doing": "Une action est en cours sur votre service, certaines actions peuvent donc être indisponibles. Veuillez retenter plus tard."
 }

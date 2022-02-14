@@ -1,0 +1,13 @@
+{
+  "anthos_tenant_dashboard_general_information_upgrade_pack_title": "Vai alterar o seu pack de base",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_description": "Ao passar pelo pack Stateful ou Stateless, beneficia de um nível de serviço mais adaptado à produção e de mais hosts incluídos. O pack Stateful inclui igualmente um armazenamento persistente dedicado. Qualquer alteração de pack é definitiva, os seus eventuais recursos adicionais existentes são preservados e nenhum dado será perdido.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_title": "Selecione o pack desejado",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_current": "Pack atual",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-small": "Ideal para testar e acompanhar a sua transição para a cloud nativa e/ou durante a fase de criação de novos projetos. Não adaptado à produção. 5 nós escravos (60 vCPU, 320 GB de RAM, 5 TB NVMe)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-standard": "Ideal para a produção “stateless”. 15 nós escravos (180 vCPU, 960 GB de RAM, 15 TB NVMe)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-standard-netapp": "Ideal para a produção “stateless” e “stateful” com armazenamento persistente NetApp. 15 nós escravos (180 vCPU, 960 GB de RAM, 15 TB NVMe) Armazenamento NetApp permanente utilizável 55 TB (replicação ativa x2)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_auto": "O seu pedido de alteração de pack foi registado. Esta operação ficará efetiva dentro de 24 horas",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_order": "O seu pedido de alteração de pack foi registado. Uma vez validada a nota de encomenda, esta ficará efetiva dentro de 24 horas.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_order_link": "Clique aqui para validar a sua nota de encomenda",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_error": "Ocorreu um erro aquando da alteração do seu pack: {{ error }}"
+}

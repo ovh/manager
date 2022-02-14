@@ -1,0 +1,13 @@
+{
+  "anthos_tenant_dashboard_general_information_software_update_back": "Voltar para as informações gerais",
+  "anthos_tenant_dashboard_general_information_software_update_success": "O upgrade de versão foi lançado com sucesso. A sua duração é de cerca de 1 hora. De seguida, podem ser aplicadas novas atualizações na secção \"Solução de software\" da sua consola Anthos.",
+  "anthos_tenant_dashboard_general_information_software_update_error": "Ocorreu um erro. Se o erro persistir, convidamo-lo a contactar as nossas equipas de suporte.",
+  "anthos_tenant_dashboard_general_information_software_update_title": "Atualização do software",
+  "anthos_tenant_dashboard_general_information_software_update_description": "As seguintes versões do Anthos on Baremetal in private mode estão disponíveis para o seu Hosted Private Cloud. Pode escolher a versão que deseja e consultar esta página para conhecer as alterações feitas a cada versão.",
+  "anthos_tenant_dashboard_general_information_software_update_version": "Versão",
+  "anthos_tenant_dashboard_general_information_software_update_change_log_link": "Consultar o changelog",
+  "anthos_tenant_dashboard_general_information_software_update_info_1": "A duração normal de um upgrade de versão é de cerca de 1 hora. Diferentes componentes do seu “control plane” (Anthos Management Center) são atualizados através de um procedimento de Rolling Update e permanecem disponíveis durante a atualização (salvo indicação em contrário na página acima).",
+  "anthos_tenant_dashboard_general_information_software_update_info_2": "Os seus \"user clusters\" (ou seja, os clusters criados através de Anthos, fora do que aloja o seu “control plane”) não são afetados. Pode seguir os passos de atualização através da Área de Cliente OVHcloud.",
+  "anthos_tenant_dashboard_general_information_software_update_info_3": "Uma vez atualizado o seu “control plane”, podem ser aplicadas novas atualizações através da secção \"Solução de software\" do Dashboard da sua consola Anthos. Poderá aplicá-los a cada um dos \"user clusters\" ao ritmo da sua escolha.",
+  "anthos_tenant_dashboard_general_information_software_update_submit": "Atualização"
+}
