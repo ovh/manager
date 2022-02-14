@@ -41,12 +41,12 @@ export default class ServiceIntegrationCtrl {
   }
 
   trackAndAddServiceIntegration() {
-    this.trackDashboard('service_integration::add_kafka');
+    this.trackDashboard(`service_integration::add_${this.engineName}`);
     this.goToAddServiceIntegration();
   }
 
   trackAndDeleteServiceIntegration(serviceIntegration) {
-    this.trackDashboard('service_integration::delete_kafka');
+    this.trackDashboard(`service_integration::delete_${this.engineName}`);
     this.goToDeleteServiceIntegration(serviceIntegration);
   }
 
