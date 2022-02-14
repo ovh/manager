@@ -1,3 +1,12 @@
+## [5.57.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.57.0...@ovh-ux/manager-pci@5.57.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* **pci.block-storage:** display service name into banner ([#6454](https://github.com/ovh/manager/issues/6454)) ([9bf9b44](https://github.com/ovh/manager/commit/9bf9b44a18c7abf8d2a8d2ec7d0f3efa662924a6))
+
+
+
 # [5.57.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.56.3...@ovh-ux/manager-pci@5.57.0) (2022-02-10)
 
 
