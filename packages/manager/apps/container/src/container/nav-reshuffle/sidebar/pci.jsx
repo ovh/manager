@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
-// import { useReket } from '@ovh-ux/ovh-reket';
+import { countServices } from './utils';
 import SidebarLink from './sidebar-link';
 import pciNode from './navigation-tree/pci';
 import style from './style.module.scss';
@@ -10,6 +10,7 @@ export default function PciMenu({
   onExit,
   projects,
   selectedProject,
+  servicesCount,
   onSelectProject,
 }) {
   const { t } = useTranslation('sidebar');
@@ -69,7 +70,7 @@ export default function PciMenu({
           <li key={node.id}>
             <SidebarLink
               node={node}
-              count={0}
+              count={countServices(servicesCount, node)}
               onClick={() => clickHandler(node)}
             />
           </li>
@@ -84,6 +85,7 @@ PciMenu.propTypes = {
   onSelectProject: PropTypes.func.isRequired,
   projects: PropTypes.array.isRequired,
   selectedProject: PropTypes.any,
+  servicesCount: PropTypes.any,
 };
 
 PciMenu.defaultProps = {
@@ -91,4 +93,5 @@ PciMenu.defaultProps = {
   onSelectProject: () => {},
   projects: [],
   selectedProject: '',
+  servicesCount: null,
 };

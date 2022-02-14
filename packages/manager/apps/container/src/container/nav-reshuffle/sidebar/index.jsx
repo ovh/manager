@@ -8,7 +8,6 @@ import style from './style.module.scss';
 import navigationRoot from './navigation-tree/root';
 import PciMenu from './pci';
 import logo from '@/assets/images/icon-logo-ovh.svg';
-import mock from './mock';
 
 function Sidebar() {
   const { t } = useTranslation('sidebar');
@@ -21,14 +20,17 @@ function Sidebar() {
   const [isPciMenu, setIsPciMenu] = useState(false);
   const [pciProjects, setPciProjects] = useState(null);
   const [selectedPciProject, setSelectedPciProject] = useState(null);
+  const [pciProjectServiceCount, setPciProjectServiceCount] = useState(null);
 
   /**
    * Fetch service count per service type
    */
   useEffect(() => {
-    // @TODO fetch from 2API
-    setServicesCount(null);
-    setServicesCount(mock);
+    reketInstance
+      .get('/services/count', {
+        requestType: 'aapi',
+      })
+      .then((result) => setServicesCount(result));
   }, []);
 
   /**
@@ -52,6 +54,28 @@ function Sidebar() {
         });
     }
   }, [currentNavigationNode]);
+
+  /**
+   * Count services of a pci project once a project is selected
+   */
+  useEffect(() => {
+    let abort = false;
+    setPciProjectServiceCount(null);
+    if (selectedPciProject) {
+      reketInstance
+        .get(`/services/count?pciProjectId=${selectedPciProject.project_id}`, {
+          requestType: 'aapi',
+        })
+        .then((result) => {
+          if (!abort) {
+            setPciProjectServiceCount(result);
+          }
+        });
+    }
+    return () => {
+      abort = true;
+    };
+  }, [selectedPciProject]);
 
   const clickHandler = (node) => {
     if (node.id === 'public-cloud') {
@@ -94,6 +118,7 @@ function Sidebar() {
             onExit={() => setIsPciMenu(false)}
             projects={pciProjects}
             selectedProject={selectedPciProject}
+            servicesCount={pciProjectServiceCount}
             onSelectProject={(project) => setSelectedPciProject(project)}
           />
         )}
