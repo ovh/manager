@@ -26,6 +26,13 @@ export default class TelecomAppCtrl {
     this.ovhFeatureFlipping = ovhFeatureFlipping;
 
     this.chatbotEnabled = false;
+    this.SYSTRAN_FEEDBACK_INFO = {
+      part1:
+        'The text in this manager section is provided by Systran machine translation.',
+      part2: 'Share your feedback here.',
+    };
+    this.SYSTRAN_FEEDBACK_LINK =
+      'https://survey.ovh.com/index.php/175287?lang=en';
   }
 
   $onInit() {
