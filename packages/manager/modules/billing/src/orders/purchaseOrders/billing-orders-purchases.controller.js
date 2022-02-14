@@ -12,10 +12,7 @@ export default class BillingOrdersPurchasesCtrl {
     this.$log = $log;
     this.$translate = $translate;
     this.billingOrdersPurchasesService = billingOrdersPurchasesService;
-  }
-
-  $onInit() {
-    this.trackPage('orders-internal-ref');
+    this.ENUM_PURCHASES_STATUS = ENUM_PURCHASES_STATUS;
   }
 
   editPurchase(purchase) {
@@ -31,7 +28,7 @@ export default class BillingOrdersPurchasesCtrl {
   }
 
   getStateEnumFilter() {
-    const states = ENUM_PURCHASES_STATUS;
+    const states = this.ENUM_PURCHASES_STATUS;
     const filter = {
       values: {},
     };

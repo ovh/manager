@@ -13,41 +13,14 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('purchaseOrders_page_title'),
 
-      criteria: /* @ngInject */ ($log, filter) => {
-        if (filter) {
-          try {
-            const criteria = JSON.parse(decodeURIComponent(filter));
-            if (!Array.isArray(criteria)) {
-              throw new Error('Invalid criteria');
-            }
-            return criteria;
-          } catch (err) {
-            $log.error(err);
-          }
-        }
-        return undefined;
-      },
+      criteria: /* @ngInject */ (billingOrdersPurchasesService, filter) =>
+        billingOrdersPurchasesService.criteria(filter),
 
-      dateFormat: /* @ngInject */ ($locale) =>
-        $locale.DATETIME_FORMATS.shortDate
-          .replace('dd', 'd')
-          .replace('MM', 'm')
-          .replace('y', 'Y'),
+      dateFormat: /* @ngInject */ (billingOrdersPurchasesService) =>
+        billingOrdersPurchasesService.getDateFormat(),
 
-      disableDate: /* @ngInject */ (purchases) =>
-        purchases.flatMap((elm) => {
-          const nbrDays =
-            (new Date(elm.endDate).getTime() -
-              new Date(elm.startDate).getTime()) /
-            86400000;
-          const array = [];
-          for (let i = 0; i < nbrDays; i += 1) {
-            const date = new Date(elm.startDate);
-            date.setDate(date.getDate() + i);
-            array.push(date);
-          }
-          return array;
-        }),
+      disableDate: /* @ngInject */ (billingOrdersPurchasesService, purchases) =>
+        billingOrdersPurchasesService.getDisableDate(purchases),
 
       filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
 
@@ -65,7 +38,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go(`${stateParent}.update-purchase-status`, { purchase });
       },
 
-      goToPurchaseOrder: /* @ngInject */ ($state, $timeout, Alerter) => (
+      goToPurchaseOrder: /* @ngInject */ ($state, Alerter) => (
         message = false,
         type = 'success',
       ) => {
@@ -78,9 +51,7 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         );
         if (message) {
-          promise.then(() =>
-            $timeout(() => Alerter.set(`alert-${type}`, message)),
-          );
+          promise.then(() => Alerter.set(`alert-${type}`, message));
         }
         return promise;
       },
@@ -89,57 +60,18 @@ export default /* @ngInject */ ($stateProvider) => {
 
       minDate: /* @ngInject */ () => new Date(),
 
-      minDateForEndDate: /* @ngInject */ () =>
-        new Date(new Date().setDate(new Date().getDate() + 1)),
+      minDateForEndDate: /* @ngInject */ (billingOrdersPurchasesService) =>
+        billingOrdersPurchasesService.minDateForEndDate(),
 
-      purchases: /* @ngInject */ (iceberg, toDay) =>
-        iceberg('/me/billing/purchaseOrder')
-          .query()
-          .expand('CachedObjectList-Pages')
-          .sort('reference', 'ASC')
-          .limit(5000)
-          .execute(null, true)
-          .$promise.then(({ data }) =>
-            data
-              .filter((elm) => elm.status === 'CREATED')
-              .map((elm) => {
-                const newElm = { ...elm };
-                if (
-                  elm.active === true &&
-                  toDay >= elm.startDate &&
-                  toDay <= elm.endDate
-                ) {
-                  newElm.status = 'actif';
-                } else if (
-                  elm.active === true &&
-                  !(toDay >= elm.startDate && toDay <= elm.endDate)
-                ) {
-                  newElm.status = 'inactif';
-                } else {
-                  newElm.status = 'desactivate';
-                }
-                return newElm;
-              }),
-          ),
-
-      schema: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().schema().$promise,
-
-      timeNow: /* @ngInject */ ($http) =>
-        $http
-          .get('/auth/time', { serviceType: 'apiv6' })
-          .then((result) => parseInt(result.data, 10))
-          .then((timestamp) => moment(timestamp)),
-
-      toDay: /* @ngInject */ () =>
-        new Date()
-          .toISOString()
-          .slice(0, new Date().toISOString().indexOf('T')),
+      purchases: /* @ngInject */ (billingOrdersPurchasesService) =>
+        billingOrdersPurchasesService.getPurchasesOrder(),
 
       trackClick: /* @ngInject */ (atInternet) => (nameClick) =>
         atInternet.trackClick({
           name: `dedicated::account::billing::${nameClick}`,
           type: 'action',
         }),
+
       trackPage: /* @ngInject */ (atInternet) => (namePage) =>
         atInternet.trackPage({
           name: `dedicated::account::billing::${namePage}`,
@@ -155,6 +87,9 @@ export default /* @ngInject */ ($stateProvider) => {
             reload: false,
           },
         ),
+    },
+    atInternet: {
+      rename: 'dedicated::account::billing::orders-internal-ref',
     },
   });
 };

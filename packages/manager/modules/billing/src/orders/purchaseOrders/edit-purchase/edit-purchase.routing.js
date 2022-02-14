@@ -12,5 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
       purchase: /* @ngInject */ ($transition$) =>
         $transition$.params().purchase,
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };

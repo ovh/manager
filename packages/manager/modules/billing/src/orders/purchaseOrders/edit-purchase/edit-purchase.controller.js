@@ -1,10 +1,14 @@
-import { TYPE_PURCHASE_FOR_TRACKING } from '../billing-orders-purchases.constant';
+import {
+  TYPE_PURCHASE_FOR_TRACKING,
+  TYPE_PURCHASE,
+} from '../billing-orders-purchases.constant';
 
 export default class BillingOrdersPurchaseEditCtrl {
   /* @ngInject */
   constructor($translate, billingOrdersPurchasesService) {
     this.$translate = $translate;
     this.billingOrdersPurchasesService = billingOrdersPurchasesService;
+    this.TYPE_PURCHASE = TYPE_PURCHASE;
   }
 
   $onInit() {

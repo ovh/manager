@@ -10,14 +10,16 @@
             <span data-translate="orders_billing"></span>
         </oui-guide-menu-item>
         <oui-guide-menu-item
-            data-ng-if="$ctrl.coreConfig.getRegion() !== 'US'"
+            data-ng-if="$ctrl.featuresAvailabilities['billing:purchases-order']"
             data-ng-href="{{ $ctrl.purchaseOrdersGuideUrl }}"
             data-external="true"
         >
             <span data-translate="orders_purchase"></span>
         </oui-guide-menu-item>
     </oui-guide-menu>
-    <oui-header-tabs data-ng-if="$ctrl.coreConfig.getRegion() !== 'US'">
+    <oui-header-tabs
+        data-ng-if="$ctrl.featuresAvailabilities['billing:purchases-order']"
+    >
         <oui-header-tabs-item state="app.account.billing.orders.orders"
             ><span data-translate="orders_page_title"></span
         ></oui-header-tabs-item>

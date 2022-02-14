@@ -6,8 +6,8 @@
         <oui-field size="m">
             <oui-radio-group direction="column" model="$ctrl.model.type">
                 <oui-radio
-                    data-value="'REFERENCE_ORDER'"
-                    name="type_REFERENCE_ORDER"
+                    data-value="$ctrl.TYPE_PURCHASE.REFERENCE_ORDER"
+                    name="type_{{ $ctrl.TYPE_PURCHASE.REFERENCE_ORDER }}"
                     model="$ctrl.model.type"
                 >
                     <span
@@ -15,8 +15,8 @@
                     ></span>
                 </oui-radio>
                 <oui-radio
-                    data-value="'PURCHASE_ORDER'"
-                    name="type_PURCHASE_ORDER"
+                    data-value="$ctrl.TYPE_PURCHASE.PURCHASE_ORDER"
+                    name="type_{{ $ctrl.TYPE_PURCHASE.PURCHASE_ORDER }}"
                     model="$ctrl.model.type"
                 >
                     <span
@@ -26,7 +26,7 @@
             </oui-radio-group>
         </oui-field>
         <oui-field
-            data-ng-if="$ctrl.model.type === 'REFERENCE_ORDER'"
+            data-ng-if="$ctrl.model.type === $ctrl.TYPE_PURCHASE.REFERENCE_ORDER"
             label="{{:: 'purchaseOrders_form_add_internal_reference_label' | translate }}"
             help-text="{{:: 'purchaseOrders_form_add_internal_reference_sub_info' | translate }}"
             size="m"
@@ -37,12 +37,12 @@
                 type="text"
                 maxlength="20"
                 data-ng-model="$ctrl.model.reference"
-                name="reference_REFERENCE_ORDER"
+                name="reference_{{ $ctrl.TYPE_PURCHASE.REFERENCE_ORDER }}"
                 required
             />
         </oui-field>
         <oui-field
-            data-ng-if="$ctrl.model.type === 'PURCHASE_ORDER'"
+            data-ng-if="$ctrl.model.type === $ctrl.TYPE_PURCHASE.PURCHASE_ORDER"
             label="{{:: 'purchaseOrders_form_add_purchase_order_label' | translate }}"
             help-text="{{:: 'purchaseOrders_form_add_purchase_order_sub_info' | translate }}"
             size="m"
@@ -53,7 +53,7 @@
                 type="text"
                 maxlength="20"
                 data-ng-model="$ctrl.model.reference"
-                name="reference_PURCHASE_ORDER"
+                name="reference_{{ $ctrl.TYPE_PURCHASE.PURCHASE_ORDER }}"
                 required
             />
         </oui-field>

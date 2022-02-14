@@ -14,6 +14,11 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('orders_page_title'),
+
+      featuresAvailabilities: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('billing:purchasesOrder')
+          .then(({ features }) => features),
     },
   });
 };

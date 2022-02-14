@@ -2,7 +2,8 @@ import get from 'lodash/get';
 
 export default class BillingOrdersMainCtrl {
   /* @ngInject */
-  constructor(constants, currentUser, coreConfig) {
+  constructor(constants, currentUser, coreConfig, featuresAvailabilities) {
+    this.featuresAvailabilities = featuresAvailabilities;
     this.coreConfig = coreConfig;
     this.billingGuideUrl = get(
       constants.urls[currentUser.ovhSubsidiary],

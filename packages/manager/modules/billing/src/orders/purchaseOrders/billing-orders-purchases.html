@@ -91,7 +91,7 @@
                     {{:: 'purchaseOrders_edit_reference' | translate}}
                 </oui-action-menu-item>
                 <oui-action-menu-item on-click="$ctrl.editPurchaseStatus($row)">
-                    {{:: $row.active === true ?
+                    {{:: $row.active ?
                     'purchaseOrders_status_change_desactivation':'purchaseOrders_status_change_reactivation'
                     | translate}}
                 </oui-action-menu-item>

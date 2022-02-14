@@ -1,6 +1,7 @@
 import angular from 'angular';
 import angularTranslate from 'angular-translate';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import '@ovh-ux/ui-kit';
 import uiRouter from '@uirouter/angularjs';
 
@@ -15,6 +16,7 @@ angular
   .module(moduleName, [
     angularTranslate,
     ngTranslateAsyncLoader,
+    ngOvhFeatureFlipping,
     'oui',
     uiRouter,
     billingOrders,
