@@ -25,6 +25,7 @@ export default class {
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.DatabaseService = DatabaseService;
+    this.DATABASE_TYPES = DATABASE_TYPES;
   }
 
   $onInit() {

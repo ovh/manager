@@ -1,6 +1,7 @@
 import map from 'lodash/map';
 import ServiceIntegration from '../../../../../../components/project/storages/databases/serviceIntegration.class';
 import { DATABASE_TYPES } from '../../databases.constants';
+import { ENGINES_NAMES } from '../../../../../../components/project/storages/databases/engines.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -29,15 +30,34 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return promise;
         },
-        kafkaServicesList: /* @ngInject */ (DatabaseService, projectId) =>
-          DatabaseService.getDatabases(projectId, DATABASE_TYPES.KAFKA),
+        servicesList: /* @ngInject */ (
+          DatabaseService,
+          database,
+          projectId,
+        ) => {
+          switch (database.engine) {
+            case DATABASE_TYPES.KAFKA_MIRROR_MAKER:
+              return DatabaseService.getDatabases(
+                projectId,
+                DATABASE_TYPES.KAFKA,
+              );
+            case DATABASE_TYPES.M3AGGEGATOR:
+              return DatabaseService.getDatabases(
+                projectId,
+                DATABASE_TYPES.M3DB,
+              );
+            default:
+              return [];
+          }
+        },
         serviceIntegrationList: /* @ngInject */ (
           database,
           DatabaseService,
           projectId,
           CucCloudMessage,
           $translate,
-          kafkaServicesList,
+          servicesList,
+          engineName,
         ) =>
           DatabaseService.getIntegrations(
             projectId,
@@ -46,7 +66,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ).then((integrations) => {
             const serviceIntegrations = map(integrations, (i) => {
               const serviceIntegration = new ServiceIntegration(i);
-              serviceIntegration.setSourceServiceName(kafkaServicesList);
+              serviceIntegration.setSourceServiceName(servicesList);
               return serviceIntegration;
             });
             serviceIntegrations.forEach((i) => {
@@ -60,6 +80,9 @@ export default /* @ngInject */ ($stateProvider) => {
                   CucCloudMessage.success(
                     $translate.instant(
                       'pci_databases_service_integration_tab_service_ready',
+                      {
+                        engineName,
+                      },
                     ),
                   );
                   i.updateData(integrationInfos);
@@ -77,14 +100,13 @@ export default /* @ngInject */ ($stateProvider) => {
             DatabaseService.stopPollingIntegrationStatus(database.id, s.id),
           ),
         addableServicesList: /* @ngInject */ (
-          kafkaServicesList,
+          servicesList,
           serviceIntegrationList,
         ) =>
-          kafkaServicesList.filter(
-            (kafkaService) =>
+          servicesList.filter(
+            (service) =>
               !serviceIntegrationList.find(
-                (integration) =>
-                  integration.sourceServiceId === kafkaService.id,
+                (integration) => integration.sourceServiceId === service.id,
               ),
           ),
         replicationsList: /* @ngInject */ (
@@ -92,11 +114,13 @@ export default /* @ngInject */ ($stateProvider) => {
           database,
           projectId,
         ) =>
-          DatabaseService.getReplications(
-            projectId,
-            database.engine,
-            database.id,
-          ),
+          database.engine === DATABASE_TYPES.KAFKA_MIRROR_MAKER
+            ? DatabaseService.getReplications(
+                projectId,
+                database.engine,
+                database.id,
+              )
+            : null,
         goToAddServiceIntegration: /* @ngInject */ (
           $state,
           databaseId,
@@ -132,6 +156,16 @@ export default /* @ngInject */ ($stateProvider) => {
               integration: serviceIntegration,
             },
           ),
+        engineName: /* @ngInject */ (database) => {
+          switch (database.engine) {
+            case DATABASE_TYPES.M3AGGEGATOR:
+              return ENGINES_NAMES.m3db;
+            case DATABASE_TYPES.KAFKA_MIRROR_MAKER:
+              return ENGINES_NAMES.kafka;
+            default:
+              return null;
+          }
+        },
       },
       atInternet: {
         ignore: true,

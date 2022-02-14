@@ -8,6 +8,7 @@ const component = {
     projectId: '<',
     trackDashboard: '<',
     addableServicesList: '<',
+    engineName: '<',
   },
   template,
   controller,
