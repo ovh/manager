@@ -23,7 +23,7 @@
     >
         <div
             class="oui-tile__item oui-tile__item_button"
-            data-ng-repeat="service in Hubic.services track by service.value.domain"
+            data-ng-repeat="service in Hubic.services track by service.domain"
         >
             <a
                 class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
@@ -32,34 +32,31 @@
                 data-ng-href="{{service.url}}"
             >
                 <span class="d-inline-block">
-                    <span
-                        class="text-secondary"
-                        data-ng-bind="service.value.domain"
-                    >
+                    <span class="text-secondary" data-ng-bind="service.domain">
                     </span>
                     <span class="d-block">
-                        <span data-ng-bind="service.value.size"></span>
+                        <span data-ng-bind="service.size"></span>
                         <span
-                            data-ng-if="service.value.voucher"
+                            data-ng-if="service.voucher"
                             data-translate="pack_xdsl_hubic_voucher"
-                            data-translate-values="{ voucher: service.value.voucher }"
+                            data-translate-values="{ voucher: service.voucher }"
                         >
                         </span>
                         <em
                             class="text-danger"
-                            data-ng-if="service.value.isUsed"
+                            data-ng-if="service.isUsed"
                             data-translate="pack_xdsl_hubic_is_used"
                         ></em>
                     </span>
                     <span
                         class="text-secondary"
-                        data-ng-if="service.value.isUsed && !Hubic.loaders.voucher"
+                        data-ng-if="service.isUsed && !Hubic.loaders.voucher"
                         data-translate="pack_xdsl_hubic_used_email"
-                        data-translate-values="{ 'email': service.value.email }"
+                        data-translate-values="{ 'email': service.email }"
                     >
                     </span>
                     <span
-                        data-ng-if="service.value.isUsed && !service.value.email && Hubic.loaders.voucher"
+                        data-ng-if="service.isUsed && !service.email && Hubic.loaders.voucher"
                     >
                         <span
                             class="text-secondary"
