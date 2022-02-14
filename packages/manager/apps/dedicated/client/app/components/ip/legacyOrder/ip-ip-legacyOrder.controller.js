@@ -5,6 +5,7 @@ import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import startsWith from 'lodash/startsWith';
+import { TRACKING_PREFIX } from '../agoraOrder/ip-ip-agoraOrder.constant';
 
 export default class {
   /* @ngInject */
@@ -23,6 +24,7 @@ export default class {
     IpLegacyOrder,
     IpOrganisation,
     User,
+    atInternet,
   ) {
     this.$q = $q;
     this.$rootScope = $rootScope;
@@ -38,6 +40,7 @@ export default class {
     this.IpLegacyOrder = IpLegacyOrder;
     this.IpOrganisation = IpOrganisation;
     this.User = User;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -63,11 +66,24 @@ export default class {
     this.$scope.backToContracts = () => this.backToContracts();
     this.$scope.getResumePrice = (price) => this.getResumePrice(price);
     this.$scope.confirmOrder = () => this.confirmOrder();
+    this.$scope.trackPrevious = () => this.trackPrevious();
+    this.$scope.closeModal = () => this.closeModal();
+    this.$scope.cancel = () => this.cancel();
+  }
 
+  cancel() {
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}cancel`,
+      type: 'action',
+    });
+    return this.closeModal();
+  }
+
+  closeModal() {
     if (this.isOrderingFromDrp()) {
-      this.$scope.closeModal = () => this.$state.go('^');
+      this.$state.go('^');
     } else {
-      this.$scope.closeModal = this.$scope.resetAction;
+      this.$scope.setAction(false);
     }
   }
 
@@ -190,6 +206,7 @@ export default class {
     ============================== */
 
   loadOrderForm() {
+    this.trackStep(2);
     const queue = [];
     this.$scope.loading.form = true;
 
@@ -339,6 +356,7 @@ export default class {
     ============================== */
 
   loadPrices(durations) {
+    this.trackStep(3);
     this.$scope.loading.prices = true;
 
     const queue = durations.map((duration) =>
@@ -361,6 +379,7 @@ export default class {
   }
 
   getDurations() {
+    this.trackStep(3);
     const queue = [];
     let needProfessionalUse = false;
     this.Alerter.resetMessage(this.alertId);
@@ -469,12 +488,14 @@ export default class {
     ============================== */
 
   getDrpState() {
+    this.trackStep(4);
     return this.$scope.model.service.productReference === 'MBM'
       ? 'app.managedBaremetal.details.datacenters.datacenter.drp'
       : 'app.dedicatedCloud.details.datacenter.drp';
   }
 
   loadContracts() {
+    this.trackStep(4);
     this.$scope.agree.value = false;
 
     if (
@@ -487,6 +508,7 @@ export default class {
   }
 
   backToContracts() {
+    this.$scope.trackPrevious();
     if (
       !this.$scope.durations.details[this.$scope.model.duration].contracts ||
       !this.$scope.durations.details[this.$scope.model.duration].contracts
@@ -507,16 +529,24 @@ export default class {
   }
 
   redirectToPaymentPage() {
+    const { params, service, duration } = this.$scope.model;
+    const { durations } = this.$scope;
+
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}confirm_${service.serviceType}_${
+        durations.details[duration].planCode
+      }_${1}${params.country ? `_${params.country}` : ''}`,
+      type: 'action',
+    });
     const productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
-      country: this.$scope.model.params.country,
-      description: this.$scope.model.params.description,
-      destination: this.$scope.model.service.serviceName,
-      planCode: this.$scope.durations.details[this.$scope.model.duration]
-        .planCode,
-      pricingMode: `pcc-servicepack-${this.$scope.model.service.servicePackName}`,
+      country: params.country,
+      description: params.description,
+      destination: service.serviceName,
+      planCode: durations.details[duration].planCode,
+      pricingMode: `pcc-servicepack-${service.servicePackName}`,
       productId: 'privateCloud',
-      netname: this.$scope.model.params.networkName,
-      serviceName: this.$scope.model.service.serviceName,
+      netname: params.networkName,
+      serviceName: service.serviceName,
     });
 
     return this.User.getUrlOf('express_order')
@@ -556,12 +586,16 @@ export default class {
 
   confirmLegacyOrder() {
     this.$scope.loading.validation = true;
+    const { service, params, duration } = this.$scope.model;
 
-    return this.IpLegacyOrder.postOrder(
-      this.$scope.model.service,
-      this.$scope.model.params,
-      this.$scope.model.duration,
-    )
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}confirm_${service.serviceType}_${
+        service.serviceName
+      }_${1}${params.country ? `_${params.country}` : ''}`,
+      type: 'action',
+    });
+
+    return this.IpLegacyOrder.postOrder(service, params, duration)
       .then((order) => {
         this.Alerter.alertFromSWS(
           this.$translate.instant('ip_order_finish_success', {
@@ -588,5 +622,19 @@ export default class {
             )
           : this.$scope.closeModal(),
       );
+  }
+
+  trackPrevious() {
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}previous`,
+      type: 'action',
+    });
+  }
+
+  trackStep(count) {
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}next-step-${count}`,
+      type: 'action',
+    });
   }
 }

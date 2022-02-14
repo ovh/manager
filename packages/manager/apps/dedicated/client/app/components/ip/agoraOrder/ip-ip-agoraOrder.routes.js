@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     atInternet: {
-      rename: 'dedicated::ip::dashboard::order-additional-ip',
+      rename: 'dedicated::ip::dashboard::order',
     },
   });
 };

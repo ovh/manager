@@ -12,6 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ByoipService.getToken(region),
       goToDisclaimer: /* @ngInject */ ($state) => (payload) =>
         $state.go('app.ip.byoip.disclaimer', { byoip: payload }),
+      goBack: /* @ngInject */ ($state) => () => $state.go('app.ip'),
       goToByoipConfiguration: /* @ngInject */ ($state, Alerter) => (
         message = false,
         type = 'success',

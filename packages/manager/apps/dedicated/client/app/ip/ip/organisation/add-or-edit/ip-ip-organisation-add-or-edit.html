@@ -295,7 +295,11 @@
             </div>
         </div>
 
-        <div data-wizard-step data-wizard-step-on-load="resetAlertOrganisation">
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="resetAlertOrganisation"
+            data-wizard-step-on-previous="goToPrevious"
+        >
             <div data-ovh-alert="ip_organisation_addedit_alerter"></div>
             <div class="text-center" data-ng-show="load.loading">
                 <oui-spinner></oui-spinner>

@@ -60,6 +60,7 @@ export default class AgoraIpOrderCtrl {
     this.$scope.redirectToPaymentPage = this.redirectToPaymentPage.bind(this);
     this.$scope.resumeOrder = this.resumeOrder.bind(this);
     this.$scope.trackPrevious = this.trackPrevious.bind(this);
+    this.$scope.trackFinalStep = this.trackFinalStep.bind(this);
     this.$scope.stringLocaleSensitiveComparator =
       AgoraIpOrderCtrl.stringLocaleSensitiveComparator;
   }
@@ -171,6 +172,10 @@ export default class AgoraIpOrderCtrl {
         });
       },
     );
+  }
+
+  trackFinalStep() {
+    this.trackStep(3);
   }
 
   loadIpOffers() {
@@ -310,7 +315,9 @@ export default class AgoraIpOrderCtrl {
     const quantity = params.selectedQuantity || 1;
     const countryCode = params.selectedCountry?.code || null;
     this.atInternet.trackClick({
-      name: `${TRACKING_PREFIX}confirm_${serviceType}_${offerPlanCode}_${quantity}_${countryCode}`,
+      name: `${TRACKING_PREFIX}confirm_${serviceType}_${offerPlanCode}_${quantity}${
+        countryCode ? `_${countryCode}` : ''
+      }`,
       type: 'action',
     });
 
