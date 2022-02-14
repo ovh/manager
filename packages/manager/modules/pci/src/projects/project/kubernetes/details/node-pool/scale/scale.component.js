@@ -11,6 +11,8 @@ const component = {
     nodePoolName: '<',
     projectId: '<',
     sendKubeTrack: '<',
+    getKubeApiErrorId: '<',
+    getQuotaBuildUrl: '<',
   },
   controller,
   template,

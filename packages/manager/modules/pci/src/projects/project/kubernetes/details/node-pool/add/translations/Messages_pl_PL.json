@@ -6,5 +6,10 @@
   "kube_add_node_pool_error": "Nie można utworzyć puli węzłów '{{nodePoolName}}': {{message}}",
   "kube_add_billing_type_description": "Ten tryb płatności zostanie zastosowany do wszystkich utworzonych w przyszłości węzłów w tej puli. Będziesz mógł później zmienić płatność za godzinę na płatność miesięczną dla każdego węzła osobno.",
   "kube_add_billing_type_payment_method": "Opłata zostanie pobrana za pomocą domyślnego sposobu płatności.",
-  "kube_add_billing_anti_affinity_title": "Płatności i ochrona przed koligacją (anti-affinity)"
+  "kube_add_billing_anti_affinity_title": "Płatności i ochrona przed koligacją (anti-affinity)",
+  "kube_add_node_pool_error_InsufficientVCPUsQuota": "Limit vCPUs dla Twojego projektu jest niewystarczający, aby przeprowadzić operację. Zwiększ limit lub zmniejsz ilość zasobów.",
+  "kube_add_node_pool_error_InsufficientRAMQuota": "Limit RAM dla Twojego projektu jest niewystarczający, aby przeprowadzić operację. Zwiększ limit lub zmniejsz ilość zasobów.",
+  "kube_add_node_pool_error_InsufficientPortsQuota": "Limit portów dla Twojego projektu jest niewystarczający, aby przeprowadzić operację. Zwiększ limit lub zmniejsz ilość zasobów.",
+  "kube_add_node_pool_error_InsufficientInstancesQuota": "Limit instancji dla Twojego projektu jest niewystarczający, aby przeprowadzić operację. Zwiększ limit lub zmniejsz ilość zasobów.",
+  "kube_add_node_pool_error_quota_link": "Zwiększ limit."
 }

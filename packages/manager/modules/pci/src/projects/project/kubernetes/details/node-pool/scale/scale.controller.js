@@ -1,9 +1,8 @@
-import get from 'lodash/get';
-
 export default class KubernetesNodePoolsScaleCtrl {
   /* @ngInject */
-  constructor($translate, Kubernetes) {
+  constructor($translate, CucCloudMessage, Kubernetes) {
     this.$translate = $translate;
+    this.CucCloudMessage = CucCloudMessage;
     this.Kubernetes = Kubernetes;
   }
 
@@ -42,14 +41,26 @@ export default class KubernetesNodePoolsScaleCtrl {
           this.$translate.instant('kube_node_pool_autoscaling_scale_success'),
         ),
       )
-      .catch((error) =>
-        this.goBack(
-          this.$translate.instant('kube_node_pool_autoscaling_scale_error', {
-            message: get(error, 'data.message'),
-          }),
-          'error',
-        ),
-      );
+      .catch((error) => {
+        const errorId = this.getKubeApiErrorId(error);
+        let errorMessage = this.$translate.instant(
+          'kube_node_pool_autoscaling_scale_error',
+          {
+            message: error.data?.message,
+          },
+        );
+        if (errorId) {
+          const translateMessage = this.$translate.instant(
+            `kube_node_pool_autoscaling_scale_error_${errorId}`,
+          );
+          errorMessage = {
+            textHtml: `${translateMessage} <a class="oui-link_icon" href="${this.getQuotaBuildUrl()}">${this.$translate.instant(
+              'kube_node_pool_autoscaling_scale_error_quota_link',
+            )} <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span></a>`,
+          };
+        }
+        this.goBack(this.CucCloudMessage.error(errorMessage));
+      });
   }
 
   onNodePoolScaleModalCancel() {

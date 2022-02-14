@@ -11,6 +11,8 @@ const component = {
     projectId: '<',
     cancelLink: '<',
     sendKubeTrack: '<',
+    getKubeApiErrorId: '<',
+    getQuotaBuildUrl: '<',
   },
   controller,
   template,

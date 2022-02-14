@@ -15,6 +15,8 @@ export default {
     regions: '<',
     versions: '<',
     sendKubeTrack: '<',
+    getKubeApiErrorId: '<',
+    getQuotaBuildUrl: '<',
   },
   controller,
   template,
