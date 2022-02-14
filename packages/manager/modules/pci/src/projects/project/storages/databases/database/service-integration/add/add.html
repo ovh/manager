@@ -7,10 +7,10 @@
     data-secondary-action="$ctrl.cancel()"
     data-secondary-label="{{:: 'pci_databases_service_integration_add_cancel' | translate}}"
     data-loading="$ctrl.processing"
-    data-heading="{{:: 'pci_databases_service_integration_add' | translate}}"
+    data-heading="{{:: 'pci_databases_service_integration_add' | translate: {engineName: $ctrl.engineName} }}"
 >
     <oui-field
-        data-label="{{:: 'pci_databases_service_integration_add_service_label' | translate }}"
+        data-label="{{:: 'pci_databases_service_integration_add_service_label' | translate: {engineName: $ctrl.engineName} }}"
     >
         <oui-select
             model="$ctrl.service"
