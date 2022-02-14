@@ -12,6 +12,10 @@ export default class IFrameMessageBus implements IMessageBus {
     this.iframe = iframe;
     this.listeners = [];
     window.addEventListener('message', (event) => {
+      // check if origins are the same
+      if (event.origin !== window.location.origin) {
+        return;
+      }
       const { data } = event;
       if (data.type === IFRAME_MESSAGE_TYPE) {
         this.listeners.forEach((listener) => {
