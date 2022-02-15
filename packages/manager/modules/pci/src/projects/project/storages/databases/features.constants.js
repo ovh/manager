@@ -60,6 +60,7 @@ const features = {
   showServiceIntegration: [DATABASE_TYPES.KAFKA, DATABASE_TYPES.M3DB],
   restApi: [DATABASE_TYPES.KAFKA],
   resetAdminUserFromDashboard: [DATABASE_TYPES.GRAFANA],
+  namespacesTab: [DATABASE_TYPES.M3DB],
 };
 
 export default function isFeatureActivated(feature, databaseType) {
