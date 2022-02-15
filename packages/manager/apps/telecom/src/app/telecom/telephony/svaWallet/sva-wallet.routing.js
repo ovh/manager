@@ -32,14 +32,15 @@ export default /* @ngInject */ ($stateProvider) => {
       goToBillingAccount: /* @ngInject */ ($state) => () =>
         $state.go('telecom.telephony.billingAccount', {}, { reload: true }),
 
-      saveWalletIban: /* @ngInject */ (TelephonySvaWalletService) => (iban) =>
-        TelephonySvaWalletService.saveWalletIban(iban),
+      saveWalletIban: /* @ngInject */ (TelephonySvaWalletService) => (
+        bankAccount,
+      ) => TelephonySvaWalletService.saveWalletIban(bankAccount),
 
       saveWallet: /* @ngInject */ (TelephonySvaWalletService, $state) => (
         wallet,
-        iban,
+        bankAccount,
       ) =>
-        TelephonySvaWalletService.saveWallet(wallet, iban).then(() =>
+        TelephonySvaWalletService.saveWallet(wallet, bankAccount).then(() =>
           $state.reload(),
         ),
 
