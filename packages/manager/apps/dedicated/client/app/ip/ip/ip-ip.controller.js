@@ -37,7 +37,10 @@ export default /* @ngInject */
   Validator,
   trackPage,
   trackClick,
+  isByoipAvailable,
 ) => {
+  $scope.isByoipAvailable = isByoipAvailable;
+
   $scope.currentView = 'table';
   $scope.alerts = {
     mitigation: [],
