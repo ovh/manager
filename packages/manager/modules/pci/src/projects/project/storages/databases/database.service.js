@@ -21,6 +21,7 @@ import ServiceIntegration from '../../../../components/project/storages/database
 import User from '../../../../components/project/storages/databases/user.class';
 import Pool from '../../../../components/project/storages/databases/pool.class';
 import QueryStatistics from '../../../../components/project/storages/databases/queryStatistics.class';
+import Namespace from '../../../../components/project/storages/databases/namespace.class';
 
 export default class DatabaseService {
   /* @ngInject */
@@ -850,6 +851,43 @@ export default class DatabaseService {
     return this.$http
       .delete(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/connectionPool/${connectionPoolId}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getNamespaces(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/namespace`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data: namespaces }) =>
+        namespaces.map((namespace) => new Namespace(namespace)),
+      );
+  }
+
+  addNamespace(projectId, engine, databaseId, namespace) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/namespace`,
+        namespace,
+      )
+      .then(({ data }) => data);
+  }
+
+  editNamespace(projectId, engine, databaseId, namespace) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/namespace`,
+        namespace,
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteNamespace(projectId, engine, databaseId, namespaceId) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/namespace/${namespaceId}`,
       )
       .then(({ data }) => data);
   }
