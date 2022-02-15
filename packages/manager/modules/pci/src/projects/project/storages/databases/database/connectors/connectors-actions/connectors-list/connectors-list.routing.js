@@ -28,12 +28,12 @@ export default /* @ngInject */ ($stateProvider) => {
           connectors.sort((a, b) => a.name.localeCompare(b.name)),
         ),
       goToConnectorConfig: /* @ngInject */ ($state, trackDashboard) => (
-        connectorId,
+        availableConnectorId,
       ) => {
         trackDashboard('connectors::add', 'action');
         $state.go(
           'pci.projects.project.storages.databases.dashboard.connectors.config',
-          { connectorId },
+          { availableConnectorId },
         );
       },
     },

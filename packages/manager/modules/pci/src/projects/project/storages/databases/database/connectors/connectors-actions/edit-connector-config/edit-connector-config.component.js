@@ -1,6 +1,6 @@
-import controller from './connector-config.controller';
-import template from './connector-config.html';
-import './connector-config.scss';
+import controller from './edit-connector-config.controller';
+import template from './edit-connector-config.html';
+import './edit-connector-config.scss';
 
 export default {
   bindings: {
@@ -8,6 +8,7 @@ export default {
     projectId: '<',
     trackDashboard: '<',
     goBack: '<',
+    connector: '<',
     availableConnector: '<',
   },
   controller,

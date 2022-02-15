@@ -909,7 +909,6 @@ export default class DatabaseService {
     return this.$http
       .get(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/capabilities/connector/${connectorId}`,
-        // DatabaseService.getIcebergHeaders(),
       )
       .then(({ data: connector }) => new AvailableConnector(connector));
   }
@@ -933,6 +932,14 @@ export default class DatabaseService {
       .get(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector`,
         DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  getConnector(projectId, engine, databaseId, connectorId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector/${connectorId}`,
       )
       .then(({ data }) => data);
   }

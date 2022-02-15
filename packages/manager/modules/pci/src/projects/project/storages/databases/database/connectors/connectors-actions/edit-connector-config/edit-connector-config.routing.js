@@ -1,33 +1,45 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'pci.projects.project.storages.databases.dashboard.connectors.config',
+    'pci.projects.project.storages.databases.dashboard.connectors.edit',
     {
-      url: '/add/:availableConnectorId/config',
-      component: 'ovhManagerPciStoragesDatabaseConnectorConfigComponent',
+      url: '/edit/:connectorId/config',
+      component: 'ovhManagerPciStoragesDatabaseEditConnectorConfigComponent',
       params: {
-        availableConnectorId: null,
+        connectorId: null,
       },
       resolve: {
         breadcrumb: () => null,
-        availableConnectorId: /* @ngInject */ ($transition$) =>
-          $transition$.params().availableConnectorId,
+        connectorId: /* @ngInject */ ($transition$) =>
+          $transition$.params().connectorId,
+        connector: /* @ngInject */ (
+          database,
+          DatabaseService,
+          projectId,
+          connectorId,
+        ) =>
+          DatabaseService.getConnector(
+            projectId,
+            database.engine,
+            database.id,
+            connectorId,
+          ),
         availableConnector: /* @ngInject */ (
           database,
           DatabaseService,
           projectId,
-          availableConnectorId,
+          connector,
         ) =>
           DatabaseService.getAvailableConnector(
             projectId,
             database.engine,
             database.id,
-            availableConnectorId,
+            connector.connectorId,
           ).then((availableConnector) =>
             DatabaseService.getAvailableConnectorConfiguration(
               projectId,
               database.engine,
               database.id,
-              availableConnectorId,
+              availableConnector.id,
             ).then((connectorConfig) => {
               availableConnector.setConfiguration(connectorConfig);
               return availableConnector;
