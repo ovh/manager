@@ -517,7 +517,7 @@
   "ovh_account_cb_expired_alert": "O seu cartão de pagamento predefinido expirou. Consulte <a href=\"{{t0}}\">a secção de faturação</a> para o atualizar.",
   "refresh": "Atualizar",
   "core_new_window": "Nova janela",
-  "core_change_owner": "Alterar titular",
+  "core_change_owner": "Mudar de titular",
   "core_change_owner_order": "Para alterar o titular do domínio, é necessário efetuar o pedido a partir do nosso site.",
   "core_change_owner_error": "Não foi possível obter as informações necessárias à alteração do proprietário",
   "contacts_management": "Contactos",

@@ -516,7 +516,7 @@
   "ovh_account_cb_expired_alert": "Your default payment card has expired. Please go to the <a href=\"{{t0}}\">the Billing section</a> to update it.",
   "refresh": "Refresh",
   "core_new_window": "New window",
-  "core_change_owner": "Change domain name holder",
+  "core_change_owner": "Change owner",
   "core_change_owner_order": "To change your domain name holder, you will need to place an order directly on our website.",
   "core_change_owner_error": "Unable to retrieve the details required for changing domain name holder",
   "contacts_management": "Contacts",
