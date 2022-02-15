@@ -1,3 +1,12 @@
+# [13.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.31.2...@ovh-ux/manager-telecom@13.32.0) (2022-02-15)
+
+
+### Features
+
+* **telecom:** display systran feedback info ([#6439](https://github.com/ovh/manager/issues/6439)) ([5b03ce7](https://github.com/ovh/manager/commit/5b03ce71bcf3aa458ce3faf894497a7239646194))
+
+
+
 ## [13.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.31.1...@ovh-ux/manager-telecom@13.31.2) (2022-02-14)
 
 

@@ -1,3 +1,12 @@
+# [17.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.11.1...@ovh-ux/manager-dedicated@17.12.0) (2022-02-15)
+
+
+### Features
+
+* **server:** enable rename feature for us region ([#6352](https://github.com/ovh/manager/issues/6352)) ([707dc2c](https://github.com/ovh/manager/commit/707dc2cfc2a5bf46b67406a1cda80906dd7d16ea))
+
+
+
 ## [17.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.11.0...@ovh-ux/manager-dedicated@17.11.1) (2022-02-09)
 
 

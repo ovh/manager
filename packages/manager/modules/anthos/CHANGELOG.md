@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@1.0.3...@ovh-ux/manager-anthos@1.1.0) (2022-02-15)
+
+
+### Features
+
+* improve anthos section (M3+M4) ([#6195](https://github.com/ovh/manager/issues/6195)) ([5e439b2](https://github.com/ovh/manager/commit/5e439b2d2fc10bcb468e2d24a7e4443ce66f9f45))
+
+
+
 ## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@1.0.2...@ovh-ux/manager-anthos@1.0.3) (2021-11-10)
 
 
