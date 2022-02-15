@@ -12,7 +12,6 @@ import help from './help';
 import instance from './instance';
 import instancesDelete from './delete';
 import onboarding from './onboarding';
-import regionsList from './add/regions-list';
 import reinstall from './reinstall';
 import rescue from './rescue';
 import resume from './resume';
@@ -44,7 +43,6 @@ angular
     instancesDelete,
     onboarding,
     privateNetworks,
-    regionsList,
     reinstall,
     rescue,
     resume,

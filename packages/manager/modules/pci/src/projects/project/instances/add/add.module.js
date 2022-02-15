@@ -10,7 +10,6 @@ import './add.less';
 import flavorBilling from '../../../../components/project/flavor-billing';
 import flavorsList from '../../../../components/project/flavors-list';
 import imagesList from '../../../../components/project/images-list';
-import regionsList from './regions-list';
 import sshKeys from '../../../../components/project/instance/ssh-keys';
 
 import component from './add.component';
@@ -28,7 +27,6 @@ angular
     flavorBilling,
     flavorsList,
     imagesList,
-    regionsList,
     sshKeys,
   ])
   .config(routing)
