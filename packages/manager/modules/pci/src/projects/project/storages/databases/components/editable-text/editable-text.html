@@ -7,7 +7,7 @@
     ></span>
     <span ng-if="$ctrl.showInput && !$ctrl.pending">
         <input
-            id="{{$ctrl.id}}"
+            id="{{::$ctrl.id}}"
             class="oui-input"
             ng-class="{'oui-input_error': !$ctrl.isInputValid() }"
             ng-model="$ctrl.inputValue"
