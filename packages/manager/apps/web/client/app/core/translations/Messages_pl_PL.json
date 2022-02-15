@@ -517,7 +517,7 @@
   "ovh_account_cb_expired_alert": "Twoja domyślna karta bankowa wygasła. Przejdź do <a href=\"{{t0}}\">sekcji płatności</a>, aby ją zaktualizować.",
   "refresh": "Aktualizacja",
   "core_new_window": "Nowe okno",
-  "core_change_owner": "Zmień właściciela",
+  "core_change_owner": "Zmiana właściciela",
   "core_change_owner_order": "Jeśli chcesz zmienić właściciela domeny, złoż zamówienie bezpośrednio na naszej stronie. ",
   "core_change_owner_error": "Nie można pobrać informacji niezbędnych do zmiany właściciela.",
   "contacts_management": "Kontakt",
