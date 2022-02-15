@@ -15,12 +15,40 @@ export default class {
   }
 
   getModelValue() {
-    const value = {};
+    const configuration = {};
     Object.keys(this.model).forEach((field) => {
       if (![null, undefined, ''].includes(this.model[field])) {
-        value[field] = `${this.model[field]}`;
+        configuration[field] = `${this.model[field]}`;
       }
     });
-    return value;
+    return { configuration };
+  }
+
+  updateConnector() {
+    return this.DatabaseService.putConnector(
+      this.projectId,
+      this.database.engine,
+      this.database.id,
+      this.connector.id,
+      this.getModelValue(),
+    );
+    // .then(() =>
+    //     this.goBack({
+    //       textHtml: this.$translate.instant(
+    //         'pci_databases_replications_edit_success_message',
+    //       ),
+    //     }),
+    //   )
+    //   .catch((err) =>
+    //     this.goBack(
+    //       this.$translate.instant(
+    //         'pci_databases_replications_edit_error_message',
+    //         {
+    //           message: err.data?.message || null,
+    //         },
+    //       ),
+    //       'error',
+    //     ),
+    //   );
   }
 }

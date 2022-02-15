@@ -20,13 +20,40 @@
             data-filterable
         ></oui-datagrid-column>
         <oui-datagrid-column
+            data-title=":: 'pci_databases_connectors_connector' | translate"
+            data-property="connectorInfo.name"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+            <h6 ng-bind="$row.connectorInfo.name" class="mb-0"></h6>
+            <span class="oui-paragraph">
+                Version: {{$row.connectorInfo.version}} | Author:
+                {{$row.connectorInfo.author}} |
+                <a
+                    ng-href="{{$row.connectorInfo.documentationUrl}}"
+                    target="_blank"
+                    >docs</a
+                >
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_databases_connectors_type' | translate"
-            data-property="type"
+            data-property="connectorInfo.type"
             data-sortable="asc"
             data-type="string"
             data-searchable
             data-filterable
         ></oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item data-on-click="$ctrl.goToEdit($row)">
+                <span data-translate="pci_databases_connectors_update"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item data-on-click="$ctrl.goToDelete($row)">
+                <span data-translate="pci_databases_connectors_delete"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
         <oui-datagrid-topbar>
             <oui-button data-on-click="$ctrl.goToAdd()">
                 <span

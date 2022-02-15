@@ -6,6 +6,9 @@
             data-ng-repeat="extra in $ctrl.extraConfig track by $index"
         >
             <fieldset class="oui-inline-adder__fieldset">
+                <legend class="ng-hide" aria-hidden="true">
+                    Add a new configuration
+                </legend>
                 <div class="oui-inline-adder__row">
                     <div class="oui-inline-adder__field">
                         <oui-field label="Configuration key">

@@ -1,3 +1,8 @@
+<oui-back-button
+    data-previous-page="{{:: 'pci_databases_connectors_edit_back' | translate }}"
+    data-on-click="$ctrl.goBack()"
+></oui-back-button>
+
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
         <h2 ng-bind="$ctrl.availableConnector.name" class="mb-0"></h2>
@@ -11,7 +16,7 @@
             >
         </span>
     </div>
-    <oui-button variant="primary" size="l">
+    <oui-button variant="primary" size="l" ng-click="$ctrl.updateConnector()">
         Edit connector
     </oui-button>
 </div>

@@ -8,6 +8,8 @@ export default {
     trackDashboard: '<',
     connectorsList: '<',
     goToAdd: '<',
+    goToEdit: '<',
+    goToDelete: '<',
   },
   controller,
   template,

@@ -1,6 +1,9 @@
 {
   "pci_databases_connectors_tab_title": "Connectors",
-  "pci_databases_connectors_name": "Connector",
+  "pci_databases_connectors_name": "Nom",
+  "pci_databases_connectors_connector": "Connector",
   "pci_databases_connectors_type": "Type",
+  "pci_databases_connectors_update": "Modifier",
+  "pci_databases_connectors_delete": "Supprimer",
   "pci_databases_connectors_add": "Ajouter un connector"
 }
