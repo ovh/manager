@@ -28,6 +28,7 @@ export default {
     customerRegions: '<',
     databasesRegions: '<',
     queryStatisticsLink: '<',
+    namespacesLink: '<',
   },
   template,
 };
