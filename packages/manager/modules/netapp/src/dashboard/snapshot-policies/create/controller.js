@@ -78,6 +78,7 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
     this.trackClick('create::add-rule');
 
     this.newRule = {
+      isNewRule: true,
       isInEdition: true,
       prefix: undefined,
       copies: 1,
@@ -102,8 +103,8 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
   }
 
   validateSnapshotPolicyRule(ruleIndex) {
-    const { isInEdition, ...ruleToValidate } = this.newRule;
-    this.trackClick(`create::confirm-${isInEdition ? 'edit' : 'add'}-rule`);
+    const { isNewRule, isInEdition, ...ruleToValidate } = this.newRule;
+    this.trackClick(`create::confirm-${isNewRule ? 'add' : 'edit'}-rule`);
 
     this.newSnapshotPolicy.rules[ruleIndex] = ruleToValidate;
     this.resetNewRule();
