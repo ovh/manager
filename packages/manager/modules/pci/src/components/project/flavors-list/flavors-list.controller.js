@@ -21,7 +21,7 @@ export default class FlavorsListController {
     this.flavorCount = this.flavorCount || 1;
     return this.$q
       .all({
-        flavors: this.getFlavors(),
+        flavors: this.getFlavors(this.catalogEndpoint),
         me: this.coreConfig.getUser(),
       })
       .then(({ me }) => {
