@@ -80,6 +80,7 @@
   "privateDatabase_configuration_field_event_scheduler": "Consente di avviare l'esecuzione di richieste pianificate direttamente nel server MySQL.",
   "privateDatabase_configuration_field_innodb_buffer_pool_size": "Scelta della dimensione della memoria tampone (in Megabyte).",
   "privateDatabase_configuration_field_interactive_timeout": "Numero di secondi in cui il server attende un'attività su una connessione interattiva prima di chiuderla.",
+  "privateDatabase_configuration_field_mariadb_10.1_compatibility": "Modalità di compatibilità con MariaDB 10.1.",
   "privateDatabase_configuration_field_max_allowed_packet": "Dimensione massima dei pacchetti (in Megabyte).",
   "privateDatabase_configuration_field_max_connections": "Numero di connessioni simultanee autorizzate su un SQL Privato.",
   "privateDatabase_configuration_field_max_user_connections": "Numero di connessioni simultanee autorizzate per utente.",
