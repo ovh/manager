@@ -108,7 +108,7 @@ export default class PciBlockStorageAddController {
     );
 
     return (
-      region && volumePlan.regions.some(({ name }) => name === region.name)
+      region && volumePlan?.regions.some(({ name }) => name === region.name)
     );
   }
 
@@ -158,6 +158,7 @@ export default class PciBlockStorageAddController {
     return this.PciProjectStorageBlockService.getVolumePriceEstimation(
       this.projectId,
       this.storage,
+      this.catalogEndpoint,
     ).then((estimatedPrice) => {
       this.estimatedPrice = estimatedPrice;
     });
