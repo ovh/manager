@@ -16,11 +16,7 @@ export type Applications = {
   [appId in ApplicationId]: Application;
 };
 
-export const enum Region {
-  US = 'US',
-  CA = 'CA',
-  EU = 'EU',
-}
+import { Region } from './region.enum';
 
 export interface IEnvironment {
   getRegion: () => Region;

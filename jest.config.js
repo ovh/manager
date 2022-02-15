@@ -21,6 +21,9 @@ module.exports = {
   moduleNameMapper: {
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
     '^lodash-es$': 'lodash',
+    '^@ovh-ux/shell$': '<rootDir>/packages/components/ovh-shell/src',
+    '^@ovh-ux/ovh-reket$': '<rootDir>/packages/components/ovh-reket/src',
+    '^@ovh-ux/manager-config$': '<rootDir>/packages/manager/modules/config/src',
   },
   watchPlugins: [
     'jest-watch-typeahead/filename',
