@@ -1,123 +1,178 @@
-<!-- type transform-->
-<oui-inline-adder
-    ng-if="$ctrl.data.type === 'transform'"
-    on-add="$ctrl.onAddTransform(form)"
-    on-remove="$ctrl.onRemoveTransform(form)"
->
-    <oui-inline-adder-row>
-        <oui-inline-adder-field>
-            <oui-field label="Name">
-                <input
-                    type="text"
-                    class="oui-input"
-                    ng-init="name = $ctrl.name"
-                    name="name"
-                    ng-model="name"
-                />
-            </oui-field>
-        </oui-inline-adder-field>
-        <oui-inline-adder-field adaptive>
-            <oui-field label="Type" size="m">
-                <label class="oui-select">
-                    <select
-                        name="type"
-                        class="oui-select__input"
-                        ng-model="type"
-                        ng-init="type = $ctrl.transformTypes[0]"
-                        required
-                    >
-                        <option
-                            ng-repeat="option in $ctrl.transformTypes"
-                            value="{{option}}"
-                            >{{option}}</option
-                        >
-                    </select>
-                    <span
-                        class="oui-icon oui-icon-chevron-down"
-                        aria-hidden="true"
-                    ></span>
-                </label>
-            </oui-field>
-        </oui-inline-adder-field>
-    </oui-inline-adder-row>
-    <oui-inline-adder-row
-        class="justify-content-center oui-background-p-075"
-        role="button"
-        ng-show="!advanced"
-        ng-click="advanced = true"
-    >
-        <span class="oui-link">Show advanced</span>
-    </oui-inline-adder-row>
-    <oui-inline-adder-row class="small-row" ng-show="advanced">
-        <oui-inline-adder-field>
-            <oui-field label="offset.field">
-                <input
-                    type="text"
-                    class="oui-input"
-                    name="offsetField"
-                    ng-model="offsetField"
-                />
-            </oui-field>
-        </oui-inline-adder-field>
-        <oui-inline-adder-field>
-            <oui-field label="partition.field">
-                <input
-                    type="text"
-                    class="oui-input"
-                    name="partitionField"
-                    ng-model="partitionField"
-                />
-            </oui-field>
-        </oui-inline-adder-field>
-        <oui-inline-adder-field>
-            <oui-field label="static.field">
-                <input
-                    type="text"
-                    class="oui-input"
-                    name="staticField"
-                    ng-model="staticField"
-                />
-            </oui-field>
-        </oui-inline-adder-field>
-    </oui-inline-adder-row>
-    <oui-inline-adder-row class="small-row no-border" ng-show="advanced">
-        <oui-inline-adder-field>
-            <oui-field label="static.value">
-                <input
-                    type="text"
-                    class="oui-input"
-                    name="staticValue"
-                    ng-model="staticValue"
-                />
-            </oui-field>
-        </oui-inline-adder-field>
-        <oui-inline-adder-field>
-            <oui-field label="timestamp.field">
-                <input
-                    type="text"
-                    class="oui-input"
-                    name="timestampField"
-                    ng-model="timestampField"
-                />
-            </oui-field>
-        </oui-inline-adder-field>
-        <oui-inline-adder-field>
-            <oui-field label="topic.value">
-                <input
-                    type="text"
-                    class="oui-input"
-                    name="topicValue"
-                    ng-model="topicValue"
-                />
-            </oui-field>
-        </oui-inline-adder-field>
-    </oui-inline-adder-row>
-    <oui-inline-adder-row
-        class="justify-content-center oui-background-p-075"
-        role="button"
-        ng-show="advanced"
-        ng-click="advanced = false"
-    >
-        <span class="oui-link">Hide advanced</span>
-    </oui-inline-adder-row>
-</oui-inline-adder>
+<div class="oui-field__control">
+    <div class="oui-inline-adder mb-2" ng-if="$ctrl.data.type === 'transform'">
+        <div
+            class="oui-inline-adder__form"
+            data-ng-class="{ 'oui-inline-adder__form_added': $ctrl.transformations[$index].added }"
+            data-ng-repeat="transformation in $ctrl.transformations track by $index"
+        >
+            <fieldset class="oui-inline-adder__fieldset">
+                <!-- Required inputs -->
+                <div class="oui-inline-adder__row">
+                    <div class="oui-inline-adder__field">
+                        <oui-field label="Name">
+                            <input
+                                class="oui-input"
+                                data-ng-attr-name="transform-name-{{$index}}"
+                                data-ng-attr-id="transform-name-{{$index}}"
+                                type="text"
+                                data-ng-model="$ctrl.transformations[$index].name"
+                                required="true"
+                                data-ng-disabled="$ctrl.transformations[$index].added"
+                            />
+                        </oui-field>
+                    </div>
+                    <div class="oui-inline-adder__field">
+                        <oui-field label="Type" size="m">
+                            <label class="oui-select">
+                                <select
+                                    name="type"
+                                    class="oui-select__input"
+                                    data-ng-attr-name="transform-type-{{$index}}"
+                                    data-ng-attr-id="transform-type-{{$index}}"
+                                    data-ng-model="$ctrl.transformations[$index].type"
+                                    data-ng-disabled="$ctrl.transformations[$index].added"
+                                    required
+                                >
+                                    <option
+                                        ng-repeat="option in $ctrl.transformTypes"
+                                        value="{{option}}"
+                                        >{{option}}</option
+                                    >
+                                </select>
+                                <span
+                                    class="oui-icon oui-icon-chevron-down"
+                                    aria-hidden="true"
+                                ></span>
+                            </label>
+                        </oui-field>
+                    </div>
+                </div>
+                <!-- Show advanced inputs button -->
+                <div
+                    class="oui-inline-adder__row justify-content-center oui-background-p-075"
+                    role="button"
+                    ng-show="!advanced"
+                    ng-click="advanced = true"
+                >
+                    <span class="oui-link">Show advanced</span>
+                </div>
+                <!-- Advanced inputs row 1 -->
+                <div class="oui-inline-adder__row small-row" ng-show="advanced">
+                    <div class="oui-inline-adder__field">
+                        <oui-field label="offset.field">
+                            <input
+                                type="text"
+                                class="oui-input"
+                                name="offsetField"
+                                data-ng-attr-name="transform-offsetField-{{$index}}"
+                                data-ng-attr-id="transform-offsetField-{{$index}}"
+                                data-ng-model="$ctrl.transformations[$index].offsetField"
+                                data-ng-disabled="$ctrl.transformations[$index].added"
+                            />
+                        </oui-field>
+                    </div>
+                    <div class="oui-inline-adder__field">
+                        <oui-field label="partition.field">
+                            <input
+                                type="text"
+                                class="oui-input"
+                                name="partitionField"
+                                data-ng-attr-name="transform-partitionField-{{$index}}"
+                                data-ng-attr-id="transform-partitionField-{{$index}}"
+                                data-ng-model="$ctrl.transformations[$index].partitionField"
+                                data-ng-disabled="$ctrl.transformations[$index].added"
+                            />
+                        </oui-field>
+                    </div>
+                    <div class="oui-inline-adder__field">
+                        <oui-field label="static.field">
+                            <input
+                                type="text"
+                                class="oui-input"
+                                name="staticField"
+                                data-ng-attr-name="transform-staticField-{{$index}}"
+                                data-ng-attr-id="transform-staticField-{{$index}}"
+                                data-ng-model="$ctrl.transformations[$index].staticField"
+                                data-ng-disabled="$ctrl.transformations[$index].added"
+                            />
+                        </oui-field>
+                    </div>
+                </div>
+                <!-- Advanced inputs row 2 -->
+                <div
+                    class="oui-inline-adder__row small-row no-border"
+                    ng-show="advanced"
+                >
+                    <div class="oui-inline-adder__field">
+                        <oui-field label="static.value">
+                            <input
+                                type="text"
+                                class="oui-input"
+                                name="staticValue"
+                                data-ng-attr-name="transform-staticValue-{{$index}}"
+                                data-ng-attr-id="transform-staticValue-{{$index}}"
+                                data-ng-model="$ctrl.transformations[$index].staticValue"
+                                data-ng-disabled="$ctrl.transformations[$index].added"
+                            />
+                        </oui-field>
+                    </div>
+                    <div class="oui-inline-adder__field">
+                        <oui-field label="timestamp.field">
+                            <input
+                                type="text"
+                                class="oui-input"
+                                name="timestampField"
+                                data-ng-attr-name="transform-timestampField-{{$index}}"
+                                data-ng-attr-id="transform-timestampField-{{$index}}"
+                                data-ng-model="$ctrl.transformations[$index].timestampField"
+                                data-ng-disabled="$ctrl.transformations[$index].added"
+                            />
+                        </oui-field>
+                    </div>
+                    <div class="oui-inline-adder__field">
+                        <oui-field label="topic.value">
+                            <input
+                                type="text"
+                                class="oui-input"
+                                name="topicValue"
+                                data-ng-attr-name="transform-topicValue-{{$index}}"
+                                data-ng-attr-id="transform-topicValue-{{$index}}"
+                                data-ng-model="$ctrl.transformations[$index].topicValue"
+                                data-ng-disabled="$ctrl.transformations[$index].added"
+                            />
+                        </oui-field>
+                    </div>
+                </div>
+                <!-- Hide advanced inputs button -->
+                <div
+                    class="oui-inline-adder__row justify-content-center oui-background-p-075"
+                    role="button"
+                    ng-show="advanced"
+                    ng-click="advanced = false"
+                >
+                    <span class="oui-link">Hide advanced</span>
+                </div>
+            </fieldset>
+            <footer class="oui-inline-adder__footer">
+                <button
+                    type="button"
+                    class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
+                    data-ng-click="$ctrl.onAddTransform($index)"
+                    data-ng-if="!$ctrl.transformations[$index].added"
+                    data-ng-disabled="!$ctrl.transformations[$index].name"
+                >
+                    <span class="oui-icon oui-icon-add"></span>
+                </button>
+                <button
+                    type="button"
+                    class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
+                    data-ng-click="$ctrl.onRemoveTransform($index)"
+                    data-ng-if="$ctrl.transformations[$index].added"
+                    data-ng-disabled="$ctrl.loaders.launchInstall"
+                >
+                    <span class="oui-icon oui-icon-trash"></span>
+                </button>
+            </footer>
+        </div>
+    </div>
+</div>

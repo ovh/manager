@@ -1,88 +1,87 @@
-import { remove } from 'lodash';
+import { TRANSFORMATIONS_TYPES } from './connector-transform-input.constants';
 
-export default class PciConnectorInputController {
+export default class PciConnectorTransformInputController {
   $onInit() {
-    this.transformIndex = 1;
-    this.transformations = [];
-    // TODO: extract existing transformations from model
-    this.name = `transform-${this.transformIndex}`;
-
-    this.transformTypes = [
-      'org.apache.kafka.connect.transforms.InsertField$Key',
-      'org.apache.kafka.connect.transforms.InsertField$Value',
-      'org.apache.kafka.connect.transforms.ReplaceField$Key',
-      'org.apache.kafka.connect.transforms.ReplaceField$Value',
-      'org.apache.kafka.connect.transforms.MaskField$Key',
-      'org.apache.kafka.connect.transforms.MaskField$Value',
-      'org.apache.kafka.connect.transforms.ValueToKey',
-      'org.apache.kafka.connect.transforms.HoistField$Key',
-      'org.apache.kafka.connect.transforms.HoistField$Value',
-      'org.apache.kafka.connect.transforms.ExtractField$Key',
-      'org.apache.kafka.connect.transforms.ExtractField$Value',
-      'org.apache.kafka.connect.transforms.SetSchemaMetadata$Key',
-      'org.apache.kafka.connect.transforms.SetSchemaMetadata$Value',
-      'org.apache.kafka.connect.transforms.TimestampRouter',
-      'org.apache.kafka.connect.transforms.RegexRouter',
-      'org.apache.kafka.connect.transforms.Flatten$Key',
-      'org.apache.kafka.connect.transforms.Flatten$Value',
-      'org.apache.kafka.connect.transforms.Cast$Key',
-      'org.apache.kafka.connect.transforms.Cast$Value',
-      'org.apache.kafka.connect.transforms.TimestampConverter$Key',
-      'org.apache.kafka.connect.transforms.TimestampConverter$Value',
-      'io.aiven.kafka.connect.transforms.ExtractTimestamp$Key',
-      'io.aiven.kafka.connect.transforms.ExtractTimestamp$Value',
-      'io.aiven.kafka.connect.transforms.ExtractTopic$Key',
-      'io.aiven.kafka.connect.transforms.ExtractTopic$Value',
-      'io.aiven.kafka.connect.transforms.Hash$Key',
-      'io.aiven.kafka.connect.transforms.Hash$Value',
-      'io.aiven.kafka.connect.transforms.TombstoneHandler',
-      'io.debezium.transforms.ByLogicalTableRouter',
-      'io.debezium.transforms.ExtractNewRecordState',
-      'io.debezium.transforms.outbox.EventRouter',
-    ];
+    this.transformTypes = TRANSFORMATIONS_TYPES;
+    this.transformIndex = 0;
+    this.transformations = this.getTransformationsFromModel();
   }
 
-  syncWithModel() {
+  getTransformationsFromModel() {
+    const transformations = [];
+    if (this.model.transorms) {
+      this.model.transforms.split(',').forEach((transformationName) => {
+        transformations.push({
+          name: transformationName,
+          type: this.model[`transforms.${transformationName}.type`],
+          offsetField: this.model[
+            `transforms.${transformationName}.offset.field`
+          ],
+          partitionField: this.model[
+            `transforms.${transformationName}.partition.field`
+          ],
+          staticField: this.model[
+            `transforms.${transformationName}.static.field`
+          ],
+          staticValue: this.model[
+            `transforms.${transformationName}.static.value`
+          ],
+          timestampField: this.model[
+            `transforms.${transformationName}.timestamp.field`
+          ],
+          topicValue: this.model[
+            `transforms.${transformationName}.topic.value`
+          ],
+          added: true,
+        });
+      });
+    }
+    this.transformIndex = transformations.length + 1;
+    // Add empty value
+    transformations.push({
+      name: `transform-${this.transformIndex}`,
+      type: this.transformTypes[0],
+    });
+    return transformations;
+  }
+
+  setModelTransformationsName() {
     this.model.transforms = this.transformations
+      .filter((t) => t.added)
       .map((transformation) => transformation.name)
       .join(',');
-    this.transformations.forEach((transformation) => {
-      this.model[`transforms.${transformation.name}.type`] =
-        transformation.type;
-      this.model[`transforms.${transformation.name}.offset.field`] =
-        transformation.offsetField;
-      this.model[`transforms.${transformation.name}.partition.field`] =
-        transformation.partitionField;
-      this.model[`transforms.${transformation.name}.static.field`] =
-        transformation.staticField;
-      this.model[`transforms.${transformation.name}.static.value`] =
-        transformation.staticValue;
-      this.model[`transforms.${transformation.name}.timestamp.field`] =
-        transformation.timestampField;
-      this.model[`transforms.${transformation.name}.topic.value`] =
-        transformation.topicValue;
-    });
   }
 
-  onAddTransform(form) {
-    this.transformations.push({
-      name: form.name.$modelValue,
-      type: form.type.$modelValue,
-      offsetField: form.offsetField.$modelValue,
-      partitionField: form.partitionField.$modelValue,
-      staticField: form.staticField.$modelValue,
-      staticValue: form.staticValue.$modelValue,
-      timestampField: form.timestampField.$modelValue,
-      topicValue: form.topicValue.$modelValue,
-    });
-    this.syncWithModel();
+  onAddTransform($index) {
+    // Add transform names
+    this.transformations[$index].added = true;
+    this.setModelTransformationsName();
+    // Add transform properties
+    const transformation = this.transformations[$index];
+    this.model[`transforms.${transformation.name}.type`] = transformation.type;
+    this.model[`transforms.${transformation.name}.offset.field`] =
+      transformation.offsetField;
+    this.model[`transforms.${transformation.name}.partition.field`] =
+      transformation.partitionField;
+    this.model[`transforms.${transformation.name}.static.field`] =
+      transformation.staticField;
+    this.model[`transforms.${transformation.name}.static.value`] =
+      transformation.staticValue;
+    this.model[`transforms.${transformation.name}.timestamp.field`] =
+      transformation.timestampField;
+    this.model[`transforms.${transformation.name}.topic.value`] =
+      transformation.topicValue;
+    // Add empty value for form
     this.transformIndex += 1;
-    this.name = `transform-${this.transformIndex}`;
+    this.transformations.push({
+      name: `transform-${this.transformIndex}`,
+      type: this.transformTypes[0],
+    });
   }
 
-  onRemoveTransform(form) {
+  onRemoveTransform($index) {
     // delete old values from model:
-    const transformationName = form.name.$modelValue;
+    const transformationName = this.transformations[$index].name;
     this.model[`transforms.${transformationName}.type`] = undefined;
     this.model[`transforms.${transformationName}.offset.field`] = undefined;
     this.model[`transforms.${transformationName}.partition.field`] = undefined;
@@ -90,7 +89,7 @@ export default class PciConnectorInputController {
     this.model[`transforms.${transformationName}.static.value`] = undefined;
     this.model[`transforms.${transformationName}.timestamp.field`] = undefined;
     this.model[`transforms.${transformationName}.topic.value`] = undefined;
-    remove(this.transformations, (t) => t.name === transformationName);
-    this.syncWithModel();
+    this.transformations.splice($index, 1);
+    this.setModelTransformationsName();
   }
 }
