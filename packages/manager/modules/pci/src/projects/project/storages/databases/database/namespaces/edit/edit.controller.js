@@ -14,7 +14,7 @@ export default class {
   }
 
   $onInit() {
-    this.trackDashboard('namespace::modify', 'page');
+    this.trackDashboard('namespaces_edit', 'page');
     this.model = {
       name: this.namespace.name,
       resolution: durationStringToString(this.namespace.resolution),
@@ -68,13 +68,13 @@ export default class {
   }
 
   cancel() {
-    this.trackDashboard('namespaces::actions_menu::modify_namespace_cancel');
+    this.trackDashboard('namespaces::edit_namespace_cancel');
     this.goBack();
   }
 
   edit() {
     this.processing = true;
-    this.trackDashboard('namespace::modify_confirm');
+    this.trackDashboard('namespaces::edit_namespace_validate');
     return this.DatabaseService.editNamespace(
       this.projectId,
       this.database.engine,
@@ -83,7 +83,6 @@ export default class {
       this.prepareModel(),
     )
       .then(() => {
-        this.trackDashboard('namespace::modify_validated');
         return this.goBack({
           textHtml: this.$translate.instant(
             'pci_databases_namespaces_edit_success_message',
@@ -94,7 +93,6 @@ export default class {
         });
       })
       .catch((err) => {
-        this.trackDashboard('namespaces::modify_error');
         return this.goBack(
           this.$translate.instant(
             'pci_databases_namespaces_edit_error_message',

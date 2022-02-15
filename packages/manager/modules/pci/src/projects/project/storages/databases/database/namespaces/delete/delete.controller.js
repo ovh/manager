@@ -6,17 +6,17 @@ export default class DeleteNamespaceCtrl {
   }
 
   $onInit() {
-    this.trackDashboard('namespaces::actions_menu::delete_namespace', 'page');
+    this.trackDashboard('namespaces_delete', 'page');
   }
 
   cancel() {
-    this.trackDashboard('namespaces::actions_menu::delete_namespace_cancel');
+    this.trackDashboard('namespaces::delete_namespace_cancel');
     this.goBack();
   }
 
   deleteNamespace() {
     this.processing = true;
-    this.trackDashboard('namespaces::actions_menu::delete_namespace_confirm');
+    this.trackDashboard('namespaces::delete_namespace_validate');
     return this.DatabaseService.deleteNamespace(
       this.projectId,
       this.database.engine,

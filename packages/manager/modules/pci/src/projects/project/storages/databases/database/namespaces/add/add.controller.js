@@ -11,7 +11,7 @@ export default class {
   }
 
   $onInit() {
-    this.trackDashboard('namespace::create', 'page');
+    this.trackDashboard('namespaces_add', 'page');
     this.model = {
       type: 'aggregated',
       retention: {},
@@ -43,9 +43,14 @@ export default class {
     });
   }
 
+  trackAndGoBack() {
+    this.trackDashboard('namespaces::add_new_namespace_cancel');
+    this.goBack();
+  }
+
   add() {
     this.processing = true;
-    this.trackDashboard('namespace::create_confirm');
+    this.trackDashboard('namespaces::add_new_namespace_validated');
     return this.DatabaseService.addNamespace(
       this.projectId,
       this.database.engine,
@@ -53,7 +58,6 @@ export default class {
       this.prepareModel(),
     )
       .then(() => {
-        this.trackDashboard('namespace::create_validated');
         return this.goBack({
           textHtml: this.$translate.instant(
             'pci_databases_namespaces_add_success_message',
@@ -64,7 +68,6 @@ export default class {
         });
       })
       .catch((err) => {
-        this.trackDashboard('namespaces::create_error');
         return this.goBack(
           this.$translate.instant(
             'pci_databases_namespaces_add_error_message',

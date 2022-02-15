@@ -31,7 +31,7 @@ export default class NamespacesCtrl {
   }
 
   trackAndEditNamespace(namespace) {
-    this.trackDashboard('namespaces::edit_create_namespace');
+    this.trackDashboard('namespaces::edit_namespace');
     this.goToEditNamespace(namespace);
   }
 
@@ -41,7 +41,7 @@ export default class NamespacesCtrl {
   }
 
   trackAndAddNamespace() {
-    this.trackDashboard('namespaces::create_namespace');
+    this.trackDashboard('namespaces::add_new_namespace');
     this.goToAddNamespace();
   }
 
