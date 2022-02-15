@@ -6,6 +6,20 @@ const feature = loadFeature('../../features/message-bus/iframe.feature', {
 });
 
 defineFeature(feature, (test) => {
+  // workaround for https://github.com/jsdom/jsdom/issues/2745
+  // found here: https://github.com/statechannels/statechannels/pull/2474
+  // if no origin exists, replace with the test env location origin (localhost)
+  window.addEventListener('message', (event: MessageEvent) => {
+    if (event.origin === '') {
+      event.stopImmediatePropagation();
+      const eventWithOrigin: MessageEvent = new MessageEvent('message', {
+        data: event.data,
+        origin: 'http://localhost',
+      });
+      window.dispatchEvent(eventWithOrigin);
+    }
+  });
+
   test('Message bus sends a message with an iframe', ({
     given,
     when,
