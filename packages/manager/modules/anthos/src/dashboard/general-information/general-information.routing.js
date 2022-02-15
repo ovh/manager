@@ -20,16 +20,20 @@ export default /* @ngInject */ ($stateProvider) => {
           )
           .catch(() => false),
 
-      goBack: /* @ngInject */ ($state, goToTenant) => (message, type) =>
-        goToTenant(message, type, $state.$current.parent.name),
+      packInfo: /* @ngInject */ (AnthosTenantsService, serviceInfo) =>
+        AnthosTenantsService.getPackInfo(serviceInfo),
+
+      goBack: /* @ngInject */ ($state, goToTenant) => (
+        message,
+        type,
+        stateToGo = $state.$current.parent.name,
+        stateParams = {},
+      ) => goToTenant(message, type, stateToGo, stateParams),
 
       goToRenameService: /* @ngInject */ ($state, serviceName) => () =>
         $state.go('anthos.dashboard.general-information.rename-service', {
           serviceName,
         }),
-
-      goToOrderHost: /* @ngInject */ ($state) => () =>
-        $state.go('anthos.dashboard.general-information.order-host'),
 
       goToOrderStorage: /* @ngInject */ ($state) => () =>
         $state.go('anthos.dashboard.general-information.add-storage'),
@@ -39,6 +43,17 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goToAssignPrivateIp: /* @ngInject */ ($state) => () =>
         $state.go('anthos.dashboard.general-information.assign-private-ip'),
+
+      goToSoftwareUpdate: /* @ngInject */ ($state) => () =>
+        $state.go('anthos.dashboard.general-information.software-update'),
+
+      goToAccessRestriction: /* @ngInject */ ($state) => () =>
+        $state.go('anthos.dashboard.access-restriction'),
+
+      goToUpgradePack: /* @ngInject */ ($state) => (pack) =>
+        $state.go('anthos.dashboard.general-information.upgrade-pack', {
+          pack,
+        }),
 
       generalInfoHitTracking: () => {
         return 'general-information';

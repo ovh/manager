@@ -1,0 +1,13 @@
+{
+  "anthos_tenant_dashboard_general_information_upgrade_pack_title": "Sie sind im Begriff, Ihr Basispaket zu ändern.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_description": "Mit dem Wechsel zum Paket „Stateful“ oder „Stateless“ nutzen Sie einen auf die Produktion ausgelegten Dienst und mehr Inklusiv-Hosts. Das Stateful Paket enthält außerdem einen dedizierten persistenten Speicher. Wechsel von einem Paket zum anderen sind endgültig. Eventuelle zusätzliche Ressourcen und alle Daten bleiben erhalten.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_title": "Bitte wählen Sie das gewünschte Paket aus.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_current": "Derzeitiges Paket",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-small": "Für Ihren Übergang zur nativen Cloud ideal geeignet, sowie auch für das Erstellen neuer Projekte. Nicht für die Produktion ausgelegt. 5 Slave-Nodes (60 vCPU, 320 GB RAM, 5 TB NVMe)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-standard": "Ideal für Stateless-Produktion. 15 Slave-Nodes (180 vCPU, 960 GB RAM, 15 TB NVMe)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-standard-netapp": "Ideal für Stateless- und Stateful-Produktion mit persistentem NetApp-Storage. 15 Slave-Nodes (180 vCPU, 960 GB RAM, 15 TB NVMe), 55 TB persistenter NetApp-Storage 55 TB (aktive Replikation x2)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_auto": "Ihr Änderungswunsch wurde registriert. Die Änderung wird binnen 24 Stunden wirksam.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_order": "Ihr Änderungswunsch wurde registriert. Sobald Ihr Bestellschein bestätigt ist, wird die Änderung binnen 24 Stunden aktiv.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_order_link": "Klicken Sie bitte hier, um Ihren Bestellschein zu bestätigen.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_error": "Bei dem Wechsel Ihres Pakets ist ein Fehler aufgetreten: {{ error }}"
+}

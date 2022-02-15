@@ -1,11 +1,17 @@
-import { GUIDES } from './anthos.constants';
+import { GUIDES, SERVICE_TYPE } from './anthos.constants';
+import {
+  extractPublicIpsAddonFromAnthosServiceOption,
+  extractHostAddonsFromAnthosServiceOption,
+} from './anthos.utils';
 
 export default class AnthosTenantsService {
   /* @ngInject */
-  constructor($http, $translate, ovhDocUrl) {
+  constructor($http, $q, $translate, ovhDocUrl, coreConfig) {
     this.$http = $http;
+    this.$q = $q;
     this.$translate = $translate;
     this.ovhDocUrl = ovhDocUrl;
+    this.user = coreConfig.getUser();
   }
 
   fetch(endPoint, headers) {
@@ -45,6 +51,34 @@ export default class AnthosTenantsService {
     );
   }
 
+  getAccessRestrictions(serviceName) {
+    return this.$http.get(
+      `/dedicated/anthos/tenants/${serviceName}/ipRestrictions`,
+    );
+  }
+
+  createAccessRestriction(serviceName, ipBlock) {
+    return this.$http.post(
+      `/dedicated/anthos/tenants/${serviceName}/ipRestrictions`,
+      {
+        ips: [ipBlock],
+      },
+    );
+  }
+
+  updateAccessRestriction(serviceName, oldIpBlock, newIpBlock) {
+    return this.deleteAccessRestriction(serviceName, oldIpBlock).then(() =>
+      this.createAccessRestriction(serviceName, newIpBlock),
+    );
+  }
+
+  deleteAccessRestriction(serviceName, ipBlock) {
+    const encodedIpBlock = encodeURIComponent(ipBlock);
+    return this.$http.delete(
+      `/dedicated/anthos/tenants/${serviceName}/ipRestrictions/${encodedIpBlock}`,
+    );
+  }
+
   getTenantStorageUsage(serviceName) {
     return this.fetch(
       `/dedicated/anthos/tenants/${serviceName}/storage/netapp/usage`,
@@ -67,6 +101,12 @@ export default class AnthosTenantsService {
         'X-Pagination-Size': 50000,
       },
     });
+  }
+
+  getAvailableVersions(serviceName) {
+    return this.fetch(
+      `/dedicated/anthos/tenants/${serviceName}/availableVersions`,
+    );
   }
 
   addTenantPrivateIP(serviceName, range) {
@@ -145,7 +185,10 @@ export default class AnthosTenantsService {
   getServiceInfo(serviceName) {
     return this.$http
       .get(`/dedicated/anthos/tenants/${serviceName}/serviceInfos`)
-      .then(({ data }) => data);
+      .then(({ data }) => ({
+        ...data,
+        serviceType: SERVICE_TYPE,
+      }));
   }
 
   getOptions(serviceId) {
@@ -192,5 +235,86 @@ export default class AnthosTenantsService {
         acknowledgePotentialFees: true,
       })
       .then(({ data }) => data);
+  }
+
+  getAnthosCatalog() {
+    const {
+      user: { ovhSubsidiary },
+    } = this;
+    return this.$http
+      .get(`/order/catalog/public/anthos?ovhSubsidiary=${ovhSubsidiary}`)
+      .then(({ data }) => data);
+  }
+
+  getAnthosServiceOption(serviceName) {
+    return this.$q
+      .all({
+        catalog: this.getAnthosCatalog(),
+        options: this.$http.get(
+          `/order/cartServiceOption/anthos/${serviceName}`,
+        ),
+      })
+      .then(({ catalog, options: { data: options } }) => ({
+        hosts: extractHostAddonsFromAnthosServiceOption(options, catalog),
+        publicIps: extractPublicIpsAddonFromAnthosServiceOption(options),
+      }));
+  }
+
+  updateSoftware(serviceName, version) {
+    return this.$http
+      .post(`/dedicated/anthos/tenants/${serviceName}/actions/upgrade`, {
+        version,
+      })
+      .then(({ data }) => data);
+  }
+
+  getPackInfo(serviceInfo) {
+    const { serviceId } = serviceInfo;
+    return this.$q
+      .all({
+        catalog: this.getAnthosCatalog(),
+        current: this.$http.get(`/services/${serviceId}`).then(({ data }) => {
+          const {
+            billing: {
+              plan: { code, ...plan },
+            },
+          } = data;
+          plan.planCode = code;
+          return plan;
+        }),
+        upgrades: this.$http
+          .get(`/services/${serviceId}/upgrade`)
+          .then(({ data }) => data),
+      })
+      .then(({ catalog, current, upgrades }) =>
+        this.$q.all({
+          current,
+          upgrades: upgrades.map((pack) => ({
+            ...pack,
+            invoiceName:
+              catalog.plans.find(({ planCode }) => planCode === pack.planCode)
+                ?.invoiceName || '',
+          })),
+          actionDoing: this.checkPackActionDoing(serviceId, upgrades),
+        }),
+      );
+  }
+
+  checkPackActionDoing(serviceId, upgrades) {
+    if (upgrades[0]?.planCode) {
+      return this.$http
+        .post(
+          `/services/${serviceId}/upgrade/${upgrades[0].planCode}/simulate`,
+          {
+            autoPayWithPreferredPaymentMethod: false,
+            duration: 'P1M',
+            pricingMode: 'default',
+            quantity: 1,
+          },
+        )
+        .then(() => false)
+        .catch(() => true);
+    }
+    return false;
   }
 }

@@ -5,6 +5,7 @@
     data-variant="secondary"
     data-icon-left="oui-icon-cart"
     data-on-click="$ctrl.onGoToOrderHost()"
+    disabled="$ctrl.availableOptions.hosts.length === 0"
 >
     <span data-translate="anthos_dashboard_host_order"></span>
 </oui-button>

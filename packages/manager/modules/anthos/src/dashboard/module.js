@@ -14,6 +14,7 @@ import generalInformation from './general-information';
 import host from './host';
 import storage from './storage';
 import ips from './ips';
+import accessRestriction from './access-restriction';
 
 const moduleName = 'ovhManagerAnthosDashboard';
 
@@ -29,6 +30,7 @@ angular
     host,
     storage,
     ips,
+    accessRestriction,
   ])
   .config(routing)
   .component('anthosDashboard', component)

@@ -1,0 +1,13 @@
+{
+  "anthos_tenant_dashboard_general_information_upgrade_pack_title": "Va a cambiar su pack",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_description": "Con los packs Stateful o Stateless disfrutará de un nivel de servicio más adaptado a producción y de un mayor número de hosts incluidos. El pack Stateful también incluye un almacenamiento persistente dedicado. Cualquier cambio de pack es definitivo. Se conservarán los recursos adicionales existentes y no se perderá ningún dato.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_title": "Seleccione el pack deseado",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_current": "Pack actual",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-small": "Ideal para probar e impulsar su transición al cloud nativo o durante la fase de creación de nuevos proyectos. No apto para producción. 5 nodos esclavos (60 vCPU, 320 GB de RAM, 5 TB NVMe)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-standard": "Ideal para producción «stateless». 15 nodos esclavos (180 vCPU, 960 GB de RAM, 15 TB NVMe)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_step1_pack_plan-standard-netapp": "Ideal para producción «stateless» y «stateful» con almacenamiento persistente NetApp. 15 nodos esclavos (180 vCPU, 960 GB de RAM, 15 TB NVMe) Storage NetApp permanente utilizable de 55 TB (replicación activa x2)",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_auto": "La solicitud de cambio de pack se ha registrado correctamente. Será efectiva en un plazo de 24 horas.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_order": "La solicitud de cambio de pack se ha registrado correctamente. Una vez validada la orden de pedido, será efectiva en un plazo de 24 horas.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_success_order_link": "Haga clic aquí para confirmar su orden de pedido.",
+  "anthos_tenant_dashboard_general_information_upgrade_pack_error": "Se ha producido un error al cambiar de pack: {{ error }}"
+}

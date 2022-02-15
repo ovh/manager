@@ -2,23 +2,41 @@ import { ANTHOS_TENANT_ALERTER } from '../anthos.constants';
 import { TRACKING_PREFIX } from './constants';
 import Tenant from '../Tenant.class';
 
+const anthosDashboardState = 'anthos.dashboard';
+
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('anthos.dashboard', {
+  $stateProvider.state(anthosDashboardState, {
     url: '/:serviceName',
     component: 'anthosDashboard',
+    params: {
+      patchTenantStatus: {
+        value: '',
+        dynamic: true,
+      },
+    },
     resolve: {
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
 
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
 
+      patchTenantStatus: /* @ngInject */ ($transition$) =>
+        $transition$.params().patchTenantStatus,
+
       alertId: () => 'anthos_dashboard',
 
-      tenant: /* @ngInject */ (serviceName, AnthosTenantsService) => {
-        return AnthosTenantsService.getTenantDetails(serviceName).then(
-          (tenant) => new Tenant(tenant),
-        );
-      },
+      tenant: /* @ngInject */ (
+        serviceName,
+        patchTenantStatus,
+        AnthosTenantsService,
+      ) =>
+        AnthosTenantsService.getTenantDetails(serviceName).then(
+          (data) =>
+            new Tenant({
+              ...data,
+              status: patchTenantStatus || data.status,
+            }),
+        ),
 
       hosts: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getHosts(serviceName).then(({ data }) => data),
@@ -28,6 +46,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
       privateIPs: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getTenantPrivateIPs(serviceName),
+
+      availableVersions: /* @ngInject */ (serviceName, AnthosTenantsService) =>
+        AnthosTenantsService.getAvailableVersions(serviceName),
+
+      availableOptions: /* @ngInject */ (serviceName, AnthosTenantsService) =>
+        AnthosTenantsService.getAnthosServiceOption(serviceName),
 
       goToState: ($state, Alerter) => (
         state,
@@ -54,45 +78,76 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
-      currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
-        $state.href($state.current.name, $transition$.params()),
+      isGeneralInformationTabActive: /* @ngInject */ ($state) => () =>
+        $state.includes(`${anthosDashboardState}.general-information`),
+
+      isHostTabActive: /* @ngInject */ ($state) => () =>
+        $state.includes(`${anthosDashboardState}.host`),
+
+      isStorageTabActive: /* @ngInject */ ($state) => () =>
+        $state.includes(`${anthosDashboardState}.storage`),
+
+      isIpsTabActive: /* @ngInject */ ($state) => () =>
+        $state.includes(`${anthosDashboardState}.ips`),
+
+      isAccessRestrictionTabActive: /* @ngInject */ ($state) => () =>
+        $state.includes(`${anthosDashboardState}.access-restriction`),
 
       dashboardLink: /* @ngInject */ ($state, serviceName) =>
-        $state.href('anthos.dashboard', { serviceName }),
+        $state.href(anthosDashboardState, { serviceName }),
 
       generalInformationLink: /* @ngInject */ ($state, serviceName) =>
-        $state.href('anthos.dashboard.general-information', {
+        $state.href(`${anthosDashboardState}.general-information`, {
           serviceName,
         }),
+
       hostLink: /* @ngInject */ ($state, serviceName) =>
-        $state.href('anthos.dashboard.host', { serviceName }),
+        $state.href(`${anthosDashboardState}.host`, { serviceName }),
+
+      isHostLinkActive: /* @ngInject */ ($state) => () =>
+        $state.includes(`${anthosDashboardState}.host`),
 
       storageLink: /* @ngInject */ ($state, serviceName) =>
-        $state.href('anthos.dashboard.storage', { serviceName }),
+        $state.href(`${anthosDashboardState}.storage`, { serviceName }),
 
       ipsLink: /* @ngInject */ ($state, serviceName) =>
-        $state.href('anthos.dashboard.ips', { serviceName }),
+        $state.href(`${anthosDashboardState}.ips`, { serviceName }),
+
+      accessRestrictionLink: /* @ngInject */ ($state, serviceName) =>
+        $state.href(`${anthosDashboardState}.access-restriction`, {
+          serviceName,
+        }),
 
       serviceInfo: /* @ngInject */ (serviceName, AnthosTenantsService) =>
         AnthosTenantsService.getServiceInfo(serviceName),
 
-      goToTenant: ($state, tenant, displayAlerterMessage) => (
+      goToTenant: ($state, displayAlerterMessage) => (
         message = false,
         type = 'success',
-        stateToGo = 'anthos.dashboard',
+        stateToGo = anthosDashboardState,
+        stateParams = {},
       ) => {
-        const reload = message && type === 'success';
-
-        const promise = $state.go(stateToGo, {
-          reload,
-        });
+        const options = { reload: message && type === 'success' };
+        const promise = $state.go(stateToGo, stateParams, options);
 
         if (message) {
-          promise.then(() => displayAlerterMessage(type, message));
+          promise.then(() => {
+            displayAlerterMessage(type, message);
+            $state.go($state.current, {
+              ...stateParams,
+              patchTenantStatus: '',
+            });
+          });
         }
 
         return promise;
       },
+
+      goToOrderHost: /* @ngInject */ ($state, serviceName) => () =>
+        $state.go(`${anthosDashboardState}.host.order`, { serviceName }),
+
+      goBack: /* @ngInject */ ($state, goToTenant) => (message, type) =>
+        goToTenant(message, type, $state.$current.parent.name),
 
       displayAlerterMessage: /* @ngInject */ (Alerter) => (type, message) =>
         Alerter[type](message, ANTHOS_TENANT_ALERTER),
@@ -132,6 +187,6 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
     },
-    redirectTo: 'anthos.dashboard.general-information',
+    redirectTo: `${anthosDashboardState}.general-information`,
   });
 };

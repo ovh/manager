@@ -1,0 +1,125 @@
+<div>
+    <oui-header
+        data-heading="{{:: 'anthos_dashboard_host_order_header_heading' | translate }}"
+        data-description="{{:: 'anthos_dashboard_host_order_header_description' | translate }}"
+    >
+        <oui-back-button data-on-click="::$ctrl.goBack()"></oui-back-button>
+    </oui-header>
+    <oui-spinner data-ng-if="$ctrl.isLoading"></oui-spinner>
+    <div data-ng-if="!$ctrl.isLoading">
+        <div class="oui-datagrid-responsive">
+            <table
+                class="oui-datagrid"
+                aria-label="{{:: 'anthos_dashboard_host_order_header_heading' | translate }}"
+            >
+                <thead>
+                    <tr>
+                        <th class="oui-datagrid__header" scope="col">
+                            <span
+                                class="oui-tile__term"
+                                data-translate="anthos_dashboard_host_order_grid_header_quantity"
+                            ></span>
+                        </th>
+                        <th class="oui-datagrid__header" scope="col">
+                            <span
+                                class="oui-tile__term"
+                                data-translate="anthos_dashboard_host_order_grid_header_host"
+                            ></span>
+                        </th>
+                        <th class="oui-datagrid__header" scope="col">
+                            <span
+                                class="oui-tile__term"
+                                data-translate="anthos_dashboard_host_order_grid_header_cpu"
+                            ></span>
+                        </th>
+                        <th class="oui-datagrid__header" scope="col">
+                            <span
+                                class="oui-tile__term"
+                                data-translate="anthos_dashboard_host_order_grid_header_ram"
+                            ></span>
+                        </th>
+                        <th class="oui-datagrid__header" scope="col">
+                            <span
+                                class="oui-tile__term"
+                                data-translate="anthos_dashboard_host_order_grid_header_storage"
+                            ></span>
+                        </th>
+                        <th class="oui-datagrid__header" scope="col">
+                            <span
+                                class="oui-tile__term"
+                                data-translate="anthos_dashboard_host_order_grid_header_network"
+                            ></span>
+                        </th>
+                        <th class="oui-datagrid__header" scope="col">
+                            <span
+                                class="oui-tile__term"
+                                data-translate="anthos_dashboard_host_order_grid_header_price"
+                            ></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        class="oui-datagrid__row"
+                        data-ng-repeat="addon in $ctrl.addons track by addon.id"
+                    >
+                        <td class="oui-datagrid__cell">
+                            <oui-numeric
+                                data-model="addon.quantity"
+                                data-max="addon.$max"
+                                data-on-change="$ctrl.onAddonQuantityChanged()"
+                            ></oui-numeric>
+                        </td>
+                        <td
+                            class="oui-datagrid__cell"
+                            data-ng-bind="addon.host"
+                        ></td>
+                        <td class="oui-datagrid__cell">
+                            <span
+                                data-translate="anthos_dashboard_host_order_grid_row_cpu"
+                                data-translate-values="{
+                                    cores: addon.cpu.cores,
+                                    threads: addon.cpu.threads,
+                                    frequency: addon.cpu.frequency,
+                                }"
+                            ></span>
+                        </td>
+                        <td class="oui-datagrid__cell">
+                            <span data-ng-bind="addon.memory.size"></span>
+                            <span data-ng-bind="addon.memory.sizeUnit"></span>
+                        </td>
+                        <td class="oui-datagrid__cell">
+                            <div
+                                data-ng-repeat="storage in addon.storages track by $index"
+                                data-ng-bind="storage"
+                            ></div>
+                            <div data-ng-if="!addon.storages.length">-</div>
+                        </td>
+                        <td class="oui-datagrid__cell">
+                            <div
+                                data-ng-repeat="network in addon.networks track by $index"
+                                data-ng-bind="network"
+                            ></div>
+                            <div data-ng-if="!addon.networks.length">-</div>
+                        </td>
+                        <td class="oui-datagrid__cell">
+                            <span data-ng-bind="addon.price.value"></span
+                            ><span data-ng-bind="$ctrl.currencySymbol"></span>
+                            <span
+                                data-translate="anthos_dashboard_host_order_grid_row_price"
+                            ></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <oui-button
+            data-size="l"
+            data-variant="primary"
+            data-disabled="!$ctrl.canOrder"
+            data-ng-click="$ctrl.openExpressOrder()"
+        >
+            <span data-translate="anthos_dashboard_host_order_action"></span>
+        </oui-button>
+    </div>
+</div>

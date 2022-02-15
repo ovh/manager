@@ -3,10 +3,12 @@ import template from './template.html';
 
 export default {
   bindings: {
+    availableOptions: '<',
+    displayAlerterMessage: '<',
     goBack: '<',
-    trackingPrefix: '<',
+    serviceName: '<',
     trackClick: '<',
-    orderPublicIpHitTracking: '<',
+    trackingPrefix: '<',
   },
   controller,
   template,

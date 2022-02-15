@@ -1,0 +1,13 @@
+{
+  "anthos_tenant_dashboard_general_information_software_update_back": "Back to general information",
+  "anthos_tenant_dashboard_general_information_software_update_success": "The version upgrade has been launched. It will take around 1 hour. New updates can then be applied in the ‘Software Solution’ section of your Anthos console.",
+  "anthos_tenant_dashboard_general_information_software_update_error": "An error has occurred. Please contact our support team if the error persists.",
+  "anthos_tenant_dashboard_general_information_software_update_title": "Software update",
+  "anthos_tenant_dashboard_general_information_software_update_description": "The following versions of Anthos on Bare Metal in private mode are available for your Hosted Private Cloud. You can choose the version you want, and refer to this page for changes to each version.",
+  "anthos_tenant_dashboard_general_information_software_update_version": "Version",
+  "anthos_tenant_dashboard_general_information_software_update_change_log_link": "View the changelog",
+  "anthos_tenant_dashboard_general_information_software_update_info_1": "Version upgrades usually take around 1 hour. Different components of your control plane (Anthos Management Centre) are updated via a rolling update procedure, and remain available during the update (unless otherwise specified in the page mentioned above).",
+  "anthos_tenant_dashboard_general_information_software_update_info_2": "Your user clusters (i.e. clusters created via Anthos, apart from the one hosting your control plane) are not affected. You can follow the update steps via the OVHcloud Control Panel.",
+  "anthos_tenant_dashboard_general_information_software_update_info_3": "After updating your control plane, new updates may be applicable via the ‘Software Solution’ section of the Anthos console dashboard. You can apply them to each of the user clusters at your own pace.",
+  "anthos_tenant_dashboard_general_information_software_update_submit": "Updating"
+}

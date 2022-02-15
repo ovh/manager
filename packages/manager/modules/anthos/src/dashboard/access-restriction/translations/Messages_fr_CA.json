@@ -1,0 +1,6 @@
+{
+  "anthos_dashboard_access_restriction_title": "Restrictions d'accès",
+  "anthos_dashboard_access_restriction_p1": "Choisissez les plages IPv4 pouvant accéder aux interfaces d’administration de votre Hosted Private Cloud powered by Anthos.",
+  "anthos_dashboard_access_restriction_p2": "Ces restrictions seront appliquées à Anthos Management Center (console, API et CLI) ainsi qu’à ONTAP (UI et API, si vous disposez de ce composant). En l'absence d'IP, aucune restriction n'est appliquée.",
+  "anthos_dashboard_access_restriction_p3": "NB : Ces restrictions ne s’appliquent ni aux services exposés par vos « user clusters » Kubernetes, ni aux SVM NetApp. D’autres fonctionnalités de restrictions sont disponibles dans Anthos Service Mesh et ONTAP."
+}
