@@ -1,3 +1,13 @@
+## [5.57.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.57.1...@ovh-ux/manager-pci@5.57.2) (2022-02-15)
+
+
+### Bug Fixes
+
+* **pci:** fix size filter ([#6471](https://github.com/ovh/manager/issues/6471)) ([a10475e](https://github.com/ovh/manager/commit/a10475ed37e49469d5906c3fdf64995623458612))
+* **pci:** merge services with the same name ([#6468](https://github.com/ovh/manager/issues/6468)) ([f42e9ea](https://github.com/ovh/manager/commit/f42e9eab9ba05bff28405b448165a5edc6bb2ccf))
+
+
+
 ## [5.57.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.57.0...@ovh-ux/manager-pci@5.57.1) (2022-02-14)
 
 
