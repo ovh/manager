@@ -8,8 +8,9 @@ export default class OvhManagerNetAppSnapshotPoliciesCtrl {
   }
 
   onDelete(snapshotPolicy) {
-    this.isDeleting = true;
+    this.trackClick('delete-policy');
 
+    this.isDeleting = true;
     return this.$http
       .delete(
         `/storage/netapp/${this.serviceName}/snapshotPolicy/${snapshotPolicy.id}`,
