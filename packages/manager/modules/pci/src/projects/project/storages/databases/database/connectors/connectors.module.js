@@ -8,8 +8,8 @@ import '@ovh-ux/ui-kit';
 import component from './connectors.component';
 import routing from './connectors.routing';
 
-import connectorsList from './add';
-import connectorConfig from './add/connector-config';
+import connectorsList from './connectors-actions/connectors-list';
+import connectorConfig from './connectors-actions/add-connector-config';
 
 const moduleName = 'ovhManagerPciStoragesDatabaseConnectors';
 
