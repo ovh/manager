@@ -1,6 +1,6 @@
 import { useReket } from '@ovh-ux/ovh-reket';
 import Environment from './environment';
-import { Region } from './environment/environment';
+import { Region } from './environment/region.enum';
 
 export const HOSTNAME_REGIONS: Record<string, Region> = {
   'www.ovh.com': Region.EU,
@@ -20,7 +20,9 @@ export { LANGUAGES } from './locale/locale.constants';
 
 export const isTopLevelApplication = () => window.top === window.self;
 
-export const fetchConfiguration = async (applicationName: string): Promise<Environment> => {
+export const fetchConfiguration = async (
+  applicationName: string,
+): Promise<Environment> => {
   const environment = new Environment();
   const configRequestOptions = {
     requestType: 'aapi',
