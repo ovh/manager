@@ -18,7 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state,
         trackClick,
       ) => () => {
-        trackClick('snapshot-policy::add-policy');
+        trackClick('add-policy');
         return $state.go('netapp.dashboard.snapshotPolicies.create');
       },
       snapshotPolicies: /* @ngInject */ (getSnapshotPolicies) =>
