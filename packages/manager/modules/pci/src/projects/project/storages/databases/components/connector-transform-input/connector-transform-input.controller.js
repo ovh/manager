@@ -9,7 +9,7 @@ export default class PciConnectorTransformInputController {
 
   getTransformationsFromModel() {
     const transformations = [];
-    if (this.model.transorms) {
+    if (this.model.transforms) {
       this.model.transforms.split(',').forEach((transformationName) => {
         transformations.push({
           name: transformationName,

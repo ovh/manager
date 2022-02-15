@@ -10,7 +10,7 @@ export default class PciConnectorInputController {
         'list',
         'transform',
         'class',
-        'map',
+        'extra',
       ].includes(this.data.type) && this.data.name !== 'connector.class';
 
     // For booleans, we use an intermediate variable
@@ -33,13 +33,5 @@ export default class PciConnectorInputController {
     } else {
       this.model[this.data.name] = undefined;
     }
-  }
-
-  onMapAdd(form) {
-    this.model[form.key.$modelValue] = form.value.$modelValue;
-  }
-
-  onMapRemove(form) {
-    this.model[form.key.$modelValue] = undefined;
   }
 }

@@ -4,13 +4,8 @@ import template from './connector-input.html';
 export default {
   bindings: {
     data: '<',
+    configuration: '<',
     model: '=',
-    // label: '@',
-    // min: '<?',
-    // max: '<?',
-    // pattern: '<?',
-    // placeholder: '@',
-    // buttonLabel: '@',
   },
   controller,
   template,

@@ -35,7 +35,7 @@ export default class AvailableConnector {
       importance: 'low',
       name: 'Additional configuration',
       required: false,
-      type: 'map',
+      type: 'extra',
     });
 
     this.configuration = new ConnectorConfiguration(configuration);

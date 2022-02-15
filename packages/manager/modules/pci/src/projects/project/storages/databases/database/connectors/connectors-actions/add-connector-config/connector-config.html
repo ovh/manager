@@ -28,6 +28,7 @@
                         ng-repeat="field in $ctrl.connector.configuration.getFields(group.name)"
                         data="field"
                         model="$ctrl.model"
+                        configuration="$ctrl.connector.configuration"
                     >
                     </connector-input>
                 </form>

@@ -1,5 +1,5 @@
 <div class="oui-field__control">
-    <div class="oui-inline-adder mb-2" ng-if="$ctrl.data.type === 'transform'">
+    <div class="oui-inline-adder mb-2">
         <div
             class="oui-inline-adder__form"
             data-ng-class="{ 'oui-inline-adder__form_added': $ctrl.transformations[$index].added }"
@@ -168,7 +168,6 @@
                     class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
                     data-ng-click="$ctrl.onRemoveTransform($index)"
                     data-ng-if="$ctrl.transformations[$index].added"
-                    data-ng-disabled="$ctrl.loaders.launchInstall"
                 >
                     <span class="oui-icon oui-icon-trash"></span>
                 </button>

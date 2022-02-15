@@ -80,34 +80,12 @@
         model="$ctrl.model"
     ></connector-transform-input>
 
-    <!-- type map-->
-    <oui-inline-adder
-        ng-if="$ctrl.data.type === 'map'"
-        on-add="$ctrl.onMapAdd(form)"
-        on-remove="$ctrl.onMapRemove(form)"
-    >
-        <oui-inline-adder-row>
-            <oui-inline-adder-field>
-                <oui-field label="Configuration key">
-                    <input
-                        type="text"
-                        class="oui-input"
-                        name="key"
-                        ng-model="key"
-                    />
-                </oui-field>
-            </oui-inline-adder-field>
-            <oui-inline-adder-field>
-                <oui-field label="Value">
-                    <input
-                        type="text"
-                        class="oui-input"
-                        name="value"
-                        ng-model="value"
-                    />
-                </oui-field>
-            </oui-inline-adder-field>
-        </oui-inline-adder-row>
-    </oui-inline-adder>
+    <!-- type extra-->
+    <connector-extra-input
+        ng-if="$ctrl.data.type === 'extra'"
+        data="$ctrl.data"
+        configuration="$ctrl.configuration"
+        model="$ctrl.model"
+    ></connector-extra-input>
 </oui-field>
 <!-- <pre ng-if="!$ctrl.display">{{$ctrl.data | json}}</pre> -->

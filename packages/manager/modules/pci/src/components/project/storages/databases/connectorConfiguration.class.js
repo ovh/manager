@@ -5,7 +5,8 @@ const EMPTY_GROUP_NAME = 'Other';
 export default class ConnectorConfiguration {
   constructor(configuration) {
     // save configuration as an array of groups
-    this.rawData = groupBy(
+    this.rawData = configuration;
+    this.mappedConfig = groupBy(
       configuration.map((field) => new ConnectorFieldConfiguration(field)),
       'group',
     );
@@ -32,6 +33,13 @@ export default class ConnectorConfiguration {
   }
 
   getFields(group) {
-    return this.rawData[group === EMPTY_GROUP_NAME ? '' : group];
+    return this.mappedConfig[group === EMPTY_GROUP_NAME ? '' : group];
+  }
+
+  isExtra(field) {
+    const isFieldInConfig =
+      this.rawData.filter((input) => input.name === field).length !== 0;
+    const isFieldTransform = field.startsWith('transform');
+    return !(isFieldInConfig || isFieldTransform);
   }
 }
