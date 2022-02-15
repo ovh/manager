@@ -133,7 +133,7 @@ export default class KycIdentityFormController {
     return modalInstance.result
       .then(() => {
         this.loading.submit = true;
-        this.saveWallet(wallet, this.bankAccount.iban)
+        this.saveWallet(wallet, this.bankAccount)
           .catch((error) => {
             this.errorMessage = error.data.message;
           })

@@ -27,7 +27,8 @@ export default class KycIdentitySummaryController {
       controllerAs: '$ctrl',
       resolve: {
         bankAccount: () => this.bankAccount,
-        updateBankAccount: () => (iban) => this.saveWalletIban(iban),
+        updateBankAccount: () => (bankAccount) =>
+          this.saveWalletIban(bankAccount),
       },
     });
     return modalInstance.result

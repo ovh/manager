@@ -338,6 +338,20 @@
     </oui-field>
 
     <oui-field
+        label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_bankAccount_holder' | translate }}"
+        size="xl"
+    >
+        <input
+            class="oui-input"
+            name="holder"
+            placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_bankAccount_holder' | translate }}"
+            type="text"
+            ng-model="$ctrl.bankAccount.holder"
+            required
+        />
+    </oui-field>
+
+    <oui-field
         label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_iban' | translate }}"
         data-error-messages="{ iban: ('telephony_billingAccount_svaWallet_kyc_identity_iban_format_error' | translate) }"
         size="xl"
