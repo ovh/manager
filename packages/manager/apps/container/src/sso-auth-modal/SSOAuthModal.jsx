@@ -101,9 +101,7 @@ const SSOAuthModal = () => {
               mode === connectedToOther) && (
               <div
                 className={
-                  mode === disconnectedToConnected
-                    ? 'col-md-12 span12'
-                    : 'col-md-6 span6'
+                  mode === disconnectedToConnected ? 'col-md-12' : 'col-md-6'
                 }
               >
                 <p className={mode === connectedToOther ? 'bold' : ''}>
