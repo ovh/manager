@@ -7,7 +7,12 @@
     <strong
         data-translate="pci_projects_project_instances_onboarding_content2"
     ></strong>
-    <p data-translate="pci_projects_project_instances_onboarding_content3"></p>
+    <p data-ng-if="!$ctrl.isTrustedZone"
+       data-translate="pci_projects_project_instances_onboarding_content3">
+    </p>
+    <p data-ng-if="$ctrl.isTrustedZone"
+       data-translate="pci_projects_project_instances_onboarding_content3_for_trusted_customer">
+    </p>
     <p data-translate="pci_projects_project_instances_onboarding_content4"></p>
 
     <pci-announcement-banner
