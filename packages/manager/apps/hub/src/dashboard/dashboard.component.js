@@ -9,7 +9,6 @@ export default {
     billingServices: '<',
     expand: '<',
     expandProducts: '<',
-    goToProductPage: '<',
     notifications: '<',
     order: '<',
     products: '<',
