@@ -87,7 +87,6 @@ export class UxModal {
       this.elements.body.removeChild(this.elements.body.firstElementChild);
       this.elements.body.append(this.options.content);
     }
-    // this.render();
   }
 
   changeSize(newSize: string): void {
