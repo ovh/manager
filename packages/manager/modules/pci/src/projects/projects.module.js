@@ -10,6 +10,7 @@ import trustedNic from '@ovh-ux/manager-trusted-nic';
 
 import guidesHeader from '../components/project/guides-header';
 
+import pciTrustedZoneBanner from '../components/trusted-zone-banner';
 import creatingProject from './creating';
 import newProject from './new';
 import onboarding from './onboarding';
@@ -30,6 +31,7 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     trustedNic,
+    pciTrustedZoneBanner,
     guidesHeader,
     creatingProject,
     newProject,

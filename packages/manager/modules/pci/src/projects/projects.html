@@ -10,6 +10,11 @@
             ></ovh-manager-trusted-nic-label>
         </div>
 
+        <!--Trusted Zone: 12% additional charge banner info-->
+        <div class="mt-3" data-ng-if="$ctrl.isTrustedZone">
+            <pci-trusted-zone-banner></pci-trusted-zone-banner>
+        </div>
+
         <h1 data-translate="pci_projects"></h1>
         <cui-message-container
             data-messages="$ctrl.messages"
