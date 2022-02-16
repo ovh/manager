@@ -151,7 +151,7 @@
             data-editable="!$ctrl.loading.setNetboot"
             data-submit-text="{{ ::'server_configuration_netboot_confirm' | translate }}"
             data-cancel-text="{{ :: 'server_configuration_netboot_cancel' | translate }}"
-            data-on-cancel="$ctrl.goBack()"
+            data-on-cancel="$ctrl.cancel()"
         >
             <p
                 data-ng-bind="'server_configuration_netboot_step2_question' | translate:{ t0: $ctrl.server.name }"

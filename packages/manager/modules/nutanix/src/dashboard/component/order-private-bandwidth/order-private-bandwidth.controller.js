@@ -148,6 +148,10 @@ export default class NutanixClusterOrderPrivateBandwidthCtrl {
   }
 
   seeOrder() {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}::purchase-order`,
+      type: 'action',
+    });
     this.$window.open(this.model.orderUrl, '_blank');
   }
 

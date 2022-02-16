@@ -96,15 +96,16 @@
                                     >
                                     </oui-spinner>
                                 </button>
-                                <a
+                                <button
+                                    type="button"
                                     class="btn btn-default btn-block"
-                                    href="{{:: $ctrl.loader.kvmUrl }}"
-                                    target="_blank"
-                                    rel="noopener"
+                                    data-ng-click="$ctrl.goToKvmConsole()"
                                     data-ng-if="$ctrl.loader.kvmUrlReady && !$ctrl.disable.otherTask && !$ctrl.disable.localTask"
-                                    data-translate="server_configuration_impi_kvm_url"
                                 >
-                                </a>
+                                    <span
+                                        data-translate="server_configuration_impi_kvm_url"
+                                    ></span>
+                                </button>
                             </oui-tile-description>
                         </oui-tile-definition>
                         <oui-tile-definition
@@ -162,15 +163,16 @@
                                     >
                                     </oui-spinner>
                                 </button>
-                                <a
+                                <button
+                                    type="button"
                                     class="btn btn-default btn-block"
-                                    href="{{ $ctrl.loader.navigationReady }}"
-                                    target="_blank"
-                                    rel="noopener"
+                                    data-ng-click="$ctrl.goToSolConsole()"
                                     data-ng-if="$ctrl.loader.navigationReady && !$ctrl.disable.otherTask && !$ctrl.disable.localTask"
-                                    data-translate="server_configuration_impi_navigation_go"
                                 >
-                                </a>
+                                    <span
+                                        data-translate="server_configuration_impi_navigation_go"
+                                    ></span>
+                                </button>
                             </oui-tile-description>
                         </oui-tile-definition>
                         <oui-tile-definition

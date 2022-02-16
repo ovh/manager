@@ -100,7 +100,7 @@ export default class ServicesActionsCtrl {
   trackAction(action) {
     if (this.trackingPrefix) {
       this.atInternet.trackClick({
-        name: `${this.trackingPrefix}::action::${action}`,
+        name: `${this.trackingPrefix}::${action}`,
         type: 'action',
       });
     }
