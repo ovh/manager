@@ -1,3 +1,12 @@
+# [5.58.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.57.2...@ovh-ux/manager-pci@5.58.0) (2022-02-16)
+
+
+### Features
+
+* **object-storage:** move high performance to beta 2 ([#6176](https://github.com/ovh/manager/issues/6176)) ([1d00692](https://github.com/ovh/manager/commit/1d006924485f17aff7e096f9ef1b4002d14e93b6))
+
+
+
 ## [5.57.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.57.1...@ovh-ux/manager-pci@5.57.2) (2022-02-15)
 
 
