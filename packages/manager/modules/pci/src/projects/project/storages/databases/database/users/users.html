@@ -12,6 +12,10 @@
         {
             name: 'roles',
             hidden: !$ctrl.isRolesAvailable
+        },
+        {
+            name: 'group',
+            hidden: !$ctrl.showGroup
         }]"
     >
         <oui-datagrid-column
@@ -32,6 +36,28 @@
                 data-ng-repeat="role in $row.roles track by role.id"
                 data-ng-bind="::role.description || role.name"
             ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_users_group_label' | translate"
+            data-property="group"
+            data-type="string"
+            data-sortable="asc"
+            data-searchable
+            data-filterable
+        >
+            <span
+                ng-if="$ctrl.isDisabledOrPending($row)"
+                data-ng-bind="::$row.group"
+            >
+            </span>
+            <editable-text
+                ng-if="!$ctrl.isDisabledOrPending($row)"
+                value="$row.group"
+                max="$ctrl.ADD_USER_FORM_RULES.group.max"
+                pattern="$ctrl.ADD_USER_FORM_RULES.group.pattern"
+                on-change="$ctrl.handleGroupChange(newValue, $row)"
+                pending="$row.pending"
+            ></editable-text>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_users_createdAt_label' | translate"
