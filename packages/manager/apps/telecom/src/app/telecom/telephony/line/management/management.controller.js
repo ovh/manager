@@ -14,6 +14,8 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementCtrl(
 
   this.displayAntihackAlert = displayAntihackAlert;
   this.filteringLink = filteringLink;
+  this.billingAccount = $stateParams.billingAccount;
+  this.serviceName = $stateParams.serviceName;
 
   this.loading = {
     init: true,
