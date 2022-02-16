@@ -72,12 +72,14 @@
     </oui-step-form>
 
     <oui-step-form
+        data-name="storage_container_add_region"
         data-header="{{:: 'pci_projects_project_storages_containers_add_region_title' | translate }}"
         data-navigation="$ctrl.container.region"
         data-on-focus="$ctrl.onRegionsFocus()"
         data-on-submit="$ctrl.onRegionChange()"
         data-editable="!$ctrl.isLoading"
-        name="storage_container_add_region"
+        data-valid="$ctrl.container.region"
+        data-prevent-next
     >
         <pci-project-regions-list
             data-ng-if="$ctrl.archive || $ctrl.currrentStep > 0"
