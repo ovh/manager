@@ -21,6 +21,22 @@
         />
     </oui-field>
 
+    <oui-field
+        ng-if="$ctrl.hasGroups"
+        data-label="{{:: 'pci_databases_users_add_group_label' | translate }}"
+        data-size="xl"
+    >
+        <input
+            class="oui-input"
+            type="text"
+            id="group"
+            name="group"
+            ng-model="$ctrl.model.group"
+            data-ng-pattern="$ctrl.inputRules.group.pattern"
+            data-ng-maxlength="$ctrl.inputRules.group.max"
+        />
+    </oui-field>
+
     <div ng-if="!$ctrl.isRolesReadOnly">
         <h2 data-translate="pci_databases_users_add_roles"></h2>
         <oui-dual-list

@@ -23,6 +23,10 @@ export const ADD_USER_FORM_RULES = {
     min: 1,
     max: 254,
   },
+  group: {
+    pattern: /^([\w]*)$/,
+    max: 16,
+  },
 };
 
 export default {
