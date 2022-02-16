@@ -12,6 +12,7 @@ export default class User extends Base {
     channels,
     commands,
     keys,
+    group,
   }) {
     super();
     this.updateData({
@@ -25,6 +26,7 @@ export default class User extends Base {
       channels,
       commands,
       keys,
+      group,
     });
   }
 
@@ -39,6 +41,7 @@ export default class User extends Base {
     channels,
     commands,
     keys,
+    group,
   }) {
     Object.assign(this, {
       createdAt,
@@ -51,6 +54,7 @@ export default class User extends Base {
       channels,
       commands,
       keys,
+      group,
     });
     this.roles = this.rolesArray?.map((role, index) => {
       return { id: index, name: role };

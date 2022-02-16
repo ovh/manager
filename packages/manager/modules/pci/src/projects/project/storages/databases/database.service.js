@@ -378,10 +378,10 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
-  editUser(projectId, engine, databaseId, user) {
+  editUser(projectId, engine, databaseId, userId, user) {
     return this.$http
       .put(
-        `/cloud/project/${projectId}/database/${engine}/${databaseId}/user/${user.id}`,
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/user/${userId}`,
         user,
       )
       .then(({ data }) => data);
