@@ -7,6 +7,21 @@ export default class {
   }
 
   $onInit() {
+    this.messageContainer =
+      'pci.projects.project.storages.databases.dashboard.connectors';
+    this.loadMessages();
     this.trackDashboard('connectors', 'page');
+  }
+
+  loadMessages() {
+    this.CucCloudMessage.unSubscribe(this.messageContainer);
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      this.messageContainer,
+      { onMessage: () => this.refreshMessages() },
+    );
+  }
+
+  refreshMessages() {
+    this.messages = this.messageHandler.getMessages();
   }
 }

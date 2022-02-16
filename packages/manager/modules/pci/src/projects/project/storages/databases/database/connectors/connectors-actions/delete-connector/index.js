@@ -2,18 +2,18 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerPciStoragesDatabaseAddConnectorConfigLazyloading';
+const moduleName = 'ovhManagerPciStoragesDatabaseDeleteConnectorLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'pci.projects.project.storages.databases.dashboard.connectors.add.**',
+      'pci.projects.project.storages.databases.dashboard.connectors.delete.**',
       {
-        url: '/add/:availableConnectorId/config',
+        url: '/delete/:connectorId',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./add-connector-config.module').then((mod) =>
+          return import('./delete-connector.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },

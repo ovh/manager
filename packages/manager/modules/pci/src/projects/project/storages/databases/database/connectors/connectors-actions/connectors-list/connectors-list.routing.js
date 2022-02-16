@@ -32,7 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => {
         trackDashboard('connectors::add', 'action');
         $state.go(
-          'pci.projects.project.storages.databases.dashboard.connectors.config',
+          'pci.projects.project.storages.databases.dashboard.connectors.add',
           { availableConnectorId },
         );
       },

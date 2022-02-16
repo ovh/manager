@@ -1,9 +1,9 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'pci.projects.project.storages.databases.dashboard.connectors.config',
+    'pci.projects.project.storages.databases.dashboard.connectors.add',
     {
       url: '/add/:availableConnectorId/config',
-      component: 'ovhManagerPciStoragesDatabaseConnectorConfigComponent',
+      component: 'ovhManagerPciStoragesDatabaseAddConnectorConfigComponent',
       params: {
         availableConnectorId: null,
       },
