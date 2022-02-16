@@ -23,5 +23,7 @@
   "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf": "High Performance",
   "pci_projects_project_storages_containers_add_offer_storage_description": "Uno spazio accessibile in HTTPS utilizzando l'API OpenStack Swift o l'API S3",
   "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf_description": "La nostra nuova offerta High Performance è disponibile in un numero limitato di datacenter.",
-  "pci_projects_project_storages_containers_add_pattern_help_storage-s3-high-perf": "Il nome del container deve avere tra 3 e 63 caratteri. Deve iniziare e terminare con caratteri alfanumerici minuscoli (da “a” a “z” e da 0 a 9) e può includere i segni di punteggiatura “.” e “-”."
+  "pci_projects_project_storages_containers_add_pattern_help_storage-s3-high-perf": "Il nome del container deve avere tra 3 e 63 caratteri. Deve iniziare e terminare con caratteri alfanumerici minuscoli (da “a” a “z” e da 0 a 9) e può includere i segni di punteggiatura “.” e “-”.",
+  "pci_projects_project_storages_containers_add_description": "Ospita il tuo catalogo di dati nella nostra soluzione Object Storage. Grazie alle API S3 è possibile gestire questi dati dalla tua applicazione.",
+  "pci_projects_project_storages_containers_add_description_link": "Consulta le tariffe"
 }
