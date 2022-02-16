@@ -11,5 +11,5 @@
   "anthos_dashboard_host_order_grid_header_price": "Cena",
   "anthos_dashboard_host_order_grid_row_cpu": "{{cores}} rdzeni / {{threads}} wątków - {{frequency}} GHz+",
   "anthos_dashboard_host_order_grid_row_price": "netto/m-c",
-  "anthos_dashboard_host_order_action": "Złóż zamówienie"
+  "anthos_dashboard_host_order_action": "Zamów"
 }

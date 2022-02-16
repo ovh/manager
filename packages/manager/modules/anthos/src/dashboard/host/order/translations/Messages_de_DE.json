@@ -11,5 +11,5 @@
   "anthos_dashboard_host_order_grid_header_price": "Preis",
   "anthos_dashboard_host_order_grid_row_cpu": "{{ cores }} Cores / {{ threads }} Threads - {{ frequency }} GHz+",
   "anthos_dashboard_host_order_grid_row_price": "inkl. MwSt. / Monat",
-  "anthos_dashboard_host_order_action": "Bestellung beginnen"
+  "anthos_dashboard_host_order_action": "Bestellen"
 }

@@ -13,7 +13,7 @@
   "telephony_alias_portability_order_landline": "An isolated number",
   "telephony_alias_portability_order_sda": "One or more numbers belonging to a pool of numbers (DID)",
   "telephony_alias_portability_order_callNumber": "Number to port (international format)",
-  "telephony_alias_portability_order_sda_warning": "The special numbers are unable to undergo a portability request as an isolated number. Please choose the portability for a pool of numbers (DID)",
+  "telephony_alias_portability_order_sda_warning": "Since special numbers cannot be the subject of an isolated number portability request, please choose the portability for a range of numbers (SDA)",
   "telephony_alias_portability_order_number_international": "No. in international format",
   "telephony_alias_portability_order_callNumber_pattern_error": "Please enter a number in international format (0044... or +44...).",
   "telephony_alias_portability_order_desireDate": "Preferred porting date",
@@ -92,5 +92,7 @@
   "telephony_order_specific_typology_relationship_label": "Customer relations for business/administration/association",
   "telephony_order_specific_typology_content_label": "Ringtones, logos",
   "telephony_order_specific_typology_general_label": "General",
-  "telephony_order_specific_typology_relaxing_label": "Relaxation services"
+  "telephony_order_specific_typology_relaxing_label": "Relaxation services",
+  "telephony_alias_portability_order_sda_sva_warning": "For any special number portability, you must fill out the identity validation form.",
+  "telephony_alias_portability_order_sda_sva_go_to_kyc": "Verify Identity"
 }
