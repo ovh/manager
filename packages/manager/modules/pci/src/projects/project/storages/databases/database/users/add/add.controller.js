@@ -23,6 +23,7 @@ export default class {
       selectedRoles: [],
     };
     this.isRolesReadOnly = !this.isFeatureActivated('getRoles');
+    this.hasGroups = this.isFeatureActivated('usersGroup');
     if (this.isRolesReadOnly) {
       this.model.selectedRoles = [];
     }
@@ -44,6 +45,9 @@ export default class {
     }
     if (this.isFeatureActivated('getRoles')) {
       user.roles = this.model.selectedRoles.map((role) => role.name);
+    }
+    if (this.hasGroups && this.model.group) {
+      user.group = this.model.group;
     }
     return user;
   }
