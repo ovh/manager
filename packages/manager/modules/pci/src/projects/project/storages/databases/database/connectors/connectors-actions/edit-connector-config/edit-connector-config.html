@@ -30,6 +30,40 @@
     >
         <div class="row">
             <div class="col-md-6">
+                <div
+                    ng-if="group.name === 'Transforms'"
+                    class="oui-message oui-message_info"
+                    role="alert"
+                >
+                    <span
+                        class="oui-message__icon oui-icon oui-icon-info-circle"
+                        aria-hidden="true"
+                    ></span>
+                    <p class="oui-message__body">
+                        Transformations enable simple message-at-a-time
+                        modifications. See
+                        <a
+                            href="https://kafka.apache.org/documentation.html#connect_transforms"
+                            target="_blank"
+                            >documentation</a
+                        >
+                        for more details.
+                    </p>
+                </div>
+                <div
+                    ng-if="group.name === 'Extra'"
+                    class="oui-message oui-message_info"
+                    role="alert"
+                >
+                    <span
+                        class="oui-message__icon oui-icon oui-icon-info-circle"
+                        aria-hidden="true"
+                    ></span>
+                    <p class="oui-message__body">
+                        Here you can define connector configurations parameters,
+                        that are not defined in the configuration schema.
+                    </p>
+                </div>
                 <form name="connector-{{$index}}">
                     <connector-input
                         ng-repeat="field in $ctrl.availableConnector.configuration.getFields(group.name)"

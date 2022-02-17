@@ -7,6 +7,7 @@ export default class ConnectorFieldConfiguration {
     importance,
     name,
     required,
+    values,
     type,
   }) {
     this.updateData({
@@ -17,6 +18,7 @@ export default class ConnectorFieldConfiguration {
       importance,
       name,
       required,
+      values,
       type,
     });
   }
@@ -29,6 +31,7 @@ export default class ConnectorFieldConfiguration {
     importance,
     name,
     required,
+    values,
     type,
   }) {
     Object.assign(this, {
@@ -39,7 +42,8 @@ export default class ConnectorFieldConfiguration {
       importance,
       name,
       required,
-      type: displayName === 'Transforms' ? 'transform' : type,
+      values,
+      type,
     });
   }
 }

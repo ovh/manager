@@ -1,30 +1,12 @@
 export default class PciConnectorInputController {
   $onInit() {
-    this.display =
-      [
-        'string',
-        'int64',
-        'int32',
-        'int16',
-        'boolean',
-        'list',
-        'transform',
-        'class',
-        'extra',
-      ].includes(this.data.type) && this.data.name !== 'connector.class';
+    this.display = this.data.name !== 'connector.class';
 
     // For booleans, we use an intermediate variable
     if (this.data.type === 'boolean') {
-      this.tempValue = 'default';
+      this.tempValue = this.model[this.data.name] || 'default';
     }
-
-    this.classes = [
-      '',
-      'org.apache.kafka.connect.storage.StringConverter',
-      'org.apache.kafka.connect.json.JsonConverter',
-      'org.apache.kafka.connect.converters.ByteArrayConverter',
-      'io.confluent.connect.avro.AvroConverter',
-    ];
+    this.options = [''].concat(this.data.values);
   }
 
   onRadioChange(newVal) {

@@ -1,8 +1,5 @@
-import { TRANSFORMATIONS_TYPES } from './connector-transform-input.constants';
-
 export default class PciConnectorTransformInputController {
   $onInit() {
-    this.transformTypes = TRANSFORMATIONS_TYPES;
     this.transformIndex = 0;
     this.transformations = this.getTransformationsFromModel();
   }
@@ -40,7 +37,7 @@ export default class PciConnectorTransformInputController {
     // Add empty value
     transformations.push({
       name: `transform-${this.transformIndex}`,
-      type: this.transformTypes[0],
+      type: this.data.values[0],
     });
     return transformations;
   }
@@ -75,7 +72,7 @@ export default class PciConnectorTransformInputController {
     this.transformIndex += 1;
     this.transformations.push({
       name: `transform-${this.transformIndex}`,
-      type: this.transformTypes[0],
+      type: this.data.values[0],
     });
   }
 

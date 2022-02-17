@@ -18,7 +18,7 @@
     <!--type string -->
     <input
         class="oui-input"
-        ng-if="$ctrl.data.type === 'string'"
+        ng-if="($ctrl.data.type === 'string' || $ctrl.data.name === 'header.converter') && $ctrl.data.name !== '*'"
         name="{{$ctrl.data.name}}"
         type="text"
         ng-required="{{$ctrl.data.required}}"
@@ -51,7 +51,7 @@
     <!-- type list-->
     <input
         class="oui-input"
-        ng-if="$ctrl.data.type === 'list'"
+        ng-if="$ctrl.data.type === 'list' && $ctrl.data.name !== 'transforms'"
         name="{{$ctrl.data.name}}"
         type="text"
         ng-required="{{$ctrl.data.required}}"
@@ -60,13 +60,16 @@
         placeholder="{{$ctrl.data.type}}"
     />
     <!-- type class-->
-    <label class="oui-select" ng-if="$ctrl.data.type === 'class'">
+    <label
+        class="oui-select"
+        ng-if="$ctrl.data.type === 'class' && $ctrl.data.name !== 'header.converter'"
+    >
         <select
             name="type"
             ng-model="$ctrl.model[$ctrl.data.name]"
             class="oui-select__input"
         >
-            <option ng-repeat="option in $ctrl.classes" value="{{option}}"
+            <option ng-repeat="option in $ctrl.options" value="{{option}}"
                 >{{option ? option : 'Default'}}</option
             >
         </select>
@@ -75,14 +78,14 @@
 
     <!-- type transform-->
     <connector-transform-input
-        ng-if="$ctrl.data.type === 'transform'"
+        ng-if="$ctrl.data.name === 'transforms'"
         data="$ctrl.data"
         model="$ctrl.model"
     ></connector-transform-input>
 
-    <!-- type extra-->
+    <!-- additional config-->
     <connector-extra-input
-        ng-if="$ctrl.data.type === 'extra'"
+        ng-if="$ctrl.data.name === '*'"
         data="$ctrl.data"
         configuration="$ctrl.configuration"
         model="$ctrl.model"
