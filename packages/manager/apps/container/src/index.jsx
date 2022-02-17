@@ -29,7 +29,7 @@ shellApi.initShell().then((shell) => {
       ns: [], // namespaces to load by default
       backend: {
         // path construction for async load, ns: namespace, lng: locale
-        loadPath: './translations/{{ns}}/Messages_{{lng}}.json',
+        loadPath: (lng, ns) => `./translations/${ns}/Messages_${lng}.json`,
       },
     });
 

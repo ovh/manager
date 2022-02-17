@@ -10,6 +10,7 @@ import ApplicationContext from '@/context';
 
 import Header from './header';
 import Sidebar from './sidebar';
+import NavReshuffleFeedbackWidget from './feedback';
 
 import style from './template.module.scss';
 
@@ -18,6 +19,7 @@ function NavReshuffleContainer() {
   const [iframe, setIframe] = useState(null);
   const [router, setRouter] = useState(null);
   const [isSidebarExpanded, setSidebarExpanded] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
   const { shell } = useContext(ApplicationContext);
 
   useEffect(() => {
@@ -46,16 +48,14 @@ function NavReshuffleContainer() {
           <Header
             isSidebarExpanded={isSidebarExpanded}
             onHamburgerMenuClick={() => setSidebarExpanded(!isSidebarExpanded)}
+            onUserAccountMenuToggle={setShowOverlay}
           />
         </div>
-        <div
-          className={style.iframeContainer}
-          onClick={() => setSidebarExpanded(false)}
-        >
+        <div className={style.iframeContainer}>
           <div
             className={`${style.iframeOverlay} ${
               isSidebarExpanded ? style.iframeOverlay_visible : ''
-            }`}
+            } ${showOverlay ? style.iframeOverlay_visible : ''}`}
           ></div>
           <iframe
             label="app"
@@ -63,6 +63,9 @@ function NavReshuffleContainer() {
             src="about:blank"
             ref={iframeRef}
           ></iframe>
+          <Suspense fallback="">
+            <NavReshuffleFeedbackWidget />
+          </Suspense>
         </div>
       </div>
     </div>
