@@ -98,7 +98,7 @@
             valid="$ctrl.duration"
         >
             <billing-commitment-duration
-                ng-if="$ctrl.pricings"
+                ng-if="$ctrl.pricings && !$ctrl.isPlanChanged"
                 from-catalog
                 duration="$ctrl.duration"
                 pricings="$ctrl.pricings"
