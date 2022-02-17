@@ -98,12 +98,13 @@ export default class OvhManagerNetAppOrderCtrl {
       defaultPrice: getDefaultPrice(plan),
     }));
 
-    this.plan = minBy(this.plans, 'size');
+    const lowestPlanSize = minBy(this.plans, 'size');
+    this.plan = this.plan || lowestPlanSize;
 
-    this.minSize = this.plan.size;
+    this.minSize = lowestPlanSize.size;
     this.maxSize = maxBy(this.plans, 'size').size;
-    this.selectedSize = this.minSize;
-    this.selectedSizeRange = this.minSize;
+    this.selectedSize = this.plan?.size || this.minSize;
+    this.selectedSizeRange = this.plan?.size || this.minSize;
 
     this.highlightedPlans = this.plans.filter(
       ({ size }) =>
