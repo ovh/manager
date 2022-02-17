@@ -53,14 +53,10 @@
                 ></button>
                 <oui-radio-group model="$ctrl.model.type">
                     <oui-radio inline value="'aggregated'" disabled>
-                        <span
-                            data-translate="{{:: 'pci_databases_namespaces_edit_type_aggregated' | translate }}"
-                        ></span>
+                        <span>Aggregated</span>
                     </oui-radio>
                     <oui-radio inline value="'unaggregated'" disabled>
-                        <span
-                            data-translate="{{:: 'pci_databases_namespaces_edit_type_unaggregated' | translate }}"
-                        ></span>
+                        <span>Unaggregated</span>
                     </oui-radio>
                 </oui-radio-group>
             </oui-field>
@@ -137,7 +133,7 @@
                 <div class="row">
                     <div class="col">
                         <oui-field
-                            data-label="{{:: 'pci_databases_namespaces_edit_writes_commitlog_label' | translate }}"
+                            data-label="writesToCommitLogEnabled"
                             label-popover="{{:: 'pci_databases_namespaces_edit_writes_commitlog_popover' | translate }}"
                         >
                             <label class="oui-select">
@@ -147,14 +143,8 @@
                                     id="writesCommitlog"
                                     data-ng-model="$ctrl.model.writesToCommitLogEnabled"
                                 >
-                                    <option
-                                        ng-value="{{true}}"
-                                        data-translate="pci_databases_namespaces_edit_writes_commitlog_true"
-                                    ></option>
-                                    <option
-                                        ng-value="{{false}}"
-                                        data-translate="pci_databases_namespaces_edit_writes_commitlog_false"
-                                    ></option>
+                                    <option ng-value="{{true}}">True</option>
+                                    <option ng-value="{{false}}">False</option>
                                 </select>
                                 <span
                                     class="oui-icon oui-icon-chevron-down"
@@ -165,7 +155,7 @@
                     </div>
                     <div class="col">
                         <oui-field
-                            data-label="{{:: 'pci_databases_namespaces_edit_snaphot_enabled_label' | translate }}"
+                            data-label="snapshotEnabled"
                             label-popover="{{:: 'pci_databases_namespaces_edit_snaphot_enabled_popover' | translate }}"
                         >
                             <label class="oui-select">
@@ -175,14 +165,8 @@
                                     id="snapshotEnabled"
                                     data-ng-model="$ctrl.model.snapshotEnabled"
                                 >
-                                    <option
-                                        ng-value="{{true}}"
-                                        data-translate="pci_databases_namespaces_edit_snaphot_enabled_true"
-                                    ></option>
-                                    <option
-                                        ng-value="{{false}}"
-                                        data-translate="pci_databases_namespaces_edit_snaphot_enabled_false"
-                                    ></option>
+                                    <option ng-value="{{true}}">True</option>
+                                    <option ng-value="{{false}}">False</option>
                                 </select>
                                 <span
                                     class="oui-icon oui-icon-chevron-down"
@@ -193,7 +177,7 @@
                     </div>
                     <div class="col">
                         <oui-field
-                            data-label="{{:: 'pci_databases_namespaces_edit_blocksize_duration_label' | translate }}"
+                            data-label="retention.blockSizeDuration"
                             label-popover="{{:: 'pci_databases_namespaces_edit_blocksize_duration_popover' | translate }}"
                         >
                             <input
@@ -213,7 +197,7 @@
                 <div class="row">
                     <div class="col">
                         <oui-field
-                            data-label="{{:: 'pci_databases_namespaces_edit_buffer_past_duration_label' | translate }}"
+                            data-label="retention.bufferPastDuration"
                             label-popover="{{:: 'pci_databases_namespaces_edit_buffer_past_duration_popover' | translate }}"
                         >
                             <input
@@ -231,7 +215,7 @@
                     </div>
                     <div class="col">
                         <oui-field
-                            data-label="{{:: 'pci_databases_namespaces_edit_buffer_future_duration_label' | translate }}"
+                            data-label="retention.bufferFutureDuration"
                             label-popover="{{:: 'pci_databases_namespaces_edit_buffer_future_duration_popover' | translate }}"
                         >
                             <input
@@ -249,7 +233,7 @@
                     </div>
                     <div class="col">
                         <oui-field
-                            data-label="{{:: 'pci_databases_namespaces_edit_block_data_expiry_duration_label' | translate }}"
+                            data-label="retention.blockDataExpirationDuration"
                             label-popover="{{:: 'pci_databases_namespaces_edit_block_data_expiry_duration_popover' | translate }}"
                         >
                             <input
