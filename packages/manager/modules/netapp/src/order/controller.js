@@ -113,14 +113,17 @@ export default class OvhManagerNetAppOrderCtrl {
   }
 
   onPlanChange(modelValue) {
+    this.isPlanChanged = true;
     this.selectedSize = modelValue.size;
   }
 
   onCustomSizeChange(modelValue) {
+    this.isPlanChanged = true;
     this.plan = this.plans.find(({ size }) => size === modelValue);
   }
 
   onCommitmentStepFocus() {
+    this.isPlanChanged = false;
     this.defaultPrice = new CatalogPricing(
       this.selectedLicense.price,
     ).toPricing(this.coreConfig.getUser(), this.coreConfig.getUserLocale());
