@@ -25,7 +25,8 @@ function LegacyContainer() {
   }, [iframeRef]);
 
   useEffect(() => {
-    const routing = plugin.routing.initRouting(iframeRef.current);
+    const environment = shell.getPlugin('environment').getEnvironment();
+    const routing = plugin.routing.initRouting(iframeRef.current, environment);
     shell.registerPlugin('routing', routing);
     setRouter(routing.router);
   }, [iframeRef, shell]);
