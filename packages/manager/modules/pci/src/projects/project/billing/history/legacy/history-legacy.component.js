@@ -3,6 +3,7 @@ import template from './history-legacy.html';
 
 export default {
   bindings: {
+    isTrustedZone: '<',
     validParams: '<',
   },
   controller,
