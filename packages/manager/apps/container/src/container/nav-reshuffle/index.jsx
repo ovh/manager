@@ -54,8 +54,10 @@ function NavReshuffleContainer() {
         <div className={style.iframeContainer}>
           <div
             className={`${style.iframeOverlay} ${
-              isSidebarExpanded ? style.iframeOverlay_visible : ''
-            } ${showOverlay ? style.iframeOverlay_visible : ''}`}
+              isSidebarExpanded || showOverlay
+                ? style.iframeOverlay_visible
+                : ''
+            }`}
           ></div>
           <iframe
             label="app"
