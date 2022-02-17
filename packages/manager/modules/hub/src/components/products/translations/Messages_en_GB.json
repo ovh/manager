@@ -62,5 +62,7 @@
   "manager_hub_products_WEB_PAA_S_SUBSCRIPTION": "Web PaaS",
   "manager_hub_products_ALL_DOM": "AllDom Pack",
   "manager_hub_products_NETAPP": "NetApp",
-  "manager_hub_products_VEEAM_ENTERPRISE": "Veeam Enterprise"
+  "manager_hub_products_VEEAM_ENTERPRISE": "Veeam Enterprise",
+  "manager_hub_products_DEDICATED_ANTHOS_TENANTS": "Anthos Platform",
+  "manager_hub_products_NUTANIX": "Nutanix"
 }
