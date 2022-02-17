@@ -4,6 +4,7 @@ export default class NashaAddCtrl {
     $translate,
     $state,
     $window,
+    atInternet,
     CucCloudMessage,
     CucControllerHelper,
     NashaAddService,
@@ -11,6 +12,7 @@ export default class NashaAddCtrl {
     this.$translate = $translate;
     this.$state = $state;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
     this.NashaAddService = NashaAddService;
@@ -36,6 +38,12 @@ export default class NashaAddCtrl {
   }
 
   order() {
+    this.atInternet.trackClick({
+      name: `nasha-add-confirm::${this.data.selectedModel
+        .toUpperCase()
+        .replace(/-/g, '_')}::${this.data.selectedDatacenter}`,
+      type: 'action',
+    });
     this.NashaAddService.order(this.data).then(({ url }) =>
       this.$window.open(url, '_blank'),
     );

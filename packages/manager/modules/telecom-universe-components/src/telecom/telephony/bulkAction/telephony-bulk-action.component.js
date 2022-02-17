@@ -13,6 +13,7 @@ export default {
     onSuccess: '&?',
     onError: '&?',
     filterServices: '&?',
+    trackingPrefix: '@?',
   },
   template,
   controller: 'tucTelephonyBulkActionCtrl',

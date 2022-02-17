@@ -17,6 +17,7 @@ export default /* @ngInject */ function(
   $filter,
   $q,
   $uibModalInstance,
+  atInternet,
   modalBindings,
   tucTelecomVoip,
 ) {
@@ -114,6 +115,15 @@ export default /* @ngInject */ function(
     });
   };
 
+  function trackClick(label) {
+    if (self.bindings.trackingPrefix) {
+      atInternet.trackClick({
+        name: `${self.bindings.trackingPrefix}::${label}`,
+        type: 'action',
+      });
+    }
+  }
+
   /* -----  End of HELPERS  ------ */
 
   /* =============================
@@ -121,6 +131,7 @@ export default /* @ngInject */ function(
     ============================== */
 
   self.cancel = function cancel(reason) {
+    trackClick('cancel');
     return $uibModalInstance.dismiss(reason);
   };
 
@@ -145,6 +156,7 @@ export default /* @ngInject */ function(
 
   self.onBulkServiceChoiceFormSubmit = function onBulkServiceChoiceFormSubmit() {
     self.loading.bulk = true;
+    trackClick('confirm');
 
     // build params for each actions
     if (
@@ -219,6 +231,12 @@ export default /* @ngInject */ function(
 
     self.bindings = modalBindings;
     self.model.billingAccount = self.bindings.billingAccount;
+
+    if (self.bindings.trackingPrefix) {
+      atInternet.trackPage({
+        name: self.bindings.trackingPrefix,
+      });
+    }
 
     return tucTelecomVoip.fetchAll(false).then((billingAccounts) => {
       self.billingAccounts = sortBy(billingAccounts, (billingAccount) =>
