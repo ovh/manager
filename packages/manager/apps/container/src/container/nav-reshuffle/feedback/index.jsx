@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import addDays from 'date-fns/addDays';
+import isAfter from 'date-fns/isAfter';
 
 import { LOCAL_STORAGE_ITEM, REDISPLAY_DAYS_INTERVAL } from './constants';
 import style from './style.module.scss';
@@ -19,7 +20,7 @@ export const NavReshuffleFeedbackWidget = () => {
     const { timestamp } = JSON.parse(storedInfo);
 
     const redisplayDate = addDays(new Date(timestamp), REDISPLAY_DAYS_INTERVAL);
-    return new Date() > redisplayDate;
+    return isAfter(redisplayDate, new Date());
   };
 
   const [visible, setVisibility] = useState(false);
