@@ -8,6 +8,7 @@
     data-ng-href="{{:: $ctrl.getRenewUrl() }}"
     data-ng-bind=":: $ctrl.getDate() | date:'mediumDate'"
     data-ng-if="$ctrl.coreConfig.getRegion() !== 'US' && !$ctrl.hideRenewDate"
+    target="_top"
 >
 </a>
 <oui-action-menu

@@ -46,7 +46,10 @@
                     data-ng-bind="$ctrl.data.details.totals.currencySymbol"
                 ></span>
             </div>
-            <a data-ng-href="{{ $ctrl.currentMonthlyBillingBill.pdfUrl }}">
+            <a
+                data-ng-href="{{ $ctrl.currentMonthlyBillingBill.pdfUrl }}"
+                target="_top"
+            >
                 <span
                     data-ng-if="$ctrl.currentMonthlyBillingBill"
                     data-translate="cpbhd_bill_pdf_link"
@@ -61,6 +64,7 @@
             <a
                 data-ng-href="{{ $ctrl.billingUrl }}"
                 data-translate="cpbhd_bill_link"
+                target="_top"
             ></a>
         </div>
         <div class="row">
