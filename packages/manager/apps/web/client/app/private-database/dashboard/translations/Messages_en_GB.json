@@ -83,6 +83,7 @@
   "privateDatabase_configuration_field_mariadb_10.1_compatibility": "Compatibility mode with MariaDB 10.1.",
   "privateDatabase_configuration_field_max_connections": "Number of concurrent connections authorised on Private SQL.",
   "privateDatabase_configuration_field_max_user_connections": "Number of concurrent connections authorised per user.",
+  "privateDatabase_configuration_field_sql_mode": "The «sql_mode» option affects the supported SQL syntax, and the data validation performed by MySQL/MariaDB. More details here: <Lien>",
   "privateDatabase_configuration_field_tmpdir": "Temporary file folder (RAM or hard disk of the instance).",
   "privateDatabase_configuration_field_wait_timeout": "Time for which the server will wait for activity on a non-interactive connection before closing the connection (in seconds).",
   "privateDatabase_capability_disabled_explanation": "This feature is not available for this database type.",

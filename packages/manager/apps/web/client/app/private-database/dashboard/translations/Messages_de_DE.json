@@ -84,6 +84,7 @@
   "privateDatabase_configuration_field_max_allowed_packet": "Maximale Paketgröße (in Megabyte).",
   "privateDatabase_configuration_field_max_connections": "Anzahl der erlaubten Simultanverbindungen auf SQL Private.",
   "privateDatabase_configuration_field_max_user_connections": "Anzahl der erlaubten Simultanverbindungen je Benutzer.",
+  "privateDatabase_configuration_field_sql_mode": "Die Option «sql_mode» betrifft die jeweilige SQL-Syntax und die Überprüfungen der Datenvalidierung durch MySQL/MariaDB. Details dazu finden Sie hier: <Lien>",
   "privateDatabase_configuration_field_tmpdir": "Verzeichnis temporärer Dateien (RAM oder Festplatte der Instanz).",
   "privateDatabase_configuration_field_wait_timeout": "Zeit (in Sekunden), während der der Server auf eine Aktivität auf einer nicht interaktiven Verbindung wartet, bevor er diese schließt.",
   "privateDatabase_capability_disabled_explanation": "Die Funktion ist für diesen Datenbanktyp nicht verfügbar.",
