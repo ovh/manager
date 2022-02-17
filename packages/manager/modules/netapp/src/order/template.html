@@ -104,6 +104,7 @@
                 pricings="$ctrl.pricings"
                 default-price="$ctrl.defaultPrice"
                 preselect-default="true"
+                on-duration-change="$ctrl.isCommitmentChange = true"
             ></billing-commitment-duration>
         </oui-step-form>
         <oui-step-form
@@ -115,7 +116,7 @@
             submit-text="{{:: 'netapp_order_confirm' | translate }}"
         >
             <billing-commitment-pricing-mode
-                data-ng-if="$ctrl.pricingModes"
+                data-ng-if="$ctrl.pricingModes && !$ctrl.isCommitmentChange"
                 pricing-mode="$ctrl.pricingMode"
                 pricing-modes="$ctrl.pricingModes"
                 duration="$ctrl.duration"

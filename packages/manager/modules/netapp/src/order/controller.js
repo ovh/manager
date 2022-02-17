@@ -134,6 +134,7 @@ export default class OvhManagerNetAppOrderCtrl {
   }
 
   onPricingModeStepFocus() {
+    this.isCommitmentChange = false;
     this.pricingModes = this.BillingService.getAvailableEngagementFromCatalog(
       this.pricings.filter(
         ({ commitment }) =>
