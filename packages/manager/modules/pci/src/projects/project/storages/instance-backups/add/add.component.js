@@ -3,6 +3,8 @@ import template from './add.html';
 
 export default {
   bindings: {
+    pciFeatures: '<',
+    excludeCategories: '<',
     backup: '<',
     goBack: '<',
     publicNetwork: '<',
