@@ -5,6 +5,7 @@ export default {
   template,
   controller,
   bindings: {
+    isTrustedZone: '<',
     resources: '<',
     switchToMonthlyBilling: '&',
     showAdditionalInstanceDetails: '<',

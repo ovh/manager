@@ -33,6 +33,7 @@
 </oui-collapsible>
 <oui-collapsible
     class="mx-0"
+    data-ng-if="!$ctrl.isTrustedZone"
     heading="{{ ::'cpbc_archive_storage_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.archiveStorage.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <archive-storage-list
@@ -49,6 +50,7 @@
 </oui-collapsible>
 <oui-collapsible
     class="mx-0"
+    data-ng-if="!$ctrl.isTrustedZone"
     heading="{{ ::'cpbc_hourly_private_registry_title' | translate }} ({{ $ctrl.resources.totals.hourly.privateRegistry.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
@@ -58,6 +60,7 @@
 </oui-collapsible>
 <oui-collapsible
     class="mx-0"
+    data-ng-if="!$ctrl.isTrustedZone"
     heading="{{ ::'cpbc_hourly_load_balancer_title' | translate }} ({{ $ctrl.resources.totals.hourly.loadBalancer.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
@@ -67,6 +70,7 @@
 </oui-collapsible>
 <oui-collapsible
     class="mx-0"
+    data-ng-if="!$ctrl.isTrustedZone"
     heading="{{ ::'cpbc_hourly_serving_title' | translate }} ({{ $ctrl.resources.totals.hourly.serving.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
@@ -76,6 +80,7 @@
 </oui-collapsible>
 <oui-collapsible
     class="mx-0"
+    data-ng-if="!$ctrl.isTrustedZone"
     heading="{{ ::'cpbc_hourly_training_title' | translate }} ({{ $ctrl.resources.totals.hourly.training.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
@@ -85,6 +90,7 @@
 </oui-collapsible>
 <oui-collapsible
     class="mx-0"
+    data-ng-if="!$ctrl.isTrustedZone"
     heading="{{ ::'cpbc_hourly_notebooks_title' | translate }} ({{ $ctrl.resources.totals.hourly.notebooks.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
@@ -94,6 +100,7 @@
 </oui-collapsible>
 <oui-collapsible
     class="mx-0"
+    data-ng-if="!$ctrl.isTrustedZone"
     heading="{{ ::'cpbc_hourly_data_processing_title' | translate }} ({{ $ctrl.resources.totals.hourly.dataProcessing.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
@@ -103,6 +110,7 @@
 </oui-collapsible>
 <oui-collapsible
     class="mx-0"
+    data-ng-if="!$ctrl.isTrustedZone"
     heading="{{ ::'cpbc_hourly_databases_title' | translate }} ({{ $ctrl.resources.totals.hourly.databases.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
 >
     <pci-billing-resource-usage
