@@ -30,6 +30,6 @@ HamburgerMenu.propTypes = {
 HamburgerMenu.defaultProps = {
   isOpen: false,
   onClick: () => {},
-}
+};
 
 export default HamburgerMenu;

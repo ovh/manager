@@ -56,7 +56,12 @@ function Header({
                 </NotificationsProvider>
               </div>
               <div className="oui-navbar-list__item">
-                <UserAccountMenu onToggle={onUserAccountMenuToggle} />
+                <UserAccountMenu
+                  onToggle={({ show }) => {
+                    setIsDropdownOpen(show);
+                    onUserAccountMenuToggle(show);
+                  }}
+                />
               </div>
             </div>
           </div>

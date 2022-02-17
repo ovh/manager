@@ -29,9 +29,7 @@ export const UserAccountMenu = ({ onToggle }) => {
   const [defaultPaymentMethod, setDefaultPaymentMethod] = useState(null);
   const handleRootClose = () => {
     setShow(false);
-    onToggle(false);
   };
-  useClickAway(ref, handleRootClose);
 
   useEffect(async () => {
     if (!defaultPaymentMethod && show && !user.enterprise) {
@@ -43,7 +41,11 @@ export const UserAccountMenu = ({ onToggle }) => {
         setIsPaymentMethodLoading(false);
       }
     }
+
+    onToggle({ show });
   }, [show]);
+
+  useClickAway(ref, handleRootClose);
 
   return (
     <div className="oui-navbar-dropdown" ref={ref}>
@@ -51,7 +53,6 @@ export const UserAccountMenu = ({ onToggle }) => {
         show={show}
         onClick={(nextShow) => {
           setShow(nextShow);
-          onToggle(nextShow);
         }}
       >
         <span
@@ -70,7 +71,7 @@ export const UserAccountMenu = ({ onToggle }) => {
 };
 
 UserAccountMenu.propTypes = {
-  onToggle: PropTypes.func,
+  onToggle: PropTypes.func.isRequired,
 };
 
 UserAccountMenu.defaultProps = {
