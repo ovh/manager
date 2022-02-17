@@ -3,6 +3,7 @@ import template from './billing-legacy.html';
 
 export default {
   bindings: {
+    isTrustedZone: '<',
     billingLink: '<',
     estimateLink: '<',
     historyLink: '<',
