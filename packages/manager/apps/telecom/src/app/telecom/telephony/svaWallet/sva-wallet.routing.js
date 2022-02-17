@@ -1,5 +1,3 @@
-import { isKYCUnderReview } from './sva-wallet.constants';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecom.telephony.billingAccount.svaWallet', {
     url: '/sva-wallet',
@@ -7,9 +5,6 @@ export default /* @ngInject */ ($stateProvider) => {
       'telephonyView@telecom.telephony': {
         componentProvider: /* @ngInject */ (svaWallet) => {
           if (svaWallet) {
-            if (!isKYCUnderReview(svaWallet)) {
-              return 'telephonySvaWalletKycIdentityDocuments';
-            }
             return 'telephonySvaWalletKycIdentitySummary';
           }
           return 'telephonySvaWalletKycIdentityForm';
@@ -43,6 +38,11 @@ export default /* @ngInject */ ($stateProvider) => {
         TelephonySvaWalletService.saveWallet(wallet, bankAccount).then(() =>
           $state.reload(),
         ),
+
+      putWallet: /* @ngInject */ (TelephonySvaWalletService, $state) => (
+        wallet,
+      ) =>
+        TelephonySvaWalletService.putWallet(wallet).then(() => $state.reload()),
 
       uploadDocument: /* @ngInject */ (TelephonySvaWalletService) => (
         document,

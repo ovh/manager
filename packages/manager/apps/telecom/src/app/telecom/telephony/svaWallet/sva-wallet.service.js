@@ -45,6 +45,12 @@ export default class SvaWalletService {
     });
   }
 
+  putWallet(wallet) {
+    return this.$http.put('/me/sva/wallet', wallet).then(() => {
+      return this.$q.resolve();
+    });
+  }
+
   saveWalletIban(bankAccount) {
     return this.$http.post('/me/sva/wallet/bankAccount', bankAccount);
   }

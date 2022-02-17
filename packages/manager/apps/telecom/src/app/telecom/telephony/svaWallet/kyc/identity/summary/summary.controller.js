@@ -15,7 +15,6 @@ export default class KycIdentitySummaryController {
   $onInit() {
     this.showDocumentSuccessMessage = false;
     this.showIBANSuccessMessage = false;
-
     this.prepareDocuments(this.svaWallet.documents);
   }
 
