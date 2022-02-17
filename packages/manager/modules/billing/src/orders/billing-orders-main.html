@@ -4,14 +4,14 @@
         data-ng-if="$ctrl.billingGuideUrl"
     >
         <oui-guide-menu-item
-            data-ng-href="{{ $ctrl.billingGuideUrl }}"
+            data-ng-href="{{:: $ctrl.billingGuideUrl }}"
             data-external="true"
         >
             <span data-translate="orders_billing"></span>
         </oui-guide-menu-item>
         <oui-guide-menu-item
             data-ng-if="$ctrl.featuresAvailabilities['billing:purchases-order']"
-            data-ng-href="{{ $ctrl.purchaseOrdersGuideUrl }}"
+            data-ng-href="{{:: $ctrl.purchaseOrdersGuideUrl }}"
             data-external="true"
         >
             <span data-translate="orders_purchase"></span>

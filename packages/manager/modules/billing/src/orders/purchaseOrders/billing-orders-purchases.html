@@ -22,9 +22,11 @@
                     data-ng-if="$ctrl.purchases.length > 0"
                     aria-hidden="true"
                 ></span>
-                {{:: $ctrl.purchases.length > 0 ?
-                'purchaseOrders_add_reference':'purchaseOrders_create_reference'|
-                translate }}
+                <span
+                    data-translate="{{:: $ctrl.purchases.length > 0 ?
+                    'purchaseOrders_add_reference':'purchaseOrders_create_reference'|
+                    translate }}"
+                ></span>
             </button>
         </oui-datagrid-topbar>
         <oui-datagrid-column
@@ -88,12 +90,14 @@
                 compact
             >
                 <oui-action-menu-item on-click="$ctrl.editPurchase($row)">
-                    {{:: 'purchaseOrders_edit_reference' | translate}}
+                    <span data-translate="purchaseOrders_edit_reference"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item on-click="$ctrl.editPurchaseStatus($row)">
-                    {{:: $row.active ?
-                    'purchaseOrders_status_change_desactivation':'purchaseOrders_status_change_reactivation'
-                    | translate}}
+                    <span
+                        data-translate="{{:: $row.active ?
+                        'purchaseOrders_status_change_desactivation':'purchaseOrders_status_change_reactivation'
+                        | translate}}"
+                    ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid-column>

@@ -2,7 +2,7 @@ import { TYPE_PURCHASE_FOR_TRACKING } from '../billing-orders-purchases.constant
 
 export default class BillingOrdersPurchaseUpdatePurchaseStatusCtrl {
   /* @ngInject */
-  constructor($translate, atInternet, billingOrdersPurchasesService) {
+  constructor($translate, billingOrdersPurchasesService) {
     this.$translate = $translate;
     this.billingOrdersPurchasesService = billingOrdersPurchasesService;
   }

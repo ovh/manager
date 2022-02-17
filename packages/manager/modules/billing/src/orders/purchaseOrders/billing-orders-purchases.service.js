@@ -6,6 +6,11 @@ export default class BillingOrdersPurchasesService {
     this.$q = $q;
     this.OvhHttp = OvhHttp;
     this.iceberg = iceberg;
+    this.toDay = () => {
+      return new Date()
+        .toISOString()
+        .slice(0, new Date().toISOString().indexOf('T'));
+    };
   }
 
   postPurchaseOrder(data) {
@@ -95,11 +100,5 @@ export default class BillingOrdersPurchasesService {
   minDateForEndDate() {
     this.date = new Date();
     return this.date.setDate(this.date.getDate() + 1);
-  }
-
-  static toDay() {
-    return new Date()
-      .toISOString()
-      .slice(0, new Date().toISOString().indexOf('T'));
   }
 }

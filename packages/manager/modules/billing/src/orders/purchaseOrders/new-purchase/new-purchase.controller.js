@@ -5,7 +5,7 @@ import {
 
 export default class BillingOrdersPurchaseAddCtrl {
   /* @ngInject */
-  constructor($translate, atInternet, billingOrdersPurchasesService) {
+  constructor($translate, billingOrdersPurchasesService) {
     this.$translate = $translate;
     this.billingOrdersPurchasesService = billingOrdersPurchasesService;
     this.TYPE_PURCHASE = TYPE_PURCHASE;

@@ -14,7 +14,7 @@
   "purchaseOrders_edit_reference": "Modifier",
   "purchaseOrders_status_change_reactivation": "Réactiver",
   "purchaseOrders_status_change_desactivation": "Désactiver",
-  "purchaseOrders_confirmation_reactivation_REFERENCE_ORDER_success": "Votre référence interne a bien été réactivé.",
+  "purchaseOrders_confirmation_reactivation_REFERENCE_ORDER_success": "Votre référence interne a bien été réactivée.",
   "purchaseOrders_confirmation_reactivation_PURCHASE_ORDER_success": "Votre purchase order a bien été réactivé.",
   "purchaseOrders_confirmation_reactivation_error": "Votre demande n'a pas pu être prise en compte. Merci d'essayer ultérieurement."
 }
