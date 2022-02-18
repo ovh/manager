@@ -3,6 +3,10 @@
   "pci_databases_connectors_name": "Nom",
   "pci_databases_connectors_connector": "Connector",
   "pci_databases_connectors_type": "Type",
+  "pci_databases_connectors_status": "Status",
+  "pci_databases_connectors_tasks": "Tasks",
+  "pci_databases_connectors_state": "State",
+  "pci_databases_connectors_restart": "Restart",
   "pci_databases_connectors_update": "Modifier",
   "pci_databases_connectors_delete": "Supprimer",
   "pci_databases_connectors_add": "Ajouter un connector"

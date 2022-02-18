@@ -1,5 +1,6 @@
 import controller from './connectors.controller';
 import template from './connectors.html';
+import './connectors.scss';
 
 export default {
   bindings: {

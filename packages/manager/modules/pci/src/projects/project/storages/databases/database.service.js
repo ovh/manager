@@ -23,6 +23,7 @@ import Pool from '../../../../components/project/storages/databases/pool.class';
 import QueryStatistics from '../../../../components/project/storages/databases/queryStatistics.class';
 import Namespace from '../../../../components/project/storages/databases/namespace.class';
 import AvailableConnector from '../../../../components/project/storages/databases/availableConnector.class';
+import Connector from '../../../../components/project/storages/databases/connector.class';
 
 export default class DatabaseService {
   /* @ngInject */
@@ -895,14 +896,18 @@ export default class DatabaseService {
       )
       .then(({ data }) => data);
   }
-  
+
   getAvailableConnectors(projectId, engine, databaseId) {
     return this.$http
       .get(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/capabilities/connector`,
         DatabaseService.getIcebergHeaders(),
       )
-      .then(({ data }) => data);
+      .then(({ data }) =>
+        data.map(
+          (availableConnector) => new AvailableConnector(availableConnector),
+        ),
+      );
   }
 
   getAvailableConnector(projectId, engine, databaseId, connectorId) {
@@ -933,7 +938,7 @@ export default class DatabaseService {
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector`,
         DatabaseService.getIcebergHeaders(),
       )
-      .then(({ data }) => data);
+      .then(({ data }) => data.map((connector) => new Connector(connector)));
   }
 
   getConnector(projectId, engine, databaseId, connectorId) {
@@ -941,7 +946,7 @@ export default class DatabaseService {
       .get(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector/${connectorId}`,
       )
-      .then(({ data }) => data);
+      .then(({ data }) => new Connector(data));
   }
 
   postConnector(projectId, engine, databaseId, connector) {

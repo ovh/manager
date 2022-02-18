@@ -36,9 +36,12 @@ export default class ConnectorConfiguration {
     return this.mappedConfig[group === EMPTY_GROUP_NAME ? '' : group];
   }
 
+  getField(field) {
+    return this.rawData.find((input) => input.name === field);
+  }
+
   isExtra(field) {
-    const isFieldInConfig =
-      this.rawData.filter((input) => input.name === field).length !== 0;
+    const isFieldInConfig = this.getField(field);
     const isFieldTransform = field.startsWith('transform');
     return !(isFieldInConfig || isFieldTransform);
   }

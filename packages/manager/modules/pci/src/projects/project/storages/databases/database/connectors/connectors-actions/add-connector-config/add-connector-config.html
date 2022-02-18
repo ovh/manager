@@ -79,7 +79,10 @@
             </div>
             <div class="col-md-6 d-none d-md-block">
                 <h3>Connector configuration</h3>
-                <connector-preview data="$ctrl.model"></connector-preview>
+                <connector-preview
+                    data="$ctrl.model"
+                    configuration="$ctrl.availableConnector.configuration"
+                ></connector-preview>
             </div>
         </div>
     </oui-tabs-item>

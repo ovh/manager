@@ -5,6 +5,7 @@ import './connector-preview.scss';
 export default {
   bindings: {
     data: '<',
+    configuration: '<',
   },
   controller,
   template,

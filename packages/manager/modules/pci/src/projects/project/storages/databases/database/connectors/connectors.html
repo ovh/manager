@@ -27,25 +27,82 @@
             data-searchable
             data-filterable
         >
-            <h6 ng-bind="$row.connectorInfo.name" class="mb-0"></h6>
-            <span class="oui-paragraph">
-                Version: {{$row.connectorInfo.version}} | Author:
-                {{$row.connectorInfo.author}} |
-                <a
-                    ng-href="{{$row.connectorInfo.documentationUrl}}"
-                    target="_blank"
-                    >docs</a
+            <div class="d-flex align-items-center">
+                <span
+                    class="round-icon oui-icon mr-2 oui-background-p-400 oui-color-p-050"
+                    ng-class="{
+                    'oui-icon-arrow-down': $row.connectorInfo.type === 'sink',
+                    'oui-icon-arrow-up': $row.connectorInfo.type === 'source'
+                    }"
                 >
-            </span>
+                </span>
+                <div>
+                    <h6 ng-bind="$row.connectorInfo.name" class="mb-0"></h6>
+                    <span class="oui-paragraph">
+                        <span>Version: {{$row.connectorInfo.version}}</span>
+                        <span> | Author: {{$row.connectorInfo.author}}</span>
+                        <span ng-if="$row.connectorInfo.documentationUrl"
+                            >|
+                            <a
+                                ng-href="{{$row.connectorInfo.documentationUrl}}"
+                                target="_blank"
+                                >docs</a
+                            >
+                        </span>
+                    </span>
+                </div>
+            </div>
         </oui-datagrid-column>
         <oui-datagrid-column
-            data-title=":: 'pci_databases_connectors_type' | translate"
-            data-property="connectorInfo.type"
+            data-title=":: 'pci_databases_connectors_status' | translate"
+            data-property="connectorInfo"
             data-sortable="asc"
             data-type="string"
             data-searchable
             data-filterable
-        ></oui-datagrid-column>
+        >
+            <span class="text-uppercase font-weight-bold"
+                >{{$ctrl.random ? 'running' : 'paused'}}</span
+            >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_connectors_tasks' | translate"
+            data-property="connectorInfo"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+            <div class="d-flex align-items-center oui-color-ae-500">
+                <span>0/1</span>
+                <span class="oui-icon oui-icon-warning"></span>
+            </div>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_connectors_state' | translate"
+            data-property="connectorInfo"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+            <span
+                class="large-icon font-weight-bold oui-icon oui-button"
+                ng-class="$ctrl.random ? 'oui-icon-pause_concept' : 'oui-icon-play_concept'"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_databases_connectors_restart' | translate"
+            data-property="connectorInfo"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+            <span
+                class="large-icon font-weight-bold oui-icon oui-icon-refresh oui-button"
+            ></span>
+        </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item data-on-click="$ctrl.goToEdit($row)">
                 <span data-translate="pci_databases_connectors_update"></span>

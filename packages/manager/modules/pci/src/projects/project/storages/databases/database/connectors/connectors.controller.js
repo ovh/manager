@@ -11,6 +11,7 @@ export default class {
       'pci.projects.project.storages.databases.dashboard.connectors';
     this.loadMessages();
     this.trackDashboard('connectors', 'page');
+    this.random = Math.random() > 0.5;
   }
 
   loadMessages() {

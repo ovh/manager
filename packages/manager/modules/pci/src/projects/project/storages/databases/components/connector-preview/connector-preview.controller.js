@@ -3,7 +3,11 @@ export default class PciConnectorPreviewController {
     const value = {};
     Object.keys(this.data).forEach((field) => {
       if (![null, undefined, ''].includes(this.data[field])) {
-        value[field] = `${this.data[field]}`;
+        if (this.configuration.getField(field)?.type === 'password') {
+          value[field] = `${this.data[field].replace(/./g, '*')}`;
+        } else {
+          value[field] = `${this.data[field]}`;
+        }
       }
     });
     return value;

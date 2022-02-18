@@ -27,7 +27,7 @@ export default class PciConnectorTransformInputController {
             `transforms.${transformationName}.timestamp.field`
           ],
           topicValue: this.model[
-            `transforms.${transformationName}.topic.value`
+            `transforms.${transformationName}.topic.field`
           ],
           added: true,
         });
@@ -66,7 +66,7 @@ export default class PciConnectorTransformInputController {
       transformation.staticValue;
     this.model[`transforms.${transformation.name}.timestamp.field`] =
       transformation.timestampField;
-    this.model[`transforms.${transformation.name}.topic.value`] =
+    this.model[`transforms.${transformation.name}.topic.field`] =
       transformation.topicValue;
     // Add empty value for form
     this.transformIndex += 1;
@@ -85,7 +85,7 @@ export default class PciConnectorTransformInputController {
     this.model[`transforms.${transformationName}.static.field`] = undefined;
     this.model[`transforms.${transformationName}.static.value`] = undefined;
     this.model[`transforms.${transformationName}.timestamp.field`] = undefined;
-    this.model[`transforms.${transformationName}.topic.value`] = undefined;
+    this.model[`transforms.${transformationName}.topic.field`] = undefined;
     this.transformations.splice($index, 1);
     this.setModelTransformationsName();
   }

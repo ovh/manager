@@ -26,6 +26,15 @@
         placeholder="{{$ctrl.data.type}}"
         ng-model="$ctrl.model[$ctrl.data.name]"
     />
+    <!--type password -->
+    <oui-password
+        ng-if="$ctrl.data.type === 'password'"
+        model="$ctrl.model[$ctrl.data.name]"
+        name="{{$ctrl.data.name}}"
+        ng-required="{{$ctrl.data.required}}"
+        placeholder="{{$ctrl.data.type}}"
+    >
+    </oui-password>
     <!--type int32 -->
     <input
         class="oui-input"
