@@ -176,14 +176,6 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
   {
     subitems: [
       {
-        id: 'analytics-data-platform',
-        options: {
-          state: 'pci.projects.project.analytics-data-platform',
-        },
-        title: 'Analytics Data Platform',
-        regions: ['EU'],
-      },
-      {
         id: 'data-processing',
         new: true,
         options: {
