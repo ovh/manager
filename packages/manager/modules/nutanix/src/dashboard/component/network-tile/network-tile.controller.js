@@ -1,4 +1,5 @@
 import isFunction from 'lodash/isFunction';
+import parseInt from 'lodash/parseInt';
 import { IPFO } from './network-tile.constants';
 
 export default class NutanixNetworkTileController {
@@ -36,15 +37,6 @@ export default class NutanixNetworkTileController {
         });
     }
 
-    this.loadingBandwidth = true;
-    this.loadBandwidth()
-      .then((res) => {
-        this.specifications = res;
-      })
-      .finally(() => {
-        this.loadingBandwidth = false;
-      });
-
     this.loadingBandwidthOptions = true;
     this.loadBandwidthOptions()
       .then((res) => {
@@ -61,6 +53,19 @@ export default class NutanixNetworkTileController {
       .finally(() => {
         this.loadingUpgradeOptions = false;
       });
+    this.setPrivateBandwidth();
+  }
+
+  setPrivateBandwidth() {
+    this.privatebandwidth = {
+      value:
+        parseInt(
+          this.privateBandwidthPlanCode
+            .split('-')
+            .find((ele) => /^\d+$/.test(ele)),
+        ) / 1000,
+      unit: 'Gbps',
+    };
   }
 
   loadVrack(vRackServiceName) {
@@ -83,12 +88,6 @@ export default class NutanixNetworkTileController {
         ...data,
       }))
       .catch((error) => this.handleError(error));
-  }
-
-  loadBandwidth() {
-    return this.NutanixService.getBandwidth(
-      this.cluster.getFirstNode(),
-    ).catch((error) => this.handleError(error));
   }
 
   loadBandwidthOptions() {

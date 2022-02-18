@@ -6,6 +6,7 @@ export default {
     cluster: '<',
     goToUpgradePrivateBandwidth: '<',
     onError: '&?',
+    privateBandwidthPlanCode: '<',
     privateBandwidthServiceId: '<',
   },
   controller,

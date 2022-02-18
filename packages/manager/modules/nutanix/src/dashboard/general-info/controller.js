@@ -14,7 +14,7 @@ export default class NutanixGeneralInfoCtrl {
   $onInit() {
     this.loadServcesDetails();
     this.technicalDetails = this.getTechnicalDetails();
-    this.setPrivateBandwidthServiceId();
+    this.setPrivateBandwidthDetails();
     this.clusterRedeploying = this.cluster.status === CLUSTER_STATUS.DEPLOYING;
   }
 
@@ -36,10 +36,16 @@ export default class NutanixGeneralInfoCtrl {
     );
   }
 
-  setPrivateBandwidthServiceId() {
-    this.privateBandwidthServiceId = this.clusterAddOns.find((addOn) =>
-      addOn.billing?.plan?.code?.startsWith(PRIVATE_BANDWIDTH_SERVICE_PREFIX),
-    )?.serviceId;
+  setPrivateBandwidthDetails() {
+    const addOn = this.clusterAddOns.find((clusterAddOn) =>
+      clusterAddOn.billing?.plan?.code?.startsWith(
+        PRIVATE_BANDWIDTH_SERVICE_PREFIX,
+      ),
+    );
+    if (addOn) {
+      this.privateBandwidthServiceId = addOn.serviceId;
+      this.privateBandwidthPlanCode = addOn.billing.plan.code;
+    }
   }
 
   trackClick(trackText) {

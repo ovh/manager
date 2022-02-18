@@ -1,12 +1,11 @@
 <oui-tile
     class="h-100"
     data-heading="{{:: 'nutanix_cluster_network_title' | translate }}"
-    data-loading="$ctrl.loadingVrack || $ctrl.loadingIpLb ||
-        $ctrl.loadingBandwidth || $ctrl.loadingBandwidthOptions"
+    data-loading="$ctrl.loadingVrack || $ctrl.loadingIpLb || $ctrl.loadingBandwidthOptions"
 >
     <!-- Private Bandwidth -->
     <oui-tile-definition
-        data-ng-if="$ctrl.specifications.vrack.bandwidth"
+        data-ng-if="$ctrl.privateBandwidthPlanCode"
         data-term="{{:: 'nutanix_cluster_bandwidth_private' | translate }}"
     >
         <oui-tile-description>
@@ -17,7 +16,7 @@
                         class="oui-icon oui-icon-arrow-up font-inherit"
                     ></span>
                     <span
-                        data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
+                        data-ng-bind="$ctrl.privatebandwidth | serverBandwidth"
                     ></span>
                     <span
                         data-translate="nutanix_cluster_bandwidth_outgoing"
@@ -34,7 +33,7 @@
                         class="oui-icon oui-icon-arrow-down font-inherit"
                     ></span>
                     <span
-                        data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
+                        data-ng-bind="$ctrl.privatebandwidth | serverBandwidth"
                     ></span>
                     <span
                         data-translate="nutanix_cluster_bandwidth_incoming"
