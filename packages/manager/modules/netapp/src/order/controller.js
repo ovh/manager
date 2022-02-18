@@ -145,17 +145,22 @@ export default class OvhManagerNetAppOrderCtrl {
   }
 
   goToOrderUrl() {
-    const pricingMode = this.pricingMode.pricingMode.replace(/[0-9]+/, '');
+    const pricingModeType = this.pricingMode.pricingMode.replace(/[0-9]+/, '');
     this.atInternet.trackClick({
-      name: `netapp::order::confirm::${this.selectedRegion}_${this.selectedLicense.name}_${this.selectedSize}TB_${this.duration.duration}_${pricingMode}`,
+      name: `netapp::order::confirm::${this.selectedRegion}_${this.selectedLicense.name}_${this.selectedSize}TB_${this.duration.duration}_${pricingModeType}`,
       type: 'action',
     });
+
+    const { pricingMode, pricing } = this.pricingMode;
+    const isMonthlyCommitmentPayment =
+      pricing.duration !== 'P1M' && pricing.interval !== 1;
 
     const order = {
       planCode: this.plan.planCode,
       productId: 'netapp',
-      pricingMode: this.pricingMode.pricingMode,
+      pricingMode,
       quantity: 1,
+      ...(isMonthlyCommitmentPayment && { duration: pricing.duration }),
       configuration: [
         {
           label: REGION_LABEL,
