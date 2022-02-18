@@ -8,6 +8,7 @@ import { shell as shellApi } from '@ovh-ux/shell';
 import i18n from '../config/i18nTestConfig';
 import Shell from '@/container/legacy';
 import { ApplicationProvider } from '../../context';
+import { ProductNavReshuffleProvider } from '@/core/product-nav-reshuffle';
 
 // TODO: improve mocks to render shell with both sidebars
 const server = setupServer(
@@ -24,6 +25,18 @@ const server = setupServer(
 
 jest.mock('@/container/legacy/account-sidebar/AccountSidebar.jsx');
 jest.mock('@/container/common/notifications-sidebar/NotificationsSidebar.jsx');
+jest.mock('@/assets/images/pnr/background.png');
+jest.mock('@ovh-ux/ovh-reket', () => {
+  return {
+    useReket: () => {
+      return {
+        get: () => Promise.resolve({}),
+        put: () => Promise.resolve({}),
+        post: () => Promise.resolve({}),
+      };
+    },
+  };
+});
 
 describe('Renders shell header', () => {
   // Given an environment with the user 'Tester testee'
@@ -68,7 +81,9 @@ describe('Renders shell header', () => {
       render(
         <I18nextProvider i18n={i18n}>
           <ApplicationProvider environment={environment} shell={shell}>
-            <Shell />
+            <ProductNavReshuffleProvider>
+              <Shell />
+            </ProductNavReshuffleProvider>
           </ApplicationProvider>
         </I18nextProvider>,
       );
