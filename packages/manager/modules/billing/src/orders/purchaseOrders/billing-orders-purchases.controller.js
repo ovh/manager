@@ -4,6 +4,7 @@ import set from 'lodash/set';
 import {
   ENUM_PURCHASES_STATUS,
   TYPE_PURCHASE_FOR_TRACKING,
+  PAGE_SIZE,
 } from './billing-orders-purchases.constant';
 
 export default class BillingOrdersPurchasesCtrl {
@@ -13,6 +14,7 @@ export default class BillingOrdersPurchasesCtrl {
     this.$translate = $translate;
     this.billingOrdersPurchasesService = billingOrdersPurchasesService;
     this.ENUM_PURCHASES_STATUS = ENUM_PURCHASES_STATUS;
+    this.PAGE_SIZE = PAGE_SIZE;
   }
 
   editPurchase(purchase) {

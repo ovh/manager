@@ -20,10 +20,10 @@
     <oui-header-tabs
         data-ng-if="$ctrl.featuresAvailabilities['billing:purchases-order']"
     >
-        <oui-header-tabs-item state="app.account.billing.orders.orders"
+        <oui-header-tabs-item state="{{:: $ctrl.ordersSectionState }}"
             ><span data-translate="orders_page_title"></span
         ></oui-header-tabs-item>
-        <oui-header-tabs-item state="app.account.billing.orders.purchases"
+        <oui-header-tabs-item state="{{:: $ctrl.purchasesOrdersSectionState }}"
             ><span data-translate="purchaseOrders_page_title"></span
         ></oui-header-tabs-item>
     </oui-header-tabs>

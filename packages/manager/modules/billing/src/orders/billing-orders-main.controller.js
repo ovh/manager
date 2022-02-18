@@ -1,17 +1,23 @@
-import get from 'lodash/get';
-
 export default class BillingOrdersMainCtrl {
   /* @ngInject */
-  constructor(constants, currentUser, coreConfig, featuresAvailabilities) {
+  constructor(
+    constants,
+    currentUser,
+    featuresAvailabilities,
+    purchasesOrdersSectionState,
+    ordersSectionState,
+  ) {
     this.featuresAvailabilities = featuresAvailabilities;
-    this.coreConfig = coreConfig;
-    this.billingGuideUrl = get(
-      constants.urls[currentUser.ovhSubsidiary],
-      'guides.billing',
-    );
-    this.purchaseOrdersGuideUrl = get(
-      constants.urls[currentUser.ovhSubsidiary],
-      'guides.purchaseOrders',
-    );
+    this.constants = constants;
+    this.currentUser = currentUser;
+    this.purchasesOrdersSectionState = purchasesOrdersSectionState;
+    this.ordersSectionState = ordersSectionState;
+  }
+
+  $onInit() {
+    const CUSTOMER_URLS = this.constants.urls[this.currentUser.ovhSubsidiary];
+
+    this.billingGuideUrl = CUSTOMER_URLS.guides.billing;
+    this.purchaseOrdersGuideUrl = CUSTOMER_URLS.guides.purchaseOrders;
   }
 }

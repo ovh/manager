@@ -10,7 +10,10 @@ export const TYPE_PURCHASE_FOR_TRACKING = {
   PURCHASE_ORDER: 'po',
 };
 
+export const PAGE_SIZE = 10;
+
 export default {
   ENUM_PURCHASES_STATUS,
   TYPE_PURCHASE_FOR_TRACKING,
+  PAGE_SIZE,
 };

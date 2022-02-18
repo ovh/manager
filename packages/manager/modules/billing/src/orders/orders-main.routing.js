@@ -19,6 +19,12 @@ export default /* @ngInject */ ($stateProvider) => {
         ovhFeatureFlipping
           .checkFeatureAvailability('billing:purchasesOrder')
           .then(({ features }) => features),
+
+      ordersSectionState: /* @ngInject */ () =>
+        'app.account.billing.orders.orders',
+
+      purchasesOrdersSectionState: /* @ngInject */ () =>
+        'app.account.billing.orders.purchases',
     },
   });
 };

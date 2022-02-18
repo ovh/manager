@@ -6,7 +6,7 @@
     >
     </oui-header>
     <oui-datagrid
-        data-page-size="10"
+        data-page-size="{{:: $ctrl.PAGE_SIZE }}"
         data-rows="$ctrl.purchases"
         data-row-loader="$ctrl.loadRow($row)"
         data-criteria=":: $ctrl.criteria"

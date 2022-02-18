@@ -9,7 +9,7 @@
   "orders_taxes_included": "Montant avec taxes",
   "orders_total_price": "Montant",
   "orders_table_empty": "Vous n'avez pas de commande.",
-  "orders_table_empty_with_filter": "Vous n'avez pas de commande pour ces critères:",
+  "orders_table_empty_with_filter": "Vous n'avez pas de commande pour ces critères :",
   "orders_informations_error": "Une erreur s'est produite :",
   "orders_order_status_cancelled": "Annulée",
   "orders_order_status_cancelling": "Annulation en cours",
