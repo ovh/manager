@@ -1,3 +1,12 @@
+## [13.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.32.0...@ovh-ux/manager-telecom@13.32.1) (2022-02-21)
+
+
+### Bug Fixes
+
+* **pack.migration:** declare missing variable $translate ([#6521](https://github.com/ovh/manager/issues/6521)) ([4cce2f9](https://github.com/ovh/manager/commit/4cce2f9b48c6c9533502c7caac91e594be989063))
+
+
+
 # [13.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.31.2...@ovh-ux/manager-telecom@13.32.0) (2022-02-15)
 
 
