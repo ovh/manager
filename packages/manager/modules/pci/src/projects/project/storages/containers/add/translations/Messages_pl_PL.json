@@ -18,7 +18,6 @@
   "pci_projects_project_storages_containers_add_archive_title": "Utwórz kontener archiwów",
   "pci_projects_project_storages_containers_add_type_price": "{{price}} netto/m-c/GB",
   "pci_projects_project_storages_containers_add_offer_title": "Wybierz Twoje rozwiązanie",
-  "pci_projects_project_storages_containers_add_offer_label_beta": "Beta",
   "pci_projects_project_storages_containers_add_offer_storage": "Standard (Swift)",
   "pci_projects_project_storages_containers_add_offer_storage-s3-high-perf": "High Performance",
   "pci_projects_project_storages_containers_add_offer_storage_description": "Przestrzeń dyskowa dostępna przez HTTPS i zarządzana przy użyciu API OpenStack Swift lub API S3",
