@@ -449,6 +449,13 @@ export default async (containerEl, shellClient) => {
           environment.getApplicationName(),
         );
       },
+    )
+    .run(
+      /* @ngInject */ ($rootScope) => {
+        shellClient.ux.onOpenChatbot(() => {
+          $rootScope.$emit('ovh-chatbot:open');
+        });
+      },
     );
 
   import('./app.bundle').then(() => {
