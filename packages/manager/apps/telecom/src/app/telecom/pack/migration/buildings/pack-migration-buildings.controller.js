@@ -1,6 +1,7 @@
 export default class TelecomPackMigrationBuildingsCtrl {
   /* @ngInject */
-  constructor(TucPackMigrationProcess) {
+  constructor($translate, TucPackMigrationProcess) {
+    this.$translate = $translate;
     this.TucPackMigrationProcess = TucPackMigrationProcess;
   }
 
