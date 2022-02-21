@@ -27,5 +27,6 @@
   "pci_projects_project_training_jobs_info_title_6": "Informationen",
   "pci_projects_project_training_jobs_info_title_actions": "Aktionen",
   "pci_projects_project_training_job_logs_text_pre_running": "Der Auftrag wurde noch nicht gestartet... Der Tab wird automatisch aktualisiert, sobald der Auftrag gestartet wurde.",
-  "pci_projects_project_training_jobs_resubmit": "Neu starten"
+  "pci_projects_project_training_jobs_resubmit": "Neu starten",
+  "pci_projects_project_training_jobs_ssh_url": "SSH Zugang"
 }

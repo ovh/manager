@@ -67,5 +67,15 @@
   "pci_projects_project_training_jobs_submitresources_proposed_type_gpu": " (GPU)",
   "pci_projects_project_training_jobs_submitresources_proposed_type_cpu": " (CPU)",
   "pci_projects_project_training_jobs_submit_select_image_custom_doc": "Utwórz spersonalizowany obraz",
-  "pci_projects_project_training_jobs_submit_data_permission_RWD": "Odczyt, Zapis oraz Usuwanie"
+  "pci_projects_project_training_jobs_submit_data_permission_RWD": "Odczyt, Zapis oraz Usuwanie",
+  "pci_projects_project_training_jobs_ssh_url_help": "Dostęp SSH pozwala na logowanie się do zadania z poziomu dowolnego klienta SSH za pomocą publicznych kluczy dostarczonych w momencie uruchamiania zadania.",
+  "pci_projects_project_training_jobs_submit_select_ssh": "Przypisz publiczne klucze SSH (opcjonalnie)",
+  "pci_projects_project_training_jobs_submit_select_ssh_tips_1": "Przypisanie publicznego klucza SSH pozwala na zdalny dostęp do zadania za pomocą protokołu SSH lub SCP",
+  "pci_projects_project_training_jobs_submit_select_ssh_default_select": "Wpisz publiczny klucz SSH, którego chcesz użyć (opcjonalnie)",
+  "pci_projects_project_training_jobs_submit_select_ssh_name_tips": "Wybierz nazwę klucza spośród zarejestrowanych nazw",
+  "pci_projects_project_training_jobs_submit_select_ssh_input_tips": "Zawartość publicznego klucza SSH",
+  "pci_projects_project_training_jobs_submit_select_ssh_add": "Dodaj nowy publiczny klucz SSH",
+  "pci_projects_project_training_jobs_submit_select_ssh_quantity": "{{numberOfSshKeys}} / {{maxSshKeys}} kluczy SSH",
+  "pci_projects_project_training_jobs_submit_select_ssh_legend": "Publiczny klucz SSH",
+  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Usuń przypisany klucz SSH"
 }
