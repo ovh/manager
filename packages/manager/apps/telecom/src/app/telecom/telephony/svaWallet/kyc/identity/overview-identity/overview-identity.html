@@ -314,6 +314,19 @@
             </span>
         </div>
     </div>
+
+    <div class="oui-field oui-field_auto">
+        <oui-button
+            variant="link"
+            icon-right="oui-icon-arrow-right"
+            on-click="$ctrl.goToIdentityEditForm()"
+            disabled="!$ctrl.isEditable"
+        >
+            <span
+                data-translate="telephony_billingAccount_svaWallet_kyc_summary_edit_identity"
+            ></span>
+        </oui-button>
+    </div>
 </div>
 
 <telephony-sva-wallet-kyc-identity-overview-identity-edit
@@ -325,16 +338,3 @@
     edit-mode="$ctrl.editMode"
 >
 </telephony-sva-wallet-kyc-identity-overview-identity-edit>
-
-<div class="oui-field oui-field_auto" data-ng-if="!$ctrl.editMode">
-    <oui-button
-        variant="link"
-        icon-right="oui-icon-arrow-right"
-        on-click="$ctrl.goToIdentityEditForm()"
-        disabled="!$ctrl.isEditable"
-    >
-        <span
-            data-translate="telephony_billingAccount_svaWallet_kyc_summary_edit_identity"
-        ></span>
-    </oui-button>
-</div>

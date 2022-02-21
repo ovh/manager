@@ -4,26 +4,28 @@ import {
 } from '../../identity.constants';
 import { DIRECTORY_WAY_NUMBER_EXTRA_ENUM } from '../../../../../service/contact/contact.constants';
 
-import { VALIDATORS } from './overview-identity-edit.constants';
+import { REGEX_VALIDATORS } from './overview-identity-edit.constants';
 import {
   buildEnumList,
   getEnumItemValue,
 } from '../../../../sva-wallet.constants';
 
-import confirmTemplate from './confirm/confirm.html';
-import confirmController from './confirm/confirm.controller';
-
 import lemonWayLogo from '../../../../lemonway_logo.png';
 
 export default class KycIdentityOverviewEditController {
   /* @ngInject */
-  constructor($q, $translate, $uibModal) {
-    this.$q = $q;
+  constructor($translate) {
     this.$translate = $translate;
-    this.$uibModal = $uibModal;
   }
 
   $onInit() {
+    this.isOpenModal = false;
+
+    this.confirmationCode = this.$translate.instant(
+      'telephony_billingAccount_svaWallet_kyc_identity_confirm_code',
+    );
+    this.confirmationPattern = new RegExp(`^${this.confirmationCode}$`);
+
     this.lemonWayLogo = lemonWayLogo;
 
     this.companyModel = {
@@ -70,7 +72,7 @@ export default class KycIdentityOverviewEditController {
       ...DIRECTORY_WAY_NUMBER_EXTRA_ENUM.map((val) => val.toUpperCase()),
     ];
 
-    this.VALIDATORS = VALIDATORS;
+    this.REGEX_VALIDATORS = REGEX_VALIDATORS;
     this.requirements = false;
 
     this.wallet = {
@@ -145,32 +147,31 @@ export default class KycIdentityOverviewEditController {
     };
   }
 
+  openModal() {
+    this.isOpenModal = true;
+  }
+
+  dismissModal() {
+    this.isOpenModal = false;
+  }
+
   submit() {
-    if (this.form.$invalid) {
-      return this.$q.reject();
-    }
+    this.isOpenModal = false;
 
     this.errorMessage = undefined;
+
     const wallet = this.formatWallet();
 
-    const modalInstance = this.$uibModal.open({
-      template: confirmTemplate,
-      controller: confirmController,
-      controllerAs: '$ctrl',
-    });
-    return modalInstance.result
+    this.loading.submit = true;
+    return this.putWallet(wallet)
       .then(() => {
-        this.loading.submit = true;
-        this.putWallet(wallet)
-          .catch((error) => {
-            this.errorMessage = error.data.message;
-          })
-          .finally(() => {
-            this.loading.submit = false;
-          });
+        this.editMode = false;
       })
-      .catch(() => {
-        // nothing to do
+      .catch((error) => {
+        this.errorMessage = error.data.message;
+      })
+      .finally(() => {
+        this.loading.submit = false;
       });
   }
 
