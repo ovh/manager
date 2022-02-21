@@ -56,6 +56,7 @@ export default function exposeApi(shellClient: ShellClient) {
     },
     auth: clientAuth(shellClient),
     ux: {
+      // AccountSidebar
       showAccountSidebar: () =>
         shellClient.invokePluginMethod({
           plugin: 'ux',
@@ -89,6 +90,11 @@ export default function exposeApi(shellClient: ShellClient) {
           plugin: 'ux',
           method: 'getUserIdCookie',
         }),
+      // Chatbot
+      onOpenChatbot: (callback: CallableFunction) =>
+        shellClient.addEventListener('ux:open-chatbot', callback),
+      onCloseChatbot: (callback: CallableFunction) =>
+        shellClient.addEventListener('ux:close-chatbot', callback),
     },
     navigation: clientNavigation(shellClient),
     tracking: exposeTrackingAPI(shellClient),
