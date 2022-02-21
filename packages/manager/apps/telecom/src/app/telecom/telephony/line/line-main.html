@@ -89,7 +89,7 @@
             <oui-header-tabs-item
                 href="{{LineCtrl.faxLink}}"
                 active="LineCtrl.faxLink === LineCtrl.currentActiveLink()"
-                data-disabled="LineCtrl.loading.init || !(LineCtrl.line.isPlugNFax || LineCtrl.fax || LineCtrl.line.hasFaxCapabilities) || LineCtrl.line.isTrunk()"
+                data-disabled="LineCtrl.disableFaxOptionTab"
             >
                 <span data-translate="telephony_line_tab_fax"></span>
             </oui-header-tabs-item>
