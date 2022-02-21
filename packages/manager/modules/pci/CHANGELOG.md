@@ -1,3 +1,12 @@
+# [5.59.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.58.0...@ovh-ux/manager-pci@5.59.0) (2022-02-21)
+
+
+### Features
+
+* **containers.add:** remove high perf beta label ([#6500](https://github.com/ovh/manager/issues/6500)) ([dbb359a](https://github.com/ovh/manager/commit/dbb359af7b0bc40b6771a0569e5ad030466173a3))
+
+
+
 # [5.58.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.57.2...@ovh-ux/manager-pci@5.58.0) (2022-02-16)
 
 
