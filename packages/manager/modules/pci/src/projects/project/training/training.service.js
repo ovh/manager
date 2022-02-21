@@ -129,4 +129,8 @@ export default class PciProjectTrainingService {
   getJobCliCommand(serviceName, job) {
     return this.$http.post(`/cloud/project/${serviceName}/ai/job/command`, job);
   }
+
+  getSavedSshKeys(serviceName) {
+    return this.$http.get(`/cloud/project/${serviceName}/sshkey`);
+  }
 }

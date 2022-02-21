@@ -4,7 +4,11 @@ import filter from 'lodash/filter';
 import map from 'lodash/map';
 import head from 'lodash/head';
 import { nameGenerator } from '../../../data-processing/data-processing.utils';
-import { DISCORD_URL, DOC_DOCKER_BUILD_URL } from '../../training.constants';
+import {
+  DISCORD_URL,
+  DOC_DOCKER_BUILD_URL,
+  JOB_SSH_KEYS,
+} from '../../training.constants';
 
 export default class PciTrainingJobsSubmitController {
   /* @ngInject */
@@ -16,6 +20,7 @@ export default class PciTrainingJobsSubmitController {
     atInternet,
     coreConfig,
   ) {
+    this.JOB_SSH_KEYS_CONSTANTS = JOB_SSH_KEYS;
     this.coreConfig = coreConfig;
     this.$translate = $translate;
     this.PciProjectTrainingService = PciProjectTrainingService;
@@ -97,6 +102,16 @@ export default class PciTrainingJobsSubmitController {
     this.onChangeRegion(head(this.regions));
     this.emptyData = this.containers.length === 0;
     this.filterContainers();
+
+    // Option indicating if the user wants to add ssh keys
+    this.enabledSshPublicKey = false;
+    // List of ssh keys added by user
+    this.addedSshKeys = [];
+    // Saved ssh keys in public cloud
+    this.savedKeys = [];
+    // All available names for saved ssh keys
+    this.allKeyNames = [];
+    this.populateSavedSshKeys();
   }
 
   filterContainers() {
@@ -182,6 +197,7 @@ export default class PciTrainingJobsSubmitController {
     } else {
       payload.command = null;
     }
+    payload.sshPublicKeys = this.getAllSshKeys();
     return payload;
   }
 
@@ -278,5 +294,71 @@ export default class PciTrainingJobsSubmitController {
     } else {
       this.addHttpHeader();
     }
+  }
+
+  canAddNewSshPublicKey() {
+    const allSshKeys = this.getAllSshKeys();
+    return (
+      allSshKeys.length === this.addedSshKeys.length &&
+      allSshKeys.length <= this.JOB_SSH_KEYS_CONSTANTS.MAX
+    );
+  }
+
+  addNewSshPublicKey() {
+    this.addedSshKeys.push({
+      disabled: false,
+      model: null,
+      keyName: this.JOB_SSH_KEYS_CONSTANTS.CUSTOM_SELECT,
+    });
+  }
+
+  onSshPublickeysDeleteBtnClick(index) {
+    this.addedSshKeys.splice(index, 1);
+  }
+
+  changeEnabledSshPublicKey(enabledSshPublicKey) {
+    this.enabledSshPublicKey = enabledSshPublicKey;
+    if (!this.enabledSshPublicKey) {
+      this.addedSshKeys = [];
+    } else {
+      this.addNewSshPublicKey();
+    }
+  }
+
+  // Return all non empty ssh keys
+  getAllSshKeys() {
+    return this.addedSshKeys
+      .map((sshKey) => sshKey.model)
+      .filter(
+        (sshKeyModel) =>
+          sshKeyModel && sshKeyModel.length > 0 && sshKeyModel.trim(),
+      );
+  }
+
+  changeSavedSshKey(index) {
+    // Get the select key name from the index
+    const newSshKeyName = this.addedSshKeys[index].keyName;
+    // Find the selected key by name
+    if (newSshKeyName === this.JOB_SSH_KEYS_CONSTANTS.CUSTOM_SELECT) {
+      this.addedSshKeys[index].model = null;
+      this.addedSshKeys[index].disabled = false;
+    } else {
+      const newSshKey = this.savedKeys.filter(
+        (x) => x.name === newSshKeyName,
+      )[0].publicKey;
+      this.addedSshKeys[index].model = newSshKey;
+      this.addedSshKeys[index].disabled = true;
+    }
+  }
+
+  populateSavedSshKeys() {
+    return this.PciProjectTrainingService.getSavedSshKeys(this.projectId).then(
+      ({ data: keys }) => {
+        this.savedKeys = keys;
+        this.allKeyNames = [this.JOB_SSH_KEYS_CONSTANTS.CUSTOM_SELECT].concat(
+          this.savedKeys.map((x) => x.name),
+        );
+      },
+    );
   }
 }
