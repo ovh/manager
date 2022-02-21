@@ -13,33 +13,8 @@ export default class OverTheBoxAutoconfigureFirewall {
     this.displayAddRedirectButton = true;
     this.showAddRedirect = false;
 
-    this.rule = {
-      destIp: '',
-      destPort: '',
-      destZone: '',
-      family: '',
-      name: '',
-      priority: '',
-      protocol: '',
-      srcIp: '',
-      srcPort: '',
-      srcZone: '',
-      target: '',
-    };
-    this.redirect = {
-      destIp: '',
-      destPort: '',
-      destZone: '',
-      name: '',
-      priority: '',
-      protocol: '',
-      srcDestIp: '',
-      srcDestPort: '',
-      srcIp: '',
-      srcPort: '',
-      srcZone: '',
-      target: '',
-    };
+    this.rule = {};
+    this.redirect = {};
 
     return this.$q.all([this.loadRules(), this.loadRedirect()]);
   }
@@ -81,17 +56,7 @@ export default class OverTheBoxAutoconfigureFirewall {
   }
 
   addRule() {
-    this.rule.destIp = '';
-    this.rule.destPort = '';
-    this.rule.destZone = '';
-    this.rule.family = '';
-    this.rule.name = '';
-    this.rule.priority = '';
-    this.rule.protocol = '';
-    this.rule.srcIp = '';
-    this.rule.srcPort = '';
-    this.rule.srcZone = '';
-    this.rule.target = '';
+    this.rule = {};
     this.showAddRule = true;
     this.displayAddRuleButton = false;
   }
@@ -105,33 +70,16 @@ export default class OverTheBoxAutoconfigureFirewall {
       configuration: {
         sourceZone: this.rule.srcZone,
         target: this.rule.target,
+        destinationIp: this.rule.destIp,
+        destinationPort: this.rule.destPort,
+        destinationZone: this.rule.destZone,
+        family: this.rule.family,
+        name: this.rule.name,
+        protocol: this.rule.protocol,
+        sourceIp: this.rule.srcIp,
+        sourcePort: this.rule.srcPort,
       },
     };
-
-    if (this.rule.destIp) {
-      params.configuration.destinationIp = this.rule.destIp;
-    }
-    if (this.rule.destPort) {
-      params.configuration.destinationPort = this.rule.destPort;
-    }
-    if (this.rule.destZone) {
-      params.configuration.destinationZone = this.rule.destZone;
-    }
-    if (this.rule.family) {
-      params.configuration.family = this.rule.family;
-    }
-    if (this.rule.name) {
-      params.configuration.name = this.rule.name;
-    }
-    if (this.rule.protocol) {
-      params.configuration.protocol = this.rule.protocol;
-    }
-    if (this.rule.srcIp) {
-      params.configuration.sourceIp = this.rule.srcIp;
-    }
-    if (this.rule.srcPort) {
-      params.configuration.sourcePort = this.rule.srcPort;
-    }
 
     return this.$http
       .post(
@@ -193,18 +141,7 @@ export default class OverTheBoxAutoconfigureFirewall {
   }
 
   addRedirect() {
-    this.redirect.destIp = '';
-    this.redirect.destPort = '';
-    this.redirect.destZone = '';
-    this.redirect.name = '';
-    this.redirect.priority = '';
-    this.redirect.protocol = '';
-    this.redirect.srcDestIp = '';
-    this.redirect.srcDestPort = '';
-    this.redirect.srcIp = '';
-    this.redirect.srcPort = '';
-    this.redirect.srcZone = '';
-    this.redirect.target = '';
+    this.redirect = {};
     this.showAddRedirect = true;
     this.displayAddRedirectButton = false;
   }
@@ -216,40 +153,19 @@ export default class OverTheBoxAutoconfigureFirewall {
     const params = {
       configuration: {
         name: this.redirect.name,
+        destinationIp: this.redirect.destIp,
+        destinationPort: this.redirect.destPort,
+        destinationZone: this.redirect.destZone,
+        protocol: this.redirect.protocol,
+        sourceDestinationIp: this.redirect.srcDestIp,
+        sourceDestinationPort: this.redirect.srcDestPort,
+        sourceIp: this.redirect.srcIp,
+        sourcePort: this.redirect.srcPort,
+        sourceZone: this.redirect.srcZone,
+        target: this.redirect.target,
       },
       priority: this.redirect.priority,
     };
-
-    if (this.redirect.destIp) {
-      params.configuration.destinationIp = this.redirect.destIp;
-    }
-    if (this.redirect.destPort) {
-      params.configuration.destinationPort = this.redirect.destPort;
-    }
-    if (this.redirect.destZone) {
-      params.configuration.destinationZone = this.redirect.destZone;
-    }
-    if (this.redirect.protocol) {
-      params.configuration.protocol = this.redirect.protocol;
-    }
-    if (this.redirect.srcDestIp) {
-      params.configuration.sourceDestinationIp = this.redirect.srcDestIp;
-    }
-    if (this.redirect.srcDestPort) {
-      params.configuration.sourceDestinationPort = this.redirect.srcDestPort;
-    }
-    if (this.redirect.srcIp) {
-      params.configuration.sourceIp = this.redirect.srcIp;
-    }
-    if (this.redirect.srcPort) {
-      params.configuration.sourcePort = this.redirect.srcPort;
-    }
-    if (this.redirect.srcZone) {
-      params.configuration.sourceZone = this.redirect.srcZone;
-    }
-    if (this.redirect.target) {
-      params.configuration.target = this.redirect.target;
-    }
 
     return this.$http
       .post(
