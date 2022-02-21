@@ -1,10 +1,12 @@
 import { buildURL } from '@ovh-ux/ufrontend';
+import { useShell } from '@/context/useApplicationContext';
 
 import constants from './constants';
 
 const useUsefulLinks = (environment) => {
   const region = environment.getRegion();
   const user = environment.getUser();
+  const shell = useShell();
 
   const hasChatbot = true;
 
@@ -22,7 +24,7 @@ const useUsefulLinks = (environment) => {
             {
               id: 'chatbot',
               action: () => {
-                // this.openChatbot();
+                shell.getPlugin('ux').openChatbot();
               },
               icon: 'oui-icon oui-icon-speech-bubble_concept',
             },

@@ -48,7 +48,7 @@ function AssistanceSidebar() {
         />
         <SidebarLink
           node={{ translation: 'sidebar_assistance_live_chat' }}
-          onClick={() => {}}
+          onClick={() => shell.getPlugin('ux').openChatbot()}
         />
       </li>
     </ul>
