@@ -173,6 +173,13 @@ export default async (containerEl, shellClient) => {
       /* @ngInject */ (ovhFeatureFlippingProvider) => {
         ovhFeatureFlippingProvider.setApplicationName('public-cloud');
       },
+    )
+    .run(
+      /* @ngInject */ ($rootScope) => {
+        shellClient.ux.onOpenChatbot(() => {
+          $rootScope.$emit('ovh-chatbot:open');
+        });
+      },
     );
 
   angular.bootstrap(containerEl, [moduleName], {
