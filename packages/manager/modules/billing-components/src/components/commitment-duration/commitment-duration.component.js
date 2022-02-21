@@ -7,6 +7,7 @@ export default {
     defaultPrice: '<?',
     duration: '=',
     pricings: '<',
+    selectedQuantity: '<',
     fromCatalog: '<?',
     onDurationChange: '&',
   },
