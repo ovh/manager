@@ -21,10 +21,14 @@ export type UXPluginType<T extends UXPlugin> = {
 };
 
 export class UXPlugin implements IUXPlugin {
+  private shell: Shell;
+
   private shellUX: ShellUX;
 
   constructor(shell: Shell) {
-    this.shellUX = new ShellUX(shell);
+    this.shell = shell;
+
+    this.shellUX = new ShellUX(this.shell);
     this.shellUX.registerSidebar('account');
     this.shellUX.registerSidebar('notifications');
     this.shellUX.registerNavbar();
@@ -112,5 +116,15 @@ export class UXPlugin implements IUXPlugin {
     }
 
     return '';
+  }
+
+  /* ----------- Chatbot methods -----------*/
+
+  openChatbot(): void {
+    this.shell.emitEvent('ux:open-chatbot');
+  }
+
+  closeChatbot(): void {
+    this.shell.emitEvent('ux:close-chatbot');
   }
 }
