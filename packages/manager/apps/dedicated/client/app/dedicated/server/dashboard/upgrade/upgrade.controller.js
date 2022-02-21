@@ -86,9 +86,11 @@ export default class {
   orderOption() {
     this.orderInProgress = true;
     const renewDetails = this.getRenewDetails(this.selectedUpgradeOption);
+    const upgradePlanServiceId =
+      this.selectedUpgradeOption.serviceId || this.optionId;
     return this.$http
       .post(
-        `/services/${this.optionId}/upgrade/${this.selectedUpgradeOption.planCode}/execute`,
+        `/services/${upgradePlanServiceId}/upgrade/${this.selectedUpgradeOption.planCode}/execute`,
         {
           duration: renewDetails.duration,
           pricingMode: renewDetails.pricingMode,
