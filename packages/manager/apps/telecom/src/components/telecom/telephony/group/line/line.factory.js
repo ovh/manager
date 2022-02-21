@@ -57,6 +57,7 @@ export default /* @ngInject */ (
 
     this.infrastructure = options.infrastructure;
     this.offers = options.offers || [];
+    this.hasFaxCapabilities = options.hasFaxCapabilities;
     this.getPublicOffer = options.getPublicOffer;
     this.simultaneousLines = options.simultaneousLines;
     this.phone = options.phone;

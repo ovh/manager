@@ -89,13 +89,12 @@
             <oui-header-tabs-item
                 href="{{LineCtrl.faxLink}}"
                 active="LineCtrl.faxLink === LineCtrl.currentActiveLink()"
-                data-disabled="LineCtrl.loading.init || !(LineCtrl.line.isPlugNFax || LineCtrl.fax) || LineCtrl.line.isTrunk()"
+                data-disabled="LineCtrl.loading.init || !(LineCtrl.line.isPlugNFax || LineCtrl.fax || LineCtrl.line.hasFaxCapabilities) || LineCtrl.line.isTrunk()"
             >
                 <span data-translate="telephony_line_tab_fax"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
     </div>
-
     <div class="telecom-section-alert" data-ng-if="!LineCtrl.loading.init">
         <div
             class="alert alert-xs alert-warning"
