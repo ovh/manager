@@ -1,4 +1,4 @@
-import { useShell } from '@/context';
+import { useShell } from '@/context/useApplicationContext';
 
 import constants from './constants';
 
@@ -25,7 +25,7 @@ const useUsefulLinks = () => {
             {
               id: 'chatbot',
               action: () => {
-                // this.openChatbot();
+                shell.getPlugin('ux').openChatbot();
               },
               icon: 'oui-icon oui-icon-speech-bubble_concept',
             },
