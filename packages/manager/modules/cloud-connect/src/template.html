@@ -15,7 +15,6 @@
                     ></strong>
                     <a
                         data-ng-href="{{ order.orderBillingUrl }}"
-                        target="_blank"
                         rel="noopener"
                         data-ng-bind="{{ order.orderId }}"
                     >
@@ -55,11 +54,15 @@
                         data-oui-tooltip-placement="center"
                     >
                         <span class="oui-progress-tracker__status">
-                            <span
-                                class="oui-progress-tracker__label"
-                                data-ng-bind="'cloud_connect_order_follow_up_label_' + step.name | translate"
-                            >
-                            </span>
+                            <div class="oui-progress-tracker__label">
+                                <span
+                                    data-translate="{{'cloud_connect_order_follow_up_label_' + step.name}}"
+                                >
+                                </span>
+                                <span
+                                    class="oui-icon oui-icon-info-circle"
+                                ></span>
+                            </div>
                             <span
                                 class="oui-progress-tracker__label"
                                 data-ng-if="step.date"
