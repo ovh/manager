@@ -24,5 +24,7 @@
   "pci_notebook_add_notebook_create": "Stwórz notebook",
   "pci_notebook_add_notebook_create_pending": "Trwa tworzenie notebooka...",
   "pci_notebook_add_notebook_create_success": "Twój notebook został utworzony.",
-  "pci_notebook_add_notebook_create_error": "Wystąpił błąd podczas tworzenia notebooka: {{ message }}."
+  "pci_notebook_add_notebook_create_error": "Wystąpił błąd podczas tworzenia notebooka: {{ message }}.",
+  "pci_notebook_add_ssh_keys": "Przypisz publiczne klucze SSH",
+  "pci_notebook_add_ssh_keys_selected": "Przypisane publiczne klucze SSH: {{quantity}}"
 }
