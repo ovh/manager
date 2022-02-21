@@ -61,21 +61,38 @@
             data-searchable
             data-filterable
         >
-            <span class="text-uppercase font-weight-bold"
-                >{{$ctrl.random ? 'running' : 'paused'}}</span
+            <span
+                class="oui-badge"
+                data-ng-class="{
+                    'oui-badge_success': $rowIndex < 2,
+                    'oui-badge_warning':  $rowIndex >= 2 && $rowIndex < 4,
+                    'oui-badge_error':  $rowIndex >= 4,
+                }"
             >
+                <span
+                    >{{$rowIndex < 2 ? 'Running' : $rowIndex >= 4 ? 'Error' :
+                    'Pending'}}</span
+                >
+            </span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_connectors_tasks' | translate"
             data-property="connectorInfo"
             data-sortable="asc"
             data-type="string"
-            data-searchable
-            data-filterable
         >
-            <div class="d-flex align-items-center oui-color-ae-500">
+            <div
+                ng-if="$rowIndex % 2 === 0"
+                class="d-flex align-items-center oui-color-ae-500"
+            >
                 <span>0/1</span>
                 <span class="oui-icon oui-icon-warning"></span>
+            </div>
+            <div
+                ng-if="$rowIndex % 2 === 1"
+                class="d-flex align-items-center oui-color-as-500"
+            >
+                <span>1/1</span>
             </div>
         </oui-datagrid-column>
         <oui-datagrid-column
@@ -87,20 +104,19 @@
             data-filterable
         >
             <span
-                class="large-icon font-weight-bold oui-icon oui-button"
-                ng-class="$ctrl.random ? 'oui-icon-pause_concept' : 'oui-icon-play_concept'"
+                class="large-icon font-weight-bold oui-icon oui-button oui-action-button"
+                ng-click="$row.paused = !$row.paused"
+                ng-class="$row.paused ? 'oui-icon-pause_concept' : 'oui-icon-play_concept'"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_connectors_restart' | translate"
             data-property="connectorInfo"
-            data-sortable="asc"
             data-type="string"
-            data-searchable
-            data-filterable
         >
             <span
-                class="large-icon font-weight-bold oui-icon oui-icon-refresh oui-button"
+                ng-click="$ctrl.reboot($row, $event)"
+                class="large-icon font-weight-bold oui-icon oui-icon-refresh oui-button oui-action-button"
             ></span>
         </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">

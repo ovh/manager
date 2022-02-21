@@ -1,3 +1,5 @@
+import { set } from 'lodash';
+
 export default class {
   /* @ngInject */
   constructor($translate, CucCloudMessage, DatabaseService) {
@@ -24,5 +26,14 @@ export default class {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  reboot($row, $event) {
+    this.trackDashboard('connectors-reboot', 'page');
+    $($event.target).addClass('spin');
+    set($row, 'rebooting', true);
+    setTimeout(() => {
+      $($event.target).removeClass('spin');
+    }, 500);
   }
 }

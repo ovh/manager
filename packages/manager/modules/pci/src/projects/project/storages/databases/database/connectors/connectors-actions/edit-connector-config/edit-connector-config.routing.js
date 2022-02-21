@@ -41,7 +41,12 @@ export default /* @ngInject */ ($stateProvider) => {
               database.id,
               availableConnector.id,
             ).then((connectorConfig) => {
-              availableConnector.setConfiguration(connectorConfig);
+              availableConnector.setConfiguration(
+                connectorConfig.filter(
+                  (config) =>
+                    config.name !== 'name' && config.name !== 'connector.class',
+                ),
+              );
               return availableConnector;
             }),
           ),

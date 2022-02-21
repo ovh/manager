@@ -9,7 +9,6 @@ export default class {
   $onInit() {
     this.trackDashboard('connector-config', 'page');
     this.model = {
-      name: this.connector.name,
       ...this.connector.configuration,
     };
   }
@@ -31,24 +30,25 @@ export default class {
       this.database.id,
       this.connector.id,
       this.getModelValue(),
-    );
-    // .then(() =>
-    //     this.goBack({
-    //       textHtml: this.$translate.instant(
-    //         'pci_databases_replications_edit_success_message',
-    //       ),
-    //     }),
-    //   )
-    //   .catch((err) =>
-    //     this.goBack(
-    //       this.$translate.instant(
-    //         'pci_databases_replications_edit_error_message',
-    //         {
-    //           message: err.data?.message || null,
-    //         },
-    //       ),
-    //       'error',
-    //     ),
-    //   );
+    )
+      .then(() =>
+        this.goBack({
+          textHtml: this.$translate.instant(
+            'pci_databases_replications_edit_success_message',
+          ),
+        }),
+      )
+      .catch(
+        (/* err */) => null,
+        // this.goBack(
+        //   this.$translate.instant(
+        //     'pci_databases_replications_edit_error_message',
+        //     {
+        //       message: err.data?.message || null,
+        //     },
+        //   ),
+        //   'error',
+        // ),
+      );
   }
 }
