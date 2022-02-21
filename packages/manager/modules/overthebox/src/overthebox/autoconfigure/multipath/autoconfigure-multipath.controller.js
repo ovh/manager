@@ -10,20 +10,7 @@ export default class OverTheBoxAutoconfigMultipath {
     this.displayAddInterfaceButton = true;
     this.showAddInterface = false;
 
-    this.interface = {
-      gateway: '',
-      ifname: '',
-      interfaceName: '',
-      ipAddr: '',
-      isIPv6: false,
-      mtu: '',
-      netmask: '',
-      priority: '',
-      protocol: '',
-      multipath: '',
-      routingTable: '',
-      type: '',
-    };
+    this.interface = {};
 
     return this.loadInterfaces();
   }
@@ -47,17 +34,7 @@ export default class OverTheBoxAutoconfigMultipath {
   }
 
   addInterface() {
-    this.interface.gateway = '';
-    this.interface.ifname = '';
-    this.interface.interfaceName = '';
-    this.interface.ipAddr = '';
-    this.interface.isIPv6 = false;
-    this.interface.mtu = '';
-    this.interface.netmask = '';
-    this.interface.priority = '';
-    this.interface.protocol = '';
-    this.interface.routingTable = '';
-    this.interface.type = '';
+    this.interface = {};
     this.showAddInterface = true;
     this.displayAddInterfaceButton = false;
   }
@@ -70,37 +47,18 @@ export default class OverTheBoxAutoconfigMultipath {
       configuration: {
         ifname: this.interface.ifname,
         interfaceName: this.interface.interfaceName,
+        gateway: this.interface.gateway,
+        ip: this.interface.ipAddr,
+        ipv6: this.interface.isIPv6,
+        mtu: this.interface.mtu,
+        netmask: this.interface.netmask,
+        protocol: this.interface.protocol,
+        multipath: this.interface.multipath,
+        routingTable: this.interface.routingTable,
+        type: this.interface.type,
       },
       priority: this.interface.priority,
     };
-
-    if (this.interface.gateway) {
-      params.configuration.gateway = this.interface.gateway;
-    }
-    if (this.interface.ipAddr) {
-      params.configuration.ip = this.interface.ipAddr;
-    }
-    if (this.interface.isIPv6) {
-      params.configuration.ipv6 = this.interface.isIPv6;
-    }
-    if (this.interface.mtu) {
-      params.configuration.mtu = this.interface.mtu;
-    }
-    if (this.interface.netmask) {
-      params.configuration.netmask = this.interface.netmask;
-    }
-    if (this.interface.protocol) {
-      params.configuration.protocol = this.interface.protocol;
-    }
-    if (this.interface.multipath) {
-      params.configuration.multipath = this.interface.multipath;
-    }
-    if (this.interface.routingTable) {
-      params.configuration.routingTable = this.interface.routingTable;
-    }
-    if (this.interface.type) {
-      params.configuration.type = this.interface.type;
-    }
 
     return this.$http
       .post(
