@@ -3,6 +3,12 @@ import head from 'lodash/head';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
+import {
+  ALIAS_TYPE,
+  SMTP_FIELD_LABEL,
+  X500_PREFIX,
+  X500_REGEX,
+} from './account-alias-add.constants';
 
 export default class ExchangeAddAccountAliasCtrl {
   /* @ngInject */
@@ -18,7 +24,15 @@ export default class ExchangeAddAccountAliasCtrl {
     this.$routerParams = wucExchange.getParams();
     this.selectedAccount = navigation.currentActionData;
     this.data = null;
-    this.model = {};
+    this.SMTP_FIELD_LABEL = SMTP_FIELD_LABEL;
+    this.ALIAS_TYPE = ALIAS_TYPE;
+    this.X500_PREFIX = X500_PREFIX;
+    this.model = {
+      radio: ALIAS_TYPE.SMTP,
+      alias: '',
+      domain: '',
+      x500: '',
+    };
 
     $scope.addAccountAlias = () => this.addAccountAlias();
     $scope.aliasIsValid = () => this.aliasIsValid();
@@ -86,7 +100,7 @@ export default class ExchangeAddAccountAliasCtrl {
         this.$routerParams.organization,
         this.$routerParams.productId,
         this.selectedAccount.primaryEmailAddress,
-        this.model,
+        this.getAlias(this.model),
       )
       .then(() => {
         this.services.messaging.writeSuccess(
@@ -108,17 +122,25 @@ export default class ExchangeAddAccountAliasCtrl {
       });
   }
 
-  aliasIsValid() {
-    if (isEmpty(this.model)) {
-      return false;
+  checkAliasValidity() {
+    let isAliasValid;
+    if (this.model?.radio === this.ALIAS_TYPE.SMTP) {
+      const aliasIsValid =
+        !isEmpty(this.model.alias) &&
+        isString(this.model.alias) &&
+        this.model.alias.length <= 64;
+      const hasDomain = !isEmpty(this.model.domain);
+      isAliasValid = aliasIsValid && hasDomain && !this.takenEmailError;
+    } else {
+      const match = this.model.x500.match(X500_REGEX) || [];
+      isAliasValid = match.length === 1 && match[0] === this.model.x500;
     }
+    return isAliasValid;
+  }
 
-    const aliasIsValid =
-      !isEmpty(this.model.alias) &&
-      isString(this.model.alias) &&
-      this.model.alias.length <= 64;
-    const hasDomain = !isEmpty(this.model.domain);
-
-    return aliasIsValid && hasDomain && !this.takenEmailError;
+  getAlias() {
+    return this.model?.radio === this.ALIAS_TYPE.SMTP
+      ? `${this.model.alias}@${this.model.domain.name}`
+      : `${X500_PREFIX}${this.model.x500}`;
   }
 }
