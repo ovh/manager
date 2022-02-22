@@ -1196,5 +1196,9 @@
   "server_configuration_intervention_deactivate_success": "L'intervento in loco è disattivato sul server {{serverName}}",
   "server_configuration_intervention_deactivate_failed": "Si è verificato un errore durante la disattivazione dell'intervento in loco sul server {{serverName}}",
   "server_configuration_intervention_activate_success": "L'intervento in loco è attivo sul server {{serverName}}",
-  "server_configuration_intervention_activate_failed": "Si è verificato un errore durante l'attivazione degli interventi in loco sul server {{serverName}}"
+  "server_configuration_intervention_activate_failed": "Si è verificato un errore durante l'attivazione degli interventi in loco sul server {{serverName}}",
+  "server_configuration_installation_FAT_16": "FAT16",
+  "server_configuration_installation_VMFS_5": "VMFS5",
+  "server_configuration_installation_VMFS_6": "VMFS6",
+  "server_configuration_installation_VMFSL": "VMFSL"
 }

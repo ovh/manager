@@ -1196,5 +1196,9 @@
   "server_configuration_intervention_deactivate_success": "A intervenção no local está desativada no servidor {{serverName}}",
   "server_configuration_intervention_deactivate_failed": "Ocorreu um erro aquando da desativação da intervenção no local no servidor {{serverName}}",
   "server_configuration_intervention_activate_success": "A intervenção no local está ativa no servidor {{serverName}}",
-  "server_configuration_intervention_activate_failed": "Ocorreu um erro aquando da ativação das intervenções no local no servidor {{serverName}}"
+  "server_configuration_intervention_activate_failed": "Ocorreu um erro aquando da ativação das intervenções no local no servidor {{serverName}}",
+  "server_configuration_installation_FAT_16": "FAT16",
+  "server_configuration_installation_VMFS_5": "VMFS5",
+  "server_configuration_installation_VMFS_6": "VMFS6",
+  "server_configuration_installation_VMFSL": "VMFSL"
 }
