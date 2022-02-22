@@ -1192,7 +1192,7 @@
   "hosting_action_config_edit_container_version_enum_jessie_i386": "Jessie.i386",
   "hosting_action_config_edit_container_help_main_title": "Konfiguracja hostingu",
   "hosting_action_config_edit_container_help_values_title": "Zalecane wartości:",
-  "hosting_action_config_edit_container_help_values_text": "Środowisko uruchomieniowe: stabilne <br/> Wersja php {{phpVersion}} <br/> Silnik: php <br/> Tryb: produkcja <br/> Firewall aplikacyjny: wyłączony",
+  "hosting_action_config_edit_container_help_values_text": "Środowisko uruchomieniowe: stable64 <br/> Wersja php {{phpVersion}} <br/> Silnik: php <br/> Tryb: produkcja <br/> Firewall aplikacyjny: wyłączony",
   "hosting_action_config_edit_engine_version": "Wersja PHP",
   "hosting_action_config_edit_environment": "Tryb",
   "hosting_action_config_edit_environment_help": "W trybie deweloperski cache plików nie jest aktywny.",
