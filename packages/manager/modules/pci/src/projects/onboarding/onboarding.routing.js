@@ -1,5 +1,3 @@
-import { TRUSTED_ZONE_CALLBACK_PHONE_PAGES } from './onboarding.constant';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.onboarding', {
     url: '/onboarding',
@@ -21,18 +19,6 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       breadcrumb: () => null, // Hide breadcrumb
-
-      openTrustedZoneCallbackPage: /* @ngInject */ (
-        $window,
-        coreConfig,
-      ) => () => {
-        const {
-          [coreConfig.getUser().ovhSubsidiary]: url,
-          DEFAULT,
-        } = TRUSTED_ZONE_CALLBACK_PHONE_PAGES;
-
-        return $window.open(url || DEFAULT, '_blank');
-      },
     },
   });
 };
