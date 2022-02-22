@@ -14,7 +14,12 @@ export default class {
     this.messageContainer =
       'pci.projects.project.storages.databases.dashboard.advanced-configuration';
     this.loadMessages();
-    this.model = [];
+    this.model = this.initModelFromAdvancedConfig();
+    this.addEmptyEntry();
+  }
+
+  initModelFromAdvancedConfig() {
+    const model = [];
     // add existing advanced configuration to model
     Object.keys(this.advancedConfiguration).forEach((field) => {
       const keyConfig = this.advancedConfigurationList.find(
@@ -34,13 +39,17 @@ export default class {
         default:
           break;
       }
-      this.model.push({
+      model.push({
         key: keyConfig,
         value,
         added: true,
         isFixed: true,
       });
     });
+    return model;
+  }
+
+  addEmptyEntry() {
     this.getAddableProperties();
     if (this.addableProperties.length > 0) {
       this.model.push({});
@@ -50,7 +59,11 @@ export default class {
   getAdvancedConfigModel() {
     const advancedJson = {};
     this.model.forEach((entry) => {
-      if (entry?.key?.name && entry?.value)
+      if (
+        entry?.key?.name &&
+        entry?.value !== undefined &&
+        entry?.value !== null
+      )
         advancedJson[entry.key.name] = `${entry.value}`;
     });
     return advancedJson;
@@ -94,22 +107,26 @@ export default class {
 
   updateAdvancedConfiguration() {
     this.pending = true;
+    this.CucCloudMessage.flushMessages(this.messageContainer);
     this.DatabaseService.editAdvancedConfiguration(
       this.projectId,
       this.database.engine,
       this.database.id,
       this.getAdvancedConfigModel(),
     )
-      .then((database) =>
-        this.goBackToAdvancedConfiguration({
-          textHtml: this.$translate.instant(
-            'pci_databases_advanced_configuration_update_success_message',
-            {
-              database,
-            },
-          ),
-        }),
-      )
+      .then((advancedConfiguration) => {
+        this.advancedConfiguration = advancedConfiguration;
+        this.model = this.initModelFromAdvancedConfig();
+        this.addEmptyEntry();
+        this.CucCloudMessage.success(
+          {
+            textHtml: this.$translate.instant(
+              'pci_databases_advanced_configuration_update_success_message',
+            ),
+          },
+          this.messageContainer,
+        );
+      })
       .catch((err) =>
         this.CucCloudMessage.error(
           this.$translate.instant(

@@ -10,21 +10,6 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => false,
       goBack: /* @ngInject */ (database, goToDatabase) => (message, type) =>
         goToDatabase(database, message, type),
-      goBackToAdvancedConfiguration: /* @ngInject */ (
-        $state,
-        CucCloudMessage,
-      ) => (message = false, type = 'success') => {
-        const reload = message && type === 'success';
-        const state =
-          'pci.projects.project.storages.databases.dashboard.advanced-configuration';
-        const promise = $state.go(state, {}, { reload });
-        if (message) {
-          promise.then(() => {
-            CucCloudMessage[type](message, state);
-          });
-        }
-        return promise;
-      },
       advancedConfigurationList: /* @ngInject */ (
         database,
         DatabaseService,

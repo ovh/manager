@@ -8,7 +8,6 @@ export default {
     trackDashboard: '<',
     advancedConfiguration: '<',
     advancedConfigurationList: '<',
-    goBackToAdvancedConfiguration: '<',
   },
   controller,
   template,

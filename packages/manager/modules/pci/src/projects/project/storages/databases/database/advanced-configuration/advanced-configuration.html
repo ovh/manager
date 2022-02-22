@@ -1,23 +1,5 @@
 <div class="container-fluid px-0 mt-3">
-    <!-- error messages -->
-    <cui-message-container
-        data-messages="$ctrl.messages"
-    ></cui-message-container>
-
-    <span class="d-flex justify-content-between">
-        <h2
-            data-translate="pci_databases_advanced_configuration_tab_title"
-        ></h2>
-        <oui-button
-            type="submit"
-            size="l"
-            disabled="$ctrl.pending"
-            variant="primary"
-            ng-click="$ctrl.updateAdvancedConfiguration()"
-            >Mettre à jour la configuration avancée</oui-button
-        >
-    </span>
-
+    <h2 data-translate="pci_databases_advanced_configuration_tab_title"></h2>
     <!-- v2 -->
     <div class="row">
         <div class="col">
@@ -35,11 +17,11 @@
                                 <div class="oui-inline-adder__row">
                                     <div class="oui-inline-adder__field">
                                         <oui-field
-                                            label="Configuration key"
+                                            label="Key"
                                             label-popover="{{$ctrl.model[$index].key.description}}"
                                         >
                                             <oui-select
-                                                disabled="$ctrl.model[$index].added"
+                                                disabled="$ctrl.model[$index].added || $ctrl.pending"
                                                 name="configurationKey"
                                                 id="configurationKey"
                                                 match="name"
@@ -57,6 +39,7 @@
                                             ng-if="$ctrl.model[$index].key"
                                         >
                                             <input
+                                                data-ng-disabled="$ctrl.pending"
                                                 class="oui-input"
                                                 ng-if="$ctrl.model[$index].key.type === $ctrl.FIELD_TYPES.string && !$ctrl.model[$index].key.values"
                                                 name="field-{{$index}}"
@@ -66,6 +49,7 @@
                                             />
 
                                             <input
+                                                data-ng-disabled="$ctrl.pending"
                                                 class="oui-input"
                                                 ng-if="$ctrl.model[$index].key.type === 'long' || $ctrl.model[$index].key.type === $ctrl.FIELD_TYPES.double"
                                                 name="$ctrl.model[$index].key-{{$index}}"
@@ -81,15 +65,22 @@
                                                 model="$ctrl.model[$index].value"
                                                 inline
                                             >
-                                                <oui-radio inline value="true"
+                                                <oui-radio
+                                                    disabled="$ctrl.pending"
+                                                    inline
+                                                    value="true"
                                                     >True</oui-radio
                                                 >
-                                                <oui-radio inline value="false"
+                                                <oui-radio
+                                                    disabled="$ctrl.pending"
+                                                    inline
+                                                    value="false"
                                                     >False</oui-radio
                                                 >
                                             </oui-radio-group>
 
                                             <oui-select
+                                                disabled="$ctrl.pending"
                                                 name="field-{{$index}}"
                                                 ng-if="$ctrl.model[$index].key.values"
                                                 data-model="$ctrl.model[$index].value"
@@ -110,11 +101,12 @@
                                     class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
                                     data-ng-click="$ctrl.onAddConfig($index)"
                                     data-ng-if="!$ctrl.model[$index].added"
-                                    data-ng-disabled="!$ctrl.model[$index].key || $ctrl.addableProperties.length <= 1"
+                                    data-ng-disabled="!$ctrl.model[$index].key || $ctrl.addableProperties.length <= 1 || $ctrl.pending"
                                 >
                                     <span class="oui-icon oui-icon-add"></span>
                                 </button>
                                 <button
+                                    data-ng-disabled="$ctrl.pending"
                                     type="button"
                                     class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
                                     data-ng-click="$ctrl.onRemoveConfig($index)"
@@ -131,9 +123,24 @@
             </form>
         </div>
         <div class="col">
-            <pre class="oui-background-p-800 oui-color-p-050 sticky-top">
+            <div class="sticky-top">
+                <!-- error messages -->
+                <cui-message-container
+                    data-messages="$ctrl.messages"
+                ></cui-message-container>
+                <pre class="oui-background-p-800 oui-color-p-050">
 {{$ctrl.getAdvancedConfigModel() | json}}</pre
-            >
+                >
+                <oui-button
+                    class="float-right"
+                    type="submit"
+                    size="l"
+                    disabled="$ctrl.pending"
+                    variant="primary"
+                    ng-click="$ctrl.updateAdvancedConfiguration()"
+                    >Mettre à jour la configuration avancée</oui-button
+                >
+            </div>
         </div>
     </div>
 </div>
