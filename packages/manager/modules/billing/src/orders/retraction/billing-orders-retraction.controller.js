@@ -1,8 +1,8 @@
 export default /* @ngInject */ function BillingOrderRetractionCtrl(
   $log,
   $translate,
+  $http,
   Alerter,
-  BillingOrders,
   goToOrders,
   orderId,
 ) {
@@ -13,7 +13,10 @@ export default /* @ngInject */ function BillingOrderRetractionCtrl(
   this.retract = () => {
     this.success = false;
     this.loading = true;
-    return BillingOrders.retractOrder(orderId)
+    return $http
+      .post(`/me/order/${orderId}/retraction`, {
+        reason: 'other',
+      })
       .then(() => {
         this.success = true;
       })
