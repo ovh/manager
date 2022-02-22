@@ -8,7 +8,6 @@ import React, {
 
 import { plugin, IFrameMessageBus } from '@ovh-ux/shell';
 
-import useCookieModal from '../cookie-policy/useCookieModal';
 import CookiePolicy from '../cookie-policy/CookiePolicy';
 import SSOAuthModal from '../sso-auth-modal/SSOAuthModal';
 
@@ -34,8 +33,6 @@ function Shell() {
     setRouter(routing.router);
   }, [iframeRef, shell]);
 
-  const cookieModalRef = useCookieModal(shell);
-
   return (
     <div className={style.managerShell}>
       {router}
@@ -55,7 +52,7 @@ function Shell() {
       </Suspense>
       <div className={style.managerShell_footer}></div>
       <Suspense fallback="...">
-        <CookiePolicy shell={shell} ref={cookieModalRef} />
+        <CookiePolicy shell={shell} />
       </Suspense>
     </div>
   );
