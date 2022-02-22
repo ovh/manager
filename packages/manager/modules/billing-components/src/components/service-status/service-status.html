@@ -5,7 +5,16 @@
         data-translate="manager_billing_service_status_pending_debt"
     >
     </span>
-    <span data-ng-if="$ctrl.service.isOneShot()">-</span>
+    <span
+        data-ng-if="$ctrl.shouldHideAutorenewStatus() && !$ctrl.service.isResiliated()"
+        >-</span
+    >
+    <span
+        data-ng-if="$ctrl.shouldHideAutorenewStatus() && $ctrl.service.isResiliated()"
+        class="oui-badge oui-badge_error"
+        data-translate="manager_billing_service_status_expired"
+    >
+    </span>
     <span
         class="oui-badge"
         data-ng-class="{
@@ -14,7 +23,7 @@
         'oui-badge_success': $ctrl.SERVICE_STATES.success.includes($ctrl.service.getRenew()),
         'oui-badge_info': $ctrl.SERVICE_STATES.info.includes($ctrl.service.getRenew()),
     }"
-        data-ng-if="!$ctrl.service.hasDebt() && !$ctrl.service.isOneShot()"
+        data-ng-if="!$ctrl.service.hasDebt() && !$ctrl.shouldHideAutorenewStatus()"
         data-translate="{{:: 'manager_billing_service_status_' + $ctrl.service.getRenew() | translate }}"
     ></span>
     <button

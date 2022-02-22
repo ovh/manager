@@ -1,4 +1,4 @@
-import find from 'lodash/find';
+import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
 import pick from 'lodash/pick';
@@ -41,6 +41,7 @@ export default class {
     this.OvhHttp = OvhHttp;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.OvhApiMeAutorenew = OvhApiMeAutorenew;
+    this.queryParams = {};
 
     this.events = {
       AUTORENEW_CHANGES: AUTORENEW_EVENT,
@@ -62,38 +63,34 @@ export default class {
     order,
     nicBilling,
   ) {
-    return this.OvhApiBillingAutorenewServices.Aapi().query({
-      count,
-      offset,
-      search,
-      type,
-      renewDateType,
-      status,
-      state,
-      order: JSON.stringify(order),
-      nicBilling,
-    }).$promise;
+    return this.OvhHttp.get('/billing/services', {
+      rootPath: '2api',
+      params: {
+        count,
+        offset,
+        search,
+        type,
+        renewDateType,
+        status,
+        state,
+        order: JSON.stringify(order),
+        nicBilling,
+      },
+    });
   }
 
-  /**
-   * add optional serviceType parameter to filter service result
-   * (some services might have the same serviceId but a different
-   *  serviceType : domain and email-domain)
-   */
-  getService(serviceId, serviceType) {
-    return this.OvhApiBillingAutorenewServices.Aapi()
-      .query({
-        search: serviceId,
-      })
-      .$promise.then((services) => {
-        if (serviceType) {
-          return find(services.list.results, {
-            serviceType,
-            serviceId,
-          });
-        }
-        return head(services.list.results);
-      })
+  findService({ resourceName, serviceType, serviceId }) {
+    return this.OvhHttp.get('/billing/services', {
+      rootPath: '2api',
+      params: {
+        resourceName,
+        serviceId,
+        serviceType,
+        count: 1,
+        offset: 0,
+      },
+    })
+      .then((services) => head(services.list.results))
       .then((service) => new BillingService(service));
   }
 
@@ -277,11 +274,11 @@ export default class {
     const agreementsPromise = service.hasAutomaticRenew()
       ? this.DucUserContractService.acceptAgreements(agreements)
       : Promise.resolve([]);
-    return agreementsPromise.then(() =>
-      this.updateServices([
-        pick(service, ['serviceId', 'serviceType', 'renew']),
-      ]),
-    );
+    return agreementsPromise.then(() => {
+      const toUpdate = pick(service, ['serviceId', 'serviceType', 'renew']);
+      toUpdate.route = get(service, 'route.url');
+      return this.updateServices([toUpdate]);
+    });
   }
 
   /* eslint-disable class-methods-use-this */
@@ -315,5 +312,13 @@ export default class {
 
   isAutomaticRenewV2Available() {
     return this.coreConfig.isRegion('EU');
+  }
+
+  setQueryParams(params) {
+    this.queryParams = params;
+  }
+
+  getQueryParams() {
+    return this.queryParams || {};
   }
 }

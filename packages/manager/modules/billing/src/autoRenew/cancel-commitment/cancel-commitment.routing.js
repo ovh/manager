@@ -25,7 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
         breadcrumb: () => null,
         service: /* @ngInject */ (BillingAutoRenew, serviceId) =>
-          BillingAutoRenew.getService(serviceId),
+          BillingAutoRenew.findService({ serviceId }),
         confirmCancelTracking: /* @ngInject */ (service) =>
           `dedicated::account::billing::${kebabCase(
             service.serviceType,
