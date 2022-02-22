@@ -1373,5 +1373,6 @@
   "hosting_dashboard_service_common_inactive": "Inactivo",
   "hosting_dashboard_email_offer_get_error": "No se ha podido cargar la dirección de correo.",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Más"
+  "hosting_dashboard_tabs_dropdown": "Más",
+  "hosting_dashboard_php_support_SUPPORTED": "Actualmente está utilizando una versión de PHP reciente. Dispone de las últimas actualizaciones de seguridad."
 }
