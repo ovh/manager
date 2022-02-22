@@ -6,39 +6,42 @@
     data-translate="billing_autorenew_service_update_form_service_renewal"
 >
 </label>
-<oui-select
-    class="oui-select_m"
-    id="renew-type"
-    data-name="renew-type"
-    data-model="$ctrl.model.renewalType"
-    data-match="label"
-    data-items="$ctrl.RENEWAL_TYPES"
-    data-on-change="$ctrl.onRenewalTypeChange(modelValue)"
->
-    <span data-ng-bind="$item.label"></span>
-</oui-select>
-<div data-ng-if="$ctrl.service.hasAutomaticRenew()">
-    <label
-        for="period"
-        class="oui-label"
-        data-translate="billing_autorenew_service_update_form_service_period"
-    >
-    </label>
+<oui-spinner data-ng-if="!$ctrl.model" data-size="s"></oui-spinner>
+<div data-ng-if="$ctrl.model">
     <oui-select
         class="oui-select_m"
-        id="period"
-        data-name="period"
-        data-model="$ctrl.model.period"
-        data-items="$ctrl.PERIODS"
+        id="renew-type"
+        data-name="renew-type"
+        data-model="$ctrl.model.renewalType"
         data-match="label"
-        data-on-change="$ctrl.onPeriodChange(modelValue)"
+        data-items="$ctrl.RENEWAL_TYPES"
+        data-on-change="$ctrl.onRenewalTypeChange(modelValue)"
     >
         <span data-ng-bind="$item.label"></span>
     </oui-select>
+    <div data-ng-if="$ctrl.service.hasAutomaticRenew()" class="mb-3">
+        <label
+            for="period"
+            class="oui-label"
+            data-translate="billing_autorenew_service_update_form_service_period"
+        >
+        </label>
+        <oui-select
+            class="oui-select_m"
+            id="period"
+            data-name="period"
+            data-model="$ctrl.model.period"
+            data-items="$ctrl.PERIODS"
+            data-match="label"
+            data-on-change="$ctrl.onPeriodChange(modelValue)"
+        >
+            <span data-ng-bind="$item.label"></span>
+        </oui-select>
+    </div>
+    <div
+        data-ng-if="$ctrl.autorenewAgreements.length > 0"
+        data-contracts="$ctrl.autorenewAgreements"
+        data-full-text="false"
+        data-ng-model="$ctrl.hasAgreed"
+    ></div>
 </div>
-<div
-    data-ng-if="$ctrl.autorenewAgreements.length > 0"
-    data-contracts="$ctrl.autorenewAgreements"
-    data-full-text="false"
-    data-ng-model="$ctrl.hasAgreed"
-></div>
