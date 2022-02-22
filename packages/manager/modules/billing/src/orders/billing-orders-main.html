@@ -10,7 +10,7 @@
             <span data-translate="orders_billing"></span>
         </oui-guide-menu-item>
         <oui-guide-menu-item
-            data-ng-if="$ctrl.featuresAvailabilities['billing:purchases-order']"
+            data-ng-if="$ctrl.featuresAvailabilities['billing:purchasesOrder']"
             data-ng-href="{{:: $ctrl.purchaseOrdersGuideUrl }}"
             data-external="true"
         >
@@ -18,7 +18,7 @@
         </oui-guide-menu-item>
     </oui-guide-menu>
     <oui-header-tabs
-        data-ng-if="$ctrl.featuresAvailabilities['billing:purchases-order']"
+        data-ng-if="$ctrl.featuresAvailabilities['billing:purchasesOrder']"
     >
         <oui-header-tabs-item state="{{:: $ctrl.ordersSectionState }}"
             ><span data-translate="orders_page_title"></span
