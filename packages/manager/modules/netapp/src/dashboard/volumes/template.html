@@ -57,8 +57,9 @@
         </oui-datagrid-column>
         <oui-datagrid-column
             title=":: 'netapp_volumes_status' | translate"
-            property="status"
-        ></oui-datagrid-column>
+        >
+            <span data-ng-bind=":: ('netapp_volumes_status_'+$row.status) | translate "></span>
+        </oui-datagrid-column>
         <oui-action-menu compact="true" ng-if="$ctrl.canEditVolumes">
             <oui-action-menu-item
                 href="{{:: $ctrl.getVolumeDetailsHref($row) }}"
