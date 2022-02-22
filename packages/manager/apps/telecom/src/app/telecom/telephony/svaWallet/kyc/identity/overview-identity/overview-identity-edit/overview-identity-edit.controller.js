@@ -1,10 +1,10 @@
 import {
   DISALLOW_BENEFICIARIES_KINDS,
   FORCE_REPRESENTAIVE_IS_BENEFICIARY_KINDS,
+  REGEX_VALIDATORS,
 } from '../../identity.constants';
 import { DIRECTORY_WAY_NUMBER_EXTRA_ENUM } from '../../../../../service/contact/contact.constants';
 
-import { REGEX_VALIDATORS } from './overview-identity-edit.constants';
 import {
   buildEnumList,
   getEnumItemValue,
