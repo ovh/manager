@@ -20,7 +20,7 @@ export const NavReshuffleFeedbackWidget = () => {
     const { timestamp } = JSON.parse(storedInfo);
 
     const redisplayDate = addDays(new Date(timestamp), REDISPLAY_DAYS_INTERVAL);
-    return isAfter(redisplayDate, new Date());
+    return isAfter(new Date(), redisplayDate);
   };
 
   const [visible, setVisibility] = useState(false);
