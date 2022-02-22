@@ -257,4 +257,27 @@ export default class AutorenewCtrl {
       }).format(new Date(service.expiration)),
     );
   }
+
+  getDisplayedDateOfEffect(service) {
+    if (service.hasDebt()) {
+      return this.$translate.instant('billing_autorenew_service_date_now');
+    }
+    if (service.hasPendingResiliation() || service.isResiliated()) {
+      return this.$translate.instant('billing_autorenew_service_date_renew', {
+        date: service.formattedExpiration,
+      });
+    }
+    if (service.hasParticularRenew() || service.isOneShot()) {
+      return '-';
+    }
+    if (service.hasManualRenew() && !service.isResiliated()) {
+      return this.$translate.instant('billing_autorenew_service_date_before', {
+        date: service.formattedExpiration,
+      });
+    }
+    if (service.hasAutomaticRenewal()) {
+      return this.getAutomaticExpirationDate(service);
+    }
+    return '-';
+  }
 }

@@ -45,6 +45,10 @@ export default class BillingService {
       return this.status.toLowerCase();
     }
 
+    if (this.isResiliated()) {
+      return 'expired';
+    }
+
     if (this.isManualForced()) {
       return this.status.toLowerCase();
     }
@@ -55,10 +59,6 @@ export default class BillingService {
 
     if (this.shouldDeleteAtExpiration() && !this.isResiliated()) {
       return 'delete_at_expiration';
-    }
-
-    if (this.isResiliated()) {
-      return 'expired';
     }
 
     if (this.hasAutomaticRenew() || this.hasForcedRenew()) {
@@ -79,7 +79,7 @@ export default class BillingService {
   }
 
   isExpired() {
-    return this.status.toLowerCase() === 'expired';
+    return ['expired', 'unrenewed'].includes(this.status.toLowerCase());
   }
 
   shouldDeleteAtExpiration() {
@@ -96,10 +96,7 @@ export default class BillingService {
 
   isResiliated() {
     return (
-      this.isExpired() ||
-      (moment().isAfter(this.expirationDate) &&
-        !this.hasAutomaticRenew() &&
-        !this.hasForcedRenew())
+      this.isExpired() || ['TERMINATED'].includes(this.status.toUpperCase())
     );
   }
 
@@ -279,11 +276,19 @@ export default class BillingService {
   }
 
   hasParticularRenew() {
-    return ['EXCHANGE', 'SMS', 'EMAIL_DOMAIN'].includes(this.serviceType);
+    return [
+      'EXCHANGE',
+      'EMAIL_EXCHANGE',
+      'SMS',
+      'EMAIL_DOMAIN',
+      'VEEAM_ENTERPRISE',
+    ].includes(this.serviceType);
   }
 
   canHandleRenew() {
-    return !['VIP', 'OVH_CLOUD_CONNECT'].includes(this.serviceType);
+    return !['VIP', 'OVH_CLOUD_CONNECT', 'PACK_XDSL', 'XDSL'].includes(
+      this.serviceType,
+    );
   }
 
   isOneShot() {
@@ -338,7 +343,7 @@ export default class BillingService {
   }
 
   isSuspended() {
-    return this.status === 'UN_PAID' || this.isResiliated();
+    return DEBT_STATUS.includes(this.status) || this.isResiliated();
   }
 
   hasPendingResiliation() {

@@ -59,15 +59,23 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             {},
             { inherit: false },
           ),
-        goToAutorenew: /* @ngInject */ ($state, $timeout, Alerter) => (
-          message = false,
-          type = 'success',
-        ) => {
+        queryParameters: /* @ngInject */ ($transition$, BillingAutoRenew) => {
+          if ($transition$.to()?.name === 'app.account.billing.autorenew') {
+            BillingAutoRenew.setQueryParams($transition$.params());
+          }
+          return BillingAutoRenew.getQueryParams();
+        },
+        goToAutorenew: /* @ngInject */ (
+          $state,
+          $timeout,
+          Alerter,
+          queryParameters,
+        ) => (message = false, type = 'success') => {
           const reload = message && type === 'success';
 
           const promise = $state.go(
             'app.account.billing.autorenew',
-            {},
+            queryParameters || {},
             {
               reload,
             },
@@ -236,7 +244,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
       serviceId: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceId,
       service: /* @ngInject */ (BillingAutoRenew, serviceId) =>
-        BillingAutoRenew.getService(serviceId),
+        BillingAutoRenew.findService({ serviceId }),
       breadcrumb: /* @ngInject */ (serviceId) => serviceId,
     },
   });

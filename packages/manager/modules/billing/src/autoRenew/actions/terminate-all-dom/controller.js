@@ -107,7 +107,10 @@ export default class {
   }
 
   getService(serviceId, serviceType) {
-    return this.BillingAutoRenew.getService(serviceId, serviceType).then(
+    return this.BillingAutoRenew.findService({
+      resourceName: serviceId,
+      serviceType,
+    }).then(
       (service) =>
         new BillingService({
           ...service,

@@ -32,7 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceType: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceType,
       service: /* @ngInject */ (BillingAutoRenew, serviceId, serviceType) =>
-        BillingAutoRenew.getService(serviceId, serviceType),
+        BillingAutoRenew.findService({ resourceName: serviceId, serviceType }),
       /* @ngInject */
       updateRenew: (BillingAutoRenew) => (service, agreements) =>
         BillingAutoRenew.updateRenew(service, agreements),

@@ -91,10 +91,13 @@ export default class ServicesActionsCtrl {
   }
 
   getExchangeBilling() {
-    const [organization, exchangeName] = this.service.serviceId.split(
-      '/service/',
-    );
-    return `${this.autorenewLink}/exchange?organization=${organization}&exchangeName=${exchangeName}`;
+    if (/\/service\//.test(this.service.serviceId)) {
+      const [organization, exchangeName] = this.service.serviceId.split(
+        '/service/',
+      );
+      return `${this.autorenewLink}/exchange?organization=${organization}&exchangeName=${exchangeName}`;
+    }
+    return `${this.autorenewLink}/exchange?organization=${this.service.serviceId}&exchangeName=${this.service.serviceId}`;
   }
 
   trackAction(action) {

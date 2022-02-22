@@ -6,8 +6,6 @@ import '@ovh-ux/ui-kit';
 import uiRouter from '@uirouter/angularjs';
 
 import retraction from './retraction/retraction.module';
-import ordersService from './billing-orders.service';
-import ordersServiceApiv7 from './billing-orders-apiv7.service';
 
 import routing from './orders.routing';
 
@@ -23,8 +21,6 @@ angular
     uiRouter,
   ])
   .config(routing)
-  .service('BillingOrders', ordersService)
-  .service('BillingOrdersApiv7', ordersServiceApiv7)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

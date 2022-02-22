@@ -1,4 +1,5 @@
 import kebabCase from 'lodash/kebabCase';
+import get from 'lodash/get';
 import { EngagementConfiguration } from '@ovh-ux/manager-models';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -35,7 +36,12 @@ export default /* @ngInject */ ($stateProvider) => {
           : $q.when(0)
         ).then(() => {
           service.cancelResiliation();
-          return BillingAutoRenew.updateService(service);
+          return BillingAutoRenew.updateService({
+            serviceId: service.serviceId,
+            serviceType: service.serviceType,
+            renew: service.renew,
+            route: get(service, 'route.url'),
+          });
         });
       },
       engagement: /* @ngInject */ ($http, service) =>
@@ -63,7 +69,12 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceType: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceType,
       service: /* @ngInject */ (BillingAutoRenew, serviceId, serviceType) =>
-        BillingAutoRenew.getService(serviceId, serviceType),
+        BillingAutoRenew.findService({ resourceName: serviceId, serviceType }),
+      fetchRenewInfos: /* @ngInject */ ($http, service) =>
+        $http
+          .get(`${service.route.url}/serviceInfos`)
+          .then(({ data }) => data)
+          .then(({ renew }) => Object.assign(service, { renew })),
       setReactivateEngagementStrategy: /* @ngInject */ (
         BillingService,
         endStrategies,

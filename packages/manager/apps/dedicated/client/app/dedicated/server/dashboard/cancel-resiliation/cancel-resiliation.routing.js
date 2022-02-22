@@ -46,10 +46,10 @@ export default /* @ngInject */ ($stateProvider) => {
             : Promise.resolve({ engagement: null })
           ).then(({ engagement }) => engagement),
         service: /* @ngInject */ ($transition$, BillingAutoRenewService) =>
-          BillingAutoRenewService.getService(
-            $transition$.params().productId,
-            'DEDICATED_SERVER',
-          ),
+          BillingAutoRenewService.findService({
+            resourceName: $transition$.params().productId,
+            serviceType: 'DEDICATED_SERVER',
+          }),
         setReactivateEngagementStrategy: /* @ngInject */ (
           $http,
           endStrategies,
