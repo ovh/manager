@@ -36,9 +36,10 @@ export default class Pricing {
     return this.format(this.monthlyPriceValue);
   }
 
-  getDiff(pricing, duration) {
+  getDiff(pricing, duration, quantity) {
     const priceDiff =
-      this.monthlyPriceValue * duration - pricing.monthlyPriceValue * duration;
+      this.monthlyPriceValue * quantity * duration -
+      pricing.monthlyPriceValue * duration;
     return this.format(priceDiff);
   }
 }
