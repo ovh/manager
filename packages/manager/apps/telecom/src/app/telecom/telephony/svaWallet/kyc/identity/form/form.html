@@ -55,7 +55,7 @@
             placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_identification_number' | translate }}"
             type="text"
             ng-model="$ctrl.wallet.company.identificationNumber"
-            ng-pattern="$ctrl.VALIDATORS.SIRET"
+            ng-pattern="$ctrl.REGEX_VALIDATORS.SIRET"
             required
         />
     </oui-field>

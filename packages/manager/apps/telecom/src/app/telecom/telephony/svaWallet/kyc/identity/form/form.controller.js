@@ -1,10 +1,10 @@
 import {
   DISALLOW_BENEFICIARIES_KINDS,
   FORCE_REPRESENTAIVE_IS_BENEFICIARY_KINDS,
+  REGEX_VALIDATORS,
 } from '../identity.constants';
 import { DIRECTORY_WAY_NUMBER_EXTRA_ENUM } from '../../../../service/contact/contact.constants';
 
-import { VALIDATORS } from './form.constants';
 import { buildEnumList, getEnumItemValue } from '../../../sva-wallet.constants';
 
 import confirmTemplate from './confirm/confirm.html';
@@ -37,7 +37,7 @@ export default class KycIdentityFormController {
       ...DIRECTORY_WAY_NUMBER_EXTRA_ENUM.map((val) => val.toUpperCase()),
     ];
 
-    this.VALIDATORS = VALIDATORS;
+    this.REGEX_VALIDATORS = REGEX_VALIDATORS;
     this.requirements = false;
 
     this.wallet = {
