@@ -24,6 +24,7 @@ const server = setupServer(
 
 jest.mock('../../account-sidebar/AccountSidebar.jsx');
 jest.mock('../../notifications-sidebar/NotificationsSidebar.jsx');
+jest.mock('../../cookie-policy/CookiePolicy.jsx');
 
 describe('Renders shell header', () => {
   // Given an environment with the user 'Tester testee'

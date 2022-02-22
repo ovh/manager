@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash-es';
-import { CountryCode } from '@ovh-ux/manager-config/types/locale';
+import { CountryCode } from '@ovh-ux/manager-config/types/locale/country-code.enum';
 
 // eslint-disable-next-line prettier/prettier
 type levelKey<Num extends number> = `level${Num}`;
