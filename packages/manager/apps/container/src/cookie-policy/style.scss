@@ -6,21 +6,37 @@ $buttons-wrapper-margin-top: 1rem;
 $img-width: 10rem;
 $img-wrapper-margin-bottom: 1rem;
 
-.cookie-policy-modal {
-  .img-wrapper {
-    margin-bottom: $img-wrapper-margin-bottom;
+$buttons-width: 15rem;
+$buttons-margin: 0.2rem;
+$buttons-wrapper-margin-top: 1rem;
+$img-width: 10rem;
+$img-wrapper-margin-bottom: 1rem;
+$modal-margin: 0;
 
-    img {
-      width: $img-width;
-    }
+.img-wrapper {
+  margin-bottom: $img-wrapper-margin-bottom;
+
+  img {
+    width: $img-width;
   }
+}
 
-  .banner-buttons {
-    margin-top: $buttons-wrapper-margin-top;
+.oui-modal__header {
+  display: none;
+}
 
-    button {
-      width: $buttons-width;
-      margin: $buttons-margin;
-    }
+.banner-buttons {
+  margin-top: $buttons-wrapper-margin-top;
+  .oui-button {
+    width: $buttons-width !important;
+    margin: $buttons-margin;
   }
+}
+
+.modal-footer {
+  border-top: none !important;
+}
+
+.modal-body {
+  padding-bottom: 0 !important;
 }
