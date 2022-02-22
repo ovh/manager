@@ -1192,7 +1192,7 @@
   "hosting_action_config_edit_container_version_enum_jessie_i386": "Jessie.i386",
   "hosting_action_config_edit_container_help_main_title": "Configuração do alojamento",
   "hosting_action_config_edit_container_help_values_title": "Valores aconselhados:",
-  "hosting_action_config_edit_container_help_values_text": "Ambiente de execução: estável <br/> Versão de php {{ phpVersion }} <br/> Motor: php <br/> Modo: produção <br/> Firewall da aplicação: desativado",
+  "hosting_action_config_edit_container_help_values_text": "Ambiente de execução: stable64 <br/> Versão de php {{ phpVersion }} <br/> Motor: php <br/> Modo: produção <br/> Firewall da aplicação: desativado",
   "hosting_action_config_edit_engine_version": "Versão de PHP",
   "hosting_action_config_edit_environment": "Modo",
   "hosting_action_config_edit_environment_help": "Em desenvolvimento a cache dos ficheiros não está ativada.",
