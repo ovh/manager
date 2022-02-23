@@ -109,7 +109,6 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
 
         // check if has fax option
         self.disableFaxOptionTab =
-          self.loading.init ||
           !(self.line.isPlugNFax || self.fax || self.line.hasFaxCapabilities) ||
           self.line.isTrunk();
 
