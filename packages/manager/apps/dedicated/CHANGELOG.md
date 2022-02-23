@@ -1,3 +1,12 @@
+## [17.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.12.1...@ovh-ux/manager-dedicated@17.12.2) (2022-02-23)
+
+
+### Bug Fixes
+
+* **server.consumption:** fix consumption increase modal opening ([af8871d](https://github.com/ovh/manager/commit/af8871d1d46f5ddaadfcbc5047e5abc38a8b9a4d)), closes [#6445](https://github.com/ovh/manager/issues/6445)
+
+
+
 ## [17.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.12.0...@ovh-ux/manager-dedicated@17.12.1) (2022-02-23)
 
 
