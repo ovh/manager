@@ -1,3 +1,25 @@
+# [5.60.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.59.0...@ovh-ux/manager-pci@5.60.0) (2022-02-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1439] ([fb02f1b](https://github.com/ovh/manager/commit/fb02f1b9f5650cd5a80521a8b0cd2b6203f4c6ba))
+* **i18n:** add missing translations [CDS 1440] ([9647b98](https://github.com/ovh/manager/commit/9647b9809346aed22c678821a7c153447a607dd3))
+* **i18n:** add missing translations [CDS 1449] ([e53ddcd](https://github.com/ovh/manager/commit/e53ddcdbf8a70164a3b4b196453e2b74a6c4ef1c))
+* **i18n:** add missing translations [CDS 1450] ([27ccef4](https://github.com/ovh/manager/commit/27ccef43319f6af9ddeac8e88ed31ba3a8ec542e))
+* **i18n:** add missing translations [CDS 1455] ([b684042](https://github.com/ovh/manager/commit/b6840429b754b56b29773b112ab5ad368f3aec63))
+* **i18n:** add missing translations [CDS 1456] ([e140f4e](https://github.com/ovh/manager/commit/e140f4e54263212f68edb7bb116c66111e624f93))
+* remove unused translations [CDS] ([6381fc1](https://github.com/ovh/manager/commit/6381fc18ed75a041150e415c019bb73984ef9db3))
+
+
+### Features
+
+* **ai-training-jobs:** add possibility to attach ssh keys ([#5824](https://github.com/ovh/manager/issues/5824)) ([7a424bf](https://github.com/ovh/manager/commit/7a424bf8579a72b33fd162c8f5a1919f544489af))
+* **ai-training-notebooks:** add possibility to attach ssh keys ([#6058](https://github.com/ovh/manager/issues/6058)) ([8f0734e](https://github.com/ovh/manager/commit/8f0734eb30bae567a8b995b824e1849f837b5ea6))
+* **kubernetes:** added description of error 412 ([#6138](https://github.com/ovh/manager/issues/6138)) ([7b4ea1c](https://github.com/ovh/manager/commit/7b4ea1cb7929fe226d5fc454832c7024d14916bc))
+
+
+
 # [5.59.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.58.0...@ovh-ux/manager-pci@5.59.0) (2022-02-21)
 
 

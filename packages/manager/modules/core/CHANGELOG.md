@@ -1,3 +1,12 @@
+# [12.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.9.0...@ovh-ux/manager-core@12.10.0) (2022-02-23)
+
+
+### Features
+
+* **hub:** use i18n shell plugin ([c6c5e52](https://github.com/ovh/manager/commit/c6c5e529442c33ca4612b9e150d599be79515c8a))
+
+
+
 # [12.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.8.0...@ovh-ux/manager-core@12.9.0) (2022-02-09)
 
 

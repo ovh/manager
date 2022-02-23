@@ -1,3 +1,22 @@
+# [3.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.18.7...@ovh-ux/manager-hub-app@3.19.0) (2022-02-23)
+
+
+### Bug Fixes
+
+* **uxplugin:** separate toggle from show function ([b7be3c2](https://github.com/ovh/manager/commit/b7be3c2c78f887adc0a25bad98893972ab0a60d1))
+* reload top window when locale change ([1c75306](https://github.com/ovh/manager/commit/1c75306f0238d53360b9c312b5a7d89522a9a5ff))
+
+
+### Features
+
+* **app-shell:** integrate ux plugin ([85018e1](https://github.com/ovh/manager/commit/85018e1d09c08a53e133034e519da390acd3ecf8))
+* **hub:** use i18n shell plugin ([c6c5e52](https://github.com/ovh/manager/commit/c6c5e529442c33ca4612b9e150d599be79515c8a))
+* **hub:** use ovh-shell ([aa4b7ad](https://github.com/ovh/manager/commit/aa4b7ad0f6355fe55defa550c52c0d1744de586a))
+* **hub:** use shell authentication plugin ([c3c7dc9](https://github.com/ovh/manager/commit/c3c7dc9edf795e2b14b847dfc6ed0c30b642edc7))
+* **uxplugin:** integrate plugin in shell and hub ([4fd51aa](https://github.com/ovh/manager/commit/4fd51aa3eda219b80e96d2e18bcf530d6972bd28))
+
+
+
 ## [3.18.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.18.6...@ovh-ux/manager-hub-app@3.18.7) (2022-01-25)
 
 

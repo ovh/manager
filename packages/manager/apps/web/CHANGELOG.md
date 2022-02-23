@@ -1,3 +1,16 @@
+## [16.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.6.1...@ovh-ux/manager-web@16.6.2) (2022-02-23)
+
+
+### Bug Fixes
+
+* **hosting:** warn when `php` version is EOL ([#6452](https://github.com/ovh/manager/issues/6452)) ([1f7cf6f](https://github.com/ovh/manager/commit/1f7cf6ff233c1eac09bd7da628aa469fb2593aca))
+* **hosting.dashboard:** update recommended version for `php` ([#6435](https://github.com/ovh/manager/issues/6435)) ([05e1f46](https://github.com/ovh/manager/commit/05e1f4680e1ffbf486c30482bf72c070b73f5a99))
+* **privates-database:** remove autocommit fixed value ([#6490](https://github.com/ovh/manager/issues/6490)) ([0a8eb54](https://github.com/ovh/manager/commit/0a8eb5476ba830ff9f06f149efaa7c7567071a94))
+* remove unused translations [CDS] ([6381fc1](https://github.com/ovh/manager/commit/6381fc18ed75a041150e415c019bb73984ef9db3))
+* **i18n:** add missing translations [CDS 1431] ([670fa37](https://github.com/ovh/manager/commit/670fa378e8a449315126fa9d5d02cf06c15e5f7f))
+
+
+
 ## [16.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.6.0...@ovh-ux/manager-web@16.6.1) (2022-02-15)
 
 

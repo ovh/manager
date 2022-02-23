@@ -1,3 +1,18 @@
+# [13.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.32.1...@ovh-ux/manager-telecom@13.33.0) (2022-02-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1446] ([faf09a2](https://github.com/ovh/manager/commit/faf09a23e6e8652d316b4c1d23577db6b1bb74ce))
+* **telephony.group.line:** prevent RJ11 to be seen as fax lines ([#5759](https://github.com/ovh/manager/issues/5759)) ([5c2e41c](https://github.com/ovh/manager/commit/5c2e41c4d6440e89d5d28390cd7e82744f071fa9))
+
+
+### Features
+
+* tracking for nasha add and telephone line solution change page ([#6437](https://github.com/ovh/manager/issues/6437)) ([3e7c68e](https://github.com/ovh/manager/commit/3e7c68e3d3391f4b184320d9573c5f6fb65452da))
+
+
+
 ## [13.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.32.0...@ovh-ux/manager-telecom@13.32.1) (2022-02-21)
 
 

@@ -1,3 +1,17 @@
+# [7.9.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.8.2...@ovh-ux/ng-ovh-telecom-universe-components@7.9.0) (2022-02-23)
+
+
+### Bug Fixes
+
+* **telephony:** replace billingAccount apiv7 call ([#6460](https://github.com/ovh/manager/issues/6460)) ([6f6ed13](https://github.com/ovh/manager/commit/6f6ed13253cd6fe3a01e7536b10f1056d292286a))
+
+
+### Features
+
+* tracking for nasha add and telephone line solution change page ([#6437](https://github.com/ovh/manager/issues/6437)) ([3e7c68e](https://github.com/ovh/manager/commit/3e7c68e3d3391f4b184320d9573c5f6fb65452da))
+
+
+
 ## [7.8.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.8.1...@ovh-ux/ng-ovh-telecom-universe-components@7.8.2) (2022-01-25)
 
 

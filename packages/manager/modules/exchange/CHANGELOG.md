@@ -1,3 +1,12 @@
+## [3.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.1.5...@ovh-ux/manager-exchange@3.1.6) (2022-02-23)
+
+
+### Bug Fixes
+
+* **account.alias:** correction of manage aliases page title ([#6425](https://github.com/ovh/manager/issues/6425)) ([4884d72](https://github.com/ovh/manager/commit/4884d7265f1ab410e38fbce02e62998364e1f6ea))
+
+
+
 ## [3.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.1.4...@ovh-ux/manager-exchange@3.1.5) (2022-02-09)
 
 

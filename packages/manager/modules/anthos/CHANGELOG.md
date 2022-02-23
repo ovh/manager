@@ -1,3 +1,13 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@1.1.0...@ovh-ux/manager-anthos@1.1.1) (2022-02-23)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([8686839](https://github.com/ovh/manager/commit/8686839151bc9cb7d8f7e477b142b51219580dee))
+* **i18n:** add missing translations [CDS 1446] ([faf09a2](https://github.com/ovh/manager/commit/faf09a23e6e8652d316b4c1d23577db6b1bb74ce))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@1.0.3...@ovh-ux/manager-anthos@1.1.0) (2022-02-15)
 
 

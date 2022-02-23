@@ -1,3 +1,12 @@
+# [6.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.2.2...@ovh-ux/manager-telecom-dashboard@6.3.0) (2022-02-23)
+
+
+### Features
+
+* add identity check form ([#6017](https://github.com/ovh/manager/issues/6017)) ([f76bf9b](https://github.com/ovh/manager/commit/f76bf9b94ad28af098b5a962f42b3cb1013e04f9))
+
+
+
 ## [6.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.2.1...@ovh-ux/manager-telecom-dashboard@6.2.2) (2021-11-04)
 
 

@@ -1,3 +1,12 @@
+## [3.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.2.6...@ovh-ux/manager-hub@3.2.7) (2022-02-23)
+
+
+### Bug Fixes
+
+* **components.products:** add missing translation ([#6375](https://github.com/ovh/manager/issues/6375)) ([0bc611b](https://github.com/ovh/manager/commit/0bc611bc46cf862f6b4299f3277bd03bbd8138ab))
+
+
+
 ## [3.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.2.5...@ovh-ux/manager-hub@3.2.6) (2022-01-25)
 
 

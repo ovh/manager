@@ -1,3 +1,12 @@
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.3.4...@ovh-ux/manager-nasha@2.4.0) (2022-02-23)
+
+
+### Features
+
+* tracking for nasha add and telephone line solution change page ([#6437](https://github.com/ovh/manager/issues/6437)) ([3e7c68e](https://github.com/ovh/manager/commit/3e7c68e3d3391f4b184320d9573c5f6fb65452da))
+
+
+
 ## [2.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.3.3...@ovh-ux/manager-nasha@2.3.4) (2021-11-10)
 
 
