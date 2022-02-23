@@ -86,7 +86,7 @@
                     >
                         <oui-action-menu-item
                             data-aria-label="{{'server_traffic_order_button' | translate}}"
-                            data-on-click="ctrl.$scope.$parent.$parent.$parent.$parent.$parent.setAction('traffic/order/dedicated-server-traffic-order', ctrl.server.data.name)"
+                            data-on-click="setAction('traffic/order/dedicated-server-traffic-order', ctrl.server.data.name)"
                             data-disabled="ctrl.server.data.state === 'HACKED' || ctrl.server.data.state === 'HACKED_BLOCKED'"
                             ><span
                                 data-ng-bind="(ctrl.trafficOption.data !== 'subscribed' ? 'server_traffic_order_button' : 'server_traffic_change_button') | translate"
