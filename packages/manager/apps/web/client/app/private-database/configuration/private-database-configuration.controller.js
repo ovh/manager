@@ -64,10 +64,6 @@ angular.module('App').controller(
       }));
       if (field.key === 'autocommit') {
         PrivateDatabaseConfigurationsCtrl.convertFieldAsToggle(field);
-        field.availableValues = [
-          { id: '0', text: ' OFF' },
-          { id: '1', text: 'ON' },
-        ];
       } else if (field.key === 'event_scheduler') {
         PrivateDatabaseConfigurationsCtrl.convertFieldAsToggle(field);
       } else {

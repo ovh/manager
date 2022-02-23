@@ -27,5 +27,6 @@
   "pci_projects_project_training_jobs_info_title_6": "Información",
   "pci_projects_project_training_jobs_info_title_actions": "Acciones",
   "pci_projects_project_training_job_logs_text_pre_running": "El job todavía está en espera de arranque... La pestaña se actualizará automáticamente cuando el job comience.",
-  "pci_projects_project_training_jobs_resubmit": "Reanudar"
+  "pci_projects_project_training_jobs_resubmit": "Reanudar",
+  "pci_projects_project_training_jobs_ssh_url": "Acceso SSH"
 }

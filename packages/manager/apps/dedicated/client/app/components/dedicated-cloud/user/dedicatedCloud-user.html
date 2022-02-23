@@ -137,7 +137,6 @@
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_USER_nsx' | translate"
             data-ng-if="$ctrl.nsxOptions === 'enabled'"
-            data-name="nsx"
         >
             <span data-translate="common_yes" data-ng-if="$row.nsxRight">
             </span>
@@ -145,7 +144,7 @@
             </span>
         </oui-datagrid-column>
         <oui-datagrid-column
-            data-title=":: 'dedicatedCloud_USER_connection_type' | translate"
+            data-title=":: 'dedicatedCloud_USER_state' | translate"
         >
             <span
                 data-ng-if="$ctrl.dedicatedCloud.solution !== 'SYSTEMCENTER' || $row.name !== 'infraadmin'"

@@ -22,5 +22,12 @@
   "telephony_alias_administration_terminate": "Cancel",
   "telephony_alias_administration_terminate_success": "Termination successfully scheduled.",
   "telephony_alias_administration_cancel_termination": "Cancel termination",
-  "telephony_alias_administration_cancel_termination_success": "Termination cancelled."
+  "telephony_alias_administration_cancel_termination_success": "Termination cancelled.",
+  "telephony_alias_administration_terminate_sva_warning": "Since the cancellation is in progress, payments will still be possible for the next 2 months (60 days)",
+  "telephony_alias_administration_terminate_sva_warning_guarantee": "In order to guarantee your payments, it is important to keep your valid KYC and your existing payment account within this period.",
+  "telephony_alias_administration_terminate_sva_warning_link": "Check my contact details",
+  "telephony_alias_administration_terminate_confirm_message": "Are you sure you want to delete your number?",
+  "telephony_alias_administration_terminate_confirm_sva_warning": "Your identity and IBAN must be valid to receive your payments.",
+  "telephony_alias_administration_terminate_confirm_primary": "Confirm",
+  "telephony_alias_administration_terminate_confirm_cancel": "Cancel"
 }

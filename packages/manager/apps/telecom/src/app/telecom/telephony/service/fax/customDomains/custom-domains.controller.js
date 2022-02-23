@@ -5,11 +5,11 @@ import set from 'lodash/set';
 
 export default /* @ngInject */ function TelecomTelephonyServiceFaxCustomDomainsCtrl(
   $filter,
+  $http,
   $q,
   $stateParams,
   $timeout,
   $translate,
-  OvhApiDomain,
   TelephonyMediator,
   TucToast,
   OvhApiMe,
@@ -21,9 +21,7 @@ export default /* @ngInject */ function TelecomTelephonyServiceFaxCustomDomainsC
   =============================== */
 
   function fetchDomains() {
-    return OvhApiDomain.v7()
-      .query()
-      .execute().$promise;
+    return $http.get('/domain').then(({ data }) => data);
   }
 
   function fetchCustomDomains() {

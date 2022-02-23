@@ -37,5 +37,6 @@
   "pci_notebooks_general_information_resources_monitoring": "Überwachung des Verbrauchs",
   "pci_notebooks_general_information_resources_monitoring_access_to_graph": "Zugang zu Graph Dashboard",
   "pci_notebooks_general_information_resources_quantity": "Ressourcen",
-  "pci_notebooks_general_information_resources_info": "GPU/CPU/RAM pro Ressource"
+  "pci_notebooks_general_information_resources_info": "GPU/CPU/RAM pro Ressource",
+  "pci_notebooks_general_information_info_notebook_ssh_url": "SSH Zugang"
 }

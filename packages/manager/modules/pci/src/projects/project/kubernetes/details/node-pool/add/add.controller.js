@@ -61,12 +61,22 @@ export default class {
         ),
       )
       .catch((error) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant('kube_add_node_pool_error', {
-            nodePoolName: this.nodePool.name,
-            message: get(error, 'data.message', error.message),
-          }),
-        );
+        const errorId = this.getKubeApiErrorId(error);
+        let errorMessage = this.$translate.instant('kube_add_node_pool_error', {
+          message: error.data?.message,
+          nodePoolName: this.nodePool.name,
+        });
+        if (errorId) {
+          const translateMessage = this.$translate.instant(
+            `kube_add_node_pool_error_${errorId}`,
+          );
+          errorMessage = {
+            textHtml: `${translateMessage} <a class="oui-link_icon" href="${this.getQuotaBuildUrl()}">${this.$translate.instant(
+              'kube_add_node_pool_error_quota_link',
+            )} <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span></a>`,
+          };
+        }
+        this.CucCloudMessage.error(errorMessage);
       })
       .finally(() => {
         this.isAdding = false;

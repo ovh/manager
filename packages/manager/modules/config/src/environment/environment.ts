@@ -6,16 +6,17 @@ import {
   LangId,
 } from '../locale';
 import { User } from './user';
+import { ApplicationId, Application } from '../application';
 
 export type EnvMessage = {
   [key in LangId]: { description: string };
 };
 
-export const enum Region {
-  US = 'US',
-  CA = 'CA',
-  EU = 'EU',
-}
+export type Applications = {
+  [appId in ApplicationId]: Application;
+};
+
+import { Region } from './region.enum';
 
 export interface IEnvironment {
   getRegion: () => Region;
@@ -26,6 +27,7 @@ export interface IEnvironment {
   getUserLanguage: () => string;
   getApplicationName: () => string;
   getMessage: () => EnvMessage;
+  getApplications: () => Applications;
 
   setRegion: (region: Region) => void;
   setUser: (user: User) => void;
@@ -33,8 +35,10 @@ export interface IEnvironment {
   setVersion: (version: string) => void;
   setApplicationName: (name: string) => void;
   setUniverse: (universe: string) => void;
+  setUniverseFromApplicationId: (applicationId: string) => void;
   setApplicationURLs: (applicationURLs: Record<string, string>) => void;
   setMessage: (message: EnvMessage) => void;
+  setApplications: (applications: Applications) => void;
 }
 export class Environment implements IEnvironment {
   // TODO: After the addition of reket, we had to remove the private attribute
@@ -55,7 +59,9 @@ export class Environment implements IEnvironment {
 
   message: EnvMessage;
 
-  constructor() {
+  applications: Applications;
+
+  constructor(config: Environment = null) {
     this.region = DEFAULT_REGION as Region;
     this.userLocale = findAvailableLocale(detectUserLocale(), this.region);
     this.version = null;
@@ -64,6 +70,8 @@ export class Environment implements IEnvironment {
     this.universe = null;
     this.applicationURLs = {};
     this.message = {} as EnvMessage;
+    this.applications = {} as Applications;
+    Object.assign(this, config);
   }
 
   setRegion(region = DEFAULT_REGION): void {
@@ -119,6 +127,10 @@ export class Environment implements IEnvironment {
     this.universe = universe;
   }
 
+  setUniverseFromApplicationId(applicationId: ApplicationId): void {
+    this.universe = this.applications[applicationId].universe;
+  }
+
   getUniverse(): string {
     return this.universe;
   }
@@ -141,5 +153,13 @@ export class Environment implements IEnvironment {
 
   getMessage(): EnvMessage {
     return this.message;
+  }
+
+  getApplications(): Applications {
+    return this.applications;
+  }
+
+  setApplications(applications: Applications) {
+    this.applications = applications;
   }
 }

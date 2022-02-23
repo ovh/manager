@@ -1,0 +1,36 @@
+{
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_list": "Liste des bénéficiaires",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_action_add": "Ajouter un bénéficiaire",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_action_edit": "Editer",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_action_delete": "Supprimer",
+
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_add_title": "Ajouter un bénéficiaire",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_add_submit": "Ajouter",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_add_cancel": "Annuler",
+
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_edit_title": "Editer un bénéficiaire",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_edit_submit": "Modifier",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_edit_cancel": "Annuler",
+
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_delete_title": "Supprimer un bénéficiare",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_delete_message": "Voulez-vous vraiment supprimer le bénéficiare ?",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_delete_confirm_label": "Supprimer",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_delete_cancel_label": "Annuler",
+
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_lastname_header": "Nom",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_firstname_header": "Prénom",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_birthcity_header": "Ville",
+
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_lastname": "Nom du bénéficiaire",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_firstname": "Prénom du bénéficiaire",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_birthdate": "Date de naissance",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_birthcity": "Ville de naissance",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_countryOfBirth": "Pays de naissance",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_countryOfResidence": "Pays de résidence",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_email": "Mail",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_nationality": "Nationalité",
+
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_success_message_add": "Votre bénéficiare a bien été ajouté !",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_success_message_edit": "Votre bénéficiare a bien été édité !",
+  "telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_success_message_delete": "Votre bénéficiare a bien été supprimé !"
+}

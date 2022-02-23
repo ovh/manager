@@ -67,5 +67,15 @@
   "pci_projects_project_training_jobs_submitresources_proposed_type_gpu": " (GPU)",
   "pci_projects_project_training_jobs_submitresources_proposed_type_cpu": " (CPU)",
   "pci_projects_project_training_jobs_submit_select_image_custom_doc": "Criar uma imagem personalizada",
-  "pci_projects_project_training_jobs_submit_data_permission_RWD": "Leitura, escrita e eliminação"
+  "pci_projects_project_training_jobs_submit_data_permission_RWD": "Leitura, escrita e eliminação",
+  "pci_projects_project_training_jobs_ssh_url_help": "O acesso SSH permite ligar-se ao job a partir de qualquer cliente SSH através das chaves públicas fornecidas no lançamento do job.",
+  "pci_projects_project_training_jobs_submit_select_ssh": "Associar chaves públicas SSH (opcional)",
+  "pci_projects_project_training_jobs_submit_select_ssh_tips_1": "Associar uma chave pública SSH permite-lhe aceder remotamente ao job através do protocolo SSH ou SCP",
+  "pci_projects_project_training_jobs_submit_select_ssh_default_select": "Inserir a chave pública SSH a utilizar (opcional)",
+  "pci_projects_project_training_jobs_submit_select_ssh_name_tips": "Selecionar o nome da chave entre as que estão registadas",
+  "pci_projects_project_training_jobs_submit_select_ssh_input_tips": "Conteúdo da chave pública SSH",
+  "pci_projects_project_training_jobs_submit_select_ssh_add": "Adicionar uma nova chave pública SSH",
+  "pci_projects_project_training_jobs_submit_select_ssh_quantity": "{{ numberOfSshKeys }} / {{ maxSshKeys }} chave(s) SSH",
+  "pci_projects_project_training_jobs_submit_select_ssh_legend": "Chave pública SSH",
+  "pci_projects_project_training_jobs_submit_select_ssh_delete_message": "Eliminar a chave SSH associada"
 }

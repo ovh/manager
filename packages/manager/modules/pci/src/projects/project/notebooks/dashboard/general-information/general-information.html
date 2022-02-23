@@ -34,6 +34,18 @@
                     </oui-tile-description>
                 </oui-tile-definition>
 
+                <!--SSH URL-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_notebooks_general_information_info_notebook_ssh_url' | translate }}"
+                    ng-if="$ctrl.notebook.status.sshUrl"
+                >
+                    <oui-tile-description>
+                        <oui-clipboard
+                            data-model="$ctrl.notebook.status.sshUrl"
+                        ></oui-clipboard>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
                 <!--Container-->
                 <oui-tile-definition
                     data-term="{{:: 'pci_notebooks_general_information_info_notebook_container' | translate }}"

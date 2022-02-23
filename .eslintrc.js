@@ -7,6 +7,7 @@ module.exports = {
     'angular/mocks': true,
     browser: true,
     jquery: true,
+    jest: true,
   },
   globals: {
     fixture: false,
@@ -29,7 +30,7 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.ts'],
+      files: ['**/*.ts', '**/*.tsx'],
       parser: '@typescript-eslint/parser',
       plugins: ['@typescript-eslint'],
       extends: [
@@ -42,6 +43,8 @@ module.exports = {
         'import/extensions': 'off',
         'no-use-before-define': 'off',
         'no-shadow': 'off',
+        'no-unused-expressions': 'off',
+        '@typescript-eslint/no-unused-expressions': ['error'],
         '@typescript-eslint/no-use-before-define': ['error'],
         '@typescript-eslint/no-shadow': ['error'],
       },

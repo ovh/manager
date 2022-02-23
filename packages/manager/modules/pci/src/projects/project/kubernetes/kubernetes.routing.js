@@ -53,6 +53,29 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
+      getKubeApiErrorId: /* @ngInject */ () => (error) => {
+        try {
+          const errorMessage = error.data?.message;
+          const errorStatus = error.status;
+          if (errorStatus === 412) {
+            return errorMessage.slice(
+              errorMessage.indexOf('[') + 1,
+              errorMessage.indexOf(']'),
+            );
+          }
+          return null;
+        } catch (e) {
+          return null;
+        }
+      },
+
+      getQuotaBuildUrl: /* @ngInject */ (coreURLBuilder, projectId) => () => {
+        return coreURLBuilder.buildURL(
+          'public-cloud',
+          `#/pci/projects/${projectId}/quota`,
+        );
+      },
+
       clusterId: /* @ngInject */ ($transition$) => $transition$.params().id,
       kubernetes: /* @ngInject */ (OvhApiCloudProjectKube, projectId) =>
         OvhApiCloudProjectKube.v6()

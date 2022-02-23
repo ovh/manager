@@ -1,0 +1,24 @@
+name: Run Jest tests
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest code
+        uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 14.x
+      - name: Restore/create node_modules cache
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - name: Install repository
+        run: yarn install --frozen-lockfile
+      - name: Build BDD covered packages and dependencies
+        run: yarn workspace @ovh-ux/manager-container-app start
+      - name: Run tests
+        run: yarn test:jest

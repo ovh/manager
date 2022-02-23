@@ -4,5 +4,10 @@
   "kube_add_node_pool_creating": "Creazione di un pool di nodi",
   "kube_add_node_pool_success": "Il pool di nodi '{{nodePoolName}}' è stato creato correttamente",
   "kube_add_node_pool_error": "Impossibile creare il pool di nodi '{{ nodePoolName }}': {{ message }}",
-  "kube_add_billing_type_description": "Nella sezione di modifica del pool di nodi, è possibile passare dalla fatturazione oraria al forfait mensile per ogni nodo."
+  "kube_add_billing_type_description": "Nella sezione di modifica del pool di nodi, è possibile passare dalla fatturazione oraria al forfait mensile per ogni nodo.",
+  "kube_add_node_pool_error_InsufficientVCPUsQuota": "La quota di vCPU del tuo progetto non è sufficiente per eseguire l'operazione. Ti consigliamo di aumentare la quota disponibile o richiedere meno risorse.",
+  "kube_add_node_pool_error_InsufficientRAMQuota": "La quota di RAM del tuo progetto non è sufficiente per eseguire l'operazione. Ti consigliamo di aumentare la quota disponibile o richiedere meno risorse.",
+  "kube_add_node_pool_error_InsufficientPortsQuota": "La quota delle porte del tuo progetto non è sufficiente per eseguire l'operazione. Ti consigliamo di aumentare la quota disponibile o richiedere meno risorse.",
+  "kube_add_node_pool_error_InsufficientInstancesQuota": "La quota di istanze del tuo progetto non è sufficiente per eseguire l'operazione. Ti consigliamo di aumentare la quota disponibile o richiedere meno risorse.",
+  "kube_add_node_pool_error_quota_link": "Aumenta la tua quota"
 }

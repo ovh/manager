@@ -27,5 +27,6 @@
   "pci_projects_project_training_jobs_info_title_6": "Info",
   "pci_projects_project_training_jobs_info_title_actions": "Azioni",
   "pci_projects_project_training_job_logs_text_pre_running": "Il job è ancora in attesa di avvio... la scheda si raffredderà automaticamente una volta che il job avrà inizio.",
-  "pci_projects_project_training_jobs_resubmit": "Riavvia"
+  "pci_projects_project_training_jobs_resubmit": "Riavvia",
+  "pci_projects_project_training_jobs_ssh_url": "Accesso SSH"
 }

@@ -42,6 +42,7 @@ export default /* @ngInject */ function(
             getBulkParams: self.getBulkParams,
             filterServices: self.filterServices,
             previouslyUpdatedServices: self.previouslyUpdatedServices,
+            trackingPrefix: self.trackingPrefix,
           },
         },
       })

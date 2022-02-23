@@ -38,5 +38,7 @@
   "telecom_dashboard_express_lite_title": "OVHcloud is launching a new ADSL and VDSL connection service. ",
   "telecom_dashboard_discover": "Find out more",
   "telecom_dashboard_common_vip": "VIP status",
-  "telecom_dashboard_common_newtab": "(new tab)"
+  "telecom_dashboard_common_newtab": "(new tab)",
+  "telecom_dashboard_identity_check_message_info": "Remember to validate your telephony ID now.",
+  "telecom_dashboard_identity_check_message_link": "Link to form"
 }

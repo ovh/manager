@@ -10,5 +10,7 @@
   "telephony_group_manage_contacts_change_success": "Your change of contact request has been sent.",
   "telephony_group_manage_contacts_change_info": "With contact management, you can assign rights to other people and entrust them with the management of a line, alias or group.<br/>The permissions vary depending on the contact type chosen:<br/><br/><strong>Administrator contact:</strong> the designated administrator contact can manage the technical aspects of a line and assign “technical contact” permissions to another person.<br/><strong>Technical contact:</strong> the designated technical contact only manages the technical aspects of a line, alias or group.<br/><strong>Billing contact:</strong> the designated billing contact only manages billing (bill payment, etc.).",
   "telephony_group_manage_contacts_disabled": "Unavailable for this service",
-  "telephony_group_manage_contacts_breadcrumb": "Contact management"
+  "telephony_group_manage_contacts_breadcrumb": "Contact management",
+  "telephony_group_manage_contacts_change_support": "For any modifications to the admin or billing NIC <strong>please contact the support</strong>",
+  "telephony_group_manage_contacts_change_support_link": "Contact support"
 }

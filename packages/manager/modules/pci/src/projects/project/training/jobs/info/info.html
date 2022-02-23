@@ -181,6 +181,27 @@
                         </oui-tile-description>
                     </dl>
                 </div>
+
+                <div class="oui-tile__item" ng-if="$ctrl.job.status.sshUrl">
+                    <dl class="oui-tile__definition">
+                        <dt class="oui-tile__term">
+                            <span
+                                data-translate="pci_projects_project_training_jobs_ssh_url"
+                            ></span>
+                            <button
+                                type="button"
+                                class="oui-popover-button"
+                                data-oui-popover="{{ 'pci_projects_project_training_jobs_ssh_url_help' | translate }}"
+                            ></button>
+                        </dt>
+
+                        <oui-tile-description>
+                            <oui-clipboard
+                                data-model="$ctrl.job.status.sshUrl"
+                            ></oui-clipboard>
+                        </oui-tile-description>
+                    </dl>
+                </div>
             </oui-tile>
         </div>
         <div class="col-md-4">

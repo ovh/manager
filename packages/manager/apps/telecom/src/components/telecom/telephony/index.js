@@ -36,7 +36,6 @@ import timeConditionService from './timeCondition/time-condition.service';
 import timeConditionFactory from './timeCondition/time-condition.factory';
 import timeConditionConditionFactory from './timeCondition/condition/condition.factory';
 import timeConditionSlotFactory from './timeCondition/slot/slot.factory';
-import groupLineOffersService from './group/line/line-offers.service';
 import mediatorService from './mediator.service';
 import voipService from './voip-service.service';
 
@@ -94,7 +93,6 @@ angular
   .factory('VoipTimeCondition', timeConditionFactory)
   .factory('VoipTimeConditionCondition', timeConditionConditionFactory)
   .factory('VoipTimeConditionSlot', timeConditionSlotFactory)
-  .service('VoipLineOldOffers', groupLineOffersService)
   .service('TelephonyMediator', mediatorService)
   .service('TelephonyVoipService', voipService)
   .service('telephonyScheduler', schedulerService)

@@ -1,0 +1,8 @@
+{
+  "notifications_mark_as_read": "Marcar como leído",
+  "notifications_mark_as_unread": "Marcar como no leído",
+  "notification_read": "Leído",
+  "notification_unread": "No leído",
+  "no_notifications_title": "¡No tiene nada pendiente!",
+  "no_notifications_description": "No hay notificaciones."
+}

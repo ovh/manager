@@ -1,4 +1,6 @@
 import { isString } from 'lodash-es';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
+import { getShellClient } from './shell';
 
 export default class HubController {
   /* @ngInject */
@@ -19,9 +21,12 @@ export default class HubController {
     this.chatbotEnabled = false;
     this.coreConfig = coreConfig;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
+    this.isTopLevelApplication = isTopLevelApplication();
+    this.shell = getShellClient();
+    this.isAccountSidebarVisible = false;
   }
 
-  $onInit() {
+  async $onInit() {
     this.servicesImpactedWithIncident = [];
     this.navbarOptions = {
       universe: this.coreConfig.getUniverse(),
@@ -48,6 +53,7 @@ export default class HubController {
         });
       unregisterListener();
     });
+    this.isAccountSidebarVisible = await this.shell.ux.isAccountSidebarVisible();
 
     return this.getServicesImpactedByIncident();
   }

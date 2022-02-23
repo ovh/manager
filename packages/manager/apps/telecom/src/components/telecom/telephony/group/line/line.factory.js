@@ -22,7 +22,6 @@ export default /* @ngInject */ (
   TelephonyGroupLinePhone,
   TelephonyGroupLineClick2Call,
   TelephonyGroupLineOffer,
-  VoipLineOldOffers,
 ) => {
   /*= ==================================
     =            CONSTRUCTOR            =
@@ -58,6 +57,7 @@ export default /* @ngInject */ (
 
     this.infrastructure = options.infrastructure;
     this.offers = options.offers || [];
+    this.hasFaxCapabilities = options.hasFaxCapabilities;
     this.getPublicOffer = options.getPublicOffer;
     this.simultaneousLines = options.simultaneousLines;
     this.phone = options.phone;
@@ -100,13 +100,7 @@ export default /* @ngInject */ (
     // helper
     this.isPlugNFax = some(
       this.offers,
-      (offer) =>
-        angular.isString(offer) &&
-        (offer.indexOf('fax') >= 0 ||
-          some(
-            VoipLineOldOffers.oldOffers.sipNFax,
-            (old) => offer.indexOf(old) > -1,
-          )),
+      (offer) => angular.isString(offer) && offer.indexOf('fax') >= 0,
     );
   }
 

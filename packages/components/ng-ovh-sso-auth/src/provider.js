@@ -17,6 +17,8 @@ export default function() {
   const urlPrefix = '';
   let ovhSubsidiary = null;
   let allowIncompleteNic = false;
+  let onLoginCallback;
+  let onLogoutCallback;
 
   /**
    * @ngdoc function
@@ -118,6 +120,14 @@ export default function() {
    */
   this.setSignUpUrl = function setSignUpUrl(_signUpUrl) {
     signUpUrl = _signUpUrl;
+  };
+
+  this.setOnLogin = (callback) => {
+    onLoginCallback = callback;
+  };
+
+  this.setOnLogout = (callback) => {
+    onLogoutCallback = callback;
   };
 
   // ---
@@ -426,6 +436,9 @@ export default function() {
      * Perform logout
      */
     this.logout = function logout(url) {
+      if (angular.isFunction(onLogoutCallback)) {
+        onLogoutCallback();
+      }
       if (!deferredObj.logout) {
         deferredObj.logout = $q.defer();
         isLogged = false;
@@ -466,6 +479,9 @@ export default function() {
      * Redirect to login page
      */
     this.goToLoginPage = function goToLoginPage(url) {
+      if (angular.isFunction(onLoginCallback)) {
+        onLoginCallback();
+      }
       if (!deferredObj.loginPage) {
         deferredObj.loginPage = $q.defer();
 
@@ -490,7 +506,6 @@ export default function() {
           );
         });
       }
-      return deferredObj.loginPage.promise;
     };
 
     /**

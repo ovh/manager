@@ -15,5 +15,9 @@
   "components_notification_5m": "Every 5 minutes",
   "components_notification_1h": "Hourly",
   "components_notification_6h": "Every 6 hours",
-  "components_notification_sms_detail_warning": "Important - the account {{smsAccount}} no longer has enough credit to send new SMS messages."
+  "components_notification_sms_detail_warning": "Important - the account {{smsAccount}} no longer has enough credit to send new SMS messages.",
+  "components_notification_allowIncident": "Incident notification",
+  "components_notification_downThreshold": "Time before notification (in minutes)",
+  "components_notification_true": "Yes",
+  "components_notification_false": "No"
 }

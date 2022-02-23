@@ -89,11 +89,21 @@ export default class {
         this.goBack(this.$translate.instant('kubernetes_add_success')),
       )
       .catch((error) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant('kubernetes_add_error', {
-            message: get(error, 'data.message'),
-          }),
-        );
+        const errorId = this.getKubeApiErrorId(error);
+        let errorMessage = this.$translate.instant('kubernetes_add_error', {
+          message: error.data?.message,
+        });
+        if (errorId) {
+          const translateMessage = this.$translate.instant(
+            `kubernetes_add_error_${errorId}`,
+          );
+          errorMessage = {
+            textHtml: `${translateMessage} <a class="oui-link_icon" href="${this.getQuotaBuildUrl()}">${this.$translate.instant(
+              'kubernetes_add_error_quota_link',
+            )} <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span></a>`,
+          };
+        }
+        this.CucCloudMessage.error(errorMessage);
       })
       .finally(() => {
         this.isAdding = false;

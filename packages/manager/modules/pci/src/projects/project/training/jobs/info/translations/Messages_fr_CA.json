@@ -14,11 +14,13 @@
   "pci_projects_project_training_jobs_price": "Coût du job",
   "pci_projects_project_training_jobs_price_estimate": "Estimation sur le temps d'éxecution du job",
   "pci_projects_project_training_jobs_access_url": "Accès HTTP",
+  "pci_projects_project_training_jobs_ssh_url": "Accès SSH",
   "pci_projects_project_training_jobs_access_url_link": "Accès",
   "pci_projects_project_training_jobs_resource_usage_url": "Détails sur les ressources",
   "pci_projects_project_training_jobs_resource_usage_url_link": "Usage des ressources",
   "pci_projects_project_training_jobs_link_not_available": "Non disponible",
   "pci_projects_project_training_jobs_time": "Temps d'éxecution",
+
   "pci_projects_project_training_jobs_info_title_1": "Informations du job",
   "pci_projects_project_training_jobs_info_title_2": "Conteneur",
   "pci_projects_project_training_jobs_info_title_3": "Ressources",

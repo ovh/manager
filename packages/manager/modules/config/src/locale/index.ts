@@ -1,17 +1,7 @@
 import { LANGUAGES, localeRegex, localeStorageKey } from './locale.constants';
-import { Region } from '../environment/environment';
+import { Region } from '../environment/region.enum';
+import { CountryCode } from './country-code.enum';
 
-export const enum CountryCode {
-  US = 'US',
-  CA = 'CA',
-  FR = 'FR',
-  GB = 'GB',
-  ES = 'ES',
-  PL = 'PL',
-  PT = 'PT',
-  IT = 'IT',
-  DE = 'DE',
-}
 export type LangId = 'nl' | 'fr' | 'en' | 'de' | 'es' | 'it' | 'pl' | 'pt';
 
 export interface KeyPairName {
