@@ -8,5 +8,8 @@ export default {
     companyKinds: '<',
     countryEnum: '<',
     saveWallet: '<',
+    editMode: '=',
+    svaWallet: '<',
+    putWallet: '<',
   },
 };

@@ -1,12 +1,11 @@
 import angular from 'angular';
 
 import component from './overview-identity.component';
-import indentityOverviewEdit from './overview-identity-edit';
 
 const moduleName = 'TelephonySvaWalletKycIdentityOverviewIdentity';
 
 angular
-  .module(moduleName, [indentityOverviewEdit])
+  .module(moduleName, [])
   .component('telephonySvaWalletKycIdentityOverviewIdentity', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
