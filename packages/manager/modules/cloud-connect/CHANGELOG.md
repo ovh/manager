@@ -1,3 +1,12 @@
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.5.0...@ovh-ux/manager-cloud-connect@1.5.1) (2022-02-23)
+
+
+### Bug Fixes
+
+* fix ip range match ([#6418](https://github.com/ovh/manager/issues/6418)) ([408238b](https://github.com/ovh/manager/commit/408238bbdc3dfefd7cab9c7b7d4dd2e1c82a80bf))
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.4.0...@ovh-ux/manager-cloud-connect@1.5.0) (2022-02-10)
 
 

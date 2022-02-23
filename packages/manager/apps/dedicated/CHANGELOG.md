@@ -1,3 +1,16 @@
+## [17.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.12.0...@ovh-ux/manager-dedicated@17.12.1) (2022-02-23)
+
+
+### Bug Fixes
+
+* **dedicated-cloud.user:** change status column name ([#6511](https://github.com/ovh/manager/issues/6511)) ([1a2dc1d](https://github.com/ovh/manager/commit/1a2dc1d90103948dcb4cd424e1a314699102781a)), closes [#6331](https://github.com/ovh/manager/issues/6331)
+* **dedicated-cloud.user:** nsx right not displayed in user list ([#6332](https://github.com/ovh/manager/issues/6332)) ([cc6974a](https://github.com/ovh/manager/commit/cc6974ac393780f57c47b236c78cad207c5cbdd3))
+* **i18n:** add missing translations [CDS 1456] ([e140f4e](https://github.com/ovh/manager/commit/e140f4e54263212f68edb7bb116c66111e624f93))
+* **server.consumption:** fix consumption increase modal opening ([#6445](https://github.com/ovh/manager/issues/6445)) ([cd6dd34](https://github.com/ovh/manager/commit/cd6dd348f09db8533f81161b7c15ac353649674e))
+* **server.details:** add new filesystems for ESXi ([#6507](https://github.com/ovh/manager/issues/6507)) ([211159c](https://github.com/ovh/manager/commit/211159c368bac1f0a54481b068161574f1a60004))
+
+
+
 # [17.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.11.1...@ovh-ux/manager-dedicated@17.12.0) (2022-02-15)
 
 

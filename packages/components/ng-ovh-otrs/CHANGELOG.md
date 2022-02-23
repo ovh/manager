@@ -1,3 +1,12 @@
+## [9.2.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.2.4...@ovh-ux/ng-ovh-otrs@9.2.5) (2022-02-23)
+
+
+### Bug Fixes
+
+* **popup:** add missing serviceType translation ([#6387](https://github.com/ovh/manager/issues/6387)) ([b09911b](https://github.com/ovh/manager/commit/b09911b6f71489ea23e0e8ce199fdc65c0388778))
+
+
+
 ## [9.2.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.2.3...@ovh-ux/ng-ovh-otrs@9.2.4) (2021-11-10)
 
 

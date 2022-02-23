@@ -1,3 +1,19 @@
+# [6.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@6.2.1...@ovh-ux/manager-config@6.3.0) (2022-02-23)
+
+
+### Bug Fixes
+
+* **container:** update application interface ([40f6ded](https://github.com/ovh/manager/commit/40f6dedc6f15075355daff429c605a1ca27f07ce))
+
+
+### Features
+
+* **config:** add assign in environment constructor ([2f1884c](https://github.com/ovh/manager/commit/2f1884cd33a731591ca08b762285dae861d56537))
+* **manager-config:** add application list, handle iframe redirection ([9b33095](https://github.com/ovh/manager/commit/9b330958e7bd963815c06a9599eaf3e7f7854922))
+* **manager-config:** add container definition in Application ([2229c74](https://github.com/ovh/manager/commit/2229c74d704245863e22975f8fe1db80bc7d3447))
+
+
+
 ## [6.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@6.2.0...@ovh-ux/manager-config@6.2.1) (2021-10-26)
 
 
