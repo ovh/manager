@@ -18,8 +18,9 @@ initSso();
 shellApi.initShell().then((shell) => {
   const environment = shell.getPlugin('environment').getEnvironment();
   const locale = environment.getUserLocale();
+  const config = () => import(`./config-${environment.getRegion()}.js`);
 
-  import(`./config-${environment.getRegion()}`)
+  config()
     .catch(() => {})
     .then(() => {
       i18n
