@@ -63,7 +63,22 @@ angular.module('App').controller(
         text: value,
       }));
 
-      if (field.availableValues.length === 2) {
+      if (field.key === 'sql_mode') {
+        field.type = 'select';
+
+        field.availableValues = field.availableValues.map((value) => {
+          return {
+            id: value.id,
+            text: `${
+              value.id === field.defaultValue ? `Default` : `Legacy`
+            } SQL Mode: ${value.id}`,
+          };
+        });
+
+        field.selectedValue = find(field.availableValues, {
+          id: field.value,
+        });
+      } else if (field.availableValues.length === 2) {
         field.type = 'toggle';
         field.selectedValue = { id: field.value };
       } else {
