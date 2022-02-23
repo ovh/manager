@@ -29,7 +29,6 @@ import { initHubAtInternet } from './components/at-internet';
 import errorPage from './components/error-page';
 import dashboard from './dashboard';
 import liveChatService from './livechat-service';
-import { getShellClient } from './shell';
 
 import controller from './controller';
 import routing from './routing';
