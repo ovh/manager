@@ -18,5 +18,6 @@
   "netapp_volumes_acl_cancel": "Cancelar",
   "netapp_volumes_acl_delete": "Eliminar",
   "netapp_volumes_acl_add_success": "A sua regra de acesso (ACL) foi criada com sucesso",
-  "netapp_volumes_acl_add_error": "Não foi possível criar a sua regra de acesso (ACL). Tente novamente mais tarde."
+  "netapp_volumes_acl_add_error": "Não foi possível criar a sua regra de acesso (ACL). Tente novamente mais tarde.",
+  "netapp_volumes_acl_access_to_ip_format": "Formato IPv4 ou IPblock"
 }

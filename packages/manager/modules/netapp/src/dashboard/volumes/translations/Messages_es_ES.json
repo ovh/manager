@@ -15,5 +15,6 @@
   "netapp_volumes_create_snapshot": "Crear un snapshot",
   "netapp_volumes_manage_snapshots": "Gestionar los snapshots",
   "netapp_volumes_manage_acl": "Gestionar los accesos IP (ACL)",
-  "netapp_volumes_delete_volume": "Eliminar el volumen"
+  "netapp_volumes_delete_volume": "Eliminar el volumen",
+  "netapp_volumes_create_volume_quantity_info": "Almacenamiento utilizado: {{quantity}}/{{max}}"
 }

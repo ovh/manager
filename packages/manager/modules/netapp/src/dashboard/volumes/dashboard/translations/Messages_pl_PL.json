@@ -29,5 +29,9 @@
   "netapp_volumes_dashboard_update_error": "Wystąpił błąd podczas aktualizacji informacji o wolumenie.",
   "netapp_volumes_dashboard_acl": "Kontrola dostępu (ACL)",
   "netapp_volumes_dashboard_snapshots": "Snapshoty",
-  "netapp_volumes_dashboard_volume_pattern": "Może zawierać jedynie cyfry, litery, podkreślenia, myślniki lub kropki i maksymalnie 256 znaków."
+  "netapp_volumes_dashboard_volume_pattern": "Może zawierać jedynie cyfry, litery, podkreślenia, myślniki lub kropki i maksymalnie 256 znaków.",
+  "netapp_volumes_dashboard_volume_name_update_success": "Nazwa wolumenu została zaktualizowana.",
+  "netapp_volumes_dashboard_volume_description_update_success": "Opis wolumenu został zaktualizowany.",
+  "netapp_volumes_dashboard_volume_name_update_error": "Wystąpił błąd podczas aktualizacji nazwy wolumenu.",
+  "netapp_volumes_dashboard_volume_description_update_error": "Wystąpił błąd podczas aktualizacji opisu nazwy wolumenu."
 }

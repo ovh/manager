@@ -15,5 +15,6 @@
   "netapp_volumes_create_snapshot": "Utwórz snapshot",
   "netapp_volumes_manage_snapshots": "Zarządzanie snapshotami",
   "netapp_volumes_manage_acl": "Zarządzanie IP Access (ACL)",
-  "netapp_volumes_delete_volume": "Usuń wolumen"
+  "netapp_volumes_delete_volume": "Usuń wolumen",
+  "netapp_volumes_create_volume_quantity_info": "Wykorzystana przestrzeń dyskowa: {{quantity}}/{{max}}"
 }

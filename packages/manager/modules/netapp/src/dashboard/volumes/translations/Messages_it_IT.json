@@ -15,5 +15,6 @@
   "netapp_volumes_create_snapshot": "Crea uno Snapshot",
   "netapp_volumes_manage_snapshots": "Gestisci gli Snapshot",
   "netapp_volumes_manage_acl": "Gestisci IP Access (ACL)",
-  "netapp_volumes_delete_volume": "Elimina il volume"
+  "netapp_volumes_delete_volume": "Elimina il volume",
+  "netapp_volumes_create_volume_quantity_info": "Storage utilizzato: {{quantity}}/{{max}}"
 }
