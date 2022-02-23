@@ -1,3 +1,12 @@
+## [13.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.33.0...@ovh-ux/manager-telecom@13.33.1) (2022-02-23)
+
+
+### Bug Fixes
+
+* **telecom.rj11_line:** fix function disableFaxOptionTab ([#6549](https://github.com/ovh/manager/issues/6549)) ([32b033a](https://github.com/ovh/manager/commit/32b033a0d415316c50f112fcac33992981a99970))
+
+
+
 # [13.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.32.1...@ovh-ux/manager-telecom@13.33.0) (2022-02-23)
 
 
