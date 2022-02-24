@@ -1,5 +1,3 @@
-// import ConnectorConfiguration from './connectorConfiguration.class';
-
 export default class Connector {
   constructor({ id, connectorId, name, status, configuration }) {
     this.updateData({ id, connectorId, name, status, configuration });
