@@ -18,7 +18,6 @@ export default class PackResiliationCtrl {
     OvhApiPackXdslResiliation,
     TucToast,
     TucToastError,
-    TucPackMediator,
   ) {
     this.$stateParams = $stateParams;
     this.$state = $state;
@@ -26,13 +25,11 @@ export default class PackResiliationCtrl {
     this.$translate = $translate;
     this.$q = $q;
     this.$timeout = $timeout;
-    this.$q = $q;
     this.$uibModal = $uibModal;
     this.coreConfig = coreConfig;
     this.OvhApiPackXdslResiliation = OvhApiPackXdslResiliation;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
-    this.TucPackMediator = TucPackMediator;
   }
 
   $onInit() {
