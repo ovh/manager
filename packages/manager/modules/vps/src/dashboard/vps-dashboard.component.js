@@ -6,7 +6,6 @@ export default {
     connectedUser: '<',
     engagement: '<',
     features: '<',
-    resiliationCapability: '<',
 
     goToDisplayIps: '<',
     goToKvm: '<',

@@ -29,7 +29,6 @@ import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
-import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -68,7 +67,6 @@ export default (containerEl, environment) => {
         ovhManagerAccountSidebar,
         registerCoreModule(environment),
         ovhManagerCookiePolicy,
-        ovhManagerIncidentBanner,
         ovhManagerMfaEnrollment,
         ovhManagerPci,
         ovhNotificationsSidebar,

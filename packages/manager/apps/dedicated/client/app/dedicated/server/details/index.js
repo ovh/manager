@@ -4,7 +4,6 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
-import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
 import bandwidth from '../bandwidth/bandwidth.module';
@@ -36,7 +35,6 @@ angular
     interfaces,
     monitoring,
     'oui',
-    ovhManagerIncidentBanner,
     ngOvhFeatureFlipping,
     'pascalprecht.translate',
     tasks,

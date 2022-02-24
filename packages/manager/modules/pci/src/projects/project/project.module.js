@@ -5,7 +5,6 @@ import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-
 import 'angular-translate';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
-import '@ovh-ux/manager-incident-banner';
 import ovhManagerAdvices from '@ovh-ux/manager-advices';
 import trustedNic from '@ovh-ux/manager-trusted-nic';
 
@@ -70,7 +69,6 @@ angular
     privateRegistry,
     'oui',
     'ovhManagerCore',
-    'ovhManagerIncidentBanner',
     'ovh-api-services',
     'pascalprecht.translate',
     sshKeys,
