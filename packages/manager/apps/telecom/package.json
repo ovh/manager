@@ -55,6 +55,7 @@
     "@ovh-ux/ng-ovh-mondial-relay": "^8.2.4",
     "@ovh-ux/ng-ovh-payment-method": "^9.1.8",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.4",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.6",
     "@ovh-ux/ng-ovh-sidebar-menu": "^10.2.3",
