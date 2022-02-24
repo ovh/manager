@@ -60,7 +60,8 @@
                         <div class="row h-100">
                             <!-- SIDE MENU -->
                             <ovh-manager-server-sidebar
-                                universe="'TELECOM'"
+                                data-ng-if="$ctrl.sidebarUniverse"
+                                universe="$ctrl.sidebarUniverse"
                                 class="col-md-3 col-lg-2"
                             >
                             </ovh-manager-server-sidebar>

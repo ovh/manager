@@ -67,6 +67,7 @@ export default class TelecomAppCtrl {
       this.globalSearchLink = beta
         ? this.$state.href('telecomSearch', {})
         : null;
+      this.sidebarUniverse = beta ? 'TELECOM_BETA' : 'TELECOM';
     });
   }
 
