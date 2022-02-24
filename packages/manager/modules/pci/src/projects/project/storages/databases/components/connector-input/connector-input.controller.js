@@ -6,6 +6,14 @@ export default class PciConnectorInputController {
     if (this.data.type === 'boolean') {
       this.tempValue = this.model[this.data.name] || 'default';
     }
+    if (
+      this.model[this.data.name] &&
+      (this.data.type === 'int16' ||
+        this.data.type === 'int32' ||
+        this.data.type === 'int64')
+    ) {
+      this.model[this.data.name] = Number(this.model[this.data.name]);
+    }
     this.options = [''].concat(this.data.values);
   }
 
