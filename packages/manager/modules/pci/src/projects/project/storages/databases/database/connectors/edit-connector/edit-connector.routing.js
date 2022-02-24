@@ -1,3 +1,5 @@
+import { CONNECTOR_FIELDS_FILTER_EDIT } from '../../../../../../../components/project/storages/databases/connectors.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'pci.projects.project.storages.databases.dashboard.connectors.edit',
@@ -63,8 +65,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ).then((availableConnector) => {
             availableConnector.setConfiguration(
               connectorConfiguration.filter(
-                (config) =>
-                  config.name !== 'name' && config.name !== 'connector.class',
+                (config) => !CONNECTOR_FIELDS_FILTER_EDIT.includes(config.name),
               ),
               transformsConfiguration,
             );

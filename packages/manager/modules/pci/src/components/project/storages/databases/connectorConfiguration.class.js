@@ -1,18 +1,23 @@
 import { groupBy } from 'lodash';
 import ConnectorFieldConfiguration from './connectorFieldConfiguration.class';
+import {
+  CONNECTOR_CONFIG_GROUP_KEY,
+  TRANSFORM_CONFIG_GROUP_KEY,
+  TRANSFORM_PROPERTY_KEY,
+  EMPTY_GROUP_NAME,
+} from './connectors.constants';
 
-const EMPTY_GROUP_NAME = 'Other';
 export default class ConnectorConfiguration {
   constructor(configuration, transformConfiguration) {
     // save configuration as an array of groups
     this.transformConfiguration = groupBy(
       transformConfiguration,
-      'transformType',
+      TRANSFORM_CONFIG_GROUP_KEY,
     );
     this.rawData = configuration;
     this.mappedConfig = groupBy(
       configuration.map((field) => new ConnectorFieldConfiguration(field)),
-      'group',
+      CONNECTOR_CONFIG_GROUP_KEY,
     );
     // save groups informations
     this.groupsData = [];
@@ -50,7 +55,7 @@ export default class ConnectorConfiguration {
 
   isExtra(field) {
     const isFieldInConfig = this.getField(field);
-    const isFieldTransform = field.startsWith('transform');
+    const isFieldTransform = field.startsWith(TRANSFORM_PROPERTY_KEY);
     return !(isFieldInConfig || isFieldTransform);
   }
 }

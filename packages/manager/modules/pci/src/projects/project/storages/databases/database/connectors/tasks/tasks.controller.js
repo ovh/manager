@@ -1,9 +1,12 @@
+import { TASK_STATUS } from '../../../../../../../components/project/storages/databases/connectors.constants';
+
 export default class {
   /* @ngInject */
   constructor($translate, CucCloudMessage, DatabaseService) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
+    this.TASK_STATUS = TASK_STATUS;
   }
 
   $onInit() {

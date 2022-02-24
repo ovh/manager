@@ -76,9 +76,9 @@
         <span
             class="oui-badge"
             data-ng-class="{
-                'oui-badge_success': $row.status === 'STARTED',
-                'oui-badge_warning':  $row.status === 'PAUSED',
-                'oui-badge_error':  $row.status === 'FAILED',
+                'oui-badge_success': $row.status === $ctrl.TASK_STATUS.RUNNING,
+                'oui-badge_warning':  $row.status === $ctrl.TASK_STATUS.PAUSED,
+                'oui-badge_error':  $row.status === $ctrl.TASK_STATUS.FAILED,
             }"
         >
             <span>{{$row.status}}</span>
