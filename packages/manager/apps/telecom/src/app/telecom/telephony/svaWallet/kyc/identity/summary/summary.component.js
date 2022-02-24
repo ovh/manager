@@ -7,7 +7,6 @@ export default {
   bindings: {
     svaWallet: '<',
     bankAccount: '<',
-    saveWalletIban: '<',
     documentTypeEnum: '<',
     documentNatureEnum: '<',
     uploadDocument: '<',

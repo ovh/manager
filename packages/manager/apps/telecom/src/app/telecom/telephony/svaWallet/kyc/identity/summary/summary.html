@@ -1,14 +1,7 @@
 <h2 data-translate="telephony_billingAccount_svaWallet_kyc_summary_title"></h2>
 <p data-translate="telephony_billingAccount_svaWallet_kyc_summary_message"></p>
 
-<oui-message
-    type="success"
-    data-ng-if="$ctrl.showIBANSuccessMessage || $ctrl.showDocumentSuccessMessage"
->
-    <span
-        data-ng-if="$ctrl.showIBANSuccessMessage"
-        data-translate="telephony_billingAccount_svaWallet_kyc_summary_iban_confirmation"
-    ></span>
+<oui-message type="success" data-ng-if="$ctrl.showDocumentSuccessMessage">
     <span
         data-ng-if="$ctrl.showDocumentSuccessMessage"
         data-translate="telephony_billingAccount_svaWallet_kyc_summary_document_confirmation"
@@ -48,16 +41,6 @@
         ></label>
     </div>
     <div class="oui-field__control" data-ng-bind="$ctrl.bankAccount.iban"></div>
-
-    <oui-button
-        variant="link"
-        icon-right="oui-icon-arrow-right"
-        on-click="$ctrl.updateBankAccount()"
-    >
-        <span
-            data-translate="telephony_billingAccount_svaWallet_kyc_summary_bankaccount_edit"
-        ></span>
-    </oui-button>
 </div>
 
 <h3
