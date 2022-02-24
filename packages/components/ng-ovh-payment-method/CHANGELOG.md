@@ -1,3 +1,12 @@
+## [9.1.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.1.2...@ovh-ux/ng-ovh-payment-method@9.1.3) (2022-02-24)
+
+
+### Bug Fixes
+
+* **deps:** bump `@ovh-ux/ovh-reket` to `v0.1.0` ([3dc16e2](https://github.com/ovh/manager/commit/3dc16e2ba92efda74b7fdd9e8d612f0ca1d16817)), closes [#6436](https://github.com/ovh/manager/issues/6436)
+
+
+
 ## [9.1.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.1.1...@ovh-ux/ng-ovh-payment-method@9.1.2) (2022-02-09)
 
 
