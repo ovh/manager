@@ -65,6 +65,25 @@
         <text-accordion value="$row.trace"></text-accordion>
     </oui-datagrid-column>
     <oui-datagrid-column
+        data-title=":: 'pci_databases_connectors_tasks_status' | translate"
+        data-property="status"
+        data-sortable="asc"
+        data-type="string"
+        data-searchable
+        data-filterable
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="{
+                'oui-badge_success': $row.status === 'STARTED',
+                'oui-badge_warning':  $row.status === 'PAUSED',
+                'oui-badge_error':  $row.status === 'FAILED',
+            }"
+        >
+            <span>{{$row.status}}</span>
+        </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="::'pci_databases_connectors_tasks_restart' | translate"
         data-sortable
     >

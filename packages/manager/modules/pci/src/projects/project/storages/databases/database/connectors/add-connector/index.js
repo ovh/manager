@@ -2,19 +2,18 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName =
-  'ovhManagerPciStoragesDatabaseEditConnectorConfigLazyloading';
+const moduleName = 'ovhManagerPciStoragesDatabaseAddConnectorLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'pci.projects.project.storages.databases.dashboard.connectors.edit.**',
+      'pci.projects.project.storages.databases.dashboard.connectors.add.**',
       {
-        url: '/edit/:connectorId/config',
+        url: '/:availableConnectorId/add',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./edit-connector-config.module').then((mod) =>
+          return import('./add-connector.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },

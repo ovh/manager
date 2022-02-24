@@ -1,6 +1,6 @@
-import controller from './show-tasks.controller';
-import template from './show-tasks.html';
-import './show-tasks.scss';
+import controller from './tasks.controller';
+import template from './tasks.html';
+import './tasks.scss';
 
 export default {
   bindings: {

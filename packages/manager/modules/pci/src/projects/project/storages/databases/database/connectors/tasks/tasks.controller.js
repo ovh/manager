@@ -43,7 +43,18 @@ export default class {
         );
       })
       .finally(() => {
-        this.pending = false;
+        this.DatabaseService.getConnectorTasks(
+          this.projectId,
+          this.database.engine,
+          this.database.id,
+          this.connector.id,
+        )
+          .then((tasks) => {
+            this.connector.setTasks(tasks);
+          })
+          .finally(() => {
+            this.pending = false;
+          });
       });
   }
 }

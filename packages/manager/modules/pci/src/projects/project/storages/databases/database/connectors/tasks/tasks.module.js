@@ -5,14 +5,13 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ui-kit';
 
-import component from './add-connector-config.component';
-import routing from './add-connector-config.routing';
+import component from './tasks.component';
+import routing from './tasks.routing';
 
-import connectorInput from '../../../../components/connector-input';
-import connectorPreview from '../../../../components/connector-preview';
+import connectorEditConfig from '../edit-connector';
+import restartButton from '../../../components/restart-button';
 
-const moduleName = 'ovhManagerPciStoragesDatabaseAddConnectorConfig';
-
+const moduleName = 'ovhManagerPciStoragesDatabaseConnectorTasks';
 angular
   .module(moduleName, [
     'ngTranslateAsyncLoader',
@@ -20,14 +19,11 @@ angular
     'ngOvhCloudUniverseComponents',
     'oui',
     'ui.router',
-    connectorInput,
-    connectorPreview,
+    restartButton,
+    connectorEditConfig,
   ])
   .config(routing)
-  .component(
-    'ovhManagerPciStoragesDatabaseAddConnectorConfigComponent',
-    component,
-  )
+  .component('ovhManagerPciStoragesDatabaseConnectorTasksComponent', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

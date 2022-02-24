@@ -1,57 +1,45 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'pci.projects.project.storages.databases.dashboard.connectors.edit',
+    'pci.projects.project.storages.databases.dashboard.connectors.add',
     {
-      url: '/edit/:connectorId/config',
-      component: 'ovhManagerPciStoragesDatabaseEditConnectorConfigComponent',
+      url: '/:availableConnectorId/add',
+      component: 'ovhManagerPciStoragesDatabaseAddConnectorComponent',
       params: {
-        connectorId: null,
+        availableConnectorId: null,
       },
       resolve: {
         breadcrumb: () => null,
-        connectorId: /* @ngInject */ ($transition$) =>
-          $transition$.params().connectorId,
-        connector: /* @ngInject */ (
-          database,
-          DatabaseService,
-          projectId,
-          connectorId,
-        ) =>
-          DatabaseService.getConnector(
-            projectId,
-            database.engine,
-            database.id,
-            connectorId,
-          ),
+        availableConnectorId: /* @ngInject */ ($transition$) =>
+          $transition$.params().availableConnectorId,
         connectorConfiguration: /* @ngInject */ (
           database,
           DatabaseService,
           projectId,
-          connector,
+          availableConnectorId,
         ) =>
           DatabaseService.getAvailableConnectorConfiguration(
             projectId,
             database.engine,
             database.id,
-            connector.connectorId,
+            availableConnectorId,
           ),
         transformsConfiguration: /* @ngInject */ (
           database,
           DatabaseService,
           projectId,
-          connector,
+          availableConnectorId,
         ) =>
           DatabaseService.getAvailableConnectorTransformsConfiguration(
             projectId,
             database.engine,
             database.id,
-            connector.connectorId,
+            availableConnectorId,
           ),
         availableConnector: /* @ngInject */ (
           database,
           DatabaseService,
           projectId,
-          connector,
+          availableConnectorId,
           connectorConfiguration,
           transformsConfiguration,
         ) =>
@@ -59,13 +47,10 @@ export default /* @ngInject */ ($stateProvider) => {
             projectId,
             database.engine,
             database.id,
-            connector.connectorId,
+            availableConnectorId,
           ).then((availableConnector) => {
             availableConnector.setConfiguration(
-              connectorConfiguration.filter(
-                (config) =>
-                  config.name !== 'name' && config.name !== 'connector.class',
-              ),
+              connectorConfiguration,
               transformsConfiguration,
             );
             return availableConnector;

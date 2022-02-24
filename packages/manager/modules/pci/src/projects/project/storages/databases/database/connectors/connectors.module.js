@@ -9,11 +9,11 @@ import component from './connectors.component';
 import routing from './connectors.routing';
 
 import restartButton from '../../components/restart-button';
-import connectorsList from './connectors-actions/connectors-list';
-import connectorDelete from './connectors-actions/delete-connector';
-import connectorAddConfig from './connectors-actions/add-connector-config';
-import connectorEditConfig from './connectors-actions/edit-connector-config';
-import connectorTasks from './connectors-actions/show-tasks';
+import connectorsList from './available-connectors';
+import connectorDelete from './delete-connector';
+import connectorAddConfig from './add-connector';
+import connectorEditConfig from './edit-connector';
+import connectorTasks from './tasks';
 
 const moduleName = 'ovhManagerPciStoragesDatabaseConnectors';
 

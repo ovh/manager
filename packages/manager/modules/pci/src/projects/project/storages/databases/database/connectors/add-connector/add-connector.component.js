@@ -1,6 +1,6 @@
-import controller from './add-connector-config.controller';
-import template from './add-connector-config.html';
-import './add-connector-config.scss';
+import controller from './add-connector.controller';
+import template from './add-connector.html';
+import './add-connector.scss';
 
 export default {
   bindings: {

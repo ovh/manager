@@ -46,7 +46,7 @@ export default /* @ngInject */ ($stateProvider) => {
       goToAdd: /* @ngInject */ ($state, trackDashboard) => () => {
         trackDashboard('connectors::add', 'action');
         $state.go(
-          'pci.projects.project.storages.databases.dashboard.connectors.list',
+          'pci.projects.project.storages.databases.dashboard.connectors.available-connectors',
         );
       },
       goToTasks: /* @ngInject */ ($state, trackDashboard) => (connector) => {

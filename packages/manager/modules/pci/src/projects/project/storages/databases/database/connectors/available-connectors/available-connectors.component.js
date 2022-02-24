@@ -1,5 +1,5 @@
-import controller from './connectors-list.controller';
-import template from './connectors-list.html';
+import controller from './available-connectors.controller';
+import template from './available-connectors.html';
 
 export default {
   bindings: {

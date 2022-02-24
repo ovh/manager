@@ -1,11 +1,11 @@
 export default /* @ngInject */ ($stateProvider) => {
   const stateName =
-    'pci.projects.project.storages.databases.dashboard.connectors.list';
+    'pci.projects.project.storages.databases.dashboard.connectors.available-connectors';
   $stateProvider.state(stateName, {
-    url: '/add/list',
+    url: '/available-connectors',
     views: {
       modal: {
-        component: 'ovhManagerPciProjectDatabaseConnectorsList',
+        component: 'ovhManagerPciProjectDatabaseAvailableConnectors',
       },
     },
     layout: 'modal',

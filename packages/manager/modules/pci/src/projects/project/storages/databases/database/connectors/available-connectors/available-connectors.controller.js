@@ -10,6 +10,6 @@ export default class {
   }
 
   $onInit() {
-    this.trackDashboard('connectors-list', 'page');
+    this.trackDashboard('available-connectors', 'page');
   }
 }

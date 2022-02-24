@@ -1,6 +1,6 @@
-import controller from './edit-connector-config.controller';
-import template from './edit-connector-config.html';
-import './edit-connector-config.scss';
+import controller from './edit-connector.controller';
+import template from './edit-connector.html';
+import './edit-connector.scss';
 
 export default {
   bindings: {

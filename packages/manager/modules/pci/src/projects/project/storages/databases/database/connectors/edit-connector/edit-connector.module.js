@@ -5,13 +5,13 @@ import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
 
-import component from './edit-connector-config.component';
-import routing from './edit-connector-config.routing';
+import component from './edit-connector.component';
+import routing from './edit-connector.routing';
 
-import connectorInput from '../../../../components/connector-input';
-import connectorPreview from '../../../../components/connector-preview';
+import connectorInput from '../../../components/connector-input';
+import connectorPreview from '../../../components/connector-preview';
 
-const moduleName = 'ovhManagerPciStoragesDatabaseEditConnectorConfig';
+const moduleName = 'ovhManagerPciStoragesDatabaseEditConnector';
 
 angular
   .module(moduleName, [
@@ -24,10 +24,7 @@ angular
     connectorPreview,
   ])
   .config(routing)
-  .component(
-    'ovhManagerPciStoragesDatabaseEditConnectorConfigComponent',
-    component,
-  )
+  .component('ovhManagerPciStoragesDatabaseEditConnectorComponent', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
