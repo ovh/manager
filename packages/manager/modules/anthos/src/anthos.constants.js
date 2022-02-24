@@ -57,7 +57,7 @@ export const TENANT_STATUS = {
   UPGRADING: 'TENANT_STATUS_UPGRADING',
 };
 
-export const SERVICE_TYPE = 'DEDICATED_ANTHOS';
+export const SERVICE_TYPE = 'ANTHOS';
 export const ADDON_PUBLIC_IP_PLAN_CODE = 'option-public-ips-64';
 export const ADDON_HOST_PRODUCT_FAMILY = 'option-additional-bm';
 export const MAX_HOST_ADDON = 10;
