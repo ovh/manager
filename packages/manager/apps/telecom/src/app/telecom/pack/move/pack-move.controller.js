@@ -1,8 +1,4 @@
-import chunk from 'lodash/chunk';
-import filter from 'lodash/filter';
-import flatten from 'lodash/flatten';
 import head from 'lodash/head';
-import map from 'lodash/map';
 
 import {
   ELIGIBILITY_LINE_STATUS,
@@ -23,6 +19,7 @@ export default class PackMoveCtrl {
     OvhApiPackXdslTask,
     TucToast,
     TucToastError,
+    iceberg,
   ) {
     this.$scope = $scope;
     this.$q = $q;
@@ -33,6 +30,7 @@ export default class PackMoveCtrl {
     this.OvhApiPackXdslTask = OvhApiPackXdslTask;
     this.OvhApiPackXdsl = OvhApiPackXdsl;
     this.OvhApiXdsl = OvhApiXdsl;
+    this.iceberg = iceberg;
   }
 
   $onInit() {
@@ -268,33 +266,25 @@ export default class PackMoveCtrl {
    */
   isSlammingLine() {
     this.slammingCheck = true;
-    return this.OvhApiPackXdsl.v7()
-      .access()
-      .execute({
-        packName: this.packName,
+    return this.OvhApiPackXdsl.Access()
+      .v6()
+      .getServices({
+        packId: this.packName,
       })
-      .$promise.then((ids) =>
-        this.$q
-          .all(
-            map(
-              chunk(ids, 200),
-              (chunkIds) =>
-                this.OvhApiXdsl.v7()
-                  .query()
-                  .batch('serviceName', [''].concat(chunkIds), ',')
-                  .expand()
-                  .execute().$promise,
-            ),
-          )
-          .then((chunkResult) => flatten(chunkResult))
-          .then((result) => flatten(result)),
-      )
-      .then((xdslLines) => {
-        const slammingLines = filter(
-          xdslLines,
-          (xdslLine) => xdslLine.value.status === LINE_STATUS.slamming,
-        );
-        this.hasSlamming = !!slammingLines.length;
+      .$promise.then((ids) => {
+        const request = this.iceberg('/xdsl')
+          .query()
+          .expand('CachedObjectList-Pages')
+          .addFilter('status', 'eq', LINE_STATUS.slamming);
+        if (ids.length > 1) {
+          request.addFilter('accessName', 'in', ids);
+        } else {
+          request.addFilter('accessName', 'eq', ids);
+        }
+        return request.execute(null, true).$promise;
+      })
+      .then(({ data: xdslLines }) => {
+        this.hasSlamming = !!xdslLines.length;
         return this.hasSlamming;
       })
       .catch((error) => {

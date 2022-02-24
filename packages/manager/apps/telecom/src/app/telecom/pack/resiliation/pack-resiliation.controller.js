@@ -15,7 +15,6 @@ export default /* @ngInject */ function PackResiliationCtrl(
   $uibModal,
   $timeout,
   $q,
-  TucPackMediator,
   resiliationNotification,
   coreConfig,
 ) {
