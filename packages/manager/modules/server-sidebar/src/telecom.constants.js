@@ -1,9 +1,9 @@
-import { TELECOM } from './constants';
+import { TELECOM, TELECOM_BETA } from './constants';
 
 export const MANAGER_V4_CONFIG = {
   id: 'managerv4',
   icon: 'ovh-font ovh-font-backToV4',
-  app: [TELECOM],
+  app: [TELECOM, TELECOM_BETA],
   link: 'https://www.ovh.com/managerv3/telephony2-main.pl',
   target: '_blank',
 };
@@ -24,6 +24,15 @@ export const SMS_CONFIG = {
   feature: 'sms',
 };
 
+export const SMS_BETA_CONFIG = {
+  loadOnState: ['sms'],
+  id: 'sms',
+  state: 'sms',
+  icon: 'ovh-font ovh-font-message',
+  app: [TELECOM_BETA],
+  feature: 'sms',
+};
+
 export const FREEFAX_CONFIG = {
   loadOnState: ['freefaxes'],
   id: 'fax',
@@ -41,6 +50,15 @@ export const FREEFAX_CONFIG = {
   feature: 'fax',
 };
 
+export const FREEFAX_BETA_CONFIG = {
+  loadOnState: ['freefaxes'],
+  id: 'fax',
+  state: 'freefaxes',
+  icon: 'ovh-font ovh-font-print',
+  app: [TELECOM_BETA],
+  feature: 'fax',
+};
+
 export const OVERTHEBOX_CONFIG = {
   loadOnState: ['overTheBoxes'],
   id: 'overthebox',
@@ -54,6 +72,15 @@ export const OVERTHEBOX_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-overTheBox',
   app: [TELECOM],
+  feature: 'overthebox',
+};
+
+export const OVERTHEBOX_BETA_CONFIG = {
+  loadOnState: ['overTheBoxes'],
+  id: 'overthebox',
+  state: 'overTheBoxes',
+  icon: 'ovh-font ovh-font-overTheBox',
+  app: [TELECOM_BETA],
   feature: 'overthebox',
 };
 
@@ -78,6 +105,15 @@ export const PACK_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-telecom-ethernet',
   app: [TELECOM],
+  feature: 'pack',
+};
+
+export const PACK_BETA_CONFIG = {
+  loadOnState: ['telecom.packs'],
+  id: 'pack',
+  state: 'telecom.packs',
+  icon: 'ovh-font ovh-font-telecom-ethernet',
+  app: [TELECOM_BETA],
   feature: 'pack',
 };
 
@@ -139,10 +175,19 @@ export const TELEPHONY_CONFIG = {
   feature: 'telephony',
 };
 
+export const TELEPHONY_BETA_CONFIG = {
+  loadOnState: ['telecom.telephony'],
+  id: 'telephony',
+  state: 'telecom.telephony',
+  icon: 'ovh-font ovh-font-phone',
+  app: [TELECOM_BETA],
+  feature: 'telephony',
+};
+
 export const TASKS_CONFIG = {
   id: 'tasks',
   icon: 'ovh-font ovh-font-tasks',
-  app: [TELECOM],
+  app: [TELECOM, TELECOM_BETA],
   state: 'task',
 };
 
@@ -156,12 +201,22 @@ export const TELECOM_SIDEBAR_CONFIG = [
   TASKS_CONFIG,
 ];
 
+export const TELECOM_SIDEBAR_BETA_CONFIG = [
+  MANAGER_V4_CONFIG,
+  PACK_BETA_CONFIG,
+  TELEPHONY_BETA_CONFIG,
+  SMS_BETA_CONFIG,
+  FREEFAX_BETA_CONFIG,
+  OVERTHEBOX_BETA_CONFIG,
+  TASKS_CONFIG,
+];
+
 export const NUMBER_ORDER_CONFIG = {
   id: 'number',
   title: 'number',
   icon: 'ovh-font ovh-font-hashtag',
   state: 'telecom.orders.alias',
-  app: [TELECOM],
+  app: [TELECOM, TELECOM_BETA],
   feature: 'telephony',
 };
 
@@ -173,7 +228,7 @@ export const DOMAIN_ORDER_CONFIG = {
   target: '_blank',
   external: true,
   onClick: 'orders::domain-name::order',
-  app: [TELECOM],
+  app: [TELECOM, TELECOM_BETA],
 };
 
 export const PACK_ORDER_CONFIG = {
@@ -223,7 +278,7 @@ export const TELEPHONY_ORDER_CONFIG = {
   id: 'telephony',
   title: 'telephony',
   icon: 'ovh-font ovh-font-phone',
-  app: [TELECOM],
+  app: [TELECOM, TELECOM_BETA],
   feature: 'telephony',
   children: [
     {
@@ -232,7 +287,7 @@ export const TELEPHONY_ORDER_CONFIG = {
       target: '_blank',
       external: true,
       onClick: 'orders::telephony::voip::order',
-      app: [TELECOM],
+      app: [TELECOM, TELECOM_BETA],
     },
     {
       title: 'telephony_siptrunk',
@@ -240,7 +295,7 @@ export const TELEPHONY_ORDER_CONFIG = {
       target: '_blank',
       external: true,
       onClick: 'orders::telephony::sip-trunk::order',
-      app: [TELECOM],
+      app: [TELECOM, TELECOM_BETA],
     },
     {
       title: 'telephony_siptrunk_call',
@@ -248,12 +303,12 @@ export const TELEPHONY_ORDER_CONFIG = {
       target: '_blank',
       external: true,
       onClick: 'orders::telephony::sip-trunk-included::order',
-      app: [TELECOM],
+      app: [TELECOM, TELECOM_BETA],
     },
     {
       title: 'telephony_accessories',
       state: 'telecom.orders.accessories',
-      app: [TELECOM],
+      app: [TELECOM, TELECOM_BETA],
     },
   ],
 };
@@ -262,7 +317,7 @@ export const EMAIL_ORDER_CONFIG = {
   id: 'email',
   title: 'email',
   icon: 'ovh-font ovh-font-mail',
-  app: [TELECOM],
+  app: [TELECOM, TELECOM_BETA],
   children: [
     {
       title: 'email_exchange',
@@ -270,7 +325,7 @@ export const EMAIL_ORDER_CONFIG = {
       target: '_blank',
       external: true,
       onClick: 'orders::email::email-microsoft-exchange::order',
-      app: [TELECOM],
+      app: [TELECOM, TELECOM_BETA],
     },
     {
       title: 'email_sharepoint',
@@ -278,7 +333,7 @@ export const EMAIL_ORDER_CONFIG = {
       target: '_blank',
       external: true,
       tracker: 'orders::email::microsoft-sharepoint::order',
-      app: [TELECOM],
+      app: [TELECOM, TELECOM_BETA],
     },
   ],
 };
@@ -287,7 +342,7 @@ export const OFFICE_ORDER_CONFIG = {
   id: 'office365',
   title: 'office365',
   icon: 'ms-Icon ms-Icon--OfficeLogo',
-  app: [TELECOM],
+  app: [TELECOM, TELECOM_BETA],
   children: [
     {
       title: 'office365_business',
@@ -295,7 +350,7 @@ export const OFFICE_ORDER_CONFIG = {
       target: '_blank',
       external: true,
       onClick: 'orders::office365::licences-office::order',
-      app: [TELECOM],
+      app: [TELECOM, TELECOM_BETA],
     },
     {
       title: 'office365_sharepoint',
@@ -303,7 +358,7 @@ export const OFFICE_ORDER_CONFIG = {
       target: '_blank',
       external: true,
       tracker: 'orders::office365::microsoft-sharepoint::order',
-      app: [TELECOM],
+      app: [TELECOM, TELECOM_BETA],
     },
   ],
 };
@@ -312,13 +367,13 @@ export const SMS_ORDER_CONFIG = {
   id: 'order-sms',
   title: 'sms',
   icon: 'ovh-font ovh-font-message',
-  app: [TELECOM],
+  app: [TELECOM, TELECOM_BETA],
   feature: 'sms',
   children: [
     {
       title: 'sms',
       state: 'sms.order',
-      app: [TELECOM],
+      app: [TELECOM, TELECOM_BETA],
       feature: 'sms:order',
     },
     {
@@ -327,7 +382,7 @@ export const SMS_ORDER_CONFIG = {
       target: '_blank',
       external: true,
       tracker: 'orders::sms::hlr::order',
-      app: [TELECOM],
+      app: [TELECOM, TELECOM_BETA],
       feature: 'sms:hlr',
     },
   ],
@@ -342,7 +397,7 @@ export const FREEFAX_ORDER_CONFIG = {
   linkId: 'faxOrder',
   external: true,
   target: '_blank',
-  app: [TELECOM],
+  app: [TELECOM, TELECOM_BETA],
   tracker: 'orders::freefax::order',
 };
 
@@ -357,4 +412,8 @@ export const TELECOM_ORDER_SIDEBAR_CONFIG = [
   FREEFAX_ORDER_CONFIG,
 ];
 
-export default { TELECOM_SIDEBAR_CONFIG, TELECOM_ORDER_SIDEBAR_CONFIG };
+export default {
+  TELECOM_SIDEBAR_CONFIG,
+  TELECOM_ORDER_SIDEBAR_CONFIG,
+  TELECOM_SIDEBAR_BETA_CONFIG,
+};

@@ -22,6 +22,7 @@ import { WEB_SIDEBAR_CONFIG, WEB_ORDER_SIDEBAR_CONFIG } from './web.constants';
 import {
   TELECOM_SIDEBAR_CONFIG,
   TELECOM_ORDER_SIDEBAR_CONFIG,
+  TELECOM_SIDEBAR_BETA_CONFIG,
 } from './telecom.constants';
 
 // we should avoid require, but JSURL don't provide an es6 export
@@ -86,6 +87,8 @@ export default class OvhManagerServerSidebarController {
   }
 
   init() {
+    console.log(this.universe);
+    console.log('1234');
     this.SIDEBAR_CONFIG = SIDEBAR_CONFIG;
     this.SIDEBAR_ORDER_CONFIG = SIDEBAR_ORDER_CONFIG;
 
@@ -94,6 +97,9 @@ export default class OvhManagerServerSidebarController {
       this.SIDEBAR_ORDER_CONFIG = WEB_ORDER_SIDEBAR_CONFIG;
     } else if (this.universe === 'TELECOM') {
       this.SIDEBAR_CONFIG = TELECOM_SIDEBAR_CONFIG;
+      this.SIDEBAR_ORDER_CONFIG = TELECOM_ORDER_SIDEBAR_CONFIG;
+    } else if (this.universe === 'TELECOM_BETA') {
+      this.SIDEBAR_CONFIG = TELECOM_SIDEBAR_BETA_CONFIG;
       this.SIDEBAR_ORDER_CONFIG = TELECOM_ORDER_SIDEBAR_CONFIG;
     }
 
