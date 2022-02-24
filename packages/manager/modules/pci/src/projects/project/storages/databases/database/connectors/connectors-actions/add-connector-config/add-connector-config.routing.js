@@ -11,28 +11,50 @@ export default /* @ngInject */ ($stateProvider) => {
         breadcrumb: () => null,
         availableConnectorId: /* @ngInject */ ($transition$) =>
           $transition$.params().availableConnectorId,
+        connectorConfiguration: /* @ngInject */ (
+          database,
+          DatabaseService,
+          projectId,
+          availableConnectorId,
+        ) =>
+          DatabaseService.getAvailableConnectorConfiguration(
+            projectId,
+            database.engine,
+            database.id,
+            availableConnectorId,
+          ),
+        transformsConfiguration: /* @ngInject */ (
+          database,
+          DatabaseService,
+          projectId,
+          availableConnectorId,
+        ) =>
+          DatabaseService.getAvailableConnectorTransformsConfiguration(
+            projectId,
+            database.engine,
+            database.id,
+            availableConnectorId,
+          ),
         availableConnector: /* @ngInject */ (
           database,
           DatabaseService,
           projectId,
           availableConnectorId,
+          connectorConfiguration,
+          transformsConfiguration,
         ) =>
           DatabaseService.getAvailableConnector(
             projectId,
             database.engine,
             database.id,
             availableConnectorId,
-          ).then((availableConnector) =>
-            DatabaseService.getAvailableConnectorConfiguration(
-              projectId,
-              database.engine,
-              database.id,
-              availableConnectorId,
-            ).then((connectorConfig) => {
-              availableConnector.setConfiguration(connectorConfig);
-              return availableConnector;
-            }),
-          ),
+          ).then((availableConnector) => {
+            availableConnector.setConfiguration(
+              connectorConfiguration,
+              transformsConfiguration,
+            );
+            return availableConnector;
+          }),
         goBack: /* @ngInject */ (goBackToConnectors) => goBackToConnectors,
       },
       atInternet: {

@@ -21,7 +21,7 @@
         ></oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_connectors_connector' | translate"
-            data-property="connectorInfo.name"
+            data-property="connectorInformation.name"
             data-sortable="asc"
             data-type="string"
             data-searchable
@@ -31,20 +31,30 @@
                 <span
                     class="round-icon oui-icon mr-2 oui-background-p-400 oui-color-p-050"
                     ng-class="{
-                    'oui-icon-arrow-down': $row.connectorInfo.type === 'sink',
-                    'oui-icon-arrow-up': $row.connectorInfo.type === 'source'
+                    'oui-icon-arrow-down': $row.connectorInformation.type === 'sink',
+                    'oui-icon-arrow-up': $row.connectorInformation.type === 'source'
                     }"
                 >
                 </span>
                 <div>
-                    <h6 ng-bind="$row.connectorInfo.name" class="mb-0"></h6>
+                    <h6
+                        ng-bind="$row.connectorInformation.name"
+                        class="mb-0"
+                    ></h6>
                     <span class="oui-paragraph">
-                        <span>Version: {{$row.connectorInfo.version}}</span>
-                        <span> | Author: {{$row.connectorInfo.author}}</span>
-                        <span ng-if="$row.connectorInfo.documentationUrl"
-                            >|
+                        <span
+                            >Version:
+                            {{$row.connectorInformation.version}}</span
+                        >
+                        <span>
+                            | Author: {{$row.connectorInformation.author}}</span
+                        >
+                        <span
+                            ng-if="$row.connectorInformation.documentationUrl"
+                        >
+                            |
                             <a
-                                ng-href="{{$row.connectorInfo.documentationUrl}}"
+                                ng-href="{{$row.connectorInformation.documentationUrl}}"
                                 target="_blank"
                                 >docs</a
                             >
@@ -55,7 +65,7 @@
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_connectors_status' | translate"
-            data-property="connectorInfo"
+            data-property="status"
             data-sortable="asc"
             data-type="string"
             data-searchable
@@ -64,40 +74,42 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                    'oui-badge_success': $rowIndex < 2,
-                    'oui-badge_warning':  $rowIndex >= 2 && $rowIndex < 4,
-                    'oui-badge_error':  $rowIndex >= 4,
+                    'oui-badge_success': !$row.isPaused(),
+                    'oui-badge_warning':  $row.isPaused()
                 }"
             >
-                <span
-                    >{{$rowIndex < 2 ? 'Running' : $rowIndex >= 4 ? 'Error' :
-                    'Pending'}}</span
-                >
+                <span>{{$row.status}}</span>
             </span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_connectors_tasks' | translate"
-            data-property="connectorInfo"
+            data-property="tasks"
             data-sortable="asc"
             data-type="string"
         >
             <div
-                ng-if="$rowIndex % 2 === 0"
+                ng-if="$row.getFailedTasks().length !== 0"
                 class="d-flex align-items-center oui-color-ae-500"
             >
-                <span>0/1</span>
-                <span class="oui-icon oui-icon-warning"></span>
+                <span
+                    >{{$row.tasks.length -
+                    $row.getFailedTasks().length}}/{{$row.tasks.length}}</span
+                >
+                <span
+                    class="oui-icon oui-icon-warning oui-button oui-color-ae-500"
+                    ng-click="$ctrl.goToTasks($row)"
+                ></span>
             </div>
             <div
-                ng-if="$rowIndex % 2 === 1"
+                ng-if="$row.getFailedTasks().length === 0"
                 class="d-flex align-items-center oui-color-as-500"
             >
-                <span>1/1</span>
+                <span>{{$row.tasks.length}}/{{$row.tasks.length}}</span>
             </div>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_connectors_state' | translate"
-            data-property="connectorInfo"
+            data-property="connectorInformation"
             data-sortable="asc"
             data-type="string"
             data-searchable
@@ -105,19 +117,19 @@
         >
             <span
                 class="large-icon font-weight-bold oui-icon oui-button oui-action-button"
-                ng-click="$row.paused = !$row.paused"
-                ng-class="$row.paused ? 'oui-icon-pause_concept' : 'oui-icon-play_concept'"
+                ng-click="$ctrl.pauseOrResumeConnector($row)"
+                ng-class="$row.isPaused() ? 'oui-icon-play_concept' : 'oui-icon-pause_concept'"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_connectors_restart' | translate"
-            data-property="connectorInfo"
+            data-property="connectorInformation"
             data-type="string"
         >
-            <span
-                ng-click="$ctrl.reboot($row, $event)"
-                class="large-icon font-weight-bold oui-icon oui-icon-refresh oui-button oui-action-button"
-            ></span>
+            <restart-button
+                on-click="$ctrl.reboot($row)"
+                disabled="$ctrl.pending"
+            ></restart-button>
         </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item data-on-click="$ctrl.goToEdit($row)">

@@ -1,9 +1,10 @@
-export default class {
+export default class AddConnectorCtrl {
   /* @ngInject */
   constructor($translate, CucCloudMessage, DatabaseService) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
+    this.getErrorsMessages = AddConnectorCtrl.getErrorsMessages;
   }
 
   $onInit() {
@@ -40,6 +41,28 @@ export default class {
     };
   }
 
+  static getErrorsMessages(err) {
+    let message = ``;
+    let apiMessages = null;
+    if (err?.data?.details?.error) {
+      apiMessages = JSON.parse(err.data.details.error);
+    } else if (err?.data?.message) {
+      try {
+        apiMessages = JSON.parse(err.data.message);
+      } catch (e) {
+        return `<br/><ul><li>${err.data.message}</li></ul>`;
+      }
+    }
+    if (apiMessages) {
+      message += '<br/><ul>';
+      apiMessages.errors.forEach((error) => {
+        message += `<li>${error.message.replace(/"/g, '')}</li>`;
+      });
+      message += '</ul>';
+    }
+    return message;
+  }
+
   addConnector() {
     return this.DatabaseService.postConnector(
       this.projectId,
@@ -54,23 +77,19 @@ export default class {
           ),
         }),
       )
-      .catch((err) =>
-        // this.goBack(
-        {
-          this.CucCloudMessage.flushMessages(this.messageContainer);
-          this.CucCloudMessage.error(
-            {
-              textHtml: this.$translate.instant(
-                'pci_databases_connectors_add_error_message',
-                {
-                  message: err.data?.message || null,
-                  details: err.data?.details?.error || null,
-                },
-              ),
-            },
-            this.messageContainer,
-          );
-        },
-      );
+      .catch((err) => {
+        this.CucCloudMessage.flushMessages(this.messageContainer);
+        this.CucCloudMessage.error(
+          {
+            textHtml: this.$translate.instant(
+              'pci_databases_connectors_add_error_message',
+              {
+                details: this.getErrorsMessages(err),
+              },
+            ),
+          },
+          this.messageContainer,
+        );
+      });
   }
 }

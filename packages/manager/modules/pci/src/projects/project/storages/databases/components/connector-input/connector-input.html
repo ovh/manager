@@ -18,7 +18,7 @@
     <!--type string -->
     <input
         class="oui-input"
-        ng-if="($ctrl.data.type === 'string' || $ctrl.data.name === 'header.converter') && $ctrl.data.name !== '*'"
+        ng-if="($ctrl.data.type === 'string' || $ctrl.data.name === 'header.converter') && $ctrl.data.name !== '*' && !$ctrl.data.values"
         name="{{$ctrl.data.name}}"
         type="text"
         ng-required="{{$ctrl.data.required}}"
@@ -74,7 +74,7 @@
         ng-if="$ctrl.data.type === 'class' && $ctrl.data.name !== 'header.converter'"
     >
         <select
-            name="type"
+            name="{{$ctrl.data.name}}"
             ng-model="$ctrl.model[$ctrl.data.name]"
             class="oui-select__input"
         >
@@ -85,10 +85,19 @@
         <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
     </label>
 
+    <!-- select -->
+    <oui-select
+        ng-if="$ctrl.data.type === 'string' && $ctrl.data.values"
+        items="$ctrl.data.values"
+        model="$ctrl.model[$ctrl.data.name]"
+        name="{{$ctrl.data.name}}"
+    ></oui-select>
+
     <!-- type transform-->
     <connector-transform-input
         ng-if="$ctrl.data.name === 'transforms'"
         data="$ctrl.data"
+        configuration="$ctrl.configuration"
         model="$ctrl.model"
     ></connector-transform-input>
 

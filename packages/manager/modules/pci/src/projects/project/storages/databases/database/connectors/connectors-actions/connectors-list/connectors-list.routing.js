@@ -11,10 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: () => false,
-      goBack: /* @ngInject */ (database, goBackToConnectors) => (
-        message,
-        type,
-      ) => goBackToConnectors(database, message, type),
+      goBack: /* @ngInject */ (goBackToConnectors) => goBackToConnectors,
       availableConnectors: /* @ngInject */ (
         database,
         DatabaseService,

@@ -25,7 +25,10 @@ export default class AvailableConnector {
     });
   }
 
-  setConfiguration(configuration) {
-    this.configuration = new ConnectorConfiguration(configuration);
+  setConfiguration(configuration, transformConfiguration) {
+    this.configuration = new ConnectorConfiguration(
+      configuration,
+      transformConfiguration,
+    );
   }
 }

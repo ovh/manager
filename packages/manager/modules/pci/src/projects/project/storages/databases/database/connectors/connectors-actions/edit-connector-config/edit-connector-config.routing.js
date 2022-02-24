@@ -23,33 +23,53 @@ export default /* @ngInject */ ($stateProvider) => {
             database.id,
             connectorId,
           ),
+        connectorConfiguration: /* @ngInject */ (
+          database,
+          DatabaseService,
+          projectId,
+          connector,
+        ) =>
+          DatabaseService.getAvailableConnectorConfiguration(
+            projectId,
+            database.engine,
+            database.id,
+            connector.connectorId,
+          ),
+        transformsConfiguration: /* @ngInject */ (
+          database,
+          DatabaseService,
+          projectId,
+          connector,
+        ) =>
+          DatabaseService.getAvailableConnectorTransformsConfiguration(
+            projectId,
+            database.engine,
+            database.id,
+            connector.connectorId,
+          ),
         availableConnector: /* @ngInject */ (
           database,
           DatabaseService,
           projectId,
           connector,
+          connectorConfiguration,
+          transformsConfiguration,
         ) =>
           DatabaseService.getAvailableConnector(
             projectId,
             database.engine,
             database.id,
             connector.connectorId,
-          ).then((availableConnector) =>
-            DatabaseService.getAvailableConnectorConfiguration(
-              projectId,
-              database.engine,
-              database.id,
-              availableConnector.id,
-            ).then((connectorConfig) => {
-              availableConnector.setConfiguration(
-                connectorConfig.filter(
-                  (config) =>
-                    config.name !== 'name' && config.name !== 'connector.class',
-                ),
-              );
-              return availableConnector;
-            }),
-          ),
+          ).then((availableConnector) => {
+            availableConnector.setConfiguration(
+              connectorConfiguration.filter(
+                (config) =>
+                  config.name !== 'name' && config.name !== 'connector.class',
+              ),
+              transformsConfiguration,
+            );
+            return availableConnector;
+          }),
         goBack: /* @ngInject */ (goBackToConnectors) => goBackToConnectors,
       },
       atInternet: {

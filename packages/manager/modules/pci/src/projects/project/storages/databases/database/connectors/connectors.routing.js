@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 export default /* @ngInject */ ($stateProvider) => {
   const stateName =
     'pci.projects.project.storages.databases.dashboard.connectors';
@@ -47,6 +49,15 @@ export default /* @ngInject */ ($stateProvider) => {
           'pci.projects.project.storages.databases.dashboard.connectors.list',
         );
       },
+      goToTasks: /* @ngInject */ ($state, trackDashboard) => (connector) => {
+        trackDashboard('connectors::add', 'action');
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.connectors.tasks',
+          {
+            connectorId: connector.id,
+          },
+        );
+      },
       availableConnectors: /* @ngInject */ (
         database,
         DatabaseService,
@@ -62,21 +73,30 @@ export default /* @ngInject */ ($stateProvider) => {
         DatabaseService,
         projectId,
         availableConnectors,
+        $q,
       ) =>
         DatabaseService.getConnectors(
           projectId,
           database.engine,
           database.id,
         ).then((connectors) =>
-          connectors.map((connector) => {
-            const connectorInfo = availableConnectors.find(
-              (c) => c.id === connector.connectorId,
-            );
-            return {
-              ...connector,
-              connectorInfo,
-            };
-          }),
+          $q.all(
+            map(connectors, (connector) => {
+              return DatabaseService.getConnectorTasks(
+                projectId,
+                database.engine,
+                database.id,
+                connector.id,
+              ).then((tasks) => {
+                const connectorInfo = availableConnectors.find(
+                  (c) => c.id === connector.connectorId,
+                );
+                connector.setConnectorInfofmation(connectorInfo);
+                connector.setTasks(tasks);
+                return connector;
+              });
+            }),
+          ),
         ),
     },
     atInternet: {

@@ -5,6 +5,7 @@ import './connector-transform-input.scss';
 export default {
   bindings: {
     data: '<',
+    configuration: '<',
     model: '=',
   },
   controller,

@@ -1,92 +1,129 @@
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+
 export default class PciConnectorTransformInputController {
+  /* @ngInject */
+  constructor($scope) {
+    this.$scope = $scope;
+    this.addOption = PciConnectorTransformInputController.addOption;
+    this.deleteOption = PciConnectorTransformInputController.deleteOption;
+    this.onTypeChange = PciConnectorTransformInputController.onTypeChange;
+  }
+
   $onInit() {
-    this.transformIndex = 0;
+    this.transformIndex = 1;
     this.transformations = this.getTransformationsFromModel();
+
+    this.$scope.$watch(
+      '$ctrl.transformations',
+      () => {
+        this.syncModel();
+      },
+      true,
+    );
+  }
+
+  getAddableFields(transformation) {
+    const fields =
+      this.configuration.getTransformFields(transformation.type) || [];
+    return fields.filter(
+      (field) =>
+        !transformation.options.find((option) => option.name === field.name),
+    );
+  }
+
+  static addOption(transformation, advancedField) {
+    transformation.options.push(advancedField);
+  }
+
+  static deleteOption(transformation, advancedField) {
+    remove(transformation.options, (o) => o.name === advancedField.name);
+    set(transformation, advancedField.name, undefined);
+  }
+
+  addTransformation() {
+    this.transformations.push({
+      name: `transform-${this.transformIndex}`,
+      type: this.data.values[0],
+      previousType: this.data.values[0],
+      options: [],
+    });
+    this.transformIndex += 1;
+  }
+
+  removeTransformation($index) {
+    this.transformations.splice($index, 1);
+  }
+
+  static onTypeChange(modelValue, transformation) {
+    transformation.options.forEach((option) => {
+      set(transformation, option.name, undefined);
+    });
+    set(transformation, 'options', []);
+    set(transformation, 'previousType', modelValue);
+  }
+
+  syncModel() {
+    // clean older values
+    Object.keys(this.model)
+      .filter((key) => key.startsWith('transforms.'))
+      .forEach((key) => {
+        this.model[key] = undefined;
+      });
+    // add new values
+    this.model.transforms = this.transformations
+      .map((transformation) => transformation.name)
+      .join(',');
+    this.transformations.forEach((transformation) => {
+      this.model[`transforms.${transformation.name}.type`] =
+        transformation.type;
+      transformation.options.forEach((option) => {
+        const value = transformation[option.name];
+        if (value) {
+          this.model[
+            `transforms.${transformation.name}.${option.name}`
+          ] = value;
+        } else {
+          this.model[
+            `transforms.${transformation.name}.${option.name}`
+          ] = undefined;
+        }
+      });
+    });
   }
 
   getTransformationsFromModel() {
     const transformations = [];
     if (this.model.transforms) {
       this.model.transforms.split(',').forEach((transformationName) => {
-        transformations.push({
+        const transformationModel = {
           name: transformationName,
           type: this.model[`transforms.${transformationName}.type`],
-          offsetField: this.model[
-            `transforms.${transformationName}.offset.field`
-          ],
-          partitionField: this.model[
-            `transforms.${transformationName}.partition.field`
-          ],
-          staticField: this.model[
-            `transforms.${transformationName}.static.field`
-          ],
-          staticValue: this.model[
-            `transforms.${transformationName}.static.value`
-          ],
-          timestampField: this.model[
-            `transforms.${transformationName}.timestamp.field`
-          ],
-          topicValue: this.model[
-            `transforms.${transformationName}.topic.field`
-          ],
-          added: true,
-        });
+          options: [],
+        };
+        const optionsFields = this.configuration.getTransformFields(
+          transformationModel.type,
+        );
+        Object.keys(this.model)
+          .filter(
+            (key) =>
+              key.startsWith(`transforms.${transformationName}.`) &&
+              key !== `transforms.${transformationName}.type`,
+          )
+          .forEach((optionKey) => {
+            const shortOptionKey = optionKey.replace(
+              `transforms.${transformationName}.`,
+              '',
+            );
+            transformationModel[shortOptionKey] = this.model[optionKey];
+            transformationModel.options.push(
+              optionsFields.find((field) => field.name === shortOptionKey),
+            );
+          });
+        transformations.push(transformationModel);
       });
     }
     this.transformIndex = transformations.length + 1;
-    // Add empty value
-    transformations.push({
-      name: `transform-${this.transformIndex}`,
-      type: this.data.values[0],
-    });
     return transformations;
-  }
-
-  setModelTransformationsName() {
-    this.model.transforms = this.transformations
-      .filter((t) => t.added)
-      .map((transformation) => transformation.name)
-      .join(',');
-  }
-
-  onAddTransform($index) {
-    // Add transform names
-    this.transformations[$index].added = true;
-    this.setModelTransformationsName();
-    // Add transform properties
-    const transformation = this.transformations[$index];
-    this.model[`transforms.${transformation.name}.type`] = transformation.type;
-    this.model[`transforms.${transformation.name}.offset.field`] =
-      transformation.offsetField;
-    this.model[`transforms.${transformation.name}.partition.field`] =
-      transformation.partitionField;
-    this.model[`transforms.${transformation.name}.static.field`] =
-      transformation.staticField;
-    this.model[`transforms.${transformation.name}.static.value`] =
-      transformation.staticValue;
-    this.model[`transforms.${transformation.name}.timestamp.field`] =
-      transformation.timestampField;
-    this.model[`transforms.${transformation.name}.topic.field`] =
-      transformation.topicValue;
-    // Add empty value for form
-    this.transformIndex += 1;
-    this.transformations.push({
-      name: `transform-${this.transformIndex}`,
-      type: this.data.values[0],
-    });
-  }
-
-  onRemoveTransform($index) {
-    // delete old values from model:
-    const transformationName = this.transformations[$index].name;
-    this.model[`transforms.${transformationName}.type`] = undefined;
-    this.model[`transforms.${transformationName}.offset.field`] = undefined;
-    this.model[`transforms.${transformationName}.partition.field`] = undefined;
-    this.model[`transforms.${transformationName}.static.field`] = undefined;
-    this.model[`transforms.${transformationName}.static.value`] = undefined;
-    this.model[`transforms.${transformationName}.timestamp.field`] = undefined;
-    this.model[`transforms.${transformationName}.topic.field`] = undefined;
-    this.transformations.splice($index, 1);
-    this.setModelTransformationsName();
   }
 }

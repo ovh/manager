@@ -11,6 +11,7 @@ export default {
     goToAdd: '<',
     goToEdit: '<',
     goToDelete: '<',
+    goToTasks: '<',
   },
   controller,
   template,

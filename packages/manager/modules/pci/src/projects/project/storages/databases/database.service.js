@@ -932,6 +932,20 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
+  getAvailableConnectorTransformsConfiguration(
+    projectId,
+    engine,
+    databaseId,
+    connectorId,
+  ) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/capabilities/connector/${connectorId}/transforms`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
   getConnectors(projectId, engine, databaseId) {
     return this.$http
       .get(
@@ -947,6 +961,67 @@ export default class DatabaseService {
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector/${connectorId}`,
       )
       .then(({ data }) => new Connector(data));
+  }
+
+  poolConnector(projectId, engine, databaseId, connectorId) {
+    return this.Poller.poll(
+      `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector/${connectorId}`,
+      {},
+      {
+        namespace: `databases_${databaseId}_conntector_${connectorId}`,
+        method: 'get',
+        interval: 10000,
+      },
+    );
+  }
+
+  stopPollingConnector(databaseId, connectorId) {
+    this.Poller.kill({
+      namespace: `databases_${databaseId}_conntector_${connectorId}`,
+    });
+  }
+
+  getConnectorTasks(projectId, engine, databaseId, connectorId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector/${connectorId}/task`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  getConnectorTask(projectId, engine, databaseId, connectorId, taskId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector/${connectorId}/task/${taskId}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  poolConnectorTasks(projectId, engine, databaseId, connectorId) {
+    return this.Poller.poll(
+      `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector/${connectorId}/task`,
+      DatabaseService.getIcebergHeaders(),
+      {
+        namespace: `databases_${databaseId}_conntector_${connectorId}_tasks`,
+        method: 'get',
+        interval: 10000,
+      },
+    );
+  }
+
+  stopPollingConnectorTasks(databaseId, connectorId) {
+    this.Poller.kill({
+      namespace: `databases_${databaseId}_conntector_${connectorId}_tasks`,
+    });
+  }
+
+  restartConnectorTask(projectId, engine, databaseId, connectorId, taskId) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector/${connectorId}/task/${taskId}/restart`,
+      )
+      .then(({ data }) => data);
   }
 
   postConnector(projectId, engine, databaseId, connector) {
@@ -971,6 +1046,30 @@ export default class DatabaseService {
     return this.$http
       .delete(
         `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector/${connectorId}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  pauseConnector(projectId, engine, databaseId, connectorId) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector/${connectorId}/pause`,
+      )
+      .then(({ data }) => data);
+  }
+
+  resumeConnector(projectId, engine, databaseId, connectorId) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector/${connectorId}/resume`,
+      )
+      .then(({ data }) => data);
+  }
+
+  restartConnector(projectId, engine, databaseId, connectorId) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/connector/${connectorId}/restart`,
       )
       .then(({ data }) => data);
   }

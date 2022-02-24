@@ -1,16 +1,32 @@
-export default class {
+export default class EditConnectorCtrl {
   /* @ngInject */
   constructor($translate, CucCloudMessage, DatabaseService) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
+    this.getErrorsMessages = EditConnectorCtrl.getErrorsMessages;
   }
 
   $onInit() {
+    this.messageContainer =
+      'pci.projects.project.storages.databases.dashboard.connectors.edit';
+    this.loadMessages();
     this.trackDashboard('connector-config', 'page');
     this.model = {
       ...this.connector.configuration,
     };
+  }
+
+  loadMessages() {
+    this.CucCloudMessage.unSubscribe(this.messageContainer);
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      this.messageContainer,
+      { onMessage: () => this.refreshMessages() },
+    );
+  }
+
+  refreshMessages() {
+    this.messages = this.messageHandler.getMessages();
   }
 
   getModelValue() {
@@ -21,6 +37,19 @@ export default class {
       }
     });
     return { configuration };
+  }
+
+  static getErrorsMessages(err) {
+    let message = ``;
+    if (err?.data?.details?.error) {
+      const messages = JSON.parse(err.data.details.error);
+      message += '<br/><ul>';
+      messages.errors.forEach((error) => {
+        message += `<li>${error.message}</li>`;
+      });
+      message += '</ul>';
+    }
+    return message;
   }
 
   updateConnector() {
@@ -34,21 +63,24 @@ export default class {
       .then(() =>
         this.goBack({
           textHtml: this.$translate.instant(
-            'pci_databases_replications_edit_success_message',
+            'pci_databases_connectors_edit_success_message',
           ),
         }),
       )
-      .catch(
-        (/* err */) => null,
-        // this.goBack(
-        //   this.$translate.instant(
-        //     'pci_databases_replications_edit_error_message',
-        //     {
-        //       message: err.data?.message || null,
-        //     },
-        //   ),
-        //   'error',
-        // ),
-      );
+      .catch((err) => {
+        this.CucCloudMessage.flushMessages(this.messageContainer);
+        this.CucCloudMessage.error(
+          {
+            textHtml: this.$translate.instant(
+              'pci_databases_connectors_edit_error_message',
+              {
+                message: err.data?.message || null,
+                details: this.getErrorsMessages(err),
+              },
+            ),
+          },
+          this.messageContainer,
+        );
+      });
   }
 }

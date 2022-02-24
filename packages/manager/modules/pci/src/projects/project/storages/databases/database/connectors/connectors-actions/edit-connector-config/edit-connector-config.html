@@ -3,6 +3,9 @@
     data-on-click="$ctrl.goBack()"
 ></oui-back-button>
 
+<!-- error messages -->
+<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
         <h2 ng-bind="$ctrl.availableConnector.name" class="mb-0"></h2>

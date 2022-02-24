@@ -3,8 +3,12 @@ import ConnectorFieldConfiguration from './connectorFieldConfiguration.class';
 
 const EMPTY_GROUP_NAME = 'Other';
 export default class ConnectorConfiguration {
-  constructor(configuration) {
+  constructor(configuration, transformConfiguration) {
     // save configuration as an array of groups
+    this.transformConfiguration = groupBy(
+      transformConfiguration,
+      'transformType',
+    );
     this.rawData = configuration;
     this.mappedConfig = groupBy(
       configuration.map((field) => new ConnectorFieldConfiguration(field)),
@@ -38,6 +42,10 @@ export default class ConnectorConfiguration {
 
   getField(field) {
     return this.rawData.find((input) => input.name === field);
+  }
+
+  getTransformFields(type) {
+    return this.transformConfiguration[type];
   }
 
   isExtra(field) {
