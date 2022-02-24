@@ -1,4 +1,4 @@
-<oui-field ng-if="$ctrl.display">
+<oui-field>
     <!--input label-->
     <label class="oui-field__label">
         <span ng-bind="$ctrl.data.displayName"></span>
@@ -18,7 +18,7 @@
     <!--type string -->
     <input
         class="oui-input"
-        ng-if="($ctrl.data.type === 'string' || $ctrl.data.name === 'header.converter') && $ctrl.data.name !== '*' && !$ctrl.data.values"
+        ng-if="$ctrl.isTextInput"
         name="{{$ctrl.data.name}}"
         type="text"
         ng-required="{{$ctrl.data.required}}"
@@ -28,7 +28,7 @@
     />
     <!--type password -->
     <oui-password
-        ng-if="$ctrl.data.type === 'password'"
+        ng-if="$ctrl.isPasswordInput"
         model="$ctrl.model[$ctrl.data.name]"
         name="{{$ctrl.data.name}}"
         ng-required="{{$ctrl.data.required}}"
@@ -38,7 +38,7 @@
     <!--type int32 -->
     <input
         class="oui-input"
-        ng-if="$ctrl.data.type === 'int16' || $ctrl.data.type === 'int32' || $ctrl.data.type === 'int64'"
+        ng-if="$ctrl.isNumericInput"
         name="{{$ctrl.data.name}}"
         type="number"
         ng-required="{{$ctrl.data.required}}"
@@ -49,7 +49,7 @@
     <!-- type boolean-->
     <oui-radio-group
         name="{{$ctrl.data.name}}"
-        ng-if="$ctrl.data.type === 'boolean'"
+        ng-if="$ctrl.isBooleanInput"
         model="$ctrl.tempValue"
         on-change="$ctrl.onRadioChange(modelValue)"
     >
@@ -60,7 +60,7 @@
     <!-- type list-->
     <input
         class="oui-input"
-        ng-if="$ctrl.data.type === 'list' && $ctrl.data.name !== 'transforms'"
+        ng-if="$ctrl.isListInput"
         name="{{$ctrl.data.name}}"
         type="text"
         ng-required="{{$ctrl.data.required}}"
@@ -69,10 +69,7 @@
         placeholder="{{$ctrl.data.type}}"
     />
     <!-- type class-->
-    <label
-        class="oui-select"
-        ng-if="$ctrl.data.type === 'class' && $ctrl.data.name !== 'header.converter'"
-    >
+    <label class="oui-select" ng-if="$ctrl.isClassInput">
         <select
             name="{{$ctrl.data.name}}"
             ng-model="$ctrl.model[$ctrl.data.name]"
@@ -87,7 +84,7 @@
 
     <!-- select -->
     <oui-select
-        ng-if="$ctrl.data.type === 'string' && $ctrl.data.values"
+        ng-if="$ctrl.isSelectInput"
         items="$ctrl.data.values"
         model="$ctrl.model[$ctrl.data.name]"
         name="{{$ctrl.data.name}}"
@@ -95,7 +92,7 @@
 
     <!-- type transform-->
     <connector-transform-input
-        ng-if="$ctrl.data.name === 'transforms'"
+        ng-if="$ctrl.isTransformInput"
         data="$ctrl.data"
         configuration="$ctrl.configuration"
         model="$ctrl.model"
@@ -103,7 +100,7 @@
 
     <!-- additional config-->
     <connector-extra-input
-        ng-if="$ctrl.data.name === '*'"
+        ng-if="$ctrl.isExtraConfigInput"
         data="$ctrl.data"
         configuration="$ctrl.configuration"
         model="$ctrl.model"

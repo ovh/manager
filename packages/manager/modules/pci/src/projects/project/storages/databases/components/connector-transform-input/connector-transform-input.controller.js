@@ -1,5 +1,6 @@
 import remove from 'lodash/remove';
 import set from 'lodash/set';
+import { TRANSFORM_PROPERTY_KEY } from '../../../../../../components/project/storages/databases/connectors.constants';
 
 export default class PciConnectorTransformInputController {
   /* @ngInject */
@@ -43,7 +44,7 @@ export default class PciConnectorTransformInputController {
 
   addTransformation() {
     this.transformations.push({
-      name: `transform-${this.transformIndex}`,
+      name: `${TRANSFORM_PROPERTY_KEY}-${this.transformIndex}`,
       type: this.data.values[0],
       previousType: this.data.values[0],
       options: [],
