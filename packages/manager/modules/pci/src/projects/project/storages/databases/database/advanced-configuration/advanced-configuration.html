@@ -1,6 +1,5 @@
 <div class="container-fluid px-0 mt-3">
     <h2 data-translate="pci_databases_advanced_configuration_tab_title"></h2>
-    <!-- v2 -->
     <div class="row">
         <div class="col">
             <form data-ng-disabled="$ctrl.pending">
@@ -11,9 +10,11 @@
                             data-ng-repeat="extra in $ctrl.model track by $index"
                         >
                             <fieldset class="oui-inline-adder__fieldset">
-                                <legend class="ng-hide" aria-hidden="true">
-                                    Add a new configuration
-                                </legend>
+                                <legend
+                                    class="ng-hide"
+                                    aria-hidden="true"
+                                    ng-bind="pci_databases_advanced_configuration_add | translate"
+                                ></legend>
                                 <div class="oui-inline-adder__row">
                                     <div class="oui-inline-adder__field">
                                         <oui-field
@@ -51,7 +52,7 @@
                                             <input
                                                 data-ng-disabled="$ctrl.pending"
                                                 class="oui-input"
-                                                ng-if="$ctrl.model[$index].key.type === 'long' || $ctrl.model[$index].key.type === $ctrl.FIELD_TYPES.double"
+                                                ng-if="$ctrl.model[$index].key.type === $ctrl.FIELD_TYPES.long || $ctrl.model[$index].key.type === $ctrl.FIELD_TYPES.double"
                                                 name="$ctrl.model[$index].key-{{$index}}"
                                                 ng-min="$ctrl.model[$index].key.minimum"
                                                 ng-max="$ctrl.model[$index].key.maximum"
@@ -138,8 +139,11 @@
                     disabled="$ctrl.pending"
                     variant="primary"
                     ng-click="$ctrl.updateAdvancedConfiguration()"
-                    >Mettre à jour la configuration avancée</oui-button
                 >
+                    <span
+                        data-translate="pci_databases_advanced_configuration_update"
+                    ></span>
+                </oui-button>
             </div>
         </div>
     </div>
