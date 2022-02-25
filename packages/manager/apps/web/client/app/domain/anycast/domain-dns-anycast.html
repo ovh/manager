@@ -85,16 +85,11 @@
             data-header="{{:: 'domain_dashboard_dns_anycast_payment' | translate }}"
             data-editable="!$ctrl.isCheckoutPending"
             data-submit-text="{{:: ($ctrl.checkoutInfos.prices.withTax.value <= 0 ? 'domain_configuration_action_enable' : 'domain_dashboard_dns_anycast_pay') | translate }}"
-            data-valid="$ctrl.contractsValidated"
             data-prevent-next="true"
         >
             <ovh-payment-method-choice data-model="$ctrl.defaultPaymentMethod">
             </ovh-payment-method-choice>
-            <ovh-contracts-summary
-                data-ng-if="$ctrl.checkoutInfos"
-                data-items="$ctrl.checkoutInfos.contracts"
-                data-model="$ctrl.contractsValidated"
-            >
+            <ovh-contracts-summary data-ng-if="$ctrl.checkoutInfos">
             </ovh-contracts-summary>
         </oui-step-form>
     </oui-stepper>
