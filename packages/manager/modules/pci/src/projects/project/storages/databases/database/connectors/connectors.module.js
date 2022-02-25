@@ -9,6 +9,7 @@ import component from './connectors.component';
 import routing from './connectors.routing';
 
 import restartButton from '../../components/restart-button';
+import deleteConnector from './delete-connector';
 
 const moduleName = 'ovhManagerPciStoragesDatabaseConnectors';
 
@@ -20,6 +21,7 @@ angular
     'oui',
     'ui.router',
     restartButton,
+    deleteConnector,
   ])
   .config(routing)
   .component('ovhManagerPciProjectDatabaseConnectors', component)
