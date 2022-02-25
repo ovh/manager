@@ -125,11 +125,15 @@ export default class IpReverseUpdateCtrl {
   }
 
   cancelAction() {
+    this.Ip.cancelActionParam('reverse');
+    this.$scope.resetAction();
+  }
+
+  close() {
     this.atInternet.trackClick({
       name: `${TRACKING_PREFIX}::update-reverse::cancel`,
       type: 'action',
     });
-    this.Ip.cancelActionParam('reverse');
-    this.$scope.resetAction();
+    this.cancelAction();
   }
 }

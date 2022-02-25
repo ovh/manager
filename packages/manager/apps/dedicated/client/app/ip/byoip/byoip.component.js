@@ -6,6 +6,7 @@ export default {
     plan: '<',
     getToken: '<',
     goToDisclaimer: '<',
+    goBack: '<',
   },
   name: 'ipByoipComponent',
   controller,

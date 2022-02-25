@@ -93,4 +93,12 @@ export default class IpByoipConfiguration {
   orderByoip() {
     return this.goToDisclaimer(this.byoip);
   }
+
+  cancel() {
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::bring-your-own-ip::cancel`,
+      type: 'action',
+    });
+    return this.goBack();
+  }
 }
