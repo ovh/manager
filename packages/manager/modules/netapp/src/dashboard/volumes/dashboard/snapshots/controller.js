@@ -12,6 +12,10 @@ export default class NetAppVolumesDashboardSnapshotsController {
     this.policyId = this.currentPolicy.id;
   }
 
+  isApplicablePolicy() {
+    return this.snapshots?.length && !this.snapshots[0].isDefault;
+  }
+
   changePolicy() {
     this.trackClick('apply-policy');
     return this.applyPolicy(this.policyId)
