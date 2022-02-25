@@ -64,7 +64,8 @@
                         data-title="{{ :: 'cpbc_object_storage_col_output_traffic' | translate }}"
                     >
                         <span
-                            >{{ storage.outgoingBandwidth.totalPrice.toFixed(2)
+                            >{{(storage.outgoingBandwidth ?
+                            storage.outgoingBandwidth.totalPrice : 0).toFixed(2)
                             + ' ' + $ctrl.currencySymbol }}</span
                         >
                         <i
