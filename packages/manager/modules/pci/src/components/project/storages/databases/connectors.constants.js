@@ -8,6 +8,11 @@ export const TASK_STATUS = {
   FAILED: 'FAILED',
   PAUSED: 'PAUSED',
 };
+export const AVAILABLE_CONNECTOR_TYPES = {
+  SINK: 'sink',
+  SOURCE: 'source',
+};
+
 export const CONNECTOR_FIELDS_FILTER_EDIT = ['name', 'connector.class'];
 
 export const TRANSFORM_CONFIG_GROUP_KEY = 'transformType';
