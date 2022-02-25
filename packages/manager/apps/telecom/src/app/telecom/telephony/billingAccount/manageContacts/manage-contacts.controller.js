@@ -52,14 +52,6 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountManageCont
       ]);
   }
 
-  function getPackXdslServiceIds() {
-    return OvhApiPackXdslVoipLine.v7()
-      .services()
-      .aggregate('packName')
-      .execute()
-      .$promise.then((ids) => map(ids, 'key'));
-  }
-
   function getLinesContacts() {
     return OvhApiTelephony.Line()
       .v6()
@@ -171,15 +163,44 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountManageCont
     });
   }
 
+  function getPackXdslServiceIds(services) {
+    const packIds = [];
+    return $q
+      .all(
+        services.map(({ serviceName }) => {
+          return $http
+            .get(`/pack/xdsl/search?pattern=${serviceName}`)
+            .then(() => {
+              packIds.push(serviceName);
+            })
+            .catch(() => {
+              // nothing to do
+            });
+        }),
+      )
+      .then(() => packIds);
+  }
+
   function checkModifiableServices(services) {
-    return getPackXdslServiceIds().then((idsToFilter) => {
+    const checkUseInXdsl = services.length < 100;
+
+    let initPromise = $q.when([]);
+    if (checkUseInXdsl) {
+      initPromise = getPackXdslServiceIds(services);
+    }
+
+    return initPromise.then((idsToFilter) => {
       forEach(services, (service) => {
         const { serviceType, serviceName, hasSpecialNumbers } = service;
         const isGroupType = serviceType === 'group';
 
         if (isGroupType && startsWith(serviceName, 'ovhtel-')) {
           set(service, 'isModifiable', false);
-        } else if (!isGroupType && idsToFilter.indexOf(serviceName) >= 0) {
+        } else if (
+          !isGroupType &&
+          checkUseInXdsl &&
+          idsToFilter.includes(serviceName)
+        ) {
           set(service, 'isModifiable', false);
         } else {
           set(service, 'isModifiable', true);
