@@ -45,23 +45,18 @@
                         >
                             <span data-ng-bind="$row.domain"></span>
                         </oui-datagrid-column>
-                        <oui-datagrid-column
-                            data-title="'telephony_service_fax_custom_domains_configuration_table_column_action' | translate"
+                        <oui-action-menu
+                            aria-label="{{:: 'telephony_service_fax_custom_domains_configuration_table_column_action' | translate }}"
+                            compact
+                            data-placement="end"
                         >
-                            <button
-                                type="button"
-                                class="btn btn-default"
-                                data-ng-click="$ctrl.removeCustomDomains($row)"
+                            <oui-action-menu-item
+                                on-click="$ctrl.removeCustomDomains($row)"
                                 data-ng-disabled="$row.isDeleting"
-                                data-translate-attr="{ title: 'telephony_service_fax_custom_domains_configuration_table_action_delete' }"
-                                data-translate-values="{ domain: $row.domain }"
                             >
-                                <span
-                                    class="ovh-font ovh-font-bin"
-                                    aria-hidden="true"
-                                ></span>
-                            </button>
-                        </oui-datagrid-column>
+                                <span data-translate="delete"> </span>
+                            </oui-action-menu-item>
+                        </oui-action-menu>
                     </oui-datagrid>
 
                     <!-- FORM -->
