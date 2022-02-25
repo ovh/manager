@@ -1,3 +1,12 @@
+## [13.33.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.33.1...@ovh-ux/manager-telecom@13.33.2) (2022-02-25)
+
+
+### Bug Fixes
+
+* **telephony.fax.custom-domains:** ecofax domain action ([#6560](https://github.com/ovh/manager/issues/6560)) ([3c7fd62](https://github.com/ovh/manager/commit/3c7fd620222c5ee2d55a6ee080dd29af1b950e24))
+
+
+
 ## [13.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.33.0...@ovh-ux/manager-telecom@13.33.1) (2022-02-23)
 
 

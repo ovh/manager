@@ -1,3 +1,13 @@
+## [5.60.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.60.0...@ovh-ux/manager-pci@5.60.1) (2022-02-25)
+
+
+### Bug Fixes
+
+* **high.perf.billing:** fix price issue in billing for high perf ([#6528](https://github.com/ovh/manager/issues/6528)) ([5feb011](https://github.com/ovh/manager/commit/5feb0118a94558a8a77500393160cdfc9c7d7cc4))
+* **storage:** fix cache issue of fetching users ([#6550](https://github.com/ovh/manager/issues/6550)) ([3b4d357](https://github.com/ovh/manager/commit/3b4d35770e9ef726142f2d6ad4aeed13c1947cbd))
+
+
+
 # [5.60.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.59.0...@ovh-ux/manager-pci@5.60.0) (2022-02-23)
 
 
