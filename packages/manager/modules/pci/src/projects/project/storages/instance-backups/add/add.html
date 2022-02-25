@@ -130,6 +130,7 @@
         >
         </pci-project-instance-ssh-keys>
 
+        <!--Private network-->
         <oui-field
             data-label="{{ :: 'pci_projects_project_instances_backup_add_private_network_label' | translate }}"
             data-size="xl"
@@ -145,6 +146,7 @@
             </oui-select>
         </oui-field>
 
+        <!--Billing period-->
         <oui-field
             data-label="{{ :: 'pci_projects_project_instances_backup_add_billing_label' | translate }}"
         >
@@ -155,6 +157,11 @@
             >
             </pci-project-flavor-billing>
         </oui-field>
+
+        <!--Trusted zone banner amount charge info-->
+        <pci-trusted-zone-banner
+            data-ng-if="$ctrl.isTrustedZone">
+        </pci-trusted-zone-banner>
 
         <div data-ng-if="$ctrl.isLoading">
             <oui-spinner></oui-spinner>
