@@ -27,10 +27,7 @@ export default class MicrosoftOfficeLicenseUserDeleteCtrl {
       this.loaders.deleting = true;
 
       this.license
-        .deleteUser(
-          this.$scope.currentActionData.license,
-          this.user.activationEmail,
-        )
+        .deleteUser(this.user.serviceName, this.user.activationEmail)
         .then(() =>
           this.alerter.success(
             this.$translate.instant(
