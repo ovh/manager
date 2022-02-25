@@ -38,12 +38,17 @@ export default /* @ngInject */ (
     value: false,
   };
 
+  $scope.trackPrevious = function trackPrevious() {
+    atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::previous`,
+      type: 'action',
+    });
+  };
   /*= =============================
     =            STEP 1            =
     ============================== */
 
   $scope.isValidIp = function isValidIp(ip) {
-    $scope.trackStep(1);
     if (ip != null) {
       const ipslash = ip.split('/');
       if (ipslash.length > 1) {
@@ -211,10 +216,7 @@ export default /* @ngInject */ (
   };
 
   $scope.backToContracts = function backToContracts() {
-    atInternet.trackClick({
-      name: `${TRACKING_PREFIX}::previous`,
-      type: 'action',
-    });
+    $scope.trackPrevious();
     if (
       !$scope.durations.details[$scope.migrate.duration].contracts ||
       !$scope.durations.details[$scope.migrate.duration].contracts.length

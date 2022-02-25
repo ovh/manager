@@ -112,6 +112,8 @@
             data-navigation="$ctrl.asType"
             data-on-submit="$ctrl.trackStepSubmit($ctrl.STEP_NAME.AS)"
             data-prevent-next="true"
+            data-cancel-text="{{:: 'ip_byoip_cancel_text' | translate }}"
+            data-on-cancel="$ctrl.cancel()"
         >
             <div
                 class="col-md-4 mb-3 float-none p-0"
