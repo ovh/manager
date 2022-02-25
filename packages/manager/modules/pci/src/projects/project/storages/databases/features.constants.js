@@ -65,6 +65,7 @@ const features = {
   usersGroup: [DATABASE_TYPES.M3DB],
   resetAdminUserFromDashboard: [DATABASE_TYPES.GRAFANA],
   namespacesTab: [DATABASE_TYPES.M3DB],
+  connectorsTab: [DATABASE_TYPES.KAFKA_CONNECT],
 };
 
 export default function isFeatureActivated(feature, databaseType) {
