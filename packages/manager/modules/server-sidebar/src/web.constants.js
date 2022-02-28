@@ -281,7 +281,7 @@ export const WEB_SIDEBAR_CONFIG = [
 export const WEB_ORDER_SIDEBAR_CONFIG = [
   {
     id: 'orderDomain',
-    title: 'domain',
+    title: 'domains',
     icon: 'ovh-font ovh-font-domain',
     linkId: 'orderDomain',
     target: '_blank',
