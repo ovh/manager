@@ -83,9 +83,6 @@ function Sidebar() {
     } else if (node.children) {
       setNavigationHistory([...navigationHistory, currentNavigationNode]);
       setCurrentNavigationNode(node);
-    } else if (node.path) {
-      // @TODO use navigation plugin
-      // console.log('navigate to', node.path);
     }
   };
 

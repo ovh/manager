@@ -24,9 +24,6 @@ export default function PciMenu({
     if (node.children) {
       setNavigationHistory([...navigationHistory, currentNavigationNode]);
       setCurrentNavigationNode(node);
-    } else if (node.path) {
-      // @TODO use navigation plugin
-      // console.log('navigate to', node.path);
     }
   };
 
@@ -69,6 +66,7 @@ export default function PciMenu({
         {currentNavigationNode.children?.map((node) => (
           <li key={node.id}>
             <SidebarLink
+              linkParams={{ projectId: selectedProject?.project_id }}
               node={node}
               count={countServices(servicesCount, node)}
               onClick={() => clickHandler(node)}
@@ -92,6 +90,6 @@ PciMenu.defaultProps = {
   onExit: () => {},
   onSelectProject: () => {},
   projects: [],
-  selectedProject: '',
+  selectedProject: null,
   servicesCount: null,
 };
