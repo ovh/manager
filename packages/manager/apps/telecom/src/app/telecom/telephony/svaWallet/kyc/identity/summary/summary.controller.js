@@ -3,9 +3,8 @@ import { buildEnumList } from '../../../sva-wallet.constants';
 
 export default class KycIdentitySummaryController {
   /* @ngInject */
-  constructor($translate, $uibModal) {
+  constructor($translate) {
     this.$translate = $translate;
-    this.$uibModal = $uibModal;
   }
 
   $onInit() {
