@@ -7,6 +7,7 @@ import '@ovh-ux/ui-kit';
 import 'ovh-api-services';
 import 'angular-ui-bootstrap';
 
+import trustedZoneBanner from '../../../../../components/trusted-zone-banner';
 import regionsList from '../../../../../components/project/regions-list';
 import component from './add.component';
 
@@ -14,6 +15,7 @@ const moduleName = 'ovhManagerPciStoragesContainersAdd';
 
 angular
   .module(moduleName, [
+    trustedZoneBanner,
     regionsList,
     'ngTranslateAsyncLoader',
     'oui',

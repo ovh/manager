@@ -12,5 +12,6 @@ export default {
     cancelCreate: '<',
     trackingPrefix: '<',
     user: '<',
+    isTrustedZone: '<',
   },
 };
