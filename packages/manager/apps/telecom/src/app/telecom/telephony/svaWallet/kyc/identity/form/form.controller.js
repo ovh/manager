@@ -141,11 +141,7 @@ export default class KycIdentityFormController {
       companyKind,
     );
 
-    if (
-      this.wallet.company.marketplace &&
-      (!this.wallet.company.websiteUrl ||
-        this.wallet.company.websiteUrl === undefined)
-    ) {
+    if (this.wallet.company.marketplace && !this.wallet.company.websiteUrl) {
       this.wallet.company.websiteUrl = this.WEBSITE_URL_DEFAULT;
     }
 
