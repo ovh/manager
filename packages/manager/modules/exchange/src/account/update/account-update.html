@@ -103,6 +103,16 @@
                             data-translate="exchange_tab_ALIAS_taken_error_message"
                             data-ng-if="$ctrl.takenEmailError"
                         ></small>
+                        <div>
+                            <oui-checkbox
+                                data-model="$ctrl.selectedAccount.hiddenFromGAL"
+                                data-name="accountInfoHiddenFromGAL"
+                            >
+                                <span
+                                    data-translate="exchange_account_add_emailAddress_hide_from_directory"
+                                ></span>
+                            </oui-checkbox>
+                        </div>
                     </div>
 
                     <!--Exchange 2010-->
