@@ -54,6 +54,11 @@
             class="oui-field__control"
             data-translate="{{ 'telephony_billingAccount_svaWallet_kyc_company_kind_' + $ctrl.svaWallet.company.kind }}"
         ></div>
+        <span
+            class="oui-badge oui-badge_info"
+            data-ng-if="$ctrl.svaWallet.company.marketplace"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_marketplace"
+        ></span>
     </div>
 
     <div class="oui-field oui-field_auto">
@@ -66,6 +71,22 @@
         <div
             class="oui-field__control"
             data-ng-bind="$ctrl.svaWallet.company.description"
+        ></div>
+    </div>
+
+    <div
+        class="oui-field oui-field_auto"
+        data-ng-if="$ctrl.isVisibleWebsiteUrl()"
+    >
+        <div class="oui-field__header ng-scope">
+            <label
+                class="oui-field__label ng-binding"
+                data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_websiteUrl"
+            ></label>
+        </div>
+        <div
+            class="oui-field__control"
+            data-ng-bind="$ctrl.svaWallet.company.websiteUrl"
         ></div>
     </div>
 

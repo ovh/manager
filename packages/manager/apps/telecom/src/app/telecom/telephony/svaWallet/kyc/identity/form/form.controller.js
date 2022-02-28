@@ -2,6 +2,7 @@ import {
   DISALLOW_BENEFICIARIES_KINDS,
   FORCE_REPRESENTAIVE_IS_BENEFICIARY_KINDS,
   REGEX_VALIDATORS,
+  WEBSITE_URL_DEFAULT,
 } from '../identity.constants';
 import { DIRECTORY_WAY_NUMBER_EXTRA_ENUM } from '../../../../service/contact/contact.constants';
 
@@ -77,6 +78,7 @@ export default class KycIdentityFormController {
     ];
 
     this.REGEX_VALIDATORS = REGEX_VALIDATORS;
+    this.WEBSITE_URL_DEFAULT = WEBSITE_URL_DEFAULT;
     this.requirements = false;
 
     this.wallet = {
@@ -84,6 +86,7 @@ export default class KycIdentityFormController {
         ? this.svaWallet.company
         : {
             reseller: false,
+            marketplace: false,
             beneficiaries: [],
           },
       representative: this.svaWallet
@@ -92,6 +95,10 @@ export default class KycIdentityFormController {
             isBeneficiary: false,
           },
     };
+
+    if (this.wallet.company.websiteUrl === this.WEBSITE_URL_DEFAULT) {
+      this.wallet.company.websiteUrl = '';
+    }
 
     this.bankAccount = {};
 
@@ -133,6 +140,10 @@ export default class KycIdentityFormController {
     const allowBeneficiaries = !DISALLOW_BENEFICIARIES_KINDS.includes(
       companyKind,
     );
+
+    if (this.wallet.company.marketplace && !this.wallet.company.websiteUrl) {
+      this.wallet.company.websiteUrl = this.WEBSITE_URL_DEFAULT;
+    }
 
     const company = {
       ...this.wallet.company,
