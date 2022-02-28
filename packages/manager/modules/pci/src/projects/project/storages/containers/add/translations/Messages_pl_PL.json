@@ -15,7 +15,7 @@
   "pci_projects_project_storages_containers_add_save_form": "Trwa tworzenie kontenera",
   "pci_projects_project_storages_containers_add_success_message": "Kontener {{ container }} został dodany.",
   "pci_projects_project_storages_containers_add_error_post": "Wystąpił błąd podczas dodawania kontenera {{container}}: {{message}}.",
-  "pci_projects_project_storages_containers_add_archive_title": "Utwórz kontener archiwów",
+  "pci_projects_project_storages_containers_add_archive_title": "Utwórz kontener Cloud Archive",
   "pci_projects_project_storages_containers_add_type_price": "{{price}} netto/m-c/GB",
   "pci_projects_project_storages_containers_add_offer_title": "Wybierz Twoje rozwiązanie",
   "pci_projects_project_storages_containers_add_offer_storage": "Standard (Swift)",
