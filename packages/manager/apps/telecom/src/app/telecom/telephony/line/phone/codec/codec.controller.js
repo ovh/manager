@@ -3,7 +3,7 @@ import every from 'lodash/every';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
-import some from 'lodash/some';
+import compact from 'lodash/compact';
 import trim from 'lodash/trim';
 
 export default /* @ngInject */ function TelecomTelephonyLinePhoneCodecCtrl(
@@ -15,7 +15,6 @@ export default /* @ngInject */ function TelecomTelephonyLinePhoneCodecCtrl(
   TucToast,
   OvhApiTelephony,
   tucTelephonyBulk,
-  tucVoipLinePhone,
 ) {
   const self = this;
   let codecsAuto = null;
@@ -186,15 +185,21 @@ export default /* @ngInject */ function TelecomTelephonyLinePhoneCodecCtrl(
       services,
       (service) => ['sip', 'mgcp'].indexOf(service.featureType) > -1,
     );
-
-    return tucVoipLinePhone.fetchAll().then((voipLinePhones) =>
-      filter(filteredServices, (service) =>
-        some(voipLinePhones, {
-          serviceName: service.serviceName,
-          billingAccount: service.billingAccount,
+    return $q
+      .all(
+        filteredServices.map((service) => {
+          return OvhApiTelephony.Line()
+            .Phone()
+            .v6()
+            .get({
+              billingAccount: service.billingAccount,
+              serviceName: service.serviceName,
+            })
+            .$promise.then(() => service)
+            .catch(() => null);
         }),
-      ),
-    );
+      )
+      .then((results) => compact(results));
   };
 
   self.getBulkParams = function getBulkParams() {
