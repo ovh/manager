@@ -1,3 +1,12 @@
+# [5.61.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.60.1...@ovh-ux/manager-pci@5.61.0) (2022-02-28)
+
+
+### Features
+
+* remove analytics data platform project ([#6518](https://github.com/ovh/manager/issues/6518)) ([a55e6e9](https://github.com/ovh/manager/commit/a55e6e971f7b03a61b6ef37871a62c293aaf0f26))
+
+
+
 ## [5.60.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.60.0...@ovh-ux/manager-pci@5.60.1) (2022-02-25)
 
 
