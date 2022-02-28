@@ -1,3 +1,12 @@
+# [16.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.6.2...@ovh-ux/manager-web@16.7.0) (2022-02-28)
+
+
+### Features
+
+* **hosting:** add retention advices ([#6315](https://github.com/ovh/manager/issues/6315)) ([2210567](https://github.com/ovh/manager/commit/221056751296cb21979ad8c7d96ba151bcd5973a))
+
+
+
 ## [16.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.6.1...@ovh-ux/manager-web@16.6.2) (2022-02-23)
 
 
