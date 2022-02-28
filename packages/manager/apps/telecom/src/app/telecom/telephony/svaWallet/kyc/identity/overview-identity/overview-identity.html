@@ -18,9 +18,9 @@
     </div>
 
     <div class="oui-field oui-field_auto">
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_name"
             ></label>
         </div>
@@ -31,9 +31,9 @@
     </div>
 
     <div class="oui-field oui-field_auto">
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_identification_number"
             ></label>
         </div>
@@ -44,9 +44,9 @@
     </div>
 
     <div class="oui-field oui-field_auto">
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_kind"
             ></label>
         </div>
@@ -59,12 +59,17 @@
             data-ng-if="$ctrl.svaWallet.company.marketplace"
             data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_marketplace"
         ></span>
+        <span
+            class="oui-badge oui-badge_info"
+            data-ng-if="$ctrl.svaWallet.company.crowdfundingPartner"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_crowdfundingPartner"
+        ></span>
     </div>
 
     <div class="oui-field oui-field_auto">
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_description"
             ></label>
         </div>
@@ -78,9 +83,9 @@
         class="oui-field oui-field_auto"
         data-ng-if="$ctrl.isVisibleWebsiteUrl()"
     >
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_websiteUrl"
             ></label>
         </div>
@@ -91,9 +96,9 @@
     </div>
 
     <div class="oui-field oui-field_auto">
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_address_street_number"
             ></label>
         </div>
@@ -107,9 +112,9 @@
         class="oui-field oui-field_auto"
         data-ng-if="$ctrl.svaWallet.representative.addressOfResidence.streetNumberExtra"
     >
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_address_street_number_extra"
             ></label>
         </div>
@@ -120,9 +125,9 @@
     </div>
 
     <div class="oui-field oui-field_auto">
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_address_street_type"
             ></label>
         </div>
@@ -133,9 +138,9 @@
     </div>
 
     <div class="oui-field oui-field_auto">
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_address_street_name"
             ></label>
         </div>
@@ -149,9 +154,9 @@
         class="oui-field oui-field_auto"
         data-ng-if="$ctrl.svaWallet.representative.addressOfResidence.addressExtra"
     >
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_address_address_extra"
             ></label>
         </div>
@@ -165,9 +170,9 @@
         class="oui-field oui-field_auto"
         data-ng-if="$ctrl.svaWallet.representative.postcodeOfResidence"
     >
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_representative_postcode_residence"
             ></label>
         </div>
@@ -181,9 +186,9 @@
         class="oui-field oui-field_auto"
         data-ng-if="$ctrl.svaWallet.representative.addressOfResidence.cedex"
     >
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_address_cedex"
             ></label>
         </div>
@@ -194,9 +199,9 @@
     </div>
 
     <div class="oui-field oui-field_auto">
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_city_residence"
             ></label>
         </div>
@@ -210,9 +215,9 @@
         class="oui-field oui-field_auto"
         data-ng-if="$ctrl.svaWallet.representative.addressOfResidence.urbanDistrict"
     >
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_address_urban_district"
             ></label>
         </div>
@@ -223,9 +228,9 @@
     </div>
 
     <div class="oui-field oui-field_auto">
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_country_residence"
             ></label>
         </div>
@@ -240,9 +245,9 @@
     ></h3>
 
     <div class="oui-field oui-field_auto">
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_lastname"
             ></label>
         </div>
@@ -253,9 +258,9 @@
     </div>
 
     <div class="oui-field oui-field_auto">
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_firstname"
             ></label>
         </div>
@@ -266,9 +271,9 @@
     </div>
 
     <div class="oui-field oui-field_auto">
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_birthdate"
             ></label>
         </div>
@@ -279,9 +284,9 @@
     </div>
 
     <div class="oui-field oui-field_auto">
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_birthcity"
             ></label>
         </div>
@@ -292,9 +297,9 @@
     </div>
 
     <div class="oui-field oui-field_auto">
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_birthcountry"
             ></label>
         </div>
@@ -305,9 +310,9 @@
     </div>
 
     <div class="oui-field oui-field_auto">
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_email"
             ></label>
         </div>
@@ -318,9 +323,9 @@
     </div>
 
     <div class="oui-field oui-field_auto">
-        <div class="oui-field__header ng-scope">
+        <div class="oui-field__header">
             <label
-                class="oui-field__label ng-binding"
+                class="oui-field__label"
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_representative_nationality"
             ></label>
         </div>

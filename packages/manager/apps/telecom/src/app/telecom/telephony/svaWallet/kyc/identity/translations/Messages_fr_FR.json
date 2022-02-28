@@ -20,6 +20,7 @@
   "telephony_billingAccount_svaWallet_kyc_company_kind_MICRO_ENTERPRISE": "Auto-entrepreneur",
   "telephony_billingAccount_svaWallet_kyc_company_kind_UE_UNLISTED_COMPANY": "Société cotée dans un pays de l'UE ou pays tiers équivalent",
   "telephony_billingAccount_svaWallet_kyc_company_kind_UNLISTED_COMPANY": "Société non cotée",
+  "telephony_billingAccount_svaWallet_kyc_identity_company_crowdfundingPartner": "Mon entreprise bénéficie d'un financement participatif (Crowdfunding)",
   "telephony_billingAccount_svaWallet_kyc_identity_company_description": "Description de l'activité",
   "telephony_billingAccount_svaWallet_kyc_identity_company_marketplace": "Mon entreprise est une marketplace",
   "telephony_billingAccount_svaWallet_kyc_identity_company_websiteUrl": "URL de votre site internet",
