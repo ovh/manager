@@ -84,6 +84,8 @@ export default class KycIdentityFormController {
         ? this.svaWallet.company
         : {
             reseller: false,
+            marketplace: false,
+            crowdfundingPartner: false,
             beneficiaries: [],
           },
       representative: this.svaWallet

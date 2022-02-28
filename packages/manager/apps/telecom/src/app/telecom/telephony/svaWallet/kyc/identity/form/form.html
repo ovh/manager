@@ -81,6 +81,21 @@
         </oui-select>
     </oui-field>
 
+    <div class="oui-field oui-field_xl">
+        <div class="oui-field__control">
+            <oui-checkbox model="$ctrl.wallet.company.marketplace">
+                <oui-checkbox-label
+                    data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_marketplace"
+                ></oui-checkbox-label>
+            </oui-checkbox>
+            <oui-checkbox model="$ctrl.wallet.company.crowdfundingPartner">
+                <oui-checkbox-label
+                    data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_crowdfundingPartner"
+                ></oui-checkbox-label>
+            </oui-checkbox>
+        </div>
+    </div>
+
     <oui-field
         label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_description' | translate }}"
         size="xl"
