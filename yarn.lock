@@ -4420,15 +4420,6 @@
   resolved "https://registry.yarnpkg.com/@open-draft/until/-/until-1.0.3.tgz#db9cc719191a62e7d9200f6e7bab21c5b848adca"
   integrity sha512-Aq58f5HiWdyDlFffbbSjAlv596h/cOnt2DO1w3DOC7OJ5EHs0hd/nycJfiu9RJbT6Yk6F1knnRRXNSpxoIVZ9Q==
 
-"@ovh-ux/manager-dev-server-config@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-dev-server-config/-/manager-dev-server-config-2.0.0.tgz#2ee4a230e2a17fca165e258b819bb49e9fcd291a"
-  integrity sha512-qvpvvfyTsJ6UG5diuApfgPb/qMhBVVRdoteEcUTI5PiLxJYgOp6HonKOp5tZTtUKiia10FOj25wpnqF2QqGGTg==
-  dependencies:
-    base64url "^3.0.0"
-    cookie "^0.3.1"
-    request "^2.88.0"
-
 "@ovh-ux/ng-ovh-api-wrappers@^4.0.10":
   version "4.0.10"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.10.tgz#a71f49a916254780840eeeda9a0aacb1d83f2d28"
