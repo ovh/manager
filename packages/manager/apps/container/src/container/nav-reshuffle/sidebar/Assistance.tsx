@@ -1,7 +1,10 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { useURL } from '@/container/common/urls-constants';
 import ApplicationContext from '@/context';
+import useOnboarding from '@/core/onboarding';
+
 import SidebarLink from './SidebarLink';
 
 function AssistanceSidebar(): JSX.Element {
@@ -14,6 +17,7 @@ function AssistanceSidebar(): JSX.Element {
   const urls = useURL(environment);
 
   const hasAdvancedSupport = ['EU', 'CA'].includes(environment.getRegion());
+  const { displayOnboardingWidget } = useOnboarding();
 
   return (
     <ul>
@@ -65,6 +69,10 @@ function AssistanceSidebar(): JSX.Element {
             onClick={() => shell.getPlugin('ux').openChatbot()}
           />
         )}
+        <SidebarLink
+          node={{ translation: 'sidebar_assistance_onboarding' }}
+          onClick={() => displayOnboardingWidget()}
+        />
       </li>
     </ul>
   );
