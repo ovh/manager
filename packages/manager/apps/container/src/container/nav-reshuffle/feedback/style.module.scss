@@ -1,22 +1,5 @@
-@import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
-@import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
-@import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
-
 .feedbackWidget {
-  position: absolute !important;
   bottom: 50px !important;
   right: 50px !important;
-  visibility: visible;
-  z-index: $base-z-index-popover !important;
-  opacity: 1 !important;
   width: 280px !important;
-
-  h2 {
-    font-size: 20px;
-    font-weight: bold;
-  }
-
-  p {
-    font-size: 16px;
-  }
 }

@@ -1,0 +1,9 @@
+export const ONBOARDING_STATUS_ENUM = {
+  DISPLAYED: 'DISPLAYED',
+  STARTED: 'STARTED',
+  CLOSED: 'CLOSED',
+};
+
+export default {
+  ONBOARDING_STATUS_ENUM,
+};
