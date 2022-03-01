@@ -1,32 +1,37 @@
 import React from 'react';
+import { Application as IApplication } from '@ovh-ux/manager-config/types/application';
 import Router, { hashChangeEvent } from './router';
+import Shell from '../../shell/shell';
 import Application from './application';
 import RoutingConfiguration from './configuration';
 
-function initRoutingConfiguration(routing: RoutingConfiguration) {
+function initRoutingConfiguration(shell: Shell, routing: RoutingConfiguration) {
   if (window.location.hostname === 'localhost') {
     routing.addConfiguration({
       id: 'manager',
       path: '/app/',
     });
   } else {
-    ['hub', 'dedicated', 'web', 'public-cloud', 'telecom'].forEach(
-      (manager) => {
-        routing.addConfiguration({
-          id: manager,
-          path: `/${manager}/`,
-        });
+    const environment = shell.getPlugin('environment').getEnvironment();
+    Object.entries(environment.getApplications()).forEach(
+      ([appId, appConfig]: [string, IApplication]) => {
+        if (appConfig?.container?.path) {
+          routing.addConfiguration({
+            id: appId,
+            path: `/${appConfig.container.path}/`,
+          });
+        }
       },
     );
   }
 }
 
-function initRouting(iframe: HTMLIFrameElement) {
+function initRouting(shell: Shell, iframe: HTMLIFrameElement) {
   const routingConfig = new RoutingConfiguration();
   const application = new Application(iframe, routingConfig);
   const router = <Router application={application} routing={routingConfig} />;
 
-  initRoutingConfiguration(routingConfig);
+  initRoutingConfiguration(shell, routingConfig);
 
   return {
     router,
