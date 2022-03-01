@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import { LOCAL_STORAGE_ITEM, REDISPLAY_DAYS_INTERVAL } from './constants';
 import style from './style.module.scss';
+import popoverStyle from '../../common/popover.module.scss';
 
 export const NavReshuffleFeedbackWidget = (): JSX.Element => {
   const { t } = useTranslation('nav-reshuffle/feedback');
@@ -59,7 +60,9 @@ export const NavReshuffleFeedbackWidget = (): JSX.Element => {
   return (
     <>
       {visible && (
-        <div className={`${style.feedbackWidget} oui-popover`}>
+        <div
+          className={`${style.feedbackWidget} ${popoverStyle.popover} oui-popover`}
+        >
           <div className="oui-popover__content">
             <h2>{t('title')}</h2>
             <p>{t('content')}</p>
