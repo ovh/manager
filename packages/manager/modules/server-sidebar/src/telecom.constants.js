@@ -87,6 +87,7 @@ export const OVERTHEBOX_BETA_CONFIG = {
 export const PACK_CONFIG = {
   loadOnState: ['telecom.packs'],
   id: 'pack',
+  forceDisplaySearch: true,
   types: [
     {
       path: '/pack/xdsl',
@@ -152,6 +153,7 @@ const TELEPHONY_SERVICES_DATA = {
 export const TELEPHONY_CONFIG = {
   loadOnState: ['telecom.telephony'],
   id: 'telephony',
+  forceDisplaySearch: true,
   types: [
     {
       path: '/telephony',
