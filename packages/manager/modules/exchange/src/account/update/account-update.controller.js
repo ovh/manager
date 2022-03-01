@@ -32,18 +32,17 @@ export default class ExchangeUpdateAccountCtrl {
   $onInit() {
     this.$routerParams = this.wucExchange.getParams();
     this.originalValues = angular.copy(this.emailAccount);
-
-    this.telephonyModel = {
-      phone: { selected: '', number: '' },
-      mobile: { selected: '', number: '' },
-      fax: { selected: '', number: '' },
-    };
     this.selectedAccount = angular.copy(this.emailAccount);
-    this.selectedAccount.oldOutlook = this.selectedAccount.outlook;
-    this.selectedAccount.oldDeleteOutlook = this.selectedAccount.deleteOutlook;
-    this.selectedAccount.quota = this.selectedAccount.quota
-      ? this.selectedAccount.quota
-      : this.selectedAccount.totalQuota.value;
+    this.telephonyModel = {
+      phone: { selected: '', number: this.emailAccount.phone },
+      mobile: { selected: '', number: this.emailAccount.mobile },
+      fax: { selected: '', number: this.emailAccount.fax },
+    };
+
+    const { outlook, deleteOutlook, quota, totalQuota } = this.selectedAccount;
+    this.selectedAccount.oldOutlook = outlook;
+    this.selectedAccount.oldDeleteOutlook = deleteOutlook;
+    this.selectedAccount.quota = quota || totalQuota.value;
 
     this.passwordTooltip = null; // set in $scope.loadAccountOptions()
 
