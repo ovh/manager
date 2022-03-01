@@ -111,5 +111,6 @@
   "sidebar_assistance_tickets": "Demandes d'assistance",
   "sidebar_assistance_status": "Etat du réseau et incidents",
   "sidebar_assistance_support_level": "Niveau de support",
-  "sidebar_assistance_live_chat": "Live Chat"
+  "sidebar_assistance_live_chat": "Live Chat",
+  "sidebar_assistance_onboarding": "Visite guidée"
 }
