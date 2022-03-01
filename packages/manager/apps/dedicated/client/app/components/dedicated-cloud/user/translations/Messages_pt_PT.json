@@ -11,7 +11,7 @@
   "dedicatedCloud_USER_ip": "IP",
   "dedicatedCloud_USER_ipfo": "IP Failover",
   "dedicatedCloud_USER_nsx": "Interface NSX",
-  "dedicatedCloud_USER_connection_type": "Diagnóstico",
+  "dedicatedCloud_USER_state": "Estado",
   "dedicatedCloud_USER_state_CREATING": "Criação em curso",
   "dedicatedCloud_USER_state_DELETING": "Eliminação em curso",
   "dedicatedCloud_USER_state_DELIVERED": "Ativado",
@@ -23,6 +23,5 @@
   "dedicatedCloud_USER_delete": "Eliminar este utilizador",
   "dedicatedCloud_USER_enable": "Ativar utilizador",
   "dedicatedCloud_USER_disable": "Desativar utilizador",
-  "dedicatedCloud_USER_edit_load_error": "Ocorreu um erro ao carregar o utilizador.",
-  "dedicatedCloud_USER_state": "Estado"
+  "dedicatedCloud_USER_edit_load_error": "Ocorreu um erro ao carregar o utilizador."
 }

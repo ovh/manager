@@ -4,6 +4,7 @@
   "cloud_sidebar_compute_instance": "Istanze",
   "cloud_sidebar_storage": "Storage",
   "cloud_sidebar_storage_block_storage": "Block Storage",
+  "cloud_sidebar_storage_databases_storage": "Database",
   "cloud_sidebar_storage_object_storage": "Object Storage",
   "cloud_sidebar_storage_cold_storage": "Cloud Archive",
   "cloud_sidebar_storage_volume_storage": "Volume Snapshot",
@@ -15,7 +16,6 @@
   "cloud_sidebar_orchestration_kubernetes": "Managed Kubernetes",
   "cloud_sidebar_orchestration_private_registry": "Managed Private Registry",
   "cloud_sidebar_orchestration_image_catalog": "Managed Image Catalog",
-  "cloud_sidebar_data_analytics_adp": "Data Analytics Platform",
   "cloud_sidebar_data_analytics": "Data & Analytics",
   "cloud_sidebar_management_interface": "Management Interfaces",
   "cloud_sidebar_management_interface_horizon": "Horizon",
@@ -32,6 +32,5 @@
   "cloud_sidebar_public_cloud_project_toggle_close": "Torna al menu",
   "cloud_sidebar_alpha_project": "Alpha",
   "cloud_sidebar_beta_project": "Beta",
-  "cloud_sidebar_new_project": "Nuovo",
-  "cloud_sidebar_storage_databases_storage": "Database"
+  "cloud_sidebar_new_project": "Nuovo"
 }
