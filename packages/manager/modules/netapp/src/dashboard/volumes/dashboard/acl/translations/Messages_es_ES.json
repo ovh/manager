@@ -19,5 +19,7 @@
   "netapp_volumes_acl_delete": "Eliminar",
   "netapp_volumes_acl_add_success": "La regla de acceso (ACL) se ha creado correctamente.",
   "netapp_volumes_acl_add_error": "No se ha podido crear la regla de acceso (ACL). Por favor, vuelva a intentarlo.",
-  "netapp_volumes_acl_access_to_ip_format": "Formato IPv4 o IPblock"
+  "netapp_volumes_acl_access_to_ip_format": "Formato IPv4 o IPblock",
+  "netapp_volumes_acl_description_part_1": "Añada direcciones o rangos de IP autorizados a acceder a este volumen. Por defecto, no se permite ninguna dirección ni rango de IP.",
+  "netapp_volumes_acl_description_part_2": "Actualmente, el servicio Enterprise File Storage solo puede utilizarse con direcciones IP de OVHcloud (servidores dedicados, VPS, Public Cloud, So you Start, Kimsufi y ADSL)."
 }

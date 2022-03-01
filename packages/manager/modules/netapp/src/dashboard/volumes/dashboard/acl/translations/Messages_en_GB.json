@@ -19,5 +19,7 @@
   "netapp_volumes_acl_delete": "Delete",
   "netapp_volumes_acl_add_success": "Your access control list (ACL) has been created",
   "netapp_volumes_acl_add_error": "Your access control list (ACL) could not be created. Please try again",
-  "netapp_volumes_acl_access_to_ip_format": "IPv4 or IP block format"
+  "netapp_volumes_acl_access_to_ip_format": "IPv4 or IP block format",
+  "netapp_volumes_acl_description_part_1": "Add IP addresses or ranges that are authorised to access this volume. By default, no IP addresses or ranges are authorised.",
+  "netapp_volumes_acl_description_part_2": "Currently, Enterprise File Storage can only be used with OVHcloud IPs (Dedicated Servers/Virtual Private Servers/Public Cloud/So you Start/Kimsufi/ADSL)"
 }
