@@ -193,6 +193,7 @@ export default class ExchangeAccountAddController {
       jobDepartment: this.newAccount.jobDepartment,
       jobTitle: this.newAccount.jobTitle,
       office: this.newAccount.office,
+      streetAddress: this.newAccount.streetAddress,
       postalCode: this.newAccount.postalCode,
       city: this.newAccount.city,
       ...(this.newAccount.countryCode && {
