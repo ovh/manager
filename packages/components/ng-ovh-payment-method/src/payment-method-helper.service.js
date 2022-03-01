@@ -40,9 +40,13 @@ export default class OvhPaymentMethodHelperService {
   }
 
   static getCallbackIntegrationTypeRelated(locationSearch) {
-    return AdyenService.hasCallbackUrlParams(locationSearch)
-      ? AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM.COMPONENT
-      : AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM.REDIRECT;
+    if (AdyenService.hasCallbackUrlParams(locationSearch)) {
+      return AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM.COMPONENT;
+    }
+
+    return locationSearch.paymentMethodId != null
+      ? AVAILABLE_PAYMENT_METHOD_INTEGRATION_ENUM.REDIRECT
+      : null;
   }
 
   /* -----  End of Public methods  ------ */
