@@ -1,7 +1,6 @@
 import get from 'lodash/get';
 import groupBy from 'lodash/groupBy';
 import isEmpty from 'lodash/isEmpty';
-import isEqual from 'lodash/isEqual';
 import keys from 'lodash/keys';
 import round from 'lodash/round';
 import set from 'lodash/set';
@@ -145,12 +144,9 @@ export default class TelecomTelephonyAliasHomeController {
         this.alias.featureType,
       )
       .then(({ destination }) =>
-        this.tucVoipService.fetchAll().then((allServices) => {
-          const [destinationLine] = allServices.filter(({ serviceName }) =>
-            isEqual(serviceName, destination),
-          );
-          return destinationLine;
-        }),
+        destination
+          ? this.tucVoipService.fetchSingleServiceByServiceName(destination)
+          : null,
       )
       .catch((error) => error);
   }
