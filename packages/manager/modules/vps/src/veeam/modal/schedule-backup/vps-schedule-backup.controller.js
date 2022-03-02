@@ -3,8 +3,9 @@ const RESCHEDULE_AUTOMATED_BACKUP_NAMESPACE =
 
 export default class VpsScheduleBackupCtrl {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, Poller, VpsService) {
+  constructor($translate, atInternet, CucCloudMessage, Poller, VpsService) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.Poller = Poller;
     this.VpsService = VpsService;
@@ -45,6 +46,7 @@ export default class VpsScheduleBackupCtrl {
    * Triggered on customer click on confirm modal button
    */
   onRescheduledAutomatedBackupConfirmed() {
+    this.trackClick('confirm');
     this.isLoading = true;
     this.VpsService.scheduleBackup(
       this.serviceName,
@@ -74,5 +76,17 @@ export default class VpsScheduleBackupCtrl {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  onRescheduleAutomatedBackupCancel() {
+    this.trackClick('cancel');
+    this.goBack();
+  }
+
+  trackClick(hit) {
+    this.atInternet.trackClick({
+      name: `vps::detail::veeam::schedule-backup::${hit}`,
+      type: 'action',
+    });
   }
 }
