@@ -1,0 +1,16 @@
+{
+  "pci_projects_project_instances_onboarding_content1": "Vous n'avez pas encore créé d’instance.",
+  "pci_projects_project_instances_onboarding_content2": "Déployez des instances parmi une large gamme de modèles et profitez de la flexibilité du cloud pour croître selon vos besoins.",
+  "pci_projects_project_instances_onboarding_content3": "Dans notre catalogue d'instances, choisissez le modèle qui vous convient parmi la gamme Sandbox, dont les ressources sont partagées, la gamme Guaranteed Resources, aux performances constantes pour les applications exigeantes, la gamme GPU, idéale pour les calculs parallélisés, et la gamme IOPS, pour les bases de données ou le big data.",
+  "pci_projects_project_instances_onboarding_content3_for_trusted_customer": "Dans notre catalogue d'instances, choisissez le modèle qui vous convient parmi la gamme Guaranteed Resources, aux performances constantes pour les applications exigeantes, la gamme GPU, idéale pour les calculs parallélisés, et la gamme Discovery.",
+  "pci_projects_project_instances_onboarding_content4": "À tout moment, vous avez la possibilité d’augmenter la capacité de vos instances selon vos besoins. Vous pouvez aussi opter pour les instances de type flex, qui permettent également de réduire cette capacité.",
+  "pci_projects_project_instances_onboarding_action_label": "Créer une instance",
+  "pci_projects_project_instances_onboarding_guides_create-instance_title": "Créer une instance depuis l’espace client",
+  "pci_projects_project_instances_onboarding_guides_create-instance_description": "Ce guide vous montre comment créer une instance sur Public Cloud",
+  "pci_projects_project_instances_onboarding_guides_post-install-script_title": "Lancer un script lors de la creation d’un instance",
+  "pci_projects_project_instances_onboarding_guides_post-install-script_description": "",
+  "pci_projects_project_instances_onboarding_guides_back-up-instance_title": "Sauvegarder une instance",
+  "pci_projects_project_instances_onboarding_guides_back-up-instance_description": "Découvrez comment sauvegarder une instance Public Cloud en quelques clics",
+  "pci_projects_project_instances_onboarding_guides_instance-introduction_title": "Introduction aux instances et autres notions cloud",
+  "pci_projects_project_instances_onboarding_guides_instance-introduction_description": ""
+}
