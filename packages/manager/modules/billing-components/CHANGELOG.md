@@ -1,3 +1,20 @@
+# [3.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.7.2...@ovh-ux/manager-billing-components@3.8.0) (2022-03-02)
+
+
+### Bug Fixes
+
+* **billing:** add missed netapp storage service key ([#6273](https://github.com/ovh/manager/issues/6273)) ([4febeea](https://github.com/ovh/manager/commit/4febeea4a378bee634c49a3e8b34c2ddc6fc0ea8))
+* **i18n:** add missing translations [CDS 1460] ([c4aebf4](https://github.com/ovh/manager/commit/c4aebf426e92bd8eb183eab4d4c800f6e6aee348))
+
+
+### Features
+
+* **commitment-duration:** allow default duration preselection ([bf63bfa](https://github.com/ovh/manager/commit/bf63bfa4d579863d3bd3d8d11d74ea38f36631a6))
+* **modules.billing-component:** take quantity in account ([4b08133](https://github.com/ovh/manager/commit/4b081332aa51e9635256e669d5a659e825258e43))
+* **modules.commitment-pricing-mode:** allow to hidden discount ([7a25ab7](https://github.com/ovh/manager/commit/7a25ab7f8eff0d2ef52deb1b61587263b50afaf3))
+
+
+
 ## [3.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.7.1...@ovh-ux/manager-billing-components@3.7.2) (2022-02-09)
 
 

@@ -1,3 +1,12 @@
+## [12.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.10.0...@ovh-ux/manager-core@12.10.1) (2022-03-02)
+
+
+### Bug Fixes
+
+* **core:** use right ca express order url ([01af584](https://github.com/ovh/manager/commit/01af584c0ce1499ccaccb6ebad3edab2e707df08))
+
+
+
 # [12.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.9.0...@ovh-ux/manager-core@12.10.0) (2022-02-23)
 
 

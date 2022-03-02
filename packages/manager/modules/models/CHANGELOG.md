@@ -1,3 +1,12 @@
+## [1.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.13.0...@ovh-ux/manager-models@1.13.1) (2022-03-02)
+
+
+### Bug Fixes
+
+* **modules.billing-component:** take quantity in account ([a7e12cb](https://github.com/ovh/manager/commit/a7e12cbbdc0ca896ed3ef912ba84e7d34bc88539))
+
+
+
 # [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.12.1...@ovh-ux/manager-models@1.13.0) (2021-10-27)
 
 

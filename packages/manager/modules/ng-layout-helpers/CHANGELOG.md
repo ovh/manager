@@ -1,3 +1,21 @@
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.3.1...@ovh-ux/manager-ng-layout-helpers@2.4.0) (2022-03-02)
+
+
+### Bug Fixes
+
+* **module.ng-layout-helpers:** remove eslint markdown issues ([3ac14da](https://github.com/ovh/manager/commit/3ac14da627215662b50ba57d3ff1d3cf4b426835))
+* **module.ng-layout-helpers:** remove eslint markdown issues ([511a2e6](https://github.com/ovh/manager/commit/511a2e610e6990baef9711df3472ac5adb1ccd92))
+
+
+### Features
+
+* **module.ng-layout-helpers:** add customize headers name support ([4afa386](https://github.com/ovh/manager/commit/4afa386b2f8e87af6a8cc3bc8178ba2c57b39c8f))
+* **module.ng-layout-helpers:** add customize headers name support ([cf00543](https://github.com/ovh/manager/commit/cf005433b0e0ce9f314d19bd869975253b762600))
+* **module.ng-layout-helpers:** add topbar-cta component ([d6e1eda](https://github.com/ovh/manager/commit/d6e1eda1930343997fcf21cbe8691d6b0b3c6f49))
+* **module.ng-layout-helpers:** add topbar-cta component ([a0d4f64](https://github.com/ovh/manager/commit/a0d4f642da5e24527955958151ab1c97c76859b3))
+
+
+
 ## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.3.0...@ovh-ux/manager-ng-layout-helpers@2.3.1) (2021-12-02)
 
 

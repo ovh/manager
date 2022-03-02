@@ -1,3 +1,12 @@
+## [17.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.12.2...@ovh-ux/manager-dedicated@17.12.3) (2022-03-02)
+
+
+### Bug Fixes
+
+* **dedicated:** fix semver issue ([618a84f](https://github.com/ovh/manager/commit/618a84fdc17e4d84f29f1d35c1770d802f6d814e))
+
+
+
 ## [17.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.12.1...@ovh-ux/manager-dedicated@17.12.2) (2022-02-23)
 
 

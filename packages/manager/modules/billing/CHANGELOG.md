@@ -1,3 +1,17 @@
+# [0.12.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.11.0-alpha.2...@ovh-ux/manager-billing@0.12.0-alpha.0) (2022-03-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1460] ([c4aebf4](https://github.com/ovh/manager/commit/c4aebf426e92bd8eb183eab4d4c800f6e6aee348))
+
+
+### Features
+
+* **billing.autorenew:** set netapp service name ([f1498b1](https://github.com/ovh/manager/commit/f1498b1e7c8d1cf8ab2be55d93a3189f05cab1b9))
+
+
+
 # [0.11.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.11.0-alpha.1...@ovh-ux/manager-billing@0.11.0-alpha.2) (2022-02-23)
 
 
