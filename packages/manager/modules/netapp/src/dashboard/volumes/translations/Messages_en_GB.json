@@ -17,7 +17,6 @@
   "netapp_volumes_manage_acl": "Manage IP Access (ACL)",
   "netapp_volumes_delete_volume": "Delete the volume",
   "netapp_volumes_create_volume_quantity_info": "Storage used: {{quantity}}/{{max}}",
-
   "netapp_volumes_status_creating": "Creating...",
   "netapp_volumes_status_creating_from_snapshot": "Creating from a snapshot",
   "netapp_volumes_status_deleting": "Deleting...",
