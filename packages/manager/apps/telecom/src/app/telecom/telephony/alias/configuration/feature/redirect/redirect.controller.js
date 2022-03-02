@@ -44,31 +44,36 @@ export default class TelecomTelephonyAliasConfigurationRedirectCtrl {
         },
         this.featureTypeToUse,
       )
-      .then(({ destination }) =>
-        this.tucVoipService.fetchAll().then((allServices) => {
-          this.destination = allServices.find(({ serviceName }) =>
-            isEqual(serviceName, destination),
-          );
+      .then(({ destination }) => {
+        if (!destination) return this.$q.when();
 
-          if (this.destination && this.canDestinationBeUsedForPresentation()) {
-            return this.tucVoipServiceLine
-              .getLineOptions({
-                billingAccount: this.destination.billingAccount,
-                serviceName: this.destination.serviceName,
-              })
-              .then(({ displayNumber }) => {
-                this.destinationUsedAsPresentation = isEqual(
-                  displayNumber,
-                  this.alias.serviceName,
-                );
-                this.actualPresentation = this.destinationUsedAsPresentation;
-                return displayNumber;
-              });
-          }
+        return this.tucVoipService
+          .fetchSingleServiceByServiceName(destination)
+          .then((service) => {
+            this.destination = service;
 
-          return destination;
-        }),
-      )
+            if (
+              this.destination &&
+              this.canDestinationBeUsedForPresentation()
+            ) {
+              return this.tucVoipServiceLine
+                .getLineOptions({
+                  billingAccount: this.destination.billingAccount,
+                  serviceName: this.destination.serviceName,
+                })
+                .then(({ displayNumber }) => {
+                  this.destinationUsedAsPresentation = isEqual(
+                    displayNumber,
+                    this.alias.serviceName,
+                  );
+                  this.actualPresentation = this.destinationUsedAsPresentation;
+                  return displayNumber;
+                });
+            }
+
+            return destination;
+          });
+      })
       .catch((error) => {
         this.TucToast.error(
           `${this.$translate.instant(
