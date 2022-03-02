@@ -125,7 +125,7 @@
   "billing_autorenew_service_type_ESSENTIALS": "Managed Bare Metal",
   "billing_autorenew_service_type_WEB_PAAS": "Web PaaS",
   "billing_autorenew_service_type_DEDICATED_ANTHOS": "Anthos",
-  "billing_autorenew_service_type_NETAPP": "NetApp",
+  "billing_autorenew_service_type_NETAPP": "Enterprise File Storage",
   "billing_autorenew_service_type_ANTHOS": "Anthos",
   "billing_autorenew_service_type_EMAIL_EXCHANGE": "Exchange",
   "billing_autorenew_service_type_SAAS_CSP_2": "Office 365 Revendeur",

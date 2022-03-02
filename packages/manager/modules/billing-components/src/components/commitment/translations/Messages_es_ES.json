@@ -1,7 +1,7 @@
 {
   "billing_commitment_commit": "Contratar con compromiso de permanencia y disfrutar de un descuento",
   "billing_commitment_commit_again": "Volver a contratar con compromiso de permanencia y disfrutar de un descuento",
-  "billing_commitment_none": "Actualmente no tiene ningún compromiso de permanencia en el servicio {{ serviceName }}. Disfrute ya de un descuento contratando su {{ serviceType }} con compromiso de permanencia.",
+  "billing_commitment_none": "Actualmente no tiene ningún compromiso de permanencia en el servicio {{ serviceName }}. Disfrute ya de un descuento al contratar su {{ serviceType }} con compromiso de permanencia.",
   "billing_commitment_commit_again_description": "Actualmente tiene contratado el servicio {{ serviceName }} con compromiso de permanencia hasta el {{ endDate }}. Vuelva a contratar su {{ serviceType }} con compromiso de permanencia y disfrute de un descuento en el precio.",
   "billing_commitment_service_dedicated_server": "servidor dedicado",
   "billing_commitment_duration": "Seleccione un compromiso de permanencia",
@@ -23,5 +23,6 @@
   "billing_commitment_savings": "Ahorrar un total de {{ price }}",
   "billing_commitment_payment_upfront_pay_now": "Pague {{ price }} ahora",
   "billing_commitment_summary_description_periodic_end": "Después del {{ engagementEndDate }}, el servicio {{ serviceName }} se renovará automáticamente con una duración idéntica a la de su último compromiso de permanencia.",
-  "billing_commitment_summary_description_upfront_end": "Después del {{ engagementEndDate }}, el servicio {{ serviceName }} se renovará automáticamente con una duración y una forma de pago idénticas a las de su último compromiso de permanencia."
+  "billing_commitment_summary_description_upfront_end": "Después del {{ engagementEndDate }}, el servicio {{ serviceName }} se renovará automáticamente con una duración y una forma de pago idénticas a las de su último compromiso de permanencia.",
+  "billing_commitment_service_storage_netapp": "espacio de almacenamiento Enterprise File Storage"
 }

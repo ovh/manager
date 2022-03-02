@@ -7,11 +7,7 @@ export default class NetAppVolumesDashboardAclController {
 
   $onInit() {
     this.selectRow(this.acls.length);
-    this.currentAcl = {
-      accessType: null,
-      accessTo: null,
-      accessLevel: null,
-    };
+    this.initAclModel();
   }
 
   selectRow(index) {
@@ -19,23 +15,36 @@ export default class NetAppVolumesDashboardAclController {
   }
 
   cancelAcl() {
+    this.trackClick('add::cancel');
+
     this.isAdding = false;
     this.acls.pop();
     this.selectRow(this.acls.length);
   }
 
-  addAcl() {
-    this.isAdding = true;
+  initAclModel() {
+    const aclTypes = this.shareACLTypeEnum;
+
     this.currentAcl = {
-      accessType: null,
+      accessType: aclTypes.length === 1 ? aclTypes[0] : null,
       accessTo: null,
       accessLevel: null,
     };
+  }
+
+  addAcl() {
+    this.trackClick('add');
+
+    this.isAdding = true;
+
+    this.initAclModel();
     this.acls.push({});
     this.selectRow(this.acls.length - 1);
   }
 
   deleteAclRule({ id }, index) {
+    this.trackClick('delete');
+
     this.isLoading = true;
     return this.deleteAcl(id)
       .then(() => {
@@ -57,6 +66,8 @@ export default class NetAppVolumesDashboardAclController {
   }
 
   saveAcl(index) {
+    this.trackClick('add::confirm');
+
     this.isLoading = true;
     this.acls[index].accessTo = this.currentAcl.accessTo;
     this.acls[index].accessType = this.currentAcl.accessType.value;

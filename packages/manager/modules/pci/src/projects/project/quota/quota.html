@@ -204,7 +204,7 @@
             data-property="instance.maxRam"
         >
             <span
-                data-ng-bind=":: $row.instance.usedRAM > 0 ? (($row.instance.usedRAM * 1000000) | cucBytes:2) : $row.instance.usedRAM"
+                data-ng-bind=":: $row.instance.usedRAM > 0 ? (($row.instance.usedRAM * 1000000) | bytes:2) : $row.instance.usedRAM"
             ></span>
             <span class="mx-1">/</span>
             <span
@@ -213,7 +213,7 @@
             ></span>
             <span
                 data-ng-if="$row.instance.maxRam !== -1"
-                data-ng-bind=":: ($row.instance.maxRam * 1000000) | cucBytes:2"
+                data-ng-bind=":: ($row.instance.maxRam * 1000000) | bytes:2"
             ></span>
             <span
                 data-ng-if="$row.isRamQuotaThresholdReached()"
@@ -227,7 +227,7 @@
             data-property="volume.maxGigabytes"
         >
             <span
-                data-ng-bind="$row.volume.usedGigabytes > 0 ? (($row.volume.usedGigabytes * 1000000000) | cucBytes:2) : $row.volume.usedGigabytes"
+                data-ng-bind="$row.volume.usedGigabytes > 0 ? (($row.volume.usedGigabytes * 1000000000) | bytes:2) : $row.volume.usedGigabytes"
             ></span>
             <span class="mx-1">/</span>
             <span
@@ -236,7 +236,7 @@
             ></span>
             <span
                 data-ng-if="$row.volume.maxGigabytes !== -1"
-                data-ng-bind=":: ($row.volume.maxGigabytes * 1000000000) | cucBytes:2"
+                data-ng-bind=":: ($row.volume.maxGigabytes * 1000000000) | bytes:2"
             ></span>
             <span
                 data-ng-if="$row.isVolumeQuotaThresholdReached()"

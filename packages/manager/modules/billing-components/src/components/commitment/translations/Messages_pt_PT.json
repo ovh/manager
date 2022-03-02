@@ -1,7 +1,7 @@
 {
   "billing_commitment_commit": "Comprometer-se e beneficiar de um desconto",
   "billing_commitment_commit_again": "Comprometer-se novamente e beneficiar de um desconto",
-  "billing_commitment_none": "Atualmente, não tem nenhum compromisso para o seu serviço {{ serviceName }}. Pode, a partir de hoje, beneficiar de um desconto ao contratar o seu {{ serviceType }} com compromisso.",
+  "billing_commitment_none": "Atualmente, não tem nenhum compromisso para o seu serviço {{ serviceName }}. A partir de hoje, pode usufruir de um desconto ao contratar o seu {{ serviceType }} com compromisso.",
   "billing_commitment_commit_again_description": "Atualmente, tem um compromisso para o seu serviço {{ serviceName }} até {{ endDate }}. Pode continuar a beneficiar de um preço especial ao contratar novamente o seu {{ serviceType }} com compromisso.",
   "billing_commitment_service_dedicated_server": "servidor dedicado",
   "billing_commitment_duration": "Selecione uma duração de compromisso",
@@ -23,5 +23,6 @@
   "billing_commitment_savings": "Poupar um total de {{ price }}",
   "billing_commitment_payment_upfront_pay_now": "Pague {{ price }} agora",
   "billing_commitment_summary_description_periodic_end": "Depois de {{ endDate }}, o serviço será tacitamente reiniciado por um período semelhante ao último compromisso.",
-  "billing_commitment_summary_description_upfront_end": "Depois de {{ engagementEndDate }}, o serviço {{ serviceName }} será tacitamente reiniciado por um período e uma modalidade de pagamento semelhantes ao seu último compromisso."
+  "billing_commitment_summary_description_upfront_end": "Depois de {{ engagementEndDate }}, o serviço {{ serviceName }} será tacitamente reiniciado por um período e uma modalidade de pagamento semelhantes ao seu último compromisso.",
+  "billing_commitment_service_storage_netapp": "espaço de armazenamento Enterprise File Storage"
 }

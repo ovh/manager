@@ -18,5 +18,8 @@
   "netapp_volumes_acl_cancel": "Annulla",
   "netapp_volumes_acl_delete": "Elimina",
   "netapp_volumes_acl_add_success": "La regola di accesso (ACL) è stata creata correttamente.",
-  "netapp_volumes_acl_add_error": "Non è stato possibile creare la regola di accesso (ACL), ti preghiamo di riprovare."
+  "netapp_volumes_acl_add_error": "Non è stato possibile creare la regola di accesso (ACL), ti preghiamo di riprovare.",
+  "netapp_volumes_acl_access_to_ip_format": "Formato IPv4 o IPblock",
+  "netapp_volumes_acl_description_part_1": "Aggiungi indirizzi o classi di IP autorizzati ad accedere a questo volume. Di default non sono autorizzati indirizzi o classi di IP.",
+  "netapp_volumes_acl_description_part_2": "Al momento la soluzione Enterprise File Storage può essere utilizzata esclusivamente con IP OVHcloud (server dedicati, server privati virtuali, Public Cloud, So you Start, Kimsufi, ADSL)"
 }

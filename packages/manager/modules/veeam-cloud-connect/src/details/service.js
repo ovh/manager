@@ -357,7 +357,7 @@ export default class VeeamCloudConnectService {
           storage.quotaUsed.value &&
           storage.quotaUsed.unit
         ) {
-          return this.$filter('cucBytes')(
+          return this.$filter('bytes')(
             storage.quotaUsed.value,
             0,
             false,
@@ -371,7 +371,7 @@ export default class VeeamCloudConnectService {
 
     const available = sum(
       map(storages, (storage) =>
-        this.$filter('cucBytes')(
+        this.$filter('bytes')(
           storage.quota.value,
           0,
           false,

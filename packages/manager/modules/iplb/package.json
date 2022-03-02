@@ -18,6 +18,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-components": "^1.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/ng-at-internet": "^5.8.0",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.10",

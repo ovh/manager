@@ -1,7 +1,7 @@
 {
   "billing_commitment_commit": "Abonnement mit fester Laufzeit bestellen und Vorzugspreis sichern",
   "billing_commitment_commit_again": "Abonnement mit fester Laufzeit verlängern und Vorzugspreis sichern",
-  "billing_commitment_none": "Sie haben derzeit keine feste Vertragslaufzeit für Ihren Dienst {{ serviceName }}. Sie können ab heute einen Rabatt erhalten, indem Sie Ihren Dienst {{ serviceType }} für eine bestimmte Vertragslaufzeit abonnieren.",
+  "billing_commitment_none": "Derzeit besteht keine feste Vertragslaufzeit für Ihren Dienst {{ serviceName }}. Ab jetzt können Sie von einem Rabatt profitieren, indem Sie Ihren Dienst {{ serviceType }} für eine bestimmte Vertragslaufzeit abonnieren.",
   "billing_commitment_commit_again_description": "Sie haben Ihren Dienst {{ serviceName }} derzeit bis zum {{ endDate }} abonniert. Sie können den Vorzugspreis weiterhin erhalten, indem Sie das Abonnement für Ihren {{ serviceType }} Dienst verlängern.",
   "billing_commitment_service_dedicated_server": "Dedicated Server",
   "billing_commitment_duration": "Wählen Sie eine Vertragslaufzeit aus",
@@ -23,5 +23,6 @@
   "billing_commitment_savings": "Insgesamt {{ price }} sparen",
   "billing_commitment_payment_upfront_pay_now": "Zahlen Sie jetzt {{ price }}",
   "billing_commitment_summary_description_periodic_end": "Nach dem {{ engagementEndDate }} wird Ihr Dienst stillschweigend erneut für eine Laufzeit aktiviert, die Ihrer letzten Vertragslaufzeit entspricht.",
-  "billing_commitment_summary_description_upfront_end": "Nach dem {{ engagementEndDate }} wird Ihr Dienst {{ serviceName }} stillschweigend wieder aktiviert. Die Dauer und Zahlungsart entsprechen Ihrem letzten Abonnement."
+  "billing_commitment_summary_description_upfront_end": "Nach dem {{ engagementEndDate }} wird Ihr Dienst {{ serviceName }} stillschweigend wieder aktiviert. Die Dauer und Zahlungsart entsprechen Ihrem letzten Abonnement.",
+  "billing_commitment_service_storage_netapp": "Enterprise File Storage Speicherplatz"
 }
