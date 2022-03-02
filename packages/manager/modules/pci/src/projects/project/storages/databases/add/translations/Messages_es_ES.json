@@ -32,5 +32,7 @@
   "pci_database_add_create_database_error": "Se ha producido un error al crear el servicio. Por favor, vuelva a intentarlo más tarde: {{message}}",
   "pci_database_add_name_min_rule": "Como mínimo {{min}} caracteres",
   "pci_database_add_name_max_rule": "Como máximo {{max}} caracteres",
-  "pci_database_add_name_pattern_rule": "Solo debe contener números, letras, guiones, guiones bajos o puntos."
+  "pci_database_add_name_pattern_rule": "Solo debe contener números, letras, guiones, guiones bajos o puntos.",
+  "pci_database_add_command_description": "El siguiente comando le permite crear su servicio a través de nuestra API.",
+  "pci_database_add_command_documentation_link": "Haga clic aquí para consultar la documentación."
 }

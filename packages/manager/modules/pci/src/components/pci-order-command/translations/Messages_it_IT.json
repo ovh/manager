@@ -10,6 +10,7 @@
   "pci_order_command_parameters_info_nodesPattern_flavor": "Caratteristiche selezionate",
   "pci_order_command_parameters_info_nodesPattern_number": "Numero di nodi",
   "pci_order_command_parameters_info_nodesPattern_region": "Localizzazione selezionata",
-  "pci_order_command_parameters_info_plan": "Offerta selezionata",
-  "pci_order_command_parameters_info_version": "Versione database"
+  "pci_order_command_parameters_info_plan": "Soluzione selezionata",
+  "pci_order_command_parameters_info_version": "Versione database",
+  "pci_order_command_here": "qui"
 }
