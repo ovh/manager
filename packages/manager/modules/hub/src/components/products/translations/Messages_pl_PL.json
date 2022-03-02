@@ -62,6 +62,7 @@
   "manager_hub_products_WEB_PAA_S_SUBSCRIPTION": "Web PaaS",
   "manager_hub_products_ALL_DOM": "Pakiet AllDom",
   "manager_hub_products_NETAPP": "NetApp",
+  "manager_hub_products_STORAGE_NETAPP": "Enterprise File Storage",
   "manager_hub_products_DEDICATED_ANTHOS_TENANTS": "Platforma Anthos",
   "manager_hub_products_NUTANIX": "Nutanix"
 }

@@ -9,7 +9,7 @@ export default class CommitmentPricingModeCtrl {
   }
 
   $onInit() {
-    this.getDiscount();
+    this.computeDiscount();
   }
 
   static roundToTwo(num) {
@@ -17,7 +17,13 @@ export default class CommitmentPricingModeCtrl {
     return Number.parseFloat(num).toFixed(2);
   }
 
-  getDiscount() {
+  hasSavings() {
+    const { savings } = this.duration;
+
+    return this.defaultPrice && savings?.value > 0;
+  }
+
+  computeDiscount() {
     const upfront = this.pricingModes.find((commitment) =>
       commitment.isUpfront(),
     );
@@ -26,13 +32,19 @@ export default class CommitmentPricingModeCtrl {
     );
 
     if (upfront && periodic) {
-      this.discount = CommitmentPricingModeCtrl.roundToTwo(
-        ((periodic.totalPrice.value - upfront.totalPrice.value) * 100) /
-          periodic.totalPrice.value,
+      // compute discount
+      const { value: savedAmount } = periodic.getPriceDiff(
+        upfront,
+        this.selectedQuantity,
       );
-      this.savings = periodic.getPriceDiff(upfront);
-      let totalSavings = this.savings.value;
-      totalSavings += this.duration.savings ? this.duration.savings.value : 0;
+      this.discount = CommitmentPricingModeCtrl.roundToTwo(
+        (savedAmount / periodic.totalPrice.value) * 100,
+      );
+
+      // compute total saving
+      const { savings } = this.duration;
+      const totalSavings = savedAmount + (savings?.value || 0);
+
       this.upfrontSavings = {
         amountSaved: this.getPriceAsText(
           totalSavings,

@@ -1,3 +1,12 @@
+# [10.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sidebar-menu@10.1.4...@ovh-ux/ng-ovh-sidebar-menu@10.2.0) (2022-03-02)
+
+
+### Features
+
+* **components.sidebar-menu:** add scroll support ([61e6368](https://github.com/ovh/manager/commit/61e636811747b168d1552e84bae19106708b04cb))
+
+
+
 ## [10.1.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sidebar-menu@10.1.3...@ovh-ux/ng-ovh-sidebar-menu@10.1.4) (2021-10-26)
 
 

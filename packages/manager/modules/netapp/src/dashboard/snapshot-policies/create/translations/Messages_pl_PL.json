@@ -2,7 +2,7 @@
   "netapp_snapshot_policies_create_submit": "Utwórz nową politykę tworzenia snapshotów",
   "netapp_snapshot_policies_create_rule_edit": "Edytuj regułę",
   "netapp_snapshot_policies_create": "Utwórz nową politykę wykonywania snapshotów",
-  "netapp_snapshot_policies_create_information": "Aby utworzyć reguły planowania, podaj prefiks (używany do nadawania nazw utworzonym snapshotom). Musi on zawierać od 1 do 255 znaków (bez znaków diakrytycznych) oraz czas trwania (w minutach). Możesz również określić godziny i dni tygodnia lub miesiąca. Wpisz listę wartości oddzielonych przecinkiem (np. 1, 2, 14) lub pozostaw puste pole, jeśli chcesz wybrać wszystkie dostępne wartości.",
+  "netapp_snapshot_policies_create_information": "Aby utworzyć reguły planowania, podaj prefiks i czas trwania w minutach. Możesz opcjonalnie wpisać godziny, dni i miesiące wykonania. Możesz wprowadzić kilka wartości, oddzielając je przecinkiem. W polu, które nie jest wypełnione, pojawią się domyślnie wszystkie dostępne wartości.",
   "netapp_snapshot_policies_create_exemple": "Przykład",
   "netapp_snapshot_policies_create_exemple_1": "Przykład 1:",
   "netapp_snapshot_policies_create_exemple_1_description": "wykonaj snapshot o godzinie 6:00, 12:00, 18:00 i 24:00 i zachowaj cztery ostatnie  kopie.",

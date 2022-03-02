@@ -1,7 +1,7 @@
 {
   "billing_commitment_commit": "Sottoscrivi un impegno contrattuale e usufruisci di uno sconto",
   "billing_commitment_commit_again": "Sottoscrivi un nuovo impegno contrattuale e usufruisci di uno sconto",
-  "billing_commitment_none": "Al momento non hai sottoscritto nessun impegno contrattuale per il servizio {{ serviceName }}. Puoi usufruire di uno sconto sottoscrivendo un impegno contrattuale per il tuo {{ serviceType }}.",
+  "billing_commitment_none": "Al momento non hai sottoscritto nessun impegno contrattuale per il servizio {{ serviceName }}. Per usufruire di uno sconto per il servizio {{ serviceType }} sottoscrivi un impegno contrattuale.",
   "billing_commitment_commit_again_description": "Al momento hai un impegno contrattuale per il servizio {{ serviceName }} fino al {{ endDate }}. Per continuare a usufruire di una tariffa preferenziale, sottoscrivi un nuovo impegno contrattuale sul tuo {{ serviceType }}.",
   "billing_commitment_service_dedicated_server": "server dedicato",
   "billing_commitment_duration": "Seleziona la durata del contratto",
@@ -23,5 +23,6 @@
   "billing_commitment_savings": "Risparmiare un totale di {{ price }}",
   "billing_commitment_payment_upfront_pay_now": "Paga {{ price }} adesso",
   "billing_commitment_summary_description_periodic_end": "Dopo il {{ endDate }} il servizio verrà rinnovato tacitamente per una durata corrispondente all'ultimo impegno contrattuale sottoscritto.",
-  "billing_commitment_summary_description_upfront_end": "Dopo il {{ engagementEndDate }}, il servizio {{ serviceName }} verrà rinnovato tacitamente per una durata e con la modalità di pagamento scelti nell’ultimo impegno contrattuale sottoscritto."
+  "billing_commitment_summary_description_upfront_end": "Dopo il {{ engagementEndDate }}, il servizio {{ serviceName }} verrà rinnovato tacitamente per una durata e con la modalità di pagamento scelti nell’ultimo impegno contrattuale sottoscritto.",
+  "billing_commitment_service_storage_netapp": "spazio di storage Enterprise File Storage"
 }

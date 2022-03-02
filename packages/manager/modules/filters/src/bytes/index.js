@@ -2,13 +2,13 @@ import angular from 'angular';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 
-import filter from './filter';
+import bytesFilter from './bytes.filter';
 
-const moduleName = 'cucBytes';
+const moduleName = 'ovhManagerFiltersBytes';
 
 angular
   .module(moduleName, [])
-  .filter('cucBytes', filter)
+  .filter('bytes', bytesFilter)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

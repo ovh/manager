@@ -10,11 +10,11 @@ yarn add @ovh-ux/manager-ng-layout-helpers
 
 ## Available layouts
 
-### List layout 
+### List layout
 
-Provides utilities to create a layout displaying a list of sortable and filterable elements  
+Provides utilities to create a layout displaying a list of sortable and filterable elements
 
-#### Usage 
+#### Usage
 
 ```js
 // module.routing.js
@@ -60,13 +60,106 @@ export default class ProductListCtrl extends ListLayoutHelper.ListLayoutCtrl {
     super.$onInit();
 
     this.columnsConfig = [
-      { name: 'name', sortable: this.getSorting('name') },
-      { name: 'description', sortable: this.getSorting('description') },
-      { name: 'status', sortable: this.getSorting('status') },
+      {
+        name: 'name',
+        sortable: this.getSorting('name'),
+      },
+      {
+        name: 'description',
+        sortable: this.getSorting('description'),
+      },
+      {
+        name: 'status',
+        sortable: this.getSorting('status'),
+      },
     ];
   }
 }
 
+```
+
+#### Add Simple CTA
+
+You have to define into your routing file a `topbarOptions` object, like this:
+
+```js
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('netapp.index', {
+    resolve: {
+      topbarOptions: /* @ngInject */ ($translate, goToOrder) => ({
+        cta: {
+          type: 'button',
+          displayed: true,
+          disabled: false,
+          label: $translate.instant('netapp_order_cta_label'),
+          value: $translate.instant('netapp_order_cta_value'),
+          onClick: () => {
+            goToOrder();
+          },
+        },
+      }),
+    },
+  });
+};
+```
+
+#### Add Actions Menu
+
+You have to define into your routing file a `topbarOptions` object, like this:
+
+```js
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('netapp.index', {
+    resolve: {
+      topbarOptions: /* @ngInject */ ($translate, goToOrder) => ({
+        cta: {
+          type: 'actions',
+          displayed: true,
+          disabled: false,
+          menuText: $translate.instant('netapp_order_cta_menu'),
+          actions: [
+            {
+              id: 'first-action-item',
+              displayed: true,
+              disabled: false,
+              label: $translate.instant('netapp_order_cta_label'),
+              value: $translate.instant('netapp_order_cta_value'),
+              onClick: () => {
+                myRoutingOnClickFunction();
+              },
+            },
+          ],
+        },
+      }),
+    },
+  });
+};
+```
+
+#### Customise columns name
+
+You have to define into your routing file a `customizeColumnsMap` object, like this:
+
+```js
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('netapp.index', {
+    resolve: {
+      customizeColumnsMap: /* @ngInject */ ($translate, configuration) => {
+        return configuration.data.reduce(
+          (columnsMap, { property }) => ({
+            ...columnsMap,
+            [property]: {
+              title: $translate.instant(
+                `netapp_list_columns_header_${property}`,
+              ),
+            },
+          }),
+          {},
+        );
+      },
+    },
+  });
+};
 ```
 
 ### Onboarding component
@@ -81,7 +174,7 @@ yarn start
 
 ## Development
 
-If you want to contribute to the project, follow theses instructions:
+If you want to contribute to the project, follow these instructions:
 
 Foremost, you should launch a global installation at the root folder of this repository:
 

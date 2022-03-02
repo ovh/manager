@@ -26,7 +26,7 @@ export default class LogsStreamsHomeCtrl {
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.CucUrlHelper = CucUrlHelper;
-    this.cucBytes = $filter('cucBytes');
+    this.bytes = $filter('bytes');
     this.initLoaders();
   }
 

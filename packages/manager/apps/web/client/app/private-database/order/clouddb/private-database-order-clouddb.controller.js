@@ -52,7 +52,7 @@ export default class PrivateDatabaseOrderCloudDbCtrl {
       this.ramSizes
         .map((ram) => parseInt(ram, 10))
         .map((ram) => ({
-          label: this.$filter('cucBytes')(ram, undefined, false, 'MB'),
+          label: this.$filter('bytes')(ram, undefined, false, 'MB'),
           value: ram,
         })),
       'value',

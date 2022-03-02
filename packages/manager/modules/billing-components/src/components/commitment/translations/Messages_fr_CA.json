@@ -1,9 +1,10 @@
 {
   "billing_commitment_commit": "S'engager et bénéficier d'une remise",
   "billing_commitment_commit_again": "Se réengager et bénéficier d'une remise",
-  "billing_commitment_none": "Vous n’êtes actuellement pas engagé sur votre service {{ serviceName }}. Vous pouvez, dès aujourd’hui, bénéficier d’une remise en vous engageant sur votre {{ serviceType }}.",
+  "billing_commitment_none": "Vous n’êtes actuellement pas engagé sur votre service {{ serviceName }}. Vous pouvez, dès aujourd’hui, bénéficier d’une remise en vous engageant sur une durée pour votre {{ serviceType }}.",
   "billing_commitment_commit_again_description": "Vous êtes actuellement engagé sur votre service {{ serviceName }} jusqu’au {{ endDate }}. Vous pouvez continuer à bénéficier d’un tarif préférentiel en vous ré-engageant sur votre {{ serviceType }}.",
   "billing_commitment_service_dedicated_server": "serveur dédié",
+  "billing_commitment_service_storage_netapp": "espace de stockage Enterprise File Storage",
   "billing_commitment_service_vps": "Serveurs privés virtuels",
   "billing_commitment_duration": "Sélectionnez une durée d'engagement",
   "billing_commitment_duration_current_price": "Tarif actuel par défaut {{ price }}/mois",

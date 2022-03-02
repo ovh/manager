@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-filters@1.1.1...@ovh-ux/manager-filters@1.2.0) (2022-03-02)
+
+
+### Features
+
+* **modules.filters:** add bytes filter ([de32cfe](https://github.com/ovh/manager/commit/de32cfe97614af02a303ecdfd630f0de81adab4c))
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-filters@1.1.0...@ovh-ux/manager-filters@1.1.1) (2020-11-16)
 
 

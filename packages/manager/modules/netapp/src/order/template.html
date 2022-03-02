@@ -20,12 +20,6 @@
                         values="[license]"
                         description="{{:: ('netapp_order_performance_level_type_' + license.name + '_description') | translate }}"
                     >
-                        <oui-select-picker-footer>
-                            <ovh-manager-catalog-price
-                                data-price="license.price.price"
-                                interval-unit="{{license.price.intervalUnit}}"
-                            ></ovh-manager-catalog-price>
-                        </oui-select-picker-footer>
                     </oui-select-picker>
                 </div>
             </div>
@@ -51,24 +45,23 @@
             valid="$ctrl.plan"
         >
             <div class="row mb-2">
-                <div class="col-md-3">
-                    <oui-select-picker
-                        data-ng-repeat="plan in $ctrl.highlightedPlans track by $index"
-                        name="size"
-                        model="$ctrl.plan"
-                        label="{{:: 'netapp_order_size_label' | translate:{'size': plan.size} }}"
-                        on-change="$ctrl.onPlanChange(modelValue)"
-                        values="[plan]"
-                    >
-                        <oui-select-picker-footer>
-                            <ovh-manager-catalog-price
-                                price="plan.defaultPrice.price"
-                                interval-unit="{{ plan.defaultPrice.intervalUnit }}"
-                            >
-                            </ovh-manager-catalog-price>
-                        </oui-select-picker-footer>
-                    </oui-select-picker>
-                </div>
+                <oui-select-picker
+                    class="col-md-4 col-lg-3 mb-3"
+                    data-ng-repeat="plan in $ctrl.highlightedPlans | orderBy: 'size' track by $index"
+                    name="size"
+                    model="$ctrl.plan"
+                    label="{{:: 'netapp_order_size_label' | translate:{'size': plan.size} }}"
+                    on-change="$ctrl.onPlanChange(modelValue)"
+                    values="[plan]"
+                >
+                    <oui-select-picker-footer>
+                        <ovh-manager-catalog-price
+                            price="plan.defaultPrice.price"
+                            interval-unit="{{ plan.defaultPrice.intervalUnit }}"
+                        >
+                        </ovh-manager-catalog-price>
+                    </oui-select-picker-footer>
+                </oui-select-picker>
             </div>
             <div class="row mb-2">
                 <div class="col-md-3">
@@ -105,11 +98,14 @@
             valid="$ctrl.duration"
         >
             <billing-commitment-duration
-                ng-if="$ctrl.pricings"
+                ng-if="$ctrl.pricings && !$ctrl.isPlanChanged"
                 from-catalog
                 duration="$ctrl.duration"
                 pricings="$ctrl.pricings"
                 default-price="$ctrl.defaultPrice"
+                selected-quantity="$ctrl.selectedSize"
+                preselect-default="true"
+                on-duration-change="$ctrl.isCommitmentChange = true"
             ></billing-commitment-duration>
         </oui-step-form>
         <oui-step-form
@@ -121,10 +117,11 @@
             submit-text="{{:: 'netapp_order_confirm' | translate }}"
         >
             <billing-commitment-pricing-mode
-                data-ng-if="$ctrl.pricingModes"
+                data-ng-if="$ctrl.pricingModes && !$ctrl.isCommitmentChange"
                 pricing-mode="$ctrl.pricingMode"
                 pricing-modes="$ctrl.pricingModes"
                 duration="$ctrl.duration"
+                is-hideable-discount="true"
             >
             </billing-commitment-pricing-mode>
         </oui-step-form>

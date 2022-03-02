@@ -1,3 +1,12 @@
 {
-  "netapp_title": "Enterprise File Storage"
+  "netapp_title": "Enterprise File Storage",
+  "netapp_order_cta_value": "Order",
+  "netapp_order_cta_label": "Order",
+  "netapp_list_columns_header_id": "ID",
+  "netapp_list_columns_header_name": "Name",
+  "netapp_list_columns_header_performanceLevel": "Performance level",
+  "netapp_list_columns_header_product": "Product",
+  "netapp_list_columns_header_quota": "Quota",
+  "netapp_list_columns_header_region": "Region",
+  "netapp_list_columns_header_status": "Status"
 }

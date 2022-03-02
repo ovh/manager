@@ -6,8 +6,9 @@ export default class CommitmentDuration {
    * @param {number} duration commitment duration in months
    * @param {Commitment[]} commitments commitments available for the given duration
    * @param {Pricing} currentPricing current pricing for the service
+   * @param {Number} itemQuantity number of selected items
    */
-  constructor(duration, commitments, currentPricing) {
+  constructor(duration, commitments, currentPricing, itemQuantity = 1) {
     Object.assign(this, {
       duration,
       commitment: maxBy(commitments, 'pricing.monthlyPriceValue'),
@@ -17,6 +18,7 @@ export default class CommitmentDuration {
       this.savings = currentPricing.getDiff(
         this.commitment.pricing,
         this.monthlyDuration,
+        itemQuantity,
       );
     }
   }

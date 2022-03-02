@@ -1,3 +1,12 @@
 {
-  "netapp_title": "Enterprise File Storage"
+  "netapp_title": "Enterprise File Storage",
+  "netapp_order_cta_value": "Zamów",
+  "netapp_order_cta_label": "Zamów",
+  "netapp_list_columns_header_id": "ID",
+  "netapp_list_columns_header_name": "Nazwa",
+  "netapp_list_columns_header_performanceLevel": "Poziom wydajności",
+  "netapp_list_columns_header_product": "Produkt",
+  "netapp_list_columns_header_quota": "Limit",
+  "netapp_list_columns_header_region": "Region",
+  "netapp_list_columns_header_status": "Status"
 }

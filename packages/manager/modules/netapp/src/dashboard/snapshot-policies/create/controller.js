@@ -3,7 +3,7 @@ import { capitalize, cloneDeep, range } from 'lodash-es';
 import { detectUserLocale } from '@ovh-ux/manager-config';
 
 const DATE_CONSTANTS = {
-  MINUTES: range(1, 60),
+  MINUTES: range(0, 60),
   HOURS: range(0, 24),
   DAYS: range(1, 32),
   MONTHS: range(1, 13),
@@ -49,6 +49,8 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
   }
 
   editRule(ruleIndex) {
+    this.trackClick('create::edit-rule');
+
     const ruleToEdit = this.newSnapshotPolicy.rules[ruleIndex];
     this.ruleCopy = cloneDeep(ruleToEdit);
     this.newRule = {
@@ -73,7 +75,10 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
   }
 
   addSnapshotPolicyRule() {
+    this.trackClick('create::add-rule');
+
     this.newRule = {
+      isNewRule: true,
       isInEdition: true,
       prefix: undefined,
       copies: 1,
@@ -98,7 +103,9 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
   }
 
   validateSnapshotPolicyRule(ruleIndex) {
-    const { isInEdition, ...ruleToValidate } = this.newRule;
+    const { isNewRule, isInEdition, ...ruleToValidate } = this.newRule;
+    this.trackClick(`create::confirm-${isNewRule ? 'add' : 'edit'}-rule`);
+
     this.newSnapshotPolicy.rules[ruleIndex] = ruleToValidate;
     this.resetNewRule();
   }
@@ -148,8 +155,10 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
 
   cancelNewRule($rowIndex) {
     if (this.ruleCopy) {
+      this.trackClick('create::cancel-edit-rule');
       this.newSnapshotPolicy.rules.splice($rowIndex, 1, this.ruleCopy);
     } else {
+      this.trackClick('create::cancel-add-rule');
       this.newSnapshotPolicy.rules.splice($rowIndex, 1);
     }
     this.resetNewRule();
@@ -174,6 +183,8 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
   }
 
   removeRule(rule) {
+    this.trackClick('create::delete-rule');
+
     this.newSnapshotPolicy.rules = this.newSnapshotPolicy.rules.filter(
       (r) => r.prefix !== rule.prefix,
     );
@@ -183,7 +194,7 @@ export default class OvhManagerNetAppSnapshotPoliciesCreateCtrl {
     this.isCreating = true;
     this.error = null;
 
-    this.trackClick('snapshot-policy::create::confirm');
+    this.trackClick('create::confirm');
     return this.$http
       .post(
         `/storage/netapp/${this.serviceName}/snapshotPolicy`,

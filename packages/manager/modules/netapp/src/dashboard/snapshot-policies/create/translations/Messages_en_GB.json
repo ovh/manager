@@ -1,6 +1,6 @@
 {
   "netapp_snapshot_policies_create": "Create a new snapshot policy",
-  "netapp_snapshot_policies_create_information": "To create schedule rules, you will need to specify a prefix (used to name the snapshots you create). It must contain between 1 and 255 characters without accents, and a duration (in minutes). You can also specify the hours and days of the week or month. Enter a list of values separated by a comma (e.g. 1, 2, 14), or leave the field blank to select all available values.",
+  "netapp_snapshot_policies_create_information": "To create your scheduling rules, you need to specify a prefix and a duration in minutes. You can optionally enter the hours, days and months of execution to refine your scheduling. You can add multiple values by separating them with a comma. By default, an empty field will take all of the available values.",
   "netapp_snapshot_policies_create_exemple": "Example",
   "netapp_snapshot_policies_create_exemple_1": "Example 1:",
   "netapp_snapshot_policies_create_exemple_1_description": "Take a snapshot at 06:00, noon, 18:00, midnight and keep the latest four copies.",

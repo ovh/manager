@@ -7,6 +7,7 @@ export default {
     getSnapshotPolicies: '<',
     serviceName: '<',
     snapshotPolicies: '<',
+    trackClick: '<',
   },
   controller,
   template,

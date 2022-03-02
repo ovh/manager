@@ -1,8 +1,8 @@
 import JSURL from 'jsurl';
-import { minBy, maxBy, uniq } from 'lodash-es';
+import { maxBy, minBy, uniq } from 'lodash-es';
 import { CatalogPricing } from '@ovh-ux/manager-models';
 
-import { SIZE_FACTOR, SIZE_MULTIPLE, REGION_LABEL } from './constants';
+import { REGION_LABEL, SIZE_FACTOR, SIZE_MULTIPLE } from './constants';
 
 const findRegionConfiguration = (configurations) =>
   configurations.find(({ name }) => name === 'region')?.values;
@@ -80,6 +80,8 @@ export default class OvhManagerNetAppOrderCtrl {
           configurations.find(({ name }) => name === 'region').values,
       ),
     );
+
+    [this.selectedRegion] = this.regions;
   }
 
   onSizeStepFocus() {
@@ -96,12 +98,13 @@ export default class OvhManagerNetAppOrderCtrl {
       defaultPrice: getDefaultPrice(plan),
     }));
 
-    this.plan = minBy(this.plans, 'size');
+    const lowestPlanSize = minBy(this.plans, 'size');
+    this.plan = this.plan || lowestPlanSize;
 
-    this.minSize = this.plan.size;
+    this.minSize = lowestPlanSize.size;
     this.maxSize = maxBy(this.plans, 'size').size;
-    this.selectedSize = this.minSize;
-    this.selectedSizeRange = this.minSize;
+    this.selectedSize = this.plan?.size || this.minSize;
+    this.selectedSizeRange = this.plan?.size || this.minSize;
 
     this.highlightedPlans = this.plans.filter(
       ({ size }) =>
@@ -111,14 +114,17 @@ export default class OvhManagerNetAppOrderCtrl {
   }
 
   onPlanChange(modelValue) {
+    this.isPlanChanged = true;
     this.selectedSize = modelValue.size;
   }
 
   onCustomSizeChange(modelValue) {
+    this.isPlanChanged = true;
     this.plan = this.plans.find(({ size }) => size === modelValue);
   }
 
   onCommitmentStepFocus() {
+    this.isPlanChanged = false;
     this.defaultPrice = new CatalogPricing(
       this.selectedLicense.price,
     ).toPricing(this.coreConfig.getUser(), this.coreConfig.getUserLocale());
@@ -128,6 +134,7 @@ export default class OvhManagerNetAppOrderCtrl {
   }
 
   onPricingModeStepFocus() {
+    this.isCommitmentChange = false;
     this.pricingModes = this.BillingService.getAvailableEngagementFromCatalog(
       this.pricings.filter(
         ({ commitment }) =>
@@ -138,16 +145,22 @@ export default class OvhManagerNetAppOrderCtrl {
   }
 
   goToOrderUrl() {
-    const pricingMode = this.pricingMode.pricingMode.replace(/[0-9]+/, '');
+    const pricingModeType = this.pricingMode.pricingMode.replace(/[0-9]+/, '');
     this.atInternet.trackClick({
-      name: `netapp::order::confirm::${this.selectedRegion}_${this.selectedLicense.name}_${this.selectedSize}TB_${this.duration.duration}_${pricingMode}`,
+      name: `netapp::order::confirm::${this.selectedRegion}_${this.selectedLicense.name}_${this.selectedSize}TB_${this.duration.duration}_${pricingModeType}`,
       type: 'action',
     });
+
+    const { pricingMode, pricing } = this.pricingMode;
+    const isMonthlyCommitmentPayment =
+      pricing.duration !== 'P1M' && pricing.interval !== 1;
+
     const order = {
       planCode: this.plan.planCode,
       productId: 'netapp',
-      pricingMode: this.pricingMode.pricingMode,
+      pricingMode,
       quantity: 1,
+      ...(isMonthlyCommitmentPayment && { duration: pricing.duration }),
       configuration: [
         {
           label: REGION_LABEL,
@@ -155,11 +168,9 @@ export default class OvhManagerNetAppOrderCtrl {
         },
       ],
     };
-    return this.$window.open(
-      `${this.RedirectionService.getURL(
-        'expressOrder',
-      )}?products=${JSURL.stringify([order])}`,
-      '_blank',
-    );
+    const expressOrderUrl = this.RedirectionService.getURL('expressOrder');
+    const queryParams = `?products=${JSURL.stringify([order])}`;
+
+    return this.$window.open(`${expressOrderUrl}${queryParams}`, '_blank');
   }
 }

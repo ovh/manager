@@ -8,11 +8,17 @@ export default /* @ngInject */ ($stateProvider) => {
     },
 
     resolve: {
+      trackClick: /* @ngInject */ (atInternet) => (tracker) => {
+        return atInternet.trackClick({
+          type: 'action',
+          name: `netapp::dashboard::snapshot-policy::${tracker}`,
+        });
+      },
       goToCreateSnapshotPolicies: /* @ngInject */ (
         $state,
         trackClick,
       ) => () => {
-        trackClick('snapshot-policy::add-policy');
+        trackClick('add-policy');
         return $state.go('netapp.dashboard.snapshotPolicies.create');
       },
       snapshotPolicies: /* @ngInject */ (getSnapshotPolicies) =>

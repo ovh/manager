@@ -471,11 +471,11 @@ export default class CdnSharedSettingsController {
   }
 
   getPrewarmQuotaUsage() {
-    const cucBytes = this.$filter('cucBytes');
+    const bytes = this.$filter('bytes');
     const { usage, quota } = this.model.options.cache.prewarm.api.extra;
 
-    const convertUsage = cucBytes(usage || 0, undefined, false, 'B');
-    const convertQuota = cucBytes(quota, undefined, false, 'B');
+    const convertUsage = bytes(usage || 0, undefined, false, 'B');
+    const convertQuota = bytes(quota, undefined, false, 'B');
     const totalUsage = (((usage || 0) / quota) * 100).toFixed(2);
 
     return `${convertUsage} / ${convertQuota} (${totalUsage}%)`;

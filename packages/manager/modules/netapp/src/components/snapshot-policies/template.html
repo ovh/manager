@@ -4,6 +4,7 @@
             model="$ctrl.selected"
             name="policyToSelect"
             value="$row.id"
+            data-disabled="$row.isDefault"
             data-ng-if="$ctrl.isSelectable"
         >
         </oui-radio>
