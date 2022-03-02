@@ -1,3 +1,12 @@
+## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.4.0...@ovh-ux/manager-ng-layout-helpers@2.4.1) (2022-03-02)
+
+
+### Bug Fixes
+
+* **list:** prevent error with unknown provider `customizeColumnsMap` ([#6615](https://github.com/ovh/manager/issues/6615)) ([872fea5](https://github.com/ovh/manager/commit/872fea5dc788831d4ddc83780254fee3b9ccb60d))
+
+
+
 # [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.3.1...@ovh-ux/manager-ng-layout-helpers@2.4.0) (2022-03-02)
 
 
