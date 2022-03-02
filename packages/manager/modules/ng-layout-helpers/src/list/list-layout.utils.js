@@ -101,7 +101,7 @@ export const parseConfig = (
     const customizeColumn = customizeColumnsMap[column.property] || {};
 
     return {
-      title: customizeColumn.title || column.label,
+      title: customizeColumn?.title || column.label,
       property: column.property,
       ...(column.serviceLink ? { template: getLink(column, tracking) } : {}),
       ...(column.format ? { template: generateTemplate(column) } : {}),
@@ -287,13 +287,15 @@ export const stateResolves = {
     schema,
     sort,
     sortOrder,
-    customizeColumnsMap,
   ) => {
     let serviceNameTracker;
+    let customizeColumnsMap;
     try {
       serviceNameTracker = $transition$.injector().get('serviceNameTracker');
+      customizeColumnsMap = $transition$.injector().get('customizeColumnsMap');
     } catch (error) {
       serviceNameTracker = null;
+      customizeColumnsMap = {};
     }
 
     return parseConfig(
