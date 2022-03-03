@@ -2,13 +2,36 @@ import { loadFeature, defineFeature } from 'jest-cucumber';
 import DirectClientMessageBus from '../../src/message-bus/direct-client';
 import Shell from '../../src/shell/shell';
 import ShellClient from '../../src/client/shell-client';
+import { initStandaloneClientApi } from '../../src/client';
 import { IShellPluginMethodCall } from '../../src/common';
 
 const feature = loadFeature('../../features/client/shell-client.feature', {
   loadRelativePath: true,
 });
 
+const windowLocation = window.location;
+const setHrefSpy = jest.fn((href) => href);
+
+jest.mock('@ovh-ux/manager-config', () => ({
+  fetchConfiguration: () => Promise.resolve({}),
+}));
+
 defineFeature(feature, (test) => {
+  beforeEach(() => {
+    delete window.location;
+    window.location = {
+      ...window.location,
+      hash: '',
+    };
+    Object.defineProperty(window.location, 'href', {
+      set: setHrefSpy,
+    });
+  });
+
+  afterEach(() => {
+    window.location = windowLocation;
+  });
+
   test('Plugin method invokation', ({ given, when, and, then }) => {
     const shellClientMessageBus = new DirectClientMessageBus();
     const shellMessageBus = new DirectClientMessageBus();
@@ -79,6 +102,52 @@ defineFeature(feature, (test) => {
       () => {
         expect(callback).toHaveBeenCalledWith('param');
         expect(callback2).not.toHaveBeenCalled();
+      },
+    );
+  });
+
+  test('Redirection of contained applications', ({ given, when, then }) => {
+    let appConfig = null;
+
+    given('An application configuration where the container is enabled', () => {
+      appConfig = {
+        hub: {
+          universe: 'fooUniverse',
+          url: 'http://hub',
+          container: {
+            enabled: true,
+            isDefault: false,
+            path: 'hub',
+            containerURL: 'http://container/',
+          },
+          publicURL: 'http://container/#/hub',
+        },
+      };
+    });
+
+    when('The application is initialized as a standalone application', () => {
+      initStandaloneClientApi('hub', appConfig);
+    });
+
+    then(
+      "The client should be redirected to the application's publicURL",
+      () => {
+        expect(setHrefSpy).toHaveBeenCalledWith('http://container/#/hub');
+      },
+    );
+
+    when(
+      'The application is initialized as a standalone application and an hash',
+      () => {
+        window.location.hash = '#/foo';
+        initStandaloneClientApi('hub', appConfig);
+      },
+    );
+
+    then(
+      "The client should be redirected to the application's publicURL concatened with the hash",
+      () => {
+        expect(setHrefSpy).toHaveBeenCalledWith('http://container/#/hub/foo');
       },
     );
   });
