@@ -4,6 +4,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import 'angular-translate';
 import 'ovh-api-services';
+import '@ovh-ux/manager-filters';
 
 import './add.less';
 
@@ -20,6 +21,7 @@ const moduleName = 'ovhManagerPciInstancesAdd';
 
 angular
   .module(moduleName, [
+    'ovhManagerFilters',
     'ngTranslateAsyncLoader',
     'ngOvhCloudUniverseComponents',
     'pascalprecht.translate',

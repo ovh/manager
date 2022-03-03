@@ -136,6 +136,16 @@ export default class PciInstancesAddController {
 
   onFlavorCategorySelect(flavor, category) {
     this.selectedCategory = category;
+    if (flavor.legacy) {
+      this.CucCloudMessage.warning(
+        this.$translate.instant(
+          'pci_projects_project_instances_add_flavor_selected_legacy',
+        ),
+        'pci.projects.project.instances.add',
+      );
+    } else {
+      this.messages = [];
+    }
   }
 
   onRegionFocus() {
