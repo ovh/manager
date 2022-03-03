@@ -4,5 +4,6 @@
   "pci_project_new_payment_method_add_info_paypal": "Wenn Sie auf „Paypal“ klicken, werden Sie zum gesicherten Paypal-Interface weitergeleitet, um Ihr Konto zu registrieren.",
   "pci_project_new_payment_method_add_info_bank_account": "Wenn Sie auf „Hinzufügen\" klicken, werden Sie zum Bereich <a href=\"{{ paymentMethodSection }}\">„Meine Zahlungsarten“</a> im Kundencenter weitergeleitet.",
   "pci_project_new_payment_method_add_warning_bank_account": "Ihr Bankkonto wird innerhalb von 24 bis 48 Stunden nach Eingang Ihrer per Post zu übersendenden Einzugsermächtigung bestätigt. Daraufhin können Sie erneut ein Public Cloud Projekt erstellen.",
-  "pci_project_new_payment_method_add_credit": "Guthaben aufladen"
+  "pci_project_new_payment_method_add_credit": "Guthaben aufladen",
+  "pci_project_new_payment_method_add_warning_paypal_account": "Wenn Sie PayPal auswählen, wird eine Transaktion in Höhe von {{amount}} für Ihren Account ausgeführt. So wird bestätigt, dass dieser korrekt funktioniert. Diese Gutschrift geht nicht verloren. Sie wird zur Bezahlung Ihrer ersten eingesetzten Ressourcen verwendet."
 }
