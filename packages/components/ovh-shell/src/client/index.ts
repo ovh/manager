@@ -1,22 +1,15 @@
 import { useReket } from '@ovh-ux/ovh-reket';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
-import { ApplicationId } from '@ovh-ux/manager-config/types/application';
+import {
+  Application,
+  ApplicationId,
+} from '@ovh-ux/manager-config/types/application';
 
 import ShellClient from './shell-client';
 import StandaloneShellClient from './standalone-shell-client';
 import IFrameMessageBus from '../message-bus/iframe';
 
-interface ApplicationConfiguration {
-  universe: string;
-  url: string;
-  useShell?: boolean;
-  shellPath?: string;
-  publicURL?: string;
-}
-
-function fetchApplications(): Promise<
-  Record<string, ApplicationConfiguration>
-> {
+function fetchApplications(): Promise<Record<string, Application>> {
   return useReket(true).get('/applications', {
     requestType: 'aapi',
     headers: {
@@ -27,7 +20,7 @@ function fetchApplications(): Promise<
   });
 }
 
-function initIFrameClientApi(appId: ApplicationId) {
+export function initIFrameClientApi(appId: ApplicationId) {
   const client = new ShellClient();
   const clientApi = client.getApi();
   client.setApplicationId(appId);
@@ -36,29 +29,37 @@ function initIFrameClientApi(appId: ApplicationId) {
   return Promise.resolve(clientApi);
 }
 
-function initStandaloneClientApi(appId: ApplicationId) {
-  return fetchApplications()
-    .then((apps) => {
-      const appConfig = apps[appId];
-      if (!appConfig) {
-        throw new Error(`Unknown application '${appId}'`);
-      }
-      if (appConfig.useShell) {
-        window.location.href = appConfig.publicURL;
-      }
-    })
-    .then(() => {
-      const client = new StandaloneShellClient();
-      client.setApplicationId(appId);
-      return client.init().then(() => client.getApi());
-    });
+export function initStandaloneClientApi(
+  appId: ApplicationId,
+  applications: Record<string, Application>,
+) {
+  const appConfig = applications[appId];
+  if (!appConfig) {
+    throw new Error(`Unknown application '${appId}'`);
+  }
+  if (appConfig.container?.enabled === true) {
+    const targetURL = new URL(appConfig.publicURL);
+    const currentHash = window.location.hash;
+    if (currentHash) {
+      targetURL.hash = `${(targetURL.hash || '#').replace(
+        /\/$/,
+        '',
+      )}/${currentHash.replace(/^#?\/?/, '')}`;
+    }
+    window.location.href = targetURL.href;
+  }
+  const client = new StandaloneShellClient();
+  client.setApplicationId(appId);
+  return client.init().then(() => client.getApi());
 }
 
 export default function init(applicationId: ApplicationId) {
   let initPromise;
 
   if (isTopLevelApplication()) {
-    initPromise = initStandaloneClientApi(applicationId);
+    initPromise = fetchApplications().then((apps) =>
+      initStandaloneClientApi(applicationId, apps),
+    );
   } else {
     initPromise = initIFrameClientApi(applicationId);
   }
