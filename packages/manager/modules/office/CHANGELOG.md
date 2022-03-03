@@ -1,3 +1,12 @@
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.4.2...@ovh-ux/manager-office@2.5.0) (2022-03-03)
+
+
+### Features
+
+* **office.dashboard:** officeprepaid api for ms office prepaid licenses ([#6589](https://github.com/ovh/manager/issues/6589)) ([df07171](https://github.com/ovh/manager/commit/df071719f9acdee71846b39bbc874f2a558975c2))
+
+
+
 ## [2.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.4.1...@ovh-ux/manager-office@2.4.2) (2021-10-26)
 
 
