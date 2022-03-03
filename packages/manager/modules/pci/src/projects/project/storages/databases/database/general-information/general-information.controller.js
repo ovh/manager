@@ -28,6 +28,8 @@ export default class {
   }
 
   $onInit() {
+    this.DATABASE_TYPES = DATABASE_TYPES;
+
     this.messageContainer = `pci.projects.project.storages.databases.dashboard.general-information-${this.database.id}`;
     this.loadMessages();
     this.pollDatabaseStatus();
