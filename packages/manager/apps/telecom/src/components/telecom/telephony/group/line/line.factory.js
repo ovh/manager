@@ -15,8 +15,8 @@ import sortBy from 'lodash/sortBy';
 export default /* @ngInject */ (
   $q,
   $filter,
+  $http,
   OvhApiTelephony,
-  OvhApiPackXdslVoipLine,
   VoipScheduler,
   VoipTimeCondition,
   TelephonyGroupLinePhone,
@@ -441,11 +441,10 @@ export default /* @ngInject */ (
   TelephonyGroupLine.prototype.isIncludedInXdslPack = function isIncludedInXdslPack() {
     const self = this;
 
-    return OvhApiPackXdslVoipLine.v7()
-      .services()
-      .aggregate('packName')
-      .execute()
-      .$promise.then((lines) => some(lines, { key: self.serviceName }));
+    return $http
+      .get(`/pack/xdsl/search?pattern=${self.serviceName}`)
+      .then(() => true)
+      .catch(() => false);
   };
 
   /* ----------  OPTIONS  ----------*/
