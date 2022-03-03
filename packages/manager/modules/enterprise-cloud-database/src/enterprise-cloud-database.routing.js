@@ -104,5 +104,15 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('enterprise_cloud_database_title'),
       hideBreadcrumb: () => true,
     },
+    redirectTo: (transition) => {
+      return transition
+        .injector()
+        .getAsync('clusters')
+        .then((clusters) =>
+          clusters.length === 0
+            ? 'enterprise-cloud-database.onboarding'
+            : false,
+        );
+    },
   });
 };
