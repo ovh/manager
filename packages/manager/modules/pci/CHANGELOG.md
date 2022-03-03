@@ -1,3 +1,12 @@
+# [5.62.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.61.0...@ovh-ux/manager-pci@5.62.0) (2022-03-03)
+
+
+### Features
+
+* **pci.instance.edit:** order component bindings ([#6622](https://github.com/ovh/manager/issues/6622)) ([4ae6de8](https://github.com/ovh/manager/commit/4ae6de8f53643334b66e0b21dc71e881bb043ae4))
+
+
+
 # [5.61.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.60.1...@ovh-ux/manager-pci@5.61.0) (2022-02-28)
 
 
