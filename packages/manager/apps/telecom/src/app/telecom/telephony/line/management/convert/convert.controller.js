@@ -7,6 +7,7 @@ export default /* @ngInject */ function TelecomTelephonyLineConvertCtrl(
   $q,
   $stateParams,
   $translate,
+  $http,
   OvhApiPackXdslVoipLine,
   OvhApiTelephony,
   TelephonyMediator,
@@ -104,6 +105,24 @@ export default /* @ngInject */ function TelecomTelephonyLineConvertCtrl(
     },
   };
 
+  self.getPackXdslServiceIds = function getPackXdslServiceIds(services) {
+    const packIds = [];
+    return $q
+      .all(
+        services.map(({ serviceName }) => {
+          return $http
+            .get(`/pack/xdsl/search?pattern=${serviceName}`)
+            .then(() => {
+              packIds.push(serviceName);
+            })
+            .catch(() => {
+              // nothing to do
+            });
+        }),
+      )
+      .then(() => packIds);
+  };
+
   self.filterServices = function filterServices(services) {
     let filteredServices = filter(
       services,
@@ -115,18 +134,15 @@ export default /* @ngInject */ function TelecomTelephonyLineConvertCtrl(
       (service) => ['sip', 'mgcp'].indexOf(service.featureType) > -1,
     );
 
-    return OvhApiPackXdslVoipLine.v7()
-      .services()
-      .aggregate('packName')
-      .execute()
-      .$promise.then((lines) => {
-        filteredServices = filter(
-          filteredServices,
-          (service) => !some(lines, { key: service.serviceName }),
-        );
+    if (filteredServices.length > 100) {
+      return $q.resolve(filteredServices);
+    }
 
-        return $q.when(filteredServices);
+    return self.getPackXdslServiceIds(filteredServices).then((serviceIds) => {
+      return filteredServices.filter(({ serviceName }) => {
+        return !serviceIds.includes(serviceName);
       });
+    });
   };
 
   self.getBulkParams = function getBulkParams() {
