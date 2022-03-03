@@ -4,6 +4,8 @@ export default {
   name: 'pciProjectNew',
   template,
   bindings: {
+    isTrustedZone: '<',
+    projects: '<',
     isHdsAvailable: '<',
     isValidHdsSupportLevel: '<',
   },

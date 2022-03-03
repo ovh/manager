@@ -1,7 +1,12 @@
+import { PCI_FEATURES } from '../../projects.constant';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.ai', {
     url: '/ai',
     component: 'pciProjectAi',
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.AI_APPS);
+    },
     redirectTo: (transition) =>
       transition
         .injector()

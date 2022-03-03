@@ -13,6 +13,7 @@ export default {
     steins: '<',
     customerRegions: '<',
     instancesRegions: '<',
+    catalogEndpoint: '<',
 
     instanceLink: '<',
     consoleLink: '<',

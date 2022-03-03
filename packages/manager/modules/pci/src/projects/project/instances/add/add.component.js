@@ -3,6 +3,9 @@ import template from './add.html';
 
 export default {
   bindings: {
+    pciFeatures: '<',
+    isTrustedZone: '<',
+    catalogEndpoint: '<',
     addInstanceSuccessMessage: '<',
     addInstancesSuccessMessage: '<',
     disablePrivateNetworks: '<',

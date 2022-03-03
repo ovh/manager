@@ -1,3 +1,5 @@
+import { PCI_FEATURES } from '../../../projects.constant';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.archives', {
     url: '/cloud-archives?id',
@@ -7,6 +9,13 @@ export default /* @ngInject */ ($stateProvider) => {
         dynamic: true,
         type: 'string',
       },
+    },
+    onEnter: /* @ngInject */ ($transition$) => {
+      return Promise.all([
+        $transition$.injector().getAsync('pciFeatureRedirect'),
+      ]).then(([pciFeatureRedirect]) =>
+        pciFeatureRedirect(PCI_FEATURES.PRODUCTS.CLOUD_ARCHIVE),
+      );
     },
     redirectTo: (transition) =>
       transition

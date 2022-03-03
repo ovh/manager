@@ -15,11 +15,11 @@ import BlockStorage from './block.class';
 import Region from './region.class';
 
 import {
+  VOLUME_ADDON_FAMILY,
   VOLUME_MAX_SIZE,
   VOLUME_MIN_SIZE,
-  VOLUME_UNLIMITED_QUOTA,
   VOLUME_SNAPSHOT_CONSUMPTION,
-  VOLUME_ADDON_FAMILY,
+  VOLUME_UNLIMITED_QUOTA,
 } from './block.constants';
 
 export default class PciProjectStorageBlockService {
@@ -278,9 +278,9 @@ export default class PciProjectStorageBlockService {
       }).$promise;
   }
 
-  getCatalog(ovhSubsidiary) {
+  getCatalog(endpoint, ovhSubsidiary) {
     return this.$http
-      .get(`/order/catalog/public/cloud`, {
+      .get(endpoint, {
         params: {
           ovhSubsidiary,
         },
@@ -329,11 +329,15 @@ export default class PciProjectStorageBlockService {
     };
   }
 
-  getVolumePriceEstimation(projectId, storage) {
-    return this.CucPriceHelper.getPrices(projectId).then((catalog) =>
+  getVolumePriceEstimation(projectId, storage, catalogEndpoint) {
+    return this.CucPriceHelper.getPrices(
+      projectId,
+      catalogEndpoint,
+    ).then((catalog) =>
       PciProjectStorageBlockService.getVolumePriceEstimationFromCatalog(
         catalog,
         storage,
+        catalogEndpoint,
       ),
     );
   }
@@ -440,27 +444,29 @@ export default class PciProjectStorageBlockService {
     return this.$q.when(consumptionVolumeAddons);
   }
 
-  getSnapshotPriceEstimation(projectId, storage) {
-    return this.CucPriceHelper.getPrices(projectId).then((catalog) => {
-      const price = get(
-        catalog,
-        `${VOLUME_SNAPSHOT_CONSUMPTION}.${storage.region}`,
-        get(catalog, VOLUME_SNAPSHOT_CONSUMPTION, false),
-      );
-      if (price) {
-        const snapshotPrice =
-          (price.priceInUcents * moment.duration(1, 'months').asHours()) /
-          100000000;
-        return {
-          price: snapshotPrice,
-          priceText: price.price.text.replace(
-            /\d+(?:[.,]\d+)?/,
-            round(snapshotPrice.toString(), 2),
-          ),
-        };
-      }
-      return Promise.reject();
-    });
+  getSnapshotPriceEstimation(projectId, storage, catalogEndpoint) {
+    return this.CucPriceHelper.getPrices(projectId, catalogEndpoint).then(
+      (catalog) => {
+        const price = get(
+          catalog,
+          `${VOLUME_SNAPSHOT_CONSUMPTION}.${storage.region}`,
+          get(catalog, VOLUME_SNAPSHOT_CONSUMPTION, false),
+        );
+        if (price) {
+          const snapshotPrice =
+            (price.priceInUcents * moment.duration(1, 'months').asHours()) /
+            100000000;
+          return {
+            price: snapshotPrice,
+            priceText: price.price.text.replace(
+              /\d+(?:[.,]\d+)?/,
+              round(snapshotPrice.toString(), 2),
+            ),
+          };
+        }
+        return Promise.reject();
+      },
+    );
   }
 
   createSnapshot(projectId, { id }, { name }) {

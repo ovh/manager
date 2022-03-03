@@ -1,3 +1,5 @@
+import { PCI_FEATURES } from '../projects.constant';
+
 import ASSET_INSTANCES from './assets/instances.png';
 import ASSET_DATABASES from './assets/databases.png';
 import ASSET_KUBERNETES from './assets/kubernetes.png';
@@ -22,44 +24,49 @@ export const ACTIONS = [
   {
     translation: 'pci_projects_project_create_an_instance',
     state: 'pci.projects.project.instances.add',
+    feature: PCI_FEATURES.PRODUCTS.INSTANCE,
     name: 'instances',
   },
   {
     translation: 'pci_projects_project_create_cluster_kubernetes',
-    state: 'pci.projects.project.kubernetes.add',
-    feature: 'kubernetes',
+    state: 'pci.projects.project.kubernetes',
+    feature: PCI_FEATURES.PRODUCTS.KUBERNETES,
     name: 'kubernetes',
   },
   {
     translation: 'pci_projects_project_create_a_container',
     state: 'pci.projects.project.storages.object-storage.add',
+    feature: PCI_FEATURES.PRODUCTS.OBJECT_STORAGE,
     name: 'objectstorage',
   },
   {
     translation: 'pci_projects_project_create_a_volume',
     state: 'pci.projects.project.storages.blocks.add',
+    feature: PCI_FEATURES.PRODUCTS.BLOCK_STORAGE,
     name: 'blockstorage',
   },
   {
     translation: 'pci_projects_project_create_cluster_database',
     state: 'pci.projects.project.storages.databases.add',
-    feature: 'databases',
+    feature: PCI_FEATURES.PRODUCTS.DATABASES,
     name: 'databases',
   },
   {
     translation: 'pci_projects_project_create_ai_notebook',
     state: 'pci.projects.project.notebooks',
-    feature: 'notebooks',
+    feature: PCI_FEATURES.PRODUCTS.NOTEBOOKS,
     name: 'ainotebook',
   },
   {
     translation: 'pci_projects_project_activate_private_networks',
     state: 'pci.projects.project.privateNetwork',
+    feature: PCI_FEATURES.PRODUCTS.PRIVATE_NETWORK,
     name: 'privatenetwork',
   },
   {
     translation: 'pci_projects_project_buy_ip_failover',
     state: 'pci.projects.project.failover-ips',
+    feature: PCI_FEATURES.PRODUCTS.FAILOVER_IP,
     name: 'ipfailover',
   },
 ];
@@ -70,56 +77,56 @@ export const LINKS = [
       'pci_projects_project_documentation_public_cloud_essential_information',
     href:
       'https://docs.ovh.com/gb/en/public-cloud/public-cloud-essential-information/',
-    regions: ['EU', 'CA'],
+    feature: PCI_FEATURES.LINKS.CLOUD_ESSENTIAL_INFORMATION,
   },
   {
     translation: 'pci_projects_project_documentation_public_cloud_interface',
     href: 'https://docs.ovh.com/gb/en/public-cloud/public-cloud-interface/',
-    regions: ['EU', 'CA'],
+    feature: PCI_FEATURES.LINKS.PUBLIC_CLOUD_INTERFACE,
   },
   {
     translation:
       'pci_projects_project_documentation_get_started_with_a_public_cloud_instance',
     href:
       'https://docs.ovh.com/gb/en/public-cloud/get-started-with-a-public-cloud-instance/',
-    regions: ['EU', 'CA'],
+    feature: PCI_FEATURES.LINKS.START_PCI_INSTANCE,
   },
   {
     translation:
       'pci_projects_project_documentation_information_on_cloud_billing_options',
     href:
       'https://docs.ovh.com/gb/en/public-cloud/information-on-cloud-billing-options/',
-    regions: ['EU', 'CA'],
+    feature: PCI_FEATURES.LINKS.CLOUD_BILLING_OPTIONS,
   },
   {
     translation:
       'pci_projects_project_documentation_see_all_public_cloud_guides',
     href: 'https://docs.ovh.com/gb/en/',
-    regions: ['EU', 'CA'],
+    feature: PCI_FEATURES.LINKS.ALL_GUIDES,
   },
   {
     translation:
       'pci_projects_project_documentation_how_to_create_a_horizon_user',
     href: 'https://support.us.ovhcloud.com/hc/en-us/articles/360008644539',
-    regions: ['US'],
+    feature: PCI_FEATURES.LINKS.CREATE_HORIZON_USER,
   },
   {
     translation:
       'pci_projects_project_documentation_how_to_deploy_a_public_cloud_instance',
     href: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002245164',
-    regions: ['US'],
+    feature: PCI_FEATURES.LINKS.DEPLOY_A_PUBLIC_CLOUD_INSTANCE,
   },
   {
     translation:
       'pci_projects_project_documentation_getting_started_with_block_storage',
     href: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002157044',
-    regions: ['US'],
+    feature: PCI_FEATURES.LINKS.START_WITH_BLOCK_STORAGE,
   },
   {
     translation:
       'pci_projects_project_documentation_see_all_public_cloud_guides',
     href: 'https://support.us.ovhcloud.com/hc/en-us/categories/115000515130',
-    regions: ['US'],
+    feature: PCI_FEATURES.LINKS.ALL_GUIDES_US,
   },
 ];
 

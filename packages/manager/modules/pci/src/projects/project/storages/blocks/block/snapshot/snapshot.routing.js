@@ -20,10 +20,12 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectStorageBlockService,
         projectId,
         storage,
+        catalogEndpoint,
       ) =>
         PciProjectStorageBlockService.getSnapshotPriceEstimation(
           projectId,
           storage,
+          catalogEndpoint,
         ),
 
       goBack: /* @ngInject */ (goToBlockStorage) => goToBlockStorage,

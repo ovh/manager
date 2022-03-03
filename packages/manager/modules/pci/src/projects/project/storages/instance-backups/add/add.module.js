@@ -8,6 +8,7 @@ import 'ovh-api-services';
 import flavorBilling from '../../../../../components/project/flavor-billing';
 import flavorsList from '../../../../../components/project/flavors-list';
 import sshKeys from '../../../../../components/project/instance/ssh-keys';
+import trustedZoneBanner from '../../../../../components/trusted-zone-banner';
 
 import instances from '../../../instances/instances.module';
 import privateNetworks from '../../../private-networks/private-networks.module';
@@ -29,6 +30,7 @@ angular
     flavorsList,
     sshKeys,
     privateNetworks,
+    trustedZoneBanner,
   ])
   .config(routing)
   .component('ovhManagerPciInstancesBackupsAdd', component)

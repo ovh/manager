@@ -3,6 +3,7 @@ import template from './project-list.html';
 
 export default {
   bindings: {
+    isTrustedZone: '<',
     goToProject: '<',
     goToProjects: '<',
     goToProjectInactive: '<',

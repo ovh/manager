@@ -6,6 +6,7 @@
                 'cloud-sidebar_hidden': !$ctrl.isSidebarOpen,
                 'cloud-sidebar_open': $ctrl.isSidebarOpen
             }"
+            data-is-trusted-zone="$ctrl.isTrustedZone"
             data-is-open="$ctrl.isSidebarOpen"
             data-on-click="$ctrl.closeSidebar()"
             data-go-to-project="$ctrl.goToProject"
@@ -19,6 +20,13 @@
                 class="pci-project-content w-100 h-100 pt-4 px-3 px-md-5"
                 style="overflow: auto;"
             >
+                <!--Trusted zone badge-->
+                <div class="text-center">
+                    <ovh-manager-trusted-nic-label
+                        data-ng-if="$ctrl.isTrustedZone"
+                    ></ovh-manager-trusted-nic-label>
+                </div>
+
                 <account-migration-notification></account-migration-notification>
                 <ui-router-breadcrumb></ui-router-breadcrumb>
                 <div class="pci-project-view mt-3 pb-4" data-ui-view>
@@ -89,9 +97,7 @@
                                             data-translate="pci_projects_project_documentation"
                                         ></h2>
                                         <ul>
-                                            <li
-                                                data-ng-repeat="link in $ctrl.links track by $index"
-                                            >
+                                            <li data-ng-repeat="link in $ctrl.links track by $index">
                                                 <a
                                                     data-ng-href="{{ ::link.href }}"
                                                     target="_blank"

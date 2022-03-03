@@ -3,6 +3,7 @@ import template from './private-networks.html';
 
 export default {
   bindings: {
+    pciFeatureRedirect: '<',
     createNetwork: '<',
     deleteNetwork: '<',
     guideUrl: '<',

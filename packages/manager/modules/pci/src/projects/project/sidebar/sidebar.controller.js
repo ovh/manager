@@ -1,5 +1,4 @@
 import isEmpty from 'lodash/isEmpty';
-import isNil from 'lodash/isNil';
 import set from 'lodash/set';
 
 import { getMenu, UNIVERSE } from './sidebar.constant';
@@ -44,6 +43,35 @@ export default class SidebarController {
     });
   }
 
+  $onInit() {
+    const featuresName = this.findFeatureToCheck();
+
+    this.ovhFeatureFlipping
+      .checkFeatureAvailability(featuresName)
+      .then((features) => {
+        this.MENU = this.CONFIG_MENU.filter((menu) => {
+          return set(
+            menu,
+            'subitems',
+            menu.subitems.filter((subitem) => {
+              const { feature } = subitem;
+              return features.isFeatureAvailable(feature);
+            }),
+          );
+        });
+      });
+
+    let currentProjectId = this.$stateParams.projectId;
+    this.setProject(this.$stateParams.projectId);
+    this.$transitions.onSuccess({}, () => {
+      if (currentProjectId !== this.$stateParams.projectId) {
+        this.setProject(this.$stateParams.projectId);
+        currentProjectId = this.$stateParams.projectId;
+      }
+      this.isDisplayingProjectsList = false;
+    });
+  }
+
   toggleProjectsList() {
     this.isDisplayingProjectsList = !this.isDisplayingProjectsList;
   }
@@ -76,39 +104,6 @@ export default class SidebarController {
         ...item.subitems.map((subitem) => subitem.feature),
       ].filter((feature) => !!feature);
     }, []);
-  }
-
-  $onInit() {
-    const featuresName = this.findFeatureToCheck();
-    this.ovhFeatureFlipping
-      .checkFeatureAvailability(featuresName)
-      .then((features) => {
-        const isItemAvailable = (regions, feature) =>
-          (isNil(regions) || this.coreConfig.isRegion(regions)) &&
-          (!feature || features.isFeatureAvailable(feature));
-
-        this.MENU = this.CONFIG_MENU.filter(({ regions, feature }) =>
-          isItemAvailable(regions, feature),
-        ).map((menu) => {
-          set(
-            menu,
-            'subitems',
-            menu.subitems.filter(({ regions, feature }) =>
-              isItemAvailable(regions, feature),
-            ),
-          );
-          return menu;
-        });
-      });
-    let currentProjectId = this.$stateParams.projectId;
-    this.setProject(this.$stateParams.projectId);
-    this.$transitions.onSuccess({}, () => {
-      if (currentProjectId !== this.$stateParams.projectId) {
-        this.setProject(this.$stateParams.projectId);
-        currentProjectId = this.$stateParams.projectId;
-      }
-      this.isDisplayingProjectsList = false;
-    });
   }
 
   onMenuItemClick({ id }) {
