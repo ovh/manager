@@ -39,7 +39,7 @@ export default class MicrosoftOfficePasswordEditCtrl {
   }
 
   $onInit() {
-    this.licenseId = this.$scope.currentActionData.licenseId;
+    this.licenseId = this.$scope.currentActionData.user.serviceName;
 
     this.pwdPattern = /(?=.*[a-z])(?=.*[A-Z])(?=.*[~!@#$%^&*_\-+=|\\(){}[\]:;'<>,.?\d])/;
     this.user = this.$scope.currentActionData.user;

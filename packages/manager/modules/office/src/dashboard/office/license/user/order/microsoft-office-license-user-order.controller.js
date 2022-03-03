@@ -22,13 +22,13 @@ export default class MicrosoftOfficeLicenseUserOrderCtrl {
       userOrder: false,
     };
 
-    this.licenseId = this.$scope.currentActionData.license;
+    [this.licenseId] = this.$scope.currentActionData.license?.split('-');
     this.license = null;
     this.numberOfLicenses = 1;
 
     this.$scope.orderUser = () => this.orderUser();
 
-    this.getLicenses(this.licenseId);
+    this.getLicenses();
   }
 
   orderUser() {
@@ -37,15 +37,17 @@ export default class MicrosoftOfficeLicenseUserOrderCtrl {
       this.licenseId,
       this.license,
       this.numberOfLicenses,
+      'P1M',
+      'default',
     );
     this.$scope.resetAction();
   }
 
-  getLicenses(serviceName) {
+  getLicenses() {
     this.loaders.licenseEnum = true;
 
     return this.licenseService
-      .getAvailableOptions(serviceName)
+      .getAvailableOptions()
       .then((licenses) => {
         this.licenseEnum = map(licenses, 'planCode');
       })

@@ -149,4 +149,11 @@ export default class MicrosoftOfficeLicenseCtrl {
         this.editMode = false;
       });
   }
+
+  displayServiceName() {
+    return (
+      this.license.tenant.displayName &&
+      this.license.tenant.serviceName !== this.license.tenant.displayName
+    );
+  }
 }
