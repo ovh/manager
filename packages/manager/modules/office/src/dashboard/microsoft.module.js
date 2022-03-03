@@ -20,6 +20,8 @@ import licenseUserOrderCtrl from './office/license/user/order/microsoft-office-l
 import licenseUserUpdateCtrl from './office/license/user/update/microsoft-office-license-user-update.controller';
 import passwordEditCtrl from './office/license/edit/password/microsoft-office-edit-password.controller';
 import licenseService from './microsoft-office-license.service';
+import licensePostpaidService from './microsoft-office-license-postpaid.service';
+import licensePrepaidService from './microsoft-office-license-prepaid.service';
 
 import userOrderTpl from './office/license/user/order/microsoft-office-license-user-order.html';
 import userUpdateTpl from './office/license/user/update/microsoft-office-license-user-update.html';
@@ -60,6 +62,8 @@ angular
     consumption,
   ])
   .service('MicrosoftOfficeLicenseService', licenseService)
+  .service('MicrosoftOfficeLicensePrepaidService', licensePrepaidService)
+  .service('MicrosoftOfficeLicensePostpaidService', licensePostpaidService)
   .config(routing)
   .constant('MICROSOFT_GUIDE_URLS', {})
   .run(

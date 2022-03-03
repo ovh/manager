@@ -35,10 +35,9 @@ export default class MicrosoftOfficeLicenseUserUpdateCtrl {
 
     this.$scope.updateUser = () => {
       this.loaders.userEdit = true;
-
       this.microsoftOfficeLicenseService
         .updateUser(
-          this.user.service,
+          this.user.serviceName,
           this.$scope.currentActionData.user.activationEmail,
           {
             firstName: this.user.firstName,

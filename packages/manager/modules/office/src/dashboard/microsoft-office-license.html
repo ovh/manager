@@ -35,8 +35,8 @@
                     </div>
                     <span
                         class="font-italic"
-                        data-ng-bind="currentLicense"
-                        data-ng-if="MicrosoftOfficeLicenseCtrl.license.tenant.displayName && currentLicense !== MicrosoftOfficeLicenseCtrl.license.tenant.displayName"
+                        data-ng-bind="MicrosoftOfficeLicenseCtrl.license.tenant.serviceName"
+                        data-ng-if="MicrosoftOfficeLicenseCtrl.displayServiceName()"
                     ></span>
                 </div>
 

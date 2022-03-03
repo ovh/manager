@@ -2,6 +2,10 @@ import JSURL from 'jsurl';
 import each from 'lodash/each';
 import map from 'lodash/map';
 import 'moment';
+import {
+  PREPAID_BASE_URL,
+  POSTPAID_BASE_URL,
+} from './microsoft-office-license.constants';
 
 export default class MicrosoftOfficeLicenseService {
   /* @ngInject */
@@ -12,6 +16,8 @@ export default class MicrosoftOfficeLicenseService {
     $translate,
     $window,
     constants,
+    MicrosoftOfficeLicensePrepaidService,
+    MicrosoftOfficeLicensePostpaidService,
     OvhHttp,
     Poll,
     WucUser,
@@ -22,11 +28,15 @@ export default class MicrosoftOfficeLicenseService {
     this.$translate = $translate;
     this.$window = $window;
     this.constants = constants;
+    this.licensePrepaidService = MicrosoftOfficeLicensePrepaidService;
+    this.licensePostpaidService = MicrosoftOfficeLicensePostpaidService;
     this.pollService = Poll;
     this.ovhHttp = OvhHttp;
     this.WucUser = WucUser;
+  }
 
-    this.basePath = 'apiv6/license/office';
+  static isPrepaidService(serviceName) {
+    return serviceName && serviceName.includes('-');
   }
 
   /**
@@ -35,8 +45,10 @@ export default class MicrosoftOfficeLicenseService {
    * @return {[string]}
    */
   get(licenseId) {
-    return this.$http
-      .get(`${this.basePath}/${licenseId}`)
+    const promise = MicrosoftOfficeLicenseService.isPrepaidService(licenseId)
+      ? this.licensePrepaidService.get(licenseId)
+      : this.licensePostpaidService.get(licenseId);
+    return promise
       .then((response) => response.data)
       .catch((err) => this.$q.reject(err.data));
   }
@@ -48,8 +60,10 @@ export default class MicrosoftOfficeLicenseService {
    * @return {[type]}
    */
   edit(licenseId, officeTenant) {
-    return this.$http
-      .put(`${this.basePath}/${licenseId}`, officeTenant)
+    const promise = MicrosoftOfficeLicenseService.isPrepaidService(licenseId)
+      ? this.licensePrepaidService.edit(licenseId, officeTenant)
+      : this.licensePostpaidService.edit(licenseId, officeTenant);
+    return promise
       .then((response) => response.data)
       .catch((err) => this.$q.reject(err.data));
   }
@@ -62,11 +76,14 @@ export default class MicrosoftOfficeLicenseService {
    * @return {Task}                 [description]
    */
   editPassword(licenseId, activationEmail, data) {
-    return this.$http
-      .post(
-        `${this.basePath}/${licenseId}/user/${activationEmail}/changePassword`,
-        data,
-      )
+    const promise = MicrosoftOfficeLicenseService.isPrepaidService(licenseId)
+      ? this.licensePrepaidService.updatePassword(licenseId, data)
+      : this.licensePostpaidService.updatePassword(
+          licenseId,
+          activationEmail,
+          data,
+        );
+    return promise
       .then((response) => response.data)
       .catch((err) => this.$q.reject(err.data));
   }
@@ -77,22 +94,28 @@ export default class MicrosoftOfficeLicenseService {
    * @return {Service}           [description]
    */
   getServiceInfos(licenseId) {
-    return this.ovhHttp.get('/license/office/{serviceName}/serviceInfos', {
-      rootPath: 'apiv6',
-      urlParams: {
-        serviceName: licenseId,
-      },
-      cache: 'office.license.serviceinfos',
-    });
+    return MicrosoftOfficeLicenseService.isPrepaidService(licenseId)
+      ? this.licensePrepaidService.getServiceInfos(licenseId)
+      : this.licensePostpaidService.getServiceInfos(licenseId);
   }
 
-  getAvailableOptions(licenseId) {
-    return this.ovhHttp.get(
-      `/order/cartServiceOption/office365Prepaid/${licenseId}`,
-      {
-        rootPath: 'apiv6',
-      },
-    );
+  createCart(ovhSubsidiary) {
+    return this.$http
+      .post('apiv6/order/cart', { ovhSubsidiary })
+      .then(({ data }) => data);
+  }
+
+  getOfficePrepaidPlans(cartId) {
+    return this.$http
+      .get(`apiv6/order/cart/${cartId}/officePrepaid`)
+      .then(({ data }) => data);
+  }
+
+  getAvailableOptions() {
+    return this.WucUser.getUser()
+      .then(({ ovhSubsidiary }) => this.createCart(ovhSubsidiary))
+      .then(({ cartId }) => this.getOfficePrepaidPlans(cartId))
+      .catch((err) => this.$q.reject(err.data));
   }
 
   /**
@@ -101,9 +124,13 @@ export default class MicrosoftOfficeLicenseService {
    * @return {[string]}           [description]
    */
   getUsers(licenseId) {
-    return this.$http
-      .get(`${this.basePath}/${licenseId}/user`)
-      .then((response) => response.data)
+    const [tenant] = licenseId.split('-');
+    const promise =
+      tenant === licenseId
+        ? this.licensePostpaidService.getUsers(licenseId)
+        : this.licensePrepaidService.getUsers(tenant);
+    return promise
+      .then((data) => data)
       .catch((err) => this.$q.reject(err.data));
   }
 
@@ -113,7 +140,7 @@ export default class MicrosoftOfficeLicenseService {
    */
   getLicenses() {
     return this.$http
-      .get(`${this.basePath}.json`)
+      .get(`${POSTPAID_BASE_URL}.json`)
       .then(
         (response) => response.data.models['license.office.LicenceEnum'].enum,
       )
@@ -137,14 +164,19 @@ export default class MicrosoftOfficeLicenseService {
    * @return {Object}           [description]
    */
   getUserDetails(licenseId, userId) {
-    return this.$http
-      .get(`${this.basePath}/${licenseId}/user/${userId}`)
-      .then((response) => response.data)
+    const promise = MicrosoftOfficeLicenseService.isPrepaidService(licenseId)
+      ? this.licensePrepaidService.getUserDetails(userId)
+      : this.licensePostpaidService.getUserDetails(licenseId, userId);
+    return promise
+      .then((data) => data)
       .catch((err) => this.$q.reject(err.data));
   }
 
   pollUserDetails(licenseId, userId, $scope) {
     const namespace = 'microsoft.office.licence.user.details';
+    const pollUrl = MicrosoftOfficeLicenseService.isPrepaidService(licenseId)
+      ? `${PREPAID_BASE_URL}/${userId}`
+      : `${POSTPAID_BASE_URL}/${licenseId}/user/${userId}`;
 
     $scope.$on('$destroy', () => {
       this.pollService.kill({
@@ -152,18 +184,14 @@ export default class MicrosoftOfficeLicenseService {
       });
     });
 
-    return this.pollService.poll(
-      `${this.basePath}/${licenseId}/user/${userId}`,
-      null,
-      {
-        scope: $scope.$id,
-        successRule: {
-          status: 'ok',
-          taskPendingId: 0,
-        },
-        namespace,
+    return this.pollService.poll(pollUrl, null, {
+      scope: $scope.$id,
+      successRule: {
+        status: 'ok',
+        taskPendingId: 0,
       },
-    );
+      namespace,
+    });
   }
 
   /**
@@ -174,7 +202,7 @@ export default class MicrosoftOfficeLicenseService {
    */
   addUser(licenseId, data) {
     return this.$http
-      .post(`${this.basePath}/${licenseId}/user`, data)
+      .post(`${POSTPAID_BASE_URL}/${licenseId}/user`, data)
       .then((response) => response.data)
       .catch((err) => this.$q.reject(err));
   }
@@ -187,8 +215,14 @@ export default class MicrosoftOfficeLicenseService {
    * @return {Task}                 [description]
    */
   updateUser(serviceName, activationEmail, data) {
-    return this.$http
-      .put(`${this.basePath}/${serviceName}/user/${activationEmail}`, data)
+    const promise = MicrosoftOfficeLicenseService.isPrepaidService(serviceName)
+      ? this.licensePrepaidService.updateUser(serviceName, data)
+      : this.licensePostpaidService.updateUser(
+          serviceName,
+          activationEmail,
+          data,
+        );
+    return promise
       .then((response) => response.data)
       .catch((err) => this.$q.reject(err));
   }
@@ -200,8 +234,10 @@ export default class MicrosoftOfficeLicenseService {
    * @return {Task}           [description]
    */
   deleteUser(licenseId, userId) {
-    return this.$http
-      .delete(`${this.basePath}/${licenseId}/user/${userId}`)
+    const promise = MicrosoftOfficeLicenseService.isPrepaidService(licenseId)
+      ? this.licensePrepaidService.deleteUser(licenseId)
+      : this.licensePostpaidService.deleteUser(licenseId, userId);
+    return promise
       .then((response) => response.data)
       .catch((err) => this.$q.reject(err.data));
   }
@@ -213,7 +249,7 @@ export default class MicrosoftOfficeLicenseService {
    */
   getDomainsId(licenseId) {
     return this.$http
-      .get(`${this.basePath}/${licenseId}/domain`)
+      .get(`${POSTPAID_BASE_URL}/${licenseId}/domain`)
       .then((response) => response.data)
       .catch((err) => this.$q.reject(err.data));
   }
@@ -226,7 +262,7 @@ export default class MicrosoftOfficeLicenseService {
    */
   getDomain(licenseId, domain) {
     return this.$http
-      .get(`${this.basePath}/${licenseId}/domain/${domain}`)
+      .get(`${POSTPAID_BASE_URL}/${licenseId}/domain/${domain}`)
       .then((response) => response.data)
       .catch((err) => this.$q.reject(err.data));
   }
@@ -262,13 +298,12 @@ export default class MicrosoftOfficeLicenseService {
       },
     };
 
-    return this.$http
-      .get(`${this.basePath}/${opts.serviceName}/usageStatistics`, {
-        params: {
-          from: opts.from,
-          to: opts.to,
-        },
-      })
+    const promise = MicrosoftOfficeLicenseService.isPrepaidService(
+      opts.serviceName,
+    )
+      ? this.licensePrepaidService.getUsage(opts)
+      : this.licensePostpaidService.getUsage(opts);
+    return promise
       .then((response) => {
         const series = response.data;
 
@@ -300,15 +335,28 @@ export default class MicrosoftOfficeLicenseService {
 
   /**
    * Redirect to the express order page
-   * @param {String} licenseType [the type of office license to buy]
+   * @param {String} planCode [the type of office license to buy]
    * @param {Number} number [the number of office licenses to buy]
    */
-  gotToOrderPrepaidLicenses(licenseId, licenseType, number) {
+  gotToOrderPrepaidLicenses(
+    tenantName,
+    planCode,
+    number,
+    duration,
+    pricingMode,
+  ) {
     const answer = [
       {
-        planCode: licenseType,
-        productId: 'office365Prepaid',
-        serviceName: licenseId,
+        configuration: [
+          {
+            label: 'existing_tenant_service_name',
+            value: tenantName,
+          },
+        ],
+        duration,
+        planCode,
+        pricingMode,
+        productId: 'officePrepaid',
         quantity: number,
       },
     ];
@@ -316,7 +364,7 @@ export default class MicrosoftOfficeLicenseService {
     this.WucUser.getUrlOfEndsWithSubsidiary('express_order').then(
       (expressOrderUrl) => {
         this.$window.open(
-          `${expressOrderUrl}#/new/express/resume?products=${JSURL.stringify(
+          `${expressOrderUrl}#/express/review?products=${JSURL.stringify(
             answer,
           )}`,
           '_blank',
