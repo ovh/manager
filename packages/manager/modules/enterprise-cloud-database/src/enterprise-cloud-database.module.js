@@ -20,6 +20,7 @@ import enterpriseCloudDatabaseService from './enterprise-cloud-database.service'
 import priceComponent from './price';
 import routing from './enterprise-cloud-database.routing';
 import service from './service';
+import onboarding from './onboarding';
 
 import './index.scss';
 
@@ -37,6 +38,7 @@ angular
     create,
     priceComponent,
     service,
+    onboarding,
   ])
   .config(routing)
   .component(
