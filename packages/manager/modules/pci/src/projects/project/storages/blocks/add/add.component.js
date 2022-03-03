@@ -6,6 +6,8 @@ export default {
   template,
   bindings: {
     projectId: '<',
+    isTrustedZone: '<',
+    catalogEndpoint: '<',
     goBack: '<',
     cancelLink: '<',
     quotaUrl: '<',

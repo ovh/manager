@@ -4,11 +4,15 @@ import merge from 'lodash/merge';
 import get from 'lodash/get';
 import Notebook from './Notebook.class';
 import { NOTEBOOK_STATUS } from './notebook.constants';
+import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.notebooks', {
     url: '/notebooks',
     component: 'ovhManagerPciProjectNotebooks',
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.NOTEBOOKS);
+    },
     redirectTo: (transition) =>
       Promise.all([
         transition.injector().getAsync('notebooks'),

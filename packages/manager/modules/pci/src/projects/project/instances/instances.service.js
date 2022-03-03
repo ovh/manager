@@ -269,18 +269,20 @@ export default class PciProjectInstanceService {
     }).$promise;
   }
 
-  getSnapshotMonthlyPrice(projectId, instance) {
-    return this.CucPriceHelper.getPrices(projectId).then((catalog) => {
-      return get(
-        catalog,
-        `snapshot.monthly.postpaid.${instance.region}`,
-        get(
+  getSnapshotMonthlyPrice(projectId, instance, catalogEndpoint) {
+    return this.CucPriceHelper.getPrices(projectId, catalogEndpoint).then(
+      (catalog) => {
+        return get(
           catalog,
-          'snapshot.monthly.postpaid',
-          get(catalog, 'snapshot.monthly', false),
-        ),
-      );
-    });
+          `snapshot.monthly.postpaid.${instance.region}`,
+          get(
+            catalog,
+            'snapshot.monthly.postpaid',
+            get(catalog, 'snapshot.monthly', false),
+          ),
+        );
+      },
+    );
   }
 
   createBackup(projectId, { id: instanceId }, { name: snapshotName }) {
@@ -377,8 +379,8 @@ export default class PciProjectInstanceService {
     }).$promise;
   }
 
-  getInstancePrice(projectId, instance) {
-    return this.CucPriceHelper.getPrices(projectId)
+  getInstancePrice(projectId, instance, catalogEndpoint) {
+    return this.CucPriceHelper.getPrices(projectId, catalogEndpoint)
       .then((prices) => {
         const price = prices[instance.planCode];
         // Set 3 digits for hourly price
@@ -567,33 +569,39 @@ export default class PciProjectInstanceService {
     return null;
   }
 
-  getExtraBandwidthCost(project, user) {
-    return this.OvhApiOrderCatalogPublic.v6()
-      .get({
-        productName: 'cloud',
-        ovhSubsidiary: user.ovhSubsidiary,
+  getCatalog(endpoint, user) {
+    return this.$http
+      .get(endpoint, {
+        params: {
+          productName: 'cloud',
+          ovhSubsidiary: user.ovhSubsidiary,
+        },
       })
-      .$promise.then((catalog) => {
-        const projectPlan = find(catalog.plans, { planCode: project.planCode });
-        const bandwidthOut = filter(
-          map(
-            find(projectPlan.addonFamilies, { name: BANDWIDTH_CONSUMPTION })
-              .addons,
-            (planCode) => find(catalog.addons, { planCode }),
-          ),
-          { invoiceName: BANDWIDTH_OUT_INVOICE },
-        );
+      .then(({ data: catalog }) => catalog);
+  }
 
-        return bandwidthOut.reduce(
-          (prices, addon) => ({
-            ...prices,
-            [addon.planCode]: find(
-              addon.pricings,
-              (pricing) => get(pricing, 'quantity.min') === BANDWIDTH_LIMIT,
-            ),
-          }),
-          {},
-        );
-      });
+  getExtraBandwidthCost(endpoint, project, user) {
+    return this.getCatalog(endpoint, user).then((catalog) => {
+      const projectPlan = find(catalog.plans, { planCode: project.planCode });
+      const bandwidthOut = filter(
+        map(
+          find(projectPlan.addonFamilies, { name: BANDWIDTH_CONSUMPTION })
+            .addons,
+          (planCode) => find(catalog.addons, { planCode }),
+        ),
+        { invoiceName: BANDWIDTH_OUT_INVOICE },
+      );
+
+      return bandwidthOut.reduce(
+        (prices, addon) => ({
+          ...prices,
+          [addon.planCode]: find(
+            addon.pricings,
+            (pricing) => get(pricing, 'quantity.min') === BANDWIDTH_LIMIT,
+          ),
+        }),
+        {},
+      );
+    });
   }
 }

@@ -77,6 +77,7 @@
                     <li
                         class="oui-sidebar-list__item"
                         data-ng-repeat="item in $ctrl.MENU track by item.title"
+                        data-ng-if="item.subitems.length"
                     >
                         <span
                             class="oui-sidebar-link"
@@ -208,6 +209,7 @@
         </div>
     </div>
     <cloud-sidebar-project-list
+        is-trusted-zone="$ctrl.isTrustedZone"
         go-to-project="$ctrl.goToProject"
         go-to-projects="$ctrl.goToProjects"
         go-to-project-inactive="$ctrl.goToProjectInactive"

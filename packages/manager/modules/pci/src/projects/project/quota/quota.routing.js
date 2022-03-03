@@ -1,9 +1,13 @@
+import { PCI_FEATURES } from '../../projects.constant';
 import { RX_PLAN_CODE_PATTERN } from './quota.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.quota', {
     url: '/quota',
     component: 'pciProjectQuota',
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.SETTINGS.QUOTA);
+    },
     resolve: {
       region: /* @ngInject */ (coreConfig) => coreConfig.getRegion(),
 
@@ -12,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_quota'),
+
       serviceOptions: /* @ngInject */ ($http, projectId) => {
         return $http
           .get(`/order/cartServiceOption/cloud/${projectId}`)

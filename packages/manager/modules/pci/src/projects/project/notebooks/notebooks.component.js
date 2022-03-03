@@ -4,6 +4,7 @@ import template from './notebooks.html';
 export default {
   bindings: {
     projectId: '<',
+    pciFeatureRedirect: '<',
     goToAddNotebook: '<',
     goToNotebook: '<',
     goToAttachData: '<',

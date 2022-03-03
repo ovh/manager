@@ -2,6 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
 
 import { VRACK_OPERATION_COMPLETED_STATUS } from './private-networks.constants';
+import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.privateNetwork', {
@@ -78,6 +79,9 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
 
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.PRIVATE_NETWORK);
+    },
     redirectTo: (transition) =>
       transition
         .injector()

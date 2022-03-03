@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import { MESSAGES_CONTAINER_NAME } from './edit.constant';
 import { PCI_HDS_ADDON } from '../project.constants';
+import { PCI_FEATURES } from '../../projects.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.edit', {
@@ -10,6 +11,9 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     params: {
       cartId: null,
+    },
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.SETTINGS.PROJECT_SETTINGS);
     },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>

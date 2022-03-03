@@ -6,6 +6,7 @@ import '@ovh-ux/ng-ovh-feature-flipping';
 import '@ovh-ux/ui-kit';
 import 'angular-translate';
 import 'ovh-api-services';
+import trustedNic from '@ovh-ux/manager-trusted-nic';
 
 import guidesHeader from '../components/project/guides-header';
 
@@ -28,6 +29,7 @@ angular
     'ovh-api-services',
     'ovhManagerCore',
     'pascalprecht.translate',
+    trustedNic,
     guidesHeader,
     creatingProject,
     newProject,

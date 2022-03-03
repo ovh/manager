@@ -1,12 +1,7 @@
 import angular from 'angular';
 import isNil from 'lodash/isNil';
 
-import {
-  PRODUCT_IMAGES,
-  ACTIONS,
-  LINKS,
-  COMMUNITY_LINKS,
-} from './project.constants';
+import { COMMUNITY_LINKS, PRODUCT_IMAGES } from './project.constants';
 
 export default class ProjectController {
   /* @ngInject */
@@ -39,7 +34,6 @@ export default class ProjectController {
         ({ regions }) => isNil(regions) || coreConfig.isRegion(regions),
       );
 
-    this.links = filterByRegion(LINKS);
     this.communityLinks = filterByRegion(COMMUNITY_LINKS);
   }
 
@@ -56,22 +50,17 @@ export default class ProjectController {
       (quota) => quota.quotaAboveThreshold,
     );
 
-    const featuresName = ProjectController.findFeatureToCheck(ACTIONS);
-    this.ovhFeatureFlipping
-      .checkFeatureAvailability(featuresName)
-      .then((features) => {
-        const isItemAvailable = (regions, feature) =>
-          (isNil(regions) || this.coreConfig.isRegion(regions)) &&
-          (!feature || features.isFeatureAvailable(feature));
-        this.actions = ACTIONS.filter(({ regions, feature }) =>
-          isItemAvailable(regions, feature),
-        );
-      });
     this.PciProject.setProjectInfo(this.project);
   }
 
   closeSidebar() {
     this.isSidebarOpen = false;
+  }
+
+  isDisplayableLink({ availableForTrustedZone }) {
+    const { isTrustedZone } = this;
+
+    return !isTrustedZone || (isTrustedZone && availableForTrustedZone);
   }
 
   /**

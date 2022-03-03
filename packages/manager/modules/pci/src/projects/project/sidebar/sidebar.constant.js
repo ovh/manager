@@ -1,3 +1,5 @@
+import { PCI_FEATURES } from '../../projects.constant';
+
 export const HORIZON = {
   CA: 'https://horizon.cloud.ovh.net/auth/login/',
   EU: 'https://horizon.cloud.ovh.net/auth/login/',
@@ -13,6 +15,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.instances',
         },
         title: 'Instances',
+        feature: PCI_FEATURES.PRODUCTS.INSTANCE,
       },
       {
         alpha: true,
@@ -21,7 +24,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.baremetal',
         },
         title: 'Bare Metal',
-        regions: ['EU', 'CA'],
+        feature: PCI_FEATURES.PRODUCTS.BAREMETAL,
       },
     ],
     title: 'Compute',
@@ -34,6 +37,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.storages.blocks',
         },
         title: 'Block Storage',
+        feature: PCI_FEATURES.PRODUCTS.BLOCK_STORAGE,
       },
       {
         id: 'object-storage',
@@ -41,6 +45,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.storages.object-storage',
         },
         title: 'Object Storage',
+        feature: PCI_FEATURES.PRODUCTS.OBJECT_STORAGE,
       },
       {
         id: 'databases',
@@ -49,7 +54,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.storages.databases',
         },
         title: 'Databases',
-        feature: 'databases',
+        feature: PCI_FEATURES.PRODUCTS.DATABASES,
       },
       {
         id: 'archive',
@@ -57,6 +62,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.storages.archives',
         },
         title: 'Cloud Archive',
+        feature: PCI_FEATURES.PRODUCTS.CLOUD_ARCHIVE,
       },
       {
         id: 'snapshot',
@@ -64,6 +70,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.storages.snapshots',
         },
         title: 'Volume Snapshot',
+        feature: PCI_FEATURES.PRODUCTS.SNAPSHOT,
       },
       {
         id: 'instance-backup',
@@ -71,6 +78,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.storages.instance-backups',
         },
         title: 'Instance Backup',
+        feature: PCI_FEATURES.PRODUCTS.INSTANCE_BACKUP,
       },
     ],
     title: 'Storage',
@@ -83,7 +91,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.loadbalancer',
         },
         title: 'Load Balancer',
-        feature: 'load-balancer',
+        feature: PCI_FEATURES.PRODUCTS.LOAD_BALANCER,
       },
       {
         id: 'private-network',
@@ -91,6 +99,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.privateNetwork',
         },
         title: 'Private Network',
+        feature: PCI_FEATURES.PRODUCTS.PRIVATE_NETWORK,
       },
       {
         id: 'failover-ip',
@@ -98,6 +107,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.failover-ips',
         },
         title: 'Failover IP',
+        feature: PCI_FEATURES.PRODUCTS.FAILOVER_IP,
       },
     ],
     title: 'Network',
@@ -110,7 +120,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.kubernetes',
         },
         title: 'Managed Kubernetes Service',
-        feature: 'kubernetes',
+        feature: PCI_FEATURES.PRODUCTS.KUBERNETES,
       },
       {
         id: 'private-registry',
@@ -118,7 +128,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.private-registry',
         },
         title: 'Managed Private Registry',
-        regions: ['CA', 'EU'],
+        feature: PCI_FEATURES.PRODUCTS.PRIVATE_REGISTRY,
       },
       {
         id: 'workflow-management',
@@ -126,7 +136,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.workflow',
         },
         title: 'Workflow Management',
-        regions: ['CA', 'EU'],
+        feature: PCI_FEATURES.PRODUCTS.WORKFLOW_MANAGEMENT,
       },
     ],
     title: 'Containers & Orchestration',
@@ -140,7 +150,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.notebooks',
         },
         title: 'AI Notebooks',
-        regions: ['CA', 'EU'],
+        feature: PCI_FEATURES.PRODUCTS.NOTEBOOKS,
       },
       {
         id: 'training',
@@ -148,8 +158,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.training',
         },
         title: 'AI Training',
-        regions: ['CA', 'EU'],
-        feature: 'ai-training',
+        feature: PCI_FEATURES.PRODUCTS.TRAINING,
       },
       {
         id: 'apps',
@@ -159,7 +168,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
         },
         title: 'AI Apps',
         regions: ['CA', 'EU'],
-        feature: 'ai-apps',
+        feature: PCI_FEATURES.PRODUCTS.AI_APPS,
       },
       {
         id: 'serving',
@@ -167,7 +176,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.serving',
         },
         title: 'ML Serving',
-        regions: ['EU', 'CA'],
+        feature: PCI_FEATURES.PRODUCTS.SERVING,
       },
     ],
     regions: ['EU', 'CA'],
@@ -182,7 +191,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.data-processing',
         },
         title: 'Data Processing',
-        regions: ['EU', 'CA'],
+        feature: PCI_FEATURES.PRODUCTS.DATA_PROCESSING,
       },
       {
         id: 'logs-data-platform',
@@ -191,7 +200,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           external: false,
         },
         title: 'Logs Data Platform',
-        regions: ['EU', 'CA'],
+        feature: PCI_FEATURES.PRODUCTS.LOGS_DATA_PLATFORM,
       },
     ],
     regions: ['EU', 'CA'],
@@ -208,6 +217,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           external: true,
         },
         title: 'Horizon',
+        feature: PCI_FEATURES.PRODUCTS.HORIZON,
       },
     ],
   },
@@ -223,6 +233,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.users',
         },
         title: 'Users & Roles',
+        feature: PCI_FEATURES.SETTINGS.USERS,
       },
       {
         id: 'quota',
@@ -230,6 +241,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.quota',
         },
         title: 'Quota and Regions',
+        feature: PCI_FEATURES.SETTINGS.QUOTA,
       },
       {
         id: 'ssh-keys',
@@ -237,30 +249,31 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.sshKeys',
         },
         title: 'SSH Keys',
+        feature: PCI_FEATURES.SETTINGS.SSH_KEYS,
       },
       {
         id: 'billing',
         options: {
           state: 'pci.projects.project.billing',
         },
-        feature: 'public-cloud:billing',
         title: 'Billing Control',
+        feature: PCI_FEATURES.SETTINGS.BILLING,
       },
       {
         id: 'vouchers',
         options: {
           state: 'pci.projects.project.vouchers',
         },
-        regions: ['EU', 'CA'],
         title: 'Credit and Vouchers',
+        feature: PCI_FEATURES.SETTINGS.VOUCHERS,
       },
       {
         id: 'contacts',
         options: {
           state: 'pci.projects.project.contacts',
         },
-        regions: ['EU', 'CA'],
         title: 'Contacts and Rights',
+        feature: PCI_FEATURES.SETTINGS.CONTACTS,
       },
       {
         id: 'management-settings',
@@ -268,6 +281,7 @@ export const getMenu = ({ DBAAS_LOGS_URL }) => [
           state: 'pci.projects.project.edit',
         },
         title: 'Project settings',
+        feature: PCI_FEATURES.SETTINGS.PROJECT_SETTINGS,
       },
     ],
     title: 'Project Management',

@@ -11,6 +11,7 @@ import flavorBilling from '../../../../components/project/flavor-billing';
 import flavorsList from '../../../../components/project/flavors-list';
 import imagesList from '../../../../components/project/images-list';
 import sshKeys from '../../../../components/project/instance/ssh-keys';
+import trustedZoneBanner from '../../../../components/trusted-zone-banner';
 
 import component from './add.component';
 import routing from './add.routing';
@@ -28,6 +29,7 @@ angular
     flavorsList,
     imagesList,
     sshKeys,
+    trustedZoneBanner,
   ])
   .config(routing)
   .component('ovhManagerPciInstancesAdd', component)

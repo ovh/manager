@@ -1,3 +1,5 @@
+import { PCI_FEATURES } from '../../projects.constant';
+
 export default /* @ngInject */ ($stateProvider) =>
   $stateProvider.state('pci.projects.project.data-processing', {
     url: '/data-processing?id',
@@ -7,6 +9,9 @@ export default /* @ngInject */ ($stateProvider) =>
         dynamic: true,
         type: 'string',
       },
+    },
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.PRODUCTS.DATA_PROCESSING);
     },
     redirectTo: (transition) =>
       Promise.all([transition.injector().getAsync('authorization')]).then(

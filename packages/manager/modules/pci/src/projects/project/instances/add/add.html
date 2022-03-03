@@ -27,9 +27,10 @@
             data-selected-flavor="$ctrl.model.flavorGroup"
             data-display-selected-flavor="$ctrl.displaySelectedFlavor"
             data-selected-category="{{:: $ctrl.selectedCategory }}"
-            data-exclude-categories="$ctrl.excludeCategories"
             data-include-categories="$ctrl.includeCategories"
+            data-exclude-categories="$ctrl.excludeCategories"
             data-on-change="$ctrl.onFlavorCategorySelect(flavor, category)"
+            data-catalog-endpoint="$ctrl.catalogEndpoint"
         >
         </pci-project-flavors-list>
     </oui-step-form>
@@ -405,6 +406,10 @@
             data-offer="$ctrl.offer"
         >
         </pci-project-flavor-billing>
+
+        <pci-trusted-zone-banner
+            data-ng-if="$ctrl.isTrustedZone">
+        </pci-trusted-zone-banner>
     </oui-step-form>
 </oui-stepper>
 

@@ -48,5 +48,12 @@
                 data-translate="pci_projects_project_instances_instance_backup_warning_iops_message"
             ></span>
         </oui-message>
+
+        <!--Trusted PCI: extra amount charge info-->
+        <oui-message type="info" data-ng-if="$ctrl.isTrustedZone">
+            <span
+                data-translate="pci_projects_project_instances_instance_backup_trusted_zone_extra_amount_charge_message"
+            ></span>
+        </oui-message>
     </oui-modal>
 </form>

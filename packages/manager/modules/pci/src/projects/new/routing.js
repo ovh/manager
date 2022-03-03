@@ -8,6 +8,7 @@ import PciEligibility from './classes/eligibility.class';
 import PciVoucher from './components/voucher/voucher.class';
 import PciPaymentMethodChallenge from './payment/components/challenge/challenge.class';
 
+import { PCI_FEATURES } from '../projects.constant';
 import {
   ELIGIBILITY_ACTION_ENUM,
   ELIGIBILITY_ERROR_IMAGES_SRC,
@@ -16,17 +17,19 @@ import {
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.new', {
     url: '/new?cartId&voucher',
+    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+      return pciFeatureRedirect(PCI_FEATURES.OTHERS.CREATE_PROJECT);
+    },
     redirectTo: (transition) => {
-      const translatePromise = transition.injector().getAsync('$translate');
-      const windowPromise = transition.injector().getAsync('$window');
-      const coreURLBuilderPromise = transition
-        .injector()
-        .getAsync('coreURLBuilder');
-      const cartPromise = transition.injector().getAsync('cart');
-      const eligibilityPromise = transition.injector().getAsync('eligibility');
-      const newSupportTicketLink = transition
-        .injector()
-        .getAsync('newSupportTicketLink');
+      const injector = transition.injector();
+
+      const translatePromise = injector.getAsync('$translate');
+      const windowPromise = injector.getAsync('$window');
+      const coreURLBuilderPromise = injector.getAsync('coreURLBuilder');
+      const cartPromise = injector.getAsync('cart');
+      const eligibilityPromise = injector.getAsync('eligibility');
+      const newSupportTicketLink = injector.getAsync('newSupportTicketLink');
+
       return Promise.all([
         translatePromise,
         windowPromise,

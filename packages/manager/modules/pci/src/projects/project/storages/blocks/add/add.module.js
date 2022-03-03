@@ -9,12 +9,14 @@ import component from './add.component';
 import routing from './add.routing';
 
 import regionsList from '../../../../../components/project/regions-list';
+import trustedZoneBanner from '../../../../../components/trusted-zone-banner';
 
 const moduleName = 'ovhManagerPciStoragesBlocksAdd';
 
 angular
   .module(moduleName, [
     regionsList,
+    trustedZoneBanner,
     'ui.router',
     'oui',
     'ovh-api-services',
