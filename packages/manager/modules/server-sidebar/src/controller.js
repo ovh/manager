@@ -11,7 +11,6 @@ import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
 import isString from 'lodash/isString';
 import map from 'lodash/map';
-import orderBy from 'lodash/orderBy';
 import reduce from 'lodash/reduce';
 import sumBy from 'lodash/sumBy';
 import zipObject from 'lodash/zipObject';
@@ -87,8 +86,6 @@ export default class OvhManagerServerSidebarController {
   }
 
   init() {
-    console.log(this.universe);
-    console.log('1234');
     this.SIDEBAR_CONFIG = SIDEBAR_CONFIG;
     this.SIDEBAR_ORDER_CONFIG = SIDEBAR_ORDER_CONFIG;
 
@@ -365,114 +362,119 @@ export default class OvhManagerServerSidebarController {
               );
             }
 
-            each(orderBy(items, 'displayName'), (service) => {
-              const isExternal =
-                !includes(typeServices.type.app, this.universe) &&
-                !isEmpty(service.url);
+            each(
+              items.sort(({ displayName: a }, { displayName: b }) =>
+                a.localeCompare(b),
+              ),
+              (service) => {
+                const isExternal =
+                  !includes(typeServices.type.app, this.universe) &&
+                  !isEmpty(service.url);
 
-              let stateParams = zipObject(
-                get(typeServices.type, 'stateParams', []),
-                get(service, 'stateParams', []),
-              );
-              if (
-                has(typeServices.type, 'stateParamsTransformer') &&
-                isFunction(typeServices.type.stateParamsTransformer)
-              ) {
-                stateParams = typeServices.type.stateParamsTransformer(
-                  stateParams,
-                );
-              }
-
-              let loadOnStateParams = stateParams;
-              if (
-                has(typeServices.type, 'loadOnStateParams') &&
-                has(typeServices.type, 'loadOnState')
-              ) {
-                loadOnStateParams = zipObject(
-                  get(typeServices.type, 'loadOnStateParams', []),
+                let stateParams = zipObject(
+                  get(typeServices.type, 'stateParams', []),
                   get(service, 'stateParams', []),
                 );
-              }
-
-              let link = null;
-              let state = null;
-              if (isExternal) {
-                link = service.url;
-              } else {
-                state = get(typeServices.type, 'state', '');
                 if (
-                  has(typeServices.type, 'getState') &&
-                  isFunction(typeServices.type.getState)
+                  has(typeServices.type, 'stateParamsTransformer') &&
+                  isFunction(typeServices.type.stateParamsTransformer)
                 ) {
-                  state = typeServices.type.getState(service.extraParams);
+                  stateParams = typeServices.type.stateParamsTransformer(
+                    stateParams,
+                  );
                 }
-              }
 
-              const prefixTranslationPart = get(typeServices.type, 'prefix');
-              let prefix;
-              if (prefixTranslationPart) {
-                prefix = this.$translate.instant(
-                  `server_sidebar_item_${prefixTranslationPart}_prefix`,
+                let loadOnStateParams = stateParams;
+                if (
+                  has(typeServices.type, 'loadOnStateParams') &&
+                  has(typeServices.type, 'loadOnState')
+                ) {
+                  loadOnStateParams = zipObject(
+                    get(typeServices.type, 'loadOnStateParams', []),
+                    get(service, 'stateParams', []),
+                  );
+                }
+
+                let link = null;
+                let state = null;
+                if (isExternal) {
+                  link = service.url;
+                } else {
+                  state = get(typeServices.type, 'state', '');
+                  if (
+                    has(typeServices.type, 'getState') &&
+                    isFunction(typeServices.type.getState)
+                  ) {
+                    state = typeServices.type.getState(service.extraParams);
+                  }
+                }
+
+                const prefixTranslationPart = get(typeServices.type, 'prefix');
+                let prefix;
+                if (prefixTranslationPart) {
+                  prefix = this.$translate.instant(
+                    `server_sidebar_item_${prefixTranslationPart}_prefix`,
+                  );
+                }
+
+                if (
+                  has(typeServices.type, 'getPrefix') &&
+                  isFunction(typeServices.type.getPrefix)
+                ) {
+                  prefix = this.$translate.instant(
+                    typeServices.type.getPrefix(service.extraParams),
+                  );
+                }
+
+                let icon = get(typeServices.type, 'icon');
+                if (
+                  has(typeServices.type, 'getIcon') &&
+                  isFunction(typeServices.type.getIcon)
+                ) {
+                  icon = typeServices.type.getIcon(service.extraParams);
+                }
+
+                const menuItem = this.SidebarMenu.addMenuItem(
+                  {
+                    id: service.serviceName,
+                    title: service.displayName,
+                    allowSubItems: hasSubItems && !isExternal,
+                    infiniteScroll: hasSubItems && !isExternal,
+                    allowSearch: false,
+                    state,
+                    stateParams,
+                    url: link,
+                    target: isExternal ? '_self' : null,
+                    icon,
+                    loadOnState: get(typeServices.type, 'loadOnState'),
+                    loadOnStateParams,
+                    namespace: typeServices.type.namespace,
+                    prefix,
+                  },
+                  parent,
                 );
-              }
 
-              if (
-                has(typeServices.type, 'getPrefix') &&
-                isFunction(typeServices.type.getPrefix)
-              ) {
-                prefix = this.$translate.instant(
-                  typeServices.type.getPrefix(service.extraParams),
-                );
-              }
+                // add serviceName in item searchKeys
+                if (has(service, 'serviceName')) {
+                  menuItem.addSearchKey(service.serviceName);
+                }
 
-              let icon = get(typeServices.type, 'icon');
-              if (
-                has(typeServices.type, 'getIcon') &&
-                isFunction(typeServices.type.getIcon)
-              ) {
-                icon = typeServices.type.getIcon(service.extraParams);
-              }
+                // add searchKeys from type definition in item searchKeys
+                if (
+                  has(typeServices.type, 'searchKeys') &&
+                  isArray(typeServices.type.searchKeys)
+                ) {
+                  each(typeServices.type.searchKeys, (key) =>
+                    menuItem.addSearchKey(key),
+                  );
+                }
 
-              const menuItem = this.SidebarMenu.addMenuItem(
-                {
-                  id: service.serviceName,
-                  title: service.displayName,
-                  allowSubItems: hasSubItems && !isExternal,
-                  infiniteScroll: hasSubItems && !isExternal,
-                  allowSearch: false,
-                  state,
-                  stateParams,
-                  url: link,
-                  target: isExternal ? '_self' : null,
-                  icon,
-                  loadOnState: get(typeServices.type, 'loadOnState'),
-                  loadOnStateParams,
-                  namespace: typeServices.type.namespace,
-                  prefix,
-                },
-                parent,
-              );
-
-              // add serviceName in item searchKeys
-              if (has(service, 'serviceName')) {
-                menuItem.addSearchKey(service.serviceName);
-              }
-
-              // add searchKeys from type definition in item searchKeys
-              if (
-                has(typeServices.type, 'searchKeys') &&
-                isArray(typeServices.type.searchKeys)
-              ) {
-                each(typeServices.type.searchKeys, (key) =>
-                  menuItem.addSearchKey(key),
-                );
-              }
-
-              if (hasSubItems && !isExternal) {
-                menuItem.onLoad = () =>
-                  this.loadServices(typeServices.type, menuItem, stateParams);
-              }
-            });
+                if (hasSubItems && !isExternal) {
+                  menuItem.onLoad = () =>
+                    this.loadServices(typeServices.type, menuItem, stateParams);
+                }
+              },
+            );
           });
         }
       })
