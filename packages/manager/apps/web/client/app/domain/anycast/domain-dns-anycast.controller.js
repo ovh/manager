@@ -1,9 +1,7 @@
-import find from 'lodash/find';
 import get from 'lodash/get';
 import {
   DNS_ANYCAST_SERVICE_TYPE,
   DNS_ANYCAST_PLANCODE,
-  DNS_ANYCAST_PRICING_MODE,
   DNS_ANYCAST_DURATION,
 } from './domain-dns-anycast.constants';
 
@@ -19,10 +17,9 @@ export default class DomainDnsAnycastActivateCtrl {
     return this.fetchCatalogOffer(this.domainName)
       .then((offer) => {
         this.offer = offer;
-        this.offerPrice = find(this.offer.prices, {
-          pricingMode: DNS_ANYCAST_PRICING_MODE,
-          duration: DNS_ANYCAST_DURATION,
-        });
+        this.offerPrice = this.offer.prices.find(
+          (price) => price.duration === DNS_ANYCAST_DURATION,
+        );
         return this.fetchNewCart().then((cart) =>
           this.WucOrderCartService.addProductServiceOptionToCart(
             cart.cartId,
@@ -64,7 +61,9 @@ export default class DomainDnsAnycastActivateCtrl {
     return this.WucOrderCartService.getProductServiceOptions(
       DNS_ANYCAST_SERVICE_TYPE,
       serviceName,
-    ).then((options) => find(options, { planCode: DNS_ANYCAST_PLANCODE }));
+    ).then((options) =>
+      options.find((option) => DNS_ANYCAST_PLANCODE.includes(option.planCode)),
+    );
   }
 
   performCheckout() {

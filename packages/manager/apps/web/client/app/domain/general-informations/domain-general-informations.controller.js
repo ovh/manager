@@ -188,6 +188,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.updateOwnerUrl = this.getUpdateOwnerUrl(this.domain);
 
     this.getRules();
+    this.getCurrentUserNic();
 
     if (this.isAllDom) {
       this.getAllDomInfos(this.$stateParams.allDom);
@@ -578,6 +579,12 @@ export default class DomainTabGeneralInformationsCtrl {
       .finally(() => {
         this.loading.whoIs = false;
       });
+  }
+
+  getCurrentUserNic() {
+    return this.WucUser.getUser().then(({ nichandle }) => {
+      this.loggedInUser = nichandle;
+    });
   }
 
   // Actions --------------------------------------------
