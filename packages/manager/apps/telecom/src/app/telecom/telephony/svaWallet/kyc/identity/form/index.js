@@ -7,7 +7,6 @@ const moduleName = 'TelephonySvaWalletKycIdentityForm';
 angular
   .module(moduleName, [])
   .component('telephonySvaWalletKycIdentityForm', component)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngTranslationsInject:json ./confirm/translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
