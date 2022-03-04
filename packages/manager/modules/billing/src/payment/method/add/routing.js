@@ -127,7 +127,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           {
             type: 'success',
             text: $translate.instant(
-              selectedPaymentMethodType.paymentType ===
+              selectedPaymentMethodType?.paymentType ===
                 OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT
                 ? 'billing_payment_method_add_sepa_success'
                 : 'billing_payment_method_add_success',
