@@ -1,3 +1,13 @@
+# [0.12.0-alpha.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.12.0-alpha.0...@ovh-ux/manager-billing@0.12.0-alpha.1) (2022-03-04)
+
+
+### Bug Fixes
+
+* **payment.method.add:** fix sepa direct help links ([#6480](https://github.com/ovh/manager/issues/6480)) ([a888daf](https://github.com/ovh/manager/commit/a888dafb7ef79f87d8a46c72ca3d1c032d89077a))
+* **payment.method.add:** navigate to payment methods list page ([#6625](https://github.com/ovh/manager/issues/6625)) ([2cd394f](https://github.com/ovh/manager/commit/2cd394f90764e713dc1d0f40b71620f3836067b9))
+
+
+
 # [0.12.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.11.0-alpha.2...@ovh-ux/manager-billing@0.12.0-alpha.0) (2022-03-02)
 
 

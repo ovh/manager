@@ -1,3 +1,12 @@
+## [2.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.19.0...@ovh-ux/manager-vps@2.19.1) (2022-03-04)
+
+
+### Bug Fixes
+
+* **dashboard.migrate:** fix price issue for vps migration funnel ([#6522](https://github.com/ovh/manager/issues/6522)) ([2b47da6](https://github.com/ovh/manager/commit/2b47da67759ec788f64b420992a2f96fafcc2321))
+
+
+
 # [2.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.18.1...@ovh-ux/manager-vps@2.19.0) (2022-01-11)
 
 
