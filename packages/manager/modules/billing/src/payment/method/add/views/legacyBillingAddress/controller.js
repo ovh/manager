@@ -47,13 +47,13 @@ export default class PaymentMethodAddLegacyBillingAddressCtrl {
   }
 
   setDataProtectionLinks() {
-    const currentLanguage = this.coreConfig.getUserLanguage();
+    const { ovhSubsidiary } = this.coreConfig.getUser();
     this.dataProtectionOvhLink =
-      PERSONAL_DATA_PROTECTION_BY_OVH_LINK[currentLanguage] ||
-      PERSONAL_DATA_PROTECTION_BY_OVH_LINK.en;
+      PERSONAL_DATA_PROTECTION_BY_OVH_LINK[ovhSubsidiary] ||
+      PERSONAL_DATA_PROTECTION_BY_OVH_LINK.DEFAULT;
     this.dataProtectionYouSignLink =
-      PERSONAL_DATA_PROTECTION_BY_YOUSIGN_LINK[currentLanguage] ||
-      PERSONAL_DATA_PROTECTION_BY_YOUSIGN_LINK.en;
+      PERSONAL_DATA_PROTECTION_BY_YOUSIGN_LINK[ovhSubsidiary] ||
+      PERSONAL_DATA_PROTECTION_BY_YOUSIGN_LINK.DEFAULT;
   }
 }
 /* eslint-enable max-classes-per-file */
