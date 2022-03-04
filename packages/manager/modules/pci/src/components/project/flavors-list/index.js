@@ -1,6 +1,7 @@
 import angular from 'angular';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
+import '@ovh-ux/manager-filters';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
@@ -15,6 +16,7 @@ angular
     'ngOvhCloudUniverseComponents',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
+    'ovhManagerFilters',
   ])
   .component('pciProjectFlavorsList', component)
   .service('PciProjectFlavors', service)
