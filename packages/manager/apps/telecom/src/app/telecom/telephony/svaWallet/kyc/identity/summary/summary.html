@@ -3,10 +3,10 @@
 
 <oui-message
     type="success"
-    data-ng-if="$ctrl.showIBANSuccessMessage || $ctrl.showDocumentSuccessMessage"
+    data-ng-if="$ctrl.updateIbanSuccessMessage || $ctrl.showDocumentSuccessMessage"
 >
     <span
-        data-ng-if="$ctrl.showIBANSuccessMessage"
+        data-ng-if="$ctrl.updateIbanSuccessMessage"
         data-translate="telephony_billingAccount_svaWallet_kyc_summary_iban_confirmation"
     ></span>
     <span
@@ -23,42 +23,13 @@
 >
 </telephony-sva-wallet-kyc-identity-overview-identity>
 
-<h3
-    data-translate="telephony_billingAccount_svaWallet_kyc_summary_bankaccount_title"
-></h3>
-
-<div class="oui-field oui-field_auto">
-    <div class="oui-field__header ng-scope">
-        <label
-            class="oui-field__label ng-binding"
-            data-translate="telephony_billingAccount_svaWallet_kyc_identity_bankAccount_holder"
-        ></label>
-    </div>
-    <div
-        class="oui-field__control"
-        data-ng-bind="$ctrl.bankAccount.holder"
-    ></div>
-</div>
-
-<div class="oui-field oui-field_auto">
-    <div class="oui-field__header ng-scope">
-        <label
-            class="oui-field__label ng-binding"
-            data-translate="telephony_billingAccount_svaWallet_kyc_identity_iban"
-        ></label>
-    </div>
-    <div class="oui-field__control" data-ng-bind="$ctrl.bankAccount.iban"></div>
-
-    <oui-button
-        variant="link"
-        icon-right="oui-icon-arrow-right"
-        on-click="$ctrl.updateBankAccount()"
-    >
-        <span
-            data-translate="telephony_billingAccount_svaWallet_kyc_summary_bankaccount_edit"
-        ></span>
-    </oui-button>
-</div>
+<telephony-sva-wallet-kyc-identity-bank-account
+    bank-account="$ctrl.bankAccount"
+    save-wallet-iban="$ctrl.saveWalletIban"
+    sva-wallet="$ctrl.svaWallet"
+    update-iban-success-message="$ctrl.updateIbanSuccessMessage"
+>
+</telephony-sva-wallet-kyc-identity-bank-account>
 
 <h3
     data-ng-if="$ctrl.svaWallet.company.beneficiaries.length < 4"
