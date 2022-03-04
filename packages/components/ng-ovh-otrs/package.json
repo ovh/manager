@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-otrs",
-  "version": "9.2.5",
+  "version": "9.2.6",
   "description": "Manage OTRS tickets",
   "keywords": [
     "angularjs",
@@ -39,7 +39,7 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^10.0.0 || ^11.0.0",
+    "@ovh-ux/component-rollup-config": "^11.0.0 || ^12.0.0",
     "bootstrap": "^3.3.6"
   },
   "peerDependencies": {

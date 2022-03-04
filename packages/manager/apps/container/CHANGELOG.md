@@ -1,3 +1,12 @@
+## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.1.0...@ovh-ux/manager-container-app@0.1.1) (2022-03-04)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/manager-dev-server-config` to `v4.0.0` ([eb942bb](https://github.com/ovh/manager/commit/eb942bb01a2d88cc879be6dc5d482c03bd4dc37a))
+
+
+
 # [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.0.0...@ovh-ux/manager-container-app@0.1.0) (2022-02-23)
 
 

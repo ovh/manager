@@ -1,3 +1,12 @@
+## [10.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sidebar-menu@10.2.0...@ovh-ux/ng-ovh-sidebar-menu@10.2.1) (2022-03-04)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `v12.0.` ([8145cd4](https://github.com/ovh/manager/commit/8145cd44a34cec071db4b5267182705625951077))
+
+
+
 # [10.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sidebar-menu@10.1.4...@ovh-ux/ng-ovh-sidebar-menu@10.2.0) (2022-03-02)
 
 

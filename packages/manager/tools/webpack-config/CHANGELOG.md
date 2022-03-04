@@ -1,3 +1,22 @@
+# [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@4.0.5...@ovh-ux/manager-webpack-config@5.0.0) (2022-03-04)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `v12.0.` ([8145cd4](https://github.com/ovh/manager/commit/8145cd44a34cec071db4b5267182705625951077))
+
+
+### Build System
+
+* **deps:** require Node.js 16 ([5687c17](https://github.com/ovh/manager/commit/5687c17f1ae65c07ffde12abeecd0f9a955af8b0)), closes [#6444](https://github.com/ovh/manager/issues/6444)
+
+
+### BREAKING CHANGES
+
+* **deps:** require Node.js 16
+
+
+
 ## [4.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@4.0.4...@ovh-ux/manager-webpack-config@4.0.5) (2021-11-29)
 
 

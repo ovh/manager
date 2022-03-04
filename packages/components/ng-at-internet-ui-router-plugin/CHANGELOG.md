@@ -1,3 +1,12 @@
+## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.2.0...@ovh-ux/ng-at-internet-ui-router-plugin@3.2.1) (2022-03-04)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `v12.0.` ([8145cd4](https://github.com/ovh/manager/commit/8145cd44a34cec071db4b5267182705625951077))
+
+
+
 # [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.1.3...@ovh-ux/ng-at-internet-ui-router-plugin@3.2.0) (2021-11-04)
 
 

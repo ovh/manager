@@ -1,3 +1,12 @@
+## [7.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.3.3...@ovh-ux/manager-freefax@7.3.4) (2022-03-04)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `v12.0.` ([8145cd4](https://github.com/ovh/manager/commit/8145cd44a34cec071db4b5267182705625951077))
+
+
+
 ## [7.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.3.2...@ovh-ux/manager-freefax@7.3.3) (2021-11-04)
 
 

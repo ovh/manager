@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-registry",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Provide OVHcloud Manager registry",
   "keywords": [
     "registry",
@@ -33,7 +33,7 @@
     "semver": "^7.3.2"
   },
   "engines": {
-    "node": "^14 || ^16",
+    "node": "^16",
     "yarn": ">=1.21.1"
   }
 }

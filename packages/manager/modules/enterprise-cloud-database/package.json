@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-enterprise-cloud-database",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "private": true,
   "description": "Enterprise Cloud Databases product.",
   "keywords": [
@@ -38,18 +38,18 @@
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^10.0.0 || ^11.0.0"
+    "@ovh-ux/component-rollup-config": "^11.0.0 || ^12.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
-    "@ovh-ux/ng-ovh-contracts": "^4.0.5",
-    "@ovh-ux/ng-ovh-payment-method": "^9.0.0",
-    "@ovh-ux/ng-ovh-toaster": "^2.0.3",
-    "@ovh-ux/ng-translate-async-loader": "^2.1.3",
-    "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.5",
-    "@ovh-ux/ng-ui-router-layout": "^4.0.4",
+    "@ovh-ux/ng-ovh-contracts": "^4.0.6",
+    "@ovh-ux/ng-ovh-payment-method": "^9.1.5",
+    "@ovh-ux/ng-ovh-toaster": "^2.0.4",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.4",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
+    "@ovh-ux/ng-ui-router-layout": "^4.0.5",
     "@ovh-ux/ui-kit": "^5.0.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
