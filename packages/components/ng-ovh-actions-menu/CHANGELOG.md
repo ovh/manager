@@ -1,3 +1,12 @@
+## [5.0.11](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-actions-menu@5.0.10...@ovh-ux/ng-ovh-actions-menu@5.0.11) (2022-03-04)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `v12.0.` ([8145cd4](https://github.com/ovh/manager/commit/8145cd44a34cec071db4b5267182705625951077))
+
+
+
 ## [5.0.10](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-actions-menu@5.0.9...@ovh-ux/ng-ovh-actions-menu@5.0.10) (2021-10-26)
 
 

@@ -1,3 +1,12 @@
+## [9.1.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.1.4...@ovh-ux/ng-ovh-payment-method@9.1.5) (2022-03-04)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `v12.0.` ([8145cd4](https://github.com/ovh/manager/commit/8145cd44a34cec071db4b5267182705625951077))
+
+
+
 ## [9.1.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.1.3...@ovh-ux/ng-ovh-payment-method@9.1.4) (2022-03-04)
 
 

@@ -1,3 +1,12 @@
+## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-reket@0.1.0...@ovh-ux/ovh-reket@0.1.1) (2022-03-04)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `v12.0.` ([8145cd4](https://github.com/ovh/manager/commit/8145cd44a34cec071db4b5267182705625951077))
+
+
+
 # [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-reket@0.0.2...@ovh-ux/ovh-reket@0.1.0) (2022-02-23)
 
 

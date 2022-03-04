@@ -1,3 +1,12 @@
+## [5.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.6.2...@ovh-ux/manager-navbar@5.6.3) (2022-03-04)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `v12.0.` ([8145cd4](https://github.com/ovh/manager/commit/8145cd44a34cec071db4b5267182705625951077))
+
+
+
 ## [5.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.6.1...@ovh-ux/manager-navbar@5.6.2) (2022-01-25)
 
 

@@ -1,3 +1,17 @@
+# [4.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server-config@3.0.0...@ovh-ux/manager-dev-server-config@4.0.0) (2022-03-04)
+
+
+### Build System
+
+* **deps:** require Node.js 16 ([5687c17](https://github.com/ovh/manager/commit/5687c17f1ae65c07ffde12abeecd0f9a955af8b0)), closes [#6444](https://github.com/ovh/manager/issues/6444)
+
+
+### BREAKING CHANGES
+
+* **deps:** require Node.js 16
+
+
+
 # [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server-config@2.0.0...@ovh-ux/manager-dev-server-config@3.0.0) (2021-11-29)
 
 

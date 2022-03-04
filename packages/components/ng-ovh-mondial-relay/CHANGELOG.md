@@ -1,3 +1,12 @@
+## [8.2.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-mondial-relay@8.2.2...@ovh-ux/ng-ovh-mondial-relay@8.2.3) (2022-03-04)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `v12.0.` ([8145cd4](https://github.com/ovh/manager/commit/8145cd44a34cec071db4b5267182705625951077))
+
+
+
 ## [8.2.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-mondial-relay@8.2.1...@ovh-ux/ng-ovh-mondial-relay@8.2.2) (2022-01-25)
 
 

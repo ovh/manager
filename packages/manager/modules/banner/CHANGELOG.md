@@ -1,3 +1,12 @@
+## [1.2.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.11...@ovh-ux/manager-banner@1.2.12) (2022-03-04)
+
+
+### Bug Fixes
+
+* **dev-deps:** update `@ovh-ux/component-rollup-config` to `v12.0.` ([8145cd4](https://github.com/ovh/manager/commit/8145cd44a34cec071db4b5267182705625951077))
+
+
+
 ## [1.2.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.10...@ovh-ux/manager-banner@1.2.11) (2021-10-26)
 
 
