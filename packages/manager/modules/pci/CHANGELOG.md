@@ -1,3 +1,12 @@
+## [5.62.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.62.0...@ovh-ux/manager-pci@5.62.1) (2022-03-04)
+
+
+### Bug Fixes
+
+* **modules.flavors-list:** add missed deps ([#6635](https://github.com/ovh/manager/issues/6635)) ([0da850e](https://github.com/ovh/manager/commit/0da850eb22db9d9ce04667a0c60d3fcd6bb8bd25))
+
+
+
 # [5.62.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.61.0...@ovh-ux/manager-pci@5.62.0) (2022-03-03)
 
 
