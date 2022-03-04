@@ -57,10 +57,9 @@
         <!-- step 4 - configure job -->
         <oui-step-form
             data-header="{{ ::'data_processing_submit_job_stepper_configure_title' | translate }}"
-            data-submit-text="{{ ::'data_processing_submit_job_button_label' | translate }}"
             data-prevent-next="true"
-            data-on-submit="$ctrl.onSubmitJobHandler()"
             data-valid="$ctrl.isConfigureStepValid"
+            data-on-submit="$ctrl.prepareJobPayload()"
         >
             <pci-project-data-processing-submit-job-spark-config
                 data-project-id="$ctrl.projectId"
@@ -70,6 +69,39 @@
                 data-job-parameters="$ctrl.jobParameters"
             >
             </pci-project-data-processing-submit-job-spark-config>
+        </oui-step-form>
+
+        <oui-step-form
+            data-header="{{ ::'data_processing_submit_job_stepper_submit_title' | translate }}"
+            data-submit-text="{{ ::'data_processing_submit_job_button_label' | translate }}"
+            data-prevent-next="true"
+            data-on-submit="$ctrl.onSubmitJobHandler()"
+        >
+            <pci-order-command
+                data-order-api-url="$ctrl.orderAPIUrl"
+                data-order-data="$ctrl.orderData"
+                data-help-link="$ctrl.submitJobGuideUrl"
+                data-auto-height="true"
+                data-user="$ctrl.user"
+            >
+                <p
+                    data-translate="data_processing_submit_job_command_description"
+                ></p>
+                <a
+                    class="oui-link_icon"
+                    target="_blank"
+                    rel="noopener"
+                    data-ng-href="{{$ctrl.apiGuideUrl}}"
+                >
+                    <span
+                        data-translate="data_processing_submit_job_command_documentation_link"
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-external-link"
+                        aria-hidden="true"
+                    ></span>
+                </a>
+            </pci-order-command>
         </oui-step-form>
     </oui-stepper>
     <div class="submitjob__spinner" data-ng-if="$ctrl.isSubmitting">

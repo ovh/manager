@@ -26,6 +26,8 @@
   "pci_database_add_subnet_add": "Créer un sous-réseau",
   "pci_database_add_subnet_loading": "Chargement de sous-réseaux",
   "pci_database_add_step6_title": "Configuration du service de base de données",
+  "pci_database_add_command_description": "La commande suivante vous permet de créer votre service grâce à notre API.",
+  "pci_database_add_command_documentation_link": "Cliquez-ici pour accéder à la documentation.",
   "pci_database_add_create_database": "Créer un service de base de données",
   "pci_database_add_create_database_processing": "Le service est en cours de création",
   "pci_database_add_create_database_success": "Votre service est en cours de création et sera disponible dans quelques minutes.",
