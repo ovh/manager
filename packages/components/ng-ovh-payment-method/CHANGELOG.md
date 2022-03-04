@@ -1,3 +1,12 @@
+## [9.1.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.1.3...@ovh-ux/ng-ovh-payment-method@9.1.4) (2022-03-04)
+
+
+### Bug Fixes
+
+* **service:** restrict redirect url handling ([#6603](https://github.com/ovh/manager/issues/6603)) ([2c84729](https://github.com/ovh/manager/commit/2c847296608552d7505e20586ead7c90580637cc))
+
+
+
 ## [9.1.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.1.2...@ovh-ux/ng-ovh-payment-method@9.1.3) (2022-02-24)
 
 
