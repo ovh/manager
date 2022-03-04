@@ -81,6 +81,7 @@
   "server_sidebar_item_cloud_connect_all_order_follow_up_title": "Tous les services",
   "server_sidebar_item_managerv4_title": "Manager V4",
   "server_sidebar_item_pack_title": "Accès Internet",
+  "server_sidebar_item_pack_prefix": "Pack",
   "server_sidebar_item_telephony_title": "Téléphonie",
   "server_sidebar_item_telephony_prefix_carrier_sip": "Carrier SIP",
   "server_sidebar_item_telephony_prefix_number": "N°",
