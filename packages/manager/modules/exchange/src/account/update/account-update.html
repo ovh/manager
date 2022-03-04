@@ -85,7 +85,7 @@
                                 data-ng-change="$ctrl.checkTakenEmails()"
                                 data-ng-disabled="!$ctrl.canChangePrimary()"
                                 data-ng-model="$ctrl.selectedAccount.login"
-                                data-ng-pattern="/^[-_a-zA-Z0-9]+((\.|\+)[-_a-zA-Z0-9]+)*$/"
+                                data-ng-pattern="/^(?:[a-z0-9]+(?:[-_][a-z0-9]+)*)(?:(?:\.|\+)(?:[a-z0-9]+(?:[-_][a-z0-9]+)*))*$/"
                             />
                             <span class="input-group-addon">@</span>
                             <select
@@ -103,13 +103,60 @@
                             data-translate="exchange_tab_ALIAS_taken_error_message"
                             data-ng-if="$ctrl.takenEmailError"
                         ></small>
+                        <div
+                            class="oui-field__error"
+                            data-ng-if="$ctrl.newAccountForm.login.$error.required"
+                            role="alert"
+                        >
+                            <span
+                                class="oui-icon oui-icon-error"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                data-ng-bind=":: 'exchange_account_update_field_error_required' | translate"
+                            ></span>
+                        </div>
+                        <div
+                            class="oui-field__error"
+                            data-ng-if="$ctrl.newAccountForm.login.$error.pattern"
+                            role="alert"
+                        >
+                            <span
+                                class="oui-icon oui-icon-error"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                data-ng-bind=":: 'exchange_account_update_field_error_pattern' | translate"
+                            ></span>
+                        </div>
+                        <div
+                            class="oui-field__error"
+                            data-ng-if="$ctrl.newAccountForm.login.$error.emailAddressIsAlreadyTaken"
+                            role="alert"
+                        >
+                            <span
+                                class="oui-icon oui-icon-error"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                data-ng-bind=":: 'exchange_account_update_emailAddress_error_alreadyExists' | translate"
+                            ></span>
+                        </div>
+                        <div class="oui-field__helper">
+                            <span data-translate="exchange_account_update_emailAddress_hint"></span>
+                            <ul>
+                                <li data-translate="exchange_account_update_emailAddress_hint_part_1"></li>
+                                <li data-translate="exchange_account_update_emailAddress_hint_part_2"></li>
+                                <li data-translate="exchange_account_update_emailAddress_hint_part_3"></li>
+                            </ul>
+                        </div>
                         <div>
                             <oui-checkbox
                                 data-model="$ctrl.selectedAccount.hiddenFromGAL"
                                 data-name="accountInfoHiddenFromGAL"
                             >
                                 <span
-                                    data-translate="exchange_account_add_emailAddress_hide_from_directory"
+                                    data-translate="exchange_account_update_emailAddress_hide_from_directory"
                                 ></span>
                             </oui-checkbox>
                         </div>
