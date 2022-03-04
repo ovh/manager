@@ -1,3 +1,4 @@
+import upperFirst from 'lodash/upperFirst';
 import { TELECOM, TELECOM_BETA } from './constants';
 
 export const MANAGER_V4_CONFIG = {
@@ -94,12 +95,14 @@ export const PACK_CONFIG = {
       state: 'telecom.packs.pack',
       stateParams: ['packName'],
       app: [TELECOM],
+      prefix: 'pack',
       types: [
         {
           path: '/pack/xdsl/:packName/xdslAccess/services',
           state: 'telecom.packs.pack.xdsl.line',
           stateParams: ['packName', 'serviceName', 'number'],
           app: [TELECOM],
+          getPrefix: ([accessType] = ['']) => upperFirst(accessType),
         },
       ],
     },
