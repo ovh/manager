@@ -185,7 +185,7 @@ export default class ExchangeAccountAddController {
       lastName: this.newAccount.lastName,
       displayName: this.newAccount.displayName,
       initials: this.newAccount.initials,
-      description: this.newAccount.description,
+      description: `"${this.newAccount.description}"`,
       forwardingEmail: this.newAccount.forwardingEmail,
       storeCopyOfEmail: this.newAccount.storeCopyOfEmail,
       password: this.newAccount.password,

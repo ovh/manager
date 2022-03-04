@@ -147,7 +147,7 @@ export default class ExchangeUpdateAccountCtrl {
           : undefined,
       description:
         modifiedBuffer.description !== originalValues.description
-          ? modifiedBuffer.description
+          ? `"${modifiedBuffer.description}"`
           : undefined,
       forwardingEmail:
         modifiedBuffer.forwardingEmail !== originalValues.forwardingEmail
