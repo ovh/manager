@@ -80,6 +80,7 @@
   "server_sidebar_item_nutanix_clusters_all_title": "Tous mes clusters",
   "server_sidebar_item_managerv4_title": "Manager V4",
   "server_sidebar_item_pack_title": "Accès Internet",
+  "server_sidebar_item_pack_prefix": "Pack",
   "server_sidebar_item_telephony_title": "Téléphonie",
   "server_sidebar_item_telephony_prefix_carrier_sip": "Carrier SIP",
   "server_sidebar_item_telephony_prefix_number": "N°",
