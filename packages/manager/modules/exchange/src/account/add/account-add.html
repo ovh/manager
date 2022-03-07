@@ -398,23 +398,49 @@
                             data-ng-class="{ 'oui-field_error': $ctrl.newAccountForm.passwordConfirmation.$invalid && $ctrl.newAccountForm.passwordConfirmation.$touched }"
                         >
                             <label
-                                for="password"
+                                for="passwordConfirmation"
                                 class="oui-field__label oui-label"
                                 data-ng-bind=":: 'exchange_account_add_confirm_password_label' | translate"
                             ></label>
                             <div
                                 class="oui-field__control oui-field__control_m"
                             >
-                                <input
-                                    class="oui-input"
-                                    data-ng-attr-type="{{ $ctrl.shouldDisplayPasswordInput ? 'password' : 'text' }}"
-                                    id="passwordConfirmation"
-                                    name="passwordConfirmation"
-                                    required
-                                    data-ng-model="$ctrl.newAccount.passwordConfirmation"
-                                    data-ng-model-options="{ updateOn: 'blur' }"
-                                    data-ng-change="$ctrl.onPasswordConfirmationChange()"
-                                />
+                                <div class="mb-0 oui-input-overlay">
+                                    <input
+                                        class="oui-input"
+                                        id="passwordConfirmation"
+                                        name="passwordConfirmation"
+                                        data-ng-attr-type="{{ $ctrl.shouldDisplayPasswordInput ? 'password' : 'text' }}"
+                                        data-ng-model="$ctrl.newAccount.passwordConfirmation"
+                                        data-ng-model-options="{ updateOn: 'blur' }"
+                                        data-ng-change="$ctrl.onPasswordConfirmationChange()"
+                                        required
+                                    />
+                                    <button
+                                        data-ng-if="$ctrl.shouldDisplayPasswordInput"
+                                        class="oui-button"
+                                        type="button"
+                                        aria-label="{{:: 'exchange_account_add_password_button_show' | translate }}"
+                                        data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-eye-open"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </button>
+                                    <button
+                                        data-ng-if="!$ctrl.shouldDisplayPasswordInput"
+                                        class="oui-button"
+                                        type="button"
+                                        aria-label="{{:: 'exchange_account_add_password_button_hide' | translate }}"
+                                        data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-eye-closed"
+                                            aria-hidden="true"
+                                        ></span>
+                                    </button>
+                                </div>
                             </div>
                             <div
                                 class="oui-field__error"
