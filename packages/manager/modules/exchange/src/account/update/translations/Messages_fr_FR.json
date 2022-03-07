@@ -1,4 +1,5 @@
 {
+  "exchange_account_update": "Modifier le compte",
   "exchange_account_update_back_button": "Modifier le compte Exchange",
   "exchange_account_update_header": "Vous pouvez ajouter un compte e-mail à votre offre. Il sera pris en compte dans votre facture mensuelle.",
   "exchange_account_update_personal_account_info_title": "Informations du compte",
