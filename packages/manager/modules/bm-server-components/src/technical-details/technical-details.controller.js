@@ -14,11 +14,10 @@ export default class BmServerComponentsTechnicalDetailsController {
     this.formattedDataDisks = this.formatDisks('data');
     this.formattedCacheDisks = this.formatDisks('cache');
     this.formattedOsDisks = this.formatDisks('os');
-    this.formattedExtensionCard = get(
-      this.technicalDetails,
-      'storage.raid',
-      '-',
-    );
+    this.formattedExtensionCard =
+      this.technicalDetails.storage?.raid !== 'none'
+        ? this.technicalDetails.storage?.raid
+        : '';
     this.upgradeWithTicketAvailable = false;
     this.loading = true;
     this.loadData();
