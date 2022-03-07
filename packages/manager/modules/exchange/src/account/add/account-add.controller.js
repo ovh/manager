@@ -180,6 +180,7 @@ export default class ExchangeAccountAddController {
     const formattedAccount = {
       SAMAccountName: this.newAccount.samAccountName,
       login: this.newAccount.login,
+      hiddenFromGAL: this.newAccount.hiddenFromGAL,
       domain: this.newAccount.domain.name,
       firstName: this.newAccount.firstName,
       lastName: this.newAccount.lastName,
