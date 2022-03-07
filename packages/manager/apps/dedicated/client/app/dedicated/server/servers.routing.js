@@ -125,5 +125,14 @@ export default /* @ngInject */ ($stateProvider) => {
         get(dedicatedServers.headers, 'x-pagination-sort-order'),
       hideBreadcrumb: () => true,
     },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('dedicatedServers')
+        .then((dedicatedServers) =>
+          dedicatedServers.data.length === 0
+            ? 'app.dedicated-server.onboarding'
+            : false,
+        ),
   });
 };
