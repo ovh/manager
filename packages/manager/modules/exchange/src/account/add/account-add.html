@@ -153,17 +153,18 @@
                                 <li data-translate="exchange_account_add_emailAddress_hint_part_3"></li>
                             </ul>
                         </div>
-                        <div>
-                            <oui-checkbox
-                                data-model="$ctrl.newAccount.hiddenFromGAL"
-                                data-name="accountInfoHiddenFromGAL"
-                            >
-                                <span
-                                    data-translate="exchange_account_add_emailAddress_hide_from_directory"
-                                ></span>
-                            </oui-checkbox>
-                        </div>
                     </div>
+
+                    <!--Hide email account from directory-->
+                    <oui-checkbox
+                        class="mb-4"
+                        data-model="$ctrl.newAccount.hiddenFromGAL"
+                        data-name="accountInfoHiddenFromGAL"
+                    >
+                            <span
+                                data-translate="exchange_account_add_emailAddress_hide_from_directory"
+                            ></span>
+                    </oui-checkbox>
 
                     <!--Exchange 2010-->
                     <oui-field
