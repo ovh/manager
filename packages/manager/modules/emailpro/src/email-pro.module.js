@@ -6,6 +6,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/manager-core';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
+import onboarding from './onboarding';
 import routing from './email-pro.routing';
 
 const moduleName = 'ovhManagerEmailPro';
@@ -18,6 +19,7 @@ angular
     'pascalprecht.translate',
     ListLayoutHelper.moduleName,
     'ui.router',
+    onboarding,
   ])
   .config(routing);
 
