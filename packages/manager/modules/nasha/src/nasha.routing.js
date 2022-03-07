@@ -25,7 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .injector()
         .getAsync('resources')
         .then((resources) =>
-          resources.length === 0 ? 'nasha.onboarding' : false,
+          resources.data.length === 0 ? 'nasha.onboarding' : false,
         ),
   });
 };
