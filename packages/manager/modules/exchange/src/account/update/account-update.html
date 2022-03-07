@@ -284,38 +284,65 @@
                                 <div
                                     class="oui-field-control oui-field-control_3"
                                 >
-                                    <input
-                                        type="password"
-                                        class="oui-input"
-                                        id="selectedAccountPassword"
-                                        name="selectedAccountPassword"
-                                        placeholder="{{$ctrl.getPasswordPlaceholder()}}"
-                                        data-ng-change="$ctrl.setPasswordsFlag($ctrl.selectedAccount)"
-                                        data-ng-class="{'oui-input_error': $ctrl.simplePasswordFlag || $ctrl.containsNameFlag || $ctrl.containsSamAccountNameFlag || $ctrl.containsWhitespaces}"
-                                        data-ng-model="$ctrl.selectedAccount.password"
-                                        data-ng-required="!$ctrl.selectedAccount.canBeConfigured"
-                                        data-oui-tooltip="{{$ctrl.passwordTooltip}}"
-                                    />
-                                    <small
-                                        class="help-block"
-                                        data-translate="exchange_ACTION_update_account_step1_password_weak"
-                                        data-ng-if="$ctrl.simplePasswordFlag"
-                                    ></small>
-                                    <small
-                                        class="help-block"
-                                        data-translate="exchange_ACTION_update_account_step1_password_contains_name"
-                                        data-ng-if="$ctrl.containsNameFlag"
-                                    ></small>
-                                    <small
-                                        class="help-block"
-                                        data-ng-bind="$ctrl.containsSamAccountNameLabel"
-                                        data-ng-if="$ctrl.containsSamAccountNameFlag"
-                                    ></small>
-                                    <small
-                                        class="help-block"
-                                        data-translate="exchange_ACTION_update_account_step1_password_whitespace"
-                                        data-ng-if="$ctrl.containsWhitespaces"
-                                    ></small>
+                                    <div class="mb-0 oui-input-overlay">
+                                        <input
+                                            class="oui-input"
+                                            id="selectedAccountPassword"
+                                            name="selectedAccountPassword"
+                                            maxlength="256"
+                                            placeholder="{{$ctrl.getPasswordPlaceholder()}}"
+                                            data-ng-attr-type="{{ $ctrl.shouldDisplayPasswordInput ? 'password' : 'text' }}"
+                                            data-ng-change="$ctrl.onPasswordChange()"
+                                            data-ng-class="{'oui-input_error': $ctrl.simplePasswordFlag || $ctrl.containsNameFlag || $ctrl.containsSamAccountNameFlag || $ctrl.containsWhitespaces}"
+                                            data-ng-model="$ctrl.selectedAccount.password"
+                                            data-ng-required="!$ctrl.selectedAccount.canBeConfigured"
+                                            data-oui-tooltip="{{$ctrl.passwordTooltip}}"
+                                        />
+                                        <button
+                                            data-ng-if="$ctrl.shouldDisplayPasswordInput"
+                                            class="oui-button"
+                                            type="button"
+                                            aria-label="{{:: 'exchange_account_update_password_button_show' | translate }}"
+                                            data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
+                                        >
+                                        <span
+                                            class="oui-icon oui-icon-eye-open"
+                                            aria-hidden="true"
+                                        ></span>
+                                        </button>
+                                        <button
+                                            data-ng-if="!$ctrl.shouldDisplayPasswordInput"
+                                            class="oui-button"
+                                            type="button"
+                                            aria-label="{{:: 'exchange_account_update_password_button_hide' | translate }}"
+                                            data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
+                                        >
+                                        <span
+                                            class="oui-icon oui-icon-eye-closed"
+                                            aria-hidden="true"
+                                        ></span>
+                                        </button>
+                                        <small
+                                            class="help-block"
+                                            data-translate="exchange_ACTION_update_account_step1_password_weak"
+                                            data-ng-if="$ctrl.simplePasswordFlag"
+                                        ></small>
+                                        <small
+                                            class="help-block"
+                                            data-translate="exchange_ACTION_update_account_step1_password_contains_name"
+                                            data-ng-if="$ctrl.containsNameFlag"
+                                        ></small>
+                                        <small
+                                            class="help-block"
+                                            data-ng-bind="$ctrl.containsSamAccountNameLabel"
+                                            data-ng-if="$ctrl.containsSamAccountNameFlag"
+                                        ></small>
+                                        <small
+                                            class="help-block"
+                                            data-translate="exchange_ACTION_update_account_step1_password_whitespace"
+                                            data-ng-if="$ctrl.containsWhitespaces"
+                                        ></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -335,22 +362,49 @@
                                 <div
                                     class="oui-field-control oui-field-control_3"
                                 >
-                                    <input
-                                        type="password"
-                                        class="oui-input"
-                                        id="selectedAccountPasswordConfirmation"
-                                        name="selectedAccountPasswordConfirmation"
-                                        placeholder="{{$ctrl.getPasswordPlaceholder()}}"
-                                        data-ng-change="$ctrl.setPasswordsFlag($ctrl.selectedAccount)"
-                                        data-ng-class="{'oui-input_error': $ctrl.selectedAccount.passwordConfirmation && $ctrl.differentPasswordFlag}"
-                                        data-ng-model="$ctrl.selectedAccount.passwordConfirmation"
-                                        data-oui-tooltip="{{$ctrl.passwordTooltip}}"
-                                    />
-                                    <small
-                                        class="help-block"
-                                        data-translate="exchange_ACTION_update_account_step1_password_different"
-                                        data-ng-if="$ctrl.selectedAccount.passwordConfirmation && $ctrl.differentPasswordFlag"
-                                    ></small>
+                                    <div class="mb-0 oui-input-overlay">
+                                        <input
+                                            type="password"
+                                            class="oui-input"
+                                            id="selectedAccountPasswordConfirmation"
+                                            name="selectedAccountPasswordConfirmation"
+                                            placeholder="{{$ctrl.getPasswordPlaceholder()}}"
+                                            data-ng-attr-type="{{ $ctrl.shouldDisplayPasswordInput ? 'password' : 'text' }}"
+                                            data-ng-change="$ctrl.setPasswordsFlag($ctrl.selectedAccount)"
+                                            data-ng-class="{'oui-input_error': $ctrl.selectedAccount.passwordConfirmation && $ctrl.differentPasswordFlag}"
+                                            data-ng-model="$ctrl.selectedAccount.passwordConfirmation"
+                                            data-oui-tooltip="{{$ctrl.passwordTooltip}}"
+                                        />
+                                        <button
+                                            data-ng-if="$ctrl.shouldDisplayPasswordInput"
+                                            class="oui-button"
+                                            type="button"
+                                            aria-label="{{:: 'exchange_account_update_password_button_show' | translate }}"
+                                            data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
+                                        >
+                                        <span
+                                            class="oui-icon oui-icon-eye-open"
+                                            aria-hidden="true"
+                                        ></span>
+                                        </button>
+                                        <button
+                                            data-ng-if="!$ctrl.shouldDisplayPasswordInput"
+                                            class="oui-button"
+                                            type="button"
+                                            aria-label="{{:: 'exchange_account_update_password_button_hide' | translate }}"
+                                            data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
+                                        >
+                                        <span
+                                            class="oui-icon oui-icon-eye-closed"
+                                            aria-hidden="true"
+                                        ></span>
+                                        </button>
+                                        <small
+                                            class="help-block"
+                                            data-translate="exchange_ACTION_update_account_step1_password_different"
+                                            data-ng-if="$ctrl.selectedAccount.passwordConfirmation && $ctrl.differentPasswordFlag"
+                                        ></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -638,7 +692,7 @@
                                 <label
                                     class="control-label"
                                     for="contactInfoPhone"
-                                    data-ng-bind=":: 'exchange_account_add_contact_mobile_label' | translate"
+                                    data-ng-bind=":: 'exchange_account_update_contact_mobile_label' | translate"
                                 ></label>
                                 <div class="oui-field">
                                     <div
@@ -677,7 +731,7 @@
                                 <label
                                     class="control-label"
                                     for="contactInfoMobile"
-                                    data-ng-bind=":: 'exchange_account_add_contact_phone_label' | translate"
+                                    data-ng-bind=":: 'exchange_account_update_contact_phone_label' | translate"
                                 ></label>
                                 <div class="oui-field">
                                     <div
@@ -716,7 +770,7 @@
                                 <label
                                     class="control-label"
                                     for="contactInfoFax"
-                                    data-ng-bind=":: 'exchange_account_add_contact_fax_label' | translate"
+                                    data-ng-bind=":: 'exchange_account_update_contact_fax_label' | translate"
                                 ></label>
                                 <div class="oui-field">
                                     <div
