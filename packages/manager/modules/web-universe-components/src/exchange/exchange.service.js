@@ -619,9 +619,10 @@ export default class Exchange {
     );
     delete accountToUpdate.deleteOutlook;
 
-    accountToUpdate.displayName = account.displayName
-      ? account.displayName.trim()
-      : undefined;
+    accountToUpdate.displayName =
+      account.displayName !== undefined
+        ? account.displayName.trim()
+        : undefined;
     const { password } = accountToUpdate;
     delete accountToUpdate.password;
     if (accountToUpdate.accountLicense) {
