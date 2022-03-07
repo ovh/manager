@@ -6,6 +6,7 @@ import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 import some from 'lodash/some';
+import isString from 'lodash/isString';
 import { ACCOUNT_WORLD_PHONE_REGEX } from '../account.constants';
 
 export default class ExchangeUpdateAccountCtrl {
@@ -13,6 +14,7 @@ export default class ExchangeUpdateAccountCtrl {
   constructor(
     $scope,
     $translate,
+    $timeout,
     exchangeServiceInfrastructure,
     exchangeAccountTypes,
     wucExchange,
@@ -22,6 +24,7 @@ export default class ExchangeUpdateAccountCtrl {
   ) {
     this.$scope = $scope;
     this.$translate = $translate;
+    this.$timeout = $timeout;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
     this.exchangeAccountTypes = exchangeAccountTypes;
     this.wucExchange = wucExchange;
@@ -47,6 +50,7 @@ export default class ExchangeUpdateAccountCtrl {
     this.selectedAccount.oldDeleteOutlook = deleteOutlook;
     this.selectedAccount.quota = quota || totalQuota.value;
 
+    this.shouldDisplayPasswordInput = true;
     this.passwordTooltip = null; // set in $scope.loadAccountOptions()
 
     this.exchange = this.wucExchange.value;
@@ -318,7 +322,7 @@ export default class ExchangeUpdateAccountCtrl {
 
       // see the password complexity requirements of Microsoft Windows Server (like wucExchange)
       // https://technet.microsoft.com/en-us/library/hh994562%28v=ws.10%29.aspx
-      if (this.updateAccountOptions.passwordComplexityEnabled) {
+      if (this.updateAccountOptions?.passwordComplexityEnabled) {
         this.simplePasswordFlag =
           this.simplePasswordFlag ||
           !this.wucExchangePassword.passwordComplexityCheck(
@@ -439,6 +443,77 @@ export default class ExchangeUpdateAccountCtrl {
     return isChangingPassword && hasSharepoint;
   }
 
+  switchBetweenPasswordAndTextInput() {
+    const touchednessStatus = this.updateAccountForm.selectedAccountPassword
+      .$touched;
+    this.shouldDisplayPasswordInput = !this.shouldDisplayPasswordInput;
+    this.$timeout(() => {
+      if (touchednessStatus) {
+        this.updateAccountForm.selectedAccountPassword.$setTouched();
+        // It is intentional if the touchness impacts the dirtyness
+        this.updateAccountForm.selectedAccountPassword.$setDirty();
+      }
+
+      this.checkPasswordValidity();
+    });
+  }
+
+  checkPasswordValidity() {
+    if (this.updateAccountForm.selectedAccountPassword.$error.required) {
+      this.updateAccountForm.selectedAccountPassword.$setValidity(
+        'doesntRespectComplexityRules',
+        true,
+      );
+      this.updateAccountForm.selectedAccountPassword.$setValidity(
+        'containsDisplayName',
+        true,
+      );
+      this.updateAccountForm.selectedAccountPassword.$setValidity(
+        'isSameAsSAMAccountName',
+        true,
+      );
+      return;
+    }
+
+    if (this.accountCreationOptions?.passwordComplexityEnabled) {
+      this.updateAccountForm.selectedAccountPassword.$setValidity(
+        'doesntRespectComplexityRules',
+        this.wucExchangePassword.passwordComplexityCheck(
+          this.selectedAccount.password,
+        ) &&
+          this.wucExchangePassword.passwordSimpleCheck(
+            this.selectedAccount.password,
+            true,
+            this.updateAccountOptions.minPasswordLength,
+          ),
+      );
+      this.updateAccountForm.selectedAccountPassword.$setValidity(
+        'containsDisplayName',
+        !this.wucExchangePassword.passwordContainsName(
+          this.selectedAccount.password,
+          this.selectedAccount.displayName,
+        ),
+      );
+      this.updateAccountForm.selectedAccountPassword.$setValidity(
+        'isSameAsSAMAccountName',
+        isEmpty(this.selectedAccount.samAccountName) ||
+          (isString(this.selectedAccount.password) &&
+            isString(this.selectedAccount.samAccountName) &&
+            this.selectedAccount.selectedAccountPassword.toUpperCase() !==
+              this.selectedAccount.samAccountName.toUpperCase()),
+      );
+    } else {
+      this.updateAccountForm.selectedAccountPassword.$setValidity(
+        'doesntRespectComplexityRules',
+        this.wucExchangePassword.passwordSimpleCheck(
+          this.selectedAccount.password,
+          true,
+          this.updateAccountOptions?.minPasswordLength,
+        ),
+      );
+    }
+  }
+
   getCompleteDomain(domainName) {
     const result = find(
       this.updateAccountOptions.availableDomains,
@@ -485,7 +560,7 @@ export default class ExchangeUpdateAccountCtrl {
         }
 
         this.passwordTooltip = this.updateAccountOptions
-          .passwordComplexityEnabled
+          ?.passwordComplexityEnabled
           ? this.$translate.instant(
               'exchange_ACTION_update_account_step1_complex_password_tooltip',
               { t0: this.updateAccountOptions.minPasswordLength },
@@ -526,6 +601,11 @@ export default class ExchangeUpdateAccountCtrl {
           `);
         });
     }
+  }
+
+  onPasswordChange() {
+    this.checkPasswordValidity();
+    this.setPasswordsFlag(this.selectedAccount);
   }
 
   onCountryPhoneCodeChange(type) {
