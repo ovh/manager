@@ -350,7 +350,7 @@
                 name="holder"
                 placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_bankAccount_holder' | translate }}"
                 type="text"
-                data-ng-model="$ctrl.bankAccount.holder"
+                ng-model="$ctrl.bankAccount.holder"
                 required
             />
         </oui-field>
@@ -365,7 +365,7 @@
                 name="iban"
                 placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_iban' | translate }}"
                 type="text"
-                data-ng-model="$ctrl.bankAccount.iban"
+                ng-model="$ctrl.bankAccount.iban"
                 data-ui-validate="{ iban: '!$ctrl.isValidIban($ctrl.bankAccount.iban)' }"
                 required
             />
@@ -418,7 +418,7 @@
 
     <oui-form-actions
         data-ng-if="$ctrl.editMode"
-        submit-text="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_submit_edit_label' | translate }}"
+        submit-text="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_submit_label' | translate }}"
         disabled="!$ctrl.requirements || $ctrl.loading.submit || formKYC.$invalid"
         on-cancel="$ctrl.onCancelEdit()"
         cancel-text="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_submit_cancel' | translate }}"

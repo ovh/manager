@@ -4,13 +4,13 @@ import beneficiaries from '../beneficiaries';
 import component from './summary.component';
 
 import indentityOverview from '../overview-identity';
-import bankAccount from './bank-account';
 
 const moduleName = 'TelephonySvaWalletKycIdentitySummary';
 
 angular
-  .module(moduleName, [beneficiaries, indentityOverview, bankAccount])
+  .module(moduleName, [beneficiaries, indentityOverview])
   .component('telephonySvaWalletKycIdentitySummary', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(/* @ngTranslationsInject:json ./updateBankAccount/translations */);
 
 export default moduleName;
