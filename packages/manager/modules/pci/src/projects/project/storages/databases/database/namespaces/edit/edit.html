@@ -52,10 +52,18 @@
                     oui-popover-placement="right"
                 ></button>
                 <oui-radio-group model="$ctrl.model.type">
-                    <oui-radio inline value="'aggregated'" disabled>
+                    <oui-radio
+                        inline
+                        value="$ctrl.NAMESPACES_TYPES.AGGREGATED"
+                        disabled
+                    >
                         <span>Aggregated</span>
                     </oui-radio>
-                    <oui-radio inline value="'unaggregated'" disabled>
+                    <oui-radio
+                        inline
+                        value="$ctrl.NAMESPACES_TYPES.UNAGGREGATED"
+                        disabled
+                    >
                         <span>Unaggregated</span>
                     </oui-radio>
                 </oui-radio-group>
@@ -93,7 +101,10 @@
                 />
             </oui-field>
         </div>
-        <div class="col" ng-if="$ctrl.model.type === 'aggregated'">
+        <div
+            class="col"
+            ng-if="$ctrl.model.type === $ctrl.NAMESPACES_TYPES.AGGREGATED"
+        >
             <oui-field>
                 <label class="oui-field__label">
                     <span

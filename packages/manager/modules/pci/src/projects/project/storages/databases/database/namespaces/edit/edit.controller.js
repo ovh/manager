@@ -4,6 +4,7 @@ import {
 } from '../durationHelper.constants';
 import Namespace from '../../../../../../../components/project/storages/databases/namespace.class';
 import { FORM_RULES } from '../add/add.constants';
+import { TYPE } from '../../../../../../../components/project/storages/databases/namespaces.constants';
 
 export default class {
   /* @ngInject */
@@ -11,6 +12,7 @@ export default class {
     this.$translate = $translate;
     this.DatabaseService = DatabaseService;
     this.FORM_RULES = FORM_RULES;
+    this.NAMESPACES_TYPES = TYPE;
   }
 
   $onInit() {
@@ -44,7 +46,7 @@ export default class {
   prepareModel() {
     return new Namespace({
       resolution:
-        this.namespace.type === 'unaggregated'
+        this.namespace.type === this.NAMESPACES_TYPES.UNAGGREGATED
           ? null
           : stringToDuration(this.model.resolution),
       retention: {

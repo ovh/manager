@@ -1,6 +1,7 @@
 import { stringToDuration } from '../durationHelper.constants';
 import Namespace from '../../../../../../../components/project/storages/databases/namespace.class';
 import { FORM_RULES } from './add.constants';
+import { TYPE } from '../../../../../../../components/project/storages/databases/namespaces.constants';
 
 export default class {
   /* @ngInject */
@@ -8,12 +9,13 @@ export default class {
     this.$translate = $translate;
     this.DatabaseService = DatabaseService;
     this.FORM_RULES = FORM_RULES;
+    this.NAMESPACES_TYPES = TYPE;
   }
 
   $onInit() {
     this.trackDashboard('namespaces_add', 'page');
     this.model = {
-      type: 'aggregated',
+      type: this.NAMESPACES_TYPES.AGGREGATED,
       retention: {},
     };
   }
