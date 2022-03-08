@@ -50,7 +50,7 @@
   "exchange_account_update_password_hint_complex_1_3_3": "des chiffres entre 0 et 9,",
   "exchange_account_update_password_hint_complex_1_3_4": "des caractères spéciaux.",
   "exchange_account_update_passwordConfirmation_label": "Confirmation",
-  "exchange_account_update_confirm_button": "Enregister les modifications",
+  "exchange_account_update_confirm_button": "Enregistrer les modifications",
   "exchange_account_update_cancel_button": "Annuler",
   "exchange_account_update_field_error_required": "Veuillez compléter ce champ.",
   "exchange_account_update_field_error_doesntRespectComplexityRules": "Ce champ ne respecte pas les règles de complexité.",
