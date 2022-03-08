@@ -34,5 +34,7 @@
   "pci_database_add_name_max_rule": "Maksimum {{max}} znaków",
   "pci_database_add_name_pattern_rule": "Może zawierać jedynie cyfry, litery, podkreślenia, myślniki lub kropki.",
   "pci_database_add_command_description": "Poniższe zamówienie pozwala na utworzenie usługi za pomocą naszego API.",
-  "pci_database_add_command_documentation_link": "Kliknij tutaj, aby uzyskać dostęp do dokumentacji."
+  "pci_database_add_command_documentation_link": "Kliknij tutaj, aby uzyskać dostęp do dokumentacji.",
+  "pci_database_add_footer_part_1": "Wszystkie nazwy produktów, logo i znaki towarowe należą do ich właścicieli. Wszystkie nazwy firm, produktów i usług publikowane na tej stronie internetowej służą wyłącznie do celów identyfikacji. Używanie tych nazw, logo i znaków towarowych nie wymaga uzyskania zgody.",
+  "pci_database_add_footer_part_2": "*Redis jest znakiem towarowym firmy Redis Ltd. Wszystkie prawa z nim związane są zastrzeżone dla Redis Ltd. Użycie go przez OVH SAS w jakiejkolwiek formie ma charakter wyłącznie referencyjny i nie oznacza sponsorowania, wspierania lub powiązania pomiędzy Redis a OVH SAS."
 }
