@@ -20,9 +20,6 @@ export default /* @ngInject */ ($stateProvider) => {
           )
           .catch(() => false),
 
-      packInfo: /* @ngInject */ (AnthosTenantsService, serviceInfo) =>
-        AnthosTenantsService.getPackInfo(serviceInfo),
-
       goBack: /* @ngInject */ ($state, goToTenant) => (
         message,
         type,

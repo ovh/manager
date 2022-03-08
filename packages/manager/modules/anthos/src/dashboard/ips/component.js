@@ -16,6 +16,7 @@ export default {
     trackClick: '<',
     ipHitTracking: '<',
     availableOptions: '<',
+    packInfo: '<',
   },
   controller,
   template,

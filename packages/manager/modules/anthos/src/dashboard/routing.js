@@ -152,6 +152,9 @@ export default /* @ngInject */ ($stateProvider) => {
       displayAlerterMessage: /* @ngInject */ (Alerter) => (type, message) =>
         Alerter[type](message, ANTHOS_TENANT_ALERTER),
 
+      packInfo: /* @ngInject */ (AnthosTenantsService, serviceInfo) =>
+        AnthosTenantsService.getPackInfo(serviceInfo),
+
       reloadState: /* @ngInject */ ($state) => () => {
         $state.go($state.current, {}, { reload: true });
       },
