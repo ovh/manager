@@ -27,7 +27,7 @@ export default class {
   }
 
   hasTypeRedis() {
-    return this.databases.find((elm) => elm.engine === 'redis');
+    return this.databases.find((elm) => elm.engine === DATABASE_TYPES.REDIS);
   }
 
   loadMessages() {
