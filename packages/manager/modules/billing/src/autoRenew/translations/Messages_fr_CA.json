@@ -129,8 +129,6 @@
   "billing_autorenew_service_type_OVH_CLOUD_CONNECT": "OVHcloud Connect",
   "billing_autorenew_service_type_WEB_PAAS": "Web PaaS",
   "billing_autorenew_service_type_NETAPP": "Enterprise File Storage",
-  "billing_autorenew_service_type_NUTANIX": "Nutanix",
-
   "billing_autorenew_service_type_CLOUD_PROJECT": "Projets PCI",
   "billing_autorenew_service_type_CLOUD_DB_ENTERPRISE_CLUSTER": "Enterprise Cloud Database",
   "billing_autorenew_service_type_DOMAIN_ZONE": "Zones DNS",
@@ -151,6 +149,7 @@
   "billing_autorenew_service_type_MS_SERVICES_SHAREPOINT": "Microsoft SharePoint",
   "billing_autorenew_service_type_PACK_XDSL": "Packs xDSL",
   "billing_autorenew_service_type_VRACK": "vRacks",
+  "billing_autorenew_service_type_NUTANIX": "Nutanix",
   "billing_export_csv": "Exporter en CSV",
   "billing_common_link_new_window": "(nouvelle fenêtre)",
   "billing_autorenew_renew_action": "Renouveler",

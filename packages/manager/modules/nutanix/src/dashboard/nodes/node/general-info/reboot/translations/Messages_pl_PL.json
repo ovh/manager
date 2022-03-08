@@ -1,0 +1,8 @@
+{
+  "nutanix_node_reboot_title": "Wykonaj restart serwera",
+  "nutanix_node_reboot_description": "Czy na pewno chcesz zrestartować serwer {{nodeName}}?",
+  "nutanix_node_reboot_success": "Serwer {{nodeName}} zostanie zrestartowany.",
+  "nutanix_node_reboot_error": "Wystąpił błąd podczas restartu serwera: {{message}}",
+  "nutanix_node_reboot_confirm": "Zatwierdź",
+  "nutanix_node_reboot_cancel": "Anuluj"
+}

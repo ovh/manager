@@ -1,0 +1,8 @@
+{
+  "nutanix_node_reboot_title": "Riavvia il server ",
+  "nutanix_node_reboot_description": "Vuoi davvero riavviare il server {{nodeName}}?",
+  "nutanix_node_reboot_success": "Il server {{nodeName}} verrà riavviato.",
+  "nutanix_node_reboot_error": "Si è verificato un errore durante la richiesta di riavvio: {{message}}",
+  "nutanix_node_reboot_confirm": "Conferma",
+  "nutanix_node_reboot_cancel": "Annulla"
+}

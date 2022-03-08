@@ -1,0 +1,11 @@
+{
+  "nutanix_dashboard_nodes_list_display_name": "Nazwa węzła",
+  "nutanix_dashboard_nodes_list_type_of_server": "Typ serwera",
+  "nutanix_dashboard_nodes_list_status": "Status węzła",
+  "nutanix_dashboard_nodes_list_localisation": "Lokalizacja",
+  "nutanix_dashboard_nodes_list_status_OK": "Normalny",
+  "nutanix_dashboard_nodes_list_status_ERROR": "Błąd",
+  "nutanix_dashboard_nodes_list_status_HACKED": "Hack",
+  "nutanix_dashboard_nodes_list_status_HACKED_BLOCKED": "Zhakowany i zablokowany",
+  "nutanix_dashboard_nodes_list_localisation_value": "{{dcName}} (Szafa {{rackName}})"
+}

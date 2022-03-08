@@ -1,0 +1,11 @@
+{
+  "nutanix_dashboard_nodes_list_display_name": "Nome do nó",
+  "nutanix_dashboard_nodes_list_type_of_server": "Tipo de servidor",
+  "nutanix_dashboard_nodes_list_status": "Estado do nó",
+  "nutanix_dashboard_nodes_list_localisation": "Localização",
+  "nutanix_dashboard_nodes_list_status_OK": "Normal",
+  "nutanix_dashboard_nodes_list_status_ERROR": "Erro",
+  "nutanix_dashboard_nodes_list_status_HACKED": "Pirateado",
+  "nutanix_dashboard_nodes_list_status_HACKED_BLOCKED": "Servidor em modo pirateado e bloqueado",
+  "nutanix_dashboard_nodes_list_localisation_value": "{{dcName}} (Rack {{rackName}})"
+}
