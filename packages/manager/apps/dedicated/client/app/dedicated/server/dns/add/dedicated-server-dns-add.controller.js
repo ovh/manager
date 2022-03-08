@@ -14,9 +14,7 @@ angular
         domain: '',
         ip: '',
       };
-      $scope.ipdata = {
-        t: [],
-      };
+      $scope.ipdata = [];
       $scope.loading = false;
 
       $scope.loadIpList = function loadIpList() {
@@ -40,18 +38,12 @@ angular
               // (old kimsufi)
               $scope.entry.ip = $scope.server.ip;
 
-              $scope.ipdata.t.push({
-                name: $scope.server.ip,
-                data: $scope.server.ip,
-              });
+              $scope.ipdata.push($scope.server.ip);
             }
             data.sort();
 
             angular.forEach(data, (ip) => {
-              $scope.ipdata.t.push({
-                name: ip,
-                data: ip,
-              });
+              $scope.ipdata.push(ip);
             });
             $scope.loading = false;
           },
