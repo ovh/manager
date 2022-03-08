@@ -1,0 +1,11 @@
+{
+  "nutanix_dashboard_nodes_list_display_name": "Nome del nodo",
+  "nutanix_dashboard_nodes_list_type_of_server": "Tipo di server",
+  "nutanix_dashboard_nodes_list_status": "Stato del nodo",
+  "nutanix_dashboard_nodes_list_localisation": "Localizzazione",
+  "nutanix_dashboard_nodes_list_status_OK": "Normale",
+  "nutanix_dashboard_nodes_list_status_ERROR": "In errore",
+  "nutanix_dashboard_nodes_list_status_HACKED": "Hack",
+  "nutanix_dashboard_nodes_list_status_HACKED_BLOCKED": "Compromesso e bloccato",
+  "nutanix_dashboard_nodes_list_localisation_value": "{{dcName}} (Rack {{rackName}})"
+}
