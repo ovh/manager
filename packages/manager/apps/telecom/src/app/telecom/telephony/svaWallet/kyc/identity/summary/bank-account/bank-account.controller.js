@@ -15,7 +15,7 @@ export default class KycIdentitySummaryBankAccountController {
   }
 
   confirm() {
-    this.errorMessage = undefined;
+    this.errorMessage = null;
 
     this.isLoading = true;
     this.saveWalletIban(this.model)
