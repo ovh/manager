@@ -20,12 +20,14 @@ export default class KycIdentitySummaryBankAccountController {
     this.isLoading = true;
     this.saveWalletIban(this.model)
       .then(() => {
-        this.editMode = false;
+        this.isOpenModal = false;
         this.bankAccount = this.model;
         this.updateIbanSuccessMessage = true;
       })
       .catch(({ data: error }) => {
         this.errorMessage = error.message;
+      })
+      .finally(() => {
         this.isLoading = false;
       });
   }
