@@ -1,4 +1,6 @@
 {
+  "manager_hub_products_ALL_DOM": "Pack AllDom",
+  "manager_hub_products_DEDICATED_ANTHOS_TENANTS": "Anthos Platform",
   "manager_hub_products_CDN_DEDICATED": "CDN",
   "manager_hub_products_CLOUD_PROJECT": "Progetti PCI",
   "manager_hub_products_CLOUD_DB_ENTERPRISE_CLUSTER": "Enterprise Cloud Databases",
@@ -6,6 +8,7 @@
   "manager_hub_products_DBAAS_QUEUE": "DBaaS Queue",
   "manager_hub_products_DEDICATED_CEPH": "Cloud Disk Array",
   "manager_hub_products_DEDICATED_CLOUD": "VMware",
+  "manager_hub_products_ESSENTIALS": "Managed Bare Metal",
   "manager_hub_products_DEDICATED_HOUSING": "Server in housing",
   "manager_hub_products_DEDICATED_NASHA": "NASHA",
   "manager_hub_products_DEDICATED_SERVER": "Server dedicati",
@@ -44,6 +47,9 @@
   "manager_hub_products_LICENCE_SQL_SERVER": "Licenze SQL Server",
   "manager_hub_products_METRICS": "Metrics",
   "manager_hub_products_MS_SERVICES_SHAREPOINT": "Microsoft SharePoint",
+  "manager_hub_products_STORAGE_NETAPP": "Enterprise File Storage",
+  "manager_hub_products_NUTANIX": "Nutanix",
+  "manager_hub_products_OVH_CLOUD_CONNECT": "OVHcloud Connect",
   "manager_hub_products_OVER_THE_BOX": "OverTheBox",
   "manager_hub_products_PACK_XDSL": "Pack xDSL",
   "manager_hub_products_SMS": "SMS",
@@ -54,15 +60,8 @@
   "manager_hub_products_VPS": "Server Privati Virtuali",
   "manager_hub_products_VRACK": "vRack",
   "manager_hub_products_XDSL": "xDSL",
+  "manager_hub_products_WEB_PAA_S_SUBSCRIPTION": "Web PaaS",
   "manager_hub_products_see_less": "Visualizza meno servizi",
   "manager_hub_products_see_more": "Visualizza più servizi",
-  "manager_hub_products_see_all": "Visualizza tutto",
-  "manager_hub_products_OVH_CLOUD_CONNECT": "OVHcloud Connect",
-  "manager_hub_products_ESSENTIALS": "Managed Bare Metal",
-  "manager_hub_products_WEB_PAA_S_SUBSCRIPTION": "Web PaaS",
-  "manager_hub_products_ALL_DOM": "Pack AllDom",
-  "manager_hub_products_NETAPP": "NetApp",
-  "manager_hub_products_STORAGE_NETAPP": "Enterprise File Storage",
-  "manager_hub_products_DEDICATED_ANTHOS_TENANTS": "Anthos Platform",
-  "manager_hub_products_NUTANIX": "Nutanix"
+  "manager_hub_products_see_all": "Visualizza tutto"
 }
