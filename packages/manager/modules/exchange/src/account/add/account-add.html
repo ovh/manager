@@ -708,10 +708,11 @@
                                             id="contactInfoPhone"
                                             name="contactInfoPhone"
                                             type="text"
-                                            maxlength="256"
+                                            data-ng-pattern="$ctrl.ACCOUNT_WORLD_PHONE_REGEX"
                                             data-ng-model="$ctrl.telephonyModel.phone.number"
                                             data-ng-change="$ctrl.onCountryPhoneCodeChange('phone')"
                                             data-ng-required="$ctrl.telephonyModel.phone.selected"
+                                            data-oui-tooltip="{{:: 'exchange_account_add_phone_help_text' | translate}}"
                                         />
                                     </div>
                                     <div class="oui-field__footer">
@@ -763,10 +764,11 @@
                                             id="contactInfoMobile"
                                             name="contactInfoMobile"
                                             type="text"
-                                            maxlength="256"
+                                            data-ng-pattern="$ctrl.ACCOUNT_WORLD_PHONE_REGEX"
                                             data-ng-model="$ctrl.telephonyModel.mobile.number"
                                             data-ng-change="$ctrl.onCountryPhoneCodeChange('mobile')"
                                             data-ng-required="$ctrl.telephonyModel.mobile.selected"
+                                            data-oui-tooltip="{{:: 'exchange_account_add_phone_help_text' | translate}}"
                                         />
                                     </div>
                                     <div class="oui-field__footer">
@@ -818,10 +820,11 @@
                                             id="contactInfoFax"
                                             name="contactInfoFax"
                                             type="text"
-                                            maxlength="256"
+                                            data-ng-pattern="$ctrl.ACCOUNT_WORLD_PHONE_REGEX"
                                             data-ng-model="$ctrl.telephonyModel.fax.number"
                                             data-ng-change="$ctrl.onCountryPhoneCodeChange('fax')"
                                             data-ng-required="$ctrl.telephonyModel.fax.selected"
+                                            data-oui-tooltip="{{:: 'exchange_account_add_phone_help_text' | translate}}"
                                         />
                                     </div>
                                     <div class="oui-field__footer">
