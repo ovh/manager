@@ -1,6 +1,6 @@
 import { FIELD_TYPES } from './advanced-configuration.constants';
 
-export default class {
+export default class AdvancedConfigurationCtrl {
   /* @ngInject */
   constructor($translate, CucCloudMessage, DatabaseService, $timeout) {
     this.$translate = $translate;
@@ -102,7 +102,7 @@ export default class {
   }
 
   onTypeChanged(modelValue, $index) {
-    this.model[$index].key = undefined;
+    this.model[$index].key = null;
     // reset value on field change to avoid invalid data
     this.model[$index].value = undefined;
     this.$timeout(() => {

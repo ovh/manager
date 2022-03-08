@@ -1,4 +1,4 @@
-<div class="container-fluid px-0 mt-3">
+<div class="container-fluid">
     <h2 data-translate="pci_databases_advanced_configuration_tab_title"></h2>
     <oui-message data-type="info" data-dismissable>
         <span
@@ -18,7 +18,7 @@
                                 <legend
                                     class="ng-hide"
                                     aria-hidden="true"
-                                    ng-bind="pci_databases_advanced_configuration_add | translate"
+                                    translate="pci_databases_advanced_configuration_add"
                                 ></legend>
                                 <div class="oui-inline-adder__row">
                                     <div class="oui-inline-adder__field">
@@ -28,8 +28,8 @@
                                         >
                                             <oui-select
                                                 disabled="$ctrl.model[$index].added || $ctrl.pending"
-                                                name="configurationKey"
-                                                id="configurationKey"
+                                                name="configurationKey-{{$index}}"
+                                                id="configurationKey-{{$index}}"
                                                 match="name"
                                                 data-model="$ctrl.model[$index].key"
                                                 data-items="$ctrl.addableProperties"
@@ -49,7 +49,6 @@
                                                 class="oui-input"
                                                 ng-if="$ctrl.model[$index].key.type === $ctrl.FIELD_TYPES.string && !$ctrl.model[$index].key.values"
                                                 name="field-{{$index}}"
-                                                placeholder=""
                                                 ng-model="$ctrl.model[$index].value"
                                                 type="text"
                                             />
@@ -109,7 +108,10 @@
                                     data-ng-if="!$ctrl.model[$index].added"
                                     data-ng-disabled="!$ctrl.model[$index].key || $ctrl.addableProperties.length <= 1 || $ctrl.pending"
                                 >
-                                    <span class="oui-icon oui-icon-add"></span>
+                                    <span
+                                        class="oui-icon oui-icon-add"
+                                        aria-hidden="true"
+                                    ></span>
                                 </button>
                                 <button
                                     data-ng-disabled="$ctrl.pending"
@@ -143,7 +145,7 @@
                     size="l"
                     disabled="$ctrl.pending"
                     variant="primary"
-                    ng-click="$ctrl.updateAdvancedConfiguration()"
+                    on-click="$ctrl.updateAdvancedConfiguration()"
                 >
                     <span
                         data-translate="pci_databases_advanced_configuration_update"
