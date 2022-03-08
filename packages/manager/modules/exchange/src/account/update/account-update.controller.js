@@ -6,6 +6,7 @@ import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 import some from 'lodash/some';
+import { ACCOUNT_WORLD_PHONE_REGEX } from '../account.constants';
 
 export default class ExchangeUpdateAccountCtrl {
   /* @ngInject */
@@ -27,6 +28,8 @@ export default class ExchangeUpdateAccountCtrl {
     this.wucExchangePassword = wucExchangePassword;
     this.messaging = messaging;
     this.navigation = navigation;
+
+    this.ACCOUNT_WORLD_PHONE_REGEX = ACCOUNT_WORLD_PHONE_REGEX;
   }
 
   $onInit() {
