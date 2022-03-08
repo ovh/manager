@@ -4,6 +4,7 @@ import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
 import map from 'lodash/map';
+import { ACCOUNT_WORLD_PHONE_REGEX } from '../account.constants';
 
 export default class ExchangeAccountAddController {
   /* @ngInject */
@@ -30,6 +31,8 @@ export default class ExchangeAccountAddController {
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
     this.exchangeVersion = exchangeVersion;
     this.messaging = messaging;
+
+    this.ACCOUNT_WORLD_PHONE_REGEX = ACCOUNT_WORLD_PHONE_REGEX;
   }
 
   $onInit() {
