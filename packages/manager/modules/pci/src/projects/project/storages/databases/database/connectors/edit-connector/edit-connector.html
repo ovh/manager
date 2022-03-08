@@ -1,5 +1,5 @@
 <oui-back-button
-    data-previous-page="{{:: 'pci_databases_connectors_edit_back' | translate }}"
+    data-previous-page="Connectors"
     data-on-click="$ctrl.goBack()"
 ></oui-back-button>
 
@@ -20,30 +20,22 @@
             >
         </span>
     </div>
-    <oui-button variant="primary" size="l" ng-click="$ctrl.updateConnector()">
+    <oui-button variant="primary" size="l" on-click="$ctrl.updateConnector()">
         <span data-translate="pci_databases_connectors_edit_button"></span>
     </oui-button>
 </div>
 
 <oui-tabs>
     <oui-tabs-item
-        ng-repeat="group in $ctrl.availableConnector.configuration.getGroups()"
+        ng-repeat="group in $ctrl.availableConnector.configuration.getGroups() track by $index"
         heading="{{group.name}}"
         subheading="{{group.required ? 'required' : ''}}"
         variant="promotion"
     >
         <div class="row">
             <div class="col-md-6">
-                <div
-                    ng-if="group.name === 'Transforms'"
-                    class="oui-message oui-message_info"
-                    role="alert"
-                >
-                    <span
-                        class="oui-message__icon oui-icon oui-icon-info-circle"
-                        aria-hidden="true"
-                    ></span>
-                    <p class="oui-message__body">
+                <oui-message type="info" ng-if="group.name === 'Transforms'">
+                    <p>
                         Transformations enable simple message-at-a-time
                         modifications. See
                         <a
@@ -54,21 +46,13 @@
                         >
                         for more details.
                     </p>
-                </div>
-                <div
-                    ng-if="group.name === 'Extra'"
-                    class="oui-message oui-message_info"
-                    role="alert"
-                >
-                    <span
-                        class="oui-message__icon oui-icon oui-icon-info-circle"
-                        aria-hidden="true"
-                    ></span>
-                    <p class="oui-message__body">
+                </oui-message>
+                <oui-message type="info" ng-if="group.name === 'Extra'">
+                    <p>
                         Here you can define connector configurations parameters,
                         that are not defined in the configuration schema.
                     </p>
-                </div>
+                </oui-message>
                 <form name="connector-{{$index}}">
                     <connector-input
                         ng-repeat="field in $ctrl.availableConnector.configuration.getFields(group.name)"
