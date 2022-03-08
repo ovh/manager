@@ -1,9 +1,13 @@
-<h2 data-translate="telephony_billingAccount_svaWallet_kyc_title"></h2>
-<p data-translate="telephony_billingAccount_svaWallet_kyc_message"></p>
+<div data-ng-if="!$ctrl.editMode">
+    <h2 data-translate="telephony_billingAccount_svaWallet_kyc_title"></h2>
+    <p data-translate="telephony_billingAccount_svaWallet_kyc_message"></p>
 
-<oui-message type="warning">
-    <span data-translate="telephony_billingAccount_svaWallet_kyc_infos"></span>
-</oui-message>
+    <oui-message type="warning">
+        <span
+            data-translate="telephony_billingAccount_svaWallet_kyc_infos"
+        ></span>
+    </oui-message>
+</div>
 
 <oui-message type="error" data-ng-if="$ctrl.errorMessage">
     <span
@@ -14,7 +18,7 @@
 
 <h3 data-translate="telephony_billingAccount_svaWallet_kyc_identity_title"></h3>
 
-<form novalidate name="$ctrl.form" data-ng-submit="$ctrl.submit()">
+<form novalidate name="formKYC" data-ng-submit="$ctrl.openModal()">
     <oui-field>
         <oui-radio-toggle-group model="$ctrl.wallet.company.reseller">
             <oui-radio value="false">
@@ -55,7 +59,7 @@
             placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_identification_number' | translate }}"
             type="text"
             ng-model="$ctrl.wallet.company.identificationNumber"
-            ng-pattern="$ctrl.VALIDATORS.SIRET"
+            ng-pattern="$ctrl.REGEX_VALIDATORS.SIRET"
             required
         />
     </oui-field>
@@ -336,22 +340,37 @@
         >
         </oui-select>
     </oui-field>
+    <div data-ng-if="!$ctrl.editMode">
+        <oui-field
+            label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_bankAccount_holder' | translate }}"
+            size="xl"
+        >
+            <input
+                class="oui-input"
+                name="holder"
+                placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_bankAccount_holder' | translate }}"
+                type="text"
+                ng-model="$ctrl.bankAccount.holder"
+                required
+            />
+        </oui-field>
 
-    <oui-field
-        label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_iban' | translate }}"
-        data-error-messages="{ iban: ('telephony_billingAccount_svaWallet_kyc_identity_iban_format_error' | translate) }"
-        size="xl"
-    >
-        <input
-            class="oui-input"
-            name="iban"
-            placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_iban' | translate }}"
-            type="text"
-            ng-model="$ctrl.bankAccount.iban"
-            data-ui-validate="{ iban: '!$ctrl.isValidIban($ctrl.bankAccount.iban)' }"
-            required
-        />
-    </oui-field>
+        <oui-field
+            label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_iban' | translate }}"
+            data-error-messages="{ iban: ('telephony_billingAccount_svaWallet_kyc_identity_iban_format_error' | translate) }"
+            size="xl"
+        >
+            <input
+                class="oui-input"
+                name="iban"
+                placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_iban' | translate }}"
+                type="text"
+                ng-model="$ctrl.bankAccount.iban"
+                data-ui-validate="{ iban: '!$ctrl.isValidIban($ctrl.bankAccount.iban)' }"
+                required
+            />
+        </oui-field>
+    </div>
 
     <h3
         data-translate="telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_title"
@@ -391,8 +410,18 @@
     </oui-field>
 
     <oui-form-actions
+        data-ng-if="!$ctrl.editMode"
         submit-text="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_submit_label' | translate }}"
-        disabled="!$ctrl.requirements || $ctrl.loading.submit"
+        disabled="!$ctrl.requirements || $ctrl.loading.submit || formKYC.$invalid"
+    >
+    </oui-form-actions>
+
+    <oui-form-actions
+        data-ng-if="$ctrl.editMode"
+        submit-text="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_submit_label' | translate }}"
+        disabled="!$ctrl.requirements || $ctrl.loading.submit || formKYC.$invalid"
+        on-cancel="$ctrl.onCancelEdit()"
+        cancel-text="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_submit_cancel' | translate }}"
     >
     </oui-form-actions>
 
@@ -402,3 +431,48 @@
         data-translate-attr="{ alt: 'telephony_billingAccount_svaWallet_kyc_identity_submit_lemonway' }"
     />
 </form>
+<div data-ng-if="$ctrl.isOpenModal">
+    <div class="modal d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <form novalidate name="modalConfirm">
+                    <oui-modal
+                        heading="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_confirm_title' | translate }}"
+                        primary-action="$ctrl.submit()"
+                        primary-label="{{::'telephony_billingAccount_svaWallet_kyc_identity_confirm_submit_label' | translate}}"
+                        primary-disabled="modalConfirm.$invalid"
+                        secondary-action="$ctrl.dismissModal()"
+                        secondary-label="{{::'telephony_billingAccount_svaWallet_kyc_identity_confirm_cancel_label' | translate}}"
+                        on-dismiss="$ctrl.dismissModal()"
+                        type="info"
+                        loading="$ctrl.loading.submit"
+                    >
+                        <p
+                            data-translate="telephony_billingAccount_svaWallet_kyc_identity_confirm_message"
+                        ></p>
+                        <oui-message type="warning">
+                            <span
+                                data-translate="telephony_billingAccount_svaWallet_kyc_identity_confirm_alert"
+                            ></span>
+                        </oui-message>
+                        <oui-field
+                            label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_confirm_label' | translate : { confirmationCode: $ctrl.confirmationCode} }}"
+                            size="auto"
+                        >
+                            <input
+                                class="oui-input"
+                                name="confirmationCode"
+                                type="text"
+                                ng-model="$ctrl.userConfirmationCode"
+                                data-ng-pattern="$ctrl.confirmationPattern"
+                                autofocus
+                                required
+                            />
+                        </oui-field>
+                    </oui-modal>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>

@@ -11,5 +11,8 @@ export default {
     documentTypeEnum: '<',
     documentNatureEnum: '<',
     uploadDocument: '<',
+    companyKinds: '<',
+    countryEnum: '<',
+    putWallet: '<',
   },
 };

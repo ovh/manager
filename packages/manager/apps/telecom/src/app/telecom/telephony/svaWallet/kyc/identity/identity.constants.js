@@ -1,3 +1,8 @@
+export const REGEX_VALIDATORS = {
+  SIRET: /^\d{14}$/,
+  APE: /^\d{4}[a-zA-Z]$/,
+};
+
 export const TYPES = {
   PRO: 'PRO',
   RESELLER: 'RESELLER',
@@ -10,4 +15,5 @@ export default {
   DISALLOW_BENEFICIARIES_KINDS,
   FORCE_REPRESENTAIVE_IS_BENEFICIARY_KINDS,
   TYPES,
+  REGEX_VALIDATORS,
 };
