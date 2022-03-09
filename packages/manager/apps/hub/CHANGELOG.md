@@ -1,3 +1,12 @@
+# [3.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.19.0...@ovh-ux/manager-hub-app@3.20.0) (2022-03-09)
+
+
+### Features
+
+* add option to open chatbot directly by using a link ([#6498](https://github.com/ovh/manager/issues/6498)) ([1fda4e5](https://github.com/ovh/manager/commit/1fda4e52706fed90cb5160e598c2b6a0e76a6d15))
+
+
+
 # [3.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.18.7...@ovh-ux/manager-hub-app@3.19.0) (2022-02-23)
 
 

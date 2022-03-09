@@ -1,3 +1,23 @@
+# [5.63.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.62.1...@ovh-ux/manager-pci@5.63.0) (2022-03-09)
+
+
+### Bug Fixes
+
+* **storages.databases:** update brand name usage and add legal copy ([#6619](https://github.com/ovh/manager/issues/6619)) ([2acd814](https://github.com/ovh/manager/commit/2acd8145b54ad9cbe91bc08957b08e87909250d7))
+* remove unused translations [CDS] ([392275b](https://github.com/ovh/manager/commit/392275be32d68088c6ac31cf46806bdc1909d476))
+* remove unused translations [CDS] ([97969a5](https://github.com/ovh/manager/commit/97969a565df95942e4761feaa0b0b73acc1aee61))
+* **i18n:** add missing translations [CDS 1461] ([bbdca84](https://github.com/ovh/manager/commit/bbdca84867ee1ef9edaa43c55dd8d1bb39b4d41a))
+* **i18n:** add missing translations [CDS 1467] ([#6565](https://github.com/ovh/manager/issues/6565)) ([168ff41](https://github.com/ovh/manager/commit/168ff41373230f36b88d46b17c6c0c688eab4762))
+* **i18n:** add missing translations [CDS 1468] ([#6569](https://github.com/ovh/manager/issues/6569)) ([2f83524](https://github.com/ovh/manager/commit/2f8352455dd5f235c136c856106e2201383af5fa))
+
+
+### Features
+
+* **new.payment:** add warning message abouht PayPal charge ([#6402](https://github.com/ovh/manager/issues/6402)) ([9c447a8](https://github.com/ovh/manager/commit/9c447a8807179db3ca2c9862149c1bae3857b263))
+* making the order command available to everyone ([#5839](https://github.com/ovh/manager/issues/5839)) ([19ac10e](https://github.com/ovh/manager/commit/19ac10ea9dad7d92983a6158eaeff9bcea6e0cd3))
+
+
+
 ## [5.62.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.62.0...@ovh-ux/manager-pci@5.62.1) (2022-03-04)
 
 

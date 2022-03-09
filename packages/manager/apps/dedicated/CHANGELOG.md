@@ -1,3 +1,18 @@
+# [17.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.12.3...@ovh-ux/manager-dedicated@17.13.0) (2022-03-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1489] ([#6611](https://github.com/ovh/manager/issues/6611)) ([433e5c6](https://github.com/ovh/manager/commit/433e5c60c4dceb7f818177d722f33a6f4869f955))
+* remove unused translations [CDS] ([97969a5](https://github.com/ovh/manager/commit/97969a565df95942e4761feaa0b0b73acc1aee61))
+
+
+### Features
+
+* **dedicated-cloud.user:** handle active directory users and groups ([#6421](https://github.com/ovh/manager/issues/6421)) ([47be670](https://github.com/ovh/manager/commit/47be670371389726b98602d422d29a704e7c5745))
+
+
+
 ## [17.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.12.2...@ovh-ux/manager-dedicated@17.12.3) (2022-03-02)
 
 

@@ -1,3 +1,13 @@
+## [16.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.7.0...@ovh-ux/manager-web@16.7.1) (2022-03-09)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([97969a5](https://github.com/ovh/manager/commit/97969a565df95942e4761feaa0b0b73acc1aee61))
+* **i18n:** add missing translations [CDS 1469] ([e966da8](https://github.com/ovh/manager/commit/e966da89f006c44149800cb6cc41cb1b2a8024f4))
+
+
+
 # [16.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.6.2...@ovh-ux/manager-web@16.7.0) (2022-02-28)
 
 

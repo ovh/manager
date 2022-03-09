@@ -1,3 +1,18 @@
+# [13.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.33.2...@ovh-ux/manager-telecom@13.34.0) (2022-03-09)
+
+
+### Bug Fixes
+
+* **telecom:** remove unused package ([583fdf0](https://github.com/ovh/manager/commit/583fdf01a471ea62fd5f7efcf89d7d71049a02a2))
+* **telecom.telephony.billing:** wrong redirect url ([#6602](https://github.com/ovh/manager/issues/6602)) ([922793a](https://github.com/ovh/manager/commit/922793a00eaa9a24f6dc46ecb0d759951086d2b8))
+
+
+### Features
+
+* **telephony.sva-wallet:** add a field bank account holder ([#6481](https://github.com/ovh/manager/issues/6481)) ([a333079](https://github.com/ovh/manager/commit/a333079c6b35ee666c88a72e400433b064c04783))
+
+
+
 ## [13.33.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.33.1...@ovh-ux/manager-telecom@13.33.2) (2022-02-25)
 
 

@@ -1,3 +1,17 @@
+# [5.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.0.6...@ovh-ux/ng-ovh-contact@5.1.0) (2022-03-09)
+
+
+### Bug Fixes
+
+* **telecom:** remove unused package ([583fdf0](https://github.com/ovh/manager/commit/583fdf01a471ea62fd5f7efcf89d7d71049a02a2))
+
+
+### Features
+
+* **ng-ovh-contact:** use new version package to switch to vanilla js ([4ec0aee](https://github.com/ovh/manager/commit/4ec0aeed94cd4c74d7fab8901a83cd374294d213))
+
+
+
 ## [5.0.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.0.5...@ovh-ux/ng-ovh-contact@5.0.6) (2022-03-04)
 
 
