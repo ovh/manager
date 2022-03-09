@@ -16,7 +16,7 @@ export default class BmServerComponentsTechnicalDetailsController {
     this.formattedOsDisks = this.formatDisks('os');
     this.formattedExtensionCard =
       this.technicalDetails.storage?.raid !== 'none'
-        ? this.technicalDetails.storage?.raid
+        ? this.technicalDetails.storage.raid
         : '';
     this.upgradeWithTicketAvailable = false;
     this.loading = true;
