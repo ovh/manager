@@ -27,6 +27,19 @@ export default class NutanixService {
       .then(({ data }) => new Cluster(data));
   }
 
+  /**
+   *
+   * @param {string} nodeServiceName
+   * @param {clusrer[]} clusters
+   * @returns {*} - cluster if found, null otherwise
+   */
+  static getClusterByNodeName(nodeServiceName, clusters = []) {
+    // return cluster for a given node
+    return clusters.find((cluster) =>
+      cluster.targetSpec.nodes.find((n) => n.server === nodeServiceName),
+    );
+  }
+
   updateCluster(serviceName, redeploycluster = false, cluster) {
     return this.$http
       .put(

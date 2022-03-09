@@ -650,4 +650,18 @@ export default class ServerCtrl {
   static isHousing(dedicatedServer) {
     return dedicatedServer.commercialRange === 'housing';
   }
+
+  getNutanixClusterDashboardLink(clusterServiceName) {
+    return this.coreURLBuilder.buildURL(
+      'dedicated',
+      `#/nutanix/${clusterServiceName}`,
+    );
+  }
+
+  getNutanixClusterNodeLink(clusterServiceName, nodeServiceName) {
+    return this.coreURLBuilder.buildURL(
+      'dedicated',
+      `#/nutanix/${clusterServiceName}/nodes/${nodeServiceName}`,
+    );
+  }
 }
