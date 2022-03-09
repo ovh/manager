@@ -12,16 +12,4 @@ ovh-manager-pci-project-database-connectors {
     width: 2rem;
     height: 2rem;
   }
-
-  .spin {
-    animation: rotation 0.5s ease-out;
-  }
-  @keyframes rotation {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
 }
