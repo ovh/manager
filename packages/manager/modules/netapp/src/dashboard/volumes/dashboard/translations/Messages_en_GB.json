@@ -25,13 +25,11 @@
   "netapp_volumes_dashboard_mount_file_system_new_folder": "Create a new folder",
   "netapp_volumes_dashboard_mount_file_system_mount": "NFS mount file server",
   "netapp_volumes_dashboard_mount_file_system_save": "To keep the mount on reboot, add to the /etc/fstab file",
-  "netapp_volumes_dashboard_update_success": "The volume information has been updated.",
-  "netapp_volumes_dashboard_update_error": "An error has occurred updating the volume information.",
-  "netapp_volumes_dashboard_acl": "Access Control List (ACL)",
-  "netapp_volumes_dashboard_snapshots": "Backups",
-  "netapp_volumes_dashboard_volume_pattern": "May only contain numbers, letters, underscores, dashes or full stops, and a maximum of 256 characters.",
   "netapp_volumes_dashboard_volume_name_update_success": "The volume name has been updated.",
   "netapp_volumes_dashboard_volume_description_update_success": "The volume description has been updated.",
   "netapp_volumes_dashboard_volume_name_update_error": "An error has occurred updating the volume name.",
-  "netapp_volumes_dashboard_volume_description_update_error": "An error has occurred updating the volume description."
+  "netapp_volumes_dashboard_volume_description_update_error": "An error has occurred updating the volume description.",
+  "netapp_volumes_dashboard_acl": "Access Control List (ACL)",
+  "netapp_volumes_dashboard_snapshots": "Backups",
+  "netapp_volumes_dashboard_volume_pattern": "May only contain numbers, letters, underscores, dashes or full stops, and a maximum of 256 characters."
 }

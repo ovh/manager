@@ -27,6 +27,7 @@ import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import atInternet from './components/at-internet';
 import errorPage from './components/error-page';
 import dashboard from './dashboard';
+import liveChatService from './livechat-service';
 
 import controller from './controller';
 import routing from './routing';
@@ -91,6 +92,7 @@ export default async (containerEl, shellClient) => {
       },
     )
     .controller('HubController', controller)
+    .service('liveChatService', liveChatService)
     .config(
       /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
     )

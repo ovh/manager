@@ -26,6 +26,10 @@ export default class {
     this.criteria = getCriteria('id', this.databaseId);
   }
 
+  hasTypeRedis() {
+    return this.databases.find((elm) => elm.engine === DATABASE_TYPES.REDIS);
+  }
+
   loadMessages() {
     this.CucCloudMessage.unSubscribe('pci.projects.project.storages.databases');
     this.messageHandler = this.CucCloudMessage.subscribe(

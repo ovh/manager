@@ -52,7 +52,9 @@
         </p>
 
         <!--Description-->
-        <p data-ng-bind="'pci_notebook_add_resources_proposed_type_' + $ctrl.notebookModel.selected.resource.flavorType + '_description' | translate"></p>
+        <p
+            data-ng-bind="'pci_notebook_add_resources_proposed_type_' + $ctrl.notebookModel.selected.resource.flavorType + '_description' | translate"
+        ></p>
 
         <!--Notebook flavors-->
         <div class="row">
@@ -77,14 +79,21 @@
                             data-translate="pci_notebook_add_resources_proposed_ram"
                             data-translate-values="{ ram: (flavor.resourcesPerUnit.memory | bytes:0:true:'B') }"
                         ></span>
-                        <span data-translate="pci_notebook_add_resources_proposed_type_cpu"></span>
+                        <span
+                            data-translate="pci_notebook_add_resources_proposed_type_cpu"
+                        ></span>
                     </div>
-                    <div class="d-flex" data-ng-if="flavor.gpuInformation.gpuMemory">
+                    <div
+                        class="d-flex"
+                        data-ng-if="flavor.gpuInformation.gpuMemory"
+                    >
                         <span
                             data-translate="pci_notebook_add_resources_proposed_ram"
                             data-translate-values="{ ram: (flavor.gpuInformation.gpuMemory | bytes:0:true:'B') }"
                         ></span>
-                        <span data-translate="pci_notebook_add_resources_proposed_type_gpu"></span>
+                        <span
+                            data-translate="pci_notebook_add_resources_proposed_type_gpu"
+                        ></span>
                     </div>
                     <div class="d-flex">
                         <span
@@ -93,8 +102,10 @@
                         ></span>
                     </div>
                     <div class="d-flex">
-                        <span data-translate="pci_notebook_add_resources_proposed_storage"
-                              data-translate-values="{ memory: (flavor.resourcesPerUnit.ephemeralStorage | bytes:0:true:'B') }"></span>
+                        <span
+                            data-translate="pci_notebook_add_resources_proposed_storage"
+                            data-translate-values="{ memory: (flavor.resourcesPerUnit.ephemeralStorage | bytes:0:true:'B') }"
+                        ></span>
                     </div>
                     <div class="d-flex">
                         <span
@@ -102,7 +113,10 @@
                             data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.publicNetwork | bytes:0:false:'B') }"
                         ></span>
                     </div>
-                    <div class="d-flex" data-ng-if="flavor.resourcesPerUnit.privateNetwork">
+                    <div
+                        class="d-flex"
+                        data-ng-if="flavor.resourcesPerUnit.privateNetwork"
+                    >
                         <span
                             data-translate="pci_notebook_add_resources_proposed_bandwidth"
                             data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.privateNetwork | bytes:2:false:'B') }"
@@ -110,22 +124,29 @@
                     </div>
                 </oui-select-picker-section>
                 <oui-select-picker-section>
-                    <strong data-ng-bind="$ctrl.formatPriceForHour(flavor.id)"></strong>
-                    <span data-translate="pci_notebook_add_resources_proposed_resource_price_by_resource"></span>
+                    <strong
+                        data-ng-bind="$ctrl.formatPriceForHour(flavor.id)"
+                    ></strong>
+                    <span
+                        data-translate="pci_notebook_add_resources_proposed_resource_price_by_resource"
+                    ></span>
                 </oui-select-picker-section>
             </oui-select-picker>
         </div>
 
         <!--Number of resources title-->
-        <manager-resource-selector title="{{'pci_notebook_add_resources_number_of_resources_type_' + $ctrl.notebookModel.selected.resource.flavorType | translate}}"
-
-                                   price-suffix="{{:: 'pci_notebook_add_resources_proposed_resource_price_by_resource' | translate}}"
-                                   price="$ctrl.computeTotalPrice($ctrl.notebookModel.selected.resource.flavor.id)">
-            <oui-numeric class="mt-2"
-                         data-disabled="!$ctrl.notebookModel.selected.resource.flavor"
-                         data-model="$ctrl.notebookModel.nbResources"
-                         data-min="$ctrl.RESOURCES_SCALE_MIN_FLAVOR"
-                         data-max="$ctrl.notebookModel.selected.resource.flavor.max"></oui-numeric>
+        <manager-resource-selector
+            title="{{'pci_notebook_add_resources_number_of_resources_type_' + $ctrl.notebookModel.selected.resource.flavorType | translate}}"
+            price-suffix="{{:: 'pci_notebook_add_resources_proposed_resource_price_by_resource' | translate}}"
+            price="$ctrl.computeTotalPrice($ctrl.notebookModel.selected.resource.flavor.id)"
+        >
+            <oui-numeric
+                class="mt-2"
+                data-disabled="!$ctrl.notebookModel.selected.resource.flavor"
+                data-model="$ctrl.notebookModel.nbResources"
+                data-min="$ctrl.RESOURCES_SCALE_MIN_FLAVOR"
+                data-max="$ctrl.notebookModel.selected.resource.flavor.max"
+            ></oui-numeric>
         </manager-resource-selector>
     </div>
 </div>

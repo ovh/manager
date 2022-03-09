@@ -4,5 +4,6 @@
   "pci_project_new_payment_method_add_info_paypal": "Clicca su “PayPal” per essere reindirizzato all'interfaccia di pagamento sicura PayPal, in cui sarà possibile registrare il tuo conto.",
   "pci_project_new_payment_method_add_info_bank_account": "Cliccando su \"Aggiungi\" verrai reindirizzato alla sezione <a href=\"{{ paymentMethodSection }}\">I tuoi metodi di pagamento</a> dello Spazio Cliente.",
   "pci_project_new_payment_method_add_warning_bank_account": "Il conto bancario sarà convalidato entro 24-48 ore a partire dalla ricezione dell’autorizzazione al prelievo. A convalida avvenuta sarà possibile creare un progetto Public Cloud.",
-  "pci_project_new_payment_method_add_credit": "Aggiungi crediti:"
+  "pci_project_new_payment_method_add_credit": "Aggiungi crediti:",
+  "pci_project_new_payment_method_add_warning_paypal_account": "Selezionando PayPal, verrà eseguita una transazione di {{amount}} sull’account per verificarne il corretto funzionamento. Questo credito non verrà perso, ma utilizzato per il saldo delle prime risorse attivate."
 }

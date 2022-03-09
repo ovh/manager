@@ -12,6 +12,7 @@ export default class HubController {
     $rootScope,
     coreConfig,
     ovhFeatureFlipping,
+    liveChatService,
   ) {
     this.$document = $document;
     this.$http = $http;
@@ -24,6 +25,7 @@ export default class HubController {
     this.isTopLevelApplication = isTopLevelApplication();
     this.shell = getShellClient();
     this.isAccountSidebarVisible = false;
+    this.liveChatService = liveChatService;
   }
 
   async $onInit() {
@@ -45,6 +47,7 @@ export default class HubController {
             CHATBOT_FEATURE,
           );
           if (this.chatbotEnabled) {
+            this.showLivechat = this.liveChatService.getShowLivechat();
             this.$rootScope.$broadcast(
               'ovh-chatbot:enable',
               this.chatbotEnabled,

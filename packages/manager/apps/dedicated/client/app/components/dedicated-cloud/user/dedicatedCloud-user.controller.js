@@ -57,6 +57,8 @@ export default class {
       (user) => {
         set(user, 'state', user.state.toUpperCase());
         set(user, 'activationState', user.activationState.toUpperCase());
+        set(user, 'loginUsername', user.login.split('@')[0]);
+        set(user, 'loginDomain', user.login.split('@')[1]);
         return user;
       },
     );

@@ -69,8 +69,30 @@
     >
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_USER_name' | translate"
-            data-property="name"
         >
+            <span
+                data-ng-if="!$row.activeDirectoryId"
+                data-ng-bind="$row.login"
+            >
+            </span>
+            <span data-ng-if="$row.activeDirectoryId">
+                <span data-ng-if="$row.activeDirectoryType === 'group'">
+                    <span class="fa fa-users" aria-hidden="true"></span>
+                    <span data-ng-bind="$row.loginUsername"> </span>
+                    <span
+                        class="font-italic text-muted"
+                        data-ng-bind="'('+$row.loginDomain+')'"
+                    >
+                    </span>
+                </span>
+                <span data-ng-if="$row.activeDirectoryType !== 'group'">
+                    <span data-ng-bind="$row.loginUsername"> </span
+                    ><span
+                        class="font-italic text-muted"
+                        data-ng-bind="'@'+$row.loginDomain"
+                    ></span>
+                </span>
+            </span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_USER_firstname' | translate"
@@ -211,6 +233,7 @@
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
+                data-ng-if="!$row.activeDirectoryId"
                 data-on-click="$ctrl.passwordReset($row, $ctrl.passwordPolicy)"
                 ><span
                     data-translate="dedicatedCloud_USER_change_password"

@@ -16,7 +16,6 @@
   "cloud_sidebar_orchestration_kubernetes": "Managed Kubernetes Service",
   "cloud_sidebar_orchestration_private_registry": "Managed Private Registry",
   "cloud_sidebar_orchestration_image_catalog": "Managed Image Catalog",
-  "cloud_sidebar_data_analytics_adp": "Analytics Data Platform",
   "cloud_sidebar_data_analytics": "Data & Analytics",
   "cloud_sidebar_management_interface": "Management Interfaces",
   "cloud_sidebar_management_interface_horizon": "Horizon",

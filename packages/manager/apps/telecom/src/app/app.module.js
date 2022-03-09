@@ -44,8 +44,6 @@ import 'script-loader!messenger/build/js/messenger-theme-future.js';
 import 'script-loader!messenger/build/js/messenger-theme-flat.js';
 import 'ng-csv';
 import 'script-loader!ngSmoothScroll/angular-smooth-scroll.js';
-import 'script-loader!intl-tel-input/build/js/intlTelInput.min.js';
-import 'script-loader!intl-tel-input/lib/libphonenumber/build/utils.js';
 import 'script-loader!international-phone-number/releases/international-phone-number.js';
 import 'ovh-api-services';
 import 'script-loader!jquery.scrollto';

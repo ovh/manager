@@ -35,6 +35,7 @@
   "hosting_dashboard_disk_usage_total": "Espacio utilizado:",
   "hosting_dashboard_disk_usage_configuration": "{{t0}} están asignados a la configuración del servidor",
   "hosting_dashboard_trafic_usage": "Tráfico consumido",
+  "hosting_dashboard_php_support_SUPPORTED": "Actualmente está utilizando una versión de PHP reciente. Dispone de las últimas actualizaciones de seguridad.",
   "hosting_dashboard_php_support_SECURITY_FIXES": "Ya no existen más versiones actualizadas de la configuración de PHP que utiliza actualmente. Tan solo podrá corregir los fallos de seguridad. Haga clic en el botón «Modificar la configuración» situado a la derecha para actualizar su versión.  El cambio de versión podría afectar al funcionamiento de sus sitios web.",
   "hosting_dashboard_php_support_END_OF_LIFE": "La versión de PHP que utiliza actualmente no está actualizada. Haga clic en el botón «Modificar la configuración» situado a la derecha para actualizar su versión.  El cambio de versión podría afectar al funcionamiento de sus sitios web.",
   "hosting_dashboard_php_support_BETA": "Versión beta",
@@ -147,7 +148,6 @@
   "hosting_dashboard_service_cdn": "Opción CDN",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg": "¡La opción Shared CDN para sus alojamientos se actualiza! Ya puede disfrutar de nuevas funcionalidades.",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg_link_upgrade": "Migrar su CDN",
-  "hosting_dashboard_service_cdn_customer_has_cdn_v1_badge_new": "Novedad",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_new_offers": "OVHcloud le recomienda sus nuevos servicios CDN",
   "hosting_dashboard_service_web": "Sitios web",
   "hosting_dashboard_service_privatesql": "Base de datos privada",
@@ -1373,6 +1373,5 @@
   "hosting_dashboard_service_common_inactive": "Inactivo",
   "hosting_dashboard_email_offer_get_error": "No se ha podido cargar la dirección de correo.",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Más",
-  "hosting_dashboard_php_support_SUPPORTED": "Actualmente está utilizando una versión de PHP reciente. Dispone de las últimas actualizaciones de seguridad."
+  "hosting_dashboard_tabs_dropdown": "Más"
 }

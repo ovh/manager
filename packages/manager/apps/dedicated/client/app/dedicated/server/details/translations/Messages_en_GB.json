@@ -271,7 +271,7 @@
   "server_configuration_mitigation_statistics_mode_date": "On a specified date",
   "server_configuration_mitigation_statistics_input": "Input",
   "server_configuration_mitigation_statistics_output": "Output",
-  "server_configuration_mitigation_statistics_unit_B": "b/s",
+  "server_configuration_mitigation_statistics_unit_B": "B/s",
   "server_configuration_mitigation_statistics_unit_KB": "Kb/s",
   "server_configuration_mitigation_statistics_unit_MB": "Mb/s",
   "server_configuration_mitigation_statistics_unit_GB": "Gb/s",

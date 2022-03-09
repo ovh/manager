@@ -1,5 +1,5 @@
 {
-  "netapp_order": "Installer Enterprise File Storage",
+  "netapp_order": "Commander Enterprise File Storage",
   "netapp_order_datacenter": "Localisation du datacenter",
   "netapp_order_performance_level": "Niveau de performance",
   "netapp_order_performance_level_description": "Choisissez le niveau de performance du service selon vos besoins",

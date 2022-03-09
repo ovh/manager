@@ -17,7 +17,7 @@ export default class KycIdentitySummaryUpdateBankAccountController {
 
     if (!this.form.$invalid) {
       this.isLoading = true;
-      this.updateBankAccount(this.iban)
+      this.updateBankAccount({ iban: this.iban, holder: this.holder })
         .then((data) => {
           this.$uibModalInstance.close(data);
         })

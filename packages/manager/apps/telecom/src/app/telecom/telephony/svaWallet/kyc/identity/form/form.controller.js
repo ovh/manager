@@ -1,35 +1,74 @@
 import {
   DISALLOW_BENEFICIARIES_KINDS,
   FORCE_REPRESENTAIVE_IS_BENEFICIARY_KINDS,
+  REGEX_VALIDATORS,
 } from '../identity.constants';
 import { DIRECTORY_WAY_NUMBER_EXTRA_ENUM } from '../../../../service/contact/contact.constants';
 
-import { VALIDATORS } from './form.constants';
 import { buildEnumList, getEnumItemValue } from '../../../sva-wallet.constants';
-
-import confirmTemplate from './confirm/confirm.html';
-import confirmController from './confirm/confirm.controller';
 
 import lemonWayLogo from '../../../lemonway_logo.png';
 
 export default class KycIdentityFormController {
   /* @ngInject */
-  constructor($q, $translate, $uibModal, ovhPaymentMethodHelper) {
-    this.$q = $q;
+  constructor($translate, ovhPaymentMethodHelper) {
     this.$translate = $translate;
     this.isValidIban = ovhPaymentMethodHelper.isValidIban;
-    this.$uibModal = $uibModal;
   }
 
   $onInit() {
+    this.isOpenModal = false;
+
+    this.confirmationCode = this.$translate.instant(
+      'telephony_billingAccount_svaWallet_kyc_identity_confirm_code',
+    );
+    this.confirmationPattern = new RegExp(`^${this.confirmationCode}$`);
+
     this.lemonWayLogo = lemonWayLogo;
-    this.companyModel = {};
-    this.representativeModel = {};
+
+    this.companyModel = this.svaWallet
+      ? {
+          kind: {
+            name: this.$translate.instant(
+              `telephony_billingAccount_svaWallet_kyc_company_kind_${this.svaWallet.company.kind}`,
+            ),
+            value: this.svaWallet.company.kind,
+          },
+        }
+      : {};
+
+    this.representativeModel = this.svaWallet
+      ? {
+          nationality: this.svaWallet.representative.nationality.map((elm) => {
+            return {
+              name: this.$translate.instant(
+                `telephony_billingAccount_svaWallet_kyc_country_${elm}`,
+              ),
+              value: elm,
+            };
+          }),
+          streetNumberExtra: this.svaWallet.representative.streetNumberExtra?.toUpperCase(),
+          countryOfBirth: {
+            name: this.$translate.instant(
+              `telephony_billingAccount_svaWallet_kyc_country_${this.svaWallet.representative.countryOfBirth}`,
+            ),
+            value: this.svaWallet.representative.countryOfBirth,
+          },
+          countryOfResidence: {
+            name: this.$translate.instant(
+              `telephony_billingAccount_svaWallet_kyc_country_${this.svaWallet.representative.countryOfResidence}`,
+            ),
+            value: this.svaWallet.representative.countryOfResidence,
+          },
+        }
+      : {};
+
     this.representativeCountrySelects = [
       'countryOfBirth',
       'countryOfResidence',
       'nationality',
     ];
+
     this.forceRepresentativeIsBeneficiary = false;
 
     this.streetNumberExtraEnum = [
@@ -37,21 +76,26 @@ export default class KycIdentityFormController {
       ...DIRECTORY_WAY_NUMBER_EXTRA_ENUM.map((val) => val.toUpperCase()),
     ];
 
-    this.VALIDATORS = VALIDATORS;
+    this.REGEX_VALIDATORS = REGEX_VALIDATORS;
     this.requirements = false;
 
     this.wallet = {
-      company: {
-        reseller: false,
-        beneficiaries: [],
-      },
-      representative: {
-        isBeneficiary: false,
-      },
+      company: this.svaWallet
+        ? this.svaWallet.company
+        : {
+            reseller: false,
+            beneficiaries: [],
+          },
+      representative: this.svaWallet
+        ? { ...this.svaWallet.representative, isBeneficiary: true }
+        : {
+            isBeneficiary: false,
+          },
     };
+
     this.bankAccount = {};
 
-    this.displayBeneficiaries = false;
+    this.displayBeneficiaries = !!this.svaWallet;
 
     this.loading = {
       submit: false,
@@ -81,6 +125,10 @@ export default class KycIdentityFormController {
   }
 
   formatWallet() {
+    if (this.editMode) {
+      delete this.wallet.representative.id;
+    }
+
     const companyKind = getEnumItemValue(this.companyModel.kind);
     const allowBeneficiaries = !DISALLOW_BENEFICIARIES_KINDS.includes(
       companyKind,
@@ -117,32 +165,43 @@ export default class KycIdentityFormController {
     };
   }
 
-  submit() {
-    if (this.form.$invalid) {
-      return this.$q.reject();
-    }
+  openModal() {
+    this.isOpenModal = true;
+  }
 
+  dismissModal() {
+    this.isOpenModal = false;
+  }
+
+  submit() {
     this.errorMessage = undefined;
     const wallet = this.formatWallet();
 
-    const modalInstance = this.$uibModal.open({
-      template: confirmTemplate,
-      controller: confirmController,
-      controllerAs: '$ctrl',
-    });
-    return modalInstance.result
-      .then(() => {
-        this.loading.submit = true;
-        this.saveWallet(wallet, this.bankAccount.iban)
-          .catch((error) => {
-            this.errorMessage = error.data.message;
-          })
-          .finally(() => {
-            this.loading.submit = false;
-          });
+    this.loading.submit = true;
+    if (this.editMode) {
+      return this.putWallet(wallet)
+        .then(() => {
+          this.editMode = false;
+        })
+        .catch((error) => {
+          this.errorMessage = error.data.message;
+        })
+        .finally(() => {
+          this.loading.submit = false;
+          this.isOpenModal = false;
+        });
+    }
+    return this.saveWallet(wallet, this.bankAccount)
+      .catch((error) => {
+        this.errorMessage = error.data.message;
       })
-      .catch(() => {
-        // nothing to do
+      .finally(() => {
+        this.loading.submit = false;
+        this.isOpenModal = false;
       });
+  }
+
+  onCancelEdit() {
+    this.editMode = false;
   }
 }

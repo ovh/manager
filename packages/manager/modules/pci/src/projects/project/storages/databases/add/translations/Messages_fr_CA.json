@@ -26,11 +26,15 @@
   "pci_database_add_subnet_add": "Créer un sous-réseau",
   "pci_database_add_subnet_loading": "Chargement de sous-réseaux",
   "pci_database_add_step6_title": "Configuration du service de base de données",
+  "pci_database_add_command_description": "La commande suivante vous permet de créer votre service grâce à notre API.",
+  "pci_database_add_command_documentation_link": "Cliquez-ici pour accéder à la documentation.",
   "pci_database_add_create_database": "Créer un service de base de données",
   "pci_database_add_create_database_processing": "Le service est en cours de création",
   "pci_database_add_create_database_success": "Votre service est en cours de création et sera disponible dans quelques minutes.",
   "pci_database_add_create_database_error": "Une erreur est survenue lors de la création de votre service. Veuillez retenter l’opération ultérieurement : {{message}}",
   "pci_database_add_name_min_rule": "Au moins {{min}} caractères",
   "pci_database_add_name_max_rule": "Maximum {{max}} caractères",
-  "pci_database_add_name_pattern_rule": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points."
+  "pci_database_add_name_pattern_rule": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points.",
+  "pci_database_add_footer_part_1": "Tous les noms de produits, logos et marques sont la propriété de leurs propriétaires respectifs. Tous les noms d'entreprise, de produit et de service utilisés dans ce site Web sont à des fins d'identification seulement. L'utilisation de ces noms, logos et marques n'implique aucune approbation.",
+  "pci_database_add_footer_part_2": "*Redis est une marque de Redis Ltd. Tous les droits qui y sont attachés sont réservés à Redis Ltd. Toute utilisation par OVH SAS est uniquement à titre de référence et n'indique aucun sponsoring, soutien ou affiliation entre Redis et OVH SAS."
 }

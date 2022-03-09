@@ -2,6 +2,8 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
 
+import { CREDIT_PROVISIONING } from './components/add/constants';
+
 import component from './component';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -49,6 +51,25 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       callback: /* @ngInject */ ($location) => $location.search(),
+
+      isDisplayablePaypalChargeBanner: /* @ngInject */ (ovhFeatureFlipping) => {
+        const paypalChargeId = 'public-cloud:paypal-charge';
+        return ovhFeatureFlipping
+          .checkFeatureAvailability(paypalChargeId)
+          .then((feature) => feature.isFeatureAvailable(paypalChargeId));
+      },
+
+      creditProvisioningPlan: /* @ngInject */ ($http, coreConfig) =>
+        $http
+          .get('/order/catalog/public/cloud', {
+            params: { ovhSubsidiary: coreConfig.getUser().ovhSubsidiary },
+          })
+          .then(({ data: catalog }) => catalog)
+          .then((catalog) => {
+            return catalog.plans.find(
+              ({ planCode }) => planCode === CREDIT_PROVISIONING.PLAN_CODE,
+            );
+          }),
 
       getPaymentMethod: /* @ngInject */ (ovhPaymentMethod) => (
         paymentMethodId,

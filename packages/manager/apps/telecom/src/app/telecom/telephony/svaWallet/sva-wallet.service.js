@@ -36,17 +36,21 @@ export default class SvaWalletService {
       );
   }
 
-  saveWallet(wallet, iban) {
+  saveWallet(wallet, bankAccount) {
     return this.$http.post('/me/sva/wallet', wallet).then(() => {
-      if (iban) {
-        return this.saveWalletIban(iban);
+      if (bankAccount) {
+        return this.saveWalletIban(bankAccount);
       }
       return this.$q.resolve();
     });
   }
 
-  saveWalletIban(iban) {
-    return this.$http.post('/me/sva/wallet/bankAccount', { iban });
+  putWallet(wallet) {
+    return this.$http.put('/me/sva/wallet', wallet);
+  }
+
+  saveWalletIban(bankAccount) {
+    return this.$http.post('/me/sva/wallet/bankAccount', bankAccount);
   }
 
   getBankAccount() {

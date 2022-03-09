@@ -81,7 +81,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingCtr
       },
       {
         name: 'group_banking_management',
-        url: coreURLBuilder.buildURL('dedicated', '#/billing/mean'),
+        url: coreURLBuilder.buildURL('dedicated', '#/billing/payment/method'),
         isExternal: true,
         text: $translate.instant(
           'telephony_group_billing_actions_group_banking_management',

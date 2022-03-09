@@ -22,7 +22,6 @@ const moduleName = 'ngOvhContact';
 
 angular
   .module(moduleName, [
-    'internationalPhoneNumber',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ovh-api-services',

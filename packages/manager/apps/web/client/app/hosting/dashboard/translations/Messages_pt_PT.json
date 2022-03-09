@@ -35,6 +35,7 @@
   "hosting_dashboard_disk_usage_total": "Espaço utilizado:",
   "hosting_dashboard_disk_usage_configuration": "{{t0}} são atribuídos à configuração do servidor",
   "hosting_dashboard_trafic_usage": "Tráfego utilizado",
+  "hosting_dashboard_php_support_SUPPORTED": "Está a utilizar uma versão de PHP recente. Dispõe das últimas atualizações de segurança.",
   "hosting_dashboard_php_support_SECURITY_FIXES": "Utiliza atualmente uma versão de PHP que já não evoluirá. Só serão corrigidas as falhas de segurança. Pode atualizar esta versão utilizando o botão «modificar a configuração», à direita. A alteração da versão pode afetar o funcionamento dos seus sites.",
   "hosting_dashboard_php_support_END_OF_LIFE": "Utiliza atualmente uma versão de PHP que já não é mantida. Pode atualizar esta versão utilizando o botão «modificar a configuração», à direita. A alteração da versão pode afetar o funcionamento dos seus sites.",
   "hosting_dashboard_php_support_BETA": "Versão beta",
@@ -147,7 +148,6 @@
   "hosting_dashboard_service_cdn": "Opção CDN",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg": "A opção Shared CDN para os seus alojamentos evoluiu! Estão disponíveis novas funcionalidades.",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg_link_upgrade": "Migrar a sua CDN",
-  "hosting_dashboard_service_cdn_customer_has_cdn_v1_badge_new": "Novo",
   "hosting_dashboard_service_cdn_customer_has_cdn_v1_new_offers": "A OVHcloud recomenda-lhe as novas ofertas CDN",
   "hosting_dashboard_service_web": "Sites",
   "hosting_dashboard_service_privatesql": "Base de dados privada",
@@ -1373,6 +1373,5 @@
   "hosting_dashboard_service_common_inactive": "Inativo",
   "hosting_dashboard_email_offer_get_error": "Não é possível recuperar o endereço de e-mail",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Mais",
-  "hosting_dashboard_php_support_SUPPORTED": "Está a utilizar uma versão de PHP recente. Dispõe das últimas atualizações de segurança."
+  "hosting_dashboard_tabs_dropdown": "Mais"
 }

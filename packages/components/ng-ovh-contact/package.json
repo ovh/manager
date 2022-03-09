@@ -35,6 +35,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-contact' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
+    "intl-tel-input": "^17.0.13",
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {
@@ -45,8 +46,6 @@
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "angular-ui-bootstrap": "~1.3.3",
-    "international-phone-number": "mareczek/international-phone-number#^0.0.16",
-    "jquery": "~2.1",
     "moment": "^2.24.0",
     "ovh-api-services": "^11.0.0",
     "ovh-manager-webfont": "^1.2.0",

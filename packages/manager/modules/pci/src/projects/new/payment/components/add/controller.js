@@ -4,6 +4,7 @@ import map from 'lodash/map';
 import snakeCase from 'lodash/snakeCase';
 
 import {
+  CREDIT_PROVISIONING,
   PAYMENT_METHOD_AUTHORIZED_ENUM,
   PREFERRED_PAYMENT_METHOD_ORDER,
 } from './constants';
@@ -12,9 +13,11 @@ export default class PciProjectNewPaymentMethodAddCtrl {
   /* @ngInject */
   constructor($translate, coreConfig, coreURLBuilder, ovhPaymentMethodHelper) {
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
 
     // other attributes
+    this.customerCurrency = coreConfig.getUser().currency.symbol;
     this.authorizedPaymentMethods = null;
 
     this.paymentSectionHref = coreURLBuilder.buildURL(
@@ -40,6 +43,16 @@ export default class PciProjectNewPaymentMethodAddCtrl {
     return this.ovhPaymentMethodHelper.getPaymentMethodTypeText(
       paymentMethodType.paymentType,
     );
+  }
+
+  getPayPalChargeAmount() {
+    const uCent = 1000000; // micro cent factor -> 10^-6
+    const priceInCent =
+      this.creditProvisioningPlan.pricings.find(
+        ({ mode }) => mode === CREDIT_PROVISIONING.PRICE_MODE,
+      ).price / uCent;
+
+    return priceInCent / 100; // To get the price in currency base
   }
 
   /* -----  End of Helpers  ------ */

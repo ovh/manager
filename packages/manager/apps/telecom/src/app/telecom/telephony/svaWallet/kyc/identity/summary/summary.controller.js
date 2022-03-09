@@ -15,7 +15,6 @@ export default class KycIdentitySummaryController {
   $onInit() {
     this.showDocumentSuccessMessage = false;
     this.showIBANSuccessMessage = false;
-
     this.prepareDocuments(this.svaWallet.documents);
   }
 
@@ -27,7 +26,8 @@ export default class KycIdentitySummaryController {
       controllerAs: '$ctrl',
       resolve: {
         bankAccount: () => this.bankAccount,
-        updateBankAccount: () => (iban) => this.saveWalletIban(iban),
+        updateBankAccount: () => (bankAccount) =>
+          this.saveWalletIban(bankAccount),
       },
     });
     return modalInstance.result

@@ -12,6 +12,7 @@ export default {
     trackClick: '<',
     hostHitTracking: '<',
     availableOptions: '<',
+    packInfo: '<',
   },
   controller,
   template,
