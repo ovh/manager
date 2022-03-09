@@ -46,5 +46,7 @@
   "telephony_billingAccount_svaWallet_kyc_identity_requirements_reseller": " I certify that I am a SVA number reseller and that I know and apply the obligations to my own customers",
   "telephony_billingAccount_svaWallet_kyc_identity_submit_label": "Next step",
   "telephony_billingAccount_svaWallet_kyc_identity_submit_lemonway": "LemonWay",
-  "telephony_billingAccount_svaWallet_kyc_identity_error": "An error has occurred saving your data: {{ errorMessage }}"
+  "telephony_billingAccount_svaWallet_kyc_identity_error": "An error has occurred saving your data: {{ errorMessage }}",
+  "telephony_billingAccount_svaWallet_kyc_identity_bankAccount_holder": "Bank account holder",
+  "telephony_billingAccount_svaWallet_kyc_identity_submit_cancel": "Cancel"
 }
