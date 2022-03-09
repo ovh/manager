@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-filters@1.2.0...@ovh-ux/manager-filters@1.2.1) (2022-03-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1496] ([28de037](https://github.com/ovh/manager/commit/28de037cae6dd646f59f809c2f6515886f5aeb4b))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-filters@1.1.1...@ovh-ux/manager-filters@1.2.0) (2022-03-02)
 
 

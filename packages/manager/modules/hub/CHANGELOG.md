@@ -1,3 +1,12 @@
+## [3.2.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.2.8...@ovh-ux/manager-hub@3.2.9) (2022-03-09)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([392275b](https://github.com/ovh/manager/commit/392275be32d68088c6ac31cf46806bdc1909d476))
+
+
+
 ## [3.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.2.7...@ovh-ux/manager-hub@3.2.8) (2022-03-02)
 
 

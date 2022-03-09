@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.1.1...@ovh-ux/manager-container-app@0.1.2) (2022-03-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1461] ([bbdca84](https://github.com/ovh/manager/commit/bbdca84867ee1ef9edaa43c55dd8d1bb39b4d41a))
+
+
+
 ## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.1.0...@ovh-ux/manager-container-app@0.1.1) (2022-03-04)
 
 

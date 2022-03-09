@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@1.1.1...@ovh-ux/manager-anthos@1.1.2) (2022-03-09)
+
+
+### Bug Fixes
+
+* **dashboard:** disable purchase IP and host if pending action ([#6551](https://github.com/ovh/manager/issues/6551)) ([112e768](https://github.com/ovh/manager/commit/112e7687112b6a48d8df64675a666e68098cf529))
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@1.1.0...@ovh-ux/manager-anthos@1.1.1) (2022-02-23)
 
 
