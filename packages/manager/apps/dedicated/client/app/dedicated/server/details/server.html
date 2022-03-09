@@ -20,6 +20,30 @@
         data-ng-bind="server.reverse || ('server_configuration_reverse_not_configured' | translate)"
     ></p>
 
+    <!-- Nutanix node warning -->
+    <oui-message
+        class="mb-3"
+        data-type="warning"
+        data-ng-if="$ctrl.nutanixCluster"
+    >
+        <div
+            data-translate="server_nutanix_cluster_node_warning_1"
+            data-translate-values="{ clusterName: $ctrl.nutanixCluster.targetSpec.name }"
+        ></div>
+        <div
+            data-translate="server_nutanix_cluster_node_warning_2"
+            data-translate-values="{
+                clusterNodeDashboardLink: '<a href=' + $ctrl.getNutanixClusterNodeLink($ctrl.nutanixCluster.serviceName, server.name) + '>' + server.displayName + '</a>'
+            }"
+        ></div>
+        <div
+            data-translate="server_nutanix_cluster_node_warning_3"
+            data-translate-values="{
+                clusterDashboardLink: '<a href=' + $ctrl.getNutanixClusterDashboardLink($ctrl.nutanixCluster.serviceName) + '>' + $ctrl.nutanixCluster.serviceName + '</a>'
+            }"
+        ></div>
+    </oui-message>
+
     <oui-header-tabs>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.getTabItemUrl('dashboard') }}"

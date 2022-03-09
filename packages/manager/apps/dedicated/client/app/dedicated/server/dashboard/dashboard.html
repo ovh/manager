@@ -31,9 +31,9 @@
     </oui-message>
 
     <div class="row d-md-flex mb-5">
-        <div class="col-md-4">
+        <div class="col-md-4 mb-3">
             <!-- GENERAL INFORMATIONS -->
-            <div class="oui-tile mb-5 h-100">
+            <div class="oui-tile mb-3 h-100">
                 <h4
                     class="oui-tile__title oui-heading_4"
                     data-translate="server_informations_general"
@@ -257,7 +257,7 @@
         </div>
 
         <!-- TECHNICAL DETAILS -->
-        <div class="col-md-4" data-ng-if="$ctrl.technicalDetails">
+        <div class="col-md-4 mb-3" data-ng-if="$ctrl.technicalDetails">
             <server-technical-details
                 technical-details="$ctrl.technicalDetails"
                 go-to-manual-upgrade="$ctrl.goToManualUpgrade"
@@ -266,13 +266,13 @@
 
         <!-- Service status -->
         <div
-            class="col-md-4"
+            class="col-md-4 mb-3"
             data-ng-if="$ctrl.server.commercialRange !== 'housing'"
         >
             <!-- STATE -->
             <oui-tile
                 data-heading="{{ ::'server_services_state' | translate }}"
-                class="mb-5 h-100"
+                class="mb-3 h-100"
             >
                 <!-- Status -->
                 <oui-tile-definition
@@ -484,7 +484,10 @@
         </div>
 
         <!-- SUBSCRIPTION -->
-        <div class="col-md-4" data-ng-if="!$ctrl.technicalDetails">
+        <div
+            class="col-md-4 mb-3"
+            data-ng-if="!$ctrl.technicalDetails && !$ctrl.nutanixCluster"
+        >
             <billing-subscription-tile
                 on-error="$ctrl.onBillingInformationError(error)"
                 service-path="{{ '/dedicated/server/' + $ctrl.server.name }}"
@@ -519,12 +522,11 @@
                 </billing-extra-information>
             </billing-subscription-tile>
         </div>
-    </div>
-    <div class="row d-md-flex mb-3">
+
         <div class="col-md-4 mb-3" data-ng-if="!$ctrl.server.isExpired">
             <!-- Network -->
             <oui-tile
-                class="h-100"
+                class="h-100 mb-3"
                 data-heading="{{:: 'server_network' | translate }}"
             >
                 <div ovh-alert="bandwithError" data-ng-if="bandwithError"></div>
@@ -754,7 +756,10 @@
         </div>
 
         <!-- SUBSCRIPTIONS -->
-        <div class="col-md-4 mb-3" data-ng-if="$ctrl.technicalDetails">
+        <div
+            class="col-md-4 mb-3"
+            data-ng-if="$ctrl.technicalDetails && !$ctrl.nutanixCluster"
+        >
             <billing-subscription-tile
                 on-error="$ctrl.onBillingInformationError(error)"
                 service-path="{{ '/dedicated/server/' + $ctrl.server.name }}"

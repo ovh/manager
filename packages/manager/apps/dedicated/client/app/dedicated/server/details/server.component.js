@@ -13,6 +13,7 @@ export default {
     worldPart: '<',
     bringYourOwnImage: '<',
     resiliationCapability: '<',
+    nutanixCluster: '<',
   },
   controller,
   template,
