@@ -119,6 +119,16 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.dedicated-server.server.dashboard.netboot', {
           productId: serverName,
         }),
+
+      nutanixCluster: /* @ngInject */ (NutanixService, serverName) =>
+        NutanixService.getClusters()
+          .then((clusters) =>
+            NutanixService.constructor.getClusterByNodeName(
+              serverName,
+              clusters,
+            ),
+          )
+          .catch(() => null),
     },
   });
 };
