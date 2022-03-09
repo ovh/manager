@@ -4,5 +4,6 @@
   "pci_project_new_payment_method_add_info_paypal": "Ao clicar em “PayPal”, será redirecionado para a interface segura do PayPal para registar a sua conta.",
   "pci_project_new_payment_method_add_info_bank_account": "Ao clicar no botão \"Adicionar\", será redirecionado para a secção <a href=\"{{ paymentMethodSection }}\">“Métodos de pagamento”</a> da Área de Cliente.",
   "pci_project_new_payment_method_add_warning_bank_account": "A sua conta bancária será aprovada nas 24 a 48 horas a seguir à receção da sua autorização de débito direto, que deverá reenviar por correio. Após essa validação, poderá criar um projeto Public Cloud.",
-  "pci_project_new_payment_method_add_credit": "Adicionar créditos"
+  "pci_project_new_payment_method_add_credit": "Adicionar créditos",
+  "pci_project_new_payment_method_add_warning_paypal_account": "Ao escolher o PayPal, será efetuada uma transação de {{amount}} na sua conta para validar o seu bom funcionamento. Este crédito não é perdido: será utilizado para pagar os seus primeiros recursos implementados."
 }

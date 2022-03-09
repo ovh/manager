@@ -4,5 +4,6 @@
   "pci_project_new_payment_method_add_info_paypal": "Po kliknięciu „Paypal” zostaniesz przekierowany do bezpiecznego interfejsu PayPal w celu rejestracji Twojego konta.",
   "pci_project_new_payment_method_add_info_bank_account": "Po kliknięciu \"Dodaj\" zostaniesz przekierowany do sekcji <a href=\"{{ paymentMethodSection }}\">„Moje sposoby płatności”</a> w Panelu klienta.",
   "pci_project_new_payment_method_add_warning_bank_account": "Twoje konto bankowe zostanie zatwierdzone w ciągu 24 do 48 godzin od otrzymania autoryzacji automatycznego obciążania konta przesłanej przez Ciebie pocztą tradycyjną.  Po zatwierdzeniu konta będziesz mógł utworzyć projekt Public Cloud.",
-  "pci_project_new_payment_method_add_credit": "Zasilenie konta"
+  "pci_project_new_payment_method_add_credit": "Zasilenie konta",
+  "pci_project_new_payment_method_add_warning_paypal_account": "Kiedy wybierzesz PayPal, z Twojego konta pobrana zostanie kwota {{amount}} w celu sprawdzenia poprawności jego działania. Kwota ta zostanie wykorzystana do opłacenia pierwszych zainstalowanych zasobów."
 }

@@ -4,5 +4,6 @@
   "pci_project_new_payment_method_add_info_paypal": "By clicking ‘PayPal’, you will be redirected to the PayPal secure interface to register your account.",
   "pci_project_new_payment_method_add_info_bank_account": "By clicking ‘Add’, you will be redirected to the <a href=\"{{ paymentMethodSection }}\">”My payment methods</a> section of the OVHcloud Control Panel.",
   "pci_project_new_payment_method_add_warning_bank_account": "Your payment card will be validated between 24 and 48 hours after we have received your direct debit authorisation, which needs to be sent by post. After it has been validated, you can create a Public Cloud project.",
-  "pci_project_new_payment_method_add_credit": "Add credits"
+  "pci_project_new_payment_method_add_credit": "Add credits",
+  "pci_project_new_payment_method_add_warning_paypal_account": "If you select PayPal, a transaction of {{amount}} will be made on your account to confirm that it works properly. This credit is not lost. It will be used to pay for the first resources you deploy."
 }
