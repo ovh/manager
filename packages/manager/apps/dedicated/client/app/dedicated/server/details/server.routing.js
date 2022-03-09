@@ -23,7 +23,12 @@ export default /* @ngInject */ ($stateProvider) => {
       interfaces: /* @ngInject */ (
         serverName,
         DedicatedServerInterfacesService,
-      ) => DedicatedServerInterfacesService.getInterfaces(serverName),
+        specifications,
+      ) =>
+        DedicatedServerInterfacesService.getInterfaces(
+          serverName,
+          specifications,
+        ),
       features: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping.checkFeatureAvailability([
           'dedicated-server:backup',
