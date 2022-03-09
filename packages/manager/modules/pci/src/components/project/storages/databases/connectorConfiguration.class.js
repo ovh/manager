@@ -56,6 +56,6 @@ export default class ConnectorConfiguration {
   isExtra(field) {
     const isFieldInConfig = this.getField(field);
     const isFieldTransform = field.startsWith(TRANSFORM_PROPERTY_KEY);
-    return !(isFieldInConfig || isFieldTransform);
+    return !isFieldInConfig && !isFieldTransform;
   }
 }
