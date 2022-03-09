@@ -1,3 +1,5 @@
+import { GROUP_NAMES_WITH_MESSAGES } from '../../../../../../../components/project/storages/databases/connectors.constants';
+
 export default class AddConnectorCtrl {
   /* @ngInject */
   constructor($translate, CucCloudMessage, DatabaseService) {
@@ -5,6 +7,7 @@ export default class AddConnectorCtrl {
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
     this.getErrorsMessages = AddConnectorCtrl.getErrorsMessages;
+    this.groupNames = GROUP_NAMES_WITH_MESSAGES;
   }
 
   $onInit() {
