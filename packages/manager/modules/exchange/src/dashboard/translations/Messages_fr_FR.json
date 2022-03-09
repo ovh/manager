@@ -505,7 +505,7 @@
   "exchange_account_add_field_error_pattern": "Veuillez saisir un format valide.",
   "exchange_account_add_emailAddress_error_alreadyExists": "Un compte avec cette adresse e-mail existe déjà.",
   "exchange_account_add_submit_success": "La création du compte {0} a été effectuée. Vous pourrez l’utiliser dans quelques minutes.",
-  "exchange_ACTION_add_account_legal_title": "J'accepte les conditions d'utilistation",
+  "exchange_ACTION_add_account_legal_title": "J'accepte les conditions d'utilisation",
   "exchange_ACTION_add_account_legal_warning": "Je reconnais qu'OVH procédera à l’exécution immédiate de la prestation à compter de la validation de ma commande et à ce titre je renonce expressément à exercer mon droit de rétractation conformément aux dispositions de l’article L.121-21-8 du code de la consommation.",
   "exchange_ACTION_add_account_title": "Ajouter un compte Exchange",
   "exchange_ACTION_add_account_step1_email_label": "Compte e-mail",
