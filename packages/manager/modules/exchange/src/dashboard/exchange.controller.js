@@ -3,6 +3,8 @@ import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
 import set from 'lodash/set';
 
+import { EXCHANGE_CONTAINER_MESSAGING } from './exchange.constants';
+
 export default class ExchangeCtrl {
   /* @ngInject */
   constructor(
@@ -58,6 +60,8 @@ export default class ExchangeCtrl {
     };
     this.exchange = exchange;
     this.$routerParams = wucExchange.getParams();
+
+    this.EXCHANGE_CONTAINER_MESSAGING = EXCHANGE_CONTAINER_MESSAGING;
 
     set(navigation, '$exchangeRootScope', $scope);
     set(messaging, '$exchangeRootScope', $scope);

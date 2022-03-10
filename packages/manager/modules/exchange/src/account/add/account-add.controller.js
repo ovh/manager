@@ -4,7 +4,9 @@ import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
 import map from 'lodash/map';
+
 import { ACCOUNT_WORLD_PHONE_REGEX } from '../account.constants';
+import { EXCHANGE_CONTAINER_MESSAGING } from '../../dashboard/exchange.constants';
 
 export default class ExchangeAccountAddController {
   /* @ngInject */
@@ -12,6 +14,8 @@ export default class ExchangeAccountAddController {
     $scope,
     $timeout,
     $translate,
+    $location,
+    $anchorScroll,
     exchangeAccountTypes,
     wucExchange,
     exchangeAccount,
@@ -23,6 +27,8 @@ export default class ExchangeAccountAddController {
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.$location = $location;
+    this.$anchorScroll = $anchorScroll;
 
     this.exchangeAccountTypes = exchangeAccountTypes;
     this.wucExchange = wucExchange;
@@ -160,7 +166,7 @@ export default class ExchangeAccountAddController {
   }
 
   hide() {
-    this.goToAccounts();
+    return this.goToAccounts();
   }
 
   switchBetweenPasswordAndTextInput() {
@@ -226,11 +232,13 @@ export default class ExchangeAccountAddController {
         formattedAccount,
       )
       .then((data) => {
-        this.messaging.writeSuccess(
-          this.$translate.instant('exchange_account_add_submit_success', {
-            t0: `${formattedAccount.login}@${formattedAccount.domain}`,
-          }),
-          data,
+        this.goToAccounts().then(() =>
+          this.messaging.writeSuccess(
+            this.$translate.instant('exchange_account_add_submit_success', {
+              t0: `${formattedAccount.login}@${formattedAccount.domain}`,
+            }),
+            data,
+          ),
         );
       })
       .catch((error) => {
@@ -242,7 +250,10 @@ export default class ExchangeAccountAddController {
         );
       })
       .finally(() => {
-        this.hide();
+        this.isSendingNewAccount = false;
+
+        this.$location.hash(EXCHANGE_CONTAINER_MESSAGING);
+        this.$anchorScroll();
       });
   }
 
