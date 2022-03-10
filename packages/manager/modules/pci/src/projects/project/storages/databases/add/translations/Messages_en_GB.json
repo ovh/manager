@@ -34,5 +34,7 @@
   "pci_database_add_name_max_rule": "Maximum {{max}} characters",
   "pci_database_add_name_pattern_rule": "May contain numbers, letters, underscores, dashes and full stops only.",
   "pci_database_add_command_description": "With the following command, you can create your service using our API.",
-  "pci_database_add_command_documentation_link": "Click here for documentation."
+  "pci_database_add_command_documentation_link": "Click here for documentation.",
+  "pci_database_add_footer_part_1": "All product names, logos, and brands are property of their respective owners. All company, product and service names used in this website are for identification purposes only. Use of these names, logos, and brands does not imply endorsement.",
+  "pci_database_add_footer_part_2": "*Redis is a trademark of Redis Ltd. Any rights therein are reserved to Redis Ltd. Any use by OVH SAS  is for referential purposes only and does not indicate any sponsorship, endorsement or affiliation between Redis and OVH SAS."
 }
