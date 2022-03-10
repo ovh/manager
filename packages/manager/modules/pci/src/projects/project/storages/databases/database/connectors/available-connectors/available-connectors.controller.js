@@ -1,6 +1,6 @@
 import capitalize from 'lodash/capitalize';
 
-export default class {
+export default class AvailableConnectorsCtrl {
   /* @ngInject */
   constructor($translate, CucCloudMessage, DatabaseService) {
     this.$translate = $translate;

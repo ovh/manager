@@ -80,15 +80,8 @@ export default class PciConnectorTransformInputController {
         transformation.type;
       transformation.options.forEach((option) => {
         const value = transformation[option.name];
-        if (value) {
-          this.model[
-            `transforms.${transformation.name}.${option.name}`
-          ] = value;
-        } else {
-          this.model[
-            `transforms.${transformation.name}.${option.name}`
-          ] = undefined;
-        }
+        this.model[`transforms.${transformation.name}.${option.name}`] =
+          value || null;
       });
     });
   }

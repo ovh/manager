@@ -44,7 +44,7 @@ export default class PciConnectorInputController {
     if (newVal !== 'default') {
       this.model[this.data.name] = newVal;
     } else {
-      this.model[this.data.name] = undefined;
+      this.model[this.data.name] = null;
     }
   }
 }
