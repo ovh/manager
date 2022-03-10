@@ -1,4 +1,4 @@
-<div class="container-fluid px-0 mt-3">
+<div class="container-fluid px-0 mt-3" data-ui-view>
     <!-- error messages -->
     <cui-message-container
         data-messages="$ctrl.messages"
@@ -65,7 +65,7 @@
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-on-click="$ctrl.trackAndDeleteNamespace($row)"
-                ng-if="!$row.default"
+                ng-if="!$row.isDefault()"
             >
                 <span
                     data-translate="pci_databases_namespaces_tab_delete_link"
@@ -75,7 +75,7 @@
                 disabled
                 oui-tooltip
                 title="{{:: 'pci_databases_namespaces_tab_delete_default' | translate}}"
-                ng-if="$row.default"
+                ng-if="$row.isDefault()"
             >
                 <span
                     data-translate="pci_databases_namespaces_tab_delete_link"
