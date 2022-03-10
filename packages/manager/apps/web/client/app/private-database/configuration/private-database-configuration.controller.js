@@ -62,25 +62,34 @@ angular.module('App').controller(
         id: value,
         text: value,
       }));
-      if (field.key === 'autocommit') {
-        PrivateDatabaseConfigurationsCtrl.convertFieldAsToggle(field);
-      } else if (field.key === 'event_scheduler') {
-        PrivateDatabaseConfigurationsCtrl.convertFieldAsToggle(field);
+
+      if (field.key === 'sql_mode') {
+        field.type = 'select';
+
+        field.availableValues = field.availableValues.map((value) => {
+          return {
+            id: value.id,
+            text: `${
+              value.id === field.defaultValue ? `Default` : `Legacy`
+            } SQL Mode: ${value.id}`,
+          };
+        });
+
+        field.selectedValue = find(field.availableValues, {
+          id: field.value,
+        });
+      } else if (field.availableValues.length === 2) {
+        field.type = 'toggle';
+        field.selectedValue = { id: field.value };
       } else {
         field.type = 'select';
         field.selectedValue = find(field.availableValues, {
           id: field.value,
         });
       }
+
       return field;
     }
-
-    /* eslint-disable no-param-reassign */
-    static convertFieldAsToggle(field) {
-      field.type = 'toggle';
-      field.selectedValue = { id: field.value };
-    }
-    /* eslint-enable no-param-reassign */
 
     getFieldDescriptionTranslated(field) {
       const translationId = `privateDatabase_configuration_field_${field.key}`;
