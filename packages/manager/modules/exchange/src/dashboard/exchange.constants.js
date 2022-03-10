@@ -150,8 +150,11 @@ export const DOMAIN_ORDER_URL = {
   WS: 'https://us.ovh.com/es/order/webcloud',
 };
 
+export const EXCHANGE_CONTAINER_MESSAGING = 'exchangeMessagingContainerId';
+
 export default {
   EXCHANGE_MX_CONFIG,
   EXCHANGE_CONFIG_URL,
   EXCHANGE_CONFIG,
+  EXCHANGE_CONTAINER_MESSAGING,
 };
