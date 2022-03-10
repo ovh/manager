@@ -20,12 +20,12 @@ export default /* @ngInject */ ($stateProvider) => {
       emailAccount: /* @ngInject */ ($transition$) => {
         const { emailAccount } = $transition$.params();
 
-        if (emailAccount)
+        if (emailAccount && emailAccount.description) {
           emailAccount.description = emailAccount.description.substring(
             1,
             emailAccount.description.length - 1,
           ); // Remove start and end double quote used for CSV
-
+        }
         return emailAccount;
       },
     },
