@@ -28,7 +28,7 @@ export default class PciConnectorExtraInputController {
   }
 
   onRemoveExtra($index) {
-    this.model[this.extraConfig[$index].key] = undefined;
+    this.model[this.extraConfig[$index].key] = null;
     this.extraConfig.splice($index, 1);
   }
 }
