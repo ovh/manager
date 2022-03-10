@@ -30,6 +30,7 @@ import union from 'lodash/union';
         HOSTING,
         HOSTING_UPGRADES,
         HOSTING_OPERATION_STATUS,
+        DETACHABLE_PRODUCT_NAMES,
         OvhHttp,
         Poll,
       ) {
@@ -42,6 +43,7 @@ import union from 'lodash/union';
         this.HOSTING = HOSTING;
         this.HOSTING_UPGRADES = HOSTING_UPGRADES;
         this.HOSTING_OPERATION_STATUS = HOSTING_OPERATION_STATUS;
+        this.DETACHABLE_PRODUCT_NAMES = DETACHABLE_PRODUCT_NAMES;
         this.OvhHttp = OvhHttp;
         this.Poll = Poll;
 
@@ -442,6 +444,21 @@ import union from 'lodash/union';
             rootPath: 'apiv6',
           },
         );
+      }
+
+      /**
+       * Check if service can be detached
+       * @param {string} serviceName
+       */
+      isServiceDetachable(serviceName) {
+        return this.getServiceInfos(serviceName)
+          .then(({ serviceId }) => {
+            return this.$http.get(`/services/${serviceId}`);
+          })
+          .then(({ data }) => {
+            const productName = data.resource.product.name;
+            return this.DETACHABLE_PRODUCT_NAMES.includes(productName);
+          });
       }
 
       /**

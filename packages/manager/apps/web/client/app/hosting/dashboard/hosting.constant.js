@@ -46,4 +46,5 @@ angular
     OK: 'ok',
     CHECK: 'check',
     DOING: 'doing',
-  });
+  })
+  .constant('DETACHABLE_PRODUCT_NAMES', ['start10m-addon-v1']);

@@ -32,7 +32,6 @@ export default class HostingGeneralInformationsCtrl {
     hostingSSLCertificate,
     OvhApiScreenshot,
     user,
-    ovhManagerProductOffersActionService,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -56,7 +55,6 @@ export default class HostingGeneralInformationsCtrl {
     this.hostingSSLCertificate = hostingSSLCertificate;
     this.OvhApiScreenshot = OvhApiScreenshot;
     this.user = user;
-    this.ovhManagerProductOffersActionService = ovhManagerProductOffersActionService;
 
     this.CDN_ADVANCED = CDN_ADVANCED;
     this.CDN_VERSION_V1 = HOSTING_CDN_ORDER_CDN_VERSION_V1;
@@ -69,7 +67,7 @@ export default class HostingGeneralInformationsCtrl {
     this.isCdnInDeleteAtExpiration =
       this.$scope.cdnServiceInfo?.renew.mode === 'deleteAtExpiration';
     this.defaultRuntime = null;
-    this.isAvailableOfferOrPlanDetach = false;
+    this.isAvailableOfferOrDetach = false;
     this.contactManagementLink = this.coreConfig.isRegion('EU')
       ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
           serviceName: this.serviceName,
@@ -121,7 +119,7 @@ export default class HostingGeneralInformationsCtrl {
         this.getScreenshot(),
         this.retrievingSSLCertificate(),
         this.isAvailableOffer(this.serviceName),
-        this.isAvailablePlanDetach(this.serviceName),
+        this.isAvailableDetach(this.serviceName),
       ])
       .then(() => this.HostingRuntimes.getDefault(this.serviceName))
       .then((runtime) => {
@@ -245,24 +243,19 @@ export default class HostingGeneralInformationsCtrl {
   isAvailableOffer(productId) {
     return this.Hosting.getAvailableOffer(productId).then((offers) => {
       if (offers.length > 0) {
-        this.isAvailableOfferOrPlanDetach = true;
+        this.isAvailableOfferOrDetach = true;
       }
     });
   }
 
-  isAvailablePlanDetach(productId) {
-    return this.Hosting.getServiceInfos(productId)
-      .then(({ serviceId }) => {
-        this.serviceId = serviceId;
-        return this.ovhManagerProductOffersActionService.getAvailableDetachPlancodes(
-          serviceId,
-        );
-      })
-      .then((offers) => {
-        if (offers.length > 0) {
-          this.isAvailableOfferOrPlanDetach = true;
+  isAvailableDetach(serviceName) {
+    return this.Hosting.isServiceDetachable(serviceName).then(
+      (isDetachable) => {
+        if (isDetachable) {
+          this.isAvailableOfferOrDetach = true;
         }
-      });
+      },
+    );
   }
 
   changeOffer() {

@@ -1,7 +1,6 @@
 import get from 'lodash/get';
 import {
   OFFERS_NAME_MAPPING,
-  DETACHABLE_OFFERS,
   DETACH_DEFAULT_OPTIONS,
 } from './hosting-offer-upgrade.constants';
 
@@ -39,6 +38,7 @@ angular.module('App').controller(
     $onInit() {
       this.productId = this.$stateParams.productId;
       this.serviceId = null;
+      this.isDetachable = false;
 
       this.availableOffers = [];
       this.durations = null;
@@ -59,25 +59,26 @@ angular.module('App').controller(
         this.ovhSubsidiary = user.ovhSubsidiary;
       });
 
-      this.Hosting.getSelected(this.productId)
-        .then((hosting) => {
-          this.hosting = hosting;
-          return this.getAvailableOptions(this.productId);
-        })
-        .catch(() => {
-          this.availableOffers = [];
-        })
-        .finally(() => {
-          this.loading.availableOffers = false;
-        });
-    }
-
-    isDetachable() {
-      return DETACHABLE_OFFERS.includes(this.hosting.offer);
+      return this.Hosting.isServiceDetachable(this.productId).then(
+        (isDetachable) => {
+          this.isDetachable = isDetachable;
+          this.Hosting.getSelected(this.productId)
+            .then((hosting) => {
+              this.hosting = hosting;
+              return this.getAvailableOptions(this.productId);
+            })
+            .catch(() => {
+              this.availableOffers = [];
+            })
+            .finally(() => {
+              this.loading.availableOffers = false;
+            });
+        },
+      );
     }
 
     getAvailableOptions(productId) {
-      if (this.isDetachable()) {
+      if (this.isDetachable) {
         return this.Hosting.getServiceInfos(productId)
           .then(({ serviceId }) => {
             this.serviceId = serviceId;
@@ -127,7 +128,7 @@ angular.module('App').controller(
     }
 
     getPrices() {
-      if (this.isDetachable()) {
+      if (this.isDetachable) {
         return this.ovhManagerProductOffersActionService
           .simulate(
             this.model.offer.value,
@@ -152,7 +153,7 @@ angular.module('App').controller(
     }
 
     executeOrder() {
-      if (this.isDetachable()) {
+      if (this.isDetachable) {
         return this.ovhManagerProductOffersActionService
           .execute(
             this.model.offer.value,
