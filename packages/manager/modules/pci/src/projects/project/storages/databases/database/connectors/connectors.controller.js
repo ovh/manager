@@ -4,7 +4,7 @@ import {
   CONNECTOR_STATUS,
 } from '../../../../../../components/project/storages/databases/connectors.constants';
 
-export default class {
+export default class ConnectorsCtrl {
   /* @ngInject */
   constructor($translate, CucCloudMessage, DatabaseService) {
     this.$translate = $translate;

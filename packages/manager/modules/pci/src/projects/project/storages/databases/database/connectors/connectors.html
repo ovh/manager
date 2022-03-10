@@ -96,10 +96,10 @@
                     >{{$row.tasks.length -
                     $row.getFailedTasks().length}}/{{$row.tasks.length}}</span
                 >
-                <span
+                <button
                     class="oui-icon oui-icon-warning oui-button oui-color-ae-500"
                     ng-click="$ctrl.goToTasks($row)"
-                ></span>
+                ></button>
             </div>
             <div
                 ng-if="$row.getFailedTasks().length === 0"
@@ -116,11 +116,11 @@
             data-searchable
             data-filterable
         >
-            <span
+            <button
                 class="large-icon font-weight-bold oui-icon oui-button oui-action-button"
                 ng-click="$ctrl.pauseOrResumeConnector($row)"
                 ng-class="$row.isPaused() ? 'oui-icon-play_concept' : 'oui-icon-pause_concept'"
-            ></span>
+            ></button>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_databases_connectors_restart' | translate"
