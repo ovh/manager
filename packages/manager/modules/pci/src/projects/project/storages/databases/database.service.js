@@ -906,10 +906,10 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
-  editNamespace(projectId, engine, databaseId, namespace) {
+  editNamespace(projectId, engine, databaseId, namespaceId, namespace) {
     return this.$http
       .put(
-        `/cloud/project/${projectId}/database/${engine}/${databaseId}/namespace`,
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/namespace/${namespaceId}`,
         namespace,
       )
       .then(({ data }) => data);
