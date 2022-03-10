@@ -29,6 +29,7 @@ export default {
     databasesRegions: '<',
     queryStatisticsLink: '<',
     namespacesLink: '<',
+    advancedConfigurationLink: '<',
   },
   template,
 };
