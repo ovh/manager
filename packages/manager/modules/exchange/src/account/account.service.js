@@ -81,17 +81,12 @@ export default class ExchangeAccount {
    * @param {object} newAccount
    */
   sendingNewAccount(organizationName, serviceName, newAccount) {
-    return this.OvhHttp.post(
-      `/email/exchange/${organizationName}/service/${serviceName}/account`,
-      {
-        rootPath: 'apiv6',
-        data: newAccount,
-      },
-    ).then((data) => {
-      this.wucExchange.refreshViews('Accounts', 'Tasks');
-
-      return data;
-    });
+    return this.$http
+      .post(
+        `/email/exchange/${organizationName}/service/${serviceName}/account`,
+        newAccount,
+      )
+      .then(({ data }) => data);
   }
 
   /**
