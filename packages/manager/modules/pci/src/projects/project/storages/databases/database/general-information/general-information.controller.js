@@ -249,6 +249,13 @@ export default class {
     }
   }
 
+  trackEndpointChange(modelValue) {
+    this.trackDashboard(
+      `general_information::select_services::${modelValue.component}`,
+      'click',
+    );
+  }
+
   $onDestroy() {
     this.stopPollingDatabaseStatus();
     this.stopPollingNodesStatus();

@@ -8,7 +8,7 @@ export default class Namespace {
     retention,
     snapshotEnabled,
     type,
-    writesToCommitlogEnabled,
+    writesToCommitLogEnabled,
   }) {
     Object.assign(this, {
       id,
@@ -17,9 +17,12 @@ export default class Namespace {
       retention: new Retention(retention),
       snapshotEnabled,
       type,
-      writesToCommitlogEnabled,
+      writesToCommitLogEnabled,
     });
-    this.default = this.name === 'default';
+  }
+
+  isDefault() {
+    return this.name === 'default';
   }
 
   getRetentionTimeDuration() {
