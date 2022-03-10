@@ -459,7 +459,6 @@
   "exchange_account_add_accountType_label": "Type de compte (obligatoire)",
   "exchange_account_add_accountType_tooltip": "E-mail pro : profitez de 10 Go de stockage, des protocoles POP, IMAP et SMTP.\nExchange : profitez de 50 Go de stockage, des protocoles MAPI et ActiveSync.\n",
   "exchange_account_add_emailAddress_label": "Adresse e-mail (obligatoire)",
-  "exchange_account_add_emailAddress_hint": "La partie locale de votre adresse e-mail (le texte situé avant le « @ ») doit respecter ces indications :<ul>\n<li qtlid=\"485957\">elle doit débuter et se terminer par une lettre ou un chiffre ;</li>\n<li qtlid=\"485970\">les caractères spéciaux autorisés sont « . », « + », « - » et « _ » ;</li>\n<li qtlid=\"485983\">il est impossible de mettre côte à côte des caractères spéciaux.</li>\n</ul>",
   "exchange_account_add_emailAddress_hide_from_directory": "Cacher l'adresse dans l'annuaire",
   "exchange_account_add_emailAddress_error_emailAddressIsAlreadyTaken": "Cette adresse e-mail existe déjà.",
   "exchange_account_add_samAccountName_label": "Nom de compte Exchange 2010",
