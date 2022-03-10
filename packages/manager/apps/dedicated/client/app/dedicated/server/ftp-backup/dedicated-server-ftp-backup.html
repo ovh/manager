@@ -15,7 +15,7 @@
             <div
                 class="alert alert-info"
                 role="alert"
-                data-ng-if="isNotActivatedButActivable && featureAvailable"
+                data-ng-if="canBeActivated && featureAvailable"
                 data-translate="server_configuration_ftpbackup_none"
             ></div>
 
@@ -263,7 +263,7 @@
             <button
                 type="button"
                 class="btn btn-default btn-block {{ disable.activeFtp && 'disabled' }}"
-                data-ng-if="featureAvailable && isNotActivatedButActivable"
+                data-ng-if="featureAvailable && canBeActivated"
                 data-ng-click="!disable.activeFtp && setAction('ftp-backup/activate/dedicated-server-ftp-backup-activate')"
             >
                 <span class="icon-backupftp-activate" aria-hidden="true"></span>

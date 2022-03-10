@@ -92,7 +92,7 @@ angular.module('App').controller(
           this.$scope.isOrderable = this.$scope.ftpBackup.model.canOrder;
           this.$scope.isActivable = this.$scope.ftpBackup.model.activate;
           this.$scope.isActivated = this.$scope.ftpBackup.model.activated;
-          this.$scope.isNotActivatedButActivable =
+          this.$scope.canBeActivated =
             !this.$scope.isActivated &&
             (this.$scope.isActivable || this.$scope.isOrderable);
           this.$scope.isNotAvailable =
