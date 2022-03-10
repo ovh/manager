@@ -75,7 +75,7 @@
             <oui-field>
                 <label class="oui-field__label">
                     <span
-                        data-translate="{{:: 'pci_databases_namespaces_edit_retention_perdiod_duration_label' | translate }}"
+                        data-translate="{{:: 'pci_databases_namespaces_edit_retention_period_duration_label' | translate }}"
                     ></span>
                     <small class="text-danger">*</small>
                 </label>
@@ -83,7 +83,7 @@
                     type="button"
                     class="oui-popover-button"
                     aria-label="Help"
-                    oui-popover="{{:: 'pci_databases_namespaces_edit_retention_perdiod_duration_popover' | translate }}"
+                    oui-popover="{{:: 'pci_databases_namespaces_edit_retention_period_duration_popover' | translate }}"
                     oui-popover-id="popover-name"
                     oui-popover-placement="right"
                 ></button>
@@ -92,7 +92,7 @@
                     type="text"
                     id="retention_period"
                     name="retention_period"
-                    placeholder="{{:: 'pci_databases_namespaces_edit_retention_perdiod_duration_placeholder' | translate }}"
+                    placeholder="{{:: 'pci_databases_namespaces_edit_retention_period_duration_placeholder' | translate }}"
                     ng-model="$ctrl.model.retention.periodDuration"
                     ng-model-options="{allowInvalid: true}"
                     ng-pattern="$ctrl.FORM_RULES.periodDuration.pattern"
