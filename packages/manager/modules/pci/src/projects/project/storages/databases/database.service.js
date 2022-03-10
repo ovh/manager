@@ -855,6 +855,37 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
+  getAdvancedConfigurationList(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/capabilities/advancedConfiguration`,
+        DatabaseService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  getAdvancedConfiguration(projectId, engine, databaseId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/advancedConfiguration`,
+      )
+      .then(({ data }) => data);
+  }
+
+  editAdvancedConfiguration(
+    projectId,
+    engine,
+    databaseId,
+    advancedConfiguration,
+  ) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/database/${engine}/${databaseId}/advancedConfiguration`,
+        advancedConfiguration,
+      )
+      .then(({ data }) => data);
+  }
+
   getNamespaces(projectId, engine, databaseId) {
     return this.$http
       .get(
