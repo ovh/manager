@@ -23,7 +23,10 @@ export default /* @ngInject */ ($stateProvider) => {
             label: $translate.instant(
               `exchange_account_country_${countryCode}`,
             ),
-          }));
+          }))
+          .sort((country1, country2) =>
+            country1.label.localeCompare(country2.label),
+          );
       },
 
       phoneCountries: /* @ngInject */ (accountRules) => {
