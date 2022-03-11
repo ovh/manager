@@ -74,6 +74,7 @@ export default /* @ngInject */ ($stateProvider) => {
           $window.location.replace(
             transition.router.stateService.href('pci.projects.new', {
               cartId: cart.cartId,
+              voucher: redirectParams.voucher,
             }),
           );
           return null;
@@ -97,14 +98,15 @@ export default /* @ngInject */ ($stateProvider) => {
           ? coreURLBuilder.buildURL('dedicated', '#/support/tickets/new')
           : '',
 
-      cart: /* @ngInject */ ($transition$, me, pciProjectNew) =>
-        !get($transition$.params(), 'cartId')
+      cart: /* @ngInject */ ($transition$, me, pciProjectNew) => {
+        return !get($transition$.params(), 'cartId')
           ? // just create cart - location will be reloaded to fetch the whole cart
             pciProjectNew.createOrderCart(me.ovhSubsidiary)
           : pciProjectNew.getOrderCart(
               me.ovhSubsidiary,
               get($transition$.params(), 'cartId'),
-            ),
+            );
+      },
 
       voucher: /* @ngInject */ ($transition$) => {
         return $transition$.params().voucher;
