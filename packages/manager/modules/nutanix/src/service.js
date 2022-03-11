@@ -77,19 +77,17 @@ export default class NutanixService {
   getClusterHardwareInfo(serviceId, nodeServiceId) {
     return this.getClusterOptions(serviceId)
       .then((options) => {
-        const allOptions = [
-          ...options,
-          {
-            serviceId: nodeServiceId,
-          },
-        ];
+        const optionsServiceId = [nodeServiceId, serviceId];
+        options.forEach((option) => {
+          optionsServiceId.push(option.serviceId);
+        });
         return this.$q.all(
-          allOptions.map((option) => {
-            return this.getHardwareInfo(option.serviceId).then(
+          optionsServiceId.map((optionServiceId) => {
+            return this.getHardwareInfo(optionServiceId).then(
               (hardwareInfo) => {
                 return {
                   ...hardwareInfo,
-                  serviceId: option.serviceId,
+                  serviceId: optionServiceId,
                 };
               },
             );
@@ -107,6 +105,7 @@ export default class NutanixService {
    */
   static transformHardwareInfo(optionsHardwareInfo) {
     const baremetalServers = {};
+    let nutanixCluster = {};
     optionsHardwareInfo.forEach((hardwareInfo) => {
       if (hardwareInfo.baremetalServers) {
         const keys = Object.keys(hardwareInfo.baremetalServers);
@@ -127,8 +126,15 @@ export default class NutanixService {
           }
         });
       }
+      if (hardwareInfo.nutanixCluster) {
+        // only one nutanix cluster, no need merge the reults
+        nutanixCluster = hardwareInfo.nutanixCluster;
+      }
     });
-    return baremetalServers;
+    return {
+      baremetalServers,
+      nutanixCluster,
+    };
   }
 
   getClusterOptions(serviceId) {

@@ -14,6 +14,7 @@ export default class NutanixGeneralInfoCtrl {
   $onInit() {
     this.loadServcesDetails();
     this.technicalDetails = this.getTechnicalDetails();
+    this.clusterTechnicalDetails = null;
     this.setPrivateBandwidthServiceId();
     this.clusterRedeploying = this.cluster.status === CLUSTER_STATUS.DEPLOYING;
   }
@@ -30,10 +31,18 @@ export default class NutanixGeneralInfoCtrl {
   }
 
   getTechnicalDetails() {
+    this.loadingTechnicalDetails = true;
     return this.NutanixService.getClusterHardwareInfo(
       this.serviceInfo.serviceId,
       this.server.serviceId,
-    );
+    )
+      .then((technicalDetails) => {
+        this.clusterTechnicalDetails = technicalDetails.nutanixCluster;
+        return technicalDetails.baremetalServers;
+      })
+      .finally(() => {
+        this.loadingTechnicalDetails = false;
+      });
   }
 
   setPrivateBandwidthServiceId() {

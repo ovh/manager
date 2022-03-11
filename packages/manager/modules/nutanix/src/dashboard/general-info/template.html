@@ -92,9 +92,15 @@
                 term="{{:: 'nutanix_dashboard_cluster_licence' | translate }}"
             >
                 <oui-tile-description>
+                    <oui-spinner
+                        data-ng-if="$ctrl.loadingTechnicalDetails"
+                        data-size="s"
+                    >
+                    </oui-spinner>
                     <span
+                        data-ng-if="!$ctrl.loadingTechnicalDetails && $ctrl.clusterTechnicalDetails"
                         class="text-capitalize"
-                        data-ng-bind=":: $ctrl.cluster.targetSpec.license"
+                        data-ng-bind=":: $ctrl.clusterTechnicalDetails.license.distribution"
                     >
                     </span>
                 </oui-tile-description>
