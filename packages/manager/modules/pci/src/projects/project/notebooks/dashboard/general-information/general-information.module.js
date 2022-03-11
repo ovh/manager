@@ -11,6 +11,7 @@ import routing from './general-information.routing';
 import notebooksConfigurationCommand from '../../components/configuration-command';
 import addTag from './tags/add';
 import deleteNotebook from './delete-notebook';
+import stopNotebook from './stop-notebook';
 
 const moduleName = 'ovhManagerPciNotebookGeneralInformation';
 
@@ -24,6 +25,7 @@ angular
     notebooksConfigurationCommand,
     addTag,
     deleteNotebook,
+    stopNotebook,
   ])
   .config(routing)
   .component('ovhManagerPciProjectNotebookGeneralInformation', component)
