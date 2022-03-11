@@ -62,7 +62,6 @@
                 class="d-inline-block col-md-6 col-xl-3 my-3"
                 data-ng-repeat="flavor in $ctrl.flavors | filter: { type: $ctrl.notebookModel.selected.resource.flavorType } track by flavor.id"
                 data-name="{{:: flavor.name }}"
-                data-description="{{:: flavor.description}}"
                 data-model="$ctrl.notebookModel.selected.resource.flavor"
                 data-values="[flavor]"
                 data-variant="light"
@@ -72,54 +71,50 @@
                 <oui-select-picker-label>
                     <strong data-ng-bind=":: flavor.id | uppercase"></strong>
                 </oui-select-picker-label>
-
-                <oui-select-picker-section>
-                    <div class="d-flex">
+                <oui-select-picker-description>
+                    <div
+                        class="d-flex flex-column"
+                        data-ng-if="flavor.gpuInformation.gpuMemory"
+                    >
+                        <span ng-bind="$ctrl.getGPUDescription(flavor)"></span>
                         <span
-                            data-translate="pci_notebook_add_resources_proposed_ram"
-                            data-translate-values="{ ram: (flavor.resourcesPerUnit.memory | bytes:0:true:'B') }"
-                        ></span>
-                        <span
-                            data-translate="pci_notebook_add_resources_proposed_type_cpu"
+                            data-translate="pci_notebook_add_resources_description_gpu_ram"
+                            data-translate-values="{ nbResources: $ctrl.notebookModel.nbResources, ram: (flavor.gpuInformation.gpuMemory | bytes:0:true:'B') }"
                         ></span>
                     </div>
                     <div
-                        class="d-flex"
-                        data-ng-if="flavor.gpuInformation.gpuMemory"
+                        class="d-flex flex-column"
+                        data-ng-if="!flavor.gpuInformation.gpuMemory"
                     >
                         <span
-                            data-translate="pci_notebook_add_resources_proposed_ram"
-                            data-translate-values="{ ram: (flavor.gpuInformation.gpuMemory | bytes:0:true:'B') }"
+                            data-translate="pci_notebook_add_resources_description_cpu"
+                            data-translate-values="{ description: flavor.description }"
                         ></span>
+                    </div>
+                </oui-select-picker-description>
+                <oui-select-picker-section>
+                    <div class="d-flex">
                         <span
-                            data-translate="pci_notebook_add_resources_proposed_type_gpu"
+                            data-translate="pci_notebook_add_resources_proposed_cpu"
+                            data-translate-values="{ vcores: $ctrl.notebookModel.nbResources * flavor.resourcesPerUnit.cpu }"
                         ></span>
                     </div>
                     <div class="d-flex">
                         <span
-                            data-translate="pci_project_flavors_spec_core_details"
-                            data-translate-values="{ vcores: flavor.resourcesPerUnit.cpu }"
+                            data-translate="pci_notebook_add_resources_proposed_ram"
+                            data-translate-values="{ ram: ($ctrl.notebookModel.nbResources * flavor.resourcesPerUnit.memory | bytes:0:true:'B') }"
                         ></span>
                     </div>
                     <div class="d-flex">
                         <span
                             data-translate="pci_notebook_add_resources_proposed_storage"
-                            data-translate-values="{ memory: (flavor.resourcesPerUnit.ephemeralStorage | bytes:0:true:'B') }"
+                            data-translate-values="{ memory: ($ctrl.notebookModel.nbResources * flavor.resourcesPerUnit.ephemeralStorage | bytes:0:true:'B') }"
                         ></span>
                     </div>
                     <div class="d-flex">
                         <span
                             data-translate="pci_notebook_add_resources_proposed_bandwidth"
-                            data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.publicNetwork | bytes:0:false:'B') }"
-                        ></span>
-                    </div>
-                    <div
-                        class="d-flex"
-                        data-ng-if="flavor.resourcesPerUnit.privateNetwork"
-                    >
-                        <span
-                            data-translate="pci_notebook_add_resources_proposed_bandwidth"
-                            data-translate-values="{ bandwidth : (flavor.resourcesPerUnit.privateNetwork | bytes:2:false:'B') }"
+                            data-translate-values="{ bandwidth : ($ctrl.notebookModel.nbResources * flavor.resourcesPerUnit.publicNetwork | bytes:2:false:'B') }"
                         ></span>
                     </div>
                 </oui-select-picker-section>
@@ -128,7 +123,12 @@
                         data-ng-bind="$ctrl.formatPriceForHour(flavor.id)"
                     ></strong>
                     <span
+                        data-ng-if="$ctrl.notebookModel.nbResources === 1"
                         data-translate="pci_notebook_add_resources_proposed_resource_price_by_resource"
+                    ></span>
+                    <span
+                        data-ng-if="$ctrl.notebookModel.nbResources > 1"
+                        data-translate="pci_notebook_add_resources_proposed_resource_price_by_resources"
                     ></span>
                 </oui-select-picker-section>
             </oui-select-picker>

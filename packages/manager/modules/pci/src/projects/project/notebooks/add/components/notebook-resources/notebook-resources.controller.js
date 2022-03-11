@@ -1,4 +1,5 @@
 import { NOTEBOOK_RESOURCES } from '../../notebook.constants';
+import { NOTEBOOK_MULTIPLY_SIGN } from '../../../notebook.constants';
 
 const RESOURCES_SCALE_MIN_FLAVOR = 1;
 
@@ -36,10 +37,18 @@ export default class NotebookResourcesController {
     this.notebookModel.nbResources = 1;
   }
 
+  getGPUDescription(flavor) {
+    return `${this.notebookModel.nbResources} ${NOTEBOOK_MULTIPLY_SIGN} ${flavor.description}`;
+  }
+
   getPriceForHour(flavorId) {
     if (flavorId) {
       const priceIndex = NotebookResourcesController.getPriceIndex(flavorId);
-      return this.prices[priceIndex].price.value * 60;
+      return (
+        this.notebookModel.nbResources *
+        this.prices[priceIndex].price.value *
+        60
+      );
     }
 
     return null;
