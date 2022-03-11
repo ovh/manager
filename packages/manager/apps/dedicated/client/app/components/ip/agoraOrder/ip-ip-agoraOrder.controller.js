@@ -174,11 +174,11 @@ export default class AgoraIpOrderCtrl {
     this.ipOffers = [];
 
     if (
-      get(this.model, 'selectedService.type') ===
+      this.model?.selectedService?.type ===
       PRODUCT_TYPES.dedicatedServer.typeName
     ) {
       return this.IpAgoraOrder.checkIpDedicatedServerIsOrderable(
-        get(this.model, 'selectedService.serviceName'),
+        this.model?.selectedService?.serviceName,
       ).then((isOrderable) => {
         if (!isOrderable) {
           this.loading.ipOffers = false;
