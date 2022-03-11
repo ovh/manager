@@ -2,6 +2,7 @@ import { CREDIT } from '../../../constants/fidelityEvent.constants';
 
 export default /* @ngInject */ (
   $scope,
+  $timeout,
   $translate,
   atInternet,
   BillingFidelity,
@@ -138,6 +139,14 @@ export default /* @ngInject */ (
       $scope.creditOrder.erreurFormat ||
       !$scope.creditOrder.amount
     );
+  };
+
+  $scope.resetAction = function resetAction() {
+    $('#currentAction').modal('hide');
+    $scope.currentActionData = null;
+    $timeout(() => {
+      $scope.stepPath = '';
+    }, 300);
   };
 
   init();

@@ -1,142 +1,161 @@
-export default /* @ngInject */ (
-  $scope,
-  $filter,
-  $timeout,
-  $translate,
-  BillingFidelity,
-  BillingmessageParser,
-  BillingdateRangeSelection,
-  coreConfig,
-) => {
-  $scope.fidelityLoading = false;
-  $scope.fidelityAccountLoading = false;
-  $scope.fidelityAccount = null;
-  $scope.currency = null;
-
-  function getItems() {
-    $scope.fidelityLoading = true;
-
-    BillingFidelity.getMovements(
-      BillingdateRangeSelection.dateFrom,
-      BillingdateRangeSelection.dateTo,
-    )
-      .then((movements) => {
-        $scope.tasksId = movements.reverse();
-      })
-      .catch((data) => {
-        $scope.setMessage(
-          $translate.instant('fidelity_get_movements_error'),
-          data.data,
-        );
-        $scope.loaders.tasks = false;
-      })
-      .finally(() => {
-        $scope.fidelityLoading = false;
-      });
+export default class {
+  /* @ngInject */
+  constructor(
+    $filter,
+    $scope,
+    $timeout,
+    $translate,
+    BillingFidelity,
+    BillingmessageParser,
+    BillingdateRangeSelection,
+    coreConfig,
+  ) {
+    this.$filter = $filter;
+    this.$scope = $scope;
+    this.$timeout = $timeout;
+    this.$translate = $translate;
+    this.BillingFidelity = BillingFidelity;
+    this.BillingmessageParser = BillingmessageParser;
+    this.BillingdateRangeSelection = BillingdateRangeSelection;
+    this.coreConfig = coreConfig;
   }
-  $scope.onDateRangeChanged = function onDateRangeChanged() {
-    getItems();
-  };
 
-  $scope.setMessage = function setMessage(message, data) {
-    const msg = BillingmessageParser(message, data);
-    $scope.message = msg.message;
-    $scope.alertType = msg.alertType;
-  };
+  $onInit() {
+    this.fidelityLoading = false;
+    this.fidelityAccountLoading = false;
+    this.fidelityAccount = null;
+    this.showCustomRangeDate = false;
+    this.currency = null;
+    this.today = moment();
 
-  // Set items count by page
-  $scope.itemsPerPage = 10;
-  $scope.tasksId = [];
-  $scope.tasksDetails = [];
+    // Set items count by page
+    this.itemsPerPage = 10;
+    this.tasksId = [];
+    this.tasksDetails = [];
 
-  $scope.loaders = {
-    tasks: true,
-  };
+    this.loaders = {
+      tasks: true,
+    };
 
-  /*
-   * if you want transform item must return transformated item
-   * item is the current item to transform
-   */
-  $scope.transformItem = function transformItem(item) {
-    return BillingFidelity.getMovementsDetails(item);
-  };
+    this.currency = this.coreConfig.getUser().currency;
+    this.dateFrom = this.BillingdateRangeSelection.dateFrom;
+    this.dateTo = this.BillingdateRangeSelection.dateTo;
+    return this.getFidelityAccount();
+  }
 
-  /*
-   * call when a item of current page is transformed
-   * taskDetails contains the transformated items
-   */
-  $scope.onTransformItemNotify = function onTransformItemNotify(taskDetails) {
-    $scope.tasksDetails.push(taskDetails);
-  };
+  getMovements({ offset, pageSize }) {
+    return this.BillingFidelity.getMovements(
+      this.BillingdateRangeSelection.dateFrom,
+      this.BillingdateRangeSelection.dateTo,
+    ).then((movements) => ({
+      data: movements
+        .reverse()
+        .slice(offset - 1, offset + pageSize - 1)
+        .map((movementId) => ({
+          movementId,
+        })),
+      meta: {
+        currentOffset: offset,
+        pageCount: Math.ceil(movements.length / pageSize),
+        pageSize,
+        totalCount: movements.length,
+      },
+    }));
+  }
 
-  /*
-   * call when all item of current page are transformed
-   * tasksDetails contains transformated item
-   */
-  $scope.onTransformItemDone = function onTransformItemDone() {
-    $scope.loaders.tasks = false;
-  };
+  getMovementDetails({ movementId }) {
+    return this.BillingFidelity.getMovementsDetails(movementId);
+  }
 
-  $scope.getLastUpdate = function getLastUpdate(format) {
-    if ($scope.fidelityAccount) {
-      return $filter('date')($scope.fidelityAccount.lastUpdate, format);
+  onBasicDateRangeChange(_dateFrom) {
+    this.showCustomRangeDate = false;
+    this.dateFrom = moment()
+      .subtract(parseInt(_dateFrom, 10), 'month')
+      .startOf('month');
+
+    this.dateTo = moment();
+
+    this.onDateRangeChange(this.dateFrom, this.dateTo);
+  }
+
+  onDateRangeChange(dateFrom, dateTo) {
+    this.fidelityLoading = true;
+    this.BillingdateRangeSelection.dateFrom = dateFrom;
+    this.BillingdateRangeSelection.dateTo = dateTo;
+
+    this.$timeout(() => {
+      return this.getMovements({
+        offset: 1,
+        pageSize: this.itemsPerPage,
+      }).finally(() => {
+        this.fidelityLoading = false;
+      });
+    }, 100);
+  }
+
+  onCustomDateRangeChange([_dateFrom, _dateTo]) {
+    let dateFrom;
+    let dateTo;
+
+    if (_dateFrom && _dateTo) {
+      dateFrom = moment(_dateFrom).startOf('day');
+      if (moment(dateFrom).isAfter(dateTo)) {
+        dateTo = dateFrom.endOf('day');
+      }
+
+      dateTo = moment(_dateTo).endOf('day');
+      if (moment(dateTo).isBefore(dateFrom)) {
+        dateFrom = dateTo.startOf('day');
+      }
+
+      this.onDateRangeChange(dateFrom, dateTo);
+    }
+  }
+
+  setMessage(message, data) {
+    const msg = this.BillingmessageParser(message, data);
+    this.message = msg.message;
+    this.alertType = msg.alertType;
+  }
+
+  getLastUpdate(format) {
+    if (this.fidelityAccount) {
+      return this.$filter('date')(this.fidelityAccount.lastUpdate, format);
     }
     return '';
-  };
+  }
 
-  $scope.setAction = function setAction(action, data) {
+  setAction(action, data) {
     if (action) {
-      $scope.currentAction = action;
-      $scope.currentActionData = data;
+      this.$scope.currentAction = action;
+      this.$scope.currentActionData = data;
 
-      $scope.stepPath = `billing/payment/fidelity/${$scope.currentAction}/billing-fidelity-${$scope.currentAction}.html`;
-
+      this.$scope.stepPath = `billing/payment/fidelity/${this.$scope.currentAction}/billing-fidelity-${this.$scope.currentAction}.html`;
       $('#currentAction').modal({
         keyboard: true,
         backdrop: 'static',
       });
-    } else {
-      $('#currentAction').modal('hide');
-      $scope.currentActionData = null;
-      $timeout(() => {
-        $scope.stepPath = '';
-      }, 300);
     }
-  };
+  }
 
-  $scope.resetAction = function resetAction() {
-    $scope.setAction(false);
-  };
-
-  /**
-   * initialisation
-   */
-  function getFidelityAccount() {
-    $scope.fidelityAccountLoading = true;
-    return BillingFidelity.getFidelityAccount()
+  getFidelityAccount() {
+    this.fidelityAccountLoading = true;
+    return this.BillingFidelity.getFidelityAccount()
       .then((fidelityAccount) => {
-        $scope.fidelityAccount = fidelityAccount;
-        getItems();
+        this.fidelityAccount = fidelityAccount;
       })
       .catch((data) => {
         if (data.status !== 404) {
-          $scope.setMessage(
-            $translate.instant('fidelity_get_accounts_error'),
+          this.setMessage(
+            this.$translate.instant('fidelity_get_accounts_error'),
             data.data,
           );
         } else {
-          $scope.fidelityAccount = null;
+          this.fidelityAccount = null;
         }
       })
       .finally(() => {
-        $scope.fidelityAccountLoading = false;
+        this.fidelityAccountLoading = false;
       });
   }
-
-  function init() {
-    getFidelityAccount();
-    $scope.currency = coreConfig.getUser().currency;
-  }
-
-  init();
-};
+}

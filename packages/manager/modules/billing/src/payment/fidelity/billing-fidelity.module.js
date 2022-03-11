@@ -4,6 +4,7 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
 import uiRouter from '@uirouter/angularjs';
 
+import component from './billing-fidelity.component';
 import routing from './billing-payment-fidelity.routes';
 import service from './billing-fidelity.service';
 import creditOrderCtrl from './creditOrder/billing-fidelity-creditOrder.controller';
@@ -19,6 +20,7 @@ angular
     uiRouter,
   ])
   .config(routing)
+  .component('billingFidelityComponent', component)
   .controller('Billing.controllers.FidelityCreditOrder', creditOrderCtrl)
   .service('BillingFidelity', service)
   .run(
