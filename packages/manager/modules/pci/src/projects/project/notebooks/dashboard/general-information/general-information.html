@@ -254,43 +254,139 @@
                     data-term="{{:: 'pci_notebooks_general_information_resources_quantity' | translate }}"
                 >
                     <oui-tile-description>
-                        <span
-                            data-ng-if="$ctrl.flavor.gpuInformation"
-                            data-ng-bind=":: $ctrl.notebook.gpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.notebook.flavor | uppercase)"
-                        ></span>
-                        <span
-                            data-ng-if="!$ctrl.flavor.gpuInformation"
-                            data-ng-bind=":: $ctrl.notebook.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.notebook.flavor | uppercase)"
-                        ></span>
+                        <!-- GPU-->
+                        <div data-ng-if="$ctrl.flavor.gpuInformation">
+                            <p
+                                class="mb-1 font-weight-bold"
+                                data-ng-bind=":: $ctrl.notebook.gpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.notebook.flavor | uppercase)"
+                            ></p>
+                            <p
+                                class="mb-1"
+                                data-ng-bind=":: $ctrl.notebook.gpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.flavor.description | uppercase)"
+                            ></p>
+                            <p
+                                class="mb-1"
+                                data-translate="pci_notebooks_general_information_resources_RAM_per_GPU"
+                                data-translate-values="{ ressources: $ctrl.notebook.gpu, ram: ($ctrl.flavor.gpuInformation.gpuMemory | bytes:0:true:'B') }"
+                            ></p>
+                        </div>
+                        <!-- CPU-->
+                        <div data-ng-if="!$ctrl.flavor.gpuInformation">
+                            <p
+                                class="mb-1 font-weight-bold"
+                                data-ng-bind=":: $ctrl.notebook.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.notebook.flavor | uppercase)"
+                            ></p>
+                            <p
+                                class="mb-1"
+                                data-ng-bind=":: $ctrl.notebook.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.flavor.description | uppercase)"
+                            ></p>
+                        </div>
                     </oui-tile-description>
                 </oui-tile-definition>
-
-                <!--CPU/GPU/RAM per resource-->
+                <!-- Other resources -->
                 <oui-tile-definition
-                    data-term="{{:: 'pci_notebooks_general_information_resources_info' | translate}}"
+                    data-term="{{:: 'pci_notebooks_general_information_other_resources_info' | translate}}"
                 >
                     <oui-tile-description>
                         <p
                             class="mb-1"
-                            data-ng-bind=":: $ctrl.flavor.resourcesPerUnit.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN + ($ctrl.flavor.description | uppercase)"
+                            data-ng-if="$ctrl.flavor.gpuInformation"
+                            data-translate="pci_notebooks_general_information_other_resources_info_CPU"
+                            data-translate-values="{ cpu: $ctrl.notebook.spec.resources.cpu}"
                         ></p>
                         <p
                             class="mb-1"
-                            data-ng-bind=":: $ctrl.getCpuRamInfo()"
+                            data-translate="pci_notebooks_general_information_other_resources_info_RAM"
+                            data-translate-values="{ ram: ($ctrl.notebook.spec.resources.memory | bytes:0:true:'B')}"
                         ></p>
                         <p
                             class="mb-1"
-                            data-ng-bind=":: $ctrl.getGpuRamInfo()"
+                            data-translate="pci_notebooks_general_information_other_resources_info_bandwidth"
+                            data-translate-values="{ bandwidth: ($ctrl.notebook.spec.resources.publicNetwork | bytes:2:false:'B')}"
                         ></p>
                     </oui-tile-description>
-                    ></oui-tile-definition
-                >
-
+                </oui-tile-definition>
                 <!--Local storage-->
                 <oui-tile-definition
                     data-term="{{:: 'pci_notebooks_general_information_resources_local_storage' | translate}}"
-                    data-description="{{:: $ctrl.flavor.resourcesPerUnit.ephemeralStorage | bytes:0:false:'B'  }}"
-                ></oui-tile-definition>
+                >
+                    <oui-tile-description>
+                        <div
+                            class="d-flex align-items-center justify-content-between"
+                        >
+                            <span
+                                class="mb-1"
+                                data-translate="pci_notebooks_general_information_other_resources_info_ephemeral_storage"
+                                data-translate-values="{ storage: ($ctrl.notebook.ephemeralStorage | bytes:0:true:'B')}"
+                            >
+                            </span>
+                            <button
+                                type="button"
+                                class="oui-popover-button"
+                                oui-popover="{{:: 'pci_notebooks_general_information_other_resources_info_ephemeral_storage_popover' | translate }}"
+                            ></button>
+                        </div>
+                        <div
+                            class="d-flex align-items-center justify-content-between"
+                        >
+                            <span
+                                class="mb-1"
+                                data-translate="pci_notebooks_general_information_other_resources_info_workspace_storage"
+                                data-translate-values="{ storage: ($ctrl.notebook.workspaceFreeStorage | bytes:0:true:'B')}"
+                            ></span>
+                            <button
+                                type="button"
+                                class="oui-popover-button"
+                                oui-popover="{{:: 'pci_notebooks_general_information_other_resources_info_workspace_storage_popover' | translate: {freeStorage: ($ctrl.notebook.workspaceFreeStorage | bytes:0:true:'B')} }}"
+                            ></button>
+                        </div>
+                        <div ng-if="$ctrl.notebook.workspaceUsedStorage">
+                            <oui-progress
+                                ng-if="$ctrl.notebook.workspaceUsedStorage <= $ctrl.notebook.workspaceFreeStorage"
+                                max-value="100"
+                            >
+                                <oui-progress-bar
+                                    type="success"
+                                    value="$ctrl.getProgressValue($ctrl.notebook.workspaceUsedStorage, $ctrl.notebook.workspaceFreeStorage)"
+                                >
+                                    <span
+                                        data-ng-bind="$ctrl.notebook.workspaceUsedStorage |
+                                    bytes:0:true:'B'"
+                                    ></span>
+                                    /
+                                    <span
+                                        data-ng-bind="$ctrl.notebook.workspaceFreeStorage |
+                                    bytes:0:true:'B'"
+                                    ></span>
+                                </oui-progress-bar>
+                            </oui-progress>
+                            <oui-progress
+                                ng-if="$ctrl.notebook.workspaceUsedStorage > $ctrl.notebook.workspaceFreeStorage"
+                                max-value="100"
+                            >
+                                <oui-progress-bar
+                                    type="success"
+                                    value="$ctrl.getProgressValue($ctrl.notebook.workspaceFreeStorage, $ctrl.notebook.workspaceUsedStorage)"
+                                >
+                                    <span
+                                        data-ng-bind="$ctrl.notebook.workspaceFreeStorage |
+                                    bytes:0:true:'B'"
+                                    ></span>
+                                </oui-progress-bar>
+                                <oui-progress-bar
+                                    type="error"
+                                    value="100 - $ctrl.getProgressValue($ctrl.notebook.workspaceFreeStorage, $ctrl.notebook.workspaceUsedStorage)"
+                                >
+                                    <span
+                                        data-ng-bind="$ctrl.notebook.workspaceUsedStorage |
+                                        bytes:0:true:'B'"
+                                    >
+                                    </span>
+                                </oui-progress-bar>
+                            </oui-progress>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
 
                 <!--Life consumption-->
                 <oui-tile-definition

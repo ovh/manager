@@ -35,8 +35,16 @@
   "pci_notebooks_general_information_life_cycle_timeline_actions_stopped": "Date d'arrêt",
   "pci_notebooks_general_information_resources_title": "Ressources",
   "pci_notebooks_general_information_resources_quantity": "Ressources",
-  "pci_notebooks_general_information_resources_info": "GPU/CPU/RAM par ressource",
-  "pci_notebooks_general_information_resources_local_storage": "Stockage local par ressource",
+  "pci_notebooks_general_information_resources_local_storage": "Stockage",
   "pci_notebooks_general_information_resources_monitoring": "Suivi de la consommation",
-  "pci_notebooks_general_information_resources_monitoring_access_to_graph": "Accéder à Graph Dashboard"
+  "pci_notebooks_general_information_resources_monitoring_access_to_graph": "Accéder à Graph Dashboard",
+  "pci_notebooks_general_information_resources_RAM_per_GPU": "{{ressources}} × {{ram}} RAM par GPU",
+  "pci_notebooks_general_information_other_resources_info": "Autres ressources",
+  "pci_notebooks_general_information_other_resources_info_CPU": "CPU : {{cpu}} vCores",
+  "pci_notebooks_general_information_other_resources_info_RAM": "RAM : {{ram}}",
+  "pci_notebooks_general_information_other_resources_info_ephemeral_storage": "Taille stockage local éphémère : {{ storage }} SSD",
+  "pci_notebooks_general_information_other_resources_info_workspace_storage": "Espace de travail : {{ storage }} SSD inclus",
+  "pci_notebooks_general_information_other_resources_info_ephemeral_storage_popover": "Stockage local performant, mais non sauvegardé",
+  "pci_notebooks_general_information_other_resources_info_workspace_storage_popover": "Stockage distant sauvegardé. Au-delà de 30 jours consécutifs de stockage ou/et du dépassement de ce quota de {{freeStorage}}, les tarifs appliqués seront ceux de Public Cloud Object Storage.",
+  "pci_notebooks_general_information_other_resources_info_bandwidth": "Réseau public : {{ bandwidth }}/s"
 }
