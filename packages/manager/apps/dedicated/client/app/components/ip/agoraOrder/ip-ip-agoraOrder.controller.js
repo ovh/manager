@@ -177,7 +177,7 @@ export default class AgoraIpOrderCtrl {
       get(this.model, 'selectedService.type') ===
       PRODUCT_TYPES.dedicatedServer.typeName
     ) {
-      this.IpAgoraOrder.checkIpDedicatedServerIsOrderable(
+      return this.IpAgoraOrder.checkIpDedicatedServerIsOrderable(
         get(this.model, 'selectedService.serviceName'),
       ).then((isOrderable) => {
         if (!isOrderable) {
@@ -186,9 +186,8 @@ export default class AgoraIpOrderCtrl {
         }
         return this.loadIpOffers();
       });
-    } else {
-      this.loadIpOffers();
     }
+    return this.loadIpOffers();
   }
 
   loadIpOffers() {
