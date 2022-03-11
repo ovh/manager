@@ -429,7 +429,7 @@
                                 class="oui-input"
                                 id="accountInfoForwardingEmail"
                                 name="accountInfoForwardingEmail"
-                                type="text"
+                                type="email"
                                 data-ng-model="$ctrl.selectedAccount.forwardingEmail"
                             />
                         </oui-field>
@@ -437,6 +437,7 @@
                         <!--Email copy-->
                         <div class="col-md-6 my-4">
                             <oui-checkbox
+                                data-disabled="!$ctrl.selectedAccount.forwardingEmail"
                                 data-model="$ctrl.selectedAccount.storeCopyOfEmail"
                                 data-name="accountInfoStoreCopyOfEmail"
                             >
