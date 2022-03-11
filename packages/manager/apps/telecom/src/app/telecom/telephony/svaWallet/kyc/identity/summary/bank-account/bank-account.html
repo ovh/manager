@@ -9,10 +9,9 @@
             data-translate="telephony_billingAccount_svaWallet_kyc_identity_bankAccount_holder"
         ></label>
     </div>
-    <div
-        class="oui-field__control"
-        data-ng-bind="$ctrl.bankAccount.holder"
-    ></div>
+    <div class="oui-field__control">
+        <span data-ng-bind=":: $ctrl.bankAccount.holder"></span>
+    </div>
 </div>
 
 <div class="oui-field oui-field_auto">
@@ -22,7 +21,9 @@
             data-translate="telephony_billingAccount_svaWallet_kyc_identity_iban"
         ></label>
     </div>
-    <div class="oui-field__control" data-ng-bind="$ctrl.bankAccount.iban"></div>
+    <div class="oui-field__control">
+        <span data-ng-bind=":: $ctrl.bankAccount.iban"></span>
+    </div>
 
     <oui-button
         variant="link"
