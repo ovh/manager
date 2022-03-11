@@ -6,6 +6,7 @@ export default {
     shortcuts: '<',
     supportLevel: '<',
     user: '<',
+    authMethodProvider: '<',
   },
   template,
 };

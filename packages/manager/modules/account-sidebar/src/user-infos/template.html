@@ -25,12 +25,12 @@
             ></span>
         </p>
         <p
-            data-ng-if="$ctrl.role !== 'provider'"
+            data-ng-if="$ctrl.role !== $ctrl.AUTH_METHOD_PROVIDER"
             class="manager-hub-user-infos_profile_link mb-1"
             data-ng-bind="$ctrl.getDisplayName()"
         ></p>
         <p
-            data-ng-if="$ctrl.role === 'provider' && $ctrl.me.organisation"
+            data-ng-if="$ctrl.role === $ctrl.AUTH_METHOD_PROVIDER && $ctrl.me.organisation"
             class="manager-hub-user-infos_profile_link mb-1"
             data-ng-bind="$ctrl.me.organisation"
         ></p>
@@ -59,7 +59,7 @@
     <p data-ng-if="$ctrl.me">
         <span
             class="d-block manager-hub-user-infos_text-small"
-            data-ng-if="$ctrl.role !== 'provider' && $ctrl.me.organisation"
+            data-ng-if="$ctrl.role !== $ctrl.AUTH_METHOD_PROVIDER && $ctrl.me.organisation"
             data-ng-bind="$ctrl.me.organisation"
         >
         </span>

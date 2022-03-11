@@ -1,6 +1,6 @@
 import toUpper from 'lodash/toUpper';
 
-import { EXCLUDED_ROLES } from './constants';
+import { EXCLUDED_ROLES, AUTH_METHOD_PROVIDER } from './constants';
 
 export default class ManagerHubUserInfosCtrl {
   /* @ngInject */
@@ -18,6 +18,8 @@ export default class ManagerHubUserInfosCtrl {
     this.coreConfig = coreConfig;
     this.coreURLBuilder = coreURLBuilder;
     this.ssoAuthentication = ssoAuthentication;
+
+    this.AUTH_METHOD_PROVIDER = AUTH_METHOD_PROVIDER;
   }
 
   $onInit() {

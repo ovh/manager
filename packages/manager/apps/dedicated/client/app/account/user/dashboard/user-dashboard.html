@@ -56,7 +56,7 @@
                         <span class="oui-icon mr-3 oui-icon-user"></span>
                         <div class="word-break min-w-0">
                             <div
-                                data-ng-if=":: $ctrl.user.auth.method !== 'provider'"
+                                data-ng-if=":: $ctrl.user.auth.method !== $ctrl.authMethodProvider"
                                 class="mb-4"
                             >
                                 <strong
@@ -65,7 +65,7 @@
                                 <p data-ng-bind="::$ctrl.user.email"></p>
                             </div>
                             <div
-                                data-ng-if=":: $ctrl.user.auth.method === 'provider'"
+                                data-ng-if=":: $ctrl.user.auth.method === $ctrl.authMethodProvider"
                                 class="mb-4"
                             >
                                 <strong

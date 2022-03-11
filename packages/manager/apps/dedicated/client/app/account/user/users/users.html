@@ -16,7 +16,11 @@
         </span>
     </oui-message>
 
-    <oui-message data-ng-if="$ctrl.identityProvider != null" data-type="info">
+    <oui-message
+        data-ng-if="$ctrl.identityProvider != null"
+        data-type="info"
+        class="mb-4"
+    >
         <span
             class="d-block"
             data-translate="user_users_sso_info"
@@ -33,6 +37,7 @@
         data-ng-click="setAction('users/add/user-users-add', user)"
         data-ng-disabled="$ctrl.usersLoading"
         data-ng-class="{'disabled': $ctrl.usersLoading}"
+        data-ng-show="$ctrl.identityProvider == null"
     >
         <span data-translate="user_users_add_user"></span>
     </button>
