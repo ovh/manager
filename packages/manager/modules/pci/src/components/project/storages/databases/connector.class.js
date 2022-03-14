@@ -18,6 +18,10 @@ export default class Connector {
     this.tasks = tasks;
   }
 
+  getSucceededTasks() {
+    return this.tasks.filter((task) => task.status === TASK_STATUS.RUNNING);
+  }
+
   getFailedTasks() {
     return this.tasks.filter((task) => task.status === TASK_STATUS.FAILED);
   }
