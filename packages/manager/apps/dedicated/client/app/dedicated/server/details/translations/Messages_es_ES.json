@@ -1200,5 +1200,8 @@
   "server_configuration_installation_FAT_16": "FAT16",
   "server_configuration_installation_VMFS_5": "VMFS5",
   "server_configuration_installation_VMFS_6": "VMFS6",
-  "server_configuration_installation_VMFSL": "VMFSL"
+  "server_configuration_installation_VMFSL": "VMFSL",
+  "server_nutanix_cluster_node_warning_1": "Este servidor dedicado forma parte de un cluster Nutanix: {{clusterName}}.",
+  "server_nutanix_cluster_node_warning_2": "Le recomendamos que realice las modificaciones de configuración directamente desde el panel de control del servidor asociado a su cluster Nutanix: {{clusterNodeDashboardLink}}",
+  "server_nutanix_cluster_node_warning_3": "Puede consultar todas las acciones de facturación asociadas a este servidor en su cluster Nutanix: {{clusterDashboardLink}}"
 }
