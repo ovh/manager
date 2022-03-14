@@ -7,6 +7,20 @@ import {
 
 export default class PciConnectorInputController {
   $onInit() {
+    // Get the type of input to display
+    this.getInputType();
+    // For booleans, we use an intermediate variable
+    if (this.isBooleanInput) {
+      this.tempValue = this.model[this.data.name] || 'default';
+    }
+    // Backend returns data as string, pa
+    if (this.model[this.data.name] && this.isNumericInput) {
+      this.model[this.data.name] = Number(this.model[this.data.name]);
+    }
+    this.options = [''].concat(this.data.values);
+  }
+
+  getInputType() {
     this.isPasswordInput = this.data.type === CONNECTOR_FIELDS_TYPE.PASSWORD;
     this.isNumericInput = [
       CONNECTOR_FIELDS_TYPE.INT16,
@@ -28,16 +42,6 @@ export default class PciConnectorInputController {
         CLASS_PROPERTY_AS_STRING.includes(this.data.name)) &&
       !this.isExtraConfigInput &&
       !this.isSelectInput;
-
-    // For booleans, we use an intermediate variable
-    if (this.isBooleanInput) {
-      this.tempValue = this.model[this.data.name] || 'default';
-    }
-    // Backend returns data as string, pa
-    if (this.model[this.data.name] && this.isNumericInput) {
-      this.model[this.data.name] = Number(this.model[this.data.name]);
-    }
-    this.options = [''].concat(this.data.values);
   }
 
   onRadioChange(newVal) {
