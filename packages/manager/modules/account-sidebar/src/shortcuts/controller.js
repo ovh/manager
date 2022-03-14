@@ -69,7 +69,7 @@ export default class ManagerHubShortcutsCtrl {
             },
           ]
         : []),
-      ...(this.coreConfig.isRegion('EU')
+      ...(this.coreConfig.isRegion(['EU', 'CA'])
         ? [
             {
               id: 'contacts',
