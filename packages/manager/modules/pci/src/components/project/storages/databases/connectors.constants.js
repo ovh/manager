@@ -36,6 +36,11 @@ export const CLASS_PROPERTY_AS_STRING = ['header.converter'];
 export const TRANSFORM_PROPERTY = 'transforms';
 export const EXTRA_CONFIG_PROPERTY = '*';
 
+export const GROUP_NAMES_WITH_MESSAGES = {
+  TRANSFORMS: 'Transforms',
+  EXTRA: 'Extra',
+}
+
 export default {
   CONNECTOR_STATUS,
   TASK_STATUS,
@@ -49,4 +54,5 @@ export default {
   CLASS_PROPERTY_AS_STRING,
   TRANSFORM_PROPERTY,
   EXTRA_CONFIG_PROPERTY,
+  GROUP_NAMES_WITH_MESSAGES,
 };
