@@ -8,9 +8,6 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      upgradableDisks: /* @ngInject */ (catalog, vpsLinkedDisk, VpsService) =>
-        VpsService.getUpgradableAdditionalDisk(catalog, vpsLinkedDisk),
-
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
     },
   });
