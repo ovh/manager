@@ -5,9 +5,9 @@ import Link from './Link/Link.jsx';
 import useUsefulLinks from './useUsefulLinks';
 import { TRANSLATE_NAMESPACE } from '../constants';
 
-const UsefulLinks = ({ environment }) => {
+const UsefulLinks = () => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
-  const links = useUsefulLinks(environment).getUsefulLinks();
+  const links = useUsefulLinks().getUsefulLinks();
 
   const cssClassName = 'manager-account-sidebar-links';
   const translationBase = 'useful_links';
