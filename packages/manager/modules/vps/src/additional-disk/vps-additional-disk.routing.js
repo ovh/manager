@@ -12,6 +12,11 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('vps_additional_disk'),
 
+      upgradableDisks: /* @ngInject */ (catalog, vpsLinkedDisk, VpsService) =>
+        vpsLinkedDisk?.serviceName
+          ? VpsService.getUpgradableAdditionalDisk(catalog, vpsLinkedDisk)
+          : [],
+
       goToOrderAdditionalDisk: /* @ngInject */ ($state) => () =>
         $state.go('vps.detail.additional-disk.order'),
 
