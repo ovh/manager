@@ -72,6 +72,6 @@ export default class {
   }
 
   canOrder() {
-    return isEmpty(this.additionalDisks);
+    return this.hasAdditionalDiskOption && isEmpty(this.additionalDisks);
   }
 }
