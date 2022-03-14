@@ -2,13 +2,14 @@ import 'moment';
 
 export default class VpsDiskUpgradeCtrl {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, VpsService) {
+  constructor($translate, CucCloudMessage, VpsService, coreConfig) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.VpsService = VpsService;
 
     this.additionalDiskOption = 'additionalDisk';
     this.selectedDiskModel = null;
+    this.customerCurrency = coreConfig.getUser().currency.symbol;
   }
 
   $onInit() {
