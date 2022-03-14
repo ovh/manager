@@ -179,6 +179,14 @@ export default /* @ngInject */ ($stateProvider) => {
             databaseId,
           },
         ),
+      connectorsLink: /* @ngInject */ ($state, databaseId, projectId) =>
+        $state.href(
+          'pci.projects.project.storages.databases.dashboard.connectors',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
       advancedConfigurationLink: /* @ngInject */ (
         $state,
         databaseId,

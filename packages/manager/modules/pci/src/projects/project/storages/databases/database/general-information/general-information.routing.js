@@ -250,7 +250,10 @@ export default /* @ngInject */ ($stateProvider) => {
               // filter integrations
               const filter =
                 database.engine === DATABASE_TYPES.KAFKA
-                  ? [INTEGRATION_TYPE.MIRROR_MAKER]
+                  ? [
+                      INTEGRATION_TYPE.MIRROR_MAKER,
+                      INTEGRATION_TYPE.KAFKA_CONNECT,
+                    ]
                   : [INTEGRATION_TYPE.M3_AGGREGATOR];
               const filteredIntegrations = integrations.filter((integration) =>
                 filter.includes(integration.type),

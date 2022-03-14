@@ -18,6 +18,7 @@ const features = {
     DATABASE_TYPES.OPEN_SEARCH,
     DATABASE_TYPES.M3DB,
     DATABASE_TYPES.CASSANDRA,
+    DATABASE_TYPES.KAFKA_CONNECT,
   ],
   backupTab: [
     DATABASE_TYPES.MONGO_DB,
@@ -39,6 +40,7 @@ const features = {
     DATABASE_TYPES.M3DB,
     DATABASE_TYPES.CASSANDRA,
     DATABASE_TYPES.GRAFANA,
+    DATABASE_TYPES.KAFKA_CONNECT,
   ],
   advancedConfigurationTab: [
     DATABASE_TYPES.CASSANDRA,
@@ -48,6 +50,7 @@ const features = {
     DATABASE_TYPES.OPEN_SEARCH,
     DATABASE_TYPES.POSTGRESQL,
     DATABASE_TYPES.REDIS,
+    DATABASE_TYPES.KAFKA_CONNECT,
   ],
   poolsTab: [DATABASE_TYPES.POSTGRESQL],
   queryStatisticsTab: [DATABASE_TYPES.MYSQL, DATABASE_TYPES.POSTGRESQL],
@@ -64,6 +67,7 @@ const features = {
   serviceIntegrationTab: [
     DATABASE_TYPES.KAFKA_MIRROR_MAKER,
     DATABASE_TYPES.M3AGGEGATOR,
+    DATABASE_TYPES.KAFKA_CONNECT,
   ],
   replicationsTab: [DATABASE_TYPES.KAFKA_MIRROR_MAKER],
   showServiceIntegration: [DATABASE_TYPES.KAFKA, DATABASE_TYPES.M3DB],
@@ -71,6 +75,7 @@ const features = {
   usersGroup: [DATABASE_TYPES.M3DB],
   resetAdminUserFromDashboard: [DATABASE_TYPES.GRAFANA],
   namespacesTab: [DATABASE_TYPES.M3DB],
+  connectorsTab: [DATABASE_TYPES.KAFKA_CONNECT],
 };
 
 export default function isFeatureActivated(feature, databaseType) {
