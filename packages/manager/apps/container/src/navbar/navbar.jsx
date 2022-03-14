@@ -18,7 +18,6 @@ function Navbar({ environment }) {
   const shell = useShell();
   const environmentPlugin = shell.getPlugin('environment');
   const user = environment.getUser();
-  // const universe = environment.getUniverse();
   const [userLocale, setUserLocale] = useState(
     shell.getPlugin('i18n').getLocale(),
   );
@@ -38,11 +37,27 @@ function Navbar({ environment }) {
     fetchUniverses().then(setUniverses);
   }, []);
 
+  const brandClickHandler = () =>
+    shell.getPlugin('tracking').trackClick({
+      name: `navbar::entry::logo`,
+      type: 'action',
+    });
+
+  const universeClickHandler = ({ universe }) =>
+    shell.getPlugin('tracking').trackClick({
+      name: `navbar::entry::${universe}`,
+      type: 'action',
+    });
+
   return (
     <div className={`oui-navbar ${style.navbar}`}>
       <Hamburger universe={currentUniverse} universes={universes} />
-      <Brand targetURL={getBrandURL(universes)} />
-      <Universes universe={currentUniverse} universes={universes} />
+      <Brand targetURL={getBrandURL(universes)} onClick={brandClickHandler} />
+      <Universes
+        universe={currentUniverse}
+        universes={universes}
+        onClick={universeClickHandler}
+      />
       <div className="oui-navbar-list oui-navbar-list_aside oui-navbar-list_end">
         {searchURL && (
           <div className="oui-navbar-list__item">

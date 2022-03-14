@@ -20,8 +20,11 @@ function NavbarAccount({ user }) {
 
   const toggleSidebar = () => {
     uxPlugin.toggleAccountSidebarVisibility();
-
     setIsAccountSidebarVisible(uxPlugin?.isAccountSidebarVisible());
+    shell.getPlugin('tracking').trackClick({
+      name: 'navbar::action::user-bar',
+      type: 'action',
+    });
   };
 
   return (
