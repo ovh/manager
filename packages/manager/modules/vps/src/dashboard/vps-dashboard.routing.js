@@ -159,6 +159,11 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null,
       trackingPrefix: () => 'vps::detail::dashboard',
 
+      upgradableDisks: /* @ngInject */ (catalog, vpsLinkedDisk, VpsService) =>
+        vpsLinkedDisk?.serviceName
+          ? VpsService.getUpgradableAdditionalDisk(catalog, vpsLinkedDisk)
+          : [],
+
       stein: /* @ngInject */ ($http, stateVps) =>
         $http
           .get('/vps/migrationStein')
