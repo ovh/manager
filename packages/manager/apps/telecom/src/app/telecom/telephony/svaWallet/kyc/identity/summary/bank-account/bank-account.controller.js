@@ -8,6 +8,10 @@ export default class KycIdentitySummaryBankAccountController {
   $onInit() {
     this.isEditable = this.svaWallet.kycStatus !== 'BLOCKED';
     this.isLoading = false;
+    this.model = {
+      holder: null,
+      iban: null,
+    };
   }
 
   goToEditIban() {
