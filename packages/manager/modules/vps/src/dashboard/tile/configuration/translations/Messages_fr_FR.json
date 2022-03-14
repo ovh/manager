@@ -7,7 +7,7 @@
   "vps_dashboard_tile_configuration_memory_add_upscale": "Ajouter de la mémoire en évoluant vers la gamme supérieure",
   "vps_dashboard_tile_configuration_memory_add_upscale_elite": "Faites évoluer votre VPS en augmentant votre mémoire",
   "vps_dashboard_tile_configuration_memory_double": "Doubler la mémoire pour {{ price }}/mois",
-  "vps_dashboard_tile_configuration_storage": "Storage",
+  "vps_dashboard_tile_configuration_storage": "Stockage",
   "vps_dashboard_tile_configuration_storage_add": "Augmenter le volume de stockage",
   "vps_dashboard_tile_configuration_storage_add_upscale": "Augmenter le stockage en évoluant vers la gamme supérieure",
   "vps_dashboard_tile_configuration_storage_add_upscale_elite": "Faites évoluer votre VPS en augmentant votre stockage",
