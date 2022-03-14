@@ -1,5 +1,5 @@
 <oui-back-button
-    data-previous-page="{{:: 'pci_databases_connectors_add_back' | translate }}"
+    data-previous-page="Connectors"
     data-on-click="$ctrl.goBack()"
 ></oui-back-button>
 
@@ -20,14 +20,14 @@
             >
         </span>
     </div>
-    <oui-button variant="primary" size="l" ng-click="$ctrl.addConnector()">
-        <span data-translate="pci_databases_connectors_add_button"></span>
+    <oui-button variant="primary" size="l" on-click="$ctrl.updateConnector()">
+        <span data-translate="pci_databases_connectors_edit_button"></span>
     </oui-button>
 </div>
 
 <oui-tabs>
     <oui-tabs-item
-        ng-repeat="group in $ctrl.availableConnector.configuration.getGroups()"
+        ng-repeat="group in $ctrl.availableConnector.configuration.getGroups() track by $index"
         heading="{{group.name}}"
         subheading="{{group.required ? 'required' : ''}}"
         variant="promotion"

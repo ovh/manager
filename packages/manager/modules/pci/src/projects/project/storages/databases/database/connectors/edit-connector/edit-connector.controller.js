@@ -1,21 +1,23 @@
 import { GROUP_NAMES_WITH_MESSAGES } from '../../../../../../../components/project/storages/databases/connectors.constants';
 
-export default class AddConnectorCtrl {
+export default class EditConnectorCtrl {
   /* @ngInject */
   constructor($translate, CucCloudMessage, DatabaseService) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.DatabaseService = DatabaseService;
-    this.getErrorsMessages = AddConnectorCtrl.getErrorsMessages;
+    this.getErrorsMessages = EditConnectorCtrl.getErrorsMessages;
     this.groupNames = GROUP_NAMES_WITH_MESSAGES;
   }
 
   $onInit() {
     this.messageContainer =
-      'pci.projects.project.storages.databases.dashboard.connectors.add';
+      'pci.projects.project.storages.databases.dashboard.connectors.edit';
     this.loadMessages();
-    this.trackDashboard('connectors::add', 'page');
-    this.model = {};
+    this.trackDashboard('connectors::edit', 'page');
+    this.model = {
+      ...this.connector.configuration,
+    };
   }
 
   loadMessages() {
@@ -37,11 +39,7 @@ export default class AddConnectorCtrl {
         configuration[field] = `${this.model[field]}`;
       }
     });
-    return {
-      configuration,
-      name: this.model.name,
-      connectorId: this.availableConnector.id,
-    };
+    return { configuration };
   }
 
   static getErrorsMessages(err) {
@@ -66,18 +64,19 @@ export default class AddConnectorCtrl {
     return message;
   }
 
-  addConnector() {
-    this.trackDashboard('connectors::add::validate');
-    return this.DatabaseService.postConnector(
+  updateConnector() {
+    this.trackDashboard('connectors::edit::validate');
+    return this.DatabaseService.putConnector(
       this.projectId,
       this.database.engine,
       this.database.id,
+      this.connector.id,
       this.getModelValue(),
     )
       .then(() =>
         this.goBack({
           textHtml: this.$translate.instant(
-            'pci_databases_connectors_add_success_message',
+            'pci_databases_connectors_edit_success_message',
           ),
         }),
       )
@@ -86,7 +85,7 @@ export default class AddConnectorCtrl {
         this.CucCloudMessage.error(
           {
             textHtml: this.$translate.instant(
-              'pci_databases_connectors_add_error_message',
+              'pci_databases_connectors_edit_error_message',
               {
                 details: this.getErrorsMessages(err),
               },
