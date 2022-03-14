@@ -1,14 +1,9 @@
 <section class="support-section">
-    <header class="oui-header">
-        <div class="oui-header__container">
-            <div class="oui-header__content">
-                <h1
-                    class="oui-header__title"
-                    data-translate="ovhManagerSupport_header"
-                ></h1>
-            </div>
-        </div>
-    </header>
+    <oui-header
+        data-heading="{{ :: 'ovhManagerSupport_header' | translate }}"
+        data-description="{{ :: $ctrl.descriptionOfHeading() }}"
+    >
+    </oui-header>
 
     <div class="text-center" data-ng-if="$ctrl.isLoading">
         <oui-spinner data-size="l"></oui-spinner>

@@ -1,11 +1,14 @@
-<oui-header heading="{{:: 'billing_main_title' | translate }}">
+<oui-header
+    data-heading="{{:: 'billing_main_title' | translate }}"
+    data-description="{{ :: $ctrl.descriptionOfHeading() }}"
+>
     <oui-header-tabs>
-        <oui-header-tabs-item state="app.account.billing.main.history"
+        <oui-header-tabs-item data-state="app.account.billing.main.history"
             ><span data-translate="billing_main_bills_tab"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            ng-if="$ctrl.isPayAsYouGoAvailable"
-            state="app.account.billing.main.pay-as-you-go"
+            data-ng-if="$ctrl.isPayAsYouGoAvailable"
+            data-state="app.account.billing.main.pay-as-you-go"
             ><span data-translate="billing_main_pay_as_you_go_tab"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item state="app.account.billing.main.payments"

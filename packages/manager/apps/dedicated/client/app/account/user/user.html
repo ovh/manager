@@ -1,5 +1,8 @@
 <div class="user-account">
-    <oui-header data-heading="{{ :: 'user_account_title_infos' | translate }}">
+    <oui-header
+        data-heading="{{ :: 'user_account_title_infos' | translate }}"
+        data-description="{{ :: $ctrl.descriptionOfHeading() }}"
+    >
         <oui-header-tabs>
             <oui-header-tabs-item
                 data-href="{{ $ctrl.$state.href('app.account.user.dashboard') }}"

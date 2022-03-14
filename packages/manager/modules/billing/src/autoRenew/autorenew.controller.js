@@ -87,6 +87,12 @@ export default class AutorenewCtrl {
     }
   }
 
+  descriptionOfHeading() {
+    return this.coreConfig.getRegion() !== 'US'
+      ? this.$translate.instant('billing_description')
+      : '';
+  }
+
   getCriterionTitle(type, value) {
     return `${this.$translate.instant(
       `billing_autorenew_criterion_${type}`,
