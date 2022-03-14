@@ -9,6 +9,7 @@ import component from './connectors.component';
 import routing from './connectors.routing';
 
 import restartButton from '../../components/restart-button';
+import deleteConnector from './delete-connector';
 import availableConnectors from './available-connectors';
 import addConnector from './add-connector';
 import editConnector from './edit-connector';
@@ -24,6 +25,7 @@ angular
     'oui',
     'ui.router',
     restartButton,
+    deleteConnector,
     availableConnectors,
     addConnector,
     editConnector,
