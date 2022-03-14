@@ -86,26 +86,21 @@
             data-title=":: 'pci_databases_connectors_tasks' | translate"
             data-property="tasks"
             data-sortable="asc"
-            data-type="string"
+            data-type="stri
+            ng"
         >
             <div
-                ng-if="$row.getFailedTasks().length !== 0"
-                class="d-flex align-items-center oui-color-ae-500"
+                class="d-flex align-items-center"
+                data-ng-class="$row.getSucceededTasks().length === $row.tasks.length ? 'oui-color-as-500' : 'oui-color-ae-500'"
             >
                 <span
-                    >{{$row.tasks.length -
-                    $row.getFailedTasks().length}}/{{$row.tasks.length}}</span
+                    >{{$row.getSucceededTasks().length}}/{{$row.tasks.length}}</span
                 >
                 <button
+                    ng-if="$row.getFailedTasks().length !== 0"
                     class="oui-icon oui-icon-warning oui-button oui-color-ae-500"
                     ng-click="$ctrl.goToTasks($row)"
                 ></button>
-            </div>
-            <div
-                ng-if="$row.getFailedTasks().length === 0"
-                class="d-flex align-items-center oui-color-as-500"
-            >
-                <span>{{$row.tasks.length}}/{{$row.tasks.length}}</span>
             </div>
         </oui-datagrid-column>
         <oui-datagrid-column
