@@ -9,6 +9,7 @@ export default {
     serviceName: '<',
     vps: '<',
     isVpsNewRange: '<',
+    upgradableDisks: '<',
     tabSummary: '<',
     goToOrderAdditionalDisk: '<',
     goToUpgradeDisk: '<',
