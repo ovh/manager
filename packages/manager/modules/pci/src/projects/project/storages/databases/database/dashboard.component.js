@@ -27,6 +27,7 @@ export default {
     queryStatisticsLink: '<',
     namespacesLink: '<',
     connectorsLink: '<',
+    advancedConfigurationLink: '<',
   },
   template,
 };

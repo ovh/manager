@@ -246,6 +246,7 @@
                             match="component"
                             model="$ctrl.endpoint"
                             items="$ctrl.database.endpoints"
+                            on-change="$ctrl.trackEndpointChange(modelValue)"
                         >
                         </oui-select>
                     </oui-tile-description>
