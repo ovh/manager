@@ -50,7 +50,6 @@ describe('Renders shell header', () => {
     // Removing this line will just result on an error on the console
     // but the test will still pass or fail.
     consoleErrorMock = jest.spyOn(console, 'error').mockImplementation();
-
     // Arrange
     const user = {
       firstname: 'Tester',
