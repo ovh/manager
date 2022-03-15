@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import {
   HashRouter,
   Redirect,
@@ -66,8 +66,8 @@ function DefaultRouteHandler(props: DefaultRouteHandlerProps) {
 function Router(props: RouterProps) {
   const routes = useMemo(
     () =>
-      props.routes.map((route, index) => (
-        <Fragment key={index}>{route}</Fragment>
+      props.routes.map((route) => (
+        <Route {...route.props} key={`${route.props.path}`} />
       )),
     [props.routes],
   );
