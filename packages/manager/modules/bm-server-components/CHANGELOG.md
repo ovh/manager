@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.0.1...@ovh-ux/manager-bm-server-components@1.1.0) (2022-03-15)
+
+
+### Features
+
+* nutanix service ui ([5d9d1fd](https://github.com/ovh/manager/commit/5d9d1fd5dd10dd614df4068c3cfc84d44791b739))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.0.0...@ovh-ux/manager-bm-server-components@1.0.1) (2022-02-09)
 
 
