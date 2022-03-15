@@ -73,5 +73,7 @@
   "server_sidebar_item_anthos_title": "Anthos",
   "server_sidebar_item_anthos_all_title": "Meine Deployments",
   "server_sidebar_item_storage_backup_title": "Storage und Backup",
-  "server_sidebar_item_enterprise_file_storage_title": "Enterprise File Storage"
+  "server_sidebar_item_enterprise_file_storage_title": "Enterprise File Storage",
+  "server_sidebar_item_nutanix_title": "Nutanix",
+  "server_sidebar_item_nutanix_clusters_all_title": "Alle meine Cluster"
 }

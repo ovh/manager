@@ -1,0 +1,15 @@
+<form name="nutanixNodeRebootForm" novalidate data-ng-submit="$ctrl.reboot()">
+    <oui-modal
+        data-primary-label="{{:: 'nutanix_node_reboot_confirm' | translate }}"
+        data-secondary-label="{{:: 'nutanix_node_reboot_cancel' | translate }}"
+        data-secondary-action="$ctrl.onCancel()"
+        data-on-dismiss="$ctrl.onCancel()"
+        data-loading="$ctrl.isRebooting"
+        data-heading="{{ :: 'nutanix_node_reboot_title' | translate }}"
+    >
+        <p
+            data-translate="nutanix_node_reboot_description"
+            data-translate-values="{ nodeName: $ctrl.node.displayName }"
+        ></p>
+    </oui-modal>
+</form>

@@ -14,6 +14,7 @@ export default class BmServerComponentsIpmiController {
     $sce,
     $translate,
     $window,
+    atInternet,
     coreConfig,
     IpmiService,
     Polling,
@@ -23,6 +24,7 @@ export default class BmServerComponentsIpmiController {
     this.$sce = $sce;
     this.$translate = $translate;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.coreConfig = coreConfig;
     this.IpmiService = IpmiService;
     this.Polling = Polling;
@@ -432,6 +434,7 @@ export default class BmServerComponentsIpmiController {
   // ------------Start IPMI------------
   // NAVIGATION
   startIpmiNavigation() {
+    this.trackClick('access-sol-browser');
     this.loader.navigationLoading = true;
     this.loader.buttonStart = true;
     this.loader.navigationReady = null;
@@ -454,6 +457,7 @@ export default class BmServerComponentsIpmiController {
   }
 
   getKvmUrl() {
+    this.trackClick('access-sol-console');
     return this.IpmiService.ipmiGetConnection(this.serviceName, 'kvmipHtml5URL')
       .then((kvmUrl) => {
         this.loader.kvmUrlReady = true;
@@ -496,6 +500,7 @@ export default class BmServerComponentsIpmiController {
 
   // ------------Start KVM URL------------
   getIpmiKvmUrl() {
+    this.trackClick('access-kvm-browser');
     this.loader.buttonStart = true;
     this.loader.kvmhtmlLoading = true;
     return this.IpmiService.ipmiStartConnection({
@@ -603,6 +608,7 @@ export default class BmServerComponentsIpmiController {
   }
 
   downloadApplet() {
+    this.trackClick('access-kvm-java');
     this.$window.open(
       `data:application/x-java-jnlp-file,${this.appletToDownload}`,
     );
@@ -610,6 +616,7 @@ export default class BmServerComponentsIpmiController {
 
   // ------------Test IPMI------------
   startIpmiTest() {
+    this.trackClick('test-ipmi');
     this.setHttpState(STATE_ENUM.NONE);
     this.setPasswordState(STATE_ENUM.NONE);
     this.setPingState(STATE_ENUM.NONE);
@@ -671,6 +678,7 @@ export default class BmServerComponentsIpmiController {
 
   // ---------ACTION SSH SOL------------
   onSelectSshKey() {
+    this.trackClick('access-sol-ssh');
     this.loader.buttonStart = true;
     this.loader.solSshKeyLoading = true;
     return this.IpmiService.ipmiStartConnection({
@@ -720,6 +728,7 @@ export default class BmServerComponentsIpmiController {
   }
 
   restartIpmi() {
+    this.trackClick('reboot::confirm');
     this.loading = true;
     return this.IpmiService.ipmiRestart(this.serviceName)
       .then(({ taskId }) => {
@@ -765,16 +774,27 @@ export default class BmServerComponentsIpmiController {
   }
 
   onShowIpmiRestartConf() {
+    this.trackClick('reboot');
     this.showIpmiRestartConf = true;
   }
 
   onIpmiRestartCancel() {
+    this.trackClick('reboot::cancel');
     this.showIpmiRestartConf = false;
   }
 
   orderKvm() {
     if (isFunction(this.onKvmOrder)) {
       this.onKvmOrder();
+    }
+  }
+
+  trackClick(trackText) {
+    if (this.trackingPrefix) {
+      this.atInternet.trackClick({
+        name: `${this.trackingPrefix}::${trackText}`,
+        type: 'action',
+      });
     }
   }
 }

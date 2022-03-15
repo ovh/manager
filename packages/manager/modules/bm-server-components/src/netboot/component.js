@@ -10,6 +10,7 @@ export default {
     onGoBack: '&?',
     isNutanixNode: '<?',
     scrollTopId: '@?',
+    trackingPrefix: '<',
   },
   controller,
   template,

@@ -42,6 +42,7 @@ export default {
     goToNameEdit: '<',
     handleError: '<',
     handleSuccess: '<',
+    nutanixCluster: '<',
   },
   controller,
   template,
