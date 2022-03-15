@@ -42,10 +42,12 @@ export default /* @ngInject */ ($stateProvider) => {
           .catch(() => false),
       isEcoRangeOrderAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping
-          .checkFeatureAvailability(['dedicated-server:ecoRangeOrder'])
+          .checkFeatureAvailability([
+            'dedicated-server:ecoRangeOrderSectionDedicated',
+          ])
           .then((orderAvailability) =>
             orderAvailability.isFeatureAvailable(
-              'dedicated-server:ecoRangeOrder',
+              'dedicated-server:ecoRangeOrderSectionDedicated',
             ),
           )
           .catch(() => false),
