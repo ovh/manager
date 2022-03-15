@@ -1,3 +1,17 @@
+# [0.13.0-alpha.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.12.0-alpha.2...@ovh-ux/manager-billing@0.13.0-alpha.0) (2022-03-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1506] ([14e17e0](https://github.com/ovh/manager/commit/14e17e0125ccb0598c7fc760cf1f6a92b8266739))
+
+
+### Features
+
+* nutanix service ui ([5d9d1fd](https://github.com/ovh/manager/commit/5d9d1fd5dd10dd614df4068c3cfc84d44791b739))
+
+
+
 # [0.12.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.12.0-alpha.1...@ovh-ux/manager-billing@0.12.0-alpha.2) (2022-03-09)
 
 

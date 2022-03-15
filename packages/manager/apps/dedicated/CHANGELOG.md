@@ -1,3 +1,20 @@
+# [17.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.13.0...@ovh-ux/manager-dedicated@17.14.0) (2022-03-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1506] ([14e17e0](https://github.com/ovh/manager/commit/14e17e0125ccb0598c7fc760cf1f6a92b8266739))
+* **i18n:** add missing translations [CDS 1517] ([5f099ae](https://github.com/ovh/manager/commit/5f099aef0afc1578bd17381fac723dcf3600f526))
+* **i18n:** add missing translations [CDS 1518] ([94b5343](https://github.com/ovh/manager/commit/94b53430567bbfd69d7a016df8fc4804215e65c0))
+
+
+### Features
+
+* nutanix service ui ([5d9d1fd](https://github.com/ovh/manager/commit/5d9d1fd5dd10dd614df4068c3cfc84d44791b739))
+* show warning message ([3241cf4](https://github.com/ovh/manager/commit/3241cf44407d2387290fb684ff306f4bf4f7eeb6))
+
+
+
 # [17.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.12.3...@ovh-ux/manager-dedicated@17.13.0) (2022-03-09)
 
 

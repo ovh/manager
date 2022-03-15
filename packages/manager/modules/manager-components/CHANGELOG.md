@@ -1,3 +1,17 @@
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.5.3...@ovh-ux/manager-components@1.6.0) (2022-03-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1506] ([14e17e0](https://github.com/ovh/manager/commit/14e17e0125ccb0598c7fc760cf1f6a92b8266739))
+
+
+### Features
+
+* add edit service name component ([97724f4](https://github.com/ovh/manager/commit/97724f4100f2f0602d4095921346fdbd34bec177))
+
+
+
 ## [1.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.5.2...@ovh-ux/manager-components@1.5.3) (2022-02-09)
 
 
