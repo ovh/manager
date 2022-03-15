@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect, useMemo } from 'react';
 import {
   HashRouter,
   Redirect,
@@ -24,6 +24,7 @@ interface RouteHandlerParams {
 interface RouterProps {
   application: Application;
   routing: RoutingConfiguration;
+  routes: Route[];
 }
 
 interface DefaultRouteHandlerProps {
@@ -63,12 +64,20 @@ function DefaultRouteHandler(props: DefaultRouteHandlerProps) {
 }
 
 function Router(props: RouterProps) {
+  const routes = useMemo(
+    () =>
+      props.routes.map((route, index) => (
+        <Fragment key={index}>{route}</Fragment>
+      )),
+    [props.routes],
+  );
   return (
     <HashRouter>
       <Switch>
         <Route exact path="/">
           <DefaultRouteHandler routing={props.routing} />
         </Route>
+        {routes}
         <Route path="/:appId/(.*)">
           <RouteHandler app={props.application} />
         </Route>
