@@ -53,7 +53,7 @@
             <oui-action-menu data-compact data-placement="end">
 
                 <!--Upgrade disk: increase capacity-->
-                <oui-action-menu-item data-disabled="!$ctrl.isVpsNewRange"
+                <oui-action-menu-item data-disabled="!$ctrl.isVpsNewRange || !$ctrl.upgradableDisks.length"
                                       data-on-click="$ctrl.goToUpgradeDisk($row)">
                     <span data-translate="vps_additional_disk_actions_increase_disk"></span>
                 </oui-action-menu-item>
