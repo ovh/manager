@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import Router, { hashChangeEvent } from './router';
 import Application from './application';
 import RoutingConfiguration from './configuration';
@@ -24,12 +25,18 @@ function initRoutingConfiguration(routing: RoutingConfiguration) {
 function initRouting(iframe: HTMLIFrameElement) {
   const routingConfig = new RoutingConfiguration();
   const application = new Application(iframe, routingConfig);
-  const router = <Router application={application} routing={routingConfig} />;
+  const routes: Route[] = [];
+  const router = (
+    <Router application={application} routing={routingConfig} routes={routes} />
+  );
 
   initRoutingConfiguration(routingConfig);
 
   return {
     router,
+    addRoute: (route: Route): void => {
+      routes.push(route);
+    },
     onHashChange: (): void => {
       window.dispatchEvent(new Event(hashChangeEvent));
     },
