@@ -5,6 +5,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import { plugin, IFrameMessageBus } from '@ovh-ux/shell';
 
@@ -29,6 +30,7 @@ function Shell() {
 
   useEffect(() => {
     const routing = plugin.routing.initRouting(iframeRef.current);
+    routing.addRoute(<Redirect from="/catalog" to="/hub/catalog" />);
     shell.registerPlugin('routing', routing);
     setRouter(routing.router);
   }, [iframeRef, shell]);
