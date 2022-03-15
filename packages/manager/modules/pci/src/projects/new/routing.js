@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import has from 'lodash/has';
 import find from 'lodash/find';
 import set from 'lodash/set';
 
@@ -99,9 +100,10 @@ export default /* @ngInject */ ($stateProvider) => {
           : '',
 
       cart: /* @ngInject */ ($transition$, me, pciProjectNew) => {
-        return !get($transition$.params(), 'cartId')
-          ? // just create cart - location will be reloaded to fetch the whole cart
-            pciProjectNew.createOrderCart(me.ovhSubsidiary)
+        const hasCartId = has($transition$.params(), 'cartId');
+
+        return !hasCartId // just create cart - location will be reloaded to fetch the whole cart
+          ? pciProjectNew.createOrderCart(me.ovhSubsidiary)
           : pciProjectNew.getOrderCart(
               me.ovhSubsidiary,
               get($transition$.params(), 'cartId'),
@@ -131,6 +133,7 @@ export default /* @ngInject */ ($stateProvider) => {
         checkVoucherValidity,
         voucher,
         eligibility,
+        pciProjectNew,
         ovhPaymentMethodHelper,
       ) => {
         const modelDef = {
@@ -155,16 +158,30 @@ export default /* @ngInject */ ($stateProvider) => {
         };
 
         if (modelDef.voucher.value) {
-          return checkVoucherValidity(modelDef.voucher.value).then(
-            (eligibilityOpts) => {
+          return checkVoucherValidity(modelDef.voucher.value)
+            .then((eligibilityOpts) => {
               // update eligibility instance
               eligibility.setOptions(eligibilityOpts);
               // set some information to voucher model
               modelDef.voucher.setInfos(eligibilityOpts.voucher);
               // return the model
               return modelDef;
-            },
-          );
+            })
+            .then(() => {
+              const voucherCartPath = 'projectItem.voucherConfiguration.value';
+              const isVoucherInCart = !!get(cart, voucherCartPath);
+
+              return isVoucherInCart
+                ? pciProjectNew.removeCartProjectItemVoucher(cart)
+                : null;
+            })
+            .then(() => {
+              return pciProjectNew.setCartProjectItemVoucher(
+                cart,
+                modelDef.voucher.value,
+              );
+            })
+            .then(() => modelDef);
         }
 
         return modelDef;
