@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.2.5...@ovh-ux/sign-up@2.3.0) (2022-03-16)
+
+
+### Features
+
+* **signup:** add india areas ([#6674](https://github.com/ovh/manager/issues/6674)) ([7288458](https://github.com/ovh/manager/commit/7288458aae50362000901c65477b5f626e5446e6))
+
+
+
 ## [2.2.5](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.2.4...@ovh-ux/sign-up@2.2.5) (2022-03-04)
 
 

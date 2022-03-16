@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.1.0...@ovh-ux/manager-bm-server-components@1.2.0) (2022-03-16)
+
+
+### Features
+
+* add eco range order ([#6401](https://github.com/ovh/manager/issues/6401)) ([a569802](https://github.com/ovh/manager/commit/a56980279358367aa4a0ffd759a6165b0ffc897d))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.0.1...@ovh-ux/manager-bm-server-components@1.1.0) (2022-03-15)
 
 
