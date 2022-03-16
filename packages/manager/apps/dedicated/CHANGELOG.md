@@ -1,3 +1,12 @@
+# [17.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.14.0...@ovh-ux/manager-dedicated@17.15.0) (2022-03-16)
+
+
+### Features
+
+* add eco range order ([#6401](https://github.com/ovh/manager/issues/6401)) ([a569802](https://github.com/ovh/manager/commit/a56980279358367aa4a0ffd759a6165b0ffc897d))
+
+
+
 # [17.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.13.0...@ovh-ux/manager-dedicated@17.14.0) (2022-03-15)
 
 
