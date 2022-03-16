@@ -37,12 +37,12 @@ export const NOTEBOOK_FRAMEWORK_INFO = {
 };
 
 export const NOTEBOOK_AUTOMATION_INFO = {
-  DEFAULT: 'https://docs.ovh.com/gb/en/ai-training/overview-cli/',
+  DEFAULT: 'https://docs.ovh.com/gb/en/publiccloud/ai/cli/overview-cli/',
 };
 
 export const NOTEBOOK_STORAGE_INFO = {
-  DEFAULT: 'https://docs.ovh.com/gb/en/ai-training/data/',
-  CA: 'https://docs.ovh.com/ca/en/ai-training/data/',
+  DEFAULT: 'https://docs.ovh.com/gb/en/publiccloud/ai/data/',
+  CA: 'https://docs.ovh.com/ca/en/publiccloud/ai/data/',
 };
 
 export const NOTEBOOK_MULTIPLY_SIGN = ' × ';
