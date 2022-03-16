@@ -13,7 +13,7 @@
   "billing_main_history_table_id": "Referencia",
   "billing_main_history_table_order_id": "Número de pedido",
   "billing_main_history_table_date": "Fecha de emisión",
-  "billing_main_history_table_total": "Importe sin IVA:",
+  "billing_main_history_table_total": "Importe sin IVA",
   "billing_main_history_table_total_with_VAT": "Importe IVA incl.",
   "billing_main_history_table_balance_status": "Estado",
   "billing_main_history_table_balance_due_amount": "Saldo",
