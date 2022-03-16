@@ -1,6 +1,7 @@
 interface ApplicationConfiguration {
   id: string;
   path: string;
+  publicURL?: string;
 }
 
 function pathEquals(a: string, b: string): boolean {

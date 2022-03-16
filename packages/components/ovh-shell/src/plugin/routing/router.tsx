@@ -24,7 +24,7 @@ interface RouteHandlerParams {
 interface RouterProps {
   application: Application;
   routing: RoutingConfiguration;
-  routes: Route[];
+  routes: React.ReactElement<Route | Redirect>[];
 }
 
 interface DefaultRouteHandlerProps {
@@ -66,9 +66,9 @@ function DefaultRouteHandler(props: DefaultRouteHandlerProps) {
 function Router(props: RouterProps) {
   const routes = useMemo(
     () =>
-      props.routes.map((route) => (
-        <Route {...route.props} key={`${route.props.path}`} />
-      )),
+      props.routes.map((route: React.ReactElement<Route | Redirect>, index) => {
+        return <route.type {...route.props} key={index} />;
+      }),
     [props.routes],
   );
   return (
