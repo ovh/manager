@@ -31,11 +31,24 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
       orderUrl: /* @ngInject */ (User) => User.getUrlOf('dedicatedOrder'),
+      orderEcoRangeUrl: /* @ngInject */ (User) =>
+        User.getUrlOf('dedicatedEcoRangeOrder'),
       isOrderAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping
           .checkFeatureAvailability(['dedicated-server:order'])
           .then((orderAvailability) =>
             orderAvailability.isFeatureAvailable('dedicated-server:order'),
+          )
+          .catch(() => false),
+      isEcoRangeOrderAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability([
+            'dedicated-server:ecoRangeOrderSectionDedicated',
+          ])
+          .then((orderAvailability) =>
+            orderAvailability.isFeatureAvailable(
+              'dedicated-server:ecoRangeOrderSectionDedicated',
+            ),
           )
           .catch(() => false),
       getServerDashboardLink: /* @ngInject */ ($state) => (server) =>

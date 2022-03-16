@@ -75,7 +75,7 @@
                 data-translate="{{:: 'server_configuration_state_' + $ctrl.constructor.toUpperSnakeCase($value) }}"
             ></span>
         </oui-datagrid-column>
-        <oui-datagrid-topbar data-ng-if="$ctrl.isOrderAvailable">
+        <oui-datagrid-topbar>
             <a
                 class="oui-button oui-button_secondary oui-button_icon-right"
                 data-track-on="click"
@@ -84,13 +84,61 @@
                 target="_blank"
                 rel="noopener"
                 data-ng-href="{{:: $ctrl.orderUrl }}"
+                data-ng-if="$ctrl.isOrderAvailable && !$ctrl.isEcoRangeOrderAvailable"
             >
-                <span data-translate="dedicated_servers_order"></span>
+                <span
+                    data-translate="dedicated_servers_button_server_order"
+                ></span>
                 <span
                     class="oui-icon oui-icon-external-link"
                     aria-hidden="true"
                 ></span>
             </a>
+            <oui-dropdown
+                data-ng-if="$ctrl.isOrderAvailable && $ctrl.isEcoRangeOrderAvailable"
+            >
+                <oui-dropdown-trigger
+                    text="{{:: 'dedicated_servers_button_list_order' | translate }}"
+                ></oui-dropdown-trigger>
+                <div class="oui-dropdown-menu" oui-dropdown-content>
+                    <a
+                        class="oui-dropdown-option mb-1"
+                        data-track-on="click"
+                        data-track-type="action"
+                        data-track-name="dedicated::dedicated::servers::order"
+                        target="_blank"
+                        rel="noopener"
+                        data-ng-href="{{:: $ctrl.orderUrl }}"
+                    >
+                        <span
+                            data-translate="dedicated_servers_list_item_order"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-external-link"
+                            aria-hidden="true"
+                        >
+                        </span>
+                    </a>
+                    <a
+                        class="oui-dropdown-option mb-1"
+                        data-track-on="click"
+                        data-track-type="action"
+                        data-track-name="dedicated::dedicated::servers::order-eco"
+                        target="_blank"
+                        rel="noopener"
+                        data-ng-href="{{:: $ctrl.orderEcoRangeUrl }}"
+                    >
+                        <span
+                            data-translate="dedicated_servers_list_item_order_eco"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-external-link"
+                            aria-hidden="true"
+                        >
+                        </span>
+                    </a>
+                </div>
+            </oui-dropdown>
         </oui-datagrid-topbar>
     </oui-datagrid>
 </div>

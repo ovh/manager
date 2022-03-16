@@ -10,7 +10,7 @@
         <div
             data-wizard-step
             data-wizard-step-on-load="loadIpList"
-            data-wizard-step-valid="entry.ip && entry.domain && ipdata.t.length>=1 && !loading"
+            data-wizard-step-valid="entry.ip && entry.domain && ipdata.length >= 1 && !loading"
         >
             <div class="text-center" data-ng-if="loading">
                 <oui-spinner></oui-spinner>
@@ -28,14 +28,13 @@
                             data-translate="server_configuration_secondarydns_ip"
                         >
                         </label>
-                        <input
+                        <oui-select
                             id="ip"
-                            type="text"
-                            class="oui-input"
-                            data-ng-model="entry.ip"
-                            oui-autocomplete="ipdata.t"
-                            oui-autocomplete-property="name"
-                        />
+                            items="ipdata"
+                            model="entry.ip"
+                            searchable
+                        >
+                        </oui-select>
                     </div>
                     <div class="form-group">
                         <label

@@ -53,6 +53,7 @@ export default class AgoraIpOrderCtrl {
 
     // need to be scoped because of how wizard-step works
     this.$scope.loadServices = this.loadServices.bind(this);
+    this.$scope.manageLoadIpOffers = this.manageLoadIpOffers.bind(this);
     this.$scope.loadIpOffers = this.loadIpOffers.bind(this);
     this.$scope.redirectToPaymentPage = this.redirectToPaymentPage.bind(this);
     this.$scope.resumeOrder = this.resumeOrder.bind(this);
@@ -168,9 +169,28 @@ export default class AgoraIpOrderCtrl {
     );
   }
 
-  loadIpOffers() {
+  manageLoadIpOffers() {
     this.loading.ipOffers = true;
+    this.ipOffers = [];
 
+    if (
+      this.model?.selectedService?.type ===
+      PRODUCT_TYPES.dedicatedServer.typeName
+    ) {
+      return this.IpAgoraOrder.checkIpDedicatedServerIsOrderable(
+        this.model?.selectedService?.serviceName,
+      ).then((isOrderable) => {
+        if (!isOrderable) {
+          this.loading.ipOffers = false;
+          return this.$q.reject();
+        }
+        return this.loadIpOffers();
+      });
+    }
+    return this.loadIpOffers();
+  }
+
+  loadIpOffers() {
     this.model.params = {};
     let ipOffersPromise;
 
