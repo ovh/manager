@@ -77,14 +77,10 @@ export default class SignUpFormCtrl {
       this.getRulesCancel = this.$q.defer();
     }
 
-    const ovhSubsidiary =
-      SignUpFormCtrl.getOvhSubsidiaryFromUrl() ||
-      SignUpFormCtrl.getOvhSubsidiaryFromLocalStorage();
-
     const ruleParams = merge(
       {
         action: this.action,
-        ovhSubsidiary,
+        ovhSubsidiary: this.ovhSubsidiary,
       },
       this.model,
     );
@@ -200,10 +196,13 @@ export default class SignUpFormCtrl {
   ============================= */
 
   $onInit() {
-    return this.signUp.getCreationRulesParams().then((params) => {
-      this.initModel(params);
-      set(this.me, 'model', this.model);
-      return this.getRules();
+    return this.signUp.getNic().then(({ ovhSubsidiary }) => {
+      this.ovhSubsidiary = ovhSubsidiary;
+      return this.signUp.getCreationRulesParams().then((params) => {
+        this.initModel(params);
+        set(this.me, 'model', this.model);
+        return this.getRules();
+      });
     });
   }
 
