@@ -274,7 +274,7 @@ export default class Notebook {
 
   get workspaceFreeStorage() {
     return (
-      this.spec?.resources?.workspace?.freeStorage ||
+      this.status?.workspace?.storageFree ||
       NOTEBOOK_FREE_WORKSPACE_STORAGE_DEFAULT
     );
   }
