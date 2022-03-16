@@ -89,6 +89,7 @@ const UserAccountMenu = ({
           title={t('user_account_menu_profile')}
           href={myAccountLink}
           target="_top"
+          id="user-account-menu-profile"
         >
           {t('user_account_menu_profile')}
           <span
