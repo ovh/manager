@@ -1,6 +1,6 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import { Application as IApplication } from '@ovh-ux/manager-config/types/application';
+import { Redirect, Route } from 'react-router-dom';
 import Router, { hashChangeEvent } from './router';
 import Shell from '../../shell/shell';
 import Application from './application';
@@ -26,6 +26,7 @@ export function initRoutingConfiguration(
           const routingConfig = {
             id: appId,
             path: `/${appConfig.container.path}/`,
+            publicURL: appConfig.publicURL,
           };
           routing.addConfiguration(routingConfig);
           if (appConfig.container.isDefault) {
@@ -57,7 +58,7 @@ export function initRoutingConfiguration(
 export function initRouting(shell: Shell, iframe: HTMLIFrameElement) {
   const routingConfig = new RoutingConfiguration();
   const application = new Application(iframe, routingConfig);
-  const routes: Route[] = [];
+  const routes: React.ReactElement<Route | Redirect>[] = [];
   const router = (
     <Router application={application} routing={routingConfig} routes={routes} />
   );
@@ -66,7 +67,7 @@ export function initRouting(shell: Shell, iframe: HTMLIFrameElement) {
 
   return {
     router,
-    addRoute: (route: Route): void => {
+    addRoute: (route: React.ReactElement<Route | Redirect>): void => {
       routes.push(route);
     },
     onHashChange: (): void => {

@@ -30,11 +30,29 @@ function Shell() {
 
   useEffect(() => {
     const routing = plugin.routing.initRouting(shell, iframeRef.current);
+
+    // Hub application redirections
     routing.addRoute(
       <Route exact path="/catalog">
         <Redirect to="/hub/catalog" />
       </Route>,
     );
+
+    // Telecom application redirections
+    [
+      'freefax/:id?',
+      'pack/:id?',
+      'sms/:id?',
+      'task',
+      'telephony/:id?',
+      'orders',
+      'overTheBox/:id?',
+    ].forEach((telecomRoute) =>
+      routing.addRoute(
+        <Redirect from={`/${telecomRoute}`} to={`/telecom/${telecomRoute}`} />,
+      ),
+    );
+
     shell.registerPlugin('routing', routing);
     setRouter(routing.router);
   }, [iframeRef, shell]);
