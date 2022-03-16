@@ -6,6 +6,8 @@ import useClickAway from 'react-use/lib/useClickAway';
 
 import UserAccountMenuButton from './Button';
 import UserAccountMenuContent from './Content';
+import useOnboarding from '@/core/onboarding';
+import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import { useShell } from '@/context';
 
@@ -23,20 +25,29 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
   const user = environment.getUser();
   const region = environment.getRegion();
 
+  const {
+    onboardingOpenedState,
+    isAccountSidebarOpened,
+    openAccountSidebar,
+    closeAccountSidebar,
+  } = useProductNavReshuffle();
+  const onboardingHelper = useOnboarding();
+
   const ovhPaymentMethod = useOvhPaymentMethod({
     reketInstance: useReket(),
     region,
   });
 
-  const [show, setShow] = useState(false);
   const [isPaymentMethodLoading, setIsPaymentMethodLoading] = useState(true);
   const [defaultPaymentMethod, setDefaultPaymentMethod] = useState(null);
   const handleRootClose = () => {
-    setShow(false);
+    if (!onboardingHelper.hasStarted(onboardingOpenedState)) {
+      closeAccountSidebar();
+    }
   };
 
   useEffect(async () => {
-    if (!defaultPaymentMethod && show && !user.enterprise) {
+    if (!defaultPaymentMethod && isAccountSidebarOpened && !user.enterprise) {
       try {
         setDefaultPaymentMethod(
           await ovhPaymentMethod.getDefaultPaymentMethod(),
@@ -46,17 +57,21 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
       }
     }
 
-    onToggle(show);
-  }, [show]);
+    onToggle({ show: isAccountSidebarOpened });
+  }, [isAccountSidebarOpened]);
 
   useClickAway(ref, handleRootClose);
 
   return (
     <div className="oui-navbar-dropdown" ref={ref}>
       <UserAccountMenuButton
-        show={show}
+        show={isAccountSidebarOpened}
         onClick={(nextShow) => {
-          setShow(nextShow);
+          if (nextShow) {
+            openAccountSidebar();
+          } else {
+            closeAccountSidebar();
+          }
         }}
       >
         <span

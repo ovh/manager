@@ -8,7 +8,7 @@ import { shell as shellApi } from '@ovh-ux/shell';
 import i18n from '../config/i18nTestConfig';
 import Shell from '@/container/legacy';
 import { ApplicationProvider } from '../../context';
-import { ProductNavReshuffleProvider } from '@/core/product-nav-reshuffle';
+import { ContainerProvider } from '@/core/container';
 
 // TODO: improve mocks to render shell with both sidebars
 const server = setupServer(
@@ -82,9 +82,9 @@ describe('Renders shell header', () => {
       render(
         <I18nextProvider i18n={i18n}>
           <ApplicationProvider environment={environment} shell={shell}>
-            <ProductNavReshuffleProvider>
+            <ContainerProvider>
               <Shell />
-            </ProductNavReshuffleProvider>
+            </ContainerProvider>
           </ApplicationProvider>
         </I18nextProvider>,
       );

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
+import useContainer from '@/core/container';
 import style from './style.module.scss';
 
 import backgroundImage from '@/assets/images/pnr/background.png';
@@ -10,7 +11,7 @@ import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 function NavReshuffleBetaAccessModal(): JSX.Element {
   const { t } = useTranslation('beta-modal');
-  const { askBeta, createBetaChoice } = useProductNavReshuffle();
+  const { askBeta, createBetaChoice } = useContainer();
   const [submitting, setSubmitting] = useState(false);
 
   function onAccept() {
