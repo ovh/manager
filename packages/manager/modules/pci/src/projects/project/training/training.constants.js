@@ -1,7 +1,7 @@
-export const GUIDE_URL = 'https://docs.ovh.com/gb/en/ai-training';
+export const GUIDE_URL = 'https://docs.ovh.com/gb/en/publiccloud/ai/';
 export const DISCORD_URL = 'https://discord.com/invite/vXVurFfwe9';
 export const DOC_DOCKER_BUILD_URL =
-  'https://docs.ovh.com/gb/en/ai-training/build-use-custom-image/';
+  'https://docs.ovh.com/gb/en/publiccloud/ai/training/build-use-custom-image/';
 export const JOB_SSH_KEYS = {
   MAX: 10,
   CUSTOM_SELECT: '-',
