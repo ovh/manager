@@ -87,12 +87,22 @@ angular.module('App').controller(
           backup: this.Server.getFtpBackup(this.$stateParams.productId),
         })
         .then((result) => {
-          if (result.backup.activated === true) {
-            this.$scope.ftpBackup.model = result.backup;
-            this.$scope.ftpBackup.use = result.backup.usage
-              ? (result.backup.usage.value * result.backup.quota.value) / 100
-              : 0;
-          }
+          this.$scope.ftpBackup.model = result.backup;
+
+          this.$scope.isOrderable = this.$scope.ftpBackup.model.canOrder;
+          this.$scope.isActivable = this.$scope.ftpBackup.model.activate;
+          this.$scope.isActivated = this.$scope.ftpBackup.model.activated;
+          this.$scope.canBeActivated =
+            !this.$scope.isActivated &&
+            (this.$scope.isActivable || this.$scope.isOrderable);
+          this.$scope.isNotAvailable =
+            !this.$scope.isOrderable &&
+            !this.$scope.isActivable &&
+            !this.$scope.isActivated;
+
+          this.$scope.ftpBackup.use = result.backup.usage
+            ? (result.backup.usage.value * result.backup.quota.value) / 100
+            : 0;
         })
         .finally(() => {
           this.$scope.loading = false;

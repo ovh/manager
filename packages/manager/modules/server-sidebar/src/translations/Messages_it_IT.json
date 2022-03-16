@@ -75,5 +75,6 @@
   "server_sidebar_item_storage_backup_title": "Storage e backup",
   "server_sidebar_item_enterprise_file_storage_title": "Enterprise File Storage",
   "server_sidebar_item_nutanix_title": "Nutanix",
-  "server_sidebar_item_nutanix_clusters_all_title": "Tutti i tuoi cluster"
+  "server_sidebar_item_nutanix_clusters_all_title": "Tutti i tuoi cluster",
+  "server_sidebar_order_item_dedicated_server_eco_title": "Server dedicati Eco"
 }

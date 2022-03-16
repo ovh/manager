@@ -8,18 +8,18 @@
             <div data-ovh-alert="server_tab_ftpbackup_alert"></div>
 
             <p
-                data-ng-if="!featureAvailable"
+                data-ng-if="!featureAvailable || isNotAvailable"
                 data-translate="server_configuration_ftpbackup_not_available"
             ></p>
 
             <div
                 class="alert alert-info"
                 role="alert"
-                data-ng-if="!ftpBackup.model && featureAvailable"
+                data-ng-if="canBeActivated && featureAvailable"
                 data-translate="server_configuration_ftpbackup_none"
             ></div>
 
-            <div data-ng-if="ftpBackup.model">
+            <div data-ng-if="isActivated">
                 <div class="row">
                     <dl class="col-md-6">
                         <dt
@@ -203,7 +203,7 @@
             <button
                 type="button"
                 class="btn btn-default btn-block"
-                data-ng-if="ftpBackup.model"
+                data-ng-if="isActivated"
                 data-ng-click="!disable.deleteFtp && setAction('ftp-backup/access/add/dedicated-server-ftp-backup-access-add', ftpBackupTable.list.results)"
                 data-ng-disabled="disable.deleteFtp"
                 data-translate="server_configuration_ftpbackup_access_add"
@@ -211,7 +211,7 @@
             <button
                 type="button"
                 class="btn btn-default btn-block"
-                data-ng-if="ftpBackup.model"
+                data-ng-if="isActivated"
                 data-ng-click="!disable.passwordFtp && !disable.deleteFtp && setAction('ftp-backup/password/request/dedicated-server-ftp-backup-password-request', ftpBackup.model)"
                 data-ng-disabled="disable.passwordFtp || disable.deleteFtp"
             >
@@ -229,7 +229,7 @@
             <button
                 type="button"
                 class="btn btn-default btn-block"
-                data-ng-if="ftpBackup.model && ftpBackup.model.typeBackup == 'INCLUDED'"
+                data-ng-if="isActivated && ftpBackup.model.typeBackup == 'INCLUDED'"
                 data-ng-click="!disable.deleteFtp && setAction('ftp-backup/delete/dedicated-server-ftp-backup-delete', ftpBackup.model)"
                 data-ng-disabled="disable.deleteFtp"
             >
@@ -247,7 +247,7 @@
             <button
                 type="button"
                 class="btn btn-default btn-block"
-                data-ng-if="ftpBackup.model && ftpBackup.model.canOrder"
+                data-ng-if="isActivated && isOrderable"
                 data-ng-click="!disable.deleteFtp && ftpBackup.model.canOrder && setAction('ftp-backup/order/dedicated-server-ftp-backup-order')"
                 data-ng-disabled="disable.deleteFtp"
                 data-translate="server_configuration_ftpbackup_access_order"
@@ -255,7 +255,7 @@
             <button
                 type="button"
                 class="btn btn-default btn-block disabled"
-                data-ng-if="ftpBackup.model && !ftpBackup.model.canOrder"
+                data-ng-if="isActivated && !isOrderable"
                 data-translate="server_configuration_ftpbackup_access_order"
                 data-oui-tooltip="{{:: 'server_configuration_ftpbackup_access_order_right' | translate }}"
                 data-oui-tooltip-placement="left"
@@ -263,7 +263,7 @@
             <button
                 type="button"
                 class="btn btn-default btn-block {{ disable.activeFtp && 'disabled' }}"
-                data-ng-if="featureAvailable && !ftpBackup.model"
+                data-ng-if="featureAvailable && canBeActivated"
                 data-ng-click="!disable.activeFtp && setAction('ftp-backup/activate/dedicated-server-ftp-backup-activate')"
             >
                 <span class="icon-backupftp-activate" aria-hidden="true"></span>

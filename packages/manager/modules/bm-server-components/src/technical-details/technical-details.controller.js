@@ -10,7 +10,6 @@ export default class BmServerComponentsTechnicalDetailsController {
   }
 
   $onInit() {
-    this.loadingTechnicalDetails = true;
     this.$q
       .resolve(this.technicalDetails)
       .then((technicalDetails) => {
@@ -20,11 +19,10 @@ export default class BmServerComponentsTechnicalDetailsController {
         this.formattedDataDisks = this.formatDisks('data');
         this.formattedCacheDisks = this.formatDisks('cache');
         this.formattedOsDisks = this.formatDisks('os');
-        this.formattedExtensionCard = get(
-          this.technicalDetails,
-          'storage.raid',
-          '-',
-        );
+        this.formattedExtensionCard =
+          this.technicalDetails.storage?.raid !== 'none'
+            ? this.technicalDetails.storage.raid
+            : '';
         this.upgradeWithTicketAvailable = false;
         if (this.goToManualUpgrade) {
           this.loadData();

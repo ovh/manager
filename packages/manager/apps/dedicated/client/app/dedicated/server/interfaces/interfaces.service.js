@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import includes from 'lodash/includes';
 import isString from 'lodash/isString';
 import map from 'lodash/map';
+import flatMap from 'lodash/flatMap';
 import startsWith from 'lodash/startsWith';
 import some from 'lodash/some';
 import uniq from 'lodash/uniq';
@@ -14,6 +15,7 @@ import {
   INTERFACE_GROUP_TASK,
   INTERFACE_UNGROUP_TASK,
   OLA_PLAN_CODE,
+  VIRTUAL_TYPE,
 } from './interfaces.constants';
 
 export default class DedicatedServerInterfacesService {
@@ -80,8 +82,9 @@ export default class DedicatedServerInterfacesService {
     );
   }
 
-  getInterfaces(serverName) {
+  getInterfaces(serverName, specifications) {
     let nics;
+    this.typeVrack = specifications.vrack.type;
 
     return this.getNetworkInterfaceControllers(serverName)
       .then((results) => {
@@ -108,7 +111,7 @@ export default class DedicatedServerInterfacesService {
               enabled: true, // physical interface is always enabled
             }),
         ),
-        ...map(
+        ...flatMap(
           vnis,
           ({
             uuid,
@@ -118,14 +121,16 @@ export default class DedicatedServerInterfacesService {
             vrack,
             enabled,
           }) =>
-            new Interface({
-              id: uuid,
-              name,
-              mac: networkInterfaceController.join(', '),
-              type,
-              vrack,
-              enabled,
-            }),
+            !(!this.typeVrack && type === VIRTUAL_TYPE.vrack)
+              ? new Interface({
+                  id: uuid,
+                  name,
+                  mac: networkInterfaceController.join(', '),
+                  type,
+                  vrack,
+                  enabled,
+                })
+              : [],
         ),
       ]);
   }

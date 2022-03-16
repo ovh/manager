@@ -10,8 +10,9 @@ import {
 
 export default class IpAgoraOrder {
   /* @ngInject */
-  constructor($q, OvhHttp) {
+  constructor($q, $http, OvhHttp) {
     this.$q = $q;
+    this.$http = $http;
     this.OvhHttp = OvhHttp;
 
     this.fetchPricesTries = 0;
@@ -89,6 +90,13 @@ export default class IpAgoraOrder {
         family: 'ip',
       }),
     );
+  }
+
+  checkIpDedicatedServerIsOrderable(serviceName) {
+    return this.$http
+      .get(`/dedicated/server/${serviceName}/orderable/ip`)
+      .then(({ data: orderable }) => !!orderable.ipv4?.length)
+      .catch(() => false);
   }
 
   fetchPrices(serviceName, blockSize) {
