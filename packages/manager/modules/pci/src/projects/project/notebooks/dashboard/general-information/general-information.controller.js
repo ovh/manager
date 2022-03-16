@@ -3,6 +3,7 @@ import {
   NOTEBOOK_FLAVOR_TYPE,
   NOTEBOOK_MULTIPLY_SIGN,
   NOTEBOOK_VOLUME_TYPE,
+  NOTEBOOK_MAX_PROGRESS_VALUE,
 } from '../../notebook.constants';
 import Notebook from '../../Notebook.class';
 
@@ -111,6 +112,6 @@ export default class NotebookGeneralInformationCtrl {
   }
 
   static getProgressValue(value, max) {
-    return (100 * value) / max;
+    return (NOTEBOOK_MAX_PROGRESS_VALUE * value) / max;
   }
 }

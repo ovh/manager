@@ -1,5 +1,8 @@
 import { NOTEBOOK_RESOURCES } from '../../notebook.constants';
-import { NOTEBOOK_MULTIPLY_SIGN } from '../../../notebook.constants';
+import {
+  NOTEBOOK_MULTIPLY_SIGN,
+  NOTEBOOK_MINUTES_IN_HOUR,
+} from '../../../notebook.constants';
 
 const RESOURCES_SCALE_MIN_FLAVOR = 1;
 
@@ -47,7 +50,7 @@ export default class NotebookResourcesController {
       return (
         this.notebookModel.nbResources *
         this.prices[priceIndex].price.value *
-        60
+        NOTEBOOK_MINUTES_IN_HOUR
       );
     }
 
