@@ -10,9 +10,26 @@ const feature = loadFeature(
   },
 );
 
+const windowLocation = window.location;
+const setHrefSpy = jest.fn((href) => href);
+
 defineFeature(feature, (test) => {
   let app: Application;
   let myURL = '';
+
+  beforeEach(() => {
+    delete window.location;
+    window.location = {
+      ...window.location,
+    };
+    Object.defineProperty(window.location, 'href', {
+      set: setHrefSpy,
+    });
+  });
+
+  afterEach(() => {
+    window.location = windowLocation;
+  });
 
   const givenIAmInHubApp = (given: DefineStepFunction) => {
     given('I am in the hub app', () => {
@@ -102,5 +119,46 @@ defineFeature(feature, (test) => {
         expect(myURL).toEqual('https://localhost/foo/#/foohash');
       },
     );
+  });
+
+  test('Navigating to an app in another container', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given('I am in the hub app', () => {
+      myURL = 'https://localhost/#/hub/';
+    });
+
+    and(
+      'My app is configured with hub and a foo application in another container',
+      () => {
+        const config = new RoutingConfiguration();
+        const iframe = document.createElement('iframe');
+        config.addConfiguration({ id: 'hub', path: '/hub/' });
+        config.addConfiguration({
+          id: 'foo',
+          path: '/foo/',
+          publicURL: 'https://foo/foo/',
+        });
+        app = new Application(iframe, config);
+      },
+    );
+
+    when('I navigate to the foo application', () => {
+      const spy = jest
+        .spyOn(app, 'getApplicationPath')
+        .mockImplementation(() => '/');
+      app.updateRouting({
+        applicationId: 'foo',
+        applicationHash: '/bar',
+      });
+      spy.mockRestore();
+    });
+
+    then('I should be redirected to foo application publicURL', () => {
+      expect(setHrefSpy).toHaveBeenCalledWith('https://foo/foo/#/bar');
+    });
   });
 });

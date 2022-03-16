@@ -79,6 +79,23 @@ class Application {
     applicationHash: string;
   }) {
     const currentAppPath = this.getApplicationPath();
+
+    /**
+     * In the case of an application belonging to a different container
+     * (publicURL origin isn't the same as current container) we simply
+     * perform a redirection to the new container, keeping the hash.
+     */
+    const appPublicURL = this.config.findById(applicationId)?.publicURL;
+    if (appPublicURL) {
+      const target = new URL(appPublicURL);
+      const topWindow = window.top || window;
+      if (topWindow.location.origin !== target.origin) {
+        target.hash = applicationHash;
+        topWindow.location.href = target.href;
+        return;
+      }
+    }
+
     const url = this.updateURL(
       this.getURL(),
       applicationId,

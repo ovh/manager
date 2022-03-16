@@ -19,3 +19,9 @@ Scenario: Navigating to another app from constructed URL
   When I navigate to app dedicated
   Then My URL should be clean and updated with dedicated path config
 
+Scenario: Navigating to an app in another container
+  Given I am in the hub app
+  And My app is configured with hub and a foo application in another container
+  When I navigate to the foo application
+  Then I should be redirected to foo application publicURL
+
