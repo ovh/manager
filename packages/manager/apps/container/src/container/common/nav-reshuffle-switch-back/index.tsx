@@ -6,6 +6,7 @@ import useClickAway from 'react-use/lib/useClickAway';
 import NavReshuffleSwitchBackModal from './Modal';
 
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
+import useContainer from '@/core/container';
 
 type Props = {
   onChange(show: boolean): void;
@@ -13,7 +14,7 @@ type Props = {
 
 function NavReshuffleSwitchBack({ onChange }: Props): JSX.Element {
   const { t } = useTranslation('beta-modal');
-  const { updateBetaChoice, betaVersion, useBeta } = useProductNavReshuffle();
+  const { updateBetaChoice, betaVersion, useBeta } = useContainer();
   const ref = useRef();
   const [show, setShow] = useState<boolean>(false);
   const [confirm, setConfirm] = useState<boolean>(false);

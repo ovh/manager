@@ -9,7 +9,7 @@ import React, {
 import { plugin, IFrameMessageBus } from '@ovh-ux/shell';
 import { Redirect, Route } from 'react-router-dom';
 import ApplicationContext from '@/context';
-import useOnboarding from '@/core/onboarding';
+import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import NavReshuffleFeedbackWidget from './feedback';
 import Header from './header';
@@ -22,10 +22,24 @@ function NavReshuffleContainer(): JSX.Element {
   const iframeRef = useRef(null);
   const [iframe, setIframe] = useState(null);
   const [router, setRouter] = useState(null);
-  const [isSidebarExpanded, setSidebarExpanded] = useState(false);
+  // const [isSidebarExpanded, setSidebarExpanded] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const { shell } = useContext(ApplicationContext);
-  const isOnboardingWidgetVisible = useOnboarding().isWidgetVisible;
+
+  const productNavReshuffle = useProductNavReshuffle();
+  const {
+    isNavigationSidebarOpened,
+    openNavigationSidebar,
+    closeNavigationSidebar,
+  } = productNavReshuffle;
+
+  const onHamburgerMenuClick = () => {
+    if (isNavigationSidebarOpened) {
+      closeNavigationSidebar();
+    } else {
+      openNavigationSidebar();
+    }
+  };
 
   useEffect(() => {
     setIframe(iframeRef.current);
@@ -65,7 +79,9 @@ function NavReshuffleContainer(): JSX.Element {
     <div className={style.navReshuffle}>
       {router}
       <div
-        className={`${style.sidebar} ${isSidebarExpanded ? '' : style.hidden}`}
+        className={`${style.sidebar} ${
+          isNavigationSidebarOpened ? '' : style.hidden
+        }`}
       >
         <Suspense fallback="">
           <Sidebar />
@@ -74,15 +90,15 @@ function NavReshuffleContainer(): JSX.Element {
       <div className={`${style.container}`}>
         <div className={style.navbar}>
           <Header
-            isSidebarExpanded={isSidebarExpanded}
-            onHamburgerMenuClick={() => setSidebarExpanded(!isSidebarExpanded)}
+            isSidebarExpanded={isNavigationSidebarOpened}
+            onHamburgerMenuClick={() => onHamburgerMenuClick()}
             onUserAccountMenuToggle={setShowOverlay}
           />
         </div>
         <div className={style.iframeContainer}>
           <div
             className={`${style.iframeOverlay} ${
-              isSidebarExpanded || showOverlay
+              isNavigationSidebarOpened || showOverlay
                 ? style.iframeOverlay_visible
                 : ''
             }`}
@@ -95,7 +111,7 @@ function NavReshuffleContainer(): JSX.Element {
           ></iframe>
         </div>
         <Suspense fallback="">
-          {isOnboardingWidgetVisible && <NavReshuffleOnboardingWidget />}
+          {!productNavReshuffle.isLoading && <NavReshuffleOnboardingWidget />}
           <NavReshuffleFeedbackWidget />
         </Suspense>
       </div>
