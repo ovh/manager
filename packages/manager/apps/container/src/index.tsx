@@ -10,6 +10,7 @@ import Container from '@/container';
 import { ApplicationProvider } from '@/context';
 import { ProductNavReshuffleProvider } from '@/core/product-nav-reshuffle';
 import { initSso } from '@/core/sso';
+import { ContainerProvider } from '@/core/container';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './index.scss';
@@ -36,12 +37,13 @@ shellApi.initShell().then((shell) => {
             loadPath: (lng, ns) => `./translations/${ns}/Messages_${lng}.json`,
           },
         });
+
       ReactDOM.render(
         <React.StrictMode>
           <ApplicationProvider environment={environment} shell={shell}>
-            <ProductNavReshuffleProvider>
+            <ContainerProvider>
               <Container />
-            </ProductNavReshuffleProvider>
+            </ContainerProvider>
           </ApplicationProvider>
         </React.StrictMode>,
         document.querySelector('#app'),

@@ -10,12 +10,14 @@ type StaticLinkProps = {
   count?: number;
   node?: unknown;
   linkParams?: Record<string, string>;
+  id?: string;
 };
 
 function StaticLink({
   count = 0,
   node = {},
   linkParams = {},
+  id,
 }: StaticLinkProps): JSX.Element {
   const { t } = useTranslation('sidebar');
   const shell = useShell();
@@ -89,7 +91,7 @@ function SidebarLink({
   return node.url || node.routing ? (
     <StaticLink count={count} node={node} linkParams={linkParams} />
   ) : (
-    <a onClick={onClick}>
+    <a onClick={onClick} id={id}>
       {t(node.translation)}
       {node.children ? (
         <span
