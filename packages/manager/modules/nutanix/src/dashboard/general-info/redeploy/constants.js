@@ -18,6 +18,10 @@ export const IPV4_REGEX = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(?:2
 
 export const IPV4_BLOCK_REGEX = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\/([0-9]|[1-2][0-9]|3[0-2])?$/;
 
+export const FIELDS_VISIBILITY_MODEL = {
+  IPS: [{ key: 'prismCentral.type', notIn: [PRISM_CENTRAL_TYPE_ALONE] }],
+};
+
 export const CLUSTER_CONFIG_TERMS = {
   PRISM_CENTRAL: 'Prism Central',
   PRISM_CENTRAL_TYPE: 'Type',
@@ -39,4 +43,5 @@ export default {
   IPV4_REGEX,
   IPV4_BLOCK_REGEX,
   CLUSTER_CONFIG_TERMS,
+  FIELDS_VISIBILITY_MODEL,
 };

@@ -240,9 +240,7 @@
                         data-ng-pattern="$ctrl.IPV4_REGEX"
                     />
                 </oui-field>
-                <div
-                    data-ng-if="$ctrl.config.prismCentral.type !== $ctrl.PRISM_CENTRAL_TYPE_ALONE"
-                >
+                <div data-ng-if="$ctrl.isFieldVisible('IPS')">
                     <div class="row ml-1 mb-2">
                         <label
                             class="oui-field__label"

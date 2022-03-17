@@ -1,4 +1,5 @@
 import cloneDeep from 'lodash/cloneDeep';
+import get from 'lodash/get';
 import {
   REDEPLOY_CONFIG_OPTIONS,
   PRISM_CENTRAL_TYPE_ALONE,
@@ -7,6 +8,7 @@ import {
   IPV4_BLOCK_REGEX,
   TRACKING_PREFIX,
   CLUSTER_CONFIG_TERMS,
+  FIELDS_VISIBILITY_MODEL,
 } from './constants';
 
 export default class NutanixGeneralInfoRedeployCtrl {
@@ -146,5 +148,18 @@ export default class NutanixGeneralInfoRedeployCtrl {
   goToPreviousPage() {
     this.trackClick('cancel');
     this.goBack();
+  }
+
+  isFieldVisible(field) {
+    if (!FIELDS_VISIBILITY_MODEL[field]) {
+      return true;
+    }
+    let visible = true;
+    FIELDS_VISIBILITY_MODEL[field].forEach((item) => {
+      if (item.notIn) {
+        visible = visible && !item.notIn.includes(get(this.config, item.key));
+      }
+    });
+    return visible;
   }
 }
