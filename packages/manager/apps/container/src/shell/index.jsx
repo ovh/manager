@@ -29,7 +29,7 @@ function Shell() {
   }, [iframeRef]);
 
   useEffect(() => {
-    const routing = plugin.routing.initRouting(iframeRef.current);
+    const routing = plugin.routing.initRouting(shell, iframeRef.current);
     routing.addRoute(
       <Route exact path="/catalog">
         <Redirect to="/hub/catalog" />
