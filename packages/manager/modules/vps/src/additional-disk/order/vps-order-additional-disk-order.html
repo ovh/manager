@@ -37,7 +37,7 @@
                             >
                                 <oui-select-picker-label class="w-100">
                                     <strong class="block text-center"
-                                            data-ng-bind=":: (disk.capacity.value | cucBytes:2:false:'GB')"
+                                            data-ng-bind=":: (disk.capacity.value | bytes:2:false:'GB')"
                                     ></strong>
                                     <strong class="block text-center"
                                             data-ng-bind=":: $ctrl.getDiskMonthlyPrice(disk).text">
