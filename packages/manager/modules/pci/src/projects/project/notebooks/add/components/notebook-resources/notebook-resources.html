@@ -95,7 +95,13 @@
                 <oui-select-picker-section>
                     <div class="d-flex">
                         <span
+                            ng-if="$ctrl.notebookModel.nbResources <= 1"
                             data-translate="pci_notebook_add_resources_proposed_cpu"
+                            data-translate-values="{ vcores: $ctrl.notebookModel.nbResources * flavor.resourcesPerUnit.cpu }"
+                        ></span>
+                        <span
+                            ng-if="$ctrl.notebookModel.nbResources > 1"
+                            data-translate="pci_notebook_add_resources_proposed_cpu_plural"
                             data-translate-values="{ vcores: $ctrl.notebookModel.nbResources * flavor.resourcesPerUnit.cpu }"
                         ></span>
                     </div>

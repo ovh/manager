@@ -349,10 +349,15 @@
                                     type="success"
                                     value="$ctrl.getProgressValue($ctrl.notebook.workspaceUsedStorage, $ctrl.notebook.workspaceFreeStorage)"
                                 >
-                                    {{$ctrl.notebook.workspaceUsedStorage |
-                                    bytes:0:true:'B'}} /
-                                    {{$ctrl.notebook.workspaceFreeStorage |
-                                    bytes:0:true:'B'}}
+                                    <span
+                                        data-ng-bind="$ctrl.notebook.workspaceUsedStorage |
+                                    bytes:0:true:'B'"
+                                    ></span>
+                                    /
+                                    <span
+                                        data-ng-bind="$ctrl.notebook.workspaceFreeStorage |
+                                    bytes:0:true:'B'"
+                                    ></span>
                                 </oui-progress-bar>
                             </oui-progress>
                             <oui-progress
@@ -362,15 +367,22 @@
                                 <oui-progress-bar
                                     type="success"
                                     value="$ctrl.getProgressValue($ctrl.notebook.workspaceFreeStorage, $ctrl.notebook.workspaceUsedStorage)"
-                                    >{{$ctrl.notebook.workspaceFreeStorage |
-                                    bytes:0:true:'B'}}</oui-progress-bar
                                 >
+                                    <span
+                                        data-ng-bind="$ctrl.notebook.workspaceFreeStorage |
+                                    bytes:0:true:'B'"
+                                    ></span>
+                                </oui-progress-bar>
                                 <oui-progress-bar
                                     type="error"
                                     value="100 - $ctrl.getProgressValue($ctrl.notebook.workspaceFreeStorage, $ctrl.notebook.workspaceUsedStorage)"
-                                    >{{$ctrl.notebook.workspaceUsedStorage |
-                                    bytes:0:true:'B'}}</oui-progress-bar
                                 >
+                                    <span
+                                        data-ng-bind="$ctrl.notebook.workspaceUsedStorage |
+                                        bytes:0:true:'B'"
+                                    >
+                                    </span>
+                                </oui-progress-bar>
                             </oui-progress>
                         </div>
                     </oui-tile-description>
