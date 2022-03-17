@@ -9,7 +9,7 @@
 >
     <!--Into-->
     <p data-translate="vps_additional_disk_upgrade_info"
-       data-translate-values="{ newDiskCapacity: ($ctrl.selectedDiskModel.capacity | cucBytes:0:false:'GB') }"
+       data-translate-values="{ newDiskCapacity: ($ctrl.selectedDiskModel.capacity | bytes:0:false:'GB') }"
     ></p>
 
     <!--Upgradable disks-->
@@ -20,7 +20,7 @@
         model="$ctrl.selectedDiskModel"
     >
         <oui-select-picker-label class="w-100">
-            <span data-ng-bind=":: disk.capacity | cucBytes:0:false:'GB'"></span>
+            <span data-ng-bind=":: disk.capacity | bytes:0:false:'GB'"></span>
         </oui-select-picker-label>
         <oui-select-picker-section>
             <span data-translate="vps_additional_disk_upgrade_prices_month_period"
