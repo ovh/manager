@@ -17,13 +17,6 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/{serviceName}',
     redirectTo: 'vps.detail.dashboard',
     resolve: {
-      resiliationCapability: /* @ngInject */ ($http, serviceName) =>
-        $http
-          .get(`/incident/resiliation/${serviceName}`, {
-            serviceType: 'aapi',
-          })
-          .then(({ data }) => data)
-          .catch(() => null),
       connectedUser: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
       capabilities: /* @ngInject */ ($http, serviceName, stateVps) =>
         $http
@@ -72,17 +65,10 @@ export default /* @ngInject */ ($stateProvider) => {
         creation: moment(serviceInfo.creation).format('LL'),
         expiration: moment(serviceInfo.expiration).format('LL'),
       }),
-      serviceInfo: /* @ngInject */ (
-        resiliationCapability,
-        serviceName,
-        VpsService,
-      ) =>
+      serviceInfo: /* @ngInject */ (serviceName, VpsService) =>
         VpsService.getServiceInfos(serviceName).then((serviceInfo) => ({
           ...serviceInfo,
-          status: resiliationCapability?.billingInformation
-            ? 'FORCED_MANUAL'
-            : serviceInfo.status,
-          statusHelp: resiliationCapability?.billingInformation,
+          status: serviceInfo.status,
           serviceType: PRODUCT_NAME,
         })),
       serviceName: /* @ngInject */ ($transition$) =>

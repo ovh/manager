@@ -75,7 +75,6 @@ import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
-import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerProductOffers from '@ovh-ux/manager-product-offers';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
@@ -169,7 +168,6 @@ export default (containerEl, environment) => {
         ovhManagerBanner,
         ovhManagerCookiePolicy,
         ovhManagerCatalogPrice,
-        ovhManagerIncidentBanner,
         ovhManagerNavbar,
         ovhManagerProductOffers,
         ovhNotificationsSidebar,

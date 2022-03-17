@@ -19,29 +19,27 @@
     </oui-message>
 
     <p
-        data-ng-if="ctrl.server.engagement && !ctrl.resiliationCapability.message && !ctrl.terminationUnavailable"
+        data-ng-if="ctrl.server.engagement && !ctrl.terminationUnavailable"
         data-translate="common_resiliate_contact_support"
     ></p>
 
     <div
-        data-ng-if="!ctrl.cancelSubscriptionForm.isSubmiting && (!ctrl.server.engagement || ctrl.resiliationCapability.message) && !ctrl.terminationUnavailable"
+        data-ng-if="!ctrl.cancelSubscriptionForm.isSubmiting && !ctrl.server.engagement && !ctrl.terminationUnavailable"
     >
         <oui-message type="warning">
             <span
                 data-translate="server_close_service_warning_data_deletion"
             ></span>
-            <div data-ng-if="!ctrl.resiliationCapability.message">
-                <span
-                    data-ng-if="!ctrl.manualRefund"
-                    data-translate="server_close_service_warning_no_refund"
-                >
-                </span>
-                <span
-                    data-ng-if="ctrl.manualRefund"
-                    data-translate="server_close_service_warning_manual_refund"
-                >
-                </span>
-            </div>
+            <span
+                data-ng-if="!ctrl.manualRefund"
+                data-translate="server_close_service_warning_no_refund"
+            >
+            </span>
+            <span
+                data-ng-if="ctrl.manualRefund"
+                data-translate="server_close_service_warning_manual_refund"
+            >
+            </span>
         </oui-message>
         <form class="mt-4" name="cancelSubscriptionForm" novalidate>
             <label
@@ -65,7 +63,7 @@
                 <option
                     value="deleteAtExpiration"
                     data-translate="server_close_service_form_option_delete_at_expiration"
-                    data-ng-if="!ctrl.serviceInfos.renew.deleteAtExpiration && !ctrl.resiliationCapability.message"
+                    data-ng-if="!ctrl.serviceInfos.renew.deleteAtExpiration"
                 >
                 </option>
                 <option

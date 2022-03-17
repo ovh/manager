@@ -1,7 +1,6 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import ovhManagerAdvices from '@ovh-ux/manager-advices';
-import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
 import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
@@ -40,7 +39,6 @@ angular
   .module(moduleName, [
     ngOvhFeatureFlipping,
     ovhManagerAdvices,
-    ovhManagerIncidentBanner,
     ovhManagerBillingComponents,
     ovhManagerVpsDashboardCommitment,
     ovhManagerVpsDashboardCancelCommitment,

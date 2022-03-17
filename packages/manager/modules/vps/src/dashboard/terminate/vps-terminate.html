@@ -14,18 +14,16 @@
         <p class="mb-0">
             <span data-translate="vps_terminate_warning_data_deletion"></span>
         </p>
-        <p data-ng-if="!$ctrl.resiliationCapability.message">
-            <span
-                data-ng-if="!$ctrl.hasManualRefund"
-                data-translate="vps_terminate_warning_no_refund"
-            >
-            </span>
-            <span
-                data-ng-if="$ctrl.hasManualRefund"
-                data-translate="vps_terminate_warning_manual_refund"
-            >
-            </span>
-        </p>
+        <span
+            data-ng-if="!$ctrl.hasManualRefund"
+            data-translate="vps_terminate_warning_no_refund"
+        >
+        </span>
+        <span
+            data-ng-if="$ctrl.hasManualRefund"
+            data-translate="vps_terminate_warning_manual_refund"
+        >
+        </span>
         <form class="mt-4" name="$ctrl.terminateForm" novalidate>
             <oui-select
                 disabled="$ctrl.disabled"

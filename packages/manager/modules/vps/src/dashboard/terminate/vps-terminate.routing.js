@@ -21,32 +21,19 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate,
         displayErrorMessage,
         displaySuccessMessage,
-        resiliationCapability,
         serviceInfo,
         serviceName,
         vps,
         vpsTerminate,
       ) => () =>
-        (vps.engagement && !!resiliationCapability?.message
-          ? $http
-              .post(`/support/service/terminateSBG`, {
-                serviceId: serviceInfo.serviceId,
-              })
-              .then(() =>
-                displaySuccessMessage(
-                  $translate.instant('vps_terminate_success_engagement'),
-                ),
-              )
-          : vpsTerminate
-              .confirm(serviceName)
-              .then(() =>
-                displaySuccessMessage(
-                  $translate.instant('vps_terminate_success'),
-                ),
-              )
-        ).catch(() =>
-          displayErrorMessage($translate.instant('vps_terminate_error')),
-        ),
+        vpsTerminate
+          .confirm(serviceName)
+          .then(() =>
+            displaySuccessMessage($translate.instant('vps_terminate_success')),
+          )
+          .catch(() =>
+            displayErrorMessage($translate.instant('vps_terminate_error')),
+          ),
       degressivityInformation: /* @ngInject */ (
         serviceName,
         availableUpgrades,
@@ -62,12 +49,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('^').then(() => CucCloudMessage.error(errorMessage)),
       hasManualRefund: /* @ngInject */ (coreConfig) =>
         coreConfig.isRegion('US'),
-      isActionAvailable: /* @ngInject */ (
-        degressivityInformation,
-        resiliationCapability,
-      ) =>
-        degressivityInformation === undefined ||
-        !!resiliationCapability?.message,
+      isActionAvailable: /* @ngInject */ (degressivityInformation) =>
+        degressivityInformation === undefined,
       setExpirationDateTermination: (
         $translate,
         displayErrorMessage,
@@ -106,13 +89,9 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
       supportTicketLink: /* @ngInject */ (coreURLBuilder) =>
         coreURLBuilder.buildURL('dedicated', '#ticket'),
-      terminateOptions: ($translate, resiliationCapability, serviceInfo, vps) =>
+      terminateOptions: ($translate, serviceInfo) =>
         Object.values(TERMINATE_OPTIONS)
           .filter((option) => {
-            if (vps.engagement && !!resiliationCapability?.message) {
-              return option === TERMINATE_OPTIONS.TERMINATE_NOW;
-            }
-
             if (serviceInfo.renew.deleteAtExpiration) {
               return option !== TERMINATE_OPTIONS.TERMINATE_AT_EXPIRATION;
             }
