@@ -67,7 +67,7 @@ export default class HostingGeneralInformationsCtrl {
     this.isCdnInDeleteAtExpiration =
       this.$scope.cdnServiceInfo?.renew.mode === 'deleteAtExpiration';
     this.defaultRuntime = null;
-    this.availableOffers = [];
+    this.isAvailableOfferOrDetach = false;
     this.contactManagementLink = this.coreConfig.isRegion('EU')
       ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
           serviceName: this.serviceName,
@@ -118,7 +118,8 @@ export default class HostingGeneralInformationsCtrl {
       .all([
         this.getScreenshot(),
         this.retrievingSSLCertificate(),
-        this.retrievingAvailableOffers(this.serviceName),
+        this.isAvailableOffer(this.serviceName),
+        this.isAvailableDetach(this.serviceName),
       ])
       .then(() => this.HostingRuntimes.getDefault(this.serviceName))
       .then((runtime) => {
@@ -239,10 +240,22 @@ export default class HostingGeneralInformationsCtrl {
     );
   }
 
-  retrievingAvailableOffers(productId) {
+  isAvailableOffer(productId) {
     return this.Hosting.getAvailableOffer(productId).then((offers) => {
-      this.availableOffers = offers;
+      if (offers.length > 0) {
+        this.isAvailableOfferOrDetach = true;
+      }
     });
+  }
+
+  isAvailableDetach(serviceName) {
+    return this.Hosting.isServiceDetachable(serviceName).then(
+      (isDetachable) => {
+        if (isDetachable) {
+          this.isAvailableOfferOrDetach = true;
+        }
+      },
+    );
   }
 
   changeOffer() {
