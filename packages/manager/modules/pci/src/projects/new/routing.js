@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import has from 'lodash/has';
 import find from 'lodash/find';
 import set from 'lodash/set';
 
@@ -74,6 +75,7 @@ export default /* @ngInject */ ($stateProvider) => {
           $window.location.replace(
             transition.router.stateService.href('pci.projects.new', {
               cartId: cart.cartId,
+              voucher: redirectParams.voucher,
             }),
           );
           return null;
@@ -97,14 +99,20 @@ export default /* @ngInject */ ($stateProvider) => {
           ? coreURLBuilder.buildURL('dedicated', '#/support/tickets/new')
           : '',
 
-      cart: /* @ngInject */ ($transition$, me, pciProjectNew) =>
-        !get($transition$.params(), 'cartId')
-          ? // just create cart - location will be reloaded to fetch the whole cart
-            pciProjectNew.createOrderCart(me.ovhSubsidiary)
+      cart: /* @ngInject */ ($transition$, me, pciProjectNew) => {
+        const hasCartId = has($transition$.params(), 'cartId');
+
+        return !hasCartId // just create cart - location will be reloaded to fetch the whole cart
+          ? pciProjectNew.createOrderCart(me.ovhSubsidiary)
           : pciProjectNew.getOrderCart(
               me.ovhSubsidiary,
               get($transition$.params(), 'cartId'),
-            ),
+            );
+      },
+
+      voucher: /* @ngInject */ ($transition$) => {
+        return $transition$.params().voucher;
+      },
 
       eligibility: /* @ngInject */ ($transition$, pciProjectNew) =>
         pciProjectNew
@@ -123,7 +131,9 @@ export default /* @ngInject */ ($stateProvider) => {
       model: /* @ngInject */ (
         cart,
         checkVoucherValidity,
+        voucher,
         eligibility,
+        pciProjectNew,
         ovhPaymentMethodHelper,
       ) => {
         const modelDef = {
@@ -142,21 +152,36 @@ export default /* @ngInject */ ($stateProvider) => {
           hds: cart.hdsItem !== undefined,
           paymentMethod: null,
           voucher: new PciVoucher({
-            value: get(cart, 'projectItem.voucherConfiguration.value'),
+            value:
+              voucher || get(cart, 'projectItem.voucherConfiguration.value'),
           }),
         };
 
         if (modelDef.voucher.value) {
-          return checkVoucherValidity(modelDef.voucher.value).then(
-            (eligibilityOpts) => {
+          return checkVoucherValidity(modelDef.voucher.value)
+            .then((eligibilityOpts) => {
               // update eligibility instance
               eligibility.setOptions(eligibilityOpts);
               // set some information to voucher model
               modelDef.voucher.setInfos(eligibilityOpts.voucher);
               // return the model
               return modelDef;
-            },
-          );
+            })
+            .then(() => {
+              const voucherCartPath = 'projectItem.voucherConfiguration.value';
+              const isVoucherInCart = !!get(cart, voucherCartPath);
+
+              return isVoucherInCart
+                ? pciProjectNew.removeCartProjectItemVoucher(cart)
+                : null;
+            })
+            .then(() => {
+              return pciProjectNew.setCartProjectItemVoucher(
+                cart,
+                modelDef.voucher.value,
+              );
+            })
+            .then(() => modelDef);
         }
 
         return modelDef;
