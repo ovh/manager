@@ -1,4 +1,4 @@
-import { useReket, ssoAuthHookFn } from '@ovh-ux/ovh-reket';
+import { ssoAuthHookFn, useReket } from '@ovh-ux/ovh-reket';
 import { useOvhPaymentMethod } from '@ovh-ux/ovh-payment-method';
 
 export default class OvhPaymentMethodService {
