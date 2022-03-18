@@ -254,33 +254,32 @@
                 >
                     <oui-tile-description>
                         <!-- GPU-->
-                        <p
-                            class="mb-1 font-weight-bold"
-                            data-ng-if="$ctrl.flavor.gpuInformation"
-                            data-ng-bind=":: $ctrl.notebook.gpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.notebook.flavor | uppercase)"
-                        ></p>
-                        <p
-                            class="mb-1"
-                            data-ng-if="$ctrl.flavor.gpuInformation"
-                            data-ng-bind=":: $ctrl.notebook.gpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.flavor.description | uppercase)"
-                        ></p>
-                        <p
-                            class="mb-1"
-                            data-ng-if="$ctrl.flavor.gpuInformation"
-                            data-translate="pci_notebooks_general_information_resources_RAM_per_GPU"
-                            data-translate-values="{ ressources: $ctrl.notebook.gpu, ram: ($ctrl.flavor.gpuInformation.gpuMemory | bytes:0:true:'B') }"
-                        ></p>
+                        <span data-ng-if="$ctrl.flavor.gpuInformation">
+                            <p
+                                class="mb-1 font-weight-bold"
+                                data-ng-bind=":: $ctrl.notebook.gpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.notebook.flavor | uppercase)"
+                            ></p>
+                            <p
+                                class="mb-1"
+                                data-ng-bind=":: $ctrl.notebook.gpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.flavor.description | uppercase)"
+                            ></p>
+                            <p
+                                class="mb-1"
+                                data-translate="pci_notebooks_general_information_resources_RAM_per_GPU"
+                                data-translate-values="{ ressources: $ctrl.notebook.gpu, ram: ($ctrl.flavor.gpuInformation.gpuMemory | bytes:0:true:'B') }"
+                            ></p>
+                        </span>
                         <!-- CPU-->
-                        <p
-                            class="mb-1 font-weight-bold"
-                            data-ng-if="!$ctrl.flavor.gpuInformation"
-                            data-ng-bind=":: $ctrl.notebook.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.notebook.flavor | uppercase)"
-                        ></p>
-                        <p
-                            class="mb-1"
-                            data-ng-if="!$ctrl.flavor.gpuInformation"
-                            data-ng-bind=":: $ctrl.notebook.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.flavor.description | uppercase)"
-                        ></p>
+                        <span data-ng-if="!$ctrl.flavor.gpuInformation">
+                            <p
+                                class="mb-1 font-weight-bold"
+                                data-ng-bind=":: $ctrl.notebook.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.notebook.flavor | uppercase)"
+                            ></p>
+                            <p
+                                class="mb-1"
+                                data-ng-bind=":: $ctrl.notebook.cpu + $ctrl.NOTEBOOK_MULTIPLY_SIGN +  ($ctrl.flavor.description | uppercase)"
+                            ></p>
+                        </span>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <!-- Other resources -->
