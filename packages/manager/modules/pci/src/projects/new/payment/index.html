@@ -176,6 +176,7 @@
 
         <ovh-payment-method-integration
             data-ng-if="($ctrl.model.paymentMethod.isHandleByComponent() && $ctrl.componentInitialParams) || $ctrl.hasComponentRedirectCallback"
+            data-payment-method-type="$ctrl.model.paymentMethod"
             data-callback-status-param-url-name="paymentStatus"
             data-callback="$ctrl.callback"
             data-cancel-href="{{ $ctrl.getCancelHref() }}"
@@ -183,7 +184,6 @@
             data-on-submit="$ctrl.onIntegrationSubmit.bind($ctrl)"
             data-on-submit-error="$ctrl.onIntegrationSubmitError.bind($ctrl)"
             data-on-submit-success="$ctrl.onIntegrationSubmitSuccess.bind($ctrl)"
-            data-payment-method-type="$ctrl.model.paymentMethod"
         >
         </ovh-payment-method-integration>
     </div>

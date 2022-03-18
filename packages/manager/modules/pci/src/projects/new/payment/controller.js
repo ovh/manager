@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import {
+  ORDER_CHECK_PAYMENT_TIMEOUT_OVER,
   ORDER_FOLLOW_UP_HISTORY_STATUS_ENUM,
   ORDER_FOLLOW_UP_STATUS_ENUM,
   ORDER_FOLLOW_UP_STEP_ENUM,
@@ -72,7 +73,7 @@ export default class PciProjectNewPaymentCtrl {
         }
 
         return currentTime >= getPaymentMethodTimeoutLimit
-          ? this.$q.reject()
+          ? this.$q.reject({ status: ORDER_CHECK_PAYMENT_TIMEOUT_OVER })
           : this.pollCheckDefaultPaymentMethod(
               paymentMethodId,
               currentTime + 1000,
@@ -87,15 +88,14 @@ export default class PciProjectNewPaymentCtrl {
     }
 
     this.isCheckingPaymentMethod = true;
-    return (this.defaultPaymentMethod?.isLegacy()
-      ? this.$q.when()
-      : this.pollCheckDefaultPaymentMethod(paymentMethodId)
-    )
+    return this.pollCheckDefaultPaymentMethod(paymentMethodId)
       .then(() => {
         this.manageProjectCreation();
       })
-      .catch(() => {
-        this.hasCheckingError = true;
+      .catch((error) => {
+        if (error?.status === ORDER_CHECK_PAYMENT_TIMEOUT_OVER) {
+          this.hasCheckingError = true;
+        }
       })
       .finally(() => {
         this.isCheckingPaymentMethod = false;
@@ -396,10 +396,28 @@ export default class PciProjectNewPaymentCtrl {
     };
   }
 
+  getInprogressValidationPaymentMethod() {
+    return this.ovhPaymentMethod
+      .getAllPaymentMethods()
+      .then((paymentMethods) => {
+        return paymentMethods
+          .reverse()
+          .find(
+            ({ integration, paymentType, status }) =>
+              integration === 'REDIRECT' &&
+              paymentType === 'CREDIT_CARD' &&
+              status === 'CREATED',
+          );
+      });
+  }
+
   onIntegrationSubmitSuccess(paymentMethodIdParam) {
     const paymentMethodId =
-      paymentMethodIdParam || this.defaultPaymentMethod?.paymentMethodId;
-    return this.checkPaymentMethodAndCreateProject(paymentMethodId);
+      this.callback?.paymentMethodId ||
+      this.defaultPaymentMethod?.paymentMethodId;
+    return paymentMethodIdParam === 'success' && paymentMethodId
+      ? this.checkPaymentMethodAndCreateProject(paymentMethodId)
+      : null;
   }
 
   onIntegrationSubmitError() {
@@ -441,6 +459,16 @@ export default class PciProjectNewPaymentCtrl {
     ) {
       return this.checkPaymentMethodAndCreateProject(
         this.defaultPaymentMethod.paymentMethodId,
+      );
+    }
+
+    if (
+      this.eligibility.isAddPaymentMethodRequired() &&
+      this.paymentStatus === 'success' &&
+      !this.callback?.paymentMethodId
+    ) {
+      return this.getInprogressValidationPaymentMethod().then((paymentMethod) =>
+        this.checkPaymentMethodAndCreateProject(paymentMethod.paymentMethodId),
       );
     }
 
