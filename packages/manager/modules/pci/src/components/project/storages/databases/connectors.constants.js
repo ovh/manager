@@ -39,7 +39,7 @@ export const EXTRA_CONFIG_PROPERTY = '*';
 export const GROUP_NAMES_WITH_MESSAGES = {
   TRANSFORMS: 'Transforms',
   EXTRA: 'Extra',
-}
+};
 
 export default {
   CONNECTOR_STATUS,
