@@ -1,0 +1,39 @@
+name: Feature request
+description: Suggest an idea for the OVHcloud Control Panel application
+title: '<title>'
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to file a feature request! Please fill out this form as completely as possible.
+  - type: checkboxes
+    attributes:
+      label: Have you already contact our help centre?
+      description: Before to open an issue on our GitHub repository, did you already contacted our help centre? (See https://help.ovhcloud.com)
+      options:
+        - label: Yes, I have contact the help centre.
+          required: false
+  - type: textarea
+    attributes:
+      label: Describe the problem
+      description: A clear and concise description of what the problem is.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Describe the solution
+      description: A clear and concise description of what you want to happen.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Describe alternatives you've considered
+      description: A clear and concise description of any alternative solutions or features you've considered.
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Add any other context or screenshots about the feature request here.
+    validations:
+      required: false
