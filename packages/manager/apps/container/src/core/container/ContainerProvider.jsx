@@ -20,7 +20,7 @@ export const ContainerProvider = ({ children }) => {
         value: accept ? 'true' : 'false',
       })
       .then((result) => {
-        if (accept === false) {
+        if (!accept) {
           // @TODO open new tab for survey
         }
         window.location.reload(false);

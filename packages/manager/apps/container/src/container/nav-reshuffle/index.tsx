@@ -22,7 +22,6 @@ function NavReshuffleContainer(): JSX.Element {
   const iframeRef = useRef(null);
   const [iframe, setIframe] = useState(null);
   const [router, setRouter] = useState(null);
-  // const [isSidebarExpanded, setSidebarExpanded] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const { shell } = useContext(ApplicationContext);
 
