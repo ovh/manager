@@ -20,6 +20,17 @@ export const ProductNavReshuffleProvider = ({
 
   const [isLoading, setIsLoading] = useState(true);
 
+  // feedback widget
+  const [feedbackWidgetOpened, setFeedbackWidgetOpened] = useState(false);
+
+  const openFeedbackWidget = () => {
+    setFeedbackWidgetOpened(true);
+  };
+
+  const closeFeebackWidget = () => {
+    setFeedbackWidgetOpened(false);
+  };
+
   // onboarding
   const [onboardingOpenedState, setOnboardingOpenedState] = useState(
     ONBOARDING_OPENED_STATE_ENUM.CLOSED,
@@ -29,6 +40,7 @@ export const ProductNavReshuffleProvider = ({
     setOnboardingOpenedState(
       onboardingHelper.getNextOpenedState(onboardingOpenedState),
     );
+    closeFeebackWidget();
   };
 
   const startOnboarding = () => {
@@ -82,6 +94,10 @@ export const ProductNavReshuffleProvider = ({
 
   pnrContext = {
     isLoading,
+    // feedback widget
+    feedbackWidgetOpened,
+    openFeedbackWidget,
+    closeFeebackWidget,
     // onboarding
     onboardingOpenedState,
     openOnboarding,

@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import addDays from 'date-fns/addDays';
 import isAfter from 'date-fns/isAfter';
 import { useTranslation } from 'react-i18next';
+
+import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import { LOCAL_STORAGE_ITEM, REDISPLAY_DAYS_INTERVAL } from './constants';
 import style from './style.module.scss';
@@ -10,6 +12,11 @@ import popoverStyle from '../../common/popover.module.scss';
 
 export const NavReshuffleFeedbackWidget = (): JSX.Element => {
   const { t } = useTranslation('nav-reshuffle/feedback');
+  const {
+    feedbackWidgetOpened,
+    openFeedbackWidget,
+    closeFeebackWidget,
+  } = useProductNavReshuffle();
 
   // check for visibility
   const isBoxVisible = () => {
@@ -25,8 +32,6 @@ export const NavReshuffleFeedbackWidget = (): JSX.Element => {
     return isAfter(new Date(), redisplayDate);
   };
 
-  const [visible, setVisibility] = useState(false);
-
   const storeFeedbackStatus = () => {
     return localStorage.setItem(
       LOCAL_STORAGE_ITEM,
@@ -38,12 +43,12 @@ export const NavReshuffleFeedbackWidget = (): JSX.Element => {
 
   const onGiveFeedbackLinkClick = () => {
     storeFeedbackStatus();
-    setVisibility(false);
+    closeFeebackWidget();
   };
 
   const onHideBtnClick = () => {
     storeFeedbackStatus();
-    setVisibility(false);
+    closeFeebackWidget();
   };
 
   useEffect(() => {
@@ -54,12 +59,14 @@ export const NavReshuffleFeedbackWidget = (): JSX.Element => {
       storeFeedbackStatus();
     }
     // check if the last put in localStorage is older than 2 days
-    setVisibility(isBoxVisible());
+    if (isBoxVisible()) {
+      openFeedbackWidget();
+    }
   }, []);
 
   return (
     <>
-      {visible && (
+      {feedbackWidgetOpened && (
         <div
           className={`${style.feedbackWidget} ${popoverStyle.popover} oui-popover`}
         >
