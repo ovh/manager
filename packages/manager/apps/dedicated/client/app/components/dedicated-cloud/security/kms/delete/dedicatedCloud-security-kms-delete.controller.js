@@ -7,10 +7,10 @@ export default class {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
-    this.serviceName = this.productId;
   }
 
   $onInit() {
+    this.serviceName = this.productId;
     this.deletionTaskId = null;
     this.kmsDeletionTask = {
       name: null,
