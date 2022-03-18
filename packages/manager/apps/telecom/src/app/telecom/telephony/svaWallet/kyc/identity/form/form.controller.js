@@ -25,6 +25,8 @@ export default class KycIdentityFormController {
     );
     this.confirmationPattern = new RegExp(`^${this.confirmationCode}$`);
 
+    this.urlSiteWebPattern = /(?:^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$)|(?:^$)/;
+
     this.lemonWayLogo = lemonWayLogo;
 
     this.companyModel = this.svaWallet

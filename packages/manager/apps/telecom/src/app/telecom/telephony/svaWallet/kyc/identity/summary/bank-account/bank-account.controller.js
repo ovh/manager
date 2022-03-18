@@ -22,7 +22,7 @@ export default class KycIdentitySummaryBankAccountController {
     this.errorMessage = null;
 
     this.isLoading = true;
-    this.saveWalletIban(this.model)
+    return this.saveWalletIban(this.model)
       .then(() => {
         this.isOpenModal = false;
         this.bankAccount = this.model;
