@@ -4,7 +4,7 @@ import get from 'lodash/get';
 import slice from 'lodash/slice';
 import some from 'lodash/some';
 
-import { SupportLevel } from '@ovh-ux/manager-models';
+import { SupportLevel, PartnerLevel } from '@ovh-ux/manager-models';
 import { SUBSCRIPTION, URLS } from './support-level.constants';
 
 export default class UserAccountSupportLevelCtrl {
@@ -19,10 +19,13 @@ export default class UserAccountSupportLevelCtrl {
       `urls.${this.currentUser.ovhSubsidiary}.express_order`,
       this.constants.urls.FR.express_order,
     );
-    this.supportLevelsEnum = get(
-      this.schema.models,
-      'me.SupportLevel.LevelTypeEnum',
-    ).enum;
+    this.supportLevelsEnum = [
+      'standard',
+      'premium',
+      'premium-accredited',
+      'business',
+      'enterprise',
+    ];
     this.supportLevels = this.supportLevelsEnum
       .map(
         (level) =>
@@ -83,5 +86,16 @@ export default class UserAccountSupportLevelCtrl {
 
   shouldSubscribe(supportLevel) {
     return supportLevel.name === this.partnerLevel.requiredSupportLevel;
+  }
+
+  change(prop, key, value) {
+    this[prop][key] = value;
+    this.supportLevel = new SupportLevel({ level: this.supportLevel.level });
+    this.partnerLevel = new PartnerLevel({
+      level: this.partnerLevel.level,
+      requirement: this.partnerLevel.requiredSupportLevel,
+    });
+    this.$onInit();
+    return true;
   }
 }
