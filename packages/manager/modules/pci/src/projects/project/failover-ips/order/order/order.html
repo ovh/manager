@@ -14,9 +14,8 @@
         <oui-select
             name="product"
             data-model="$ctrl.ip.product"
-            data-items="$ctrl.products"
+            data-items="$ctrl.productsList"
             data-match="details.product.description"
-            data-on-change="$ctrl.onProductChange(modelValue)"
             required
         >
             <span data-ng-bind="$item.details.product.description"></span>
@@ -32,6 +31,7 @@
             data-items="$ctrl.instances"
             data-disable-items="!$item.canAttachIPFO()"
             data-match="name"
+            data-on-change="$ctrl.onInstanceSelect(modelValue)"
             required
         >
         </oui-select>
@@ -45,6 +45,7 @@
             data-model="$ctrl.ip.region"
             data-items="$ctrl.REGIONS"
             required
+            data-disabled="!$ctrl.ip.instance"
         >
             <span
                 data-translate="{{ :: 'pci_projects_project_failoverip_order_country_' + $item }}"
