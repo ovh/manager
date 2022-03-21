@@ -3,8 +3,8 @@ import useClickAway from 'react-use/lib/useClickAway';
 
 import { useShell } from '../context';
 
-import LanguageButton from './language/button.jsx';
-import LanguageList from './language/list.jsx';
+import LanguageButton from './language/Button';
+import LanguageList from './language/List';
 
 function LanguageMenu({ userLocale, setUserLocale }) {
   const ref = useRef();

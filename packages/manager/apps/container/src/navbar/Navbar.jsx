@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { listen } from '@ovh-ux/ufrontend';
 
-import Brand from './brand.jsx';
-import Universes from './universes.jsx';
-import Notifications from './notifications.jsx';
-import Account from './account.jsx';
-import Search from './search.jsx';
-import Hamburger from './hamburger-menu.jsx';
-import LanguageMenu from './language.jsx';
+import Brand from './Brand';
+import Universes from './Universes';
+import Notifications from './Notifications';
+import Account from './Account';
+import Search from './Search';
+import Hamburger from './HamburgerMenu';
+import LanguageMenu from './Language';
 import { fetchUniverses, getBrandURL } from './service';
 import style from './navbar.module.scss';
 import { MESSAGES } from './constants';
@@ -68,7 +68,7 @@ function Navbar({ environment }) {
           <LanguageMenu
             setUserLocale={setUserLocale}
             userLocale={userLocale}
-          ></LanguageMenu>
+          />
         </div>
         <div className="oui-navbar-list__item">
           <Notifications />

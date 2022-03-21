@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next';
 
-import useUserInfos from './useUserInfos';
+import { getUserRole } from './utils';
 import { TRANSLATE_NAMESPACE } from '../constants';
 
+/**
+ * Displays user's role.
+ * @component
+ */
 const UserRole = ({ user, cssBaseClassName, translationBase }) => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
-  const role = useUserInfos(user).getUserRole();
+  const [ role, setRole ] = useState('');
+
+  useEffect(() => {
+    setRole(getUserRole(user));
+  }, [ user ])
 
   return (
     <div
       className={`${cssBaseClassName}_user-name mb-2`}
       data-navi-id="account-sidebar-block"
     >
-     {role && (
+     { role && (
         <div>
           <span
               className={`${cssBaseClassName}_role oui-badge oui-badge_warning`}
@@ -24,6 +33,17 @@ const UserRole = ({ user, cssBaseClassName, translationBase }) => {
       )}
     </div>
   );
+};
+
+UserRole.propTypes = {
+  user: PropTypes.shape({
+  }).isRequired,
+  cssBaseClassName: PropTypes.string,
+  translationBase: PropTypes.string,
+};
+
+UserRole.defaultProps = {
+  user: {},
 };
 
 export default UserRole;

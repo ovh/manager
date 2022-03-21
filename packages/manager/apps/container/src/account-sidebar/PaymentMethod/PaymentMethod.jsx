@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useShell } from '@/context';
+import { useEnvironment, useShell } from '@/context';
 import usePaymentMethod from './usePaymentMethod';
 import Icon from './Icon.jsx';
 import Details from './Details.jsx';
@@ -11,11 +11,13 @@ const PaymentMethod = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [defaultPaymentMethod, setDefaultPaymentMethod] = useState();
   const shell = useShell();
-  const environment = shell.getPlugin('environment').getEnvironment();
+  const environment = useEnvironment();
 
-  const { getDefaultPaymentMethod, isEnterpriseAccount } = usePaymentMethod(
-    environment,
-  );
+  const {
+    getDefaultPaymentMethod,
+    isEnterpriseAccount,
+  } = usePaymentMethod(environment);
+
   const cssBaseClassName = 'manager-account-sidebar-payment-method';
   const translationBase = 'payment_method';
 
@@ -43,8 +45,9 @@ const PaymentMethod = () => {
       type: 'action',
     });
 
-  return (
-    !isEnterpriseAccount() && (
+  return isEnterpriseAccount() ? (
+      null
+    ) : (
       <div className={`${cssBaseClassName} mb-4`}>
         <a
           className="d-flex flex-row align-items-center p-2"
@@ -70,8 +73,7 @@ const PaymentMethod = () => {
           ></span>
         </a>
       </div>
-    )
-  );
+    );
 };
 
 export default PaymentMethod;

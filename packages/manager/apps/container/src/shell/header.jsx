@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import Navbar from '@/navbar/navbar.jsx';
+import Navbar from '@/navbar/Navbar';
 import AccountSidebar from '@/account-sidebar';
 import NotificationsSidebar from '@/notifications-sidebar';
 import { NotificationsProvider } from '@/core/notifications';

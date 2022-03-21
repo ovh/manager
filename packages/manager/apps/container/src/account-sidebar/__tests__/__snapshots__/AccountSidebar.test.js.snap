@@ -1,0 +1,302 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UI testing of AccountSidebar renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    aria-expanded="false"
+    class="manager-account-sidebar-wrapper"
+  >
+    <div
+      class="manager-account-sidebar"
+    >
+      <div
+        class="manager-account-sidebar-user-infos mb-3"
+      >
+        <a
+          aria-label="user_infos_manage_my_account"
+          class="manager-account-sidebar-user-infos_profile"
+          href="http://localhost/#/useraccount/dashboard"
+          target="_top"
+        >
+          <span
+            class="manager-account-sidebar-user-infos_initials manager-account-sidebar-user-infos_initials-centered"
+          >
+            TT
+          </span>
+          <p
+            class="oui-chip mb-1"
+          >
+            <span
+              class="manager-account-sidebar-user-infos_text-small"
+            >
+              user_infos_support_level_standard
+            </span>
+          </p>
+          <p
+            class="manager-account-sidebar-user-infos_profile_link mb-1"
+          >
+            Tester testee
+          </p>
+        </a>
+        <div
+          class="manager-account-sidebar-user-infos_user-name mb-2"
+          data-navi-id="account-sidebar-block"
+        />
+        <p>
+          <span
+            class="d-block manager-account-sidebar-user-infos_text-small text-break"
+          />
+        </p>
+        <div
+          class="text-left manager-account-sidebar-user-infos_links"
+        >
+          <hr
+            class="my-1"
+          />
+          <button
+            aria-label="user_infos_footer_logout"
+            class="btn btn-link"
+            data-navi-id="logout"
+            role="button"
+            type="button"
+          >
+            user_infos_footer_logout
+          </button>
+        </div>
+      </div>
+      <div
+        class="mb-4"
+        data-navi-id="account-sidebar-shortcuts-block"
+      >
+        <h3>
+          shortcuts_title
+        </h3>
+        <div
+          class="d-flex flex-wrap justify-content-around"
+        >
+          <div
+            class="manager-account-sidebar-shortcuts_links"
+          >
+            <div
+              class="manager-account-sidebar-shortcuts-tile"
+            >
+              <a
+                href="http://localhost/#/billing/autoRenew"
+                target="_top"
+              >
+                <span
+                  aria-hidden="true"
+                  class="manager-account-sidebar-shortcuts-tile__icon oui-icon oui-icon-multi-device_concept"
+                />
+                <span
+                  class="manager-account-sidebar-shortcuts-tile__description"
+                >
+                  shortcuts_tile_services
+                </span>
+              </a>
+            </div>
+          </div>
+          <div
+            class="manager-account-sidebar-shortcuts_links"
+          >
+            <div
+              class="manager-account-sidebar-shortcuts-tile"
+            >
+              <a
+                href="http://localhost/#/billing/history"
+                target="_top"
+              >
+                <span
+                  aria-hidden="true"
+                  class="manager-account-sidebar-shortcuts-tile__icon oui-icon oui-icon-receipt_concept"
+                />
+                <span
+                  class="manager-account-sidebar-shortcuts-tile__description"
+                >
+                  shortcuts_tile_bills
+                </span>
+              </a>
+            </div>
+          </div>
+          <div
+            class="manager-account-sidebar-shortcuts_links"
+          >
+            <div
+              class="manager-account-sidebar-shortcuts-tile"
+            >
+              <a
+                href="http://localhost/#/useraccount/support/level"
+                target="_top"
+              >
+                <span
+                  aria-hidden="true"
+                  class="manager-account-sidebar-shortcuts-tile__icon oui-icon oui-icon-lifebuoy_concept"
+                />
+                <span
+                  class="manager-account-sidebar-shortcuts-tile__description"
+                >
+                  shortcuts_tile_supportLevel
+                </span>
+              </a>
+            </div>
+          </div>
+          <div
+            class="manager-account-sidebar-shortcuts_links"
+          >
+            <div
+              class="manager-account-sidebar-shortcuts-tile"
+            >
+              <a
+                href="http://localhost/#/catalog"
+                target="_top"
+              >
+                <span
+                  aria-hidden="true"
+                  class="manager-account-sidebar-shortcuts-tile__icon oui-icon oui-icon-book-open_concept"
+                />
+                <span
+                  class="manager-account-sidebar-shortcuts-tile__description"
+                >
+                  shortcuts_tile_products
+                </span>
+              </a>
+            </div>
+          </div>
+          <div
+            class="manager-account-sidebar-shortcuts_links"
+          >
+            <div
+              class="manager-account-sidebar-shortcuts-tile"
+            >
+              <a
+                href="http://localhost/#/useraccount/emails"
+                target="_top"
+              >
+                <span
+                  aria-hidden="true"
+                  class="manager-account-sidebar-shortcuts-tile__icon oui-icon oui-icon-envelop-letter_concept"
+                />
+                <span
+                  class="manager-account-sidebar-shortcuts-tile__description"
+                >
+                  shortcuts_tile_emails
+                </span>
+              </a>
+            </div>
+          </div>
+          <div
+            class="manager-account-sidebar-shortcuts_links"
+          >
+            <div
+              class="manager-account-sidebar-shortcuts-tile"
+            >
+              <a
+                href="http://localhost/#/contacts/services"
+                target="_top"
+              >
+                <span
+                  aria-hidden="true"
+                  class="manager-account-sidebar-shortcuts-tile__icon oui-icon oui-icon-book-contact_concept"
+                />
+                <span
+                  class="manager-account-sidebar-shortcuts-tile__description"
+                >
+                  shortcuts_tile_contacts
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="manager-account-sidebar-links mb-5"
+        data-navi-id="account-sidebar-usefulLinks-block"
+      >
+        <h3>
+          useful_links_title
+        </h3>
+        <div />
+        <div>
+          <span
+            aria-hidden="true"
+            class="manager-account-sidebar-links_divider"
+          />
+          <button
+            class="btn btn-link d-flex"
+            role="button"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="oui-icon oui-icon-speech-bubble_concept"
+            />
+            <span>
+              useful_links_chatbot
+            </span>
+          </button>
+        </div>
+        <div>
+          <span
+            aria-hidden="true"
+            class="manager-account-sidebar-links_divider"
+          />
+          <a
+            class="d-flex"
+            href="https://www.status-ovhcloud.com/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <span
+              aria-hidden="true"
+              class="oui-icon oui-icon-traffic-cone_concept"
+            />
+            <span>
+              useful_links_tasks
+            </span>
+          </a>
+        </div>
+        <div>
+          <span
+            aria-hidden="true"
+            class="manager-account-sidebar-links_divider"
+          />
+          <a
+            class="d-flex"
+            href="http://localhost/#/ticket"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <span
+              aria-hidden="true"
+              class="oui-icon oui-icon-envelop_concept"
+            />
+            <span>
+              useful_links_tickets
+            </span>
+          </a>
+        </div>
+        <div>
+          <span
+            aria-hidden="true"
+            class="manager-account-sidebar-links_divider"
+          />
+          <a
+            class="d-flex"
+            href="http://localhost/#/support/tickets/new"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <span
+              aria-hidden="true"
+              class="oui-icon oui-icon-user-support_concept"
+            />
+            <span>
+              useful_links_createTicket
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

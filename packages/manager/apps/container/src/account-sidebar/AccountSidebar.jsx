@@ -1,7 +1,7 @@
 import React from 'react';
 
 import UserInfos from './UserInfos';
-import PaymentMethod from './PaymentMethod/PaymentMethod.jsx';
+import PaymentMethod from './PaymentMethod';
 import Shortcuts from './Shortcuts';
 import UsefulLinks from './UsefulLinks';
 import { useHeader } from '@/context/header';

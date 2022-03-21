@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UI testing of UserInfos renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="manager-account-sidebar-user-infos mb-3"
+  >
+    <a
+      aria-label="user_infos_manage_my_account"
+      class="manager-account-sidebar-user-infos_profile"
+      href="http://localhost/#/useraccount/dashboard"
+      target="_top"
+    >
+      <span
+        class="manager-account-sidebar-user-infos_initials manager-account-sidebar-user-infos_initials-centered"
+      >
+        TT
+      </span>
+      <p
+        class="oui-chip mb-1"
+      >
+        <span
+          class="manager-account-sidebar-user-infos_text-small"
+        >
+          user_infos_support_level_1
+        </span>
+      </p>
+      <p
+        class="manager-account-sidebar-user-infos_profile_link mb-1"
+      >
+        Tester testee
+      </p>
+    </a>
+    <div
+      class="manager-account-sidebar-user-infos_user-name mb-2"
+      data-navi-id="account-sidebar-block"
+    />
+    <p>
+      <span
+        class="d-block manager-account-sidebar-user-infos_text-small text-break"
+      />
+    </p>
+    <div
+      class="text-left manager-account-sidebar-user-infos_links"
+    >
+      <hr
+        class="my-1"
+      />
+      <button
+        aria-label="user_infos_footer_logout"
+        class="btn btn-link"
+        data-navi-id="logout"
+        role="button"
+        type="button"
+      >
+        user_infos_footer_logout
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

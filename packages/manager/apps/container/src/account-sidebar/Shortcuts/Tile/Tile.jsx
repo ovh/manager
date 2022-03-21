@@ -4,6 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import { TRANSLATE_NAMESPACE } from '../../constants';
 
+/**
+ * Tile displays an icon with a text that triggers a rediction on click
+ */
 const Tile = ({ shortcut }) => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const shell = useShell();
