@@ -10,6 +10,7 @@ import {
   MAX_NAME_LENGTH,
   MIN_NAME_LENGTH,
 } from './add.constants';
+import { ENGINES_STATUS } from '../../../../../components/project/storages/databases/engines.constants';
 
 export default class {
   /* @ngInject */
@@ -194,14 +195,23 @@ export default class {
       'action',
       false,
     );
-    return this.DatabaseService.activateLab(this.projectId, this.lab)
-      .then(() =>
-        this.DatabaseService.createDatabase(
-          this.projectId,
-          this.model.engine.name,
-          this.orderData,
-        ),
-      )
+    // We only need to check the lab for BETA status
+    const createDatabasePromise =
+      this.model.engine.selectedVersion.status === ENGINES_STATUS.BETA
+        ? this.DatabaseService.activateLab(this.projectId, this.lab).then(() =>
+            this.DatabaseService.createDatabase(
+              this.projectId,
+              this.model.engine.name,
+              this.orderData,
+            ),
+          )
+        : this.DatabaseService.createDatabase(
+            this.projectId,
+            this.model.engine.name,
+            this.orderData,
+          );
+
+    return createDatabasePromise
       .then((databaseInfo) => {
         this.trackDatabases(
           `config_create_database_validated::${this.model.engine.name}`,
