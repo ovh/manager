@@ -19,7 +19,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ () => null,
       /* @ngInject */
-      products: (OvhApiOrderCatalogFormatted) =>
+      products: /* @ngInject */ (OvhApiOrderCatalogFormatted) =>
         OvhApiOrderCatalogFormatted.v6()
           .get({
             catalogName: 'ip',
