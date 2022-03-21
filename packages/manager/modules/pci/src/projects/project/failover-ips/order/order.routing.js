@@ -1,12 +1,3 @@
-import filter from 'lodash/filter';
-import get from 'lodash/get';
-
-const REGIONS = {
-  EU: 'EUROPE',
-  CA: 'CANADA',
-  US: 'USA',
-};
-
 export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
   $stateProvider.state('pci.projects.project.failover-ips.order', {
     url: '/order',
@@ -19,19 +10,21 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ () => null,
       /* @ngInject */
-      products: /* @ngInject */ (OvhApiOrderCatalogFormatted) =>
+      products: /* @ngInject */ (
+        availableRegionsForOrder,
+        OvhApiOrderCatalogFormatted,
+      ) =>
         OvhApiOrderCatalogFormatted.v6()
           .get({
             catalogName: 'ip',
             ovhSubsidiary: coreConfigProvider.getUser().ovhSubsidiary,
           })
           .$promise.then(({ plans }) =>
-            filter(
-              plans,
+            plans.filter(
               (offer) =>
                 /failover/.test(offer.planCode) &&
-                offer.invoiceName.includes(
-                  get(REGIONS, coreConfigProvider.getRegion()),
+                availableRegionsForOrder.some((region) =>
+                  offer.invoiceName.includes(region),
                 ),
             ),
           ),
