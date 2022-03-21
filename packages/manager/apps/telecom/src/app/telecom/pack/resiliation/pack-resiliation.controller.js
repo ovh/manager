@@ -433,9 +433,10 @@ export default class PackResiliationCtrl {
   }
 
   checkNeedSubsidiaryQuestion() {
-    this.isSubsidiaryQuestion =
-      ['technicalProblems', 'eligibilityFtth', 'changeOperator'].indexOf(
-        this.model.reason.value,
-      ) > -1;
+    this.isSubsidiaryQuestion = [
+      'technicalProblems',
+      'eligibilityFtth',
+      'changeOperator',
+    ].includes(this.model.reason.value);
   }
 }
