@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import Flavor from '../../../../../../../components/project/storages/databases/flavor.class';
 
 export default class {
   /* @ngInject */
@@ -9,6 +10,8 @@ export default class {
 
   $onInit() {
     this.selectedPlan = null;
+    this.selectedFlavor = { name: this.database.flavor };
+    this.showFlavors = false;
     this.upgradingPlan = false;
     this.trackDatabases('config_upgrade_plan', 'page');
   }
@@ -20,6 +23,28 @@ export default class {
       'action',
       false,
     );
+    // Check if flavor matches. If not, we show possible flavors
+    const possibleFlavors = selectedPlan.availability
+      .filter(
+        (availability) =>
+          availability.region === this.database.region &&
+          availability.network === this.database.networkType,
+      )
+      .map(
+        (planAvailibility) =>
+          new Flavor(planAvailibility.flavor, [planAvailibility]),
+      )
+      .sort((a, b) => b.compare(a));
+    if (
+      !possibleFlavors.find((flavor) => flavor.name === this.database.flavor)
+    ) {
+      this.showFlavors = true;
+      [this.selectedFlavor] = possibleFlavors;
+      this.possibleFlavors = possibleFlavors;
+    } else {
+      this.showFlavors = false;
+      this.selectedFlavor = { name: this.database.flavor };
+    }
   }
 
   upgradePlan() {
@@ -37,7 +62,7 @@ export default class {
       this.database.description,
       this.selectedPlan.name,
       this.database.version,
-      this.database.flavor.name,
+      this.selectedFlavor.name,
     )
       .then((databaseInfo) => {
         this.database.updateData(databaseInfo);

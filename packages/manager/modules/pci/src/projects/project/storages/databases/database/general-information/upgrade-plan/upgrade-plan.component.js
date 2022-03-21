@@ -11,6 +11,7 @@ const component = {
     projectId: '<',
     trackDatabases: '<',
     user: '<',
+    engine: '<',
   },
   template,
   controller,
