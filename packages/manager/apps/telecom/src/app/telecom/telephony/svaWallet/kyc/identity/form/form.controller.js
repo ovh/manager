@@ -25,7 +25,7 @@ export default class KycIdentityFormController {
     );
     this.confirmationPattern = new RegExp(`^${this.confirmationCode}$`);
 
-    this.urlSiteWebPattern = /(?:^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$)|(?:^$)/;
+    this.urlSiteWebPattern = REGEX_VALIDATORS.URLWEBSITE;
 
     this.lemonWayLogo = lemonWayLogo;
 
