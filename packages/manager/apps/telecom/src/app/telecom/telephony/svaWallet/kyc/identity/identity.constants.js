@@ -1,8 +1,8 @@
 export const REGEX_VALIDATORS = {
   SIRET: /^\d{14}$/,
   APE: /^\d{4}[a-zA-Z]$/,
+  // URLWEBSITE limits the insertion of invalid URLs. While allowing not to put http or https, but if it is present it requires "://". Also allows to leave empty. Valid exemple: http://exemple.com | exemple.com . Invalid exemple: 1234 | https://exemple?com.
   URLWEBSITE: /(?:^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$)|(?:^$)/,
-  // URLWEBSITE limits the insertion of invalid URLs. While allowing not to put http or https, but if it is present it requires "://". Also allows to leave empty.
 };
 
 export const TYPES = {
