@@ -1134,7 +1134,7 @@ angular
                   'server_configuration_installation_ovh_step2_error_add',
                   {
                     t0: $scope.newPartition.mountPoint,
-                    t1: data.data.message,
+                    t1: data.message,
                   },
                 );
               },
@@ -1288,7 +1288,7 @@ angular
               'server_configuration_installation_ovh_step2_error_delete',
               {
                 t0: $scope.setPartition.delModel.mountPoint,
-                t1: data.data.message,
+                t1: data.message,
               },
             );
           },
@@ -2618,7 +2618,7 @@ angular
             $scope.saveRemainingSize($scope.installation.saveSize, true);
             $scope.errorInst.wsinstall = $translate.instant(
               'server_configuration_installation_error_save',
-              { t0: data.data.message },
+              { t0: data.message },
             );
           },
         );
