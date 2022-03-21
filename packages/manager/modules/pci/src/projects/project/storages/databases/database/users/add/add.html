@@ -30,7 +30,7 @@
                 data-label="{{:: 'pci_databases_users_add_username_max_rule' | translate: {max: $ctrl.inputRules.name.max} }}"
             ></pci-storage-database-input-rule>
             <pci-storage-database-input-rule
-                valid="$ctrl.checkPattern(addUserForm.username.$viewValue)"
+                valid="$ctrl.checkPattern(addUserForm.username.$viewValue, $ctrl.inputRules.name.pattern)"
                 data-label="{{:: 'pci_databases_users_add_username_pattern_rule' | translate }}"
             ></pci-storage-database-input-rule>
         </div>
@@ -50,6 +50,18 @@
             data-ng-pattern="$ctrl.inputRules.group.pattern"
             data-ng-maxlength="$ctrl.inputRules.group.max"
         />
+        <div class="oui-password__rules" id="username-rules">
+            <div class="oui-password__rules" id="username-rules">
+                <pci-storage-database-input-rule
+                    valid="addUserForm.group.$viewValue.length < $ctrl.inputRules.group.max"
+                    data-label="{{:: 'pci_databases_users_add_group_max_rule' | translate: {max: $ctrl.inputRules.group.max} }}"
+                ></pci-storage-database-input-rule>
+                <pci-storage-database-input-rule
+                    valid="$ctrl.checkPattern(addUserForm.group.$viewValue, $ctrl.inputRules.group.pattern)"
+                    data-label="{{:: 'pci_databases_users_add_group_pattern_rule' | translate }}"
+                ></pci-storage-database-input-rule>
+            </div>
+        </div>
     </oui-field>
 
     <div ng-if="!$ctrl.isRolesReadOnly">
