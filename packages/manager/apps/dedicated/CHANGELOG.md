@@ -1,3 +1,12 @@
+## [17.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.15.0...@ovh-ux/manager-dedicated@17.15.1) (2022-03-21)
+
+
+### Bug Fixes
+
+* **dedicated-cloud:** retrieve servicename in kms deletion ([#6716](https://github.com/ovh/manager/issues/6716)) ([bbaabd4](https://github.com/ovh/manager/commit/bbaabd4b580a48f33e657d281b4f8892490c53b2))
+
+
+
 # [17.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.14.0...@ovh-ux/manager-dedicated@17.15.0) (2022-03-16)
 
 

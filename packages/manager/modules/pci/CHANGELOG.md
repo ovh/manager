@@ -1,3 +1,12 @@
+## [5.63.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.63.1...@ovh-ux/manager-pci@5.63.2) (2022-03-21)
+
+
+### Bug Fixes
+
+* **storages.databases.add:** disable lab check for non beta engines ([#6719](https://github.com/ovh/manager/issues/6719)) ([b7a0fda](https://github.com/ovh/manager/commit/b7a0fda012d64edd1b471aa0b922c04a46ed4f04))
+
+
+
 ## [5.63.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.63.0...@ovh-ux/manager-pci@5.63.1) (2022-03-10)
 
 
