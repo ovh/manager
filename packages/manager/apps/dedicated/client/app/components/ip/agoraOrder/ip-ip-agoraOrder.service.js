@@ -95,7 +95,7 @@ export default class IpAgoraOrder {
   checkIpDedicatedServerIsOrderable(serviceName) {
     return this.$http
       .get(`/dedicated/server/${serviceName}/orderable/ip`)
-      .then(({ data: orderable }) => !!orderable.ipv4?.length)
+      .then(({ data: orderable }) => orderable.ipv4?.length > 0)
       .catch(() => false);
   }
 
