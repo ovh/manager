@@ -97,6 +97,7 @@ export default class {
   }
 
   resetPassword() {
+    this.trackDashboard('general_information::reset_password');
     this.DatabaseService.resetUserCredentials(
       this.projectId,
       this.database.engine,
@@ -104,6 +105,10 @@ export default class {
       this.users[0].id,
     )
       .then((data) => {
+        this.trackDashboard(
+          'general_information::reset_password_validated',
+          'page',
+        );
         this.CucCloudMessage.flushMessages(this.messageContainer);
         this.CucCloudMessage.success(
           {
@@ -118,7 +123,11 @@ export default class {
           this.messageContainer,
         );
       })
-      .catch((error) =>
+      .catch((error) => {
+        this.trackDashboard(
+          'general_information::reset_password_error',
+          'page',
+        );
         this.CucCloudMessage.error(
           this.$translate.instant(
             'pci_databases_general_information_reset_password_error',
@@ -128,8 +137,8 @@ export default class {
             },
           ),
           this.messageContainer,
-        ),
-      );
+        );
+      });
   }
 
   trackManageVRack() {

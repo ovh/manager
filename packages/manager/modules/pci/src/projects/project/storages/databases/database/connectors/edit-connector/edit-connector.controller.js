@@ -14,10 +14,15 @@ export default class EditConnectorCtrl {
     this.messageContainer =
       'pci.projects.project.storages.databases.dashboard.connectors.edit';
     this.loadMessages();
-    this.trackDashboard('connectors::edit', 'page');
+    this.trackDashboard('connectors::modify_connector', 'page');
     this.model = {
       ...this.connector.configuration,
     };
+  }
+
+  cancel() {
+    this.trackDashboard('connectors::actions_menu::modify_cancel');
+    return this.goBack();
   }
 
   loadMessages() {
@@ -65,7 +70,7 @@ export default class EditConnectorCtrl {
   }
 
   updateConnector() {
-    this.trackDashboard('connectors::edit::validate');
+    this.trackDashboard('connectors::actions_menu::modify_confirm');
     return this.DatabaseService.putConnector(
       this.projectId,
       this.database.engine,
@@ -73,14 +78,16 @@ export default class EditConnectorCtrl {
       this.connector.id,
       this.getModelValue(),
     )
-      .then(() =>
-        this.goBack({
+      .then(() => {
+        this.trackDashboard('connectors::modify_connector_validate', 'page');
+        return this.goBack({
           textHtml: this.$translate.instant(
             'pci_databases_connectors_edit_success_message',
           ),
-        }),
-      )
+        });
+      })
       .catch((err) => {
+        this.trackDashboard('connectors::modify_connector_error', 'page');
         this.CucCloudMessage.flushMessages(this.messageContainer);
         this.CucCloudMessage.error(
           {

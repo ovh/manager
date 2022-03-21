@@ -23,15 +23,23 @@ export default class DeleteNamespaceCtrl {
       this.database.id,
       this.namespace.id,
     )
-      .then(() =>
-        this.goBack({
+      .then(() => {
+        this.trackDashboard(
+          'namespaces::namespaces_delete_validate_banner',
+          'page',
+        );
+        return this.goBack({
           textHtml: this.$translate.instant(
             'pci_databases_namespaces_delete_namespace_success_message',
           ),
-        }),
-      )
-      .catch((err) =>
-        this.goBack(
+        });
+      })
+      .catch((err) => {
+        this.trackDashboard(
+          'namespaces::namespaces_delete_error_banner',
+          'page',
+        );
+        return this.goBack(
           this.$translate.instant(
             'pci_databases_namespaces_delete_namespace_error_message',
             {
@@ -39,7 +47,7 @@ export default class DeleteNamespaceCtrl {
             },
           ),
           'error',
-        ),
-      );
+        );
+      });
   }
 }

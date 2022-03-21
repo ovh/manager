@@ -26,7 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
       goToEdit: /* @ngInject */ ($state, trackDashboard) => (connector) => {
-        trackDashboard('connectors::edit', 'action');
+        trackDashboard('connectors::actions_menu::modify', 'action');
         $state.go(
           'pci.projects.project.storages.databases.dashboard.connectors.edit',
           {
@@ -35,7 +35,7 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
       goToDelete: /* @ngInject */ ($state, trackDashboard) => (connector) => {
-        trackDashboard('connectors::delete', 'action');
+        trackDashboard('connectors::actions_menu::delete', 'action');
         $state.go(
           'pci.projects.project.storages.databases.dashboard.connectors.delete',
           {
@@ -44,7 +44,7 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
       goToAdd: /* @ngInject */ ($state, trackDashboard) => () => {
-        trackDashboard('connectors::add', 'action');
+        trackDashboard('connectors::add_connector', 'action');
         $state.go(
           'pci.projects.project.storages.databases.dashboard.connectors.available-connectors',
         );
