@@ -49,6 +49,10 @@ export default class ConnectorConfiguration {
     return this.rawData.find((input) => input.name === field);
   }
 
+  getRequiredFields() {
+    return this.rawData.filter((field) => field.required);
+  }
+
   getTransformFields(type) {
     return this.transformConfiguration[type];
   }

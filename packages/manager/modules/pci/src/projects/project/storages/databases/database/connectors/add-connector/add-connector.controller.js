@@ -16,6 +16,7 @@ export default class AddConnectorCtrl {
     this.loadMessages();
     this.trackDashboard('connectors::add_a_connector::parameters', 'page');
     this.model = {};
+    this.requiredFields = this.availableConnector.configuration.getRequiredFields();
   }
 
   cancel() {
@@ -35,6 +36,16 @@ export default class AddConnectorCtrl {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  areRequiredFieldsFilled() {
+    let allRequiredFilled = true;
+    this.requiredFields.forEach((field) => {
+      if ([null, undefined, ''].includes(this.model[field.name])) {
+        allRequiredFilled = false;
+      }
+    });
+    return allRequiredFilled;
   }
 
   getModelValue() {

@@ -20,7 +20,12 @@
             >
         </span>
     </div>
-    <oui-button variant="primary" size="l" ng-click="$ctrl.addConnector()">
+    <oui-button
+        variant="primary"
+        size="l"
+        on-click="$ctrl.addConnector()"
+        data-disabled="!$ctrl.areRequiredFieldsFilled()"
+    >
         <span data-translate="pci_databases_connectors_add_button"></span>
     </oui-button>
 </div>

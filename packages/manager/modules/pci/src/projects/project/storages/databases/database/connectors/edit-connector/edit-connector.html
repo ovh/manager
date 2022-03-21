@@ -20,7 +20,12 @@
             >
         </span>
     </div>
-    <oui-button variant="primary" size="l" on-click="$ctrl.updateConnector()">
+    <oui-button
+        variant="primary"
+        size="l"
+        on-click="$ctrl.updateConnector()"
+        data-disabled="!$ctrl.areRequiredFieldsFilled()"
+    >
         <span data-translate="pci_databases_connectors_edit_button"></span>
     </oui-button>
 </div>
