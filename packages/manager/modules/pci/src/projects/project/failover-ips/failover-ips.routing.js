@@ -3,6 +3,12 @@ import find from 'lodash/find';
 import map from 'lodash/map';
 import { PCI_FEATURES } from '../../projects.constant';
 
+const REGIONS = {
+  EU: 'EUROPE',
+  CA: 'CANADA',
+  US: 'USA',
+};
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.failover-ips', {
     url: '/failover-ips?ip',
@@ -102,6 +108,21 @@ export default /* @ngInject */ ($stateProvider) => {
             find(ipAddresses, { type: 'public' }),
           ),
         ),
+
+      availableRegionsForOrder: /* @ngInject */ (iceberg, projectId) =>
+        iceberg(`/cloud/project/${projectId}/region`)
+          .query()
+          .expand('CachedObjectList-Pages')
+          .execute()
+          .$promise.then(({ data: regions }) => {
+            const continentCodes = regions.flatMap(
+              ({ continentCode }) => continentCode,
+            );
+
+            return continentCodes
+              .map((continentCode) => REGIONS[continentCode] || REGIONS.CA)
+              .filter((code, index, codes) => codes.indexOf(code) === index);
+          }),
     },
   });
 };

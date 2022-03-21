@@ -14,9 +14,8 @@
         <oui-select
             name="product"
             data-model="$ctrl.ip.product"
-            data-items="$ctrl.products"
+            data-items="$ctrl.productsList"
             data-match="details.product.description"
-            data-on-change="$ctrl.onProductChange(modelValue)"
             required
         >
             <span data-ng-bind="$item.details.product.description"></span>
