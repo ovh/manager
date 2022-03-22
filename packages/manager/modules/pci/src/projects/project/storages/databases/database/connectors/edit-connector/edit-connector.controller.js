@@ -39,13 +39,9 @@ export default class EditConnectorCtrl {
   }
 
   areRequiredFieldsFilled() {
-    let allRequiredFilled = true;
-    this.requiredFields.forEach((field) => {
-      if ([null, undefined, ''].includes(this.model[field.name])) {
-        allRequiredFilled = false;
-      }
-    });
-    return allRequiredFilled;
+    return this.requiredFields.every(
+      ({ name }) => this.model[name] != null && this.model[name] !== '',
+    );
   }
 
   getModelValue() {
