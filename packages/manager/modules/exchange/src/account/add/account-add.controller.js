@@ -57,6 +57,16 @@ export default class ExchangeAccountAddController {
     return this.fetchingAccountCreationOptions();
   }
 
+  $doCheck() {
+    if (!this.newAccountForm) return;
+    if (
+      !this.newAccountForm.accountInfoEmail.$invalid &&
+      !this.newAccount.forwardingEmail
+    ) {
+      this.newAccount.storeCopyOfEmail = false;
+    }
+  }
+
   fetchingAccountCreationOptions() {
     function transformAccountTypes(accountTypes) {
       return map(accountTypes, (accountType) => ({
