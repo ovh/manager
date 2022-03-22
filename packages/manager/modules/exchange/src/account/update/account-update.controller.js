@@ -74,6 +74,18 @@ export default class ExchangeUpdateAccountCtrl {
       });
   }
 
+  $doCheck() {
+    if (!this.updateAccountForm) {
+      return;
+    }
+    if (
+      !this.updateAccountForm.accountInfoForwardingEmail.$invalid &&
+      !this.selectedAccount.forwardingEmail
+    ) {
+      this.selectedAccount.storeCopyOfEmail = false;
+    }
+  }
+
   initFields() {
     this.selectedAccount.countryCode =
       this.countries.find(
