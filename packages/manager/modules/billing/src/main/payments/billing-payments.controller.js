@@ -1,45 +1,88 @@
-import filter from 'lodash/filter';
-import map from 'lodash/map';
+export default class BillingPaymentsCtrl {
+  /* @ngInject */
+  constructor(
+    $filter,
+    $q,
+    $state,
+    $translate,
+    atInternet,
+    coreConfig,
+    OvhApiMe,
+    iceberg,
+  ) {
+    this.$filter = $filter;
+    this.$q = $q;
+    this.$state = $state;
+    this.$translate = $translate;
+    this.atInternet = atInternet;
+    this.coreConfig = coreConfig;
+    this.OvhApiMe = OvhApiMe;
+    this.iceberg = iceberg;
+  }
 
-export default /* @ngInject */ function BillingPaymentsCtrl(
-  $filter,
-  $q,
-  $state,
-  $translate,
-  atInternet,
-  coreConfig,
-  OvhApiMe,
-) {
-  this.loadPayments = ($config) => {
-    let request = OvhApiMe.Deposit()
-      .v7()
+  $onInit() {
+    this.payments = [];
+    if (this.coreConfig.getRegion() === 'US') {
+      return this.OvhApiMe.DepositRequest()
+        .v6()
+        .query()
+        .$promise.then((depositRequests) => {
+          this.paymentRequests = depositRequests;
+          this.paymentRequestsHref = this.$state.href(
+            'app.account.billing.main.payments.request',
+          );
+        });
+    }
+    return this.$q.when();
+  }
+
+  loadPayments($config) {
+    let request = this.iceberg('/me/deposit')
       .query()
-      .sort($config.sort.property, $config.sort.dir > 0 ? 'ASC' : 'DESC');
+      .expand('CachedObjectList-Pages')
+      .offset(Math.ceil($config.offset / ($config.pageSize || 1)))
+      .limit($config.pageSize);
 
-    filter($config.criteria, { property: 'date' }).forEach((crit) => {
+    if ($config.sort) {
+      request = request.sort(
+        $config.sort.property,
+        $config.sort.dir > 0 ? 'ASC' : 'DESC',
+      );
+    }
+
+    const filterCriteria = (propName) =>
+      $config.criteria.filter(({ property }) => property === propName);
+
+    filterCriteria('date').forEach((crit) => {
       switch (crit.operator) {
         case 'is':
-          request = request.addFilter('date', 'ge', crit.value);
           request = request.addFilter(
             'date',
-            'le',
+            'gt',
             moment(crit.value)
-              .add(1, 'day')
+              .subtract(1, 'd')
+              .format('YYYY-MM-DD'),
+          );
+          request = request.addFilter(
+            'date',
+            'lt',
+            moment(crit.value)
+              .add(1, 'd')
               .format('YYYY-MM-DD'),
           );
           break;
         case 'isAfter':
-          request = request.addFilter('date', 'ge', crit.value);
+          request = request.addFilter('date', 'gt', crit.value);
           break;
         case 'isBefore':
-          request = request.addFilter('date', 'ge', crit.value);
+          request = request.addFilter('date', 'lt', crit.value);
           break;
         default:
           break;
       }
     });
 
-    filter($config.criteria, { property: 'amount.value' }).forEach((crit) => {
+    filterCriteria('amount.value').forEach((crit) => {
       request = request.addFilter(
         'amount.value',
         {
@@ -51,94 +94,75 @@ export default /* @ngInject */ function BillingPaymentsCtrl(
       );
     });
 
-    filter($config.criteria, { property: 'paymentInfo.paymentType' }).forEach(
-      (crit) => {
-        request = request.addFilter(
-          'paymentInfo.paymentType',
-          {
-            is: 'eq',
-            isNot: 'ne',
-          }[crit.operator],
-          crit.value,
-        );
-      },
-    );
+    filterCriteria('paymentInfo.paymentType').forEach((crit) => {
+      request = request.addFilter(
+        'paymentInfo.paymentType',
+        {
+          is: 'eq',
+          isNot: 'ne',
+        }[crit.operator],
+        crit.value,
+      );
+    });
 
-    return $q
-      .all({
-        count: request.clone().execute().$promise,
-        deposit: request
-          .clone()
-          .expand()
-          .offset($config.offset - 1)
-          .limit($config.pageSize)
-          .execute().$promise,
-      })
-      .then(({ count, deposit }) => {
-        this.payments = map(deposit, 'value');
-        return {
-          data: this.payments,
-          meta: {
-            totalCount: count.length,
-          },
-        };
-      });
-  };
+    return request.execute(null).$promise.then((result) => {
+      this.payments = result.data;
+      return {
+        data: this.payments,
+        meta: {
+          totalCount:
+            parseInt(result.headers['x-pagination-elements'], 10) || 0,
+        },
+      };
+    });
+  }
 
-  this.getDatasToExport = () => {
+  getDatasToExport() {
     const header = [
-      $translate.instant('payments_table_head_id'),
-      $translate.instant('payments_table_head_date'),
-      $translate.instant('payments_table_head_amount'),
-      $translate.instant('payments_table_head_type'),
+      this.$translate.instant('payments_table_head_id'),
+      this.$translate.instant('payments_table_head_date'),
+      this.$translate.instant('payments_table_head_amount'),
+      this.$translate.instant('payments_table_head_type'),
     ];
     const result = [header];
     return result.concat(
       this.payments.map((payment) => [
         payment.depositId,
-        $filter('date')(payment.date, 'mediumDate'),
+        this.$filter('date')(payment.date, 'mediumDate'),
         payment.amount.text,
         this.getTranslatedPaiementType(payment),
       ]),
     );
-  };
+  }
 
-  this.getTranslatedPaiementType = (payment) =>
-    payment.paymentInfo
-      ? $translate.instant(
-          `common_payment_type_${payment.paymentInfo.paymentType}`,
-        )
-      : $translate.instant('payments_table_type_not_available');
+  getTranslatedPaiementType(payment) {
+    return this.$translate.instant(
+      payment.paymentInfo
+        ? `common_payment_type_${payment.paymentInfo.paymentType}`
+        : 'payments_table_type_not_available',
+    );
+  }
 
-  this.shouldDisplayDepositsLinks = () => !coreConfig.isRegion('US');
-  this.displayActionsCol = () => !coreConfig.isRegion('US');
-  this.depositDetailsHref = ({ depositId }) =>
-    $state.href('app.account.billing.main.payments.payment.details', {
+  shouldDisplayDepositsLinks() {
+    return this.coreConfig.getRegion() !== 'US';
+  }
+
+  displayActionsCol() {
+    return this.coreConfig.getRegion() !== 'US';
+  }
+
+  depositDetailsHref({ depositId }) {
+    return this.$state.href('app.account.billing.main.payments.payment', {
       id: depositId,
     });
+  }
 
-  this.trackPaymentDetailOpening = () => {
-    atInternet.trackClick({
+  trackPaymentDetailOpening() {
+    this.atInternet.trackClick({
       name: 'open_invoices',
       type: 'action',
       chapter1: 'billing',
       chapter2: 'monitored_payments',
     });
-  };
-
-  this.$onInit = () => {
-    this.payments = [];
-    if (coreConfig.isRegion('US')) {
-      return OvhApiMe.DepositRequest()
-        .v6()
-        .query()
-        .$promise.then((depositRequests) => {
-          this.paymentRequests = depositRequests;
-          this.paymentRequestsHref = $state.href(
-            'app.account.billing.main.payments.request',
-          );
-        });
-    }
-    return $q.when();
-  };
+  }
 }
