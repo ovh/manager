@@ -1,3 +1,5 @@
+import { unescapeDescription } from '../account.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('exchange.dashboard.account.update', {
     url: '/update',
@@ -6,11 +8,12 @@ export default /* @ngInject */ ($stateProvider) => {
       emailAccount: null,
     },
     redirectTo: (transition) =>
-      Promise.all([transition.injector().getAsync('emailAccount')]).then(
-        ([emailAccount]) => {
-          return !emailAccount ? 'exchange.dashboard.account' : false;
-        },
-      ),
+      transition
+        .injector()
+        .getAsync('emailAccount')
+        .then((emailAccount) => {
+          return !emailAccount ? 'exchange.dashboard.account' : '';
+        }),
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('exchange_account_update'),
@@ -19,14 +22,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
       emailAccount: /* @ngInject */ ($transition$) => {
         const { emailAccount } = $transition$.params();
-
-        if (emailAccount && emailAccount.description) {
-          emailAccount.description = emailAccount.description.substring(
-            1,
-            emailAccount.description.length - 1,
-          ); // Remove start and end double quote used for CSV
-        }
-        return emailAccount;
+        return emailAccount
+          ? {
+              ...emailAccount,
+              description: unescapeDescription(emailAccount.description),
+            }
+          : null;
       },
     },
   });
