@@ -1,5 +1,4 @@
 {
   "manager_hub_notification_warning": "{{ content }}",
-  "manager_hub_skip_to_main_content": "Ir al contenido principal",
-  "manager_hub_sbg_incident": "Consulte el estado de sus servicios en Estrasburgo (SBG)"
+  "manager_hub_skip_to_main_content": "Ir al contenido principal"
 }
