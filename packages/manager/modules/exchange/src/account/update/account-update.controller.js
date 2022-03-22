@@ -7,7 +7,10 @@ import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 import some from 'lodash/some';
 import isString from 'lodash/isString';
-import { ACCOUNT_WORLD_PHONE_REGEX } from '../account.constants';
+import {
+  ACCOUNT_WORLD_PHONE_REGEX,
+  escapeDescription,
+} from '../account.constants';
 
 export default class ExchangeUpdateAccountCtrl {
   /* @ngInject */
@@ -164,7 +167,7 @@ export default class ExchangeUpdateAccountCtrl {
           : undefined,
       description:
         modifiedBuffer.description !== originalValues.description
-          ? `"${modifiedBuffer.description}"`
+          ? escapeDescription(modifiedBuffer.description)
           : undefined,
       forwardingEmail:
         modifiedBuffer.forwardingEmail !== originalValues.forwardingEmail
