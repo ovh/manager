@@ -440,7 +440,7 @@
                 >
                     <oui-tile-description>
                         <p
-                            data-ng-if="$ctrl.serviceIntegration.kafkaMirrorMaker.length === 0"
+                            data-ng-if="!$ctrl.serviceIntegration.kafkaMirrorMaker"
                             data-translate="pci_databases_general_information_integration_none"
                         ></p>
                         <p
@@ -460,7 +460,7 @@
                 >
                     <oui-tile-description>
                         <p
-                            data-ng-if="$ctrl.serviceIntegration.kafkaConnect.length === 0"
+                            data-ng-if="!$ctrl.serviceIntegration.kafkaConnect"
                             data-translate="pci_databases_general_information_integration_none"
                         ></p>
                         <p
@@ -480,7 +480,7 @@
                 >
                     <oui-tile-description>
                         <p
-                            data-ng-if="$ctrl.serviceIntegration.m3aggregator.length === 0"
+                            data-ng-if="!$ctrl.serviceIntegration.m3aggregator"
                             data-translate="pci_databases_general_information_integration_none"
                         ></p>
                         <p
