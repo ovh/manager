@@ -31,8 +31,8 @@ export default class {
           availability.network === this.database.networkType,
       )
       .map(
-        (planAvailibility) =>
-          new Flavor(planAvailibility.flavor, [planAvailibility]),
+        (planAvailability) =>
+          new Flavor(planAvailability.flavor, [planAvailability]),
       )
       .sort((a, b) => b.compare(a));
     if (
