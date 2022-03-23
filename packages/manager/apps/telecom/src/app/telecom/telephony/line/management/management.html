@@ -22,5 +22,17 @@
         data-telecom-v4-links="LineManagementCtrl.actions"
     >
     </tuc-telecom-v4-links>
+    <div class="row d-md-flex">
+        <div class="col-sm-12 col-md-4 mb-3">
+            <ovh-advices
+                url="/voip/:billingAccount/line/:serviceName"
+                url-params="{
+                    billingAccount: LineManagementCtrl.billingAccount,
+                    serviceName: LineManagementCtrl.serviceName,
+                }"
+            >
+            </ovh-advices>
+        </div>
+    </div>
 </div>
 <!-- /.telephony-group-line-management -->
