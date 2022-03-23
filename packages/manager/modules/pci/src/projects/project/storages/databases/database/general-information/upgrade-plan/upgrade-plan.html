@@ -21,6 +21,18 @@
     data-selected-plan="$ctrl.selectedPlan"
     data-user="$ctrl.user"
 ></database-plans-list>
+<div ng-if="$ctrl.showFlavors">
+    <p
+        data-translate="pci_databases_general_information_upgrade_plan_select_flavor"
+        data-translate-values="{flavor: $ctrl.database.flavor, plan: $ctrl.selectedPlan.name}"
+    ></p>
+    <database-flavors-list
+        data-on-change="$ctrl.onFlavorSelect(selectedFlavor)"
+        data-flavors="$ctrl.possibleFlavors"
+        data-selected-flavor="$ctrl.selectedFlavor"
+        data-user="$ctrl.user"
+    ></database-flavors-list>
+</div>
 <div data-ng-if="$ctrl.upgradingPlan">
     <oui-spinner data-size="s"></oui-spinner>
     <span
