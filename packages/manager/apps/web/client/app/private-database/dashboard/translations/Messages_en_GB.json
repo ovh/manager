@@ -478,5 +478,6 @@
   "privateDatabase_tabs_list_extensions_enable_error": "An error has occurred enabling your extension.",
   "privateDatabase_tabs_list_extensions_disable_success": "Extension correctly disabled.",
   "privateDatabase_tabs_list_extensions_disable_error": "An error has occurred disabling the extension.",
-  "privateDatabase_order_sql_period_sub_title": "How long do you want to use it for?"
+  "privateDatabase_order_sql_period_sub_title": "How long do you want to use it for?",
+  "privateDatabase_configuration_field_sql_mode": "The “sql_mode” option affects the supported SQL syntax and data validation checks performed by MySQL/MariaDB."
 }

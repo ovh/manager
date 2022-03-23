@@ -5,10 +5,9 @@
   "dedicated_servers_reverse": "Registro inverso",
   "dedicated_servers_localization": "Localización",
   "dedicated_servers_model": "Modelo",
-  "dedicated_servers_order": "Contratar un servidor dedicado",
-  "server_configuration_installation_no_public_network": "No es posible instalar o reinstalar un SO en el servidor, ya que la configuración de red seleccionada no tiene acceso a la red pública. Para desbloquear esta acción, modifique su configuración de red en la pestaña «Interfaces de red».",
   "dedicated_servers_button_server_order": "Contratar un servidor dedicado",
   "dedicated_servers_button_list_order": "Contratar",
   "dedicated_servers_list_item_order": "Servidores dedicados",
-  "dedicated_servers_list_item_order_eco": "Servidores Eco"
+  "dedicated_servers_list_item_order_eco": "Servidores Eco",
+  "server_configuration_installation_no_public_network": "No es posible instalar o reinstalar un SO en el servidor, ya que la configuración de red seleccionada no tiene acceso a la red pública. Para desbloquear esta acción, modifique su configuración de red en la pestaña «Interfaces de red»."
 }

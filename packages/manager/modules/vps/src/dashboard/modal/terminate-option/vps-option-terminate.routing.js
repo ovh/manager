@@ -14,5 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
       vpsOption: /* @ngInject */ ($transition$) =>
         $transition$.params().vpsOption,
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };

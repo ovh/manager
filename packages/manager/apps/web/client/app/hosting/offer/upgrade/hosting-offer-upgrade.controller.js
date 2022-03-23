@@ -1,4 +1,8 @@
 import get from 'lodash/get';
+import {
+  OFFERS_NAME_MAPPING,
+  DETACH_DEFAULT_OPTIONS,
+} from './hosting-offer-upgrade.constants';
 
 angular.module('App').controller(
   'HostingUpgradeOfferCtrl',
@@ -15,6 +19,7 @@ angular.module('App').controller(
       atInternet,
       Hosting,
       WucUser,
+      ovhManagerProductOffersActionService,
     ) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;
@@ -27,10 +32,13 @@ angular.module('App').controller(
       this.atInternet = atInternet;
       this.Hosting = Hosting;
       this.WucUser = WucUser;
+      this.ovhManagerProductOffersActionService = ovhManagerProductOffersActionService;
     }
 
     $onInit() {
       this.productId = this.$stateParams.productId;
+      this.serviceId = null;
+      this.isDetachable = false;
 
       this.availableOffers = [];
       this.durations = null;
@@ -51,25 +59,123 @@ angular.module('App').controller(
         this.ovhSubsidiary = user.ovhSubsidiary;
       });
 
-      this.Hosting.getSelected(this.productId)
-        .then((hosting) => {
-          this.hosting = hosting;
-          return this.Hosting.getAvailableOffer(this.productId);
-        })
-        .then((availableOffers) => {
+      return this.Hosting.isServiceDetachable(this.productId).then(
+        (isDetachable) => {
+          this.isDetachable = isDetachable;
+          this.Hosting.getSelected(this.productId)
+            .then((hosting) => {
+              this.hosting = hosting;
+              return this.getAvailableOptions(this.productId);
+            })
+            .catch(() => {
+              this.availableOffers = [];
+            })
+            .finally(() => {
+              this.loading.availableOffers = false;
+            });
+        },
+      );
+    }
+
+    getAvailableOptions(productId) {
+      if (this.isDetachable) {
+        return this.Hosting.getServiceInfos(productId)
+          .then(({ serviceId }) => {
+            this.serviceId = serviceId;
+            return this.ovhManagerProductOffersActionService.getAvailableDetachPlancodes(
+              serviceId,
+            );
+          })
+          .then((availableOffers) => {
+            this.availableOffers = availableOffers.map((offer) => ({
+              name: this.$translate.instant(
+                `hosting_dashboard_service_offer_${
+                  OFFERS_NAME_MAPPING[offer.planCode]
+                }`,
+              ),
+              value: offer.planCode,
+            }));
+          });
+      }
+
+      return this.Hosting.getAvailableOffer(this.productId).then(
+        (availableOffers) => {
           this.availableOffers = availableOffers.map((offer) => ({
             name: this.$translate.instant(
               `hosting_dashboard_service_offer_${offer}`,
             ),
             value: offer,
           }));
-        })
-        .catch(() => {
-          this.availableOffers = [];
-        })
-        .finally(() => {
-          this.loading.availableOffers = false;
-        });
+        },
+      );
+    }
+
+    getDetachActionsOptions() {
+      return {
+        addons: [
+          {
+            duration: DETACH_DEFAULT_OPTIONS.durationCode,
+            planCode: this.model.offer.value,
+            pricingMode: DETACH_DEFAULT_OPTIONS.pricingMode,
+            quantity: DETACH_DEFAULT_OPTIONS.quantity,
+            serviceId: this.serviceId,
+          },
+        ],
+        duration: DETACH_DEFAULT_OPTIONS.durationCode,
+        pricingMode: DETACH_DEFAULT_OPTIONS.pricingMode,
+        quantity: DETACH_DEFAULT_OPTIONS.quantity,
+      };
+    }
+
+    getPrices() {
+      if (this.isDetachable) {
+        return this.ovhManagerProductOffersActionService
+          .simulate(
+            this.model.offer.value,
+            this.serviceId,
+            DETACH_DEFAULT_OPTIONS.type,
+            this.getDetachActionsOptions(),
+          )
+          .then((data) => {
+            const durationsTab = [];
+            const details = angular.copy(data.order);
+            details.duration = DETACH_DEFAULT_OPTIONS.durationText;
+            durationsTab.push(details);
+
+            return durationsTab;
+          });
+      }
+
+      return this.Hosting.getUpgradePrices(
+        get(this.hosting, 'serviceName', this.$stateParams.productId),
+        this.model.offer.value,
+      );
+    }
+
+    executeOrder() {
+      if (this.isDetachable) {
+        return this.ovhManagerProductOffersActionService
+          .execute(
+            this.model.offer.value,
+            this.serviceId,
+            DETACH_DEFAULT_OPTIONS.type,
+            this.getDetachActionsOptions(),
+          )
+          .then((data) => {
+            return data.order;
+          });
+      }
+
+      const startTime = moment(this.model.startTime, 'HH:mm:ss')
+        .utc()
+        .format('HH:mm:ss');
+
+      return this.Hosting.orderUpgrade(
+        get(this.hosting, 'serviceName', this.$stateParams.productId),
+        this.model.offer.value,
+        this.model.duration.duration,
+        this.hosting.isCloudWeb ? startTime : null,
+      );
     }
 
     getDurations() {
@@ -79,10 +185,7 @@ angular.module('App').controller(
       };
       this.loading.durations = true;
 
-      return this.Hosting.getUpgradePrices(
-        get(this.hosting, 'serviceName', this.$stateParams.productId),
-        this.model.offer.value,
-      )
+      return this.getPrices()
         .then((durations) => {
           this.durations.available = durations;
           if (durations.length === 1) {
@@ -132,16 +235,7 @@ angular.module('App').controller(
       win.referrer = null;
       win.opener = null;
 
-      const startTime = moment(this.model.startTime, 'HH:mm:ss')
-        .utc()
-        .format('HH:mm:ss');
-
-      return this.Hosting.orderUpgrade(
-        get(this.hosting, 'serviceName', this.$stateParams.productId),
-        this.model.offer.value,
-        this.model.duration.duration,
-        this.hosting.isCloudWeb ? startTime : null,
-      )
+      return this.executeOrder()
         .then((order) => {
           this.Alerter.success(
             this.$translate.instant('hosting_order_upgrade_success', {

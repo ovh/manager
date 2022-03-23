@@ -225,6 +225,7 @@
                         data-placeholder="{{::$ctrl.CLUSTER_CONFIG_TERMS.PRISM_CENTRAL_TYPE }}"
                         data-model="$ctrl.config.prismCentral.type"
                         data-items="$ctrl.prismCentralTypes"
+                        data-on-change="$ctrl.onPrismCentralTypeChange(modelValue)"
                     ></oui-select>
                 </oui-field>
                 <oui-field
@@ -239,7 +240,9 @@
                         data-ng-pattern="$ctrl.IPV4_REGEX"
                     />
                 </oui-field>
-                <div>
+                <div
+                    data-ng-if="$ctrl.config.prismCentral.type !== $ctrl.PRISM_CENTRAL_TYPE_ALONE"
+                >
                     <div class="row ml-1 mb-2">
                         <label
                             class="oui-field__label"

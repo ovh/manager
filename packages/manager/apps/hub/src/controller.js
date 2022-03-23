@@ -29,7 +29,6 @@ export default class HubController {
   }
 
   async $onInit() {
-    this.servicesImpactedWithIncident = [];
     this.navbarOptions = {
       universe: this.coreConfig.getUniverse(),
       toggle: {
@@ -57,8 +56,6 @@ export default class HubController {
       unregisterListener();
     });
     this.isAccountSidebarVisible = await this.shell.ux.isAccountSidebarVisible();
-
-    return this.getServicesImpactedByIncident();
   }
 
   /**
@@ -71,22 +68,5 @@ export default class HubController {
       const [element] = this.$document.find(`#${id}`);
       element.focus();
     }
-  }
-
-  getServicesImpactedByIncident() {
-    return this.$http
-      .get('/incident-status', {
-        serviceType: 'aapi',
-      })
-      .then(({ data }) => {
-        this.servicesImpactedWithIncident = data;
-      })
-      .catch(() => []);
-  }
-
-  goToIncidentStatus() {
-    return this.$state.go('app.dashboard.incident.status', {
-      incidentName: 'SBG',
-    });
   }
 }

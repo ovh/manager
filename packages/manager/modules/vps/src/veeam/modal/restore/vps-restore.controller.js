@@ -2,8 +2,9 @@ import 'moment';
 
 export default class VpsRestoreCtrl {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, VpsService) {
+  constructor($translate, atInternet, CucCloudMessage, VpsService) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.VpsService = VpsService;
 
@@ -30,11 +31,20 @@ export default class VpsRestoreCtrl {
       });
   }
 
+  trackClick(hit) {
+    this.atInternet.trackClick({
+      name: `vps::detail::veeam::restore::${hit}`,
+      type: 'action',
+    });
+  }
+
   cancel() {
+    this.trackClick('cancel');
     return this.goBack();
   }
 
   confirm() {
+    this.trackClick('confirm');
     this.loader.save = true;
     this.VpsService.veeamRestorePointRestore(
       this.serviceName,

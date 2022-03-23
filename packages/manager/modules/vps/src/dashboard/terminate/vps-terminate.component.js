@@ -12,7 +12,6 @@ export default {
     terminateOptions: '<',
     validateTermination: '<',
     vps: '<',
-    resiliationCapability: '<',
   },
   controller,
   name: 'ovhManagerVpsTerminate',

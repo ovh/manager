@@ -76,7 +76,7 @@
   "privateDatabase_configuration_event_scheduler": "Stato del gestore di eventi",
   "privateDatabase_configuration_interactive_timeout": "Il numero di secondi prima che il server termini la connessione in caso di inattività durante una connessione da prompt dei comandi.",
   "privateDatabase_configuration_wait_timeout": "Il numero di secondi prima che il server termini la connessione in caso di inattività durante una connessione esterna.",
-  "privateDatabase_configuration_field_autocommit": "Definisce se le transazioni SQL vengono confermate automaticamente o meno.",
+  "privateDatabase_configuration_field_autocommit": "Definisce se le transazioni SQL vengono inviate automaticamente o meno.",
   "privateDatabase_configuration_field_event_scheduler": "Consente di avviare l'esecuzione di richieste pianificate direttamente nel server MySQL.",
   "privateDatabase_configuration_field_innodb_buffer_pool_size": "Scelta della dimensione della memoria tampone (in Megabyte).",
   "privateDatabase_configuration_field_interactive_timeout": "Numero di secondi in cui il server attende un'attività su una connessione interattiva prima di chiuderla.",
@@ -480,5 +480,6 @@
   "privateDatabase_tabs_list_extensions_enable_error": "Si è verificato un errore durante l'attivazione dell'estensione.",
   "privateDatabase_tabs_list_extensions_disable_success": "Estensione disattivata correttamente.",
   "privateDatabase_tabs_list_extensions_disable_error": "Si è verificato un errore durante la disattivazione dell'estensione.",
-  "privateDatabase_order_sql_period_sub_title": "Per quanto tempo vuoi utilizzarla?"
+  "privateDatabase_order_sql_period_sub_title": "Per quanto tempo vuoi utilizzarla?",
+  "privateDatabase_configuration_field_sql_mode": "L'opzione \"sql_mode\" incide sulla sintassi SQL utilizzata e le verifiche di convalida dei dati effettuate da MySQL/MariaDB."
 }

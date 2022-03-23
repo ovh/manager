@@ -6,5 +6,6 @@
   "telephony_billingAccount_svaWallet_kyc_summary_beneficiaries_title": "My beneficiaries",
   "telephony_billingAccount_svaWallet_kyc_summary_documents_title": "My documents",
   "telephony_billingAccount_svaWallet_kyc_summary_iban_confirmation": "Your IBAN has been updated!",
-  "telephony_billingAccount_svaWallet_kyc_summary_document_confirmation": "Your document has been updated. Validation of your new documents will take 48 hours."
+  "telephony_billingAccount_svaWallet_kyc_summary_document_confirmation": "Your document has been updated. Validation of your new documents will take 48 hours.",
+  "telephony_billingAccount_svaWallet_kyc_summary_edit_identity": "Update my data"
 }

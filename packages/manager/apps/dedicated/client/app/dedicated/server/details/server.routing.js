@@ -10,13 +10,6 @@ export default /* @ngInject */ ($stateProvider) => {
     reloadOnSearch: false,
     redirectTo: 'app.dedicated-server.server.dashboard',
     resolve: {
-      resiliationCapability: /* @ngInject */ ($http, serverName) =>
-        $http
-          .get(`/incident/resiliation/${serverName}`, {
-            serviceType: 'aapi',
-          })
-          .then(({ data }) => data)
-          .catch(() => null),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       isLegacy: /* @ngInject */ (server) => server.newUpgradeSystem === false,
@@ -51,20 +44,14 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       serverName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
-      serviceInfos: /* @ngInject */ (
-        $stateParams,
-        resiliationCapability,
-        Server,
-      ) =>
+      serviceInfos: /* @ngInject */ ($stateParams, Server) =>
         Server.getServiceInfos($stateParams.productId).then((serviceInfo) => ({
           ...serviceInfo,
           status:
-            resiliationCapability?.billingInformation &&
             serviceInfo.status === 'ok' &&
             !serviceInfo.renew?.deleteAtExpiration
               ? 'FORCED_MANUAL'
               : serviceInfo.status,
-          statusHelp: resiliationCapability?.billingInformation || null,
           serviceType: SERVICE_TYPE,
         })),
       specifications: /* @ngInject */ (serverName, Server) =>

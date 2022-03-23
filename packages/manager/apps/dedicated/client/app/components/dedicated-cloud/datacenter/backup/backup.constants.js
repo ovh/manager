@@ -17,13 +17,13 @@ export const BACKUP_MINIMUM_HOST_COUNT = 2;
 
 export const BACKUP_GUIDES_URL = {
   CA: {
-    fr_FR: 'https://docs.ovh.com/fr/storage/veeam-backup-replication',
-    fr_CA: 'https://docs.ovh.com/fr/storage/veeam-backup-replication',
+    fr_FR: 'https://docs.ovh.com/fr/private-cloud/veeam-backup-as-a-service/',
+    fr_CA: 'https://docs.ovh.com/fr/private-cloud/veeam-backup-as-a-service/',
     default:
       'https://docs.ovh.com/gb/en/private-cloud/veeam-backup-as-a-service/',
   },
   EU: {
-    fr_FR: 'https://docs.ovh.com/fr/storage/veeam-backup-replication',
+    fr_FR: 'https://docs.ovh.com/fr/private-cloud/veeam-backup-as-a-service/',
     default:
       'https://docs.ovh.com/gb/en/private-cloud/veeam-backup-as-a-service/',
   },

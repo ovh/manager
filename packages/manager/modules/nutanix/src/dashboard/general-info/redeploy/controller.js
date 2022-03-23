@@ -1,6 +1,7 @@
 import cloneDeep from 'lodash/cloneDeep';
 import {
   REDEPLOY_CONFIG_OPTIONS,
+  PRISM_CENTRAL_TYPE_ALONE,
   PRISM_CENTRAL_TYPES,
   IPV4_REGEX,
   IPV4_BLOCK_REGEX,
@@ -14,6 +15,7 @@ export default class NutanixGeneralInfoRedeployCtrl {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.REDEPLOY_CONFIG_OPTIONS = REDEPLOY_CONFIG_OPTIONS;
+    this.PRISM_CENTRAL_TYPE_ALONE = PRISM_CENTRAL_TYPE_ALONE;
     this.prismCentralTypes = PRISM_CENTRAL_TYPES;
     this.IPV4_REGEX = IPV4_REGEX;
     this.IPV4_BLOCK_REGEX = IPV4_BLOCK_REGEX;
@@ -46,6 +48,24 @@ export default class NutanixGeneralInfoRedeployCtrl {
       type: 'action',
       name: `${TRACKING_PREFIX}::${label}`,
     });
+  }
+
+  addEmptyIp(prismCentralType) {
+    if (
+      this.config.prismCentral?.ips?.length === 0 &&
+      prismCentralType !== PRISM_CENTRAL_TYPE_ALONE
+    ) {
+      this.config.prismCentral.ips = [''];
+    }
+  }
+
+  onPrismCentralTypeChange(modelValue) {
+    this.config.prismCentral.ips =
+      modelValue === PRISM_CENTRAL_TYPE_ALONE
+        ? []
+        : cloneDeep(this.cluster.targetSpec.prismCentral.ips);
+    this.addEmptyIp(modelValue);
+    return modelValue;
   }
 
   addPrismCentralIp() {
@@ -81,9 +101,7 @@ export default class NutanixGeneralInfoRedeployCtrl {
         this.redundancyFactorValue = `${this.cluster.allowedRedundancyFactor[0]}`;
         this.config.redundancyFactor = +this.redundancyFactorValue;
       }
-      if (this.config.prismCentral?.ips?.length === 0) {
-        this.config.prismCentral.ips = [''];
-      }
+      this.addEmptyIp(this.config.prismCentral.type);
     }
   }
 

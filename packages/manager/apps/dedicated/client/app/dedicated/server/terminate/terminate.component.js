@@ -5,7 +5,6 @@ export default {
   bindings: {
     goBack: '<',
     server: '<',
-    resiliationCapability: '<',
     serviceInfos: '<',
   },
   controllerAs: 'ctrl',

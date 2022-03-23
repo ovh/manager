@@ -44,7 +44,7 @@
             name="companyName"
             placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_name' | translate }}"
             type="text"
-            ng-model="$ctrl.wallet.company.name"
+            data-ng-model="$ctrl.wallet.company.name"
             required
         />
     </oui-field>
@@ -58,8 +58,8 @@
             name="companySiret"
             placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_identification_number' | translate }}"
             type="text"
-            ng-model="$ctrl.wallet.company.identificationNumber"
-            ng-pattern="$ctrl.REGEX_VALIDATORS.SIRET"
+            data-ng-model="$ctrl.wallet.company.identificationNumber"
+            data-ng-pattern="$ctrl.REGEX_VALIDATORS.SIRET"
             required
         />
     </oui-field>
@@ -81,6 +81,21 @@
         </oui-select>
     </oui-field>
 
+    <div class="oui-field oui-field_xl">
+        <div class="oui-field__control">
+            <oui-checkbox model="$ctrl.wallet.company.marketplace">
+                <oui-checkbox-label
+                    data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_marketplace"
+                ></oui-checkbox-label>
+            </oui-checkbox>
+            <oui-checkbox model="$ctrl.wallet.company.crowdfundingPartner">
+                <oui-checkbox-label
+                    data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_crowdfundingPartner"
+                ></oui-checkbox-label>
+            </oui-checkbox>
+        </div>
+    </div>
+
     <oui-field
         label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_description' | translate }}"
         size="xl"
@@ -90,8 +105,23 @@
             name="companyDescription"
             placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_description' | translate }}"
             type="text"
-            ng-model="$ctrl.wallet.company.description"
+            data-ng-model="$ctrl.wallet.company.description"
             required
+        />
+    </oui-field>
+
+    <oui-field
+        data-ng-if="$ctrl.wallet.company.marketplace"
+        label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_websiteUrl' | translate }}"
+        size="xl"
+    >
+        <input
+            class="oui-input"
+            name="websiteUrl"
+            placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_websiteUrl' | translate }}"
+            type="text"
+            data-ng-model="$ctrl.wallet.company.websiteUrl"
+            data-ng-pattern="$ctrl.urlSiteWebPattern"
         />
     </oui-field>
 
@@ -104,7 +134,7 @@
             name="representativeAddressOfResidenceStreetNumber"
             placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_address_street_number' | translate }}"
             type="text"
-            ng-model="$ctrl.wallet.representative.addressOfResidence.streetNumber"
+            data-ng-model="$ctrl.wallet.representative.addressOfResidence.streetNumber"
             required
         />
     </oui-field>
@@ -132,7 +162,7 @@
             name="representativeAddressOfResidenceStreetType"
             placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_address_street_type' | translate }}"
             type="text"
-            ng-model="$ctrl.wallet.representative.addressOfResidence.streetType"
+            data-ng-model="$ctrl.wallet.representative.addressOfResidence.streetType"
             required
         />
     </oui-field>
@@ -146,7 +176,7 @@
             name="representativeAddressOfResidenceStreetName"
             placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_address_street_name' | translate }}"
             type="text"
-            ng-model="$ctrl.wallet.representative.addressOfResidence.streetName"
+            data-ng-model="$ctrl.wallet.representative.addressOfResidence.streetName"
             required
         />
     </oui-field>
@@ -160,7 +190,7 @@
             name="representativeAddressOfResidenceAddressExtra"
             placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_address_address_extra' | translate }}"
             type="text"
-            ng-model="$ctrl.wallet.representative.addressOfResidence.addressExtra"
+            data-ng-model="$ctrl.wallet.representative.addressOfResidence.addressExtra"
         />
     </oui-field>
 
@@ -173,7 +203,7 @@
             name="representativeAddressOfResidencePostcodeOfResidence"
             placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_representative_postcode_residence' | translate }}"
             type="text"
-            ng-model="$ctrl.wallet.representative.postcodeOfResidence"
+            data-ng-model="$ctrl.wallet.representative.postcodeOfResidence"
             required
         />
     </oui-field>
@@ -187,7 +217,7 @@
             name="representativeAddressOfResidenceCedex"
             placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_address_cedex' | translate }}"
             type="text"
-            ng-model="$ctrl.wallet.representative.addressOfResidence.cedex"
+            data-ng-model="$ctrl.wallet.representative.addressOfResidence.cedex"
         />
     </oui-field>
 
@@ -200,7 +230,7 @@
             name="representativeCityOfResidence"
             placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_representative_city_residence' | translate }}"
             type="text"
-            ng-model="$ctrl.wallet.representative.cityOfResidence"
+            data-ng-model="$ctrl.wallet.representative.cityOfResidence"
             required
         />
     </oui-field>
@@ -214,7 +244,7 @@
             name="representativeAddressOfResidenceUrbanDistrict"
             placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_representative_address_urban_district' | translate }}"
             type="text"
-            ng-model="$ctrl.wallet.representative.addressOfResidence.urbanDistrict"
+            data-ng-model="$ctrl.wallet.representative.addressOfResidence.urbanDistrict"
         />
     </oui-field>
 
@@ -247,7 +277,7 @@
             name="representativeLastname"
             placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_representative_lastname' | translate }}"
             type="text"
-            ng-model="$ctrl.wallet.representative.lastname"
+            data-ng-model="$ctrl.wallet.representative.lastname"
             required
         />
     </oui-field>
@@ -261,7 +291,7 @@
             name="representativeFirstname"
             placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_representative_firstname' | translate }}"
             type="text"
-            ng-model="$ctrl.wallet.representative.firstname"
+            data-ng-model="$ctrl.wallet.representative.firstname"
             required
         />
     </oui-field>
@@ -289,7 +319,7 @@
             name="representativeBirthcity"
             placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_representative_birthcity' | translate }}"
             type="text"
-            ng-model="$ctrl.wallet.representative.cityOfBirth"
+            data-ng-model="$ctrl.wallet.representative.cityOfBirth"
             required
         />
     </oui-field>
@@ -319,7 +349,7 @@
             name="representativeEmail"
             placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_representative_email' | translate }}"
             type="email"
-            ng-model="$ctrl.wallet.representative.email"
+            data-ng-model="$ctrl.wallet.representative.email"
             required
         />
     </oui-field>
@@ -350,7 +380,7 @@
                 name="holder"
                 placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_bankAccount_holder' | translate }}"
                 type="text"
-                ng-model="$ctrl.bankAccount.holder"
+                data-ng-model="$ctrl.bankAccount.holder"
                 required
             />
         </oui-field>
@@ -365,7 +395,7 @@
                 name="iban"
                 placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_iban' | translate }}"
                 type="text"
-                ng-model="$ctrl.bankAccount.iban"
+                data-ng-model="$ctrl.bankAccount.iban"
                 data-ui-validate="{ iban: '!$ctrl.isValidIban($ctrl.bankAccount.iban)' }"
                 required
             />
@@ -380,7 +410,7 @@
         <oui-checkbox
             model="$ctrl.wallet.representative.isBeneficiary"
             name="companyRepresentativeIsBeneficiary"
-            ng-attr-disabled="$ctrl.forceRepresentativeIsBeneficiary"
+            data-ng-attr-disabled="$ctrl.forceRepresentativeIsBeneficiary"
         >
             <span
                 data-translate="telephony_billingAccount_svaWallet_kyc_identity_beneficiaries_representativeIsBeneficiary"
@@ -389,7 +419,7 @@
     </oui-field>
 
     <telephony-sva-wallet-kyc-beneficiaries
-        ng-if="$ctrl.displayBeneficiaries"
+        data-ng-if="$ctrl.displayBeneficiaries"
         beneficiaries="$ctrl.wallet.company.beneficiaries"
         representative-is-beneficiary="$ctrl.wallet.representative.isBeneficiary"
         country-enum="$ctrl.countryEnum"
@@ -418,7 +448,7 @@
 
     <oui-form-actions
         data-ng-if="$ctrl.editMode"
-        submit-text="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_submit_label' | translate }}"
+        submit-text="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_submit_edit_label' | translate }}"
         disabled="!$ctrl.requirements || $ctrl.loading.submit || formKYC.$invalid"
         on-cancel="$ctrl.onCancelEdit()"
         cancel-text="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_submit_cancel' | translate }}"
@@ -463,7 +493,7 @@
                                 class="oui-input"
                                 name="confirmationCode"
                                 type="text"
-                                ng-model="$ctrl.userConfirmationCode"
+                                data-ng-model="$ctrl.userConfirmationCode"
                                 data-ng-pattern="$ctrl.confirmationPattern"
                                 autofocus
                                 required

@@ -76,7 +76,7 @@
   "privateDatabase_configuration_event_scheduler": "Status Event Scheduler",
   "privateDatabase_configuration_interactive_timeout": "Anzahl der Sekunden an Inaktivität nach einer Eingabeaufforderung, bevor der Server die Verbindung unterbricht.",
   "privateDatabase_configuration_wait_timeout": "Anzahl der Sekunden an Inaktivität während einer externen Verbindung, bevor der Server die Verbindung unterbricht.",
-  "privateDatabase_configuration_field_autocommit": "Legt fest, ob die SQL-Transaktionen automatisch bestätigt werden oder nicht.",
+  "privateDatabase_configuration_field_autocommit": "Legt fest, ob die SQL-Transaktionen automatisch bestätigt werden.",
   "privateDatabase_configuration_field_event_scheduler": "Wird verwendet, um die Ausführung programmierter Anfragen direkt im MySQL-Server zu starten.",
   "privateDatabase_configuration_field_innodb_buffer_pool_size": "Größe des Pufferspeichers auswählen (in Megabyte).",
   "privateDatabase_configuration_field_interactive_timeout": "Zeit (in Sekunden), während der der Server auf eine Aktivität auf einer interaktiven Verbindung wartet, bevor er diese schließt.",
@@ -480,5 +480,6 @@
   "privateDatabase_tabs_list_extensions_enable_error": "Beim Einrichten der Erweiterung ist ein Fehler aufgetreten.",
   "privateDatabase_tabs_list_extensions_disable_success": "Die Erweiterung wurde erfolgreich deaktiviert.",
   "privateDatabase_tabs_list_extensions_disable_error": "Bei der Deaktivierung der Erweiterung ist ein Fehler aufgetreten.",
-  "privateDatabase_order_sql_period_sub_title": "Wie lange möchten Sie sie benutzen? "
+  "privateDatabase_order_sql_period_sub_title": "Wie lange möchten Sie sie benutzen? ",
+  "privateDatabase_configuration_field_sql_mode": "Die Option „sql_mode“ betrifft die unterstützte SQL-Syntax und die Überprüfungen der Datenvalidierung durch MySQL/MariaDB."
 }

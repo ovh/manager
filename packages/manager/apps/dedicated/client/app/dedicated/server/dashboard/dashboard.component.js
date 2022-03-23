@@ -35,7 +35,6 @@ export default {
     goToManualUpgrade: '<',
     isRamUpgradable: '<',
     isDataDiskUpgradable: '<',
-    resiliationCapability: '<',
     terminateLink: '<',
     serverName: '<',
     goToNetboot: '<',

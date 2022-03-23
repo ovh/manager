@@ -2,7 +2,7 @@
     primary-label="{{ ::'vps_configuration_veeam_schedule_backup_action_confirm' | translate }}"
     primary-action="$ctrl.onRescheduledAutomatedBackupConfirmed()"
     primary-disabled="!$ctrl.model.rescheduleTimepicker"
-    secondary-action="$ctrl.goBack()"
+    secondary-action="$ctrl.onRescheduleAutomatedBackupCancel()"
     secondary-label="{{ ::'vps_configuration_veeam_schedule_backup_action_cancel' | translate }}"
     on-dismiss="$ctrl.goBack()"
     heading="{{ ::'vps_configuration_veeam_schedule_backup_title' | translate }}"

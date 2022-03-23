@@ -27,6 +27,7 @@ angular.module('App').controller(
       }
 
       this.loading.update = true;
+      let reload = false;
 
       return this.Server.updateDisplayName({
         serviceId: this.dedicatedServer.serviceId,
@@ -40,13 +41,7 @@ angular.module('App').controller(
             ),
             'server_dashboard_alert',
           );
-          this.$state.go(
-            '^',
-            {},
-            {
-              reload: true,
-            },
-          );
+          reload = true;
         })
         .catch(({ data }) => {
           this.Alerter.error(
@@ -61,8 +56,16 @@ angular.module('App').controller(
             ].join('. '),
             'server_dashboard_alert',
           );
-          this.$state.go('^');
         })
+        .finally(() =>
+          this.$state.go(
+            '^',
+            {},
+            {
+              reload,
+            },
+          ),
+        )
         .finally(() => {
           this.loading.update = false;
         });
