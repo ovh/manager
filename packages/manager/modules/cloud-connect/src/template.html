@@ -139,8 +139,8 @@
                     class="oui-badge"
                     data-ng-class="{
                         'oui-badge_success': ($value === 'active'),
-                        'oui-badge_warning': (['creating', 'toCreate', 'toDelete'].includes($value)),
-                        'oui-badge_error': (['deleted', 'suspended'].include($value)),
+                        'oui-badge_warning': ($ctrl.constructor.isWarning($value)),
+                        'oui-badge_error': ($ctrl.constructor.isError($value)),
                     }"
                     data-ng-bind="'cloud_connect_status_label_' + $value | translate"
                 ></span>

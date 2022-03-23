@@ -52,12 +52,21 @@ export default class CloudConnectCtrl extends ListLayoutHelper.ListLayoutCtrl {
       .execute(null, true)
       .$promise.then(({ data: result }) => {
         this.orders = map(result, (res) => {
+          console.log(res);
           const orderBillingUrl = this.buildOrderBillingUrl(res.orderId);
           res.orderBillingUrl = orderBillingUrl;
           return res;
         });
         return result;
       });
+  }
+
+  static isWarning(value) {
+    return ['creating', 'toCreate', 'toDelete'].includes(value);
+  }
+
+  static isError(value) {
+    return ['deleted', 'suspended'].includes(value);
   }
 
   static formatDate(dateTime) {
