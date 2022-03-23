@@ -10,6 +10,6 @@ export default class AvailableConnectorsCtrl {
   }
 
   $onInit() {
-    this.trackDashboard('connectors::available-connectors', 'page');
+    this.trackDashboard('connectors::add_a_connector', 'page');
   }
 }

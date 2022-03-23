@@ -48,7 +48,7 @@ export default /* @ngInject */ ($stateProvider) => {
             connector.setConnectorInfofmation(availableConnector);
           }),
         goToEdit: /* @ngInject */ ($state, trackDashboard) => (connector) => {
-          trackDashboard('connectors::edit', 'action');
+          trackDashboard('connectors::tasks::modify_connector', 'action');
           $state.go(
             'pci.projects.project.storages.databases.dashboard.connectors.edit',
             {
@@ -56,7 +56,10 @@ export default /* @ngInject */ ($stateProvider) => {
             },
           );
         },
-        goBack: /* @ngInject */ (goBackToConnectors) => goBackToConnectors,
+        goBack: /* @ngInject */ (goBackToConnectors, trackDashboard) => () => {
+          trackDashboard('connectors::tasks::go_back_to_connectors', 'action');
+          return goBackToConnectors();
+        },
       },
       atInternet: {
         ignore: true,
