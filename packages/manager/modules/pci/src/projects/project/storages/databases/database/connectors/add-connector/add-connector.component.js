@@ -6,6 +6,7 @@ export default {
   bindings: {
     database: '<',
     projectId: '<',
+    trackDatabases: '<',
     trackDashboard: '<',
     goBack: '<',
     availableConnector: '<',

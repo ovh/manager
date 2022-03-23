@@ -23,18 +23,26 @@ export default class {
       this.database.id,
       this.service,
     )
-      .then(() =>
-        this.goBack({
+      .then(() => {
+        this.trackDashboard(
+          `service_integration::add_${this.engineName}_validate_banner`,
+          'page',
+        );
+        return this.goBack({
           textHtml: this.$translate.instant(
             'pci_databases_service_integration_add_success_message',
             {
               engineName: this.engineName,
             },
           ),
-        }),
-      )
-      .catch((err) =>
-        this.goBack(
+        });
+      })
+      .catch((err) => {
+        this.trackDashboard(
+          `service_integration::add_${this.engineName}_error_banner`,
+          'page',
+        );
+        return this.goBack(
           this.$translate.instant(
             'pci_databases_service_integration_add_error_message',
             {
@@ -43,7 +51,7 @@ export default class {
             },
           ),
           'error',
-        ),
-      );
+        );
+      });
   }
 }
