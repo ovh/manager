@@ -1,3 +1,12 @@
+# [8.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.6.5...@ovh-ux/manager-sms@8.7.0) (2022-03-23)
+
+
+### Features
+
+* cross-sell and up-sell updates ([#6494](https://github.com/ovh/manager/issues/6494)) ([5018416](https://github.com/ovh/manager/commit/501841638ba08c1854429bfd7dd4e65f3c6b4832))
+
+
+
 ## [8.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.6.4...@ovh-ux/manager-sms@8.6.5) (2022-03-04)
 
 

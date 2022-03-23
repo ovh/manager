@@ -1,3 +1,23 @@
+# [16.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.7.1...@ovh-ux/manager-web@16.8.0) (2022-03-23)
+
+
+### Bug Fixes
+
+* **privates-database:** improve configuration management ([#6559](https://github.com/ovh/manager/issues/6559)) ([663c90a](https://github.com/ovh/manager/commit/663c90afbb5ac49b101ffbe557fa0f72d63c5c43))
+
+
+### Features
+
+* **hosting.offer:** implement detach start10M ([#6385](https://github.com/ovh/manager/issues/6385)) ([7559981](https://github.com/ovh/manager/commit/7559981f96ec95ef8288bedf0bbd93a7034c9461))
+* **private-database:** add new option description - sql_mode ([#6539](https://github.com/ovh/manager/issues/6539)) ([62efb9a](https://github.com/ovh/manager/commit/62efb9adfb9c1374a6cd733b8355b8b9aab47ce7))
+
+
+### Performance Improvements
+
+* remove calls to /incident/* ([#6564](https://github.com/ovh/manager/issues/6564)) ([e949a3d](https://github.com/ovh/manager/commit/e949a3d52bc7bd6b5a7260e8a7cbf4c33f3df2cf))
+
+
+
 ## [16.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.7.0...@ovh-ux/manager-web@16.7.1) (2022-03-09)
 
 

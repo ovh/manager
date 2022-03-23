@@ -1,3 +1,23 @@
+# [5.64.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.63.2...@ovh-ux/manager-pci@5.64.0) (2022-03-23)
+
+
+### Bug Fixes
+
+* **database.general-information.upgrade-plan:** add missing margins ([#6707](https://github.com/ovh/manager/issues/6707)) ([35264d1](https://github.com/ovh/manager/commit/35264d1ea9fa29340838185dc933a85eb2faba39))
+* **project.sidebar:** add missing background-colort ([#6726](https://github.com/ovh/manager/issues/6726)) ([6ff71c5](https://github.com/ovh/manager/commit/6ff71c5d30937f7fa88b3f989df0470fb6d91807))
+
+
+### Features
+
+* **pci.project.new:** prefill voucher ([#6473](https://github.com/ovh/manager/issues/6473)) ([876dd9c](https://github.com/ovh/manager/commit/876dd9c04acdae3c23251e5b991ba064c8a6e131))
+
+
+### Performance Improvements
+
+* remove calls to /incident/* ([#6564](https://github.com/ovh/manager/issues/6564)) ([e949a3d](https://github.com/ovh/manager/commit/e949a3d52bc7bd6b5a7260e8a7cbf4c33f3df2cf))
+
+
+
 ## [5.63.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.63.1...@ovh-ux/manager-pci@5.63.2) (2022-03-21)
 
 

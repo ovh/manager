@@ -1,3 +1,17 @@
+# [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.5.8...@ovh-ux/manager-account-sidebar@3.6.0) (2022-03-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1519] ([#6685](https://github.com/ovh/manager/issues/6685)) ([d67cf02](https://github.com/ovh/manager/commit/d67cf027436e3e8a90827b5f0669acaff25dc5ae))
+
+
+### Features
+
+* **account-sidebar:** contact management link manager ca region ([#6658](https://github.com/ovh/manager/issues/6658)) ([0824721](https://github.com/ovh/manager/commit/0824721c8695f5eaf08d398d4675f710f85ccf33))
+
+
+
 ## [3.5.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.5.7...@ovh-ux/manager-account-sidebar@3.5.8) (2022-03-04)
 
 

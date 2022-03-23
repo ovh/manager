@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.0.0...@ovh-ux/manager-nutanix@1.0.1) (2022-03-23)
+
+
+### Bug Fixes
+
+* **dashboard:** hide ips field when prism central type is alone ([#6701](https://github.com/ovh/manager/issues/6701)) ([79a09d7](https://github.com/ovh/manager/commit/79a09d7ffb1ae4155dc9cb7a027999b8f9483491))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@0.0.0...@ovh-ux/manager-nutanix@1.0.0) (2022-03-15)
 
 

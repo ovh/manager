@@ -1,3 +1,20 @@
+## [17.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.15.1...@ovh-ux/manager-dedicated@17.15.2) (2022-03-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1531] ([cbf6abc](https://github.com/ovh/manager/commit/cbf6abc0d0594f8200986fc1f233c0379f83c2ef))
+* remove unused translations [CDS] ([e8edc25](https://github.com/ovh/manager/commit/e8edc2548971de95752b5f006be19df633265509))
+* **backup:** update guides links ([#6599](https://github.com/ovh/manager/issues/6599)) ([03a06fb](https://github.com/ovh/manager/commit/03a06fbd3bb28a98d2a722944c23644a7672e890))
+* **server.display-name:** display loader during state navigation ([#6668](https://github.com/ovh/manager/issues/6668)) ([487aeb3](https://github.com/ovh/manager/commit/487aeb34be5b7b4bb77208b5bc501987f09759e3))
+
+
+### Performance Improvements
+
+* remove calls to /incident/* ([#6564](https://github.com/ovh/manager/issues/6564)) ([e949a3d](https://github.com/ovh/manager/commit/e949a3d52bc7bd6b5a7260e8a7cbf4c33f3df2cf))
+
+
+
 ## [17.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.15.0...@ovh-ux/manager-dedicated@17.15.1) (2022-03-21)
 
 

@@ -1,3 +1,27 @@
+# [13.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.34.0...@ovh-ux/manager-telecom@13.35.0) (2022-03-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1508] ([7b8d19a](https://github.com/ovh/manager/commit/7b8d19abb941605e735ff0fb0bd1ae7fb2311641))
+* **sva:** add fr content for companykind ([e17a7bf](https://github.com/ovh/manager/commit/e17a7bfbe657d5374f51708104fc774396c7bfe7))
+* **sva:** fix not refreshed when iban is updated ([6092335](https://github.com/ovh/manager/commit/6092335b3ca08026642f87707cac43caae413885))
+
+
+### Features
+
+* **sva:** add additional mandatory document ([9af83a6](https://github.com/ovh/manager/commit/9af83a626142bba62f6502b1715ea71360daf75a))
+* **sva:** add crowdfunding concept ([1448ecd](https://github.com/ovh/manager/commit/1448ecdef4ecdf430f9178592120bb8eb93f90a5))
+* **sva:** add maketplace concept ([fa558d9](https://github.com/ovh/manager/commit/fa558d9006cdac7e73fcab8ee2be8b43ee92c30c))
+* cross-sell and up-sell updates ([#6494](https://github.com/ovh/manager/issues/6494)) ([5018416](https://github.com/ovh/manager/commit/501841638ba08c1854429bfd7dd4e65f3c6b4832))
+
+
+### Performance Improvements
+
+* remove calls to /incident/* ([#6564](https://github.com/ovh/manager/issues/6564)) ([e949a3d](https://github.com/ovh/manager/commit/e949a3d52bc7bd6b5a7260e8a7cbf4c33f3df2cf))
+
+
+
 # [13.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.33.2...@ovh-ux/manager-telecom@13.34.0) (2022-03-09)
 
 
