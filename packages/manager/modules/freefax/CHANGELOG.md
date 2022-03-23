@@ -1,3 +1,12 @@
+# [7.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.3.4...@ovh-ux/manager-freefax@7.4.0) (2022-03-23)
+
+
+### Features
+
+* cross-sell and up-sell updates ([#6494](https://github.com/ovh/manager/issues/6494)) ([5018416](https://github.com/ovh/manager/commit/501841638ba08c1854429bfd7dd4e65f3c6b4832))
+
+
+
 ## [7.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.3.3...@ovh-ux/manager-freefax@7.3.4) (2022-03-04)
 
 

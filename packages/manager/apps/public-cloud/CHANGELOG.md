@@ -1,3 +1,12 @@
+## [4.17.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.17.5...@ovh-ux/manager-public-cloud@4.17.6) (2022-03-23)
+
+
+### Performance Improvements
+
+* remove calls to /incident/* ([#6564](https://github.com/ovh/manager/issues/6564)) ([e949a3d](https://github.com/ovh/manager/commit/e949a3d52bc7bd6b5a7260e8a7cbf4c33f3df2cf))
+
+
+
 ## [4.17.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.17.4...@ovh-ux/manager-public-cloud@4.17.5) (2022-01-25)
 
 

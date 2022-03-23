@@ -1,3 +1,12 @@
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.4.2...@ovh-ux/manager-sharepoint@2.5.0) (2022-03-23)
+
+
+### Features
+
+* cross-sell and up-sell updates ([#6494](https://github.com/ovh/manager/issues/6494)) ([5018416](https://github.com/ovh/manager/commit/501841638ba08c1854429bfd7dd4e65f3c6b4832))
+
+
+
 ## [2.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.4.1...@ovh-ux/manager-sharepoint@2.4.2) (2021-10-26)
 
 

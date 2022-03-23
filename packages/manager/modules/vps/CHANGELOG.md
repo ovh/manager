@@ -1,3 +1,17 @@
+# [2.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.19.1...@ovh-ux/manager-vps@2.20.0) (2022-03-23)
+
+
+### Features
+
+* add tracking enhancements ([#6613](https://github.com/ovh/manager/issues/6613)) ([e41bc29](https://github.com/ovh/manager/commit/e41bc294a001ebf5d3c009c65b9da64d2c26e050))
+
+
+### Performance Improvements
+
+* remove calls to /incident/* ([#6564](https://github.com/ovh/manager/issues/6564)) ([e949a3d](https://github.com/ovh/manager/commit/e949a3d52bc7bd6b5a7260e8a7cbf4c33f3df2cf))
+
+
+
 ## [2.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.19.0...@ovh-ux/manager-vps@2.19.1) (2022-03-04)
 
 
