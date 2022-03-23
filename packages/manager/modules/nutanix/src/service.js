@@ -1,6 +1,10 @@
 import map from 'lodash/map';
 import { BillingService, DedicatedServer } from '@ovh-ux/manager-models';
-import { NOT_SUBSCRIBED, SERVER_OPTIONS } from './constants';
+import {
+  NOT_SUBSCRIBED,
+  SERVER_OPTIONS,
+  NUTANIX_SERVICE_TYPE,
+} from './constants';
 import Cluster from './cluster.class';
 
 export default class NutanixService {
@@ -50,9 +54,13 @@ export default class NutanixService {
   }
 
   getServiceInfo(serviceName) {
-    return this.$http
-      .get(`/nutanix/${serviceName}/serviceInfos`)
-      .then(({ data }) => new BillingService(data));
+    return this.$http.get(`/nutanix/${serviceName}/serviceInfos`).then(
+      ({ data }) =>
+        new BillingService({
+          serviceType: NUTANIX_SERVICE_TYPE,
+          ...data,
+        }),
+    );
   }
 
   getServiceDetails(serviceId) {
