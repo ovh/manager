@@ -13,7 +13,10 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: () => false,
-      goBack: /* @ngInject */ (goBackToConnectors) => goBackToConnectors,
+      goBack: /* @ngInject */ (goBackToConnectors, trackDashboard) => () => {
+        trackDashboard('connectors::add_a_connector_cancel', 'action');
+        return goBackToConnectors();
+      },
       availableConnectors: /* @ngInject */ (
         database,
         DatabaseService,
@@ -32,13 +35,20 @@ export default /* @ngInject */ ($stateProvider) => {
             return a.type === AVAILABLE_CONNECTOR_TYPES.SINK ? 1 : -1;
           }),
         ),
-      goToConnectorConfig: /* @ngInject */ ($state, trackDashboard) => (
-        availableConnectorId,
-      ) => {
-        trackDashboard('connectors::available-connectors::add', 'action');
+      goToConnectorConfig: /* @ngInject */ (
+        $state,
+        trackDashboard,
+        trackDatabases,
+      ) => (connector) => {
+        trackDashboard('connectors::add_a_connector_confirm', 'action');
+        trackDatabases(
+          `databases_Kafka_Connect_add_a_connector::${connector.type}::${connector.name}::confirm`,
+          'action',
+          false,
+        );
         $state.go(
           'pci.projects.project.storages.databases.dashboard.connectors.add',
-          { availableConnectorId },
+          { availableConnectorId: connector.id },
         );
       },
     },

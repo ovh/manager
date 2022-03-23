@@ -6,31 +6,33 @@ export default class DeleteConnectorCtrl {
   }
 
   $onInit() {
-    this.trackDashboard('connector::actions_menu::delete_connector', 'page');
+    this.trackDashboard('connectors::delete_connector', 'page');
   }
 
   cancel() {
-    this.trackDashboard('connector::actions_menu::delete_connector_cancel');
+    this.trackDashboard('connectors::actions_menu::delete_cancel');
     this.goBack();
   }
 
   deleteconnector() {
     this.processing = true;
-    this.trackDashboard('connector::actions_menu::delete_connector_confirm');
+    this.trackDashboard('connectors::actions_menu::delete_confirm');
     return this.DatabaseService.deleteConnector(
       this.projectId,
       this.database.engine,
       this.database.id,
       this.connector.id,
     )
-      .then(() =>
+      .then(() => {
+        this.trackDashboard('connectors::delete_connector_validate', 'page');
         this.goBack({
           textHtml: this.$translate.instant(
             'pci_databases_connectors_delete_connector_success_message',
           ),
-        }),
-      )
-      .catch((err) =>
+        });
+      })
+      .catch((err) => {
+        this.trackDashboard('connectors::delete_connector_error', 'page');
         this.goBack(
           this.$translate.instant(
             'pci_databases_connectors_delete_connector_error_message',
@@ -39,7 +41,7 @@ export default class DeleteConnectorCtrl {
             },
           ),
           'error',
-        ),
-      );
+        );
+      });
   }
 }

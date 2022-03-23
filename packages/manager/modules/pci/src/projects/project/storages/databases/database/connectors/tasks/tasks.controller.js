@@ -13,7 +13,7 @@ export default class TasksCtrl {
     this.messageContainer =
       'pci.projects.project.storages.databases.dashboard.connectors.tasks';
     this.loadMessages();
-    this.trackDashboard('connectors::tasks', 'page');
+    this.trackDashboard('connectors::connector_tasks', 'page');
   }
 
   loadMessages() {
@@ -29,7 +29,7 @@ export default class TasksCtrl {
   }
 
   restart($row) {
-    this.trackDashboard('connectors::tasks::restart');
+    this.trackDashboard('connectors::tasks::restart_task');
     this.pending = true;
     this.DatabaseService.restartConnectorTask(
       this.projectId,

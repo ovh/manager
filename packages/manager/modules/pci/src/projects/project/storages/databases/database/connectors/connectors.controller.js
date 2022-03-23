@@ -54,7 +54,7 @@ export default class ConnectorsCtrl {
 
   pauseOrResumeConnector($row) {
     if ($row.isPaused()) {
-      this.trackDashboard('connectors::resume');
+      this.trackDashboard('connectors::play_connector');
       this.DatabaseService.resumeConnector(
         this.projectId,
         this.database.engine,
@@ -69,7 +69,7 @@ export default class ConnectorsCtrl {
         );
       });
     } else {
-      this.trackDashboard('connectors::pause');
+      this.trackDashboard('connectors::pause_connector');
       this.DatabaseService.pauseConnector(
         this.projectId,
         this.database.engine,
@@ -87,7 +87,7 @@ export default class ConnectorsCtrl {
   }
 
   restart($row) {
-    this.trackDashboard('connectors::restart');
+    this.trackDashboard('connectors::restart_connector');
     this.pending = true;
     this.DatabaseService.restartConnector(
       this.projectId,

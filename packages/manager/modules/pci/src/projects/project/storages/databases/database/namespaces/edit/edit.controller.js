@@ -85,6 +85,10 @@ export default class {
       this.prepareModel(),
     )
       .then(() => {
+        this.trackDashboard(
+          'namespaces::namespaces_edit_validate_banner',
+          'page',
+        );
         return this.goBack({
           textHtml: this.$translate.instant(
             'pci_databases_namespaces_edit_success_message',
@@ -95,6 +99,7 @@ export default class {
         });
       })
       .catch((err) => {
+        this.trackDashboard('namespaces::namespaces_edit_error_banner', 'page');
         return this.goBack(
           this.$translate.instant(
             'pci_databases_namespaces_edit_error_message',

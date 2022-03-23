@@ -14,8 +14,15 @@ export default class AddConnectorCtrl {
     this.messageContainer =
       'pci.projects.project.storages.databases.dashboard.connectors.add';
     this.loadMessages();
-    this.trackDashboard('connectors::add', 'page');
+    this.trackDashboard('connectors::add_a_connector::parameters', 'page');
     this.model = {};
+  }
+
+  cancel() {
+    this.trackDashboard(
+      'connectors::add_connector_parameters::go_back_to_connectors',
+    );
+    return this.goBack();
   }
 
   loadMessages() {
@@ -67,21 +74,39 @@ export default class AddConnectorCtrl {
   }
 
   addConnector() {
-    this.trackDashboard('connectors::add::validate');
+    this.trackDashboard('connectors::add_connector_parameters::confirm');
+    this.trackDatabase(
+      `databases_Kafka_Connect_add_a_connector::${this.availableConnector.type}::${this.availableConnector.name}::confirm_parameters`,
+      'action',
+      false,
+    );
     return this.DatabaseService.postConnector(
       this.projectId,
       this.database.engine,
       this.database.id,
       this.getModelValue(),
     )
-      .then(() =>
-        this.goBack({
+      .then(() => {
+        this.trackDashboard('connectors::add_connector_validate', 'page');
+        this.trackDatabase(
+          `databases_Kafka_Connect_add_a_connector::${this.availableConnector.type}::${this.availableConnector.name}::validate`,
+          'page',
+          false,
+        );
+        return this.goBack({
           textHtml: this.$translate.instant(
             'pci_databases_connectors_add_success_message',
           ),
-        }),
-      )
+        });
+      })
       .catch((err) => {
+        this.trackDashboard('connectors::add_connector_error', 'page');
+        this.trackDatabase(
+          `databases_Kafka_Connect_add_a_connector::${this.availableConnector.type}::${this.availableConnector.name}::error`,
+          'page',
+          false,
+        );
+
         this.CucCloudMessage.flushMessages(this.messageContainer);
         this.CucCloudMessage.error(
           {

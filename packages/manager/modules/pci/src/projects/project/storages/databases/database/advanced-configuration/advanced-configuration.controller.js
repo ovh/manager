@@ -11,7 +11,7 @@ export default class AdvancedConfigurationCtrl {
   }
 
   $onInit() {
-    this.trackDashboard('advanced-configuration', 'page');
+    this.trackDashboard('advanced_config', 'page');
     this.messageContainer =
       'pci.projects.project.storages.databases.dashboard.advanced-configuration';
     this.loadMessages();
@@ -91,12 +91,14 @@ export default class AdvancedConfigurationCtrl {
   }
 
   onAddConfig($index) {
+    this.trackDashboard('advanced_config::add_new_config');
     this.model[$index].added = true;
     this.model.push({});
     this.getAddableProperties();
   }
 
   onRemoveConfig($index) {
+    this.trackDashboard('advanced_config::delete_config');
     this.model.splice($index, 1);
     this.getAddableProperties();
   }
@@ -111,6 +113,7 @@ export default class AdvancedConfigurationCtrl {
   }
 
   updateAdvancedConfiguration() {
+    this.trackDashboard('advanced_config::save_config');
     this.pending = true;
     this.CucCloudMessage.flushMessages(this.messageContainer);
     this.DatabaseService.editAdvancedConfiguration(
@@ -120,6 +123,7 @@ export default class AdvancedConfigurationCtrl {
       this.getAdvancedConfigModel(),
     )
       .then((advancedConfiguration) => {
+        this.trackDashboard('advanced_config::new_config_validated', 'page');
         this.advancedConfiguration = advancedConfiguration;
         this.model = this.initModelFromAdvancedConfig();
         this.addEmptyEntry();
@@ -132,7 +136,8 @@ export default class AdvancedConfigurationCtrl {
           this.messageContainer,
         );
       })
-      .catch((err) =>
+      .catch((err) => {
+        this.trackDashboard('advanced_config::new_config_error', 'page');
         this.CucCloudMessage.error(
           this.$translate.instant(
             'pci_databases_advanced_configuration_update_error_message',
@@ -141,8 +146,8 @@ export default class AdvancedConfigurationCtrl {
             },
           ),
           this.messageContainer,
-        ),
-      )
+        );
+      })
       .finally(() => {
         this.pending = false;
       });
