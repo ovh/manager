@@ -1,6 +1,5 @@
 import controller from './general-information.controller';
 import template from './general-information.html';
-import './general-information.scss';
 
 export default {
   bindings: {
