@@ -14,5 +14,9 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: () => null, // Hide breadcrumb
     },
+    atInternet: {
+      rename:
+        'pci::projects::project::ai_machine_learning::notebooks::onboarding',
+    },
   });
 };

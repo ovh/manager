@@ -9,8 +9,6 @@ export default class {
   }
 
   $onInit() {
-    this.trackNotebooks('attached_data', 'page');
-
     this.messageContainer =
       'pci.projects.project.notebooks.dashboard.attach-data';
     this.loadMessages();
