@@ -44,11 +44,27 @@ export default class VpsVeeamOrderCtrl {
     return get(price, 'price');
   }
 
-  static getVeeamDuration(option) {
+  // Returns human readable duration for any given monthly or yearly duration option
+  getVeeamDuration(option) {
     const price = find(option.prices, ({ capacities }) =>
       capacities.includes('renew'),
     );
-    return price?.duration;
+    const duration = price?.duration;
+    if (duration === 'P1M' || duration === 'P1Y') {
+      return this.$translate.instant(
+        `vps_configuration_veeam_order_step1_info2_${duration}`,
+      );
+    }
+    const [, amount, type] = duration?.match(/P([0-9]+)(Y|M)/) || [];
+    if (amount && type) {
+      return this.$translate.instant(
+        `vps_configuration_veeam_order_step1_info2_PX${type}`,
+        {
+          amount,
+        },
+      );
+    }
+    return '?';
   }
 
   /* =============================
