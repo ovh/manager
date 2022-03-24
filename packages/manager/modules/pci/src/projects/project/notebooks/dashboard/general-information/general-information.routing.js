@@ -76,5 +76,9 @@ export default /* @ngInject */ ($stateProvider) => {
       openLiveCodeEditor: /* @ngInject */ ($window, notebook) => () =>
         $window.open(notebook.status.url, '_blank'),
     },
+    atInternet: {
+      rename:
+        'pci::projects::project::ai_machine_learning::notebooks::dashboard::general-information',
+    },
   });
 };
