@@ -47,11 +47,6 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceInfos: /* @ngInject */ ($stateParams, Server) =>
         Server.getServiceInfos($stateParams.productId).then((serviceInfo) => ({
           ...serviceInfo,
-          status:
-            serviceInfo.status === 'ok' &&
-            !serviceInfo.renew?.deleteAtExpiration
-              ? 'FORCED_MANUAL'
-              : serviceInfo.status,
           serviceType: SERVICE_TYPE,
         })),
       specifications: /* @ngInject */ (serverName, Server) =>

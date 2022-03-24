@@ -56,27 +56,14 @@
         ></div>
         <span
             class="oui-badge oui-badge_info"
-            data-ng-if="$ctrl.svaWallet.company.marketplace"
-            data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_marketplace"
-        ></span>
-        <span
-            class="oui-badge oui-badge_info"
             data-ng-if="$ctrl.svaWallet.company.crowdfundingPartner"
             data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_crowdfundingPartner"
         ></span>
-    </div>
-
-    <div class="oui-field oui-field_auto">
-        <div class="oui-field__header">
-            <label
-                class="oui-field__label"
-                data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_description"
-            ></label>
-        </div>
-        <div
-            class="oui-field__control"
-            data-ng-bind="$ctrl.svaWallet.company.description"
-        ></div>
+        <span
+            class="oui-badge oui-badge_info"
+            data-ng-if="$ctrl.svaWallet.company.marketplace"
+            data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_marketplace"
+        ></span>
     </div>
 
     <div
@@ -92,6 +79,19 @@
         <div
             class="oui-field__control"
             data-ng-bind="$ctrl.svaWallet.company.websiteUrl"
+        ></div>
+    </div>
+
+    <div class="oui-field oui-field_auto">
+        <div class="oui-field__header">
+            <label
+                class="oui-field__label"
+                data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_description"
+            ></label>
+        </div>
+        <div
+            class="oui-field__control"
+            data-ng-bind="$ctrl.svaWallet.company.description"
         ></div>
     </div>
 
