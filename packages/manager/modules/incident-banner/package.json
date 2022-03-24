@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-incident-banner",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "private": true,
   "description": "Display an incident banner.",
   "keywords": [
