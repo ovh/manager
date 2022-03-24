@@ -1,3 +1,12 @@
+## [2.4.6](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.4.5...@ovh-ux/sign-up-app@2.4.6) (2022-03-24)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.3` ([#6745](https://github.com/ovh/manager/issues/6745)) ([38d1144](https://github.com/ovh/manager/commit/38d11445b3671755758d153a4f4a166c7946705c)), closes [ovh/ovh-ui-kit#777](https://github.com/ovh/ovh-ui-kit/issues/777)
+
+
+
 ## [2.4.5](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.4.4...@ovh-ux/sign-up-app@2.4.5) (2022-02-09)
 
 

@@ -1,3 +1,13 @@
+## [13.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.35.0...@ovh-ux/manager-telecom@13.35.1) (2022-03-24)
+
+
+### Bug Fixes
+
+* **deps:** upgrade `@ovh-ux/ui-kit` to `v5.3.3` ([#6745](https://github.com/ovh/manager/issues/6745)) ([38d1144](https://github.com/ovh/manager/commit/38d11445b3671755758d153a4f4a166c7946705c)), closes [ovh/ovh-ui-kit#777](https://github.com/ovh/ovh-ui-kit/issues/777)
+* **telephony.sva-wallet.kyc.identity.form:** re-order order fields ([#6746](https://github.com/ovh/manager/issues/6746)) ([9f1c59e](https://github.com/ovh/manager/commit/9f1c59eb1305c2275d46dcba4e0ee31b6516434f))
+
+
+
 # [13.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.34.0...@ovh-ux/manager-telecom@13.35.0) (2022-03-23)
 
 
