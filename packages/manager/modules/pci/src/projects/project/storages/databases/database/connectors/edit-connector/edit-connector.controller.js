@@ -18,6 +18,7 @@ export default class EditConnectorCtrl {
     this.model = {
       ...this.connector.configuration,
     };
+    this.requiredFields = this.availableConnector.configuration.getRequiredFields();
   }
 
   cancel() {
@@ -35,6 +36,12 @@ export default class EditConnectorCtrl {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  areRequiredFieldsFilled() {
+    return this.requiredFields.every(
+      ({ name }) => this.model[name] != null && this.model[name] !== '',
+    );
   }
 
   getModelValue() {
