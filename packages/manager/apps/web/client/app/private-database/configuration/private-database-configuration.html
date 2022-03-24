@@ -30,7 +30,16 @@
                 data-ng-bind-html="'privateDatabase_configurations_general_' + configurationsCtrl.database.type | translate"
             ></h2>
 
-            <p data-translate="privateDatabase_configuration_alert"></p>
+            <div class="mb-4">
+                <p data-translate="privateDatabase_configuration_alert"></p>
+                <a
+                    data-translate="privateDatabase_configuration_documentation"
+                    href="{{:: configurationsCtrl.configuration_guide }}"
+                    rel="noopener"
+                    target="_blank"
+                >
+                </a>
+            </div>
 
             <form
                 name="configurationsCtrl.dbConfigurationForm"
