@@ -51,6 +51,6 @@
     "webpack-cli": "^3.3.9"
   },
   "peerDependencies": {
-    "@ovh-ux/ui-kit": "^4.1.12"
+    "@ovh-ux/ui-kit": "^5.3.3"
   }
 }
