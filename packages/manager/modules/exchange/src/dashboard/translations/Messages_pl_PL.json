@@ -457,7 +457,7 @@
   "exchange_account_add_password_hint_simple": "Wprowadź w to pole co najmniej {0} znaków.",
   "exchange_account_add_password_hint_complex_1": "Ze względów bezpieczeństwa pole powinno spełniać następujące kryteria:",
   "exchange_account_add_password_hint_complex_1_1": "nie może zawierać wyświetlanej nazwy lub nazwy konta Exchange 2010 (nie rozróżniana jest wielkość liter);",
-  "exchange_account_add_password_hint_complex_1_2": "powinno zawierać co najmniej {0} znaków;",
+  "exchange_account_add_password_hint_complex_1_2": "musi zawierać co najmniej {0} znaki/ów;",
   "exchange_account_add_password_hint_complex_1_3": "powinno zawierać elementy trzech z czterech następujących kategorii:",
   "exchange_account_add_password_hint_complex_1_3_1": "małe litery,",
   "exchange_account_add_password_hint_complex_1_3_2": "wielkie litery,",

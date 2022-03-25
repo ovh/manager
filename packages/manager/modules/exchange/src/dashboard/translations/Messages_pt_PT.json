@@ -457,7 +457,7 @@
   "exchange_account_add_password_hint_simple": "Este campo deve conter pelo menos {0} caracteres.",
   "exchange_account_add_password_hint_complex_1": "Por razões de segurança, este campo deve respeitar os seguintes critérios:",
   "exchange_account_add_password_hint_complex_1_1": "não conter o nome a apresentar ou o nome da conta Exchange 2010 (independentemente de maiúsculas ou minúsculas);",
-  "exchange_account_add_password_hint_complex_1_2": "deve conter pelo menos {0} caracteres;",
+  "exchange_account_add_password_hint_complex_1_2": "deve ter pelo menos {0} caracteres;",
   "exchange_account_add_password_hint_complex_1_3": "deve conter os elementos de três das quatro categorias seguintes:",
   "exchange_account_add_password_hint_complex_1_3_1": "letras minúsculas,",
   "exchange_account_add_password_hint_complex_1_3_2": "letras maiúsculas,",

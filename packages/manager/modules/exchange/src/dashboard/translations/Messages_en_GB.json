@@ -457,7 +457,7 @@
   "exchange_account_add_password_hint_simple": "This field must be at least {0} characters long.",
   "exchange_account_add_password_hint_complex_1": "For security reasons, this field must meet the following criteria:",
   "exchange_account_add_password_hint_complex_1_1": "Must not contain the display name or the name of the Exchange 2010 account (not case-sensitive).",
-  "exchange_account_add_password_hint_complex_1_2": "Must contain at least {0} characters.",
+  "exchange_account_add_password_hint_complex_1_2": "Must contain at least {0} characters",
   "exchange_account_add_password_hint_complex_1_3": "Must contain elements from three of the following four categories:",
   "exchange_account_add_password_hint_complex_1_3_1": "Lower-case letters",
   "exchange_account_add_password_hint_complex_1_3_2": "Capital letters",
