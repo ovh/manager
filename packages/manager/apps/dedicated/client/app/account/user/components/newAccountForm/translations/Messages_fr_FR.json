@@ -24,6 +24,7 @@
   "signup_field_companyNationalIdentificationNumber": "SIRET / SIREN",
   "signup_field_sex": "Sexe",
   "signup_field_vat": "Numéro de TVA Intracommunautaire",
+  "signup_field_gst": "Numéro de taxe sur les produits et services (GST)",
   "signup_field_address": "Adresse",
   "signup_field_area": "Région",
   "signup_field_state": "État",
