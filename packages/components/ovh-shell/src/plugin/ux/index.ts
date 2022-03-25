@@ -13,6 +13,7 @@ export interface IUXPlugin {
   toggleNotificationsSidebarVisibility(): void;
   toggleAccountSidebarVisibility(): void;
   getUserIdCookie(): string;
+  getSSOAuthModalMode(oldUserID: string): string;
 }
 
 // TODO: remove this once we have a more generic Plugin class

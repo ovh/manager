@@ -14,14 +14,14 @@ export interface ClientNavigationApi {
     application: ApplicationId,
     path: string,
     params: Record<string, ParamValueType>,
-  ) => PromiseLike<unknown>;
+  ) => PromiseLike<string>;
   navigateTo: (
     application: ApplicationId,
     path: string,
     params: Record<string, ParamValueType>,
     options: navigationOptions,
-  ) => PromiseLike<unknown>;
-  reload: (options: navigationOptions) => PromiseLike<unknown>;
+  ) => PromiseLike<void>;
+  reload: (options: navigationOptions) => PromiseLike<void>;
 }
 
 export function navigation(environment: Environment) {
@@ -77,7 +77,7 @@ export function clientNavigation(
       path: string,
       params: Record<string, ParamValueType>,
     ) =>
-      shellClient.invokePluginMethod({
+      shellClient.invokePluginMethod<string>({
         plugin: 'navigation',
         method: 'getURL',
         args: [application, path, params],
@@ -88,7 +88,7 @@ export function clientNavigation(
       params: Record<string, ParamValueType>,
       options: navigationOptions,
     ) =>
-      shellClient.invokePluginMethod({
+      shellClient.invokePluginMethod<void>({
         plugin: 'navigation',
         method: 'navigateTo',
         args: [application, path, params, options],
