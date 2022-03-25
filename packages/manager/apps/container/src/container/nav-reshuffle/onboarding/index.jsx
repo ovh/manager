@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 
 import useOnboarding from '@/core/onboarding';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
@@ -12,7 +12,7 @@ export const NavReshuffleOnboardingWidget = () => {
 
   const [isWalkMeVisible, setIsWalkMeVisible] = useState();
 
-  useEffect(() => {
+  useMemo(() => {
     setIsWalkMeVisible(
       onboarding.hasStarted(productNavReshuffle.onboardingOpenedState),
     );
