@@ -1,10 +1,10 @@
 import difference from 'lodash/difference';
-import forEach from 'lodash/forEach';
-import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 
 import 'moment';
+
+import { accountToCSVString } from '../account.constants';
 
 export default class ExchangeExportToCsvAccountsCtrl {
   /* @ngInject */
@@ -90,6 +90,9 @@ export default class ExchangeExportToCsvAccountsCtrl {
         'samaccountName',
         'taskPendingId',
         'id',
+        // Removing the description field as it breaks the CSV file in MS Excel
+        // https://answers.microsoft.com/en-us/msoffice/forum/all/excel-read-csv-set-utf-8-as-default-for-all-csv/62eb4068-fc70-4f9b-9bd7-c904713beaf0
+        'description',
       ],
       toConcatAttrs: ['totalQuota', 'usedQuota', 'quota'],
       toJointAttrs: ['aliases', 'managers', 'members'],
@@ -118,32 +121,21 @@ export default class ExchangeExportToCsvAccountsCtrl {
       .then((datas) => {
         if (datas != null && !isEmpty(datas) && this.timeoutObject != null) {
           // get column name
+          const separator = ',';
           const { headers } = datas;
-          let csvContent = `${headers.join(',')}\n`;
-
-          forEach(datas.accounts, (data, index) => {
-            let dataString = '';
-
-            forEach(headers, (header) => {
-              if (includes(exportOpts.toJointAttrs, header)) {
-                dataString += `${data[header].join(',')},`;
-              } else if (includes(exportOpts.toConcatAttrs, header)) {
-                dataString += `${data[header].value + data[header].unit},`;
-              } else {
-                dataString += `${data[header]},`;
-              }
-            });
-
-            csvContent +=
-              index < datas.accounts.length ? `${dataString}\n` : dataString;
-          });
+          const csvContent = [
+            headers.join(separator),
+            ...datas.accounts.map((account) =>
+              accountToCSVString(account, headers, separator),
+            ),
+          ].join('\n');
 
           this.exportCsv.exportData({
             datas: csvContent,
             fileName: `export_${this.csvExportType}_${
               this.exchange.displayName
             }_${moment().format('YYYY-MM-DD_HH:mm:ss')}.csv`,
-            separator: ',',
+            separator,
           });
 
           this.services.messaging.writeSuccess(

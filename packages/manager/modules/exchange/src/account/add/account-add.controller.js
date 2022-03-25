@@ -5,10 +5,7 @@ import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
 import map from 'lodash/map';
 
-import {
-  ACCOUNT_WORLD_PHONE_REGEX,
-  escapeDescription,
-} from '../account.constants';
+import { ACCOUNT_WORLD_PHONE_REGEX } from '../account.constants';
 import { EXCHANGE_CONTAINER_MESSAGING } from '../../dashboard/exchange.constants';
 
 export default class ExchangeAccountAddController {
@@ -208,7 +205,7 @@ export default class ExchangeAccountAddController {
       lastName: this.newAccount.lastName,
       displayName: this.newAccount.displayName,
       initials: this.newAccount.initials,
-      description: escapeDescription(this.newAccount.description),
+      description: this.newAccount.description,
       forwardingEmail: this.newAccount.forwardingEmail,
       storeCopyOfEmail: this.newAccount.storeCopyOfEmail,
       password: this.newAccount.password,
