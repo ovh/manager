@@ -7,8 +7,9 @@ import {
 
 export default class DomainDnsAnycastActivateCtrl {
   /* @ngInject */
-  constructor($q, WucOrderCartService) {
+  constructor($q, Domain, WucOrderCartService) {
     this.$q = $q;
+    this.Domain = Domain;
     this.WucOrderCartService = WucOrderCartService;
   }
 
@@ -64,6 +65,17 @@ export default class DomainDnsAnycastActivateCtrl {
     ).then((options) =>
       options.find((option) => DNS_ANYCAST_PLANCODE.includes(option.planCode)),
     );
+  }
+
+  fetchDomainExpiration() {
+    this.loadingSecondStep = true;
+    this.Domain.getZoneServiceInfo(this.domainName)
+      .then(({ expiration }) => {
+        this.domainExpiryDate = expiration;
+      })
+      .finally(() => {
+        this.loadingSecondStep = false;
+      });
   }
 
   performCheckout() {

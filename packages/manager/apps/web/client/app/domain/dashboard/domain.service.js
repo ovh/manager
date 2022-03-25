@@ -1453,9 +1453,9 @@ angular.module('services').service(
      * @param {string} serviceName
      */
     getDnsAnycastDetails(serviceName) {
-      return this.$http.get(
-        `/domain/zone/${serviceName}/option/anycast/serviceInfos`,
-      );
+      return this.$http
+        .get(`/domain/zone/${serviceName}/option/anycast/serviceInfos`)
+        .then(({ data }) => data);
     }
 
     /**
@@ -1479,7 +1479,7 @@ angular.module('services').service(
      */
     terminateDnsAnycast(serviceName, renew) {
       return this.$http.put(
-        `/domain/zonex/${serviceName}/option/anycast/serviceInfos`,
+        `/domain/zone/${serviceName}/option/anycast/serviceInfos`,
         {
           renew,
         },

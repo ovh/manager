@@ -53,6 +53,7 @@
             data-editable="!$ctrl.isCheckoutPending"
             data-submit-text="{{:: 'domain_dashboard_dns_anycast_next' | translate }}"
             data-loading="$ctrl.loading"
+            data-on-submit="$ctrl.fetchDomainExpiration()"
         >
             <div class="row">
                 <oui-select-picker
@@ -68,14 +69,8 @@
                         :
                         <strong
                             data-translate="domain_dashboard_dns_anycast_price_without_tax"
-                            data-translate-values="{ price: $ctrl.checkoutInfos.prices.withoutTax.text }"
+                            data-translate-values="{ price: $ctrl.offerPrice.price.text }"
                         ></strong>
-                        (
-                        <span
-                            data-translate="domain_dashboard_dns_anycast_price_with_tax"
-                            data-translate-values="{ price : $ctrl.checkoutInfos.prices.withTax.text }"
-                        ></span>
-                        )
                     </oui-select-picker-label>
                 </oui-select-picker>
             </div>
@@ -84,9 +79,28 @@
         <oui-step-form
             data-header="{{:: 'domain_dashboard_dns_anycast_payment' | translate }}"
             data-editable="!$ctrl.isCheckoutPending"
+            data-loading="$ctrl.loadingSecondStep"
             data-submit-text="{{:: ($ctrl.checkoutInfos.prices.withTax.value <= 0 ? 'domain_configuration_action_enable' : 'domain_dashboard_dns_anycast_pay') | translate }}"
             data-prevent-next="true"
         >
+            <dl class="w-25 oui-description oui-description_horizontal">
+                <dt
+                    data-translate="domain_dashboard_dns_anycast_prorata_price_without_tax"
+                ></dt>
+                <dd
+                    data-ng-bind="$ctrl.checkoutInfos.prices.withoutTax.text"
+                ></dd>
+                <dt
+                    data-translate="domain_dashboard_dns_anycast_prorata_price_with_tax"
+                ></dt>
+                <dd data-ng-bind="$ctrl.checkoutInfos.prices.withTax.text"></dd>
+                <dt
+                    data-translate="domain_dashboard_dns_anycast_prorata_untill"
+                ></dt>
+                <dd
+                    data-ng-bind="$ctrl.domainExpiryDate | date:'shortDate'"
+                ></dd>
+            </dl>
             <ovh-payment-method-choice data-model="$ctrl.defaultPaymentMethod">
             </ovh-payment-method-choice>
             <ovh-contracts-summary data-ng-if="$ctrl.checkoutInfos">
