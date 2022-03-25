@@ -12,9 +12,25 @@ import {
   TrackingPluginType,
 } from '../plugin/tracking/tracking';
 
+function isStagingEnvironment() {
+  return /\.dev$/.test(window.location.hostname);
+}
+
 export function initShell(): Promise<Shell> {
   return fetchConfiguration('shell').then((environment: Environment) => {
     const shell = new Shell();
+
+    if (isStagingEnvironment()) {
+      Object.entries(environment.getApplications()).forEach(
+        ([appName, appConfig]) => {
+          const url = new URL(appConfig.publicURL);
+          url.pathname = appConfig.container?.enabled
+            ? `/container/${appName}`
+            : `/${appName}`;
+          appConfig.publicURL = `${window.location.origin}${url.pathname}/${url.hash}`;
+        },
+      );
+    }
 
     // set message bus
     shell.setMessageBus(new DirectClientMessageBus());
