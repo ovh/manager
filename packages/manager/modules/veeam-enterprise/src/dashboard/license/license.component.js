@@ -8,5 +8,6 @@ export default {
     action: '<',
     serviceName: '<',
     goToDashboard: '<',
+    trackClick: '<',
   },
 };

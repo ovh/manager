@@ -11,7 +11,7 @@ import '@ovh-ux/ui-kit';
 
 import VeeamEnterpriseCtrl from './controller';
 import VeeamEnterpriseService from './service';
-import VeeamEnterpriseDashboardCtrl from '../dashboard/controller';
+import VeeamEnterpriseDashboardComponent from '../dashboard/component';
 import VeeamEnterpriseLicenseComponent from '../dashboard/license/license.component';
 import VeeamEnterpriseLicenseTerminateComponent from '../dashboard/terminate/terminate.component';
 
@@ -34,8 +34,8 @@ angular
     'oui',
   ])
   .config(routing)
-  .controller('VeeamEnterpriseDashboardCtrl', VeeamEnterpriseDashboardCtrl)
   .controller('VeeamEnterpriseCtrl', VeeamEnterpriseCtrl)
+  .component('veeamEnterpriseDashboard', VeeamEnterpriseDashboardComponent)
   .component('veeamEnterpriseLicense', VeeamEnterpriseLicenseComponent)
   .component(
     'veeamEnterpriseLicenseTerminate',

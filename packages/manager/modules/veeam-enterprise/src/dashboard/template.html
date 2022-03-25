@@ -70,6 +70,7 @@
                         <oui-action-menu-item
                             aria-label="{{ ::$ctrl.uiActions.manageAutorenew.text }}"
                             data-href="{{ $ctrl.uiActions.manageAutorenew.href }}"
+                            data-on-click="$ctrl.onAutorenewManageClick()"
                             ><span
                                 data-ng-bind="::$ctrl.uiActions.manageAutorenew.text"
                             ></span>

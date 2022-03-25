@@ -5,10 +5,12 @@ export default class VeeamEnterpriseTerminateCtrl {
   }
 
   dismissModal() {
+    this.trackClick('license::terminate::cancel');
     this.goToDashboard();
   }
 
   terminate() {
+    this.trackClick('license::terminate::confirm');
     this.loading = true;
     this.VeeamEnterpriseService.terminate(this.serviceName)
       .then((response) => {
