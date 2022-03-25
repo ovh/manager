@@ -9,7 +9,7 @@ import some from 'lodash/some';
 import isString from 'lodash/isString';
 import {
   ACCOUNT_WORLD_PHONE_REGEX,
-  escapeDescription,
+  ACCOUNT_EMAIL_ADDRESS_REGEX,
 } from '../account.constants';
 
 export default class ExchangeUpdateAccountCtrl {
@@ -36,6 +36,7 @@ export default class ExchangeUpdateAccountCtrl {
     this.navigation = navigation;
 
     this.ACCOUNT_WORLD_PHONE_REGEX = ACCOUNT_WORLD_PHONE_REGEX;
+    this.ACCOUNT_EMAIL_ADDRESS_REGEX = ACCOUNT_EMAIL_ADDRESS_REGEX;
   }
 
   $onInit() {
@@ -169,7 +170,7 @@ export default class ExchangeUpdateAccountCtrl {
           : undefined,
       description:
         modifiedBuffer.description !== originalValues.description
-          ? escapeDescription(modifiedBuffer.description)
+          ? modifiedBuffer.description
           : undefined,
       forwardingEmail:
         modifiedBuffer.forwardingEmail !== originalValues.forwardingEmail

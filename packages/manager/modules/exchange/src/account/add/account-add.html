@@ -88,7 +88,7 @@
                                 required
                                 data-ng-model="$ctrl.newAccount.login"
                                 data-ng-model-options="{ updateOn: 'blur' }"
-                                data-ng-pattern="/^(?:[a-z0-9]+(?:[-_][a-z0-9]+)*)(?:(?:\.|\+)(?:[a-z0-9]+(?:[-_][a-z0-9]+)*))*$/"
+                                data-ng-pattern="$ctrl.ACCOUNT_EMAIL_ADDRESS_REGEX"
                                 data-ng-change="$ctrl.checkEmailAddressIsAlreadyTaken()"
                             />
                             <span class="input-group-addon">@</span>
@@ -142,12 +142,22 @@
                             ></span>
                         </div>
                         <div class="oui-field__helper">
-                            <span data-translate="exchange_account_add_emailAddress_hint"></span>
+                            <span
+                                data-translate="exchange_account_add_emailAddress_hint"
+                            ></span>
                             <ul>
-                                <li data-translate="exchange_account_add_emailAddress_hint_part_1"></li>
-                                <li data-translate="exchange_account_add_emailAddress_hint_part_2"></li>
-                                <li data-translate="exchange_account_add_emailAddress_hint_part_3"></li>
-                                <li data-translate="exchange_account_add_emailAddress_hint_part_4"></li>
+                                <li
+                                    data-translate="exchange_account_add_emailAddress_hint_part_1"
+                                ></li>
+                                <li
+                                    data-translate="exchange_account_add_emailAddress_hint_part_2"
+                                ></li>
+                                <li
+                                    data-translate="exchange_account_add_emailAddress_hint_part_3"
+                                ></li>
+                                <li
+                                    data-translate="exchange_account_add_emailAddress_hint_part_4"
+                                ></li>
                             </ul>
                         </div>
                     </div>
@@ -158,9 +168,9 @@
                         data-model="$ctrl.newAccount.hiddenFromGAL"
                         data-name="accountInfoHiddenFromGAL"
                     >
-                            <span
-                                data-translate="exchange_account_add_emailAddress_hide_from_directory"
-                            ></span>
+                        <span
+                            data-translate="exchange_account_add_emailAddress_hide_from_directory"
+                        ></span>
                     </oui-checkbox>
 
                     <!--Exchange 2010-->

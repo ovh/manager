@@ -1,6 +1,11 @@
 import get from 'lodash/get';
 import isString from 'lodash/isString';
 
+import {
+  ACCOUNT_PROPERTIES_WITH_UNIT,
+  ACCOUNT_PROPERTIES_WITH_STATUS,
+} from './account.constants';
+
 export default class ExchangeAccount {
   /* @ngInject */
   constructor(
@@ -264,4 +269,34 @@ export default class ExchangeAccount {
       .post('/newAccount/rules')
       .then(({ data: rules }) => rules);
   }
+
+  accountValueToCSVString = (value) => {
+    const toStringMap = {
+      String: (v) => v,
+      Number: (v) => `${v}`,
+      Boolean: (v) => `${v}`,
+      Undefined: () => '',
+      Null: () => '',
+      Object: (v) => toStringMap.Array(Object.values(v)),
+      Array: (v) => v.map(this.accountValueToCSVString).join(','),
+      Date: (v) => v.toISOString(),
+    };
+    const type = Object.prototype.toString.call(value).match(/ (.+?)\]$/)[1];
+    const method = toStringMap[type] || toStringMap.String;
+    return method(value);
+  };
+
+  accountToCSVString = (account, properties, separator) =>
+    properties
+      .map((property) => {
+        let accountValue = account[property];
+        if (ACCOUNT_PROPERTIES_WITH_UNIT.includes(property)) {
+          accountValue = account[property].value + account[property].unit;
+        } else if (ACCOUNT_PROPERTIES_WITH_STATUS.includes(property)) {
+          accountValue = account[property].status;
+        }
+        return this.accountValueToCSVString(accountValue);
+      })
+      .map((value) => (value ? `"${value.replace(/[\r\n]/g, '')}"` : ''))
+      .join(separator);
 }
