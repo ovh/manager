@@ -68,7 +68,7 @@ export default class PciProjectNewPaymentCtrl {
   pollCheckDefaultPaymentMethod(paymentMethodId, currentTime = 0) {
     return this.$timeout(() => {
       return this.getPaymentMethod(paymentMethodId).then((paymentMethod) => {
-        if (paymentMethod.isValid()) {
+        if (paymentMethod.status === 'VALID') {
           return this.$q.when();
         }
 
