@@ -284,6 +284,61 @@ export default class PciProjectNewPaymentCtrl {
     );
   }
 
+  getInprogressValidationPaymentMethod() {
+    return this.ovhPaymentMethod
+      .getAllPaymentMethods()
+      .then((paymentMethods) => {
+        return paymentMethods
+          .reverse()
+          .find(
+            ({ integration, paymentType, status }) =>
+              integration === 'REDIRECT' &&
+              paymentType === 'CREDIT_CARD' &&
+              status === 'CREATED',
+          );
+      });
+  }
+
+  managePaymentAndProjectCreation() {
+    const { eligibility, defaultPaymentMethod, callback } = this;
+    const canCheckDefaultPayment = !!defaultPaymentMethod;
+    const canCheckNewPayment = !callback?.paymentMethodId;
+
+    // To avoid many checking payment process in same times
+    if (this.isCheckingPaymentMethod) {
+      return null;
+    }
+
+    // check if addPayment status is in URL
+    // and no paymentMethod needs to be added
+    // and there is a default payment method.
+    // In this case it means that a payment method has been added
+    // and that the APIs eligibility AND payment are sync.
+    // In other case, for example: when eligibility requires a payment method
+    // and there is a paymentStatus in URL, the onIntegrationSubmitSuccess will be triggered
+    // automatically.
+    if (!eligibility.isAddPaymentMethodRequired() && canCheckDefaultPayment) {
+      return this.checkPaymentMethodAndCreateProject(
+        this.defaultPaymentMethod.paymentMethodId,
+      );
+    }
+
+    // used as fullback in case where new payment is not yet define as default
+    if (eligibility.isAddPaymentMethodRequired() && canCheckNewPayment) {
+      return this.getInprogressValidationPaymentMethod().then(
+        (paymentMethod) => {
+          return paymentMethod
+            ? this.checkPaymentMethodAndCreateProject(
+                paymentMethod.paymentMethodId,
+              )
+            : null;
+        },
+      );
+    }
+
+    return null;
+  }
+
   /* -----  End of Helpers  ------ */
 
   /* =============================
@@ -396,21 +451,6 @@ export default class PciProjectNewPaymentCtrl {
     };
   }
 
-  getInprogressValidationPaymentMethod() {
-    return this.ovhPaymentMethod
-      .getAllPaymentMethods()
-      .then((paymentMethods) => {
-        return paymentMethods
-          .reverse()
-          .find(
-            ({ integration, paymentType, status }) =>
-              integration === 'REDIRECT' &&
-              paymentType === 'CREDIT_CARD' &&
-              status === 'CREATED',
-          );
-      });
-  }
-
   onIntegrationSubmitSuccess(paymentMethodIdParam) {
     const hiPayPaymentMethodId = this.callback?.paymentMethodId;
     const adyenPaymentMethodId = Number.isInteger(paymentMethodIdParam)
@@ -453,35 +493,7 @@ export default class PciProjectNewPaymentCtrl {
       },
     );
 
-    // check if addPayment status is in URL
-    // and no paymentMethod needs to be added
-    // and there is a default payment method.
-    // In this case it means that a payment method has been added
-    // and that the APIs eligibility AND payment are sync.
-    // In other case, for example: when eligibility requires a payment method
-    // and there is a paymentStatus in URL, the onIntegrationSubmitSuccess will be triggered
-    // automatically.
-    if (
-      !this.eligibility.isAddPaymentMethodRequired() &&
-      this.defaultPaymentMethod &&
-      this.paymentStatus === 'success'
-    ) {
-      return this.checkPaymentMethodAndCreateProject(
-        this.defaultPaymentMethod.paymentMethodId,
-      );
-    }
-
-    if (
-      this.eligibility.isAddPaymentMethodRequired() &&
-      this.paymentStatus === 'success' &&
-      !this.callback?.paymentMethodId
-    ) {
-      return this.getInprogressValidationPaymentMethod().then((paymentMethod) =>
-        this.checkPaymentMethodAndCreateProject(paymentMethod.paymentMethodId),
-      );
-    }
-
-    return null;
+    return this.managePaymentAndProjectCreation();
   }
 
   $onDestroy() {
