@@ -7,7 +7,7 @@ import map from 'lodash/map';
 
 import {
   ACCOUNT_WORLD_PHONE_REGEX,
-  escapeDescription,
+  ACCOUNT_EMAIL_ADDRESS_REGEX,
 } from '../account.constants';
 import { EXCHANGE_CONTAINER_MESSAGING } from '../../dashboard/exchange.constants';
 
@@ -42,6 +42,7 @@ export default class ExchangeAccountAddController {
     this.messaging = messaging;
 
     this.ACCOUNT_WORLD_PHONE_REGEX = ACCOUNT_WORLD_PHONE_REGEX;
+    this.ACCOUNT_EMAIL_ADDRESS_REGEX = ACCOUNT_EMAIL_ADDRESS_REGEX;
   }
 
   $onInit() {
@@ -210,7 +211,7 @@ export default class ExchangeAccountAddController {
       lastName: this.newAccount.lastName,
       displayName: this.newAccount.displayName,
       initials: this.newAccount.initials,
-      description: escapeDescription(this.newAccount.description),
+      description: this.newAccount.description,
       forwardingEmail: this.newAccount.forwardingEmail,
       storeCopyOfEmail: this.newAccount.storeCopyOfEmail,
       password: this.newAccount.password,
