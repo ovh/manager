@@ -412,10 +412,19 @@ export default class PciProjectNewPaymentCtrl {
   }
 
   onIntegrationSubmitSuccess(paymentMethodIdParam) {
+    const hiPayPaymentMethodId = this.callback?.paymentMethodId;
+    const adyenPaymentMethodId = Number.isInteger(paymentMethodIdParam)
+      ? paymentMethodIdParam
+      : null;
     const paymentMethodId =
-      this.callback?.paymentMethodId ||
+      hiPayPaymentMethodId ||
+      adyenPaymentMethodId ||
       this.defaultPaymentMethod?.paymentMethodId;
-    return paymentMethodIdParam === 'success' && paymentMethodId
+    const canProceedToValidation = !!(
+      !this?.isCheckingPaymentMethod && paymentMethodId
+    );
+
+    return canProceedToValidation
       ? this.checkPaymentMethodAndCreateProject(paymentMethodId)
       : null;
   }
