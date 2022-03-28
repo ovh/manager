@@ -12,6 +12,8 @@ export default {
     goToEdit: '<',
     goToDelete: '<',
     goToTasks: '<',
+    goToIntegrations: '<',
+    serviceIntegrationList: '<',
   },
   controller,
   template,
