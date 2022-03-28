@@ -11,5 +11,7 @@
   "pci_databases_connectors_add": "Ajouter un connector",
   "pci_databases_connectors_connector_resume": "Le connecteur {{name}} a bien été démarré",
   "pci_databases_connectors_connector_paused": "Le connecteur {{name}} a bien été mis en pause",
-  "pci_databases_connectors_connector_restart": "Le connecteur {{name}} a bien été redémarré"
+  "pci_databases_connectors_connector_restart": "Le connecteur {{name}} a bien été redémarré",
+  "pci_databases_connectors_no_integration_text": "Votre Kafka Connect n'est pas encore connecté à un Kafka.",
+  "pci_databases_connectors_no_integration_link": "Vous devez intégrer un service Kafka afin de pouvoir ajouter un Connector."
 }

@@ -1,4 +1,6 @@
 import map from 'lodash/map';
+import ServiceIntegration from '../../../../../../components/project/storages/databases/serviceIntegration.class';
+import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const stateName =
@@ -58,6 +60,29 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         );
       },
+      goToIntegrations: /* @ngInject */ ($state, databaseId, projectId) => () =>
+        $state.go(
+          'pci.projects.project.storages.databases.dashboard.service-integration',
+          {
+            projectId,
+            databaseId,
+          },
+        ),
+      serviceIntegrationList: /* @ngInject */ (
+        database,
+        DatabaseService,
+        projectId,
+      ) =>
+        DatabaseService.getIntegrations(
+          projectId,
+          database.engine,
+          database.id,
+        ).then((integrations) =>
+          map(
+            integrations,
+            (integration) => new ServiceIntegration(integration),
+          ).filter((s) => s.statusGroup === STATUS.READY),
+        ),
       availableConnectors: /* @ngInject */ (
         database,
         DatabaseService,
