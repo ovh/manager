@@ -35,6 +35,9 @@ export default /* @ngInject */ ($stateProvider) => {
           cartId: cart.cartId,
         }),
 
+      projectsLink: /* @ngInject */ ($state) => () =>
+        $state.href('pci.projects'),
+
       hds: /* @ngInject */ (
         hdsAddonOption,
         isHdsAvailable,

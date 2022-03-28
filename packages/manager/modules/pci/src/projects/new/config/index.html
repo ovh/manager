@@ -49,6 +49,7 @@
     <div
         class="actions-container d-md-flex flex-row-reverse justify-content-between align-items-center my-3"
     >
+        <!--Go to next step (payment)-->
         <button
             class="oui-button oui-button_primary oui-button_icon-right no-transition"
             type="submit"
@@ -59,5 +60,12 @@
             <span class="oui-icon oui-icon-chevron-right" aria-hidden="true">
             </span>
         </button>
+
+        <!--Back to projects page-->
+        <a
+            data-ng-href="{{:: $ctrl.projectsLink() }}"
+            data-translate="pci_project_new_config_btn_return_to_projects"
+        >
+        </a>
     </div>
 </div>
