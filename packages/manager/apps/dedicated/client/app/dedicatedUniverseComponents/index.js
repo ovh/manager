@@ -7,11 +7,6 @@ import ducTranslate from './translate';
 
 const moduleName = 'dedicatedUniverseComponents';
 
-angular.module(moduleName, [
-  ducBytes,
-  ducNotification,
-  ducPrice,
-  ducTranslate,
-]);
+angular.module(moduleName, [ducBytes, ducNotification, ducPrice, ducTranslate]);
 
 export default moduleName;
