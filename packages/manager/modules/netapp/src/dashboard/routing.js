@@ -1,7 +1,7 @@
 import NetApp from './Netapp.class';
 import Share from './Share.class';
 import SnapshotPolicy from './SnapshotPolicy.class';
-import { MINIMUM_VOLUME_SIZE, SERVICE_TYPE } from './constants';
+import { MINIMUM_VOLUME_SIZE } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.dashboard', {
@@ -11,6 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
         component: 'ovhManagerNetAppDashboard',
       },
     },
+    redirectTo: 'netapp.dashboard.index',
     resolve: {
       trackClick: /* @ngInject */ (atInternet) => (tracker) =>
         atInternet.trackClick({
@@ -20,17 +21,11 @@ export default /* @ngInject */ ($stateProvider) => {
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       dashboardLink: /* @ngInject */ ($state, $transition$) =>
-        $state.href('netapp.dashboard', $transition$.params()),
+        $state.href('netapp.dashboard.index', $transition$.params()),
       goToCreateVolume: /* @ngInject */ ($state, trackClick) => () => {
         trackClick('create-volume');
         return $state.go('netapp.dashboard.volumes.create');
       },
-      serviceInfos: /* @ngInject */ ($http, serviceName) =>
-        $http
-          .get(`/storage/netapp/${serviceName}/serviceInfos`)
-          .then(({ data }) => {
-            return { ...data, serviceType: SERVICE_TYPE };
-          }),
       volumes: /* @ngInject */ ($http, serviceName) =>
         $http
           .get(`/storage/netapp/${serviceName}/share?detail=true`)
@@ -61,17 +56,8 @@ export default /* @ngInject */ ($stateProvider) => {
           .get(`/storage/netapp/${serviceName}`)
           .then(({ data }) => data)
           .then((storage) => new NetApp(storage)),
-      isCommitmentAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
-        ovhFeatureFlipping
-          .checkFeatureAvailability(['billing:commitment'])
-          .then((commitmentAvailability) =>
-            commitmentAvailability.isFeatureAvailable('billing:commitment'),
-          )
-          .catch(() => false),
       canCreateVolume: /* @ngInject */ (features) =>
         features.isFeatureAvailable('netapp:volumes:create-volume'),
-      canManageSubscription: /* @ngInject */ (features) =>
-        features.isFeatureAvailable('netapp:dashboard:subscription-tile'),
       isSnapshotPoliciesAvailable: /* @ngInject */ (features) =>
         features.isFeatureAvailable('netapp:snapshot-policies'),
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
