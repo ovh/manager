@@ -1,3 +1,14 @@
+## [5.64.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.64.1...@ovh-ux/manager-pci@5.64.2) (2022-03-28)
+
+
+### Bug Fixes
+
+* **pci.payment:** allow polling on success payment ([f22196e](https://github.com/ovh/manager/commit/f22196eb655c785a20d025d61b97b3e42776ac26))
+* **pci.payment:** dont allow the created status as valid ([e0d6065](https://github.com/ovh/manager/commit/e0d6065c123e62427bf622effaa59b5b40aa9d12))
+* **pci.payment:** manage adyen hi-pay passed params ([5d6a257](https://github.com/ovh/manager/commit/5d6a25778f7eef0c2e812b2fce80bc8b7b5a2104))
+
+
+
 ## [5.64.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.64.0...@ovh-ux/manager-pci@5.64.1) (2022-03-24)
 
 
