@@ -7,6 +7,7 @@ export default {
   template,
   bindings: {
     cart: '<',
+    isValidHdsSupportLevel: '<',
     getActionHref: '<',
     goToPayment: '<',
     hds: '<',
