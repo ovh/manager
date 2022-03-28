@@ -75,8 +75,9 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                    'oui-badge_success': !$row.isPaused(),
-                    'oui-badge_warning':  $row.isPaused() ||  $row.isCreating()
+                    'oui-badge_success': !$row.isPaused() && !$row.isError(),
+                    'oui-badge_warning':  $row.isPaused() ||  $row.isCreating(),
+                    'oui-badge_error':  $row.isError()
                 }"
             >
                 <span>{{$row.status}}</span>

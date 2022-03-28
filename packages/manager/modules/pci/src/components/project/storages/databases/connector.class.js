@@ -33,4 +33,8 @@ export default class Connector {
   isCreating() {
     return this.status === CONNECTOR_STATUS.CREATING;
   }
+
+  isError() {
+    return this.status === CONNECTOR_STATUS.FAILED;
+  }
 }
