@@ -1,14 +1,14 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 
-import additionalDiskTerminate from '../../../components/additional-disk/terminate';
+import terminate from '../../../components/terminate';
 
-import routing from './terminate.routing';
+import routing from './terminate-option.routing';
 
 const moduleName = 'vpsDashboardTerminateOptionModule';
 
 angular
-  .module(moduleName, ['ui.router', additionalDiskTerminate])
+  .module(moduleName, ['ui.router', terminate])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 
