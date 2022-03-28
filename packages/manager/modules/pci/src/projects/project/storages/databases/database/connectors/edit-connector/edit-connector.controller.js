@@ -57,19 +57,17 @@ export default class EditConnectorCtrl {
   static getErrorsMessages(err) {
     let message = ``;
     let apiMessages = null;
-    if (err?.data?.details?.error) {
-      apiMessages = JSON.parse(err.data.details.error);
+    if (err?.data?.details) {
+      apiMessages = Object.values(err?.data?.details);
+    } else if (err?.data?.details?.message) {
+      apiMessages = err.data.details.message;
     } else if (err?.data?.message) {
-      try {
-        apiMessages = JSON.parse(err.data.message);
-      } catch (e) {
-        return `<br/><ul><li>${err.data.message}</li></ul>`;
-      }
+      return `<br/><ul><li>${err.data.message}</li></ul>`;
     }
     if (apiMessages) {
       message += '<br/><ul>';
-      apiMessages.errors.forEach((error) => {
-        message += `<li>${error.message.replace(/"/g, '')}</li>`;
+      apiMessages.forEach((error) => {
+        message += `<li>${error.replace(/"/g, '')}</li>`;
       });
       message += '</ul>';
     }

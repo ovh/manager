@@ -2,6 +2,7 @@ export const CONNECTOR_STATUS = {
   CREATING: 'CREATING',
   RUNNING: 'RUNNING',
   PAUSED: 'PAUSED',
+  FAILED: 'FAILED',
 };
 export const TASK_STATUS = {
   RUNNING: 'RUNNING',
