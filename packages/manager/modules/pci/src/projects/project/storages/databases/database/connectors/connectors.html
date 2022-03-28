@@ -6,6 +6,22 @@
 
     <h2 data-translate="pci_databases_connectors_tab_title"></h2>
 
+    <oui-message
+        data-ng-if="$ctrl.serviceIntegrationList.length === 0"
+        data-type="warning"
+        data-dismissable
+    >
+        <span
+            data-translate="pci_databases_connectors_no_integration_text"
+        ></span>
+        <button
+            class="oui-link"
+            type="button"
+            data-ng-click="$ctrl.goToIntegrations()"
+            data-translate="pci_databases_connectors_no_integration_link"
+        ></button>
+    </oui-message>
+
     <oui-datagrid
         class="mt-5"
         data-page-size="10"
@@ -137,7 +153,10 @@
             </oui-action-menu-item>
         </oui-action-menu>
         <oui-datagrid-topbar>
-            <oui-button data-on-click="$ctrl.goToAdd()">
+            <oui-button
+                data-on-click="$ctrl.goToAdd()"
+                data-disabled="!$ctrl.database.isActive() || $ctrl.serviceIntegrationList.length === 0"
+            >
                 <span
                     class="oui-icon oui-icon-add pr-1"
                     aria-hidden="true"
