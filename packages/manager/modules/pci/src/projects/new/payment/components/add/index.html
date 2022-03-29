@@ -27,6 +27,20 @@
         </div>
     </div>
 
+    <!--Credit card info banner-->
+    <oui-message
+        data-type="info"
+        data-ng-if="$ctrl.model.paymentMethod.type.isCreditCard()"
+    >
+        <span
+            data-translate="pci_project_new_payment_method_add_credit_card_info_part_1"
+        ></span>
+        <span
+            class="font-weight-bold"
+            data-translate="pci_project_new_payment_method_add_credit_card_info_part_2"
+        ></span>
+    </oui-message>
+
     <!--PAYPAL charged tax info banner-->
     <oui-message
         data-type="warning"
@@ -52,7 +66,7 @@
 
         <p>
             <small
-                data-ng-if="$ctrl.model.paymentMethod"
+                data-ng-if="$ctrl.model.paymentMethod && !$ctrl.model.paymentMethod.type.isCreditCard()"
                 data-translate="{{ 'pci_project_new_payment_method_add_info_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
                 data-translate-values="{ paymentMethodSection: $ctrl.paymentSectionHref }"
             >
