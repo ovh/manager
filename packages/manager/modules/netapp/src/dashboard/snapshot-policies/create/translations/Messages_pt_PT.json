@@ -32,5 +32,6 @@
   "netapp_snapshot_policies_create_add_rule_cancel": "Cancelar",
   "netapp_snapshot_policies_create_rule_delete": "Eliminar a regra",
   "netapp_snapshot_policies_create_error": "Ocorreu um erro aquando da criação da política de snapshots.",
-  "netapp_snapshot_policies_create_success": "A política de snapshots {{ snapshotPolicyName }} foi criada com sucesso!"
+  "netapp_snapshot_policies_create_success": "A política de snapshots {{ snapshotPolicyName }} foi criada com sucesso!",
+  "netapp_snapshot_policies_create_title": "Criar uma nova política de snapshots"
 }

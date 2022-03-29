@@ -32,5 +32,6 @@
   "netapp_snapshot_policies_create_rule_delete": "Delete the rule",
   "netapp_snapshot_policies_create_rule_edit": "Edit the rule",
   "netapp_snapshot_policies_create_error": "An error has occurred creating the snapshot policy.",
-  "netapp_snapshot_policies_create_success": "The {{snapshotPolicyName}} snapshot policy has been created."
+  "netapp_snapshot_policies_create_success": "The {{snapshotPolicyName}} snapshot policy has been created.",
+  "netapp_snapshot_policies_create_title": "Create a new snapshot policy"
 }
