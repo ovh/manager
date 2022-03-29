@@ -1,66 +1,93 @@
-import filter from 'lodash/filter';
-import get from 'lodash/get';
-import map from 'lodash/map';
+export default class PackExchangeAccountCtrl {
+  /* @ngInject */
+  constructor(
+    $scope,
+    $http,
+    $q,
+    $stateParams,
+    coreURLBuilder,
+    OvhApiPackXdslExchangeAccount,
+    iceberg,
+  ) {
+    this.$scope = $scope;
+    this.$http = $http;
+    this.$q = $q;
+    this.$stateParams = $stateParams;
+    this.coreURLBuilder = coreURLBuilder;
+    this.OvhApiPackXdslExchangeAccount = OvhApiPackXdslExchangeAccount;
+    this.iceberg = iceberg;
+  }
 
-export default /* @ngInject */ function PackExchangeAccountCtrl(
-  $scope,
-  $http,
-  $stateParams,
-  coreURLBuilder,
-  OvhApiPackXdslExchangeAccount,
-) {
-  const self = this;
-
-  function init() {
-    self.services = [];
-
-    $scope.loaders = {
+  $onInit() {
+    this.$scope.loaders = {
       services: true,
     };
-
-    return OvhApiPackXdslExchangeAccount.Services()
-      .v6()
-      .query({
-        packName: $stateParams.packName,
+    return this.getExchangeAccounts()
+      .then((services) => {
+        this.services = services;
       })
-      .$promise.then((serviceIds) =>
-        $http
-          .get('/email/exchange/*/service/*/account?$aggreg=1', {
-            serviceType: 'apiv7',
-          })
-          .then((servicesParam) => {
-            let services = servicesParam;
-            services = get(services, 'data');
-            self.services = filter(
-              map(
-                filter(services, (service) => service.value !== null),
-                (service) => {
-                  const splittedPath = service.path.split('/');
-                  return angular.extend(service.value, {
-                    organizationName: splittedPath[3],
-                    exchangeService: splittedPath[5],
-                    managerUrl: coreURLBuilder.buildURL(
-                      'exchange',
-                      '#/configuration/exchange_hosted/:organization/:productId',
-                      {
-                        organization: splittedPath[3],
-                        productId: splittedPath[5],
-                        tab: 'ACCOUNT',
-                      },
-                    ),
-                  });
-                },
-              ),
-              (service) =>
-                serviceIds.indexOf(`${service.exchangeService}-${service.id}`) >
-                -1,
-            );
-          }),
-      )
       .finally(() => {
-        $scope.loaders.services = false;
+        this.$scope.loaders.services = false;
       });
   }
 
-  init();
+  getExchangeAccountServices() {
+    return this.OvhApiPackXdslExchangeAccount.Services()
+      .v6()
+      .query({
+        packName: this.$stateParams.packName,
+      })
+      .$promise.then((serviceIds) =>
+        serviceIds.map((serviceId) => {
+          const regex = /^(.*)-(.*)$/gi;
+          const [, exchangeService, accountId] = regex.exec(serviceId);
+          return { exchangeService, accountId };
+        }),
+      );
+  }
+
+  getExchangeAccounts() {
+    return this.getExchangeAccountServices()
+      .then((exchangeServicesIds) => {
+        const accountIdsByExchangeService = exchangeServicesIds.reduce(
+          (all, { exchangeService, accountId }) => {
+            return {
+              ...all,
+              [exchangeService]: [...(all[exchangeService] || []), accountId],
+            };
+          },
+          {},
+        );
+
+        return this.$q.all(
+          Object.keys(accountIdsByExchangeService).map((exchangeService) => {
+            return this.iceberg(
+              `/email/exchange/${exchangeService}/service/${exchangeService}/account`,
+            )
+              .query()
+              .addFilter(
+                'id',
+                'in',
+                accountIdsByExchangeService[exchangeService],
+              )
+              .expand('CachedObjectList-Pages')
+              .execute()
+              .$promise.then(({ data }) =>
+                data.map((account) => ({
+                  ...account,
+                  managerUrl: this.coreURLBuilder.buildURL(
+                    'exchange',
+                    '#/exchange/:organization/:exchangeService/account',
+                    {
+                      organization: exchangeService,
+                      exchangeService,
+                    },
+                  ),
+                })),
+              );
+          }),
+        );
+      })
+      .then((accounts) => accounts.flat());
+  }
 }
