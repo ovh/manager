@@ -50,7 +50,10 @@ export default {
               abbreviatedNumber,
             ),
           );
-          const index = self.abbreviatedNumbers.indexOf(abbreviatedNumber);
+          const index = self.abbreviatedNumbers.findIndex(
+            ({ abbreviatedNumber: number }) =>
+              number === abbreviatedNumber.abbreviatedNumber,
+          );
           self.abbreviatedNumbers.splice(index, 1);
         })
         .catch((err) => {
