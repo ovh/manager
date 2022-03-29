@@ -58,6 +58,7 @@
                     data-description="{{:: ('pci_projects_project_storages_containers_add_offer_' + offerName + '_description') | translate }}"
                     data-values="[offerName]"
                     data-variant="light"
+                    data-on-change="$ctrl.onContainerSolutionChange()"
                     data-required
                 >
                 </oui-select-picker>
@@ -76,6 +77,7 @@
                     data-description="{{ ('pci_projects_project_storages_containers_add_offer_' + $ctrl.container.offer + '_description') | translate }}"
                     data-values="[$ctrl.container.offer]"
                     data-variant="light"
+                    data-on-change="$ctrl.onContainerSolutionChange()"
                     data-required
                 >
                 </oui-select-picker>

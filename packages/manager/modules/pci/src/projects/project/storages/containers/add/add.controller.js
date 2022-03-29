@@ -71,8 +71,11 @@ export default class PciStoragesContainersAddController {
     this.messages = this.messageHandler.getMessages();
   }
 
-  onRegionsFocus() {
+  onContainerSolutionChange() {
     this.container.region = null;
+  }
+
+  onRegionsFocus() {
     this.displaySelectedRegion = false;
   }
 
