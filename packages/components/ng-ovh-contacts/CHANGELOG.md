@@ -1,3 +1,17 @@
+# [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contacts@4.0.8...@ovh-ux/ng-ovh-contacts@5.0.0) (2022-03-29)
+
+
+### Code Refactoring
+
+* **ovh-contacts:** kill /me/contact v7 call ([c3f020a](https://github.com/ovh/manager/commit/c3f020a5be5f1dd3395183d10421952cfba0dc85))
+
+
+### BREAKING CHANGES
+
+* **ovh-contacts:** The @ovh-ux/ng-ovh-api-wrappers package is added to the peer dependencies
+
+
+
 ## [4.0.8](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contacts@4.0.7...@ovh-ux/ng-ovh-contacts@4.0.8) (2022-03-24)
 
 
