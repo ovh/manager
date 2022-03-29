@@ -1,3 +1,25 @@
+# [13.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.35.1...@ovh-ux/manager-telecom@13.36.0) (2022-03-29)
+
+
+### Bug Fixes
+
+* **hubic:** replace apiv7 call by apiv6 ([32a1f99](https://github.com/ovh/manager/commit/32a1f99d10d829e93e04fa8d10e30e230766b025))
+
+
+### Features
+
+* **line:** replace xdsl search api call ([e9984b8](https://github.com/ovh/manager/commit/e9984b8490ab4407ea90831657b175b9af789d68))
+* **pack:** replace exchange APIv7 call ([#6586](https://github.com/ovh/manager/issues/6586)) ([e3bf999](https://github.com/ovh/manager/commit/e3bf9996f285179c4f4959a89e512f70de141693))
+* **telephony:** replace apiv7 call ([1e42e73](https://github.com/ovh/manager/commit/1e42e73d5726017814dedfd84043c49fdf9fdf5b))
+* **telephony:** replace apiv7 call ([9883861](https://github.com/ovh/manager/commit/9883861f254e6b0b4af69681d5c028aec5e1a8e1))
+
+
+### Reverts
+
+* **configuration.redirect:** kill apiv7 calls ([06d5d54](https://github.com/ovh/manager/commit/06d5d545fdc1f30055a4f7cc330f7d81f21f04ff))
+
+
+
 ## [13.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.35.0...@ovh-ux/manager-telecom@13.35.1) (2022-03-24)
 
 

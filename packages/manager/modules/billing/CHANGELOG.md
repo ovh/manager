@@ -1,3 +1,12 @@
+# [0.13.0-alpha.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.2...@ovh-ux/manager-billing@0.13.0-alpha.3) (2022-03-29)
+
+
+### Bug Fixes
+
+* **dedicated:** replace billing payments apiv7 calls with iceberg ([#3657](https://github.com/ovh/manager/issues/3657)) ([b55e13a](https://github.com/ovh/manager/commit/b55e13adef4a2b0f98aa638e67a45cc51f9d80a0))
+
+
+
 # [0.13.0-alpha.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.1...@ovh-ux/manager-billing@0.13.0-alpha.2) (2022-03-24)
 
 
