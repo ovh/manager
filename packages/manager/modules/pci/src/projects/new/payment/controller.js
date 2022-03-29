@@ -452,11 +452,13 @@ export default class PciProjectNewPaymentCtrl {
   }
 
   onIntegrationSubmitSuccess(paymentMethodIdParam) {
+    const paypalPaymentMethodId = paymentMethodIdParam?.paymentMethodId;
     const hiPayPaymentMethodId = this.callback?.paymentMethodId;
     const adyenPaymentMethodId = Number.isInteger(paymentMethodIdParam)
       ? paymentMethodIdParam
       : null;
     const paymentMethodId =
+      paypalPaymentMethodId ||
       hiPayPaymentMethodId ||
       adyenPaymentMethodId ||
       this.defaultPaymentMethod?.paymentMethodId;
