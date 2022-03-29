@@ -162,8 +162,8 @@
 
             <a
                 data-ng-if="!$ctrl.model.paymentMethod.isHandleByComponent() || !$ctrl.componentInitialParams"
-                data-ng-href="{{ $ctrl.getCancelHref() }}"
-                data-translate="pci_project_new_payment_btn_cancel"
+                data-ng-href="{{ $ctrl.step1Link() }}"
+                data-translate="pci_project_new_payment_btn_return"
             >
             </a>
         </div>
