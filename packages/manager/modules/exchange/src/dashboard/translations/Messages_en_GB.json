@@ -1597,5 +1597,17 @@
   "exchange_reset_mfa_success": "The two-factor authentication has been successfully reset.",
   "exchange_mfa_error": "An error has occurred: {{error}}",
   "exchange_delete_mfa_success": "The two-factor authentication was successfully deleted.",
-  "exchange_delete_mfa_error": "An error has occurred deleting the two-factor authentication: {{error}}"
+  "exchange_delete_mfa_error": "An error has occurred deleting the two-factor authentication: {{error}}",
+  "exchange_resilitation_action_intro_1": "Are you sure you want to cancel the \"{0}\" Exchange service?",
+  "exchange_resilitation_action_intro_2": "This action will cancel automatic renewal at the end of the expiry period, causing the service to be blocked.",
+  "exchange_resilitation_action_intro_3": "You can use the service normally until this date.",
+  "exchange_resilitation_action_confirmation_1": "Warning: you are about to completely cancel the \"{0}\" service and the {1} Exchange accounts attached to it.",
+  "exchange_resilitation_action_confirmation_2": "Are you sure you want to proceed with this operation?",
+  "exchange_resilitation_cancel_action_intro_1": "The \"{0}\" Exchange service is scheduled to close on the expiry date.",
+  "exchange_resilitation_cancel_action_intro_2": "Are you sure you want to undo this cancellation? The service will then switch to automatic renewal.",
+  "exchange_resilitation_cancel_action_confirmation_1": "You are about to undo the cancellation of the “{0}” service.",
+  "exchange_resilitation_cancel_action_confirmation_2": "Do you want to proceed with this operation?",
+  "exchange_resilitation_cancel_action_confirmation_3": "The service will then switch to automatic renewal.",
+  "exchange_update_billing_periode_intro_1": "Choose the automatic renewal frequency for each account.",
+  "exchange_update_billing_periode_intro_2": "This will be applied from the next renewal."
 }

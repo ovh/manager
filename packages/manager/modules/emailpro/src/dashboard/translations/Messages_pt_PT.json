@@ -848,5 +848,21 @@
   "email_tab_modal_delete_redirection_accounts": "<strong>{0}</strong> para <strong>{1}</strong>",
   "emails_common_continue_question": "Deseja continuar?",
   "emails_common_account_name_conditions": "Atenção, o nome da conta deve respeitar as seguintes condições: <br/>- Mínimo {0} caracteres<br/>- Máximo {1} caracteres<br/>- Sem espaço<br/>- Sem caracteres acentuados<br/>- Sem caracteres especiais com exceção de ., - e _.",
-  "emailpro-mxplan_tab_domain_no_domains": "Não foram encontrados resultados"
+  "emailpro-mxplan_tab_domain_no_domains": "Não foram encontrados resultados",
+  "emailpro_resilitation_action_intro_1": "Tem a certeza de que pretende rescindir o serviço E-mail Pro {0}?",
+  "emailpro_resilitation_action_intro_2": "Esta ação anulará a renovação automática no final do período de expiração e implicará o bloqueio do serviço.",
+  "emailpro_resilitation_action_intro_3": "Pode utilizar o serviço normalmente até essa data.",
+  "emailpro-mxplan_resilitation_action_intro_1": "Tem a certeza de que pretende rescindir o serviço E-mail MX Plan {0}?",
+  "emailpro-mxplan_resilitation_action_intro_2": "Esta ação anulará a renovação automática no final do período de expiração e implicará o bloqueio do serviço.",
+  "emailpro-mxplan_resilitation_action_intro_3": "Pode utilizar o serviço normalmente até essa data.",
+  "emailpro_resilitation_action_confirmation_1": "Atenção: está prestes a rescindir integralmente o serviço \"{0}\", bem como as {1} contas E-mail Pro associadas.",
+  "emailpro_resilitation_action_confirmation_2": "Pretende realmente proceder a esta operação?",
+  "emailpro-mxplan_resilitation_action_confirmation_1": "Atenção: está prestes a rescindir integralmente o serviço \"{0}\", bem como as {1} contas E-mail MX Plan associadas.",
+  "email_pro-mxplan_resilitation_action_confirmation_2": "Pretende realmente proceder a esta operação?",
+  "emailpro_resilitation_cancel_action_intro_1": "O cancelamento do serviço E-mail Pro \"{0}\" está programado para a data de expiração.",
+  "emailpro_resilitation_cancel_action_intro_2": "Tem a certeza de que deseja anular esta rescisão?",
+  "emailpro_resilitation_cancel_action_intro_3": "O serviço passará a renovação automática.",
+  "emailpro_resilitation_cancel_action_confirmation_1": "Está prestes a anular o cancelamento do serviço \"{0}\".",
+  "emailpro_resilitation_cancel_action_confirmation_2": "Deseja proceder a esta operação?",
+  "emailpro_resilitation_cancel_action_confirmation_3": "O serviço passará a renovação automática."
 }

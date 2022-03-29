@@ -848,5 +848,21 @@
   "email_tab_modal_delete_redirection_accounts": "<strong>{0}</strong> to <strong>{1}</strong>",
   "emails_common_continue_question": "Do you wish to continue?",
   "emails_common_account_name_conditions": "Important - the account name must meet the following conditions: <br/>- Minimum {0} characters<br/>- Maximum {1} characters<br/>- No spaces<br/>- No accented characters<br/>- No special characters apart from: ., - and _.",
-  "emailpro-mxplan_tab_domain_no_domains": "No results found"
+  "emailpro-mxplan_tab_domain_no_domains": "No results found",
+  "emailpro_resilitation_action_intro_1": "Are you sure you want to cancel the {0} Email Pro service?",
+  "emailpro_resilitation_action_intro_2": "This action will cancel automatic renewal at the end of the expiry period, causing the service to be blocked.",
+  "emailpro_resilitation_action_intro_3": "You can use the service normally until this date.",
+  "emailpro-mxplan_resilitation_action_intro_1": "Are you sure you want to cancel the {0} MX Plan email service?",
+  "emailpro-mxplan_resilitation_action_intro_2": "This action will cancel automatic renewal at the end of the expiry period, causing the service to be blocked.",
+  "emailpro-mxplan_resilitation_action_intro_3": "You can use the service normally until this date.",
+  "emailpro_resilitation_action_confirmation_1": "Warning: You are about to completely cancel the “{0}” service, as well as the {1} Email Pro accounts attached to it.",
+  "emailpro_resilitation_action_confirmation_2": "Are you sure you want to proceed with this operation?",
+  "emailpro-mxplan_resilitation_action_confirmation_1": "Warning: You are about to completely cancel the “{0}” service, as well as the {1} MX Plan email accounts attached to it.",
+  "email_pro-mxplan_resilitation_action_confirmation_2": "Are you sure you want to proceed with this operation?",
+  "emailpro_resilitation_cancel_action_intro_1": "The “{0}” Email Pro service is scheduled to close on the expiry date.",
+  "emailpro_resilitation_cancel_action_intro_2": "Are you sure you want to undo this cancellation?",
+  "emailpro_resilitation_cancel_action_intro_3": "The service will then switch to automatic renewal.",
+  "emailpro_resilitation_cancel_action_confirmation_1": "You are about to undo the cancellation of the “{0}” service.",
+  "emailpro_resilitation_cancel_action_confirmation_2": "Do you want to proceed with this operation?",
+  "emailpro_resilitation_cancel_action_confirmation_3": "The service will then switch to automatic renewal."
 }
