@@ -4420,10 +4420,10 @@
   resolved "https://registry.yarnpkg.com/@open-draft/until/-/until-1.0.3.tgz#db9cc719191a62e7d9200f6e7bab21c5b848adca"
   integrity sha512-Aq58f5HiWdyDlFffbbSjAlv596h/cOnt2DO1w3DOC7OJ5EHs0hd/nycJfiu9RJbT6Yk6F1knnRRXNSpxoIVZ9Q==
 
-"@ovh-ux/ng-ovh-api-wrappers@^4.0.10":
-  version "4.0.10"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.10.tgz#a71f49a916254780840eeeda9a0aacb1d83f2d28"
-  integrity sha512-CLCDglm0BpGSTMSA3J3zWo4KNZ/HRt6YYVtzYCmFItc+DRlAZPKAZ2GOGKIBwoKU90KdIlmL+Bvdw1iwb1C7+g==
+"@ovh-ux/ng-ovh-api-wrappers@^4.0.11", "@ovh-ux/ng-ovh-api-wrappers@^4.0.4":
+  version "4.0.11"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.11.tgz#c8018b8e545408916125f22778a15f88b6916907"
+  integrity sha512-YAGb5Fe6IH7GenWiuwu8Wr0S8IhvuQly7XDTI6/4B9L27wJWqY7gYFghvS/kRhAsYI9AKkl7tDAFZo/nJHkaRg==
   dependencies:
     lodash "^4.17.21"
 
@@ -12686,10 +12686,15 @@ flat-cache@^3.0.4:
     flatted "^3.1.0"
     rimraf "^3.0.2"
 
-flatpickr@4.6.9, flatpickr@^4.6.3, flatpickr@~4.5.2:
+flatpickr@^4.6.3:
   version "4.6.9"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
   integrity sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==
+
+flatpickr@~4.5.2:
+  version "4.5.7"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.7.tgz#6efc0d93c65547aa77294205c67830ebabe3565c"
+  integrity sha512-JqPfihUc9A/j9QAsh6otoARmMyUauPE17vRBEG+ThJwbl8zAq4ssGpxlPK3wWM/i8EFxkHg9UuVo0ds7XluKxw==
 
 flatted@^2.0.0:
   version "2.0.1"
@@ -18699,10 +18704,10 @@ outvariant@^1.2.0:
   resolved "https://registry.yarnpkg.com/outvariant/-/outvariant-1.2.1.tgz#e630f6cdc1dbf398ed857e36f219de4a005ccd35"
   integrity sha512-bcILvFkvpMXh66+Ubax/inxbKRyWTUiiFIW2DWkiS79wakrLGn3Ydy+GvukadiyfZjaL6C7YhIem4EZSM282wA==
 
-ovh-api-services@^14.0.1:
-  version "14.0.1"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-14.0.1.tgz#6ac7ea5dba57a54964ada29122e4f732793e6678"
-  integrity sha512-9qcaTu3vdmIEGiLR2CXmkOQ5qEKRBag5WU5o1X2PSyX8Ym1nQ9SJMvxK+VtY88RByjjRv9Fz4n99u9G+97lqYA==
+ovh-api-services@^14.0.2:
+  version "14.0.2"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-14.0.2.tgz#259a2751fe8dfbed9b86096343077434e23248f6"
+  integrity sha512-v86XAcFSTUTYaPQWhCEvCZ60UZTOOr1/lBINWpGY4ZqmlEVr+hmmIglF4Oc+NorotzNKKfbHUg7Jg/utPsUIXw==
   dependencies:
     lodash "^4.17.21"
 
@@ -24669,6 +24674,11 @@ validator@^13.7.0:
   version "13.7.0"
   resolved "https://registry.yarnpkg.com/validator/-/validator-13.7.0.tgz#4f9658ba13ba8f3d82ee881d3516489ea85c0857"
   integrity sha512-nYXQLCBkpJ8X6ltALua9dRrZDHVYxjJ1wgskNt1lH9fzGjs3tgojGSCBjmEPwkWS1y29+DrizMTW19Pr9uB2nw==
+
+validator@^3.39.0:
+  version "3.43.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-3.43.0.tgz#96464b992d4196833d97a194bf40b19ff54bae05"
+  integrity sha1-lkZLmS1BloM9l6GUv0Cxn/VLrgU=
 
 value-equal@^1.0.1:
   version "1.0.1"

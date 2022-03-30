@@ -42,7 +42,7 @@
     "@ovh-ux/ng-at-internet": "^5.8.1",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.1",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.11",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.10",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.11",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-contacts": "^4.0.8",
     "@ovh-ux/ng-ovh-contracts": "^4.0.7",
@@ -87,7 +87,7 @@
     "matchmedia-ng": "^1.0.8",
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^14.0.1",
+    "ovh-api-services": "^14.0.2",
     "ovh-common-style": "^5.0.0",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ui-kit-bs": "^4.2.0",
@@ -98,7 +98,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^3.0.8 || ^4.0.0",
+    "@ovh-ux/manager-webpack-config": "^5.0.0",
     "glob": "^7.1.4",
     "webpack": "^4.44.2",
     "webpack-merge": "^4.2.2"
