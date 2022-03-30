@@ -9,13 +9,11 @@ export const GUIDES = [
   },
   {
     id: 'start',
-    link:
-      'https://docs.ovh.com/gb/en/publiccloud/ai/notebooks/definition/',
+    link: 'https://docs.ovh.com/gb/en/publiccloud/ai/notebooks/definition/',
   },
   {
     id: 'share',
-    link:
-      'https://docs.ovh.com/gb/en/publiccloud/ai/cli/sharing-notebooks/',
+    link: 'https://docs.ovh.com/gb/en/publiccloud/ai/cli/sharing-notebooks/',
   },
   {
     id: 'object_storage_access',
