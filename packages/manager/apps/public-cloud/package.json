@@ -44,7 +44,7 @@
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.11",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.11",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
-    "@ovh-ux/ng-ovh-contacts": "^4.0.8",
+    "@ovh-ux/ng-ovh-contacts": "^5.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.7",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.5",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
