@@ -15,7 +15,6 @@ export default class PackResiliationCtrl {
     $timeout,
     $uibModal,
     coreConfig,
-    resiliationNotification,
     OvhApiPackXdslResiliation,
     TucToast,
     TucToastError,
@@ -30,7 +29,6 @@ export default class PackResiliationCtrl {
     this.$q = $q;
     this.$uibModal = $uibModal;
     this.coreConfig = coreConfig;
-    this.resiliationNotification = resiliationNotification;
     this.OvhApiPackXdslResiliation = OvhApiPackXdslResiliation;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
