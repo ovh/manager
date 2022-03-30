@@ -35,7 +35,7 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
-import atInternet from './components/at-internet';
+import { initPublicCloudAtInternet } from './components/at-internet';
 import darkMode from './components/dark-mode';
 
 import './assets/theme/default/index.less';
@@ -72,7 +72,7 @@ export default async (containerEl, shellClient) => {
       moduleName,
       [
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
-        atInternet,
+        initPublicCloudAtInternet(shellClient.tracking),
         darkMode,
         ngAnimate,
         ngUiRouterBreadcrumb,
