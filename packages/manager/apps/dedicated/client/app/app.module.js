@@ -79,7 +79,7 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngUirouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhContacts from '@ovh-ux/ng-ovh-contacts';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
-import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
+import { registerAtInternetConfigModule } from '@ovh-ux/manager-at-internet-configuration';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import { serverBandwidth } from '@ovh-ux/manager-components';
 import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
@@ -165,7 +165,7 @@ export default async (containerEl, shellClient) => {
         account,
         ovhManagerAccountSidebar,
         registerCoreModule(environment, coreCallbacks),
-        ovhManagerAtInternetConfiguration,
+        registerAtInternetConfigModule(shellClient.tracking),
         ovhManagerBilling,
         ovhManagerCookiePolicy,
         chartjs,
