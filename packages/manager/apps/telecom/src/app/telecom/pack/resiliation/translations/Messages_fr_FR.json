@@ -69,6 +69,6 @@
   "pack_resiliation_choice_price": "Tarif",
   "pack_resiliation_choice_changeOperator": "Changement d'opérateur",
   "pack_resiliation_susbsidiary_question_technicalProblems": "Quel est le problème rencontré ? (débit, navigation, autres)",
-  "pack_resiliation_susbsidiary_question_eligibilityFtth": "Indiquez si possible l'adresse non éligible (ville)",
+  "pack_resiliation_susbsidiary_question_eligibilityFtth": "Indiquez l'adresse non éligible (ville)",
   "pack_resiliation_susbsidiary_question_changeOperator": "Opérateur concerné"
 }
