@@ -1,3 +1,12 @@
+## [5.64.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.64.2...@ovh-ux/manager-pci@5.64.3) (2022-03-30)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** passed right paypal param id ([e378fff](https://github.com/ovh/manager/commit/e378fffb3fa88a0d4fdef5c5ea38b986bb4a9ddb))
+
+
+
 ## [5.64.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.64.1...@ovh-ux/manager-pci@5.64.2) (2022-03-28)
 
 
