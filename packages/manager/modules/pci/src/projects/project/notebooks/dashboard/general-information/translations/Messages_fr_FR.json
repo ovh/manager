@@ -38,7 +38,7 @@
   "pci_notebooks_general_information_resources_local_storage": "Stockage",
   "pci_notebooks_general_information_resources_monitoring": "Suivi de la consommation",
   "pci_notebooks_general_information_resources_monitoring_access_to_graph": "Accéder à Graph Dashboard",
-  "pci_notebooks_general_information_resources_RAM_per_GPU": "{{ressources}} × {{ram}} RAM par GPU",
+  "pci_notebooks_general_information_resources_RAM_per_GPU": "{{ressources}} × {{ram}} RAM",
   "pci_notebooks_general_information_other_resources_info": "Autres ressources",
   "pci_notebooks_general_information_other_resources_info_CPU": "CPU : {{cpu}} vCores",
   "pci_notebooks_general_information_other_resources_info_RAM": "RAM : {{ram}}",
