@@ -53,8 +53,6 @@
     </oui-message>
 
     <div data-ng-if="$ctrl.model.paymentMethod.paymentType !== 'CREDIT'">
-        <p data-translate="pci_project_new_payment_method_add_explain"></p>
-
         <oui-message
             data-type="warning"
             data-ng-if="$ctrl.model.paymentMethod.type.isBankAccount()"
