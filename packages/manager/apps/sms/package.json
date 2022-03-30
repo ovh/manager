@@ -28,7 +28,7 @@
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
     "@ovh-ux/ng-at-internet": "^5.8.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.0",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.10",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.11",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.0.3",
     "@ovh-ux/ng-ovh-contracts": "^4.0.5",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.4",
@@ -62,14 +62,14 @@
     "moment": "^2.24.0",
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^14.0.1",
+    "ovh-api-services": "^14.0.2",
     "ovh-ngstrap": "^4.0.2",
     "regenerator-runtime": "^0.13.7",
     "validator-js": "^0.2.1",
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^3.0.8 || ^4.0.0",
+    "@ovh-ux/manager-webpack-config": "^5.0.0",
     "glob": "^7.1.6",
     "ovh-manager-webfont": "^1.2.0",
     "webpack-merge": "^4.2.2"

@@ -28,7 +28,7 @@
     "@ovh-ux/ng-at-internet": "^5.8.1",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.1",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.11",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.10",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.11",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.3",
     "@ovh-ux/ng-ovh-doc-url": "^2.0.4",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
@@ -65,11 +65,11 @@
     "jquery": "^2.1.3",
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
-    "ovh-api-services": "^14.0.1",
+    "ovh-api-services": "^14.0.2",
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^3.3.0 || ^4.0.0",
+    "@ovh-ux/manager-webpack-config": "^5.0.0",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"
