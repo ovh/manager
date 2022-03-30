@@ -18,5 +18,5 @@
   "pci_notebook_add_resources_number_of_resources_type_cpu": "Ressources CPU",
   "pci_notebook_add_resources_number_of_resources_type_gpu": "Ressources GPU",
   "pci_notebook_add_resources_description_cpu": "Modèle : {{description}}",
-  "pci_notebook_add_resources_description_gpu_ram": "{{nbResources}} × {{ ram }} RAM par GPU"
+  "pci_notebook_add_resources_description_gpu_ram": "{{nbResources}} × {{ ram }} RAM"
 }
