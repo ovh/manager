@@ -1,3 +1,12 @@
+## [5.64.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.64.3...@ovh-ux/manager-pci@5.64.4) (2022-03-30)
+
+
+### Bug Fixes
+
+* foo ([ec59402](https://github.com/ovh/manager/commit/ec59402835adaf123d651a709e93854bd5e377fe))
+
+
+
 ## [5.64.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.64.2...@ovh-ux/manager-pci@5.64.3) (2022-03-30)
 
 
