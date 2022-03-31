@@ -1,0 +1,54 @@
+<div data-ng-controller="PrivateDatabaseCpuThrottleCtrl as cpuThrottleCtrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-confirm-button-text="'privateDatabase_modale_cpu_throttle_confirm_button' | translate"
+        data-wizard-cancel-button-text="'privateDatabase_modale_cpu_throttle_close_button' | translate"
+        data-wizard-title="'privateDatabase_modale_cpu_throttle_title' | translate"
+    >
+        <div class="text-center" data-ng-if="cpuThrottleCtrl.isLoading">
+            <oui-spinner></oui-spinner>
+        </div>
+        <div data-wizard-step data-ng-if="!cpuThrottleCtrl.isLoading">
+            <p
+                data-ng-bind-html="'privateDatabase_modale_cpu_throttle_info' | translate: { t0: cpuThrottleCtrl.NB_DAY_CPU_THROTTLE, t1: cpuThrottleCtrl.NB_MAX_CPU_THROTTLE }"
+            ></p>
+            <oui-datagrid
+                data-rows="cpuThrottleCtrl.cpuThrottleList"
+                data-row-loader="cpuThrottleCtrl.constructor.generateDuration($row)"
+            >
+                <oui-datagrid-column
+                    data-title="'privateDatabase_modale_cpu_throttle_tab_event_start_date' | translate"
+                >
+                    <span data-ng-bind="$row.startDate | date:'medium'"></span>
+                </oui-datagrid-column>
+                <oui-datagrid-column
+                    data-title="'privateDatabase_modale_cpu_throttle_tab_event_end_date' | translate"
+                >
+                    <span
+                        data-ng-if="$row.endDate !== null"
+                        data-ng-bind="$row.endDate | date:'medium'"
+                    ></span>
+                    <span class="text-center" data-ng-if="$row.endDate === null"
+                        >{{::
+                        'privateDatabase_modale_cpu_throttle_ongoing_cpu_throttle'
+                        | translate }}</span
+                    >
+                </oui-datagrid-column>
+                <oui-datagrid-column
+                    data-title="'privateDatabase_modale_cpu_throttle_tab_duration' | translate"
+                    data-property="duration"
+                >
+                    <span data-ng-bind="$row.duration"></span>
+                </oui-datagrid-column>
+            </oui-datagrid>
+
+            <div
+                class="alert alert-info mt-3"
+                role="alert"
+                data-ng-bind-html="'privateDatabase_modale_cpu_throttle_info_order' | translate"
+                data-ng-if="cpuThrottleCtrl.database.cpuThrottle.percentage >= cpuThrottleCtrl.database.cpuThrottle.criticalPercentage"
+            ></div>
+        </div>
+    </div>
+</div>
