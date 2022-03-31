@@ -8,5 +8,6 @@ export default {
     serviceName: '<',
     vps: '<',
     goBack: '<',
+    vpsOption: '<',
   },
 };

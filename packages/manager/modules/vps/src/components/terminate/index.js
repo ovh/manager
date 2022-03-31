@@ -5,7 +5,7 @@ import 'angular-translate';
 
 import component from './terminate.component';
 
-const moduleName = 'ovhManagerVpsComponentAdditionalDiskTerminate';
+const moduleName = 'ovhManagerVpsComponentTerminate';
 
 angular
   .module(moduleName, [
@@ -13,7 +13,7 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .component('ovhManagerVpsComponentAdditionalDiskTerminate', component)
+  .component('ovhManagerVpsComponentTerminate', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

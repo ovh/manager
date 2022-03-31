@@ -1,6 +1,6 @@
 {
   "vps_additional_disk_terminate_title": "Résilier l'option : disque additionnel",
-  "vps_additional_disk_terminate_info_part_1": "La résiliation de l'option disque additionnel entrera en vigueur à la date de renouvellement : {{renewDate}}",
+  "vps_additional_disk_terminate_info_part_1": "La résiliation de l'option disque additionnel entrera en vigueur à la date de renouvellement : {{date}}",
   "vps_additional_disk_terminate_info_part_2": "Cette action est irreversible et ne peut étre annulée.",
   "vps_additional_disk_terminate_action_terminate_success": "L'option a été résiliée.",
   "vps_additional_disk_terminate_action_terminate_error": "Une erreur est survenue lors de la résiliation de l'option.",

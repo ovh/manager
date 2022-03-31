@@ -9,6 +9,15 @@ export const TITLES = {
   windows: 'vps_configuration_cancel_option_title_windows',
 };
 
+export const TERMINATE_INFO = {
+  additionalDisk: 'vps_additional_disk_terminate_info_part_1',
+  automatedBackup: 'vps_configuration_cancel_option_step1_info',
+  ftpBackup: 'vps_configuration_cancel_option_step1_info',
+  snapshot: 'vps_configuration_cancel_option_step1_info',
+  veeam: 'vps_configuration_cancel_option_step1_info',
+  windows: 'vps_configuration_cancel_option_step1_info',
+};
+
 export const TRACKING_INFO = {
   automatedBackup: 'backup-auto',
   snapshot: 'snapshot',
