@@ -453,7 +453,7 @@
   "exchange_account_add_password_hint_simple": "Dieses Feld muss mindestens {0} Zeichen enthalten.",
   "exchange_account_add_password_hint_complex_1": "Aus Sicherheitsgründen muss dieses Feld folgenden Regeln entsprechen:",
   "exchange_account_add_password_hint_complex_1_1": "Es darf weder den Anzeigenamen noch den Namen des Exchange 2010 Accounts enthalten (keine Beachtung von Groß- und Kleinschreibung).",
-  "exchange_account_add_password_hint_complex_1_2": "Es muss mindestens {0} Zeichen enthalten.",
+  "exchange_account_add_password_hint_complex_1_2": "muss aus mindestens {0} Zeichen bestehen",
   "exchange_account_add_password_hint_complex_1_3": "Es muss Elemente aus drei der vier folgenden Kategorien enthalten:",
   "exchange_account_add_password_hint_complex_1_3_1": "Kleinbuchstaben,",
   "exchange_account_add_password_hint_complex_1_3_2": "Großbuchstaben,",
