@@ -26,9 +26,6 @@ export const ENGINE_LOGOS = {
   m3aggregator: ASSET_M3AGGREGATOR,
 };
 
-export const DATABASES_GUIDES_URL =
-  'https://docs.ovh.com/gb/en/publiccloud/databases/';
-
 export const DATABASE_TYPES = {
   MONGO_DB: 'mongodb',
   MYSQL: 'mysql',
@@ -138,7 +135,6 @@ export const MAX_IPS_DISPLAY = 3;
 export const CERTIFICATE_FILENAME = 'ca.pem';
 
 export default {
-  DATABASES_GUIDES_URL,
   DATABASE_TYPES,
   SHELL_NAMES,
   METRICS_TIME_RANGES,

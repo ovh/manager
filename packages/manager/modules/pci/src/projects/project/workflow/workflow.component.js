@@ -9,6 +9,8 @@ export default {
     goToExecutionsPage: '<',
     goToInstancePage: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     project: '<',
     projectId: '<',
     workflows: '<',

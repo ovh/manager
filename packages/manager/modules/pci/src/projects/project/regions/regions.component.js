@@ -6,6 +6,8 @@ export default {
     pciFeatureRedirect: '<',
     availableRegions: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     projectId: '<',
     regions: '<',
     getStateName: '<',

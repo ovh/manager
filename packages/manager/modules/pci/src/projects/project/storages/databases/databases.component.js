@@ -3,7 +3,6 @@ import template from './databases.html';
 
 export default {
   bindings: {
-    databaseGuideUrl: '<',
     goToAddDatabase: '<',
     databaseLink: '<',
     goToDatabase: '<',
@@ -14,6 +13,8 @@ export default {
     goToUpgradeVersion: '<',
     goToUpgradeNode: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     engines: '<',
     databaseId: '<',
     databases: '<',

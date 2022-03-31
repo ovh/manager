@@ -4,9 +4,10 @@ import template from './add.html';
 export default {
   bindings: {
     addPrivateNetworksLink: '<',
-    databaseGuideUrl: '<',
     engines: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     lab: '<',
     onDatabaseAdd: '<',
     projectId: '<',

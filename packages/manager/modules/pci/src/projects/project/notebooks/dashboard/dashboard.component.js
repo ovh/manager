@@ -4,6 +4,8 @@ export default {
   bindings: {
     notebook: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     reloadState: '<',
     needRefresh: '<',
     killTasks: '<',

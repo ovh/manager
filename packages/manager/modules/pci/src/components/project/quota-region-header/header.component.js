@@ -4,6 +4,8 @@ export default {
   template,
   bindings: {
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     projectId: '<',
   },
 };
