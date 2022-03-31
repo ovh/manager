@@ -42,6 +42,7 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
 
   $onDestroy() {
     this.checkout = null;
+    this.isComponentLoaded = false;
   }
 
   /* Component related methods */
