@@ -41,12 +41,12 @@ export const APP_FRAMEWORK_INFO = {
 };
 
 export const APP_AUTOMATION_INFO = {
-  DEFAULT: 'https://docs.ovh.com/gb/en/ai-training/overview-cli/',
+  DEFAULT: 'https://docs.ovh.com/gb/en/publiccloud/ai/cli/overview-cli/',
 };
 
 export const APP_STORAGE_INFO = {
-  DEFAULT: 'https://docs.ovh.com/gb/en/ai-training/data/',
-  CA: 'https://docs.ovh.com/ca/en/ai-training/data/',
+  DEFAULT: 'https://docs.ovh.com/gb/en/publiccloud/ai/data/',
+  CA: 'https://docs.ovh.com/ca/en/publiccloud/ai/data/',
 };
 
 export const APP_MULTIPLY_SIGN = ' × ';
