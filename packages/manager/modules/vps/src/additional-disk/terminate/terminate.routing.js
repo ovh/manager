@@ -3,12 +3,13 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/terminate',
     views: {
       modal: {
-        component: 'ovhManagerVpsComponentAdditionalDiskTerminate',
+        component: 'ovhManagerVpsComponentTerminate',
       },
     },
     layout: 'modal',
     resolve: {
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
+      vpsOption: /* @ngInject */ () => 'additionalDisk',
     },
   });
 };

@@ -1,0 +1,18 @@
+<oui-modal
+    data-primary-label="{{ ::'vps_common_confirm' | translate }}"
+    data-primary-action="$ctrl.confirm()"
+    data-secondary-action="$ctrl.cancel()"
+    data-secondary-label="{{ ::'vps_common_cancel' | translate }}"
+    data-on-dismiss="$ctrl.cancel()"
+    data-loading="$ctrl.terminate.loading || $ctrl.selectedVps.loading"
+    data-heading="{{:: $ctrl.TITLES[$ctrl.vpsOption] | translate}}"
+>
+    <p
+        class="oui-modal__text"
+        data-ng-bind="$ctrl.TERMINATE_INFO[$ctrl.vpsOption] | translate:{ date: ($ctrl.expirationDate ) }"
+    ></p>
+    <p
+        class="oui-modal__text text-danger"
+        data-translate="vps_configuration_cancel_option_step1_warn"
+    ></p>
+</oui-modal>
