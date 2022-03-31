@@ -25,7 +25,7 @@ export function initShell(): Promise<Shell> {
         ([appName, appConfig]) => {
           const url = new URL(appConfig.publicURL);
           url.pathname = appConfig.container?.enabled
-            ? `/container/${appName}`
+            ? '/container'
             : `/${appName}`;
           appConfig.publicURL = `${window.location.origin}${url.pathname}/${url.hash}`;
         },
