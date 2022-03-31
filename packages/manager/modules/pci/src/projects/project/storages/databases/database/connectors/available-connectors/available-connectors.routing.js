@@ -44,7 +44,11 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => (connector) => {
         trackDashboard('connectors::add_a_connector_confirm', 'action');
         trackDatabases(
-          `databases_Kafka_Connect_add_a_connector::${connector.type}::${connector.name}::confirm`,
+          `databases_Kafka_Connect_add_a_connector::${
+            connector.type
+          }::${connector.name
+            .replace(/[^a-zA-Z0-9_]/g, '_')
+            .toLowerCase()}::confirm`,
           'action',
           false,
         );
