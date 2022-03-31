@@ -21,6 +21,7 @@ export default class ServerCtrl {
     $stateParams,
     $timeout,
     $translate,
+    Alerter,
     constants,
     coreURLBuilder,
     ovhUserPref,
@@ -35,6 +36,7 @@ export default class ServerCtrl {
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.Alerter = Alerter;
     this.constants = constants;
     this.coreURLBuilder = coreURLBuilder;
     this.ovhUserPref = ovhUserPref;
@@ -350,7 +352,7 @@ export default class ServerCtrl {
       this.launchBringYourOwnImagePolling();
     }
 
-    this.load();
+    return this.$q.all([this.load(), this.fetchRTMInfo()]);
   }
 
   load() {
@@ -663,5 +665,16 @@ export default class ServerCtrl {
       'dedicated',
       `#/nutanix/${clusterServiceName}/nodes/${nodeServiceName}`,
     );
+  }
+
+  fetchRTMInfo() {
+    return this.Server.getRtmVersion(this.$stateParams.productId).then(() => {
+      this.Alerter.set(
+        'alert-info',
+        this.$translate.instant('server_rtm_eol_info'),
+        null,
+        'rtm_eol_info',
+      );
+    });
   }
 }
