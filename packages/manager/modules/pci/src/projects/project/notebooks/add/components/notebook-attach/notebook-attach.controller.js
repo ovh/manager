@@ -97,16 +97,21 @@ export default class NotebookAttachController {
   filterStorages() {
     this.filteredStorages = this.storages
       // Remove containers that are already on volume list and and which are isHighPerfStorage.
-      .filter(({ name, region }) => {
-        return !this.notebookModel.volumes
-          .filter(({ privateSwift }) => privateSwift)
-          .map(({ container }) => `${container.name}-${container.region}`)
-          .includes(`${name}-${region}`);
+      .filter(({ name, region, isHighPerfStorage }) => {
+        return (
+          !isHighPerfStorage &&
+          !this.notebookModel.volumes
+            .filter(({ privateSwift }) => privateSwift)
+            .map(({ container }) => `${container.name}-${container.region}`)
+            .includes(`${name}-${region}`)
+        );
       })
-      .flatMap(({ name, region, isHighPerfStorage }) => {
-        return !isHighPerfStorage
-          ? [{ name, region, description: `${name} - ${region}` }]
-          : [];
+      .map(({ name, region }) => {
+        return {
+          name,
+          region,
+          description: `${name} - ${region}`,
+        };
       });
   }
 }
