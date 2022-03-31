@@ -49,6 +49,42 @@
                             </oui-action-menu>
                         </oui-tile-definition>
                         <oui-tile-definition
+                            data-term="{{ ::'privateDatabase_dashboard_cpu_throttle' | translate}}"
+                        >
+                            <oui-tile-description>
+                                <div
+                                    class="oui-badge"
+                                    data-ng-bind="stateCtrl.database.cpuThrottle.percentage + '%'"
+                                    data-ng-class="stateCtrl.database.cpuThrottle.percentage >= stateCtrl.database.cpuThrottle.criticalPercentage ? 'oui-badge_error' : (stateCtrl.database.cpuThrottle.percentage > 0 ? 'oui-badge_warning' : 'oui-badge_success')"
+                                >
+                                    <button
+                                        class="btn btn-icon btn-xs d-block text-wrap text-left"
+                                        type="button"
+                                        title="{{:: 'privateDatabase_modale_cpu_throttle_title' | translate }}"
+                                        data-ng-class="stateCtrl.database.cpuThrottle.percentage > stateCtrl.database.cpuThrottle.criticalPercentage ? 'text-danger' : (stateCtrl.database.cpuThrottle.percentage > 0 ? 'text-warning' : '')"
+                                        data-ng-click="stateCtrl.goToCpuThrottle()"
+                                    ></button>
+                                </div>
+                                <p
+                                    data-ng-bind-html="'privateDatabase_dashboard_cpu_saturation' | translate"
+                                ></p>
+                            </oui-tile-description>
+                            <oui-action-menu
+                                data-compact
+                                data-ng-if="!stateCtrl.isExpired"
+                                data-placement="end"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="stateCtrl.goToCpuThrottle()"
+                                    data-disabled="taskState.lockAction"
+                                >
+                                    <span
+                                        data-translate="privateDatabase_modale_cpu_throttle_state_button"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </oui-tile-definition>
+                        <oui-tile-definition
                             data-term="{{ ::'privateDatabase_dashboard_ram' | translate}}"
                         >
                             <oui-tile-description>
