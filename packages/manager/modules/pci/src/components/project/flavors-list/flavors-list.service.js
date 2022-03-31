@@ -7,6 +7,7 @@ import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
 import omit from 'lodash/omit';
 import some from 'lodash/some';
+import includes from 'lodash/includes';
 
 import Flavor from './flavor.class';
 import FlavorGroup from './flavor-group.class';
@@ -92,6 +93,15 @@ export default class FlavorsList {
             ),
             frequency: get(CPU_FREQUENCY, resource.type),
             groupName: resource.groupName.replace(/-flex/, ''),
+            legacy: includes(
+              get(
+                find(catalog.addons, {
+                  invoiceName: resource.name,
+                }),
+                'blobs.tags',
+              ),
+              'legacy',
+            ),
           });
         });
       });
