@@ -55,7 +55,7 @@ class MonoRepository {
       });
   }
 
-  static release(version, repos) {
+  static release(version, repos, dryRelease = false) {
     const commitMsg = repos
       .map((r) => `* Package ${r.name} ${r.getPackageJson().version}`)
       .join('\n');
@@ -70,9 +70,11 @@ class MonoRepository {
         }),
       )
       .then((v) =>
-        execa
-          .command('git push origin master --tags', { shell: true })
-          .then(() => v),
+        dryRelease
+          ? Promise.resolve(v)
+          : execa
+              .command('git push origin master --tags', { shell: true })
+              .then(() => v),
       );
   }
 
