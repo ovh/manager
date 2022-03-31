@@ -11,13 +11,14 @@ export default class usrInfomrationCtrl {
   $onInit() {
     this.trackDashboard('users::show_informations', 'page');
     this.isLoading = false;
+    this.userLists = [];
     USER_INFORMATIONS_LISTS.forEach((element) => {
       this.mapArrayForChip(element);
     });
   }
 
   mapArrayForChip(key) {
-    this.user[key] = map(this.user[key], (a) => {
+    this.userLists[key] = map(this.user[key], (a) => {
       return { title: a };
     });
   }
