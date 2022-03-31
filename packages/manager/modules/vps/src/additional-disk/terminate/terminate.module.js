@@ -3,7 +3,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
-import additionalDiskTerminate from '../../components/additional-disk/terminate';
+import terminate from '../../components/terminate';
 
 import routing from './terminate.routing';
 
@@ -14,7 +14,7 @@ angular
     'ui.router',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
-    additionalDiskTerminate,
+    terminate,
   ])
   .config(routing);
 
