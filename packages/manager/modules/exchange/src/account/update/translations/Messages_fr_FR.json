@@ -40,6 +40,7 @@
   "exchange_account_update_contact_fax_label": "Numéro du fax",
   "exchange_account_update_contact_phone_help_text": "Veuillez rentrer un numéro au format international (00xx ...).",
   "exchange_account_update_company_label": "Entreprise",
+  "exchange_account_update_exchange_guid": "Exchange GUID",
   "exchange_account_update_password_button_show": "Montrer le mot de passe",
   "exchange_account_update_password_button_hide": "Cacher le mot de passe",
   "exchange_account_update_password_hint_simple": "Ce champ doit avoir une longueur d'au moins {0} caractères.",
