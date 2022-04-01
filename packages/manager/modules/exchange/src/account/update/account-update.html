@@ -143,12 +143,22 @@
                             ></span>
                         </div>
                         <div class="oui-field__helper">
-                            <span data-translate="exchange_account_update_emailAddress_hint"></span>
+                            <span
+                                data-translate="exchange_account_update_emailAddress_hint"
+                            ></span>
                             <ul>
-                                <li data-translate="exchange_account_update_emailAddress_hint_part_1"></li>
-                                <li data-translate="exchange_account_update_emailAddress_hint_part_2"></li>
-                                <li data-translate="exchange_account_update_emailAddress_hint_part_3"></li>
-                                <li data-translate="exchange_account_update_emailAddress_hint_part_4"></li>
+                                <li
+                                    data-translate="exchange_account_update_emailAddress_hint_part_1"
+                                ></li>
+                                <li
+                                    data-translate="exchange_account_update_emailAddress_hint_part_2"
+                                ></li>
+                                <li
+                                    data-translate="exchange_account_update_emailAddress_hint_part_3"
+                                ></li>
+                                <li
+                                    data-translate="exchange_account_update_emailAddress_hint_part_4"
+                                ></li>
                             </ul>
                         </div>
                         <div>
@@ -304,10 +314,10 @@
                                             aria-label="{{:: 'exchange_account_update_password_button_show' | translate }}"
                                             data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
                                         >
-                                        <span
-                                            class="oui-icon oui-icon-eye-open"
-                                            aria-hidden="true"
-                                        ></span>
+                                            <span
+                                                class="oui-icon oui-icon-eye-open"
+                                                aria-hidden="true"
+                                            ></span>
                                         </button>
                                         <button
                                             data-ng-if="!$ctrl.shouldDisplayPasswordInput"
@@ -316,10 +326,10 @@
                                             aria-label="{{:: 'exchange_account_update_password_button_hide' | translate }}"
                                             data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
                                         >
-                                        <span
-                                            class="oui-icon oui-icon-eye-closed"
-                                            aria-hidden="true"
-                                        ></span>
+                                            <span
+                                                class="oui-icon oui-icon-eye-closed"
+                                                aria-hidden="true"
+                                            ></span>
                                         </button>
                                         <small
                                             class="help-block"
@@ -381,10 +391,10 @@
                                             aria-label="{{:: 'exchange_account_update_password_button_show' | translate }}"
                                             data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
                                         >
-                                        <span
-                                            class="oui-icon oui-icon-eye-open"
-                                            aria-hidden="true"
-                                        ></span>
+                                            <span
+                                                class="oui-icon oui-icon-eye-open"
+                                                aria-hidden="true"
+                                            ></span>
                                         </button>
                                         <button
                                             data-ng-if="!$ctrl.shouldDisplayPasswordInput"
@@ -393,10 +403,10 @@
                                             aria-label="{{:: 'exchange_account_update_password_button_hide' | translate }}"
                                             data-ng-click="$ctrl.switchBetweenPasswordAndTextInput()"
                                         >
-                                        <span
-                                            class="oui-icon oui-icon-eye-closed"
-                                            aria-hidden="true"
-                                        ></span>
+                                            <span
+                                                class="oui-icon oui-icon-eye-closed"
+                                                aria-hidden="true"
+                                            ></span>
                                         </button>
                                         <small
                                             class="help-block"
@@ -482,6 +492,23 @@
                                     <span
                                         class="d-inline-block form-control-static ml-2"
                                         data-translate="unit_size_GB"
+                                    ></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--ExchangeGuid-->
+                    <div class="row">
+                        <div class="col-md-6 oui-field mb-4">
+                            <label
+                                class="oui-field__label oui-label"
+                                data-translate="exchange_account_update_exchange_guid"
+                            ></label>
+                            <div class="oui-field__content">
+                                <div class="oui-field-control text-nowrap">
+                                    <span
+                                        data-ng-bind="$ctrl.emailAccount.exchangeGuid"
                                     ></span>
                                 </div>
                             </div>
