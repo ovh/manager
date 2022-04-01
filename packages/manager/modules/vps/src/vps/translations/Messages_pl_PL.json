@@ -380,7 +380,7 @@
   "vps_zone": "Strefa",
   "vps_cluster": "Klaster",
   "vps_tab_SUMMARY_additional_disk": "Dodatkowe dyski",
-  "vps_additional_disk_add_button": "Zamów dodatkowy dysk",
+  "vps_additional_disk_add_button": "Dodaj dysk",
   "vps_additional_disk_add_another_button": "Zamów inny dodatkowy dysk",
   "vps_tab_additional_disk": "Dodatkowy dysk",
   "vps_tab_additional_disk_not_available": "Opcja zamówienia dodatkowego dysku nie jest dostępna dla tej oferty.",
@@ -526,5 +526,8 @@
   "vps_database_version_mariadb_104": "MariaDB 10.4",
   "vps_database_version_mariadb_105": "MariaDB 10.5",
   "vps_database_version_mysql_80": "MySQL 8.0",
-  "vps_database_version_redis_60": "Redis 6.0"
+  "vps_database_version_redis_60": "Redis 6.0",
+  "vps_configuration_additional_disk_upgrade_option": "Zwiększ rozmiar dysku",
+  "vps_additional_disk_current_capacity": "Rozmiar dysku: {{vpsDiskCapacity}}",
+  "vps_additional_disk_cant_upgrade": "Jeśli chcesz zmienić parametry dodatkowego dysku, najpierw przeprowadź migrację do nowej gamy VPS, klikając „Migracja serwera VPS” powyżej."
 }

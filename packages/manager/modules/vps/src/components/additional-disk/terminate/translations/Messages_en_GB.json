@@ -1,0 +1,9 @@
+{
+  "vps_additional_disk_terminate_title": "Cancel option: additional disk",
+  "vps_additional_disk_terminate_info_part_1": "The cancellation of the additional disk option will come into effect on the renewal date: {{renewDate}}",
+  "vps_additional_disk_terminate_info_part_2": "This action is irreversible and cannot be cancelled.",
+  "vps_additional_disk_terminate_action_terminate_success": "The option has been cancelled.",
+  "vps_additional_disk_terminate_action_terminate_error": "An error has occurred cancelling the option.",
+  "vps_additional_disk_terminate_action_terminate": "Cancel",
+  "vps_additional_disk_terminate_action_cancel": "Cancel"
+}

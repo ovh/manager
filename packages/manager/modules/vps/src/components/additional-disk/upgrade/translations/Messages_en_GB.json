@@ -1,0 +1,9 @@
+{
+  "vps_additional_disk_upgrade_title": "Choose a higher disk size for your VPS.",
+  "vps_additional_disk_upgrade_info": "You are about to increase the disk capacity by upgrading to {{newDiskCapacity}}.",
+  "vps_additional_disk_upgrade_prices_month_period": "{{price}} excl. VAT/month",
+  "vps_additional_disk_upgrade_action_upgrade_success": "Your disk size has been increased.",
+  "vps_additional_disk_upgrade_action_upgrade_error": "An error has occurred increasing the disk size.",
+  "vps_additional_disk_upgrade_action_upgrade": "Increase",
+  "vps_additional_disk_upgrade_action_cancel": "Cancel"
+}

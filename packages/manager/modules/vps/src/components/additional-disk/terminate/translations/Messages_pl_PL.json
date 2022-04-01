@@ -1,0 +1,9 @@
+{
+  "vps_additional_disk_terminate_title": "Zrezygnuj z opcji: dodatkowy dysk",
+  "vps_additional_disk_terminate_info_part_1": "Rezygnacja z opcji dodatkowego dysku wejdzie w życie w dniu odnowienia: {{renewDate}}",
+  "vps_additional_disk_terminate_info_part_2": "Operacja ta jest nieodwracalna i nie można jej anulować.",
+  "vps_additional_disk_terminate_action_terminate_success": "Opcja została usunięta.",
+  "vps_additional_disk_terminate_action_terminate_error": "Wystąpił błąd podczas rezygnowania z opcji.",
+  "vps_additional_disk_terminate_action_terminate": "Zrezygnuj",
+  "vps_additional_disk_terminate_action_cancel": "Anuluj"
+}
