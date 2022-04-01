@@ -464,7 +464,7 @@
   "exchange_account_add_samAccountName_label": "Nom de compte Exchange 2010",
   "exchange_account_add_firstName_label": "Prénom",
   "exchange_account_add_lastName_label": "Nom",
-  "exchange_account_add_displayName_label": "Nom à afficher",
+  "exchange_account_add_displayName_label": "Nom à afficher (obligatoire)",
   "exchange_account_add_initials_label": "Initiales",
   "exchange_account_add_description_label": "Description",
   "exchange_account_add_password_label": "Mot de passe (obligatoire)",
