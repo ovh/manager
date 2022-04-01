@@ -379,7 +379,7 @@
   "vps_zone": "Zone",
   "vps_cluster": "Cluster",
   "vps_tab_SUMMARY_additional_disk": "Zusätzliche Festplatten",
-  "vps_additional_disk_add_button": "Zusätzliche Festplatte bestellen",
+  "vps_additional_disk_add_button": "Festplatte hinzufügen",
   "vps_additional_disk_add_another_button": "Weitere zusätzliche Festplatte bestellen",
   "vps_tab_additional_disk": "Zusätzliche Festplatte",
   "vps_tab_additional_disk_not_available": "Die Option zum Hinzufügen von zusätzlichen Festplatten ist bei dieser Angebotsreihe nicht verfügbar.",
@@ -525,5 +525,13 @@
   "vps_language_pt": "Portugiesisch",
   "vps_new_range_available_introduction": "Unsere VPS-Reihen entwickeln sich weiter, Ihr Kundencenter auch.",
   "vps_new_range_available_call_to_upgrade_1": "Möchten Sie die neuen Möglichkeiten nutzen? , <a href=\"{{href}}\">Bestellen Sie ein neues Modell</a> in Ihrem Kundencenter, übertragen Sie Ihre Daten und kündigen Sie dann Ihren vorherigen Server.",
-  "vps_new_range_available_call_to_upgrade_2": "Nutzen Sie die Vorteile und bringen Sie Ihre Maschine <a href=\"{{href}}\">mit nur wenigen Klicks</a> auf die nächste Stufe."
+  "vps_new_range_available_call_to_upgrade_2": "Nutzen Sie die Vorteile und bringen Sie Ihre Maschine <a href=\"{{href}}\">mit nur wenigen Klicks</a> auf die nächste Stufe.",
+  "vps_database_version_mariadb_103": "MariaDB 10.3",
+  "vps_database_version_mariadb_104": "MariaDB 10.4",
+  "vps_database_version_mariadb_105": "MariaDB 10.5",
+  "vps_database_version_mysql_80": "<b>MySQL 8.0</b>",
+  "vps_database_version_redis_60": "Redis 6.0",
+  "vps_configuration_additional_disk_upgrade_option": "Festplattengröße erhöhen",
+  "vps_additional_disk_current_capacity": "Festplattenkapazität: {{vpsDiskCapacity}}",
+  "vps_additional_disk_cant_upgrade": "Möchten Ihre zusätzliche Festplatte erweitern? Migrieren Sie dafür auf einen Server der neuen VPS-Reihe, indem Sie oben auf „VPS migrieren“ klicken."
 }

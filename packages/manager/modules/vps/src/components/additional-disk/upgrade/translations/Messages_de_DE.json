@@ -1,0 +1,9 @@
+{
+  "vps_additional_disk_upgrade_title": "Wählen Sie eine größere Festplatte für Ihren VPS.",
+  "vps_additional_disk_upgrade_info": "Sie sind im Begriff, die Kapazität der Festplatte auf {{newDiskCapacity}} zu erhöhen.",
+  "vps_additional_disk_upgrade_prices_month_period": "{{price}} inkl. MwSt. / Monat",
+  "vps_additional_disk_upgrade_action_upgrade_success": "Ihre Festplatte wurde erweitert.",
+  "vps_additional_disk_upgrade_action_upgrade_error": "Bei der Erweiterung der Festplatte ist ein Fehler aufgetreten.",
+  "vps_additional_disk_upgrade_action_upgrade": "ansteigen",
+  "vps_additional_disk_upgrade_action_cancel": "Abbrechen"
+}

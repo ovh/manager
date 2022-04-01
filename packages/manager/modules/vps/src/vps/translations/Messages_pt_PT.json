@@ -379,7 +379,7 @@
   "vps_zone": "Zona",
   "vps_cluster": "Cluster",
   "vps_tab_SUMMARY_additional_disk": "Discos adicionais",
-  "vps_additional_disk_add_button": "Encomendar um disco adicional",
+  "vps_additional_disk_add_button": "Adicionar um disco",
   "vps_additional_disk_add_another_button": "Encomendar outro disco adicional",
   "vps_tab_additional_disk": "Disco adicional",
   "vps_tab_additional_disk_not_available": "A opção de adição de um disco adicional não está disponível para esta gama.",
@@ -525,5 +525,13 @@
   "vps_language_pt": "Português",
   "vps_new_range_available_introduction": "As nossas gamas de VPS evoluem, assim como a sua Área de Cliente.",
   "vps_new_range_available_call_to_upgrade_1": "Para usufruir das novidades, <a href=\"{{href}}\">encomende um novo modelo</a> na sua Área de Cliente, transfira os seus dados e rescinda o seu antigo servidor.",
-  "vps_new_range_available_call_to_upgrade_2": "Faça a sua máquina evoluir <a href=\"{{href}}\">em apenas alguns cliques.</a>"
+  "vps_new_range_available_call_to_upgrade_2": "Faça a sua máquina evoluir <a href=\"{{href}}\">em apenas alguns cliques.</a>",
+  "vps_database_version_mariadb_103": "MariaDB 10.3",
+  "vps_database_version_mariadb_104": "MariaDB 10.4",
+  "vps_database_version_mariadb_105": "MariaDB 10.5",
+  "vps_database_version_mysql_80": "MySQL 8.0",
+  "vps_database_version_redis_60": "Redis 6.0",
+  "vps_configuration_additional_disk_upgrade_option": "Aumentar o tamanho do disco",
+  "vps_additional_disk_current_capacity": "Capacidade do disco: {{vpsDiskCapacity}}",
+  "vps_additional_disk_cant_upgrade": "Se pretender fazer evoluir o seu disco adicional, deverá migrar para a nova gama VPS ao clicar em \"Migrar o meu VPS\" acima."
 }
