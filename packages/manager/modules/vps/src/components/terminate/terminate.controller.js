@@ -4,6 +4,7 @@ import {
   TERMINATE_INFO,
   TRACKING_INFO,
   TRACKING_PREFIX,
+  TERMINATE_SUCCESS_INFO,
 } from './terminate.constants';
 
 export default class VpsOptionTerminateCtrl {
@@ -73,9 +74,7 @@ export default class VpsOptionTerminateCtrl {
         this.VpsService.cancelOption(this.serviceName, this.vpsOption)
           .then(() =>
             this.CucCloudMessage.success(
-              this.$translate.instant(
-                'vps_configuration_cancel_option_cancel_success',
-              ),
+              this.$translate.instant(TERMINATE_SUCCESS_INFO[this.vpsOption]),
             ),
           )
           .catch((err) =>
