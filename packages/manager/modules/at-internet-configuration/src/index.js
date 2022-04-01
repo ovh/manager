@@ -2,6 +2,7 @@ import angular from 'angular';
 
 import '@ovh-ux/manager-core';
 import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
+import '@ovh-ux/ng-at-internet';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
 import '@ovh-ux/ng-at-internet-ui-router-plugin';
@@ -16,7 +17,7 @@ const trackingEnabled = __NODE_ENV__ === 'production';
 export const registerAtInternetConfigModule = (trackingPlugin) => {
   angular
     .module(moduleName, [
-      registerAtInternet(trackingPlugin),
+      trackingPlugin ? registerAtInternet(trackingPlugin) : 'ngAtInternet',
       'ngAtInternetUiRouterPlugin',
       'ovhManagerCore',
     ])
