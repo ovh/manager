@@ -1,5 +1,5 @@
 {
-  "pci_project_new_config_title": "La tua avventura Public Cloud ha inizio!",
+  "pci_project_new_config_title": "Creare un progetto Public Cloud",
   "pci_project_new_config_description_label": "Nome del progetto",
   "pci_project_new_config_description_contracts": "Ho letto e accetto le condizioni contrattuali: {{ contractsLinks }}.",
   "pci_project_new_config_btn_continue": "Continua",

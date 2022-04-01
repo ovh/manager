@@ -1,12 +1,12 @@
 {
- "pci_projects_project_creating_not_paid_title": "¡Comienza la aventura de Public Cloud!",
- "pci_projects_project_creating_not_paid_welcome": "Bienvenido/a a Public Cloud",
- "pci_projects_project_creating_not_paid_almost_done": "¡Ya casi está!",
- "pci_projects_project_creating_not_paid": "Tiene una orden de pedido pendiente por un importe de {{ amount }} de crédito. Puede abonarla haciendo clic en «Finalizar mi pedido».",
- "pci_projects_project_creating_not_paid_explain1": "Al hacer clic en «Finalizar mi pedido» será redirigido a la orden de pedido, que deberá abonar con la forma de pago que haya elegido.",
- "pci_projects_project_creating_not_paid_explain2": "Para consultar su factura, vaya a «Mi cuenta» > <a href=\"{{ href }}\">«Mis pedidos»</a>.",
- "pci_projects_project_creating_not_paid_finalize": "Finalizar mi pedido",
- "pci_projects_project_creating_not_paid_finalize_title": "{{ orderId }}: finalizar mi pedido",
- "pci_projects_project_creating_not_paid_cancel": "Cancelar mi pedido",
- "pci_projects_project_creating_not_paid_cancel_title": "{{ orderId }}: cancelar mi pedido"
+  "pci_projects_project_creating_not_paid_title": "Crear un proyecto Public Cloud",
+  "pci_projects_project_creating_not_paid_welcome": "Bienvenido/a a Public Cloud",
+  "pci_projects_project_creating_not_paid_almost_done": "¡Ya casi está!",
+  "pci_projects_project_creating_not_paid": "Tiene una orden de pedido pendiente por un importe de {{ amount }} de crédito. Puede abonarla haciendo clic en «Finalizar mi pedido».",
+  "pci_projects_project_creating_not_paid_explain1": "Al hacer clic en «Finalizar mi pedido» será redirigido a la orden de pedido, que deberá abonar con la forma de pago que haya elegido.",
+  "pci_projects_project_creating_not_paid_explain2": "Para consultar su factura, vaya a «Mi cuenta» > <a href=\"{{ href }}\">«Mis pedidos»</a>.",
+  "pci_projects_project_creating_not_paid_finalize": "Finalizar mi pedido",
+  "pci_projects_project_creating_not_paid_finalize_title": "{{ orderId }}: finalizar mi pedido",
+  "pci_projects_project_creating_not_paid_cancel": "Cancelar mi pedido",
+  "pci_projects_project_creating_not_paid_cancel_title": "{{ orderId }}: cancelar mi pedido"
 }
