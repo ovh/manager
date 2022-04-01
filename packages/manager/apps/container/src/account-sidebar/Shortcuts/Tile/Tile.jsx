@@ -15,7 +15,7 @@ const Tile = ({ shortcut }) => {
     if (shortcut?.tracking) {
       shell.getPlugin('tracking').trackClick({
         name: shortcut.tracking,
-        type: 'action',
+        type: 'navigation',
       });
     }
   };
