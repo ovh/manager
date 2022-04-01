@@ -113,6 +113,7 @@
                         data-variant-nav="next"
                         data-disabled="!$ctrl.model.credit"
                         data-ng-if="$ctrl.model.paymentMethod.paymentType === 'CREDIT'"
+                        on-click="$ctrl.sendTrack('new_project_payment_continue')"
                     >
                         <span
                             data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
@@ -125,6 +126,7 @@
                         data-variant-nav="next"
                         data-disabled="$ctrl.isInvalidPaymentMethod()"
                         data-ng-if="$ctrl.canProceedToCreateProject()"
+                        on-click="$ctrl.sendTrack('new_project_payment_continue')"
                     >
                         <span
                             data-translate="pci_project_new_payment_btn_continue_default"
@@ -147,6 +149,7 @@
                         class="oui-button oui-button_primary oui-button_icon-right no-transition"
                         data-ng-if="$ctrl.model.paymentMethod.type.isBankAccount()"
                         data-ng-href="{{:: $ctrl.paymentMethodAddUrl }}"
+                        on-click="$ctrl.sendTrack('new_project_payment_continue')"
                     >
                         <span
                             data-translate="pci_project_new_payment_btn_continue_bank_account"
@@ -163,8 +166,11 @@
             <a
                 data-ng-if="!$ctrl.model.paymentMethod.isHandleByComponent() || !$ctrl.componentInitialParams"
                 data-ng-href="{{ $ctrl.step1Link() }}"
-                data-translate="pci_project_new_payment_btn_return"
+                data-ng-click="$ctrl.sendTrack('new_project_payment_cancel')"
             >
+                <span
+                    data-translate="pci_project_new_payment_btn_return"
+                ></span>
             </a>
         </div>
 

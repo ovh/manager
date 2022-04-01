@@ -10,6 +10,15 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       '@pci': component.name,
     },
+    atInternet: {
+      ignore: true, // this tell AtInternet to not track this state
+    },
+    onEnter: /* @ngInject */ (atInternet, numProjects) => {
+      atInternet.trackPage({
+        name: 'PublicCloud::pci::projects::creating',
+        pciCreationNumProjects: numProjects,
+      });
+    },
     resolve: {
       breadcrumb: () => null,
 
@@ -17,21 +26,33 @@ export default /* @ngInject */ ($stateProvider) => {
 
       pciProjectsHref: /* @ngInject */ ($state) => $state.href('pci.projects'),
 
-      onProjectDelivered: /* @ngInject */ ($state, atInternet, voucherCode) => (
-        projectId,
-      ) => {
+      onProjectDelivered: /* @ngInject */ (
+        $state,
+        atInternet,
+        voucherCode,
+        numProjects,
+      ) => (projectId) => {
         atInternet.trackPage({
           name: 'public-cloud::pci::projects::created',
           projectId,
           ...(voucherCode ? { voucherCode } : {}),
+          pciCreationNumProjects3: numProjects,
         });
         return $state.go('pci.projects.project', {
           projectId,
         });
       },
 
-      onProjectDeliveryFail: /* @ngInject */ ($state, $translate) => () =>
-        $state.go(
+      onProjectDeliveryFail: /* @ngInject */ (
+        $state,
+        $translate,
+        trackProjectCreationError,
+      ) => () => {
+        trackProjectCreationError(
+          'creating',
+          'pci_projects_creating_delivery_error',
+        );
+        return $state.go(
           'pci.error',
           {
             message: $translate.instant('pci_projects_creating_delivery_error'),
@@ -39,7 +60,8 @@ export default /* @ngInject */ ($stateProvider) => {
           {
             location: false,
           },
-        ),
+        );
+      },
 
       orderId: /* @ngInject */ ($transition$) => $transition$.params().orderId,
 

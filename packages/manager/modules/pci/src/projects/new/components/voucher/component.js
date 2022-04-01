@@ -12,5 +12,7 @@ export default {
     model: '<',
     cart: '<',
     globalLoading: '<',
+    trackProjectCreationError: '<',
+    steps: '<',
   },
 };
