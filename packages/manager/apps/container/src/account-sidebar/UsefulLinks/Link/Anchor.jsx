@@ -11,7 +11,7 @@ const Anchor = ({ link, translationBase }) => {
     if (link?.tracking) {
       shell.getPlugin('tracking').trackClick({
         name: link.tracking,
-        type: 'action',
+        type: 'navigation',
       });
     }
   };
