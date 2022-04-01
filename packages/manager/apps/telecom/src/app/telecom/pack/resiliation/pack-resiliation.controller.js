@@ -407,6 +407,8 @@ export default class PackResiliationCtrl {
         template: this.$templateCache.get('resiliation.modal.html'),
         controllerAs: 'ResiliationModelCtrl',
         controller(subject) {
+          'ngInject';
+
           this.resiliation = { confirm: {} };
           this.subject = subject;
         },
