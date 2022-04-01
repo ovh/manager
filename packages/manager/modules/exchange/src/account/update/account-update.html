@@ -34,9 +34,9 @@
                         data-ng-if="$ctrl.updateAccountOptions.availableTypes.length > 1"
                     >
                         <label
-                            class="oui-field__label oui-label required"
+                            class="oui-field__label oui-label"
                             for="selectedAccountType"
-                            data-translate="exchange_ACTION_update_account_step1_type_label"
+                            data-translate="exchange_account_update_accountType_label"
                         ></label>
                         <div class="oui-field__content">
                             <div class="oui-field-control oui-field-control_3">
@@ -70,9 +70,9 @@
                         data-ng-class="{'oui-field_error has-error': $ctrl.updateAccountForm.selectedAccountAddress.$dirty && ($ctrl.updateAccountForm.selectedAccountAddress.$invalid || $ctrl.takenEmailError)}"
                     >
                         <label
-                            class="control-label required"
+                            class="control-label"
                             for="selectedAccountAddress"
-                            data-translate="exchange_ACTION_update_account_step1_email_label"
+                            data-translate="exchange_account_update_emailAddress_label"
                         ></label>
                         <div class="input-group">
                             <input

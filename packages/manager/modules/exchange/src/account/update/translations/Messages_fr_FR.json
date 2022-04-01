@@ -19,7 +19,7 @@
   "exchange_account_update_samAccountName_label": "Nom de compte Exchange 2010",
   "exchange_account_update_firstName_label": "Prénom",
   "exchange_account_update_lastName_label": "Nom",
-  "exchange_account_update_displayName_label": "Nom à afficher",
+  "exchange_account_update_displayName_label": "Nom à afficher (obligatoire)",
   "exchange_account_update_initials_label": "Initiales",
   "exchange_account_update_description_label": "Description",
   "exchange_account_update_password_label": "Mot de passe (obligatoire)",
