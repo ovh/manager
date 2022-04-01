@@ -334,11 +334,10 @@ export default class PackResiliationCtrl {
    * @param  {Object} survey Reason to resiliate
    * @param {Boolean} accept If true the resiliation must be done
    */
-  resiliatePack(slf) {
-    const self = slf;
-    self.loading = true;
+  resiliatePack() {
+    this.loading = true;
 
-    return self.OvhApiPackXdslResiliation.v6()
+    return this.OvhApiPackXdslResiliation.v6()
       .resiliate(
         {
           packName: this.$stateParams.packName,
@@ -423,7 +422,7 @@ export default class PackResiliationCtrl {
             this.$uibModal.close();
             break;
           default:
-            this.resiliatePack(this);
+            this.resiliatePack();
             break;
         }
         return result;
