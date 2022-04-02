@@ -1597,5 +1597,17 @@
   "exchange_reset_mfa_success": "Dwuetapowa weryfikacja została zresetowana.",
   "exchange_mfa_error": "Wystąpił błąd: {{error}}",
   "exchange_delete_mfa_success": "Weryfikacja dwuetapowa za pomocą wiadomości SMS została usunięta.",
-  "exchange_delete_mfa_error": "Wystąpił błąd podczas usuwania weryfikacji dwuetapowej: {{error}}"
+  "exchange_delete_mfa_error": "Wystąpił błąd podczas usuwania weryfikacji dwuetapowej: {{error}}",
+  "exchange_resilitation_action_intro_1": "Czy na pewno chcesz zrezygnować z usługi Exchange \"{0}\"?",
+  "exchange_resilitation_action_intro_2": "W wyniku tej operacji, wraz z końcem okresu rozliczeniowego anulowane zostanie automatyczne odnowienie, co spowoduje wyłączenie usługi.",
+  "exchange_resilitation_action_intro_3": "Do tego czasu możesz korzystać z usługi.",
+  "exchange_resilitation_action_confirmation_1": "Uwaga: chcesz zrezygnować z usługi \"{0}\" oraz z {1} kont Exchange, które są do niej przypisane.",
+  "exchange_resilitation_action_confirmation_2": "Czy chcesz wykonać tę operację?",
+  "exchange_resilitation_cancel_action_intro_1": "Zakończenie usługi Exchange \"{0}\" jest zaplanowane na dzień jej wygaśnięcia.",
+  "exchange_resilitation_cancel_action_intro_2": "Czy na pewno chcesz anulować rezygnację z usługi? Włączone wówczas zostanie automatyczne odnawianie usługi.",
+  "exchange_resilitation_cancel_action_confirmation_1": "Chcesz anulować rezygnację z usługi \"{0}\".",
+  "exchange_resilitation_cancel_action_confirmation_2": "Czy chcesz wykonać tę operację?",
+  "exchange_resilitation_cancel_action_confirmation_3": "Włączone wówczas zostanie automatyczne odnawianie usługi.",
+  "exchange_update_billing_periode_intro_1": "Wybierz częstotliwość automatycznego odnawiania dla każdego konta.",
+  "exchange_update_billing_periode_intro_2": "Zostanie ona zastosowana począwszy od kolejnego odnowienia."
 }

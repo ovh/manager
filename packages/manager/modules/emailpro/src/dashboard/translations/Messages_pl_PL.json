@@ -848,5 +848,21 @@
   "email_tab_modal_delete_redirection_accounts": "<strong>{0}</strong> na <strong>{1}</strong>",
   "emails_common_continue_question": "Czy chcesz kontynuować?",
   "emails_common_account_name_conditions": "Uwaga, nazwa konta musi spełniać następujące wymagania: <br/>- Minimum {0} znaki<br/>- Maksimum {1} znaki<br/>- Brak spacji<br/>- Brak znaków akcentowanych<br/>- Brak znaków specjalnych za wyjątkiem ., - i _.",
-  "emailpro-mxplan_tab_domain_no_domains": "Brak wyników"
+  "emailpro-mxplan_tab_domain_no_domains": "Brak wyników",
+  "emailpro_resilitation_action_intro_1": "Czy chcesz zrezygnować z usługi E-mail Pro {0}?",
+  "emailpro_resilitation_action_intro_2": "W wyniku tej operacji, wraz z końcem okresu rozliczeniowego anulowane zostanie automatyczne odnowienie, co spowoduje wyłączenie usługi.",
+  "emailpro_resilitation_action_intro_3": "Do tego czasu możesz korzystać z usługi.",
+  "emailpro-mxplan_resilitation_action_intro_1": "Czy na pewno chcesz zrezygnować z usługi E-mail MX Plan {0}?",
+  "emailpro-mxplan_resilitation_action_intro_2": "W wyniku tej operacji, wraz z końcem okresu rozliczeniowego anulowane zostanie automatyczne odnowienie, co spowoduje wyłączenie usługi.",
+  "emailpro-mxplan_resilitation_action_intro_3": "Do tego czasu możesz korzystać z usługi.",
+  "emailpro_resilitation_action_confirmation_1": "Uwaga: za chwilę zakończysz usługę \"{0}\" wraz z powiązanymi z nią {1} kontami E-mail Pro. ",
+  "emailpro_resilitation_action_confirmation_2": "Czy na pewno chcesz wykonać tę operację?",
+  "emailpro-mxplan_resilitation_action_confirmation_1": "Uwaga: za chwilę zakończysz usługę \"{0}\" wraz z powiązanymi z nią {1} kontami E-mail MX Plan. ",
+  "email_pro-mxplan_resilitation_action_confirmation_2": "Czy na pewno chcesz wykonać tę operację?",
+  "emailpro_resilitation_cancel_action_intro_1": "Zakończenie usługi E-mail Pro \"{0}\" jest zaplanowane na dzień jej wygaśnięcia.",
+  "emailpro_resilitation_cancel_action_intro_2": "Czy na pewno chcesz anulować rezygnację z usługi?",
+  "emailpro_resilitation_cancel_action_intro_3": "Włączone wówczas zostanie automatyczne odnawianie usługi.",
+  "emailpro_resilitation_cancel_action_confirmation_1": "Chcesz anulować rezygnację z usługi \"{0}\".",
+  "emailpro_resilitation_cancel_action_confirmation_2": "Czy chcesz wykonać tę operację?",
+  "emailpro_resilitation_cancel_action_confirmation_3": "Włączone wówczas zostanie automatyczne odnawianie usługi."
 }
