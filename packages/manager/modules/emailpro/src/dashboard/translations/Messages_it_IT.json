@@ -848,5 +848,21 @@
   "email_tab_modal_delete_redirection_accounts": "<strong>{0}</strong> verso <strong>{1}</strong>",
   "emails_common_continue_question": "Vuoi continuare?",
   "emails_common_account_name_conditions": "Attenzione, il nome dell'account deve rispettare questi requisiti: <br/>- Min. {0} caratteri<br/>- Max. {1} caratteri<br/>- Nessuno spazio<br/>- Nessun carattere accentato<br/>- Nessun carattere speciale tranne ., - e _.",
-  "emailpro-mxplan_tab_domain_no_domains": "Nessun risultato trovato"
+  "emailpro-mxplan_tab_domain_no_domains": "Nessun risultato trovato",
+  "emailpro_resilitation_action_intro_1": "Vuoi davvero disattivare il servizio Email Pro {0}?",
+  "emailpro_resilitation_action_intro_2": "Questa azione comporterà l’annullamento del rinnovo automatico alla scadenza del periodo di validità, con il conseguente blocco del servizio.",
+  "emailpro_resilitation_action_intro_3": "Il servizio potrà essere utilizzato normalmente fino a questa data.",
+  "emailpro-mxplan_resilitation_action_intro_1": "Vuoi davvero disattivare il servizio di posta MX Plan {0}?",
+  "emailpro-mxplan_resilitation_action_intro_2": "Questa azione comporterà l’annullamento del rinnovo automatico alla scadenza del periodo di validità, con il conseguente blocco del servizio.",
+  "emailpro-mxplan_resilitation_action_intro_3": "Il servizio potrà essere utilizzato normalmente fino a questa data.",
+  "emailpro_resilitation_action_confirmation_1": "Attenzione: stai per disattivare completamente il servizio \"{0}\" e i {1} account Email Pro associati.",
+  "emailpro_resilitation_action_confirmation_2": "Vuoi davvero procedere con questa operazione?",
+  "emailpro-mxplan_resilitation_action_confirmation_1": "Attenzione: stai per disattivare completamente il servizio \"{0}\" e i {1} account MX Plan associati.",
+  "email_pro-mxplan_resilitation_action_confirmation_2": "Vuoi davvero procedere con questa operazione?",
+  "emailpro_resilitation_cancel_action_intro_1": "La disattivazione del servizio Email Pro \"{0}\" è programmata alla data di scadenza.",
+  "emailpro_resilitation_cancel_action_intro_2": "Vuoi davvero annullare la disattivazione?",
+  "emailpro_resilitation_cancel_action_intro_3": "Il servizio passerà in rinnovo automatico.",
+  "emailpro_resilitation_cancel_action_confirmation_1": "Stai per annullare la disattivazione del servizio \"{0}\".",
+  "emailpro_resilitation_cancel_action_confirmation_2": "Vuoi procedere con questa operazione?",
+  "emailpro_resilitation_cancel_action_confirmation_3": "Il servizio passerà in rinnovo automatico."
 }

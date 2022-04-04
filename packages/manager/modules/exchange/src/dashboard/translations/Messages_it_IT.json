@@ -1597,5 +1597,17 @@
   "exchange_reset_mfa_success": "L’autenticazione a due fattori è stata ripristinata correttamente.",
   "exchange_mfa_error": "Si è verificato un errore: {{error}}",
   "exchange_delete_mfa_success": "L’autenticazione a due fattori è stata eliminata correttamente.",
-  "exchange_delete_mfa_error": "Si è verificato un errore durante l’eliminazione della doppia autenticazione: {{error}}"
+  "exchange_delete_mfa_error": "Si è verificato un errore durante l’eliminazione della doppia autenticazione: {{error}}",
+  "exchange_resilitation_action_intro_1": "Vuoi davvero disattivare il servizio Exchange \"{0}\"?",
+  "exchange_resilitation_action_intro_2": "Questa azione comporterà l’annullamento del rinnovo automatico alla scadenza del periodo di validità, con il conseguente blocco del servizio.",
+  "exchange_resilitation_action_intro_3": "Il servizio potrà essere utilizzato normalmente fino a questa data.",
+  "exchange_resilitation_action_confirmation_1": "Attenzione: stai per disattivare completamente il servizio \"{0}\" e i {1} account Exchange associati.",
+  "exchange_resilitation_action_confirmation_2": "Vuoi davvero procedere con questa operazione?",
+  "exchange_resilitation_cancel_action_intro_1": "La disattivazione del servizio Exchange \"{0}\" è programmata alla data di scadenza.",
+  "exchange_resilitation_cancel_action_intro_2": "Vuoi davvero annullare la disattivazione? Il servizio passerà in rinnovo automatico.",
+  "exchange_resilitation_cancel_action_confirmation_1": "Stai per annullare la disattivazione del servizio \"{0}\".",
+  "exchange_resilitation_cancel_action_confirmation_2": "Vuoi procedere con questa operazione?",
+  "exchange_resilitation_cancel_action_confirmation_3": "Il servizio passerà in rinnovo automatico.",
+  "exchange_update_billing_periode_intro_1": "Scegli la frequenza del rinnovo automatico di ogni account.",
+  "exchange_update_billing_periode_intro_2": "La periodicità scelta verrà applicata a partire dal prossimo rinnovo."
 }
