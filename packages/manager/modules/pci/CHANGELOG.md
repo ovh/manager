@@ -1,3 +1,13 @@
+## [5.64.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.64.4...@ovh-ux/manager-pci@5.64.5) (2022-04-04)
+
+
+### Bug Fixes
+
+* **notebooks:** filter volumes before fetching command ([#6781](https://github.com/ovh/manager/issues/6781)) ([e3cd056](https://github.com/ovh/manager/commit/e3cd05659dabf311f5556d8781d06923e413510a))
+* **storages.database.users:** fix information modal for Redis users ([#6783](https://github.com/ovh/manager/issues/6783)) ([219e570](https://github.com/ovh/manager/commit/219e57096010f7a19ed80a088b838756e21f070c))
+
+
+
 ## [5.64.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.64.3...@ovh-ux/manager-pci@5.64.4) (2022-03-30)
 
 
