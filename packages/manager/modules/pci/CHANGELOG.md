@@ -1,3 +1,19 @@
+# [5.65.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.64.5...@ovh-ux/manager-pci@5.65.0) (2022-04-04)
+
+
+### Bug Fixes
+
+* **project.new:** avoid auto create project on step 2 ([#6803](https://github.com/ovh/manager/issues/6803)) ([58e4d5c](https://github.com/ovh/manager/commit/58e4d5c9e3998f2ced3be5d4e55b76385382c4f0))
+
+
+### Features
+
+* add tracking on project creation ([#6807](https://github.com/ovh/manager/issues/6807)) ([28012e1](https://github.com/ovh/manager/commit/28012e15f7a4434c5fe2379c62fef1f344caa616))
+* **project.new:** improve first step ([#6773](https://github.com/ovh/manager/issues/6773)) ([8ef84c8](https://github.com/ovh/manager/commit/8ef84c89606234cb26986203a2f0e292200c3fae))
+* **project.new:** improve second step ([#6782](https://github.com/ovh/manager/issues/6782)) ([d5bff0a](https://github.com/ovh/manager/commit/d5bff0a166e5d702a1631cc9d24630ba7b8bffb2))
+
+
+
 ## [5.64.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.64.4...@ovh-ux/manager-pci@5.64.5) (2022-04-04)
 
 

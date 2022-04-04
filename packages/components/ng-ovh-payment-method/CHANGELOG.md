@@ -1,3 +1,12 @@
+## [9.1.7](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.1.6...@ovh-ux/ng-ovh-payment-method@9.1.7) (2022-04-04)
+
+
+### Bug Fixes
+
+* **integration:** reinit adyen after payment switch ([#6794](https://github.com/ovh/manager/issues/6794)) ([078358c](https://github.com/ovh/manager/commit/078358c703289b8094b34a067fa96ccb884e432b))
+
+
+
 ## [9.1.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.1.5...@ovh-ux/ng-ovh-payment-method@9.1.6) (2022-03-24)
 
 
