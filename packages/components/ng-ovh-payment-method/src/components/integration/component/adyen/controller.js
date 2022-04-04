@@ -42,6 +42,7 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
 
   $onDestroy() {
     this.checkout = null;
+    this.isComponentLoaded = false;
   }
 
   /* Component related methods */
@@ -77,14 +78,16 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
   }
 
   createAdyenComponent(adyenConfiguration) {
-    this.checkout = new AdyenCheckout(adyenConfiguration);
-    this.checkout
-      .create('card', {
-        ...AdyenService.parseFormSessionId(
-          this.initialParams.paymentMethod.formSessionId,
-        ),
-      })
-      .mount('#adyen-component-container');
+    this.$timeout().then(() => {
+      this.checkout = new AdyenCheckout(adyenConfiguration);
+      this.checkout
+        .create('card', {
+          ...AdyenService.parseFormSessionId(
+            this.initialParams.paymentMethod.formSessionId,
+          ),
+        })
+        .mount('#adyen-component-container');
+    });
   }
 
   submit() {
