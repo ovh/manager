@@ -46,8 +46,15 @@ export default /* @ngInject */ ($stateProvider) => {
           dlpStatus ? 'pciProjectNewPaymentDlp' : null,
       },
     },
-    onEnter: /* @ngInject */ (activeStep, step) => {
+    atInternet: {
+      ignore: true, // this tell AtInternet to not track this state
+    },
+    onEnter: /* @ngInject */ (atInternet, activeStep, step, numProjects) => {
       activeStep(step.name);
+      atInternet.trackPage({
+        name: 'PublicCloud::pci::projects::new::payment',
+        pciCreationNumProjects: numProjects,
+      });
     },
     resolve: {
       callback: /* @ngInject */ ($location) => $location.search(),
@@ -129,6 +136,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
       getCancelHref: /* @ngInject */ ($state) => () =>
         $state.href('pci.projects'),
+
+      step1Link: /* @ngInject */ ($state) => () => $state.href('^'),
 
       reloadPayment: /* @ngInject */ ($state) => () =>
         $state.go(

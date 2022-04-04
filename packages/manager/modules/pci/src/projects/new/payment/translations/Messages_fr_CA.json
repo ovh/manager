@@ -1,9 +1,11 @@
 {
-  "pci_project_new_payment_title": "En route pour l'aventure Public Cloud",
+  "pci_project_new_payment_title": "Créer un projet Public Cloud",
   "pci_project_new_payment_btn_continue_default": "Créer mon projet",
   "pci_project_new_payment_btn_continue_credit_card": "Créer mon projet",
+  "pci_project_new_payment_btn_continue_add_credit_card": "Suivant",
   "pci_project_new_payment_btn_continue_bank_account": "Ajouter",
   "pci_project_new_payment_btn_continue_credit": "Créditer et créer mon projet",
+  "pci_project_new_payment_btn_return": "Retour",
   "pci_project_new_payment_btn_cancel": "Annuler",
   "pci_project_new_payment_information": "Informations bancaires",
   "pci_project_new_payment_create_error": "Une erreur est survenue lors de l'ajout de votre moyen de paiement. Veuillez réessayer.",

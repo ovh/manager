@@ -1,12 +1,12 @@
 {
- "pci_projects_project_creating_not_paid_title": "A caminho da aventura Public Cloud",
- "pci_projects_project_creating_not_paid_welcome": "Bem-vindo(a) ao Public Cloud",
- "pci_projects_project_creating_not_paid_almost_done": "Está quase...",
- "pci_projects_project_creating_not_paid": "Existe uma nota de encomenda de {{ amount }} de créditos pendente. Convidamo-lo a realizar o pagamento clicando em \"Finalizar a minha encomenda\".",
- "pci_projects_project_creating_not_paid_explain1": "Ao clicar em \"Finalizar a minha encomenda\" será redirecionado para uma nota de encomenda que terá de pagar através do método de pagamento que escolheu.",
- "pci_projects_project_creating_not_paid_explain2": "Para encontrar a sua fatura, aceda a \"A minha conta\" > <a href=\"{{href }}\">\"Encomendas\"</a>.",
- "pci_projects_project_creating_not_paid_finalize": "Finalizar a minha encomenda",
- "pci_projects_project_creating_not_paid_finalize_title": "{{ orderId }}: finalizar a minha encomenda",
- "pci_projects_project_creating_not_paid_cancel": "Cancelar a minha encomenda",
- "pci_projects_project_creating_not_paid_cancel_title": "{{ orderId }}: cancelar a minha encomenda"
+  "pci_projects_project_creating_not_paid_title": "Criar um projeto Public Cloud",
+  "pci_projects_project_creating_not_paid_welcome": "Bem-vindo(a) ao Public Cloud",
+  "pci_projects_project_creating_not_paid_almost_done": "Está quase...",
+  "pci_projects_project_creating_not_paid": "Existe uma nota de encomenda de {{ amount }} de créditos pendente. Convidamo-lo a realizar o pagamento clicando em \"Finalizar a minha encomenda\".",
+  "pci_projects_project_creating_not_paid_explain1": "Ao clicar em \"Finalizar a minha encomenda\" será redirecionado para uma nota de encomenda que terá de pagar através do método de pagamento que escolheu.",
+  "pci_projects_project_creating_not_paid_explain2": "Para encontrar a sua fatura, aceda a \"A minha conta\" > <a href=\"{{href }}\">\"Encomendas\"</a>.",
+  "pci_projects_project_creating_not_paid_finalize": "Finalizar a minha encomenda",
+  "pci_projects_project_creating_not_paid_finalize_title": "{{ orderId }}: finalizar a minha encomenda",
+  "pci_projects_project_creating_not_paid_cancel": "Cancelar a minha encomenda",
+  "pci_projects_project_creating_not_paid_cancel_title": "{{ orderId }}: cancelar a minha encomenda"
 }

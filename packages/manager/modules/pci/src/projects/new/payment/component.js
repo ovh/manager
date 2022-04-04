@@ -12,6 +12,7 @@ export default {
     cart: '<',
     reloadPayment: '<',
     getCancelHref: '<',
+    step1Link: '<',
     getPaymentMethod: '<',
     eligibility: '<',
     model: '<',
@@ -24,5 +25,6 @@ export default {
     paymentStatus: '<',
     trackPage: '<',
     sendTrack: '<',
+    trackProjectCreationError: '<',
   },
 };

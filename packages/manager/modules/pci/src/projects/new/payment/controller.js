@@ -95,6 +95,14 @@ export default class PciProjectNewPaymentCtrl {
       .catch((error) => {
         if (error?.status === ORDER_CHECK_PAYMENT_TIMEOUT_OVER) {
           this.hasCheckingError = true;
+          this.trackProjectCreationError(
+            'payment',
+            'pci_project_new_payment_check_error',
+          );
+          this.trackProjectCreationError(
+            'payment',
+            'pci_project_new_payment_check_payment_method_status',
+          );
         }
       })
       .finally(() => {
@@ -108,6 +116,11 @@ export default class PciProjectNewPaymentCtrl {
         `pci_project_new_payment_check_anti_fraud_case_${suffix}`,
       ),
       'pci.projects.new.payment',
+    );
+
+    this.trackProjectCreationError(
+      'payment',
+      `pci_project_new_payment_check_anti_fraud_case_${suffix}`,
     );
   }
 
@@ -244,11 +257,21 @@ export default class PciProjectNewPaymentCtrl {
             ),
             'pci.projects.new.payment',
           );
+
+          this.trackProjectCreationError(
+            'payment',
+            'pci_project_new_payment_check_anti_fraud_case_fraud_refused',
+          );
         }
 
         this.CucCloudMessage.error(
           this.$translate.instant('pci_project_new_payment_checkout_error'),
           'pci.projects.new.payment',
+        );
+
+        this.trackProjectCreationError(
+          'payment',
+          'pci_project_new_payment_checkout_error',
         );
 
         this.componentInitialParams = null;
@@ -299,46 +322,6 @@ export default class PciProjectNewPaymentCtrl {
       });
   }
 
-  managePaymentAndProjectCreation() {
-    const { eligibility, defaultPaymentMethod, callback } = this;
-    const canCheckDefaultPayment = !!defaultPaymentMethod;
-    const canCheckNewPayment = !callback?.paymentMethodId;
-
-    // To avoid many checking payment process in same times
-    if (this.isCheckingPaymentMethod) {
-      return null;
-    }
-
-    // check if addPayment status is in URL
-    // and no paymentMethod needs to be added
-    // and there is a default payment method.
-    // In this case it means that a payment method has been added
-    // and that the APIs eligibility AND payment are sync.
-    // In other case, for example: when eligibility requires a payment method
-    // and there is a paymentStatus in URL, the onIntegrationSubmitSuccess will be triggered
-    // automatically.
-    if (!eligibility.isAddPaymentMethodRequired() && canCheckDefaultPayment) {
-      return this.checkPaymentMethodAndCreateProject(
-        this.defaultPaymentMethod.paymentMethodId,
-      );
-    }
-
-    // used as fullback in case where new payment is not yet define as default
-    if (eligibility.isAddPaymentMethodRequired() && canCheckNewPayment) {
-      return this.getInprogressValidationPaymentMethod().then(
-        (paymentMethod) => {
-          return paymentMethod
-            ? this.checkPaymentMethodAndCreateProject(
-                paymentMethod.paymentMethodId,
-              )
-            : null;
-        },
-      );
-    }
-
-    return null;
-  }
-
   /* -----  End of Helpers  ------ */
 
   /* =============================
@@ -346,6 +329,7 @@ export default class PciProjectNewPaymentCtrl {
   ============================== */
 
   initComponentInitialParams() {
+    this.sendTrack('new_project_payment_continue');
     this.componentInitialParams = {
       locale: this.coreConfig.getUser().language,
       paymentMethod: this.model.paymentMethod,
@@ -387,10 +371,19 @@ export default class PciProjectNewPaymentCtrl {
                 ),
                 'pci.projects.new.payment',
               );
+              this.trackProjectCreationError(
+                'payment',
+                'pci_project_new_payment_challenge_error_payment_method_deactivated',
+              );
             });
           }
 
           this.model.challenge.setError(status);
+
+          this.trackProjectCreationError(
+            'payment',
+            `pci_project_new_payment_challenge_error_${this.model.challenge.error.toLowerCase()}`,
+          );
 
           return null;
         })
@@ -413,6 +406,10 @@ export default class PciProjectNewPaymentCtrl {
               'pci_project_new_payment_set_default_payment_method_error',
             ),
             'pci.projects.new.payment',
+          );
+          this.trackProjectCreationError(
+            'payment',
+            'pci_project_new_payment_set_default_payment_method_error',
           );
 
           setDefaultPaymentMethodInError = true;
@@ -476,6 +473,10 @@ export default class PciProjectNewPaymentCtrl {
       this.$translate.instant('pci_project_new_payment_create_error'),
       'pci.projects.new.payment',
     );
+    this.trackProjectCreationError(
+      'payment',
+      'pci_project_new_payment_create_error',
+    );
 
     this.componentInitialParams = null;
     this.hasComponentRedirectCallback = false;
@@ -495,7 +496,7 @@ export default class PciProjectNewPaymentCtrl {
       },
     );
 
-    return this.managePaymentAndProjectCreation();
+    return null;
   }
 
   $onDestroy() {
