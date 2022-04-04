@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-redirection",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "Temporary redirection app for manager telecom",
   "repository": {
