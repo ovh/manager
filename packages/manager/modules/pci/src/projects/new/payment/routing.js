@@ -130,6 +130,8 @@ export default /* @ngInject */ ($stateProvider) => {
       getCancelHref: /* @ngInject */ ($state) => () =>
         $state.href('pci.projects'),
 
+      step1Link: /* @ngInject */ ($state) => () => $state.href('^'),
+
       reloadPayment: /* @ngInject */ ($state) => () =>
         $state.go(
           'pci.projects.new.payment',
