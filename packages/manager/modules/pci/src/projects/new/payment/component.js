@@ -25,5 +25,6 @@ export default {
     paymentStatus: '<',
     trackPage: '<',
     sendTrack: '<',
+    trackProjectCreationError: '<',
   },
 };

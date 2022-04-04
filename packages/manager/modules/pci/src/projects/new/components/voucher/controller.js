@@ -38,6 +38,11 @@ export default class PciProjectNewVoucherCtrl {
     );
   }
 
+  getStepTrackingCode() {
+    const step = this.steps.find(({ active }) => active);
+    return step.name === 'configuration' ? 'config' : step.name;
+  }
+
   /* -----  End of Helpers  ------ */
 
   /* =============================
@@ -71,7 +76,26 @@ export default class PciProjectNewVoucherCtrl {
       })
       .finally(() => {
         this.loading.check = false;
+
+        if (this.hasVoucherError()) {
+          this.trackProjectCreationError(
+            this.getStepTrackingCode(),
+            this.getVoucherError(),
+          );
+        }
       });
+  }
+
+  hasVoucherError() {
+    return (
+      this.model.voucher.value &&
+      !this.model.voucher.valid &&
+      this.model.voucher.error
+    );
+  }
+
+  getVoucherError() {
+    return `pci_projects_new_voucher_form_field_error_${this.model.voucher.error.statusText.toLowerCase()}`;
   }
 
   onVoucherFormReset() {
@@ -85,6 +109,10 @@ export default class PciProjectNewVoucherCtrl {
       })
       .catch(() => {
         this.errors.reset = true;
+        this.trackProjectCreationError(
+          this.getStepTrackingCode(),
+          'pci_projects_new_voucher_form_reset_error',
+        );
       })
       .finally(() => {
         this.loading.reset = false;

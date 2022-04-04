@@ -87,6 +87,46 @@ export const AT_INTERNET_CUSTOM_VARS = {
   },
 
   /**
+   * PCI creation step
+   */
+  pciCreationStep: {
+    path: {
+      default: 'page.1', // OVH's AtInternet configuration
+    },
+    format: '[%s]',
+  },
+
+  /**
+   * PCI creation error message
+   */
+  pciCreationErrorMessage: {
+    path: {
+      default: 'page.2', // OVH's AtInternet configuration
+    },
+    format: '[%s]',
+  },
+
+  /**
+   * PCI creation num of customer project (page.1)
+   */
+  pciCreationNumProjects: {
+    path: {
+      default: 'page.1', // OVH's AtInternet configuration
+    },
+    format: '[%s]',
+  },
+
+  /**
+   * PCI creation num of customer project (page.3)
+   */
+  pciCreationNumProjects3: {
+    path: {
+      default: 'page.3', // OVH's AtInternet configuration
+    },
+    format: '[%s]',
+  },
+
+  /**
    * Order status used
    */
   orderStatus: {

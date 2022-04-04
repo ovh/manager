@@ -95,6 +95,14 @@ export default class PciProjectNewPaymentCtrl {
       .catch((error) => {
         if (error?.status === ORDER_CHECK_PAYMENT_TIMEOUT_OVER) {
           this.hasCheckingError = true;
+          this.trackProjectCreationError(
+            'payment',
+            'pci_project_new_payment_check_error',
+          );
+          this.trackProjectCreationError(
+            'payment',
+            'pci_project_new_payment_check_payment_method_status',
+          );
         }
       })
       .finally(() => {
@@ -108,6 +116,11 @@ export default class PciProjectNewPaymentCtrl {
         `pci_project_new_payment_check_anti_fraud_case_${suffix}`,
       ),
       'pci.projects.new.payment',
+    );
+
+    this.trackProjectCreationError(
+      'payment',
+      `pci_project_new_payment_check_anti_fraud_case_${suffix}`,
     );
   }
 
@@ -244,11 +257,21 @@ export default class PciProjectNewPaymentCtrl {
             ),
             'pci.projects.new.payment',
           );
+
+          this.trackProjectCreationError(
+            'payment',
+            'pci_project_new_payment_check_anti_fraud_case_fraud_refused',
+          );
         }
 
         this.CucCloudMessage.error(
           this.$translate.instant('pci_project_new_payment_checkout_error'),
           'pci.projects.new.payment',
+        );
+
+        this.trackProjectCreationError(
+          'payment',
+          'pci_project_new_payment_checkout_error',
         );
 
         this.componentInitialParams = null;
@@ -306,6 +329,7 @@ export default class PciProjectNewPaymentCtrl {
   ============================== */
 
   initComponentInitialParams() {
+    this.sendTrack('new_project_payment_continue');
     this.componentInitialParams = {
       locale: this.coreConfig.getUser().language,
       paymentMethod: this.model.paymentMethod,
@@ -347,10 +371,19 @@ export default class PciProjectNewPaymentCtrl {
                 ),
                 'pci.projects.new.payment',
               );
+              this.trackProjectCreationError(
+                'payment',
+                'pci_project_new_payment_challenge_error_payment_method_deactivated',
+              );
             });
           }
 
           this.model.challenge.setError(status);
+
+          this.trackProjectCreationError(
+            'payment',
+            `pci_project_new_payment_challenge_error_${this.model.challenge.error.toLowerCase()}`,
+          );
 
           return null;
         })
@@ -373,6 +406,10 @@ export default class PciProjectNewPaymentCtrl {
               'pci_project_new_payment_set_default_payment_method_error',
             ),
             'pci.projects.new.payment',
+          );
+          this.trackProjectCreationError(
+            'payment',
+            'pci_project_new_payment_set_default_payment_method_error',
           );
 
           setDefaultPaymentMethodInError = true;
@@ -435,6 +472,10 @@ export default class PciProjectNewPaymentCtrl {
     this.CucCloudMessage.error(
       this.$translate.instant('pci_project_new_payment_create_error'),
       'pci.projects.new.payment',
+    );
+    this.trackProjectCreationError(
+      'payment',
+      'pci_project_new_payment_create_error',
     );
 
     this.componentInitialParams = null;

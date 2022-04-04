@@ -12,7 +12,14 @@ export default /* @ngInject */ ($stateProvider) => {
           projectOrder ? 'pciProjectCreatingNotPaid' : 'pciProjectCreating',
       },
     },
-    onEnter: /* @ngInject */ (pciFeatureRedirect) => {
+    atInternet: {
+      ignore: true, // this tell AtInternet to not track this state
+    },
+    onEnter: /* @ngInject */ (atInternet, numProjects, pciFeatureRedirect) => {
+      atInternet.trackPage({
+        name: 'PublicCloud::pci::projects::project::creating',
+        pciCreationNumProjects: numProjects,
+      });
       return pciFeatureRedirect(PCI_FEATURES.OTHERS.CREATE_PROJECT);
     },
     resolve: {

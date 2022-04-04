@@ -79,7 +79,9 @@ export default /* @ngInject */ ($stateProvider) => {
           }),
         ),
 
-      billingUrl: (coreURLBuilder) =>
+      numProjects: /* @ngInject */ (projects) => projects.length,
+
+      billingUrl: /* @ngInject */ (coreURLBuilder) =>
         coreURLBuilder.buildURL('dedicated', '#/billing/history'),
 
       terminateProject: /* @ngInject */ (OvhApiCloudProject) => (project) =>
@@ -167,6 +169,17 @@ export default /* @ngInject */ ($stateProvider) => {
           type: 'action',
         });
       },
+
+      trackProjectCreationError: /* @ngInject */ (atInternet, numProjects) => (
+        step,
+        errorMessage,
+      ) =>
+        atInternet.trackPage({
+          name: 'PublicCloud_project_creation_error_message',
+          pciCreationStep: step,
+          pciCreationErrorMessage: errorMessage,
+          pciCreationNumProjects3: numProjects,
+        }),
     },
   });
 };
