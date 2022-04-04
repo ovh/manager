@@ -10,10 +10,7 @@
     </button>
 
     <oui-message data-type="error" data-ng-if="$ctrl.errors.reset">
-        <span
-            data-ng-if="$ctrl.errors.reset"
-            data-translate="pci_projects_new_voucher_form_reset_error"
-        >
+        <span data-translate="pci_projects_new_voucher_form_reset_error">
         </span>
     </oui-message>
 
@@ -86,15 +83,10 @@
                 data-offer="$ctrl.deals"
             >
             </pci-project-offer>
-            <span
-                class="oui-field__error"
-                data-ng-if="$ctrl.model.voucher.value && !$ctrl.model.voucher.valid && $ctrl.model.voucher.error"
-            >
+            <span class="oui-field__error" data-ng-if="$ctrl.hasVoucherError()">
                 <span class="oui-icon oui-icon-error" aria-hidden="true">
                 </span>
-                <span
-                    data-translate="{{ 'pci_projects_new_voucher_form_field_error_' + $ctrl.model.voucher.error.statusText.toLowerCase() }}"
-                ></span>
+                <span data-translate="{{ $ctrl.getVoucherError() }}"></span>
             </span>
         </div>
     </form>

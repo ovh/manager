@@ -64,8 +64,11 @@
         <!--Back to projects page-->
         <a
             data-ng-href="{{:: $ctrl.projectsLink() }}"
-            data-translate="pci_project_new_config_btn_return_to_projects"
+            data-track-on="click"
+            data-track-name="PublicCloud::pci::projects::new_project_cancel"
+            data-track-type="navigation"
         >
+            <span data-translate="pci_project_new_config_btn_return_to_projects"></span>
         </a>
     </div>
 </div>

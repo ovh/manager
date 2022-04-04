@@ -44,6 +44,8 @@ export default /* @ngInject */ ($stateProvider) => {
           location: false,
         };
 
+        let trackErrorMessage;
+
         if (eligibility.isAskIncreaseProjectsQuotaRequired()) {
           redirectState = 'pci.projects.project.error';
           redirectParams = {
@@ -58,6 +60,8 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
             submitLink: newSupportTicketLink,
           };
+          trackErrorMessage =
+            'pci_project_new_error_ask_increase_projects_quota';
         } else if (eligibility.isVerifyPaypalRequired()) {
           redirectState = 'pci.error';
           redirectParams = {
@@ -71,6 +75,7 @@ export default /* @ngInject */ ($stateProvider) => {
             image: ELIGIBILITY_ERROR_IMAGES_SRC.VERIFY_PAYPAL,
             submitLabel: null,
           };
+          trackErrorMessage = 'pci_project_new_error_verify_paypal';
         } else if (cart.cartId !== transition.params().cartId) {
           $window.location.replace(
             transition.router.stateService.href('pci.projects.new', {
@@ -79,6 +84,10 @@ export default /* @ngInject */ ($stateProvider) => {
             }),
           );
           return null;
+        }
+
+        if (trackErrorMessage) {
+          this.trackProjectCreationError('config', trackErrorMessage);
         }
 
         return transition.router.stateService.target(

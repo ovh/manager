@@ -19,8 +19,15 @@ export default /* @ngInject */ ($stateProvider) => {
 
       'voucher@pci.projects.new.config': 'pciProjectNewVoucher',
     },
-    onEnter: /* @ngInject */ (activeStep, step) => {
+    atInternet: {
+      ignore: true, // this tell AtInternet to not track this state
+    },
+    onEnter: /* @ngInject */ (atInternet, activeStep, step, numProjects) => {
       activeStep(step.name);
+      atInternet.trackPage({
+        name: 'PublicCloud::pci::projects::new::config',
+        pciCreationNumProjects: numProjects,
+      });
     },
     resolve: {
       getActionHref: /* @ngInject */ ($state) => (action) => {
