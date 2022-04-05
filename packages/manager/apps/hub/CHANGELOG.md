@@ -1,3 +1,12 @@
+## [3.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.20.2...@ovh-ux/manager-hub-app@3.20.3) (2022-04-05)
+
+
+### Bug Fixes
+
+* name controller ([#6818](https://github.com/ovh/manager/issues/6818)) ([b17c4d1](https://github.com/ovh/manager/commit/b17c4d1900bc1bddf203c5c930f6bc572b42c34e))
+
+
+
 ## [3.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.20.1...@ovh-ux/manager-hub-app@3.20.2) (2022-03-24)
 
 
