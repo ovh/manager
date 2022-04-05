@@ -1,9 +1,12 @@
 import 'moment';
 
+const TRACKING_PREFIX = 'vps::detail::additional-disk::upgrade';
+
 export default class VpsDiskUpgradeCtrl {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, VpsService, coreConfig) {
+  constructor($translate, atInternet, CucCloudMessage, VpsService, coreConfig) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.VpsService = VpsService;
 
@@ -25,11 +28,22 @@ export default class VpsDiskUpgradeCtrl {
     return renewPrice / 100;
   }
 
+  trackClick(label) {
+    this.atInternet.trackClick({
+      name: `${TRACKING_PREFIX}::${label}`,
+      type: 'action',
+    });
+  }
+
   onCancelUpgradeAdditionalDiskClick() {
+    this.trackClick('cancel');
     return this.goBack();
   }
 
   onUpgradeAdditionalDiskClick() {
+    this.trackClick(
+      `confirm_${this.vpsLinkedDisk?.size}_${this.selectedDiskModel?.capacity}`,
+    );
     this.isUpgrading = true;
     this.VpsService.upgradeAdditionalDisk(
       this.vpsLinkedDisk.serviceName,

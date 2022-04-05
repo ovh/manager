@@ -17,9 +17,13 @@ export default /* @ngInject */ ($stateProvider) => {
           ? VpsService.getUpgradableAdditionalDisk(catalog, vpsLinkedDisk)
           : [],
 
-      goToOrderAdditionalDisk: /* @ngInject */ ($state) => () =>
-        $state.go('vps.detail.additional-disk.order'),
-
+      goToOrderAdditionalDisk: /* @ngInject */ ($state, atInternet) => () => {
+        atInternet.trackClick({
+          name: `vps::detail::additional-disk::order`,
+          type: 'action',
+        });
+        $state.go('vps.detail.additional-disk.order');
+      },
       goToUpgradeDisk: /* @ngInject */ ($state) => () =>
         $state.go('vps.detail.additional-disk.upgrade'),
 

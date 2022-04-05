@@ -30,6 +30,7 @@ export const TERMINATE_SUCCESS_INFO = {
 export const TRACKING_INFO = {
   automatedBackup: 'backup-auto',
   snapshot: 'snapshot',
+  additionalDisk: 'additional-disk',
 };
 
 export default {
