@@ -22,8 +22,8 @@ export default /* @ngInject */ ($stateProvider) => {
           }));
         }),
       goBack: /* @ngInject */ (goToStorageContainers) => goToStorageContainers,
-      cancelLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.storages.archives', {
+      cancelCreate: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.storages.archives', {
           projectId,
         }),
       breadcrumb: /* @ngInject */ ($translate) =>
