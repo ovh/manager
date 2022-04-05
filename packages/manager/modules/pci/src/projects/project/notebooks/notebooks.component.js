@@ -23,6 +23,7 @@ export default {
     notebooksRegions: '<',
     trackNotebooks: '<',
     trackClick: '<',
+    goToStopNotebook: '<',
   },
   controller,
   template,

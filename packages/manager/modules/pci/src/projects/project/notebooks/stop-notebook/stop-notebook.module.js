@@ -4,10 +4,10 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import stopNotebook from '../../../components/stop-notebook';
+import stopNotebook from '../components/stop-notebook';
 import routing from './stop-notebook.routing';
 
-const moduleName = 'ovhManagerPciNotebooksNotebookDashboardNotebookStop';
+const moduleName = 'ovhManagerPciNotebooksNotebookStop';
 
 angular.module(moduleName, ['ui.router', stopNotebook]).config(routing);
 
