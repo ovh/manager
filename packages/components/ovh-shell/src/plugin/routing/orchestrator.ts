@@ -12,6 +12,8 @@ class Orchestrator {
 
   config: RoutingConfiguration;
 
+  onCrossOriginError: CallableFunction;
+
   constructor(
     config: RoutingConfiguration,
     iframe: ILocation,
@@ -20,6 +22,9 @@ class Orchestrator {
     this.iframe = iframe;
     this.container = container;
     this.config = config;
+    this.onCrossOriginError = (error: Error) => {
+      throw error;
+    };
   }
 
   static create(
@@ -40,11 +45,28 @@ class Orchestrator {
     );
   }
 
+  setCrossOriginErrorHandler(handler: CallableFunction) {
+    this.onCrossOriginError = handler;
+  }
+
   /**
    * @returns {URL} The iframe current URL
    */
   getIFrameURL() {
-    return this.iframe.getURL();
+    try {
+      return this.iframe.getURL();
+    } catch (error) {
+      this.onCrossOriginError(error);
+      return null;
+    }
+  }
+
+  setIFrameURL(href: string) {
+    try {
+      this.iframe.setURL(href);
+    } catch (error) {
+      this.onCrossOriginError(error);
+    }
   }
 
   /**
@@ -56,7 +78,7 @@ class Orchestrator {
     const { appId, appHash, appURL } = this.parseContainerURL();
     if (appURL) {
       if (appURL.href !== this.getIFrameURL().href) {
-        this.iframe.setURL(appURL.href);
+        this.setIFrameURL(appURL.href);
       }
     } else {
       const redirection = this.config.findRedirection(appId);
