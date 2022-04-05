@@ -10,5 +10,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
     },
+    atInternet: {
+      rename: 'vps::detail::additional-disk::upgrade',
+    },
   });
 };

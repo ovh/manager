@@ -11,5 +11,8 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
       vpsOption: /* @ngInject */ () => 'additionalDisk',
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };
