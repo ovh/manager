@@ -3,8 +3,8 @@ import { Application as IApplication } from '@ovh-ux/manager-config/types/applic
 import { Redirect, Route } from 'react-router-dom';
 import Router, { hashChangeEvent } from './router';
 import Shell from '../../shell/shell';
-import Application from './application';
 import RoutingConfiguration from './configuration';
+import Orchestrator from './orchestrator';
 
 export function initRoutingConfiguration(
   shell: Shell,
@@ -32,6 +32,8 @@ export function initRoutingConfiguration(
           if (appConfig.container.isDefault) {
             routing.setDefault(routingConfig);
           }
+        } else {
+          routing.addRedirection(appId, appConfig.publicURL);
         }
       },
     );
@@ -57,10 +59,14 @@ export function initRoutingConfiguration(
 
 export function initRouting(shell: Shell, iframe: HTMLIFrameElement) {
   const routingConfig = new RoutingConfiguration();
-  const application = new Application(iframe, routingConfig);
   const routes: React.ReactElement<Route | Redirect>[] = [];
+  const orchestrator = Orchestrator.create(routingConfig, iframe.contentWindow, window.top)
   const router = (
-    <Router application={application} routing={routingConfig} routes={routes} />
+    <Router
+      orchestrator={orchestrator}
+      routing={routingConfig}
+      routes={routes}
+    />
   );
 
   initRoutingConfiguration(shell, routingConfig);
