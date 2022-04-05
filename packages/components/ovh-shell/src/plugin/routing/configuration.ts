@@ -15,8 +15,11 @@ class RoutingConfiguration {
 
   default: ApplicationConfiguration;
 
+  redirections: Record<string, URL>;
+
   constructor() {
     this.config = {};
+    this.redirections = {};
     this.pathEquals = pathEquals;
   }
 
@@ -25,6 +28,14 @@ class RoutingConfiguration {
     if (!this.default) {
       this.default = config;
     }
+  }
+
+  addRedirection(id: string, href: string): void {
+    this.redirections[id] = new URL(href);
+  }
+
+  findRedirection(id: string): URL {
+    return this.redirections[id];
   }
 
   findByPath(path: string): ApplicationConfiguration {

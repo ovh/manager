@@ -4,25 +4,19 @@ import {
   Redirect,
   Route,
   Switch,
-  useHistory,
-  useParams,
+  useLocation,
 } from 'react-router-dom';
-import Application from './application';
+import Orchestrator from './orchestrator';
 import RoutingConfiguration from './configuration';
 
 export const hashChangeEvent = 'ovh-routing-hash-change';
 
 interface RouteHandlerProps {
-  app: Application;
-}
-
-interface RouteHandlerParams {
-  appId: string;
-  '0': string;
+  orchestrator: Orchestrator;
 }
 
 interface RouterProps {
-  application: Application;
+  orchestrator: Orchestrator;
   routing: RoutingConfiguration;
   routes: React.ReactElement<Route | Redirect>[];
 }
@@ -31,30 +25,21 @@ interface DefaultRouteHandlerProps {
   routing: RoutingConfiguration;
 }
 
-function RouteHandler(props: RouteHandlerProps): JSX.Element {
-  const { appId, '0': appHash } = useParams<RouteHandlerParams>();
-  const { app } = props;
+function URLSynchronizer(props: RouteHandlerProps): JSX.Element {
+  const { orchestrator } = props;
+  const location = useLocation();
 
-  const history = useHistory();
+  // Iframe URL updated => update container URL
   useEffect(() => {
     window.addEventListener(
       hashChangeEvent,
-      () => {
-        const { applicationId, applicationHash } = app.getApplicationRouting();
-        history.replace({ pathname: `/${applicationId}${applicationHash}` });
-      },
+      () => orchestrator.updateContainerURL(),
       false,
     );
   }, []);
 
-  try {
-    app.updateRouting({
-      applicationId: appId,
-      applicationHash: appHash,
-    });
-  } catch (error) {
-    console.error(error);
-  }
+  // Container URL updated => update iframe URL
+  useEffect(() => orchestrator.updateIframeURL(), [location]);
 
   return null;
 }
@@ -78,10 +63,8 @@ function Router(props: RouterProps) {
           <DefaultRouteHandler routing={props.routing} />
         </Route>
         {routes}
-        <Route path="/:appId/(.*)">
-          <RouteHandler app={props.application} />
-        </Route>
       </Switch>
+      <URLSynchronizer orchestrator={props.orchestrator} />
     </HashRouter>
   );
 }
