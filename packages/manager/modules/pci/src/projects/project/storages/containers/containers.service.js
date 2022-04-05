@@ -134,8 +134,6 @@ export default class PciStoragesContainersService {
       queryParams.archive = false;
     }
 
-    queryParams.region = OPENIO_DEFAULT_REGION;
-
     return this.OvhApiCloudProjectStorage.Aapi()
       .query(queryParams)
       .$promise.then((containers) =>
