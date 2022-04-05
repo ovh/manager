@@ -60,7 +60,14 @@ export function initRoutingConfiguration(
 export function initRouting(shell: Shell, iframe: HTMLIFrameElement) {
   const routingConfig = new RoutingConfiguration();
   const routes: React.ReactElement<Route | Redirect>[] = [];
-  const orchestrator = Orchestrator.create(routingConfig, iframe.contentWindow, window.top)
+  const orchestrator = Orchestrator.create(
+    routingConfig,
+    iframe.contentWindow,
+    window.top,
+  );
+  orchestrator.setCrossOriginErrorHandler(() =>
+    shell.getPlugin('navigation').reload({ isTop: true })
+  );
   const router = (
     <Router
       orchestrator={orchestrator}
