@@ -5,10 +5,6 @@ import { ApplicationId } from '@ovh-ux/manager-config/types/application';
 
 import ShellClient from '../../client/shell-client';
 
-export interface navigationOptions {
-  isTop?: boolean;
-}
-
 export interface ClientNavigationApi {
   getURL: (
     application: ApplicationId,
@@ -19,9 +15,8 @@ export interface ClientNavigationApi {
     application: ApplicationId,
     path: string,
     params: Record<string, ParamValueType>,
-    options: navigationOptions,
   ) => PromiseLike<unknown>;
-  reload: (options: navigationOptions) => PromiseLike<unknown>;
+  reload: () => PromiseLike<unknown>;
 }
 
 export function navigation(environment: Environment) {
@@ -46,24 +41,17 @@ export function navigation(environment: Environment) {
     return buildURL(getPublicURL(application), path, params);
   };
 
-  const getWindow = (isTop = true) => {
-    return isTop ? window.top : window;
-  };
-
   return {
     getURL,
     navigateTo: (
       application: ApplicationId,
       path: string,
       params: Record<string, ParamValueType>,
-      options: navigationOptions,
     ): void => {
-      const windowToRefresh = getWindow(options.isTop);
-      windowToRefresh.location.assign(getURL(application, path, params));
+      (window.top || window).location.assign(getURL(application, path, params));
     },
-    reload: (options: navigationOptions): void => {
-      const windowToReload = getWindow(options.isTop);
-      windowToReload.location.reload();
+    reload: (): void => {
+      (window.top || window).location.reload();
     },
   };
 }
@@ -86,18 +74,17 @@ export function clientNavigation(
       application: ApplicationId,
       path: string,
       params: Record<string, ParamValueType>,
-      options: navigationOptions,
     ) =>
       shellClient.invokePluginMethod({
         plugin: 'navigation',
         method: 'navigateTo',
-        args: [application, path, params, options],
+        args: [application, path, params],
       }),
-    reload: (options: navigationOptions) =>
+    reload: () =>
       shellClient.invokePluginMethod({
         plugin: 'navigation',
         method: 'reload',
-        args: [options],
+        args: [],
       }),
   };
 }
