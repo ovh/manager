@@ -24,6 +24,7 @@ import {
 export default class DomainTabGeneralInformationsCtrl {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $rootScope,
     $scope,
@@ -48,7 +49,9 @@ export default class DomainTabGeneralInformationsCtrl {
     WucAllDom,
     DOMAIN,
     goToDnsAnycast,
+    goToTerminateAnycast,
   ) {
+    this.$http = $http;
     this.$scope = $scope;
     this.$rootScope = $rootScope;
     this.$q = $q;
@@ -73,6 +76,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.coreURLBuilder = coreURLBuilder;
     this.DOMAIN = DOMAIN;
     this.goToDnsAnycast = goToDnsAnycast;
+    this.goToTerminateAnycast = goToTerminateAnycast;
     this.DOMAIN_STATE_TYPE = DOMAIN_STATE_TYPE;
   }
 
@@ -186,6 +190,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.updateOwnerUrl = this.getUpdateOwnerUrl(this.domain);
 
     this.getRules();
+    this.loggedInUser = this.coreConfig.getUser()?.nichandle;
 
     if (this.isAllDom) {
       this.getAllDomInfos(this.$stateParams.allDom);
@@ -442,6 +447,29 @@ export default class DomainTabGeneralInformationsCtrl {
           }),
           {},
         );
+      })
+      .then(() => {
+        return this.$http
+          .get(`/domain/zone/${this.domain.name}/option/anycast/serviceInfos`, {
+            serviceType: 'apiv6',
+          })
+          .then(({ data }) => {
+            this.options.dnsAnycast = {
+              option: 'dnsAnycast',
+              optionActivated: true,
+              isTerminated: get(data, 'renew.mode') === 'deleteAtExpiration',
+              ...data,
+            };
+          })
+          .catch((error) => {
+            if (error.status === 404) {
+              this.options.dnsAnycast = {
+                option: 'dnsAnycast',
+                optionActivated: false,
+              };
+            }
+            return error.status !== 404 ? this.$q.reject(error) : null;
+          });
       })
       .catch((err) =>
         this.Alerter.alertFromSWS(

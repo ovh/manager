@@ -1,0 +1,6 @@
+{
+  "domain_configuration_dnsanycast_terminate_modal_title": "Disattiva DNS Anycast",
+  "domain_configuration_dnsanycast_terminate_modal_question": "Vuoi davvero disattivare il servizio DNS Anycast?",
+  "domain_configuration_dnsanycast_terminate_modal_confirm": "Conferma",
+  "domain_configuration_dnsanycast_terminate_modal_cancel": "Annulla"
+}
