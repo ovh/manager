@@ -1,3 +1,12 @@
+## [1.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.8.3...@ovh-ux/manager-support@1.8.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* **support.tickets.new:** remove permissive filter ([064369e](https://github.com/ovh/manager/commit/064369e44fdf50ac93242b8072eb7b6288bfd554))
+
+
+
 ## [1.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.8.2...@ovh-ux/manager-support@1.8.3) (2022-03-24)
 
 

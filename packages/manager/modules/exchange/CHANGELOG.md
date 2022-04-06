@@ -1,3 +1,23 @@
+## [3.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.2.1...@ovh-ux/manager-exchange@3.2.2) (2022-04-06)
+
+
+### Bug Fixes
+
+* **dashboard:** update criteria content ([#6690](https://github.com/ovh/manager/issues/6690)) ([dc9d733](https://github.com/ovh/manager/commit/dc9d73395e7765ff9070c6bfa8355b37d1d93212))
+* **exchange:** add restriction to service name edition ([2c3289c](https://github.com/ovh/manager/commit/2c3289c6fa3611366257f87956266d0b31f05f80))
+* **exchange.creation-wizard:** clean unnecessary ng-bind-html ([268a6a6](https://github.com/ovh/manager/commit/268a6a628653ca3235d809cbc338316183773489))
+* **exchange.resource.add:** remove bind-html directive ([52a7f26](https://github.com/ovh/manager/commit/52a7f26567d793618d383858f9dd8a700ade271b))
+* **exchange.resource.edit:** disallow HTML carets ([d5a3e9c](https://github.com/ovh/manager/commit/d5a3e9cafc408aa3dde2d935a9f4ad6b2a7be407))
+* **i18n:** add missing translations [CDS 1541] ([5037d3e](https://github.com/ovh/manager/commit/5037d3eec6a315a85ccd2d15a3b23ed79654d24f))
+* **i18n:** add missing translations [CDS 1546] ([3a426df](https://github.com/ovh/manager/commit/3a426df3718bc597d2a8cb41157b1c095dbe7669))
+* **i18n:** add missing translations [CDS 1550] ([52ead43](https://github.com/ovh/manager/commit/52ead434c4be6fec5e2b3ac5a5e7c8111abc49a3))
+* **i18n:** add missing translations [CDS 1552] ([0dfc45f](https://github.com/ovh/manager/commit/0dfc45fc80e05c92cbc8ea0b7dbe968064d65c66))
+* remove unused translations [CDS] ([ba08445](https://github.com/ovh/manager/commit/ba084457b3d6a02e82c205b757887354c87bdb56))
+* **web.exchange:** update translation to remove ng-bind-html ([01b79e5](https://github.com/ovh/manager/commit/01b79e5202381012af39087c6304f41384da1a72))
+* **web.exchange.resource.delegation:** remove ng-bind-html ([5247f49](https://github.com/ovh/manager/commit/5247f49cc8804e802abb820653a7629d94298e2c))
+
+
+
 ## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.2.0...@ovh-ux/manager-exchange@3.2.1) (2022-03-24)
 
 

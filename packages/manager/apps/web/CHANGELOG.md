@@ -1,3 +1,20 @@
+# [16.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.8.1...@ovh-ux/manager-web@16.9.0) (2022-04-06)
+
+
+### Bug Fixes
+
+* **hosting.dashboard:** add restriction to name edition ([e5f7f62](https://github.com/ovh/manager/commit/e5f7f62aa93350cf939d201d1431371f46c917f2))
+* **i18n:** add missing translations [CDS 1533] ([11d6c54](https://github.com/ovh/manager/commit/11d6c547e0baafcb51e8b970291caa645f26adad))
+* **private-database.dashboard:** add restriction to name edition ([9ece852](https://github.com/ovh/manager/commit/9ece8523cd286377d30f08a614ca50671c0dd9c4))
+* **web.domain.redirection.add:** clean bind html and secure input ([028a954](https://github.com/ovh/manager/commit/028a9540cad2bd7c2dd964a908d3a46d4dcd5e02))
+
+
+### Features
+
+* **domain:** update dns anycast order ([#2743](https://github.com/ovh/manager/issues/2743)) ([0917f63](https://github.com/ovh/manager/commit/0917f638db7eb150186266b57808b0e2d5fc3421))
+
+
+
 ## [16.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.8.0...@ovh-ux/manager-web@16.8.1) (2022-03-24)
 
 

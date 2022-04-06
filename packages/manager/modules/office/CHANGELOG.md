@@ -1,3 +1,12 @@
+## [2.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.6.1...@ovh-ux/manager-office@2.6.2) (2022-04-06)
+
+
+### Bug Fixes
+
+* **office.dashboard:** disallow HTML chars in name edition ([4461fcb](https://github.com/ovh/manager/commit/4461fcb489b33d8a0e0b5debcccdcea672f1088d))
+
+
+
 ## [2.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.6.0...@ovh-ux/manager-office@2.6.1) (2022-03-24)
 
 

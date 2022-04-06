@@ -1,3 +1,14 @@
+## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.0.2...@ovh-ux/manager-nutanix@1.0.3) (2022-04-06)
+
+
+### Bug Fixes
+
+* **onboarding:** use updated Nutanix onboarding links ([#6717](https://github.com/ovh/manager/issues/6717)) ([1805246](https://github.com/ovh/manager/commit/18052468c309f56a8657abb57eb3c9879ebd8c7c))
+* add missing Nutanix `serviceType` ([#6739](https://github.com/ovh/manager/issues/6739)) ([9f8fa9b](https://github.com/ovh/manager/commit/9f8fa9bdffff0b06714a2617f77b87409591f2d8))
+* **i18n:** add missing translations [CDS 1534] ([23cb3bf](https://github.com/ovh/manager/commit/23cb3bf044a0d88ac8629d7558e7f42c7da390a9))
+
+
+
 ## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.0.1...@ovh-ux/manager-nutanix@1.0.2) (2022-03-24)
 
 

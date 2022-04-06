@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-netapp",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "private": true,
   "description": "NetApp product.",
   "repository": {
@@ -26,7 +26,7 @@
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
     "@ovh-ux/manager-models": "^1.11.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
-    "@ovh-ux/ng-at-internet": "^5.8.1",
+    "@ovh-ux/ng-at-internet": "^5.9.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.1",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.5",
     "@ovh-ux/ng-ovh-utils": "^14.0.16",

@@ -1,3 +1,12 @@
+## [1.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.5.2...@ovh-ux/manager-cloud-connect@1.5.3) (2022-04-06)
+
+
+### Bug Fixes
+
+* **cloud-connect.edit-descriotion:** disallow HTML chars in name edition ([572eb5a](https://github.com/ovh/manager/commit/572eb5a43474b4d018fdf9bf849b763cef0031cb))
+
+
+
 ## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.5.1...@ovh-ux/manager-cloud-connect@1.5.2) (2022-03-24)
 
 

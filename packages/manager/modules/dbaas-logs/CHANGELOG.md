@@ -1,3 +1,12 @@
+## [1.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.6.3...@ovh-ux/manager-dbaas-logs@1.6.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* **dbaas-logs:** disallow HTML chars in name edition ([41e089f](https://github.com/ovh/manager/commit/41e089f5c15e4c457cb490cc609eeaeb17c1cb40))
+
+
+
 ## [1.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.6.2...@ovh-ux/manager-dbaas-logs@1.6.3) (2022-03-24)
 
 

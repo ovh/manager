@@ -1,3 +1,21 @@
+# [5.66.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.65.1...@ovh-ux/manager-pci@5.66.0) (2022-04-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1556] ([4a30150](https://github.com/ovh/manager/commit/4a3015035f22db151cad6c29bcc179d590152105))
+* remove unused translations [CDS] ([cf232dc](https://github.com/ovh/manager/commit/cf232dcff3532bb6c8f0e270737ebe3713c454a5))
+* update AI documentation URLs ([#6704](https://github.com/ovh/manager/issues/6704)) ([c4ed320](https://github.com/ovh/manager/commit/c4ed320eb59bc7012ef1036dda77fd34aaafcf70))
+* **pci:** add restriction to name edition ([2d1b158](https://github.com/ovh/manager/commit/2d1b1587cc0ef662ef0ece620d8b53da467b2799))
+* **storages.containers.add:** fix region selection ([#6532](https://github.com/ovh/manager/issues/6532)) ([a293443](https://github.com/ovh/manager/commit/a29344352877a7d0ca06de943313a3b5cce38af4))
+
+
+### Features
+
+* **instances.add:** display banner when flavor selected is eol ([#6626](https://github.com/ovh/manager/issues/6626)) ([23a5f0b](https://github.com/ovh/manager/commit/23a5f0bca659a15952e2f3e8ea700e642f0e4e92))
+
+
+
 ## [5.65.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.65.0...@ovh-ux/manager-pci@5.65.1) (2022-04-05)
 
 

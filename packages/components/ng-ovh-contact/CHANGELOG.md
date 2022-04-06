@@ -1,3 +1,12 @@
+## [5.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.1.0...@ovh-ux/ng-ovh-contact@5.1.1) (2022-04-06)
+
+
+### Bug Fixes
+
+* **ng-ovh-contact:** remove ng-bind-html ([2b65d92](https://github.com/ovh/manager/commit/2b65d92840dc94c46b89dcbc4c9ec4a95d4d5804))
+
+
+
 # [5.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.0.6...@ovh-ux/ng-ovh-contact@5.1.0) (2022-03-09)
 
 

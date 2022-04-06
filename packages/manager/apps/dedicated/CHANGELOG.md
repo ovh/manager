@@ -1,3 +1,16 @@
+## [17.15.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.15.3...@ovh-ux/manager-dedicated@17.15.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* **account.contacts.edit:** add restriction to nic inputs ([96a1f4b](https://github.com/ovh/manager/commit/96a1f4b6927323f134c3968e0f8433835ee20781))
+* **dedicated-cloud.name-edition:** disallow HTML carets ([01f7bf4](https://github.com/ovh/manager/commit/01f7bf49115135566a5c0030971227b801b422b5))
+* **dedicated.server:** restrict display name edition ([2cb5816](https://github.com/ovh/manager/commit/2cb58164677910df2ccadf098a0c80da0de9545f))
+* **dedicated.server.seondary-dns:** prevent html chars to be set ([4910aba](https://github.com/ovh/manager/commit/4910abad9cc183813abbb184f1bc05889e2e0629))
+* **i18n:** add missing translations [CDS 1533] ([11d6c54](https://github.com/ovh/manager/commit/11d6c547e0baafcb51e8b970291caa645f26adad))
+
+
+
 ## [17.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.15.2...@ovh-ux/manager-dedicated@17.15.3) (2022-03-24)
 
 
