@@ -1,5 +1,5 @@
 {
-  "netapp_snapshot_policies_create": "Créer une nouvelle Snapshot policy",
+  "netapp_snapshot_policies_create_title": "Créer une nouvelle Snapshot policy",
   "netapp_snapshot_policies_create_information": "Afin de créer vos règles de planification, vous devez spécifier un préfixe et une durée en minutes. Vous pouvez en option renseigner les heures, jours et mois d’exécution pour affiner votre planification. Il est possible d’ajouter plusieurs valeurs en les séparant par une virgule. Par défaut, un champ non renseigné prendra l’ensemble des valeurs disponibles.",
   "netapp_snapshot_policies_create_exemple": "Exemple",
   "netapp_snapshot_policies_create_exemple_1": "Exemple 1 :",

@@ -1,0 +1,6 @@
+{
+  "domain_configuration_dnsanycast_terminate_modal_title": "DNS Anycast kündigen",
+  "domain_configuration_dnsanycast_terminate_modal_question": "Sind Sie sicher, dass Sie den CDN-Dienst kündigen möchten?",
+  "domain_configuration_dnsanycast_terminate_modal_confirm": "Bestätigen",
+  "domain_configuration_dnsanycast_terminate_modal_cancel": "Abbrechen"
+}

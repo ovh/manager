@@ -1,0 +1,362 @@
+<div>
+    <oui-message
+        data-ng-if="$ctrl.successMessage"
+        type="success"
+        aria-close-button-label="{{:: 'overTheBox_autoconfigure_close' | translate}}"
+        dismissable
+    >
+        <span data-ng-bind="$ctrl.successMessage"></span>
+    </oui-message>
+    <oui-message
+        data-ng-if="$ctrl.errorMessage"
+        type="error"
+        aria-close-button-label="{{:: 'overTheBox_autoconfigure_close' | translate}}"
+        dismissable
+    >
+        <span data-ng-bind="$ctrl.errorMessage"></span>
+    </oui-message>
+    <div class="oui-box oui-box_light">
+        <h4
+            class="oui-box__heading"
+            data-translate="overTheBox_autoconfigure_interface_subtitle"
+        ></h4>
+
+        <div data-ng-if="$ctrl.interfaces.length === 0" class="mb-2">
+            <em data-translate="overTheBox_autoconfigure_no_values"></em>
+        </div>
+
+        <form
+            novalidate
+            name="formInterface"
+            data-ng-if="$ctrl.showAddInterface"
+        >
+            <div class="oui-input-group oui-input-group_inline d-flex">
+                <oui-field
+                    label="{{:: 'overTheBox_autoconfigure_interface_ifname' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="ifname"
+                        required
+                        ng-model="$ctrl.interface.ifname"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_interface_name' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="interfaceName"
+                        required
+                        ng-model="$ctrl.interface.interfaceName"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_priority' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="priority"
+                        type="number"
+                        required
+                        ng-model="$ctrl.interface.priority"
+                    />
+                </oui-field>
+            </div>
+            <div class="oui-input-group oui-input-group_inline d-flex">
+                <oui-field
+                    label="{{:: 'overTheBox_autoconfigure_gateway_optional' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="gateway"
+                        ng-model="$ctrl.interface.gateway"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_interface_ip_address_optional' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="ipAddr"
+                        ng-model="$ctrl.interface.ipAddr"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_mtu_optional' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="mtu"
+                        type="number"
+                        ng-model="$ctrl.interface.mtu"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_netmask_optional' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="netmask"
+                        ng-model="$ctrl.interface.netmask"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_interface_ipv6_optional' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="isIpv6"
+                        type="checkbox"
+                        ng-model="$ctrl.interface.isIPv6"
+                    />
+                </oui-field>
+            </div>
+            <div class="oui-input-group oui-input-group_inline d-flex">
+                <oui-field
+                    label="{{:: 'overTheBox_autoconfigure_interface_protocol_optional' | translate}}"
+                >
+                    <oui-select
+                        name="protocol"
+                        data-items="$ctrl.OVERTHEBOX_MULTIPATH.protocolEnum"
+                        data-model="$ctrl.interface.protocol"
+                        data-placeholder="{{:: 'overTheBox_autoconfigure_multipath_select_value' | translate }}"
+                    ></oui-select>
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_interface_multipath_optional' | translate}}"
+                >
+                    <oui-select
+                        name="protocol"
+                        data-items="$ctrl.OVERTHEBOX_MULTIPATH.multipathEnum"
+                        data-model="$ctrl.interface.multipath"
+                        data-placeholder="{{:: 'overTheBox_autoconfigure_multipath_select_value' | translate }}"
+                    ></oui-select>
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_interface_routing_table_optional' | translate}}"
+                >
+                    <input
+                        class="oui-input"
+                        name="routingTable"
+                        ng-model="$ctrl.interface.routingTable"
+                    />
+                </oui-field>
+                <oui-field
+                    class="ml-2"
+                    label="{{:: 'overTheBox_autoconfigure_interface_type_optional' | translate}}"
+                >
+                    <oui-select
+                        name="protocol"
+                        data-items="$ctrl.OVERTHEBOX_MULTIPATH.typeEnum"
+                        data-model="$ctrl.interface.type"
+                        data-placeholder="{{:: 'overTheBox_autoconfigure_multipath_select_value' | translate }}"
+                    ></oui-select>
+                </oui-field>
+                <oui-button
+                    class="ml-2 mb-2"
+                    data-variant="primary"
+                    data-type="submit"
+                    data-disabled="!$ctrl.interface.ifname || !$ctrl.interface.interfaceName || !$ctrl.interface.priority"
+                    data-on-click="$ctrl.createInterface()"
+                >
+                    <span
+                        data-translate="overTheBox_autoconfigure_submit"
+                    ></span>
+                </oui-button>
+                <oui-button
+                    class="ml-2 mb-2"
+                    data-variant="primary"
+                    data-on-click="$ctrl.cancelCreateInterface()"
+                >
+                    <span
+                        data-translate="overTheBox_autoconfigure_cancel"
+                    ></span>
+                </oui-button>
+            </div>
+        </form>
+
+        <oui-button
+            data-variant="primary"
+            data-on-click="$ctrl.addInterface()"
+            class="ml-2 mb-2 d-flex justify-content-center"
+            data-ng-if="$ctrl.displayAddInterfaceButton && $ctrl.interfaces.length === 0"
+        >
+            <span
+                data-translate="overTheBox_autoconfigure_interface_add"
+            ></span>
+        </oui-button>
+
+        <oui-datagrid
+            page-size="5"
+            rows="$ctrl.interfaces"
+            data-ng-if="$ctrl.interfaces.length > 0"
+        >
+            <oui-datagrid-topbar>
+                <oui-action-menu
+                    text="{{::'overTheBox_autoconfigure_actions' | translate}}"
+                >
+                    <oui-action-menu-item
+                        aria-label="{{::'overTheBox_autoconfigure_interface_add' | translate }}"
+                        data-on-click="$ctrl.addInterface()"
+                    >
+                        <span
+                            data-translate="overTheBox_autoconfigure_interface_add"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-datagrid-topbar>
+            <oui-datagrid-column
+                title="'overTheBox_autoconfigure_interface_ifname' | translate"
+                property="configuration.ifname"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title="'overTheBox_autoconfigure_interface_name' | translate"
+                property="configuration.interfaceName"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title="'overTheBox_autoconfigure_priority' | translate"
+                property="priority"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column>
+                <oui-button
+                    variant="primary"
+                    size="s"
+                    on-click="$ctrl.removeInterface($row)"
+                >
+                    <span class="oui-icon oui-icon-trash"></span>
+                </oui-button>
+            </oui-datagrid-column>
+            <oui-datagrid-row-detail>
+                <div class="d-flex justify-content-around">
+                    <dl class="oui-description">
+                        <dt
+                            data-translate="overTheBox_autoconfigure_gateway"
+                        ></dt>
+                        <dd
+                            data-translate="overTheBox_autoconfigure_value_not_defined"
+                            data-ng-if="!$row.configuration.gateway"
+                        ></dd>
+                        <dd
+                            data-ng-bind="$row.data.gateway"
+                            data-ng-if="$row.configuration.gateway"
+                        ></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt
+                            data-translate="overTheBox_autoconfigure_interface_ip_address"
+                        ></dt>
+                        <dd
+                            data-translate="overTheBox_autoconfigure_value_not_defined"
+                            data-ng-if="!$row.configuration.ip"
+                        ></dd>
+                        <dd
+                            data-ng-bind="$row.configuration.ip"
+                            data-ng-if="$row.configuration.ip"
+                        ></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfigure_mtu"></dt>
+                        <dd
+                            data-translate="overTheBox_autoconfigure_value_not_defined"
+                            data-ng-if="!$row.configuration.mtu"
+                        ></dd>
+                        <dd
+                            data-ng-bind="$row.configuration.mtu"
+                            data-ng-if="$row.configuration.mtu"
+                        ></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt
+                            data-translate="overTheBox_autoconfigure_netmask"
+                        ></dt>
+                        <dd
+                            data-translate="overTheBox_autoconfigure_value_not_defined"
+                            data-ng-if="!$row.configuration.netmask"
+                        ></dd>
+                        <dd
+                            data-ng-bind="$row.configuration.netmask"
+                            data-ng-if="$row.configuration.netmask"
+                        ></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt
+                            data-translate="overTheBox_autoconfigure_interface_ipv6"
+                        ></dt>
+                        <dd
+                            data-translate="overTheBox_autoconfigure_value_not_defined"
+                            data-ng-if="!$row.configuration.ipv6"
+                        ></dd>
+                        <dd
+                            data-ng-bind="$row.configuration.ipv6"
+                            data-ng-if="$row.configuration.ipv6"
+                        ></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt
+                            data-translate="overTheBox_autoconfigure_interface_protocol"
+                        ></dt>
+                        <dd
+                            data-translate="overTheBox_autoconfigure_value_not_defined"
+                            data-ng-if="!$row.configuration.protocol"
+                        ></dd>
+                        <dd
+                            data-ng-bind="$row.configuration.protocol"
+                            data-ng-if="$row.configuration.protocol"
+                        ></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt
+                            data-translate="overTheBox_autoconfigure_interface_multipath"
+                        ></dt>
+                        <dd
+                            data-translate="overTheBox_autoconfigure_value_not_defined"
+                            data-ng-if="!$row.configuration.multipath"
+                        ></dd>
+                        <dd
+                            data-ng-bind="$row.configuration.multipath"
+                            data-ng-if="$row.configuration.multipath"
+                        ></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt
+                            data-translate="overTheBox_autoconfigure_interface_routing_table"
+                        ></dt>
+                        <dd
+                            data-translate="overTheBox_autoconfigure_value_not_defined"
+                            data-ng-if="!$row.configuration.routingTable"
+                        ></dd>
+                        <dd
+                            data-ng-bind="$row.configuration.routingTable"
+                            data-ng-if="$row.configuration.routingTable"
+                        ></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt
+                            data-translate="overTheBox_autoconfigure_interface_type"
+                        ></dt>
+                        <dd
+                            data-translate="overTheBox_autoconfigure_value_not_defined"
+                            data-ng-if="!$row.configuration.type"
+                        ></dd>
+                        <dd
+                            data-ng-bind="$row.configuration.type"
+                            data-ng-if="$row.configuration.type"
+                        ></dd>
+                    </dl>
+                </div>
+            </oui-datagrid-row-detail>
+        </oui-datagrid>
+    </div>
+</div>

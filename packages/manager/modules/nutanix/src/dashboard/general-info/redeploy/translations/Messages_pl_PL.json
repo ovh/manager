@@ -10,7 +10,7 @@
   "nutanix_redeploy_step2_title_initial_configuration": "Podsumowanie elementów technicznych",
   "nutanix_redeploy_step2_title_custom_configuration": "Strategia wdrożenia i odporność",
   "nutanix_redeploy_initial_configuration": "Ponownie wdróż początkową konfigurację",
-  "nutanix_redeploy_prism_central_description": "Prism Central to interfejs do zarządzania różnymi klastrami Nutanix, nawet jeśli są fizycznie odseparowane.  ",
+  "nutanix_redeploy_prism_central_description": "Prism Central to interfejs do zarządzania różnymi klastrami Nutanix, nawet jeśli są fizycznie odseparowane. ",
   "nutanix_redeploy_custom_configuration": "Spersonalizuj konfigurację",
   "nutanix_redeploy_prism_central_type_description": "Pole „Typ” określa poziom dostępności wirtualnej maszyny (VM) Prism Central, który ma być zastosowany. Każda wirtualna maszyna zużywa część zasobów klastra. Typ „Alone” oznacza, że wdrażana jest jedna wirtualna maszyna. Typ „Scale-out” oznacza, że na Twoim klastrze wdrażane są trzy maszyny do zarządzania Prism Central. Obniża to zdolność rozwoju wirtualnych maszyn oraz odporność systemów.",
   "nutanix_redeploy_prism_central_virtual_ip_description": "VIP, jeśli pływający adres IP jest używany do udostępniania Prism Central. Ten adres IP zostanie skonfigurowany w backendzie publicznych adresów IP Load Balancer Twojego klastra.",

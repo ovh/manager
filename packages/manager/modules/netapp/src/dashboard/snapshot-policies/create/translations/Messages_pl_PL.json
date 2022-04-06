@@ -1,7 +1,5 @@
 {
-  "netapp_snapshot_policies_create_submit": "Utwórz nową politykę tworzenia snapshotów",
-  "netapp_snapshot_policies_create_rule_edit": "Edytuj regułę",
-  "netapp_snapshot_policies_create": "Utwórz nową politykę wykonywania snapshotów",
+  "netapp_snapshot_policies_create_title": "Utwórz nową politykę tworzenia snapshotów",
   "netapp_snapshot_policies_create_information": "Aby utworzyć reguły planowania, podaj prefiks i czas trwania w minutach. Możesz opcjonalnie wpisać godziny, dni i miesiące wykonania. Możesz wprowadzić kilka wartości, oddzielając je przecinkiem. W polu, które nie jest wypełnione, pojawią się domyślnie wszystkie dostępne wartości.",
   "netapp_snapshot_policies_create_exemple": "Przykład",
   "netapp_snapshot_policies_create_exemple_1": "Przykład 1:",
@@ -25,12 +23,14 @@
   "netapp_snapshot_policies_create_empty": "pusta",
   "netapp_snapshot_policies_create_rules": "Reguły (UTC Time Zone): {{count}}",
   "netapp_snapshot_policies_create_add_rule": "Dodaj nową regułę",
+  "netapp_snapshot_policies_create_submit": "Utwórz nową politykę tworzenia snapshotów",
   "netapp_snapshot_policies_create_select_placeholder": "Wybierz...",
   "netapp_snapshot_policies_create_selected_days": "{{days}} dzień/dni",
   "netapp_snapshot_policies_create_selected_months": "{{months}} miesiąc/miesięcy",
   "netapp_snapshot_policies_create_add_rule_validate": "Zatwierdź",
   "netapp_snapshot_policies_create_add_rule_cancel": "Anuluj",
   "netapp_snapshot_policies_create_rule_delete": "Usuń regułę",
+  "netapp_snapshot_policies_create_rule_edit": "Edytuj regułę",
   "netapp_snapshot_policies_create_error": "Wystąpił błąd podczas tworzenia polityki wykonywania snapshotów.",
   "netapp_snapshot_policies_create_success": "Polityka wykonywania snapshotów {{snapshotPolicyName}} została utworzona."
 }

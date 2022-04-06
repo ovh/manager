@@ -10,11 +10,13 @@ export default class VeeamEnterpriseLicenseCtrl {
   }
 
   dismissModal() {
+    this.trackClick(this.getLicenseTag('cancel'));
     this.goToDashboard();
   }
 
   submitForm(form) {
     if (form.$valid) {
+      this.trackClick(this.getLicenseTag('confirm'));
       this.loading = true;
       this.VeeamEnterpriseService.postConfiguration(
         this.action,
@@ -38,5 +40,11 @@ export default class VeeamEnterpriseLicenseCtrl {
         })
         .finally(() => this.goToDashboard());
     }
+  }
+
+  getLicenseTag(hit) {
+    return this.action === 'register'
+      ? `license::activate::${hit}`
+      : `license::update::${hit}`;
   }
 }

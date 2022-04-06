@@ -1,5 +1,5 @@
 {
-  "netapp_snapshot_policies_create": "Create a new snapshot policy",
+  "netapp_snapshot_policies_create_title": "Create a new snapshot policy",
   "netapp_snapshot_policies_create_information": "To create your scheduling rules, you need to specify a prefix and a duration in minutes. You can optionally enter the hours, days and months of execution to refine your scheduling. You can add multiple values by separating them with a comma. By default, an empty field will take all of the available values.",
   "netapp_snapshot_policies_create_exemple": "Example",
   "netapp_snapshot_policies_create_exemple_1": "Example 1:",

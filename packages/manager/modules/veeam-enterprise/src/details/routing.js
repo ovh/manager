@@ -1,5 +1,5 @@
 import template from './template.html';
-import dashboardTemplate from '../dashboard/template.html';
+import { TRACKING_PREFIX } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
@@ -25,15 +25,19 @@ export default /* @ngInject */ ($stateProvider) => {
         goToLicenseTerminate: /* @ngInject */ ($state) => () =>
           $state.go('veeam-enterprise.details.dashboard.license.terminate'),
         breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+        trackClick: /* @ngInject */ (atInternet) => (hit) => {
+          atInternet.trackClick({
+            name: `${TRACKING_PREFIX}::${hit}`,
+            type: 'action',
+          });
+        },
       },
     })
     .state('veeam-enterprise.details.dashboard', {
       url: '/dashboard',
       views: {
         veeamEnterpriseContent: {
-          template: dashboardTemplate,
-          controller: 'VeeamEnterpriseDashboardCtrl',
-          controllerAs: '$ctrl',
+          component: 'veeamEnterpriseDashboard',
         },
       },
       translations: {

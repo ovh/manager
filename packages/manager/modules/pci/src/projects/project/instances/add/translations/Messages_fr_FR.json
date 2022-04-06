@@ -3,6 +3,7 @@
 
   "pci_projects_project_instances_add_flavor_title": "Sélectionnez un modèle",
   "pci_projects_project_instances_add_flavor_selected_title": "Modèle choisi : {{model}} à partir de {{price}}",
+  "pci_projects_project_instances_add_flavor_selected_legacy": "Le modèle sélectionné est déprécié. Sa disponibilité ne peut pas être garantie.",
 
   "pci_projects_project_instances_add_region_title": "Sélectionnez une localisation",
   "pci_projects_project_instances_add_region_selected_title": "Localisation choisie : {{location}}",

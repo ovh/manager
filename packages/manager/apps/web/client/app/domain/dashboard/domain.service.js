@@ -1449,6 +1449,16 @@ angular.module('services').service(
     }
 
     /**
+     * Get DNS Anycast details
+     * @param {string} serviceName
+     */
+    getDnsAnycastDetails(serviceName) {
+      return this.$http
+        .get(`/domain/zone/${serviceName}/option/anycast/serviceInfos`)
+        .then(({ data }) => data);
+    }
+
+    /**
      * Get DNS Anycast status
      * @param {string} serviceName
      */
@@ -1461,6 +1471,19 @@ angular.module('services').service(
         }
         return null;
       });
+    }
+
+    /**
+     * Terminate DNS Anycast
+     * @param {string} serviceName
+     */
+    terminateDnsAnycast(serviceName, renew) {
+      return this.$http.put(
+        `/domain/zone/${serviceName}/option/anycast/serviceInfos`,
+        {
+          renew,
+        },
+      );
     }
 
     /**

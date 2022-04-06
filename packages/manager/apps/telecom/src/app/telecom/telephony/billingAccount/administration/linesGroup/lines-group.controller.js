@@ -54,6 +54,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountAdministra
         billingAccounts: iceberg('/telephony')
           .query()
           .expand('CachedObjectList-Pages')
+          .limit(5000)
           .execute().$promise,
         numberCount: getNumberCount,
         lineCount: getLineCount,

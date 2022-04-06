@@ -1,4 +1,8 @@
-<form id="nameChangeForm" data-ng-submit="$ctrl.confirm()">
+<form
+    id="nameChangeForm"
+    name="nameChangeForm"
+    data-ng-submit="!nameChangeForm.$invalid && $ctrl.confirm()"
+>
     <oui-modal
         data-on-dismiss="$ctrl.cancel()"
         data-primary-label="{{:: 'cuc_helper_edit' | translate}}"
@@ -23,6 +27,7 @@
                 name="newDisplayName"
                 class="oui-input"
                 data-ng-model="$ctrl.model.displayName.value"
+                data-ng-pattern="/^[^<>]+$/"
                 required
             />
         </oui-field>

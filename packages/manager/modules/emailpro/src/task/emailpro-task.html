@@ -12,15 +12,15 @@
         >
             <span
                 data-ng-if="$row.status"
-                data-ng-bind-html="'emailpro_tab_TASKS_'+ $row.function | translate"
+                data-ng-bind="'emailpro_tab_TASKS_'+ $row.function | translate"
             ></span>
             <span
                 data-ng-if="$row.action.includes(mailinglist)"
-                data-ng-bind-html="'emailpro_tab_TASKS_mailinglist' | translate"
+                data-ng-bind="'emailpro_tab_TASKS_mailinglist' | translate"
             ></span>
             <span
                 data-ng-if="$row.action.includes(redirection)"
-                data-ng-bind-html="'emailpro_tab_TASKS_redirection' | translate"
+                data-ng-bind="'emailpro_tab_TASKS_redirection' | translate"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
@@ -34,7 +34,7 @@
                     aria-hidden="true"
                 ></span>
                 <span
-                    data-ng-bind-html="'emailpro_tab_TASKS_'+ $row.status | translate"
+                    data-ng-bind="'emailpro_tab_TASKS_'+ $row.status | translate"
                 ></span>
             </div>
             <div data-ng-if="$row.status == stateError">
@@ -43,22 +43,22 @@
                     aria-hidden="true"
                 ></span>
                 <span
-                    data-ng-bind-html="'emailpro_tab_TASKS_'+ $row.status | translate"
+                    data-ng-bind="'emailpro_tab_TASKS_'+ $row.status | translate"
                 ></span>
             </div>
             <div data-ng-if="$row.status == stateCancelled">
                 <span class="fa fa-ban text-muted" aria-hidden="true"></span>
                 <span
-                    data-ng-bind-html="'emailpro_tab_TASKS_'+ $row.status | translate"
+                    data-ng-bind="'emailpro_tab_TASKS_'+ $row.status | translate"
                 ></span>
             </div>
             <span
                 data-ng-if="$row.status == stateDone"
-                data-ng-bind-html="'emailpro_tab_TASKS_'+ $row.status | translate"
+                data-ng-bind="'emailpro_tab_TASKS_'+ $row.status | translate"
             ></span>
             <span
                 data-ng-if="$row.action"
-                data-ng-bind-html="'emailpro_tab_TASKS_todo' | translate"
+                data-ng-bind="'emailpro_tab_TASKS_todo' | translate"
             ></span>
         </oui-datagrid-column>
 

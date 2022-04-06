@@ -47,5 +47,6 @@
   "pci_projects_project_instances_add_automated_backup_recommended": "Zalecane",
   "pci_projects_project_instances_add_privateNetwork_description": "Instancje Public Cloud połączone są domyślnie w ramach sieci publicznej, możesz dodać sieć prywatną.",
   "pci_projects_project_instances_add_privateNetwork_add": "Utwórz prywatną sieć",
-  "pci_projects_project_instances_add_instance_is_iops": "Usługa automatyczne kopie zapasowe ma zastosowanie wyłącznie w odniesieniu do danych znajdujących się na dysku lokalnym Twojej instancji. Nie będą tworzone kopie zapasowe danych znajdujących się na dyskach NVMe."
+  "pci_projects_project_instances_add_instance_is_iops": "Usługa automatyczne kopie zapasowe ma zastosowanie wyłącznie w odniesieniu do danych znajdujących się na dysku lokalnym Twojej instancji. Nie będą tworzone kopie zapasowe danych znajdujących się na dyskach NVMe.",
+  "pci_projects_project_instances_add_flavor_selected_legacy": "Wybrany model jest przestarzały. Nie można zagwarantować jego dostępności."
 }

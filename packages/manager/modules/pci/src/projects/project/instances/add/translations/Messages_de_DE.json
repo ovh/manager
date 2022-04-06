@@ -47,5 +47,6 @@
   "pci_projects_project_instances_add_automated_backup_recommended": "Empfohlen",
   "pci_projects_project_instances_add_privateNetwork_description": "Die Public Cloud Instanzen verfügen standardmäßig über ein öffentliches Netzwerk. Sie können ihnen ein privates Netzwerk hinzufügen. ",
   "pci_projects_project_instances_add_privateNetwork_add": "Privates Netzwerk erstellen",
-  "pci_projects_project_instances_add_instance_is_iops": "Das automatische Backup wird nur für die Daten auf der lokalen Festplatte Ihrer Instanz ausgeführt. Die Daten auf den NVMe-Festplatten werden nicht gesichert."
+  "pci_projects_project_instances_add_instance_is_iops": "Das automatische Backup wird nur für die Daten auf der lokalen Festplatte Ihrer Instanz ausgeführt. Die Daten auf den NVMe-Festplatten werden nicht gesichert.",
+  "pci_projects_project_instances_add_flavor_selected_legacy": "Das gewählte Modell ist veraltet. Seine Verfügbarkeit kann nicht garantiert werden."
 }

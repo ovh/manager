@@ -1,6 +1,6 @@
 <form
     name="editableServiceNameForm"
-    data-ng-submit=":: $ctrl.saveServiceName()"
+    data-ng-submit="!editableServiceNameForm.$invalid && $ctrl.saveServiceName()"
 >
     <div
         data-ng-hide="$ctrl.inEdition"
@@ -40,6 +40,7 @@
                 data-ng-maxlength="$ctrl.maxlength"
                 data-ng-model="$ctrl.model.serviceName"
                 data-ng-readonly="$ctrl.loading.save"
+                data-ng-pattern="/^[^<>]+$/"
                 type="text"
             />
 

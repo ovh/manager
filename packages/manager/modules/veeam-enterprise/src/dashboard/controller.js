@@ -9,9 +9,6 @@ export default class VeeamEnterpriseDashboardCtrl {
     CucControllerHelper,
     CucFeatureAvailabilityService,
     VeeamEnterpriseService,
-    goToLicenseActivate,
-    goToLicenseUpdate,
-    goToLicenseTerminate,
   ) {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
@@ -19,9 +16,6 @@ export default class VeeamEnterpriseDashboardCtrl {
     this.CucControllerHelper = CucControllerHelper;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
     this.VeeamEnterpriseService = VeeamEnterpriseService;
-    this.goToLicenseActivate = goToLicenseActivate;
-    this.goToLicenseUpdate = goToLicenseUpdate;
-    this.goToLicenseTerminate = goToLicenseTerminate;
 
     this.serviceName = this.$stateParams.serviceName;
 
@@ -71,6 +65,10 @@ export default class VeeamEnterpriseDashboardCtrl {
         isAvailable: () => true,
       },
     };
+  }
+
+  onAutorenewManageClick() {
+    this.trackClick('manage');
   }
 
   $onInit() {

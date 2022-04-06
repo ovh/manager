@@ -1,0 +1,14 @@
+<oui-modal
+    data-title="{{:: 'domain_configuration_dnsanycast_terminate_modal_title' | translate}}"
+    data-primary-label="{{ ::'domain_configuration_dnsanycast_terminate_modal_confirm' | translate }}"
+    data-primary-action="$ctrl.confirm()"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{ ::'domain_configuration_dnsanycast_terminate_modal_cancel' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.loading"
+>
+    <p
+        class="oui-modal__text"
+        data-translate="domain_configuration_dnsanycast_terminate_modal_question"
+    ></p>
+</oui-modal>

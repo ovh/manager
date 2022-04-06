@@ -55,6 +55,7 @@ export default class PciStoragesContainersAddController {
     this.container = new Container({
       archive: this.archive,
     });
+    this.container.region = null;
   }
 
   loadMessages() {
@@ -68,6 +69,10 @@ export default class PciStoragesContainersAddController {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  onContainerSolutionChange() {
+    this.container.region = null;
   }
 
   onRegionsFocus() {
