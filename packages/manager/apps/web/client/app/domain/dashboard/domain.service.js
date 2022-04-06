@@ -299,7 +299,7 @@ angular.module('services').service(
      * @param {string} id
      */
     getNameServerStatus(serviceName, id) {
-      return this.OvhHttp.post(
+      return this.OvhHttp.get(
         `/domain/${serviceName}/nameServer/${id}/status`,
         {
           rootPath: 'apiv6',
