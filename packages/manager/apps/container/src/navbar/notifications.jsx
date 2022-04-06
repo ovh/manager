@@ -14,12 +14,12 @@ export default function NavbarNotifications(props) {
 
   const {
     isNotificationsSidebarVisible,
-    setIsNotificationsSidebarVisible,
+    toggleNotificationSidebar,
   } = useHeader();
 
   function onClick() {
     const initialVisibilityState = isNotificationsSidebarVisible;
-    setIsNotificationsSidebarVisible(!isNotificationsSidebarVisible);
+    toggleNotificationSidebar();
     if (initialVisibilityState) {
       readAllNotifications();
     }

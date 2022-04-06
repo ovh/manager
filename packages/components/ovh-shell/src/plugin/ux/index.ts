@@ -10,6 +10,7 @@ export interface IUXPlugin {
   hideNotificationsSidebar(): void;
   enableAccountSidebarVisibilityToggle(): void;
   disableAccountSidebarVisibilityToggle(): void;
+  setForceAccountSiderBarDisplayOnLargeScreen(v: boolean): void;
   toggleNotificationsSidebarVisibility(): void;
   toggleAccountSidebarVisibility(): void;
   getUserIdCookie(): string;
@@ -40,6 +41,10 @@ export class UXPlugin implements IUXPlugin {
     return this.shellUX.isSidebarVisible('account');
   }
 
+  isAccountSidebarLargeScreenDisplayForced(): boolean {
+    return this.shellUX.isLargeScreenDisplayForced('account');
+  }
+
   showAccountSidebar(): void {
     return this.shellUX.showSidebar('account');
   }
@@ -54,6 +59,10 @@ export class UXPlugin implements IUXPlugin {
 
   disableAccountSidebarVisibilityToggle(): void {
     this.shellUX.disableSidebarToggle('account');
+  }
+
+  setForceAccountSiderBarDisplayOnLargeScreen(v: boolean): void {
+    this.shellUX.setForceSiderBarDisplayOnLargeScreen('account', v);
   }
 
   toggleAccountSidebarVisibility(): void {
@@ -80,6 +89,10 @@ export class UXPlugin implements IUXPlugin {
 
   toggleNotificationsSidebarVisibility(): void {
     this.shellUX.toggleSidebarVisibility('notifications');
+  }
+
+  onNotificationsSidebarVisibilityChange(callback: CallableFunction): void {
+    this.shellUX.onSidebarVisibilityChange('notifications', callback);
   }
 
   /* ----------- SSOAuthModal methods -----------*/

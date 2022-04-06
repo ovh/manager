@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { capitalize, truncate } from 'lodash-es';
@@ -10,22 +10,21 @@ import { useShell } from '@/context';
 function NavbarAccount({ user }) {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const shell = useShell();
-  const uxPlugin = shell.getPlugin('ux');
+
   const firstName = capitalize(user.firstname);
   const lastName = truncate(capitalize(user.name), {
     length: 10,
   });
 
-  const { setIsAccountSidebarVisible } = useHeader();
+  const { toggleAccountSidebar } = useHeader();
 
   const toggleSidebar = () => {
-    uxPlugin.toggleAccountSidebarVisibility();
-    setIsAccountSidebarVisible(uxPlugin?.isAccountSidebarVisible());
+    toggleAccountSidebar();
     shell.getPlugin('tracking').trackClick({
-      name: 'navbar::action::user-bar',
-      type: 'action',
-    });
-  };
+     name: 'navbar::action::user-bar',
+     type: 'action',
+   });
+  }
 
   return (
     <button
@@ -33,9 +32,7 @@ function NavbarAccount({ user }) {
       type="button"
       className={`oui-navbar-link oui-navbar-link_icon oui-navbar-link_tertiary ${style.navbarLink}`}
       aria-label={t('navbar_account')}
-      onClick={() => {
-        toggleSidebar();
-      }}
+      onClick={() => toggleSidebar()}
     >
       <span className="oui-navbar-link__wrapper oui-navbar-link__wrapper_border">
         <span

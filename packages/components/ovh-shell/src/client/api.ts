@@ -79,6 +79,12 @@ export default function exposeApi(shellClient: ShellClient) {
           plugin: 'ux',
           method: 'isAccountSidebarVisible',
         }),
+      setForceAccountSiderBarDisplayOnLargeScreen: (v: boolean) => {
+        shellClient.invokePluginMethod({
+          plugin: 'ux',
+          method: 'setForceAccountSiderBarDisplayOnLargeScreen',
+        });
+      },
       getSSOAuthModalMode: (oldUserCookie: string) =>
         shellClient.invokePluginMethod<string>({
           plugin: 'ux',
