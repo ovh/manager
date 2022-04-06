@@ -50,3 +50,10 @@
   float: right;
   position: absolute;
 }
+
+/* fix chatbot display in container as long as it is in an iframe */
+ovh-chatbot .chatbot-floating-button,
+ovh-chatbot .chatbot-main,
+ovh-chatbot .chatbot-reduced {
+  right: 20rem;
+}
