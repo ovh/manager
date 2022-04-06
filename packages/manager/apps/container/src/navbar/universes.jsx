@@ -20,6 +20,7 @@ function NavbarUniverses({ universe, universes, onClick }) {
               key={u.universe}
               href={u.url}
               onClick={(event) => onClick({ event, universe: u.universe })}
+              {...(u.external ? { rel: 'noopener', target: '_blank' } : {})}
             >
               {t(`navbar_universe_${u.universe}`)}
             </a>
