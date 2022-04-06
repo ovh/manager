@@ -65,9 +65,24 @@ export function initRouting(shell: Shell, iframe: HTMLIFrameElement) {
     iframe.contentWindow,
     window.top,
   );
-  orchestrator.setCrossOriginErrorHandler(() =>
-    shell.getPlugin('navigation').reload({ isTop: true })
-  );
+
+  orchestrator.setCrossOriginErrorHandler(() => {
+    const target = orchestrator.parseContainerURL().appURL?.href;
+    if (target) {
+      iframe.setAttribute('src', target);
+    } else {
+      orchestrator.redirectToContainerHome();
+    }
+  });
+
+  iframe.addEventListener('load', () => {
+    try {
+      iframe.contentWindow.location.toString();
+    } catch {
+      orchestrator.onCrossOriginError();
+    }
+  });
+
   const router = (
     <Router
       orchestrator={orchestrator}
