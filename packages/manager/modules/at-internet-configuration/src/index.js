@@ -14,7 +14,7 @@ const moduleName = 'ovhManagerAtInternetConfiguration';
 
 const trackingEnabled = __NODE_ENV__ === 'production';
 
-export const registerAtInternetConfigModule = (trackingPlugin) => {
+export const registerAtInternetConfigModule = (trackingPlugin = null) => {
   angular
     .module(moduleName, [
       trackingPlugin ? registerAtInternet(trackingPlugin) : 'ngAtInternet',

@@ -1,5 +1,6 @@
 import 'script-loader!jquery'; // eslint-disable-line
 import 'whatwg-fetch';
+import 'regenerator-runtime/runtime';
 import 'core-js/stable';
 import {
   attach as attachPreloader,

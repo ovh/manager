@@ -4,6 +4,7 @@ import { Environment, findLanguage } from '@ovh-ux/manager-config';
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 import 'script-loader!jquery';
 import 'script-loader!lodash';
+import 'regenerator-runtime/runtime';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
 // lodash imports
@@ -19,7 +20,7 @@ import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth'; // peerDep of manager-core
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
-import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
+import { registerAtInternetConfigModule } from '@ovh-ux/manager-at-internet-configuration';
 import '@ovh-ux/sign-up';
 import signUpFormView from './form';
 import detailsState from './details';
@@ -46,7 +47,7 @@ angular
       'ngSanitize',
       'pascalprecht.translate',
       registerCoreModule(environment),
-      ovhManagerAtInternetConfiguration,
+      registerAtInternetConfigModule(),
       ovhManagerCookiePolicy,
       ngAtInternet,
       ngAtInternetUiRouterPlugin,

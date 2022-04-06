@@ -1,11 +1,11 @@
 import angular from 'angular';
-import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
+import { registerAtInternetConfigModule } from '@ovh-ux/manager-at-internet-configuration';
 
 import TRACKING from './at-internet.constant';
 
 const moduleName = 'dbaasLogsAtInternet';
 
-angular.module(moduleName, [ovhManagerAtInternetConfiguration]).config(
+angular.module(moduleName, [registerAtInternetConfigModule()]).config(
   /* @ngInject */ (atInternetConfigurationProvider) => {
     atInternetConfigurationProvider.setConfig(TRACKING);
     atInternetConfigurationProvider.setPrefix('dedicated');
