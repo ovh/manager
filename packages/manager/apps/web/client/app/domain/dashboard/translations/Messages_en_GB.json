@@ -623,7 +623,7 @@
   "domain_configuration_zonedns_delete_all_propagation_info": "The deletion will be applied immediately on the DNS zone, but please note that the change may take up to 24 hours to propagate.",
   "domain_configuration_zonedns_delete_all_success": "The records will be deleted immediately on the DNS zone, but please note that the change may take up to 24 hours to propagate.",
   "domain_configuration_zonedns_delete_all_error": "An error when deleting the DNS zone. ",
-  "domain_configuration_dnsanycast_title_button": "Activate Anycast DNS ",
+  "domain_configuration_dnsanycast_title_button": "Order Anycast DNS",
   "domain_configuration_dnsanycast_title": "Activate Anycast DNS ",
   "domain_configuration_dnsanycast_step1_question": "Please click \"Next\" to activate the Anycast DNS option.",
   "domain_configuration_dnsanycast_step1_explanation": "The Anycast DNS option is a solution that accelerates the conventional operation of DNS servers, to provide faster response times when visitors browse your website for the first time, anywhere in the world.",

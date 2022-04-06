@@ -15,7 +15,7 @@
   "netapp_dashboard_configuration_status_suspending": "Trwa zawieszanie",
   "netapp_dashboard_configuration_status_suspended": "Zawieszony",
   "netapp_dashboard_configuration_status_deleting": "Trwa usuwanie",
-  "netapp_dashboard_configuration_status_deleted": "Usunięty",
+  "netapp_dashboard_configuration_status_deleted": "Usunięto",
   "netapp_dashboard_configuration_create_volume": "Utwórz wolumen",
   "netapp_dashboard_volumes": "Wolumeny",
   "netapp_dashboard_snapshot_policies": "Reguły dotyczące snapshotów"
