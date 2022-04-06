@@ -73,7 +73,7 @@ export default /* @ngInject */ (
   );
 
   $scope.buyDomains = function buyDomains() {
-    $scope.setAction('../backend/order/cdn-dedicated-backend-order');
+    $scope.setAction('../dedicated/backend/order/cdn-dedicated-backend-order');
   };
 
   $scope.modifyBackend = function modifyBackend() {
