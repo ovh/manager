@@ -1,5 +1,3 @@
-import { isTopLevelApplication } from '@ovh-ux/manager-config';
-
 angular.module('App').controller(
   'AppCtrl',
   class AppCtrl {
@@ -17,7 +15,6 @@ angular.module('App').controller(
       this.$scope.stepPath = '';
       this.$scope.currentAction = null;
       this.$scope.currentActionData = null;
-      this.isTopLevelApplication = isTopLevelApplication();
 
       this.$scope.resetAction = () => {
         $('#currentActionApp').modal('hide');
