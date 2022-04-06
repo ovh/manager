@@ -12,11 +12,7 @@ import '@ovh-ux/manager-billing-components';
 import component from './component';
 import routing from './routing';
 
-import index from './index/module';
-import snapshotPolicies from './snapshot-policies';
-import volumes from './volumes';
-
-const moduleName = 'ovhManagerNetAppDashboard';
+const moduleName = 'ovhManagerNetAppDashboardIndex';
 
 angular
   .module(moduleName, [
@@ -29,12 +25,9 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'ngOvhUtils',
-    snapshotPolicies,
-    volumes,
-    index,
   ])
   .config(routing)
-  .component('ovhManagerNetAppDashboard', component)
+  .component('ovhManagerNetAppDashboardIndex', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

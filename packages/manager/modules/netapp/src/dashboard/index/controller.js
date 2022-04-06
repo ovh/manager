@@ -1,6 +1,6 @@
-import { SERVICE_TYPE } from './constants';
+import { SERVICE_TYPE } from '../constants';
 
-export default class OvhManagerNetAppDashboardCtrl {
+export default class OvhManagerNetAppDashboardIndexCtrl {
   /* @ngInject */
   constructor($translate, Alerter) {
     this.$translate = $translate;
