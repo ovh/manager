@@ -165,6 +165,8 @@ export default /* @ngInject */ ($stateProvider) => {
             value:
               voucher || get(cart, 'projectItem.voucherConfiguration.value'),
           }),
+          isVoucherRequirePaymentMethod:
+            eligibility.voucher?.paymentMethodRequired,
         };
 
         if (modelDef.voucher.value) {
@@ -200,6 +202,7 @@ export default /* @ngInject */ ($stateProvider) => {
       globalLoading: () => ({
         setDefaultPaymentMethod: false,
         finalize: false,
+        isVoucherValidating: false,
       }),
 
       /* ----------  Order steps management  ---------- */

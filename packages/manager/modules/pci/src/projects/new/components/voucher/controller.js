@@ -55,13 +55,22 @@ export default class PciProjectNewVoucherCtrl {
 
   onVoucherFormSubmit() {
     this.loading.check = true;
+    this.globalLoading.isVoucherValidating = true;
 
     return this.checkVoucherValidity(this.model.voucher.value)
       .then((eligibilityOpts) => {
+        this.model.isVoucherRequirePaymentMethod =
+          eligibilityOpts.voucher.paymentMethodRequired;
         this.model.voucher.setInfos(eligibilityOpts.voucher);
+        this.eligibility.setOptions(eligibilityOpts);
         this.setVoucherFormState();
 
-        this.eligibility.setOptions(eligibilityOpts);
+        return eligibilityOpts;
+      })
+      .then((eligibilityOpts) => {
+        if (!this.model.isVoucherRequirePaymentMethod) {
+          this.model.paymentMethod = null;
+        }
 
         return this.model.voucher.valid
           ? this.pciProjectNew.setCartProjectItemVoucher(
@@ -71,11 +80,13 @@ export default class PciProjectNewVoucherCtrl {
           : eligibilityOpts.voucher;
       })
       .catch(() => {
+        this.model.isVoucherRequirePaymentMethod = true;
         this.model.voucher.valid = false;
         this.setVoucherFormState();
       })
       .finally(() => {
         this.loading.check = false;
+        this.globalLoading.isVoucherValidating = false;
 
         if (this.hasVoucherError()) {
           this.trackProjectCreationError(

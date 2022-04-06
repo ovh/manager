@@ -135,7 +135,7 @@
                         </oui-button>
                         <oui-spinner
                             class="m-2" size="s"
-                            data-ng-if="$ctrl.globalLoading.finalize"
+                            data-ng-if="$ctrl.canProceedToCreateProject() && $ctrl.globalLoading.finalize"
                         ></oui-spinner>
                     </div>
 
