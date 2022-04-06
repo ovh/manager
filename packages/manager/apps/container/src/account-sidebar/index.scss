@@ -21,6 +21,15 @@ $ovh-sidebar-width: 18.75rem;
     button {
       pointer-events: none;
     }
+
+    @media screen and (min-width: ($device-breakpoint-medium  - 1px)) {
+      .force-large-screen-display {
+        width: $ovh-sidebar-width;
+        padding-left: 0;
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
   }
 
   &.sidebar-expand {

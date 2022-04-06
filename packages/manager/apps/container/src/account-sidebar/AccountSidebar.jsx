@@ -7,10 +7,14 @@ import UsefulLinks from './UsefulLinks';
 import { useHeader } from '@/context/header';
 
 const AccountSidebar = () => {
-  const { isAccountSidebarVisible } = useHeader();
+  const {
+    isAccountSidebarLargeScreenDisplayForced,
+    isAccountSidebarVisible,
+  } = useHeader();
+
   return (
     <div
-      className="manager-account-sidebar-wrapper"
+      className={`manager-account-sidebar-wrapper${isAccountSidebarLargeScreenDisplayForced ? ' force-large-screen-display' : ''}`}
       aria-expanded={isAccountSidebarVisible}
     >
       <div className="manager-account-sidebar">

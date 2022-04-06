@@ -20,8 +20,9 @@ attachPreloader(findAvailableLocale(detectUserLocale()));
 useShellClient('hub')
   .then((client) => {
     setShellClient(client);
-    client.ux.disableAccountSidebarToggle();
+    client.ux.setForceAccountSiderBarDisplayOnLargeScreen(true);
     client.ux.showAccountSidebar();
+
     return client.environment.getEnvironment();
   })
   .then((environment) => {
