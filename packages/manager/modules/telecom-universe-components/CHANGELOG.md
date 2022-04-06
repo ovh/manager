@@ -1,3 +1,13 @@
+## [7.9.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.9.1...@ovh-ux/ng-ovh-telecom-universe-components@7.9.2) (2022-04-06)
+
+
+### Bug Fixes
+
+* **telephony.abbreviated-numbers:** fix number deletion data ([#6776](https://github.com/ovh/manager/issues/6776)) ([64b653f](https://github.com/ovh/manager/commit/64b653f8574b3bb92f94b5f4a53a4f53b871be38))
+* **tuc.editable-service-name:** add restriction to name edition ([d0b38ce](https://github.com/ovh/manager/commit/d0b38ce20e657d718c2ae33e6b3cd45092622459))
+
+
+
 ## [7.9.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.9.0...@ovh-ux/ng-ovh-telecom-universe-components@7.9.1) (2022-03-24)
 
 

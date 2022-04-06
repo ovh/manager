@@ -1,3 +1,14 @@
+## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.2.2...@ovh-ux/manager-netapp@1.2.3) (2022-04-06)
+
+
+### Bug Fixes
+
+* **dashboard:** prevent components loading ([#6769](https://github.com/ovh/manager/issues/6769)) ([ec37117](https://github.com/ovh/manager/commit/ec3711771a8900ccb8a83c31f0f567d824d1a271))
+* remove unused translations [CDS] ([cf232dc](https://github.com/ovh/manager/commit/cf232dcff3532bb6c8f0e270737ebe3713c454a5))
+* **snapshot-policies.create:** display consistent button label ([#6780](https://github.com/ovh/manager/issues/6780)) ([3d0a6c4](https://github.com/ovh/manager/commit/3d0a6c45d3a53f70555655586e70d14e5963eb7c))
+
+
+
 ## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.2.1...@ovh-ux/manager-netapp@1.2.2) (2022-03-24)
 
 

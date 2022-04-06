@@ -1,3 +1,19 @@
+## [3.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.1.5...@ovh-ux/manager-emailpro@3.1.6) (2022-04-06)
+
+
+### Bug Fixes
+
+* **email-pro.dashboard:** add restriction to service name edition ([b1ca7fa](https://github.com/ovh/manager/commit/b1ca7fa6be349e3c7284b329585131062dc39e8d))
+* **email-pro.remove:** split vulnerable translations ([3705ca7](https://github.com/ovh/manager/commit/3705ca7a8ca7fb7d1d018888ecbdb0e1840187ab))
+* **emailpro:** remove ng-bind-html ([99e4942](https://github.com/ovh/manager/commit/99e4942e90e009d3684f4e731fe9fc5658804d8f))
+* **i18n:** add missing translations [CDS 1541] ([5037d3e](https://github.com/ovh/manager/commit/5037d3eec6a315a85ccd2d15a3b23ed79654d24f))
+* **i18n:** add missing translations [CDS 1550] ([52ead43](https://github.com/ovh/manager/commit/52ead434c4be6fec5e2b3ac5a5e7c8111abc49a3))
+* **i18n:** add missing translations [CDS 1552] ([0dfc45f](https://github.com/ovh/manager/commit/0dfc45fc80e05c92cbc8ea0b7dbe968064d65c66))
+* remove unused translations [CDS] ([ba08445](https://github.com/ovh/manager/commit/ba084457b3d6a02e82c205b757887354c87bdb56))
+* **web.email-pro:** clean useless ng-bind-html ([a989cec](https://github.com/ovh/manager/commit/a989cecdcc48351233d63b155c888ee3f9fe1bdb))
+
+
+
 ## [3.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.1.4...@ovh-ux/manager-emailpro@3.1.5) (2022-03-24)
 
 

@@ -1,3 +1,12 @@
+## [1.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@1.1.3...@ovh-ux/manager-anthos@1.1.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* **anthos.rename-service:** disallow HTML chars in name edition ([e2f5c02](https://github.com/ovh/manager/commit/e2f5c02fee28b131dbb3bebbd920c90dd062d822))
+
+
+
 ## [1.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-anthos@1.1.2...@ovh-ux/manager-anthos@1.1.3) (2022-03-24)
 
 

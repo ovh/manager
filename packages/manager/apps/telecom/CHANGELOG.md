@@ -1,3 +1,12 @@
+## [13.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.36.0...@ovh-ux/manager-telecom@13.36.1) (2022-04-06)
+
+
+### Bug Fixes
+
+* **telephony.group:** line grouping random loading ([#6604](https://github.com/ovh/manager/issues/6604)) ([18d8edc](https://github.com/ovh/manager/commit/18d8edcd4656bc650efd58da8e38d2489863ddc2))
+
+
+
 # [13.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.35.1...@ovh-ux/manager-telecom@13.36.0) (2022-03-29)
 
 

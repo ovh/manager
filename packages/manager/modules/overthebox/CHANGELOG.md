@@ -1,3 +1,13 @@
+# [6.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.6.3...@ovh-ux/manager-overthebox@6.7.0) (2022-04-06)
+
+
+### Features
+
+* **overthebox.autoconfig:** add multipath configuration ([#6398](https://github.com/ovh/manager/issues/6398)) ([7f4b84d](https://github.com/ovh/manager/commit/7f4b84deaad6113a5a5fc0e952d7b0867d04414d))
+* **overthebox.autoconfigure:** add firewall configuration ([#6396](https://github.com/ovh/manager/issues/6396)) ([cbb1aac](https://github.com/ovh/manager/commit/cbb1aac260ec98047012760d218066139ec8f0a4))
+
+
+
 ## [6.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.6.2...@ovh-ux/manager-overthebox@6.6.3) (2022-03-24)
 
 

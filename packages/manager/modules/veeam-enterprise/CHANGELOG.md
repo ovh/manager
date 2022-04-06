@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.2.4...@ovh-ux/manager-veeam-enterprise@1.3.0) (2022-04-06)
+
+
+### Features
+
+* add some tracking ([#6765](https://github.com/ovh/manager/issues/6765)) ([99952d9](https://github.com/ovh/manager/commit/99952d9d5e6d02d7a07733ed0f40bab611521c29))
+
+
+
 ## [1.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.2.3...@ovh-ux/manager-veeam-enterprise@1.2.4) (2022-03-24)
 
 

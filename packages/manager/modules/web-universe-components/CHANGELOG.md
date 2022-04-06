@@ -1,3 +1,12 @@
+# [9.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.3.4...@ovh-ux/ng-ovh-web-universe-components@9.4.0) (2022-04-06)
+
+
+### Features
+
+* **domain:** update dns anycast order ([#2743](https://github.com/ovh/manager/issues/2743)) ([0917f63](https://github.com/ovh/manager/commit/0917f638db7eb150186266b57808b0e2d5fc3421))
+
+
+
 ## [9.3.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.3.3...@ovh-ux/ng-ovh-web-universe-components@9.3.4) (2022-03-24)
 
 

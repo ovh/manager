@@ -1,3 +1,12 @@
+## [2.4.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.4.4...@ovh-ux/ng-ovh-cloud-universe-components@2.4.5) (2022-04-06)
+
+
+### Bug Fixes
+
+* **cuc.modal.name-change:** add restriction to name edition ([327e3ad](https://github.com/ovh/manager/commit/327e3ad74369ef84b8c435d8bb818fa0ffbdc843))
+
+
+
 ## [2.4.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.4.3...@ovh-ux/ng-ovh-cloud-universe-components@2.4.4) (2022-03-24)
 
 

@@ -1,3 +1,12 @@
+## [1.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.2.4...@ovh-ux/manager-cda@1.2.5) (2022-04-06)
+
+
+### Bug Fixes
+
+* **cda.details.edit:** disallow HTML chars in name edition ([d123703](https://github.com/ovh/manager/commit/d123703fc7476f84cacf8fa53ff18be7ebe349f8))
+
+
+
 ## [1.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.2.3...@ovh-ux/manager-cda@1.2.4) (2022-03-24)
 
 

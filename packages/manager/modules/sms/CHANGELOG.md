@@ -1,3 +1,15 @@
+## [8.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.7.1...@ovh-ux/manager-sms@8.7.2) (2022-04-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1541] ([5037d3e](https://github.com/ovh/manager/commit/5037d3eec6a315a85ccd2d15a3b23ed79654d24f))
+* **i18n:** add missing translations [CDS 1550] ([52ead43](https://github.com/ovh/manager/commit/52ead434c4be6fec5e2b3ac5a5e7c8111abc49a3))
+* **i18n:** add missing translations [CDS 1552] ([0dfc45f](https://github.com/ovh/manager/commit/0dfc45fc80e05c92cbc8ea0b7dbe968064d65c66))
+* **telecom.sms.compose:** rework receivers list display ([b94ffc2](https://github.com/ovh/manager/commit/b94ffc227c52c59e0b0155ea49ddd5ed82937901))
+
+
+
 ## [8.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.7.0...@ovh-ux/manager-sms@8.7.1) (2022-03-24)
 
 

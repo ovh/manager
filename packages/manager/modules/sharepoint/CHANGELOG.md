@@ -1,3 +1,12 @@
+## [2.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.5.1...@ovh-ux/manager-sharepoint@2.5.2) (2022-04-06)
+
+
+### Bug Fixes
+
+* **sharepoint.dashboard:** disallow HTML chars in name edition ([0c89923](https://github.com/ovh/manager/commit/0c899231b56315f580f9420c9e3c25eca1673fd5))
+
+
+
 ## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.5.0...@ovh-ux/manager-sharepoint@2.5.1) (2022-03-24)
 
 
