@@ -20,7 +20,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^4.0.1"
+    "@ovh-ux/manager-webpack-config": "^5.0.0"
   },
   "regions": [
     "EU"
