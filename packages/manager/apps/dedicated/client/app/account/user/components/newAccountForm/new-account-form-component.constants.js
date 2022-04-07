@@ -3,6 +3,7 @@ export default {
 
   accountCreationRoute: '/auth/signup/register',
   emailValidationRoute: '/auth/signup/isValidEmail',
+  GST_SUBSIDIARIES: ['IN'],
 
   sections: {
     /*
