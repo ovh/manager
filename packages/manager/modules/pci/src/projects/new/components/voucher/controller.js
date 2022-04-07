@@ -1,6 +1,7 @@
 export default class PciProjectNewVoucherCtrl {
   /* @ngInject */
-  constructor(pciProjectNew) {
+  constructor($q, pciProjectNew) {
+    this.$q = $q;
     this.pciProjectNew = pciProjectNew;
 
     // other attributes
@@ -64,6 +65,13 @@ export default class PciProjectNewVoucherCtrl {
         this.model.voucher.setInfos(eligibilityOpts.voucher);
         this.eligibility.setOptions(eligibilityOpts);
         this.setVoucherFormState();
+
+        return eligibilityOpts;
+      })
+      .then((eligibilityOpts) => {
+        if (eligibilityOpts.voucher?.error) {
+          return this.$q.reject(eligibilityOpts);
+        }
 
         return eligibilityOpts;
       })
