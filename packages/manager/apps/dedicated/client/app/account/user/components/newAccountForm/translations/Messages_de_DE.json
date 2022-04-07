@@ -709,5 +709,6 @@
   "signup_enum_IT_area_BT": "Barletta-Andria-Trani (Apulien)",
   "signup_enum_IT_area_FM": "Fermo (Marken)",
   "signup_enum_IT_area_MB": "Monza E Brianza (Lombardei)",
-  "signup_field_managerLanguage": "Sprache des Kundencenters"
+  "signup_field_managerLanguage": "Sprache des Kundencenters",
+  "signup_field_gst": "Nummer der Steuer auf Waren und Dienstleistungen (GST)"
 }
