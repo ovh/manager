@@ -37,6 +37,8 @@ export function initStandaloneClientApi(
   if (!appConfig) {
     throw new Error(`Unknown application '${appId}'`);
   }
+
+  // check for container redirection
   if (appConfig.container?.enabled === true) {
     const targetURL = new URL(appConfig.publicURL);
     const currentHash = window.location.hash;
@@ -46,8 +48,11 @@ export function initStandaloneClientApi(
         '',
       )}/${currentHash.replace(/^#?\/?/, '')}`;
     }
-    window.location.href = targetURL.href;
+    if (window.location.hostname !== 'localhost') {
+      window.location.href = targetURL.href;
+    }
   }
+
   const client = new StandaloneShellClient();
   client.setApplicationId(appId);
   return client.init().then(() => client.getApi());
