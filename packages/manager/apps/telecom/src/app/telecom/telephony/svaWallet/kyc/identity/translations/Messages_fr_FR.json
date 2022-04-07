@@ -47,7 +47,7 @@
   "telephony_billingAccount_svaWallet_kyc_identity_representative_birthdate": "Date de naissance",
   "telephony_billingAccount_svaWallet_kyc_identity_representative_birthcity": "Ville de naissance",
   "telephony_billingAccount_svaWallet_kyc_identity_representative_birthcountry": "Pays de naissance",
-  "telephony_billingAccount_svaWallet_kyc_identity_representative_email": "Mail",
+  "telephony_billingAccount_svaWallet_kyc_identity_representative_email": "E-mail",
   "telephony_billingAccount_svaWallet_kyc_identity_representative_nationality": "Nationalité",
   "telephony_billingAccount_svaWallet_kyc_identity_bankAccount_holder": "Titulaire du compte bancaire",
   "telephony_billingAccount_svaWallet_kyc_identity_iban": "IBAN",
