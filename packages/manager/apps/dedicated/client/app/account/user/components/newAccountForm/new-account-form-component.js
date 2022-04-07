@@ -56,6 +56,7 @@ export default {
       this.isSubmitting = false;
       this.originalManagerLanguage = coreConfig.getUserLocale();
       const CONSENT_MARKETING_EMAIL_NAME = 'consent-marketing-email';
+      this.user = coreConfig.getUser();
 
       this.$onInit = () => {
         // backup of original model
@@ -188,7 +189,21 @@ export default {
               });
             }
 
-            return rules;
+            const displayRules = rules.map((rule) => {
+              let displayFieldName = rule.fieldName;
+              if (
+                rule.fieldName === 'vat' &&
+                formConfig.GST_SUBSIDIARIES.includes(this.user.ovhSubsidiary)
+              ) {
+                displayFieldName = 'gst';
+              }
+              return {
+                ...rule,
+                displayFieldName,
+              };
+            });
+
+            return displayRules;
           })
           .finally(() => {
             this.isLoading = false;
