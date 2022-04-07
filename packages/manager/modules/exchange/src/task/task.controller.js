@@ -43,9 +43,9 @@ export default class ExchangeTabTasksCtrl {
     this.offset = $config.offset;
     return this.getTasks($config)
       .then((response) => {
-        this.tasksList = response.list.results;
+        this.tasksList = response.list;
         return {
-          data: this.tasksList,
+          data: response.list.results,
           meta: {
             totalCount: response.count,
           },
