@@ -709,5 +709,6 @@
   "signup_enum_IT_area_BT": "Barletta-Andria-Trani (Puglia)",
   "signup_enum_IT_area_FM": "Fermo (Marche)",
   "signup_enum_IT_area_MB": "Monza e Brianza (Lombardia)",
-  "signup_field_managerLanguage": "Lingua dello Spazio Cliente"
+  "signup_field_managerLanguage": "Lingua dello Spazio Cliente",
+  "signup_field_gst": "Numero di imposta su beni e servizi (GST) "
 }
