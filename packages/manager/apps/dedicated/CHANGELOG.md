@@ -1,3 +1,12 @@
+# [17.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.15.4...@ovh-ux/manager-dedicated@17.16.0) (2022-04-07)
+
+
+### Features
+
+* **account.user.new-account-form:** add `GST` field for india ([#6760](https://github.com/ovh/manager/issues/6760)) ([5c81f59](https://github.com/ovh/manager/commit/5c81f59195ce0c973f86359edc6a328c96f3487b))
+
+
+
 ## [17.15.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.15.3...@ovh-ux/manager-dedicated@17.15.4) (2022-04-06)
 
 
