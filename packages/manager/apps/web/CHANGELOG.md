@@ -1,3 +1,12 @@
+## [16.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.9.0...@ovh-ux/manager-web@16.9.1) (2022-04-07)
+
+
+### Bug Fixes
+
+* **domain.dashboard:** call API via `GET` method ([#6836](https://github.com/ovh/manager/issues/6836)) ([652d8b3](https://github.com/ovh/manager/commit/652d8b3c3e4f91a9eea0b50371784076334c0032))
+
+
+
 # [16.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.8.1...@ovh-ux/manager-web@16.9.0) (2022-04-06)
 
 
