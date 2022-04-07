@@ -96,7 +96,7 @@ export default class FlavorsList {
             legacy: includes(
               get(
                 find(catalog.addons, {
-                  invoiceName: resource.name,
+                  invoiceName: resource.name.replace(/-ssd$/, ''),
                 }),
                 'blobs.tags',
               ),
