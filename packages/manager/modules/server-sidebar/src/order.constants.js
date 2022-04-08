@@ -465,7 +465,7 @@ export const ORDER_URLS = {
       US: 'https://us.ovhcloud.com/bare-metal/prices/',
     },
     dedicatedEcoRangeOrder: {
-      US: 'https://eco.ovhcloud.com/en/',
+      US: 'https://eco.us.ovhcloud.com/',
     },
     cloudProjectOrder: {
       US: 'https://us.ovhcloud.com/manager/cloud/#/iaas/pci/offer',
