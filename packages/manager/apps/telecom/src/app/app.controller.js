@@ -1,3 +1,5 @@
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
+
 export default class TelecomAppCtrl {
   /* @ngInject */
   constructor(
@@ -24,6 +26,7 @@ export default class TelecomAppCtrl {
     this.coreConfig = coreConfig;
     this.ovhUserPref = ovhUserPref;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
+    this.isTopLevelApplication = isTopLevelApplication();
 
     this.chatbotEnabled = false;
     this.SYSTRAN_FEEDBACK_INFO = {
