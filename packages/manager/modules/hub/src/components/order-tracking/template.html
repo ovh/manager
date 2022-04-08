@@ -19,6 +19,7 @@
             data-translate-values="{
                 orderId: $ctrl.order.orderId,
             }"
+            target="_top"
         ></a>
         <span
             data-ng-if="!$ctrl.orderTrackingLink"
@@ -49,6 +50,7 @@
             data-track-on="click"
             data-track-name="{{:: $ctrl.trackingPrefix + '::activity::order::show-all' }}"
             data-navi-id="lastOrder-go-to-orders"
+            target="_top"
         >
             <span data-translate="hub_order_tracking_see_all"></span>
             <span class="oui-icon oui-icon-arrow-right" aria-hidden="true">

@@ -76,6 +76,7 @@
                 <a
                     data-ng-href="{{:: $ctrl.quotaLink }}"
                     data-translate="pci_projects_project_instances_backup_add_numInstances_quotaLink_label"
+                    target="_top"
                 ></a>
             </div>
         </oui-field>
@@ -159,8 +160,7 @@
         </oui-field>
 
         <!--Trusted zone banner amount charge info-->
-        <pci-trusted-zone-banner
-            data-ng-if="$ctrl.isTrustedZone">
+        <pci-trusted-zone-banner data-ng-if="$ctrl.isTrustedZone">
         </pci-trusted-zone-banner>
 
         <div data-ng-if="$ctrl.isLoading">

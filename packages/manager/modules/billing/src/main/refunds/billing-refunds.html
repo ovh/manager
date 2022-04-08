@@ -160,6 +160,7 @@
                         data-ng-if="$ctrl.isCreditedOnPrepaidAccount(refundsLine)"
                         data-ng-href="{{ $ctrl.prepaidAccountLink }}"
                         data-translate="{{ 'common_payment_type_' + refundsLine.paymentType }}"
+                        target="_top"
                     ></a>
                     <span
                         data-ng-if="!$ctrl.isCreditedOnPrepaidAccount(refundsLine)"

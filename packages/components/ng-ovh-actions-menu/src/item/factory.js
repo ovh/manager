@@ -60,7 +60,7 @@ export default function() {
 
     if (options.href && !options.state && !options.subItems) {
       this.href = options.href;
-      this.target = options.target || '_self';
+      this.target = options.target || '_top';
       this.external = options.external || false;
     } else if (options.state && !options.href && !options.subItems) {
       this.state = options.state;

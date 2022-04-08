@@ -19,7 +19,10 @@
         ></pci-project-regions-list>
 
         <!--Add new region banner info-->
-        <oui-message type="info" data-ng-if="!$ctrl.displaySelectedRegion && $ctrl.cluster.region && !$ctrl.cluster.region.enabled">
+        <oui-message
+            type="info"
+            data-ng-if="!$ctrl.displaySelectedRegion && $ctrl.cluster.region && !$ctrl.cluster.region.enabled"
+        >
             <span data-translate="kubernetes_add_region_info"></span>
         </oui-message>
     </oui-step-form>
@@ -73,6 +76,7 @@
                     data-ng-if="$ctrl.displaySelectedPrivateNetwork"
                     data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
                     data-translate="kubernetes_add_private_network_add"
+                    target="_top"
                 ></a>
             </p>
         </oui-field>
