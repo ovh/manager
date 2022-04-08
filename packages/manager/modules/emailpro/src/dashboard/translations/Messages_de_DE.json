@@ -848,5 +848,21 @@
   "email_tab_modal_delete_redirection_accounts": "<strong>{0}</strong> auf <strong>{1}</strong>",
   "emails_common_continue_question": "Möchten Sie fortfahren? ",
   "emails_common_account_name_conditions": "Achtung, der Name des Accounts muss folgende Bedingungen erfüllen: <br/>- Mindestens {0} Zeichen<br/>- Höchstens {1} Zeichen<br/>- Keine Leerzeichen<br/>- Keine Zeichen mit Akzent oder Umlaute<br/>- Keine Sonderzeichen außer . und - und _.",
-  "emailpro-mxplan_tab_domain_no_domains": "Keine Ergebnisse gefunden"
+  "emailpro-mxplan_tab_domain_no_domains": "Keine Ergebnisse gefunden",
+  "emailpro_resilitation_action_intro_1": "Sind Sie sicher, dass Sie den Dienst E-Mail Pro {0} kündigen möchten?",
+  "emailpro_resilitation_action_intro_2": "Dadurch wird die automatische Verlängerung nach Ablauf des Dienstes aufgehoben. Der Dienst wird somit gesperrt.",
+  "emailpro_resilitation_action_intro_3": "Bis zu diesem Zeitpunkt können Sie den Dienst wie gewohnt verwenden.",
+  "emailpro-mxplan_resilitation_action_intro_1": "Sind Sie sicher, dass Sie den Dienst E-Mail MX Plan {0} kündigen möchten?",
+  "emailpro-mxplan_resilitation_action_intro_2": "Dadurch wird die automatische Verlängerung nach Ablauf des Dienstes aufgehoben. Der Dienst wird somit gesperrt.",
+  "emailpro-mxplan_resilitation_action_intro_3": "Bis zu diesem Zeitpunkt können Sie den Dienst wie gewohnt verwenden.",
+  "emailpro_resilitation_action_confirmation_1": "Bitte beachten Sie: Sie sind im Begriff, den Dienst „{0}“ zu kündigen, einschließlich der dazugehörigen E-Mail Pro Accounts.",
+  "emailpro_resilitation_action_confirmation_2": "Möchten Sie wirklich damit fortfahren?",
+  "emailpro-mxplan_resilitation_action_confirmation_1": "Bitte beachten Sie: Sie sind im Begriff, den Dienst „{0}“ zu kündigen, einschließlich der dazugehörigen E-Mail MX Plan Accounts.",
+  "email_pro-mxplan_resilitation_action_confirmation_2": "Möchten Sie wirklich damit fortfahren?",
+  "emailpro_resilitation_cancel_action_intro_1": "Die Kündigung des Dienstes E-Mail Pro „{0}“ ist für das Ablaufdatum programmiert.",
+  "emailpro_resilitation_cancel_action_intro_2": "Sind Sie sicher, dass Sie diese Kündigung stornieren möchten?",
+  "emailpro_resilitation_cancel_action_intro_3": "Der Dienst wird dann auf automatische Verlängerung umgestellt.",
+  "emailpro_resilitation_cancel_action_confirmation_1": "Sie sind im Begriff, die Kündigung des Dienstes „{0}“ zu stornieren.",
+  "emailpro_resilitation_cancel_action_confirmation_2": "Möchten Sie fortfahren?",
+  "emailpro_resilitation_cancel_action_confirmation_3": "Der Dienst wird dann auf automatische Verlängerung umgestellt."
 }

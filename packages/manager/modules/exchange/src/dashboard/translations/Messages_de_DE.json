@@ -1597,5 +1597,17 @@
   "exchange_reset_mfa_success": "Die Zwei-Faktor-Authentifizierung wurde zurückgesetzt.",
   "exchange_mfa_error": "Es ist ein Fehler aufgetreten: {{error}}",
   "exchange_delete_mfa_success": "Die Zwei-Faktor-Authentifizierung wurde gelöscht.",
-  "exchange_delete_mfa_error": "Bei der Löschung der Zwei-Faktor-Authentifizierung ist ein Fehler aufgetreten: {{error}}"
+  "exchange_delete_mfa_error": "Bei der Löschung der Zwei-Faktor-Authentifizierung ist ein Fehler aufgetreten: {{error}}",
+  "exchange_resilitation_action_intro_1": "Sind Sie sicher, dass Sie den Dienst Exchange „{0}“ kündigen möchten?",
+  "exchange_resilitation_action_intro_2": "Dadurch wird die automatische Verlängerung nach Ablauf des Dienstes aufgehoben. Der Dienst wird somit gesperrt.",
+  "exchange_resilitation_action_intro_3": "Bis zu diesem Zeitpunkt können Sie den Dienst wie gewohnt verwenden.",
+  "exchange_resilitation_action_confirmation_1": "Bitte beachten Sie: Sie sind im Begriff, den Dienst „{0}“ zu kündigen, einschließlich der dazugehörigen {1} Exchange Accounts.",
+  "exchange_resilitation_action_confirmation_2": "Möchten Sie wirklich damit fortfahren?",
+  "exchange_resilitation_cancel_action_intro_1": "Die Kündigung des Dienstes Exchange „{0}“ ist für das Ablaufdatum programmiert.",
+  "exchange_resilitation_cancel_action_intro_2": "Sind Sie sicher, dass Sie diese Kündigung stornieren möchten? Der Dienst wird dann auf automatische Verlängerung umgestellt.",
+  "exchange_resilitation_cancel_action_confirmation_1": "Sie sind im Begriff, die Kündigung des Dienstes „{0}“ zu stornieren.",
+  "exchange_resilitation_cancel_action_confirmation_2": "Möchten Sie fortfahren?",
+  "exchange_resilitation_cancel_action_confirmation_3": "Der Dienst wird dann auf automatische Verlängerung umgestellt.",
+  "exchange_update_billing_periode_intro_1": "Wählen Sie den gewünschten Rhythmus für die automatische Verlängerung von jedem Account.",
+  "exchange_update_billing_periode_intro_2": "Ab der nächsten Verlängerung wird dieser Rhythmus dann angewendet."
 }
