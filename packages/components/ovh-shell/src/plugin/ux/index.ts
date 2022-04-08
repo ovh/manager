@@ -12,6 +12,7 @@ export interface IUXPlugin {
   disableAccountSidebarVisibilityToggle(): void;
   toggleNotificationsSidebarVisibility(): void;
   toggleAccountSidebarVisibility(): void;
+  getUserIdCookie(): string;
 }
 
 // TODO: remove this once we have a more generic Plugin class
@@ -20,10 +21,14 @@ export type UXPluginType<T extends UXPlugin> = {
 };
 
 export class UXPlugin implements IUXPlugin {
+  private shell: Shell;
+
   private shellUX: ShellUX;
 
   constructor(shell: Shell) {
-    this.shellUX = new ShellUX(shell);
+    this.shell = shell;
+
+    this.shellUX = new ShellUX(this.shell);
     this.shellUX.registerSidebar('account');
     this.shellUX.registerSidebar('notifications');
     this.shellUX.registerNavbar();
@@ -77,4 +82,49 @@ export class UXPlugin implements IUXPlugin {
     this.shellUX.toggleSidebarVisibility('notifications');
   }
 
+  /* ----------- SSOAuthModal methods -----------*/
+
+  getUserIdCookie = () => {
+    const latestCookies = document.cookie;
+    const userIdCookie = latestCookies
+      .split(';')
+      .find((item) => item.includes('USERID'));
+
+    if (userIdCookie) {
+      return userIdCookie.split('=')[1];
+    }
+
+    return '';
+  };
+
+  getSSOAuthModalMode(oldUserID: string): string {
+    const latestUserIdCookie = this.getUserIdCookie();
+
+    if (oldUserID && !latestUserIdCookie) {
+      // from connected to disconnected
+      return 'CONNECTED_TO_DISCONNECTED';
+    }
+
+    if (!oldUserID && latestUserIdCookie) {
+      // from disconnected to connected
+      return 'DISCONNECTED_TO_CONNECTED';
+    }
+
+    if (oldUserID !== latestUserIdCookie) {
+      // from connected to connected with other
+      return 'CONNECTED_TO_OTHER';
+    }
+
+    return '';
+  }
+
+  /* ----------- Chatbot methods -----------*/
+
+  openChatbot(): void {
+    this.shell.emitEvent('ux:open-chatbot');
+  }
+
+  closeChatbot(): void {
+    this.shell.emitEvent('ux:close-chatbot');
+  }
 }
