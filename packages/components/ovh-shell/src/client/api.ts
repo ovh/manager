@@ -2,6 +2,8 @@ import { ApplicationId } from '@ovh-ux/manager-config/types/application';
 import { Environment } from '@ovh-ux/manager-config';
 import ShellClient from './shell-client';
 import { clientAuth } from '../plugin/auth';
+import { clientNavigation } from '../plugin/navigation';
+import { exposeTrackingAPI } from '../plugin/tracking';
 
 export default function exposeApi(shellClient: ShellClient) {
   return {
@@ -54,6 +56,7 @@ export default function exposeApi(shellClient: ShellClient) {
     },
     auth: clientAuth(shellClient),
     ux: {
+      // AccountSidebar
       showAccountSidebar: () =>
         shellClient.invokePluginMethod({
           plugin: 'ux',
@@ -76,6 +79,24 @@ export default function exposeApi(shellClient: ShellClient) {
           plugin: 'ux',
           method: 'isAccountSidebarVisible',
         }),
+      getSSOAuthModalMode: (oldUserCookie: string) =>
+        shellClient.invokePluginMethod<string>({
+          plugin: 'ux',
+          method: 'getSSOAuthModalMode',
+          args: [oldUserCookie],
+        }),
+      getUserIdCookie: () =>
+        shellClient.invokePluginMethod<string>({
+          plugin: 'ux',
+          method: 'getUserIdCookie',
+        }),
+      // Chatbot
+      onOpenChatbot: (callback: CallableFunction) =>
+        shellClient.addEventListener('ux:open-chatbot', callback),
+      onCloseChatbot: (callback: CallableFunction) =>
+        shellClient.addEventListener('ux:close-chatbot', callback),
     },
+    navigation: clientNavigation(shellClient),
+    tracking: exposeTrackingAPI(),
   };
 }
