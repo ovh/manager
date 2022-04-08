@@ -1,5 +1,6 @@
 import angular from 'angular';
-import { registerAtInternetConfigModule } from '@ovh-ux/manager-at-internet-configuration';
+import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
+import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 
 import TRACKING from './at-internet.constant';
 
@@ -7,7 +8,10 @@ const moduleName = 'hubAtInternet';
 
 export const initHubAtInternet = (trackingPlugin) => {
   angular
-    .module(moduleName, [registerAtInternetConfigModule(trackingPlugin)])
+    .module(moduleName, [
+      registerAtInternet(trackingPlugin),
+      ovhManagerAtInternetConfiguration,
+    ])
     .config(
       /* @ngInject */ (atInternetConfigurationProvider) => {
         atInternetConfigurationProvider.setTrackingPlugin(trackingPlugin);

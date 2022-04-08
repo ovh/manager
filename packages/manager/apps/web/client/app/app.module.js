@@ -47,9 +47,9 @@ import has from 'lodash/has';
 import isString from 'lodash/isString';
 import set from 'lodash/set';
 
-import { registerAtInternetConfigModule } from '@ovh-ux/manager-at-internet-configuration';
+import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import { registerCoreModule } from '@ovh-ux/manager-core';
-import ngAtInternet from '@ovh-ux/ng-at-internet';
+import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhContracts from '@ovh-ux/ng-ovh-contracts';
@@ -152,7 +152,7 @@ export default async (containerEl, shellClient) => {
         ngQAllSettled,
         'ngMessages',
         'xeditable',
-        ngAtInternet,
+        registerAtInternet(shellClient.tracking),
         ngAtInternetUiRouterPlugin,
         ngOvhApiWrappers,
         ngOvhContracts,
@@ -176,7 +176,7 @@ export default async (containerEl, shellClient) => {
         ngTailLogs,
         'ovh-api-services',
         ovhManagerMfaEnrollment,
-        registerAtInternetConfigModule(shellClient.tracking),
+        ovhManagerAtInternetConfiguration,
         ovhManagerAccountMigration,
         ovhManagerBanner,
         ovhManagerCookiePolicy,

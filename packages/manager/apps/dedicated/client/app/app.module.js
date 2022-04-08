@@ -57,7 +57,7 @@ import has from 'lodash/has';
 import set from 'lodash/set';
 import isString from 'lodash/isString';
 import trustedNic from '@ovh-ux/manager-trusted-nic';
-import ngAtInternet from '@ovh-ux/ng-at-internet';
+import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
@@ -79,7 +79,7 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngUirouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhContacts from '@ovh-ux/ng-ovh-contacts';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
-import { registerAtInternetConfigModule } from '@ovh-ux/manager-at-internet-configuration';
+import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import { serverBandwidth } from '@ovh-ux/manager-components';
 import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
@@ -165,7 +165,8 @@ export default async (containerEl, shellClient) => {
         account,
         ovhManagerAccountSidebar,
         registerCoreModule(environment, coreCallbacks),
-        registerAtInternetConfigModule(shellClient.tracking),
+        registerAtInternet(shellClient.tracking),
+        ovhManagerAtInternetConfiguration,
         ovhManagerBilling,
         ovhManagerCookiePolicy,
         chartjs,
@@ -191,7 +192,6 @@ export default async (containerEl, shellClient) => {
         otrs,
         ovhManagerMfaEnrollment,
         'ngMessages',
-        ngAtInternet,
         ngAtInternetUiRouterPlugin,
         ngOvhApiWrappers,
         ngOvhBrowserAlert,
