@@ -24,6 +24,7 @@ const server = setupServer(
 
 jest.mock('../../account-sidebar/AccountSidebar.jsx');
 jest.mock('../../notifications-sidebar/NotificationsSidebar.jsx');
+jest.mock('../../cookie-policy/CookiePolicy.jsx');
 
 describe('Renders shell header', () => {
   // Given an environment with the user 'Tester testee'
@@ -49,7 +50,6 @@ describe('Renders shell header', () => {
     // Removing this line will just result on an error on the console
     // but the test will still pass or fail.
     consoleErrorMock = jest.spyOn(console, 'error').mockImplementation();
-
     // Arrange
     const user = {
       firstname: 'Tester',
