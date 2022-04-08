@@ -4,12 +4,30 @@ import Shell from './shell';
 import DirectClientMessageBus from '../message-bus/direct-client';
 import authenticationPlugin from '../plugin/auth';
 import environmentPlugin from '../plugin/environment';
+import navigationPlugin from '../plugin/navigation';
+import { exposeTrackingAPI } from '../plugin/tracking';
 import { i18n as i18nPlugin } from '../plugin/i18n';
 import { UXPlugin, UXPluginType } from '../plugin/ux';
+
+function isStagingEnvironment() {
+  return /\.dev$/.test(window.location.hostname);
+}
 
 export function initShell(): Promise<Shell> {
   return fetchConfiguration('shell').then((environment: Environment) => {
     const shell = new Shell();
+
+    if (isStagingEnvironment()) {
+      Object.entries(environment.getApplications()).forEach(
+        ([appName, appConfig]) => {
+          const url = new URL(appConfig.publicURL);
+          url.pathname = appConfig.container?.enabled
+            ? '/container'
+            : `/${appName}`;
+          appConfig.publicURL = `${window.location.origin}${url.pathname}/${url.hash}`;
+        },
+      );
+    }
 
     // set message bus
     shell.setMessageBus(new DirectClientMessageBus());
@@ -32,6 +50,16 @@ export function initShell(): Promise<Shell> {
     shell
       .getPluginManager()
       .registerPlugin('ux', uxPlugin as UXPluginType<UXPlugin>);
+
+    // register navigation plugin
+    shell
+      .getPluginManager()
+      .registerPlugin('navigation', navigationPlugin(environment));
+
+    // @TODO implement tracking plugin
+    shell
+      .getPluginManager()
+      .registerPlugin('tracking', exposeTrackingAPI() as Record<string, CallableFunction>);
 
     return shell;
   });

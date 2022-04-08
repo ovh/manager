@@ -50,7 +50,7 @@ export default class Shell {
     );
   }
 
-  emitEvent(eventId: string, data: unknown) {
+  emitEvent(eventId: string, data?: unknown) {
     if (this.messageBus) {
       this.messageBus.send({
         type: ShellMessageType.EVENT,
