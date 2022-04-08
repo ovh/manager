@@ -151,7 +151,11 @@
                         data-ng-if="$first"
                         data-ng-attr-rowspan="{{detail.length}}"
                     >
-                        <a data-ng-if="d.url" data-ng-href="{{d.url}}">
+                        <a
+                            data-ng-if="d.url"
+                            data-ng-href="{{d.url}}"
+                            target="_top"
+                        >
                             <span data-ng-bind="d.id"></span>
                         </a>
                         <span
