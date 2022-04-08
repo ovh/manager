@@ -12,7 +12,6 @@ import { IOvhAtInternetTrack } from './track';
 import { getUniqueId } from './utils';
 import {
   AT_INTERNET_CUSTOM_VARS,
-  AtInternetCustomVar,
   IAtInternetCustomVar,
 } from './constants';
 import { ATInternetTagOptions } from '.';
@@ -87,7 +86,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
        *   customVars : {
        *     a { b { c : [value] }}}
        */
-      keys.forEach((key: AtInternetCustomVar, idx: number) => {
+      keys.forEach((key: string, idx: number) => {
         if (idx === keys.length - 1 && varValue.format) {
           tmp[key] = varValue.format.replace(
             '%s',
@@ -104,7 +103,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   private getCustomVarsWithDefaults(trackData: unknown) {
     const customVars = {};
     Object.keys(AT_INTERNET_CUSTOM_VARS).forEach(
-      (customVarKey: AtInternetCustomVar) => {
+      (customVarKey: string) => {
         const customVarVal = AT_INTERNET_CUSTOM_VARS[customVarKey];
         this.updateCustomVars(
           this.defaults,

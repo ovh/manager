@@ -3,19 +3,8 @@ export interface IAtInternetCustomVar {
   format: string;
 }
 
-export type AtInternetCustomVar =
-  | 'countryCode'
-  | 'currencyCode'
-  | 'pageUrl'
-  | 'referrerSite'
-  | 'event'
-  | 'siteName'
-  | 'projectId'
-  | 'voucherCode'
-  | 'orderStatus';
-
 export type AtInternetCustomVars = {
-  [key in AtInternetCustomVar]: IAtInternetCustomVar;
+  [key in string]: IAtInternetCustomVar;
 };
 
 /**
