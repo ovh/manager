@@ -45,8 +45,28 @@ import controller from './index.controller';
 import service from './index.service';
 import routing from './index.routes';
 
-export default (containerEl, environment) => {
+const getEnvironment = (shellClient) => {
+  return shellClient.environment.getEnvironment();
+};
+
+const getLocale = (shellClient) => {
+  return shellClient.i18n.getLocale();
+};
+
+export default async (containerEl, shellClient) => {
   const moduleName = 'ovhPublicCloudApp';
+
+  const [environment, locale] = await Promise.all([
+    getEnvironment(shellClient),
+    getLocale(shellClient),
+  ]);
+
+  const coreCallbacks = {
+    onLocaleChange: (lang) => {
+      shellClient.i18n.setLocale(lang);
+    },
+  };
+
   angular
     .module(
       moduleName,
@@ -65,7 +85,7 @@ export default (containerEl, environment) => {
         navbar,
         'oui',
         ovhManagerAccountSidebar,
-        registerCoreModule(environment),
+        registerCoreModule(environment, coreCallbacks),
         ovhManagerCookiePolicy,
         ovhManagerMfaEnrollment,
         ovhManagerPci,
@@ -88,7 +108,7 @@ export default (containerEl, environment) => {
     .config(routing)
     .config(
       /* @ngInject */ (ovhPaymentMethodProvider) => {
-        ovhPaymentMethodProvider.setUserLocale(environment.getUserLocale());
+        ovhPaymentMethodProvider.setUserLocale(locale);
       },
     )
     .run(
@@ -108,7 +128,7 @@ export default (containerEl, environment) => {
     )
     .config(
       /* @ngInject */ (ouiCalendarConfigurationProvider) => {
-        const lang = environment.getUserLanguage();
+        const lang = locale;
         return import(`flatpickr/dist/l10n/${lang}.js`)
           .then((module) => {
             ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
@@ -159,6 +179,13 @@ export default (containerEl, environment) => {
     .config(
       /* @ngInject */ (ovhFeatureFlippingProvider) => {
         ovhFeatureFlippingProvider.setApplicationName('public-cloud');
+      },
+    )
+    .run(
+      /* @ngInject */ ($rootScope) => {
+        shellClient.ux.onOpenChatbot(() => {
+          $rootScope.$emit('ovh-chatbot:open');
+        });
       },
     );
 
