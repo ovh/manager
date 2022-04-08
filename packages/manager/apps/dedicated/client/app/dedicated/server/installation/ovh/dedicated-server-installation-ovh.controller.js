@@ -393,6 +393,7 @@ angular
         $scope.installation.noPartitioning = distribution?.noPartitioning;
         if (distribution?.noPartitioning) {
           $scope.installation.customInstall = false;
+          $scope.installation.nbDiskUse = 1;
         }
         // if saveSelectDistribution is not null, a partition has personnalisation
         // in progress and confirmation to delete is already display
