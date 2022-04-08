@@ -6,19 +6,18 @@ import Shortcuts from './Shortcuts';
 import UsefulLinks from './UsefulLinks';
 import { useHeader } from '@/context/header';
 
-const AccountSidebar = ({ environment }) => {
+const AccountSidebar = () => {
   const { isAccountSidebarVisible } = useHeader();
-
   return (
     <div
       className="manager-account-sidebar-wrapper"
       aria-expanded={isAccountSidebarVisible}
     >
       <div className="manager-account-sidebar">
-        <UserInfos environment={environment} />
-        <PaymentMethod environment={environment} />
-        <Shortcuts environment={environment} />
-        <UsefulLinks environment={environment} />
+        <UserInfos />
+        <PaymentMethod />
+        <Shortcuts />
+        <UsefulLinks />
       </div>
     </div>
   );
