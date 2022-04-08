@@ -20,8 +20,14 @@ export const PCI_PROJECT_ORDER_CART = {
   creditPlanCode: 'cloud.credit',
 };
 
+export const PCI_PROJECT_STEPS = {
+  CONFIGURATION: 'configuration',
+  PAYMENT: 'payment',
+};
+
 export default {
   ELIGIBILITY_ACTION_ENUM,
   ELIGIBILITY_ERROR_IMAGES_SRC,
   PCI_PROJECT_ORDER_CART,
+  PCI_PROJECT_STEPS,
 };
