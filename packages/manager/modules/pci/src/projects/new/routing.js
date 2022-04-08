@@ -13,6 +13,7 @@ import { PCI_FEATURES } from '../projects.constant';
 import {
   ELIGIBILITY_ACTION_ENUM,
   ELIGIBILITY_ERROR_IMAGES_SRC,
+  PCI_PROJECT_STEPS,
 } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -218,11 +219,11 @@ export default /* @ngInject */ ($stateProvider) => {
 
       steps: () => [
         {
-          name: 'configuration',
+          name: PCI_PROJECT_STEPS.CONFIGURATION,
           active: false,
         },
         {
-          name: 'payment',
+          name: PCI_PROJECT_STEPS.PAYMENT,
           active: false,
         },
       ],
