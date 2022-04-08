@@ -1,6 +1,7 @@
 import isString from 'lodash/isString';
 import set from 'lodash/set';
 import startsWith from 'lodash/startsWith';
+import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
 angular.module('App').controller(
   'SessionCtrl',
@@ -25,6 +26,7 @@ angular.module('App').controller(
       this.coreConfig = coreConfig;
       this.ovhFeatureFlipping = ovhFeatureFlipping;
       this.chatbotEnabled = false;
+      this.isTopLevelApplication = isTopLevelApplication();
     }
 
     $onInit() {
