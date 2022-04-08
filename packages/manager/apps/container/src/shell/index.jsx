@@ -1,6 +1,16 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  Suspense,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import { Redirect, Route } from 'react-router-dom';
 
 import { plugin, IFrameMessageBus } from '@ovh-ux/shell';
+
+import CookiePolicy from '../cookie-policy/CookiePolicy';
+import SSOAuthModal from '../sso-auth-modal/SSOAuthModal';
 
 import ApplicationContext from '../context';
 
@@ -19,7 +29,30 @@ function Shell() {
   }, [iframeRef]);
 
   useEffect(() => {
-    const routing = plugin.routing.initRouting(iframeRef.current);
+    const routing = plugin.routing.initRouting(shell, iframeRef.current);
+
+    // Hub application redirections
+    routing.addRoute(
+      <Route exact path="/catalog">
+        <Redirect to="/hub/catalog" />
+      </Route>,
+    );
+
+    // Telecom application redirections
+    [
+      'freefax/:id?',
+      'pack/:id?',
+      'sms/:id?',
+      'task',
+      'telephony/:id?',
+      'orders',
+      'overTheBox/:id?',
+    ].forEach((telecomRoute) =>
+      routing.addRoute(
+        <Redirect from={`/${telecomRoute}`} to={`/telecom/${telecomRoute}`} />,
+      ),
+    );
+
     shell.registerPlugin('routing', routing);
     setRouter(routing.router);
   }, [iframeRef, shell]);
@@ -38,7 +71,13 @@ function Shell() {
           ref={iframeRef}
         ></iframe>
       </div>
+      <Suspense fallback="">
+        <SSOAuthModal />
+      </Suspense>
       <div className={style.managerShell_footer}></div>
+      <Suspense fallback="...">
+        <CookiePolicy shell={shell} />
+      </Suspense>
     </div>
   );
 }

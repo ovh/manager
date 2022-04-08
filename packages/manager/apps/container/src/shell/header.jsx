@@ -12,7 +12,7 @@ function ShellHeader() {
         <Suspense fallback="">
           <NotificationsProvider environment={environment}>
             <Navbar environment={environment} />
-            <AccountSidebar environment={environment} />
+            <AccountSidebar />
             <NotificationsSidebar environment={environment} />
           </NotificationsProvider>
         </Suspense>

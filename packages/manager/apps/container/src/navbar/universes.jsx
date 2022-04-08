@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { TRANSLATE_NAMESPACE } from './constants';
 
-function NavbarUniverses({ universe, universes }) {
+function NavbarUniverses({ universe, universes, onClick }) {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   return (
     <div className="oui-navbar-list">
@@ -19,6 +19,8 @@ function NavbarUniverses({ universe, universes }) {
               `}
               key={u.universe}
               href={u.url}
+              onClick={(event) => onClick({ event, universe: u.universe })}
+              {...(u.external ? { rel: 'noopener', target: '_blank' } : {})}
             >
               {t(`navbar_universe_${u.universe}`)}
             </a>
@@ -34,6 +36,11 @@ function NavbarUniverses({ universe, universes }) {
 NavbarUniverses.propTypes = {
   universe: PropTypes.string,
   universes: PropTypes.array.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
+NavbarUniverses.defaultProps = {
+  onClick: () => {},
 };
 
 export default NavbarUniverses;
