@@ -3,7 +3,7 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { renderWithNotifications } from '../__test-utils__/contextRenders';
 
-import Navbar from '../../navbar/navbar';
+import Navbar from '@/container/legacy/navbar/navbar';
 
 const server = setupServer(
   rest.get('/engine/2api/notification', (req, res, ctx) => {
@@ -15,6 +15,12 @@ const server = setupServer(
   rest.get('/engine/2api/configuration', (req, res, ctx) => {
     return res(ctx.json([]));
   }),
+  rest.get(
+    '/engine/apiv6/me/preferences/manager/NAV_RESHUFFLE_BETA_ACCESS',
+    (req, res) => {
+      return res(false);
+    },
+  ),
 );
 
 describe('UI testing of the navbar', () => {
@@ -38,20 +44,6 @@ describe('UI testing of the navbar', () => {
       getUserLocale: () => 'fr_FR',
       getRegion: () => 'EU',
     };
-
-    // let fragment;
-    // Act
-    // const shell = await shellApi.initShell();
-
-    // const { asFragment } = render(
-    //   <I18nextProvider i18n={i18n}>
-    //     <ApplicationProvider environment={environment} shell={shell}>
-    //       <NotificationsProvider environment={environment}>
-    //         <Navbar environment={environment}></Navbar>
-    //       </NotificationsProvider>
-    //     </ApplicationProvider>
-    //   </I18nextProvider>,
-    // );
 
     const { asFragment } = await renderWithNotifications(
       <Navbar environment={environment}></Navbar>,
