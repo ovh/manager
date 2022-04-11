@@ -21,5 +21,7 @@
   "vps_configuration_veeam_order_fail": "Ocorreu um erro aquando do pedido de subscrição à opção Backups automatizados.",
   "vps_configuration_veeam_order_success": "Para finalizar a sua encomenda, siga as instruções descritas no novo separador. Se não aparecer nenhum separador novo, clique <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">nesta ligação</a>.",
   "vps_configuration_veeam_order_load_error": "Ocorreu um erro no carregamento das informações da encomenda de backup automatizado.",
-  "vps_configuration_veeam_order_load_error_none": "Não foi encontrada nenhuma encomenda de backup automatizado para este VPS."
+  "vps_configuration_veeam_order_load_error_none": "Não foi encontrada nenhuma encomenda de backup automatizado para este VPS.",
+  "vps_configuration_veeam_order_step1_info2_PXM": "{{amount}} meses",
+  "vps_configuration_veeam_order_step1_info2_PXY": "{{amount}} anos"
 }
