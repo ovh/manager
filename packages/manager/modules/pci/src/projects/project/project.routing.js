@@ -110,6 +110,14 @@ export default /* @ngInject */ ($stateProvider) => {
       customerRegions: /* @ngInject */ (PciProject, projectId) =>
         PciProject.getCustomerRegions(projectId),
 
+      onCreateProjectClick: /* @ngInject */ (goToCreateProject) => () => {
+        return goToCreateProject();
+      },
+
+      goToCreateProject: /* @ngInject */ ($state) => () => {
+        return $state.go('pci.projects.new');
+      },
+
       goToProjectInactive: /* @ngInject */ ($state, projectId) => (project) =>
         $state.go('pci.projects.project.inactive', {
           project,
