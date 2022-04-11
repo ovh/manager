@@ -1286,17 +1286,17 @@ angular.module('services').service(
      * @param {string} host
      */
     deleteGlueRecord(serviceName, host) {
-      return this.OvhHttp.delete(`/domain/${serviceName}/glueRecord/${host}`, {
-        rootPath: 'apiv6',
-      }).then((task) => {
-        if (task) {
-          this.pollDomainHost(serviceName, {
-            taskId: task.id,
-            taskFunction: task.function,
-          });
-        }
-        return task;
-      });
+      return this.$http
+        .delete(`/domain/${serviceName}/glueRecord/${host}`)
+        .then(({ data: task }) => {
+          if (task) {
+            this.pollDomainHost(serviceName, {
+              taskId: task.id,
+              taskFunction: task.function,
+            });
+          }
+          return task;
+        });
     }
 
     /**
