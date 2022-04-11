@@ -344,7 +344,7 @@
   "server_tab_USB_STORAGE_order_select_duration": "Sélectionnez la durée :",
   "server_configuration_monitoring_activated": "Activé",
   "server_configuration_monitoring_disabled": "Désactivé",
-  "server_configuration_distribution": "Système (OS)",
+  "server_configuration_distribution": "Dernier système d'exploitation (OS) installé par OVHcloud",
   "server_configuration_distribution_none": "Non installé",
   "server_configuration_distribution_byoi": "BringYourOwnImage",
   "server_configuration_boot": "Boot",
