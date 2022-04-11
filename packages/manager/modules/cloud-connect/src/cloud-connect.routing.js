@@ -15,19 +15,21 @@ export default /* @ngInject */ ($stateProvider) => {
     })
     .state('cloud-connect.index', {
       url: `?${ListLayoutHelper.urlQueryParams}`,
-      component: 'managerListLayout',
+      component: 'cloudConnect',
       params: ListLayoutHelper.stateParams,
       resolve: {
         ...ListLayoutHelper.stateResolves,
         apiPath: () => '/ovhCloudConnect',
         dataModel: () => 'ovhcloudconnect.Service',
         defaultFilterColumn: () => 'uuid',
-        header: () => 'OVHcloud Connect',
-        customizableColumns: () => true,
         getServiceNameLink: /* @ngInject */ ($state) => ({
           uuid: ovhCloudConnectId,
         }) =>
           $state.href('cloud-connect.details', {
+            ovhCloudConnectId,
+          }),
+        viewDetail: /* @ngInject */ ($state) => ({ uuid: ovhCloudConnectId }) =>
+          $state.go('cloud-connect.details', {
             ovhCloudConnectId,
           }),
         hideBreadcrumb: () => true,
