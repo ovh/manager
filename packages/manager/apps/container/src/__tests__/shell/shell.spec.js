@@ -23,9 +23,9 @@ const server = setupServer(
   }),
 );
 
-jest.mock('@/container/legacy/account-sidebar/AccountSidebar.jsx');
-jest.mock('@/container/common/notifications-sidebar/NotificationsSidebar.jsx');
-jest.mock('@/cookie-policy/CookiePolicy.jsx');
+jest.mock('@/container/legacy/account-sidebar', () => () => null);
+jest.mock('@/container/common/notifications-sidebar', () => () => null);
+jest.mock('@/cookie-policy/CookiePolicy');
 jest.mock('@/assets/images/pnr/background.png');
 jest.mock('@ovh-ux/ovh-reket', () => {
   return {
