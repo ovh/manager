@@ -3,7 +3,7 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { renderWithNotifications } from '../__test-utils__/contextRenders';
 
-import Navbar from '@/container/legacy/navbar/navbar';
+import Navbar from '@/container/legacy/navbar/Navbar';
 
 const server = setupServer(
   rest.get('/engine/2api/notification', (req, res, ctx) => {
