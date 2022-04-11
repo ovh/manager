@@ -1871,7 +1871,9 @@ angular
 
       // get remaining size
       $scope.getRemainingSize = function getRemainingSize() {
-        let remainingSize = $scope.informations.totalSize;
+        let remainingSize =
+          $scope.informations?.hardwareRaid?.availableSpace ||
+          $scope.informations.totalSize;
 
         // all partition
         angular.forEach(
