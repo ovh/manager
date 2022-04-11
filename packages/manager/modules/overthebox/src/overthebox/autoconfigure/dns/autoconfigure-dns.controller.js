@@ -209,4 +209,32 @@ export default class OverTheBoxAutoconfigureDns {
         );
       });
   }
+
+  canCreateNameServer() {
+    return !this.nameserver.server || !this.nameserver.priority;
+  }
+
+  isCreatingNameServer() {
+    return this.displayAddServerButton && this.nameServers.length === 0;
+  }
+
+  hasNoNameServer() {
+    return this.nameServers?.length === 0;
+  }
+
+  canCreateLocalDomain() {
+    return (
+      this.localDomain.hostname ||
+      this.localDomain.ip ||
+      this.localDomain.priority
+    );
+  }
+
+  isCreatingLocalDomain() {
+    return this.displayAddLocalDomainButton && this.localDomains.length === 0;
+  }
+
+  hasLocalDomain() {
+    return this.localDomains?.length === 0;
+  }
 }

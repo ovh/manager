@@ -11,7 +11,6 @@
         data-ng-if="$ctrl.errorMessage"
         type="error"
         aria-close-button-label="{{:: 'overTheBox_autoconfigure_close' | translate}}"
-        on-dismiss="$ctrl.onDismiss()"
         dismissable
     >
         <span data-ng-bind="$ctrl.errorMessage"></span>
@@ -21,7 +20,7 @@
             class="oui-box__heading"
             data-translate="overTheBox_autoconfigure_dns_server"
         ></h4>
-        <div data-ng-if="$ctrl.nameServers.length === 0" class="mb-2">
+        <div data-ng-if="$ctrl.hasNoNameServer()" class="mb-2">
             <em data-translate="overTheBox_autoconfigure_no_values"></em>
         </div>
         <form novalidate name="formServer" data-ng-if="$ctrl.showAddServer">
@@ -54,7 +53,7 @@
                     variant="primary"
                     type="submit"
                     on-click="$ctrl.createNameServer()"
-                    data-disabled="!$ctrl.nameserver.server || !$ctrl.nameserver.priority"
+                    data-disabled="$ctrl.canCreateNameServer()"
                 >
                     <span
                         data-translate="overTheBox_autoconfigure_submit"
@@ -75,7 +74,7 @@
             variant="primary"
             on-click="$ctrl.addNameserver()"
             class="mb-2 d-flex justify-content-center"
-            data-ng-if="$ctrl.displayAddServerButton && $ctrl.nameServers.length === 0"
+            data-ng-if="$ctrl.isCreatingNameServer()"
         >
             <span
                 data-translate="overTheBox_autoconfigure_dns_server_add"
@@ -84,7 +83,7 @@
         <oui-datagrid
             page-size="5"
             rows="$ctrl.nameServers"
-            data-ng-if="$ctrl.nameServers.length > 0"
+            data-ng-if="!$ctrl.hasNoNameServer()"
         >
             <oui-datagrid-topbar>
                 <oui-action-menu
@@ -126,7 +125,7 @@
             class="oui-box__heading"
             data-translate="overTheBox_autoconfigure_dns_local_domain"
         ></h4>
-        <div data-ng-if="$ctrl.localDomains.length === 0" class="mb-2">
+        <div data-ng-if="$ctrl.hasNoDomainLocal()" class="mb-2">
             <em data-translate="overTheBox_autoconfigure_no_values"></em>
         </div>
         <form
@@ -173,7 +172,7 @@
                     variant="primary"
                     type="submit"
                     on-click="$ctrl.createLocalDomain()"
-                    data-disabled="!$ctrl.localDomain.hostname || !$ctrl.localDomain.ip || !$ctrl.localDomain.priority"
+                    data-disabled="$ctrl.canCreateLocalDomain()"
                 >
                     <span
                         data-translate="overTheBox_autoconfigure_submit"
@@ -194,7 +193,7 @@
             variant="primary"
             data-on-click="$ctrl.addLocalDomain()"
             class="mb-2 d-flex justify-content-center"
-            data-ng-if="$ctrl.displayAddLocalDomainButton && $ctrl.localDomains.length === 0"
+            data-ng-if="$ctrl.isCreatingLocalDomain()"
         >
             <span
                 data-translate="overTheBox_autoconfigure_dns_local_domain_add"
@@ -203,7 +202,7 @@
         <oui-datagrid
             page-size="5"
             rows="$ctrl.localDomains"
-            data-ng-if="$ctrl.localDomains.length > 0"
+            data-ng-if="!$ctrl.hasNoDomainLocal()"
         >
             <oui-datagrid-topbar>
                 <oui-action-menu
