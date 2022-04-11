@@ -13,7 +13,7 @@
   "pci_databases_general_information_node_type_storage_range": "{{storageMinSize}} a {{storageMaxSize}} de armazenamento SSD",
   "pci_databases_general_information_upgrade_node": "Melhorar o seu modelo de nó",
   "pci_databases_general_information_service_label": "Serviço",
-  "pci_databases_general_information_service_URI_label": "URI do serviço",
+  "pci_databases_general_information_service_URI_label": "URI",
   "pci_databases_general_information_service_URI_kibana_label": "URI do serviço Kibana",
   "pci_databases_general_information_replicate_URI_label": "URI replica",
   "pci_databases_general_information_database_name": "Database Name",
@@ -68,5 +68,14 @@
   "pci_databases_general_information_kafka_rest_api_enable": "Ativar",
   "pci_databases_general_information_kafka_rest_api_disable": "Desativar",
   "pci_databases_general_information_kafka_rest_service_uri_label": "URI do serviço REST Kafka",
-  "pci_databases_general_information_kafka_rest_api_enable_disable_error": "Ocorreu um erro aquando da ativação/desativação do Kafka REST API."
+  "pci_databases_general_information_kafka_rest_api_enable_disable_error": "Ocorreu um erro aquando da ativação/desativação do Kafka REST API.",
+  "pci_databases_general_information_m3_aggregator_label": "M3 Aggregator",
+  "pci_databases_general_information_kafka_connect_label": "Kafka Connect",
+  "pci_databases_general_information_integration_none": "Nenhum",
+  "pci_databases_general_information_endpoint_label": "Serviço",
+  "pci_databases_general_information_scheme_label": "Protocolo",
+  "pci_databases_general_information_path_label": "Path",
+  "pci_databases_general_information_reset_password": "Gerar nova palavra-passe",
+  "pci_databases_general_information_reset_password_success": "A palavra-passe do utilizador {{ user }} foi regenerada com êxito: <code>{{ password }}</code>. Tome note, pois não poderá ser recuperada mais tarde.",
+  "pci_databases_general_information_reset_password_error": "Ocorreu um erro durante a alteração da palavra-passe do utilizador {{ user }}: {{ message }}."
 }

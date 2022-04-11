@@ -13,7 +13,7 @@
   "pci_databases_general_information_node_type_storage_range": "de {{storageMinSize}} a {{storageMaxSize}} de almacenamiento SSD",
   "pci_databases_general_information_upgrade_node": "Mejorar el modelo de nodo",
   "pci_databases_general_information_service_label": "Servicio",
-  "pci_databases_general_information_service_URI_label": "URI del servicio",
+  "pci_databases_general_information_service_URI_label": "URI",
   "pci_databases_general_information_service_URI_kibana_label": "URI del servicio Kibana",
   "pci_databases_general_information_replicate_URI_label": "URI réplica",
   "pci_databases_general_information_database_name": "Nombre de la base de datos",
@@ -68,5 +68,14 @@
   "pci_databases_general_information_kafka_rest_api_enable": "Activar",
   "pci_databases_general_information_kafka_rest_api_disable": "Desactivar",
   "pci_databases_general_information_kafka_rest_service_uri_label": "URI del servicio Kafka REST",
-  "pci_databases_general_information_kafka_rest_api_enable_disable_error": "Se ha producido un error al activar o desactivar Kafka REST API."
+  "pci_databases_general_information_kafka_rest_api_enable_disable_error": "Se ha producido un error al activar o desactivar Kafka REST API.",
+  "pci_databases_general_information_m3_aggregator_label": "M3 Aggregator",
+  "pci_databases_general_information_kafka_connect_label": "Kafka Connect",
+  "pci_databases_general_information_integration_none": "Ninguno",
+  "pci_databases_general_information_endpoint_label": "Servicio",
+  "pci_databases_general_information_scheme_label": "Protocolo",
+  "pci_databases_general_information_path_label": "Path",
+  "pci_databases_general_information_reset_password": "Regenerar la contraseña",
+  "pci_databases_general_information_reset_password_success": "La contraseña del usuario {{ user }} se ha regenerado correctamente: <code>{{ password }}</code>. Tenga en cuenta que no podrá recuperarla más adelante.",
+  "pci_databases_general_information_reset_password_error": "Se ha producido un error al modificar la contraseña del usuario {{ user }}: {{ message }}."
 }

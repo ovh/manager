@@ -18,5 +18,8 @@
   "pci_databases_users_add_channels_button_label": "Add a channel",
   "pci_databases_users_add_username_min_rule": "Minimum {{min}} character",
   "pci_databases_users_add_username_max_rule": "Maximum {{max}} characters",
-  "pci_databases_users_add_username_pattern_rule": "Must contain letters and numbers, full stops (.), underscores (_) and dashes (-), must not start with a dash (-) or a full stop (.)"
+  "pci_databases_users_add_username_pattern_rule": "Must contain letters and numbers, full stops (.), underscores (_) and dashes (-), must not start with a dash (-) or a full stop (.)",
+  "pci_databases_users_add_group_max_rule": "Maximum {{max}} characters",
+  "pci_databases_users_add_group_pattern_rule": "Must include alphanumeric characters. Only upper-case letters, underscores (_) and numbers are authorised.",
+  "pci_databases_users_add_group_label": "Group"
 }

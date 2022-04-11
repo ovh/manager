@@ -7,5 +7,6 @@
   "pci_databases_general_information_upgrade_plan_cancel": "Abbrechen",
   "pci_databases_general_information_upgrade_plan_success": "Der Angebotswechsel wurde registriert und ist in wenigen Minuten wirksam.",
   "pci_databases_general_information_upgrade_plan_error": "Der Wechsel des Angebots wurde nicht korrekt durchgeführt: {{ message }}",
-  "pci_databases_general_information_upgrade_plan": "Angebot wechseln"
+  "pci_databases_general_information_upgrade_plan": "Angebot wechseln",
+  "pci_databases_general_information_upgrade_plan_select_flavor": "Ihr aktuelles Node-Modell {{flavor}} ermöglicht es nicht, das höhere Angebot „{{plan}}“ auszuwählen. Wenn Sie Ihr Angebot auf eine höhere Version migrieren möchten, dann wählen Sie bitte zunächst ein neues Node-Modell aus."
 }

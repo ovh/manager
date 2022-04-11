@@ -18,5 +18,8 @@
   "pci_databases_users_add_channels_button_label": "Channel hinzufügen",
   "pci_databases_users_add_username_min_rule": "Mindestens {{min}} Zeichen",
   "pci_databases_users_add_username_max_rule": "Höchstens {{max}} Zeichen",
-  "pci_databases_users_add_username_pattern_rule": "Muss aus alphanumerischen Zeichen bestehen, sowie Punkten (.), Unterstrichen (_) oder Gedankenstrichen ( -). Darf nicht mit einem Bindestrich ( -) oder Punkt (.) beginnen."
+  "pci_databases_users_add_username_pattern_rule": "Muss aus alphanumerischen Zeichen bestehen, sowie Punkten (.), Unterstrichen (_) oder Gedankenstrichen ( -). Darf nicht mit einem Bindestrich ( -) oder Punkt (.) beginnen.",
+  "pci_databases_users_add_group_max_rule": "Höchstens {{max}} Zeichen",
+  "pci_databases_users_add_group_pattern_rule": "Nur alphanumerische Zeichen. Nur Groß- und Kleinbuchstaben, Unterstriche ( _ ) und Zahlen sind zulässig.",
+  "pci_databases_users_add_group_label": "Gruppe"
 }
