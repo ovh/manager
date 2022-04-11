@@ -2770,9 +2770,9 @@
     regenerator-runtime "^0.13.4"
 
 "@babel/standalone@^7.16.12":
-  version "7.17.2"
-  resolved "https://registry.yarnpkg.com/@babel/standalone/-/standalone-7.17.2.tgz#4c55936b181f230d0ba7c5c38e66b68713cdb114"
-  integrity sha512-Adjbjnlk0IBuBEldyuicdIeq1P/YI5nfm7HnOVd8blGDRetPW2NllESjlrItMKORWVuILWqKe10D+b8yEybeBA==
+  version "7.17.9"
+  resolved "https://registry.yarnpkg.com/@babel/standalone/-/standalone-7.17.9.tgz#208298055c70531a81759435e443586754d693f9"
+  integrity sha512-9wL9AtDlga8avxUrBvQJmhUtJWrelsUL0uV+TcP+49Sb6Pj8/bNIzQzU4dDp0NAPOvnZR/7msFIKsKoCl/W1/w==
 
 "@babel/template@^7.10.1", "@babel/template@^7.10.3":
   version "7.10.3"
@@ -9781,9 +9781,9 @@ core-js@^3.14.0:
   integrity sha512-P0KPukO6OjMpjBtHSceAZEWlDD1M2Cpzpg6dBbrjFqFhBHe/BwhxaP820xKOjRn/lZRQirrCusIpLS/n2sgXLQ==
 
 core-js@^3.20.3:
-  version "3.21.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.21.0.tgz#f479dbfc3dffb035a0827602dd056839a774aa71"
-  integrity sha512-YUdI3fFu4TF/2WykQ2xzSiTQdldLB4KVuL9WeAy5XONZYt5Cun/fpQvctoKbCgvPhmzADeesTk/j2Rdx77AcKQ==
+  version "3.21.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.21.1.tgz#f2e0ddc1fc43da6f904706e8e955bc19d06a0d94"
+  integrity sha512-FRq5b/VMrWlrmCzwRrpDYNxyHP9BcAZC+xHJaqTgIE5091ZV1NTmyh0sGOg5XqpnHvR0svdy0sv1gWA1zmhxig==
 
 core-js@^3.6.4:
   version "3.7.0"
@@ -11170,6 +11170,11 @@ dompurify@^2.3.3:
   version "2.3.5"
   resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.3.5.tgz#c83ed5a3ae5ce23e52efe654ea052ffb358dd7e3"
   integrity sha512-kD+f8qEaa42+mjdOpKeztu9Mfx5bv9gVLO6K9jRx4uGvh6Wv06Srn4jr1wPNY2OOUGGSKHNFN+A8MA3v0E0QAQ==
+
+dompurify@^2.3.6:
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.3.6.tgz#2e019d7d7617aacac07cbbe3d88ae3ad354cf875"
+  integrity sha512-OFP2u/3T1R5CEgWCEONuJ1a5+MFKnOYpkywpUSxv/dj1LeBT1erK+JwM7zK0ROy2BRhqVCf0LRw/kHqKuMkVGg==
 
 domutils@1.5.1:
   version "1.5.1"
@@ -18000,7 +18005,12 @@ nanoid@^2.1.3:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-2.1.11.tgz#ec24b8a758d591561531b4176a01e3ab4f0f0280"
   integrity sha512-s/snB+WGm6uwi0WjsZdaVcuf3KJXlfGl2LcxgwkEwJF0D/BWzVWAZW/XY4bFaiR7s0Jk3FPvlnepg1H1b1UwlA==
 
-nanoid@^3.1.25, nanoid@^3.2.0:
+nanoid@^3.1.25:
+  version "3.1.32"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.32.tgz#8f96069e6239cc0a9ae8c0d3b41a3b4933a88c0a"
+  integrity sha512-F8mf7R3iT9bvThBoW4tGXhXFHCctyCiUUPrWF8WaTqa3h96d9QybkSeba43XVOOE3oiLfkVDe4bT8MeGmkrTxw==
+
+nanoid@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.2.0.tgz#62667522da6673971cca916a6d3eff3f415ff80c"
   integrity sha512-fmsZYa9lpn69Ad5eDn7FMcnnSR+8R34W9qJEijxYhTbfOWzr22n1QxCMzXLK+ODyW2973V3Fux959iQoUxzUIA==
@@ -20447,7 +20457,7 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7, rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-bootstrap@^2.1.2:
+react-bootstrap@^2.2.3:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-2.2.3.tgz#1c563018c8b856071334dd5a35f25507185136e2"
   integrity sha512-gXsAEBdDUHnOpJ2C+DDQ4mFt7tN6u6qWnTH3tqiE9jUvV6gGY8uHFp0iGBsM+yjrBwmR6bqCBFh8Z82aQj1LSw==
