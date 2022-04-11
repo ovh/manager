@@ -4,6 +4,7 @@
             data-ng-if="element.url && !element.active && !$last"
             data-ng-href="{{ element.url }}"
             data-ng-bind="element.name"
+            target="_top"
         ></a>
         <span
             data-ng-if="!(element.url && !element.active && !$last)"
