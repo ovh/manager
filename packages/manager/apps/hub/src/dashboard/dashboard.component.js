@@ -10,7 +10,6 @@ export default {
     expand: '<',
     showLivechat: '<',
     expandProducts: '<',
-    goToProductPage: '<',
     notifications: '<',
     order: '<',
     products: '<',
