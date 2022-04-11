@@ -8,7 +8,8 @@ import { shell as shellApi } from '@ovh-ux/shell';
 
 import { initSso } from '@/core/sso';
 import { ApplicationProvider } from '@/context';
-import Shell from '@/shell';
+import { ProductNavReshuffleProvider } from '@/core/product-nav-reshuffle';
+import Container from '@/container';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './index.scss';
@@ -32,13 +33,15 @@ shellApi.initShell().then((shell) => {
           ns: [], // namespaces to load by default
           backend: {
             // path construction for async load, ns: namespace, lng: locale
-            loadPath: './translations/{{ns}}/Messages_{{lng}}.json',
+            loadPath: (lng, ns) => `./translations/${ns}/Messages_${lng}.json`,
           },
         });
       ReactDOM.render(
         <React.StrictMode>
           <ApplicationProvider environment={environment} shell={shell}>
-            <Shell />
+            <ProductNavReshuffleProvider>
+              <Container />
+            </ProductNavReshuffleProvider>
           </ApplicationProvider>
         </React.StrictMode>,
         document.querySelector('#app'),
