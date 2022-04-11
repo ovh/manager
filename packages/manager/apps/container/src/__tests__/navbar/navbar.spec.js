@@ -3,7 +3,7 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { renderWithNotifications } from '../__test-utils__/contextRenders';
 
-import Navbar from '../../navbar/navbar';
+import Navbar from '@/container/legacy/navbar/navbar';
 
 const server = setupServer(
   rest.get('/engine/2api/notification', (req, res, ctx) => {
@@ -15,6 +15,12 @@ const server = setupServer(
   rest.get('/engine/2api/configuration', (req, res, ctx) => {
     return res(ctx.json([]));
   }),
+  rest.get(
+    '/engine/apiv6/me/preferences/manager/NAV_RESHUFFLE_BETA_ACCESS',
+    (req, res) => {
+      return res(false);
+    },
+  ),
 );
 
 describe('UI testing of the navbar', () => {
