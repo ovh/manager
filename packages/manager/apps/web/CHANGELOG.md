@@ -1,3 +1,12 @@
+## [16.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.9.1...@ovh-ux/manager-web@16.9.2) (2022-04-11)
+
+
+### Bug Fixes
+
+* **domain.glue:** fix call to delete glue records ([#6862](https://github.com/ovh/manager/issues/6862)) ([b3c9836](https://github.com/ovh/manager/commit/b3c9836f54d35364316e6ff55d16bf4f38a95d08))
+
+
+
 ## [16.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.9.0...@ovh-ux/manager-web@16.9.1) (2022-04-07)
 
 
