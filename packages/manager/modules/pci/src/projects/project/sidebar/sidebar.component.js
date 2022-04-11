@@ -7,6 +7,7 @@ export default {
     goToProject: '<',
     goToProjects: '<',
     goToProjectInactive: '<',
+    onCreateProjectClick: '<',
     isOpen: '<',
     onClick: '&',
   },
