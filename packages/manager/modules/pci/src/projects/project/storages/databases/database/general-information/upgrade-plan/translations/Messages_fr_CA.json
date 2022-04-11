@@ -7,5 +7,6 @@
   "pci_databases_general_information_upgrade_plan_confirm": "Valider",
   "pci_databases_general_information_upgrade_plan_cancel": "Annuler",
   "pci_databases_general_information_upgrade_plan_success": "Votre changement d’offre a bien été pris en compte. Il sera effectif dans quelques minutes.",
-  "pci_databases_general_information_upgrade_plan_error": "Votre changement d’offre n’a pas été correctement effectué : {{ message }}"
+  "pci_databases_general_information_upgrade_plan_error": "Votre changement d’offre n’a pas été correctement effectué : {{ message }}",
+  "pci_databases_general_information_upgrade_plan_select_flavor": "Votre modèle de nœuds actuel {{flavor}} ne vous permet pas de sélectionner l'offre supérieure \"{{plan}}\". Pour migrer votre offre vers une version supérieure, veuillez d'abord choisir un nouveau modèle de nœud parmi ceux ci-dessous."
 }

@@ -14,5 +14,8 @@
   "pci_databases_dashboard_replications_tab_title": "Replikationsfluss",
   "pci_databases_dashboard_current_queries_tab_title": "Aktuelle Anfragen",
   "pci_databases_dashboard_pools_tab_title": "Pools",
-  "pci_databases_dashboard_query_statistics_tab_title": "Statistiken der Anfragen"
+  "pci_databases_dashboard_query_statistics_tab_title": "Statistiken der Anfragen",
+  "pci_databases_dashboard_namespaces_tab_title": "Namespaces",
+  "pci_databases_dashboard_connectors_tab_title": "Connectors",
+  "pci_databases_dashboard_advanced_configuration_tab_title": "Erweiterte Konfiguration"
 }

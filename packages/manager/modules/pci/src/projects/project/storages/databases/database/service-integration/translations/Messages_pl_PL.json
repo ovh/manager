@@ -1,9 +1,12 @@
 {
   "pci_databases_service_integration_tab_title": "Integracja usług",
-  "pci_databases_service_integration_tab_descritpion": "Integracja usług umożliwia połączenie różnych rozwiązań Kafka.",
+  "pci_databases_service_integration_tab_descritpion": "Integracja usług pozwala na połączenie różnych rozwiązań {{engineName}}.",
   "pci_databases_service_integration_tab_kafka_service": "Usługa Kafka",
   "pci_databases_service_integration_tab_add_kafka": "Dodaj usługę Kafka",
   "pci_databases_service_integration_tab_no_kafka_service": "Nie możesz dodać usługi Kafka, ponieważ nie masz dostępnych usług Kafka.",
   "pci_databases_service_integration_tab_unknown_service": "Usługa nie została znaleziona",
-  "pci_databases_service_integration_tab_service_ready": "Integracja usługi Kafka jest gotowa"
+  "pci_databases_service_integration_tab_service_ready": "Integracja usługi {{engineName}} jest gotowa",
+  "pci_databases_service_integration_tab_service": "Usługa {{engineName}}",
+  "pci_databases_service_integration_tab_add": "Dodaj {{engineName}}",
+  "pci_databases_service_integration_tab_no_service": "Nie możesz dodać {{engineName}}, ponieważ nie masz lub już nie masz dostępnych usług {{engineName}} do podłączenia."
 }

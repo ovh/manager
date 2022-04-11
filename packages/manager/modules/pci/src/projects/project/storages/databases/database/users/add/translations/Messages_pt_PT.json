@@ -18,5 +18,8 @@
   "pci_databases_users_add_channels_button_label": "Adicionar um canal",
   "pci_databases_users_add_username_min_rule": "Pelo menos {{min}} caráter",
   "pci_databases_users_add_username_max_rule": "Máximo de {{max}} caracteres",
-  "pci_databases_users_add_username_pattern_rule": "Deve ser composto por caracteres alfanuméricos, pontos (.), underscores (_) ou hífenes (-), não deve começar por um hífen (-) ou um ponto (.)"
+  "pci_databases_users_add_username_pattern_rule": "Deve ser composto por caracteres alfanuméricos, pontos (.), underscores (_) ou hífenes (-), não deve começar por um hífen (-) ou um ponto (.)",
+  "pci_databases_users_add_group_max_rule": "Máximo de {{max}} caracteres",
+  "pci_databases_users_add_group_pattern_rule": "Deve ser composto por caracteres alfanuméricos. Apenas são permitidos maiúsculas/minúsculas, underscores (_) e números.",
+  "pci_databases_users_add_group_label": "Grupo"
 }

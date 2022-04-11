@@ -20,5 +20,6 @@
   "pci_databases_users_show_cert_action_label": "Afficher le certificat",
   "pci_databases_users_show_user_informations_action_label": "Afficher les informations",
   "pci_databases_users_delete_action_label": "Supprimer",
-  "pci_databases_users_add_action_label": "Ajouter un utilisateur"
+  "pci_databases_users_add_action_label": "Ajouter un utilisateur",
+  "pci_databases_users_group_label": "Groupe"
 }
