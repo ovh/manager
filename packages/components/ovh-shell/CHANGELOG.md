@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.1.0...@ovh-ux/shell@1.1.1) (2022-04-12)
+
+
+### Bug Fixes
+
+* **container:** avoid undefined routing configuration ([#6882](https://github.com/ovh/manager/issues/6882)) ([b974a6f](https://github.com/ovh/manager/commit/b974a6fb77df9ee6f66b67b06324ba4cb075969f))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.0.0...@ovh-ux/shell@1.1.0) (2022-04-12)
 
 
