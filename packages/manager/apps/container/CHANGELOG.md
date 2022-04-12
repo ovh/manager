@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.1.4...@ovh-ux/manager-container-app@0.2.0) (2022-04-12)
+
+
+### Features
+
+* **container:** improve shell plugins usages ([dd2dcd7](https://github.com/ovh/manager/commit/dd2dcd75c03a6e25e69af454311d5dc49aa4d5ec))
+
+
+
 ## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.1.3...@ovh-ux/manager-container-app@0.1.4) (2022-03-24)
 
 

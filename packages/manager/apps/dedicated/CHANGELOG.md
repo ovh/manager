@@ -1,3 +1,12 @@
+## [17.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.16.0...@ovh-ux/manager-dedicated@17.16.1) (2022-04-12)
+
+
+### Bug Fixes
+
+* add target _top to links ([2d375e6](https://github.com/ovh/manager/commit/2d375e6ac23773f6d4f9780aa3fa8df903692adc))
+
+
+
 # [17.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.15.4...@ovh-ux/manager-dedicated@17.16.0) (2022-04-07)
 
 

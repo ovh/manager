@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-billing",
-  "version": "0.13.0-alpha.4",
+  "version": "0.13.0-alpha.5",
   "private": true,
   "description": "Manager billing section",
   "repository": {
@@ -32,8 +32,8 @@
     "@ovh-ux/ng-ovh-contacts": "^5.0.0",
     "@ovh-ux/ng-ovh-export-csv": "^2.0.4",
     "@ovh-ux/ng-ovh-order-tracking": "^1.1.1 || ^2.0.0",
-    "@ovh-ux/ng-ovh-payment-method": "^9.1.7",
-    "@ovh-ux/ng-ovh-utils": "^14.0.16",
+    "@ovh-ux/ng-ovh-payment-method": "^9.1.8",
+    "@ovh-ux/ng-ovh-utils": "^14.0.17",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
     "@ovh-ux/ng-ui-router-layout": "^4.0.6",

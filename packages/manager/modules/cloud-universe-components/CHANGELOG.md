@@ -1,3 +1,12 @@
+## [2.4.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.4.5...@ovh-ux/ng-ovh-cloud-universe-components@2.4.6) (2022-04-12)
+
+
+### Bug Fixes
+
+* add target _top to links ([2d375e6](https://github.com/ovh/manager/commit/2d375e6ac23773f6d4f9780aa3fa8df903692adc))
+
+
+
 ## [2.4.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.4.4...@ovh-ux/ng-ovh-cloud-universe-components@2.4.5) (2022-04-06)
 
 

@@ -1,3 +1,12 @@
+## [2.4.7](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.4.6...@ovh-ux/sign-up-app@2.4.7) (2022-04-12)
+
+
+### Bug Fixes
+
+* add target _top to links ([2d375e6](https://github.com/ovh/manager/commit/2d375e6ac23773f6d4f9780aa3fa8df903692adc))
+
+
+
 ## [2.4.6](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.4.5...@ovh-ux/sign-up-app@2.4.6) (2022-03-24)
 
 

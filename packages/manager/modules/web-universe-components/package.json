@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-web-universe-components",
-  "version": "9.4.0",
+  "version": "9.4.1",
   "private": true,
   "description": "Collection of components for the Web control panel.",
   "repository": {
@@ -22,10 +22,10 @@
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.10",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
-    "@ovh-ux/ng-ovh-payment-method": "^9.1.7",
+    "@ovh-ux/ng-ovh-payment-method": "^9.1.8",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.5",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.4",
-    "@ovh-ux/ng-ovh-utils": "^14.0.16",
+    "@ovh-ux/ng-ovh-utils": "^14.0.17",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ui-kit": "^5.3.3",
     "@uirouter/angularjs": "^1.0.0",

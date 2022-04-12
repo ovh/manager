@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.0.0...@ovh-ux/shell@1.1.0) (2022-04-12)
+
+
+### Features
+
+* **ovh-shell:** add new shell plugins ([5616f7b](https://github.com/ovh/manager/commit/5616f7bf829404510e86fa26cf2dd06facfc65a8))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@0.0.0...@ovh-ux/shell@1.0.0) (2022-02-23)
 
 

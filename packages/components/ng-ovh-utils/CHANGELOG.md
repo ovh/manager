@@ -1,3 +1,12 @@
+## [14.0.17](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.0.16...@ovh-ux/ng-ovh-utils@14.0.17) (2022-04-12)
+
+
+### Bug Fixes
+
+* add target _top to links ([2d375e6](https://github.com/ovh/manager/commit/2d375e6ac23773f6d4f9780aa3fa8df903692adc))
+
+
+
 ## [14.0.16](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.0.15...@ovh-ux/ng-ovh-utils@14.0.16) (2022-03-04)
 
 
