@@ -34,26 +34,22 @@
                 <oui-datagrid-column
                     data-title=":: 'billing_payments_request_table_reference' | translate"
                 >
-                    <span data-ng-bind="$row.value.billId"></span>
+                    <span data-ng-bind="$row.billId"></span>
                 </oui-datagrid-column>
                 <oui-datagrid-column
                     data-title=":: 'billing_payments_request_table_date' | translate"
                 >
-                    <span
-                        data-ng-bind="$row.value.date | date:'mediumDate'"
-                    ></span>
+                    <span data-ng-bind="$row.date | date:'mediumDate'"></span>
                 </oui-datagrid-column>
                 <oui-datagrid-column
                     data-title=":: 'billing_payments_request_table_paid_date' | translate"
                 >
-                    <span
-                        data-ng-bind="$row.value.paid | date:'mediumDate'"
-                    ></span>
+                    <span data-ng-bind="$row.paid | date:'mediumDate'"></span>
                 </oui-datagrid-column>
                 <oui-datagrid-column
-                    data-title=":: 'billing_payments_request_table_date' | translate"
+                    data-title=":: 'billing_payments_request_table_amount' | translate"
                 >
-                    <span data-ng-bind="$row.value.priceWithTax.text"></span>
+                    <span data-ng-bind="$row.priceWithTax.text"></span>
                 </oui-datagrid-column>
             </oui-datagrid>
         </div>
