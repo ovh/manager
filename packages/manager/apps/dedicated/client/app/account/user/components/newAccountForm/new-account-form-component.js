@@ -193,7 +193,7 @@ export default {
               let displayFieldName = rule.fieldName;
               if (
                 rule.fieldName === 'vat' &&
-                formConfig.GST_SUBSIDIARIES.includes(this.user.ovhSubsidiary)
+                formConfig.GST_SUBSIDIARIES.includes(this.user.country)
               ) {
                 displayFieldName = 'gst';
               }
