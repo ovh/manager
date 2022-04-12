@@ -328,10 +328,7 @@ export default class DatabaseService {
 
   getVRack(projectId) {
     return this.$http
-      .get(
-        `/cloud/project/${projectId}/vrack`,
-        DatabaseService.getIcebergHeaders(),
-      )
+      .get(`/cloud/project/${projectId}/vrack`)
       .then(({ data }) => data)
       .catch((error) => (error.status === 404 ? [] : this.$q.reject(error)));
   }
