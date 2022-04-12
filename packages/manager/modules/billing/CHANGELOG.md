@@ -1,3 +1,17 @@
+# [0.13.0-alpha.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.3...@ovh-ux/manager-billing@0.13.0-alpha.4) (2022-04-12)
+
+
+### Code Refactoring
+
+* **billing:** kill payments requests apiv7 ([#6464](https://github.com/ovh/manager/issues/6464)) ([6d865ab](https://github.com/ovh/manager/commit/6d865ab9525462b33c0e979aa354d79f652479c6))
+
+
+### BREAKING CHANGES
+
+* **billing:** BillingBill service has been removed
+
+
+
 # [0.13.0-alpha.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.13.0-alpha.2...@ovh-ux/manager-billing@0.13.0-alpha.3) (2022-03-29)
 
 
