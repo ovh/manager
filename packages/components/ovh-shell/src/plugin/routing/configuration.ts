@@ -59,6 +59,10 @@ class RoutingConfiguration {
   getDefault(): ApplicationConfiguration {
     return this.default;
   }
+
+  hasDefault(): boolean {
+    return !!this.default;
+  }
 }
 
 export default RoutingConfiguration;

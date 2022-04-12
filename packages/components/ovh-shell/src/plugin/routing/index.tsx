@@ -40,7 +40,7 @@ export function initRoutingConfiguration(
     /**
      * If no routing configuration, redirect to the default application
      */
-    if (!routing.getDefault()) {
+    if (!routing.hasDefault()) {
       let redirect = false;
       Object.entries(environment.getApplications()).forEach(
         ([, appConfig]: [string, IApplication]) => {
@@ -60,6 +60,9 @@ export function initRoutingConfiguration(
 export function initRouting(shell: Shell, iframe: HTMLIFrameElement) {
   const routingConfig = new RoutingConfiguration();
   const routes: React.ReactElement<Route | Redirect>[] = [];
+
+  initRoutingConfiguration(shell, routingConfig);
+
   const orchestrator = Orchestrator.create(
     routingConfig,
     iframe.contentWindow,
@@ -90,8 +93,6 @@ export function initRouting(shell: Shell, iframe: HTMLIFrameElement) {
       routes={routes}
     />
   );
-
-  initRoutingConfiguration(shell, routingConfig);
 
   return {
     router,

@@ -45,6 +45,9 @@ function URLSynchronizer(props: RouteHandlerProps): JSX.Element {
 }
 
 function DefaultRouteHandler(props: DefaultRouteHandlerProps) {
+  if (!props.routing?.hasDefault()) {
+    return <></>;
+  }
   return <Redirect to={`/${props.routing.getDefault().id}/`} />;
 }
 
