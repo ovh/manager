@@ -1,35 +1,103 @@
 import React from 'react';
+import { Application as IApplication } from '@ovh-ux/manager-config/types/application';
+import { Redirect, Route } from 'react-router-dom';
 import Router, { hashChangeEvent } from './router';
-import Application from './application';
+import Shell from '../../shell/shell';
 import RoutingConfiguration from './configuration';
+import Orchestrator from './orchestrator';
 
-function initRoutingConfiguration(routing: RoutingConfiguration) {
+export function initRoutingConfiguration(
+  shell: Shell,
+  routing: RoutingConfiguration,
+) {
   if (window.location.hostname === 'localhost') {
     routing.addConfiguration({
       id: 'manager',
       path: '/app/',
     });
   } else {
-    ['hub', 'dedicated', 'web', 'public-cloud', 'telecom'].forEach(
-      (manager) => {
-        routing.addConfiguration({
-          id: manager,
-          path: `/${manager}/`,
-        });
+    /**
+     * Initialize routing configuration
+     */
+    const environment = shell.getPlugin('environment').getEnvironment();
+    Object.entries(environment.getApplications()).forEach(
+      ([appId, appConfig]: [string, IApplication]) => {
+        if (appConfig?.container?.enabled && appConfig?.container?.path) {
+          const routingConfig = {
+            id: appId,
+            path: `/${appConfig.container.path}/`,
+            publicURL: appConfig.publicURL,
+          };
+          routing.addConfiguration(routingConfig);
+          if (appConfig.container.isDefault) {
+            routing.setDefault(routingConfig);
+          }
+        } else {
+          routing.addRedirection(appId, appConfig.publicURL);
+        }
       },
     );
+    /**
+     * If no routing configuration, redirect to the default application
+     */
+    if (!routing.getDefault()) {
+      let redirect = false;
+      Object.entries(environment.getApplications()).forEach(
+        ([, appConfig]: [string, IApplication]) => {
+          if (appConfig?.container?.isDefault) {
+            redirect = true;
+            window.top.location.href = appConfig.publicURL;
+          }
+        },
+      );
+      if (!redirect) {
+        throw new Error('Missing default application in configuration');
+      }
+    }
   }
 }
 
-function initRouting(iframe: HTMLIFrameElement) {
+export function initRouting(shell: Shell, iframe: HTMLIFrameElement) {
   const routingConfig = new RoutingConfiguration();
-  const application = new Application(iframe, routingConfig);
-  const router = <Router application={application} routing={routingConfig} />;
+  const routes: React.ReactElement<Route | Redirect>[] = [];
+  const orchestrator = Orchestrator.create(
+    routingConfig,
+    iframe.contentWindow,
+    window.top,
+  );
 
-  initRoutingConfiguration(routingConfig);
+  orchestrator.setCrossOriginErrorHandler(() => {
+    const target = orchestrator.parseContainerURL().appURL?.href;
+    if (target) {
+      iframe.setAttribute('src', target);
+    } else {
+      orchestrator.redirectToContainerHome();
+    }
+  });
+
+  iframe.addEventListener('load', () => {
+    try {
+      iframe.contentWindow.location.toString();
+    } catch {
+      orchestrator.onCrossOriginError();
+    }
+  });
+
+  const router = (
+    <Router
+      orchestrator={orchestrator}
+      routing={routingConfig}
+      routes={routes}
+    />
+  );
+
+  initRoutingConfiguration(shell, routingConfig);
 
   return {
     router,
+    addRoute: (route: React.ReactElement<Route | Redirect>): void => {
+      routes.push(route);
+    },
     onHashChange: (): void => {
       window.dispatchEvent(new Event(hashChangeEvent));
     },

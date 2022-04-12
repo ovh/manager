@@ -27,4 +27,5 @@ export interface Application {
   universe: string;
   url: string;
   container: Container;
+  publicURL?: string;
 }

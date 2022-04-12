@@ -1,20 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { useShell } from '@/context';
 import usePaymentMethod from './usePaymentMethod';
-
 import Icon from './Icon.jsx';
 import Details from './Details.jsx';
 
 import './index.scss';
 
-const PaymentMehtod = ({ environment }) => {
+const PaymentMethod = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [defaultPaymentMethod, setDefaultPaymentMethod] = useState();
+  const shell = useShell();
+  const environment = shell.getPlugin('environment').getEnvironment();
 
-  const { getDefaultPaymentMethod, isEnterpriseAccount } =
-    usePaymentMethod(environment);
+  const { getDefaultPaymentMethod, isEnterpriseAccount } = usePaymentMethod(
+    environment,
+  );
   const cssBaseClassName = 'manager-account-sidebar-payment-method';
   const translationBase = 'payment_method';
+
+  const paymentMethodURL = shell
+    .getPlugin('navigation')
+    .getURL('dedicated', '#/billing/payment/method');
 
   useEffect(() => {
     setIsLoading(true);
@@ -30,10 +37,21 @@ const PaymentMehtod = ({ environment }) => {
     }
   }, []);
 
+  const paymentMethodClickHandler = () =>
+    shell.getPlugin('tracking').trackClick({
+      name: 'hub::sidebar::payment::go-to-payment-method',
+      type: 'action',
+    });
+
   return (
     !isEnterpriseAccount() && (
       <div className={`${cssBaseClassName} mb-4`}>
-        <a className="d-flex flex-row align-items-center p-2">
+        <a
+          className="d-flex flex-row align-items-center p-2"
+          href={paymentMethodURL}
+          target="_top"
+          onClick={paymentMethodClickHandler}
+        >
           <Icon defaultPaymentMethod={defaultPaymentMethod} />
           {isLoading ? (
             <div className="oui-skeleton oui-skeleton_s">
@@ -56,4 +74,4 @@ const PaymentMehtod = ({ environment }) => {
   );
 };
 
-export default PaymentMehtod;
+export default PaymentMethod;

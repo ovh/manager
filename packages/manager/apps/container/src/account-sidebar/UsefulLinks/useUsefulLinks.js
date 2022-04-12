@@ -1,8 +1,11 @@
-import { buildURL } from '@ovh-ux/ufrontend';
+import { useShell } from '@/context/useApplicationContext';
 
 import constants from './constants';
 
-const useUsefulLinks = (environment) => {
+const useUsefulLinks = () => {
+  const shell = useShell();
+  const navigation = shell.getPlugin('navigation');
+  const environment = shell.getPlugin('environment').getEnvironment();
   const region = environment.getRegion();
   const user = environment.getUser();
 
@@ -22,7 +25,7 @@ const useUsefulLinks = (environment) => {
             {
               id: 'chatbot',
               action: () => {
-                // this.openChatbot();
+                shell.getPlugin('ux').openChatbot();
               },
               icon: 'oui-icon oui-icon-speech-bubble_concept',
             },
@@ -36,7 +39,7 @@ const useUsefulLinks = (environment) => {
       },
       {
         id: 'tickets',
-        href: buildURL('dedicated', '#/ticket'),
+        href: navigation.getURL('dedicated', '#/ticket'),
         tracking: `${trackingPrefix}::go-to-tickets`,
         icon: 'oui-icon oui-icon-envelop_concept',
       },
@@ -44,7 +47,7 @@ const useUsefulLinks = (environment) => {
         ? [
             {
               id: 'createTicket',
-              href: buildURL('dedicated', '#/support/tickets/new'),
+              href: navigation.getURL('dedicated', '#/support/tickets/new'),
               tracking: `${trackingPrefix}::go-to-create-ticket`,
               icon: 'oui-icon oui-icon-user-support_concept',
             },

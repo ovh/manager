@@ -1,9 +1,9 @@
-interface OvhURL {
+export interface OvhURL {
   baseURL: string;
   path: string;
   params: Record<string, ParamValueType>;
 }
-type ParamValueType = string | number | boolean;
+export type ParamValueType = string | number | boolean;
 
 const buildURLPattern = (
   pattern: string,
@@ -49,10 +49,11 @@ export const buildURL = (
   path: string,
   params: Record<string, ParamValueType>,
 ): string => {
-  const { url: buildedPath, params: queryObject } = buildURLPattern(
-    path,
-    params,
-  );
+  let { url: buildedPath, params: queryObject } = buildURLPattern(path, params);
+
+  if (baseURL.includes('#') && buildedPath.includes('#')) {
+    buildedPath = buildedPath.replace('#', '');
+  }
 
   let queryString = queryObject ? buildQueryString(queryObject) : '';
   if (queryString) {

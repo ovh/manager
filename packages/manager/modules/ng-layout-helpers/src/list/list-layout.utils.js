@@ -38,6 +38,7 @@ export const getLink = (column, tracker) => `
     data-ng-href="{{ $ctrl.getServiceNameLink($row) }}"
     data-ng-bind="$row.${column.property}"
     ${tracker ? `data-track-on="click" data-track-name="${tracker}"` : ''}
+    target="_top"
   ></a>
 `;
 

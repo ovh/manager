@@ -75,6 +75,7 @@ module.exports = defineConfig({
     outDir: path.resolve(__dirname, 'dist'),
     emptyOutDir: true,
     minify: true,
+    sourcemap: true,
   },
   server: {
     port: 9000,
